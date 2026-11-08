@@ -6,20 +6,20 @@ import android.view.View;
 import androidx.appcompat.widget.SearchView;
 import fi.h9;
 public final class l2 implements View.OnLayoutChangeListener {
-    public final int f14779a;
-    public final Object f14780b;
+    public final int f14782a;
+    public final Object f14783b;
 
     public l2(Object obj, int i7) {
-        this.f14779a = i7;
-        this.f14780b = obj;
+        this.f14782a = i7;
+        this.f14783b = obj;
     }
 
     @Override
     public final void onLayoutChange(View view, int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16) {
         int i17;
-        int i18 = this.f14779a;
+        int i18 = this.f14782a;
         int i19 = 0;
-        Object obj = this.f14780b;
+        Object obj = this.f14783b;
         switch (i18) {
             case 0:
                 view.removeOnLayoutChangeListener(this);
@@ -41,7 +41,7 @@ public final class l2 implements View.OnLayoutChangeListener {
                     r1.h hVar = new r1.h(0.0f);
                     hVar.a(0.75f);
                     hVar.b(500.0f);
-                    gVar.f54174m = hVar;
+                    gVar.f54267m = hVar;
                     gVar.a(new ti.c(fVar, 2));
                     gVar.h();
                 } else {

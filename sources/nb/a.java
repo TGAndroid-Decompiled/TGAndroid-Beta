@@ -71,11 +71,11 @@ import u2.u;
 import w7.q;
 import w7.s;
 public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d, IMapsProvider, gh.a, l1, m, u, x5.a {
-    public static final a f20531b = new a(14);
-    public final int f20532a;
+    public static final a f20534b = new a(14);
+    public final int f20535a;
 
     public a(int i7) {
-        this.f20532a = i7;
+        this.f20535a = i7;
     }
 
     public static ia.b W(s sVar) {
@@ -490,7 +490,7 @@ public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d
 
     @Override
     public Object e(r7 r7Var) {
-        switch (this.f20532a) {
+        switch (this.f20535a) {
             case 15:
                 return new h();
             default:
@@ -541,7 +541,7 @@ public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d
 
     @Override
     public int getInstallMapsString() {
-        return 2131749195;
+        return 2131749197;
     }
 
     @Override
@@ -609,7 +609,7 @@ public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d
                     x6.b.a(byteArrayOutputStream);
                     e eVar = new e(new String(byteArrayOutputStream.toByteArray(), "UTF-8"));
                     ?? obj = new Object();
-                    obj.f22615a = eVar;
+                    obj.f22634a = eVar;
                     return obj;
                 }
             }
@@ -621,7 +621,7 @@ public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d
 
     @Override
     public q2.l m(j jVar, e2.u uVar) {
-        return q2.l.f53646z;
+        return q2.l.f53739z;
     }
 
     @Override
@@ -636,16 +636,16 @@ public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d
 
     @Override
     public ua newCameraUpdateLatLng(cb cbVar) {
-        LatLng latLng = new LatLng(cbVar.f21797a, cbVar.f21798b);
+        LatLng latLng = new LatLng(cbVar.f21833a, cbVar.f21834b);
         try {
             l8.a aVar = z0.f5984a;
             q6.m.h(aVar, "CameraUpdateFactory is not initialized");
-            Parcel P0 = aVar.P0();
-            v7.b.b(P0, latLng);
-            Parcel O0 = aVar.O0(P0, 8);
-            a7.a M0 = a7.b.M0(O0.readStrongBinder());
-            O0.recycle();
-            return new ca(new k8.a(M0, 0));
+            Parcel p12 = aVar.p1();
+            v7.b.b(p12, latLng);
+            Parcel o12 = aVar.o1(p12, 8);
+            a7.a m12 = a7.b.m1(o12.readStrongBinder());
+            o12.recycle();
+            return new ca(new k8.a(m12, 0));
         } catch (RemoteException e10) {
             throw new RuntimeException(e10);
         }
@@ -653,17 +653,17 @@ public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d
 
     @Override
     public ua newCameraUpdateLatLngBounds(wa waVar, int i7) {
-        LatLngBounds latLngBounds = ((da) waVar).f21986a;
+        LatLngBounds latLngBounds = ((da) waVar).f22009a;
         try {
             l8.a aVar = z0.f5984a;
             q6.m.h(aVar, "CameraUpdateFactory is not initialized");
-            Parcel P0 = aVar.P0();
-            v7.b.b(P0, latLngBounds);
-            P0.writeInt(i7);
-            Parcel O0 = aVar.O0(P0, 10);
-            a7.a M0 = a7.b.M0(O0.readStrongBinder());
-            O0.recycle();
-            return new ca(new k8.a(M0, 0));
+            Parcel p12 = aVar.p1();
+            v7.b.b(p12, latLngBounds);
+            p12.writeInt(i7);
+            Parcel o12 = aVar.o1(p12, 10);
+            a7.a m12 = a7.b.m1(o12.readStrongBinder());
+            o12.recycle();
+            return new ca(new k8.a(m12, 0));
         } catch (RemoteException e10) {
             throw new RuntimeException(e10);
         }
@@ -671,17 +671,17 @@ public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d
 
     @Override
     public ua newCameraUpdateLatLngZoom(cb cbVar, float f10) {
-        LatLng latLng = new LatLng(cbVar.f21797a, cbVar.f21798b);
+        LatLng latLng = new LatLng(cbVar.f21833a, cbVar.f21834b);
         try {
             l8.a aVar = z0.f5984a;
             q6.m.h(aVar, "CameraUpdateFactory is not initialized");
-            Parcel P0 = aVar.P0();
-            v7.b.b(P0, latLng);
-            P0.writeFloat(f10);
-            Parcel O0 = aVar.O0(P0, 9);
-            a7.a M0 = a7.b.M0(O0.readStrongBinder());
-            O0.recycle();
-            return new ca(new k8.a(M0, 0));
+            Parcel p12 = aVar.p1();
+            v7.b.b(p12, latLng);
+            p12.writeFloat(f10);
+            Parcel o12 = aVar.o1(p12, 9);
+            a7.a m12 = a7.b.m1(o12.readStrongBinder());
+            o12.recycle();
+            return new ca(new k8.a(m12, 0));
         } catch (RemoteException e10) {
             throw new RuntimeException(e10);
         }
@@ -696,15 +696,15 @@ public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d
     public va onCreateCircleOptions() {
         h9.f1 f1Var = new h9.f1(22, false);
         ?? obj = new Object();
-        obj.f19926a = null;
-        obj.f19927b = 0.0d;
-        obj.f19928c = 10.0f;
+        obj.f19929a = null;
+        obj.f19930b = 0.0d;
+        obj.f19931c = 10.0f;
         obj.d = -16777216;
-        obj.f19929e = 0;
-        obj.f19930f = 0.0f;
+        obj.f19932e = 0;
+        obj.f19933f = 0.0f;
         obj.h = true;
-        obj.f19931n = false;
-        obj.f19932r = null;
+        obj.f19934n = false;
+        obj.f19935r = null;
         f1Var.f14323b = obj;
         return f1Var;
     }
@@ -713,17 +713,17 @@ public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d
     public xa onCreateLatLngBoundsBuilder() {
         d0 d0Var = new d0(25, false);
         m8.d dVar = new m8.d(0);
-        dVar.f19935b = Double.POSITIVE_INFINITY;
-        dVar.f19936c = Double.NEGATIVE_INFINITY;
+        dVar.f19938b = Double.POSITIVE_INFINITY;
+        dVar.f19939c = Double.NEGATIVE_INFINITY;
         dVar.d = Double.NaN;
-        dVar.f19937e = Double.NaN;
+        dVar.f19940e = Double.NaN;
         d0Var.f13555b = dVar;
         return d0Var;
     }
 
     @Override
     public za onCreateMapView(Context context) {
-        r7 r7Var = new r7(13);
+        r7 r7Var = new r7(13, (byte) 0);
         r7Var.f614b = new x5(r7Var, context);
         return r7Var;
     }
@@ -732,14 +732,14 @@ public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d
     public ab onCreateMarkerOptions() {
         gf.g gVar = new gf.g(24);
         ?? obj = new Object();
-        obj.f19943e = 0.5f;
-        obj.f19944f = 1.0f;
-        obj.f19945n = true;
-        obj.f19946r = false;
-        obj.f19947s = 0.0f;
-        obj.f19948w = 0.5f;
-        obj.f19949x = 0.0f;
-        obj.f19950y = 1.0f;
+        obj.f19946e = 0.5f;
+        obj.f19947f = 1.0f;
+        obj.f19948n = true;
+        obj.f19949r = false;
+        obj.f19950s = 0.0f;
+        obj.f19951w = 0.5f;
+        obj.f19952x = 0.0f;
+        obj.f19953y = 1.0f;
         gVar.f13889b = obj;
         return gVar;
     }

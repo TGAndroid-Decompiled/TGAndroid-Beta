@@ -43,7 +43,7 @@ public final class mk extends UndoView {
         int i10;
         switch (this.f47818j0) {
             case 0:
-                lj ljVar = ((an) this.f47819k0).f43862l2;
+                lj ljVar = ((an) this.f47819k0).f43868l2;
                 if (ljVar != null && (((i10 = ljVar.U) == 1 || i10 == 3) && ljVar.T)) {
                     f10 = org.telegram.messenger.g0.L(ljVar.getStyleHeight());
                 } else {

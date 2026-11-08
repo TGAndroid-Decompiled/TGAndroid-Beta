@@ -1,24 +1,24 @@
 package yh;
 public final class e implements Runnable {
-    public final int f59427a;
-    public final m f59428b;
+    public final int f59519a;
+    public final m f59520b;
 
     public e(m mVar, int i7) {
-        this.f59427a = i7;
-        this.f59428b = mVar;
+        this.f59519a = i7;
+        this.f59520b = mVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f59427a) {
+        switch (this.f59519a) {
             case 0:
-                this.f59428b.e();
+                this.f59520b.e();
                 return;
             case 1:
-                m.k(this.f59428b.f59464q, true, true);
+                m.k(this.f59520b.f59556q, true, true);
                 return;
             default:
-                this.f59428b.e();
+                this.f59520b.e();
                 return;
         }
     }

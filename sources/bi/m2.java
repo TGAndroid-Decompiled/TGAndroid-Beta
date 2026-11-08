@@ -58,22 +58,22 @@ public final class m2 implements Runnable {
                         k7Var.dismiss();
                         long x12 = k7Var.x1();
                         if (!z10) {
-                            ea.y(k7Var.f28613a, false).P(x12);
+                            ea.y(k7Var.f28616a, false).P(x12);
                         }
                         if (x12 >= 0) {
                             org.telegram.ui.Components.hc a02 = org.telegram.ui.Components.hc.a0(T);
                             if (z9) {
+                                i11 = 2131750124;
+                            } else {
                                 i11 = 2131750122;
-                            } else {
-                                i11 = 2131750120;
                             }
-                            String M0 = org.telegram.messenger.hd.M0(i11, null);
+                            String M0 = org.telegram.messenger.id.M0(i11, null);
                             if (z9) {
-                                i12 = 2131750123;
+                                i12 = 2131750125;
                             } else {
-                                i12 = 2131750121;
+                                i12 = 2131750123;
                             }
-                            String M02 = org.telegram.messenger.hd.M0(i12, null);
+                            String M02 = org.telegram.messenger.id.M0(i12, null);
                             if (!(T instanceof ProfileActivity)) {
                                 k3Var = new k3(x12, T);
                             }
@@ -82,23 +82,23 @@ public final class m2 implements Runnable {
                         }
                         org.telegram.ui.Components.hc a03 = org.telegram.ui.Components.hc.a0(T);
                         if (z9) {
+                            i7 = 2131750261;
+                        } else {
                             i7 = 2131750259;
-                        } else {
-                            i7 = 2131750257;
                         }
-                        String M03 = org.telegram.messenger.hd.M0(i7, null);
+                        String M03 = org.telegram.messenger.id.M0(i7, null);
                         if (z9) {
-                            i10 = 2131750260;
+                            i10 = 2131750262;
                         } else {
-                            i10 = 2131750258;
+                            i10 = 2131750260;
                         }
-                        a03.s(document, M03, org.telegram.messenger.hd.M0(i10, null)).j();
+                        a03.s(document, M03, org.telegram.messenger.id.M0(i10, null)).j();
                         return;
                     } else if (tL_error != null) {
-                        if (z10 && k7Var.f4203x2 != null && (F = ea.y(k7Var.f28613a, false).F(k7Var.P1, false)) != null) {
+                        if (z10 && k7Var.f4203x2 != null && (F = ea.y(k7Var.f28616a, false).F(k7Var.P1, false)) != null) {
                             F.m(k7Var.f4203x2, !savestargift.unsave);
                         }
-                        k7Var.k().t(org.telegram.messenger.hd.a0(null, null, 2131743879, tL_error.text), null).k(false);
+                        k7Var.k().t(org.telegram.messenger.id.a0(null, null, 2131743881, tL_error.text), null).k(false);
                         return;
                     } else {
                         return;
@@ -129,14 +129,14 @@ public final class m2 implements Runnable {
                 String str2 = (String) obj3;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 TLObject tLObject2 = (TLObject) obj;
-                mVar.f59469w = false;
-                mVar.f59472z = true;
+                mVar.f59561w = false;
+                mVar.f59564z = true;
                 if (z10) {
                     org.telegram.messenger.g0.r(runnable);
                 }
-                yh.m.k(mVar.f59464q, false, false);
-                if (TextUtils.equals(str2, mVar.f59467t) && tL_error2 == null) {
-                    mVar.f59472z = true;
+                yh.m.k(mVar.f59556q, false, false);
+                if (TextUtils.equals(str2, mVar.f59559t) && tL_error2 == null) {
+                    mVar.f59564z = true;
                     mVar.g((TLRPC.TL_messages_chatInviteImporters) tLObject2, str2, z9, false);
                     return;
                 }

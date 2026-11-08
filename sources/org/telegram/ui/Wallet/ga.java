@@ -2,40 +2,52 @@ package org.telegram.ui.Wallet;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.hc;
-import org.telegram.messenger.m20;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.q41;
-import org.telegram.ui.Components.w31;
-import org.telegram.ui.Components.x31;
-public final class ga extends w31 {
-    public static final int f42543b = 0;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.HashSet;
+public final class ga extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
+    public final org.telegram.ui.ActionBar.f6 f42571a;
+    public final org.telegram.ui.Components.l9 f42572b;
+    public final TextView f42573c;
+    public final TextView d;
 
-    static {
-        w31.h(new w31());
+    public ga(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context);
+        this.f42571a = f6Var;
+        org.telegram.ui.Components.l9 l9Var = new org.telegram.ui.Components.l9(context);
+        this.f42572b = l9Var;
+        l9Var.setRoundRadius(org.telegram.messenger.g0.L(10.0f));
+        addView(l9Var, c8.ha.d(28, 28.0f, 19, 18.0f, 0.0f, 0.0f, 0.0f));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        addView(linearLayout, c8.ha.d(-1, -2.0f, 23, 62.0f, 0.0f, 20.0f, 0.0f));
+        TextView textView = new TextView(context);
+        this.f42573c = textView;
+        textView.setTextSize(1, 16.0f);
+        TextView f10 = org.telegram.messenger.camera.q.f(linearLayout, textView, c8.ha.k(0.0f, 0.0f, 0.0f, 2.0f, -1, -2), context);
+        this.d = f10;
+        f10.setTextSize(1, 14.0f);
+        linearLayout.addView(f10, c8.ha.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
+        updateColors();
     }
 
     @Override
-    public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
-        ha haVar = (ha) view;
-        TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) x31Var.G;
-        haVar.getClass();
-        TL_wallet.tonConnectManifest tonconnectmanifest = tonconnectsession.manifest;
-        if (tonconnectmanifest != null) {
-            TLRPC.WebDocument webDocument = tonconnectmanifest.icon;
-            if (webDocument != null) {
-                haVar.f42601b.p(hc.p(m20.c(webDocument)), "28_28", null, tonconnectsession.manifest);
-            }
-            haVar.f42602c.setText(tonconnectsession.manifest.name);
-            haVar.d.setText(org.telegram.messenger.g0.K0(tonconnectsession.manifest.url, false));
-        }
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.G6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.f28262z6));
     }
 
     @Override
-    public final View d(Context context, pj0 pj0Var, int i7, org.telegram.ui.ActionBar.f6 f6Var) {
-        return new ha(context, f6Var);
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(58.0f), 1073741824));
+    }
+
+    @Override
+    public final void updateColors() {
+        int i7 = org.telegram.ui.ActionBar.k6.G6;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f42571a;
+        this.f42573c.setTextColor(org.telegram.ui.ActionBar.k6.w0(i7, f6Var));
+        this.d.setTextColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28262z6, f6Var));
     }
 }

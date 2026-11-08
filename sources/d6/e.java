@@ -19,7 +19,7 @@ public final class e extends q6.h {
     public e(Context context, Looper looper, q3 q3Var, GoogleSignInOptions googleSignInOptions, com.google.android.gms.common.api.k kVar, com.google.android.gms.common.api.l lVar) {
         super(context, looper, 91, q3Var, kVar, lVar, 0);
         c6.a aVar;
-        Set<Scope> set = (Set) q3Var.f19226b;
+        Set<Scope> set = (Set) q3Var.f19229b;
         if (googleSignInOptions != null) {
             ?? obj = new Object();
             obj.f5355a = new HashSet();

@@ -1,30 +1,41 @@
 package org.telegram.ui.Wallet;
-
-import org.telegram.messenger.hd;
-import org.telegram.ui.Components.hc;
 public final class k3 implements Runnable {
-    public final int f42701a;
-    public final org.telegram.ui.ActionBar.f2 f42702b;
+    public final int f42704a;
+    public final o3 f42705b;
 
-    public k3(int i7, org.telegram.ui.ActionBar.f2 f2Var) {
-        this.f42701a = i7;
-        this.f42702b = f2Var;
+    public k3(o3 o3Var, int i7) {
+        this.f42704a = i7;
+        this.f42705b = o3Var;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f42701a;
-        org.telegram.ui.ActionBar.f2 f2Var = this.f42702b;
-        switch (i7) {
+        switch (this.f42704a) {
             case 0:
-                y5.I0(f2Var.getContext(), f2Var.getResourceProvider());
-                return;
-            case 1:
-                f2Var.presentFragment(new y5());
+                o3 o3Var = this.f42705b;
+                if (!o3Var.S && !o3Var.R) {
+                    o3Var.a(1.0f);
+                    return;
+                }
                 return;
             default:
-                if (hc.a(f2Var)) {
-                    hc.a0(f2Var).I(2131623989, hd.M0(2131743151, null), hd.M0(2131743150, null)).j();
+                o3 o3Var2 = this.f42705b;
+                if (!o3Var2.S && !o3Var2.R) {
+                    ih.d.c(o3Var2.E, o3Var2.h);
+                    o3Var2.F.d();
+                    g6 g6Var = o3Var2.f42948r;
+                    k3 k3Var = new k3(o3Var2, 0);
+                    b6 b6Var = g6Var.D;
+                    if (b6Var != null) {
+                        if (b6Var.f42193b != null) {
+                            k3Var.run();
+                            return;
+                        } else {
+                            b6Var.d = k3Var;
+                            return;
+                        }
+                    }
+                    k3Var.run();
                     return;
                 }
                 return;

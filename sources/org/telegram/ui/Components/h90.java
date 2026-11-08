@@ -8,19 +8,19 @@ import android.view.MenuItem;
 import android.view.SubMenu;
 import j$.util.Objects;
 public final class h90 implements Menu {
-    public final k60 f34230a;
-    public final s2 f34231b;
-    public final Runnable f34232c;
+    public final k60 f34167a;
+    public final s2 f34168b;
+    public final Runnable f34169c;
     public final qs d;
 
-    public h90(k60 k60Var, ys ysVar) {
-        Objects.requireNonNull(ysVar);
-        s2 s2Var = new s2(ysVar, 5);
-        Runnable onPremiumMenuLockClickListener = ysVar.getOnPremiumMenuLockClickListener();
-        qs qsVar = new qs(ysVar, 2);
-        this.f34230a = k60Var;
-        this.f34231b = s2Var;
-        this.f34232c = onPremiumMenuLockClickListener;
+    public h90(k60 k60Var, zs zsVar) {
+        Objects.requireNonNull(zsVar);
+        s2 s2Var = new s2(zsVar, 5);
+        Runnable onPremiumMenuLockClickListener = zsVar.getOnPremiumMenuLockClickListener();
+        qs qsVar = new qs(zsVar, 2);
+        this.f34167a = k60Var;
+        this.f34168b = s2Var;
+        this.f34169c = onPremiumMenuLockClickListener;
         this.d = qsVar;
     }
 
@@ -88,12 +88,12 @@ public final class h90 implements Menu {
     public final MenuItem add(int i7, int i10, int i11, CharSequence charSequence) {
         qs qsVar;
         if (i10 != 2131296502 || (qsVar = this.d) == null || ((Boolean) qsVar.run()).booleanValue()) {
-            Runnable runnable = this.f34232c;
-            if ((i10 != 2131296503 || runnable == null) && (runnable == null || !org.telegram.ui.ActionBar.k4.f27735r.contains(Integer.valueOf(i10)) || !org.telegram.messenger.qp.s1(org.telegram.messenger.p10.f24467s0).D3())) {
+            Runnable runnable = this.f34169c;
+            if ((i10 != 2131296503 || runnable == null) && (runnable == null || !org.telegram.ui.ActionBar.k4.f27738r.contains(Integer.valueOf(i10)) || !org.telegram.messenger.qp.s1(org.telegram.messenger.p10.f24470s0).D3())) {
                 r2 r2Var = new r2(this, i10, 7);
-                k60 k60Var = this.f34230a;
+                k60 k60Var = this.f34167a;
                 k60Var.c(0, charSequence, r2Var, false);
-                if (runnable != null && org.telegram.ui.ActionBar.k4.f27735r.contains(Integer.valueOf(i10))) {
+                if (runnable != null && org.telegram.ui.ActionBar.k4.f27738r.contains(Integer.valueOf(i10))) {
                     k60Var.M(runnable);
                 }
             }
@@ -113,7 +113,7 @@ public final class h90 implements Menu {
 
     @Override
     public final MenuItem add(int i7, int i10, int i11, int i12) {
-        add(i7, i10, i11, org.telegram.messenger.hd.M0(i12, null));
+        add(i7, i10, i11, org.telegram.messenger.id.M0(i12, null));
         return null;
     }
 

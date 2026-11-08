@@ -83,9 +83,9 @@ public final class u6 extends a5.h {
             my0Var.a();
             my0Var.m(1);
             if (starGift.sold_out) {
-                G = org.telegram.messenger.hd.M0(2131749966, null);
+                G = org.telegram.messenger.id.M0(2131749968, null);
             } else {
-                G = org.telegram.messenger.hd.G(starGift.availability_total, "Gift2SoldAuctionPreviewGifts", new Object[0]);
+                G = org.telegram.messenger.id.G(starGift.availability_total, "Gift2SoldAuctionPreviewGifts", new Object[0]);
             }
             my0 my0Var2 = new my0(G, 13.0f, null);
             this.f4819y = my0Var2;
@@ -102,7 +102,7 @@ public final class u6 extends a5.h {
             int height = (int) rectF.height();
             ArrayList arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
-            g5.a aVar = Utilities.f21332c;
+            g5.a aVar = Utilities.f21335c;
             PointF pointF = new PointF(org.telegram.messenger.g0.W1(aVar.nextFloat(), 0, width), org.telegram.messenger.g0.W1(aVar.nextFloat(), 0, height));
             int i15 = 1;
             int i16 = 0;
@@ -123,7 +123,7 @@ public final class u6 extends a5.h {
             while (!arrayList2.isEmpty()) {
                 int i21 = i15;
                 if (arrayList2.size() > i21) {
-                    i10 = Utilities.f21332c.nextInt(arrayList2.size() - i21);
+                    i10 = Utilities.f21335c.nextInt(arrayList2.size() - i21);
                 } else {
                     i10 = i16;
                 }
@@ -131,7 +131,7 @@ public final class u6 extends a5.h {
                 int i22 = i16;
                 while (true) {
                     if (i22 < 15) {
-                        g5.a aVar2 = Utilities.f21332c;
+                        g5.a aVar2 = Utilities.f21335c;
                         f12 = L;
                         f13 = floor;
                         int i23 = i22;
@@ -234,7 +234,7 @@ public final class u6 extends a5.h {
                 udVar.c(tdVar, currentTimeMillis, true);
                 tdVar.f4771a = pointF5.x + rectF.left;
                 tdVar.f4772b = pointF5.y + rectF.top;
-                tdVar.h = org.telegram.messenger.g0.T1(0.4f, 1.0f, Utilities.f21332c.nextFloat());
+                tdVar.h = org.telegram.messenger.g0.T1(0.4f, 1.0f, Utilities.f21335c.nextFloat());
                 tdVar.f4774e *= 1.25f;
             }
         } else if (starGift != null) {
@@ -263,7 +263,7 @@ public final class u6 extends a5.h {
         this.f4815r.a();
         this.f4814n.P();
         if (this.F != null) {
-            int currentTime = ConnectionsManager.getInstance(p10.f24467s0).getCurrentTime();
+            int currentTime = ConnectionsManager.getInstance(p10.f24470s0).getCurrentTime();
             int i7 = this.H;
             if (currentTime >= i7) {
                 i7 = this.G;
@@ -296,7 +296,7 @@ public final class u6 extends a5.h {
         if (this.F == null) {
             this.F = new bg.q(new a1.c(this, 13));
         }
-        int currentTime = ConnectionsManager.getInstance(p10.f24467s0).getCurrentTime();
+        int currentTime = ConnectionsManager.getInstance(p10.f24470s0).getCurrentTime();
         if (currentTime < i7) {
             i11 = i7 - currentTime;
         } else {
@@ -394,20 +394,20 @@ public final class u6 extends a5.h {
 
     public final void h() {
         my0 my0Var;
-        int currentTime = ConnectionsManager.getInstance(p10.f24467s0).getCurrentTime();
+        int currentTime = ConnectionsManager.getInstance(p10.f24470s0).getCurrentTime();
         int i7 = this.G;
         if (currentTime > i7) {
-            this.D.t(org.telegram.messenger.hd.M0(2131750365, null), true, true);
+            this.D.t(org.telegram.messenger.id.M0(2131750367, null), true, true);
         } else {
             int i10 = this.H;
             if (currentTime < i10) {
-                this.D.t(org.telegram.messenger.hd.a0(null, null, 2131750364, org.telegram.messenger.g0.g0(i10 - currentTime, true, false)), true, true);
+                this.D.t(org.telegram.messenger.id.a0(null, null, 2131750366, org.telegram.messenger.g0.g0(i10 - currentTime, true, false)), true, true);
             } else {
                 this.D.t(org.telegram.messenger.g0.g0(i7 - currentTime, true, false), true, true);
             }
         }
         if (currentTime > this.G && (my0Var = this.f4819y) != null) {
-            my0Var.q(org.telegram.messenger.hd.M0(2131749966, null));
+            my0Var.q(org.telegram.messenger.id.M0(2131749968, null));
         }
     }
 }

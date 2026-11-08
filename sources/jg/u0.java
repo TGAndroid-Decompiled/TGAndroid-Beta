@@ -5,20 +5,20 @@ import org.telegram.messenger.ri;
 import org.telegram.ui.Cells.g2;
 import org.telegram.ui.Components.b90;
 public final class u0 implements ri, g2 {
-    public final i1 f16941a;
+    public final i1 f16944a;
 
     public u0(i1 i1Var) {
-        this.f16941a = i1Var;
+        this.f16944a = i1Var;
     }
 
     @Override
     public void e(String str, ArrayList arrayList) {
         boolean z9;
-        i1 i1Var = this.f16941a;
+        i1 i1Var = this.f16944a;
         i1Var.N = arrayList;
         i1Var.I = null;
         i1Var.A0 = null;
-        i1Var.f16802y = null;
+        i1Var.f16805y = null;
         i1Var.D = null;
         i1Var.J = null;
         i1Var.Q = null;

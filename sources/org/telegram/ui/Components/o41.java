@@ -2,7 +2,7 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
-public final class o41 extends jy {
+public final class o41 extends ky {
     public final int X;
     public final Object Y;
 
@@ -27,8 +27,8 @@ public final class o41 extends jy {
         switch (this.X) {
             case 2:
                 mt0 mt0Var = (mt0) this.Y;
-                mt0Var.f36087b = 100.0f;
-                mt0Var.f36086a = 100.0f;
+                mt0Var.f36115b = 100.0f;
+                mt0Var.f36114a = 100.0f;
                 return mt0Var;
             default:
                 return super.D1(i7);
@@ -41,7 +41,7 @@ public final class o41 extends jy {
         switch (this.X) {
             case 2:
                 super.U(v0Var, a1Var, view, dVar);
-                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f54508a;
+                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f54600a;
                 AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
                 if (collectionItemInfo != null) {
                     oVar = new d9.o(collectionItemInfo);
@@ -67,13 +67,13 @@ public final class o41 extends jy {
     public int W0(v4.a1 a1Var) {
         switch (this.X) {
             case 0:
-                if (((q41) this.Y).f37162h3) {
-                    return org.telegram.messenger.g0.f22544q.y;
+                if (((q41) this.Y).f37192h3) {
+                    return org.telegram.messenger.g0.f22563q.y;
                 }
                 return super.W0(a1Var);
             case 1:
-                if (((q41) this.Y).f37162h3) {
-                    return org.telegram.messenger.g0.f22544q.y;
+                if (((q41) this.Y).f37192h3) {
+                    return org.telegram.messenger.g0.f22563q.y;
                 }
                 return super.W0(a1Var);
             default:

@@ -20,14 +20,14 @@ import java.util.regex.Pattern;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public abstract class n80 {
-    public static final Pattern f36249a = Pattern.compile("^\\[\\^([^\\]]+)\\]:[ \\t]*(.*)$");
-    public static final Pattern f36250b = Pattern.compile("\\[\\^([^\\]]+)\\]");
-    public static final Pattern f36251c = Pattern.compile("^(\\d+)[.)]\\s");
+    public static final Pattern f36265a = Pattern.compile("^\\[\\^([^\\]]+)\\]:[ \\t]*(.*)$");
+    public static final Pattern f36266b = Pattern.compile("\\[\\^([^\\]]+)\\]");
+    public static final Pattern f36267c = Pattern.compile("^(\\d+)[.)]\\s");
 
     public static TL_iv.RichText a(kf.p pVar, TL_iv.PageBlock pageBlock) {
         k80 k80Var = new k80(pageBlock);
         pVar.a(k80Var);
-        return k(l(k80.x(k80Var.f35229c)));
+        return k(l(k80.x(k80Var.f35255c)));
     }
 
     public static List b(TL_iv.RichText richText) {
@@ -76,10 +76,10 @@ public abstract class n80 {
         textmath.tried = true;
         li.q a10 = li.q.a(trim, org.telegram.messenger.g0.L(20.0f), true);
         if (a10 != null) {
-            textmath.f27180w = a10.f18779b;
-            textmath.h = a10.f18780c;
+            textmath.f27183w = a10.f18782b;
+            textmath.h = a10.f18783c;
             textmath.depth = a10.d;
-            textmath.bitmap = a10.f18778a;
+            textmath.bitmap = a10.f18781a;
         }
         return textmath;
     }
@@ -139,20 +139,20 @@ public abstract class n80 {
 
     public static File i(org.telegram.messenger.ij ijVar) {
         File file;
-        TLRPC.Message message = ijVar.f23244k;
+        TLRPC.Message message = ijVar.f23262k;
         int i7 = ijVar.I1;
         if (!TextUtils.isEmpty(message.attachPath)) {
-            file = new File(ijVar.f23244k.attachPath);
+            file = new File(ijVar.f23262k.attachPath);
         } else {
             file = null;
         }
         if (file == null || !file.exists()) {
             org.telegram.messenger.w7.G(i7);
-            file = org.telegram.messenger.w7.M(ijVar.f23244k, false, true);
+            file = org.telegram.messenger.w7.M(ijVar.f23262k, false, true);
         }
         if (file == null || !file.exists()) {
             org.telegram.messenger.w7.G(i7);
-            file = org.telegram.messenger.w7.M(ijVar.f23244k, true, true);
+            file = org.telegram.messenger.w7.M(ijVar.f23262k, true, true);
         }
         if (file == null || !file.exists()) {
             return null;
@@ -190,7 +190,7 @@ public abstract class n80 {
         } else if (richText instanceof m80) {
             m80 m80Var = (m80) richText;
             TL_iv.textStrike k10 = k(m80Var.text);
-            int i10 = m80Var.f35911a;
+            int i10 = m80Var.f35939a;
             if ((i10 & 4) != 0) {
                 TL_iv.textFixed textfixed = new TL_iv.textFixed();
                 textfixed.text = k10;
@@ -254,7 +254,7 @@ public abstract class n80 {
         StringBuilder sb2 = new StringBuilder();
         int i7 = 0;
         while (i7 < split2.length) {
-            Matcher matcher = f36249a.matcher(split2[i7]);
+            Matcher matcher = f36265a.matcher(split2[i7]);
             if (matcher.matches()) {
                 String group = matcher.group(1);
                 StringBuilder sb3 = new StringBuilder(matcher.group(2));
@@ -295,7 +295,7 @@ public abstract class n80 {
                 i7++;
             }
         }
-        Matcher matcher2 = f36250b.matcher(sb2.toString());
+        Matcher matcher2 = f36266b.matcher(sb2.toString());
         StringBuffer stringBuffer = new StringBuffer();
         while (matcher2.find()) {
             String group2 = matcher2.group(1);
@@ -351,7 +351,7 @@ public abstract class n80 {
                     if (!substring2.startsWith("```")) {
                         str5 = "~~~";
                         if (!substring2.startsWith("~~~")) {
-                            Matcher matcher3 = f36251c.matcher(str4);
+                            Matcher matcher3 = f36267c.matcher(str4);
                             if (matcher3.find()) {
                                 arrayDeque.add(matcher3.group(1));
                             }
@@ -366,7 +366,7 @@ public abstract class n80 {
             j80Var.y();
             if (!linkedHashMap.isEmpty()) {
                 TL_iv.pageBlockDetails pageblockdetails = new TL_iv.pageBlockDetails();
-                String M0 = org.telegram.messenger.hd.M0(2131749190, null);
+                String M0 = org.telegram.messenger.id.M0(2131749192, null);
                 TL_iv.textBold textbold = new TL_iv.textBold();
                 textbold.text = n(M0);
                 pageblockdetails.title = textbold;
@@ -411,9 +411,9 @@ public abstract class n80 {
                     textanchor.name = rf.b.i("fn-", str6);
                     textanchor.text = e10;
                     TL_iv.pageBlockParagraph pageblockparagraph = new TL_iv.pageBlockParagraph();
-                    String q10 = rf.b.q(str6, ". ");
+                    String r10 = rf.b.r(str6, ". ");
                     TL_iv.textBold textbold2 = new TL_iv.textBold();
-                    textbold2.text = n(q10);
+                    textbold2.text = n(r10);
                     TL_iv.RichText[] richTextArr = {textbold2, textanchor};
                     TL_iv.textConcat textconcat2 = new TL_iv.textConcat();
                     for (int i14 = 0; i14 < 2; i14++) {
@@ -424,7 +424,7 @@ public abstract class n80 {
                 }
                 arrayList.add(pageblockdetails);
             }
-            TL_iv.RichText richText2 = j80Var.f34911b;
+            TL_iv.RichText richText2 = j80Var.f34932b;
             if (richText2 == null) {
                 return null;
             }

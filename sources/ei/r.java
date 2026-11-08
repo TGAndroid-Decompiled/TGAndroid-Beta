@@ -22,7 +22,7 @@ import java.util.HashSet;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.iz;
 import org.telegram.messenger.ls;
@@ -66,15 +66,15 @@ public abstract class r extends FrameLayout implements a6, ls {
         this.f10848f = new ArrayList();
         this.h = new ArrayList();
         this.f10851s = null;
-        this.f10852w = g0.f22544q.y;
-        this.D = Utilities.j(iz.f23421u1, 6, 2);
+        this.f10852w = g0.f22563q.y;
+        this.D = Utilities.j(iz.f23442u1, 6, 2);
         this.f10844a = f2Var;
         int currentAccount = f2Var.getCurrentAccount();
         this.f10845b = currentAccount;
         f6 resourceProvider = f2Var.getResourceProvider();
         this.f10846c = resourceProvider;
         this.d = j3;
-        setBackgroundColor(k6.w(k6.w0(k6.f27849d6, resourceProvider), k6.r1(0.04f, k6.w0(k6.G6, resourceProvider))));
+        setBackgroundColor(k6.w(k6.w0(k6.f27852d6, resourceProvider), k6.r1(0.04f, k6.w0(k6.G6, resourceProvider))));
         if (F == null) {
             F = new LongSparseArray();
         }
@@ -101,7 +101,7 @@ public abstract class r extends FrameLayout implements a6, ls {
         addView(aVar, ha.e(-1, -1, 119));
         u61 n10 = aVar.n(9, true);
         this.f10850r = n10;
-        n10.f38532r = 12;
+        n10.f38547r = 12;
         n10.setPreTabClick(new q4(sp0Var, 6));
         addView(n10, ha.e(-1, 42, 48));
         i(false);
@@ -114,8 +114,8 @@ public abstract class r extends FrameLayout implements a6, ls {
             diVar.y1(1, false);
             diVar.N2 = true;
             diVar.M2 = false;
-            diVar.f32933d3.setText(hd.M0(2131752121, null));
-            diVar.f32924a2.i0();
+            diVar.f32941d3.setText(id.M0(2131752121, null));
+            diVar.f32932a2.i0();
             diVar.T3 = new a0((FrameLayout) this, (Object) diVar, (Serializable) str, 21);
             diVar.e1();
             diVar.show();
@@ -151,7 +151,7 @@ public abstract class r extends FrameLayout implements a6, ls {
             deletepreviewmedia.bot = qp.s1(i10).o1(this.d);
             deletepreviewmedia.lang_code = str;
             for (int i11 = 0; i11 < arrayList2.size(); i11++) {
-                TL_stories.StoryItem storyItem = ((ij) arrayList2.get(i11)).f23248l;
+                TL_stories.StoryItem storyItem = ((ij) arrayList2.get(i11)).f23266l;
                 if (storyItem != null && (messageMedia = storyItem.media) != null) {
                     deletepreviewmedia.media.add(qp.Z4(messageMedia));
                 }
@@ -181,7 +181,7 @@ public abstract class r extends FrameLayout implements a6, ls {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        int i11 = qs.f25100x5;
+        int i11 = qs.f25109x5;
         a aVar = this.f10849n;
         int i12 = 0;
         if (i7 == i11) {
@@ -212,7 +212,7 @@ public abstract class r extends FrameLayout implements a6, ls {
                     }
                 }
             }
-        } else if (i7 == qs.f25086v5) {
+        } else if (i7 == qs.f25095v5) {
             i(true);
             View[] viewPages3 = aVar.getViewPages();
             int length2 = viewPages3.length;
@@ -257,11 +257,11 @@ public abstract class r extends FrameLayout implements a6, ls {
                 i10 = 0;
                 for (int i11 = 0; i11 < arrayList.size(); i11++) {
                     ij ijVar = (ij) arrayList.get(i11);
-                    TL_stories.StoryItem storyItem = ijVar.f23248l;
+                    TL_stories.StoryItem storyItem = ijVar.f23266l;
                     if (storyItem != null && (messageMedia = storyItem.media) != null) {
                         if (ij.L4(messageMedia.document)) {
                             i10++;
-                        } else if (ijVar.f23248l.media.photo != null) {
+                        } else if (ijVar.f23266l.media.photo != null) {
                             i7++;
                         }
                     }
@@ -271,16 +271,16 @@ public abstract class r extends FrameLayout implements a6, ls {
                 i10 = 0;
             }
             if (i7 == 0 && i10 == 0) {
-                return hd.M0(2131753014, null);
+                return id.M0(2131753014, null);
             }
             if (i7 > 0) {
-                sb2.append(hd.G(i7, "Images", new Object[0]));
+                sb2.append(id.G(i7, "Images", new Object[0]));
             }
             if (i10 > 0) {
                 if (sb2.length() > 0) {
                     sb2.append(", ");
                 }
-                sb2.append(hd.G(i10, "Videos", new Object[0]));
+                sb2.append(id.G(i10, "Videos", new Object[0]));
             }
         }
         return sb2.toString();
@@ -406,7 +406,7 @@ public abstract class r extends FrameLayout implements a6, ls {
         }
         a aVar = this.f10849n;
         aVar.o(true);
-        SpannableString spannableString = new SpannableString(jg.g.l(2131746710, null, new StringBuilder("+ ")));
+        SpannableString spannableString = new SpannableString(jg.g.l(2131746712, null, new StringBuilder("+ ")));
         wp wpVar = new wp(2131232150, 0);
         wpVar.H = 0.9f;
         wpVar.I = 0.9f;
@@ -414,7 +414,7 @@ public abstract class r extends FrameLayout implements a6, ls {
         spannableString.setSpan(wpVar, 0, 1, 33);
         u61 u61Var = this.f10850r;
         u61Var.a(-1, spannableString);
-        u61Var.f38537y.f();
+        u61Var.f38552y.f();
         if (arrayList3.size() + 1 > 1) {
             z10 = true;
         } else {
@@ -493,8 +493,8 @@ public abstract class r extends FrameLayout implements a6, ls {
             longSparseArray2 = longSparseArray4;
         }
         longSparseArray2.put(this.d, this);
-        qs.f(i7).c(this, qs.f25100x5);
-        qs.f(i7).c(this, qs.f25086v5);
+        qs.f(i7).c(this, qs.f25109x5);
+        qs.f(i7).c(this, qs.f25095v5);
     }
 
     @Override
@@ -509,8 +509,8 @@ public abstract class r extends FrameLayout implements a6, ls {
         if (longSparseArray2 != null) {
             longSparseArray2.remove(this.d);
         }
-        qs.f(i7).n(this, qs.f25100x5);
-        qs.f(i7).n(this, qs.f25086v5);
+        qs.f(i7).n(this, qs.f25109x5);
+        qs.f(i7).n(this, qs.f25095v5);
     }
 
     public void setVisibleHeight(int i7) {
@@ -529,7 +529,7 @@ public abstract class r extends FrameLayout implements a6, ls {
     public final void updateColors() {
         f6 f6Var = this.f10846c;
         try {
-            setBackgroundColor(k6.w(k6.w0(k6.f27849d6, f6Var), k6.r1(0.04f, k6.w0(k6.G6, f6Var))));
+            setBackgroundColor(k6.w(k6.w0(k6.f27852d6, f6Var), k6.r1(0.04f, k6.w0(k6.G6, f6Var))));
             invalidate();
         } catch (Exception e10) {
             a8.g(e10, true);

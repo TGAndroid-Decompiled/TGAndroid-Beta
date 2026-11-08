@@ -73,7 +73,7 @@ public final class ia implements Runnable {
                 return;
             case 2:
                 try {
-                    SQLitePreparedStatement executeFast = ((org.telegram.messenger.sd) obj).getMessagesStorage().f26698b.executeFast("UPDATE sharing_locations SET proximity = ? WHERE uid = ?");
+                    SQLitePreparedStatement executeFast = ((org.telegram.messenger.sd) obj).getMessagesStorage().f26721b.executeFast("UPDATE sharing_locations SET proximity = ? WHERE uid = ?");
                     executeFast.requery();
                     executeFast.bindInteger(1, i11);
                     executeFast.bindLong(2, j3);
@@ -92,7 +92,7 @@ public final class ia implements Runnable {
                 return;
             case 4:
                 try {
-                    SQLiteDatabase sQLiteDatabase = ((ui) obj).getMessagesStorage().f26698b;
+                    SQLiteDatabase sQLiteDatabase = ((ui) obj).getMessagesStorage().f26721b;
                     Locale locale = Locale.US;
                     sQLiteDatabase.executeFast("DELETE FROM chat_hints WHERE did = " + j3 + " AND type = " + i11).stepThis().dispose();
                     return;
@@ -105,18 +105,18 @@ public final class ia implements Runnable {
                 return;
             case 6:
                 org.telegram.messenger.c cVar = (org.telegram.messenger.c) obj;
-                gz C = gz.C(cVar.f21729a);
-                ArrayList arrayList = (ArrayList) C.f22758a.get("group_" + j3);
+                gz C = gz.C(cVar.f21765a);
+                ArrayList arrayList = (ArrayList) C.f22764a.get("group_" + j3);
                 if (arrayList != null && !arrayList.isEmpty()) {
                     sy syVar = (sy) arrayList.get(0);
-                    ij ijVar = (ij) jg.g.i(1, syVar.f25555x);
+                    ij ijVar = (ij) jg.g.i(1, syVar.f25558x);
                     syVar.G = ijVar.f1();
-                    ijVar.f23244k.params.put("final", "1");
+                    ijVar.f23262k.params.put("final", "1");
                     TLRPC.TL_messages_messages tL_messages_messages = new TLRPC.TL_messages_messages();
-                    tL_messages_messages.messages.add(ijVar.f23244k);
+                    tL_messages_messages.messages.add(ijVar.f23262k);
                     if (!syVar.I && !syVar.J) {
-                        yr a02 = yr.a0(cVar.f21729a);
-                        long j10 = syVar.f25535a;
+                        yr a02 = yr.a0(cVar.f21765a);
+                        long j10 = syVar.f25538a;
                         if (i11 != 0) {
                             i7 = 1;
                         } else {
@@ -132,10 +132,10 @@ public final class ia implements Runnable {
                 m4.d0 d0Var = ((org.telegram.ui.Cells.q1) obj).Wb;
                 if (d0Var != null) {
                     if (i11 > 0) {
-                        i11 = ((SparseIntArray) d0Var.f19609b).get(i11, 0);
+                        i11 = ((SparseIntArray) d0Var.f19612b).get(i11, 0);
                     }
                     if (i11 != 0) {
-                        ((g6.d0) d0Var.f19608a).a0(this.f4058b, 0L, i11);
+                        ((g6.d0) d0Var.f19611a).a0(this.f4058b, 0L, i11);
                         return;
                     }
                     return;

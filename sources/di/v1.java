@@ -1,7 +1,7 @@
 package di;
 
 import android.view.View;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.Components.k60;
 public final class v1 implements View.OnLongClickListener {
     public final int f9862a;
@@ -23,11 +23,11 @@ public final class v1 implements View.OnLongClickListener {
                     return false;
                 }
                 k60 F = k60.F(i4Var.f9192s0.f9578w, i4Var.f9163k0, view);
-                F.c(2131232116, hd.M0(2131748809, null), new w1(i4Var, 6), false);
+                F.c(2131232116, id.M0(2131748811, null), new w1(i4Var, 6), false);
                 if (i4Var.f9203u3 > 0) {
                     z9 = true;
                 }
-                F.l(2131231786, hd.M0(2131748808, null), new w1(i4Var, 7), z9);
+                F.l(2131231786, id.M0(2131748810, null), new w1(i4Var, 7), z9);
                 F.V(5);
                 F.U = true;
                 F.Z();

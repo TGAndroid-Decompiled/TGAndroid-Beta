@@ -1,15 +1,19 @@
 package wi;
-
-import android.media.MediaCodec;
-import java.nio.ByteBuffer;
 public final class w {
-    public final boolean f58131a;
-    public final ByteBuffer f58132b;
-    public final MediaCodec.BufferInfo f58133c;
+    public long f58235a = Long.MIN_VALUE;
+    public long f58236b = Long.MIN_VALUE;
+    public long f58237c = Long.MIN_VALUE;
+    public long d;
 
-    public w(boolean z9, ByteBuffer byteBuffer, MediaCodec.BufferInfo bufferInfo) {
-        this.f58131a = z9;
-        this.f58132b = byteBuffer;
-        this.f58133c = bufferInfo;
+    public w(long j3) {
+        this.d = j3;
+    }
+
+    public final long a() {
+        long j3 = this.f58237c;
+        if (j3 == Long.MIN_VALUE) {
+            return 0L;
+        }
+        return Math.max(1L, this.d) + j3;
     }
 }

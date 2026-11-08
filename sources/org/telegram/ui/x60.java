@@ -5,22 +5,22 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class x60 implements qw {
-    public final int f51779a = 0;
-    public final LaunchActivity f51780b;
-    public final TLRPC.User f51781c;
+    public final int f51786a = 0;
+    public final LaunchActivity f51787b;
+    public final TLRPC.User f51788c;
     public final String d;
-    public final int f51782e;
+    public final int f51789e;
 
     public x60(LaunchActivity launchActivity, String str, int i7, TLRPC.User user) {
-        this.f51780b = launchActivity;
+        this.f51787b = launchActivity;
         this.d = str;
-        this.f51782e = i7;
-        this.f51781c = user;
+        this.f51789e = i7;
+        this.f51788c = user;
     }
 
     @Override
     public final boolean G() {
-        switch (this.f51779a) {
+        switch (this.f51786a) {
             case 0:
                 return false;
             default:
@@ -30,7 +30,7 @@ public final class x60 implements qw {
 
     @Override
     public final boolean N(ww wwVar) {
-        switch (this.f51779a) {
+        switch (this.f51786a) {
             case 0:
                 return false;
             default:
@@ -39,19 +39,19 @@ public final class x60 implements qw {
     }
 
     @Override
-    public final boolean y(ww wwVar, ArrayList arrayList, CharSequence charSequence, boolean z9, boolean z10, int i7, int i10, v91 v91Var) {
-        int i11 = this.f51779a;
-        int i12 = this.f51782e;
+    public final boolean y(ww wwVar, ArrayList arrayList, CharSequence charSequence, boolean z9, boolean z10, int i7, int i10, w91 w91Var) {
+        int i11 = this.f51786a;
+        int i12 = this.f51789e;
         String str = this.d;
-        TLRPC.User user = this.f51781c;
-        LaunchActivity launchActivity = this.f51780b;
+        TLRPC.User user = this.f51788c;
+        LaunchActivity launchActivity = this.f51787b;
         switch (i11) {
             case 0:
                 String str2 = LaunchActivity.B1;
-                long j3 = ((org.telegram.messenger.xr) arrayList.get(0)).f26513a;
+                long j3 = ((org.telegram.messenger.xr) arrayList.get(0)).f26520a;
                 TLRPC.TL_inputMediaGame tL_inputMediaGame = new TLRPC.TL_inputMediaGame();
                 TLRPC.TL_inputGameShortName tL_inputGameShortName = new TLRPC.TL_inputGameShortName();
-                tL_inputMediaGame.f27015id = tL_inputGameShortName;
+                tL_inputMediaGame.f27018id = tL_inputGameShortName;
                 tL_inputGameShortName.short_name = str;
                 tL_inputGameShortName.bot_id = org.telegram.messenger.qp.s1(i12).q1(user);
                 org.telegram.messenger.gz.C(i12).p0(org.telegram.messenger.qp.s1(i12).j1(j3), tL_inputMediaGame, 0L, 0L);
@@ -70,7 +70,7 @@ public final class x60 implements qw {
                 return true;
             default:
                 String str3 = LaunchActivity.B1;
-                long j10 = ((org.telegram.messenger.xr) arrayList.get(0)).f26513a;
+                long j10 = ((org.telegram.messenger.xr) arrayList.get(0)).f26520a;
                 Bundle k11 = a8.p0.k("scrollToTopOnResume", true);
                 if (org.telegram.messenger.m5.C(j10)) {
                     k11.putInt("enc_id", (int) (j10 & 4294967295L));
@@ -92,9 +92,9 @@ public final class x60 implements qw {
     }
 
     public x60(LaunchActivity launchActivity, TLRPC.User user, String str, int i7) {
-        this.f51780b = launchActivity;
-        this.f51781c = user;
+        this.f51787b = launchActivity;
+        this.f51788c = user;
         this.d = str;
-        this.f51782e = i7;
+        this.f51789e = i7;
     }
 }

@@ -25,10 +25,10 @@ public final class c {
 
     public c(r rVar, ia.b bVar, q qVar) {
         double d = bVar.d;
-        double d2 = bVar.f15413e;
+        double d2 = bVar.f15416e;
         this.f14432a = d;
         this.f14433b = d2;
-        this.f14434c = bVar.f15414f * 1000;
+        this.f14434c = bVar.f15417f * 1000;
         this.h = rVar;
         this.f14438i = qVar;
         this.d = SystemClock.elapsedRealtime();
@@ -70,6 +70,6 @@ public final class c {
         } else {
             z9 = false;
         }
-        this.h.a(new l5.a(null, bVar.f775a, d.f18174c, null), new g(this, taskCompletionSource, z9, bVar, 1));
+        this.h.a(new l5.a(null, bVar.f775a, d.f18177c, null), new g(this, taskCompletionSource, z9, bVar, 1));
     }
 }

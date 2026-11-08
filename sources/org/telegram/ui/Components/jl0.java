@@ -6,12 +6,12 @@ public final class jl0 extends v4.k {
     public final boolean r(v4.d1 d1Var, e2.r0 r0Var, int i7, int i10, int i11, int i12) {
         pl0 pl0Var;
         ol0 ol0Var;
-        View view = d1Var.f56951a;
-        if ((view instanceof pl0) && (ol0Var = (pl0Var = (pl0) view).f36983a) != null) {
+        View view = d1Var.f57043a;
+        if ((view instanceof pl0) && (ol0Var = (pl0Var = (pl0) view).f37009a) != null) {
             ol0Var.h = ol0Var.M;
             ol0Var.f6318f = ol0Var.N;
             ol0Var.f6320g = ol0Var.O;
-            pl0Var.f36984b.e(true, 0.0f);
+            pl0Var.f37010b.e(true, 0.0f);
             pl0Var.invalidate();
         }
         int translationX = i7 + ((int) view.getTranslationX());
@@ -29,7 +29,7 @@ public final class jl0 extends v4.k {
         if (i14 != 0) {
             view.setTranslationY(-i14);
         }
-        this.f57010r.add(new v4.j(d1Var, translationX, translationY, i11, i12));
+        this.f57102r.add(new v4.j(d1Var, translationX, translationY, i11, i12));
         return true;
     }
 

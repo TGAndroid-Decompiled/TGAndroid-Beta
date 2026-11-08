@@ -3,8 +3,8 @@ package cg;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.MathContext;
-import org.telegram.messenger.hd;
 import org.telegram.messenger.i0;
+import org.telegram.messenger.id;
 import org.telegram.messenger.p10;
 import org.telegram.messenger.qp;
 import org.telegram.tgnet.tl.TL_stars;
@@ -46,11 +46,11 @@ public final class a {
     public static a j(double d, b bVar) {
         b bVar2 = b.f6163b;
         if (bVar == bVar2) {
-            return new a((long) ((d / ((i0) qp.s1(p10.f24467s0).f24935x7.f24445l.f14323b).f23010a) * 1000000000), bVar2).n(2);
+            return new a((long) ((d / ((i0) qp.s1(p10.f24470s0).f24942x7.f24449l.f14323b).f23001a) * 1000000000), bVar2).n(2);
         }
         b bVar3 = b.f6162a;
         if (bVar == bVar3) {
-            return new a((long) (((d * 100000.0d) / qp.s1(p10.f24467s0).f24738b6) * 1000000000), bVar3).n(0);
+            return new a((long) (((d * 100000.0d) / qp.s1(p10.f24470s0).f24745b6) * 1000000000), bVar3).n(0);
         }
         return g(0L, bVar);
     }
@@ -93,7 +93,7 @@ public final class a {
     }
 
     public final String d() {
-        StringBuilder sb2 = new StringBuilder(hd.E(a(), ','));
+        StringBuilder sb2 = new StringBuilder(id.E(a(), ','));
         long j3 = this.f6161b % 1000000000;
         if (j3 == 0) {
             return sb2.toString();
@@ -119,9 +119,9 @@ public final class a {
             return this;
         }
         if (bVar2 == b.f6162a) {
-            d = ((c() / 1000.0d) * qp.s1(p10.f24467s0).f24738b6) / 100.0d;
+            d = ((c() / 1000.0d) * qp.s1(p10.f24470s0).f24745b6) / 100.0d;
         } else if (bVar2 == b.f6163b) {
-            d = c() * ((i0) qp.s1(p10.f24467s0).f24935x7.f24445l.f14323b).f23010a;
+            d = c() * ((i0) qp.s1(p10.f24470s0).f24942x7.f24449l.f14323b).f23001a;
         } else {
             d = 0.0d;
         }
@@ -146,20 +146,20 @@ public final class a {
             int ordinal = bVar.ordinal();
             if (ordinal != 0) {
                 if (ordinal == 1) {
-                    return hd.H(' ', "TonCount", (int) a());
+                    return id.H(' ', "TonCount", (int) a());
                 }
                 return "";
             }
-            return hd.H(' ', "StarsCount", (int) a());
+            return id.H(' ', "StarsCount", (int) a());
         }
         int ordinal2 = bVar.ordinal();
         if (ordinal2 != 0) {
             if (ordinal2 != 1) {
                 return "";
             }
-            return hd.a0(null, null, 2131744051, b());
+            return id.a0(null, null, 2131744053, b());
         }
-        return hd.a0(null, null, 2131745114, b());
+        return id.a0(null, null, 2131745116, b());
     }
 
     public final boolean k() {

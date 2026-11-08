@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.c20;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.p10;
 import org.telegram.messenger.q1;
@@ -52,7 +52,7 @@ import org.telegram.ui.Components.xs0;
 import org.telegram.ui.PasskeysActivity;
 import org.telegram.ui.bh;
 import org.telegram.ui.ca;
-import org.telegram.ui.ec1;
+import org.telegram.ui.fc1;
 import org.telegram.ui.ia;
 import org.telegram.ui.la;
 import org.telegram.ui.nu;
@@ -153,7 +153,7 @@ public final class f0 implements i30, r1, g6, dj0, qr, f5.m, z2, q1, h2.j {
         ql0 ql0Var = (ql0) this.f3280c;
         f2 f2Var = (f2) this.d;
         f6 f6Var = (f6) this.f3281e;
-        ArrayList arrayList = ql0Var.f37333r;
+        ArrayList arrayList = ql0Var.f37363r;
         if (i7 >= 0 && i7 < arrayList.size()) {
             int i11 = this.f3279b;
             if (p10.i(i11).q()) {
@@ -161,19 +161,19 @@ public final class f0 implements i30, r1, g6, dj0, qr, f5.m, z2, q1, h2.j {
                     new ug.w0(f2Var, 24, true).show();
                     return true;
                 }
-                ol0 ol0Var = ((pl0) view).f36983a;
+                ol0 ol0Var = ((pl0) view).f37009a;
                 if (ol0Var != null) {
                     ol0Var.p();
                 }
                 nl0 nl0Var = (nl0) arrayList.get(i7);
                 k60 H = k60.H(f2Var, view);
-                H.f35187i = 3;
-                if (TextUtils.isEmpty(nl0Var.f36370c)) {
-                    i10 = 2131745882;
+                H.f35213i = 3;
+                if (TextUtils.isEmpty(nl0Var.f36386c)) {
+                    i10 = 2131745884;
                 } else {
-                    i10 = 2131745870;
+                    i10 = 2131745872;
                 }
-                H.c(2131231901, hd.M0(i10, null), new a1(ql0Var, i11, nl0Var, f6Var, 26), false);
+                H.c(2131231901, id.M0(i10, null), new a1(ql0Var, i11, nl0Var, f6Var, 26), false);
                 H.Z();
                 return true;
             }
@@ -183,14 +183,14 @@ public final class f0 implements i30, r1, g6, dj0, qr, f5.m, z2, q1, h2.j {
 
     @Override
     public void d(a3 a3Var) {
-        ec1 ec1Var = (ec1) this.f3280c;
+        fc1 fc1Var = (fc1) this.f3280c;
         b3 b3Var = (b3) this.d;
         VoIPService voIPService = (VoIPService) this.f3281e;
         if (VoIPService.getSharedInstance() != null) {
-            org.telegram.messenger.g0.r(ec1Var.R0);
-            ec1Var.Q0 = false;
-            VoIPService.getSharedInstance().toggleSpeakerphoneOrShowRouteSheet(ec1Var.f45274b, false, Integer.valueOf(this.f3279b));
-            ec1Var.l(b3Var, voIPService);
+            org.telegram.messenger.g0.r(fc1Var.R0);
+            fc1Var.Q0 = false;
+            VoIPService.getSharedInstance().toggleSpeakerphoneOrShowRouteSheet(fc1Var.f45542b, false, Integer.valueOf(this.f3279b));
+            fc1Var.l(b3Var, voIPService);
         }
     }
 
@@ -204,15 +204,15 @@ public final class f0 implements i30, r1, g6, dj0, qr, f5.m, z2, q1, h2.j {
         i6 i6Var = (i6) this.f3280c;
         ArrayList arrayList = (ArrayList) this.d;
         ArrayList arrayList2 = (ArrayList) this.f3281e;
-        StaticLayout j3 = i6Var.j(this.f3279b - ((int) Math.ceil(Math.min(i6Var.d, i6Var.f34515j))), charSequence);
+        StaticLayout j3 = i6Var.j(this.f3279b - ((int) Math.ceil(Math.min(i6Var.d, i6Var.f34559j))), charSequence);
         org.telegram.ui.Components.f6 f6Var = new org.telegram.ui.Components.f6(i6Var, j3, i6Var.d, arrayList.size());
-        org.telegram.ui.Components.f6 f6Var2 = new org.telegram.ui.Components.f6(i6Var, j3, i6Var.f34515j, arrayList2.size());
+        org.telegram.ui.Components.f6 f6Var2 = new org.telegram.ui.Components.f6(i6Var, j3, i6Var.f34559j, arrayList2.size());
         arrayList2.add(f6Var);
         arrayList.add(f6Var2);
         float f10 = i6Var.d;
-        float f11 = f6Var.f33465f;
+        float f11 = f6Var.f33472f;
         i6Var.d = f10 + f11;
-        i6Var.f34515j += f11;
+        i6Var.f34559j += f11;
         i6Var.f(f6Var);
         i6Var.g(f6Var2);
     }
@@ -233,8 +233,8 @@ public final class f0 implements i30, r1, g6, dj0, qr, f5.m, z2, q1, h2.j {
                 final boolean z9 = tL_username.active;
                 final String str = tL_username.username;
                 final boolean z10 = !z9;
-                la laVar = caVar.f44728a;
-                long j3 = laVar.f47491y;
+                la laVar = caVar.f44730a;
+                long j3 = laVar.f47487y;
                 if (j3 == 0) {
                     TL_account.toggleUsername toggleusername2 = new TL_account.toggleUsername();
                     toggleusername2.username = str;
@@ -252,10 +252,10 @@ public final class f0 implements i30, r1, g6, dj0, qr, f5.m, z2, q1, h2.j {
                 connectionsManager.sendRequest(toggleusername, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        org.telegram.messenger.g0.h3(new org.telegram.messenger.lw(ca.this, str, tLObject, i12, z10, tL_error, tL_username, z9));
+                        org.telegram.messenger.g0.h3(new org.telegram.messenger.kw(ca.this, str, tLObject, i12, z10, tL_error, tL_username, z9));
                     }
                 });
-                laVar.f47490x.add(tL_username.username);
+                laVar.f47486x.add(tL_username.username);
                 ((ia) view).setLoading(true);
                 return;
             case 2:
@@ -282,15 +282,15 @@ public final class f0 implements i30, r1, g6, dj0, qr, f5.m, z2, q1, h2.j {
                 TLRPC.TL_inputMediaPoll tL_inputMediaPoll = new TLRPC.TL_inputMediaPoll();
                 TLRPC.TL_poll tL_poll = new TLRPC.TL_poll();
                 tL_inputMediaPoll.poll = tL_poll;
-                TLRPC.Poll poll = ((TLRPC.TL_messageMediaPoll) ijVar.f23244k.media).poll;
-                tL_poll.f26979id = poll.f26979id;
+                TLRPC.Poll poll = ((TLRPC.TL_messageMediaPoll) ijVar.f23262k.media).poll;
+                tL_poll.f26982id = poll.f26982id;
                 tL_poll.question = poll.question;
                 tL_poll.answers = poll.answers;
                 tL_poll.closed = true;
                 tL_messages_editMessage.media = tL_inputMediaPoll;
                 int i13 = this.f3279b;
                 tL_messages_editMessage.peer = qp.s1(i13).j1(xs0Var.l1);
-                tL_messages_editMessage.f27037id = ijVar.f1();
+                tL_messages_editMessage.f27040id = ijVar.f1();
                 tL_messages_editMessage.flags |= 16384;
                 org.telegram.messenger.g0.i3(new lp0(u1VarArr, i13, ConnectionsManager.getInstance(i13).sendRequest(tL_messages_editMessage, new i8(xs0Var, u1VarArr, i13, tL_messages_editMessage, 5)), 1), 500L);
                 return;

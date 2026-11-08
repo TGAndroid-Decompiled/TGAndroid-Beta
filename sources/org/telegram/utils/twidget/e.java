@@ -1,53 +1,91 @@
 package org.telegram.utils.twidget;
 
-import android.graphics.Canvas;
-import android.graphics.RenderNode;
-public final class e extends g {
-    public final RenderNode f52775e;
+import android.media.AudioRecordingConfiguration;
+import android.os.Bundle;
+public final class e implements p4.c0, p4.a1, h2.j {
+    public final int f52777a;
 
-    public e(String str, int i7, int i10, int i11, int i12) {
-        super(i7, i10, i11, i12);
-        RenderNode renderNode = new RenderNode(str);
-        this.f52775e = renderNode;
-        renderNode.setPosition(i7, i10, i11, i12);
+    public e(int i7) {
+        this.f52777a = i7;
+    }
+
+    public static AudioRecordingConfiguration a(Object obj) {
+        return (AudioRecordingConfiguration) obj;
     }
 
     @Override
-    public final Canvas a() {
-        return this.f52775e.beginRecording(this.f52789c - this.f52787a, this.d - this.f52788b);
-    }
-
-    @Override
-    public final boolean b(Canvas canvas) {
-        return canvas.isHardwareAccelerated();
-    }
-
-    @Override
-    public final void c() {
-        this.f52775e.discardDisplayList();
-    }
-
-    @Override
-    public final void d(Canvas canvas, float f10) {
-        if (!this.f52775e.hasDisplayList()) {
-            return;
+    public void accept(Object obj) {
+        p4.g1 g1Var = (p4.g1) obj;
+        switch (this.f52777a) {
+            case 20:
+                g1Var.B0();
+                return;
+            case 21:
+                g1Var.b();
+                return;
+            case 22:
+                g1Var.g0();
+                return;
+            case 23:
+            default:
+                g1Var.J0();
+                return;
+            case 24:
+                g1Var.C0();
+                return;
+            case 25:
+                g1Var.L0();
+                return;
+            case 26:
+                g1Var.U();
+                return;
+            case 27:
+                g1Var.E();
+                return;
         }
-        this.f52775e.setAlpha(f10);
-        canvas.drawRenderNode(this.f52775e);
     }
 
     @Override
-    public final void e() {
-        this.f52775e.endRecording();
+    public void b(p4.u uVar, int i7) {
+        switch (this.f52777a) {
+            case 15:
+                uVar.getClass();
+                return;
+            case 16:
+                uVar.c(i7);
+                return;
+            default:
+                uVar.getClass();
+                return;
+        }
     }
 
     @Override
-    public final boolean f() {
-        return this.f52775e.hasDisplayList();
+    public Object l(p4.d0 d0Var, p4.v vVar, int i7) {
+        switch (this.f52777a) {
+            case 18:
+                d0Var.getClass();
+                throw new ClassCastException();
+            case 19:
+                d0Var.getClass();
+                throw new ClassCastException();
+            case 23:
+                return d0Var.n(vVar);
+            default:
+                d0Var.getClass();
+                throw new ClassCastException();
+        }
     }
 
-    @Override
-    public final void g() {
-        this.f52775e.setUseCompositingLayer(true, null);
+    public e(Object obj, int i7) {
+        this.f52777a = i7;
+    }
+
+    public e(String str, int i7, int i10, p4.q qVar) {
+        this.f52777a = 19;
+    }
+
+    public e(boolean z9, p4.i1 i1Var, Bundle bundle) {
+        this.f52777a = 23;
     }
 }

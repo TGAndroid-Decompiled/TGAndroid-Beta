@@ -7,9 +7,9 @@ import bi.sd;
 import java.util.WeakHashMap;
 import org.telegram.ui.cx;
 public abstract class v {
-    public static final sd f57081b = new sd(3);
-    public static final sd f57082c = new sd(4);
-    public int f57083a = -1;
+    public static final sd f57173b = new sd(3);
+    public static final sd f57174c = new sd(4);
+    public int f57175a = -1;
 
     public static int c(int i7, int i10) {
         int i11;
@@ -34,11 +34,11 @@ public abstract class v {
     }
 
     public void a(RecyclerView recyclerView, d1 d1Var) {
-        View view = d1Var.f56951a;
+        View view = d1Var.f57043a;
         Object tag = view.getTag();
         if (tag instanceof Float) {
             float floatValue = ((Float) tag).floatValue();
-            WeakHashMap weakHashMap = r0.i0.f54097a;
+            WeakHashMap weakHashMap = r0.i0.f54190a;
             r0.a0.h(view, floatValue);
         }
         view.setTag(null);
@@ -84,16 +84,16 @@ public abstract class v {
     }
 
     public final int i(int i7, int i10, long j3) {
-        if (this.f57083a == -1) {
-            this.f57083a = org.telegram.messenger.g0.L(20.0f);
+        if (this.f57175a == -1) {
+            this.f57175a = org.telegram.messenger.g0.L(20.0f);
         }
-        int i11 = this.f57083a;
+        int i11 = this.f57175a;
         float f10 = 1.0f;
-        int interpolation = (int) (f57082c.getInterpolation(Math.min(1.0f, (Math.abs(i10) * 1.0f) / i7)) * ((int) Math.signum(i10)) * i11);
+        int interpolation = (int) (f57174c.getInterpolation(Math.min(1.0f, (Math.abs(i10) * 1.0f) / i7)) * ((int) Math.signum(i10)) * i11);
         if (j3 <= 500) {
             f10 = ((float) j3) / 500.0f;
         }
-        int interpolation2 = (int) (f57081b.getInterpolation(f10) * interpolation);
+        int interpolation2 = (int) (f57173b.getInterpolation(f10) * interpolation);
         if (interpolation2 == 0) {
             if (i10 <= 0) {
                 return -1;
@@ -112,16 +112,16 @@ public abstract class v {
     }
 
     public void m(Canvas canvas, RecyclerView recyclerView, d1 d1Var, float f10, float f11, int i7, boolean z9) {
-        View view = d1Var.f56951a;
+        View view = d1Var.f57043a;
         if (z9 && view.getTag() == null) {
-            WeakHashMap weakHashMap = r0.i0.f54097a;
+            WeakHashMap weakHashMap = r0.i0.f54190a;
             Float valueOf = Float.valueOf(r0.a0.e(view));
             int childCount = recyclerView.getChildCount();
             float f12 = 0.0f;
             for (int i10 = 0; i10 < childCount; i10++) {
                 View childAt = recyclerView.getChildAt(i10);
                 if (childAt != view) {
-                    WeakHashMap weakHashMap2 = r0.i0.f54097a;
+                    WeakHashMap weakHashMap2 = r0.i0.f54190a;
                     float e10 = r0.a0.e(childAt);
                     if (e10 > f12) {
                         f12 = e10;
@@ -138,10 +138,10 @@ public abstract class v {
     public abstract boolean n(RecyclerView recyclerView, d1 d1Var, d1 d1Var2);
 
     public void o(RecyclerView recyclerView, d1 d1Var, d1 d1Var2, int i7, int i10, int i11) {
-        View view = d1Var2.f56951a;
+        View view = d1Var2.f57043a;
         n0 layoutManager = recyclerView.getLayoutManager();
         if (layoutManager instanceof b0) {
-            ((b0) layoutManager).b1(d1Var.f56951a, view, i10, i11);
+            ((b0) layoutManager).b1(d1Var.f57043a, view, i10, i11);
             return;
         }
         if (layoutManager.d()) {

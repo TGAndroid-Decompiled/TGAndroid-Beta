@@ -1,60 +1,34 @@
 package org.telegram.ui;
+public final class ra1 implements org.telegram.ui.ActionBar.r1 {
+    public final int f49425a;
+    public final za1 f49426b;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class ra1 implements RequestDelegate {
-    public final int f49438a;
-    public final ya1 f49439b;
-
-    public ra1(ya1 ya1Var, int i7) {
-        this.f49438a = i7;
-        this.f49439b = ya1Var;
+    public ra1(za1 za1Var, int i7) {
+        this.f49425a = i7;
+        this.f49426b = za1Var;
     }
 
     @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f49438a) {
+    public final void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        switch (this.f49425a) {
             case 0:
-                final ya1 ya1Var = this.f49439b;
-                org.telegram.messenger.g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                ya1.g0(ya1Var, tL_error, tLObject);
-                                return;
-                            default:
-                                ya1.m0(ya1Var, tL_error, tLObject);
-                                return;
-                        }
-                    }
-                });
+                this.f49426b.finishFragment();
                 return;
             case 1:
-                org.telegram.messenger.g0.h3(new ua1(this.f49439b, tL_error, 0));
+                za1 za1Var = this.f49426b;
+                za1Var.G0();
+                za1Var.finishFragment();
                 return;
             case 2:
-                org.telegram.messenger.g0.h3(new ua1(this.f49439b, tL_error, 1));
+                za1 za1Var2 = this.f49426b;
+                za1Var2.R = "";
+                za1Var2.J0(false);
                 return;
             case 3:
-                org.telegram.messenger.g0.h3(new ua1(this.f49439b, tL_error, 2));
+                za1.f0(this.f49426b);
                 return;
             default:
-                final ya1 ya1Var2 = this.f49439b;
-                org.telegram.messenger.g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                ya1.g0(ya1Var2, tL_error, tLObject);
-                                return;
-                            default:
-                                ya1.m0(ya1Var2, tL_error, tLObject);
-                                return;
-                        }
-                    }
-                });
+                za1.c0(this.f49426b);
                 return;
         }
     }

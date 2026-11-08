@@ -3,21 +3,21 @@ package org.telegram.ui.Components;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class tp extends AnimatorListenerAdapter {
-    public final int f38379a;
-    public final vp f38380b;
+    public final int f38407a;
+    public final vp f38408b;
 
     public tp(vp vpVar, int i7) {
-        this.f38379a = i7;
-        this.f38380b = vpVar;
+        this.f38407a = i7;
+        this.f38408b = vpVar;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        int i7 = this.f38379a;
-        vp vpVar = this.f38380b;
+        int i7 = this.f38407a;
+        vp vpVar = this.f38408b;
         switch (i7) {
             case 0:
-                ColorPicker$RadioButton[] colorPicker$RadioButtonArr = vpVar.f39661w;
+                ColorPicker$RadioButton[] colorPicker$RadioButtonArr = vpVar.f39696w;
                 if (vpVar.K == 1) {
                     vpVar.F.setVisibility(4);
                 }

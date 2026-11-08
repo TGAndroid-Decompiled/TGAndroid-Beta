@@ -16,7 +16,7 @@ public final class ak extends org.telegram.ui.Components.ql0 {
         an anVar = this.I;
         anVar.H7();
         anVar.F7();
-        hk hkVar = anVar.f44023xb;
+        hk hkVar = anVar.f44029xb;
         if (hkVar != null) {
             hkVar.setTranslationY(anVar.P9 + getCurrentHeight());
         }
@@ -43,19 +43,19 @@ public final class ak extends org.telegram.ui.Components.ql0 {
             org.telegram.messenger.ui mediaDataController = anVar.getMediaDataController();
             mediaDataController.Y0.clear();
             mediaDataController.Z0.clear();
-            mediaDataController.f25798a1.clear();
+            mediaDataController.f25801a1.clear();
             anVar.Mb(false);
             anVar.jd(0, 0, -1);
         }
         anVar.md();
         anVar.Zc();
-        anVar.H3 = anVar.f43837j0.getSearchField().getText().toString();
+        anVar.H3 = anVar.f43843j0.getSearchField().getText().toString();
         org.telegram.messenger.ui mediaDataController2 = anVar.getMediaDataController();
         String str = anVar.H3;
-        long j3 = anVar.f43842j6;
-        long j10 = anVar.f43738b7;
+        long j3 = anVar.f43848j6;
+        long j10 = anVar.f43744b7;
         i7 = ((org.telegram.ui.ActionBar.f2) anVar).classGuid;
-        long j11 = anVar.f43939r4;
+        long j11 = anVar.f43945r4;
         TLRPC.User user = anVar.C3;
         TLRPC.Chat chat = anVar.D3;
         if (TextUtils.isEmpty(anVar.H3) && anVar.E3 == null) {
@@ -64,7 +64,7 @@ public final class ak extends org.telegram.ui.Components.ql0 {
             z10 = true;
         }
         mediaDataController2.X1(str, j3, j10, i7, 0, j11, false, user, chat, z10, anVar.E3);
-        org.telegram.messenger.g0.v1(anVar.f43837j0.getSearchField());
+        org.telegram.messenger.g0.v1(anVar.f43843j0.getSearchField());
         return true;
     }
 
@@ -73,7 +73,7 @@ public final class ak extends org.telegram.ui.Components.ql0 {
         boolean z10;
         super.h(z9);
         an anVar = this.I;
-        org.telegram.ui.ActionBar.r0 r0Var = anVar.f43837j0;
+        org.telegram.ui.ActionBar.r0 r0Var = anVar.f43843j0;
         if (r0Var != null && r0Var.v() && a() && anVar.I3 == null) {
             z10 = true;
         } else {

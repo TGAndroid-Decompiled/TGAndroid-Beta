@@ -1,112 +1,64 @@
 package org.telegram.messenger;
 
-import java.text.Collator;
-import java.util.Comparator;
-import org.telegram.tgnet.TLRPC;
-public final class u4 implements Comparator {
-    public final int f25724a;
-    public final Collator f25725b;
+import java.util.ArrayList;
+import java.util.HashMap;
+public final class u4 implements Runnable {
+    public final int f25728a;
+    public final g5 f25729b;
+    public final HashMap f25730c;
+    public final ArrayList d;
+    public final HashMap f25731e;
 
-    public u4(Collator collator, int i7) {
-        this.f25724a = i7;
-        this.f25725b = collator;
+    public u4(g5 g5Var, ArrayList arrayList, HashMap hashMap, HashMap hashMap2) {
+        this.f25728a = 4;
+        this.f25729b = g5Var;
+        this.d = arrayList;
+        this.f25730c = hashMap;
+        this.f25731e = hashMap2;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        String str;
-        String m10;
-        switch (this.f25724a) {
+    public final void run() {
+        switch (this.f25728a) {
             case 0:
-                String str2 = (String) obj;
-                String str3 = (String) obj2;
-                char charAt = str2.charAt(0);
-                char charAt2 = str3.charAt(0);
-                if (charAt == '#') {
-                    return 1;
-                }
-                if (charAt2 == '#') {
-                    return -1;
-                }
-                return this.f25725b.compare(str2, str3);
+                HashMap hashMap = this.f25731e;
+                g5 g5Var = this.f25729b;
+                g5Var.E(this.f25730c, this.d, hashMap, true);
+                g5Var.N();
+                g5Var.getNotificationCenter().k(25, new Object[0]);
+                g5Var.getNotificationCenter().k(26, new Object[0]);
+                return;
             case 1:
-                d5 d5Var = (d5) obj;
-                d5 d5Var2 = (d5) obj2;
-                String str4 = d5Var.f21969i;
-                if (str4.length() == 0) {
-                    str4 = d5Var.f21970j;
-                }
-                String str5 = d5Var2.f21969i;
-                if (str5.length() == 0) {
-                    str5 = d5Var2.f21970j;
-                }
-                return this.f25725b.compare(str4, str5);
+                HashMap hashMap2 = this.f25731e;
+                g5 g5Var2 = this.f25729b;
+                g5Var2.E(this.f25730c, this.d, hashMap2, true);
+                g5Var2.N();
+                g5Var2.getNotificationCenter().k(25, new Object[0]);
+                g5Var2.getNotificationCenter().k(26, new Object[0]);
+                return;
             case 2:
-                String str6 = "";
-                if (obj instanceof TLRPC.User) {
-                    TLRPC.User user = (TLRPC.User) obj;
-                    str = g5.m(0, user.first_name, user.last_name);
-                } else if (!(obj instanceof d5)) {
-                    str = "";
-                } else {
-                    d5 d5Var3 = (d5) obj;
-                    TLRPC.User user2 = d5Var3.f21973m;
-                    if (user2 != null) {
-                        str = g5.m(0, user2.first_name, user2.last_name);
-                    } else {
-                        str = g5.m(0, d5Var3.f21969i, d5Var3.f21970j);
-                    }
-                }
-                if (obj2 instanceof TLRPC.User) {
-                    TLRPC.User user3 = (TLRPC.User) obj2;
-                    str6 = g5.m(0, user3.first_name, user3.last_name);
-                } else if (obj2 instanceof d5) {
-                    d5 d5Var4 = (d5) obj2;
-                    TLRPC.User user4 = d5Var4.f21973m;
-                    if (user4 != null) {
-                        m10 = g5.m(0, user4.first_name, user4.last_name);
-                    } else {
-                        m10 = g5.m(0, d5Var4.f21969i, d5Var4.f21970j);
-                    }
-                    str6 = m10;
-                }
-                return this.f25725b.compare(str, str6);
+                this.f25729b.E(this.f25730c, this.d, this.f25731e, true);
+                return;
             case 3:
-                String str7 = (String) obj;
-                String str8 = (String) obj2;
-                char charAt3 = str7.charAt(0);
-                char charAt4 = str8.charAt(0);
-                if (charAt3 == '#') {
-                    return 1;
-                }
-                if (charAt4 == '#') {
-                    return -1;
-                }
-                return this.f25725b.compare(str7, str8);
-            case 4:
-                String str9 = (String) obj;
-                String str10 = (String) obj2;
-                char charAt5 = str9.charAt(0);
-                char charAt6 = str10.charAt(0);
-                if (charAt5 == '#') {
-                    return 1;
-                }
-                if (charAt6 == '#') {
-                    return -1;
-                }
-                return this.f25725b.compare(str9, str10);
+                HashMap hashMap3 = this.f25731e;
+                g5 g5Var3 = this.f25729b;
+                g5Var3.E(this.f25730c, this.d, hashMap3, true);
+                g5Var3.getNotificationCenter().k(26, new Object[0]);
+                return;
             default:
-                String str11 = (String) obj;
-                String str12 = (String) obj2;
-                char charAt7 = str11.charAt(0);
-                char charAt8 = str12.charAt(0);
-                if (charAt7 == '#') {
-                    return 1;
-                }
-                if (charAt8 == '#') {
-                    return -1;
-                }
-                return this.f25725b.compare(str11, str12);
+                g5 g5Var4 = this.f25729b;
+                g5Var4.f22605c0 = this.d;
+                g5Var4.f22606d0 = this.f25730c;
+                g5Var4.f22603b0 = this.f25731e;
+                return;
         }
+    }
+
+    public u4(g5 g5Var, HashMap hashMap, ArrayList arrayList, HashMap hashMap2, int i7) {
+        this.f25728a = i7;
+        this.f25729b = g5Var;
+        this.f25730c = hashMap;
+        this.d = arrayList;
+        this.f25731e = hashMap2;
     }
 }

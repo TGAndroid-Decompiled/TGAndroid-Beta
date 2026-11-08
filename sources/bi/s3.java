@@ -22,13 +22,13 @@ public final class s3 implements Runnable {
         k7 k7Var = this.f4667b;
         switch (i7) {
             case 0:
-                org.telegram.ui.Components.cc I = org.telegram.ui.Components.hc.a0(anVar).I(2131624028, org.telegram.messenger.hd.M0(2131749896, null), org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0(null, null, 2131749897, k7Var.z1(), org.telegram.messenger.m5.t(j3))));
-                I.f32524t = true;
+                org.telegram.ui.Components.cc I = org.telegram.ui.Components.hc.a0(anVar).I(2131624028, org.telegram.messenger.id.M0(2131749898, null), org.telegram.messenger.g0.X2(org.telegram.messenger.id.a0(null, null, 2131749899, k7Var.z1(), org.telegram.messenger.m5.t(j3))));
+                I.f32555t = true;
                 I.j();
                 return;
             default:
-                org.telegram.ui.Components.cc I2 = org.telegram.ui.Components.hc.a0(anVar).I(2131624028, org.telegram.messenger.hd.M0(2131749896, null), org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0(null, null, 2131749897, k7Var.z1(), org.telegram.messenger.m5.t(j3))));
-                I2.f32524t = true;
+                org.telegram.ui.Components.cc I2 = org.telegram.ui.Components.hc.a0(anVar).I(2131624028, org.telegram.messenger.id.M0(2131749898, null), org.telegram.messenger.g0.X2(org.telegram.messenger.id.a0(null, null, 2131749899, k7Var.z1(), org.telegram.messenger.m5.t(j3))));
+                I2.f32555t = true;
                 I2.j();
                 return;
         }

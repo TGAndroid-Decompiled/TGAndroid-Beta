@@ -2,7 +2,7 @@ package b9;
 
 import android.os.IInterface;
 public interface d0 extends IInterface {
-    void F(t0 t0Var);
+    void H();
 
-    void z();
+    void O(t0 t0Var);
 }

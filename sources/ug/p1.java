@@ -20,33 +20,33 @@ public class p1 {
     public f6 P;
     public long R;
     public long S;
-    public boolean f56676g;
+    public boolean f56768g;
     public boolean h;
-    public d20 f56680l;
-    public boolean f56681m;
-    public final int f56684p;
-    public boolean f56685q;
-    public int f56693z;
-    public final RectF f56671a = new RectF();
-    public final RectF f56672b = new RectF();
-    public final RectF f56673c = new RectF();
+    public d20 f56772l;
+    public boolean f56773m;
+    public final int f56776p;
+    public boolean f56777q;
+    public int f56785z;
+    public final RectF f56763a = new RectF();
+    public final RectF f56764b = new RectF();
+    public final RectF f56765c = new RectF();
     public Bitmap[] d = new Bitmap[3];
-    public boolean[] f56674e = new boolean[3];
-    public boolean[] f56675f = new boolean[3];
-    public final Paint f56677i = new Paint();
-    public float f56678j = 0.0f;
-    public float f56679k = 0.0f;
-    public final ArrayList f56682n = new ArrayList();
-    public float f56683o = 1.0f;
-    public int f56686r = 14;
-    public int f56687s = 12;
-    public int f56688t = 10;
-    public float f56689u = 0.85f;
+    public boolean[] f56766e = new boolean[3];
+    public boolean[] f56767f = new boolean[3];
+    public final Paint f56769i = new Paint();
+    public float f56770j = 0.0f;
+    public float f56771k = 0.0f;
+    public final ArrayList f56774n = new ArrayList();
+    public float f56775o = 1.0f;
+    public int f56778r = 14;
+    public int f56779s = 12;
+    public int f56780t = 10;
+    public float f56781u = 0.85f;
     public float v = 0.85f;
-    public float f56690w = 0.9f;
-    public long f56691x = 2000;
-    public int f56692y = 1000;
-    public final float A = 1000.0f / org.telegram.messenger.g0.f22545r;
+    public float f56782w = 0.9f;
+    public long f56783x = 2000;
+    public int f56784y = 1000;
+    public final float A = 1000.0f / org.telegram.messenger.g0.f22564r;
     public boolean H = false;
     public boolean I = true;
     public boolean J = true;
@@ -58,7 +58,7 @@ public class p1 {
     public int T = 0;
 
     public p1(int i7) {
-        this.f56684p = i7;
+        this.f56776p = i7;
         this.B = i7 < 50;
     }
 
@@ -76,7 +76,7 @@ public class p1 {
     public final void c() {
         a();
         boolean z9 = this.G;
-        int i7 = this.f56684p;
+        int i7 = this.f56776p;
         if (z9) {
             int length = this.d.length;
             this.C = new Matrix[length];
@@ -88,7 +88,7 @@ public class p1 {
                 this.D[i10] = new float[i7 * 2];
             }
         }
-        ArrayList arrayList = this.f56682n;
+        ArrayList arrayList = this.f56774n;
         if (arrayList.isEmpty()) {
             for (int i11 = 0; i11 < i7; i11++) {
                 arrayList.add(new o1(this));
@@ -108,7 +108,7 @@ public class p1 {
         long currentTimeMillis = System.currentTimeMillis();
         int i7 = 0;
         while (true) {
-            ArrayList arrayList = this.f56682n;
+            ArrayList arrayList = this.f56774n;
             if (i7 < arrayList.size()) {
                 ((o1) arrayList.get(i7)).b(currentTimeMillis);
                 i7++;
@@ -120,8 +120,8 @@ public class p1 {
 
     public final void g() {
         int w02 = k6.w0(this.Q, this.P);
-        if (this.f56693z != w02) {
-            this.f56693z = w02;
+        if (this.f56785z != w02) {
+            this.f56785z = w02;
             a();
         }
     }

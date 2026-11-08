@@ -10,12 +10,12 @@ import org.telegram.messenger.iz;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.Components.a00;
 import org.telegram.ui.Components.d41;
 import org.telegram.ui.Components.eu0;
 import org.telegram.ui.Components.vy0;
-import org.telegram.ui.Components.zz;
 public abstract class c6 {
-    public static final int[] f18504a = {1, 2, 16, 8, 4, 256, 16384, 32768, 65536};
+    public static final int[] f18507a = {1, 2, 16, 8, 4, 256, 16384, 32768, 65536};
 
     public static void a(SpannableStringBuilder spannableStringBuilder, TL_iv.RichText richText, int i7, TL_iv.PageBlock pageBlock, boolean z9) {
         String str;
@@ -41,7 +41,7 @@ public abstract class c6 {
                 a(spannableStringBuilder, textdiff.old_text, i7, pageBlock, z9);
                 if (spannableStringBuilder.length() > length) {
                     ?? obj = new Object();
-                    obj.f38751a = 8192;
+                    obj.f38779a = 8192;
                     spannableStringBuilder.setSpan(new vy0(obj, 0), length, spannableStringBuilder.length(), 33);
                     return;
                 }
@@ -51,7 +51,7 @@ public abstract class c6 {
             if (j10) {
                 if (spannableStringBuilder.length() > length) {
                     ?? obj2 = new Object();
-                    obj2.f38751a = 4096;
+                    obj2.f38779a = 4096;
                     spannableStringBuilder.setSpan(new vy0(obj2, 0), length, spannableStringBuilder.length(), 33);
                 }
             } else if (spannableStringBuilder.length() > length) {
@@ -93,8 +93,8 @@ public abstract class c6 {
                 tL_messageEntityFormattedDate.date = textdate.date;
                 tL_messageEntityFormattedDate.applyFlags();
                 ?? obj3 = new Object();
-                obj3.f38751a |= 128;
-                spannableStringBuilder.setSpan(new zz(charSequence2, obj3, tL_messageEntityFormattedDate), length4, spannableStringBuilder.length(), 33);
+                obj3.f38779a |= 128;
+                spannableStringBuilder.setSpan(new a00(charSequence2, obj3, tL_messageEntityFormattedDate), length4, spannableStringBuilder.length(), 33);
             }
         } else if (richText instanceof TL_iv.textMath) {
             TL_iv.textMath textmath = (TL_iv.textMath) richText;
@@ -173,7 +173,7 @@ public abstract class c6 {
         vy0[] vy0VarArr = (vy0[]) spanned.getSpans(i7, i10, vy0.class);
         int i11 = 0;
         for (vy0 vy0Var : vy0VarArr) {
-            int i12 = vy0Var.f39784b.f38751a;
+            int i12 = vy0Var.f39749b.f38779a;
             if ((i12 & 512) != 0) {
                 i12 |= 256;
             }
@@ -197,8 +197,8 @@ public abstract class c6 {
         int max2 = Math.max(0, Math.min(i10, length));
         if (max < max2 && com.google.android.recaptcha.internal.a.u(editable)) {
             while (max < max2) {
-                int nextSpanTransition = editable.nextSpanTransition(max, max2, zz.class);
-                if (((zz[]) editable.getSpans(max, nextSpanTransition, zz.class)).length != 0) {
+                int nextSpanTransition = editable.nextSpanTransition(max, max2, a00.class);
+                if (((a00[]) editable.getSpans(max, nextSpanTransition, a00.class)).length != 0) {
                     max = nextSpanTransition;
                 }
             }
@@ -296,7 +296,7 @@ public abstract class c6 {
 
     public static d41 k(String str) {
         ?? obj = new Object();
-        obj.f38751a = 1024;
+        obj.f38779a = 1024;
         return new d41(str, obj);
     }
 
@@ -348,8 +348,8 @@ public abstract class c6 {
         int max = Math.max(0, Math.min(i7, length));
         int max2 = Math.max(0, Math.min(i10, length));
         if (max < max2) {
-            for (zz zzVar : (zz[]) editable.getSpans(max, max2, zz.class)) {
-                editable.removeSpan(zzVar);
+            for (a00 a00Var : (a00[]) editable.getSpans(max, max2, a00.class)) {
+                editable.removeSpan(a00Var);
             }
         }
     }
@@ -384,7 +384,7 @@ public abstract class c6 {
             for (vy0 vy0Var : (vy0[]) spannable.getSpans(max, max2, vy0.class)) {
                 int spanStart = spannable.getSpanStart(vy0Var);
                 int spanEnd = spannable.getSpanEnd(vy0Var);
-                int i13 = vy0Var.f39784b.f38751a;
+                int i13 = vy0Var.f39749b.f38779a;
                 spannable.removeSpan(vy0Var);
                 c(spannable, spanStart, max, i13, pageBlock);
                 c(spannable, max2, spanEnd, i13, pageBlock);
@@ -412,20 +412,20 @@ public abstract class c6 {
     public static vy0 p(int i7, TL_iv.PageBlock pageBlock) {
         boolean z9;
         ?? obj = new Object();
-        obj.f38751a = i7;
+        obj.f38779a = i7;
         if (!(pageBlock instanceof TL_iv.pageBlockTitle) && !(pageBlock instanceof TL_iv.pageBlockSubheader) && !(pageBlock instanceof TL_iv.pageBlockHeader) && !(pageBlock instanceof TL_iv.pageBlockHeading1) && !(pageBlock instanceof TL_iv.pageBlockHeading2) && !(pageBlock instanceof TL_iv.pageBlockHeading3) && !(pageBlock instanceof TL_iv.pageBlockHeading4) && !(pageBlock instanceof TL_iv.pageBlockHeading5) && !(pageBlock instanceof TL_iv.pageBlockHeading6)) {
             z9 = false;
         } else {
             z9 = true;
         }
-        obj.f38754e = z9;
+        obj.f38782e = z9;
         return new vy0(obj, 0);
     }
 
     public static int q(int i7, int i10, CharSequence charSequence) {
         int i11 = 0;
         for (int i12 = 0; i12 < 9; i12++) {
-            int i13 = f18504a[i12];
+            int i13 = f18507a[i12];
             if (i(i7, i10, i13, charSequence)) {
                 i11 |= i13;
             }
@@ -441,16 +441,16 @@ public abstract class c6 {
 
     public static TL_iv.RichText s(String str, b6 b6Var) {
         TL_iv.textCustomEmoji textcustomemoji;
-        i4 i4Var = (i4) b6Var.f18482f;
+        i4 i4Var = (i4) b6Var.f18485f;
         if (i4Var != null) {
-            return i4Var.f18638a;
+            return i4Var.f18641a;
         }
         if (((String) b6Var.d) != null) {
             TL_iv.textMath textmath = new TL_iv.textMath();
             textmath.source = (String) b6Var.d;
             return textmath;
         }
-        long j3 = b6Var.f18479b;
+        long j3 = b6Var.f18482b;
         if (j3 != 0) {
             TL_iv.textCustomEmoji textcustomemoji2 = new TL_iv.textCustomEmoji();
             textcustomemoji2.document_id = j3;
@@ -464,7 +464,7 @@ public abstract class c6 {
             textplain.text = str;
             textcustomemoji = textplain;
         }
-        int i7 = b6Var.f18478a;
+        int i7 = b6Var.f18481a;
         TL_iv.RichText richText = textcustomemoji;
         if ((i7 & 1) != 0) {
             TL_iv.RichText textbold = new TL_iv.textBold();
@@ -520,15 +520,15 @@ public abstract class c6 {
             richText9 = textmarked;
         }
         TL_iv.RichText richText10 = richText9;
-        if (((String) b6Var.f18480c) != null) {
+        if (((String) b6Var.f18483c) != null) {
             TL_iv.RichText texturl = new TL_iv.textUrl();
             texturl.text = richText9;
-            texturl.url = (String) b6Var.f18480c;
+            texturl.url = (String) b6Var.f18483c;
             richText10 = texturl;
         }
-        zz zzVar = (zz) b6Var.f18481e;
-        if (zzVar != null) {
-            TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = zzVar.f41162b;
+        a00 a00Var = (a00) b6Var.f18484e;
+        if (a00Var != null) {
+            TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = a00Var.f31627b;
             TL_iv.textDate textdate = new TL_iv.textDate();
             textdate.text = richText10;
             textdate.flags = tL_messageEntityFormattedDate.flags;

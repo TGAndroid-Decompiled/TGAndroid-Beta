@@ -1,7 +1,7 @@
 package hi;
 
 import android.app.Activity;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_payments;
 public final class d implements Runnable {
@@ -23,11 +23,11 @@ public final class d implements Runnable {
         switch (i11) {
             case 0:
                 bi.w wVar = jVar.V;
-                if (jVar.f14729a0.end_date != 0) {
+                if (jVar.f14732a0.end_date != 0) {
                     str = ah.r.f((i7 - jVar.getConnectionsManager().getCurrentTime()) * 1000);
                 }
                 wVar.g(str, true);
-                if (jVar.f14729a0.end_date != 0 && jVar.f14732d0) {
+                if (jVar.f14732a0.end_date != 0 && jVar.f14735d0) {
                     org.telegram.messenger.g0.i3(jVar.X, 1000L);
                     return;
                 }
@@ -35,7 +35,7 @@ public final class d implements Runnable {
             case 1:
                 TL_bots.updateStarRefProgram updatestarrefprogram = new TL_bots.updateStarRefProgram();
                 updatestarrefprogram.bot = jVar.getMessagesController().o1(jVar.R);
-                TL_payments.starRefProgram starrefprogram = jVar.f14729a0;
+                TL_payments.starRefProgram starrefprogram = jVar.f14732a0;
                 updatestarrefprogram.commission_permille = starrefprogram.commission_permille;
                 int i12 = starrefprogram.duration_months;
                 updatestarrefprogram.duration_months = i12;
@@ -52,12 +52,12 @@ public final class d implements Runnable {
                 return;
             default:
                 Activity parentActivity = jVar.getParentActivity();
-                if (!jVar.Y && jVar.f14729a0.end_date == 0) {
+                if (!jVar.Y && jVar.f14732a0.end_date == 0) {
                     i10 = 2131754327;
                 } else {
                     i10 = 2131754314;
                 }
-                vf.c.t(parentActivity, hd.M0(i10, null));
+                vf.c.t(parentActivity, id.M0(i10, null));
                 return;
         }
     }

@@ -77,14 +77,14 @@ public final class e extends b1.d {
         long j3 = packageManager.getPackageInfo("com.google.android.gms", 0).versionCode;
         a6.b bVar2 = bVar;
         boolean z10 = false;
-        for (h hVar : request.f56881a) {
+        for (h hVar : request.f56973a) {
             if ((hVar instanceof q) && !z10) {
                 if (j3 >= 231815000) {
                     LinkedHashMap linkedHashMap = d1.g.f7948a;
-                    bVar2 = new a6.b(((q) hVar).f56885e, true);
+                    bVar2 = new a6.b(((q) hVar).f56977e, true);
                 } else {
                     LinkedHashMap linkedHashMap2 = d1.g.f7948a;
-                    JSONObject jSONObject = new JSONObject(((q) hVar).f56885e);
+                    JSONObject jSONObject = new JSONObject(((q) hVar).f56977e);
                     String optString = jSONObject.optString("rpId", "");
                     j.b(optString);
                     if (optString.length() != 0) {
@@ -97,13 +97,13 @@ public final class e extends b1.d {
             }
         }
         if (j3 > 241217000) {
-            z9 = request.f56882b;
+            z9 = request.f56974b;
         } else {
             z9 = false;
         }
         l7.b a10 = a.a.a(context);
         new a6.a(false, null, null, true, null, null, false);
-        a6.e eVar = new a6.e(dVar, aVar, a10.f18195l, false, 0, cVar, bVar2, z9);
+        a6.e eVar = new a6.e(dVar, aVar, a10.f18198l, false, 0, cVar, bVar2, z9);
         s b10 = t.b();
         b10.d = new n6.c[]{new n6.c("auth_api_credentials_begin_sign_in", 8L)};
         b10.f6682c = new f1(a10, eVar, 8);

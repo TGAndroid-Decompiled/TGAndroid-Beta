@@ -13,13 +13,13 @@ import org.telegram.ui.Components.w8;
 import org.webrtc.JavaI420Buffer;
 import org.webrtc.VideoFrame;
 public final class e1 {
-    public final ImageReceiver f39134a;
-    public VideoFrame f39135b;
+    public final ImageReceiver f39169a;
+    public VideoFrame f39170b;
 
     public e1() {
         TLRPC.Chat chat;
         ImageReceiver imageReceiver = new ImageReceiver(null);
-        this.f39134a = imageReceiver;
+        this.f39169a = imageReceiver;
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null) {
             chat = sharedInstance.getChat();
@@ -33,7 +33,7 @@ public final class e1 {
             imageReceiver.d = sharedInstance.getAccount();
         }
         imageReceiver.J0(60);
-        imageReceiver.f21192g1 = new m3(this, 3);
+        imageReceiver.f21195g1 = new m3(this, 3);
         imageReceiver.P();
         imageReceiver.q0(chat != null ? hc.a(1, chat) : null, "100_100", w8Var, null, chat, 0);
         a();
@@ -44,7 +44,7 @@ public final class e1 {
         Bitmap createBitmap = Bitmap.createBitmap(640, 360, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(createBitmap);
         canvas.drawColor(-14999773);
-        ImageReceiver imageReceiver = this.f39134a;
+        ImageReceiver imageReceiver = this.f39169a;
         imageReceiver.y0(260.0f, 120.0f, 120.0f, 120.0f);
         imageReceiver.h(canvas, null);
         int width = createBitmap.getWidth();
@@ -87,10 +87,10 @@ public final class e1 {
         }
         VideoFrame videoFrame = new VideoFrame(allocate, 0, 0L);
         createBitmap.recycle();
-        VideoFrame videoFrame2 = this.f39135b;
+        VideoFrame videoFrame2 = this.f39170b;
         if (videoFrame2 != null) {
             videoFrame2.release();
         }
-        this.f39135b = videoFrame;
+        this.f39170b = videoFrame;
     }
 }

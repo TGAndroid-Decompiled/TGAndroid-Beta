@@ -7,23 +7,23 @@ import android.graphics.Rect;
 import android.os.AsyncTask;
 import java.util.ArrayList;
 public final class a61 extends AsyncTask {
-    public int f31708a = 0;
-    public final Paint f31709b = new Paint(3);
-    public final d61 f31710c;
+    public int f31717a = 0;
+    public final Paint f31718b = new Paint(3);
+    public final d61 f31719c;
 
     public a61(d61 d61Var) {
-        this.f31710c = d61Var;
+        this.f31719c = d61Var;
     }
 
     @Override
     public final Object doInBackground(Object[] objArr) {
         Bitmap frameAtTime;
-        d61 d61Var = this.f31710c;
-        this.f31708a = ((Integer[]) objArr)[0].intValue();
+        d61 d61Var = this.f31719c;
+        this.f31717a = ((Integer[]) objArr)[0].intValue();
         Bitmap bitmap = null;
         if (!isCancelled()) {
             try {
-                frameAtTime = d61Var.D.getFrameAtTime(d61Var.H * this.f31708a * 1000, 2);
+                frameAtTime = d61Var.D.getFrameAtTime(d61Var.H * this.f31717a * 1000, 2);
             } catch (Exception e10) {
                 e = e10;
             }
@@ -38,7 +38,7 @@ public final class a61 extends AsyncTask {
                         Rect rect = new Rect(0, 0, frameAtTime.getWidth(), frameAtTime.getHeight());
                         int i7 = d61Var.I;
                         int i10 = d61Var.J;
-                        canvas.drawBitmap(frameAtTime, rect, new Rect((i7 - width) / 2, (i10 - height) / 2, (i7 + width) / 2, (i10 + height) / 2), this.f31709b);
+                        canvas.drawBitmap(frameAtTime, rect, new Rect((i7 - width) / 2, (i10 - height) / 2, (i7 + width) / 2, (i10 + height) / 2), this.f31718b);
                         frameAtTime.recycle();
                         return createBitmap;
                     }
@@ -58,13 +58,13 @@ public final class a61 extends AsyncTask {
     public final void onPostExecute(Object obj) {
         Bitmap bitmap = (Bitmap) obj;
         if (!isCancelled()) {
-            d61 d61Var = this.f31710c;
+            d61 d61Var = this.f31719c;
             ArrayList arrayList = d61Var.F;
             ?? obj2 = new Object();
-            obj2.f32042a = bitmap;
+            obj2.f32063a = bitmap;
             arrayList.add(obj2);
             d61Var.invalidate();
-            int i7 = this.f31708a;
+            int i7 = this.f31717a;
             if (i7 < d61Var.K) {
                 d61Var.d(i7 + 1);
             }

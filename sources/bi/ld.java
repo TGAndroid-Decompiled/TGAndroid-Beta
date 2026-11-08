@@ -20,7 +20,7 @@ public final class ld extends zd {
         ceVar.N0(j3);
         fi.d dVar = ceVar.f3623t1;
         if (dVar != null) {
-            dVar.i(dd.Y0(false, org.telegram.messenger.hd.a0(null, null, 2131745048, org.telegram.messenger.hd.E(j3, ',')), ceVar.J1), true, true);
+            dVar.i(dd.Y0(false, org.telegram.messenger.id.a0(null, null, 2131745050, org.telegram.messenger.id.E(j3, ',')), ceVar.J1), true, true);
         }
         if (this.m0) {
             di.s0 s0Var = ceVar.f3627x1;

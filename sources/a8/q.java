@@ -8,8 +8,8 @@ import android.os.Parcel;
 public abstract class q extends Binder implements IInterface {
     public final int f583a;
 
-    public static void H0(Parcel parcel) {
-        int i7 = t7.a.f55357a;
+    public static void h1(Parcel parcel) {
+        int i7 = t7.a.f55449a;
         int dataAvail = parcel.dataAvail();
         if (dataAvail <= 0) {
             return;
@@ -20,21 +20,21 @@ public abstract class q extends Binder implements IInterface {
         throw new BadParcelableException(sb2.toString());
     }
 
-    public abstract boolean I0(int i7, Parcel parcel, Parcel parcel2);
-
-    public abstract boolean J0(int i7, Parcel parcel, Parcel parcel2);
-
-    public boolean K0(int i7, Parcel parcel, Parcel parcel2) {
-        return false;
-    }
-
-    public abstract boolean L0(Parcel parcel, int i7);
-
     @Override
     public IBinder asBinder() {
         int i7 = this.f583a;
         return this;
     }
+
+    public abstract boolean i1(int i7, Parcel parcel, Parcel parcel2);
+
+    public abstract boolean j1(int i7, Parcel parcel, Parcel parcel2);
+
+    public boolean k1(int i7, Parcel parcel, Parcel parcel2) {
+        return false;
+    }
+
+    public abstract boolean l1(Parcel parcel, int i7);
 
     @Override
     public boolean onTransact(int r9, android.os.Parcel r10, android.os.Parcel r11, int r12) {

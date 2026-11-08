@@ -2,14 +2,14 @@ package ui;
 
 import java.net.Socket;
 public final class h {
-    public final int f56843a;
-    public final Socket f56844b;
-    public long f56845c = 4194304;
+    public final int f56935a;
+    public final Socket f56936b;
+    public long f56937c = 4194304;
     public long d = 4194304;
-    public boolean f56846e;
+    public boolean f56938e;
 
     public h(int i7, Socket socket) {
-        this.f56843a = i7;
-        this.f56844b = socket;
+        this.f56935a = i7;
+        this.f56936b = socket;
     }
 }

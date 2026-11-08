@@ -9,9 +9,9 @@ import h2.x;
 import java.util.ArrayList;
 import java.util.Arrays;
 public final class a implements p0 {
-    public final String f15144a;
-    public final byte[] f15145b;
-    public final int f15146c;
+    public final String f15147a;
+    public final byte[] f15148b;
+    public final int f15149c;
     public final int d;
 
     public a(String str, byte[] bArr, int i7, int i10) {
@@ -74,9 +74,9 @@ public final class a implements p0 {
                 ia.f(i10 == 0);
                 break;
         }
-        this.f15144a = str;
-        this.f15145b = bArr;
-        this.f15146c = i7;
+        this.f15147a = str;
+        this.f15148b = bArr;
+        this.f15149c = i7;
         this.d = i10;
     }
 
@@ -91,8 +91,8 @@ public final class a implements p0 {
     }
 
     public final ArrayList d() {
-        ia.o("Metadata is not an auxiliary tracks map", this.f15144a.equals("auxiliary.tracks.map"));
-        byte[] bArr = this.f15145b;
+        ia.o("Metadata is not an auxiliary tracks map", this.f15147a.equals("auxiliary.tracks.map"));
+        byte[] bArr = this.f15148b;
         byte b10 = bArr[1];
         ArrayList arrayList = new ArrayList();
         for (int i7 = 0; i7 < b10; i7 = com.google.android.recaptcha.internal.a.f(bArr[i7 + 2], i7, 1, arrayList)) {
@@ -106,7 +106,7 @@ public final class a implements p0 {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.f15144a.equals(aVar.f15144a) && Arrays.equals(this.f15145b, aVar.f15145b) && this.f15146c == aVar.f15146c && this.d == aVar.d) {
+            if (this.f15147a.equals(aVar.f15147a) && Arrays.equals(this.f15148b, aVar.f15148b) && this.f15149c == aVar.f15149c && this.d == aVar.d) {
                 return true;
             }
         }
@@ -114,15 +114,15 @@ public final class a implements p0 {
     }
 
     public final int hashCode() {
-        return ((((Arrays.hashCode(this.f15145b) + com.google.android.recaptcha.internal.a.h(527, 31, this.f15144a)) * 31) + this.f15146c) * 31) + this.d;
+        return ((((Arrays.hashCode(this.f15148b) + com.google.android.recaptcha.internal.a.h(527, 31, this.f15147a)) * 31) + this.f15149c) * 31) + this.d;
     }
 
     public final String toString() {
         String sb2;
         boolean z9;
         boolean z10;
-        String str = this.f15144a;
-        byte[] bArr = this.f15145b;
+        String str = this.f15147a;
+        byte[] bArr = this.f15148b;
         int i7 = this.d;
         if (i7 != 0) {
             if (i7 != 1) {

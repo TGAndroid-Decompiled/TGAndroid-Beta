@@ -20,13 +20,13 @@ import java.util.Set;
 import rd.l;
 import zd.b0;
 public final class h {
-    public static final q1.e f54902b = new q1.e("fire-global");
-    public static final q1.e f54903c = new q1.e("fire-count");
+    public static final q1.e f54994b = new q1.e("fire-global");
+    public static final q1.e f54995c = new q1.e("fire-count");
     public static final q1.e d = qb.a("last-used-date");
-    public final ka.d f54904a;
+    public final ka.d f54996a;
 
     public h(Context context, String str) {
-        this.f54904a = new ka.d(context, rf.b.i("FirebaseHeartBeat", str));
+        this.f54996a = new ka.d(context, rf.b.i("FirebaseHeartBeat", str));
     }
 
     public static String c(long j3) {
@@ -41,7 +41,7 @@ public final class h {
             if (entry.getValue() instanceof Set) {
                 for (String str2 : (Set) entry.getValue()) {
                     if (str.equals(str2)) {
-                        return qb.b(((q1.e) entry.getKey()).f53593a);
+                        return qb.b(((q1.e) entry.getKey()).f53686a);
                     }
                 }
                 continue;
@@ -65,7 +65,7 @@ public final class h {
     }
 
     public final synchronized void a() {
-        this.f54904a.a(new p(this));
+        this.f54996a.a(new p(this));
     }
 
     public final synchronized ArrayList b() {
@@ -73,14 +73,14 @@ public final class h {
         try {
             arrayList = new ArrayList();
             String c10 = c(System.currentTimeMillis());
-            ka.d dVar = this.f54904a;
+            ka.d dVar = this.f54996a;
             dVar.getClass();
             for (Map.Entry entry : ((Map) b0.u(new b1(dVar, null, 2))).entrySet()) {
                 if (entry.getValue() instanceof Set) {
                     HashSet hashSet = new HashSet((Set) entry.getValue());
                     hashSet.remove(c10);
                     if (!hashSet.isEmpty()) {
-                        arrayList.add(new a(((q1.e) entry.getKey()).f53593a, new ArrayList(hashSet)));
+                        arrayList.add(new a(((q1.e) entry.getKey()).f53686a, new ArrayList(hashSet)));
                     }
                 }
             }
@@ -92,18 +92,18 @@ public final class h {
     }
 
     public final synchronized void e() {
-        this.f54904a.a(new c1.b(this, c(System.currentTimeMillis())));
+        this.f54996a.a(new c1.b(this, c(System.currentTimeMillis())));
     }
 
     public final synchronized boolean g(long j3) {
-        return h(f54902b, j3);
+        return h(f54994b, j3);
     }
 
     public final synchronized boolean h(q1.e eVar, long j3) {
-        if (c(((Long) this.f54904a.b(eVar, -1L)).longValue()).equals(c(j3))) {
+        if (c(((Long) this.f54996a.b(eVar, -1L)).longValue()).equals(c(j3))) {
             return false;
         }
-        ka.d dVar = this.f54904a;
+        ka.d dVar = this.f54996a;
         Long valueOf = Long.valueOf(j3);
         dVar.getClass();
         q1.b bVar = (q1.b) b0.u(new de.c(dVar, eVar, valueOf, (id.c) null));
@@ -115,7 +115,7 @@ public final class h {
             try {
                 String c10 = c(j3);
                 q1.e b10 = qb.b(str);
-                this.f54904a.a(new e1.b(this, c10, str, b10, 2));
+                this.f54996a.a(new e1.b(this, c10, str, b10, 2));
             } catch (Throwable th2) {
                 th = th2;
                 throw th;
@@ -127,10 +127,10 @@ public final class h {
     }
 
     public final synchronized void j(final long j3) {
-        this.f54904a.a(new l() {
+        this.f54996a.a(new l() {
             @Override
             public final Object invoke(Object obj) {
-                ((q1.b) obj).d(h.f54902b, Long.valueOf(j3));
+                ((q1.b) obj).d(h.f54994b, Long.valueOf(j3));
                 return null;
             }
         });

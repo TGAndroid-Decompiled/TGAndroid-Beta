@@ -17,9 +17,9 @@ public final class z3 extends w31 {
     @Override
     public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
         a4 a4Var = (a4) view;
-        a4Var.a(x31Var.d, x31Var.f40172z, (e7) x31Var.G);
-        a4Var.b(x31Var.f40153e, false);
-        boolean z10 = x31Var.f40154f;
+        a4Var.a(x31Var.d, x31Var.f40193z, (e7) x31Var.G);
+        a4Var.b(x31Var.f40174e, false);
+        boolean z10 = x31Var.f40175f;
         if (a4Var.h != z10) {
             a4Var.h = z10;
             a4Var.F.a(z10);

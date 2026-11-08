@@ -42,23 +42,23 @@ public final class p0 implements yb.a {
         q6.m.g(cbVar);
         if (!this.f14132b) {
             try {
-                cbVar.T0(cbVar.P0(), 1);
+                cbVar.t1(cbVar.p1(), 1);
                 this.f14132b = true;
             } catch (RemoteException e10) {
                 throw new lb.a("Failed to init thin image labeler.", e10);
             }
         }
-        int i7 = aVar.f56400e;
-        int i10 = aVar.f56398b;
-        int i11 = aVar.f56399c;
+        int i7 = aVar.f56492e;
+        int i10 = aVar.f56490b;
+        int i11 = aVar.f56491c;
         int a10 = xc.a(aVar.d);
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        int i12 = aVar.f56400e;
+        int i12 = aVar.f56492e;
         if (i12 != -1) {
             if (i12 != 17) {
                 if (i12 != 35) {
                     if (i12 != 842094169) {
-                        throw new lb.a(jg.g.j(aVar.f56400e, "Unsupported image format: "), 3);
+                        throw new lb.a(jg.g.j(aVar.f56492e, "Unsupported image format: "), 3);
                     }
                 } else {
                     bVar = new a7.b(null);
@@ -67,29 +67,29 @@ public final class p0 implements yb.a {
             q6.m.g(null);
             throw null;
         }
-        Bitmap bitmap = aVar.f56397a;
+        Bitmap bitmap = aVar.f56489a;
         q6.m.g(bitmap);
         bVar = new a7.b(bitmap);
         try {
-            Parcel P0 = cbVar.P0();
+            Parcel p12 = cbVar.p1();
             int i13 = a8.g0.f404a;
-            P0.writeStrongBinder(bVar);
-            P0.writeInt(1);
-            int r10 = xb.r(P0, 20293);
-            xb.q(P0, 1, 4);
-            P0.writeInt(i7);
-            xb.q(P0, 2, 4);
-            P0.writeInt(i10);
-            xb.q(P0, 3, 4);
-            P0.writeInt(i11);
-            xb.q(P0, 4, 4);
-            P0.writeInt(a10);
-            xb.q(P0, 5, 8);
-            P0.writeLong(elapsedRealtime);
-            xb.s(P0, r10);
-            Parcel R0 = cbVar.R0(P0, 3);
-            ArrayList createTypedArrayList = R0.createTypedArrayList(gb.CREATOR);
-            R0.recycle();
+            p12.writeStrongBinder(bVar);
+            p12.writeInt(1);
+            int r10 = xb.r(p12, 20293);
+            xb.q(p12, 1, 4);
+            p12.writeInt(i7);
+            xb.q(p12, 2, 4);
+            p12.writeInt(i10);
+            xb.q(p12, 3, 4);
+            p12.writeInt(i11);
+            xb.q(p12, 4, 4);
+            p12.writeInt(a10);
+            xb.q(p12, 5, 8);
+            p12.writeLong(elapsedRealtime);
+            xb.s(p12, r10);
+            Parcel r12 = cbVar.r1(p12, 3);
+            ArrayList createTypedArrayList = r12.createTypedArrayList(gb.CREATOR);
+            r12.recycle();
             ArrayList arrayList = new ArrayList();
             int size = createTypedArrayList.size();
             int i14 = 0;
@@ -154,7 +154,7 @@ public final class p0 implements yb.a {
                     aVar = new a8.a(b10, "com.google.mlkit.vision.label.aidls.IImageLabelerCreator", 0);
                 }
             }
-            this.f14135f = ((db) aVar).X0(new a7.b(context), new hb(((xb.a) this.f14134e).f57548a, -1));
+            this.f14135f = ((db) aVar).x1(new a7.b(context), new hb(((xb.a) this.f14134e).f57640a, -1));
         } catch (RemoteException e10) {
             throw new lb.a("Failed to create thin image labeler.", e10);
         } catch (b7.b unused) {
@@ -171,7 +171,7 @@ public final class p0 implements yb.a {
         cb cbVar = (cb) this.f14135f;
         if (cbVar != null) {
             try {
-                cbVar.T0(cbVar.P0(), 2);
+                cbVar.t1(cbVar.p1(), 2);
             } catch (RemoteException unused) {
                 Log.e("DecoupledImageLabeler", "Failed to release thin image labeler.");
             }
@@ -181,7 +181,7 @@ public final class p0 implements yb.a {
     }
 
     public p0() {
-        pe.a aVar = pe.a.f53481a;
+        pe.a aVar = pe.a.f53574a;
         this.f14132b = true;
         this.d = "    ";
         this.f14134e = "type";

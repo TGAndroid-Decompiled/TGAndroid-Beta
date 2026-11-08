@@ -33,20 +33,20 @@ public final class c extends LinearLayout implements ls {
         org.telegram.ui.ActionBar.f6 f6Var = this.f3545b;
         w70 w70Var = this.d;
         if (bVar2 == bVar3) {
-            textView.setText(dd.a1(false, org.telegram.messenger.hd.a0(null, null, 2131750115, org.telegram.messenger.hd.E(s5.a(), ',')), 0.6f, null));
+            textView.setText(dd.a1(false, org.telegram.messenger.id.a0(null, null, 2131750117, org.telegram.messenger.id.E(s5.a(), ',')), 0.6f, null));
             int i10 = org.telegram.ui.ActionBar.k6.uj;
             org.telegram.ui.ActionBar.r6.V(w70Var, i10, f6Var);
             org.telegram.ui.ActionBar.r6.H(w70Var, i10, f6Var);
-            w70Var.setText(org.telegram.messenger.g0.I2(org.telegram.messenger.g0.U2(org.telegram.messenger.hd.M0(2131750114, null), new a3.f(this, 14)), true, org.telegram.messenger.g0.L(2.6666667f), org.telegram.messenger.g0.L(1.0f)));
+            w70Var.setText(org.telegram.messenger.g0.I2(org.telegram.messenger.g0.U2(org.telegram.messenger.id.M0(2131750116, null), new a3.f(this, 14)), true, org.telegram.messenger.g0.L(2.6666667f), org.telegram.messenger.g0.L(1.0f)));
         } else if (bVar2 == cg.b.f6163b) {
-            SpannableStringBuilder X2 = org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0(null, null, 2131750113, s5.b()));
+            SpannableStringBuilder X2 = org.telegram.messenger.g0.X2(org.telegram.messenger.id.a0(null, null, 2131750115, s5.b()));
             wp[] wpVarArr = this.f3548f;
             textView.setText(dd.a1(true, X2, 0.6f, wpVarArr));
             wpVarArr[0].a(org.telegram.ui.ActionBar.k6.uj);
             StringBuilder sb2 = new StringBuilder(10);
             sb2.append('~');
             org.telegram.messenger.r1.i().getClass();
-            sb2.append(org.telegram.messenger.r1.g("USD", 2, (long) (s5.c() * ((org.telegram.messenger.i0) qp.s1(i7).f24935x7.f24445l.f14323b).f23010a * 100.0d), false));
+            sb2.append(org.telegram.messenger.r1.g("USD", 2, (long) (s5.c() * ((org.telegram.messenger.i0) qp.s1(i7).f24942x7.f24449l.f14323b).f23001a * 100.0d), false));
             int i11 = org.telegram.ui.ActionBar.k6.vj;
             int i12 = org.telegram.ui.ActionBar.k6.tj;
             org.telegram.ui.ActionBar.r6.n(w70Var, i11, i12, 3, 0.33f, f6Var);
@@ -57,7 +57,7 @@ public final class c extends LinearLayout implements ls {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == qs.f25105y3) {
+        if (i7 == qs.f25114y3) {
             a();
         }
     }
@@ -75,7 +75,7 @@ public final class c extends LinearLayout implements ls {
         super.onAttachedToWindow();
         a();
         int i7 = this.f3544a;
-        qs.f(i7).c(this, qs.f25105y3);
+        qs.f(i7).c(this, qs.f25114y3);
         qs.f(i7).c(this, qs.C3);
     }
 
@@ -83,7 +83,7 @@ public final class c extends LinearLayout implements ls {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         int i7 = this.f3544a;
-        qs.f(i7).n(this, qs.f25105y3);
+        qs.f(i7).n(this, qs.f25114y3);
         qs.f(i7).n(this, qs.C3);
     }
 
@@ -110,7 +110,7 @@ public final class c extends LinearLayout implements ls {
         w70 w70Var = new w70(context, f6Var);
         this.d = w70Var;
         w70Var.setTextSize(1, 12.0f);
-        w70Var.setText(org.telegram.messenger.g0.I2(org.telegram.messenger.g0.U2(org.telegram.messenger.hd.M0(2131750114, null), new b(0, context, f6Var)), true, org.telegram.messenger.g0.L(2.6666667f), org.telegram.messenger.g0.L(1.0f)));
+        w70Var.setText(org.telegram.messenger.g0.I2(org.telegram.messenger.g0.U2(org.telegram.messenger.id.M0(2131750116, null), new b(0, context, f6Var)), true, org.telegram.messenger.g0.L(2.6666667f), org.telegram.messenger.g0.L(1.0f)));
         w70Var.setGravity(17);
         addView(w70Var, c8.ha.q(-2, -2, 0.0f, 17, 0, 1, 0, 0));
         a();

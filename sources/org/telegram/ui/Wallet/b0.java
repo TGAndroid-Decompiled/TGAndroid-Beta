@@ -1,30 +1,55 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.v10;
-public final class b0 implements Runnable {
-    public volatile boolean f42113a;
-    public Runnable f42114b;
-    public final String f42115c;
-    public final long d;
-    public final String f42116e;
-    public final byte[] f42117f;
-    public final v10 h;
-    public final n0 f42118n;
+import java.util.ArrayList;
+import org.telegram.messenger.ls;
+import org.telegram.messenger.qs;
+import org.telegram.ui.zc0;
+public final class b0 implements Runnable, ls {
+    public boolean f42172a;
+    public final qs f42173b;
+    public final zc0 f42174c;
+    public final m0 d;
 
-    public b0(n0 n0Var, String str, long j3, String str2, byte[] bArr, v10 v10Var) {
-        this.f42118n = n0Var;
-        this.f42115c = str;
-        this.d = j3;
-        this.f42116e = str2;
-        this.f42117f = bArr;
-        this.h = v10Var;
+    public b0(qs qsVar, zc0 zc0Var, m0 m0Var) {
+        this.f42173b = qsVar;
+        this.f42174c = zc0Var;
+        this.d = m0Var;
+    }
+
+    public final void a() {
+        if (!this.f42172a) {
+            m0 m0Var = this.d;
+            if (m0Var.f42765e != null) {
+                ArrayList arrayList = m0Var.G;
+                int size = arrayList.size();
+                int i7 = 0;
+                while (i7 < size) {
+                    Object obj = arrayList.get(i7);
+                    i7++;
+                    if (((i0) obj).d) {
+                        return;
+                    }
+                }
+                run();
+            }
+        }
     }
 
     @Override
-    public final synchronized void run() {
-        if (this.f42113a) {
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        if (i7 == qs.f24971a4) {
+            a();
+        }
+    }
+
+    @Override
+    public final void run() {
+        if (this.f42172a) {
             return;
         }
-        this.f42114b = this.f42118n.f42793b.emulateSend(this.f42115c, this.d, this.f42116e, this.f42117f, new bi.p5(27, this, this.h));
+        this.f42172a = true;
+        org.telegram.messenger.g0.r(this);
+        this.f42173b.n(this, qs.f24971a4);
+        this.f42174c.run();
     }
 }

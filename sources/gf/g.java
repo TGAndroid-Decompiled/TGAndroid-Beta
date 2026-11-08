@@ -39,8 +39,8 @@ import org.telegram.messenger.c20;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.gu;
 import org.telegram.messenger.h0;
-import org.telegram.messenger.hd;
 import org.telegram.messenger.hu;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.kv;
 import org.telegram.messenger.l0;
@@ -78,12 +78,12 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
     @Override
     public boolean A(l.k kVar) {
         m.i iVar = (m.i) this.f13889b;
-        if (kVar == iVar.f19121c) {
+        if (kVar == iVar.f19124c) {
             return false;
         }
         ((d0) kVar).A.getClass();
         iVar.getClass();
-        w wVar = iVar.f19122e;
+        w wVar = iVar.f19125e;
         if (wVar == null) {
             return false;
         }
@@ -93,7 +93,7 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
     @Override
     public Object B(ce.d dVar, kd.c cVar) {
         Object B = ((q4.q) this.f13889b).B(new a1(dVar, 1), cVar);
-        if (B == jd.a.f16643a) {
+        if (B == jd.a.f16646a) {
             return B;
         }
         return gd.k.f13829a;
@@ -173,7 +173,7 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
     public void H0() {
         hu huVar = (hu) this.f13889b;
         hu.j0(huVar, null);
-        huVar.f22986a0 = null;
+        huVar.f22970a0 = null;
     }
 
     @Override
@@ -182,7 +182,7 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
         if (m3Var != null) {
             m3Var.getClass();
             if (charSequence != null && charSequence.length() > 0) {
-                m3Var.f18698a.w4(charSequence.toString());
+                m3Var.f18701a.w4(charSequence.toString());
             }
         }
     }
@@ -197,8 +197,8 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
         s4 s4Var = (s4) this.f13889b;
         m3 m3Var = s4Var.N;
         if (m3Var != null) {
-            li.a aVar = s4Var.f18986a;
-            t3.S1(m3Var.f18698a);
+            li.a aVar = s4Var.f18989a;
+            t3.S1(m3Var.f18701a);
         }
     }
 
@@ -207,9 +207,9 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
         kv kvVar;
         l1 l1Var;
         hu huVar = (hu) this.f13889b;
-        gu guVar = huVar.f22986a0;
-        if (guVar != null && (l1Var = (kvVar = huVar.f22450a).F) != null) {
-            l1Var.b1(kvVar.E, guVar.f22707c);
+        gu guVar = huVar.f22970a0;
+        if (guVar != null && (l1Var = (kvVar = huVar.f22469a).F) != null) {
+            l1Var.b1(kvVar.E, guVar.f22724c);
         }
     }
 
@@ -222,8 +222,8 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
     public boolean U0(float f10, float f11) {
         hu huVar = (hu) this.f13889b;
         gu i02 = hu.i0(huVar, f10, f11);
-        i02 = (i02 == null || i02.f22706b) ? null : null;
-        huVar.f22986a0 = i02;
+        i02 = (i02 == null || i02.f22723b) ? null : null;
+        huVar.f22970a0 = i02;
         if (i02 != null) {
             return true;
         }
@@ -232,7 +232,7 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
 
     @Override
     public li.a V0() {
-        return ((s4) this.f13889b).f18986a;
+        return ((s4) this.f13889b).f18989a;
     }
 
     @Override
@@ -252,7 +252,7 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
         if (ijVar == null) {
             return;
         }
-        ijVar.f23204b0 = f10;
+        ijVar.f23222b0 = f10;
         MediaController.B().i0(xVar.P, f10);
     }
 
@@ -261,8 +261,8 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
         s4 s4Var = (s4) this.f13889b;
         m3 m3Var = s4Var.N;
         if (m3Var != null) {
-            li.a aVar = s4Var.f18986a;
-            if (m3Var.f18698a.V4()) {
+            li.a aVar = s4Var.f18989a;
+            if (m3Var.f18701a.V4()) {
                 return true;
             }
             return false;
@@ -274,30 +274,30 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
     public void accept(Object obj, Object obj2) {
         l7.a aVar = new l7.a((TaskCompletionSource) obj2);
         l7.i iVar = (l7.i) ((l7.c) obj).n();
-        String str = ((l7.b) this.f13889b).f18195l;
-        Parcel L0 = iVar.L0();
-        int i7 = l7.f.f18199a;
-        L0.writeStrongBinder(aVar);
-        L0.writeString(str);
-        iVar.M0(L0, 2);
+        String str = ((l7.b) this.f13889b).f18198l;
+        Parcel l1 = iVar.l1();
+        int i7 = l7.f.f18202a;
+        l1.writeStrongBinder(aVar);
+        l1.writeString(str);
+        iVar.m1(l1, 2);
     }
 
     @Override
     public void b(g1 g1Var) {
         m3 m3Var = ((s4) this.f13889b).N;
         if (m3Var != null) {
-            t3 t3Var = m3Var.f18698a;
+            t3 t3Var = m3Var.f18701a;
             t3.Q1(t3Var, g1Var);
-            t3Var.f18887o3.r(g1Var, true);
+            t3Var.f18890o3.r(g1Var, true);
         }
     }
 
     @Override
     public void c(l.k kVar, boolean z9) {
         if (kVar instanceof d0) {
-            ((d0) kVar).f17644z.k().c(false);
+            ((d0) kVar).f17647z.k().c(false);
         }
-        w wVar = ((m.i) this.f13889b).f19122e;
+        w wVar = ((m.i) this.f13889b).f19125e;
         if (wVar != null) {
             wVar.c(kVar, z9);
         }
@@ -306,14 +306,14 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
     @Override
     public boolean c1(View view, float f10, float f11) {
         hu huVar = (hu) this.f13889b;
-        if (huVar.f22986a0 != null) {
+        if (huVar.f22970a0 != null) {
             gu i02 = hu.i0(huVar, f10, f11);
-            gu guVar = huVar.f22986a0;
+            gu guVar = huVar.f22970a0;
             if (i02 == guVar) {
-                kv kvVar = huVar.f22450a;
+                kv kvVar = huVar.f22469a;
                 l1 l1Var = kvVar.F;
                 if (l1Var != null) {
-                    l1Var.v1(kvVar.E, guVar.f22707c);
+                    l1Var.v1(kvVar.E, guVar.f22724c);
                     return true;
                 }
                 return true;
@@ -337,7 +337,7 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
         if (ijVar == null) {
             return;
         }
-        ijVar.f23204b0 = f10;
+        ijVar.f23222b0 = f10;
     }
 
     @Override
@@ -345,8 +345,8 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
         s4 s4Var = (s4) this.f13889b;
         m3 m3Var = s4Var.N;
         if (m3Var != null) {
-            li.a aVar = s4Var.f18986a;
-            f2 f2Var = m3Var.f18698a.Q3;
+            li.a aVar = s4Var.f18989a;
+            f2 f2Var = m3Var.f18701a.Q3;
             if (f2Var != null) {
                 f2Var.f(i7, i10);
             }
@@ -361,7 +361,7 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
     @Override
     public void g(ij ijVar) {
         ii.d0 d0Var = (ii.d0) this.f13889b;
-        d0Var.f15506q1.presentFragment(fm0.M(d0Var.f28613a, ijVar));
+        d0Var.f15509q1.presentFragment(fm0.M(d0Var.f28616a, ijVar));
         d0Var.dismiss();
     }
 
@@ -375,20 +375,20 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
                 t7 t7Var = (t7) this.f13889b;
                 try {
                     StringBuilder sb2 = new StringBuilder();
-                    if (!TextUtils.isEmpty(t7Var.f30531s)) {
-                        sb2.append(t7Var.f30531s);
+                    if (!TextUtils.isEmpty(t7Var.f30535s)) {
+                        sb2.append(t7Var.f30535s);
                     }
-                    s7 s7Var = t7Var.f30530r;
-                    if (s7Var != null && (w10Var = s7Var.f30277e) != null) {
-                        CharSequence charSequence = (CharSequence) w10Var.d(0, Integer.valueOf(t7Var.f30528f));
+                    s7 s7Var = t7Var.f30534r;
+                    if (s7Var != null && (w10Var = s7Var.f30281e) != null) {
+                        CharSequence charSequence = (CharSequence) w10Var.d(0, Integer.valueOf(t7Var.f30532f));
                         if (!TextUtils.isEmpty(charSequence)) {
                             if (sb2.length() > 0) {
                                 sb2.append(", ");
                             }
                             sb2.append(charSequence);
                         }
-                        CharSequence charSequence2 = (CharSequence) t7Var.f30530r.f30277e.d(-1, Integer.valueOf(t7Var.f30530r.b()));
-                        CharSequence charSequence3 = (CharSequence) t7Var.f30530r.f30277e.d(1, Integer.valueOf(t7Var.f30530r.a()));
+                        CharSequence charSequence2 = (CharSequence) t7Var.f30534r.f30281e.d(-1, Integer.valueOf(t7Var.f30534r.b()));
+                        CharSequence charSequence3 = (CharSequence) t7Var.f30534r.f30281e.d(1, Integer.valueOf(t7Var.f30534r.a()));
                         if (!TextUtils.isEmpty(charSequence2) && !TextUtils.isEmpty(charSequence3)) {
                             if (sb2.length() > 0) {
                                 sb2.append(", ");
@@ -404,16 +404,16 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
                     return sb2.toString();
                 } catch (Throwable th2) {
                     a8.g(th2, true);
-                    return t7Var.f30531s;
+                    return t7Var.f30535s;
                 }
             default:
                 StringBuilder sb3 = new StringBuilder();
                 b8 b8Var = (b8) this.f13889b;
-                sb3.append(hd.G(b8Var.f32090t2 / 60, "Minutes", new Object[0]));
+                sb3.append(id.G(b8Var.f32111t2 / 60, "Minutes", new Object[0]));
                 sb3.append(' ');
-                sb3.append(hd.G(b8Var.f32090t2 % 60, "Seconds", new Object[0]));
+                sb3.append(id.G(b8Var.f32111t2 % 60, "Seconds", new Object[0]));
                 String sb4 = sb3.toString();
-                return hd.a0("AccDescrPlayerDuration", null, 2131754806, sb4, hd.G(b8Var.f32092u2 / 60, "Minutes", new Object[0]) + ' ' + hd.G(b8Var.f32092u2 % 60, "Seconds", new Object[0]));
+                return id.a0("AccDescrPlayerDuration", null, 2131754806, sb4, id.G(b8Var.f32113u2 / 60, "Minutes", new Object[0]) + ' ' + id.G(b8Var.f32113u2 % 60, "Seconds", new Object[0]));
         }
     }
 
@@ -432,13 +432,13 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
         s4 s4Var = (s4) this.f13889b;
         m3 m3Var = s4Var.N;
         if (m3Var != null) {
-            li.a aVar = s4Var.f18986a;
-            t3 t3Var = m3Var.f18698a;
+            li.a aVar = s4Var.f18989a;
+            t3 t3Var = m3Var.f18701a;
             f2 f2Var = t3Var.Q3;
             if (f2Var != null) {
                 f2Var.g();
             }
-            t3Var.f18887o3.onContentChanged();
+            t3Var.f18890o3.onContentChanged();
         }
     }
 
@@ -540,7 +540,7 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
     public boolean k1(int i7) {
         switch (this.f13888a) {
             case 7:
-                if (i7 == ((yl0) this.f13889b).f16738d0) {
+                if (i7 == ((yl0) this.f13889b).f16741d0) {
                     return true;
                 }
                 return false;
@@ -556,14 +556,14 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
         switch (this.f13888a) {
             case 26:
                 b61 b61Var = (b61) ((org.telegram.ui.Cells.i0) this.f13889b);
-                int i7 = (int) (k6.f28082q * 100.0f);
+                int i7 = (int) (k6.f28085q * 100.0f);
                 int i10 = (int) (f10 * 100.0f);
-                k6.f28082q = f10;
+                k6.f28085q = f10;
                 if (i7 != i10) {
-                    ThemeActivity themeActivity = b61Var.f44201f.f45507e;
-                    xi0 xi0Var = (xi0) themeActivity.f42009b.K(themeActivity.f42017f0);
+                    ThemeActivity themeActivity = b61Var.f44207f.f45466e;
+                    xi0 xi0Var = (xi0) themeActivity.f42013b.K(themeActivity.f42021f0);
                     if (xi0Var != null) {
-                        ((z8) xi0Var.f56951a).setText(hd.a0("AutoNightBrightnessInfo", null, 2131753794, Integer.valueOf((int) (k6.f28082q * 100.0f))));
+                        ((z8) xi0Var.f57043a).setText(id.a0("AutoNightBrightnessInfo", null, 2131753794, Integer.valueOf((int) (k6.f28085q * 100.0f))));
                     }
                     k6.F(true);
                     return;
@@ -571,31 +571,31 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
                 return;
             case 27:
                 t7 t7Var = (t7) this.f13889b;
-                s7 s7Var = t7Var.f30530r;
-                if (s7Var != null && t7Var.f30529n != null) {
-                    if (s7Var.f30276c != null) {
+                s7 s7Var = t7Var.f30534r;
+                if (s7Var != null && t7Var.f30533n != null) {
+                    if (s7Var.f30280c != null) {
                         double length = f10 * (iArr.length - 1);
-                        int j3 = Utilities.j((int) Math.floor(length), t7Var.f30530r.f30276c.length - 1, 0);
-                        int j10 = Utilities.j((int) Math.ceil(length), t7Var.f30530r.f30276c.length - 1, 0);
-                        int[] iArr2 = t7Var.f30530r.f30276c;
-                        round = Math.round(g0.W1(Math.round(((float) (length - Math.floor(length))) * t7Var.f30530r.d) / t7Var.f30530r.d, iArr2[j3], iArr2[j10]));
+                        int j3 = Utilities.j((int) Math.floor(length), t7Var.f30534r.f30280c.length - 1, 0);
+                        int j10 = Utilities.j((int) Math.ceil(length), t7Var.f30534r.f30280c.length - 1, 0);
+                        int[] iArr2 = t7Var.f30534r.f30280c;
+                        round = Math.round(g0.W1(Math.round(((float) (length - Math.floor(length))) * t7Var.f30534r.d) / t7Var.f30534r.d, iArr2[j3], iArr2[j10]));
                     } else {
-                        round = Math.round(((t7Var.f30530r.a() - t7Var.f30530r.b()) * f10) + s7Var.b());
+                        round = Math.round(((t7Var.f30534r.a() - t7Var.f30534r.b()) * f10) + s7Var.b());
                     }
                     int i11 = t7Var.h;
                     if (i11 != Integer.MIN_VALUE) {
                         round = Math.max(round, i11);
                     }
-                    int i12 = t7Var.f30528f;
+                    int i12 = t7Var.f30532f;
                     if (i12 != round) {
                         if (t7Var.c(i12) != t7Var.c(round)) {
-                            g0.c4(t7Var.f30527e);
+                            g0.c4(t7Var.f30531e);
                         }
-                        t7Var.f30528f = round;
+                        t7Var.f30532f = round;
                         t7Var.e(round, true);
-                        c20 c20Var = t7Var.f30529n;
+                        c20 c20Var = t7Var.f30533n;
                         if (c20Var != null) {
-                            c20Var.a(Integer.valueOf(t7Var.f30528f));
+                            c20Var.a(Integer.valueOf(t7Var.f30532f));
                             return;
                         }
                         return;
@@ -605,9 +605,9 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
                 return;
             default:
                 if (z9) {
-                    MediaController.B().i0(MediaController.B().f21292u0, f10);
+                    MediaController.B().i0(MediaController.B().f21295u0, f10);
                 }
-                ij ijVar = MediaController.B().f21292u0;
+                ij ijVar = MediaController.B().f21295u0;
                 if (ijVar != null && ijVar.J3()) {
                     ((b8) this.f13889b).b1(ijVar, false);
                     return;
@@ -623,7 +623,7 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
             case 7:
                 yl0 yl0Var = (yl0) this.f13889b;
                 for (int i7 = 0; i7 < arrayList.size(); i7++) {
-                    yl0Var.J.add(((x1) arrayList.get(i7)).f16978a);
+                    yl0Var.J.add(((x1) arrayList.get(i7)).f16981a);
                 }
                 hw hwVar = yl0Var.U;
                 if (hwVar != null) {
@@ -642,7 +642,7 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
     }
 
     public boolean n() {
-        return ((h0) this.f13889b).f22774c;
+        return ((h0) this.f13889b).f22780c;
     }
 
     public StringBuilder o() {
@@ -664,7 +664,7 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
 
     @Override
     public void p(Bitmap bitmap) {
-        ((i6.h) this.f13889b).e(bitmap, 3);
+        ((i6.h) this.f13889b).e(3, bitmap);
     }
 
     @Override
@@ -674,11 +674,11 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
             case 7:
                 yl0 yl0Var = (yl0) this.f13889b;
                 yl0Var.D0--;
-                yl0Var.f16740e0 = i7;
-                if (yl0Var.f16742f0 != i7) {
-                    yl0Var.f16756s.clear();
+                yl0Var.f16743e0 = i7;
+                if (yl0Var.f16745f0 != i7) {
+                    yl0Var.f16759s.clear();
                 }
-                if (yl0Var.f16743g0 != i7) {
+                if (yl0Var.f16746g0 != i7) {
                     yl0Var.I.clear();
                 }
                 yl0Var.N = true;
@@ -710,11 +710,11 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
             case 26:
                 return 0;
             case 27:
-                s7 s7Var = ((t7) this.f13889b).f30530r;
+                s7 s7Var = ((t7) this.f13889b).f30534r;
                 if (s7Var == null) {
                     return 0;
                 }
-                int[] iArr = s7Var.f30276c;
+                int[] iArr = s7Var.f30280c;
                 if (iArr != null) {
                     return s7Var.d * (iArr.length - 1);
                 }
@@ -728,7 +728,7 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
     public void s(float f10, float f11) {
         hu huVar = (hu) this.f13889b;
         gu i02 = hu.i0(huVar, f10, f11);
-        gu guVar = huVar.f22986a0;
+        gu guVar = huVar.f22970a0;
         if (i02 != guVar) {
             guVar = null;
         }
@@ -740,14 +740,14 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
         s4 s4Var = (s4) this.f13889b;
         m3 m3Var = s4Var.N;
         if (m3Var != null) {
-            t3.T1(m3Var.f18698a, s4Var.f18986a);
+            t3.T1(m3Var.f18701a, s4Var.f18989a);
         }
     }
 
     @Override
     public void t0() {
         hu huVar = (hu) this.f13889b;
-        hu.j0(huVar, huVar.f22986a0);
+        hu.j0(huVar, huVar.f22970a0);
     }
 
     @Override
@@ -764,7 +764,7 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
     public i9 w0() {
         m3 m3Var = ((s4) this.f13889b).N;
         if (m3Var != null) {
-            return m3Var.f18698a.getTextSelectionHelper();
+            return m3Var.f18701a.getTextSelectionHelper();
         }
         return null;
     }

@@ -5,26 +5,26 @@ import android.content.pm.PackageInfo;
 import android.content.pm.Signature;
 import android.util.Log;
 public final class h {
-    public static h f20504b;
-    public final Context f20505a;
+    public static h f20507b;
+    public final Context f20508a;
 
     public h(Context context) {
-        this.f20505a = context.getApplicationContext();
+        this.f20508a = context.getApplicationContext();
     }
 
     public static h a(Context context) {
         q6.m.g(context);
         synchronized (h.class) {
             try {
-                if (f20504b == null) {
+                if (f20507b == null) {
                     o.a(context);
-                    f20504b = new h(context);
+                    f20507b = new h(context);
                 }
             } catch (Throwable th2) {
                 throw th2;
             }
         }
-        return f20504b;
+        return f20507b;
     }
 
     public static final boolean b(android.content.pm.PackageInfo r12, boolean r13) {

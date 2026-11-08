@@ -22,7 +22,7 @@ public final class m extends ja {
                 ((fi.m1) this.f1577b).f12407i3 = false;
                 return;
             default:
-                ((q11) this.f1577b).f49069x1 = false;
+                ((q11) this.f1577b).f49072x1 = false;
                 return;
         }
     }
@@ -34,7 +34,7 @@ public final class m extends ja {
                 ((fi.m1) this.f1577b).f12407i3 = true;
                 return;
             case 2:
-                ((q11) this.f1577b).f49069x1 = true;
+                ((q11) this.f1577b).f49072x1 = true;
                 return;
             default:
                 return;

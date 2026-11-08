@@ -31,12 +31,12 @@ import org.telegram.ui.ActionBar.x1;
 import org.telegram.ui.Cells.i3;
 import org.telegram.ui.Cells.k3;
 public final class w implements Runnable {
-    public final int f18067a;
-    public final Object f18068b;
+    public final int f18070a;
+    public final Object f18071b;
 
     public w(Object obj, int i7) {
-        this.f18067a = i7;
-        this.f18068b = obj;
+        this.f18070a = i7;
+        this.f18071b = obj;
     }
 
     @Override
@@ -44,14 +44,14 @@ public final class w implements Runnable {
         boolean z9;
         Object obj;
         int L;
-        int i7 = this.f18067a;
+        int i7 = this.f18070a;
         Animation animation = null;
-        Object obj2 = this.f18068b;
+        Object obj2 = this.f18071b;
         switch (i7) {
             case 0:
                 i0 i0Var = (i0) obj2;
                 h2.c cVar = i0Var.C;
-                Context context = i0Var.f17855e;
+                Context context = i0Var.f17858e;
                 String str = h2.m0.f14112a;
                 int generateAudioSessionId = f2.i.d(context).generateAudioSessionId();
                 if (generateAudioSessionId == -1) {
@@ -84,7 +84,7 @@ public final class w implements Runnable {
                 }
                 return;
             case 1:
-                i0 i0Var3 = ((c0) obj2).f17771a;
+                i0 i0Var3 = ((c0) obj2).f17774a;
                 i0Var3.x1(null);
                 i0Var3.q1(0, 0);
                 return;
@@ -125,7 +125,7 @@ public final class w implements Runnable {
                 m2.e eVar = (m2.e) obj2;
                 m2.a Q = eVar.Q();
                 eVar.V(Q, 1028, new m2.c(Q));
-                eVar.f19529f.d();
+                eVar.f19532f.d();
                 return;
             case 10:
                 ((mh.b) obj2).invalidate();
@@ -143,9 +143,9 @@ public final class w implements Runnable {
                 return;
             case 13:
                 n2.q0 q0Var = (n2.q0) obj2;
-                if (q0Var.f20270a0 >= 300000) {
-                    q0Var.f20282n.I();
-                    q0Var.f20270a0 = 0L;
+                if (q0Var.f20273a0 >= 300000) {
+                    q0Var.f20285n.I();
+                    q0Var.f20273a0 = 0L;
                     return;
                 }
                 return;
@@ -153,8 +153,8 @@ public final class w implements Runnable {
                 nh.c cVar2 = (nh.c) obj2;
                 GroupCallMessage groupCallMessage = cVar2.H;
                 if (groupCallMessage != null) {
-                    cVar2.f20591a.a(groupCallMessage.isSendDelayed(), true);
-                    cVar2.f20592b.a(cVar2.H.isSendError(), true);
+                    cVar2.f20594a.a(groupCallMessage.isSendDelayed(), true);
+                    cVar2.f20595b.a(cVar2.H.isSendError(), true);
                     return;
                 }
                 return;
@@ -162,7 +162,7 @@ public final class w implements Runnable {
                 TLParseException.lambda$doThrowOrLog$0((TLParseException) obj2);
                 return;
             case 16:
-                Drawable drawable = ActionBarLayout.f27224v1;
+                Drawable drawable = ActionBarLayout.f27227v1;
                 org.telegram.messenger.g0.h3((ai.a1) obj2);
                 return;
             case 17:
@@ -179,7 +179,7 @@ public final class w implements Runnable {
             case 20:
                 org.telegram.ui.ActionBar.q1 q1Var = (org.telegram.ui.ActionBar.q1) obj2;
                 org.telegram.ui.ActionBar.u1 u1Var = q1Var.d;
-                int i10 = org.telegram.messenger.g0.f22544q.x;
+                int i10 = org.telegram.messenger.g0.f22563q.x;
                 u1Var.L = i10;
                 int L2 = i10 - org.telegram.messenger.g0.L(56.0f);
                 if (org.telegram.messenger.g0.Q1()) {
@@ -216,9 +216,9 @@ public final class w implements Runnable {
                 }
             case 21:
                 x1 x1Var = (x1) obj2;
-                x1Var.f28737m1.setVisibility(0);
-                x1Var.f28738o1.setAlpha(0.0f);
-                int i12 = x1Var.f28736k1;
+                x1Var.f28740m1.setVisibility(0);
+                x1Var.f28741o1.setAlpha(0.0f);
+                int i12 = x1Var.f28739k1;
                 if (i12 != 0 && i12 != -1) {
                     try {
                         animation = AnimationUtils.loadAnimation(x1Var.getContext(), i12);
@@ -232,10 +232,10 @@ public final class w implements Runnable {
                     x1Var.n1.setAlpha(0.0f);
                     x1Var.n1.animate().setDuration(300L).alpha(1.0f).start();
                 }
-                x1Var.f28738o1.animate().setDuration(300L).alpha(1.0f).setListener(new v1(x1Var, 0)).start();
+                x1Var.f28741o1.animate().setDuration(300L).alpha(1.0f).setListener(new v1(x1Var, 0)).start();
                 return;
             case 22:
-                v2 v2Var = (v2) ((m2) obj2).f14794c;
+                v2 v2Var = (v2) ((m2) obj2).f14797c;
                 DialogInterface.OnDismissListener onDismissListener = v2Var.H0;
                 if (onDismissListener != null) {
                     onDismissListener.onDismiss(v2Var);
@@ -249,7 +249,7 @@ public final class w implements Runnable {
                 }
             case 23:
                 try {
-                    ((n2) obj2).f28315b.K();
+                    ((n2) obj2).f28318b.K();
                     return;
                 } catch (Exception e13) {
                     a8.g(e13, true);
@@ -271,16 +271,16 @@ public final class w implements Runnable {
                 i4Var.j();
                 return;
             case 27:
-                i4 i4Var2 = ((f4) obj2).f27468b;
-                i4Var2.f27566c.dismiss();
-                i4Var2.f27568f.removeAllViews();
+                i4 i4Var2 = ((f4) obj2).f27471b;
+                i4Var2.f27569c.dismiss();
+                i4Var2.f27571f.removeAllViews();
                 return;
             case 28:
-                ((f4) obj2).f27468b.f27566c.dismiss();
+                ((f4) obj2).f27471b.f27569c.dismiss();
                 return;
             default:
                 i5 i5Var = (i5) obj2;
-                if (!i5Var.f27601y && i5Var.M) {
+                if (!i5Var.f27604y && i5Var.M) {
                     i5Var.c();
                     return;
                 }
@@ -289,12 +289,12 @@ public final class w implements Runnable {
     }
 
     public w(c0 c0Var, SurfaceTexture surfaceTexture) {
-        this.f18067a = 1;
-        this.f18068b = c0Var;
+        this.f18070a = 1;
+        this.f18071b = c0Var;
     }
 
     public w(r0 r0Var, n1 n1Var) {
-        this.f18067a = 2;
-        this.f18068b = n1Var;
+        this.f18070a = 2;
+        this.f18071b = n1Var;
     }
 }

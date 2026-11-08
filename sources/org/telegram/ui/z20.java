@@ -18,7 +18,7 @@ public final class z20 extends org.telegram.ui.ActionBar.k {
             canvas.save();
             canvas.translate(getSubtitleTextView().getLeft(), getSubtitleTextView().getY() - org.telegram.messenger.g0.L(1.0f));
             org.telegram.ui.Components.ap apVar = this.F1;
-            apVar.f31872f = (int) (getAdditionalSubtitleTextView().getAlpha() * 255.0f);
+            apVar.f31881f = (int) (getAdditionalSubtitleTextView().getAlpha() * 255.0f);
             apVar.draw(canvas);
             canvas.restore();
             invalidate();
@@ -29,7 +29,7 @@ public final class z20 extends org.telegram.ui.ActionBar.k {
     public final void setAlpha(float f10) {
         if (getAlpha() != f10) {
             super.setAlpha(f10);
-            this.G1.f28616b.invalidate();
+            this.G1.f28619b.invalidate();
         }
     }
 }

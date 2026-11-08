@@ -5,29 +5,29 @@ import android.os.SystemClock;
 import android.view.View;
 import android.view.ViewTreeObserver;
 public final class y70 implements ViewTreeObserver.OnGlobalLayoutListener {
-    public final int f52160a;
-    public final Object f52161b;
+    public final int f52153a;
+    public final Object f52154b;
 
     public y70(Object obj, int i7) {
-        this.f52160a = i7;
-        this.f52161b = obj;
+        this.f52153a = i7;
+        this.f52154b = obj;
     }
 
     @Override
     public final void onGlobalLayout() {
-        int i7 = this.f52160a;
-        Object obj = this.f52161b;
+        int i7 = this.f52153a;
+        Object obj = this.f52154b;
         switch (i7) {
             case 0:
                 String str = LaunchActivity.B1;
                 int measuredHeight = ((View) obj).getMeasuredHeight();
                 StringBuilder n10 = jg.g.n(measuredHeight, "height = ", " displayHeight = ");
-                Point point = org.telegram.messenger.g0.f22544q;
+                Point point = org.telegram.messenger.g0.f22563q;
                 jg.g.s(point.y, n10);
-                int i10 = (measuredHeight - org.telegram.messenger.g0.f22539n) - org.telegram.messenger.g0.f22538m;
+                int i10 = (measuredHeight - org.telegram.messenger.g0.f22558n) - org.telegram.messenger.g0.f22557m;
                 if (i10 > org.telegram.messenger.g0.L(100.0f) && i10 < point.y && org.telegram.messenger.g0.L(100.0f) + i10 > point.y) {
                     point.y = i10;
-                    if (org.telegram.messenger.r2.f25199a) {
+                    if (org.telegram.messenger.r2.f25212a) {
                         jg.g.s(point.y, new StringBuilder("fix display size y to "));
                         return;
                     }
@@ -35,9 +35,9 @@ public final class y70 implements ViewTreeObserver.OnGlobalLayoutListener {
                 }
                 return;
             default:
-                u71 u71Var = (u71) obj;
-                u71Var.Q = SystemClock.elapsedRealtime() + 1500;
-                u71Var.f50302l0.invalidate();
+                v71 v71Var = (v71) obj;
+                v71Var.Q = SystemClock.elapsedRealtime() + 1500;
+                v71Var.f50557l0.invalidate();
                 return;
         }
     }

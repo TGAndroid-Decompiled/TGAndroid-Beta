@@ -1,7 +1,7 @@
 package ai;
 
 import org.telegram.messenger.c20;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.Components.hc;
 public final class f0 implements Runnable {
@@ -31,7 +31,7 @@ public final class f0 implements Runnable {
                     c20Var.a(str);
                     return;
                 } else {
-                    hc.a0(f2Var).N(hd.M0(2131745862, null), hd.M0(2131751106, null)).j();
+                    hc.a0(f2Var).N(id.M0(2131745864, null), id.M0(2131751106, null)).j();
                     return;
                 }
         }

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 import org.telegram.messenger.cb;
 import org.telegram.messenger.g5;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.m5;
 import org.telegram.messenger.p10;
@@ -59,22 +59,22 @@ public class r0 extends c {
     public final boolean X;
     public ja0 Y;
     public boolean Z;
-    public boolean f16899a0;
-    public boolean f16900b0;
-    public FrameLayout f16901c0;
-    public final int f16902x;
-    public final Context f16903y;
+    public boolean f16902a0;
+    public boolean f16903b0;
+    public FrameLayout f16904c0;
+    public final int f16905x;
+    public final Context f16906y;
 
     public r0(Context context, int i7, long j3, boolean z9, f6 f6Var, boolean z10, boolean z11, boolean z12) {
         super(z10, z12);
-        this.f16902x = p10.f24467s0;
+        this.f16905x = p10.f24470s0;
         this.M = -1;
         this.P = new ArrayList();
         this.T = true;
-        this.f16899a0 = false;
-        this.f16900b0 = false;
+        this.f16902a0 = false;
+        this.f16903b0 = false;
         this.X = z11;
-        this.f16903y = context;
+        this.f16906y = context;
         this.K = i7;
         this.L = j3;
         this.R = z9;
@@ -83,9 +83,9 @@ public class r0 extends c {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f56955f;
+        int i7 = d1Var.f57047f;
         if (i7 == 6) {
-            if (sd.f(this.f16902x).h(this.L) == null && this.F == null) {
+            if (sd.f(this.f16905x).h(this.L) == null && this.F == null) {
                 return false;
             }
         } else if (i7 != 1 && i7 != 8 && i7 != 12 && i7 != 7) {
@@ -101,7 +101,7 @@ public class r0 extends c {
             if (location != null || (location = this.F) != null) {
                 this.Q = true;
                 Q();
-                sd.d(location, this.f16670e ? 1 : 0, this);
+                sd.d(location, this.f16673e ? 1 : 0, this);
                 return;
             }
             return;
@@ -170,7 +170,7 @@ public class r0 extends c {
         } else {
             int i11 = 2;
             if (i10 == 2) {
-                rd h = sd.f(this.f16902x).h(this.L);
+                rd h = sd.f(this.f16905x).h(this.L);
                 if (h != null && h.d != Integer.MAX_VALUE) {
                     i11 = 3;
                 }
@@ -193,7 +193,7 @@ public class r0 extends c {
         } else {
             this.I = str;
         }
-        if (i7 == 7 && this.f16900b0) {
+        if (i7 == 7 && this.f16903b0) {
             this.U = null;
             this.V = null;
         }
@@ -259,9 +259,9 @@ public class r0 extends c {
 
     public void N(ArrayList arrayList) {
         this.P = new ArrayList(arrayList);
-        long e10 = p10.i(this.f16902x).e();
+        long e10 = p10.i(this.f16905x).e();
         for (int i7 = 0; i7 < this.P.size(); i7++) {
-            if (((la0) this.P.get(i7)).f47492a == e10 || ((la0) this.P.get(i7)).f47493b.out) {
+            if (((la0) this.P.get(i7)).f47488a == e10 || ((la0) this.P.get(i7)).f47489b.out) {
                 this.P.remove(i7);
                 break;
             }
@@ -270,11 +270,11 @@ public class r0 extends c {
     }
 
     public final void O(boolean z9, boolean z10) {
-        if (this.f16899a0 == z9 && this.f16900b0 == z10) {
+        if (this.f16902a0 == z9 && this.f16903b0 == z10) {
             return;
         }
-        this.f16899a0 = z9;
-        this.f16900b0 = z10;
+        this.f16902a0 = z9;
+        this.f16903b0 = z10;
         if (z10) {
             this.U = null;
             this.V = null;
@@ -284,7 +284,7 @@ public class r0 extends c {
 
     public final void P(int i7) {
         this.D = i7;
-        FrameLayout frameLayout = this.f16901c0;
+        FrameLayout frameLayout = this.f16904c0;
         if (frameLayout != null) {
             v4.o0 o0Var = (v4.o0) frameLayout.getLayoutParams();
             if (o0Var == null) {
@@ -292,8 +292,8 @@ public class r0 extends c {
             } else {
                 ((ViewGroup.MarginLayoutParams) o0Var).height = this.D;
             }
-            this.f16901c0.setLayoutParams(o0Var);
-            this.f16901c0.forceLayout();
+            this.f16904c0.setLayoutParams(o0Var);
+            this.f16904c0.forceLayout();
         }
     }
 
@@ -311,27 +311,27 @@ public class r0 extends c {
                 } else if (!TextUtils.isEmpty(this.I)) {
                     M0 = this.I;
                 } else if (this.Q) {
-                    M0 = hd.M0(2131748778, null);
+                    M0 = id.M0(2131748780, null);
                 } else {
-                    M0 = hd.M0(2131743878, null);
+                    M0 = id.M0(2131743880, null);
                 }
-                q6Var.b(hd.M0(2131745512, null), M0);
+                q6Var.b(id.M0(2131745514, null), M0);
                 q6Var.setHasLocation(true);
                 return;
             }
             String str = "";
             if (i7 != 4 && this.G == null) {
                 if (this.F != null) {
-                    q6Var.b(hd.M0(2131745612, null), hd.a0(null, null, 2131754693, hd.G((int) this.F.getAccuracy(), "Meters", new Object[0])));
+                    q6Var.b(id.M0(2131745614, null), id.a0(null, null, 2131754693, id.G((int) this.F.getAccuracy(), "Meters", new Object[0])));
                     q6Var.setHasLocation(true);
                     return;
                 }
-                String M02 = hd.M0(2131745612, null);
-                if (!this.f16899a0) {
-                    str = hd.M0(2131748778, null);
+                String M02 = id.M0(2131745614, null);
+                if (!this.f16902a0) {
+                    str = id.M0(2131748780, null);
                 }
                 q6Var.b(M02, str);
-                q6Var.setHasLocation(!this.f16899a0);
+                q6Var.setHasLocation(!this.f16902a0);
                 return;
             }
             if (!TextUtils.isEmpty(this.H)) {
@@ -341,24 +341,24 @@ public class r0 extends c {
             } else {
                 Location location = this.G;
                 if ((location == null && this.F == null) || this.Q) {
-                    str = hd.M0(2131748778, null);
+                    str = id.M0(2131748780, null);
                 } else if (location != null) {
                     str = String.format(Locale.US, "(%f,%f)", Double.valueOf(location.getLatitude()), Double.valueOf(this.G.getLongitude()));
                 } else {
                     Location location2 = this.F;
                     if (location2 != null) {
                         str = String.format(Locale.US, "(%f,%f)", Double.valueOf(location2.getLatitude()), Double.valueOf(this.F.getLongitude()));
-                    } else if (!this.f16899a0) {
-                        str = hd.M0(2131748778, null);
+                    } else if (!this.f16902a0) {
+                        str = id.M0(2131748780, null);
                     }
                 }
             }
             if (this.W) {
-                q6Var.b(hd.M0(2131753937, null), str);
+                q6Var.b(id.M0(2131753937, null), str);
             } else if (i7 == 4) {
-                q6Var.b(hd.M0(2131752211, null), str);
+                q6Var.b(id.M0(2131752211, null), str);
             } else {
-                q6Var.b(hd.M0(2131745591, null), str);
+                q6Var.b(id.M0(2131745593, null), str);
             }
             q6Var.setHasLocation(true);
         }
@@ -368,7 +368,7 @@ public class r0 extends c {
     public final int b() {
         int i7 = 2;
         int i10 = this.K;
-        if (i10 != 6 && i10 != 5 && i10 != 4 && !this.f16670e) {
+        if (i10 != 6 && i10 != 5 && i10 != 4 && !this.f16673e) {
             boolean z9 = this.R;
             int i11 = 0;
             if (i10 == 7) {
@@ -386,7 +386,7 @@ public class r0 extends c {
                 }
                 i7 = 2 + i11;
             } else if (i10 == 2) {
-                rd h = sd.f(this.f16902x).h(this.L);
+                rd h = sd.f(this.f16905x).h(this.L);
                 int size = this.P.size() + 2;
                 if (h != null && h.d != Integer.MAX_VALUE) {
                     i11 = 1;
@@ -424,7 +424,7 @@ public class r0 extends c {
                     if (i10 != 2 && i10 != 1) {
                         h = null;
                     } else {
-                        h = sd.f(this.f16902x).h(this.L);
+                        h = sd.f(this.f16905x).h(this.L);
                     }
                     if (this.N != null) {
                         if (this.P.isEmpty()) {
@@ -478,8 +478,8 @@ public class r0 extends c {
     public final void t(v4.d1 d1Var, int i7) {
         boolean z9;
         long j3;
-        int i10 = d1Var.f56955f;
-        View view = d1Var.f56951a;
+        int i10 = d1Var.f57047f;
+        View view = d1Var.f57043a;
         if (i10 != 0) {
             boolean z10 = true;
             if (i10 != 1) {
@@ -490,7 +490,7 @@ public class r0 extends c {
                             if (i10 != 8) {
                                 if (i10 == 12) {
                                     v4 v4Var = (v4) view;
-                                    if (this.f16900b0) {
+                                    if (this.f16903b0) {
                                         if (i7 != 1 || this.V == null) {
                                             z10 = false;
                                         }
@@ -512,31 +512,31 @@ public class r0 extends c {
                             }
                             r7 r7Var = (r7) view;
                             if (this.K == 6) {
-                                r7Var.b(this.N, this.F, this.f16899a0);
+                                r7Var.b(this.N, this.F, this.f16902a0);
                                 return;
                             }
                             TLRPC.TL_channelLocation tL_channelLocation = this.O;
                             long j10 = this.L;
                             if (tL_channelLocation != null) {
-                                TextView textView = r7Var.f30196f;
-                                Location location = r7Var.f30202y;
-                                l9 l9Var = r7Var.f30194c;
-                                r7Var.E = p10.f24467s0;
+                                TextView textView = r7Var.f30200f;
+                                Location location = r7Var.f30206y;
+                                l9 l9Var = r7Var.f30198c;
+                                r7Var.E = p10.f24470s0;
                                 String str = tL_channelLocation.address;
-                                r7Var.f30197n = null;
+                                r7Var.f30201n = null;
                                 String str2 = "";
                                 if (m5.E(j10)) {
                                     TLRPC.User a22 = qp.s1(r7Var.E).a2(Long.valueOf(j10));
                                     if (a22 != null) {
-                                        r7Var.f30197n = new w8(0, a22);
+                                        r7Var.f30201n = new w8(0, a22);
                                         str2 = t10.p(a22);
-                                        l9Var.e(a22, r7Var.f30197n);
+                                        l9Var.e(a22, r7Var.f30201n);
                                     }
                                 } else {
                                     TLRPC.Chat M0 = qp.s1(r7Var.E).M0(Long.valueOf(-j10));
                                     if (M0 != null) {
                                         w8 w8Var = new w8(M0);
-                                        r7Var.f30197n = w8Var;
+                                        r7Var.f30201n = w8Var;
                                         str2 = M0.title;
                                         l9Var.e(M0, w8Var);
                                     }
@@ -551,53 +551,53 @@ public class r0 extends c {
                             }
                             ij ijVar = this.N;
                             if (ijVar != null && i7 == 1) {
-                                r7Var.b(ijVar, this.F, this.f16899a0);
+                                r7Var.b(ijVar, this.F, this.f16902a0);
                                 return;
                             }
                             if (ijVar != null) {
                                 i11 = 5;
                             }
                             int i12 = i7 - i11;
-                            rd h = sd.f(this.f16902x).h(j10);
+                            rd h = sd.f(this.f16905x).h(j10);
                             if (h != null && h.d != Integer.MAX_VALUE) {
                                 i12--;
                             }
                             if (i12 >= 0 && i12 < this.P.size()) {
                                 la0 la0Var = (la0) this.P.get(i12);
                                 Location location2 = this.F;
-                                TextView textView2 = r7Var.f30196f;
-                                l9 l9Var2 = r7Var.f30194c;
+                                TextView textView2 = r7Var.f30200f;
+                                l9 l9Var2 = r7Var.f30198c;
                                 k5 k5Var = r7Var.d;
-                                Location location3 = r7Var.f30202y;
-                                r7Var.f30201x = la0Var;
-                                if (m5.E(la0Var.f47492a)) {
-                                    TLRPC.User a23 = qp.s1(r7Var.E).a2(Long.valueOf(la0Var.f47492a));
+                                Location location3 = r7Var.f30206y;
+                                r7Var.f30205x = la0Var;
+                                if (m5.E(la0Var.f47488a)) {
+                                    TLRPC.User a23 = qp.s1(r7Var.E).a2(Long.valueOf(la0Var.f47488a));
                                     if (a23 != null) {
-                                        r7Var.f30197n.r(a23);
+                                        r7Var.f30201n.r(a23);
                                         k5Var.l(g5.m(0, a23.first_name, a23.last_name), false);
-                                        l9Var2.e(a23, r7Var.f30197n);
+                                        l9Var2.e(a23, r7Var.f30201n);
                                     }
                                 } else {
-                                    TLRPC.Chat M02 = qp.s1(r7Var.E).M0(Long.valueOf(-la0Var.f47492a));
+                                    TLRPC.Chat M02 = qp.s1(r7Var.E).M0(Long.valueOf(-la0Var.f47488a));
                                     if (M02 != null) {
-                                        r7Var.f30197n.q(M02);
+                                        r7Var.f30201n.q(M02);
                                         k5Var.l(M02.title, false);
-                                        l9Var2.e(M02, r7Var.f30197n);
+                                        l9Var2.e(M02, r7Var.f30201n);
                                     }
                                 }
-                                cb a10 = la0Var.f47495e.a();
-                                location3.setLatitude(a10.f21797a);
-                                location3.setLongitude(a10.f21798b);
-                                TLRPC.Message message = la0Var.f47493b;
+                                cb a10 = la0Var.f47491e.a();
+                                location3.setLatitude(a10.f21833a);
+                                location3.setLongitude(a10.f21834b);
+                                TLRPC.Message message = la0Var.f47489b;
                                 int i13 = message.edit_date;
                                 if (i13 != 0) {
                                     j3 = i13;
                                 } else {
                                     j3 = message.date;
                                 }
-                                String D = hd.D(j3);
+                                String D = id.D(j3);
                                 if (location2 != null) {
-                                    textView2.setText(D + " - " + hd.y(location3.distanceTo(location2), 0, null));
+                                    textView2.setText(D + " - " + id.y(location3.distanceTo(location2), 0, null));
                                     return;
                                 }
                                 textView2.setText(D);
@@ -623,11 +623,11 @@ public class r0 extends c {
                     if (i14 >= b() || d(i14) != 7) {
                         z10 = false;
                     }
-                    q6Var2.f30150y = z10;
+                    q6Var2.f30154y = z10;
                     q6Var2.invalidate();
                     return;
                 }
-                ((n4) view).setText(hd.M0(2131748836, null));
+                ((n4) view).setText(id.M0(2131748838, null));
                 return;
             }
             q6 q6Var3 = (q6) view;
@@ -652,7 +652,7 @@ public class r0 extends c {
         View view;
         View view2;
         int i10;
-        Context context = this.f16903y;
+        Context context = this.f16906y;
         if (i7 != 0) {
             f6 f6Var = this.S;
             if (i7 != 1) {
@@ -685,7 +685,7 @@ public class r0 extends c {
                             break;
                         case 10:
                             View y6Var = new y6(context, (org.telegram.ui.Cells.f1) null);
-                            new xp(new ColorDrawable(k6.w0(k6.f27793a7, f6Var)), k6.Y0(context, 2131231230, k6.f27813b7)).f40340x = true;
+                            new xp(new ColorDrawable(k6.w0(k6.f27796a7, f6Var)), k6.Y0(context, 2131231230, k6.f27816b7)).f40361x = true;
                             view2 = y6Var;
                             break;
                         case 11:
@@ -714,9 +714,9 @@ public class r0 extends c {
             return new v4.d1(view2);
         }
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f16901c0 = frameLayout;
+        this.f16904c0 = frameLayout;
         frameLayout.setTag(-33024);
-        this.f16901c0.setLayoutParams(new v4.o0(-1, this.D));
+        this.f16904c0.setLayoutParams(new v4.o0(-1, this.D));
         view = frameLayout;
         view2 = view;
         return new v4.d1(view2);
@@ -724,8 +724,8 @@ public class r0 extends c {
 
     @Override
     public final void y(v4.d1 d1Var) {
-        if (d1Var.f56955f == 1) {
-            this.E = (q6) d1Var.f56951a;
+        if (d1Var.f57047f == 1) {
+            this.E = (q6) d1Var.f57043a;
             Q();
         }
     }

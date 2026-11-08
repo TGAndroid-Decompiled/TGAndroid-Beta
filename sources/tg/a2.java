@@ -9,31 +9,31 @@ import org.telegram.messenger.j20;
 import org.telegram.messenger.v10;
 import org.telegram.tgnet.TLRPC;
 public final class a2 {
-    public String f55465a;
-    public String f55466b;
-    public String f55467c;
+    public String f55557a;
+    public String f55558b;
+    public String f55559c;
     public CharSequence d;
-    public TLRPC.TL_inputStickerSetItem f55468e;
-    public TLRPC.TL_messageMediaDocument f55469f;
-    public TLRPC.InputFile f55470g;
+    public TLRPC.TL_inputStickerSetItem f55560e;
+    public TLRPC.TL_messageMediaDocument f55561f;
+    public TLRPC.InputFile f55562g;
     public boolean h;
-    public long f55471i;
-    public TLRPC.StickerSet f55472j;
-    public TLRPC.Document f55473k;
-    public String f55474l;
-    public v10 f55475m;
-    public c20 f55476n;
-    public boolean f55477o;
-    public ArrayList f55478p;
-    public ArrayList f55479q;
-    public ij f55480r;
-    public j20 f55481s;
-    public float f55482t;
-    public float f55483u;
+    public long f55563i;
+    public TLRPC.StickerSet f55564j;
+    public TLRPC.Document f55565k;
+    public String f55566l;
+    public v10 f55567m;
+    public c20 f55568n;
+    public boolean f55569o;
+    public ArrayList f55570p;
+    public ArrayList f55571q;
+    public ij f55572r;
+    public j20 f55573s;
+    public float f55574t;
+    public float f55575u;
 
     public final void a() {
-        ArrayList arrayList = this.f55479q;
-        ArrayList arrayList2 = this.f55478p;
+        ArrayList arrayList = this.f55571q;
+        ArrayList arrayList2 = this.f55570p;
         int size = arrayList2.size();
         int i7 = 0;
         int i10 = 0;
@@ -62,14 +62,14 @@ public final class a2 {
 
     public final float b() {
         float f10;
-        if (this.f55475m == null) {
+        if (this.f55567m == null) {
             f10 = 0.9f;
         } else {
             f10 = 1.0f;
         }
-        if (this.f55481s == null) {
-            return f10 * this.f55483u;
+        if (this.f55573s == null) {
+            return f10 * this.f55575u;
         }
-        return com.google.android.recaptcha.internal.a.B(this.f55483u, 0.5f, this.f55482t * 0.5f, f10);
+        return com.google.android.recaptcha.internal.a.B(this.f55575u, 0.5f, this.f55574t * 0.5f, f10);
     }
 }

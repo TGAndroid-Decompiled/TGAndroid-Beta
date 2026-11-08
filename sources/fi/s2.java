@@ -2,8 +2,8 @@ package fi;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.lz;
-public final class s2 extends lz {
+import org.telegram.ui.Components.mz;
+public final class s2 extends mz {
     public final int U;
 
     public s2(int i7, Context context, org.telegram.ui.ActionBar.f6 f6Var) {

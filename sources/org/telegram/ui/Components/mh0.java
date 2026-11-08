@@ -1,7 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class mh0 extends lz {
+public final class mh0 extends mz {
     public final rh0 U;
 
     public mh0(rh0 rh0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {

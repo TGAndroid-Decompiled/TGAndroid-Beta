@@ -23,7 +23,7 @@ import org.telegram.ui.ActionBar.u1;
 import org.telegram.ui.Cells.c2;
 import org.telegram.ui.Components.i30;
 import org.telegram.ui.Components.jk0;
-import org.telegram.ui.Components.qt;
+import org.telegram.ui.Components.rt;
 import org.telegram.ui.Components.t4;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.an;
@@ -31,7 +31,6 @@ import org.telegram.ui.c40;
 import org.telegram.ui.rv0;
 import org.telegram.ui.wq0;
 import org.telegram.ui.ww;
-import ti.p;
 import wg.f1;
 public final class e0 implements i30, r1, c7, t4, w5.b, v9.g {
     public final int f3271a;
@@ -82,18 +81,18 @@ public final class e0 implements i30, r1, c7, t4, w5.b, v9.g {
     }
 
     @Override
-    public ScheduledFuture a(final qt qtVar) {
+    public ScheduledFuture a(final rt rtVar) {
         switch (this.f3271a) {
             case 7:
                 v9.f fVar = (v9.f) this.f3273c;
-                return fVar.f57180b.schedule(new v9.d(fVar, (Runnable) this.d, qtVar, 1), this.f3272b, (TimeUnit) this.f3274e);
+                return fVar.f57272b.schedule(new v9.d(fVar, (Runnable) this.d, rtVar, 1), this.f3272b, (TimeUnit) this.f3274e);
             default:
                 final v9.f fVar2 = (v9.f) this.f3273c;
                 final Callable callable = (Callable) this.d;
-                return fVar2.f57180b.schedule(new Callable() {
+                return fVar2.f57272b.schedule(new Callable() {
                     @Override
                     public final Object call() {
-                        return f.this.f57179a.submit(new p(15, callable, qtVar));
+                        return f.this.f57271a.submit(new u9.f(10, callable, rtVar));
                     }
                 }, this.f3272b, (TimeUnit) this.f3274e);
         }
@@ -146,7 +145,7 @@ public final class e0 implements i30, r1, c7, t4, w5.b, v9.g {
                 return;
             default:
                 TLRPC.User user = (TLRPC.User) this.f3274e;
-                ProfileActivity profileActivity = ((rv0) this.f3273c).f49577b;
+                ProfileActivity profileActivity = ((rv0) this.f3273c).f49556b;
                 profileActivity.M1 = true;
                 Bundle k10 = a8.p0.k("scrollToTopOnResume", true);
                 long j3 = -this.f3272b;
@@ -178,7 +177,7 @@ public final class e0 implements i30, r1, c7, t4, w5.b, v9.g {
         ia.c cVar = (ia.c) this.f3273c;
         Iterable iterable = (Iterable) this.d;
         o5.i iVar = (o5.i) this.f3274e;
-        v5.g gVar = (v5.g) ((v5.d) cVar.f15417c);
+        v5.g gVar = (v5.g) ((v5.d) cVar.f15420c);
         gVar.getClass();
         if (iterable.iterator().hasNext()) {
             String str = "UPDATE events SET num_attempts = num_attempts + 1 WHERE _id in " + v5.g.g(iterable);
@@ -197,7 +196,7 @@ public final class e0 implements i30, r1, c7, t4, w5.b, v9.g {
                 a10.endTransaction();
             }
         }
-        gVar.c(new c1(((x5.a) cVar.f15420g).s() + this.f3272b, iVar));
+        gVar.c(new c1(((x5.a) cVar.f15423g).s() + this.f3272b, iVar));
         return null;
     }
 

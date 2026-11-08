@@ -2,7 +2,7 @@ package fi;
 
 import android.content.Context;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 public final class y9 extends b1 {
     public final va f13218b0;
 
@@ -31,7 +31,7 @@ public final class y9 extends b1 {
         } else {
             i7 = 2131754887;
         }
-        hbVar.setContentDescription(hd.M0(i7, null));
+        hbVar.setContentDescription(id.M0(i7, null));
         vaVar.d0(vaVar.B());
     }
 

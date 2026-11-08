@@ -4,29 +4,29 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class s9 {
-    public final int f25438a;
-    public final long f25439b;
-    public final long f25440c;
+    public final int f25434a;
+    public final long f25435b;
+    public final long f25436c;
     public TL_stars.StarGift d;
-    public TL_stars.TL_StarGiftAuctionUserState f25441e;
-    public TL_stars.TL_starGiftAuctionState f25442f;
-    public TL_stars.TL_starGiftAuctionStateFinished f25443g;
+    public TL_stars.TL_StarGiftAuctionUserState f25437e;
+    public TL_stars.TL_starGiftAuctionState f25438f;
+    public TL_stars.TL_starGiftAuctionStateFinished f25439g;
     public ArrayList h;
-    public int f25444i;
+    public int f25440i;
 
     public s9(int i7, TL_stars.StarGift starGift, TL_stars.StarGiftAuctionState starGiftAuctionState, TL_stars.TL_StarGiftAuctionUserState tL_StarGiftAuctionUserState) {
         long j3;
-        this.f25438a = i7;
+        this.f25434a = i7;
         this.d = starGift;
-        this.f25441e = tL_StarGiftAuctionUserState;
-        this.f25439b = starGift.f27182id;
+        this.f25437e = tL_StarGiftAuctionUserState;
+        this.f25435b = starGift.f27185id;
         TLRPC.Document document = starGift.sticker;
         if (document != null) {
-            j3 = document.f26959id;
+            j3 = document.f26962id;
         } else {
             j3 = 0;
         }
-        this.f25440c = j3;
+        this.f25436c = j3;
         a(starGiftAuctionState);
     }
 
@@ -37,7 +37,7 @@ public final class s9 {
             if (f()) {
                 i7 = Integer.MAX_VALUE;
             } else {
-                TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState2 = this.f25442f;
+                TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState2 = this.f25438f;
                 if (tL_starGiftAuctionState2 != null) {
                     i7 = tL_starGiftAuctionState2.version;
                 } else {
@@ -45,12 +45,12 @@ public final class s9 {
                 }
             }
             if (tL_starGiftAuctionState.version > i7) {
-                this.f25442f = tL_starGiftAuctionState;
+                this.f25438f = tL_starGiftAuctionState;
                 h();
                 return true;
             }
         } else if ((starGiftAuctionState instanceof TL_stars.TL_starGiftAuctionStateFinished) && !f()) {
-            this.f25443g = (TL_stars.TL_starGiftAuctionStateFinished) starGiftAuctionState;
+            this.f25439g = (TL_stars.TL_starGiftAuctionStateFinished) starGiftAuctionState;
             return true;
         }
         return false;
@@ -58,7 +58,7 @@ public final class s9 {
 
     public final long b(int i7) {
         ArrayList<TL_stars.TL_AuctionBidLevel> arrayList;
-        TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.f25442f;
+        TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.f25438f;
         if (tL_starGiftAuctionState != null && (arrayList = tL_starGiftAuctionState.bid_levels) != null) {
             int size = arrayList.size();
             int i10 = 0;
@@ -77,7 +77,7 @@ public final class s9 {
 
     public final int c(int i7, long j3) {
         ArrayList<TL_stars.TL_AuctionBidLevel> arrayList;
-        TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.f25442f;
+        TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.f25438f;
         if (tL_starGiftAuctionState != null && (arrayList = tL_starGiftAuctionState.bid_levels) != null) {
             int size = arrayList.size();
             int i10 = 0;
@@ -99,28 +99,28 @@ public final class s9 {
     }
 
     public final int d() {
-        TL_stars.TL_StarGiftAuctionUserState tL_StarGiftAuctionUserState = this.f25441e;
+        TL_stars.TL_StarGiftAuctionUserState tL_StarGiftAuctionUserState = this.f25437e;
         if (tL_StarGiftAuctionUserState.returned) {
             return 3;
         }
         if (tL_StarGiftAuctionUserState.bid_amount == 0) {
             return 4;
         }
-        if (this.f25444i <= this.d.gifts_per_round) {
+        if (this.f25440i <= this.d.gifts_per_round) {
             return 1;
         }
         return 2;
     }
 
     public final long e() {
-        TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.f25442f;
+        TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.f25438f;
         if (tL_starGiftAuctionState != null) {
-            long j3 = this.f25441e.min_bid_amount;
+            long j3 = this.f25437e.min_bid_amount;
             if (j3 > 0) {
                 return Math.max(tL_starGiftAuctionState.min_bid_amount, j3);
             }
         }
-        long j10 = this.f25441e.min_bid_amount;
+        long j10 = this.f25437e.min_bid_amount;
         if (j10 > 0) {
             return j10;
         }
@@ -131,7 +131,7 @@ public final class s9 {
     }
 
     public final boolean f() {
-        if (this.f25443g != null) {
+        if (this.f25439g != null) {
             return true;
         }
         return false;
@@ -145,24 +145,24 @@ public final class s9 {
     }
 
     public final void h() {
-        TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.f25442f;
+        TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.f25438f;
         int i7 = -1;
         if (tL_starGiftAuctionState != null) {
             if (tL_starGiftAuctionState.top_bidders != null) {
-                long e10 = p10.i(this.f25438a).e();
-                for (int i10 = 0; i10 < this.f25442f.top_bidders.size(); i10++) {
-                    if (e10 == this.f25442f.top_bidders.get(i10).longValue()) {
+                long e10 = p10.i(this.f25434a).e();
+                for (int i10 = 0; i10 < this.f25438f.top_bidders.size(); i10++) {
+                    if (e10 == this.f25438f.top_bidders.get(i10).longValue()) {
                         i7 = i10 + 1;
                         break;
                     }
                 }
             }
-            TL_stars.TL_StarGiftAuctionUserState tL_StarGiftAuctionUserState = this.f25441e;
+            TL_stars.TL_StarGiftAuctionUserState tL_StarGiftAuctionUserState = this.f25437e;
             long j3 = tL_StarGiftAuctionUserState.bid_amount;
             if (j3 > 0 && !tL_StarGiftAuctionUserState.returned) {
                 i7 = c(tL_StarGiftAuctionUserState.bid_date, j3);
             }
         }
-        this.f25444i = i7;
+        this.f25440i = i7;
     }
 }

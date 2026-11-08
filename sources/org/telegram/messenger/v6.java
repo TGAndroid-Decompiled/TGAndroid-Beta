@@ -46,14 +46,14 @@ public final class v6 implements TextWatcher {
                 if (z9) {
                     i7 = 2131751355;
                 } else {
-                    i7 = 2131746320;
+                    i7 = 2131746322;
                 }
-                textView.setText(hd.M0(i7, null));
+                textView.setText(id.M0(i7, null));
                 TextView textView2 = textViewArr[0];
                 if (z9) {
                     i10 = org.telegram.ui.ActionBar.k6.H5;
                 } else {
-                    i10 = org.telegram.ui.ActionBar.k6.f28090q7;
+                    i10 = org.telegram.ui.ActionBar.k6.f28093q7;
                 }
                 textView2.setTextColor(org.telegram.ui.ActionBar.k6.x0(null, i10, false));
             }

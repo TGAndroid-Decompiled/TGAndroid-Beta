@@ -10,7 +10,7 @@ import android.text.TextPaint;
 import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 public final class j2 extends View {
     public final RectF D;
     public final RectF E;
@@ -104,12 +104,12 @@ public final class j2 extends View {
         float f12;
         float f13;
         float f14;
-        setMeasuredDimension(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.L(40.0f) + org.telegram.messenger.g0.f22539n);
+        setMeasuredDimension(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.L(40.0f) + org.telegram.messenger.g0.f22558n);
         if (getMeasuredWidth() != this.H || this.f12212c == null) {
             TextPaint textPaint = this.f12210a;
             textPaint.setTextSize(org.telegram.messenger.g0.L(14.0f));
             textPaint.setTypeface(org.telegram.messenger.g0.o());
-            String N0 = hd.N0("Emoji");
+            String N0 = id.N0("Emoji");
             int measuredWidth = getMeasuredWidth();
             Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
             StaticLayout staticLayout = new StaticLayout(N0, textPaint, measuredWidth, alignment, 1.0f, 0.0f, false);
@@ -127,7 +127,7 @@ public final class j2 extends View {
                 f11 = 0.0f;
             }
             this.f12213e = f11;
-            StaticLayout staticLayout2 = new StaticLayout(hd.N0("AccDescrStickers"), textPaint, getMeasuredWidth(), alignment, 1.0f, 0.0f, false);
+            StaticLayout staticLayout2 = new StaticLayout(id.N0("AccDescrStickers"), textPaint, getMeasuredWidth(), alignment, 1.0f, 0.0f, false);
             this.f12214f = staticLayout2;
             if (staticLayout2.getLineCount() >= 1) {
                 f12 = this.f12214f.getLineWidth(0);
@@ -141,7 +141,7 @@ public final class j2 extends View {
                 f13 = 0.0f;
             }
             this.f12215n = f13;
-            StaticLayout staticLayout3 = new StaticLayout(hd.M0(2131754879, null), textPaint, getMeasuredWidth(), alignment, 1.0f, 0.0f, false);
+            StaticLayout staticLayout3 = new StaticLayout(id.M0(2131754879, null), textPaint, getMeasuredWidth(), alignment, 1.0f, 0.0f, false);
             this.f12216r = staticLayout3;
             if (staticLayout3.getLineCount() >= 1) {
                 f14 = this.f12216r.getLineWidth(0);

@@ -8,52 +8,52 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.concurrent.ScheduledExecutorService;
 public final class f0 {
-    public static final Object f20157t = new Object();
-    public static ScheduledExecutorService f20158u;
+    public static final Object f20160t = new Object();
+    public static ScheduledExecutorService f20161u;
     public static int v;
-    public final AudioTrack f20159a;
-    public final n f20160b;
-    public final float f20161c;
+    public final AudioTrack f20162a;
+    public final n f20163b;
+    public final float f20164c;
     public final gf.g d;
-    public b0 f20162e;
-    public final i0 f20163f;
-    public final boolean f20164g;
+    public b0 f20165e;
+    public final i0 f20166f;
+    public final boolean f20167g;
     public final int h;
-    public final e0 f20165i;
-    public final h2.r f20166j = new h2.r(Thread.currentThread());
-    public boolean f20167k;
-    public long f20168l;
-    public long f20169m;
-    public long f20170n;
-    public ByteBuffer f20171o;
-    public int f20172p;
-    public int f20173q;
-    public int f20174r;
-    public boolean f20175s;
+    public final e0 f20168i;
+    public final h2.r f20169j = new h2.r(Thread.currentThread());
+    public boolean f20170k;
+    public long f20171l;
+    public long f20172m;
+    public long f20173n;
+    public ByteBuffer f20174o;
+    public int f20175p;
+    public int f20176q;
+    public int f20177r;
+    public boolean f20178s;
 
     public f0(AudioTrack audioTrack, n nVar, gf.g gVar, float f10, h2.g0 g0Var) {
         e0 e0Var;
-        this.f20159a = audioTrack;
-        this.f20160b = nVar;
-        this.f20161c = f10;
+        this.f20162a = audioTrack;
+        this.f20163b = nVar;
+        this.f20164c = f10;
         this.d = gVar;
-        boolean M = h2.m0.M(nVar.f20242a);
-        this.f20164g = M;
+        boolean M = h2.m0.M(nVar.f20245a);
+        this.f20167g = M;
         if (M) {
-            this.h = h2.m0.u(nVar.f20242a) * Integer.bitCount(nVar.f20244c);
+            this.h = h2.m0.u(nVar.f20245a) * Integer.bitCount(nVar.f20247c);
         } else {
             this.h = -1;
         }
-        this.f20163f = new i0(new g6.d0(this, 19), g0Var, audioTrack, nVar.f20242a, this.h, nVar.f20246f);
+        this.f20166f = new i0(new g6.d0(this, 19), g0Var, audioTrack, nVar.f20245a, this.h, nVar.f20249f);
         if (Build.VERSION.SDK_INT >= 24 && gVar != null) {
-            this.f20162e = new b0(audioTrack, gVar);
+            this.f20165e = new b0(audioTrack, gVar);
         }
         if (c()) {
             e0Var = new e0(this);
         } else {
             e0Var = null;
         }
-        this.f20165i = e0Var;
+        this.f20168i = e0Var;
     }
 
     public final long a() {
@@ -61,17 +61,17 @@ public final class f0 {
     }
 
     public final long b() {
-        if (this.f20164g) {
-            long j3 = this.f20168l;
+        if (this.f20167g) {
+            long j3 = this.f20171l;
             long j10 = this.h;
             String str = h2.m0.f14112a;
             return ((j3 + j10) - 1) / j10;
         }
-        return this.f20169m;
+        return this.f20172m;
     }
 
     public final boolean c() {
-        if (Build.VERSION.SDK_INT >= 29 && this.f20159a.isOffloadedPlayback()) {
+        if (Build.VERSION.SDK_INT >= 29 && this.f20162a.isOffloadedPlayback()) {
             return true;
         }
         return false;
@@ -81,19 +81,19 @@ public final class f0 {
         if (Build.VERSION.SDK_INT < 29) {
             return;
         }
-        this.f20159a.setOffloadDelayPadding(i7, i10);
+        this.f20162a.setOffloadDelayPadding(i7, i10);
     }
 
     public final void e() {
         if (Build.VERSION.SDK_INT >= 29) {
-            AudioTrack audioTrack = this.f20159a;
+            AudioTrack audioTrack = this.f20162a;
             if (audioTrack.getPlayState() != 3) {
                 return;
             }
             audioTrack.setOffloadEndOfStream();
-            i0 i0Var = this.f20163f;
+            i0 i0Var = this.f20166f;
             i0Var.A = true;
-            i0Var.h.f20345a.f20342f = true;
+            i0Var.h.f20348a.f20345f = true;
         }
     }
 
@@ -103,7 +103,7 @@ public final class f0 {
             LogSessionId a10 = jVar.a();
             logSessionId = LogSessionId.LOG_SESSION_ID_NONE;
             if (!a10.equals(logSessionId)) {
-                this.f20159a.setLogSessionId(a10);
+                this.f20162a.setLogSessionId(a10);
             }
         }
     }
@@ -118,16 +118,16 @@ public final class f0 {
         int i10;
         boolean z10;
         long j10 = j3;
-        n nVar = this.f20160b;
-        boolean z11 = this.f20164g;
-        if (!z11 && this.f20173q == 0) {
-            this.f20173q = q0.k(nVar.f20242a, byteBuffer);
+        n nVar = this.f20163b;
+        boolean z11 = this.f20167g;
+        if (!z11 && this.f20176q == 0) {
+            this.f20176q = q0.k(nVar.f20245a, byteBuffer);
         }
-        h2.r rVar = this.f20166j;
+        h2.r rVar = this.f20169j;
         rVar.getClass();
         Thread currentThread = Thread.currentThread();
         Thread thread = rVar.f14139a;
-        AudioTrack audioTrack2 = this.f20159a;
+        AudioTrack audioTrack2 = this.f20162a;
         boolean z12 = false;
         if (currentThread == thread) {
             long b10 = b();
@@ -135,7 +135,7 @@ public final class f0 {
                 i10 = audioTrack2.getUnderrunCount();
                 audioTrack = audioTrack2;
             } else {
-                boolean z13 = this.f20175s;
+                boolean z13 = this.f20178s;
                 long a10 = a();
                 int sampleRate = audioTrack2.getSampleRate();
                 String str = h2.m0.f14112a;
@@ -145,19 +145,19 @@ public final class f0 {
                 } else {
                     z9 = false;
                 }
-                this.f20175s = z9;
+                this.f20178s = z9;
                 if (z13 && !z9 && audioTrack.getPlayState() != 1) {
-                    i10 = this.f20174r + 1;
+                    i10 = this.f20177r + 1;
                 } else {
-                    i10 = this.f20174r;
+                    i10 = this.f20177r;
                 }
             }
-            if (i10 > this.f20174r) {
+            if (i10 > this.f20177r) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            this.f20174r = i10;
+            this.f20177r = i10;
             if (z10) {
                 rVar.e(-1, new m2.d(23));
             }
@@ -167,32 +167,32 @@ public final class f0 {
         int remaining = byteBuffer.remaining();
         if (nVar.d) {
             if (j10 == Long.MIN_VALUE) {
-                j10 = this.f20170n;
+                j10 = this.f20173n;
             } else {
-                this.f20170n = j10;
+                this.f20173n = j10;
             }
             int remaining2 = byteBuffer.remaining();
             if (Build.VERSION.SDK_INT >= 26) {
                 write = audioTrack.write(byteBuffer, remaining2, 1, j10 * 1000);
             } else {
                 AudioTrack audioTrack3 = audioTrack;
-                if (this.f20171o == null) {
+                if (this.f20174o == null) {
                     ByteBuffer allocate = ByteBuffer.allocate(16);
-                    this.f20171o = allocate;
+                    this.f20174o = allocate;
                     allocate.order(ByteOrder.BIG_ENDIAN);
-                    this.f20171o.putInt(1431633921);
+                    this.f20174o.putInt(1431633921);
                 }
-                if (this.f20172p == 0) {
-                    this.f20171o.putInt(4, remaining2);
-                    this.f20171o.putLong(8, j10 * 1000);
-                    this.f20171o.position(0);
-                    this.f20172p = remaining2;
+                if (this.f20175p == 0) {
+                    this.f20174o.putInt(4, remaining2);
+                    this.f20174o.putLong(8, j10 * 1000);
+                    this.f20174o.position(0);
+                    this.f20175p = remaining2;
                 }
-                int remaining3 = this.f20171o.remaining();
+                int remaining3 = this.f20174o.remaining();
                 if (remaining3 > 0) {
-                    int write2 = audioTrack3.write(this.f20171o, remaining3, 1);
+                    int write2 = audioTrack3.write(this.f20174o, remaining3, 1);
                     if (write2 < 0) {
-                        this.f20172p = 0;
+                        this.f20175p = 0;
                         write = write2;
                     } else if (write2 < remaining3) {
                         write = 0;
@@ -200,9 +200,9 @@ public final class f0 {
                 }
                 write = audioTrack3.write(byteBuffer, remaining2, 1);
                 if (write < 0) {
-                    this.f20172p = 0;
+                    this.f20175p = 0;
                 } else {
-                    this.f20172p -= write;
+                    this.f20175p -= write;
                 }
             }
         } else {
@@ -212,8 +212,8 @@ public final class f0 {
             if ((Build.VERSION.SDK_INT >= 24 && write == -6) || write == -32) {
                 z12 = true;
             }
-            if (z12 && (gVar = this.d) != null && (eVar = (h0Var = (h0) gVar.f13889b).f20188i) != null) {
-                b bVar = b.f20128f;
+            if (z12 && (gVar = this.d) != null && (eVar = (h0Var = (h0) gVar.f13889b).f20191i) != null) {
+                b bVar = b.f20131f;
                 h0Var.h = bVar;
                 eVar.b(bVar);
             }
@@ -223,11 +223,11 @@ public final class f0 {
             z12 = true;
         }
         if (z11) {
-            this.f20168l += write;
+            this.f20171l += write;
             return z12;
         }
         if (z12) {
-            this.f20169m = (this.f20173q * i7) + this.f20169m;
+            this.f20172m = (this.f20176q * i7) + this.f20172m;
         }
         return z12;
     }

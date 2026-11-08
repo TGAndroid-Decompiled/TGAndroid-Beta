@@ -19,7 +19,7 @@ public final class q8 implements Runnable {
         org.telegram.ui.Components.rz0 rz0Var = (org.telegram.ui.Components.rz0) this.d;
         String str = (String) this.f49167c;
         int i10 = this.f49166b;
-        org.telegram.ui.Components.qz0 qz0Var = rz0Var.f37805r.f31580o1;
+        org.telegram.ui.Components.qz0 qz0Var = rz0Var.f37810r.f31584o1;
         try {
             String lowerCase = str.trim().toLowerCase();
             if (lowerCase.length() == 0) {
@@ -28,7 +28,7 @@ public final class q8 implements Runnable {
                 return;
             }
             int i11 = 0;
-            String S0 = org.telegram.messenger.hd.E0().S0(lowerCase, true, false);
+            String S0 = org.telegram.messenger.id.E0().S0(lowerCase, true, false);
             S0 = (lowerCase.equals(S0) || S0.length() == 0) ? null : null;
             if (S0 != null) {
                 i7 = 1;
@@ -47,7 +47,7 @@ public final class q8 implements Runnable {
             int i13 = 0;
             while (i13 < size) {
                 ArrayList arrayList3 = (ArrayList) qz0Var.d.get(i13);
-                String c10 = org.telegram.ui.ActionBar.u4.c(((org.telegram.ui.ActionBar.t6) arrayList3.get(i11)).f28535e);
+                String c10 = org.telegram.ui.ActionBar.u4.c(((org.telegram.ui.ActionBar.t6) arrayList3.get(i11)).f28538e);
                 String lowerCase2 = c10.toLowerCase();
                 int i14 = i11;
                 while (true) {

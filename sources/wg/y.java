@@ -6,35 +6,35 @@ import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.an;
 public final class y implements c20 {
-    public final a0 f57745a;
-    public final TL_stories.TL_prepaidStarsGiveaway f57746b;
-    public final long f57747c;
+    public final a0 f57837a;
+    public final TL_stories.TL_prepaidStarsGiveaway f57838b;
+    public final long f57839c;
     public final long d;
-    public final TL_stories.PrepaidGiveaway f57748e;
+    public final TL_stories.PrepaidGiveaway f57840e;
 
     public y(long j3, long j10, TL_stories.PrepaidGiveaway prepaidGiveaway, TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway, a0 a0Var) {
-        this.f57745a = a0Var;
-        this.f57746b = tL_prepaidStarsGiveaway;
-        this.f57747c = j3;
+        this.f57837a = a0Var;
+        this.f57838b = tL_prepaidStarsGiveaway;
+        this.f57839c = j3;
         this.d = j10;
-        this.f57748e = prepaidGiveaway;
+        this.f57840e = prepaidGiveaway;
     }
 
     @Override
     public final void a(Object obj) {
         Void r62 = (Void) obj;
-        a0 a0Var = this.f57745a;
+        a0 a0Var = this.f57837a;
         a0Var.dismiss();
-        if (this.f57746b != null) {
+        if (this.f57838b != null) {
             f2 T = LaunchActivity.T();
             if (T != null) {
-                an ra2 = an.ra(this.f57747c);
+                an ra2 = an.ra(this.f57839c);
                 ra2.whenFullyVisible(new bg.j0(ra2, this.d, 7));
                 T.presentFragment(ra2);
                 return;
             }
             return;
         }
-        org.telegram.messenger.g0.i3(new ti.p(25, a0Var, this.f57748e), 220L);
+        org.telegram.messenger.g0.i3(new u9.f(20, a0Var, this.f57840e), 220L);
     }
 }

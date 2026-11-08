@@ -45,15 +45,15 @@ import org.telegram.ui.hy0;
 import org.telegram.ui.pa0;
 import org.telegram.ui.tg;
 public final class a2 implements ri, org.telegram.ui.ActionBar.r1, h2.o, NativeInstance.PayloadCallback, y10, p4.l0, h2.j, w5.b {
-    public final int f16664a;
-    public final int f16665b;
-    public final Object f16666c;
+    public final int f16667a;
+    public final int f16668b;
+    public final Object f16669c;
     public final Object d;
 
     public a2(int i7, Object obj, Object obj2, int i10) {
-        this.f16664a = i10;
-        this.f16665b = i7;
-        this.f16666c = obj;
+        this.f16667a = i10;
+        this.f16668b = i7;
+        this.f16669c = obj;
         this.d = obj2;
     }
 
@@ -65,16 +65,16 @@ public final class a2 implements ri, org.telegram.ui.ActionBar.r1, h2.o, NativeI
     @Override
     public void e(String str, ArrayList arrayList) {
         ArrayList arrayList2;
-        b2 b2Var = (b2) this.f16666c;
+        b2 b2Var = (b2) this.f16669c;
         HashMap hashMap = (HashMap) this.d;
-        d2 d2Var = b2Var.f16669a;
+        d2 d2Var = b2Var.f16672a;
         int i7 = d2Var.P;
         HashMap hashMap2 = d2Var.I;
-        if (this.f16665b == i7) {
+        if (this.f16668b == i7) {
             int size = arrayList.size();
             boolean z9 = false;
             for (int i10 = 0; i10 < size; i10++) {
-                String str2 = ((qi) arrayList.get(i10)).f24698a;
+                String str2 = ((qi) arrayList.get(i10)).f24701a;
                 if (hashMap != null) {
                     arrayList2 = (ArrayList) hashMap.get(str2);
                 } else {
@@ -98,14 +98,14 @@ public final class a2 implements ri, org.telegram.ui.ActionBar.r1, h2.o, NativeI
     @Override
     public void f(p4.v vVar) {
         byte[] bArr;
-        p4.m0 m0Var = (p4.m0) this.f16666c;
+        p4.m0 m0Var = (p4.m0) this.f16669c;
         q4.h hVar = (q4.h) this.d;
-        if (TextUtils.isEmpty(hVar.f53679a)) {
+        if (TextUtils.isEmpty(hVar.f53772a)) {
             h2.a.l("MediaSessionLegacyStub", "onAddQueueItem(): Media ID shouldn't be empty");
             return;
         }
-        int i7 = p4.n.f53293a;
-        String str = hVar.f53679a;
+        int i7 = p4.n.f53386a;
+        String str = hVar.f53772a;
         e2.z zVar = new e2.z();
         h9.g0 g0Var = h9.i0.f14329b;
         h9.t1 t1Var = h9.t1.f14397e;
@@ -117,36 +117,36 @@ public final class a2 implements ri, org.telegram.ui.ActionBar.r1, h2.o, NativeI
         }
         String str2 = str;
         android.support.v4.media.session.a0 a0Var = new android.support.v4.media.session.a0(20, false);
-        a0Var.f1763b = hVar.f53685r;
+        a0Var.f1763b = hVar.f53778r;
         e2.h0 h0Var2 = new e2.h0(a0Var);
-        CharSequence charSequence = hVar.f53680b;
+        CharSequence charSequence = hVar.f53773b;
         e2.n0 n0Var = new e2.n0();
-        n0Var.f10381f = hVar.f53681c;
+        n0Var.f10381f = hVar.f53774c;
         n0Var.f10382g = hVar.d;
         n0Var.f10388n = hVar.h;
         Bundle bundle = null;
         n0Var.f10383i = p4.n.c(null);
-        Bitmap bitmap = hVar.f53682e;
+        Bitmap bitmap = hVar.f53775e;
         if (bitmap == null) {
             bArr = null;
         } else {
-            if (hVar.f53683f == null) {
+            if (hVar.f53776f == null) {
                 try {
                     ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.PNG, 0, byteArrayOutputStream);
-                    hVar.f53683f = byteArrayOutputStream.toByteArray();
+                    hVar.f53776f = byteArrayOutputStream.toByteArray();
                     byteArrayOutputStream.close();
                 } catch (IOException e10) {
                     h2.a.m("MediaDescriptionCompat", "Failed to compress MediaDescriptionCompat artwork", e10);
                 }
             }
-            bArr = hVar.f53683f;
+            bArr = hVar.f53776f;
         }
         int i10 = 3;
         if (bArr != null) {
             n0Var.b(bArr, 3);
         }
-        Bundle bundle2 = hVar.f53684n;
+        Bundle bundle2 = hVar.f53777n;
         if (bundle2 != null) {
             bundle = new Bundle(bundle2);
         }
@@ -195,22 +195,22 @@ public final class a2 implements ri, org.telegram.ui.ActionBar.r1, h2.o, NativeI
         }
         n0Var.f10393s = Boolean.TRUE;
         m9.y l10 = m0Var.h.l(vVar, h9.i0.u(new e2.l0(str2, new e2.a0(zVar), null, new e2.f0(e0Var), new e2.o0(n0Var), h0Var2)));
-        l10.b(new m9.u(0, l10, new wa(m0Var, vVar, this.f16665b)), m9.r.f19991a);
+        l10.b(new m9.u(0, l10, new wa(m0Var, vVar, this.f16668b)), m9.r.f19994a);
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
         int i10;
-        switch (this.f16664a) {
+        switch (this.f16667a) {
             case 1:
-                kg.s sVar = (kg.s) this.f16666c;
+                kg.s sVar = (kg.s) this.f16669c;
                 TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) this.d;
                 String obj = sVar.getText().toString();
                 if (obj.length() > 32) {
                     org.telegram.messenger.g0.F3(sVar);
                     return;
                 }
-                kg.y d = kg.y.d(this.f16665b);
+                kg.y d = kg.y.d(this.f16668b);
                 TL_account.TL_businessChatLink c10 = d.c(tL_businessChatLink.link);
                 if (c10 != null) {
                     TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink = new TL_account.TL_inputBusinessChatLink();
@@ -226,25 +226,25 @@ public final class a2 implements ri, org.telegram.ui.ActionBar.r1, h2.o, NativeI
             case 8:
             case 13:
             default:
-                StickersActivity.f0((StickersActivity) this.f16666c, (ArrayList) this.d, this.f16665b);
+                StickersActivity.f0((StickersActivity) this.f16669c, (ArrayList) this.d, this.f16668b);
                 return;
             case 4:
-                an anVar = (an) this.f16666c;
+                an anVar = (an) this.f16669c;
                 boolean[] zArr = (boolean[]) this.d;
-                anVar.getMessagesController().C3(anVar.f43771e, anVar.f43785f, this.f16665b, false, !zArr[1], zArr[0]);
-                cc B = hc.B(anVar, true, null, null, anVar.f44022xa);
+                anVar.getMessagesController().C3(anVar.f43777e, anVar.f43791f, this.f16668b, false, !zArr[1], zArr[0]);
+                cc B = hc.B(anVar, true, null, null, anVar.f44028xa);
                 B.j();
-                gb gbVar = B.f32510e;
+                gb gbVar = B.f32541e;
                 gbVar.postDelayed(new tg(0, gbVar), 550L);
                 return;
             case 5:
-                an.J0((an) this.f16666c, this.f16665b, (ij) this.d);
+                an.J0((an) this.f16669c, this.f16668b, (ij) this.d);
                 return;
             case 6:
-                u4 u4Var = (u4) this.f16666c;
+                u4 u4Var = (u4) this.f16669c;
                 wr wrVar = (wr) this.d;
                 String trim = u4Var.getText().toString().trim();
-                if (trim.length() <= this.f16665b && !trim.isEmpty()) {
+                if (trim.length() <= this.f16668b && !trim.isEmpty()) {
                     wrVar.a(trim);
                     u1Var.dismiss();
                     return;
@@ -252,25 +252,25 @@ public final class a2 implements ri, org.telegram.ui.ActionBar.r1, h2.o, NativeI
                 org.telegram.messenger.g0.F3(u4Var);
                 return;
             case 7:
-                kl0 kl0Var = (kl0) this.f16666c;
+                kl0 kl0Var = (kl0) this.f16669c;
                 TLRPC.Reaction reaction = (TLRPC.Reaction) this.d;
                 String obj2 = kl0Var.getText().toString();
                 if (obj2.length() > 12) {
                     org.telegram.messenger.g0.F3(kl0Var);
                     return;
                 }
-                qp.s1(this.f16665b).l4(ch.o0.d(reaction), obj2);
+                qp.s1(this.f16668b).l4(ch.o0.d(reaction), obj2);
                 u1Var.dismiss();
                 return;
             case 9:
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.d;
-                h30 h30Var = ((c30) this.f16666c).f44532o1;
-                r3 r3Var = h30Var.f46205b.R2;
+                h30 h30Var = ((c30) this.f16669c).f44535o1;
+                r3 r3Var = h30Var.f46207b.R2;
                 String obj3 = editTextBoldCursor.getText().toString();
-                int i11 = this.f16665b;
+                int i11 = this.f16668b;
                 r3Var.A(i11, obj3);
                 org.telegram.messenger.g0.v1(editTextBoldCursor);
-                UndoView n1 = h30Var.f46205b.n1();
+                UndoView n1 = h30Var.f46207b.n1();
                 if (i11 == 0) {
                     i10 = 39;
                 } else {
@@ -283,47 +283,39 @@ public final class a2 implements ri, org.telegram.ui.ActionBar.r1, h2.o, NativeI
                 }
                 return;
             case 10:
-                LaunchActivity launchActivity = (LaunchActivity) this.f16666c;
+                LaunchActivity launchActivity = (LaunchActivity) this.f16669c;
                 HashMap hashMap = (HashMap) this.d;
-                ArrayList arrayList = launchActivity.f41256d0;
+                ArrayList arrayList = launchActivity.f41260d0;
                 if (!arrayList.isEmpty() && org.telegram.messenger.g0.J1((f2) g.i(1, arrayList))) {
                     pa0 pa0Var = new pa0(0);
-                    pa0Var.G0 = new l2.q(hashMap, this.f16665b, 11);
+                    pa0Var.G0 = new l2.q(hashMap, this.f16668b, 11);
                     launchActivity.t0(pa0Var);
                     return;
                 }
                 return;
             case 11:
-                ((pa0) this.f16666c).I0(900, this.f16665b, (TLRPC.User) this.d);
+                ((pa0) this.f16669c).I0(900, this.f16668b, (TLRPC.User) this.d);
                 return;
             case 12:
-                PasscodeActivity.Z((PasscodeActivity) this.f16666c, (hb0) this.d, this.f16665b);
+                PasscodeActivity.Z((PasscodeActivity) this.f16669c, (hb0) this.d, this.f16668b);
                 return;
             case 14:
-                SessionsActivity.c0((SessionsActivity) this.f16666c, this.f16665b, (boolean[]) this.d);
+                SessionsActivity.c0((SessionsActivity) this.f16669c, this.f16668b, (boolean[]) this.d);
                 return;
         }
     }
 
     @Override
     public Object h() {
-        ((hy0) ((ia.c) this.f16666c).d).J((o5.i) this.d, this.f16665b + 1, false);
+        ((hy0) ((ia.c) this.f16669c).d).J((o5.i) this.d, this.f16668b + 1, false);
         return null;
     }
 
     @Override
-    public void invoke(Object obj) {
-        e2.a1 a1Var = (e2.a1) obj;
-        int i7 = this.f16665b;
-        a1Var.i(i7);
-        a1Var.s((e2.b1) this.f16666c, (e2.b1) this.d, i7);
-    }
-
-    @Override
-    public void k(Object obj, TLRPC.Document document, Boolean bool) {
-        Context context = (Context) this.f16666c;
+    public void i(Object obj, TLRPC.Document document, Boolean bool) {
+        Context context = (Context) this.f16669c;
         TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) this.d;
-        int i7 = this.f16665b;
+        int i7 = this.f16668b;
         String str = "😀";
         String V = ij.V(document, "😀", Integer.valueOf(i7));
         if (!TextUtils.isEmpty(V)) {
@@ -333,7 +325,7 @@ public final class a2 implements ri, org.telegram.ui.ActionBar.r1, h2.o, NativeI
         TLRPC.TL_stickers_addStickerToSet tL_stickers_addStickerToSet = new TLRPC.TL_stickers_addStickerToSet();
         tL_stickers_addStickerToSet.stickerset = ui.Z(tL_messages_stickerSet.set);
         tL_stickers_addStickerToSet.sticker = ui.a0(document, str);
-        ConnectionsManager.getInstance(p10.f24467s0).sendRequest(tL_stickers_addStickerToSet, new bg.k0(u1Var, i7, document, obj, tL_stickers_addStickerToSet, 8));
+        ConnectionsManager.getInstance(p10.f24470s0).sendRequest(tL_stickers_addStickerToSet, new bg.k0(u1Var, i7, document, obj, tL_stickers_addStickerToSet, 8));
         try {
             u1Var.r(350L);
         } catch (Exception unused) {
@@ -341,21 +333,29 @@ public final class a2 implements ri, org.telegram.ui.ActionBar.r1, h2.o, NativeI
     }
 
     @Override
+    public void invoke(Object obj) {
+        e2.a1 a1Var = (e2.a1) obj;
+        int i7 = this.f16668b;
+        a1Var.i(i7);
+        a1Var.s((e2.b1) this.f16669c, (e2.b1) this.d, i7);
+    }
+
+    @Override
     public void run(int i7, String str) {
-        ((VoIPService) this.f16666c).lambda$createGroupInstance$66(this.f16665b, (boolean[]) this.d, i7, str);
+        ((VoIPService) this.f16669c).lambda$createGroupInstance$66(this.f16668b, (boolean[]) this.d, i7, str);
     }
 
     public a2(Object obj, int i7, Object obj2, int i10) {
-        this.f16664a = i10;
-        this.f16666c = obj;
-        this.f16665b = i7;
+        this.f16667a = i10;
+        this.f16669c = obj;
+        this.f16668b = i7;
         this.d = obj2;
     }
 
     public a2(Object obj, Object obj2, int i7, int i10) {
-        this.f16664a = i10;
-        this.f16666c = obj;
+        this.f16667a = i10;
+        this.f16669c = obj;
         this.d = obj2;
-        this.f16665b = i7;
+        this.f16668b = i7;
     }
 }

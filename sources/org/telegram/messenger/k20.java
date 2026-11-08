@@ -14,9 +14,9 @@ public final class k20 implements Runnable {
         VideoEncodingService videoEncodingService = this.f23654b;
         switch (i7) {
             case 0:
-                VideoEncodingService videoEncodingService2 = VideoEncodingService.f21340e;
+                VideoEncodingService videoEncodingService2 = VideoEncodingService.f21343e;
                 videoEncodingService.getClass();
-                lf lfVar = MediaController.B().f21248a0;
+                lf lfVar = MediaController.B().f21251a0;
                 if (lfVar != null) {
                     videoEncodingService.a(lfVar);
                     return;
@@ -25,7 +25,7 @@ public final class k20 implements Runnable {
                     return;
                 }
             default:
-                VideoEncodingService videoEncodingService3 = VideoEncodingService.f21340e;
+                VideoEncodingService videoEncodingService3 = VideoEncodingService.f21343e;
                 videoEncodingService.b();
                 return;
         }

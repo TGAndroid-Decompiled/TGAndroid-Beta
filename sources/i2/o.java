@@ -8,9 +8,9 @@ import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.Arrays;
 public abstract class o {
-    public static final byte[] f15202a = {0, 0, 0, 1};
-    public static final float[] f15203b = {1.0f, 1.0f, 1.0909091f, 0.90909094f, 1.4545455f, 1.2121212f, 2.1818182f, 1.8181819f, 2.909091f, 2.4242425f, 1.6363636f, 1.3636364f, 1.939394f, 1.6161616f, 1.3333334f, 1.5f, 2.0f};
-    public static final Object f15204c = new Object();
+    public static final byte[] f15205a = {0, 0, 0, 1};
+    public static final float[] f15206b = {1.0f, 1.0f, 1.0909091f, 0.90909094f, 1.4545455f, 1.2121212f, 2.1818182f, 1.8181819f, 2.909091f, 2.4242425f, 1.6363636f, 1.3636364f, 1.939394f, 1.6161616f, 1.3333334f, 1.5f, 2.0f};
+    public static final Object f15207c = new Object();
     public static int[] d = new int[10];
 
     public static ArrayList a(byte[] bArr) {
@@ -314,7 +314,7 @@ public abstract class o {
 
     public static int p(int i7, byte[] bArr) {
         int i10;
-        synchronized (f15204c) {
+        synchronized (f15207c) {
             int i11 = 0;
             int i12 = 0;
             while (i11 < i7) {

@@ -42,7 +42,7 @@ public final class mq implements org.telegram.ui.Cells.z4, jg.y1 {
                 oqVar.D0(i10);
             }
             if (!nqVar.f48112s && nqVar.f48111r == 0 && i7 != 0) {
-                oqVar.f48471b.e(false, true);
+                oqVar.f48465b.e(false, true);
             }
         }
     }

@@ -133,10 +133,10 @@ public final class w implements q51 {
                     }
                     PipRoundVideoView pipRoundVideoView2 = mediaController.H0;
                     if (pipRoundVideoView2 != null) {
-                        if (pipRoundVideoView2.f31424c.getSurfaceTexture() != surfaceTexture) {
-                            mediaController.H0.f31424c.setSurfaceTexture(surfaceTexture);
+                        if (pipRoundVideoView2.f31428c.getSurfaceTexture() != surfaceTexture) {
+                            mediaController.H0.f31428c.setSurfaceTexture(surfaceTexture);
                         }
-                        mediaController.E0.A0(mediaController.H0.f31424c);
+                        mediaController.E0.A0(mediaController.H0.f31428c);
                     }
                 }
                 mediaController.I0 = 0;

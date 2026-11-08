@@ -44,42 +44,42 @@ public final class a3 implements Runnable {
     }
 
     private final void a() {
-        org.telegram.ui.Wallet.f2 f2Var = (org.telegram.ui.Wallet.f2) this.f3439b;
+        org.telegram.ui.Wallet.e2 e2Var = (org.telegram.ui.Wallet.e2) this.f3439b;
         String str = (String) this.f3440c;
         c20 c20Var = (c20) this.f3441e;
-        org.telegram.ui.Wallet.b2 b2Var = (org.telegram.ui.Wallet.b2) this.f3442f;
-        org.telegram.ui.Wallet.k0 k0Var = (org.telegram.ui.Wallet.k0) this.h;
+        org.telegram.ui.Wallet.a2 a2Var = (org.telegram.ui.Wallet.a2) this.f3442f;
+        org.telegram.ui.Wallet.j0 j0Var = (org.telegram.ui.Wallet.j0) this.h;
         TL_wallet.sendTransfer sendtransfer = (TL_wallet.sendTransfer) this.d;
         if (str != null) {
             c20Var.a(str);
-        } else if (f2Var.A(b2Var) && !f2Var.j(b2Var)) {
-            f2Var.f42463f.sendRequestTyped(sendtransfer, new d3.b(1), new t3(f2Var, c20Var, b2Var, k0Var, sendtransfer, 6));
+        } else if (e2Var.A(a2Var) && !e2Var.j(a2Var)) {
+            e2Var.f42431f.sendRequestTyped(sendtransfer, new d3.b(1), new t3(e2Var, c20Var, a2Var, j0Var, sendtransfer, 6));
         } else {
             c20Var.a("Request expired or wallet changed");
         }
     }
 
     private final void b() {
-        org.telegram.ui.Wallet.u2 u2Var = (org.telegram.ui.Wallet.u2) this.f3439b;
+        org.telegram.ui.Wallet.t2 t2Var = (org.telegram.ui.Wallet.t2) this.f3439b;
         int[] iArr = (int[]) this.f3440c;
         TextView textView = (TextView) this.f3441e;
-        org.telegram.ui.Wallet.g7 g7Var = (org.telegram.ui.Wallet.g7) this.f3442f;
-        org.telegram.ui.Wallet.n0 n0Var = (org.telegram.ui.Wallet.n0) this.h;
-        org.telegram.ui.Wallet.e2 e2Var = (org.telegram.ui.Wallet.e2) this.d;
-        if (!u2Var.f43197e && !u2Var.d) {
+        org.telegram.ui.Wallet.f7 f7Var = (org.telegram.ui.Wallet.f7) this.f3442f;
+        org.telegram.ui.Wallet.m0 m0Var = (org.telegram.ui.Wallet.m0) this.h;
+        org.telegram.ui.Wallet.d2 d2Var = (org.telegram.ui.Wallet.d2) this.d;
+        if (!t2Var.f43166e && !t2Var.d) {
             iArr[0] = 0;
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(" ");
             spannableStringBuilder.setSpan(new b80(org.telegram.messenger.g0.L(80.0f), textView), 0, spannableStringBuilder.length(), 33);
-            textView.setText(org.telegram.messenger.hd.V(null, null, 2131743121, spannableStringBuilder));
-            g7Var.run();
-            WalletEngine2 walletEngine2 = n0Var.f42793b;
+            textView.setText(org.telegram.messenger.id.V(null, null, 2131743123, spannableStringBuilder));
+            f7Var.run();
+            WalletEngine2 walletEngine2 = m0Var.f42763b;
             if (walletEngine2 == null) {
                 iArr[0] = 3;
-                textView.setText(org.telegram.messenger.hd.M0(2131742987, null));
-                g7Var.run();
+                textView.setText(org.telegram.messenger.id.M0(2131742989, null));
+                f7Var.run();
                 return;
             }
-            walletEngine2.previewTonConnect(e2Var, new org.telegram.ui.Wallet.f1(u2Var, iArr, n0Var, textView, e2Var, g7Var, 4));
+            walletEngine2.previewTonConnect(d2Var, new org.telegram.ui.Wallet.e1(t2Var, iArr, m0Var, textView, d2Var, f7Var, 4));
         }
     }
 
@@ -90,7 +90,7 @@ public final class a3 implements Runnable {
         String str = (String) this.f3442f;
         TLRPC.TL_error tL_error = (TLRPC.TL_error) this.d;
         String str2 = (String) this.h;
-        org.telegram.ui.ActionBar.f6 f6Var = x0Var.f51360e;
+        org.telegram.ui.ActionBar.f6 f6Var = x0Var.f51367e;
         if (tLObject != null) {
             if (tLObject instanceof TLRPC.TL_urlAuthResultRequest) {
                 bi0.b(false, x0Var.M, tL_messages_requestUrlAuth, (TLRPC.TL_urlAuthResultRequest) tLObject, null, null, null, false, x0Var);
@@ -101,7 +101,7 @@ public final class a3 implements Runnable {
             }
         } else if (tL_error != null) {
             if ("URL_EXPIRED".equalsIgnoreCase(tL_error.text)) {
-                new org.telegram.ui.Components.hc(x0Var, f6Var).I(2131624011, org.telegram.messenger.hd.M0(2131753128, null), org.telegram.messenger.g0.P2(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.uj, f6Var), org.telegram.messenger.hd.a0(null, null, 2131753130, str2))).j();
+                new org.telegram.ui.Components.hc(x0Var, f6Var).I(2131624011, org.telegram.messenger.id.M0(2131753128, null), org.telegram.messenger.g0.P2(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.uj, f6Var), org.telegram.messenger.id.a0(null, null, 2131753130, str2))).j();
             } else {
                 new org.telegram.ui.Components.hc(x0Var, f6Var).f0(tL_error, false);
             }
@@ -120,7 +120,7 @@ public final class a3 implements Runnable {
             return;
         }
         int[] iArr = new int[11];
-        Utilities.f21333e.c(new r31(file, iArr, new r7((ls) x0Var, (Object) iArr, (Object) file, (Object) u1Var, str, (Object) str2, (Object) str3, 15), 4));
+        Utilities.f21336e.c(new r31(file, iArr, new r7((ls) x0Var, (Object) iArr, (Object) file, (Object) u1Var, str, (Object) str2, (Object) str3, 15), 4));
     }
 
     @Override
@@ -208,9 +208,9 @@ public final class a3 implements Runnable {
         this.h = str2;
     }
 
-    public a3(zh.h1 h1Var, org.telegram.ui.ActionBar.u1 u1Var, TLObject tLObject, ub ubVar, c20 c20Var, TLRPC.TL_error tL_error) {
+    public a3(zh.g1 g1Var, org.telegram.ui.ActionBar.u1 u1Var, TLObject tLObject, ub ubVar, c20 c20Var, TLRPC.TL_error tL_error) {
         this.f3438a = 27;
-        this.f3439b = h1Var;
+        this.f3439b = g1Var;
         this.f3441e = u1Var;
         this.f3440c = tLObject;
         this.f3442f = ubVar;

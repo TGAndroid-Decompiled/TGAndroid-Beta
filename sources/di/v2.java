@@ -5,7 +5,7 @@ import java.util.HashMap;
 import org.telegram.messenger.fz;
 import org.telegram.messenger.gf;
 import org.telegram.messenger.gz;
-import org.telegram.messenger.pw;
+import org.telegram.messenger.ow;
 import org.telegram.messenger.qs;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
@@ -44,7 +44,7 @@ public final class v2 implements bi {
             }
             long j11 = i4Var.f9164k1;
             org.telegram.messenger.p5 p5Var = gz.I;
-            new Thread(new pw(null, arrayList, j11, accountInstance, charSequence2, false, null, null, null, null, z9, i7, i10, storyItem, null, j3, z10, j10, null)).start();
+            new Thread(new ow(null, arrayList, j11, accountInstance, charSequence2, false, null, null, null, null, z9, i7, i10, storyItem, null, j3, z10, j10, null)).start();
             if (j10 <= 0) {
                 z11 = true;
             } else {
@@ -76,7 +76,7 @@ public final class v2 implements bi {
         String str2;
         i4 i4Var = this.f9864a;
         if (i4Var.f9192s0.m0 && (storyItem = i4Var.f9213x1.f9038a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            if (i7 != 8 && i7 != 7 && (i7 != 4 || i4Var.f9190r2.f32924a2.getSelectedPhotos().isEmpty())) {
+            if (i7 != 8 && i7 != 7 && (i7 != 4 || i4Var.f9190r2.f32932a2.getSelectedPhotos().isEmpty())) {
                 u2 u2Var = i4Var.f9190r2;
                 if (u2Var != null) {
                     u2Var.L(i7);
@@ -88,8 +88,8 @@ public final class v2 implements bi {
             if (i7 != 8) {
                 i4Var.f9190r2.a(true);
             }
-            HashMap<Object, Object> selectedPhotos = i4Var.f9190r2.f32924a2.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = i4Var.f9190r2.f32924a2.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = i4Var.f9190r2.f32932a2.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = i4Var.f9190r2.f32932a2.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 int i12 = 0;
                 int i13 = 0;
@@ -102,38 +102,38 @@ public final class v2 implements bi {
                         if (i16 < selectedPhotosOrder.size()) {
                             gf gfVar = (gf) selectedPhotos.get(selectedPhotosOrder.get(i16));
                             ?? obj = new Object();
-                            boolean z18 = gfVar.f26824b;
+                            boolean z18 = gfVar.f26845b;
                             if (!z18 && (str2 = gfVar.h) != null) {
-                                obj.f22493c = str2;
+                                obj.f22512c = str2;
                             } else {
                                 String str3 = gfVar.I;
                                 if (str3 != null) {
-                                    obj.f22493c = str3;
+                                    obj.f22512c = str3;
                                 }
                             }
-                            obj.f22494e = gfVar.f26825c;
-                            obj.f22495f = gfVar.f26828g;
-                            obj.f22503o = z18;
-                            CharSequence charSequence = gfVar.f26823a;
+                            obj.f22513e = gfVar.f26846c;
+                            obj.f22514f = gfVar.f26849g;
+                            obj.f22522o = z18;
+                            CharSequence charSequence = gfVar.f26844a;
                             if (charSequence != null) {
                                 str = charSequence.toString();
                             } else {
                                 str = null;
                             }
                             obj.d = str;
-                            obj.f22497i = gfVar.f26834n;
-                            obj.f22498j = gfVar.f26838r;
-                            obj.h = gfVar.f26843x;
-                            obj.f22499k = gfVar.f26839s;
-                            obj.f22506r = gfVar.L;
-                            obj.f22508t = gz.h(gfVar.f26823a);
-                            obj.f22509u = gfVar.M;
+                            obj.f22516i = gfVar.f26855n;
+                            obj.f22517j = gfVar.f26859r;
+                            obj.h = gfVar.f26864x;
+                            obj.f22518k = gfVar.f26860s;
+                            obj.f22525r = gfVar.L;
+                            obj.f22527t = gz.h(gfVar.f26844a);
+                            obj.f22528u = gfVar.M;
                             arrayList.add(obj);
                             gfVar.e();
                         }
                     }
                     if (i13 == 0) {
-                        z14 = ((fz) arrayList.get(i12)).f22508t;
+                        z14 = ((fz) arrayList.get(i12)).f22527t;
                     } else {
                         z14 = i12;
                     }

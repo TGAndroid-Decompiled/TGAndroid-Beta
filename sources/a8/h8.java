@@ -13,7 +13,7 @@ public abstract class h8 {
     public static u9.a b(String str, ni.a aVar) {
         e2.j0 a10 = u9.a.a(cb.a.class);
         a10.f10289b = 1;
-        a10.a(u9.i.a(Context.class));
+        a10.a(u9.j.a(Context.class));
         a10.f10292f = new ab.g(7, str, aVar);
         return a10.b();
     }

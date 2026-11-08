@@ -13,13 +13,13 @@ import k2.h;
 import k2.j;
 import k2.l;
 public final class b extends l {
-    public final Context f55281o;
-    public final int f55282p;
+    public final Context f55373o;
+    public final int f55374p;
 
     public b(Context context) {
         super(new h[1], new a[1]);
-        this.f55281o = context;
-        this.f55282p = -1;
+        this.f55373o = context;
+        this.f55374p = -1;
     }
 
     @Override
@@ -46,7 +46,7 @@ public final class b extends l {
     public final k2.f i(h hVar, j jVar, boolean z9) {
         boolean z10;
         a aVar = (a) jVar;
-        ByteBuffer byteBuffer = hVar.f17172c;
+        ByteBuffer byteBuffer = hVar.f17175c;
         byteBuffer.getClass();
         ia.p(byteBuffer.hasArray());
         if (byteBuffer.arrayOffset() == 0) {
@@ -56,14 +56,14 @@ public final class b extends l {
         }
         ia.f(z10);
         try {
-            int i7 = this.f55282p;
+            int i7 = this.f55374p;
             if (i7 == -1) {
-                Context context = this.f55281o;
+                Context context = this.f55373o;
                 if (context != null) {
                     Point y10 = m0.y(context);
                     int i10 = y10.x;
                     int i11 = y10.y;
-                    u uVar = hVar.f17170a;
+                    u uVar = hVar.f17173a;
                     if (uVar != null) {
                         int i12 = uVar.R;
                         if (i12 != -1) {
@@ -79,8 +79,8 @@ public final class b extends l {
                     i7 = 4096;
                 }
             }
-            aVar.f55279a = o0.b(byteBuffer.remaining(), i7, byteBuffer.array());
-            aVar.timeUs = hVar.f17173e;
+            aVar.f55371a = o0.b(byteBuffer.remaining(), i7, byteBuffer.array());
+            aVar.timeUs = hVar.f17176e;
             return null;
         } catch (t0 e10) {
             return new Exception("Could not decode image data with BitmapFactory.", e10);

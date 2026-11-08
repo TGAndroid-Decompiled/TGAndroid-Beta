@@ -8,11 +8,11 @@ public final class y11 extends v4.k {
 
     @Override
     public final void O() {
-        this.F.f28616b.invalidate();
+        this.F.f28619b.invalidate();
     }
 
     @Override
     public final void P(v4.d1 d1Var) {
-        this.F.f28616b.invalidate();
+        this.F.f28619b.invalidate();
     }
 }

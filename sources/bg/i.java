@@ -221,8 +221,8 @@ public final class i {
         return bArr2;
     }
 
-    public final int f(android.graphics.Bitmap r11, int r12) {
-        throw new UnsupportedOperationException("Method not decompiled: bg.i.f(android.graphics.Bitmap, int):int");
+    public final int f(int r11, android.graphics.Bitmap r12) {
+        throw new UnsupportedOperationException("Method not decompiled: bg.i.f(int, android.graphics.Bitmap):int");
     }
 
     public final boolean g() {

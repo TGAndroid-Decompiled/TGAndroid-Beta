@@ -20,25 +20,25 @@ public abstract class ae0 extends FrameLayout {
     public float J;
     public boolean K;
     public ob0 L;
-    public int f31783a;
-    public PhotoViewer f31784b;
-    public LinearLayout f31785c;
+    public int f31792a;
+    public PhotoViewer f31793b;
+    public LinearLayout f31794c;
     public TextView d;
-    public TextView f31786e;
-    public rt f31787f;
+    public TextView f31795e;
+    public st f31796f;
     public bi.ec h;
-    public RadialProgressView f31788n;
-    public View f31789r;
-    public String f31790s;
-    public ArrayList f31791w;
-    public String f31792x;
-    public boolean f31793y;
+    public RadialProgressView f31797n;
+    public View f31798r;
+    public String f31799s;
+    public ArrayList f31800w;
+    public String f31801x;
+    public boolean f31802y;
 
     public static void a(org.telegram.ui.cq0 cq0Var, String str) {
         String str2;
         double ceil;
         int videoDuration = cq0Var.getVideoDuration() / 1000;
-        ArrayList arrayList = cq0Var.f31791w;
+        ArrayList arrayList = cq0Var.f31800w;
         arrayList.clear();
         if (videoDuration > 15) {
             String[] split = str.split("\\|");
@@ -84,7 +84,7 @@ public abstract class ae0 extends FrameLayout {
     }
 
     public final boolean d() {
-        return this.f31793y;
+        return this.f31802y;
     }
 
     @Override
@@ -96,7 +96,7 @@ public abstract class ae0 extends FrameLayout {
     }
 
     public final boolean e() {
-        if (this.f31788n.getVisibility() != 0) {
+        if (this.f31797n.getVisibility() != 0) {
             ti.o c10 = l2.i.d().c();
             if (c10 != null) {
                 c10.b();
@@ -104,8 +104,8 @@ public abstract class ae0 extends FrameLayout {
                 return true;
             }
             this.h.setVisibility(0);
-            PhotoViewer photoViewer = this.f31784b;
-            if (photoViewer.D != null && photoViewer.f41390f0 != null) {
+            PhotoViewer photoViewer = this.f31793b;
+            if (photoViewer.D != null && photoViewer.f41394f0 != null) {
                 photoViewer.T0();
                 photoViewer.O8.g(photoViewer.D, null, true);
                 return true;
@@ -115,7 +115,7 @@ public abstract class ae0 extends FrameLayout {
     }
 
     public final void f() {
-        if (this.G && this.f31793y) {
+        if (this.G && this.f31802y) {
             h("pauseVideo();");
             this.G = false;
             b(true);
@@ -123,7 +123,7 @@ public abstract class ae0 extends FrameLayout {
     }
 
     public final void g() {
-        if (!this.G && this.f31793y) {
+        if (!this.G && this.f31802y) {
             h("playVideo();");
             this.G = true;
             b(false);
@@ -159,11 +159,11 @@ public abstract class ae0 extends FrameLayout {
     }
 
     public WebView getWebView() {
-        return this.f31787f;
+        return this.f31796f;
     }
 
     public final void h(String str) {
-        this.f31787f.evaluateJavascript(str, null);
+        this.f31796f.evaluateJavascript(str, null);
     }
 
     public final void i(long j3) {
@@ -181,8 +181,8 @@ public abstract class ae0 extends FrameLayout {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        rt rtVar = this.f31787f;
-        if (rtVar.getParent() == this) {
+        st stVar = this.f31796f;
+        if (stVar.getParent() == this) {
             TLRPC.WebPage webPage = this.D;
             int i11 = webPage.embed_width;
             int i12 = 100;
@@ -198,7 +198,7 @@ public abstract class ae0 extends FrameLayout {
             float f10 = i11;
             float f11 = i12;
             float min = Math.min(size / f10, size2 / f11);
-            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) rtVar.getLayoutParams();
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) stVar.getLayoutParams();
             int i14 = (int) (f10 * min);
             layoutParams.width = i14;
             int i15 = (int) (f11 * min);
@@ -211,8 +211,8 @@ public abstract class ae0 extends FrameLayout {
 
     public void setPlaybackSpeed(float f10) {
         this.E = f10;
-        if (this.f31788n.getVisibility() != 0) {
-            if (this.f31793y) {
+        if (this.f31797n.getVisibility() != 0) {
+            if (this.f31802y) {
                 h("setPlaybackSpeed(" + f10 + ");");
                 return;
             }

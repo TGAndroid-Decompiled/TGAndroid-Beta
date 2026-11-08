@@ -42,7 +42,7 @@ public final class ni0 extends FrameLayout implements org.telegram.ui.ActionBar.
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         b10.setEllipsize(truncateAt);
         addView(b10, c8.ha.d(-1, -2.0f, 55, 72.0f, 8.0f, 46.0f, 0.0f));
-        int i10 = org.telegram.ui.ActionBar.k6.f28241y6;
+        int i10 = org.telegram.ui.ActionBar.k6.f28244y6;
         TextView b11 = c8.qa.b(context, 13.0f, i10, false, null);
         this.f48052n = b11;
         b11.setSingleLine();
@@ -53,7 +53,7 @@ public final class ni0 extends FrameLayout implements org.telegram.ui.ActionBar.
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(2131231244);
         org.telegram.ui.ActionBar.r6.t(imageView, i10, null, PorterDuff.Mode.SRC_IN);
-        int i11 = org.telegram.ui.ActionBar.k6.f27941i6;
+        int i11 = org.telegram.ui.ActionBar.k6.f27944i6;
         org.telegram.ui.Cells.y h02 = org.telegram.ui.ActionBar.k6.h0(org.telegram.ui.ActionBar.k6.w0(i11, f6Var), 1, -1);
         org.telegram.ui.ActionBar.n6 N = org.telegram.ui.ActionBar.r6.N(i11);
         imageView.setBackground(h02);
@@ -74,11 +74,11 @@ public final class ni0 extends FrameLayout implements org.telegram.ui.ActionBar.
         if (this.f48054s) {
             Paint W0 = org.telegram.ui.ActionBar.k6.W0("paintDivider", this.d);
             if (W0 == null) {
-                W0 = org.telegram.ui.ActionBar.k6.f27972k0;
+                W0 = org.telegram.ui.ActionBar.k6.f27975k0;
             }
             Paint paint = W0;
             float f11 = 72.0f;
-            if (org.telegram.messenger.hd.f22878a0) {
+            if (org.telegram.messenger.id.f23157a0) {
                 f10 = 0.0f;
             } else {
                 f10 = 72.0f;
@@ -86,7 +86,7 @@ public final class ni0 extends FrameLayout implements org.telegram.ui.ActionBar.
             float L = org.telegram.messenger.g0.L(f10);
             float measuredHeight = getMeasuredHeight() - 1;
             int width = getWidth();
-            if (!org.telegram.messenger.hd.f22878a0) {
+            if (!org.telegram.messenger.id.f23157a0) {
                 f11 = 0.0f;
             }
             canvas.drawRect(L, measuredHeight, width - org.telegram.messenger.g0.L(f11), getMeasuredHeight(), paint);

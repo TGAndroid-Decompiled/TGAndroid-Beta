@@ -7,20 +7,20 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 public final class fc implements Runnable {
-    public final File f22374a;
-    public final int f22375b;
-    public final ec f22376c;
+    public final File f22393a;
+    public final int f22394b;
+    public final ec f22395c;
     public final gc d;
 
     public fc(gc gcVar, int i7, File file, ec ecVar) {
         this.d = gcVar;
-        this.f22375b = i7;
-        this.f22374a = file;
-        this.f22376c = ecVar;
+        this.f22394b = i7;
+        this.f22393a = file;
+        this.f22395c = ecVar;
     }
 
     public final void a() {
-        this.d.f22632s.c(new y4(20, this, w7.r(null, this.f22376c.f22177a)));
+        this.d.f22651s.c(new x4(20, this, w7.r(null, this.f22395c.f22201a)));
     }
 
     @Override
@@ -28,20 +28,20 @@ public final class fc implements Runnable {
         int min;
         int i7;
         Bitmap createScaledBitmap;
-        File file = this.f22374a;
-        ec ecVar = this.f22376c;
+        File file = this.f22393a;
+        ec ecVar = this.f22395c;
         try {
-            String str = "q_" + ecVar.f22177a.dc_id + "_" + ecVar.f22177a.f26959id;
+            String str = "q_" + ecVar.f22201a.dc_id + "_" + ecVar.f22201a.f26962id;
             File file2 = new File(w7.z(4), str + ".jpg");
             if (!file2.exists() && file.exists()) {
-                if (ecVar.f22180e) {
-                    Point point = g0.f22544q;
+                if (ecVar.f22204e) {
+                    Point point = g0.f22563q;
                     min = Math.max(point.x, point.y);
                 } else {
-                    Point point2 = g0.f22544q;
+                    Point point2 = g0.f22563q;
                     min = Math.min(180, Math.min(point2.x, point2.y) / 4);
                 }
-                int i10 = this.f22375b;
+                int i10 = this.f22394b;
                 Bitmap bitmap = null;
                 if (i10 == 0) {
                     String file3 = file.toString();
@@ -51,7 +51,7 @@ public final class fc implements Runnable {
                     int i11 = 2;
                     if (i10 == 2) {
                         String file4 = file.toString();
-                        if (!ecVar.f22180e) {
+                        if (!ecVar.f22204e) {
                             i11 = 1;
                         }
                         bitmap = gz.r(i11, file4);
@@ -59,7 +59,7 @@ public final class fc implements Runnable {
                         String lowerCase = file.toString().toLowerCase();
                         if (lowerCase.endsWith("mp4")) {
                             String file5 = file.toString();
-                            if (!ecVar.f22180e) {
+                            if (!ecVar.f22204e) {
                                 i11 = 1;
                             }
                             bitmap = gz.r(i11, file5);
@@ -86,7 +86,7 @@ public final class fc implements Runnable {
                     }
                     FileOutputStream fileOutputStream = new FileOutputStream(file2);
                     Bitmap.CompressFormat compressFormat = Bitmap.CompressFormat.JPEG;
-                    if (ecVar.f22180e) {
+                    if (ecVar.f22204e) {
                         i7 = 83;
                     } else {
                         i7 = 60;
@@ -97,7 +97,7 @@ public final class fc implements Runnable {
                     } catch (Exception e10) {
                         a8.g(e10, true);
                     }
-                    g0.h3(new mn(this, str, new ArrayList(ecVar.f22179c), new BitmapDrawable(bitmap), new ArrayList(ecVar.d), 4));
+                    g0.h3(new mn(this, str, new ArrayList(ecVar.f22203c), new BitmapDrawable(bitmap), new ArrayList(ecVar.d), 4));
                     return;
                 }
                 a();

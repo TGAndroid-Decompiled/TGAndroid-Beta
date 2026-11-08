@@ -21,6 +21,18 @@ public final class d extends Binder implements b, IInterface {
     }
 
     @Override
+    public final void E0(Status status, o8.d dVar) {
+        switch (this.f8214a) {
+            case 0:
+                return;
+            default:
+                j.e(status, "status");
+                k8.a(status, dVar, this.f8215b);
+                return;
+        }
+    }
+
+    @Override
     public final void n(Status status, o8.b bVar) {
         switch (this.f8214a) {
             case 0:
@@ -28,18 +40,6 @@ public final class d extends Binder implements b, IInterface {
                 k8.a(status, bVar, this.f8215b);
                 return;
             default:
-                return;
-        }
-    }
-
-    @Override
-    public final void n0(Status status, o8.d dVar) {
-        switch (this.f8214a) {
-            case 0:
-                return;
-            default:
-                j.e(status, "status");
-                k8.a(status, dVar, this.f8215b);
                 return;
         }
     }
@@ -70,7 +70,7 @@ public final class d extends Binder implements b, IInterface {
         o8.d dVar = (o8.d) a.a(parcel, o8.d.CREATOR);
         int dataAvail2 = parcel.dataAvail();
         if (dataAvail2 <= 0) {
-            n0(status2, dVar);
+            E0(status2, dVar);
             return true;
         }
         throw new BadParcelableException(g.j(dataAvail2, "Parcel data not fully consumed, unread size: "));
@@ -81,9 +81,9 @@ public final class d extends Binder implements b, IInterface {
         return this;
     }
 
-    private final void H0(Status status, o8.b bVar) {
+    private final void h1(Status status, o8.b bVar) {
     }
 
-    private final void I0(Status status, o8.d dVar) {
+    private final void i1(Status status, o8.d dVar) {
     }
 }

@@ -3,18 +3,18 @@ package org.telegram.ui;
 import android.view.View;
 import android.widget.Toast;
 public final class b31 implements View.OnClickListener {
-    public final int f44171a;
-    public final m31 f44172b;
+    public final int f44177a;
+    public final m31 f44178b;
 
     public b31(m31 m31Var, int i7) {
-        this.f44171a = i7;
-        this.f44172b = m31Var;
+        this.f44177a = i7;
+        this.f44178b = m31Var;
     }
 
     @Override
     public final void onClick(View view) {
-        int i7 = this.f44171a;
-        m31 m31Var = this.f44172b;
+        int i7 = this.f44177a;
+        m31 m31Var = this.f44178b;
         switch (i7) {
             case 0:
                 vf.c.t(m31Var.getParentActivity(), m31Var.getMessagesController().L5);
@@ -29,7 +29,7 @@ public final class b31 implements View.OnClickListener {
                 return;
             case 3:
                 m31Var.getClass();
-                m31Var.presentFragment(new ya1(8, null));
+                m31Var.presentFragment(new za1(8, null));
                 return;
             case 4:
                 m31Var.getMessagesController().k4(0L, "VALIDATE_PASSWORD");
@@ -41,9 +41,9 @@ public final class b31 implements View.OnClickListener {
                 int i10 = m31Var.Q + 1;
                 m31Var.Q = i10;
                 if (i10 < 2) {
-                    boolean z9 = org.telegram.messenger.r2.f25199a;
+                    boolean z9 = org.telegram.messenger.r2.f25212a;
                     try {
-                        Toast.makeText(m31Var.getParentActivity(), org.telegram.messenger.hd.M0(2131751626, null), 0).show();
+                        Toast.makeText(m31Var.getParentActivity(), org.telegram.messenger.id.M0(2131751626, null), 0).show();
                         return;
                     } catch (Exception e10) {
                         org.telegram.messenger.a8.g(e10, true);

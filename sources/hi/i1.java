@@ -13,7 +13,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.gc;
 import org.telegram.messenger.gz;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.k5;
 import org.telegram.messenger.qp;
@@ -56,7 +56,7 @@ public final class i1 extends na {
         this.Q1 = t10.p(qp.s1(i7).a2(Long.valueOf(j3)));
         this.V1 = t0Var;
         Y0();
-        this.f36274z1 = org.telegram.messenger.g0.L(4.0f);
+        this.f36290z1 = org.telegram.messenger.g0.L(4.0f);
         this.A1 = org.telegram.messenger.g0.L(-10.0f);
         TLRPC.BotInlineResult botInlineResult = tL_messages_preparedInlineMessage.result;
         if (file == null || !file.exists() || webPage != null) {
@@ -130,7 +130,7 @@ public final class i1 extends na {
                 case 5:
                 case 6:
                     TLRPC.TL_document tL_document2 = new TLRPC.TL_document();
-                    tL_document2.f26959id = 0L;
+                    tL_document2.f26962id = 0L;
                     tL_document2.size = 0L;
                     tL_document2.dc_id = 0;
                     tL_document2.mime_type = botInlineResult.content.mime_type;
@@ -193,7 +193,7 @@ public final class i1 extends na {
                             tL_document2.attributes.add(tL_documentAttributeSticker);
                             TLRPC.TL_documentAttributeImageSize tL_documentAttributeImageSize = new TLRPC.TL_documentAttributeImageSize();
                             int[] h12 = ij.h1(botInlineResult);
-                            tL_documentAttributeImageSize.f26960w = h12[0];
+                            tL_documentAttributeImageSize.f26963w = h12[0];
                             tL_documentAttributeImageSize.h = h12[1];
                             tL_document2.attributes.add(tL_documentAttributeImageSize);
                             tL_documentAttributeFilename.file_name = "sticker.webp";
@@ -251,7 +251,7 @@ public final class i1 extends na {
                             tL_documentAttributeFilename.file_name = "video.mp4";
                             TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo = new TLRPC.TL_documentAttributeVideo();
                             int[] h13 = ij.h1(botInlineResult);
-                            tL_documentAttributeVideo.f26960w = h13[0];
+                            tL_documentAttributeVideo.f26963w = h13[0];
                             tL_documentAttributeVideo.h = h13[1];
                             tL_documentAttributeVideo.duration = ij.g1(botInlineResult);
                             tL_documentAttributeVideo.supports_streaming = true;
@@ -291,7 +291,7 @@ public final class i1 extends na {
                     if (tL_document2.thumbs.isEmpty()) {
                         TLRPC.TL_photoSize tL_photoSize = new TLRPC.TL_photoSize();
                         int[] h14 = ij.h1(botInlineResult);
-                        tL_photoSize.f26978w = h14[0];
+                        tL_photoSize.f26981w = h14[0];
                         z9 = true;
                         tL_photoSize.h = h14[1];
                         tL_photoSize.size = 0;
@@ -319,7 +319,7 @@ public final class i1 extends na {
                         tL_photo2.file_reference = new byte[i11];
                         TLRPC.TL_photoSize tL_photoSize2 = new TLRPC.TL_photoSize();
                         int[] h15 = ij.h1(botInlineResult);
-                        tL_photoSize2.f26978w = h15[i11];
+                        tL_photoSize2.f26981w = h15[i11];
                         tL_photoSize2.h = h15[1];
                         tL_photoSize2.size = 1;
                         tL_photoSize2.location = new TLRPC.TL_fileLocationUnavailable();
@@ -342,10 +342,10 @@ public final class i1 extends na {
         h1 h1Var = d12;
         org.telegram.ui.Cells.t0 t0Var2 = new org.telegram.ui.Cells.t0(context, f6Var, false);
         t0Var2.setDelegate(new Object());
-        t0Var2.setCustomText(hd.M0(2131752979, null));
+        t0Var2.setCustomText(id.M0(2131752979, null));
         org.telegram.ui.Cells.q1 q1Var = new org.telegram.ui.Cells.q1(context, i10);
         q1Var.setDelegate(new Object());
-        q1Var.v3(h1Var, null, false, false, false, false);
+        q1Var.w3(h1Var, null, false, false, false, false);
         LinearLayout f10 = k5.f(context, r11);
         f10.addView(t0Var2, ha.o(-1, -2));
         f10.addView(q1Var, ha.o(-1, -2));
@@ -355,17 +355,17 @@ public final class i1 extends na {
         rt0Var.addView(f10, ha.d(-1, -1.0f, 119, 4.0f, 8.0f, 4.0f, 8.0f));
         FrameLayout frameLayout = new FrameLayout(context);
         fi.d h = k5.h(24, context, f6Var, r11);
-        h.i(hd.M0(2131752978, null), false, r11);
+        h.i(id.M0(2131752978, null), false, r11);
         h.setOnClickListener(new bi.d1(this, tL_messages_preparedInlineMessage, t0Var, i10, j3, pVar));
         frameLayout.addView(h, ha.d(-1, 48.0f, 119, 10.0f, 10.0f, 10.0f, 10.0f));
-        ViewGroup viewGroup = this.f28616b;
-        int i13 = this.f28646t0;
+        ViewGroup viewGroup = this.f28619b;
+        int i13 = this.f28649t0;
         viewGroup.addView(frameLayout, ha.f(-2.0f, -1, 87, i13, 0, i13, 0));
-        pj0 pj0Var = this.f36261k1;
-        int i14 = this.f28646t0;
+        pj0 pj0Var = this.f36277k1;
+        int i14 = this.f28649t0;
         pj0Var.setPadding(i14, 0, i14, org.telegram.messenger.g0.L(68.0f) + r11);
-        this.f36261k1.r1();
-        int i15 = k6.f27793a7;
+        this.f36277k1.r1();
+        int i15 = k6.f27796a7;
         v0(k6.w0(i15, this.I0));
         P(i15);
         this.R1.O(false);
@@ -380,7 +380,7 @@ public final class i1 extends na {
         u1Var.r(500L);
         TLRPC.TL_messages_getPreparedInlineMessage tL_messages_getPreparedInlineMessage = new TLRPC.TL_messages_getPreparedInlineMessage();
         tL_messages_getPreparedInlineMessage.bot = qp.s1(i7).o1(j3);
-        tL_messages_getPreparedInlineMessage.f27053id = str;
+        tL_messages_getPreparedInlineMessage.f27056id = str;
         ConnectionsManager.getInstance(i7).sendRequest(tL_messages_getPreparedInlineMessage, new w0(i7, u1Var, context, j3, f6Var, pVar, t0Var));
     }
 
@@ -393,7 +393,7 @@ public final class i1 extends na {
 
     @Override
     public final CharSequence O0() {
-        return hd.M0(2131752981, null);
+        return id.M0(2131752981, null);
     }
 
     @Override
@@ -412,7 +412,7 @@ public final class i1 extends na {
     public final void onCreate(Bundle bundle) {
         int b10;
         super.onCreate(bundle);
-        pj0 pj0Var = this.f36261k1;
+        pj0 pj0Var = this.f36277k1;
         if (pj0Var.getAdapter() == null) {
             b10 = 0;
         } else {
@@ -425,7 +425,7 @@ public final class i1 extends na {
     public final void s0() {
         try {
             super.s0();
-            int w02 = k6.w0(k6.f27793a7, this.I0);
+            int w02 = k6.w0(k6.f27796a7, this.I0);
             if (w02 != this.W1) {
                 this.W1 = w02;
                 v0(w02);

@@ -8,7 +8,7 @@ import org.telegram.ui.Components.q41;
 import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.x31;
 public final class f8 extends w31 {
-    public static final int f29128b = 0;
+    public static final int f29131b = 0;
 
     static {
         w31.h(new w31());
@@ -19,7 +19,7 @@ public final class f8 extends w31 {
         boolean z9;
         g8 g8Var = (g8) view;
         boolean z10 = false;
-        if (x31Var != null && x31Var.f40153e) {
+        if (x31Var != null && x31Var.f40174e) {
             z9 = true;
         } else {
             z9 = false;
@@ -46,7 +46,7 @@ public final class f8 extends w31 {
                 public final boolean onTouch(View view, MotionEvent motionEvent) {
                     q41 q41Var2;
                     v4.y yVar;
-                    if (motionEvent.getAction() == 0 && (yVar = (q41Var2 = q41.this).f37161g3) != null) {
+                    if (motionEvent.getAction() == 0 && (yVar = (q41Var2 = q41.this).f37191g3) != null) {
                         yVar.t(q41Var2.T(g8Var));
                         return false;
                     }

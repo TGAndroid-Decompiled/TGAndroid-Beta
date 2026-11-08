@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.aj;
 import org.telegram.messenger.dj;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.Components.xi0;
 public final class k extends v4.m0 {
     public final int f9277a;
@@ -82,27 +82,27 @@ public final class k extends v4.m0 {
                 int i7 = 0;
                 rect.bottom = 0;
                 if ((view instanceof org.telegram.ui.Cells.q1) && (currentMessagesGroup = (q1Var = (org.telegram.ui.Cells.q1) view).getCurrentMessagesGroup()) != null) {
-                    ArrayList arrayList = currentMessagesGroup.f22012e;
+                    ArrayList arrayList = currentMessagesGroup.f22037e;
                     aj currentPosition = q1Var.getCurrentPosition();
-                    if (currentPosition != null && currentPosition.f21452m != null) {
-                        Point point = org.telegram.messenger.g0.f22544q;
+                    if (currentPosition != null && currentPosition.f21451m != null) {
+                        Point point = org.telegram.messenger.g0.f22563q;
                         float max = Math.max(point.x, point.y) * 0.5f;
                         int extraInsetHeight = q1Var.getExtraInsetHeight();
                         int i10 = 0;
                         while (true) {
-                            if (i10 < currentPosition.f21452m.length) {
+                            if (i10 < currentPosition.f21451m.length) {
                                 extraInsetHeight += (int) Math.ceil(fArr[i10] * max);
                                 i10++;
                             } else {
-                                int round = (Math.round(org.telegram.messenger.g0.f22543p * 7.0f) * (currentPosition.d - currentPosition.f21444c)) + extraInsetHeight;
+                                int round = (Math.round(org.telegram.messenger.g0.f22562p * 7.0f) * (currentPosition.d - currentPosition.f21443c)) + extraInsetHeight;
                                 int size = arrayList.size();
                                 while (true) {
                                     if (i7 < size) {
                                         aj ajVar = (aj) arrayList.get(i7);
-                                        byte b10 = ajVar.f21444c;
-                                        byte b11 = currentPosition.f21444c;
-                                        if (b10 == b11 && ((ajVar.f21442a != currentPosition.f21442a || ajVar.f21443b != currentPosition.f21443b || b10 != b11 || ajVar.d != currentPosition.d) && b10 == b11)) {
-                                            round = org.telegram.messenger.k5.B(4.0f, (int) Math.ceil(max * ajVar.f21446f), round);
+                                        byte b10 = ajVar.f21443c;
+                                        byte b11 = currentPosition.f21443c;
+                                        if (b10 == b11 && ((ajVar.f21441a != currentPosition.f21441a || ajVar.f21442b != currentPosition.f21442b || b10 != b11 || ajVar.d != currentPosition.d) && b10 == b11)) {
+                                            round = org.telegram.messenger.k5.B(4.0f, (int) Math.ceil(max * ajVar.f21445f), round);
                                         } else {
                                             i7++;
                                         }
@@ -129,27 +129,27 @@ public final class k extends v4.m0 {
                 int i11 = 0;
                 rect.bottom = 0;
                 if ((view instanceof org.telegram.ui.Cells.q1) && (currentMessagesGroup2 = (q1Var2 = (org.telegram.ui.Cells.q1) view).getCurrentMessagesGroup()) != null) {
-                    ArrayList arrayList2 = currentMessagesGroup2.f22012e;
+                    ArrayList arrayList2 = currentMessagesGroup2.f22037e;
                     aj currentPosition2 = q1Var2.getCurrentPosition();
-                    if (currentPosition2 != null && currentPosition2.f21452m != null) {
-                        Point point2 = org.telegram.messenger.g0.f22544q;
+                    if (currentPosition2 != null && currentPosition2.f21451m != null) {
+                        Point point2 = org.telegram.messenger.g0.f22563q;
                         float max2 = Math.max(point2.x, point2.y) * 0.5f;
                         int extraInsetHeight2 = q1Var2.getExtraInsetHeight();
                         int i12 = 0;
                         while (true) {
-                            if (i12 < currentPosition2.f21452m.length) {
+                            if (i12 < currentPosition2.f21451m.length) {
                                 extraInsetHeight2 += (int) Math.ceil(fArr2[i12] * max2);
                                 i12++;
                             } else {
-                                int round2 = (Math.round(org.telegram.messenger.g0.f22543p * 7.0f) * (currentPosition2.d - currentPosition2.f21444c)) + extraInsetHeight2;
+                                int round2 = (Math.round(org.telegram.messenger.g0.f22562p * 7.0f) * (currentPosition2.d - currentPosition2.f21443c)) + extraInsetHeight2;
                                 int size2 = arrayList2.size();
                                 while (true) {
                                     if (i11 < size2) {
                                         aj ajVar2 = (aj) arrayList2.get(i11);
-                                        byte b12 = ajVar2.f21444c;
-                                        byte b13 = currentPosition2.f21444c;
-                                        if (b12 == b13 && ((ajVar2.f21442a != currentPosition2.f21442a || ajVar2.f21443b != currentPosition2.f21443b || b12 != b13 || ajVar2.d != currentPosition2.d) && b12 == b13)) {
-                                            round2 = org.telegram.messenger.k5.B(4.0f, (int) Math.ceil(max2 * ajVar2.f21446f), round2);
+                                        byte b12 = ajVar2.f21443c;
+                                        byte b13 = currentPosition2.f21443c;
+                                        if (b12 == b13 && ((ajVar2.f21441a != currentPosition2.f21441a || ajVar2.f21442b != currentPosition2.f21442b || b12 != b13 || ajVar2.d != currentPosition2.d) && b12 == b13)) {
+                                            round2 = org.telegram.messenger.k5.B(4.0f, (int) Math.ceil(max2 * ajVar2.f21445f), round2);
                                         } else {
                                             i11++;
                                         }
@@ -210,7 +210,7 @@ public final class k extends v4.m0 {
                 xi0 xi0Var3 = (xi0) recyclerView.T(view);
                 if (xi0Var3 != null) {
                     int i15 = 0;
-                    if (xi0Var3.f56955f != 5) {
+                    if (xi0Var3.f57047f != 5) {
                         rect.right = 0;
                         rect.left = 0;
                         return;
@@ -241,27 +241,27 @@ public final class k extends v4.m0 {
                 int i16 = 0;
                 rect.bottom = 0;
                 if ((view instanceof org.telegram.ui.Cells.q1) && (currentMessagesGroup3 = (q1Var3 = (org.telegram.ui.Cells.q1) view).getCurrentMessagesGroup()) != null) {
-                    ArrayList arrayList3 = currentMessagesGroup3.f22012e;
+                    ArrayList arrayList3 = currentMessagesGroup3.f22037e;
                     aj currentPosition3 = q1Var3.getCurrentPosition();
-                    if (currentPosition3 != null && currentPosition3.f21452m != null) {
-                        Point point3 = org.telegram.messenger.g0.f22544q;
+                    if (currentPosition3 != null && currentPosition3.f21451m != null) {
+                        Point point3 = org.telegram.messenger.g0.f22563q;
                         float max3 = Math.max(point3.x, point3.y) * 0.5f;
                         int extraInsetHeight3 = q1Var3.getExtraInsetHeight();
                         int i17 = 0;
                         while (true) {
-                            if (i17 < currentPosition3.f21452m.length) {
+                            if (i17 < currentPosition3.f21451m.length) {
                                 extraInsetHeight3 += (int) Math.ceil(fArr3[i17] * max3);
                                 i17++;
                             } else {
-                                int round3 = (Math.round(org.telegram.messenger.g0.f22543p * 7.0f) * (currentPosition3.d - currentPosition3.f21444c)) + extraInsetHeight3;
+                                int round3 = (Math.round(org.telegram.messenger.g0.f22562p * 7.0f) * (currentPosition3.d - currentPosition3.f21443c)) + extraInsetHeight3;
                                 int size3 = arrayList3.size();
                                 while (true) {
                                     if (i16 < size3) {
                                         aj ajVar3 = (aj) arrayList3.get(i16);
-                                        byte b17 = ajVar3.f21444c;
-                                        byte b18 = currentPosition3.f21444c;
-                                        if (b17 == b18 && ((ajVar3.f21442a != currentPosition3.f21442a || ajVar3.f21443b != currentPosition3.f21443b || b17 != b18 || ajVar3.d != currentPosition3.d) && b17 == b18)) {
-                                            round3 = org.telegram.messenger.k5.B(4.0f, (int) Math.ceil(max3 * ajVar3.f21446f), round3);
+                                        byte b17 = ajVar3.f21443c;
+                                        byte b18 = currentPosition3.f21443c;
+                                        if (b17 == b18 && ((ajVar3.f21441a != currentPosition3.f21441a || ajVar3.f21442b != currentPosition3.f21442b || b17 != b18 || ajVar3.d != currentPosition3.d) && b17 == b18)) {
+                                            round3 = org.telegram.messenger.k5.B(4.0f, (int) Math.ceil(max3 * ajVar3.f21445f), round3);
                                         } else {
                                             i16++;
                                         }
@@ -296,27 +296,27 @@ public final class k extends v4.m0 {
                 int i18 = 0;
                 rect.bottom = 0;
                 if ((view instanceof org.telegram.ui.Cells.q1) && (currentMessagesGroup4 = (q1Var4 = (org.telegram.ui.Cells.q1) view).getCurrentMessagesGroup()) != null) {
-                    ArrayList arrayList4 = currentMessagesGroup4.f22012e;
+                    ArrayList arrayList4 = currentMessagesGroup4.f22037e;
                     aj currentPosition4 = q1Var4.getCurrentPosition();
-                    if (currentPosition4 != null && currentPosition4.f21452m != null) {
-                        Point point4 = org.telegram.messenger.g0.f22544q;
+                    if (currentPosition4 != null && currentPosition4.f21451m != null) {
+                        Point point4 = org.telegram.messenger.g0.f22563q;
                         float max4 = Math.max(point4.x, point4.y) * 0.5f;
                         int extraInsetHeight4 = q1Var4.getExtraInsetHeight();
                         int i19 = 0;
                         while (true) {
-                            if (i19 < currentPosition4.f21452m.length) {
+                            if (i19 < currentPosition4.f21451m.length) {
                                 extraInsetHeight4 += (int) Math.ceil(fArr4[i19] * max4);
                                 i19++;
                             } else {
-                                int round4 = (Math.round(org.telegram.messenger.g0.f22543p * 7.0f) * (currentPosition4.d - currentPosition4.f21444c)) + extraInsetHeight4;
+                                int round4 = (Math.round(org.telegram.messenger.g0.f22562p * 7.0f) * (currentPosition4.d - currentPosition4.f21443c)) + extraInsetHeight4;
                                 int size4 = arrayList4.size();
                                 while (true) {
                                     if (i18 < size4) {
                                         aj ajVar4 = (aj) arrayList4.get(i18);
-                                        byte b19 = ajVar4.f21444c;
-                                        byte b20 = currentPosition4.f21444c;
-                                        if (b19 == b20 && ((ajVar4.f21442a != currentPosition4.f21442a || ajVar4.f21443b != currentPosition4.f21443b || b19 != b20 || ajVar4.d != currentPosition4.d) && b19 == b20)) {
-                                            round4 = org.telegram.messenger.k5.B(4.0f, (int) Math.ceil(max4 * ajVar4.f21446f), round4);
+                                        byte b19 = ajVar4.f21443c;
+                                        byte b20 = currentPosition4.f21443c;
+                                        if (b19 == b20 && ((ajVar4.f21441a != currentPosition4.f21441a || ajVar4.f21442b != currentPosition4.f21442b || b19 != b20 || ajVar4.d != currentPosition4.d) && b19 == b20)) {
+                                            round4 = org.telegram.messenger.k5.B(4.0f, (int) Math.ceil(max4 * ajVar4.f21445f), round4);
                                         } else {
                                             i18++;
                                         }
@@ -355,19 +355,19 @@ public final class k extends v4.m0 {
                     }
                     if (RecyclerView.R(childAt) >= 0 && !(childAt instanceof org.telegram.ui.Cells.x3) && !(view instanceof org.telegram.ui.Cells.x3)) {
                         int bottom = childAt.getBottom();
-                        if (hd.f22878a0) {
+                        if (id.f23157a0) {
                             L = 0.0f;
                         } else {
                             L = org.telegram.messenger.g0.L(72.0f);
                         }
                         float f10 = L;
                         float f11 = bottom;
-                        if (hd.f22878a0) {
+                        if (id.f23157a0) {
                             i7 = org.telegram.messenger.g0.L(72.0f);
                         } else {
                             i7 = 0;
                         }
-                        canvas.drawLine(f10, f11, width - i7, f11, org.telegram.ui.ActionBar.k6.f27972k0);
+                        canvas.drawLine(f10, f11, width - i7, f11, org.telegram.ui.ActionBar.k6.f27975k0);
                     }
                 }
                 return;

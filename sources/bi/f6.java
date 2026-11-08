@@ -21,7 +21,7 @@ public final class f6 extends View implements org.telegram.ui.ActionBar.a6 {
         this.f3867c = path;
         Paint paint = new Paint(1);
         this.d = paint;
-        org.telegram.ui.ActionBar.q6 q6Var = org.telegram.ui.ActionBar.r6.f28475a;
+        org.telegram.ui.ActionBar.q6 q6Var = org.telegram.ui.ActionBar.r6.f28478a;
         u6 u6Var = new u6(this, starGift, 60, 0.27f);
         this.f3865a = u6Var;
         u6Var.K = 3;
@@ -94,7 +94,7 @@ public final class f6 extends View implements org.telegram.ui.ActionBar.a6 {
         this.f3867c = path;
         Paint paint = new Paint(1);
         this.d = paint;
-        org.telegram.ui.ActionBar.q6 q6Var = org.telegram.ui.ActionBar.r6.f28475a;
+        org.telegram.ui.ActionBar.q6 q6Var = org.telegram.ui.ActionBar.r6.f28478a;
         u6 u6Var = new u6(this, starGift, 60, 0.27f);
         this.f3865a = u6Var;
         u6Var.K = 3;

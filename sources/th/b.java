@@ -13,84 +13,84 @@ import org.telegram.messenger.g0;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.RadialProgress2;
 public final class b extends Drawable {
-    public final TextPaint f55942a;
-    public final TextPaint f55943b;
-    public RadialProgress2 f55944c;
+    public final TextPaint f56034a;
+    public final TextPaint f56035b;
+    public RadialProgress2 f56036c;
     public boolean d;
-    public StaticLayout f55947g;
+    public StaticLayout f56039g;
     public StaticLayout h;
-    public CharSequence f55945e = "";
-    public CharSequence f55946f = "";
-    public int f55952m = -1;
-    public final int f55948i = g0.L(64.0f);
-    public final int f55949j = g0.L(10.66f);
-    public final int f55950k = g0.L(12.0f);
-    public final int f55951l = g0.L(4.0f);
+    public CharSequence f56037e = "";
+    public CharSequence f56038f = "";
+    public int f56044m = -1;
+    public final int f56040i = g0.L(64.0f);
+    public final int f56041j = g0.L(10.66f);
+    public final int f56042k = g0.L(12.0f);
+    public final int f56043l = g0.L(4.0f);
 
     public b() {
         TextPaint textPaint = new TextPaint(1);
-        this.f55942a = textPaint;
+        this.f56034a = textPaint;
         textPaint.setTextSize(g0.L(15.0f));
         textPaint.setTypeface(g0.o());
         TextPaint textPaint2 = new TextPaint(1);
-        this.f55943b = textPaint2;
+        this.f56035b = textPaint2;
         textPaint2.setTextSize(g0.L(13.0f));
     }
 
     @Override
     public final void draw(Canvas canvas) {
         boolean z9 = this.d;
-        TextPaint textPaint = this.f55943b;
-        TextPaint textPaint2 = this.f55942a;
+        TextPaint textPaint = this.f56035b;
+        TextPaint textPaint2 = this.f56034a;
         if (z9) {
             int alpha = textPaint2.getAlpha();
             int alpha2 = textPaint.getAlpha();
             textPaint2.setColor(k6.x0(null, k6.G6, false));
             textPaint2.setAlpha(alpha);
-            textPaint.setColor(k6.x0(null, k6.f28241y6, false));
+            textPaint.setColor(k6.x0(null, k6.f28244y6, false));
             textPaint.setAlpha(alpha2);
         }
         int width = getBounds().width();
-        int i7 = this.f55948i;
-        if (width > 0 && (width != this.f55952m || this.f55947g == null || this.h == null)) {
-            this.f55952m = width;
-            int i10 = (width - i7) - this.f55950k;
+        int i7 = this.f56040i;
+        if (width > 0 && (width != this.f56044m || this.f56039g == null || this.h == null)) {
+            this.f56044m = width;
+            int i10 = (width - i7) - this.f56042k;
             if (i10 <= 0) {
-                this.f55947g = null;
+                this.f56039g = null;
                 this.h = null;
             } else {
                 float f10 = i10;
-                CharSequence ellipsize = TextUtils.ellipsize(this.f55945e, textPaint2, f10, TextUtils.TruncateAt.MIDDLE);
-                CharSequence ellipsize2 = TextUtils.ellipsize(this.f55946f, textPaint, f10, TextUtils.TruncateAt.END);
+                CharSequence ellipsize = TextUtils.ellipsize(this.f56037e, textPaint2, f10, TextUtils.TruncateAt.MIDDLE);
+                CharSequence ellipsize2 = TextUtils.ellipsize(this.f56038f, textPaint, f10, TextUtils.TruncateAt.END);
                 Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-                this.f55947g = new StaticLayout(ellipsize, textPaint2, i10, alignment, 1.0f, 0.0f, false);
+                this.f56039g = new StaticLayout(ellipsize, textPaint2, i10, alignment, 1.0f, 0.0f, false);
                 this.h = new StaticLayout(ellipsize2, textPaint, i10, alignment, 1.0f, 0.0f, false);
             }
         }
-        if (this.f55947g != null && this.h != null) {
+        if (this.f56039g != null && this.h != null) {
             Rect bounds = getBounds();
             float f11 = bounds.left + i7;
-            float f12 = bounds.top + this.f55949j;
-            this.f55944c.r(g0.L(10.0f) + bounds.left, g0.L(9.0f) + bounds.top, g0.L(42.0f) + g0.L(10.0f) + bounds.left, g0.L(42.0f) + g0.L(9.0f) + bounds.top);
+            float f12 = bounds.top + this.f56041j;
+            this.f56036c.r(g0.L(10.0f) + bounds.left, g0.L(9.0f) + bounds.top, g0.L(42.0f) + g0.L(10.0f) + bounds.left, g0.L(42.0f) + g0.L(9.0f) + bounds.top);
             canvas.save();
             canvas.translate(f11, f12);
-            this.f55947g.draw(canvas);
+            this.f56039g.draw(canvas);
             canvas.restore();
             canvas.save();
-            canvas.translate(f11, this.f55947g.getHeight() + f12 + this.f55951l);
+            canvas.translate(f11, this.f56039g.getHeight() + f12 + this.f56043l);
             this.h.draw(canvas);
             canvas.restore();
-            this.f55944c.draw(canvas);
+            this.f56036c.draw(canvas);
         }
     }
 
     @Override
     public final int getIntrinsicHeight() {
-        Paint.FontMetricsInt fontMetricsInt = this.f55942a.getFontMetricsInt();
+        Paint.FontMetricsInt fontMetricsInt = this.f56034a.getFontMetricsInt();
         int i7 = fontMetricsInt.descent - fontMetricsInt.ascent;
-        int i10 = this.f55949j;
-        int i11 = i7 + i10 + this.f55951l;
-        Paint.FontMetricsInt fontMetricsInt2 = this.f55943b.getFontMetricsInt();
+        int i10 = this.f56041j;
+        int i11 = i7 + i10 + this.f56043l;
+        Paint.FontMetricsInt fontMetricsInt2 = this.f56035b.getFontMetricsInt();
         return (fontMetricsInt2.descent - fontMetricsInt2.ascent) + i11 + i10;
     }
 
@@ -102,23 +102,23 @@ public final class b extends Drawable {
     @Override
     public final void onBoundsChange(Rect rect) {
         super.onBoundsChange(rect);
-        this.f55952m = -1;
-        this.f55947g = null;
+        this.f56044m = -1;
+        this.f56039g = null;
         this.h = null;
     }
 
     @Override
     public final void setAlpha(int i7) {
-        this.f55944c.E = i7 / 255.0f;
-        this.f55942a.setAlpha(i7);
-        this.f55943b.setAlpha(i7);
+        this.f56036c.E = i7 / 255.0f;
+        this.f56034a.setAlpha(i7);
+        this.f56035b.setAlpha(i7);
         invalidateSelf();
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f55942a.setColorFilter(colorFilter);
-        this.f55943b.setColorFilter(colorFilter);
+        this.f56034a.setColorFilter(colorFilter);
+        this.f56035b.setColorFilter(colorFilter);
         invalidateSelf();
     }
 }

@@ -50,8 +50,8 @@ public final class c8 {
             wp wpVar = new wp(2131231188, 0);
             wpVar.c(org.telegram.messenger.g0.L(16.0f));
             wpVar.G = 1.0f;
-            wpVar.f40070r = -org.telegram.messenger.g0.L(1.0f);
-            wpVar.f40071s = org.telegram.messenger.g0.L(1.0f);
+            wpVar.f40020r = -org.telegram.messenger.g0.L(1.0f);
+            wpVar.f40021s = org.telegram.messenger.g0.L(1.0f);
             ((SpannableStringBuilder) f8878y[0]).setSpan(wpVar, 0, 1, 33);
         }
         return f8878y[0];
@@ -89,7 +89,7 @@ public final class c8 {
         float d = this.h.d(this.f8883f);
         Paint paint = this.f8896t;
         paint.setColor(1073741824);
-        int min = (int) Math.min(f10, Math.max(this.f8890n.f36125c, this.f8891o.f36125c) + org.telegram.messenger.g0.W1(d, org.telegram.messenger.g0.L(20.0f), org.telegram.messenger.g0.L(18.0f)));
+        int min = (int) Math.min(f10, Math.max(this.f8890n.f36147c, this.f8891o.f36147c) + org.telegram.messenger.g0.W1(d, org.telegram.messenger.g0.L(20.0f), org.telegram.messenger.g0.L(18.0f)));
         this.f8899x = min;
         int W1 = org.telegram.messenger.g0.W1(d, org.telegram.messenger.g0.L(42.0f), org.telegram.messenger.g0.L(22.0f));
         float f12 = min;
@@ -125,10 +125,10 @@ public final class c8 {
         }
         my0 my0Var = this.f8890n;
         float f14 = L;
-        my0Var.f36136p = f14;
+        my0Var.f36158p = f14;
         my0Var.c(org.telegram.messenger.g0.W1(d, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(7.0f)), org.telegram.messenger.g0.W1(d, org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(11.0f)), 1.0f, -1, canvas);
         my0 my0Var2 = this.f8891o;
-        my0Var2.f36136p = f14;
+        my0Var2.f36158p = f14;
         my0Var2.c(org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(30.0f), f13, -1, canvas);
         canvas.restore();
     }

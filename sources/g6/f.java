@@ -10,7 +10,7 @@ public abstract class f {
     public f(Context context, String str, String str2) {
         x xVar;
         try {
-            xVar = com.google.android.gms.internal.cast.d.b(context).Z0(str, str2, new j(this));
+            xVar = com.google.android.gms.internal.cast.d.b(context).z1(str, str2, new j(this));
         } catch (RemoteException | d e10) {
             com.google.android.gms.internal.cast.d.f6837a.a(e10, "Unable to call %s on %s.", "newSessionImpl", com.google.android.gms.internal.cast.f.class.getSimpleName());
             xVar = null;
@@ -24,9 +24,9 @@ public abstract class f {
         if (xVar != null) {
             try {
                 v vVar = (v) xVar;
-                Parcel R0 = vVar.R0(vVar.P0(), 3);
-                String readString = R0.readString();
-                R0.recycle();
+                Parcel r12 = vVar.r1(vVar.p1(), 3);
+                String readString = r12.readString();
+                r12.recycle();
                 return readString;
             } catch (RemoteException e10) {
                 f13557b.a(e10, "Unable to call %s on %s.", "getSessionId", x.class.getSimpleName());
@@ -42,14 +42,14 @@ public abstract class f {
         if (xVar != null) {
             try {
                 v vVar = (v) xVar;
-                Parcel R0 = vVar.R0(vVar.P0(), 5);
+                Parcel r12 = vVar.r1(vVar.p1(), 5);
                 int i7 = com.google.android.gms.internal.cast.t.f6991a;
-                if (R0.readInt() != 0) {
+                if (r12.readInt() != 0) {
                     z9 = true;
                 } else {
                     z9 = false;
                 }
-                R0.recycle();
+                r12.recycle();
                 return z9;
             } catch (RemoteException e10) {
                 f13557b.a(e10, "Unable to call %s on %s.", "isConnected", x.class.getSimpleName());
@@ -65,14 +65,14 @@ public abstract class f {
         if (xVar != null) {
             try {
                 v vVar = (v) xVar;
-                Parcel R0 = vVar.R0(vVar.P0(), 6);
+                Parcel r12 = vVar.r1(vVar.p1(), 6);
                 int i7 = com.google.android.gms.internal.cast.t.f6991a;
-                if (R0.readInt() != 0) {
+                if (r12.readInt() != 0) {
                     z9 = true;
                 } else {
                     z9 = false;
                 }
-                R0.recycle();
+                r12.recycle();
                 return z9;
             } catch (RemoteException e10) {
                 f13557b.a(e10, "Unable to call %s on %s.", "isConnecting", x.class.getSimpleName());
@@ -88,9 +88,9 @@ public abstract class f {
         }
         try {
             v vVar = (v) xVar;
-            Parcel P0 = vVar.P0();
-            P0.writeInt(i7);
-            vVar.T0(P0, 13);
+            Parcel p12 = vVar.p1();
+            p12.writeInt(i7);
+            vVar.t1(p12, 13);
         } catch (RemoteException e10) {
             f13557b.a(e10, "Unable to call %s on %s.", "notifySessionEnded", x.class.getSimpleName());
         }
@@ -102,14 +102,14 @@ public abstract class f {
         if (xVar != null) {
             try {
                 v vVar = (v) xVar;
-                Parcel R0 = vVar.R0(vVar.P0(), 17);
-                int readInt = R0.readInt();
-                R0.recycle();
+                Parcel r12 = vVar.r1(vVar.p1(), 17);
+                int readInt = r12.readInt();
+                r12.recycle();
                 if (readInt >= 211100000) {
                     v vVar2 = (v) xVar;
-                    Parcel R02 = vVar2.R0(vVar2.P0(), 18);
-                    int readInt2 = R02.readInt();
-                    R02.recycle();
+                    Parcel r13 = vVar2.r1(vVar2.p1(), 18);
+                    int readInt2 = r13.readInt();
+                    r13.recycle();
                     return readInt2;
                 }
             } catch (RemoteException e10) {
@@ -124,10 +124,10 @@ public abstract class f {
         if (xVar != null) {
             try {
                 v vVar = (v) xVar;
-                Parcel R0 = vVar.R0(vVar.P0(), 1);
-                a7.a M0 = a7.b.M0(R0.readStrongBinder());
-                R0.recycle();
-                return M0;
+                Parcel r12 = vVar.r1(vVar.p1(), 1);
+                a7.a m12 = a7.b.m1(r12.readStrongBinder());
+                r12.recycle();
+                return m12;
             } catch (RemoteException e10) {
                 f13557b.a(e10, "Unable to call %s on %s.", "getWrappedObject", x.class.getSimpleName());
             }

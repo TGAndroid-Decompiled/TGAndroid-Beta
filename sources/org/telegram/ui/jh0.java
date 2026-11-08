@@ -9,7 +9,7 @@ public final class jh0 extends org.telegram.ui.Cells.m8 {
         int L;
         super.onLayout(z9, i7, i10, i11, i12);
         int i13 = i11 - i7;
-        if (org.telegram.messenger.hd.f22878a0) {
+        if (org.telegram.messenger.id.f23157a0) {
             L = org.telegram.messenger.g0.L(17.0f);
         } else {
             L = i13 - org.telegram.messenger.g0.L(41.0f);

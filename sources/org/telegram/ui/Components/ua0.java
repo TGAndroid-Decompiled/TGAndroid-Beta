@@ -7,21 +7,21 @@ import android.graphics.Shader;
 import android.os.Build;
 import java.lang.ref.WeakReference;
 public final class ua0 {
-    public final Shader.TileMode f38572a;
-    public final Matrix f38573b = new Matrix();
-    public boolean f38574c;
+    public final Shader.TileMode f38587a;
+    public final Matrix f38588b = new Matrix();
+    public boolean f38589c;
     public BitmapShader d;
-    public WeakReference f38575e;
+    public WeakReference f38590e;
 
     public ua0(Shader.TileMode tileMode) {
-        this.f38572a = tileMode;
+        this.f38587a = tileMode;
     }
 
     public final void a(boolean z9) {
         BitmapShader bitmapShader;
         int i7;
-        if (this.f38574c != z9) {
-            this.f38574c = z9;
+        if (this.f38589c != z9) {
+            this.f38589c = z9;
             if (Build.VERSION.SDK_INT >= 33 && (bitmapShader = this.d) != null) {
                 if (z9) {
                     i7 = 1;
@@ -35,18 +35,18 @@ public final class ua0 {
 
     public final boolean b(Bitmap bitmap) {
         int i7;
-        WeakReference weakReference = this.f38575e;
+        WeakReference weakReference = this.f38590e;
         if (weakReference != null && weakReference.get() == bitmap) {
             return false;
         }
-        this.f38575e = new WeakReference(bitmap);
-        Shader.TileMode tileMode = this.f38572a;
+        this.f38590e = new WeakReference(bitmap);
+        Shader.TileMode tileMode = this.f38587a;
         BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
         this.d = bitmapShader;
-        bitmapShader.setLocalMatrix(this.f38573b);
+        bitmapShader.setLocalMatrix(this.f38588b);
         if (Build.VERSION.SDK_INT >= 33) {
             BitmapShader bitmapShader2 = this.d;
-            if (this.f38574c) {
+            if (this.f38589c) {
                 i7 = 1;
             } else {
                 i7 = 2;

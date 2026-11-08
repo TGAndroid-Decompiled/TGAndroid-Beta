@@ -12,8 +12,8 @@ public final class a {
         boolean z9;
         boolean z10;
         int i7;
-        int i10 = qVar.f15205a;
-        ByteBuffer byteBuffer = qVar.f15206b;
+        int i10 = qVar.f15208a;
+        ByteBuffer byteBuffer = qVar.f15209b;
         if (i10 != 6 && i10 != 3) {
             z9 = false;
         } else {
@@ -24,14 +24,14 @@ public final class a {
         byte[] bArr = new byte[min];
         byteBuffer.asReadOnlyBuffer().get(bArr);
         f fVar = new f(bArr, min);
-        if (!rVar.f15207a) {
+        if (!rVar.f15210a) {
             if (fVar.i()) {
                 this.f6416a = false;
                 return;
             }
             int j3 = fVar.j(2);
             boolean i11 = fVar.i();
-            if (!rVar.f15208b) {
+            if (!rVar.f15211b) {
                 if (!i11) {
                     this.f6416a = true;
                     return;
@@ -44,17 +44,17 @@ public final class a {
                 fVar.K();
                 if (rVar.d) {
                     if (fVar.i()) {
-                        if (rVar.f15210e) {
+                        if (rVar.f15213e) {
                             fVar.K();
                         } else {
                             throw new Exception();
                         }
                     }
-                    if (!rVar.f15209c) {
+                    if (!rVar.f15212c) {
                         if (j3 != 3) {
                             fVar.K();
                         }
-                        fVar.L(rVar.f15211f);
+                        fVar.L(rVar.f15214f);
                         if (j3 != 2 && j3 != 0 && !z10) {
                             fVar.L(3);
                         }

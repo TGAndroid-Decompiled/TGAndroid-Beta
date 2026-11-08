@@ -1,21 +1,21 @@
 package wg;
 public final class i implements Runnable {
-    public final int f57662a;
-    public final l f57663b;
+    public final int f57754a;
+    public final l f57755b;
 
     public i(l lVar, int i7) {
-        this.f57662a = i7;
-        this.f57663b = lVar;
+        this.f57754a = i7;
+        this.f57755b = lVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f57662a) {
+        switch (this.f57754a) {
             case 0:
-                this.f57663b.dismiss();
+                this.f57755b.dismiss();
                 return;
             default:
-                this.f57663b.onBackPressed();
+                this.f57755b.onBackPressed();
                 return;
         }
     }

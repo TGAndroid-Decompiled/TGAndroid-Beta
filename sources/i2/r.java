@@ -3,26 +3,26 @@ package i2;
 import a8.ia;
 import java.nio.ByteBuffer;
 public final class r {
-    public final boolean f15207a;
-    public final boolean f15208b;
-    public final boolean f15209c;
+    public final boolean f15210a;
+    public final boolean f15211b;
+    public final boolean f15212c;
     public final boolean d;
-    public final boolean f15210e;
-    public final int f15211f;
-    public final int f15212g;
+    public final boolean f15213e;
+    public final int f15214f;
+    public final int f15215g;
     public final boolean h;
-    public final boolean f15213i;
-    public final boolean f15214j;
-    public final boolean f15215k;
-    public final boolean f15216l;
-    public final byte f15217m;
-    public final byte f15218n;
-    public final byte f15219o;
+    public final boolean f15216i;
+    public final boolean f15217j;
+    public final boolean f15218k;
+    public final boolean f15219l;
+    public final byte f15220m;
+    public final byte f15221n;
+    public final byte f15222o;
 
     public r(q qVar) {
         boolean z9;
-        int i7 = qVar.f15205a;
-        ByteBuffer byteBuffer = qVar.f15206b;
+        int i7 = qVar.f15208a;
+        ByteBuffer byteBuffer = qVar.f15209b;
         if (i7 == 1) {
             z9 = true;
         } else {
@@ -33,13 +33,13 @@ public final class r {
         byte[] bArr = new byte[remaining];
         byteBuffer.asReadOnlyBuffer().get(bArr);
         d4.f fVar = new d4.f(bArr, remaining);
-        this.f15212g = fVar.j(3);
+        this.f15215g = fVar.j(3);
         fVar.K();
         boolean i10 = fVar.i();
-        this.f15207a = i10;
+        this.f15210a = i10;
         if (i10) {
             fVar.j(5);
-            this.f15208b = false;
+            this.f15211b = false;
             this.h = false;
         } else {
             if (fVar.i()) {
@@ -54,12 +54,12 @@ public final class r {
                     }
                 }
                 boolean i12 = fVar.i();
-                this.f15208b = i12;
+                this.f15211b = i12;
                 if (i12) {
                     fVar.L(47);
                 }
             } else {
-                this.f15208b = false;
+                this.f15211b = false;
             }
             this.h = fVar.i();
             int j3 = fVar.j(5);
@@ -72,7 +72,7 @@ public final class r {
                 } else if (fVar.j(5) > 7) {
                     fVar.K();
                 }
-                if (this.f15208b) {
+                if (this.f15211b) {
                     fVar.K();
                 }
                 if (this.h && fVar.i()) {
@@ -88,20 +88,20 @@ public final class r {
         int j11 = fVar.j(4);
         fVar.L(j10 + 1);
         fVar.L(j11 + 1);
-        if (!this.f15207a) {
-            this.f15209c = fVar.i();
+        if (!this.f15210a) {
+            this.f15212c = fVar.i();
         } else {
-            this.f15209c = false;
+            this.f15212c = false;
         }
-        if (this.f15209c) {
+        if (this.f15212c) {
             fVar.L(4);
             fVar.L(3);
         }
         fVar.L(3);
-        if (this.f15207a) {
-            this.f15210e = true;
+        if (this.f15210a) {
+            this.f15213e = true;
             this.d = true;
-            this.f15211f = 0;
+            this.f15214f = 0;
         } else {
             fVar.L(4);
             boolean i14 = fVar.i();
@@ -115,69 +115,69 @@ public final class r {
             }
             if (this.d) {
                 if (fVar.i()) {
-                    this.f15210e = true;
+                    this.f15213e = true;
                 } else {
-                    this.f15210e = fVar.i();
+                    this.f15213e = fVar.i();
                 }
             } else {
-                this.f15210e = true;
+                this.f15213e = true;
             }
             if (i14) {
-                this.f15211f = fVar.j(3) + 1;
+                this.f15214f = fVar.j(3) + 1;
             } else {
-                this.f15211f = 0;
+                this.f15214f = 0;
             }
         }
         fVar.L(3);
         boolean i15 = fVar.i();
-        if (this.f15212g == 2 && i15) {
-            this.f15213i = fVar.i();
+        if (this.f15215g == 2 && i15) {
+            this.f15216i = fVar.i();
         } else {
-            this.f15213i = false;
+            this.f15216i = false;
         }
-        if (this.f15212g != 1) {
-            this.f15214j = fVar.i();
+        if (this.f15215g != 1) {
+            this.f15217j = fVar.i();
         } else {
-            this.f15214j = false;
+            this.f15217j = false;
         }
         if (fVar.i()) {
-            this.f15217m = (byte) fVar.j(8);
-            this.f15218n = (byte) fVar.j(8);
-            this.f15219o = (byte) fVar.j(8);
+            this.f15220m = (byte) fVar.j(8);
+            this.f15221n = (byte) fVar.j(8);
+            this.f15222o = (byte) fVar.j(8);
         } else {
-            this.f15217m = (byte) 0;
-            this.f15218n = (byte) 0;
-            this.f15219o = (byte) 0;
+            this.f15220m = (byte) 0;
+            this.f15221n = (byte) 0;
+            this.f15222o = (byte) 0;
         }
-        if (this.f15214j) {
+        if (this.f15217j) {
             fVar.K();
-            this.f15215k = false;
-            this.f15216l = false;
-        } else if (this.f15217m == 1 && this.f15218n == 13 && this.f15219o == 0) {
-            this.f15215k = false;
-            this.f15216l = false;
+            this.f15218k = false;
+            this.f15219l = false;
+        } else if (this.f15220m == 1 && this.f15221n == 13 && this.f15222o == 0) {
+            this.f15218k = false;
+            this.f15219l = false;
         } else {
             fVar.K();
-            int i16 = this.f15212g;
+            int i16 = this.f15215g;
             if (i16 == 0) {
-                this.f15215k = true;
-                this.f15216l = true;
+                this.f15218k = true;
+                this.f15219l = true;
             } else if (i16 == 1) {
-                this.f15215k = false;
-                this.f15216l = false;
-            } else if (this.f15213i) {
+                this.f15218k = false;
+                this.f15219l = false;
+            } else if (this.f15216i) {
                 boolean i17 = fVar.i();
-                this.f15215k = i17;
+                this.f15218k = i17;
                 if (i17) {
-                    this.f15216l = fVar.i();
+                    this.f15219l = fVar.i();
                 } else {
-                    this.f15216l = false;
+                    this.f15219l = false;
                 }
             } else {
-                this.f15215k = true;
-                this.f15216l = false;
+                this.f15218k = true;
+                this.f15219l = false;
             }
-            if (this.f15215k && this.f15216l) {
+            if (this.f15218k && this.f15219l) {
                 fVar.j(2);
             }
         }

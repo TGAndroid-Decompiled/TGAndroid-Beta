@@ -2,28 +2,28 @@ package wi;
 
 import android.graphics.SurfaceTexture;
 public final class p implements SurfaceTexture.OnFrameAvailableListener {
-    public final int f58027a;
-    public final Object f58028b;
+    public final int f58122a;
+    public final Object f58123b;
 
     public p(Object obj, int i7) {
-        this.f58027a = i7;
-        this.f58028b = obj;
+        this.f58122a = i7;
+        this.f58123b = obj;
     }
 
     @Override
     public final void onFrameAvailable(SurfaceTexture surfaceTexture) {
-        switch (this.f58027a) {
+        switch (this.f58122a) {
             case 0:
-                ((u) this.f58028b).b(true);
+                ((t) this.f58123b).b(true);
                 return;
             case 1:
-                ((u) this.f58028b).b(false);
+                ((t) this.f58123b).b(false);
                 return;
             default:
-                w0 w0Var = (w0) this.f58028b;
-                synchronized (w0Var.f58136b) {
-                    w0Var.f58145m = true;
-                    w0Var.f58136b.notifyAll();
+                v0 v0Var = (v0) this.f58123b;
+                synchronized (v0Var.f58225b) {
+                    v0Var.f58234m = true;
+                    v0Var.f58225b.notifyAll();
                 }
                 return;
         }

@@ -16,28 +16,28 @@ import org.telegram.ui.Components.voip.h2;
 import org.telegram.ui.Components.xs0;
 import org.telegram.ui.ProfileActivity;
 public final class j0 extends AnimatorListenerAdapter {
-    public final int f16807a;
-    public final Object f16808b;
-    public final Object f16809c;
+    public final int f16810a;
+    public final Object f16811b;
+    public final Object f16812c;
     public final Object d;
-    public final Object f16810e;
+    public final Object f16813e;
 
     public j0(FrameLayout frameLayout, View view, View view2, Object obj, int i7) {
-        this.f16807a = i7;
-        this.f16810e = frameLayout;
-        this.f16809c = view;
-        this.f16808b = view2;
+        this.f16810a = i7;
+        this.f16813e = frameLayout;
+        this.f16812c = view;
+        this.f16811b = view2;
         this.d = obj;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f16807a) {
+        switch (this.f16810a) {
             case 1:
-                View view = (View) this.f16809c;
+                View view = (View) this.f16812c;
                 view.setTranslationY(0.0f);
                 if (view instanceof org.telegram.ui.Cells.q1) {
-                    ((org.telegram.ui.Cells.q1) view).getTransitionParams().f30798i = false;
+                    ((org.telegram.ui.Cells.q1) view).getTransitionParams().f30802i = false;
                     return;
                 }
                 return;
@@ -49,66 +49,66 @@ public final class j0 extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f16807a) {
+        switch (this.f16810a) {
             case 0:
                 ((ViewPropertyAnimator) this.d).setListener(null);
-                View view = (View) this.f16809c;
+                View view = (View) this.f16812c;
                 view.setAlpha(1.0f);
                 view.setTranslationX(0.0f);
                 view.setTranslationY(0.0f);
                 view.setScaleX(1.0f);
                 view.setScaleY(1.0f);
-                k0 k0Var = (k0) this.f16810e;
-                v4.d1 d1Var = (v4.d1) this.f16808b;
+                k0 k0Var = (k0) this.f16813e;
+                v4.d1 d1Var = (v4.d1) this.f16811b;
                 k0Var.d(d1Var);
                 k0Var.A.remove(d1Var);
                 k0Var.G();
                 return;
             case 1:
-                v4.d1 d1Var2 = (v4.d1) this.f16808b;
-                mi.l lVar = (mi.l) this.f16810e;
-                View view2 = (View) this.f16809c;
+                v4.d1 d1Var2 = (v4.d1) this.f16811b;
+                mi.l lVar = (mi.l) this.f16813e;
+                View view2 = (View) this.f16812c;
                 if (view2 instanceof org.telegram.ui.Cells.q1) {
-                    ((org.telegram.ui.Cells.q1) view2).getTransitionParams().f30798i = false;
+                    ((org.telegram.ui.Cells.q1) view2).getTransitionParams().f30802i = false;
                 }
                 ((ViewPropertyAnimator) this.d).setListener(null);
-                if (lVar.f57016y.remove(d1Var2)) {
+                if (lVar.f57108y.remove(d1Var2)) {
                     lVar.u(d1Var2);
                     lVar.G();
                     return;
                 }
                 return;
             case 2:
-                ((v4.d1) this.f16808b).f56951a.setAlpha(1.0f);
-                ((AnimatorSet) this.f16809c).removeAllListeners();
-                es esVar = (es) this.f16810e;
+                ((v4.d1) this.f16811b).f57043a.setAlpha(1.0f);
+                ((AnimatorSet) this.f16812c).removeAllListeners();
+                es esVar = (es) this.f16813e;
                 cs csVar = (cs) this.d;
-                esVar.d(csVar.f32640a);
-                esVar.f33344y.remove(csVar.f32640a);
+                esVar.d(csVar.f32671a);
+                esVar.f33375y.remove(csVar.f32671a);
                 esVar.A();
-                esVar.d(csVar.f32641b);
-                esVar.f33344y.remove(csVar.f32641b);
+                esVar.d(csVar.f32672b);
+                esVar.f33375y.remove(csVar.f32672b);
                 esVar.A();
                 return;
             case 3:
-                ((xs0) this.f16810e).K1 = false;
-                View view3 = (View) this.f16809c;
+                ((xs0) this.f16813e).K1 = false;
+                View view3 = (View) this.f16812c;
                 if (view3.getParent() != null) {
-                    ((sr0) this.f16808b).removeView(view3);
+                    ((sr0) this.f16811b).removeView(view3);
                     ((Bitmap) this.d).recycle();
                     return;
                 }
                 return;
             case 4:
-                h2 h2Var = (h2) this.f16810e;
-                TextView[] textViewArr = h2Var.f39209a;
-                View view4 = (View) this.f16809c;
+                h2 h2Var = (h2) this.f16813e;
+                TextView[] textViewArr = h2Var.f39244a;
+                View view4 = (View) this.f16812c;
                 view4.setVisibility(8);
                 view4.setAlpha(1.0f);
                 view4.setTranslationY(0.0f);
                 view4.setScaleY(1.0f);
                 view4.setScaleX(1.0f);
-                View view5 = (View) this.f16808b;
+                View view5 = (View) this.f16811b;
                 view5.setAlpha(1.0f);
                 view5.setTranslationY(0.0f);
                 view5.setVisibility(0);
@@ -118,23 +118,23 @@ public final class j0 extends AnimatorListenerAdapter {
                 if (runnable != null) {
                     runnable.run();
                 }
-                h2Var.f39213f = false;
-                CharSequence charSequence = h2Var.f39212e;
+                h2Var.f39248f = false;
+                CharSequence charSequence = h2Var.f39247e;
                 if (charSequence != null) {
                     if (charSequence.equals("timer")) {
                         h2Var.e(true);
                     } else {
-                        textViewArr[1].setText(h2Var.f39212e);
+                        textViewArr[1].setText(h2Var.f39247e);
                         h2Var.a(textViewArr[0], textViewArr[1], new m5(this, 8));
                     }
-                    h2Var.f39212e = null;
+                    h2Var.f39247e = null;
                     return;
                 }
                 return;
             default:
-                Runnable runnable2 = (Runnable) this.f16809c;
-                ProfileActivity profileActivity = (ProfileActivity) this.f16810e;
-                org.telegram.ui.ActionBar.k kVar = (org.telegram.ui.ActionBar.k) this.f16808b;
+                Runnable runnable2 = (Runnable) this.f16812c;
+                ProfileActivity profileActivity = (ProfileActivity) this.f16813e;
+                org.telegram.ui.ActionBar.k kVar = (org.telegram.ui.ActionBar.k) this.f16811b;
                 if (kVar != null) {
                     kVar.setSkipDrawChild(false);
                 }
@@ -146,20 +146,20 @@ public final class j0 extends AnimatorListenerAdapter {
                     runnable2.run();
                     return;
                 }
-                profileActivity.f41718e0.setProgressToExpand(0.0f);
-                profileActivity.f41687a.setLayerType(0, null);
+                profileActivity.f41722e0.setProgressToExpand(0.0f);
+                profileActivity.f41691a.setLayerType(0, null);
                 runnable2.run();
                 if (profileActivity.I1 == 2) {
                     profileActivity.I1 = 1;
-                    profileActivity.f41718e0.setForegroundAlpha(1.0f);
+                    profileActivity.f41722e0.setForegroundAlpha(1.0f);
                     profileActivity.X.setVisibility(8);
-                    profileActivity.f41780n0.setAlpha(1.0f);
-                    profileActivity.f41780n0.L();
-                    profileActivity.f41780n0.setVisibility(0);
+                    profileActivity.f41784n0.setAlpha(1.0f);
+                    profileActivity.f41784n0.L();
+                    profileActivity.f41784n0.setVisibility(0);
                 }
                 profileActivity.W4 = null;
                 profileActivity.Y.invalidate();
-                profileActivity.f41738g5 = null;
+                profileActivity.f41742g5 = null;
                 profileActivity.fragmentView.invalidate();
                 return;
         }
@@ -167,18 +167,18 @@ public final class j0 extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f16807a) {
+        switch (this.f16810a) {
             case 0:
                 return;
             case 1:
-                ((mi.l) this.f16810e).getClass();
+                ((mi.l) this.f16813e).getClass();
                 return;
             case 2:
-                es esVar = (es) this.f16810e;
+                es esVar = (es) this.f16813e;
                 cs csVar = (cs) this.d;
-                v4.d1 d1Var = csVar.f32640a;
+                v4.d1 d1Var = csVar.f32671a;
                 esVar.getClass();
-                v4.d1 d1Var2 = csVar.f32641b;
+                v4.d1 d1Var2 = csVar.f32672b;
                 esVar.getClass();
                 return;
             default:
@@ -188,27 +188,27 @@ public final class j0 extends AnimatorListenerAdapter {
     }
 
     public j0(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
-        this.f16807a = i7;
-        this.f16810e = obj;
-        this.f16808b = obj2;
+        this.f16810a = i7;
+        this.f16813e = obj;
+        this.f16811b = obj2;
         this.d = obj3;
-        this.f16809c = obj4;
+        this.f16812c = obj4;
     }
 
     public j0(mi.l lVar, v4.d1 d1Var, View view, ViewPropertyAnimator viewPropertyAnimator) {
-        this.f16807a = 1;
-        this.f16810e = lVar;
-        this.f16808b = d1Var;
-        this.f16809c = view;
+        this.f16810a = 1;
+        this.f16813e = lVar;
+        this.f16811b = d1Var;
+        this.f16812c = view;
         this.d = viewPropertyAnimator;
     }
 
     public j0(es esVar, cs csVar, v4.d1 d1Var, AnimatorSet animatorSet) {
-        this.f16807a = 2;
-        this.f16810e = esVar;
+        this.f16810a = 2;
+        this.f16813e = esVar;
         this.d = csVar;
-        this.f16808b = d1Var;
-        this.f16809c = animatorSet;
+        this.f16811b = d1Var;
+        this.f16812c = animatorSet;
     }
 
     private final void a(Animator animator) {

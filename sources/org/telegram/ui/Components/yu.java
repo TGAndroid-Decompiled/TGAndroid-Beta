@@ -2,71 +2,17 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class yu extends vk0 {
-    public long h;
-    public boolean f40725n;
-    public float f40726r;
-    public final av f40727s;
+public final class yu extends xu {
+    public final zu O;
 
-    public yu(av avVar, Context context) {
-        super(context);
-        float f10;
-        this.f40727s = avVar;
-        boolean z9 = avVar.f31916n;
-        this.f40725n = z9;
-        if (z9) {
-            f10 = 1.0f;
-        } else {
-            f10 = 0.0f;
-        }
-        this.f40726r = f10;
-        setSmoothScrollingEnabled(true);
-        setHorizontalScrollBarEnabled(false);
-        setVerticalScrollBarEnabled(false);
-        setNestedScrollingEnabled(true);
-        org.telegram.ui.c61 c61Var = new org.telegram.ui.c61(11, context, this);
-        this.f38992b = c61Var;
-        c61Var.setOrientation(0);
-        addView(this.f38992b, new FrameLayout.LayoutParams(-2, -1));
-        for (int i7 = 0; i7 < 8; i7++) {
-            int i10 = av.f31910e0[i7];
-            xu xuVar = new xu(this, context, av.f31911f0[i7]);
-            xuVar.setContentDescription(av.f(i7));
-            this.f38992b.addView(xuVar);
-        }
-    }
-
-    public final void d(MotionEvent motionEvent) {
-        if (this.f40725n && !this.d) {
-            int action = motionEvent.getAction();
-            if (action != 0) {
-                if (action != 1) {
-                    if (action != 2) {
-                        return;
-                    }
-                } else {
-                    this.f38991a = false;
-                    return;
-                }
-            }
-            this.f38991a = true;
-            if (!this.d) {
-                this.f38994e = -1;
-            }
-            this.f40727s.requestDisallowInterceptTouchEvent(true);
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.W1(this.f40726r, org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(Math.min(5.7f, this.f38992b.getChildCount()) * 32.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(30.0f), 1073741824));
+    public yu(zu zuVar, Context context, int i7) {
+        super(zuVar.f41150s, context, i7);
+        this.O = zuVar;
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        d(motionEvent);
+        this.O.d(motionEvent);
         return super.onTouchEvent(motionEvent);
     }
 }

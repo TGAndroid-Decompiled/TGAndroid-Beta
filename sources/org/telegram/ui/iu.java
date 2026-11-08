@@ -1,20 +1,20 @@
 package org.telegram.ui;
 public final class iu implements org.telegram.messenger.sr {
-    public final int f46742a;
-    public final ww f46743b;
+    public final int f46745a;
+    public final ww f46746b;
 
     public iu(ww wwVar, int i7) {
-        this.f46742a = i7;
-        this.f46743b = wwVar;
+        this.f46745a = i7;
+        this.f46746b = wwVar;
     }
 
     @Override
     public final void a(int i7) {
         boolean z9;
         boolean z10;
-        switch (this.f46742a) {
+        switch (this.f46745a) {
             case 0:
-                ww wwVar = this.f46743b;
+                ww wwVar = this.f46746b;
                 wwVar.getClass();
                 if (i7 != 0) {
                     z9 = true;
@@ -26,7 +26,7 @@ public final class iu implements org.telegram.messenger.sr {
                 wwVar.u3(false);
                 return;
             default:
-                ww wwVar2 = this.f46743b;
+                ww wwVar2 = this.f46746b;
                 wwVar2.getClass();
                 if (i7 != 0) {
                     z10 = true;

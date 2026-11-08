@@ -5,27 +5,27 @@ import java.util.ArrayList;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class ka0 implements View.OnClickListener {
-    public final int f35239a = 1;
-    public final boolean f35240b;
-    public final Object f35241c;
+    public final int f35265a = 1;
+    public final boolean f35266b;
+    public final Object f35267c;
     public final Object d;
 
-    public ka0(qt qtVar, boolean z9, Runnable runnable) {
-        this.d = qtVar;
-        this.f35240b = z9;
-        this.f35241c = runnable;
+    public ka0(rt rtVar, boolean z9, Runnable runnable) {
+        this.d = rtVar;
+        this.f35266b = z9;
+        this.f35267c = runnable;
     }
 
     @Override
     public final void onClick(View view) {
         String str;
-        switch (this.f35239a) {
+        switch (this.f35265a) {
             case 0:
                 org.telegram.ui.p6 p6Var = (org.telegram.ui.p6) this.d;
-                Runnable runnable = (Runnable) this.f35241c;
+                Runnable runnable = (Runnable) this.f35267c;
                 org.telegram.ui.ActionBar.f2 Q = LaunchActivity.Q();
                 if (Q != null) {
-                    if (this.f35240b) {
+                    if (this.f35266b) {
                         str = "lastseen";
                     } else {
                         str = "readtime";
@@ -40,30 +40,30 @@ public final class ka0 implements View.OnClickListener {
                 }
                 return;
             case 1:
-                qt qtVar = (qt) this.d;
-                Runnable runnable2 = (Runnable) this.f35241c;
-                if (this.f35240b) {
-                    ((xs0) qtVar.f37389b).I.o();
+                rt rtVar = (rt) this.d;
+                Runnable runnable2 = (Runnable) this.f35267c;
+                if (this.f35266b) {
+                    ((xs0) rtVar.f37758b).I.o();
                 }
                 runnable2.run();
                 return;
             default:
-                ArrayList arrayList = (ArrayList) this.f35241c;
-                org.telegram.ui.ks ksVar = ((org.telegram.ui.gs) this.d).f46087a;
-                if (ksVar.f47291w != null && ksVar.f47281l != null) {
+                ArrayList arrayList = (ArrayList) this.f35267c;
+                org.telegram.ui.ks ksVar = ((org.telegram.ui.gs) this.d).f46089a;
+                if (ksVar.f47296w != null && ksVar.f47286l != null) {
                     int intValue = ((Integer) arrayList.get(((Integer) view.getTag()).intValue())).intValue();
                     if (intValue == 0) {
-                        ksVar.f47281l.C(ksVar.W);
+                        ksVar.f47286l.C(ksVar.W);
                     } else if (intValue == 1) {
-                        ksVar.f47281l.v(ksVar.W);
+                        ksVar.f47286l.v(ksVar.W);
                     } else if (intValue == 2) {
-                        ksVar.f47281l.v(null);
+                        ksVar.f47286l.v(null);
                     } else if (intValue == 3) {
-                        ksVar.f47281l.H(ksVar.W);
+                        ksVar.f47286l.H(ksVar.W);
                     } else if (intValue == 4) {
-                        ksVar.f47281l.q(ksVar.W);
+                        ksVar.f47286l.q(ksVar.W);
                     } else if (intValue == 5) {
-                        org.telegram.messenger.ui.b0(ksVar.f47287r).d(2, ksVar.f47270b0, ksVar.W, (int) (System.currentTimeMillis() / 1000), this.f35240b);
+                        org.telegram.messenger.ui.b0(ksVar.f47292r).d(2, ksVar.f47275b0, ksVar.W, (int) (System.currentTimeMillis() / 1000), this.f35266b);
                     }
                     ksVar.o();
                     return;
@@ -74,13 +74,13 @@ public final class ka0 implements View.OnClickListener {
 
     public ka0(org.telegram.ui.gs gsVar, ArrayList arrayList, boolean z9) {
         this.d = gsVar;
-        this.f35241c = arrayList;
-        this.f35240b = z9;
+        this.f35267c = arrayList;
+        this.f35266b = z9;
     }
 
     public ka0(boolean z9, org.telegram.ui.p6 p6Var, Runnable runnable) {
-        this.f35240b = z9;
+        this.f35266b = z9;
         this.d = p6Var;
-        this.f35241c = runnable;
+        this.f35267c = runnable;
     }
 }

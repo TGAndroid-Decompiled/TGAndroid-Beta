@@ -1,37 +1,38 @@
 package zh;
 
 import android.view.View;
-import org.telegram.messenger.b20;
-import org.telegram.messenger.k9;
-import org.telegram.ui.Components.x31;
-public final class h implements org.telegram.ui.ActionBar.r1, b20, k9 {
-    public final int f60246a;
+import org.telegram.messenger.id;
+import org.telegram.ui.Components.hc;
+public final class h implements View.OnClickListener {
+    public final int f60344a;
+    public final l f60345b;
 
-    public h(int i7) {
-        this.f60246a = i7;
+    public h(l lVar, int i7) {
+        this.f60344a = i7;
+        this.f60345b = lVar;
     }
 
     @Override
-    public Boolean a(x31 x31Var, View view, Integer num, Float f10, Float f11) {
-        return Boolean.FALSE;
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f60246a) {
+    public final void onClick(View view) {
+        int i7 = this.f60344a;
+        l lVar = this.f60345b;
+        switch (i7) {
             case 0:
-                u1Var.dismiss();
+                lVar.dismiss();
+                return;
+            case 1:
+                int value = lVar.U1.getValue();
+                int e10 = (int) lVar.d2.e();
+                if (value < e10) {
+                    org.telegram.messenger.g0.F3(lVar.S1);
+                    org.telegram.messenger.camera.q.s(id.G(e10, "Gift2AuctionMinimumBidIncreased", new Object[0]), new hc(lVar.f28622c, lVar.I0), 2131624067, 36);
+                    return;
+                }
+                lVar.g1(value);
                 return;
             default:
-                u1Var.dismiss();
+                lVar.U1.setValueAnimated((int) lVar.d2.e());
                 return;
         }
-    }
-
-    @Override
-    public Object j(Object obj) {
-        Integer num = (Integer) obj;
-        int i7 = l3.f60344c2;
-        return 0;
     }
 }

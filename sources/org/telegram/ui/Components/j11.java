@@ -2,19 +2,19 @@ package org.telegram.ui.Components;
 
 import android.animation.ValueAnimator;
 public final class j11 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f34847a;
-    public final l11 f34848b;
+    public final int f34868a;
+    public final l11 f34869b;
 
     public j11(l11 l11Var, int i7) {
-        this.f34847a = i7;
-        this.f34848b = l11Var;
+        this.f34868a = i7;
+        this.f34869b = l11Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f34847a) {
+        switch (this.f34868a) {
             case 0:
-                l11 l11Var = this.f34848b;
+                l11 l11Var = this.f34869b;
                 l11Var.getClass();
                 l11Var.U = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 l11Var.h();
@@ -22,7 +22,7 @@ public final class j11 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             default:
                 float max = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-                l11 l11Var2 = this.f34848b;
+                l11 l11Var2 = this.f34869b;
                 l11Var2.L = max;
                 l11Var2.h.invalidate();
                 return;

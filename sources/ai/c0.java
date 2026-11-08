@@ -6,7 +6,7 @@ import android.view.View;
 import j$.util.Objects;
 import java.util.Locale;
 import org.telegram.messenger.d20;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ij;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
@@ -16,8 +16,8 @@ import org.telegram.ui.Cells.y6;
 import org.telegram.ui.Cells.z8;
 import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.xq;
-import org.telegram.ui.Wallet.x9;
-import org.telegram.ui.Wallet.y5;
+import org.telegram.ui.Wallet.w9;
+import org.telegram.ui.Wallet.x5;
 import org.telegram.ui.b00;
 public final class c0 implements d20 {
     public final int f1135a;
@@ -58,9 +58,9 @@ public final class c0 implements d20 {
                 }
                 return Boolean.valueOf(z9);
             case 5:
-                return hd.G(((Integer) obj).intValue(), "Hours", new Object[0]);
+                return id.G(((Integer) obj).intValue(), "Hours", new Object[0]);
             case 6:
-                return hd.G(((Integer) obj).intValue(), "Minutes", new Object[0]);
+                return id.G(((Integer) obj).intValue(), "Minutes", new Object[0]);
             case 7:
                 View view = (View) obj;
                 if ((view instanceof z8) || (view instanceof y6) || (view instanceof b00) || (view instanceof x3) || (view instanceof d2) || Objects.equals(view.getTag(), -33024)) {
@@ -83,9 +83,9 @@ public final class c0 implements d20 {
                 disablebackup.password = (TLRPC.InputCheckPasswordSRP) obj;
                 return disablebackup;
             case 12:
-                return Boolean.valueOf(y5.C0(y5.b1((String) obj)));
+                return Boolean.valueOf(x5.C0(x5.b1((String) obj)));
             default:
-                if (x9.l0((String) obj) == null) {
+                if (w9.l0((String) obj) == null) {
                     z9 = false;
                 }
                 return Boolean.valueOf(z9);

@@ -1,9 +1,9 @@
 package ni;
 public final class i {
-    public final String f20622a;
-    public r f20623b;
+    public final String f20625a;
+    public r f20626b;
 
     public i(String str) {
-        this.f20622a = str;
+        this.f20625a = str;
     }
 }

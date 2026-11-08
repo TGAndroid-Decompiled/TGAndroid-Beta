@@ -20,18 +20,18 @@ public final class v21 extends na {
     public String X1;
     public int Y1;
     public String[] Z1;
-    public String[] f38797a2;
-    public l41 f38798b2;
-    public boolean f38799c2;
+    public String[] f38832a2;
+    public l41 f38833b2;
+    public boolean f38834c2;
     public int d2;
-    public int f38800e2;
-    public int f38801f2;
+    public int f38835e2;
+    public int f38836f2;
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        l41 l41Var = new l41(pj0Var, getContext(), this.f28613a, 0, true, new n21(this, 0), this.I0);
-        this.f38798b2 = l41Var;
-        l41Var.f35510r = false;
+        l41 l41Var = new l41(pj0Var, getContext(), this.f28616a, 0, true, new n21(this, 0), this.I0);
+        this.f38833b2 = l41Var;
+        l41Var.f35528r = false;
         return l41Var;
     }
 
@@ -64,7 +64,7 @@ public final class v21 extends na {
 
     public final void e1() {
         if (this.d2 >= 0) {
-            ConnectionsManager.getInstance(this.f28613a).cancelRequest(this.d2, true);
+            ConnectionsManager.getInstance(this.f28616a).cancelRequest(this.d2, true);
             this.d2 = -1;
         }
     }
@@ -73,7 +73,7 @@ public final class v21 extends na {
         String charSequence;
         TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
         CharSequence[] charSequenceArr = {this.S1};
-        tL_textWithEntities.entities = org.telegram.messenger.ui.b0(this.f28613a).W(charSequenceArr, true, true);
+        tL_textWithEntities.entities = org.telegram.messenger.ui.b0(this.f28616a).W(charSequenceArr, true, true);
         CharSequence charSequence2 = charSequenceArr[0];
         if (charSequence2 == null) {
             charSequence = "";
@@ -85,7 +85,7 @@ public final class v21 extends na {
             this.R1.setLoading(true);
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        spannableStringBuilder.append((CharSequence) org.telegram.messenger.hd.M0(2131748778, null));
+        spannableStringBuilder.append((CharSequence) org.telegram.messenger.id.M0(2131748780, null));
         spannableStringBuilder.setSpan(new b80(null, org.telegram.messenger.g0.L(120.0f), 0, null), 0, spannableStringBuilder.length(), 33);
         this.U1 = spannableStringBuilder;
         this.T1 = true;
@@ -98,8 +98,8 @@ public final class v21 extends na {
             tL_messages_translateText.flags |= 4;
             tL_messages_translateText.tone = this.Z1[i7];
         }
-        this.d2 = ConnectionsManager.getInstance(this.f28613a).sendRequestTyped(tL_messages_translateText, new d3.b(1), new n21(this, 1));
-        this.f38798b2.O(true);
+        this.d2 = ConnectionsManager.getInstance(this.f28616a).sendRequestTyped(tL_messages_translateText, new d3.b(1), new n21(this, 1));
+        this.f38833b2.O(true);
     }
 
     @Override
@@ -119,13 +119,13 @@ public final class v21 extends na {
         FrameLayout frameLayout = this.Q1;
         try {
             super.s0();
-            int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27793a7, this.I0);
-            if (w02 != this.f38801f2) {
-                this.f38801f2 = w02;
+            int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27796a7, this.I0);
+            if (w02 != this.f38836f2) {
+                this.f38836f2 = w02;
                 v0(w02);
             }
-            if (frameLayout != null && (frameLayout.getBackground() instanceof GradientDrawable) && w02 != this.f38800e2) {
-                this.f38800e2 = w02;
+            if (frameLayout != null && (frameLayout.getBackground() instanceof GradientDrawable) && w02 != this.f38835e2) {
+                this.f38835e2 = w02;
                 ((GradientDrawable) frameLayout.getBackground()).setColors(new int[]{org.telegram.ui.ActionBar.k6.r1(0.0f, w02), w02, w02});
             }
         } catch (Exception e10) {
@@ -141,7 +141,7 @@ public final class v21 extends na {
         if (jaVar != null) {
             jaVar.setTitle("Translate");
         }
-        this.f38798b2.O(false);
+        this.f38833b2.O(false);
         f1();
         if (this.V1 != null) {
             dVar.setText("Use This Translation");

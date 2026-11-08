@@ -36,7 +36,7 @@ public final class k extends i1 {
     public final void e(float f10, float f11, boolean z9) {
         o oVar = (o) this.f6281x.f5027c;
         if (oVar.getParentLayout() != null) {
-            boolean z10 = ((ActionBarLayout) oVar.getParentLayout()).f27256n;
+            boolean z10 = ((ActionBarLayout) oVar.getParentLayout()).f27259n;
         }
     }
 

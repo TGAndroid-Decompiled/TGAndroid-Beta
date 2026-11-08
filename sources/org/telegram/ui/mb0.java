@@ -5,16 +5,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 public final class mb0 extends TextView {
-    public final int f47779a;
+    public final int f47775a;
 
     public mb0(Context context, int i7) {
         super(context);
-        this.f47779a = i7;
+        this.f47775a = i7;
     }
 
     @Override
     public CharSequence getAccessibilityClassName() {
-        switch (this.f47779a) {
+        switch (this.f47775a) {
             case 5:
                 return Button.class.getName();
             default:
@@ -24,7 +24,7 @@ public final class mb0 extends TextView {
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f47779a) {
+        switch (this.f47775a) {
             case 0:
                 super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(100.0f), Integer.MIN_VALUE));
                 return;

@@ -3,34 +3,34 @@ package hi;
 import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.k60;
 public final class k3 extends ClickableSpan {
-    public final int f14764a = 1;
-    public final int f14765b;
-    public final Object f14766c;
+    public final int f14767a = 1;
+    public final int f14768b;
+    public final Object f14769c;
     public final Object d;
 
     public k3(q3 q3Var, int i7, bi.l0 l0Var) {
         this.d = q3Var;
-        this.f14765b = i7;
-        this.f14766c = l0Var;
+        this.f14768b = i7;
+        this.f14769c = l0Var;
     }
 
     @Override
     public final void onClick(View view) {
         boolean z9;
         boolean z10;
-        int i7 = this.f14764a;
+        int i7 = this.f14767a;
         Object obj = this.d;
         switch (i7) {
             case 0:
-                final bi.l0 l0Var = (bi.l0) this.f14766c;
+                final bi.l0 l0Var = (bi.l0) this.f14769c;
                 k60 H = k60.H((q3) obj, view);
                 boolean z11 = true;
-                int i10 = this.f14765b;
+                int i10 = this.f14768b;
                 if (i10 == 3) {
                     z9 = true;
                 } else {
@@ -84,7 +84,7 @@ public final class k3 extends ClickableSpan {
                                 return;
                         }
                     }
-                }, hd.M0(2131752478, null), z9);
+                }, id.M0(2131752478, null), z9);
                 if (i10 == 2) {
                     z10 = true;
                 } else {
@@ -138,7 +138,7 @@ public final class k3 extends ClickableSpan {
                                 return;
                         }
                     }
-                }, hd.M0(2131752476, null), z10);
+                }, id.M0(2131752476, null), z10);
                 if (i10 != 1) {
                     z11 = false;
                 }
@@ -190,10 +190,10 @@ public final class k3 extends ClickableSpan {
                                 return;
                         }
                     }
-                }, hd.M0(2131752477, null), z11);
+                }, id.M0(2131752477, null), z11);
                 H.V(5);
-                H.f35206t = false;
-                H.f35205s = 0;
+                H.f35232t = false;
+                H.f35231s = 0;
                 H.a0(org.telegram.messenger.g0.L(24.0f), -org.telegram.messenger.g0.L(24.0f));
                 H.Z();
                 return;
@@ -209,7 +209,7 @@ public final class k3 extends ClickableSpan {
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
-        switch (this.f14764a) {
+        switch (this.f14767a) {
             case 0:
                 textPaint.setUnderlineText(false);
                 textPaint.setColor(textPaint.linkColor);
@@ -217,14 +217,14 @@ public final class k3 extends ClickableSpan {
             default:
                 super.updateDrawState(textPaint);
                 textPaint.setUnderlineText(false);
-                textPaint.setColor(k6.w0(this.f14765b, (f6) this.f14766c));
+                textPaint.setColor(k6.w0(this.f14768b, (f6) this.f14769c));
                 return;
         }
     }
 
     public k3(int i7, f6 f6Var, Runnable runnable) {
-        this.f14765b = i7;
-        this.f14766c = f6Var;
+        this.f14768b = i7;
+        this.f14769c = f6Var;
         this.d = runnable;
     }
 }

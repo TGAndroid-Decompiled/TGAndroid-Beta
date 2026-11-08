@@ -6,7 +6,7 @@ import android.widget.FrameLayout;
 import bi.u7;
 import hi.u1;
 import org.telegram.messenger.c20;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.Cells.h6;
 import org.telegram.ui.Components.l41;
@@ -28,9 +28,9 @@ public final class a extends na {
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        l41 l41Var = new l41(this.f36261k1, getContext(), this.f28613a, 0, false, new u1(this, 14), this.I0);
+        l41 l41Var = new l41(this.f36277k1, getContext(), this.f28616a, 0, false, new u1(this, 14), this.I0);
         this.P1 = l41Var;
-        l41Var.f35510r = false;
+        l41Var.f35528r = false;
         return l41Var;
     }
 
@@ -42,7 +42,7 @@ public final class a extends na {
         } else {
             i7 = 2131751977;
         }
-        return hd.M0(i7, null);
+        return id.M0(i7, null);
     }
 
     public final void d1(c20 c20Var, boolean z9, boolean z10) {
@@ -50,13 +50,13 @@ public final class a extends na {
         if (z10 && !z9 && !this.T1) {
             Context context = getContext();
             f6 f6Var = this.I0;
-            String M0 = hd.M0(2131751970, null);
+            String M0 = id.M0(2131751970, null);
             if (this.S1) {
                 i7 = 2131751973;
             } else {
                 i7 = 2131751972;
             }
-            v4.M(context, f6Var, M0, hd.M0(i7, null), hd.M0(2131754486, null), new u7(this, c20Var, z9, 6)).show();
+            v4.M(context, f6Var, M0, id.M0(i7, null), id.M0(2131754486, null), new u7(this, c20Var, z9, 6)).show();
             return;
         }
         c20Var.a(Boolean.valueOf(z9));
@@ -67,7 +67,7 @@ public final class a extends na {
         boolean z10;
         if (this.Q1 != z9) {
             this.Q1 = z9;
-            pj0 pj0Var = this.f36261k1;
+            pj0 pj0Var = this.f36277k1;
             View T0 = pj0Var.T0(this.U1 + 1);
             if (T0 instanceof h6) {
                 ((h6) T0).a(!z9);

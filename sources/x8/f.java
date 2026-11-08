@@ -3,5 +3,5 @@ package x8;
 import android.os.Binder;
 import android.os.IInterface;
 public abstract class f extends Binder implements c, IInterface {
-    public static final int f58572a = 0;
+    public static final int f58661a = 0;
 }

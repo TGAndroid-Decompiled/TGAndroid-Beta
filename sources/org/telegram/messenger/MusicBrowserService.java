@@ -12,15 +12,15 @@ public class MusicBrowserService extends MediaBrowserService {
     public final void onCreate() {
         super.onCreate();
         t0.w();
-        setSessionToken((MediaSession.Token) ((android.support.v4.media.session.u) wz.a(this).f26401b.f1763b).f1795c.f1739b);
+        setSessionToken((MediaSession.Token) ((android.support.v4.media.session.u) wz.a(this).f26410b.f1763b).f1795c.f1739b);
     }
 
     @Override
     public final MediaBrowserService.BrowserRoot onGetRoot(String str, int i7, Bundle bundle) {
         if (str != null) {
             if (1000 != i7 && Process.myUid() != i7) {
-                HashSet hashSet = ft.f22449a;
-                if (i7 != 1000 && i7 != Process.myUid() && !ft.f22449a.contains(str)) {
+                HashSet hashSet = ft.f22468a;
+                if (i7 != 1000 && i7 != Process.myUid() && !ft.f22468a.contains(str)) {
                     PackageManager packageManager = getPackageManager();
                     try {
                         if (packageManager.checkPermission("android.permission.MEDIA_CONTENT_CONTROL", str) != 0) {
@@ -52,12 +52,12 @@ public class MusicBrowserService extends MediaBrowserService {
         wz a10 = wz.a(this);
         a10.getClass();
         if (wz.b()) {
-            Toast.makeText(getApplicationContext(), hd.M0(2131751111, null), 1).show();
+            Toast.makeText(getApplicationContext(), id.M0(2131751111, null), 1).show();
             stopSelf();
             result.detach();
             return;
         }
         result.detach();
-        a10.c(str, new p1(result, 12));
+        a10.c(str, new j1(result, 12));
     }
 }

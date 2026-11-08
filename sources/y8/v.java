@@ -11,11 +11,11 @@ import com.google.android.gms.wallet.MaskedWallet;
 import com.google.android.gms.wallet.wobs.CommonWalletObject;
 import java.util.ArrayList;
 public final class v implements Parcelable.Creator {
-    public final int f59247a;
+    public final int f59336a;
 
     @Override
     public final Object createFromParcel(Parcel parcel) {
-        switch (this.f59247a) {
+        switch (this.f59336a) {
             case 0:
                 int z9 = wb.z(parcel);
                 String str = null;
@@ -108,9 +108,9 @@ public final class v implements Parcelable.Creator {
                 }
                 wb.m(parcel, z10);
                 ?? obj2 = new Object();
-                obj2.f59175a = str4;
-                obj2.f59176b = str5;
-                obj2.f59177c = i7;
+                obj2.f59264a = str4;
+                obj2.f59265b = str5;
+                obj2.f59266c = i7;
                 return obj2;
             case 2:
                 int z11 = wb.z(parcel);
@@ -149,12 +149,12 @@ public final class v implements Parcelable.Creator {
                 }
                 wb.m(parcel, z11);
                 ?? obj3 = new Object();
-                obj3.f59178a = arrayList;
-                obj3.f59179b = str8;
-                obj3.f59180c = str6;
+                obj3.f59267a = arrayList;
+                obj3.f59268b = str8;
+                obj3.f59269c = str6;
                 obj3.d = arrayList2;
-                obj3.f59181e = z12;
-                obj3.f59182f = str7;
+                obj3.f59270e = z12;
+                obj3.f59271f = str7;
                 return obj3;
             case 3:
                 int z13 = wb.z(parcel);
@@ -260,19 +260,19 @@ public final class v implements Parcelable.Creator {
                 }
                 wb.m(parcel, z13);
                 ?? obj4 = new Object();
-                obj4.f59183a = str9;
-                obj4.f59184b = str20;
-                obj4.f59185c = str12;
+                obj4.f59272a = str9;
+                obj4.f59273b = str20;
+                obj4.f59274c = str12;
                 obj4.d = str13;
-                obj4.f59186e = str14;
-                obj4.f59187f = str15;
+                obj4.f59275e = str14;
+                obj4.f59276f = str15;
                 obj4.h = str16;
-                obj4.f59188n = str17;
-                obj4.f59189r = str11;
-                obj4.f59190s = str10;
-                obj4.f59191w = i10;
-                obj4.f59192x = arrayList3;
-                obj4.f59193y = fVar;
+                obj4.f59277n = str17;
+                obj4.f59278r = str11;
+                obj4.f59279s = str10;
+                obj4.f59280w = i10;
+                obj4.f59281x = arrayList3;
+                obj4.f59282y = fVar;
                 obj4.D = arrayList6;
                 obj4.E = str18;
                 obj4.F = str19;
@@ -393,7 +393,7 @@ public final class v implements Parcelable.Creator {
                 }
                 wb.m(parcel, z17);
                 ?? obj6 = new Object();
-                obj6.f59197a = pendingIntent;
+                obj6.f59286a = pendingIntent;
                 return obj6;
             case 7:
                 int z18 = wb.z(parcel);
@@ -525,8 +525,8 @@ public final class v implements Parcelable.Creator {
                 }
                 wb.m(parcel, z20);
                 ?? obj8 = new Object();
-                obj8.f59906a = str37;
-                obj8.f59907b = str38;
+                obj8.f59999a = str37;
+                obj8.f60000b = str38;
                 return obj8;
             case 9:
                 int z21 = wb.z(parcel);
@@ -552,9 +552,9 @@ public final class v implements Parcelable.Creator {
                 }
                 wb.m(parcel, z21);
                 ?? obj9 = new Object();
-                obj9.f59908a = str39;
-                obj9.f59909b = str40;
-                obj9.f59910c = arrayList18;
+                obj9.f60001a = str39;
+                obj9.f60002b = str40;
+                obj9.f60003c = arrayList18;
                 return obj9;
             case 10:
                 int z22 = wb.z(parcel);
@@ -592,12 +592,12 @@ public final class v implements Parcelable.Creator {
                 }
                 wb.m(parcel, z22);
                 ?? obj10 = new Object();
-                obj10.f59914a = i13;
-                obj10.f59915b = str41;
-                obj10.f59916c = d;
+                obj10.f60007a = i13;
+                obj10.f60008b = str41;
+                obj10.f60009c = d;
                 obj10.d = str42;
-                obj10.f59917e = j3;
-                obj10.f59918f = i14;
+                obj10.f60010e = j3;
+                obj10.f60011f = i14;
                 return obj10;
             case 11:
                 int z23 = wb.z(parcel);
@@ -623,9 +623,9 @@ public final class v implements Parcelable.Creator {
                 }
                 wb.m(parcel, z23);
                 ?? obj11 = new Object();
-                obj11.f59911a = str43;
-                obj11.f59912b = dVar;
-                obj11.f59913c = fVar4;
+                obj11.f60004a = str43;
+                obj11.f60005b = dVar;
+                obj11.f60006c = fVar4;
                 return obj11;
             case 12:
                 int z24 = wb.z(parcel);
@@ -646,8 +646,8 @@ public final class v implements Parcelable.Creator {
                 }
                 wb.m(parcel, z24);
                 ?? obj12 = new Object();
-                obj12.f59919a = str44;
-                obj12.f59920b = str45;
+                obj12.f60012a = str44;
+                obj12.f60013b = str45;
                 return obj12;
             case 13:
                 int z25 = wb.z(parcel);
@@ -668,8 +668,8 @@ public final class v implements Parcelable.Creator {
                 }
                 wb.m(parcel, z25);
                 ?? obj13 = new Object();
-                obj13.f59921a = j10;
-                obj13.f59922b = j11;
+                obj13.f60014a = j10;
+                obj13.f60015b = j11;
                 return obj13;
             case 14:
                 int z26 = wb.z(parcel);
@@ -690,8 +690,8 @@ public final class v implements Parcelable.Creator {
                 }
                 wb.m(parcel, z26);
                 ?? obj14 = new Object();
-                obj14.f59923a = str46;
-                obj14.f59924b = str47;
+                obj14.f60016a = str46;
+                obj14.f60017b = str47;
                 return obj14;
             default:
                 int z27 = wb.z(parcel);
@@ -727,18 +727,18 @@ public final class v implements Parcelable.Creator {
                 }
                 wb.m(parcel, z27);
                 ?? obj15 = new Object();
-                obj15.f59925a = str48;
-                obj15.f59926b = str49;
-                obj15.f59927c = fVar5;
+                obj15.f60018a = str48;
+                obj15.f60019b = str49;
+                obj15.f60020c = fVar5;
                 obj15.d = gVar;
-                obj15.f59928e = gVar2;
+                obj15.f60021e = gVar2;
                 return obj15;
         }
     }
 
     @Override
     public final Object[] newArray(int i7) {
-        switch (this.f59247a) {
+        switch (this.f59336a) {
             case 0:
                 return new FullWallet[i7];
             case 1:

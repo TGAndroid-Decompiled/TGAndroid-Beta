@@ -4,17 +4,17 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.view.View;
 public final class oa implements eh.a {
-    public final int f48340a;
-    public final Object f48341b;
+    public final int f48338a;
+    public final Object f48339b;
 
     public oa(Object obj, int i7) {
-        this.f48340a = i7;
-        this.f48341b = obj;
+        this.f48338a = i7;
+        this.f48339b = obj;
     }
 
     @Override
     public final void c(dh.a aVar, RectF rectF) {
-        switch (this.f48340a) {
+        switch (this.f48338a) {
             case 0:
             case 1:
             case 2:
@@ -28,8 +28,8 @@ public final class oa implements eh.a {
 
     @Override
     public final void d(Canvas canvas, RectF rectF) {
-        int i7 = this.f48340a;
-        Object obj = this.f48341b;
+        int i7 = this.f48338a;
+        Object obj = this.f48339b;
         switch (i7) {
             case 0:
                 ((kb) obj).X(canvas, rectF);
@@ -39,8 +39,8 @@ public final class oa implements eh.a {
                 return;
             case 2:
                 PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) obj;
-                org.telegram.ui.Components.pj0 pj0Var = premiumPreviewFragment.f41601a;
-                ih.d.a(pj0Var, canvas, rectF, pj0Var, premiumPreviewFragment.f41607d0);
+                org.telegram.ui.Components.pj0 pj0Var = premiumPreviewFragment.f41605a;
+                ih.d.a(pj0Var, canvas, rectF, pj0Var, premiumPreviewFragment.f41611d0);
                 return;
             case 3:
                 View view = (View) obj;
@@ -51,7 +51,7 @@ public final class oa implements eh.a {
                 canvas.restore();
                 return;
             case 4:
-                ww0 ww0Var = ((ProfileActivity) obj).f41705c1;
+                ww0 ww0Var = ((ProfileActivity) obj).f41709c1;
                 ww0Var.O = true;
                 ww0Var.draw(canvas);
                 ww0Var.O = false;

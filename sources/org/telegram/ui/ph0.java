@@ -9,12 +9,12 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ph0 extends org.telegram.ui.ActionBar.j {
-    public final Context f48833a;
-    public final sh0 f48834b;
+    public final Context f48836a;
+    public final sh0 f48837b;
 
     public ph0(sh0 sh0Var, Context context) {
-        this.f48834b = sh0Var;
-        this.f48833a = context;
+        this.f48837b = sh0Var;
+        this.f48836a = context;
     }
 
     @Override
@@ -22,8 +22,8 @@ public final class ph0 extends org.telegram.ui.ActionBar.j {
         int i10;
         int i11;
         org.telegram.ui.ActionBar.y4 y4Var;
-        sh0 sh0Var = this.f48834b;
-        org.telegram.ui.ActionBar.f6 f6Var = sh0Var.f49770f;
+        sh0 sh0Var = this.f48837b;
+        org.telegram.ui.ActionBar.f6 f6Var = sh0Var.f49761f;
         SparseArray sparseArray = sh0Var.I;
         if (i7 == -1) {
             y4Var = ((org.telegram.ui.ActionBar.f2) sh0Var).simpleActionBar;
@@ -37,19 +37,19 @@ public final class ph0 extends org.telegram.ui.ActionBar.j {
         }
         if (i7 == 1) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, sh0Var.getParentActivity(), f6Var);
-            String G = org.telegram.messenger.hd.G(sparseArray.size(), "DeleteTones", new Object[0]);
-            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
+            String G = org.telegram.messenger.id.G(sparseArray.size(), "DeleteTones", new Object[0]);
+            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
             u1Var.R = G;
-            u1Var.T = org.telegram.messenger.g0.X2(org.telegram.messenger.hd.G(sparseArray.size(), "DeleteTonesMessage", new Object[0]));
-            alertDialog$Builder.h(org.telegram.messenger.hd.M0(2131752589, null), new org.telegram.ui.Components.il0(27));
-            alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131751599, null), new wr(this, 28));
+            u1Var.T = org.telegram.messenger.g0.X2(org.telegram.messenger.id.G(sparseArray.size(), "DeleteTonesMessage", new Object[0]));
+            alertDialog$Builder.h(org.telegram.messenger.id.M0(2131752589, null), new org.telegram.ui.Components.il0(27));
+            alertDialog$Builder.k(org.telegram.messenger.id.M0(2131751599, null), new wr(this, 28));
             TextView textView = (TextView) alertDialog$Builder.p().d(-1);
             if (textView != null) {
-                org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28090q7, f6Var);
+                org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28093q7, f6Var);
             }
         } else if (i7 == 2) {
             int size = sparseArray.size();
-            Context context = this.f48833a;
+            Context context = this.f48836a;
             if (size == 1) {
                 Intent intent = new Intent(context, LaunchActivity.class);
                 intent.setAction("android.intent.action.SEND");
@@ -77,7 +77,7 @@ public final class ph0 extends org.telegram.ui.ActionBar.j {
             }
             sh0.b0(sh0Var);
             sh0Var.i0();
-            sh0Var.f49769e.f();
+            sh0Var.f49760e.f();
         }
     }
 }

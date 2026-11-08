@@ -5,22 +5,22 @@ import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.PhotoViewer;
 public final class nf implements org.telegram.ui.uq0 {
-    public boolean f36323a;
-    public final Object f36324b;
-    public final Object f36325c;
+    public boolean f36339a;
+    public final Object f36340b;
+    public final Object f36341c;
     public final org.telegram.messenger.gf d;
-    public final pf f36326e;
+    public final pf f36342e;
 
     public nf(pf pfVar, Object obj, Object obj2, org.telegram.messenger.gf gfVar) {
-        this.f36326e = pfVar;
-        this.f36324b = obj;
-        this.f36325c = obj2;
+        this.f36342e = pfVar;
+        this.f36340b = obj;
+        this.f36341c = obj2;
         this.d = gfVar;
     }
 
     @Override
     public final boolean A() {
-        return this.f36323a;
+        return this.f36339a;
     }
 
     @Override
@@ -35,7 +35,7 @@ public final class nf implements org.telegram.ui.uq0 {
 
     @Override
     public final void F(boolean z9) {
-        this.f36323a = z9;
+        this.f36339a = z9;
     }
 
     @Override
@@ -138,9 +138,9 @@ public final class nf implements org.telegram.ui.uq0 {
         fi.g gVar;
         uc a12 = PhotoViewer.p1().a1();
         if (a12 != null && (gVar = a12.f12365f) != null) {
-            et etVar = gVar.f35407a;
-            etVar.requestFocus();
-            org.telegram.messenger.g0.K3(etVar);
+            ft ftVar = gVar.f35777a;
+            ftVar.requestFocus();
+            org.telegram.messenger.g0.K3(ftVar);
         }
     }
 
@@ -171,7 +171,7 @@ public final class nf implements org.telegram.ui.uq0 {
 
     @Override
     public final void o(int i7, org.telegram.messenger.j20 j20Var, boolean z9, int i10, int i11, boolean z10) {
-        this.f36326e.B(null, this.f36324b, null, this.f36325c, z9, i10, i11, this.d, this.f36323a);
+        this.f36342e.B(null, this.f36340b, null, this.f36341c, z9, i10, i11, this.d, this.f36339a);
     }
 
     @Override

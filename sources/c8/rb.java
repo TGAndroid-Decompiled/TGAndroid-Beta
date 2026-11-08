@@ -23,9 +23,9 @@ public abstract class rb {
                 j2.k kVar = new j2.k(c0Var, mVar2);
                 try {
                     byte[] b10 = i9.f.b(kVar);
-                    x2.u uVar = new x2.u(mVar, c0Var.f16414c, c0Var.d, SystemClock.elapsedRealtime(), 0L, b10.length);
+                    x2.u uVar = new x2.u(mVar, c0Var.f16417c, c0Var.d, SystemClock.elapsedRealtime(), 0L, b10.length);
                     j2.n nVar = new j2.n(b10);
-                    nVar.f16454c = uVar;
+                    nVar.f16457c = uVar;
                     q2.v vVar = new q2.v(nVar);
                     String str2 = h2.m0.f14112a;
                     try {
@@ -34,7 +34,7 @@ public abstract class rb {
                     }
                     return vVar;
                 } catch (j2.y e10) {
-                    int i10 = e10.f16486c;
+                    int i10 = e10.f16489c;
                     String str3 = null;
                     if ((i10 == 307 || i10 == 308) && i7 < 5 && (map2 = e10.d) != null && (list = (List) map2.get("Location")) != null && !list.isEmpty()) {
                         str3 = (String) list.get(0);
@@ -42,7 +42,7 @@ public abstract class rb {
                     if (str3 != null) {
                         i7++;
                         j2.l a10 = mVar2.a();
-                        a10.f16442e = Uri.parse(str3);
+                        a10.f16445e = Uri.parse(str3);
                         mVar2 = a10.d();
                         String str4 = h2.m0.f14112a;
                         try {
@@ -54,7 +54,7 @@ public abstract class rb {
                     }
                 }
             } catch (Exception e11) {
-                throw new q2.w(mVar, c0Var.f16414c, c0Var.f16412a.getResponseHeaders(), c0Var.f16413b, e11);
+                throw new q2.w(mVar, c0Var.f16417c, c0Var.f16415a.getResponseHeaders(), c0Var.f16416b, e11);
             }
         }
     }

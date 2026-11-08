@@ -29,7 +29,7 @@ public final class f4 implements c20 {
                 TLRPC.Document document = (TLRPC.Document) obj2;
                 if (((Boolean) obj).booleanValue()) {
                     ea.y(i10, false).P(j3);
-                    org.telegram.messenger.g0.h3(new aa.s((Object) new k4(j3, 0), (Object) document, (Object) org.telegram.messenger.hd.M0(2131750101, null), 13));
+                    org.telegram.messenger.g0.h3(new aa.s((Object) new k4(j3, 0), (Object) document, (Object) org.telegram.messenger.id.M0(2131750103, null), 13));
                     return;
                 }
                 return;
@@ -38,14 +38,14 @@ public final class f4 implements c20 {
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
                 if (tL_messages_stickerSet != null && (stickerSet = tL_messages_stickerSet.set) != null) {
                     if (i10 == 1) {
-                        M0 = org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0("TopicContainsEmojiPackSingle", null, 2131744023, stickerSet.title));
+                        M0 = org.telegram.messenger.g0.X2(org.telegram.messenger.id.a0("TopicContainsEmojiPackSingle", null, 2131744025, stickerSet.title));
                     } else if (i10 == 2) {
-                        M0 = org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0("StoryContainsEmojiPackSingle", null, 2131744700, stickerSet.title));
+                        M0 = org.telegram.messenger.g0.X2(org.telegram.messenger.id.a0("StoryContainsEmojiPackSingle", null, 2131744702, stickerSet.title));
                     } else {
-                        M0 = org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0("MessageContainsEmojiPackSingle", null, 2131748595, stickerSet.title));
+                        M0 = org.telegram.messenger.g0.X2(org.telegram.messenger.id.a0("MessageContainsEmojiPackSingle", null, 2131748597, stickerSet.title));
                     }
                 } else {
-                    M0 = org.telegram.messenger.hd.M0(2131754435, null);
+                    M0 = org.telegram.messenger.id.M0(2131754435, null);
                 }
                 org.telegram.messenger.g0.i3(new org.telegram.ui.Components.f(3, ccVar, M0), Math.max(1L, 750 - (System.currentTimeMillis() - j3)));
                 return;

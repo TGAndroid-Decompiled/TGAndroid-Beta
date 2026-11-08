@@ -37,7 +37,7 @@ public final class i0 extends View {
     private float getContainerHeight() {
         float f10;
         if (!(getContext() instanceof BubbleActivity)) {
-            f10 = org.telegram.messenger.g0.f22538m;
+            f10 = org.telegram.messenger.g0.f22557m;
         } else {
             f10 = 0.0f;
         }

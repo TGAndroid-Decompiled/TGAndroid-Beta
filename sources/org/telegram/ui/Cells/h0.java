@@ -3,7 +3,7 @@ package org.telegram.ui.Cells;
 import android.content.Context;
 import android.view.MotionEvent;
 import org.telegram.ui.Components.mm0;
-import org.telegram.ui.v61;
+import org.telegram.ui.w61;
 public final class h0 extends mm0 {
     public final int m0;
 
@@ -43,8 +43,8 @@ public final class h0 extends mm0 {
         this.m0 = 1;
     }
 
-    public h0(Context context, v61 v61Var) {
-        super(context, v61Var, false);
+    public h0(Context context, w61 w61Var) {
+        super(context, w61Var, false);
         this.m0 = 3;
     }
 }

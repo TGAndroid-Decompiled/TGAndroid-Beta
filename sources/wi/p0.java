@@ -1,11 +1,15 @@
 package wi;
-public enum p0 {
-    FPS_30(30),
-    FPS_60(60);
-    
-    public final int f58031a;
 
-    p0(int i7) {
-        this.f58031a = i7;
+import java.io.File;
+public final class p0 {
+    public final long f58124a;
+    public final File f58125b;
+    public volatile long f58126c;
+    public volatile boolean d;
+    public volatile boolean f58127e;
+
+    public p0(long j3, File file) {
+        this.f58124a = j3;
+        this.f58125b = file;
     }
 }

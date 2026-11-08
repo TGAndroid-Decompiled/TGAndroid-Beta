@@ -3,14 +3,14 @@ package org.telegram.ui;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class lq implements Runnable {
-    public final int f47574a;
-    public final nq f47575b;
-    public final String f47576c;
+    public final int f47571a;
+    public final nq f47572b;
+    public final String f47573c;
 
     public lq(nq nqVar, String str, int i7) {
-        this.f47574a = i7;
-        this.f47575b = nqVar;
-        this.f47576c = str;
+        this.f47571a = i7;
+        this.f47572b = nqVar;
+        this.f47573c = str;
     }
 
     @Override
@@ -20,29 +20,29 @@ public final class lq implements Runnable {
         m6 m6Var;
         boolean z9;
         long j3;
-        switch (this.f47574a) {
+        switch (this.f47571a) {
             case 0:
-                nq nqVar = this.f47575b;
+                nq nqVar = this.f47572b;
                 nqVar.getClass();
-                org.telegram.messenger.g0.h3(new lq(nqVar, this.f47576c, 1));
+                org.telegram.messenger.g0.h3(new lq(nqVar, this.f47573c, 1));
                 return;
             default:
-                nq nqVar2 = this.f47575b;
+                nq nqVar2 = this.f47572b;
                 nqVar2.f48110n = null;
                 oq oqVar = nqVar2.D;
-                TLRPC.Chat chat = oqVar.f48497n;
-                int i7 = oqVar.f48478d1;
-                if (!org.telegram.messenger.t3.T(chat) && oqVar.f48505r != null) {
-                    arrayList = new ArrayList(oqVar.f48505r.participants.participants);
+                TLRPC.Chat chat = oqVar.f48491n;
+                int i7 = oqVar.f48472d1;
+                if (!org.telegram.messenger.t3.T(chat) && oqVar.f48499r != null) {
+                    arrayList = new ArrayList(oqVar.f48499r.participants.participants);
                 } else {
                     arrayList = null;
                 }
                 if (i7 == 1) {
-                    arrayList2 = new ArrayList(oqVar.getContactsController().f22589e0);
+                    arrayList2 = new ArrayList(oqVar.getContactsController().f22608e0);
                 } else {
                     arrayList2 = null;
                 }
-                String str = this.f47576c;
+                String str = this.f47573c;
                 if (arrayList == null && arrayList2 == null) {
                     nqVar2.f48112s = false;
                     m6Var = null;
@@ -55,7 +55,7 @@ public final class lq implements Runnable {
                 } else {
                     z9 = false;
                 }
-                if (org.telegram.messenger.t3.T(oqVar.f48497n)) {
+                if (org.telegram.messenger.t3.T(oqVar.f48491n)) {
                     j3 = oqVar.M;
                 } else {
                     j3 = 0;

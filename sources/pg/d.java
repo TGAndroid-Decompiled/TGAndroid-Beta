@@ -10,7 +10,7 @@ import c8.ha;
 import j2.n;
 import m4.d0;
 import org.telegram.messenger.camera.q;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.iz;
 import org.telegram.messenger.k5;
 import org.telegram.ui.ActionBar.f2;
@@ -24,12 +24,12 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.h5;
 public final class d implements Runnable {
-    public final int f53510a;
-    public final j f53511b;
+    public final int f53603a;
+    public final j f53604b;
 
     public d(j jVar, int i7) {
-        this.f53510a = i7;
-        this.f53511b = jVar;
+        this.f53603a = i7;
+        this.f53604b = jVar;
     }
 
     @Override
@@ -41,30 +41,30 @@ public final class d implements Runnable {
         int i13;
         int i14;
         int i15;
-        int i16 = this.f53510a;
-        j jVar = this.f53511b;
+        int i16 = this.f53603a;
+        j jVar = this.f53604b;
         switch (i16) {
             case 0:
                 f2 Q = LaunchActivity.Q();
                 ?? v2Var = new v2(Q.getParentActivity(), false);
                 if (Q.getFragmentView() instanceof rt0) {
-                    v2Var.f46219i1 = (rt0) Q.getFragmentView();
+                    v2Var.f46221i1 = (rt0) Q.getFragmentView();
                 }
                 Activity parentActivity = Q.getParentActivity();
                 LinearLayout e10 = k5.e(parentActivity, 1);
                 TextView textView = new TextView(parentActivity);
-                textView.setText("Saturation " + (h5.f46217j1 * 5.0f));
-                int i17 = k6.f28030n5;
+                textView.setText("Saturation " + (h5.f46219j1 * 5.0f));
+                int i17 = k6.f28033n5;
                 r6.V(textView, i17, null);
                 q.n(textView, 1, 16.0f, 1, 1);
                 textView.setSingleLine(true);
-                if (hd.f22878a0) {
+                if (id.f23157a0) {
                     i7 = 3;
                 } else {
                     i7 = 5;
                 }
                 textView.setGravity(i7 | 48);
-                if (hd.f22878a0) {
+                if (id.f23157a0) {
                     i10 = 3;
                 } else {
                     i10 = 5;
@@ -79,13 +79,13 @@ public final class d implements Runnable {
                 r6.V(textView2, i17, null);
                 q.n(textView2, 1, 16.0f, 1, 1);
                 textView2.setSingleLine(true);
-                if (hd.f22878a0) {
+                if (id.f23157a0) {
                     i11 = 3;
                 } else {
                     i11 = 5;
                 }
                 textView2.setGravity(i11 | 48);
-                if (hd.f22878a0) {
+                if (id.f23157a0) {
                     i12 = 3;
                 } else {
                     i12 = 5;
@@ -100,13 +100,13 @@ public final class d implements Runnable {
                 r6.V(textView3, i17, null);
                 q.n(textView3, 1, 16.0f, 1, 1);
                 textView3.setSingleLine(true);
-                if (hd.f22878a0) {
+                if (id.f23157a0) {
                     i13 = 3;
                 } else {
                     i13 = 5;
                 }
                 textView3.setGravity(i13 | 48);
-                if (hd.f22878a0) {
+                if (id.f23157a0) {
                     i14 = 3;
                 } else {
                     i14 = 5;
@@ -132,13 +132,13 @@ public final class d implements Runnable {
                 } else {
                     i15 = 2131751620;
                 }
-                Toast.makeText(context, hd.M0(i15, null), 0).show();
+                Toast.makeText(context, id.M0(i15, null), 0).show();
                 return;
             case 2:
                 ProfileActivity.V4((Activity) jVar.getContext(), false);
                 return;
             default:
-                jVar.f53535n = true;
+                jVar.f53628n = true;
                 try {
                     jVar.performHapticFeedback(0);
                     return;

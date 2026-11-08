@@ -163,14 +163,14 @@ public final class n00 extends org.telegram.ui.Components.za0 {
         }
         o00Var.f48191a.d(0, (-getMeasuredWidth()) * 0.1f * o00Var.f48196n, 0, getMeasuredWidth(), 0.0f, getMeasuredHeight());
         if (o00Var.M) {
-            int themedColor = o00Var.getThemedColor(org.telegram.ui.ActionBar.k6.f27793a7);
+            int themedColor = o00Var.getThemedColor(org.telegram.ui.ActionBar.k6.f27796a7);
             Paint paint2 = this.f47929p0;
             paint2.setColor(themedColor);
             canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), paint2);
         } else {
-            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), o00Var.f48191a.f56776f);
+            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), o00Var.f48191a.f56868f);
         }
-        int themedColor2 = o00Var.getThemedColor(org.telegram.ui.ActionBar.k6.f27957j5);
+        int themedColor2 = o00Var.getThemedColor(org.telegram.ui.ActionBar.k6.f27960j5);
         if (o00Var.M) {
             i7 = org.telegram.ui.ActionBar.k6.G6;
         } else {

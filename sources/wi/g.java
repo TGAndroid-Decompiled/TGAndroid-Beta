@@ -6,10 +6,10 @@ import android.hardware.camera2.CaptureResult;
 import android.hardware.camera2.TotalCaptureResult;
 import android.os.SystemClock;
 public final class g extends CameraCaptureSession.CaptureCallback {
-    public final k f57871a;
+    public final k f57966a;
 
     public g(k kVar) {
-        this.f57871a = kVar;
+        this.f57966a = kVar;
     }
 
     @Override
@@ -20,8 +20,8 @@ public final class g extends CameraCaptureSession.CaptureCallback {
         boolean z10;
         boolean z11;
         int i10;
-        k kVar = this.f57871a;
-        o oVar = kVar.f57930j;
+        k kVar = this.f57966a;
+        o oVar = kVar.f58025j;
         if (cameraCaptureSession == kVar.A) {
             if (kVar.Q) {
                 Object tag = captureRequest.getTag();
@@ -64,45 +64,45 @@ public final class g extends CameraCaptureSession.CaptureCallback {
                     kVar.Y0 = 1L;
                 } else {
                     long longValue = l10.longValue() - kVar.X0;
-                    kVar.f57907a1++;
-                    kVar.f57910b1 += longValue;
+                    kVar.f58002a1++;
+                    kVar.f58005b1 += longValue;
                     double d = longValue;
-                    kVar.f57913c1 = (d * d) + kVar.f57913c1;
-                    long j3 = kVar.f57915d1;
+                    kVar.f58008c1 = (d * d) + kVar.f58008c1;
+                    long j3 = kVar.f58010d1;
                     if (j3 == 0 || longValue < j3) {
-                        kVar.f57915d1 = longValue;
+                        kVar.f58010d1 = longValue;
                     }
-                    kVar.f57918e1 = Math.max(kVar.f57918e1, longValue);
+                    kVar.f58013e1 = Math.max(kVar.f58013e1, longValue);
                     if (longValue > 50000000) {
-                        kVar.f57921f1++;
+                        kVar.f58016f1++;
                     }
                     if (longValue > 100000000) {
-                        kVar.f57924g1++;
+                        kVar.f58019g1++;
                     }
                     kVar.Y0++;
                 }
                 long j10 = kVar.Z0;
                 if (j10 != 0) {
                     long j11 = elapsedRealtimeNanos - j10;
-                    kVar.f57926h1++;
-                    kVar.f57929i1 += j11;
-                    kVar.f57932j1 = Math.max(kVar.f57932j1, j11);
+                    kVar.f58021h1++;
+                    kVar.f58024i1 += j11;
+                    kVar.f58027j1 = Math.max(kVar.f58027j1, j11);
                 }
                 kVar.Z0 = elapsedRealtimeNanos;
                 kVar.X0 = l10.longValue();
                 long longValue2 = l10.longValue() - kVar.W0;
                 if (longValue2 >= 3000000000L) {
                     float f10 = (((float) (kVar.Y0 - 1)) * 1.0E9f) / ((float) longValue2);
-                    p0 p0Var = kVar.J;
-                    if (p0Var == null) {
+                    o0 o0Var = kVar.J;
+                    if (o0Var == null) {
                         i7 = 0;
                     } else {
-                        i7 = p0Var.f58031a;
+                        i7 = o0Var.f58121a;
                     }
                     StringBuilder sb2 = new StringBuilder("camera capture rate: measuredFps=");
                     sb2.append(f10);
                     sb2.append(", requestedFps=");
-                    sb2.append(kVar.h.f58031a);
+                    sb2.append(kVar.h.f58121a);
                     sb2.append(", activeFps=");
                     if (i7 == 0) {
                         valueOf = "unknown";
@@ -120,21 +120,21 @@ public final class g extends CameraCaptureSession.CaptureCallback {
                     sb2.append(", fpsRange=");
                     sb2.append(kVar.K);
                     sb2.append(", sensorIntervalMs={avg=");
-                    sb2.append(k.i(kVar.f57910b1, kVar.f57907a1));
+                    sb2.append(k.i(kVar.f58005b1, kVar.f58002a1));
                     sb2.append(", min=");
-                    sb2.append(((float) kVar.f57915d1) / 1000000.0f);
+                    sb2.append(((float) kVar.f58010d1) / 1000000.0f);
                     sb2.append(", max=");
-                    sb2.append(((float) kVar.f57918e1) / 1000000.0f);
+                    sb2.append(((float) kVar.f58013e1) / 1000000.0f);
                     sb2.append(", jitter=");
-                    sb2.append(k.V(kVar.f57913c1, kVar.f57910b1, kVar.f57907a1));
+                    sb2.append(k.V(kVar.f58008c1, kVar.f58005b1, kVar.f58002a1));
                     sb2.append("}, sensorGaps={over50ms=");
-                    sb2.append(kVar.f57921f1);
+                    sb2.append(kVar.f58016f1);
                     sb2.append(", over100ms=");
-                    sb2.append(kVar.f57924g1);
+                    sb2.append(kVar.f58019g1);
                     sb2.append("}, callbackIntervalMs={avg=");
-                    sb2.append(k.i(kVar.f57929i1, kVar.f57926h1));
+                    sb2.append(k.i(kVar.f58024i1, kVar.f58021h1));
                     sb2.append(", max=");
-                    sb2.append(((float) kVar.f57932j1) / 1000000.0f);
+                    sb2.append(((float) kVar.f58027j1) / 1000000.0f);
                     sb2.append("}");
                     oVar.b(sb2.toString());
                     kVar.O();

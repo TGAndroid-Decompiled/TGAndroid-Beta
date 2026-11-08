@@ -3,7 +3,7 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.View;
 public final class lx extends org.telegram.ui.Components.w31 {
-    public static final int f47598b = 0;
+    public static final int f47595b = 0;
 
     static {
         org.telegram.ui.Components.w31.h(new org.telegram.ui.Components.w31());
@@ -14,7 +14,7 @@ public final class lx extends org.telegram.ui.Components.w31 {
         mx mxVar = (mx) view;
         mxVar.f47899n = (org.telegram.messenger.c20) x31Var.G;
         mxVar.f47900r = x31Var;
-        mxVar.b(x31Var.f40172z, false);
+        mxVar.b(x31Var.f40193z, false);
     }
 
     @Override

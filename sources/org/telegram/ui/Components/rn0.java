@@ -7,24 +7,24 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.Button;
 import android.widget.FrameLayout;
 public final class rn0 extends FrameLayout {
-    public final int f37712a;
-    public final mo0 f37713b;
+    public final int f37733a;
+    public final mo0 f37734b;
 
     public rn0(mo0 mo0Var, Context context, int i7) {
         super(context);
-        this.f37712a = i7;
-        this.f37713b = mo0Var;
+        this.f37733a = i7;
+        this.f37734b = mo0Var;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f37712a) {
+        switch (this.f37733a) {
             case 0:
-                mo0 mo0Var = this.f37713b;
-                mo0Var.O2.setBounds(0, (int) mo0Var.f36023m2, getMeasuredWidth(), getMeasuredHeight());
+                mo0 mo0Var = this.f37734b;
+                mo0Var.O2.setBounds(0, (int) mo0Var.f36051m2, getMeasuredWidth(), getMeasuredHeight());
                 mo0Var.O2.draw(canvas);
                 canvas.save();
-                canvas.clipRect(0.0f, mo0Var.f36023m2, getMeasuredWidth(), getMeasuredHeight());
+                canvas.clipRect(0.0f, mo0Var.f36051m2, getMeasuredWidth(), getMeasuredHeight());
                 super.dispatchDraw(canvas);
                 canvas.restore();
                 return;
@@ -36,27 +36,27 @@ public final class rn0 extends FrameLayout {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f37712a) {
+        switch (this.f37733a) {
             case 0:
-                mo0 mo0Var = this.f37713b;
-                rn0 rn0Var = mo0Var.f36017j1;
-                float f10 = mo0Var.f36024n2;
-                if (f10 != 0.0f && f10 != rn0Var.getTop() + mo0Var.f36024n2) {
-                    ValueAnimator valueAnimator = mo0Var.f36026o2;
+                mo0 mo0Var = this.f37734b;
+                rn0 rn0Var = mo0Var.f36045j1;
+                float f10 = mo0Var.f36052n2;
+                if (f10 != 0.0f && f10 != rn0Var.getTop() + mo0Var.f36052n2) {
+                    ValueAnimator valueAnimator = mo0Var.f36054o2;
                     if (valueAnimator != null) {
                         valueAnimator.cancel();
                     }
-                    float top = mo0Var.f36024n2 - (rn0Var.getTop() + mo0Var.f36023m2);
-                    mo0Var.f36023m2 = top;
+                    float top = mo0Var.f36052n2 - (rn0Var.getTop() + mo0Var.f36051m2);
+                    mo0Var.f36051m2 = top;
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(top, 0.0f);
-                    mo0Var.f36026o2 = ofFloat;
+                    mo0Var.f36054o2 = ofFloat;
                     ofFloat.addUpdateListener(new c60(this, 16));
-                    mo0Var.f36026o2.setInterpolator(xq.f40345f);
-                    mo0Var.f36026o2.setDuration(200L);
-                    mo0Var.f36026o2.start();
-                    mo0Var.f36024n2 = 0.0f;
+                    mo0Var.f36054o2.setInterpolator(xq.f40366f);
+                    mo0Var.f36054o2.setDuration(200L);
+                    mo0Var.f36054o2.start();
+                    mo0Var.f36052n2 = 0.0f;
                 }
-                mo0Var.K1[1].setTranslationY((-(rn0Var.getMeasuredHeight() - org.telegram.messenger.g0.L(48.0f))) + mo0Var.f36023m2 + mo0Var.f36021l2 + ((1.0f - getAlpha()) * (rn0Var.getMeasuredHeight() - org.telegram.messenger.g0.L(48.0f))));
+                mo0Var.K1[1].setTranslationY((-(rn0Var.getMeasuredHeight() - org.telegram.messenger.g0.L(48.0f))) + mo0Var.f36051m2 + mo0Var.f36049l2 + ((1.0f - getAlpha()) * (rn0Var.getMeasuredHeight() - org.telegram.messenger.g0.L(48.0f))));
                 return;
             default:
                 super.onDraw(canvas);
@@ -66,10 +66,10 @@ public final class rn0 extends FrameLayout {
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f37712a) {
+        switch (this.f37733a) {
             case 1:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(org.telegram.messenger.hd.G(this.f37713b.M1.m(), "AccDescrShareInChats", new Object[0]));
+                accessibilityNodeInfo.setText(org.telegram.messenger.id.G(this.f37734b.M1.m(), "AccDescrShareInChats", new Object[0]));
                 accessibilityNodeInfo.setClassName(Button.class.getName());
                 accessibilityNodeInfo.setLongClickable(true);
                 accessibilityNodeInfo.setClickable(true);
@@ -82,7 +82,7 @@ public final class rn0 extends FrameLayout {
 
     @Override
     public void setAlpha(float f10) {
-        switch (this.f37712a) {
+        switch (this.f37733a) {
             case 0:
                 super.setAlpha(f10);
                 invalidate();
@@ -95,11 +95,11 @@ public final class rn0 extends FrameLayout {
 
     @Override
     public void setVisibility(int i7) {
-        switch (this.f37712a) {
+        switch (this.f37733a) {
             case 0:
                 super.setVisibility(i7);
                 if (i7 != 0) {
-                    this.f37713b.K1[1].setTranslationY(0.0f);
+                    this.f37734b.K1[1].setTranslationY(0.0f);
                     return;
                 }
                 return;

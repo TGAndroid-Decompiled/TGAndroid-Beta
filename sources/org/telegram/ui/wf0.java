@@ -5,26 +5,26 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.View;
 public final class wf0 extends org.telegram.ui.Components.rt0 {
-    public final int[] f51416f0;
-    public final int[] f51417g0;
-    public int f51418h0;
-    public final int[] f51419i0;
-    public final h6.m f51420j0;
-    public final Paint f51421k0;
-    public final org.telegram.ui.ActionBar.f6 f51422l0;
+    public final int[] f51423f0;
+    public final int[] f51424g0;
+    public int f51425h0;
+    public final int[] f51426i0;
+    public final h6.m f51427j0;
+    public final Paint f51428k0;
+    public final org.telegram.ui.ActionBar.f6 f51429l0;
     public final bg0 m0;
 
     public wf0(bg0 bg0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context, null);
         this.m0 = bg0Var;
-        this.f51422l0 = f6Var;
-        this.f51416f0 = new int[2];
-        this.f51417g0 = new int[2];
-        this.f51418h0 = 0;
-        this.f51419i0 = new int[2];
-        this.f51420j0 = new h6.m(28);
-        org.telegram.ui.Components.xq xqVar = org.telegram.ui.Components.xq.f40345f;
-        this.f51421k0 = new Paint(1);
+        this.f51429l0 = f6Var;
+        this.f51423f0 = new int[2];
+        this.f51424g0 = new int[2];
+        this.f51425h0 = 0;
+        this.f51426i0 = new int[2];
+        this.f51427j0 = new h6.m(28);
+        org.telegram.ui.Components.xq xqVar = org.telegram.ui.Components.xq.f40366f;
+        this.f51428k0 = new Paint(1);
     }
 
     @Override
@@ -35,7 +35,7 @@ public final class wf0 extends org.telegram.ui.Components.rt0 {
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         bg0 bg0Var = this.m0;
-        if (bg0Var.f44344w) {
+        if (bg0Var.f44347w) {
             if (view != bg0Var.W) {
                 org.telegram.ui.Cells.q1 q1Var = bg0Var.P;
                 if (view == q1Var && q1Var != null && q1Var.getCurrentPosition() == null) {

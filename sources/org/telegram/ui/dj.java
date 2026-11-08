@@ -22,15 +22,15 @@ public final class dj extends v4.t {
         jl jlVar = anVar.C0;
         int i11 = jlVar.J;
         if (i7 >= i11 && i7 < jlVar.K && (i10 = i7 - i11) >= 0 && i10 < jlVar.L().size() && (s9 = anVar.s9((ijVar = (org.telegram.messenger.ij) anVar.C0.L().get(i10)))) != null) {
-            ArrayList arrayList = s9.f22012e;
+            ArrayList arrayList = s9.f22037e;
             org.telegram.messenger.aj d = s9.d(ijVar);
-            if (d.f21442a != d.f21443b && (b10 = d.f21444c) == d.d && b10 != 0) {
+            if (d.f21441a != d.f21442b && (b10 = d.f21443c) == d.d && b10 != 0) {
                 int size = arrayList.size();
                 for (int i12 = 0; i12 < size; i12++) {
                     org.telegram.messenger.aj ajVar = (org.telegram.messenger.aj) arrayList.get(i12);
                     if (ajVar != d) {
-                        byte b11 = ajVar.f21444c;
-                        byte b12 = d.f21444c;
+                        byte b11 = ajVar.f21443c;
+                        byte b12 = d.f21443c;
                         if (b11 <= b12 && ajVar.d >= b12) {
                             return true;
                         }
@@ -68,7 +68,7 @@ public final class dj extends v4.t {
     @Override
     public final int K() {
         if (this.S) {
-            return (int) ((this.f57049n - this.T.L9) - C());
+            return (int) ((this.f57141n - this.T.L9) - C());
         }
         return super.K();
     }
@@ -80,7 +80,7 @@ public final class dj extends v4.t {
 
     @Override
     public final void b0(v4.v0 v0Var, v4.a1 a1Var) {
-        boolean z9 = org.telegram.messenger.r2.f25199a;
+        boolean z9 = org.telegram.messenger.r2.f25212a;
         try {
             super.b0(v0Var, a1Var);
         } catch (Exception e10) {
@@ -130,7 +130,7 @@ public final class dj extends v4.t {
     public final void v0(RecyclerView recyclerView, v4.a1 a1Var, int i7) {
         this.T.La = false;
         mi.m mVar = new mi.m(recyclerView.getContext(), 0);
-        mVar.f57120a = i7;
+        mVar.f57212a = i7;
         w0(mVar);
     }
 

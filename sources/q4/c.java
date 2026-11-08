@@ -2,10 +2,10 @@ package q4;
 
 import android.os.IBinder;
 public final class c implements d {
-    public IBinder f53672a;
+    public IBinder f53765a;
 
     @Override
     public final IBinder asBinder() {
-        return this.f53672a;
+        return this.f53765a;
     }
 }

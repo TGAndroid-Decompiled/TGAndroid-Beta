@@ -130,14 +130,14 @@ public abstract class u extends androidx.activity.m {
         b0 b0Var = sVar.f13370n;
         if (b0Var != null) {
             m3 m3Var = (m3) b0Var.f13279e;
-            if (m3Var.f19164g) {
+            if (m3Var.f19167g) {
                 return;
             }
-            Toolbar toolbar = m3Var.f19159a;
+            Toolbar toolbar = m3Var.f19162a;
             m3Var.h = charSequence;
-            if ((m3Var.f19160b & 8) != 0) {
+            if ((m3Var.f19163b & 8) != 0) {
                 toolbar.setTitle(charSequence);
-                if (m3Var.f19164g) {
+                if (m3Var.f19167g) {
                     i0.k(toolbar.getRootView(), charSequence);
                     return;
                 }
@@ -186,14 +186,14 @@ public abstract class u extends androidx.activity.m {
         b0 b0Var = sVar.f13370n;
         if (b0Var != null) {
             m3 m3Var = (m3) b0Var.f13279e;
-            if (m3Var.f19164g) {
+            if (m3Var.f19167g) {
                 return;
             }
-            Toolbar toolbar = m3Var.f19159a;
+            Toolbar toolbar = m3Var.f19162a;
             m3Var.h = string;
-            if ((m3Var.f19160b & 8) != 0) {
+            if ((m3Var.f19163b & 8) != 0) {
                 toolbar.setTitle(string);
-                if (m3Var.f19164g) {
+                if (m3Var.f19167g) {
                     i0.k(toolbar.getRootView(), string);
                     return;
                 }

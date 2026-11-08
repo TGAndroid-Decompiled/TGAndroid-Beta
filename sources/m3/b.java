@@ -12,35 +12,35 @@ import h9.i0;
 import h9.t1;
 import java.util.List;
 public final class b implements o {
-    public final o f19569a;
-    public final boolean f19570b;
+    public final o f19572a;
+    public final boolean f19573b;
 
     public b(int i7) {
         boolean z9 = (i7 & 1) != 0;
-        this.f19570b = z9;
+        this.f19573b = z9;
         if (z9) {
-            this.f19569a = new e0(-1, -1, "image/heif");
+            this.f19572a = new e0(-1, -1, "image/heif");
         } else {
-            this.f19569a = new a();
+            this.f19572a = new a();
         }
     }
 
     @Override
     public final boolean b(p pVar) {
-        if (this.f19570b) {
+        if (this.f19573b) {
             return m9.a((l) pVar, false);
         }
-        return this.f19569a.b(pVar);
+        return this.f19572a.b(pVar);
     }
 
     @Override
     public final void c(q qVar) {
-        this.f19569a.c(qVar);
+        this.f19572a.c(qVar);
     }
 
     @Override
     public final void d(long j3, long j10) {
-        this.f19569a.d(j3, j10);
+        this.f19572a.d(j3, j10);
     }
 
     @Override
@@ -51,12 +51,12 @@ public final class b implements o {
 
     @Override
     public final int f(p pVar, s sVar) {
-        return this.f19569a.f(pVar, sVar);
+        return this.f19572a.f(pVar, sVar);
     }
 
     @Override
     public final void release() {
-        this.f19569a.release();
+        this.f19572a.release();
     }
 
     @Override

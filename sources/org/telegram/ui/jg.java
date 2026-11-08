@@ -3,18 +3,18 @@ package org.telegram.ui;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 public final class jg implements View.OnClickListener {
-    public final int f46958a;
-    public final org.telegram.ui.Components.k60 f46959b;
+    public final int f46956a;
+    public final org.telegram.ui.Components.k60 f46957b;
 
     public jg(org.telegram.ui.Components.k60 k60Var, int i7) {
-        this.f46958a = i7;
-        this.f46959b = k60Var;
+        this.f46956a = i7;
+        this.f46957b = k60Var;
     }
 
     @Override
     public final void onClick(View view) {
-        int i7 = this.f46958a;
-        org.telegram.ui.Components.k60 k60Var = this.f46959b;
+        int i7 = this.f46956a;
+        org.telegram.ui.Components.k60 k60Var = this.f46957b;
         switch (i7) {
             case 0:
                 k60Var.s();

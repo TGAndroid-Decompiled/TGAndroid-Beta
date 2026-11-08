@@ -6,11 +6,11 @@ import com.google.firebase.messaging.FirebaseMessagingRegistrar;
 import java.util.concurrent.Executor;
 public final class r implements u9.d {
     public final int f992a;
-    public final u9.q f993b;
+    public final u9.r f993b;
 
-    public r(u9.q qVar, int i7) {
+    public r(u9.r rVar, int i7) {
         this.f992a = i7;
-        this.f993b = qVar;
+        this.f993b = rVar;
     }
 
     @Override

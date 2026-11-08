@@ -6,24 +6,24 @@ import c8.xb;
 import q4.x;
 public final class l extends r6.a {
     public static final Parcelable.Creator<l> CREATOR = new x(22);
-    public final boolean f54868a;
+    public final boolean f54960a;
 
     public l(boolean z9) {
-        this.f54868a = z9;
+        this.f54960a = z9;
     }
 
     public final boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
-        if ((obj instanceof l) && this.f54868a == ((l) obj).f54868a) {
+        if ((obj instanceof l) && this.f54960a == ((l) obj).f54960a) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        if (this.f54868a) {
+        if (this.f54960a) {
             return 1;
         }
         return 0;
@@ -33,7 +33,7 @@ public final class l extends r6.a {
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = xb.r(parcel, 20293);
         xb.q(parcel, 1, 4);
-        parcel.writeInt(this.f54868a ? 1 : 0);
+        parcel.writeInt(this.f54960a ? 1 : 0);
         xb.s(parcel, r10);
     }
 }

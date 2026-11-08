@@ -13,37 +13,37 @@ import org.telegram.tgnet.tl.TL_iv;
 public final class au extends View implements org.telegram.ui.Cells.h9 {
     public boolean D;
     public ds E;
-    public final int f21516a;
-    public org.telegram.ui.ActionBar.f6 f21517b;
-    public ij f21518c;
+    public final int f21532a;
+    public org.telegram.ui.ActionBar.f6 f21533b;
+    public ij f21534c;
     public TL_iv.RichMessage d;
-    public kv f21519e;
-    public int f21520f;
+    public kv f21535e;
+    public int f21536f;
     public int h;
-    public int f21521n;
-    public int f21522r;
-    public boolean f21523s;
-    public org.telegram.ui.Cells.i9 f21524w;
-    public int f21525x;
-    public int f21526y;
+    public int f21537n;
+    public int f21538r;
+    public boolean f21539s;
+    public org.telegram.ui.Cells.i9 f21540w;
+    public int f21541x;
+    public int f21542y;
 
     public au(int i7, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f21525x = -1;
-        this.f21526y = -1;
+        this.f21541x = -1;
+        this.f21542y = -1;
         this.D = true;
-        this.f21516a = i7;
-        this.f21517b = f6Var;
+        this.f21532a = i7;
+        this.f21533b = f6Var;
         qs.i(this);
     }
 
     @Override
     public final void k(ArrayList arrayList) {
-        if (this.f21519e != null) {
-            int i7 = this.f21520f;
+        if (this.f21535e != null) {
+            int i7 = this.f21536f;
             int i10 = this.h;
-            for (int i11 = 0; i11 < this.f21519e.f23774n.size(); i11++) {
-                arrayList.add(new li.b5((org.telegram.ui.Cells.t9) this.f21519e.f23774n.get(i11), i7, i10, 3));
+            for (int i11 = 0; i11 < this.f21535e.f23774n.size(); i11++) {
+                arrayList.add(new li.b5((org.telegram.ui.Cells.t9) this.f21535e.f23774n.get(i11), i7, i10, 3));
             }
         }
     }
@@ -51,17 +51,17 @@ public final class au extends View implements org.telegram.ui.Cells.h9 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        kv kvVar = this.f21519e;
+        kv kvVar = this.f21535e;
         if (kvVar != null) {
             kvVar.b(this);
-            this.f21519e.b0(0);
+            this.f21535e.b0(0);
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        kv kvVar = this.f21519e;
+        kv kvVar = this.f21535e;
         if (kvVar != null) {
             kvVar.f(this);
         }
@@ -72,9 +72,9 @@ public final class au extends View implements org.telegram.ui.Cells.h9 {
         boolean z9;
         int i7;
         boolean z10;
-        if (this.f21519e != null) {
-            float height = (getHeight() - this.h) - this.f21522r;
-            if (this.f21519e.t() > (getHeight() - this.h) - this.f21522r) {
+        if (this.f21535e != null) {
+            float height = (getHeight() - this.h) - this.f21538r;
+            if (this.f21535e.t() > (getHeight() - this.h) - this.f21538r) {
                 z9 = true;
             } else {
                 z9 = false;
@@ -83,9 +83,9 @@ public final class au extends View implements org.telegram.ui.Cells.h9 {
             if (z9) {
                 canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
             }
-            canvas.translate(this.f21520f, this.h);
-            kv kvVar = this.f21519e;
-            kvVar.S(this.f21520f, Math.max(0, (getWidth() - this.f21519e.C) - this.f21520f));
+            canvas.translate(this.f21536f, this.h);
+            kv kvVar = this.f21535e;
+            kvVar.S(this.f21536f, Math.max(0, (getWidth() - this.f21535e.C) - this.f21536f));
             TextPaint textPaint = kvVar.f23782w;
             if (kvVar.E()) {
                 i7 = org.telegram.ui.ActionBar.k6.Vc;
@@ -99,28 +99,28 @@ public final class au extends View implements org.telegram.ui.Cells.h9 {
                 z10 = false;
             }
             kvVar.h(canvas, null, z10, 0.0f, height);
-            if (this.f21519e.C()) {
-                this.f21519e.i(canvas, null);
+            if (this.f21535e.C()) {
+                this.f21535e.i(canvas, null);
             }
             if (z9) {
-                canvas.translate(-this.f21520f, -this.h);
+                canvas.translate(-this.f21536f, -this.h);
                 canvas.save();
                 RectF rectF = g0.P;
                 rectF.set(0.0f, getHeight() - g0.L(24.0f), getWidth(), getHeight());
-                this.f21519e.f23785z.m(canvas, rectF, 3, 1.0f);
+                this.f21535e.f23785z.m(canvas, rectF, 3, 1.0f);
                 canvas.restore();
                 canvas.restore();
             }
             canvas.restore();
-            org.telegram.ui.Cells.i9 i9Var = this.f21524w;
+            org.telegram.ui.Cells.i9 i9Var = this.f21540w;
             if (i9Var != null && i9Var.x()) {
-                int i10 = this.f21520f;
+                int i10 = this.f21536f;
                 int i11 = this.h;
-                for (int i12 = 0; i12 < this.f21519e.f23774n.size(); i12++) {
-                    org.telegram.ui.Cells.t9 t9Var = (org.telegram.ui.Cells.t9) this.f21519e.f23774n.get(i12);
+                for (int i12 = 0; i12 < this.f21535e.f23774n.size(); i12++) {
+                    org.telegram.ui.Cells.t9 t9Var = (org.telegram.ui.Cells.t9) this.f21535e.f23774n.get(i12);
                     canvas.save();
                     canvas.translate(t9Var.getX() + i10, t9Var.getY() + i11);
-                    this.f21524w.Z(canvas, this, i12);
+                    this.f21540w.Z(canvas, this, i12);
                     canvas.restore();
                 }
             }
@@ -131,39 +131,39 @@ public final class au extends View implements org.telegram.ui.Cells.h9 {
     public final void onMeasure(int i7, int i10) {
         TL_iv.RichMessage richMessage;
         int size = View.MeasureSpec.getSize(i7);
-        int i11 = (size - this.f21520f) - this.f21521n;
+        int i11 = (size - this.f21536f) - this.f21537n;
         int i12 = 0;
         if (i11 > 0 && (richMessage = this.d) != null) {
-            kv kvVar = this.f21519e;
+            kv kvVar = this.f21535e;
             if (kvVar == null || kvVar.L(richMessage, i11)) {
-                kv kvVar2 = this.f21519e;
+                kv kvVar2 = this.f21535e;
                 if (kvVar2 != null) {
                     kvVar2.f(this);
                 }
-                kv kvVar3 = new kv(this.f21518c, i11, (kv) null);
-                this.f21519e = kvVar3;
-                kvVar3.O = this.f21523s;
-                kvVar3.D = this.f21517b;
+                kv kvVar3 = new kv(this.f21534c, i11, (kv) null);
+                this.f21535e = kvVar3;
+                kvVar3.O = this.f21539s;
+                kvVar3.D = this.f21533b;
                 kvVar3.v = true;
                 kvVar3.c(null, null);
                 if (isAttachedToWindow()) {
-                    this.f21519e.b(this);
-                    this.f21519e.b0(0);
+                    this.f21535e.b(this);
+                    this.f21535e.b0(0);
                 }
             }
         } else {
-            this.f21519e = null;
+            this.f21535e = null;
         }
-        kv kvVar4 = this.f21519e;
+        kv kvVar4 = this.f21535e;
         if (kvVar4 != null) {
             i12 = kvVar4.t();
         }
-        int i13 = i12 + this.h + this.f21522r;
-        int i14 = this.f21526y;
+        int i13 = i12 + this.h + this.f21538r;
+        int i14 = this.f21542y;
         if (i14 > 0 && i13 > i14) {
             i13 = i14;
         }
-        int i15 = this.f21525x;
+        int i15 = this.f21541x;
         if (i15 > 0 && i13 < i15) {
             i13 = i15;
         }
@@ -184,14 +184,14 @@ public final class au extends View implements org.telegram.ui.Cells.h9 {
         if (!this.D) {
             return super.onTouchEvent(motionEvent);
         }
-        if (this.f21524w != null) {
+        if (this.f21540w != null) {
             int action = motionEvent.getAction();
             if (action != 0) {
                 if ((action == 1 || action == 2 || action == 3) && (dsVar = this.E) != null) {
                     removeCallbacks(dsVar);
                 }
             } else {
-                this.f21524w.k0(this, (int) motionEvent.getX(), (int) motionEvent.getY());
+                this.f21540w.k0(this, (int) motionEvent.getX(), (int) motionEvent.getY());
                 if (this.E == null) {
                     this.E = new ds(this, 4);
                 }
@@ -199,10 +199,10 @@ public final class au extends View implements org.telegram.ui.Cells.h9 {
                 postDelayed(this.E, ViewConfiguration.getLongPressTimeout());
             }
         }
-        if (this.f21519e != null) {
-            motionEvent.offsetLocation(-this.f21520f, -this.h);
-            boolean M = this.f21519e.M(motionEvent);
-            motionEvent.offsetLocation(this.f21520f, this.h);
+        if (this.f21535e != null) {
+            motionEvent.offsetLocation(-this.f21536f, -this.h);
+            boolean M = this.f21535e.M(motionEvent);
+            motionEvent.offsetLocation(this.f21536f, this.h);
             if (M) {
                 return true;
             }
@@ -215,17 +215,17 @@ public final class au extends View implements org.telegram.ui.Cells.h9 {
             return;
         }
         this.d = richMessage;
-        if (this.f21518c == null) {
+        if (this.f21534c == null) {
             TLRPC.TL_message tL_message = new TLRPC.TL_message();
             tL_message.out = true;
-            this.f21518c = new ij(this.f21516a, tL_message, false, false);
+            this.f21534c = new ij(this.f21532a, tL_message, false, false);
         }
-        this.f21518c.f23244k.rich_message = richMessage;
-        kv kvVar = this.f21519e;
+        this.f21534c.f23262k.rich_message = richMessage;
+        kv kvVar = this.f21535e;
         if (kvVar != null) {
             kvVar.f(this);
         }
-        this.f21519e = null;
+        this.f21535e = null;
         requestLayout();
         invalidate();
     }
@@ -235,41 +235,41 @@ public final class au extends View implements org.telegram.ui.Cells.h9 {
     }
 
     public void setMaxHeight(int i7) {
-        this.f21526y = i7;
+        this.f21542y = i7;
     }
 
     public void setMinHeight(int i7) {
-        this.f21525x = i7;
+        this.f21541x = i7;
     }
 
     @Override
     public final void setPadding(int i7, int i10, int i11, int i12) {
-        if (this.f21520f == i7 && this.h == i10 && this.f21521n == i11 && this.f21522r == i12) {
+        if (this.f21536f == i7 && this.h == i10 && this.f21537n == i11 && this.f21538r == i12) {
             return;
         }
-        this.f21520f = i7;
+        this.f21536f = i7;
         this.h = i10;
-        this.f21521n = i11;
-        this.f21522r = i12;
+        this.f21537n = i11;
+        this.f21538r = i12;
         requestLayout();
         invalidate();
     }
 
     public void setResourcesProvider(org.telegram.ui.ActionBar.f6 f6Var) {
-        this.f21517b = f6Var;
-        kv kvVar = this.f21519e;
+        this.f21533b = f6Var;
+        kv kvVar = this.f21535e;
         if (kvVar != null) {
             kvVar.D = f6Var;
         }
     }
 
     public void setTextSelectionHelper(org.telegram.ui.Cells.i9 i9Var) {
-        this.f21524w = i9Var;
+        this.f21540w = i9Var;
     }
 
     public void setTranslationLoading(boolean z9) {
-        this.f21523s = z9;
-        kv kvVar = this.f21519e;
+        this.f21539s = z9;
+        kv kvVar = this.f21535e;
         if (kvVar != null) {
             kvVar.O = z9;
         }

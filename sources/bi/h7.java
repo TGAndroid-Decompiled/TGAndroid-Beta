@@ -20,7 +20,7 @@ public final class h7 extends View implements org.telegram.ui.ActionBar.a6 {
         this.f4002c = path;
         Paint paint = new Paint(1);
         this.d = paint;
-        org.telegram.ui.ActionBar.q6 q6Var = org.telegram.ui.ActionBar.r6.f28475a;
+        org.telegram.ui.ActionBar.q6 q6Var = org.telegram.ui.ActionBar.r6.f28478a;
         org.telegram.ui.Components.w8 w8Var = new org.telegram.ui.Components.w8((org.telegram.ui.ActionBar.f6) null);
         w8Var.l(tLObject);
         ImageReceiver imageReceiver = new ImageReceiver(this);

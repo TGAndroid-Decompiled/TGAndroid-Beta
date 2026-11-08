@@ -11,7 +11,7 @@ import com.google.android.gms.tasks.Tasks;
 public abstract class u7 {
     public static b9.j0 a(Context context, GoogleSignInOptions googleSignInOptions) {
         q6.m.g(googleSignInOptions);
-        return new com.google.android.gms.common.api.j(context, z5.a.f59613a, googleSignInOptions, new com.google.android.gms.common.api.i(new sa.d(6), Looper.getMainLooper()));
+        return new com.google.android.gms.common.api.j(context, z5.a.f59706a, googleSignInOptions, new com.google.android.gms.common.api.i(new sa.d(6), Looper.getMainLooper()));
     }
 
     public static Task b(Intent intent) {

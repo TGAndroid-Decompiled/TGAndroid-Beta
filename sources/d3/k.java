@@ -14,7 +14,7 @@ public final class k implements Handler.Callback {
         this.f8031b = lVar;
         Handler q10 = m0.q(this);
         this.f8030a = q10;
-        lVar2.h(this, q10);
+        lVar2.i(this, q10);
     }
 
     public final void a(long j3) {
@@ -22,7 +22,7 @@ public final class k implements Handler.Callback {
         Surface surface;
         l lVar = this.f8031b;
         wf.b bVar = lVar.f8033b1;
-        if (this == lVar.M1 && lVar.f56192d0 != null) {
+        if (this == lVar.M1 && lVar.f56281d0 != null) {
             if (j3 == Long.MAX_VALUE) {
                 lVar.M0 = true;
                 return;
@@ -34,7 +34,7 @@ public final class k implements Handler.Callback {
                     lVar.I1 = x1Var;
                     bVar.m0(x1Var);
                 }
-                lVar.O0.f17776e++;
+                lVar.O0.f17779e++;
                 y yVar = lVar.f8036e1;
                 if (yVar.f8098e != 3) {
                     z9 = true;

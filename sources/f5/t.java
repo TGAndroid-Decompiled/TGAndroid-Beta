@@ -3,7 +3,7 @@ package f5;
 import aa.c0;
 import java.util.ArrayList;
 import m4.d0;
-import org.telegram.messenger.p1;
+import org.telegram.messenger.j1;
 import org.telegram.messenger.q1;
 public final class t implements q0.a {
     public final int f11187a;
@@ -20,7 +20,7 @@ public final class t implements q0.a {
             case 0:
                 ArrayList arrayList = new ArrayList();
                 new ArrayList();
-                ((q1) ((p1) this.f11188b).f24466b).a((f) obj, arrayList);
+                ((q1) ((j1) this.f11188b).f23465b).a((f) obj, arrayList);
                 return;
             case 1:
                 ((g) this.f11188b).a((f) obj);
@@ -34,7 +34,7 @@ public final class t implements q0.a {
                 return;
             default:
                 o0.f fVar2 = (o0.f) obj;
-                synchronized (o0.g.f20687c) {
+                synchronized (o0.g.f20690c) {
                     try {
                         a0.l lVar = o0.g.d;
                         ArrayList arrayList2 = (ArrayList) lVar.get((String) this.f11188b);

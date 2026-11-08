@@ -4,7 +4,7 @@ import android.content.Context;
 import android.widget.FrameLayout;
 import c8.ha;
 import java.util.List;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.s9;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.Components.g7;
@@ -22,31 +22,31 @@ public final class d extends na {
         super(context, null, false, false, 2, f6Var);
         this.Q1 = s9Var;
         this.P1 = list;
-        this.f36266r1 = 0.2f;
+        this.f36282r1 = 0.2f;
         this.C1 = false;
         this.B1 = org.telegram.messenger.g0.L(12.0f);
         this.l1.setTitle(O0());
         N();
-        this.f36261k1.setPadding(this.f28646t0, org.telegram.messenger.g0.L(9.0f), this.f28646t0, org.telegram.messenger.g0.L(64.0f));
-        this.f36261k1.setOnItemClickListener(new g7(3));
-        this.f36261k1.setOverScrollMode(2);
+        this.f36277k1.setPadding(this.f28649t0, org.telegram.messenger.g0.L(9.0f), this.f28649t0, org.telegram.messenger.g0.L(64.0f));
+        this.f36277k1.setOnItemClickListener(new g7(3));
+        this.f36277k1.setOverScrollMode(2);
         fi.d dVar = new fi.d(context, f6Var, true);
         dVar.setOnClickListener(new a(this, 0));
-        dVar.i(hd.M0(2131747830, null), false, true);
+        dVar.i(id.M0(2131747832, null), false, true);
         FrameLayout.LayoutParams d = ha.d(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f);
         int i7 = d.leftMargin;
-        int i10 = this.f28646t0;
+        int i10 = this.f28649t0;
         d.leftMargin = i7 + i10;
         d.rightMargin += i10;
-        this.f28616b.addView(dVar, d);
+        this.f28619b.addView(dVar, d);
         this.R1.O(false);
     }
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        l41 l41Var = new l41(this.f36261k1, getContext(), this.f28613a, 0, true, new hi.u1(this, 25), this.I0);
+        l41 l41Var = new l41(this.f36277k1, getContext(), this.f28616a, 0, true, new hi.u1(this, 25), this.I0);
         this.R1 = l41Var;
-        l41Var.f35510r = false;
+        l41Var.f35528r = false;
         return l41Var;
     }
 
@@ -56,6 +56,6 @@ public final class d extends na {
         if (list == null) {
             return null;
         }
-        return hd.G(list.size(), "Gift2AuctionsAcquiredGifts", new Object[0]);
+        return id.G(list.size(), "Gift2AuctionsAcquiredGifts", new Object[0]);
     }
 }

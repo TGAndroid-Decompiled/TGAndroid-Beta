@@ -26,7 +26,7 @@ public final class e6 extends View {
         imageReceiver.i0(tLObject, w8Var, null);
         Drawable mutate = context.getDrawable(2131231001).mutate();
         this.f3764c = mutate;
-        org.telegram.ui.ActionBar.r6.y(this, mutate, org.telegram.ui.ActionBar.k6.f28259z6, null, PorterDuff.Mode.MULTIPLY);
+        org.telegram.ui.ActionBar.r6.y(this, mutate, org.telegram.ui.ActionBar.k6.f28262z6, null, PorterDuff.Mode.MULTIPLY);
         mutate.setBounds(org.telegram.messenger.g0.L(-12.0f), org.telegram.messenger.g0.L(-12.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f));
     }
 

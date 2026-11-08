@@ -10,58 +10,22 @@ public final class d0 extends j6.g {
     }
 
     @Override
-    public final void C0(String str, byte[] bArr) {
-        e0.H.b("IGNORING: Receive (type=binary, ns=%s) <%d bytes>", str, Integer.valueOf(bArr.length));
-    }
-
-    @Override
-    public final void M(int i7) {
-        e0.k(this.f11246b).post(new c0(this, i7, 0));
-    }
-
-    @Override
-    public final void P(String str, String str2) {
-        e0.H.b("Receive (type=text, ns=%s) %s", str, str2);
-        e0.k(this.f11246b).post(new a9.h(this, str, str2, 4));
-    }
-
-    @Override
-    public final void S(int i7) {
-        this.f11246b.i(i7);
-    }
-
-    @Override
-    public final void U(long j3) {
-        e0.f(this.f11246b, j3, 0);
-    }
-
-    @Override
-    public final void g(int i7) {
-        e0.g(this.f11246b, i7);
-    }
-
-    @Override
-    public final void h(int i7) {
-        e0.k(this.f11246b).post(new c0(this, i7, 1));
-    }
-
-    @Override
-    public final void r0(j6.d dVar) {
+    public final void K0(j6.d dVar) {
         e0.k(this.f11246b).post(new m9.u(18, this, dVar));
     }
 
     @Override
-    public final void t0(j6.c cVar) {
+    public final void N0(j6.c cVar) {
         e0.k(this.f11246b).post(new m9.u(19, this, cVar));
     }
 
     @Override
-    public final void u0(int i7) {
+    public final void O0(int i7) {
         e0.k(this.f11246b).post(new c0(this, i7, 3));
     }
 
     @Override
-    public final void w0(d dVar, String str, String str2, boolean z9) {
+    public final void R0(d dVar, String str, String str2, boolean z9) {
         e0 e0Var = this.f11246b;
         e0Var.f11259u = dVar;
         e0Var.v = str;
@@ -77,6 +41,42 @@ public final class d0 extends j6.g {
                 throw th2;
             }
         }
+    }
+
+    @Override
+    public final void W(int i7) {
+        e0.k(this.f11246b).post(new c0(this, i7, 0));
+    }
+
+    @Override
+    public final void X0(String str, byte[] bArr) {
+        e0.H.b("IGNORING: Receive (type=binary, ns=%s) <%d bytes>", str, Integer.valueOf(bArr.length));
+    }
+
+    @Override
+    public final void Z(String str, String str2) {
+        e0.H.b("Receive (type=text, ns=%s) %s", str, str2);
+        e0.k(this.f11246b).post(new a9.h(this, str, str2, 4));
+    }
+
+    @Override
+    public final void c0(int i7) {
+        this.f11246b.i(i7);
+    }
+
+    @Override
+    public final void f0(long j3) {
+        e0.f(this.f11246b, j3, 0);
+    }
+
+    @Override
+    public final void g(int i7) {
+        e0.g(this.f11246b, i7);
+    }
+
+    @Override
+    public final void h(int i7) {
+        e0.k(this.f11246b).post(new c0(this, i7, 1));
     }
 
     @Override

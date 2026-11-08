@@ -1,16 +1,14 @@
 package org.telegram.utils.twidget;
-
-import android.text.TextPaint;
-import java.util.ArrayList;
 public final class m0 {
-    public static final TextPaint f52866b = new TextPaint();
-    public final ArrayList f52867a;
+    public final int f52906a;
+    public final long f52907b;
+    public long f52908c;
+    public int f52909e;
+    public int d = 30;
+    public final j0 f52910f = new j0(this, 1);
 
-    public m0(ArrayList arrayList) {
-        this.f52867a = arrayList;
-    }
-
-    public static org.telegram.utils.twidget.m0 a(java.lang.String r38, org.telegram.utils.twidget.r r39, float r40) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.m0.a(java.lang.String, org.telegram.utils.twidget.r, float):org.telegram.utils.twidget.m0");
+    public m0(int i7, long j3) {
+        this.f52906a = i7;
+        this.f52907b = j3;
     }
 }

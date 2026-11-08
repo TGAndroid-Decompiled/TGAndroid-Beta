@@ -19,31 +19,31 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import org.telegram.ui.Cells.f1;
 public final class d implements b3.j {
-    public static final s0.b J = new s0.b(7);
+    public static final s0.b J = new s0.b(8);
     public i0 D;
     public i0 E;
     public Uri F;
     public m G;
     public boolean H;
-    public final org.telegram.ui.Components.n f54525a;
-    public final t f54526b;
-    public final pb.b f54527c;
-    public wa f54529f;
+    public final org.telegram.ui.Components.n f54617a;
+    public final t f54618b;
+    public final pb.b f54619c;
+    public wa f54621f;
     public b3.o h;
-    public Handler f54530n;
-    public r2.l f54531r;
-    public p f54532s;
-    public t0 f54533w;
-    public i0 f54534x;
-    public i0 f54535y;
-    public final CopyOnWriteArrayList f54528e = new CopyOnWriteArrayList();
+    public Handler f54622n;
+    public r2.k f54623r;
+    public p f54624s;
+    public t0 f54625w;
+    public i0 f54626x;
+    public i0 f54627y;
+    public final CopyOnWriteArrayList f54620e = new CopyOnWriteArrayList();
     public final HashMap d = new HashMap();
     public long I = -9223372036854775807L;
 
     public d(org.telegram.ui.Components.n nVar, pb.b bVar, t tVar) {
-        this.f54525a = nVar;
-        this.f54526b = tVar;
-        this.f54527c = bVar;
+        this.f54617a = nVar;
+        this.f54618b = tVar;
+        this.f54619c = bVar;
     }
 
     @Override
@@ -57,16 +57,16 @@ public final class d implements b3.j {
             long j12 = rVar.f2965a;
             j2.m mVar = rVar.f2966b;
             c0 c0Var = rVar.d;
-            uVar = new x2.u(mVar, c0Var.f16414c, c0Var.d, j3, j10, c0Var.f16413b);
+            uVar = new x2.u(mVar, c0Var.f16417c, c0Var.d, j3, j10, c0Var.f16416b);
         }
-        this.f54529f.t(uVar, rVar.f2967c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i7);
+        this.f54621f.t(uVar, rVar.f2967c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i7);
     }
 
     public final void a(List list) {
         for (int i7 = 0; i7 < list.size(); i7++) {
             w wVar = (w) list.get(i7);
             c cVar = new c(this, wVar);
-            h2 it = h9.t0.q(wVar.f54674b.values()).iterator();
+            h2 it = h9.t0.q(wVar.f54766b.values()).iterator();
             while (it.hasNext()) {
                 this.d.put((Uri) it.next(), cVar);
             }
@@ -84,15 +84,15 @@ public final class d implements b3.j {
             g(uri);
             c cVar2 = (c) hashMap.get(uri);
             cVar2.getClass();
-            HashMap hashMap2 = cVar2.f54523b;
+            HashMap hashMap2 = cVar2.f54615b;
             b bVar = (b) f1.l(hashMap2, uri, uri);
             bVar.getClass();
-            if (!bVar.f54520x) {
+            if (!bVar.f54612x) {
                 b bVar2 = (b) f1.l(hashMap2, uri, uri);
                 bVar2.getClass();
-                bVar2.f54520x = true;
+                bVar2.f54612x = true;
                 m a11 = c.a(cVar2, uri);
-                if (a11 != null && !a11.f54604o) {
+                if (a11 != null && !a11.f54696o) {
                     c.b(cVar2, uri, true);
                 }
             }
@@ -111,18 +111,18 @@ public final class d implements b3.j {
                 }
                 return this.D;
             }
-            return this.f54535y;
+            return this.f54627y;
         }
-        return this.f54534x;
+        return this.f54626x;
     }
 
     public final Uri d(Uri uri) {
         i iVar;
         m mVar = this.G;
-        if (mVar != null && mVar.v.f54594e && (iVar = (i) mVar.f54609t.get(uri)) != null) {
+        if (mVar != null && mVar.v.f54686e && (iVar = (i) mVar.f54701t.get(uri)) != null) {
             Uri.Builder buildUpon = uri.buildUpon();
-            buildUpon.appendQueryParameter("_HLS_msn", String.valueOf(iVar.f54578b));
-            int i7 = iVar.f54579c;
+            buildUpon.appendQueryParameter("_HLS_msn", String.valueOf(iVar.f54670b));
+            int i7 = iVar.f54671c;
             if (i7 != -1) {
                 buildUpon.appendQueryParameter("_HLS_part", String.valueOf(i7));
             }
@@ -137,10 +137,10 @@ public final class d implements b3.j {
         if (cVar == null) {
             return false;
         }
-        Iterator it = cVar.f54523b.values().iterator();
+        Iterator it = cVar.f54615b.values().iterator();
         boolean z10 = true;
         while (it.hasNext()) {
-            if (j3 <= ((b) it.next()).f54517r) {
+            if (j3 <= ((b) it.next()).f54609r) {
                 z9 = true;
             } else {
                 z9 = false;
@@ -154,13 +154,13 @@ public final class d implements b3.j {
         int i7;
         c cVar = (c) this.d.get(uri);
         if (cVar != null) {
-            b bVar = (b) f1.l(cVar.f54523b, uri, uri);
+            b bVar = (b) f1.l(cVar.f54615b, uri, uri);
             bVar.getClass();
-            if (bVar.f54514e != null) {
+            if (bVar.f54606e != null) {
                 long elapsedRealtime = SystemClock.elapsedRealtime();
-                long max = Math.max(30000L, m0.h0(bVar.f54514e.f54610u));
-                m mVar = bVar.f54514e;
-                if (mVar.f54604o || (i7 = mVar.d) == 2 || i7 == 1 || bVar.f54515f + max > elapsedRealtime) {
+                long max = Math.max(30000L, m0.h0(bVar.f54606e.f54702u));
+                m mVar = bVar.f54606e;
+                if (mVar.f54696o || (i7 = mVar.d) == 2 || i7 == 1 || bVar.f54607f + max > elapsedRealtime) {
                     return true;
                 }
                 return false;
@@ -172,22 +172,22 @@ public final class d implements b3.j {
 
     public final void g(Uri uri) {
         if (!uri.equals(this.F)) {
-            List list = this.f54532s.f54623e;
+            List list = this.f54624s.f54715e;
             for (int i7 = 0; i7 < list.size(); i7++) {
-                if (uri.equals(((o) list.get(i7)).f54616a)) {
+                if (uri.equals(((o) list.get(i7)).f54708a)) {
                     m mVar = this.G;
-                    if (mVar == null || !mVar.f54604o) {
+                    if (mVar == null || !mVar.f54696o) {
                         this.F = uri;
                         c cVar = (c) this.d.get(uri);
                         cVar.getClass();
                         m a10 = c.a(cVar, uri);
-                        if (a10 != null && a10.f54604o) {
+                        if (a10 != null && a10.f54696o) {
                             this.G = a10;
-                            this.f54531r.v(a10);
+                            this.f54623r.v(a10);
                             return;
                         }
                         Uri d = d(uri);
-                        b bVar = (b) f1.l(cVar.f54523b, uri, uri);
+                        b bVar = (b) f1.l(cVar.f54615b, uri, uri);
                         bVar.getClass();
                         bVar.c(d);
                         return;
@@ -201,10 +201,10 @@ public final class d implements b3.j {
     public final void h(Uri uri) {
         c cVar = (c) this.d.get(uri);
         if (cVar != null) {
-            b bVar = (b) f1.l(cVar.f54523b, uri, uri);
+            b bVar = (b) f1.l(cVar.f54615b, uri, uri);
             bVar.getClass();
-            bVar.f54513c.a();
-            IOException iOException = bVar.f54519w;
+            bVar.f54605c.a();
+            IOException iOException = bVar.f54611w;
             if (iOException != null) {
                 throw iOException;
             }
@@ -219,14 +219,14 @@ public final class d implements b3.j {
         long j11 = rVar.f2965a;
         j2.m mVar = rVar.f2966b;
         c0 c0Var = rVar.d;
-        x2.u uVar = new x2.u(mVar, c0Var.f16414c, c0Var.d, j3, j10, c0Var.f16413b);
+        x2.u uVar = new x2.u(mVar, c0Var.f16417c, c0Var.d, j3, j10, c0Var.f16416b);
         int i10 = rVar.f2967c;
-        this.f54527c.getClass();
+        this.f54619c.getClass();
         Throwable th2 = iOException;
         while (true) {
             z9 = true;
             if (th2 != null) {
-                if ((th2 instanceof t0) || (th2 instanceof FileNotFoundException) || (th2 instanceof j2.v) || (th2 instanceof b3.n) || ((th2 instanceof j2.j) && ((j2.j) th2).f16434a == 2008)) {
+                if ((th2 instanceof t0) || (th2 instanceof FileNotFoundException) || (th2 instanceof j2.v) || (th2 instanceof b3.n) || ((th2 instanceof j2.j) && ((j2.j) th2).f16437a == 2008)) {
                     break;
                 }
                 th2 = th2.getCause();
@@ -239,7 +239,7 @@ public final class d implements b3.j {
         if (min != -9223372036854775807L) {
             z9 = false;
         }
-        this.f54529f.r(uVar, i10, iOException, z9);
+        this.f54621f.r(uVar, i10, iOException, z9);
         if (z9) {
             return b3.o.f2961f;
         }
@@ -253,8 +253,8 @@ public final class d implements b3.j {
         q qVar = (q) rVar.f2969f;
         boolean z9 = qVar instanceof m;
         if (z9) {
-            String str = qVar.f54631a;
-            p pVar2 = p.f54622n;
+            String str = qVar.f54723a;
+            p pVar2 = p.f54714n;
             Uri parse = Uri.parse(str);
             e2.t tVar = new e2.t();
             tVar.f10548a = "0";
@@ -265,35 +265,35 @@ public final class d implements b3.j {
         } else {
             pVar = (p) qVar;
         }
-        this.f54532s = pVar;
+        this.f54624s = pVar;
         try {
-            this.f54534x = w.b(pVar.f54623e);
-            this.f54535y = w.a(pVar.f54624f);
-            this.D = w.a(pVar.f54625g);
+            this.f54626x = w.b(pVar.f54715e);
+            this.f54627y = w.a(pVar.f54716f);
+            this.D = w.a(pVar.f54717g);
             this.E = w.a(pVar.h);
-            this.F = ((w) this.f54534x.get(0)).c();
-            this.f54528e.add(new a(this));
-            a(this.f54534x);
-            a(this.f54535y);
+            this.F = ((w) this.f54626x.get(0)).c();
+            this.f54620e.add(new a(this));
+            a(this.f54626x);
+            a(this.f54627y);
             a(this.D);
             a(this.E);
             j2.m mVar = rVar.f2966b;
             c0 c0Var = rVar.d;
-            x2.u uVar = new x2.u(mVar, c0Var.f16414c, c0Var.d, j3, j10, c0Var.f16413b);
+            x2.u uVar = new x2.u(mVar, c0Var.f16417c, c0Var.d, j3, j10, c0Var.f16416b);
             c cVar = (c) this.d.get(this.F);
             cVar.getClass();
             if (z9) {
-                Uri uri = rVar.d.f16414c;
-                b bVar = (b) f1.l(cVar.f54523b, uri, uri);
+                Uri uri = rVar.d.f16417c;
+                b bVar = (b) f1.l(cVar.f54615b, uri, uri);
                 bVar.getClass();
                 bVar.d((m) qVar, uVar);
             } else {
                 c.b(cVar, this.F, false);
             }
-            this.f54527c.getClass();
-            this.f54529f.p(uVar, 4, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+            this.f54619c.getClass();
+            this.f54621f.p(uVar, 4, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
         } catch (t0 e10) {
-            this.f54533w = e10;
+            this.f54625w = e10;
         }
     }
 
@@ -303,8 +303,8 @@ public final class d implements b3.j {
         long j11 = rVar.f2965a;
         j2.m mVar = rVar.f2966b;
         c0 c0Var = rVar.d;
-        x2.u uVar = new x2.u(mVar, c0Var.f16414c, c0Var.d, j3, j10, c0Var.f16413b);
-        this.f54527c.getClass();
-        this.f54529f.o(uVar, 4, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        x2.u uVar = new x2.u(mVar, c0Var.f16417c, c0Var.d, j3, j10, c0Var.f16416b);
+        this.f54619c.getClass();
+        this.f54621f.o(uVar, 4, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
     }
 }

@@ -27,7 +27,7 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import c8.ha;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.c61;
 public final class i4 {
     public final Rect A = new Rect();
@@ -47,32 +47,32 @@ public final class i4 {
     public int O;
     public int P;
     public final k4 Q;
-    public final Context f27564a;
-    public final View f27565b;
-    public final PopupWindow f27566c;
+    public final Context f27567a;
+    public final View f27568b;
+    public final PopupWindow f27569c;
     public final int d;
-    public final int f27567e;
-    public final RelativeLayout f27568f;
-    public final c61 f27569g;
+    public final int f27570e;
+    public final RelativeLayout f27571f;
+    public final c61 f27572g;
     public final h4 h;
-    public final FrameLayout f27570i;
-    public final View f27571j;
-    public final e4 f27572k;
-    public final TextView f27573l;
-    public final Drawable f27574m;
-    public final Drawable f27575n;
-    public final AnimatedVectorDrawable f27576o;
-    public final AnimatedVectorDrawable f27577p;
-    public final ab.v f27578q;
-    public final g4 f27579r;
-    public final Interpolator f27580s;
-    public final Interpolator f27581t;
-    public final Interpolator f27582u;
+    public final FrameLayout f27573i;
+    public final View f27574j;
+    public final e4 f27575k;
+    public final TextView f27576l;
+    public final Drawable f27577m;
+    public final Drawable f27578n;
+    public final AnimatedVectorDrawable f27579o;
+    public final AnimatedVectorDrawable f27580p;
+    public final ab.v f27581q;
+    public final g4 f27582r;
+    public final Interpolator f27583s;
+    public final Interpolator f27584t;
+    public final Interpolator f27585u;
     public final AnimatorSet v;
-    public final AnimatorSet f27583w;
-    public final AnimatorSet f27584x;
-    public final AnimationSet f27585y;
-    public final AnimationSet f27586z;
+    public final AnimatorSet f27586w;
+    public final AnimatorSet f27587x;
+    public final AnimationSet f27588y;
+    public final AnimationSet f27589z;
 
     public i4(k4 k4Var, Context context, View view) {
         float f10;
@@ -86,10 +86,10 @@ public final class i4 {
         this.F = true;
         this.L = new androidx.mediarouter.app.w(this, 8);
         this.P = -4;
-        this.f27565b = view;
-        this.f27564a = context;
-        f6 f6Var = k4Var.f27747n;
-        int i12 = k4Var.f27742i;
+        this.f27568b = view;
+        this.f27567a = context;
+        f6 f6Var = k4Var.f27750n;
+        int i12 = k4Var.f27745i;
         RelativeLayout relativeLayout2 = new RelativeLayout(context);
         ViewGroup.MarginLayoutParams marginLayoutParams = new ViewGroup.MarginLayoutParams(-2, -2);
         int L = org.telegram.messenger.g0.L(20.0f);
@@ -101,7 +101,7 @@ public final class i4 {
         relativeLayout2.setElevation(org.telegram.messenger.g0.L(1.0f));
         relativeLayout2.setFocusable(true);
         relativeLayout2.setFocusableInTouchMode(true);
-        dh.c cVar = k4Var.f27748o;
+        dh.c cVar = k4Var.f27751o;
         if (cVar != null) {
             fh.g c10 = cVar.c(relativeLayout2, null, true);
             gh.e eVar = new gh.e(f6Var);
@@ -123,12 +123,12 @@ public final class i4 {
             float L2 = org.telegram.messenger.g0.L(12.0f);
             gradientDrawable.setCornerRadii(new float[]{L2, L2, L2, L2, L2, L2, L2, L2});
             if (i12 == 0) {
-                i7 = k6.f27922h5;
+                i7 = k6.f27925h5;
             } else {
                 if (i12 == 2) {
                     gradientDrawable.setColor(-115203550);
                 } else if (i12 == 1) {
-                    i7 = k6.f27849d6;
+                    i7 = k6.f27852d6;
                 }
                 i7 = -1;
             }
@@ -142,7 +142,7 @@ public final class i4 {
         }
         relativeLayout2.setLayoutParams(new ViewGroup.LayoutParams(-2, -2));
         relativeLayout2.setClipToOutline(true);
-        this.f27568f = relativeLayout2;
+        this.f27571f = relativeLayout2;
         fi.a5 a5Var = new fi.a5(relativeLayout2.getContext(), 2);
         PopupWindow popupWindow = new PopupWindow(a5Var);
         popupWindow.setClippingEnabled(false);
@@ -151,47 +151,47 @@ public final class i4 {
         popupWindow.setSplitTouchEnabled(true);
         relativeLayout2.setLayoutParams(new ViewGroup.LayoutParams(-2, -2));
         a5Var.addView(relativeLayout2);
-        this.f27566c = popupWindow;
+        this.f27569c = popupWindow;
         this.d = org.telegram.messenger.g0.L(16.0f);
-        this.f27567e = org.telegram.messenger.g0.L(8.0f);
+        this.f27570e = org.telegram.messenger.g0.L(8.0f);
         this.E = org.telegram.messenger.g0.L(48.0f);
         int L3 = org.telegram.messenger.g0.L(8.0f);
-        this.f27579r = new g4();
-        this.f27580s = AnimationUtils.loadInterpolator(context, 17563661);
-        this.f27581t = AnimationUtils.loadInterpolator(context, 17563662);
-        this.f27582u = AnimationUtils.loadInterpolator(context, 17563663);
+        this.f27582r = new g4();
+        this.f27583s = AnimationUtils.loadInterpolator(context, 17563661);
+        this.f27584t = AnimationUtils.loadInterpolator(context, 17563662);
+        this.f27585u = AnimationUtils.loadInterpolator(context, 17563663);
         Drawable mutate = context.getDrawable(2131231212).mutate();
-        this.f27574m = mutate;
+        this.f27577m = mutate;
         mutate.setAutoMirrored(true);
         Drawable mutate2 = context.getDrawable(2131231210).mutate();
-        this.f27575n = mutate2;
+        this.f27578n = mutate2;
         mutate2.setAutoMirrored(true);
         AnimatedVectorDrawable animatedVectorDrawable = (AnimatedVectorDrawable) context.getDrawable(2131231211).mutate();
-        this.f27576o = animatedVectorDrawable;
+        this.f27579o = animatedVectorDrawable;
         animatedVectorDrawable.setAutoMirrored(true);
         AnimatedVectorDrawable animatedVectorDrawable2 = (AnimatedVectorDrawable) context.getDrawable(2131231213).mutate();
-        this.f27577p = animatedVectorDrawable2;
+        this.f27580p = animatedVectorDrawable2;
         animatedVectorDrawable2.setAutoMirrored(true);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f27570i = frameLayout;
+        this.f27573i = frameLayout;
         e4 e4Var = new e4(this, context);
-        this.f27572k = e4Var;
+        this.f27575k = e4Var;
         e4Var.setLayoutParams(new ViewGroup.LayoutParams(org.telegram.messenger.g0.L(56.0f), org.telegram.messenger.g0.L(48.0f)));
         e4Var.setPaddingRelative(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(12.0f));
         e4Var.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         e4Var.setImageDrawable(mutate2);
         TextView textView = new TextView(context);
-        this.f27573l = textView;
-        textView.setText(hd.M0(2131753756, null));
+        this.f27576l = textView;
+        textView.setText(id.M0(2131753756, null));
         textView.setTextSize(1, 16.0f);
         textView.setAlpha(0.0f);
         View view2 = new View(context);
-        this.f27571j = view2;
+        this.f27574j = view2;
         if (i12 == 0) {
-            int i13 = k6.f27957j5;
+            int i13 = k6.f27960j5;
             w02 = k6.w0(i13, f6Var);
             relativeLayout = relativeLayout2;
-            int i14 = k6.f27941i6;
+            int i14 = k6.f27944i6;
             i10 = L3;
             org.telegram.ui.Cells.y h02 = k6.h0(k6.w0(i14, f6Var), 1, -1);
             n6 N3 = r6.N(i14);
@@ -212,7 +212,7 @@ public final class i4 {
                 w02 = -328966;
             } else {
                 w02 = k6.w0(k6.G6, f6Var);
-                int i15 = k6.f27941i6;
+                int i15 = k6.f27944i6;
                 org.telegram.ui.Cells.y h04 = k6.h0(k6.w0(i15, f6Var), 1, -1);
                 n6 N5 = r6.N(i15);
                 e4Var.setBackground(h04);
@@ -221,7 +221,7 @@ public final class i4 {
                 n6 N6 = r6.N(i15);
                 frameLayout.setBackground(h05);
                 r6.k(frameLayout, h05, null, N6, f6Var);
-                r6.i(k6.f27850d7, view2, f6Var);
+                r6.i(k6.f27853d7, view2, f6Var);
             }
         }
         int i16 = w02;
@@ -232,7 +232,7 @@ public final class i4 {
         textView.setTextColor(i16);
         if (i12 != 2) {
             if (i12 == 0) {
-                i11 = k6.f27957j5;
+                i11 = k6.f27960j5;
             } else {
                 i11 = k6.G6;
             }
@@ -246,10 +246,10 @@ public final class i4 {
         e4Var.setOnClickListener(new z3(this, 2));
         frameLayout.addView(e4Var, ha.e(-2, -2, 19));
         frameLayout.addView(textView, ha.d(-1, -2.0f, 19, 56.0f, 0.0f, 0.0f, 0.0f));
-        frameLayout.addView(view2, ha.a(-1.0f, f10 / org.telegram.messenger.g0.f22543p, 55));
+        frameLayout.addView(view2, ha.a(-1.0f, f10 / org.telegram.messenger.g0.f22562p, 55));
         e4Var.measure(0, 0);
         this.H = new Size(e4Var.getMeasuredWidth(), e4Var.getMeasuredHeight());
-        this.f27569g = new c61(9, context, this);
+        this.f27572g = new c61(9, context, this);
         ?? obj = new Object();
         obj.f1005e = this;
         obj.f1004c = context;
@@ -259,7 +259,7 @@ public final class i4 {
         LinearLayout b10 = k4.b(this.Q, context, null, true, false, false);
         b10.setPadding(L4, 0, L4, 0);
         obj.d = b10;
-        this.f27578q = obj;
+        this.f27581q = obj;
         final h4 h4Var = new h4(this);
         h4Var.setLayoutParams(new ViewGroup.LayoutParams(-1, -1));
         h4Var.setDivider(null);
@@ -275,12 +275,12 @@ public final class i4 {
                 i4Var.getClass();
                 MenuItem menuItem = (MenuItem) h4Var.getAdapter().getItem(i17);
                 k4 k4Var2 = i4Var.Q;
-                if (k4Var2.f27743j != null && k4.f27735r.contains(Integer.valueOf(menuItem.getItemId()))) {
+                if (k4Var2.f27746j != null && k4.f27738r.contains(Integer.valueOf(menuItem.getItemId()))) {
                     int i18 = -i4Var.P;
                     i4Var.P = i18;
                     org.telegram.messenger.g0.G3(i18, view3, null);
                     org.telegram.messenger.p2.APP_ERROR.a();
-                    k4Var2.f27743j.run();
+                    k4Var2.f27746j.run();
                     return;
                 }
                 MenuItem.OnMenuItemClickListener onMenuItemClickListener = i4Var.K;
@@ -292,24 +292,24 @@ public final class i4 {
         this.h = h4Var;
         androidx.mediarouter.app.f0 f0Var = new androidx.mediarouter.app.f0(this, 2);
         AnimationSet animationSet = new AnimationSet(true);
-        this.f27585y = animationSet;
+        this.f27588y = animationSet;
         animationSet.setAnimationListener(f0Var);
         AnimationSet animationSet2 = new AnimationSet(true);
-        this.f27586z = animationSet2;
+        this.f27589z = animationSet2;
         animationSet2.setAnimationListener(f0Var);
         AnimatorSet animatorSet = new AnimatorSet();
         RelativeLayout relativeLayout3 = relativeLayout;
         animatorSet.playTogether(ObjectAnimator.ofFloat(relativeLayout3, View.ALPHA, 0.0f, 1.0f).setDuration(150L));
         this.v = animatorSet;
-        this.f27583w = k4.a(relativeLayout3, 150, new f4(this, 0));
-        this.f27584x = k4.a(relativeLayout3, 0, new f4(this, 1));
+        this.f27586w = k4.a(relativeLayout3, 150, new f4(this, 0));
+        this.f27587x = k4.a(relativeLayout3, 0, new f4(this, 1));
     }
 
     public static void a(i4 i4Var) {
-        FrameLayout frameLayout = i4Var.f27570i;
-        RelativeLayout relativeLayout = i4Var.f27568f;
+        FrameLayout frameLayout = i4Var.f27573i;
+        RelativeLayout relativeLayout = i4Var.f27571f;
         if (i4Var.M) {
-            i4Var.f27569g.setY(relativeLayout.getHeight() - i4Var.J.getHeight());
+            i4Var.f27572g.setY(relativeLayout.getHeight() - i4Var.J.getHeight());
             frameLayout.setY(relativeLayout.getHeight() - frameLayout.getHeight());
             i4Var.h.setY(relativeLayout.getHeight() - i4Var.I.getHeight());
         }
@@ -318,8 +318,8 @@ public final class i4 {
     public static boolean b(i4 i4Var) {
         boolean z9;
         boolean z10;
-        AnimationSet animationSet = i4Var.f27586z;
-        AnimationSet animationSet2 = i4Var.f27585y;
+        AnimationSet animationSet = i4Var.f27589z;
+        AnimationSet animationSet2 = i4Var.f27588y;
         if (animationSet2.hasStarted() && !animationSet2.hasEnded()) {
             z9 = true;
         } else {
@@ -368,11 +368,11 @@ public final class i4 {
     }
 
     public final void d() {
-        this.f27568f.clearAnimation();
-        this.f27569g.animate().cancel();
+        this.f27571f.clearAnimation();
+        this.f27572g.animate().cancel();
         this.h.animate().cancel();
-        this.f27576o.stop();
-        this.f27577p.stop();
+        this.f27579o.stop();
+        this.f27580p.stop();
     }
 
     public final int e() {
@@ -395,16 +395,16 @@ public final class i4 {
 
     public final void g() {
         boolean z9 = this.N;
-        Interpolator interpolator = this.f27581t;
+        Interpolator interpolator = this.f27584t;
         h4 h4Var = this.h;
-        c61 c61Var = this.f27569g;
-        g4 g4Var = this.f27579r;
-        Interpolator interpolator2 = this.f27580s;
-        FrameLayout frameLayout = this.f27570i;
-        RelativeLayout relativeLayout = this.f27568f;
-        e4 e4Var = this.f27572k;
+        c61 c61Var = this.f27572g;
+        g4 g4Var = this.f27582r;
+        Interpolator interpolator2 = this.f27583s;
+        FrameLayout frameLayout = this.f27573i;
+        RelativeLayout relativeLayout = this.f27571f;
+        e4 e4Var = this.f27575k;
         if (z9) {
-            AnimatedVectorDrawable animatedVectorDrawable = this.f27577p;
+            AnimatedVectorDrawable animatedVectorDrawable = this.f27580p;
             e4Var.setImageDrawable(animatedVectorDrawable);
             animatedVectorDrawable.start();
             int width = this.J.getWidth();
@@ -420,7 +420,7 @@ public final class i4 {
             b4Var2.setDuration(e());
             c4Var.setInterpolator(interpolator2);
             c4Var.setDuration(e());
-            AnimationSet animationSet = this.f27586z;
+            AnimationSet animationSet = this.f27589z;
             animationSet.getAnimations().clear();
             animationSet.addAnimation(b4Var);
             animationSet.addAnimation(b4Var2);
@@ -428,11 +428,11 @@ public final class i4 {
             relativeLayout.startAnimation(animationSet);
             this.N = false;
             n();
-            c61Var.animate().alpha(1.0f).withLayer().setInterpolator(this.f27582u).setDuration(100L).start();
+            c61Var.animate().alpha(1.0f).withLayer().setInterpolator(this.f27585u).setDuration(100L).start();
             h4Var.animate().alpha(0.0f).withLayer().setInterpolator(interpolator).setDuration(150L).start();
             return;
         }
-        AnimatedVectorDrawable animatedVectorDrawable2 = this.f27576o;
+        AnimatedVectorDrawable animatedVectorDrawable2 = this.f27579o;
         e4Var.setImageDrawable(animatedVectorDrawable2);
         animatedVectorDrawable2.start();
         int width3 = this.I.getWidth();
@@ -451,7 +451,7 @@ public final class i4 {
         b4Var4.setDuration(e());
         c4Var2.setInterpolator(interpolator2);
         c4Var2.setDuration(e());
-        AnimationSet animationSet2 = this.f27585y;
+        AnimationSet animationSet2 = this.f27588y;
         animationSet2.getAnimations().clear();
         animationSet2.addAnimation(b4Var3);
         animationSet2.addAnimation(b4Var4);
@@ -467,25 +467,25 @@ public final class i4 {
     }
 
     public final void h() {
-        RelativeLayout relativeLayout = this.f27568f;
+        RelativeLayout relativeLayout = this.f27571f;
         relativeLayout.removeAllViews();
         if (this.I != null) {
             relativeLayout.addView(this.h);
         }
-        relativeLayout.addView(this.f27569g);
+        relativeLayout.addView(this.f27572g);
         if (this.I != null) {
-            relativeLayout.addView(this.f27570i);
+            relativeLayout.addView(this.f27573i);
         }
         k();
         j();
     }
 
     public final void i(Rect rect) {
-        View view = this.f27565b;
+        View view = this.f27568b;
         Rect rect2 = this.A;
         view.getWindowVisibleDisplayFrame(rect2);
         int centerX = rect.centerX();
-        PopupWindow popupWindow = this.f27566c;
+        PopupWindow popupWindow = this.f27569c;
         int min = Math.min(centerX - (popupWindow.getWidth() / 2), rect2.right - popupWindow.getWidth());
         int i7 = rect.top;
         int i10 = rect2.top;
@@ -493,7 +493,7 @@ public final class i4 {
         int i12 = rect2.bottom;
         int i13 = rect.bottom;
         int i14 = i12 - i13;
-        int i15 = this.f27567e;
+        int i15 = this.f27570e;
         int i16 = i15 * 2;
         int i17 = this.E;
         int i18 = i17 + i16;
@@ -550,25 +550,25 @@ public final class i4 {
             width = this.J.getWidth();
             height = this.J.getHeight();
         }
-        RelativeLayout relativeLayout = this.f27568f;
+        RelativeLayout relativeLayout = this.f27571f;
         int x10 = ((int) relativeLayout.getX()) + width;
         int y10 = ((int) relativeLayout.getY()) + height;
         this.D.set((int) relativeLayout.getX(), (int) relativeLayout.getY(), x10, y10);
     }
 
     public final void k() {
-        FrameLayout frameLayout = this.f27570i;
+        FrameLayout frameLayout = this.f27573i;
         frameLayout.setEnabled(true);
         h4 h4Var = this.h;
         h4Var.awakenScrollBars();
         boolean z9 = this.N;
-        PopupWindow popupWindow = this.f27566c;
-        e4 e4Var = this.f27572k;
+        PopupWindow popupWindow = this.f27569c;
+        e4 e4Var = this.f27575k;
         int i7 = this.d;
         Size size = this.H;
-        int i10 = this.f27567e;
-        c61 c61Var = this.f27569g;
-        RelativeLayout relativeLayout = this.f27568f;
+        int i10 = this.f27570e;
+        c61 c61Var = this.f27572g;
+        RelativeLayout relativeLayout = this.f27571f;
         if (z9) {
             Size size2 = this.I;
             m(relativeLayout, size2);
@@ -576,8 +576,8 @@ public final class i4 {
             c61Var.setVisibility(4);
             h4Var.setAlpha(1.0f);
             h4Var.setVisibility(0);
-            e4Var.setImageDrawable(this.f27574m);
-            frameLayout.setContentDescription(hd.M0(2131754839, null));
+            e4Var.setImageDrawable(this.f27577m);
+            frameLayout.setContentDescription(id.M0(2131754839, null));
             relativeLayout.setX((popupWindow.getWidth() - size2.getWidth()) - i7);
             c61Var.setX(-relativeLayout.getX());
             frameLayout.setX(0.0f);
@@ -601,8 +601,8 @@ public final class i4 {
         c61Var.setVisibility(0);
         h4Var.setAlpha(0.0f);
         h4Var.setVisibility(4);
-        e4Var.setImageDrawable(this.f27575n);
-        frameLayout.setContentDescription(hd.M0(2131754839, null));
+        e4Var.setImageDrawable(this.f27578n);
+        frameLayout.setContentDescription(id.M0(2131754839, null));
         if (this.I != null) {
             relativeLayout.setX((popupWindow.getWidth() - size3.getWidth()) - i7);
             c61Var.setX(0.0f);
@@ -629,8 +629,8 @@ public final class i4 {
 
     public final void n() {
         boolean z9 = this.N;
-        e4 e4Var = this.f27572k;
-        FrameLayout frameLayout = this.f27570i;
+        e4 e4Var = this.f27575k;
+        FrameLayout frameLayout = this.f27573i;
         if (z9) {
             frameLayout.setClickable(true);
             frameLayout.setOnClickListener(new z3(this, 0));
@@ -652,13 +652,13 @@ public final class i4 {
             }
             m(this.h, this.I);
             boolean z9 = this.N;
-            RelativeLayout relativeLayout = this.f27568f;
+            RelativeLayout relativeLayout = this.f27571f;
             if (z9) {
                 m(relativeLayout, this.I);
                 if (this.M) {
                     float height = this.I.getHeight() - c10;
                     relativeLayout.setY(relativeLayout.getY() + height);
-                    FrameLayout frameLayout = this.f27570i;
+                    FrameLayout frameLayout = this.f27573i;
                     frameLayout.setY(frameLayout.getY() - height);
                 }
             } else {
@@ -684,14 +684,14 @@ public final class i4 {
             i7 = Math.max(i7, this.I.getHeight());
         }
         int i11 = (this.d * 2) + i10;
-        PopupWindow popupWindow = this.f27566c;
+        PopupWindow popupWindow = this.f27569c;
         popupWindow.setWidth(i11);
-        popupWindow.setHeight((this.f27567e * 2) + i7);
+        popupWindow.setHeight((this.f27570e * 2) + i7);
         Size size3 = this.J;
         if (size3 != null && this.I != null) {
             int width = size3.getWidth() - this.I.getWidth();
             int height = this.I.getHeight() - this.J.getHeight();
-            this.O = (int) (Math.sqrt((height * height) + (width * width)) / this.f27568f.getContext().getResources().getDisplayMetrics().density);
+            this.O = (int) (Math.sqrt((height * height) + (width * width)) / this.f27571f.getContext().getResources().getDisplayMetrics().density);
         }
     }
 }

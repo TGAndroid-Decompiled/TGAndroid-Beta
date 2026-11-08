@@ -1,43 +1,43 @@
 package org.telegram.ui.Components;
 public final class v0 implements org.telegram.ui.ActionBar.r1 {
-    public final int f38764a;
-    public final Runnable f38765b;
+    public final int f38798a;
+    public final Runnable f38799b;
 
     public v0(int i7, Runnable runnable) {
-        this.f38764a = i7;
-        this.f38765b = runnable;
+        this.f38798a = i7;
+        this.f38799b = runnable;
     }
 
     @Override
     public final void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f38764a) {
+        switch (this.f38798a) {
             case 0:
-                Runnable runnable = this.f38765b;
+                Runnable runnable = this.f38799b;
                 if (runnable != null) {
                     runnable.run();
                     return;
                 }
                 return;
             case 1:
-                Runnable runnable2 = this.f38765b;
+                Runnable runnable2 = this.f38799b;
                 if (runnable2 != null) {
                     runnable2.run();
                     return;
                 }
                 return;
             case 2:
-                this.f38765b.run();
+                this.f38799b.run();
                 return;
             case 3:
-                this.f38765b.run();
+                this.f38799b.run();
                 return;
             case 4:
-                this.f38765b.run();
+                this.f38799b.run();
                 u1Var.dismiss();
                 return;
             default:
                 u1Var.dismiss();
-                Runnable runnable3 = this.f38765b;
+                Runnable runnable3 = this.f38799b;
                 if (runnable3 != null) {
                     runnable3.run();
                     return;

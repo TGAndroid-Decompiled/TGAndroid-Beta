@@ -6,15 +6,15 @@ import android.graphics.RectF;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 public final class zi0 extends v4.m0 implements eh.a {
-    public final org.telegram.messenger.d20 f41009a;
-    public final pj0 f41010b;
-    public final int f41011c;
+    public final org.telegram.messenger.d20 f41028a;
+    public final pj0 f41029b;
+    public final int f41030c;
     public final boolean d;
 
     public zi0(pj0 pj0Var, org.telegram.messenger.d20 d20Var, int i7, boolean z9) {
-        this.f41010b = pj0Var;
-        this.f41009a = d20Var;
-        this.f41011c = i7;
+        this.f41029b = pj0Var;
+        this.f41028a = d20Var;
+        this.f41030c = i7;
         this.d = z9;
     }
 
@@ -27,7 +27,7 @@ public final class zi0 extends v4.m0 implements eh.a {
     public final void d(Canvas canvas, RectF rectF) {
         canvas.save();
         canvas.clipRect(rectF);
-        this.f41010b.P0(canvas);
+        this.f41029b.P0(canvas);
         canvas.restore();
     }
 
@@ -36,8 +36,8 @@ public final class zi0 extends v4.m0 implements eh.a {
         int b10;
         boolean z9;
         int L;
-        if (((Boolean) this.f41009a.a(view)).booleanValue()) {
-            int i7 = this.f41011c;
+        if (((Boolean) this.f41028a.a(view)).booleanValue()) {
+            int i7 = this.f41030c;
             rect.right = i7;
             rect.left = i7;
             v4.d1 T = recyclerView.T(view);

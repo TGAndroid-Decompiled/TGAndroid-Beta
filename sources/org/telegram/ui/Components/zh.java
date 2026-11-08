@@ -2,7 +2,7 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.view.MotionEvent;
-public final class zh extends r00 {
+public final class zh extends s00 {
     public final di J;
 
     public zh(Context context, org.telegram.ui.ActionBar.f6 f6Var, di diVar) {
@@ -12,7 +12,7 @@ public final class zh extends r00 {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        this.J.h1(this.f37441r, true);
+        this.J.h1(this.f37824r, true);
         return super.onInterceptTouchEvent(motionEvent);
     }
 }

@@ -1,36 +1,27 @@
 package zh;
+public final class k1 implements Runnable {
+    public final int f60412a;
+    public final z1 f60413b;
+    public final int f60414c;
 
-import org.telegram.messenger.c20;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.u61;
-import org.telegram.ui.ProfileActivity;
-public final class k1 implements c20 {
-    public final int f60324a;
-    public final f2 f60325b;
-
-    public k1(f2 f2Var, int i7) {
-        this.f60324a = i7;
-        this.f60325b = f2Var;
+    public k1(z1 z1Var, int i7, int i10) {
+        this.f60412a = i10;
+        this.f60413b = z1Var;
+        this.f60414c = i7;
     }
 
     @Override
-    public final void a(Object obj) {
-        switch (this.f60324a) {
+    public final void run() {
+        switch (this.f60412a) {
             case 0:
-                f2 f2Var = this.f60325b;
-                f2Var.f(true);
-                u61 u61Var = f2Var.f60222n;
-                int i7 = ((TL_stars.TL_starGiftCollection) obj).collection_id;
-                u61Var.d(i7, f2Var.f60220e.f(i7) + 1);
-                org.telegram.ui.ActionBar.f2 f2Var2 = f2Var.f60217a;
-                if (f2Var2 instanceof ProfileActivity) {
-                    ((ProfileActivity) f2Var2).U4(true);
-                }
-                f2Var.o();
+                this.f60413b.f60625f.scrollBy(0, this.f60414c);
                 return;
             default:
-                f2 f2Var3 = this.f60325b;
-                f2Var3.f60220e.b((String) obj, new k1(f2Var3, 0));
+                fi.w3 w3Var = this.f60413b.f60625f;
+                if (w3Var != null) {
+                    w3Var.setSpanCount(this.f60414c);
+                    return;
+                }
                 return;
         }
     }

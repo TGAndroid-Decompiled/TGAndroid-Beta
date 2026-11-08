@@ -7,7 +7,7 @@ import java.util.List;
 import org.telegram.messenger.c20;
 import org.telegram.messenger.ez;
 import org.telegram.messenger.gz;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.ui;
 import org.telegram.tgnet.TLRPC;
@@ -86,19 +86,19 @@ public final class d3 implements c20 {
                         return;
                     }
                     ez a11 = ez.a(i4Var.f9164k1, V);
-                    a11.f22312w = new ArrayList();
+                    a11.f22331w = new ArrayList();
                     TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityCustomEmoji();
                     tL_messageEntityCustomEmoji.document_id = o0Var.f6357g;
                     tL_messageEntityCustomEmoji.offset = i7;
                     tL_messageEntityCustomEmoji.length = V.length();
-                    a11.f22312w.add(tL_messageEntityCustomEmoji);
+                    a11.f22331w.add(tL_messageEntityCustomEmoji);
                     a11.H = g4Var.f9038a;
                     a11.Q = l10.longValue();
                     gz.C(i4Var.f9168l2).r0(a11);
                 }
                 if (l10.longValue() <= 0) {
-                    cc r10 = new hc(i4Var.L0, i4Var.f9163k0).r(e10, hd.M0(2131746388, null), hd.M0(2131743553, null), new ab(e3Var, 19));
-                    r10.f32514j = 5000;
+                    cc r10 = new hc(i4Var.L0, i4Var.f9163k0).r(e10, id.M0(2131746390, null), id.M0(2131743555, null), new ab(e3Var, 19));
+                    r10.f32545j = 5000;
                     r10.j();
                 }
                 if (i4Var.O1.getReactionsWindow() != null) {
@@ -121,23 +121,23 @@ public final class d3 implements c20 {
                             i10 = 2131623989;
                         }
                         if (z9) {
-                            i12 = 2131744583;
+                            i12 = 2131744585;
                         } else {
-                            i12 = 2131744728;
+                            i12 = 2131744730;
                         }
-                        hcVar2.Q(i10, 36, hd.M0(i12, null)).j();
+                        hcVar2.Q(i10, 36, id.M0(i12, null)).j();
                         return;
                     } else if (z9) {
-                        new hc(j3Var, f6Var).I(2131623989, hd.M0(2131744585, null), hd.M0(2131744584, null)).j();
+                        new hc(j3Var, f6Var).I(2131623989, id.M0(2131744587, null), id.M0(2131744586, null)).j();
                         return;
                     } else {
                         hcVar = new hc(j3Var, f6Var);
-                        i11 = 2131744455;
+                        i11 = 2131744457;
                     }
                 } else {
                     hcVar = new hc(j3Var, f6Var);
                     i10 = 2131624011;
-                    i11 = 2131743880;
+                    i11 = 2131743882;
                 }
                 org.telegram.messenger.k5.o(null, i11, hcVar, i10, 36);
                 return;
@@ -145,9 +145,9 @@ public final class d3 implements c20 {
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) obj4;
                 int i14 = ChatActivityEnterView.s5;
                 ((org.telegram.ui.ActionBar.u1) obj3).dismiss();
-                zh.h1 h1Var = new zh.h1(chatActivityEnterView.getContext(), chatActivityEnterView.Q, ((TLRPC.User) obj2).f27102id, wg.s.c(wg.s.b(1, (List) obj)), null);
-                h1Var.e1(z9);
-                h1Var.show();
+                zh.g1 g1Var = new zh.g1(chatActivityEnterView.getContext(), chatActivityEnterView.Q, ((TLRPC.User) obj2).f27105id, wg.s.c(wg.s.b(1, (List) obj)), null);
+                g1Var.e1(z9);
+                g1Var.show();
                 return;
         }
     }

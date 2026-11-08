@@ -39,22 +39,22 @@ public final class b implements Drawable.Callback {
             case 4:
                 return;
             case 5:
-                ((r0) this.f210b).f18800b.invalidate();
+                ((r0) this.f210b).f18803b.invalidate();
                 return;
             case 6:
                 ((np) this.f210b).invalidateSelf();
                 return;
             case 7:
-                ((qm0) this.f210b).f37339b.run();
+                ((qm0) this.f210b).f37369b.run();
                 return;
             case 8:
                 ((r11) this.f210b).invalidateSelf();
                 return;
             case 9:
-                ((zg.a) this.f210b).f60059c.invalidate();
+                ((zg.a) this.f210b).f60152c.invalidate();
                 return;
             default:
-                ((zg.c) this.f210b).f60085c.invalidate();
+                ((zg.c) this.f210b).f60178c.invalidate();
                 return;
         }
     }
@@ -93,10 +93,10 @@ public final class b implements Drawable.Callback {
             case 8:
                 return;
             case 9:
-                ((zg.a) this.f210b).f60059c.invalidate();
+                ((zg.a) this.f210b).f60152c.invalidate();
                 return;
             default:
-                ((zg.c) this.f210b).f60085c.invalidate();
+                ((zg.c) this.f210b).f60178c.invalidate();
                 return;
         }
     }
@@ -135,10 +135,10 @@ public final class b implements Drawable.Callback {
             case 8:
                 return;
             case 9:
-                ((zg.a) this.f210b).f60059c.invalidate();
+                ((zg.a) this.f210b).f60152c.invalidate();
                 return;
             default:
-                ((zg.c) this.f210b).f60085c.invalidate();
+                ((zg.c) this.f210b).f60178c.invalidate();
                 return;
         }
     }

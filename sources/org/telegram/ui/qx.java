@@ -3,17 +3,17 @@ package org.telegram.ui;
 import android.view.ViewTreeObserver;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class qx implements ViewTreeObserver.OnGlobalLayoutListener {
-    public final ExternalActionActivity f49322a;
+    public final ExternalActionActivity f49325a;
 
     public qx(ExternalActionActivity externalActionActivity) {
-        this.f49322a = externalActionActivity;
+        this.f49325a = externalActionActivity;
     }
 
     @Override
     public final void onGlobalLayout() {
-        ExternalActionActivity externalActionActivity = this.f49322a;
+        ExternalActionActivity externalActionActivity = this.f49325a;
         externalActionActivity.f();
-        ActionBarLayout actionBarLayout = externalActionActivity.f41224c;
+        ActionBarLayout actionBarLayout = externalActionActivity.f41228c;
         if (actionBarLayout != null) {
             actionBarLayout.getView().getViewTreeObserver().removeOnGlobalLayoutListener(this);
         }

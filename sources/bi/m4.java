@@ -76,10 +76,10 @@ public final class m4 implements Runnable {
                 ij ijVar = (ij) this.d;
                 f3.s sVar = (f3.s) this.f4322n;
                 f10Var.getClass();
-                TLRPC.Message message = ijVar.f23244k;
+                TLRPC.Message message = ijVar.f23262k;
                 message.translatedToLanguage = (String) this.f4320e;
                 message.translatedText = k21.P0((TLRPC.TL_textWithEntities) this.f4321f, (TLRPC.TL_textWithEntities) this.h);
-                f10Var.getMessagesStorage().X1(sVar.f11070a, ijVar.f23244k);
+                f10Var.getMessagesStorage().X1(sVar.f11070a, ijVar.f23262k);
                 f10Var.L.remove(sVar);
                 org.telegram.messenger.g0.i3((wn0) this.f4323r, Math.max(0L, 400 - (System.currentTimeMillis() - this.f4318b)));
                 return;
@@ -94,7 +94,7 @@ public final class m4 implements Runnable {
                 org.telegram.messenger.video.d dVar = (org.telegram.messenger.video.d) this.f4323r;
                 oy0 oy0Var = new oy0(context, i0Var, this.f4318b, bArr);
                 oy0Var.N0((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) ((TLObject) this.f4321f));
-                oy0Var.f48574r1 = new iy0((org.telegram.messenger.video.a) this.h, hcVar, context, i0Var, dVar);
+                oy0Var.f48568r1 = new iy0((org.telegram.messenger.video.a) this.h, hcVar, context, i0Var, dVar);
                 oy0Var.show();
                 return;
             default:

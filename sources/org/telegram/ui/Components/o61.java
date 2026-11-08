@@ -2,38 +2,38 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 public final class o61 implements cj0, dj0 {
-    public final u61 f36563a;
+    public final u61 f36583a;
 
     public o61(u61 u61Var) {
-        this.f36563a = u61Var;
+        this.f36583a = u61Var;
     }
 
     @Override
     public boolean c(int i7, View view) {
-        org.telegram.messenger.w10 w10Var = this.f36563a.f38512b;
+        org.telegram.messenger.w10 w10Var = this.f36583a.f38527b;
         if (w10Var == null) {
             return false;
         }
-        return ((Boolean) w10Var.d(Integer.valueOf(((s61) view).f37919a.f37511a), view)).booleanValue();
+        return ((Boolean) w10Var.d(Integer.valueOf(((s61) view).f37935a.f37532a), view)).booleanValue();
     }
 
     @Override
     public void f(float f10, float f11, int i7, View view) {
-        u61 u61Var = this.f36563a;
+        u61 u61Var = this.f36583a;
         t61 t61Var = u61Var.D;
         if (t61Var != null) {
-            v61 v61Var = (v61) ((n) t61Var).f36142a;
-            if (v61Var.f38897y || v61Var.H) {
+            v61 v61Var = (v61) ((n) t61Var).f36175a;
+            if (v61Var.f38932y || v61Var.H) {
                 return;
             }
         }
         s61 s61Var = (s61) view;
         if (i7 != u61Var.F || t61Var == null) {
-            org.telegram.messenger.w10 w10Var = u61Var.f38526l0;
-            if (w10Var != null && ((Boolean) w10Var.d(Integer.valueOf(s61Var.f37919a.f37511a), Integer.valueOf(i7))).booleanValue()) {
+            org.telegram.messenger.w10 w10Var = u61Var.f38541l0;
+            if (w10Var != null && ((Boolean) w10Var.d(Integer.valueOf(s61Var.f37935a.f37532a), Integer.valueOf(i7))).booleanValue()) {
                 return;
             }
-            u61Var.d(s61Var.f37919a.f37511a, i7);
+            u61Var.d(s61Var.f37935a.f37532a, i7);
         }
     }
 

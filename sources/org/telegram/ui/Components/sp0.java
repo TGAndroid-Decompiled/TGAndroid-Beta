@@ -18,8 +18,8 @@ public final class sp0 extends ei.r {
     public final boolean c(org.telegram.messenger.ij ijVar) {
         char c10;
         xs0 xs0Var = this.G;
-        SparseArray[] sparseArrayArr = xs0Var.f40375b1;
-        if (org.telegram.messenger.ij.B0(ijVar.f23244k) == xs0Var.l1) {
+        SparseArray[] sparseArrayArr = xs0Var.f40396b1;
+        if (org.telegram.messenger.ij.B0(ijVar.f23262k) == xs0Var.l1) {
             c10 = 0;
         } else {
             c10 = 1;
@@ -37,9 +37,9 @@ public final class sp0 extends ei.r {
         int i10;
         xs0 xs0Var = this.G;
         ArrayList arrayList = xs0Var.P0;
-        SparseArray[] sparseArrayArr = xs0Var.f40375b1;
+        SparseArray[] sparseArrayArr = xs0Var.f40396b1;
         if (ijVar != null) {
-            if (org.telegram.messenger.ij.B0(ijVar.f23244k) == xs0Var.l1) {
+            if (org.telegram.messenger.ij.B0(ijVar.f23262k) == xs0Var.l1) {
                 c10 = 0;
             } else {
                 c10 = 1;
@@ -48,19 +48,19 @@ public final class sp0 extends ei.r {
                 if (sparseArrayArr[1].size() + sparseArrayArr[0].size() < 100) {
                     sparseArrayArr[c10].put(ijVar.f1(), ijVar);
                     if (!ijVar.s(null, false)) {
-                        xs0Var.f40379c1++;
+                        xs0Var.f40400c1++;
                     }
                     if (!xs0Var.E1) {
-                        org.telegram.messenger.g0.v1(xs0Var.f40440x1.getParentActivity().getCurrentFocus());
-                        org.telegram.ui.ActionBar.r0 r0Var = xs0Var.f40411n0;
+                        org.telegram.messenger.g0.v1(xs0Var.f40461x1.getParentActivity().getCurrentFocus());
+                        org.telegram.ui.ActionBar.r0 r0Var = xs0Var.f40432n0;
                         int i11 = 8;
-                        if (xs0Var.f40379c1 == 0) {
+                        if (xs0Var.f40400c1 == 0) {
                             i7 = 0;
                         } else {
                             i7 = 8;
                         }
                         r0Var.setVisibility(i7);
-                        org.telegram.ui.ActionBar.r0 r0Var2 = xs0Var.f40436w0;
+                        org.telegram.ui.ActionBar.r0 r0Var2 = xs0Var.f40457w0;
                         if (r0Var2 != null) {
                             if (xs0Var.getClosestTab() != 8 && xs0Var.getClosestTab() != 13) {
                                 i10 = 0;
@@ -69,15 +69,15 @@ public final class sp0 extends ei.r {
                             }
                             r0Var2.setVisibility(i10);
                         }
-                        org.telegram.ui.ActionBar.r0 r0Var3 = xs0Var.f40439x0;
+                        org.telegram.ui.ActionBar.r0 r0Var3 = xs0Var.f40460x0;
                         if (r0Var3 != null) {
                             r0Var3.setVisibility(8);
                         }
-                        org.telegram.ui.ActionBar.r0 r0Var4 = xs0Var.f40442y0;
+                        org.telegram.ui.ActionBar.r0 r0Var4 = xs0Var.f40463y0;
                         if (r0Var4 != null) {
                             r0Var4.setVisibility(8);
                         }
-                        org.telegram.ui.ActionBar.r0 r0Var5 = xs0Var.f40433v0;
+                        org.telegram.ui.ActionBar.r0 r0Var5 = xs0Var.f40454v0;
                         if (r0Var5 != null) {
                             if (xs0Var.getClosestTab() != 8 && xs0Var.getClosestTab() != 13) {
                                 i11 = 0;
@@ -95,7 +95,7 @@ public final class sp0 extends ei.r {
                         animatorSet.playTogether(arrayList2);
                         animatorSet.setDuration(250L);
                         animatorSet.start();
-                        xs0Var.f40382d1 = false;
+                        xs0Var.f40403d1 = false;
                         xs0Var.o1(true);
                     } else {
                         xs0Var.m1(sparseArrayArr[1].size() + sparseArrayArr[0].size(), true);
@@ -115,9 +115,9 @@ public final class sp0 extends ei.r {
         int i10;
         xs0 xs0Var = this.G;
         ArrayList arrayList = xs0Var.P0;
-        SparseArray[] sparseArrayArr = xs0Var.f40375b1;
+        SparseArray[] sparseArrayArr = xs0Var.f40396b1;
         if (ijVar != null) {
-            if (org.telegram.messenger.ij.B0(ijVar.f23244k) == xs0Var.l1) {
+            if (org.telegram.messenger.ij.B0(ijVar.f23262k) == xs0Var.l1) {
                 c10 = 0;
             } else {
                 c10 = 1;
@@ -125,21 +125,21 @@ public final class sp0 extends ei.r {
             if (sparseArrayArr[c10].indexOfKey(ijVar.f1()) >= 0) {
                 sparseArrayArr[c10].remove(ijVar.f1());
                 if (!ijVar.s(null, false)) {
-                    xs0Var.f40379c1--;
+                    xs0Var.f40400c1--;
                 }
                 if (sparseArrayArr[0].size() == 0 && sparseArrayArr[1].size() == 0) {
-                    org.telegram.messenger.g0.v1(xs0Var.f40440x1.getParentActivity().getCurrentFocus());
+                    org.telegram.messenger.g0.v1(xs0Var.f40461x1.getParentActivity().getCurrentFocus());
                     sparseArrayArr[0].clear();
                     sparseArrayArr[1].clear();
-                    org.telegram.ui.ActionBar.r0 r0Var = xs0Var.f40411n0;
+                    org.telegram.ui.ActionBar.r0 r0Var = xs0Var.f40432n0;
                     int i11 = 8;
-                    if (xs0Var.f40379c1 == 0) {
+                    if (xs0Var.f40400c1 == 0) {
                         i7 = 0;
                     } else {
                         i7 = 8;
                     }
                     r0Var.setVisibility(i7);
-                    org.telegram.ui.ActionBar.r0 r0Var2 = xs0Var.f40436w0;
+                    org.telegram.ui.ActionBar.r0 r0Var2 = xs0Var.f40457w0;
                     if (r0Var2 != null) {
                         if (xs0Var.getClosestTab() != 8 && xs0Var.getClosestTab() != 13) {
                             i10 = 0;
@@ -148,15 +148,15 @@ public final class sp0 extends ei.r {
                         }
                         r0Var2.setVisibility(i10);
                     }
-                    org.telegram.ui.ActionBar.r0 r0Var3 = xs0Var.f40439x0;
+                    org.telegram.ui.ActionBar.r0 r0Var3 = xs0Var.f40460x0;
                     if (r0Var3 != null) {
                         r0Var3.setVisibility(8);
                     }
-                    org.telegram.ui.ActionBar.r0 r0Var4 = xs0Var.f40442y0;
+                    org.telegram.ui.ActionBar.r0 r0Var4 = xs0Var.f40463y0;
                     if (r0Var4 != null) {
                         r0Var4.setVisibility(8);
                     }
-                    org.telegram.ui.ActionBar.r0 r0Var5 = xs0Var.f40433v0;
+                    org.telegram.ui.ActionBar.r0 r0Var5 = xs0Var.f40454v0;
                     if (r0Var5 != null) {
                         if (xs0Var.getClosestTab() != 8 && xs0Var.getClosestTab() != 13) {
                             i11 = 0;
@@ -173,7 +173,7 @@ public final class sp0 extends ei.r {
                     animatorSet.playTogether(arrayList2);
                     animatorSet.setDuration(250L);
                     animatorSet.start();
-                    xs0Var.f40382d1 = false;
+                    xs0Var.f40403d1 = false;
                     org.telegram.messenger.g0.i3(new ob0(this, 28), 20L);
                 } else {
                     xs0Var.m1(sparseArrayArr[1].size() + sparseArrayArr[0].size(), true);

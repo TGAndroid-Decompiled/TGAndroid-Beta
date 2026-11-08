@@ -25,27 +25,27 @@ public final class o4 extends y implements org.telegram.ui.ActionBar.a6, h9 {
     public y2 D;
     public boolean E;
     public final int[] F;
-    public final f6 f18739n;
-    public final Paint f18740r;
-    public final HorizontalScrollView f18741s;
-    public final ImageView f18742w;
-    public Bitmap f18743x;
-    public int f18744y;
+    public final f6 f18742n;
+    public final Paint f18743r;
+    public final HorizontalScrollView f18744s;
+    public final ImageView f18745w;
+    public Bitmap f18746x;
+    public int f18747y;
 
     public o4(Context context, f6 f6Var) {
         super(context);
-        this.f18740r = new Paint(1);
-        this.f18744y = 0;
+        this.f18743r = new Paint(1);
+        this.f18747y = 0;
         this.F = new int[4];
-        this.f18739n = f6Var;
+        this.f18742n = f6Var;
         setWillNotDraw(false);
         f(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(6.0f));
         ImageView imageView = new ImageView(context);
-        this.f18742w = imageView;
+        this.f18745w = imageView;
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.addView(imageView, new FrameLayout.LayoutParams(-2, -2, 17));
         HorizontalScrollView horizontalScrollView = new HorizontalScrollView(context);
-        this.f18741s = horizontalScrollView;
+        this.f18744s = horizontalScrollView;
         horizontalScrollView.setHorizontalScrollBarEnabled(false);
         horizontalScrollView.setClipToPadding(false);
         horizontalScrollView.setPadding(0, 0, 0, 0);
@@ -56,9 +56,9 @@ public final class o4 extends y implements org.telegram.ui.ActionBar.a6, h9 {
     }
 
     private String getSource() {
-        a aVar = this.f18986a;
+        a aVar = this.f18989a;
         if (aVar != null) {
-            TL_iv.PageBlock pageBlock = aVar.f18389b;
+            TL_iv.PageBlock pageBlock = aVar.f18392b;
             if (pageBlock instanceof TL_iv.pageBlockMath) {
                 return ((TL_iv.pageBlockMath) pageBlock).source;
             }
@@ -69,41 +69,41 @@ public final class o4 extends y implements org.telegram.ui.ActionBar.a6, h9 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(k6.f27949ig));
+        hashSet.add(Integer.valueOf(k6.f27952ig));
         hashSet.add(Integer.valueOf(k6.G6));
     }
 
     public final void g(a aVar, y2 y2Var) {
         q a10;
-        this.f18986a = aVar;
+        this.f18989a = aVar;
         this.D = y2Var;
         c(aVar);
-        this.f18743x = null;
-        this.f18741s.scrollTo(0, 0);
+        this.f18746x = null;
+        this.f18744s.scrollTo(0, 0);
         String source = getSource();
         if (!TextUtils.isEmpty(source) && (a10 = q.a(source, org.telegram.messenger.g0.L(iz.W0 + 4), false)) != null) {
-            this.f18743x = a10.f18778a;
+            this.f18746x = a10.f18781a;
         }
-        this.f18742w.setImageBitmap(this.f18743x);
+        this.f18745w.setImageBitmap(this.f18746x);
         invalidate();
     }
 
     public a getRow() {
-        return this.f18986a;
+        return this.f18989a;
     }
 
     public final void h(int[] iArr) {
         int max;
         int paddingTop = getPaddingTop();
         int height = getHeight() - getPaddingBottom();
-        if (this.f18743x != null && this.f18742w.getWidth() > this.f18741s.getWidth()) {
+        if (this.f18746x != null && this.f18745w.getWidth() > this.f18744s.getWidth()) {
             iArr[0] = getPaddingLeft();
             iArr[1] = paddingTop;
             iArr[2] = getWidth() - getPaddingRight();
             iArr[3] = height;
             return;
         }
-        Bitmap bitmap = this.f18743x;
+        Bitmap bitmap = this.f18746x;
         if (bitmap != null) {
             max = bitmap.getWidth();
         } else {
@@ -127,16 +127,16 @@ public final class o4 extends y implements org.telegram.ui.ActionBar.a6, h9 {
     public final void onDraw(Canvas canvas) {
         y2 y2Var;
         i9 textSelectionHelper;
-        if (this.f18744y != k6.w0(k6.G6, this.f18739n)) {
+        if (this.f18747y != k6.w0(k6.G6, this.f18742n)) {
             updateColors();
         }
-        if (this.f18743x != null && (y2Var = this.D) != null && (textSelectionHelper = y2Var.f18995a.getTextSelectionHelper()) != null && textSelectionHelper.x() && (getParent() instanceof RecyclerView)) {
+        if (this.f18746x != null && (y2Var = this.D) != null && (textSelectionHelper = y2Var.f18998a.getTextSelectionHelper()) != null && textSelectionHelper.x() && (getParent() instanceof RecyclerView)) {
             ((RecyclerView) getParent()).getClass();
             int R = RecyclerView.R(this);
-            if (R >= 0 && R >= textSelectionHelper.f29314p0 && R <= textSelectionHelper.f29317s0) {
+            if (R >= 0 && R >= textSelectionHelper.f29317p0 && R <= textSelectionHelper.f29320s0) {
                 int[] iArr = this.F;
                 h(iArr);
-                canvas.drawRoundRect(iArr[0], iArr[1], iArr[2], iArr[3], org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), this.f18740r);
+                canvas.drawRoundRect(iArr[0], iArr[1], iArr[2], iArr[3], org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), this.f18743r);
             }
         }
     }
@@ -148,14 +148,14 @@ public final class o4 extends y implements org.telegram.ui.ActionBar.a6, h9 {
 
     @Override
     public final void updateColors() {
-        int i7 = k6.f27949ig;
-        f6 f6Var = this.f18739n;
-        this.f18740r.setColor(k6.w0(i7, f6Var));
+        int i7 = k6.f27952ig;
+        f6 f6Var = this.f18742n;
+        this.f18743r.setColor(k6.w0(i7, f6Var));
         int w02 = k6.w0(k6.G6, f6Var);
-        if (!this.E || w02 != this.f18744y) {
+        if (!this.E || w02 != this.f18747y) {
             this.E = true;
-            this.f18744y = w02;
-            this.f18742w.setColorFilter(new PorterDuffColorFilter(this.f18744y, PorterDuff.Mode.SRC_IN));
+            this.f18747y = w02;
+            this.f18745w.setColorFilter(new PorterDuffColorFilter(this.f18747y, PorterDuff.Mode.SRC_IN));
         }
         invalidate();
     }

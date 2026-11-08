@@ -36,12 +36,12 @@ public final class h2 extends da {
                 an anVar = (an) this.f9070b;
                 anVar.G9 = !z9;
                 if (z9) {
-                    if (anVar.f43944r9 != null) {
+                    if (anVar.f43950r9 != null) {
                         an.d2(anVar, 0.0f);
-                        anVar.f43944r9 = null;
+                        anVar.f43950r9 = null;
                     }
                     anVar.s9 = false;
-                    anVar.f44034y9 = false;
+                    anVar.f44040y9 = false;
                     tk tkVar = anVar.A9;
                     if (tkVar != null) {
                         org.telegram.messenger.g0.r(tkVar.H);
@@ -52,15 +52,15 @@ public final class h2 extends da {
                 return;
             default:
                 ca0 ca0Var = (ca0) this.f9070b;
-                w90 w90Var = ca0Var.f32495e;
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = ca0Var.f32499s;
-                ia0 ia0Var = ca0Var.f32494c0;
-                if (ia0Var.f34575s) {
-                    if (!z9 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f38953b > 0.0f) {
+                w90 w90Var = ca0Var.f32526e;
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = ca0Var.f32530s;
+                ia0 ia0Var = ca0Var.f32525c0;
+                if (ia0Var.f34619s) {
+                    if (!z9 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f38988b > 0.0f) {
                         actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
                         return;
                     } else if (z9) {
-                        if (w90Var.v - w90Var.f30676u > qp.s1(ia0Var.f34577x).o4) {
+                        if (w90Var.v - w90Var.f30680u > qp.s1(ia0Var.f34621x).o4) {
                             ca0Var.g();
                             return;
                         }
@@ -73,10 +73,10 @@ public final class h2 extends da {
                         ij c10 = ca0Var.c(ijVar);
                         mj mjVar = ia0Var.d;
                         if (mjVar.d == null) {
-                            int i7 = w90Var.f30676u;
-                            mjVar.f24028e = i7;
+                            int i7 = w90Var.f30680u;
+                            mjVar.f24033e = i7;
                             int i10 = w90Var.v;
-                            mjVar.f24029f = i10;
+                            mjVar.f24034f = i10;
                             mjVar.d = qm.b(i7, i10, c10);
                             actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().e(ca0Var.I);
                             return;

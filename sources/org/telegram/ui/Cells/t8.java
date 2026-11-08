@@ -9,14 +9,14 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 public final class t8 extends FrameLayout {
     public static Paint d;
-    public static final int[] f30535e = {-1031100, -29183, -12769, -8792480, -12521994, -12140801, -2984711, -45162, -4473925};
-    public static final int[] f30536f = {-65536, -29183, -256, -16711936, -16711681, -16776961, -2984711, -65281, -1};
-    public final TextView f30537a;
-    public boolean f30538b;
-    public int f30539c;
+    public static final int[] f30539e = {-1031100, -29183, -12769, -8792480, -12521994, -12140801, -2984711, -45162, -4473925};
+    public static final int[] f30540f = {-65536, -29183, -256, -16711936, -16711681, -16776961, -2984711, -65281, -1};
+    public final TextView f30541a;
+    public boolean f30542b;
+    public int f30543c;
 
     public t8(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
@@ -25,24 +25,24 @@ public final class t8 extends FrameLayout {
             d = new Paint(1);
         }
         TextView textView = new TextView(context);
-        this.f30537a = textView;
+        this.f30541a = textView;
         org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.G6, f6Var);
         org.telegram.messenger.camera.q.n(textView, 1, 16.0f, 1, 1);
         textView.setSingleLine(true);
-        if (hd.f22878a0) {
+        if (id.f23157a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         textView.setGravity(i7 | 16);
-        addView(textView, c8.ha.d(-1, -1.0f, (hd.f22878a0 ? 5 : 3) | 48, 21.0f, 0.0f, 21.0f, 0.0f));
+        addView(textView, c8.ha.d(-1, -1.0f, (id.f23157a0 ? 5 : 3) | 48, 21.0f, 0.0f, 21.0f, 0.0f));
     }
 
     public final void a(ArrayList arrayList, boolean z9) {
         float f10;
         float f11;
         setEnabled(z9);
-        TextView textView = this.f30537a;
+        TextView textView = this.f30541a;
         float f12 = 0.5f;
         if (arrayList != null) {
             if (z9) {
@@ -73,9 +73,9 @@ public final class t8 extends FrameLayout {
 
     public final void b(int i7, String str, boolean z9) {
         boolean z10;
-        this.f30537a.setText(str);
-        this.f30538b = z9;
-        this.f30539c = i7;
+        this.f30541a.setText(str);
+        this.f30542b = z9;
+        this.f30543c = i7;
         if (!z9 && i7 == 0) {
             z10 = true;
         } else {
@@ -91,8 +91,8 @@ public final class t8 extends FrameLayout {
         int measuredWidth;
         float L;
         int i7;
-        if (this.f30538b) {
-            if (hd.f22878a0) {
+        if (this.f30542b) {
+            if (id.f23157a0) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.g0.L(20.0f);
@@ -100,20 +100,20 @@ public final class t8 extends FrameLayout {
             float f10 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth2 = getMeasuredWidth();
-            if (hd.f22878a0) {
+            if (id.f23157a0) {
                 i7 = org.telegram.messenger.g0.L(20.0f);
             } else {
                 i7 = 0;
             }
             canvas2 = canvas;
-            canvas2.drawLine(f10, measuredHeight, measuredWidth2 - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f27972k0);
+            canvas2.drawLine(f10, measuredHeight, measuredWidth2 - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f27975k0);
         } else {
             canvas2 = canvas;
         }
-        int i10 = this.f30539c;
+        int i10 = this.f30543c;
         if (i10 != 0) {
             d.setColor(i10);
-            if (hd.f22878a0) {
+            if (id.f23157a0) {
                 measuredWidth = org.telegram.messenger.g0.L(33.0f);
             } else {
                 measuredWidth = getMeasuredWidth() - org.telegram.messenger.g0.L(33.0f);
@@ -124,6 +124,6 @@ public final class t8 extends FrameLayout {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(50.0f) + (this.f30538b ? 1 : 0), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(50.0f) + (this.f30542b ? 1 : 0), 1073741824));
     }
 }

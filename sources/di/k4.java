@@ -9,7 +9,7 @@ import org.telegram.messenger.qp;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.e10;
+import org.telegram.ui.Components.f10;
 import org.telegram.ui.Components.xq;
 import org.telegram.ui.Stories.ProfileStoriesView;
 public final class k4 {
@@ -44,14 +44,14 @@ public final class k4 {
         this.h = new org.telegram.ui.Components.w5(profileStoriesView, 420L, xqVar);
         this.f9296m = new RectF();
         this.f9297n = new RectF();
-        this.f9286a = storyItem.f27192id;
+        this.f9286a = storyItem.f27195id;
         imageReceiver.J0(org.telegram.messenger.g0.L(200.0f));
         imageReceiver.H0(profileStoriesView);
         this.f9295l = storyItem.media instanceof TLRPC.TL_messageMediaVideoStream;
-        if (profileStoriesView.f42003y) {
+        if (profileStoriesView.f42007y) {
             imageReceiver.P();
         }
-        e10[] e10VarArr = r7.f9704a;
+        f10[] f10VarArr = r7.f9704a;
         TLRPC.MessageMedia messageMedia = storyItem.media;
         if (messageMedia instanceof TLRPC.TL_messageMediaVideoStream) {
             TLObject e22 = qp.s1(imageReceiver.d).e2(storyItem.dialogId);

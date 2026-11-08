@@ -5,21 +5,21 @@ import android.os.RemoteException;
 import q6.m;
 import v7.i;
 public final class f {
-    public final v7.a f19939a;
+    public final v7.a f19942a;
 
     public f(v7.a aVar) {
         m.g(aVar);
-        this.f19939a = aVar;
+        this.f19942a = aVar;
     }
 
     public final void a(k8.a aVar) {
-        v7.a aVar2 = this.f19939a;
+        v7.a aVar2 = this.f19942a;
         try {
-            a7.a aVar3 = aVar.f17227a;
+            a7.a aVar3 = aVar.f17230a;
             i iVar = (i) aVar2;
-            Parcel P0 = iVar.P0();
-            v7.b.c(P0, aVar3);
-            iVar.T0(P0, 18);
+            Parcel p12 = iVar.p1();
+            v7.b.c(p12, aVar3);
+            iVar.t1(p12, 18);
         } catch (RemoteException e10) {
             throw new RuntimeException(e10);
         }
@@ -31,16 +31,16 @@ public final class f {
             return false;
         }
         try {
-            v7.a aVar = this.f19939a;
-            v7.a aVar2 = ((f) obj).f19939a;
+            v7.a aVar = this.f19942a;
+            v7.a aVar2 = ((f) obj).f19942a;
             i iVar = (i) aVar;
-            Parcel P0 = iVar.P0();
-            v7.b.c(P0, aVar2);
-            Parcel O0 = iVar.O0(P0, 16);
-            if (O0.readInt() != 0) {
+            Parcel p12 = iVar.p1();
+            v7.b.c(p12, aVar2);
+            Parcel o12 = iVar.o1(p12, 16);
+            if (o12.readInt() != 0) {
                 z9 = true;
             }
-            O0.recycle();
+            o12.recycle();
             return z9;
         } catch (RemoteException e10) {
             throw new RuntimeException(e10);
@@ -49,10 +49,10 @@ public final class f {
 
     public final int hashCode() {
         try {
-            i iVar = (i) this.f19939a;
-            Parcel O0 = iVar.O0(iVar.P0(), 17);
-            int readInt = O0.readInt();
-            O0.recycle();
+            i iVar = (i) this.f19942a;
+            Parcel o12 = iVar.o1(iVar.p1(), 17);
+            int readInt = o12.readInt();
+            o12.recycle();
             return readInt;
         } catch (RemoteException e10) {
             throw new RuntimeException(e10);

@@ -22,35 +22,35 @@ public final class du extends fu implements x5, ls {
     public final TLRPC.Document X;
     public final RadialProgress2 Y;
     public final jm0 Z;
-    public final TextPaint f22085a0;
-    public StaticLayout f22086b0;
-    public StaticLayout f22087c0;
-    public String f22088d0;
-    public final int f22089e0;
-    public final int f22090f0;
-    public final int f22091g0;
-    public int f22092h0;
-    public int f22093i0;
-    public int f22094j0;
-    public int f22095k0;
-    public boolean f22096l0;
+    public final TextPaint f22103a0;
+    public StaticLayout f22104b0;
+    public StaticLayout f22105c0;
+    public String f22106d0;
+    public final int f22107e0;
+    public final int f22108f0;
+    public final int f22109g0;
+    public int f22110h0;
+    public int f22111i0;
+    public int f22112j0;
+    public int f22113k0;
+    public boolean f22114l0;
     public final RectF m0;
-    public int f22097n0;
-    public boolean f22098o0;
-    public boolean f22099p0;
-    public final int f22100q0;
+    public int f22115n0;
+    public boolean f22116o0;
+    public boolean f22117p0;
+    public final int f22118q0;
 
     public du(kv kvVar, Rect rect, int i7, TL_iv.pageBlockAudio pageblockaudio) {
         super(kvVar, rect, i7);
         TLRPC.Document document;
-        this.f22085a0 = new TextPaint(1);
+        this.f22103a0 = new TextPaint(1);
         int L = g0.L(16.0f);
-        this.f22089e0 = L;
+        this.f22107e0 = L;
         int L2 = g0.L(9.0f);
-        this.f22090f0 = L2;
+        this.f22108f0 = L2;
         int L3 = g0.L(44.0f);
-        this.f22091g0 = L3;
-        this.f22095k0 = -1;
+        this.f22109g0 = L3;
+        this.f22113k0 = -1;
         this.m0 = new RectF();
         ij ijVar = (ij) kvVar.f23773m.get(pageblockaudio);
         this.W = ijVar;
@@ -60,14 +60,14 @@ public final class du extends fu implements x5, ls {
             document = null;
         }
         this.X = document;
-        this.f22100q0 = z5.q(kvVar.f23763a).k();
+        this.f22118q0 = z5.q(kvVar.f23763a).k();
         RadialProgress2 radialProgress2 = new RadialProgress2(null, null);
         this.Y = radialProgress2;
         radialProgress2.setCircleRadius(g0.L(24.0f));
         radialProgress2.r(L, L2, L + L3, L3 + L2);
         jm0 jm0Var = new jm0(null);
         this.Z = jm0Var;
-        jm0Var.h = new p1(this, 15);
+        jm0Var.h = new j1(this, 15);
         k0();
         l0(false);
     }
@@ -79,7 +79,7 @@ public final class du extends fu implements x5, ls {
 
     @Override
     public final int I() {
-        Rect rect = this.f22451b;
+        Rect rect = this.f22470b;
         return g0.L(62.0f) + rect.top + rect.bottom;
     }
 
@@ -96,7 +96,7 @@ public final class du extends fu implements x5, ls {
 
     @Override
     public final boolean Q() {
-        return this.Z.f35002e;
+        return this.Z.f35023e;
     }
 
     @Override
@@ -104,27 +104,27 @@ public final class du extends fu implements x5, ls {
         View view = this.V;
         if (view != null) {
             this.Y.n(view);
-            this.Z.f35015s = this.V;
+            this.Z.f35036s = this.V;
         }
         l0(false);
-        kv kvVar = this.f22450a;
+        kv kvVar = this.f22469a;
         int i7 = kvVar.f23763a;
         int i10 = kvVar.f23763a;
-        qs.f(i7).c(this, qs.f25001h2);
-        qs.f(i10).c(this, qs.f24989f2);
-        qs.f(i10).c(this, qs.f24995g2);
-        qs.f(i10).c(this, qs.f24983e2);
+        qs.f(i7).c(this, qs.f25010h2);
+        qs.f(i10).c(this, qs.f24998f2);
+        qs.f(i10).c(this, qs.f25004g2);
+        qs.f(i10).c(this, qs.f24992e2);
     }
 
     @Override
     public final void V() {
-        kv kvVar = this.f22450a;
+        kv kvVar = this.f22469a;
         z5.q(kvVar.f23763a).v(this);
         int i7 = kvVar.f23763a;
-        qs.f(i7).n(this, qs.f25001h2);
-        qs.f(i7).n(this, qs.f24989f2);
-        qs.f(i7).n(this, qs.f24995g2);
-        qs.f(i7).n(this, qs.f24983e2);
+        qs.f(i7).n(this, qs.f25010h2);
+        qs.f(i7).n(this, qs.f24998f2);
+        qs.f(i7).n(this, qs.f25004g2);
+        qs.f(i7).n(this, qs.f24992e2);
     }
 
     @Override
@@ -141,10 +141,10 @@ public final class du extends fu implements x5, ls {
         int i18;
         Drawable drawable;
         if (this.W != null && this.X != null) {
-            int i19 = this.f22095k0;
-            int i20 = this.f22452c;
-            kv kvVar = this.f22450a;
-            if (i19 != i20 + kvVar.S + kvVar.T || this.f22096l0 != i0()) {
+            int i19 = this.f22113k0;
+            int i20 = this.f22471c;
+            kv kvVar = this.f22469a;
+            if (i19 != i20 + kvVar.S + kvVar.T || this.f22114l0 != i0()) {
                 k0();
             }
             canvas.save();
@@ -162,73 +162,73 @@ public final class du extends fu implements x5, ls {
             if (kvVar.E()) {
                 i11 = org.telegram.ui.ActionBar.k6.Db;
             } else {
-                i11 = org.telegram.ui.ActionBar.k6.f27947id;
+                i11 = org.telegram.ui.ActionBar.k6.f27950id;
             }
             if (kvVar.E()) {
                 i12 = org.telegram.ui.ActionBar.k6.Eb;
             } else {
-                i12 = org.telegram.ui.ActionBar.k6.f27965jd;
+                i12 = org.telegram.ui.ActionBar.k6.f27968jd;
             }
             RadialProgress2 radialProgress2 = this.Y;
             radialProgress2.g(i7, i10, i11, i12);
             if (kvVar.E()) {
-                i13 = org.telegram.ui.ActionBar.k6.f28114rc;
+                i13 = org.telegram.ui.ActionBar.k6.f28117rc;
             } else {
-                i13 = org.telegram.ui.ActionBar.k6.f28077pe;
+                i13 = org.telegram.ui.ActionBar.k6.f28080pe;
             }
             radialProgress2.d = org.telegram.ui.ActionBar.k6.w0(i13, kvVar.D);
             radialProgress2.draw(canvas);
             if (kvVar.E()) {
-                i14 = org.telegram.ui.ActionBar.k6.f27983kc;
+                i14 = org.telegram.ui.ActionBar.k6.f27986kc;
             } else {
-                i14 = org.telegram.ui.ActionBar.k6.f27948ie;
+                i14 = org.telegram.ui.ActionBar.k6.f27951ie;
             }
             int w02 = org.telegram.ui.ActionBar.k6.w0(i14, kvVar.D);
             if (kvVar.E()) {
-                i15 = org.telegram.ui.ActionBar.k6.f28002lc;
+                i15 = org.telegram.ui.ActionBar.k6.f28005lc;
             } else {
-                i15 = org.telegram.ui.ActionBar.k6.f27966je;
+                i15 = org.telegram.ui.ActionBar.k6.f27969je;
             }
             int w03 = org.telegram.ui.ActionBar.k6.w0(i15, kvVar.D);
             if (kvVar.E()) {
-                i16 = org.telegram.ui.ActionBar.k6.f28037nc;
+                i16 = org.telegram.ui.ActionBar.k6.f28040nc;
             } else {
                 i16 = org.telegram.ui.ActionBar.k6.le;
             }
             int w04 = org.telegram.ui.ActionBar.k6.w0(i16, kvVar.D);
             if (kvVar.E()) {
-                i17 = org.telegram.ui.ActionBar.k6.f28037nc;
+                i17 = org.telegram.ui.ActionBar.k6.f28040nc;
             } else {
                 i17 = org.telegram.ui.ActionBar.k6.le;
             }
             int w05 = org.telegram.ui.ActionBar.k6.w0(i17, kvVar.D);
             if (kvVar.E()) {
-                i18 = org.telegram.ui.ActionBar.k6.f28018mc;
+                i18 = org.telegram.ui.ActionBar.k6.f28021mc;
             } else {
-                i18 = org.telegram.ui.ActionBar.k6.f27985ke;
+                i18 = org.telegram.ui.ActionBar.k6.f27988ke;
             }
             int w06 = org.telegram.ui.ActionBar.k6.w0(i18, kvVar.D);
             jm0 jm0Var = this.Z;
             jm0Var.g(w02, w03, w04, w05, w06);
             canvas.save();
-            canvas.translate(this.f22092h0, this.f22093i0);
+            canvas.translate(this.f22110h0, this.f22111i0);
             jm0Var.b(canvas);
             canvas.restore();
-            StaticLayout staticLayout = this.f22087c0;
-            int i21 = this.f22089e0;
+            StaticLayout staticLayout = this.f22105c0;
+            int i21 = this.f22107e0;
             if (staticLayout != null) {
                 canvas.save();
-                canvas.translate(g0.L(54.0f) + i21, g0.L(6.0f) + this.f22093i0);
-                this.f22087c0.draw(canvas);
+                canvas.translate(g0.L(54.0f) + i21, g0.L(6.0f) + this.f22111i0);
+                this.f22105c0.draw(canvas);
                 canvas.restore();
             }
-            if (this.f22086b0 != null) {
+            if (this.f22104b0 != null) {
                 canvas.save();
-                canvas.translate(g0.L(54.0f) + i21, this.f22093i0 - g0.L(16.0f));
-                this.f22086b0.draw(canvas);
+                canvas.translate(g0.L(54.0f) + i21, this.f22111i0 - g0.L(16.0f));
+                this.f22104b0.draw(canvas);
                 canvas.restore();
             }
-            boolean z9 = this.f22096l0;
+            boolean z9 = this.f22114l0;
             RectF rectF = this.m0;
             if (z9) {
                 if (kvVar.E()) {
@@ -242,9 +242,9 @@ public final class du extends fu implements x5, ls {
                         drawable = org.telegram.ui.ActionBar.k6.R0("drawableMsgOutMenu");
                     }
                 } else {
-                    drawable = org.telegram.ui.ActionBar.k6.f27829c4;
+                    drawable = org.telegram.ui.ActionBar.k6.f27832c4;
                 }
-                int L = (this.f22095k0 + this.f22451b.right) - g0.L(32.0f);
+                int L = (this.f22113k0 + this.f22470b.right) - g0.L(32.0f);
                 int L2 = g0.L(7.0f);
                 drawable.setBounds(L, L2, drawable.getIntrinsicWidth() + L, drawable.getIntrinsicHeight() + L2);
                 drawable.draw(canvas);
@@ -263,19 +263,19 @@ public final class du extends fu implements x5, ls {
         boolean z9;
         int actionMasked = motionEvent.getActionMasked();
         float x10 = motionEvent.getX();
-        kv kvVar = this.f22450a;
+        kv kvVar = this.f22469a;
         float f10 = x10 + kvVar.S;
         float y10 = motionEvent.getY();
         boolean contains = this.m0.contains(f10, y10);
         if (actionMasked == 0 && contains) {
-            this.f22099p0 = true;
+            this.f22117p0 = true;
             return true;
         }
-        boolean z10 = this.f22099p0;
+        boolean z10 = this.f22117p0;
         TLRPC.Document document = this.X;
         if (z10) {
             if (actionMasked == 2 && !contains) {
-                this.f22099p0 = false;
+                this.f22117p0 = false;
                 return true;
             } else if (actionMasked == 1 || actionMasked == 3) {
                 if (actionMasked == 1 && contains) {
@@ -283,7 +283,7 @@ public final class du extends fu implements x5, ls {
                 } else {
                     z9 = false;
                 }
-                this.f22099p0 = false;
+                this.f22117p0 = false;
                 if (z9 && i0()) {
                     View view = this.V;
                     if (view != null) {
@@ -295,7 +295,7 @@ public final class du extends fu implements x5, ls {
                 return true;
             }
         }
-        if (this.Z.e(f10 - this.f22092h0, y10 - this.f22093i0, actionMasked)) {
+        if (this.Z.e(f10 - this.f22110h0, y10 - this.f22111i0, actionMasked)) {
             if (actionMasked == 0) {
                 a0(true);
             }
@@ -308,10 +308,10 @@ public final class du extends fu implements x5, ls {
                 return true;
             }
         } else if (actionMasked == 0) {
-            if (this.f22097n0 != -1) {
-                if (f10 >= this.f22089e0 && f10 <= g0.L(48.0f) + i7) {
-                    if (y10 >= this.f22090f0 && y10 <= g0.L(48.0f) + i10) {
-                        this.f22098o0 = true;
+            if (this.f22115n0 != -1) {
+                if (f10 >= this.f22107e0 && f10 <= g0.L(48.0f) + i7) {
+                    if (y10 >= this.f22108f0 && y10 <= g0.L(48.0f) + i10) {
+                        this.f22116o0 = true;
                         View view3 = this.V;
                         if (view3 != null) {
                             view3.invalidate();
@@ -320,21 +320,21 @@ public final class du extends fu implements x5, ls {
                     }
                 }
             }
-            return this.f22098o0;
+            return this.f22116o0;
         } else {
             if (actionMasked == 1) {
-                if (this.f22098o0) {
-                    this.f22098o0 = false;
+                if (this.f22116o0) {
+                    this.f22116o0 = false;
                     View view4 = this.V;
                     if (view4 != null) {
                         view4.playSoundEffect(0);
                     }
                     int i11 = kvVar.f23763a;
-                    int i12 = this.f22097n0;
+                    int i12 = this.f22115n0;
                     RadialProgress2 radialProgress2 = this.Y;
                     if (i12 == 0) {
                         if (MediaController.B().o0(kvVar.f23772l, this.W, 0L, false, null, 0L)) {
-                            this.f22097n0 = 1;
+                            this.f22115n0 = 1;
                             radialProgress2.setIcon(j0(), false, true);
                             View view5 = this.V;
                             if (view5 != null) {
@@ -343,7 +343,7 @@ public final class du extends fu implements x5, ls {
                         }
                     } else if (i12 == 1) {
                         if (MediaController.B().R(this.W, true)) {
-                            this.f22097n0 = 0;
+                            this.f22115n0 = 0;
                             radialProgress2.setIcon(j0(), false, true);
                             View view6 = this.V;
                             if (view6 != null) {
@@ -353,7 +353,7 @@ public final class du extends fu implements x5, ls {
                     } else if (i12 == 2) {
                         radialProgress2.p(false, 0.0f);
                         w7.G(i11).W(document, kvVar.f23764b, 1, 1);
-                        this.f22097n0 = 3;
+                        this.f22115n0 = 3;
                         radialProgress2.setIcon(j0(), true, true);
                         View view7 = this.V;
                         if (view7 != null) {
@@ -361,7 +361,7 @@ public final class du extends fu implements x5, ls {
                         }
                     } else if (i12 == 3) {
                         w7.G(i11).f(document);
-                        this.f22097n0 = 2;
+                        this.f22115n0 = 2;
                         radialProgress2.setIcon(j0(), false, true);
                         View view8 = this.V;
                         if (view8 != null) {
@@ -374,9 +374,9 @@ public final class du extends fu implements x5, ls {
                     }
                 }
             } else if (actionMasked == 3) {
-                this.f22098o0 = false;
+                this.f22116o0 = false;
             }
-            return this.f22098o0;
+            return this.f22116o0;
         }
         return true;
     }
@@ -386,13 +386,13 @@ public final class du extends fu implements x5, ls {
         ij ijVar;
         ij ijVar2 = this.W;
         if (ijVar2 != null) {
-            if (i7 == qs.f25001h2) {
+            if (i7 == qs.f25010h2) {
                 l0(true);
-            } else if (i7 != qs.f24989f2 && i7 != qs.f24995g2) {
-                if (i7 == qs.f24983e2 && ijVar2.f1() == ((Integer) objArr[0]).intValue() && (ijVar = MediaController.B().f21292u0) != null) {
-                    ijVar2.f23204b0 = ijVar.f23204b0;
-                    ijVar2.f23227g0 = ijVar.f23227g0;
-                    ijVar2.f23231h0 = ijVar.f23231h0;
+            } else if (i7 != qs.f24998f2 && i7 != qs.f25004g2) {
+                if (i7 == qs.f24992e2 && ijVar2.f1() == ((Integer) objArr[0]).intValue() && (ijVar = MediaController.B().f21295u0) != null) {
+                    ijVar2.f23222b0 = ijVar.f23222b0;
+                    ijVar2.f23245g0 = ijVar.f23245g0;
+                    ijVar2.f23249h0 = ijVar.f23249h0;
                     m0();
                 }
             } else {
@@ -403,7 +403,7 @@ public final class du extends fu implements x5, ls {
 
     @Override
     public final int getObserverTag() {
-        return this.f22100q0;
+        return this.f22118q0;
     }
 
     @Override
@@ -415,7 +415,7 @@ public final class du extends fu implements x5, ls {
             f10 = ((float) j3) / ((float) j10);
         }
         this.Y.p(true, Math.min(1.0f, f10));
-        if (this.f22097n0 != 3) {
+        if (this.f22115n0 != 3) {
             l0(true);
         }
     }
@@ -424,14 +424,14 @@ public final class du extends fu implements x5, ls {
         kv kvVar;
         org.telegram.ui.Cells.q1 q1Var;
         org.telegram.ui.Cells.l1 l1Var;
-        if (this.X != null && (q1Var = (kvVar = this.f22450a).E) != null && (l1Var = kvVar.F) != null && l1Var.a0(q1Var)) {
+        if (this.X != null && (q1Var = (kvVar = this.f22469a).E) != null && (l1Var = kvVar.F) != null && l1Var.a0(q1Var)) {
             return true;
         }
         return false;
     }
 
     public final int j0() {
-        int i7 = this.f22097n0;
+        int i7 = this.f22115n0;
         if (i7 == 1) {
             return 1;
         }
@@ -449,20 +449,20 @@ public final class du extends fu implements x5, ls {
         String str;
         String str2;
         SpannableStringBuilder spannableStringBuilder;
-        kv kvVar = this.f22450a;
-        this.f22095k0 = this.f22452c + kvVar.S + kvVar.T;
-        this.f22096l0 = i0();
-        int L = g0.L(50.0f) + this.f22089e0;
-        int i7 = this.f22091g0;
+        kv kvVar = this.f22469a;
+        this.f22113k0 = this.f22471c + kvVar.S + kvVar.T;
+        this.f22114l0 = i0();
+        int L = g0.L(50.0f) + this.f22107e0;
+        int i7 = this.f22109g0;
         int i10 = L + i7;
-        this.f22092h0 = i10;
-        int i11 = this.f22095k0 - i10;
-        if (this.f22096l0) {
+        this.f22110h0 = i10;
+        int i11 = this.f22113k0 - i10;
+        if (this.f22114l0) {
             f10 = 42.0f;
         } else {
             f10 = 18.0f;
         }
-        this.f22094j0 = jg.g.e(f10, i11, 0);
+        this.f22112j0 = jg.g.e(f10, i11, 0);
         ij ijVar = this.W;
         if (ijVar != null) {
             str = ijVar.x1(false);
@@ -475,10 +475,10 @@ public final class du extends fu implements x5, ls {
             str2 = null;
         }
         boolean isEmpty = TextUtils.isEmpty(str2);
-        int i12 = this.f22090f0;
+        int i12 = this.f22108f0;
         if (isEmpty && TextUtils.isEmpty(str)) {
-            this.f22086b0 = null;
-            this.f22093i0 = ((i7 - g0.L(30.0f)) / 2) + i12;
+            this.f22104b0 = null;
+            this.f22111i0 = ((i7 - g0.L(30.0f)) / 2) + i12;
         } else {
             if (!TextUtils.isEmpty(str2) && !TextUtils.isEmpty(str)) {
                 spannableStringBuilder = new SpannableStringBuilder(a8.p0.D(str, " - ", str2));
@@ -490,18 +490,18 @@ public final class du extends fu implements x5, ls {
             if (!TextUtils.isEmpty(str)) {
                 spannableStringBuilder.setSpan(new u31(g0.o()), 0, str.length(), 18);
             }
-            this.f22085a0.setTextSize(g0.L(16.0f));
-            int L2 = g0.L(50.0f) + this.f22094j0;
-            this.f22086b0 = new StaticLayout(TextUtils.ellipsize(spannableStringBuilder, org.telegram.ui.ActionBar.k6.O2, L2, TextUtils.TruncateAt.END), this.f22085a0, L2, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            this.f22093i0 = g0.L(11.0f) + ((i7 - g0.L(30.0f)) / 2) + i12;
+            this.f22103a0.setTextSize(g0.L(16.0f));
+            int L2 = g0.L(50.0f) + this.f22112j0;
+            this.f22104b0 = new StaticLayout(TextUtils.ellipsize(spannableStringBuilder, org.telegram.ui.ActionBar.k6.O2, L2, TextUtils.TruncateAt.END), this.f22103a0, L2, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.f22111i0 = g0.L(11.0f) + ((i7 - g0.L(30.0f)) / 2) + i12;
         }
-        this.Z.i(this.f22094j0, g0.L(30.0f));
+        this.Z.i(this.f22112j0, g0.L(30.0f));
     }
 
     public final void l0(boolean z9) {
         File J;
         boolean z10;
-        int i7 = this.f22450a.f23763a;
+        int i7 = this.f22469a.f23763a;
         TLRPC.Document document = this.X;
         String r10 = w7.r(null, document);
         int i10 = 1;
@@ -526,27 +526,27 @@ public final class du extends fu implements x5, ls {
         if (z10) {
             z5.q(i7).v(this);
             if (MediaController.B().I(ijVar) && !MediaController.B().H()) {
-                this.f22097n0 = 1;
+                this.f22115n0 = 1;
             } else {
-                this.f22097n0 = 0;
+                this.f22115n0 = 0;
             }
             radialProgress2.setIcon(j0(), false, z9);
         } else {
             z5.q(i7).a(r10, null, this);
-            if (iz.B0 && ijVar != null && ijVar.J3() && !ij.S5(ijVar.f23244k) && !m5.C(ij.B0(ijVar.f23244k))) {
+            if (iz.B0 && ijVar != null && ijVar.J3() && !ij.S5(ijVar.f23262k) && !m5.C(ij.B0(ijVar.f23262k))) {
                 if (!MediaController.B().I(ijVar) || MediaController.B().H()) {
                     i10 = 0;
                 }
-                this.f22097n0 = i10;
+                this.f22115n0 = i10;
                 radialProgress2.setIcon(j0(), false, z9);
             } else {
                 float f10 = 0.0f;
                 if (!w7.G(i7).S(r10)) {
-                    this.f22097n0 = 2;
+                    this.f22115n0 = 2;
                     radialProgress2.p(z9, 0.0f);
                     radialProgress2.setIcon(j0(), false, z9);
                 } else {
-                    this.f22097n0 = 3;
+                    this.f22115n0 = 3;
                     Float w10 = gc.D().w(r10);
                     if (w10 != null) {
                         f10 = w10.floatValue();
@@ -566,11 +566,11 @@ public final class du extends fu implements x5, ls {
         TLRPC.Document document = this.X;
         if (document != null && (ijVar = this.W) != null) {
             jm0 jm0Var = this.Z;
-            if (!jm0Var.f35002e) {
-                jm0Var.h(ijVar.f23204b0);
+            if (!jm0Var.f35023e) {
+                jm0Var.h(ijVar.f23222b0);
             }
             if (MediaController.B().I(ijVar)) {
-                i7 = ijVar.f23227g0;
+                i7 = ijVar.f23245g0;
             } else {
                 int i11 = 0;
                 while (true) {
@@ -588,14 +588,14 @@ public final class du extends fu implements x5, ls {
                 }
             }
             String g02 = g0.g0(i7, false, false);
-            String str = this.f22088d0;
-            TextPaint textPaint = this.f22085a0;
+            String str = this.f22106d0;
+            TextPaint textPaint = this.f22103a0;
             if (str == null || !str.equals(g02)) {
-                this.f22088d0 = g02;
+                this.f22106d0 = g02;
                 textPaint.setTextSize(g0.L(16.0f));
-                this.f22087c0 = new StaticLayout(g02, textPaint, (int) Math.ceil(textPaint.measureText(g02)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                this.f22105c0 = new StaticLayout(g02, textPaint, (int) Math.ceil(textPaint.measureText(g02)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             }
-            kv kvVar = this.f22450a;
+            kv kvVar = this.f22469a;
             if (kvVar.E()) {
                 i10 = org.telegram.ui.ActionBar.k6.Tc;
             } else {

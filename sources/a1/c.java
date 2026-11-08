@@ -60,13 +60,12 @@ import org.telegram.messenger.w10;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.r1;
-import org.telegram.ui.ActionBar.u1;
 import org.telegram.ui.Cells.t0;
 import org.telegram.ui.Components.cj0;
 import org.telegram.ui.Components.dj0;
 import org.telegram.ui.Components.t4;
 import org.telegram.ui.Components.x31;
-import org.telegram.ui.Wallet.v1;
+import org.telegram.ui.Wallet.u1;
 import org.telegram.ui.gl0;
 import v4.l0;
 public final class c implements OnSuccessListener, p, Continuation, OnCompleteListener, a20, t4, r1, bg.p, te.b, gl0, j, i, com.google.android.gms.common.api.internal.p, dj0, w10, cj0 {
@@ -149,12 +148,12 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
                     return;
                 }
             case 17:
-                v1 v1Var = (v1) this.f38b;
+                u1 u1Var = (u1) this.f38b;
                 if (i7 == 1) {
-                    v1Var.a(Boolean.TRUE, null);
+                    u1Var.a(Boolean.TRUE, null);
                     return;
                 } else if (i7 != 3) {
-                    v1Var.a(Boolean.FALSE, null);
+                    u1Var.a(Boolean.FALSE, null);
                     return;
                 } else {
                     return;
@@ -281,7 +280,7 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
     }
 
     @Override
-    public void g(u1 u1Var, int i7) {
+    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
         ((c20) this.f38b).a(u1Var.h(i7, true, true));
     }
 
@@ -384,7 +383,7 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
                 r7Var.getClass();
                 if (!task.isSuccessful() && (exception = task.getException()) != null && !TextUtils.isEmpty(exception.getMessage()) && exception.getMessage().contains("FID_ALREADY_USED:")) {
                     Log.w("FirebaseMessaging", "FID_ALREADY_USED Detected. Retrying with FID cache clearing!");
-                    ((va.c) ((va.d) r7Var.d)).f57198c.b().delete();
+                    ((va.c) ((va.d) r7Var.d)).f57290c.b().delete();
                     return r7Var.C();
                 }
                 return task;
@@ -421,7 +420,7 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
                     kotlin.jvm.internal.j.d(forResult, "{\n      logger.d(\"Succes…ccess(task.result))\n    }");
                     return forResult;
                 }
-                Log.e(d1Var.f21946a, d1Var.b("Failed to fetch the Verification Support Info: " + task.getException(), new Object[0]));
+                Log.e(d1Var.f21970b, d1Var.b("Failed to fetch the Verification Support Info: " + task.getException(), new Object[0]));
                 Exception exception2 = task.getException();
                 if (exception2 != null && (message = exception2.getMessage()) != null && xd.d.e(message, "test_number_token is invalid")) {
                     d1Var.a("Backend rejected the test number token.", new Object[0]);

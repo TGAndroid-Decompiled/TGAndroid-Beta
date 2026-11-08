@@ -24,9 +24,9 @@ public final class v5 implements Runnable {
                     Locale locale = Locale.ENGLISH;
                     long currentTimeMillis = System.currentTimeMillis();
                     int i7 = ijVar.F0().dc_id;
-                    long j3 = ijVar.F0().f26959id;
-                    z5Var.getMessagesStorage().f26698b.executeFast("UPDATE downloading_documents SET state = 1, date = " + currentTimeMillis + " WHERE hash = " + i7 + " AND id = " + j3).stepThis().dispose();
-                    z5Var.getMessagesStorage().f26698b.executeFast("DELETE FROM downloading_documents WHERE state = 1 AND rowid NOT IN (SELECT rowid FROM downloading_documents WHERE state = 1 ORDER BY date DESC LIMIT 100)").stepThis().dispose();
+                    long j3 = ijVar.F0().f26962id;
+                    z5Var.getMessagesStorage().f26721b.executeFast("UPDATE downloading_documents SET state = 1, date = " + currentTimeMillis + " WHERE hash = " + i7 + " AND id = " + j3).stepThis().dispose();
+                    z5Var.getMessagesStorage().f26721b.executeFast("DELETE FROM downloading_documents WHERE state = 1 AND rowid NOT IN (SELECT rowid FROM downloading_documents WHERE state = 1 ORDER BY date DESC LIMIT 100)").stepThis().dispose();
                     return;
                 } catch (Exception e10) {
                     a8.g(e10, true);
@@ -36,12 +36,12 @@ public final class v5 implements Runnable {
                 z5 z5Var2 = this.f25945b;
                 ij ijVar2 = this.f25946c;
                 try {
-                    NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(ijVar2.f23244k.getObjectSize());
-                    ijVar2.f23244k.serializeToStream(nativeByteBuffer);
-                    SQLitePreparedStatement executeFast = z5Var2.getMessagesStorage().f26698b.executeFast("REPLACE INTO downloading_documents VALUES(?, ?, ?, ?, ?)");
+                    NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(ijVar2.f23262k.getObjectSize());
+                    ijVar2.f23262k.serializeToStream(nativeByteBuffer);
+                    SQLitePreparedStatement executeFast = z5Var2.getMessagesStorage().f26721b.executeFast("REPLACE INTO downloading_documents VALUES(?, ?, ?, ?, ?)");
                     executeFast.bindByteBuffer(1, nativeByteBuffer);
                     executeFast.bindInteger(2, ijVar2.F0().dc_id);
-                    executeFast.bindLong(3, ijVar2.F0().f26959id);
+                    executeFast.bindLong(3, ijVar2.F0().f26962id);
                     executeFast.bindInteger(4, 0);
                     executeFast.bindLong(5, System.currentTimeMillis());
                     executeFast.step();
@@ -56,9 +56,9 @@ public final class v5 implements Runnable {
                 z5 z5Var3 = this.f25945b;
                 ij ijVar3 = this.f25946c;
                 try {
-                    SQLitePreparedStatement executeFast2 = z5Var3.getMessagesStorage().f26698b.executeFast("DELETE FROM downloading_documents WHERE hash = ? AND id = ?");
+                    SQLitePreparedStatement executeFast2 = z5Var3.getMessagesStorage().f26721b.executeFast("DELETE FROM downloading_documents WHERE hash = ? AND id = ?");
                     executeFast2.bindInteger(1, ijVar3.F0().dc_id);
-                    executeFast2.bindLong(2, ijVar3.F0().f26959id);
+                    executeFast2.bindLong(2, ijVar3.F0().f26962id);
                     executeFast2.step();
                     executeFast2.dispose();
                     return;

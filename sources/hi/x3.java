@@ -19,15 +19,15 @@ import org.telegram.ui.Components.lt0;
 import org.telegram.ui.Components.x31;
 import org.telegram.ui.Components.xp;
 public final class x3 implements kt0, k9, b20, o6, p6, ih.b, g9.k, org.telegram.ui.ActionBar.r1, h2.o, h2.p, u9.d {
-    public final int f15032a;
+    public final int f15035a;
 
     public x3(int i7) {
-        this.f15032a = i7;
+        this.f15035a = i7;
     }
 
     @Override
     public Boolean a(x31 x31Var, View view, Integer num, Float f10, Float f11) {
-        switch (this.f15032a) {
+        switch (this.f15035a) {
             case 6:
                 return Boolean.FALSE;
             default:
@@ -41,10 +41,10 @@ public final class x3 implements kt0, k9, b20, o6, p6, ih.b, g9.k, org.telegram.
         h9.q1 q1Var;
         int i10 = 0;
         boolean z9 = true;
-        switch (this.f15032a) {
+        switch (this.f15035a) {
             case 13:
                 String str = (String) obj;
-                g9.a aVar = k9.a.f17233g;
+                g9.a aVar = k9.a.f17236g;
                 aVar.getClass();
                 int length = str.length() - 1;
                 while (true) {
@@ -137,7 +137,7 @@ public final class x3 implements kt0, k9, b20, o6, p6, ih.b, g9.k, org.telegram.
 
     @Override
     public Object b(Bitmap bitmap) {
-        switch (this.f15032a) {
+        switch (this.f15035a) {
             case 10:
                 if (bitmap != null && !bitmap.isRecycled()) {
                     Bitmap E = Utilities.E(Math.max(bitmap.getWidth() / 90.0f, bitmap.getHeight() / 120.0f), bitmap);
@@ -165,7 +165,7 @@ public final class x3 implements kt0, k9, b20, o6, p6, ih.b, g9.k, org.telegram.
     public void c(int i7, View view) {
         Drawable background = view.getBackground();
         if (background instanceof xp) {
-            Drawable drawable = ((xp) background).f40331a;
+            Drawable drawable = ((xp) background).f40352a;
             if (drawable instanceof ColorDrawable) {
                 ((ColorDrawable) drawable).setColor(i7);
                 view.invalidate();
@@ -178,7 +178,7 @@ public final class x3 implements kt0, k9, b20, o6, p6, ih.b, g9.k, org.telegram.
         l5.f lambda$getComponents$0;
         l5.f lambda$getComponents$1;
         l5.f lambda$getComponents$2;
-        switch (this.f15032a) {
+        switch (this.f15035a) {
             case 22:
                 lambda$getComponents$0 = TransportRegistrar.lambda$getComponents$0(r7Var);
                 return lambda$getComponents$0;
@@ -198,7 +198,7 @@ public final class x3 implements kt0, k9, b20, o6, p6, ih.b, g9.k, org.telegram.
 
     @Override
     public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f15032a) {
+        switch (this.f15035a) {
             case 15:
                 u1Var.dismiss();
                 return;
@@ -217,7 +217,7 @@ public final class x3 implements kt0, k9, b20, o6, p6, ih.b, g9.k, org.telegram.
     public int i(View view) {
         Drawable background = view.getBackground();
         if (background instanceof xp) {
-            Drawable drawable = ((xp) background).f40331a;
+            Drawable drawable = ((xp) background).f40352a;
             if (drawable instanceof ColorDrawable) {
                 return ((ColorDrawable) drawable).getColor();
             }
@@ -228,7 +228,7 @@ public final class x3 implements kt0, k9, b20, o6, p6, ih.b, g9.k, org.telegram.
 
     @Override
     public void invoke(Object obj) {
-        switch (this.f15032a) {
+        switch (this.f15035a) {
             case 19:
                 ((e2.a1) obj).y(new l2.l(2, new RuntimeException("Player release timed out."), 1003));
                 return;
@@ -265,14 +265,14 @@ public final class x3 implements kt0, k9, b20, o6, p6, ih.b, g9.k, org.telegram.
     }
 
     public x3(Object obj, int i7) {
-        this.f15032a = i7;
+        this.f15035a = i7;
     }
 
     public x3(m2.a aVar, Object obj, int i7) {
-        this.f15032a = i7;
+        this.f15035a = i7;
     }
 
     public x3(m2.a aVar, boolean z9, int i7) {
-        this.f15032a = 27;
+        this.f15035a = 27;
     }
 }

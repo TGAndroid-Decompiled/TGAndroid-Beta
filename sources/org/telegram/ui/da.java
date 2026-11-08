@@ -9,16 +9,16 @@ public final class da extends ia {
     public da(ea eaVar, Activity activity, org.telegram.ui.ActionBar.f6 f6Var) {
         super(activity, f6Var);
         this.K = eaVar;
-        this.f46616a = true;
+        this.f46614a = true;
     }
 
     @Override
     public final String getUsernameEditable() {
         switch (this.J) {
             case 0:
-                return ((ea) this.K).f45247c.f47487r;
+                return ((ea) this.K).f45246c.f47483r;
             default:
-                ah.i iVar = ((eo) this.K).f45390c.f45682h3.f46047b;
+                ah.i iVar = ((eo) this.K).f45349c.f45659h3.f46049b;
                 if (iVar == null) {
                     return null;
                 }

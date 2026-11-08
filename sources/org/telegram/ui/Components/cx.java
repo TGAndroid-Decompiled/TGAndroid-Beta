@@ -1,35 +1,31 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.view.View;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class cx implements View.OnClickListener {
-    public final boolean[] f32678a;
-    public final h9.f1 f32679b;
-    public final androidx.mediarouter.app.w f32680c;
-
-    public cx(androidx.mediarouter.app.w wVar, boolean[] zArr, h9.f1 f1Var) {
-        this.f32680c = wVar;
-        this.f32678a = zArr;
-        this.f32679b = f1Var;
+public final class cx extends q41 {
+    public cx(Context context, int i7, org.telegram.messenger.v10 v10Var, org.telegram.messenger.a20 a20Var, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, i7, -1, false, v10Var, a20Var, null, f6Var, -1, 0);
+        this.f37003y2 = true;
+        setOverScrollMode(2);
     }
 
-    @Override
-    public final void onClick(View view) {
-        gx gxVar = (gx) this.f32680c.f2833b;
-        boolean[] zArr = this.f32678a;
-        if (zArr[0]) {
-            return;
+    public final void L1(View view) {
+        int i7;
+        if (view != null) {
+            float L = org.telegram.messenger.g0.L(92.0f);
+            float width = getWidth() - L;
+            float x10 = view.getX();
+            float width2 = view.getWidth() + x10;
+            if (x10 < L) {
+                i7 = (int) (x10 - L);
+            } else if (width2 > width) {
+                i7 = (int) (width2 - width);
+            } else {
+                i7 = 0;
+            }
+            if (i7 != 0) {
+                org.telegram.messenger.g0.J(this, new org.telegram.ui.d10(this, view, i7, 20));
+            }
         }
-        zArr[0] = true;
-        org.telegram.ui.ActionBar.u1[] u1VarArr = {new org.telegram.ui.ActionBar.u1(3, gxVar.F.getContext(), null)};
-        TLRPC.TL_messages_getEmojiURL tL_messages_getEmojiURL = new TLRPC.TL_messages_getEmojiURL();
-        gy gyVar = gxVar.F;
-        String str = gxVar.f34018x;
-        if (str == null) {
-            str = gyVar.W0[0];
-        }
-        tL_messages_getEmojiURL.lang_code = str;
-        org.telegram.messenger.g0.i3(new org.telegram.ui.q8(this, u1VarArr, ConnectionsManager.getInstance(gyVar.f34032c1).sendRequest(tL_messages_getEmojiURL, new bi.f2(this, u1VarArr, this.f32679b, 13)), 7), 1000L);
     }
 }

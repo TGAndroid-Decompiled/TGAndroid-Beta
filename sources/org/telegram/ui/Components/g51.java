@@ -1,4 +1,4 @@
 package org.telegram.ui.Components;
 public interface g51 {
-    void a(ry ryVar);
+    void a(sy syVar);
 }

@@ -20,11 +20,11 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                     t0.w();
                     int intValue = Utilities.z(split[0]).intValue();
                     if (intValue >= 0 && intValue < 4) {
-                        if (r2.f25199a) {
+                        if (r2.f25212a) {
                             a8.b("received disabled notification channel event for " + stringExtra + " state = " + booleanExtra);
                         }
-                        if (SystemClock.elapsedRealtime() - dt.t(c.a(intValue).f21729a).O <= 1000) {
-                            if (r2.f25199a) {
+                        if (SystemClock.elapsedRealtime() - dt.t(c.a(intValue).f21765a).O <= 1000) {
+                            if (r2.f25212a) {
                                 a8.b("received disable notification event right after creating notification channel, ignoring");
                                 return;
                             }
@@ -34,7 +34,7 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                         int i10 = Integer.MAX_VALUE;
                         if (split[1].startsWith("channel")) {
                             if (stringExtra.equals(c10.getString("channels", null))) {
-                                if (r2.f25199a) {
+                                if (r2.f25212a) {
                                     a8.b("apply channel{channel} " + stringExtra + " state");
                                 }
                                 SharedPreferences.Editor edit = c10.edit();
@@ -43,13 +43,13 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                                     i7 = Integer.MAX_VALUE;
                                 }
                                 edit.putInt(q10, i7).commit();
-                                dt.t(c.a(intValue).f21729a).b0(2);
+                                dt.t(c.a(intValue).f21765a).b0(2);
                             } else {
                                 return;
                             }
                         } else if (split[1].startsWith("groups")) {
                             if (stringExtra.equals(c10.getString("groups", null))) {
-                                if (r2.f25199a) {
+                                if (r2.f25212a) {
                                     a8.b("apply channel{groups} " + stringExtra + " state");
                                 }
                                 SharedPreferences.Editor edit2 = c10.edit();
@@ -58,13 +58,13 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                                     i10 = 0;
                                 }
                                 edit2.putInt(q11, i10).commit();
-                                dt.t(c.a(intValue).f21729a).b0(0);
+                                dt.t(c.a(intValue).f21765a).b0(0);
                             } else {
                                 return;
                             }
                         } else if (split[1].startsWith("private")) {
                             if (stringExtra.equals(c10.getString("private", null))) {
-                                if (r2.f25199a) {
+                                if (r2.f25212a) {
                                     a8.b("apply channel{private} " + stringExtra + " state");
                                 }
                                 SharedPreferences.Editor edit3 = c10.edit();
@@ -73,17 +73,17 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                                     i7 = Integer.MAX_VALUE;
                                 }
                                 edit3.putInt(q12, i7).commit();
-                                dt.t(c.a(intValue).f21729a).b0(1);
+                                dt.t(c.a(intValue).f21765a).b0(1);
                             } else {
                                 return;
                             }
                         } else if (split[1].startsWith("stories")) {
                             if (stringExtra.equals(c10.getString("stories", null))) {
-                                if (r2.f25199a) {
+                                if (r2.f25212a) {
                                     a8.b("apply channel{stories} " + stringExtra + " state");
                                 }
                                 c10.edit().putBoolean(dt.q(3), !booleanExtra).commit();
-                                dt.t(c.a(intValue).f21729a).b0(1);
+                                dt.t(c.a(intValue).f21765a).b0(1);
                             } else {
                                 return;
                             }
@@ -92,7 +92,7 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                             if (longValue != 0) {
                                 String v = dt.v(longValue, 0, false);
                                 if (stringExtra.equals(c10.getString("org.telegram.key" + longValue, null))) {
-                                    if (r2.f25199a) {
+                                    if (r2.f25212a) {
                                         a8.b("apply channel{else} " + stringExtra + " state");
                                     }
                                     SharedPreferences.Editor edit4 = c10.edit();
@@ -105,7 +105,7 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                                         edit4.remove("notifyuntil_" + v);
                                     }
                                     edit4.commit();
-                                    dt.t(c.a(intValue).f21729a).c0(longValue, 0L, true);
+                                    dt.t(c.a(intValue).f21765a).c0(longValue, 0L, true);
                                 } else {
                                     return;
                                 }
@@ -113,7 +113,7 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                                 return;
                             }
                         }
-                        ConnectionsManager.getInstance(c.a(intValue).f21729a).resumeNetworkMaybe();
+                        ConnectionsManager.getInstance(c.a(intValue).f21765a).resumeNetworkMaybe();
                     }
                 }
             }

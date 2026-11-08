@@ -4,30 +4,30 @@ import android.content.Intent;
 import android.net.Uri;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class si0 implements org.telegram.ui.ActionBar.r1, ps, qj0 {
-    public final int f49779a;
-    public final bk0 f49780b;
+    public final int f49770a;
+    public final bk0 f49771b;
 
     public si0(bk0 bk0Var, int i7) {
-        this.f49779a = i7;
-        this.f49780b = bk0Var;
+        this.f49770a = i7;
+        this.f49771b = bk0Var;
     }
 
     @Override
     public void a(String str, String str2) {
-        this.f49780b.B1();
+        this.f49771b.B1();
     }
 
     @Override
     public void b(ms msVar) {
         String str;
-        switch (this.f49779a) {
+        switch (this.f49770a) {
             case 2:
-                bk0 bk0Var = this.f49780b;
+                bk0 bk0Var = this.f49771b;
                 bk0Var.Y[5].setText(msVar.f47869a);
-                bk0Var.f44399s = msVar.d;
+                bk0Var.f44402s = msVar.d;
                 return;
             default:
-                bk0 bk0Var2 = this.f49780b;
+                bk0 bk0Var2 = this.f49771b;
                 bk0Var2.Y[0].setText(msVar.f47869a);
                 if (bk0Var2.U0.indexOf(msVar.f47869a) != -1) {
                     bk0Var2.Z0 = true;
@@ -53,12 +53,12 @@ public final class si0 implements org.telegram.ui.ActionBar.r1, ps, qj0 {
 
     @Override
     public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f49779a) {
+        switch (this.f49770a) {
             case 0:
-                bk0 bk0Var = this.f49780b;
+                bk0 bk0Var = this.f49771b;
                 try {
                     Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f25563b.getPackageName()));
+                    intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f25566b.getPackageName()));
                     bk0Var.getParentActivity().startActivity(intent);
                     return;
                 } catch (Exception e10) {
@@ -66,15 +66,15 @@ public final class si0 implements org.telegram.ui.ActionBar.r1, ps, qj0 {
                     return;
                 }
             case 1:
-                this.f49780b.finishFragment();
+                this.f49771b.finishFragment();
                 return;
             case 2:
             case 3:
             default:
-                bk0.f0(this.f49780b);
+                bk0.f0(this.f49771b);
                 return;
             case 4:
-                bk0.i0(this.f49780b);
+                bk0.i0(this.f49771b);
                 return;
         }
     }

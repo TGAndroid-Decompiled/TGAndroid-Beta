@@ -24,7 +24,7 @@ public final class mx extends LinearLayout implements org.telegram.ui.ActionBar.
     public ValueAnimator f47902w;
     public int f47903x;
     public static final int[] f47893y = {2131624297, 2131624295, 2131624296};
-    public static final int[] D = {2131743986, 2131743987, 2131743983};
+    public static final int[] D = {2131743988, 2131743989, 2131743985};
 
     public mx(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
@@ -55,9 +55,9 @@ public final class mx extends LinearLayout implements org.telegram.ui.ActionBar.
             frameLayout.addView(l9Var, c8.ha.d(160, 160.0f, 49, 0.0f, 12.0f, 0.0f, 0.0f));
             this.f47896c[i11] = l9Var;
             FrameLayout frameLayout2 = new FrameLayout(context);
-            TextView b10 = c8.qa.b(context, 14.0f, org.telegram.ui.ActionBar.k6.f28259z6, true, null);
+            TextView b10 = c8.qa.b(context, 14.0f, org.telegram.ui.ActionBar.k6.f28262z6, true, null);
             int[] iArr = D;
-            b10.setText(org.telegram.messenger.hd.M0(iArr[i11], null));
+            b10.setText(org.telegram.messenger.id.M0(iArr[i11], null));
             b10.setSingleLine();
             b10.setPadding(org.telegram.messenger.g0.L(10.0f), r52, org.telegram.messenger.g0.L(10.0f), r52);
             frameLayout2.addView(b10, c8.ha.e(-2, -2, 17));
@@ -70,8 +70,8 @@ public final class mx extends LinearLayout implements org.telegram.ui.ActionBar.
             frameLayout3.setBackground(d02);
             org.telegram.ui.ActionBar.r6.k(frameLayout3, d02, N, null, f6Var);
             frameLayout2.addView(frameLayout3, c8.ha.e(-2, 26, 17));
-            TextView b11 = c8.qa.b(context, 14.0f, org.telegram.ui.ActionBar.k6.f27904g6, true, null);
-            b11.setText(org.telegram.messenger.hd.M0(iArr[i11], null));
+            TextView b11 = c8.qa.b(context, 14.0f, org.telegram.ui.ActionBar.k6.f27907g6, true, null);
+            b11.setText(org.telegram.messenger.id.M0(iArr[i11], null));
             b11.setSingleLine();
             frameLayout3.addView(b11, c8.ha.e(-2, -2, 17));
             frameLayout.addView(frameLayout2, c8.ha.e(-2, 26, 49));

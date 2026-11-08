@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MotionEvent;
-public final class ih extends kt {
+public final class ih extends lt {
     public final di V;
 
     public ih(di diVar, Context context, qh qhVar, org.telegram.ui.ActionBar.f6 f6Var) {
@@ -16,12 +16,12 @@ public final class ih extends kt {
     @Override
     public final void f() {
         super.f();
-        gy emojiView = getEmojiView();
+        hy emojiView = getEmojiView();
         if (emojiView != null) {
-            emojiView.f34093w0 = false;
-            emojiView.f34099x2 = false;
+            emojiView.f34461w0 = false;
+            emojiView.f34467x2 = false;
             emojiView.setShouldDrawBackground(false);
-            emojiView.setBottomInset(org.telegram.messenger.g0.f22539n);
+            emojiView.setBottomInset(org.telegram.messenger.g0.f22558n);
         }
     }
 
@@ -37,7 +37,7 @@ public final class ih extends kt {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         di diVar = this.V;
         ih ihVar = diVar.J2;
-        if (!diVar.f32970o3) {
+        if (!diVar.f32978o3) {
             if (motionEvent.getX() > ihVar.getEditText().getLeft() && motionEvent.getX() < ihVar.getEditText().getRight() && motionEvent.getY() > ihVar.getEditText().getTop() && motionEvent.getY() < ihVar.getEditText().getBottom()) {
                 diVar.h1(ihVar.getEditText(), true);
             } else {

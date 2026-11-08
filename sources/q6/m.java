@@ -8,9 +8,9 @@ import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 public abstract class m {
-    public static final Object f53820a = new Object();
-    public static boolean f53821b;
-    public static int f53822c;
+    public static final Object f53913a = new Object();
+    public static boolean f53914b;
+    public static int f53915c;
 
     public static void a(String str, boolean z9) {
         if (z9) {

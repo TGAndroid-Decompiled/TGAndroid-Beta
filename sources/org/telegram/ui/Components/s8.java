@@ -14,31 +14,31 @@ public abstract class s8 extends FrameLayout {
     public float D;
     public float E;
     public final t8 F;
-    public long f37930a;
-    public TLRPC.Document f37931b;
-    public final di.c4 f37932c;
-    public final e10 d;
-    public final e10 f37933e;
-    public float f37934f;
+    public long f37946a;
+    public TLRPC.Document f37947b;
+    public final di.c4 f37948c;
+    public final f10 d;
+    public final f10 f37949e;
+    public float f37950f;
     public p8 h;
-    public boolean f37935n;
-    public final PorterDuffColorFilter f37936r;
-    public final w5 f37937s;
-    public boolean f37938w;
-    public float f37939x;
-    public float f37940y;
+    public boolean f37951n;
+    public final PorterDuffColorFilter f37952r;
+    public final w5 f37953s;
+    public boolean f37954w;
+    public float f37955x;
+    public float f37956y;
 
     public s8(t8 t8Var, Context context) {
         super(context);
         this.F = t8Var;
-        this.d = new e10();
-        this.f37933e = new e10();
-        this.f37934f = 1.0f;
-        this.f37936r = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
-        this.f37937s = new w5(this, 200L, xq.f40346g);
-        this.f37939x = -1.0f;
+        this.d = new f10();
+        this.f37949e = new f10();
+        this.f37950f = 1.0f;
+        this.f37952r = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
+        this.f37953s = new w5(this, 200L, xq.f40367g);
+        this.f37955x = -1.0f;
         di.c4 c4Var = new di.c4(7, context, this);
-        this.f37932c = c4Var;
+        this.f37948c = c4Var;
         c4Var.getImageReceiver().X(1);
         c4Var.getImageReceiver().R0 = true;
         setClipChildren(false);
@@ -46,7 +46,7 @@ public abstract class s8 extends FrameLayout {
     }
 
     public final void a(Canvas canvas, float f10, float f11, float f12, float f13, Paint paint) {
-        float f14 = this.f37937s.f39855c;
+        float f14 = this.f37953s.f39805c;
         if (f14 == 0.0f) {
             canvas.drawCircle(f10, f11, f13, paint);
             return;
@@ -60,13 +60,13 @@ public abstract class s8 extends FrameLayout {
     public final void b(p8 p8Var, boolean z9) {
         p8 p8Var2 = this.h;
         if (p8Var2 != null) {
-            this.f37933e.d(p8Var2.f36813c, p8Var2.d, p8Var2.f36814e, p8Var2.f36815f);
-            this.f37934f = 0.0f;
-            this.F.f38271n = true;
+            this.f37949e.d(p8Var2.f36839c, p8Var2.d, p8Var2.f36840e, p8Var2.f36841f);
+            this.f37950f = 0.0f;
+            this.F.f38299n = true;
         }
         this.h = p8Var;
-        this.f37935n = z9;
-        org.telegram.messenger.qs.e().k(org.telegram.messenger.qs.f25059r4, new Object[0]);
+        this.f37951n = z9;
+        org.telegram.messenger.qs.e().k(org.telegram.messenger.qs.f25068r4, new Object[0]);
         invalidate();
     }
 
@@ -76,11 +76,11 @@ public abstract class s8 extends FrameLayout {
     }
 
     public long getDuration() {
-        di.c4 c4Var = this.f37932c;
+        di.c4 c4Var = this.f37948c;
         ImageReceiver imageReceiver = c4Var.getImageReceiver();
-        i5 i5Var = c4Var.f35585e;
+        i5 i5Var = c4Var.f35603e;
         if (i5Var != null) {
-            imageReceiver = i5Var.f34497k;
+            imageReceiver = i5Var.f34541k;
         }
         if (imageReceiver != null && imageReceiver.B() != null) {
             return imageReceiver.B().r();
@@ -89,12 +89,12 @@ public abstract class s8 extends FrameLayout {
     }
 
     public ImageReceiver getImageReceiver() {
-        di.c4 c4Var = this.f37932c;
+        di.c4 c4Var = this.f37948c;
         ImageReceiver imageReceiver = c4Var.getImageReceiver();
-        i5 i5Var = c4Var.f35585e;
+        i5 i5Var = c4Var.f35603e;
         if (i5Var != null) {
-            di.z2 z2Var = i5Var.f34497k;
-            i5Var.setColorFilter(this.f37936r);
+            di.z2 z2Var = i5Var.f34541k;
+            i5Var.setColorFilter(this.f37952r);
             return z2Var;
         }
         return imageReceiver;
@@ -117,19 +117,19 @@ public abstract class s8 extends FrameLayout {
 
     public void setExpanded(boolean z9) {
         di.z2 z2Var;
-        if (this.f37938w == z9) {
+        if (this.f37954w == z9) {
             return;
         }
-        this.f37938w = z9;
+        this.f37954w = z9;
         if (z9) {
-            di.c4 c4Var = this.f37932c;
-            i5 i5Var = c4Var.f35585e;
-            if (i5Var != null && (z2Var = i5Var.f34497k) != null) {
+            di.c4 c4Var = this.f37948c;
+            i5 i5Var = c4Var.f35603e;
+            if (i5Var != null && (z2Var = i5Var.f34541k) != null) {
                 z2Var.P0(false);
             }
-            c4Var.f35582a.P0(false);
+            c4Var.f35600a.P0(false);
         }
-        org.telegram.messenger.qs.e().k(org.telegram.messenger.qs.f25059r4, new Object[0]);
+        org.telegram.messenger.qs.e().k(org.telegram.messenger.qs.f25068r4, new Object[0]);
         invalidate();
     }
 }

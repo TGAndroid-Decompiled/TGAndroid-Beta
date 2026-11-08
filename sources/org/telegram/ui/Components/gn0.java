@@ -4,25 +4,25 @@ import android.view.View;
 import android.widget.Toast;
 import org.telegram.ui.PhotoViewer;
 public final class gn0 implements View.OnClickListener {
-    public final int f33955a;
-    public final mo0 f33956b;
+    public final int f33981a;
+    public final mo0 f33982b;
 
     public gn0(mo0 mo0Var, int i7) {
-        this.f33955a = i7;
-        this.f33956b = mo0Var;
+        this.f33981a = i7;
+        this.f33982b = mo0Var;
     }
 
     @Override
     public final void onClick(View view) {
-        int i7 = this.f33955a;
-        mo0 mo0Var = this.f33956b;
+        int i7 = this.f33981a;
+        mo0 mo0Var = this.f33982b;
         switch (i7) {
             case 0:
                 mo0Var.V0(true);
                 return;
             case 1:
                 wo woVar = mo0Var.W1;
-                woVar.a(!woVar.f40058a.f31259q, true);
+                woVar.a(!woVar.f40008a.f31263q, true);
                 mo0Var.a1();
                 return;
             case 2:
@@ -40,14 +40,14 @@ public final class gn0 implements View.OnClickListener {
                 mo0Var.V0(true);
                 return;
             case 4:
-                String[] strArr = mo0Var.f36013g2;
+                String[] strArr = mo0Var.f36041g2;
                 if (mo0Var.M1.m() == 0) {
-                    if (mo0Var.f36012f2 || strArr[0] != null) {
+                    if (mo0Var.f36040f2 || strArr[0] != null) {
                         mo0Var.dismiss();
                         PhotoViewer.p1().z0(true, false);
                         if (strArr[0] == null && mo0Var.d2) {
-                            mo0Var.f36011e2 = true;
-                            Toast.makeText(mo0Var.getContext(), org.telegram.messenger.hd.M0(2131748778, null), 0).show();
+                            mo0Var.f36039e2 = true;
+                            Toast.makeText(mo0Var.getContext(), org.telegram.messenger.id.M0(2131748780, null), 0).show();
                             return;
                         }
                         mo0Var.getContext();
@@ -58,13 +58,13 @@ public final class gn0 implements View.OnClickListener {
                 }
                 return;
             case 5:
-                String[] strArr2 = mo0Var.f36013g2;
+                String[] strArr2 = mo0Var.f36041g2;
                 if (mo0Var.M1.m() == 0) {
-                    if (mo0Var.f36012f2 || strArr2[0] != null) {
+                    if (mo0Var.f36040f2 || strArr2[0] != null) {
                         mo0Var.dismiss();
                         if (strArr2[0] == null && mo0Var.d2) {
-                            mo0Var.f36011e2 = true;
-                            Toast.makeText(mo0Var.getContext(), org.telegram.messenger.hd.M0(2131748778, null), 0).show();
+                            mo0Var.f36039e2 = true;
+                            Toast.makeText(mo0Var.getContext(), org.telegram.messenger.id.M0(2131748780, null), 0).show();
                             return;
                         }
                         mo0Var.getContext();
@@ -75,13 +75,13 @@ public final class gn0 implements View.OnClickListener {
                 }
                 return;
             default:
-                String[] strArr3 = mo0Var.f36013g2;
+                String[] strArr3 = mo0Var.f36041g2;
                 if (mo0Var.M1.m() == 0) {
-                    if (mo0Var.f36012f2 || strArr3[0] != null) {
+                    if (mo0Var.f36040f2 || strArr3[0] != null) {
                         mo0Var.dismiss();
                         if (strArr3[0] == null && mo0Var.d2) {
-                            mo0Var.f36011e2 = true;
-                            Toast.makeText(mo0Var.getContext(), org.telegram.messenger.hd.M0(2131748778, null), 0).show();
+                            mo0Var.f36039e2 = true;
+                            Toast.makeText(mo0Var.getContext(), org.telegram.messenger.id.M0(2131748780, null), 0).show();
                             return;
                         }
                         mo0Var.getContext();

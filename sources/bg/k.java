@@ -175,8 +175,8 @@ public final class k implements Choreographer.FrameCallback {
                         Iterator it2 = jVar.f3328b.iterator();
                         while (it2.hasNext()) {
                             u5 u5Var = (u5) it2.next();
-                            int i10 = u5Var.f38501a;
-                            Object obj = u5Var.f38502b;
+                            int i10 = u5Var.f38516a;
+                            Object obj = u5Var.f38517b;
                             switch (i10) {
                                 case 0:
                                     v5 v5Var = (v5) obj;
@@ -194,7 +194,7 @@ public final class k implements Choreographer.FrameCallback {
                                         break;
                                     }
                                 case 1:
-                                    Field field = EditTextBoldCursor.f31324y1;
+                                    Field field = EditTextBoldCursor.f31328y1;
                                     ((EditTextBoldCursor) obj).invalidate();
                                     break;
                                 default:

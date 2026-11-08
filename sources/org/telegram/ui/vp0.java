@@ -4,20 +4,20 @@ import android.content.Context;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 public final class vp0 extends iq0 {
-    public final int f50811p0;
-    public final org.telegram.messenger.ls f50812q0;
+    public final int f50755p0;
+    public final org.telegram.messenger.ls f50756q0;
 
     public vp0(org.telegram.messenger.ls lsVar, Context context, lq0 lq0Var, FrameLayout frameLayout, int i7) {
         super(context, lq0Var, frameLayout);
-        this.f50811p0 = i7;
-        this.f50812q0 = lsVar;
+        this.f50755p0 = i7;
+        this.f50756q0 = lsVar;
     }
 
     @Override
     public boolean D() {
-        switch (this.f50811p0) {
+        switch (this.f50755p0) {
             case 0:
-                return !((PhotoViewer) this.f50812q0).f41502s;
+                return !((PhotoViewer) this.f50756q0).f41506s;
             default:
                 return super.D();
         }
@@ -25,11 +25,11 @@ public final class vp0 extends iq0 {
 
     @Override
     public void E() {
-        switch (this.f50811p0) {
+        switch (this.f50755p0) {
             case 1:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f50812q0;
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f50756q0;
                 if (secretMediaViewer.J && getScrollY() <= 0) {
-                    org.telegram.messenger.g0.i3(secretMediaViewer.f41927p1, 3000L);
+                    org.telegram.messenger.g0.i3(secretMediaViewer.f41931p1, 3000L);
                     return;
                 }
                 return;
@@ -40,9 +40,9 @@ public final class vp0 extends iq0 {
 
     @Override
     public void F() {
-        switch (this.f50811p0) {
+        switch (this.f50755p0) {
             case 1:
-                org.telegram.messenger.g0.r(((SecretMediaViewer) this.f50812q0).f41927p1);
+                org.telegram.messenger.g0.r(((SecretMediaViewer) this.f50756q0).f41931p1);
                 return;
             default:
                 return;
@@ -52,11 +52,11 @@ public final class vp0 extends iq0 {
     @Override
     public void G() {
         boolean z9;
-        switch (this.f50811p0) {
+        switch (this.f50755p0) {
             case 1:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f50812q0;
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f50756q0;
                 if (secretMediaViewer.I0 == null) {
-                    if (getScrollY() < getMeasuredHeight() / 3.0f && secretMediaViewer.f41914i0) {
+                    if (getScrollY() < getMeasuredHeight() / 3.0f && secretMediaViewer.f41918i0) {
                         z9 = true;
                     } else {
                         z9 = false;
@@ -76,12 +76,12 @@ public final class vp0 extends iq0 {
         boolean z10;
         int i7;
         boolean z11;
-        switch (this.f50811p0) {
+        switch (this.f50755p0) {
             case 0:
                 super.invalidate();
-                PhotoViewer photoViewer = (PhotoViewer) this.f50812q0;
+                PhotoViewer photoViewer = (PhotoViewer) this.f50756q0;
                 vo0[] vo0VarArr = photoViewer.W0;
-                ImageView[] imageViewArr = photoViewer.f41551x3;
+                ImageView[] imageViewArr = photoViewer.f41555x3;
                 if (photoViewer.J) {
                     int scrollY = getScrollY();
                     float translationY = photoViewer.Q1.getTranslationY();
@@ -97,9 +97,9 @@ public final class vp0 extends iq0 {
                         z10 = false;
                     }
                     if (!z9) {
-                        int b10 = vo0VarArr[0].b() + vo0VarArr[0].f50797j;
+                        int b10 = vo0VarArr[0].b() + vo0VarArr[0].f50741j;
                         if (D()) {
-                            i7 = org.telegram.messenger.g0.f22538m;
+                            i7 = org.telegram.messenger.g0.f22557m;
                         } else {
                             i7 = 0;
                         }
@@ -116,7 +116,7 @@ public final class vp0 extends iq0 {
                         }
                         z10 = z11;
                     }
-                    if (photoViewer.f41561y3) {
+                    if (photoViewer.f41565y3) {
                         if (imageViewArr[0].getTag() != null && ((Integer) imageViewArr[0].getTag()).intValue() == 3 && z10) {
                             imageViewArr[0].setTag(2);
                             imageViewArr[0].animate().alpha(1.0f).setDuration(150L).setListener(new d30(this, 13)).start();

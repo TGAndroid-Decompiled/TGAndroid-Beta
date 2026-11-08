@@ -14,8 +14,8 @@ public final class j extends h {
         p pVar = (p) this.f10745b.d;
         if (pVar instanceof s) {
             s sVar = (s) pVar;
-            if (sVar.f17283g.endsWith(" ")) {
-                String str = sVar.f17283g;
+            if (sVar.f17286g.endsWith(" ")) {
+                String str = sVar.f17286g;
                 Matcher matcher = f10759e.matcher(str);
                 if (matcher.find()) {
                     i7 = matcher.end() - matcher.start();
@@ -23,7 +23,7 @@ public final class j extends h {
                     i7 = 0;
                 }
                 if (i7 > 0) {
-                    sVar.f17283g = com.google.android.recaptcha.internal.a.k(str, i7, 0);
+                    sVar.f17286g = com.google.android.recaptcha.internal.a.k(str, i7, 0);
                 }
                 if (i7 >= 2) {
                     return new kf.g(1);

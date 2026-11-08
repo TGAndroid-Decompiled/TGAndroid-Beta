@@ -27,9 +27,9 @@ public final class a0 implements com.google.android.gms.common.api.internal.p {
                 q6.m.i("Not active connection", z9);
                 if (this.d != null) {
                     j6.f fVar = (j6.f) wVar.n();
-                    Parcel P0 = fVar.P0();
-                    P0.writeString(this.f11222c);
-                    fVar.U0(P0, 12);
+                    Parcel p12 = fVar.p1();
+                    p12.writeString(this.f11222c);
+                    fVar.u1(p12, 12);
                 }
                 taskCompletionSource.setResult(null);
                 return;
@@ -40,15 +40,15 @@ public final class a0 implements com.google.android.gms.common.api.internal.p {
                 }
                 q6.m.i("Not active connection", z10);
                 j6.f fVar2 = (j6.f) wVar.n();
-                Parcel P02 = fVar2.P0();
+                Parcel p13 = fVar2.p1();
                 String str = this.f11222c;
-                P02.writeString(str);
-                fVar2.U0(P02, 12);
+                p13.writeString(str);
+                fVar2.u1(p13, 12);
                 if (this.d != null) {
                     j6.f fVar3 = (j6.f) wVar.n();
-                    Parcel P03 = fVar3.P0();
-                    P03.writeString(str);
-                    fVar3.U0(P03, 11);
+                    Parcel p14 = fVar3.p1();
+                    p14.writeString(str);
+                    fVar3.u1(p14, 11);
                 }
                 taskCompletionSource.setResult(null);
                 return;

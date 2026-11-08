@@ -7,21 +7,21 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import androidx.recyclerview.widget.RecyclerView;
 public final class zq0 implements ViewTreeObserver.OnPreDrawListener {
-    public final int f41107a;
-    public final int f41108b;
-    public final KeyEvent.Callback f41109c;
+    public final int f41126a;
+    public final int f41127b;
+    public final KeyEvent.Callback f41128c;
 
     public zq0(KeyEvent.Callback callback, int i7, int i10) {
-        this.f41107a = i10;
-        this.f41109c = callback;
-        this.f41108b = i7;
+        this.f41126a = i10;
+        this.f41128c = callback;
+        this.f41127b = i7;
     }
 
     @Override
     public final boolean onPreDraw() {
-        int i7 = this.f41107a;
-        int i10 = this.f41108b;
-        KeyEvent.Callback callback = this.f41109c;
+        int i7 = this.f41126a;
+        int i10 = this.f41127b;
+        KeyEvent.Callback callback = this.f41128c;
         switch (i7) {
             case 0:
                 xs0 xs0Var = (xs0) callback;
@@ -30,7 +30,7 @@ public final class zq0 implements ViewTreeObserver.OnPreDrawListener {
                 return true;
             default:
                 b51 b51Var = (b51) callback;
-                bi.q1 q1Var = b51Var.f32022k1;
+                bi.q1 q1Var = b51Var.f32043k1;
                 q1Var.getViewTreeObserver().removeOnPreDrawListener(this);
                 int childCount = q1Var.getChildCount();
                 AnimatorSet animatorSet = new AnimatorSet();

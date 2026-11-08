@@ -2,51 +2,62 @@ package zh;
 
 import android.content.Context;
 import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.TextView;
-import c8.ka;
+import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.n6;
-import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.wp;
-public final class v2 extends TextView {
-    public final wp f60466a;
+import org.telegram.ui.Components.ch0;
+import org.telegram.ui.Components.i5;
+import org.telegram.ui.Components.l41;
+import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.q41;
+import org.telegram.ui.Components.u31;
+import org.telegram.ui.Components.w31;
+import org.telegram.ui.Components.x31;
+public final class v2 extends w31 {
+    public static final int f60569b = 0;
 
-    public v2(Context context, f6 f6Var) {
-        super(context);
-        int i7 = k6.f28243y8;
-        int w02 = k6.w0(i7, f6Var);
-        r6.V(this, i7, f6Var);
-        org.telegram.ui.Cells.y b02 = k6.b0(k6.r1(0.08f, w02), k6.r1(0.15f, w02), org.telegram.messenger.g0.L(13.0f), org.telegram.messenger.g0.L(13.0f));
-        n6 L = r6.L(0.08f, i7);
-        n6 L2 = r6.L(0.15f, i7);
-        setBackground(b02);
-        r6.k(this, b02, L, L2, f6Var);
-        setPadding(org.telegram.messenger.g0.L(11.0f), 0, org.telegram.messenger.g0.L(11.0f), 0);
-        setGravity(17);
-        setTypeface(org.telegram.messenger.g0.o());
-        ka.a(this);
-        wp wpVar = new wp(2131230873, 0);
-        this.f60466a = wpVar;
-        wpVar.G = 0.8f;
-        wpVar.f40070r = 0.0f;
-        wpVar.f40071s = org.telegram.messenger.g0.L(1.0f);
+    static {
+        w31.h(new w31());
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(26.0f), 1073741824));
+    public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
+        w2 w2Var = (w2) view;
+        TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) x31Var.G;
+        int i7 = x31Var.f40193z;
+        String str = (String) x31Var.f40180l;
+        boolean z10 = x31Var.f40174e;
+        ch0 ch0Var = w2Var.f28816c;
+        u2 u2Var = w2Var.f60574a0;
+        if (u2Var == null || w2Var.W != stargiftattributemodel.document.f26962id) {
+            w2Var.W = stargiftattributemodel.document.f26962id;
+            if (u2Var != null) {
+                u2Var.n(ch0Var);
+            }
+            w2Var.f60574a0 = new i5(3, w2Var.V, stargiftattributemodel.document);
+        }
+        if (ch0Var.isAttachedToWindow()) {
+            w2Var.f60574a0.a(ch0Var);
+        }
+        SpannableStringBuilder spannableStringBuilder = stargiftattributemodel.name;
+        if (!TextUtils.isEmpty(str)) {
+            spannableStringBuilder = org.telegram.messenger.g0.w1(spannableStringBuilder, str, w2Var.O);
+        }
+        if (i7 > 0) {
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(spannableStringBuilder);
+            spannableStringBuilder2.append((CharSequence) "  ");
+            int length = spannableStringBuilder2.length();
+            spannableStringBuilder2.append((CharSequence) Integer.toString(i7));
+            spannableStringBuilder2.setSpan(new u31(org.telegram.messenger.g0.o()), length, spannableStringBuilder2.length(), 33);
+            spannableStringBuilder = spannableStringBuilder2;
+        }
+        w2Var.j(spannableStringBuilder, 0, w2Var.f60574a0);
+        w2Var.setChecked(z10);
     }
 
-    public void setSorting(zh.c3 r7) {
-        throw new UnsupportedOperationException("Method not decompiled: zh.v2.setSorting(zh.c3):void");
-    }
-
-    public void setValue(CharSequence charSequence) {
-        SpannableStringBuilder append = new SpannableStringBuilder(charSequence).append((CharSequence) " v");
-        int length = append.length();
-        append.setSpan(this.f60466a, append.length() - 1, length, 33);
-        setText(append);
+    @Override
+    public final View d(Context context, pj0 pj0Var, int i7, f6 f6Var) {
+        return new w2(i7, context, f6Var);
     }
 }

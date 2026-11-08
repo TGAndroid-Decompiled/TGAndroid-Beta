@@ -1,84 +1,20 @@
 package org.telegram.ui.Components;
+public final class pv implements Runnable {
+    public final int f37107a;
+    public final vx f37108b;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import j$.util.Objects;
-public final class pv extends rg.d {
-    public boolean f37075f3;
-    public final gy f37076g3;
-
-    public pv(gy gyVar, Context context) {
-        super(context, null);
-        this.f37076g3 = gyVar;
+    public pv(vx vxVar, int i7) {
+        this.f37107a = i7;
+        this.f37108b = vxVar;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        this.f37076g3.f34065n2.g();
-    }
-
-    @Override
-    public final void l0(int i7) {
-        int i10;
-        gy gyVar = this.f37076g3;
-        ay ayVar = gyVar.f34104z0;
-        if (gyVar.C0 != null) {
-            tv tvVar = gyVar.B0;
-            if (gyVar.D0.canScrollVertically(-1)) {
-                i10 = org.telegram.messenger.g0.f1();
-            } else {
-                i10 = 0;
-            }
-            tvVar.setUnderlineHeight(i10);
+    public final void run() {
+        switch (this.f37107a) {
+            case 0:
+            default:
+                this.f37108b.e();
+                return;
         }
-        if (ayVar != null && getAdapter() == ayVar && ayVar.d == 0) {
-            ay ayVar2 = ayVar.O.f41152x;
-            if (!ayVar2.Q.G0.F && !ayVar2.D) {
-                if (gyVar.E0.N0() + 50 > ayVar.b()) {
-                    zx zxVar = ayVar.O;
-                    Objects.requireNonNull(zxVar);
-                    org.telegram.messenger.g0.h3(new ov(zxVar, 0));
-                }
-            }
-        }
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        gy gyVar = this.f37076g3;
-        if (!gyVar.f34040f) {
-            org.telegram.ui.ks p10 = org.telegram.ui.ks.p();
-            pv pvVar = gyVar.D0;
-            gyVar.getMeasuredHeight();
-            boolean q10 = p10.q(motionEvent, pvVar, gyVar.f34046g2, this.f36955n2);
-            if (!super.onInterceptTouchEvent(motionEvent) && !q10) {
-                return false;
-            }
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        gy gyVar = this.f37076g3;
-        if (gyVar.I0 && gyVar.f34101y0.b() > 0) {
-            this.f37075f3 = true;
-            gyVar.E0.h1(0, 0);
-            gyVar.I0 = false;
-            this.f37075f3 = false;
-        }
-        super.onLayout(z9, i7, i10, i11, i12);
-        gyVar.q(true);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f37075f3) {
-            return;
-        }
-        super.requestLayout();
     }
 }

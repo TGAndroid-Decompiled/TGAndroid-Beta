@@ -2,7 +2,7 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-public final class j31 extends ky {
+public final class j31 extends ly {
     public final t31 Y;
 
     public j31(t31 t31Var, int i7, i31 i31Var) {
@@ -13,7 +13,7 @@ public final class j31 extends ky {
     @Override
     public final boolean D1() {
         t31 t31Var = this.Y;
-        if (t31Var.f38201n.getAdapter() == t31Var.f38204w) {
+        if (t31Var.f38229n.getAdapter() == t31Var.f38232w) {
             return true;
         }
         return false;
@@ -21,7 +21,7 @@ public final class j31 extends ky {
 
     @Override
     public final boolean Y0() {
-        return org.telegram.messenger.hd.f22878a0;
+        return org.telegram.messenger.id.f23157a0;
     }
 
     @Override
@@ -42,7 +42,7 @@ public final class j31 extends ky {
                 if (i11 >= r()) {
                     break;
                 }
-                i31 i31Var = t31Var.f38201n;
+                i31 i31Var = t31Var.f38229n;
                 View q10 = q(i11);
                 i31Var.getClass();
                 int R = RecyclerView.R(q10);
@@ -52,7 +52,7 @@ public final class j31 extends ky {
                 }
                 i11++;
             }
-            if (i10 == 0 && (m10 = t31Var.f38202r.m(i10)) != null && m10.getTop() - i7 > org.telegram.messenger.g0.L(58.0f)) {
+            if (i10 == 0 && (m10 = t31Var.f38230r.m(i10)) != null && m10.getTop() - i7 > org.telegram.messenger.g0.L(58.0f)) {
                 i7 = m10.getTop() - org.telegram.messenger.g0.L(58.0f);
             }
         }

@@ -18,7 +18,7 @@ import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.x31;
 import org.telegram.ui.Components.xp;
 public final class m1 extends w31 {
-    public static final int f51235b = 0;
+    public static final int f51242b = 0;
 
     static {
         w31.h(new w31());
@@ -27,12 +27,12 @@ public final class m1 extends w31 {
     @Override
     public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
         n1 n1Var = (n1) view;
-        CharSequence charSequence = x31Var.f40161n;
-        String str = (String) x31Var.f40159l;
+        CharSequence charSequence = x31Var.f40182n;
+        String str = (String) x31Var.f40180l;
         long j3 = x31Var.B;
-        ImageView imageView = n1Var.f51242a;
-        n1Var.f51243b.setText(charSequence);
-        m2 m2Var = n1Var.f51244c;
+        ImageView imageView = n1Var.f51249a;
+        n1Var.f51250b.setText(charSequence);
+        m2 m2Var = n1Var.f51251c;
         m2Var.setText(str);
         if (TextUtils.isEmpty(charSequence)) {
             m2Var.setTranslationY(-org.telegram.messenger.g0.L(14.0f));
@@ -43,7 +43,7 @@ public final class m1 extends w31 {
             m2Var.setScaleX(1.0f);
             m2Var.setScaleY(1.0f);
         }
-        n1Var.f51245e = str;
+        n1Var.f51252e = str;
         if (TextUtils.isEmpty(charSequence)) {
             if (!str.isEmpty() && !TextUtils.isEmpty(str)) {
                 charSequence = str;
@@ -59,7 +59,7 @@ public final class m1 extends w31 {
         }
         n1Var.h = null;
         if (j3 != 0) {
-            i5 m10 = i5.m(p10.f24467s0, j3, null, 1);
+            i5 m10 = i5.m(p10.f24470s0, j3, null, 1);
             n1Var.d = m10;
             m10.a(imageView);
             imageView.setImageDrawable(n1Var.d);
@@ -70,10 +70,10 @@ public final class m1 extends w31 {
             int L = org.telegram.messenger.g0.L(28.0f);
             int L2 = org.telegram.messenger.g0.L(28.0f);
             xpVar.h = L;
-            xpVar.f40336n = L2;
+            xpVar.f40357n = L2;
             imageView.setImageDrawable(xpVar);
         }
-        n1Var.f51246f = z9;
+        n1Var.f51253f = z9;
         n1Var.invalidate();
     }
 

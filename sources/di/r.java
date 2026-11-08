@@ -24,13 +24,13 @@ public final class r implements c20 {
     public final Object f9671k;
     public final Object f9672l;
 
-    public r(LinearLayout linearLayout, org.telegram.ui.Wallet.b5 b5Var, org.telegram.ui.ActionBar.f6 f6Var, int i7, TextView textView, org.telegram.ui.Wallet.a3[] a3VarArr, tx0 tx0Var, x10 x10Var, Context context, TextView[] textViewArr, SpannableString[] spannableStringArr) {
+    public r(LinearLayout linearLayout, org.telegram.ui.Wallet.a5 a5Var, org.telegram.ui.ActionBar.f6 f6Var, int i7, TextView textView, org.telegram.ui.Wallet.z2[] z2VarArr, tx0 tx0Var, x10 x10Var, Context context, TextView[] textViewArr, SpannableString[] spannableStringArr) {
         this.f9665c = linearLayout;
-        this.d = b5Var;
+        this.d = a5Var;
         this.f9666e = f6Var;
         this.f9664b = i7;
         this.f9667f = textView;
-        this.f9668g = a3VarArr;
+        this.f9668g = z2VarArr;
         this.h = tx0Var;
         this.f9669i = x10Var;
         this.f9670j = context;

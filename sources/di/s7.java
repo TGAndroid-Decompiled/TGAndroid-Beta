@@ -129,7 +129,7 @@ public final class s7 implements Runnable {
             case 11:
                 f2.a aVar = (f2.a) this.f9770b;
                 if (aVar.f10889c.f989a) {
-                    aVar.f10887a.f17771a.C1(3, false);
+                    aVar.f10887a.f17774a.C1(3, false);
                     return;
                 }
                 return;
@@ -169,7 +169,7 @@ public final class s7 implements Runnable {
                 fi.z1 z1Var = y1Var.N;
                 fi.k2 k2Var = z1Var.f13241s;
                 int i7 = fi.k2.f12251y1;
-                ui b02 = ui.b0(k2Var.f28613a);
+                ui b02 = ui.b0(k2Var.f28616a);
                 String str2 = y1Var.H;
                 if ("premium".equalsIgnoreCase(str2)) {
                     ArrayList i02 = b02.i0(7, false);
@@ -193,13 +193,13 @@ public final class s7 implements Runnable {
                     TLRPC.TL_messages_getStickers tL_messages_getStickers = new TLRPC.TL_messages_getStickers();
                     tL_messages_getStickers.emoticon = y1Var.H;
                     tL_messages_getStickers.hash = 0L;
-                    ConnectionsManager.getInstance(k2Var.f28613a).sendRequest(tL_messages_getStickers, new bi.j(12, y1Var, str2));
+                    ConnectionsManager.getInstance(k2Var.f28616a).sendRequest(tL_messages_getStickers, new bi.j(12, y1Var, str2));
                     return;
                 } else {
                     String[] G0 = org.telegram.messenger.g0.G0();
                     String[] strArr = y1Var.J;
                     if (strArr == null || !Arrays.equals(G0, strArr)) {
-                        ui.b0(k2Var.f28613a).M(G0, false);
+                        ui.b0(k2Var.f28616a).M(G0, false);
                     }
                     y1Var.J = G0;
                     b02.V(G0, y1Var.H, false, new a3.h(y1Var, str2, b02, 8), false, false, false, true, 50);

@@ -29,20 +29,20 @@ public final class f extends k {
         h hVar = this.F;
         e eVar = hVar.S0;
         int b10 = d1Var.b();
-        List list = eVar.f20602c;
+        List list = eVar.f20605c;
         GroupCallMessage groupCallMessage = null;
         if (list != null && b10 >= 0 && b10 < list.size()) {
-            groupCallMessage = (GroupCallMessage) eVar.f20602c.get(b10);
+            groupCallMessage = (GroupCallMessage) eVar.f20605c.get(b10);
         }
         if (groupCallMessage != null && (o0Var = groupCallMessage.visibleReaction) != null) {
-            View view = d1Var.f56951a;
+            View view = d1Var.f57043a;
             if ((view instanceof c) && (gVar = hVar.X0) != null) {
-                c40 c40Var = ((f20) gVar).f45467a;
-                k0 k0Var = new k0(c40Var.getContext(), null, c40Var.B1, (c) view, null, 0.0f, 0.0f, o0Var, c40Var.f28613a, 1, false);
+                c40 c40Var = ((f20) gVar).f45426a;
+                k0 k0Var = new k0(c40Var.getContext(), null, c40Var.B1, (c) view, null, 0.0f, 0.0f, o0Var, c40Var.f28616a, 1, false);
                 k0.B = k0Var;
                 h0 h0Var = k0Var.f6288i;
                 h0Var.setTag(2131296591, 1);
-                c40Var.f28619c.addView(h0Var);
+                c40Var.f28622c.addView(h0Var);
                 k0Var.f6298s = true;
                 k0Var.f6303y = System.currentTimeMillis();
             }

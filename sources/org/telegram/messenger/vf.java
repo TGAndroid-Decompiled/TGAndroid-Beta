@@ -6,21 +6,21 @@ import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
 public final class vf implements Runnable {
-    public final int f25972a = 1;
-    public final int f25973b;
-    public final boolean f25974c;
+    public final int f25975a = 1;
+    public final int f25976b;
+    public final boolean f25977c;
     public final boolean d;
-    public final int f25975e;
-    public final c1 f25976f;
+    public final int f25978e;
+    public final c1 f25979f;
     public final Object h;
 
     public vf(ui uiVar, boolean z9, int i7, ArrayList arrayList, boolean z10, int i10) {
-        this.f25976f = uiVar;
-        this.f25974c = z9;
-        this.f25973b = i7;
+        this.f25979f = uiVar;
+        this.f25977c = z9;
+        this.f25976b = i7;
         this.h = arrayList;
         this.d = z10;
-        this.f25975e = i10;
+        this.f25978e = i10;
     }
 
     @Override
@@ -28,28 +28,28 @@ public final class vf implements Runnable {
         int i7;
         int i10;
         int i11;
-        int i12 = this.f25972a;
+        int i12 = this.f25975a;
         int i13 = 3;
-        int i14 = this.f25975e;
+        int i14 = this.f25978e;
         boolean z9 = this.d;
-        boolean z10 = this.f25974c;
+        boolean z10 = this.f25977c;
         Object obj = this.h;
-        int i15 = this.f25973b;
-        c1 c1Var = this.f25976f;
+        int i15 = this.f25976b;
+        c1 c1Var = this.f25979f;
         switch (i12) {
             case 0:
                 ui uiVar = (ui) c1Var;
                 ArrayList arrayList = (ArrayList) obj;
                 try {
-                    SQLiteDatabase sQLiteDatabase = uiVar.getMessagesStorage().f26698b;
+                    SQLiteDatabase sQLiteDatabase = uiVar.getMessagesStorage().f26721b;
                     if (z10) {
-                        i7 = uiVar.getMessagesController().f24773f3;
+                        i7 = uiVar.getMessagesController().f24780f3;
                     } else {
                         if (i15 != 3 && i15 != 7) {
                             if (i15 == 2) {
-                                i7 = uiVar.getMessagesController().f24763e3;
+                                i7 = uiVar.getMessagesController().f24770e3;
                             } else {
-                                i7 = uiVar.getMessagesController().f24753d3;
+                                i7 = uiVar.getMessagesController().f24760d3;
                             }
                         }
                         i7 = 200;
@@ -82,7 +82,7 @@ public final class vf implements Runnable {
                         StringBuilder sb2 = new StringBuilder();
                         sb2.append("");
                         int i17 = i14;
-                        sb2.append(document.f26959id);
+                        sb2.append(document.f26962id);
                         executeFast.bindString(1, sb2.toString());
                         executeFast.bindInteger(2, i10);
                         executeFast.bindString(i13, "");
@@ -111,7 +111,7 @@ public final class vf implements Runnable {
                     if (!z9 && arrayList.size() >= i7) {
                         sQLiteDatabase.beginTransaction();
                         while (i7 < arrayList.size()) {
-                            sQLiteDatabase.executeFast("DELETE FROM web_recent_v3 WHERE id = '" + ((TLRPC.Document) arrayList.get(i7)).f26959id + "' AND type = " + i10).stepThis().dispose();
+                            sQLiteDatabase.executeFast("DELETE FROM web_recent_v3 WHERE id = '" + ((TLRPC.Document) arrayList.get(i7)).f26962id + "' AND type = " + i10).stepThis().dispose();
                             i7++;
                         }
                         sQLiteDatabase.commitTransaction();
@@ -129,11 +129,11 @@ public final class vf implements Runnable {
     }
 
     public vf(qp qpVar, int i7, TLRPC.messages_Messages messages_messages, boolean z9, boolean z10, int i10) {
-        this.f25976f = qpVar;
-        this.f25973b = i7;
+        this.f25979f = qpVar;
+        this.f25976b = i7;
         this.h = messages_messages;
-        this.f25974c = z9;
+        this.f25977c = z9;
         this.d = z10;
-        this.f25975e = i10;
+        this.f25978e = i10;
     }
 }

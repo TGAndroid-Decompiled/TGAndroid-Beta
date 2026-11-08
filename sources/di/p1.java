@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.qp;
 import org.telegram.tgnet.TLObject;
 import org.telegram.ui.Components.my0;
@@ -29,7 +29,7 @@ public final class p1 {
         Paint paint = new Paint(1);
         this.f9500e = paint;
         this.f9497a = j3;
-        g5.a aVar = Utilities.f21332c;
+        g5.a aVar = Utilities.f21335c;
         this.f9498b = Utilities.l(aVar.nextFloat());
         this.f9499c = Utilities.l(aVar.nextFloat());
         if (z9) {
@@ -59,7 +59,7 @@ public final class p1 {
         wpVar.G = 0.875f;
         spannableStringBuilder.setSpan(wpVar, 0, spannableStringBuilder.length(), 33);
         spannableStringBuilder.append((CharSequence) " ");
-        spannableStringBuilder.append((CharSequence) hd.E(i10, ','));
+        spannableStringBuilder.append((CharSequence) id.E(i10, ','));
         this.f9502g = new my0(spannableStringBuilder, 10.0f, org.telegram.messenger.g0.o1("fonts/num.otf"));
         org.telegram.ui.Components.w5 w5Var = new org.telegram.ui.Components.w5(view, 2000L, new LinearInterpolator());
         this.f9503i = w5Var;

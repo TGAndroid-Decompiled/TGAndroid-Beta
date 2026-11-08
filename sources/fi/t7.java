@@ -24,12 +24,12 @@ public final class t7 extends FrameLayout {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         boolean z9;
-        int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27922h5, this.f12862c);
+        int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27925h5, this.f12862c);
         Paint paint = this.f12860a;
         paint.setColor(w02);
         w7 w7Var = this.d;
         float max = Math.max(0.0f, w7Var.I0());
-        if (max < org.telegram.messenger.g0.f22538m) {
+        if (max < org.telegram.messenger.g0.f22557m) {
             z9 = true;
         } else {
             z9 = false;
@@ -37,12 +37,12 @@ public final class t7 extends FrameLayout {
         org.telegram.ui.Components.w5 w5Var = this.f12861b;
         float T1 = org.telegram.messenger.g0.T1(max, 0.0f, w5Var.d(z9));
         RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set(w7Var.f28646t0, T1, getWidth() - w7Var.f28646t0, org.telegram.messenger.g0.L(14.0f) + getHeight());
-        float L = (1.0f - w5Var.f39855c) * org.telegram.messenger.g0.L(14.0f);
+        rectF.set(w7Var.f28649t0, T1, getWidth() - w7Var.f28649t0, org.telegram.messenger.g0.L(14.0f) + getHeight());
+        float L = (1.0f - w5Var.f39805c) * org.telegram.messenger.g0.L(14.0f);
         canvas.drawRoundRect(rectF, L, L, paint);
-        w7Var.n1.setTranslationY(Math.max(org.telegram.messenger.g0.L(8.0f) + org.telegram.messenger.g0.f22538m, org.telegram.messenger.g0.L(14.0f) + T1));
+        w7Var.n1.setTranslationY(Math.max(org.telegram.messenger.g0.L(8.0f) + org.telegram.messenger.g0.f22557m, org.telegram.messenger.g0.L(14.0f) + T1));
         canvas.save();
-        canvas.clipRect(w7Var.f28646t0, org.telegram.messenger.g0.L(14.0f) + org.telegram.messenger.g0.f22538m, getWidth() - w7Var.f28646t0, getHeight());
+        canvas.clipRect(w7Var.f28649t0, org.telegram.messenger.g0.L(14.0f) + org.telegram.messenger.g0.f22557m, getWidth() - w7Var.f28649t0, getHeight());
         super.dispatchDraw(canvas);
         canvas.restore();
     }

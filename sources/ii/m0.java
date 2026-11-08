@@ -4,7 +4,7 @@ import android.text.SpannableStringBuilder;
 import bi.v0;
 import c8.zc;
 import java.util.ArrayList;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.m5;
 import org.telegram.messenger.ml;
@@ -26,7 +26,7 @@ public abstract class m0 {
         int i12;
         int i13;
         int i14;
-        TLRPC.Message message = ijVar.f23244k;
+        TLRPC.Message message = ijVar.f23262k;
         TLRPC.TL_messageActionChangeCommunity tL_messageActionChangeCommunity = (TLRPC.TL_messageActionChangeCommunity) message.action;
         if (m5.o(message.peer_id) == m5.o(message.from_id)) {
             z11 = true;
@@ -47,7 +47,7 @@ public abstract class m0 {
                 } else {
                     i14 = 2131751856;
                 }
-                return org.telegram.messenger.g0.X2(hd.M0(i14, null));
+                return org.telegram.messenger.g0.X2(id.M0(i14, null));
             }
             if (z10) {
                 i13 = 2131751870;
@@ -56,7 +56,7 @@ public abstract class m0 {
             } else {
                 i13 = 2131751858;
             }
-            return org.telegram.messenger.g0.X2(hd.a0(null, null, i13, str));
+            return org.telegram.messenger.g0.X2(id.a0(null, null, i13, str));
         } else if (ijVar.O3()) {
             if (z12) {
                 if (z10) {
@@ -66,7 +66,7 @@ public abstract class m0 {
                 } else {
                     i12 = 2131751854;
                 }
-                return org.telegram.messenger.g0.X2(hd.M0(i12, null));
+                return org.telegram.messenger.g0.X2(id.M0(i12, null));
             }
             if (z10) {
                 i11 = 2131751867;
@@ -75,7 +75,7 @@ public abstract class m0 {
             } else {
                 i11 = 2131751855;
             }
-            return org.telegram.messenger.g0.X2(hd.a0(null, null, i11, str));
+            return org.telegram.messenger.g0.X2(id.a0(null, null, i11, str));
         } else if (z12) {
             if (z10) {
                 i10 = 2131751869;
@@ -84,7 +84,7 @@ public abstract class m0 {
             } else {
                 i10 = 2131751857;
             }
-            return org.telegram.messenger.g0.X2(hd.a0(null, null, i10, str2));
+            return org.telegram.messenger.g0.X2(id.a0(null, null, i10, str2));
         } else {
             if (z10) {
                 i7 = 2131751871;
@@ -93,7 +93,7 @@ public abstract class m0 {
             } else {
                 i7 = 2131751859;
             }
-            return org.telegram.messenger.g0.X2(hd.a0(null, null, i7, str2, str));
+            return org.telegram.messenger.g0.X2(id.a0(null, null, i7, str2, str));
         }
     }
 
@@ -129,7 +129,7 @@ public abstract class m0 {
                 TL_communities.CommunityPeer communityPeer2 = communityPeer;
                 if (m5.o(communityPeer2.peer) == j3) {
                     if (user != null) {
-                        dialog = qp.s1(i7).S0(user.f27102id);
+                        dialog = qp.s1(i7).S0(user.f27105id);
                     }
                     return c(M0, dialog, user, communityPeer2);
                 }
@@ -195,16 +195,16 @@ public abstract class m0 {
             i11 = 36;
         }
         if (i7 == 0) {
-            M0 = hd.M0(2131751943, null);
+            M0 = id.M0(2131751943, null);
         } else if (i7 == 1) {
             if (z9) {
                 i12 = 2131751942;
             } else {
                 i12 = 2131751941;
             }
-            M0 = hd.M0(i12, null);
+            M0 = id.M0(i12, null);
         } else {
-            M0 = hd.M0(2131751940, null);
+            M0 = id.M0(2131751940, null);
         }
         hcVar.G(i10, i11, M0).j();
     }

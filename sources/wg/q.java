@@ -1,21 +1,21 @@
 package wg;
 public final class q implements Runnable {
-    public final int f57705a;
-    public final v f57706b;
+    public final int f57797a;
+    public final v f57798b;
 
     public q(v vVar, int i7) {
-        this.f57705a = i7;
-        this.f57706b = vVar;
+        this.f57797a = i7;
+        this.f57798b = vVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f57705a) {
+        switch (this.f57797a) {
             case 0:
-                org.telegram.messenger.g0.h3(new q(this.f57706b, 1));
+                org.telegram.messenger.g0.h3(new q(this.f57798b, 1));
                 return;
             default:
-                this.f57706b.a(null);
+                this.f57798b.a(null);
                 return;
         }
     }

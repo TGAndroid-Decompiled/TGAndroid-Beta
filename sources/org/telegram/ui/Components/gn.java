@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.ui.v91;
+import org.telegram.ui.w91;
 public final class gn extends l9 {
     public final org.telegram.ui.Cells.k6 G;
     public final org.telegram.ui.ActionBar.f2 H;
@@ -25,13 +25,13 @@ public final class gn extends l9 {
     public final void onDraw(Canvas canvas) {
         long j3;
         kn knVar = this.K;
-        if (knVar.f35336b && this.f35585e == null) {
+        if (knVar.f35362b && this.f35603e == null) {
             org.telegram.ui.Cells.k6 k6Var = this.G;
             k6Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
             k6Var.f9408a = true;
             k6Var.v = true;
             k6Var.J = this.J;
-            Integer num = knVar.f35338c;
+            Integer num = knVar.f35364c;
             if (num != null) {
                 k6Var.f9430z = num.intValue();
             }
@@ -40,13 +40,13 @@ public final class gn extends l9 {
                 j3 = anVar.a();
             } else {
                 org.telegram.ui.ActionBar.f2 f2Var = this.H;
-                if (f2Var instanceof v91) {
-                    j3 = -((v91) f2Var).f50628a;
+                if (f2Var instanceof w91) {
+                    j3 = -((w91) f2Var).f50992a;
                 } else {
                     j3 = 0;
                 }
             }
-            di.r7.h(j3, canvas, this.f35582a, k6Var);
+            di.r7.h(j3, canvas, this.f35600a, k6Var);
             return;
         }
         super.onDraw(canvas);
@@ -56,8 +56,8 @@ public final class gn extends l9 {
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         if (this.I && getImageReceiver().L()) {
-            accessibilityNodeInfo.setText(org.telegram.messenger.hd.M0(2131754798, null));
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, org.telegram.messenger.hd.M0(2131747816, null)));
+            accessibilityNodeInfo.setText(org.telegram.messenger.id.M0(2131754798, null));
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, org.telegram.messenger.id.M0(2131747818, null)));
             return;
         }
         accessibilityNodeInfo.setVisibleToUser(false);
@@ -65,7 +65,7 @@ public final class gn extends l9 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.K.f35336b && this.G.a(this, motionEvent)) {
+        if (this.K.f35362b && this.G.a(this, motionEvent)) {
             return true;
         }
         return super.onTouchEvent(motionEvent);

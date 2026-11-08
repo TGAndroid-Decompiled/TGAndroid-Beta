@@ -1,6 +1,6 @@
 package bg;
 
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.cc;
 import org.telegram.ui.Components.hc;
@@ -34,12 +34,12 @@ public final class j0 implements Runnable {
                 anVar.getMessagesController().V2(0, j3, true);
                 return;
             case 3:
-                anVar.f43751c6.put(j3, 0);
-                m11 m11Var = anVar.f43788f2;
+                anVar.f43757c6.put(j3, 0);
+                m11 m11Var = anVar.f43794f2;
                 if (m11Var != null) {
                     m11Var.setAllTopicsHidden(false);
                 }
-                if (j3 == anVar.f43939r4) {
+                if (j3 == anVar.f43945r4) {
                     anVar.C0.O(false);
                     return;
                 }
@@ -47,7 +47,7 @@ public final class j0 implements Runnable {
             case 4:
                 an anVar2 = this.f3331b;
                 cc v = hc.v(anVar2.getParentActivity(), anVar2, null, 1, this.f3332c, 1, anVar2.getThemedColor(k6.tj), anVar2.getThemedColor(k6.vj), 5000, true, null);
-                v.f32515k = true;
+                v.f32546k = true;
                 v.k(true);
                 return;
             case 5:
@@ -59,7 +59,7 @@ public final class j0 implements Runnable {
                 anVar.presentFragment(ProfileActivity.A4(j3));
                 return;
             default:
-                hc.a0(anVar).I(2131624226, hd.M0(2131745093, null), org.telegram.messenger.g0.X2(hd.H(',', "StarsGiveawaySentPopupInfo", (int) j3))).k(true);
+                hc.a0(anVar).I(2131624226, id.M0(2131745095, null), org.telegram.messenger.g0.X2(id.H(',', "StarsGiveawaySentPopupInfo", (int) j3))).k(true);
                 return;
         }
     }

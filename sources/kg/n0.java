@@ -5,25 +5,25 @@ import java.io.Serializable;
 import org.telegram.messenger.a20;
 import org.telegram.ui.Components.x31;
 public final class n0 implements org.telegram.ui.ActionBar.r1, a20 {
-    public final int f17444a;
-    public final q0 f17445b;
+    public final int f17447a;
+    public final q0 f17448b;
 
     public n0(q0 q0Var, int i7) {
-        this.f17444a = i7;
-        this.f17445b = q0Var;
+        this.f17447a = i7;
+        this.f17448b = q0Var;
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f17444a) {
+        switch (this.f17447a) {
             case 0:
-                this.f17445b.f0();
+                this.f17448b.f0();
                 return;
             case 1:
-                this.f17445b.finishFragment();
+                this.f17448b.finishFragment();
                 return;
             default:
-                this.f17445b.f0();
+                this.f17448b.f0();
                 return;
         }
     }
@@ -33,6 +33,6 @@ public final class n0 implements org.telegram.ui.ActionBar.r1, a20 {
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
-        q0.b0(this.f17445b, (x31) obj, (View) obj2);
+        q0.b0(this.f17448b, (x31) obj, (View) obj2);
     }
 }

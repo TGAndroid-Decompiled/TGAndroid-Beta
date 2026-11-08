@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ls;
 import org.telegram.messenger.p10;
 import org.telegram.messenger.qp;
@@ -94,7 +94,7 @@ public abstract class u0 extends FrameLayout implements ls {
         this.F = -1;
         this.G = true;
         this.I = new h6.m(28);
-        int i7 = p10.f24467s0;
+        int i7 = p10.f24470s0;
         this.N = i7;
         this.T = new ArrayList();
         final g2 g2Var = (g2) this;
@@ -156,13 +156,13 @@ public abstract class u0 extends FrameLayout implements ls {
         }, new b(), 1);
         this.f9816e = hcVar;
         q1Var.setAdapter(hcVar);
-        hcVar.f35510r = false;
+        hcVar.f35528r = false;
         q1Var.setPadding(org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(7.5f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(7.5f));
         q1Var.setClipToPadding(false);
         addView(q1Var, ha.d(-1, -1.0f, 87, 0.0f, 0.0f, 0.0f, 34.0f));
         q1Var.setOnItemClickListener(new f0(g2Var, viewGroup, p9Var, 0));
         g0 g0Var = new g0(g2Var);
-        g0Var.f56978m = false;
+        g0Var.f57070m = false;
         g0Var.C = false;
         xq xqVar = xq.h;
         g0Var.o(xqVar);
@@ -226,13 +226,13 @@ public abstract class u0 extends FrameLayout implements ls {
         }, null);
         this.f9821n = l41Var;
         e61Var.setAdapter(l41Var);
-        l41Var.f35510r = false;
+        l41Var.f35528r = false;
         e61Var.setPadding(org.telegram.messenger.g0.L(8.0f), 0, org.telegram.messenger.g0.L(8.0f), 0);
         e61Var.setClipToPadding(false);
         addView(e61Var, ha.d(-1, 26.0f, 87, 0.0f, 0.0f, 0.0f, 9.66f));
         e61Var.setOnItemClickListener(new a1.c(g2Var, 29));
         v4.k kVar = new v4.k();
-        kVar.f56978m = false;
+        kVar.f57070m = false;
         kVar.C = false;
         kVar.o(xqVar);
         kVar.n(350L);
@@ -245,7 +245,7 @@ public abstract class u0 extends FrameLayout implements ls {
         u0Var.R = l10.longValue();
         cc I = new org.telegram.ui.Components.hc(u0Var.f9811b, new b()).I(2131624226, u0Var.getStarsToastTitle(), u0Var.getStarsToastSubtitle());
         boolean z9 = false;
-        I.f32522r = false;
+        I.f32553r = false;
         I.k(true);
         long j3 = 0;
         u0Var.R = 0L;
@@ -295,11 +295,11 @@ public abstract class u0 extends FrameLayout implements ls {
     }
 
     private CharSequence getStarsToastSubtitle() {
-        return org.telegram.messenger.g0.X2(hd.H(',', "PaidMessageSentSubtitle", Math.max(0, (int) this.R)));
+        return org.telegram.messenger.g0.X2(id.H(',', "PaidMessageSentSubtitle", Math.max(0, (int) this.R)));
     }
 
     private String getStarsToastTitle() {
-        return hd.M0(2131745026, null);
+        return id.M0(2131745028, null);
     }
 
     private int getTotalMyStars() {
@@ -408,10 +408,10 @@ public abstract class u0 extends FrameLayout implements ls {
             if (tLObject instanceof TL_update.TL_updateGroupCallMessage) {
                 TL_update.TL_updateGroupCallMessage tL_updateGroupCallMessage = (TL_update.TL_updateGroupCallMessage) tLObject;
                 TLRPC.InputGroupCall inputGroupCall = this.O;
-                if (inputGroupCall != null && inputGroupCall.f26970id == longValue) {
+                if (inputGroupCall != null && inputGroupCall.f26973id == longValue) {
                     TLRPC.GroupCallMessage groupCallMessage = tL_updateGroupCallMessage.message;
                     int i12 = groupCallMessage.date;
-                    int i13 = groupCallMessage.f26964id;
+                    int i13 = groupCallMessage.f26967id;
                     boolean z9 = groupCallMessage.from_admin;
                     long o4 = org.telegram.messenger.m5.o(groupCallMessage.from_id);
                     TLRPC.GroupCallMessage groupCallMessage2 = tL_updateGroupCallMessage.message;
@@ -420,7 +420,7 @@ public abstract class u0 extends FrameLayout implements ls {
             } else if (tLObject instanceof TL_update.TL_updateDeleteGroupCallMessages) {
                 TL_update.TL_updateDeleteGroupCallMessages tL_updateDeleteGroupCallMessages = (TL_update.TL_updateDeleteGroupCallMessages) tLObject;
                 TLRPC.InputGroupCall inputGroupCall2 = this.O;
-                if (inputGroupCall2 != null && inputGroupCall2.f26970id == longValue) {
+                if (inputGroupCall2 != null && inputGroupCall2.f26973id == longValue) {
                     ArrayList<Integer> arrayList = tL_updateDeleteGroupCallMessages.messages;
                     int size = arrayList.size();
                     while (i11 < size) {
@@ -488,7 +488,7 @@ public abstract class u0 extends FrameLayout implements ls {
                 return false;
             }
             g1 g1Var = this.P;
-            if (g1Var != null && (inputGroupCall = this.O) != null && inputGroupCall.f26970id == g1Var.g() && (groupCall = this.P.f9030w) != null && groupCall.creator) {
+            if (g1Var != null && (inputGroupCall = this.O) != null && inputGroupCall.f26973id == g1Var.g() && (groupCall = this.P.f9030w) != null && groupCall.creator) {
                 return true;
             }
             return org.telegram.messenger.t3.w(14, qp.s1(i10).M0(Long.valueOf(-this.M)));
@@ -815,10 +815,10 @@ public abstract class u0 extends FrameLayout implements ls {
             sendgroupcallmessage.flags |= 1;
             sendgroupcallmessage.allow_paid_stars = j10;
         }
-        sendgroupcallmessage.random_id = Utilities.f21331b.nextLong();
+        sendgroupcallmessage.random_id = Utilities.f21334b.nextLong();
         sendgroupcallmessage.flags |= 2;
         sendgroupcallmessage.send_as = qp.s1(i10).j1(j3);
-        ConnectionsManager.getInstance(p10.f24467s0).sendRequest(sendgroupcallmessage, new RequestDelegate() {
+        ConnectionsManager.getInstance(p10.f24470s0).sendRequest(sendgroupcallmessage, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 boolean z10 = tLObject instanceof TLRPC.Updates;
@@ -834,7 +834,7 @@ public abstract class u0 extends FrameLayout implements ls {
                         i13++;
                         TL_update.TL_updateMessageID tL_updateMessageID = (TL_update.TL_updateMessageID) obj;
                         if (sendgroupcallmessage.random_id == tL_updateMessageID.random_id) {
-                            int i14 = tL_updateMessageID.f27211id;
+                            int i14 = tL_updateMessageID.f27214id;
                             ArrayList arrayList = u0Var.f9822r;
                             int size2 = arrayList.size();
                             int i15 = 0;
@@ -882,7 +882,7 @@ public abstract class u0 extends FrameLayout implements ls {
                 this.T.add(groupcalldonor2);
             }
         }
-        int currentTime = ConnectionsManager.getInstance(p10.f24467s0).getCurrentTime();
+        int currentTime = ConnectionsManager.getInstance(p10.f24470s0).getCurrentTime();
         if (j3 != this.M && !f()) {
             i7 = j11;
             z9 = false;
@@ -939,35 +939,35 @@ public abstract class u0 extends FrameLayout implements ls {
         int[] iArr;
         cc ccVar = this.W;
         a0 a0Var = this.f9815d0;
-        if (ccVar == null || !ccVar.f32516l) {
+        if (ccVar == null || !ccVar.f32547l) {
             b bVar = new b();
             wb wbVar = new wb(getContext(), bVar);
             this.f9810a0 = wbVar;
             wbVar.c(2131624226, new String[0]);
-            this.f9810a0.f39955b.setText(getStarsToastTitle());
+            this.f9810a0.f39905b.setText(getStarsToastTitle());
             ac acVar = new ac(getContext(), bVar, true, false);
             this.f9812b0 = acVar;
-            acVar.e(hd.M0(2131745024, null));
-            this.f9812b0.f31756b = new z((g2) this, 0);
+            acVar.e(id.M0(2131745026, null));
+            this.f9812b0.f31765b = new z((g2) this, 0);
             vb vbVar = new vb(getContext(), bVar);
             this.f9814c0 = vbVar;
-            vbVar.f38931b = 5000L;
+            vbVar.f38966b = 5000L;
             vbVar.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.uj, bVar));
             this.f9812b0.addView(this.f9814c0, ha.d(20, 20.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
-            this.f9812b0.f31758e.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(8.0f));
+            this.f9812b0.f31767e.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(8.0f));
             this.f9810a0.setButton(this.f9812b0);
             cc f10 = cc.f(this.f9811b, this.f9810a0, -1);
             this.W = f10;
-            f10.f32522r = false;
+            f10.f32553r = false;
             f10.k(true);
             this.W.v = a0Var;
         }
         this.R++;
         h(getDefaultPeerId());
         i(getTotalMyStars(), (int) this.R, getDefaultPeerId());
-        this.f9810a0.f39955b.setText(getStarsToastTitle());
-        this.f9810a0.f39956c.setText(getStarsToastSubtitle());
-        this.f9814c0.f38931b = 5000L;
+        this.f9810a0.f39905b.setText(getStarsToastTitle());
+        this.f9810a0.f39906c.setText(getStarsToastSubtitle());
+        this.f9814c0.f38966b = 5000L;
         org.telegram.messenger.g0.r(a0Var);
         org.telegram.messenger.g0.i3(a0Var, 5000L);
         long j3 = this.R;
@@ -983,7 +983,7 @@ public abstract class u0 extends FrameLayout implements ls {
             ((zg0) arrayList.remove(0)).C(true);
         }
         int[] iArr2 = q1Var.f9626f;
-        zg0 zg0Var = new zg0(iArr2[Utilities.f21332c.nextInt(iArr2.length)], org.telegram.messenger.g0.L(70.0f), org.telegram.messenger.g0.L(70.0f));
+        zg0 zg0Var = new zg0(iArr2[Utilities.f21335c.nextInt(iArr2.length)], org.telegram.messenger.g0.L(70.0f), org.telegram.messenger.g0.L(70.0f));
         zg0Var.R(q1Var);
         zg0Var.J(true);
         zg0Var.K(0);
@@ -1020,10 +1020,10 @@ public abstract class u0 extends FrameLayout implements ls {
         if (inputGroupCall2 == null) {
             j10 = 0;
         } else {
-            j10 = inputGroupCall2.f26970id;
+            j10 = inputGroupCall2.f26973id;
         }
         if (inputGroupCall != null) {
-            j11 = inputGroupCall.f26970id;
+            j11 = inputGroupCall.f26973id;
         }
         if (j10 != j11) {
             this.f9822r.clear();

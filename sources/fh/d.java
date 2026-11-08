@@ -28,7 +28,7 @@ public final class d extends aa {
         ri.a v = g.v(aVar);
         g gVar = this.f11495g;
         if (Color.alpha(gVar.f11541y) != 255 && (v instanceof ri.c)) {
-            i7 = ((ri.c) v).f54471b;
+            i7 = ((ri.c) v).f54563b;
         } else {
             i7 = 0;
         }
@@ -44,7 +44,7 @@ public final class d extends aa {
             return;
         }
         if (fVar.e()) {
-            float f10 = gVar.f21073c / 255.0f;
+            float f10 = gVar.f21076c / 255.0f;
             int r12 = k6.r1(f10, i7);
             Paint paint = this.f11491b;
             paint.setColor(r12);
@@ -89,7 +89,7 @@ public final class d extends aa {
         NinePatchDrawable ninePatchDrawable2 = this.d;
         Rect rect2 = fVar.f11515m;
         ninePatchDrawable2.setBounds(rect2.left - rect.left, rect2.top - rect.top, rect2.right + rect.right, rect2.bottom + rect.bottom);
-        ninePatchDrawable2.setAlpha(gVar.f21073c);
+        ninePatchDrawable2.setAlpha(gVar.f21076c);
         ninePatchDrawable2.draw(canvas);
     }
 }

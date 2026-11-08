@@ -3,7 +3,7 @@ public abstract class ep extends c5.a {
     public abstract int j();
 
     public final int k(int i7) {
-        int size = ((rf0) this).f37627c.size();
+        int size = ((rf0) this).f37648c.size();
         int j3 = j();
         if (i7 < j3) {
             return ((size - (j3 * 2)) - ((j3 - i7) - 1)) - 1;

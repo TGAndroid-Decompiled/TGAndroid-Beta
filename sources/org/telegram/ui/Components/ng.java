@@ -14,15 +14,15 @@ import org.json.JSONObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ng implements Runnable {
-    public final int f36327a;
-    public final Object f36328b;
-    public final Object f36329c;
+    public final int f36343a;
+    public final Object f36344b;
+    public final Object f36345c;
     public final Object d;
 
     public ng(Object obj, Object obj2, Object obj3, int i7) {
-        this.f36327a = i7;
-        this.f36328b = obj;
-        this.f36329c = obj2;
+        this.f36343a = i7;
+        this.f36344b = obj;
+        this.f36345c = obj2;
         this.d = obj3;
     }
 
@@ -30,9 +30,9 @@ public final class ng implements Runnable {
         InputStream errorStream;
         JSONObject optJSONObject;
         String optString;
-        String str = (String) this.f36329c;
+        String str = (String) this.f36345c;
         WebResourceRequest webResourceRequest = (WebResourceRequest) this.d;
-        org.telegram.ui.cq0 cq0Var = (org.telegram.ui.cq0) ((org.telegram.ui.n1) this.f36328b).f47935b;
+        org.telegram.ui.cq0 cq0Var = (org.telegram.ui.cq0) ((org.telegram.ui.n1) this.f36344b).f47935b;
         try {
             HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(str).openConnection();
             httpURLConnection.setRequestMethod("POST");
@@ -44,7 +44,7 @@ public final class ng implements Runnable {
             JSONObject jSONObject = new JSONObject();
             JSONObject jSONObject2 = new JSONObject();
             JSONObject put = new JSONObject().put("userAgent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36,gzip(gfe)").put("clientName", "WEB").put("clientVersion", webResourceRequest.getRequestHeaders().get("X-Youtube-Client-Version")).put("osName", "Windows").put("osVersion", "10.0");
-            outputStream.write(jSONObject.put("context", jSONObject2.put("client", put.put("originalUrl", "https://www.youtube.com/watch?v=" + cq0Var.f31792x).put("platform", "DESKTOP"))).put("videoId", cq0Var.f31792x).toString().getBytes("UTF-8"));
+            outputStream.write(jSONObject.put("context", jSONObject2.put("client", put.put("originalUrl", "https://www.youtube.com/watch?v=" + cq0Var.f31801x).put("platform", "DESKTOP"))).put("videoId", cq0Var.f31801x).toString().getBytes("UTF-8"));
             outputStream.close();
             if (httpURLConnection.getResponseCode() == 200) {
                 errorStream = httpURLConnection.getInputStream();
@@ -65,7 +65,7 @@ public final class ng implements Runnable {
             JSONObject optJSONObject2 = new JSONObject(byteArrayOutputStream.toString("UTF-8")).optJSONObject("storyboards");
             if (optJSONObject2 != null && (optJSONObject = optJSONObject2.optJSONObject("playerStoryboardSpecRenderer")) != null && (optString = optJSONObject.optString("spec")) != null) {
                 if (cq0Var.H == 0) {
-                    cq0Var.f31790s = optString;
+                    cq0Var.f31799s = optString;
                 } else {
                     ae0.a(cq0Var, optString);
                 }
@@ -82,17 +82,17 @@ public final class ng implements Runnable {
         boolean z9;
         char c10;
         Object obj;
-        qr0 qr0Var = (qr0) this.f36328b;
+        qr0 qr0Var = (qr0) this.f36344b;
         ArrayList arrayList2 = (ArrayList) this.d;
-        org.telegram.ui.ActionBar.f2 f2Var = qr0Var.f37385s.f40440x1;
-        String lowerCase = ((String) this.f36329c).trim().toLowerCase();
+        org.telegram.ui.ActionBar.f2 f2Var = qr0Var.f37415s.f40461x1;
+        String lowerCase = ((String) this.f36345c).trim().toLowerCase();
         if (lowerCase.length() == 0) {
             org.telegram.messenger.g0.h3(new ng(qr0Var, new ArrayList(), new ArrayList(), 23));
             return;
         }
         boolean z10 = true;
         boolean z11 = 0;
-        String S0 = org.telegram.messenger.hd.E0().S0(lowerCase, true, false);
+        String S0 = org.telegram.messenger.id.E0().S0(lowerCase, true, false);
         S0 = (lowerCase.equals(S0) || S0.length() == 0) ? null : null;
         if (S0 != null) {
             i7 = 1;
@@ -125,9 +125,9 @@ public final class ng implements Runnable {
                 z11 = 0;
             }
             TLRPC.User a22 = f2Var.getMessagesController().a2(Long.valueOf(C1));
-            if (a22.f27102id != f2Var.getUserConfig().e()) {
+            if (a22.f27105id != f2Var.getUserConfig().e()) {
                 String lowerCase2 = org.telegram.messenger.t10.p(a22).toLowerCase();
-                String S02 = org.telegram.messenger.hd.E0().S0(lowerCase2, z10, z11);
+                String S02 = org.telegram.messenger.id.E0().S0(lowerCase2, z10, z11);
                 if (lowerCase2.equals(S02)) {
                     S02 = null;
                 }
@@ -180,15 +180,15 @@ public final class ng implements Runnable {
         TLRPC.Document document;
         boolean z9;
         String str;
-        ur0 ur0Var = (ur0) this.f36328b;
+        ur0 ur0Var = (ur0) this.f36344b;
         ArrayList arrayList = (ArrayList) this.d;
         ur0Var.getClass();
-        String lowerCase = ((String) this.f36329c).trim().toLowerCase();
+        String lowerCase = ((String) this.f36345c).trim().toLowerCase();
         if (lowerCase.length() == 0) {
             org.telegram.messenger.g0.h3(new v80(18, ur0Var, new ArrayList()));
             return;
         }
-        String S0 = org.telegram.messenger.hd.E0().S0(lowerCase, true, false);
+        String S0 = org.telegram.messenger.id.E0().S0(lowerCase, true, false);
         S0 = (lowerCase.equals(S0) || S0.length() == 0) ? null : null;
         if (S0 != null) {
             i7 = 1;
@@ -213,11 +213,11 @@ public final class ng implements Runnable {
                         if (I0.toLowerCase().contains(str2)) {
                             arrayList2.add(ijVar);
                             break;
-                        } else if (ur0Var.f38709r == 4) {
+                        } else if (ur0Var.f38724r == 4) {
                             if (ijVar.D == 0) {
-                                document = org.telegram.messenger.ij.o1(ijVar.f23244k).webpage.document;
+                                document = org.telegram.messenger.ij.o1(ijVar.f23262k).webpage.document;
                             } else {
-                                document = org.telegram.messenger.ij.o1(ijVar.f23244k).document;
+                                document = org.telegram.messenger.ij.o1(ijVar.f23262k).document;
                             }
                             int i13 = 0;
                             while (true) {
@@ -257,22 +257,22 @@ public final class ng implements Runnable {
     }
 
     private final void d() {
-        yv0 yv0Var = (yv0) this.f36328b;
-        ArrayList arrayList = (ArrayList) this.f36329c;
+        yv0 yv0Var = (yv0) this.f36344b;
+        ArrayList arrayList = (ArrayList) this.f36345c;
         Boolean bool = (Boolean) this.d;
         yv0Var.P1 = arrayList;
         if (arrayList.isEmpty()) {
             yv0Var.dismiss();
             return;
         }
-        yv0Var.f40763k1.f();
+        yv0Var.f40787k1.f();
         if (bool.booleanValue()) {
             yv0Var.Q1 = new HashMap();
             int size = yv0Var.P1.size();
             for (int i7 = 0; i7 < size; i7++) {
                 org.telegram.messenger.zy zyVar = (org.telegram.messenger.zy) yv0Var.P1.get(i7);
-                yv0Var.Q1.put(zyVar.f26939a, zyVar);
-                org.telegram.messenger.w7.G(yv0Var.f28613a).h0(false, 67108864, zyVar.f26939a, true);
+                yv0Var.Q1.put(zyVar.f26942a, zyVar);
+                org.telegram.messenger.w7.G(yv0Var.f28616a).h0(false, 67108864, zyVar.f26942a, true);
             }
         }
         yv0Var.Z0();
@@ -280,8 +280,8 @@ public final class ng implements Runnable {
 
     private final void f() {
         int i7;
-        yv0 yv0Var = (yv0) this.f36328b;
-        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f36329c;
+        yv0 yv0Var = (yv0) this.f36344b;
+        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f36345c;
         TLObject tLObject = (TLObject) this.d;
         org.telegram.ui.ActionBar.f2 f2Var = yv0Var.C1;
         TLRPC.StickerSet stickerSet = yv0Var.J1.set;
@@ -294,19 +294,19 @@ public final class ng implements Runnable {
         }
         try {
             if (tL_error == null) {
-                if (yv0Var.f40752a2) {
-                    cc.g(f2Var, new cv0(yv0Var.f40772s1.getContext(), yv0Var.J1, 1, 2, null, yv0Var.I0), 1500).j();
+                if (yv0Var.f40776a2) {
+                    cc.g(f2Var, new cv0(yv0Var.f40796s1.getContext(), yv0Var.J1, 1, 2, null, yv0Var.I0), 1500).j();
                 }
                 if (tLObject instanceof TLRPC.TL_messages_stickerSetInstallResultArchive) {
-                    org.telegram.messenger.ui.b0(yv0Var.f28613a).A1(f2Var, true, i7, (TLRPC.TL_messages_stickerSetInstallResultArchive) tLObject);
+                    org.telegram.messenger.ui.b0(yv0Var.f28616a).A1(f2Var, true, i7, (TLRPC.TL_messages_stickerSetInstallResultArchive) tLObject);
                 }
             } else {
-                Toast.makeText(yv0Var.getContext(), org.telegram.messenger.hd.M0(2131751106, null), 0).show();
+                Toast.makeText(yv0Var.getContext(), org.telegram.messenger.id.M0(2131751106, null), 0).show();
             }
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
         }
-        org.telegram.messenger.ui.b0(yv0Var.f28613a).a1(i7, false, true);
+        org.telegram.messenger.ui.b0(yv0Var.f28616a).a1(i7, false, true);
     }
 
     @Override
@@ -315,9 +315,9 @@ public final class ng implements Runnable {
     }
 
     public ng(mc0 mc0Var, TLRPC.TL_error tL_error, TLObject tLObject, boolean z9) {
-        this.f36327a = 14;
-        this.f36328b = mc0Var;
-        this.f36329c = tL_error;
+        this.f36343a = 14;
+        this.f36344b = mc0Var;
+        this.f36345c = tL_error;
         this.d = tLObject;
     }
 }

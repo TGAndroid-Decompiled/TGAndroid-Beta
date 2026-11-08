@@ -11,7 +11,7 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.View;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.Components.xq;
 public final class u0 extends View {
     public final Paint f12874a;
@@ -40,7 +40,7 @@ public final class u0 extends View {
         paint.setPathEffect(new CornerPathEffect(org.telegram.messenger.g0.L(6.0f)));
         textPaint.setTextSize(org.telegram.messenger.g0.L(14.0f));
         textPaint.setColor(-1);
-        StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(hd.N0("StoryDraftSaved"), textPaint, point.x, TextUtils.TruncateAt.END), textPaint, org.telegram.messenger.g0.f22544q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(id.N0("StoryDraftSaved"), textPaint, point.x, TextUtils.TruncateAt.END), textPaint, org.telegram.messenger.g0.f22563q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         this.f12876c = staticLayout;
         if (staticLayout.getLineCount() > 0) {
             f10 = staticLayout.getLineWidth(0);
@@ -76,7 +76,7 @@ public final class u0 extends View {
         }
         canvas.save();
         if (this.f12879n) {
-            f10 = xq.f40349k.getInterpolation(d);
+            f10 = xq.f40370k.getInterpolation(d);
         } else {
             f10 = 1.0f;
         }

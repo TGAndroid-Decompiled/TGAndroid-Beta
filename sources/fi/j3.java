@@ -17,17 +17,17 @@ public final class j3 extends org.telegram.ui.ActionBar.v2 {
     public j3(Context context, org.telegram.ui.ActionBar.f6 f6Var, String str, float f10) {
         super(1, context, f6Var, false);
         O(-14737633);
-        i3 i3Var = new i3(p10.f24467s0, context, new di.b(), f10, str);
+        i3 i3Var = new i3(p10.f24470s0, context, new di.b(), f10, str);
         this.f12221i1 = i3Var;
         i3Var.G.setVisibility(8);
         i3Var.setMultipleOnClick(false);
         i3Var.setOnBackClickListener(new g3(this, 0));
         i3Var.setOnSelectListener(new ai.e(this, 18));
         rt0 rt0Var = new rt0(context, null);
-        this.f28616b = rt0Var;
-        int i7 = this.f28646t0;
+        this.f28619b = rt0Var;
+        int i7 = this.f28649t0;
         rt0Var.setPadding(i7, 0, i7, 0);
-        this.f28616b.addView(i3Var);
+        this.f28619b.addView(i3Var);
     }
 
     @Override
@@ -42,14 +42,14 @@ public final class j3 extends org.telegram.ui.ActionBar.v2 {
         if (z9) {
             height = 0.0f;
         } else {
-            height = (this.f28616b.getHeight() - i3Var.g()) + (org.telegram.messenger.g0.f22539n * 2.5f);
+            height = (this.f28619b.getHeight() - i3Var.g()) + (org.telegram.messenger.g0.f22558n * 2.5f);
         }
         this.l1 = Boolean.valueOf(z9);
         if (z9) {
-            r1.g gVar = new r1.g(i3Var, r1.g.f54158p, height);
+            r1.g gVar = new r1.g(i3Var, r1.g.f54251p, height);
             this.f12223k1 = gVar;
-            gVar.f54174m.a(0.75f);
-            this.f12223k1.f54174m.b(350.0f);
+            gVar.f54267m.a(0.75f);
+            this.f12223k1.f54267m.b(350.0f);
             this.f12223k1.a(new h3(this, height, g3Var));
             this.f12223k1.h();
             return;

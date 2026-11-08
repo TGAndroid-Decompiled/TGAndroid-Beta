@@ -6,26 +6,26 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class ph implements RequestDelegate {
-    public final int f24557a;
-    public final ui f24558b;
-    public final int f24559c;
+    public final int f24564a;
+    public final ui f24565b;
+    public final int f24566c;
 
     public ph(ui uiVar, int i7, int i10) {
-        this.f24557a = i10;
-        this.f24558b = uiVar;
-        this.f24559c = i7;
+        this.f24564a = i10;
+        this.f24565b = uiVar;
+        this.f24566c = i7;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         ArrayList<TLRPC.Document> arrayList;
         ArrayList<TLRPC.Document> arrayList2;
-        switch (this.f24557a) {
+        switch (this.f24564a) {
             case 0:
-                ui uiVar = this.f24558b;
+                ui uiVar = this.f24565b;
                 Long[] lArr = uiVar.F0;
                 Long valueOf = Long.valueOf(System.currentTimeMillis() / 1000);
-                int i7 = this.f24559c;
+                int i7 = this.f24566c;
                 lArr[i7] = valueOf;
                 if (tLObject instanceof TL_account.TL_emojiStatusesNotModified) {
                     uiVar.H0[i7] = false;
@@ -34,14 +34,14 @@ public final class ph implements RequestDelegate {
                     TL_account.TL_emojiStatuses tL_emojiStatuses = (TL_account.TL_emojiStatuses) tLObject;
                     uiVar.D0[i7] = tL_emojiStatuses.hash;
                     uiVar.E0[i7] = tL_emojiStatuses.statuses;
-                    uiVar.getMessagesStorage().f26696a.c(new k7(uiVar, i7, tL_emojiStatuses, 8));
+                    uiVar.getMessagesStorage().f26719a.c(new l7(uiVar, i7, tL_emojiStatuses, 8));
                     g0.h3(new fg(uiVar, 1));
                     return;
                 } else {
                     return;
                 }
             case 1:
-                g0.h3(new dg(this.f24558b, tL_error, tLObject, this.f24559c, 0));
+                g0.h3(new dg(this.f24565b, tL_error, tLObject, this.f24566c, 0));
                 return;
             case 2:
                 if (tLObject instanceof TLRPC.TL_messages_savedGifs) {
@@ -49,10 +49,10 @@ public final class ph implements RequestDelegate {
                 } else {
                     arrayList = null;
                 }
-                this.f24558b.y1(this.f24559c, arrayList, true, 0, true);
+                this.f24565b.y1(this.f24566c, arrayList, true, 0, true);
                 return;
             default:
-                int i10 = this.f24559c;
+                int i10 = this.f24566c;
                 if (i10 != 3 && i10 != 7) {
                     if (i10 == 2) {
                         if (tLObject instanceof TLRPC.TL_messages_favedStickers) {
@@ -71,7 +71,7 @@ public final class ph implements RequestDelegate {
                     }
                     arrayList2 = null;
                 }
-                this.f24558b.y1(i10, arrayList2, false, 0, true);
+                this.f24565b.y1(i10, arrayList2, false, 0, true);
                 return;
         }
     }

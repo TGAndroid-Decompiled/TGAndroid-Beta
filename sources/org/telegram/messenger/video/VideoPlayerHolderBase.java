@@ -174,10 +174,10 @@ public class VideoPlayerHolderBase {
     }
 
     public VideoPlayerHolderBase() {
-        if (Utilities.f21338k == null) {
-            Utilities.f21338k = new q5("playerQueue", true);
+        if (Utilities.f21341k == null) {
+            Utilities.f21341k = new q5("playerQueue", true);
         }
-        this.dispatchQueue = Utilities.f21338k;
+        this.dispatchQueue = Utilities.f21341k;
         this.progressRunnable = new Runnable() {
             {
                 VideoPlayerHolderBase.this = this;
@@ -230,7 +230,7 @@ public class VideoPlayerHolderBase {
         this.videoPlayer = t51Var2;
         t51Var2.D = this.allowMultipleInstances;
         t51Var2.J = new AnonymousClass2();
-        this.videoPlayer.f38225c = true;
+        this.videoPlayer.f38253c = true;
     }
 
     public void lambda$loopBack$9() {
@@ -378,7 +378,7 @@ public class VideoPlayerHolderBase {
         boolean d02 = t51Var.d0();
         if (z9) {
             t51 t51Var2 = this.videoPlayer;
-            if (t51Var2.f38224b0) {
+            if (t51Var2.f38252b0) {
                 t51Var2.g0();
                 long S = this.videoPlayer.S();
                 this.videoPlayer.m0();
@@ -630,14 +630,14 @@ public class VideoPlayerHolderBase {
         TLRPC.Document document = this.document;
         if (document != null) {
             ConcurrentHashMap concurrentHashMap = s8.I;
-            Integer num = (Integer) concurrentHashMap.get(Long.valueOf(document.f26959id));
+            Integer num = (Integer) concurrentHashMap.get(Long.valueOf(document.f26962id));
             if (num == null) {
                 intValue = 3;
             } else {
                 intValue = num.intValue();
             }
             if (intValue != 0) {
-                concurrentHashMap.put(Long.valueOf(document.f26959id), 0);
+                concurrentHashMap.put(Long.valueOf(document.f26962id), 0);
                 w7.G(this.currentAccount).h(0, document, null, null, null, null);
             }
         }

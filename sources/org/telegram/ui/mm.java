@@ -38,9 +38,9 @@ public final class mm extends c8.ja {
     @Override
     public final void c() {
         an anVar = this.h;
-        anVar.f43741ba = anVar.getNotificationCenter().q(an.f43712od, anVar.f43741ba, true);
+        anVar.f43747ba = anVar.getNotificationCenter().q(an.f43718od, anVar.f43747ba, true);
         yj yjVar = anVar.Pa;
-        if (yjVar.f45710n) {
+        if (yjVar.f45687n) {
             yjVar.d();
         }
     }

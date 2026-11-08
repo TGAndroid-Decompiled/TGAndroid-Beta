@@ -71,23 +71,23 @@ public final class d {
                 }
                 if (A2 > 0) {
                     i2.n m10 = i2.o.m(4, ((byte[]) arrayList.get(0)).length, (byte[]) arrayList.get(0));
-                    int i21 = m10.f15188e;
-                    int i22 = m10.f15189f;
-                    int i23 = m10.f15198p;
-                    int i24 = m10.f15199q;
-                    int i25 = m10.f15200r;
-                    int i26 = m10.f15201s;
-                    float f11 = m10.f15190g;
-                    int i27 = m10.f15185a;
-                    int i28 = m10.f15186b;
-                    int i29 = m10.f15187c;
+                    int i21 = m10.f15191e;
+                    int i22 = m10.f15192f;
+                    int i23 = m10.f15201p;
+                    int i24 = m10.f15202q;
+                    int i25 = m10.f15203r;
+                    int i26 = m10.f15204s;
+                    float f11 = m10.f15193g;
+                    int i27 = m10.f15188a;
+                    int i28 = m10.f15189b;
+                    int i29 = m10.f15190c;
                     byte[] bArr5 = h2.g.f14085a;
                     str = String.format("avc1.%02X%02X%02X", Integer.valueOf(i27), Integer.valueOf(i28), Integer.valueOf(i29));
                     i14 = i26;
                     f10 = f11;
                     i15 = i24;
                     i16 = i25;
-                    i12 = m10.f15191i + 8;
+                    i12 = m10.f15194i + 8;
                     i13 = i23;
                     i10 = i22;
                     i11 = m10.h + 8;

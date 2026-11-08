@@ -20,23 +20,22 @@ import java.util.List;
 import o5.r;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.gf;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.j20;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.u1;
 import org.telegram.ui.Components.fe0;
 import org.telegram.ui.Components.h51;
-import org.telegram.ui.Components.ny;
+import org.telegram.ui.Components.oy;
 import org.telegram.ui.Components.q51;
-import org.telegram.ui.Components.ry;
+import org.telegram.ui.Components.sy;
 import org.telegram.ui.Components.t51;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.je0;
 import org.telegram.ui.li0;
 import org.telegram.ui.lp0;
 import org.telegram.ui.wo0;
-import ti.q;
 import v4.d0;
 import v4.g0;
 public class i implements l, d0, q51, a0 {
@@ -161,7 +160,7 @@ public class i implements l, d0, q51, a0 {
             boolean z9 = true;
             for (int i10 = 0; i10 < i7 && z9; i10++) {
                 byte directionality = Character.getDirectionality(charSequence.charAt(i10));
-                i iVar = p0.f.f52988a;
+                i iVar = p0.f.f53081a;
                 if (directionality != 0) {
                     if (directionality != 1 && directionality != 2) {
                         switch (directionality) {
@@ -197,10 +196,10 @@ public class i implements l, d0, q51, a0 {
 
     public void j(char c10) {
         mc.a aVar = (mc.a) this.f6016c;
-        aVar.a(aVar.f20002c, 1);
-        char[] cArr = aVar.f20001b;
-        int i7 = aVar.f20002c;
-        aVar.f20002c = i7 + 1;
+        aVar.a(aVar.f20005c, 1);
+        char[] cArr = aVar.f20004b;
+        int i7 = aVar.f20005c;
+        aVar.f20005c = i7 + 1;
         cArr[i7] = c10;
     }
 
@@ -233,15 +232,15 @@ public class i implements l, d0, q51, a0 {
         PhotoViewer photoViewer = (PhotoViewer) this.f6016c;
         if (photoViewer.F2 == t51Var) {
             a8.g(exc, true);
-            ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = photoViewer.f41466o0.f28421b;
+            ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = photoViewer.f41470o0.f28424b;
             if (actionBarPopupWindow$ActionBarPopupWindowLayout != null && (findViewWithTag = actionBarPopupWindow$ActionBarPopupWindowLayout.findViewWithTag(10)) != null && findViewWithTag.getVisibility() == 0) {
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, photoViewer.D, photoViewer.f41530v2);
-                String M0 = hd.M0(2131689472, "AppName");
-                u1 u1Var = alertDialog$Builder.f27293a;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, photoViewer.D, photoViewer.f41534v2);
+                String M0 = id.M0(2131689472, "AppName");
+                u1 u1Var = alertDialog$Builder.f27296a;
                 u1Var.R = M0;
-                u1Var.T = hd.M0(2131752562, null);
-                alertDialog$Builder.k(hd.M0(2131747816, "Open"), new li0(this, 2));
-                alertDialog$Builder.h(hd.M0(2131752589, "Cancel"), null);
+                u1Var.T = id.M0(2131752562, null);
+                alertDialog$Builder.k(id.M0(2131747818, "Open"), new li0(this, 2));
+                alertDialog$Builder.h(id.M0(2131752589, "Cancel"), null);
                 photoViewer.P2(alertDialog$Builder);
             }
         }
@@ -252,7 +251,7 @@ public class i implements l, d0, q51, a0 {
         PhotoViewer photoViewer = (PhotoViewer) this.f6016c;
         if (!photoViewer.G3) {
             photoViewer.G3 = true;
-            photoViewer.f41380e0.invalidate();
+            photoViewer.f41384e0.invalidate();
         }
         if (photoViewer.E2 != null) {
             t51 t51Var = photoViewer.F2;
@@ -270,10 +269,10 @@ public class i implements l, d0, q51, a0 {
         t51 t51Var2;
         boolean z10;
         PhotoViewer photoViewer = (PhotoViewer) this.f6016c;
-        ArrayList arrayList = photoViewer.f41397f7;
+        ArrayList arrayList = photoViewer.f41401f7;
         t51 t51Var3 = photoViewer.F2;
         if (t51Var3 != null) {
-            if (!d1.f.u() && !photoViewer.f41492r) {
+            if (!d1.f.u() && !photoViewer.f41496r) {
                 z10 = false;
             } else {
                 z10 = true;
@@ -282,15 +281,15 @@ public class i implements l, d0, q51, a0 {
         }
         if (this.f6015b && (t51Var = photoViewer.F2) != null && t51Var.U() != -9223372036854775807L) {
             this.f6015b = false;
-            if (photoViewer.X6.isEmpty() && photoViewer.f41377d7.isEmpty() && photoViewer.Z6.isEmpty() && !arrayList.isEmpty() && (i10 = photoViewer.P4) >= 0 && i10 < arrayList.size()) {
+            if (photoViewer.X6.isEmpty() && photoViewer.f41381d7.isEmpty() && photoViewer.Z6.isEmpty() && !arrayList.isEmpty() && (i10 = photoViewer.P4) >= 0 && i10 < arrayList.size()) {
                 Object obj = arrayList.get(photoViewer.P4);
                 if (obj instanceof gf) {
                     gf gfVar = (gf) obj;
-                    if (gfVar.f26824b && (j20Var = gfVar.f26839s) != null) {
+                    if (gfVar.f26845b && (j20Var = gfVar.f26860s) != null) {
                         photoViewer.F2.p0(j20Var.d * ((float) t51Var2.U()));
                         wo0 wo0Var = photoViewer.R7;
                         if (wo0Var != null) {
-                            wo0Var.setProgress(gfVar.f26839s.d);
+                            wo0Var.setProgress(gfVar.f26860s.d);
                         }
                     }
                 }
@@ -302,23 +301,23 @@ public class i implements l, d0, q51, a0 {
     @Override
     public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
         PhotoViewer photoViewer = (PhotoViewer) this.f6016c;
-        q qVar = photoViewer.P8;
-        if (qVar != null) {
+        ti.p pVar = photoViewer.P8;
+        if (pVar != null) {
             photoViewer.P8 = null;
-            qVar.f56039a = surfaceTexture;
-            if (qVar.getSurfaceTexture() != surfaceTexture) {
-                qVar.setSurfaceTexture(surfaceTexture);
+            pVar.f56128a = surfaceTexture;
+            if (pVar.getSurfaceTexture() != surfaceTexture) {
+                pVar.setSurfaceTexture(surfaceTexture);
             }
-            qVar.setVisibility(0);
+            pVar.setVisibility(0);
             return true;
         }
         if (photoViewer.E3) {
             photoViewer.E3 = false;
             if (photoViewer.I3) {
                 photoViewer.F3 = 1;
-                photoViewer.f41531v3.setSurfaceTexture(surfaceTexture);
-                photoViewer.f41531v3.setSurfaceTextureListener(photoViewer.f41420i4);
-                photoViewer.f41531v3.setVisibility(0);
+                photoViewer.f41535v3.setSurfaceTexture(surfaceTexture);
+                photoViewer.f41535v3.setSurfaceTextureListener(photoViewer.f41424i4);
+                photoViewer.f41535v3.setVisibility(0);
                 return true;
             }
         }
@@ -336,7 +335,7 @@ public class i implements l, d0, q51, a0 {
     public void onVideoSizeChanged(int i7, int i10, int i11, float f10) {
         float f11;
         PhotoViewer photoViewer = (PhotoViewer) this.f6016c;
-        if (photoViewer.f41560y2 != null) {
+        if (photoViewer.f41564y2 != null) {
             float f12 = i7 * f10;
             int i12 = (int) f12;
             photoViewer.U = i12;
@@ -346,7 +345,7 @@ public class i implements l, d0, q51, a0 {
             if (oVar != null) {
                 oVar.c();
             }
-            fe0 fe0Var = photoViewer.f41560y2;
+            fe0 fe0Var = photoViewer.f41564y2;
             if (i10 == 0) {
                 f11 = 1.0f;
             } else {
@@ -357,12 +356,12 @@ public class i implements l, d0, q51, a0 {
                 ((h51) photoViewer.B2).setHDRInfo(photoViewer.F2.V(null));
                 h51 h51Var = (h51) photoViewer.B2;
                 h51Var.d = i12;
-                h51Var.f34181e = i10;
-                ry ryVar = h51Var.f34179b;
-                if (ryVar != null) {
-                    ryVar.postRunnable(new ny(ryVar, i12, i10, 0));
+                h51Var.f34118e = i10;
+                sy syVar = h51Var.f34116b;
+                if (syVar != null) {
+                    syVar.postRunnable(new oy(syVar, i12, i10, 0));
                 }
-                if (photoViewer.f41364c2 == 1) {
+                if (photoViewer.f41368c2 == 1) {
                     photoViewer.w2();
                 }
             }
@@ -429,7 +428,7 @@ public class i implements l, d0, q51, a0 {
 
     @Override
     public void onRenderedFirstFrame(m2.a aVar) {
-        long j3 = aVar.f19518e;
+        long j3 = aVar.f19521e;
         PhotoViewer photoViewer = (PhotoViewer) this.f6016c;
         if (j3 == photoViewer.W7) {
             photoViewer.V7 = j3;

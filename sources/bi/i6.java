@@ -61,7 +61,7 @@ public final class i6 implements org.telegram.ui.ActionBar.r1, fb0, ri, org.tele
         org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f4047e;
         Integer num = (Integer) number;
         View view = (View) obj;
-        t9 t9Var = up0Var.f60220e;
+        t9 t9Var = up0Var.f60285e;
         if (num.intValue() != -1 && num.intValue() != -2 && num.intValue() != 0 && !up0Var.O) {
             int i10 = 0;
             while (true) {
@@ -79,18 +79,18 @@ public final class i6 implements org.telegram.ui.ActionBar.r1, fb0, ri, org.tele
                 }
             }
             int i11 = this.f4045b;
-            String r10 = org.telegram.messenger.m5.r(qp.s1(i11).e2(up0Var.f60219c));
+            String r10 = org.telegram.messenger.m5.r(qp.s1(i11).e2(up0Var.f60284c));
             boolean h = t9Var.h();
             if (TextUtils.isEmpty(r10) && !h) {
                 return Boolean.FALSE;
             }
             k60 H = k60.H(f2Var, view);
             H.W(new wp0(up0Var));
-            H.l(2131231828, org.telegram.messenger.hd.M0(2131750237, null), new zh.i1(up0Var, 2), h);
-            H.l(2131232363, org.telegram.messenger.hd.M0(2131750233, null), new jg.c1(up0Var, i11, r10, tL_starGiftCollection, context, f6Var, f2Var, 18), !TextUtils.isEmpty(r10));
-            H.l(2131232116, org.telegram.messenger.hd.M0(2131750235, null), new wi.s(13, up0Var, tL_starGiftCollection), h);
-            H.l(2131232773, org.telegram.messenger.hd.M0(2131750234, null), new zh.i1(up0Var, 1), h);
-            H.m(2131232108, new d10(up0Var, i7, tL_starGiftCollection, 26), org.telegram.messenger.hd.M0(2131750236, null), h, true);
+            H.l(2131231828, org.telegram.messenger.id.M0(2131750239, null), new zh.h1(up0Var, 2), h);
+            H.l(2131232363, org.telegram.messenger.id.M0(2131750235, null), new jg.c1(up0Var, i11, r10, tL_starGiftCollection, context, f6Var, f2Var, 18), !TextUtils.isEmpty(r10));
+            H.l(2131232116, org.telegram.messenger.id.M0(2131750237, null), new yf.b(8, up0Var, tL_starGiftCollection), h);
+            H.l(2131232773, org.telegram.messenger.id.M0(2131750236, null), new zh.h1(up0Var, 1), h);
+            H.m(2131232108, new d10(up0Var, i7, tL_starGiftCollection, 25), org.telegram.messenger.id.M0(2131750238, null), h, true);
             up0Var.I = H;
             H.Z();
             return Boolean.TRUE;
@@ -114,37 +114,37 @@ public final class i6 implements org.telegram.ui.ActionBar.r1, fb0, ri, org.tele
                     Object obj = arrayList.get(i7);
                     i7++;
                     qi qiVar = (qi) obj;
-                    if (!hashSet.contains(qiVar.f24698a)) {
-                        hashSet.add(qiVar.f24698a);
+                    if (!hashSet.contains(qiVar.f24701a)) {
+                        hashSet.add(qiVar.f24701a);
                         arrayList2.add(qiVar);
                     }
                 }
             }
             if (!arrayList2.isEmpty()) {
-                ow0Var.f36701y = false;
-                ow0Var.f36699w = false;
+                ow0Var.f36721y = false;
+                ow0Var.f36719w = false;
                 ow0Var.c();
                 e5 e5Var = ow0Var.d;
                 if (e5Var != null) {
                     e5Var.setVisibility(0);
                 }
                 ow0Var.W = org.telegram.messenger.g0.L(10.0f);
-                ow0Var.f36700x = arrayList;
-                ow0Var.f36686a0 = 0;
-                ow0Var.f36688b0 = Integer.valueOf(str2.length());
+                ow0Var.f36720x = arrayList;
+                ow0Var.f36706a0 = 0;
+                ow0Var.f36708b0 = Integer.valueOf(str2.length());
                 e5 e5Var2 = ow0Var.d;
                 if (e5Var2 != null) {
                     e5Var2.invalidate();
                 }
-                org.telegram.ui.l4 l4Var = ow0Var.f36694f;
+                org.telegram.ui.l4 l4Var = ow0Var.f36714f;
                 if (l4Var != null) {
                     l4Var.f();
                     return;
                 }
                 return;
             }
-            ow0Var.f36700x = null;
-            ow0Var.f36701y = true;
+            ow0Var.f36720x = null;
+            ow0Var.f36721y = true;
             ow0Var.f();
         }
     }
@@ -212,7 +212,7 @@ public final class i6 implements org.telegram.ui.ActionBar.r1, fb0, ri, org.tele
         int i7 = this.f4045b;
         jn0 jn0Var = (jn0) this.f4047e;
         hi.d4 d4Var = (hi.d4) this.f4048f;
-        c2Var.f55522y = false;
+        c2Var.f55614y = false;
         org.telegram.messenger.a8.g(exc, true);
         if ((exc instanceof lb.a) && exc.getMessage() != null && exc.getMessage().contains("segmentation optional module to be downloaded") && c2Var.isAttachedToWindow()) {
             org.telegram.messenger.g0.i3(new pp0(c2Var, bitmap, i7, jn0Var, 23), 2000L);

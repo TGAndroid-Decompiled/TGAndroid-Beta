@@ -26,7 +26,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-import org.telegram.messenger.p1;
+import org.telegram.messenger.j1;
 import org.telegram.messenger.r1;
 public final class w extends b {
     public final Context C;
@@ -54,7 +54,7 @@ public final class w extends b {
         obj.f7364b = j4Var;
         obj.f7363a = u.class;
         try {
-            uVar.s(obj);
+            uVar.x(obj);
             obj.f7363a = "billingOverrideService.getBillingOverride";
             return j4Var;
         } catch (Exception e10) {
@@ -99,9 +99,9 @@ public final class w extends b {
             E = obj;
         }
         ?? obj3 = new Object();
-        obj3.f19917a = i7;
-        obj3.f19918b = aVar;
-        obj3.f19919c = runnable;
+        obj3.f19920a = i7;
+        obj3.f19921b = aVar;
+        obj3.f19922c = runnable;
         obj3.d = this;
         E.c(new q0(E, obj3), e());
     }
@@ -152,8 +152,8 @@ public final class w extends b {
     }
 
     @Override
-    public final void c(aa.n nVar, p1 p1Var) {
-        G(7, new t(p1Var, 0), new a9.h(this, nVar, p1Var, 2));
+    public final void c(aa.n nVar, j1 j1Var) {
+        G(7, new t(j1Var, 0), new a9.h(this, nVar, j1Var, 2));
     }
 
     @Override
@@ -166,7 +166,7 @@ public final class w extends b {
                 Objects.requireNonNull(c10, "ApiSuccess should not be null");
                 q4.q qVar = this.h;
                 qVar.getClass();
-                qVar.q(c10, (p3) qVar.f53710b);
+                qVar.q(c10, (p3) qVar.f53803b);
             } else {
                 int i10 = 1;
                 if (this.D == 1) {

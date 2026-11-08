@@ -1,18 +1,18 @@
 package org.telegram.ui.Components;
 public final class mm implements org.telegram.messenger.c20 {
-    public final int f35971a;
-    public final org.telegram.messenger.c20 f35972b;
+    public final int f35999a;
+    public final org.telegram.messenger.c20 f36000b;
 
     public mm(org.telegram.messenger.c20 c20Var, int i7) {
-        this.f35971a = i7;
-        this.f35972b = c20Var;
+        this.f35999a = i7;
+        this.f36000b = c20Var;
     }
 
     @Override
     public final void a(Object obj) {
-        switch (this.f35971a) {
+        switch (this.f35999a) {
             case 0:
-                this.f35972b.a(new th.e((String) obj));
+                this.f36000b.a(new th.e((String) obj));
                 return;
             default:
                 int[] iArr = (int[]) obj;
@@ -20,7 +20,7 @@ public final class mm implements org.telegram.messenger.c20 {
                 if (iArr.length >= 1 && iArr[0] == 0) {
                     z9 = true;
                 }
-                this.f35972b.a(Boolean.valueOf(z9));
+                this.f36000b.a(Boolean.valueOf(z9));
                 return;
         }
     }

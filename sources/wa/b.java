@@ -4,13 +4,13 @@ import a8.p0;
 import p1.g;
 public final class b {
     public static final int h = 0;
-    public final String f57535a;
-    public final int f57536b;
-    public final String f57537c;
+    public final String f57627a;
+    public final int f57628b;
+    public final String f57629c;
     public final String d;
-    public final long f57538e;
-    public final long f57539f;
-    public final String f57540g;
+    public final long f57630e;
+    public final long f57631f;
+    public final String f57632g;
 
     static {
         byte b10 = (byte) (((byte) (0 | 2)) | 1);
@@ -28,24 +28,24 @@ public final class b {
     }
 
     public b(String str, int i7, String str2, String str3, long j3, long j10, String str4) {
-        this.f57535a = str;
-        this.f57536b = i7;
-        this.f57537c = str2;
+        this.f57627a = str;
+        this.f57628b = i7;
+        this.f57629c = str2;
         this.d = str3;
-        this.f57538e = j3;
-        this.f57539f = j10;
-        this.f57540g = str4;
+        this.f57630e = j3;
+        this.f57631f = j10;
+        this.f57632g = str4;
     }
 
     public final a a() {
         ?? obj = new Object();
-        obj.f57529a = this.f57535a;
-        obj.f57530b = this.f57536b;
-        obj.f57531c = this.f57537c;
+        obj.f57621a = this.f57627a;
+        obj.f57622b = this.f57628b;
+        obj.f57623c = this.f57629c;
         obj.d = this.d;
-        obj.f57532e = this.f57538e;
-        obj.f57533f = this.f57539f;
-        obj.f57534g = this.f57540g;
+        obj.f57624e = this.f57630e;
+        obj.f57625f = this.f57631f;
+        obj.f57626g = this.f57632g;
         obj.h = (byte) 3;
         return obj;
     }
@@ -54,11 +54,11 @@ public final class b {
         if (obj != this) {
             if (obj instanceof b) {
                 b bVar = (b) obj;
-                String str = bVar.f57540g;
+                String str = bVar.f57632g;
                 String str2 = bVar.d;
-                String str3 = bVar.f57537c;
-                String str4 = bVar.f57535a;
-                String str5 = this.f57535a;
+                String str3 = bVar.f57629c;
+                String str4 = bVar.f57627a;
+                String str5 = this.f57627a;
                 if (str5 == null) {
                     if (str4 != null) {
                         return false;
@@ -66,8 +66,8 @@ public final class b {
                 } else if (!str5.equals(str4)) {
                     return false;
                 }
-                if (g.b(this.f57536b, bVar.f57536b)) {
-                    String str6 = this.f57537c;
+                if (g.b(this.f57628b, bVar.f57628b)) {
+                    String str6 = this.f57629c;
                     if (str6 == null) {
                         if (str3 != null) {
                             return false;
@@ -83,8 +83,8 @@ public final class b {
                     } else if (!str7.equals(str2)) {
                         return false;
                     }
-                    if (this.f57538e == bVar.f57538e && this.f57539f == bVar.f57539f) {
-                        String str8 = this.f57540g;
+                    if (this.f57630e == bVar.f57630e && this.f57631f == bVar.f57631f) {
+                        String str8 = this.f57632g;
                         if (str8 == null) {
                             if (str == null) {
                                 return true;
@@ -110,14 +110,14 @@ public final class b {
         int hashCode2;
         int hashCode3;
         int i7 = 0;
-        String str = this.f57535a;
+        String str = this.f57627a;
         if (str == null) {
             hashCode = 0;
         } else {
             hashCode = str.hashCode();
         }
-        int c10 = (((hashCode ^ 1000003) * 1000003) ^ g.c(this.f57536b)) * 1000003;
-        String str2 = this.f57537c;
+        int c10 = (((hashCode ^ 1000003) * 1000003) ^ g.c(this.f57628b)) * 1000003;
+        String str2 = this.f57629c;
         if (str2 == null) {
             hashCode2 = 0;
         } else {
@@ -130,10 +130,10 @@ public final class b {
         } else {
             hashCode3 = str3.hashCode();
         }
-        long j3 = this.f57538e;
-        long j10 = this.f57539f;
+        long j3 = this.f57630e;
+        long j10 = this.f57631f;
         int i11 = (((((i10 ^ hashCode3) * 1000003) ^ ((int) (j3 ^ (j3 >>> 32)))) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003;
-        String str4 = this.f57540g;
+        String str4 = this.f57632g;
         if (str4 != null) {
             i7 = str4.hashCode();
         }
@@ -143,9 +143,9 @@ public final class b {
     public final String toString() {
         String str;
         StringBuilder sb2 = new StringBuilder("PersistedInstallationEntry{firebaseInstallationId=");
-        sb2.append(this.f57535a);
+        sb2.append(this.f57627a);
         sb2.append(", registrationStatus=");
-        int i7 = this.f57536b;
+        int i7 = this.f57628b;
         if (i7 != 1) {
             if (i7 != 2) {
                 if (i7 != 3) {
@@ -169,14 +169,14 @@ public final class b {
         }
         sb2.append(str);
         sb2.append(", authToken=");
-        sb2.append(this.f57537c);
+        sb2.append(this.f57629c);
         sb2.append(", refreshToken=");
         sb2.append(this.d);
         sb2.append(", expiresInSecs=");
-        sb2.append(this.f57538e);
+        sb2.append(this.f57630e);
         sb2.append(", tokenCreationEpochInSecs=");
-        sb2.append(this.f57539f);
+        sb2.append(this.f57631f);
         sb2.append(", fisError=");
-        return p0.s(sb2, this.f57540g, "}");
+        return p0.s(sb2, this.f57632g, "}");
     }
 }

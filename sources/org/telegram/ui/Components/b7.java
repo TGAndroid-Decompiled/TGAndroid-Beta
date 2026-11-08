@@ -7,41 +7,41 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class b7 implements RequestDelegate {
-    public final int f32044a = 0;
-    public final boolean f32045b;
-    public final boolean f32046c;
+    public final int f32065a = 0;
+    public final boolean f32066b;
+    public final boolean f32067c;
     public final long d;
-    public final KeyEvent.Callback f32047e;
-    public final Object f32048f;
-    public final Object f32049g;
+    public final KeyEvent.Callback f32068e;
+    public final Object f32069f;
+    public final Object f32070g;
     public final Object h;
 
     public b7(b8 b8Var, boolean z9, org.telegram.messenger.ij ijVar, boolean z10, Runnable runnable, long j3, TLRPC.Document document) {
-        this.f32047e = b8Var;
-        this.f32045b = z9;
-        this.f32048f = ijVar;
-        this.f32046c = z10;
-        this.f32049g = runnable;
+        this.f32068e = b8Var;
+        this.f32066b = z9;
+        this.f32069f = ijVar;
+        this.f32067c = z10;
+        this.f32070g = runnable;
         this.d = j3;
         this.h = document;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f32044a) {
+        switch (this.f32065a) {
             case 0:
-                final b8 b8Var = (b8) this.f32047e;
-                org.telegram.messenger.ij ijVar = (org.telegram.messenger.ij) this.f32048f;
-                final Runnable runnable = (Runnable) this.f32049g;
+                final b8 b8Var = (b8) this.f32068e;
+                org.telegram.messenger.ij ijVar = (org.telegram.messenger.ij) this.f32069f;
+                final Runnable runnable = (Runnable) this.f32070g;
                 TLRPC.Document document = (TLRPC.Document) this.h;
-                final boolean z9 = this.f32046c;
+                final boolean z9 = this.f32067c;
                 if (tL_error != null && org.telegram.messenger.r8.r(tL_error.text)) {
-                    if (!this.f32045b && ijVar.f1() >= 0) {
-                        if (org.telegram.messenger.ij.B0(ijVar.f23244k) >= 0) {
+                    if (!this.f32066b && ijVar.f1() >= 0) {
+                        if (org.telegram.messenger.ij.B0(ijVar.f23262k) >= 0) {
                             final int f12 = ijVar.f1();
                             TLRPC.TL_messages_getMessages tL_messages_getMessages = new TLRPC.TL_messages_getMessages();
-                            tL_messages_getMessages.f27049id.add(Integer.valueOf(f12));
-                            ConnectionsManager.getInstance(b8Var.f28613a).sendRequest(tL_messages_getMessages, new RequestDelegate() {
+                            tL_messages_getMessages.f27052id.add(Integer.valueOf(f12));
+                            ConnectionsManager.getInstance(b8Var.f28616a).sendRequest(tL_messages_getMessages, new RequestDelegate() {
                                 @Override
                                 public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
                                     TLRPC.Message message;
@@ -55,7 +55,7 @@ public final class b7 implements RequestDelegate {
                                                 int i7 = 0;
                                                 while (true) {
                                                     if (i7 < messages_messages.messages.size()) {
-                                                        if (messages_messages.messages.get(i7).f26974id == f12) {
+                                                        if (messages_messages.messages.get(i7).f26977id == f12) {
                                                             message = messages_messages.messages.get(i7);
                                                         } else {
                                                             i7++;
@@ -65,7 +65,7 @@ public final class b7 implements RequestDelegate {
                                                     }
                                                 }
                                                 if (message != null) {
-                                                    b8Var2.R0(new org.telegram.messenger.ij(b8Var2.f28613a, message, false, true), z9, runnable, true);
+                                                    b8Var2.R0(new org.telegram.messenger.ij(b8Var2.f28616a, message, false, true), z9, runnable, true);
                                                     return;
                                                 } else {
                                                     org.telegram.messenger.g0.h3(new Runnable() {
@@ -75,10 +75,10 @@ public final class b7 implements RequestDelegate {
                                                             b8 b8Var3 = b8Var2;
                                                             switch (i10) {
                                                                 case 0:
-                                                                    new hc((FrameLayout) b8Var3.f28616b, b8Var3.I0).t(org.telegram.messenger.hd.a0(null, null, 2131743879, "CLIENT_MESSAGE_NOT_FOUND"), null).j();
+                                                                    new hc((FrameLayout) b8Var3.f28619b, b8Var3.I0).t(org.telegram.messenger.id.a0(null, null, 2131743881, "CLIENT_MESSAGE_NOT_FOUND"), null).j();
                                                                     return;
                                                                 default:
-                                                                    new hc((FrameLayout) b8Var3.f28616b, b8Var3.I0).t(org.telegram.messenger.hd.a0(null, null, 2131743879, "CLIENT_MESSAGE_NOT_FOUND"), null).j();
+                                                                    new hc((FrameLayout) b8Var3.f28619b, b8Var3.I0).t(org.telegram.messenger.id.a0(null, null, 2131743881, "CLIENT_MESSAGE_NOT_FOUND"), null).j();
                                                                     return;
                                                             }
                                                         }
@@ -99,7 +99,7 @@ public final class b7 implements RequestDelegate {
                                                 int i10 = 0;
                                                 while (true) {
                                                     if (i10 < messages_messages2.messages.size()) {
-                                                        if (messages_messages2.messages.get(i10).f26974id == f12) {
+                                                        if (messages_messages2.messages.get(i10).f26977id == f12) {
                                                             message2 = messages_messages2.messages.get(i10);
                                                         } else {
                                                             i10++;
@@ -109,7 +109,7 @@ public final class b7 implements RequestDelegate {
                                                     }
                                                 }
                                                 if (message2 != null) {
-                                                    b8Var3.R0(new org.telegram.messenger.ij(b8Var3.f28613a, message2, false, true), z9, runnable, true);
+                                                    b8Var3.R0(new org.telegram.messenger.ij(b8Var3.f28616a, message2, false, true), z9, runnable, true);
                                                     return;
                                                 } else {
                                                     org.telegram.messenger.g0.h3(new Runnable() {
@@ -119,10 +119,10 @@ public final class b7 implements RequestDelegate {
                                                             b8 b8Var32 = b8Var3;
                                                             switch (i102) {
                                                                 case 0:
-                                                                    new hc((FrameLayout) b8Var32.f28616b, b8Var32.I0).t(org.telegram.messenger.hd.a0(null, null, 2131743879, "CLIENT_MESSAGE_NOT_FOUND"), null).j();
+                                                                    new hc((FrameLayout) b8Var32.f28619b, b8Var32.I0).t(org.telegram.messenger.id.a0(null, null, 2131743881, "CLIENT_MESSAGE_NOT_FOUND"), null).j();
                                                                     return;
                                                                 default:
-                                                                    new hc((FrameLayout) b8Var32.f28616b, b8Var32.I0).t(org.telegram.messenger.hd.a0(null, null, 2131743879, "CLIENT_MESSAGE_NOT_FOUND"), null).j();
+                                                                    new hc((FrameLayout) b8Var32.f28619b, b8Var32.I0).t(org.telegram.messenger.id.a0(null, null, 2131743881, "CLIENT_MESSAGE_NOT_FOUND"), null).j();
                                                                     return;
                                                             }
                                                         }
@@ -142,9 +142,9 @@ public final class b7 implements RequestDelegate {
                         }
                         final int f13 = ijVar.f1();
                         TLRPC.TL_channels_getMessages tL_channels_getMessages = new TLRPC.TL_channels_getMessages();
-                        tL_channels_getMessages.channel = org.telegram.messenger.qp.s1(b8Var.f28613a).h1(-org.telegram.messenger.ij.B0(ijVar.f23244k));
-                        tL_channels_getMessages.f26991id.add(Integer.valueOf(f13));
-                        ConnectionsManager.getInstance(b8Var.f28613a).sendRequest(tL_channels_getMessages, new RequestDelegate() {
+                        tL_channels_getMessages.channel = org.telegram.messenger.qp.s1(b8Var.f28616a).h1(-org.telegram.messenger.ij.B0(ijVar.f23262k));
+                        tL_channels_getMessages.f26994id.add(Integer.valueOf(f13));
+                        ConnectionsManager.getInstance(b8Var.f28616a).sendRequest(tL_channels_getMessages, new RequestDelegate() {
                             @Override
                             public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
                                 TLRPC.Message message;
@@ -158,7 +158,7 @@ public final class b7 implements RequestDelegate {
                                             int i7 = 0;
                                             while (true) {
                                                 if (i7 < messages_messages.messages.size()) {
-                                                    if (messages_messages.messages.get(i7).f26974id == f13) {
+                                                    if (messages_messages.messages.get(i7).f26977id == f13) {
                                                         message = messages_messages.messages.get(i7);
                                                     } else {
                                                         i7++;
@@ -168,7 +168,7 @@ public final class b7 implements RequestDelegate {
                                                 }
                                             }
                                             if (message != null) {
-                                                b8Var2.R0(new org.telegram.messenger.ij(b8Var2.f28613a, message, false, true), z9, runnable, true);
+                                                b8Var2.R0(new org.telegram.messenger.ij(b8Var2.f28616a, message, false, true), z9, runnable, true);
                                                 return;
                                             } else {
                                                 org.telegram.messenger.g0.h3(new Runnable() {
@@ -178,10 +178,10 @@ public final class b7 implements RequestDelegate {
                                                         b8 b8Var32 = b8Var2;
                                                         switch (i102) {
                                                             case 0:
-                                                                new hc((FrameLayout) b8Var32.f28616b, b8Var32.I0).t(org.telegram.messenger.hd.a0(null, null, 2131743879, "CLIENT_MESSAGE_NOT_FOUND"), null).j();
+                                                                new hc((FrameLayout) b8Var32.f28619b, b8Var32.I0).t(org.telegram.messenger.id.a0(null, null, 2131743881, "CLIENT_MESSAGE_NOT_FOUND"), null).j();
                                                                 return;
                                                             default:
-                                                                new hc((FrameLayout) b8Var32.f28616b, b8Var32.I0).t(org.telegram.messenger.hd.a0(null, null, 2131743879, "CLIENT_MESSAGE_NOT_FOUND"), null).j();
+                                                                new hc((FrameLayout) b8Var32.f28619b, b8Var32.I0).t(org.telegram.messenger.id.a0(null, null, 2131743881, "CLIENT_MESSAGE_NOT_FOUND"), null).j();
                                                                 return;
                                                         }
                                                     }
@@ -202,7 +202,7 @@ public final class b7 implements RequestDelegate {
                                             int i10 = 0;
                                             while (true) {
                                                 if (i10 < messages_messages2.messages.size()) {
-                                                    if (messages_messages2.messages.get(i10).f26974id == f13) {
+                                                    if (messages_messages2.messages.get(i10).f26977id == f13) {
                                                         message2 = messages_messages2.messages.get(i10);
                                                     } else {
                                                         i10++;
@@ -212,7 +212,7 @@ public final class b7 implements RequestDelegate {
                                                 }
                                             }
                                             if (message2 != null) {
-                                                b8Var3.R0(new org.telegram.messenger.ij(b8Var3.f28613a, message2, false, true), z9, runnable, true);
+                                                b8Var3.R0(new org.telegram.messenger.ij(b8Var3.f28616a, message2, false, true), z9, runnable, true);
                                                 return;
                                             } else {
                                                 org.telegram.messenger.g0.h3(new Runnable() {
@@ -222,10 +222,10 @@ public final class b7 implements RequestDelegate {
                                                         b8 b8Var32 = b8Var3;
                                                         switch (i102) {
                                                             case 0:
-                                                                new hc((FrameLayout) b8Var32.f28616b, b8Var32.I0).t(org.telegram.messenger.hd.a0(null, null, 2131743879, "CLIENT_MESSAGE_NOT_FOUND"), null).j();
+                                                                new hc((FrameLayout) b8Var32.f28619b, b8Var32.I0).t(org.telegram.messenger.id.a0(null, null, 2131743881, "CLIENT_MESSAGE_NOT_FOUND"), null).j();
                                                                 return;
                                                             default:
-                                                                new hc((FrameLayout) b8Var32.f28616b, b8Var32.I0).t(org.telegram.messenger.hd.a0(null, null, 2131743879, "CLIENT_MESSAGE_NOT_FOUND"), null).j();
+                                                                new hc((FrameLayout) b8Var32.f28619b, b8Var32.I0).t(org.telegram.messenger.id.a0(null, null, 2131743881, "CLIENT_MESSAGE_NOT_FOUND"), null).j();
                                                                 return;
                                                         }
                                                     }
@@ -252,12 +252,12 @@ public final class b7 implements RequestDelegate {
                 org.telegram.messenger.g0.h3(new j2(b8Var, this.d, z9, document, runnable));
                 return;
             default:
-                final ze0 ze0Var = (ze0) this.f32047e;
-                final org.telegram.messenger.qp qpVar = (org.telegram.messenger.qp) this.f32048f;
-                final TLRPC.TL_channels_searchPosts tL_channels_searchPosts = (TLRPC.TL_channels_searchPosts) this.f32049g;
+                final ze0 ze0Var = (ze0) this.f32068e;
+                final org.telegram.messenger.qp qpVar = (org.telegram.messenger.qp) this.f32069f;
+                final TLRPC.TL_channels_searchPosts tL_channels_searchPosts = (TLRPC.TL_channels_searchPosts) this.f32070g;
                 final ConnectionsManager connectionsManager = (ConnectionsManager) this.h;
-                final boolean z10 = this.f32045b;
-                final boolean z11 = this.f32046c;
+                final boolean z10 = this.f32066b;
+                final boolean z11 = this.f32067c;
                 final long j3 = this.d;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
@@ -270,11 +270,11 @@ public final class b7 implements RequestDelegate {
     }
 
     public b7(ze0 ze0Var, org.telegram.messenger.qp qpVar, boolean z9, TLRPC.TL_channels_searchPosts tL_channels_searchPosts, boolean z10, long j3, ConnectionsManager connectionsManager) {
-        this.f32047e = ze0Var;
-        this.f32048f = qpVar;
-        this.f32045b = z9;
-        this.f32049g = tL_channels_searchPosts;
-        this.f32046c = z10;
+        this.f32068e = ze0Var;
+        this.f32069f = qpVar;
+        this.f32066b = z9;
+        this.f32070g = tL_channels_searchPosts;
+        this.f32067c = z10;
         this.d = j3;
         this.h = connectionsManager;
     }

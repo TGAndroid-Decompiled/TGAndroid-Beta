@@ -1,17 +1,17 @@
 package org.telegram.messenger;
 public final class yb implements Runnable {
-    public final int f26615a;
-    public final bc f26616b;
+    public final int f26624a;
+    public final bc f26625b;
 
     public yb(bc bcVar, int i7) {
-        this.f26615a = i7;
-        this.f26616b = bcVar;
+        this.f26624a = i7;
+        this.f26625b = bcVar;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f26615a;
-        bc bcVar = this.f26616b;
+        int i7 = this.f26624a;
+        bc bcVar = this.f26625b;
         switch (i7) {
             case 0:
                 gc gcVar = bcVar.h;
@@ -19,7 +19,7 @@ public final class yb implements Runnable {
                 gcVar.V(true);
                 return;
             case 1:
-                bcVar.h.f22634u.remove(bcVar.f21608a.f25744e);
+                bcVar.h.f22653u.remove(bcVar.f21635a.f25750e);
                 g0.h3(new yb(bcVar, 3));
                 return;
             case 2:
@@ -28,8 +28,8 @@ public final class yb implements Runnable {
                 gcVar2.V(true);
                 return;
             default:
-                ub ubVar = bcVar.f21608a;
-                qs.f(ubVar.f25753o).k(143, ubVar.f25744e, 1);
+                ub ubVar = bcVar.f21635a;
+                qs.f(ubVar.f25759o).k(143, ubVar.f25750e, 1);
                 return;
         }
     }

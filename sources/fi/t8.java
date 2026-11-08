@@ -18,7 +18,7 @@ public abstract class t8 extends View {
         q8 q8Var;
         if (e7Var != null) {
             try {
-                String string = qp.s1(i7).f24767e7.getString("story_privacy2", null);
+                String string = qp.s1(i7).f24774e7.getString("story_privacy2", null);
                 if (string == null) {
                     q8Var = new q8();
                 } else {
@@ -35,7 +35,7 @@ public abstract class t8 extends View {
                         }
                         if (!hashSet.isEmpty()) {
                             yr a02 = yr.a0(i7);
-                            a02.f26696a.c(new ai.e0(a02, hashSet, i7, 12));
+                            a02.f26719a.c(new ai.e0(a02, hashSet, i7, 12));
                         }
                     }
                 }
@@ -47,7 +47,7 @@ public abstract class t8 extends View {
             e7Var.F0.clear();
             e7Var.F0.addAll(e7Var.E0.f12679b);
             if (p10.i(i7).q()) {
-                e7Var.I0 = qp.s1(i7).f24767e7.getInt("story_period", 86400);
+                e7Var.I0 = qp.s1(i7).f24774e7.getInt("story_period", 86400);
             } else {
                 e7Var.I0 = 86400;
             }

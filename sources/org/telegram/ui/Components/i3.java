@@ -3,21 +3,21 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.widget.FrameLayout;
 public final class i3 extends FrameLayout {
-    public final int f34473a;
-    public final org.telegram.ui.Cells.c2[] f34474b;
+    public final int f34517a;
+    public final org.telegram.ui.Cells.c2[] f34518b;
 
     public i3(Context context, org.telegram.ui.Cells.c2[] c2VarArr, int i7) {
         super(context);
-        this.f34473a = i7;
-        this.f34474b = c2VarArr;
+        this.f34517a = i7;
+        this.f34518b = c2VarArr;
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        switch (this.f34473a) {
+        switch (this.f34517a) {
             case 0:
                 super.onMeasure(i7, i10);
-                org.telegram.ui.Cells.c2[] c2VarArr = this.f34474b;
+                org.telegram.ui.Cells.c2[] c2VarArr = this.f34518b;
                 if (c2VarArr[0] != null) {
                     int measuredWidth = getMeasuredWidth();
                     int measuredHeight = getMeasuredHeight();
@@ -27,7 +27,7 @@ public final class i3 extends FrameLayout {
                 return;
             default:
                 super.onMeasure(i7, i10);
-                org.telegram.ui.Cells.c2[] c2VarArr2 = this.f34474b;
+                org.telegram.ui.Cells.c2[] c2VarArr2 = this.f34518b;
                 if (c2VarArr2[0] != null) {
                     int measuredWidth2 = getMeasuredWidth();
                     int measuredHeight2 = getMeasuredHeight();

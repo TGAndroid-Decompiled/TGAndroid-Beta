@@ -18,7 +18,7 @@ import org.telegram.ui.pj0;
 import org.telegram.ui.pn;
 import org.telegram.ui.vn;
 import org.telegram.ui.xm0;
-import org.telegram.ui.ya1;
+import org.telegram.ui.za1;
 public final class d3 implements RequestDelegate {
     public final int f11783a;
     public final boolean f11784b;
@@ -95,7 +95,7 @@ public final class d3 implements RequestDelegate {
                 }
                 return;
             case 11:
-                org.telegram.messenger.g0.h3(new vn((Object) ((ya1) this.f11785c), (Object) tL_error, (Object) tLObject, this.f11784b, 14));
+                org.telegram.messenger.g0.h3(new vn((Object) ((za1) this.f11785c), (Object) tL_error, (Object) tLObject, this.f11784b, 14));
                 return;
             default:
                 org.telegram.messenger.g0.h3(new g60((WallpapersListActivity) this.f11785c, tLObject, this.f11784b, 14));

@@ -10,14 +10,14 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import org.telegram.ui.hy0;
 public abstract class jd {
-    public static n2.p0 a(File file, wi.y yVar, long j3, long j10, boolean z9, b7.d dVar) {
+    public static n2.p0 a(File file, wi.x xVar, long j3, long j10, boolean z9, b7.d dVar) {
         MediaFormat mediaFormat;
         long j11;
         long j12;
         String str;
         MediaFormat mediaFormat2;
         boolean z10;
-        wi.y yVar2 = yVar;
+        wi.x xVar2 = xVar;
         long max = Math.max(0L, j3 * 1000);
         long max2 = Math.max(max, j10 * 1000);
         MediaExtractor mediaExtractor = new MediaExtractor();
@@ -34,11 +34,11 @@ public abstract class jd {
                 }
                 mediaExtractor.release();
                 int i7 = dVar.f2993c;
-                synchronized (yVar) {
-                    yVar2.f58165s = i7;
+                synchronized (xVar) {
+                    xVar2.f58254s = i7;
                 }
                 if (mediaFormat != null) {
-                    yVar2.n(mediaFormat, false);
+                    xVar2.n(mediaFormat, false);
                 }
                 mediaExtractor = new MediaExtractor();
                 try {
@@ -80,8 +80,8 @@ public abstract class jd {
                     long j15 = jArr[1];
                     if (j14 != Long.MIN_VALUE) {
                         if (j14 == max) {
-                            yVar2.n(trackFormat, true);
-                            b(file, yVar2, max, max, max2);
+                            xVar2.n(trackFormat, true);
+                            b(file, xVar2, max, max, max2);
                             str = "copy";
                             j12 = 0;
                         } else {
@@ -89,27 +89,27 @@ public abstract class jd {
                             hy0 hy0Var = new hy0(25);
                             j12 = 0;
                             kd.c(file, j14, max, min, dVar.f2991a, dVar.f2992b, dVar.f2993c, hy0Var);
-                            if (((MediaFormat) hy0Var.d) != null && !((ArrayList) hy0Var.f46527b).isEmpty()) {
-                                boolean m10 = wi.y.m(trackFormat, (MediaFormat) hy0Var.d, "csd-0", "csd-1");
+                            if (((MediaFormat) hy0Var.d) != null && !((ArrayList) hy0Var.f46526b).isEmpty()) {
+                                boolean m10 = wi.x.m(trackFormat, (MediaFormat) hy0Var.d, "csd-0", "csd-1");
                                 if (min >= max2) {
                                     if (m10) {
                                         mediaFormat2 = trackFormat;
                                     } else {
                                         mediaFormat2 = (MediaFormat) hy0Var.d;
                                     }
-                                    yVar2.n(mediaFormat2, true);
-                                    e(yVar2, hy0Var, max);
+                                    xVar2.n(mediaFormat2, true);
+                                    e(xVar2, hy0Var, max);
                                     str = "reencode-range-in-gop";
                                     max = max;
                                 } else if (m10) {
-                                    yVar2.n(trackFormat, true);
-                                    e(yVar2, hy0Var, max);
-                                    b(file, yVar2, j15, max, max2);
+                                    xVar2.n(trackFormat, true);
+                                    e(xVar2, hy0Var, max);
+                                    b(file, xVar2, j15, max, max2);
                                     max = max;
                                     str = "reencode-head";
                                 } else {
                                     max = max;
-                                    kd.c(file, j14, max, max2, dVar.f2991a, dVar.f2992b, dVar.f2993c, new a8.ua(yVar2, max, 9));
+                                    kd.c(file, j14, max, max2, dVar.f2991a, dVar.f2992b, dVar.f2993c, new a8.ua(xVar2, max, 9));
                                     str = "reencode-all";
                                 }
                             } else {
@@ -135,10 +135,10 @@ public abstract class jd {
                                         if (readSampleData >= 0) {
                                             bufferInfo.set(0, readSampleData, mediaExtractor.getSampleTime(), mediaExtractor.getSampleFlags());
                                             ByteBuffer byteBuffer = allocateDirect;
-                                            yVar2.q(false, byteBuffer, bufferInfo, -max);
+                                            xVar2.q(false, byteBuffer, bufferInfo, -max);
                                             mediaExtractor.advance();
                                             allocateDirect = byteBuffer;
-                                            yVar2 = yVar;
+                                            xVar2 = xVar;
                                         }
                                     }
                                 } else {
@@ -147,11 +147,11 @@ public abstract class jd {
                             } finally {
                             }
                         }
-                        long h = yVar.h();
+                        long h = xVar.h();
                         ?? obj = new Object();
-                        obj.f20262a = max / 1000;
-                        obj.f20263b = h;
-                        obj.f20264c = str;
+                        obj.f20265a = max / 1000;
+                        obj.f20266b = h;
+                        obj.f20267c = str;
                         return obj;
                     }
                     throw new IOException("Trim range has no video sync sample");
@@ -163,10 +163,10 @@ public abstract class jd {
         }
     }
 
-    public static void b(File file, wi.y yVar, long j3, long j10, long j11) {
+    public static void b(File file, wi.x xVar, long j3, long j10, long j11) {
         ByteBuffer byteBuffer;
         MediaCodec.BufferInfo bufferInfo;
-        wi.y yVar2;
+        wi.x xVar2;
         MediaExtractor mediaExtractor = new MediaExtractor();
         MediaCodec.BufferInfo bufferInfo2 = new MediaCodec.BufferInfo();
         ByteBuffer allocateDirect = ByteBuffer.allocateDirect(2097152);
@@ -188,15 +188,15 @@ public abstract class jd {
                             bufferInfo2.set(0, readSampleData, sampleTime, mediaExtractor.getSampleFlags());
                             byteBuffer = allocateDirect;
                             bufferInfo = bufferInfo2;
-                            yVar2 = yVar;
-                            yVar2.q(true, byteBuffer, bufferInfo, -j10);
+                            xVar2 = xVar;
+                            xVar2.q(true, byteBuffer, bufferInfo, -j10);
                         } else {
                             byteBuffer = allocateDirect;
                             bufferInfo = bufferInfo2;
-                            yVar2 = yVar;
+                            xVar2 = xVar;
                         }
                         mediaExtractor.advance();
-                        yVar = yVar2;
+                        xVar = xVar2;
                         allocateDirect = byteBuffer;
                         bufferInfo2 = bufferInfo;
                     }
@@ -237,10 +237,10 @@ public abstract class jd {
         return -1;
     }
 
-    public static void e(wi.y yVar, hy0 hy0Var, long j3) {
-        ArrayList arrayList = (ArrayList) hy0Var.f46527b;
+    public static void e(wi.x xVar, hy0 hy0Var, long j3) {
+        ArrayList arrayList = (ArrayList) hy0Var.f46526b;
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
-            yVar.q(true, (ByteBuffer) arrayList.get(i7), (MediaCodec.BufferInfo) ((ArrayList) hy0Var.f46528c).get(i7), -j3);
+            xVar.q(true, (ByteBuffer) arrayList.get(i7), (MediaCodec.BufferInfo) ((ArrayList) hy0Var.f46527c).get(i7), -j3);
         }
     }
 }

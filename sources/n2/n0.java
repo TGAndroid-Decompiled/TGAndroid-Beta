@@ -20,22 +20,22 @@ import org.telegram.ui.Components.t70;
 import org.telegram.ui.Components.x70;
 import org.telegram.ui.z2;
 public final class n0 {
-    public int f20251a;
-    public int f20252b;
-    public Object f20253c;
+    public int f20254a;
+    public int f20255b;
+    public Object f20256c;
     public Object d;
-    public Object f20254e;
-    public Object f20255f;
+    public Object f20257e;
+    public Object f20258f;
 
     public n0() {
-        this.f20254e = new ArrayList();
-        this.f20251a = 0;
-        this.f20255f = new ArrayList();
-        this.f20252b = 0;
+        this.f20257e = new ArrayList();
+        this.f20254a = 0;
+        this.f20258f = new ArrayList();
+        this.f20255b = 0;
     }
 
     public static boolean a(n0 n0Var) {
-        return Objects.equals(((e2.u) n0Var.f20253c).f10615s, "audio/raw");
+        return Objects.equals(((e2.u) n0Var.f20256c).f10615s, "audio/raw");
     }
 
     public static a80 k(Layout layout, CharacterStyle characterStyle, float f10) {
@@ -47,7 +47,7 @@ public final class n0 {
             r70Var.d(layout, spanStart, f10);
             layout.getSelectionPath(spanStart, spanEnd, r70Var);
             a80 a80Var = new a80();
-            a80Var.f31743y = r70Var;
+            a80Var.f31752y = r70Var;
             a80Var.D = true;
             a80Var.k(4.0f);
             a80Var.l();
@@ -57,22 +57,22 @@ public final class n0 {
     }
 
     public void b(x70 x70Var, Object obj) {
-        ((ArrayList) this.f20254e).add(new Pair(x70Var, obj));
-        this.f20251a++;
+        ((ArrayList) this.f20257e).add(new Pair(x70Var, obj));
+        this.f20254a++;
         j(obj, true);
     }
 
     public void c(a80 a80Var, Object obj) {
-        ((ArrayList) this.f20255f).add(new Pair(a80Var, obj));
-        this.f20252b++;
+        ((ArrayList) this.f20258f).add(new Pair(a80Var, obj));
+        this.f20255b++;
         j(obj, true);
     }
 
     public ui.a d() {
         String str;
         String str2;
-        if (this.f20251a == 3) {
-            String str3 = (String) this.f20253c;
+        if (this.f20254a == 3) {
+            String str3 = (String) this.f20256c;
             if (TextUtils.isEmpty(str3)) {
                 str3 = "";
             } else {
@@ -87,7 +87,7 @@ public final class n0 {
                 } else {
                     str2 = null;
                 }
-                if (!TextUtils.isEmpty(str) && str.indexOf(58) < 0 && str.indexOf(63) < 0 && str.indexOf(35) < 0 && (str2 == null || (str2.length() <= 128 && ui.a.f56821g.matcher(str2).matches()))) {
+                if (!TextUtils.isEmpty(str) && str.indexOf(58) < 0 && str.indexOf(63) < 0 && str.indexOf(35) < 0 && (str2 == null || (str2.length() <= 128 && ui.a.f56913g.matcher(str2).matches()))) {
                     try {
                         String lowerCase = IDN.toASCII(str, 3).toLowerCase(Locale.US);
                         if (str2 == null) {
@@ -99,15 +99,15 @@ public final class n0 {
                     }
                 }
             }
-            this.f20253c = str3;
+            this.f20256c = str3;
             if (str3 != null && str3.indexOf(47) >= 0) {
-                String b10 = ui.a.b((String) this.f20255f);
+                String b10 = ui.a.b((String) this.f20258f);
                 if (b10 == null) {
-                    b10 = ((String) this.f20255f).toLowerCase(Locale.US);
+                    b10 = ((String) this.f20258f).toLowerCase(Locale.US);
                 }
-                this.f20255f = b10;
+                this.f20258f = b10;
             } else {
-                this.f20255f = ((String) this.f20255f).toLowerCase(Locale.US);
+                this.f20258f = ((String) this.f20258f).toLowerCase(Locale.US);
             }
         }
         return new ui.a(this);
@@ -118,24 +118,24 @@ public final class n0 {
     }
 
     public void f(boolean z9) {
-        ArrayList arrayList = (ArrayList) this.f20254e;
+        ArrayList arrayList = (ArrayList) this.f20257e;
         if (z9) {
-            for (int i7 = 0; i7 < this.f20251a; i7++) {
+            for (int i7 = 0; i7 < this.f20254a; i7++) {
                 l(i7);
             }
-        } else if (this.f20251a > 0) {
-            for (int i10 = 0; i10 < this.f20251a; i10++) {
+        } else if (this.f20254a > 0) {
+            for (int i10 = 0; i10 < this.f20254a; i10++) {
                 ((x70) ((Pair) arrayList.get(i10)).first).c();
                 j(((Pair) arrayList.get(i10)).second, false);
             }
             arrayList.clear();
-            this.f20251a = 0;
+            this.f20254a = 0;
             j(null, true);
         }
     }
 
     public void g() {
-        for (int i7 = 0; i7 < this.f20252b; i7++) {
+        for (int i7 = 0; i7 < this.f20255b; i7++) {
             o(i7, true);
         }
     }
@@ -143,13 +143,13 @@ public final class n0 {
     public boolean h(Canvas canvas) {
         int i7 = 0;
         boolean z9 = false;
-        while (i7 < this.f20252b) {
-            ((a80) ((Pair) ((ArrayList) this.f20255f).get(i7)).first).draw(canvas);
+        while (i7 < this.f20255b) {
+            ((a80) ((Pair) ((ArrayList) this.f20258f).get(i7)).first).draw(canvas);
             i7++;
             z9 = true;
         }
-        for (int i10 = 0; i10 < this.f20251a; i10++) {
-            if (!((x70) ((Pair) ((ArrayList) this.f20254e).get(i10)).first).a(canvas) && !z9) {
+        for (int i10 = 0; i10 < this.f20254a; i10++) {
+            if (!((x70) ((Pair) ((ArrayList) this.f20257e).get(i10)).first).a(canvas) && !z9) {
                 z9 = false;
             } else {
                 z9 = true;
@@ -160,16 +160,16 @@ public final class n0 {
 
     public boolean i(Canvas canvas, Object obj) {
         boolean z9;
-        ArrayList arrayList = (ArrayList) this.f20254e;
-        ArrayList arrayList2 = (ArrayList) this.f20255f;
+        ArrayList arrayList = (ArrayList) this.f20257e;
+        ArrayList arrayList2 = (ArrayList) this.f20258f;
         boolean z10 = false;
-        for (int i7 = 0; i7 < this.f20252b; i7++) {
+        for (int i7 = 0; i7 < this.f20255b; i7++) {
             if (((Pair) arrayList2.get(i7)).second == obj) {
                 ((a80) ((Pair) arrayList2.get(i7)).first).draw(canvas);
                 z10 = true;
             }
         }
-        for (int i10 = 0; i10 < this.f20251a; i10++) {
+        for (int i10 = 0; i10 < this.f20254a; i10++) {
             if (((Pair) arrayList.get(i10)).second == obj) {
                 if (!((x70) ((Pair) arrayList.get(i10)).first).a(canvas) && !z10) {
                     z9 = false;
@@ -190,10 +190,10 @@ public final class n0 {
             ((View) obj).invalidate();
         } else if (obj instanceof z2) {
             z2 z2Var = (z2) obj;
-            if (!z2Var.f52436c && (view2 = z2Var.f52435b) != null) {
+            if (!z2Var.f52416c && (view2 = z2Var.f52415b) != null) {
                 view2.invalidate();
             }
-        } else if (z9 && (view = (View) this.f20253c) != null) {
+        } else if (z9 && (view = (View) this.f20256c) != null) {
             view.invalidate();
         }
         c1 c1Var = (c1) this.d;
@@ -203,25 +203,25 @@ public final class n0 {
     }
 
     public void l(int i7) {
-        ArrayList arrayList = (ArrayList) this.f20254e;
-        if (i7 >= 0 && i7 < this.f20251a) {
+        ArrayList arrayList = (ArrayList) this.f20257e;
+        if (i7 >= 0 && i7 < this.f20254a) {
             Pair pair = (Pair) arrayList.get(i7);
             x70 x70Var = (x70) pair.first;
-            if (x70Var.f40232p < 0) {
-                x70Var.f40232p = Math.max(x70Var.f40231o + x70Var.f40233q, SystemClock.elapsedRealtime());
+            if (x70Var.f40253p < 0) {
+                x70Var.f40253p = Math.max(x70Var.f40252o + x70Var.f40254q, SystemClock.elapsedRealtime());
                 j(pair.second, true);
-                org.telegram.messenger.g0.i3(new t70(this, x70Var, 1), Math.max(0L, (x70Var.f40232p - SystemClock.elapsedRealtime()) + 175));
+                org.telegram.messenger.g0.i3(new t70(this, x70Var, 1), Math.max(0L, (x70Var.f40253p - SystemClock.elapsedRealtime()) + 175));
             }
         }
     }
 
     public void m(x70 x70Var, boolean z9) {
         Pair pair;
-        ArrayList arrayList = (ArrayList) this.f20254e;
+        ArrayList arrayList = (ArrayList) this.f20257e;
         if (x70Var != null) {
             int i7 = 0;
             while (true) {
-                if (i7 < this.f20251a) {
+                if (i7 < this.f20254a) {
                     if (((Pair) arrayList.get(i7)).first == x70Var) {
                         pair = (Pair) arrayList.get(i7);
                         break;
@@ -234,17 +234,17 @@ public final class n0 {
             }
             if (pair != null) {
                 if (z9) {
-                    if (x70Var.f40232p < 0) {
-                        x70Var.f40232p = Math.max(x70Var.f40231o + x70Var.f40233q, SystemClock.elapsedRealtime());
+                    if (x70Var.f40253p < 0) {
+                        x70Var.f40253p = Math.max(x70Var.f40252o + x70Var.f40254q, SystemClock.elapsedRealtime());
                         j(pair.second, true);
-                        org.telegram.messenger.g0.i3(new t70(this, x70Var, 0), Math.max(0L, (x70Var.f40232p - SystemClock.elapsedRealtime()) + 175));
+                        org.telegram.messenger.g0.i3(new t70(this, x70Var, 0), Math.max(0L, (x70Var.f40253p - SystemClock.elapsedRealtime()) + 175));
                         return;
                     }
                     return;
                 }
                 arrayList.remove(pair);
                 x70Var.c();
-                this.f20251a = arrayList.size();
+                this.f20254a = arrayList.size();
                 j(pair.second, true);
             }
         }
@@ -252,8 +252,8 @@ public final class n0 {
 
     public void n(a80 a80Var, boolean z9) {
         if (a80Var != null) {
-            for (int i7 = 0; i7 < this.f20252b; i7++) {
-                if (((Pair) ((ArrayList) this.f20255f).get(i7)).first == a80Var) {
+            for (int i7 = 0; i7 < this.f20255b; i7++) {
+                if (((Pair) ((ArrayList) this.f20258f).get(i7)).first == a80Var) {
                     o(i7, z9);
                     return;
                 }
@@ -263,8 +263,8 @@ public final class n0 {
 
     public void o(int i7, boolean z9) {
         Pair pair;
-        ArrayList arrayList = (ArrayList) this.f20255f;
-        if (i7 >= 0 && i7 < this.f20252b && (pair = (Pair) arrayList.get(i7)) != null) {
+        ArrayList arrayList = (ArrayList) this.f20258f;
+        if (i7 >= 0 && i7 < this.f20255b && (pair = (Pair) arrayList.get(i7)) != null) {
             a80 a80Var = (a80) pair.first;
             if (z9) {
                 if (!a80Var.c()) {
@@ -273,8 +273,8 @@ public final class n0 {
                     }
                     fq fqVar = new fq(28, this, a80Var);
                     long j3 = 0;
-                    if (a80Var.f31724c > 0) {
-                        j3 = 320 - (SystemClock.elapsedRealtime() - a80Var.f31724c);
+                    if (a80Var.f31733c > 0) {
+                        j3 = 320 - (SystemClock.elapsedRealtime() - a80Var.f31733c);
                     }
                     org.telegram.messenger.g0.i3(fqVar, j3);
                     return;
@@ -283,9 +283,9 @@ public final class n0 {
                 return;
             }
             arrayList.remove(pair);
-            a80Var.f31723b = -1L;
-            a80Var.f31724c = -1L;
-            this.f20252b = arrayList.size();
+            a80Var.f31732b = -1L;
+            a80Var.f31733c = -1L;
+            this.f20255b = arrayList.size();
             j(pair.second, true);
         }
     }
@@ -294,23 +294,23 @@ public final class n0 {
         if (i7 == 0) {
             i7 = 1;
         }
-        this.f20251a = i7;
+        this.f20254a = i7;
     }
 
     public n0(View view) {
-        this.f20254e = new ArrayList();
-        this.f20251a = 0;
-        this.f20255f = new ArrayList();
-        this.f20252b = 0;
-        this.f20253c = view;
+        this.f20257e = new ArrayList();
+        this.f20254a = 0;
+        this.f20258f = new ArrayList();
+        this.f20255b = 0;
+        this.f20256c = view;
     }
 
     public n0(e2.u uVar, e2.u uVar2, int i7, int i10, n nVar, f2.j jVar) {
-        this.f20253c = uVar;
+        this.f20256c = uVar;
         this.d = uVar2;
-        this.f20251a = i7;
-        this.f20252b = i10;
-        this.f20254e = nVar;
-        this.f20255f = jVar;
+        this.f20254a = i7;
+        this.f20255b = i10;
+        this.f20257e = nVar;
+        this.f20258f = jVar;
     }
 }

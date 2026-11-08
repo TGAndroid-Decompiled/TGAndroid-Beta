@@ -4,7 +4,7 @@ import org.telegram.messenger.ij;
 import org.telegram.messenger.zy;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ex;
+import org.telegram.ui.Components.fx;
 import org.telegram.ui.Components.k60;
 import org.telegram.ui.is;
 public final class p1 implements is {
@@ -192,7 +192,7 @@ public final class p1 implements is {
     }
 
     @Override
-    public final void u(CharSequence charSequence, String str, ex exVar) {
+    public final void u(CharSequence charSequence, String str, fx fxVar) {
     }
 
     @Override

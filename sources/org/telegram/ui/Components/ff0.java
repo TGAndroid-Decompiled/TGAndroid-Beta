@@ -17,7 +17,7 @@ public final class ff0 extends zf0 {
     public final Paint U;
     public final Path V;
     public float W;
-    public final DecimalFormat f33531a0;
+    public final DecimalFormat f33538a0;
 
     public ff0(Context context) {
         super(context);
@@ -25,10 +25,10 @@ public final class ff0 extends zf0 {
         this.U = paint;
         Path path = new Path();
         this.V = path;
-        this.f33531a0 = new DecimalFormat("#,##0.#########", new DecimalFormatSymbols(Locale.US));
+        this.f33538a0 = new DecimalFormat("#,##0.#########", new DecimalFormatSymbols(Locale.US));
         this.Q = jg.g.h(context, 2131232580);
         this.R = jg.g.h(context, 2131232581);
-        this.S = new my0(org.telegram.messenger.hd.M0(2131745156, null) + ":", 11.0f, null);
+        this.S = new my0(org.telegram.messenger.id.M0(2131745158, null) + ":", 11.0f, null);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
@@ -69,18 +69,18 @@ public final class ff0 extends zf0 {
     @Override
     public final float c(float f10) {
         my0 my0Var = this.S;
-        my0Var.f36136p = -1.0f;
-        this.T.f36136p = -1.0f;
+        my0Var.f36158p = -1.0f;
+        this.T.f36158p = -1.0f;
         float max = Math.max(0.0f, f10 - org.telegram.messenger.g0.L(43.0f));
-        my0Var.f36136p = Math.max(0.0f, max - this.T.k());
-        this.T.f36136p = Math.max(0.0f, max - my0Var.k());
+        my0Var.f36158p = Math.max(0.0f, max - this.T.k());
+        this.T.f36158p = Math.max(0.0f, max - my0Var.k());
         return this.T.k() + my0Var.k() + org.telegram.messenger.g0.L(27.0f);
     }
 
     public void setBalance(long j3) {
-        String format = this.f33531a0.format(new BigDecimal(org.telegram.ui.Wallet.n0.p(j3, false)));
+        String format = this.f33538a0.format(new BigDecimal(org.telegram.ui.Wallet.m0.p(j3, false)));
         this.T = new my0(format, 11.0f, org.telegram.messenger.g0.o());
-        setContentDescription(org.telegram.messenger.hd.M0(2131745156, null) + ": " + format);
+        setContentDescription(org.telegram.messenger.id.M0(2131745158, null) + ": " + format);
         invalidate();
     }
 

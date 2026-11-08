@@ -3,13 +3,13 @@ package org.telegram.ui.Components;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class om implements hx {
-    public final org.telegram.messenger.c20 f36643a;
-    public final di.u2 f36644b;
+public final class om implements ix {
+    public final org.telegram.messenger.c20 f36663a;
+    public final di.u2 f36664b;
 
     public om(org.telegram.messenger.c20 c20Var, di.u2 u2Var) {
-        this.f36643a = c20Var;
-        this.f36644b = u2Var;
+        this.f36663a = c20Var;
+        this.f36664b = u2Var;
     }
 
     @Override
@@ -54,8 +54,8 @@ public final class om implements hx {
 
     @Override
     public final void m(View view, TLRPC.Document document, String str, Object obj, org.telegram.messenger.ej ejVar, boolean z9, int i7) {
-        this.f36643a.a(new th.h(obj, document));
-        this.f36644b.a(true);
+        this.f36663a.a(new th.h(obj, document));
+        this.f36664b.a(true);
     }
 
     @Override
@@ -65,8 +65,8 @@ public final class om implements hx {
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z9) {
-        this.f36643a.a(new th.h(null, document));
-        this.f36644b.a(true);
+        this.f36663a.a(new th.h(null, document));
+        this.f36664b.a(true);
     }
 
     @Override

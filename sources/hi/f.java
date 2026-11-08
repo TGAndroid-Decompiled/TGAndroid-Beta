@@ -16,16 +16,16 @@ public final class f extends w31 {
     public static x31 i(int i7, int i10, CharSequence charSequence, String str) {
         x31 K = x31.K(f.class);
         K.d = i7;
-        K.f40172z = i10;
-        K.f40158k = 2131231105;
-        K.f40159l = charSequence;
-        K.f40160m = str;
+        K.f40193z = i10;
+        K.f40179k = 2131231105;
+        K.f40180l = charSequence;
+        K.f40181m = str;
         return K;
     }
 
     @Override
     public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
-        ((g) view).a(x31Var.f40172z, x31Var.f40158k, x31Var.f40159l, x31Var.f40160m);
+        ((g) view).a(x31Var.f40193z, x31Var.f40179k, x31Var.f40180l, x31Var.f40181m);
     }
 
     @Override

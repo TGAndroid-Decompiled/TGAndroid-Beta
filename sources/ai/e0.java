@@ -36,7 +36,7 @@ import li.p5;
 import li.u5;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.camera.CameraView;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.k2;
 import org.telegram.messenger.ls;
 import org.telegram.messenger.qp;
@@ -129,7 +129,7 @@ public final class e0 implements Runnable {
                 z5Var.a(iArr[3], iArr[2]);
                 return;
             case 2:
-                ((x10) this.d).a(hd.a0(null, null, 2131750045, hi.j.J0(this.f1164b)), (w6) this.f1165c, Boolean.FALSE);
+                ((x10) this.d).a(id.a0(null, null, 2131750047, hi.j.J0(this.f1164b)), (w6) this.f1165c, Boolean.FALSE);
                 return;
             case 3:
                 ea eaVar = (ea) this.f1165c;
@@ -235,8 +235,8 @@ public final class e0 implements Runnable {
                 tg.h1 h1Var = o5Var.T0;
                 int i20 = h1Var.d + 1;
                 h1Var.a(i20);
-                org.telegram.messenger.g0.R3(h1Var.f55621a[i20], i19);
-                h1Var.f55624e = true;
+                org.telegram.messenger.g0.R3(h1Var.f55713a[i20], i19);
+                h1Var.f55716e = true;
                 return;
             case 12:
                 org.telegram.messenger.g0.h3(new bg.m0(this.f1164b, ((yr) this.f1165c).l0(new ArrayList((HashSet) this.d)), 8));
@@ -289,35 +289,35 @@ public final class e0 implements Runnable {
                 jg.h0 h0Var = (jg.h0) this.f1165c;
                 int i24 = this.f1164b;
                 String str2 = (String) this.d;
-                int i25 = h0Var.f16757s0;
-                h0Var.f16754r = null;
-                if (i24 == h0Var.f16738d0) {
-                    if (h0Var.f16749n >= 0) {
-                        ConnectionsManager.getInstance(i25).cancelRequest(h0Var.f16749n, true);
+                int i25 = h0Var.f16760s0;
+                h0Var.f16757r = null;
+                if (i24 == h0Var.f16741d0) {
+                    if (h0Var.f16752n >= 0) {
+                        ConnectionsManager.getInstance(i25).cancelRequest(h0Var.f16752n, true);
                     }
                     TLRPC.TL_channels_searchPosts tL_channels_searchPosts = new TLRPC.TL_channels_searchPosts();
                     tL_channels_searchPosts.flags = 1 | tL_channels_searchPosts.flags;
                     tL_channels_searchPosts.hashtag = str2;
                     tL_channels_searchPosts.limit = 3;
                     tL_channels_searchPosts.offset_peer = new TLRPC.TL_inputPeerEmpty();
-                    h0Var.f16749n = ConnectionsManager.getInstance(i25).sendRequest(tL_channels_searchPosts, new jg.v(h0Var, i24, str2, 0));
+                    h0Var.f16752n = ConnectionsManager.getInstance(i25).sendRequest(tL_channels_searchPosts, new jg.v(h0Var, i24, str2, 0));
                     return;
                 }
                 return;
             case 18:
                 kg.y yVar = (kg.y) this.f1165c;
-                yVar.f17583b.add(this.f1164b, (TL_account.TL_businessChatLink) this.d);
-                qs.f(yVar.f17582a).k(125, new Object[0]);
+                yVar.f17586b.add(this.f1164b, (TL_account.TL_businessChatLink) this.d);
+                qs.f(yVar.f17585a).k(125, new Object[0]);
                 return;
             case 19:
                 Pair pair = (Pair) this.d;
-                ((l2.g1) this.f1165c).f17821b.h.N(((Integer) pair.first).intValue(), (x2.g0) pair.second, this.f1164b);
+                ((l2.g1) this.f1165c).f17824b.h.N(((Integer) pair.first).intValue(), (x2.g0) pair.second, this.f1164b);
                 return;
             case 20:
                 int i26 = this.f1164b;
                 p5 m10 = ((m5) this.f1165c).getGrid().m((TL_iv.pageTableCell) this.d);
                 if (m10 != null) {
-                    li.g1 g1Var = m10.f18775a;
+                    li.g1 g1Var = m10.f18778a;
                     g1Var.N();
                     g1Var.setSelection(Math.max(0, Math.min(i26, g1Var.length())));
                     return;
@@ -326,9 +326,9 @@ public final class e0 implements Runnable {
             case 21:
                 li.a aVar = (li.a) this.d;
                 int i27 = this.f1164b;
-                a6 a6Var = ((u5) this.f1165c).f18922a;
+                a6 a6Var = ((u5) this.f1165c).f18925a;
                 if (a6Var.D != null) {
-                    a6.e(aVar.f18389b, "");
+                    a6.e(aVar.f18392b, "");
                     ((c3) a6Var.D).c(aVar, i27);
                     return;
                 }
@@ -357,10 +357,10 @@ public final class e0 implements Runnable {
                 g4 g4Var = (g4) this.f1165c;
                 String str4 = (String) this.d;
                 int i29 = this.f1164b;
-                HashMap hashMap = new HashMap(g4Var.f45842u0[0].f47088c.f45197x);
-                ArrayList arrayList2 = new ArrayList(g4Var.f45842u0[0].f47088c.f45198y);
+                HashMap hashMap = new HashMap(g4Var.f45819u0[0].f47086c.f45192x);
+                ArrayList arrayList2 = new ArrayList(g4Var.f45819u0[0].f47086c.f45193y);
                 g4Var.W0 = null;
-                Utilities.f21335g.c(new ub(g4Var, arrayList2, hashMap, str4, i29, 8));
+                Utilities.f21338g.c(new ub(g4Var, arrayList2, hashMap, str4, i29, 8));
                 return;
             case 27:
                 g4 g4Var2 = (g4) this.f1165c;
@@ -379,7 +379,7 @@ public final class e0 implements Runnable {
                 int i31 = this.f1164b;
                 TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView = (TLRPC.TL_chatInviteJoinResultWebView) this.f1165c;
                 qp.s1(i31).Y3(tL_chatInviteJoinResultWebView.users, false);
-                k2.b(i31).c(-((TLRPC.Chat) this.d).f26953id, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id, false);
+                k2.b(i31).c(-((TLRPC.Chat) this.d).f26956id, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id, false);
                 return;
             default:
                 e4 e4Var = (e4) this.f1165c;

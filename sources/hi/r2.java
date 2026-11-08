@@ -3,13 +3,13 @@ package hi;
 import android.content.Context;
 import android.widget.FrameLayout;
 public final class r2 extends b4 {
-    public final int f14925c0;
-    public final Object f14926d0;
+    public final int f14928c0;
+    public final Object f14929d0;
 
     public r2(int i7, Context context, Object obj) {
         super(context);
-        this.f14925c0 = i7;
-        this.f14926d0 = obj;
+        this.f14928c0 = i7;
+        this.f14929d0 = obj;
     }
 
     @Override
@@ -19,9 +19,9 @@ public final class r2 extends b4 {
 
     @Override
     public void requestLayout() {
-        switch (this.f14925c0) {
+        switch (this.f14928c0) {
             case 0:
-                if (!((a3) this.f14926d0).G) {
+                if (!((a3) this.f14929d0).G) {
                     super.requestLayout();
                     return;
                 }
@@ -34,10 +34,10 @@ public final class r2 extends b4 {
 
     @Override
     public void setTranslationY(float f10) {
-        switch (this.f14925c0) {
+        switch (this.f14928c0) {
             case 0:
                 super.setTranslationY(f10);
-                a3 a3Var = (a3) this.f14926d0;
+                a3 a3Var = (a3) this.f14929d0;
                 org.telegram.messenger.h2 h2Var = a3Var.f14528n0;
                 if (h2Var != null) {
                     h2Var.setTranslationY(org.telegram.messenger.g0.L(24.0f) + f10);

@@ -1,145 +1,20 @@
 package org.telegram.messenger;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.util.Pair;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.OnTokenCanceledListener;
-import org.telegram.tgnet.RequestTimeDelegate;
-import org.telegram.tgnet.ResultCallback;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.WriteToSocketDelegate;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.ya1;
-public final class p1 implements ResultCallback, WriteToSocketDelegate, OnTokenCanceledListener, OnSuccessListener, OnFailureListener, fi.c7, lc, RequestTimeDelegate, im0, org.telegram.ui.ActionBar.r1 {
-    public final int f24465a;
-    public final Object f24466b;
+import java.util.List;
+public final class p1 implements q1, f5.m {
+    public final r1 f24469a;
 
-    public p1(Object obj, int i7) {
-        this.f24465a = i7;
-        this.f24466b = obj;
+    public p1(r1 r1Var) {
+        this.f24469a = r1Var;
     }
 
     @Override
-    public void a(float f10) {
-        ij ijVar = ((du) this.f24466b).W;
-        if (ijVar == null) {
-            return;
-        }
-        ijVar.f23204b0 = f10;
-        MediaController.B().i0(ijVar, f10);
+    public void a(f5.f fVar, List list) {
+        r1.c(this.f24469a, fVar, list);
     }
 
     @Override
-    public Bitmap c(BitmapFactory.Options options) {
-        gf gfVar = (gf) this.f24466b;
-        String str = gfVar.f26829i;
-        if (str == null) {
-            str = gfVar.I;
-        }
-        return BitmapFactory.decodeFile(str, options);
-    }
-
-    @Override
-    public void f0(ImageReceiver imageReceiver, boolean z9, boolean z10, boolean z11) {
-        MusicPlayerService musicPlayerService = (MusicPlayerService) this.f24466b;
-        if (z9) {
-            if (!TextUtils.isEmpty(musicPlayerService.f21314r)) {
-                ij ijVar = MediaController.B().f21292u0;
-                if (ijVar != null) {
-                    musicPlayerService.a(ijVar, true);
-                }
-                musicPlayerService.f21314r = null;
-                return;
-            }
-            return;
-        }
-        boolean z12 = MusicPlayerService.f21307w;
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        ((org.telegram.ui.an) this.f24466b).presentFragment(new ya1(6, null));
-    }
-
-    @Override
-    public void onCanceled() {
-        Runnable runnable = ((Runnable[]) this.f24466b)[0];
-        if (runnable != null) {
-            runnable.run();
-        }
-    }
-
-    @Override
-    public void onComplete(Object obj) {
-        switch (this.f24465a) {
-            case 1:
-                d4 d4Var = (d4) this.f24466b;
-                Pair pair = (Pair) obj;
-                if (pair != null) {
-                    d4Var.f21956a.put((Long) pair.first, (Bitmap) pair.second);
-                    return;
-                } else {
-                    d4Var.getClass();
-                    return;
-                }
-            default:
-                org.telegram.ui.ActionBar.p3 p3Var = (org.telegram.ui.ActionBar.p3) this.f24466b;
-                Bitmap bitmap = (Bitmap) obj;
-                if (bitmap != null) {
-                    p3Var.a(new gg.a(bitmap, 0, null));
-                    return;
-                } else {
-                    p3Var.a(null);
-                    return;
-                }
-        }
-    }
-
-    @Override
-    public void onError(Throwable th2) {
-        int i7 = this.f24465a;
-        org.telegram.tgnet.k.a(this, th2);
-    }
-
-    @Override
-    public void onFailure(Exception exc) {
-        ((oc) this.f24466b).r(exc);
-    }
-
-    @Override
-    public void onSuccess(Object obj) {
-        ((pc) this.f24466b).a((String) obj);
-    }
-
-    @Override
-    public void run(long j3) {
-        g0.h3(new od((hz) this.f24466b, j3, 1));
-    }
-
-    @Override
-    public void onError(TLRPC.TL_error tL_error) {
-        int i7 = this.f24465a;
-        org.telegram.tgnet.k.b(this, tL_error);
-    }
-
-    @Override
-    public void run() {
-        Utilities.d.c(new u8((y8) this.f24466b, 3));
-    }
-
-    @Override
-    public void O(ImageReceiver imageReceiver) {
-    }
-
-    @Override
-    public void d(float f10) {
-    }
-
-    @Override
-    public void t0(int i7, Drawable drawable) {
+    public void b(f5.f fVar, List list) {
+        this.f24469a.n(fVar, list, null);
     }
 }

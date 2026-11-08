@@ -50,8 +50,8 @@ public final class b implements l {
                 Executor executor = (Executor) this.f10133c;
                 g gVar = (g) this.d;
                 f fVar = (f) obj;
-                PendingIntent pendingIntent = fVar.f16558a;
-                h hVar = fVar.f16559b;
+                PendingIntent pendingIntent = fVar.f16561a;
+                h hVar = fVar.f16562b;
                 if (pendingIntent == null && hVar == null) {
                     CredentialProviderPlayServicesImpl.Companion.getClass();
                     if (!a1.g.a(cancellationSignal)) {
@@ -78,7 +78,7 @@ public final class b implements l {
                         }
                     }
                     if (hVar != null) {
-                        v0.c a10 = vc.a(hVar.f16565a, hVar.f16566b);
+                        v0.c a10 = vc.a(hVar.f16568a, hVar.f16569b);
                         if (a10 instanceof v0.f) {
                             CredentialProviderPlayServicesImpl.Companion.getClass();
                             if (!a1.g.a(cancellationSignal)) {
@@ -105,7 +105,7 @@ public final class b implements l {
                 if (!a1.g.a(cancellationSignal2)) {
                     Intent intent2 = new Intent(context2, HiddenActivity.class);
                     b1.d.a(aVar.f10886i, intent2, "BEGIN_SIGN_IN");
-                    intent2.putExtra("EXTRA_FLOW_PENDING_INTENT", mVar.f16575a);
+                    intent2.putExtra("EXTRA_FLOW_PENDING_INTENT", mVar.f16578a);
                     try {
                         context2.startActivity(intent2);
                     } catch (Exception unused2) {
@@ -122,12 +122,12 @@ public final class b implements l {
                 e eVar = (e) this.d;
                 q1.b bVar = (q1.b) obj;
                 ((sa.h) this.f10132b).getClass();
-                e eVar2 = sa.h.f54903c;
+                e eVar2 = sa.h.f54995c;
                 e eVar3 = sa.h.d;
                 String str3 = "";
                 if (((String) a1.a(bVar, eVar3, "")).equals(str)) {
                     e d = sa.h.d(bVar, str);
-                    if (d != null && !d.f53593a.equals(str2)) {
+                    if (d != null && !d.f53686a.equals(str2)) {
                         sa.h.f(bVar, str);
                         HashSet hashSet = new HashSet((Collection) a1.a(bVar, eVar, new HashSet()));
                         hashSet.add(str);
@@ -147,7 +147,7 @@ public final class b implements l {
                             for (String str5 : set) {
                                 long j11 = j10;
                                 if (str4 == null || str4.compareTo(str5) > 0) {
-                                    str3 = ((e) entry.getKey()).f53593a;
+                                    str3 = ((e) entry.getKey()).f53686a;
                                     hashSet2 = set;
                                     str4 = str5;
                                 }

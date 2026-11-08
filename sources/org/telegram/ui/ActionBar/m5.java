@@ -17,76 +17,76 @@ import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.qs;
-import org.telegram.messenger.yk;
+import org.telegram.messenger.xk;
 import org.telegram.ui.Components.c8;
-import org.telegram.ui.Components.hz;
-import org.telegram.ui.Components.qt;
+import org.telegram.ui.Components.iz;
 import org.telegram.ui.Components.r31;
 import org.telegram.ui.Components.ri0;
-import org.telegram.ui.Components.uy;
-import org.telegram.ui.Components.ys;
+import org.telegram.ui.Components.rt;
+import org.telegram.ui.Components.vy;
+import org.telegram.ui.Components.zs;
 import org.telegram.ui.an;
-import org.telegram.ui.v91;
+import org.telegram.ui.w91;
 import org.telegram.ui.web.HttpGetFileTask;
 public final class m5 implements Runnable {
-    public final int f28306a;
-    public final Object f28307b;
+    public final int f28309a;
+    public final Object f28310b;
 
     public m5(Object obj, int i7) {
-        this.f28306a = i7;
-        this.f28307b = obj;
+        this.f28309a = i7;
+        this.f28310b = obj;
     }
 
     @Override
     public final void run() {
         long j3;
-        switch (this.f28306a) {
+        switch (this.f28309a) {
             case 0:
-                Drawable drawable = (Drawable) this.f28307b;
+                Drawable drawable = (Drawable) this.f28310b;
                 k6.d = null;
                 k6.P();
-                if (!k6.f27805b) {
+                if (!k6.f27808b) {
                     k6.j(drawable);
                     k6.h(drawable);
                 }
                 qs.e().k(276, new Object[0]);
                 return;
             case 1:
-                ((CountDownLatch) this.f28307b).countDown();
+                ((CountDownLatch) this.f28310b).countDown();
                 return;
             case 2:
-                org.telegram.messenger.camera.q.j(1, (f2) this.f28307b);
+                org.telegram.messenger.camera.q.j(1, (f2) this.f28310b);
                 return;
             case 3:
-                c8 c8Var = (c8) k6.f27867e5.remove((ij) this.f28307b);
+                c8 c8Var = (c8) k6.f27870e5.remove((ij) this.f28310b);
                 if (c8Var != null) {
-                    c8Var.f32445i = null;
+                    c8Var.f32476i = null;
                     return;
                 }
                 return;
             case 4:
-                org.telegram.ui.Components.voip.k0 k0Var = (org.telegram.ui.Components.voip.k0) this.f28307b;
+                org.telegram.ui.Components.voip.k0 k0Var = (org.telegram.ui.Components.voip.k0) this.f28310b;
                 k0Var.P0 = null;
                 k0Var.setVisibleParticipant(true);
                 return;
             case 5:
-                org.telegram.ui.Components.voip.g1 g1Var = ((org.telegram.ui.Components.voip.d1) this.f28307b).h;
-                ti.o oVar = g1Var.f39183a;
+                org.telegram.ui.Components.voip.g1 g1Var = ((org.telegram.ui.Components.voip.d1) this.f28310b).h;
+                ti.o oVar = g1Var.f39218a;
                 if (oVar != null) {
                     oVar.c();
                 }
-                org.telegram.ui.Components.voip.f1 f1Var = g1Var.f39187f;
+                org.telegram.ui.Components.voip.f1 f1Var = g1Var.f39222f;
                 if (f1Var != null) {
                     f1Var.a();
                     return;
                 }
                 return;
             case 6:
-                org.telegram.ui.Components.voip.a2 a2Var = (org.telegram.ui.Components.voip.a2) this.f28307b;
-                a2Var.f39058e = false;
-                HashMap hashMap = a2Var.f39055a;
-                ArrayList arrayList = a2Var.f39057c;
-                ArrayList arrayList2 = a2Var.f39056b;
+                org.telegram.ui.Components.voip.a2 a2Var = (org.telegram.ui.Components.voip.a2) this.f28310b;
+                a2Var.f39093e = false;
+                HashMap hashMap = a2Var.f39090a;
+                ArrayList arrayList = a2Var.f39092c;
+                ArrayList arrayList2 = a2Var.f39091b;
                 if (!arrayList2.isEmpty() || !arrayList.isEmpty()) {
                     if (a2Var.getParent() != null) {
                         TransitionManager.beginDelayedTransition(a2Var, a2Var.d);
@@ -98,7 +98,7 @@ public final class m5 implements Runnable {
                         while (true) {
                             if (i10 >= arrayList.size()) {
                                 break;
-                            } else if (z1Var.f39642a.equals(((org.telegram.ui.Components.voip.z1) arrayList.get(i10)).f39642a)) {
+                            } else if (z1Var.f39677a.equals(((org.telegram.ui.Components.voip.z1) arrayList.get(i10)).f39677a)) {
                                 arrayList2.remove(i7);
                                 arrayList.remove(i10);
                                 i7--;
@@ -117,11 +117,11 @@ public final class m5 implements Runnable {
                     hashMap.clear();
                     for (int i13 = 0; i13 < a2Var.getChildCount(); i13++) {
                         org.telegram.ui.Components.voip.z1 z1Var2 = (org.telegram.ui.Components.voip.z1) a2Var.getChildAt(i13);
-                        hashMap.put(z1Var2.f39642a, z1Var2);
+                        hashMap.put(z1Var2.f39677a, z1Var2);
                     }
                     arrayList2.clear();
                     arrayList.clear();
-                    a2Var.f39058e = true;
+                    a2Var.f39093e = true;
                     org.telegram.messenger.g0.i3(new m5(a2Var, 6), 700L);
                     Runnable runnable = a2Var.h;
                     if (runnable != null) {
@@ -132,153 +132,153 @@ public final class m5 implements Runnable {
                 }
                 return;
             case 7:
-                TextView[] textViewArr = ((org.telegram.ui.Components.voip.h2) this.f28307b).f39209a;
+                TextView[] textViewArr = ((org.telegram.ui.Components.voip.h2) this.f28310b).f39244a;
                 TextView textView = textViewArr[0];
                 textViewArr[0] = textViewArr[1];
                 textViewArr[1] = textView;
                 return;
             case 8:
-                TextView[] textViewArr2 = ((org.telegram.ui.Components.voip.h2) ((jg.j0) this.f28307b).f16810e).f39209a;
+                TextView[] textViewArr2 = ((org.telegram.ui.Components.voip.h2) ((jg.j0) this.f28310b).f16813e).f39244a;
                 TextView textView2 = textViewArr2[0];
                 textViewArr2[0] = textViewArr2[1];
                 textViewArr2[1] = textView2;
                 return;
             case 9:
-                org.telegram.ui.Components.voip.l2 l2Var = (org.telegram.ui.Components.voip.l2) this.f28307b;
+                org.telegram.ui.Components.voip.l2 l2Var = (org.telegram.ui.Components.voip.l2) this.f28310b;
                 if (l2Var.getVisibility() == 0) {
                     l2Var.a();
                     return;
                 }
                 return;
             case 10:
-                org.telegram.ui.Components.voip.p2 p2Var = (org.telegram.ui.Components.voip.p2) this.f28307b;
-                p2Var.f39439e = Bitmap.createBitmap(p2Var.getMeasuredWidth(), p2Var.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-                new Canvas(p2Var.f39439e).drawText(p2Var.d, p2Var.getMeasuredWidth() / 2, (int) ((p2Var.getMeasuredHeight() / 2) - ((p2Var.f39436a.ascent() + p2Var.f39436a.descent()) / 2.0f)), p2Var.f39436a);
+                org.telegram.ui.Components.voip.p2 p2Var = (org.telegram.ui.Components.voip.p2) this.f28310b;
+                p2Var.f39474e = Bitmap.createBitmap(p2Var.getMeasuredWidth(), p2Var.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+                new Canvas(p2Var.f39474e).drawText(p2Var.d, p2Var.getMeasuredWidth() / 2, (int) ((p2Var.getMeasuredHeight() / 2) - ((p2Var.f39471a.ascent() + p2Var.f39471a.descent()) / 2.0f)), p2Var.f39471a);
                 p2Var.postInvalidate();
                 return;
             case 11:
-                ((org.telegram.ui.web.j) this.f28307b).f51166x.f37160f3.O(true);
+                ((org.telegram.ui.web.j) this.f28310b).f51173x.f37190f3.O(true);
                 return;
             case 12:
-                org.telegram.ui.web.h hVar = ((org.telegram.ui.web.l) ((fi.u2) this.f28307b).f12884c).f51216f;
+                org.telegram.ui.web.h hVar = ((org.telegram.ui.web.l) ((fi.u2) this.f28310b).f12884c).f51223f;
                 if (hVar != null) {
                     hVar.d();
                     return;
                 }
                 return;
             case 13:
-                ((ys) this.f28307b).requestFocus();
+                ((zs) this.f28310b).requestFocus();
                 return;
             case 14:
-                vf.c.t(((org.telegram.ui.web.q0) this.f28307b).f51275b.f51286e.getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
+                vf.c.t(((org.telegram.ui.web.q0) this.f28310b).f51282b.f51293e.getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
                 return;
             case 15:
-                fi.u2 u2Var = (fi.u2) this.f28307b;
-                Utilities.f21335g.c(new r31(u2Var, new ArrayList(((org.telegram.ui.web.z0) u2Var.f12884c).f51405f), ((org.telegram.ui.web.z0) u2Var.f12884c).f51407r, 8));
+                fi.u2 u2Var = (fi.u2) this.f28310b;
+                Utilities.f21338g.c(new r31(u2Var, new ArrayList(((org.telegram.ui.web.z0) u2Var.f12884c).f51412f), ((org.telegram.ui.web.z0) u2Var.f12884c).f51414r, 8));
                 return;
             case 16:
-                HttpGetFileTask.a((HttpGetFileTask) this.f28307b);
+                HttpGetFileTask.a((HttpGetFileTask) this.f28310b);
                 return;
             case 17:
-                ((org.telegram.ui.Wallet.x5) this.f28307b).invalidateSelf();
+                ((org.telegram.ui.Wallet.w5) this.f28310b).invalidateSelf();
                 return;
             case 18:
-                org.telegram.ui.web.o1 o1Var = (org.telegram.ui.web.o1) this.f28307b;
-                File databasePath = org.telegram.messenger.t0.f25563b.getDatabasePath("webview.db");
+                org.telegram.ui.web.o1 o1Var = (org.telegram.ui.web.o1) this.f28310b;
+                File databasePath = org.telegram.messenger.t0.f25566b.getDatabasePath("webview.db");
                 long j10 = 0;
                 if (databasePath != null && databasePath.exists()) {
                     j3 = databasePath.length();
                 } else {
                     j3 = 0;
                 }
-                File databasePath2 = org.telegram.messenger.t0.f25563b.getDatabasePath("webviewCache.db");
+                File databasePath2 = org.telegram.messenger.t0.f25566b.getDatabasePath("webviewCache.db");
                 if (databasePath2 != null && databasePath2.exists()) {
                     j3 += databasePath2.length();
                 }
-                File file = new File(org.telegram.messenger.t0.f25563b.getApplicationInfo().dataDir, "app_webview");
+                File file = new File(org.telegram.messenger.t0.f25566b.getApplicationInfo().dataDir, "app_webview");
                 if (file.exists()) {
                     j3 += org.telegram.ui.web.o1.e0(file, Boolean.FALSE);
                 }
-                File file2 = new File(org.telegram.messenger.t0.f25563b.getApplicationInfo().dataDir, "cache/WebView");
+                File file2 = new File(org.telegram.messenger.t0.f25566b.getApplicationInfo().dataDir, "cache/WebView");
                 if (file2.exists()) {
                     j3 += org.telegram.ui.web.o1.e0(file2, null);
                 }
-                File file3 = new File(org.telegram.messenger.t0.f25563b.getApplicationInfo().dataDir, "app_webview");
+                File file3 = new File(org.telegram.messenger.t0.f25566b.getApplicationInfo().dataDir, "app_webview");
                 if (file3.exists()) {
                     j10 = org.telegram.ui.web.o1.e0(file3, Boolean.TRUE);
                 }
-                org.telegram.messenger.g0.h3(new yk(o1Var, j3, j10, 2));
+                org.telegram.messenger.g0.h3(new xk(o1Var, j3, j10, 2));
                 return;
             case 19:
-                ((boolean[]) this.f28307b)[0] = true;
+                ((boolean[]) this.f28310b)[0] = true;
                 return;
             case 20:
-                q2.d dVar = (q2.d) this.f28307b;
-                if (!dVar.f53625c) {
-                    q2.g gVar = dVar.f53624b;
+                q2.d dVar = (q2.d) this.f28310b;
+                if (!dVar.f53718c) {
+                    q2.g gVar = dVar.f53717b;
                     if (gVar != null) {
-                        gVar.c(dVar.f53623a);
+                        gVar.c(dVar.f53716a);
                     }
-                    dVar.d.f53636y.remove(dVar);
-                    dVar.f53625c = true;
+                    dVar.d.f53729y.remove(dVar);
+                    dVar.f53718c = true;
                     return;
                 }
                 return;
             case 21:
-                ((q2.b) this.f28307b).c(null);
+                ((q2.b) this.f28310b).c(null);
                 return;
             case 22:
-                v91 v91Var = (v91) this.f28307b;
-                if (v91Var.getParentLayout() != null) {
-                    v91Var.H = true;
+                w91 w91Var = (w91) this.f28310b;
+                if (w91Var.getParentLayout() != null) {
+                    w91Var.H = true;
                     Bundle bundle = new Bundle();
-                    bundle.putLong("chat_id", v91Var.f50628a);
+                    bundle.putLong("chat_id", w91Var.f50992a);
                     an anVar = new an(bundle);
                     anVar.Ca = true;
-                    v91Var.presentFragment(anVar);
+                    w91Var.presentFragment(anVar);
                     return;
                 }
                 return;
             case 23:
-                ((qt) this.f28307b).m0();
+                ((rt) this.f28310b).m0();
                 return;
             case 24:
-                hz hzVar = (hz) this.f28307b;
-                rh.b bVar = (rh.b) hzVar.f34445c;
-                if (bVar == rh.b.f54444b) {
-                    hzVar.a(rh.b.f54443a, true);
+                iz izVar = (iz) this.f28310b;
+                rh.b bVar = (rh.b) izVar.f34846c;
+                if (bVar == rh.b.f54536b) {
+                    izVar.a(rh.b.f54535a, true);
                     return;
-                } else if (bVar == rh.b.f54445c) {
-                    hzVar.a(rh.b.d, true);
+                } else if (bVar == rh.b.f54537c) {
+                    izVar.a(rh.b.d, true);
                     return;
                 } else {
                     return;
                 }
             case 25:
-                ((s4.e) this.f28307b).k();
+                ((s4.e) this.f28310b).k();
                 return;
             case 26:
-                ((s4.g) this.f28307b).f54728n = -1;
+                ((s4.g) this.f28310b).f54820n = -1;
                 return;
             case 27:
-                ((ri0) this.f28307b).b();
+                ((ri0) this.f28310b).b();
                 return;
             case 28:
-                uy uyVar = ((sg.h0) this.f28307b).f54969b.f54993a;
-                if (uyVar != null) {
-                    uyVar.b();
+                vy vyVar = ((sg.h0) this.f28310b).f55061b.f55085a;
+                if (vyVar != null) {
+                    vyVar.b();
                     return;
                 }
                 return;
             default:
-                sg.j0 j0Var = ((sg.h0) this.f28307b).f54969b;
+                sg.j0 j0Var = ((sg.h0) this.f28310b).f55061b;
                 if (j0Var.d == null) {
                     j0Var.L = null;
                     return;
                 }
-                int currentColor = j0Var.f54997f.getCurrentColor();
-                j0Var.l(j0Var.f54994b, false, false);
-                wa d = j0Var.d(j0Var.f54994b, currentColor, new RectF(j0Var.h));
+                int currentColor = j0Var.f55089f.getCurrentColor();
+                j0Var.l(j0Var.f55086b, false, false);
+                wa d = j0Var.d(j0Var.f55086b, currentColor, new RectF(j0Var.h));
                 j0Var.b();
                 sg.z0 z0Var = j0Var.d;
                 RectF rectF = new RectF();

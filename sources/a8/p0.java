@@ -788,15 +788,15 @@ public abstract class p0 {
     public static na.c y(int i7, m4.d0 d0Var) {
         Map unmodifiableMap;
         c8.s sVar = new c8.s(i7);
-        if (((HashMap) d0Var.f19609b) == null) {
-            d0Var.f19609b = new HashMap();
+        if (((HashMap) d0Var.f19612b) == null) {
+            d0Var.f19612b = new HashMap();
         }
-        ((HashMap) d0Var.f19609b).put(c8.w.class, sVar);
-        String str = (String) d0Var.f19608a;
-        if (((HashMap) d0Var.f19609b) == null) {
+        ((HashMap) d0Var.f19612b).put(c8.w.class, sVar);
+        String str = (String) d0Var.f19611a;
+        if (((HashMap) d0Var.f19612b) == null) {
             unmodifiableMap = Collections.EMPTY_MAP;
         } else {
-            unmodifiableMap = DesugarCollections.unmodifiableMap(new HashMap((HashMap) d0Var.f19609b));
+            unmodifiableMap = DesugarCollections.unmodifiableMap(new HashMap((HashMap) d0Var.f19612b));
         }
         return new na.c(str, unmodifiableMap);
     }

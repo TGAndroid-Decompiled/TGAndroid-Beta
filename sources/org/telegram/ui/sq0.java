@@ -11,19 +11,19 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 public final class sq0 extends FrameLayout {
-    public final int f49817a;
+    public final int f49808a;
 
     public sq0(Context context, int i7) {
         super(context);
-        this.f49817a = i7;
+        this.f49808a = i7;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f49817a) {
+        switch (this.f49808a) {
             case 12:
-                org.telegram.ui.ActionBar.k6.f27938i3.setBounds(0, 0, getMeasuredWidth(), org.telegram.ui.ActionBar.k6.f27938i3.getIntrinsicHeight());
-                org.telegram.ui.ActionBar.k6.f27938i3.draw(canvas);
+                org.telegram.ui.ActionBar.k6.f27941i3.setBounds(0, 0, getMeasuredWidth(), org.telegram.ui.ActionBar.k6.f27941i3.getIntrinsicHeight());
+                org.telegram.ui.ActionBar.k6.f27941i3.draw(canvas);
                 super.dispatchDraw(canvas);
                 return;
             default:
@@ -34,7 +34,7 @@ public final class sq0 extends FrameLayout {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f49817a) {
+        switch (this.f49808a) {
             case 14:
                 return false;
             default:
@@ -44,7 +44,7 @@ public final class sq0 extends FrameLayout {
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j3) {
-        switch (this.f49817a) {
+        switch (this.f49808a) {
             case 14:
                 return false;
             case 16:
@@ -58,7 +58,7 @@ public final class sq0 extends FrameLayout {
 
     @Override
     public boolean hasOverlappingRendering() {
-        switch (this.f49817a) {
+        switch (this.f49808a) {
             case 15:
                 return false;
             default:
@@ -68,16 +68,16 @@ public final class sq0 extends FrameLayout {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f49817a) {
+        switch (this.f49808a) {
             case 1:
-                int intrinsicHeight = org.telegram.ui.ActionBar.k6.f27938i3.getIntrinsicHeight();
-                org.telegram.ui.ActionBar.k6.f27938i3.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight);
-                org.telegram.ui.ActionBar.k6.f27938i3.draw(canvas);
-                canvas.drawRect(0.0f, intrinsicHeight, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.k6.f27955j2);
+                int intrinsicHeight = org.telegram.ui.ActionBar.k6.f27941i3.getIntrinsicHeight();
+                org.telegram.ui.ActionBar.k6.f27941i3.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight);
+                org.telegram.ui.ActionBar.k6.f27941i3.draw(canvas);
+                canvas.drawRect(0.0f, intrinsicHeight, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.k6.f27958j2);
                 return;
             case 11:
                 super.onDraw(canvas);
-                canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), 1.0f, org.telegram.ui.ActionBar.k6.f27972k0);
+                canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), 1.0f, org.telegram.ui.ActionBar.k6.f27975k0);
                 return;
             default:
                 super.onDraw(canvas);
@@ -87,7 +87,7 @@ public final class sq0 extends FrameLayout {
 
     @Override
     public void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        switch (this.f49817a) {
+        switch (this.f49808a) {
             case 8:
                 int childCount = getChildCount();
                 int i13 = 0;
@@ -110,7 +110,7 @@ public final class sq0 extends FrameLayout {
     @Override
     public void onMeasure(int i7, int i10) {
         int i11;
-        switch (this.f49817a) {
+        switch (this.f49808a) {
             case 0:
                 super.onMeasure(i7, i10);
                 setPivotY(getMeasuredHeight());
@@ -169,7 +169,7 @@ public final class sq0 extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f49817a) {
+        switch (this.f49808a) {
             case 14:
                 return false;
             case 17:
@@ -181,8 +181,8 @@ public final class sq0 extends FrameLayout {
 
     public sq0(org.telegram.ui.Components.m20 m20Var, Context context, int i7, String str, CharSequence charSequence) {
         super(context);
-        this.f49817a = 4;
-        boolean z9 = org.telegram.messenger.hd.f22878a0;
+        this.f49808a = 4;
+        boolean z9 = org.telegram.messenger.id.f23157a0;
         ImageView imageView = new ImageView(getContext());
         Drawable mutate = getContext().getResources().getDrawable(i7).mutate();
         int i10 = org.telegram.ui.ActionBar.k6.G6;
@@ -205,8 +205,8 @@ public final class sq0 extends FrameLayout {
 
     public sq0(sy0 sy0Var, Context context, int i7, String str, CharSequence charSequence) {
         super(context);
-        this.f49817a = 3;
-        boolean z9 = org.telegram.messenger.hd.f22878a0;
+        this.f49808a = 3;
+        boolean z9 = org.telegram.messenger.id.f23157a0;
         ImageView imageView = new ImageView(getContext());
         Drawable mutate = getContext().getResources().getDrawable(i7).mutate();
         int i10 = org.telegram.ui.ActionBar.k6.G6;
@@ -226,9 +226,9 @@ public final class sq0 extends FrameLayout {
         addView(w70Var, c8.ha.d(-2, -2.0f, z9 ? 5 : 3, z9 ? 27.0f : 68.0f, 18.0f, z9 ? 68.0f : 27.0f, 0.0f));
     }
 
-    public sq0(Context context, zh.n2 n2Var, org.telegram.ui.ActionBar.f6 f6Var) {
+    public sq0(Context context, zh.l2 l2Var, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f49817a = 22;
+        this.f49808a = 22;
         LinearLayout f10 = org.telegram.messenger.k5.f(context, 1);
         addView(f10, c8.ha.e(-1, -2, 23));
         org.telegram.ui.Components.l9 l9Var = new org.telegram.ui.Components.l9(context);
@@ -239,13 +239,13 @@ public final class sq0 extends FrameLayout {
         textView.setTextSize(1, 17.0f);
         textView.setGravity(17);
         textView.setTypeface(org.telegram.messenger.g0.o());
-        textView.setText(org.telegram.messenger.hd.M0(2131750010, null));
+        textView.setText(org.telegram.messenger.id.M0(2131750012, null));
         f10.addView(textView, c8.ha.t(-2, -2, 17, 32, 12, 32, 9));
         org.telegram.ui.Components.w70 w70Var = new org.telegram.ui.Components.w70(context, null);
         org.telegram.ui.ActionBar.r6.V(w70Var, org.telegram.ui.ActionBar.k6.A6, f6Var);
         w70Var.setTextSize(1, 14.0f);
         w70Var.setGravity(17);
-        w70Var.setText(org.telegram.messenger.hd.M0(2131750011, null));
+        w70Var.setText(org.telegram.messenger.id.M0(2131750013, null));
         w70Var.setMaxWidth(org.telegram.messenger.g0.L(200.0f));
         f10.addView(w70Var, c8.ha.t(-2, -2, 17, 32, 0, 32, 12));
         TextView textView2 = new TextView(context);
@@ -256,16 +256,16 @@ public final class sq0 extends FrameLayout {
         textView2.setBackground(a02);
         org.telegram.ui.ActionBar.r6.k(textView2, a02, null, L, f6Var);
         textView2.setGravity(17);
-        textView2.setText(org.telegram.messenger.hd.M0(2131750012, null));
+        textView2.setText(org.telegram.messenger.id.M0(2131750014, null));
         textView2.setPadding(org.telegram.messenger.g0.L(13.0f), 0, org.telegram.messenger.g0.L(13.0f), 0);
         c8.ka.a(textView2);
         f10.addView(textView2, c8.ha.t(-2, 27, 17, 32, 0, 32, 12));
-        textView2.setOnClickListener(n2Var);
+        textView2.setOnClickListener(l2Var);
     }
 
     public sq0(Context context) {
         super(context);
-        this.f49817a = 2;
+        this.f49808a = 2;
         setPadding(org.telegram.messenger.g0.L(11.0f), org.telegram.messenger.g0.L(11.0f), org.telegram.messenger.g0.L(11.0f), org.telegram.messenger.g0.L(11.0f));
     }
 }

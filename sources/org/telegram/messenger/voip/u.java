@@ -2,26 +2,26 @@ package org.telegram.messenger.voip;
 
 import org.telegram.tgnet.TLRPC;
 public final class u implements Runnable {
-    public final int f26171a;
-    public final VoIPService f26172b;
-    public final TLRPC.Updates f26173c;
+    public final int f26177a;
+    public final VoIPService f26178b;
+    public final TLRPC.Updates f26179c;
     public final long d;
 
     public u(VoIPService voIPService, TLRPC.Updates updates, long j3, int i7) {
-        this.f26171a = i7;
-        this.f26172b = voIPService;
-        this.f26173c = updates;
+        this.f26177a = i7;
+        this.f26178b = voIPService;
+        this.f26179c = updates;
         this.d = j3;
     }
 
     @Override
     public final void run() {
-        switch (this.f26171a) {
+        switch (this.f26177a) {
             case 0:
-                this.f26172b.lambda$startConferenceGroupCall$38(this.f26173c, this.d);
+                this.f26178b.lambda$startConferenceGroupCall$38(this.f26179c, this.d);
                 return;
             default:
-                this.f26172b.lambda$startConferenceGroupCall$46(this.f26173c, this.d);
+                this.f26178b.lambda$startConferenceGroupCall$46(this.f26179c, this.d);
                 return;
         }
     }

@@ -1,15 +1,15 @@
 package x2;
 public abstract class s1 extends l {
-    public final a f58370k;
+    public final a f58459k;
 
     public s1(a aVar) {
-        this.f58370k = aVar;
+        this.f58459k = aVar;
     }
 
     public abstract void A(e2.l1 l1Var);
 
     public final void B() {
-        y(null, this.f58370k);
+        y(null, this.f58459k);
     }
 
     public void C() {
@@ -18,34 +18,34 @@ public abstract class s1 extends l {
 
     @Override
     public boolean a(e2.l0 l0Var) {
-        return this.f58370k.a(l0Var);
+        return this.f58459k.a(l0Var);
     }
 
     @Override
     public e2.l1 h() {
-        return this.f58370k.h();
+        return this.f58459k.h();
     }
 
     @Override
     public final e2.l0 i() {
-        return this.f58370k.i();
+        return this.f58459k.i();
     }
 
     @Override
     public boolean j() {
-        return this.f58370k.j();
+        return this.f58459k.j();
     }
 
     @Override
     public final void m(j2.d0 d0Var) {
-        this.f58288j = d0Var;
-        this.f58287i = h2.m0.q(null);
+        this.f58377j = d0Var;
+        this.f58376i = h2.m0.q(null);
         C();
     }
 
     @Override
     public void t(e2.l0 l0Var) {
-        this.f58370k.t(l0Var);
+        this.f58459k.t(l0Var);
     }
 
     @Override

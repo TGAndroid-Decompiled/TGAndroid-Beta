@@ -6,26 +6,26 @@ import org.telegram.ui.Cells.f0;
 import org.telegram.ui.Cells.ra;
 import org.telegram.ui.an;
 public final class h implements ValueAnimator.AnimatorUpdateListener {
-    public final int f20075a;
-    public final float f20076b;
-    public final l f20077c;
+    public final int f20078a;
+    public final float f20079b;
+    public final l f20080c;
     public final View d;
 
     public h(l lVar, View view, float f10, int i7) {
-        this.f20075a = i7;
-        this.f20077c = lVar;
+        this.f20078a = i7;
+        this.f20080c = lVar;
         this.d = view;
-        this.f20076b = f10;
+        this.f20079b = f10;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         float f10;
         float f11;
-        switch (this.f20075a) {
+        switch (this.f20078a) {
             case 0:
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                l lVar = this.f20077c;
+                l lVar = this.f20080c;
                 an anVar = lVar.F;
                 f0 f0Var = (f0) this.d;
                 float measuredHeight = ((((lVar.G.getMeasuredHeight() - anVar.L9) - anVar.Ua) / 2.0f) - (f0Var.getMeasuredHeight() / 2.0f)) + lVar.F.L9;
@@ -34,11 +34,11 @@ public final class h implements ValueAnimator.AnimatorUpdateListener {
                 } else {
                     f10 = 0.0f;
                 }
-                f0Var.setTranslationY((f10 * floatValue) + ((1.0f - floatValue) * this.f20076b));
+                f0Var.setTranslationY((f10 * floatValue) + ((1.0f - floatValue) * this.f20079b));
                 return;
             default:
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                l lVar2 = this.f20077c;
+                l lVar2 = this.f20080c;
                 an anVar2 = lVar2.F;
                 ra raVar = (ra) this.d;
                 float measuredHeight2 = ((((lVar2.G.getMeasuredHeight() - anVar2.L9) - anVar2.Ua) / 2.0f) - (raVar.getMeasuredHeight() / 2.0f)) + lVar2.F.L9;
@@ -47,7 +47,7 @@ public final class h implements ValueAnimator.AnimatorUpdateListener {
                 } else {
                     f11 = 0.0f;
                 }
-                raVar.setTranslationY((f11 * floatValue2) + ((1.0f - floatValue2) * this.f20076b));
+                raVar.setTranslationY((f11 * floatValue2) + ((1.0f - floatValue2) * this.f20079b));
                 return;
         }
     }

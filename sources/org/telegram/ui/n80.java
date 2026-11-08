@@ -25,7 +25,7 @@ public final class n80 implements org.telegram.messenger.ep {
     public final void a() {
         LaunchActivity launchActivity = this.h;
         if (!launchActivity.isFinishing()) {
-            org.telegram.ui.Components.v4.r0((org.telegram.ui.ActionBar.f2) jg.g.i(1, launchActivity.f41256d0), null, org.telegram.messenger.hd.M0(2131749074, null), null);
+            org.telegram.ui.Components.v4.r0((org.telegram.ui.ActionBar.f2) jg.g.i(1, launchActivity.f41260d0), null, org.telegram.messenger.id.M0(2131749076, null), null);
         }
         try {
             this.f47991a.run();
@@ -50,7 +50,7 @@ public final class n80 implements org.telegram.messenger.ep {
                 if (f2Var instanceof an) {
                     an anVar = (an) f2Var;
                     if (anVar.a() == j3 && this.f47994e == null) {
-                        org.telegram.messenger.g0.G3(5.0f, anVar.f44037z0, null);
+                        org.telegram.messenger.g0.G3(5.0f, anVar.f44043z0, null);
                         org.telegram.messenger.p2.APP_ERROR.a();
                         qj qjVar = anVar.Z;
                         for (int i7 = 0; i7 < qjVar.getChildCount(); i7++) {

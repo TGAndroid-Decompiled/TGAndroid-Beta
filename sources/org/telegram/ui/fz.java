@@ -5,25 +5,25 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.text.style.ReplacementSpan;
 public final class fz extends ReplacementSpan {
-    public final org.telegram.ui.ActionBar.f6 f45748a;
-    public final Paint f45749b;
-    public final int f45750c;
+    public final org.telegram.ui.ActionBar.f6 f45725a;
+    public final Paint f45726b;
+    public final int f45727c;
     public final org.telegram.ui.Components.my0 d;
 
     public fz(String str, int i7, org.telegram.ui.ActionBar.f6 f6Var) {
         Paint paint = new Paint(1);
-        this.f45749b = paint;
-        this.f45748a = f6Var;
-        this.f45750c = i7;
+        this.f45726b = paint;
+        this.f45725a = f6Var;
+        this.f45727c = i7;
         this.d = new org.telegram.ui.Components.my0(str, 9.33f, org.telegram.messenger.g0.o());
         paint.setStyle(Paint.Style.FILL);
     }
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
-        int w02 = org.telegram.ui.ActionBar.k6.w0(this.f45750c, this.f45748a);
+        int w02 = org.telegram.ui.ActionBar.k6.w0(this.f45727c, this.f45725a);
         int r12 = org.telegram.ui.ActionBar.k6.r1(0.15f, w02);
-        Paint paint2 = this.f45749b;
+        Paint paint2 = this.f45726b;
         paint2.setColor(r12);
         float f11 = (i13 + i11) / 2.0f;
         RectF rectF = org.telegram.messenger.g0.P;

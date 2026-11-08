@@ -1,10 +1,10 @@
 package m;
 public final class z0 extends g6.d0 {
-    public final a1 f19315c;
+    public final a1 f19318c;
 
     public z0(a1 a1Var) {
         super(a1Var, 16);
-        this.f19315c = a1Var;
+        this.f19318c = a1Var;
     }
 
     @Override

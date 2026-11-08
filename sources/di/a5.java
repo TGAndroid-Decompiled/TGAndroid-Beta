@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import c8.ha;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.Components.xj0;
 public final class a5 extends FrameLayout {
     public final LinearLayout f8804a;
@@ -38,22 +38,22 @@ public final class a5 extends FrameLayout {
         this.f8807e = new RectF();
         this.f8809n = new RectF();
         this.f8810r = 1.0f;
-        int i7 = org.telegram.ui.ActionBar.k6.f27941i6;
+        int i7 = org.telegram.ui.ActionBar.k6.f27944i6;
         b bVar = k5Var.f9306s;
         paint.setColor(org.telegram.ui.ActionBar.k6.w0(i7, bVar));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(0);
         TextView textView = new TextView(context);
         this.f8806c = textView;
-        textView.setText(hd.M0(2131754286, null));
-        int i10 = org.telegram.ui.ActionBar.k6.f27957j5;
+        textView.setText(id.M0(2131754286, null));
+        int i10 = org.telegram.ui.ActionBar.k6.f27960j5;
         org.telegram.ui.ActionBar.r6.V(textView, i10, bVar);
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(org.telegram.messenger.g0.o());
         textView.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(4.0f));
         TextView textView2 = new TextView(context);
         this.d = textView2;
-        textView2.setText(hd.M0(2131751780, null));
+        textView2.setText(id.M0(2131751780, null));
         org.telegram.ui.ActionBar.r6.V(textView2, i10, bVar);
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(org.telegram.messenger.g0.o());
@@ -71,7 +71,7 @@ public final class a5 extends FrameLayout {
         linearLayout2.setOrientation(0);
         xj0 xj0Var = new xj0(getContext());
         this.f8812w = xj0Var;
-        xj0Var.f40308r = true;
+        xj0Var.f40329r = true;
         xj0Var.a(2131231918, false);
         ImageView imageView = new ImageView(getContext());
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -119,8 +119,8 @@ public final class a5 extends FrameLayout {
                         z4 z4Var = new z4(a5Var, a5Var.getContext(), k5Var4.f9306s);
                         k5Var4.f9303f = z4Var;
                         LinearLayout linearLayout3 = a5Var.f8804a;
-                        z4Var.f17102a = true;
-                        ((org.telegram.ui.ActionBar.g1) z4Var.f17103b).showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - org.telegram.messenger.g0.L(8.0f));
+                        z4Var.f17105a = true;
+                        ((org.telegram.ui.ActionBar.g1) z4Var.f17106b).showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - org.telegram.messenger.g0.L(8.0f));
                         return;
                 }
             }
@@ -161,8 +161,8 @@ public final class a5 extends FrameLayout {
                         z4 z4Var = new z4(a5Var, a5Var.getContext(), k5Var4.f9306s);
                         k5Var4.f9303f = z4Var;
                         LinearLayout linearLayout3 = a5Var.f8804a;
-                        z4Var.f17102a = true;
-                        ((org.telegram.ui.ActionBar.g1) z4Var.f17103b).showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - org.telegram.messenger.g0.L(8.0f));
+                        z4Var.f17105a = true;
+                        ((org.telegram.ui.ActionBar.g1) z4Var.f17106b).showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - org.telegram.messenger.g0.L(8.0f));
                         return;
                 }
             }
@@ -203,8 +203,8 @@ public final class a5 extends FrameLayout {
                         z4 z4Var = new z4(a5Var, a5Var.getContext(), k5Var4.f9306s);
                         k5Var4.f9303f = z4Var;
                         LinearLayout linearLayout3 = a5Var.f8804a;
-                        z4Var.f17102a = true;
-                        ((org.telegram.ui.ActionBar.g1) z4Var.f17103b).showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - org.telegram.messenger.g0.L(8.0f));
+                        z4Var.f17105a = true;
+                        ((org.telegram.ui.ActionBar.g1) z4Var.f17106b).showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - org.telegram.messenger.g0.L(8.0f));
                         return;
                 }
             }

@@ -2,7 +2,7 @@ package i0;
 
 import android.graphics.Color;
 public abstract class a {
-    public static final ThreadLocal f15115a = new ThreadLocal();
+    public static final ThreadLocal f15118a = new ThreadLocal();
 
     public static int a(float[] fArr) {
         int round;
@@ -56,7 +56,7 @@ public abstract class a {
 
     public static int b(double d, double d2, double d10) {
         double d11;
-        ThreadLocal threadLocal = f15115a;
+        ThreadLocal threadLocal = f15118a;
         double[] dArr = (double[]) threadLocal.get();
         if (dArr == null) {
             dArr = new double[3];
@@ -210,7 +210,7 @@ public abstract class a {
     }
 
     public static double h(int i7) {
-        ThreadLocal threadLocal = f15115a;
+        ThreadLocal threadLocal = f15118a;
         double[] dArr = (double[]) threadLocal.get();
         if (dArr == null) {
             dArr = new double[3];

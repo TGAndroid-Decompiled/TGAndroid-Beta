@@ -5,7 +5,7 @@ import android.widget.TextView;
 import org.telegram.messenger.ls;
 import org.telegram.messenger.qs;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.jz;
+import org.telegram.ui.Components.kz;
 import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.pj0;
@@ -16,7 +16,7 @@ public final class tc extends org.telegram.ui.Components.na implements ls {
     public final long P1;
     public final ah.a Q1;
     public final FrameLayout R1;
-    public final jz S1;
+    public final kz S1;
     public Runnable T1;
     public final TLRPC.InputPeer U1;
     public final boolean V1;
@@ -30,13 +30,13 @@ public final class tc extends org.telegram.ui.Components.na implements ls {
     @Override
     public final void K() {
         super.K();
-        qs.f(this.f28613a).n(this, qs.f25084v3);
-        qs.f(this.f28613a).n(this, qs.f25105y3);
+        qs.f(this.f28616a).n(this, qs.f25093v3);
+        qs.f(this.f28616a).n(this, qs.f25114y3);
     }
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        l41 l41Var = new l41(this.f36261k1, getContext(), this.f28613a, 0, true, new ai.e(this, 10), this.I0);
+        l41 l41Var = new l41(this.f36277k1, getContext(), this.f28616a, 0, true, new ai.e(this, 10), this.I0);
         this.W1 = l41Var;
         return l41Var;
     }
@@ -53,14 +53,14 @@ public final class tc extends org.telegram.ui.Components.na implements ls {
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         Runnable runnable;
-        if (i7 == qs.f25084v3 || i7 == qs.f25105y3) {
+        if (i7 == qs.f25093v3 || i7 == qs.f25114y3) {
             l41 l41Var = this.W1;
             if (l41Var != null) {
                 l41Var.O(true);
             }
-            long j3 = ea.y(this.f28613a, false).p().amount;
+            long j3 = ea.y(this.f28616a, false).p().amount;
             long j10 = this.P1;
-            ((TextView) this.Q1.d).setText(org.telegram.messenger.hd.H(',', "StarsNeededTitle", (int) (j10 - j3)));
+            ((TextView) this.Q1.d).setText(org.telegram.messenger.id.H(',', "StarsNeededTitle", (int) (j10 - j3)));
             org.telegram.ui.Components.ja jaVar = this.l1;
             if (jaVar != null) {
                 jaVar.setTitle(O0());
@@ -86,8 +86,8 @@ public final class tc extends org.telegram.ui.Components.na implements ls {
     public final void show() {
         qj qjVar;
         if (!this.V1) {
-            org.telegram.messenger.k5.o(null, 2131747396, new org.telegram.ui.Components.hc(org.telegram.ui.Components.xa.a(getContext()), this.I0), 2131624226, 36);
-        } else if (ea.y(this.f28613a, false).p().amount >= this.P1) {
+            org.telegram.messenger.k5.o(null, 2131747398, new org.telegram.ui.Components.hc(org.telegram.ui.Components.xa.a(getContext()), this.I0), 2131624226, 36);
+        } else if (ea.y(this.f28616a, false).p().amount >= this.P1) {
             Runnable runnable = this.T1;
             if (runnable != null) {
                 runnable.run();
@@ -102,8 +102,8 @@ public final class tc extends org.telegram.ui.Components.na implements ls {
                 }
             }
             super.show();
-            qs.f(this.f28613a).c(this, qs.f25084v3);
-            qs.f(this.f28613a).c(this, qs.f25105y3);
+            qs.f(this.f28616a).c(this, qs.f25093v3);
+            qs.f(this.f28616a).c(this, qs.f25114y3);
         }
     }
 }

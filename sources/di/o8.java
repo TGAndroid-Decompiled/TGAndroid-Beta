@@ -3,7 +3,7 @@ package di;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.Components.xq;
 public final class o8 {
     public final f4 f9473a;
@@ -25,7 +25,7 @@ public final class o8 {
         textPaint.setTextSize(org.telegram.messenger.g0.L(14.0f));
         textPaint.setColor(-1);
         textPaint.setShadowLayer(org.telegram.messenger.g0.L(3.0f), 0.0f, org.telegram.messenger.g0.L(1.0f), 805306368);
-        StaticLayout staticLayout = new StaticLayout(hd.M0(2131744481, null), textPaint, org.telegram.messenger.g0.f22544q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        StaticLayout staticLayout = new StaticLayout(id.M0(2131744483, null), textPaint, org.telegram.messenger.g0.f22563q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         this.d = staticLayout;
         if (staticLayout.getLineCount() > 0) {
             f10 = staticLayout.getLineLeft(0);

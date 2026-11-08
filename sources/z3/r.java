@@ -1,14 +1,34 @@
 package z3;
-
-import f3.i0;
 public final class r {
-    public final boolean f59586a;
-    public final String f59587b;
-    public final i0 f59588c;
-    public final int d;
-    public final byte[] f59589e;
+    public final int f59669a;
+    public final int f59670b;
+    public final long f59671c;
+    public final long d;
+    public final long f59672e;
+    public final long f59673f;
+    public final e2.u f59674g;
+    public final int h;
+    public final long[] f59675i;
+    public final long[] f59676j;
+    public final int f59677k;
+    public final s[] f59678l;
 
-    public r(boolean r5, java.lang.String r6, int r7, byte[] r8, int r9, int r10, byte[] r11) {
-        throw new UnsupportedOperationException("Method not decompiled: z3.r.<init>(boolean, java.lang.String, int, byte[], int, int, byte[]):void");
+    public r(int i7, int i10, long j3, long j10, long j11, long j12, e2.u uVar, int i11, s[] sVarArr, int i12, long[] jArr, long[] jArr2) {
+        this.f59669a = i7;
+        this.f59670b = i10;
+        this.f59671c = j3;
+        this.d = j10;
+        this.f59672e = j11;
+        this.f59673f = j12;
+        this.f59674g = uVar;
+        this.h = i11;
+        this.f59678l = sVarArr;
+        this.f59677k = i12;
+        this.f59675i = jArr;
+        this.f59676j = jArr2;
+    }
+
+    public final r a(e2.u uVar) {
+        return new r(this.f59669a, this.f59670b, this.f59671c, this.d, this.f59672e, this.f59673f, uVar, this.h, this.f59678l, this.f59677k, this.f59675i, this.f59676j);
     }
 }

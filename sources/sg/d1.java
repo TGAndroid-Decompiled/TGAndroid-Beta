@@ -7,47 +7,47 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.q5;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class d1 {
-    public static final q5 f54938m = new q5("ShapeDetector", true);
-    public static final double f54939n = Math.sqrt(125000.0d) / 2.0d;
-    public int f54940a;
-    public ArrayList f54941b;
-    public ArrayList f54942c;
+    public static final q5 f55030m = new q5("ShapeDetector", true);
+    public static final double f55031n = Math.sqrt(125000.0d) / 2.0d;
+    public int f55032a;
+    public ArrayList f55033b;
+    public ArrayList f55034c;
     public boolean d;
-    public ii.c f54943e;
-    public Context f54944f;
-    public SharedPreferences f54945g;
+    public ii.c f55035e;
+    public Context f55036f;
+    public SharedPreferences f55037g;
     public boolean h;
-    public ArrayList f54946i;
-    public AtomicBoolean f54947j;
-    public AtomicBoolean f54948k;
-    public a1 f54949l;
+    public ArrayList f55038i;
+    public AtomicBoolean f55039j;
+    public AtomicBoolean f55040k;
+    public a1 f55041l;
 
     public static m8.d a(ArrayList arrayList) {
         if (arrayList.size() <= 0) {
             return null;
         }
-        double d = ((b1) arrayList.get(0)).f54928a;
-        double d2 = ((b1) arrayList.get(0)).f54929b;
+        double d = ((b1) arrayList.get(0)).f55020a;
+        double d2 = ((b1) arrayList.get(0)).f55021b;
         m8.d dVar = new m8.d(1);
-        dVar.f19935b = d;
-        dVar.f19936c = d2;
+        dVar.f19938b = d;
+        dVar.f19939c = d2;
         dVar.d = d;
-        dVar.f19937e = d2;
+        dVar.f19940e = d2;
         for (int i7 = 1; i7 < arrayList.size(); i7++) {
             b1 b1Var = (b1) arrayList.get(i7);
-            double d10 = b1Var.f54928a;
-            double d11 = b1Var.f54929b;
-            if (dVar.f19935b >= d10) {
-                dVar.f19935b = d10;
+            double d10 = b1Var.f55020a;
+            double d11 = b1Var.f55021b;
+            if (dVar.f19938b >= d10) {
+                dVar.f19938b = d10;
             }
-            if (dVar.f19936c >= d11) {
-                dVar.f19936c = d11;
+            if (dVar.f19939c >= d11) {
+                dVar.f19939c = d11;
             }
             if (dVar.d <= d10) {
                 dVar.d = d10;
             }
-            if (dVar.f19937e <= d11) {
-                dVar.f19937e = d11;
+            if (dVar.f19940e <= d11) {
+                dVar.f19940e = d11;
             }
         }
         return dVar;
@@ -57,11 +57,11 @@ public final class d1 {
         b1 b1Var = new b1(0.0d, 0.0d);
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
             b1 b1Var2 = (b1) arrayList.get(i7);
-            b1Var.f54928a += b1Var2.f54928a;
-            b1Var.f54929b += b1Var2.f54929b;
+            b1Var.f55020a += b1Var2.f55020a;
+            b1Var.f55021b += b1Var2.f55021b;
         }
-        b1Var.f54928a /= arrayList.size();
-        b1Var.f54929b /= arrayList.size();
+        b1Var.f55020a /= arrayList.size();
+        b1Var.f55021b /= arrayList.size();
         return b1Var;
     }
 
@@ -74,12 +74,12 @@ public final class d1 {
         int i7 = 0;
         while (i7 < min) {
             b1 b1Var3 = (b1) arrayList.get(i7);
-            double d10 = b1Var3.f54928a;
+            double d10 = b1Var3.f55020a;
             double d11 = cos;
-            double d12 = b1Var2.f54928a;
+            double d12 = b1Var2.f55020a;
             double d13 = d10 - d12;
-            double d14 = b1Var3.f54929b;
-            double d15 = b1Var2.f54929b;
+            double d14 = b1Var3.f55021b;
+            double d15 = b1Var2.f55021b;
             double d16 = d14 - d15;
             d2 += ((b1) arrayList2.get(i7)).a(((d13 * d11) - (d16 * sin)) + d12, (d16 * d11) + (d13 * sin) + d15);
             i7++;
@@ -97,9 +97,9 @@ public final class d1 {
             int i10 = max + 1;
             b1 b1Var3 = (b1) arrayList.get(i10);
             b1Var.getClass();
-            double a10 = b1Var.a(b1Var2.f54928a, b1Var2.f54929b);
-            double a11 = b1Var.a(b1Var3.f54928a, b1Var3.f54929b);
-            double a12 = b1Var2.a(b1Var3.f54928a, b1Var3.f54929b);
+            double a10 = b1Var.a(b1Var2.f55020a, b1Var2.f55021b);
+            double a11 = b1Var.a(b1Var3.f55020a, b1Var3.f55021b);
+            double a12 = b1Var2.a(b1Var3.f55020a, b1Var3.f55021b);
             if ((Math.acos((((a11 * a11) + (a10 * a10)) - (a12 * a12)) / ((a10 * 2.0d) * a11)) / 3.141592653589793d) * 180.0d > 18.0d) {
                 if (i7 > 0) {
                     i7--;
@@ -116,7 +116,7 @@ public final class d1 {
         ArrayList arrayList2 = new ArrayList();
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
             b1 b1Var = (b1) arrayList.get(i7);
-            arrayList2.add(new b1(b1Var.f54928a, b1Var.f54929b));
+            arrayList2.add(new b1(b1Var.f55020a, b1Var.f55021b));
         }
         return arrayList2;
     }
@@ -124,17 +124,17 @@ public final class d1 {
     public final void c() {
         ArrayList arrayList;
         synchronized (this) {
-            this.f54941b.clear();
+            this.f55033b.clear();
         }
-        f54938m.cancelRunnable(this.f54949l);
-        this.f54948k.set(false);
+        f55030m.cancelRunnable(this.f55041l);
+        this.f55040k.set(false);
         this.d = false;
-        if (this.h && (arrayList = this.f54946i) != null) {
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f54944f);
-            alertDialog$Builder.f27293a.R = "Shape?";
+        if (this.h && (arrayList = this.f55038i) != null) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f55036f);
+            alertDialog$Builder.f27296a.R = "Shape?";
             alertDialog$Builder.f(new String[]{"Log all", "Circle", "Rectangle", "Star", "Bubble", "Arrow", "None"}, new og.j(14, this, arrayList));
             alertDialog$Builder.p();
-            this.f54946i = null;
+            this.f55038i = null;
         }
     }
 }

@@ -2,7 +2,7 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
-public final class lq0 extends lz {
+public final class lq0 extends mz {
     public final zp0 U;
     public final xs0 V;
 
@@ -14,7 +14,7 @@ public final class lq0 extends lz {
 
     @Override
     public final int getColumnsCount() {
-        return this.V.f40414o1[xs0.z0(this.U.E) ? 1 : 0];
+        return this.V.f40435o1[xs0.z0(this.U.E) ? 1 : 0];
     }
 
     @Override
@@ -49,7 +49,7 @@ public final class lq0 extends lz {
     @Override
     public final void onDraw(Canvas canvas) {
         xs0 xs0Var = this.V;
-        xs0Var.V0.setColor(xs0Var.s0(org.telegram.ui.ActionBar.k6.f27849d6));
+        xs0Var.V0.setColor(xs0Var.s0(org.telegram.ui.ActionBar.k6.f27852d6));
         canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), xs0Var.V0);
         super.onDraw(canvas);
     }

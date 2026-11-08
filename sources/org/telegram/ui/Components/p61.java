@@ -2,11 +2,11 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 public final class p61 extends v4.c0 {
-    public final jg.i0 f36785r;
+    public final jg.i0 f36811r;
 
     public p61(jg.i0 i0Var, Context context) {
         super(context);
-        this.f36785r = i0Var;
+        this.f36811r = i0Var;
     }
 
     @Override

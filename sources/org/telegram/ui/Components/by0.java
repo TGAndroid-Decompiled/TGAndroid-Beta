@@ -8,12 +8,12 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class by0 implements org.telegram.ui.Cells.l1 {
-    public final boolean f32339a;
-    public final boolean f32340b;
+    public final boolean f32378a;
+    public final boolean f32379b;
 
     public by0(boolean z9, boolean z10) {
-        this.f32339a = z9;
-        this.f32340b = z10;
+        this.f32378a = z9;
+        this.f32379b = z10;
     }
 
     @Override
@@ -33,7 +33,7 @@ public final class by0 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final boolean J0(long j3) {
-        if (this.f32339a && this.f32340b) {
+        if (this.f32378a && this.f32379b) {
             return true;
         }
         return false;
@@ -61,7 +61,7 @@ public final class by0 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final boolean Q1(long j3) {
-        return this.f32339a;
+        return this.f32378a;
     }
 
     @Override
@@ -187,16 +187,16 @@ public final class by0 implements org.telegram.ui.Cells.l1 {
     @Override
     public final String y(long j3) {
         int i7;
-        if (this.f32339a) {
-            if (this.f32340b) {
-                i7 = 2131744278;
+        if (this.f32378a) {
+            if (this.f32379b) {
+                i7 = 2131744280;
             } else {
-                i7 = 2131744286;
+                i7 = 2131744288;
             }
         } else {
-            i7 = 2131744280;
+            i7 = 2131744282;
         }
-        return org.telegram.messenger.hd.M0(i7, null);
+        return org.telegram.messenger.id.M0(i7, null);
     }
 
     @Override

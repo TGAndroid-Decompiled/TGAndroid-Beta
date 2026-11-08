@@ -2,26 +2,26 @@ package org.telegram.messenger;
 
 import org.telegram.SQLite.SQLitePreparedStatement;
 public final class ah implements Runnable {
-    public final ui f21435a;
-    public final long f21436b;
-    public final int f21437c;
+    public final ui f21434a;
+    public final long f21435b;
+    public final int f21436c;
     public final double d;
 
     public ah(ui uiVar, long j3, int i7, double d) {
-        this.f21435a = uiVar;
-        this.f21436b = j3;
-        this.f21437c = i7;
+        this.f21434a = uiVar;
+        this.f21435b = j3;
+        this.f21436c = i7;
         this.d = d;
     }
 
     @Override
     public final void run() {
-        ui uiVar = this.f21435a;
-        long j3 = this.f21436b;
-        int i7 = this.f21437c;
+        ui uiVar = this.f21434a;
+        long j3 = this.f21435b;
+        int i7 = this.f21436c;
         double d = this.d;
         try {
-            SQLitePreparedStatement executeFast = uiVar.getMessagesStorage().f26698b.executeFast("REPLACE INTO chat_hints VALUES(?, ?, ?, ?)");
+            SQLitePreparedStatement executeFast = uiVar.getMessagesStorage().f26721b.executeFast("REPLACE INTO chat_hints VALUES(?, ?, ?, ?)");
             executeFast.requery();
             executeFast.bindLong(1, j3);
             executeFast.bindInteger(2, i7);

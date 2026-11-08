@@ -3,17 +3,17 @@ package sg;
 import android.animation.ValueAnimator;
 import android.graphics.RectF;
 import org.telegram.messenger.p2;
-import org.telegram.ui.Components.uy;
+import org.telegram.ui.Components.vy;
 import org.telegram.ui.Components.xq;
 public final class e0 implements Runnable {
-    public final int f54950a;
-    public final j0 f54951b;
-    public final z0 f54952c;
+    public final int f55042a;
+    public final j0 f55043b;
+    public final z0 f55044c;
 
     public e0(j0 j0Var, z0 z0Var, int i7) {
-        this.f54950a = i7;
-        this.f54951b = j0Var;
-        this.f54952c = z0Var;
+        this.f55042a = i7;
+        this.f55043b = j0Var;
+        this.f55044c = z0Var;
     }
 
     @Override
@@ -21,25 +21,25 @@ public final class e0 implements Runnable {
         boolean z9;
         boolean z10;
         float f10;
-        int i7 = this.f54950a;
-        z0 z0Var = this.f54952c;
-        j0 j0Var = this.f54951b;
+        int i7 = this.f55042a;
+        z0 z0Var = this.f55044c;
+        j0 j0Var = this.f55043b;
         switch (i7) {
             case 0:
-                j0Var.f54995c = z0Var;
+                j0Var.f55087c = z0Var;
                 if (j0Var.h == null) {
                     j0Var.h = new RectF();
                 }
-                j0Var.f54995c.a(j0Var.h);
-                uy uyVar = j0Var.f54993a;
-                if (uyVar != null) {
-                    uyVar.b();
+                j0Var.f55087c.a(j0Var.h);
+                vy vyVar = j0Var.f55085a;
+                if (vyVar != null) {
+                    vyVar.b();
                     return;
                 }
                 return;
             default:
-                if (z0Var != null && j0Var.f55007q == 0) {
-                    j0Var.f55007q = k1.b(j0Var.f54998g);
+                if (z0Var != null && j0Var.f55099q == 0) {
+                    j0Var.f55099q = k1.b(j0Var.f55090g);
                 }
                 boolean z11 = j0Var.H;
                 if (z0Var != null) {
@@ -72,9 +72,9 @@ public final class e0 implements Runnable {
                     j0Var.K.setInterpolator(xq.h);
                     j0Var.K.start();
                     j0Var.d = z0Var;
-                    uy uyVar2 = j0Var.f54993a;
-                    if (uyVar2 != null) {
-                        uyVar2.b();
+                    vy vyVar2 = j0Var.f55085a;
+                    if (vyVar2 != null) {
+                        vyVar2.b();
                     }
                     if (j0Var.H) {
                         p2.SELECTION_CHANGE.a();
@@ -83,9 +83,9 @@ public final class e0 implements Runnable {
                     return;
                 } else if (z0Var != j0Var.d) {
                     j0Var.d = z0Var;
-                    uy uyVar3 = j0Var.f54993a;
-                    if (uyVar3 != null) {
-                        uyVar3.b();
+                    vy vyVar3 = j0Var.f55085a;
+                    if (vyVar3 != null) {
+                        vyVar3.b();
                         return;
                     }
                     return;

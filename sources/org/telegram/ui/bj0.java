@@ -6,15 +6,15 @@ import java.util.HashMap;
 import java.util.Locale;
 import org.telegram.tgnet.TLRPC;
 public final class bj0 implements r9, org.telegram.ui.Components.bi {
-    public final bk0 f44358a;
+    public final bk0 f44361a;
 
     public bj0(bk0 bk0Var) {
-        this.f44358a = bk0Var;
+        this.f44361a = bk0Var;
     }
 
     @Override
     public void F0() {
-        org.telegram.messenger.g0.v1(this.f44358a.fragmentView.findFocus());
+        org.telegram.messenger.g0.v1(this.f44361a.fragmentView.findFocus());
     }
 
     @Override
@@ -29,48 +29,48 @@ public final class bj0 implements r9, org.telegram.ui.Components.bi {
 
     @Override
     public void V0(org.telegram.messenger.zr zrVar) {
-        boolean isEmpty = TextUtils.isEmpty(zrVar.f26908b);
-        bk0 bk0Var = this.f44358a;
+        boolean isEmpty = TextUtils.isEmpty(zrVar.f26910b);
+        bk0 bk0Var = this.f44361a;
         if (!isEmpty) {
-            bk0Var.Y[0].setText(zrVar.f26908b);
+            bk0Var.Y[0].setText(zrVar.f26910b);
         }
         if (!TextUtils.isEmpty(zrVar.d)) {
             bk0Var.Y[1].setText(zrVar.d);
         }
-        if (!TextUtils.isEmpty(zrVar.f26909c)) {
-            bk0Var.Y[2].setText(zrVar.f26909c);
+        if (!TextUtils.isEmpty(zrVar.f26911c)) {
+            bk0Var.Y[2].setText(zrVar.f26911c);
         }
-        int i7 = zrVar.f26918n;
+        int i7 = zrVar.f26920n;
         if (i7 != 0) {
             if (i7 != 1) {
                 if (i7 == 2) {
-                    bk0Var.f44411x = "female";
-                    bk0Var.Y[4].setText(org.telegram.messenger.hd.M0(2131747568, null));
+                    bk0Var.f44414x = "female";
+                    bk0Var.Y[4].setText(org.telegram.messenger.id.M0(2131747570, null));
                 }
             } else {
-                bk0Var.f44411x = "male";
-                bk0Var.Y[4].setText(org.telegram.messenger.hd.M0(2131747507, null));
+                bk0Var.f44414x = "male";
+                bk0Var.Y[4].setText(org.telegram.messenger.id.M0(2131747509, null));
             }
         }
-        if (!TextUtils.isEmpty(zrVar.f26917m)) {
-            String str = zrVar.f26917m;
-            bk0Var.f44399s = str;
+        if (!TextUtils.isEmpty(zrVar.f26919m)) {
+            String str = zrVar.f26919m;
+            bk0Var.f44402s = str;
             String str2 = (String) bk0Var.Y0.get(str);
             if (str2 != null) {
                 bk0Var.Y[5].setText(str2);
             }
         }
-        if (!TextUtils.isEmpty(zrVar.f26916l)) {
-            String str3 = zrVar.f26916l;
-            bk0Var.f44408w = str3;
+        if (!TextUtils.isEmpty(zrVar.f26918l)) {
+            String str3 = zrVar.f26918l;
+            bk0Var.f44411w = str3;
             String str4 = (String) bk0Var.Y0.get(str3);
             if (str4 != null) {
                 bk0Var.Y[6].setText(str4);
             }
         }
-        int i10 = zrVar.f26915k;
-        if (i10 > 0 && zrVar.f26914j > 0 && zrVar.f26913i > 0) {
-            bk0Var.Y[3].setText(String.format(Locale.US, "%02d.%02d.%d", Integer.valueOf(i10), Integer.valueOf(zrVar.f26914j), Integer.valueOf(zrVar.f26913i)));
+        int i10 = zrVar.f26917k;
+        if (i10 > 0 && zrVar.f26916j > 0 && zrVar.f26915i > 0) {
+            bk0Var.Y[3].setText(String.format(Locale.US, "%02d.%02d.%d", Integer.valueOf(i10), Integer.valueOf(zrVar.f26916j), Integer.valueOf(zrVar.f26915i)));
         }
     }
 
@@ -92,7 +92,7 @@ public final class bj0 implements r9, org.telegram.ui.Components.bi {
     @Override
     public void o1(int i7, boolean z9, boolean z10, int i10, int i11, long j3, boolean z11, boolean z12, long j10) {
         org.telegram.ui.Components.di diVar;
-        bk0 bk0Var = this.f44358a;
+        bk0 bk0Var = this.f44361a;
         if (bk0Var.getParentActivity() != null && (diVar = bk0Var.R0) != null) {
             if (i7 != 8 && i7 != 7) {
                 diVar.L(i7);
@@ -102,8 +102,8 @@ public final class bj0 implements r9, org.telegram.ui.Components.bi {
             if (i7 != 8) {
                 diVar.a(true);
             }
-            HashMap<Object, Object> selectedPhotos = bk0Var.R0.f32924a2.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = bk0Var.R0.f32924a2.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = bk0Var.R0.f32932a2.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = bk0Var.R0.f32932a2.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 ArrayList arrayList = new ArrayList();
                 for (int i12 = 0; i12 < selectedPhotosOrder.size(); i12++) {
@@ -111,9 +111,9 @@ public final class bj0 implements r9, org.telegram.ui.Components.bi {
                     ?? obj = new Object();
                     String str = gfVar.h;
                     if (str != null) {
-                        obj.f22493c = str;
+                        obj.f22512c = str;
                     } else {
-                        obj.f22493c = gfVar.I;
+                        obj.f22512c = gfVar.I;
                     }
                     arrayList.add(obj);
                     gfVar.e();

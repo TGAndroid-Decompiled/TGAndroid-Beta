@@ -3,10 +3,10 @@ package l4;
 import h2.x;
 import java.util.regex.Pattern;
 public final class a {
-    public static final Pattern f18125c = Pattern.compile("\\[voice=\"([^\"]*)\"\\]");
+    public static final Pattern f18128c = Pattern.compile("\\[voice=\"([^\"]*)\"\\]");
     public static final Pattern d = Pattern.compile("^((?:[0-9]*\\.)?[0-9]+)(px|em|%)$");
-    public final x f18126a = new x();
-    public final StringBuilder f18127b = new StringBuilder();
+    public final x f18129a = new x();
+    public final StringBuilder f18130b = new StringBuilder();
 
     public static String a(x xVar, StringBuilder sb2) {
         boolean z9 = false;

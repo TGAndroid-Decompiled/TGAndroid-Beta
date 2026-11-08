@@ -164,7 +164,23 @@ public final class u implements r9, q51, h2.d, u2.u, g0 {
         this.f11190b = length;
     }
 
-    public g.f e() {
+    public int e(int i7, int i10) {
+        int p10 = p();
+        if (p10 >= 0 && p10 <= i7 && p10 * i10 * 4 <= ((org.telegram.utils.twidget.i) this.f11191c).d - this.f11190b) {
+            return p10;
+        }
+        throw org.telegram.utils.twidget.i.a();
+    }
+
+    @Override
+    public MediaCodecInfo f(int i7) {
+        if (((MediaCodecInfo[]) this.f11191c) == null) {
+            this.f11191c = new MediaCodecList(this.f11190b).getCodecInfos();
+        }
+        return ((MediaCodecInfo[]) this.f11191c)[i7];
+    }
+
+    public g.f g() {
         int i7;
         Message message;
         g.b bVar = (g.b) this.f11191c;
@@ -242,15 +258,7 @@ public final class u implements r9, q51, h2.d, u2.u, g0 {
         return fVar;
     }
 
-    @Override
-    public MediaCodecInfo f(int i7) {
-        if (((MediaCodecInfo[]) this.f11191c) == null) {
-            this.f11191c = new MediaCodecList(this.f11190b).getCodecInfos();
-        }
-        return ((MediaCodecInfo[]) this.f11191c)[i7];
-    }
-
-    public rc.u g(String str) {
+    public rc.u h(String str) {
         Matcher matcher;
         String str2;
         Matcher matcher2;
@@ -266,7 +274,7 @@ public final class u implements r9, q51, h2.d, u2.u, g0 {
                     if (i10 >= 0) {
                         String scheme = create.getScheme();
                         String userInfo = create.getUserInfo();
-                        SecureRandom secureRandom = rc.k.f54367a;
+                        SecureRandom secureRandom = rc.k.f54459a;
                         String host = create.getHost();
                         if (host == null) {
                             String rawAuthority = create.getRawAuthority();
@@ -317,8 +325,8 @@ public final class u implements r9, q51, h2.d, u2.u, g0 {
                                             }
                                             rc.s sVar = new rc.s(socketFactory, new rc.a(str2, i7), i10, null, null);
                                             sVar.d = 1;
-                                            sVar.f54384e = 250;
-                                            sVar.f54385f = true;
+                                            sVar.f54476e = 250;
+                                            sVar.f54477f = true;
                                             if (port >= 0) {
                                                 str2 = str2 + ":" + port;
                                             }
@@ -350,7 +358,12 @@ public final class u implements r9, q51, h2.d, u2.u, g0 {
         throw new IllegalArgumentException("The given URI is null.");
     }
 
-    public void h(int i7) {
+    @Override
+    public boolean h1(String str, j9 j9Var) {
+        return false;
+    }
+
+    public void i(int i7) {
         ByteBuffer allocate = ByteBuffer.allocate(i7);
         int position = ((ByteBuffer) this.f11191c).position();
         ((ByteBuffer) this.f11191c).position(0);
@@ -359,19 +372,28 @@ public final class u implements r9, q51, h2.d, u2.u, g0 {
         this.f11191c = allocate;
     }
 
-    @Override
-    public boolean h1(String str, j9 j9Var) {
-        return false;
+    public float j() {
+        float intBitsToFloat = Float.intBitsToFloat(p());
+        if (!Float.isNaN(intBitsToFloat) && !Float.isInfinite(intBitsToFloat)) {
+            return intBitsToFloat;
+        }
+        return 0.0f;
     }
 
-    public byte i(int i7) {
+    public void k(int i7, float[] fArr) {
+        for (int i10 = 0; i10 < i7; i10++) {
+            fArr[i10] = j();
+        }
+    }
+
+    public byte l(int i7) {
         if (i7 >= 0 && this.f11190b > i7) {
             return ((ByteBuffer) this.f11191c).get(i7);
         }
         throw new IndexOutOfBoundsException(String.format("Bad index: index=%d, length=%d", Integer.valueOf(i7), Integer.valueOf(this.f11190b)));
     }
 
-    public long j(int i7) {
+    public long m(int i7) {
         if (i7 >= 0 && i7 < this.f11190b) {
             return ((long[]) this.f11191c)[i7];
         }
@@ -380,52 +402,16 @@ public final class u implements r9, q51, h2.d, u2.u, g0 {
         throw new IndexOutOfBoundsException(n10.toString());
     }
 
-    public boolean k(int i7) {
+    public boolean n(int i7) {
         int i10 = i7 / 8;
-        if (((1 << (i7 % 8)) & i(i10)) != 0) {
+        if (((1 << (i7 % 8)) & l(i10)) != 0) {
             return true;
         }
         return false;
     }
 
-    public synchronized List l() {
+    public synchronized List o() {
         return DesugarCollections.unmodifiableList(new ArrayList((ArrayList) this.f11191c));
-    }
-
-    public void m(int i7) {
-        int capacity = ((ByteBuffer) this.f11191c).capacity();
-        int i10 = this.f11190b;
-        if (capacity < i10 + 1) {
-            h(i10 + 1024);
-        }
-        ((ByteBuffer) this.f11191c).put((byte) i7);
-        this.f11190b++;
-    }
-
-    public void n(byte[] bArr) {
-        int capacity = ((ByteBuffer) this.f11191c).capacity();
-        int i7 = this.f11190b;
-        if (capacity < bArr.length + i7) {
-            h(i7 + bArr.length + 1024);
-        }
-        ((ByteBuffer) this.f11191c).put(bArr);
-        this.f11190b += bArr.length;
-    }
-
-    public int o(int[] iArr, int i7) {
-        int i10 = iArr[0];
-        int i11 = 1;
-        int i12 = 0;
-        int i13 = 0;
-        while (i12 < i7) {
-            if (k(i10 + i12)) {
-                i13 += i11;
-            }
-            i12++;
-            i11 *= 2;
-        }
-        iArr[0] = iArr[0] + i7;
-        return i13;
     }
 
     @Override
@@ -442,7 +428,74 @@ public final class u implements r9, q51, h2.d, u2.u, g0 {
         return false;
     }
 
-    public long p(f3.l lVar) {
+    public int p() {
+        int i7 = this.f11190b;
+        int i10 = i7 + 4;
+        org.telegram.utils.twidget.i iVar = (org.telegram.utils.twidget.i) this.f11191c;
+        if (i10 <= iVar.d) {
+            int i11 = iVar.f52848a.getInt(i7);
+            this.f11190b += 4;
+            return i11;
+        }
+        throw org.telegram.utils.twidget.i.a();
+    }
+
+    public void q(int i7) {
+        int capacity = ((ByteBuffer) this.f11191c).capacity();
+        int i10 = this.f11190b;
+        if (capacity < i10 + 1) {
+            i(i10 + 1024);
+        }
+        ((ByteBuffer) this.f11191c).put((byte) i7);
+        this.f11190b++;
+    }
+
+    public void r(byte[] bArr) {
+        int capacity = ((ByteBuffer) this.f11191c).capacity();
+        int i7 = this.f11190b;
+        if (capacity < bArr.length + i7) {
+            i(i7 + bArr.length + 1024);
+        }
+        ((ByteBuffer) this.f11191c).put(bArr);
+        this.f11190b += bArr.length;
+    }
+
+    public int s(int[] iArr, int i7) {
+        int i10 = iArr[0];
+        int i11 = 1;
+        int i12 = 0;
+        int i13 = 0;
+        while (i12 < i7) {
+            if (n(i10 + i12)) {
+                i13 += i11;
+            }
+            i12++;
+            i11 *= 2;
+        }
+        iArr[0] = iArr[0] + i7;
+        return i13;
+    }
+
+    @Override
+    public boolean t(String str, String str2, MediaCodecInfo.CodecCapabilities codecCapabilities) {
+        return codecCapabilities.isFeatureSupported(str);
+    }
+
+    public String toString() {
+        switch (this.f11189a) {
+            case 20:
+                l9.a aVar = (l9.a) this.f11191c;
+                ArrayList arrayList = new ArrayList(aVar.f18205b);
+                for (int i7 = 0; i7 < aVar.f18205b; i7++) {
+                    arrayList.add(h2.m0.e0(aVar.b(i7)));
+                }
+                return "UnsupportedBrands{major=" + h2.m0.e0(this.f11190b) + ", compatible=" + arrayList + "}";
+            default:
+                return super.toString();
+        }
+    }
+
+    public long u(f3.l lVar) {
         h2.x xVar = (h2.x) this.f11191c;
         int i7 = 0;
         lVar.k(xVar.f14162a, 0, 1, false);
@@ -466,7 +519,7 @@ public final class u implements r9, q51, h2.d, u2.u, g0 {
         return i13;
     }
 
-    public void q(Object instance) {
+    public void v(Object instance) {
         Object[] objArr = (Object[]) this.f11191c;
         kotlin.jvm.internal.j.e(instance, "instance");
         int i7 = this.f11190b;
@@ -482,7 +535,7 @@ public final class u implements r9, q51, h2.d, u2.u, g0 {
         }
     }
 
-    public byte[] r(int i7, int i10) {
+    public byte[] w(int i7, int i10) {
         int i11 = i10 - i7;
         if (i11 >= 0 && i7 >= 0 && this.f11190b >= i10) {
             byte[] bArr = new byte[i11];
@@ -494,7 +547,7 @@ public final class u implements r9, q51, h2.d, u2.u, g0 {
         throw new IllegalArgumentException(String.format("Bad range: beginIndex=%d, endIndex=%d, length=%d", Integer.valueOf(i7), Integer.valueOf(i10), Integer.valueOf(this.f11190b)));
     }
 
-    public String s(h4 h4Var) {
+    public String x(h4 h4Var) {
         String str;
         w wVar = (w) this.f11191c;
         int i7 = this.f11190b;
@@ -525,13 +578,13 @@ public final class u implements r9, q51, h2.d, u2.u, g0 {
                 }
                 v vVar = new v(h4Var);
                 com.google.android.gms.internal.play_billing.e eVar = (com.google.android.gms.internal.play_billing.e) gVar;
-                Parcel V0 = eVar.V0();
-                V0.writeString(packageName);
-                V0.writeString(str);
+                Parcel v12 = eVar.v1();
+                v12.writeString(packageName);
+                v12.writeString(str);
                 int i10 = com.google.android.gms.internal.play_billing.d.f7317a;
-                V0.writeStrongBinder(vVar);
-                eVar.f306b.transact(1, V0, null, 1);
-                V0.recycle();
+                v12.writeStrongBinder(vVar);
+                eVar.f306b.transact(1, v12, null, 1);
+                v12.recycle();
                 return "billingOverrideService.getBillingOverride";
             }
             throw null;
@@ -540,25 +593,6 @@ public final class u implements r9, q51, h2.d, u2.u, g0 {
             com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "An error occurred while retrieving billing override.", e10);
             h4Var.a(0);
             return "billingOverrideService.getBillingOverride";
-        }
-    }
-
-    @Override
-    public boolean t(String str, String str2, MediaCodecInfo.CodecCapabilities codecCapabilities) {
-        return codecCapabilities.isFeatureSupported(str);
-    }
-
-    public String toString() {
-        switch (this.f11189a) {
-            case 19:
-                l9.a aVar = (l9.a) this.f11191c;
-                ArrayList arrayList = new ArrayList(aVar.f18202b);
-                for (int i7 = 0; i7 < aVar.f18202b; i7++) {
-                    arrayList.add(h2.m0.e0(aVar.b(i7)));
-                }
-                return "UnsupportedBrands{major=" + h2.m0.e0(this.f11190b) + ", compatible=" + arrayList + "}";
-            default:
-                return super.toString();
         }
     }
 
@@ -583,10 +617,10 @@ public final class u implements r9, q51, h2.d, u2.u, g0 {
                 this.f11190b = 0;
                 this.f11191c = new StringBuilder();
                 return;
-            case 15:
+            case 16:
                 this.f11191c = new w7.s(22);
                 return;
-            case 17:
+            case 18:
                 this.f11191c = new h2.x(8);
                 return;
             default:
@@ -599,17 +633,17 @@ public final class u implements r9, q51, h2.d, u2.u, g0 {
     public u(int i7, int i10) {
         this.f11189a = i10;
         switch (i10) {
-            case 12:
+            case 13:
                 if (i7 > 0) {
                     this.f11191c = new Object[i7];
                     return;
                 }
                 throw new IllegalArgumentException("The max pool size must be > 0");
-            case 13:
+            case 14:
                 this.f11191c = ByteBuffer.allocate(i7);
                 this.f11190b = 0;
                 return;
-            case 14:
+            case 15:
                 this.f11191c = new CountDownLatch(1);
                 this.f11190b = i7;
                 return;
@@ -625,13 +659,13 @@ public final class u implements r9, q51, h2.d, u2.u, g0 {
 
     public u(int[] iArr, int i7) {
         l9.a aVar;
-        this.f11189a = 19;
+        this.f11189a = 20;
         this.f11190b = i7;
         if (iArr != null) {
-            l9.a aVar2 = l9.a.f18200c;
-            aVar = iArr.length == 0 ? l9.a.f18200c : new l9.a(Arrays.copyOf(iArr, iArr.length));
+            l9.a aVar2 = l9.a.f18203c;
+            aVar = iArr.length == 0 ? l9.a.f18203c : new l9.a(Arrays.copyOf(iArr, iArr.length));
         } else {
-            aVar = l9.a.f18200c;
+            aVar = l9.a.f18203c;
         }
         this.f11191c = aVar;
     }
@@ -652,6 +686,12 @@ public final class u implements r9, q51, h2.d, u2.u, g0 {
     public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
     }
 
+    public u(org.telegram.utils.twidget.i iVar) {
+        this.f11189a = 11;
+        this.f11191c = iVar;
+        this.f11190b = 20;
+    }
+
     public u(Context context) {
         this.f11189a = 4;
         int e10 = g.f.e(context, 0);
@@ -660,7 +700,7 @@ public final class u implements r9, q51, h2.d, u2.u, g0 {
     }
 
     public u(boolean z9, boolean z10, boolean z11) {
-        this.f11189a = 16;
+        this.f11189a = 17;
         this.f11190b = (z9 || z10 || z11) ? 1 : 0;
     }
 

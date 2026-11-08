@@ -4,21 +4,21 @@ import android.graphics.SurfaceTexture;
 import android.util.Size;
 import java.util.concurrent.CountDownLatch;
 public final class r implements Runnable {
-    public final int f58038a;
-    public final u f58039b;
-    public final Size f58040c;
+    public final int f58130a;
+    public final t f58131b;
+    public final Size f58132c;
     public final int d;
-    public final boolean f58041e;
-    public final RuntimeException[] f58042f;
+    public final boolean f58133e;
+    public final RuntimeException[] f58134f;
     public final CountDownLatch h;
 
-    public r(u uVar, Size size, int i7, boolean z9, RuntimeException[] runtimeExceptionArr, CountDownLatch countDownLatch, int i10) {
-        this.f58038a = i10;
-        this.f58039b = uVar;
-        this.f58040c = size;
+    public r(t tVar, Size size, int i7, boolean z9, RuntimeException[] runtimeExceptionArr, CountDownLatch countDownLatch, int i10) {
+        this.f58130a = i10;
+        this.f58131b = tVar;
+        this.f58132c = size;
         this.d = i7;
-        this.f58041e = z9;
-        this.f58042f = runtimeExceptionArr;
+        this.f58133e = z9;
+        this.f58134f = runtimeExceptionArr;
         this.h = countDownLatch;
     }
 
@@ -27,35 +27,35 @@ public final class r implements Runnable {
         CountDownLatch countDownLatch;
         String str;
         String str2;
-        switch (this.f58038a) {
+        switch (this.f58130a) {
             case 0:
-                Size size = this.f58040c;
+                Size size = this.f58132c;
                 int i7 = this.d;
-                boolean z9 = this.f58041e;
-                RuntimeException[] runtimeExceptionArr = this.f58042f;
+                boolean z9 = this.f58133e;
+                RuntimeException[] runtimeExceptionArr = this.f58134f;
                 countDownLatch = this.h;
-                u uVar = this.f58039b;
-                uVar.getClass();
+                t tVar = this.f58131b;
+                tVar.getClass();
                 try {
                     try {
-                        uVar.f58059c = size;
-                        uVar.f58075l = i7;
-                        uVar.f58080o = z9;
-                        SurfaceTexture surfaceTexture = uVar.f58097x;
+                        tVar.f58148c = size;
+                        tVar.f58164l = i7;
+                        tVar.f58169o = z9;
+                        SurfaceTexture surfaceTexture = tVar.f58186x;
                         if (surfaceTexture != null) {
                             surfaceTexture.setDefaultBufferSize(size.getWidth(), size.getHeight());
                         }
-                        int i10 = uVar.E;
+                        int i10 = tVar.E;
                         if (i10 != 0) {
-                            uVar.k(i10, i7);
+                            tVar.k(i10, i7);
                         }
-                        o oVar = uVar.f58069i;
+                        o oVar = tVar.f58158i;
                         StringBuilder sb2 = new StringBuilder("GL secondary input configured: input=");
                         sb2.append(size);
                         sb2.append(", crop=");
                         sb2.append(i7);
                         sb2.append(", filter=");
-                        if (i7 == uVar.f58066g) {
+                        if (i7 == tVar.f58155g) {
                             str = "NEAREST";
                         } else {
                             str = "LINEAR";
@@ -72,51 +72,51 @@ public final class r implements Runnable {
                 } finally {
                 }
             default:
-                u uVar2 = this.f58039b;
-                Size size2 = this.f58040c;
+                t tVar2 = this.f58131b;
+                Size size2 = this.f58132c;
                 int i11 = this.d;
-                boolean z10 = this.f58041e;
-                RuntimeException[] runtimeExceptionArr2 = this.f58042f;
+                boolean z10 = this.f58133e;
+                RuntimeException[] runtimeExceptionArr2 = this.f58134f;
                 countDownLatch = this.h;
                 try {
                     try {
-                        uVar2.f58055a = size2;
-                        uVar2.f58057b = size2;
-                        uVar2.f58059c = size2;
-                        uVar2.f58071j = i11;
-                        uVar2.f58073k = i11;
-                        uVar2.f58075l = i11;
-                        uVar2.f58077m = z10;
-                        uVar2.f58078n = z10;
-                        uVar2.f58080o = z10;
-                        SurfaceTexture surfaceTexture2 = uVar2.v;
+                        tVar2.f58144a = size2;
+                        tVar2.f58146b = size2;
+                        tVar2.f58148c = size2;
+                        tVar2.f58160j = i11;
+                        tVar2.f58162k = i11;
+                        tVar2.f58164l = i11;
+                        tVar2.f58166m = z10;
+                        tVar2.f58167n = z10;
+                        tVar2.f58169o = z10;
+                        SurfaceTexture surfaceTexture2 = tVar2.v;
                         if (surfaceTexture2 != null) {
                             surfaceTexture2.setDefaultBufferSize(size2.getWidth(), size2.getHeight());
                         }
-                        SurfaceTexture surfaceTexture3 = uVar2.f58097x;
+                        SurfaceTexture surfaceTexture3 = tVar2.f58186x;
                         if (surfaceTexture3 != null) {
                             surfaceTexture3.setDefaultBufferSize(size2.getWidth(), size2.getHeight());
                         }
-                        uVar2.k(uVar2.D, uVar2.f58073k);
-                        int i12 = uVar2.E;
+                        tVar2.k(tVar2.D, tVar2.f58162k);
+                        int i12 = tVar2.E;
                         if (i12 != 0) {
-                            uVar2.k(i12, uVar2.f58075l);
+                            tVar2.k(i12, tVar2.f58164l);
                         }
-                        e0 e0Var = uVar2.N;
-                        if (e0Var != null) {
-                            e0Var.f57845c = size2;
-                            e0Var.d = i11;
-                            e0Var.v();
-                            e0Var.B = false;
-                            e0Var.A = 0L;
+                        d0 d0Var = tVar2.N;
+                        if (d0Var != null) {
+                            d0Var.f57935c = size2;
+                            d0Var.d = i11;
+                            d0Var.v();
+                            d0Var.B = false;
+                            d0Var.A = 0L;
                         }
-                        o oVar2 = uVar2.f58069i;
+                        o oVar2 = tVar2.f58158i;
                         StringBuilder sb3 = new StringBuilder("GL input updated: input=");
                         sb3.append(size2);
                         sb3.append(", crop=");
                         sb3.append(i11);
                         sb3.append(", filter=");
-                        if (uVar2.f58071j == uVar2.f58066g) {
+                        if (tVar2.f58160j == tVar2.f58155g) {
                             str2 = "NEAREST";
                         } else {
                             str2 = "LINEAR";

@@ -42,7 +42,7 @@ public abstract class l6 extends FrameLayout {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
-        this.f12327b = e7.x(p10.f24467s0, true);
+        this.f12327b = e7.x(p10.f24470s0, true);
         k6 k6Var = new k6(this, context);
         this.f12326a = k6Var;
         k6Var.setScaleX(0.0f);

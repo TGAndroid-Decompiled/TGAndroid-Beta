@@ -26,7 +26,7 @@ public final class g extends xp {
         pv pvVar = this.G;
         int i11 = pvVar.f9587b;
         if (i11 == 0) {
-            i7 = org.telegram.ui.ActionBar.k6.f28129s8;
+            i7 = org.telegram.ui.ActionBar.k6.f28132s8;
         } else {
             i7 = org.telegram.ui.ActionBar.k6.M8;
         }

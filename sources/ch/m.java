@@ -8,7 +8,7 @@ import c8.j9;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.f6;
@@ -50,7 +50,7 @@ public final class m extends q11 {
             oVar.f6342b.x(l10, true);
             oVar.e0(false);
         } else if (linkedHashMap.size() - (linkedHashMap.containsKey(-1L) ? 1 : 0) >= i7) {
-            hc.a0(oVar).t(hd.G(i7, "ReactionMaxCountError", new Object[0]), null).j();
+            hc.a0(oVar).t(id.G(i7, "ReactionMaxCountError", new Object[0]), null).j();
         } else {
             try {
                 int editTextSelectionEnd = oVar.h.getEditTextSelectionEnd();

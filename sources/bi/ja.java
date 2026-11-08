@@ -24,11 +24,11 @@ public final class ja implements Runnable {
         an anVar = this.f4111b;
         switch (i7) {
             case 0:
-                org.telegram.ui.Components.hc.a0(anVar).I(2131624225, org.telegram.messenger.hd.M0(2131744995, null), org.telegram.messenger.g0.X2(org.telegram.messenger.hd.G((int) j3, "StarsSubscriptionCompletedText", chat.title))).k(true);
+                org.telegram.ui.Components.hc.a0(anVar).I(2131624225, org.telegram.messenger.id.M0(2131744997, null), org.telegram.messenger.g0.X2(org.telegram.messenger.id.G((int) j3, "StarsSubscriptionCompletedText", chat.title))).k(true);
                 return;
             default:
                 String str = LaunchActivity.B1;
-                org.telegram.ui.Components.hc.a0(anVar).I(2131624225, org.telegram.messenger.hd.M0(2131744995, null), org.telegram.messenger.g0.X2(org.telegram.messenger.hd.G((int) j3, "StarsSubscriptionCompletedText", chat.title))).k(true);
+                org.telegram.ui.Components.hc.a0(anVar).I(2131624225, org.telegram.messenger.id.M0(2131744997, null), org.telegram.messenger.g0.X2(org.telegram.messenger.id.G((int) j3, "StarsSubscriptionCompletedText", chat.title))).k(true);
                 return;
         }
     }

@@ -8,7 +8,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.hc;
 import org.telegram.messenger.ic;
 import org.telegram.messenger.p10;
-import org.telegram.messenger.rc;
+import org.telegram.messenger.sc;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.xp;
 public final class l1 extends View {
@@ -26,7 +26,7 @@ public final class l1 extends View {
 
     public l1(Context context, m1 m1Var) {
         super(context);
-        this.f12304c = p10.f24467s0;
+        this.f12304c = p10.f24470s0;
         this.f12307n = new ic[2];
         this.f12309s = new org.telegram.ui.Components.ic(this);
         setPadding(org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f));
@@ -40,7 +40,7 @@ public final class l1 extends View {
         if (document == null) {
             j3 = 0;
         } else {
-            j3 = document.f26959id;
+            j3 = document.f26962id;
         }
         if (j10 != j3) {
             org.telegram.ui.Components.i5 i5Var = this.d;
@@ -50,12 +50,12 @@ public final class l1 extends View {
             if (document != null) {
                 int i10 = 1;
                 this.f12303b = true;
-                this.h = document.f26959id;
+                this.h = document.f26962id;
                 int i11 = k2.f12251y1;
                 if (!z9) {
                     i10 = 16388;
                 }
-                if (rc.e(i10)) {
+                if (sc.e(i10)) {
                     i7 = 3;
                 } else {
                     i7 = 13;
@@ -165,7 +165,7 @@ public final class l1 extends View {
         this.f12303b = false;
         if (document != null) {
             long j3 = this.h;
-            long j10 = document.f26959id;
+            long j10 = document.f26962id;
             if (j3 != j10) {
                 this.h = j10;
                 if (this.f12306f == null) {
@@ -191,7 +191,7 @@ public final class l1 extends View {
                 } else {
                     str = "80_80";
                 }
-                if (!rc.e(1)) {
+                if (!sc.e(1)) {
                     str = str.concat("_firstframe");
                 }
                 this.f12306f.r0(hc.b(document), str, hc.c(w10, document), "80_80", null, 0L, null, document, 0);

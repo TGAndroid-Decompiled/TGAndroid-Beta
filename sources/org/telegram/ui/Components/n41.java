@@ -4,14 +4,14 @@ import android.content.Context;
 import android.view.View;
 import java.util.ArrayList;
 public abstract class n41 extends org.telegram.ui.ActionBar.f2 {
-    public fi.w3 f36227a;
-    public kg.l1 f36228b;
-    public int f36229c;
+    public fi.w3 f36243a;
+    public kg.l1 f36244b;
+    public int f36245c;
     public int d;
 
     public n41() {
         super(null);
-        this.f36229c = -1;
+        this.f36245c = -1;
     }
 
     public abstract void Z(ArrayList arrayList, l41 l41Var);
@@ -36,14 +36,14 @@ public abstract class n41 extends org.telegram.ui.ActionBar.f2 {
             this.actionBar.setTitle(a0());
             this.actionBar.setActionBarMenuOnItemClick(w9Var);
         }
-        this.f36228b = new kg.l1(context, null, 1);
+        this.f36244b = new kg.l1(context, null, 1);
         if (!useSimpleActionBar()) {
-            org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27793a7, this.f36228b, null);
+            org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27796a7, this.f36244b, null);
         }
         fi.w3 w3Var = new fi.w3(this, this, new d(this, 22), new m41(this), new m41(this));
-        this.f36227a = w3Var;
-        this.f36228b.addView(w3Var, c8.ha.c(-1.0f, -1));
-        kg.l1 l1Var = this.f36228b;
+        this.f36243a = w3Var;
+        this.f36244b.addView(w3Var, c8.ha.c(-1.0f, -1));
+        kg.l1 l1Var = this.f36244b;
         this.fragmentView = l1Var;
         return l1Var;
     }

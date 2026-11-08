@@ -2,34 +2,34 @@ package org.telegram.ui;
 
 import org.telegram.messenger.MediaController;
 public final class lg implements Runnable {
-    public final int f47538a = 0;
-    public final an f47539b;
-    public final boolean f47540c;
+    public final int f47535a = 0;
+    public final an f47536b;
+    public final boolean f47537c;
     public final long d;
 
     public lg(an anVar, long j3, boolean z9) {
-        this.f47539b = anVar;
+        this.f47536b = anVar;
         this.d = j3;
-        this.f47540c = z9;
+        this.f47537c = z9;
     }
 
     @Override
     public final void run() {
         long j3;
         long j10;
-        switch (this.f47538a) {
+        switch (this.f47535a) {
             case 0:
-                an.X0(this.f47539b, this.d, this.f47540c);
+                an.X0(this.f47536b, this.d, this.f47537c);
                 return;
             default:
-                qj qjVar = this.f47539b.Z;
+                qj qjVar = this.f47536b.Z;
                 if (qjVar != null) {
                     MediaController B = MediaController.B();
-                    if (!qjVar.Y1 && !qjVar.F2 && B.J() && !B.K() && B.f21265g1 == qjVar.G2) {
-                        qjVar.f31025c1 = false;
-                        org.telegram.ui.Components.ee eeVar = qjVar.f31018b1;
+                    if (!qjVar.Y1 && !qjVar.F2 && B.J() && !B.K() && B.f21268g1 == qjVar.G2) {
+                        qjVar.f31029c1 = false;
+                        org.telegram.ui.Components.ee eeVar = qjVar.f31022b1;
                         if (eeVar != null) {
-                            eeVar.j(org.telegram.ui.Components.hg.f34311a, false);
+                            eeVar.j(org.telegram.ui.Components.hg.f34248a, false);
                         }
                         qjVar.J3 = true;
                         qjVar.F2 = true;
@@ -38,7 +38,7 @@ public final class lg implements Runnable {
                             wfVar.R0(1);
                         }
                         qjVar.N1(0, true);
-                        if (this.f47540c) {
+                        if (this.f47537c) {
                             qjVar.O = true;
                             org.telegram.ui.Components.ag agVar = qjVar.O1;
                             if (agVar != null) {
@@ -47,7 +47,7 @@ public final class lg implements Runnable {
                             org.telegram.messenger.ui b02 = org.telegram.messenger.ui.b0(qjVar.Q);
                             long j11 = qjVar.Q2;
                             an anVar = qjVar.P2;
-                            if (anVar != null && anVar.f43989v4) {
+                            if (anVar != null && anVar.f43995v4) {
                                 j10 = anVar.b();
                             } else {
                                 j10 = 0;
@@ -58,14 +58,14 @@ public final class lg implements Runnable {
                         if (j12 > 0) {
                             j3 = System.currentTimeMillis() - j12;
                         } else {
-                            j3 = B.f21273k1;
+                            j3 = B.f21276k1;
                         }
-                        qjVar.f31062i1 = j3;
+                        qjVar.f31066i1 = j3;
                         org.telegram.ui.Components.fg fgVar = qjVar.Y0;
                         if (fgVar != null) {
                             fgVar.a(j3);
                         }
-                        qjVar.f31123s4 = true;
+                        qjVar.f31127s4 = true;
                         qjVar.z1();
                         return;
                     }
@@ -76,8 +76,8 @@ public final class lg implements Runnable {
     }
 
     public lg(an anVar, boolean z9, long j3) {
-        this.f47539b = anVar;
-        this.f47540c = z9;
+        this.f47536b = anVar;
+        this.f47537c = z9;
         this.d = j3;
     }
 }

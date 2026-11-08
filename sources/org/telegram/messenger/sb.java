@@ -1,21 +1,21 @@
 package org.telegram.messenger;
 public final class sb implements Runnable {
-    public final int f25445a;
-    public final tb f25446b;
+    public final int f25441a;
+    public final tb f25442b;
 
     public sb(tb tbVar, int i7) {
-        this.f25445a = i7;
-        this.f25446b = tbVar;
+        this.f25441a = i7;
+        this.f25442b = tbVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f25445a) {
+        switch (this.f25441a) {
             case 0:
-                this.f25446b.f25604e.T(true);
+                this.f25442b.f25606e.T(true);
                 return;
             default:
-                this.f25446b.f25604e.T(true);
+                this.f25442b.f25606e.T(true);
                 return;
         }
     }

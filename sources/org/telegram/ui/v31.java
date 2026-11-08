@@ -2,25 +2,25 @@ package org.telegram.ui;
 
 import java.util.ArrayList;
 public final class v31 implements Runnable {
-    public final int f50569a;
-    public final c51 f50570b;
-    public final ArrayList f50571c;
+    public final int f50492a;
+    public final c51 f50493b;
+    public final ArrayList f50494c;
 
     public v31(c51 c51Var, ArrayList arrayList, int i7) {
-        this.f50569a = i7;
-        this.f50570b = c51Var;
-        this.f50571c = arrayList;
+        this.f50492a = i7;
+        this.f50493b = c51Var;
+        this.f50494c = arrayList;
     }
 
     @Override
     public final void run() {
         boolean z9;
-        switch (this.f50569a) {
+        switch (this.f50492a) {
             case 0:
-                c51 c51Var = this.f50570b;
+                c51 c51Var = this.f50493b;
                 di.q6 q6Var = c51Var.C0;
                 q6Var.getClass();
-                ArrayList arrayList = this.f50571c;
+                ArrayList arrayList = this.f50494c;
                 int size = arrayList.size();
                 int i7 = 0;
                 while (true) {
@@ -41,19 +41,19 @@ public final class v31 implements Runnable {
                 }
                 return;
             default:
-                c51 c51Var2 = this.f50570b;
-                ArrayList arrayList2 = c51Var2.f44691v0;
-                ArrayList arrayList3 = c51Var2.f44690u0;
+                c51 c51Var2 = this.f50493b;
+                ArrayList arrayList2 = c51Var2.f44694v0;
+                ArrayList arrayList3 = c51Var2.f44693u0;
                 int i10 = 0;
-                c51Var2.f44698z0 = false;
-                ArrayList arrayList4 = this.f50571c;
+                c51Var2.f44701z0 = false;
+                ArrayList arrayList4 = this.f50494c;
                 if (!arrayList4.isEmpty()) {
                     int size2 = arrayList4.size();
                     for (int i11 = 0; i11 < size2; i11++) {
                         org.telegram.messenger.ij ijVar = (org.telegram.messenger.ij) arrayList4.get(i11);
-                        int i12 = c51Var2.f44688s0.get(ijVar.f1(), -1);
+                        int i12 = c51Var2.f44691s0.get(ijVar.f1(), -1);
                         if (i12 >= 0 && ((z41) arrayList3.get(i12)).b() == ijVar.f1()) {
-                            ((z41) arrayList3.get(i12)).f52472b = ijVar;
+                            ((z41) arrayList3.get(i12)).f52452b = ijVar;
                         }
                     }
                     arrayList2.clear();
@@ -61,8 +61,8 @@ public final class v31 implements Runnable {
                     while (true) {
                         if (i10 < size3) {
                             z41 z41Var = (z41) arrayList3.get(i10);
-                            if (z41Var.f52472b == null) {
-                                c51Var2.f44686r0 = z41Var.b();
+                            if (z41Var.f52452b == null) {
+                                c51Var2.f44689r0 = z41Var.b();
                             } else {
                                 arrayList2.add(z41Var);
                                 i10++;

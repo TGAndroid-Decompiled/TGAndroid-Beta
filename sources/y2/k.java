@@ -6,28 +6,28 @@ import e2.u;
 import j2.c0;
 import sg.i0;
 public final class k extends f {
-    public final e f58827s;
-    public i0 f58828w;
-    public long f58829x;
-    public volatile boolean f58830y;
+    public final e f58916s;
+    public i0 f58917w;
+    public long f58918x;
+    public volatile boolean f58919y;
 
     public k(j2.h hVar, j2.m mVar, u uVar, int i7, Object obj, e eVar) {
         super(hVar, mVar, 2, uVar, i7, obj, -9223372036854775807L, -9223372036854775807L);
-        this.f58827s = eVar;
+        this.f58916s = eVar;
     }
 
     @Override
     public final void a() {
         boolean z9;
-        if (this.f58829x == 0) {
-            this.f58827s.b(this.f58828w, -9223372036854775807L, -9223372036854775807L);
+        if (this.f58918x == 0) {
+            this.f58916s.b(this.f58917w, -9223372036854775807L, -9223372036854775807L);
         }
         try {
-            j2.m b10 = this.f58806b.b(this.f58829x);
-            c0 c0Var = this.f58811r;
-            f3.l lVar = new f3.l(c0Var, b10.f16449e, c0Var.open(b10));
-            while (!this.f58830y) {
-                int f10 = this.f58827s.f58797a.f(lVar, e.f58796w);
+            j2.m b10 = this.f58895b.b(this.f58918x);
+            c0 c0Var = this.f58900r;
+            f3.l lVar = new f3.l(c0Var, b10.f16452e, c0Var.open(b10));
+            while (!this.f58919y) {
+                int f10 = this.f58916s.f58886a.f(lVar, e.f58885w);
                 boolean z10 = false;
                 if (f10 != 1) {
                     z9 = true;
@@ -43,15 +43,15 @@ public final class k extends f {
                     break;
                 }
             }
-            this.f58829x = lVar.d - this.f58806b.f16449e;
-            this.f58827s.a();
+            this.f58918x = lVar.d - this.f58895b.f16452e;
+            this.f58916s.a();
         } finally {
-            p0.a(this.f58811r);
+            p0.a(this.f58900r);
         }
     }
 
     @Override
     public final void q0() {
-        this.f58830y = true;
+        this.f58919y = true;
     }
 }

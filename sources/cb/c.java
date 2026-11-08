@@ -147,7 +147,7 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
     @Override
     public void C0() {
         cc k10 = ((k7) this.f6040b).k().k(false);
-        k10.f32524t = true;
+        k10.f32555t = true;
         k10.j();
     }
 
@@ -195,7 +195,7 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
                 oVar.E.setFocusableInTouchMode(false);
             }
         }
-        qs.e().k(qs.f25017k1, 512);
+        qs.e().k(qs.f25026k1, 512);
     }
 
     @Override
@@ -216,9 +216,9 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
     @Override
     public void X(float f10) {
         x9 x9Var = (x9) this.f6040b;
-        l0.e(x9Var.f12538o1).k(String.valueOf(h.f54967a.indexOf(x9Var.f12555x0.getCurrentBrush())), f10);
+        l0.e(x9Var.f12538o1).k(String.valueOf(h.f55059a.indexOf(x9Var.f12555x0.getCurrentBrush())), f10);
         j1 j1Var = x9Var.f12531j1;
-        j1Var.f55018c = f10;
+        j1Var.f55110c = f10;
         x9Var.B0(j1Var, null, false);
     }
 
@@ -236,7 +236,7 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
         obtain.writeStrongBinder(dVar);
         obtain.writeInt(1);
         ((o8.a) this.f6040b).writeToParcel(obtain, 0);
-        ((d8.c) ((d8.f) obj).n()).H0(obtain, 2);
+        ((d8.c) ((d8.f) obj).n()).h1(obtain, 2);
     }
 
     @Override
@@ -323,9 +323,9 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
         int i7 = x9Var.f12538o1;
         h currentBrush = x9Var.f12555x0.getCurrentBrush();
         if (currentBrush == null) {
-            return l0.e(i7).f55040i;
+            return l0.e(i7).f55132i;
         }
-        return l0.e(i7).f(String.valueOf(h.f54967a.indexOf(currentBrush)), currentBrush.d());
+        return l0.e(i7).f(String.valueOf(h.f55059a.indexOf(currentBrush)), currentBrush.d());
     }
 
     @Override
@@ -356,7 +356,7 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
         f1 f1Var = (f1) this.f6040b;
         f1Var.f6610o.lock();
         try {
-            f1Var.f6608m = n6.a.f20484f;
+            f1Var.f6608m = n6.a.f20487f;
             f1Var.j();
         } finally {
             f1Var.f6610o.unlock();
@@ -387,7 +387,7 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
             }
             z zVar = qVar.f2019l0;
             zVar.f2030f = nVar;
-            int i7 = nVar.f19917a;
+            int i7 = nVar.f19920a;
             if (i7 == 0) {
                 if (vVar != null) {
                     i7 = 15;
@@ -448,7 +448,7 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
 
     @Override
     public i o0(b3.l lVar, long j3, long j10, IOException iOException, int i7) {
-        ((o2.d) this.f6040b).f20725a.y(iOException);
+        ((o2.d) this.f6040b).f20728a.y(iOException);
         return b3.o.f2960e;
     }
 
@@ -460,7 +460,7 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
             z9 = c3.b.f5264c;
         }
         if (!z9) {
-            dVar.f20725a.y(new IOException(new ConcurrentModificationException()));
+            dVar.f20728a.y(new IOException(new ConcurrentModificationException()));
             return;
         }
         dVar.b();
@@ -521,7 +521,7 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
             }
             String packageName = context.getPackageName();
             Locale locale = Locale.ROOT;
-            String q10 = rf.b.q(packageName, ".client_cast_analytics_data");
+            String r10 = rf.b.r(packageName, ".client_cast_analytics_data");
             if (bundle.getLong("com.google.android.gms.cast.FLAG_FIRELOG_UPLOAD_MODE") == 0) {
                 i10 = 1;
             } else {
@@ -529,11 +529,11 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
             }
             m0Var.h = i10;
             o5.s.b(context);
-            m0Var.f6912g = o5.s.a().c(m5.a.f19869e).a("CAST_SENDER_SDK", new l5.c("proto"), x.f7054a);
+            m0Var.f6912g = o5.s.a().c(m5.a.f19872e).a("CAST_SENDER_SDK", new l5.c("proto"), x.f7054a);
             if (bundle.containsKey("com.google.android.gms.cast.FLAG_ANALYTICS_LOGGING_BUCKET_SIZE")) {
                 m0Var.f6910e = Long.valueOf(bundle.getLong("com.google.android.gms.cast.FLAG_ANALYTICS_LOGGING_BUCKET_SIZE"));
             }
-            SharedPreferences sharedPreferences = context.getApplicationContext().getSharedPreferences(q10, 0);
+            SharedPreferences sharedPreferences = context.getApplicationContext().getSharedPreferences(r10, 0);
             if (i7 != 0) {
                 com.google.android.gms.common.api.internal.s b11 = com.google.android.gms.common.api.internal.t.b();
                 b11.f6682c = new h9.f1(rVar, new String[]{"com.google.android.gms.cast.DICTIONARY_CAST_STATUS_CODES_TO_APP_SESSION_ERROR", "com.google.android.gms.cast.DICTIONARY_CAST_STATUS_CODES_TO_APP_SESSION_CHANGE_REASON"}, 2);
@@ -542,9 +542,9 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
                 b11.f6680a = 8426;
                 Task e10 = rVar.e(0, b11.a());
                 ?? obj2 = new Object();
-                obj2.f19918b = m0Var;
-                obj2.f19919c = packageName;
-                obj2.f19917a = i7;
+                obj2.f19921b = m0Var;
+                obj2.f19922c = packageName;
+                obj2.f19920a = i7;
                 obj2.d = sharedPreferences;
                 e10.addOnSuccessListener(obj2);
             }
@@ -813,12 +813,12 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
 
     public void v(h6.m mVar) {
         q3 q3Var = (q3) this.f6040b;
-        q3Var.f19226b = mVar;
-        Iterator it = ((LinkedList) q3Var.f19227c).iterator();
+        q3Var.f19229b = mVar;
+        Iterator it = ((LinkedList) q3Var.f19230c).iterator();
         while (it.hasNext()) {
             ((a7.c) it.next()).b();
         }
-        ((LinkedList) q3Var.f19227c).clear();
+        ((LinkedList) q3Var.f19230c).clear();
     }
 
     public void w(int i7) {

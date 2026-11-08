@@ -1,23 +1,23 @@
 package org.telegram.ui.Components;
 public final class q11 implements Runnable {
-    public final int f37137a;
-    public final org.telegram.messenger.ij f37138b;
-    public final long f37139c;
+    public final int f37167a;
+    public final org.telegram.messenger.ij f37168b;
+    public final long f37169c;
     public final String d;
 
     public q11(org.telegram.messenger.ij ijVar, long j3, String str, int i7) {
-        this.f37137a = i7;
-        this.f37138b = ijVar;
-        this.f37139c = j3;
+        this.f37167a = i7;
+        this.f37168b = ijVar;
+        this.f37169c = j3;
         this.d = str;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f37137a;
+        int i7 = this.f37167a;
         String str = this.d;
-        long j3 = this.f37139c;
-        org.telegram.messenger.ij ijVar = this.f37138b;
+        long j3 = this.f37169c;
+        org.telegram.messenger.ij ijVar = this.f37168b;
         switch (i7) {
             case 0:
                 s11.f(ijVar, j3, str);

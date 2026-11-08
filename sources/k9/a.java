@@ -33,16 +33,16 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 public final class a {
-    public static final j0 f17232f;
-    public static final g9.a f17233g;
+    public static final j0 f17235f;
+    public static final g9.a f17236g;
     public static final HashMap h;
-    public static final a f17234i;
-    public static final n f17235j;
-    public final String f17236a;
-    public final String f17237b;
-    public final j0 f17238c;
+    public static final a f17237i;
+    public static final n f17238j;
+    public final String f17239a;
+    public final String f17240b;
+    public final j0 f17241c;
     public String d;
-    public int f17239e;
+    public int f17242e;
 
     static {
         j0 j0Var;
@@ -74,13 +74,13 @@ public final class a {
             }
             j0Var = new j0(waVar.d(true), i7);
         }
-        f17232f = j0Var;
+        f17235f = j0Var;
         b bVar = b.d;
         b bVar2 = b.f13580e;
         bVar2.getClass();
         c cVar = new c(bVar2);
         bVar.getClass();
-        f17233g = new g9.a(new g9.a(new g9.a(bVar, cVar), new e(' ', 1)), i.b("()<>@,;:\\\"/[]?=").d());
+        f17236g = new g9.a(new g9.a(new g9.a(bVar, cVar), new e(' ', 1)), i.b("()<>@,;:\\\"/[]?=").d());
         i.b("\"\\\r").d().getClass();
         i.b(" \t\r\n");
         h = new HashMap();
@@ -154,7 +154,7 @@ public final class a {
         b("application", "javascript");
         a("application", "jose");
         a("application", "jose+json");
-        f17234i = b("application", "json");
+        f17237i = b("application", "json");
         a("application", "jwt");
         b("application", "manifest+json");
         a("application", "vnd.google-earth.kml+xml");
@@ -200,13 +200,13 @@ public final class a {
         a("font", "ttf");
         a("font", "woff");
         a("font", "woff2");
-        f17235j = new n(new l("; ", 0), 27);
+        f17238j = new n(new l("; ", 0), 27);
     }
 
     public a(String str, String str2, j0 j0Var) {
-        this.f17236a = str;
-        this.f17237b = str2;
-        this.f17238c = j0Var;
+        this.f17239a = str;
+        this.f17240b = str2;
+        this.f17241c = j0Var;
     }
 
     public static void a(String str, String str2) {
@@ -215,21 +215,21 @@ public final class a {
     }
 
     public static a b(String str, String str2) {
-        a aVar = new a(str, str2, f17232f);
+        a aVar = new a(str, str2, f17235f);
         h.put(aVar, aVar);
         StandardCharsets.UTF_8.getClass();
         return aVar;
     }
 
     public final i1 c() {
-        return new i1(this.f17238c.b(), new d0(new x3(14), 4));
+        return new i1(this.f17241c.b(), new d0(new x3(14), 4));
     }
 
     public final boolean equals(Object obj) {
         if (obj != this) {
             if (obj instanceof a) {
                 a aVar = (a) obj;
-                if (this.f17236a.equals(aVar.f17236a) && this.f17237b.equals(aVar.f17237b) && c().equals(aVar.c())) {
+                if (this.f17239a.equals(aVar.f17239a) && this.f17240b.equals(aVar.f17240b) && c().equals(aVar.c())) {
                     return true;
                 }
                 return false;
@@ -240,10 +240,10 @@ public final class a {
     }
 
     public final int hashCode() {
-        int i7 = this.f17239e;
+        int i7 = this.f17242e;
         if (i7 == 0) {
-            int hashCode = Arrays.hashCode(new Object[]{this.f17236a, this.f17237b, c()});
-            this.f17239e = hashCode;
+            int hashCode = Arrays.hashCode(new Object[]{this.f17239a, this.f17240b, c()});
+            this.f17242e = hashCode;
             return hashCode;
         }
         return i7;
@@ -253,14 +253,14 @@ public final class a {
         String str = this.d;
         if (str == null) {
             StringBuilder sb2 = new StringBuilder();
-            sb2.append(this.f17236a);
+            sb2.append(this.f17239a);
             sb2.append('/');
-            sb2.append(this.f17237b);
-            j0 j0Var = this.f17238c;
+            sb2.append(this.f17240b);
+            j0 j0Var = this.f17241c;
             if (j0Var.f14334f != 0) {
                 sb2.append("; ");
                 Collection a10 = new m1(j0Var, new d0(new x3(13), 4)).a();
-                n nVar = f17235j;
+                n nVar = f17238j;
                 nVar.getClass();
                 try {
                     nVar.c(sb2, a10.iterator());

@@ -5,9 +5,9 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import java.lang.reflect.Method;
 public abstract class o1 {
-    public static final Method f19187a;
-    public static final Method f19188b;
-    public static final Method f19189c;
+    public static final Method f19190a;
+    public static final Method f19191b;
+    public static final Method f19192c;
     public static final boolean d;
 
     static {
@@ -15,13 +15,13 @@ public abstract class o1 {
             Class cls = Integer.TYPE;
             Class cls2 = Float.TYPE;
             Method declaredMethod = AbsListView.class.getDeclaredMethod("positionSelector", cls, View.class, Boolean.TYPE, cls2, cls2);
-            f19187a = declaredMethod;
+            f19190a = declaredMethod;
             declaredMethod.setAccessible(true);
             Method declaredMethod2 = AdapterView.class.getDeclaredMethod("setSelectedPositionInt", cls);
-            f19188b = declaredMethod2;
+            f19191b = declaredMethod2;
             declaredMethod2.setAccessible(true);
             Method declaredMethod3 = AdapterView.class.getDeclaredMethod("setNextSelectedPositionInt", cls);
-            f19189c = declaredMethod3;
+            f19192c = declaredMethod3;
             declaredMethod3.setAccessible(true);
             d = true;
         } catch (NoSuchMethodException e10) {

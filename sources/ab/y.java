@@ -10,7 +10,7 @@ import h9.t1;
 import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.bp;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.m5;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.TLRPC;
@@ -25,11 +25,11 @@ import org.telegram.ui.an;
 import org.telegram.ui.c40;
 import org.telegram.ui.gz;
 import org.telegram.ui.h30;
-import org.telegram.ui.hb1;
+import org.telegram.ui.ib1;
 import org.telegram.ui.qj;
 import p4.a1;
 import p4.g1;
-public final class y implements OnSuccessListener, g7, hb1, r1, bg.p, bp, a1, h2.j, xh.j {
+public final class y implements OnSuccessListener, g7, ib1, r1, bg.p, bp, a1, h2.j, xh.j {
     public final int f1007a;
     public final boolean f1008b;
     public final Object f1009c;
@@ -80,11 +80,11 @@ public final class y implements OnSuccessListener, g7, hb1, r1, bg.p, bp, a1, h2
         switch (this.f1007a) {
             case 2:
                 kg.a0 a0Var = (kg.a0) this.f1009c;
-                ArrayList arrayList2 = a0Var.f17294k;
-                ArrayList arrayList3 = a0Var.f17293j;
+                ArrayList arrayList2 = a0Var.f17297k;
+                ArrayList arrayList3 = a0Var.f17296j;
                 int i10 = 0;
                 if (this.f1008b) {
-                    a0Var.f17290f = i7;
+                    a0Var.f17293f = i7;
                     arrayList3.clear();
                     arrayList3.addAll(arrayList);
                     while (i10 < arrayList3.size()) {
@@ -92,7 +92,7 @@ public final class y implements OnSuccessListener, g7, hb1, r1, bg.p, bp, a1, h2
                         i10++;
                     }
                 } else {
-                    a0Var.f17291g = i7;
+                    a0Var.f17294g = i7;
                     arrayList2.clear();
                     arrayList2.addAll(arrayList);
                     while (i10 < arrayList2.size()) {
@@ -100,7 +100,7 @@ public final class y implements OnSuccessListener, g7, hb1, r1, bg.p, bp, a1, h2
                         i10++;
                     }
                 }
-                a0Var.f17289e.run();
+                a0Var.f17292e.run();
                 return;
             default:
                 gz gzVar = (gz) this.f1009c;
@@ -150,7 +150,7 @@ public final class y implements OnSuccessListener, g7, hb1, r1, bg.p, bp, a1, h2
                 return;
             case 4:
             default:
-                c40 c40Var = ((h30) this.f1009c).f46205b;
+                c40 c40Var = ((h30) this.f1009c).f46207b;
                 c40Var.R2.A(0, null);
                 UndoView n1 = c40Var.n1();
                 if (this.f1008b) {
@@ -177,7 +177,15 @@ public final class y implements OnSuccessListener, g7, hb1, r1, bg.p, bp, a1, h2
     }
 
     @Override
-    public Object i(p4.d0 d0Var, p4.v vVar, int i7) {
+    public void j(long j3) {
+        i6 i6Var = ((w1) this.f1009c).f30700a.f30078y3;
+        if (i6Var != null) {
+            i6Var.t(id.M((int) j3, this.f1008b), true, true);
+        }
+    }
+
+    @Override
+    public Object l(p4.d0 d0Var, p4.v vVar, int i7) {
         int o02;
         long l10;
         int o03;
@@ -189,13 +197,13 @@ public final class y implements OnSuccessListener, g7, hb1, r1, bg.p, bp, a1, h2
                 if (z9) {
                     o02 = -1;
                 } else {
-                    o02 = d0Var.f53124t.o0();
+                    o02 = d0Var.f53217t.o0();
                 }
                 int i10 = o02;
                 if (z9) {
                     l10 = -9223372036854775807L;
                 } else {
-                    l10 = d0Var.f53124t.l();
+                    l10 = d0Var.f53217t.l();
                 }
                 return d0Var.q(vVar, u10, i10, l10);
             default:
@@ -204,30 +212,22 @@ public final class y implements OnSuccessListener, g7, hb1, r1, bg.p, bp, a1, h2
                 if (z10) {
                     o03 = -1;
                 } else {
-                    o03 = d0Var.f53124t.o0();
+                    o03 = d0Var.f53217t.o0();
                 }
                 int i11 = o03;
                 if (z10) {
                     l11 = -9223372036854775807L;
                 } else {
-                    l11 = d0Var.f53124t.l();
+                    l11 = d0Var.f53217t.l();
                 }
                 return d0Var.q(vVar, list, i11, l11);
         }
     }
 
     @Override
-    public void j(long j3) {
-        i6 i6Var = ((w1) this.f1009c).f30696a.f30074y3;
-        if (i6Var != null) {
-            i6Var.t(hd.M((int) j3, this.f1008b), true, true);
-        }
-    }
-
-    @Override
     public void m(xh.f fVar, float f10, float f11) {
         xh.l lVar = (xh.l) this.f1009c;
-        if (!lVar.d && !lVar.f58750e && !lVar.f58751f && this.f1008b) {
+        if (!lVar.d && !lVar.f58839e && !lVar.f58840f && this.f1008b) {
             lVar.c(f10, f11);
         }
     }

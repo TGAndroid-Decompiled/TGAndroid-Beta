@@ -3,16 +3,21 @@ package zf;
 import android.os.IBinder;
 import android.os.Parcel;
 public final class c implements e {
-    public IBinder f60055a;
+    public IBinder f60148a;
 
-    public final boolean H0(b bVar) {
+    @Override
+    public final IBinder asBinder() {
+        return this.f60148a;
+    }
+
+    public final boolean h1(b bVar) {
         Parcel obtain = Parcel.obtain();
         Parcel obtain2 = Parcel.obtain();
         try {
             obtain.writeInterfaceToken("android.support.customtabs.ICustomTabsService");
             obtain.writeStrongBinder(bVar);
             boolean z9 = false;
-            this.f60055a.transact(3, obtain, obtain2, 0);
+            this.f60148a.transact(3, obtain, obtain2, 0);
             obtain2.readException();
             if (obtain2.readInt() != 0) {
                 z9 = true;
@@ -24,14 +29,14 @@ public final class c implements e {
         }
     }
 
-    public final boolean I0() {
+    public final boolean i1() {
         Parcel obtain = Parcel.obtain();
         Parcel obtain2 = Parcel.obtain();
         try {
             obtain.writeInterfaceToken("android.support.customtabs.ICustomTabsService");
             obtain.writeLong(0L);
             boolean z9 = false;
-            this.f60055a.transact(2, obtain, obtain2, 0);
+            this.f60148a.transact(2, obtain, obtain2, 0);
             obtain2.readException();
             if (obtain2.readInt() != 0) {
                 z9 = true;
@@ -41,10 +46,5 @@ public final class c implements e {
             obtain2.recycle();
             obtain.recycle();
         }
-    }
-
-    @Override
-    public final IBinder asBinder() {
-        return this.f60055a;
     }
 }

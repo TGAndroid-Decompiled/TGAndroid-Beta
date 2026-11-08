@@ -9,19 +9,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 public final class w {
-    public final v f54673a;
-    public final HashMap f54674b;
-    public final ArrayList f54675c;
+    public final v f54765a;
+    public final HashMap f54766b;
+    public final ArrayList f54767c;
     public String d;
 
     public w(v vVar, String str, Uri uri, int i7) {
-        this.f54673a = vVar;
+        this.f54765a = vVar;
         HashMap hashMap = new HashMap();
-        this.f54674b = hashMap;
+        this.f54766b = hashMap;
         hashMap.put(str, uri);
         this.d = str;
         ArrayList arrayList = new ArrayList();
-        this.f54675c = arrayList;
+        this.f54767c = arrayList;
         if (i7 != -1) {
             arrayList.add(Integer.valueOf(i7));
         }
@@ -33,9 +33,9 @@ public final class w {
         HashMap hashMap2 = new HashMap();
         for (int i7 = 0; i7 < list.size(); i7++) {
             n nVar = (n) list.get(i7);
-            Uri uri = nVar.f54613a;
+            Uri uri = nVar.f54705a;
             try {
-                d(nVar.f54613a, null, i7, arrayList, new v(nVar.f54614b, nVar.d, nVar.f54615c), hashMap, hashMap2);
+                d(nVar.f54705a, null, i7, arrayList, new v(nVar.f54706b, nVar.d, nVar.f54707c), hashMap, hashMap2);
             } catch (t0 unused) {
             }
         }
@@ -48,7 +48,7 @@ public final class w {
         HashMap hashMap2 = new HashMap();
         for (int i7 = 0; i7 < list.size(); i7++) {
             o oVar = (o) list.get(i7);
-            d(oVar.f54616a, oVar.f54621g, i7, arrayList, new v(oVar.f54617b, oVar.h, null), hashMap, hashMap2);
+            d(oVar.f54708a, oVar.f54713g, i7, arrayList, new v(oVar.f54709b, oVar.h, null), hashMap, hashMap2);
         }
         return i0.q(arrayList);
     }
@@ -108,18 +108,18 @@ public final class w {
             str = str2;
         }
         w wVar2 = (w) arrayList.get(num.intValue());
-        Uri uri2 = (Uri) wVar2.f54674b.get(str);
+        Uri uri2 = (Uri) wVar2.f54766b.get(str);
         if (uri2 != null && !uri.equals(uri2)) {
             throw t0.b("Different playlist URLs are found for pathway ID " + str + " within the HlsRedundantGroup", null);
         }
-        wVar2.f54674b.put(str, uri);
+        wVar2.f54766b.put(str, uri);
         if (i7 != -1) {
-            wVar2.f54675c.add(Integer.valueOf(i7));
+            wVar2.f54767c.add(Integer.valueOf(i7));
         }
     }
 
     public final Uri c() {
-        Uri uri = (Uri) this.f54674b.get(this.d);
+        Uri uri = (Uri) this.f54766b.get(this.d);
         uri.getClass();
         return uri;
     }

@@ -14,8 +14,8 @@ public final class np implements org.telegram.messenger.tr, org.telegram.ui.Acti
     public boolean c(int i7, View view) {
         oq oqVar = this.f48103b;
         if (oqVar.getParentActivity() != null) {
-            v4.g0 adapter = oqVar.f48474c.getAdapter();
-            kq kqVar = oqVar.f48468a;
+            v4.g0 adapter = oqVar.f48468c.getAdapter();
+            kq kqVar = oqVar.f48462a;
             if (adapter == kqVar) {
                 return oqVar.m0(kqVar.E(i7), false, view);
             }

@@ -6,16 +6,16 @@ import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 import android.text.TextPaint;
 public final class r11 extends Drawable {
-    public final zg0 f37461a;
-    public int f37462b;
-    public final TextPaint f37463c;
+    public final zg0 f37482a;
+    public int f37483b;
+    public final TextPaint f37484c;
 
     public r11(TextPaint textPaint) {
         a5.b bVar = new a5.b(this, 8);
-        this.f37463c = textPaint;
+        this.f37484c = textPaint;
         float textSize = textPaint.getTextSize() * 0.89f;
         zg0 zg0Var = new zg0(2131624000, (int) textSize, (int) (textSize * 1.25f));
-        this.f37461a = zg0Var;
+        this.f37482a = zg0Var;
         zg0Var.setCallback(bVar);
         zg0Var.K(1);
         zg0Var.M((int) ((((float) SystemClock.elapsedRealtime()) / 16.0f) % 60.0f));
@@ -25,16 +25,16 @@ public final class r11 extends Drawable {
 
     @Override
     public final void draw(Canvas canvas) {
-        int color = this.f37463c.getColor();
-        int i7 = this.f37462b;
-        zg0 zg0Var = this.f37461a;
+        int color = this.f37484c.getColor();
+        int i7 = this.f37483b;
+        zg0 zg0Var = this.f37482a;
         if (color != i7) {
             zg0Var.Z = true;
             zg0Var.Q(color, "Comp 1");
             zg0Var.o();
             zg0Var.J(true);
             zg0Var.V(0L);
-            this.f37462b = color;
+            this.f37483b = color;
         }
         zg0Var.draw(canvas);
     }

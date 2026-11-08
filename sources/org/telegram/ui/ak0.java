@@ -6,14 +6,14 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 public final class ak0 extends FrameLayout {
-    public TextView f43691a;
-    public TextView f43692b;
-    public ImageView f43693c;
+    public TextView f43697a;
+    public TextView f43698b;
+    public ImageView f43699c;
     public boolean d;
 
     public final void a(String str, boolean z9) {
-        this.f43691a.setText(str);
-        this.f43692b.setText("");
+        this.f43697a.setText(str);
+        this.f43698b.setText("");
         this.d = z9;
         setWillNotDraw(!z9);
     }
@@ -23,7 +23,7 @@ public final class ak0 extends FrameLayout {
         float L;
         int i7;
         if (this.d) {
-            if (org.telegram.messenger.hd.f22878a0) {
+            if (org.telegram.messenger.id.f23157a0) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.g0.L(20.0f);
@@ -31,12 +31,12 @@ public final class ak0 extends FrameLayout {
             float f10 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (org.telegram.messenger.hd.f22878a0) {
+            if (org.telegram.messenger.id.f23157a0) {
                 i7 = org.telegram.messenger.g0.L(20.0f);
             } else {
                 i7 = 0;
             }
-            canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f27972k0);
+            canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f27975k0);
         }
     }
 
@@ -47,7 +47,7 @@ public final class ak0 extends FrameLayout {
 
     public void setChecked(boolean z9) {
         int i7;
-        ImageView imageView = this.f43693c;
+        ImageView imageView = this.f43699c;
         if (z9) {
             i7 = 0;
         } else {
@@ -63,6 +63,6 @@ public final class ak0 extends FrameLayout {
     }
 
     public void setValue(CharSequence charSequence) {
-        this.f43692b.setText(charSequence);
+        this.f43698b.setText(charSequence);
     }
 }

@@ -1,56 +1,57 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import j$.util.Objects;
-public final class f6 extends org.telegram.ui.Components.j6 {
-    public final int f42483s;
-    public final h6 f42484w;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.widget.FrameLayout;
+import org.telegram.ui.Components.wp;
+public final class f6 extends wp {
+    public final g6 L;
 
-    public f6(h6 h6Var, Context context, int i7) {
-        super(context, false, true, true, true, true);
-        this.f42483s = i7;
-        this.f42484w = h6Var;
-    }
-
-    public static void e(f6 f6Var, Canvas canvas) {
-        super.onDraw(canvas);
-    }
-
-    public static void f(f6 f6Var, Canvas canvas) {
-        super.onDraw(canvas);
+    public f6(g6 g6Var) {
+        super(2131232817, 0);
+        this.L = g6Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float f10;
-        switch (this.f42483s) {
-            case 0:
-                float c10 = getDrawable().c();
-                h6 h6Var = this.f42484w;
-                float b10 = h6Var.b();
-                if (c10 > 0.0f) {
-                    f10 = Math.min(1.0f, h6Var.U / c10);
-                } else {
-                    f10 = 1.0f;
+    public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
+        g6 g6Var = this.L;
+        FrameLayout.LayoutParams layoutParams = g6Var.P;
+        if (!g6Var.f42549i0) {
+            this.f40023x = 1.0f;
+            if (g6Var.f42536a) {
+                float max = Math.max(0.0f, Math.min(1.0f, g6Var.T));
+                int i14 = (max > 0.0f ? 1 : (max == 0.0f ? 0 : -1));
+                if (i14 == 0) {
+                    float intrinsicWidth = this.f40016c.getIntrinsicWidth() * g6Var.f42538b;
+                    float f11 = g6Var.f42538b;
+                    float intrinsicHeight = this.f40016c.getIntrinsicHeight() * f11;
+                    float f12 = (f11 * f10) + layoutParams.leftMargin;
+                    float height = ((g6Var.N.getHeight() / 2.0f) - (intrinsicHeight / 2.0f)) + layoutParams.topMargin;
+                    g6Var.f42545f.set(f12, height, intrinsicWidth + f12, intrinsicHeight + height);
                 }
-                float f11 = ((f10 - b10) * h6Var.T) + b10;
-                h6Var.f42567b = f11;
-                int save = canvas.save();
-                canvas.scale(f11, f11, 0.0f, getHeight() / 2.0f);
-                float e10 = (1.0f - h6Var.T) * h6Var.f42575f0.e(false, h6Var.f42571d0);
-                org.telegram.ui.Components.i6 drawable = getDrawable();
-                Objects.requireNonNull(drawable);
-                h6Var.c(e10, new e3(drawable, 4), new n(15, this, canvas));
-                canvas.restoreToCount(save);
-                return;
-            default:
-                h6 h6Var2 = this.f42484w;
-                float e11 = (1.0f - h6Var2.T) * h6Var2.f42575f0.e(false, h6Var2.f42571d0);
-                org.telegram.ui.Components.i6 drawable2 = getDrawable();
-                Objects.requireNonNull(drawable2);
-                h6Var2.c(e11, new e3(drawable2, 4), new n(16, this, canvas));
-                return;
+                if (max < 1.0f) {
+                    if (g6Var.f42548h0 == null) {
+                        g6Var.f42548h0 = new o6(this.f40016c.getIntrinsicWidth(), this.f40016c.getIntrinsicHeight());
+                        g6Var.m();
+                    }
+                    Drawable drawable = this.f40016c;
+                    g6Var.f42548h0.setBounds(drawable.getBounds());
+                    o6 o6Var = g6Var.f42548h0;
+                    o6Var.f42975i = g6Var.f42546f0.f39805c;
+                    this.f40016c = o6Var;
+                    this.d = false;
+                    this.f40023x = 1.0f - max;
+                    super.draw(canvas, charSequence, i7, i10, f10, i11, i12, i13, paint);
+                    this.f40016c = drawable;
+                    this.d = true;
+                }
+                this.f40023x = max;
+                if (i14 == 0) {
+                    return;
+                }
+            }
+            super.draw(canvas, charSequence, i7, i10, f10, i11, i12, i13, paint);
         }
     }
 }

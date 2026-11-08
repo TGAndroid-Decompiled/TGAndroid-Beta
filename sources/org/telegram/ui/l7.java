@@ -7,24 +7,24 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 import org.telegram.messenger.Utilities;
 public final class l7 extends g7 {
-    public final ArrayList f47456n;
-    public final t7 f47457r;
+    public final ArrayList f47461n;
+    public final t7 f47462r;
 
     public l7(t7 t7Var) {
         super(t7Var, 2);
-        this.f47457r = t7Var;
-        this.f47456n = new ArrayList();
+        this.f47462r = t7Var;
+        this.f47461n = new ArrayList();
     }
 
     @Override
     public final void F() {
         boolean z9;
         super.F();
-        ArrayList arrayList = this.f47456n;
+        ArrayList arrayList = this.f47461n;
         arrayList.clear();
         int i7 = 0;
         while (true) {
-            ArrayList arrayList2 = this.f45508e;
+            ArrayList arrayList2 = this.f45467e;
             if (i7 < arrayList2.size()) {
                 String path = ((m7) arrayList2.get(i7)).d.f6417a.getPath();
                 if (((m7) arrayList2.get(i7)).d.d == 1) {
@@ -47,10 +47,10 @@ public final class l7 extends g7 {
         String name;
         String str;
         float f10;
-        View view = d1Var.f56951a;
+        View view = d1Var.f57043a;
         k7 k7Var = (k7) view;
-        org.telegram.ui.Cells.h7 h7Var = (org.telegram.ui.Cells.h7) k7Var.f47131b.getChildAt(0);
-        ArrayList arrayList = this.f45508e;
+        org.telegram.ui.Cells.h7 h7Var = (org.telegram.ui.Cells.h7) k7Var.f47129b.getChildAt(0);
+        ArrayList arrayList = this.f45467e;
         ci.b bVar = ((m7) arrayList.get(i7)).d;
         if (bVar == view.getTag()) {
             z9 = true;
@@ -67,14 +67,14 @@ public final class l7 extends g7 {
         long lastModified = file.lastModified();
         String str2 = null;
         if (bVar.h == 5) {
-            name = org.telegram.messenger.hd.M0(2131753941, null);
+            name = org.telegram.messenger.id.M0(2131753941, null);
         } else {
             name = file.getName();
         }
         String str3 = name;
-        String s5 = org.telegram.messenger.hd.s(lastModified / 1000, true);
+        String s5 = org.telegram.messenger.id.s(lastModified / 1000, true);
         String name2 = file.getName();
-        Pattern pattern = Utilities.f21330a;
+        Pattern pattern = Utilities.f21333a;
         int lastIndexOf = name2.lastIndexOf(46);
         if (lastIndexOf != -1) {
             str = name2.substring(lastIndexOf + 1);
@@ -96,15 +96,15 @@ public final class l7 extends g7 {
         }
         imageView.setRoundRadius(org.telegram.messenger.g0.L(f10));
         k7Var.d = z10;
-        k7Var.f47132c.setText(org.telegram.messenger.g0.i0(bVar.f6419c, false, false));
-        k7Var.f47130a.a(this.f47457r.h.f6430j.contains(bVar), z9);
+        k7Var.f47130c.setText(org.telegram.messenger.g0.i0(bVar.f6419c, false, false));
+        k7Var.f47128a.a(this.f47462r.h.f6430j.contains(bVar), z9);
     }
 
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         k7 k7Var = new k7(this, viewGroup.getContext(), 0);
-        k7Var.f47133e = 2;
-        k7Var.f47131b.addView(new org.telegram.ui.Cells.h7(3, viewGroup.getContext(), null));
+        k7Var.f47131e = 2;
+        k7Var.f47129b.addView(new org.telegram.ui.Cells.h7(3, viewGroup.getContext(), null));
         return new v4.d1(k7Var);
     }
 }

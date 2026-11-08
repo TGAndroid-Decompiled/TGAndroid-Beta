@@ -4,16 +4,16 @@ import android.os.Parcel;
 import android.os.Parcelable;
 public final class x0 extends j1.b {
     public static final Parcelable.Creator<x0> CREATOR = new c5.i(4);
-    public Parcelable f57092c;
+    public Parcelable f57184c;
 
     public x0(Parcel parcel, ClassLoader classLoader) {
         super(parcel, classLoader);
-        this.f57092c = parcel.readParcelable(classLoader == null ? n0.class.getClassLoader() : classLoader);
+        this.f57184c = parcel.readParcelable(classLoader == null ? n0.class.getClassLoader() : classLoader);
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         super.writeToParcel(parcel, i7);
-        parcel.writeParcelable(this.f57092c, 0);
+        parcel.writeParcelable(this.f57184c, 0);
     }
 }

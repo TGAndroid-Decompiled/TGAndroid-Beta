@@ -16,7 +16,7 @@ import hi.v3;
 import java.nio.charset.Charset;
 import kotlin.jvm.internal.j;
 import org.telegram.messenger.b20;
-import org.telegram.messenger.rc;
+import org.telegram.messenger.sc;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.jt0;
@@ -46,7 +46,7 @@ public final class c implements k, l5.e, u9.d, gh.d, b20, jt0, kt0 {
                 p0Var.getClass();
                 n nVar = n.f13731b;
                 Log.d("FirebaseSessions", "Session Event Type: SESSION_START");
-                byte[] bytes = u10.getBytes(xd.a.f58594a);
+                byte[] bytes = u10.getBytes(xd.a.f58683a);
                 j.d(bytes, "getBytes(...)");
                 return bytes;
             default:
@@ -91,7 +91,7 @@ public final class c implements k, l5.e, u9.d, gh.d, b20, jt0, kt0 {
             default:
                 return ((b4) obj).getSwipeOffsetY();
             case 27:
-                return ((v3) obj).f15005c;
+                return ((v3) obj).f15008c;
         }
     }
 
@@ -110,18 +110,18 @@ public final class c implements k, l5.e, u9.d, gh.d, b20, jt0, kt0 {
         float f20;
         switch (this.f13452a) {
             case 6:
-                if (rc.e(262144)) {
+                if (sc.e(262144)) {
                     f10 = 0.82f;
                 } else {
                     f10 = 0.76f;
                 }
-                int w02 = k6.w0(k6.f27849d6, f6Var);
+                int w02 = k6.w0(k6.f27852d6, f6Var);
                 if (z9) {
                     return k6.r1(0.9f, -15658735);
                 }
                 return g0.n(f10, w02, -14145496);
             case 7:
-                if (!rc.e(256)) {
+                if (!sc.e(256)) {
                     return k6.x0(null, k6.G8, false);
                 }
                 int x02 = k6.x0(null, k6.G8, false);
@@ -132,39 +132,39 @@ public final class c implements k, l5.e, u9.d, gh.d, b20, jt0, kt0 {
                 }
                 return k6.r1(f11, x02);
             case 8:
-                if (rc.e(262144)) {
+                if (sc.e(262144)) {
                     f12 = 0.85f;
                 } else {
                     f12 = 0.76f;
                 }
-                return g0.n(f12, k6.w0(k6.f27849d6, f6Var), k6.w0(k6.Nl, f6Var));
+                return g0.n(f12, k6.w0(k6.f27852d6, f6Var), k6.w0(k6.Nl, f6Var));
             case 9:
-                if (rc.e(262144)) {
+                if (sc.e(262144)) {
                     f13 = 0.85f;
                 } else {
                     f13 = 0.76f;
                 }
                 return k6.r1(f13, k6.w0(k6.tj, f6Var));
             case 10:
-                if (rc.e(262144)) {
+                if (sc.e(262144)) {
                     f14 = 0.85f;
                 } else {
                     f14 = 0.76f;
                 }
-                return g0.n(f14, k6.w0(k6.f27849d6, f6Var), k6.w0(k6.Ge, f6Var));
+                return g0.n(f14, k6.w0(k6.f27852d6, f6Var), k6.w0(k6.Ge, f6Var));
             case 11:
-                if (rc.e(262144)) {
+                if (sc.e(262144)) {
                     f15 = 0.85f;
                 } else {
                     f15 = 0.8f;
                 }
-                return g0.n(f15, k6.w0(k6.f27793a7, f6Var), k6.w0(k6.f27849d6, f6Var));
+                return g0.n(f15, k6.w0(k6.f27796a7, f6Var), k6.w0(k6.f27852d6, f6Var));
             case 12:
                 return 855638016;
             case 13:
                 return 1073741824;
             case 14:
-                int w03 = k6.w0(k6.f27922h5, f6Var);
+                int w03 = k6.w0(k6.f27925h5, f6Var);
                 if (z9) {
                     f16 = 0.82f;
                 } else {
@@ -182,35 +182,35 @@ public final class c implements k, l5.e, u9.d, gh.d, b20, jt0, kt0 {
                 }
                 return k6.r1(f17, w04);
             case 17:
-                return k6.r1(0.88f, k6.w0(k6.f27849d6, f6Var));
+                return k6.r1(0.88f, k6.w0(k6.f27852d6, f6Var));
             case 18:
-                if (rc.e(262144)) {
+                if (sc.e(262144)) {
                     f18 = 0.85f;
                 } else {
                     f18 = 0.76f;
                 }
-                return g0.n(f18, k6.w0(k6.f27849d6, f6Var), k6.w0(k6.Ml, f6Var));
+                return g0.n(f18, k6.w0(k6.f27852d6, f6Var), k6.w0(k6.Ml, f6Var));
             case 19:
-                if (rc.e(262144)) {
+                if (sc.e(262144)) {
                     f19 = 0.85f;
                 } else {
                     f19 = 0.76f;
                 }
-                return k6.r1(f19, k6.w0(k6.f27849d6, f6Var));
+                return k6.r1(f19, k6.w0(k6.f27852d6, f6Var));
             case 20:
-                return k6.r1(0.78f, k6.w0(k6.f27922h5, f6Var));
+                return k6.r1(0.78f, k6.w0(k6.f27925h5, f6Var));
             case 21:
-                return k6.r1(0.7f, k6.w0(k6.f27849d6, f6Var));
+                return k6.r1(0.7f, k6.w0(k6.f27852d6, f6Var));
             case 22:
-                rc.e(262144);
+                sc.e(262144);
                 return 0;
             default:
-                if (rc.e(262144)) {
+                if (sc.e(262144)) {
                     f20 = 0.85f;
                 } else {
                     f20 = 0.76f;
                 }
-                return k6.r1(f20, k6.w0(k6.f27849d6, f6Var));
+                return k6.r1(f20, k6.w0(k6.f27852d6, f6Var));
         }
     }
 

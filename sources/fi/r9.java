@@ -1,6 +1,6 @@
 package fi;
 
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 public final class r9 implements Runnable {
     public final int f12757a = 1;
     public final s9 f12758b;
@@ -29,11 +29,11 @@ public final class r9 implements Runnable {
                 va vaVar = s9Var.f12819a;
                 k3 k3Var = vaVar.T0;
                 if (z9) {
-                    i7 = 2131744661;
+                    i7 = 2131744663;
                 } else {
-                    i7 = 2131744662;
+                    i7 = 2131744664;
                 }
-                k3Var.f12266a.t(hd.M0(i7, null), false, true);
+                k3Var.f12266a.t(id.M0(i7, null), false, true);
                 k3Var.invalidate();
                 vaVar.g(true, true);
                 vaVar.c0(true);

@@ -484,7 +484,7 @@ public class TL_toncenter {
         public static final int constructor = 230847874;
         public ArrayList<String> crypto_currencies = new ArrayList<>();
         public int flags;
-        public String f27207id;
+        public String f27210id;
         public String name;
         public boolean supports_base_currencies;
         public boolean supports_limits;
@@ -507,7 +507,7 @@ public class TL_toncenter {
             this.supports_base_currencies = TLObject.hasFlag(readInt32, 1);
             this.supports_limits = TLObject.hasFlag(this.flags, 2);
             this.supports_quote = TLObject.hasFlag(this.flags, 4);
-            this.f27207id = inputSerializedData.readString(z9);
+            this.f27210id = inputSerializedData.readString(z9);
             this.name = inputSerializedData.readString(z9);
             this.crypto_currencies = Vector.deserializeString(inputSerializedData, z9);
         }
@@ -522,7 +522,7 @@ public class TL_toncenter {
             int flag3 = TLObject.setFlag(flag2, 4, this.supports_quote);
             this.flags = flag3;
             outputSerializedData.writeInt32(flag3);
-            outputSerializedData.writeString(this.f27207id);
+            outputSerializedData.writeString(this.f27210id);
             outputSerializedData.writeString(this.name);
             Vector.serializeString(outputSerializedData, this.crypto_currencies);
         }

@@ -19,7 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import c8.ha;
 import fi.v3;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.ha0;
 import org.telegram.ui.Components.k60;
@@ -31,31 +31,31 @@ public final class i2 extends Dialog {
     public boolean F;
     public h0 G;
     public ai.i H;
-    public final int f55663a;
-    public final v41 f55664b;
-    public final bi.t f55665c;
+    public final int f55755a;
+    public final v41 f55756b;
+    public final bi.t f55757c;
     public final bi.s1 d;
-    public final ImageView f55666e;
-    public final g2 f55667f;
+    public final ImageView f55758e;
+    public final g2 f55759f;
     public final Rect h;
-    public Bitmap f55668n;
-    public BitmapShader f55669r;
-    public Paint f55670s;
-    public Matrix f55671w;
-    public final ha0 f55672x;
-    public final ha0 f55673y;
+    public Bitmap f55760n;
+    public BitmapShader f55761r;
+    public Paint f55762s;
+    public Matrix f55763w;
+    public final ha0 f55764x;
+    public final ha0 f55765y;
 
     public i2(Context context, final int i7) {
         super(context, 2131755352);
         di.b bVar = new di.b();
         this.h = new Rect();
         this.F = false;
-        this.f55663a = i7;
+        this.f55755a = i7;
         v41 v41Var = new v41(9, context, this);
-        this.f55664b = v41Var;
+        this.f55756b = v41Var;
         v41Var.setOnClickListener(new ii.g(this, 24));
         bi.t tVar = new bi.t(context, 12);
-        this.f55665c = tVar;
+        this.f55757c = tVar;
         tVar.setOrientation(1);
         v41Var.addView(tVar, ha.d(-2, -2.0f, 17, 8.0f, 8.0f, 8.0f, 8.0f));
         bi.s1 s1Var = new bi.s1(this, context, 12);
@@ -65,11 +65,11 @@ public final class i2 extends Dialog {
         frameLayout.setBackgroundColor(-14737633);
         s1Var.addView(frameLayout, ha.e(-1, 56, 55));
         TextView textView = new TextView(context);
-        textView.setText(hd.M0(2131744634, null));
+        textView.setText(id.M0(2131744636, null));
         textView.setTextColor(-1);
         com.google.android.recaptcha.internal.a.q(textView, 1, 18.0f);
         TextView i10 = org.telegram.ui.Cells.f1.i(frameLayout, textView, ha.d(-1, -2.0f, 55, 18.0f, 8.33f, 18.0f, 0.0f), context);
-        i10.setText(hd.M0(2131744635, null));
+        i10.setText(id.M0(2131744637, null));
         i10.setTextColor(-8421505);
         i10.setTextSize(1, 14.0f);
         frameLayout.addView(i10, ha.d(-1, -2.0f, 55, 18.0f, 31.0f, 18.0f, 0.0f));
@@ -77,80 +77,80 @@ public final class i2 extends Dialog {
         this.d = s1Var2;
         s1Var.addView(s1Var2, ha.d(-1, -1.0f, 119, 0.0f, 56.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f55666e = imageView;
+        this.f55758e = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         s1Var2.addView(imageView, ha.e(-1, -1, 119));
-        g2 g2Var = new g2(this, context, org.telegram.messenger.g0.f22543p);
-        this.f55667f = g2Var;
+        g2 g2Var = new g2(this, context, org.telegram.messenger.g0.f22562p);
+        this.f55759f = g2Var;
         s1Var2.addView(g2Var, ha.e(-2, -2, 17));
         k60 F = k60.F(v41Var, bVar, v41Var);
-        ha0 ha0Var = new ha0(getContext(), 2131624139, hd.M0(2131744645, null), 2131624138, hd.M0(2131744644, null), bVar);
-        this.f55672x = ha0Var;
+        ha0 ha0Var = new ha0(getContext(), 2131624139, id.M0(2131744647, null), 2131624138, id.M0(2131744646, null), bVar);
+        this.f55764x = ha0Var;
         ha0Var.setOnClickListener(new View.OnClickListener(this) {
-            public final i2 f55569b;
+            public final i2 f55661b;
 
             {
-                this.f55569b = this;
+                this.f55661b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        i2 i2Var = this.f55569b;
+                        i2 i2Var = this.f55661b;
                         h0 h0Var = i2Var.G;
-                        boolean z9 = h0Var.f55619f;
-                        h0Var.f55619f = !z9;
-                        i2Var.f55672x.a(z9, true);
-                        i2Var.f55667f.b(i7, i2Var.G, true);
+                        boolean z9 = h0Var.f55711f;
+                        h0Var.f55711f = !z9;
+                        i2Var.f55764x.a(z9, true);
+                        i2Var.f55759f.b(i7, i2Var.G, true);
                         return;
                     default:
-                        i2 i2Var2 = this.f55569b;
+                        i2 i2Var2 = this.f55661b;
                         h0 h0Var2 = i2Var2.G;
-                        boolean z10 = h0Var2.f55618e;
-                        h0Var2.f55618e = !z10;
-                        i2Var2.f55673y.a(z10, true);
-                        i2Var2.f55667f.b(i7, i2Var2.G, true);
+                        boolean z10 = h0Var2.f55710e;
+                        h0Var2.f55710e = !z10;
+                        i2Var2.f55765y.a(z10, true);
+                        i2Var2.f55759f.b(i7, i2Var2.G, true);
                         return;
                 }
             }
         });
         F.q(ha0Var);
-        ha0 ha0Var2 = new ha0(context, 2131624089, hd.M0(2131748898, null), 2131624086, hd.M0(2131748897, null), bVar);
-        this.f55673y = ha0Var2;
+        ha0 ha0Var2 = new ha0(context, 2131624089, id.M0(2131748900, null), 2131624086, id.M0(2131748899, null), bVar);
+        this.f55765y = ha0Var2;
         ha0Var2.setOnClickListener(new View.OnClickListener(this) {
-            public final i2 f55569b;
+            public final i2 f55661b;
 
             {
-                this.f55569b = this;
+                this.f55661b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        i2 i2Var = this.f55569b;
+                        i2 i2Var = this.f55661b;
                         h0 h0Var = i2Var.G;
-                        boolean z9 = h0Var.f55619f;
-                        h0Var.f55619f = !z9;
-                        i2Var.f55672x.a(z9, true);
-                        i2Var.f55667f.b(i7, i2Var.G, true);
+                        boolean z9 = h0Var.f55711f;
+                        h0Var.f55711f = !z9;
+                        i2Var.f55764x.a(z9, true);
+                        i2Var.f55759f.b(i7, i2Var.G, true);
                         return;
                     default:
-                        i2 i2Var2 = this.f55569b;
+                        i2 i2Var2 = this.f55661b;
                         h0 h0Var2 = i2Var2.G;
-                        boolean z10 = h0Var2.f55618e;
-                        h0Var2.f55618e = !z10;
-                        i2Var2.f55673y.a(z10, true);
-                        i2Var2.f55667f.b(i7, i2Var2.G, true);
+                        boolean z10 = h0Var2.f55710e;
+                        h0Var2.f55710e = !z10;
+                        i2Var2.f55765y.a(z10, true);
+                        i2Var2.f55759f.b(i7, i2Var2.G, true);
                         return;
                 }
             }
         });
         F.q(ha0Var2);
         F.k();
-        F.c(2131232357, hd.M0(2131754218, null), new e2(this, 2), false);
-        F.c(2131232108, hd.M0(2131751362, null), new e2(this, 3), true);
+        F.c(2131232357, id.M0(2131754218, null), new e2(this, 2), false);
+        F.c(2131232108, id.M0(2131751362, null), new e2(this, 3), true);
         tVar.addView(F.A, ha.p(-2, -2, 0.0f, 85));
         v41Var.setFitsSystemWindows(true);
         v41Var.setOnApplyWindowInsetsListener(new h2(this));
@@ -196,7 +196,7 @@ public final class i2 extends Dialog {
         }
         this.F = true;
         b(false, new e2(this, 1));
-        this.f55664b.invalidate();
+        this.f55756b.invalidate();
     }
 
     @Override
@@ -210,7 +210,7 @@ public final class i2 extends Dialog {
         Window window = getWindow();
         window.setWindowAnimations(2131755178);
         ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(-1, -1);
-        v41 v41Var = this.f55664b;
+        v41 v41Var = this.f55756b;
         setContentView(v41Var, layoutParams);
         WindowManager.LayoutParams attributes = window.getAttributes();
         attributes.width = -1;

@@ -4,41 +4,41 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class cn extends vh {
-    public final iy f32603n;
-    public final pj0 f32604r;
-    public final int f32605s;
-    public final org.telegram.ui.x7 f32606w;
-    public int f32607x;
+    public final jy f32634n;
+    public final pj0 f32635r;
+    public final int f32636s;
+    public final org.telegram.ui.x7 f32637w;
+    public int f32638x;
 
     public cn(int i7, Context context, org.telegram.ui.ActionBar.f6 f6Var, di diVar) {
         super(context, f6Var, diVar);
-        this.f32605s = i7;
-        iy iyVar = new iy(context, f6Var);
-        this.f32603n = iyVar;
-        iyVar.setText(org.telegram.messenger.hd.M0(2131748179, null));
-        iyVar.setOnTouchListener(null);
-        iyVar.setTextSize(16);
-        addView(iyVar, c8.ha.c(-2.0f, -1));
-        iyVar.a(2131624087, 150, 150);
-        TLRPC.Chat Y0 = this.f38969b.Y0();
+        this.f32636s = i7;
+        jy jyVar = new jy(context, f6Var);
+        this.f32634n = jyVar;
+        jyVar.setText(org.telegram.messenger.id.M0(2131748181, null));
+        jyVar.setOnTouchListener(null);
+        jyVar.setTextSize(16);
+        addView(jyVar, c8.ha.c(-2.0f, -1));
+        jyVar.a(2131624087, 150, 150);
+        TLRPC.Chat Y0 = this.f39004b.Y0();
         if (i7 == 1) {
-            iyVar.setText(org.telegram.messenger.t3.L(7, Y0));
+            jyVar.setText(org.telegram.messenger.t3.L(7, Y0));
         } else if (i7 == 3) {
-            iyVar.setText(org.telegram.messenger.t3.L(18, Y0));
+            jyVar.setText(org.telegram.messenger.t3.L(18, Y0));
         } else if (i7 == 4) {
-            iyVar.setText(org.telegram.messenger.t3.L(19, Y0));
+            jyVar.setText(org.telegram.messenger.t3.L(19, Y0));
         } else {
-            iyVar.setText(org.telegram.messenger.t3.L(22, Y0));
+            jyVar.setText(org.telegram.messenger.t3.L(22, Y0));
         }
-        iyVar.c();
+        jyVar.c();
         pj0 pj0Var = new pj0(context, f6Var);
-        this.f32604r = pj0Var;
+        this.f32635r = pj0Var;
         pj0Var.setSectionsType(2);
         pj0Var.setVerticalScrollBarEnabled(false);
         pj0Var.setLayoutManager(new v4.b0());
         pj0Var.setClipToPadding(false);
         org.telegram.ui.x7 x7Var = new org.telegram.ui.x7(this, 4);
-        this.f32606w = x7Var;
+        this.f32637w = x7Var;
         pj0Var.setAdapter(x7Var);
         pj0Var.setPadding(0, 0, 0, org.telegram.messenger.g0.L(48.0f));
         pj0Var.setOnScrollListener(new ui(this, 4));
@@ -52,7 +52,7 @@ public final class cn extends vh {
 
     @Override
     public int getCurrentItemTop() {
-        pj0 pj0Var = this.f32604r;
+        pj0 pj0Var = this.f32635r;
         if (pj0Var.getChildCount() <= 0) {
             return Integer.MAX_VALUE;
         }
@@ -67,8 +67,8 @@ public final class cn extends vh {
             top = i7;
         }
         int measuredHeight = (getMeasuredHeight() - top) - org.telegram.messenger.g0.L(50.0f);
-        iy iyVar = this.f32603n;
-        iyVar.setTranslationY(((measuredHeight - iyVar.getMeasuredHeight()) / 2) + top);
+        jy jyVar = this.f32634n;
+        jyVar.setTranslationY(((measuredHeight - jyVar.getMeasuredHeight()) / 2) + top);
         return org.telegram.messenger.g0.L(12.0f) + top;
     }
 
@@ -79,12 +79,12 @@ public final class cn extends vh {
 
     @Override
     public int getListTopPadding() {
-        return this.f32604r.getPaddingTop();
+        return this.f32635r.getPaddingTop();
     }
 
     @Override
     public void setTranslationY(float f10) {
         super.setTranslationY(f10);
-        this.f38969b.f28616b.invalidate();
+        this.f39004b.f28619b.invalidate();
     }
 }

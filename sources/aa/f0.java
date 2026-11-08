@@ -89,7 +89,7 @@ public final class f0 {
             unmodifiableMap = DesugarCollections.unmodifiableMap(hashMap);
         }
         List f10 = f(unmodifiableMap);
-        List f11 = f(((ca.e) ((AtomicMarkableReference) ((ab.q) q3Var.f19228e).f990b).getReference()).a());
+        List f11 = f(((ca.e) ((AtomicMarkableReference) ((ab.q) q3Var.f19231e).f990b).getReference()).a());
         if (!f10.isEmpty() || !f11.isEmpty()) {
             u0 a11 = t0Var.f8520c.a();
             a11.f8530b = f10;
@@ -100,10 +100,10 @@ public final class f0 {
     }
 
     public static q2 b(t0 t0Var, q3 q3Var) {
-        List l10 = ((f5.u) q3Var.f19229f).l();
+        List o4 = ((f5.u) q3Var.f19232f).o();
         ArrayList arrayList = new ArrayList();
-        for (int i7 = 0; i7 < l10.size(); i7++) {
-            ca.p pVar = (ca.p) l10.get(i7);
+        for (int i7 = 0; i7 < o4.size(); i7++) {
+            ca.p pVar = (ca.p) o4.get(i7);
             pVar.getClass();
             ?? obj = new Object();
             ca.b bVar = (ca.b) pVar;
@@ -233,7 +233,7 @@ public final class f0 {
         obj.f8508b = str;
         obj.f8507a = j3;
         obj.f8512g = (byte) (obj.f8512g | 1);
-        j2 b11 = x9.c.f58577a.b(context);
+        j2 b11 = x9.c.f58666a.b(context);
         int i10 = ((e1) b11).f8339c;
         if (i10 > 0) {
             if (i10 != 100) {
@@ -387,9 +387,9 @@ public final class f0 {
                     try {
                         TaskCompletionSource taskCompletionSource2 = new TaskCompletionSource();
                         if (z9) {
-                            ((AtomicInteger) cVar.f14438i.f53710b).getAndIncrement();
+                            ((AtomicInteger) cVar.f14438i.f53803b).getAndIncrement();
                             if (cVar.f14436f.size() < cVar.f14435e) {
-                                x9.b bVar3 = x9.b.f58576a;
+                                x9.b bVar3 = x9.b.f58665a;
                                 bVar3.b("Enqueueing report: " + bVar.f776b);
                                 bVar3.b("Queue size: " + cVar.f14436f.size());
                                 taskCompletionSource = taskCompletionSource2;
@@ -403,7 +403,7 @@ public final class f0 {
                                 if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                                     Log.d("FirebaseCrashlytics", str4, null);
                                 }
-                                ((AtomicInteger) cVar.f14438i.f53711c).getAndIncrement();
+                                ((AtomicInteger) cVar.f14438i.f53804c).getAndIncrement();
                                 taskCompletionSource.trySetResult(bVar);
                             }
                         } else {

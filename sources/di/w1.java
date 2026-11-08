@@ -2,7 +2,7 @@ package di;
 
 import android.app.Activity;
 import c8.ha;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.iz;
 import org.telegram.messenger.qp;
 import org.telegram.ui.PremiumPreviewFragment;
@@ -35,7 +35,7 @@ public final class w1 implements Runnable {
                         m3Var.j(i0.a.o(i0.a.f(0.13f, -16777216, -1), 240));
                         fi.m3 m3Var2 = i4Var.f9184q0;
                         m3Var2.U = false;
-                        m3Var2.u(hd.M0(2131746398, null));
+                        m3Var2.u(id.M0(2131746400, null));
                         i4Var.f9184q0.setPadding(org.telegram.messenger.g0.L(8.0f), 0, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(1.0f));
                         j3 j3Var = i4Var.L0;
                         fi.m3 m3Var3 = i4Var.f9184q0;

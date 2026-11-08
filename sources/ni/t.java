@@ -5,8 +5,8 @@ import f5.u;
 import java.util.Arrays;
 import java.util.HashMap;
 public final class t {
-    public static final HashMap f20655b;
-    public final int[] f20656a;
+    public static final HashMap f20658b;
+    public final int[] f20659a;
 
     static {
         HashMap hashMap = new HashMap();
@@ -34,20 +34,20 @@ public final class t {
         a(hashMap, 256, "bold");
         a(hashMap, 512, "italic");
         a(hashMap, 257, "important");
-        f20655b = hashMap;
+        f20658b = hashMap;
     }
 
     public t(String[] strArr) {
-        this.f20656a = new int[strArr.length];
+        this.f20659a = new int[strArr.length];
         for (int i7 = 0; i7 < strArr.length; i7++) {
             int i10 = 0;
             for (String str : strArr[i7].split("\\s+")) {
-                Integer num = (Integer) f20655b.get(str);
+                Integer num = (Integer) f20658b.get(str);
                 if (num != null) {
                     i10 = ((i10 & 255) == 0 ? i10 | (num.intValue() & 255) : i10) | (num.intValue() & (-256));
                 }
             }
-            this.f20656a[i7] = i10;
+            this.f20659a[i7] = i10;
         }
     }
 
@@ -95,7 +95,7 @@ public final class t {
                 i7 = iArr2[i17];
             }
             int i18 = iArr[i13 + 2];
-            int[] iArr5 = this.f20656a;
+            int[] iArr5 = this.f20659a;
             int i19 = iArr5[i18];
             int i20 = iArr5[iArr[i13 + 3]];
             int i21 = i20 & 255;

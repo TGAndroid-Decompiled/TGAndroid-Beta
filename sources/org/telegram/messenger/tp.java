@@ -8,14 +8,14 @@ import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
 public final class tp implements Runnable {
-    public final int f25651a;
-    public final yr f25652b;
-    public final int f25653c;
+    public final int f25652a;
+    public final yr f25653b;
+    public final int f25654c;
 
     public tp(yr yrVar, int i7, int i10) {
-        this.f25651a = i10;
-        this.f25652b = yrVar;
-        this.f25653c = i7;
+        this.f25652a = i10;
+        this.f25653b = yrVar;
+        this.f25654c = i7;
     }
 
     @Override
@@ -24,25 +24,25 @@ public final class tp implements Runnable {
         boolean z9;
         boolean z10;
         boolean z11;
-        int i7 = this.f25651a;
+        int i7 = this.f25652a;
         SQLiteCursor sQLiteCursor = null;
-        int i10 = this.f25653c;
-        yr yrVar = this.f25652b;
+        int i10 = this.f25654c;
+        yr yrVar = this.f25653b;
         switch (i7) {
             case 0:
                 qp messagesController = yrVar.getMessagesController();
                 p10 userConfig = messagesController.getUserConfig();
-                int i11 = this.f25653c;
+                int i11 = this.f25654c;
                 if (userConfig.g(i11)[0] == 2147483647L) {
                     if (i11 == 1) {
-                        messagesController.f24812k0 = false;
+                        messagesController.f24819k0 = false;
                         messagesController.D();
                         return;
                     }
                     messagesController.i4(i11);
                     return;
                 }
-                messagesController.U2(i11, 0, 10, false, new uk(messagesController, i11, 3));
+                messagesController.U2(i11, 0, 10, false, new tk(messagesController, i11, 3));
                 return;
             case 1:
                 yrVar.getDownloadController().t(i10);
@@ -50,14 +50,14 @@ public final class tp implements Runnable {
             case 2:
                 yrVar.getClass();
                 try {
-                    yrVar.f26698b.executeFast("DELETE FROM shortcut_widget WHERE id = " + i10).stepThis().dispose();
+                    yrVar.f26721b.executeFast("DELETE FROM shortcut_widget WHERE id = " + i10).stepThis().dispose();
                     return;
                 } catch (Exception e10) {
                     yrVar.o(e10, true);
                     return;
                 }
             case 3:
-                yr yrVar2 = this.f25652b;
+                yr yrVar2 = this.f25653b;
                 try {
                     try {
                         ArrayList arrayList = new ArrayList();
@@ -65,18 +65,18 @@ public final class tp implements Runnable {
                         ArrayList arrayList3 = new ArrayList();
                         a0.h hVar = new a0.h();
                         if (i10 >= 0) {
-                            queryFinalized = yrVar2.f26698b.queryFinalized(String.format(Locale.US, "SELECT did, last_mid, unread_count, date FROM dialogs WHERE unread_count > 0 AND folder_id = %1$d", Integer.valueOf(i10)), new Object[0]);
+                            queryFinalized = yrVar2.f26721b.queryFinalized(String.format(Locale.US, "SELECT did, last_mid, unread_count, date FROM dialogs WHERE unread_count > 0 AND folder_id = %1$d", Integer.valueOf(i10)), new Object[0]);
                         } else {
-                            queryFinalized = yrVar2.f26698b.queryFinalized("SELECT did, last_mid, unread_count, date FROM dialogs WHERE unread_count > 0", new Object[0]);
+                            queryFinalized = yrVar2.f26721b.queryFinalized("SELECT did, last_mid, unread_count, date FROM dialogs WHERE unread_count > 0", new Object[0]);
                         }
                         while (queryFinalized.next()) {
                             try {
                                 long longValue = queryFinalized.longValue(0);
                                 if (!m5.D(longValue)) {
                                     ?? obj = new Object();
-                                    obj.f25887a = queryFinalized.intValue(1);
-                                    obj.f25889c = queryFinalized.intValue(2);
-                                    obj.f25888b = queryFinalized.intValue(3);
+                                    obj.f25889a = queryFinalized.intValue(1);
+                                    obj.f25891c = queryFinalized.intValue(2);
+                                    obj.f25890b = queryFinalized.intValue(3);
                                     hVar.k(obj, longValue);
                                     if (!m5.C(longValue)) {
                                         if (m5.z(longValue)) {
@@ -136,9 +136,9 @@ public final class tp implements Runnable {
             case 4:
                 try {
                     if (i10 == 0) {
-                        yrVar.f26698b.executeFast("DELETE FROM download_queue WHERE 1").stepThis().dispose();
+                        yrVar.f26721b.executeFast("DELETE FROM download_queue WHERE 1").stepThis().dispose();
                     } else {
-                        SQLiteDatabase sQLiteDatabase = yrVar.f26698b;
+                        SQLiteDatabase sQLiteDatabase = yrVar.f26721b;
                         Locale locale = Locale.US;
                         sQLiteDatabase.executeFast("DELETE FROM download_queue WHERE type = " + i10).stepThis().dispose();
                     }
@@ -154,22 +154,22 @@ public final class tp implements Runnable {
                 try {
                     try {
                         ArrayList arrayList7 = new ArrayList();
-                        SQLiteDatabase sQLiteDatabase2 = yrVar.f26698b;
+                        SQLiteDatabase sQLiteDatabase2 = yrVar.f26721b;
                         Locale locale2 = Locale.US;
                         SQLiteCursor queryFinalized2 = sQLiteDatabase2.queryFinalized("SELECT uid, type, data, parent FROM download_queue WHERE type = " + i10 + " ORDER BY date DESC LIMIT 3", new Object[0]);
                         while (queryFinalized2.next()) {
                             try {
                                 ?? obj2 = new Object();
-                                obj2.f21390b = queryFinalized2.intValue(1);
-                                obj2.f21391c = queryFinalized2.longValue(0);
-                                obj2.f21393f = queryFinalized2.stringValue(3);
+                                obj2.f21388b = queryFinalized2.intValue(1);
+                                obj2.f21389c = queryFinalized2.longValue(0);
+                                obj2.f21391f = queryFinalized2.stringValue(3);
                                 NativeByteBuffer byteBufferValue = queryFinalized2.byteBufferValue(2);
                                 if (byteBufferValue != null) {
                                     TLRPC.MessageMedia TLdeserialize = TLRPC.MessageMedia.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                                     byteBufferValue.reuse();
                                     TLRPC.Document document = TLdeserialize.document;
                                     if (document != null) {
-                                        obj2.f21389a = document;
+                                        obj2.f21387a = document;
                                         if (!ij.L4(document)) {
                                             if (!ij.R4(TLdeserialize.document)) {
                                                 if (ij.j4(TLdeserialize.document)) {
@@ -188,7 +188,7 @@ public final class tp implements Runnable {
                                     } else {
                                         TLRPC.Photo photo = TLdeserialize.photo;
                                         if (photo != null) {
-                                            obj2.f21389a = photo;
+                                            obj2.f21387a = photo;
                                             int i14 = TLdeserialize.ttl_seconds;
                                             if ((i14 > 0 && i14 <= 60) || i14 == Integer.MAX_VALUE) {
                                                 z9 = true;
@@ -203,7 +203,7 @@ public final class tp implements Runnable {
                                     } else {
                                         z10 = false;
                                     }
-                                    obj2.f21392e = z10;
+                                    obj2.f21390e = z10;
                                 }
                                 arrayList7.add(obj2);
                             } catch (Exception e14) {

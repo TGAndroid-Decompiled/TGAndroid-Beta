@@ -10,12 +10,12 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class ov {
-    public final ArrayList f24393a;
-    public final int f24394b;
+    public final ArrayList f24400a;
+    public final int f24401b;
 
     public ov(int i7, ArrayList arrayList) {
-        this.f24393a = arrayList;
-        this.f24394b = i7;
+        this.f24400a = arrayList;
+        this.f24401b = i7;
     }
 
     public static void a(TL_iv.RichText richText, ArrayList arrayList) {
@@ -115,7 +115,7 @@ public final class ov {
         TLRPC.Message message;
         TL_iv.RichMessage richMessage;
         kv kvVar;
-        if (ijVar != null && (message = ijVar.f23244k) != null && (richMessage = message.rich_message) != null && (kvVar = ijVar.f23291w2) != null && kvVar.f23765c == richMessage) {
+        if (ijVar != null && (message = ijVar.f23262k) != null && (richMessage = message.rich_message) != null && (kvVar = ijVar.f23309w2) != null && kvVar.f23765c == richMessage) {
             return true;
         }
         return false;
@@ -240,10 +240,10 @@ public final class ov {
     public static int[] f(ij ijVar, String str, int i7) {
         ArrayList arrayList;
         int[] iArr = null;
-        if (ijVar == null || ijVar.f23291w2 == null || TextUtils.isEmpty(str)) {
+        if (ijVar == null || ijVar.f23309w2 == null || TextUtils.isEmpty(str)) {
             return null;
         }
-        kv kvVar = ijVar.f23291w2;
+        kv kvVar = ijVar.f23309w2;
         TL_iv.RichMessage richMessage = kvVar.f23765c;
         ArrayList arrayList2 = kvVar.f23774n;
         ArrayList e10 = e(richMessage);
@@ -278,11 +278,11 @@ public final class ov {
                 while (i13 < length2) {
                     cu cuVar = cuVarArr[i13];
                     int[] iArr3 = iArr;
-                    if (identityHashMap.containsKey(cuVar.f21906a)) {
+                    if (identityHashMap.containsKey(cuVar.f21935a)) {
                         arrayList = arrayList2;
                     } else {
                         arrayList = arrayList2;
-                        identityHashMap.put(cuVar.f21906a, new int[]{spanned.getSpanStart(cuVar) + intValue, spanned.getSpanEnd(cuVar) + intValue, cuVar.f21907b});
+                        identityHashMap.put(cuVar.f21935a, new int[]{spanned.getSpanStart(cuVar) + intValue, spanned.getSpanEnd(cuVar) + intValue, cuVar.f21936b});
                     }
                     i13++;
                     iArr = iArr3;
@@ -413,7 +413,7 @@ public final class ov {
         TL_iv.RichText b10;
         int i12;
         if (c(ijVar)) {
-            kv kvVar = ijVar.f23291w2;
+            kv kvVar = ijVar.f23309w2;
             int i13 = qp.s1(ijVar.I1).o4;
             ArrayList e10 = e(kvVar.f23765c);
             IdentityHashMap identityHashMap = new IdentityHashMap();
@@ -425,7 +425,7 @@ public final class ov {
             h2.j0 n11 = n(kvVar, Math.max(i7, i10), false, identityHashMap);
             if (n10 != null) {
                 int i15 = n10.f14097a;
-                if (n11 != null && (intValue = ((Integer) identityHashMap.get(((cu) n10.f14099c).f21906a)).intValue()) <= (intValue2 = ((Integer) identityHashMap.get(((cu) n11.f14099c).f21906a)).intValue()) && (intValue != intValue2 || i15 < n11.f14097a)) {
+                if (n11 != null && (intValue = ((Integer) identityHashMap.get(((cu) n10.f14099c).f21935a)).intValue()) <= (intValue2 = ((Integer) identityHashMap.get(((cu) n11.f14099c).f21935a)).intValue()) && (intValue != intValue2 || i15 < n11.f14097a)) {
                     nv a11 = nv.a(kvVar, n10);
                     if (intValue == intValue2) {
                         a10 = a11;
@@ -439,14 +439,14 @@ public final class ov {
                             if (i16 != intValue2) {
                                 mvVar.h = null;
                             }
-                            mvVar.f24086f = i16;
-                            mvVar.f24087g = Integer.MAX_VALUE;
+                            mvVar.f24091f = i16;
+                            mvVar.f24092g = Integer.MAX_VALUE;
                         }
                         int i17 = 0;
-                        loop1: while (i17 < 8 && mvVar.f24086f >= intValue) {
+                        loop1: while (i17 < 8 && mvVar.f24091f >= intValue) {
                             int i18 = intValue;
                             int i19 = 0;
-                            while (i18 <= mvVar.f24086f) {
+                            while (i18 <= mvVar.f24091f) {
                                 TL_iv.RichText a12 = mvVar.a(i18);
                                 StringBuilder sb2 = new StringBuilder();
                                 b(a12, sb2, null);
@@ -462,31 +462,31 @@ public final class ov {
                                         int offsetByCodePoints = sb3.offsetByCodePoints(0, i20);
                                         z9 = z10;
                                         nv b11 = mvVar.b(i18);
-                                        if (i18 == intValue && i21 > 0 && (b10 = mvVar.f24085e.b(0, i21)) != null) {
+                                        if (i18 == intValue && i21 > 0 && (b10 = mvVar.f24090e.b(0, i21)) != null) {
                                             offsetByCodePoints += g(b10);
                                         }
-                                        i11 = i(mvVar.f24082a, (TL_iv.RichText) mvVar.f24083b.get(i18), b11.d, offsetByCodePoints, false);
+                                        i11 = i(mvVar.f24087a, (TL_iv.RichText) mvVar.f24088b.get(i18), b11.d, offsetByCodePoints, false);
                                     }
                                     if (i20 > 0) {
-                                        if (i18 != mvVar.f24084c) {
+                                        if (i18 != mvVar.f24089c) {
                                             i21 = 0;
                                         }
-                                        if (i11 > i21 && (i18 != (i12 = mvVar.f24086f) || i11 < mvVar.f24087g)) {
+                                        if (i11 > i21 && (i18 != (i12 = mvVar.f24091f) || i11 < mvVar.f24092g)) {
                                             if (i18 != i12) {
                                                 mvVar.h = null;
                                             }
-                                            mvVar.f24086f = i18;
-                                            mvVar.f24087g = i11;
+                                            mvVar.f24091f = i18;
+                                            mvVar.f24092g = i11;
                                             i17++;
                                             z10 = z9;
                                         }
                                     }
                                     int i22 = i18 - 1;
-                                    if (i22 != mvVar.f24086f) {
+                                    if (i22 != mvVar.f24091f) {
                                         mvVar.h = null;
                                     }
-                                    mvVar.f24086f = i22;
-                                    mvVar.f24087g = Integer.MAX_VALUE;
+                                    mvVar.f24091f = i22;
+                                    mvVar.f24092g = Integer.MAX_VALUE;
                                     i17++;
                                     z10 = z9;
                                 } else {
@@ -495,9 +495,9 @@ public final class ov {
                                 }
                             }
                         }
-                        if (mvVar.f24086f >= intValue) {
+                        if (mvVar.f24091f >= intValue) {
                             ArrayList arrayList = new ArrayList();
-                            for (int i23 = intValue; i23 <= mvVar.f24086f; i23++) {
+                            for (int i23 = intValue; i23 <= mvVar.f24091f; i23++) {
                                 TL_iv.RichText o4 = o(mvVar.a(i23));
                                 if (o4 != null && g(o4) > 0) {
                                     arrayList.add(o4);

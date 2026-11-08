@@ -8,55 +8,55 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 public class wo extends View {
-    public final CheckBoxBase f40058a;
-    public Drawable f40059b;
-    public int f40060c;
+    public final CheckBoxBase f40008a;
+    public Drawable f40009b;
+    public int f40010c;
 
     public wo(int i7, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f40058a = new CheckBoxBase(i7, this, f6Var);
+        this.f40008a = new CheckBoxBase(i7, this, f6Var);
     }
 
     public final void a(boolean z9, boolean z10) {
-        this.f40058a.f(-1, z9, z10);
+        this.f40008a.f(-1, z9, z10);
     }
 
     public final void b(int i7, int i10, int i11) {
-        this.f40058a.h(i7, i10, i11);
+        this.f40008a.h(i7, i10, i11);
     }
 
     public CheckBoxBase getCheckBoxBase() {
-        return this.f40058a;
+        return this.f40008a;
     }
 
     public boolean getDrawUnchecked() {
-        return this.f40058a.f31267z;
+        return this.f40008a.f31271z;
     }
 
     public float getProgress() {
-        return this.f40058a.getProgress();
+        return this.f40008a.getProgress();
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f40058a.f31254l = true;
+        this.f40008a.f31258l = true;
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f40058a.f31254l = false;
+        this.f40008a.f31258l = false;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (this.f40059b != null) {
+        if (this.f40009b != null) {
             int measuredWidth = getMeasuredWidth() >> 1;
             int measuredHeight = getMeasuredHeight() >> 1;
-            Drawable drawable = this.f40059b;
-            drawable.setBounds(org.telegram.ui.Cells.f1.z(2, measuredWidth, drawable), org.telegram.ui.Cells.f1.y(2, measuredHeight, this.f40059b), org.telegram.ui.Cells.f1.w(2, measuredWidth, this.f40059b), org.telegram.ui.Cells.f1.f(2, measuredHeight, this.f40059b));
-            this.f40059b.draw(canvas);
+            Drawable drawable = this.f40009b;
+            drawable.setBounds(org.telegram.ui.Cells.f1.z(2, measuredWidth, drawable), org.telegram.ui.Cells.f1.y(2, measuredHeight, this.f40009b), org.telegram.ui.Cells.f1.w(2, measuredWidth, this.f40009b), org.telegram.ui.Cells.f1.f(2, measuredHeight, this.f40009b));
+            this.f40009b.draw(canvas);
             Paint paint = new Paint();
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(org.telegram.messenger.g0.L(1.2f));
@@ -64,7 +64,7 @@ public class wo extends View {
             canvas.drawCircle(measuredWidth, measuredHeight, measuredWidth - org.telegram.messenger.g0.L(1.5f), paint);
             return;
         }
-        this.f40058a.a(canvas);
+        this.f40008a.a(canvas);
     }
 
     @Override
@@ -72,17 +72,17 @@ public class wo extends View {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.Switch");
         accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.f40058a.f31259q);
+        accessibilityNodeInfo.setChecked(this.f40008a.f31263q);
     }
 
     @Override
     public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
         super.onLayout(z9, i7, i10, i11, i12);
-        this.f40058a.e(0, 0, i11 - i7, i12 - i10);
+        this.f40008a.e(0, 0, i11 - i7, i12 - i10);
     }
 
     public void setCirclePaintProvider(org.telegram.messenger.k9 k9Var) {
-        CheckBoxBase checkBoxBase = this.f40058a;
+        CheckBoxBase checkBoxBase = this.f40008a;
         if (checkBoxBase.G == k9Var) {
             return;
         }
@@ -91,56 +91,56 @@ public class wo extends View {
     }
 
     public void setDrawBackgroundAsArc(int i7) {
-        this.f40058a.d(i7);
+        this.f40008a.d(i7);
     }
 
     public void setDrawUnchecked(boolean z9) {
-        this.f40058a.k(z9);
+        this.f40008a.k(z9);
     }
 
     public void setDuration(long j3) {
-        this.f40058a.H = j3;
+        this.f40008a.H = j3;
     }
 
     @Override
     public void setEnabled(boolean z9) {
-        CheckBoxBase checkBoxBase = this.f40058a;
-        if (checkBoxBase.f31253k != z9) {
-            checkBoxBase.f31253k = z9;
+        CheckBoxBase checkBoxBase = this.f40008a;
+        if (checkBoxBase.f31257k != z9) {
+            checkBoxBase.f31257k = z9;
             checkBoxBase.b();
         }
         super.setEnabled(z9);
     }
 
     public void setForbidden(boolean z9) {
-        CheckBoxBase checkBoxBase = this.f40058a;
-        if (checkBoxBase.f31256n == z9) {
+        CheckBoxBase checkBoxBase = this.f40008a;
+        if (checkBoxBase.f31260n == z9) {
             return;
         }
-        checkBoxBase.f31256n = z9;
+        checkBoxBase.f31260n = z9;
         checkBoxBase.b();
     }
 
     public void setIcon(int i7) {
-        if (i7 != this.f40060c) {
-            this.f40060c = i7;
+        if (i7 != this.f40010c) {
+            this.f40010c = i7;
             if (i7 == 0) {
-                this.f40059b = null;
+                this.f40009b = null;
                 return;
             }
             Drawable mutate = getContext().getDrawable(i7).mutate();
-            this.f40059b = mutate;
+            this.f40009b = mutate;
             org.telegram.ui.ActionBar.r6.y(this, mutate, org.telegram.ui.ActionBar.k6.U6, null, PorterDuff.Mode.MULTIPLY);
         }
     }
 
     public void setNum(int i7) {
         String str;
-        CheckBoxBase checkBoxBase = this.f40058a;
+        CheckBoxBase checkBoxBase = this.f40008a;
         if (i7 >= 0) {
             checkBoxBase.getClass();
             str = "" + (i7 + 1);
-        } else if (checkBoxBase.f31258p != null) {
+        } else if (checkBoxBase.f31262p != null) {
             str = checkBoxBase.C;
         } else {
             str = null;
@@ -158,6 +158,6 @@ public class wo extends View {
     }
 
     public void setProgressDelegate(xo xoVar) {
-        this.f40058a.D = xoVar;
+        this.f40008a.D = xoVar;
     }
 }

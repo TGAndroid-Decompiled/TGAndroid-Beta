@@ -8,24 +8,24 @@ import java.security.KeyPairGenerator;
 import java.util.Iterator;
 import java.util.Locale;
 public final class d9 implements Runnable {
-    public final int f21984a;
-    public final boolean f21985b;
+    public final int f22007a;
+    public final boolean f22008b;
 
     public d9(int i7, boolean z9) {
-        this.f21984a = i7;
-        this.f21985b = z9;
+        this.f22007a = i7;
+        this.f22008b = z9;
     }
 
     @Override
     public final void run() {
-        switch (this.f21984a) {
+        switch (this.f22007a) {
             case 0:
-                boolean z9 = this.f21985b;
-                KeyPairGenerator keyPairGenerator = as.f21496f;
+                boolean z9 = this.f22008b;
+                KeyPairGenerator keyPairGenerator = as.f21512f;
                 if (keyPairGenerator == null) {
                     try {
                         keyPairGenerator = KeyPairGenerator.getInstance("RSA", "AndroidKeyStore");
-                        as.f21496f = keyPairGenerator;
+                        as.f21512f = keyPairGenerator;
                     } catch (Exception e10) {
                         a8.g(e10, true);
                         keyPairGenerator = null;
@@ -36,14 +36,14 @@ public final class d9 implements Runnable {
                         Locale locale = Locale.getDefault();
                         Locale locale2 = Locale.ENGLISH;
                         Locale.setDefault(locale2);
-                        Resources resources = t0.f25563b.getResources();
+                        Resources resources = t0.f25566b.getResources();
                         Configuration configuration = resources.getConfiguration();
                         configuration.setLocale(locale2);
                         resources.updateConfiguration(configuration, resources.getDisplayMetrics());
                         keyPairGenerator.initialize(new KeyGenParameterSpec.Builder("tmessages_passcode", 3).setDigests("SHA-256", "SHA-512").setEncryptionPaddings("OAEPPadding").setUserAuthenticationRequired(true).build());
                         keyPairGenerator.generateKeyPair();
                         Locale.setDefault(locale);
-                        Resources resources2 = t0.f25563b.getResources();
+                        Resources resources2 = t0.f25566b.getResources();
                         Configuration configuration2 = resources2.getConfiguration();
                         configuration2.setLocale(locale);
                         resources2.updateConfiguration(configuration2, resources2.getDisplayMetrics());
@@ -62,11 +62,11 @@ public final class d9 implements Runnable {
                 }
                 return;
             case 1:
-                qs.e().k(132, Boolean.valueOf(this.f21985b));
+                qs.e().k(132, Boolean.valueOf(this.f22008b));
                 return;
             case 2:
-                boolean z10 = this.f21985b;
-                Iterator it = rc.f25272n.iterator();
+                boolean z10 = this.f22008b;
+                Iterator it = sc.f25454n.iterator();
                 while (it.hasNext()) {
                     c20 c20Var = (c20) it.next();
                     if (c20Var != null) {
@@ -75,7 +75,7 @@ public final class d9 implements Runnable {
                 }
                 return;
             default:
-                qs.e().k(264, Boolean.FALSE, Boolean.valueOf(this.f21985b));
+                qs.e().k(264, Boolean.FALSE, Boolean.valueOf(this.f22008b));
                 return;
         }
     }

@@ -48,7 +48,7 @@ public final class g extends FrameLayout {
         TextView f10 = org.telegram.messenger.camera.q.f(linearLayout, textView, ha.t(-1, -2, 55, 0, 0, 0, 0), context);
         this.f14665f = f10;
         f10.setTextSize(1, 14.0f);
-        r6.V(f10, k6.f28259z6, f6Var);
+        r6.V(f10, k6.f28262z6, f6Var);
         linearLayout.addView(f10, ha.t(-1, -2, 55, 0, 3, 0, 0));
         ImageView imageView2 = new ImageView(context);
         r6.t(imageView2, k6.M6, f6Var, mode);

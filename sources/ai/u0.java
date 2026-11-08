@@ -2,7 +2,7 @@ package ai;
 
 import android.os.SystemClock;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ls;
 import org.telegram.messenger.v10;
 import org.telegram.tgnet.TLRPC;
@@ -55,7 +55,7 @@ public final class u0 implements v10 {
                             if (z11 == z10) {
                                 if (str != null) {
                                     l1Var.getClass();
-                                    l1Var.d1(2131232436, hd.M0(2131751106, null), null);
+                                    l1Var.d1(2131232436, id.M0(2131751106, null), null);
                                     return;
                                 }
                                 return;
@@ -65,12 +65,12 @@ public final class u0 implements v10 {
                         y0Var.f().edit().putBoolean("qrNoPaidPermanent", false).apply();
                         if (l1Var.f1524v0) {
                             if (str != null) {
-                                str2 = hd.M0(2131751106, null);
+                                str2 = id.M0(2131751106, null);
                             }
                             l1Var.U0(str2);
                             return;
                         } else if (str != null) {
-                            l1Var.d1(2131232436, hd.M0(2131751106, null), null);
+                            l1Var.d1(2131232436, id.M0(2131751106, null), null);
                             return;
                         } else {
                             return;

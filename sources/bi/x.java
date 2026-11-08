@@ -39,13 +39,13 @@ public final class x extends m61 {
     public final CharSequence g(int i7) {
         int i10;
         if (i7 == 1) {
-            i10 = 2131744920;
+            i10 = 2131744922;
         } else if (i7 == 2) {
-            i10 = 2131744919;
-        } else {
             i10 = 2131744921;
+        } else {
+            i10 = 2131744923;
         }
-        return org.telegram.messenger.hd.M0(i10, null);
+        return org.telegram.messenger.id.M0(i10, null);
     }
 
     @Override

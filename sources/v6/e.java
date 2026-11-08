@@ -18,12 +18,12 @@ import java.nio.channels.FileLock;
 import org.json.JSONException;
 import org.json.JSONObject;
 public final class e implements p {
-    public Object f57151a;
-    public Object f57152b;
+    public Object f57243a;
+    public Object f57244b;
 
     public e(Object obj, Object obj2) {
-        this.f57151a = obj;
-        this.f57152b = obj2;
+        this.f57243a = obj;
+        this.f57244b = obj2;
     }
 
     public static v6.e a(android.content.Context r5) {
@@ -32,32 +32,32 @@ public final class e implements p {
 
     @Override
     public void accept(Object obj, Object obj2) {
-        d dVar = new d((f) this.f57151a, (TaskCompletionSource) obj2, 1);
+        d dVar = new d((f) this.f57243a, (TaskCompletionSource) obj2, 1);
         c cVar = (c) ((g) obj).n();
-        Parcel J0 = cVar.J0();
-        n7.a.c(J0, dVar);
-        n7.a.b(J0, (a) this.f57152b);
-        J0.writeStrongBinder(null);
-        cVar.K0(J0, 2);
+        Parcel j12 = cVar.j1();
+        n7.a.c(j12, dVar);
+        n7.a.b(j12, (a) this.f57244b);
+        j12.writeStrongBinder(null);
+        cVar.k1(j12, 2);
     }
 
     public File b() {
-        if (((File) this.f57151a) == null) {
+        if (((File) this.f57243a) == null) {
             synchronized (this) {
                 try {
-                    if (((File) this.f57151a) == null) {
-                        String str = "PersistedInstallation." + ((o9.g) this.f57152b).d() + ".json";
-                        o9.g gVar = (o9.g) this.f57152b;
+                    if (((File) this.f57243a) == null) {
+                        String str = "PersistedInstallation." + ((o9.g) this.f57244b).d() + ".json";
+                        o9.g gVar = (o9.g) this.f57244b;
                         gVar.a();
-                        File file = new File(gVar.f20872a.getNoBackupFilesDir(), str);
-                        this.f57151a = file;
+                        File file = new File(gVar.f20875a.getNoBackupFilesDir(), str);
+                        this.f57243a = file;
                         if (file.exists()) {
-                            return (File) this.f57151a;
+                            return (File) this.f57243a;
                         }
-                        o9.g gVar2 = (o9.g) this.f57152b;
+                        o9.g gVar2 = (o9.g) this.f57244b;
                         gVar2.a();
-                        File file2 = new File(gVar2.f20872a.getFilesDir(), str);
-                        if (file2.exists() && !file2.renameTo((File) this.f57151a)) {
+                        File file2 = new File(gVar2.f20875a.getFilesDir(), str);
+                        if (file2.exists() && !file2.renameTo((File) this.f57243a)) {
                             Log.e("PersistedInstallation", "Unable to move the file from back up to non back up directory", new IOException("Unable to move the file from back up to non back up directory"));
                             return file2;
                         }
@@ -66,22 +66,22 @@ public final class e implements p {
                 }
             }
         }
-        return (File) this.f57151a;
+        return (File) this.f57243a;
     }
 
     public void c(wa.b bVar) {
         try {
             JSONObject jSONObject = new JSONObject();
-            jSONObject.put("Fid", bVar.f57535a);
-            jSONObject.put("Status", p1.g.c(bVar.f57536b));
-            jSONObject.put("AuthToken", bVar.f57537c);
+            jSONObject.put("Fid", bVar.f57627a);
+            jSONObject.put("Status", p1.g.c(bVar.f57628b));
+            jSONObject.put("AuthToken", bVar.f57629c);
             jSONObject.put("RefreshToken", bVar.d);
-            jSONObject.put("TokenCreationEpochInSecs", bVar.f57539f);
-            jSONObject.put("ExpiresInSecs", bVar.f57538e);
-            jSONObject.put("FisError", bVar.f57540g);
-            o9.g gVar = (o9.g) this.f57152b;
+            jSONObject.put("TokenCreationEpochInSecs", bVar.f57631f);
+            jSONObject.put("ExpiresInSecs", bVar.f57630e);
+            jSONObject.put("FisError", bVar.f57632g);
+            o9.g gVar = (o9.g) this.f57244b;
             gVar.a();
-            File createTempFile = File.createTempFile("PersistedInstallation", "tmp", gVar.f20872a.getFilesDir());
+            File createTempFile = File.createTempFile("PersistedInstallation", "tmp", gVar.f20875a.getFilesDir());
             FileOutputStream fileOutputStream = new FileOutputStream(createTempFile);
             fileOutputStream.write(jSONObject.toString().getBytes("UTF-8"));
             fileOutputStream.close();
@@ -142,8 +142,8 @@ public final class e implements p {
 
     public void e() {
         try {
-            ((FileLock) this.f57152b).release();
-            ((FileChannel) this.f57151a).close();
+            ((FileLock) this.f57244b).release();
+            ((FileChannel) this.f57243a).close();
         } catch (IOException e10) {
             Log.e("CrossProcessLock", "encountered error while releasing, ignoring", e10);
         }
@@ -151,8 +151,8 @@ public final class e implements p {
 
     public e(int i7) {
         Bitmap createBitmap = Bitmap.createBitmap(i7, i7, Bitmap.Config.ALPHA_8);
-        this.f57151a = createBitmap;
+        this.f57243a = createBitmap;
         Shader.TileMode tileMode = Shader.TileMode.REPEAT;
-        this.f57152b = new BitmapShader(createBitmap, tileMode, tileMode);
+        this.f57244b = new BitmapShader(createBitmap, tileMode, tileMode);
     }
 }

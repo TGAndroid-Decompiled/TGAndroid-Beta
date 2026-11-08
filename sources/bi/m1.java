@@ -17,7 +17,7 @@ public final class m1 implements oi.m, oi.n {
             if (c8.zc.a(i7, 4)) {
                 gVar.h(w1Var.X0.e());
             }
-            gVar.e(w1Var.f4948o2, w1Var.f28616b.getWidth(), w1Var.f28616b.getHeight());
+            gVar.e(w1Var.f4948o2, w1Var.f28619b.getWidth(), w1Var.f28619b.getHeight());
         }
     }
 }

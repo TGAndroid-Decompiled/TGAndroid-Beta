@@ -1,70 +1,67 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.drawable.GradientDrawable;
-import android.view.MotionEvent;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.xq;
-public final class i9 extends EditTextBoldCursor {
-    public final org.telegram.ui.Components.w5 G1;
-    public final org.telegram.ui.Components.w5 H1;
-    public float I1;
-    public float J1;
-    public final m9 K1;
+import android.graphics.Paint;
+import android.text.style.ReplacementSpan;
+public final class i9 extends ReplacementSpan {
+    public final String f42643a;
+    public final String f42644b;
+    public final boolean f42645c;
+    public float d;
+    public int f42646e;
+    public int f42647f;
+    public k9 h;
+    public k9 f42648n;
+    public final l9 f42649r;
 
-    public i9(m9 m9Var, Context context) {
-        super(context);
-        this.K1 = m9Var;
-        this.G1 = new org.telegram.ui.Components.w5(this, 180L, xq.h);
-        this.H1 = new org.telegram.ui.Components.w5(this, 320L, m9.S);
-        this.I1 = 1.0f;
-    }
-
-    @Override
-    public final void n(Canvas canvas, GradientDrawable gradientDrawable) {
-        gradientDrawable.setCornerRadius(org.telegram.messenger.g0.N(1.5f));
-        int lineBaseline = getLayout().getLineBaseline(0);
-        Rect bounds = gradientDrawable.getBounds();
-        float f10 = lineBaseline;
-        int round = Math.round(((bounds.top - lineBaseline) * this.I1) + f10);
-        int round2 = Math.round(((bounds.bottom - lineBaseline) * this.I1) + f10);
-        int i7 = bounds.left;
-        int width = bounds.width();
-        if (this.J1 > 0.0f) {
-            float f11 = i7;
-            i7 = Math.round((((((((getWidth() + getScrollX()) - getCompoundPaddingLeft()) - getCompoundPaddingRight()) - getPaint().measureText("0")) - width) - f11) * this.J1) + f11);
+    public i9(l9 l9Var, String str, boolean z9, boolean z10) {
+        String str2;
+        this.f42649r = l9Var;
+        this.f42643a = str;
+        if (z9) {
+            str2 = l9Var.P;
+        } else {
+            str2 = "";
         }
-        gradientDrawable.setBounds(i7, round, width + i7, round2);
-        gradientDrawable.draw(canvas);
+        this.f42644b = str2;
+        this.f42645c = z10;
+    }
+
+    public final int a() {
+        int i7 = this.f42646e;
+        return Math.round((l9.S.getInterpolation(this.f42649r.I) * (this.f42647f - i7)) + i7);
     }
 
     @Override
-    public final void onDraw(android.graphics.Canvas r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.i9.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final void onSelectionChanged(int i7, int i10) {
-        super.onSelectionChanged(i7, i10);
-        if (i7 != i10) {
-            this.K1.b();
+    public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
+        Canvas canvas2;
+        Paint paint2;
+        int i14;
+        float textSize = paint.getTextSize();
+        if (this.f42645c) {
+            paint.setTextSize((28.0f * textSize) / 44.0f);
         }
+        float f11 = f10 - this.d;
+        k9 k9Var = this.f42648n;
+        if (k9Var != null) {
+            paint2 = paint;
+            i14 = i12;
+            canvas2 = canvas;
+            k9Var.b(canvas2, paint2, this.f42644b, f11, i14);
+        } else {
+            canvas2 = canvas;
+            paint2 = paint;
+            i14 = i12;
+        }
+        this.h.b(canvas2, paint2, this.f42643a, f11, i14);
+        paint2.setTextSize(textSize);
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean z9;
-        if (motionEvent.getActionMasked() == 0) {
-            this.K1.b();
-            if (length() == 0) {
-                z9 = true;
-            } else {
-                z9 = false;
-            }
-            this.H1.a(z9);
+    public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
+        if (fontMetricsInt != null) {
+            paint.getFontMetricsInt(fontMetricsInt);
         }
-        return super.onTouchEvent(motionEvent);
+        return a();
     }
 }

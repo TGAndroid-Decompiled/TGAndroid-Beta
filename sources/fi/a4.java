@@ -56,10 +56,10 @@ public final class a4 extends View implements org.telegram.ui.ActionBar.a6 {
         this.F = new org.telegram.ui.Components.w5(this, 0L, 320L, xqVar);
         i6Var.setCallback(this);
         i6Var.u(-1);
-        i6Var.f34508b = 17;
+        i6Var.f34552b = 17;
         i6Var.w(org.telegram.messenger.g0.L(16.0f));
         i6Var.x(org.telegram.messenger.g0.o1("fonts/num.otf"));
-        i6Var.M = org.telegram.messenger.g0.f22544q.x;
+        i6Var.M = org.telegram.messenger.g0.f22563q.x;
         i6Var.n(0.65f, 480L, xqVar);
         i6Var.A = 0.35f;
         paint.setStyle(Paint.Style.STROKE);
@@ -83,7 +83,7 @@ public final class a4 extends View implements org.telegram.ui.ActionBar.a6 {
         if (file != null) {
             if (!TextUtils.equals(this.f11600w, file.getPath())) {
                 this.f11600w = e7Var.O0.getPath();
-                Utilities.f21335g.c(new Runnable(this) {
+                Utilities.f21338g.c(new Runnable(this) {
                     public final a4 f13077b;
 
                     {
@@ -181,7 +181,7 @@ public final class a4 extends View implements org.telegram.ui.ActionBar.a6 {
             File file2 = e7Var.L;
             if (file2 != null && !TextUtils.equals(this.f11600w, file2.getPath())) {
                 this.f11600w = e7Var.L.getPath();
-                Utilities.f21335g.c(new Runnable(this) {
+                Utilities.f21338g.c(new Runnable(this) {
                     public final a4 f13077b;
 
                     {
@@ -338,14 +338,14 @@ public final class a4 extends View implements org.telegram.ui.ActionBar.a6 {
         if (action == 0) {
             icVar.c(z9);
         } else if (motionEvent.getAction() == 1) {
-            if (icVar.f34585i && z9 && (onClickListener = this.f11597n) != null) {
+            if (icVar.f34629i && z9 && (onClickListener = this.f11597n) != null) {
                 onClickListener.onClick(this);
             }
             icVar.c(false);
         } else if (motionEvent.getAction() == 3) {
             icVar.c(false);
         }
-        if (icVar.f34585i || super.onTouchEvent(motionEvent)) {
+        if (icVar.f34629i || super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;

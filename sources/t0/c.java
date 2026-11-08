@@ -5,22 +5,22 @@ import android.os.Bundle;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputConnectionWrapper;
 import android.view.inputmethod.InputContentInfo;
-import org.telegram.ui.Components.qt;
+import org.telegram.ui.Components.rt;
 public final class c extends InputConnectionWrapper {
-    public final e f55256a;
+    public final e f55348a;
 
     public c(InputConnection inputConnection, e eVar) {
         super(inputConnection, false);
-        this.f55256a = eVar;
+        this.f55348a = eVar;
     }
 
     @Override
     public final boolean commitContent(InputContentInfo inputContentInfo, int i7, Bundle bundle) {
-        qt qtVar = null;
+        rt rtVar = null;
         if (inputContentInfo != null && Build.VERSION.SDK_INT >= 25) {
-            qtVar = new qt(new g(inputContentInfo), 15);
+            rtVar = new rt(new g(inputContentInfo), 15);
         }
-        if (this.f55256a.k(qtVar, i7, bundle)) {
+        if (this.f55348a.k(rtVar, i7, bundle)) {
             return true;
         }
         return super.commitContent(inputContentInfo, i7, bundle);

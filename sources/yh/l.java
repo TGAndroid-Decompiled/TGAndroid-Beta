@@ -18,7 +18,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.ActionBar.f2;
@@ -32,56 +32,56 @@ import org.telegram.ui.Components.pj0;
 import org.telegram.ui.Components.sf0;
 import org.telegram.ui.Components.xq;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.Wallet.h9;
+import org.telegram.ui.Wallet.g9;
 import org.telegram.ui.an;
 import org.telegram.ui.q4;
 import wg.p;
 public final class l extends Dialog {
     public final k D;
     public final m E;
-    public final int f59439a;
-    public final int f59440b;
-    public final Drawable f59441c;
+    public final int f59531a;
+    public final int f59532b;
+    public final Drawable f59533c;
     public final TextView d;
-    public final TextView f59442e;
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f59443f;
+    public final TextView f59534e;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f59535f;
     public final sf0 h;
-    public final j f59444n;
-    public TLRPC.TL_chatInviteImporter f59445r;
-    public ValueAnimator f59446s;
-    public l9 f59447w;
-    public BitmapDrawable f59448x;
-    public float f59449y;
+    public final j f59536n;
+    public TLRPC.TL_chatInviteImporter f59537r;
+    public ValueAnimator f59538s;
+    public l9 f59539w;
+    public BitmapDrawable f59540x;
+    public float f59541y;
 
     public l(m mVar, Activity activity, pj0 pj0Var, f6 f6Var, boolean z9) {
         super(activity, 2131755353);
         int i7;
         this.E = mVar;
         Drawable mutate = getContext().getResources().getDrawable(2131232565).mutate();
-        this.f59441c = mutate;
+        this.f59533c = mutate;
         TextView textView = new TextView(getContext());
         this.d = textView;
         TextView textView2 = new TextView(getContext());
-        this.f59442e = textView2;
+        this.f59534e = textView2;
         k kVar = new k(this, getContext());
         this.D = kVar;
         setCancelable(true);
         kVar.setVisibility(4);
         int i10 = k6.G8;
-        f2 f2Var = mVar.f59455g;
+        f2 f2Var = mVar.f59547g;
         k6.w0(i10, f2Var.getResourceProvider());
         r6.y(kVar, mutate, i10, f2Var.getResourceProvider(), PorterDuff.Mode.MULTIPLY);
         mutate.setCallback(kVar);
         Rect rect = new Rect();
         mutate.getPadding(rect);
-        this.f59439a = rect.top;
-        this.f59440b = rect.left;
+        this.f59531a = rect.top;
+        this.f59532b = rect.left;
         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(activity, f6Var);
-        this.f59443f = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        this.f59535f = actionBarPopupWindow$ActionBarPopupWindowLayout;
         r6.i(i10, actionBarPopupWindow$ActionBarPopupWindowLayout, f2Var.getResourceProvider());
         kVar.addView(actionBarPopupWindow$ActionBarPopupWindowLayout);
         ?? q4Var = new q4(getContext());
-        this.f59444n = q4Var;
+        this.f59536n = q4Var;
         sf0 sf0Var = new sf0(activity, f2Var.getActionBar(), pj0Var, q4Var);
         this.h = sf0Var;
         sf0Var.setCreateThumbFromParent(true);
@@ -93,7 +93,7 @@ public final class l extends Dialog {
         textView.setTextSize(16.0f);
         textView.setTypeface(g0.o());
         kVar.addView(textView);
-        r6.V(textView2, k6.f28241y6, f2Var.getResourceProvider());
+        r6.V(textView2, k6.f28244y6, f2Var.getResourceProvider());
         textView2.setTextSize(14.0f);
         kVar.addView(textView2);
         z0 z0Var = new z0(0, activity, f6Var, true, false);
@@ -107,39 +107,39 @@ public final class l extends Dialog {
         } else {
             i7 = 2131754373;
         }
-        z0Var.j(hd.M0(i7, null), 2131232340, null);
+        z0Var.j(id.M0(i7, null), 2131232340, null);
         z0Var.setOnClickListener(new View.OnClickListener(this) {
-            public final l f59434b;
+            public final l f59526b;
 
             {
-                this.f59434b = this;
+                this.f59526b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        l lVar = this.f59434b;
+                        l lVar = this.f59526b;
                         m mVar2 = lVar.E;
-                        TLRPC.TL_chatInviteImporter tL_chatInviteImporter = lVar.f59445r;
+                        TLRPC.TL_chatInviteImporter tL_chatInviteImporter = lVar.f59537r;
                         if (tL_chatInviteImporter != null) {
                             mVar2.d(tL_chatInviteImporter, true);
                         }
-                        mVar2.f59466s.e(false);
-                        mVar2.f59465r = null;
+                        mVar2.f59558s.e(false);
+                        mVar2.f59557r = null;
                         return;
                     case 1:
-                        l.a(this.f59434b);
+                        l.a(this.f59526b);
                         return;
                     default:
-                        l lVar2 = this.f59434b;
+                        l lVar2 = this.f59526b;
                         m mVar3 = lVar2.E;
-                        TLRPC.TL_chatInviteImporter tL_chatInviteImporter2 = lVar2.f59445r;
+                        TLRPC.TL_chatInviteImporter tL_chatInviteImporter2 = lVar2.f59537r;
                         if (tL_chatInviteImporter2 != null) {
                             mVar3.d(tL_chatInviteImporter2, false);
                         }
-                        mVar3.f59466s.e(false);
-                        mVar3.f59465r = null;
+                        mVar3.f59558s.e(false);
+                        mVar3.f59557r = null;
                         return;
                 }
             }
@@ -148,80 +148,80 @@ public final class l extends Dialog {
         z0 z0Var2 = new z0(0, activity, f6Var, false, false);
         z0Var2.c(i11, i12);
         z0Var2.h(1.0f, i13);
-        z0Var2.j(hd.M0(2131745602, null), 2131232255, null);
+        z0Var2.j(id.M0(2131745604, null), 2131232255, null);
         z0Var2.setOnClickListener(new View.OnClickListener(this) {
-            public final l f59434b;
+            public final l f59526b;
 
             {
-                this.f59434b = this;
+                this.f59526b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        l lVar = this.f59434b;
+                        l lVar = this.f59526b;
                         m mVar2 = lVar.E;
-                        TLRPC.TL_chatInviteImporter tL_chatInviteImporter = lVar.f59445r;
+                        TLRPC.TL_chatInviteImporter tL_chatInviteImporter = lVar.f59537r;
                         if (tL_chatInviteImporter != null) {
                             mVar2.d(tL_chatInviteImporter, true);
                         }
-                        mVar2.f59466s.e(false);
-                        mVar2.f59465r = null;
+                        mVar2.f59558s.e(false);
+                        mVar2.f59557r = null;
                         return;
                     case 1:
-                        l.a(this.f59434b);
+                        l.a(this.f59526b);
                         return;
                     default:
-                        l lVar2 = this.f59434b;
+                        l lVar2 = this.f59526b;
                         m mVar3 = lVar2.E;
-                        TLRPC.TL_chatInviteImporter tL_chatInviteImporter2 = lVar2.f59445r;
+                        TLRPC.TL_chatInviteImporter tL_chatInviteImporter2 = lVar2.f59537r;
                         if (tL_chatInviteImporter2 != null) {
                             mVar3.d(tL_chatInviteImporter2, false);
                         }
-                        mVar3.f59466s.e(false);
-                        mVar3.f59465r = null;
+                        mVar3.f59558s.e(false);
+                        mVar3.f59557r = null;
                         return;
                 }
             }
         });
         actionBarPopupWindow$ActionBarPopupWindowLayout.addView(z0Var2);
         z0 z0Var3 = new z0(0, activity, f6Var, false, true);
-        z0Var3.c(k6.f28090q7, k6.f28070p7);
+        z0Var3.c(k6.f28093q7, k6.f28073p7);
         z0Var3.h(1.0f, i13);
-        z0Var3.j(hd.M0(2131751369, null), 2131232328, null);
+        z0Var3.j(id.M0(2131751369, null), 2131232328, null);
         z0Var3.setOnClickListener(new View.OnClickListener(this) {
-            public final l f59434b;
+            public final l f59526b;
 
             {
-                this.f59434b = this;
+                this.f59526b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        l lVar = this.f59434b;
+                        l lVar = this.f59526b;
                         m mVar2 = lVar.E;
-                        TLRPC.TL_chatInviteImporter tL_chatInviteImporter = lVar.f59445r;
+                        TLRPC.TL_chatInviteImporter tL_chatInviteImporter = lVar.f59537r;
                         if (tL_chatInviteImporter != null) {
                             mVar2.d(tL_chatInviteImporter, true);
                         }
-                        mVar2.f59466s.e(false);
-                        mVar2.f59465r = null;
+                        mVar2.f59558s.e(false);
+                        mVar2.f59557r = null;
                         return;
                     case 1:
-                        l.a(this.f59434b);
+                        l.a(this.f59526b);
                         return;
                     default:
-                        l lVar2 = this.f59434b;
+                        l lVar2 = this.f59526b;
                         m mVar3 = lVar2.E;
-                        TLRPC.TL_chatInviteImporter tL_chatInviteImporter2 = lVar2.f59445r;
+                        TLRPC.TL_chatInviteImporter tL_chatInviteImporter2 = lVar2.f59537r;
                         if (tL_chatInviteImporter2 != null) {
                             mVar3.d(tL_chatInviteImporter2, false);
                         }
-                        mVar3.f59466s.e(false);
-                        mVar3.f59465r = null;
+                        mVar3.f59558s.e(false);
+                        mVar3.f59557r = null;
                         return;
                 }
             }
@@ -231,24 +231,24 @@ public final class l extends Dialog {
 
     public static void a(l lVar) {
         m mVar = lVar.E;
-        if (lVar.f59445r != null) {
-            mVar.f59451b = true;
-            f2 f2Var = mVar.f59455g;
+        if (lVar.f59537r != null) {
+            mVar.f59543b = true;
+            f2 f2Var = mVar.f59547g;
             super.dismiss();
             f2Var.dismissCurrentDialog();
             Bundle bundle = new Bundle();
-            bundle.putLong("user_id", lVar.f59445r.user_id);
+            bundle.putLong("user_id", lVar.f59537r.user_id);
             f2Var.presentFragment(new an(bundle));
         }
     }
 
     public final int d() {
         int measuredHeight = this.d.getMeasuredHeight() + g0.L(12.0f) + this.h.getMeasuredHeight();
-        TextView textView = this.f59442e;
+        TextView textView = this.f59534e;
         if (textView.getVisibility() != 8) {
             measuredHeight += textView.getMeasuredHeight() + g0.L(4.0f);
         }
-        return this.f59443f.getMeasuredHeight() + g0.L(12.0f) + measuredHeight;
+        return this.f59535f.getMeasuredHeight() + g0.L(12.0f) + measuredHeight;
     }
 
     @Override
@@ -258,20 +258,20 @@ public final class l extends Dialog {
 
     public final void e(boolean z9) {
         float f10;
-        ValueAnimator valueAnimator = this.f59446s;
+        ValueAnimator valueAnimator = this.f59538s;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
         int[] iArr = new int[2];
-        this.f59447w.getLocationOnScreen(iArr);
+        this.f59539w.getLocationOnScreen(iArr);
         float f11 = 1.0f;
         sf0 sf0Var = this.h;
-        float width = (this.f59447w.getWidth() * 1.0f) / sf0Var.getMeasuredWidth();
-        float width2 = (this.f59447w.getWidth() / 2.0f) / width;
+        float width = (this.f59539w.getWidth() * 1.0f) / sf0Var.getMeasuredWidth();
+        float width2 = (this.f59539w.getWidth() / 2.0f) / width;
         float f12 = 1.0f - width;
         float left = iArr[0] - (sf0Var.getLeft() + ((int) ((sf0Var.getMeasuredWidth() * f12) / 2.0f)));
         float top = iArr[1] - (sf0Var.getTop() + ((int) ((d() * f12) / 2.0f)));
-        int i7 = (-this.f59443f.getTop()) / 2;
+        int i7 = (-this.f59535f.getTop()) / 2;
         if (z9) {
             f10 = 0.0f;
         } else {
@@ -281,17 +281,17 @@ public final class l extends Dialog {
             f11 = 0.0f;
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f11);
-        this.f59446s = ofFloat;
-        ofFloat.addUpdateListener(new h9(this, width, left, top, width2, i7, 1));
-        this.f59446s.addListener(new ok0(this, z9, width, 1));
-        this.f59446s.setDuration(220L);
-        this.f59446s.setInterpolator(xq.f40345f);
-        this.f59446s.start();
+        this.f59538s = ofFloat;
+        ofFloat.addUpdateListener(new g9(this, width, left, top, width2, i7, 1));
+        this.f59538s.addListener(new ok0(this, z9, width, 1));
+        this.f59538s.setDuration(220L);
+        this.f59538s.setInterpolator(xq.f40366f);
+        this.f59538s.start();
     }
 
     public final void f() {
         int i7;
-        BitmapDrawable bitmapDrawable = this.f59448x;
+        BitmapDrawable bitmapDrawable = this.f59540x;
         if (bitmapDrawable != null) {
             i7 = bitmapDrawable.getAlpha();
         } else {
@@ -305,7 +305,7 @@ public final class l extends Dialog {
         Canvas canvas = new Canvas(createBitmap);
         canvas.scale(0.16666667f, 0.16666667f);
         canvas.save();
-        f2 f2Var = this.E.f59455g;
+        f2 f2Var = this.E.f59547g;
         ((LaunchActivity) f2Var.getParentActivity()).M().getView().draw(canvas);
         canvas.drawColor(i0.a.o(-16777216, 76));
         Dialog visibleDialog = f2Var.getVisibleDialog();
@@ -314,9 +314,9 @@ public final class l extends Dialog {
         }
         Utilities.stackBlurBitmap(createBitmap, Math.max(7, Math.max(measuredWidth, measuredHeight) / 180));
         BitmapDrawable bitmapDrawable2 = new BitmapDrawable(resources, createBitmap);
-        this.f59448x = bitmapDrawable2;
+        this.f59540x = bitmapDrawable2;
         bitmapDrawable2.setAlpha(i7);
-        getWindow().setBackgroundDrawable(this.f59448x);
+        getWindow().setBackgroundDrawable(this.f59540x);
     }
 
     @Override

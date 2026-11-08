@@ -22,10 +22,10 @@ public final class w3 extends q41 {
         int i7;
         switch (this.f13027m3) {
             case 1:
-                di diVar = ((ni) this.f13028n3).f38969b;
+                di diVar = ((ni) this.f13028n3).f39004b;
                 int L = org.telegram.messenger.g0.L(30.0f) + diVar.V3[0];
                 if (!diVar.X1) {
-                    i7 = org.telegram.messenger.g0.f22538m;
+                    i7 = org.telegram.messenger.g0.f22557m;
                 } else {
                     i7 = 0;
                 }
@@ -43,7 +43,7 @@ public final class w3 extends q41 {
         switch (this.f13027m3) {
             case 1:
                 ni niVar = (ni) this.f13028n3;
-                niVar.f38969b.M1(niVar, 0);
+                niVar.f39004b.M1(niVar, 0);
                 return;
             default:
                 return;
@@ -92,11 +92,11 @@ public final class w3 extends q41 {
             case 1:
                 super.onLayout(z9, i7, i10, i11, i12);
                 ni niVar = (ni) this.f13028n3;
-                niVar.f38969b.M1(niVar, 0);
+                niVar.f39004b.M1(niVar, 0);
                 return;
             case 2:
                 super.onLayout(z9, i7, i10, i11, i12);
-                ((n41) this.f13028n3).f36229c = -1;
+                ((n41) this.f13028n3).f36245c = -1;
                 return;
             case 3:
             default:
@@ -124,8 +124,8 @@ public final class w3 extends q41 {
         this.f13028n3 = niVar;
     }
 
-    public w3(Context context, int i7, zh.q0 q0Var, zh.v1 v1Var, zh.v1 v1Var2, org.telegram.ui.ActionBar.f6 f6Var, up0 up0Var) {
-        super(context, i7, 0, false, q0Var, v1Var, v1Var2, f6Var, 3, 1);
+    public w3(Context context, int i7, zh.p0 p0Var, zh.u1 u1Var, zh.u1 u1Var2, org.telegram.ui.ActionBar.f6 f6Var, up0 up0Var) {
+        super(context, i7, 0, false, p0Var, u1Var, u1Var2, f6Var, 3, 1);
         this.f13028n3 = up0Var;
     }
 }

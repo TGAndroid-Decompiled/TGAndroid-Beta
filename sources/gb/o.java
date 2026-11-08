@@ -16,7 +16,7 @@ public final class o {
         this.f13735b = settings;
         Log.d("FirebaseSessions", "Initializing Firebase Sessions 3.0.8.");
         firebaseApp.a();
-        Context applicationContext = firebaseApp.f20872a.getApplicationContext();
+        Context applicationContext = firebaseApp.f20875a.getApplicationContext();
         if (applicationContext instanceof Application) {
             ((Application) applicationContext).registerActivityLifecycleCallbacks(sessionsActivityLifecycleCallbacks);
             zd.b0.q(zd.b0.b(backgroundDispatcher), new be.l(this, sessionsActivityLifecycleCallbacks, null, 4));

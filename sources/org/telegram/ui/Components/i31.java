@@ -3,18 +3,18 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.view.MotionEvent;
 public final class i31 extends pj0 {
-    public final p31 f34475e3;
-    public final t31 f34476f3;
+    public final p31 f34519e3;
+    public final t31 f34520f3;
 
     public i31(t31 t31Var, Context context, p31 p31Var) {
         super(context, null);
-        this.f34476f3 = t31Var;
-        this.f34475e3 = p31Var;
+        this.f34520f3 = t31Var;
+        this.f34519e3 = p31Var;
     }
 
     @Override
     public final boolean E0(float f10) {
-        if (f10 >= org.telegram.messenger.g0.L(58.0f) + this.f34476f3.E) {
+        if (f10 >= org.telegram.messenger.g0.L(58.0f) + this.f34520f3.E) {
             return true;
         }
         return false;
@@ -22,13 +22,13 @@ public final class i31 extends pj0 {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        this.f34476f3.F = true;
+        this.f34520f3.F = true;
         return super.dispatchTouchEvent(motionEvent);
     }
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        boolean d = this.f34475e3.d(this, motionEvent);
+        boolean d = this.f34519e3.d(this, motionEvent);
         if (!super.onInterceptTouchEvent(motionEvent) && !d) {
             return false;
         }
@@ -37,7 +37,7 @@ public final class i31 extends pj0 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.f34476f3.L != null) {
+        if (this.f34520f3.L != null) {
             return false;
         }
         return super.onTouchEvent(motionEvent);
@@ -45,7 +45,7 @@ public final class i31 extends pj0 {
 
     @Override
     public final void requestLayout() {
-        if (!this.f34476f3.H) {
+        if (!this.f34520f3.H) {
             super.requestLayout();
         }
     }

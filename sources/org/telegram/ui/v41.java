@@ -4,8 +4,8 @@ import android.os.Bundle;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class v41 {
-    public TLRPC.User f50573a;
-    public String f50574b;
+    public TLRPC.User f50496a;
+    public String f50497b;
 
     public static TLRPC.User a(ArrayList arrayList, long j3) {
         int size = arrayList.size();
@@ -14,7 +14,7 @@ public final class v41 {
             Object obj = arrayList.get(i7);
             i7++;
             TLRPC.User user = (TLRPC.User) obj;
-            if (user.f27102id == j3) {
+            if (user.f27105id == j3) {
                 return user;
             }
         }
@@ -23,8 +23,8 @@ public final class v41 {
 
     public final void b(org.telegram.ui.ActionBar.f2 f2Var) {
         Bundle bundle = new Bundle();
-        bundle.putLong("user_id", this.f50573a.f27102id);
-        org.telegram.messenger.qp.s1(org.telegram.messenger.p10.f24467s0).X3(this.f50573a, false, false);
+        bundle.putLong("user_id", this.f50496a.f27105id);
+        org.telegram.messenger.qp.s1(org.telegram.messenger.p10.f24470s0).X3(this.f50496a, false, false);
         f2Var.presentFragment(new ProfileActivity(bundle, null));
     }
 

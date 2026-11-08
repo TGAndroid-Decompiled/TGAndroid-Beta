@@ -41,7 +41,7 @@ public final class y0 implements RequestDelegate {
                                         qp.s1(i10).Y3(groupcall.users, false);
                                         qp.s1(i10).S3(groupcall.chats, false);
                                         g1Var2.f9030w = groupcall.call;
-                                        qs.f(i10).k(176, Long.valueOf(g1Var2.f9030w.f26963id));
+                                        qs.f(i10).k(176, Long.valueOf(g1Var2.f9030w.f26966id));
                                     } else if (tL_error2 != null && "GROUPCALL_INVALID".equalsIgnoreCase(tL_error2.text)) {
                                         org.telegram.messenger.g0.h3(new x0(g1Var2, 4));
                                     }
@@ -71,7 +71,7 @@ public final class y0 implements RequestDelegate {
                                     if (tLObject3 instanceof Vector) {
                                         if (!((Vector) tLObject3).toIntArray().contains(Integer.valueOf(g1Var3.K))) {
                                             if (g1Var3.E != null) {
-                                                org.telegram.messenger.p5 p5Var = Utilities.f21333e;
+                                                org.telegram.messenger.p5 p5Var = Utilities.f21336e;
                                                 NativeInstance nativeInstance = g1Var3.E;
                                                 Objects.requireNonNull(nativeInstance);
                                                 p5Var.c(new org.telegram.messenger.voip.p0(nativeInstance, 3));
@@ -85,7 +85,7 @@ public final class y0 implements RequestDelegate {
                                         qp.s1(g1Var3.f9025e).Y3(groupcall2.users, false);
                                         qp.s1(g1Var3.f9025e).S3(groupcall2.chats, false);
                                         g1Var3.f9030w = groupcall2.call;
-                                        qs.f(g1Var3.f9025e).k(176, Long.valueOf(g1Var3.f9030w.f26963id));
+                                        qs.f(g1Var3.f9025e).k(176, Long.valueOf(g1Var3.f9030w.f26966id));
                                     } else if (tL_error3 != null) {
                                         if ("GROUPCALL_JOIN_MISSING".equals(tL_error3.text)) {
                                             org.telegram.messenger.a8.b("[LivePlayer] received GROUPCALL_JOIN_MISSING on checkGroupCall => rejoining");
@@ -172,7 +172,7 @@ public final class y0 implements RequestDelegate {
                                         qp.s1(i102).Y3(groupcall2.users, false);
                                         qp.s1(i102).S3(groupcall2.chats, false);
                                         g1Var22.f9030w = groupcall2.call;
-                                        qs.f(i102).k(176, Long.valueOf(g1Var22.f9030w.f26963id));
+                                        qs.f(i102).k(176, Long.valueOf(g1Var22.f9030w.f26966id));
                                     } else if (tL_error2 != null && "GROUPCALL_INVALID".equalsIgnoreCase(tL_error2.text)) {
                                         org.telegram.messenger.g0.h3(new x0(g1Var22, 4));
                                     }
@@ -202,7 +202,7 @@ public final class y0 implements RequestDelegate {
                                     if (tLObject3 instanceof Vector) {
                                         if (!((Vector) tLObject3).toIntArray().contains(Integer.valueOf(g1Var32.K))) {
                                             if (g1Var32.E != null) {
-                                                org.telegram.messenger.p5 p5Var = Utilities.f21333e;
+                                                org.telegram.messenger.p5 p5Var = Utilities.f21336e;
                                                 NativeInstance nativeInstance2 = g1Var32.E;
                                                 Objects.requireNonNull(nativeInstance2);
                                                 p5Var.c(new org.telegram.messenger.voip.p0(nativeInstance2, 3));
@@ -216,7 +216,7 @@ public final class y0 implements RequestDelegate {
                                         qp.s1(g1Var32.f9025e).Y3(groupcall22.users, false);
                                         qp.s1(g1Var32.f9025e).S3(groupcall22.chats, false);
                                         g1Var32.f9030w = groupcall22.call;
-                                        qs.f(g1Var32.f9025e).k(176, Long.valueOf(g1Var32.f9030w.f26963id));
+                                        qs.f(g1Var32.f9025e).k(176, Long.valueOf(g1Var32.f9030w.f26966id));
                                     } else if (tL_error3 != null) {
                                         if ("GROUPCALL_JOIN_MISSING".equals(tL_error3.text)) {
                                             org.telegram.messenger.a8.b("[LivePlayer] received GROUPCALL_JOIN_MISSING on checkGroupCall => rejoining");

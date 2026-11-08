@@ -9,19 +9,19 @@ import c8.ha;
 import org.telegram.ui.Components.v50;
 import org.telegram.ui.Components.zg0;
 public final class b3 extends FrameLayout {
-    public final i1 f39079a;
-    public a3 f39080b;
-    public int f39081c;
+    public final i1 f39114a;
+    public a3 f39115b;
+    public int f39116c;
     public final TextView d;
-    public final TextView f39082e;
-    public int f39083f;
+    public final TextView f39117e;
+    public int f39118f;
 
     public b3(Activity activity, i1 i1Var) {
         super(activity);
-        this.f39079a = i1Var;
+        this.f39114a = i1Var;
         setWillNotDraw(true);
         a3 a3Var = new a3(activity, i1Var);
-        this.f39080b = a3Var;
+        this.f39115b = a3Var;
         addView(a3Var, ha.a(53.5f, 53.5f, 1));
         TextView textView = new TextView(activity);
         this.d = textView;
@@ -31,7 +31,7 @@ public final class b3 extends FrameLayout {
         textView.setImportantForAccessibility(2);
         addView(textView, ha.d(-1, -2.0f, 0, 0.0f, 58.0f, 0.0f, 2.0f));
         TextView textView2 = new TextView(activity);
-        this.f39082e = textView2;
+        this.f39117e = textView2;
         textView2.setGravity(1);
         textView2.setTextSize(1, 11.0f);
         textView2.setTextColor(-1);
@@ -42,37 +42,37 @@ public final class b3 extends FrameLayout {
     }
 
     public final void a(int i7) {
-        this.f39080b.f39062a = new zg0(2131623946, i7, i7, true, null);
-        this.f39080b.f39063b = new zg0(2131623946, i7, i7, true, null);
-        this.f39080b.f39063b.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
+        this.f39115b.f39097a = new zg0(2131623946, i7, i7, true, null);
+        this.f39115b.f39098b = new zg0(2131623946, i7, i7, true, null);
+        this.f39115b.f39098b.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
     }
 
     public final void b(int i7, int i10, int i11, boolean z9) {
-        a3 a3Var = new a3(getContext(), this.f39079a);
+        a3 a3Var = new a3(getContext(), this.f39114a);
         if (i7 == 2131623963) {
             zg0 zg0Var = new zg0(i7, i10, i10, true, null);
-            a3Var.f39064c = zg0Var;
+            a3Var.f39099c = zg0Var;
             zg0Var.R(a3Var);
         } else {
-            a3Var.f39062a = new zg0(i7, i10, i10, true, null);
+            a3Var.f39097a = new zg0(i7, i10, i10, true, null);
             zg0 zg0Var2 = new zg0(i7, i10, i10, true, null);
-            a3Var.f39063b = zg0Var2;
+            a3Var.f39098b = zg0Var2;
             zg0Var2.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
         }
         a3Var.a(i11, z9, false);
         a3Var.setAlpha(0.0f);
-        a3Var.setOnBtnClickedListener(this.f39080b.f39072y);
+        a3Var.setOnBtnClickedListener(this.f39115b.f39107y);
         addView(a3Var, ha.a(53.5f, 53.5f, 1));
-        a3 a3Var2 = this.f39080b;
-        this.f39080b = a3Var;
+        a3 a3Var2 = this.f39115b;
+        this.f39115b = a3Var;
         a3Var.animate().alpha(1.0f).setDuration(250L).start();
         a3Var2.animate().alpha(0.0f).setDuration(250L).setListener(new v50(7, this, a3Var2)).start();
     }
 
     public final void c(int i7) {
-        this.f39080b.f39062a = new zg0(2131624205, i7, i7, true, null);
-        this.f39080b.f39063b = new zg0(2131624205, i7, i7, true, null);
-        this.f39080b.f39063b.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
+        this.f39115b.f39097a = new zg0(2131624205, i7, i7, true, null);
+        this.f39115b.f39098b = new zg0(2131624205, i7, i7, true, null);
+        this.f39115b.f39098b.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
     }
 
     public final void d(int r17, boolean r18, boolean r19) {
@@ -80,6 +80,6 @@ public final class b3 extends FrameLayout {
     }
 
     public void setOnBtnClickedListener(z2 z2Var) {
-        this.f39080b.setOnBtnClickedListener(z2Var);
+        this.f39115b.setOnBtnClickedListener(z2Var);
     }
 }

@@ -7,39 +7,39 @@ import org.telegram.messenger.g0;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 public class f {
-    public final mg.a f20565a;
-    public final Paint f20566b;
-    public final Paint f20567c;
+    public final mg.a f20568a;
+    public final Paint f20569b;
+    public final Paint f20570c;
     public final Paint d;
-    public final Path f20568e;
-    public final Path f20569f;
-    public final Path f20570g;
+    public final Path f20571e;
+    public final Path f20572f;
+    public final Path f20573g;
     public ValueAnimator h;
-    public ValueAnimator f20571i;
-    public int f20572j;
-    public final float[] f20573k;
-    public final float[] f20574l;
-    public int f20575m;
-    public boolean f20576n;
-    public float f20577o;
-    public final f6 f20578p;
+    public ValueAnimator f20574i;
+    public int f20575j;
+    public final float[] f20576k;
+    public final float[] f20577l;
+    public int f20578m;
+    public boolean f20579n;
+    public float f20580o;
+    public final f6 f20581p;
 
     public f(mg.a aVar, boolean z9, f6 f6Var) {
         int length;
         int length2;
         Paint paint = new Paint(1);
-        this.f20566b = paint;
+        this.f20569b = paint;
         Paint paint2 = new Paint(1);
-        this.f20567c = paint2;
+        this.f20570c = paint2;
         Paint paint3 = new Paint(1);
         this.d = paint3;
-        this.f20568e = new Path();
-        this.f20569f = new Path();
-        this.f20570g = new Path();
-        this.f20576n = true;
-        this.f20577o = 1.0f;
-        this.f20578p = f6Var;
-        this.f20565a = aVar;
+        this.f20571e = new Path();
+        this.f20572f = new Path();
+        this.f20573g = new Path();
+        this.f20579n = true;
+        this.f20580o = 1.0f;
+        this.f20581p = f6Var;
+        this.f20568a = aVar;
         paint2.setStrokeWidth(g0.N(2.0f));
         Paint.Style style = Paint.Style.STROKE;
         paint2.setStyle(style);
@@ -54,39 +54,39 @@ public class f {
         paint3.setStyle(style);
         paint3.setStrokeCap(Paint.Cap.ROUND);
         paint3.setColor(aVar.h);
-        long[] jArr = aVar.f20013a;
+        long[] jArr = aVar.f20016a;
         if (z9) {
             length = jArr.length * 8;
         } else {
             length = jArr.length << 2;
         }
-        this.f20573k = new float[length];
-        long[] jArr2 = aVar.f20013a;
+        this.f20576k = new float[length];
+        long[] jArr2 = aVar.f20016a;
         if (z9) {
             length2 = jArr2.length * 8;
         } else {
             length2 = jArr2.length << 2;
         }
-        this.f20574l = new float[length2];
+        this.f20577l = new float[length2];
     }
 
     public void a() {
         int i7;
-        mg.a aVar = this.f20565a;
-        int i10 = aVar.f20018g;
-        f6 f6Var = this.f20578p;
+        mg.a aVar = this.f20568a;
+        int i10 = aVar.f20021g;
+        f6 f6Var = this.f20581p;
         if (i10 >= 0 && k6.f1(i10)) {
-            this.f20575m = k6.w0(aVar.f20018g, f6Var);
+            this.f20578m = k6.w0(aVar.f20021g, f6Var);
         } else {
-            if (i0.a.h(k6.w0(k6.f27849d6, f6Var)) < 0.5d) {
-                i7 = aVar.f20019i;
+            if (i0.a.h(k6.w0(k6.f27852d6, f6Var)) < 0.5d) {
+                i7 = aVar.f20022i;
             } else {
                 i7 = aVar.h;
             }
-            this.f20575m = i7;
+            this.f20578m = i7;
         }
-        this.f20567c.setColor(this.f20575m);
-        this.f20566b.setColor(this.f20575m);
-        this.d.setColor(this.f20575m);
+        this.f20570c.setColor(this.f20578m);
+        this.f20569b.setColor(this.f20578m);
+        this.d.setColor(this.f20578m);
     }
 }

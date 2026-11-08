@@ -4,11 +4,11 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 public final class l5 extends FrameLayout {
-    public ImageView f29511a;
-    public ImageView f29512b;
-    public TextView f29513c;
+    public ImageView f29514a;
+    public ImageView f29515b;
+    public TextView f29516c;
     public int d;
 
     @Override
@@ -21,20 +21,20 @@ public final class l5 extends FrameLayout {
     }
 
     public void setType(int i7) {
-        TextView textView = this.f29513c;
-        ImageView imageView = this.f29512b;
-        ImageView imageView2 = this.f29511a;
+        TextView textView = this.f29516c;
+        ImageView imageView = this.f29515b;
+        ImageView imageView2 = this.f29514a;
         if (i7 == 0) {
             imageView2.setImageResource(2131232514);
             imageView.setImageResource(2131232515);
-            textView.setText(hd.M0(2131752593, null));
+            textView.setText(id.M0(2131752593, null));
             imageView2.setLayoutParams(c8.ha.d(44, 44.0f, 17, 5.0f, 0.0f, 0.0f, 27.0f));
             imageView.setLayoutParams(c8.ha.d(44, 44.0f, 17, 5.0f, 0.0f, 0.0f, 27.0f));
             return;
         }
         imageView2.setImageResource(2131232516);
         imageView.setImageResource(2131232517);
-        textView.setText(hd.M0(2131750475, null));
+        textView.setText(id.M0(2131750477, null));
         imageView2.setLayoutParams(c8.ha.d(44, 44.0f, 17, 0.0f, 0.0f, 2.0f, 27.0f));
         imageView.setLayoutParams(c8.ha.d(44, 44.0f, 17, 0.0f, 0.0f, 2.0f, 27.0f));
     }

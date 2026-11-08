@@ -10,8 +10,8 @@ public final class j extends z8 {
     public int E;
     public int F;
     public final n G;
-    public int f16805x;
-    public float f16806y;
+    public int f16808x;
+    public float f16809y;
 
     public j(n nVar, Context context) {
         super(context);
@@ -36,7 +36,7 @@ public final class j extends z8 {
         Drawable drawable = nVar.O;
         if (drawable != null) {
             Rect bounds = drawable.getBounds();
-            int L = (int) (this.f16806y * org.telegram.messenger.g0.L(3.0f));
+            int L = (int) (this.f16809y * org.telegram.messenger.g0.L(3.0f));
             int i7 = bounds.left;
             this.E = i7;
             int i10 = bounds.top;
@@ -48,19 +48,19 @@ public final class j extends z8 {
                 j3 = 17;
             }
             this.D = elapsedRealtime;
-            if (this.f16805x == 0) {
-                float f10 = (((float) j3) / 664.0f) + this.f16806y;
-                this.f16806y = f10;
+            if (this.f16808x == 0) {
+                float f10 = (((float) j3) / 664.0f) + this.f16809y;
+                this.f16809y = f10;
                 if (f10 >= 1.0f) {
-                    this.f16805x = 1;
-                    this.f16806y = 1.0f;
+                    this.f16808x = 1;
+                    this.f16809y = 1.0f;
                 }
             } else {
-                float f11 = this.f16806y - (((float) j3) / 664.0f);
-                this.f16806y = f11;
+                float f11 = this.f16809y - (((float) j3) / 664.0f);
+                this.f16809y = f11;
                 if (f11 <= 0.0f) {
-                    this.f16805x = 0;
-                    this.f16806y = 0.0f;
+                    this.f16808x = 0;
+                    this.f16809y = 0.0f;
                 }
             }
             getTextView().invalidate();

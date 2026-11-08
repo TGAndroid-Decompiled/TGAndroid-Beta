@@ -66,7 +66,7 @@ public final class jb implements View.OnClickListener {
                     TL_stars.TL_changeStarsSubscription tL_changeStarsSubscription = new TL_stars.TL_changeStarsSubscription();
                     tL_changeStarsSubscription.canceled = Boolean.FALSE;
                     tL_changeStarsSubscription.peer = new TLRPC.TL_inputPeerSelf();
-                    tL_changeStarsSubscription.subscription_id = starsSubscription.f27183id;
+                    tL_changeStarsSubscription.subscription_id = starsSubscription.f27186id;
                     int i11 = this.f4114b;
                     ConnectionsManager.getInstance(i11).sendRequest(tL_changeStarsSubscription, new bg.k0(dVar, v2VarArr, i11, tLObject, str, 2));
                     return;
@@ -91,7 +91,7 @@ public final class jb implements View.OnClickListener {
                     arrayList.addAll(arrayList3);
                 }
                 arrayList.add(0, p10.i(i10).f());
-                k60 k60Var = new k60(v2Var.f28616b, f6Var, linearLayout, false, false, true);
+                k60 k60Var = new k60(v2Var.f28619b, f6Var, linearLayout, false, false, true);
                 int size = arrayList.size();
                 int i12 = 0;
                 while (i12 < size) {
@@ -99,11 +99,11 @@ public final class jb implements View.OnClickListener {
                     i12++;
                     TLObject tLObject2 = (TLObject) obj6;
                     if (tLObject2 instanceof TLRPC.User) {
-                        j3 = ((TLRPC.User) tLObject2).f27102id;
+                        j3 = ((TLRPC.User) tLObject2).f27105id;
                     } else if (tLObject2 instanceof TLRPC.Chat) {
                         TLRPC.Chat chat = (TLRPC.Chat) tLObject2;
                         if (org.telegram.messenger.t3.V(chat)) {
-                            j3 = -chat.f26953id;
+                            j3 = -chat.f26956id;
                         }
                     }
                     long j10 = j3;
@@ -116,8 +116,8 @@ public final class jb implements View.OnClickListener {
                     k60Var.g(tLObject2, z9, new d3(jArr2, j10, ubVar, 11));
                     jArr = jArr2;
                 }
-                k60Var.f35206t = false;
-                k60Var.f35205s = 0;
+                k60Var.f35232t = false;
+                k60Var.f35231s = 0;
                 k60Var.V(5);
                 k60Var.a0(org.telegram.messenger.g0.L(24.0f), 0.0f);
                 k60Var.Z();
@@ -136,7 +136,7 @@ public final class jb implements View.OnClickListener {
                     float scrollX = horizontalScrollView.getScrollX();
                     float x10 = sh0Var.getX() - ((horizontalScrollView.getWidth() - sh0Var.getWidth()) / 2.0f);
                     ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
-                    duration.setInterpolator(xq.f40345f);
+                    duration.setInterpolator(xq.f40366f);
                     duration.addUpdateListener(new org.telegram.ui.Cells.b(horizontalScrollView, scrollX, x10, sh0Var2, sh0Var));
                     duration.start();
                     return;
@@ -153,17 +153,17 @@ public final class jb implements View.OnClickListener {
                     tL_birthday.flags |= 1;
                     tL_birthday.year = hb0Var.getValue();
                 }
-                ((org.telegram.ui.ActionBar.v2) f1Var.f14323b).f28652x0.run();
+                ((org.telegram.ui.ActionBar.v2) f1Var.f14323b).f28655x0.run();
                 c20Var.a(tL_birthday);
                 return;
             case 4:
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, (Context) obj3, (di.b) obj2);
-                String M0 = org.telegram.messenger.hd.M0(2131748797, null);
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
+                String M0 = org.telegram.messenger.id.M0(2131748799, null);
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
                 u1Var.R = M0;
-                u1Var.T = org.telegram.messenger.hd.M0(2131748798, null);
-                alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131746025, null), new bg.f0((tq) obj4, (fi.d) obj5, (TL_phone.getGroupCallStreamRtmpUrl) obj, this.f4114b, 3));
-                alertDialog$Builder.h(org.telegram.messenger.hd.M0(2131752589, null), null);
+                u1Var.T = org.telegram.messenger.id.M0(2131748800, null);
+                alertDialog$Builder.k(org.telegram.messenger.id.M0(2131746027, null), new bg.f0((tq) obj4, (fi.d) obj5, (TL_phone.getGroupCallStreamRtmpUrl) obj, this.f4114b, 3));
+                alertDialog$Builder.h(org.telegram.messenger.id.M0(2131752589, null), null);
                 alertDialog$Builder.d(-1);
                 alertDialog$Builder.p();
                 return;
@@ -171,11 +171,11 @@ public final class jb implements View.OnClickListener {
                 org.telegram.ui.ActionBar.f6 f6Var2 = (org.telegram.ui.ActionBar.f6) obj4;
                 TL_wallet.walletTransaction[] wallettransactionArr = (TL_wallet.walletTransaction[]) obj2;
                 Context context = (Context) obj;
-                k60 F = k60.F(((org.telegram.ui.Wallet.a3[]) obj5)[0].f28619c, f6Var2, (ImageView) obj3);
+                k60 F = k60.F(((org.telegram.ui.Wallet.z2[]) obj5)[0].f28622c, f6Var2, (ImageView) obj3);
                 if (!TextUtils.isEmpty(wallettransactionArr[0].tx_hash)) {
-                    F.c(2131232354, org.telegram.messenger.hd.M0(2131742964, null), new d10(context, i10, wallettransactionArr, 15), false);
+                    F.c(2131232354, org.telegram.messenger.id.M0(2131742966, null), new d10(context, i10, wallettransactionArr, 15), false);
                 }
-                F.c(2131232819, org.telegram.messenger.hd.M0(2131742962, null), new b(2, context, f6Var2), false);
+                F.c(2131232819, org.telegram.messenger.id.M0(2131742964, null), new b(2, context, f6Var2), false);
                 F.a0(0.0f, -org.telegram.messenger.g0.L(48.0f));
                 F.Z();
                 return;
@@ -218,8 +218,8 @@ public final class jb implements View.OnClickListener {
         this.h = c20Var;
     }
 
-    public jb(org.telegram.ui.Wallet.a3[] a3VarArr, org.telegram.ui.ActionBar.f6 f6Var, ImageView imageView, TL_wallet.walletTransaction[] wallettransactionArr, Context context, int i7) {
-        this.f4115c = a3VarArr;
+    public jb(org.telegram.ui.Wallet.z2[] z2VarArr, org.telegram.ui.ActionBar.f6 f6Var, ImageView imageView, TL_wallet.walletTransaction[] wallettransactionArr, Context context, int i7) {
+        this.f4115c = z2VarArr;
         this.d = f6Var;
         this.f4116e = imageView;
         this.f4117f = wallettransactionArr;

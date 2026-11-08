@@ -3,21 +3,21 @@ package rc;
 import java.util.ArrayList;
 import org.telegram.messenger.g0;
 import org.telegram.ui.Components.pp0;
-import org.telegram.ui.Wallet.a1;
+import org.telegram.ui.Wallet.y0;
 import org.telegram.ui.Wallet.z0;
 public final class b extends z {
-    public final int f54349b;
+    public final int f54441b;
 
     public b(String str, u uVar, int i7, int i10) {
         super(str, uVar, i7);
-        this.f54349b = i10;
+        this.f54441b = i10;
     }
 
     @Override
     public final void a() {
-        switch (this.f54349b) {
+        switch (this.f54441b) {
             case 0:
-                u uVar = this.f54420a;
+                u uVar = this.f54512a;
                 try {
                     uVar.b();
                     return;
@@ -30,23 +30,23 @@ public final class b extends z {
                     while (i7 < size) {
                         Object obj = arrayList.get(i7);
                         i7++;
-                        z0 z0Var = (z0) obj;
+                        y0 y0Var = (y0) obj;
                         try {
                             try {
                                 u uVar2 = (u) qVar.f990b;
-                                a1 a1Var = z0Var.f43409c;
-                                int i10 = z0Var.f43407a;
-                                g0.h3(new pp0(a1Var, uVar2, i10, "connect error: " + a1.a(e10), 18));
+                                z0 z0Var = y0Var.f43381c;
+                                int i10 = y0Var.f43379a;
+                                g0.h3(new pp0(z0Var, uVar2, i10, "connect error: " + z0.a(e10), 18));
                             } catch (Throwable unused) {
                             }
                         } catch (Throwable unused2) {
-                            z0Var.getClass();
+                            y0Var.getClass();
                         }
                     }
                     return;
                 }
             default:
-                this.f54420a.d();
+                this.f54512a.d();
                 return;
         }
     }

@@ -8,12 +8,12 @@ import java.util.Arrays;
 import java.util.Locale;
 public final class d extends r6.a {
     public static final Parcelable.Creator<d> CREATOR = new t0(28);
-    public double f16509a;
-    public boolean f16510b;
-    public int f16511c;
+    public double f16512a;
+    public boolean f16513b;
+    public int f16514c;
     public f6.d d;
-    public int f16512e;
-    public f6.x f16513f;
+    public int f16515e;
+    public f6.x f16516f;
     public double h;
 
     public final boolean equals(Object obj) {
@@ -24,8 +24,8 @@ public final class d extends r6.a {
             return false;
         }
         d dVar = (d) obj;
-        if (this.f16509a == dVar.f16509a && this.f16510b == dVar.f16510b && this.f16511c == dVar.f16511c && a.d(this.d, dVar.d) && this.f16512e == dVar.f16512e) {
-            f6.x xVar = this.f16513f;
+        if (this.f16512a == dVar.f16512a && this.f16513b == dVar.f16513b && this.f16514c == dVar.f16514c && a.d(this.d, dVar.d) && this.f16515e == dVar.f16515e) {
+            f6.x xVar = this.f16516f;
             if (a.d(xVar, xVar) && this.h == dVar.h) {
                 return true;
             }
@@ -34,30 +34,30 @@ public final class d extends r6.a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Double.valueOf(this.f16509a), Boolean.valueOf(this.f16510b), Integer.valueOf(this.f16511c), this.d, Integer.valueOf(this.f16512e), this.f16513f, Double.valueOf(this.h)});
+        return Arrays.hashCode(new Object[]{Double.valueOf(this.f16512a), Boolean.valueOf(this.f16513b), Integer.valueOf(this.f16514c), this.d, Integer.valueOf(this.f16515e), this.f16516f, Double.valueOf(this.h)});
     }
 
     public final String toString() {
-        return String.format(Locale.ROOT, "volume=%f", Double.valueOf(this.f16509a));
+        return String.format(Locale.ROOT, "volume=%f", Double.valueOf(this.f16512a));
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = xb.r(parcel, 20293);
-        double d = this.f16509a;
+        double d = this.f16512a;
         xb.q(parcel, 2, 8);
         parcel.writeDouble(d);
-        boolean z9 = this.f16510b;
+        boolean z9 = this.f16513b;
         xb.q(parcel, 3, 4);
         parcel.writeInt(z9 ? 1 : 0);
-        int i10 = this.f16511c;
+        int i10 = this.f16514c;
         xb.q(parcel, 4, 4);
         parcel.writeInt(i10);
         xb.k(parcel, 5, this.d, i7);
-        int i11 = this.f16512e;
+        int i11 = this.f16515e;
         xb.q(parcel, 6, 4);
         parcel.writeInt(i11);
-        xb.k(parcel, 7, this.f16513f, i7);
+        xb.k(parcel, 7, this.f16516f, i7);
         double d2 = this.h;
         xb.q(parcel, 8, 8);
         parcel.writeDouble(d2);

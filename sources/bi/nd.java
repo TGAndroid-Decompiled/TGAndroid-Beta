@@ -38,7 +38,7 @@ public final class nd extends View implements te.b {
         this.d = new Matrix();
         this.f4438b = new Paint(1);
         this.f4440e = new Paint(1);
-        this.f4441f = new my0(org.telegram.messenger.hd.M0(2131745037, null), 14.16f, org.telegram.messenger.g0.o());
+        this.f4441f = new my0(org.telegram.messenger.id.M0(2131745039, null), 14.16f, org.telegram.messenger.g0.o());
     }
 
     public static void a(Canvas canvas, Drawable drawable, float f10, float f11, float f12, float f13) {
@@ -114,17 +114,17 @@ public final class nd extends View implements te.b {
 
     public void d() {
         org.telegram.ui.ActionBar.y4 y4Var = (org.telegram.ui.ActionBar.y4) this.h;
-        setBackground(org.telegram.ui.ActionBar.k6.h0(y4Var.f28790h0, 1, -1));
+        setBackground(org.telegram.ui.ActionBar.k6.h0(y4Var.f28793h0, 1, -1));
         Drawable drawable = (Drawable) this.f4439c;
         if (drawable instanceof org.telegram.ui.ActionBar.y1) {
-            ((org.telegram.ui.ActionBar.y1) drawable).a(y4Var.f28788f0);
-            ((org.telegram.ui.ActionBar.y1) ((Drawable) this.f4439c)).b(y4Var.f28789g0);
+            ((org.telegram.ui.ActionBar.y1) drawable).a(y4Var.f28791f0);
+            ((org.telegram.ui.ActionBar.y1) ((Drawable) this.f4439c)).b(y4Var.f28792g0);
         } else if (drawable instanceof org.telegram.ui.ActionBar.r4) {
-            ((org.telegram.ui.ActionBar.r4) drawable).f28469j = y4Var.f28788f0;
+            ((org.telegram.ui.ActionBar.r4) drawable).f28472j = y4Var.f28791f0;
         } else if (drawable != null) {
-            drawable.setColorFilter(new PorterDuffColorFilter(y4Var.f28788f0, PorterDuff.Mode.SRC_IN));
+            drawable.setColorFilter(new PorterDuffColorFilter(y4Var.f28791f0, PorterDuff.Mode.SRC_IN));
         }
-        ((Drawable) this.f4438b).setColorFilter(new PorterDuffColorFilter(y4Var.f28789g0, PorterDuff.Mode.SRC_IN));
+        ((Drawable) this.f4438b).setColorFilter(new PorterDuffColorFilter(y4Var.f28792g0, PorterDuff.Mode.SRC_IN));
         invalidate();
     }
 
@@ -142,15 +142,15 @@ public final class nd extends View implements te.b {
                 Paint paint = (Paint) this.f4438b;
                 paint.setShader(linearGradient);
                 my0 my0Var = (my0) this.f4441f;
-                float L = my0Var.f36125c + org.telegram.messenger.g0.L(30.0f);
+                float L = my0Var.f36147c + org.telegram.messenger.g0.L(30.0f);
                 Paint paint2 = (Paint) this.f4440e;
-                paint2.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27850d7, (org.telegram.ui.ActionBar.f6) this.h));
+                paint2.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27853d7, (org.telegram.ui.ActionBar.f6) this.h));
                 canvas.drawRect(org.telegram.messenger.g0.L(24.0f), (getHeight() / 2.0f) - 1.0f, ((getWidth() - L) / 2.0f) - org.telegram.messenger.g0.L(8.0f), getHeight() / 2.0f, paint2);
                 canvas.drawRect(org.telegram.messenger.g0.L(8.0f) + ((getWidth() + L) / 2.0f), (getHeight() / 2.0f) - 1.0f, getWidth() - org.telegram.messenger.g0.L(24.0f), getHeight() / 2.0f, paint2);
                 RectF rectF = org.telegram.messenger.g0.P;
                 rectF.set((getWidth() - L) / 2.0f, 0.0f, (getWidth() + L) / 2.0f, getHeight());
                 canvas.drawRoundRect(rectF, getHeight() / 2.0f, getHeight() / 2.0f, paint);
-                ((my0) this.f4441f).c((getWidth() - my0Var.f36125c) / 2.0f, getHeight() / 2.0f, 1.0f, -1, canvas);
+                ((my0) this.f4441f).c((getWidth() - my0Var.f36147c) / 2.0f, getHeight() / 2.0f, 1.0f, -1, canvas);
                 return;
             case 1:
                 ArrayList arrayList = (ArrayList) this.d;
@@ -245,8 +245,8 @@ public final class nd extends View implements te.b {
             case 2:
                 float width = getWidth() / 2.0f;
                 float height = getHeight() / 2.0f;
-                float f11 = ((te.a) this.f4440e).f55394e;
-                float f12 = ((te.c) this.f4441f).f55400f;
+                float f11 = ((te.a) this.f4440e).f55486e;
+                float f12 = ((te.c) this.f4441f).f55492f;
                 Drawable drawable = (Drawable) this.d;
                 if (drawable != null && f12 < 0.5f) {
                     float C = com.google.android.recaptcha.internal.a.C(f12, 2.0f, 1.0f, 1.0f - f11);
@@ -450,9 +450,9 @@ public final class nd extends View implements te.b {
         this.d = arrayList;
         setPadding(0, 0, 0, 0);
         if (k2Var.J0(4)) {
-            fi.g2 g2Var = new fi.g2(this, 4, 2131232200, org.telegram.messenger.hd.M0(2131744444, null));
+            fi.g2 g2Var = new fi.g2(this, 4, 2131232200, org.telegram.messenger.id.M0(2131744446, null));
             int i7 = fi.k2.f12251y1;
-            if (!p10.i(k2Var.f28613a).q()) {
+            if (!p10.i(k2Var.f28616a).q()) {
                 Drawable mutate = getContext().getResources().getDrawable(2131232243).mutate();
                 g2Var.f12057j = mutate;
                 mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.r1(0.6f, -1), PorterDuff.Mode.SRC_IN));
@@ -463,7 +463,7 @@ public final class nd extends View implements te.b {
             arrayList.add(g2Var);
         }
         if (k2Var.J0(0)) {
-            arrayList.add(new fi.g2(this, 0, 2131231648, org.telegram.messenger.hd.M0(2131744443, null)));
+            arrayList.add(new fi.g2(this, 0, 2131231648, org.telegram.messenger.id.M0(2131744445, null)));
         }
         if (k2Var.J0(5)) {
             fi.sb sbVar = fi.tb.f12867b;
@@ -474,14 +474,14 @@ public final class nd extends View implements te.b {
             sb2.append(sbVar == null ? fi.tb.a() ? "24°C" : "72°F" : sbVar.a());
             CharSequence m10 = org.telegram.messenger.i6.m(sb2.toString(), textPaint.getFontMetricsInt(), false, null, 0);
             SpannableStringBuilder spannableStringBuilder = m10;
-            if (qp.s1(k2Var.f28613a).W5) {
+            if (qp.s1(k2Var.f28616a).W5) {
                 spannableStringBuilder = m10;
                 spannableStringBuilder = m10;
                 if (c8.ia.d("android.permission.ACCESS_COARSE_LOCATION") && sbVar == null) {
                     SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("___");
                     spannableStringBuilder2.setSpan(new b80(org.telegram.messenger.g0.L(68.0f), this), 0, spannableStringBuilder2.length(), 33);
                     g2VarArr[0] = new fi.g2(this, spannableStringBuilder2);
-                    c8.ia.c(2131624119, 2131747301, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new String[]{"android.permission.ACCESS_COARSE_LOCATION"}, new b9(3, new b9(2, new ai.f1(8, this, g2VarArr), false), false));
+                    c8.ia.c(2131624119, 2131747303, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new String[]{"android.permission.ACCESS_COARSE_LOCATION"}, new b9(3, new b9(2, new ai.f1(8, this, g2VarArr), false), false));
                     spannableStringBuilder = spannableStringBuilder2;
                 }
             }
@@ -489,10 +489,10 @@ public final class nd extends View implements te.b {
             arrayList.add(g2Var2 == null ? new fi.g2(this, spannableStringBuilder) : g2Var2);
         }
         if (k2Var.J0(1)) {
-            arrayList.add(new fi.g2(this, 1, 2131231188, org.telegram.messenger.hd.M0(2131744445, null)));
+            arrayList.add(new fi.g2(this, 1, 2131231188, org.telegram.messenger.id.M0(2131744447, null)));
         }
         if (k2Var.J0(2)) {
-            arrayList.add(new fi.g2(this, 2, 2131231146, org.telegram.messenger.hd.M0(2131744442, null)));
+            arrayList.add(new fi.g2(this, 2, 2131231146, org.telegram.messenger.id.M0(2131744444, null)));
         }
         if (k2Var.J0(3)) {
             arrayList.add(new fi.i2(this));

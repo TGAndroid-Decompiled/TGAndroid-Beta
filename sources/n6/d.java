@@ -21,8 +21,8 @@ import q6.s;
 import q6.t;
 public final class d extends e {
     public static final Object d = new Object();
-    public static final d f20495e = new Object();
-    public s6.d f20496c;
+    public static final d f20498e = new Object();
+    public s6.d f20499c;
 
     public static e0 g(Context context, cb.c cVar) {
         IntentFilter intentFilter = new IntentFilter("android.intent.action.PACKAGE_ADDED");
@@ -47,7 +47,7 @@ public final class d extends e {
 
     @Override
     public final int c(Context context) {
-        return d(context, e.f20497a);
+        return d(context, e.f20500a);
     }
 
     public final void e(GoogleApiActivity googleApiActivity, int i7, GoogleApiActivity googleApiActivity2) {
@@ -86,9 +86,9 @@ public final class d extends e {
         q6.m.h(alertDialog, "Cannot display null dialog");
         alertDialog.setOnCancelListener(null);
         alertDialog.setOnDismissListener(null);
-        dialogFragment.f20489a = alertDialog;
+        dialogFragment.f20492a = alertDialog;
         if (googleApiActivity2 != null) {
-            dialogFragment.f20490b = googleApiActivity2;
+            dialogFragment.f20493b = googleApiActivity2;
         }
         dialogFragment.show(fragmentManager, "GooglePlayServicesErrorDialog");
     }
@@ -130,11 +130,11 @@ public final class d extends e {
             lVar.f10087f = q.d(e10);
             qVar.n(lVar);
             PackageManager packageManager = context.getPackageManager();
-            if (x6.b.f58546b == null) {
-                x6.b.f58546b = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
+            if (x6.b.f58635b == null) {
+                x6.b.f58635b = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
             }
             int i11 = 17301642;
-            if (x6.b.f58546b.booleanValue()) {
+            if (x6.b.f58635b.booleanValue()) {
                 int i12 = context.getApplicationInfo().icon;
                 if (i12 != 0) {
                     i11 = i12;
@@ -171,7 +171,7 @@ public final class d extends e {
             if (i7 != 1 && i7 != 2 && i7 != 3) {
                 i10 = 39789;
             } else {
-                g.f20500a.set(false);
+                g.f20503a.set(false);
                 i10 = 10436;
             }
             notificationManager.notify(i10, b10);

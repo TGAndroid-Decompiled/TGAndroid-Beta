@@ -32,12 +32,12 @@ public final class n1 extends WebViewClient {
         if (!TextUtils.isEmpty(str)) {
             Uri parse = Uri.parse(str);
             if ("tg".equals(parse.getScheme())) {
-                ((yc1) this.f47935b).finishFragment(false);
+                ((zc1) this.f47935b).finishFragment(false);
                 try {
                     Intent intent = new Intent("android.intent.action.VIEW", parse);
-                    intent.setComponent(new ComponentName(org.telegram.messenger.t0.f25563b.getPackageName(), LaunchActivity.class.getName()));
-                    intent.putExtra("com.android.browser.application_id", org.telegram.messenger.t0.f25563b.getPackageName());
-                    org.telegram.messenger.t0.f25563b.startActivity(intent);
+                    intent.setComponent(new ComponentName(org.telegram.messenger.t0.f25566b.getPackageName(), LaunchActivity.class.getName()));
+                    intent.putExtra("com.android.browser.application_id", org.telegram.messenger.t0.f25566b.getPackageName());
+                    org.telegram.messenger.t0.f25566b.startActivity(intent);
                     return true;
                 } catch (Exception e10) {
                     org.telegram.messenger.a8.g(e10, true);
@@ -70,11 +70,11 @@ public final class n1 extends WebViewClient {
         switch (i7) {
             case 1:
                 super.onPageFinished(webView, str);
-                org.telegram.ui.Components.vt vtVar = (org.telegram.ui.Components.vt) obj;
-                ImageView imageView = vtVar.f39694t1;
-                if (!vtVar.f39695u1) {
-                    vtVar.f39689o1.setVisibility(4);
-                    vtVar.n1.setVisibility(4);
+                org.telegram.ui.Components.wt wtVar = (org.telegram.ui.Components.wt) obj;
+                ImageView imageView = wtVar.f40050t1;
+                if (!wtVar.f40051u1) {
+                    wtVar.f40045o1.setVisibility(4);
+                    wtVar.n1.setVisibility(4);
                     imageView.setEnabled(true);
                     imageView.setAlpha(1.0f);
                     return;
@@ -83,9 +83,9 @@ public final class n1 extends WebViewClient {
             case 2:
                 super.onPageFinished(webView, str);
                 cq0 cq0Var = (cq0) obj;
-                View view = cq0Var.f31789r;
-                if (!cq0Var.f31793y) {
-                    cq0Var.f31788n.setVisibility(4);
+                View view = cq0Var.f31798r;
+                if (!cq0Var.f31802y) {
+                    cq0Var.f31797n.setVisibility(4);
                     cq0Var.h.setVisibility(4);
                     view.setEnabled(true);
                     view.setAlpha(1.0f);
@@ -94,14 +94,14 @@ public final class n1 extends WebViewClient {
                 return;
             case 3:
                 super.onPageFinished(webView, str);
-                yc1 yc1Var = (yc1) obj;
-                org.telegram.ui.Components.zp zpVar = yc1Var.f52213c;
+                zc1 zc1Var = (zc1) obj;
+                org.telegram.ui.Components.zp zpVar = zc1Var.f52525c;
                 if (zpVar != null && zpVar.getVisibility() == 0) {
                     AnimatorSet animatorSet = new AnimatorSet();
-                    yc1Var.f52212b.getContentView().setVisibility(0);
-                    yc1Var.f52212b.setEnabled(true);
-                    animatorSet.playTogether(ObjectAnimator.ofFloat(yc1Var.f52213c, "scaleX", 1.0f, 0.1f), ObjectAnimator.ofFloat(yc1Var.f52213c, "scaleY", 1.0f, 0.1f), ObjectAnimator.ofFloat(yc1Var.f52213c, "alpha", 1.0f, 0.0f), ObjectAnimator.ofFloat(yc1Var.f52212b.getContentView(), "scaleX", 0.0f, 1.0f), ObjectAnimator.ofFloat(yc1Var.f52212b.getContentView(), "scaleY", 0.0f, 1.0f), ObjectAnimator.ofFloat(yc1Var.f52212b.getContentView(), "alpha", 0.0f, 1.0f));
-                    animatorSet.addListener(new r81(this, 12));
+                    zc1Var.f52524b.getContentView().setVisibility(0);
+                    zc1Var.f52524b.setEnabled(true);
+                    animatorSet.playTogether(ObjectAnimator.ofFloat(zc1Var.f52525c, "scaleX", 1.0f, 0.1f), ObjectAnimator.ofFloat(zc1Var.f52525c, "scaleY", 1.0f, 0.1f), ObjectAnimator.ofFloat(zc1Var.f52525c, "alpha", 1.0f, 0.0f), ObjectAnimator.ofFloat(zc1Var.f52524b.getContentView(), "scaleX", 0.0f, 1.0f), ObjectAnimator.ofFloat(zc1Var.f52524b.getContentView(), "scaleY", 0.0f, 1.0f), ObjectAnimator.ofFloat(zc1Var.f52524b.getContentView(), "alpha", 0.0f, 1.0f));
+                    animatorSet.addListener(new s81(this, 12));
                     animatorSet.setDuration(150L);
                     animatorSet.start();
                     return;
@@ -119,7 +119,7 @@ public final class n1 extends WebViewClient {
             case 4:
                 if (webResourceRequest.isForMainFrame()) {
                     ui.i iVar = (ui.i) this.f47935b;
-                    if (webView == iVar.f56861o) {
+                    if (webView == iVar.f56953o) {
                         iVar.h();
                         return;
                     }
@@ -138,7 +138,7 @@ public final class n1 extends WebViewClient {
             case 4:
                 if (webResourceRequest.isForMainFrame()) {
                     ui.i iVar = (ui.i) this.f47935b;
-                    if (webView == iVar.f56861o) {
+                    if (webView == iVar.f56953o) {
                         iVar.h();
                         return;
                     }
@@ -157,7 +157,7 @@ public final class n1 extends WebViewClient {
             case 4:
                 sslErrorHandler.cancel();
                 ui.i iVar = (ui.i) this.f47935b;
-                if (webView == iVar.f56861o) {
+                if (webView == iVar.f56953o) {
                     iVar.h();
                     return;
                 }
@@ -178,10 +178,10 @@ public final class n1 extends WebViewClient {
                     LaunchActivity launchActivity = LaunchActivity.G1;
                     if (launchActivity == null || !launchActivity.isFinishing()) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, ((q1) obj).getContext(), null);
-                        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
-                        u1Var.R = org.telegram.messenger.hd.M0(2131752104, null);
-                        u1Var.T = org.telegram.messenger.g0.U2(org.telegram.messenger.hd.M0(2131752105, null), new gq0(this, 8));
-                        alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131747830, null), null);
+                        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
+                        u1Var.R = org.telegram.messenger.id.M0(2131752104, null);
+                        u1Var.T = org.telegram.messenger.g0.U2(org.telegram.messenger.id.M0(2131752105, null), new gq0(this, 8));
+                        alertDialog$Builder.k(org.telegram.messenger.id.M0(2131747832, null), null);
                         alertDialog$Builder.p();
                     }
                     return true;
@@ -190,14 +190,14 @@ public final class n1 extends WebViewClient {
                     return false;
                 }
             case 1:
-                org.telegram.ui.Components.vt vtVar = (org.telegram.ui.Components.vt) obj;
+                org.telegram.ui.Components.wt wtVar = (org.telegram.ui.Components.wt) obj;
                 try {
-                    if (org.telegram.messenger.g0.M1(vtVar.getContext())) {
-                        AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(0, vtVar.getContext(), vtVar.I0);
-                        org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder2.f27293a;
-                        u1Var2.R = org.telegram.messenger.hd.M0(2131752104, null);
-                        u1Var2.T = org.telegram.messenger.g0.U2(org.telegram.messenger.hd.M0(2131752105, null), new org.telegram.ui.Components.gp(this, 9));
-                        alertDialog$Builder2.k(org.telegram.messenger.hd.M0(2131747830, null), null);
+                    if (org.telegram.messenger.g0.M1(wtVar.getContext())) {
+                        AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(0, wtVar.getContext(), wtVar.I0);
+                        org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder2.f27296a;
+                        u1Var2.R = org.telegram.messenger.id.M0(2131752104, null);
+                        u1Var2.T = org.telegram.messenger.g0.U2(org.telegram.messenger.id.M0(2131752105, null), new org.telegram.ui.Components.gp(this, 9));
+                        alertDialog$Builder2.k(org.telegram.messenger.id.M0(2131747832, null), null);
                         alertDialog$Builder2.p();
                     }
                     return true;
@@ -211,7 +211,7 @@ public final class n1 extends WebViewClient {
                 return super.onRenderProcessGone(webView, renderProcessGoneDetail);
             case 4:
                 ui.i iVar = (ui.i) obj;
-                if (webView == iVar.f56861o) {
+                if (webView == iVar.f56953o) {
                     iVar.h();
                 }
                 return true;
@@ -223,8 +223,8 @@ public final class n1 extends WebViewClient {
         switch (this.f47934a) {
             case 2:
                 String uri = webResourceRequest.getUrl().toString();
-                if (((cq0) this.f47935b).f31793y && uri.startsWith("https://www.youtube.com/youtubei/v1/player?key=")) {
-                    Utilities.f21337j.c(new org.telegram.ui.Components.ng(this, uri, webResourceRequest, 15));
+                if (((cq0) this.f47935b).f31802y && uri.startsWith("https://www.youtube.com/youtubei/v1/player?key=")) {
+                    Utilities.f21340j.c(new org.telegram.ui.Components.ng(this, uri, webResourceRequest, 15));
                     return null;
                 }
                 return null;
@@ -237,7 +237,7 @@ public final class n1 extends WebViewClient {
                     ui.i iVar = (ui.i) this.f47935b;
                     iVar.getClass();
                     String path = url.getPath();
-                    if (!"https".equalsIgnoreCase(url.getScheme()) || !iVar.f56851c.equalsIgnoreCase(url.getHost()) || url.getUserInfo() != null || ((url.getPort() != -1 && url.getPort() != 443) || path == null || !path.startsWith(iVar.d))) {
+                    if (!"https".equalsIgnoreCase(url.getScheme()) || !iVar.f56943c.equalsIgnoreCase(url.getHost()) || url.getUserInfo() != null || ((url.getPort() != -1 && url.getPort() != 443) || path == null || !path.startsWith(iVar.d))) {
                         return new WebResourceResponse("text/plain", "UTF-8", new ByteArrayInputStream(new byte[0]));
                     }
                 }
@@ -250,19 +250,19 @@ public final class n1 extends WebViewClient {
         switch (this.f47934a) {
             case 0:
                 q1 q1Var = (q1) this.f47935b;
-                if (q1Var.f49005s) {
-                    vf.c.t(q1Var.f49008y.L, str);
+                if (q1Var.f49008s) {
+                    vf.c.t(q1Var.f49011y.L, str);
                     return true;
                 }
                 return false;
             case 1:
-                if (((org.telegram.ui.Components.vt) this.f47935b).f39695u1) {
+                if (((org.telegram.ui.Components.wt) this.f47935b).f40051u1) {
                     vf.c.t(webView.getContext(), str);
                     return true;
                 }
                 return super.shouldOverrideUrlLoading(webView, str);
             case 2:
-                if (((cq0) this.f47935b).f31793y) {
+                if (((cq0) this.f47935b).f31802y) {
                     vf.c.t(webView.getContext(), str);
                     return true;
                 }
@@ -282,7 +282,7 @@ public final class n1 extends WebViewClient {
                     ui.i iVar = (ui.i) this.f47935b;
                     Uri url = webResourceRequest.getUrl();
                     if (url != null) {
-                        if (iVar.f56854g.equals(url.toString())) {
+                        if (iVar.f56946g.equals(url.toString())) {
                             return false;
                         }
                     } else {

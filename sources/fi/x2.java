@@ -1,7 +1,7 @@
 package fi;
 
 import android.text.TextUtils;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.Components.av0;
 public final class x2 extends e3 {
     public final f3 f13075y;
@@ -27,10 +27,10 @@ public final class x2 extends e3 {
         super.f();
         if (TextUtils.isEmpty(this.f11867f)) {
             av0Var.setStickerType(11);
-            av0Var.d.setText(hd.M0(2131745761, null));
+            av0Var.d.setText(id.M0(2131745763, null));
             return;
         }
         av0Var.setStickerType(1);
-        av0Var.d.setText(hd.a0(null, null, 2131748165, this.f11867f));
+        av0Var.d.setText(id.a0(null, null, 2131748167, this.f11867f));
     }
 }

@@ -8,7 +8,7 @@ import com.google.firebase.pnv.internal.FirebasePhoneNumberVerificationRegistrar
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import org.telegram.messenger.e20;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.voip.NativeInstance;
 import org.telegram.messenger.w10;
 import org.telegram.messenger.we;
@@ -258,9 +258,9 @@ public final class a1 implements NativeInstance.AudioLevelsCallback, org.telegra
         Integer num = (Integer) obj;
         if (((Integer) number).intValue() == 0) {
             if (num.intValue() == 0) {
-                return hd.M0(2131748804, null);
+                return id.M0(2131748806, null);
             }
-            return hd.H(',', "Stars", num.intValue());
+            return id.H(',', "Stars", num.intValue());
         }
         return "" + num;
     }

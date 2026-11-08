@@ -32,31 +32,31 @@ public final class a11 extends View {
     public float T;
     public final o30 U;
     public final q11 V;
-    public boolean f43529a;
-    public boolean f43530b;
-    public int f43531c;
+    public boolean f43532a;
+    public boolean f43533b;
+    public int f43534c;
     public TLRPC.Document d;
-    public org.telegram.ui.Components.r5 f43532e;
-    public final org.telegram.messenger.ic[] f43533f;
+    public org.telegram.ui.Components.r5 f43535e;
+    public final org.telegram.messenger.ic[] f43536f;
     public ImageReceiver h;
-    public final ImageReceiver f43534n;
-    public ImageReceiver f43535r;
-    public boolean f43536s;
-    public TL_stars.TL_starGiftUnique f43537w;
-    public Integer f43538x;
-    public ch.o0 f43539y;
+    public final ImageReceiver f43537n;
+    public ImageReceiver f43538r;
+    public boolean f43539s;
+    public TL_stars.TL_starGiftUnique f43540w;
+    public Integer f43541x;
+    public ch.o0 f43542y;
 
     public a11(q11 q11Var, Context context) {
         super(context);
         this.V = q11Var;
-        this.f43529a = false;
-        this.f43530b = false;
-        this.f43533f = new org.telegram.messenger.ic[2];
+        this.f43532a = false;
+        this.f43533b = false;
+        this.f43536f = new org.telegram.messenger.ic[2];
         ImageReceiver imageReceiver = new ImageReceiver(null);
-        this.f43534n = imageReceiver;
+        this.f43537n = imageReceiver;
         this.T = 1.0f;
         this.U = new o30(this, 1);
-        imageReceiver.f21229y = true;
+        imageReceiver.f21232y = true;
         setFocusable(true);
     }
 
@@ -86,9 +86,9 @@ public final class a11 extends View {
             return;
         }
         z01Var.h = false;
-        z01Var.f56794n = -1;
-        if (z01Var.f56789a == 2 && (paint = z01Var.f56799y) != null) {
-            paint.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27793a7, false));
+        z01Var.f56886n = -1;
+        if (z01Var.f56881a == 2 && (paint = z01Var.f56891y) != null) {
+            paint.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27796a7, false));
         }
     }
 
@@ -96,11 +96,11 @@ public final class a11 extends View {
         String str;
         this.d = document;
         a(t01Var);
-        org.telegram.messenger.rz f10 = org.telegram.messenger.t5.f(document, org.telegram.ui.ActionBar.k6.f28014m6, 0.2f, null);
+        org.telegram.messenger.rz f10 = org.telegram.messenger.t5.f(document, org.telegram.ui.ActionBar.k6.f28017m6, 0.2f, null);
         if (this.V.W == 6) {
             ImageReceiver imageReceiver = this.h;
             org.telegram.messenger.hc b10 = org.telegram.messenger.hc.b(document);
-            if (!org.telegram.messenger.rc.e(16388)) {
+            if (!org.telegram.messenger.sc.e(16388)) {
                 str = "34_34_firstframe";
             } else {
                 str = "34_34";
@@ -110,7 +110,7 @@ public final class a11 extends View {
             this.h.r0(org.telegram.messenger.hc.b(document), "100_100_firstframe", null, null, f10, 0L, "tgs", document, 0);
         }
         this.Q = true;
-        this.f43532e = null;
+        this.f43535e = null;
     }
 
     public final void d(boolean z9, boolean z10) {
@@ -203,7 +203,7 @@ public final class a11 extends View {
             imageReceiver.H0((View) getParent());
             this.h.P();
         }
-        this.f43534n.P();
+        this.f43537n.P();
     }
 
     @Override
@@ -216,7 +216,7 @@ public final class a11 extends View {
         Drawable drawable = this.E;
         if (drawable instanceof org.telegram.ui.Components.i5) {
             ((org.telegram.ui.Components.i5) drawable).o(this.U);
-            di.z2 z2Var = ((org.telegram.ui.Components.i5) this.E).f34497k;
+            di.z2 z2Var = ((org.telegram.ui.Components.i5) this.E).f34541k;
             if (z2Var != null) {
                 z2Var.g0(false);
             }
@@ -226,7 +226,7 @@ public final class a11 extends View {
             imageReceiver.R();
             this.h.g0(false);
         }
-        this.f43534n.R();
+        this.f43537n.R();
     }
 
     @Override
@@ -235,15 +235,15 @@ public final class a11 extends View {
         String str;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         String str2 = null;
-        if (this.f43529a) {
-            str2 = org.telegram.messenger.hd.M0(2131746287, null);
+        if (this.f43532a) {
+            str2 = org.telegram.messenger.id.M0(2131746289, null);
         } else {
-            ch.o0 o0Var = this.f43539y;
+            ch.o0 o0Var = this.f43542y;
             if (o0Var != null && (str = o0Var.f6356f) != null) {
                 str2 = str;
             } else {
                 TLRPC.Document document = this.d;
-                if (document == null && (r5Var = this.f43532e) != null && (document = r5Var.document) == null) {
+                if (document == null && (r5Var = this.f43535e) != null && (document = r5Var.document) == null) {
                     document = org.telegram.ui.Components.i5.e(this.V.V, r5Var.getDocumentId());
                 }
                 if (document != null) {

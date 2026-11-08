@@ -5,17 +5,17 @@ import j$.util.Objects;
 import java.lang.Thread;
 import java.util.ArrayList;
 public abstract class r2 {
-    public static boolean f25199a = true;
-    public static final boolean f25200b;
-    public static final String f25201c;
+    public static boolean f25212a = true;
+    public static final boolean f25213b;
+    public static final String f25214c;
     public static final int d;
-    public static final String f25202e;
-    public static final String f25203f;
-    public static final String f25204g;
+    public static final String f25215e;
+    public static final String f25216f;
+    public static final String f25217g;
     public static String h;
-    public static final boolean f25205i;
-    public static final boolean f25206j;
-    public static Boolean f25207k;
+    public static final boolean f25218i;
+    public static final boolean f25219j;
+    public static Boolean f25220k;
 
     static {
         boolean z9;
@@ -24,18 +24,18 @@ public abstract class r2 {
         } else {
             z9 = false;
         }
-        f25200b = z9;
-        f25201c = "13.2.2";
+        f25213b = z9;
+        f25214c = "13.2.2";
         d = 4;
-        f25202e = "014b35b6184100b085b0d0572f9b5103";
-        f25203f = "AIzaSyDqt8P-7F7CPCseMkOiVRgb1LY8RN1bvH8";
-        f25204g = "https://play.google.com/store/apps/details?id=org.telegram.messenger";
+        f25215e = "014b35b6184100b085b0d0572f9b5103";
+        f25216f = "AIzaSyDqt8P-7F7CPCseMkOiVRgb1LY8RN1bvH8";
+        f25217g = "https://play.google.com/store/apps/details?id=org.telegram.messenger";
         h = "760348033671-81kmi3pi84p11ub8hp9a1funsv0rn2p9.apps.googleusercontent.com";
-        f25205i = true;
-        f25206j = true;
-        if (t0.f25563b != null) {
-            t0.f25563b.getSharedPreferences("systemConfig", 0);
-            f25199a = true;
+        f25218i = true;
+        f25219j = true;
+        if (t0.f25566b != null) {
+            t0.f25566b.getSharedPreferences("systemConfig", 0);
+            f25212a = true;
             final Thread.UncaughtExceptionHandler defaultUncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
             Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
                 @Override
@@ -52,24 +52,24 @@ public abstract class r2 {
 
     public static boolean a() {
         boolean z9;
-        if (f25207k == null) {
-            if (t0.f25563b != null && "org.telegram.messenger.beta".equals(t0.f25563b.getPackageName())) {
+        if (f25220k == null) {
+            if (t0.f25566b != null && "org.telegram.messenger.beta".equals(t0.f25566b.getPackageName())) {
                 z9 = true;
             } else {
                 z9 = false;
             }
-            f25207k = Boolean.valueOf(z9);
+            f25220k = Boolean.valueOf(z9);
         }
-        return f25207k.booleanValue();
+        return f25220k.booleanValue();
     }
 
     public static boolean b() {
         f5.l lVar;
-        if (!r1.f25187n) {
+        if (!r1.f25200n) {
             t0.u();
             a();
             t0.r();
-            if (r1.i().k() && (lVar = r1.f25185l) != null) {
+            if (r1.i().k() && (lVar = r1.f25198l) != null) {
                 ArrayList arrayList = lVar.h;
                 int size = arrayList.size();
                 int i7 = 0;
@@ -83,7 +83,7 @@ public abstract class r2 {
                         Object obj2 = arrayList2.get(i10);
                         i10++;
                         f5.i iVar = (f5.i) obj2;
-                        ArrayList arrayList3 = qp.s1(p10.f24467s0).f24819k7;
+                        ArrayList arrayList3 = qp.s1(p10.f24470s0).f24826k7;
                         int size3 = arrayList3.size();
                         int i11 = 0;
                         while (i11 < size3) {

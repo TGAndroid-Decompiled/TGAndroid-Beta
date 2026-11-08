@@ -45,7 +45,7 @@ public abstract class l5 {
         SQLiteCursor sQLiteCursor7;
         SQLiteCursor sQLiteCursor8;
         SQLiteDatabase sQLiteDatabase2 = sQLiteDatabase;
-        p5 p5Var = yrVar.f26696a;
+        p5 p5Var = yrVar.f26719a;
         int i11 = 4;
         int i12 = i7;
         if (i12 < 4) {
@@ -54,7 +54,7 @@ public abstract class l5 {
             k5.v(sQLiteDatabase2, "CREATE TABLE IF NOT EXISTS user_phones_v6(uid INTEGER, phone TEXT, sphone TEXT, deleted INTEGER, PRIMARY KEY (uid, phone))", "CREATE INDEX IF NOT EXISTS sphone_deleted_idx_user_phones ON user_phones_v6(sphone, deleted);", "CREATE INDEX IF NOT EXISTS mid_idx_randoms ON randoms(mid);", "CREATE TABLE IF NOT EXISTS sent_files_v2(uid TEXT, type INTEGER, data BLOB, PRIMARY KEY (uid, type))");
             k5.v(sQLiteDatabase2, "CREATE TABLE IF NOT EXISTS download_queue(uid INTEGER, type INTEGER, date INTEGER, data BLOB, PRIMARY KEY (uid, type));", "CREATE INDEX IF NOT EXISTS type_date_idx_download_queue ON download_queue(type, date);", "CREATE TABLE IF NOT EXISTS dialog_settings(did INTEGER PRIMARY KEY, flags INTEGER);", "CREATE INDEX IF NOT EXISTS unread_count_idx_dialogs ON dialogs(unread_count);");
             sQLiteDatabase2.executeFast("UPDATE messages SET send_state = 2 WHERE mid < 0 AND send_state = 1").stepThis().dispose();
-            p5Var.c(new qq(yrVar, 1));
+            p5Var.c(new rq(yrVar, 1));
             sQLiteDatabase2.executeFast("PRAGMA user_version = 4").stepThis().dispose();
             i12 = 4;
         }
@@ -153,7 +153,7 @@ public abstract class l5 {
                     byteBufferValue2.reuse();
                     if (TLdeserialize != null) {
                         TLRPC.TL_chatFull tL_chatFull = new TLRPC.TL_chatFull();
-                        tL_chatFull.f26954id = intValue2;
+                        tL_chatFull.f26957id = intValue2;
                         tL_chatFull.chat_photo = new TLRPC.TL_photoEmpty();
                         tL_chatFull.notify_settings = new TLRPC.TL_peerNotifySettingsEmpty_layer77();
                         tL_chatFull.exported_invite = null;
@@ -239,7 +239,7 @@ public abstract class l5 {
             i12 = 40;
         }
         if (i12 == 40) {
-            p5Var.c(new qq(yrVar, 1));
+            p5Var.c(new rq(yrVar, 1));
             sQLiteDatabase2.executeFast("PRAGMA user_version = 41").stepThis().dispose();
             i12 = 41;
         }
@@ -679,7 +679,7 @@ public abstract class l5 {
                             TLRPC.Message TLdeserialize2 = TLRPC.Message.TLdeserialize(byteBufferValue6, byteBufferValue6.readInt32(false), false);
                             if (TLdeserialize2 != null) {
                                 i10 = intValue28;
-                                TLdeserialize2.readAttachPath(byteBufferValue6, yrVar.getUserConfig().f24486n);
+                                TLdeserialize2.readAttachPath(byteBufferValue6, yrVar.getUserConfig().f24489n);
                                 if (TLdeserialize2.params == null) {
                                     HashMap<String, String> hashMap = new HashMap<>();
                                     TLdeserialize2.params = hashMap;

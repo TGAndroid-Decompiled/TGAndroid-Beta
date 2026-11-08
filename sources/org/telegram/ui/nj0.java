@@ -32,7 +32,7 @@ public final class nj0 implements RequestDelegate {
                             case 0:
                                 pj0 pj0Var2 = pj0Var;
                                 TLRPC.TL_error tL_error2 = tL_error;
-                                bk0 bk0Var = pj0Var2.f48844e;
+                                bk0 bk0Var = pj0Var2.f48847e;
                                 if (tL_error2 != null && "SRP_ID_INVALID".equals(tL_error2.text)) {
                                     TL_account.getPassword getpassword = new TL_account.getPassword();
                                     i7 = ((org.telegram.ui.ActionBar.f2) bk0Var).currentAccount;
@@ -49,11 +49,11 @@ public final class nj0 implements RequestDelegate {
                                 TLRPC.TL_error tL_error3 = tL_error;
                                 if (tL_error3 != null && "SRP_ID_INVALID".equals(tL_error3.text)) {
                                     TL_account.getPassword getpassword2 = new TL_account.getPassword();
-                                    i10 = ((org.telegram.ui.ActionBar.f2) pj0Var3.f48844e).currentAccount;
+                                    i10 = ((org.telegram.ui.ActionBar.f2) pj0Var3.f48847e).currentAccount;
                                     ConnectionsManager.getInstance(i10).sendRequest(getpassword2, new nj0(pj0Var3, 3), 8);
                                     return;
                                 }
-                                Utilities.f21333e.c(new mc0(pj0Var3, pj0Var3.f48842b, pj0Var3.d, 14));
+                                Utilities.f21336e.c(new mc0(pj0Var3, pj0Var3.f48845b, pj0Var3.d, 14));
                                 return;
                         }
                     }
@@ -70,7 +70,7 @@ public final class nj0 implements RequestDelegate {
                             case 0:
                                 pj0 pj0Var22 = pj0Var2;
                                 TLRPC.TL_error tL_error2 = tL_error;
-                                bk0 bk0Var = pj0Var22.f48844e;
+                                bk0 bk0Var = pj0Var22.f48847e;
                                 if (tL_error2 != null && "SRP_ID_INVALID".equals(tL_error2.text)) {
                                     TL_account.getPassword getpassword = new TL_account.getPassword();
                                     i7 = ((org.telegram.ui.ActionBar.f2) bk0Var).currentAccount;
@@ -87,11 +87,11 @@ public final class nj0 implements RequestDelegate {
                                 TLRPC.TL_error tL_error3 = tL_error;
                                 if (tL_error3 != null && "SRP_ID_INVALID".equals(tL_error3.text)) {
                                     TL_account.getPassword getpassword2 = new TL_account.getPassword();
-                                    i10 = ((org.telegram.ui.ActionBar.f2) pj0Var3.f48844e).currentAccount;
+                                    i10 = ((org.telegram.ui.ActionBar.f2) pj0Var3.f48847e).currentAccount;
                                     ConnectionsManager.getInstance(i10).sendRequest(getpassword2, new nj0(pj0Var3, 3), 8);
                                     return;
                                 }
-                                Utilities.f21333e.c(new mc0(pj0Var3, pj0Var3.f48842b, pj0Var3.d, 14));
+                                Utilities.f21336e.c(new mc0(pj0Var3, pj0Var3.f48845b, pj0Var3.d, 14));
                                 return;
                         }
                     }

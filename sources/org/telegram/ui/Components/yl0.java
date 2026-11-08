@@ -19,13 +19,13 @@ public final class yl0 extends jg.h0 {
         int i7 = this.B0;
         super.f();
         org.telegram.ui.fw fwVar = this.K0;
-        if (!fwVar.K0 && (q1Var = fwVar.f33588a0) != null) {
+        if (!fwVar.K0 && (q1Var = fwVar.f33595a0) != null) {
             q1Var.v0(0);
             fwVar.K0 = true;
         }
         if (b() != 0 || i7 == 0 || this.D0 > 0) {
             return;
         }
-        fwVar.f33589b0.e(false, false);
+        fwVar.f33596b0.e(false, false);
     }
 }

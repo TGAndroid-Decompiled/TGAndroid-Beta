@@ -6,28 +6,28 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 public final class xr0 extends org.telegram.ui.Cells.q1 {
-    public final Path f51971kd;
-    public final Paint f51972ld;
-    public final byte[] f51973md;
-    public final int f51974nd;
-    public final int f51975od;
-    public final zr0 f51976pd;
+    public final Path f51964ld;
+    public final Paint f51965md;
+    public final byte[] f51966nd;
+    public final int f51967od;
+    public final int f51968pd;
+    public final zr0 f51969qd;
 
     public xr0(zr0 zr0Var, Context context, int i7, org.telegram.ui.ActionBar.f6 f6Var, byte[] bArr, int i10, int i11) {
         super(context, i7, false, null, f6Var);
-        this.f51976pd = zr0Var;
-        this.f51973md = bArr;
-        this.f51974nd = i10;
-        this.f51975od = i11;
-        this.f51971kd = new Path();
-        this.f51972ld = new Paint(1);
+        this.f51969qd = zr0Var;
+        this.f51966nd = bArr;
+        this.f51967od = i10;
+        this.f51968pd = i11;
+        this.f51964ld = new Path();
+        this.f51965md = new Paint(1);
     }
 
     @Override
     public final void j1(Canvas canvas) {
         this.R4 = 0;
         this.S4 = this.P4.size() - 1;
-        this.T4 = (-org.telegram.messenger.g0.L(7.0f)) * this.f51976pd.D;
+        this.T4 = (-org.telegram.messenger.g0.L(7.0f)) * this.f51969qd.D;
         super.j1(canvas);
     }
 
@@ -35,14 +35,14 @@ public final class xr0 extends org.telegram.ui.Cells.q1 {
     public final void onDraw(Canvas canvas) {
         float f10;
         canvas.save();
-        int V1 = V1(this.f51973md);
+        int V1 = V1(this.f51966nd);
         float U1 = U1(V1);
         float T1 = T1(V1);
         RectF rectF = org.telegram.messenger.g0.P;
         rectF.set(getPollButtonsLeft(), U1, getPollButtonsRight(), T1);
         float f11 = rectF.top;
         float L = org.telegram.messenger.g0.L(3.0f);
-        zr0 zr0Var = this.f51976pd;
+        zr0 zr0Var = this.f51969qd;
         if (zr0Var.V) {
             f10 = -org.telegram.messenger.g0.L(3.0f);
         } else {
@@ -56,10 +56,10 @@ public final class xr0 extends org.telegram.ui.Cells.q1 {
             L2 = org.telegram.messenger.g0.T1(L2, 0.0f, zr0Var.D);
         }
         rectF.bottom = f12 + L2;
-        Path path = this.f51971kd;
+        Path path = this.f51964ld;
         path.rewind();
         path.addRoundRect(rectF, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), Path.Direction.CW);
-        Paint paint = this.f51972ld;
+        Paint paint = this.f51965md;
         paint.setColor(0);
         paint.setShadowLayer(org.telegram.messenger.g0.L(2.0f), 0.0f, org.telegram.messenger.g0.L(0.66f), org.telegram.ui.ActionBar.k6.r1(zr0Var.D * 0.2f, -16777216));
         canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), paint);
@@ -70,7 +70,7 @@ public final class xr0 extends org.telegram.ui.Cells.q1 {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        setMeasuredDimension(this.f51974nd, this.f51975od);
+        setMeasuredDimension(this.f51967od, this.f51968pd);
     }
 
     @Override

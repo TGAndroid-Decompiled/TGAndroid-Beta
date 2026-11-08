@@ -2,18 +2,18 @@ package a8;
 
 import android.content.Context;
 public final class ya implements sa {
-    public final u9.m f723a;
+    public final u9.n f723a;
     public final ma f724b;
 
     public ya(Context context, ma maVar) {
         this.f724b = maVar;
-        m5.a aVar = m5.a.f19869e;
+        m5.a aVar = m5.a.f19872e;
         o5.s.b(context);
         o5.q c10 = o5.s.a().c(aVar);
         if (m5.a.d.contains(new l5.c("json"))) {
-            new u9.m(new xa(c10, 0));
+            new u9.n(new xa(c10, 0));
         }
-        this.f723a = new u9.m(new xa(c10, 1));
+        this.f723a = new u9.n(new xa(c10, 1));
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class ya implements sa {
         if (waVar.f700b != 0) {
             aVar = l5.a.a(waVar.E());
         } else {
-            aVar = new l5.a(null, waVar.E(), l5.d.f18173b, null);
+            aVar = new l5.a(null, waVar.E(), l5.d.f18176b, null);
         }
         rVar.a(aVar, new ni.a(3));
     }

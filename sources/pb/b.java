@@ -52,15 +52,15 @@ import org.telegram.ui.Components.qg;
 import org.telegram.ui.Components.r5;
 import org.telegram.ui.fr0;
 public final class b implements a4.h, b3.l, ca.d, eg.a, f3.q, bi, ia.d, SuccessContinuation, u9.d, m51, l1, q2.q, r0.q, u2.k, y2.m, s0 {
-    public static final b f53429b = new b(14);
-    public final int f53430a;
+    public static final b f53522b = new b(14);
+    public final int f53523a;
 
     public b(int i7) {
-        this.f53430a = i7;
+        this.f53523a = i7;
     }
 
     public static MediaCodec C0(b8 b8Var) {
-        String str = ((u2.o) b8Var.f335a).f56170a;
+        String str = ((u2.o) b8Var.f335a).f56259a;
         Trace.beginSection("createCodec:" + str);
         MediaCodec createByCodecName = MediaCodec.createByCodecName(str);
         Trace.endSection();
@@ -70,7 +70,7 @@ public final class b implements a4.h, b3.l, ca.d, eg.a, f3.q, bi, ia.d, SuccessC
     public static b3.i V0(b3.h hVar, u uVar) {
         IOException iOException = (IOException) uVar.f11191c;
         if (iOException instanceof y) {
-            int i7 = ((y) iOException).f16486c;
+            int i7 = ((y) iOException).f16489c;
             if (i7 == 403 || i7 == 404 || i7 == 410 || i7 == 416 || i7 == 500 || i7 == 503) {
                 if (hVar.a(1)) {
                     return new b3.i(1, 300000L);
@@ -88,7 +88,7 @@ public final class b implements a4.h, b3.l, ca.d, eg.a, f3.q, bi, ia.d, SuccessC
     public static long a1(u uVar) {
         for (Throwable th2 = (IOException) uVar.f11191c; th2 != null; th2 = th2.getCause()) {
             if (!(th2 instanceof t0) && !(th2 instanceof FileNotFoundException) && !(th2 instanceof v) && !(th2 instanceof b3.n)) {
-                if ((th2 instanceof j2.j) && ((j2.j) th2).f16434a == 2008) {
+                if ((th2 instanceof j2.j) && ((j2.j) th2).f16437a == 2008) {
                     return -9223372036854775807L;
                 }
             } else {
@@ -168,12 +168,12 @@ public final class b implements a4.h, b3.l, ca.d, eg.a, f3.q, bi, ia.d, SuccessC
 
     @Override
     public void F0() {
-        int i7 = this.f53430a;
+        int i7 = this.f53523a;
     }
 
     @Override
     public boolean G1() {
-        switch (this.f53430a) {
+        switch (this.f53523a) {
             case 10:
                 return false;
             default:
@@ -211,12 +211,12 @@ public final class b implements a4.h, b3.l, ca.d, eg.a, f3.q, bi, ia.d, SuccessC
 
     @Override
     public void M0(Object obj) {
-        int i7 = this.f53430a;
+        int i7 = this.f53523a;
     }
 
     @Override
     public void M1(ArrayList arrayList, CharSequence charSequence, boolean z9, int i7, int i10, long j3, boolean z10, long j10) {
-        int i11 = this.f53430a;
+        int i11 = this.f53523a;
     }
 
     @Override
@@ -303,7 +303,7 @@ public final class b implements a4.h, b3.l, ca.d, eg.a, f3.q, bi, ia.d, SuccessC
 
     @Override
     public void Y0(TLRPC.User user) {
-        int i7 = this.f53430a;
+        int i7 = this.f53523a;
     }
 
     @Override
@@ -372,7 +372,7 @@ public final class b implements a4.h, b3.l, ca.d, eg.a, f3.q, bi, ia.d, SuccessC
 
     @Override
     public void c0(qg qgVar) {
-        switch (this.f53430a) {
+        switch (this.f53523a) {
             case 10:
                 qgVar.run();
                 return;
@@ -389,7 +389,7 @@ public final class b implements a4.h, b3.l, ca.d, eg.a, f3.q, bi, ia.d, SuccessC
 
     @Override
     public Object e(r7 r7Var) {
-        switch (this.f53430a) {
+        switch (this.f53523a) {
             case 15:
                 return new ob.c(r7Var.H(ob.b.class));
             default:
@@ -409,7 +409,7 @@ public final class b implements a4.h, b3.l, ca.d, eg.a, f3.q, bi, ia.d, SuccessC
 
     @Override
     public boolean f0() {
-        switch (this.f53430a) {
+        switch (this.f53523a) {
             case 10:
                 return false;
             default:
@@ -489,7 +489,7 @@ public final class b implements a4.h, b3.l, ca.d, eg.a, f3.q, bi, ia.d, SuccessC
 
     @Override
     public void o1(int i7, boolean z9, boolean z10, int i10, int i11, long j3, boolean z11, boolean z12, long j10) {
-        int i12 = this.f53430a;
+        int i12 = this.f53523a;
     }
 
     @Override
@@ -509,7 +509,7 @@ public final class b implements a4.h, b3.l, ca.d, eg.a, f3.q, bi, ia.d, SuccessC
 
     @Override
     public boolean s() {
-        if (k6.A0().f32445i != null) {
+        if (k6.A0().f32476i != null) {
             return true;
         }
         return false;
@@ -522,7 +522,7 @@ public final class b implements a4.h, b3.l, ca.d, eg.a, f3.q, bi, ia.d, SuccessC
 
     @Override
     public void t0() {
-        int i7 = this.f53430a;
+        int i7 = this.f53523a;
     }
 
     @Override

@@ -2,23 +2,23 @@ package l2;
 
 import android.util.Pair;
 public abstract class a extends e2.l1 {
-    public static final int f17734g = 0;
-    public final int f17735e;
-    public final x2.h1 f17736f;
+    public static final int f17737g = 0;
+    public final int f17738e;
+    public final x2.h1 f17739f;
 
     public a(x2.h1 h1Var) {
-        this.f17736f = h1Var;
-        this.f17735e = h1Var.getLength();
+        this.f17739f = h1Var;
+        this.f17738e = h1Var.getLength();
     }
 
     @Override
     public final int a(boolean z9) {
         int i7;
-        if (this.f17735e == 0) {
+        if (this.f17738e == 0) {
             return -1;
         }
         if (z9) {
-            i7 = this.f17736f.b();
+            i7 = this.f17739f.b();
         } else {
             i7 = 0;
         }
@@ -50,11 +50,11 @@ public abstract class a extends e2.l1 {
     @Override
     public final int c(boolean z9) {
         int i7;
-        int i10 = this.f17735e;
+        int i10 = this.f17738e;
         if (i10 == 0) {
             return -1;
         }
-        x2.h1 h1Var = this.f17736f;
+        x2.h1 h1Var = this.f17739f;
         if (z9) {
             i7 = h1Var.h();
         } else {
@@ -176,9 +176,9 @@ public abstract class a extends e2.l1 {
 
     public final int w(int i7, boolean z9) {
         if (z9) {
-            return this.f17736f.e(i7);
+            return this.f17739f.e(i7);
         }
-        if (i7 < this.f17735e - 1) {
+        if (i7 < this.f17738e - 1) {
             return i7 + 1;
         }
         return -1;

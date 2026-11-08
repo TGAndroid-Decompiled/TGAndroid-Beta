@@ -13,7 +13,7 @@ public final class j2 implements RequestDelegate {
     }
 
     @Override
-    public final void run(org.telegram.tgnet.TLObject r24, org.telegram.tgnet.TLRPC.TL_error r25) {
+    public final void run(org.telegram.tgnet.TLObject r26, org.telegram.tgnet.TLRPC.TL_error r27) {
         throw new UnsupportedOperationException("Method not decompiled: bi.j2.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
     }
 

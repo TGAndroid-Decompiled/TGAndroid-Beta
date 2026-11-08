@@ -1,69 +1,25 @@
 package zh;
-
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.view.View;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.ch0;
-import org.telegram.ui.Components.i5;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.q41;
-import org.telegram.ui.Components.u31;
-import org.telegram.ui.Components.w31;
-import org.telegram.ui.Components.x31;
-public final class a3 extends w31 {
-    public static final int f60122b = 0;
+public final class a3 {
+    public static final a3 f60204a;
+    public static final a3 f60205b;
+    public static final a3 f60206c;
+    public static final a3[] d;
 
     static {
-        w31.h(new w31());
+        ?? r02 = new Enum("BY_PRICE", 0);
+        f60204a = r02;
+        ?? r12 = new Enum("BY_DATE", 1);
+        f60205b = r12;
+        ?? r32 = new Enum("BY_NUMBER", 2);
+        f60206c = r32;
+        d = new a3[]{r02, r12, r32};
     }
 
-    @Override
-    public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
-        b3 b3Var = (b3) view;
-        TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) x31Var.G;
-        int i7 = x31Var.f40172z;
-        String str = (String) x31Var.f40159l;
-        boolean z10 = x31Var.f40153e;
-        f6 f6Var = b3Var.O;
-        ch0 ch0Var = b3Var.f28813c;
-        z2 z2Var = b3Var.f60129a0;
-        if (z2Var == null || b3Var.W != stargiftattributepattern.document.f26959id) {
-            b3Var.W = stargiftattributepattern.document.f26959id;
-            if (z2Var != null) {
-                z2Var.n(ch0Var);
-            }
-            ?? i5Var = new i5(3, b3Var.V, stargiftattributepattern.document);
-            b3Var.f60129a0 = i5Var;
-            r6.y(b3Var, i5Var, k6.E8, f6Var, PorterDuff.Mode.SRC_IN);
-        }
-        if (ch0Var.isAttachedToWindow()) {
-            b3Var.f60129a0.a(ch0Var);
-        }
-        SpannableStringBuilder spannableStringBuilder = stargiftattributepattern.name;
-        if (!TextUtils.isEmpty(str)) {
-            spannableStringBuilder = org.telegram.messenger.g0.w1(spannableStringBuilder, str, f6Var);
-        }
-        if (i7 > 0) {
-            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(spannableStringBuilder);
-            spannableStringBuilder2.append((CharSequence) "  ");
-            int length = spannableStringBuilder2.length();
-            spannableStringBuilder2.append((CharSequence) Integer.toString(i7));
-            spannableStringBuilder2.setSpan(new u31(org.telegram.messenger.g0.o()), length, spannableStringBuilder2.length(), 33);
-            spannableStringBuilder = spannableStringBuilder2;
-        }
-        b3Var.j(spannableStringBuilder, 0, b3Var.f60129a0);
-        b3Var.setChecked(z10);
+    public static a3 valueOf(String str) {
+        return (a3) Enum.valueOf(a3.class, str);
     }
 
-    @Override
-    public final View d(Context context, pj0 pj0Var, int i7, f6 f6Var) {
-        return new b3(i7, context, f6Var);
+    public static a3[] values() {
+        return (a3[]) d.clone();
     }
 }

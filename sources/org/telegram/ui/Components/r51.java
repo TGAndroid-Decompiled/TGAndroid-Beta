@@ -6,23 +6,23 @@ import java.net.URLEncoder;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class r51 {
-    public int f37500a;
-    public boolean f37501b;
-    public long f37502c;
+    public int f37521a;
+    public boolean f37522b;
+    public long f37523c;
     public Uri d;
-    public long f37503e;
-    public Uri f37504f;
-    public TLRPC.Document f37505g;
+    public long f37524e;
+    public Uri f37525f;
+    public TLRPC.Document f37526g;
     public TLRPC.Document h;
-    public int f37506i;
-    public int f37507j;
-    public long f37508k;
-    public double f37509l;
-    public String f37510m;
+    public int f37527i;
+    public int f37528j;
+    public long f37529k;
+    public double f37530l;
+    public String f37531m;
 
     public static Uri a(int i7, int i10, TLRPC.Document document) {
         StringBuilder n10 = jg.g.n(i7, "?account=", "&id=");
-        n10.append(document.f26959id);
+        n10.append(document.f26962id);
         n10.append("&hash=");
         n10.append(document.access_hash);
         n10.append("&dc=");
@@ -69,34 +69,34 @@ public final class r51 {
         } else {
             str = null;
         }
-        obj.f37500a = i7;
-        obj.f37505g = document;
-        obj.f37502c = document.f26959id;
+        obj.f37521a = i7;
+        obj.f37526g = document;
+        obj.f37523c = document.f26962id;
         obj.d = a(i7, i10, document);
         if (document2 != null) {
             obj.h = document2;
-            obj.f37503e = document2.f26959id;
-            obj.f37504f = a(i7, i10, document2);
+            obj.f37524e = document2.f26962id;
+            obj.f37525f = a(i7, i10, document2);
             org.telegram.messenger.w7.G(i7);
             File J = org.telegram.messenger.w7.J(document2, null, false, z9);
             if (J != null && J.exists()) {
-                obj.f37504f = Uri.fromFile(J);
+                obj.f37525f = Uri.fromFile(J);
             } else {
                 org.telegram.messenger.w7.G(i7);
                 File J2 = org.telegram.messenger.w7.J(document2, null, true, z9);
                 if (J2 != null && J2.exists()) {
-                    obj.f37504f = Uri.fromFile(J2);
+                    obj.f37525f = Uri.fromFile(J2);
                 }
             }
         }
-        obj.f37510m = str;
+        obj.f37531m = str;
         long j3 = document.size;
-        obj.f37508k = j3;
+        obj.f37529k = j3;
         if (tL_documentAttributeVideo != null) {
             double d = tL_documentAttributeVideo.duration;
-            obj.f37506i = tL_documentAttributeVideo.f26960w;
-            obj.f37507j = tL_documentAttributeVideo.h;
-            obj.f37509l = j3 / d;
+            obj.f37527i = tL_documentAttributeVideo.f26963w;
+            obj.f37528j = tL_documentAttributeVideo.h;
+            obj.f37530l = j3 / d;
         }
         org.telegram.messenger.w7.G(i7);
         File J3 = org.telegram.messenger.w7.J(document, null, false, z9);
@@ -121,7 +121,7 @@ public final class r51 {
     }
 
     public final boolean c() {
-        Uri uri = this.f37504f;
+        Uri uri = this.f37525f;
         if (uri != null && "file".equalsIgnoreCase(uri.getScheme())) {
             return true;
         }
@@ -129,30 +129,30 @@ public final class r51 {
     }
 
     public final void e(boolean z9) {
-        if (!b() && this.f37505g != null) {
-            org.telegram.messenger.w7.G(this.f37500a);
-            File J = org.telegram.messenger.w7.J(this.f37505g, null, false, z9);
+        if (!b() && this.f37526g != null) {
+            org.telegram.messenger.w7.G(this.f37521a);
+            File J = org.telegram.messenger.w7.J(this.f37526g, null, false, z9);
             if (J != null && J.exists()) {
                 this.d = Uri.fromFile(J);
             } else {
-                org.telegram.messenger.w7.G(this.f37500a);
-                File J2 = org.telegram.messenger.w7.J(this.f37505g, null, true, z9);
+                org.telegram.messenger.w7.G(this.f37521a);
+                File J2 = org.telegram.messenger.w7.J(this.f37526g, null, true, z9);
                 if (J2 != null && J2.exists()) {
                     this.d = Uri.fromFile(J2);
                 }
             }
         }
         if (!c() && this.h != null) {
-            org.telegram.messenger.w7.G(this.f37500a);
+            org.telegram.messenger.w7.G(this.f37521a);
             File J3 = org.telegram.messenger.w7.J(this.h, null, false, z9);
             if (J3 != null && J3.exists()) {
-                this.f37504f = Uri.fromFile(J3);
+                this.f37525f = Uri.fromFile(J3);
                 return;
             }
-            org.telegram.messenger.w7.G(this.f37500a);
+            org.telegram.messenger.w7.G(this.f37521a);
             File J4 = org.telegram.messenger.w7.J(this.h, null, true, z9);
             if (J4 != null && J4.exists()) {
-                this.f37504f = Uri.fromFile(J4);
+                this.f37525f = Uri.fromFile(J4);
             }
         }
     }

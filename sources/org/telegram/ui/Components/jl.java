@@ -4,20 +4,20 @@ import android.content.Context;
 import android.view.MotionEvent;
 import org.telegram.ui.PhotoViewer;
 public final class jl extends pj0 {
-    public final int f34994e3;
-    public final ChatAttachAlertPhotoLayout f34995f3;
+    public final int f35015e3;
+    public final ChatAttachAlertPhotoLayout f35016f3;
 
     public jl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, Context context, org.telegram.ui.ActionBar.f6 f6Var, int i7) {
         super(context, f6Var);
-        this.f34994e3 = i7;
-        this.f34995f3 = chatAttachAlertPhotoLayout;
+        this.f35015e3 = i7;
+        this.f35016f3 = chatAttachAlertPhotoLayout;
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.f34994e3) {
+        switch (this.f35015e3) {
             case 1:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f34995f3.f38969b.V3[0] - org.telegram.messenger.g0.L(80.0f)) {
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f35016f3.f39004b.V3[0] - org.telegram.messenger.g0.L(80.0f)) {
                     return false;
                 }
                 return super.onInterceptTouchEvent(motionEvent);
@@ -28,7 +28,7 @@ public final class jl extends pj0 {
 
     @Override
     public void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        switch (this.f34994e3) {
+        switch (this.f35015e3) {
             case 1:
                 super.onLayout(z9, i7, i10, i11, i12);
                 PhotoViewer.p1().r0();
@@ -41,9 +41,9 @@ public final class jl extends pj0 {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f34994e3) {
+        switch (this.f35015e3) {
             case 1:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f34995f3.f38969b.V3[0] - org.telegram.messenger.g0.L(80.0f)) {
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f35016f3.f39004b.V3[0] - org.telegram.messenger.g0.L(80.0f)) {
                     return false;
                 }
                 return super.onTouchEvent(motionEvent);
@@ -54,9 +54,9 @@ public final class jl extends pj0 {
 
     @Override
     public void requestLayout() {
-        switch (this.f34994e3) {
+        switch (this.f35015e3) {
             case 0:
-                if (!this.f34995f3.J0) {
+                if (!this.f35016f3.J0) {
                     super.requestLayout();
                     return;
                 }

@@ -3,7 +3,7 @@ package li;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.p10;
 import org.telegram.tgnet.TLRPC;
@@ -15,7 +15,7 @@ import org.telegram.ui.Components.q41;
 import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.x31;
 public final class w0 extends w31 {
-    public static final int f18947b = 0;
+    public static final int f18950b = 0;
 
     static {
         w31.h(new w31());
@@ -27,9 +27,9 @@ public final class w0 extends w31 {
         s sVar;
         x0 x0Var = (x0) view;
         a aVar = (a) x31Var.G;
-        x0Var.f18986a = aVar;
+        x0Var.f18989a = aVar;
         x0Var.S = (o3) x31Var.H;
-        x0Var.M = hd.f22878a0;
+        x0Var.M = id.f23157a0;
         x0Var.c(aVar);
         x0Var.F.b();
         TLRPC.Document h = x0Var.h();
@@ -40,12 +40,12 @@ public final class w0 extends w31 {
             } else {
                 TLRPC.TL_message tL_message = new TLRPC.TL_message();
                 tL_message.out = true;
-                tL_message.f26974id = -Long.valueOf(h.f26959id).hashCode();
+                tL_message.f26977id = -Long.valueOf(h.f26962id).hashCode();
                 tL_message.peer_id = new TLRPC.TL_peerUser();
                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                 tL_message.from_id = tL_peerUser;
                 TLRPC.Peer peer = tL_message.peer_id;
-                int i7 = x0Var.f18967n;
+                int i7 = x0Var.f18970n;
                 long e10 = p10.i(i7).e();
                 peer.user_id = e10;
                 tL_peerUser.user_id = e10;
@@ -56,9 +56,9 @@ public final class w0 extends w31 {
                 tL_messageMediaDocument.flags |= 3;
                 tL_messageMediaDocument.document = h;
                 tL_message.flags |= 768;
-                a aVar2 = x0Var.f18986a;
-                if (aVar2 != null && (sVar = aVar2.f18393g) != null && !TextUtils.isEmpty(sVar.f18814e)) {
-                    tL_message.attachPath = x0Var.f18986a.f18393g.f18814e;
+                a aVar2 = x0Var.f18989a;
+                if (aVar2 != null && (sVar = aVar2.f18396g) != null && !TextUtils.isEmpty(sVar.f18817e)) {
+                    tL_message.attachPath = x0Var.f18989a.f18396g.f18817e;
                 }
                 ijVar = new ij(i7, tL_message, false, true);
             }
@@ -76,7 +76,7 @@ public final class w0 extends w31 {
     @Override
     public final View d(Context context, pj0 pj0Var, int i7, f6 f6Var) {
         x0 x0Var = new x0(i7, context, f6Var);
-        x0Var.setBackground(new y1(k6.w0(k6.f27849d6, f6Var)));
+        x0Var.setBackground(new y1(k6.w0(k6.f27852d6, f6Var)));
         x0Var.W = true;
         return x0Var;
     }

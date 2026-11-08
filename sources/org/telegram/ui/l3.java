@@ -4,27 +4,27 @@ import android.text.style.URLSpan;
 import android.view.View;
 import java.util.HashSet;
 public final class l3 extends URLSpan {
-    public final int f47393a;
-    public final m3 f47394b;
+    public final int f47398a;
+    public final m3 f47399b;
 
     public l3(m3 m3Var, String str, int i7) {
         super(str);
-        this.f47393a = i7;
-        this.f47394b = m3Var;
+        this.f47398a = i7;
+        this.f47399b = m3Var;
     }
 
     @Override
     public final void onClick(View view) {
         j0 j0Var;
-        int i7 = this.f47393a;
-        m3 m3Var = this.f47394b;
+        int i7 = this.f47398a;
+        m3 m3Var = this.f47399b;
         switch (i7) {
             case 0:
-                g4 g4Var = m3Var.f47638c;
+                g4 g4Var = m3Var.f47635c;
                 String url = getURL();
                 org.telegram.ui.Components.x70 x70Var = g4Var.f48267b;
                 z2 z2Var = g4Var.d;
-                HashSet hashSet = g4.f45799c1;
+                HashSet hashSet = g4.f45776c1;
                 if (x70Var == null) {
                     j0Var = null;
                 } else {
@@ -33,7 +33,7 @@ public final class l3 extends URLSpan {
                 g4Var.O(url, null, j0Var);
                 return;
             default:
-                m3Var.f47638c.O(getURL(), null, null);
+                m3Var.f47635c.O(getURL(), null, null);
                 return;
         }
     }

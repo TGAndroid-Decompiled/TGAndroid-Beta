@@ -12,65 +12,65 @@ import h9.t1;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.ui.LaunchActivity;
 public final class r {
-    public static final AtomicReference f53333n = new AtomicReference(null);
-    public final Context f53334a;
-    public final e2.c1 f53335b;
-    public String f53336c;
+    public static final AtomicReference f53426n = new AtomicReference(null);
+    public final Context f53427a;
+    public final e2.c1 f53428b;
+    public String f53429c;
     public final pb.b d;
-    public final Bundle f53337e;
-    public final Bundle f53338f;
-    public h2.d f53339g;
+    public final Bundle f53430e;
+    public final Bundle f53431f;
+    public h2.d f53432g;
     public final boolean h;
-    public final t1 f53340i;
-    public final t1 f53341j;
-    public final t1 f53342k;
-    public final boolean f53343l;
-    public boolean f53344m;
+    public final t1 f53433i;
+    public final t1 f53434j;
+    public final t1 f53435k;
+    public final boolean f53436l;
+    public boolean f53437m;
 
     public r(LaunchActivity launchActivity, e2.c1 c1Var) {
         pb.b bVar = new pb.b(20);
         Context applicationContext = launchActivity.getApplicationContext();
         applicationContext.getClass();
-        this.f53334a = applicationContext;
-        this.f53335b = c1Var;
+        this.f53427a = applicationContext;
+        this.f53428b = c1Var;
         ia.f(c1Var.P());
-        this.f53336c = "";
+        this.f53429c = "";
         this.d = bVar;
-        this.f53337e = new Bundle();
-        this.f53338f = new Bundle();
+        this.f53430e = new Bundle();
+        this.f53431f = new Bundle();
         h9.g0 g0Var = h9.i0.f14329b;
         t1 t1Var = t1.f14397e;
-        this.f53340i = t1Var;
-        this.f53341j = t1Var;
+        this.f53433i = t1Var;
+        this.f53434j = t1Var;
         this.h = true;
-        this.f53343l = true;
-        this.f53342k = t1Var;
+        this.f53436l = true;
+        this.f53435k = t1Var;
     }
 
     public final x a() {
-        ia.p(!this.f53344m);
-        this.f53344m = true;
-        Object obj = x.f53368b;
+        ia.p(!this.f53437m);
+        this.f53437m = true;
+        Object obj = x.f53461b;
         int intValue = ((Integer) d0.C.get()).intValue();
         int i7 = Build.VERSION.SDK_INT;
-        Context context = this.f53334a;
+        Context context = this.f53427a;
         if (i7 < 27) {
             intValue = Math.max(intValue, (int) TypedValue.applyDimension(1, 320.0f, context.getResources().getDisplayMetrics()));
         }
-        h2.d dVar = this.f53339g;
+        h2.d dVar = this.f53432g;
         if (dVar == null) {
             ?? obj2 = new Object();
             obj2.f3394c = context;
             obj2.f3393b = -1;
             obj2.f3393b = intValue;
             obj2.f3392a = true;
-            this.f53339g = new j2.i(obj2);
+            this.f53432g = new j2.i(obj2);
         } else {
-            this.f53339g = new f5.u(dVar, intValue, 11);
+            this.f53432g = new f5.u(dVar, intValue, 12);
         }
         if (i7 == 29) {
-            h2.d dVar2 = this.f53339g;
-            AtomicReference atomicReference = f53333n;
+            h2.d dVar2 = this.f53432g;
+            AtomicReference atomicReference = f53426n;
             l9.a aVar = (l9.a) atomicReference.get();
             if (aVar == null) {
                 Display defaultDisplay = ((WindowManager) context.getSystemService(WindowManager.class)).getDefaultDisplay();
@@ -85,9 +85,9 @@ public final class r {
                 atomicReference.set(aVar2);
                 aVar = aVar2;
             }
-            this.f53339g = new j2.n(dVar2, aVar, false, 22);
+            this.f53432g = new j2.n(dVar2, aVar, false, 22);
         }
-        this.f53339g = new m4.d0((Object) this.f53339g, false);
-        return new x(this.f53334a, this.f53336c, this.f53335b, this.f53340i, this.f53341j, this.f53342k, this.d, this.f53337e, this.f53338f, this.f53339g, this.h, this.f53343l);
+        this.f53432g = new m4.d0((Object) this.f53432g, false);
+        return new x(this.f53427a, this.f53429c, this.f53428b, this.f53433i, this.f53434j, this.f53435k, this.d, this.f53430e, this.f53431f, this.f53432g, this.h, this.f53436l);
     }
 }

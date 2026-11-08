@@ -258,7 +258,7 @@ public final class c0 extends h6.g {
                     ((h6.c) this.f13553b).d.size();
                 } else if (arrayList2.isEmpty()) {
                     j6.b bVar = ((h6.c) this.f13553b).f14221a;
-                    Log.w(bVar.f16505a, bVar.d("Received a Queue Reordered message with an empty reordered items IDs list.", new Object[0]));
+                    Log.w(bVar.f16508a, bVar.d("Received a Queue Reordered message with an empty reordered items IDs list.", new Object[0]));
                 } else if (((h6.c) this.f13553b).f14224e.get(i7, -1) == -1) {
                     ((h6.c) this.f13553b).f14224e.get(((Integer) arrayList2.get(0)).intValue(), -1);
                 }

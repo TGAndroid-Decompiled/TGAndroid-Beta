@@ -19,7 +19,7 @@ public final class mh0 extends org.telegram.ui.Components.oj0 {
         this.f47808c = context;
         jg.z1 z1Var = new jg.z1(true);
         this.h = z1Var;
-        z1Var.f16989a = new wr(this, 25);
+        z1Var.f16992a = new wr(this, 25);
     }
 
     @Override
@@ -33,16 +33,16 @@ public final class mh0 extends org.telegram.ui.Components.oj0 {
         }
         int g10 = jg.g.g(1, i7, this.d);
         jg.z1 z1Var = this.h;
-        ArrayList arrayList = z1Var.f16992e;
+        ArrayList arrayList = z1Var.f16995e;
         if (g10 >= 0 && g10 < arrayList.size()) {
-            return z1Var.f16992e.get(g10);
+            return z1Var.f16995e.get(g10);
         }
         return null;
     }
 
     public final void F(String str) {
         if (this.f47810f != null) {
-            Utilities.f21335g.a(this.f47810f);
+            Utilities.f21338g.a(this.f47810f);
             this.f47810f = null;
         }
         if (str == null) {
@@ -50,13 +50,13 @@ public final class mh0 extends org.telegram.ui.Components.oj0 {
             this.f47809e.clear();
             this.h.f(null, null);
             jg.z1 z1Var = this.h;
-            int i7 = this.f47811n.f41306s;
+            int i7 = this.f47811n.f41310s;
             boolean z9 = true;
             z1Var.g(null, true, (i7 == 1 || i7 == 3) ? false : false, true, false, 0L, false, 0, 0);
             f();
             return;
         }
-        org.telegram.messenger.p5 p5Var = Utilities.f21335g;
+        org.telegram.messenger.p5 p5Var = Utilities.f21338g;
         lh0 lh0Var = new lh0(this, str, 0);
         this.f47810f = lh0Var;
         p5Var.d(lh0Var, 300L);
@@ -65,7 +65,7 @@ public final class mh0 extends org.telegram.ui.Components.oj0 {
     @Override
     public final int b() {
         int size = this.d.size();
-        ArrayList arrayList = this.h.f16992e;
+        ArrayList arrayList = this.h.f16995e;
         if (!arrayList.isEmpty()) {
             return arrayList.size() + 1 + size;
         }
@@ -82,14 +82,14 @@ public final class mh0 extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        int i10 = d1Var.f56955f;
-        View view = d1Var.f56951a;
+        int i10 = d1Var.f57047f;
+        View view = d1Var.f57043a;
         boolean z9 = true;
         if (i10 != 0) {
             if (i10 != 1) {
                 return;
             }
-            ((org.telegram.ui.Cells.x3) view).setText(org.telegram.messenger.hd.M0(2131754376, "AddToExceptions"));
+            ((org.telegram.ui.Cells.x3) view).setText(org.telegram.messenger.id.M0(2131754376, "AddToExceptions"));
             return;
         }
         org.telegram.ui.Cells.pa paVar = (org.telegram.ui.Cells.pa) view;
@@ -105,9 +105,9 @@ public final class mh0 extends org.telegram.ui.Components.oj0 {
             return;
         }
         int g10 = jg.g.g(1, i7, this.d);
-        ArrayList arrayList = this.h.f16992e;
+        ArrayList arrayList = this.h.f16995e;
         TLObject tLObject = (TLObject) arrayList.get(g10);
-        String M0 = org.telegram.messenger.hd.M0(2131747891, "NotificationsOn");
+        String M0 = org.telegram.messenger.id.M0(2131747893, "NotificationsOn");
         if (g10 != arrayList.size() - 1) {
             z10 = true;
         }

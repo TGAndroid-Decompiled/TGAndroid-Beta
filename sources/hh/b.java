@@ -17,7 +17,7 @@ public final class b extends e {
     public final int A() {
         int a10 = a(this.f13970c);
         f6 f6Var = this.f14491s;
-        if (k6.i1(f6Var) && Color.alpha(k6.w0(k6.f28207wa, f6Var)) != 0) {
+        if (k6.i1(f6Var) && Color.alpha(k6.w0(k6.f28210wa, f6Var)) != 0) {
             return 0;
         }
         return a10;
@@ -36,7 +36,7 @@ public final class b extends e {
     public final int M() {
         f6 f6Var = this.f14491s;
         if (k6.i1(f6Var)) {
-            return k6.w0(k6.f28207wa, f6Var);
+            return k6.w0(k6.f28210wa, f6Var);
         }
         return 0;
     }
@@ -45,7 +45,7 @@ public final class b extends e {
     public final int O() {
         int a10 = a(this.d);
         f6 f6Var = this.f14491s;
-        if (k6.i1(f6Var) && Color.alpha(k6.w0(k6.f28207wa, f6Var)) != 0) {
+        if (k6.i1(f6Var) && Color.alpha(k6.w0(k6.f28210wa, f6Var)) != 0) {
             return 0;
         }
         return a10;
@@ -55,7 +55,7 @@ public final class b extends e {
     public final int R0() {
         f6 f6Var = this.f14491s;
         if (k6.i1(f6Var)) {
-            return k6.w0(k6.f28226xa, f6Var);
+            return k6.w0(k6.f28229xa, f6Var);
         }
         return a(this.f13969b);
     }

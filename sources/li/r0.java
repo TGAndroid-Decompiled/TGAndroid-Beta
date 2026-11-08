@@ -10,7 +10,7 @@ import bi.ec;
 import c8.ha;
 import java.util.ArrayList;
 import java.util.HashSet;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.iz;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.f6;
@@ -19,33 +19,33 @@ import org.telegram.ui.Cells.h9;
 import org.telegram.ui.Cells.i9;
 import org.telegram.ui.Components.AnimatedArrowDrawable;
 public final class r0 extends FrameLayout implements org.telegram.ui.ActionBar.a6, h9 {
-    public final f6 f18799a;
-    public final ec f18800b;
-    public final AnimatedArrowDrawable f18801c;
+    public final f6 f18802a;
+    public final ec f18803b;
+    public final AnimatedArrowDrawable f18804c;
     public final g1 d;
-    public final Paint f18802e;
-    public a f18803f;
+    public final Paint f18805e;
+    public a f18806f;
     public b3 h;
-    public boolean f18804n;
+    public boolean f18807n;
 
     public r0(Context context, f6 f6Var) {
         super(context);
-        this.f18802e = new Paint();
-        this.f18799a = f6Var;
+        this.f18805e = new Paint();
+        this.f18802a = f6Var;
         setClipToPadding(false);
         setWillNotDraw(false);
         AnimatedArrowDrawable animatedArrowDrawable = new AnimatedArrowDrawable(k6.w0(k6.rl, f6Var));
-        this.f18801c = animatedArrowDrawable;
+        this.f18804c = animatedArrowDrawable;
         animatedArrowDrawable.setCallback(new a5.b(this, 5));
         ec ecVar = new ec(8, context, this);
-        this.f18800b = ecVar;
+        this.f18803b = ecVar;
         ecVar.setOnClickListener(new ii.g(this, 11));
         addView(ecVar, ha.e(53, -1, 51));
         g1 g1Var = new g1(context, f6Var);
         this.d = g1Var;
         g1Var.setAllowNewlines(false);
         g1Var.setTextSize(1, iz.W0);
-        g1Var.setHint(hd.M0(2131754018, null));
+        g1Var.setHint(id.M0(2131754018, null));
         g1Var.setPadding(0, org.telegram.messenger.g0.L(14.0f), 0, org.telegram.messenger.g0.L(12.66f));
         g1Var.setListener(new o0(this));
         g1Var.setDelegate(new l2.y(this, 5));
@@ -64,7 +64,7 @@ public final class r0 extends FrameLayout implements org.telegram.ui.ActionBar.a
         i9 i9Var;
         b3 b3Var = this.h;
         if (b3Var != null) {
-            i9Var = b3Var.f18474a.getTextSelectionHelper();
+            i9Var = b3Var.f18477a.getTextSelectionHelper();
         } else {
             i9Var = null;
         }
@@ -85,7 +85,7 @@ public final class r0 extends FrameLayout implements org.telegram.ui.ActionBar.a
     }
 
     public a getRow() {
-        return this.f18803f;
+        return this.f18806f;
     }
 
     @Override
@@ -100,15 +100,15 @@ public final class r0 extends FrameLayout implements org.telegram.ui.ActionBar.a
 
     @Override
     public final void onDraw(Canvas canvas) {
-        a aVar = this.f18803f;
+        a aVar = this.f18806f;
         if (aVar != null) {
-            TL_iv.PageBlock pageBlock = aVar.f18389b;
+            TL_iv.PageBlock pageBlock = aVar.f18392b;
             if ((pageBlock instanceof TL_iv.pageBlockDetails) && ((TL_iv.pageBlockDetails) pageBlock).open) {
                 return;
             }
         }
         int measuredHeight = getMeasuredHeight();
-        canvas.drawRect(0.0f, measuredHeight - 1, getMeasuredWidth(), measuredHeight, this.f18802e);
+        canvas.drawRect(0.0f, measuredHeight - 1, getMeasuredWidth(), measuredHeight, this.f18805e);
     }
 
     @Override
@@ -124,11 +124,11 @@ public final class r0 extends FrameLayout implements org.telegram.ui.ActionBar.a
     public final void updateColors() {
         this.d.updateColors();
         int i7 = k6.rl;
-        f6 f6Var = this.f18799a;
+        f6 f6Var = this.f18802a;
         int w02 = k6.w0(i7, f6Var);
-        AnimatedArrowDrawable animatedArrowDrawable = this.f18801c;
-        animatedArrowDrawable.f30999a.setColor(w02);
+        AnimatedArrowDrawable animatedArrowDrawable = this.f18804c;
+        animatedArrowDrawable.f31003a.setColor(w02);
         animatedArrowDrawable.invalidateSelf();
-        this.f18802e.setColor(k6.w0(k6.tl, f6Var));
+        this.f18805e.setColor(k6.w0(k6.tl, f6Var));
     }
 }

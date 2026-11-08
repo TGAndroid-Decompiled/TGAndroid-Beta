@@ -6,14 +6,14 @@ import java.util.concurrent.CancellationException;
 import java.util.concurrent.atomic.AtomicLongFieldUpdater;
 import zd.c2;
 public final class u0 extends kotlin.jvm.internal.k implements rd.l {
-    public final int f19481b;
-    public final Serializable f19482c;
+    public final int f19484b;
+    public final Serializable f19485c;
     public final Object d;
 
-    public u0(Serializable serializable, Object obj, int i7) {
+    public u0(int i7, Serializable serializable, Object obj) {
         super(1);
-        this.f19481b = i7;
-        this.f19482c = serializable;
+        this.f19484b = i7;
+        this.f19485c = serializable;
         this.d = obj;
     }
 
@@ -24,9 +24,9 @@ public final class u0 extends kotlin.jvm.internal.k implements rd.l {
         gd.k kVar;
         gd.k kVar2;
         Throwable th2;
-        switch (this.f19481b) {
+        switch (this.f19484b) {
             case 0:
-                boolean a10 = kotlin.jvm.internal.j.a((String) obj, ((File) this.f19482c).getName());
+                boolean a10 = kotlin.jvm.internal.j.a((String) obj, ((File) this.f19485c).getName());
                 gd.k kVar3 = gd.k.f13829a;
                 if (a10) {
                     be.r rVar = (be.r) ((be.s) this.d);
@@ -40,7 +40,7 @@ public final class u0 extends kotlin.jvm.internal.k implements rd.l {
                 return kVar3;
             default:
                 Throwable th3 = (Throwable) obj;
-                ((y) this.f19482c).invoke(th3);
+                ((y) this.f19485c).invoke(th3);
                 be.c cVar = (be.c) ((ab.b0) this.d).d;
                 cVar.g(th3, false);
                 do {
@@ -106,7 +106,7 @@ public final class u0 extends kotlin.jvm.internal.k implements rd.l {
                     }
                     kVar2 = gd.k.f13829a;
                     if (hVar != null) {
-                        zd.t tVar = ((n0) hVar).f19427b;
+                        zd.t tVar = ((n0) hVar).f19430b;
                         if (th3 == null) {
                             th2 = new CancellationException("DataStore scope was cancelled before updateData could complete");
                         } else {

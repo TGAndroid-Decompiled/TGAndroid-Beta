@@ -2,23 +2,23 @@ package li;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.l41;
 public final class u implements TextWatcher {
-    public final v f18911a;
+    public final v f18914a;
 
     public u(v vVar) {
-        this.f18911a = vVar;
+        this.f18914a = vVar;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        v vVar = this.f18911a;
-        TL_iv.RichMessage richMessage = vVar.f18923a2;
+        v vVar = this.f18914a;
+        TL_iv.RichMessage richMessage = vVar.f18926a2;
         if (richMessage != null && richMessage != null) {
-            vVar.f18923a2 = null;
-            vVar.X1.i(hd.M0(2131754059, null), true, true);
+            vVar.f18926a2 = null;
+            vVar.X1.i(id.M0(2131754059, null), true, true);
             l41 l41Var = vVar.R1;
             if (l41Var != null) {
                 l41Var.O(true);

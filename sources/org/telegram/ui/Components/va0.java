@@ -11,18 +11,18 @@ import android.graphics.RectF;
 import android.os.Build;
 import org.telegram.messenger.Utilities;
 public final class va0 {
-    public static final float[] f38920k = new float[4];
-    public static final Matrix f38921l = new Matrix();
+    public static final float[] f38955k = new float[4];
+    public static final Matrix f38956l = new Matrix();
     public final ta0 d;
-    public int f38925e;
-    public int f38926f;
-    public int f38927g;
+    public int f38960e;
+    public int f38961f;
+    public int f38962g;
     public int h;
-    public final h6.m f38922a = new h6.m(new k2(19));
-    public final a8.wa f38923b = new a8.wa(17, (byte) 0);
-    public final ai.n1 f38924c = new ai.n1(3);
-    public final Matrix f38928i = new Matrix();
-    public final RectF f38929j = new RectF();
+    public final h6.m f38957a = new h6.m(new k2(19));
+    public final a8.wa f38958b = new a8.wa(17, (byte) 0);
+    public final ai.n1 f38959c = new ai.n1(3);
+    public final Matrix f38963i = new Matrix();
+    public final RectF f38964j = new RectF();
 
     public va0() {
         if (Build.VERSION.SDK_INT >= 33) {
@@ -33,9 +33,9 @@ public final class va0 {
     }
 
     public static void a(Matrix matrix, float[] fArr) {
-        Matrix matrix2 = f38921l;
+        Matrix matrix2 = f38956l;
         matrix.invert(matrix2);
-        float[] fArr2 = f38920k;
+        float[] fArr2 = f38955k;
         fArr2[0] = 0.0f;
         fArr2[1] = 0.0f;
         fArr2[2] = 1.0f;
@@ -55,40 +55,40 @@ public final class va0 {
     }
 
     public final void c(RectF rectF) {
-        RectF rectF2 = this.f38929j;
-        rectF2.set(0.0f, 0.0f, this.f38925e, this.f38926f);
+        RectF rectF2 = this.f38964j;
+        rectF2.set(0.0f, 0.0f, this.f38960e, this.f38961f);
         Matrix.ScaleToFit scaleToFit = Matrix.ScaleToFit.FILL;
-        Matrix matrix = this.f38928i;
+        Matrix matrix = this.f38963i;
         matrix.setRectToRect(rectF2, rectF, scaleToFit);
-        ai.n1 n1Var = this.f38924c;
+        ai.n1 n1Var = this.f38959c;
         ua0 ua0Var = (ua0) n1Var.f1588c;
-        ua0Var.f38573b.set(matrix);
+        ua0Var.f38588b.set(matrix);
         BitmapShader bitmapShader = ua0Var.d;
         if (bitmapShader != null) {
             bitmapShader.setLocalMatrix(matrix);
         }
         ua0 ua0Var2 = (ua0) n1Var.d;
-        ua0Var2.f38573b.set(matrix);
+        ua0Var2.f38588b.set(matrix);
         BitmapShader bitmapShader2 = ua0Var2.d;
         if (bitmapShader2 != null) {
             bitmapShader2.setLocalMatrix(matrix);
         }
         ta0 ta0Var = this.d;
         if (ta0Var != null && Build.VERSION.SDK_INT >= 33) {
-            float[] fArr = ta0Var.f38293g;
+            float[] fArr = ta0Var.f38321g;
             a(matrix, fArr);
-            ta0Var.f38291e.a(fArr);
-            ta0Var.f38292f.a(fArr);
+            ta0Var.f38319e.a(fArr);
+            ta0Var.f38320f.a(fArr);
         }
     }
 
     public final void d(Matrix matrix) {
         boolean z9;
-        ai.n1 n1Var = this.f38924c;
+        ai.n1 n1Var = this.f38959c;
         float[] fArr = (float[]) n1Var.h;
         a(matrix, fArr);
         ua0 ua0Var = (ua0) n1Var.f1589e;
-        ua0Var.f38573b.set(matrix);
+        ua0Var.f38588b.set(matrix);
         BitmapShader bitmapShader = ua0Var.d;
         if (bitmapShader != null) {
             bitmapShader.setLocalMatrix(matrix);
@@ -102,24 +102,24 @@ public final class va0 {
         ua0Var.a(z9);
         ta0 ta0Var = this.d;
         if (ta0Var != null && Build.VERSION.SDK_INT >= 33) {
-            float[] fArr2 = ta0Var.f38293g;
+            float[] fArr2 = ta0Var.f38321g;
             a(matrix, fArr2);
             ua0 ua0Var2 = ta0Var.d;
             if (b(fArr2[0]) && b(fArr2[1])) {
                 z10 = true;
             }
             ua0Var2.a(z10);
-            ta0Var.f38291e.b(fArr2);
-            ta0Var.f38292f.b(fArr2);
+            ta0Var.f38319e.b(fArr2);
+            ta0Var.f38320f.b(fArr2);
         }
     }
 
     public final Paint e(Bitmap bitmap, Bitmap bitmap2, int i7, int i10, int i11, boolean z9) {
         Bitmap bitmap3;
-        Bitmap bitmap4 = (Bitmap) this.f38922a.n(bitmap2);
+        Bitmap bitmap4 = (Bitmap) this.f38957a.n(bitmap2);
         if (i11 >= 0) {
             int o4 = i0.a.o(i7, ((Color.alpha(i7) * i10) * i11) / 25500);
-            a8.wa waVar = this.f38923b;
+            a8.wa waVar = this.f38958b;
             ih.a aVar = (ih.a) waVar.f701c;
             if (aVar.a(bitmap) || o4 != waVar.f700b || ((Bitmap) waVar.d) == null) {
                 Bitmap bitmap5 = (Bitmap) waVar.d;
@@ -135,15 +135,15 @@ public final class va0 {
             bitmap3 = null;
         }
         Bitmap bitmap6 = bitmap3;
-        this.f38925e = bitmap.getWidth();
-        this.f38926f = bitmap.getHeight();
-        this.f38927g = bitmap4.getWidth();
+        this.f38960e = bitmap.getWidth();
+        this.f38961f = bitmap.getHeight();
+        this.f38962g = bitmap4.getWidth();
         this.h = bitmap4.getHeight();
         ta0 ta0Var = this.d;
         if (ta0Var != null && z9 && Build.VERSION.SDK_INT >= 33) {
             return ta0Var.a(bitmap, bitmap4, bitmap6, i10, i11);
         }
-        ai.n1 n1Var = this.f38924c;
+        ai.n1 n1Var = this.f38959c;
         lm lmVar = (lm) n1Var.f1590f;
         lm lmVar2 = (lm) n1Var.f1591g;
         ua0 ua0Var = (ua0) n1Var.d;
@@ -160,7 +160,7 @@ public final class va0 {
             }
         } else if ((lmVar2.R(i0.a.o(-1, ((-i11) * i10) / 100)) | b11 | lmVar.R(-16777216)) || n1Var.f1586a != 2) {
             n1Var.f1586a = 2;
-            paint.setShader(new ComposeShader((bg.l) lmVar.f35701b, new ComposeShader(new ComposeShader(ua0Var2.d, ua0Var3.d, PorterDuff.Mode.DST_IN), (bg.l) lmVar2.f35701b, PorterDuff.Mode.MULTIPLY), PorterDuff.Mode.SRC_OVER));
+            paint.setShader(new ComposeShader((bg.l) lmVar.f35719b, new ComposeShader(new ComposeShader(ua0Var2.d, ua0Var3.d, PorterDuff.Mode.DST_IN), (bg.l) lmVar2.f35719b, PorterDuff.Mode.MULTIPLY), PorterDuff.Mode.SRC_OVER));
             return paint;
         }
         return paint;

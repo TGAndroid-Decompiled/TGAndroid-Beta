@@ -9,17 +9,17 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class pj0 implements RequestDelegate {
-    public final boolean f48841a;
-    public final byte[] f48842b;
-    public final TL_account.getPasswordSettings f48843c;
+    public final boolean f48844a;
+    public final byte[] f48845b;
+    public final TL_account.getPasswordSettings f48846c;
     public final String d;
-    public final bk0 f48844e;
+    public final bk0 f48847e;
 
     public pj0(bk0 bk0Var, boolean z9, byte[] bArr, TL_account.getPasswordSettings getpasswordsettings, String str) {
-        this.f48844e = bk0Var;
-        this.f48841a = z9;
-        this.f48842b = bArr;
-        this.f48843c = getpasswordsettings;
+        this.f48847e = bk0Var;
+        this.f48844a = z9;
+        this.f48845b = bArr;
+        this.f48846c = getpasswordsettings;
         this.d = str;
     }
 
@@ -28,56 +28,56 @@ public final class pj0 implements RequestDelegate {
         org.telegram.ui.ActionBar.q4 q4Var;
         org.telegram.ui.ActionBar.q4 q4Var2;
         int i10;
-        bk0 bk0Var = this.f48844e;
+        bk0 bk0Var = this.f48847e;
         if (bk0Var.Y == null) {
             return;
         }
-        if (!this.f48841a) {
+        if (!this.f48844a) {
             i10 = ((org.telegram.ui.ActionBar.f2) bk0Var).currentAccount;
             org.telegram.messenger.p10 i11 = org.telegram.messenger.p10.i(i10);
-            byte[] bArr = this.f48842b;
-            byte[] bArr2 = this.f48844e.f44372e1;
-            i11.f24485l0 = SystemClock.elapsedRealtime();
-            i11.f24483j0 = bArr;
-            i11.f24484k0 = bArr2;
+            byte[] bArr = this.f48845b;
+            byte[] bArr2 = this.f48847e.f44375e1;
+            i11.f24488l0 = SystemClock.elapsedRealtime();
+            i11.f24486j0 = bArr;
+            i11.f24487k0 = bArr2;
         }
         int i12 = 0;
-        org.telegram.messenger.g0.v1(this.f48844e.Y[0]);
-        bk0 bk0Var2 = this.f48844e;
-        bk0Var2.f44375f1 = true;
-        long j3 = bk0Var2.f44365c;
+        org.telegram.messenger.g0.v1(this.f48847e.Y[0]);
+        bk0 bk0Var2 = this.f48847e;
+        bk0Var2.f44378f1 = true;
+        long j3 = bk0Var2.f44368c;
         if (j3 == 0) {
             i12 = 8;
         }
-        bk0 bk0Var3 = new bk0(i12, j3, bk0Var2.h, bk0Var2.f44396r, bk0Var2.d, bk0Var2.f44370e, bk0Var2.f44388n, bk0Var2.D, bk0Var2.J);
-        bk0 bk0Var4 = this.f48844e;
-        bk0Var3.f44369d1 = bk0Var4.f44369d1;
+        bk0 bk0Var3 = new bk0(i12, j3, bk0Var2.h, bk0Var2.f44399r, bk0Var2.d, bk0Var2.f44373e, bk0Var2.f44391n, bk0Var2.D, bk0Var2.J);
+        bk0 bk0Var4 = this.f48847e;
+        bk0Var3.f44372d1 = bk0Var4.f44372d1;
         i7 = ((org.telegram.ui.ActionBar.f2) bk0Var4).currentAccount;
         ((org.telegram.ui.ActionBar.f2) bk0Var3).currentAccount = i7;
-        bk0 bk0Var5 = this.f48844e;
-        bk0Var3.f44372e1 = bk0Var5.f44372e1;
-        bk0Var3.f44367c1 = bk0Var5.f44367c1;
-        bk0Var3.f44364b1 = bk0Var5.f44364b1;
+        bk0 bk0Var5 = this.f48847e;
+        bk0Var3.f44375e1 = bk0Var5.f44375e1;
+        bk0Var3.f44370c1 = bk0Var5.f44370c1;
+        bk0Var3.f44367b1 = bk0Var5.f44367b1;
         bk0Var3.C1 = bk0Var5.C1;
         q4Var = ((org.telegram.ui.ActionBar.f2) bk0Var5).parentLayout;
         if (q4Var != null) {
-            q4Var2 = ((org.telegram.ui.ActionBar.f2) this.f48844e).parentLayout;
+            q4Var2 = ((org.telegram.ui.ActionBar.f2) this.f48847e).parentLayout;
             if (((ActionBarLayout) q4Var2).i()) {
-                this.f48844e.f44379h1 = bk0Var3;
+                this.f48847e.f44382h1 = bk0Var3;
                 return;
             }
         }
-        this.f48844e.presentFragment(bk0Var3, true);
+        this.f48847e.presentFragment(bk0Var3, true);
     }
 
     public final void b() {
         int i7;
         TL_account.updatePasswordSettings updatepasswordsettings = new TL_account.updatePasswordSettings();
-        bk0 bk0Var = this.f48844e;
+        bk0 bk0Var = this.f48847e;
         TL_account.Password password = bk0Var.J;
         TLRPC.PasswordKdfAlgo passwordKdfAlgo = password.current_algo;
         if (passwordKdfAlgo instanceof TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) {
-            updatepasswordsettings.password = org.telegram.messenger.pv.d(this.f48842b, password.srp_id, password.srp_B, (TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) passwordKdfAlgo);
+            updatepasswordsettings.password = org.telegram.messenger.pv.d(this.f48845b, password.srp_id, password.srp_B, (TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) passwordKdfAlgo);
         }
         TL_account.passwordInputSettings passwordinputsettings = new TL_account.passwordInputSettings();
         updatepasswordsettings.new_settings = passwordinputsettings;
@@ -89,7 +89,7 @@ public final class pj0 implements RequestDelegate {
         passwordinputsettings2.new_secure_settings.secure_secret_id = 0L;
         passwordinputsettings2.flags |= 4;
         i7 = ((org.telegram.ui.ActionBar.f2) bk0Var).currentAccount;
-        ConnectionsManager.getInstance(i7).sendRequest(this.f48843c, new nj0(this, 1));
+        ConnectionsManager.getInstance(i7).sendRequest(this.f48846c, new nj0(this, 1));
     }
 
     @Override
@@ -97,12 +97,12 @@ public final class pj0 implements RequestDelegate {
         int i7;
         if (tL_error != null && "SRP_ID_INVALID".equals(tL_error.text)) {
             TL_account.getPassword getpassword = new TL_account.getPassword();
-            i7 = ((org.telegram.ui.ActionBar.f2) this.f48844e).currentAccount;
-            ConnectionsManager.getInstance(i7).sendRequest(getpassword, new fi.d3(8, this, this.f48841a), 8);
+            i7 = ((org.telegram.ui.ActionBar.f2) this.f48847e).currentAccount;
+            ConnectionsManager.getInstance(i7).sendRequest(getpassword, new fi.d3(8, this, this.f48844a), 8);
         } else if (tL_error == null) {
-            Utilities.f21333e.c(new vn((Object) this, tLObject, (Object) this.d, this.f48841a, 11));
+            Utilities.f21336e.c(new vn((Object) this, tLObject, (Object) this.d, this.f48844a, 11));
         } else {
-            org.telegram.messenger.g0.h3(new g60(this, this.f48841a, tL_error, 4));
+            org.telegram.messenger.g0.h3(new g60(this, this.f48844a, tL_error, 4));
         }
     }
 }

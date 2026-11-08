@@ -3,31 +3,31 @@ package org.telegram.ui;
 import android.view.KeyEvent;
 import android.view.View;
 public final class qm0 implements org.telegram.ui.Components.t4, org.telegram.ui.Components.dj0, org.telegram.ui.ActionBar.e1, org.telegram.ui.ActionBar.r1 {
-    public final int f49275a;
-    public final xm0 f49276b;
+    public final int f49278a;
+    public final xm0 f49279b;
 
     public qm0(xm0 xm0Var, int i7) {
-        this.f49275a = i7;
-        this.f49276b = xm0Var;
+        this.f49278a = i7;
+        this.f49279b = xm0Var;
     }
 
     @Override
     public void L(int i7, int i10, boolean z9) {
-        switch (this.f49275a) {
+        switch (this.f49278a) {
             case 0:
-                this.f49276b.j0(i7, z9);
+                this.f49279b.j0(i7, z9);
                 return;
             default:
-                this.f49276b.j0(i7, z9);
+                this.f49279b.j0(i7, z9);
                 return;
         }
     }
 
     @Override
     public boolean c(int i7, View view) {
-        xm0 xm0Var = this.f49276b;
+        xm0 xm0Var = this.f49279b;
         if (xm0Var.Y) {
-            xm0Var.f0(view, xm0Var.J.f26297e.get(i7));
+            xm0Var.f0(view, xm0Var.J.f26300e.get(i7));
             return true;
         } else if (view instanceof org.telegram.ui.Cells.q5) {
             org.telegram.ui.Components.tj0 tj0Var = xm0Var.V;
@@ -42,19 +42,19 @@ public final class qm0 implements org.telegram.ui.Components.t4, org.telegram.ui
 
     @Override
     public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        xm0 xm0Var = this.f49276b;
-        ym0 ym0Var = xm0Var.f51936t0;
+        xm0 xm0Var = this.f49279b;
+        ym0 ym0Var = xm0Var.f51929t0;
         if (ym0Var != null) {
-            switch (ym0Var.f52289a) {
+            switch (ym0Var.f52269a) {
                 case 1:
-                    an0 an0Var = ym0Var.f52290b;
-                    an0Var.f44049a.e0();
-                    an0Var.f44050b.e0();
+                    an0 an0Var = ym0Var.f52270b;
+                    an0Var.f44055a.e0();
+                    an0Var.f44056b.e0();
                     return;
                 default:
-                    an0 an0Var2 = ym0Var.f52290b;
-                    an0Var2.f44049a.e0();
-                    an0Var2.f44050b.e0();
+                    an0 an0Var2 = ym0Var.f52270b;
+                    an0Var2.f44055a.e0();
+                    an0Var2.f44056b.e0();
                     return;
             }
         }
@@ -64,7 +64,7 @@ public final class qm0 implements org.telegram.ui.Components.t4, org.telegram.ui
     @Override
     public void j(KeyEvent keyEvent) {
         org.telegram.ui.ActionBar.g1 g1Var;
-        xm0 xm0Var = this.f49276b;
+        xm0 xm0Var = this.f49279b;
         xm0Var.getClass();
         if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (g1Var = xm0Var.m0) != null && g1Var.isShowing()) {
             xm0Var.m0.d(true);

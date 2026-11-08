@@ -16,24 +16,24 @@ import h9.t1;
 import java.util.List;
 import t3.h;
 public final class b implements o {
-    public q f17196e;
-    public j0 f17197f;
+    public q f17199e;
+    public j0 f17200f;
     public q0 h;
-    public u f17199i;
-    public int f17200j;
-    public int f17201k;
-    public a f17202l;
-    public int f17203m;
-    public long f17204n;
-    public final byte[] f17193a = new byte[42];
-    public final x f17194b = new x(new byte[32768], 0);
-    public final boolean f17195c = false;
+    public u f17202i;
+    public int f17203j;
+    public int f17204k;
+    public a f17205l;
+    public int f17206m;
+    public long f17207n;
+    public final byte[] f17196a = new byte[42];
+    public final x f17197b = new x(new byte[32768], 0);
+    public final boolean f17198c = false;
     public final s d = new Object();
-    public int f17198g = 0;
+    public int f17201g = 0;
 
     @Override
     public final boolean b(p pVar) {
-        q0 a10 = new y(0).a(pVar, h.f55308b, 0);
+        q0 a10 = new y(0).a(pVar, h.f55400b, 0);
         if (a10 != null) {
             int length = a10.f10484a.length;
         }
@@ -47,8 +47,8 @@ public final class b implements o {
 
     @Override
     public final void c(q qVar) {
-        this.f17196e = qVar;
-        this.f17197f = qVar.O1(0, 1);
+        this.f17199e = qVar;
+        this.f17200f = qVar.O1(0, 1);
         qVar.U0();
     }
 
@@ -56,9 +56,9 @@ public final class b implements o {
     public final void d(long j3, long j10) {
         long j11 = 0;
         if (j3 == 0) {
-            this.f17198g = 0;
+            this.f17201g = 0;
         } else {
-            a aVar = this.f17202l;
+            a aVar = this.f17205l;
             if (aVar != null) {
                 aVar.d(j10);
             }
@@ -66,9 +66,9 @@ public final class b implements o {
         if (j10 != 0) {
             j11 = -1;
         }
-        this.f17204n = j11;
-        this.f17203m = 0;
-        this.f17194b.K(0);
+        this.f17207n = j11;
+        this.f17206m = 0;
+        this.f17197b.K(0);
     }
 
     @Override

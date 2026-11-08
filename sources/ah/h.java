@@ -32,7 +32,7 @@ import fi.p2;
 import fi.y;
 import java.util.ArrayList;
 import org.telegram.messenger.g0;
-import org.telegram.ui.Components.ys;
+import org.telegram.ui.Components.zs;
 import org.telegram.ui.Stories.ProfileStoriesView;
 import org.telegram.ui.wv0;
 public final class h implements ValueAnimator.AnimatorUpdateListener {
@@ -224,7 +224,7 @@ public final class h implements ValueAnimator.AnimatorUpdateListener {
                 fi.m mVar = (fi.m) this.f1078b;
                 mVar.f12374n0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 fi.g gVar = mVar.f12365f;
-                ys editText = gVar.getEditText();
+                zs editText = gVar.getEditText();
                 int L = g0.L(-26.0f);
                 editText.setTranslationX(g0.W1(mVar.f12374n0, mVar.getEditTextLeft() + L, g0.L(2.0f)));
                 FrameLayout frameLayout = mVar.f12380s;

@@ -4,12 +4,12 @@ import android.text.Editable;
 import org.telegram.messenger.iu;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.Components.ws;
+import org.telegram.ui.Components.xs;
 public final class r2 implements j5, e1 {
-    public final t3 f18807a;
+    public final t3 f18810a;
 
     public r2(t3 t3Var) {
-        this.f18807a = t3Var;
+        this.f18810a = t3Var;
     }
 
     public void a(g1 g1Var, i4 i4Var, boolean z9) {
@@ -18,8 +18,8 @@ public final class r2 implements j5, e1 {
         boolean z11;
         boolean z12;
         boolean z13;
-        t3 t3Var = this.f18807a;
-        r3 r3Var = t3Var.f18887o3;
+        t3 t3Var = this.f18810a;
+        r3 r3Var = t3Var.f18890o3;
         Editable text = g1Var.getText();
         int i7 = -1;
         if (text == null) {
@@ -33,7 +33,7 @@ public final class r2 implements j5, e1 {
         int i10 = i7;
         if (spanStart >= 0 && i10 > spanStart) {
             if (!z9) {
-                TL_iv.textButton textbutton = i4Var.f18638a;
+                TL_iv.textButton textbutton = i4Var.f18641a;
                 if (textbutton != null) {
                     f2 f2Var = t3Var.Q3;
                     if (f2Var != null) {
@@ -75,21 +75,21 @@ public final class r2 implements j5, e1 {
                     textbutton.style = richButtonStyle;
                     Editable text2 = g1Var.getText();
                     if (text2 != null && text2.getSpanStart(i4Var) >= 0) {
-                        iu iuVar = i4Var.f18639b;
-                        if (iuVar != null && i4Var.f18640c == g1Var) {
+                        iu iuVar = i4Var.f18642b;
+                        if (iuVar != null && i4Var.f18643c == g1Var) {
                             iuVar.h = null;
-                            iuVar.f23343a.f22705a.f(g1Var);
-                            i4Var.f18640c = null;
+                            iuVar.f23365a.f22722a.f(g1Var);
+                            i4Var.f18643c = null;
                         }
                         text2.removeSpan(i4Var);
                         i4 i4Var2 = new i4(textbutton);
-                        i4Var2.a(t3Var.f18883m3, g1Var, t3Var.f18885n3);
+                        i4Var2.a(t3Var.f18886m3, g1Var, t3Var.f18888n3);
                         text2.setSpan(i4Var2, spanStart, i10, 33);
-                        ws wsVar = g1Var.N1;
-                        if (wsVar != null) {
-                            wsVar.m();
+                        xs xsVar = g1Var.N1;
+                        if (xsVar != null) {
+                            xsVar.m();
                         }
-                        g1Var.f18595p2 = true;
+                        g1Var.f18598p2 = true;
                         g1Var.invalidate();
                         g1Var.requestLayout();
                         g1Var.f();

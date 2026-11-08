@@ -6,30 +6,30 @@ import android.os.Parcel;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.TaskCompletionSource;
 public final class f extends a8.q {
-    public final int f56276b;
-    public final TaskCompletionSource f56277c;
+    public final int f56365b;
+    public final TaskCompletionSource f56366c;
 
     public f(int i7, TaskCompletionSource taskCompletionSource) {
         super("com.google.android.gms.location.internal.ILocationStatusCallback", 11);
-        this.f56276b = i7;
+        this.f56365b = i7;
         switch (i7) {
             case 1:
-                this.f56277c = taskCompletionSource;
+                this.f56366c = taskCompletionSource;
                 super("com.google.android.gms.location.internal.ISettingsCallbacks", 11);
                 return;
             default:
-                this.f56277c = taskCompletionSource;
+                this.f56366c = taskCompletionSource;
                 return;
         }
     }
 
     @Override
-    public final boolean L0(Parcel parcel, int i7) {
-        switch (this.f56276b) {
+    public final boolean l1(Parcel parcel, int i7) {
+        switch (this.f56365b) {
             case 0:
                 if (i7 == 1) {
                     d.b(parcel);
-                    k8.a((Status) d.a(parcel, Status.CREATOR), (Location) d.a(parcel, Location.CREATOR), this.f56277c);
+                    k8.a((Status) d.a(parcel, Status.CREATOR), (Location) d.a(parcel, Location.CREATOR), this.f56366c);
                     return true;
                 }
                 return false;
@@ -37,10 +37,10 @@ public final class f extends a8.q {
                 if (i7 == 1) {
                     j8.e eVar = (j8.e) d.a(parcel, j8.e.CREATOR);
                     d.b(parcel);
-                    Status status = eVar.f16585a;
+                    Status status = eVar.f16588a;
                     ?? obj = new Object();
                     obj.f3500a = eVar;
-                    k8.a(status, obj, this.f56277c);
+                    k8.a(status, obj, this.f56366c);
                     return true;
                 }
                 return false;

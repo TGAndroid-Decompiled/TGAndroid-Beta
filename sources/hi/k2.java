@@ -1,17 +1,17 @@
 package hi;
 public final class k2 extends org.telegram.ui.ActionBar.j {
-    public final int f14762a;
-    public final a3 f14763b;
+    public final int f14765a;
+    public final a3 f14766b;
 
     public k2(a3 a3Var, int i7) {
-        this.f14762a = i7;
-        this.f14763b = a3Var;
+        this.f14765a = i7;
+        this.f14766b = a3Var;
     }
 
     @Override
     public final void b(int i7) {
-        int i10 = this.f14762a;
-        a3 a3Var = this.f14763b;
+        int i10 = this.f14765a;
+        a3 a3Var = this.f14766b;
         switch (i10) {
             case 0:
                 if (i7 == -1) {

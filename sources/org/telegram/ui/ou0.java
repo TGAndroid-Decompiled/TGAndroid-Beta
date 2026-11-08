@@ -8,14 +8,14 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_stories;
 public final class ou0 implements View.OnClickListener {
-    public final int f48548a;
-    public final int f48549b;
-    public final Object f48550c;
+    public final int f48542a;
+    public final int f48543b;
+    public final Object f48544c;
 
     public ou0(Object obj, int i7, int i10) {
-        this.f48548a = i10;
-        this.f48550c = obj;
-        this.f48549b = i7;
+        this.f48542a = i10;
+        this.f48544c = obj;
+        this.f48543b = i7;
     }
 
     @Override
@@ -23,9 +23,9 @@ public final class ou0 implements View.OnClickListener {
         boolean z9;
         int i7;
         org.telegram.ui.Components.cc j3;
-        int i10 = this.f48548a;
-        int i11 = this.f48549b;
-        Object obj = this.f48550c;
+        int i10 = this.f48542a;
+        int i11 = this.f48543b;
+        Object obj = this.f48544c;
         switch (i10) {
             case 0:
                 ProfileActivity profileActivity = (ProfileActivity) obj;
@@ -40,7 +40,7 @@ public final class ou0 implements View.OnClickListener {
                             profileActivity.showDialog(new ug.w0((org.telegram.ui.ActionBar.f2) profileActivity, 14, true));
                             return;
                         } else {
-                            profileActivity.getMessagesController().f24767e7.edit().putBoolean("story_keep", true).apply();
+                            profileActivity.getMessagesController().f24774e7.edit().putBoolean("story_keep", true).apply();
                             fi.va D = fi.va.D(profileActivity.getParentActivity(), profileActivity.getCurrentAccount());
                             D.f13012y = new uv0(profileActivity);
                             D.Q(null);
@@ -53,17 +53,17 @@ public final class ou0 implements View.OnClickListener {
                     vv0 vv0Var3 = profileActivity.N;
                     int u12 = vv0Var3.u1(vv0Var3.getClosestTab());
                     String w10 = profileActivity.getMessagesController().P1().w(u12, a10);
-                    org.telegram.messenger.video.n nVar = profileActivity.f41855x5;
+                    org.telegram.messenger.video.n nVar = profileActivity.f41859x5;
                     if (nVar != null) {
                         nVar.run();
-                        profileActivity.f41855x5 = null;
+                        profileActivity.f41859x5 = null;
                     }
                     org.telegram.ui.Components.cc.e();
                     ArrayList arrayList = new ArrayList();
                     SparseArray<org.telegram.messenger.ij> actionModeSelected = profileActivity.N.getActionModeSelected();
                     if (actionModeSelected != null) {
                         for (int i12 = 0; i12 < actionModeSelected.size(); i12++) {
-                            TL_stories.StoryItem storyItem = actionModeSelected.valueAt(i12).f23248l;
+                            TL_stories.StoryItem storyItem = actionModeSelected.valueAt(i12).f23266l;
                             if (storyItem != null) {
                                 arrayList.add(storyItem);
                             }
@@ -73,16 +73,16 @@ public final class ou0 implements View.OnClickListener {
                     if (!arrayList.isEmpty()) {
                         bi.f9 f9Var = new bi.f9(profileActivity, a10, u12, arrayList);
                         profileActivity.getMessagesController().P1().f0(u12, a10, arrayList);
-                        org.telegram.ui.Components.hc.a0(profileActivity).K(2131623979, org.telegram.messenger.g0.X2(org.telegram.messenger.hd.G(arrayList.size(), "StoryRemovedFromAlbumTitle", w10)), org.telegram.messenger.hd.M0(2131743886, null), f9Var).j();
+                        org.telegram.ui.Components.hc.a0(profileActivity).K(2131623979, org.telegram.messenger.g0.X2(org.telegram.messenger.id.G(arrayList.size(), "StoryRemovedFromAlbumTitle", w10)), org.telegram.messenger.id.M0(2131743888, null), f9Var).j();
                         return;
                     }
                     return;
                 }
                 long e10 = profileActivity.getUserConfig().e();
-                org.telegram.messenger.video.n nVar2 = profileActivity.f41855x5;
+                org.telegram.messenger.video.n nVar2 = profileActivity.f41859x5;
                 if (nVar2 != null) {
                     nVar2.run();
-                    profileActivity.f41855x5 = null;
+                    profileActivity.f41859x5 = null;
                 }
                 org.telegram.ui.Components.cc.e();
                 if (profileActivity.N.getClosestTab() == 9) {
@@ -95,7 +95,7 @@ public final class ou0 implements View.OnClickListener {
                 if (actionModeSelected2 != null) {
                     int i13 = 0;
                     for (int i14 = 0; i14 < actionModeSelected2.size(); i14++) {
-                        TL_stories.StoryItem storyItem2 = actionModeSelected2.valueAt(i14).f23248l;
+                        TL_stories.StoryItem storyItem2 = actionModeSelected2.valueAt(i14).f23266l;
                         if (storyItem2 != null) {
                             arrayList2.add(storyItem2);
                             i13++;
@@ -119,12 +119,12 @@ public final class ou0 implements View.OnClickListener {
                     profileActivity.getMessagesController().P1().q0(e10, arrayList2, false);
                     boolean[] zArr2 = {false};
                     boolean z10 = z9;
-                    profileActivity.f41855x5 = new org.telegram.messenger.video.n(profileActivity, e10, arrayList2, z9);
+                    profileActivity.f41859x5 = new org.telegram.messenger.video.n(profileActivity, e10, arrayList2, z9);
                     bi.i0 i0Var = new bi.i0(profileActivity, zArr2, arrayList2, zArr, e10, 15);
                     if (z10) {
-                        j3 = org.telegram.ui.Components.hc.a0(profileActivity).L(2131623989, org.telegram.messenger.hd.G(i7, "StorySavedTitle", new Object[0]), org.telegram.messenger.hd.M0(2131744485, null), org.telegram.messenger.hd.M0(2131743886, null), i0Var).j();
+                        j3 = org.telegram.ui.Components.hc.a0(profileActivity).L(2131623989, org.telegram.messenger.id.G(i7, "StorySavedTitle", new Object[0]), org.telegram.messenger.id.M0(2131744487, null), org.telegram.messenger.id.M0(2131743888, null), i0Var).j();
                     } else {
-                        j3 = org.telegram.ui.Components.hc.a0(profileActivity).J(2131623979, org.telegram.messenger.hd.G(i7, "StoryArchived", new Object[0]), org.telegram.messenger.hd.M0(2131743886, null), 5000, false, i0Var).j();
+                        j3 = org.telegram.ui.Components.hc.a0(profileActivity).J(2131623979, org.telegram.messenger.id.G(i7, "StoryArchived", new Object[0]), org.telegram.messenger.id.M0(2131743888, null), 5000, false, i0Var).j();
                     }
                     j3.v = new qn0(22, profileActivity, zArr2);
                     return;
@@ -132,21 +132,21 @@ public final class ou0 implements View.OnClickListener {
                 return;
             case 1:
                 c51 c51Var = (c51) obj;
-                c51Var.f44675h0.E(i11);
+                c51Var.f44678h0.E(i11);
                 c51Var.p0(i11, true);
                 return;
             default:
-                org.telegram.ui.Wallet.oa oaVar = (org.telegram.ui.Wallet.oa) obj;
-                EditText editText = oaVar.f42941a;
-                TextView[] textViewArr = oaVar.N;
+                org.telegram.ui.Wallet.na naVar = (org.telegram.ui.Wallet.na) obj;
+                EditText editText = naVar.f42911a;
+                TextView[] textViewArr = naVar.N;
                 TextView textView = textViewArr[i11];
                 if (textView != null && !TextUtils.isEmpty(textView.getText())) {
                     String charSequence = textViewArr[i11].getText().toString();
                     editText.setText(charSequence);
                     editText.setSelection(charSequence.length());
-                    oaVar.a();
-                    oaVar.a();
-                    Runnable runnable = oaVar.f42947r;
+                    naVar.a();
+                    naVar.a();
+                    Runnable runnable = naVar.f42917r;
                     if (runnable != null) {
                         editText.post(runnable);
                         return;

@@ -15,30 +15,7 @@ public final class f extends q implements j {
     }
 
     @Override
-    public final boolean J0(int i7, Parcel parcel, Parcel parcel2) {
-        switch (i7) {
-            case 101:
-                GoogleSignInAccount googleSignInAccount = (GoogleSignInAccount) l7.f.a(parcel, GoogleSignInAccount.CREATOR);
-                Status status = (Status) l7.f.a(parcel, Status.CREATOR);
-                l7.f.b(parcel);
-                throw new UnsupportedOperationException();
-            case 102:
-                l7.f.b(parcel);
-                d0((Status) l7.f.a(parcel, Status.CREATOR));
-                break;
-            case 103:
-                l7.f.b(parcel);
-                V((Status) l7.f.a(parcel, Status.CREATOR));
-                break;
-            default:
-                return false;
-        }
-        parcel2.writeNoException();
-        return true;
-    }
-
-    @Override
-    public void V(Status status) {
+    public void g0(Status status) {
         switch (this.f8203b) {
             case 1:
                 this.f8204c.a(status);
@@ -49,7 +26,30 @@ public final class f extends q implements j {
     }
 
     @Override
-    public void d0(Status status) {
+    public final boolean j1(int i7, Parcel parcel, Parcel parcel2) {
+        switch (i7) {
+            case 101:
+                GoogleSignInAccount googleSignInAccount = (GoogleSignInAccount) l7.f.a(parcel, GoogleSignInAccount.CREATOR);
+                Status status = (Status) l7.f.a(parcel, Status.CREATOR);
+                l7.f.b(parcel);
+                throw new UnsupportedOperationException();
+            case 102:
+                l7.f.b(parcel);
+                r0((Status) l7.f.a(parcel, Status.CREATOR));
+                break;
+            case 103:
+                l7.f.b(parcel);
+                g0((Status) l7.f.a(parcel, Status.CREATOR));
+                break;
+            default:
+                return false;
+        }
+        parcel2.writeNoException();
+        return true;
+    }
+
+    @Override
+    public void r0(Status status) {
         switch (this.f8203b) {
             case 0:
                 this.f8204c.a(status);

@@ -9,7 +9,7 @@ import j$.time.DayOfWeek;
 import j$.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.Calendar;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.k5;
 import org.telegram.messenger.ls;
 import org.telegram.messenger.qs;
@@ -27,29 +27,29 @@ import org.telegram.ui.Components.pj0;
 import org.telegram.ui.Components.q41;
 import org.telegram.ui.Components.x31;
 public final class c1 extends f2 implements ls {
-    public q41 f17326a;
-    public b5 f17327b;
-    public boolean f17328c;
+    public q41 f17329a;
+    public b5 f17330b;
+    public boolean f17331c;
     public boolean d;
-    public ArrayList[] f17329e;
-    public ArrayList[] f17330f;
+    public ArrayList[] f17332e;
+    public ArrayList[] f17333f;
     public String h;
-    public String f17331n;
+    public String f17334n;
 
     public c1() {
         super(null);
-        this.f17329e = null;
-        this.f17330f = new ArrayList[]{new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList()};
+        this.f17332e = null;
+        this.f17333f = new ArrayList[]{new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList()};
     }
 
     public static void Z(c1 c1Var, TLRPC.TL_error tL_error, TLObject tLObject) {
         if (tL_error != null) {
-            c1Var.f17327b.b(false);
+            c1Var.f17330b.b(false);
             hc.d0(tL_error);
         } else if (tLObject instanceof TLRPC.TL_boolFalse) {
             if (c1Var.getParentActivity() != null) {
-                c1Var.f17327b.b(false);
-                k5.p(null, 2131743880, hc.a0(c1Var), null);
+                c1Var.f17330b.b(false);
+                k5.p(null, 2131743882, hc.a0(c1Var), null);
             }
         } else if (!c1Var.isFinished && !c1Var.finishing) {
             c1Var.finishFragment();
@@ -57,38 +57,38 @@ public final class c1 extends f2 implements ls {
     }
 
     public static void a0(c1 c1Var, ArrayList arrayList) {
-        String M0 = hd.M0(2131752764, null);
-        String M02 = hd.M0(2131752749, null);
+        String M0 = id.M0(2131752764, null);
+        String M02 = id.M0(2131752749, null);
         x31 x31Var = new x31(2);
-        x31Var.f40159l = M0;
-        x31Var.f40162o = M02;
-        x31Var.f40158k = 2131623939;
+        x31Var.f40180l = M0;
+        x31Var.f40183o = M02;
+        x31Var.f40179k = 2131623939;
         arrayList.add(x31Var);
-        x31 i7 = x31.i(-1, hd.M0(2131752729, null));
+        x31 i7 = x31.i(-1, id.M0(2131752729, null));
         i7.L(c1Var.d);
         arrayList.add(i7);
         arrayList.add(x31.B(-100, null));
         if (c1Var.d) {
-            arrayList.add(x31.u(hd.M0(2131752764, null)));
+            arrayList.add(x31.u(id.M0(2131752764, null)));
             int i10 = 0;
             while (true) {
-                ArrayList[] arrayListArr = c1Var.f17330f;
+                ArrayList[] arrayListArr = c1Var.f17333f;
                 if (i10 < arrayListArr.length) {
                     if (arrayListArr[i10] == null) {
                         arrayListArr[i10] = new ArrayList();
                     }
-                    String displayName = DayOfWeek.values()[i10].getDisplayName(TextStyle.FULL, hd.E0().f22906y);
-                    String f02 = f0(c1Var.f17330f[i10]);
+                    String displayName = DayOfWeek.values()[i10].getDisplayName(TextStyle.FULL, id.E0().f23185y);
+                    String f02 = f0(c1Var.f17333f[i10]);
                     x31 x31Var2 = new x31(5);
                     x31Var2.d = i10;
-                    x31Var2.f40159l = displayName.substring(0, 1).toUpperCase() + displayName.substring(1);
-                    x31Var2.f40160m = f02;
-                    x31Var2.L(!c1Var.f17330f[i10].isEmpty());
+                    x31Var2.f40180l = displayName.substring(0, 1).toUpperCase() + displayName.substring(1);
+                    x31Var2.f40181m = f02;
+                    x31Var2.L(!c1Var.f17333f[i10].isEmpty());
                     arrayList.add(x31Var2);
                     i10++;
                 } else {
                     arrayList.add(x31.B(-101, null));
-                    arrayList.add(x31.f(hd.M0(2131752728, null), x1.b(c1Var.currentAccount).d(c1Var.f17331n, false), -2));
+                    arrayList.add(x31.f(id.M0(2131752728, null), x1.b(c1Var.currentAccount).d(c1Var.f17334n, false), -2));
                     arrayList.add(x31.B(-102, null));
                     return;
                 }
@@ -98,7 +98,7 @@ public final class c1 extends f2 implements ls {
 
     public static void b0(c1 c1Var, View view, String str) {
         x1 b10 = x1.b(c1Var.currentAccount);
-        c1Var.f17331n = str;
+        c1Var.f17334n = str;
         ((m8) view).w(b10.d(str, false), true);
         c1Var.d0(true);
     }
@@ -129,13 +129,13 @@ public final class c1 extends f2 implements ls {
             }
             if (i18 >= i17) {
                 int i20 = (i14 + 6) % 7;
-                if (!arrayListArr[i20].isEmpty() && ((b1) jg.g.i(1, arrayListArr[i20])).f17314b >= 1440) {
-                    ((b1) jg.g.i(1, arrayListArr[i20])).f17314b = 1439;
+                if (!arrayListArr[i20].isEmpty() && ((b1) jg.g.i(1, arrayListArr[i20])).f17317b >= 1440) {
+                    ((b1) jg.g.i(1, arrayListArr[i20])).f17317b = 1439;
                 }
                 int min = Math.min((i18 - i15) - 1, 2879);
                 ArrayList arrayList2 = arrayListArr[(i14 + 8) % 7];
-                if (min >= 1440 && !arrayList2.isEmpty() && ((b1) arrayList2.get(0)).f17313a < min - 1440) {
-                    min = ((b1) arrayList2.get(0)).f17313a + 1439;
+                if (min >= 1440 && !arrayList2.isEmpty() && ((b1) arrayList2.get(0)).f17316a < min - 1440) {
+                    min = ((b1) arrayList2.get(0)).f17316a + 1439;
                 }
                 arrayListArr[i14].clear();
                 arrayListArr[i14].add(new b1(0, min));
@@ -144,10 +144,10 @@ public final class c1 extends f2 implements ls {
                 if (!arrayListArr[i14].isEmpty() && !arrayListArr[i21].isEmpty()) {
                     b1 b1Var = (b1) jg.g.i(1, arrayListArr[i14]);
                     b1 b1Var2 = (b1) arrayListArr[i21].get(0);
-                    int i22 = b1Var.f17314b;
-                    if (i22 > 1440 && i22 - 1439 == b1Var2.f17313a) {
-                        b1Var.f17314b = 1439;
-                        b1Var2.f17313a = 0;
+                    int i22 = b1Var.f17317b;
+                    if (i22 > 1440 && i22 - 1439 == b1Var2.f17316a) {
+                        b1Var.f17317b = 1439;
+                        b1Var2.f17316a = 0;
                     }
                 }
             }
@@ -158,21 +158,21 @@ public final class c1 extends f2 implements ls {
 
     public static String f0(ArrayList arrayList) {
         if (arrayList.isEmpty()) {
-            return hd.M0(2131752755, null);
+            return id.M0(2131752755, null);
         }
         if (h0(arrayList)) {
-            return hd.M0(2131752754, null);
+            return id.M0(2131752754, null);
         }
         String str = "";
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
             b1 b1Var = (b1) arrayList.get(i7);
             if (i7 > 0) {
-                str = rf.b.q(str, "\n");
+                str = rf.b.r(str, "\n");
             }
             StringBuilder m10 = com.google.android.recaptcha.internal.a.m(str);
-            m10.append(b1.a(b1Var.f17313a));
+            m10.append(b1.a(b1Var.f17316a));
             m10.append(" - ");
-            m10.append(b1.a(b1Var.f17314b));
+            m10.append(b1.a(b1Var.f17317b));
             str = m10.toString();
         }
         return str;
@@ -185,10 +185,10 @@ public final class c1 extends f2 implements ls {
         int i7 = 0;
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             b1 b1Var = (b1) arrayList.get(i10);
-            if (i7 < b1Var.f17313a) {
+            if (i7 < b1Var.f17316a) {
                 return false;
             }
-            i7 = b1Var.f17314b;
+            i7 = b1Var.f17317b;
         }
         if (i7 != 1439 && i7 != 1440) {
             return false;
@@ -204,27 +204,27 @@ public final class c1 extends f2 implements ls {
         ArrayList[] e02 = e0(tL_businessWorkHours.weekly_open);
         StringBuilder sb2 = new StringBuilder();
         if (user != null) {
-            sb2.append(hd.a0(null, null, 2131752759, t10.p(user)));
+            sb2.append(id.a0(null, null, 2131752759, t10.p(user)));
             sb2.append("\n");
         }
         for (int i11 = 0; i11 < 7; i11++) {
             ArrayList arrayList = e02[i11];
-            String displayName = DayOfWeek.values()[i11].getDisplayName(TextStyle.FULL, hd.E0().f22906y);
+            String displayName = DayOfWeek.values()[i11].getDisplayName(TextStyle.FULL, id.E0().f23185y);
             sb2.append(displayName.substring(0, 1).toUpperCase() + displayName.substring(1));
             sb2.append(": ");
             if (h0(arrayList)) {
-                sb2.append(hd.M0(2131752741, null));
+                sb2.append(id.M0(2131752741, null));
             } else if (arrayList.isEmpty()) {
-                sb2.append(hd.M0(2131752745, null));
+                sb2.append(id.M0(2131752745, null));
             } else {
                 for (int i12 = 0; i12 < arrayList.size(); i12++) {
                     if (i12 > 0) {
                         sb2.append(", ");
                     }
                     b1 b1Var = (b1) arrayList.get(i12);
-                    sb2.append(b1.a(b1Var.f17313a));
+                    sb2.append(b1.a(b1Var.f17316a));
                     sb2.append(" - ");
-                    sb2.append(b1.a(b1Var.f17314b));
+                    sb2.append(b1.a(b1Var.f17317b));
                 }
             }
             sb2.append("\n");
@@ -238,7 +238,7 @@ public final class c1 extends f2 implements ls {
         }
         if ((rawOffset - i10) / 60 != 0 && a10 != null) {
             x1.b(i7);
-            sb2.append(hd.a0(null, null, 2131752760, x1.e(a10, true)));
+            sb2.append(id.a0(null, null, 2131752760, x1.e(a10, true)));
         }
         return sb2.toString();
     }
@@ -246,26 +246,26 @@ public final class c1 extends f2 implements ls {
     public final void c0(int i7) {
         b1 b1Var;
         b1 b1Var2 = null;
-        if (this.f17330f[i7].isEmpty()) {
+        if (this.f17333f[i7].isEmpty()) {
             b1Var = null;
         } else {
-            b1Var = (b1) jg.g.i(1, this.f17330f[i7]);
+            b1Var = (b1) jg.g.i(1, this.f17333f[i7]);
         }
         if (b1Var != null) {
             int i10 = (i7 + 6) % 7;
-            if (!this.f17330f[i10].isEmpty()) {
-                b1Var2 = (b1) jg.g.i(1, this.f17330f[i10]);
+            if (!this.f17333f[i10].isEmpty()) {
+                b1Var2 = (b1) jg.g.i(1, this.f17333f[i10]);
             }
-            if (b1Var2 != null && b1Var2.f17314b > 1439) {
-                b1Var2.f17314b = 1439;
-                if (b1Var2.f17313a >= 1439) {
-                    this.f17330f[i10].remove(b1Var2);
+            if (b1Var2 != null && b1Var2.f17317b > 1439) {
+                b1Var2.f17317b = 1439;
+                if (b1Var2.f17316a >= 1439) {
+                    this.f17333f[i10].remove(b1Var2);
                 }
-                View B1 = this.f17326a.B1(i10);
+                View B1 = this.f17329a.B1(i10);
                 if (B1 instanceof h5) {
-                    ((h5) B1).setValue(f0(this.f17330f[i10]));
+                    ((h5) B1).setValue(f0(this.f17333f[i10]));
                 } else {
-                    this.f17326a.f37160f3.O(true);
+                    this.f17329a.f37190f3.O(true);
                 }
             }
         }
@@ -275,28 +275,28 @@ public final class c1 extends f2 implements ls {
     public final View createView(Context context) {
         setHasOwnBackground(true);
         this.simpleActionBar.setBackButtonImage(2131231240);
-        this.simpleActionBar.setTitle(hd.M0(2131752764, null));
+        this.simpleActionBar.setTitle(id.M0(2131752764, null));
         this.simpleActionBar.setActionBarMenuOnItemClick(new bi.s(this, 16));
-        this.f17327b = this.simpleActionBar.n(hd.M0(2131745947, null));
+        this.f17330b = this.simpleActionBar.n(id.M0(2131745949, null));
         d0(false);
         FrameLayout frameLayout = new FrameLayout(context);
         q41 q41Var = new q41(this, new hi.u1(this, 11), new q4(this, 24), null);
-        this.f17326a = q41Var;
+        this.f17329a = q41Var;
         q41Var.r1();
-        q41 q41Var2 = this.f17326a;
-        q41Var2.f37160f3.f35510r = false;
+        q41 q41Var2 = this.f17329a;
+        q41Var2.f37190f3.f35528r = false;
         q41Var2.setSectionsDrawBackground(true);
-        frameLayout.addView(this.f17326a, ha.c(-1.0f, -1));
+        frameLayout.addView(this.f17329a, ha.c(-1.0f, -1));
         j0();
         this.fragmentView = frameLayout;
         return frameLayout;
     }
 
     public final void d0(boolean z9) {
-        if (this.f17327b == null) {
+        if (this.f17330b == null) {
             return;
         }
-        this.f17327b.a(g0(), z9);
+        this.f17330b.a(g0(), z9);
     }
 
     @Override
@@ -304,12 +304,12 @@ public final class c1 extends f2 implements ls {
         l41 l41Var;
         if (i7 == qs.E0) {
             j0();
-        } else if (i7 == qs.f25058r3) {
-            if (this.f17329e == null) {
-                this.f17331n = x1.b(this.currentAccount).c();
+        } else if (i7 == qs.f25067r3) {
+            if (this.f17332e == null) {
+                this.f17334n = x1.b(this.currentAccount).c();
             }
-            q41 q41Var = this.f17326a;
-            if (q41Var != null && (l41Var = q41Var.f37160f3) != null) {
+            q41 q41Var = this.f17329a;
+            if (q41Var != null && (l41Var = q41Var.f37190f3) != null) {
                 l41Var.O(true);
             }
         }
@@ -321,21 +321,21 @@ public final class c1 extends f2 implements ls {
 
     @Override
     public final pj0 getListViewForSimpleGlass() {
-        return this.f17326a;
+        return this.f17329a;
     }
 
     public final void i0() {
-        if (this.f17327b.f27355y.f55395f) {
+        if (this.f17330b.f27358y.f55487f) {
             return;
         }
         if (!g0()) {
             finishFragment();
             return;
         }
-        this.f17327b.b(true);
+        this.f17330b.b(true);
         TLRPC.UserFull b22 = getMessagesController().b2(getUserConfig().e());
         TL_account.updateBusinessWorkHours updatebusinessworkhours = new TL_account.updateBusinessWorkHours();
-        ArrayList[] arrayListArr = this.f17330f;
+        ArrayList[] arrayListArr = this.f17333f;
         ArrayList arrayList = new ArrayList();
         if (arrayListArr != null) {
             for (int i7 = 0; i7 < arrayListArr.length; i7++) {
@@ -344,8 +344,8 @@ public final class c1 extends f2 implements ls {
                         b1 b1Var = (b1) arrayListArr[i7].get(i10);
                         TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen = new TL_account.TL_businessWeeklyOpen();
                         int i11 = i7 * 1440;
-                        tL_businessWeeklyOpen.start_minute = b1Var.f17313a + i11;
-                        tL_businessWeeklyOpen.end_minute = i11 + b1Var.f17314b;
+                        tL_businessWeeklyOpen.start_minute = b1Var.f17316a + i11;
+                        tL_businessWeeklyOpen.end_minute = i11 + b1Var.f17317b;
                         arrayList.add(tL_businessWeeklyOpen);
                     }
                 }
@@ -353,7 +353,7 @@ public final class c1 extends f2 implements ls {
         }
         if (this.d && !arrayList.isEmpty()) {
             TL_account.TL_businessWorkHours tL_businessWorkHours = new TL_account.TL_businessWorkHours();
-            tL_businessWorkHours.timezone_id = this.f17331n;
+            tL_businessWorkHours.timezone_id = this.f17334n;
             tL_businessWorkHours.weekly_open.addAll(arrayList);
             updatebusinessworkhours.flags |= 1;
             updatebusinessworkhours.business_work_hours = tL_businessWorkHours;
@@ -377,7 +377,7 @@ public final class c1 extends f2 implements ls {
     public final void j0() {
         boolean z9;
         l41 l41Var;
-        if (this.f17328c) {
+        if (this.f17331c) {
             return;
         }
         TLRPC.UserFull b22 = getMessagesController().b2(getUserConfig().e());
@@ -394,41 +394,41 @@ public final class c1 extends f2 implements ls {
         this.d = z9;
         if (z9) {
             String str = tL_businessWorkHours.timezone_id;
-            this.f17331n = str;
+            this.f17334n = str;
             this.h = str;
-            this.f17329e = e0(tL_businessWorkHours.weekly_open);
-            this.f17330f = e0(b22.business_work_hours.weekly_open);
+            this.f17332e = e0(tL_businessWorkHours.weekly_open);
+            this.f17333f = e0(b22.business_work_hours.weekly_open);
         } else {
             String c10 = x1.b(this.currentAccount).c();
-            this.f17331n = c10;
+            this.f17334n = c10;
             this.h = c10;
-            this.f17329e = null;
-            this.f17330f = new ArrayList[7];
+            this.f17332e = null;
+            this.f17333f = new ArrayList[7];
             int i7 = 0;
             while (true) {
-                ArrayList[] arrayListArr = this.f17330f;
+                ArrayList[] arrayListArr = this.f17333f;
                 if (i7 >= arrayListArr.length) {
                     break;
                 }
                 arrayListArr[i7] = new ArrayList();
                 if (i7 >= 0 && i7 < 5) {
-                    this.f17330f[i7].add(new b1(0, 1439));
+                    this.f17333f[i7].add(new b1(0, 1439));
                 }
                 i7++;
             }
         }
-        q41 q41Var = this.f17326a;
-        if (q41Var != null && (l41Var = q41Var.f37160f3) != null) {
+        q41 q41Var = this.f17329a;
+        if (q41Var != null && (l41Var = q41Var.f37190f3) != null) {
             l41Var.O(true);
         }
         d0(false);
-        this.f17328c = true;
+        this.f17331c = true;
     }
 
     @Override
     public final boolean onFragmentCreate() {
         x1.b(this.currentAccount).g();
-        this.f17331n = x1.b(this.currentAccount).c();
+        this.f17334n = x1.b(this.currentAccount).c();
         getNotificationCenter().c(this, qs.E0);
         return super.onFragmentCreate();
     }

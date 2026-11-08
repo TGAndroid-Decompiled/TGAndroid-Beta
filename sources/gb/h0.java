@@ -12,7 +12,7 @@ public final class h0 implements rd.a {
         me.d[] dVarArr;
         switch (this.f13695a) {
             case 0:
-                oe.p pVar = oe.p.f20933a;
+                oe.p pVar = oe.p.f20936a;
                 return new oe.h(z.f13786a);
             default:
                 ArrayList arrayList = new ArrayList(0);
@@ -20,7 +20,7 @@ public final class h0 implements rd.a {
                     arrayList = null;
                 }
                 if (arrayList == null || (dVarArr = (me.d[]) arrayList.toArray(new me.d[0])) == null) {
-                    return oe.k.f20916a;
+                    return oe.k.f20919a;
                 }
                 return dVarArr;
         }

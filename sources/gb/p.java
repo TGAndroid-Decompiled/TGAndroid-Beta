@@ -20,10 +20,10 @@ public final class p implements rd.l {
                 m1.b ex = (m1.b) obj;
                 kotlin.jvm.internal.j.e(ex, "ex");
                 Log.w("FirebaseSessions", "CorruptionException in session configs DataStore", ex);
-                return jb.j.f16625b;
+                return jb.j.f16628b;
             case 1:
                 q1.b bVar = (q1.b) obj;
-                q1.e eVar = sa.h.f54903c;
+                q1.e eVar = sa.h.f54995c;
                 long j3 = 0;
                 for (Map.Entry entry : bVar.a().entrySet()) {
                     if (entry.getValue() instanceof Set) {

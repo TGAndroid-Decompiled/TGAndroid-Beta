@@ -78,7 +78,7 @@ public final class p9 implements Runnable {
                 } catch (Exception e10) {
                     org.telegram.messenger.a8.g(e10, true);
                 }
-                launchActivity.F0(org.telegram.ui.Components.v4.E(launchActivity, org.telegram.messenger.hd.M0(2131751455, null), org.telegram.messenger.hd.M0(2131748894, null)));
+                launchActivity.F0(org.telegram.ui.Components.v4.E(launchActivity, org.telegram.messenger.id.M0(2131751455, null), org.telegram.messenger.id.M0(2131748896, null)));
                 return;
             case 2:
                 LaunchActivity launchActivity2 = (LaunchActivity) obj8;
@@ -110,26 +110,26 @@ public final class p9 implements Runnable {
                 TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode = (TLRPC.TL_inputStorePaymentAuthCode) obj3;
                 String str6 = (String) obj2;
                 TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = (TLRPC.TL_payments_canPurchaseStore) obj;
-                ce0 ce0Var = ld0Var.f47525w;
-                fi.d dVar = ld0Var.f47518b;
+                ce0 ce0Var = ld0Var.f47522w;
+                fi.d dVar = ld0Var.f47515b;
                 org.telegram.messenger.a8.b("LoginBilling canPurchaseStore returned " + tLObject3 + " " + tL_error);
                 if (tLObject3 instanceof TLRPC.TL_boolTrue) {
-                    dVar.i(org.telegram.messenger.hd.a0(null, null, 2131745968, hVar.f11154a), false, true);
+                    dVar.i(org.telegram.messenger.id.a0(null, null, 2131745970, hVar.f11154a), false, true);
                     if (i10 == 7) {
-                        H = org.telegram.messenger.hd.M0(2131745972, null);
+                        H = org.telegram.messenger.id.M0(2131745974, null);
                     } else {
-                        H = org.telegram.messenger.hd.H(',', "SMSFeePurchaseTextDays", i10);
+                        H = org.telegram.messenger.id.H(',', "SMSFeePurchaseTextDays", i10);
                     }
                     dVar.g(H, false);
                     dVar.setLoading(false);
                     dVar.setOnClickListener(new di.d0(ld0Var, lVar, tL_inputStorePaymentAuthCode, str6, tL_payments_canPurchaseStore, 14));
                     return;
                 } else if (tLObject3 instanceof TLRPC.TL_boolFalse) {
-                    ld0Var.f47520e = "RESPONSE_FALSE";
-                    new org.telegram.ui.Components.hc(ce0Var.Z, null).H(2131624011, org.telegram.messenger.hd.a0(null, null, 2131743879, "RESPONSE_FALSE"));
+                    ld0Var.f47517e = "RESPONSE_FALSE";
+                    new org.telegram.ui.Components.hc(ce0Var.Z, null).H(2131624011, org.telegram.messenger.id.a0(null, null, 2131743881, "RESPONSE_FALSE"));
                     return;
                 } else if (tL_error != null) {
-                    ld0Var.f47520e = tL_error.text;
+                    ld0Var.f47517e = tL_error.text;
                     new org.telegram.ui.Components.hc(ce0Var.Z, null).f0(tL_error, false);
                     return;
                 } else {

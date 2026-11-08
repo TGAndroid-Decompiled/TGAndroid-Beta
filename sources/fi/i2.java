@@ -31,7 +31,7 @@ public final class i2 extends f2 {
         this.f11950b = org.telegram.messenger.g0.L(44.0f);
         this.f11951c = org.telegram.messenger.g0.L(36.0f);
         int i7 = k2.f12251y1;
-        ArrayList arrayList = ui.b0(((k2) ndVar.h).f28613a).h;
+        ArrayList arrayList = ui.b0(((k2) ndVar.h).f28616a).h;
         for (int i10 = 0; i10 < Math.min(arrayList.size(), 8); i10++) {
             this.f12176o.add(ch.o0.c((TLRPC.TL_availableReaction) arrayList.get(i10)));
         }

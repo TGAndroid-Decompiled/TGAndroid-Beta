@@ -3,28 +3,28 @@ package org.telegram.ui;
 import android.os.Bundle;
 import android.view.View;
 public final class y31 implements org.telegram.ui.Components.dj0, te.b {
-    public final c51 f52067a;
+    public final c51 f52060a;
 
     public y31(c51 c51Var) {
-        this.f52067a = c51Var;
+        this.f52060a = c51Var;
     }
 
     @Override
     public void Y(int i7, float f10, float f11, te.c cVar) {
-        this.f52067a.t0();
+        this.f52060a.t0();
     }
 
     @Override
     public boolean c(int i7, View view) {
-        final c51 c51Var = this.f52067a;
-        org.telegram.ui.ActionBar.u1[] u1VarArr = c51Var.f44674g0;
+        final c51 c51Var = this.f52060a;
+        org.telegram.ui.ActionBar.u1[] u1VarArr = c51Var.f44677g0;
         g41 g41Var = c51Var.W;
         int i10 = g41Var.I;
         if (i7 >= i10 && i7 <= g41Var.J) {
-            final org.telegram.messenger.ij ijVar = ((z41) c51Var.f44697y0.get(i7 - i10)).f52472b;
+            final org.telegram.messenger.ij ijVar = ((z41) c51Var.f44700y0.get(i7 - i10)).f52452b;
             if (!ijVar.y4()) {
                 org.telegram.ui.Components.k60 H = org.telegram.ui.Components.k60.H(c51Var, view);
-                H.c(2131232378, org.telegram.messenger.hd.M0(2131743550, null), new Runnable() {
+                H.c(2131232378, org.telegram.messenger.id.M0(2131743552, null), new Runnable() {
                     @Override
                     public final void run() {
                         switch (r3) {
@@ -37,7 +37,7 @@ public final class y31 implements org.telegram.ui.Components.dj0, te.b {
                                 c51 c51Var3 = c51Var;
                                 c51Var3.getClass();
                                 Bundle bundle = new Bundle();
-                                bundle.putLong("chat_id", c51Var3.f44665b);
+                                bundle.putLong("chat_id", c51Var3.f44668b);
                                 bundle.putInt("message_id", ijVar.f1());
                                 bundle.putBoolean("need_remove_previous_same_chat_activity", false);
                                 c51Var3.presentFragment(new an(bundle), false);
@@ -45,7 +45,7 @@ public final class y31 implements org.telegram.ui.Components.dj0, te.b {
                         }
                     }
                 }, false);
-                H.c(2131232255, org.telegram.messenger.hd.M0(2131743551, null), new Runnable() {
+                H.c(2131232255, org.telegram.messenger.id.M0(2131743553, null), new Runnable() {
                     @Override
                     public final void run() {
                         switch (r3) {
@@ -58,7 +58,7 @@ public final class y31 implements org.telegram.ui.Components.dj0, te.b {
                                 c51 c51Var3 = c51Var;
                                 c51Var3.getClass();
                                 Bundle bundle = new Bundle();
-                                bundle.putLong("chat_id", c51Var3.f44665b);
+                                bundle.putLong("chat_id", c51Var3.f44668b);
                                 bundle.putInt("message_id", ijVar.f1());
                                 bundle.putBoolean("need_remove_previous_same_chat_activity", false);
                                 c51Var3.presentFragment(new an(bundle), false);
@@ -73,17 +73,17 @@ public final class y31 implements org.telegram.ui.Components.dj0, te.b {
         } else {
             int i11 = g41Var.U;
             if (i7 >= i11 && i7 <= g41Var.V) {
-                ((v41) c51Var.Q.get(i7 - i11)).c(c51Var.f44663a, c51Var, u1VarArr, true);
+                ((v41) c51Var.Q.get(i7 - i11)).c(c51Var.f44666a, c51Var, u1VarArr, true);
                 return true;
             }
             int i12 = g41Var.R;
             if (i7 >= i12 && i7 <= g41Var.S) {
-                ((v41) c51Var.O.get(i7 - i12)).c(c51Var.f44663a, c51Var, u1VarArr, true);
+                ((v41) c51Var.O.get(i7 - i12)).c(c51Var.f44666a, c51Var, u1VarArr, true);
                 return true;
             }
             int i13 = g41Var.X;
             if (i7 >= i13 && i7 <= g41Var.Y) {
-                ((v41) c51Var.P.get(i7 - i13)).c(c51Var.f44663a, c51Var, u1VarArr, true);
+                ((v41) c51Var.P.get(i7 - i13)).c(c51Var.f44666a, c51Var, u1VarArr, true);
                 return true;
             }
         }

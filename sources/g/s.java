@@ -403,7 +403,7 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
                 if (obtainStyledAttributes.hasValue(0) && (resourceId = obtainStyledAttributes.getResourceId(0, 0)) != 0) {
                     m.r a10 = m.r.a();
                     synchronized (a10) {
-                        drawable = a10.f19233a.f(resourceId, context, true);
+                        drawable = a10.f19236a.f(resourceId, context, true);
                     }
                 } else {
                     drawable = null;
@@ -462,12 +462,12 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
         this.T = true;
         ActionBarOverlayLayout actionBarOverlayLayout = (ActionBarOverlayLayout) this.f13375s;
         actionBarOverlayLayout.e();
-        ActionMenuView actionMenuView = ((m3) actionBarOverlayLayout.f1931e).f19159a.f1973a;
+        ActionMenuView actionMenuView = ((m3) actionBarOverlayLayout.f1931e).f19162a.f1973a;
         if (actionMenuView != null && (iVar = actionMenuView.J) != null) {
             iVar.f();
             m.e eVar = iVar.J;
             if (eVar != null && eVar.b()) {
-                eVar.f17731i.dismiss();
+                eVar.f17734i.dismiss();
             }
         }
         Window.Callback callback = this.f13362f.getCallback();
@@ -484,7 +484,7 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
         if (z9 && rVar.f13339a == 0 && (k1Var = this.f13375s) != null) {
             ActionBarOverlayLayout actionBarOverlayLayout = (ActionBarOverlayLayout) k1Var;
             actionBarOverlayLayout.e();
-            ActionMenuView actionMenuView = ((m3) actionBarOverlayLayout.f1931e).f19159a.f1973a;
+            ActionMenuView actionMenuView = ((m3) actionBarOverlayLayout.f1931e).f19162a.f1973a;
             if (actionMenuView != null && (iVar = actionMenuView.J) != null && iVar.g()) {
                 g(rVar.h);
                 return;
@@ -597,12 +597,12 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
                 }
                 if (viewGroup != null) {
                     i iVar = new i(this);
-                    WeakHashMap weakHashMap = i0.f54097a;
+                    WeakHashMap weakHashMap = i0.f54190a;
                     r0.a0.i(viewGroup, iVar);
                     if (this.f13375s == null) {
                         this.K = (TextView) viewGroup.findViewById(2131296714);
                     }
-                    Method method = t3.f19256a;
+                    Method method = t3.f19259a;
                     try {
                         Method method2 = viewGroup.getClass().getMethod("makeOptionalFitsSystemWindows", null);
                         if (!method2.isAccessible()) {
@@ -642,12 +642,12 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
                             b0 b0Var = this.f13370n;
                             if (b0Var != null) {
                                 m3 m3Var = (m3) b0Var.f13279e;
-                                if (!m3Var.f19164g) {
-                                    Toolbar toolbar = m3Var.f19159a;
+                                if (!m3Var.f19167g) {
+                                    Toolbar toolbar = m3Var.f19162a;
                                     m3Var.h = charSequence;
-                                    if ((m3Var.f19160b & 8) != 0) {
+                                    if ((m3Var.f19163b & 8) != 0) {
                                         toolbar.setTitle(charSequence);
-                                        if (m3Var.f19164g) {
+                                        if (m3Var.f19167g) {
                                             i0.k(toolbar.getRootView(), charSequence);
                                         }
                                     }
@@ -663,7 +663,7 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
                     ContentFrameLayout contentFrameLayout2 = (ContentFrameLayout) this.J.findViewById(16908290);
                     View decorView = this.f13362f.getDecorView();
                     contentFrameLayout2.h.set(decorView.getPaddingLeft(), decorView.getPaddingTop(), decorView.getPaddingRight(), decorView.getPaddingBottom());
-                    WeakHashMap weakHashMap2 = i0.f54097a;
+                    WeakHashMap weakHashMap2 = i0.f54190a;
                     if (contentFrameLayout2.isLaidOut()) {
                         contentFrameLayout2.requestLayout();
                     }
@@ -786,7 +786,7 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
         this.f13366i0 = (1 << i7) | this.f13366i0;
         if (!this.f13365h0) {
             View decorView = this.f13362f.getDecorView();
-            WeakHashMap weakHashMap = i0.f54097a;
+            WeakHashMap weakHashMap = i0.f54190a;
             decorView.postOnAnimation(this.f13367j0);
             this.f13365h0 = true;
         }
@@ -811,14 +811,14 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
                 return true;
             }
             b0 p10 = p();
-            if (p10 == null || (l1Var = p10.f13279e) == null || (h3Var = ((m3) l1Var).f19159a.f1981e0) == null || h3Var.f19117b == null) {
+            if (p10 == null || (l1Var = p10.f13279e) == null || (h3Var = ((m3) l1Var).f19162a.f1981e0) == null || h3Var.f19120b == null) {
                 return false;
             }
-            h3 h3Var2 = ((m3) l1Var).f19159a.f1981e0;
+            h3 h3Var2 = ((m3) l1Var).f19162a.f1981e0;
             if (h3Var2 == null) {
                 mVar = null;
             } else {
-                mVar = h3Var2.f19117b;
+                mVar = h3Var2.f19120b;
             }
             if (mVar != null) {
                 mVar.collapseActionView();

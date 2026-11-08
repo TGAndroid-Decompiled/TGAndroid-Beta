@@ -60,7 +60,7 @@ public class VoIPDebugToSend {
 
     public void lambda$done$2(Data data, File file, TL_phone.saveCallDebug savecalldebug) {
         File file2 = new File(data.logPath);
-        Typeface typeface = org.telegram.messenger.g0.f22516a;
+        Typeface typeface = org.telegram.messenger.g0.f22535a;
         try {
             BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(file2));
             GZIPOutputStream gZIPOutputStream = new GZIPOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
@@ -84,11 +84,11 @@ public class VoIPDebugToSend {
     }
 
     public void lambda$done$3(Data data, TL_phone.saveCallDebug savecalldebug, TLObject tLObject, TLRPC.TL_error tL_error) {
-        if (r2.f25199a) {
+        if (r2.f25212a) {
             a8.b("Sent debug logs, response = " + tLObject);
         }
         if ((tLObject instanceof TLRPC.TL_boolFalse) && !TextUtils.isEmpty(data.logPath)) {
-            Utilities.f21335g.c(new l(this, data, new File(a8.p0.s(new StringBuilder(), data.logPath, ".gzip")), savecalldebug, 0));
+            Utilities.f21338g.c(new l(this, data, new File(a8.p0.s(new StringBuilder(), data.logPath, ".gzip")), savecalldebug, 0));
         }
     }
 
@@ -102,7 +102,7 @@ public class VoIPDebugToSend {
             TLRPC.TL_inputPhoneCall tL_inputPhoneCall = new TLRPC.TL_inputPhoneCall();
             savecalldebug.peer = tL_inputPhoneCall;
             tL_inputPhoneCall.access_hash = remove.access_hash;
-            tL_inputPhoneCall.f27018id = remove.callId;
+            tL_inputPhoneCall.f27021id = remove.callId;
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(savecalldebug, new n(this, remove, savecalldebug, 0));
         }
     }

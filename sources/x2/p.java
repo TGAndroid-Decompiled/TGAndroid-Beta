@@ -5,21 +5,21 @@ import androidx.media3.exoplayer.hls.HlsMediaSource$Factory;
 import java.lang.reflect.GenericDeclaration;
 import java.util.HashMap;
 public final class p {
-    public final f3.m f58341a;
+    public final f3.m f58430a;
     public j2.n d;
-    public w7.s f58345f;
-    public final HashMap f58342b = new HashMap();
-    public final HashMap f58343c = new HashMap();
-    public boolean f58344e = true;
-    public int f58346g = 3;
+    public w7.s f58434f;
+    public final HashMap f58431b = new HashMap();
+    public final HashMap f58432c = new HashMap();
+    public boolean f58433e = true;
+    public int f58435g = 3;
 
     public p(f3.m mVar, w7.s sVar) {
-        this.f58341a = mVar;
-        this.f58345f = sVar;
+        this.f58430a = mVar;
+        this.f58434f = sVar;
     }
 
     public static void a(p pVar) {
-        f3.m mVar = pVar.f58341a;
+        f3.m mVar = pVar.f58430a;
         synchronized (mVar) {
             mVar.f11067f = 1;
         }
@@ -29,13 +29,13 @@ public final class p {
         g9.u uVar;
         g9.u mVar;
         Integer valueOf = Integer.valueOf(i7);
-        HashMap hashMap = this.f58343c;
+        HashMap hashMap = this.f58432c;
         f0 f0Var = (f0) hashMap.get(valueOf);
         if (f0Var != null) {
             return f0Var;
         }
         Integer valueOf2 = Integer.valueOf(i7);
-        HashMap hashMap2 = this.f58342b;
+        HashMap hashMap2 = this.f58431b;
         g9.u uVar2 = (g9.u) hashMap2.get(valueOf2);
         if (uVar2 == null) {
             final j2.n nVar = this.d;
@@ -56,7 +56,7 @@ public final class p {
                                             case 2:
                                                 return q.e((Class) this, nVar);
                                             default:
-                                                return new x0(nVar, ((p) this).f58341a);
+                                                return new x0(nVar, ((p) this).f58430a);
                                         }
                                     }
                                 };
@@ -80,7 +80,7 @@ public final class p {
                                     case 2:
                                         return q.e((Class) asSubclass, nVar);
                                     default:
-                                        return new x0(nVar, ((p) asSubclass).f58341a);
+                                        return new x0(nVar, ((p) asSubclass).f58430a);
                                 }
                             }
                         };
@@ -98,7 +98,7 @@ public final class p {
                                 case 2:
                                     return q.e((Class) asSubclass2, nVar);
                                 default:
-                                    return new x0(nVar, ((p) asSubclass2).f58341a);
+                                    return new x0(nVar, ((p) asSubclass2).f58430a);
                             }
                         }
                     };
@@ -117,7 +117,7 @@ public final class p {
                             case 2:
                                 return q.e((Class) asSubclass3, nVar);
                             default:
-                                return new x0(nVar, ((p) asSubclass3).f58341a);
+                                return new x0(nVar, ((p) asSubclass3).f58430a);
                         }
                     }
                 };
@@ -125,9 +125,9 @@ public final class p {
             hashMap2.put(Integer.valueOf(i7), uVar2);
         }
         f0 f0Var2 = (f0) uVar2.get();
-        f0Var2.a(this.f58345f);
-        f0Var2.c(this.f58344e);
-        f0Var2.d(this.f58346g);
+        f0Var2.a(this.f58434f);
+        f0Var2.c(this.f58433e);
+        f0Var2.d(this.f58435g);
         hashMap.put(Integer.valueOf(i7), f0Var2);
         return f0Var2;
     }

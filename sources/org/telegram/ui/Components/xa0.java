@@ -7,42 +7,42 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 public final class xa0 extends Drawable {
-    public wa0 f40256a;
-    public final Paint f40257b;
-    public int f40258c;
+    public wa0 f40277a;
+    public final Paint f40278b;
+    public int f40279c;
     public int d;
-    public final long f40259e;
-    public int f40260f;
+    public final long f40280e;
+    public int f40281f;
 
     public xa0() {
         Paint paint = new Paint(1);
-        this.f40257b = paint;
-        this.f40258c = 255;
+        this.f40278b = paint;
+        this.f40279c = 255;
         this.d = 255;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeWidth(org.telegram.messenger.g0.L(1.0f));
-        this.f40259e = System.currentTimeMillis();
+        this.f40280e = System.currentTimeMillis();
     }
 
     public final void a(int i7) {
-        if (i7 != this.f40260f) {
+        if (i7 != this.f40281f) {
             int alpha = Color.alpha(i7);
             this.d = alpha;
-            this.f40257b.setColor(i0.a.o(i7, (int) ((alpha / 255.0f) * this.f40258c)));
+            this.f40278b.setColor(i0.a.o(i7, (int) ((alpha / 255.0f) * this.f40279c)));
         }
-        this.f40260f = i7;
+        this.f40281f = i7;
     }
 
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
         int min = Math.min(bounds.width(), bounds.height());
-        Paint paint = this.f40257b;
+        Paint paint = this.f40278b;
         canvas.drawCircle(bounds.centerX(), bounds.centerY(), (min >> 1) - org.telegram.messenger.g0.L(0.5f), paint);
         long currentTimeMillis = System.currentTimeMillis();
         canvas.save();
-        long j3 = this.f40259e;
+        long j3 = this.f40280e;
         canvas.rotate(((((float) (currentTimeMillis - j3)) % 1500.0f) * 360.0f) / 1500.0f, bounds.centerX(), bounds.centerY());
         canvas.drawLine(bounds.centerX(), bounds.centerY(), bounds.centerX(), bounds.centerY() - org.telegram.messenger.g0.L(3.0f), paint);
         canvas.restore();
@@ -54,10 +54,10 @@ public final class xa0 extends Drawable {
 
     @Override
     public final Drawable.ConstantState getConstantState() {
-        if (this.f40256a == null) {
-            this.f40256a = new Drawable.ConstantState();
+        if (this.f40277a == null) {
+            this.f40277a = new Drawable.ConstantState();
         }
-        return this.f40256a;
+        return this.f40277a;
     }
 
     @Override
@@ -77,9 +77,9 @@ public final class xa0 extends Drawable {
 
     @Override
     public final void setAlpha(int i7) {
-        if (this.f40258c != i7) {
-            this.f40258c = i7;
-            this.f40257b.setAlpha((int) ((this.d / 255.0f) * i7));
+        if (this.f40279c != i7) {
+            this.f40279c = i7;
+            this.f40278b.setAlpha((int) ((this.d / 255.0f) * i7));
         }
     }
 

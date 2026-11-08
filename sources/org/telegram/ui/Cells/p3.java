@@ -9,7 +9,7 @@ import org.telegram.ui.Components.q41;
 import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.x31;
 public final class p3 extends w31 {
-    public static final int f29731b = 0;
+    public static final int f29734b = 0;
 
     static {
         w31.h(new w31());
@@ -18,8 +18,8 @@ public final class p3 extends w31 {
     @Override
     public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
         q3 q3Var = (q3) view;
-        q3Var.a((TLRPC.StickerSetCovered) x31Var.G, z9, x31Var.f40167t, false);
-        q3Var.f30114f.a(x31Var.f40167t, false);
+        q3Var.a((TLRPC.StickerSetCovered) x31Var.G, z9, x31Var.f40188t, false);
+        q3Var.f30118f.a(x31Var.f40188t, false);
         q3Var.setAddOnClickListener(x31Var.D);
     }
 

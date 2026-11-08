@@ -9,19 +9,19 @@ import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.pj0;
 public abstract class a extends FrameLayout implements l0 {
-    public final f6 f56429a;
-    public final pj0 f56430b;
-    public final v4.b0 f56431c;
+    public final f6 f56521a;
+    public final pj0 f56522b;
+    public final v4.b0 f56523c;
 
     public a(Context context, f6 f6Var) {
         super(context);
-        this.f56429a = f6Var;
+        this.f56521a = f6Var;
         pj0 pj0Var = new pj0(context, f6Var);
-        this.f56430b = pj0Var;
+        this.f56522b = pj0Var;
         pj0Var.setNestedScrollingEnabled(true);
         pj0Var.setAdapter(a());
         v4.b0 b0Var = new v4.b0(1, false);
-        this.f56431c = b0Var;
+        this.f56523c = b0Var;
         pj0Var.setLayoutManager(b0Var);
         pj0Var.setClipToPadding(false);
         addView(pj0Var, ha.c(-1.0f, -1));
@@ -32,9 +32,9 @@ public abstract class a extends FrameLayout implements l0 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        Paint W0 = k6.W0("paintDivider", this.f56429a);
+        Paint W0 = k6.W0("paintDivider", this.f56521a);
         if (W0 == null) {
-            W0 = k6.f27972k0;
+            W0 = k6.f27975k0;
         }
         canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, W0);
     }
@@ -42,14 +42,14 @@ public abstract class a extends FrameLayout implements l0 {
     @Override
     public void setOffset(float f10) {
         if (Math.abs(f10 / getMeasuredWidth()) == 1.0f) {
-            pj0 pj0Var = this.f56430b;
-            if (pj0Var.K(0) == null || pj0Var.K(0).f56951a.getTop() != pj0Var.getPaddingTop()) {
+            pj0 pj0Var = this.f56522b;
+            if (pj0Var.K(0) == null || pj0Var.K(0).f57043a.getTop() != pj0Var.getPaddingTop()) {
                 pj0Var.v0(0);
             }
         }
     }
 
     public void setTopOffset(int i7) {
-        this.f56430b.setPadding(0, i7, 0, 0);
+        this.f56522b.setPadding(0, i7, 0, 0);
     }
 }

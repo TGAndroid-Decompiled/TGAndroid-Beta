@@ -11,7 +11,7 @@ import android.widget.TextView;
 import c8.ha;
 import fi.h9;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.k5;
 import org.telegram.messenger.qp;
 import org.telegram.messenger.t10;
@@ -29,7 +29,7 @@ import org.telegram.ui.Components.r2;
 import org.telegram.ui.Components.w8;
 import org.telegram.ui.Components.xq;
 public final class i0 extends na {
-    public static final int f17397c2 = -1;
+    public static final int f17400c2 = -1;
     public static final int d2 = -2;
     public final TL_account.TL_connectedBot P1;
     public final TLRPC.User Q1;
@@ -42,17 +42,17 @@ public final class i0 extends na {
     public boolean X1;
     public Boolean Y1;
     public int Z1;
-    public int f17398a2;
-    public int f17399b2;
+    public int f17401a2;
+    public int f17402b2;
 
     public i0(Activity activity, TL_account.TL_connectedBot tL_connectedBot, r2 r2Var, f6 f6Var) {
         super(2, (Context) activity, f6Var, false);
         this.P1 = tL_connectedBot;
-        TLRPC.User a22 = qp.s1(this.f28613a).a2(Long.valueOf(tL_connectedBot.bot_id));
+        TLRPC.User a22 = qp.s1(this.f28616a).a2(Long.valueOf(tL_connectedBot.bot_id));
         this.Q1 = a22;
         this.B1 = org.telegram.messenger.g0.L(36.0f);
-        this.f36266r1 = 0.15f;
-        a0 a0Var = new a0(activity, this.f28613a, new h9(this, 24), f6Var);
+        this.f36282r1 = 0.15f;
+        a0 a0Var = new a0(activity, this.f28616a, new h9(this, 24), f6Var);
         this.R1 = a0Var;
         TL_account.TL_businessBotRecipients tL_businessBotRecipients = tL_connectedBot.recipients;
         this.X1 = tL_businessBotRecipients.exclude_selected;
@@ -76,8 +76,8 @@ public final class i0 extends na {
         this.l1.setTitle(t10.p(a22));
         TextView textView2 = new TextView(activity);
         textView2.setTextSize(1, 14.0f);
-        r6.V(textView2, k6.f28241y6, f6Var);
-        k5.m(textView2, 17, null, 2131745561);
+        r6.V(textView2, k6.f28244y6, f6Var);
+        k5.m(textView2, 17, null, 2131745563);
         linearLayout.addView(textView2, ha.s(-1, -2, 1, 32.0f, 0.0f, 32.0f, 3.66f));
         String n10 = t10.n(a22);
         if (!TextUtils.isEmpty(n10)) {
@@ -88,15 +88,15 @@ public final class i0 extends na {
             textView3.setGravity(17);
             linearLayout.addView(textView3, ha.t(-1, -2, 1, 32, 0, 32, 18));
         }
-        int i7 = k6.f27793a7;
+        int i7 = k6.f27796a7;
         v0(k6.w0(i7, this.I0));
         P(i7);
         this.Z1 = this.G0;
-        pj0 pj0Var = this.f36261k1;
-        int i10 = this.f28646t0;
+        pj0 pj0Var = this.f36277k1;
+        int i10 = this.f28649t0;
         pj0Var.setPadding(i10, 0, i10, org.telegram.messenger.g0.L(72.0f));
-        this.f36261k1.r1();
-        this.f36261k1.setOnItemClickListener(new ai.k(this, 16));
+        this.f36277k1.r1();
+        this.f36277k1.setOnItemClickListener(new ai.k(this, 16));
         FrameLayout frameLayout = new FrameLayout(activity);
         this.T1 = frameLayout;
         frameLayout.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f));
@@ -105,30 +105,30 @@ public final class i0 extends na {
         dVar.setRoundRadius(24);
         this.U1 = dVar;
         int w02 = k6.w0(k6.kk, this.I0);
-        this.f17399b2 = w02;
+        this.f17402b2 = w02;
         dVar.setColor(w02);
-        dVar.setText(hd.M0(2131744206, null));
+        dVar.setText(id.M0(2131744208, null));
         dVar.setOnClickListener(new ah.g(this, tL_connectedBot, r2Var, 12));
         frameLayout.addView(dVar, ha.d(-1, 48.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
         fi.d dVar2 = new fi.d(activity, f6Var, true);
         dVar2.setRoundRadius(24);
         this.V1 = dVar2;
-        dVar2.setText(hd.M0(2131752785, null));
+        dVar2.setText(id.M0(2131752785, null));
         dVar2.setOnClickListener(new bi.r(20, this, tL_connectedBot));
         frameLayout.addView(dVar2, ha.d(-1, 48.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
         d1(false);
         FrameLayout.LayoutParams e10 = ha.e(-1, -2, 80);
         int i11 = e10.leftMargin;
-        int i12 = this.f28646t0;
+        int i12 = this.f28649t0;
         e10.leftMargin = i11 + i12;
         e10.rightMargin += i12;
-        this.f28616b.addView(frameLayout, e10);
+        this.f28619b.addView(frameLayout, e10);
         v4.k kVar = new v4.k();
-        kVar.f56978m = false;
+        kVar.f57070m = false;
         kVar.C = false;
         kVar.o(xq.h);
         kVar.n(350L);
-        this.f36261k1.setItemAnimator(kVar);
+        this.f36277k1.setItemAnimator(kVar);
         l41 l41Var = this.W1;
         if (l41Var != null) {
             l41Var.O(false);
@@ -150,14 +150,14 @@ public final class i0 extends na {
         if (a0Var != null && a0Var.g()) {
             return false;
         }
-        return this.f28620c0;
+        return this.f28623c0;
     }
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        l41 l41Var = new l41(pj0Var, getContext(), this.f28613a, 0, true, new hi.u1(this, 7), this.I0);
+        l41 l41Var = new l41(pj0Var, getContext(), this.f28616a, 0, true, new hi.u1(this, 7), this.I0);
         this.W1 = l41Var;
-        l41Var.f35510r = false;
+        l41Var.f35528r = false;
         return l41Var;
     }
 
@@ -270,10 +270,10 @@ public final class i0 extends na {
         ViewPropertyAnimator duration = scaleX.scaleY(f12).setDuration(320L);
         xq xqVar = xq.h;
         duration.setInterpolator(xqVar).withEndAction(new Runnable(this) {
-            public final i0 f17394b;
+            public final i0 f17397b;
 
             {
-                this.f17394b = this;
+                this.f17397b = this;
             }
 
             @Override
@@ -281,7 +281,7 @@ public final class i0 extends na {
                 switch (r3) {
                     case 0:
                         boolean z11 = z10;
-                        i0 i0Var = this.f17394b;
+                        i0 i0Var = this.f17397b;
                         if (!z11) {
                             i0Var.V1.setVisibility(8);
                             return;
@@ -291,7 +291,7 @@ public final class i0 extends na {
                         }
                     default:
                         boolean z12 = z10;
-                        i0 i0Var2 = this.f17394b;
+                        i0 i0Var2 = this.f17397b;
                         if (z12) {
                             i0Var2.U1.setVisibility(8);
                             return;
@@ -318,10 +318,10 @@ public final class i0 extends na {
             f19 = 1.0f;
         }
         scaleX2.scaleY(f19).setDuration(320L).setInterpolator(xqVar).withEndAction(new Runnable(this) {
-            public final i0 f17394b;
+            public final i0 f17397b;
 
             {
-                this.f17394b = this;
+                this.f17397b = this;
             }
 
             @Override
@@ -329,7 +329,7 @@ public final class i0 extends na {
                 switch (r3) {
                     case 0:
                         boolean z11 = z10;
-                        i0 i0Var = this.f17394b;
+                        i0 i0Var = this.f17397b;
                         if (!z11) {
                             i0Var.V1.setVisibility(8);
                             return;
@@ -339,7 +339,7 @@ public final class i0 extends na {
                         }
                     default:
                         boolean z12 = z10;
-                        i0 i0Var2 = this.f17394b;
+                        i0 i0Var2 = this.f17397b;
                         if (z12) {
                             i0Var2.U1.setVisibility(8);
                             return;
@@ -357,10 +357,10 @@ public final class i0 extends na {
         int i7;
         try {
             super.s0();
-            int i10 = k6.f27793a7;
+            int i10 = k6.f27796a7;
             int w02 = k6.w0(i10, this.I0);
-            if (w02 != this.f17398a2) {
-                this.f17398a2 = w02;
+            if (w02 != this.f17401a2) {
+                this.f17401a2 = w02;
                 v0(w02);
                 FrameLayout frameLayout = this.T1;
                 if (frameLayout != null) {
@@ -369,8 +369,8 @@ public final class i0 extends na {
             }
             int w03 = k6.w0(k6.kk, this.I0);
             fi.d dVar = this.U1;
-            if (dVar != null && w03 != this.f17399b2) {
-                this.f17399b2 = w03;
+            if (dVar != null && w03 != this.f17402b2) {
+                this.f17402b2 = w03;
                 dVar.setColor(w03);
             }
             int w04 = k6.w0(i10, this.I0);

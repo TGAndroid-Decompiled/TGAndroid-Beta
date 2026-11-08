@@ -2,6 +2,7 @@ package rf;
 
 import android.media.MediaMetadataRetriever;
 import android.os.Bundle;
+import android.util.Log;
 import com.google.android.gms.internal.cast.f4;
 import j$.util.DesugarCollections;
 import java.util.HashMap;
@@ -24,7 +25,7 @@ public abstract class b {
             return 0;
         }
         try {
-            return u(str);
+            return v(str);
         } catch (IllegalArgumentException unused) {
             return 0;
         }
@@ -356,15 +357,20 @@ public abstract class b {
         }
     }
 
-    public static void p(HashMap hashMap) {
+    public static void p(StringBuilder sb2, String str, String str2) {
+        sb2.append(str);
+        Log.d(str2, sb2.toString());
+    }
+
+    public static void q(HashMap hashMap) {
         DesugarCollections.unmodifiableMap(new HashMap(hashMap));
     }
 
-    public static String q(String str, String str2) {
+    public static String r(String str, String str2) {
         return str + str2;
     }
 
-    public static String r(int i7) {
+    public static String s(int i7) {
         switch (i7) {
             case 1:
                 return "IDLE";
@@ -391,7 +397,7 @@ public abstract class b {
         }
     }
 
-    public static String s(int i7) {
+    public static String t(int i7) {
         if (i7 != 1) {
             if (i7 != 2) {
                 if (i7 != 3) {
@@ -407,7 +413,7 @@ public abstract class b {
         return "TRIMMED";
     }
 
-    public static String t(int i7) {
+    public static String u(int i7) {
         switch (i7) {
             case 1:
                 return "IDLE";
@@ -434,7 +440,7 @@ public abstract class b {
         }
     }
 
-    public static int u(String str) {
+    public static int v(String str) {
         if (str != null) {
             if (str.equals("GET")) {
                 return 1;

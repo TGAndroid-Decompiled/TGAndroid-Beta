@@ -8,7 +8,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.hc;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.p10;
-import org.telegram.messenger.rc;
+import org.telegram.messenger.sc;
 import org.telegram.messenger.ui;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.i5;
@@ -30,7 +30,7 @@ public final class d {
     public long f6226l;
 
     public static d a(i5 i5Var, boolean z9, boolean z10) {
-        int i7 = p10.f24467s0;
+        int i7 = p10.f24470s0;
         ?? obj = new Object();
         obj.f6218b = new Rect();
         obj.f6219c = new ArrayList();
@@ -41,11 +41,11 @@ public final class d {
         obj.h = i7;
         obj.f6223i = z10;
         obj.f6220e = System.currentTimeMillis();
-        if (z10 && rc.e(4112)) {
+        if (z10 && sc.e(4112)) {
             ImageReceiver imageReceiver = new ImageReceiver(null);
             obj.f6224j = imageReceiver;
             if (z9) {
-                imageReceiver.f21177b = true;
+                imageReceiver.f21180b = true;
             }
         }
         return obj;
@@ -93,15 +93,15 @@ public final class d {
         ImageReceiver imageReceiver = this.f6224j;
         if (imageReceiver != null && this.f6223i) {
             imageReceiver.P();
-            TLRPC.Document document2 = i5Var.f34492e;
+            TLRPC.Document document2 = i5Var.f34536e;
             TLRPC.TL_messages_stickerSet tL_messages_stickerSet = null;
             String V = ij.V(document2, null, null);
-            if (V != null && (tL_availableReaction = (TLRPC.TL_availableReaction) ui.b0(i7).f25833r.get(V)) != null && (document = tL_availableReaction.around_animation) != null) {
+            if (V != null && (tL_availableReaction = (TLRPC.TL_availableReaction) ui.b0(i7).f25836r.get(V)) != null && (document = tL_availableReaction.around_animation) != null) {
                 if (z11) {
                     StringBuilder sb2 = new StringBuilder();
                     int i10 = f6216m;
                     f6216m = i10 + 1;
-                    imageReceiver.f21222v1 = a8.p0.n(i10, " ", sb2);
+                    imageReceiver.f21225v1 = a8.p0.n(i10, " ", sb2);
                     int f10 = ix.f();
                     TLRPC.Document document3 = tL_availableReaction.around_animation;
                     z9 = true;
@@ -119,19 +119,19 @@ public final class d {
                 z10 = false;
             }
             if (!z10) {
-                String str = p10.i(i7).f24475d0;
+                String str = p10.i(i7).f24478d0;
                 if (str != null && (tL_messages_stickerSet = ui.b0(i7).p0(str)) == null) {
                     tL_messages_stickerSet = ui.b0(i7).n0(str);
                 }
                 if (tL_messages_stickerSet != null) {
                     if (this.f6225k < 0) {
-                        this.f6225k = Math.abs(((int) Utilities.f21332c.nextLong()) % tL_messages_stickerSet.documents.size());
+                        this.f6225k = Math.abs(((int) Utilities.f21335c.nextLong()) % tL_messages_stickerSet.documents.size());
                     }
                     if (z11) {
                         StringBuilder sb3 = new StringBuilder();
                         int i11 = f6216m;
                         f6216m = i11 + 1;
-                        imageReceiver.f21222v1 = a8.p0.n(i11, " ", sb3);
+                        imageReceiver.f21225v1 = a8.p0.n(i11, " ", sb3);
                         int f11 = ix.f();
                         imageReceiver.q0(hc.b(tL_messages_stickerSet.documents.get(this.f6225k)), f11 + "_" + f11 + "_pcache_compress", null, null, tL_messages_stickerSet.documents.get(this.f6225k), 0);
                     } else {

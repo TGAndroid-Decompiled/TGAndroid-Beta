@@ -40,7 +40,7 @@ public final class l2 extends s2 {
     public final void onConfigurationChanged(Configuration configuration) {
         v2 v2Var = this.H;
         v2Var.h = null;
-        v2Var.f28619c.requestApplyInsets();
+        v2Var.f28622c.requestApplyInsets();
     }
 
     @Override

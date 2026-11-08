@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.ej;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ls;
 import org.telegram.messenger.p10;
 import org.telegram.messenger.qs;
@@ -32,38 +32,38 @@ public class z7 extends FrameLayout implements ls, rg.c {
     public int K;
     public boolean L;
     public final org.telegram.ui.ActionBar.f6 M;
-    public final y7 f30968a;
-    public final ug.z0 f30969b;
-    public TLRPC.Document f30970c;
+    public final y7 f30972a;
+    public final ug.z0 f30973b;
+    public TLRPC.Document f30974c;
     public zy d;
-    public Object f30971e;
-    public String f30972f;
+    public Object f30975e;
+    public String f30976f;
     public final TextView h;
-    public float f30973n;
-    public boolean f30974r;
-    public long f30975s;
-    public boolean f30976w;
-    public float f30977x;
-    public long f30978y;
+    public float f30977n;
+    public boolean f30978r;
+    public long f30979s;
+    public boolean f30980w;
+    public float f30981x;
+    public long f30982y;
 
     public z7(Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z9) {
         super(context);
-        this.f30973n = 1.0f;
-        this.E = p10.f24467s0;
+        this.f30977n = 1.0f;
+        this.E = p10.f24470s0;
         this.H = 1.0f;
         this.M = f6Var;
         this.F = z9;
         y7 y7Var = new y7(this, f6Var);
-        this.f30968a = y7Var;
+        this.f30972a = y7Var;
         y7Var.R0 = true;
-        y7Var.f21233z1 = true;
+        y7Var.f21236z1 = true;
         y7Var.E0(1);
         TextView textView = new TextView(context);
         this.h = textView;
         textView.setTextSize(1, 16.0f);
         new Paint(1).setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Ci, false));
         ug.z0 z0Var = new ug.z0(1, context, null);
-        this.f30969b = z0Var;
+        this.f30973b = z0Var;
         z0Var.setImageReceiver(y7Var);
         z0Var.setPadding(org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f));
         z0Var.setImageReceiver(y7Var);
@@ -73,7 +73,7 @@ public class z7 extends FrameLayout implements ls, rg.c {
         imageView.setImageResource(2131231965);
         imageView.setPadding(org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f));
         int L = org.telegram.messenger.g0.L(12.0f);
-        int i7 = org.telegram.ui.ActionBar.k6.f28088q5;
+        int i7 = org.telegram.ui.ActionBar.k6.f28091q5;
         ShapeDrawable d02 = org.telegram.ui.ActionBar.k6.d0(L, org.telegram.ui.ActionBar.k6.w0(i7, f6Var));
         org.telegram.ui.ActionBar.n6 N2 = org.telegram.ui.ActionBar.r6.N(i7);
         imageView.setBackground(d02);
@@ -86,7 +86,7 @@ public class z7 extends FrameLayout implements ls, rg.c {
     public final void a(boolean z9) {
         ImageView imageView = this.J;
         if (z9) {
-            imageView.animate().alpha(0.0f).scaleX(0.4f).scaleY(0.4f).setDuration(200L).setInterpolator(xq.f40345f).start();
+            imageView.animate().alpha(0.0f).scaleX(0.4f).scaleY(0.4f).setDuration(200L).setInterpolator(xq.f40366f).start();
         } else {
             imageView.setAlpha(0.0f);
         }
@@ -94,41 +94,41 @@ public class z7 extends FrameLayout implements ls, rg.c {
 
     public final void b(Canvas canvas, ViewGroup viewGroup) {
         boolean z9;
-        boolean z10 = this.f30974r;
+        boolean z10 = this.f30978r;
         float f10 = this.H;
-        y7 y7Var = this.f30968a;
-        if (z10 || (((z9 = this.f30976w) && this.f30977x != 0.8f) || (!z9 && this.f30977x != 1.0f))) {
+        y7 y7Var = this.f30972a;
+        if (z10 || (((z9 = this.f30980w) && this.f30981x != 0.8f) || (!z9 && this.f30981x != 1.0f))) {
             long currentTimeMillis = System.currentTimeMillis();
-            long j3 = currentTimeMillis - this.f30975s;
-            this.f30975s = currentTimeMillis;
-            if (this.f30974r) {
-                long j10 = this.f30978y + j3;
-                this.f30978y = j10;
+            long j3 = currentTimeMillis - this.f30979s;
+            this.f30979s = currentTimeMillis;
+            if (this.f30978r) {
+                long j10 = this.f30982y + j3;
+                this.f30982y = j10;
                 if (j10 > 1050) {
-                    this.f30978y = 1050L;
+                    this.f30982y = 1050L;
                 }
-                float interpolation = (N.getInterpolation(((float) this.f30978y) / 150.0f) * 0.5f) + 0.5f;
-                this.f30973n = interpolation;
+                float interpolation = (N.getInterpolation(((float) this.f30982y) / 150.0f) * 0.5f) + 0.5f;
+                this.f30977n = interpolation;
                 if (interpolation >= 1.0f) {
-                    this.f30974r = false;
-                    this.f30973n = 1.0f;
+                    this.f30978r = false;
+                    this.f30977n = 1.0f;
                 }
-                y7Var.setAlpha(this.f30973n * f10);
+                y7Var.setAlpha(this.f30977n * f10);
             } else {
-                if (this.f30976w) {
-                    float f11 = this.f30977x;
+                if (this.f30980w) {
+                    float f11 = this.f30981x;
                     if (f11 != 0.8f) {
                         float f12 = f11 - (((float) j3) / 400.0f);
-                        this.f30977x = f12;
+                        this.f30981x = f12;
                         if (f12 < 0.8f) {
-                            this.f30977x = 0.8f;
+                            this.f30981x = 0.8f;
                         }
                     }
                 }
-                float f13 = (((float) j3) / 400.0f) + this.f30977x;
-                this.f30977x = f13;
+                float f13 = (((float) j3) / 400.0f) + this.f30981x;
+                this.f30981x = f13;
                 if (f13 > 1.0f) {
-                    this.f30977x = 1.0f;
+                    this.f30981x = 1.0f;
                 }
             }
             viewGroup.invalidate();
@@ -139,10 +139,10 @@ public class z7 extends FrameLayout implements ls, rg.c {
         float f15 = f14 / 2.0f;
         float measuredHeight = getMeasuredHeight() >> 1;
         y7Var.y0(measuredWidth - f15, measuredHeight - f15, f14, f14);
-        y7Var.setAlpha(this.f30973n * f10);
-        if (this.f30977x != 1.0f) {
+        y7Var.setAlpha(this.f30977n * f10);
+        if (this.f30981x != 1.0f) {
             canvas.save();
-            float f16 = this.f30977x;
+            float f16 = this.f30981x;
             canvas.scale(f16, f16, measuredWidth, measuredHeight);
             y7Var.h(canvas, null);
             canvas.restore();
@@ -157,7 +157,7 @@ public class z7 extends FrameLayout implements ls, rg.c {
             imageView.setAlpha(0.0f);
             imageView.setScaleX(0.4f);
             imageView.setScaleY(0.4f);
-            imageView.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(200L).setInterpolator(xq.f40345f).start();
+            imageView.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(200L).setInterpolator(xq.f40366f).start();
             return;
         }
         imageView.setAlpha(1.0f);
@@ -171,7 +171,7 @@ public class z7 extends FrameLayout implements ls, rg.c {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == qs.f24992f5) {
+        if (i7 == qs.f25001f5) {
             e(true);
         }
     }
@@ -190,7 +190,7 @@ public class z7 extends FrameLayout implements ls, rg.c {
         } else {
             this.I = false;
         }
-        ug.z0 z0Var = this.f30969b;
+        ug.z0 z0Var = this.f30973b;
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) z0Var.getLayoutParams();
         int i7 = this.E;
         if (!p10.i(i7).q()) {
@@ -216,38 +216,38 @@ public class z7 extends FrameLayout implements ls, rg.c {
     }
 
     public String getEmoji() {
-        return this.f30972f;
+        return this.f30976f;
     }
 
     public ImageReceiver getImageView() {
-        return this.f30968a;
+        return this.f30972a;
     }
 
     public Object getParentObject() {
-        return this.f30971e;
+        return this.f30975e;
     }
 
     public ej getSendAnimationData() {
-        y7 y7Var = this.f30968a;
+        y7 y7Var = this.f30972a;
         if (!y7Var.L()) {
             return null;
         }
         ?? obj = new Object();
         int[] iArr = new int[2];
         getLocationInWindow(iArr);
-        obj.f22220a = y7Var.r() + iArr[0];
-        obj.f22221b = y7Var.s() + iArr[1];
-        obj.f22222c = y7Var.M0;
+        obj.f22239a = y7Var.r() + iArr[0];
+        obj.f22240b = y7Var.s() + iArr[1];
+        obj.f22241c = y7Var.M0;
         return obj;
     }
 
     public TLRPC.Document getSticker() {
-        return this.f30970c;
+        return this.f30974c;
     }
 
     public zy getStickerPath() {
         zy zyVar = this.d;
-        if (zyVar != null && zyVar.f26941c) {
+        if (zyVar != null && zyVar.f26944c) {
             return zyVar;
         }
         return null;
@@ -266,7 +266,7 @@ public class z7 extends FrameLayout implements ls, rg.c {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         boolean z9 = this.L;
-        y7 y7Var = this.f30968a;
+        y7 y7Var = this.f30972a;
         if (z9) {
             y7Var.J0 = true;
             y7Var.H0((View) getParent());
@@ -274,27 +274,27 @@ public class z7 extends FrameLayout implements ls, rg.c {
             y7Var.H0(this);
         }
         y7Var.P();
-        qs.f(this.E).c(this, qs.f24992f5);
+        qs.f(this.E).c(this, qs.f25001f5);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f30968a.R();
-        qs.f(this.E).n(this, qs.f24992f5);
+        this.f30972a.R();
+        qs.f(this.E).n(this, qs.f25001f5);
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        String M0 = hd.M0(2131753936, null);
-        if (this.f30970c != null) {
+        String M0 = id.M0(2131753936, null);
+        if (this.f30974c != null) {
             int i7 = 0;
             while (true) {
-                if (i7 >= this.f30970c.attributes.size()) {
+                if (i7 >= this.f30974c.attributes.size()) {
                     break;
                 }
-                TLRPC.DocumentAttribute documentAttribute = this.f30970c.attributes.get(i7);
+                TLRPC.DocumentAttribute documentAttribute = this.f30974c.attributes.get(i7);
                 if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
                     String str = documentAttribute.alt;
                     if (str != null && str.length() > 0) {
@@ -317,14 +317,14 @@ public class z7 extends FrameLayout implements ls, rg.c {
     }
 
     public void setScaled(boolean z9) {
-        this.f30976w = z9;
-        this.f30975s = System.currentTimeMillis();
+        this.f30980w = z9;
+        this.f30979s = System.currentTimeMillis();
         invalidate();
     }
 
     public void setSticker(zy zyVar) {
         boolean z9;
-        String str = zyVar.f26940b;
+        String str = zyVar.f26943b;
         if (str != null) {
             z9 = true;
         } else {

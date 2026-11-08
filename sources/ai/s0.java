@@ -30,7 +30,7 @@ import bi.gc;
 import c8.ha;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.iz;
 import org.telegram.messenger.qs;
 import org.telegram.messenger.r2;
@@ -140,29 +140,29 @@ public class s0 extends f2 {
         if (s0Var.getParentActivity() == null) {
             return;
         }
-        zh.h1 h1Var = new zh.h1(s0Var.getParentActivity(), s0Var.currentAccount, s0Var.getUserConfig().e(), null, null);
-        if (!h1Var.f60258l2) {
-            h1Var.f60258l2 = true;
-            gc gcVar = h1Var.f60260n2;
+        zh.g1 g1Var = new zh.g1(s0Var.getParentActivity(), s0Var.currentAccount, s0Var.getUserConfig().e(), null, null);
+        if (!g1Var.f60334l2) {
+            g1Var.f60334l2 = true;
+            gc gcVar = g1Var.f60336n2;
             if (gcVar != null && (gcVar.getParent() instanceof ViewGroup)) {
-                ViewGroup viewGroup = (ViewGroup) h1Var.f60260n2.getParent();
-                int indexOfChild = viewGroup.indexOfChild(h1Var.f60260n2);
-                viewGroup.removeView(h1Var.f60260n2);
-                gc gcVar2 = new gc(h1Var.getContext(), 250, 2, 0);
-                h1Var.f60260n2 = gcVar2;
+                ViewGroup viewGroup = (ViewGroup) g1Var.f60336n2.getParent();
+                int indexOfChild = viewGroup.indexOfChild(g1Var.f60336n2);
+                viewGroup.removeView(g1Var.f60336n2);
+                gc gcVar2 = new gc(g1Var.getContext(), 250, 2, 0);
+                g1Var.f60336n2 = gcVar2;
                 viewGroup.addView(gcVar2, indexOfChild, ha.c(-1.0f, -1));
             }
-            w70 w70Var = h1Var.f60261o2;
+            w70 w70Var = g1Var.f60337o2;
             if (w70Var != null) {
-                String M0 = hd.M0(2131750287, null);
-                jb jbVar = h1Var.f60250c2;
+                String M0 = id.M0(2131750289, null);
+                jb jbVar = g1Var.f60326c2;
                 jbVar.setText(M0);
                 jbVar.setBreakStrategy(2);
                 w70Var.setVisibility(8);
             }
-            h1Var.Q1.O(false);
+            g1Var.Q1.O(false);
         }
-        h1Var.show();
+        g1Var.show();
     }
 
     public static void c0(View view) {
@@ -286,7 +286,7 @@ public class s0 extends f2 {
             this.d.setScanHidden(true);
             i0 i0Var = new i0(getParentActivity(), rectF, rectF2, new d6.i(this, 4));
             this.F = i0Var;
-            i0Var.setButtonLabel(hd.M0(2131746469, null));
+            i0Var.setButtonLabel(id.M0(2131746471, null));
             i0 i0Var2 = this.F;
             i0Var2.setOnGallery(new a1.e(15, this, i0Var2));
             this.f1622f.addView(this.F, ha.c(-1.0f, -1));
@@ -399,14 +399,14 @@ public class s0 extends f2 {
         l1 l1Var;
         Activity parentActivity = getParentActivity();
         if (parentActivity != null && (l1Var = this.d) != null && l1Var.getCurrentLink() != null) {
-            if ((Build.VERSION.SDK_INT <= 28 || r2.f25200b) && parentActivity.checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") != 0) {
+            if ((Build.VERSION.SDK_INT <= 28 || r2.f25213b) && parentActivity.checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") != 0) {
                 this.E = true;
                 parentActivity.requestPermissions(new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, 4);
                 return;
             }
             Bitmap T0 = this.d.T0();
             if (T0 != null) {
-                Utilities.f21333e.c(new a1.e(14, this, T0));
+                Utilities.f21336e.c(new a1.e(14, this, T0));
             }
         }
     }
@@ -433,7 +433,7 @@ public class s0 extends f2 {
                 return;
             }
             try {
-                getParentActivity().startActivity(Intent.createChooser(intent, hd.M0(2131749169, null)));
+                getParentActivity().startActivity(Intent.createChooser(intent, id.M0(2131749171, null)));
             } catch (ActivityNotFoundException e10) {
                 a8.g(e10, true);
             }
@@ -644,8 +644,8 @@ public class s0 extends f2 {
         l0();
         org.telegram.ui.f fVar = this.f1617c;
         if (fVar != null) {
-            ci0 ci0Var = (ci0) fVar.f45450b;
-            if (ci0Var.f44841b.remove(fVar)) {
+            ci0 ci0Var = (ci0) fVar.f45409b;
+            if (ci0Var.f44846b.remove(fVar)) {
                 ci0Var.a();
             }
             this.f1617c = null;
@@ -716,9 +716,9 @@ public class s0 extends f2 {
                 return;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-            alertDialog$Builder.f27293a.T = org.telegram.messenger.g0.X2(hd.M0(2131746502, null));
-            alertDialog$Builder.k(hd.M0(2131747299, null), new j0(this));
-            alertDialog$Builder.h(hd.M0(2131751772, null), null);
+            alertDialog$Builder.f27296a.T = org.telegram.messenger.g0.X2(id.M0(2131746504, null));
+            alertDialog$Builder.k(id.M0(2131747301, null), new j0(this));
+            alertDialog$Builder.h(id.M0(2131751772, null), null);
             int i10 = k6.L5;
             alertDialog$Builder.m(2131624116, 72, k6.x0(null, i10, false), null);
             alertDialog$Builder.n(i10, null);

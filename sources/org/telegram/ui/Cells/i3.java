@@ -6,60 +6,60 @@ import android.graphics.drawable.Drawable;
 import android.text.SpannableStringBuilder;
 import android.view.ActionMode;
 import android.view.Menu;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.Components.u31;
 import org.telegram.ui.Components.vy0;
-import org.telegram.ui.Components.ys;
-public final class i3 extends ys {
+import org.telegram.ui.Components.zs;
+public final class i3 extends zs {
     public final int Y1;
     public final org.telegram.ui.ActionBar.f6 Z1;
-    public final boolean f29303a2;
-    public final k3 f29304b2;
+    public final boolean f29306a2;
+    public final k3 f29307b2;
 
     public i3(k3 k3Var, Context context, org.telegram.ui.ActionBar.f6 f6Var, int i7, org.telegram.ui.ActionBar.f6 f6Var2, boolean z9) {
         super(context, f6Var);
-        this.f29304b2 = k3Var;
+        this.f29307b2 = k3Var;
         this.Y1 = i7;
         this.Z1 = f6Var2;
-        this.f29303a2 = z9;
+        this.f29306a2 = z9;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int i7;
         super.dispatchDraw(canvas);
-        k3 k3Var = this.f29304b2;
-        org.telegram.ui.Components.i6 i6Var = k3Var.f29416y;
-        org.telegram.ui.Components.z4 z4Var = k3Var.f29414w;
-        if (k3Var.f29415x <= 0) {
-            i7 = org.telegram.ui.ActionBar.k6.f28070p7;
+        k3 k3Var = this.f29307b2;
+        org.telegram.ui.Components.i6 i6Var = k3Var.f29419y;
+        org.telegram.ui.Components.z4 z4Var = k3Var.f29417w;
+        if (k3Var.f29418x <= 0) {
+            i7 = org.telegram.ui.ActionBar.k6.f28073p7;
         } else {
             i7 = org.telegram.ui.ActionBar.k6.P5;
         }
         i6Var.u(z4Var.a(org.telegram.ui.ActionBar.k6.w0(i7, this.Z1), false));
         int min = Math.min(org.telegram.messenger.g0.L(52.0f), getHeight());
-        k3Var.f29416y.setBounds(getScrollX(), getHeight() - min, org.telegram.messenger.g0.L(42.0f) + ((getWidth() + getScrollX()) - getPaddingRight()), getHeight());
-        k3Var.f29416y.draw(canvas);
+        k3Var.f29419y.setBounds(getScrollX(), getHeight() - min, org.telegram.messenger.g0.L(42.0f) + ((getWidth() + getScrollX()) - getPaddingRight()), getHeight());
+        k3Var.f29419y.draw(canvas);
     }
 
     @Override
     public final void o(ActionMode actionMode, Menu menu) {
-        if (!this.f29303a2 || menu.findItem(2131296491) != null) {
+        if (!this.f29306a2 || menu.findItem(2131296491) != null) {
             return;
         }
         menu.removeItem(16908341);
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(hd.M0(2131753671, null));
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(id.M0(2131753671, null));
         spannableStringBuilder.setSpan(new u31(org.telegram.messenger.g0.o()), 0, spannableStringBuilder.length(), 33);
         menu.add(2131296496, 2131296491, 6, spannableStringBuilder);
-        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(hd.M0(2131749086, null));
+        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(id.M0(2131749088, null));
         spannableStringBuilder2.setSpan(new u31(org.telegram.messenger.g0.o1("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
         menu.add(2131296496, 2131296497, 7, spannableStringBuilder2);
-        SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(hd.M0(2131744438, null));
+        SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(id.M0(2131744440, null));
         ?? obj = new Object();
-        obj.f38751a |= 8;
+        obj.f38779a |= 8;
         spannableStringBuilder3.setSpan(new vy0(obj, 0), 0, spannableStringBuilder3.length(), 33);
         menu.add(2131296496, 2131296509, 8, spannableStringBuilder3);
-        menu.add(2131296496, 2131296503, 9, hd.M0(2131746336, null));
+        menu.add(2131296496, 2131296503, 9, id.M0(2131746338, null));
     }
 
     @Override
@@ -73,8 +73,8 @@ public final class i3 extends ys {
     @Override
     public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
         super.onTextChanged(charSequence, i7, i10, i11);
-        k3 k3Var = this.f29304b2;
-        org.telegram.ui.Components.i6 i6Var = k3Var.f29416y;
+        k3 k3Var = this.f29307b2;
+        org.telegram.ui.Components.i6 i6Var = k3Var.f29419y;
         if (i6Var != null && this.Y1 > 0) {
             i6Var.a();
             k3Var.c();
@@ -83,7 +83,7 @@ public final class i3 extends ys {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f29304b2.f29416y && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f29307b2.f29419y && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

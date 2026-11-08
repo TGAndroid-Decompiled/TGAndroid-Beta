@@ -12,10 +12,10 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 public final class il0 implements org.telegram.ui.ActionBar.r1, org.telegram.ui.ActionBar.o6, org.telegram.ui.ActionBar.p6, jt0, kt0, org.telegram.messenger.k9, org.telegram.messenger.lc, org.telegram.messenger.oc, db0, org.telegram.messenger.j9, org.telegram.messenger.eb {
-    public final int f34727a;
+    public final int f34771a;
 
     public il0(int i7) {
-        this.f34727a = i7;
+        this.f34771a = i7;
     }
 
     @Override
@@ -26,14 +26,14 @@ public final class il0 implements org.telegram.ui.ActionBar.r1, org.telegram.ui.
     @Override
     public void f(Object obj, float f10) {
         cn0 cn0Var = (cn0) obj;
-        cn0Var.f32614n = f10;
+        cn0Var.f32645n = f10;
         cn0Var.invalidate();
     }
 
     @Override
     public void f0(ImageReceiver imageReceiver, boolean z9, boolean z10, boolean z11) {
         boolean z12;
-        if (!(imageReceiver.f21197j0 instanceof org.telegram.messenger.o6) && !(imageReceiver.S instanceof org.telegram.messenger.o6) && !(imageReceiver.f21175a0 instanceof org.telegram.messenger.o6) && !(imageReceiver.m0 instanceof org.telegram.messenger.o6)) {
+        if (!(imageReceiver.f21200j0 instanceof org.telegram.messenger.o6) && !(imageReceiver.S instanceof org.telegram.messenger.o6) && !(imageReceiver.f21178a0 instanceof org.telegram.messenger.o6) && !(imageReceiver.m0 instanceof org.telegram.messenger.o6)) {
             z12 = false;
         } else {
             z12 = true;
@@ -41,12 +41,12 @@ public final class il0 implements org.telegram.ui.ActionBar.r1, org.telegram.ui.
         if (!z12) {
             return;
         }
-        imageReceiver.f21206o1 = new ColorMatrixColorFilter(new float[]{-1.0f, 0.0f, 0.0f, 0.0f, 255.0f, 0.0f, -1.0f, 0.0f, 0.0f, 255.0f, 0.0f, 0.0f, -1.0f, 0.0f, 255.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f});
+        imageReceiver.f21209o1 = new ColorMatrixColorFilter(new float[]{-1.0f, 0.0f, 0.0f, 0.0f, 255.0f, 0.0f, -1.0f, 0.0f, 0.0f, 255.0f, 0.0f, 0.0f, -1.0f, 0.0f, 255.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f});
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f34727a) {
+        switch (this.f34771a) {
             case 0:
                 u1Var.dismiss();
                 return;
@@ -63,7 +63,7 @@ public final class il0 implements org.telegram.ui.ActionBar.r1, org.telegram.ui.
                 u1Var.dismiss();
                 return;
             case 10:
-                int i10 = yv0.f40751n2;
+                int i10 = yv0.f40775n2;
                 return;
             case 11:
                 u1Var.dismiss();
@@ -93,31 +93,31 @@ public final class il0 implements org.telegram.ui.ActionBar.r1, org.telegram.ui.
 
     @Override
     public float get(Object obj) {
-        return ((cn0) obj).f32614n;
+        return ((cn0) obj).f32645n;
     }
 
     @Override
     public String h(int i7) {
-        switch (this.f34727a) {
+        switch (this.f34771a) {
             case 19:
                 return String.format("%02d", Integer.valueOf(i7));
             case 20:
                 return String.format("%02d", Integer.valueOf(i7));
             default:
                 if (i7 == 0) {
-                    return org.telegram.messenger.hd.M0(2131753799, null);
+                    return org.telegram.messenger.id.M0(2131753799, null);
                 }
                 if (i7 == 1) {
-                    return org.telegram.messenger.hd.a0("AutoLockInTime", null, 2131753798, org.telegram.messenger.hd.G(1, "Minutes", new Object[0]));
+                    return org.telegram.messenger.id.a0("AutoLockInTime", null, 2131753798, org.telegram.messenger.id.G(1, "Minutes", new Object[0]));
                 }
                 if (i7 == 2) {
-                    return org.telegram.messenger.hd.a0("AutoLockInTime", null, 2131753798, org.telegram.messenger.hd.G(5, "Minutes", new Object[0]));
+                    return org.telegram.messenger.id.a0("AutoLockInTime", null, 2131753798, org.telegram.messenger.id.G(5, "Minutes", new Object[0]));
                 }
                 if (i7 == 3) {
-                    return org.telegram.messenger.hd.a0("AutoLockInTime", null, 2131753798, org.telegram.messenger.hd.G(1, "Hours", new Object[0]));
+                    return org.telegram.messenger.id.a0("AutoLockInTime", null, 2131753798, org.telegram.messenger.id.G(1, "Hours", new Object[0]));
                 }
                 if (i7 == 4) {
-                    return org.telegram.messenger.hd.a0("AutoLockInTime", null, 2131753798, org.telegram.messenger.hd.G(5, "Hours", new Object[0]));
+                    return org.telegram.messenger.id.a0("AutoLockInTime", null, 2131753798, org.telegram.messenger.id.G(5, "Hours", new Object[0]));
                 }
                 return "";
         }
@@ -125,12 +125,12 @@ public final class il0 implements org.telegram.ui.ActionBar.r1, org.telegram.ui.
 
     @Override
     public int i(View view) {
-        return ((cm0) view).f32602w;
+        return ((cm0) view).f32633w;
     }
 
     @Override
     public Object j(Object obj) {
-        switch (this.f34727a) {
+        switch (this.f34771a) {
             case 6:
                 Integer num = (Integer) obj;
                 int i7 = mo0.Q2;
@@ -140,7 +140,7 @@ public final class il0 implements org.telegram.ui.ActionBar.r1, org.telegram.ui.
                 int L = org.telegram.messenger.g0.L(150.0f);
                 Bitmap createBitmap = Bitmap.createBitmap(org.telegram.messenger.g0.L(200.0f), L, Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);
-                canvas.drawColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27849d6, false));
+                canvas.drawColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27852d6, false));
                 Paint paint = new Paint(1);
                 paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
                 canvas.drawCircle(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f, L / 2.0f, paint);
@@ -169,7 +169,7 @@ public final class il0 implements org.telegram.ui.ActionBar.r1, org.telegram.ui.
     @Override
     public boolean run() {
         String str = LaunchActivity.B1;
-        if (org.telegram.messenger.iz.f23413s.length() > 0 && !org.telegram.messenger.iz.A) {
+        if (org.telegram.messenger.iz.f23434s.length() > 0 && !org.telegram.messenger.iz.A) {
             return true;
         }
         return false;

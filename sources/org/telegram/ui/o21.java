@@ -34,7 +34,7 @@ public final class o21 implements RequestDelegate {
                                     if (tL_error2 == null && (tLObject2 instanceof TLRPC.TL_boolTrue)) {
                                         org.telegram.messenger.k5.o(null, 2131754285, org.telegram.ui.Components.hc.a0(sessionsActivity2), 2131623989, 36);
                                     } else {
-                                        org.telegram.messenger.k5.o(null, 2131743880, org.telegram.ui.Components.hc.a0(sessionsActivity2), 2131624011, 36);
+                                        org.telegram.messenger.k5.o(null, 2131743882, org.telegram.ui.Components.hc.a0(sessionsActivity2), 2131624011, 36);
                                     }
                                     sessionsActivity2.p0(false);
                                     return;
@@ -62,7 +62,7 @@ public final class o21 implements RequestDelegate {
                     if (i10.p()) {
                         i10.d = false;
                         i10.v(false);
-                        org.telegram.messenger.qp.s1(i7).Z3(org.telegram.messenger.iz.f23378f, org.telegram.messenger.iz.f23381g);
+                        org.telegram.messenger.qp.s1(i7).Z3(org.telegram.messenger.iz.f23399f, org.telegram.messenger.iz.f23402g);
                         ConnectionsManager.getInstance(i7).setUserId(i10.e());
                     }
                 }
@@ -82,7 +82,7 @@ public final class o21 implements RequestDelegate {
                                     if (tL_error2 == null && (tLObject2 instanceof TLRPC.TL_boolTrue)) {
                                         org.telegram.messenger.k5.o(null, 2131754285, org.telegram.ui.Components.hc.a0(sessionsActivity22), 2131623989, 36);
                                     } else {
-                                        org.telegram.messenger.k5.o(null, 2131743880, org.telegram.ui.Components.hc.a0(sessionsActivity22), 2131624011, 36);
+                                        org.telegram.messenger.k5.o(null, 2131743882, org.telegram.ui.Components.hc.a0(sessionsActivity22), 2131624011, 36);
                                     }
                                     sessionsActivity22.p0(false);
                                     return;
@@ -110,7 +110,7 @@ public final class o21 implements RequestDelegate {
                     if (i12.p()) {
                         i12.d = false;
                         i12.v(false);
-                        org.telegram.messenger.qp.s1(i11).Z3(org.telegram.messenger.iz.f23378f, org.telegram.messenger.iz.f23381g);
+                        org.telegram.messenger.qp.s1(i11).Z3(org.telegram.messenger.iz.f23399f, org.telegram.messenger.iz.f23402g);
                         ConnectionsManager.getInstance(i11).setUserId(i12.e());
                     }
                 }
@@ -130,7 +130,7 @@ public final class o21 implements RequestDelegate {
                                     if (tL_error2 == null && (tLObject2 instanceof TLRPC.TL_boolTrue)) {
                                         org.telegram.messenger.k5.o(null, 2131754285, org.telegram.ui.Components.hc.a0(sessionsActivity22), 2131623989, 36);
                                     } else {
-                                        org.telegram.messenger.k5.o(null, 2131743880, org.telegram.ui.Components.hc.a0(sessionsActivity22), 2131624011, 36);
+                                        org.telegram.messenger.k5.o(null, 2131743882, org.telegram.ui.Components.hc.a0(sessionsActivity22), 2131624011, 36);
                                     }
                                     sessionsActivity22.p0(false);
                                     return;

@@ -27,7 +27,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.a20;
 import org.telegram.messenger.c20;
 import org.telegram.messenger.camera.CameraController;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.p10;
 import org.telegram.messenger.qp;
 import org.telegram.messenger.qs;
@@ -64,13 +64,13 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
         }
         marginLayoutParams.topMargin = i7;
         if (p9Var.f9535c) {
-            a10 = k1Var.f54108a.f(2).d;
+            a10 = k1Var.f54201a.f(2).d;
         } else {
             a10 = k1Var.a();
         }
         marginLayoutParams.bottomMargin = a10;
-        marginLayoutParams.leftMargin = I0.f15117a;
-        marginLayoutParams.rightMargin = I0.f15119c;
+        marginLayoutParams.leftMargin = I0.f15120a;
+        marginLayoutParams.rightMargin = I0.f15122c;
         d9 d9Var = p9Var.f9569s;
         if (d9Var != null) {
             d9Var.requestLayout();
@@ -79,7 +79,7 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
         if (e9Var != null) {
             e9Var.requestLayout();
         }
-        return r0.k1.f54107b;
+        return r0.k1.f54200b;
     }
 
     @Override
@@ -100,7 +100,7 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
         sp0 sp0Var = (sp0) this.f9634b;
         Integer num = (Integer) obj;
         if (((Integer) number).intValue() == -1) {
-            new ei.q(sp0Var.f10844a, hd.M0(2131746692, null), new ai.i(sp0Var, 15)).show();
+            new ei.q(sp0Var.f10844a, id.M0(2131746694, null), new ai.i(sp0Var, 15)).show();
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
@@ -193,8 +193,8 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
             default:
                 kg.q1 q1Var = (kg.q1) ((bi.s) this.f9634b).f4656b;
                 kg.t1 f10 = kg.t1.f(kg.q1.g0(q1Var));
-                ArrayList arrayList = q1Var.f17510b;
-                int i10 = f10.f17544a;
+                ArrayList arrayList = q1Var.f17513b;
+                int i10 = f10.f17547a;
                 int i11 = 0;
                 while (i11 < arrayList.size()) {
                     if (f10.c(((Integer) arrayList.get(i11)).intValue()) == null) {
@@ -206,12 +206,12 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                 if (!arrayList.isEmpty()) {
                     for (int i12 = 0; i12 < arrayList.size(); i12++) {
                         kg.s1 c10 = f10.c(((Integer) arrayList.get(i12)).intValue());
-                        f10.f17545b.remove(c10);
-                        f10.a(c10.f17530b);
+                        f10.f17548b.remove(c10);
+                        f10.a(c10.f17533b);
                         TLRPC.TL_messages_deleteQuickReplyShortcut tL_messages_deleteQuickReplyShortcut = new TLRPC.TL_messages_deleteQuickReplyShortcut();
-                        tL_messages_deleteQuickReplyShortcut.shortcut_id = c10.f17529a;
+                        tL_messages_deleteQuickReplyShortcut.shortcut_id = c10.f17532a;
                         ConnectionsManager.getInstance(i10).sendRequest(tL_messages_deleteQuickReplyShortcut, new u5(6));
-                        if ("hello".equals(c10.f17530b)) {
+                        if ("hello".equals(c10.f17533b)) {
                             ConnectionsManager.getInstance(i10).sendRequest(new TL_account.updateBusinessGreetingMessage(), null);
                             TLRPC.UserFull b22 = qp.s1(i10).b2(p10.i(i10).e());
                             if (b22 != null) {
@@ -219,7 +219,7 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                                 b22.business_greeting_message = null;
                                 yr.a0(i10).j2(b22, true);
                             }
-                        } else if ("away".equals(c10.f17530b)) {
+                        } else if ("away".equals(c10.f17533b)) {
                             ConnectionsManager.getInstance(i10).sendRequest(new TL_account.updateBusinessAwayMessage(), null);
                             TLRPC.UserFull b23 = qp.s1(i10).b2(p10.i(i10).e());
                             if (b23 != null) {
@@ -231,7 +231,7 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                     }
                     f10.l();
                     yr a02 = yr.a0(i10);
-                    a02.f26696a.c(new fi.x0(a02, arrayList, 2));
+                    a02.f26719a.c(new fi.x0(a02, arrayList, 2));
                     qs.f(i10).k(121, new Object[0]);
                 }
                 kg.q1.c0(q1Var);
@@ -274,7 +274,7 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                             return;
                         }
                         e7Var2.f();
-                        Utilities.f21335g.c(new fi.x8(vaVar, x9Var, e7Var2.f11896i0, e7Var2.f11898j0, e7Var2, x9Var.f12555x0.getPainting().E, x9Var.r0(), m0Var, 0));
+                        Utilities.f21338g.c(new fi.x8(vaVar, x9Var, e7Var2.f11896i0, e7Var2.f11898j0, e7Var2, x9Var.f12555x0.getPainting().E, x9Var.r0(), m0Var, 0));
                         return;
                     }
                     m0Var.run();
@@ -307,56 +307,56 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                     boolean z9 = !c1Var.d;
                     c1Var.d = z9;
                     ((org.telegram.ui.Cells.r8) view4).setChecked(z9);
-                    c1Var.f17326a.f37160f3.O(true);
+                    c1Var.f17329a.f37190f3.O(true);
                     c1Var.d0(true);
                     return;
                 } else if (i12 == -2) {
                     ?? f2Var = new org.telegram.ui.ActionBar.f2(null);
-                    f2Var.f17572n = c1Var.f17331n;
-                    f2Var.f17569c = new ai.f1(25, c1Var, view4);
+                    f2Var.f17575n = c1Var.f17334n;
+                    f2Var.f17572c = new ai.f1(25, c1Var, view4);
                     c1Var.presentFragment((org.telegram.ui.ActionBar.f2) f2Var);
                     return;
-                } else if (x31Var2.f54439a == 5 && i12 >= 0 && i12 < c1Var.f17330f.length) {
-                    if (!hd.f22878a0 ? floatValue >= view4.getMeasuredWidth() - org.telegram.messenger.g0.L(76.0f) : floatValue <= org.telegram.messenger.g0.L(76.0f)) {
-                        if (c1Var.f17330f[x31Var2.d].isEmpty()) {
+                } else if (x31Var2.f54531a == 5 && i12 >= 0 && i12 < c1Var.f17333f.length) {
+                    if (!id.f23157a0 ? floatValue >= view4.getMeasuredWidth() - org.telegram.messenger.g0.L(76.0f) : floatValue <= org.telegram.messenger.g0.L(76.0f)) {
+                        if (c1Var.f17333f[x31Var2.d].isEmpty()) {
                             ((org.telegram.ui.Cells.h5) view4).setChecked(true);
-                            c1Var.f17330f[x31Var2.d].add(new kg.b1(0, 1439));
+                            c1Var.f17333f[x31Var2.d].add(new kg.b1(0, 1439));
                             c1Var.c0(x31Var2.d);
                         } else {
-                            c1Var.f17330f[x31Var2.d].clear();
+                            c1Var.f17333f[x31Var2.d].clear();
                             ((org.telegram.ui.Cells.h5) view4).setChecked(false);
                         }
-                        ((org.telegram.ui.Cells.h5) view4).setValue(kg.c1.f0(c1Var.f17330f[x31Var2.d]));
+                        ((org.telegram.ui.Cells.h5) view4).setValue(kg.c1.f0(c1Var.f17333f[x31Var2.d]));
                         c1Var.d0(true);
                         return;
                     }
                     int i13 = (x31Var2.d + 6) % 7;
                     int i14 = 0;
-                    for (int i15 = 0; i15 < c1Var.f17330f[i13].size(); i15++) {
-                        if (((kg.b1) c1Var.f17330f[i13].get(i15)).f17314b > i14) {
-                            i14 = ((kg.b1) c1Var.f17330f[i13].get(i15)).f17314b;
+                    for (int i15 = 0; i15 < c1Var.f17333f[i13].size(); i15++) {
+                        if (((kg.b1) c1Var.f17333f[i13].get(i15)).f17317b > i14) {
+                            i14 = ((kg.b1) c1Var.f17333f[i13].get(i15)).f17317b;
                         }
                     }
                     int max = Math.max(0, i14 - 1439);
                     int i16 = (x31Var2.d + 1) % 7;
                     int i17 = 1440;
-                    for (int i18 = 0; i18 < c1Var.f17330f[i16].size(); i18++) {
-                        if (((kg.b1) c1Var.f17330f[i16].get(i18)).f17313a < i17) {
-                            i17 = ((kg.b1) c1Var.f17330f[i16].get(i18)).f17313a;
+                    for (int i18 = 0; i18 < c1Var.f17333f[i16].size(); i18++) {
+                        if (((kg.b1) c1Var.f17333f[i16].get(i18)).f17316a < i17) {
+                            i17 = ((kg.b1) c1Var.f17333f[i16].get(i18)).f17316a;
                         }
                     }
                     int i19 = i17 + 1439;
-                    CharSequence charSequence = x31Var2.f40159l;
-                    ArrayList arrayList = c1Var.f17330f[x31Var2.d];
+                    CharSequence charSequence = x31Var2.f40180l;
+                    ArrayList arrayList = c1Var.f17333f[x31Var2.d];
                     int i20 = 0;
                     for (int i21 = 0; i21 < 7; i21++) {
-                        ArrayList arrayList2 = c1Var.f17330f[i21];
+                        ArrayList arrayList2 = c1Var.f17333f[i21];
                         if (arrayList2 != null) {
                             i20 = Math.max(1, arrayList2.size()) + i20;
                         }
                     }
                     kg.e1 e1Var = new kg.e1(charSequence, arrayList, max, i19, 28 - i20);
-                    e1Var.f17359f = new fi.h9(c1Var, 27);
+                    e1Var.f17362f = new fi.h9(c1Var, 27);
                     e1Var.h = new ha.b(19, c1Var, x31Var2);
                     c1Var.presentFragment(e1Var);
                     return;
@@ -370,29 +370,29 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                 Integer num5 = (Integer) number;
                 Float f17 = (Float) serializable;
                 Float f18 = (Float) serializable2;
-                int i22 = e1Var2.f17357c;
+                int i22 = e1Var2.f17360c;
                 int i23 = e1Var2.d;
-                ArrayList arrayList3 = e1Var2.f17356b;
+                ArrayList arrayList3 = e1Var2.f17359b;
                 int i24 = x31Var3.d;
                 if (i24 == -1) {
-                    e1Var2.f17361r = !e1Var2.f17361r;
+                    e1Var2.f17364r = !e1Var2.f17364r;
                     arrayList3.clear();
-                    if (e1Var2.f17361r) {
+                    if (e1Var2.f17364r) {
                         arrayList3.add(new kg.b1(0, 1439));
                     }
                     org.telegram.ui.Cells.r8 r8Var = (org.telegram.ui.Cells.r8) view5;
-                    boolean z10 = e1Var2.f17361r;
-                    x31Var3.f40153e = z10;
+                    boolean z10 = e1Var2.f17364r;
+                    x31Var3.f40174e = z10;
                     r8Var.setChecked(z10);
-                    boolean z11 = e1Var2.f17361r;
+                    boolean z11 = e1Var2.f17364r;
                     if (z11) {
-                        i10 = org.telegram.ui.ActionBar.k6.f27887f6;
+                        i10 = org.telegram.ui.ActionBar.k6.f27890f6;
                     } else {
-                        i10 = org.telegram.ui.ActionBar.k6.f27868e6;
+                        i10 = org.telegram.ui.ActionBar.k6.f27871e6;
                     }
                     r8Var.b(org.telegram.ui.ActionBar.k6.x0(null, i10, false), z11);
-                    e1Var2.f17360n.f37160f3.O(true);
-                    fi.h9 h9Var = e1Var2.f17359f;
+                    e1Var2.f17363n.f37190f3.O(true);
+                    fi.h9 h9Var = e1Var2.f17362f;
                     if (h9Var != null) {
                         h9Var.run();
                         return;
@@ -400,7 +400,7 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                     return;
                 } else if (i24 == -2) {
                     if (!arrayList3.isEmpty() && !e1Var2.Z()) {
-                        int i25 = ((kg.b1) jg.g.i(1, arrayList3)).f17314b;
+                        int i25 = ((kg.b1) jg.g.i(1, arrayList3)).f17317b;
                         int j3 = Utilities.j(i25 + 30, i23 - 1, i22);
                         arrayList3.add(new kg.b1(j3, Utilities.j((i25 + 1560) / 2, i23, j3 + 1)));
                     } else {
@@ -410,13 +410,13 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                         int j10 = Utilities.j(480, i23 - 1, i22);
                         arrayList3.add(new kg.b1(j10, Utilities.j(1200, i23, j10 + 1)));
                     }
-                    fi.h9 h9Var2 = e1Var2.f17359f;
+                    fi.h9 h9Var2 = e1Var2.f17362f;
                     if (h9Var2 != null) {
                         h9Var2.run();
                     }
-                    e1Var2.f17360n.f37160f3.O(true);
+                    e1Var2.f17363n.f37190f3.O(true);
                     return;
-                } else if (x31Var3.f54439a == 3 && (i7 = i24 / 3) >= 0 && i7 < arrayList3.size()) {
+                } else if (x31Var3.f54531a == 3 && (i7 = i24 / 3) >= 0 && i7 < arrayList3.size()) {
                     int i26 = i7 - 1;
                     if (i26 >= 0) {
                         b1Var = (kg.b1) arrayList3.get(i26);
@@ -433,12 +433,12 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                     int i28 = x31Var3.d % 3;
                     if (i28 == 0) {
                         Activity parentActivity = e1Var2.getParentActivity();
-                        String M0 = hd.M0(2131752750, null);
-                        int i29 = b1Var3.f17313a;
+                        String M0 = id.M0(2131752750, null);
+                        int i29 = b1Var3.f17316a;
                         if (b1Var != null) {
-                            i22 = b1Var.f17314b + 1;
+                            i22 = b1Var.f17317b + 1;
                         }
-                        org.telegram.ui.Components.v4.U(parentActivity, M0, i29, i22, b1Var3.f17314b - 1, new c20() {
+                        org.telegram.ui.Components.v4.U(parentActivity, M0, i29, i22, b1Var3.f17317b - 1, new c20() {
                             @Override
                             public final void a(Object obj3) {
                                 Integer num6 = (Integer) obj3;
@@ -447,12 +447,12 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                                         e1 e1Var3 = e1Var2;
                                         boolean a02 = e1Var3.a0();
                                         int intValue = num6.intValue();
-                                        b1Var3.f17313a = intValue;
+                                        b1Var3.f17316a = intValue;
                                         ((m8) view5).w(b1.a(intValue), true);
                                         if (a02 != e1Var3.a0()) {
-                                            e1Var3.f17360n.f37160f3.O(true);
+                                            e1Var3.f17363n.f37190f3.O(true);
                                         }
-                                        h9 h9Var3 = e1Var3.f17359f;
+                                        h9 h9Var3 = e1Var3.f17362f;
                                         if (h9Var3 != null) {
                                             h9Var3.run();
                                             return;
@@ -462,12 +462,12 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                                         e1 e1Var4 = e1Var2;
                                         boolean a03 = e1Var4.a0();
                                         int intValue2 = num6.intValue();
-                                        b1Var3.f17314b = intValue2;
+                                        b1Var3.f17317b = intValue2;
                                         ((m8) view5).w(b1.a(intValue2), true);
                                         if (a03 != e1Var4.a0()) {
-                                            e1Var4.f17360n.f37160f3.O(true);
+                                            e1Var4.f17363n.f37190f3.O(true);
                                         }
-                                        h9 h9Var4 = e1Var4.f17359f;
+                                        h9 h9Var4 = e1Var4.f17362f;
                                         if (h9Var4 != null) {
                                             h9Var4.run();
                                             return;
@@ -479,11 +479,11 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                         return;
                     } else if (i28 == 1) {
                         Activity parentActivity2 = e1Var2.getParentActivity();
-                        String M02 = hd.M0(2131752756, null);
-                        int i30 = b1Var3.f17314b;
-                        int i31 = b1Var3.f17313a + 1;
+                        String M02 = id.M0(2131752756, null);
+                        int i30 = b1Var3.f17317b;
+                        int i31 = b1Var3.f17316a + 1;
                         if (b1Var2 != null) {
-                            i23 = b1Var2.f17313a - 1;
+                            i23 = b1Var2.f17316a - 1;
                         }
                         org.telegram.ui.Components.v4.U(parentActivity2, M02, i30, i31, i23, new c20() {
                             @Override
@@ -494,12 +494,12 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                                         e1 e1Var3 = e1Var2;
                                         boolean a02 = e1Var3.a0();
                                         int intValue = num6.intValue();
-                                        b1Var3.f17313a = intValue;
+                                        b1Var3.f17316a = intValue;
                                         ((m8) view5).w(b1.a(intValue), true);
                                         if (a02 != e1Var3.a0()) {
-                                            e1Var3.f17360n.f37160f3.O(true);
+                                            e1Var3.f17363n.f37190f3.O(true);
                                         }
-                                        h9 h9Var3 = e1Var3.f17359f;
+                                        h9 h9Var3 = e1Var3.f17362f;
                                         if (h9Var3 != null) {
                                             h9Var3.run();
                                             return;
@@ -509,12 +509,12 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                                         e1 e1Var4 = e1Var2;
                                         boolean a03 = e1Var4.a0();
                                         int intValue2 = num6.intValue();
-                                        b1Var3.f17314b = intValue2;
+                                        b1Var3.f17317b = intValue2;
                                         ((m8) view5).w(b1.a(intValue2), true);
                                         if (a03 != e1Var4.a0()) {
-                                            e1Var4.f17360n.f37160f3.O(true);
+                                            e1Var4.f17363n.f37190f3.O(true);
                                         }
-                                        h9 h9Var4 = e1Var4.f17359f;
+                                        h9 h9Var4 = e1Var4.f17362f;
                                         if (h9Var4 != null) {
                                             h9Var4.run();
                                             return;
@@ -529,8 +529,8 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                         if (arrayList3.isEmpty()) {
                             arrayList3.add(new kg.b1(0, 1439));
                         }
-                        e1Var2.f17360n.f37160f3.O(true);
-                        fi.h9 h9Var3 = e1Var2.f17359f;
+                        e1Var2.f17363n.f37190f3.O(true);
+                        fi.h9 h9Var3 = e1Var2.f17362f;
                         if (h9Var3 != null) {
                             h9Var3.run();
                             return;
@@ -591,7 +591,7 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
         g8 g8Var;
         f8 f8Var = (f8) this.f9634b;
         if (!f8Var.v.f9061y) {
-            fVar.f58714q = new e8(f8Var, 2);
+            fVar.f58803q = new e8(f8Var, 2);
             float sqrt = (float) Math.sqrt(Math.pow(g8Var.getHeight(), 2.0d) + Math.pow(g8Var.getWidth(), 2.0d));
             ArrayList arrayList = f8Var.f9009i;
             int size = arrayList.size();

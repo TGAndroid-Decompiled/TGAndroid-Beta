@@ -3,43 +3,43 @@ package org.telegram.ui;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class ll0 implements r0.m, org.telegram.ui.ActionBar.r1 {
-    public final int f47558a;
-    public final hm0 f47559b;
+    public final int f47555a;
+    public final hm0 f47556b;
 
     public ll0(hm0 hm0Var, int i7) {
-        this.f47558a = i7;
-        this.f47559b = hm0Var;
+        this.f47555a = i7;
+        this.f47556b = hm0Var;
     }
 
     @Override
     public r0.k1 S0(View view, r0.k1 k1Var) {
         i0.b I0 = org.telegram.messenger.g0.I0(k1Var, false);
-        hm0 hm0Var = this.f47559b;
-        hm0Var.f46452b0 = I0;
-        sl0 sl0Var = hm0Var.h.f44428b;
-        int i7 = I0.f15117a;
+        hm0 hm0Var = this.f47556b;
+        hm0Var.f46451b0 = I0;
+        sl0 sl0Var = hm0Var.h.f44431b;
+        int i7 = I0.f15120a;
         int paddingTop = sl0Var.getPaddingTop();
-        i0.b bVar = hm0Var.f46452b0;
-        sl0Var.setPadding(i7, paddingTop, bVar.f15119c, org.telegram.messenger.g0.L(72.0f) + bVar.d);
-        sl0 sl0Var2 = hm0Var.f46458n.f44428b;
-        int i10 = hm0Var.f46452b0.f15117a;
+        i0.b bVar = hm0Var.f46451b0;
+        sl0Var.setPadding(i7, paddingTop, bVar.f15122c, org.telegram.messenger.g0.L(72.0f) + bVar.d);
+        sl0 sl0Var2 = hm0Var.f46457n.f44431b;
+        int i10 = hm0Var.f46451b0.f15120a;
         int paddingTop2 = sl0Var2.getPaddingTop();
-        i0.b bVar2 = hm0Var.f46452b0;
-        sl0Var2.setPadding(i10, paddingTop2, bVar2.f15119c, org.telegram.messenger.g0.L(72.0f) + bVar2.d);
+        i0.b bVar2 = hm0Var.f46451b0;
+        sl0Var2.setPadding(i10, paddingTop2, bVar2.f15122c, org.telegram.messenger.g0.L(72.0f) + bVar2.d);
         FrameLayout frameLayout = hm0Var.P;
-        i0.b bVar3 = hm0Var.f46452b0;
-        frameLayout.setPadding(bVar3.f15117a, 0, bVar3.f15119c, bVar3.d);
-        return r0.k1.f54107b;
+        i0.b bVar3 = hm0Var.f46451b0;
+        frameLayout.setPadding(bVar3.f15120a, 0, bVar3.f15122c, bVar3.d);
+        return r0.k1.f54200b;
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f47558a) {
+        switch (this.f47555a) {
             case 1:
-                this.f47559b.finishFragment();
+                this.f47556b.finishFragment();
                 return;
             default:
-                this.f47559b.D0();
+                this.f47556b.D0();
                 return;
         }
     }

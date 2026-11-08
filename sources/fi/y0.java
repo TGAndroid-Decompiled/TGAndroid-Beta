@@ -203,12 +203,12 @@ public final class y0 {
         int i7 = 0;
         if (str4 != null) {
             SpannableString spannableString = new SpannableString(str4);
-            if (org.telegram.ui.ActionBar.k6.f28046o2 == null) {
+            if (org.telegram.ui.ActionBar.k6.f28049o2 == null) {
                 org.telegram.ui.ActionBar.k6.Q();
             }
-            CharSequence m10 = org.telegram.messenger.i6.m(spannableString, org.telegram.ui.ActionBar.k6.f28046o2.getFontMetricsInt(), true, null, 0);
+            CharSequence m10 = org.telegram.messenger.i6.m(spannableString, org.telegram.ui.ActionBar.k6.f28049o2.getFontMetricsInt(), true, null, 0);
             ij.b(m10, this.f13140w, true, false, true, false, 0);
-            e7Var.C0 = ij.C5(m10, this.f13140w, org.telegram.ui.ActionBar.k6.f28046o2.getFontMetricsInt(), false);
+            e7Var.C0 = ij.C5(m10, this.f13140w, org.telegram.ui.ActionBar.k6.f28049o2.getFontMetricsInt(), false);
         } else {
             e7Var.C0 = "";
         }
@@ -275,17 +275,17 @@ public final class y0 {
                 i7++;
                 i20 i20Var = (i20) obj;
                 e7 e7Var2 = new e7();
-                e7Var2.K = i20Var.f23030b;
-                e7Var2.Y = i20Var.f23031c;
+                e7Var2.K = i20Var.f23021b;
+                e7Var2.Y = i20Var.f23022c;
                 e7Var2.L = new File(i20Var.d);
-                e7Var2.P = i20Var.f23032e;
-                e7Var2.U = i20Var.f23034i;
-                e7Var2.X = i20Var.f23033f;
-                e7Var2.V = i20Var.f23035j;
-                e7Var2.W = i20Var.f23036k;
-                e7Var2.f11900k0 = i20Var.f23037l;
-                e7Var2.f11902l0 = i20Var.f23038m;
-                e7Var2.f11894h0 = i20Var.f23039o;
+                e7Var2.P = i20Var.f23023e;
+                e7Var2.U = i20Var.f23025i;
+                e7Var2.X = i20Var.f23024f;
+                e7Var2.V = i20Var.f23026j;
+                e7Var2.W = i20Var.f23027k;
+                e7Var2.f11900k0 = i20Var.f23028l;
+                e7Var2.f11902l0 = i20Var.f23029m;
+                e7Var2.f11894h0 = i20Var.f23030o;
                 arrayList.add(e7Var2);
             }
         }
@@ -394,36 +394,36 @@ public final class y0 {
             nativeByteBuffer.writeInt32(1450380236);
         } else {
             nativeByteBuffer.writeInt32(-1318387530);
-            nativeByteBuffer.writeFloat(hfVar.f22913a);
-            nativeByteBuffer.writeFloat(hfVar.f22914b);
-            nativeByteBuffer.writeFloat(hfVar.f22915c);
+            nativeByteBuffer.writeFloat(hfVar.f22889a);
+            nativeByteBuffer.writeFloat(hfVar.f22890b);
+            nativeByteBuffer.writeFloat(hfVar.f22891c);
             nativeByteBuffer.writeFloat(hfVar.d);
-            nativeByteBuffer.writeFloat(hfVar.f22916e);
-            nativeByteBuffer.writeFloat(hfVar.f22917f);
-            nativeByteBuffer.writeFloat(hfVar.f22918g);
+            nativeByteBuffer.writeFloat(hfVar.f22892e);
+            nativeByteBuffer.writeFloat(hfVar.f22893f);
+            nativeByteBuffer.writeFloat(hfVar.f22894g);
             nativeByteBuffer.writeInt32(hfVar.h);
-            nativeByteBuffer.writeInt32(hfVar.f22919i);
-            nativeByteBuffer.writeFloat(hfVar.f22920j);
-            nativeByteBuffer.writeFloat(hfVar.f22921k);
-            nativeByteBuffer.writeFloat(hfVar.f22922l);
-            nativeByteBuffer.writeFloat(hfVar.f22923m);
-            nativeByteBuffer.writeInt32(hfVar.f22924n);
-            nativeByteBuffer.writeFloat(hfVar.f22925o);
-            h2.c cVar = hfVar.f22926p;
+            nativeByteBuffer.writeInt32(hfVar.f22895i);
+            nativeByteBuffer.writeFloat(hfVar.f22896j);
+            nativeByteBuffer.writeFloat(hfVar.f22897k);
+            nativeByteBuffer.writeFloat(hfVar.f22898l);
+            nativeByteBuffer.writeFloat(hfVar.f22899m);
+            nativeByteBuffer.writeInt32(hfVar.f22900n);
+            nativeByteBuffer.writeFloat(hfVar.f22901o);
+            h2.c cVar = hfVar.f22902p;
             ((qd0) cVar.f14058b).d(nativeByteBuffer);
             ((qd0) cVar.f14059c).d(nativeByteBuffer);
             ((qd0) cVar.d).d(nativeByteBuffer);
             ((qd0) cVar.f14060e).d(nativeByteBuffer);
-            nativeByteBuffer.writeFloat(hfVar.f22927q);
-            if (hfVar.f22928r == null) {
+            nativeByteBuffer.writeFloat(hfVar.f22903q);
+            if (hfVar.f22904r == null) {
                 nativeByteBuffer.writeInt32(1450380236);
             } else {
                 nativeByteBuffer.writeInt32(-559038737);
-                nativeByteBuffer.writeFloat(hfVar.f22928r.x);
-                nativeByteBuffer.writeFloat(hfVar.f22928r.y);
+                nativeByteBuffer.writeFloat(hfVar.f22904r.x);
+                nativeByteBuffer.writeFloat(hfVar.f22904r.y);
             }
-            nativeByteBuffer.writeFloat(hfVar.f22929s);
-            nativeByteBuffer.writeFloat(hfVar.f22930t);
+            nativeByteBuffer.writeFloat(hfVar.f22905s);
+            nativeByteBuffer.writeFloat(hfVar.f22906t);
         }
         nativeByteBuffer.writeInt32(this.F);
         nativeByteBuffer.writeInt32(481674261);
@@ -623,38 +623,38 @@ public final class y0 {
                             } else if (readInt326 == -1318387530) {
                                 hf hfVar = new hf();
                                 this.E = hfVar;
-                                hfVar.f22913a = nativeByteBuffer.readFloat(true);
-                                hfVar.f22914b = nativeByteBuffer.readFloat(true);
-                                hfVar.f22915c = nativeByteBuffer.readFloat(true);
+                                hfVar.f22889a = nativeByteBuffer.readFloat(true);
+                                hfVar.f22890b = nativeByteBuffer.readFloat(true);
+                                hfVar.f22891c = nativeByteBuffer.readFloat(true);
                                 hfVar.d = nativeByteBuffer.readFloat(true);
-                                hfVar.f22916e = nativeByteBuffer.readFloat(true);
-                                hfVar.f22917f = nativeByteBuffer.readFloat(true);
-                                hfVar.f22918g = nativeByteBuffer.readFloat(true);
+                                hfVar.f22892e = nativeByteBuffer.readFloat(true);
+                                hfVar.f22893f = nativeByteBuffer.readFloat(true);
+                                hfVar.f22894g = nativeByteBuffer.readFloat(true);
                                 hfVar.h = nativeByteBuffer.readInt32(true);
-                                hfVar.f22919i = nativeByteBuffer.readInt32(true);
-                                hfVar.f22920j = nativeByteBuffer.readFloat(true);
-                                hfVar.f22921k = nativeByteBuffer.readFloat(true);
-                                hfVar.f22922l = nativeByteBuffer.readFloat(true);
-                                hfVar.f22923m = nativeByteBuffer.readFloat(true);
-                                hfVar.f22924n = nativeByteBuffer.readInt32(true);
-                                hfVar.f22925o = nativeByteBuffer.readFloat(true);
-                                h2.c cVar = hfVar.f22926p;
+                                hfVar.f22895i = nativeByteBuffer.readInt32(true);
+                                hfVar.f22896j = nativeByteBuffer.readFloat(true);
+                                hfVar.f22897k = nativeByteBuffer.readFloat(true);
+                                hfVar.f22898l = nativeByteBuffer.readFloat(true);
+                                hfVar.f22899m = nativeByteBuffer.readFloat(true);
+                                hfVar.f22900n = nativeByteBuffer.readInt32(true);
+                                hfVar.f22901o = nativeByteBuffer.readFloat(true);
+                                h2.c cVar = hfVar.f22902p;
                                 ((qd0) cVar.f14058b).c(nativeByteBuffer);
                                 ((qd0) cVar.f14059c).c(nativeByteBuffer);
                                 ((qd0) cVar.d).c(nativeByteBuffer);
                                 ((qd0) cVar.f14060e).c(nativeByteBuffer);
-                                hfVar.f22927q = nativeByteBuffer.readFloat(true);
+                                hfVar.f22903q = nativeByteBuffer.readFloat(true);
                                 if (nativeByteBuffer.readInt32(true) == 1450380236) {
-                                    hfVar.f22928r = null;
+                                    hfVar.f22904r = null;
                                 } else {
-                                    if (hfVar.f22928r == null) {
-                                        hfVar.f22928r = new PointF();
+                                    if (hfVar.f22904r == null) {
+                                        hfVar.f22904r = new PointF();
                                     }
-                                    hfVar.f22928r.x = nativeByteBuffer.readFloat(true);
-                                    hfVar.f22928r.y = nativeByteBuffer.readFloat(true);
+                                    hfVar.f22904r.x = nativeByteBuffer.readFloat(true);
+                                    hfVar.f22904r.y = nativeByteBuffer.readFloat(true);
                                 }
-                                hfVar.f22929s = nativeByteBuffer.readFloat(true);
-                                hfVar.f22930t = nativeByteBuffer.readFloat(true);
+                                hfVar.f22905s = nativeByteBuffer.readFloat(true);
+                                hfVar.f22906t = nativeByteBuffer.readFloat(true);
                             }
                             if (nativeByteBuffer.remaining() >= 4) {
                                 this.F = nativeByteBuffer.readInt32(true);
@@ -733,7 +733,7 @@ public final class y0 {
                                 for (int i14 = 0; i14 < this.f13127j0.f12828e.size(); i14++) {
                                     i20 i20Var = new i20();
                                     i20Var.readParams(nativeByteBuffer, true);
-                                    i20Var.f23040r = (s) this.f13127j0.f12828e.get(i14);
+                                    i20Var.f23031r = (s) this.f13127j0.f12828e.get(i14);
                                     this.f13129k0.add(i20Var);
                                 }
                             }

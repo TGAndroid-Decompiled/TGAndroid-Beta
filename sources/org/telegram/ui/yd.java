@@ -11,37 +11,37 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 public final class yd extends FrameLayout {
-    public final org.telegram.ui.ActionBar.f6 f52219a;
-    public final org.telegram.ui.Components.q5 f52220b;
-    public final TextView f52221c;
+    public final org.telegram.ui.ActionBar.f6 f52199a;
+    public final org.telegram.ui.Components.q5 f52200b;
+    public final TextView f52201c;
     public final TextView d;
-    public final DecimalFormat f52222e;
-    public boolean f52223f;
+    public final DecimalFormat f52202e;
+    public boolean f52203f;
 
     public yd(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f52219a = f6Var;
+        this.f52199a = f6Var;
         LinearLayout f10 = org.telegram.messenger.k5.f(context, 1);
         addView(f10, c8.ha.d(-1, -2.0f, 119, 17.0f, 9.0f, 130.0f, 9.0f));
         TextView textView = new TextView(context);
-        this.f52221c = textView;
+        this.f52201c = textView;
         textView.setTextSize(1, 16.0f);
         org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.G6, f6Var);
         f10.addView(textView, c8.ha.o(-1, -2));
         TextView textView2 = new TextView(context);
         this.d = textView2;
         textView2.setTextSize(1, 13.0f);
-        org.telegram.ui.ActionBar.r6.V(textView2, org.telegram.ui.ActionBar.k6.f28241y6, f6Var);
+        org.telegram.ui.ActionBar.r6.V(textView2, org.telegram.ui.ActionBar.k6.f28244y6, f6Var);
         f10.addView(textView2, c8.ha.k(0.0f, 4.0f, 0.0f, 0.0f, -1, -2));
         org.telegram.ui.Components.q5 q5Var = new org.telegram.ui.Components.q5(context);
-        this.f52220b = q5Var;
+        this.f52200b = q5Var;
         q5Var.setTypeface(org.telegram.messenger.g0.o());
         q5Var.setTextSize(1, 13.0f);
         addView(q5Var, c8.ha.d(-2, -2.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));
         DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
         decimalFormatSymbols.setDecimalSeparator('.');
         DecimalFormat decimalFormat = new DecimalFormat("#.##", decimalFormatSymbols);
-        this.f52222e = decimalFormat;
+        this.f52202e = decimalFormat;
         decimalFormat.setMinimumFractionDigits(2);
         decimalFormat.setMaximumFractionDigits(12);
         decimalFormat.setGroupingUsed(false);
@@ -53,16 +53,16 @@ public final class yd extends FrameLayout {
         float L;
         int i7;
         super.onDraw(canvas);
-        if (this.f52223f) {
-            org.telegram.ui.ActionBar.f6 f6Var = this.f52219a;
+        if (this.f52203f) {
+            org.telegram.ui.ActionBar.f6 f6Var = this.f52199a;
             if (f6Var != null) {
                 paint = f6Var.d("paintDivider");
             } else {
-                paint = org.telegram.ui.ActionBar.k6.f27972k0;
+                paint = org.telegram.ui.ActionBar.k6.f27975k0;
             }
             Paint paint2 = paint;
             if (paint2 != null) {
-                if (org.telegram.messenger.hd.f22878a0) {
+                if (org.telegram.messenger.id.f23157a0) {
                     L = 0.0f;
                 } else {
                     L = org.telegram.messenger.g0.L(17.0f);
@@ -70,7 +70,7 @@ public final class yd extends FrameLayout {
                 float f10 = L;
                 float measuredHeight = getMeasuredHeight() - 1;
                 int measuredWidth = getMeasuredWidth();
-                if (org.telegram.messenger.hd.f22878a0) {
+                if (org.telegram.messenger.id.f23157a0) {
                     i7 = org.telegram.messenger.g0.L(17.0f);
                 } else {
                     i7 = 0;

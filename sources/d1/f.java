@@ -84,7 +84,7 @@ public abstract class f {
             PhotoViewer.p1().f3();
         } else if (i7 == 1) {
             MediaController B = MediaController.B();
-            if (B.f21292u0 != null) {
+            if (B.f21295u0 != null) {
                 B.T1 = true;
                 if (u() && ((atomicInteger = f7945b) == null || atomicInteger.get() <= 0)) {
                     h e11 = e();
@@ -93,18 +93,18 @@ public abstract class f {
                     } else {
                         a10 = e11.a();
                     }
-                    long D = B.D(B.f21292u0);
+                    long D = B.D(B.f21295u0);
                     if (D >= 0 && a10 >= 0 && Math.abs(D - a10) > 1000) {
-                        ij ijVar = B.f21292u0;
-                        if ((B.f21268i0 != null || B.E0 != null) && ijVar != null && B.L(ijVar)) {
+                        ij ijVar = B.f21295u0;
+                        if ((B.f21271i0 != null || B.E0 != null) && ijVar != null && B.L(ijVar)) {
                             try {
-                                t51 t51Var = B.f21268i0;
+                                t51 t51Var = B.f21271i0;
                                 if (t51Var != null) {
                                     j3 = t51Var.U();
                                     if (j3 != -9223372036854775807L) {
-                                        ijVar.f23204b0 = Utilities.l(((float) a10) / ((float) j3));
+                                        ijVar.f23222b0 = Utilities.l(((float) a10) / ((float) j3));
                                     }
-                                    B.f21268i0.q0(a10, false);
+                                    B.f21271i0.q0(a10, false);
                                     if (!B.T1) {
                                         v(a10);
                                     }
@@ -121,7 +121,7 @@ public abstract class f {
                                     }
                                 }
                                 if (j3 != 0) {
-                                    qs.f(ijVar.I1).k(qs.f25007i2, Integer.valueOf(ijVar.f1()), Float.valueOf(Utilities.l(((float) a10) / ((float) j3))));
+                                    qs.f(ijVar.I1).k(qs.f25016i2, Integer.valueOf(ijVar.f1()), Float.valueOf(Utilities.l(((float) a10) / ((float) j3))));
                                 }
                             } catch (Exception e12) {
                                 a8.g(e12, true);
@@ -137,9 +137,9 @@ public abstract class f {
                         m10 = e13.m();
                     }
                     if (m10) {
-                        B.S(B.f21292u0);
+                        B.S(B.f21295u0);
                     } else {
-                        B.R(B.f21292u0, true);
+                        B.R(B.f21295u0, true);
                     }
                     h e14 = e();
                     float f10 = 1.0f;
@@ -259,7 +259,7 @@ public abstract class f {
     public static Context f() {
         LaunchActivity launchActivity = LaunchActivity.G1;
         if (launchActivity == null) {
-            return t0.f25563b;
+            return t0.f25566b;
         }
         return launchActivity;
     }

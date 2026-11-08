@@ -40,7 +40,7 @@ public final class h implements f6.f {
         this.d = mVar2;
         this.f14249c = mVar;
         mVar.h = new gf.g(this, 1);
-        mVar.f16540c = mVar2;
+        mVar.f16543c = mVar2;
         this.f14250e = new c(this);
     }
 
@@ -104,7 +104,7 @@ public final class h implements f6.f {
         MediaInfo mediaInfo;
         synchronized (this.f14247a) {
             q6.m.d("Must be called from the main thread.");
-            f6.q qVar = this.f14249c.f16516f;
+            f6.q qVar = this.f14249c.f16519f;
             if (qVar == null) {
                 mediaInfo = null;
             } else {
@@ -118,7 +118,7 @@ public final class h implements f6.f {
         f6.q qVar;
         synchronized (this.f14247a) {
             q6.m.d("Must be called from the main thread.");
-            qVar = this.f14249c.f16516f;
+            qVar = this.f14249c.f16519f;
         }
         return qVar;
     }
@@ -146,7 +146,7 @@ public final class h implements f6.f {
         long j3;
         synchronized (this.f14247a) {
             q6.m.d("Must be called from the main thread.");
-            f6.q qVar = this.f14249c.f16516f;
+            f6.q qVar = this.f14249c.f16519f;
             if (qVar == null) {
                 mediaInfo = null;
             } else {
@@ -301,7 +301,7 @@ public final class h implements f6.f {
             return;
         }
         q6.m.d("Must be called from the main thread.");
-        String str = this.f14249c.f16539b;
+        String str = this.f14249c.f16542b;
         e0 e0Var = (e0) f0Var;
         j6.a.b(str);
         synchronized (e0Var.D) {
@@ -327,7 +327,7 @@ public final class h implements f6.f {
                 this.f14249c.n();
                 this.f14250e.c();
                 q6.m.d("Must be called from the main thread.");
-                String str = this.f14249c.f16539b;
+                String str = this.f14249c.f16542b;
                 e0 e0Var2 = (e0) f0Var;
                 if (!TextUtils.isEmpty(str)) {
                     synchronized (e0Var2.D) {

@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class ir0 implements Runnable {
-    public final int f34756a;
-    public final Object f34757b;
+    public final int f34800a;
+    public final Object f34801b;
 
     public ir0(fi.d2 d2Var, int i7) {
-        this.f34756a = 6;
-        this.f34757b = d2Var;
+        this.f34800a = 6;
+        this.f34801b = d2Var;
     }
 
     @Override
@@ -26,11 +26,11 @@ public final class ir0 implements Runnable {
         ArrayList arrayList;
         ArrayList arrayList2;
         v4.b0 b0Var;
-        int i10 = this.f34756a;
-        Object obj = this.f34757b;
+        int i10 = this.f34800a;
+        Object obj = this.f34801b;
         switch (i10) {
             case 0:
-                org.telegram.ui.ActionBar.f2 f2Var = ((jr0) obj).f35049f.f40440x1;
+                org.telegram.ui.ActionBar.f2 f2Var = ((jr0) obj).f35070f.f40461x1;
                 if (f2Var != null) {
                     f2Var.presentFragment(new PremiumPreviewFragment(0, "similar_channels"));
                     return;
@@ -41,22 +41,22 @@ public final class ir0 implements Runnable {
                 return;
             case 2:
                 is0 is0Var = (is0) obj;
-                ArrayList arrayList3 = is0Var.f34771f;
+                ArrayList arrayList3 = is0Var.f34815f;
                 if (is0Var.h) {
                     is0Var.h = false;
                     ArrayList arrayList4 = new ArrayList();
                     for (int i11 = 0; i11 < arrayList3.size(); i11++) {
-                        if (((org.telegram.messenger.uv) arrayList3.get(i11)).f25895b) {
-                            arrayList4.add(Long.valueOf(((org.telegram.messenger.uv) arrayList3.get(i11)).f25894a));
+                        if (((org.telegram.messenger.uv) arrayList3.get(i11)).f25897b) {
+                            arrayList4.add(Long.valueOf(((org.telegram.messenger.uv) arrayList3.get(i11)).f25896a));
                         }
                     }
-                    org.telegram.messenger.vv G1 = is0Var.f34777y.f40440x1.getMessagesController().G1();
-                    ArrayList d = org.telegram.messenger.vv.d(G1.f26212j);
-                    int i12 = G1.f26205a;
+                    org.telegram.messenger.vv G1 = is0Var.f34821y.f40461x1.getMessagesController().G1();
+                    ArrayList d = org.telegram.messenger.vv.d(G1.f26218j);
+                    int i12 = G1.f26211a;
                     if (org.telegram.messenger.p10.i(i12).q()) {
-                        i7 = org.telegram.messenger.qp.s1(i12).f24843n6;
+                        i7 = org.telegram.messenger.qp.s1(i12).f24850n6;
                     } else {
-                        i7 = org.telegram.messenger.qp.s1(i12).f24834m6;
+                        i7 = org.telegram.messenger.qp.s1(i12).f24841m6;
                     }
                     if (arrayList4.size() <= i7 && !org.telegram.messenger.vv.k(d, arrayList4)) {
                         G1.p(arrayList4);
@@ -79,7 +79,7 @@ public final class ir0 implements Runnable {
                 return;
             case 7:
                 tu0 tu0Var = (tu0) obj;
-                if (!tu0Var.f38397x) {
+                if (!tu0Var.f38431x) {
                     tu0Var.D = 0.0f;
                     return;
                 }
@@ -89,14 +89,14 @@ public final class ir0 implements Runnable {
                 return;
             case 9:
                 ow0 ow0Var = (ow0) obj;
-                int i13 = ow0Var.f36685a;
+                int i13 = ow0Var.f36705a;
                 ow0Var.H = null;
-                mw0 mw0Var = ow0Var.f36689c;
-                if (mw0Var != null && mw0Var.getEditField() != null && ow0Var.f36689c.getFieldText() != null) {
-                    int selectionStart = ow0Var.f36689c.getEditField().getSelectionStart();
-                    int selectionEnd = ow0Var.f36689c.getEditField().getSelectionEnd();
+                mw0 mw0Var = ow0Var.f36709c;
+                if (mw0Var != null && mw0Var.getEditField() != null && ow0Var.f36709c.getFieldText() != null) {
+                    int selectionStart = ow0Var.f36709c.getEditField().getSelectionStart();
+                    int selectionEnd = ow0Var.f36709c.getEditField().getSelectionEnd();
                     if (selectionStart != selectionEnd) {
-                        ow0Var.f36698s = false;
+                        ow0Var.f36718s = false;
                         bi.e5 e5Var = ow0Var.d;
                         if (e5Var != null) {
                             e5Var.invalidate();
@@ -104,7 +104,7 @@ public final class ir0 implements Runnable {
                         }
                         return;
                     }
-                    CharSequence fieldText = ow0Var.f36689c.getFieldText();
+                    CharSequence fieldText = ow0Var.f36709c.getFieldText();
                     boolean z9 = fieldText instanceof Spanned;
                     if (z9) {
                         f6VarArr = (org.telegram.messenger.f6[]) ((Spanned) fieldText).getSpans(Math.max(0, selectionEnd - 24), selectionEnd, org.telegram.messenger.f6.class);
@@ -119,15 +119,15 @@ public final class ir0 implements Runnable {
                             int spanEnd = spanned.getSpanEnd(f6Var);
                             if (selectionStart == spanEnd) {
                                 String substring = fieldText.toString().substring(spanStart, spanEnd);
-                                ow0Var.f36698s = true;
+                                ow0Var.f36718s = true;
                                 ow0Var.c();
                                 ow0Var.V = f6Var;
-                                ow0Var.f36688b0 = null;
-                                ow0Var.f36686a0 = null;
+                                ow0Var.f36708b0 = null;
+                                ow0Var.f36706a0 = null;
                                 if (substring != null) {
                                     String str = ow0Var.J;
-                                    if (str != null && ow0Var.I == 2 && str.equals(substring) && !ow0Var.f36701y && (arrayList2 = ow0Var.f36700x) != null && !arrayList2.isEmpty()) {
-                                        ow0Var.f36699w = false;
+                                    if (str != null && ow0Var.I == 2 && str.equals(substring) && !ow0Var.f36721y && (arrayList2 = ow0Var.f36720x) != null && !arrayList2.isEmpty()) {
+                                        ow0Var.f36719w = false;
                                         ow0Var.c();
                                         bi.e5 e5Var2 = ow0Var.d;
                                         if (e5Var2 != null) {
@@ -142,7 +142,7 @@ public final class ir0 implements Runnable {
                                             org.telegram.messenger.g0.r(runnable);
                                         }
                                         ow0Var.M = new org.telegram.ui.q8((Object) ow0Var, substring, i14, 24);
-                                        ArrayList arrayList5 = ow0Var.f36700x;
+                                        ArrayList arrayList5 = ow0Var.f36720x;
                                         if (arrayList5 != null && !arrayList5.isEmpty()) {
                                             ow0Var.M.run();
                                         } else {
@@ -165,14 +165,14 @@ public final class ir0 implements Runnable {
                             r5VarArr = null;
                         }
                         if ((r5VarArr == null || r5VarArr.length == 0) && selectionEnd < 52) {
-                            ow0Var.f36698s = true;
+                            ow0Var.f36718s = true;
                             ow0Var.c();
                             ow0Var.V = null;
                             String substring2 = fieldText.toString().substring(0, selectionEnd);
                             if (substring2 != null) {
                                 String str2 = ow0Var.J;
-                                if (str2 != null && ow0Var.I == 1 && str2.equals(substring2) && !ow0Var.f36701y && (arrayList = ow0Var.f36700x) != null && !arrayList.isEmpty()) {
-                                    ow0Var.f36699w = false;
+                                if (str2 != null && ow0Var.I == 1 && str2.equals(substring2) && !ow0Var.f36721y && (arrayList = ow0Var.f36720x) != null && !arrayList.isEmpty()) {
+                                    ow0Var.f36719w = false;
                                     ow0Var.c();
                                     ow0Var.d.setVisibility(0);
                                     ow0Var.W = org.telegram.messenger.g0.L(10.0f);
@@ -200,7 +200,7 @@ public final class ir0 implements Runnable {
                                         ow0Var.M = null;
                                     }
                                     ow0Var.M = new pp0(ow0Var, strArr, substring2, i15, 2);
-                                    ArrayList arrayList6 = ow0Var.f36700x;
+                                    ArrayList arrayList6 = ow0Var.f36720x;
                                     if (arrayList6 != null && !arrayList6.isEmpty()) {
                                         ow0Var.M.run();
                                     } else {
@@ -221,7 +221,7 @@ public final class ir0 implements Runnable {
                         org.telegram.messenger.g0.r(runnable3);
                         ow0Var.M = null;
                     }
-                    ow0Var.f36698s = false;
+                    ow0Var.f36718s = false;
                     bi.e5 e5Var5 = ow0Var.d;
                     if (e5Var5 != null) {
                         e5Var5.invalidate();
@@ -229,8 +229,8 @@ public final class ir0 implements Runnable {
                     }
                     return;
                 }
-                ow0Var.f36698s = false;
-                ow0Var.f36699w = true;
+                ow0Var.f36718s = false;
+                ow0Var.f36719w = true;
                 bi.e5 e5Var6 = ow0Var.d;
                 if (e5Var6 != null) {
                     e5Var6.invalidate();
@@ -255,39 +255,39 @@ public final class ir0 implements Runnable {
                 ((ty0) obj).a();
                 return;
             case 13:
-                ArrayList arrayList7 = ((az0) obj).f31950a;
+                ArrayList arrayList7 = ((az0) obj).f31952a;
                 for (int i16 = 0; i16 < arrayList7.size(); i16++) {
                     ((View) arrayList7.get(i16)).setVisibility(8);
                     if (arrayList7.get(i16) instanceof org.telegram.ui.Cells.q1) {
-                        ((org.telegram.ui.Cells.q1) arrayList7.get(i16)).i3(false, false);
-                        ((org.telegram.ui.Cells.q1) arrayList7.get(i16)).k3(false, false, false);
+                        ((org.telegram.ui.Cells.q1) arrayList7.get(i16)).j3(false, false);
+                        ((org.telegram.ui.Cells.q1) arrayList7.get(i16)).l3(false, false, false);
                     }
                 }
                 return;
             case 14:
                 zz0 zz0Var = (zz0) obj;
                 zz0Var.J = null;
-                zz0Var.H.animate().scaleX(1.0f).scaleY(1.0f).setDuration(150L).setInterpolator(xq.f40345f).start();
+                zz0Var.H.animate().scaleX(1.0f).scaleY(1.0f).setDuration(150L).setInterpolator(xq.f40366f).start();
                 return;
             case 15:
                 d01 d01Var = (d01) obj;
                 ViewPropertyAnimator duration = d01Var.animate().alpha(0.0f).setListener(new e60(d01Var, 29)).setDuration(300L);
-                d01Var.f32746b = duration;
+                d01Var.f32753b = duration;
                 duration.start();
                 return;
             case 16:
                 f01 f01Var = (f01) obj;
-                org.telegram.messenger.c20 c20Var = f01Var.f33429b;
+                org.telegram.messenger.c20 c20Var = f01Var.f33427b;
                 if (c20Var != null) {
-                    c20Var.a(Long.valueOf(f01Var.f33428a.f33746t));
+                    c20Var.a(Long.valueOf(f01Var.f33426a.f33781t));
                     return;
                 }
                 return;
             case 17:
                 s01 s01Var = (s01) obj;
-                long j3 = s01Var.f37815b;
-                if (!s01Var.d && s01Var.f37835y > 0.0f && (b0Var = (v4.b0) s01Var.f37831r.getLayoutManager()) != null && b0Var.N0() >= s01Var.f37832s.f36161c.size() - 3) {
-                    org.telegram.messenger.k00 k00Var = org.telegram.messenger.qp.s1(s01Var.f37813a).f24870q7;
+                long j3 = s01Var.f37831b;
+                if (!s01Var.d && s01Var.f37851y > 0.0f && (b0Var = (v4.b0) s01Var.f37847r.getLayoutManager()) != null && b0Var.N0() >= s01Var.f37848s.f36177c.size() - 3) {
+                    org.telegram.messenger.k00 k00Var = org.telegram.messenger.qp.s1(s01Var.f37829a).f24877q7;
                     long j10 = -j3;
                     if (!k00Var.e(j10)) {
                         k00Var.o(j10);
@@ -297,7 +297,7 @@ public final class ir0 implements Runnable {
                 }
                 return;
             case 18:
-                m11 m11Var = (m11) ((t9) obj).f38280c;
+                m11 m11Var = (m11) ((t9) obj).f38308c;
                 if (m11Var.l()) {
                     m11Var.m();
                     return;
@@ -314,10 +314,10 @@ public final class ir0 implements Runnable {
                 ((org.telegram.ui.ActionBar.g1) obj).dismiss();
                 return;
             case 22:
-                ((u21) obj).f38488c.setVisibility(8);
+                ((u21) obj).f38503c.setVisibility(8);
                 return;
             case 23:
-                ((org.telegram.ui.bk) obj).f31671c.presentFragment(new org.telegram.ui.qy0());
+                ((org.telegram.ui.bk) obj).f31680c.presentFragment(new org.telegram.ui.qy0());
                 return;
             case 24:
                 ((d31) obj).requestLayout();
@@ -327,10 +327,10 @@ public final class ir0 implements Runnable {
                 return;
             case 26:
                 UndoView undoView = (UndoView) obj;
-                int i17 = UndoView.f31592i0;
+                int i17 = UndoView.f31596i0;
                 undoView.getClass();
                 try {
-                    undoView.f31602f.performHapticFeedback(3, 2);
+                    undoView.f31606f.performHapticFeedback(3, 2);
                     return;
                 } catch (Exception unused) {
                     return;
@@ -339,9 +339,9 @@ public final class ir0 implements Runnable {
                 ((s41) obj).invalidateSelf();
                 return;
             case 28:
-                ry ryVar = ((h51) obj).f34179b;
-                if (ryVar != null) {
-                    ryVar.c(false, true, false);
+                sy syVar = ((h51) obj).f34116b;
+                if (syVar != null) {
+                    syVar.c(false, true, false);
                     return;
                 }
                 return;
@@ -349,7 +349,7 @@ public final class ir0 implements Runnable {
                 t51 t51Var = (t51) obj;
                 l2.i0 i0Var = t51Var.d;
                 if (i0Var != null) {
-                    TextureView textureView = t51Var.f38235n;
+                    TextureView textureView = t51Var.f38263n;
                     i0Var.F1();
                     if (textureView != null && textureView == i0Var.X) {
                         i0Var.F1();
@@ -357,7 +357,7 @@ public final class ir0 implements Runnable {
                         i0Var.x1(null);
                         i0Var.q1(0, 0);
                     }
-                    t51Var.d.z1(t51Var.f38235n);
+                    t51Var.d.z1(t51Var.f38263n);
                     ArrayList arrayList8 = t51Var.N;
                     if (arrayList8 != null) {
                         t51Var.k0(arrayList8, t51Var.O);
@@ -374,7 +374,7 @@ public final class ir0 implements Runnable {
     }
 
     public ir0(Object obj, int i7) {
-        this.f34756a = i7;
-        this.f34757b = obj;
+        this.f34800a = i7;
+        this.f34801b = obj;
     }
 }

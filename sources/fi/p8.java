@@ -14,7 +14,7 @@ import android.view.View;
 import android.widget.ScrollView;
 import java.util.ArrayList;
 import java.util.HashSet;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.Components.c20;
 import org.telegram.ui.Components.xq;
 public abstract class p8 extends ScrollView implements org.telegram.ui.ActionBar.a6 {
@@ -67,7 +67,7 @@ public abstract class p8 extends ScrollView implements org.telegram.ui.ActionBar
         this.f12611a = f6Var;
         this.h = d8Var;
         setVerticalScrollBarEnabled(false);
-        org.telegram.messenger.g0.z3(this, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27849d6, false));
+        org.telegram.messenger.g0.z3(this, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27852d6, false));
         ah.n nVar = new ah.n(this, context);
         this.d = nVar;
         addView(nVar, c8.ha.c(-2.0f, -1));
@@ -91,15 +91,15 @@ public abstract class p8 extends ScrollView implements org.telegram.ui.ActionBar
         iVar.setTextIsSelectable(false);
         iVar.setPadding(0, 0, 0, 0);
         iVar.setImeOptions(268435462);
-        if (hd.f22878a0) {
+        if (id.f23157a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         iVar.setGravity(i7 | 16);
         nVar.addView(iVar);
-        iVar.setHintText(hd.M0(2131745837, null));
-        this.f12613c = (int) iVar.getPaint().measureText(hd.M0(2131745837, null));
+        iVar.setHintText(id.M0(2131745839, null));
+        this.f12613c = (int) iVar.getPaint().measureText(id.M0(2131745839, null));
         iVar.addTextChangedListener(new ah.j(this, 6));
     }
 
@@ -180,7 +180,7 @@ public abstract class p8 extends ScrollView implements org.telegram.ui.ActionBar
                 return;
             }
         }
-        org.telegram.messenger.g0.z3(this, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27849d6, false));
+        org.telegram.messenger.g0.z3(this, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27852d6, false));
     }
 
     @Override

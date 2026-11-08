@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.HashSet;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.m5;
 import org.telegram.messenger.p10;
 import org.telegram.messenger.qp;
@@ -56,14 +56,14 @@ public final class r extends yg.c implements a6 {
         this.G = true;
         this.K = new nu0(this);
         this.d.setTypeface(g0.o());
-        this.f59343f.setVisibility(8);
+        this.f59435f.setVisibility(8);
         if (z10) {
             wo woVar = new wo(21, context, f6Var);
             this.f1111w = woVar;
-            woVar.b(k6.B5, k6.f27922h5, k6.f27979k7);
+            woVar.b(k6.B5, k6.f27925h5, k6.f27982k7);
             woVar.setDrawUnchecked(false);
             woVar.setDrawBackgroundAsArc(3);
-            boolean z12 = hd.f22878a0;
+            boolean z12 = id.f23157a0;
             if (z12) {
                 i12 = 5;
             } else {
@@ -81,15 +81,15 @@ public final class r extends yg.c implements a6 {
             wo woVar2 = new wo(21, context, f6Var);
             this.f1111w = woVar2;
             if (z11) {
-                woVar2.b(k6.i7, k6.f27959j7, k6.C5);
+                woVar2.b(k6.i7, k6.f27962j7, k6.C5);
             } else {
-                woVar2.b(k6.B5, k6.f27959j7, k6.C5);
+                woVar2.b(k6.B5, k6.f27962j7, k6.C5);
             }
             woVar2.setDrawUnchecked(true);
             woVar2.setDrawBackgroundAsArc(10);
             addView(woVar2);
             woVar2.a(false, false);
-            if (hd.f22878a0) {
+            if (id.f23157a0) {
                 i7 = 5;
             } else {
                 i7 = 3;
@@ -104,10 +104,10 @@ public final class r extends yg.c implements a6 {
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         imageView.setImageResource(2131231244);
-        int i14 = k6.f28056od;
+        int i14 = k6.f28059od;
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         r6.t(imageView, i14, f6Var, mode);
-        if (hd.f22878a0) {
+        if (id.f23157a0) {
             i10 = 3;
         } else {
             i10 = 5;
@@ -119,7 +119,7 @@ public final class r extends yg.c implements a6 {
         imageView2.setImageResource(2131231846);
         int i15 = k6.Ci;
         r6.t(imageView2, i15, f6Var, mode);
-        boolean z13 = hd.f22878a0;
+        boolean z13 = id.f23157a0;
         if (z13) {
             i11 = 3;
         } else {
@@ -143,7 +143,7 @@ public final class r extends yg.c implements a6 {
         imageView3.setScaleType(scaleType);
         imageView3.setImageResource(2131231915);
         r6.t(imageView3, i15, f6Var, mode);
-        addView(imageView3, ha.d(32, 32.0f, (hd.f22878a0 ? 3 : 5) | 16, 12.0f, 0.0f, 12.0f, 0.0f));
+        addView(imageView3, ha.d(32, 32.0f, (id.f23157a0 ? 3 : 5) | 16, 12.0f, 0.0f, 12.0f, 0.0f));
         imageView3.setVisibility(8);
     }
 
@@ -307,7 +307,7 @@ public final class r extends yg.c implements a6 {
         this.f1112x.setVisibility(8);
         this.I = chat;
         this.H = null;
-        w8 w8Var = this.f59340b;
+        w8 w8Var = this.f59432b;
         w8Var.q(chat);
         if (t3.c0(chat)) {
             f10 = 12.0f;
@@ -315,7 +315,7 @@ public final class r extends yg.c implements a6 {
             f10 = 20.0f;
         }
         int L = g0.L(f10);
-        l9 l9Var = this.f59341c;
+        l9 l9Var = this.f59433c;
         l9Var.setRoundRadius(L);
         l9Var.e(chat, w8Var);
         String str2 = chat.title;
@@ -332,17 +332,17 @@ public final class r extends yg.c implements a6 {
             } else {
                 str = "Members";
             }
-            M0 = hd.G(i7, str, new Object[0]);
+            M0 = id.G(i7, str, new Object[0]);
         } else {
             if (V) {
                 i10 = 2131751391;
             } else {
                 i10 = 2131754876;
             }
-            M0 = hd.M0(i10, null);
+            M0 = id.M0(i10, null);
         }
         setSubtitle(M0);
-        r6.Y(this.f59342e, k6.f28107r5, this.f59339a);
+        r6.Y(this.f59434e, k6.f28110r5, this.f59431a);
         if (i7 > 200) {
             f11 = 0.3f;
         } else {
@@ -370,37 +370,37 @@ public final class r extends yg.c implements a6 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.K.f36426a.a();
+        this.K.f36451a.a();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.K.f36426a.b();
+        this.K.f36451a.b();
     }
 
     public void setBoost(TL_stories.TL_myBoost tL_myBoost) {
         this.f1112x.setVisibility(8);
         this.J = tL_myBoost;
-        TLRPC.Chat M0 = qp.s1(p10.f24467s0).M0(Long.valueOf(-m5.o(tL_myBoost.peer)));
+        TLRPC.Chat M0 = qp.s1(p10.f24470s0).M0(Long.valueOf(-m5.o(tL_myBoost.peer)));
         this.I = M0;
-        w8 w8Var = this.f59340b;
+        w8 w8Var = this.f59432b;
         w8Var.q(M0);
         int L = g0.L(20.0f);
-        l9 l9Var = this.f59341c;
+        l9 l9Var = this.f59433c;
         l9Var.setRoundRadius(L);
         l9Var.e(this.I, w8Var);
         String str = this.I.title;
         d4 d4Var = this.d;
         d4Var.k(str);
-        int i7 = k6.f28107r5;
-        f6 f6Var = this.f59339a;
-        k5 k5Var = this.f59342e;
+        int i7 = k6.f28110r5;
+        f6 f6Var = this.f59431a;
+        k5 k5Var = this.f59434e;
         r6.Y(k5Var, i7, f6Var);
-        setSubtitle(hd.a0(null, null, 2131753661, hd.E0().o0().format(new Date(tL_myBoost.expires * 1000))));
+        setSubtitle(id.a0(null, null, 2131753661, id.E0().o0().format(new Date(tL_myBoost.expires * 1000))));
         int i10 = tL_myBoost.cooldown_until_date;
         if (i10 > 0) {
-            setSubtitle(hd.a0(null, null, 2131753594, f((i10 * 1000) - System.currentTimeMillis())));
+            setSubtitle(id.a0(null, null, 2131753594, f((i10 * 1000) - System.currentTimeMillis())));
             d4Var.setAlpha(0.65f);
             k5Var.setAlpha(0.65f);
             i(false, 0.3f);
@@ -426,10 +426,10 @@ public final class r extends yg.c implements a6 {
         this.f1112x.setVisibility(8);
         this.H = user;
         this.I = null;
-        w8 w8Var = this.f59340b;
+        w8 w8Var = this.f59432b;
         w8Var.r(user);
         int L = g0.L(20.0f);
-        l9 l9Var = this.f59341c;
+        l9 l9Var = this.f59433c;
         l9Var.setRoundRadius(L);
         l9Var.e(user, w8Var);
         String p10 = t10.p(user);
@@ -440,19 +440,19 @@ public final class r extends yg.c implements a6 {
         if (t10.t(user)) {
             int i10 = user.bot_active_users;
             if (i10 > 0) {
-                setSubtitle(hd.H(',', "BotUsers", i10));
+                setSubtitle(id.H(',', "BotUsers", i10));
             } else {
-                setSubtitle(hd.M0(2131753156, null));
+                setSubtitle(id.M0(2131753156, null));
             }
         } else {
-            setSubtitle(hd.d0(p10.f24467s0, user, zArr, null));
+            setSubtitle(id.d0(p10.f24470s0, user, zArr, null));
         }
         if (zArr[0]) {
-            i7 = k6.f28030n5;
+            i7 = k6.f28033n5;
         } else {
-            i7 = k6.f28107r5;
+            i7 = k6.f28110r5;
         }
-        r6.Y(this.f59342e, i7, this.f59339a);
+        r6.Y(this.f59434e, i7, this.f59431a);
         wo woVar = this.f1111w;
         if (woVar != null) {
             woVar.setAlpha(1.0f);

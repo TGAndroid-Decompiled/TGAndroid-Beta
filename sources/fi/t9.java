@@ -20,7 +20,7 @@ public final class t9 extends CharacterStyle {
                 textPaint.setColor(org.telegram.ui.ActionBar.k6.T2.getColor());
                 return;
             case 2:
-                textPaint.setColor(org.telegram.ui.ActionBar.k6.f28046o2.linkColor);
+                textPaint.setColor(org.telegram.ui.ActionBar.k6.f28049o2.linkColor);
                 return;
             default:
                 return;

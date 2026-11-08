@@ -5,29 +5,29 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.logging.Logger;
 public final class d extends b {
-    public static final Logger f18234m = Logger.getLogger(d.class.getName());
+    public static final Logger f18237m = Logger.getLogger(d.class.getName());
     public int d;
-    public int f18235e;
-    public int f18236f;
-    public int f18237g;
+    public int f18238e;
+    public int f18239f;
+    public int f18240g;
     public long h;
-    public long f18238i;
-    public a f18239j;
-    public ArrayList f18240k;
-    public byte[] f18241l;
+    public long f18241i;
+    public a f18242j;
+    public ArrayList f18243k;
+    public byte[] f18244l;
 
     @Override
     public final void b(ByteBuffer byteBuffer) {
         b a10;
         this.d = h5.b.a(byteBuffer.get());
         int a11 = h5.b.a(byteBuffer.get());
-        this.f18235e = a11 >>> 2;
-        this.f18236f = (a11 >> 1) & 1;
-        this.f18237g = h5.b.a(byteBuffer.get()) + (h5.b.h(byteBuffer) << 8);
+        this.f18238e = a11 >>> 2;
+        this.f18239f = (a11 >> 1) & 1;
+        this.f18240g = h5.b.a(byteBuffer.get()) + (h5.b.h(byteBuffer) << 8);
         this.h = h5.b.i(byteBuffer);
-        this.f18238i = h5.b.i(byteBuffer);
+        this.f18241i = h5.b.i(byteBuffer);
         int remaining = byteBuffer.remaining();
-        Logger logger = f18234m;
+        Logger logger = f18237m;
         if (remaining > 2) {
             int position = byteBuffer.position();
             b a12 = k.a(this.d, byteBuffer);
@@ -36,11 +36,11 @@ public final class d extends b {
             int a13 = a12.a();
             if (position2 < a13) {
                 byte[] bArr = new byte[a13 - position2];
-                this.f18241l = bArr;
+                this.f18244l = bArr;
                 byteBuffer.get(bArr);
             }
             if (a12 instanceof a) {
-                this.f18239j = (a) a12;
+                this.f18242j = (a) a12;
             }
         }
         while (byteBuffer.remaining() > 2) {
@@ -54,25 +54,25 @@ public final class d extends b {
         StringBuilder sb2 = new StringBuilder("DecoderConfigDescriptor{objectTypeIndication=");
         sb2.append(this.d);
         sb2.append(", streamType=");
-        sb2.append(this.f18235e);
+        sb2.append(this.f18238e);
         sb2.append(", upStream=");
-        sb2.append(this.f18236f);
+        sb2.append(this.f18239f);
         sb2.append(", bufferSizeDB=");
-        sb2.append(this.f18237g);
+        sb2.append(this.f18240g);
         sb2.append(", maxBitRate=");
         sb2.append(this.h);
         sb2.append(", avgBitRate=");
-        sb2.append(this.f18238i);
+        sb2.append(this.f18241i);
         sb2.append(", decoderSpecificInfo=null, audioSpecificInfo=");
-        sb2.append(this.f18239j);
+        sb2.append(this.f18242j);
         sb2.append(", configDescriptorDeadBytes=");
-        byte[] bArr = this.f18241l;
+        byte[] bArr = this.f18244l;
         if (bArr == null) {
             bArr = new byte[0];
         }
         sb2.append(h5.b.c(0, bArr));
         sb2.append(", profileLevelIndicationDescriptors=");
-        ArrayList arrayList = this.f18240k;
+        ArrayList arrayList = this.f18243k;
         if (arrayList == null) {
             obj = "null";
         } else {

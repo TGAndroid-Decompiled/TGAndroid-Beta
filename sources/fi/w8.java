@@ -12,7 +12,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.qp;
 import org.telegram.ui.Components.he0;
 import org.telegram.ui.Components.xq;
@@ -77,7 +77,7 @@ public final class w8 implements View.OnClickListener {
                         float f11 = iArr[1];
                         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                         paint2.setShader(new BitmapShader(createBitmap, tileMode, tileMode));
-                        da daVar = new da(vaVar2, vaVar2.f12938b, z11, canvas, (vaVar2.f12963i1.getMeasuredWidth() / 2.0f) + f10, (vaVar2.f12963i1.getMeasuredHeight() / 2.0f) + f11, Math.max(createBitmap.getHeight(), createBitmap.getWidth()) + org.telegram.messenger.g0.f22539n, paint, createBitmap, paint2, f10, f11);
+                        da daVar = new da(vaVar2, vaVar2.f12938b, z11, canvas, (vaVar2.f12963i1.getMeasuredWidth() / 2.0f) + f10, (vaVar2.f12963i1.getMeasuredHeight() / 2.0f) + f11, Math.max(createBitmap.getHeight(), createBitmap.getWidth()) + org.telegram.messenger.g0.f22558n, paint, createBitmap, paint2, f10, f11);
                         vaVar2.C2 = daVar;
                         daVar.setOnTouchListener(new ei.b(2));
                         vaVar2.D2 = 0.0f;
@@ -95,7 +95,7 @@ public final class w8 implements View.OnClickListener {
                         valueAnimator2.setDuration(j3);
                         ValueAnimator valueAnimator3 = vaVar2.E2;
                         if (z11) {
-                            xqVar = xq.f40347i;
+                            xqVar = xq.f40368i;
                         } else {
                             xqVar = xq.h;
                         }
@@ -139,25 +139,25 @@ public final class w8 implements View.OnClickListener {
                         m3 m3Var = vaVar.f12969k1;
                         if (e7Var2.Y) {
                             if (isEmpty && !z9) {
-                                i10 = 2131744461;
+                                i10 = 2131744463;
                             } else {
-                                i10 = 2131744593;
+                                i10 = 2131744595;
                             }
-                            M0 = hd.M0(i10, null);
+                            M0 = id.M0(i10, null);
                         } else {
                             if (isEmpty && !z9) {
-                                i7 = 2131744460;
+                                i7 = 2131744462;
                             } else {
-                                i7 = 2131744592;
+                                i7 = 2131744594;
                             }
-                            M0 = hd.M0(i7, null);
+                            M0 = id.M0(i7, null);
                         }
                         boolean z12 = vaVar.f12969k1.V;
                         if (m3Var.getMeasuredWidth() < 0) {
                             m3Var.G = M0;
                         } else {
                             org.telegram.ui.Components.i6 i6Var = m3Var.H;
-                            if (!hd.f22878a0 && z12) {
+                            if (!id.f23157a0 && z12) {
                                 z10 = true;
                             }
                             i6Var.t(M0, z10, true);
@@ -208,7 +208,7 @@ public final class w8 implements View.OnClickListener {
                     } else {
                         i11 = 2131754887;
                     }
-                    hbVar.setContentDescription(hd.M0(i11, null));
+                    hbVar.setContentDescription(id.M0(i11, null));
                     vaVar.l1.f(true);
                     qp.e1().edit().putInt("storydualhint", 2).apply();
                     if (vaVar.f12973m1.V) {

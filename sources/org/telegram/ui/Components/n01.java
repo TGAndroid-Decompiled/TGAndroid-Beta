@@ -3,12 +3,12 @@ package org.telegram.ui.Components;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 public final class n01 extends oj0 {
-    public final ArrayList f36161c = new ArrayList();
+    public final ArrayList f36177c = new ArrayList();
     public String d;
-    public final s01 f36162e;
+    public final s01 f36178e;
 
     public n01(s01 s01Var) {
-        this.f36162e = s01Var;
+        this.f36178e = s01Var;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class n01 extends oj0 {
 
     @Override
     public final int b() {
-        return this.f36161c.size();
+        return this.f36177c.size();
     }
 
     @Override
@@ -28,7 +28,7 @@ public final class n01 extends oj0 {
 
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
-        r01 r01Var = new r01(this.f36162e, viewGroup.getContext());
+        r01 r01Var = new r01(this.f36178e, viewGroup.getContext());
         r01Var.setLayoutParams(new v4.o0(-1, -2));
         return new v4.d1(r01Var);
     }

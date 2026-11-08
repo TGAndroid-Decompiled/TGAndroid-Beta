@@ -3,7 +3,7 @@ public final class r8 implements na.d {
     public static final r8 f5829a = new Object();
 
     static {
-        rf.b.p(a8.p0.x(w.class, new s(1)));
+        rf.b.q(a8.p0.x(w.class, new s(1)));
     }
 
     @Override

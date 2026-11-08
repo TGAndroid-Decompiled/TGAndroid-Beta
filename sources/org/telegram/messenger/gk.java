@@ -1,117 +1,62 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
 public final class gk implements Runnable {
-    public final int f22666a;
-    public final qp f22667b;
-    public final ArrayList f22668c;
+    public final int f22686a = 2;
+    public final qp f22687b;
+    public final ArrayList f22688c;
     public final long d;
+    public final long f22689e;
 
-    public gk(qp qpVar, long j3, ArrayList arrayList, int i7) {
-        this.f22666a = i7;
-        this.f22667b = qpVar;
+    public gk(qp qpVar, long j3, long j10, ArrayList arrayList) {
+        this.f22687b = qpVar;
         this.d = j3;
-        this.f22668c = arrayList;
+        this.f22689e = j10;
+        this.f22688c = arrayList;
     }
 
     @Override
     public final void run() {
-        int i7;
-        long j3;
-        long j10;
-        int i10 = this.f22666a;
-        long j11 = this.d;
-        ArrayList arrayList = this.f22668c;
-        qp qpVar = this.f22667b;
-        switch (i10) {
+        int i7 = this.f22686a;
+        qp qpVar = this.f22687b;
+        switch (i7) {
             case 0:
-                yr messagesStorage = qpVar.getMessagesStorage();
-                long j12 = this.d;
-                ArrayList arrayList2 = this.f22668c;
-                qpVar.getMessagesStorage().R1(j12, -j12, arrayList2, messagesStorage.P0(j12, arrayList2, false, true, 0, 0));
+                long j3 = this.d;
+                ArrayList arrayList = this.f22688c;
+                qpVar.getMessagesStorage().R1(j3, -j3, arrayList, qpVar.getMessagesStorage().P0(j3, arrayList, false, true, 5, (int) this.f22689e));
                 return;
             case 1:
-                qpVar.getNotificationCenter().k(7, arrayList, Long.valueOf(j11), Boolean.FALSE);
-                if (j11 == 0) {
-                    int size = arrayList.size();
-                    for (int i11 = 0; i11 < size; i11++) {
-                        ij ijVar = (ij) qpVar.U.get(((Integer) arrayList.get(i11)).intValue());
-                        if (ijVar != null) {
-                            ijVar.Z = true;
-                        }
-                    }
-                    return;
-                }
-                ArrayList arrayList3 = (ArrayList) qpVar.R.f(-j11);
-                if (arrayList3 != null) {
-                    for (int i12 = 0; i12 < arrayList3.size(); i12++) {
-                        ij ijVar2 = (ij) arrayList3.get(i12);
-                        int size2 = arrayList.size();
-                        int i13 = 0;
-                        while (true) {
-                            if (i13 >= size2) {
-                                break;
-                            } else if (ijVar2.f1() == ((Integer) arrayList.get(i13)).intValue()) {
-                                ijVar2.Z = true;
-                            } else {
-                                i13++;
-                            }
-                        }
-                    }
-                    return;
-                }
-                return;
-            case 2:
-                if (arrayList != null) {
-                    qpVar.getClass();
-                    for (int i14 = 0; i14 < arrayList.size(); i14++) {
-                        TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) arrayList.get(i14);
-                        qp messagesController = qpVar.getMessagesController();
-                        int i15 = tL_forumTopic.top_message;
-                        TLRPC.Message message = tL_forumTopic.topMessage;
-                        if (message != null) {
-                            i7 = message.date;
-                        } else {
-                            i7 = 0;
-                        }
-                        long j13 = this.d;
-                        if (qpVar.y2(j13)) {
-                            j3 = m5.o(tL_forumTopic.from_id);
-                        } else {
-                            j3 = tL_forumTopic.f27005id;
-                        }
-                        messagesController.j3(j13, i15, 0, i7, false, j3, 0, true, 0);
-                        yr messagesStorage2 = qpVar.getMessagesStorage();
-                        long j14 = -j13;
-                        if (qpVar.y2(j13)) {
-                            j10 = m5.o(tL_forumTopic.from_id);
-                        } else {
-                            j10 = tL_forumTopic.f27005id;
-                        }
-                        messagesStorage2.d2(j14, j10, tL_forumTopic.top_message, 0);
-                    }
-                }
-                qpVar.getMessagesStorage().f26696a.c(new wj(qpVar, 20));
-                return;
-            case 3:
-                qpVar.l5(0, -j11, arrayList);
-                qpVar.getNotificationCenter().k(3, new Object[0]);
-                return;
-            case 4:
-                g0.h3(new gk(this.f22667b, this.d, this.f22668c, 5));
+                qp qpVar2 = this.f22687b;
+                ArrayList arrayList2 = this.f22688c;
+                long j10 = this.d;
+                g0.h3(new fk(qpVar2, arrayList2, j10, 1));
+                yr messagesStorage = qpVar2.getMessagesStorage();
+                long j11 = this.f22689e;
+                messagesStorage.E(arrayList2, j11);
+                qpVar2.getMessagesStorage().R1(j11, j10, arrayList2, qpVar2.getMessagesStorage().P0(j11, arrayList2, false, true, 0, 0));
                 return;
             default:
-                qpVar.l5(0, j11, arrayList);
-                qpVar.getNotificationCenter().k(3, new Object[0]);
+                k00 k00Var = qpVar.getMessagesController().f24877q7;
+                long j12 = this.d;
+                long j13 = this.f22689e;
+                k00Var.B(0, j12, j13, false);
+                qpVar.getMessagesStorage().h2(0, j12, j13, false);
+                qpVar.getNotificationCenter().k(302, Long.valueOf(j12), Long.valueOf(j13), 0, this.f22688c);
                 return;
         }
     }
 
-    public gk(qp qpVar, ArrayList arrayList, long j3, int i7) {
-        this.f22666a = i7;
-        this.f22667b = qpVar;
-        this.f22668c = arrayList;
+    public gk(qp qpVar, long j3, ArrayList arrayList, long j10) {
+        this.f22687b = qpVar;
         this.d = j3;
+        this.f22688c = arrayList;
+        this.f22689e = j10;
+    }
+
+    public gk(qp qpVar, ArrayList arrayList, long j3, long j10) {
+        this.f22687b = qpVar;
+        this.f22688c = arrayList;
+        this.d = j3;
+        this.f22689e = j10;
     }
 }

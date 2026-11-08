@@ -16,12 +16,12 @@ public final class v5 extends FrameLayout {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        cc.a(this.f9870b.f28619c, new ch.v(this, 3));
+        cc.a(this.f9870b.f28622c, new ch.v(this, 3));
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        cc.h(this.f9870b.f28619c);
+        cc.h(this.f9870b.f28622c);
     }
 }

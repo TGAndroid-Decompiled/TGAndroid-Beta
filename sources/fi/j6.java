@@ -41,23 +41,23 @@ public final class j6 implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 float f13 = this.f12235c;
                 float f14 = this.f12234b;
-                jVar.f18343k = com.google.android.recaptcha.internal.a.z(f13, f14, floatValue2, f14);
+                jVar.f18346k = com.google.android.recaptcha.internal.a.z(f13, f14, floatValue2, f14);
                 float f15 = this.f12236e;
                 float f16 = this.d;
-                jVar.f18344l = com.google.android.recaptcha.internal.a.z(f15, f16, floatValue2, f16);
-                jVar.f18335a.a(f13, f15, false);
+                jVar.f18347l = com.google.android.recaptcha.internal.a.z(f15, f16, floatValue2, f16);
+                jVar.f18338a.a(f13, f15, false);
                 return;
             default:
                 org.telegram.ui.Cells.x9 x9Var = (org.telegram.ui.Cells.x9) this.f12237f;
                 x9Var.getClass();
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                vg.f fVar = ((vg.e) x9Var.f30907b).f57270a;
+                vg.f fVar = ((vg.e) x9Var.f30911b).f57362a;
                 float f17 = this.f12235c;
                 float f18 = this.f12234b;
                 fVar.d = com.google.android.recaptcha.internal.a.z(f17, f18, floatValue3, f18);
                 float f19 = this.f12236e;
                 float f20 = this.d;
-                fVar.f57287i = com.google.android.recaptcha.internal.a.z(f19, f20, floatValue3, f20);
+                fVar.f57379i = com.google.android.recaptcha.internal.a.z(f19, f20, floatValue3, f20);
                 return;
         }
     }

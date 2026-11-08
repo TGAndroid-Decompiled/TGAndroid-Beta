@@ -25,42 +25,42 @@ public final class sd extends c1 implements ls, pa, qa {
     public boolean L;
     public final ta M;
     public final sa N;
-    public final a0.h f25449a;
-    public final ArrayList f25450b;
-    public final a0.h f25451c;
+    public final a0.h f25455a;
+    public final ArrayList f25456b;
+    public final a0.h f25457c;
     public final a0.h d;
-    public final LocationManager f25452e;
-    public final qd f25453f;
+    public final LocationManager f25458e;
+    public final qd f25459f;
     public final qd h;
-    public final qd f25454n;
-    public final g6.d0 f25455r;
-    public Location f25456s;
-    public long f25457w;
-    public boolean f25458x;
-    public long f25459y;
+    public final qd f25460n;
+    public final g6.d0 f25461r;
+    public Location f25462s;
+    public long f25463w;
+    public boolean f25464x;
+    public long f25465y;
 
     public sd(int i7) {
         super(i7);
-        this.f25449a = new a0.h();
-        this.f25450b = new ArrayList();
-        this.f25451c = new a0.h();
+        this.f25455a = new a0.h();
+        this.f25456b = new ArrayList();
+        this.f25457c = new a0.h();
         this.d = new a0.h();
-        this.f25453f = new qd(this, 0);
+        this.f25459f = new qd(this, 0);
         this.h = new qd(this, 0);
-        this.f25454n = new qd(this, 0);
-        this.f25455r = new g6.d0(this, 26);
-        this.f25458x = true;
+        this.f25460n = new qd(this, 0);
+        this.f25461r = new g6.d0(this, 26);
+        this.f25464x = true;
         this.F = new SparseIntArray();
         this.G = new a0.h();
         this.I = new ArrayList();
         this.J = new a0.h();
-        this.f25452e = (LocationManager) t0.f25563b.getSystemService("location");
-        this.M = ((h6.m) t0.j()).onCreateLocationServicesAPI(t0.f25563b, this, this);
+        this.f25458e = (LocationManager) t0.f25566b.getSystemService("location");
+        this.M = ((h6.m) t0.j()).onCreateLocationServicesAPI(t0.f25566b, this, this);
         sa onCreateLocationRequest = ((h6.m) t0.j()).onCreateLocationRequest();
         this.N = onCreateLocationRequest;
         ba baVar = (ba) onCreateLocationRequest;
         baVar.getClass();
-        LocationRequest locationRequest = baVar.f21606a;
+        LocationRequest locationRequest = baVar.f21633a;
         locationRequest.f7680a = 100;
         long j3 = locationRequest.f7682c;
         long j10 = locationRequest.f7681b;
@@ -72,8 +72,8 @@ public final class sd extends c1 implements ls, pa, qa {
         }
         locationRequest.f7681b = 1000L;
         locationRequest.f7682c = 1000L;
-        g0.h3(new id(this, 5));
-        getMessagesStorage().f26696a.c(new id(this, 0));
+        g0.h3(new jd(this, 5));
+        getMessagesStorage().f26719a.c(new jd(this, 0));
     }
 
     public static String b(String str) {
@@ -120,7 +120,7 @@ public final class sd extends c1 implements ls, pa, qa {
         HashMap hashMap = Q;
         Runnable runnable = (Runnable) hashMap.get(r0Var);
         if (runnable != null) {
-            Utilities.f21333e.a(runnable);
+            Utilities.f21336e.a(runnable);
             hashMap.remove(r0Var);
         }
         if (location == null) {
@@ -128,9 +128,9 @@ public final class sd extends c1 implements ls, pa, qa {
             return;
         }
         try {
-            locale = hd.E0().f22906y;
+            locale = id.E0().f23185y;
         } catch (Exception unused) {
-            locale = hd.E0().f22907z;
+            locale = id.E0().f23186z;
         }
         Locale locale3 = locale;
         if (locale3.getLanguage().contains("en")) {
@@ -138,10 +138,10 @@ public final class sd extends c1 implements ls, pa, qa {
         } else {
             locale2 = Locale.US;
         }
-        p5 p5Var = Utilities.f21333e;
-        ck ckVar = new ck(locale3, location, i7, locale2, r0Var, 1);
-        p5Var.d(ckVar, 300L);
-        Q.put(r0Var, ckVar);
+        p5 p5Var = Utilities.f21336e;
+        bk bkVar = new bk(locale3, location, i7, locale2, r0Var, 1);
+        p5Var.d(bkVar, 300L);
+        Q.put(r0Var, bkVar);
     }
 
     public static int e(Location location) {
@@ -191,7 +191,7 @@ public final class sd extends c1 implements ls, pa, qa {
                 LocationSharingService.b();
                 return;
             }
-            t0.f25563b.startService(new Intent(t0.f25563b, LocationSharingService.class));
+            t0.f25566b.startService(new Intent(t0.f25566b, LocationSharingService.class));
         } catch (Throwable th2) {
             a8.g(th2, true);
             LocationSharingService.b();
@@ -203,8 +203,8 @@ public final class sd extends c1 implements ls, pa, qa {
             return;
         }
         int i7 = LocationSharingService.d;
-        new e0.i0(t0.f25563b).b(6, "live_location_paused");
-        t0.f25563b.stopService(new Intent(t0.f25563b, LocationSharingService.class));
+        new e0.i0(t0.f25566b).b(6, "live_location_paused");
+        t0.f25566b.stopService(new Intent(t0.f25566b, LocationSharingService.class));
     }
 
     public final void a(boolean r21) {
@@ -217,7 +217,7 @@ public final class sd extends c1 implements ls, pa, qa {
         long j3;
         ArrayList arrayList2;
         int i11 = qs.F4;
-        a0.h hVar = this.f25451c;
+        a0.h hVar = this.f25457c;
         if (i7 == 1) {
             if (!((Boolean) objArr[2]).booleanValue()) {
                 Long l10 = (Long) objArr[0];
@@ -232,18 +232,18 @@ public final class sd extends c1 implements ls, pa, qa {
                             while (true) {
                                 if (i13 < arrayList2.size()) {
                                     if (ij.C1(((TLRPC.Message) arrayList2.get(i13)).from_id) == ijVar.Z0()) {
-                                        arrayList2.set(i13, ijVar.f23244k);
+                                        arrayList2.set(i13, ijVar.f23262k);
                                         break;
                                     }
                                     i13++;
                                 } else {
-                                    arrayList2.add(ijVar.f23244k);
+                                    arrayList2.add(ijVar.f23262k);
                                     break;
                                 }
                             }
                             z9 = true;
                         } else {
-                            TLRPC.Message message = ijVar.f23244k;
+                            TLRPC.Message message = ijVar.f23262k;
                             if (message.action instanceof TLRPC.TL_messageActionGeoProximityReached) {
                                 long B0 = ij.B0(message);
                                 if (m5.E(B0)) {
@@ -257,7 +257,7 @@ public final class sd extends c1 implements ls, pa, qa {
                     }
                 }
             }
-        } else if (i7 == qs.f25087w) {
+        } else if (i7 == qs.f25096w) {
             if (!((Boolean) objArr[2]).booleanValue()) {
                 ArrayList arrayList4 = this.I;
                 if (!arrayList4.isEmpty()) {
@@ -268,15 +268,15 @@ public final class sd extends c1 implements ls, pa, qa {
                         rd rdVar = (rd) arrayList4.get(i14);
                         ij ijVar2 = rdVar.h;
                         if (ijVar2 != null) {
-                            j3 = ij.v0(ijVar2.f23244k);
+                            j3 = ij.v0(ijVar2.f23262k);
                         } else {
                             j3 = 0;
                         }
-                        if (longValue2 == j3 && arrayList5.contains(Integer.valueOf(rdVar.f25274b))) {
+                        if (longValue2 == j3 && arrayList5.contains(Integer.valueOf(rdVar.f25277b))) {
                             if (arrayList6 == null) {
                                 arrayList6 = new ArrayList();
                             }
-                            arrayList6.add(Long.valueOf(rdVar.f25273a));
+                            arrayList6.add(Long.valueOf(rdVar.f25276a));
                         }
                     }
                     if (arrayList6 != null) {
@@ -302,7 +302,7 @@ public final class sd extends c1 implements ls, pa, qa {
                             if (!ijVar3.D3()) {
                                 arrayList.remove(i17);
                             } else {
-                                arrayList.set(i17, ijVar3.f23244k);
+                                arrayList.set(i17, ijVar3.f23262k);
                             }
                             z10 = true;
                         } else {
@@ -331,7 +331,7 @@ public final class sd extends c1 implements ls, pa, qa {
     public final void j(long j3) {
         ArrayList arrayList;
         ?? tL_messages_readMessageContents;
-        if (!m5.C(j3) && (arrayList = (ArrayList) this.f25451c.f(j3)) != null && !arrayList.isEmpty()) {
+        if (!m5.C(j3) && (arrayList = (ArrayList) this.f25457c.f(j3)) != null && !arrayList.isEmpty()) {
             a0.h hVar = this.d;
             Integer num = (Integer) hVar.f(j3);
             int elapsedRealtime = (int) (SystemClock.elapsedRealtime() / 1000);
@@ -344,35 +344,35 @@ public final class sd extends c1 implements ls, pa, qa {
                         tL_messages_readMessageContents = new TLRPC.TL_channels_readMessageContents();
                         int size = arrayList.size();
                         while (i7 < size) {
-                            i7 = com.google.android.recaptcha.internal.a.f(((TLRPC.Message) arrayList.get(i7)).f26974id, i7, 1, tL_messages_readMessageContents.f26992id);
+                            i7 = com.google.android.recaptcha.internal.a.f(((TLRPC.Message) arrayList.get(i7)).f26977id, i7, 1, tL_messages_readMessageContents.f26995id);
                         }
                         tL_messages_readMessageContents.channel = getMessagesController().h1(j10);
-                        getConnectionsManager().sendRequest(tL_messages_readMessageContents, new jd(this, 2));
+                        getConnectionsManager().sendRequest(tL_messages_readMessageContents, new kd(this, 2));
                     }
                 }
                 tL_messages_readMessageContents = new TLRPC.TL_messages_readMessageContents();
                 int size2 = arrayList.size();
                 while (i7 < size2) {
-                    i7 = com.google.android.recaptcha.internal.a.f(((TLRPC.Message) arrayList.get(i7)).f26974id, i7, 1, tL_messages_readMessageContents.f27058id);
+                    i7 = com.google.android.recaptcha.internal.a.f(((TLRPC.Message) arrayList.get(i7)).f26977id, i7, 1, tL_messages_readMessageContents.f27061id);
                 }
-                getConnectionsManager().sendRequest(tL_messages_readMessageContents, new jd(this, 2));
+                getConnectionsManager().sendRequest(tL_messages_readMessageContents, new kd(this, 2));
             }
         }
     }
 
     public final void k(long j3) {
-        Utilities.d.c(new od(this, j3, 0));
+        Utilities.d.c(new pd(this, j3, 0));
     }
 
     public final void l(rd rdVar, int i7) {
-        getMessagesStorage().f26696a.c(new k7(this, i7, rdVar, 5));
+        getMessagesStorage().f26719a.c(new l7(this, i7, rdVar, 5));
     }
 
     public final void m(Location location) {
         if (location == null || (SystemClock.elapsedRealtimeNanos() - location.getElapsedRealtimeNanos()) / 1000000000 <= 300) {
-            this.f25456s = location;
+            this.f25462s = location;
             if (location != null) {
-                g0.h3(new pd(0));
+                g0.h3(new rc(2));
             }
         }
     }
@@ -383,14 +383,14 @@ public final class sd extends c1 implements ls, pa, qa {
             return;
         }
         this.E = true;
-        if (!z9 && ((location2 = this.f25456s) == null || location2.distanceTo(location) < 20.0f)) {
-            if (this.f25458x) {
-                this.f25457w = SystemClock.elapsedRealtime() - 10000;
-                this.f25458x = false;
+        if (!z9 && ((location2 = this.f25462s) == null || location2.distanceTo(location) < 20.0f)) {
+            if (this.f25464x) {
+                this.f25463w = SystemClock.elapsedRealtime() - 10000;
+                this.f25464x = false;
             }
         } else {
-            this.f25457w = SystemClock.elapsedRealtime() - 30000;
-            this.f25458x = false;
+            this.f25463w = SystemClock.elapsedRealtime() - 30000;
+            this.f25464x = false;
         }
         m(location);
     }
@@ -398,22 +398,22 @@ public final class sd extends c1 implements ls, pa, qa {
     public final void o(int i7, long j3, boolean z9) {
         rd rdVar = (rd) this.J.f(j3);
         if (rdVar != null) {
-            rdVar.f25277f = i7;
+            rdVar.f25280f = i7;
         }
-        getMessagesStorage().f26696a.c(new bi.ia(this, i7, j3, 2));
+        getMessagesStorage().f26719a.c(new bi.ia(this, i7, j3, 2));
         if (z9) {
-            Utilities.d.c(new id(this, 3));
+            Utilities.d.c(new jd(this, 3));
         }
     }
 
     public final void p() {
-        LocationManager locationManager = this.f25452e;
+        LocationManager locationManager = this.f25458e;
         if (!this.D) {
-            this.f25459y = SystemClock.elapsedRealtime();
+            this.f25465y = SystemClock.elapsedRealtime();
             this.D = true;
             if (this.K == null) {
                 ((h6.m) t0.j()).getClass();
-                this.K = Boolean.valueOf(tt.f25660b.hasServices());
+                this.K = Boolean.valueOf(tt.f25661b.hasServices());
             }
             if (this.K.booleanValue()) {
                 try {
@@ -424,24 +424,24 @@ public final class sd extends c1 implements ls, pa, qa {
                 }
             }
             try {
-                this.f25452e.requestLocationUpdates("gps", 1L, 0.0f, this.f25453f);
+                this.f25458e.requestLocationUpdates("gps", 1L, 0.0f, this.f25459f);
             } catch (Exception e10) {
                 a8.g(e10, true);
             }
             try {
-                this.f25452e.requestLocationUpdates("network", 1L, 0.0f, this.h);
+                this.f25458e.requestLocationUpdates("network", 1L, 0.0f, this.h);
             } catch (Exception e11) {
                 a8.g(e11, true);
             }
             try {
-                this.f25452e.requestLocationUpdates("passive", 1L, 0.0f, this.f25454n);
+                this.f25458e.requestLocationUpdates("passive", 1L, 0.0f, this.f25460n);
             } catch (Exception e12) {
                 a8.g(e12, true);
             }
-            if (this.f25456s == null) {
+            if (this.f25462s == null) {
                 try {
                     m(locationManager.getLastKnownLocation("gps"));
-                    if (this.f25456s == null) {
+                    if (this.f25462s == null) {
                         m(locationManager.getLastKnownLocation("network"));
                     }
                 } catch (Exception e13) {
@@ -455,40 +455,40 @@ public final class sd extends c1 implements ls, pa, qa {
         this.D = false;
         if (this.K == null) {
             ((h6.m) t0.j()).getClass();
-            this.K = Boolean.valueOf(tt.f25660b.hasServices());
+            this.K = Boolean.valueOf(tt.f25661b.hasServices());
         }
         if (this.K.booleanValue()) {
             try {
-                ((h6.m) t0.j()).removeLocationUpdates(this.f25455r);
+                ((h6.m) t0.j()).removeLocationUpdates(this.f25461r);
                 ((com.google.android.gms.common.api.internal.d0) ((gf.g) this.M).f13889b).f();
             } catch (Throwable th2) {
                 a8.g(th2, false);
             }
         }
-        qd qdVar = this.f25453f;
-        LocationManager locationManager = this.f25452e;
+        qd qdVar = this.f25459f;
+        LocationManager locationManager = this.f25458e;
         locationManager.removeUpdates(qdVar);
         if (z9) {
             locationManager.removeUpdates(this.h);
-            locationManager.removeUpdates(this.f25454n);
+            locationManager.removeUpdates(this.f25460n);
         }
     }
 
     public final void t() {
         Location location;
         getUserConfig();
-        ArrayList arrayList = this.f25450b;
+        ArrayList arrayList = this.f25456b;
         boolean z9 = false;
         if (!arrayList.isEmpty()) {
             int i7 = 0;
             boolean z10 = false;
             while (i7 < arrayList.size()) {
                 rd rdVar = (rd) arrayList.get(i7);
-                if (rdVar.f25275c <= getConnectionsManager().getCurrentTime()) {
+                if (rdVar.f25278c <= getConnectionsManager().getCurrentTime()) {
                     arrayList.remove(i7);
-                    this.f25449a.l(rdVar.f25273a);
+                    this.f25455a.l(rdVar.f25276a);
                     l(rdVar, 1);
-                    g0.h3(new kd(this, rdVar, 2));
+                    g0.h3(new ld(this, rdVar, 2));
                     i7--;
                     z10 = true;
                 }
@@ -500,18 +500,18 @@ public final class sd extends c1 implements ls, pa, qa {
         }
         if (this.D) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
-            if (this.E || Math.abs(this.f25459y - elapsedRealtime) > 10000 || (SystemClock.elapsedRealtime() > this.H && Math.abs(this.f25457w - SystemClock.elapsedRealtime()) >= 2000 && (location = this.f25456s) != null && location.getElapsedRealtimeNanos() / 1000000 >= this.f25459y)) {
+            if (this.E || Math.abs(this.f25465y - elapsedRealtime) > 10000 || (SystemClock.elapsedRealtime() > this.H && Math.abs(this.f25463w - SystemClock.elapsedRealtime()) >= 2000 && (location = this.f25462s) != null && location.getElapsedRealtimeNanos() / 1000000 >= this.f25465y)) {
                 this.E = false;
-                this.f25458x = true;
-                if (SystemClock.elapsedRealtime() - this.f25457w > 2000) {
+                this.f25464x = true;
+                if (SystemClock.elapsedRealtime() - this.f25463w > 2000) {
                     z9 = true;
                 }
-                this.f25459y = elapsedRealtime;
-                this.f25457w = SystemClock.elapsedRealtime();
+                this.f25465y = elapsedRealtime;
+                this.f25463w = SystemClock.elapsedRealtime();
                 a(z9);
             }
-        } else if (!arrayList.isEmpty() && Math.abs(this.f25457w - SystemClock.elapsedRealtime()) > 30000) {
-            this.f25459y = SystemClock.elapsedRealtime();
+        } else if (!arrayList.isEmpty() && Math.abs(this.f25463w - SystemClock.elapsedRealtime()) > 30000) {
+            this.f25465y = SystemClock.elapsedRealtime();
             p();
         }
     }

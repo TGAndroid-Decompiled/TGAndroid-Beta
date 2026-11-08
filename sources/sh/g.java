@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import c8.zc;
 import java.util.ArrayList;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.m5;
 import org.telegram.messenger.n0;
@@ -18,7 +18,7 @@ public abstract class g {
         int i7;
         int i10 = 0;
         if (ijVar.D == 17) {
-            TLRPC.Message message = ijVar.f23244k;
+            TLRPC.Message message = ijVar.f23262k;
             int i11 = ijVar.I1;
             TLRPC.MessageMedia o12 = ij.o1(message);
             if (TLRPC.TL_messageMediaPoll.class.isInstance(o12)) {
@@ -37,7 +37,7 @@ public abstract class g {
                     if (messageFwdHeader != null) {
                         B0 = m5.o(messageFwdHeader.from_id);
                     } else {
-                        B0 = ij.B0(ijVar.f23244k);
+                        B0 = ij.B0(ijVar.f23262k);
                     }
                     TLRPC.Chat M0 = qp.s1(i11).M0(Long.valueOf(-B0));
                     if (M0 != null) {
@@ -57,7 +57,7 @@ public abstract class g {
                 }
                 ArrayList<String> arrayList = tL_messageMediaPoll.poll.countries_iso2;
                 if (arrayList != null && !arrayList.isEmpty()) {
-                    if (!tL_messageMediaPoll.poll.countries_iso2.contains(((n0) qp.s1(i11).f24935x7.O.f13555b).f24112c)) {
+                    if (!tL_messageMediaPoll.poll.countries_iso2.contains(((n0) qp.s1(i11).f24942x7.O.f13555b).f24118c)) {
                         return i10 | 4;
                     }
                 }
@@ -73,7 +73,7 @@ public abstract class g {
         int i10;
         int i11;
         if (ijVar.D == 17) {
-            TLRPC.Message message = ijVar.f23244k;
+            TLRPC.Message message = ijVar.f23262k;
             int i12 = ijVar.I1;
             TLRPC.MessageMedia o12 = ij.o1(message);
             if (TLRPC.TL_messageMediaPoll.class.isInstance(o12)) {
@@ -92,7 +92,7 @@ public abstract class g {
                         String str = arrayList2.get(i13);
                         i13++;
                         String str2 = str;
-                        String i02 = hd.i0(2131750520, str2);
+                        String i02 = id.i0(2131750522, str2);
                         if (!TextUtils.isEmpty(i02)) {
                             str2 = i02;
                         }
@@ -101,11 +101,11 @@ public abstract class g {
                     boolean z9 = tL_messageMediaPoll.poll.subscribers_only;
                     if (arrayList.size() == 1) {
                         if (z9) {
-                            i11 = 2131747116;
+                            i11 = 2131747118;
                         } else {
-                            i11 = 2131747113;
+                            i11 = 2131747115;
                         }
-                        return g0.X2(hd.a0(null, null, i11, arrayList.get(0)));
+                        return g0.X2(id.a0(null, null, i11, arrayList.get(0)));
                     }
                     StringBuffer stringBuffer = new StringBuffer();
                     for (int i14 = 0; i14 < arrayList.size() - 1; i14++) {
@@ -115,21 +115,21 @@ public abstract class g {
                         stringBuffer.append((String) arrayList.get(i14));
                     }
                     if (z9) {
-                        i10 = 2131747115;
+                        i10 = 2131747117;
                     } else {
-                        i10 = 2131747112;
+                        i10 = 2131747114;
                     }
-                    return g0.X2(hd.a0(null, null, i10, stringBuffer, jg.g.i(1, arrayList)));
+                    return g0.X2(id.a0(null, null, i10, stringBuffer, jg.g.i(1, arrayList)));
                 } else if (zc.a(i7, 1)) {
                     TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
                     if (messageFwdHeader != null) {
                         B0 = m5.o(messageFwdHeader.from_id);
                     } else {
-                        B0 = ij.B0(ijVar.f23244k);
+                        B0 = ij.B0(ijVar.f23262k);
                     }
-                    return g0.X2(hd.a0(null, null, 2131747117, m5.u(qp.s1(i12).M0(Long.valueOf(-B0)))));
+                    return g0.X2(id.a0(null, null, 2131747119, m5.u(qp.s1(i12).M0(Long.valueOf(-B0)))));
                 } else if (zc.a(i7, 2)) {
-                    return g0.X2(hd.M0(2131747114, null));
+                    return g0.X2(id.M0(2131747116, null));
                 }
             }
         }

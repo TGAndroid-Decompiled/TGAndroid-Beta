@@ -14,7 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import c8.ha;
 import c8.ka;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.Components.xq;
 public final class a extends FrameLayout {
     public final ImageView f8789a;
@@ -113,7 +113,7 @@ public final class a extends FrameLayout {
         if (i7 <= 0) {
             E = "";
         } else {
-            E = hd.E(i7, ',');
+            E = id.E(i7, ',');
         }
         this.f8790b.t(E, true, true);
         if (this.f8793f != i7) {

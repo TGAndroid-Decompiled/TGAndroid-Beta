@@ -41,13 +41,13 @@ public final class sb implements Runnable {
         this.d = i7;
     }
 
-    public sb(wi.u0 u0Var, wi.y yVar, boolean z9, File file, boolean z10, int i7, wi.q0 q0Var) {
-        this.f4717e = u0Var;
-        this.f4718f = yVar;
+    public sb(wi.t0 t0Var, wi.x xVar, boolean z9, File file, boolean z10, int i7, wi.p0 p0Var) {
+        this.f4717e = t0Var;
+        this.f4718f = xVar;
         this.f4715b = z9;
         this.h = file;
         this.f4716c = z10;
         this.d = i7;
-        this.f4719n = q0Var;
+        this.f4719n = p0Var;
     }
 }

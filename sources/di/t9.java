@@ -17,11 +17,11 @@ public final class t9 extends q9 {
         ?? tLObject = new TLObject();
         tLObject.f12823c = tL_mediaAreaWeather.emoji;
         tLObject.d = (float) tL_mediaAreaWeather.temperature_c;
-        s9 s9Var = new s9(this, org.telegram.messenger.t0.f25563b, org.telegram.messenger.g0.f22543p);
+        s9 s9Var = new s9(this, org.telegram.messenger.t0.f25566b, org.telegram.messenger.g0.f22562p);
         this.f9805a = s9Var;
-        s9Var.setMaxWidth(org.telegram.messenger.g0.f22544q.x);
+        s9Var.setMaxWidth(org.telegram.messenger.g0.f22563q.x);
         s9Var.setIsVideo(false);
-        s9Var.d(p10.f24467s0, tLObject.f12823c);
+        s9Var.d(p10.f24470s0, tLObject.f12823c);
         s9Var.setText(tLObject.a());
         s9Var.e(3, tL_mediaAreaWeather.color);
         s9Var.f();
@@ -35,10 +35,10 @@ public final class t9 extends q9 {
         double d = u9Var.d;
         TL_stories.TL_mediaAreaWeather tL_mediaAreaWeather = this.f9806b;
         TL_stories.MediaAreaCoordinates mediaAreaCoordinates = tL_mediaAreaWeather.coordinates;
-        double d2 = (mediaAreaCoordinates.f27189x * d) / 100.0d;
+        double d2 = (mediaAreaCoordinates.f27192x * d) / 100.0d;
         double d10 = u9Var.f9856e;
-        double d11 = (mediaAreaCoordinates.f27190y * d10) / 100.0d;
-        float f11 = (float) ((d * mediaAreaCoordinates.f27188w) / 100.0d);
+        double d11 = (mediaAreaCoordinates.f27193y * d10) / 100.0d;
+        float f11 = (float) ((d * mediaAreaCoordinates.f27191w) / 100.0d);
         canvas.save();
         canvas.translate((float) (d2 + u9Var.f9854b), (float) (d11 + u9Var.f9855c));
         s9 s9Var = this.f9805a;
@@ -59,16 +59,16 @@ public final class t9 extends q9 {
         if (z9) {
             s9Var.K = true;
             if (s9Var.L) {
-                s9Var.f55744s.P();
+                s9Var.f55836s.P();
                 return;
             } else {
-                s9Var.f55743r.P();
+                s9Var.f55835r.P();
                 return;
             }
         }
         s9Var.K = false;
-        s9Var.f55743r.R();
-        s9Var.f55744s.R();
+        s9Var.f55835r.R();
+        s9Var.f55836s.R();
     }
 
     @Override

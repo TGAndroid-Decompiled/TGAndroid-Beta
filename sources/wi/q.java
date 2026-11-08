@@ -1,25 +1,25 @@
 package wi;
 public final class q implements Runnable {
-    public final int f58032a;
-    public final u f58033b;
+    public final int f58128a;
+    public final t f58129b;
 
-    public q(u uVar, int i7) {
-        this.f58032a = i7;
-        this.f58033b = uVar;
+    public q(t tVar, int i7) {
+        this.f58128a = i7;
+        this.f58129b = tVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f58032a) {
+        switch (this.f58128a) {
             case 0:
-                u uVar = this.f58033b;
-                if (uVar.W != 0) {
-                    uVar.V = true;
+                t tVar = this.f58129b;
+                if (tVar.W != 0) {
+                    tVar.V = true;
                     return;
                 }
                 return;
             default:
-                this.f58033b.c();
+                this.f58129b.c();
                 return;
         }
     }

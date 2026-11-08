@@ -38,19 +38,19 @@ public abstract class m11 extends Dialog {
     public ValueAnimator N;
     public boolean O;
     public final q11 P;
-    public final a11 f47621a;
-    public final ImageReceiver f47622b;
-    public final Rect f47623c;
+    public final a11 f47618a;
+    public final ImageReceiver f47619b;
+    public final Rect f47620c;
     public final Rect d;
-    public final Rect f47624e;
-    public final Runnable f47625f;
+    public final Rect f47621e;
+    public final Runnable f47622f;
     public final View h;
-    public Bitmap f47626n;
-    public Paint f47627r;
-    public final k0 f47628s;
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f47629w;
-    public org.telegram.ui.ActionBar.v2 f47630x;
-    public boolean f47631y;
+    public Bitmap f47623n;
+    public Paint f47624r;
+    public final k0 f47625s;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f47626w;
+    public org.telegram.ui.ActionBar.v2 f47627x;
+    public boolean f47628y;
 
     public m11(q11 q11Var, Context context, Runnable runnable, View view, a11 a11Var, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
@@ -60,29 +60,29 @@ public abstract class m11 extends Dialog {
         ColorFilter colorFilter;
         this.P = q11Var;
         Rect rect = new Rect();
-        this.f47623c = rect;
+        this.f47620c = rect;
         Rect rect2 = new Rect();
         this.d = rect2;
         Rect rect3 = new Rect();
-        this.f47624e = rect3;
+        this.f47621e = rect3;
         int[] iArr = new int[2];
         this.G = iArr;
         this.H = false;
         this.O = false;
-        this.f47621a = a11Var;
-        this.f47625f = runnable;
+        this.f47618a = a11Var;
+        this.f47622f = runnable;
         this.h = view;
         final g01 g01Var = (g01) this;
         k0 k0Var = new k0(24, context, g01Var);
-        this.f47628s = k0Var;
+        this.f47625s = k0Var;
         setContentView(k0Var, new ViewGroup.LayoutParams(-1, -1));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         linearLayout.addView(new l00(9, context, g01Var), c8.ha.t(160, 160, 17, 0, 0, 0, 16));
         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(2131232565, 0, context, f6Var);
-        this.f47629w = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        this.f47626w = actionBarPopupWindow$ActionBarPopupWindowLayout;
         linearLayout.addView(actionBarPopupWindow$ActionBarPopupWindowLayout, c8.ha.t(-2, -2, 17, 0, 0, 0, 0));
-        org.telegram.ui.ActionBar.r0.c(true, false, actionBarPopupWindow$ActionBarPopupWindowLayout, 0, org.telegram.messenger.hd.M0(2131745533, null), false, f6Var).setOnClickListener(new View.OnClickListener() {
+        org.telegram.ui.ActionBar.r0.c(true, false, actionBarPopupWindow$ActionBarPopupWindowLayout, 0, org.telegram.messenger.id.M0(2131745535, null), false, f6Var).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
                 switch (r2) {
@@ -101,7 +101,7 @@ public abstract class m11 extends Dialog {
                 }
             }
         });
-        org.telegram.ui.ActionBar.r0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, 0, org.telegram.messenger.hd.M0(2131745531, null), false, f6Var).setOnClickListener(new View.OnClickListener() {
+        org.telegram.ui.ActionBar.r0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, 0, org.telegram.messenger.id.M0(2131745533, null), false, f6Var).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
                 switch (r2) {
@@ -120,7 +120,7 @@ public abstract class m11 extends Dialog {
                 }
             }
         });
-        org.telegram.ui.ActionBar.r0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, 0, org.telegram.messenger.hd.M0(2131745530, null), false, f6Var).setOnClickListener(new View.OnClickListener() {
+        org.telegram.ui.ActionBar.r0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, 0, org.telegram.messenger.id.M0(2131745532, null), false, f6Var).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
                 switch (r2) {
@@ -139,7 +139,7 @@ public abstract class m11 extends Dialog {
                 }
             }
         });
-        org.telegram.ui.ActionBar.r0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, 0, org.telegram.messenger.hd.M0(2131745532, null), false, f6Var).setOnClickListener(new View.OnClickListener() {
+        org.telegram.ui.ActionBar.r0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, 0, org.telegram.messenger.id.M0(2131745534, null), false, f6Var).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
                 switch (r2) {
@@ -158,7 +158,7 @@ public abstract class m11 extends Dialog {
                 }
             }
         });
-        org.telegram.ui.ActionBar.r0.c(false, true, actionBarPopupWindow$ActionBarPopupWindowLayout, 0, org.telegram.messenger.hd.M0(2131745528, null), false, f6Var).setOnClickListener(new fk0(8, g01Var, context));
+        org.telegram.ui.ActionBar.r0.c(false, true, actionBarPopupWindow$ActionBarPopupWindowLayout, 0, org.telegram.messenger.id.M0(2131745530, null), false, f6Var).setOnClickListener(new fk0(8, g01Var, context));
         k0Var.addView(linearLayout, c8.ha.e(-2, -2, 17));
         Window window = getWindow();
         if (window != null) {
@@ -183,34 +183,34 @@ public abstract class m11 extends Dialog {
             z9 = true;
         }
         if (a11Var != null) {
-            a11Var.f43530b = z9;
+            a11Var.f43533b = z9;
         }
         f();
         ImageReceiver imageReceiver = new ImageReceiver(null);
-        this.f47622b = imageReceiver;
+        this.f47619b = imageReceiver;
         imageReceiver.H0(k0Var);
         imageReceiver.E0(7);
         TLRPC.Document document = a11Var.d;
         if (document == null) {
             Drawable drawable = a11Var.E;
             if (drawable instanceof org.telegram.ui.Components.i5) {
-                document = ((org.telegram.ui.Components.i5) drawable).f34492e;
+                document = ((org.telegram.ui.Components.i5) drawable).f34536e;
             }
         }
         if (document != null) {
-            org.telegram.messenger.rz d = org.telegram.messenger.t5.d(document.thumbs, org.telegram.ui.ActionBar.k6.f28014m6, 0.2f, false);
+            org.telegram.messenger.rz d = org.telegram.messenger.t5.d(document.thumbs, org.telegram.ui.ActionBar.k6.f28017m6, 0.2f, false);
             TLRPC.PhotoSize w10 = org.telegram.messenger.w7.w(document.thumbs, 90, false, null, false);
             if ("video/webm".equals(document.mime_type)) {
                 b10 = org.telegram.messenger.hc.b(document);
                 if (d != null) {
-                    d.f25386e = 512;
-                    d.f25387f = 512;
+                    d.f25382e = 512;
+                    d.f25383f = 512;
                 }
                 str = "160_160_g";
             } else {
                 if (d != null && org.telegram.messenger.ij.L2(document, false)) {
-                    d.f25386e = 512;
-                    d.f25387f = 512;
+                    d.f25382e = 512;
+                    d.f25383f = 512;
                 }
                 b10 = org.telegram.messenger.hc.b(document);
                 str = "160_160";
@@ -220,14 +220,14 @@ public abstract class m11 extends Dialog {
             if ((a11Var.E instanceof org.telegram.ui.Components.i5) && (org.telegram.messenger.ij.D4(document2) || ((org.telegram.ui.Components.i5) a11Var.E).c())) {
                 if (!org.telegram.messenger.ij.D4(document2)) {
                     org.telegram.ui.Components.i5 i5Var = (org.telegram.ui.Components.i5) a11Var.E;
-                    SparseArray sparseArray = org.telegram.ui.Components.i5.f34483r;
+                    SparseArray sparseArray = org.telegram.ui.Components.i5.f34527r;
                     if (i5Var == null || !i5Var.k()) {
                         colorFilter = org.telegram.ui.ActionBar.k6.o0(f6Var);
-                        imageReceiver.f21206o1 = colorFilter;
+                        imageReceiver.f21209o1 = colorFilter;
                     }
                 }
-                colorFilter = q11Var.f49041k1;
-                imageReceiver.f21206o1 = colorFilter;
+                colorFilter = q11Var.f49044k1;
+                imageReceiver.f21209o1 = colorFilter;
             }
         }
         a11Var.getLocationOnScreen(iArr);
@@ -246,7 +246,7 @@ public abstract class m11 extends Dialog {
     public static void a(m11 m11Var, Integer num) {
         Runnable runnable;
         g01 g01Var = (g01) m11Var;
-        if (num != null && (runnable = g01Var.S.f46179e.U1) != null) {
+        if (num != null && (runnable = g01Var.S.f46181e.U1) != null) {
             runnable.run();
         }
         try {
@@ -288,14 +288,14 @@ public abstract class m11 extends Dialog {
             this.N.setInterpolator(org.telegram.ui.Components.xq.h);
         } else {
             this.N.setDuration(240L);
-            this.N.setInterpolator(org.telegram.ui.Components.xq.f40346g);
+            this.N.setInterpolator(org.telegram.ui.Components.xq.f40367g);
         }
         this.N.start();
     }
 
     public final void d(final boolean z9, i11 i11Var, final i11 i11Var2, final boolean z10) {
         float f10;
-        a11 a11Var = this.f47621a;
+        a11 a11Var = this.f47618a;
         if (a11Var == null) {
             if (i11Var != null) {
                 i11Var.run();
@@ -312,7 +312,7 @@ public abstract class m11 extends Dialog {
         }
         this.J = z9;
         if (z9) {
-            a11Var.f43530b = true;
+            a11Var.f43533b = true;
         }
         final boolean[] zArr = new boolean[1];
         float f11 = this.I;
@@ -330,18 +330,18 @@ public abstract class m11 extends Dialog {
                 float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
                 m11 m11Var = m11.this;
                 m11Var.I = floatValue;
-                org.telegram.messenger.g0.X1(m11Var.f47623c, m11Var.d, floatValue, m11Var.f47624e);
-                m11Var.f47628s.invalidate();
+                org.telegram.messenger.g0.X1(m11Var.f47620c, m11Var.d, floatValue, m11Var.f47621e);
+                m11Var.f47625s.invalidate();
                 boolean z11 = z9;
                 if (!z11) {
-                    m11Var.f47629w.setAlpha(m11Var.I);
+                    m11Var.f47626w.setAlpha(m11Var.I);
                 }
                 if (m11Var.I < 0.025f && !z11) {
                     if (z10) {
-                        m11Var.f47621a.f43530b = false;
-                        m11Var.P.f49034h0.invalidate();
+                        m11Var.f47618a.f43533b = false;
+                        m11Var.P.f49037h0.invalidate();
                     }
-                    org.telegram.messenger.qs.e().k(org.telegram.messenger.qs.f25017k1, 4);
+                    org.telegram.messenger.qs.e().k(org.telegram.messenger.qs.f25026k1, 4);
                 }
                 if (m11Var.I < 0.5f && !z11 && (runnable = i11Var2) != null) {
                     boolean[] zArr2 = zArr;
@@ -406,7 +406,7 @@ public abstract class m11 extends Dialog {
         Bitmap createBitmap = Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(createBitmap);
         canvas.scale(0.083333336f, 0.083333336f);
-        canvas.drawColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27849d6, false));
+        canvas.drawColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27852d6, false));
         decorView.draw(canvas);
         if (activity instanceof LaunchActivity) {
             LaunchActivity launchActivity = (LaunchActivity) activity;
@@ -423,14 +423,14 @@ public abstract class m11 extends Dialog {
             canvas.restore();
         }
         Utilities.stackBlurBitmap(createBitmap, Math.max(10, Math.max(measuredWidth, measuredHeight) / 180));
-        this.f47627r = new Paint(1);
-        this.f47626n = createBitmap;
+        this.f47624r = new Paint(1);
+        this.f47623n = createBitmap;
     }
 
     @Override
     public final void show() {
         super.show();
-        org.telegram.messenger.qs.e().k(org.telegram.messenger.qs.f25012j1, 4);
+        org.telegram.messenger.qs.e().k(org.telegram.messenger.qs.f25021j1, 4);
         d(true, null, null, true);
         c(true);
     }

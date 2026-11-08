@@ -93,15 +93,15 @@ public final class g2 implements RequestDelegate {
                 TLRPC.TL_chatInviteExported tL_chatInviteExported = (TLRPC.TL_chatInviteExported) obj3;
                 boolean[] zArr = (boolean[]) obj2;
                 org.telegram.ui.ActionBar.u1 u1Var = (org.telegram.ui.ActionBar.u1) obj;
-                org.telegram.ui.mb mbVar = hbVar.f46314a.f46919n;
+                org.telegram.ui.mb mbVar = hbVar.f46318a.f46918n;
                 if (tL_error == null) {
                     tL_messages_exportedChatInvite = (TLRPC.TL_messages_exportedChatInvite) tLObject;
                     for (int i10 = 0; i10 < tL_messages_exportedChatInvite.users.size(); i10++) {
                         TLRPC.User user = tL_messages_exportedChatInvite.users.get(i10);
-                        if (mbVar.f47778z0 == null) {
-                            mbVar.f47778z0 = new HashMap();
+                        if (mbVar.f47774z0 == null) {
+                            mbVar.f47774z0 = new HashMap();
                         }
-                        mbVar.f47778z0.put(Long.valueOf(user.f27102id), user);
+                        mbVar.f47774z0.put(Long.valueOf(user.f27105id), user);
                     }
                 } else {
                     tL_messages_exportedChatInvite = null;
@@ -119,7 +119,7 @@ public final class g2 implements RequestDelegate {
                 TLRPC.TL_messages_getAttachedStickers tL_messages_getAttachedStickers2 = (TLRPC.TL_messages_getAttachedStickers) obj2;
                 org.telegram.ui.ld ldVar = (org.telegram.ui.ld) obj;
                 if (tL_error != null && org.telegram.messenger.r8.r(tL_error.text) && obj3 != null) {
-                    org.telegram.messenger.r8.n(po0Var.f28613a).u(new Object[]{tL_messages_getAttachedStickers2, ldVar}, obj3);
+                    org.telegram.messenger.r8.n(po0Var.f28616a).u(new Object[]{tL_messages_getAttachedStickers2, ldVar}, obj3);
                     return;
                 } else {
                     ldVar.run(tLObject, tL_error);
@@ -151,7 +151,7 @@ public final class g2 implements RequestDelegate {
                 org.telegram.messenger.g0.h3(new a3(x0Var, tLObject, (TLRPC.TL_messages_requestUrlAuth) obj3, (String) obj2, tL_error, (String) obj));
                 return;
             default:
-                org.telegram.messenger.g0.h3(new a3((zh.h1) obj4, (org.telegram.ui.ActionBar.u1) obj3, tLObject, (ub) obj2, (c20) obj, tL_error));
+                org.telegram.messenger.g0.h3(new a3((zh.g1) obj4, (org.telegram.ui.ActionBar.u1) obj3, tLObject, (ub) obj2, (c20) obj, tL_error));
                 return;
         }
     }

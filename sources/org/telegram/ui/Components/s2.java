@@ -10,12 +10,12 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class s2 implements org.telegram.messenger.c20 {
-    public final int f37863a;
-    public final Object f37864b;
+    public final int f37879a;
+    public final Object f37880b;
 
     public s2(Object obj, int i7) {
-        this.f37863a = i7;
-        this.f37864b = obj;
+        this.f37879a = i7;
+        this.f37880b = obj;
     }
 
     @Override
@@ -26,27 +26,27 @@ public final class s2 implements org.telegram.messenger.c20 {
         float f11;
         float f12;
         TL_account.TL_birthday tL_birthday;
-        switch (this.f37863a) {
+        switch (this.f37879a) {
             case 0:
                 Object[] objArr = (Object[]) obj;
-                ((r2) this.f37864b).run();
+                ((r2) this.f37880b).run();
                 return;
             case 1:
                 CharSequence charSequence = (CharSequence) obj;
-                fi.g gVar = ((uc) this.f37864b).f12365f;
+                fi.g gVar = ((uc) this.f37880b).f12365f;
                 gVar.setText(charSequence);
                 gVar.w(charSequence.length(), charSequence.length());
                 return;
             case 2:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((tl) this.f37864b).f38358w;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((tl) this.f37880b).f38386w;
                 chatAttachAlertPhotoLayout.u0(null, null, ((Long) obj).longValue());
-                chatAttachAlertPhotoLayout.f38969b.dismiss();
+                chatAttachAlertPhotoLayout.f39004b.dismiss();
                 return;
             case 3:
-                org.telegram.messenger.qp.s1(((vr) this.f37864b).P).x3(null, (TLRPC.User) obj, null, 0, null, false, false);
+                org.telegram.messenger.qp.s1(((vr) this.f37880b).P).x3(null, (TLRPC.User) obj, null, 0, null, false, false);
                 return;
             case 4:
-                Runnable runnable = (Runnable) this.f37864b;
+                Runnable runnable = (Runnable) this.f37880b;
                 ArrayList arrayList = (ArrayList) obj;
                 if (runnable != null) {
                     runnable.run();
@@ -54,19 +54,19 @@ public final class s2 implements org.telegram.messenger.c20 {
                 }
                 return;
             case 5:
-                ((ys) this.f37864b).G(((Integer) obj).intValue());
+                ((zs) this.f37880b).G(((Integer) obj).intValue());
                 return;
             case 6:
-                ia0 ia0Var = (ia0) this.f37864b;
+                ia0 ia0Var = (ia0) this.f37880b;
                 Integer num = (Integer) obj;
-                ArrayList arrayList2 = ia0Var.f34571e.f33878a;
-                n90 n90Var = ia0Var.f34572f;
-                if (((fa0) arrayList2.get(n90Var.getCurrentPosition())).f33502a != num.intValue()) {
+                ArrayList arrayList2 = ia0Var.f34615e.f33904a;
+                n90 n90Var = ia0Var.f34616f;
+                if (((fa0) arrayList2.get(n90Var.getCurrentPosition())).f33509a != num.intValue()) {
                     int i7 = 0;
                     int i10 = 0;
                     while (true) {
                         if (i10 < arrayList2.size()) {
-                            if (((fa0) arrayList2.get(i10)).f33502a == num.intValue()) {
+                            if (((fa0) arrayList2.get(i10)).f33509a == num.intValue()) {
                                 i7 = i10;
                             } else {
                                 i10++;
@@ -81,11 +81,11 @@ public final class s2 implements org.telegram.messenger.c20 {
                 }
                 return;
             case 7:
-                ca0 ca0Var = (ca0) this.f37864b;
-                ca0Var.f32497n.y(ca0Var.f32496f.T((View) obj));
+                ca0 ca0Var = (ca0) this.f37880b;
+                ca0Var.f32528n.y(ca0Var.f32527f.T((View) obj));
                 return;
             case 8:
-                ec0 ec0Var = (ec0) this.f37864b;
+                ec0 ec0Var = (ec0) this.f37880b;
                 Integer num2 = (Integer) obj;
                 FrameLayout frameLayout = ec0Var.h;
                 if (ec0Var.getContext() != null) {
@@ -94,8 +94,8 @@ public final class s2 implements org.telegram.messenger.c20 {
                     } else {
                         z9 = false;
                     }
-                    int intValue = num2.intValue() - org.telegram.messenger.g0.f22539n;
-                    if (org.telegram.messenger.iz.f23410r == 1) {
+                    int intValue = num2.intValue() - org.telegram.messenger.g0.f22558n;
+                    if (org.telegram.messenger.iz.f23431r == 1) {
                         ViewPropertyAnimator animate = frameLayout.animate();
                         float f13 = 1.0f;
                         if (intValue <= org.telegram.messenger.g0.L(20.0f)) {
@@ -123,12 +123,12 @@ public final class s2 implements org.telegram.messenger.c20 {
                 }
                 return;
             case 9:
-                ad0 ad0Var = (ad0) this.f37864b;
+                ad0 ad0Var = (ad0) this.f37880b;
                 ad0Var.B1.a(ad0Var.E1, true, 0, ((Long) obj).longValue());
                 ad0Var.dismiss();
                 return;
             case 10:
-                org.telegram.messenger.v10 v10Var = (org.telegram.messenger.v10) this.f37864b;
+                org.telegram.messenger.v10 v10Var = (org.telegram.messenger.v10) this.f37880b;
                 Bitmap bitmap = (Bitmap) obj;
                 ColorMatrix colorMatrix = new ColorMatrix();
                 if (org.telegram.ui.ActionBar.k6.I.q()) {
@@ -165,12 +165,12 @@ public final class s2 implements org.telegram.messenger.c20 {
                 v10Var.a(l10, l11);
                 return;
             case 11:
-                jw0 jw0Var = (jw0) this.f37864b;
+                jw0 jw0Var = (jw0) this.f37880b;
                 TL_account.TL_birthday tL_birthday2 = (TL_account.TL_birthday) obj;
                 TL_account.updateBirthday updatebirthday = new TL_account.updateBirthday();
                 updatebirthday.flags |= 1;
                 updatebirthday.birthday = tL_birthday2;
-                int i11 = jw0Var.f35084a;
+                int i11 = jw0Var.f35114a;
                 TLRPC.UserFull b22 = org.telegram.messenger.qp.s1(i11).b2(org.telegram.messenger.p10.i(i11).e());
                 if (b22 != null) {
                     tL_birthday = b22.birthday;
@@ -188,8 +188,8 @@ public final class s2 implements org.telegram.messenger.c20 {
                 org.telegram.messenger.qs.f(i11).k(107, new Object[0]);
                 return;
             default:
-                q41 q41Var = (q41) this.f37864b;
-                q41Var.f37160f3.R(q41Var.T((View) obj), q41Var.j3);
+                q41 q41Var = (q41) this.f37880b;
+                q41Var.f37190f3.R(q41Var.T((View) obj), q41Var.j3);
                 return;
         }
     }

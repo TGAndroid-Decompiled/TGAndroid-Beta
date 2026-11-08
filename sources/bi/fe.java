@@ -40,7 +40,7 @@ public final class fe extends b1 {
         float radius;
         float f11;
         View view = (View) this.f3500a;
-        if (!z9 && this.f3901f == view.getWidth() && this.f3902g == view.getHeight() && Math.abs(this.h - org.telegram.messenger.g0.f22543p) <= 0.01f) {
+        if (!z9 && this.f3901f == view.getWidth() && this.f3902g == view.getHeight() && Math.abs(this.h - org.telegram.messenger.g0.f22562p) <= 0.01f) {
             return;
         }
         RuntimeShader runtimeShader = this.f3899c;
@@ -50,7 +50,7 @@ public final class fe extends b1 {
         this.f3902g = height;
         runtimeShader.setFloatUniform("size", width, height);
         RuntimeShader runtimeShader2 = this.f3899c;
-        float f12 = org.telegram.messenger.g0.f22543p;
+        float f12 = org.telegram.messenger.g0.f22562p;
         this.h = f12;
         runtimeShader2.setFloatUniform("density", f12);
         WindowInsets rootWindowInsets = view.getRootWindowInsets();
@@ -75,7 +75,7 @@ public final class fe extends b1 {
         }
         RuntimeShader runtimeShader3 = this.f3899c;
         float f13 = 0.0f;
-        if (roundedCorner4 != null && (view == view.getRootView() || org.telegram.messenger.g0.f22539n <= 0)) {
+        if (roundedCorner4 != null && (view == view.getRootView() || org.telegram.messenger.g0.f22558n <= 0)) {
             f10 = roundedCorner4.getRadius();
         } else {
             f10 = 0.0f;
@@ -85,7 +85,7 @@ public final class fe extends b1 {
         } else {
             radius = roundedCorner2.getRadius();
         }
-        if (roundedCorner3 != null && (view == view.getRootView() || org.telegram.messenger.g0.f22539n <= 0)) {
+        if (roundedCorner3 != null && (view == view.getRootView() || org.telegram.messenger.g0.f22558n <= 0)) {
             f11 = roundedCorner3.getRadius();
         } else {
             f11 = 0.0f;
@@ -158,7 +158,7 @@ public final class fe extends b1 {
                 fArr[i7] = f11;
                 i7++;
             }
-            if (!z9 && this.f3901f == view.getWidth() && this.f3902g == view.getHeight() && Math.abs(this.h - org.telegram.messenger.g0.f22543p) <= 0.01f) {
+            if (!z9 && this.f3901f == view.getWidth() && this.f3902g == view.getHeight() && Math.abs(this.h - org.telegram.messenger.g0.f22562p) <= 0.01f) {
                 z14 = false;
             }
             if (z14) {

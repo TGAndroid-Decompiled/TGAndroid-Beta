@@ -31,33 +31,33 @@ import org.telegram.ui.Cells.r2;
 import org.telegram.ui.Components.i6;
 import org.telegram.ui.xf;
 public final class n implements OnSuccessListener, te.i {
-    public static n f19916e;
-    public int f19917a;
-    public Object f19918b;
-    public Object f19919c;
+    public static n f19919e;
+    public int f19920a;
+    public Object f19921b;
+    public Object f19922c;
     public Object d;
 
     public n(Object obj, Object obj2, Object obj3, int i7) {
-        this.f19918b = obj;
-        this.f19919c = obj2;
+        this.f19921b = obj;
+        this.f19922c = obj2;
         this.d = obj3;
-        this.f19917a = i7;
+        this.f19920a = i7;
     }
 
     public static synchronized n i(Context context) {
         n nVar;
         synchronized (n.class) {
             try {
-                if (f19916e == null) {
+                if (f19919e == null) {
                     ScheduledExecutorService unconfigurableScheduledExecutorService = Executors.unconfigurableScheduledExecutorService(Executors.newScheduledThreadPool(1, new r("MessengerIpcClient")));
                     ?? obj = new Object();
                     obj.d = new l(obj);
-                    obj.f19917a = 1;
-                    obj.f19919c = unconfigurableScheduledExecutorService;
-                    obj.f19918b = context.getApplicationContext();
-                    f19916e = obj;
+                    obj.f19920a = 1;
+                    obj.f19922c = unconfigurableScheduledExecutorService;
+                    obj.f19921b = context.getApplicationContext();
+                    f19919e = obj;
                 }
-                nVar = f19916e;
+                nVar = f19919e;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -73,12 +73,12 @@ public final class n implements OnSuccessListener, te.i {
     public n b() {
         boolean z9;
         String str;
-        if (!TextUtils.isEmpty((String) this.f19918b)) {
-            if (!k1.b(this.f19917a)) {
+        if (!TextUtils.isEmpty((String) this.f19921b)) {
+            if (!k1.b(this.f19920a)) {
                 StringBuilder sb2 = new StringBuilder("Authenticator combination is unsupported on API ");
                 sb2.append(Build.VERSION.SDK_INT);
                 sb2.append(": ");
-                int i7 = this.f19917a;
+                int i7 = this.f19920a;
                 if (i7 != 15) {
                     if (i7 != 255) {
                         if (i7 != 32768) {
@@ -103,7 +103,7 @@ public final class n implements OnSuccessListener, te.i {
                 sb2.append(str);
                 throw new IllegalArgumentException(sb2.toString());
             }
-            int i10 = this.f19917a;
+            int i10 = this.f19920a;
             if (i10 != 0) {
                 z9 = k1.a(i10);
             } else {
@@ -115,13 +115,13 @@ public final class n implements OnSuccessListener, te.i {
             if (!TextUtils.isEmpty((String) this.d) && z9) {
                 throw new IllegalArgumentException("Negative text must not be set if device credential authentication is allowed.");
             }
-            return new n((String) this.f19918b, (String) this.f19919c, (String) this.d, this.f19917a);
+            return new n((String) this.f19921b, (String) this.f19922c, (String) this.d, this.f19920a);
         }
         throw new IllegalArgumentException("Title must be set and non-empty.");
     }
 
     public int c() {
-        int i7 = this.f19917a;
+        int i7 = this.f19920a;
         if (i7 != 2) {
             if (i7 != 3) {
                 return 0;
@@ -134,10 +134,10 @@ public final class n implements OnSuccessListener, te.i {
     public Looper d() {
         Looper looper;
         boolean z9;
-        synchronized (this.f19918b) {
+        synchronized (this.f19921b) {
             try {
-                if (((Looper) this.f19919c) == null) {
-                    if (this.f19917a == 0 && ((HandlerThread) this.d) == null) {
+                if (((Looper) this.f19922c) == null) {
+                    if (this.f19920a == 0 && ((HandlerThread) this.d) == null) {
                         z9 = true;
                     } else {
                         z9 = false;
@@ -146,10 +146,10 @@ public final class n implements OnSuccessListener, te.i {
                     HandlerThread handlerThread = new HandlerThread("ExoPlayer:Playback", -16);
                     this.d = handlerThread;
                     handlerThread.start();
-                    this.f19919c = ((HandlerThread) this.d).getLooper();
+                    this.f19922c = ((HandlerThread) this.d).getLooper();
                 }
-                this.f19917a++;
-                looper = (Looper) this.f19919c;
+                this.f19920a++;
+                looper = (Looper) this.f19922c;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -158,14 +158,14 @@ public final class n implements OnSuccessListener, te.i {
     }
 
     public void e() {
-        float[] fArr = (float[]) this.f19918b;
+        float[] fArr = (float[]) this.f19921b;
         Arrays.fill(fArr, 0.0f);
         Iterator it = ((te.j) this.d).iterator();
         while (it.hasNext()) {
             te.e eVar = (te.e) it.next();
-            fArr[((Integer) eVar.f55403a).intValue()] = eVar.c();
+            fArr[((Integer) eVar.f55495a).intValue()] = eVar.c();
         }
-        ((xf) this.f19919c).run();
+        ((xf) this.f19922c).run();
     }
 
     @Override
@@ -176,20 +176,20 @@ public final class n implements OnSuccessListener, te.i {
     public void g() {
         boolean z9;
         HandlerThread handlerThread;
-        synchronized (this.f19918b) {
+        synchronized (this.f19921b) {
             try {
-                if (this.f19917a > 0) {
+                if (this.f19920a > 0) {
                     z9 = true;
                 } else {
                     z9 = false;
                 }
                 ia.p(z9);
-                int i7 = this.f19917a - 1;
-                this.f19917a = i7;
+                int i7 = this.f19920a - 1;
+                this.f19920a = i7;
                 if (i7 == 0 && (handlerThread = (HandlerThread) this.d) != null) {
                     handlerThread.quit();
                     this.d = null;
-                    this.f19919c = null;
+                    this.f19922c = null;
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -198,9 +198,9 @@ public final class n implements OnSuccessListener, te.i {
     }
 
     public void h(int i7, boolean z9, boolean z10) {
-        int numberOfLeadingZeros = 31 - Integer.numberOfLeadingZeros(this.f19917a);
-        int b10 = zc.b(this.f19917a, 1 << i7, z9);
-        this.f19917a = b10;
+        int numberOfLeadingZeros = 31 - Integer.numberOfLeadingZeros(this.f19920a);
+        int b10 = zc.b(this.f19920a, 1 << i7, z9);
+        this.f19920a = b10;
         int numberOfLeadingZeros2 = 31 - Integer.numberOfLeadingZeros(b10);
         if (numberOfLeadingZeros != numberOfLeadingZeros2) {
             ((te.j) this.d).f(Integer.valueOf(numberOfLeadingZeros2), z10);
@@ -216,7 +216,7 @@ public final class n implements OnSuccessListener, te.i {
             wVar.F(95, 28, z.f11208p);
             u.i("BillingClientTesting", "An error occurred while retrieving billing override.", th2);
         }
-        ((Runnable) this.f19919c).run();
+        ((Runnable) this.f19922c).run();
     }
 
     public synchronized Task k(m mVar) {
@@ -232,7 +232,7 @@ public final class n implements OnSuccessListener, te.i {
         } catch (Throwable th2) {
             throw th2;
         }
-        return mVar.f19913b.getTask();
+        return mVar.f19916b.getTask();
     }
 
     @Override
@@ -242,14 +242,14 @@ public final class n implements OnSuccessListener, te.i {
 
     public n(int i7, String str, int i10, ArrayList arrayList, byte[] bArr) {
         List unmodifiableList;
-        this.f19918b = str;
-        this.f19917a = i10;
+        this.f19921b = str;
+        this.f19920a = i10;
         if (arrayList == null) {
             unmodifiableList = Collections.EMPTY_LIST;
         } else {
             unmodifiableList = DesugarCollections.unmodifiableList(arrayList);
         }
-        this.f19919c = unmodifiableList;
+        this.f19922c = unmodifiableList;
         this.d = bArr;
     }
 
@@ -264,23 +264,23 @@ public final class n implements OnSuccessListener, te.i {
                 i6Var.x(g0.o());
                 paint.setColor(i0.a.o(-16777216, 58));
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                this.f19918b = spannableStringBuilder;
+                this.f19921b = spannableStringBuilder;
                 spannableStringBuilder.append((CharSequence) " ").setSpan(new r2(g0.L(1.0f)), 0, 1, 0);
                 SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
-                this.f19919c = spannableStringBuilder2;
+                this.f19922c = spannableStringBuilder2;
                 spannableStringBuilder2.append((CharSequence) " ").setSpan(new r2(g0.L(1.0f)), 0, 1, 0);
                 return;
             case 7:
-                this.f19918b = new Object();
-                this.f19919c = null;
+                this.f19921b = new Object();
+                this.f19922c = null;
                 this.d = null;
-                this.f19917a = 0;
+                this.f19920a = 0;
                 return;
             default:
-                this.f19918b = null;
-                this.f19919c = null;
+                this.f19921b = null;
+                this.f19922c = null;
                 this.d = null;
-                this.f19917a = 0;
+                this.f19920a = 0;
                 return;
         }
     }

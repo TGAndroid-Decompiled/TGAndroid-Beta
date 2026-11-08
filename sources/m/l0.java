@@ -4,19 +4,19 @@ import android.view.View;
 import android.widget.AdapterView;
 import androidx.appcompat.widget.SearchView;
 public final class l0 implements AdapterView.OnItemClickListener {
-    public final int f19147a;
-    public final Object f19148b;
+    public final int f19150a;
+    public final Object f19151b;
 
     public l0(Object obj, int i7) {
-        this.f19147a = i7;
-        this.f19148b = obj;
+        this.f19150a = i7;
+        this.f19151b = obj;
     }
 
     @Override
     public final void onItemClick(AdapterView adapterView, View view, int i7, long j3) {
-        switch (this.f19147a) {
+        switch (this.f19150a) {
             case 0:
-                n0 n0Var = (n0) this.f19148b;
+                n0 n0Var = (n0) this.f19151b;
                 q0 q0Var = n0Var.W;
                 q0Var.setSelection(i7);
                 if (q0Var.getOnItemClickListener() != null) {
@@ -25,7 +25,7 @@ public final class l0 implements AdapterView.OnItemClickListener {
                 n0Var.dismiss();
                 return;
             default:
-                ((SearchView) this.f19148b).m(i7);
+                ((SearchView) this.f19151b).m(i7);
                 return;
         }
     }

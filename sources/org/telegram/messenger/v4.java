@@ -1,64 +1,82 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-public final class v4 implements Runnable {
-    public final int f25940a;
-    public final g5 f25941b;
-    public final HashMap f25942c;
-    public final ArrayList d;
-    public final HashMap f25943e;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class v4 implements RequestDelegate {
+    public final int f25941a;
+    public final long f25942b;
+    public final Object f25943c;
 
-    public v4(g5 g5Var, ArrayList arrayList, HashMap hashMap, HashMap hashMap2) {
-        this.f25940a = 4;
-        this.f25941b = g5Var;
-        this.d = arrayList;
-        this.f25942c = hashMap;
-        this.f25943e = hashMap2;
+    public v4(Object obj, long j3, int i7) {
+        this.f25941a = i7;
+        this.f25943c = obj;
+        this.f25942b = j3;
     }
 
     @Override
-    public final void run() {
-        switch (this.f25940a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f25941a) {
             case 0:
-                HashMap hashMap = this.f25943e;
-                g5 g5Var = this.f25941b;
-                g5Var.E(this.f25942c, this.d, hashMap, true);
-                g5Var.N();
-                g5Var.getNotificationCenter().k(25, new Object[0]);
-                g5Var.getNotificationCenter().k(26, new Object[0]);
+                g5 g5Var = (g5) this.f25943c;
+                ArrayList arrayList = g5Var.f22621x;
+                if (tL_error == null) {
+                    TLRPC.contacts_Contacts contacts_contacts = (TLRPC.contacts_Contacts) tLObject;
+                    if (this.f25942b != 0 && (contacts_contacts instanceof TLRPC.TL_contacts_contactsNotModified)) {
+                        g5Var.h = true;
+                        if (!arrayList.isEmpty() && g5Var.f22618r) {
+                            g5Var.c(arrayList, null, null, null);
+                            arrayList.clear();
+                        }
+                        g5Var.getUserConfig().f24494r = (int) (System.currentTimeMillis() / 1000);
+                        g5Var.getUserConfig().v(false);
+                        g0.h3(new k4(g5Var, 6));
+                        if (r2.f25212a) {
+                            a8.b("load contacts don't change");
+                            return;
+                        }
+                        return;
+                    }
+                    g5Var.getUserConfig().h = contacts_contacts.saved_count;
+                    g5Var.getUserConfig().v(false);
+                    g0.h3(new dg(g5Var, contacts_contacts.users, 0, contacts_contacts.contacts, 3));
+                    return;
+                }
                 return;
             case 1:
-                HashMap hashMap2 = this.f25943e;
-                g5 g5Var2 = this.f25941b;
-                g5Var2.E(this.f25942c, this.d, hashMap2, true);
-                g5Var2.N();
-                g5Var2.getNotificationCenter().k(25, new Object[0]);
-                g5Var2.getNotificationCenter().k(26, new Object[0]);
+                sd sdVar = (sd) this.f25943c;
+                if (tL_error == null) {
+                    g0.h3(new a4(sdVar, this.f25942b, tLObject, 1));
+                    return;
+                }
                 return;
             case 2:
-                this.f25941b.E(this.f25942c, this.d, this.f25943e, true);
+                g0.h3(new ir((vv) this.f25943c, tLObject, this.f25942b, 4));
                 return;
             case 3:
-                HashMap hashMap3 = this.f25943e;
-                g5 g5Var3 = this.f25941b;
-                g5Var3.E(this.f25942c, this.d, hashMap3, true);
-                g5Var3.getNotificationCenter().k(26, new Object[0]);
-                return;
+                dw dwVar = (dw) this.f25943c;
+                long j3 = this.f25942b;
+                if (j3 != 0) {
+                    dwVar.getMessagesStorage().q1(j3);
+                    return;
+                } else {
+                    dwVar.getClass();
+                    return;
+                }
             default:
-                g5 g5Var4 = this.f25941b;
-                g5Var4.f22586c0 = this.d;
-                g5Var4.f22587d0 = this.f25942c;
-                g5Var4.f22584b0 = this.f25943e;
-                return;
+                gz gzVar = (gz) this.f25943c;
+                if (tL_error == null) {
+                    gzVar.getMessagesController().O3((TLRPC.Updates) tLObject, false);
+                }
+                long j10 = this.f25942b;
+                if (j10 != 0) {
+                    gzVar.getMessagesStorage().q1(j10);
+                    return;
+                } else {
+                    gzVar.getClass();
+                    return;
+                }
         }
-    }
-
-    public v4(g5 g5Var, HashMap hashMap, ArrayList arrayList, HashMap hashMap2, int i7) {
-        this.f25940a = i7;
-        this.f25941b = g5Var;
-        this.f25942c = hashMap;
-        this.d = arrayList;
-        this.f25943e = hashMap2;
     }
 }

@@ -16,20 +16,20 @@ public final class qa0 implements Runnable {
         ce0 ce0Var = this.f49178b;
         switch (i7) {
             case 0:
-                ce0Var.f44761c0 = false;
+                ce0Var.f44766c0 = false;
                 return;
             case 1:
-                ce0Var.f44786w0 = false;
+                ce0Var.f44791w0 = false;
                 ce0Var.P1(true, true);
                 return;
             default:
                 if (ce0Var.getParentActivity() != null && !ce0Var.getParentActivity().isFinishing() && ce0Var.getParentActivity() != null) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ce0Var.getParentActivity());
-                    String M0 = org.telegram.messenger.hd.M0(2131746072, null);
-                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
+                    String M0 = org.telegram.messenger.id.M0(2131746074, null);
+                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
                     u1Var.R = M0;
-                    u1Var.T = org.telegram.messenger.hd.M0(2131745950, null);
-                    alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131747830, null), new ta0(ce0Var, 1));
+                    u1Var.T = org.telegram.messenger.id.M0(2131745952, null);
+                    alertDialog$Builder.k(org.telegram.messenger.id.M0(2131747832, null), new ta0(ce0Var, 1));
                     alertDialog$Builder.p();
                     return;
                 }

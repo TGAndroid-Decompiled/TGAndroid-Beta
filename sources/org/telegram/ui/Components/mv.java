@@ -1,19 +1,37 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class mv extends tx {
-    public final gy H;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class mv extends v4.m0 {
+    public final hy f36119a;
 
-    public mv(gy gyVar, Context context) {
-        super(gyVar, context, 2);
-        this.H = gyVar;
+    public mv(hy hyVar) {
+        this.f36119a = hyVar;
     }
 
     @Override
-    public final void setTranslationY(float f10) {
-        if (getTranslationY() != f10) {
-            super.setTranslationY(f10);
-            this.H.f34044g0.invalidate();
+    public final void e(Rect rect, View view, RecyclerView recyclerView, v4.a1 a1Var) {
+        int R = RecyclerView.R(view);
+        hy hyVar = this.f36119a;
+        v4.g0 adapter = hyVar.f34415h0.getAdapter();
+        mx mxVar = hyVar.f34432n0;
+        int i7 = 0;
+        if (adapter == mxVar && R == mxVar.I) {
+            rect.set(0, 0, 0, 0);
+            return;
         }
+        if (R == 0) {
+            mxVar.getClass();
+        }
+        rect.left = 0;
+        rect.bottom = 0;
+        rect.top = org.telegram.messenger.g0.L(2.0f);
+        nx nxVar = hyVar.f34418i0;
+        mxVar.getClass();
+        if (!nxVar.E1(R)) {
+            i7 = org.telegram.messenger.g0.L(2.0f);
+        }
+        rect.right = i7;
     }
 }

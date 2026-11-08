@@ -88,9 +88,9 @@ public final class y implements c4.m {
                     aVar.f13415b = null;
                     a10 = aVar.a();
                 } else {
-                    Pattern pattern = l4.h.f18163a;
+                    Pattern pattern = l4.h.f18166a;
                     l4.g gVar2 = new l4.g();
-                    gVar2.f18156c = charSequence;
+                    gVar2.f18159c = charSequence;
                     a10 = gVar2.a().a();
                 }
                 arrayList.add(a10);

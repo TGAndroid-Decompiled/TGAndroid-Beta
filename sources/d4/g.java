@@ -55,7 +55,7 @@ public final class g extends j {
     @Override
     public final void g(h hVar) {
         boolean z9;
-        ByteBuffer byteBuffer = hVar.f17172c;
+        ByteBuffer byteBuffer = hVar.f17175c;
         byteBuffer.getClass();
         byte[] array = byteBuffer.array();
         int limit = byteBuffer.limit();

@@ -10,7 +10,12 @@ public final class c implements IInterface {
         this.f8213a = iBinder;
     }
 
-    public final void H0(Parcel parcel, int i7) {
+    @Override
+    public final IBinder asBinder() {
+        return this.f8213a;
+    }
+
+    public final void h1(Parcel parcel, int i7) {
         Parcel obtain = Parcel.obtain();
         try {
             this.f8213a.transact(i7, parcel, obtain, 0);
@@ -19,10 +24,5 @@ public final class c implements IInterface {
             parcel.recycle();
             obtain.recycle();
         }
-    }
-
-    @Override
-    public final IBinder asBinder() {
-        return this.f8213a;
     }
 }

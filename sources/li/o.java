@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import org.telegram.messenger.ej;
 import org.telegram.messenger.i6;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.hx;
+import org.telegram.ui.Components.ix;
 import org.telegram.ui.Components.t31;
-public final class o implements hx {
-    public final p f18730a;
+public final class o implements ix {
+    public final p f18733a;
 
     public o(p pVar) {
-        this.f18730a = pVar;
+        this.f18733a = pVar;
     }
 
     @Override
@@ -50,8 +50,8 @@ public final class o implements hx {
     public final void i(int i7) {
         g1 focusedEditTextOrNull;
         boolean z9 = false;
-        p pVar = this.f18730a;
-        if (i7 != 0 && (focusedEditTextOrNull = pVar.f18757r.getFocusedEditTextOrNull()) != null) {
+        p pVar = this.f18733a;
+        if (i7 != 0 && (focusedEditTextOrNull = pVar.f18760r.getFocusedEditTextOrNull()) != null) {
             pVar.F = focusedEditTextOrNull;
             pVar.G = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
         }
@@ -69,7 +69,7 @@ public final class o implements hx {
 
     @Override
     public final boolean k() {
-        g1 Q = p.Q(this.f18730a);
+        g1 Q = p.Q(this.f18733a);
         if (Q == null || Q.length() == 0) {
             return false;
         }
@@ -79,7 +79,7 @@ public final class o implements hx {
 
     @Override
     public final void l(String str) {
-        p pVar = this.f18730a;
+        p pVar = this.f18733a;
         g1 Q = p.Q(pVar);
         if (Q != null) {
             int R = p.R(pVar, Q);
@@ -104,7 +104,7 @@ public final class o implements hx {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z9) {
         org.telegram.ui.Components.r5 r5Var;
-        p pVar = this.f18730a;
+        p pVar = this.f18733a;
         g1 Q = p.Q(pVar);
         if (Q != null) {
             int R = p.R(pVar, Q);
@@ -133,7 +133,7 @@ public final class o implements hx {
 
     @Override
     public final boolean z() {
-        return this.f18730a.D;
+        return this.f18733a.D;
     }
 
     @Override

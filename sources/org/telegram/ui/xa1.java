@@ -1,124 +1,49 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.content.Context;
-import android.graphics.Rect;
-import android.os.Build;
-import android.util.Property;
-import android.view.View;
-import android.widget.ScrollView;
 import android.widget.TextView;
-public final class xa1 extends ScrollView {
-    public final int[] f51811a;
-    public final Rect f51812b;
-    public boolean f51813c;
-    public final ya1 d;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class xa1 extends org.telegram.ui.ActionBar.j {
+    public final za1 f51809a;
 
-    public xa1(ya1 ya1Var, Context context) {
-        super(context);
-        this.d = ya1Var;
-        this.f51811a = new int[2];
-        this.f51812b = new Rect();
-        this.f51813c = true;
+    public xa1(za1 za1Var) {
+        this.f51809a = za1Var;
     }
 
     @Override
-    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        this.f51813c = false;
-        super.onLayout(z9, i7, i10, i11, i12);
-    }
-
-    @Override
-    public final void onScrollChanged(int i7, int i10, int i11, int i12) {
-        org.telegram.ui.ActionBar.k kVar;
-        boolean z9;
-        boolean z10;
-        Integer num;
-        float f10;
-        org.telegram.ui.ActionBar.k kVar2;
-        super.onScrollChanged(i7, i10, i11, i12);
-        ya1 ya1Var = this.d;
-        TextView textView = ya1Var.f52184c;
-        if (textView != null) {
-            int[] iArr = this.f51811a;
-            textView.getLocationOnScreen(iArr);
-            int measuredHeight = ya1Var.f52184c.getMeasuredHeight() + iArr[1];
-            kVar = ((org.telegram.ui.ActionBar.f2) ya1Var).actionBar;
-            if (measuredHeight < kVar.getBottom()) {
-                z9 = true;
+    public final void b(int i7) {
+        String M0;
+        org.telegram.ui.ActionBar.q4 q4Var;
+        za1 za1Var = this.f51809a;
+        if (i7 == -1) {
+            if (za1Var.G >= 0) {
+                q4Var = ((org.telegram.ui.ActionBar.f2) za1Var).parentLayout;
+                if (q4Var.getFragmentStack().size() == 1) {
+                    za1Var.N0();
+                    return;
+                }
+            }
+            za1Var.finishFragment();
+        } else if (i7 == 1) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(za1Var.getParentActivity());
+            TL_account.Password password = za1Var.U;
+            if (password != null && password.has_password) {
+                M0 = org.telegram.messenger.id.M0(2131752586, null);
             } else {
-                z9 = false;
+                M0 = org.telegram.messenger.id.M0(2131752578, null);
             }
-            if (ya1Var.f52184c.getTag() == null) {
-                z10 = true;
-            } else {
-                z10 = false;
+            String M02 = org.telegram.messenger.id.M0(2131752585, null);
+            String M03 = org.telegram.messenger.id.M0(2131754950, null);
+            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
+            u1Var.T = M0;
+            u1Var.R = M02;
+            alertDialog$Builder.k(M03, new li0(this, 22));
+            alertDialog$Builder.h(org.telegram.messenger.id.M0(2131752589, null), null);
+            za1Var.showDialog(u1Var);
+            TextView textView = (TextView) u1Var.d(-1);
+            if (textView != null) {
+                org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28093q7, null);
             }
-            if (z9 != z10) {
-                TextView textView2 = ya1Var.f52184c;
-                if (z9) {
-                    num = null;
-                } else {
-                    num = 1;
-                }
-                textView2.setTag(num);
-                AnimatorSet animatorSet = ya1Var.K;
-                if (animatorSet != null) {
-                    animatorSet.cancel();
-                    ya1Var.K = null;
-                }
-                AnimatorSet animatorSet2 = new AnimatorSet();
-                ya1Var.K = animatorSet2;
-                fi.p5 p5Var = ya1Var.D;
-                float f11 = 0.0f;
-                if (z9) {
-                    f10 = 1.0f;
-                } else {
-                    f10 = 0.0f;
-                }
-                float[] fArr = {f10};
-                Property property = View.ALPHA;
-                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(p5Var, property, fArr);
-                kVar2 = ((org.telegram.ui.ActionBar.f2) ya1Var).actionBar;
-                org.telegram.ui.ActionBar.k5 titleTextView = kVar2.getTitleTextView();
-                if (z9) {
-                    f11 = 1.0f;
-                }
-                animatorSet2.playTogether(ofFloat, ObjectAnimator.ofFloat(titleTextView, property, f11));
-                ya1Var.K.setDuration(150L);
-                ya1Var.K.addListener(new r81(this, 2));
-                ya1Var.K.start();
-            }
-        }
-    }
-
-    @Override
-    public final void requestChildFocus(View view, View view2) {
-        if (Build.VERSION.SDK_INT < 29 && view2 != null && !this.f51813c) {
-            scrollToDescendant(view2);
-        }
-        super.requestChildFocus(view, view2);
-    }
-
-    @Override
-    public final void requestLayout() {
-        this.f51813c = true;
-        super.requestLayout();
-    }
-
-    @Override
-    public final void scrollToDescendant(View view) {
-        Rect rect = this.f51812b;
-        view.getDrawingRect(rect);
-        offsetDescendantRectToMyCoords(view, rect);
-        rect.bottom = org.telegram.messenger.g0.L(120.0f) + rect.bottom;
-        int computeScrollDeltaToGetChildRectOnScreen = computeScrollDeltaToGetChildRectOnScreen(rect);
-        if (computeScrollDeltaToGetChildRectOnScreen < 0) {
-            computeScrollDeltaToGetChildRectOnScreen -= (getMeasuredHeight() - view.getMeasuredHeight()) / 2;
-        }
-        if (computeScrollDeltaToGetChildRectOnScreen != 0) {
-            smoothScrollBy(0, computeScrollDeltaToGetChildRectOnScreen);
         }
     }
 }

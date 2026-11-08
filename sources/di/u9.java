@@ -32,7 +32,7 @@ public final class u9 extends kc {
         ArrayList arrayList = this.f9853a;
         if (arrayList != null) {
             for (int i7 = 0; i7 < arrayList.size(); i7++) {
-                ((q9) arrayList.get(i7)).c(imageReceiver.f21185e);
+                ((q9) arrayList.get(i7)).c(imageReceiver.f21188e);
                 ((q9) arrayList.get(i7)).b(true);
             }
         }

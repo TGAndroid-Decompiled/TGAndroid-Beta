@@ -5,28 +5,28 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 public final class sp implements TextWatcher {
-    public final int f38096a = 1;
-    public final int f38097b;
-    public final View f38098c;
+    public final int f38112a = 1;
+    public final int f38113b;
+    public final View f38114c;
 
     public sp(vp vpVar, int i7) {
-        this.f38098c = vpVar;
-        this.f38097b = i7;
+        this.f38114c = vpVar;
+        this.f38113b = i7;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         int i7;
-        int i10 = this.f38096a;
-        int i11 = this.f38097b;
-        View view = this.f38098c;
+        int i10 = this.f38112a;
+        int i11 = this.f38113b;
+        View view = this.f38114c;
         boolean z9 = false;
         switch (i10) {
             case 0:
                 vp vpVar = (vp) view;
                 EditTextBoldCursor[] editTextBoldCursorArr = vpVar.E;
-                if (!vpVar.f39659r) {
-                    vpVar.f39659r = true;
+                if (!vpVar.f39694r) {
+                    vpVar.f39694r = true;
                     int i12 = 0;
                     while (i12 < editable.length()) {
                         char charAt = editable.charAt(i12);
@@ -37,7 +37,7 @@ public final class sp implements TextWatcher {
                         i12++;
                     }
                     if (editable.length() == 0) {
-                        vpVar.f39659r = false;
+                        vpVar.f39694r = false;
                         return;
                     }
                     try {
@@ -51,9 +51,9 @@ public final class sp implements TextWatcher {
                         editable.replace(0, editable.length(), String.format("%02x%02x%02x", Byte.valueOf((byte) Color.red(color)), Byte.valueOf((byte) Color.green(color)), Byte.valueOf((byte) Color.blue(color))).toUpperCase());
                         editTextBoldCursorArr[i11].setSelection(editable.length());
                     }
-                    vpVar.f39661w[vpVar.S].a(color);
-                    vpVar.f39648a.c(color, vpVar.S, true);
-                    vpVar.f39659r = false;
+                    vpVar.f39696w[vpVar.S].a(color);
+                    vpVar.f39683a.c(color, vpVar.S, true);
+                    vpVar.f39694r = false;
                     return;
                 }
                 return;
@@ -75,17 +75,17 @@ public final class sp implements TextWatcher {
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f38096a;
+        int i12 = this.f38112a;
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f38096a;
+        int i12 = this.f38112a;
     }
 
     public sp(int i7, NumberTextView numberTextView) {
-        this.f38097b = i7;
-        this.f38098c = numberTextView;
+        this.f38113b = i7;
+        this.f38114c = numberTextView;
     }
 
     private final void a(int i7, int i10, int i11, CharSequence charSequence) {

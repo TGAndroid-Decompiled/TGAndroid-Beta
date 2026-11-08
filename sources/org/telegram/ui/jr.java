@@ -2,10 +2,10 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 public final class jr extends org.telegram.ui.ActionBar.j {
-    public final nr f47028a;
+    public final nr f47026a;
 
     public jr(nr nrVar) {
-        this.f47028a = nrVar;
+        this.f47026a = nrVar;
     }
 
     @Override
@@ -13,7 +13,7 @@ public final class jr extends org.telegram.ui.ActionBar.j {
         boolean z9;
         int i10;
         int i11;
-        nr nrVar = this.f47028a;
+        nr nrVar = this.f47026a;
         if (i7 == -1) {
             nrVar.finishFragment();
         } else if (i7 == 1 && nrVar.f48117b.getText().length() != 0) {
@@ -32,7 +32,7 @@ public final class jr extends org.telegram.ui.ActionBar.j {
             }
             contactsController.getClass();
             TLRPC.TL_contacts_addContact tL_contacts_addContact = new TLRPC.TL_contacts_addContact();
-            tL_contacts_addContact.f26995id = contactsController.getMessagesController().q1(a22);
+            tL_contacts_addContact.f26998id = contactsController.getMessagesController().q1(a22);
             tL_contacts_addContact.first_name = a22.first_name;
             tL_contacts_addContact.last_name = a22.last_name;
             String str = a22.phone;
@@ -47,10 +47,10 @@ public final class jr extends org.telegram.ui.ActionBar.j {
                 tL_contacts_addContact.flags |= 2;
                 tL_contacts_addContact.note = textWithEntities;
             }
-            contactsController.getConnectionsManager().sendRequest(tL_contacts_addContact, new org.telegram.messenger.s4(1, contactsController, a22), 6);
+            contactsController.getConnectionsManager().sendRequest(tL_contacts_addContact, new org.telegram.messenger.r4(1, contactsController, a22), 6);
             i10 = ((org.telegram.ui.ActionBar.f2) nrVar).currentAccount;
-            org.telegram.messenger.qp.s1(i10).f24757d7.edit().putInt("dialog_bar_vis3" + nrVar.H, 3).commit();
-            nrVar.getNotificationCenter().k(org.telegram.messenger.qs.f25054r, 1);
+            org.telegram.messenger.qp.s1(i10).f24764d7.edit().putInt("dialog_bar_vis3" + nrVar.H, 3).commit();
+            nrVar.getNotificationCenter().k(org.telegram.messenger.qs.f25063r, 1);
             nrVar.getNotificationCenter().k(org.telegram.messenger.qs.Q0, Long.valueOf(nrVar.H));
             if (b22 != null) {
                 if (textWithEntities != null && textWithEntities.text.length() > 0) {
@@ -62,7 +62,7 @@ public final class jr extends org.telegram.ui.ActionBar.j {
                 }
                 i11 = ((org.telegram.ui.ActionBar.f2) nrVar).currentAccount;
                 org.telegram.messenger.yr.a0(i11).j2(b22, true);
-                nrVar.getNotificationCenter().k(org.telegram.messenger.qs.E0, Long.valueOf(b22.f27103id), b22);
+                nrVar.getNotificationCenter().k(org.telegram.messenger.qs.E0, Long.valueOf(b22.f27106id), b22);
             }
             nrVar.finishFragment();
             mr mrVar = nrVar.O;

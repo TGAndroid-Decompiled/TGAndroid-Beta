@@ -23,19 +23,19 @@ public final class o10 implements View.OnClickListener {
         int i7;
         TLObject M0;
         c40 c40Var = this.f48208b;
-        m10 m10Var = c40Var.f44626t1;
-        ArrayList arrayList = c40Var.f44572h2;
-        org.telegram.ui.Components.voip.n2 n2Var = c40Var.f44622s1;
+        m10 m10Var = c40Var.f44629t1;
+        ArrayList arrayList = c40Var.f44575h2;
+        org.telegram.ui.Components.voip.n2 n2Var = c40Var.f44625s1;
         org.telegram.ui.Components.zg0 zg0Var = c40Var.B2;
-        org.telegram.messenger.c cVar = c40Var.f44585k1;
-        if (c40Var.R2 != null && c40Var.f44641w3 != 3) {
+        org.telegram.messenger.c cVar = c40Var.f44588k1;
+        if (c40Var.R2 != null && c40Var.f44644w3 != 3) {
             int i10 = 6;
             int i11 = 0;
             if (c40Var.u1() && !c40Var.R2.j()) {
                 z10 z10Var = c40Var.R3;
-                if (z10Var != null && z10Var.f39258b && (org.telegram.messenger.g0.Q1() || c40.f44541w5 == c40Var.t1())) {
+                if (z10Var != null && z10Var.f39293b && (org.telegram.messenger.g0.Q1() || c40.f44544w5 == c40Var.t1())) {
                     c40Var.h1(null);
-                    if (c40.f44541w5) {
+                    if (c40.f44544w5) {
                         org.telegram.messenger.g0.i3(new hz(this, 5), 200L);
                     }
                     c40Var.Z1.setRequestedOrientation(-1);
@@ -46,7 +46,7 @@ public final class o10 implements View.OnClickListener {
                         c40Var.h1(s3Var);
                         return;
                     }
-                    if (c40.f44541w5 == c40Var.t1()) {
+                    if (c40.f44544w5 == c40Var.t1()) {
                         c40Var.h1(s3Var);
                     }
                     if (c40Var.t1()) {
@@ -60,18 +60,18 @@ public final class o10 implements View.OnClickListener {
                     return;
                 }
             }
-            int i12 = c40Var.f44641w3;
+            int i12 = c40Var.f44644w3;
             if (i12 == 5) {
-                if (!c40Var.f44649y3) {
+                if (!c40Var.f44652y3) {
                     try {
                         view.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
-                    c40Var.f44649y3 = true;
+                    c40Var.f44652y3 = true;
                     TL_phone.startScheduledGroupCall startscheduledgroupcall = new TL_phone.startScheduledGroupCall();
                     org.telegram.messenger.r3 r3Var = c40Var.R2;
-                    startscheduledgroupcall.call = r3Var.g(r3Var.f25208a);
-                    ConnectionsManager.getInstance(cVar.f21729a).sendRequest(startscheduledgroupcall, new RequestDelegate(this) {
+                    startscheduledgroupcall.call = r3Var.g(r3Var.f25221a);
+                    ConnectionsManager.getInstance(cVar.f21765a).sendRequest(startscheduledgroupcall, new RequestDelegate(this) {
                         public final o10 f47937b;
 
                         {
@@ -84,7 +84,7 @@ public final class o10 implements View.OnClickListener {
                                 case 0:
                                     o10 o10Var = this.f47937b;
                                     if (tLObject != null) {
-                                        org.telegram.messenger.qp.s1(o10Var.f48208b.f44585k1.f21729a).O3((TLRPC.Updates) tLObject, false);
+                                        org.telegram.messenger.qp.s1(o10Var.f48208b.f44588k1.f21765a).O3((TLRPC.Updates) tLObject, false);
                                         return;
                                     } else {
                                         o10Var.getClass();
@@ -93,7 +93,7 @@ public final class o10 implements View.OnClickListener {
                                 default:
                                     o10 o10Var2 = this.f47937b;
                                     if (tLObject != null) {
-                                        org.telegram.messenger.qp.s1(o10Var2.f48208b.f44585k1.f21729a).O3((TLRPC.Updates) tLObject, false);
+                                        org.telegram.messenger.qp.s1(o10Var2.f48208b.f44588k1.f21765a).O3((TLRPC.Updates) tLObject, false);
                                         return;
                                     } else {
                                         o10Var2.getClass();
@@ -105,13 +105,13 @@ public final class o10 implements View.OnClickListener {
                 }
             } else if (i12 != 7 && i12 != 6) {
                 if (VoIPService.getSharedInstance() != null && (i7 = c40Var.K3) != 1 && i7 != 2 && i7 != 6 && i7 != 5) {
-                    int i13 = c40Var.f44641w3;
+                    int i13 = c40Var.f44644w3;
                     if (i13 != 2 && i13 != 4) {
                         try {
                             if (i13 == 0) {
                                 LaunchActivity launchActivity = c40Var.Z1;
                                 if (launchActivity != null && launchActivity.checkSelfPermission("android.permission.RECORD_AUDIO") != 0) {
-                                    c8.ia.c(2131624120, 2131743284, new String[]{"android.permission.RECORD_AUDIO"}, new String[]{"android.permission.RECORD_AUDIO"}, new di.e(17));
+                                    c8.ia.c(2131624120, 2131743286, new String[]{"android.permission.RECORD_AUDIO"}, new String[]{"android.permission.RECORD_AUDIO"}, new di.e(17));
                                     return;
                                 }
                                 c40Var.P1(1, true);
@@ -131,7 +131,7 @@ public final class o10 implements View.OnClickListener {
                             view.performHapticFeedback(3, 2);
                         } catch (Exception unused3) {
                         }
-                        int nextInt = Utilities.f21331b.nextInt(100);
+                        int nextInt = Utilities.f21334b.nextInt(100);
                         int i14 = 120;
                         if (nextInt >= 32) {
                             i11 = 240;
@@ -153,12 +153,12 @@ public final class o10 implements View.OnClickListener {
                         m10Var.setAnimation(zg0Var);
                         zg0Var.M(i11);
                         m10Var.d();
-                        if (c40Var.f44641w3 == 2) {
-                            long C1 = org.telegram.messenger.ij.C1(((TLRPC.GroupCallParticipant) c40Var.R2.d.f(org.telegram.messenger.ij.C1(c40Var.f44618r2))).peer);
+                        if (c40Var.f44644w3 == 2) {
+                            long C1 = org.telegram.messenger.ij.C1(((TLRPC.GroupCallParticipant) c40Var.R2.d.f(org.telegram.messenger.ij.C1(c40Var.f44621r2))).peer);
                             if (org.telegram.messenger.m5.E(C1)) {
-                                M0 = org.telegram.messenger.qp.s1(cVar.f21729a).a2(Long.valueOf(C1));
+                                M0 = org.telegram.messenger.qp.s1(cVar.f21765a).a2(Long.valueOf(C1));
                             } else {
-                                M0 = org.telegram.messenger.qp.s1(cVar.f21729a).M0(Long.valueOf(-C1));
+                                M0 = org.telegram.messenger.qp.s1(cVar.f21765a).M0(Long.valueOf(-C1));
                             }
                             VoIPService.getSharedInstance().editCallMember(M0, null, null, null, Boolean.TRUE, null);
                             c40Var.P1(4, true);
@@ -166,17 +166,17 @@ public final class o10 implements View.OnClickListener {
                     }
                 }
             } else {
-                if (i12 == 6 && (y20Var = c40Var.f44560e2) != null) {
+                if (i12 == 6 && (y20Var = c40Var.f44563e2) != null) {
                     y20Var.a();
                 }
                 TL_phone.toggleGroupCallStartSubscription togglegroupcallstartsubscription = new TL_phone.toggleGroupCallStartSubscription();
                 org.telegram.messenger.r3 r3Var2 = c40Var.R2;
-                togglegroupcallstartsubscription.call = r3Var2.g(r3Var2.f25208a);
-                TLRPC.GroupCall groupCall = c40Var.R2.f25209b;
+                togglegroupcallstartsubscription.call = r3Var2.g(r3Var2.f25221a);
+                TLRPC.GroupCall groupCall = c40Var.R2.f25222b;
                 boolean z9 = !groupCall.schedule_start_subscribed;
                 groupCall.schedule_start_subscribed = z9;
                 togglegroupcallstartsubscription.subscribed = z9;
-                ConnectionsManager.getInstance(cVar.f21729a).sendRequest(togglegroupcallstartsubscription, new RequestDelegate(this) {
+                ConnectionsManager.getInstance(cVar.f21765a).sendRequest(togglegroupcallstartsubscription, new RequestDelegate(this) {
                     public final o10 f47937b;
 
                     {
@@ -189,7 +189,7 @@ public final class o10 implements View.OnClickListener {
                             case 0:
                                 o10 o10Var = this.f47937b;
                                 if (tLObject != null) {
-                                    org.telegram.messenger.qp.s1(o10Var.f48208b.f44585k1.f21729a).O3((TLRPC.Updates) tLObject, false);
+                                    org.telegram.messenger.qp.s1(o10Var.f48208b.f44588k1.f21765a).O3((TLRPC.Updates) tLObject, false);
                                     return;
                                 } else {
                                     o10Var.getClass();
@@ -198,7 +198,7 @@ public final class o10 implements View.OnClickListener {
                             default:
                                 o10 o10Var2 = this.f47937b;
                                 if (tLObject != null) {
-                                    org.telegram.messenger.qp.s1(o10Var2.f48208b.f44585k1.f21729a).O3((TLRPC.Updates) tLObject, false);
+                                    org.telegram.messenger.qp.s1(o10Var2.f48208b.f44588k1.f21765a).O3((TLRPC.Updates) tLObject, false);
                                     return;
                                 } else {
                                     o10Var2.getClass();
@@ -207,7 +207,7 @@ public final class o10 implements View.OnClickListener {
                         }
                     }
                 });
-                if (c40Var.R2.f25209b.schedule_start_subscribed) {
+                if (c40Var.R2.f25222b.schedule_start_subscribed) {
                     i10 = 7;
                 }
                 c40Var.P1(i10, true);

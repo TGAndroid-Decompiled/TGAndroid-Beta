@@ -16,7 +16,7 @@ public abstract class br extends EditTextBoldCursor {
     public static final org.telegram.ui.Components.lt0 X1;
     public static final org.telegram.ui.Components.lt0 Y1;
     public static final org.telegram.ui.Components.lt0 Z1;
-    public static final org.telegram.ui.Components.lt0 f44476a2;
+    public static final org.telegram.ui.Components.lt0 f44479a2;
     public float G1;
     public float H1;
     public float I1;
@@ -37,30 +37,30 @@ public abstract class br extends EditTextBoldCursor {
 
     static {
         org.telegram.ui.Components.lt0 lt0Var = new org.telegram.ui.Components.lt0(new org.telegram.messenger.ch(25), new org.telegram.messenger.ch(26));
-        lt0Var.f35763c = 100.0f;
+        lt0Var.f35790c = 100.0f;
         X1 = lt0Var;
         org.telegram.ui.Components.lt0 lt0Var2 = new org.telegram.ui.Components.lt0(new org.telegram.messenger.ch(27), new org.telegram.messenger.ch(28));
-        lt0Var2.f35763c = 100.0f;
+        lt0Var2.f35790c = 100.0f;
         Y1 = lt0Var2;
         org.telegram.ui.Components.lt0 lt0Var3 = new org.telegram.ui.Components.lt0(new org.telegram.messenger.ch(29), new zq(0));
-        lt0Var3.f35763c = 100.0f;
+        lt0Var3.f35790c = 100.0f;
         Z1 = lt0Var3;
         org.telegram.ui.Components.lt0 lt0Var4 = new org.telegram.ui.Components.lt0(new zq(1), new zq(2));
-        lt0Var4.f35763c = 100.0f;
-        f44476a2 = lt0Var4;
+        lt0Var4.f35790c = 100.0f;
+        f44479a2 = lt0Var4;
     }
 
     public static void B(r1.g gVar, float f10) {
-        r1.h hVar = gVar.f54174m;
-        if (hVar != null && f10 == ((float) hVar.f54182i)) {
+        r1.h hVar = gVar.f54267m;
+        if (hVar != null && f10 == ((float) hVar.f54275i)) {
             return;
         }
         gVar.d();
         r1.h hVar2 = new r1.h(f10);
         hVar2.b(400.0f);
         hVar2.a(1.0f);
-        hVar2.f54182i = f10;
-        gVar.f54174m = hVar2;
+        hVar2.f54275i = f10;
+        gVar.f54267m = hVar2;
         gVar.h();
     }
 
@@ -74,11 +74,11 @@ public abstract class br extends EditTextBoldCursor {
         gVar.d();
         if (f10 != 0.0f) {
             r1.h o4 = org.telegram.ui.Cells.f1.o(1.0f, 500.0f, 0.75f);
-            o4.f54182i = 100.0f;
-            gVar.f54174m = o4;
-            gVar.f54165b = 100.0f;
-            gVar.f54166c = true;
-            gVar.f54164a = 4000.0f;
+            o4.f54275i = 100.0f;
+            gVar.f54267m = o4;
+            gVar.f54258b = 100.0f;
+            gVar.f54259c = true;
+            gVar.f54257a = 4000.0f;
             gVar.h();
             return;
         }

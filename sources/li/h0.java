@@ -5,21 +5,21 @@ import android.text.Layout;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Cells.t9;
 public final class h0 implements t9 {
-    public final Layout f18614a;
-    public final int f18615b;
-    public final int f18616c;
+    public final Layout f18617a;
+    public final int f18618b;
+    public final int f18619c;
     public final j0 d;
 
     public h0(j0 j0Var, Layout layout, int i7, int i10) {
         this.d = j0Var;
-        this.f18614a = layout;
-        this.f18615b = i7;
-        this.f18616c = i10;
+        this.f18617a = layout;
+        this.f18618b = i7;
+        this.f18619c = i10;
     }
 
     @Override
     public final Layout a() {
-        return this.f18614a;
+        return this.f18617a;
     }
 
     @Override
@@ -42,8 +42,8 @@ public final class h0 implements t9 {
         TL_iv.PageBlock pageBlock;
         TL_iv.PageCaption pageCaption;
         TL_iv.RichText richText;
-        a V0 = this.d.f18650c.V0();
-        if (V0 != null && (pageBlock = V0.f18389b) != null && (pageCaption = pageBlock.caption) != null && (richText = pageCaption.text) != null) {
+        a V0 = this.d.f18653c.V0();
+        if (V0 != null && (pageBlock = V0.f18392b) != null && (pageCaption = pageBlock.caption) != null && (richText = pageCaption.text) != null) {
             return c6.r(richText, null, true);
         }
         return "";
@@ -51,11 +51,11 @@ public final class h0 implements t9 {
 
     @Override
     public final int getX() {
-        return this.f18615b;
+        return this.f18618b;
     }
 
     @Override
     public final int getY() {
-        return this.f18616c;
+        return this.f18619c;
     }
 }

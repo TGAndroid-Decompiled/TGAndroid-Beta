@@ -5,10 +5,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 public final class k0 implements Handler.Callback {
-    public final l0 f53812a;
+    public final l0 f53905a;
 
     public k0(l0 l0Var) {
-        this.f53812a = l0Var;
+        this.f53905a = l0Var;
     }
 
     @Override
@@ -18,24 +18,24 @@ public final class k0 implements Handler.Callback {
             if (i7 != 1) {
                 return false;
             }
-            l0 l0Var = this.f53812a;
-            synchronized (l0Var.f53815a) {
+            l0 l0Var = this.f53905a;
+            synchronized (l0Var.f53908a) {
                 try {
                     i0 i0Var = (i0) message.obj;
-                    j0 j0Var = (j0) l0Var.f53815a.get(i0Var);
-                    if (j0Var != null && j0Var.f53801b == 3) {
+                    j0 j0Var = (j0) l0Var.f53908a.get(i0Var);
+                    if (j0Var != null && j0Var.f53894b == 3) {
                         String valueOf = String.valueOf(i0Var);
                         StringBuilder sb2 = new StringBuilder(valueOf.length() + 47);
                         sb2.append("Timeout waiting for ServiceConnection callback ");
                         sb2.append(valueOf);
                         Log.e("GmsClientSupervisor", sb2.toString(), new Exception());
-                        ComponentName componentName = j0Var.f53804f;
+                        ComponentName componentName = j0Var.f53897f;
                         if (componentName == null) {
                             i0Var.getClass();
                             componentName = null;
                         }
                         if (componentName == null) {
-                            String str = i0Var.f53795b;
+                            String str = i0Var.f53888b;
                             m.g(str);
                             componentName = new ComponentName(str, "unknown");
                         }
@@ -46,21 +46,21 @@ public final class k0 implements Handler.Callback {
             }
             return true;
         }
-        l0 l0Var2 = this.f53812a;
-        synchronized (l0Var2.f53815a) {
+        l0 l0Var2 = this.f53905a;
+        synchronized (l0Var2.f53908a) {
             try {
                 i0 i0Var2 = (i0) message.obj;
-                j0 j0Var2 = (j0) l0Var2.f53815a.get(i0Var2);
-                if (j0Var2 != null && j0Var2.f53800a.isEmpty()) {
-                    if (j0Var2.f53802c) {
-                        i0 i0Var3 = j0Var2.f53803e;
+                j0 j0Var2 = (j0) l0Var2.f53908a.get(i0Var2);
+                if (j0Var2 != null && j0Var2.f53893a.isEmpty()) {
+                    if (j0Var2.f53895c) {
+                        i0 i0Var3 = j0Var2.f53896e;
                         l0 l0Var3 = j0Var2.h;
-                        l0Var3.f53817c.removeMessages(1, i0Var3);
-                        l0Var3.d.b(l0Var3.f53816b, j0Var2);
-                        j0Var2.f53802c = false;
-                        j0Var2.f53801b = 2;
+                        l0Var3.f53910c.removeMessages(1, i0Var3);
+                        l0Var3.d.b(l0Var3.f53909b, j0Var2);
+                        j0Var2.f53895c = false;
+                        j0Var2.f53894b = 2;
                     }
-                    l0Var2.f53815a.remove(i0Var2);
+                    l0Var2.f53908a.remove(i0Var2);
                 }
             } finally {
             }

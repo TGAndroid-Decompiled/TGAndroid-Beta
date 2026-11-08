@@ -10,7 +10,7 @@ import fi.d;
 import hi.u1;
 import ii.g;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.m5;
 import org.telegram.messenger.t3;
 import org.telegram.tgnet.TLRPC;
@@ -33,12 +33,12 @@ public final class b extends na {
         int i7;
         int i10;
         this.B1 = g0.L(30.0f);
-        pj0 pj0Var = this.f36261k1;
-        int i11 = this.f28646t0;
-        pj0Var.setPadding(i11, 0, i11, g0.L(130.0f) + g0.f22539n);
-        this.f36261k1.setClipToPadding(false);
+        pj0 pj0Var = this.f36277k1;
+        int i11 = this.f28649t0;
+        pj0Var.setPadding(i11, 0, i11, g0.L(130.0f) + g0.f22558n);
+        this.f36277k1.setClipToPadding(false);
         d dVar = new d(context, this.I0, true);
-        dVar.setText(hd.M0(2131752589, null));
+        dVar.setText(id.M0(2131752589, null));
         dVar.e();
         dVar.f();
         dVar.setOnClickListener(new g(this, 9));
@@ -49,7 +49,7 @@ public final class b extends na {
         } else {
             i7 = 2131751922;
         }
-        dVar2.setText(hd.M0(i7, null));
+        dVar2.setText(id.M0(i7, null));
         dVar2.f();
         dVar2.setOnClickListener(new r(21, this, runnable));
         nc ncVar = new nc(context, 3);
@@ -69,19 +69,19 @@ public final class b extends na {
         } else {
             i10 = 2131751923;
         }
-        spannableStringBuilder.append((CharSequence) hd.M0(i10, null));
+        spannableStringBuilder.append((CharSequence) id.M0(i10, null));
         r6.V(textView, i12, this.I0);
         textView.setText(spannableStringBuilder);
-        this.f28616b.addView(dVar2, ha.f(48.0f, -1, 80, g0.L(12.0f) + this.f28646t0, 0, g0.L(12.0f) + this.f28646t0, g0.L(70.0f) + g0.f22539n));
-        this.f28616b.addView(dVar, ha.f(48.0f, -1, 80, g0.L(12.0f) + this.f28646t0, 0, g0.L(12.0f) + this.f28646t0, g0.L(12.0f) + g0.f22539n));
+        this.f28619b.addView(dVar2, ha.f(48.0f, -1, 80, g0.L(12.0f) + this.f28649t0, 0, g0.L(12.0f) + this.f28649t0, g0.L(70.0f) + g0.f22558n));
+        this.f28619b.addView(dVar, ha.f(48.0f, -1, 80, g0.L(12.0f) + this.f28649t0, 0, g0.L(12.0f) + this.f28649t0, g0.L(12.0f) + g0.f22558n));
         this.Q1.O(false);
     }
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        l41 l41Var = new l41(this.f36261k1, getContext(), this.f28613a, 0, true, new u1(this, 15), this.I0);
+        l41 l41Var = new l41(this.f36277k1, getContext(), this.f28616a, 0, true, new u1(this, 15), this.I0);
         this.Q1 = l41Var;
-        l41Var.f35510r = false;
+        l41Var.f35528r = false;
         return l41Var;
     }
 

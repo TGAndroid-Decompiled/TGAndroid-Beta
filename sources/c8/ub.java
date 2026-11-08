@@ -19,7 +19,7 @@ public abstract class ub {
         ArrayList arrayList;
         int size;
         int indexOfKey;
-        WeakHashMap weakHashMap = r0.i0.f54097a;
+        WeakHashMap weakHashMap = r0.i0.f54190a;
         if (Build.VERSION.SDK_INT < 28) {
             ArrayList arrayList2 = r0.h0.d;
             r0.h0 h0Var = (r0.h0) view.getTag(2131296694);
@@ -27,19 +27,19 @@ public abstract class ub {
             r0.h0 h0Var2 = h0Var;
             if (h0Var == null) {
                 ?? obj = new Object();
-                obj.f54092a = null;
-                obj.f54093b = null;
-                obj.f54094c = null;
+                obj.f54185a = null;
+                obj.f54186b = null;
+                obj.f54187c = null;
                 view.setTag(2131296694, obj);
                 h0Var2 = obj;
             }
-            WeakReference weakReference2 = h0Var2.f54094c;
+            WeakReference weakReference2 = h0Var2.f54187c;
             if (weakReference2 == null || weakReference2.get() != keyEvent) {
-                h0Var2.f54094c = new WeakReference(keyEvent);
-                if (h0Var2.f54093b == null) {
-                    h0Var2.f54093b = new SparseArray();
+                h0Var2.f54187c = new WeakReference(keyEvent);
+                if (h0Var2.f54186b == null) {
+                    h0Var2.f54186b = new SparseArray();
                 }
-                SparseArray sparseArray = h0Var2.f54093b;
+                SparseArray sparseArray = h0Var2.f54186b;
                 if (keyEvent.getAction() == 1 && (indexOfKey = sparseArray.indexOfKey(keyEvent.getKeyCode())) >= 0) {
                     weakReference = (WeakReference) sparseArray.valueAt(indexOfKey);
                     sparseArray.removeAt(indexOfKey);

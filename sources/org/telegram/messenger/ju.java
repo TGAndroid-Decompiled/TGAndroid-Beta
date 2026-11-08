@@ -17,12 +17,12 @@ public final class ju extends fu {
         super(kvVar, rect, i7);
         jv jvVar;
         if (!TextUtils.isEmpty(spannableStringBuilder)) {
-            jvVar = new jv(kvVar, spannableStringBuilder, this.f22452c);
+            jvVar = new jv(kvVar, spannableStringBuilder, this.f22471c);
         } else {
             jvVar = null;
         }
         this.W = jvVar;
-        jv jvVar2 = TextUtils.isEmpty(spannableStringBuilder2) ? null : new jv(kvVar, spannableStringBuilder2, this.f22452c);
+        jv jvVar2 = TextUtils.isEmpty(spannableStringBuilder2) ? null : new jv(kvVar, spannableStringBuilder2, this.f22471c);
         this.X = jvVar2;
         this.Y = kvVar.I();
         ArrayList arrayList = new ArrayList(2);
@@ -38,19 +38,19 @@ public final class ju extends fu {
     @Override
     public final int I() {
         int i7;
-        Rect rect = this.f22451b;
+        Rect rect = this.f22470b;
         int i10 = rect.top;
         int i11 = 0;
         jv jvVar = this.W;
         if (jvVar != null) {
-            i7 = jvVar.f23593b.getHeight();
+            i7 = jvVar.f23605b.getHeight();
         } else {
             i7 = 0;
         }
         int j02 = j0() + i7 + i10;
         jv jvVar2 = this.X;
         if (jvVar2 != null) {
-            i11 = jvVar2.f23593b.getHeight();
+            i11 = jvVar2.f23605b.getHeight();
         }
         return j02 + i11 + rect.bottom;
     }
@@ -59,7 +59,7 @@ public final class ju extends fu {
     public final int J() {
         int i7;
         int i10;
-        Rect rect = this.f22451b;
+        Rect rect = this.f22470b;
         jv jvVar = this.X;
         if (jvVar != null) {
             i7 = jvVar.q() + rect.left;
@@ -88,7 +88,7 @@ public final class ju extends fu {
         if (jvVar2 != null) {
             i7 = Math.max(i7, jvVar2.r());
         }
-        Rect rect = this.f22451b;
+        Rect rect = this.f22470b;
         return rect.left + i7 + rect.right;
     }
 
@@ -133,7 +133,7 @@ public final class ju extends fu {
             canvas.save();
             float i02 = i0();
             if (jvVar != null) {
-                i7 = jvVar.f23593b.getHeight();
+                i7 = jvVar.f23605b.getHeight();
             } else {
                 i7 = 0;
             }
@@ -150,13 +150,13 @@ public final class ju extends fu {
         int i10;
         jv jvVar = this.W;
         if (jvVar != null) {
-            i7 = jvVar.f23593b.getHeight();
+            i7 = jvVar.f23605b.getHeight();
         } else {
             i7 = 0;
         }
         int j02 = j0();
         float y10 = motionEvent.getY();
-        int i11 = this.f22451b.top;
+        int i11 = this.f22470b.top;
         float f10 = y10 - i11;
         if (jvVar != null && f10 >= 0.0f && f10 < i7) {
             motionEvent.offsetLocation(0.0f, -i11);
@@ -183,20 +183,20 @@ public final class ju extends fu {
         this.U = i11;
         jv jvVar = this.W;
         if (jvVar != null) {
-            jvVar.f23594c = i7 - jvVar.f23596f;
+            jvVar.f23606c = i7 - jvVar.f23608f;
             jvVar.d = i10;
-            jvVar.f23595e = i11;
+            jvVar.f23607e = i11;
         }
         jv jvVar2 = this.X;
         if (jvVar2 != null) {
-            jvVar2.f23594c = (i0() + i7) - jvVar2.f23596f;
+            jvVar2.f23606c = (i0() + i7) - jvVar2.f23608f;
             if (jvVar != null) {
-                i12 = jvVar.f23593b.getHeight();
+                i12 = jvVar.f23605b.getHeight();
             } else {
                 i12 = 0;
             }
             jvVar2.d = j0() + i12 + i10;
-            jvVar2.f23595e = i11;
+            jvVar2.f23607e = i11;
         }
     }
 
@@ -205,8 +205,8 @@ public final class ju extends fu {
         if (jvVar == null || !this.Y) {
             return 0;
         }
-        int i7 = this.f22450a.C;
-        Rect rect = this.f22451b;
+        int i7 = this.f22469a.C;
+        Rect rect = this.f22470b;
         return Math.max(0, ((i7 - rect.left) - rect.right) - jvVar.r());
     }
 
@@ -222,7 +222,7 @@ public final class ju extends fu {
         StaticLayout staticLayout;
         fu.l(spannableStringBuilder, this.W, null);
         jv jvVar = this.X;
-        if (jvVar != null && (staticLayout = jvVar.f23593b) != null && !TextUtils.isEmpty(staticLayout.getText())) {
+        if (jvVar != null && (staticLayout = jvVar.f23605b) != null && !TextUtils.isEmpty(staticLayout.getText())) {
             if (spannableStringBuilder.length() > 0 && spannableStringBuilder.charAt(spannableStringBuilder.length() - 1) != '\n') {
                 spannableStringBuilder.append('\n');
             }

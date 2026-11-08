@@ -44,10 +44,10 @@ public final class l1 implements View.OnClickListener {
                 PhotoViewer.p1().c0(1.0f, 0.0f, 0.0f, false);
                 return;
             case 4:
-                int i13 = hi.l.f14767n;
+                int i13 = hi.l.f14770n;
                 return;
             case 5:
-                int i14 = lh.c.f18350e;
+                int i14 = lh.c.f18353e;
                 return;
             case 6:
                 return;
@@ -64,19 +64,19 @@ public final class l1 implements View.OnClickListener {
             case 9:
                 if (!MediaController.B().A0) {
                     if (MediaController.B().H()) {
-                        MediaController.B().S(MediaController.B().f21292u0);
+                        MediaController.B().S(MediaController.B().f21295u0);
                         return;
                     } else {
-                        MediaController.B().R(MediaController.B().f21292u0, true);
+                        MediaController.B().R(MediaController.B().f21295u0, true);
                         return;
                     }
                 }
                 return;
             case 10:
-                int i16 = vp.f39647f0;
+                int i16 = vp.f39682f0;
                 return;
             case 11:
-                int i17 = br.f32308x;
+                int i17 = br.f32329x;
                 return;
             case 12:
                 float[] fArr = FragmentContextView.W0;
@@ -87,10 +87,10 @@ public final class l1 implements View.OnClickListener {
                 }
                 B.n0();
                 B.m();
-                ij ijVar = B.f21292u0;
+                ij ijVar = B.f21295u0;
                 if (ijVar != null) {
                     qs f10 = qs.f(ijVar.I1);
-                    ij ijVar2 = B.f21292u0;
+                    ij ijVar2 = B.f21295u0;
                     if (ijVar2 != null) {
                         i7 = ijVar2.f1();
                     } else {
@@ -116,7 +116,7 @@ public final class l1 implements View.OnClickListener {
                 wg.f1.l1(0, null);
                 return;
             case 16:
-                ArrayList arrayList = ExternalActionActivity.f41221y;
+                ArrayList arrayList = ExternalActionActivity.f41225y;
                 return;
             case 17:
                 return;
@@ -135,19 +135,19 @@ public final class l1 implements View.OnClickListener {
                     return;
                 }
             case 21:
-                int i18 = org.telegram.ui.Wallet.p3.W;
+                int i18 = org.telegram.ui.Wallet.o3.W;
                 return;
             case 22:
                 PhotoViewer.p1().c0(1.0f, 0.0f, 0.0f, false);
                 return;
             case 23:
-                int i19 = zh.m.f60347s2;
+                int i19 = zh.l.f60419s2;
                 return;
             case 24:
-                org.telegram.ui.Components.jc[] jcVarArr = zh.v.f60457h2;
+                org.telegram.ui.Components.jc[] jcVarArr = zh.u.f60532h2;
                 return;
             default:
-                int i20 = zh.c0.Y1;
+                int i20 = zh.b0.Y1;
                 return;
         }
     }

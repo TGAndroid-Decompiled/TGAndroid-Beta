@@ -26,13 +26,13 @@ public final class m implements ua.b {
             case 3:
                 return ExecutorsRegistrar.a();
             case 4:
-                u9.m mVar = ExecutorsRegistrar.f7877a;
+                u9.n nVar = ExecutorsRegistrar.f7877a;
                 return new v9.f(Executors.newFixedThreadPool(Math.max(2, Runtime.getRuntime().availableProcessors()), new v9.a("Firebase Lite", 0, new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build())), (ScheduledExecutorService) ExecutorsRegistrar.d.get());
             case 5:
-                u9.m mVar2 = ExecutorsRegistrar.f7877a;
+                u9.n nVar2 = ExecutorsRegistrar.f7877a;
                 return new v9.f(Executors.newCachedThreadPool(new v9.a("Firebase Blocking", 11, null)), (ScheduledExecutorService) ExecutorsRegistrar.d.get());
             default:
-                u9.m mVar3 = ExecutorsRegistrar.f7877a;
+                u9.n nVar3 = ExecutorsRegistrar.f7877a;
                 return Executors.newSingleThreadScheduledExecutor(new v9.a("Firebase Scheduler", 0, null));
         }
     }

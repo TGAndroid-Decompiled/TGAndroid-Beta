@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 import c8.ha;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class z4 extends k.a {
     public final a5 f10014c;
@@ -39,11 +39,11 @@ public final class z4 extends k.a {
         }
         int i13 = i7;
         if (z9) {
-            i10 = 2131745290;
+            i10 = 2131745292;
         } else {
-            i10 = 2131745291;
+            i10 = 2131745293;
         }
-        org.telegram.ui.ActionBar.z0 c10 = org.telegram.ui.ActionBar.r0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, i13, hd.M0(i10, null), false, k5Var.f9306s);
+        org.telegram.ui.ActionBar.z0 c10 = org.telegram.ui.ActionBar.r0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, i13, id.M0(i10, null), false, k5Var.f9306s);
         if (!k5Var.O.f9901a) {
             c10.setAlpha(0.5f);
         }
@@ -107,7 +107,7 @@ public final class z4 extends k.a {
         } else {
             i11 = 2131231919;
         }
-        org.telegram.ui.ActionBar.z0 c11 = org.telegram.ui.ActionBar.r0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, i11, hd.M0(2131745289, null), false, k5Var.f9306s);
+        org.telegram.ui.ActionBar.z0 c11 = org.telegram.ui.ActionBar.r0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, i11, id.M0(2131745291, null), false, k5Var.f9306s);
         if (k5Var.O.f9901a) {
             c11.setAlpha(0.5f);
         }
@@ -170,15 +170,15 @@ public final class z4 extends k.a {
         d1Var.setTag(2131296437, 1);
         actionBarPopupWindow$ActionBarPopupWindowLayout.a(d1Var, ha.o(-1, 8));
         if (z9) {
-            i12 = 2131744503;
+            i12 = 2131744505;
         } else {
-            i12 = 2131744446;
+            i12 = 2131744448;
         }
-        String M0 = hd.M0(i12, null);
+        String M0 = id.M0(i12, null);
         b bVar = k5Var.f9306s;
         TextView textView = new TextView(actionBarPopupWindow$ActionBarPopupWindowLayout.getContext());
         textView.setTextSize(1, 13.0f);
-        org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f27957j5, bVar);
+        org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f27960j5, bVar);
         textView.setPadding(org.telegram.messenger.g0.L(13.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(13.0f), org.telegram.messenger.g0.L(8.0f));
         textView.setText(M0);
         textView.setTag(2131296437, 1);

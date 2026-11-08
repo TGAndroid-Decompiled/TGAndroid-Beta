@@ -1,44 +1,30 @@
 package zh;
 
-import bi.ea;
-import bi.k7;
-import bi.uc;
+import java.util.ArrayList;
+import java.util.Arrays;
+import org.telegram.tgnet.TLRPC;
 public final class r3 implements Runnable {
-    public final int f60436a;
-    public final b4 f60437b;
+    public final int f60514a;
+    public final TLRPC.User f60515b;
 
-    public r3(b4 b4Var, int i7) {
-        this.f60436a = i7;
-        this.f60437b = b4Var;
+    public r3(int i7, TLRPC.User user) {
+        this.f60514a = i7;
+        this.f60515b = user;
     }
 
     @Override
     public final void run() {
-        switch (this.f60436a) {
+        int i7 = this.f60514a;
+        TLRPC.User user = this.f60515b;
+        switch (i7) {
             case 0:
-                this.f60437b.f1(false);
+                wg.j0.l1(new ArrayList(Arrays.asList(user)));
                 return;
             case 1:
-                this.f60437b.f1(true);
-                return;
-            case 2:
-                b4 b4Var = this.f60437b;
-                k7 k7Var = new k7(b4Var.getContext(), b4Var.Q1, b4Var.R1, b4Var.I0, null);
-                long j3 = b4Var.U1.f27182id;
-                String str = b4Var.X1;
-                k7Var.f4174f3 = true;
-                ea.y(k7Var.f28613a, false).K(j3, new ai.f1(3, k7Var, str));
-                return;
-            case 3:
-                b4 b4Var2 = this.f60437b;
-                v.g1(b4Var2.getContext(), b4Var2.U1, b4Var2.I0);
-                return;
-            case 4:
-                b4 b4Var3 = this.f60437b;
-                new uc(b4Var3.getContext(), b4Var3.I0).show();
+                wg.j0.l1(new ArrayList(Arrays.asList(user)));
                 return;
             default:
-                this.f60437b.dismiss();
+                wg.j0.l1(new ArrayList(Arrays.asList(user)));
                 return;
         }
     }

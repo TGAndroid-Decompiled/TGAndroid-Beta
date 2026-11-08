@@ -15,9 +15,9 @@ public final class a {
 
     public a(l6.a aVar, byte[] bArr) {
         this.f3416f = aVar;
-        this.f3413b = aVar.f18179e;
+        this.f3413b = aVar.f18182e;
         this.f3414c = aVar.d;
-        this.d = aVar.f18180f;
+        this.d = aVar.f18183f;
         ?? obj = new Object();
         obj.f7255a = 0L;
         obj.f7256b = 0L;
@@ -46,7 +46,7 @@ public final class a {
         obj.D = false;
         this.f3415e = obj;
         this.f3412a = false;
-        obj.D = com.google.android.gms.internal.clearcut.a.a(aVar.f18176a);
+        obj.D = com.google.android.gms.internal.clearcut.a.a(aVar.f18179a);
         aVar.h.getClass();
         obj.f7255a = System.currentTimeMillis();
         aVar.h.getClass();

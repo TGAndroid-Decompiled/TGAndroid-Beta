@@ -13,7 +13,7 @@ public final class b extends q implements a {
         this.f299b = obj;
     }
 
-    public static a M0(IBinder iBinder) {
+    public static a m1(IBinder iBinder) {
         if (iBinder == null) {
             return null;
         }
@@ -24,7 +24,7 @@ public final class b extends q implements a {
         return new a8.a(iBinder, "com.google.android.gms.dynamic.IObjectWrapper", 9);
     }
 
-    public static Object N0(a aVar) {
+    public static Object n1(a aVar) {
         if (aVar instanceof b) {
             return ((b) aVar).f299b;
         }

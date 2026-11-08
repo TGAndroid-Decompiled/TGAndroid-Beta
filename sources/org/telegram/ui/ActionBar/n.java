@@ -2,21 +2,21 @@ package org.telegram.ui.ActionBar;
 
 import android.view.View;
 public final class n implements r0.m, oi.n {
-    public final f2 f28313a;
+    public final f2 f28316a;
 
     public n(f2 f2Var) {
-        this.f28313a = f2Var;
+        this.f28316a = f2Var;
     }
 
     @Override
     public r0.k1 S0(View view, r0.k1 k1Var) {
-        return this.f28313a.onInsetsInternal(view, k1Var);
+        return this.f28316a.onInsetsInternal(view, k1Var);
     }
 
     @Override
     public int h() {
-        f2 f2Var = this.f28313a;
+        f2 f2Var = this.f28316a;
         f2Var.getClass();
-        return f2Var.getThemedColor(k6.f27793a7);
+        return f2Var.getThemedColor(k6.f27796a7);
     }
 }

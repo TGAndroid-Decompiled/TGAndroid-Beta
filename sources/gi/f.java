@@ -27,8 +27,8 @@ import j$.util.Objects;
 import java.util.ArrayList;
 import org.telegram.messenger.camera.q;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.hd;
 import org.telegram.messenger.i0;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ls;
 import org.telegram.messenger.qp;
 import org.telegram.messenger.qs;
@@ -45,14 +45,14 @@ import org.telegram.ui.ActionBar.q4;
 import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Components.ht0;
 import org.telegram.ui.Components.j6;
-import org.telegram.ui.Components.jz;
+import org.telegram.ui.Components.kz;
 import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.pj0;
 import org.telegram.ui.Components.v61;
 import org.telegram.ui.Components.wp;
 import org.telegram.ui.Components.x31;
 import org.telegram.ui.Components.xq;
-import org.telegram.ui.Wallet.w6;
+import org.telegram.ui.Wallet.v6;
 import org.telegram.ui.c61;
 import org.telegram.ui.l00;
 import org.telegram.ui.n00;
@@ -62,7 +62,7 @@ import v4.b0;
 import wg.f1;
 public final class f extends o00 implements ls {
     public FrameLayout R;
-    public w6 S;
+    public v6 S;
     public cd T;
     public ht0 U;
     public ec V;
@@ -145,7 +145,7 @@ public final class f extends o00 implements ls {
         boolean z9;
         pj0 pj0Var;
         ht0 ht0Var = this.U;
-        if (ht0Var != null && ht0Var.f34410e0) {
+        if (ht0Var != null && ht0Var.f34347e0) {
             z9 = true;
         } else {
             z9 = false;
@@ -154,12 +154,12 @@ public final class f extends o00 implements ls {
         if (getParentActivity() != null) {
             ea y10 = ea.y(this.currentAccount, true);
             x31 x31Var = new x31(-2);
-            x31Var.f40152c = (l00) super.o0(getParentActivity());
+            x31Var.f40173c = (l00) super.o0(getParentActivity());
             arrayList.add(x31Var);
             arrayList.add(x31.k(this.f13992i0));
             boolean z10 = this.f13991h0;
             if (z10) {
-                arrayList.add(x31.C(hd.M0(2131749513, null)));
+                arrayList.add(x31.C(id.M0(2131749515, null)));
             }
             boolean N = y10.N(0);
             this.f14000r0 = N;
@@ -187,7 +187,7 @@ public final class f extends o00 implements ls {
         float f10;
         TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus;
         ea y10 = ea.y(this.currentAccount, true);
-        double d = ((i0) getMessagesController().f24935x7.f24445l.f14323b).f23010a;
+        double d = ((i0) getMessagesController().f24942x7.f24449l.f14323b).f23001a;
         TL_stars.StarsAmount p10 = y10.p();
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) this.f13993j0);
@@ -196,7 +196,7 @@ public final class f extends o00 implements ls {
         if (((int) ((p10.amount / 1.0E9d) * d * 100.0d)) > 0) {
             this.f13995l0.setText("≈" + r1.i().f(i7, "USD"));
         } else {
-            this.f13995l0.setText(hd.M0(2131742790, null));
+            this.f13995l0.setText(id.M0(2131742792, null));
         }
         TLRPC.TL_payments_starsRevenueStats j3 = n0.g(this.currentAccount).j(getUserConfig().e(), true);
         if (j3 != null && (tL_starsRevenueStatus = j3.status) != null && tL_starsRevenueStatus.overall_revenue.positive()) {
@@ -297,11 +297,11 @@ public final class f extends o00 implements ls {
         if (aVar == null) {
             f10 = 0.0f;
         } else {
-            f10 = aVar.f55394e;
+            f10 = aVar.f55486e;
         }
         te.a aVar2 = this.Y;
         if (aVar2 != null) {
-            f11 = aVar2.f55394e;
+            f11 = aVar2.f55486e;
         }
         view.setTranslationY(((-(1.0f - f10)) * k.getCurrentActionBarHeight()) - ((1.0f - f11) * g0.L(44.0f)));
     }
@@ -322,10 +322,10 @@ public final class f extends o00 implements ls {
             if (q4Var != null && ((ActionBarLayout) q4Var).S0) {
                 i10 = 0;
             } else {
-                i10 = g0.f22538m;
+                i10 = g0.f22557m;
             }
             this.f13985b0 = i10;
-            this.f13986c0 = g0.f22539n;
+            this.f13986c0 = g0.f22558n;
         }
         this.U.setGeometry(new n(this, 29));
         this.U.z(-q.C(48.0f, this.f13985b0, -g0.L(8.0f)), -q.C(48.0f, this.f13986c0, -g0.L(8.0f)));
@@ -340,10 +340,10 @@ public final class f extends o00 implements ls {
         this.simpleActionBar.setBackground(null);
         this.D.bringToFront();
         this.simpleActionBar.bringToFront();
-        getBaseSimpleGlass().f21027n = this.U;
+        getBaseSimpleGlass().f21030n = this.U;
         this.f48193c.setCaptureSectionsDecoratorAllowed(true);
         this.T.setGlassEngine(this.glassEngine);
-        getBaseSimpleGlass().f21028o = new g(2, this, new bi.f(2, n00Var));
+        getBaseSimpleGlass().f21031o = new g(2, this, new bi.f(2, n00Var));
         FrameLayout tabsContainer = this.T.getTabsContainer();
         View view = new View(getParentActivity());
         this.W = view;
@@ -364,10 +364,10 @@ public final class f extends o00 implements ls {
             z9 = true;
         }
         aVar2.a(z9, false);
-        this.Y.a(this.U.f34410e0, false);
+        this.Y.a(this.U.f34347e0, false);
         this.f48193c.j(new ai.b(this, 13));
         G0();
-        fh.g c10 = getBaseSimpleGlass().f21018c.c(tabsContainer, null, false);
+        fh.g c10 = getBaseSimpleGlass().f21021c.c(tabsContainer, null, false);
         c10.p(c8.g0.m(this.resourceProvider));
         c10.q(g0.L(9.66f));
         c10.r(g0.L(18.0f));
@@ -379,20 +379,20 @@ public final class f extends o00 implements ls {
         FrameLayout frameLayout = new FrameLayout(context);
         this.R = frameLayout;
         frameLayout.setClickable(true);
-        w6 w6Var = new w6(170, context, false);
-        this.S = w6Var;
-        w6Var.setStarParticlesView(this.f48194e);
+        v6 v6Var = new v6(170, context, false);
+        this.S = v6Var;
+        v6Var.setStarParticlesView(this.f48194e);
         this.R.addView(this.S, ha.d(170, 170.0f, 17, 0.0f, 32.0f, 0.0f, 12.0f));
-        j0(hd.M0(2131749511, null), g0.H2(g0.U2(hd.M0(2131749512, null), new pa(context, 7)), true), this.R, null);
+        j0(id.M0(2131749513, null), g0.H2(g0.U2(id.M0(2131749514, null), new pa(context, 7)), true), this.R, null);
         this.f48193c.setOverScrollMode(2);
         v4.k kVar = new v4.k();
-        kVar.f56978m = false;
+        kVar.f57070m = false;
         kVar.C = false;
         kVar.o(xqVar);
         kVar.n(350L);
         this.f48193c.setItemAnimator(kVar);
         this.f48193c.setOnItemClickListener(new ai.k(this, 11));
-        this.f48198s.addView(new jz(getParentActivity()), ha.c(-1.0f, -1));
+        this.f48198s.addView(new kz(getParentActivity()), ha.c(-1.0f, -1));
         ea.y(this.currentAccount, true);
         LinearLayout linearLayout = new LinearLayout(getParentActivity());
         this.f13992i0 = linearLayout;
@@ -409,16 +409,16 @@ public final class f extends o00 implements ls {
         wpVar.d = false;
         wpVar.H = 0.5f;
         wpVar.I = 0.5f;
-        wpVar.f40070r = -g0.L(3.0f);
-        wpVar.f40071s = 0.0f;
+        wpVar.f40020r = -g0.L(3.0f);
+        wpVar.f40021s = 0.0f;
         this.f13993j0.setSpan(wpVar, 0, 1, 33);
         this.f13992i0.addView(this.f13994k0, ha.d(-1, 40.0f, 17, 24.0f, 0.0f, 24.0f, 0.0f));
         j6 j6Var2 = new j6(getParentActivity(), false, false, false);
         this.f13995l0 = j6Var2;
         j6Var2.setTextSize(g0.L(14.0f));
         this.f13995l0.setGravity(17);
-        this.f13995l0.setText(hd.M0(2131742790, null));
-        r6.Z(this.f13995l0, k6.f28259z6, this.resourceProvider);
+        this.f13995l0.setText(id.M0(2131742792, null));
+        r6.Z(this.f13995l0, k6.f28262z6, this.resourceProvider);
         this.f13992i0.addView(this.f13995l0, ha.d(-1, 20.0f, 17, 24.0f, 0.0f, 24.0f, 8.0f));
         FrameLayout frameLayout2 = new FrameLayout(getParentActivity());
         e5 e5Var = new e5(5, getParentActivity(), this);
@@ -430,7 +430,7 @@ public final class f extends o00 implements ls {
             dVar.setRoundRadius(24);
             this.f13996n0 = dVar;
             dVar.f();
-            this.f13996n0.i(hd.M0(2131744031, null), false, true);
+            this.f13996n0.i(id.M0(2131744033, null), false, true);
             this.f13996n0.setOnClickListener(new View.OnClickListener(this) {
                 public final f f13978b;
 
@@ -444,10 +444,10 @@ public final class f extends o00 implements ls {
                     f fVar = this.f13978b;
                     switch (i11) {
                         case 0:
-                            vf.c.v(fVar.getParentActivity(), hd.M0(2131744029, null), false);
+                            vf.c.v(fVar.getParentActivity(), id.M0(2131744031, null), false);
                             return;
                         case 1:
-                            vf.c.v(fVar.getParentActivity(), hd.M0(2131744029, null), false);
+                            vf.c.v(fVar.getParentActivity(), id.M0(2131744031, null), false);
                             return;
                         default:
                             fVar.presentFragment(new z(1, fVar.getUserConfig().e()));
@@ -465,7 +465,7 @@ public final class f extends o00 implements ls {
         this.f13998p0 = dVar2;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("x  ");
         spannableStringBuilder.setSpan(new wp(2131231977, 2), 0, 1, 33);
-        spannableStringBuilder.append((CharSequence) hd.M0(2131744044, null));
+        spannableStringBuilder.append((CharSequence) id.M0(2131744046, null));
         this.f13998p0.i(spannableStringBuilder, false, true);
         this.f13998p0.setOnClickListener(new View.OnClickListener(this) {
             public final f f13978b;
@@ -480,10 +480,10 @@ public final class f extends o00 implements ls {
                 f fVar = this.f13978b;
                 switch (i11) {
                     case 0:
-                        vf.c.v(fVar.getParentActivity(), hd.M0(2131744029, null), false);
+                        vf.c.v(fVar.getParentActivity(), id.M0(2131744031, null), false);
                         return;
                     case 1:
-                        vf.c.v(fVar.getParentActivity(), hd.M0(2131744029, null), false);
+                        vf.c.v(fVar.getParentActivity(), id.M0(2131744031, null), false);
                         return;
                     default:
                         fVar.presentFragment(new z(1, fVar.getUserConfig().e()));
@@ -499,7 +499,7 @@ public final class f extends o00 implements ls {
         this.f13999q0 = dVar3;
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("x  ");
         spannableStringBuilder2.setSpan(new wp(2131231973, 2), 0, 1, 33);
-        spannableStringBuilder2.append((CharSequence) hd.M0(2131744045, null));
+        spannableStringBuilder2.append((CharSequence) id.M0(2131744047, null));
         this.f13999q0.i(spannableStringBuilder2, false, true);
         this.f13999q0.setOnClickListener(new View.OnClickListener(this) {
             public final f f13978b;
@@ -514,10 +514,10 @@ public final class f extends o00 implements ls {
                 f fVar = this.f13978b;
                 switch (i11) {
                     case 0:
-                        vf.c.v(fVar.getParentActivity(), hd.M0(2131744029, null), false);
+                        vf.c.v(fVar.getParentActivity(), id.M0(2131744031, null), false);
                         return;
                     case 1:
-                        vf.c.v(fVar.getParentActivity(), hd.M0(2131744029, null), false);
+                        vf.c.v(fVar.getParentActivity(), id.M0(2131744031, null), false);
                         return;
                     default:
                         fVar.presentFragment(new z(1, fVar.getUserConfig().e()));
@@ -564,14 +564,14 @@ public final class f extends o00 implements ls {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == qs.f25084v3) {
+        if (i7 == qs.f25093v3) {
             u0();
             hc hcVar = this.f14002t0;
             if (hcVar != null) {
                 hcVar.O(true);
             }
             h0();
-        } else if (i7 == qs.f25112z3) {
+        } else if (i7 == qs.f25121z3) {
             ea y10 = ea.y(this.currentAccount, true);
             if (this.f14000r0 != y10.N(0)) {
                 this.f14000r0 = y10.N(0);
@@ -587,7 +587,7 @@ public final class f extends o00 implements ls {
             if (hcVar3 != null) {
                 hcVar3.O(true);
             }
-        } else if (i7 == qs.f25105y3) {
+        } else if (i7 == qs.f25114y3) {
             F0();
         } else if (i7 == qs.C3 && getUserConfig().e() == ((Long) objArr[0]).longValue()) {
             F0();
@@ -596,7 +596,7 @@ public final class f extends o00 implements ls {
 
     @Override
     public final int getNavigationBarColor() {
-        return k6.x0(null, k6.f27940i5, false);
+        return k6.x0(null, k6.f27943i5, false);
     }
 
     @Override
@@ -627,7 +627,7 @@ public final class f extends o00 implements ls {
     @Override
     public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
         ht0 ht0Var = this.U;
-        if (ht0Var == null || motionEvent == null || ht0Var.j(motionEvent.getX(), motionEvent.getY()) || !this.U.c() || this.T.getViewPager().f38888b == 0) {
+        if (ht0Var == null || motionEvent == null || ht0Var.j(motionEvent.getX(), motionEvent.getY()) || !this.U.c() || this.T.getViewPager().f38923b == 0) {
             return true;
         }
         return false;
@@ -637,7 +637,7 @@ public final class f extends o00 implements ls {
     public final v4.g0 k0() {
         hc hcVar = new hc(this, this.f48193c, getParentActivity(), this.currentAccount, this.classGuid, new ai.e(this, 24), getResourceProvider(), 2);
         this.f14002t0 = hcVar;
-        hcVar.f35510r = false;
+        hcVar.f35528r = false;
         return hcVar;
     }
 
@@ -665,9 +665,9 @@ public final class f extends o00 implements ls {
 
     @Override
     public final boolean onFragmentCreate() {
-        qs.f(this.currentAccount).c(this, qs.f25084v3);
-        qs.f(this.currentAccount).c(this, qs.f25105y3);
-        qs.f(this.currentAccount).c(this, qs.f25112z3);
+        qs.f(this.currentAccount).c(this, qs.f25093v3);
+        qs.f(this.currentAccount).c(this, qs.f25114y3);
+        qs.f(this.currentAccount).c(this, qs.f25121z3);
         qs.f(this.currentAccount).c(this, qs.A3);
         qs.f(this.currentAccount).c(this, qs.C3);
         ea.y(this.currentAccount, true).S(true);
@@ -683,9 +683,9 @@ public final class f extends o00 implements ls {
         if (pj0Var != null) {
             pj0Var.removeCallbacks(this.f13989f0);
         }
-        qs.f(this.currentAccount).n(this, qs.f25084v3);
-        qs.f(this.currentAccount).n(this, qs.f25105y3);
-        qs.f(this.currentAccount).n(this, qs.f25112z3);
+        qs.f(this.currentAccount).n(this, qs.f25093v3);
+        qs.f(this.currentAccount).n(this, qs.f25114y3);
+        qs.f(this.currentAccount).n(this, qs.f25121z3);
         qs.f(this.currentAccount).n(this, qs.A3);
         qs.f(this.currentAccount).n(this, qs.C3);
     }
@@ -701,18 +701,18 @@ public final class f extends o00 implements ls {
     @Override
     public final void onPause() {
         super.onPause();
-        w6 w6Var = this.S;
-        if (w6Var != null) {
-            w6Var.setPaused(true);
+        v6 v6Var = this.S;
+        if (v6Var != null) {
+            v6Var.setPaused(true);
         }
     }
 
     @Override
     public final void onResume() {
         super.onResume();
-        w6 w6Var = this.S;
-        if (w6Var != null) {
-            w6Var.setPaused(false);
+        v6 v6Var = this.S;
+        if (v6Var != null) {
+            v6Var.setPaused(false);
         }
     }
 
@@ -733,16 +733,16 @@ public final class f extends o00 implements ls {
     @Override
     public final void s0(boolean z9) {
         te.a aVar = this.Z;
-        if (aVar != null && aVar.f55395f != z9) {
+        if (aVar != null && aVar.f55487f != z9) {
             aVar.a(z9, true);
         }
     }
 
     @Override
     public final void t0(float f10) {
-        w6 w6Var = this.S;
-        if (w6Var != null) {
-            w6Var.setHeaderTilt(f10 * 70.0f);
+        v6 v6Var = this.S;
+        if (v6Var != null) {
+            v6Var.setHeaderTilt(f10 * 70.0f);
         }
     }
 
@@ -751,7 +751,7 @@ public final class f extends o00 implements ls {
         boolean z9;
         super.u0();
         ht0 ht0Var = this.U;
-        if (ht0Var != null && ht0Var.f34410e0) {
+        if (ht0Var != null && ht0Var.f34347e0) {
             z9 = true;
         } else {
             z9 = false;

@@ -54,7 +54,7 @@ public final class mk0 implements TextWatcher {
         }
         String str3 = this.f47821b;
         if (str3 == null) {
-            str3 = org.telegram.messenger.hd.n(editable.toString());
+            str3 = org.telegram.messenger.id.n(editable.toString());
         }
         int a10 = a(str3);
         if (a10 >= 0) {
@@ -315,31 +315,31 @@ public final class mk0 implements TextWatcher {
                 hl0Var.H0 = Long.valueOf(j10);
             }
         }
-        int selectionStart = hl0Var.f46420f[0].getSelectionStart();
+        int selectionStart = hl0Var.f46419f[0].getSelectionStart();
         hl0Var.m0 = true;
         if (hl0Var.H0.longValue() == 0) {
-            hl0Var.f46420f[0].setText("");
+            hl0Var.f46419f[0].setText("");
         } else {
-            EditTextBoldCursor editTextBoldCursor = hl0Var.f46420f[0];
-            str5 = org.telegram.messenger.hd.E0().q(hl0Var.H0.longValue(), false, z9, true, hl0Var.C0.invoice.currency);
+            EditTextBoldCursor editTextBoldCursor = hl0Var.f46419f[0];
+            str5 = org.telegram.messenger.id.E0().q(hl0Var.H0.longValue(), false, z9, true, hl0Var.C0.invoice.currency);
             editTextBoldCursor.setText(str5);
         }
         if (j3 < hl0Var.H0.longValue() && j3 != 0 && this.f47820a && selectionStart >= 0) {
-            EditTextBoldCursor editTextBoldCursor2 = hl0Var.f46420f[0];
+            EditTextBoldCursor editTextBoldCursor2 = hl0Var.f46419f[0];
             editTextBoldCursor2.setSelection(Math.min(selectionStart, editTextBoldCursor2.length()));
-        } else if (this.f47822c && this.d != hl0Var.f46420f[0].length()) {
-            EditTextBoldCursor editTextBoldCursor3 = hl0Var.f46420f[0];
+        } else if (this.f47822c && this.d != hl0Var.f46419f[0].length()) {
+            EditTextBoldCursor editTextBoldCursor3 = hl0Var.f46419f[0];
             editTextBoldCursor3.setSelection(Math.max(0, Math.min(selectionStart, editTextBoldCursor3.length())));
         } else if (!this.f47824f && z9 && a10 >= 0) {
             int a11 = a(str5);
             if (a11 > 0) {
-                hl0Var.f46420f[0].setSelection(a11 + 1);
+                hl0Var.f46419f[0].setSelection(a11 + 1);
             } else {
-                EditTextBoldCursor editTextBoldCursor4 = hl0Var.f46420f[0];
+                EditTextBoldCursor editTextBoldCursor4 = hl0Var.f46419f[0];
                 editTextBoldCursor4.setSelection(editTextBoldCursor4.length());
             }
         } else {
-            EditTextBoldCursor editTextBoldCursor5 = hl0Var.f46420f[0];
+            EditTextBoldCursor editTextBoldCursor5 = hl0Var.f46419f[0];
             editTextBoldCursor5.setSelection(editTextBoldCursor5.length());
         }
         this.f47824f = z9;
@@ -370,7 +370,7 @@ public final class mk0 implements TextWatcher {
             }
             this.f47822c = z9;
             if (z9) {
-                String n10 = org.telegram.messenger.hd.n(charSequence);
+                String n10 = org.telegram.messenger.id.n(charSequence);
                 char charAt = n10.charAt(i7);
                 int a10 = a(n10);
                 if (a10 >= 0) {

@@ -19,9 +19,9 @@ public final class g {
         try {
             y yVar = this.f13560a;
             z zVar = new z(hVar);
-            Parcel P0 = yVar.P0();
-            com.google.android.gms.internal.cast.t.d(P0, zVar);
-            yVar.T0(P0, 2);
+            Parcel p12 = yVar.p1();
+            com.google.android.gms.internal.cast.t.d(p12, zVar);
+            yVar.t1(p12, 2);
         } catch (RemoteException e10) {
             f13559c.a(e10, "Unable to call %s on %s.", "addSessionManagerListener", y.class.getSimpleName());
         }
@@ -31,13 +31,13 @@ public final class g {
         j6.b bVar = f13559c;
         q6.m.d("Must be called from the main thread.");
         try {
-            Log.i(bVar.f16505a, bVar.d("End session for %s", this.f13561b.getPackageName()));
+            Log.i(bVar.f16508a, bVar.d("End session for %s", this.f13561b.getPackageName()));
             y yVar = this.f13560a;
-            Parcel P0 = yVar.P0();
+            Parcel p12 = yVar.p1();
             int i7 = com.google.android.gms.internal.cast.t.f6991a;
-            P0.writeInt(1);
-            P0.writeInt(z9 ? 1 : 0);
-            yVar.T0(P0, 6);
+            p12.writeInt(1);
+            p12.writeInt(z9 ? 1 : 0);
+            yVar.t1(p12, 6);
         } catch (RemoteException e10) {
             bVar.a(e10, "Unable to call %s on %s.", "endCurrentSession", y.class.getSimpleName());
         }
@@ -56,10 +56,10 @@ public final class g {
         q6.m.d("Must be called from the main thread.");
         try {
             y yVar = this.f13560a;
-            Parcel R0 = yVar.R0(yVar.P0(), 1);
-            a7.a M0 = a7.b.M0(R0.readStrongBinder());
-            R0.recycle();
-            return (f) a7.b.N0(M0);
+            Parcel r12 = yVar.r1(yVar.p1(), 1);
+            a7.a m12 = a7.b.m1(r12.readStrongBinder());
+            r12.recycle();
+            return (f) a7.b.n1(m12);
         } catch (RemoteException e10) {
             f13559c.a(e10, "Unable to call %s on %s.", "getWrappedCurrentSession", y.class.getSimpleName());
             return null;

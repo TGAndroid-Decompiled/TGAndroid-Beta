@@ -5,21 +5,21 @@ import android.os.Bundle;
 import android.util.Log;
 import com.google.android.gms.tasks.TaskCompletionSource;
 public final class m {
-    public final int f19912a;
-    public final TaskCompletionSource f19913b = new TaskCompletionSource();
-    public final int f19914c;
+    public final int f19915a;
+    public final TaskCompletionSource f19916b = new TaskCompletionSource();
+    public final int f19917c;
     public final Bundle d;
-    public final int f19915e;
+    public final int f19918e;
 
     public m(int i7, int i10, Bundle bundle, int i11) {
-        this.f19915e = i11;
-        this.f19912a = i7;
-        this.f19914c = i10;
+        this.f19918e = i11;
+        this.f19915a = i7;
+        this.f19917c = i10;
         this.d = bundle;
     }
 
     public final boolean a() {
-        switch (this.f19915e) {
+        switch (this.f19918e) {
             case 0:
                 return true;
             default:
@@ -38,7 +38,7 @@ public final class m {
             sb2.append(valueOf);
             Log.d("MessengerIpcClient", sb2.toString());
         }
-        this.f19913b.setResult(bundle);
+        this.f19916b.setResult(bundle);
     }
 
     public final void c(a0 a0Var) {
@@ -52,13 +52,13 @@ public final class m {
             sb2.append(obj);
             Log.d("MessengerIpcClient", sb2.toString());
         }
-        this.f19913b.setException(a0Var);
+        this.f19916b.setException(a0Var);
     }
 
     public final String toString() {
-        int i7 = this.f19914c;
+        int i7 = this.f19917c;
         int length = String.valueOf(i7).length();
-        int i10 = this.f19912a;
+        int i10 = this.f19915a;
         int length2 = String.valueOf(i10).length();
         boolean a10 = a();
         StringBuilder sb2 = new StringBuilder(length + 19 + length2 + 8 + String.valueOf(a10).length() + 1);

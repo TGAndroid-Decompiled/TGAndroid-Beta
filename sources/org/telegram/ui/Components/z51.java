@@ -42,30 +42,30 @@ public abstract class z51 extends View implements org.telegram.messenger.ls {
     public int U;
     public final Path V;
     public long W;
-    public boolean f40879a;
-    public long f40880a0;
-    public v5 f40881b;
-    public int f40882b0;
-    public long f40883c;
-    public int f40884c0;
+    public boolean f40898a;
+    public long f40899a0;
+    public v5 f40900b;
+    public int f40901b0;
+    public long f40902c;
+    public int f40903c0;
     public Uri d;
-    public ArrayList f40885d0;
-    public Runnable f40886e;
-    public TLRPC.Document f40887e0;
-    public x51 f40888f;
-    public String f40889f0;
-    public int f40890g0;
+    public ArrayList f40904d0;
+    public Runnable f40905e;
+    public TLRPC.Document f40906e0;
+    public x51 f40907f;
+    public String f40908f0;
+    public int f40909g0;
     public float h;
-    public int f40891n;
-    public int f40892r;
-    public boolean f40893s;
-    public Bitmap f40894w;
-    public Bitmap f40895x;
-    public final Drawable f40896y;
+    public int f40910n;
+    public int f40911r;
+    public boolean f40912s;
+    public Bitmap f40913w;
+    public Bitmap f40914x;
+    public final Drawable f40915y;
 
     public z51(Context context, org.telegram.ui.ln0 ln0Var) {
         super(context);
-        this.f40891n = -1;
+        this.f40910n = -1;
         TextPaint textPaint = new TextPaint(1);
         this.F = textPaint;
         this.H = new RectF();
@@ -74,57 +74,57 @@ public abstract class z51 extends View implements org.telegram.messenger.ls {
         this.K = new RectF();
         this.L = new Matrix();
         this.V = new Path();
-        this.f40890g0 = -1;
+        this.f40909g0 = -1;
         setVisibility(4);
-        this.f40896y = context.getResources().getDrawable(2131232798);
+        this.f40915y = context.getResources().getDrawable(2131232798);
         textPaint.setTextSize(org.telegram.messenger.g0.L(13.0f));
         textPaint.setColor(-1);
         this.M = ln0Var;
         ImageReceiver imageReceiver = new ImageReceiver(null);
         this.Q = imageReceiver;
         imageReceiver.H0(this);
-        imageReceiver.f21192g1 = new ax(this, 27);
+        imageReceiver.f21195g1 = new bx(this, 27);
     }
 
     public final void a() {
-        if (this.f40886e != null) {
-            Utilities.f21333e.a(this.f40886e);
-            this.f40886e = null;
+        if (this.f40905e != null) {
+            Utilities.f21336e.a(this.f40905e);
+            this.f40905e = null;
         }
-        if (this.f40888f != null) {
-            Utilities.f21333e.a(this.f40888f);
-            this.f40888f = null;
+        if (this.f40907f != null) {
+            Utilities.f21336e.a(this.f40907f);
+            this.f40907f = null;
         }
-        v5 v5Var = this.f40881b;
+        v5 v5Var = this.f40900b;
         if (v5Var != null) {
-            AnimatedFileDrawableStream animatedFileDrawableStream = v5Var.f38849u0;
+            AnimatedFileDrawableStream animatedFileDrawableStream = v5Var.f38884u0;
             if (animatedFileDrawableStream != null) {
                 animatedFileDrawableStream.b(true);
             }
-            if (v5Var.f38828d0 != null) {
-                v5Var.f38828d0.h();
+            if (v5Var.f38863d0 != null) {
+                v5Var.f38863d0.h();
             }
         }
-        Utilities.f21333e.c(new w51(this, 0));
+        Utilities.f21336e.c(new w51(this, 0));
         setVisibility(4);
-        this.f40895x = null;
+        this.f40914x = null;
         this.G = null;
         invalidate();
-        this.f40891n = -1;
+        this.f40910n = -1;
         this.d = null;
-        this.f40893s = false;
-        this.f40879a = false;
+        this.f40912s = false;
+        this.f40898a = false;
         if (this.W != 0) {
             this.W = 0L;
-            this.f40889f0 = null;
-            this.f40887e0 = null;
-            this.f40885d0 = null;
+            this.f40908f0 = null;
+            this.f40906e0 = null;
+            this.f40904d0 = null;
             b(-1);
         }
     }
 
     public final void b(int i7) {
-        int i10 = this.f40890g0;
+        int i10 = this.f40909g0;
         if (i10 == i7) {
             return;
         }
@@ -132,12 +132,12 @@ public abstract class z51 extends View implements org.telegram.messenger.ls {
         int i12 = org.telegram.messenger.qs.Y1;
         if (i7 == -1) {
             org.telegram.messenger.qs.f(i10).n(this, i12);
-            org.telegram.messenger.qs.f(this.f40890g0).n(this, i11);
+            org.telegram.messenger.qs.f(this.f40909g0).n(this, i11);
         } else {
             org.telegram.messenger.qs.f(i7).c(this, i12);
             org.telegram.messenger.qs.f(i7).c(this, i11);
         }
-        this.f40890g0 = i7;
+        this.f40909g0 = i7;
     }
 
     public final void c(org.telegram.messenger.ij r12, org.telegram.ui.Components.t51 r13) {
@@ -168,35 +168,35 @@ public abstract class z51 extends View implements org.telegram.messenger.ls {
                     }
                 } else {
                     Collections.sort(arrayList, Comparator$CC.comparingDouble(new bi.j1(3)));
-                    this.f40880a0 = j3;
-                    this.f40882b0 = i7;
-                    this.f40884c0 = i10;
-                    this.f40885d0 = arrayList;
+                    this.f40899a0 = j3;
+                    this.f40901b0 = i7;
+                    this.f40903c0 = i10;
+                    this.f40904d0 = arrayList;
                     return;
                 }
             }
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
-            this.f40885d0 = null;
+            this.f40904d0 = null;
         }
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         if (i7 == org.telegram.messenger.qs.Y1) {
-            if (((String) objArr[0]).equals(this.f40889f0)) {
+            if (((String) objArr[0]).equals(this.f40908f0)) {
                 org.telegram.messenger.w7.G(i10);
-                File I = org.telegram.messenger.w7.I(this.f40887e0);
+                File I = org.telegram.messenger.w7.I(this.f40906e0);
                 if (I != null && I.exists()) {
                     d(I);
                 }
-                this.f40889f0 = null;
-                this.f40887e0 = null;
+                this.f40908f0 = null;
+                this.f40906e0 = null;
                 b(-1);
             }
-        } else if (i7 == org.telegram.messenger.qs.Z1 && ((String) objArr[0]).equals(this.f40889f0)) {
-            this.f40889f0 = null;
-            this.f40887e0 = null;
+        } else if (i7 == org.telegram.messenger.qs.Z1 && ((String) objArr[0]).equals(this.f40908f0)) {
+            this.f40908f0 = null;
+            this.f40906e0 = null;
             b(-1);
         }
     }
@@ -219,14 +219,14 @@ public abstract class z51 extends View implements org.telegram.messenger.ls {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        Bitmap bitmap = this.f40894w;
+        Bitmap bitmap = this.f40913w;
         if (bitmap != null) {
             bitmap.recycle();
-            this.f40894w = null;
+            this.f40913w = null;
         }
         boolean z9 = this.P;
         TextPaint textPaint = this.F;
-        Drawable drawable = this.f40896y;
+        Drawable drawable = this.f40915y;
         if (z9) {
             canvas.save();
             Path path = this.V;
@@ -244,10 +244,10 @@ public abstract class z51 extends View implements org.telegram.messenger.ls {
             drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             drawable.draw(canvas);
             canvas.drawText(this.D, (getMeasuredWidth() - this.E) / 2.0f, getMeasuredHeight() - org.telegram.messenger.g0.L(9.0f), textPaint);
-        } else if (this.f40895x != null && this.G != null) {
+        } else if (this.f40914x != null && this.G != null) {
             Matrix matrix = this.L;
             matrix.reset();
-            float measuredWidth = getMeasuredWidth() / this.f40895x.getWidth();
+            float measuredWidth = getMeasuredWidth() / this.f40914x.getWidth();
             matrix.preScale(measuredWidth, measuredWidth);
             RectF rectF2 = this.K;
             rectF2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());

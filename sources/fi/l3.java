@@ -72,7 +72,7 @@ public final class l3 extends Drawable {
                 Rect bounds = getBounds();
                 y0Var.getClass();
                 y0Var.d(bounds.left, 0.0f, bounds.top, bounds.right, 0.0f, bounds.bottom);
-                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, y0Var.f56776f);
+                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, y0Var.f56868f);
                 return;
             case 6:
                 ImageReceiver imageReceiver = (ImageReceiver) this.f12315b;
@@ -80,7 +80,7 @@ public final class l3 extends Drawable {
                 imageReceiver.h(canvas, null);
                 return;
             case 7:
-                ((my0) this.f12315b).c(getBounds().centerX() - (((my0) this.f12315b).f36125c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.G6, false), canvas);
+                ((my0) this.f12315b).c(getBounds().centerX() - (((my0) this.f12315b).f36147c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.G6, false), canvas);
                 return;
             case 8:
                 canvas.save();
@@ -247,7 +247,7 @@ public final class l3 extends Drawable {
             case 5:
                 return;
             case 6:
-                ((ImageReceiver) this.f12315b).f21206o1 = colorFilter;
+                ((ImageReceiver) this.f12315b).f21209o1 = colorFilter;
                 return;
             case 7:
                 return;

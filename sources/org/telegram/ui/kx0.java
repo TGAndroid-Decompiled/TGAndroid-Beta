@@ -10,37 +10,37 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import j$.util.Objects;
 public abstract class kx0 extends FrameLayout implements org.telegram.messenger.ls {
-    public final ei.a f47335a;
-    public final org.telegram.ui.Components.u61 f47336b;
-    public final di.m6 f47337c;
+    public final ei.a f47340a;
+    public final org.telegram.ui.Components.u61 f47341b;
+    public final di.m6 f47342c;
     public final jx0 d;
-    public int f47338e;
-    public boolean f47339f;
+    public int f47343e;
+    public boolean f47344f;
     public ValueAnimator h;
-    public float f47340n;
-    public boolean f47341r;
-    public final Rect f47342s;
-    public final ru0 f47343w;
+    public float f47345n;
+    public boolean f47346r;
+    public final Rect f47347s;
+    public final ru0 f47348w;
 
     public kx0(Context context, di.m6 m6Var, final org.telegram.ui.Components.xp0 xp0Var) {
         super(context);
-        this.f47342s = new Rect();
-        this.f47337c = m6Var;
+        this.f47347s = new Rect();
+        this.f47342c = m6Var;
         Objects.requireNonNull(m6Var);
-        this.f47343w = new ru0(m6Var, 8);
+        this.f47348w = new ru0(m6Var, 8);
         final org.telegram.ui.Components.yp0 yp0Var = (org.telegram.ui.Components.yp0) this;
         ei.a aVar = new ei.a(yp0Var, context, xp0Var, 1);
-        this.f47335a = aVar;
+        this.f47340a = aVar;
         aVar.setAllowDisallowInterceptTouch(true);
         jx0 jx0Var = new jx0(yp0Var);
         this.d = jx0Var;
-        jx0Var.f47050a = m6Var.a();
+        jx0Var.f47048a = m6Var.a();
         aVar.setAdapter(jx0Var);
         aVar.setTranslationY(org.telegram.messenger.g0.L(42.0f));
         org.telegram.ui.Components.u61 n10 = aVar.n(10, true);
-        this.f47336b = n10;
-        n10.g(org.telegram.ui.ActionBar.k6.f28177ui, org.telegram.ui.ActionBar.k6.G6, org.telegram.ui.ActionBar.k6.f28138si, org.telegram.ui.ActionBar.k6.f28195vi, org.telegram.ui.ActionBar.k6.f28129s8);
-        n10.f38532r = 12;
+        this.f47341b = n10;
+        n10.g(org.telegram.ui.ActionBar.k6.f28180ui, org.telegram.ui.ActionBar.k6.G6, org.telegram.ui.ActionBar.k6.f28141si, org.telegram.ui.ActionBar.k6.f28198vi, org.telegram.ui.ActionBar.k6.f28132s8);
+        n10.f38547r = 12;
         n10.setPreTabClick(new org.telegram.messenger.w10() {
             @Override
             public final Object d(Number number, Object obj) {
@@ -52,109 +52,109 @@ public abstract class kx0 extends FrameLayout implements org.telegram.messenger.
                 switch (i7) {
                     case 0:
                         Integer num2 = (Integer) obj;
-                        if (yp0Var2.f47339f) {
+                        if (yp0Var2.f47344f) {
                             return Boolean.TRUE;
                         }
                         if (num.intValue() == -1) {
-                            org.telegram.ui.Components.v4.P(xp0Var2.f40342a, xp0Var2.f40343b, xp0Var2.f40344c, new org.telegram.ui.Components.ax(xp0Var2, 20));
+                            org.telegram.ui.Components.v4.P(xp0Var2.f40363a, xp0Var2.f40364b, xp0Var2.f40365c, new org.telegram.ui.Components.bx(xp0Var2, 20));
                             return Boolean.TRUE;
                         }
                         return Boolean.FALSE;
                     default:
                         View view = (View) obj;
-                        if (num.intValue() != -1 && num.intValue() != 0 && !yp0Var2.f47339f) {
+                        if (num.intValue() != -1 && num.intValue() != 0 && !yp0Var2.f47344f) {
                             final int intValue = num.intValue();
                             org.telegram.ui.Components.xs0 xs0Var = xp0Var2.d;
-                            org.telegram.ui.ActionBar.f2 f2Var = xs0Var.f40440x1;
+                            org.telegram.ui.ActionBar.f2 f2Var = xs0Var.f40461x1;
                             storiesController = xs0Var.getStoriesController();
                             if (storiesController.i(xs0Var.l1)) {
                                 org.telegram.ui.Components.k60 H = org.telegram.ui.Components.k60.H(f2Var, view);
                                 H.W(new org.telegram.ui.Components.wp0(xp0Var2));
-                                H.c(2131231763, org.telegram.messenger.hd.M0(2131744799, null), new Runnable() {
+                                H.c(2131231763, org.telegram.messenger.id.M0(2131744801, null), new Runnable() {
                                     @Override
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
                                                 xs0 xs0Var2 = xp0Var2.d;
-                                                xs0Var2.Y0(xs0Var2.f40440x1, xs0Var2.l1, intValue);
+                                                xs0Var2.Y0(xs0Var2.f40461x1, xs0Var2.l1, intValue);
                                                 return;
                                             case 1:
                                                 xs0 xs0Var3 = xp0Var2.d;
-                                                xs0Var3.a1(xs0Var3.f40440x1, xs0Var3.l1, intValue);
+                                                xs0Var3.a1(xs0Var3.f40461x1, xs0Var3.l1, intValue);
                                                 return;
                                             case 2:
                                                 xp0Var2.d.q1(intValue);
                                                 return;
                                             default:
                                                 xs0 xs0Var4 = xp0Var2.d;
-                                                xs0Var4.Z0(xs0Var4.f40440x1, xs0Var4.l1, intValue);
+                                                xs0Var4.Z0(xs0Var4.f40461x1, xs0Var4.l1, intValue);
                                                 return;
                                         }
                                     }
                                 }, false);
                                 xs0Var.B(new org.telegram.ui.Components.n(H), f2Var, xs0Var.l1, intValue);
-                                H.c(2131232116, org.telegram.messenger.hd.M0(2131744794, null), new Runnable() {
+                                H.c(2131232116, org.telegram.messenger.id.M0(2131744796, null), new Runnable() {
                                     @Override
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
                                                 xs0 xs0Var2 = xp0Var2.d;
-                                                xs0Var2.Y0(xs0Var2.f40440x1, xs0Var2.l1, intValue);
+                                                xs0Var2.Y0(xs0Var2.f40461x1, xs0Var2.l1, intValue);
                                                 return;
                                             case 1:
                                                 xs0 xs0Var3 = xp0Var2.d;
-                                                xs0Var3.a1(xs0Var3.f40440x1, xs0Var3.l1, intValue);
+                                                xs0Var3.a1(xs0Var3.f40461x1, xs0Var3.l1, intValue);
                                                 return;
                                             case 2:
                                                 xp0Var2.d.q1(intValue);
                                                 return;
                                             default:
                                                 xs0 xs0Var4 = xp0Var2.d;
-                                                xs0Var4.Z0(xs0Var4.f40440x1, xs0Var4.l1, intValue);
+                                                xs0Var4.Z0(xs0Var4.f40461x1, xs0Var4.l1, intValue);
                                                 return;
                                         }
                                     }
                                 }, false);
-                                H.c(2131232773, org.telegram.messenger.hd.M0(2131744791, null), new Runnable() {
+                                H.c(2131232773, org.telegram.messenger.id.M0(2131744793, null), new Runnable() {
                                     @Override
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
                                                 xs0 xs0Var2 = xp0Var2.d;
-                                                xs0Var2.Y0(xs0Var2.f40440x1, xs0Var2.l1, intValue);
+                                                xs0Var2.Y0(xs0Var2.f40461x1, xs0Var2.l1, intValue);
                                                 return;
                                             case 1:
                                                 xs0 xs0Var3 = xp0Var2.d;
-                                                xs0Var3.a1(xs0Var3.f40440x1, xs0Var3.l1, intValue);
+                                                xs0Var3.a1(xs0Var3.f40461x1, xs0Var3.l1, intValue);
                                                 return;
                                             case 2:
                                                 xp0Var2.d.q1(intValue);
                                                 return;
                                             default:
                                                 xs0 xs0Var4 = xp0Var2.d;
-                                                xs0Var4.Z0(xs0Var4.f40440x1, xs0Var4.l1, intValue);
+                                                xs0Var4.Z0(xs0Var4.f40461x1, xs0Var4.l1, intValue);
                                                 return;
                                         }
                                     }
                                 }, false);
-                                H.c(2131232108, org.telegram.messenger.hd.M0(2131744797, null), new Runnable() {
+                                H.c(2131232108, org.telegram.messenger.id.M0(2131744799, null), new Runnable() {
                                     @Override
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
                                                 xs0 xs0Var2 = xp0Var2.d;
-                                                xs0Var2.Y0(xs0Var2.f40440x1, xs0Var2.l1, intValue);
+                                                xs0Var2.Y0(xs0Var2.f40461x1, xs0Var2.l1, intValue);
                                                 return;
                                             case 1:
                                                 xs0 xs0Var3 = xp0Var2.d;
-                                                xs0Var3.a1(xs0Var3.f40440x1, xs0Var3.l1, intValue);
+                                                xs0Var3.a1(xs0Var3.f40461x1, xs0Var3.l1, intValue);
                                                 return;
                                             case 2:
                                                 xp0Var2.d.q1(intValue);
                                                 return;
                                             default:
                                                 xs0 xs0Var4 = xp0Var2.d;
-                                                xs0Var4.Z0(xs0Var4.f40440x1, xs0Var4.l1, intValue);
+                                                xs0Var4.Z0(xs0Var4.f40461x1, xs0Var4.l1, intValue);
                                                 return;
                                         }
                                     }
@@ -178,109 +178,109 @@ public abstract class kx0 extends FrameLayout implements org.telegram.messenger.
                 switch (i7) {
                     case 0:
                         Integer num2 = (Integer) obj;
-                        if (yp0Var2.f47339f) {
+                        if (yp0Var2.f47344f) {
                             return Boolean.TRUE;
                         }
                         if (num.intValue() == -1) {
-                            org.telegram.ui.Components.v4.P(xp0Var2.f40342a, xp0Var2.f40343b, xp0Var2.f40344c, new org.telegram.ui.Components.ax(xp0Var2, 20));
+                            org.telegram.ui.Components.v4.P(xp0Var2.f40363a, xp0Var2.f40364b, xp0Var2.f40365c, new org.telegram.ui.Components.bx(xp0Var2, 20));
                             return Boolean.TRUE;
                         }
                         return Boolean.FALSE;
                     default:
                         View view = (View) obj;
-                        if (num.intValue() != -1 && num.intValue() != 0 && !yp0Var2.f47339f) {
+                        if (num.intValue() != -1 && num.intValue() != 0 && !yp0Var2.f47344f) {
                             final int intValue = num.intValue();
                             org.telegram.ui.Components.xs0 xs0Var = xp0Var2.d;
-                            org.telegram.ui.ActionBar.f2 f2Var = xs0Var.f40440x1;
+                            org.telegram.ui.ActionBar.f2 f2Var = xs0Var.f40461x1;
                             storiesController = xs0Var.getStoriesController();
                             if (storiesController.i(xs0Var.l1)) {
                                 org.telegram.ui.Components.k60 H = org.telegram.ui.Components.k60.H(f2Var, view);
                                 H.W(new org.telegram.ui.Components.wp0(xp0Var2));
-                                H.c(2131231763, org.telegram.messenger.hd.M0(2131744799, null), new Runnable() {
+                                H.c(2131231763, org.telegram.messenger.id.M0(2131744801, null), new Runnable() {
                                     @Override
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
                                                 xs0 xs0Var2 = xp0Var2.d;
-                                                xs0Var2.Y0(xs0Var2.f40440x1, xs0Var2.l1, intValue);
+                                                xs0Var2.Y0(xs0Var2.f40461x1, xs0Var2.l1, intValue);
                                                 return;
                                             case 1:
                                                 xs0 xs0Var3 = xp0Var2.d;
-                                                xs0Var3.a1(xs0Var3.f40440x1, xs0Var3.l1, intValue);
+                                                xs0Var3.a1(xs0Var3.f40461x1, xs0Var3.l1, intValue);
                                                 return;
                                             case 2:
                                                 xp0Var2.d.q1(intValue);
                                                 return;
                                             default:
                                                 xs0 xs0Var4 = xp0Var2.d;
-                                                xs0Var4.Z0(xs0Var4.f40440x1, xs0Var4.l1, intValue);
+                                                xs0Var4.Z0(xs0Var4.f40461x1, xs0Var4.l1, intValue);
                                                 return;
                                         }
                                     }
                                 }, false);
                                 xs0Var.B(new org.telegram.ui.Components.n(H), f2Var, xs0Var.l1, intValue);
-                                H.c(2131232116, org.telegram.messenger.hd.M0(2131744794, null), new Runnable() {
+                                H.c(2131232116, org.telegram.messenger.id.M0(2131744796, null), new Runnable() {
                                     @Override
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
                                                 xs0 xs0Var2 = xp0Var2.d;
-                                                xs0Var2.Y0(xs0Var2.f40440x1, xs0Var2.l1, intValue);
+                                                xs0Var2.Y0(xs0Var2.f40461x1, xs0Var2.l1, intValue);
                                                 return;
                                             case 1:
                                                 xs0 xs0Var3 = xp0Var2.d;
-                                                xs0Var3.a1(xs0Var3.f40440x1, xs0Var3.l1, intValue);
+                                                xs0Var3.a1(xs0Var3.f40461x1, xs0Var3.l1, intValue);
                                                 return;
                                             case 2:
                                                 xp0Var2.d.q1(intValue);
                                                 return;
                                             default:
                                                 xs0 xs0Var4 = xp0Var2.d;
-                                                xs0Var4.Z0(xs0Var4.f40440x1, xs0Var4.l1, intValue);
+                                                xs0Var4.Z0(xs0Var4.f40461x1, xs0Var4.l1, intValue);
                                                 return;
                                         }
                                     }
                                 }, false);
-                                H.c(2131232773, org.telegram.messenger.hd.M0(2131744791, null), new Runnable() {
+                                H.c(2131232773, org.telegram.messenger.id.M0(2131744793, null), new Runnable() {
                                     @Override
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
                                                 xs0 xs0Var2 = xp0Var2.d;
-                                                xs0Var2.Y0(xs0Var2.f40440x1, xs0Var2.l1, intValue);
+                                                xs0Var2.Y0(xs0Var2.f40461x1, xs0Var2.l1, intValue);
                                                 return;
                                             case 1:
                                                 xs0 xs0Var3 = xp0Var2.d;
-                                                xs0Var3.a1(xs0Var3.f40440x1, xs0Var3.l1, intValue);
+                                                xs0Var3.a1(xs0Var3.f40461x1, xs0Var3.l1, intValue);
                                                 return;
                                             case 2:
                                                 xp0Var2.d.q1(intValue);
                                                 return;
                                             default:
                                                 xs0 xs0Var4 = xp0Var2.d;
-                                                xs0Var4.Z0(xs0Var4.f40440x1, xs0Var4.l1, intValue);
+                                                xs0Var4.Z0(xs0Var4.f40461x1, xs0Var4.l1, intValue);
                                                 return;
                                         }
                                     }
                                 }, false);
-                                H.c(2131232108, org.telegram.messenger.hd.M0(2131744797, null), new Runnable() {
+                                H.c(2131232108, org.telegram.messenger.id.M0(2131744799, null), new Runnable() {
                                     @Override
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
                                                 xs0 xs0Var2 = xp0Var2.d;
-                                                xs0Var2.Y0(xs0Var2.f40440x1, xs0Var2.l1, intValue);
+                                                xs0Var2.Y0(xs0Var2.f40461x1, xs0Var2.l1, intValue);
                                                 return;
                                             case 1:
                                                 xs0 xs0Var3 = xp0Var2.d;
-                                                xs0Var3.a1(xs0Var3.f40440x1, xs0Var3.l1, intValue);
+                                                xs0Var3.a1(xs0Var3.f40461x1, xs0Var3.l1, intValue);
                                                 return;
                                             case 2:
                                                 xp0Var2.d.q1(intValue);
                                                 return;
                                             default:
                                                 xs0 xs0Var4 = xp0Var2.d;
-                                                xs0Var4.Z0(xs0Var4.f40440x1, xs0Var4.l1, intValue);
+                                                xs0Var4.Z0(xs0Var4.f40461x1, xs0Var4.l1, intValue);
                                                 return;
                                         }
                                     }
@@ -299,23 +299,23 @@ public abstract class kx0 extends FrameLayout implements org.telegram.messenger.
 
     public final void a() {
         int i7;
-        org.telegram.ui.Components.u61 u61Var = this.f47336b;
+        org.telegram.ui.Components.u61 u61Var = this.f47341b;
         if (u61Var != null) {
             i7 = u61Var.getCurrentTabId();
         } else {
             i7 = 0;
         }
-        di.m6 m6Var = this.f47337c;
+        di.m6 m6Var = this.f47342c;
         boolean a10 = m6Var.a();
         jx0 jx0Var = this.d;
-        jx0Var.f47050a = a10;
-        this.f47335a.o(true);
+        jx0Var.f47048a = a10;
+        this.f47340a.o(true);
         c(!m6Var.h.isEmpty(), true, false);
-        int i10 = this.f47338e;
+        int i10 = this.f47343e;
         if (i10 > 0) {
             if (jx0Var.i(i10) != -1) {
-                org.telegram.messenger.g0.i3(new ix0(this, this.f47338e, 1), 500L);
-                this.f47338e = 0;
+                org.telegram.messenger.g0.i3(new ix0(this, this.f47343e, 1), 500L);
+                this.f47343e = 0;
             }
         } else if (u61Var != null && i7 > 0 && m6Var.b(i7) == null) {
             u61Var.d(0, 0);
@@ -325,10 +325,10 @@ public abstract class kx0 extends FrameLayout implements org.telegram.messenger.
     public abstract void b();
 
     public final void c(boolean z9, boolean z10, boolean z11) {
-        if (this.f47341r == z9 && !z11) {
+        if (this.f47346r == z9 && !z11) {
             return;
         }
-        this.f47341r = z9;
+        this.f47346r = z9;
         setEnabled(z9);
         ValueAnimator valueAnimator = this.h;
         if (valueAnimator != null) {
@@ -340,11 +340,11 @@ public abstract class kx0 extends FrameLayout implements org.telegram.messenger.
             if (z9) {
                 f10 = 1.0f;
             }
-            this.f47340n = f10;
+            this.f47345n = f10;
             b();
             return;
         }
-        float f11 = this.f47340n;
+        float f11 = this.f47345n;
         if (z9) {
             f10 = 1.0f;
         }
@@ -358,37 +358,37 @@ public abstract class kx0 extends FrameLayout implements org.telegram.messenger.
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.qs.j3 && ((Long) objArr[0]).longValue() == this.f47337c.f9355b) {
+        if (i7 == org.telegram.messenger.qs.j3 && ((Long) objArr[0]).longValue() == this.f47342c.f9355b) {
             a();
         }
     }
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.f47341r && super.dispatchTouchEvent(motionEvent)) {
+        if (this.f47346r && super.dispatchTouchEvent(motionEvent)) {
             return true;
         }
         return false;
     }
 
     public int getCurrentAlbumId() {
-        return this.d.f(this.f47336b.getCurrentPosition());
+        return this.d.f(this.f47341b.getCurrentPosition());
     }
 
     public float getVisibilityFactor() {
-        return this.f47340n;
+        return this.f47345n;
     }
 
     public float getVisualHeight() {
-        return getMeasuredHeight() * this.f47340n;
+        return getMeasuredHeight() * this.f47345n;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        di.m6 m6Var = this.f47337c;
+        di.m6 m6Var = this.f47342c;
         org.telegram.messenger.qs.f(m6Var.f9354a).c(this, org.telegram.messenger.qs.j3);
-        if (this.f47341r != m6Var.h.isEmpty() && this.d.f47050a == m6Var.a()) {
+        if (this.f47346r != m6Var.h.isEmpty() && this.d.f47048a == m6Var.a()) {
             return;
         }
         a();
@@ -397,13 +397,13 @@ public abstract class kx0 extends FrameLayout implements org.telegram.messenger.
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        org.telegram.messenger.qs.f(this.f47337c.f9354a).n(this, org.telegram.messenger.qs.j3);
+        org.telegram.messenger.qs.f(this.f47342c.f9354a).n(this, org.telegram.messenger.qs.j3);
     }
 
     @Override
     public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
         super.onLayout(z9, i7, i10, i11, i12);
-        Rect rect = this.f47342s;
+        Rect rect = this.f47347s;
         rect.set(0, 0, getMeasuredWidth(), (int) getVisualHeight());
         setClipBounds(rect);
     }
@@ -412,21 +412,21 @@ public abstract class kx0 extends FrameLayout implements org.telegram.messenger.
         if (this.d.i(i7) != -1) {
             org.telegram.messenger.g0.i3(new ix0(this, i7, 0), 500L);
         } else {
-            this.f47338e = i7;
+            this.f47343e = i7;
         }
     }
 
     public void setReorderingAlbums(boolean z9) {
         float f10;
         float f11;
-        if (this.f47339f != z9) {
-            this.f47339f = z9;
-            org.telegram.ui.Components.u61 u61Var = this.f47336b;
+        if (this.f47344f != z9) {
+            this.f47344f = z9;
+            org.telegram.ui.Components.u61 u61Var = this.f47341b;
             u61Var.setReordering(z9);
-            boolean z10 = this.f47339f;
+            boolean z10 = this.f47344f;
             org.telegram.ui.Components.yp0 yp0Var = (org.telegram.ui.Components.yp0) this;
-            org.telegram.ui.Components.xs0 xs0Var = yp0Var.f40705x;
-            TextView textView = xs0Var.f40427s0;
+            org.telegram.ui.Components.xs0 xs0Var = yp0Var.f40731x;
+            TextView textView = xs0Var.f40448s0;
             textView.setVisibility(0);
             ViewPropertyAnimator animate = textView.animate();
             float f12 = 1.0f;
@@ -456,14 +456,14 @@ public abstract class kx0 extends FrameLayout implements org.telegram.messenger.
                 }
             }
             if (!z9) {
-                org.telegram.messenger.g0.r(this.f47343w);
-                di.m6 m6Var = this.f47337c;
+                org.telegram.messenger.g0.r(this.f47348w);
+                di.m6 m6Var = this.f47342c;
                 m6Var.e();
                 m6Var.f(false);
                 int currentPosition = u61Var.getCurrentPosition();
                 jx0 jx0Var = this.d;
                 int f13 = jx0Var.f(currentPosition);
-                this.f47335a.o(true);
+                this.f47340a.o(true);
                 int i7 = jx0Var.i(f13);
                 u61Var.e(0.0f, i7, i7);
             }

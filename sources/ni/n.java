@@ -1,25 +1,25 @@
 package ni;
 public final class n implements Runnable {
-    public final int f20636a;
-    public final s f20637b;
+    public final int f20639a;
+    public final s f20640b;
 
     public n(s sVar, int i7) {
-        this.f20636a = i7;
-        this.f20637b = sVar;
+        this.f20639a = i7;
+        this.f20640b = sVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f20636a) {
+        switch (this.f20639a) {
             case 0:
-                d dVar = this.f20637b.f20652w;
+                d dVar = this.f20640b.f20655w;
                 if (dVar != null) {
                     dVar.close();
                     return;
                 }
                 return;
             default:
-                this.f20637b.a();
+                this.f20640b.a();
                 return;
         }
     }

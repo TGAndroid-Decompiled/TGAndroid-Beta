@@ -51,7 +51,7 @@ public abstract class t10 {
 
     public static boolean b(TLRPC.UserFull userFull) {
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
-        if ((userFull != null && userFull.f27103id == p10.i(p10.f24467s0).e()) || userFull == null || (disallowedGiftsSettings = userFull.disallowed_stargifts) == null || !disallowedGiftsSettings.disallow_limited_stargifts || !disallowedGiftsSettings.disallow_unlimited_stargifts || !disallowedGiftsSettings.disallow_unique_stargifts || !disallowedGiftsSettings.disallow_premium_gifts) {
+        if ((userFull != null && userFull.f27106id == p10.i(p10.f24470s0).e()) || userFull == null || (disallowedGiftsSettings = userFull.disallowed_stargifts) == null || !disallowedGiftsSettings.disallow_limited_stargifts || !disallowedGiftsSettings.disallow_unlimited_stargifts || !disallowedGiftsSettings.disallow_unique_stargifts || !disallowedGiftsSettings.disallow_premium_gifts) {
             return false;
         }
         return true;
@@ -83,22 +83,22 @@ public abstract class t10 {
         if (n10 != null) {
             String lowerCase = n10.toLowerCase(Locale.ROOT);
             if (lowerCase.endsWith("agent")) {
-                return hd.M0(2131752944, null);
+                return id.M0(2131752944, null);
             }
             if (lowerCase.endsWith("game")) {
-                return hd.M0(2131752942, null);
+                return id.M0(2131752942, null);
             }
             if (lowerCase.endsWith("app")) {
-                return hd.M0(2131752943, null);
+                return id.M0(2131752943, null);
             }
             if (lowerCase.endsWith("ai")) {
-                return hd.M0(2131752945, null);
+                return id.M0(2131752945, null);
             }
             if (lowerCase.endsWith("gay")) {
-                return hd.M0(2131752941, null);
+                return id.M0(2131752941, null);
             }
         }
-        return hd.M0(2131753156, null);
+        return id.M0(2131753156, null);
     }
 
     public static int e(TLRPC.User user) {
@@ -109,7 +109,7 @@ public abstract class t10 {
         if ((peerColor instanceof TLRPC.TL_peerColor) && (peerColor.flags & 1) != 0) {
             return peerColor.color;
         }
-        return (int) (user.f27102id % 7);
+        return (int) (user.f27105id % 7);
     }
 
     public static long f(TLRPC.User user) {
@@ -166,7 +166,7 @@ public abstract class t10 {
             if (!TextUtils.isEmpty(str)) {
                 return str;
             }
-            return hd.M0(2131749327, null);
+            return id.M0(2131749329, null);
         }
         return "DELETED";
     }
@@ -178,7 +178,7 @@ public abstract class t10 {
                 str = user.last_name;
             }
             if (str == null) {
-                return hd.M0(2131749327, null);
+                return id.M0(2131749329, null);
             }
             int indexOf = str.indexOf(" ", 2);
             if (indexOf >= 0) {
@@ -186,7 +186,7 @@ public abstract class t10 {
             }
             return str;
         }
-        return hd.M0(2131749327, null);
+        return id.M0(2131749329, null);
     }
 
     public static int l(TLRPC.User user) {
@@ -253,7 +253,7 @@ public abstract class t10 {
             }
             return F2;
         }
-        return hd.M0(2131749327, null);
+        return id.M0(2131749329, null);
     }
 
     public static boolean q(TLRPC.UserFull userFull) {
@@ -282,7 +282,7 @@ public abstract class t10 {
     }
 
     public static boolean s(TLRPC.User user) {
-        if (user != null && user.f27102id == 2666000) {
+        if (user != null && user.f27105id == 2666000) {
             return true;
         }
         return false;
@@ -332,7 +332,7 @@ public abstract class t10 {
 
     public static boolean z(TLRPC.User user) {
         if (user != null) {
-            long j3 = user.f27102id;
+            long j3 = user.f27105id;
             if (j3 == 708513 || j3 == 1271266957) {
                 return true;
             }

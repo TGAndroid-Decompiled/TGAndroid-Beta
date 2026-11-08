@@ -5,27 +5,27 @@ import bi.i;
 import da.p1;
 import java.util.concurrent.atomic.AtomicReference;
 import u5.e;
-import u9.o;
+import u9.p;
 public final class a {
-    public static final b f58573c = new Object();
-    public final o f58574a;
-    public final AtomicReference f58575b = new AtomicReference(null);
+    public static final b f58662c = new Object();
+    public final p f58663a;
+    public final AtomicReference f58664b = new AtomicReference(null);
 
-    public a(o oVar) {
-        this.f58574a = oVar;
-        oVar.a(new e(this, 11));
+    public a(p pVar) {
+        this.f58663a = pVar;
+        pVar.a(new e(this, 11));
     }
 
     public final b a(String str) {
-        a aVar = (a) this.f58575b.get();
+        a aVar = (a) this.f58664b.get();
         if (aVar == null) {
-            return f58573c;
+            return f58662c;
         }
         return aVar.a(str);
     }
 
     public final boolean b() {
-        a aVar = (a) this.f58575b.get();
+        a aVar = (a) this.f58664b.get();
         if (aVar != null && aVar.b()) {
             return true;
         }
@@ -33,7 +33,7 @@ public final class a {
     }
 
     public final boolean c(String str) {
-        a aVar = (a) this.f58575b.get();
+        a aVar = (a) this.f58664b.get();
         if (aVar != null && aVar.c(str)) {
             return true;
         }
@@ -45,6 +45,6 @@ public final class a {
         if (Log.isLoggable("FirebaseCrashlytics", 2)) {
             Log.v("FirebaseCrashlytics", i7, null);
         }
-        this.f58574a.a(new i(str, j3, p1Var, 11));
+        this.f58663a.a(new i(str, j3, p1Var, 11));
     }
 }

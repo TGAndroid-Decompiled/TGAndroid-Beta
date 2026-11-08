@@ -52,12 +52,12 @@ public final class cd extends LinearLayout implements ls {
         }
         View n10 = v61Var.n(i11, true);
         View view = new View(context);
-        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27850d7, view, f6Var);
+        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27853d7, view, f6Var);
         if (ht0Var == null) {
             this.d = null;
             addView(n10, c8.ha.o(-1, 48));
-            addView(view, new LinearLayout.LayoutParams(c8.ha.z(-1.0f), c8.ha.z(1.0f / org.telegram.messenger.g0.f22543p)));
-            setBackgroundColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27922h5, f6Var));
+            addView(view, new LinearLayout.LayoutParams(c8.ha.z(-1.0f), c8.ha.z(1.0f / org.telegram.messenger.g0.f22562p)));
+            setBackgroundColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27925h5, f6Var));
         } else {
             setClipChildren(false);
             setClipToPadding(false);
@@ -83,7 +83,7 @@ public final class cd extends LinearLayout implements ls {
         ArrayList arrayList2 = bdVar.f3534i;
         int i10 = 0;
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
-            i10 |= 1 << ((x31) arrayList.get(i11)).f40172z;
+            i10 |= 1 << ((x31) arrayList.get(i11)).f40193z;
         }
         View currentView = v61Var.getCurrentView();
         if (currentView instanceof ad) {
@@ -94,14 +94,14 @@ public final class cd extends LinearLayout implements ls {
         bdVar.i();
         int i12 = 0;
         for (int i13 = 0; i13 < arrayList2.size(); i13++) {
-            i12 |= 1 << ((x31) arrayList2.get(i13)).f40172z;
+            i12 |= 1 << ((x31) arrayList2.get(i13)).f40193z;
         }
         if (i10 != i12) {
             v61Var.onTouchEvent(null);
             int i14 = 0;
             while (true) {
                 if (i14 < arrayList2.size()) {
-                    if (((x31) arrayList2.get(i14)).f40172z == i7) {
+                    if (((x31) arrayList2.get(i14)).f40193z == i7) {
                         break;
                     }
                     i14++;
@@ -121,7 +121,7 @@ public final class cd extends LinearLayout implements ls {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        int i11 = qs.f25112z3;
+        int i11 = qs.f25121z3;
         long j3 = this.f3613f;
         if ((i7 == i11 && j3 == 0) || (i7 == qs.D3 && j3 != 0 && ((Long) objArr[0]).longValue() == j3)) {
             a(true);
@@ -150,7 +150,7 @@ public final class cd extends LinearLayout implements ls {
         a(false);
         qs f10 = qs.f(this.f3609a);
         if (this.f3613f == 0) {
-            i7 = qs.f25112z3;
+            i7 = qs.f25121z3;
         } else {
             i7 = qs.D3;
         }
@@ -163,7 +163,7 @@ public final class cd extends LinearLayout implements ls {
         int i7;
         qs f10 = qs.f(this.f3609a);
         if (this.f3613f == 0) {
-            i7 = qs.f25112z3;
+            i7 = qs.f25121z3;
         } else {
             i7 = qs.D3;
         }

@@ -21,7 +21,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.k5;
 import org.telegram.messenger.p10;
 import org.telegram.messenger.qp;
@@ -81,7 +81,7 @@ public abstract class o extends ScrollView implements a6 {
         paint2.setXfermode(new PorterDuffXfermode(mode));
         this.f1096a = f6Var;
         setVerticalScrollBarEnabled(false);
-        int x02 = k6.x0(null, k6.f27849d6, false);
+        int x02 = k6.x0(null, k6.f27852d6, false);
         this.f1102r = x02;
         g0.z3(this, x02);
         n nVar = new n(this, context);
@@ -107,15 +107,15 @@ public abstract class o extends ScrollView implements a6 {
         iVar.setTextIsSelectable(false);
         iVar.setPadding(0, 0, 0, 0);
         iVar.setImeOptions(268435462);
-        if (hd.f22878a0) {
+        if (id.f23157a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         iVar.setGravity(i7 | 16);
         nVar.addView(iVar);
-        iVar.setHintText(hd.M0(2131745837, null));
-        this.f1098c = (int) iVar.getPaint().measureText(hd.M0(2131745837, null));
+        iVar.setHintText(id.M0(2131745839, null));
+        this.f1098c = (int) iVar.getPaint().measureText(id.M0(2131745839, null));
         iVar.addTextChangedListener(new j(this, 0));
     }
 
@@ -172,7 +172,7 @@ public abstract class o extends ScrollView implements a6 {
         qp qpVar;
         TLRPC.TL_help_country tL_help_country;
         ArrayList arrayList3 = arrayList;
-        qp s12 = qp.s1(p10.f24467s0);
+        qp s12 = qp.s1(p10.f24470s0);
         ArrayList arrayList4 = new ArrayList();
         ArrayList arrayList5 = new ArrayList();
         int i10 = 0;
@@ -370,7 +370,7 @@ public abstract class o extends ScrollView implements a6 {
     @Override
     public final void updateColors() {
         try {
-            int x02 = k6.x0(null, k6.f27849d6, false);
+            int x02 = k6.x0(null, k6.f27852d6, false);
             int i7 = this.f1102r;
             if (i7 != 0 && x02 != i7) {
                 this.f1102r = x02;

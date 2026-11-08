@@ -33,7 +33,7 @@ public final class l0 extends View {
         g0 g0Var = this.d.h;
         float f10 = g0Var.E;
         if (!z9) {
-            i7 = org.telegram.messenger.g0.f22538m;
+            i7 = org.telegram.messenger.g0.f22557m;
         } else {
             i7 = 0;
         }
@@ -97,8 +97,8 @@ public final class l0 extends View {
             canvas.translate(iArr[0] * f15, iArr[1] * f15);
             ye yeVar2 = m0Var.f12393b.G0;
             if (yeVar2 != null) {
-                f13 = yeVar2.f26629e;
-                f12 = yeVar2.f26630f;
+                f13 = yeVar2.f26638e;
+                f12 = yeVar2.f26639f;
             } else {
                 f12 = 1.0f;
                 f13 = 1.0f;
@@ -111,7 +111,7 @@ public final class l0 extends View {
         boolean z10 = getContext() instanceof BubbleActivity;
         float f16 = g0Var.E;
         if (!z10) {
-            i7 = org.telegram.messenger.g0.f22538m;
+            i7 = org.telegram.messenger.g0.f22557m;
         } else {
             i7 = 0;
         }
@@ -121,12 +121,12 @@ public final class l0 extends View {
             float contentHeight = m0Var.f12393b.getContentHeight();
             ye yeVar3 = m0Var.f12393b.G0;
             if (yeVar3 != null) {
-                f10 = yeVar3.f26629e;
+                f10 = yeVar3.f26638e;
             } else {
                 f10 = 1.0f;
             }
             if (yeVar3 != null) {
-                f11 = yeVar3.f26630f;
+                f11 = yeVar3.f26639f;
             } else {
                 f11 = 1.0f;
             }
@@ -138,48 +138,48 @@ public final class l0 extends View {
         currentWidth = m0Var.getCurrentWidth();
         og.g gVar = m0Var.D;
         currentHeight = m0Var.getCurrentHeight();
-        int i11 = gVar.f20967i;
+        int i11 = gVar.f20970i;
         if (i11 == 90 || i11 == 270) {
             currentHeight = currentWidth;
             currentWidth = currentHeight;
         }
-        float z11 = com.google.android.recaptcha.internal.a.z(gVar.f20970l, 1.0f, f15, 1.0f);
+        float z11 = com.google.android.recaptcha.internal.a.z(gVar.f20973l, 1.0f, f15, 1.0f);
         float f17 = currentWidth;
         float containerWidth = getContainerWidth() / f17;
         float f18 = currentHeight;
         if (containerWidth * f18 > getContainerHeight()) {
             containerWidth = getContainerHeight() / f18;
         }
-        canvas.translate(gVar.d * 1.0f, gVar.f20964e * 1.0f);
-        float f19 = (gVar.f20965f / z11) * containerWidth;
+        canvas.translate(gVar.d * 1.0f, gVar.f20967e * 1.0f);
+        float f19 = (gVar.f20968f / z11) * containerWidth;
         tg.n1 n1Var2 = m0Var.f12393b;
         if (n1Var2 != null && (yeVar = n1Var2.G0) != null) {
-            T1 = org.telegram.messenger.g0.T1(yeVar.f26628c, f19, f14);
+            T1 = org.telegram.messenger.g0.T1(yeVar.f26637c, f19, f14);
         } else {
             T1 = org.telegram.messenger.g0.T1(1.0f, f19, f14);
         }
         canvas.scale(T1, T1);
-        canvas.translate(gVar.f20962b * f17 * 1.0f, gVar.f20963c * f18 * 1.0f);
-        float e10 = m0Var.d.e(false, i11) + m0Var.f12393b.getOrientation() + gVar.f20966g;
+        canvas.translate(gVar.f20965b * f17 * 1.0f, gVar.f20966c * f18 * 1.0f);
+        float e10 = m0Var.d.e(false, i11) + m0Var.f12393b.getOrientation() + gVar.f20969g;
         ye yeVar4 = m0Var.f12393b.G0;
         if (yeVar4 == null) {
             T12 = org.telegram.messenger.g0.T1(0.0f, e10, m0Var.f12399s);
         } else {
-            T12 = org.telegram.messenger.g0.T1(yeVar4.d + yeVar4.f26633k, e10, m0Var.f12399s);
+            T12 = org.telegram.messenger.g0.T1(yeVar4.d + yeVar4.f26642k, e10, m0Var.f12399s);
         }
         canvas.rotate(T12);
         canvas.rotate(m0Var.f12393b.getOrientation());
         org.telegram.ui.Components.w5 w5Var = m0Var.f12394c;
         if (m0Var.E) {
             ye yeVar5 = m0Var.f12393b.G0;
-            if (yeVar5 != null && yeVar5.f26634l) {
+            if (yeVar5 != null && yeVar5.f26643l) {
                 z9 = true;
             }
             z9 = false;
         } else {
             og.m mVar = g0Var.L;
             if (mVar != null) {
-                z9 = mVar.f21001j;
+                z9 = mVar.f21004j;
             }
             z9 = false;
         }

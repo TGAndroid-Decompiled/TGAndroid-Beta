@@ -3,18 +3,18 @@ package jb;
 import c8.ee;
 import gb.j1;
 public final class d implements q {
-    public static final int f16607g;
+    public static final int f16610g;
     public static final xd.c h;
-    public final j1 f16608a;
-    public final va.d f16609b;
-    public final gb.b f16610c;
+    public final j1 f16611a;
+    public final va.d f16612b;
+    public final gb.b f16613c;
     public final f d;
-    public final p f16611e;
-    public final ie.d f16612f;
+    public final p f16614e;
+    public final ie.d f16615f;
 
     static {
         int i7 = yd.a.d;
-        f16607g = (int) yd.a.d(ee.c(24, yd.c.f59309f), yd.c.d);
+        f16610g = (int) yd.a.d(ee.c(24, yd.c.f59398f), yd.c.d);
         h = new xd.c("com/google/firebase/sessions//");
     }
 
@@ -24,26 +24,26 @@ public final class d implements q {
         kotlin.jvm.internal.j.e(appInfo, "appInfo");
         kotlin.jvm.internal.j.e(configsFetcher, "configsFetcher");
         kotlin.jvm.internal.j.e(settingsCache, "settingsCache");
-        this.f16608a = timeProvider;
-        this.f16609b = firebaseInstallationsApi;
-        this.f16610c = appInfo;
+        this.f16611a = timeProvider;
+        this.f16612b = firebaseInstallationsApi;
+        this.f16613c = appInfo;
         this.d = configsFetcher;
-        this.f16611e = settingsCache;
-        this.f16612f = new ie.d();
+        this.f16614e = settingsCache;
+        this.f16615f = new ie.d();
     }
 
     public static String e(String input) {
         xd.c cVar = h;
         cVar.getClass();
         kotlin.jvm.internal.j.e(input, "input");
-        String replaceAll = cVar.f58599a.matcher(input).replaceAll("");
+        String replaceAll = cVar.f58688a.matcher(input).replaceAll("");
         kotlin.jvm.internal.j.d(replaceAll, "replaceAll(...)");
         return replaceAll;
     }
 
     @Override
     public final Boolean a() {
-        return this.f16611e.a().f16620a;
+        return this.f16614e.a().f16623a;
     }
 
     @Override
@@ -53,7 +53,7 @@ public final class d implements q {
 
     @Override
     public final yd.a c() {
-        Integer num = this.f16611e.a().f16622c;
+        Integer num = this.f16614e.a().f16625c;
         if (num != null) {
             int i7 = yd.a.d;
             return new yd.a(ee.c(num.intValue(), yd.c.d));
@@ -63,6 +63,6 @@ public final class d implements q {
 
     @Override
     public final Double d() {
-        return this.f16611e.a().f16621b;
+        return this.f16614e.a().f16624b;
     }
 }

@@ -5,24 +5,24 @@ import android.graphics.RectF;
 import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
 public final class z5 implements org.telegram.ui.Components.gt0 {
-    public final int f52473a;
-    public final FrameLayout f52474b;
+    public final int f52453a;
+    public final FrameLayout f52454b;
 
     public z5(int i7, FrameLayout frameLayout) {
-        this.f52473a = i7;
-        this.f52474b = frameLayout;
+        this.f52453a = i7;
+        this.f52454b = frameLayout;
     }
 
     @Override
     public final void a(Canvas canvas, RectF rectF, RecyclerView recyclerView) {
-        switch (this.f52473a) {
+        switch (this.f52453a) {
             case 0:
                 org.telegram.ui.Components.pj0 pj0Var = (org.telegram.ui.Components.pj0) recyclerView;
-                ih.d.a(pj0Var, canvas, rectF, pj0Var, this.f52474b);
+                ih.d.a(pj0Var, canvas, rectF, pj0Var, this.f52454b);
                 return;
             default:
                 org.telegram.ui.Components.pj0 pj0Var2 = (org.telegram.ui.Components.pj0) recyclerView;
-                ih.d.a(pj0Var2, canvas, rectF, pj0Var2, this.f52474b);
+                ih.d.a(pj0Var2, canvas, rectF, pj0Var2, this.f52454b);
                 return;
         }
     }

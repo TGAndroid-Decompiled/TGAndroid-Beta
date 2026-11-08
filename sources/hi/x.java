@@ -17,9 +17,9 @@ import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.wp;
 public final class x extends oj0 {
-    public ArrayList f15023c;
+    public ArrayList f15026c;
     public ArrayList d;
-    public ArrayList f15024e;
+    public ArrayList f15027e;
 
     @Override
     public final boolean D(v4.d1 d1Var) {
@@ -27,11 +27,11 @@ public final class x extends oj0 {
     }
 
     public final void E(a0.h hVar) {
-        ArrayList arrayList = this.f15023c;
+        ArrayList arrayList = this.f15026c;
         arrayList.clear();
         ArrayList arrayList2 = this.d;
         arrayList2.clear();
-        ArrayList arrayList3 = this.f15024e;
+        ArrayList arrayList3 = this.f15027e;
         arrayList3.clear();
         for (int i7 = 0; i7 < hVar.m(); i7++) {
             TL_bots.BotInfo botInfo = (TL_bots.BotInfo) hVar.n(i7);
@@ -49,26 +49,26 @@ public final class x extends oj0 {
 
     @Override
     public final int b() {
-        return this.f15023c.size();
+        return this.f15026c.size();
     }
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        w wVar = (w) d1Var.f56951a;
-        String str = (String) this.f15023c.get(i7);
-        if (((Boolean) this.f15024e.get(i7)).booleanValue()) {
+        w wVar = (w) d1Var.f57043a;
+        String str = (String) this.f15026c.get(i7);
+        if (((Boolean) this.f15027e.get(i7)).booleanValue()) {
             wp wpVar = new wp(2131231942, 0);
             wpVar.a(k6.A6);
-            wpVar.f40069n = 1;
+            wpVar.f40019n = 1;
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
             spannableStringBuilder.append((CharSequence) " *");
             spannableStringBuilder.setSpan(wpVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
-            wVar.f15007a.setText(spannableStringBuilder);
+            wVar.f15010a.setText(spannableStringBuilder);
         } else {
-            wVar.f15007a.setText(str);
+            wVar.f15010a.setText(str);
         }
-        wVar.f15008b.setText((CharSequence) this.d.get(i7));
-        wVar.f15009c = str;
+        wVar.f15011b.setText((CharSequence) this.d.get(i7));
+        wVar.f15012c = str;
     }
 
     @Override
@@ -78,7 +78,7 @@ public final class x extends oj0 {
         linearLayout.setOrientation(0);
         linearLayout.setPadding(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(8.0f));
         md mdVar = new md(context, 3);
-        linearLayout.f15008b = mdVar;
+        linearLayout.f15011b = mdVar;
         qs.i(mdVar);
         mdVar.setTextSize(1, 16.0f);
         int i10 = k6.G6;
@@ -88,9 +88,9 @@ public final class x extends oj0 {
         mdVar.setEllipsize(TextUtils.TruncateAt.END);
         linearLayout.addView(mdVar, ha.q(-1, -2, 1.0f, 16, 0, 0, org.telegram.messenger.g0.L(8.0f), 0));
         TextView textView = new TextView(context);
-        linearLayout.f15007a = textView;
+        linearLayout.f15010a = textView;
         textView.setTextSize(1, 14.0f);
-        int i11 = k6.f28241y6;
+        int i11 = k6.f28244y6;
         r6.V(textView, i11, null);
         textView.setTag(Integer.valueOf(i11));
         linearLayout.addView(textView, ha.p(-2, -2, 0.0f, 16));

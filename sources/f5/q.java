@@ -41,7 +41,7 @@ public final class q implements Callable {
             if (cVar == null) {
                 return com.google.android.gms.internal.play_billing.u.c(107, z.h);
             }
-            return ((com.google.android.gms.internal.play_billing.a) cVar).Z0(bVar.f11122g.getPackageName(), str, str2);
+            return ((com.google.android.gms.internal.play_billing.a) cVar).z1(bVar.f11122g.getPackageName(), str, str2);
         } catch (DeadObjectException e10) {
             f fVar = z.h;
             String a10 = x.a(e10);
@@ -126,19 +126,19 @@ public final class q implements Callable {
                                 if (z9) {
                                     com.google.android.gms.internal.play_billing.u.b(bundle, str4, str5, longValue);
                                 }
-                                Bundle Y0 = ((com.google.android.gms.internal.play_billing.a) cVar).Y0(packageName, str3, bundle);
-                                readInt = Y0.getInt("RESPONSE_CODE");
-                                str = com.google.android.gms.internal.play_billing.u.f("BillingClient", Y0);
+                                Bundle y12 = ((com.google.android.gms.internal.play_billing.a) cVar).y1(packageName, str3, bundle);
+                                readInt = y12.getInt("RESPONSE_CODE");
+                                str = com.google.android.gms.internal.play_billing.u.f("BillingClient", y12);
                             } else {
                                 String packageName2 = bVar.f11122g.getPackageName();
                                 com.google.android.gms.internal.play_billing.a aVar = (com.google.android.gms.internal.play_billing.a) cVar;
-                                Parcel V0 = aVar.V0();
-                                V0.writeInt(3);
-                                V0.writeString(packageName2);
-                                V0.writeString(str3);
-                                Parcel W0 = aVar.W0(V0, 5);
-                                readInt = W0.readInt();
-                                W0.recycle();
+                                Parcel v12 = aVar.v1();
+                                v12.writeInt(3);
+                                v12.writeString(packageName2);
+                                v12.writeString(str3);
+                                Parcel w12 = aVar.w1(v12, 5);
+                                readInt = w12.readInt();
+                                w12.recycle();
                                 str = "";
                             }
                             f a10 = z.a(readInt, str);

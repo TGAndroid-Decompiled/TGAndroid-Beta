@@ -9,16 +9,16 @@ import qe.f;
 import qe.h;
 public final class b {
     public static final b d = new b();
-    public final p0 f53483a = new p0();
-    public final pb.b f53484b = re.a.f54421a;
-    public final n f53485c = new n(13);
+    public final p0 f53576a = new p0();
+    public final pb.b f53577b = re.a.f54513a;
+    public final n f53578c = new n(13);
 
     public final Object a(ke.a deserializer, String str) {
         byte b10;
         j.e(deserializer, "deserializer");
-        this.f53483a.getClass();
+        this.f53576a.getClass();
         k kVar = new k(str);
-        Object l10 = new h2.c(this, qe.j.f54011c, kVar, deserializer.d()).l(deserializer);
+        Object l10 = new h2.c(this, qe.j.f54104c, kVar, deserializer.d()).l(deserializer);
         String str2 = (String) kVar.f194f;
         int i7 = kVar.f191b;
         while (true) {
@@ -49,7 +49,7 @@ public final class b {
         Object removeLast;
         j.e(serializer, "serializer");
         mc.a aVar = new mc.a(1);
-        qe.b bVar = qe.b.f53996c;
+        qe.b bVar = qe.b.f54089c;
         synchronized (bVar) {
             hd.d dVar = (hd.d) bVar.f2210b;
             cArr = null;
@@ -67,10 +67,10 @@ public final class b {
         if (cArr == null) {
             cArr = new char[128];
         }
-        aVar.f20001b = cArr;
+        aVar.f20004b = cArr;
         try {
-            this.f53483a.getClass();
-            new h(new i(aVar, 8), this, qe.j.f54011c, new h[qe.j.f54014n.f()]).i(serializer, obj);
+            this.f53576a.getClass();
+            new h(new i(aVar, 8), this, qe.j.f54104c, new h[qe.j.f54107n.f()]).i(serializer, obj);
             return aVar.toString();
         } finally {
             aVar.b();

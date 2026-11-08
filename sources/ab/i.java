@@ -99,7 +99,7 @@ public final class i implements Callable {
                 j2.i iVar = (j2.i) this.f941b;
                 byte[] bArr = (byte[]) this.f942c;
                 boolean z9 = iVar.d;
-                Bitmap b10 = bg.o0.b(bArr.length, iVar.f16433c, bArr);
+                Bitmap b10 = bg.o0.b(bArr.length, iVar.f16436c, bArr);
                 if (z9) {
                     return bg.o0.e(b10);
                 }
@@ -107,8 +107,8 @@ public final class i implements Callable {
             case 2:
                 j2.i iVar2 = (j2.i) this.f941b;
                 Uri uri = (Uri) this.f942c;
-                j2.h createDataSource = iVar2.f16432b.createDataSource();
-                int i10 = iVar2.f16433c;
+                j2.h createDataSource = iVar2.f16435b.createDataSource();
+                int i10 = iVar2.f16436c;
                 boolean z10 = iVar2.d;
                 try {
                     j2.m mVar = new j2.m(uri, 1, null, Collections.EMPTY_MAP, 0L, -1L, null, 0);

@@ -10,26 +10,26 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class v implements x10 {
-    public final n0 f43219a;
-    public final g7 f43220b;
-    public final gz f43221c;
+    public final m0 f43210a;
+    public final f7 f43211b;
+    public final gz f43212c;
     public final ij d;
-    public final TL_wallet.walletTransaction f43222e;
-    public final String f43223f;
-    public final m0 f43224g;
+    public final TL_wallet.walletTransaction f43213e;
+    public final String f43214f;
+    public final l0 f43215g;
     public final long h;
-    public final TLRPC.User f43225i;
+    public final TLRPC.User f43216i;
 
-    public v(n0 n0Var, g7 g7Var, gz gzVar, ij ijVar, TL_wallet.walletTransaction wallettransaction, String str, m0 m0Var, long j3, TLRPC.User user) {
-        this.f43219a = n0Var;
-        this.f43220b = g7Var;
-        this.f43221c = gzVar;
+    public v(m0 m0Var, f7 f7Var, gz gzVar, ij ijVar, TL_wallet.walletTransaction wallettransaction, String str, l0 l0Var, long j3, TLRPC.User user) {
+        this.f43210a = m0Var;
+        this.f43211b = f7Var;
+        this.f43212c = gzVar;
         this.d = ijVar;
-        this.f43222e = wallettransaction;
-        this.f43223f = str;
-        this.f43224g = m0Var;
+        this.f43213e = wallettransaction;
+        this.f43214f = str;
+        this.f43215g = l0Var;
         this.h = j3;
-        this.f43225i = user;
+        this.f43216i = user;
     }
 
     @Override
@@ -37,34 +37,34 @@ public final class v implements x10 {
         TL_wallet.sendTransfer sendtransfer = (TL_wallet.sendTransfer) obj;
         String str = (String) obj2;
         String str2 = (String) obj3;
-        n0 n0Var = this.f43219a;
-        int i7 = n0Var.f42792a;
-        g7 g7Var = this.f43220b;
-        gz gzVar = this.f43221c;
+        m0 m0Var = this.f43210a;
+        int i7 = m0Var.f42762a;
+        f7 f7Var = this.f43211b;
+        gz gzVar = this.f43212c;
         ij ijVar = this.d;
         boolean z9 = false;
         if (sendtransfer == null) {
-            g7Var.run();
+            f7Var.run();
             gzVar.k(ijVar, null, false);
             if (str2 == null) {
                 str2 = "NULL_ERROR";
             }
-            n0.j("failed sending: ".concat(str2));
+            m0.j("failed sending: ".concat(str2));
             return;
         }
-        TL_wallet.walletTransaction wallettransaction = this.f43222e;
+        TL_wallet.walletTransaction wallettransaction = this.f43213e;
         if (str != null) {
             wallettransaction.comment = str;
             wallettransaction.comment_encrypted = true;
         }
-        if (n0.b(n0Var.t(), this.f43223f)) {
+        if (m0.b(m0Var.t(), this.f43214f)) {
             sendtransfer.data_gasless = null;
         }
         wallettransaction.comment_encrypted_preparing = false;
         String str3 = wallettransaction.comment;
         boolean z10 = wallettransaction.comment_encrypted;
         if (ijVar != null) {
-            TLRPC.MessageAction messageAction = ijVar.f23244k.action;
+            TLRPC.MessageAction messageAction = ijVar.f23262k.action;
             if (messageAction instanceof TLRPC.TL_messageActionGramTransfer) {
                 TLRPC.TL_messageActionGramTransfer tL_messageActionGramTransfer = (TLRPC.TL_messageActionGramTransfer) messageAction;
                 tL_messageActionGramTransfer.comment = str3;
@@ -72,9 +72,9 @@ public final class v implements x10 {
                 tL_messageActionGramTransfer.comment_encrypted_preparing = false;
                 ijVar.K1 = true;
                 ArrayList arrayList = new ArrayList();
-                arrayList.add(ijVar.f23244k);
+                arrayList.add(ijVar.f23262k);
                 gzVar.getMessagesStorage().j1(arrayList, false, true, false, 0, false, 0, 0L);
-                gzVar.getNotificationCenter().k(qs.m0, Long.valueOf(ij.B0(ijVar.f23244k)), org.telegram.messenger.k5.k(ijVar));
+                gzVar.getNotificationCenter().k(qs.m0, Long.valueOf(ij.B0(ijVar.f23262k)), org.telegram.messenger.k5.k(ijVar));
             }
         }
         if (sendtransfer.data_gasless != null) {
@@ -83,13 +83,13 @@ public final class v implements x10 {
         wallettransaction.gasless = z9;
         wallettransaction.gaslessMessageBodyHash = sendtransfer.gaslessMessageBodyHash;
         wallettransaction.normalMessageBodyHash = sendtransfer.normalMessageBodyHash;
-        m0 m0Var = this.f43224g;
-        m0Var.k();
-        m0Var.i();
+        l0 l0Var = this.f43215g;
+        l0Var.k();
+        l0Var.i();
         sendtransfer.random_id = this.h;
-        sendtransfer.user_id = qp.s1(i7).q1(this.f43225i);
-        n0Var.S();
-        n0.H("prepared sendTransfer, sending");
-        ConnectionsManager.getInstance(i7).sendRequestTyped(sendtransfer, new d3.b(1), new bi.t3(n0Var, wallettransaction, gzVar, ijVar, g7Var, 4));
+        sendtransfer.user_id = qp.s1(i7).q1(this.f43216i);
+        m0Var.S();
+        m0.H("prepared sendTransfer, sending");
+        ConnectionsManager.getInstance(i7).sendRequestTyped(sendtransfer, new d3.b(1), new bi.t3(m0Var, wallettransaction, gzVar, ijVar, f7Var, 4));
     }
 }

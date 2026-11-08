@@ -10,7 +10,7 @@ import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.x31;
 import org.telegram.ui.sw0;
 public final class t6 extends w31 {
-    public static final int f30523b = 0;
+    public static final int f30527b = 0;
 
     static {
         w31.h(new w31());
@@ -21,9 +21,9 @@ public final class t6 extends w31 {
         Object obj = x31Var.G;
         if (obj instanceof sw0) {
             sw0 sw0Var = (sw0) obj;
-            ((v6) view).b(x31Var.f40159l, sw0Var.d, sw0Var.f49859e, z9);
+            ((v6) view).b(x31Var.f40180l, sw0Var.d, sw0Var.f49850e, z9);
         } else if (obj instanceof cp) {
-            ((v6) view).a(x31Var.f40159l, ((cp) obj).f21884b, true, z9);
+            ((v6) view).a(x31Var.f40180l, ((cp) obj).f21913b, true, z9);
         }
     }
 

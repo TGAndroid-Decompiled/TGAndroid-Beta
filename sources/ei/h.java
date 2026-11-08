@@ -4,7 +4,7 @@ import android.view.KeyEvent;
 import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import fi.f3;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.Components.nl;
 import org.telegram.ui.Components.oi;
 import org.telegram.ui.Components.vh;
@@ -26,7 +26,7 @@ public final class h extends s {
     public boolean Y0() {
         switch (this.Q) {
             case 4:
-                if (((yv0) this.R).N1 != null && hd.f22878a0) {
+                if (((yv0) this.R).N1 != null && id.f23157a0) {
                     return true;
                 }
                 return false;
@@ -71,12 +71,12 @@ public final class h extends s {
         switch (this.Q) {
             case 2:
                 oi oiVar = new oi(this, recyclerView.getContext());
-                oiVar.f57120a = i7;
+                oiVar.f57212a = i7;
                 w0(oiVar);
                 return;
             case 3:
                 nl nlVar = new nl(this, recyclerView.getContext());
-                nlVar.f57120a = i7;
+                nlVar.f57212a = i7;
                 w0(nlVar);
                 return;
             default:

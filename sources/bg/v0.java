@@ -85,7 +85,7 @@ public final class v0 {
                         }
                         int i13 = i12 + i7;
                         launchActivity.A1 = i13;
-                        org.telegram.ui.k0 k0Var = launchActivity.f41287u0;
+                        org.telegram.ui.k0 k0Var = launchActivity.f41291u0;
                         if (k0Var != null) {
                             if (i13 > 0) {
                                 i10 = 8;

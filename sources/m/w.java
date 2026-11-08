@@ -11,38 +11,38 @@ import android.net.Uri;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 public class w extends ImageView {
-    public final h2.c f19272a;
-    public final wa f19273b;
-    public boolean f19274c;
+    public final h2.c f19275a;
+    public final wa f19276b;
+    public boolean f19277c;
 
     public w(Context context, AttributeSet attributeSet, int i7) {
         super(context, attributeSet, i7);
         b3.a(context);
-        this.f19274c = false;
+        this.f19277c = false;
         a3.a(this, getContext());
         h2.c cVar = new h2.c(this);
-        this.f19272a = cVar;
+        this.f19275a = cVar;
         cVar.x(attributeSet, i7);
         wa waVar = new wa(this);
-        this.f19273b = waVar;
+        this.f19276b = waVar;
         waVar.s(attributeSet, i7);
     }
 
     @Override
     public final void drawableStateChanged() {
         super.drawableStateChanged();
-        h2.c cVar = this.f19272a;
+        h2.c cVar = this.f19275a;
         if (cVar != null) {
             cVar.b();
         }
-        wa waVar = this.f19273b;
+        wa waVar = this.f19276b;
         if (waVar != null) {
             waVar.c();
         }
     }
 
     public ColorStateList getSupportBackgroundTintList() {
-        h2.c cVar = this.f19272a;
+        h2.c cVar = this.f19275a;
         if (cVar != null) {
             return cVar.v();
         }
@@ -50,7 +50,7 @@ public class w extends ImageView {
     }
 
     public PorterDuff.Mode getSupportBackgroundTintMode() {
-        h2.c cVar = this.f19272a;
+        h2.c cVar = this.f19275a;
         if (cVar != null) {
             return cVar.w();
         }
@@ -59,16 +59,16 @@ public class w extends ImageView {
 
     public ColorStateList getSupportImageTintList() {
         c3 c3Var;
-        wa waVar = this.f19273b;
+        wa waVar = this.f19276b;
         if (waVar == null || (c3Var = (c3) waVar.d) == null) {
             return null;
         }
-        return (ColorStateList) c3Var.f19074c;
+        return (ColorStateList) c3Var.f19077c;
     }
 
     public PorterDuff.Mode getSupportImageTintMode() {
         c3 c3Var;
-        wa waVar = this.f19273b;
+        wa waVar = this.f19276b;
         if (waVar == null || (c3Var = (c3) waVar.d) == null) {
             return null;
         }
@@ -77,7 +77,7 @@ public class w extends ImageView {
 
     @Override
     public final boolean hasOverlappingRendering() {
-        if (!(((ImageView) this.f19273b.f701c).getBackground() instanceof RippleDrawable) && super.hasOverlappingRendering()) {
+        if (!(((ImageView) this.f19276b.f701c).getBackground() instanceof RippleDrawable) && super.hasOverlappingRendering()) {
             return true;
         }
         return false;
@@ -86,7 +86,7 @@ public class w extends ImageView {
     @Override
     public void setBackgroundDrawable(Drawable drawable) {
         super.setBackgroundDrawable(drawable);
-        h2.c cVar = this.f19272a;
+        h2.c cVar = this.f19275a;
         if (cVar != null) {
             cVar.y();
         }
@@ -95,7 +95,7 @@ public class w extends ImageView {
     @Override
     public void setBackgroundResource(int i7) {
         super.setBackgroundResource(i7);
-        h2.c cVar = this.f19272a;
+        h2.c cVar = this.f19275a;
         if (cVar != null) {
             cVar.z(i7);
         }
@@ -104,7 +104,7 @@ public class w extends ImageView {
     @Override
     public void setImageBitmap(Bitmap bitmap) {
         super.setImageBitmap(bitmap);
-        wa waVar = this.f19273b;
+        wa waVar = this.f19276b;
         if (waVar != null) {
             waVar.c();
         }
@@ -112,14 +112,14 @@ public class w extends ImageView {
 
     @Override
     public void setImageDrawable(Drawable drawable) {
-        wa waVar = this.f19273b;
-        if (waVar != null && drawable != null && !this.f19274c) {
+        wa waVar = this.f19276b;
+        if (waVar != null && drawable != null && !this.f19277c) {
             waVar.f700b = drawable.getLevel();
         }
         super.setImageDrawable(drawable);
         if (waVar != null) {
             waVar.c();
-            if (!this.f19274c) {
+            if (!this.f19277c) {
                 ImageView imageView = (ImageView) waVar.f701c;
                 if (imageView.getDrawable() != null) {
                     imageView.getDrawable().setLevel(waVar.f700b);
@@ -131,12 +131,12 @@ public class w extends ImageView {
     @Override
     public void setImageLevel(int i7) {
         super.setImageLevel(i7);
-        this.f19274c = true;
+        this.f19277c = true;
     }
 
     @Override
     public void setImageResource(int i7) {
-        wa waVar = this.f19273b;
+        wa waVar = this.f19276b;
         if (waVar != null) {
             ImageView imageView = (ImageView) waVar.f701c;
             if (i7 != 0) {
@@ -155,48 +155,48 @@ public class w extends ImageView {
     @Override
     public void setImageURI(Uri uri) {
         super.setImageURI(uri);
-        wa waVar = this.f19273b;
+        wa waVar = this.f19276b;
         if (waVar != null) {
             waVar.c();
         }
     }
 
     public void setSupportBackgroundTintList(ColorStateList colorStateList) {
-        h2.c cVar = this.f19272a;
+        h2.c cVar = this.f19275a;
         if (cVar != null) {
             cVar.D(colorStateList);
         }
     }
 
     public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
-        h2.c cVar = this.f19272a;
+        h2.c cVar = this.f19275a;
         if (cVar != null) {
             cVar.E(mode);
         }
     }
 
     public void setSupportImageTintList(ColorStateList colorStateList) {
-        wa waVar = this.f19273b;
+        wa waVar = this.f19276b;
         if (waVar != null) {
             if (((c3) waVar.d) == null) {
                 waVar.d = new Object();
             }
             c3 c3Var = (c3) waVar.d;
-            c3Var.f19074c = colorStateList;
-            c3Var.f19073b = true;
+            c3Var.f19077c = colorStateList;
+            c3Var.f19076b = true;
             waVar.c();
         }
     }
 
     public void setSupportImageTintMode(PorterDuff.Mode mode) {
-        wa waVar = this.f19273b;
+        wa waVar = this.f19276b;
         if (waVar != null) {
             if (((c3) waVar.d) == null) {
                 waVar.d = new Object();
             }
             c3 c3Var = (c3) waVar.d;
             c3Var.d = mode;
-            c3Var.f19072a = true;
+            c3Var.f19075a = true;
             waVar.c();
         }
     }

@@ -6,18 +6,18 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 public final class nw0 extends View {
-    public String f36437a;
-    public Drawable f36438b;
-    public boolean f36439c;
+    public String f36454a;
+    public Drawable f36455b;
+    public boolean f36456c;
     public int d;
-    public final w5 f36440e;
-    public final ow0 f36441f;
+    public final w5 f36457e;
+    public final ow0 f36458f;
 
     public nw0(ow0 ow0Var, Context context) {
         super(context);
-        this.f36441f = ow0Var;
+        this.f36458f = ow0Var;
         this.d = 0;
-        this.f36440e = new w5(this, 350L, new OvershootInterpolator(5.0f));
+        this.f36457e = new w5(this, 350L, new OvershootInterpolator(5.0f));
     }
 
     @Override
@@ -28,37 +28,37 @@ public final class nw0 extends View {
         } else {
             f10 = 0.0f;
         }
-        float e10 = ((1.0f - this.f36440e.e(false, f10)) * 0.2f) + 0.8f;
-        if (this.f36438b != null) {
+        float e10 = ((1.0f - this.f36457e.e(false, f10)) * 0.2f) + 0.8f;
+        if (this.f36455b != null) {
             int height = getHeight() - getPaddingBottom();
-            this.f36438b.setBounds(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
+            this.f36455b.setBounds(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
             canvas.scale(e10, e10, getWidth() / 2, (getPaddingTop() + height) / 2);
-            Drawable drawable = this.f36438b;
+            Drawable drawable = this.f36455b;
             if (drawable instanceof i5) {
                 ((i5) drawable).p(System.currentTimeMillis());
             }
-            this.f36438b.draw(canvas);
+            this.f36455b.draw(canvas);
         }
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        Drawable drawable = this.f36438b;
+        Drawable drawable = this.f36455b;
         if (drawable instanceof i5) {
             ((i5) drawable).a(this);
         }
-        this.f36439c = true;
+        this.f36456c = true;
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        Drawable drawable = this.f36438b;
+        Drawable drawable = this.f36455b;
         if (drawable instanceof i5) {
             ((i5) drawable).n(this);
         }
-        this.f36439c = false;
+        this.f36456c = false;
     }
 
     @Override
@@ -86,12 +86,12 @@ public final class nw0 extends View {
     }
 
     public void setImageDrawable(Drawable drawable) {
-        Drawable drawable2 = this.f36438b;
+        Drawable drawable2 = this.f36455b;
         if (drawable2 instanceof i5) {
             ((i5) drawable2).n(this);
         }
-        this.f36438b = drawable;
-        if ((drawable instanceof i5) && this.f36439c) {
+        this.f36455b = drawable;
+        if ((drawable instanceof i5) && this.f36456c) {
             ((i5) drawable).a(this);
         }
     }

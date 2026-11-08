@@ -1,40 +1,26 @@
 package r2;
 
-import c8.p0;
-import java.util.Arrays;
-public final class e extends y2.f {
-    public byte[] f54196s;
-    public volatile boolean f54197w;
-    public byte[] f54198x;
+import java.util.List;
+public final class e extends y2.b {
+    public final List d;
+    public final long f54291e;
 
-    @Override
-    public final void a() {
-        try {
-            this.f58811r.open(this.f58806b);
-            int i7 = 0;
-            int i10 = 0;
-            while (i7 != -1 && !this.f54197w) {
-                byte[] bArr = this.f54196s;
-                if (bArr.length < i10 + 16384) {
-                    this.f54196s = Arrays.copyOf(bArr, bArr.length + 16384);
-                }
-                i7 = this.f58811r.read(this.f54196s, i10, 16384);
-                if (i7 != -1) {
-                    i10 += i7;
-                }
-            }
-            if (!this.f54197w) {
-                this.f54198x = Arrays.copyOf(this.f54196s, i10);
-            }
-            p0.a(this.f58811r);
-        } catch (Throwable th2) {
-            p0.a(this.f58811r);
-            throw th2;
-        }
+    public e(long j3, List list) {
+        super(0L, list.size() - 1);
+        this.f54291e = j3;
+        this.d = list;
     }
 
     @Override
-    public final void q0() {
-        this.f54197w = true;
+    public final long E() {
+        a();
+        s2.k kVar = (s2.k) this.d.get((int) this.f58877c);
+        return this.f54291e + kVar.f54677e + kVar.f54676c;
+    }
+
+    @Override
+    public final long w() {
+        a();
+        return this.f54291e + ((s2.k) this.d.get((int) this.f58877c)).f54677e;
     }
 }

@@ -91,7 +91,7 @@ public abstract class k5 {
 
     public static void m(TextView textView, int i7, String str, int i10) {
         textView.setGravity(i7);
-        textView.setText(hd.M0(i10, str));
+        textView.setText(id.M0(i10, str));
     }
 
     public static void n(TextView textView, int i7, org.telegram.ui.ActionBar.f6 f6Var, int i10, float f10) {
@@ -101,25 +101,25 @@ public abstract class k5 {
     }
 
     public static void o(String str, int i7, org.telegram.ui.Components.hc hcVar, int i10, int i11) {
-        hcVar.Q(i10, i11, hd.M0(i7, str)).j();
+        hcVar.Q(i10, i11, id.M0(i7, str)).j();
     }
 
     public static void p(String str, int i7, org.telegram.ui.Components.hc hcVar, org.telegram.ui.ActionBar.f6 f6Var) {
-        hcVar.t(hd.M0(i7, str), f6Var).j();
+        hcVar.t(id.M0(i7, str), f6Var).j();
     }
 
     public static void q(String str, String str2, int i7, Object[] objArr, SpannableStringBuilder spannableStringBuilder) {
-        spannableStringBuilder.append((CharSequence) g0.X2(hd.a0(str, str2, i7, objArr)));
+        spannableStringBuilder.append((CharSequence) g0.X2(id.a0(str, str2, i7, objArr)));
     }
 
     public static void r(String str, String str2, int i7, Object[] objArr, TextView textView) {
-        textView.setText(g0.X2(hd.a0(str, str2, i7, objArr)));
+        textView.setText(g0.X2(id.a0(str, str2, i7, objArr)));
     }
 
     public static void s(StringBuilder sb2, char c10, char c11, int i7) {
         sb2.append(c10);
         sb2.append(c11);
-        sb2.append(hd.M0(i7, null));
+        sb2.append(id.M0(i7, null));
     }
 
     public static void t(SQLiteDatabase sQLiteDatabase, String str, String str2) {

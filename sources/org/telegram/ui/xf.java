@@ -6,12 +6,12 @@ import android.view.View;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
 public final class xf implements Runnable {
-    public final int f51852a;
-    public final an f51853b;
+    public final int f51845a;
+    public final an f51846b;
 
     public xf(an anVar, int i7) {
-        this.f51852a = i7;
-        this.f51853b = anVar;
+        this.f51845a = i7;
+        this.f51846b = anVar;
     }
 
     @Override
@@ -22,13 +22,13 @@ public final class xf implements Runnable {
         boolean z9;
         boolean z10;
         fi.m3 m3Var;
-        int i7 = this.f51852a;
+        int i7 = this.f51845a;
         boolean z11 = true;
-        an anVar = this.f51853b;
+        an anVar = this.f51846b;
         switch (i7) {
             case 0:
                 if (anVar.getParentActivity() != null && anVar.fragmentView != null && (qjVar = anVar.Z) != null && (sendButton = qjVar.getSendButton()) != null && anVar.Z.getEditField() != null && anVar.Z.getEditField().getText().length() >= 5) {
-                    int i10 = org.telegram.messenger.iz.f23364a;
+                    int i10 = org.telegram.messenger.iz.f23385a;
                     SharedPreferences.Editor edit = org.telegram.messenger.qp.e1().edit();
                     org.telegram.messenger.iz.L = System.currentTimeMillis();
                     int i11 = org.telegram.messenger.iz.K + 1;
@@ -36,30 +36,30 @@ public final class xf implements Runnable {
                     edit.putInt("scheduledOrNoSoundHintShows", i11);
                     edit.putLong("scheduledOrNoSoundHintSeenAt", org.telegram.messenger.iz.L);
                     edit.apply();
-                    if (anVar.f43974u2 == null) {
+                    if (anVar.f43980u2 == null) {
                         fi.m3 D6 = anVar.D6(280.0f, 3, -1, true);
-                        anVar.f43974u2 = D6;
+                        anVar.f43980u2 = D6;
                         D6.f12442u0 = 0.0f;
                         D6.f12443v0 = org.telegram.messenger.g0.L(56.0f) / 2.0f;
-                        anVar.f43974u2.u(org.telegram.messenger.hd.M0(2131745848, null));
+                        anVar.f43980u2.u(org.telegram.messenger.id.M0(2131745850, null));
                     }
-                    anVar.f43974u2.y(sendButton, true);
-                    anVar.f43987v2 = true;
+                    anVar.f43980u2.y(sendButton, true);
+                    anVar.f43993v2 = true;
                     return;
                 }
                 return;
             case 1:
                 qj qjVar2 = anVar.Z;
-                if (qjVar2 != null && anVar.f43811gd != null) {
+                if (qjVar2 != null && anVar.f43817gd != null) {
                     if (qjVar2.s0()) {
                         anVar.Z.k0(false);
-                        org.telegram.messenger.g0.K3(anVar.f43811gd.f55190a);
-                        ((te.a) anVar.f43811gd.f55191b.f8841b).a(false, true);
+                        org.telegram.messenger.g0.K3(anVar.f43817gd.f55282a);
+                        ((te.a) anVar.f43817gd.f55283b.f8841b).a(false, true);
                         return;
                     }
                     anVar.Z.U0(false, false, false);
                     anVar.Z.s1();
-                    ((te.a) anVar.f43811gd.f55191b.f8841b).a(true, true);
+                    ((te.a) anVar.f43817gd.f55283b.f8841b).a(true, true);
                     return;
                 }
                 return;
@@ -68,7 +68,7 @@ public final class xf implements Runnable {
                 return;
             case 3:
                 if (anVar.getParentActivity() != null && anVar.fragmentView != null && anVar.Z != null && anVar.Ya == null && anVar.getMessagesController().N1(anVar.a()) <= 0 && (sendButton2 = anVar.Z.getSendButton()) != null && anVar.Z.getEditField() != null && anVar.Z.getEditField().getText().length() != 0) {
-                    int i12 = org.telegram.messenger.iz.f23364a;
+                    int i12 = org.telegram.messenger.iz.f23385a;
                     SharedPreferences.Editor edit2 = org.telegram.messenger.qp.e1().edit();
                     org.telegram.messenger.iz.N = System.currentTimeMillis();
                     int i13 = org.telegram.messenger.iz.M + 1;
@@ -76,14 +76,14 @@ public final class xf implements Runnable {
                     edit2.putInt("scheduledHintShows", i13);
                     edit2.putLong("scheduledHintSeenAt", org.telegram.messenger.iz.N);
                     edit2.apply();
-                    if (anVar.f44001w2 == null) {
+                    if (anVar.f44007w2 == null) {
                         fi.m3 D62 = anVar.D6(280.0f, 3, -1, true);
-                        anVar.f44001w2 = D62;
+                        anVar.f44007w2 = D62;
                         D62.f12442u0 = 0.0f;
-                        D62.u(org.telegram.messenger.hd.M0(2131745850, null));
+                        D62.u(org.telegram.messenger.id.M0(2131745852, null));
                     }
-                    anVar.f44001w2.y(sendButton2, true);
-                    anVar.f44014x2 = true;
+                    anVar.f44007w2.y(sendButton2, true);
+                    anVar.f44020x2 = true;
                     return;
                 }
                 return;
@@ -96,12 +96,12 @@ public final class xf implements Runnable {
                 return;
             case 6:
                 ArrayList arrayList = anVar.K6;
-                anVar.f43823hc = System.currentTimeMillis();
-                if (anVar.f44037z0 != null && anVar.C0 != null) {
+                anVar.f43829hc = System.currentTimeMillis();
+                if (anVar.f44043z0 != null && anVar.C0 != null) {
                     int i14 = Integer.MAX_VALUE;
                     int i15 = Integer.MIN_VALUE;
-                    for (int i16 = 0; i16 < anVar.f44037z0.getChildCount(); i16++) {
-                        View childAt = anVar.f44037z0.getChildAt(i16);
+                    for (int i16 = 0; i16 < anVar.f44043z0.getChildCount(); i16++) {
+                        View childAt = anVar.f44043z0.getChildAt(i16);
                         if (childAt instanceof org.telegram.ui.Cells.q1) {
                             org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) childAt;
                             if (q1Var.getCurrentMessagesGroup() != null) {
@@ -124,12 +124,12 @@ public final class xf implements Runnable {
                             org.telegram.messenger.dj djVar = (org.telegram.messenger.dj) anVar.N6.f(ijVar.d1());
                             if (djVar != null) {
                                 ArrayList arrayList3 = djVar.d;
-                                if (!arrayList2.contains(Long.valueOf(djVar.f22009a))) {
+                                if (!arrayList2.contains(Long.valueOf(djVar.f22034a))) {
                                     for (int i19 = 0; i19 < arrayList3.size(); i19++) {
                                         org.telegram.messenger.ij ijVar2 = (org.telegram.messenger.ij) arrayList3.get(i19);
                                         if (ijVar2 != null) {
                                             int f14 = ijVar2.f1();
-                                            org.telegram.messenger.f10 f10Var = anVar.getMessagesController().f24889s7;
+                                            org.telegram.messenger.f10 f10Var = anVar.getMessagesController().f24896s7;
                                             if (f14 >= i14 - 7 && f14 <= i15 + 7) {
                                                 z10 = true;
                                             } else {
@@ -138,11 +138,11 @@ public final class xf implements Runnable {
                                             f10Var.h(ijVar2, z10, false);
                                         }
                                     }
-                                    arrayList2.add(Long.valueOf(djVar.f22009a));
+                                    arrayList2.add(Long.valueOf(djVar.f22034a));
                                 }
                             } else {
                                 int f15 = ijVar.f1();
-                                org.telegram.messenger.f10 f10Var2 = anVar.getMessagesController().f24889s7;
+                                org.telegram.messenger.f10 f10Var2 = anVar.getMessagesController().f24896s7;
                                 if (f15 >= i14 - 7 && f15 <= i15 + 7) {
                                     z9 = true;
                                 } else {
@@ -154,7 +154,7 @@ public final class xf implements Runnable {
                     }
                 }
                 if (anVar.X4 > 0 && anVar.V4 != null) {
-                    anVar.getMessagesController().f24889s7.h((org.telegram.messenger.ij) anVar.V4.get(Integer.valueOf(anVar.X4)), true, false);
+                    anVar.getMessagesController().f24896s7.h((org.telegram.messenger.ij) anVar.V4.get(Integer.valueOf(anVar.X4)), true, false);
                 }
                 anVar.Ad();
                 return;
@@ -179,7 +179,7 @@ public final class xf implements Runnable {
                 anVar.v8(false, true, 0.0f);
                 return;
             case 13:
-                org.telegram.ui.ActionBar.u1 u1Var = new org.telegram.ui.ActionBar.u1(3, anVar.getParentActivity(), anVar.f44022xa);
+                org.telegram.ui.ActionBar.u1 u1Var = new org.telegram.ui.ActionBar.u1(3, anVar.getParentActivity(), anVar.f44028xa);
                 anVar.Pb = u1Var;
                 u1Var.setOnShowListener(new ye(anVar, 1));
                 anVar.Pb.setOnCancelListener(anVar.Fa);
@@ -190,16 +190,16 @@ public final class xf implements Runnable {
                 return;
             case 15:
                 anVar.O7(true);
-                org.telegram.messenger.k5.o(null, 2131743971, org.telegram.ui.Components.hc.a0(anVar), 2131623981, 36);
+                org.telegram.messenger.k5.o(null, 2131743973, org.telegram.ui.Components.hc.a0(anVar), 2131623981, 36);
                 return;
             case 16:
                 anVar.b7();
                 return;
             case 17:
-                anVar.f43715a = (anVar.f43715a + 1) % 3;
+                anVar.f43721a = (anVar.f43721a + 1) % 3;
                 return;
             case 18:
-                anVar.f43730b = !anVar.f43730b;
+                anVar.f43736b = !anVar.f43736b;
                 return;
             case 19:
                 anVar.C0.M.clear();
@@ -222,7 +222,7 @@ public final class xf implements Runnable {
             case 22:
                 anVar.Lc = 0;
                 anVar.Mc = false;
-                anVar.f44037z0.g1();
+                anVar.f44043z0.g1();
                 return;
             case 23:
                 anVar.K9();
@@ -231,10 +231,10 @@ public final class xf implements Runnable {
                 anVar.H7();
                 return;
             case 24:
-                anVar.cd(0, (anVar.f43792f6 == 0 || SystemClock.elapsedRealtime() < anVar.f43792f6 + 150) ? false : false);
+                anVar.cd(0, (anVar.f43798f6 == 0 || SystemClock.elapsedRealtime() < anVar.f43798f6 + 150) ? false : false);
                 return;
             case 25:
-                tj tjVar = anVar.f43789f3;
+                tj tjVar = anVar.f43795f3;
                 if ((tjVar == null || tjVar.getVisibility() != 0) && (m3Var = anVar.K1) != null) {
                     m3Var.w();
                     return;
@@ -250,12 +250,12 @@ public final class xf implements Runnable {
                 FrameLayout.LayoutParams e10 = c8.ha.e(-1, -2, 87);
                 e10.bottomMargin = anVar.Z.getMeasuredHeight();
                 anVar.l1.addView(anVar.M1, e10);
-                anVar.M1.setTranslationY(-org.telegram.messenger.g0.f22539n);
+                anVar.M1.setTranslationY(-org.telegram.messenger.g0.f22558n);
                 anVar.M1.p(0.0f, anVar.Z.getEmojiButton().getX() + org.telegram.messenger.g0.L(22.0f));
                 anVar.M1.w();
                 return;
             default:
-                int i20 = an.f43706id;
+                int i20 = an.f43712id;
                 anVar.n7();
                 return;
         }

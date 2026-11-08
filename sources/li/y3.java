@@ -16,7 +16,7 @@ import c8.ha;
 import c8.ka;
 import java.util.ArrayList;
 import java.util.HashSet;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
@@ -50,33 +50,33 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
     public final ArrayList U;
     public final ArrayList V;
     public boolean W;
-    public final l f18996a;
-    public int f18997a0;
-    public final f6 f18998b;
-    public int f18999b0;
-    public final View f19000c;
-    public boolean f19001c0;
+    public final l f18999a;
+    public int f19000a0;
+    public final f6 f19001b;
+    public int f19002b0;
+    public final View f19003c;
+    public boolean f19004c0;
     public final View d;
-    public final GradientDrawable f19002d0;
-    public final FrameLayout f19003e;
-    public final GradientDrawable f19004e0;
-    public final ImageView f19005f;
-    public final ArrayList f19006f0;
-    public final ArrayList f19007g0;
+    public final GradientDrawable f19005d0;
+    public final FrameLayout f19006e;
+    public final GradientDrawable f19007e0;
+    public final ImageView f19008f;
+    public final ArrayList f19009f0;
+    public final ArrayList f19010g0;
     public final LinearLayout h;
-    public final ArrayList f19008h0;
-    public final ArrayList f19009i0;
-    public final ArrayList f19010j0;
-    public int f19011k0;
-    public boolean f19012l0;
+    public final ArrayList f19011h0;
+    public final ArrayList f19012i0;
+    public final ArrayList f19013j0;
+    public int f19014k0;
+    public boolean f19015l0;
     public int m0;
-    public final ImageView f19013n;
-    public boolean f19014n0;
-    public final ImageView f19015r;
-    public final FrameLayout f19016s;
-    public final FrameLayout f19017w;
-    public final LinearLayout f19018x;
-    public final jg f19019y;
+    public final ImageView f19016n;
+    public boolean f19017n0;
+    public final ImageView f19018r;
+    public final FrameLayout f19019s;
+    public final FrameLayout f19020w;
+    public final LinearLayout f19021x;
+    public final jg f19022y;
 
     public y3(Context context, final l lVar) {
         super(context);
@@ -85,46 +85,46 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
         this.U = new ArrayList();
         ArrayList arrayList = new ArrayList();
         this.V = arrayList;
-        this.f18997a0 = -1;
-        this.f18999b0 = 0;
-        this.f19006f0 = new ArrayList();
-        this.f19007g0 = new ArrayList();
-        this.f19008h0 = new ArrayList();
-        this.f19009i0 = new ArrayList();
-        this.f19010j0 = new ArrayList();
-        this.f18996a = lVar;
-        f6 f6Var = lVar.f18675a.f38968a;
-        this.f18998b = f6Var;
+        this.f19000a0 = -1;
+        this.f19002b0 = 0;
+        this.f19009f0 = new ArrayList();
+        this.f19010g0 = new ArrayList();
+        this.f19011h0 = new ArrayList();
+        this.f19012i0 = new ArrayList();
+        this.f19013j0 = new ArrayList();
+        this.f18999a = lVar;
+        f6 f6Var = lVar.f18678a.f39003a;
+        this.f19001b = f6Var;
         setClipChildren(false);
         setClipToPadding(false);
         View view = new View(context);
-        this.f19000c = view;
+        this.f19003c = view;
         GradientDrawable.Orientation orientation = GradientDrawable.Orientation.TOP_BOTTOM;
-        int i7 = k6.f27849d6;
+        int i7 = k6.f27852d6;
         GradientDrawable gradientDrawable = new GradientDrawable(orientation, new int[]{k6.w0(i7, f6Var), k6.r1(0.0f, k6.w0(i7, f6Var))});
-        this.f19002d0 = gradientDrawable;
+        this.f19005d0 = gradientDrawable;
         view.setBackground(gradientDrawable);
         addView(view, ha.e(-1, 68, 55));
         View view2 = new View(context);
         this.d = view2;
         GradientDrawable gradientDrawable2 = new GradientDrawable(orientation, new int[]{k6.r1(0.0f, k6.w0(i7, f6Var)), k6.w0(i7, f6Var)});
-        this.f19004e0 = gradientDrawable2;
+        this.f19007e0 = gradientDrawable2;
         view2.setBackground(gradientDrawable2);
         addView(view2, ha.e(-1, 68, 87));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f19003e = frameLayout;
+        this.f19006e = frameLayout;
         frameLayout.setClipChildren(false);
         frameLayout.setClipToPadding(false);
         addView(frameLayout, ha.e(-1, -1, 55));
         ImageView imageView = new ImageView(context);
-        this.f19005f = imageView;
+        this.f19008f = imageView;
         imageView.setImageResource(2131231240);
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         int i10 = k6.Ml;
         int w02 = k6.w0(i10, f6Var);
         int w03 = k6.w0(i10, f6Var);
-        int i11 = k6.f27941i6;
+        int i11 = k6.f27944i6;
         org.telegram.ui.Cells.y b02 = k6.b0(w02, k6.w(w03, k6.w0(i11, f6Var)), org.telegram.messenger.g0.L(22.0f), org.telegram.messenger.g0.L(22.0f));
         f(imageView, i10, b02);
         imageView.setBackground(new a2(b02));
@@ -132,7 +132,7 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         r6.t(imageView, i12, f6Var, mode);
         ka.a(imageView);
-        imageView.setContentDescription(hd.M0(2131754878, null));
+        imageView.setContentDescription(id.M0(2131754878, null));
         imageView.setOnClickListener(new bi.l1(lVar, 6));
         frameLayout.addView(imageView, ha.d(44, 44.0f, 51, 8.0f, 8.0f, 8.0f, 8.0f));
         LinearLayout linearLayout = new LinearLayout(context);
@@ -143,7 +143,7 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
         linearLayout.setBackground(new a2(d02));
         frameLayout.addView(linearLayout, ha.d(82, 44.0f, 53, 8.0f, 8.0f, 8.0f, 8.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f19013n = imageView2;
+        this.f19016n = imageView2;
         imageView2.setImageResource(2131231598);
         imageView2.setScaleType(scaleType);
         org.telegram.ui.Cells.y h02 = k6.h0(k6.w0(i11, f6Var), 1, -1);
@@ -158,31 +158,31 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        p pVar = lVar.f18675a;
-                        pVar.f18757r.T4();
+                        p pVar = lVar.f18678a;
+                        pVar.f18760r.T4();
                         pVar.b0();
                         return;
                     case 1:
-                        lVar.f18675a.f18757r.c4(view3);
+                        lVar.f18678a.f18760r.c4(view3);
                         return;
                     case 2:
-                        lVar.f18675a.f18757r.d4();
+                        lVar.f18678a.f18760r.d4();
                         return;
                     case 3:
-                        lVar.f18675a.f18757r.a4();
+                        lVar.f18678a.f18760r.a4();
                         return;
                     case 4:
-                        lVar.f18675a.f18757r.e4();
+                        lVar.f18678a.f18760r.e4();
                         return;
                     case 5:
-                        p pVar2 = lVar.f18675a;
-                        k3 k22 = pVar2.f18757r.k2();
+                        p pVar2 = lVar.f18678a;
+                        k3 k22 = pVar2.f18760r.k2();
                         if (k22 != null) {
                             TL_iv.RichMessage a10 = k22.a();
                             if (!a10.blocks.isEmpty()) {
-                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38968a);
+                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f39003a);
                                 g0Var.s1(a10);
-                                g0Var.f33705c2 = new ii.c(k22, 9);
+                                g0Var.f33739c2 = new ii.c(k22, 9);
                                 g0Var.show();
                                 return;
                             }
@@ -190,17 +190,17 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         }
                         return;
                     case 6:
-                        lVar.f18675a.L(true, 0, 0, 0L, false);
+                        lVar.f18678a.L(true, 0, 0, 0L, false);
                         return;
                     case 7:
-                        f2 f2Var = lVar.f18675a.f18757r.Q3;
+                        f2 f2Var = lVar.f18678a.f18760r.Q3;
                         if (f2Var != null) {
                             f2Var.k();
                             return;
                         }
                         return;
                     case 8:
-                        f2 f2Var2 = lVar.f18675a.f18757r.Q3;
+                        f2 f2Var2 = lVar.f18678a.f18760r.Q3;
                         if (f2Var2 != null) {
                             f2Var2.i();
                             return;
@@ -208,16 +208,16 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         return;
                     case 9:
                         l lVar2 = lVar;
-                        p pVar3 = lVar2.f18675a;
+                        p pVar3 = lVar2.f18678a;
                         Context context2 = pVar3.getContext();
-                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38968a).show();
+                        new v(pVar3.f18759n, context2, new ii.c(lVar2, 10), pVar3.f39003a).show();
                         return;
                     case 10:
-                        p.P(lVar.f18675a);
+                        p.P(lVar.f18678a);
                         return;
                     default:
-                        p pVar4 = lVar.f18675a;
-                        pVar4.f18757r.f18879i4 = null;
+                        p pVar4 = lVar.f18678a;
+                        pVar4.f18760r.f18882i4 = null;
                         p.S(pVar4, 90, 0);
                         return;
                 }
@@ -225,7 +225,7 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
         });
         linearLayout.addView(imageView2, ha.r(41, 41, 16));
         ImageView imageView3 = new ImageView(context);
-        this.f19015r = imageView3;
+        this.f19018r = imageView3;
         imageView3.setImageResource(2131231581);
         imageView3.setScaleType(scaleType);
         org.telegram.ui.Cells.y h03 = k6.h0(k6.w0(i11, f6Var), 1, -1);
@@ -240,31 +240,31 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        p pVar = lVar.f18675a;
-                        pVar.f18757r.T4();
+                        p pVar = lVar.f18678a;
+                        pVar.f18760r.T4();
                         pVar.b0();
                         return;
                     case 1:
-                        lVar.f18675a.f18757r.c4(view3);
+                        lVar.f18678a.f18760r.c4(view3);
                         return;
                     case 2:
-                        lVar.f18675a.f18757r.d4();
+                        lVar.f18678a.f18760r.d4();
                         return;
                     case 3:
-                        lVar.f18675a.f18757r.a4();
+                        lVar.f18678a.f18760r.a4();
                         return;
                     case 4:
-                        lVar.f18675a.f18757r.e4();
+                        lVar.f18678a.f18760r.e4();
                         return;
                     case 5:
-                        p pVar2 = lVar.f18675a;
-                        k3 k22 = pVar2.f18757r.k2();
+                        p pVar2 = lVar.f18678a;
+                        k3 k22 = pVar2.f18760r.k2();
                         if (k22 != null) {
                             TL_iv.RichMessage a10 = k22.a();
                             if (!a10.blocks.isEmpty()) {
-                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38968a);
+                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f39003a);
                                 g0Var.s1(a10);
-                                g0Var.f33705c2 = new ii.c(k22, 9);
+                                g0Var.f33739c2 = new ii.c(k22, 9);
                                 g0Var.show();
                                 return;
                             }
@@ -272,17 +272,17 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         }
                         return;
                     case 6:
-                        lVar.f18675a.L(true, 0, 0, 0L, false);
+                        lVar.f18678a.L(true, 0, 0, 0L, false);
                         return;
                     case 7:
-                        f2 f2Var = lVar.f18675a.f18757r.Q3;
+                        f2 f2Var = lVar.f18678a.f18760r.Q3;
                         if (f2Var != null) {
                             f2Var.k();
                             return;
                         }
                         return;
                     case 8:
-                        f2 f2Var2 = lVar.f18675a.f18757r.Q3;
+                        f2 f2Var2 = lVar.f18678a.f18760r.Q3;
                         if (f2Var2 != null) {
                             f2Var2.i();
                             return;
@@ -290,16 +290,16 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         return;
                     case 9:
                         l lVar2 = lVar;
-                        p pVar3 = lVar2.f18675a;
+                        p pVar3 = lVar2.f18678a;
                         Context context2 = pVar3.getContext();
-                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38968a).show();
+                        new v(pVar3.f18759n, context2, new ii.c(lVar2, 10), pVar3.f39003a).show();
                         return;
                     case 10:
-                        p.P(lVar.f18675a);
+                        p.P(lVar.f18678a);
                         return;
                     default:
-                        p pVar4 = lVar.f18675a;
-                        pVar4.f18757r.f18879i4 = null;
+                        p pVar4 = lVar.f18678a;
+                        pVar4.f18760r.f18882i4 = null;
                         p.S(pVar4, 90, 0);
                         return;
                 }
@@ -307,17 +307,17 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
         });
         linearLayout.addView(imageView3, ha.r(41, 41, 16));
         FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f19016s = frameLayout2;
+        this.f19019s = frameLayout2;
         frameLayout2.setClipChildren(false);
         frameLayout2.setClipToPadding(false);
         addView(frameLayout2, ha.e(-1, -1, 87));
         FrameLayout frameLayout3 = new FrameLayout(context);
-        this.f19017w = frameLayout3;
+        this.f19020w = frameLayout3;
         frameLayout3.setClipChildren(false);
         frameLayout3.setClipToPadding(false);
         frameLayout2.addView(frameLayout3, ha.e(-1, 60, 87));
         LinearLayout linearLayout2 = new LinearLayout(context);
-        this.f19018x = linearLayout2;
+        this.f19021x = linearLayout2;
         linearLayout2.setClipToPadding(false);
         linearLayout2.setClipChildren(false);
         linearLayout2.setPadding(org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f));
@@ -337,31 +337,31 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        p pVar = lVar.f18675a;
-                        pVar.f18757r.T4();
+                        p pVar = lVar.f18678a;
+                        pVar.f18760r.T4();
                         pVar.b0();
                         return;
                     case 1:
-                        lVar.f18675a.f18757r.c4(view3);
+                        lVar.f18678a.f18760r.c4(view3);
                         return;
                     case 2:
-                        lVar.f18675a.f18757r.d4();
+                        lVar.f18678a.f18760r.d4();
                         return;
                     case 3:
-                        lVar.f18675a.f18757r.a4();
+                        lVar.f18678a.f18760r.a4();
                         return;
                     case 4:
-                        lVar.f18675a.f18757r.e4();
+                        lVar.f18678a.f18760r.e4();
                         return;
                     case 5:
-                        p pVar2 = lVar.f18675a;
-                        k3 k22 = pVar2.f18757r.k2();
+                        p pVar2 = lVar.f18678a;
+                        k3 k22 = pVar2.f18760r.k2();
                         if (k22 != null) {
                             TL_iv.RichMessage a10 = k22.a();
                             if (!a10.blocks.isEmpty()) {
-                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38968a);
+                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f39003a);
                                 g0Var.s1(a10);
-                                g0Var.f33705c2 = new ii.c(k22, 9);
+                                g0Var.f33739c2 = new ii.c(k22, 9);
                                 g0Var.show();
                                 return;
                             }
@@ -369,17 +369,17 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         }
                         return;
                     case 6:
-                        lVar.f18675a.L(true, 0, 0, 0L, false);
+                        lVar.f18678a.L(true, 0, 0, 0L, false);
                         return;
                     case 7:
-                        f2 f2Var = lVar.f18675a.f18757r.Q3;
+                        f2 f2Var = lVar.f18678a.f18760r.Q3;
                         if (f2Var != null) {
                             f2Var.k();
                             return;
                         }
                         return;
                     case 8:
-                        f2 f2Var2 = lVar.f18675a.f18757r.Q3;
+                        f2 f2Var2 = lVar.f18678a.f18760r.Q3;
                         if (f2Var2 != null) {
                             f2Var2.i();
                             return;
@@ -387,16 +387,16 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         return;
                     case 9:
                         l lVar2 = lVar;
-                        p pVar3 = lVar2.f18675a;
+                        p pVar3 = lVar2.f18678a;
                         Context context2 = pVar3.getContext();
-                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38968a).show();
+                        new v(pVar3.f18759n, context2, new ii.c(lVar2, 10), pVar3.f39003a).show();
                         return;
                     case 10:
-                        p.P(lVar.f18675a);
+                        p.P(lVar.f18678a);
                         return;
                     default:
-                        p pVar4 = lVar.f18675a;
-                        pVar4.f18757r.f18879i4 = null;
+                        p pVar4 = lVar.f18678a;
+                        pVar4.f18760r.f18882i4 = null;
                         p.S(pVar4, 90, 0);
                         return;
                 }
@@ -420,7 +420,7 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
         u1Var.addView(linearLayout3);
         frameLayout5.addView(u1Var, ha.c(-1.0f, -1));
         jg jgVar = new jg(context, 24);
-        this.f19019y = jgVar;
+        this.f19022y = jgVar;
         jgVar.setPadding(org.telegram.messenger.g0.L(7.0f), org.telegram.messenger.g0.L(7.0f), org.telegram.messenger.g0.L(7.0f), org.telegram.messenger.g0.L(7.0f));
         r6.t(jgVar, i12, f6Var, mode);
         org.telegram.ui.Cells.y b04 = k6.b0(k6.w0(i7, f6Var), k6.w0(i11, f6Var), org.telegram.messenger.g0.L(20.0f), org.telegram.messenger.g0.L(20.0f));
@@ -428,7 +428,7 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
         n6 N4 = r6.N(i11);
         jgVar.setBackground(b04);
         r6.k(jgVar, b04, N3, N4, f6Var);
-        jgVar.j(hg.f34314e, false);
+        jgVar.j(hg.f34251e, false);
         linearLayout3.addView(jgVar, ha.r(38, 38, 16));
         ka.a(jgVar);
         jgVar.setContentDescription("Emoji");
@@ -437,31 +437,31 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        p pVar = lVar.f18675a;
-                        pVar.f18757r.T4();
+                        p pVar = lVar.f18678a;
+                        pVar.f18760r.T4();
                         pVar.b0();
                         return;
                     case 1:
-                        lVar.f18675a.f18757r.c4(view3);
+                        lVar.f18678a.f18760r.c4(view3);
                         return;
                     case 2:
-                        lVar.f18675a.f18757r.d4();
+                        lVar.f18678a.f18760r.d4();
                         return;
                     case 3:
-                        lVar.f18675a.f18757r.a4();
+                        lVar.f18678a.f18760r.a4();
                         return;
                     case 4:
-                        lVar.f18675a.f18757r.e4();
+                        lVar.f18678a.f18760r.e4();
                         return;
                     case 5:
-                        p pVar2 = lVar.f18675a;
-                        k3 k22 = pVar2.f18757r.k2();
+                        p pVar2 = lVar.f18678a;
+                        k3 k22 = pVar2.f18760r.k2();
                         if (k22 != null) {
                             TL_iv.RichMessage a10 = k22.a();
                             if (!a10.blocks.isEmpty()) {
-                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38968a);
+                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f39003a);
                                 g0Var.s1(a10);
-                                g0Var.f33705c2 = new ii.c(k22, 9);
+                                g0Var.f33739c2 = new ii.c(k22, 9);
                                 g0Var.show();
                                 return;
                             }
@@ -469,17 +469,17 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         }
                         return;
                     case 6:
-                        lVar.f18675a.L(true, 0, 0, 0L, false);
+                        lVar.f18678a.L(true, 0, 0, 0L, false);
                         return;
                     case 7:
-                        f2 f2Var = lVar.f18675a.f18757r.Q3;
+                        f2 f2Var = lVar.f18678a.f18760r.Q3;
                         if (f2Var != null) {
                             f2Var.k();
                             return;
                         }
                         return;
                     case 8:
-                        f2 f2Var2 = lVar.f18675a.f18757r.Q3;
+                        f2 f2Var2 = lVar.f18678a.f18760r.Q3;
                         if (f2Var2 != null) {
                             f2Var2.i();
                             return;
@@ -487,16 +487,16 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         return;
                     case 9:
                         l lVar2 = lVar;
-                        p pVar3 = lVar2.f18675a;
+                        p pVar3 = lVar2.f18678a;
                         Context context2 = pVar3.getContext();
-                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38968a).show();
+                        new v(pVar3.f18759n, context2, new ii.c(lVar2, 10), pVar3.f39003a).show();
                         return;
                     case 10:
-                        p.P(lVar.f18675a);
+                        p.P(lVar.f18678a);
                         return;
                     default:
-                        p pVar4 = lVar.f18675a;
-                        pVar4.f18757r.f18879i4 = null;
+                        p pVar4 = lVar.f18678a;
+                        pVar4.f18760r.f18882i4 = null;
                         p.S(pVar4, 90, 0);
                         return;
                 }
@@ -524,31 +524,31 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        p pVar = lVar.f18675a;
-                        pVar.f18757r.T4();
+                        p pVar = lVar.f18678a;
+                        pVar.f18760r.T4();
                         pVar.b0();
                         return;
                     case 1:
-                        lVar.f18675a.f18757r.c4(view3);
+                        lVar.f18678a.f18760r.c4(view3);
                         return;
                     case 2:
-                        lVar.f18675a.f18757r.d4();
+                        lVar.f18678a.f18760r.d4();
                         return;
                     case 3:
-                        lVar.f18675a.f18757r.a4();
+                        lVar.f18678a.f18760r.a4();
                         return;
                     case 4:
-                        lVar.f18675a.f18757r.e4();
+                        lVar.f18678a.f18760r.e4();
                         return;
                     case 5:
-                        p pVar2 = lVar.f18675a;
-                        k3 k22 = pVar2.f18757r.k2();
+                        p pVar2 = lVar.f18678a;
+                        k3 k22 = pVar2.f18760r.k2();
                         if (k22 != null) {
                             TL_iv.RichMessage a10 = k22.a();
                             if (!a10.blocks.isEmpty()) {
-                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38968a);
+                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f39003a);
                                 g0Var.s1(a10);
-                                g0Var.f33705c2 = new ii.c(k22, 9);
+                                g0Var.f33739c2 = new ii.c(k22, 9);
                                 g0Var.show();
                                 return;
                             }
@@ -556,17 +556,17 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         }
                         return;
                     case 6:
-                        lVar.f18675a.L(true, 0, 0, 0L, false);
+                        lVar.f18678a.L(true, 0, 0, 0L, false);
                         return;
                     case 7:
-                        f2 f2Var = lVar.f18675a.f18757r.Q3;
+                        f2 f2Var = lVar.f18678a.f18760r.Q3;
                         if (f2Var != null) {
                             f2Var.k();
                             return;
                         }
                         return;
                     case 8:
-                        f2 f2Var2 = lVar.f18675a.f18757r.Q3;
+                        f2 f2Var2 = lVar.f18678a.f18760r.Q3;
                         if (f2Var2 != null) {
                             f2Var2.i();
                             return;
@@ -574,16 +574,16 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         return;
                     case 9:
                         l lVar2 = lVar;
-                        p pVar3 = lVar2.f18675a;
+                        p pVar3 = lVar2.f18678a;
                         Context context2 = pVar3.getContext();
-                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38968a).show();
+                        new v(pVar3.f18759n, context2, new ii.c(lVar2, 10), pVar3.f39003a).show();
                         return;
                     case 10:
-                        p.P(lVar.f18675a);
+                        p.P(lVar.f18678a);
                         return;
                     default:
-                        p pVar4 = lVar.f18675a;
-                        pVar4.f18757r.f18879i4 = null;
+                        p pVar4 = lVar.f18678a;
+                        pVar4.f18760r.f18882i4 = null;
                         p.S(pVar4, 90, 0);
                         return;
                 }
@@ -644,37 +644,37 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
         x1 x1Var = new x1(2131231580, context, f6Var);
         this.S = x1Var;
         x1Var.c(i10);
-        x1Var.setContentDescription(hd.M0(2131746439, null));
+        x1Var.setContentDescription(id.M0(2131746441, null));
         x1Var.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        p pVar = lVar.f18675a;
-                        pVar.f18757r.T4();
+                        p pVar = lVar.f18678a;
+                        pVar.f18760r.T4();
                         pVar.b0();
                         return;
                     case 1:
-                        lVar.f18675a.f18757r.c4(view3);
+                        lVar.f18678a.f18760r.c4(view3);
                         return;
                     case 2:
-                        lVar.f18675a.f18757r.d4();
+                        lVar.f18678a.f18760r.d4();
                         return;
                     case 3:
-                        lVar.f18675a.f18757r.a4();
+                        lVar.f18678a.f18760r.a4();
                         return;
                     case 4:
-                        lVar.f18675a.f18757r.e4();
+                        lVar.f18678a.f18760r.e4();
                         return;
                     case 5:
-                        p pVar2 = lVar.f18675a;
-                        k3 k22 = pVar2.f18757r.k2();
+                        p pVar2 = lVar.f18678a;
+                        k3 k22 = pVar2.f18760r.k2();
                         if (k22 != null) {
                             TL_iv.RichMessage a10 = k22.a();
                             if (!a10.blocks.isEmpty()) {
-                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38968a);
+                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f39003a);
                                 g0Var.s1(a10);
-                                g0Var.f33705c2 = new ii.c(k22, 9);
+                                g0Var.f33739c2 = new ii.c(k22, 9);
                                 g0Var.show();
                                 return;
                             }
@@ -682,17 +682,17 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         }
                         return;
                     case 6:
-                        lVar.f18675a.L(true, 0, 0, 0L, false);
+                        lVar.f18678a.L(true, 0, 0, 0L, false);
                         return;
                     case 7:
-                        f2 f2Var = lVar.f18675a.f18757r.Q3;
+                        f2 f2Var = lVar.f18678a.f18760r.Q3;
                         if (f2Var != null) {
                             f2Var.k();
                             return;
                         }
                         return;
                     case 8:
-                        f2 f2Var2 = lVar.f18675a.f18757r.Q3;
+                        f2 f2Var2 = lVar.f18678a.f18760r.Q3;
                         if (f2Var2 != null) {
                             f2Var2.i();
                             return;
@@ -700,16 +700,16 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         return;
                     case 9:
                         l lVar2 = lVar;
-                        p pVar3 = lVar2.f18675a;
+                        p pVar3 = lVar2.f18678a;
                         Context context2 = pVar3.getContext();
-                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38968a).show();
+                        new v(pVar3.f18759n, context2, new ii.c(lVar2, 10), pVar3.f39003a).show();
                         return;
                     case 10:
-                        p.P(lVar.f18675a);
+                        p.P(lVar.f18678a);
                         return;
                     default:
-                        p pVar4 = lVar.f18675a;
-                        pVar4.f18757r.f18879i4 = null;
+                        p pVar4 = lVar.f18678a;
+                        pVar4.f18760r.f18882i4 = null;
                         p.S(pVar4, 90, 0);
                         return;
                 }
@@ -719,37 +719,37 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
         x1 x1Var2 = new x1(2131231548, context, f6Var);
         this.P = x1Var2;
         x1Var2.c(i10);
-        x1Var2.setContentDescription(hd.M0(2131746012, null));
+        x1Var2.setContentDescription(id.M0(2131746014, null));
         x1Var2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        p pVar = lVar.f18675a;
-                        pVar.f18757r.T4();
+                        p pVar = lVar.f18678a;
+                        pVar.f18760r.T4();
                         pVar.b0();
                         return;
                     case 1:
-                        lVar.f18675a.f18757r.c4(view3);
+                        lVar.f18678a.f18760r.c4(view3);
                         return;
                     case 2:
-                        lVar.f18675a.f18757r.d4();
+                        lVar.f18678a.f18760r.d4();
                         return;
                     case 3:
-                        lVar.f18675a.f18757r.a4();
+                        lVar.f18678a.f18760r.a4();
                         return;
                     case 4:
-                        lVar.f18675a.f18757r.e4();
+                        lVar.f18678a.f18760r.e4();
                         return;
                     case 5:
-                        p pVar2 = lVar.f18675a;
-                        k3 k22 = pVar2.f18757r.k2();
+                        p pVar2 = lVar.f18678a;
+                        k3 k22 = pVar2.f18760r.k2();
                         if (k22 != null) {
                             TL_iv.RichMessage a10 = k22.a();
                             if (!a10.blocks.isEmpty()) {
-                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38968a);
+                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f39003a);
                                 g0Var.s1(a10);
-                                g0Var.f33705c2 = new ii.c(k22, 9);
+                                g0Var.f33739c2 = new ii.c(k22, 9);
                                 g0Var.show();
                                 return;
                             }
@@ -757,17 +757,17 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         }
                         return;
                     case 6:
-                        lVar.f18675a.L(true, 0, 0, 0L, false);
+                        lVar.f18678a.L(true, 0, 0, 0L, false);
                         return;
                     case 7:
-                        f2 f2Var = lVar.f18675a.f18757r.Q3;
+                        f2 f2Var = lVar.f18678a.f18760r.Q3;
                         if (f2Var != null) {
                             f2Var.k();
                             return;
                         }
                         return;
                     case 8:
-                        f2 f2Var2 = lVar.f18675a.f18757r.Q3;
+                        f2 f2Var2 = lVar.f18678a.f18760r.Q3;
                         if (f2Var2 != null) {
                             f2Var2.i();
                             return;
@@ -775,16 +775,16 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         return;
                     case 9:
                         l lVar2 = lVar;
-                        p pVar3 = lVar2.f18675a;
+                        p pVar3 = lVar2.f18678a;
                         Context context2 = pVar3.getContext();
-                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38968a).show();
+                        new v(pVar3.f18759n, context2, new ii.c(lVar2, 10), pVar3.f39003a).show();
                         return;
                     case 10:
-                        p.P(lVar.f18675a);
+                        p.P(lVar.f18678a);
                         return;
                     default:
-                        p pVar4 = lVar.f18675a;
-                        pVar4.f18757r.f18879i4 = null;
+                        p pVar4 = lVar.f18678a;
+                        pVar4.f18760r.f18882i4 = null;
                         p.S(pVar4, 90, 0);
                         return;
                 }
@@ -802,37 +802,37 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
         x1 x1Var3 = new x1(2131231745, context, f6Var);
         this.O = x1Var3;
         x1Var3.c(i10);
-        x1Var3.setContentDescription(hd.M0(2131751745, null));
+        x1Var3.setContentDescription(id.M0(2131751745, null));
         x1Var3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        p pVar = lVar.f18675a;
-                        pVar.f18757r.T4();
+                        p pVar = lVar.f18678a;
+                        pVar.f18760r.T4();
                         pVar.b0();
                         return;
                     case 1:
-                        lVar.f18675a.f18757r.c4(view3);
+                        lVar.f18678a.f18760r.c4(view3);
                         return;
                     case 2:
-                        lVar.f18675a.f18757r.d4();
+                        lVar.f18678a.f18760r.d4();
                         return;
                     case 3:
-                        lVar.f18675a.f18757r.a4();
+                        lVar.f18678a.f18760r.a4();
                         return;
                     case 4:
-                        lVar.f18675a.f18757r.e4();
+                        lVar.f18678a.f18760r.e4();
                         return;
                     case 5:
-                        p pVar2 = lVar.f18675a;
-                        k3 k22 = pVar2.f18757r.k2();
+                        p pVar2 = lVar.f18678a;
+                        k3 k22 = pVar2.f18760r.k2();
                         if (k22 != null) {
                             TL_iv.RichMessage a10 = k22.a();
                             if (!a10.blocks.isEmpty()) {
-                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38968a);
+                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f39003a);
                                 g0Var.s1(a10);
-                                g0Var.f33705c2 = new ii.c(k22, 9);
+                                g0Var.f33739c2 = new ii.c(k22, 9);
                                 g0Var.show();
                                 return;
                             }
@@ -840,17 +840,17 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         }
                         return;
                     case 6:
-                        lVar.f18675a.L(true, 0, 0, 0L, false);
+                        lVar.f18678a.L(true, 0, 0, 0L, false);
                         return;
                     case 7:
-                        f2 f2Var = lVar.f18675a.f18757r.Q3;
+                        f2 f2Var = lVar.f18678a.f18760r.Q3;
                         if (f2Var != null) {
                             f2Var.k();
                             return;
                         }
                         return;
                     case 8:
-                        f2 f2Var2 = lVar.f18675a.f18757r.Q3;
+                        f2 f2Var2 = lVar.f18678a.f18760r.Q3;
                         if (f2Var2 != null) {
                             f2Var2.i();
                             return;
@@ -858,16 +858,16 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         return;
                     case 9:
                         l lVar2 = lVar;
-                        p pVar3 = lVar2.f18675a;
+                        p pVar3 = lVar2.f18678a;
                         Context context2 = pVar3.getContext();
-                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38968a).show();
+                        new v(pVar3.f18759n, context2, new ii.c(lVar2, 10), pVar3.f39003a).show();
                         return;
                     case 10:
-                        p.P(lVar.f18675a);
+                        p.P(lVar.f18678a);
                         return;
                     default:
-                        p pVar4 = lVar.f18675a;
-                        pVar4.f18757r.f18879i4 = null;
+                        p pVar4 = lVar.f18678a;
+                        pVar4.f18760r.f18882i4 = null;
                         p.S(pVar4, 90, 0);
                         return;
                 }
@@ -877,37 +877,37 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
         x1 x1Var4 = new x1(2131232077, context, f6Var);
         this.Q = x1Var4;
         x1Var4.c(i10);
-        x1Var4.setContentDescription(hd.M0(2131754862, null));
+        x1Var4.setContentDescription(id.M0(2131754862, null));
         x1Var4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        p pVar = lVar.f18675a;
-                        pVar.f18757r.T4();
+                        p pVar = lVar.f18678a;
+                        pVar.f18760r.T4();
                         pVar.b0();
                         return;
                     case 1:
-                        lVar.f18675a.f18757r.c4(view3);
+                        lVar.f18678a.f18760r.c4(view3);
                         return;
                     case 2:
-                        lVar.f18675a.f18757r.d4();
+                        lVar.f18678a.f18760r.d4();
                         return;
                     case 3:
-                        lVar.f18675a.f18757r.a4();
+                        lVar.f18678a.f18760r.a4();
                         return;
                     case 4:
-                        lVar.f18675a.f18757r.e4();
+                        lVar.f18678a.f18760r.e4();
                         return;
                     case 5:
-                        p pVar2 = lVar.f18675a;
-                        k3 k22 = pVar2.f18757r.k2();
+                        p pVar2 = lVar.f18678a;
+                        k3 k22 = pVar2.f18760r.k2();
                         if (k22 != null) {
                             TL_iv.RichMessage a10 = k22.a();
                             if (!a10.blocks.isEmpty()) {
-                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38968a);
+                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f39003a);
                                 g0Var.s1(a10);
-                                g0Var.f33705c2 = new ii.c(k22, 9);
+                                g0Var.f33739c2 = new ii.c(k22, 9);
                                 g0Var.show();
                                 return;
                             }
@@ -915,17 +915,17 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         }
                         return;
                     case 6:
-                        lVar.f18675a.L(true, 0, 0, 0L, false);
+                        lVar.f18678a.L(true, 0, 0, 0L, false);
                         return;
                     case 7:
-                        f2 f2Var = lVar.f18675a.f18757r.Q3;
+                        f2 f2Var = lVar.f18678a.f18760r.Q3;
                         if (f2Var != null) {
                             f2Var.k();
                             return;
                         }
                         return;
                     case 8:
-                        f2 f2Var2 = lVar.f18675a.f18757r.Q3;
+                        f2 f2Var2 = lVar.f18678a.f18760r.Q3;
                         if (f2Var2 != null) {
                             f2Var2.i();
                             return;
@@ -933,16 +933,16 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         return;
                     case 9:
                         l lVar2 = lVar;
-                        p pVar3 = lVar2.f18675a;
+                        p pVar3 = lVar2.f18678a;
                         Context context2 = pVar3.getContext();
-                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38968a).show();
+                        new v(pVar3.f18759n, context2, new ii.c(lVar2, 10), pVar3.f39003a).show();
                         return;
                     case 10:
-                        p.P(lVar.f18675a);
+                        p.P(lVar.f18678a);
                         return;
                     default:
-                        p pVar4 = lVar.f18675a;
-                        pVar4.f18757r.f18879i4 = null;
+                        p pVar4 = lVar.f18678a;
+                        pVar4.f18760r.f18882i4 = null;
                         p.S(pVar4, 90, 0);
                         return;
                 }
@@ -962,37 +962,37 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
         x1Var5.c(i10);
         x1Var5.d();
         arrayList.add(x1Var5);
-        x1Var5.setContentDescription(hd.M0(2131754864, null));
+        x1Var5.setContentDescription(id.M0(2131754864, null));
         x1Var5.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        p pVar = lVar.f18675a;
-                        pVar.f18757r.T4();
+                        p pVar = lVar.f18678a;
+                        pVar.f18760r.T4();
                         pVar.b0();
                         return;
                     case 1:
-                        lVar.f18675a.f18757r.c4(view3);
+                        lVar.f18678a.f18760r.c4(view3);
                         return;
                     case 2:
-                        lVar.f18675a.f18757r.d4();
+                        lVar.f18678a.f18760r.d4();
                         return;
                     case 3:
-                        lVar.f18675a.f18757r.a4();
+                        lVar.f18678a.f18760r.a4();
                         return;
                     case 4:
-                        lVar.f18675a.f18757r.e4();
+                        lVar.f18678a.f18760r.e4();
                         return;
                     case 5:
-                        p pVar2 = lVar.f18675a;
-                        k3 k22 = pVar2.f18757r.k2();
+                        p pVar2 = lVar.f18678a;
+                        k3 k22 = pVar2.f18760r.k2();
                         if (k22 != null) {
                             TL_iv.RichMessage a10 = k22.a();
                             if (!a10.blocks.isEmpty()) {
-                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38968a);
+                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f39003a);
                                 g0Var.s1(a10);
-                                g0Var.f33705c2 = new ii.c(k22, 9);
+                                g0Var.f33739c2 = new ii.c(k22, 9);
                                 g0Var.show();
                                 return;
                             }
@@ -1000,17 +1000,17 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         }
                         return;
                     case 6:
-                        lVar.f18675a.L(true, 0, 0, 0L, false);
+                        lVar.f18678a.L(true, 0, 0, 0L, false);
                         return;
                     case 7:
-                        f2 f2Var = lVar.f18675a.f18757r.Q3;
+                        f2 f2Var = lVar.f18678a.f18760r.Q3;
                         if (f2Var != null) {
                             f2Var.k();
                             return;
                         }
                         return;
                     case 8:
-                        f2 f2Var2 = lVar.f18675a.f18757r.Q3;
+                        f2 f2Var2 = lVar.f18678a.f18760r.Q3;
                         if (f2Var2 != null) {
                             f2Var2.i();
                             return;
@@ -1018,16 +1018,16 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         return;
                     case 9:
                         l lVar2 = lVar;
-                        p pVar3 = lVar2.f18675a;
+                        p pVar3 = lVar2.f18678a;
                         Context context2 = pVar3.getContext();
-                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38968a).show();
+                        new v(pVar3.f18759n, context2, new ii.c(lVar2, 10), pVar3.f39003a).show();
                         return;
                     case 10:
-                        p.P(lVar.f18675a);
+                        p.P(lVar.f18678a);
                         return;
                     default:
-                        p pVar4 = lVar.f18675a;
-                        pVar4.f18757r.f18879i4 = null;
+                        p pVar4 = lVar.f18678a;
+                        pVar4.f18760r.f18882i4 = null;
                         p.S(pVar4, 90, 0);
                         return;
                 }
@@ -1045,37 +1045,37 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
         x1 x1Var6 = new x1(2131231493, context, f6Var);
         x1Var6.setImageDrawable(new org.telegram.ui.ActionBar.u2(context));
         x1Var6.c(i10);
-        x1Var6.setContentDescription(hd.M0(2131755006, null));
+        x1Var6.setContentDescription(id.M0(2131755006, null));
         x1Var6.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        p pVar = lVar.f18675a;
-                        pVar.f18757r.T4();
+                        p pVar = lVar.f18678a;
+                        pVar.f18760r.T4();
                         pVar.b0();
                         return;
                     case 1:
-                        lVar.f18675a.f18757r.c4(view3);
+                        lVar.f18678a.f18760r.c4(view3);
                         return;
                     case 2:
-                        lVar.f18675a.f18757r.d4();
+                        lVar.f18678a.f18760r.d4();
                         return;
                     case 3:
-                        lVar.f18675a.f18757r.a4();
+                        lVar.f18678a.f18760r.a4();
                         return;
                     case 4:
-                        lVar.f18675a.f18757r.e4();
+                        lVar.f18678a.f18760r.e4();
                         return;
                     case 5:
-                        p pVar2 = lVar.f18675a;
-                        k3 k22 = pVar2.f18757r.k2();
+                        p pVar2 = lVar.f18678a;
+                        k3 k22 = pVar2.f18760r.k2();
                         if (k22 != null) {
                             TL_iv.RichMessage a10 = k22.a();
                             if (!a10.blocks.isEmpty()) {
-                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38968a);
+                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f39003a);
                                 g0Var.s1(a10);
-                                g0Var.f33705c2 = new ii.c(k22, 9);
+                                g0Var.f33739c2 = new ii.c(k22, 9);
                                 g0Var.show();
                                 return;
                             }
@@ -1083,17 +1083,17 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         }
                         return;
                     case 6:
-                        lVar.f18675a.L(true, 0, 0, 0L, false);
+                        lVar.f18678a.L(true, 0, 0, 0L, false);
                         return;
                     case 7:
-                        f2 f2Var = lVar.f18675a.f18757r.Q3;
+                        f2 f2Var = lVar.f18678a.f18760r.Q3;
                         if (f2Var != null) {
                             f2Var.k();
                             return;
                         }
                         return;
                     case 8:
-                        f2 f2Var2 = lVar.f18675a.f18757r.Q3;
+                        f2 f2Var2 = lVar.f18678a.f18760r.Q3;
                         if (f2Var2 != null) {
                             f2Var2.i();
                             return;
@@ -1101,16 +1101,16 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         return;
                     case 9:
                         l lVar2 = lVar;
-                        p pVar3 = lVar2.f18675a;
+                        p pVar3 = lVar2.f18678a;
                         Context context2 = pVar3.getContext();
-                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38968a).show();
+                        new v(pVar3.f18759n, context2, new ii.c(lVar2, 10), pVar3.f39003a).show();
                         return;
                     case 10:
-                        p.P(lVar.f18675a);
+                        p.P(lVar.f18678a);
                         return;
                     default:
-                        p pVar4 = lVar.f18675a;
-                        pVar4.f18757r.f18879i4 = null;
+                        p pVar4 = lVar.f18678a;
+                        pVar4.f18760r.f18882i4 = null;
                         p.S(pVar4, 90, 0);
                         return;
                 }
@@ -1131,31 +1131,31 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        p pVar = lVar.f18675a;
-                        pVar.f18757r.T4();
+                        p pVar = lVar.f18678a;
+                        pVar.f18760r.T4();
                         pVar.b0();
                         return;
                     case 1:
-                        lVar.f18675a.f18757r.c4(view3);
+                        lVar.f18678a.f18760r.c4(view3);
                         return;
                     case 2:
-                        lVar.f18675a.f18757r.d4();
+                        lVar.f18678a.f18760r.d4();
                         return;
                     case 3:
-                        lVar.f18675a.f18757r.a4();
+                        lVar.f18678a.f18760r.a4();
                         return;
                     case 4:
-                        lVar.f18675a.f18757r.e4();
+                        lVar.f18678a.f18760r.e4();
                         return;
                     case 5:
-                        p pVar2 = lVar.f18675a;
-                        k3 k22 = pVar2.f18757r.k2();
+                        p pVar2 = lVar.f18678a;
+                        k3 k22 = pVar2.f18760r.k2();
                         if (k22 != null) {
                             TL_iv.RichMessage a10 = k22.a();
                             if (!a10.blocks.isEmpty()) {
-                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38968a);
+                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f39003a);
                                 g0Var.s1(a10);
-                                g0Var.f33705c2 = new ii.c(k22, 9);
+                                g0Var.f33739c2 = new ii.c(k22, 9);
                                 g0Var.show();
                                 return;
                             }
@@ -1163,17 +1163,17 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         }
                         return;
                     case 6:
-                        lVar.f18675a.L(true, 0, 0, 0L, false);
+                        lVar.f18678a.L(true, 0, 0, 0L, false);
                         return;
                     case 7:
-                        f2 f2Var = lVar.f18675a.f18757r.Q3;
+                        f2 f2Var = lVar.f18678a.f18760r.Q3;
                         if (f2Var != null) {
                             f2Var.k();
                             return;
                         }
                         return;
                     case 8:
-                        f2 f2Var2 = lVar.f18675a.f18757r.Q3;
+                        f2 f2Var2 = lVar.f18678a.f18760r.Q3;
                         if (f2Var2 != null) {
                             f2Var2.i();
                             return;
@@ -1181,16 +1181,16 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         return;
                     case 9:
                         l lVar2 = lVar;
-                        p pVar3 = lVar2.f18675a;
+                        p pVar3 = lVar2.f18678a;
                         Context context2 = pVar3.getContext();
-                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38968a).show();
+                        new v(pVar3.f18759n, context2, new ii.c(lVar2, 10), pVar3.f39003a).show();
                         return;
                     case 10:
-                        p.P(lVar.f18675a);
+                        p.P(lVar.f18678a);
                         return;
                     default:
-                        p pVar4 = lVar.f18675a;
-                        pVar4.f18757r.f18879i4 = null;
+                        p pVar4 = lVar.f18678a;
+                        pVar4.f18760r.f18882i4 = null;
                         p.S(pVar4, 90, 0);
                         return;
                 }
@@ -1203,8 +1203,8 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
     public final void a(int i7, int i10, boolean z9) {
         int i11;
         LinearLayout linearLayout = this.D;
-        x1 x1Var = new x1(i7, linearLayout.getContext(), this.f18998b);
-        x1Var.c(k6.f27849d6);
+        x1 x1Var = new x1(i7, linearLayout.getContext(), this.f19001b);
+        x1Var.c(k6.f27852d6);
         if (z9) {
             x1Var.d();
             this.V.add(x1Var);
@@ -1223,7 +1223,7 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
 
     public final void b(int i7, int i10, boolean z9) {
         int i11;
-        x1 x1Var = new x1(i7, getContext(), this.f18998b);
+        x1 x1Var = new x1(i7, getContext(), this.f19001b);
         x1Var.c(k6.Ml);
         if (z9) {
             x1Var.d();
@@ -1298,8 +1298,8 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
     public final void e(boolean z9, boolean z10) {
         float f10;
         int i7;
-        if (this.f19001c0 != z9 || !z10) {
-            this.f19001c0 = z9;
+        if (this.f19004c0 != z9 || !z10) {
+            this.f19004c0 = z9;
             if (z9) {
                 f10 = 1.15f;
             } else {
@@ -1314,15 +1314,15 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                 ch0Var.setScaleY(f10);
             }
             if (z9) {
-                i7 = k6.f28090q7;
+                i7 = k6.f28093q7;
             } else {
                 i7 = k6.G6;
             }
-            ch0Var.setColorFilter(new PorterDuffColorFilter(k6.w0(i7, this.f18998b), PorterDuff.Mode.SRC_IN));
+            ch0Var.setColorFilter(new PorterDuffColorFilter(k6.w0(i7, this.f19001b), PorterDuff.Mode.SRC_IN));
             zg0 animatedDrawable = ch0Var.getAnimatedDrawable();
             if (animatedDrawable != null) {
                 if (z9) {
-                    if (animatedDrawable.f40970a0 > 34) {
+                    if (animatedDrawable.f40989a0 > 34) {
                         animatedDrawable.N(0, false, false);
                     }
                     animatedDrawable.P(33);
@@ -1336,17 +1336,17 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
 
     public final void f(View view, int i7, Drawable drawable) {
         int i10;
-        this.f19006f0.add(view);
-        this.f19007g0.add(drawable);
-        this.f19008h0.add(Integer.valueOf(i7));
-        f6 f6Var = this.f18998b;
-        this.f19009i0.add(Integer.valueOf(k6.w0(i7, f6Var)));
+        this.f19009f0.add(view);
+        this.f19010g0.add(drawable);
+        this.f19011h0.add(Integer.valueOf(i7));
+        f6 f6Var = this.f19001b;
+        this.f19012i0.add(Integer.valueOf(k6.w0(i7, f6Var)));
         if (drawable instanceof RippleDrawable) {
-            i10 = k6.w(k6.w0(i7, f6Var), k6.w0(k6.f27941i6, f6Var));
+            i10 = k6.w(k6.w0(i7, f6Var), k6.w0(k6.f27944i6, f6Var));
         } else {
             i10 = 0;
         }
-        this.f19010j0.add(Integer.valueOf(i10));
+        this.f19013j0.add(Integer.valueOf(i10));
     }
 
     public final void g(int i7, boolean z9) {
@@ -1370,14 +1370,14 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
         float f22;
         float L4;
         float f23;
-        if (this.f18997a0 == i7) {
+        if (this.f19000a0 == i7) {
             return;
         }
-        this.f18997a0 = i7;
+        this.f19000a0 = i7;
         FrameLayout frameLayout = this.H;
         int i12 = 0;
         c61 c61Var = this.G;
-        LinearLayout linearLayout = this.f19018x;
+        LinearLayout linearLayout = this.f19021x;
         float f24 = 0.0f;
         float f25 = 0.8f;
         if (z9) {
@@ -1409,32 +1409,32 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
             ViewPropertyAnimator duration = scaleY.translationY(L3).setDuration(420L);
             xq xqVar = xq.h;
             duration.setInterpolator(xqVar).withEndAction(new Runnable(this) {
-                public final y3 f18939b;
+                public final y3 f18942b;
 
                 {
-                    this.f18939b = this;
+                    this.f18942b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r2) {
                         case 0:
-                            y3 y3Var = this.f18939b;
-                            if (y3Var.f18997a0 != 0) {
-                                y3Var.f19018x.setVisibility(8);
+                            y3 y3Var = this.f18942b;
+                            if (y3Var.f19000a0 != 0) {
+                                y3Var.f19021x.setVisibility(8);
                                 return;
                             }
                             return;
                         case 1:
-                            y3 y3Var2 = this.f18939b;
-                            if (y3Var2.f18997a0 != 1) {
+                            y3 y3Var2 = this.f18942b;
+                            if (y3Var2.f19000a0 != 1) {
                                 y3Var2.G.setVisibility(8);
                                 return;
                             }
                             return;
                         default:
-                            y3 y3Var3 = this.f18939b;
-                            if (y3Var3.f18997a0 != 2) {
+                            y3 y3Var3 = this.f18942b;
+                            if (y3Var3.f19000a0 != 2) {
                                 y3Var3.H.setVisibility(8);
                                 return;
                             }
@@ -1468,32 +1468,32 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                 L4 = org.telegram.messenger.g0.L(30.0f);
             }
             scaleY2.translationY(L4).setDuration(420L).setInterpolator(xqVar).withEndAction(new Runnable(this) {
-                public final y3 f18939b;
+                public final y3 f18942b;
 
                 {
-                    this.f18939b = this;
+                    this.f18942b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r2) {
                         case 0:
-                            y3 y3Var = this.f18939b;
-                            if (y3Var.f18997a0 != 0) {
-                                y3Var.f19018x.setVisibility(8);
+                            y3 y3Var = this.f18942b;
+                            if (y3Var.f19000a0 != 0) {
+                                y3Var.f19021x.setVisibility(8);
                                 return;
                             }
                             return;
                         case 1:
-                            y3 y3Var2 = this.f18939b;
-                            if (y3Var2.f18997a0 != 1) {
+                            y3 y3Var2 = this.f18942b;
+                            if (y3Var2.f19000a0 != 1) {
                                 y3Var2.G.setVisibility(8);
                                 return;
                             }
                             return;
                         default:
-                            y3 y3Var3 = this.f18939b;
-                            if (y3Var3.f18997a0 != 2) {
+                            y3 y3Var3 = this.f18942b;
+                            if (y3Var3.f19000a0 != 2) {
                                 y3Var3.H.setVisibility(8);
                                 return;
                             }
@@ -1517,32 +1517,32 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                 f25 = 1.0f;
             }
             scaleX3.scaleY(f25).setDuration(420L).setInterpolator(xqVar).withEndAction(new Runnable(this) {
-                public final y3 f18939b;
+                public final y3 f18942b;
 
                 {
-                    this.f18939b = this;
+                    this.f18942b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r2) {
                         case 0:
-                            y3 y3Var = this.f18939b;
-                            if (y3Var.f18997a0 != 0) {
-                                y3Var.f19018x.setVisibility(8);
+                            y3 y3Var = this.f18942b;
+                            if (y3Var.f19000a0 != 0) {
+                                y3Var.f19021x.setVisibility(8);
                                 return;
                             }
                             return;
                         case 1:
-                            y3 y3Var2 = this.f18939b;
-                            if (y3Var2.f18997a0 != 1) {
+                            y3 y3Var2 = this.f18942b;
+                            if (y3Var2.f19000a0 != 1) {
                                 y3Var2.G.setVisibility(8);
                                 return;
                             }
                             return;
                         default:
-                            y3 y3Var3 = this.f18939b;
-                            if (y3Var3.f18997a0 != 2) {
+                            y3 y3Var3 = this.f18942b;
+                            if (y3Var3.f19000a0 != 2) {
                                 y3Var3.H.setVisibility(8);
                                 return;
                             }
@@ -1637,19 +1637,19 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
     }
 
     public FrameLayout getBottomContainer() {
-        return this.f19016s;
+        return this.f19019s;
     }
 
     public FrameLayout getBottomInnerContainer() {
-        return this.f19017w;
+        return this.f19020w;
     }
 
     public LinearLayout getBottomPanel() {
-        return this.f19018x;
+        return this.f19021x;
     }
 
     public View getEmojiButton() {
-        return this.f19019y;
+        return this.f19022y;
     }
 
     public dg getSendButton() {
@@ -1663,7 +1663,7 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
         } else {
             i7 = 8;
         }
-        this.f19005f.setVisibility(i7);
+        this.f19008f.setVisibility(i7);
     }
 
     public void setBottomGradientTranslationY(float f10) {
@@ -1676,9 +1676,9 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
         if (z9) {
             hgVar = hg.d;
         } else {
-            hgVar = hg.f34314e;
+            hgVar = hg.f34251e;
         }
-        jg jgVar = this.f19019y;
+        jg jgVar = this.f19022y;
         jgVar.j(hgVar, true);
         if (z9) {
             str = "Keyboard";
@@ -1748,7 +1748,7 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
             layoutParams.topMargin = i7;
             linearLayout.setLayoutParams(layoutParams);
         }
-        ImageView imageView = this.f19005f;
+        ImageView imageView = this.f19008f;
         FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) imageView.getLayoutParams();
         if (layoutParams2.topMargin != i7) {
             layoutParams2.topMargin = i7;
@@ -1763,7 +1763,7 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
         } else {
             i7 = 8;
         }
-        this.f19000c.setVisibility(i7);
+        this.f19003c.setVisibility(i7);
     }
 
     public void setTopPanelVisible(boolean z9) {
@@ -1774,11 +1774,11 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
         } else {
             i7 = 8;
         }
-        this.f19003e.setVisibility(i7);
+        this.f19006e.setVisibility(i7);
         if (z9) {
             i10 = 0;
         }
-        this.f19000c.setVisibility(i10);
+        this.f19003c.setVisibility(i10);
     }
 
     @Override

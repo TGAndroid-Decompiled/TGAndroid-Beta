@@ -6,28 +6,28 @@ import android.os.Build;
 import android.text.SpannableStringBuilder;
 import android.view.ContextThemeWrapper;
 import android.view.View;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.ca;
 import org.telegram.ui.Components.wp;
 import org.telegram.ui.Components.y9;
 public abstract class s1 extends fi.d {
-    public final ca f55851k0;
-    public final RectF f55852l0;
+    public final ca f55943k0;
+    public final RectF f55944l0;
     public int m0;
-    public final c2 f55853n0;
-    public final f6 f55854o0;
-    public int f55855p0;
-    public boolean f55856q0;
+    public final c2 f55945n0;
+    public final f6 f55946o0;
+    public int f55947p0;
+    public boolean f55948q0;
 
     public s1(c2 c2Var, ContextThemeWrapper contextThemeWrapper, f6 f6Var, y9 y9Var) {
         super(contextThemeWrapper, f6Var, false);
-        this.f55852l0 = new RectF();
-        this.f55855p0 = 8;
-        this.f55854o0 = f6Var;
-        this.f55853n0 = c2Var;
-        this.f55851k0 = new ca(y9Var, this, 0, true);
+        this.f55944l0 = new RectF();
+        this.f55947p0 = 8;
+        this.f55946o0 = f6Var;
+        this.f55945n0 = c2Var;
+        this.f55943k0 = new ca(y9Var, this, 0, true);
         setWillNotDraw(false);
         setTextColor(-1);
         setFlickeringLoading(true);
@@ -40,7 +40,7 @@ public abstract class s1 extends fi.d {
     @Override
     public void onDraw(Canvas canvas) {
         boolean z9 = this.f11758g0;
-        RectF rectF = this.f55852l0;
+        RectF rectF = this.f55944l0;
         if (z9) {
             float c10 = this.d.c() + getPaddingLeft() + getPaddingRight();
             rectF.set((getMeasuredWidth() - c10) / 2.0f, 0.0f, (getMeasuredWidth() + c10) / 2.0f, getMeasuredHeight());
@@ -52,7 +52,7 @@ public abstract class s1 extends fi.d {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        if (this.f55856q0) {
+        if (this.f55948q0) {
             i7 = View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + ((int) this.d.c()), 1073741824);
         }
         super.onMeasure(i7, i10);
@@ -61,13 +61,13 @@ public abstract class s1 extends fi.d {
     @Override
     public void setAlpha(float f10) {
         z1[] z1VarArr;
-        c2 c2Var = this.f55853n0;
+        c2 c2Var = this.f55945n0;
         super.setAlpha((!c2Var.D || (z1VarArr = c2Var.H) == null || z1VarArr.length <= 0) ? 0.0f : 0.0f);
     }
 
     public void setCancelState(boolean z9) {
         this.m0 = 2;
-        i(hd.M0(2131752589, null), z9, true);
+        i(id.M0(2131752589, null), z9, true);
     }
 
     public void setCutOutState(boolean z9) {
@@ -75,11 +75,11 @@ public abstract class s1 extends fi.d {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
         wp wpVar = new wp(2131231748, 0);
         wpVar.c(org.telegram.messenger.g0.L(22.0f));
-        wpVar.f40070r = org.telegram.messenger.g0.L(1.0f);
-        wpVar.f40071s = org.telegram.messenger.g0.L(2.0f);
+        wpVar.f40020r = org.telegram.messenger.g0.L(1.0f);
+        wpVar.f40021s = org.telegram.messenger.g0.L(2.0f);
         wpVar.G = 1.2f;
         spannableStringBuilder.setSpan(wpVar, 0, 1, 0);
-        spannableStringBuilder.append((CharSequence) " ").append((CharSequence) hd.M0(2131745681, null));
+        spannableStringBuilder.append((CharSequence) " ").append((CharSequence) id.M0(2131745683, null));
         i(spannableStringBuilder, z9, true);
     }
 
@@ -88,9 +88,9 @@ public abstract class s1 extends fi.d {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
         wp wpVar = new wp(2131231727, 0);
         wpVar.c(org.telegram.messenger.g0.L(20.0f));
-        wpVar.f40070r = org.telegram.messenger.g0.L(-3.0f);
+        wpVar.f40020r = org.telegram.messenger.g0.L(-3.0f);
         spannableStringBuilder.setSpan(wpVar, 0, 1, 0);
-        spannableStringBuilder.append((CharSequence) " ").append((CharSequence) hd.M0(2131745679, null));
+        spannableStringBuilder.append((CharSequence) " ").append((CharSequence) id.M0(2131745681, null));
         i(spannableStringBuilder, z9, true);
     }
 
@@ -99,15 +99,15 @@ public abstract class s1 extends fi.d {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
         wp wpVar = new wp(2131231758, 0);
         wpVar.c(org.telegram.messenger.g0.L(20.0f));
-        wpVar.f40070r = org.telegram.messenger.g0.L(-3.0f);
+        wpVar.f40020r = org.telegram.messenger.g0.L(-3.0f);
         spannableStringBuilder.setSpan(wpVar, 0, 1, 0);
-        spannableStringBuilder.append((CharSequence) " ").append((CharSequence) hd.M0(2131745678, null));
+        spannableStringBuilder.append((CharSequence) " ").append((CharSequence) id.M0(2131745680, null));
         i(spannableStringBuilder, z9, true);
     }
 
     public void setRad(int i7) {
-        this.f55855p0 = i7;
-        setForeground(k6.a0(k6.w0(k6.f27941i6, this.f55854o0), i7, i7));
+        this.f55947p0 = i7;
+        setForeground(k6.a0(k6.w0(k6.f27944i6, this.f55946o0), i7, i7));
     }
 
     public void setRestoreState(boolean z9) {
@@ -115,9 +115,9 @@ public abstract class s1 extends fi.d {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
         wp wpVar = new wp(2131231728, 0);
         wpVar.c(org.telegram.messenger.g0.L(20.0f));
-        wpVar.f40070r = org.telegram.messenger.g0.L(-3.0f);
+        wpVar.f40020r = org.telegram.messenger.g0.L(-3.0f);
         spannableStringBuilder.setSpan(wpVar, 0, 1, 0);
-        spannableStringBuilder.append((CharSequence) " ").append((CharSequence) hd.M0(2131745677, null));
+        spannableStringBuilder.append((CharSequence) " ").append((CharSequence) id.M0(2131745679, null));
         i(spannableStringBuilder, z9, true);
     }
 
@@ -130,9 +130,9 @@ public abstract class s1 extends fi.d {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
         wp wpVar = new wp(2131232531, 0);
         wpVar.c(org.telegram.messenger.g0.L(20.0f));
-        wpVar.f40070r = org.telegram.messenger.g0.L(-3.0f);
+        wpVar.f40020r = org.telegram.messenger.g0.L(-3.0f);
         spannableStringBuilder.setSpan(wpVar, 0, 1, 0);
-        spannableStringBuilder.append((CharSequence) " ").append((CharSequence) hd.M0(2131745675, null));
+        spannableStringBuilder.append((CharSequence) " ").append((CharSequence) id.M0(2131745677, null));
         i(spannableStringBuilder, z9, true);
     }
 

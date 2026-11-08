@@ -4,12 +4,12 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class hs extends org.telegram.ui.Components.oj0 {
-    public final ArrayList f46482c;
+    public final ArrayList f46481c;
     public final ks d;
 
     public hs(ks ksVar, ArrayList arrayList) {
         this.d = ksVar;
-        this.f46482c = arrayList;
+        this.f46481c = arrayList;
     }
 
     @Override
@@ -19,18 +19,18 @@ public final class hs extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final int b() {
-        return this.f46482c.size();
+        return this.f46481c.size();
     }
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        js jsVar = (js) d1Var.f56951a;
-        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) this.f46482c.get(i7);
-        org.telegram.ui.ActionBar.k5 k5Var = jsVar.f47031b;
-        org.telegram.ui.Components.l9 l9Var = jsVar.f47030a;
+        js jsVar = (js) d1Var.f57043a;
+        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) this.f46481c.get(i7);
+        org.telegram.ui.ActionBar.k5 k5Var = jsVar.f47029b;
+        org.telegram.ui.Components.l9 l9Var = jsVar.f47028a;
         jsVar.d = stickerSetCovered;
         if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
-            k5Var.l(org.telegram.messenger.hd.M0(2131748261, null), false);
+            k5Var.l(org.telegram.messenger.id.M0(2131748263, null), false);
             l9Var.setImageResource(2131232044);
             return;
         }
@@ -38,7 +38,7 @@ public final class hs extends org.telegram.ui.Components.oj0 {
         TLRPC.Document document = stickerSetCovered.cover;
         if (document != null) {
             TLRPC.PhotoSize w10 = org.telegram.messenger.w7.w(document.thumbs, 90, false, null, false);
-            org.telegram.messenger.rz f10 = org.telegram.messenger.t5.f(stickerSetCovered.cover, org.telegram.ui.ActionBar.k6.f27793a7, 1.0f, jsVar.f47032c);
+            org.telegram.messenger.rz f10 = org.telegram.messenger.t5.f(stickerSetCovered.cover, org.telegram.ui.ActionBar.k6.f27796a7, 1.0f, jsVar.f47030c);
             if (f10 != null) {
                 if (w10 != null) {
                     l9Var.k(org.telegram.messenger.hc.c(w10, stickerSetCovered.cover), null, "webp", f10, stickerSetCovered);
@@ -56,7 +56,7 @@ public final class hs extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
-        js jsVar = new js(viewGroup.getContext(), this.d.f47272c0);
+        js jsVar = new js(viewGroup.getContext(), this.d.f47277c0);
         jsVar.setLayoutParams(new v4.o0(-2, org.telegram.messenger.g0.L(48.0f)));
         return new v4.d1(jsVar);
     }

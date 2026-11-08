@@ -45,7 +45,7 @@ public final class bd extends m61 {
             q41 q41Var = adVar.f3468a;
             q41Var.setClipToPadding(false);
             q41Var.s1(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(16.0f), false);
-            q41Var.f37160f3.f35510r = false;
+            q41Var.f37190f3.f35528r = false;
             q41Var.setCaptureSectionsDecoratorAllowed(true);
             q41Var.setOverScrollMode(0);
             oi.q qVar = this.h;
@@ -69,11 +69,11 @@ public final class bd extends m61 {
                 if (h != 2) {
                     return "";
                 }
-                return org.telegram.messenger.hd.M0(2131744919, null);
+                return org.telegram.messenger.id.M0(2131744921, null);
             }
-            return org.telegram.messenger.hd.M0(2131744920, null);
+            return org.telegram.messenger.id.M0(2131744922, null);
         }
-        return org.telegram.messenger.hd.M0(2131744921, null);
+        return org.telegram.messenger.id.M0(2131744923, null);
     }
 
     @Override
@@ -81,7 +81,7 @@ public final class bd extends m61 {
         if (i7 >= 0) {
             ArrayList arrayList = this.f3534i;
             if (i7 < arrayList.size()) {
-                return ((x31) arrayList.get(i7)).f40172z;
+                return ((x31) arrayList.get(i7)).f40193z;
             }
             return 0;
         }

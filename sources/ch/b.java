@@ -8,7 +8,7 @@ import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.style.ReplacementSpan;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 public final class b extends ReplacementSpan {
@@ -32,9 +32,9 @@ public final class b extends ReplacementSpan {
     public final void a() {
         Layout.Alignment alignment;
         if (this.f6180c == null) {
-            String M0 = hd.M0(2131746407, null);
-            int i7 = org.telegram.messenger.g0.f22544q.x;
-            if (hd.f22878a0) {
+            String M0 = id.M0(2131746409, null);
+            int i7 = org.telegram.messenger.g0.f22563q.x;
+            if (id.f23157a0) {
                 alignment = Layout.Alignment.ALIGN_OPPOSITE;
             } else {
                 alignment = Layout.Alignment.ALIGN_NORMAL;

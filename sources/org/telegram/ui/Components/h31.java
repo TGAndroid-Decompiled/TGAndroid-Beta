@@ -4,18 +4,18 @@ import android.content.Context;
 import android.text.TextUtils;
 import org.telegram.tgnet.ConnectionsManager;
 public final class h31 extends el0 {
-    public final t31 f34169f;
+    public final t31 f34106f;
 
     public h31(t31 t31Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context, 14.0f, f6Var);
-        this.f34169f = t31Var;
+        this.f34106f = t31Var;
     }
 
     @Override
     public final void a(String str) {
-        jg.d2 d2Var = this.f34169f.f38204w;
+        jg.d2 d2Var = this.f34106f.f38232w;
         jg.b2 b2Var = d2Var.S;
-        int i7 = d2Var.f16696c;
+        int i7 = d2Var.f16699c;
         if (d2Var.N != 0) {
             ConnectionsManager.getInstance(i7).cancelRequest(d2Var.N, true);
             d2Var.N = 0;
@@ -29,7 +29,7 @@ public final class h31 extends el0 {
             d2Var.F.clear();
             d2Var.I.clear();
             d2Var.E.clear();
-            d2Var.f16697e.b(false);
+            d2Var.f16700e.b(false);
             d2Var.f();
         } else {
             d2Var.R = str.toLowerCase();

@@ -15,15 +15,15 @@ public final class h extends w31 {
 
     public static x31 i(int i7, String str, String str2) {
         x31 K = x31.K(h.class);
-        K.f40158k = i7;
-        K.f40159l = str;
-        K.f40160m = str2;
+        K.f40179k = i7;
+        K.f40180l = str;
+        K.f40181m = str2;
         return K;
     }
 
     @Override
     public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
-        ((i) view).a(x31Var.f40158k, x31Var.f40159l, x31Var.f40160m);
+        ((i) view).a(x31Var.f40179k, x31Var.f40180l, x31Var.f40181m);
     }
 
     @Override

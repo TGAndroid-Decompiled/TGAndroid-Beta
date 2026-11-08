@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.text.style.ReplacementSpan;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.Components.my0;
 public final class k0 extends ReplacementSpan {
     public final int f9278a;
@@ -15,7 +15,7 @@ public final class k0 extends ReplacementSpan {
     public k0(org.telegram.ui.ActionBar.f6 f6Var) {
         this.f9278a = 2;
         this.f9279b = f6Var;
-        this.d = new my0(hd.M0(2131745238, null), 12.0f, org.telegram.messenger.g0.o());
+        this.d = new my0(id.M0(2131745240, null), 12.0f, org.telegram.messenger.g0.o());
         this.f9280c = new Paint(1);
     }
 
@@ -46,7 +46,7 @@ public final class k0 extends ReplacementSpan {
                 Paint paint4 = this.f9280c;
                 paint4.setColor(w02);
                 RectF rectF3 = org.telegram.messenger.g0.P;
-                rectF3.set(f10, L3 - org.telegram.messenger.g0.L(9.0f), org.telegram.messenger.g0.L(16.0f) + f10 + this.d.f36125c, org.telegram.messenger.g0.L(9.0f) + L3);
+                rectF3.set(f10, L3 - org.telegram.messenger.g0.L(9.0f), org.telegram.messenger.g0.L(16.0f) + f10 + this.d.f36147c, org.telegram.messenger.g0.L(9.0f) + L3);
                 canvas.drawRoundRect(rectF3, org.telegram.messenger.g0.L(9.0f), org.telegram.messenger.g0.L(9.0f), paint4);
                 this.d.c(f10 + org.telegram.messenger.g0.L(8.0f), L3, 1.0f, -1, canvas);
                 return;
@@ -71,7 +71,7 @@ public final class k0 extends ReplacementSpan {
                 break;
             default:
                 k10 = org.telegram.messenger.g0.L(16.0f);
-                f10 = this.d.f36125c;
+                f10 = this.d.f36147c;
                 break;
         }
         return (int) (k10 + f10);
@@ -83,12 +83,12 @@ public final class k0 extends ReplacementSpan {
             case 1:
                 this.f9279b = new RectF();
                 this.f9280c = new Paint(1);
-                this.d = new my0(hd.M0(2131748824, null), 9.0f, org.telegram.messenger.g0.o());
+                this.d = new my0(id.M0(2131748826, null), 9.0f, org.telegram.messenger.g0.o());
                 return;
             default:
                 this.f9279b = new RectF();
                 this.f9280c = new Paint(1);
-                this.d = new my0(hd.M0(2131748824, null), 8.0f, org.telegram.messenger.g0.o());
+                this.d = new my0(id.M0(2131748826, null), 8.0f, org.telegram.messenger.g0.o());
                 return;
         }
     }

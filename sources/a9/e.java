@@ -116,7 +116,7 @@ public final class e {
             case 13:
                 q8.a aVar10 = (q8.a) obj;
                 commonSettings.getClass();
-                Integer num = (Integer) commonSettings.f19230g;
+                Integer num = (Integer) commonSettings.f19233g;
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("com.google.android.gms.signin.internal.clientRequestedAccount", null);
                 if (num != null) {
@@ -139,7 +139,7 @@ public final class e {
                 if (oVar == null) {
                     oVar = new o(new b7.l());
                 }
-                return new h8.b(context, looper, commonSettings, kVar, lVar, oVar.f59221a);
+                return new h8.b(context, looper, commonSettings, kVar, lVar, oVar.f59310a);
             case 21:
                 return new l7.g(context, looper, commonSettings, (z5.b) obj, kVar, lVar);
             case 22:

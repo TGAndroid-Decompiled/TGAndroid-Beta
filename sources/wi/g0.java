@@ -1,121 +1,128 @@
 package wi;
 
-import android.net.Uri;
 import java.io.File;
-import java.util.ArrayList;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.gf;
 import org.telegram.messenger.j20;
-import org.telegram.messenger.qs;
-import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.fy0;
+import org.telegram.ui.Components.gy0;
+import org.telegram.ui.Components.hy0;
+import org.telegram.ui.Components.m40;
 import org.telegram.ui.Components.n40;
-import org.telegram.ui.Components.qt;
-import org.telegram.ui.Components.s40;
-import org.telegram.ui.fe;
-import org.telegram.ui.qj;
+import org.telegram.ui.Components.rt;
 public final class g0 implements Runnable {
-    public final int f57872a;
-    public final u0 f57873b;
-    public final long f57874c;
+    public final int f57967a = 1;
+    public final t0 f57968b;
+    public final p0 f57969c;
+    public final long d;
+    public final File f57970e;
+    public final boolean f57971f;
 
-    public g0(u0 u0Var, long j3, int i7) {
-        this.f57872a = i7;
-        this.f57873b = u0Var;
-        this.f57874c = j3;
+    public g0(t0 t0Var, p0 p0Var, long j3, File file, boolean z9) {
+        this.f57968b = t0Var;
+        this.f57969c = p0Var;
+        this.d = j3;
+        this.f57970e = file;
+        this.f57971f = z9;
+    }
+
+    private final void a() {
+        t0 t0Var = this.f57968b;
+        p0 p0Var = this.f57969c;
+        File file = this.f57970e;
+        long j3 = this.d;
+        boolean z9 = this.f57971f;
+        synchronized (t0Var.f58198g) {
+            if (!t0Var.H && !p0Var.d && !p0Var.f58127e) {
+                p0Var.f58127e = true;
+                ((hy0) t0Var.f58196e).b(p0Var.f58124a, file.length(), file);
+                t0Var.f58199i.post(new g0(t0Var, p0Var, j3, file, z9));
+            }
+        }
     }
 
     @Override
     public final void run() {
-        File file;
-        long j3;
-        long j10;
-        qj qjVar;
-        h61 h61Var;
-        switch (this.f57872a) {
+        gy0 gy0Var;
+        gy0 gy0Var2;
+        switch (this.f57967a) {
             case 0:
-                u0 u0Var = this.f57873b;
-                long j11 = this.f57874c;
-                if (u0Var.f58103a0 == 6) {
-                    u0Var.I = j11;
-                    u0Var.O = 0L;
-                    u0Var.K = 0L;
-                    u0Var.L = j11;
-                    u0Var.x(2);
-                    u0Var.f58113l.W(u0Var.U, u0Var.I * 1000, u0Var.f58119r);
-                    return;
-                }
+                a();
                 return;
             default:
-                u0 u0Var2 = this.f57873b;
-                long j12 = this.f57874c;
-                if (u0Var2.f58103a0 == 4) {
-                    u0Var2.O = j12;
-                    long min = Math.min(u0Var2.f58118q, j12);
-                    u0Var2.I = min;
-                    u0Var2.K = 0L;
-                    u0Var2.L = min;
-                    u0Var2.f58104b.setSurfaceTextureListener(null);
-                    u0Var2.f58104b.setTransform(u0Var2.h);
-                    l2.i0 a10 = new l2.n(u0Var2.f58102a).a();
-                    u0Var2.W = a10;
-                    a10.z1(u0Var2.f58104b);
-                    u0Var2.W.m0(e2.l0.b(Uri.fromFile(u0Var2.V)));
-                    u0Var2.W.k(0);
-                    u0Var2.W.T(1.0f);
-                    u0Var2.W.I0(u0Var2.Z);
-                    u0Var2.W.a();
-                    u0Var2.W.Z0(5, u0Var2.K);
-                    u0Var2.f58114m.b("preview player prepared: durationMs=" + u0Var2.I + ", trim=" + u0Var2.K + ".." + u0Var2.L);
-                    u0Var2.x(5);
-                    qt qtVar = u0Var2.d;
-                    long j13 = u0Var2.I;
-                    long j14 = u0Var2.K;
-                    long j15 = u0Var2.L;
-                    ((n40) qtVar.f37389b).f36220w.setProgress(((float) j13) / 60000.0f);
-                    n40 n40Var = (n40) qtVar.f37389b;
-                    n40Var.f36205j0 = false;
-                    n40Var.H.setAlpha(0.0f);
-                    n40 n40Var2 = (n40) qtVar.f37389b;
-                    if (n40Var2.U == null) {
-                        u0 u0Var3 = n40Var2.O;
-                        if (u0Var3 == null) {
-                            file = null;
+                t0 t0Var = this.f57968b;
+                p0 p0Var = this.f57969c;
+                long j3 = this.d;
+                File file = this.f57970e;
+                boolean z9 = this.f57971f;
+                int i7 = t0Var.f58192a0;
+                if (i7 != 10 && i7 != 9) {
+                    t0Var.x(8);
+                    t0Var.f58203m.b("output completed: generation=" + p0Var.f58124a + ", durationMs=" + j3 + ", size=" + file.length() + ", hasAudio=" + z9);
+                    t0Var.m("completed");
+                    rt rtVar = t0Var.d;
+                    long j10 = p0Var.f58124a;
+                    n40 n40Var = (n40) rtVar.f37758b;
+                    m40 m40Var = n40Var.U;
+                    if (m40Var != null) {
+                        n40Var.U = null;
+                        n40Var.f36222k0 = true;
+                        hy0 hy0Var = n40Var.S;
+                        if (hy0Var == null) {
+                            gy0Var2 = null;
                         } else {
-                            u0.v();
-                            file = u0Var3.V;
+                            synchronized (hy0Var) {
+                                try {
+                                    try {
+                                        fy0 fy0Var = (fy0) hy0Var.f34477c.get(Long.valueOf(j10));
+                                        if (fy0Var != null && !fy0Var.f33694e) {
+                                            gy0Var = new gy0(Math.max(fy0Var.f33693c, file.length()), fy0Var.f33695f, fy0Var.f33696g, fy0Var.h, fy0Var.f33697i);
+                                        } else {
+                                            gy0Var = new gy0(file.length(), null, null, null, null);
+                                        }
+                                        gy0Var2 = gy0Var;
+                                    } catch (Throwable th2) {
+                                        th = th2;
+                                        throw th;
+                                    }
+                                } catch (Throwable th3) {
+                                    th = th3;
+                                    throw th;
+                                }
+                            }
                         }
-                        if (file != null) {
-                            n40 n40Var3 = (n40) qtVar.f37389b;
-                            n40Var3.T = n40Var3.t(file, j13, null);
-                            n40 n40Var4 = (n40) qtVar.f37389b;
-                            j20 j20Var = n40Var4.T;
-                            if (j14 > 0) {
-                                j3 = j14;
-                            } else {
-                                j3 = -1;
-                            }
-                            j20Var.f23450a = j3;
-                            if (j15 < j13) {
-                                j10 = j15;
-                            } else {
-                                j10 = -1;
-                            }
-                            j20Var.f23452b = j10;
-                            qs.f(n40Var4.f36200f).k(162, Integer.valueOf(((n40) qtVar.f37389b).h), ((n40) qtVar.f37389b).T, file.getAbsolutePath(), new ArrayList());
-                            float max = (float) Math.max(1L, j13);
-                            float f10 = ((float) j14) / max;
-                            float f11 = ((float) j15) / max;
-                            s40 s40Var = ((n40) qtVar.f37389b).f38208b;
-                            if (s40Var != null && (qjVar = ((fe) s40Var).f45614b.Z) != null && (h61Var = qjVar.f31044f1) != null) {
-                                float max2 = Math.max(0.0f, Math.min(1.0f, f10));
-                                h61Var.f34190b = max2;
-                                h61Var.f34191c = Math.max(max2, Math.min(1.0f, f11));
-                                h61Var.invalidate();
-                            }
+                        j20 t6 = n40Var.t(file, j3, gy0Var2);
+                        t6.f23490t = !z9;
+                        gf gfVar = new gf(0, file.getAbsolutePath(), 0, true, 0, 0);
+                        gfVar.f26864x = m40Var.f35885c;
+                        gfVar.f26865y = m40Var.d;
+                        n40Var.f36214e.u(gfVar, t6, m40Var.f35883a, m40Var.f35884b, 0, false, m40Var.f35886e);
+                        hy0 hy0Var2 = n40Var.S;
+                        if (hy0Var2 != null) {
+                            hy0Var2.d(false);
+                        }
+                        n40Var.S = null;
+                        MediaController.B().Y(false);
+                        if (n40Var.W) {
+                            n40Var.W = false;
+                            n40Var.O = null;
                         }
                     }
-                    u0Var2.r();
+                    if (t0Var.G) {
+                        t0Var.s();
+                        return;
+                    }
                     return;
                 }
                 return;
         }
+    }
+
+    public g0(t0 t0Var, p0 p0Var, File file, long j3, boolean z9) {
+        this.f57968b = t0Var;
+        this.f57969c = p0Var;
+        this.f57970e = file;
+        this.d = j3;
+        this.f57971f = z9;
     }
 }

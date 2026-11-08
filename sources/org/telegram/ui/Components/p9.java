@@ -7,33 +7,33 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 public final class p9 extends View {
-    public Bitmap f36839a;
-    public Bitmap f36840b;
-    public Paint f36841c;
+    public Bitmap f36865a;
+    public Bitmap f36866b;
+    public Paint f36867c;
     public int d;
-    public int f36842e;
-    public o9 f36843f;
+    public int f36868e;
+    public o9 f36869f;
 
     public int getRating() {
-        return this.f36842e;
+        return this.f36868e;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int i7;
         Bitmap bitmap;
-        Paint paint = this.f36841c;
+        Paint paint = this.f36867c;
         for (int i10 = 0; i10 < this.d; i10++) {
-            if (i10 < this.f36842e) {
-                i7 = org.telegram.ui.ActionBar.k6.f28013m5;
+            if (i10 < this.f36868e) {
+                i7 = org.telegram.ui.ActionBar.k6.f28016m5;
             } else {
-                i7 = org.telegram.ui.ActionBar.k6.f28145t5;
+                i7 = org.telegram.ui.ActionBar.k6.f28148t5;
             }
             paint.setColor(org.telegram.ui.ActionBar.k6.x0(null, i7, false));
-            if (i10 < this.f36842e) {
-                bitmap = this.f36839a;
+            if (i10 < this.f36868e) {
+                bitmap = this.f36865a;
             } else {
-                bitmap = this.f36840b;
+                bitmap = this.f36866b;
             }
             canvas.drawBitmap(bitmap, org.telegram.messenger.g0.L(48.0f) * i10, 0.0f, paint);
         }
@@ -52,22 +52,22 @@ public final class p9 extends View {
         float L = org.telegram.messenger.g0.L(-8.0f);
         boolean z9 = false;
         for (int i11 = 0; i11 < this.d; i11++) {
-            if (motionEvent.getX() > L && motionEvent.getX() < org.telegram.messenger.g0.L(48.0f) + L && this.f36842e != (i7 = i11 + 1)) {
-                this.f36842e = i7;
-                o9 o9Var = this.f36843f;
+            if (motionEvent.getX() > L && motionEvent.getX() < org.telegram.messenger.g0.L(48.0f) + L && this.f36868e != (i7 = i11 + 1)) {
+                this.f36868e = i7;
+                o9 o9Var = this.f36869f;
                 if (o9Var != null) {
-                    View view = ((org.telegram.ui.Components.voip.o1) o9Var).f39403a;
+                    View view = ((org.telegram.ui.Components.voip.o1) o9Var).f39438a;
                     if (i7 > 0) {
                         z9 = true;
                     }
                     view.setEnabled(z9);
                     TextView textView = (TextView) view;
                     if (i7 < 4) {
-                        i10 = 2131748249;
+                        i10 = 2131748251;
                     } else {
-                        i10 = 2131745641;
+                        i10 = 2131745643;
                     }
-                    textView.setText(org.telegram.messenger.hd.M0(i10, null).toUpperCase());
+                    textView.setText(org.telegram.messenger.id.M0(i10, null).toUpperCase());
                 }
                 invalidate();
                 return true;
@@ -78,6 +78,6 @@ public final class p9 extends View {
     }
 
     public void setOnRatingChangeListener(o9 o9Var) {
-        this.f36843f = o9Var;
+        this.f36869f = o9Var;
     }
 }

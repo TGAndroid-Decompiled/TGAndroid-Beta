@@ -71,7 +71,7 @@ public abstract class b4 extends FrameLayout {
         path.lineTo(org.telegram.messenger.g0.L(4.33f), -org.telegram.messenger.g0.L(4.33f));
         this.f11666a = new org.telegram.ui.Components.ca(y9Var, this, 0, !o9Var.O.f12988r0.c());
         setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(44.0f));
-        w3 w3Var = new w3(o9Var, context, p10.f24467s0, (u3) new v10() {
+        w3 w3Var = new w3(o9Var, context, p10.f24470s0, (u3) new v10() {
             @Override
             public final void a(Object obj, Object obj2) {
                 boolean z9;
@@ -91,14 +91,14 @@ public abstract class b4 extends FrameLayout {
                             x31 K = x31.K(z3.class);
                             K.d = intValue;
                             K.G = (e7) o9Var2.f11668c.get(intValue);
-                            K.f40172z = i11;
+                            K.f40193z = i11;
                             if (o9Var2.f11670f == intValue) {
                                 z9 = true;
                             } else {
                                 z9 = false;
                             }
                             K.L(z9);
-                            K.f40154f = o9Var2.f11669e.contains(num);
+                            K.f40175f = o9Var2.f11669e.contains(num);
                             K.D = new ai.v(o9Var2, intValue, 3);
                             arrayList.add(K);
                             if (o9Var2.f11669e.contains(num)) {
@@ -123,7 +123,7 @@ public abstract class b4 extends FrameLayout {
             }
         }, new di.q4(o9Var, 12), bVar);
         this.f11667b = w3Var;
-        w3Var.f37160f3.f35510r = false;
+        w3Var.f37190f3.f35528r = false;
         w3Var.setClipToPadding(false);
         w3Var.setClipChildren(false);
         w3Var.setPadding(org.telegram.messenger.g0.L(2.0f), 0, org.telegram.messenger.g0.L(2.0f), 0);
@@ -149,14 +149,14 @@ public abstract class b4 extends FrameLayout {
                             x31 K = x31.K(z3.class);
                             K.d = intValue;
                             K.G = (e7) o9Var2.f11668c.get(intValue);
-                            K.f40172z = i11;
+                            K.f40193z = i11;
                             if (o9Var2.f11670f == intValue) {
                                 z9 = true;
                             } else {
                                 z9 = false;
                             }
                             K.L(z9);
-                            K.f40154f = o9Var2.f11669e.contains(num);
+                            K.f40175f = o9Var2.f11669e.contains(num);
                             K.D = new ai.v(o9Var2, intValue, 3);
                             arrayList.add(K);
                             if (o9Var2.f11669e.contains(num)) {
@@ -321,7 +321,7 @@ public abstract class b4 extends FrameLayout {
         my0 my0Var = this.f11675x;
         w3 w3Var = this.f11667b;
         if (my0Var != null) {
-            my0Var.c(rectF.centerX() - (this.f11675x.f36125c / 2.0f), rectF.centerY() - org.telegram.messenger.g0.L(0.6f), 1.0f - w3Var.getAlpha(), -1, canvas);
+            my0Var.c(rectF.centerX() - (this.f11675x.f36147c / 2.0f), rectF.centerY() - org.telegram.messenger.g0.L(0.6f), 1.0f - w3Var.getAlpha(), -1, canvas);
         }
         if (w3Var.getAlpha() > 0.0f) {
             canvas.save();
@@ -436,14 +436,14 @@ public abstract class b4 extends FrameLayout {
                 icVar.c(false);
             }
         } else if (motionEvent.getAction() == 1) {
-            if (icVar.f34585i) {
+            if (icVar.f34629i) {
                 c(!this.M, true);
             }
             icVar.c(false);
         } else if (motionEvent.getAction() == 3) {
             icVar.c(false);
         }
-        if (!icVar.f34585i && !super.onTouchEvent(motionEvent)) {
+        if (!icVar.f34629i && !super.onTouchEvent(motionEvent)) {
             return false;
         }
         return true;

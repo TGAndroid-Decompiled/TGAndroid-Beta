@@ -8,9 +8,9 @@ import android.view.animation.PathInterpolator;
 import java.util.Iterator;
 import java.util.List;
 public final class q0 extends u0 {
-    public static final PathInterpolator f54120e = new PathInterpolator(0.0f, 1.1f, 0.0f, 1.0f);
-    public static final x1.a f54121f = new x1.b(x1.a.f58172c);
-    public static final DecelerateInterpolator f54122g = new DecelerateInterpolator(1.5f);
+    public static final PathInterpolator f54213e = new PathInterpolator(0.0f, 1.1f, 0.0f, 1.0f);
+    public static final x1.a f54214f = new x1.b(x1.a.f58261c);
+    public static final DecelerateInterpolator f54215g = new DecelerateInterpolator(1.5f);
     public static final AccelerateInterpolator h = new AccelerateInterpolator(1.5f);
 
     public static void e(View view, v0 v0Var) {
@@ -57,13 +57,13 @@ public final class q0 extends u0 {
         bi.b1 i7 = i(view);
         if (i7 != null) {
             rh.d dVar = (rh.d) i7;
-            if (dVar.f54450c == 0) {
+            if (dVar.f54542c == 0) {
                 Iterator it = dVar.d.iterator();
                 while (it.hasNext()) {
                     ((rh.c) it.next()).w();
                 }
             }
-            dVar.f54450c++;
+            dVar.f54542c++;
         } else if (view instanceof ViewGroup) {
             ViewGroup viewGroup = (ViewGroup) view;
             for (int i10 = 0; i10 < viewGroup.getChildCount(); i10++) {
@@ -75,7 +75,7 @@ public final class q0 extends u0 {
     public static bi.b1 i(View view) {
         Object tag = view.getTag(2131296698);
         if (tag instanceof p0) {
-            return ((p0) tag).f54118a;
+            return ((p0) tag).f54211a;
         }
         return null;
     }

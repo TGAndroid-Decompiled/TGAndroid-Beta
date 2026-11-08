@@ -260,26 +260,26 @@ public abstract class h implements y {
             t6.append(timeUnit.toString().toLowerCase(locale));
             String sb2 = t6.toString();
             if (nanos + 1000 < 0) {
-                String q10 = rf.b.q(sb2, " (plus ");
+                String r10 = rf.b.r(sb2, " (plus ");
                 long j10 = -nanos;
                 long convert = timeUnit.convert(j10, TimeUnit.NANOSECONDS);
                 long nanos2 = j10 - timeUnit.toNanos(convert);
                 int i7 = (convert > 0L ? 1 : (convert == 0L ? 0 : -1));
                 boolean z9 = i7 == 0 || nanos2 > 1000;
                 if (i7 > 0) {
-                    String str = q10 + convert + " " + lowerCase;
+                    String str = r10 + convert + " " + lowerCase;
                     if (z9) {
-                        str = rf.b.q(str, ",");
+                        str = rf.b.r(str, ",");
                     }
-                    q10 = rf.b.q(str, " ");
+                    r10 = rf.b.r(str, " ");
                 }
                 if (z9) {
-                    q10 = q10 + nanos2 + " nanoseconds ";
+                    r10 = r10 + nanos2 + " nanoseconds ";
                 }
-                sb2 = rf.b.q(q10, "delay)");
+                sb2 = rf.b.r(r10, "delay)");
             }
             if (isDone()) {
-                throw new TimeoutException(rf.b.q(sb2, " but future completed as timeout expired"));
+                throw new TimeoutException(rf.b.r(sb2, " but future completed as timeout expired"));
             }
             throw new TimeoutException(p0.D(sb2, " for ", hVar));
         }

@@ -17,15 +17,15 @@ import org.telegram.ui.Components.b9;
 import org.telegram.ui.Components.q41;
 import sg.t0;
 public final class n extends FrameLayout {
-    public final b9 f55239a;
-    public final TextView f55240b;
-    public i f55241c;
+    public final b9 f55331a;
+    public final TextView f55332b;
+    public i f55333c;
 
     public n(int i7, Context context, f6 f6Var) {
         super(context);
-        this.f55239a = new b9(i7, this, g0.L(24.0f), g0.L(10.0f), g0.N(1.0f));
+        this.f55331a = new b9(i7, this, g0.L(24.0f), g0.L(10.0f), g0.N(1.0f));
         TextView textView = new TextView(context);
-        this.f55240b = textView;
+        this.f55332b = textView;
         r6.V(textView, k6.E8, f6Var);
         textView.setLines(1);
         textView.setSingleLine(true);
@@ -37,41 +37,41 @@ public final class n extends FrameLayout {
     }
 
     public final q41 a(f2 f2Var, long j3, int i7, byte[] bArr, int i10, c20 c20Var) {
-        i iVar = this.f55241c;
+        i iVar = this.f55333c;
         if (iVar != null) {
             return iVar;
         }
         m mVar = new m(f2Var.getCurrentAccount(), f2Var.getMessagesController().j1(j3), i7, bArr, new t0(this, 4), c20Var);
         g0.i3(new t0(mVar, 5), 1000L);
         i iVar2 = new i(f2Var, new h(mVar, 0), i10);
-        this.f55241c = iVar2;
-        iVar2.f37160f3.f35510r = false;
+        this.f55333c = iVar2;
+        iVar2.f37190f3.f35528r = false;
         iVar2.j(new o0(9, this, mVar));
-        return this.f55241c;
+        return this.f55333c;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         int width = getWidth() - g0.L(11.0f);
-        b9 b9Var = this.f55239a;
-        b9Var.setBounds(width - ((int) b9Var.f32112c.d.f55412f.f55420a), g0.L(12.0f), getWidth() - g0.L(11.0f), g0.L(24.0f) + g0.L(12.0f));
+        b9 b9Var = this.f55331a;
+        b9Var.setBounds(width - ((int) b9Var.f32133c.d.f55504f.f55512a), g0.L(12.0f), getWidth() - g0.L(11.0f), g0.L(24.0f) + g0.L(12.0f));
         b9Var.c(canvas);
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f55239a.a();
+        this.f55331a.a();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f55239a.b();
+        this.f55331a.b();
     }
 
     public void setText(String str) {
-        this.f55240b.setText(str);
+        this.f55332b.setText(str);
     }
 }

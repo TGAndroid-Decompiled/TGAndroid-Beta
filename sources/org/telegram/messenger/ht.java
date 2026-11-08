@@ -9,23 +9,23 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.LaunchActivity;
 public final class ht implements v10 {
-    public final int f22983a = 0;
-    public final int f22984b;
-    public final Object f22985c;
+    public final int f22967a = 0;
+    public final int f22968b;
+    public final Object f22969c;
     public final Object d;
 
     public ht(int i7, Context context, v10 v10Var) {
-        this.f22985c = v10Var;
+        this.f22969c = v10Var;
         this.d = context;
-        this.f22984b = i7;
+        this.f22968b = i7;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         org.telegram.ui.ActionBar.f2 T;
-        int i7 = this.f22983a;
+        int i7 = this.f22967a;
         Object obj3 = this.d;
-        Object obj4 = this.f22985c;
+        Object obj4 = this.f22969c;
         switch (i7) {
             case 0:
                 final v10 v10Var = (v10) obj4;
@@ -50,15 +50,15 @@ public final class ht implements v10 {
                         return;
                     } else if (th2 != null) {
                         a8.g(th2, true);
-                        g0.h3(new yq(15, v10Var, th2));
+                        g0.h3(new zq(15, v10Var, th2));
                         return;
                     } else {
                         TL_account.registerPasskey registerpasskey = new TL_account.registerPasskey();
                         try {
-                            JSONObject jSONObject = new JSONObject(cVar.f56873a.getString("androidx.credentials.BUNDLE_KEY_REGISTRATION_RESPONSE_JSON"));
+                            JSONObject jSONObject = new JSONObject(cVar.f56965a.getString("androidx.credentials.BUNDLE_KEY_REGISTRATION_RESPONSE_JSON"));
                             TL_account.inputPasskeyCredentialPublicKey inputpasskeycredentialpublickey = new TL_account.inputPasskeyCredentialPublicKey();
                             registerpasskey.credential = inputpasskeycredentialpublickey;
-                            inputpasskeycredentialpublickey.f27164id = jSONObject.getString("id");
+                            inputpasskeycredentialpublickey.f27167id = jSONObject.getString("id");
                             registerpasskey.credential.raw_id = jSONObject.getString("rawId");
                             JSONObject jSONObject2 = jSONObject.getJSONObject("response");
                             TL_account.inputPasskeyResponseRegister inputpasskeyresponseregister = new TL_account.inputPasskeyResponseRegister();
@@ -77,7 +77,7 @@ public final class ht implements v10 {
                             sb2.append(sb3.toString());
                             a8.b(sb2.toString());
                             registerpasskey.credential.response = inputpasskeyresponseregister;
-                            g0.h3(new dg(context, this.f22984b, registerpasskey, v10Var, 16));
+                            g0.h3(new dg(context, this.f22968b, registerpasskey, v10Var, 16));
                             return;
                         } catch (Exception e10) {
                             a8.g(e10, true);
@@ -105,15 +105,15 @@ public final class ht implements v10 {
                 TLRPC.TL_textWithEntities tL_textWithEntities = (TLRPC.TL_textWithEntities) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 HashSet hashSet = ((f10) obj4).F;
-                int i11 = this.f22984b;
+                int i11 = this.f22968b;
                 if (tL_textWithEntities != null) {
                     hashSet.remove(Integer.valueOf(i11));
                     c20Var.a(tL_textWithEntities);
                     return;
                 } else if (tL_error != null) {
                     if ("SUMMARY_FLOOD_PREMIUM".equalsIgnoreCase(tL_error.text) && (T = LaunchActivity.T()) != null) {
-                        org.telegram.ui.Components.cc K = org.telegram.ui.Components.hc.a0(T).K(2131624216, hd.M0(2131744332, null), hd.M0(2131744331, null), new rn(3, T));
-                        K.f32514j = 5000;
+                        org.telegram.ui.Components.cc K = org.telegram.ui.Components.hc.a0(T).K(2131624216, id.M0(2131744334, null), id.M0(2131744333, null), new rn(3, T));
+                        K.f32545j = 5000;
                         K.k(true);
                     }
                     hashSet.remove(Integer.valueOf(i11));
@@ -126,8 +126,8 @@ public final class ht implements v10 {
     }
 
     public ht(f10 f10Var, int i7, c20 c20Var) {
-        this.f22985c = f10Var;
-        this.f22984b = i7;
+        this.f22969c = f10Var;
+        this.f22968b = i7;
         this.d = c20Var;
     }
 }

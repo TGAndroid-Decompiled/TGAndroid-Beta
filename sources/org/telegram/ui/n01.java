@@ -4,7 +4,7 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.ColorFilter;
 import android.util.SparseIntArray;
-public final class n01 extends org.telegram.ui.Components.av {
+public final class n01 extends org.telegram.ui.Components.bv {
     public final int f47932g0;
     public final q11 f47933h0;
 
@@ -16,7 +16,7 @@ public final class n01 extends org.telegram.ui.Components.av {
 
     @Override
     public final ColorFilter getEmojiColorFilter() {
-        return this.f47933h0.f49041k1;
+        return this.f47933h0.f49044k1;
     }
 
     @Override
@@ -27,46 +27,46 @@ public final class n01 extends org.telegram.ui.Components.av {
         int i12;
         int i13;
         q11 q11Var = this.f47933h0;
-        SparseIntArray sparseIntArray = q11Var.f49068x0;
+        SparseIntArray sparseIntArray = q11Var.f49071x0;
         int i14 = 0;
-        if (q11Var.f49069x1) {
+        if (q11Var.f49072x1) {
             return false;
         }
         int i15 = this.f47932g0;
         if (i15 == 4 && i7 == 0) {
             q11Var.Q = !q11Var.Q;
-            q11Var.f49024d0.setVisibility(8);
-            org.telegram.ui.Components.av avVar = q11Var.f49022c0[q11Var.Q ? 1 : 0];
-            q11Var.f49024d0 = avVar;
-            avVar.setVisibility(0);
-            org.telegram.ui.Components.wu wuVar = q11Var.f49024d0.f31921y;
+            q11Var.f49027d0.setVisibility(8);
+            org.telegram.ui.Components.bv bvVar = q11Var.f49025c0[q11Var.Q ? 1 : 0];
+            q11Var.f49027d0 = bvVar;
+            bvVar.setVisibility(0);
+            org.telegram.ui.Components.xu xuVar = q11Var.f49027d0.f32372y;
             Context context = getContext();
             if (q11Var.Q) {
                 i12 = 2131232127;
             } else {
                 i12 = 2131232126;
             }
-            wuVar.setDrawable(context.getDrawable(i12));
-            org.telegram.ui.Components.wu wuVar2 = q11Var.f49024d0.f31921y;
+            xuVar.setDrawable(context.getDrawable(i12));
+            org.telegram.ui.Components.xu xuVar2 = q11Var.f49027d0.f32372y;
             if (q11Var.Q) {
                 i13 = 2131754756;
             } else {
                 i13 = 2131751197;
             }
-            wuVar2.setContentDescription(org.telegram.messenger.hd.M0(i13, null));
+            xuVar2.setContentDescription(org.telegram.messenger.id.M0(i13, null));
             q11Var.B(true, false, false);
-            q11Var.f49053r0.h1(0, 0);
+            q11Var.f49056r0.h1(0, 0);
             return true;
         }
-        org.telegram.ui.Components.wu wuVar3 = this.E;
-        if (wuVar3 != null && this.f31913b0) {
+        org.telegram.ui.Components.xu xuVar3 = this.E;
+        if (xuVar3 != null && this.f32364b0) {
             i10 = 1;
         } else {
             i10 = 0;
         }
         int i16 = i10 + 1;
-        if (wuVar3 != null && this.f31913b0 && i7 == 1) {
-            i11 = q11Var.f49044n;
+        if (xuVar3 != null && this.f32364b0 && i7 == 1) {
+            i11 = q11Var.f49047n;
         } else {
             if ((i15 != 4 || i7 != 0) && i7 > 0) {
                 int i17 = i7 - i16;
@@ -80,23 +80,23 @@ public final class n01 extends org.telegram.ui.Components.av {
             i14 = 7;
         }
         q11.a(q11Var, i11, org.telegram.messenger.g0.L(i14 - 2));
-        q11Var.f49024d0.j(i7, true);
-        q11Var.f49034h0.J1 = true;
+        q11Var.f49027d0.j(i7, true);
+        q11Var.f49037h0.J1 = true;
         q11Var.v(null, true, true);
-        i01 i01Var = q11Var.f49030f0;
-        if (i01Var != null && (f11Var = i01Var.f46541n) != null) {
+        i01 i01Var = q11Var.f49033f0;
+        if (i01Var != null && (f11Var = i01Var.f46540n) != null) {
             f11Var.I1(null);
         }
         return true;
     }
 
     @Override
-    public final void i(org.telegram.ui.Components.wu wuVar) {
+    public final void i(org.telegram.ui.Components.xu xuVar) {
         ValueAnimator valueAnimator = this.f47933h0.V1;
         if (valueAnimator != null && !valueAnimator.isRunning()) {
             return;
         }
-        wuVar.setScaleX(0.0f);
-        wuVar.setScaleY(0.0f);
+        xuVar.setScaleX(0.0f);
+        xuVar.setScaleY(0.0f);
     }
 }

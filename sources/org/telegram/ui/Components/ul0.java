@@ -3,40 +3,40 @@ package org.telegram.ui.Components;
 import android.text.TextUtils;
 import androidx.recyclerview.widget.RecyclerView;
 public final class ul0 extends v4.s0 {
-    public final int f38671a;
-    public final org.telegram.ui.ww f38672b;
-    public final org.telegram.ui.fw f38673c;
+    public final int f38686a;
+    public final org.telegram.ui.ww f38687b;
+    public final org.telegram.ui.fw f38688c;
 
     public ul0(org.telegram.ui.fw fwVar, org.telegram.ui.ww wwVar, int i7) {
-        this.f38671a = i7;
-        this.f38673c = fwVar;
-        this.f38672b = wwVar;
+        this.f38686a = i7;
+        this.f38688c = fwVar;
+        this.f38687b = wwVar;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, int i7) {
-        switch (this.f38671a) {
+        switch (this.f38686a) {
             case 0:
                 if (i7 == 1) {
-                    org.telegram.messenger.g0.v1(this.f38672b.getParentActivity().getCurrentFocus());
+                    org.telegram.messenger.g0.v1(this.f38687b.getParentActivity().getCurrentFocus());
                     return;
                 }
                 return;
             case 1:
                 if (i7 == 1) {
-                    org.telegram.messenger.g0.v1(this.f38672b.getParentActivity().getCurrentFocus());
+                    org.telegram.messenger.g0.v1(this.f38687b.getParentActivity().getCurrentFocus());
                     return;
                 }
                 return;
             case 2:
                 if (i7 == 1) {
-                    org.telegram.messenger.g0.v1(this.f38672b.getParentActivity().getCurrentFocus());
+                    org.telegram.messenger.g0.v1(this.f38687b.getParentActivity().getCurrentFocus());
                     return;
                 }
                 return;
             default:
                 if (i7 == 1) {
-                    org.telegram.messenger.g0.v1(this.f38672b.getParentActivity().getCurrentFocus());
+                    org.telegram.messenger.g0.v1(this.f38687b.getParentActivity().getCurrentFocus());
                     return;
                 }
                 return;
@@ -48,21 +48,21 @@ public final class ul0 extends v4.s0 {
         org.telegram.ui.hw hwVar;
         int i11;
         pj0 pj0Var;
-        switch (this.f38671a) {
+        switch (this.f38686a) {
             case 0:
-                org.telegram.ui.fw fwVar = this.f38673c;
-                fwVar.f33603q0.W();
+                org.telegram.ui.fw fwVar = this.f38688c;
+                fwVar.f33610q0.W();
                 fwVar.T();
                 return;
             case 1:
-                org.telegram.ui.fw fwVar2 = this.f38673c;
-                fwVar2.f33610x0.X();
+                org.telegram.ui.fw fwVar2 = this.f38688c;
+                fwVar2.f33617x0.X();
                 fwVar2.T();
                 return;
             case 2:
-                org.telegram.ui.fw fwVar3 = this.f38673c;
-                yl0 yl0Var = fwVar3.f33591d0;
-                v4.b0 b0Var = fwVar3.f33592e0;
+                org.telegram.ui.fw fwVar3 = this.f38688c;
+                yl0 yl0Var = fwVar3.f33598d0;
+                v4.b0 b0Var = fwVar3.f33599e0;
                 int L0 = b0Var.L0();
                 int N0 = b0Var.N0();
                 int abs = Math.abs(b0Var.N0() - L0) + 1;
@@ -73,14 +73,14 @@ public final class ul0 extends v4.s0 {
                 fwVar3.T();
                 return;
             default:
-                org.telegram.ui.fw fwVar4 = this.f38673c;
-                am0 am0Var = fwVar4.f33599l0;
-                if (am0Var.f40357a0 && !am0Var.Y && !TextUtils.isEmpty(am0Var.f40360d0) && (pj0Var = am0Var.d) != null) {
+                org.telegram.ui.fw fwVar4 = this.f38688c;
+                am0 am0Var = fwVar4.f33606l0;
+                if (am0Var.f40378a0 && !am0Var.Y && !TextUtils.isEmpty(am0Var.f40381d0) && (pj0Var = am0Var.d) != null) {
                     int i12 = 0;
                     while (true) {
                         if (i12 < pj0Var.getChildCount()) {
-                            if (pj0Var.getChildAt(i12) instanceof lz) {
-                                if (am0Var.f40357a0 && !am0Var.Y && !TextUtils.isEmpty(am0Var.f40360d0)) {
+                            if (pj0Var.getChildAt(i12) instanceof mz) {
+                                if (am0Var.f40378a0 && !am0Var.Y && !TextUtils.isEmpty(am0Var.f40381d0)) {
                                     am0Var.W(true);
                                 }
                             } else {

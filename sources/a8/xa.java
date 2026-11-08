@@ -22,11 +22,11 @@ public final class xa implements ua.b {
             case 3:
                 return this.f709b.a("FIREBASE_ML_SDK", new l5.c("proto"), xf.d);
             case 4:
-                return this.f709b.a("FIREBASE_ML_SDK", new l5.c("json"), y7.h9.f58952e);
+                return this.f709b.a("FIREBASE_ML_SDK", new l5.c("json"), y7.h9.f59041e);
             case 5:
                 return this.f709b.a("FIREBASE_ML_SDK", new l5.c("proto"), y7.h9.d);
             case 6:
-                return this.f709b.a("FIREBASE_ML_SDK", new l5.c("json"), z7.qa.f59837e);
+                return this.f709b.a("FIREBASE_ML_SDK", new l5.c("json"), z7.qa.f59930e);
             default:
                 return this.f709b.a("FIREBASE_ML_SDK", new l5.c("proto"), z7.qa.d);
         }

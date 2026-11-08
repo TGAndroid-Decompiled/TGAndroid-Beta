@@ -19,7 +19,7 @@ public final class t3 implements v10 {
     }
 
     @Override
-    public final void a(java.lang.Object r23, java.lang.Object r24) {
+    public final void a(java.lang.Object r28, java.lang.Object r29) {
         throw new UnsupportedOperationException("Method not decompiled: bi.t3.a(java.lang.Object, java.lang.Object):void");
     }
 }

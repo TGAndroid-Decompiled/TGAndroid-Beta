@@ -8,37 +8,37 @@ import android.view.ViewGroup;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.Components.Premium.LimitPreviewView;
 public final class z40 extends AnimatorListenerAdapter {
-    public final int f52468a;
-    public final boolean f52469b;
-    public final Object f52470c;
+    public final int f52448a;
+    public final boolean f52449b;
+    public final Object f52450c;
 
     public z40(int i7, Object obj, boolean z9) {
-        this.f52468a = i7;
-        this.f52470c = obj;
-        this.f52469b = z9;
+        this.f52448a = i7;
+        this.f52450c = obj;
+        this.f52449b = z9;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f52468a) {
+        switch (this.f52448a) {
             case 0:
-                ((d50) this.f52470c).h = null;
+                ((d50) this.f52450c).h = null;
                 return;
             case 3:
-                xm0 xm0Var = (xm0) this.f52470c;
-                if (animator.equals(xm0Var.f51925k0)) {
-                    xm0Var.f51925k0 = null;
+                xm0 xm0Var = (xm0) this.f52450c;
+                if (animator.equals(xm0Var.f51918k0)) {
+                    xm0Var.f51918k0 = null;
                     return;
                 }
                 return;
             case 9:
-                ((m31) this.f52470c).f47652n = null;
+                ((m31) this.f52450c).f47649n = null;
                 return;
             case 11:
-                ya1 ya1Var = (ya1) this.f52470c;
-                AnimatorSet animatorSet = ya1Var.I;
+                za1 za1Var = (za1) this.f52450c;
+                AnimatorSet animatorSet = za1Var.I;
                 if (animatorSet != null && animatorSet.equals(animator)) {
-                    ya1Var.I = null;
+                    za1Var.I = null;
                     return;
                 }
                 return;
@@ -52,18 +52,18 @@ public final class z40 extends AnimatorListenerAdapter {
     public final void onAnimationEnd(Animator animator) {
         yc ycVar;
         org.telegram.ui.Cells.b4 b4Var;
-        int i7 = this.f52468a;
+        int i7 = this.f52448a;
         float f10 = 0.0f;
-        boolean z9 = this.f52469b;
-        Object obj = this.f52470c;
+        boolean z9 = this.f52449b;
+        Object obj = this.f52450c;
         switch (i7) {
             case 0:
                 d50 d50Var = (d50) obj;
-                if (d50Var.h != null && (ycVar = d50Var.f44950f) != null) {
+                if (d50Var.h != null && (ycVar = d50Var.f44955f) != null) {
                     if (z9) {
                         ycVar.setVisibility(4);
                     } else {
-                        d50Var.f44951n.setVisibility(4);
+                        d50Var.f44956n.setVisibility(4);
                     }
                     d50Var.h = null;
                     return;
@@ -82,18 +82,18 @@ public final class z40 extends AnimatorListenerAdapter {
                 return;
             case 2:
                 if (!z9) {
-                    ((PasscodeActivity) obj).f41329w.setVisibility(8);
+                    ((PasscodeActivity) obj).f41333w.setVisibility(8);
                     return;
                 }
                 return;
             case 3:
                 xm0 xm0Var = (xm0) obj;
-                if (animator.equals(xm0Var.f51925k0)) {
+                if (animator.equals(xm0Var.f51918k0)) {
                     if (!z9) {
                         xm0Var.Z.setVisibility(4);
-                        xm0Var.f51911a0.setVisibility(4);
+                        xm0Var.f51904a0.setVisibility(4);
                     }
-                    xm0Var.f51925k0 = null;
+                    xm0Var.f51918k0 = null;
                     return;
                 }
                 return;
@@ -132,7 +132,7 @@ public final class z40 extends AnimatorListenerAdapter {
                 if (z9) {
                     f10 = 1.0f;
                 }
-                rz0Var.f49604w = f10;
+                rz0Var.f49583w = f10;
                 if (rz0Var.S) {
                     rz0Var.N.invalidate();
                     return;
@@ -140,13 +140,13 @@ public final class z40 extends AnimatorListenerAdapter {
                 return;
             case 8:
                 m11 m11Var = (m11) obj;
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = m11Var.f47629w;
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = m11Var.f47626w;
                 if (z9) {
                     f10 = 1.0f;
                 }
                 m11Var.L = f10;
                 actionBarPopupWindow$ActionBarPopupWindowLayout.setBackScaleY(f10);
-                actionBarPopupWindow$ActionBarPopupWindowLayout.setAlpha(org.telegram.ui.Components.xq.f40346g.getInterpolation(m11Var.L));
+                actionBarPopupWindow$ActionBarPopupWindowLayout.setAlpha(org.telegram.ui.Components.xq.f40367g.getInterpolation(m11Var.L));
                 int itemsCount = actionBarPopupWindow$ActionBarPopupWindowLayout.getItemsCount();
                 for (int i10 = 0; i10 < itemsCount; i10++) {
                     float s5 = org.telegram.messenger.g0.s(m11Var.L, i10, itemsCount, 4.0f);
@@ -157,30 +157,30 @@ public final class z40 extends AnimatorListenerAdapter {
                 return;
             case 9:
                 m31 m31Var = (m31) obj;
-                if (m31Var.f47652n != null && (b4Var = m31Var.f47653r) != null) {
+                if (m31Var.f47649n != null && (b4Var = m31Var.f47650r) != null) {
                     if (!z9) {
                         b4Var.setVisibility(4);
                     }
-                    m31Var.f47652n = null;
+                    m31Var.f47649n = null;
                     return;
                 }
                 return;
             case 10:
-                f81 f81Var = (f81) obj;
+                g81 g81Var = (g81) obj;
                 if (z9) {
                     f10 = 1.0f;
                 }
-                f81Var.D = f10;
+                g81Var.D = f10;
                 return;
             case 11:
-                ya1 ya1Var = (ya1) obj;
-                AnimatorSet animatorSet2 = ya1Var.I;
+                za1 za1Var = (za1) obj;
+                AnimatorSet animatorSet2 = za1Var.I;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
                     if (z9) {
-                        ya1Var.f52187e.setVisibility(4);
+                        za1Var.f52503e.setVisibility(4);
                         return;
                     } else {
-                        ya1Var.f52182b.setVisibility(4);
+                        za1Var.f52498b.setVisibility(4);
                         return;
                     }
                 }
@@ -208,25 +208,25 @@ public final class z40 extends AnimatorListenerAdapter {
                 return;
             case 13:
                 l0 l0Var = (l0) obj;
-                bi.v vVar2 = l0Var.f51182b0;
+                bi.v vVar2 = l0Var.f51189b0;
                 if (!l0Var.W) {
                     vVar2.setVisibility(8);
                 }
                 if (z9) {
                     f10 = 1.0f;
                 }
-                l0Var.f51180a0 = f10;
+                l0Var.f51187a0 = f10;
                 vVar2.setAlpha(f10);
-                l0Var.j(l0Var.f51180a0);
-                l0Var.R.setTranslationX(org.telegram.messenger.g0.L(56.0f) * l0Var.f51180a0);
-                l0Var.O.setTranslationX(org.telegram.messenger.g0.L(112.0f) * l0Var.f51180a0);
+                l0Var.j(l0Var.f51187a0);
+                l0Var.R.setTranslationX(org.telegram.messenger.g0.L(56.0f) * l0Var.f51187a0);
+                l0Var.O.setTranslationX(org.telegram.messenger.g0.L(112.0f) * l0Var.f51187a0);
                 l0Var.invalidate();
                 return;
             case 14:
                 tg.o1 o1Var = (tg.o1) obj;
-                ((sg.i) o1Var).D.f55093o1.c();
+                ((sg.i) o1Var).D.f55185o1.c();
                 if (z9) {
-                    o1Var.f55799x.accept(Integer.valueOf(o1Var.f55797s));
+                    o1Var.f55891x.accept(Integer.valueOf(o1Var.f55889s));
                 }
                 if (o1Var.getParent() != null) {
                     ((ViewGroup) o1Var.getParent()).removeView(o1Var);
@@ -236,12 +236,12 @@ public final class z40 extends AnimatorListenerAdapter {
             case 15:
                 LimitPreviewView limitPreviewView = (LimitPreviewView) obj;
                 if (z9) {
-                    limitPreviewView.f31459j0 = false;
+                    limitPreviewView.f31463j0 = false;
                 }
-                Runnable runnable = limitPreviewView.f31460k0;
+                Runnable runnable = limitPreviewView.f31464k0;
                 if (runnable != null) {
                     org.telegram.messenger.g0.r(runnable);
-                    limitPreviewView.f31460k0.run();
+                    limitPreviewView.f31464k0.run();
                     return;
                 }
                 return;
@@ -251,7 +251,7 @@ public final class z40 extends AnimatorListenerAdapter {
                     f10 = 1.0f;
                 }
                 p0Var.O = f10;
-                p0Var.f56664f.invalidate();
+                p0Var.f56756f.invalidate();
                 ug.o0 o0Var = p0Var.h;
                 if (o0Var != null) {
                     o0Var.invalidate();
@@ -263,16 +263,16 @@ public final class z40 extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f52468a) {
+        switch (this.f52448a) {
             case 1:
-                if (this.f52469b) {
-                    ((ce0) this.f52470c).V.setVisibility(0);
+                if (this.f52449b) {
+                    ((ce0) this.f52450c).V.setVisibility(0);
                     return;
                 }
                 return;
             case 2:
-                if (this.f52469b) {
-                    ((PasscodeActivity) this.f52470c).f41329w.setVisibility(0);
+                if (this.f52449b) {
+                    ((PasscodeActivity) this.f52450c).f41333w.setVisibility(0);
                     return;
                 }
                 return;
@@ -282,10 +282,10 @@ public final class z40 extends AnimatorListenerAdapter {
                 super.onAnimationStart(animator);
                 return;
             case 5:
-                mw0 mw0Var = (mw0) this.f52470c;
+                mw0 mw0Var = (mw0) this.f52450c;
                 ProfileActivity profileActivity = mw0Var.f47892n;
                 org.telegram.ui.ActionBar.f5 f5Var = profileActivity.T0;
-                if (f5Var != null && !this.f52469b) {
+                if (f5Var != null && !this.f52449b) {
                     f5Var.setClickable(true);
                 }
                 profileActivity.B5(true);
@@ -293,8 +293,8 @@ public final class z40 extends AnimatorListenerAdapter {
                 profileActivity.L5(false);
                 return;
             case 6:
-                nx0 nx0Var = (nx0) this.f52470c;
-                if (this.f52469b) {
+                nx0 nx0Var = (nx0) this.f52450c;
+                if (this.f52449b) {
                     nx0Var.f48162f.setAlpha(0.0f);
                     nx0Var.f48162f.setVisibility(0);
                     return;

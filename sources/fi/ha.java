@@ -84,17 +84,17 @@ public final class ha extends FrameLayout {
         va vaVar = this.d;
         ld0 ld0Var = vaVar.F1;
         if (ld0Var != null) {
-            ki0 ki0Var = ld0Var.f35655e;
-            ki0Var.f35313a = 0.0f;
-            ki0Var.f35314b = 0.0f;
-            ki0Var.f35315c = ld0Var.getMeasuredWidth();
+            ki0 ki0Var = ld0Var.f35673e;
+            ki0Var.f35339a = 0.0f;
+            ki0Var.f35340b = 0.0f;
+            ki0Var.f35341c = ld0Var.getMeasuredWidth();
             ki0Var.d = vaVar.F1.getMeasuredHeight();
         }
         jd0 jd0Var = vaVar.E1;
         if (jd0Var != null) {
             mt0 mt0Var = jd0Var.d;
-            mt0Var.f36086a = jd0Var.getMeasuredWidth();
-            mt0Var.f36087b = vaVar.E1.getMeasuredHeight();
+            mt0Var.f36114a = jd0Var.getMeasuredWidth();
+            mt0Var.f36115b = vaVar.E1.getMeasuredHeight();
         }
     }
 

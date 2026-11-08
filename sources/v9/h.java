@@ -3,23 +3,23 @@ package v9;
 import java.util.concurrent.Delayed;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
-import org.telegram.ui.Components.qt;
+import org.telegram.ui.Components.rt;
 public final class h extends c0.h implements ScheduledFuture {
-    public final ScheduledFuture f57181n;
+    public final ScheduledFuture f57273n;
 
     public h(g gVar) {
-        this.f57181n = gVar.a(new qt(this, 24));
+        this.f57273n = gVar.a(new rt(this, 24));
     }
 
     @Override
     public final int compareTo(Delayed delayed) {
-        return this.f57181n.compareTo(delayed);
+        return this.f57273n.compareTo(delayed);
     }
 
     @Override
     public final void d() {
         boolean z9;
-        ScheduledFuture scheduledFuture = this.f57181n;
+        ScheduledFuture scheduledFuture = this.f57273n;
         Object obj = this.f5237a;
         if ((obj instanceof c0.a) && ((c0.a) obj).f5221a) {
             z9 = true;
@@ -31,6 +31,6 @@ public final class h extends c0.h implements ScheduledFuture {
 
     @Override
     public final long getDelay(TimeUnit timeUnit) {
-        return this.f57181n.getDelay(timeUnit);
+        return this.f57273n.getDelay(timeUnit);
     }
 }

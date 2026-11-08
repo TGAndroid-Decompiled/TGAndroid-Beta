@@ -8,25 +8,25 @@ import h2.m0;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 public final class f extends c {
-    public m f16420a;
-    public byte[] f16421b;
-    public int f16422c;
+    public m f16423a;
+    public byte[] f16424b;
+    public int f16425c;
     public int d;
 
     @Override
     public final void close() {
-        if (this.f16421b != null) {
-            this.f16421b = null;
+        if (this.f16424b != null) {
+            this.f16424b = null;
             transferEnded();
         }
-        this.f16420a = null;
+        this.f16423a = null;
     }
 
     @Override
     public final Uri getUri() {
-        m mVar = this.f16420a;
+        m mVar = this.f16423a;
         if (mVar != null) {
-            return mVar.f16446a;
+            return mVar.f16449a;
         }
         return null;
     }
@@ -34,9 +34,9 @@ public final class f extends c {
     @Override
     public final long open(m mVar) {
         transferInitializing(mVar);
-        this.f16420a = mVar;
-        Uri uri = mVar.f16446a;
-        long j3 = mVar.f16450f;
+        this.f16423a = mVar;
+        Uri uri = mVar.f16449a;
+        long j3 = mVar.f16453f;
         Uri normalizeScheme = uri.normalizeScheme();
         String scheme = normalizeScheme.getScheme();
         ia.h("data".equals(scheme), "Unsupported scheme: %s", scheme);
@@ -47,18 +47,18 @@ public final class f extends c {
             String str2 = split[1];
             if (split[0].contains(";base64")) {
                 try {
-                    this.f16421b = Base64.decode(str2, 0);
+                    this.f16424b = Base64.decode(str2, 0);
                 } catch (IllegalArgumentException e10) {
                     throw new t0(rf.b.i("Error while parsing Base64 encoded string: ", str2), e10, true, 0);
                 }
             } else {
-                this.f16421b = URLDecoder.decode(str2, StandardCharsets.US_ASCII.name()).getBytes(StandardCharsets.UTF_8);
+                this.f16424b = URLDecoder.decode(str2, StandardCharsets.US_ASCII.name()).getBytes(StandardCharsets.UTF_8);
             }
-            long j10 = mVar.f16449e;
-            byte[] bArr = this.f16421b;
+            long j10 = mVar.f16452e;
+            byte[] bArr = this.f16424b;
             if (j10 <= bArr.length) {
                 int i7 = (int) j10;
-                this.f16422c = i7;
+                this.f16425c = i7;
                 int length = bArr.length - i7;
                 this.d = length;
                 int i10 = (j3 > (-1L) ? 1 : (j3 == (-1L) ? 0 : -1));
@@ -71,7 +71,7 @@ public final class f extends c {
                 }
                 return this.d;
             }
-            this.f16421b = null;
+            this.f16424b = null;
             throw new j(2008);
         }
         throw new t0("Unexpected URI format: " + normalizeScheme, null, true, 0);
@@ -87,10 +87,10 @@ public final class f extends c {
             return -1;
         }
         int min = Math.min(i10, i11);
-        byte[] bArr2 = this.f16421b;
+        byte[] bArr2 = this.f16424b;
         String str = m0.f14112a;
-        System.arraycopy(bArr2, this.f16422c, bArr, i7, min);
-        this.f16422c += min;
+        System.arraycopy(bArr2, this.f16425c, bArr, i7, min);
+        this.f16425c += min;
         this.d -= min;
         bytesTransferred(min);
         return min;

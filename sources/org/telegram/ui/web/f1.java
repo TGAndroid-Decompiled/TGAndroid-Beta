@@ -2,18 +2,18 @@ package org.telegram.ui.web;
 
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.iz;
 public final class f1 {
     public static ArrayList d;
-    public final String f51122a;
-    public final String f51123b;
-    public final String f51124c;
+    public final String f51129a;
+    public final String f51130b;
+    public final String f51131c;
 
     public f1(String str, String str2, String str3) {
-        this.f51122a = str;
-        this.f51123b = str2;
-        this.f51124c = str3;
+        this.f51129a = str;
+        this.f51130b = str2;
+        this.f51131c = str3;
     }
 
     public static f1 a() {
@@ -21,7 +21,7 @@ public final class f1 {
         if (b10.isEmpty()) {
             return new f1("Google", "https://www.google.com/search?q=", "https://suggestqueries.google.com/complete/search?client=chrome&amp;q=");
         }
-        return (f1) b10.get(Utilities.j(iz.f23405p0, b10.size() - 1, 0));
+        return (f1) b10.get(Utilities.j(iz.f23426p0, b10.size() - 1, 0));
     }
 
     public static ArrayList b() {
@@ -29,13 +29,13 @@ public final class f1 {
             d = new ArrayList();
             int i7 = 1;
             while (true) {
-                String c10 = c(hd.N0("SearchEngine" + i7 + "Name"));
+                String c10 = c(id.N0("SearchEngine" + i7 + "Name"));
                 if (c10 == null) {
                     break;
                 }
-                String c11 = c(hd.N0("SearchEngine" + i7 + "SearchURL"));
-                String c12 = c(hd.N0("SearchEngine" + i7 + "AutocompleteURL"));
-                c(hd.N0("SearchEngine" + i7 + "PrivacyPolicyURL"));
+                String c11 = c(id.N0("SearchEngine" + i7 + "SearchURL"));
+                String c12 = c(id.N0("SearchEngine" + i7 + "AutocompleteURL"));
+                c(id.N0("SearchEngine" + i7 + "PrivacyPolicyURL"));
                 d.add(new f1(c10, c11, c12));
                 i7++;
             }

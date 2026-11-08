@@ -82,8 +82,8 @@ public final class a {
             this.f13522b = a10;
             try {
                 l lVar = (l) a10;
-                Parcel R0 = lVar.R0(lVar.P0(), 6);
-                IBinder readStrongBinder = R0.readStrongBinder();
+                Parcel r12 = lVar.r1(lVar.p1(), 6);
+                IBinder readStrongBinder = r12.readStrongBinder();
                 if (readStrongBinder == null) {
                     rVar2 = 0;
                 } else {
@@ -94,12 +94,12 @@ public final class a {
                         rVar2 = new a8.a(readStrongBinder, "com.google.android.gms.cast.framework.IDiscoveryManager", 2);
                     }
                 }
-                R0.recycle();
+                r12.recycle();
                 this.d = new k(rVar2);
                 try {
                     l lVar2 = (l) a10;
-                    Parcel R02 = lVar2.R0(lVar2.P0(), 5);
-                    IBinder readStrongBinder2 = R02.readStrongBinder();
+                    Parcel r13 = lVar2.r1(lVar2.p1(), 5);
+                    IBinder readStrongBinder2 = r13.readStrongBinder();
                     if (readStrongBinder2 == null) {
                         yVar = 0;
                     } else {
@@ -110,7 +110,7 @@ public final class a {
                             yVar = new a8.a(readStrongBinder2, "com.google.android.gms.cast.framework.ISessionManager", 2);
                         }
                     }
-                    R02.recycle();
+                    r13.recycle();
                     g gVar = new g(yVar, context);
                     this.f13523c = gVar;
                     q6.m.f("PrecacheManager", "The log tag cannot be null or empty.");
@@ -150,13 +150,13 @@ public final class a {
                     this.f13526g = cVar;
                     try {
                         l lVar3 = (l) a10;
-                        Parcel P0 = lVar3.P0();
-                        com.google.android.gms.internal.cast.t.d(P0, cVar);
-                        lVar3.T0(P0, 3);
+                        Parcel p12 = lVar3.p1();
+                        com.google.android.gms.internal.cast.t.d(p12, cVar);
+                        lVar3.t1(p12, 3);
                         cVar.f6825c.add(this.h.f6901a);
                         if (!DesugarCollections.unmodifiableList(bVar.f13540x).isEmpty()) {
                             j6.b bVar2 = f13518l;
-                            Log.i(bVar2.f16505a, bVar2.d("Setting Route Discovery for appIds: ".concat(String.valueOf(DesugarCollections.unmodifiableList(this.f13524e.f13540x))), new Object[0]));
+                            Log.i(bVar2.f16508a, bVar2.d("Setting Route Discovery for appIds: ".concat(String.valueOf(DesugarCollections.unmodifiableList(this.f13524e.f13540x))), new Object[0]));
                             com.google.android.gms.internal.cast.m mVar = this.h;
                             List<String> unmodifiableList = DesugarCollections.unmodifiableList(this.f13524e.f13540x);
                             mVar.getClass();
@@ -216,7 +216,7 @@ public final class a {
                     Context applicationContext = context.getApplicationContext();
                     e d = d(applicationContext);
                     b castOptions = d.getCastOptions(applicationContext);
-                    ?? jVar = new com.google.android.gms.common.api.j(applicationContext, j6.r.f16543l, com.google.android.gms.common.api.b.f6532j, com.google.android.gms.common.api.i.f6542c);
+                    ?? jVar = new com.google.android.gms.common.api.j(applicationContext, j6.r.f16546l, com.google.android.gms.common.api.b.f6532j, com.google.android.gms.common.api.i.f6542c);
                     try {
                         f13520n = new a(applicationContext, castOptions, d.getAdditionalSessionProviders(applicationContext), new com.google.android.gms.internal.cast.p(applicationContext, s4.x.d(applicationContext), castOptions, jVar), jVar);
                     } catch (d e10) {
@@ -267,9 +267,9 @@ public final class a {
         q6.m.d("Must be called from the main thread.");
         try {
             l lVar = (l) this.f13522b;
-            Parcel R0 = lVar.R0(lVar.P0(), 1);
-            R0.recycle();
-            return s4.r.b((Bundle) com.google.android.gms.internal.cast.t.a(R0, Bundle.CREATOR));
+            Parcel r12 = lVar.r1(lVar.p1(), 1);
+            r12.recycle();
+            return s4.r.b((Bundle) com.google.android.gms.internal.cast.t.a(r12, Bundle.CREATOR));
         } catch (RemoteException e10) {
             f13518l.a(e10, "Unable to call %s on %s.", "getMergedSelectorAsBundle", n.class.getSimpleName());
             return null;

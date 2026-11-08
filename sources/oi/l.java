@@ -1,9 +1,9 @@
 package oi;
 public final class l {
-    public boolean f21085a;
-    public final q f21086b;
+    public boolean f21088a;
+    public final q f21089b;
 
     public l(q qVar) {
-        this.f21086b = qVar;
+        this.f21089b = qVar;
     }
 }

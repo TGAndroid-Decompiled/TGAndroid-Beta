@@ -24,7 +24,7 @@ import org.telegram.ui.ActionBar.u1;
 import org.telegram.ui.Cells.f1;
 import org.telegram.ui.Components.ft0;
 import org.telegram.ui.Components.x31;
-import org.telegram.ui.ya1;
+import org.telegram.ui.za1;
 public final class l implements g9.k, Continuation, l5.e, h2.j, Vector.TLDeserializer, b20, r1, o6, p6, ft0, u9.d {
     public final int f102a;
 
@@ -83,7 +83,7 @@ public final class l implements g9.k, Continuation, l5.e, h2.j, Vector.TLDeseria
                 int i10 = k7.f4163s3;
                 return;
             default:
-                k7.c2(new ya1(6, null));
+                k7.c2(new za1(6, null));
                 return;
         }
     }
@@ -117,7 +117,7 @@ public final class l implements g9.k, Continuation, l5.e, h2.j, Vector.TLDeseria
             case 5:
                 if (task.isSuccessful()) {
                     aa.b bVar = (aa.b) task.getResult();
-                    x9.b bVar2 = x9.b.f58576a;
+                    x9.b bVar2 = x9.b.f58665a;
                     bVar2.b("Crashlytics report successfully enqueued to DataTransport: " + bVar.f776b);
                     z9 = true;
                     if (bVar.f777c.delete()) {

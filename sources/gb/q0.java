@@ -23,7 +23,7 @@ public final class q0 {
         String valueOf;
         String str;
         gVar.a();
-        Context context = gVar.f20872a;
+        Context context = gVar.f20875a;
         kotlin.jvm.internal.j.d(context, "getApplicationContext(...)");
         String packageName = context.getPackageName();
         PackageInfo packageInfo = context.getPackageManager().getPackageInfo(packageName, 0);
@@ -34,7 +34,7 @@ public final class q0 {
         }
         String str2 = valueOf;
         gVar.a();
-        String str3 = gVar.f20874c.f20885b;
+        String str3 = gVar.f20877c.f20888b;
         kotlin.jvm.internal.j.d(str3, "getApplicationId(...)");
         String MODEL = Build.MODEL;
         kotlin.jvm.internal.j.d(MODEL, "MODEL");

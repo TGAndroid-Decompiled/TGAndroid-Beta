@@ -549,14 +549,14 @@ public abstract class m0 {
         int i10 = 0;
         while (i10 <= i7) {
             int i11 = (i10 + i7) >>> 1;
-            if (uVar.j(i11) < j3) {
+            if (uVar.m(i11) < j3) {
                 i10 = i11 + 1;
             } else {
                 i7 = i11 - 1;
             }
         }
         int i12 = i7 + 1;
-        if (i12 < uVar.f11190b && uVar.j(i12) == j3) {
+        if (i12 < uVar.f11190b && uVar.m(i12) == j3) {
             return i12;
         }
         if (i7 == -1) {
@@ -655,10 +655,10 @@ public abstract class m0 {
         boolean z9;
         boolean z10;
         i9.b bVar = i9.d.d;
-        i9.b bVar2 = bVar.f15406c;
+        i9.b bVar2 = bVar.f15409c;
         if (bVar2 == null) {
-            i9.a aVar = bVar.f15404a;
-            char[] cArr = aVar.f15398b;
+            i9.a aVar = bVar.f15407a;
+            char[] cArr = aVar.f15401b;
             int length = cArr.length;
             int i7 = 0;
             while (true) {
@@ -689,9 +689,9 @@ public abstract class m0 {
                         }
                         cArr2[i11] = c11;
                     }
-                    i9.a aVar2 = new i9.a(a8.p0.s(new StringBuilder(), aVar.f15397a, ".lowerCase()"), cArr2);
+                    i9.a aVar2 = new i9.a(a8.p0.s(new StringBuilder(), aVar.f15400a, ".lowerCase()"), cArr2);
                     if (aVar.h) {
-                        byte[] bArr2 = aVar2.f15402g;
+                        byte[] bArr2 = aVar2.f15405g;
                         if (!aVar2.h) {
                             byte[] copyOf = Arrays.copyOf(bArr2, bArr2.length);
                             for (int i12 = 65; i12 <= 90; i12++) {
@@ -715,7 +715,7 @@ public abstract class m0 {
                                     }
                                 }
                             }
-                            aVar = new i9.a(a8.p0.s(new StringBuilder(), aVar2.f15397a, ".ignoreCase()"), aVar2.f15398b, copyOf, true);
+                            aVar = new i9.a(a8.p0.s(new StringBuilder(), aVar2.f15400a, ".ignoreCase()"), aVar2.f15401b, copyOf, true);
                         }
                     }
                     aVar = aVar2;
@@ -723,18 +723,18 @@ public abstract class m0 {
                     i7++;
                 }
             }
-            if (aVar == bVar.f15404a) {
+            if (aVar == bVar.f15407a) {
                 bVar2 = bVar;
             } else {
                 bVar2 = new i9.b(aVar);
             }
-            bVar.f15406c = bVar2;
+            bVar.f15409c = bVar2;
         }
         int length3 = bArr.length;
         ia.n(0, length3, bArr.length);
-        i9.a aVar3 = bVar2.f15404a;
-        int i14 = aVar3.f15400e;
-        int i15 = aVar3.f15401f;
+        i9.a aVar3 = bVar2.f15407a;
+        int i14 = aVar3.f15403e;
+        int i15 = aVar3.f15404f;
         RoundingMode roundingMode = RoundingMode.CEILING;
         StringBuilder sb2 = new StringBuilder(r0.b(length3, i15) * i14);
         try {
@@ -752,7 +752,7 @@ public abstract class m0 {
     public static m9.e0 g0(m9.y yVar, m9.q qVar) {
         ?? obj = new Object();
         f2.h hVar = new f2.h(27, (Object) obj, yVar);
-        m9.r rVar = m9.r.f19991a;
+        m9.r rVar = m9.r.f19994a;
         obj.b(hVar, rVar);
         yVar.b(new x1(yVar, obj, qVar, 9), rVar);
         return obj;

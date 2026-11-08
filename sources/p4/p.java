@@ -4,7 +4,7 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.os.IInterface;
 public abstract class p extends Binder implements l {
-    public static l H0(IBinder iBinder) {
+    public static l h1(IBinder iBinder) {
         if (iBinder == null) {
             return null;
         }
@@ -13,7 +13,7 @@ public abstract class p extends Binder implements l {
             return (l) queryLocalInterface;
         }
         ?? obj = new Object();
-        obj.f53243a = iBinder;
+        obj.f53336a = iBinder;
         return obj;
     }
 }

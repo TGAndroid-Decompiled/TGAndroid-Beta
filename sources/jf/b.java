@@ -9,8 +9,8 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public abstract class b {
-    public static final Map f16656a;
-    public static final Pattern f16657b;
+    public static final Map f16659a;
+    public static final Pattern f16660b;
 
     static {
         HashMap hashMap = new HashMap();
@@ -26,8 +26,8 @@ public abstract class b {
                 } else {
                     bufferedReader.close();
                     hashMap.put("NewLine", "\n");
-                    f16656a = hashMap;
-                    f16657b = Pattern.compile("^&#[Xx]?");
+                    f16659a = hashMap;
+                    f16660b = Pattern.compile("^&#[Xx]?");
                     return;
                 }
             }
@@ -38,7 +38,7 @@ public abstract class b {
 
     public static String a(String str) {
         int i7;
-        Matcher matcher = f16657b.matcher(str);
+        Matcher matcher = f16660b.matcher(str);
         if (matcher.find()) {
             if (matcher.end() == 2) {
                 i7 = 10;
@@ -55,7 +55,7 @@ public abstract class b {
                 return "�";
             }
         }
-        String str2 = (String) f16656a.get(com.google.android.recaptcha.internal.a.k(str, 1, 1));
+        String str2 = (String) f16659a.get(com.google.android.recaptcha.internal.a.k(str, 1, 1));
         if (str2 != null) {
             return str2;
         }

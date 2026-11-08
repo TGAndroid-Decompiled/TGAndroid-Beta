@@ -2,20 +2,20 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class ln implements Runnable {
-    public final int f23910a;
-    public final boolean f23911b;
-    public final Object f23912c;
+    public final int f23916a;
+    public final boolean f23917b;
+    public final Object f23918c;
     public final Object d;
-    public final Object f23913e;
-    public final Object f23914f;
+    public final Object f23919e;
+    public final Object f23920f;
 
     public ln(Object obj, Object obj2, Object obj3, Object obj4, boolean z9, int i7) {
-        this.f23910a = i7;
-        this.f23912c = obj;
+        this.f23916a = i7;
+        this.f23918c = obj;
         this.d = obj2;
-        this.f23913e = obj3;
-        this.f23911b = z9;
-        this.f23914f = obj4;
+        this.f23919e = obj3;
+        this.f23917b = z9;
+        this.f23920f = obj4;
     }
 
     private final void a() {
@@ -28,29 +28,29 @@ public final class ln implements Runnable {
     }
 
     public ln(c1 c1Var, Object obj, Object obj2, Object obj3, boolean z9, int i7) {
-        this.f23910a = i7;
-        this.f23912c = c1Var;
+        this.f23916a = i7;
+        this.f23918c = c1Var;
         this.d = obj;
-        this.f23913e = obj2;
-        this.f23914f = obj3;
-        this.f23911b = z9;
+        this.f23919e = obj2;
+        this.f23920f = obj3;
+        this.f23917b = z9;
     }
 
     public ln(c1 c1Var, TLRPC.Message message, boolean z9, Object obj, Object obj2, int i7) {
-        this.f23910a = i7;
-        this.f23912c = c1Var;
+        this.f23916a = i7;
+        this.f23918c = c1Var;
         this.d = message;
-        this.f23911b = z9;
-        this.f23913e = obj;
-        this.f23914f = obj2;
+        this.f23917b = z9;
+        this.f23919e = obj;
+        this.f23920f = obj2;
     }
 
     public ln(ij ijVar, gz gzVar, TLRPC.TL_messages_editMessage tL_messages_editMessage, org.telegram.ui.ActionBar.f2 f2Var, boolean z9) {
-        this.f23910a = 5;
-        this.f23912c = gzVar;
+        this.f23916a = 5;
+        this.f23918c = gzVar;
         this.d = tL_messages_editMessage;
-        this.f23914f = ijVar;
-        this.f23913e = f2Var;
-        this.f23911b = z9;
+        this.f23920f = ijVar;
+        this.f23919e = f2Var;
+        this.f23917b = z9;
     }
 }

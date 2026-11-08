@@ -8,17 +8,17 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import bi.eb;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.m5;
 public final class q0 extends WebViewClient {
-    public final WebView f51274a;
-    public final r0 f51275b;
+    public final WebView f51281a;
+    public final r0 f51282b;
 
     public q0(r0 r0Var, WebView webView) {
-        this.f51275b = r0Var;
-        this.f51274a = webView;
+        this.f51282b = r0Var;
+        this.f51281a = webView;
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class q0 extends WebViewClient {
         f6 f6Var;
         Integer valueOf;
         Boolean valueOf2;
-        u0 u0Var = this.f51275b.f51286e;
+        u0 u0Var = this.f51282b.f51293e;
         if (Build.VERSION.SDK_INT >= 26) {
             StringBuilder sb2 = new StringBuilder("newWebView.onRenderProcessGone priority=");
             if (renderProcessGoneDetail == null) {
@@ -55,13 +55,13 @@ public final class q0 extends WebViewClient {
             if (x0Var == null) {
                 f6Var = null;
             } else {
-                f6Var = x0Var.f51360e;
+                f6Var = x0Var.f51367e;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, f6Var);
-            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
-            u1Var.R = hd.M0(2131752104, null);
-            u1Var.T = org.telegram.messenger.g0.U2(hd.M0(2131752105, null), new m5(this, 14));
-            alertDialog$Builder.k(hd.M0(2131747830, null), null);
+            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
+            u1Var.R = id.M0(2131752104, null);
+            u1Var.T = org.telegram.messenger.g0.U2(id.M0(2131752105, null), new m5(this, 14));
+            alertDialog$Builder.k(id.M0(2131747832, null), null);
             u1Var.setOnDismissListener(new eb(this, 12));
             alertDialog$Builder.p();
             return true;
@@ -73,10 +73,10 @@ public final class q0 extends WebViewClient {
 
     @Override
     public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        x0 x0Var = this.f51275b.f51286e.Q;
+        x0 x0Var = this.f51282b.f51293e.Q;
         if (x0Var != null) {
-            x0Var.H(Uri.parse(str), null, !x0Var.f51372o0, false, false);
-            this.f51274a.destroy();
+            x0Var.H(Uri.parse(str), null, !x0Var.f51379o0, false, false);
+            this.f51281a.destroy();
         }
         return true;
     }

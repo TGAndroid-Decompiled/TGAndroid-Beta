@@ -6,7 +6,7 @@ import kotlin.jvm.internal.k;
 import org.telegram.ui.Cells.f1;
 import rd.l;
 public final class a extends k implements l {
-    public static final a f53586b = new k(1);
+    public static final a f53679b = new k(1);
 
     @Override
     public final Object invoke(Object obj) {
@@ -31,6 +31,6 @@ public final class a extends k implements l {
         } else {
             valueOf = String.valueOf(entry.getValue());
         }
-        return f1.n(((e) entry.getKey()).f53593a, " = ", valueOf, new StringBuilder("  "));
+        return f1.n(((e) entry.getKey()).f53686a, " = ", valueOf, new StringBuilder("  "));
     }
 }

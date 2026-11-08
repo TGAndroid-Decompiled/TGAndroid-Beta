@@ -62,12 +62,12 @@ public final class z4 implements c20 {
                     bVar.b();
                 }
                 if (user != null) {
-                    launchActivity.m0(i10, user.f27102id, null);
+                    launchActivity.m0(i10, user.f27105id, null);
                     return;
                 }
                 org.telegram.ui.ActionBar.f2 Q = LaunchActivity.Q();
                 if (Q != null) {
-                    org.telegram.messenger.k5.p(null, 2131748133, org.telegram.ui.Components.hc.a0(Q), null);
+                    org.telegram.messenger.k5.p(null, 2131748135, org.telegram.ui.Components.hc.a0(Q), null);
                     return;
                 }
                 return;

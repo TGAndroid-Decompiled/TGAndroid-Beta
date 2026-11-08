@@ -25,21 +25,21 @@ public final class f0 {
     public int f6248j;
     public PorterDuffColorFilter f6249k;
     public final Rect f6243c = new Rect();
-    public final int d = p10.f24467s0;
+    public final int d = p10.f24470s0;
     public float h = 1.0f;
 
     public f0(View view) {
         this.f6245f = view;
         ImageReceiver imageReceiver = new ImageReceiver(view);
         this.f6241a = imageReceiver;
-        imageReceiver.f21233z1 = true;
+        imageReceiver.f21236z1 = true;
     }
 
     public final void a(Canvas canvas) {
         i5 i5Var = this.f6242b;
         Rect rect = this.f6243c;
         if (i5Var != null) {
-            z2 z2Var = i5Var.f34497k;
+            z2 z2Var = i5Var.f34541k;
             if (z2Var != null) {
                 z2Var.J0((int) (rect.width() * 0.1f));
             }
@@ -108,9 +108,9 @@ public final class f0 {
                 str = "60_60";
             }
             if (o0Var.f6356f != null) {
-                TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) ui.b0(this.d).f25833r.get(o0Var.f6356f);
+                TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) ui.b0(this.d).f25836r.get(o0Var.f6356f);
                 if (tL_availableReaction != null) {
-                    imageReceiver.r0(hc.b(tL_availableReaction.select_animation), str, null, null, t5.f(tL_availableReaction.select_animation, k6.f28014m6, 0.2f, null), 0L, "tgs", o0Var, 0);
+                    imageReceiver.r0(hc.b(tL_availableReaction.select_animation), str, null, null, t5.f(tL_availableReaction.select_animation, k6.f28017m6, 0.2f, null), 0L, "tgs", o0Var, 0);
                     return;
                 }
                 return;
@@ -120,7 +120,7 @@ public final class f0 {
             } else {
                 i7 = 1;
             }
-            i5 i5Var2 = new i5(i7, p10.f24467s0, o0Var.f6357g);
+            i5 i5Var2 = new i5(i7, p10.f24470s0, o0Var.f6357g);
             this.f6242b = i5Var2;
             if (this.f6246g) {
                 i5Var2.a(this.f6245f);

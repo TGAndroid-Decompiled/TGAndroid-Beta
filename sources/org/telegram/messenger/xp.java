@@ -8,14 +8,14 @@ import org.telegram.SQLite.SQLiteException;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
 public final class xp implements Runnable {
-    public final int f26505a;
-    public final yr f26506b;
-    public final long f26507c;
+    public final int f26512a;
+    public final yr f26513b;
+    public final long f26514c;
 
     public xp(yr yrVar, long j3, int i7) {
-        this.f26505a = i7;
-        this.f26506b = yrVar;
-        this.f26507c = j3;
+        this.f26512a = i7;
+        this.f26513b = yrVar;
+        this.f26514c = j3;
     }
 
     @Override
@@ -25,17 +25,17 @@ public final class xp implements Runnable {
         SQLiteCursor sQLiteCursor;
         SQLiteCursor sQLiteCursor2;
         SQLiteCursor queryFinalized2;
-        int i7 = this.f26505a;
+        int i7 = this.f26512a;
         SQLiteCursor sQLiteCursor3 = null;
-        long j3 = this.f26507c;
-        yr yrVar = this.f26506b;
+        long j3 = this.f26514c;
+        yr yrVar = this.f26513b;
         switch (i7) {
             case 0:
                 yrVar.getClass();
                 try {
-                    SQLiteDatabase sQLiteDatabase = yrVar.f26698b;
+                    SQLiteDatabase sQLiteDatabase = yrVar.f26721b;
                     sQLiteDatabase.executeFast("DELETE FROM dialog_photos WHERE uid = " + j3).stepThis().dispose();
-                    SQLiteDatabase sQLiteDatabase2 = yrVar.f26698b;
+                    SQLiteDatabase sQLiteDatabase2 = yrVar.f26721b;
                     sQLiteDatabase2.executeFast("DELETE FROM dialog_photos_count WHERE uid = " + j3).stepThis().dispose();
                     return;
                 } catch (Exception e11) {
@@ -45,7 +45,7 @@ public final class xp implements Runnable {
             case 1:
                 yrVar.getClass();
                 try {
-                    SQLiteDatabase sQLiteDatabase3 = yrVar.f26698b;
+                    SQLiteDatabase sQLiteDatabase3 = yrVar.f26721b;
                     sQLiteDatabase3.executeFast("DELETE FROM wallpapers2 WHERE uid = " + j3).stepThis().dispose();
                     return;
                 } catch (Exception e12) {
@@ -55,7 +55,7 @@ public final class xp implements Runnable {
             case 2:
                 yrVar.getClass();
                 try {
-                    SQLiteDatabase sQLiteDatabase4 = yrVar.f26698b;
+                    SQLiteDatabase sQLiteDatabase4 = yrVar.f26721b;
                     Locale locale = Locale.US;
                     sQLiteDatabase4.executeFast("DELETE FROM topics WHERE did = " + j3).stepThis().dispose();
                     return;
@@ -64,11 +64,11 @@ public final class xp implements Runnable {
                     return;
                 }
             case 3:
-                yr yrVar2 = this.f26506b;
+                yr yrVar2 = this.f26513b;
                 try {
                     try {
                         e10 = yrVar2.getUserConfig().e();
-                        queryFinalized = yrVar2.f26698b.queryFinalized("SELECT mid FROM messages_topics WHERE uid = ? AND topic_id = ?", Long.valueOf(e10), Long.valueOf(j3));
+                        queryFinalized = yrVar2.f26721b.queryFinalized("SELECT mid FROM messages_topics WHERE uid = ? AND topic_id = ?", Long.valueOf(e10), Long.valueOf(j3));
                     } catch (Exception e14) {
                         e = e14;
                     }
@@ -81,7 +81,7 @@ public final class xp implements Runnable {
                         arrayList.add(Integer.valueOf(queryFinalized.intValue(0)));
                     }
                     queryFinalized.dispose();
-                    SQLiteCursor queryFinalized3 = yrVar2.f26698b.queryFinalized("SELECT mid, data FROM messages_v2 WHERE uid = ?", Long.valueOf(e10));
+                    SQLiteCursor queryFinalized3 = yrVar2.f26721b.queryFinalized("SELECT mid, data FROM messages_v2 WHERE uid = ?", Long.valueOf(e10));
                     while (queryFinalized3.next()) {
                         int intValue = queryFinalized3.intValue(0);
                         if (!arrayList.contains(Integer.valueOf(intValue))) {
@@ -127,7 +127,7 @@ public final class xp implements Runnable {
             case 4:
                 yrVar.getClass();
                 try {
-                    SQLiteDatabase sQLiteDatabase5 = yrVar.f26698b;
+                    SQLiteDatabase sQLiteDatabase5 = yrVar.f26721b;
                     sQLiteDatabase5.executeFast("DELETE FROM story_pushes WHERE uid = " + j3).stepThis().dispose();
                     return;
                 } catch (Exception e17) {
@@ -137,7 +137,7 @@ public final class xp implements Runnable {
             case 5:
                 yrVar.getClass();
                 try {
-                    SQLiteDatabase sQLiteDatabase6 = yrVar.f26698b;
+                    SQLiteDatabase sQLiteDatabase6 = yrVar.f26721b;
                     sQLiteDatabase6.executeFast("DELETE FROM media_counts_v2 WHERE uid = " + j3).stepThis().dispose();
                     return;
                 } catch (Exception e18) {
@@ -147,7 +147,7 @@ public final class xp implements Runnable {
             case 6:
                 yrVar.getClass();
                 try {
-                    SQLiteDatabase sQLiteDatabase7 = yrVar.f26698b;
+                    SQLiteDatabase sQLiteDatabase7 = yrVar.f26721b;
                     sQLiteDatabase7.executeFast("DELETE FROM pending_tasks WHERE id = " + j3).stepThis().dispose();
                     return;
                 } catch (Exception e19) {
@@ -155,10 +155,10 @@ public final class xp implements Runnable {
                     return;
                 }
             default:
-                long j10 = this.f26507c;
+                long j10 = this.f26514c;
                 try {
                     try {
-                        SQLiteDatabase sQLiteDatabase8 = yrVar.f26698b;
+                        SQLiteDatabase sQLiteDatabase8 = yrVar.f26721b;
                         queryFinalized2 = sQLiteDatabase8.queryFinalized("SELECT uid, data FROM channel_admins_v3 WHERE did = " + j10, new Object[0]);
                     } catch (Throwable th4) {
                         th = th4;

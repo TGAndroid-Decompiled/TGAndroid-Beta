@@ -2,10 +2,10 @@ package q2;
 
 import java.io.IOException;
 public final class f extends IOException {
-    public final int f53637a;
+    public final int f53730a;
 
     public f(int i7, Throwable th2) {
         super(th2);
-        this.f53637a = i7;
+        this.f53730a = i7;
     }
 }

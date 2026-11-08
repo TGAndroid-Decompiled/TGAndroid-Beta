@@ -18,32 +18,32 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_update;
 public final class d4 extends c1 {
-    public static volatile p5 f21954s = new p5("chatThemeQueue");
-    public static final d4[] f21955w = new d4[4];
-    public final HashMap f21956a;
-    public ArrayList f21957b;
-    public volatile long f21958c;
+    public static volatile p5 f21977s = new p5("chatThemeQueue");
+    public static final d4[] f21978w = new d4[4];
+    public final HashMap f21979a;
+    public ArrayList f21980b;
+    public volatile long f21981c;
     public volatile long d;
-    public final HashMap f21959e;
-    public final l2.u1 f21960f;
+    public final HashMap f21982e;
+    public final l2.u1 f21983f;
     public final LongSparseArray h;
-    public final HashMap f21961n;
-    public final HashMap f21962r;
+    public final HashMap f21984n;
+    public final HashMap f21985r;
 
     public d4(int i7) {
         super(i7);
-        this.f21956a = new HashMap();
-        this.f21959e = new HashMap();
-        this.f21960f = new Object();
+        this.f21979a = new HashMap();
+        this.f21982e = new HashMap();
+        this.f21983f = new Object();
         this.h = new LongSparseArray();
-        this.f21961n = new HashMap();
-        this.f21962r = new HashMap();
+        this.f21984n = new HashMap();
+        this.f21985r = new HashMap();
         k();
     }
 
     public static d4 f(int i7) {
         d4 d4Var;
-        d4[] d4VarArr = f21955w;
+        d4[] d4VarArr = f21978w;
         d4 d4Var2 = d4VarArr[i7];
         if (d4Var2 == null) {
             synchronized (d4.class) {
@@ -74,7 +74,7 @@ public final class d4 extends c1 {
     }
 
     public static void n(String str) {
-        new ImageReceiver(null).q0(hc.b(ui.b0(p10.f24467s0).T(str)), "50_50", null, null, null, 0);
+        new ImageReceiver(null).q0(hc.b(ui.b0(p10.f24470s0).T(str)), "50_50", null, null, null, 0);
         i6.k(str);
     }
 
@@ -83,7 +83,7 @@ public final class d4 extends c1 {
             return true;
         }
         if ((wallPaper instanceof TLRPC.TL_wallPaper) && (wallPaper2 instanceof TLRPC.TL_wallPaper)) {
-            if (wallPaper.f27107id == wallPaper2.f27107id) {
+            if (wallPaper.f27110id == wallPaper2.f27110id) {
                 return true;
             }
             return false;
@@ -92,7 +92,7 @@ public final class d4 extends c1 {
             if (wallPaper.settings != null && wallPaper2.settings != null) {
                 return TextUtils.equals(j(wallPaper), j(wallPaper2));
             }
-            if (wallPaper.f27107id == wallPaper2.f27107id) {
+            if (wallPaper.f27110id == wallPaper2.f27110id) {
                 return true;
             }
         }
@@ -158,7 +158,7 @@ public final class d4 extends c1 {
         LongSparseArray longSparseArray = this.h;
         ig.b bVar2 = (ig.b) longSparseArray.get(j3);
         if (bVar2 == null) {
-            String string = t0.f25563b.getSharedPreferences("chatthemeconfig_emoji", 0).getString("chatTheme_" + this.currentAccount + "_" + j3, null);
+            String string = t0.f25566b.getSharedPreferences("chatthemeconfig_emoji", 0).getString("chatTheme_" + this.currentAccount + "_" + j3, null);
             if (string != null) {
                 if (string.startsWith("gift_")) {
                     bVar = new ig.b(null, string.substring(5));
@@ -188,7 +188,7 @@ public final class d4 extends c1 {
                 return N0.wallpaper;
             }
         }
-        SharedPreferences sharedPreferences = t0.f25563b.getSharedPreferences("chatthemeconfig_emoji", 0);
+        SharedPreferences sharedPreferences = t0.f25566b.getSharedPreferences("chatthemeconfig_emoji", 0);
         String string = sharedPreferences.getString("chatWallpaper_" + this.currentAccount + "_" + j3, null);
         if (string != null) {
             SerializedData serializedData = new SerializedData(Utilities.v(string));
@@ -208,25 +208,25 @@ public final class d4 extends c1 {
         boolean hasFlag2 = TLObject.hasFlag(i7, 2);
         boolean hasFlag3 = TLObject.hasFlag(i7, 4);
         ArrayList arrayList3 = new ArrayList();
-        if (hasFlag3 && (arrayList2 = (ArrayList) this.f21960f.d) != null) {
+        if (hasFlag3 && (arrayList2 = (ArrayList) this.f21983f.d) != null) {
             arrayList3.addAll(arrayList2);
         }
-        if (hasFlag2 && (arrayList = this.f21957b) != null) {
+        if (hasFlag2 && (arrayList = this.f21980b) != null) {
             arrayList3.addAll(arrayList);
         }
         int i10 = 0;
-        if (hasFlag && (arrayList3.isEmpty() || !((org.telegram.ui.ActionBar.r3) arrayList3.get(0)).f28456a)) {
+        if (hasFlag && (arrayList3.isEmpty() || !((org.telegram.ui.ActionBar.r3) arrayList3.get(0)).f28459a)) {
             org.telegram.ui.ActionBar.r3 r3Var = new org.telegram.ui.ActionBar.r3(this.currentAccount);
-            r3Var.f28459e = "❌";
-            r3Var.f28458c = ig.b.d("❌");
+            r3Var.f28462e = "❌";
+            r3Var.f28461c = ig.b.d("❌");
             r3Var.d = TLRPC.ChatTheme.ofEmoticon("❌");
-            r3Var.f28456a = true;
+            r3Var.f28459a = true;
             org.telegram.ui.ActionBar.q3 q3Var = new org.telegram.ui.ActionBar.q3();
-            q3Var.f28400a = org.telegram.ui.ActionBar.r3.d(true);
-            r3Var.f28460f.add(q3Var);
+            q3Var.f28403a = org.telegram.ui.ActionBar.r3.d(true);
+            r3Var.f28463f.add(q3Var);
             org.telegram.ui.ActionBar.q3 q3Var2 = new org.telegram.ui.ActionBar.q3();
-            q3Var2.f28400a = org.telegram.ui.ActionBar.r3.d(false);
-            r3Var.f28460f.add(q3Var2);
+            q3Var2.f28403a = org.telegram.ui.ActionBar.r3.d(false);
+            r3Var.f28463f.add(q3Var2);
             arrayList3.add(0, r3Var);
         }
         int size = arrayList3.size();
@@ -241,29 +241,29 @@ public final class d4 extends c1 {
     public final File g(long j3) {
         File h = t0.h();
         Locale locale = Locale.US;
-        long j10 = this.f21958c;
+        long j10 = this.f21981c;
         return new File(h, j3 + "_" + j10 + ".jpg");
     }
 
     public final SharedPreferences h() {
-        Context context = t0.f25563b;
+        Context context = t0.f25566b;
         return context.getSharedPreferences("chatthemeconfig_" + this.currentAccount, 0);
     }
 
     public final org.telegram.ui.ActionBar.r3 i(ig.b bVar) {
         if (bVar != null) {
-            String str = bVar.f15474b;
+            String str = bVar.f15477b;
             if (!TextUtils.isEmpty(str)) {
-                return (org.telegram.ui.ActionBar.r3) this.f21959e.get(str);
+                return (org.telegram.ui.ActionBar.r3) this.f21982e.get(str);
             }
-            ArrayList arrayList = this.f21957b;
+            ArrayList arrayList = this.f21980b;
             int size = arrayList.size();
             int i7 = 0;
             while (i7 < size) {
                 Object obj = arrayList.get(i7);
                 i7++;
                 org.telegram.ui.ActionBar.r3 r3Var = (org.telegram.ui.ActionBar.r3) obj;
-                if (bVar.equals(r3Var.f28458c)) {
+                if (bVar.equals(r3Var.f28461c)) {
                     return r3Var;
                 }
             }
@@ -274,34 +274,34 @@ public final class d4 extends c1 {
 
     public final void k() {
         SharedPreferences h = h();
-        this.f21958c = 0L;
+        this.f21981c = 0L;
         this.d = 0L;
         try {
-            this.f21958c = h.getLong("hash", 0L);
+            this.f21981c = h.getLong("hash", 0L);
             this.d = h.getLong("lastReload", 0L);
         } catch (Exception e10) {
             a8.g(e10, true);
         }
-        this.f21957b = b();
+        this.f21980b = b();
         yr messagesStorage = getMessagesStorage();
         u3 u3Var = new u3(this, 0);
         messagesStorage.getClass();
-        messagesStorage.I(new yq(4, messagesStorage, u3Var));
+        messagesStorage.I(new zq(4, messagesStorage, u3Var));
         n("❌");
-        if (!this.f21957b.isEmpty()) {
-            ArrayList arrayList = this.f21957b;
+        if (!this.f21980b.isEmpty()) {
+            ArrayList arrayList = this.f21980b;
             int size = arrayList.size();
             int i7 = 0;
             while (i7 < size) {
                 Object obj = arrayList.get(i7);
                 i7++;
-                n(((org.telegram.ui.ActionBar.r3) obj).f28459e);
+                n(((org.telegram.ui.ActionBar.r3) obj).f28462e);
             }
         }
     }
 
     public final void l(boolean z9) {
-        ArrayList arrayList = this.f21957b;
+        ArrayList arrayList = this.f21980b;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
@@ -316,7 +316,7 @@ public final class d4 extends c1 {
     }
 
     public final void m(boolean z9) {
-        ArrayList arrayList = this.f21957b;
+        ArrayList arrayList = this.f21980b;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
@@ -324,8 +324,8 @@ public final class d4 extends c1 {
             i7++;
             org.telegram.ui.ActionBar.r3 r3Var = (org.telegram.ui.ActionBar.r3) obj;
             long h = r3Var.h(z9 ? 1 : 0);
-            if (h != 0 && !this.f21956a.containsKey(Long.valueOf(h))) {
-                r3Var.p(z9 ? 1 : 0, new p1(this, 1));
+            if (h != 0 && !this.f21979a.containsKey(Long.valueOf(h))) {
+                r3Var.p(z9 ? 1 : 0, new j1(this, 1));
             }
         }
     }
@@ -334,7 +334,7 @@ public final class d4 extends c1 {
         if (tL_updatePeerWallpaper.peer instanceof TLRPC.TL_peerUser) {
             TLRPC.UserFull b22 = getMessagesController().b2(tL_updatePeerWallpaper.peer.user_id);
             if (b22 != null && !v(b22.wallpaper, tL_updatePeerWallpaper.wallpaper)) {
-                long j3 = b22.f27103id;
+                long j3 = b22.f27106id;
                 if ((tL_updatePeerWallpaper.flags & 1) != 0) {
                     b22.wallpaper_overridden = tL_updatePeerWallpaper.wallpaper_overridden;
                     b22.wallpaper = tL_updatePeerWallpaper.wallpaper;
@@ -353,7 +353,7 @@ public final class d4 extends c1 {
         }
         TLRPC.ChatFull N0 = getMessagesController().N0(-m5.o(tL_updatePeerWallpaper.peer));
         if (N0 != null && !v(N0.wallpaper, tL_updatePeerWallpaper.wallpaper)) {
-            long j10 = -N0.f26954id;
+            long j10 = -N0.f26957id;
             if ((tL_updatePeerWallpaper.flags & 1) != 0) {
                 N0.wallpaper = tL_updatePeerWallpaper.wallpaper;
                 N0.flags2 |= 128;
@@ -371,21 +371,21 @@ public final class d4 extends c1 {
         if (chatTheme instanceof TLRPC.TL_chatThemeUniqueGift) {
             TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = (TLRPC.TL_chatThemeUniqueGift) chatTheme;
             String str = tL_chatThemeUniqueGift.gift.slug;
-            HashMap hashMap = this.f21959e;
+            HashMap hashMap = this.f21982e;
             if (!hashMap.containsKey(str)) {
                 org.telegram.ui.ActionBar.r3 r3Var = new org.telegram.ui.ActionBar.r3(this.currentAccount, tL_chatThemeUniqueGift);
                 r3Var.k();
                 hashMap.put(tL_chatThemeUniqueGift.gift.slug, r3Var);
                 yr messagesStorage = getMessagesStorage();
                 messagesStorage.getClass();
-                messagesStorage.I(new yq(3, messagesStorage, Collections.singletonList(chatTheme)));
+                messagesStorage.I(new zq(3, messagesStorage, Collections.singletonList(chatTheme)));
             }
         }
     }
 
     public final void q(final ResultCallback resultCallback, final boolean z9) {
         boolean z10;
-        if (this.f21958c == 0 || this.d == 0) {
+        if (this.f21981c == 0 || this.d == 0) {
             k();
         }
         if (System.currentTimeMillis() - this.d > 7200000) {
@@ -393,12 +393,12 @@ public final class d4 extends c1 {
         } else {
             z10 = false;
         }
-        ArrayList arrayList = this.f21957b;
+        ArrayList arrayList = this.f21980b;
         if (arrayList == null || arrayList.isEmpty() || z10) {
             TL_account.getChatThemes getchatthemes = new TL_account.getChatThemes();
-            getchatthemes.hash = this.f21958c;
+            getchatthemes.hash = this.f21981c;
             ConnectionsManager connectionsManager = getConnectionsManager();
-            p5 p5Var = f21954s;
+            p5 p5Var = f21977s;
             Objects.requireNonNull(p5Var);
             connectionsManager.sendRequestTyped(getchatthemes, new v3(p5Var), new v10() {
                 @Override
@@ -407,7 +407,7 @@ public final class d4 extends c1 {
                 }
             });
         }
-        ArrayList arrayList2 = this.f21957b;
+        ArrayList arrayList2 = this.f21980b;
         if (arrayList2 != null && !arrayList2.isEmpty()) {
             resultCallback.onComplete(e((z9 ? 1 : 0) | 2));
         }
@@ -421,11 +421,11 @@ public final class d4 extends c1 {
             SerializedData serializedData = new SerializedData(wallPaper.getObjectSize());
             wallPaper.serializeToStream(serializedData);
             String f10 = Utilities.f(serializedData.toByteArray());
-            SharedPreferences.Editor edit = t0.f25563b.getSharedPreferences("chatthemeconfig_emoji", 0).edit();
+            SharedPreferences.Editor edit = t0.f25566b.getSharedPreferences("chatthemeconfig_emoji", 0).edit();
             edit.putString("chatWallpaper_" + this.currentAccount + "_" + j3, f10).apply();
             return;
         }
-        SharedPreferences.Editor edit2 = t0.f25563b.getSharedPreferences("chatthemeconfig_emoji", 0).edit();
+        SharedPreferences.Editor edit2 = t0.f25566b.getSharedPreferences("chatthemeconfig_emoji", 0).edit();
         edit2.remove("chatWallpaper_" + this.currentAccount + "_" + j3).apply();
     }
 
@@ -435,8 +435,8 @@ public final class d4 extends c1 {
 
     public final void t(long j3, String str) {
         boolean isEmpty = TextUtils.isEmpty(str);
-        HashMap hashMap = this.f21962r;
-        HashMap hashMap2 = this.f21961n;
+        HashMap hashMap = this.f21985r;
+        HashMap hashMap2 = this.f21984n;
         if (isEmpty) {
             String str2 = (String) hashMap2.remove(Long.valueOf(j3));
             if (str2 != null) {
@@ -472,10 +472,10 @@ public final class d4 extends c1 {
         } else {
             tL_messages_setChatWallPaper.peer = qp.l1(qp.s1(this.currentAccount).M0(Long.valueOf(-j3)));
         }
-        tL_messages_setChatWallPaper.for_both = c6Var.f27411o;
-        if (ijVar != null && (ijVar.f23244k.action instanceof TLRPC.TL_messageActionSetChatWallPaper)) {
+        tL_messages_setChatWallPaper.for_both = c6Var.f27414o;
+        if (ijVar != null && (ijVar.f23262k.action instanceof TLRPC.TL_messageActionSetChatWallPaper)) {
             tL_messages_setChatWallPaper.flags |= 2;
-            tL_messages_setChatWallPaper.f27072id = ijVar.f1();
+            tL_messages_setChatWallPaper.f27075id = ijVar.f1();
             if (i7 >= 0) {
                 userFull = qp.s1(this.currentAccount).b2(j3);
                 N0 = null;
@@ -483,20 +483,20 @@ public final class d4 extends c1 {
                 N0 = qp.s1(this.currentAccount).N0(-j3);
                 userFull = null;
             }
-            TLRPC.TL_messageActionSetChatWallPaper tL_messageActionSetChatWallPaper = (TLRPC.TL_messageActionSetChatWallPaper) ijVar.f23244k.action;
+            TLRPC.TL_messageActionSetChatWallPaper tL_messageActionSetChatWallPaper = (TLRPC.TL_messageActionSetChatWallPaper) ijVar.f23262k.action;
             TLRPC.TL_wallPaper tL_wallPaper = new TLRPC.TL_wallPaper();
             TLRPC.WallPaper wallPaper2 = tL_messageActionSetChatWallPaper.wallpaper;
-            tL_wallPaper.f27107id = wallPaper2.f27107id;
+            tL_wallPaper.f27110id = wallPaper2.f27110id;
             tL_wallPaper.document = wallPaper2.document;
             TLRPC.TL_wallPaperSettings tL_wallPaperSettings = new TLRPC.TL_wallPaperSettings();
             tL_wallPaper.settings = tL_wallPaperSettings;
-            tL_wallPaperSettings.intensity = (int) (c6Var.f27407k * 100.0f);
-            tL_wallPaperSettings.motion = c6Var.f27406j;
-            tL_wallPaperSettings.blur = c6Var.f27405i;
+            tL_wallPaperSettings.intensity = (int) (c6Var.f27410k * 100.0f);
+            tL_wallPaperSettings.motion = c6Var.f27409j;
+            tL_wallPaperSettings.blur = c6Var.f27408i;
             tL_wallPaperSettings.background_color = c6Var.d;
-            tL_wallPaperSettings.second_background_color = c6Var.f27402e;
-            tL_wallPaperSettings.third_background_color = c6Var.f27403f;
-            tL_wallPaperSettings.fourth_background_color = c6Var.f27404g;
+            tL_wallPaperSettings.second_background_color = c6Var.f27405e;
+            tL_wallPaperSettings.third_background_color = c6Var.f27406f;
+            tL_wallPaperSettings.fourth_background_color = c6Var.f27407g;
             tL_wallPaperSettings.rotation = c6Var.h;
             tL_wallPaper.uploadingImage = str;
             if (userFull != null) {
@@ -514,7 +514,7 @@ public final class d4 extends c1 {
             TLRPC.WallPaper wallPaper3 = tL_messageActionSetChatWallPaper.wallpaper;
             tL_wallPaper2.pattern = wallPaper3.pattern;
             TLRPC.ChatFull chatFull = N0;
-            tL_wallPaper2.f27107id = wallPaper3.f27107id;
+            tL_wallPaper2.f27110id = wallPaper3.f27110id;
             tL_wallPaper2.document = wallPaper3.document;
             int i10 = wallPaper3.flags;
             tL_wallPaper2.creator = wallPaper3.creator;

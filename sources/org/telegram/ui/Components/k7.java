@@ -8,17 +8,17 @@ public final class k7 extends ch0 {
     public long F;
     public final float G;
     public final b8 H;
-    public float f35213r;
-    public float f35214s;
-    public int f35215w;
-    public long f35216x;
-    public long f35217y;
+    public float f35239r;
+    public float f35240s;
+    public int f35241w;
+    public long f35242x;
+    public long f35243y;
 
     public k7(b8 b8Var, Context context, float f10) {
         super(context);
         this.H = b8Var;
         this.G = f10;
-        this.f35215w = 0;
+        this.f35241w = 0;
         this.D = new j7(this, 0);
         this.E = new j7(this, 1);
     }

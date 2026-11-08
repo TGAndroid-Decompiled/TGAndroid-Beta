@@ -4,23 +4,23 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class x1 implements RequestDelegate {
-    public final int f40138a;
-    public final Object f40139b;
+    public final int f40159a;
+    public final Object f40160b;
 
     public x1(Object obj, int i7) {
-        this.f40138a = i7;
-        this.f40139b = obj;
+        this.f40159a = i7;
+        this.f40160b = obj;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i7 = this.f40138a;
-        Object obj = this.f40139b;
+        int i7 = this.f40159a;
+        Object obj = this.f40160b;
         switch (i7) {
             case 0:
                 org.telegram.messenger.c cVar = (org.telegram.messenger.c) obj;
                 if (tLObject instanceof TLRPC.Updates) {
-                    org.telegram.messenger.qp.s1(cVar.f21729a).O3((TLRPC.Updates) tLObject, false);
+                    org.telegram.messenger.qp.s1(cVar.f21765a).O3((TLRPC.Updates) tLObject, false);
                     return;
                 }
                 return;
@@ -31,12 +31,12 @@ public final class x1 implements RequestDelegate {
                 org.telegram.messenger.g0.h3(new fq(4, (ur) obj, tLObject));
                 return;
             case 3:
-                org.telegram.messenger.g0.h3(new fq(10, (bw) obj, tLObject));
+                org.telegram.messenger.g0.h3(new fq(10, (cw) obj, tLObject));
                 return;
             case 4:
-                lx lxVar = (lx) obj;
+                mx mxVar = (mx) obj;
                 if (tLObject != null) {
-                    org.telegram.messenger.g0.h3(new fq(15, lxVar, tLObject));
+                    org.telegram.messenger.g0.h3(new fq(15, mxVar, tLObject));
                     return;
                 }
                 return;
@@ -80,7 +80,7 @@ public final class x1 implements RequestDelegate {
                 m11 m11Var = (m11) obj;
                 if (tLObject != null) {
                     TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-                    org.telegram.messenger.qp.s1(m11Var.f35822e).O3(updates, false);
+                    org.telegram.messenger.qp.s1(m11Var.f35850e).O3(updates, false);
                     if (!updates.chats.isEmpty()) {
                         org.telegram.messenger.g0.i3(new v80(23, m11Var, updates), 1000L);
                         return;
@@ -97,7 +97,7 @@ public final class x1 implements RequestDelegate {
                 org.telegram.messenger.g0.h3(new r31(s31Var, tL_error, tLObject, 0));
                 return;
             default:
-                int i11 = UndoView.f31592i0;
+                int i11 = UndoView.f31596i0;
                 org.telegram.messenger.g0.h3(new v80(28, (UndoView) obj, tLObject));
                 return;
         }

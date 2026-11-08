@@ -1,34 +1,17 @@
 package org.telegram.messenger;
 public final class tk implements Runnable {
-    public final int f25633a;
-    public final boolean[] f25634b;
-    public final Runnable[] f25635c;
+    public final int f25634a;
+    public final qp f25635b;
+    public final int f25636c;
 
-    public tk(boolean[] zArr, Runnable[] runnableArr, int i7) {
-        this.f25633a = i7;
-        this.f25634b = zArr;
-        this.f25635c = runnableArr;
+    public tk(qp qpVar, int i7, int i10) {
+        this.f25634a = i10;
+        this.f25635b = qpVar;
+        this.f25636c = i7;
     }
 
     @Override
     public final void run() {
-        switch (this.f25633a) {
-            case 0:
-                this.f25634b[0] = true;
-                Runnable runnable = this.f25635c[0];
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            default:
-                this.f25634b[0] = true;
-                Runnable runnable2 = this.f25635c[0];
-                if (runnable2 != null) {
-                    runnable2.run();
-                    return;
-                }
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.tk.run():void");
     }
 }

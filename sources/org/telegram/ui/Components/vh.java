@@ -5,18 +5,18 @@ import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
 public abstract class vh extends FrameLayout {
-    public final org.telegram.ui.ActionBar.f6 f38968a;
-    public final di f38969b;
-    public pj0 f38970c;
+    public final org.telegram.ui.ActionBar.f6 f39003a;
+    public final di f39004b;
+    public pj0 f39005c;
     public pj0 d;
-    public int f38971e;
-    public boolean f38972f;
+    public int f39006e;
+    public boolean f39007f;
     public boolean h;
 
     public vh(Context context, org.telegram.ui.ActionBar.f6 f6Var, di diVar) {
         super(context);
-        this.f38968a = f6Var;
-        this.f38969b = diVar;
+        this.f39003a = f6Var;
+        this.f39004b = diVar;
     }
 
     public abstract void B(int i7, int i10);
@@ -129,8 +129,8 @@ public abstract class vh extends FrameLayout {
 
     public void setBlur3Capture(pj0 pj0Var) {
         int i7 = di.E4;
-        this.f38969b.X0.b(pj0Var);
-        this.f38970c = pj0Var;
+        this.f39004b.X0.b(pj0Var);
+        this.f39005c = pj0Var;
     }
 
     public void D(int i7) {

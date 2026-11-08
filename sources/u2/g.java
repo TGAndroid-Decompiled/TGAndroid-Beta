@@ -3,14 +3,14 @@ package u2;
 import a8.ia;
 import java.nio.ByteBuffer;
 public final class g extends k2.h {
-    public long f56160r;
-    public int f56161s;
-    public int f56162w;
+    public long f56249r;
+    public int f56250s;
+    public int f56251w;
 
     @Override
     public final void clear() {
         super.clear();
-        this.f56161s = 0;
+        this.f56250s = 0;
     }
 
     public final boolean e(k2.h hVar) {
@@ -19,9 +19,9 @@ public final class g extends k2.h {
         ia.f(!hVar.hasSupplementalData());
         ia.f(!hVar.isEndOfStream());
         if (f()) {
-            if (this.f56161s < this.f56162w) {
-                ByteBuffer byteBuffer2 = hVar.f17172c;
-                if (byteBuffer2 != null && (byteBuffer = this.f17172c) != null) {
+            if (this.f56250s < this.f56251w) {
+                ByteBuffer byteBuffer2 = hVar.f17175c;
+                if (byteBuffer2 != null && (byteBuffer = this.f17175c) != null) {
                     if (byteBuffer2.remaining() + byteBuffer.position() > 3072000) {
                         return false;
                     }
@@ -30,25 +30,25 @@ public final class g extends k2.h {
                 return false;
             }
         }
-        int i7 = this.f56161s;
-        this.f56161s = i7 + 1;
+        int i7 = this.f56250s;
+        this.f56250s = i7 + 1;
         if (i7 == 0) {
-            this.f17173e = hVar.f17173e;
+            this.f17176e = hVar.f17176e;
             if (hVar.isKeyFrame()) {
                 setFlags(1);
             }
         }
-        ByteBuffer byteBuffer3 = hVar.f17172c;
+        ByteBuffer byteBuffer3 = hVar.f17175c;
         if (byteBuffer3 != null) {
             b(byteBuffer3.remaining());
-            this.f17172c.put(byteBuffer3);
+            this.f17175c.put(byteBuffer3);
         }
-        this.f56160r = hVar.f17173e;
+        this.f56249r = hVar.f17176e;
         return true;
     }
 
     public final boolean f() {
-        if (this.f56161s > 0) {
+        if (this.f56250s > 0) {
             return true;
         }
         return false;

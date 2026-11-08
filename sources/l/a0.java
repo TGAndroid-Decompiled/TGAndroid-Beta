@@ -8,12 +8,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
 public class a0 extends g.p implements Menu {
-    public final k f17628c;
+    public final k f17631c;
 
     public a0(Context context, k kVar) {
         super(context);
         if (kVar != null) {
-            this.f17628c = kVar;
+            this.f17631c = kVar;
             return;
         }
         throw new IllegalArgumentException("Wrapped Object can not be null.");
@@ -21,7 +21,7 @@ public class a0 extends g.p implements Menu {
 
     @Override
     public final MenuItem add(CharSequence charSequence) {
-        return f(this.f17628c.a(0, 0, 0, charSequence));
+        return f(this.f17631c.a(0, 0, 0, charSequence));
     }
 
     @Override
@@ -33,7 +33,7 @@ public class a0 extends g.p implements Menu {
             menuItemArr2 = null;
         }
         MenuItem[] menuItemArr3 = menuItemArr2;
-        int addIntentOptions = this.f17628c.addIntentOptions(i7, i10, i11, componentName, intentArr, intent, i12, menuItemArr3);
+        int addIntentOptions = this.f17631c.addIntentOptions(i7, i10, i11, componentName, intentArr, intent, i12, menuItemArr3);
         if (menuItemArr3 != null) {
             int length = menuItemArr3.length;
             for (int i13 = 0; i13 < length; i13++) {
@@ -45,7 +45,7 @@ public class a0 extends g.p implements Menu {
 
     @Override
     public final SubMenu addSubMenu(CharSequence charSequence) {
-        return this.f17628c.addSubMenu(0, 0, 0, charSequence);
+        return this.f17631c.addSubMenu(0, 0, 0, charSequence);
     }
 
     @Override
@@ -54,42 +54,42 @@ public class a0 extends g.p implements Menu {
         if (lVar != null) {
             lVar.clear();
         }
-        this.f17628c.clear();
+        this.f17631c.clear();
     }
 
     @Override
     public final void close() {
-        this.f17628c.close();
+        this.f17631c.close();
     }
 
     @Override
     public final MenuItem findItem(int i7) {
-        return f(this.f17628c.findItem(i7));
+        return f(this.f17631c.findItem(i7));
     }
 
     @Override
     public final MenuItem getItem(int i7) {
-        return f(this.f17628c.getItem(i7));
+        return f(this.f17631c.getItem(i7));
     }
 
     @Override
     public final boolean hasVisibleItems() {
-        return this.f17628c.hasVisibleItems();
+        return this.f17631c.hasVisibleItems();
     }
 
     @Override
     public final boolean isShortcutKey(int i7, KeyEvent keyEvent) {
-        return this.f17628c.isShortcutKey(i7, keyEvent);
+        return this.f17631c.isShortcutKey(i7, keyEvent);
     }
 
     @Override
     public final boolean performIdentifierAction(int i7, int i10) {
-        return this.f17628c.performIdentifierAction(i7, i10);
+        return this.f17631c.performIdentifierAction(i7, i10);
     }
 
     @Override
     public final boolean performShortcut(int i7, KeyEvent keyEvent, int i10) {
-        return this.f17628c.performShortcut(i7, keyEvent, i10);
+        return this.f17631c.performShortcut(i7, keyEvent, i10);
     }
 
     @Override
@@ -108,7 +108,7 @@ public class a0 extends g.p implements Menu {
                 i10++;
             }
         }
-        this.f17628c.removeGroup(i7);
+        this.f17631c.removeGroup(i7);
     }
 
     @Override
@@ -127,61 +127,61 @@ public class a0 extends g.p implements Menu {
                 }
             }
         }
-        this.f17628c.removeItem(i7);
+        this.f17631c.removeItem(i7);
     }
 
     @Override
     public final void setGroupCheckable(int i7, boolean z9, boolean z10) {
-        this.f17628c.setGroupCheckable(i7, z9, z10);
+        this.f17631c.setGroupCheckable(i7, z9, z10);
     }
 
     @Override
     public final void setGroupEnabled(int i7, boolean z9) {
-        this.f17628c.setGroupEnabled(i7, z9);
+        this.f17631c.setGroupEnabled(i7, z9);
     }
 
     @Override
     public final void setGroupVisible(int i7, boolean z9) {
-        this.f17628c.setGroupVisible(i7, z9);
+        this.f17631c.setGroupVisible(i7, z9);
     }
 
     @Override
     public final void setQwertyMode(boolean z9) {
-        this.f17628c.setQwertyMode(z9);
+        this.f17631c.setQwertyMode(z9);
     }
 
     @Override
     public final int size() {
-        return this.f17628c.size();
+        return this.f17631c.size();
     }
 
     @Override
     public final SubMenu addSubMenu(int i7) {
-        return this.f17628c.addSubMenu(i7);
+        return this.f17631c.addSubMenu(i7);
     }
 
     @Override
     public final MenuItem add(int i7) {
-        return f(this.f17628c.add(i7));
+        return f(this.f17631c.add(i7));
     }
 
     @Override
     public final SubMenu addSubMenu(int i7, int i10, int i11, CharSequence charSequence) {
-        return this.f17628c.addSubMenu(i7, i10, i11, charSequence);
+        return this.f17631c.addSubMenu(i7, i10, i11, charSequence);
     }
 
     @Override
     public final MenuItem add(int i7, int i10, int i11, CharSequence charSequence) {
-        return f(this.f17628c.a(i7, i10, i11, charSequence));
+        return f(this.f17631c.a(i7, i10, i11, charSequence));
     }
 
     @Override
     public final SubMenu addSubMenu(int i7, int i10, int i11, int i12) {
-        return this.f17628c.addSubMenu(i7, i10, i11, i12);
+        return this.f17631c.addSubMenu(i7, i10, i11, i12);
     }
 
     @Override
     public final MenuItem add(int i7, int i10, int i11, int i12) {
-        return f(this.f17628c.add(i7, i10, i11, i12));
+        return f(this.f17631c.add(i7, i10, i11, i12));
     }
 }

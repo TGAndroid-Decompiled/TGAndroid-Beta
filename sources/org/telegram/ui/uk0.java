@@ -9,30 +9,30 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class uk0 extends WebViewClient {
-    public final int f50443a;
-    public final Context f50444b;
-    public final hl0 f50445c;
+    public final int f50366a;
+    public final Context f50367b;
+    public final hl0 f50368c;
 
     public uk0(hl0 hl0Var, Context context, int i7) {
-        this.f50443a = i7;
-        this.f50445c = hl0Var;
-        this.f50444b = context;
+        this.f50366a = i7;
+        this.f50368c = hl0Var;
+        this.f50367b = context;
     }
 
     @Override
     public final void onPageFinished(WebView webView, String str) {
-        switch (this.f50443a) {
+        switch (this.f50366a) {
             case 0:
                 super.onPageFinished(webView, str);
-                hl0 hl0Var = this.f50445c;
-                hl0Var.f46447z0 = false;
+                hl0 hl0Var = this.f50368c;
+                hl0Var.f46446z0 = false;
                 hl0Var.N0(true, false);
                 hl0Var.Q0();
                 return;
             default:
                 super.onPageFinished(webView, str);
-                hl0 hl0Var2 = this.f50445c;
-                hl0Var2.f46447z0 = false;
+                hl0 hl0Var2 = this.f50368c;
+                hl0Var2.f46446z0 = false;
                 hl0Var2.N0(true, false);
                 hl0Var2.Q0();
                 return;
@@ -41,8 +41,8 @@ public final class uk0 extends WebViewClient {
 
     @Override
     public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-        int i7 = this.f50443a;
-        hl0 hl0Var = this.f50445c;
+        int i7 = this.f50366a;
+        hl0 hl0Var = this.f50368c;
         switch (i7) {
             case 0:
                 try {
@@ -50,10 +50,10 @@ public final class uk0 extends WebViewClient {
                         return true;
                     }
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, hl0Var.getParentActivity(), hl0Var.Y0);
-                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
-                    u1Var.R = org.telegram.messenger.hd.M0(2131752104, null);
-                    u1Var.T = org.telegram.messenger.g0.U2(org.telegram.messenger.hd.M0(2131752105, null), new ef0(this, 10));
-                    alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131747830, null), null);
+                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
+                    u1Var.R = org.telegram.messenger.id.M0(2131752104, null);
+                    u1Var.T = org.telegram.messenger.g0.U2(org.telegram.messenger.id.M0(2131752105, null), new ef0(this, 10));
+                    alertDialog$Builder.k(org.telegram.messenger.id.M0(2131747832, null), null);
                     alertDialog$Builder.p();
                     return true;
                 } catch (Exception e10) {
@@ -66,10 +66,10 @@ public final class uk0 extends WebViewClient {
                         return true;
                     }
                     AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(0, hl0Var.getParentActivity(), hl0Var.Y0);
-                    org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder2.f27293a;
-                    u1Var2.R = org.telegram.messenger.hd.M0(2131752104, null);
-                    u1Var2.T = org.telegram.messenger.g0.U2(org.telegram.messenger.hd.M0(2131752105, null), new ef0(this, 12));
-                    alertDialog$Builder2.k(org.telegram.messenger.hd.M0(2131747830, null), null);
+                    org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder2.f27296a;
+                    u1Var2.R = org.telegram.messenger.id.M0(2131752104, null);
+                    u1Var2.T = org.telegram.messenger.g0.U2(org.telegram.messenger.id.M0(2131752105, null), new ef0(this, 12));
+                    alertDialog$Builder2.k(org.telegram.messenger.id.M0(2131747832, null), null);
                     alertDialog$Builder2.p();
                     return true;
                 } catch (Exception e11) {
@@ -83,18 +83,18 @@ public final class uk0 extends WebViewClient {
     public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
         boolean z9;
         Uri parse;
-        int i7 = this.f50443a;
-        Context context = this.f50444b;
+        int i7 = this.f50366a;
+        Context context = this.f50367b;
         boolean z10 = false;
-        hl0 hl0Var = this.f50445c;
+        hl0 hl0Var = this.f50368c;
         switch (i7) {
             case 0:
                 try {
                     Uri parse2 = Uri.parse(str);
                     if ("t.me".equals(parse2.getHost())) {
                         hl0Var.z0();
-                    } else if (!hl0.f46405h1.contains(parse2.getScheme())) {
-                        if (hl0.f46404g1.contains(parse2.getScheme())) {
+                    } else if (!hl0.f46404h1.contains(parse2.getScheme())) {
+                        if (hl0.f46403g1.contains(parse2.getScheme())) {
                             return false;
                         }
                         try {
@@ -108,10 +108,10 @@ public final class uk0 extends WebViewClient {
                             }
                         } catch (ActivityNotFoundException unused) {
                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context);
-                            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
-                            u1Var.R = hl0Var.f46432p0;
-                            u1Var.T = org.telegram.messenger.hd.M0(2131747428, null);
-                            alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131747830, null), null);
+                            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
+                            u1Var.R = hl0Var.f46431p0;
+                            u1Var.T = org.telegram.messenger.id.M0(2131747430, null);
+                            alertDialog$Builder.k(org.telegram.messenger.id.M0(2131747832, null), null);
                             alertDialog$Builder.p();
                         }
                     }
@@ -120,7 +120,7 @@ public final class uk0 extends WebViewClient {
                     return false;
                 }
             default:
-                hl0Var.D = !str.equals(hl0Var.f46445y);
+                hl0Var.D = !str.equals(hl0Var.f46444y);
                 try {
                     parse = Uri.parse(str);
                 } catch (Exception unused3) {
@@ -128,10 +128,10 @@ public final class uk0 extends WebViewClient {
                 if ("t.me".equals(parse.getHost())) {
                     hl0Var.z0();
                     return true;
-                } else if (hl0.f46405h1.contains(parse.getScheme())) {
+                } else if (hl0.f46404h1.contains(parse.getScheme())) {
                     return true;
                 } else {
-                    if (!hl0.f46404g1.contains(parse.getScheme())) {
+                    if (!hl0.f46403g1.contains(parse.getScheme())) {
                         try {
                             if (hl0Var.getParentActivity() != null) {
                                 z10 = true;
@@ -143,10 +143,10 @@ public final class uk0 extends WebViewClient {
                             return true;
                         } catch (ActivityNotFoundException unused4) {
                             AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(context);
-                            org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder2.f27293a;
-                            u1Var2.R = hl0Var.f46432p0;
-                            u1Var2.T = org.telegram.messenger.hd.M0(2131747428, null);
-                            alertDialog$Builder2.k(org.telegram.messenger.hd.M0(2131747830, null), null);
+                            org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder2.f27296a;
+                            u1Var2.R = hl0Var.f46431p0;
+                            u1Var2.T = org.telegram.messenger.id.M0(2131747430, null);
+                            alertDialog$Builder2.k(org.telegram.messenger.id.M0(2131747832, null), null);
                             alertDialog$Builder2.p();
                             return true;
                         }

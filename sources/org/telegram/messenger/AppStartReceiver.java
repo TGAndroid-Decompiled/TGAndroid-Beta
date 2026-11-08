@@ -4,7 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 public class AppStartReceiver extends BroadcastReceiver {
-    public static final int f21162a = 0;
+    public static final int f21165a = 0;
 
     @Override
     public final void onReceive(Context context, Intent intent) {

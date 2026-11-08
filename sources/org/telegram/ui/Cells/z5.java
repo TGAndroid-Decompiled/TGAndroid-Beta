@@ -13,10 +13,10 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
-import org.telegram.ui.Components.ys;
+import org.telegram.ui.Components.zs;
 import org.telegram.ui.e11;
 import org.telegram.ui.i01;
-public final class z5 extends ys {
+public final class z5 extends zs {
     public final int Y1;
     public final Object Z1;
 
@@ -74,7 +74,7 @@ public final class z5 extends ys {
         switch (this.Y1) {
             case 0:
                 InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
-                if (((a6) this.Z1).f28892s) {
+                if (((a6) this.Z1).f28895s) {
                     editorInfo.imeOptions &= -1073741825;
                 }
                 return onCreateInputConnection;

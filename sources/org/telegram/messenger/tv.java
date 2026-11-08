@@ -2,38 +2,38 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 public final class tv implements Runnable {
-    public final int f25683a;
-    public final vv f25684b;
+    public final int f25684a;
+    public final vv f25685b;
 
     public tv(vv vvVar, int i7) {
-        this.f25683a = i7;
-        this.f25684b = vvVar;
+        this.f25684a = i7;
+        this.f25685b = vvVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f25683a) {
+        switch (this.f25684a) {
             case 0:
-                this.f25684b.g(false);
+                this.f25685b.g(false);
                 return;
             case 1:
-                this.f25684b.f26217o = false;
+                this.f25685b.f26223o = false;
                 return;
             case 2:
-                vv vvVar = this.f25684b;
-                vvVar.f26217o = false;
-                vvVar.f26214l = false;
+                vv vvVar = this.f25685b;
+                vvVar.f26223o = false;
+                vvVar.f26220l = false;
                 return;
             case 3:
-                this.f25684b.l();
+                this.f25685b.l();
                 return;
             default:
-                vv vvVar2 = this.f25684b;
-                if (!vvVar2.f26217o) {
-                    vvVar2.f26217o = true;
-                    ArrayList arrayList = new ArrayList(vvVar2.f26212j);
-                    yr a02 = yr.a0(vvVar2.f26205a);
-                    a02.f26696a.c(new lg(vvVar2, a02, arrayList, 24));
+                vv vvVar2 = this.f25685b;
+                if (!vvVar2.f26223o) {
+                    vvVar2.f26223o = true;
+                    ArrayList arrayList = new ArrayList(vvVar2.f26218j);
+                    yr a02 = yr.a0(vvVar2.f26211a);
+                    a02.f26719a.c(new lg(vvVar2, a02, arrayList, 24));
                     return;
                 }
                 return;

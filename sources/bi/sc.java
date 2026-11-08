@@ -37,13 +37,13 @@ public final class sc extends LinearLayout implements ls {
         TextView textView = new TextView(context);
         int i10 = org.telegram.ui.ActionBar.k6.G6;
         org.telegram.ui.ActionBar.r6.V(textView, i10, f6Var);
-        jg.g.v(textView, 1, 13.0f, null, 2131745156);
+        jg.g.v(textView, 1, 13.0f, null, 2131745158);
         textView.setGravity(5);
         textView.setTypeface(org.telegram.messenger.g0.o());
         addView(textView, c8.ha.r(-2, -2, 5));
         rc rcVar = new rc(this, context, context.getResources().getDrawable(2131232752).mutate());
         this.f4722c = rcVar;
-        rcVar.f34901n = true;
+        rcVar.f34922n = true;
         rcVar.getDrawable().r(false, true);
         rcVar.setTypeface(org.telegram.messenger.g0.o());
         org.telegram.ui.ActionBar.r6.Z(rcVar, i10, f6Var);
@@ -129,14 +129,14 @@ public final class sc extends LinearLayout implements ls {
             spannableStringBuilder.append((CharSequence) dd.a1(false, jg.g.m(j3, ' ', new StringBuilder("⭐️")), 0.62f, this.h));
             rcVar.setText(spannableStringBuilder);
         } else {
-            rcVar.setText(org.telegram.messenger.hd.E(j3, ' '));
+            rcVar.setText(org.telegram.messenger.id.E(j3, ' '));
         }
         this.f4724f = j3;
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == qs.f25105y3) {
+        if (i7 == qs.f25114y3) {
             a(true);
         } else if (i7 == qs.C3 && ((Long) objArr[0]).longValue() == this.f4720a) {
             a(true);
@@ -148,7 +148,7 @@ public final class sc extends LinearLayout implements ls {
         super.onAttachedToWindow();
         a(false);
         int i7 = this.f4721b;
-        qs.f(i7).c(this, qs.f25105y3);
+        qs.f(i7).c(this, qs.f25114y3);
         qs.f(i7).c(this, qs.C3);
     }
 
@@ -156,7 +156,7 @@ public final class sc extends LinearLayout implements ls {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         int i7 = this.f4721b;
-        qs.f(i7).n(this, qs.f25105y3);
+        qs.f(i7).n(this, qs.f25114y3);
         qs.f(i7).n(this, qs.C3);
     }
 

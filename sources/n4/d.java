@@ -5,8 +5,8 @@ import e2.t0;
 import f3.p;
 import h2.x;
 public abstract class d {
-    public static final byte[] f20393a = {0, 0, 0, 0, 16, 0, Byte.MIN_VALUE, 0, 0, -86, 0, 56, -101, 113};
-    public static final byte[] f20394b = {0, 0, 33, 7, -45, 17, -122, 68, -56, -63, -54, 0, 0, 0};
+    public static final byte[] f20396a = {0, 0, 0, 0, 16, 0, Byte.MIN_VALUE, 0, 0, -86, 0, 56, -101, 113};
+    public static final byte[] f20397b = {0, 0, 33, 7, -45, 17, -122, 68, -56, -63, -54, 0, 0, 0};
 
     public static boolean a(p pVar) {
         x xVar = new x(8);

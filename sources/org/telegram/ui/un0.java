@@ -5,17 +5,17 @@ import android.view.View;
 import java.util.Comparator;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class un0 implements Comparator {
-    public final int f50455a;
+    public final int f50378a;
 
     public un0(int i7) {
-        this.f50455a = i7;
+        this.f50378a = i7;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
         int i7;
         int i10;
-        switch (this.f50455a) {
+        switch (this.f50378a) {
             case 0:
                 Drawable[] drawableArr = PhotoViewer.Y8;
                 return ((org.telegram.messenger.ij) obj).f1() - ((org.telegram.messenger.ij) obj2).f1();
@@ -23,14 +23,14 @@ public final class un0 implements Comparator {
                 return (int) (((View) obj).getY() - ((View) obj2).getY());
             case 2:
                 if (obj instanceof sw0) {
-                    i7 = ((sw0) obj).f49861g;
+                    i7 = ((sw0) obj).f49852g;
                 } else if (obj instanceof org.telegram.messenger.cp) {
                     i7 = ((org.telegram.messenger.cp) obj).d;
                 } else {
                     i7 = 0;
                 }
                 if (obj2 instanceof sw0) {
-                    i10 = ((sw0) obj2).f49861g;
+                    i10 = ((sw0) obj2).f49852g;
                 } else if (obj2 instanceof org.telegram.messenger.cp) {
                     i10 = ((org.telegram.messenger.cp) obj2).d;
                 } else {
@@ -64,7 +64,7 @@ public final class un0 implements Comparator {
                 }
                 return -1;
             case 6:
-                return Integer.compare(((org.telegram.ui.Wallet.j0) obj2).f42635b, ((org.telegram.ui.Wallet.j0) obj).f42635b);
+                return Integer.compare(((org.telegram.ui.Wallet.i0) obj2).f42605b, ((org.telegram.ui.Wallet.i0) obj).f42605b);
             case 7:
                 return Integer.compare(((TL_wallet.walletTransaction) obj2).date, ((TL_wallet.walletTransaction) obj).date);
             case 8:
@@ -77,15 +77,15 @@ public final class un0 implements Comparator {
                 }
                 return -1;
             case 9:
-                return (int) (((org.telegram.ui.web.i) obj2).f51152c - ((org.telegram.ui.web.i) obj).f51152c);
+                return (int) (((org.telegram.ui.web.i) obj2).f51159c - ((org.telegram.ui.web.i) obj).f51159c);
             case 10:
-                return (int) (((org.telegram.ui.web.i) obj2).f51152c - ((org.telegram.ui.web.i) obj).f51152c);
+                return (int) (((org.telegram.ui.web.i) obj2).f51159c - ((org.telegram.ui.web.i) obj).f51159c);
             case 11:
-                return Long.compare(((org.telegram.utils.twidget.m) obj2).f52864y, ((org.telegram.utils.twidget.m) obj).f52864y);
+                return Long.compare(((org.telegram.utils.twidget.k0) obj2).f52888y, ((org.telegram.utils.twidget.k0) obj).f52888y);
             case 12:
-                return ((s2.e) obj).f54536a.compareTo(((s2.e) obj2).f54536a);
+                return ((s2.e) obj).f54628a.compareTo(((s2.e) obj2).f54628a);
             case 13:
-                return (int) ((((ug.i1) obj).f56536a * 100.0f) - (((ug.i1) obj2).f56536a * 100.0f));
+                return (int) ((((ug.i1) obj).f56628a * 100.0f) - (((ug.i1) obj2).f56628a * 100.0f));
             default:
                 return ((String) obj).compareTo((String) obj2);
         }

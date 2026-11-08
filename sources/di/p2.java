@@ -4,7 +4,7 @@ import android.view.View;
 import c8.ha;
 import java.util.ArrayList;
 import org.telegram.messenger.camera.CameraView;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.qp;
 import org.telegram.messenger.t10;
 import org.telegram.tgnet.ConnectionsManager;
@@ -110,7 +110,7 @@ public final class p2 implements wf {
     @Override
     public final boolean X0() {
         o40 o40Var = this.f9505a.f9194s2;
-        if (o40Var != null && !o40Var.f36532i0) {
+        if (o40Var != null && !o40Var.f36552i0) {
             return true;
         }
         return false;
@@ -142,12 +142,12 @@ public final class p2 implements wf {
             }
         }
         y20 y20Var2 = i4Var.F2;
-        if (i4Var.K1.f31025c1) {
-            i7 = 2131743595;
+        if (i4Var.K1.f31029c1) {
+            i7 = 2131743597;
         } else {
-            i7 = 2131743521;
+            i7 = 2131743523;
         }
-        y20Var2.setText(org.telegram.messenger.g0.X2(hd.a0(null, null, i7, str)));
+        y20Var2.setText(org.telegram.messenger.g0.X2(id.a0(null, null, i7, str)));
         i4Var.F2.c(i4Var.K1.getAudioVideoButtonContainer());
     }
 
@@ -189,8 +189,8 @@ public final class p2 implements wf {
             i4Var.M2.setDialogId(i4Var.f9164k1);
             if (i4Var.f9213x1.f9042f) {
                 jg.i1 adapter = i4Var.M2.getAdapter();
-                if (adapter.f16783j0 == 0 && adapter.f16796u0 == 0 && adapter.f16795t0 == 0 && adapter.E0 == 0) {
-                    adapter.f16799w0 = null;
+                if (adapter.f16786j0 == 0 && adapter.f16799u0 == 0 && adapter.f16798t0 == 0 && adapter.E0 == 0) {
+                    adapter.f16802w0 = null;
                     adapter.F = null;
                     ArrayList arrayList = adapter.A0;
                     if (arrayList != null) {
@@ -202,7 +202,7 @@ public final class p2 implements wf {
                     }
                     adapter.T = null;
                     adapter.U = null;
-                    ArrayList arrayList3 = adapter.f16802y;
+                    ArrayList arrayList3 = adapter.f16805y;
                     if (arrayList3 != null) {
                         arrayList3.clear();
                     }
@@ -229,7 +229,7 @@ public final class p2 implements wf {
                 qp.s1(i4Var.f9168l2).a2(Long.valueOf(i4Var.f9164k1));
                 TLRPC.Chat M0 = qp.s1(i4Var.f9168l2).M0(Long.valueOf(-i4Var.f9164k1));
                 adapter2.getClass();
-                adapter2.f16785l0 = M0;
+                adapter2.f16788l0 = M0;
                 i4Var.M2.getAdapter().U(charSequence, i4Var.K1.getCursorPosition(), null, false, false);
             }
         }

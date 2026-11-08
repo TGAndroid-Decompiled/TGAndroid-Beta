@@ -7,18 +7,18 @@ import org.telegram.ui.hy0;
 import p5.d;
 import w5.c;
 public final class a implements b {
-    public static final Logger f55352f = Logger.getLogger(s.class.getName());
-    public final hy0 f55353a;
-    public final Executor f55354b;
-    public final d f55355c;
+    public static final Logger f55444f = Logger.getLogger(s.class.getName());
+    public final hy0 f55445a;
+    public final Executor f55446b;
+    public final d f55447c;
     public final v5.d d;
-    public final c f55356e;
+    public final c f55448e;
 
     public a(Executor executor, d dVar, hy0 hy0Var, v5.d dVar2, c cVar) {
-        this.f55354b = executor;
-        this.f55355c = dVar;
-        this.f55353a = hy0Var;
+        this.f55446b = executor;
+        this.f55447c = dVar;
+        this.f55445a = hy0Var;
         this.d = dVar2;
-        this.f55356e = cVar;
+        this.f55448e = cVar;
     }
 }

@@ -1,9 +1,9 @@
 package z7;
 public final class k1 implements na.d {
-    public static final k1 f59752a = new Object();
+    public static final k1 f59845a = new Object();
 
     static {
-        rf.b.p(rf.b.l(d.class, rf.b.n(rf.b.l(d.class, rf.b.n(rf.b.l(d.class, rf.b.n(rf.b.l(d.class, rf.b.n(rf.b.l(d.class, new a(1)), 2)), 3)), 4)), 5)));
+        rf.b.q(rf.b.l(d.class, rf.b.n(rf.b.l(d.class, rf.b.n(rf.b.l(d.class, rf.b.n(rf.b.l(d.class, rf.b.n(rf.b.l(d.class, new a(1)), 2)), 3)), 4)), 5)));
     }
 
     @Override

@@ -3,7 +3,7 @@ package bi;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.view.View;
-import org.telegram.ui.Components.cz;
+import org.telegram.ui.Components.dz;
 public final class yd extends AnimatorListenerAdapter {
     public final int f5105a;
     public final int f5106b;
@@ -30,16 +30,16 @@ public final class yd extends AnimatorListenerAdapter {
                 zdVar.invalidate();
                 return;
             case 1:
-                cz czVar = (cz) this.d;
+                dz dzVar = (dz) this.d;
                 int i7 = this.f5106b;
                 if (i7 == 5) {
                     f10 = 0.0f;
                 } else {
                     f10 = -this.f5107c;
                 }
-                czVar.b(f10, i7 + 1);
-                czVar.D = 0.0f;
-                czVar.invalidate();
+                dzVar.b(f10, i7 + 1);
+                dzVar.D = 0.0f;
+                dzVar.invalidate();
                 return;
             default:
                 ((org.telegram.ui.web.k1) this.d).c(this.f5106b, this.f5107c, false);

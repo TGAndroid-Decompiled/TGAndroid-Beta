@@ -10,6 +10,6 @@ public final class ns0 extends h11 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.f48130e.f41628u0 = null;
+        this.f48130e.f41632u0 = null;
     }
 }

@@ -6,32 +6,32 @@ import org.telegram.ui.Components.ii0;
 import org.telegram.ui.Components.xz0;
 import org.telegram.ui.cr0;
 public final class g1 extends Property {
-    public final int f29137a;
+    public final int f29140a;
 
     public g1(Class cls, String str, int i7) {
         super(cls, str);
-        this.f29137a = i7;
+        this.f29140a = i7;
     }
 
     @Override
     public final Object get(Object obj) {
-        switch (this.f29137a) {
+        switch (this.f29140a) {
             case 0:
-                return Float.valueOf(((q1) obj).Vc);
+                return Float.valueOf(((q1) obj).Wc);
             case 1:
                 return Integer.valueOf(Math.round(((View) obj).getTranslationY()));
             case 2:
-                return Float.valueOf(((ii0) obj).f34675w);
+                return Float.valueOf(((ii0) obj).f34719w);
             case 3:
                 return Float.valueOf(((xz0) obj).h);
             default:
-                return Float.valueOf(((cr0) obj).f44877a);
+                return Float.valueOf(((cr0) obj).f44882a);
         }
     }
 
     @Override
     public final void set(Object obj, Object obj2) {
-        switch (this.f29137a) {
+        switch (this.f29140a) {
             case 0:
                 ((q1) obj).setAnimationOffsetX(((Float) obj2).floatValue());
                 return;

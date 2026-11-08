@@ -7,7 +7,7 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Components.u31;
 import org.telegram.ui.Components.w70;
-import org.telegram.ui.Components.xz;
+import org.telegram.ui.Components.yz;
 import org.telegram.ui.bd;
 public final class b2 extends w70 {
     public final int L;
@@ -23,7 +23,7 @@ public final class b2 extends w70 {
     public int a() {
         switch (this.L) {
             case 4:
-                return ((UndoView) this.M).f31593a;
+                return ((UndoView) this.M).f31597a;
             default:
                 return super.a();
         }
@@ -79,7 +79,7 @@ public final class b2 extends w70 {
                     int indexOf = charSequence.toString().indexOf(10);
                     if (indexOf >= 0) {
                         charSequence.replace(indexOf, indexOf + 1, " ");
-                        charSequence.setSpan(new xz(org.telegram.ui.ActionBar.k6.f28070p7, ((org.telegram.ui.ka) this.M).f47150e.getResourceProvider()), 0, indexOf, 33);
+                        charSequence.setSpan(new yz(org.telegram.ui.ActionBar.k6.f28073p7, ((org.telegram.ui.ka) this.M).f47153e.getResourceProvider()), 0, indexOf, 33);
                     }
                     u31[] u31VarArr = (u31[]) charSequence.getSpans(0, charSequence.length(), u31.class);
                     for (int i7 = 0; i7 < u31VarArr.length; i7++) {
@@ -96,12 +96,12 @@ public final class b2 extends w70 {
                     int indexOf2 = charSequence.toString().indexOf(10);
                     if (indexOf2 >= 0) {
                         charSequence.replace(indexOf2, indexOf2 + 1, " ");
-                        charSequence.setSpan(new xz(org.telegram.ui.ActionBar.k6.f28070p7, bdVar.getResourceProvider()), 0, indexOf2, 33);
+                        charSequence.setSpan(new yz(org.telegram.ui.ActionBar.k6.f28073p7, bdVar.getResourceProvider()), 0, indexOf2, 33);
                     }
                     u31[] u31VarArr2 = (u31[]) charSequence.getSpans(0, charSequence.length(), u31.class);
-                    EditTextBoldCursor editTextBoldCursor = bdVar.f44283y;
+                    EditTextBoldCursor editTextBoldCursor = bdVar.f44286y;
                     if (editTextBoldCursor != null && editTextBoldCursor.getText() != null) {
-                        str = bdVar.f44283y.getText().toString();
+                        str = bdVar.f44286y.getText().toString();
                     } else {
                         str = "";
                     }

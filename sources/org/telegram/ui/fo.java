@@ -8,19 +8,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class fo extends org.telegram.ui.Components.pj0 {
-    public static final int f45678i3 = 0;
-    public final eo f45679e3;
-    public boolean f45680f3;
-    public final Paint f45681g3;
-    public final go f45682h3;
+    public static final int f45655i3 = 0;
+    public final eo f45656e3;
+    public boolean f45657f3;
+    public final Paint f45658g3;
+    public final go f45659h3;
 
     public fo(go goVar, Context context) {
         super(context, null);
-        this.f45682h3 = goVar;
-        this.f45680f3 = false;
-        this.f45681g3 = new Paint(1);
+        this.f45659h3 = goVar;
+        this.f45657f3 = false;
+        this.f45658g3 = new Paint(1);
         eo eoVar = new eo(this);
-        this.f45679e3 = eoVar;
+        this.f45656e3 = eoVar;
         setAdapter(eoVar);
         setLayoutManager(new v4.b0());
         setOnItemClickListener(new co(this));
@@ -31,7 +31,7 @@ public final class fo extends org.telegram.ui.Components.pj0 {
     public final void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
         int R;
-        int size = this.f45682h3.N.size();
+        int size = this.f45659h3.N.size();
         int i7 = Integer.MAX_VALUE;
         int i10 = Integer.MIN_VALUE;
         for (int i11 = 0; i11 < getChildCount(); i11++) {
@@ -42,8 +42,8 @@ public final class fo extends org.telegram.ui.Components.pj0 {
             }
         }
         if (i7 < i10) {
-            int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27849d6, this.f36955n2);
-            Paint paint = this.f45681g3;
+            int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27852d6, this.f36981n2);
+            Paint paint = this.f45658g3;
             paint.setColor(w02);
             canvas2 = canvas;
             canvas2.drawRect(0.0f, i7, getWidth(), i10, paint);
@@ -61,7 +61,7 @@ public final class fo extends org.telegram.ui.Components.pj0 {
     public final void z1(TLRPC.TL_username tL_username, boolean z9, boolean z10) {
         TLRPC.TL_username tL_username2;
         int min;
-        go goVar = this.f45682h3;
+        go goVar = this.f45659h3;
         ArrayList arrayList = goVar.N;
         int i7 = 0;
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
@@ -114,9 +114,9 @@ public final class fo extends org.telegram.ui.Components.pj0 {
                             if (childAt instanceof ia) {
                                 ia iaVar = (ia) childAt;
                                 iaVar.setLoading(goVar.P.contains(tL_username2.username));
-                                TLRPC.TL_username tL_username3 = iaVar.f46624w;
+                                TLRPC.TL_username tL_username3 = iaVar.f46622w;
                                 if (tL_username3 != null) {
-                                    iaVar.a(tL_username3, iaVar.f46625x, true, iaVar.f46626y);
+                                    iaVar.a(tL_username3, iaVar.f46623x, true, iaVar.f46624y);
                                 }
                             }
                         } else {
@@ -125,8 +125,8 @@ public final class fo extends org.telegram.ui.Components.pj0 {
                     }
                     if (i12 >= 0 && i11 != i12) {
                         int i17 = i12 - 1;
-                        eo eoVar = this.f45679e3;
-                        ArrayList arrayList2 = eoVar.f45390c.f45682h3.N;
+                        eo eoVar = this.f45656e3;
+                        ArrayList arrayList2 = eoVar.f45349c.f45659h3.N;
                         if (i10 < arrayList2.size() && i17 < arrayList2.size()) {
                             arrayList2.add(i17, (TLRPC.TL_username) arrayList2.remove(i10));
                             eoVar.j(i11, i12);

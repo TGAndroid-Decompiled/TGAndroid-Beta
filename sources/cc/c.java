@@ -197,7 +197,7 @@ public final class c implements z3.b {
 
     public c(i2.d dVar, u uVar) {
         this.f6047a = 4;
-        x xVar = dVar.f15150c;
+        x xVar = dVar.f15153c;
         this.d = xVar;
         xVar.N(12);
         int E = xVar.E();

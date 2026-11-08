@@ -5,25 +5,25 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import c8.ha;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
 public final class s implements Runnable {
-    public final int f55845a;
-    public final g0 f55846b;
-    public final j f55847c;
+    public final int f55937a;
+    public final g0 f55938b;
+    public final j f55939c;
 
     public s(g0 g0Var, j jVar, int i7) {
-        this.f55845a = i7;
-        this.f55846b = g0Var;
-        this.f55847c = jVar;
+        this.f55937a = i7;
+        this.f55938b = g0Var;
+        this.f55939c = jVar;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f55845a;
-        final j jVar = this.f55847c;
-        final g0 g0Var = this.f55846b;
+        int i7 = this.f55937a;
+        final j jVar = this.f55939c;
+        final g0 g0Var = this.f55938b;
         switch (i7) {
             case 0:
                 g0Var.q0(jVar);
@@ -33,14 +33,14 @@ public final class s implements Runnable {
                 linearLayout.setOrientation(0);
                 TextView textView = new TextView(g0Var.getContext());
                 int i10 = k6.E8;
-                u uVar = g0Var.f55612z1;
+                u uVar = g0Var.f55704z1;
                 r6.V(textView, i10, uVar);
                 textView.setBackground(k6.N0(false));
                 textView.setGravity(16);
                 textView.setPadding(org.telegram.messenger.g0.L(16.0f), 0, org.telegram.messenger.g0.L(14.0f), 0);
                 textView.setTextSize(1, 14.0f);
                 textView.setTag(0);
-                textView.setText(hd.M0(2131747671, null));
+                textView.setText(id.M0(2131747673, null));
                 TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
                 textView.setEllipsize(truncateAt);
                 textView.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +80,7 @@ public final class s implements Runnable {
                     textView2.setTextSize(1, 14.0f);
                     textView2.setEllipsize(truncateAt);
                     textView2.setTag(1);
-                    textView2.setText(hd.M0(2131747669, null));
+                    textView2.setText(id.M0(2131747671, null));
                     textView2.setOnClickListener(new k(g0Var, 2));
                     linearLayout.addView(textView2, ha.o(-2, 48));
                 }
@@ -93,7 +93,7 @@ public final class s implements Runnable {
                     textView3.setPadding(org.telegram.messenger.g0.L(14.0f), 0, org.telegram.messenger.g0.L(16.0f), 0);
                     textView3.setTextSize(1, 14.0f);
                     textView3.setTag(2);
-                    textView3.setText(hd.M0(2131750691, null));
+                    textView3.setText(id.M0(2131750691, null));
                     textView3.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
@@ -132,7 +132,7 @@ public final class s implements Runnable {
                     textView4.setPadding(org.telegram.messenger.g0.L(14.0f), 0, org.telegram.messenger.g0.L(16.0f), 0);
                     textView4.setTextSize(1, 14.0f);
                     textView4.setTag(2);
-                    textView4.setText(hd.M0(2131747670, null));
+                    textView4.setText(id.M0(2131747672, null));
                     textView4.setOnClickListener(new k(g0Var, 3));
                     linearLayout.addView(textView4, ha.o(-2, 48));
                 }

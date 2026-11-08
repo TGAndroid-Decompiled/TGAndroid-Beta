@@ -9,26 +9,26 @@ import java.util.Collections;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
 public final class dw extends c1 {
-    public static volatile dw[] f22104r = new dw[4];
-    public final ArrayList f22105a;
-    public final SparseArray f22106b;
-    public final SparseArray f22107c;
+    public static volatile dw[] f22122r = new dw[4];
+    public final ArrayList f22123a;
+    public final SparseArray f22124b;
+    public final SparseArray f22125c;
     public final SparseArray d;
-    public final SparseArray f22108e;
-    public final ArrayList f22109f;
+    public final SparseArray f22126e;
+    public final ArrayList f22127f;
     public final ArrayList h;
-    public boolean f22110n;
+    public boolean f22128n;
 
     public dw(int i7) {
         super(i7);
-        this.f22105a = new ArrayList();
-        this.f22106b = new SparseArray();
-        this.f22107c = new SparseArray();
+        this.f22123a = new ArrayList();
+        this.f22124b = new SparseArray();
+        this.f22125c = new SparseArray();
         this.d = new SparseArray();
-        this.f22108e = new SparseArray();
-        this.f22109f = new ArrayList();
+        this.f22126e = new SparseArray();
+        this.f22127f = new ArrayList();
         this.h = new ArrayList();
-        this.f22110n = false;
+        this.f22128n = false;
     }
 
     public static boolean h(org.telegram.tgnet.NativeByteBuffer r23, byte[] r24, byte[] r25, int r26, boolean r27, boolean r28) {
@@ -37,13 +37,13 @@ public final class dw extends c1 {
 
     public static dw i(int i7) {
         dw dwVar;
-        dw dwVar2 = f22104r[i7];
+        dw dwVar2 = f22122r[i7];
         if (dwVar2 == null) {
             synchronized (dw.class) {
                 try {
-                    dwVar = f22104r[i7];
+                    dwVar = f22122r[i7];
                     if (dwVar == null) {
-                        dw[] dwVarArr = f22104r;
+                        dw[] dwVarArr = f22122r;
                         dw dwVar3 = new dw(i7);
                         dwVarArr[i7] = dwVar3;
                         dwVar = dwVar3;
@@ -63,13 +63,13 @@ public final class dw extends c1 {
                 org.telegram.ui.b.b(this.currentAccount);
                 return;
             }
-            this.f22110n = true;
+            this.f22128n = true;
             org.telegram.ui.ActionBar.u1 u1Var = new org.telegram.ui.ActionBar.u1(3, activity, null);
             TLRPC.TL_messages_getDhConfig tL_messages_getDhConfig = new TLRPC.TL_messages_getDhConfig();
             tL_messages_getDhConfig.random_length = 256;
             yr messagesStorage = getMessagesStorage();
             messagesStorage.H();
-            tL_messages_getDhConfig.version = messagesStorage.f26709x;
+            tL_messages_getDhConfig.version = messagesStorage.f26732x;
             u1Var.setOnCancelListener(new gm(this, getConnectionsManager().sendRequest(tL_messages_getDhConfig, new q6(this, activity, u1Var, user, 4), 2), 2));
             try {
                 u1Var.show();
@@ -98,7 +98,7 @@ public final class dw extends c1 {
         }
         encryptedChat.layer = (i7 << 16) | (encryptedChat.layer & 65535);
         yr messagesStorage = getMessagesStorage();
-        messagesStorage.f26696a.c(new eq(messagesStorage, encryptedChat, 2));
+        messagesStorage.f26719a.c(new eq(messagesStorage, encryptedChat, 2));
         if (X0 < 151) {
             w(encryptedChat, null);
         }
@@ -110,23 +110,23 @@ public final class dw extends c1 {
         TLRPC.TL_decryptedMessageLayer tL_decryptedMessageLayer;
         int i7;
         int i10;
-        int i11 = encryptedChat.f26961id;
-        SparseArray sparseArray = this.f22106b;
+        int i11 = encryptedChat.f26964id;
+        SparseArray sparseArray = this.f22124b;
         ArrayList arrayList2 = (ArrayList) sparseArray.get(i11);
         if (arrayList2 != null) {
-            Collections.sort(arrayList2, new vj(18));
+            Collections.sort(arrayList2, new jl(18));
             boolean z9 = false;
-            while (arrayList2.size() > 0 && ((i7 = (tL_decryptedMessageLayer = (cwVar = (cw) arrayList2.get(0)).f21911b).out_seq_no) == (i10 = encryptedChat.seq_in) || i10 == i7 - 2)) {
+            while (arrayList2.size() > 0 && ((i7 = (tL_decryptedMessageLayer = (cwVar = (cw) arrayList2.get(0)).f21940b).out_seq_no) == (i10 = encryptedChat.seq_in) || i10 == i7 - 2)) {
                 a(encryptedChat, tL_decryptedMessageLayer.layer);
-                TLRPC.TL_decryptedMessageLayer tL_decryptedMessageLayer2 = cwVar.f21911b;
+                TLRPC.TL_decryptedMessageLayer tL_decryptedMessageLayer2 = cwVar.f21940b;
                 encryptedChat.seq_in = tL_decryptedMessageLayer2.out_seq_no;
                 encryptedChat.in_seq_no = tL_decryptedMessageLayer2.in_seq_no;
                 arrayList2.remove(0);
-                if (cwVar.f21913e == 2) {
+                if (cwVar.f21942e == 2) {
                     encryptedChat.mtproto_seq = Math.min(encryptedChat.mtproto_seq, encryptedChat.seq_in);
                 }
                 TLRPC.EncryptedChat encryptedChat2 = encryptedChat;
-                TLRPC.Message l10 = l(encryptedChat2, cwVar.f21912c, cwVar.f21910a, cwVar.f21911b.message, cwVar.d);
+                TLRPC.Message l10 = l(encryptedChat2, cwVar.f21941c, cwVar.f21939a, cwVar.f21940b.message, cwVar.d);
                 if (l10 != null) {
                     arrayList.add(l10);
                 }
@@ -135,11 +135,11 @@ public final class dw extends c1 {
             }
             TLRPC.EncryptedChat encryptedChat3 = encryptedChat;
             if (arrayList2.isEmpty()) {
-                sparseArray.remove(encryptedChat3.f26961id);
+                sparseArray.remove(encryptedChat3.f26964id);
             }
             if (z9) {
                 yr messagesStorage = getMessagesStorage();
-                messagesStorage.f26696a.c(new yf((Object) messagesStorage, (Object) encryptedChat3, true, 10));
+                messagesStorage.f26719a.c(new yf((Object) messagesStorage, (Object) encryptedChat3, true, 10));
             }
         }
     }
@@ -150,7 +150,7 @@ public final class dw extends c1 {
         tL_messageService.action = tL_messageEncryptedAction;
         tL_messageEncryptedAction.encryptedAction = new TLRPC.TL_decryptedMessageActionDeleteMessages();
         tL_messageService.action.encryptedAction.random_ids.add(Long.valueOf(j3));
-        tL_messageService.f26974id = i7;
+        tL_messageService.f26977id = i7;
         tL_messageService.local_id = i7;
         TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
         tL_messageService.from_id = tL_peerUser;
@@ -158,7 +158,7 @@ public final class dw extends c1 {
         tL_messageService.unread = true;
         tL_messageService.out = true;
         tL_messageService.flags = 256;
-        tL_messageService.dialog_id = m5.F(encryptedChat.f26961id);
+        tL_messageService.dialog_id = m5.F(encryptedChat.f26964id);
         tL_messageService.send_state = 1;
         tL_messageService.seq_in = i11;
         tL_messageService.seq_out = i10;
@@ -179,7 +179,7 @@ public final class dw extends c1 {
         tL_messageService.action = tL_messageEncryptedAction;
         tL_messageEncryptedAction.encryptedAction = decryptedMessageAction;
         int j3 = getUserConfig().j();
-        tL_messageService.f26974id = j3;
+        tL_messageService.f26977id = j3;
         tL_messageService.local_id = j3;
         TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
         tL_messageService.from_id = tL_peerUser;
@@ -187,7 +187,7 @@ public final class dw extends c1 {
         tL_messageService.unread = true;
         tL_messageService.out = true;
         tL_messageService.flags = 256;
-        tL_messageService.dialog_id = m5.F(encryptedChat.f26961id);
+        tL_messageService.dialog_id = m5.F(encryptedChat.f26964id);
         tL_messageService.peer_id = new TLRPC.TL_peerUser();
         tL_messageService.send_state = 1;
         if (encryptedChat.participant_id == getUserConfig().e()) {
@@ -230,14 +230,14 @@ public final class dw extends c1 {
                 TLRPC.TL_messages_discardEncryption tL_messages_discardEncryption = new TLRPC.TL_messages_discardEncryption();
                 tL_messages_discardEncryption.chat_id = i7;
                 tL_messages_discardEncryption.delete_history = z9;
-                getConnectionsManager().sendRequest(tL_messages_discardEncryption, new p4(this, j3, 3));
+                getConnectionsManager().sendRequest(tL_messages_discardEncryption, new v4(this, j3, 3));
             }
             j3 = getMessagesStorage().z(nativeByteBuffer);
         }
         TLRPC.TL_messages_discardEncryption tL_messages_discardEncryption2 = new TLRPC.TL_messages_discardEncryption();
         tL_messages_discardEncryption2.chat_id = i7;
         tL_messages_discardEncryption2.delete_history = z9;
-        getConnectionsManager().sendRequest(tL_messages_discardEncryption2, new p4(this, j3, 3));
+        getConnectionsManager().sendRequest(tL_messages_discardEncryption2, new v4(this, j3, 3));
     }
 
     public final void f(int i7, boolean z9) {
@@ -258,7 +258,7 @@ public final class dw extends c1 {
 
     public final void k(TLRPC.TL_messages_sendEncryptedMultiMedia tL_messages_sendEncryptedMultiMedia, sy syVar) {
         for (int i7 = 0; i7 < tL_messages_sendEncryptedMultiMedia.files.size(); i7++) {
-            j(tL_messages_sendEncryptedMultiMedia.messages.get(i7), (TLRPC.Message) syVar.f25557z.get(i7), syVar.f25546n, tL_messages_sendEncryptedMultiMedia.files.get(i7), (String) syVar.B.get(i7), (ij) syVar.f25555x.get(i7));
+            j(tL_messages_sendEncryptedMultiMedia.messages.get(i7), (TLRPC.Message) syVar.f25560z.get(i7), syVar.f25549n, tL_messages_sendEncryptedMultiMedia.files.get(i7), (String) syVar.B.get(i7), (ij) syVar.f25558x.get(i7));
         }
     }
 
@@ -274,7 +274,7 @@ public final class dw extends c1 {
             yr messagesStorage = getMessagesStorage();
             messagesStorage.getClass();
             if (!arrayList2.isEmpty()) {
-                messagesStorage.f26696a.c(new sp(messagesStorage, arrayList2, 3));
+                messagesStorage.f26719a.c(new sp(messagesStorage, arrayList2, 3));
             }
             arrayList.clear();
         }
@@ -286,14 +286,14 @@ public final class dw extends c1 {
 
     public final void o(TLRPC.EncryptedChat encryptedChat) {
         byte[] bArr = new byte[256];
-        Utilities.f21331b.nextBytes(bArr);
+        Utilities.f21334b.nextBytes(bArr);
         yr messagesStorage = getMessagesStorage();
         messagesStorage.H();
         BigInteger valueOf = BigInteger.valueOf(messagesStorage.D);
         BigInteger bigInteger = new BigInteger(1, bArr);
         yr messagesStorage2 = getMessagesStorage();
         messagesStorage2.H();
-        byte[] byteArray = valueOf.modPow(bigInteger, new BigInteger(1, messagesStorage2.f26710y)).toByteArray();
+        byte[] byteArray = valueOf.modPow(bigInteger, new BigInteger(1, messagesStorage2.f26733y)).toByteArray();
         if (byteArray.length > 256) {
             byte[] bArr2 = new byte[256];
             System.arraycopy(byteArray, 1, bArr2, 0, 256);
@@ -436,12 +436,12 @@ public final class dw extends c1 {
 
     public final void w(TLRPC.EncryptedChat encryptedChat, TLRPC.Message message) {
         if (encryptedChat instanceof TLRPC.TL_encryptedChat) {
-            Integer valueOf = Integer.valueOf(encryptedChat.f26961id);
-            ArrayList arrayList = this.f22105a;
+            Integer valueOf = Integer.valueOf(encryptedChat.f26964id);
+            ArrayList arrayList = this.f22123a;
             if (arrayList.contains(valueOf)) {
                 return;
             }
-            arrayList.add(Integer.valueOf(encryptedChat.f26961id));
+            arrayList.add(Integer.valueOf(encryptedChat.f26964id));
             TLRPC.TL_decryptedMessageService tL_decryptedMessageService = new TLRPC.TL_decryptedMessageService();
             if (message != null) {
                 tL_decryptedMessageService.action = message.action.encryptedAction;
@@ -478,7 +478,7 @@ public final class dw extends c1 {
 
     public final void y(TLRPC.EncryptedChat encryptedChat, int i7, int i10, TLRPC.Message message) {
         if (encryptedChat instanceof TLRPC.TL_encryptedChat) {
-            int i11 = encryptedChat.f26961id;
+            int i11 = encryptedChat.f26964id;
             SparseArray sparseArray = this.d;
             SparseIntArray sparseIntArray = (SparseIntArray) sparseArray.get(i11);
             if (sparseIntArray != null && sparseIntArray.indexOfKey(i7) >= 0) {
@@ -486,7 +486,7 @@ public final class dw extends c1 {
             }
             if (sparseIntArray == null) {
                 sparseIntArray = new SparseIntArray();
-                sparseArray.put(encryptedChat.f26961id, sparseIntArray);
+                sparseArray.put(encryptedChat.f26964id, sparseIntArray);
             }
             sparseIntArray.put(i7, i10);
             TLRPC.TL_decryptedMessageService tL_decryptedMessageService = new TLRPC.TL_decryptedMessageService();
@@ -518,10 +518,10 @@ public final class dw extends c1 {
             tL_decryptedMessageActionSetMessageTTL.ttl_seconds = encryptedChat.ttl;
             message = d(encryptedChat, tL_decryptedMessageActionSetMessageTTL);
             ij ijVar = new ij(this.currentAccount, message, false, false);
-            ijVar.f23244k.send_state = 1;
+            ijVar.f23262k.send_state = 1;
             ijVar.V1 = true;
             getMessagesController().l5(0, message.dialog_id, k5.k(ijVar));
-            getNotificationCenter().k(qs.f25061s, new Object[0]);
+            getNotificationCenter().k(qs.f25070s, new Object[0]);
         }
         TLRPC.Message message2 = message;
         tL_decryptedMessageService.random_id = message2.random_id;

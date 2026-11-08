@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.Components.Switch;
 public final class ot0 extends org.telegram.ui.Components.oj0 {
-    public final Context f48544c;
+    public final Context f48538c;
     public final PrivacySettingsActivity d;
 
     public ot0(PrivacySettingsActivity privacySettingsActivity, Context context) {
         this.d = privacySettingsActivity;
-        this.f48544c = context;
+        this.f48538c = context;
     }
 
     @Override
@@ -54,11 +54,11 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
                 i11 = privacySettingsActivity.passkeysRow;
                 if (b10 != i11) {
                     i12 = privacySettingsActivity.blockedRow;
-                    if (b10 != i12 && b10 != privacySettingsActivity.f41683s) {
+                    if (b10 != i12 && b10 != privacySettingsActivity.f41687s) {
                         i13 = privacySettingsActivity.secretWebpageRow;
                         if (b10 != i13) {
                             i14 = privacySettingsActivity.webSessionsRow;
-                            if (b10 != i14 && (b10 != privacySettingsActivity.f41681n || privacySettingsActivity.getContactsController().t(1))) {
+                            if (b10 != i14 && (b10 != privacySettingsActivity.f41685n || privacySettingsActivity.getContactsController().t(1))) {
                                 i15 = privacySettingsActivity.lastSeenRow;
                                 if (b10 != i15 || privacySettingsActivity.getContactsController().t(0)) {
                                     i16 = privacySettingsActivity.callsRow;
@@ -164,15 +164,15 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
                     i12 = privacySettingsActivity.deleteAccountRow;
                     if (i7 != i12) {
                         i13 = privacySettingsActivity.webSessionsRow;
-                        if (i7 != i13 && i7 != privacySettingsActivity.f41681n) {
+                        if (i7 != i13 && i7 != privacySettingsActivity.f41685n) {
                             i14 = privacySettingsActivity.paymentsClearRow;
                             if (i7 != i14) {
                                 i15 = privacySettingsActivity.secretMapRow;
                                 if (i7 != i15) {
                                     i16 = privacySettingsActivity.contactsDeleteRow;
                                     if (i7 != i16 && i7 != privacySettingsActivity.H) {
-                                        if (i7 != privacySettingsActivity.h && i7 != privacySettingsActivity.E && i7 != privacySettingsActivity.f41682r && i7 != privacySettingsActivity.f41684w && i7 != privacySettingsActivity.N && i7 != privacySettingsActivity.I && i7 != privacySettingsActivity.L && i7 != privacySettingsActivity.f41686y) {
-                                            if (i7 != 0 && i7 != privacySettingsActivity.D && i7 != privacySettingsActivity.f41680f && i7 != privacySettingsActivity.M && i7 != privacySettingsActivity.F && i7 != privacySettingsActivity.K && i7 != privacySettingsActivity.f41685x) {
+                                        if (i7 != privacySettingsActivity.h && i7 != privacySettingsActivity.E && i7 != privacySettingsActivity.f41686r && i7 != privacySettingsActivity.f41688w && i7 != privacySettingsActivity.N && i7 != privacySettingsActivity.I && i7 != privacySettingsActivity.L && i7 != privacySettingsActivity.f41690y) {
+                                            if (i7 != 0 && i7 != privacySettingsActivity.D && i7 != privacySettingsActivity.f41684f && i7 != privacySettingsActivity.M && i7 != privacySettingsActivity.F && i7 != privacySettingsActivity.K && i7 != privacySettingsActivity.f41689x) {
                                                 i17 = privacySettingsActivity.secretWebpageRow;
                                                 if (i7 != i17) {
                                                     i18 = privacySettingsActivity.contactsSyncRow;
@@ -183,7 +183,7 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
                                                             if (i7 != i20) {
                                                                 if (i7 != privacySettingsActivity.J) {
                                                                     i21 = privacySettingsActivity.autoDeleteMesages;
-                                                                    if (i7 != i21 && i7 != privacySettingsActivity.f41683s) {
+                                                                    if (i7 != i21 && i7 != privacySettingsActivity.f41687s) {
                                                                         i22 = privacySettingsActivity.emailLoginRow;
                                                                         if (i7 != i22) {
                                                                             i23 = privacySettingsActivity.passwordRow;
@@ -298,8 +298,8 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
         String str5;
         String M05;
         String str6;
-        int i39 = d1Var.f56955f;
-        View view = d1Var.f56951a;
+        int i39 = d1Var.f57047f;
+        View view = d1Var.f57043a;
         String str7 = null;
         boolean z17 = false;
         boolean z18 = true;
@@ -317,25 +317,25 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
                             }
                             view.setTag(Integer.valueOf(i7));
                             m8Var.setPrioritizeTitleOverValue(false);
-                            org.telegram.ui.Components.j6 j6Var = m8Var.f29566c;
+                            org.telegram.ui.Components.j6 j6Var = m8Var.f29569c;
                             i32 = privacySettingsActivity.autoDeleteMesages;
                             if (i7 == i32) {
-                                int i40 = privacySettingsActivity.getUserConfig().f24489p0;
+                                int i40 = privacySettingsActivity.getUserConfig().f24492p0;
                                 if (i40 == -1) {
                                     str6 = null;
                                     z17 = true;
                                 } else {
                                     if (i40 > 0) {
-                                        M05 = org.telegram.messenger.hd.c0(i40 * 60);
+                                        M05 = org.telegram.messenger.id.c0(i40 * 60);
                                     } else {
-                                        M05 = org.telegram.messenger.hd.M0(2131747438, "PasswordOff");
+                                        M05 = org.telegram.messenger.id.M0(2131747440, "PasswordOff");
                                     }
                                     str6 = M05;
                                 }
-                                m8Var.u(org.telegram.messenger.hd.M0(2131753850, "AutoDeleteMessages"), str6, true, 2131232018, true);
+                                m8Var.u(org.telegram.messenger.id.M0(2131753850, "AutoDeleteMessages"), str6, true, 2131232018, true);
                             } else {
                                 String str8 = "";
-                                if (i7 != privacySettingsActivity.f41683s) {
+                                if (i7 != privacySettingsActivity.f41687s) {
                                     i33 = privacySettingsActivity.emailLoginRow;
                                     if (i7 != i33) {
                                         i34 = privacySettingsActivity.passwordRow;
@@ -348,41 +348,41 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
                                                     if (i7 == i37) {
                                                         int i41 = privacySettingsActivity.getMessagesController().H0;
                                                         if (i41 == 0) {
-                                                            format = org.telegram.messenger.hd.M0(2131753682, "BlockedEmpty");
+                                                            format = org.telegram.messenger.id.M0(2131753682, "BlockedEmpty");
                                                         } else if (i41 <= 0) {
                                                             str = "";
                                                             z17 = true;
-                                                            m8Var.u(org.telegram.messenger.hd.M0(2131753681, "BlockedUsers"), str, true, 2131232020, true);
+                                                            m8Var.u(org.telegram.messenger.id.M0(2131753681, "BlockedUsers"), str, true, 2131232020, true);
                                                         } else {
-                                                            format = String.format(org.telegram.messenger.hd.E0().f22906y, "%d", Integer.valueOf(i41));
+                                                            format = String.format(org.telegram.messenger.id.E0().f23185y, "%d", Integer.valueOf(i41));
                                                         }
                                                         str = format;
-                                                        m8Var.u(org.telegram.messenger.hd.M0(2131753681, "BlockedUsers"), str, true, 2131232020, true);
+                                                        m8Var.u(org.telegram.messenger.id.M0(2131753681, "BlockedUsers"), str, true, 2131232020, true);
                                                     }
                                                 } else {
-                                                    if (org.telegram.messenger.iz.f23413s.length() != 0) {
-                                                        M02 = org.telegram.messenger.hd.M0(2131747437, null);
+                                                    if (org.telegram.messenger.iz.f23434s.length() != 0) {
+                                                        M02 = org.telegram.messenger.id.M0(2131747439, null);
                                                     } else {
-                                                        M02 = org.telegram.messenger.hd.M0(2131747438, null);
+                                                        M02 = org.telegram.messenger.id.M0(2131747440, null);
                                                     }
-                                                    m8Var.u(org.telegram.messenger.hd.M0(2131747656, null), M02, true, 2131232036, true);
+                                                    m8Var.u(org.telegram.messenger.id.M0(2131747658, null), M02, true, 2131232036, true);
                                                 }
                                             } else {
-                                                ArrayList arrayList = privacySettingsActivity.f41679e;
+                                                ArrayList arrayList = privacySettingsActivity.f41683e;
                                                 if (arrayList == null) {
                                                     str2 = "";
                                                     z17 = true;
                                                 } else {
-                                                    if (arrayList.size() == 1 && j6Var.getPaint().measureText(((TL_account.Passkey) privacySettingsActivity.f41679e.get(0)).name) < org.telegram.messenger.g0.f22544q.x / 3.0f) {
-                                                        M03 = ((TL_account.Passkey) privacySettingsActivity.f41679e.get(0)).name;
-                                                    } else if (privacySettingsActivity.f41679e.size() > 0) {
-                                                        M03 = privacySettingsActivity.f41679e.size() + "";
+                                                    if (arrayList.size() == 1 && j6Var.getPaint().measureText(((TL_account.Passkey) privacySettingsActivity.f41683e.get(0)).name) < org.telegram.messenger.g0.f22563q.x / 3.0f) {
+                                                        M03 = ((TL_account.Passkey) privacySettingsActivity.f41683e.get(0)).name;
+                                                    } else if (privacySettingsActivity.f41683e.size() > 0) {
+                                                        M03 = privacySettingsActivity.f41683e.size() + "";
                                                     } else {
-                                                        M03 = org.telegram.messenger.hd.M0(2131747438, null);
+                                                        M03 = org.telegram.messenger.id.M0(2131747440, null);
                                                     }
                                                     str2 = M03;
                                                 }
-                                                m8Var.u(org.telegram.messenger.hd.M0(2131747650, null), str2, true, 2131232033, true);
+                                                m8Var.u(org.telegram.messenger.id.M0(2131747652, null), str2, true, 2131232033, true);
                                             }
                                         } else {
                                             TL_account.Password password = privacySettingsActivity.d;
@@ -393,15 +393,15 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
                                                 z17 = true;
                                             } else {
                                                 if (password.has_password) {
-                                                    M04 = org.telegram.messenger.hd.M0(2131747437, null);
+                                                    M04 = org.telegram.messenger.id.M0(2131747439, null);
                                                     i42 = 2131231762;
                                                 } else {
-                                                    M04 = org.telegram.messenger.hd.M0(2131747438, null);
+                                                    M04 = org.telegram.messenger.id.M0(2131747440, null);
                                                 }
                                                 i38 = i42;
                                                 str3 = M04;
                                             }
-                                            m8Var.u(org.telegram.messenger.hd.M0(2131743939, null), str3, true, i38, true);
+                                            m8Var.u(org.telegram.messenger.id.M0(2131743941, null), str3, true, i38, true);
                                         }
                                     } else {
                                         TL_account.Password password2 = privacySettingsActivity.d;
@@ -414,20 +414,20 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
                                             int lastIndexOf = privacySettingsActivity.d.login_email_pattern.lastIndexOf(42);
                                             if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
                                                 ?? obj = new Object();
-                                                obj.f38751a |= 256;
-                                                obj.f38752b = indexOf;
+                                                obj.f38779a |= 256;
+                                                obj.f38780b = indexOf;
                                                 int i43 = lastIndexOf + 1;
-                                                obj.f38753c = i43;
+                                                obj.f38781c = i43;
                                                 valueOf.setSpan(new org.telegram.ui.Components.vy0(obj, 0), indexOf, i43, 0);
                                             }
                                             z16 = false;
                                             str4 = valueOf;
                                         }
                                         m8Var.setPrioritizeTitleOverValue(true);
-                                        String M06 = org.telegram.messenger.hd.M0(2131751203, null);
-                                        m8Var.f29573x = m8Var.getDefaultImageLeft();
-                                        m8Var.f29571s = m8Var.c(false);
-                                        org.telegram.ui.ActionBar.k5 k5Var = m8Var.f29564a;
+                                        String M06 = org.telegram.messenger.id.M0(2131751203, null);
+                                        m8Var.f29576x = m8Var.getDefaultImageLeft();
+                                        m8Var.f29574s = m8Var.c(false);
+                                        org.telegram.ui.ActionBar.k5 k5Var = m8Var.f29567a;
                                         k5Var.l(M06, false);
                                         k5Var.i(null);
                                         org.telegram.ui.ActionBar.k5 k5Var2 = m8Var.d;
@@ -435,15 +435,15 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
                                         k5Var2.l(str4, false);
                                         j6Var.setVisibility(8);
                                         m8Var.h.setVisibility(8);
-                                        org.telegram.ui.Components.ch0 ch0Var = m8Var.f29567e;
+                                        org.telegram.ui.Components.ch0 ch0Var = m8Var.f29570e;
                                         ch0Var.setVisibility(0);
                                         ch0Var.setTranslationX(0.0f);
                                         ch0Var.setTranslationY(0.0f);
                                         ch0Var.setPadding(0, org.telegram.messenger.g0.L(7.0f), 0, 0);
                                         ch0Var.setImageResource(2131232026);
-                                        m8Var.f29570r = true;
+                                        m8Var.f29573r = true;
                                         m8Var.setWillNotDraw(false);
-                                        Switch r02 = m8Var.f29568f;
+                                        Switch r02 = m8Var.f29571f;
                                         if (r02 != null) {
                                             r02.setVisibility(8);
                                         }
@@ -454,21 +454,21 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
                                         z17 = z16;
                                     }
                                 } else {
-                                    if (privacySettingsActivity.f41674a0.o0() == 0) {
-                                        if (privacySettingsActivity.getMessagesController().f24721a == 0) {
+                                    if (privacySettingsActivity.f41678a0.o0() == 0) {
+                                        if (privacySettingsActivity.getMessagesController().f24728a == 0) {
                                             str5 = "";
                                             z17 = true;
-                                            privacySettingsActivity.getMessagesController().f24721a = privacySettingsActivity.f41674a0.o0();
-                                            m8Var.u(org.telegram.messenger.hd.M0(2131745552, null), str5, true, 2131232024, false);
+                                            privacySettingsActivity.getMessagesController().f24728a = privacySettingsActivity.f41678a0.o0();
+                                            m8Var.u(org.telegram.messenger.id.M0(2131745554, null), str5, true, 2131232024, false);
                                         } else {
-                                            format2 = String.format(org.telegram.messenger.hd.E0().f22906y, "%d", Integer.valueOf(privacySettingsActivity.getMessagesController().f24721a));
+                                            format2 = String.format(org.telegram.messenger.id.E0().f23185y, "%d", Integer.valueOf(privacySettingsActivity.getMessagesController().f24728a));
                                         }
                                     } else {
-                                        format2 = String.format(org.telegram.messenger.hd.E0().f22906y, "%d", Integer.valueOf(privacySettingsActivity.f41674a0.o0()));
+                                        format2 = String.format(org.telegram.messenger.id.E0().f23185y, "%d", Integer.valueOf(privacySettingsActivity.f41678a0.o0()));
                                     }
                                     str5 = format2;
-                                    privacySettingsActivity.getMessagesController().f24721a = privacySettingsActivity.f41674a0.o0();
-                                    m8Var.u(org.telegram.messenger.hd.M0(2131745552, null), str5, true, 2131232024, false);
+                                    privacySettingsActivity.getMessagesController().f24728a = privacySettingsActivity.f41678a0.o0();
+                                    m8Var.u(org.telegram.messenger.id.M0(2131745554, null), str5, true, 2131232024, false);
                                 }
                             }
                             m8Var.h(16, z17, z15);
@@ -485,18 +485,18 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
                             if (i7 != i30) {
                                 i31 = privacySettingsActivity.newChatsRow;
                                 if (i7 == i31) {
-                                    r8Var.f(org.telegram.messenger.hd.M0(2131754171, "ArchiveAndMute"), privacySettingsActivity.W, false);
+                                    r8Var.f(org.telegram.messenger.id.M0(2131754171, "ArchiveAndMute"), privacySettingsActivity.W, false);
                                     return;
                                 }
                                 return;
                             }
-                            r8Var.f(org.telegram.messenger.hd.M0(2131744413, "SuggestContacts"), privacySettingsActivity.V, false);
+                            r8Var.f(org.telegram.messenger.id.M0(2131744415, "SuggestContacts"), privacySettingsActivity.V, false);
                             return;
                         }
-                        r8Var.f(org.telegram.messenger.hd.M0(2131744299, "SyncContacts"), privacySettingsActivity.T, true);
+                        r8Var.f(org.telegram.messenger.id.M0(2131744301, "SyncContacts"), privacySettingsActivity.T, true);
                         return;
                     }
-                    String M07 = org.telegram.messenger.hd.M0(2131745685, "SecretWebPage");
+                    String M07 = org.telegram.messenger.id.M0(2131745687, "SecretWebPage");
                     if (privacySettingsActivity.getMessagesController().G2 != 1) {
                         z18 = false;
                     }
@@ -504,26 +504,26 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
                     return;
                 }
                 org.telegram.ui.Cells.n4 n4Var = (org.telegram.ui.Cells.n4) view;
-                if (i7 == privacySettingsActivity.f41680f) {
-                    n4Var.setText(org.telegram.messenger.hd.M0(2131746768, "PrivacyTitle"));
+                if (i7 == privacySettingsActivity.f41684f) {
+                    n4Var.setText(org.telegram.messenger.id.M0(2131746770, "PrivacyTitle"));
                     return;
                 } else if (i7 == 0) {
-                    n4Var.setText(org.telegram.messenger.hd.M0(2131745683, "SecurityTitle"));
+                    n4Var.setText(org.telegram.messenger.id.M0(2131745685, "SecurityTitle"));
                     return;
                 } else if (i7 == privacySettingsActivity.D) {
-                    n4Var.setText(org.telegram.messenger.hd.M0(2131751519, "DeleteMyAccount"));
+                    n4Var.setText(org.telegram.messenger.id.M0(2131751519, "DeleteMyAccount"));
                     return;
                 } else if (i7 == privacySettingsActivity.M) {
-                    n4Var.setText(org.telegram.messenger.hd.M0(2131745696, "SecretChat"));
+                    n4Var.setText(org.telegram.messenger.id.M0(2131745698, "SecretChat"));
                     return;
                 } else if (i7 == privacySettingsActivity.F) {
-                    n4Var.setText(org.telegram.messenger.hd.M0(2131746849, "PrivacyBots"));
+                    n4Var.setText(org.telegram.messenger.id.M0(2131746851, "PrivacyBots"));
                     return;
                 } else if (i7 == privacySettingsActivity.K) {
-                    n4Var.setText(org.telegram.messenger.hd.M0(2131751780, "Contacts"));
+                    n4Var.setText(org.telegram.messenger.id.M0(2131751780, "Contacts"));
                     return;
-                } else if (i7 == privacySettingsActivity.f41685x) {
-                    n4Var.setText(org.telegram.messenger.hd.M0(2131748284, "NewChatsFromNonContacts"));
+                } else if (i7 == privacySettingsActivity.f41689x) {
+                    n4Var.setText(org.telegram.messenger.id.M0(2131748286, "NewChatsFromNonContacts"));
                     return;
                 } else {
                     return;
@@ -531,28 +531,28 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
             }
             org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) view;
             if (i7 == privacySettingsActivity.E) {
-                z8Var.setText(org.telegram.messenger.hd.M0(2131751598, "DeleteAccountHelp"));
+                z8Var.setText(org.telegram.messenger.id.M0(2131751598, "DeleteAccountHelp"));
                 return;
-            } else if (i7 == privacySettingsActivity.f41682r) {
-                z8Var.setText(org.telegram.messenger.hd.M0(2131749380, "GroupsAndChannelsHelp"));
+            } else if (i7 == privacySettingsActivity.f41686r) {
+                z8Var.setText(org.telegram.messenger.id.M0(2131749382, "GroupsAndChannelsHelp"));
                 return;
-            } else if (i7 == privacySettingsActivity.f41684w) {
-                z8Var.setText(org.telegram.messenger.hd.M0(2131745553, "SessionsSettingsInfo"));
+            } else if (i7 == privacySettingsActivity.f41688w) {
+                z8Var.setText(org.telegram.messenger.id.M0(2131745555, "SessionsSettingsInfo"));
                 return;
             } else if (i7 == privacySettingsActivity.N) {
-                z8Var.setText(org.telegram.messenger.hd.M0(2131745684, "SecretWebPageInfo"));
+                z8Var.setText(org.telegram.messenger.id.M0(2131745686, "SecretWebPageInfo"));
                 return;
             } else if (i7 == privacySettingsActivity.I) {
-                z8Var.setText(org.telegram.messenger.hd.M0(2131746848, "PrivacyBotsInfo"));
+                z8Var.setText(org.telegram.messenger.id.M0(2131746850, "PrivacyBotsInfo"));
                 return;
             } else if (i7 == privacySettingsActivity.h) {
-                z8Var.setText(org.telegram.messenger.hd.M0(2131746815, null));
+                z8Var.setText(org.telegram.messenger.id.M0(2131746817, null));
                 return;
             } else if (i7 == privacySettingsActivity.L) {
-                z8Var.setText(org.telegram.messenger.hd.M0(2131744411, "SuggestContactsInfo"));
+                z8Var.setText(org.telegram.messenger.id.M0(2131744413, "SuggestContactsInfo"));
                 return;
-            } else if (i7 == privacySettingsActivity.f41686y) {
-                z8Var.setText(org.telegram.messenger.hd.M0(2131754170, "ArchiveAndMuteInfo"));
+            } else if (i7 == privacySettingsActivity.f41690y) {
+                z8Var.setText(org.telegram.messenger.id.M0(2131754170, "ArchiveAndMuteInfo"));
                 return;
             } else {
                 return;
@@ -580,9 +580,9 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
                         str7 = PrivacySettingsActivity.C0(privacySettingsActivity.getAccountInstance(), 0);
                         z10 = false;
                     }
-                    w9Var.c(org.telegram.messenger.hd.M0(2131746814, "PrivacyLastSeen"), str7, false, true);
+                    w9Var.c(org.telegram.messenger.id.M0(2131746816, "PrivacyLastSeen"), str7, false, true);
                 } else {
-                    if (i7 != privacySettingsActivity.f41681n) {
+                    if (i7 != privacySettingsActivity.f41685n) {
                         i13 = privacySettingsActivity.callsRow;
                         if (i7 != i13) {
                             i14 = privacySettingsActivity.profilePhotoRow;
@@ -598,7 +598,7 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
                                                 i19 = privacySettingsActivity.forwardsRow;
                                                 if (i7 != i19) {
                                                     i20 = privacySettingsActivity.voicesRow;
-                                                    int i45 = 2131747752;
+                                                    int i45 = 2131747754;
                                                     if (i7 != i20) {
                                                         i21 = privacySettingsActivity.noncontactsRow;
                                                         if (i7 == i21) {
@@ -607,11 +607,11 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
                                                             } else if (privacySettingsActivity.X) {
                                                                 i45 = 2131751778;
                                                             }
-                                                            String M08 = org.telegram.messenger.hd.M0(i45, null);
+                                                            String M08 = org.telegram.messenger.id.M0(i45, null);
                                                             if (privacySettingsActivity.getMessagesController().J5 && !privacySettingsActivity.getMessagesController().L6) {
-                                                                z02 = org.telegram.messenger.hd.M0(2131746809, null);
+                                                                z02 = org.telegram.messenger.id.M0(2131746811, null);
                                                             } else {
-                                                                z02 = PrivacySettingsActivity.z0(privacySettingsActivity, org.telegram.messenger.hd.M0(2131746809, null));
+                                                                z02 = PrivacySettingsActivity.z0(privacySettingsActivity, org.telegram.messenger.id.M0(2131746811, null));
                                                             }
                                                             i26 = privacySettingsActivity.musicRow;
                                                             if (i26 != -1) {
@@ -625,34 +625,34 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
                                                             if (i7 != i22) {
                                                                 i23 = privacySettingsActivity.paymentsClearRow;
                                                                 if (i7 == i23) {
-                                                                    w9Var.b(org.telegram.messenger.hd.M0(2131746796, "PrivacyPaymentsClear"), true);
+                                                                    w9Var.b(org.telegram.messenger.id.M0(2131746798, "PrivacyPaymentsClear"), true);
                                                                 } else if (i7 != privacySettingsActivity.H) {
                                                                     i24 = privacySettingsActivity.secretMapRow;
                                                                     if (i7 != i24) {
                                                                         i25 = privacySettingsActivity.contactsDeleteRow;
                                                                         if (i7 == i25) {
-                                                                            w9Var.b(org.telegram.messenger.hd.M0(2131744297, "SyncContactsDelete"), true);
+                                                                            w9Var.b(org.telegram.messenger.id.M0(2131744299, "SyncContactsDelete"), true);
                                                                         }
                                                                     } else {
-                                                                        int i46 = org.telegram.messenger.iz.f23402o0;
+                                                                        int i46 = org.telegram.messenger.iz.f23423o0;
                                                                         if (i46 != 0) {
                                                                             if (i46 != 1) {
                                                                                 if (i46 != 2) {
-                                                                                    M0 = org.telegram.messenger.hd.M0(2131748683, "MapPreviewProviderYandex");
+                                                                                    M0 = org.telegram.messenger.id.M0(2131748685, "MapPreviewProviderYandex");
                                                                                 } else {
-                                                                                    M0 = org.telegram.messenger.hd.M0(2131748686, "MapPreviewProviderNobody");
+                                                                                    M0 = org.telegram.messenger.id.M0(2131748688, "MapPreviewProviderNobody");
                                                                                 }
                                                                             } else {
-                                                                                M0 = org.telegram.messenger.hd.M0(2131748687, "MapPreviewProviderGoogle");
+                                                                                M0 = org.telegram.messenger.id.M0(2131748689, "MapPreviewProviderGoogle");
                                                                             }
                                                                         } else {
-                                                                            M0 = org.telegram.messenger.hd.M0(2131748685, "MapPreviewProviderTelegram");
+                                                                            M0 = org.telegram.messenger.id.M0(2131748687, "MapPreviewProviderTelegram");
                                                                         }
-                                                                        w9Var.c(org.telegram.messenger.hd.M0(2131748688, "MapPreviewProvider"), M0, privacySettingsActivity.R, true);
+                                                                        w9Var.c(org.telegram.messenger.id.M0(2131748690, "MapPreviewProvider"), M0, privacySettingsActivity.R, true);
                                                                         privacySettingsActivity.R = false;
                                                                     }
                                                                 } else {
-                                                                    w9Var.b(org.telegram.messenger.hd.M0(2131746861, null), true);
+                                                                    w9Var.b(org.telegram.messenger.id.M0(2131746863, null), true);
                                                                 }
                                                             } else {
                                                                 if (privacySettingsActivity.getContactsController().G != 2) {
@@ -660,25 +660,25 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
                                                                 } else {
                                                                     int i47 = privacySettingsActivity.getContactsController().H;
                                                                     if (i47 <= 182) {
-                                                                        str7 = org.telegram.messenger.hd.G(i47 / 30, "Months", new Object[0]);
+                                                                        str7 = org.telegram.messenger.id.G(i47 / 30, "Months", new Object[0]);
                                                                     } else if (i47 == 365) {
-                                                                        str7 = org.telegram.messenger.hd.G(12, "Months", new Object[0]);
+                                                                        str7 = org.telegram.messenger.id.G(12, "Months", new Object[0]);
                                                                     } else if (i47 == 548) {
-                                                                        str7 = org.telegram.messenger.hd.G(18, "Months", new Object[0]);
+                                                                        str7 = org.telegram.messenger.id.G(18, "Months", new Object[0]);
                                                                     } else if (i47 == 730) {
-                                                                        str7 = org.telegram.messenger.hd.G(24, "Months", new Object[0]);
+                                                                        str7 = org.telegram.messenger.id.G(24, "Months", new Object[0]);
                                                                     } else if (i47 > 30) {
-                                                                        str7 = org.telegram.messenger.hd.G((int) Math.round(i47 / 30.0d), "Months", new Object[0]);
+                                                                        str7 = org.telegram.messenger.id.G((int) Math.round(i47 / 30.0d), "Months", new Object[0]);
                                                                     } else {
-                                                                        str7 = org.telegram.messenger.hd.G(i47, "Days", new Object[0]);
+                                                                        str7 = org.telegram.messenger.id.G(i47, "Days", new Object[0]);
                                                                     }
                                                                     z10 = false;
                                                                 }
-                                                                w9Var.c(org.telegram.messenger.hd.M0(2131751596, "DeleteAccountIfAwayFor3"), str7, privacySettingsActivity.Q, false);
+                                                                w9Var.c(org.telegram.messenger.id.M0(2131751596, "DeleteAccountIfAwayFor3"), str7, privacySettingsActivity.Q, false);
                                                                 privacySettingsActivity.Q = false;
                                                             }
                                                         } else {
-                                                            w9Var.b(org.telegram.messenger.hd.M0(2131744238, "TelegramPassport"), true);
+                                                            w9Var.b(org.telegram.messenger.id.M0(2131744240, "TelegramPassport"), true);
                                                         }
                                                     } else {
                                                         if (privacySettingsActivity.getContactsController().t(8)) {
@@ -687,13 +687,13 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
                                                             i44 = 30;
                                                         } else {
                                                             if (!privacySettingsActivity.getUserConfig().q()) {
-                                                                C0 = org.telegram.messenger.hd.M0(2131747752, null);
+                                                                C0 = org.telegram.messenger.id.M0(2131747754, null);
                                                             } else {
                                                                 C0 = PrivacySettingsActivity.C0(privacySettingsActivity.getAccountInstance(), 8);
                                                             }
                                                             z12 = false;
                                                         }
-                                                        SpannableStringBuilder z03 = PrivacySettingsActivity.z0(privacySettingsActivity, org.telegram.messenger.hd.M0(2131746757, null));
+                                                        SpannableStringBuilder z03 = PrivacySettingsActivity.z0(privacySettingsActivity, org.telegram.messenger.id.M0(2131746759, null));
                                                         i27 = privacySettingsActivity.noncontactsRow;
                                                         if (i27 != -1) {
                                                             z13 = true;
@@ -701,7 +701,7 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
                                                             z13 = false;
                                                         }
                                                         w9Var.c(z03, C0, false, z13);
-                                                        org.telegram.ui.ActionBar.r6.t(w9Var.getValueImageView(), org.telegram.ui.ActionBar.k6.f28014m6, null, PorterDuff.Mode.MULTIPLY);
+                                                        org.telegram.ui.ActionBar.r6.t(w9Var.getValueImageView(), org.telegram.ui.ActionBar.k6.f28017m6, null, PorterDuff.Mode.MULTIPLY);
                                                     }
                                                 } else {
                                                     if (privacySettingsActivity.getContactsController().t(5)) {
@@ -711,7 +711,7 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
                                                         str7 = PrivacySettingsActivity.C0(privacySettingsActivity.getAccountInstance(), 5);
                                                         z10 = false;
                                                     }
-                                                    w9Var.c(org.telegram.messenger.hd.M0(2131746836, "PrivacyForwards"), str7, false, true);
+                                                    w9Var.c(org.telegram.messenger.id.M0(2131746838, "PrivacyForwards"), str7, false, true);
                                                 }
                                             } else {
                                                 if (privacySettingsActivity.getContactsController().t(12)) {
@@ -722,7 +722,7 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
                                                     C02 = PrivacySettingsActivity.C0(privacySettingsActivity.getAccountInstance(), 12);
                                                     z12 = false;
                                                 }
-                                                w9Var.c(org.telegram.messenger.hd.M0(2131746828, null), C02, false, true);
+                                                w9Var.c(org.telegram.messenger.id.M0(2131746830, null), C02, false, true);
                                             }
                                             z17 = z12;
                                         } else {
@@ -734,7 +734,7 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
                                                 C03 = PrivacySettingsActivity.C0(privacySettingsActivity.getAccountInstance(), 11);
                                                 z14 = false;
                                             }
-                                            w9Var.c(org.telegram.messenger.hd.M0(2131746859, null), C03, false, true);
+                                            w9Var.c(org.telegram.messenger.id.M0(2131746861, null), C03, false, true);
                                         }
                                     } else {
                                         if (privacySettingsActivity.getContactsController().t(14)) {
@@ -745,7 +745,7 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
                                             C04 = PrivacySettingsActivity.C0(privacySettingsActivity.getAccountInstance(), 14);
                                             z14 = false;
                                         }
-                                        w9Var.c(org.telegram.messenger.hd.M0(2131746803, null), C04, false, true);
+                                        w9Var.c(org.telegram.messenger.id.M0(2131746805, null), C04, false, true);
                                     }
                                 } else {
                                     if (privacySettingsActivity.getContactsController().t(9)) {
@@ -755,7 +755,7 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
                                         str7 = PrivacySettingsActivity.C0(privacySettingsActivity.getAccountInstance(), 9);
                                         z10 = false;
                                     }
-                                    w9Var.c(org.telegram.messenger.hd.M0(2131746866, "PrivacyBio"), str7, false, true);
+                                    w9Var.c(org.telegram.messenger.id.M0(2131746868, "PrivacyBio"), str7, false, true);
                                 }
                             } else {
                                 if (privacySettingsActivity.getContactsController().t(4)) {
@@ -765,7 +765,7 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
                                     str7 = PrivacySettingsActivity.C0(privacySettingsActivity.getAccountInstance(), 4);
                                     z10 = false;
                                 }
-                                w9Var.c(org.telegram.messenger.hd.M0(2131746776, "PrivacyProfilePhoto"), str7, false, true);
+                                w9Var.c(org.telegram.messenger.id.M0(2131746778, "PrivacyProfilePhoto"), str7, false, true);
                             }
                         } else {
                             if (privacySettingsActivity.getContactsController().t(2)) {
@@ -775,7 +775,7 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
                                 str7 = PrivacySettingsActivity.C0(privacySettingsActivity.getAccountInstance(), 2);
                                 z10 = false;
                             }
-                            w9Var.c(org.telegram.messenger.hd.M0(2131752596, "Calls"), str7, false, true);
+                            w9Var.c(org.telegram.messenger.id.M0(2131752596, "Calls"), str7, false, true);
                         }
                     } else {
                         if (privacySettingsActivity.getContactsController().t(1)) {
@@ -786,7 +786,7 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
                             C05 = PrivacySettingsActivity.C0(privacySettingsActivity.getAccountInstance(), 1);
                             z14 = false;
                         }
-                        w9Var.c(org.telegram.messenger.hd.M0(2131746816, null), C05, false, false);
+                        w9Var.c(org.telegram.messenger.id.M0(2131746818, null), C05, false, false);
                     }
                     z17 = z14;
                 }
@@ -798,13 +798,13 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
                     str7 = PrivacySettingsActivity.C0(privacySettingsActivity.getAccountInstance(), 6);
                     z10 = false;
                 }
-                w9Var.c(org.telegram.messenger.hd.M0(2131746789, "PrivacyPhone"), str7, false, true);
+                w9Var.c(org.telegram.messenger.id.M0(2131746791, "PrivacyPhone"), str7, false, true);
             }
             z17 = z10;
         } else {
-            w9Var.b(org.telegram.messenger.hd.M0(2131742912, "WebSessionsTitle"), false);
+            w9Var.b(org.telegram.messenger.id.M0(2131742914, "WebSessionsTitle"), false);
         }
-        w9Var.f30748r = z17;
+        w9Var.f30752r = z17;
         w9Var.D = i44;
         if (!z9) {
             if (z17) {
@@ -812,7 +812,7 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
             } else {
                 f10 = 0.0f;
             }
-            w9Var.f30752y = f10;
+            w9Var.f30756y = f10;
         } else {
             w9Var.E = true;
         }
@@ -822,7 +822,7 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         View w9Var;
-        Context context = this.f48544c;
+        Context context = this.f48538c;
         if (i7 != 0) {
             if (i7 != 1) {
                 if (i7 != 2) {

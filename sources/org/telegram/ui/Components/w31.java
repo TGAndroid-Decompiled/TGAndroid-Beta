@@ -5,12 +5,12 @@ import android.util.LongSparseArray;
 import android.view.View;
 import java.util.HashMap;
 public abstract class w31 {
-    public final int f39845a;
+    public final int f39795a;
 
     public w31() {
         int i7 = x31.J;
         x31.J = i7 + 1;
-        this.f39845a = i7;
+        this.f39795a = i7;
     }
 
     public static void h(w31 w31Var) {
@@ -23,7 +23,7 @@ public abstract class w31 {
         Class<?> cls = w31Var.getClass();
         if (!x31.L.containsKey(cls)) {
             x31.L.put(cls, w31Var);
-            x31.K.put(w31Var.f39845a, w31Var);
+            x31.K.put(w31Var.f39795a, w31Var);
         }
     }
 

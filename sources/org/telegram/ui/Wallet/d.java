@@ -15,12 +15,12 @@ import org.telegram.ui.Components.x31;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Wallet.WalletEngine2;
 public final class d implements v10 {
-    public final int f42315a;
-    public final Object f42316b;
+    public final int f42371a;
+    public final Object f42372b;
 
     public d(Object obj, int i7) {
-        this.f42315a = i7;
-        this.f42316b = obj;
+        this.f42371a = i7;
+        this.f42372b = obj;
     }
 
     @Override
@@ -28,9 +28,9 @@ public final class d implements v10 {
         String str;
         String z9;
         l41 l41Var;
-        switch (this.f42315a) {
+        switch (this.f42371a) {
             case 0:
-                f fVar = (f) this.f42316b;
+                f fVar = (f) this.f42372b;
                 TL_wallet.currencyRates currencyrates = (TL_wallet.currencyRates) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 if (tL_error != null) {
@@ -41,7 +41,7 @@ public final class d implements v10 {
                     return;
                 }
             case 1:
-                j jVar = (j) this.f42316b;
+                j jVar = (j) this.f42372b;
                 TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
                 String str2 = (String) obj2;
                 if (wallettransaction == null) {
@@ -50,7 +50,7 @@ public final class d implements v10 {
                     } else {
                         str = str2;
                     }
-                    n0.j("emulate disable backup, no transaction: ".concat(str));
+                    m0.j("emulate disable backup, no transaction: ".concat(str));
                     if (str2 == null) {
                         str2 = "NULL_ERROR";
                     }
@@ -60,66 +60,66 @@ public final class d implements v10 {
                 jVar.a(Long.valueOf(wallettransaction.fee), null);
                 return;
             case 2:
-                ((v10) this.f42316b).a((k0) obj, (String) obj2);
+                ((v10) this.f42372b).a((j0) obj, (String) obj2);
                 return;
             case 3:
-                t tVar = (t) this.f42316b;
+                t tVar = (t) this.f42372b;
                 TLRPC.Bool bool = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 if (tL_error2 == null && (bool instanceof TLRPC.TL_boolTrue)) {
                     z9 = null;
                 } else {
-                    z9 = f2.z(tL_error2, "closeSession");
+                    z9 = e2.z(tL_error2, "closeSession");
                 }
                 tVar.a(z9);
                 return;
             case 4:
-                f2 f2Var = (f2) this.f42316b;
+                e2 e2Var = (e2) this.f42372b;
                 TL_wallet.tonConnectSessions tonconnectsessions = (TL_wallet.tonConnectSessions) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
-                n0 n0Var = f2Var.f42460b;
-                ArrayList arrayList = f2Var.d;
-                f2Var.f42462e = -1;
+                m0 m0Var = e2Var.f42428b;
+                ArrayList arrayList = e2Var.d;
+                e2Var.f42430e = -1;
                 if (tL_error3 == null && tonconnectsessions != null) {
                     arrayList.clear();
                     ArrayList<TL_wallet.tonConnectSession> arrayList2 = tonconnectsessions.sessions;
                     if (arrayList2 != null) {
                         arrayList.addAll(arrayList2);
                     }
-                    n0Var.L();
+                    m0Var.L();
                     return;
                 }
-                f2.z(tL_error3, "getSessions");
-                n0Var.L();
+                e2.z(tL_error3, "getSessions");
+                m0Var.L();
                 return;
             case 5:
                 l41 l41Var2 = (l41) obj2;
-                ((ArrayList) obj).add(x31.k(((a3) this.f42316b).Q1));
+                ((ArrayList) obj).add(x31.k(((z2) this.f42372b).Q1));
                 return;
             case 6:
-                p3 p3Var = (p3) this.f42316b;
+                o3 o3Var = (o3) this.f42372b;
                 Bitmap bitmap = (Bitmap) obj;
                 Bitmap bitmap2 = (Bitmap) obj2;
-                if (!p3Var.S && !p3Var.R) {
-                    p3Var.G = bitmap;
-                    p3Var.f42985n.invalidate();
-                    p3Var.d();
-                    p3Var.E.a(bitmap2);
-                    p3Var.h.post(new l3(p3Var, 1));
+                if (!o3Var.S && !o3Var.R) {
+                    o3Var.G = bitmap;
+                    o3Var.f42947n.invalidate();
+                    o3Var.d();
+                    o3Var.E.a(bitmap2);
+                    o3Var.h.post(new k3(o3Var, 1));
                     return;
                 }
                 bitmap.recycle();
                 bitmap2.recycle();
                 return;
             case 7:
-                y5 y5Var = (y5) this.f42316b;
+                x5 x5Var = (x5) this.f42372b;
                 TL_account.Password password = (TL_account.Password) obj;
                 TLRPC.TL_error tL_error4 = (TLRPC.TL_error) obj2;
                 if (password != null) {
-                    y5Var.R0 = true;
-                    y5Var.S0 = password.has_password;
-                    fi.w3 w3Var = y5Var.f36227a;
-                    if (w3Var != null && (l41Var = w3Var.f37160f3) != null) {
+                    x5Var.R0 = true;
+                    x5Var.S0 = password.has_password;
+                    fi.w3 w3Var = x5Var.f36243a;
+                    if (w3Var != null && (l41Var = w3Var.f37190f3) != null) {
                         l41Var.O(true);
                         return;
                     }
@@ -127,7 +127,7 @@ public final class d implements v10 {
                 }
                 return;
             case 8:
-                c20 c20Var = (c20) this.f42316b;
+                c20 c20Var = (c20) this.f42372b;
                 TL_toncenter.onrampSession onrampsession = (TL_toncenter.onrampSession) obj;
                 TLRPC.TL_error tL_error5 = (TLRPC.TL_error) obj2;
                 if (onrampsession != null && !TextUtils.isEmpty(onrampsession.url)) {
@@ -142,18 +142,18 @@ public final class d implements v10 {
                 c20Var.a((tL_error5 == null || (r5 = tL_error5.text) == null) ? "NO_SESSION" : "NO_SESSION");
                 return;
             case 9:
-                WalletEngine2.HttpTransport.lambda$execute$0((k7) this.f42316b, (TL_toncenter.apiResponse) obj, (TLRPC.TL_error) obj2);
+                WalletEngine2.HttpTransport.lambda$execute$0((j7) this.f42372b, (TL_toncenter.apiResponse) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
                 String str3 = (String) obj;
                 Boolean bool2 = (Boolean) obj2;
-                ((x9) this.f42316b).h = false;
+                ((w9) this.f42372b).h = false;
                 return;
         }
     }
 
-    public d(n0 n0Var, j jVar) {
-        this.f42315a = 1;
-        this.f42316b = jVar;
+    public d(m0 m0Var, j jVar) {
+        this.f42371a = 1;
+        this.f42372b = jVar;
     }
 }

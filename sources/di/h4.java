@@ -23,14 +23,14 @@ public final class h4 {
     public h4(Context context, int i7) {
         switch (i7) {
             case 3:
-                this.d = vi.f.f57441a;
+                this.d = vi.f.f57533a;
                 this.f9074a = true;
                 this.f9079g = vi.h.H;
                 this.f9075b = context;
                 return;
             default:
                 this.f9075b = context;
-                this.f9076c = n2.b.f20128f;
+                this.f9076c = n2.b.f20131f;
                 return;
         }
     }
@@ -39,7 +39,7 @@ public final class h4 {
         ?? obj = new Object();
         obj.f9075b = new org.telegram.messenger.h5(obj, 0);
         obj.d = puVar;
-        int i7 = p10.f24467s0;
+        int i7 = p10.f24470s0;
         obj.f9079g = new org.telegram.messenger.a(obj, 6);
         obj.f9078f = org.telegram.messenger.g5.r(i7);
         obj.f9077e = qs.f(i7);
@@ -65,7 +65,7 @@ public final class h4 {
                 this.f9079g = new n2.k0(context);
             }
             if (((n2.r0) this.f9077e) == null) {
-                this.f9077e = n2.r0.f20297a;
+                this.f9077e = n2.r0.f20300a;
             }
             n2.g0 g0Var = new n2.g0(context);
             if (context != null) {
@@ -73,15 +73,15 @@ public final class h4 {
             } else {
                 bVar = (n2.b) this.f9076c;
             }
-            Context context2 = g0Var.f20178a;
+            Context context2 = g0Var.f20181a;
             if (context2 == null) {
                 g0Var.d = bVar;
             }
             n2.k0 k0Var = (n2.k0) this.f9079g;
-            g0Var.f20179b = k0Var;
-            g0Var.f20180c = (n2.r0) this.f9077e;
+            g0Var.f20182b = k0Var;
+            g0Var.f20183c = (n2.r0) this.f9077e;
             if (k0Var == null) {
-                g0Var.f20179b = new n2.k0(context2);
+                g0Var.f20182b = new n2.k0(context2);
             }
             this.f9078f = new n2.h0(g0Var);
         } else {
@@ -122,9 +122,9 @@ public final class h4 {
                     this.f9074a = true;
                 }
                 pu puVar = (pu) this.d;
-                Intent intent = (Intent) puVar.f48952c;
+                Intent intent = (Intent) puVar.f48955c;
                 String str = LaunchActivity.B1;
-                ((LaunchActivity) puVar.f48951b).W(intent, true, false, false, null, true, false);
+                ((LaunchActivity) puVar.f48954b).W(intent, true, false, false, null, true, false);
                 return true;
             }
             return false;

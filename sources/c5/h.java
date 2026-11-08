@@ -24,7 +24,7 @@ public final class h extends DataSetObserver {
                 return;
             case 1:
                 z2 z2Var = (z2) this.f5319b;
-                z2Var.f15138a = true;
+                z2Var.f15141a = true;
                 z2Var.notifyDataSetChanged();
                 return;
             case 2:
@@ -37,13 +37,13 @@ public final class h extends DataSetObserver {
             default:
                 mw0 mw0Var = (mw0) this.f5319b;
                 ProfileActivity profileActivity = mw0Var.f47892n;
-                int realCount = profileActivity.f41780n0.getRealCount();
+                int realCount = profileActivity.f41784n0.getRealCount();
                 if (profileActivity.A0 == 0 && realCount > 1 && realCount <= 20 && profileActivity.M.E) {
                     profileActivity.A0 = 1;
                 }
                 mw0Var.a(false);
                 mw0Var.b(1.0f);
-                if (profileActivity.f41799q0 != null) {
+                if (profileActivity.f41803q0 != null) {
                     if (profileActivity.S0.x()) {
                         g0.i3(new ru0(mw0Var, 4), 500L);
                         return;
@@ -64,7 +64,7 @@ public final class h extends DataSetObserver {
                 return;
             case 1:
                 z2 z2Var = (z2) this.f5319b;
-                z2Var.f15138a = false;
+                z2Var.f15141a = false;
                 z2Var.notifyDataSetInvalidated();
                 return;
             case 2:

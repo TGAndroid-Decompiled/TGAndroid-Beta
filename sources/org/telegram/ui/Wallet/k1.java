@@ -1,74 +1,36 @@
 package org.telegram.ui.Wallet;
 
-import android.text.TextUtils;
-import android.view.View;
-import org.json.JSONObject;
-import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.hc;
-import org.telegram.ui.Components.k60;
-public final class k1 implements View.OnClickListener {
-    public final int f42689a;
-    public final Object f42690b;
-    public final Object f42691c;
-    public final Object d;
+import android.view.ViewTreeObserver;
+import android.widget.PopupWindow;
+public final class k1 implements ViewTreeObserver.OnScrollChangedListener {
+    public final int f42694a;
+    public final Object f42695b;
 
-    public k1(Object obj, Object obj2, Object obj3, int i7) {
-        this.f42689a = i7;
-        this.f42690b = obj;
-        this.f42691c = obj2;
-        this.d = obj3;
+    public k1(Object obj, int i7) {
+        this.f42694a = i7;
+        this.f42695b = obj;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f42689a) {
+    public final void onScrollChanged() {
+        switch (this.f42694a) {
             case 0:
-                z2 z2Var = (z2) this.f42691c;
-                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.d;
-                if (org.telegram.messenger.g0.g(((JSONObject) this.f42690b).optString("text"))) {
-                    org.telegram.messenger.camera.q.r(null, 2131743010, new hc(z2Var.E, f6Var));
-                    return;
-                }
+                ((g) this.f42695b).run();
                 return;
             case 1:
-                p3 p3Var = (p3) this.f42690b;
-                org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) this.f42691c;
-                TL_wallet.card cardVar = (TL_wallet.card) this.d;
-                if (!p3Var.R) {
-                    if (p3Var.f42983e) {
-                        p3Var.U = new k3(1, f2Var);
-                    } else if (p3Var.d) {
-                        p3Var.U = new k3(0, f2Var);
-                    } else if (p3Var.f42982c && !TextUtils.isEmpty(cardVar.address)) {
-                        p3Var.U = new n(7, f2Var, cardVar);
-                    } else {
-                        return;
-                    }
-                    p3Var.dismiss();
+                b8 b8Var = (b8) this.f42695b;
+                if (b8Var.f42236h1) {
+                    b8Var.f0();
                     return;
                 }
                 return;
-            case 2:
-                k60 k60Var = (k60) this.d;
-                f fVar = ((n0) this.f42690b).h;
-                String str = ((TL_wallet.currencyRate) this.f42691c).currency;
-                if (!TextUtils.equals(fVar.f42441f, str)) {
-                    fVar.f42441f = str;
-                    try {
-                        org.telegram.messenger.t0.f25563b.getSharedPreferences("gram_wallet", 0).edit().putString("currency", fVar.g()).apply();
-                    } catch (Exception e10) {
-                        org.telegram.messenger.a8.e("[gram-wallet] failed to save currency prefs", e10);
-                    }
-                    fVar.f42438b.L();
-                }
-                k60Var.u();
-                return;
             default:
-                r8 r8Var = (r8) this.f42690b;
-                r8Var.getClass();
-                ((org.telegram.ui.ActionBar.u1[]) this.f42691c)[0].dismiss();
-                org.telegram.messenger.g0.g(r8Var.f43110s);
-                ((Runnable) this.d).run();
+                na naVar = (na) this.f42695b;
+                PopupWindow popupWindow = naVar.f42918s;
+                if (popupWindow != null && popupWindow.isShowing()) {
+                    naVar.c();
+                    return;
+                }
                 return;
         }
     }

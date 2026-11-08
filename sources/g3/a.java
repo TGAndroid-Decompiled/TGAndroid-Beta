@@ -72,7 +72,7 @@ public final class a implements o {
 
     @Override
     public final void d(long j3, long j10) {
-        long j11;
+        long m10;
         this.f13478e = 0L;
         this.f13479f = 0;
         this.f13480g = 0;
@@ -82,12 +82,12 @@ public final class a implements o {
             z zVar = (z) c0Var;
             u uVar = zVar.f11103b;
             if (uVar.f11190b == 0) {
-                j11 = -9223372036854775807L;
+                m10 = -9223372036854775807L;
             } else {
-                j11 = uVar.j(m0.c(zVar.f11102a, j3));
+                m10 = uVar.m(m0.c(zVar.f11102a, j3));
             }
-            this.f13483k = j11;
-            if (Math.abs(this.f13489q - j11) < 20000) {
+            this.f13483k = m10;
+            if (Math.abs(this.f13489q - m10) < 20000) {
                 return;
             }
             this.f13488p = true;

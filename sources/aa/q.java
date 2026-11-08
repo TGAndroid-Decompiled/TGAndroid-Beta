@@ -185,14 +185,14 @@ public final class q {
         this.f841j.d(str, currentTimeMillis, new p1(q1Var, s1Var, new r1(ordinal, availableProcessors, d, a10, blockCount, g10)));
         if (bool.booleanValue() && str != null) {
             q3 q3Var = this.d;
-            synchronized (((String) q3Var.f19227c)) {
-                q3Var.f19227c = str;
+            synchronized (((String) q3Var.f19230c)) {
+                q3Var.f19230c = str;
                 str4 = str15;
                 str5 = str13;
                 str2 = str11;
                 str3 = str14;
                 i10 = 4;
-                ((ba.e) q3Var.f19226b).f3136b.a(new ai.d0(q3Var, str, ((ca.e) ((AtomicMarkableReference) ((ab.q) q3Var.d).f990b).getReference()).a(), ((f5.u) q3Var.f19229f).l(), 10));
+                ((ba.e) q3Var.f19229b).f3136b.a(new ai.d0(q3Var, str, ((ca.e) ((AtomicMarkableReference) ((ab.q) q3Var.d).f990b).getReference()).a(), ((f5.u) q3Var.f19232f).o(), 10));
             }
         } else {
             str2 = str11;
@@ -244,15 +244,15 @@ public final class q {
                                 if (str21 != null) {
                                     String str22 = b0Var2.c().f784a;
                                     i0 i0Var = aVar2.h;
-                                    if (((f5.a) i0Var.f54976c) == null) {
-                                        i0Var.f54976c = new f5.a(i0Var);
+                                    if (((f5.a) i0Var.f55068c) == null) {
+                                        i0Var.f55068c = new f5.a(i0Var);
                                     }
-                                    f5.a aVar3 = (f5.a) i0Var.f54976c;
+                                    f5.a aVar3 = (f5.a) i0Var.f55068c;
                                     String str23 = aVar3.f11112a;
                                     if (aVar3 == null) {
-                                        i0Var.f54976c = new f5.a(i0Var);
+                                        i0Var.f55068c = new f5.a(i0Var);
                                     }
-                                    obj2.f8424g = new o0(str21, str18, str19, str22, str23, ((f5.a) i0Var.f54976c).f11113b);
+                                    obj2.f8424g = new o0(str21, str18, str19, str22, str23, ((f5.a) i0Var.f55068c).f11113b);
                                     ?? obj3 = new Object();
                                     obj3.f8430a = 3;
                                     obj3.f8433e = (byte) (obj3.f8433e | 1);
@@ -459,7 +459,7 @@ public final class q {
             String h = h();
             if (h != null) {
                 try {
-                    ((ab.q) this.d.f19228e).z("com.crashlytics.version-control-info", h);
+                    ((ab.q) this.d.f19231e).z("com.crashlytics.version-control-info", h);
                 } catch (IllegalArgumentException e10) {
                     Context context = this.f834a;
                     if (context != null) {
@@ -493,7 +493,7 @@ public final class q {
             taskCompletionSource.trySetResult(Boolean.FALSE);
             return;
         }
-        x9.b bVar = x9.b.f58576a;
+        x9.b bVar = x9.b.f58665a;
         bVar.c("Crash reports are available to be sent.");
         x xVar = this.f835b;
         if (xVar.a()) {

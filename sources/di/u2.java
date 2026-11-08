@@ -34,7 +34,7 @@ public final class u2 extends di {
             case 2:
                 an anVar = (an) obj;
                 u2 u2Var2 = anVar.X1;
-                if (u2Var2 != null && (u2Var2.isShowing() || this.f32969o2)) {
+                if (u2Var2 != null && (u2Var2.isShowing() || this.f32977o2)) {
                     Activity parentActivity = anVar.getParentActivity();
                     i7 = ((org.telegram.ui.ActionBar.f2) anVar).classGuid;
                     org.telegram.messenger.g0.a3(parentActivity, i7);
@@ -43,7 +43,7 @@ public final class u2 extends di {
                 anVar.ta(false, true);
                 ol olVar = anVar.l1;
                 if (olVar != null) {
-                    WeakHashMap weakHashMap = r0.i0.f54097a;
+                    WeakHashMap weakHashMap = r0.i0.f54190a;
                     r0.y.c(olVar);
                     return;
                 }
@@ -95,8 +95,8 @@ public final class u2 extends di {
                 return;
             case 2:
                 an anVar = (an) obj;
-                boolean z9 = this.f32969o2;
-                boolean N = this.f32984s2.N();
+                boolean z9 = this.f32977o2;
+                boolean N = this.f32992s2.N();
                 if (!N) {
                     anVar.R3 = false;
                     qj qjVar2 = anVar.Z;
@@ -126,7 +126,7 @@ public final class u2 extends di {
                     anVar.ta(false, false);
                     ol olVar = anVar.l1;
                     if (olVar != null) {
-                        WeakHashMap weakHashMap = r0.i0.f54097a;
+                        WeakHashMap weakHashMap = r0.i0.f54190a;
                         r0.y.c(olVar);
                         return;
                     }

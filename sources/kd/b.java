@@ -1,6 +1,6 @@
 package kd;
 public final class b implements id.c {
-    public static final b f17255a = new Object();
+    public static final b f17258a = new Object();
 
     @Override
     public final id.h getContext() {

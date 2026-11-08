@@ -7,34 +7,34 @@ import android.view.View;
 import java.util.HashSet;
 import java.util.Random;
 public final class qo0 extends View implements org.telegram.ui.ActionBar.a6 {
-    public Random f37366a;
-    public Paint f37367b;
-    public Paint f37368c;
+    public Random f37396a;
+    public Paint f37397b;
+    public Paint f37398c;
     public Paint d;
-    public Paint f37369e;
-    public float f37370f;
+    public Paint f37399e;
+    public float f37400f;
     public float h;
-    public float f37371n;
+    public float f37401n;
 
     @Override
     public final void onDraw(Canvas canvas) {
         float f10;
-        Paint paint = this.f37368c;
-        Paint paint2 = this.f37367b;
+        Paint paint = this.f37398c;
+        Paint paint2 = this.f37397b;
         super.onDraw(canvas);
         canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), 255, 31);
         float f11 = 3.0f;
         int measuredWidth = (getMeasuredWidth() / 2) - org.telegram.messenger.g0.L(3.0f);
         int L = org.telegram.messenger.g0.L(1.0f) + ((org.telegram.messenger.g0.L(1.0f) + measuredWidth) * 7);
-        xq xqVar = xq.f40346g;
-        float f12 = this.f37370f;
+        xq xqVar = xq.f40367g;
+        float f12 = this.f37400f;
         if (f12 > 0.4f) {
             f10 = (f12 - 0.4f) / 0.6f;
         } else {
             f10 = 0.0f;
         }
         float interpolation = xqVar.getInterpolation(f10);
-        float f13 = (this.f37371n * interpolation) + ((1.0f - interpolation) * this.h);
+        float f13 = (this.f37401n * interpolation) + ((1.0f - interpolation) * this.h);
         canvas.save();
         canvas.translate(0.0f, (-org.telegram.messenger.k5.B(4.0f, getMeasuredHeight(), L)) * f13);
         int i7 = 0;
@@ -54,7 +54,7 @@ public final class qo0 extends View implements org.telegram.ui.ActionBar.a6 {
         canvas.restore();
         canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), org.telegram.messenger.g0.L(4.0f), this.d);
         canvas.translate(0.0f, getMeasuredHeight() - org.telegram.messenger.g0.L(4.0f));
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), org.telegram.messenger.g0.L(4.0f), this.f37369e);
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), org.telegram.messenger.g0.L(4.0f), this.f37399e);
         canvas.restore();
         float measuredHeight = ((getMeasuredHeight() - org.telegram.messenger.g0.L(21.0f)) * f13) + org.telegram.messenger.g0.L(f16);
         RectF rectF2 = org.telegram.messenger.g0.P;
@@ -64,19 +64,19 @@ public final class qo0 extends View implements org.telegram.ui.ActionBar.a6 {
         float L3 = org.telegram.messenger.g0.L(0.5f) + measuredWidth;
         rectF2.set(L3 - org.telegram.messenger.g0.L(8.0f), centerY - org.telegram.messenger.g0.L(f16), L3 + org.telegram.messenger.g0.L(8.0f), centerY + org.telegram.messenger.g0.L(f16));
         canvas.drawRoundRect(rectF2, org.telegram.messenger.g0.L(f16), org.telegram.messenger.g0.L(f16), paint);
-        float f17 = this.f37370f + 0.016f;
-        this.f37370f = f17;
+        float f17 = this.f37400f + 0.016f;
+        this.f37400f = f17;
         if (f17 > 1.0f) {
-            this.h = this.f37371n;
-            float abs = Math.abs(this.f37366a.nextInt() % 1001) / 1000.0f;
-            this.f37371n = abs;
+            this.h = this.f37401n;
+            float abs = Math.abs(this.f37396a.nextInt() % 1001) / 1000.0f;
+            this.f37401n = abs;
             if (abs > this.h) {
-                this.f37371n = abs + 0.3f;
+                this.f37401n = abs + 0.3f;
             } else {
-                this.f37371n = abs - 0.3f;
+                this.f37401n = abs - 0.3f;
             }
-            this.f37371n = Math.max(0.0f, Math.min(1.0f, this.f37371n));
-            this.f37370f = 0.0f;
+            this.f37401n = Math.max(0.0f, Math.min(1.0f, this.f37401n));
+            this.f37400f = 0.0f;
         }
         invalidate();
     }
@@ -84,10 +84,10 @@ public final class qo0 extends View implements org.telegram.ui.ActionBar.a6 {
     @Override
     public final void updateColors() {
         try {
-            Paint paint = this.f37367b;
-            int i7 = org.telegram.ui.ActionBar.k6.f27858dg;
+            Paint paint = this.f37397b;
+            int i7 = org.telegram.ui.ActionBar.k6.f27861dg;
             paint.setColor(i0.a.o(org.telegram.ui.ActionBar.k6.x0(null, i7, false), 76));
-            this.f37368c.setColor(org.telegram.ui.ActionBar.k6.x0(null, i7, false));
+            this.f37398c.setColor(org.telegram.ui.ActionBar.k6.x0(null, i7, false));
             invalidate();
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

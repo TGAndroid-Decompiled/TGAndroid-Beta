@@ -8,7 +8,7 @@ import c8.ha;
 import hi.x3;
 import java.util.ArrayList;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ls;
 import org.telegram.messenger.qp;
 import org.telegram.messenger.qs;
@@ -27,41 +27,41 @@ import org.telegram.ui.Components.v4;
 import org.telegram.ui.Components.w8;
 import org.telegram.ui.Components.x31;
 public final class f extends f2 implements ls {
-    public ri.c f15522a;
-    public long f15523b;
-    public TLRPC.Chat f15524c;
+    public ri.c f15525a;
+    public long f15526b;
+    public TLRPC.Chat f15527c;
     public TLRPC.User d;
-    public FrameLayout f15525e;
-    public q41 f15526f;
+    public FrameLayout f15528e;
+    public q41 f15529f;
     public e h;
-    public ArrayList f15527n;
-    public ab.b0 f15528r;
+    public ArrayList f15530n;
+    public ab.b0 f15531r;
 
     public static void Z(f fVar, x31 x31Var) {
         f fVar2;
         if (x31Var.d == 1) {
             fVar2 = fVar;
-            v4.O(fVar.getParentActivity(), fVar2, hd.M0(2131751906, null), null, hd.M0(2131751907, null), null, Integer.MAX_VALUE, hd.M0(2131751753, null), fVar.resourceProvider, new b(fVar));
+            v4.O(fVar.getParentActivity(), fVar2, id.M0(2131751906, null), null, id.M0(2131751907, null), null, Integer.MAX_VALUE, id.M0(2131751753, null), fVar.resourceProvider, new b(fVar));
         } else {
             fVar2 = fVar;
         }
         Object obj = x31Var.G;
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
-            fVar2.getMessagesController().M0(Long.valueOf(-fVar2.f15523b));
-            fVar2.showDialog(new ki.a(fVar2.getParentActivity(), chat, fVar2.f15523b, new f1(20, fVar2, chat)));
+            fVar2.getMessagesController().M0(Long.valueOf(-fVar2.f15526b));
+            fVar2.showDialog(new ki.a(fVar2.getParentActivity(), chat, fVar2.f15526b, new f1(20, fVar2, chat)));
         }
     }
 
     public final void a0(String str, boolean z9) {
-        if (!t3.T(this.f15524c) && this.d == null) {
+        if (!t3.T(this.f15527c) && this.d == null) {
             u1 u1Var = new u1(3, getParentActivity(), null);
             u1Var.r(250L);
-            getMessagesController().T(getParentActivity(), -this.f15523b, this, new a3.g(this, u1Var, str, z9, 2), null);
+            getMessagesController().T(getParentActivity(), -this.f15526b, this, new a3.g(this, u1Var, str, z9, 2), null);
             return;
         }
         qp messagesController = getMessagesController();
-        long j3 = this.f15523b;
+        long j3 = this.f15526b;
         a aVar = new a(this, 1);
         messagesController.getClass();
         TL_communities.TL_communities_create tL_communities_create = new TL_communities.TL_communities_create();
@@ -72,14 +72,14 @@ public final class f extends f2 implements ls {
     }
 
     public final void b0(long j3, boolean z9) {
-        if (!t3.T(this.f15524c) && this.d == null) {
+        if (!t3.T(this.f15527c) && this.d == null) {
             u1 u1Var = new u1(3, getParentActivity(), null);
             u1Var.r(250L);
-            getMessagesController().T(getParentActivity(), -this.f15523b, this, new d(this, u1Var, j3, z9, 0), null);
+            getMessagesController().T(getParentActivity(), -this.f15526b, this, new d(this, u1Var, j3, z9, 0), null);
             return;
         }
         int i7 = this.currentAccount;
-        long j10 = -this.f15523b;
+        long j10 = -this.f15526b;
         qp.s1(i7).Q2(-j10, j3, false, z9, new g0(this, j10, 0));
     }
 
@@ -93,48 +93,48 @@ public final class f extends f2 implements ls {
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setActionBarMenuOnItemClick(new bi.s(this, 5));
         ri.c cVar = new ri.c();
-        cVar.a(getThemedColor(k6.f27849d6));
-        this.f15522a = cVar;
+        cVar.a(getThemedColor(k6.f27852d6));
+        this.f15525a = cVar;
         dh.c cVar2 = new dh.c(cVar, cVar, cVar);
         this.actionBar.setBackground(null);
         this.actionBar.M(cVar2, c8.g0.p(this.resourceProvider), false);
         this.actionBar.Q0 = true;
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f15525e = frameLayout;
-        r6.i(k6.f27793a7, frameLayout, null);
+        this.f15528e = frameLayout;
+        r6.i(k6.f27796a7, frameLayout, null);
         e eVar = new e(context, this.resourceProvider);
         this.h = eVar;
-        eVar.setTitle(hd.M0(2131751847, null));
+        eVar.setTitle(id.M0(2131751847, null));
         e eVar2 = this.h;
         if (this.d != null) {
             i7 = 2131751933;
-        } else if (t3.V(this.f15524c)) {
+        } else if (t3.V(this.f15527c)) {
             i7 = 2131751932;
         } else {
             i7 = 2131751931;
         }
-        eVar2.setSubtitle(hd.M0(i7, null));
+        eVar2.setSubtitle(id.M0(i7, null));
         this.h.setTag(-33024);
         TLRPC.User user = this.d;
         if (user != null) {
-            this.h.f15516a.e(user, new w8(0, this.d));
+            this.h.f15519a.e(user, new w8(0, this.d));
         } else {
-            TLRPC.Chat chat = this.f15524c;
+            TLRPC.Chat chat = this.f15527c;
             if (chat != null) {
-                this.h.f15516a.e(chat, new w8(this.f15524c));
+                this.h.f15519a.e(chat, new w8(this.f15527c));
             }
         }
         q41 q41Var = new q41(this, new a(this, 0), new b(this), new x3(this, 6));
-        this.f15526f = q41Var;
+        this.f15529f = q41Var;
         q41Var.setClipToPadding(false);
-        q41 q41Var2 = this.f15526f;
-        l41 l41Var = q41Var2.f37160f3;
-        l41Var.f35510r = false;
-        l41Var.f35511s = true;
+        q41 q41Var2 = this.f15529f;
+        l41 l41Var = q41Var2.f37190f3;
+        l41Var.f35528r = false;
+        l41Var.f35529s = true;
         q41Var2.r1();
-        this.f15525e.addView(this.f15526f, ha.c(-1.0f, -1));
-        this.f15525e.addView(this.actionBar, ha.e(-1, -2, 48));
-        FrameLayout frameLayout2 = this.f15525e;
+        this.f15528e.addView(this.f15529f, ha.c(-1.0f, -1));
+        this.f15528e.addView(this.actionBar, ha.e(-1, -2, 48));
+        FrameLayout frameLayout2 = this.f15528e;
         this.fragmentView = frameLayout2;
         return frameLayout2;
     }
@@ -144,8 +144,8 @@ public final class f extends f2 implements ls {
         int i11;
         if (i7 == qs.T) {
             TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
-            long j3 = chatFull.f26954id;
-            View B1 = this.f15526f.B1((int) (j3 ^ (j3 >>> 32)));
+            long j3 = chatFull.f26957id;
+            View B1 = this.f15529f.B1((int) (j3 ^ (j3 >>> 32)));
             if (B1 instanceof g6) {
                 g6 g6Var = (g6) B1;
                 ArrayList<TL_communities.CommunityPeer> arrayList = chatFull.linked_peers;
@@ -154,10 +154,10 @@ public final class f extends f2 implements ls {
                 } else {
                     i11 = 0;
                 }
-                g6Var.setSubLabel(hd.G(i11, "Chats", new Object[0]));
+                g6Var.setSubLabel(id.G(i11, "Chats", new Object[0]));
                 return;
             }
-            this.f15526f.f37160f3.O(false);
+            this.f15529f.f37190f3.O(false);
         }
     }
 
@@ -168,10 +168,10 @@ public final class f extends f2 implements ls {
 
     @Override
     public final boolean onFragmentCreate() {
-        this.f15523b = this.arguments.getLong("dialog_id", 0L);
-        this.f15524c = getMessagesController().M0(Long.valueOf(-this.f15523b));
-        this.d = getMessagesController().a2(Long.valueOf(this.f15523b));
-        this.f15527n = getMessagesController().Q7;
+        this.f15526b = this.arguments.getLong("dialog_id", 0L);
+        this.f15527c = getMessagesController().M0(Long.valueOf(-this.f15526b));
+        this.d = getMessagesController().a2(Long.valueOf(this.f15526b));
+        this.f15530n = getMessagesController().Q7;
         qp messagesController = getMessagesController();
         c cVar = new c(this, 0);
         int i7 = this.classGuid;
@@ -181,16 +181,16 @@ public final class f extends f2 implements ls {
         notificationCenter.getClass();
         ab.b0 b0Var = new ab.b0(notificationCenter, this);
         b0Var.c(qs.T);
-        this.f15528r = b0Var;
+        this.f15531r = b0Var;
         return super.onFragmentCreate();
     }
 
     @Override
     public final void onFragmentDestroy() {
-        ab.b0 b0Var = this.f15528r;
+        ab.b0 b0Var = this.f15531r;
         if (b0Var != null) {
             b0Var.b();
-            this.f15528r = null;
+            this.f15531r = null;
         }
         super.onFragmentDestroy();
     }
@@ -198,16 +198,16 @@ public final class f extends f2 implements ls {
     @Override
     public final void onInsets(int i7, int i10, int i11, int i12) {
         super.onInsets(i7, i10, i11, i12);
-        this.f15526f.setPadding(0, i10, 0, i12);
+        this.f15529f.setPadding(0, i10, 0, i12);
     }
 
     @Override
     public final void onThemeColorsChanged() {
         super.onThemeColorsChanged();
         try {
-            ri.c cVar = this.f15522a;
+            ri.c cVar = this.f15525a;
             if (cVar != null) {
-                cVar.a(getThemedColor(k6.f27849d6));
+                cVar.a(getThemedColor(k6.f27852d6));
             }
             org.telegram.ui.ActionBar.k kVar = this.actionBar;
             if (kVar != null) {

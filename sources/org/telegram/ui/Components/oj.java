@@ -8,30 +8,30 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 public final class oj extends oj0 {
-    public final int f36629c;
+    public final int f36649c;
     public final Context d;
-    public ArrayList f36630e;
-    public final ArrayList f36631f;
+    public ArrayList f36650e;
+    public final ArrayList f36651f;
     public Object h;
-    public final Object f36632n;
+    public final Object f36652n;
 
     public oj(org.telegram.ui.qs qsVar, Context context, HashMap hashMap) {
-        this.f36629c = 1;
-        this.f36632n = qsVar;
-        this.f36631f = new ArrayList();
+        this.f36649c = 1;
+        this.f36652n = qsVar;
+        this.f36651f = new ArrayList();
         this.d = context;
         for (List<org.telegram.ui.ms> list : hashMap.values()) {
             for (org.telegram.ui.ms msVar : list) {
-                this.f36631f.add(msVar);
+                this.f36651f.add(msVar);
             }
         }
     }
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        switch (this.f36629c) {
+        switch (this.f36649c) {
             case 0:
-                if (d1Var.f56955f == 1) {
+                if (d1Var.f57047f == 1) {
                     return true;
                 }
                 return false;
@@ -43,12 +43,12 @@ public final class oj extends oj0 {
     public pj E(int i7) {
         int g10;
         ArrayList arrayList = (ArrayList) this.h;
-        ArrayList arrayList2 = this.f36630e;
+        ArrayList arrayList2 = this.f36650e;
         int size = arrayList2.size();
         if (i7 < size) {
             return (pj) arrayList2.get(i7);
         }
-        if (this.f36631f.isEmpty() && !arrayList.isEmpty() && i7 != size && i7 != size + 1 && (g10 = jg.g.g(2, i7, arrayList2)) < arrayList.size()) {
+        if (this.f36651f.isEmpty() && !arrayList.isEmpty() && i7 != size && i7 != size + 1 && (g10 = jg.g.g(2, i7, arrayList2)) < arrayList.size()) {
             return (pj) arrayList.get(g10);
         }
         return null;
@@ -56,16 +56,16 @@ public final class oj extends oj0 {
 
     @Override
     public final int b() {
-        switch (this.f36629c) {
+        switch (this.f36649c) {
             case 0:
                 ArrayList arrayList = (ArrayList) this.h;
-                int size = this.f36630e.size();
-                if (this.f36631f.isEmpty() && !arrayList.isEmpty()) {
+                int size = this.f36650e.size();
+                if (this.f36651f.isEmpty() && !arrayList.isEmpty()) {
                     size += arrayList.size() + 2;
                 }
                 return size + 1;
             default:
-                ArrayList arrayList2 = this.f36630e;
+                ArrayList arrayList2 = this.f36650e;
                 if (arrayList2 == null) {
                     return 0;
                 }
@@ -75,12 +75,12 @@ public final class oj extends oj0 {
 
     @Override
     public final int d(int i7) {
-        switch (this.f36629c) {
+        switch (this.f36649c) {
             case 0:
                 if (i7 == b() - 1) {
                     return 3;
                 }
-                int size = this.f36630e.size();
+                int size = this.f36650e.size();
                 if (i7 == size) {
                     return 2;
                 }
@@ -95,10 +95,10 @@ public final class oj extends oj0 {
 
     @Override
     public void f() {
-        switch (this.f36629c) {
+        switch (this.f36649c) {
             case 0:
                 super.f();
-                ((vj) this.f36632n).X();
+                ((vj) this.f36652n).X();
                 return;
             default:
                 super.f();
@@ -109,32 +109,32 @@ public final class oj extends oj0 {
     @Override
     public final void t(v4.d1 d1Var, int i7) {
         boolean z9;
-        int i10 = this.f36629c;
-        Object obj = this.f36632n;
+        int i10 = this.f36649c;
+        Object obj = this.f36652n;
         String str = null;
         switch (i10) {
             case 0:
                 vj vjVar = (vj) obj;
-                int i11 = d1Var.f56955f;
-                View view = d1Var.f56951a;
+                int i11 = d1Var.f57047f;
+                View view = d1Var.f57043a;
                 if (i11 != 0) {
                     if (i11 == 1) {
                         pj E = E(i7);
                         org.telegram.ui.Cells.h7 h7Var = (org.telegram.ui.Cells.h7) view;
-                        int i12 = E.f36922a;
+                        int i12 = E.f36948a;
                         if (i12 != 0) {
-                            String str2 = E.f36923b;
-                            String str3 = E.f36924c;
-                            if (i7 != this.f36630e.size() - 1) {
+                            String str2 = E.f36949b;
+                            String str3 = E.f36950c;
+                            if (i7 != this.f36650e.size() - 1) {
                                 z9 = true;
                             } else {
                                 z9 = false;
                             }
                             h7Var.d(str2, str3, null, null, i12, z9);
                         } else {
-                            h7Var.d(E.f36923b, E.f36924c, E.d.toUpperCase().substring(0, Math.min(E.d.length(), 4)), E.f36925e, 0, false);
+                            h7Var.d(E.f36949b, E.f36950c, E.d.toUpperCase().substring(0, Math.min(E.d.length(), 4)), E.f36951e, 0, false);
                         }
-                        File file = E.f36926f;
+                        File file = E.f36952f;
                         if (file != null) {
                             h7Var.b(vjVar.R.containsKey(file.toString()), !vjVar.U);
                             return;
@@ -146,16 +146,16 @@ public final class oj extends oj0 {
                     return;
                 }
                 org.telegram.ui.Cells.n4 n4Var = (org.telegram.ui.Cells.n4) view;
-                if (vjVar.f38980c0) {
-                    n4Var.setText(org.telegram.messenger.hd.M0(2131746366, null));
+                if (vjVar.f39015c0) {
+                    n4Var.setText(org.telegram.messenger.id.M0(2131746368, null));
                     return;
                 } else {
-                    n4Var.setText(org.telegram.messenger.hd.M0(2131746367, null));
+                    n4Var.setText(org.telegram.messenger.id.M0(2131746369, null));
                     return;
                 }
             default:
-                org.telegram.ui.ms msVar = (org.telegram.ui.ms) this.f36630e.get(i7);
-                org.telegram.ui.Cells.w9 w9Var = (org.telegram.ui.Cells.w9) d1Var.f56951a;
+                org.telegram.ui.ms msVar = (org.telegram.ui.ms) this.f36650e.get(i7);
+                org.telegram.ui.Cells.w9 w9Var = (org.telegram.ui.Cells.w9) d1Var.f57043a;
                 CharSequence m10 = org.telegram.messenger.i6.m(org.telegram.ui.qs.a0(msVar), w9Var.getTextView().getPaint().getFontMetricsInt(), false, null, 0);
                 if (((org.telegram.ui.qs) obj).h) {
                     str = "+" + msVar.f47871c;
@@ -169,9 +169,9 @@ public final class oj extends oj0 {
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         View n4Var;
         View view;
-        switch (this.f36629c) {
+        switch (this.f36649c) {
             case 0:
-                org.telegram.ui.ActionBar.f6 f6Var = ((vj) this.f36632n).f38968a;
+                org.telegram.ui.ActionBar.f6 f6Var = ((vj) this.f36652n).f39003a;
                 Context context = this.d;
                 if (i7 != 0) {
                     if (i7 != 1) {
@@ -195,10 +195,10 @@ public final class oj extends oj0 {
     }
 
     public oj(vj vjVar, Context context) {
-        this.f36629c = 0;
-        this.f36632n = vjVar;
-        this.f36630e = new ArrayList();
-        this.f36631f = new ArrayList();
+        this.f36649c = 0;
+        this.f36652n = vjVar;
+        this.f36650e = new ArrayList();
+        this.f36651f = new ArrayList();
         this.h = new ArrayList();
         this.d = context;
     }

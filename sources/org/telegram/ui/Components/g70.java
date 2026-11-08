@@ -11,53 +11,53 @@ import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 public final class g70 extends Drawable {
-    public static final Paint f33836k = new Paint();
-    public static TextPaint f33837l;
-    public static TextPaint f33838m;
-    public static TextPaint f33839n;
-    public StaticLayout f33841b;
-    public float f33842c;
+    public static final Paint f33862k = new Paint();
+    public static TextPaint f33863l;
+    public static TextPaint f33864m;
+    public static TextPaint f33865n;
+    public StaticLayout f33867b;
+    public float f33868c;
     public float d;
-    public float f33843e;
-    public final int f33845g;
+    public float f33869e;
+    public final int f33871g;
     public final TextPaint h;
-    public final org.telegram.ui.ActionBar.f6 f33847j;
-    public final RectF f33840a = new RectF();
-    public final StringBuilder f33844f = new StringBuilder(5);
-    public float f33846i = 1.0f;
+    public final org.telegram.ui.ActionBar.f6 f33873j;
+    public final RectF f33866a = new RectF();
+    public final StringBuilder f33870f = new StringBuilder(5);
+    public float f33872i = 1.0f;
 
     public g70(int i7, org.telegram.ui.ActionBar.f6 f6Var) {
-        this.f33845g = i7;
-        this.f33847j = f6Var;
+        this.f33871g = i7;
+        this.f33873j = f6Var;
         if (i7 == 0) {
-            if (f33837l == null) {
-                f33837l = new TextPaint(1);
+            if (f33863l == null) {
+                f33863l = new TextPaint(1);
             }
-            f33837l.setTextSize(org.telegram.messenger.g0.L(28.0f));
-            f33836k.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28233xi, f6Var));
-            f33837l.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.yi, f6Var));
-            this.h = f33837l;
+            f33863l.setTextSize(org.telegram.messenger.g0.L(28.0f));
+            f33862k.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28236xi, f6Var));
+            f33863l.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.yi, f6Var));
+            this.h = f33863l;
         } else if (i7 == 1) {
-            if (f33838m == null) {
-                f33838m = new TextPaint(1);
+            if (f33864m == null) {
+                f33864m = new TextPaint(1);
             }
-            f33838m.setColor(-1);
-            f33838m.setTextSize(org.telegram.messenger.g0.L(13.0f));
-            f33838m.setTypeface(Typeface.create(Typeface.DEFAULT, 1));
-            this.h = f33838m;
+            f33864m.setColor(-1);
+            f33864m.setTextSize(org.telegram.messenger.g0.L(13.0f));
+            f33864m.setTypeface(Typeface.create(Typeface.DEFAULT, 1));
+            this.h = f33864m;
         } else {
-            if (f33839n == null) {
-                f33839n = new TextPaint(1);
+            if (f33865n == null) {
+                f33865n = new TextPaint(1);
             }
-            f33839n.setColor(-1);
-            f33839n.setTextSize(org.telegram.ui.ActionBar.k6.f27846d3.getTextSize() * 0.75f);
-            f33839n.setTypeface(Typeface.create(Typeface.DEFAULT, 1));
-            this.h = f33839n;
+            f33865n.setColor(-1);
+            f33865n.setTextSize(org.telegram.ui.ActionBar.k6.f27849d3.getTextSize() * 0.75f);
+            f33865n.setTypeface(Typeface.create(Typeface.DEFAULT, 1));
+            this.h = f33865n;
         }
     }
 
     public final void a(String str) {
-        StringBuilder sb2 = this.f33844f;
+        StringBuilder sb2 = this.f33870f;
         sb2.setLength(0);
         if (str != null && str.length() > 0) {
             sb2.append(str.substring(0, 1));
@@ -65,11 +65,11 @@ public final class g70 extends Drawable {
         if (sb2.length() > 0) {
             try {
                 StaticLayout staticLayout = new StaticLayout(sb2.toString().toUpperCase(), this.h, org.telegram.messenger.g0.L(100.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                this.f33841b = staticLayout;
+                this.f33867b = staticLayout;
                 if (staticLayout.getLineCount() > 0) {
-                    this.f33843e = this.f33841b.getLineLeft(0);
-                    this.f33842c = this.f33841b.getLineWidth(0);
-                    this.d = this.f33841b.getLineBottom(0);
+                    this.f33869e = this.f33867b.getLineLeft(0);
+                    this.f33868c = this.f33867b.getLineWidth(0);
+                    this.d = this.f33867b.getLineBottom(0);
                     return;
                 }
                 return;
@@ -78,7 +78,7 @@ public final class g70 extends Drawable {
                 return;
             }
         }
-        this.f33841b = null;
+        this.f33867b = null;
     }
 
     @Override
@@ -87,26 +87,26 @@ public final class g70 extends Drawable {
         if (bounds == null) {
             return;
         }
-        if (this.f33845g == 0) {
-            int i7 = org.telegram.ui.ActionBar.k6.f28233xi;
-            org.telegram.ui.ActionBar.f6 f6Var = this.f33847j;
+        if (this.f33871g == 0) {
+            int i7 = org.telegram.ui.ActionBar.k6.f28236xi;
+            org.telegram.ui.ActionBar.f6 f6Var = this.f33873j;
             int w02 = org.telegram.ui.ActionBar.k6.w0(i7, f6Var);
-            Paint paint = f33836k;
+            Paint paint = f33862k;
             paint.setColor(w02);
             this.h.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.yi, f6Var));
-            RectF rectF = this.f33840a;
+            RectF rectF = this.f33866a;
             rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
             canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), paint);
         }
         canvas.save();
-        float f10 = this.f33846i;
+        float f10 = this.f33872i;
         if (f10 != 1.0f) {
             canvas.scale(f10, f10, bounds.centerX(), bounds.centerY());
         }
-        if (this.f33841b != null) {
+        if (this.f33867b != null) {
             float width = bounds.width();
-            canvas.translate(com.google.android.recaptcha.internal.a.A(width, this.f33842c, 2.0f, bounds.left) - this.f33843e, com.google.android.recaptcha.internal.a.A(width, this.d, 2.0f, bounds.top));
-            this.f33841b.draw(canvas);
+            canvas.translate(com.google.android.recaptcha.internal.a.A(width, this.f33868c, 2.0f, bounds.left) - this.f33869e, com.google.android.recaptcha.internal.a.A(width, this.d, 2.0f, bounds.top));
+            this.f33867b.draw(canvas);
         }
         canvas.restore();
     }
@@ -129,7 +129,7 @@ public final class g70 extends Drawable {
     @Override
     public final void setAlpha(int i7) {
         this.h.setAlpha(i7);
-        f33836k.setAlpha(i7);
+        f33862k.setAlpha(i7);
     }
 
     @Override

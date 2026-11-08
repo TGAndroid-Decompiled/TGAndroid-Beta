@@ -13,7 +13,7 @@ public final class q80 implements View.OnLayoutChangeListener {
             z9 = false;
         }
         if (z9 != this.f49168a) {
-            org.telegram.messenger.g0.h3(new org.telegram.ui.Components.l10(this, 20));
+            org.telegram.messenger.g0.h3(new org.telegram.ui.Components.vs(this, 22));
             this.f49168a = z9;
         }
     }

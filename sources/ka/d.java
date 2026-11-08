@@ -24,13 +24,13 @@ import zd.c1;
 import zd.j0;
 public final class d {
     public static final g[] d;
-    public final String f17248a;
-    public final ThreadLocal f17249b;
-    public final q1.d f17250c;
+    public final String f17251a;
+    public final ThreadLocal f17252b;
+    public final q1.d f17253c;
 
     static {
         n nVar = new n(kotlin.jvm.internal.c.NO_RECEIVER, d.class, "dataStore", "getDataStore(Landroid/content/Context;)Landroidx/datastore/core/DataStore;", 0);
-        s.f17613a.getClass();
+        s.f17616a.getClass();
         d = new g[]{nVar};
     }
 
@@ -38,13 +38,13 @@ public final class d {
         q1.d dVar;
         j.e(context, "context");
         j.e(name, "name");
-        this.f17248a = name;
-        this.f17249b = new ThreadLocal();
+        this.f17251a = name;
+        this.f17252b = new ThreadLocal();
         f1 f1Var = new f1(new l(this) {
-            public final d f17241b;
+            public final d f17244b;
 
             {
-                this.f17241b = this;
+                this.f17244b = this;
             }
 
             @Override
@@ -54,24 +54,24 @@ public final class d {
                         m1.b ex = (m1.b) obj;
                         j.e(ex, "ex");
                         String b10 = s.a(d.class).b();
-                        Log.w(b10, "CorruptionException in " + this.f17241b.f17248a + " DataStore running in process " + Process.myPid(), ex);
+                        Log.w(b10, "CorruptionException in " + this.f17244b.f17251a + " DataStore running in process " + Process.myPid(), ex);
                         return new q1.b(true);
                     default:
                         Context it = (Context) obj;
                         j.e(it, "it");
-                        String sharedPreferencesName = this.f17241b.f17248a;
-                        LinkedHashSet keysToMigrate = p1.j.f52995a;
+                        String sharedPreferencesName = this.f17244b.f17251a;
+                        LinkedHashSet keysToMigrate = p1.j.f53088a;
                         j.e(sharedPreferencesName, "sharedPreferencesName");
                         j.e(keysToMigrate, "keysToMigrate");
-                        return d0.a(new o1.d(it, sharedPreferencesName, e.f20703a, new b(keysToMigrate, null, 2), new kd.j(3, null)));
+                        return d0.a(new o1.d(it, sharedPreferencesName, e.f20706a, new b(keysToMigrate, null, 2), new kd.j(3, null)));
                 }
             }
         }, 15);
         l lVar = new l(this) {
-            public final d f17241b;
+            public final d f17244b;
 
             {
-                this.f17241b = this;
+                this.f17244b = this;
             }
 
             @Override
@@ -81,20 +81,20 @@ public final class d {
                         m1.b ex = (m1.b) obj;
                         j.e(ex, "ex");
                         String b10 = s.a(d.class).b();
-                        Log.w(b10, "CorruptionException in " + this.f17241b.f17248a + " DataStore running in process " + Process.myPid(), ex);
+                        Log.w(b10, "CorruptionException in " + this.f17244b.f17251a + " DataStore running in process " + Process.myPid(), ex);
                         return new q1.b(true);
                     default:
                         Context it = (Context) obj;
                         j.e(it, "it");
-                        String sharedPreferencesName = this.f17241b.f17248a;
-                        LinkedHashSet keysToMigrate = p1.j.f52995a;
+                        String sharedPreferencesName = this.f17244b.f17251a;
+                        LinkedHashSet keysToMigrate = p1.j.f53088a;
                         j.e(sharedPreferencesName, "sharedPreferencesName");
                         j.e(keysToMigrate, "keysToMigrate");
-                        return d0.a(new o1.d(it, sharedPreferencesName, e.f20703a, new b(keysToMigrate, null, 2), new kd.j(3, null)));
+                        return d0.a(new o1.d(it, sharedPreferencesName, e.f20706a, new b(keysToMigrate, null, 2), new kd.j(3, null)));
                 }
             }
         };
-        ge.e eVar = j0.f59990a;
+        ge.e eVar = j0.f60083a;
         ge.d dVar2 = ge.d.f13851c;
         c1 c1Var = new c1();
         dVar2.getClass();
@@ -110,7 +110,7 @@ public final class d {
                         Context applicationContext = context.getApplicationContext();
                         j.d(applicationContext, "applicationContext");
                         o1.a aVar = new o1.a(1, applicationContext, s0Var);
-                        s0Var.f7454b = new q1.d(new q1.d(new m1.b0(new f0(h.f53595a, e0.f19363b, new k0(aVar, 3)), d0.a(new be.l((List) lVar.invoke(applicationContext), (id.c) null, 8)), f1Var, b10)));
+                        s0Var.f7454b = new q1.d(new q1.d(new m1.b0(new f0(h.f53688a, e0.f19366b, new k0(aVar, 3)), d0.a(new be.l((List) lVar.invoke(applicationContext), (id.c) null, 8)), f1Var, b10)));
                     }
                     dVar = (q1.d) s0Var.f7454b;
                     j.b(dVar);
@@ -120,7 +120,7 @@ public final class d {
             }
             dVar3 = dVar;
         }
-        this.f17250c = dVar3;
+        this.f17253c = dVar3;
     }
 
     public final void a(l lVar) {

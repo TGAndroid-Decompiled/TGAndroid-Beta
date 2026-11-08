@@ -15,18 +15,18 @@ public final class tu0 extends ch0 implements org.telegram.ui.ActionBar.a6 {
     public ValueAnimator F;
     public ValueAnimator G;
     public final yu0 H;
-    public int f38394r;
-    public float f38395s;
-    public ValueAnimator f38396w;
-    public boolean f38397x;
-    public long f38398y;
+    public int f38428r;
+    public float f38429s;
+    public ValueAnimator f38430w;
+    public boolean f38431x;
+    public long f38432y;
 
     public tu0(yu0 yu0Var, Context context) {
         super(context);
         int w02;
-        org.telegram.ui.ActionBar.f6 f6Var = yu0Var.f36955n2;
+        org.telegram.ui.ActionBar.f6 f6Var = yu0Var.f36981n2;
         this.H = yu0Var;
-        this.f38397x = false;
+        this.f38431x = false;
         this.D = 1.0f;
         if (yu0Var.D3) {
             w02 = i0.a.o(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Kl, f6Var), (int) 102.0f);
@@ -40,7 +40,7 @@ public final class tu0 extends ch0 implements org.telegram.ui.ActionBar.a6 {
 
     @Override
     public final void c() {
-        this.f38397x = true;
+        this.f38431x = true;
         if (this.D < 1.0f) {
             ValueAnimator valueAnimator = this.G;
             if (valueAnimator != null) {
@@ -62,7 +62,7 @@ public final class tu0 extends ch0 implements org.telegram.ui.ActionBar.a6 {
         if (isPressed()) {
             float f10 = this.E;
             if (f10 != 1.0f) {
-                this.E = Utilities.i(((1000.0f / org.telegram.messenger.g0.f22545r) / 100.0f) + f10, 1.0f, 0.0f);
+                this.E = Utilities.i(((1000.0f / org.telegram.messenger.g0.f22564r) / 100.0f) + f10, 1.0f, 0.0f);
                 invalidate();
                 this.H.invalidate();
             }
@@ -80,8 +80,8 @@ public final class tu0 extends ch0 implements org.telegram.ui.ActionBar.a6 {
     }
 
     public final void j() {
-        if (System.currentTimeMillis() - this.f38398y > 250) {
-            this.f38398y = System.currentTimeMillis();
+        if (System.currentTimeMillis() - this.f38432y > 250) {
+            this.f38432y = System.currentTimeMillis();
             zg0 animatedDrawable = getAnimatedDrawable();
             if (animatedDrawable == null && getImageReceiver() != null) {
                 animatedDrawable = getImageReceiver().B();
@@ -98,32 +98,32 @@ public final class tu0 extends ch0 implements org.telegram.ui.ActionBar.a6 {
     }
 
     public final void k(int i7) {
-        if (this.f38394r != i7) {
-            this.f38394r = i7;
+        if (this.f38428r != i7) {
+            this.f38428r = i7;
             setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.SRC_IN));
         }
     }
 
     public final void l(boolean z9, boolean z10) {
-        if (Math.abs(this.f38395s - (z9 ? 1.0f : 0.0f)) > 0.01f) {
-            ValueAnimator valueAnimator = this.f38396w;
+        if (Math.abs(this.f38429s - (z9 ? 1.0f : 0.0f)) > 0.01f) {
+            ValueAnimator valueAnimator = this.f38430w;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                this.f38396w = null;
+                this.f38430w = null;
             }
             float f10 = 0.0f;
             if (z10) {
-                float f11 = this.f38395s;
+                float f11 = this.f38429s;
                 if (z9) {
                     f10 = 1.0f;
                 }
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f10);
-                this.f38396w = ofFloat;
+                this.f38430w = ofFloat;
                 ofFloat.addUpdateListener(new qu0(this, 1));
-                this.f38396w.addListener(new su0(this, 1));
-                this.f38396w.setDuration(350L);
-                this.f38396w.setInterpolator(xq.h);
-                this.f38396w.start();
+                this.f38430w.addListener(new su0(this, 1));
+                this.f38430w.setDuration(350L);
+                this.f38430w.setInterpolator(xq.h);
+                this.f38430w.start();
                 return;
             }
             if (z9) {
@@ -134,13 +134,13 @@ public final class tu0 extends ch0 implements org.telegram.ui.ActionBar.a6 {
     }
 
     public final void m(float f10) {
-        this.f38395s = f10;
+        this.f38429s = f10;
         yu0 yu0Var = this.H;
-        org.telegram.ui.ActionBar.f6 f6Var = yu0Var.f36955n2;
+        org.telegram.ui.ActionBar.f6 f6Var = yu0Var.f36981n2;
         if (yu0Var.D3) {
             k(i0.a.o(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Kl, f6Var), (int) (org.telegram.messenger.g0.T1(0.4f, 0.8f, f10) * 255.0f)));
         } else {
-            k(i0.a.f(this.f38395s, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Bf, f6Var), org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Df, f6Var)));
+            k(i0.a.f(this.f38429s, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Bf, f6Var), org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Df, f6Var)));
         }
         invalidate();
     }
@@ -180,8 +180,8 @@ public final class tu0 extends ch0 implements org.telegram.ui.ActionBar.a6 {
     @Override
     public final void updateColors() {
         try {
-            if (this.f38396w == null) {
-                m(this.f38395s);
+            if (this.f38430w == null) {
+                m(this.f38429s);
             }
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

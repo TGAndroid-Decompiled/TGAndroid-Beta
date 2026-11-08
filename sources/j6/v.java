@@ -16,7 +16,7 @@ import m.q3;
 public final class v extends q6.h {
     public static final b Y = new b("CastClientImpl", null);
     public static final Object Z = new Object();
-    public static final Object f16550a0 = new Object();
+    public static final Object f16553a0 = new Object();
     public f6.d F;
     public final CastDevice G;
     public final e0 H;
@@ -91,7 +91,7 @@ public final class v extends q6.h {
         v vVar = null;
         this.L = null;
         if (uVar != null) {
-            v vVar2 = (v) uVar.f16548b.getAndSet(null);
+            v vVar2 = (v) uVar.f16551b.getAndSet(null);
             if (vVar2 != null) {
                 vVar2.S = -1;
                 vVar2.T = -1;
@@ -107,7 +107,7 @@ public final class v extends q6.h {
                 C();
                 try {
                     try {
-                        ((f) n()).X0();
+                        ((f) n()).x1();
                     } finally {
                         super.a();
                     }

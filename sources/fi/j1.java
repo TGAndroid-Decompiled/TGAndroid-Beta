@@ -1,8 +1,8 @@
 package fi;
 
 import android.content.Context;
-import org.telegram.ui.Components.gw;
-import org.telegram.ui.Components.gy;
+import org.telegram.ui.Components.hw;
+import org.telegram.ui.Components.hy;
 import org.telegram.ui.f01;
 import org.telegram.ui.q11;
 public final class j1 extends mi.m {
@@ -22,14 +22,14 @@ public final class j1 extends mi.m {
                 ((m1) this.f12209r).f12407i3 = true;
                 return;
             case 1:
-                ((gy) this.f12209r).f34041f0 = true;
+                ((hy) this.f12209r).f34409f0 = true;
                 return;
             case 2:
             case 3:
             default:
                 return;
             case 4:
-                ((q11) this.f12209r).f49069x1 = true;
+                ((q11) this.f12209r).f49072x1 = true;
                 return;
         }
     }
@@ -41,19 +41,19 @@ public final class j1 extends mi.m {
                 ((m1) this.f12209r).f12407i3 = false;
                 return;
             case 1:
-                ((gy) this.f12209r).f34041f0 = false;
+                ((hy) this.f12209r).f34409f0 = false;
                 return;
             case 2:
-                ((gw) this.f12209r).Q.f34041f0 = false;
+                ((hw) this.f12209r).Q.f34409f0 = false;
                 return;
             case 3:
-                ((f01) this.f12209r).R.f49069x1 = false;
+                ((f01) this.f12209r).R.f49072x1 = false;
                 return;
             case 4:
-                ((q11) this.f12209r).f49069x1 = false;
+                ((q11) this.f12209r).f49072x1 = false;
                 return;
             default:
-                ((f01) this.f12209r).R.f49069x1 = false;
+                ((f01) this.f12209r).R.f49072x1 = false;
                 return;
         }
     }

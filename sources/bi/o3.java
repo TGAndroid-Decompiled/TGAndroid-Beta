@@ -25,10 +25,10 @@ public final class o3 implements Runnable {
         t0 t0Var = this.f4452b;
         switch (i7) {
             case 0:
-                t0Var.a(jcVarArr[0], org.telegram.messenger.hd.a0(null, null, 2131749578, org.telegram.messenger.r1.i().f(uniqueStarGiftValueInfo.floor_price, uniqueStarGiftValueInfo.currency), str));
+                t0Var.a(jcVarArr[0], org.telegram.messenger.id.a0(null, null, 2131749580, org.telegram.messenger.r1.i().f(uniqueStarGiftValueInfo.floor_price, uniqueStarGiftValueInfo.currency), str));
                 return;
             default:
-                t0Var.a(jcVarArr[0], org.telegram.messenger.hd.a0(null, null, 2131749586, org.telegram.messenger.r1.i().f(uniqueStarGiftValueInfo.average_price, uniqueStarGiftValueInfo.currency), str));
+                t0Var.a(jcVarArr[0], org.telegram.messenger.id.a0(null, null, 2131749588, org.telegram.messenger.r1.i().f(uniqueStarGiftValueInfo.average_price, uniqueStarGiftValueInfo.currency), str));
                 return;
         }
     }

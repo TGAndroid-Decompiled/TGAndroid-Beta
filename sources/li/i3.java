@@ -3,45 +3,45 @@ package li;
 import android.view.View;
 import c8.da;
 public final class i3 extends da {
-    public final r3 f18636a;
-    public final t3 f18637b;
+    public final r3 f18639a;
+    public final t3 f18640b;
 
     public i3(t3 t3Var, r3 r3Var) {
-        this.f18637b = t3Var;
-        this.f18636a = r3Var;
+        this.f18640b = t3Var;
+        this.f18639a = r3Var;
     }
 
     @Override
     public final void a(boolean z9) {
-        this.f18636a.h();
-        t3 t3Var = this.f18637b;
+        this.f18639a.h();
+        t3 t3Var = this.f18640b;
         if (z9) {
-            g3 g3Var = t3Var.f18898u3;
-            t3Var.f18902w3 = g3Var.B0;
-            t3Var.f18904x3 = g3Var.C0;
-            t3Var.f18906y3 = g3Var.D0;
+            g3 g3Var = t3Var.f18901u3;
+            t3Var.f18905w3 = g3Var.B0;
+            t3Var.f18907x3 = g3Var.C0;
+            t3Var.f18909y3 = g3Var.D0;
             t3Var.setEditTextsLocked(true);
             t3Var.q3();
             t3Var.Y2();
             return;
         }
-        final int i7 = t3Var.f18902w3;
-        final int i10 = t3Var.f18904x3;
-        final int i11 = t3Var.f18906y3;
-        t3Var.f18902w3 = -1;
-        t3Var.f18904x3 = -1;
-        t3Var.f18906y3 = 0;
-        boolean z10 = t3Var.f18908z3;
+        final int i7 = t3Var.f18905w3;
+        final int i10 = t3Var.f18907x3;
+        final int i11 = t3Var.f18909y3;
+        t3Var.f18905w3 = -1;
+        t3Var.f18907x3 = -1;
+        t3Var.f18909y3 = 0;
+        boolean z10 = t3Var.f18911z3;
         final float f10 = t3Var.A3;
         final float f11 = t3Var.B3;
-        t3Var.f18908z3 = false;
+        t3Var.f18911z3 = false;
         t3Var.setEditTextsLocked(false);
         t3Var.Y2();
         if (z10) {
             t3Var.post(new Runnable() {
                 @Override
                 public final void run() {
-                    t3 t3Var2 = i3.this.f18637b;
+                    t3 t3Var2 = i3.this.f18640b;
                     for (int i12 = 0; i12 < t3Var2.getChildCount(); i12++) {
                         View childAt = t3Var2.getChildAt(i12);
                         boolean z11 = childAt instanceof a6;

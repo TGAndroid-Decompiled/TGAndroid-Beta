@@ -21,26 +21,26 @@ import java.util.HashSet;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
 public final class tx0 extends TableLayout implements org.telegram.ui.ActionBar.a6 {
-    public final org.telegram.ui.ActionBar.f6 f38419a;
-    public final Path f38420b;
-    public final float[] f38421c;
+    public final org.telegram.ui.ActionBar.f6 f38442a;
+    public final Path f38443b;
+    public final float[] f38444c;
     public final Paint d;
-    public final Paint f38422e;
-    public final float f38423f;
+    public final Paint f38445e;
+    public final float f38446f;
     public final float h;
-    public ArrayList f38424n;
-    public ArrayList f38425r;
+    public ArrayList f38447n;
+    public ArrayList f38448r;
 
     public tx0(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f38420b = new Path();
-        this.f38421c = new float[8];
+        this.f38443b = new Path();
+        this.f38444c = new float[8];
         this.d = new Paint(1);
-        this.f38422e = new Paint(1);
+        this.f38445e = new Paint(1);
         float max = Math.max(1, org.telegram.messenger.g0.L(0.66f));
-        this.f38423f = max;
+        this.f38446f = max;
         this.h = max / 2.0f;
-        this.f38419a = f6Var;
+        this.f38442a = f6Var;
         setClipToPadding(false);
         setColumnStretchable(1, true);
     }
@@ -48,7 +48,7 @@ public final class tx0 extends TableLayout implements org.telegram.ui.ActionBar.
     public final rx0 a(CharSequence charSequence) {
         xh.l lVar = new xh.l(getContext());
         int i7 = org.telegram.ui.ActionBar.k6.G6;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f38419a;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f38442a;
         org.telegram.ui.ActionBar.r6.V(lVar, i7, f6Var);
         org.telegram.ui.ActionBar.r6.H(lVar, org.telegram.ui.ActionBar.k6.Uc, f6Var);
         lVar.setTextSize(1, 14.0f);
@@ -66,7 +66,7 @@ public final class tx0 extends TableLayout implements org.telegram.ui.ActionBar.
 
     public final void b(CharSequence charSequence, ArrayList arrayList) {
         q5 q5Var = new q5(getContext());
-        org.telegram.ui.ActionBar.r6.V(q5Var, org.telegram.ui.ActionBar.k6.G6, this.f38419a);
+        org.telegram.ui.ActionBar.r6.V(q5Var, org.telegram.ui.ActionBar.k6.G6, this.f38442a);
         q5Var.setTextSize(1, 14.0f);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
         org.telegram.messenger.ij.b(spannableStringBuilder, arrayList, false, false, false, false, 0);
@@ -81,7 +81,7 @@ public final class tx0 extends TableLayout implements org.telegram.ui.ActionBar.
 
     public final TableRow c(CharSequence charSequence, CharSequence charSequence2, sx0[] sx0VarArr, jc[] jcVarArr) {
         jc jcVar = new jc(getContext());
-        org.telegram.ui.ActionBar.r6.V(jcVar, org.telegram.ui.ActionBar.k6.G6, this.f38419a);
+        org.telegram.ui.ActionBar.r6.V(jcVar, org.telegram.ui.ActionBar.k6.G6, this.f38442a);
         jcVar.setTextSize(1, 14.0f);
         jcVar.setText(org.telegram.messenger.i6.m(charSequence2, jcVar.getPaint().getFontMetricsInt(), false, null, 0));
         org.telegram.messenger.qs.i(jcVar);
@@ -107,7 +107,7 @@ public final class tx0 extends TableLayout implements org.telegram.ui.ActionBar.
     public final TableRow e(String str, CharSequence charSequence, String str2, Runnable runnable, Integer num) {
         jc jcVar = new jc(getContext());
         int i7 = org.telegram.ui.ActionBar.k6.G6;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f38419a;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f38442a;
         org.telegram.ui.ActionBar.r6.V(jcVar, i7, f6Var);
         jcVar.setTextSize(1, 14.0f);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(org.telegram.messenger.i6.m(charSequence, jcVar.getPaint().getFontMetricsInt(), false, null, 0));
@@ -132,12 +132,12 @@ public final class tx0 extends TableLayout implements org.telegram.ui.ActionBar.
 
     public final void g(int i7, String str) {
         long j3 = i7 * 1000;
-        c(str, org.telegram.messenger.hd.a0(null, null, 2131742784, org.telegram.messenger.hd.E0().s0().format(new Date(j3)), org.telegram.messenger.hd.E0().p0().format(new Date(j3))), null, null);
+        c(str, org.telegram.messenger.id.a0(null, null, 2131742786, org.telegram.messenger.id.E0().s0().format(new Date(j3)), org.telegram.messenger.id.E0().p0().format(new Date(j3))), null, null);
     }
 
-    public final TableRow h(CharSequence charSequence, CharSequence charSequence2, Runnable runnable, String str, org.telegram.ui.Wallet.s4 s4Var) {
+    public final TableRow h(CharSequence charSequence, CharSequence charSequence2, Runnable runnable, String str, org.telegram.ui.Wallet.r4 r4Var) {
         Context context = getContext();
-        org.telegram.ui.ActionBar.f6 f6Var = this.f38419a;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f38442a;
         jc jcVar = new jc(context, f6Var);
         jcVar.setPadding(org.telegram.messenger.g0.L(12.66f), org.telegram.messenger.g0.L(9.33f), org.telegram.messenger.g0.L(12.66f), org.telegram.messenger.g0.L(9.33f));
         jcVar.setEllipsize(TextUtils.TruncateAt.END);
@@ -151,7 +151,7 @@ public final class tx0 extends TableLayout implements org.telegram.ui.ActionBar.
         spannableStringBuilder.setSpan(new org.telegram.messenger.w(5, runnable), 0, spannableStringBuilder.length(), 33);
         jcVar.setText(spannableStringBuilder);
         if (str != null) {
-            jcVar.O = new kc(str, s4Var, f6Var);
+            jcVar.O = new kc(str, r4Var, f6Var);
         }
         return l(jcVar, charSequence);
     }
@@ -160,14 +160,14 @@ public final class tx0 extends TableLayout implements org.telegram.ui.ActionBar.
         h(str, charSequence, runnable, null, null);
     }
 
-    public final TableRow j(CharSequence charSequence, CharSequence charSequence2, int i7, bi.a4 a4Var, String str, org.telegram.ui.Wallet.r4 r4Var) {
+    public final TableRow j(CharSequence charSequence, CharSequence charSequence2, int i7, bi.a4 a4Var, String str, org.telegram.ui.Wallet.q4 q4Var) {
         FrameLayout frameLayout = new FrameLayout(getContext());
         final w70 w70Var = new w70(getContext(), null);
         w70Var.setTypeface(org.telegram.messenger.g0.o1("fonts/rmono.ttf"));
         float f10 = i7;
         w70Var.setTextSize(1, f10);
-        int i10 = org.telegram.ui.ActionBar.k6.f27957j5;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f38419a;
+        int i10 = org.telegram.ui.ActionBar.k6.f27960j5;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f38442a;
         org.telegram.ui.ActionBar.r6.V(w70Var, i10, f6Var);
         w70Var.setMaxLines(4);
         int i11 = 0;
@@ -177,7 +177,7 @@ public final class tx0 extends TableLayout implements org.telegram.ui.ActionBar.
         w70Var.setPadding(org.telegram.messenger.g0.L(12.66f), org.telegram.messenger.g0.L(9.33f), org.telegram.messenger.g0.L(10.66f), org.telegram.messenger.g0.L(9.33f));
         frameLayout.addView(w70Var, c8.ha.d(-1, -1.0f, 119, 0.0f, 0.0f, 34.0f, 0.0f));
         if (str != null) {
-            kc kcVar = new kc(str, r4Var, f6Var);
+            kc kcVar = new kc(str, q4Var, f6Var);
             final jc jcVar = new jc(getContext(), f6Var);
             jcVar.setTextSize(1, f10);
             jcVar.setPadding(0, org.telegram.messenger.g0.L(9.33f), 0, org.telegram.messenger.g0.L(9.33f));
@@ -207,7 +207,7 @@ public final class tx0 extends TableLayout implements org.telegram.ui.ActionBar.
             ImageView imageView = new ImageView(getContext());
             imageView.setImageResource(2131232103);
             imageView.setScaleType(ImageView.ScaleType.CENTER);
-            int i12 = org.telegram.ui.ActionBar.k6.f28184v6;
+            int i12 = org.telegram.ui.ActionBar.k6.f28187v6;
             org.telegram.ui.ActionBar.r6.t(imageView, i12, f6Var, PorterDuff.Mode.SRC_IN);
             imageView.setOnClickListener(new lk(23, charSequence2, a4Var));
             c8.ka.a(imageView);
@@ -238,7 +238,7 @@ public final class tx0 extends TableLayout implements org.telegram.ui.ActionBar.
         String str3;
         boolean z10;
         Context context = getContext();
-        org.telegram.ui.ActionBar.f6 f6Var = this.f38419a;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f38442a;
         jc jcVar = new jc(context, f6Var);
         jcVar.setPadding(org.telegram.messenger.g0.L(12.66f), org.telegram.messenger.g0.L(9.33f), org.telegram.messenger.g0.L(12.66f), org.telegram.messenger.g0.L(9.33f));
         jcVar.setEllipsize(TextUtils.TruncateAt.END);
@@ -250,24 +250,24 @@ public final class tx0 extends TableLayout implements org.telegram.ui.ActionBar.
         jcVar.setDisablePaddingsOffsetY(true);
         org.telegram.ui.f5 f5Var = new org.telegram.ui.f5(24.0f, i7, jcVar);
         int i11 = (j3 > 2666000L ? 1 : (j3 == 2666000L ? 0 : -1));
-        ImageReceiver imageReceiver = f5Var.f45481b;
+        ImageReceiver imageReceiver = f5Var.f45440b;
         if (i11 == 0) {
-            str3 = org.telegram.messenger.hd.M0(2131744950, null);
+            str3 = org.telegram.messenger.id.M0(2131744952, null);
             xp a10 = bi.yc.a(44, "anonymous");
             int L = org.telegram.messenger.g0.L(16.0f);
             int L2 = org.telegram.messenger.g0.L(16.0f);
-            a10.f40334e = L;
-            a10.f40335f = L2;
+            a10.f40355e = L;
+            a10.f40356f = L2;
             imageReceiver.w0(a10);
             z9 = false;
             z10 = false;
         } else if (org.telegram.messenger.t10.A(j3)) {
-            str3 = org.telegram.messenger.hd.M0(2131744926, null);
+            str3 = org.telegram.messenger.id.M0(2131744928, null);
             xp a11 = bi.yc.a(44, "fragment");
             int L3 = org.telegram.messenger.g0.L(16.0f);
             int L4 = org.telegram.messenger.g0.L(16.0f);
-            a11.f40334e = L3;
-            a11.f40335f = L4;
+            a11.f40355e = L3;
+            a11.f40356f = L4;
             imageReceiver.w0(a11);
             z10 = true;
             z9 = false;
@@ -322,7 +322,7 @@ public final class tx0 extends TableLayout implements org.telegram.ui.ActionBar.
         String str3;
         boolean z9;
         Context context = getContext();
-        org.telegram.ui.ActionBar.f6 f6Var = this.f38419a;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f38442a;
         final u70 u70Var = new u70(context, f6Var);
         u70Var.setPadding(org.telegram.messenger.g0.L(12.66f), org.telegram.messenger.g0.L(9.33f), org.telegram.messenger.g0.L(12.66f), org.telegram.messenger.g0.L(9.33f));
         int i10 = org.telegram.ui.ActionBar.k6.Ci;
@@ -331,24 +331,24 @@ public final class tx0 extends TableLayout implements org.telegram.ui.ActionBar.
         u70Var.setTextSize(14);
         org.telegram.ui.f5 f5Var = new org.telegram.ui.f5(24.0f, i7, u70Var);
         int i11 = (j3 > 2666000L ? 1 : (j3 == 2666000L ? 0 : -1));
-        ImageReceiver imageReceiver = f5Var.f45481b;
+        ImageReceiver imageReceiver = f5Var.f45440b;
         if (i11 == 0) {
-            str3 = org.telegram.messenger.hd.M0(2131744950, null);
+            str3 = org.telegram.messenger.id.M0(2131744952, null);
             xp a10 = bi.yc.a(44, "anonymous");
             int L = org.telegram.messenger.g0.L(16.0f);
             int L2 = org.telegram.messenger.g0.L(16.0f);
-            a10.f40334e = L;
-            a10.f40335f = L2;
+            a10.f40355e = L;
+            a10.f40356f = L2;
             imageReceiver.w0(a10);
             z9 = false;
         } else {
             if (org.telegram.messenger.t10.A(j3)) {
-                str3 = org.telegram.messenger.hd.M0(2131744926, null);
+                str3 = org.telegram.messenger.id.M0(2131744928, null);
                 xp a11 = bi.yc.a(44, "fragment");
                 int L3 = org.telegram.messenger.g0.L(16.0f);
                 int L4 = org.telegram.messenger.g0.L(16.0f);
-                a11.f40334e = L3;
-                a11.f40335f = L4;
+                a11.f40355e = L3;
+                a11.f40356f = L4;
                 imageReceiver.w0(a11);
             } else if (j3 >= 0) {
                 TLRPC.User a22 = org.telegram.messenger.qp.s1(i7).a2(Long.valueOf(j3));
@@ -378,12 +378,12 @@ public final class tx0 extends TableLayout implements org.telegram.ui.ActionBar.
         g5Var.k(Integer.valueOf(w02));
         g5Var.I = org.telegram.messenger.g0.L(12.0f);
         g5Var.J = 0;
-        if (this.f38424n == null) {
-            this.f38424n = new ArrayList();
-            this.f38425r = new ArrayList();
+        if (this.f38447n == null) {
+            this.f38447n = new ArrayList();
+            this.f38448r = new ArrayList();
         }
-        this.f38424n.add(u70Var);
-        this.f38425r.add(g5Var);
+        this.f38447n.add(u70Var);
+        this.f38448r.add(g5Var);
         u70Var.addOnAttachStateChangeListener(new px0(g5Var, 0));
         final Drawable mutate = getContext().getResources().getDrawable(2131232307).mutate();
         org.telegram.ui.ActionBar.r6.y(this, mutate, i10, f6Var, PorterDuff.Mode.SRC_IN);
@@ -395,8 +395,8 @@ public final class tx0 extends TableLayout implements org.telegram.ui.ActionBar.
         };
         c20Var.a(null);
         u70Var.i(g5Var);
-        org.telegram.messenger.qs.f(i7).h(u70Var, org.telegram.messenger.qs.f25054r, c20Var);
-        org.telegram.messenger.qs.f(i7).h(u70Var, org.telegram.messenger.qs.f25031m5, c20Var);
+        org.telegram.messenger.qs.f(i7).h(u70Var, org.telegram.messenger.qs.f25063r, c20Var);
+        org.telegram.messenger.qs.f(i7).h(u70Var, org.telegram.messenger.qs.f25040m5, c20Var);
         u70Var.l(spannableStringBuilder, false);
         return l(u70Var, str);
     }
@@ -410,16 +410,16 @@ public final class tx0 extends TableLayout implements org.telegram.ui.ActionBar.
         boolean z14;
         super.onLayout(z9, i7, i10, i11, i12);
         Paint.Style style = Paint.Style.STROKE;
-        Paint paint = this.f38422e;
+        Paint paint = this.f38445e;
         paint.setStyle(style);
-        paint.setStrokeWidth(this.f38423f);
+        paint.setStrokeWidth(this.f38446f);
         Paint.Style style2 = Paint.Style.FILL;
         Paint paint2 = this.d;
         paint2.setStyle(style2);
-        int i13 = org.telegram.ui.ActionBar.k6.f27879ei;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f38419a;
+        int i13 = org.telegram.ui.ActionBar.k6.f27882ei;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f38442a;
         paint.setColor(org.telegram.ui.ActionBar.k6.w0(i13, f6Var));
-        paint2.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27860di, f6Var));
+        paint2.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27863di, f6Var));
         int childCount = getChildCount();
         for (int i14 = 0; i14 < childCount; i14++) {
             if (getChildAt(i14) instanceof TableRow) {
@@ -438,9 +438,9 @@ public final class tx0 extends TableLayout implements org.telegram.ui.ActionBar.
                         if (i14 != childCount - 1) {
                             z15 = false;
                         }
-                        if (sx0Var.f38145b != z14 || sx0Var.f38146c != z15) {
-                            sx0Var.f38145b = z14;
-                            sx0Var.f38146c = z15;
+                        if (sx0Var.f38157b != z14 || sx0Var.f38158c != z15) {
+                            sx0Var.f38157b = z14;
+                            sx0Var.f38158c = z15;
                             sx0Var.invalidate();
                         }
                     } else if (childAt instanceof qx0) {
@@ -455,9 +455,9 @@ public final class tx0 extends TableLayout implements org.telegram.ui.ActionBar.
                         } else {
                             z12 = false;
                         }
-                        if (qx0Var.f37421b != z11 || qx0Var.f37422c != z12) {
-                            qx0Var.f37421b = z11;
-                            qx0Var.f37422c = z12;
+                        if (qx0Var.f37449b != z11 || qx0Var.f37450c != z12) {
+                            qx0Var.f37449b = z11;
+                            qx0Var.f37450c = z12;
                             qx0Var.invalidate();
                         }
                         if (i15 == 0) {
@@ -468,9 +468,9 @@ public final class tx0 extends TableLayout implements org.telegram.ui.ActionBar.
                         if (i15 != childCount2 - 1) {
                             z15 = false;
                         }
-                        if (qx0Var.d != z13 || qx0Var.f37423e != z15) {
+                        if (qx0Var.d != z13 || qx0Var.f37451e != z15) {
                             qx0Var.d = z13;
-                            qx0Var.f37423e = z15;
+                            qx0Var.f37451e = z15;
                             qx0Var.invalidate();
                         }
                     } else if (childAt instanceof rx0) {
@@ -483,8 +483,8 @@ public final class tx0 extends TableLayout implements org.telegram.ui.ActionBar.
                         if (i14 != childCount - 1) {
                             z15 = false;
                         }
-                        if (rx0Var.f37774c != z10 || rx0Var.d != z15) {
-                            rx0Var.f37774c = z10;
+                        if (rx0Var.f37803c != z10 || rx0Var.d != z15) {
+                            rx0Var.f37803c = z10;
                             rx0Var.d = z15;
                             rx0Var.invalidate();
                         }
@@ -499,8 +499,8 @@ public final class tx0 extends TableLayout implements org.telegram.ui.ActionBar.
         w70 w70Var = new w70(getContext(), null);
         w70Var.setTypeface(org.telegram.messenger.g0.o1("fonts/rmono.ttf"));
         w70Var.setTextSize(1, 13.0f);
-        int i7 = org.telegram.ui.ActionBar.k6.f27957j5;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f38419a;
+        int i7 = org.telegram.ui.ActionBar.k6.f27960j5;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f38442a;
         org.telegram.ui.ActionBar.r6.V(w70Var, i7, f6Var);
         org.telegram.ui.ActionBar.r6.H(w70Var, org.telegram.ui.ActionBar.k6.Uc, f6Var);
         w70Var.setMaxLines(1);
@@ -517,22 +517,22 @@ public final class tx0 extends TableLayout implements org.telegram.ui.ActionBar.
 
     @Override
     public final void updateColors() {
-        int i7 = org.telegram.ui.ActionBar.k6.f27879ei;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f38419a;
-        this.f38422e.setColor(org.telegram.ui.ActionBar.k6.w0(i7, f6Var));
-        this.d.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27860di, f6Var));
+        int i7 = org.telegram.ui.ActionBar.k6.f27882ei;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f38442a;
+        this.f38445e.setColor(org.telegram.ui.ActionBar.k6.w0(i7, f6Var));
+        this.d.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27863di, f6Var));
         try {
-            if (this.f38424n != null && this.f38425r != null) {
+            if (this.f38447n != null && this.f38448r != null) {
                 int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Ci, f6Var);
-                for (int i10 = 0; i10 < this.f38424n.size(); i10++) {
-                    u70 u70Var = (u70) this.f38424n.get(i10);
+                for (int i10 = 0; i10 < this.f38447n.size(); i10++) {
+                    u70 u70Var = (u70) this.f38447n.get(i10);
                     if (u70Var != null) {
                         u70Var.setLinkTextColor(w02);
                         u70Var.invalidate();
                     }
                 }
-                for (int i11 = 0; i11 < this.f38425r.size(); i11++) {
-                    g5 g5Var = (g5) this.f38425r.get(i11);
+                for (int i11 = 0; i11 < this.f38448r.size(); i11++) {
+                    g5 g5Var = (g5) this.f38448r.get(i11);
                     if (g5Var != null) {
                         g5Var.k(Integer.valueOf(w02));
                     }

@@ -1,114 +1,90 @@
 package org.telegram.messenger;
 
-import android.text.TextUtils;
-import java.util.ArrayList;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
 public final class q4 implements RequestDelegate {
-    public final int f24669a = 0;
-    public final Object f24670b;
-    public final boolean f24671c;
-    public final c1 d;
-    public final Object f24672e;
-    public final Object f24673f;
+    public final int f24675a;
+    public final g5 f24676b;
 
-    public q4(g5 g5Var, ArrayList arrayList, ArrayList arrayList2, boolean z9, String str) {
-        this.d = g5Var;
-        this.f24672e = arrayList;
-        this.f24673f = arrayList2;
-        this.f24671c = z9;
-        this.f24670b = str;
+    public q4(g5 g5Var, int i7) {
+        this.f24675a = i7;
+        this.f24676b = g5Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int indexOf;
-        TL_iv.TL_inputRichMessage tL_inputRichMessage;
-        switch (this.f24669a) {
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f24675a) {
             case 0:
-                g5 g5Var = (g5) this.d;
-                ArrayList arrayList = (ArrayList) this.f24672e;
-                ArrayList arrayList2 = (ArrayList) this.f24673f;
-                boolean z9 = this.f24671c;
-                String str = (String) this.f24670b;
-                if (tL_error == null) {
-                    g5Var.getMessagesController().O3((TLRPC.Updates) tLObject, false);
-                    yr messagesStorage = g5Var.getMessagesStorage();
-                    messagesStorage.getClass();
-                    if (!arrayList.isEmpty()) {
-                        messagesStorage.f26696a.c(new sp(messagesStorage, arrayList, 0));
+                if (tLObject != null) {
+                    TLRPC.TL_help_inviteText tL_help_inviteText = (TLRPC.TL_help_inviteText) tLObject;
+                    if (tL_help_inviteText.message.length() != 0) {
+                        g0.h3(new b4(1, this.f24676b, tL_help_inviteText));
+                        return;
                     }
-                    Utilities.h.c(new w4(g5Var, arrayList2, 2));
-                    for (int i7 = 0; i7 < arrayList2.size(); i7++) {
-                        TLRPC.User user = (TLRPC.User) arrayList2.get(i7);
-                        if (!TextUtils.isEmpty(user.phone)) {
-                            g5Var.getMessagesStorage().f(user.phone, "");
-                            d5 d5Var = (d5) g5Var.Z.get(user.phone);
-                            if (d5Var != null && (indexOf = d5Var.f21968g.indexOf(user.phone)) != -1) {
-                                d5Var.h.set(indexOf, 1);
-                            }
-                        }
-                    }
-                    g0.h3(new aa.d0(g5Var, arrayList2, z9, str, 11));
                     return;
                 }
                 return;
             case 1:
-                g0.h3(new iy(0, (gz) this.d, tLObject, (TLRPC.TL_messages_requestUrlAuth) this.f24672e, (org.telegram.ui.an) this.f24673f, (String) this.f24670b, this.f24671c));
-                return;
-            default:
-                gz gzVar = (gz) this.d;
-                boolean z10 = this.f24671c;
-                ij ijVar = (ij) this.f24672e;
-                TLRPC.TL_messages_editMessage tL_messages_editMessage = (TLRPC.TL_messages_editMessage) this.f24673f;
-                org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) this.f24670b;
-                if (tL_error == null) {
-                    if (z10 && ijVar != null) {
-                        ijVar.f23299y2 = true;
-                    }
-                    gzVar.getMessagesController().O3((TLRPC.Updates) tLObject, false);
-                    g0.h3(new ds(gzVar, ijVar));
-                    return;
-                }
-                if (r8.r(tL_error.text)) {
-                    String str2 = tL_error.text;
-                    ln lnVar = new ln(ijVar, gzVar, tL_messages_editMessage, f2Var, z10);
-                    gzVar = gzVar;
-                    if (ijVar != null && (tL_inputRichMessage = tL_messages_editMessage.rich_message) != null) {
-                        ArrayList arrayList3 = new ArrayList(tL_inputRichMessage.documents.size() + tL_inputRichMessage.photos.size());
-                        arrayList3.addAll(tL_inputRichMessage.photos);
-                        arrayList3.addAll(tL_inputRichMessage.documents);
-                        if (!arrayList3.isEmpty()) {
-                            int c10 = r8.c(str2);
-                            gzVar.getFileRefController().u(new Object[]{arrayList3.get((c10 < 0 || c10 >= arrayList3.size()) ? 0 : 0), lnVar}, ijVar);
-                            return;
+                final g5 g5Var = this.f24676b;
+                g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                g5 g5Var2 = g5Var;
+                                if (tL_error == null) {
+                                    g5Var2.X = (TLRPC.GlobalPrivacySettings) tLObject;
+                                    g5Var2.F = 2;
+                                } else {
+                                    g5Var2.F = 0;
+                                }
+                                g5Var2.getNotificationCenter().k(47, new Object[0]);
+                                return;
+                            default:
+                                g5 g5Var3 = g5Var;
+                                if (tL_error == null) {
+                                    g5Var3.H = ((TLRPC.TL_accountDaysTTL) tLObject).days;
+                                    g5Var3.G = 2;
+                                } else {
+                                    g5Var3.G = 0;
+                                }
+                                g5Var3.getNotificationCenter().k(47, new Object[0]);
+                                return;
                         }
                     }
-                }
-                g0.h3(new yq(18, gzVar, ijVar));
-                if (f2Var != null) {
-                    g0.h3(new uw(gzVar, tL_error, f2Var, tL_messages_editMessage, 1));
-                    return;
-                }
+                });
+                return;
+            default:
+                final g5 g5Var2 = this.f24676b;
+                g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                g5 g5Var22 = g5Var2;
+                                if (tL_error == null) {
+                                    g5Var22.X = (TLRPC.GlobalPrivacySettings) tLObject;
+                                    g5Var22.F = 2;
+                                } else {
+                                    g5Var22.F = 0;
+                                }
+                                g5Var22.getNotificationCenter().k(47, new Object[0]);
+                                return;
+                            default:
+                                g5 g5Var3 = g5Var2;
+                                if (tL_error == null) {
+                                    g5Var3.H = ((TLRPC.TL_accountDaysTTL) tLObject).days;
+                                    g5Var3.G = 2;
+                                } else {
+                                    g5Var3.G = 0;
+                                }
+                                g5Var3.getNotificationCenter().k(47, new Object[0]);
+                                return;
+                        }
+                    }
+                });
                 return;
         }
-    }
-
-    public q4(ij ijVar, gz gzVar, TLRPC.TL_messages_editMessage tL_messages_editMessage, org.telegram.ui.ActionBar.f2 f2Var, boolean z9) {
-        this.d = gzVar;
-        this.f24671c = z9;
-        this.f24672e = ijVar;
-        this.f24673f = tL_messages_editMessage;
-        this.f24670b = f2Var;
-    }
-
-    public q4(gz gzVar, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, org.telegram.ui.an anVar, String str, boolean z9) {
-        this.d = gzVar;
-        this.f24672e = tL_messages_requestUrlAuth;
-        this.f24673f = anVar;
-        this.f24670b = str;
-        this.f24671c = z9;
     }
 }

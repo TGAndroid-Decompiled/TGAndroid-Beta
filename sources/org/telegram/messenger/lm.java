@@ -5,33 +5,33 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class lm implements Runnable {
-    public final int f23905a;
-    public final c1 f23906b;
-    public final long f23907c;
+    public final int f23911a;
+    public final c1 f23912b;
+    public final long f23913c;
     public final Object d;
-    public final Object f23908e;
-    public final Object f23909f;
+    public final Object f23914e;
+    public final Object f23915f;
 
     public lm(c1 c1Var, Object obj, long j3, Object obj2, Object obj3, int i7) {
-        this.f23905a = i7;
-        this.f23906b = c1Var;
+        this.f23911a = i7;
+        this.f23912b = c1Var;
         this.d = obj;
-        this.f23907c = j3;
-        this.f23908e = obj2;
-        this.f23909f = obj3;
+        this.f23913c = j3;
+        this.f23914e = obj2;
+        this.f23915f = obj3;
     }
 
     private final void a() {
         ArrayList arrayList;
         ArrayList arrayList2;
-        f10 f10Var = (f10) this.f23906b;
+        f10 f10Var = (f10) this.f23912b;
         a10 a10Var = (a10) this.d;
-        TLObject tLObject = (TLObject) this.f23908e;
-        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f23909f;
-        long j3 = this.f23907c;
+        TLObject tLObject = (TLObject) this.f23914e;
+        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f23915f;
+        long j3 = this.f23913c;
         synchronized (f10Var) {
-            arrayList = a10Var.f21365b;
-            arrayList2 = a10Var.f21366c;
+            arrayList = a10Var.f21368b;
+            arrayList2 = a10Var.f21369c;
         }
         if (tLObject instanceof TLRPC.TL_messages_translatedRichMessage) {
             ArrayList<TL_iv.RichMessage> arrayList3 = ((TLRPC.TL_messages_translatedRichMessage) tLObject).result;
@@ -41,10 +41,10 @@ public final class lm implements Runnable {
             }
         } else if (tL_error != null && "TO_LANG_INVALID".equals(tL_error.text)) {
             f10Var.K(j3, false);
-            qs.e().k(qs.P4, 1, hd.M0(2131743947, null));
+            qs.e().k(qs.P4, 1, id.M0(2131743949, null));
         } else {
             if (tL_error != null && "QUOTA_EXCEEDED".equals(tL_error.text)) {
-                qs.e().k(qs.P4, 1, hd.M0(2131743948, null));
+                qs.e().k(qs.P4, 1, id.M0(2131743950, null));
             }
             for (int i10 = 0; i10 < arrayList2.size(); i10++) {
                 ((x10) arrayList2.get(i10)).a((Integer) arrayList.get(i10), null, a10Var.d);
@@ -53,7 +53,7 @@ public final class lm implements Runnable {
         synchronized (f10Var) {
             for (int i11 = 0; i11 < arrayList.size(); i11++) {
                 try {
-                    f10Var.f22332x.remove(arrayList.get(i11));
+                    f10Var.f22351x.remove(arrayList.get(i11));
                 } catch (Throwable th2) {
                     throw th2;
                 }
@@ -67,11 +67,11 @@ public final class lm implements Runnable {
     }
 
     public lm(c1 c1Var, Object obj, Object obj2, TLObject tLObject, long j3, int i7) {
-        this.f23905a = i7;
-        this.f23906b = c1Var;
+        this.f23911a = i7;
+        this.f23912b = c1Var;
         this.d = obj;
-        this.f23908e = obj2;
-        this.f23909f = tLObject;
-        this.f23907c = j3;
+        this.f23914e = obj2;
+        this.f23915f = tLObject;
+        this.f23913c = j3;
     }
 }

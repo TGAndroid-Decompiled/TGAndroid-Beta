@@ -4,7 +4,7 @@ import android.content.SharedPreferences;
 import android.view.View;
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.iz;
 import org.telegram.messenger.qp;
 import org.telegram.messenger.qs;
@@ -46,25 +46,25 @@ public final class a2 implements View.OnClickListener {
                 i4 i4Var = (i4) obj;
                 boolean z11 = !z10;
                 qp s12 = qp.s1(i4Var.f9168l2);
-                if (s12.f24860p6 != z11) {
-                    SharedPreferences.Editor edit = s12.f24767e7.edit();
-                    s12.f24860p6 = z11;
+                if (s12.f24867p6 != z11) {
+                    SharedPreferences.Editor edit = s12.f24774e7.edit();
+                    s12.f24867p6 = z11;
                     edit.putBoolean("storyQualityFull", z11).apply();
                     s12.getNotificationCenter().k(209, new Object[0]);
                 }
                 hc hcVar = new hc(i4Var.L0, i4Var.f9163k0);
                 if (!z10) {
-                    i7 = 2131744508;
+                    i7 = 2131744510;
                 } else {
-                    i7 = 2131744511;
+                    i7 = 2131744513;
                 }
-                String M0 = hd.M0(i7, null);
+                String M0 = id.M0(i7, null);
                 if (!z10) {
-                    i10 = 2131744509;
+                    i10 = 2131744511;
                 } else {
-                    i10 = 2131744512;
+                    i10 = 2131744514;
                 }
-                hcVar.I(2131623981, M0, hd.M0(i10, null)).j();
+                hcVar.I(2131623981, M0, id.M0(i10, null)).j();
                 z3 z3Var = i4Var.f9136c1;
                 if (z3Var != null) {
                     z3Var.a();
@@ -100,7 +100,7 @@ public final class a2 implements View.OnClickListener {
                         return;
                     }
                 }
-                org.telegram.ui.ActionBar.y yVar = r0Var.f28423c;
+                org.telegram.ui.ActionBar.y yVar = r0Var.f28426c;
                 if (yVar != null) {
                     yVar.o(((Integer) view.getTag()).intValue());
                     return;
@@ -114,7 +114,7 @@ public final class a2 implements View.OnClickListener {
             case 3:
                 c61 c61Var = (c61) obj;
                 for (int i12 = 0; i12 < 2; i12++) {
-                    org.telegram.ui.Cells.v0 v0Var = ((org.telegram.ui.Cells.v0[]) c61Var.f44705b)[i12];
+                    org.telegram.ui.Cells.v0 v0Var = ((org.telegram.ui.Cells.v0[]) c61Var.f44708b)[i12];
                     org.telegram.ui.Cells.u0 u0Var = (org.telegram.ui.Cells.u0) v0Var.d;
                     if (v0Var == view) {
                         z9 = true;
@@ -123,9 +123,9 @@ public final class a2 implements View.OnClickListener {
                     }
                     u0Var.a(z9, true);
                 }
-                iz.f23406p1 = z10;
+                iz.f23427p1 = z10;
                 SharedPreferences.Editor edit2 = qp.e1().edit();
-                edit2.putBoolean("useThreeLinesLayout", iz.f23406p1);
+                edit2.putBoolean("useThreeLinesLayout", iz.f23427p1);
                 edit2.apply();
                 qs.e().k(3, Boolean.TRUE);
                 return;
@@ -155,12 +155,12 @@ public final class a2 implements View.OnClickListener {
                 ArrayList arrayList = new ArrayList();
                 an0 an0Var = new an0(hashMap, arrayList, 0, true, (an) f2Var);
                 sh shVar = new sh(diVar, hashMap, arrayList);
-                xm0 xm0Var = an0Var.f44049a;
-                xm0Var.f51935s0 = shVar;
-                xm0 xm0Var2 = an0Var.f44050b;
-                xm0Var2.f51935s0 = shVar;
-                xm0Var.f51936t0 = new ym0(an0Var, 1);
-                xm0Var2.f51936t0 = new ym0(an0Var, 2);
+                xm0 xm0Var = an0Var.f44055a;
+                xm0Var.f51928s0 = shVar;
+                xm0 xm0Var2 = an0Var.f44056b;
+                xm0Var2.f51928s0 = shVar;
+                xm0Var.f51929t0 = new ym0(an0Var, 1);
+                xm0Var2.f51929t0 = new ym0(an0Var, 2);
                 int i13 = diVar.M3;
                 boolean z13 = diVar.N3;
                 xm0Var.k0(i13, z13);
@@ -175,25 +175,25 @@ public final class a2 implements View.OnClickListener {
             default:
                 h90 h90Var = (h90) obj;
                 if (!z10) {
-                    org.telegram.ui.Cells.r8 r8Var = h90Var.f46300n;
-                    if (r8Var != null && r8Var.f30206e.h) {
+                    org.telegram.ui.Cells.r8 r8Var = h90Var.f46302n;
+                    if (r8Var != null && r8Var.f30210e.h) {
                         int i14 = -h90Var.M;
                         h90Var.M = i14;
                         org.telegram.messenger.g0.G3(i14, r8Var, null);
                         return;
                     }
                     org.telegram.ui.Cells.r8 r8Var2 = (org.telegram.ui.Cells.r8) view;
-                    boolean z14 = r8Var2.f30206e.h;
+                    boolean z14 = r8Var2.f30210e.h;
                     r8Var2.setChecked(!z14);
                     h90Var.e0(z14);
-                    org.telegram.ui.Cells.r8 r8Var3 = h90Var.f46300n;
+                    org.telegram.ui.Cells.r8 r8Var3 = h90Var.f46302n;
                     if (r8Var3 != null) {
-                        if (r8Var2.f30206e.h) {
+                        if (r8Var2.f30210e.h) {
                             r8Var3.setChecked(false);
-                            h90Var.f46300n.setCheckBoxIcon(2131232513);
-                            h90Var.f46301r.setVisibility(8);
+                            h90Var.f46302n.setCheckBoxIcon(2131232513);
+                            h90Var.f46303r.setVisibility(8);
                             return;
-                        } else if (h90Var.f46298e == null) {
+                        } else if (h90Var.f46300e == null) {
                             r8Var3.setCheckBoxIcon(0);
                             return;
                         } else {

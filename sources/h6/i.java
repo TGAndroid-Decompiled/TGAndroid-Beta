@@ -24,14 +24,14 @@ public final class i extends o {
                 try {
                     jSONObject.put("requestId", b10);
                     jSONObject.put("type", "GET_STATUS");
-                    f6.q qVar = mVar.f16516f;
+                    f6.q qVar = mVar.f16519f;
                     if (qVar != null) {
                         jSONObject.put("mediaSessionId", qVar.f11310b);
                     }
                 } catch (JSONException unused) {
                 }
                 mVar.c(b10, jSONObject.toString());
-                mVar.f16525p.a(b10, o4);
+                mVar.f16528p.a(b10, o4);
                 return;
             case 1:
                 this.f14256s.f14249c.d(o(), -1, null);
@@ -55,7 +55,7 @@ public final class i extends o {
                 } catch (JSONException unused2) {
                 }
                 mVar2.c(b11, jSONObject2.toString());
-                mVar2.f16527r.a(b11, o10);
+                mVar2.f16530r.a(b11, o10);
                 return;
             case 5:
                 j6.m mVar3 = this.f14256s.f14249c;
@@ -70,7 +70,7 @@ public final class i extends o {
                 } catch (JSONException unused3) {
                 }
                 mVar3.c(b12, jSONObject3.toString());
-                mVar3.f16520k.a(b12, o11);
+                mVar3.f16523k.a(b12, o11);
                 return;
             default:
                 j6.m mVar4 = this.f14256s.f14249c;
@@ -85,7 +85,7 @@ public final class i extends o {
                 } catch (JSONException unused4) {
                 }
                 mVar4.c(b13, jSONObject4.toString());
-                mVar4.f16521l.a(b13, o12);
+                mVar4.f16524l.a(b13, o12);
                 return;
         }
     }

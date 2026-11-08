@@ -11,7 +11,7 @@ import c8.ha;
 import java.util.HashSet;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.ActionBar.a6;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
@@ -36,15 +36,15 @@ public class e extends FrameLayout implements a6 {
         TextView textView = new TextView(context);
         this.d = textView;
         org.telegram.messenger.camera.q.m(textView, 1, 20.0f);
-        if (hd.f22878a0) {
+        if (id.f23157a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         textView.setGravity(i7);
-        int i10 = k6.f27957j5;
+        int i10 = k6.f27960j5;
         r6.V(textView, i10, f6Var);
-        boolean z9 = hd.f22878a0;
+        boolean z9 = id.f23157a0;
         if (z9) {
             f10 = 16.0f;
         } else {
@@ -65,15 +65,15 @@ public class e extends FrameLayout implements a6 {
         this.f1067a = w02;
         y1Var.a(w02);
         y1Var.b(k6.w0(i10, f6Var));
-        y1Var.f28772k = 220.0f;
-        addView(imageView, ha.d(24, 24.0f, (hd.f22878a0 ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
+        y1Var.f28775k = 220.0f;
+        addView(imageView, ha.d(24, 24.0f, (id.f23157a0 ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
         imageView.setOnClickListener(new d(this, 0));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        int w02 = k6.w0(k6.f27850d7, this.f1068b);
+        int w02 = k6.w0(k6.f27853d7, this.f1068b);
         Paint paint = this.h;
         paint.setColor(w02);
         canvas.drawRect(0.0f, getHeight() - g0.f1(), getWidth(), getHeight(), paint);
@@ -102,7 +102,7 @@ public class e extends FrameLayout implements a6 {
             i7 = 8;
         }
         this.f1069c.setVisibility(i7);
-        boolean z10 = hd.f22878a0;
+        boolean z10 = id.f23157a0;
         if (!z10 && z9) {
             f10 = 53.0f;
         } else {
@@ -129,7 +129,7 @@ public class e extends FrameLayout implements a6 {
         y1 y1Var = this.f1071f;
         if (y1Var != null) {
             try {
-                int w02 = k6.w0(k6.f27957j5, this.f1068b);
+                int w02 = k6.w0(k6.f27960j5, this.f1068b);
                 if (w02 != this.f1067a) {
                     this.f1067a = w02;
                     y1Var.a(w02);

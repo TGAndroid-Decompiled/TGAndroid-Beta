@@ -7,7 +7,7 @@ import org.telegram.messenger.a20;
 import org.telegram.ui.Components.dt0;
 import org.telegram.ui.Components.ft0;
 import org.telegram.ui.Components.x31;
-import org.telegram.ui.ya1;
+import org.telegram.ui.za1;
 public final class e implements te.b, dt0, ft0, org.telegram.ui.ActionBar.r1, a20 {
     public final z f3731a;
 
@@ -29,7 +29,7 @@ public final class e implements te.b, dt0, ft0, org.telegram.ui.ActionBar.r1, a2
     public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
         z zVar = this.f3731a;
         zVar.getClass();
-        zVar.presentFragment(new ya1(6, null));
+        zVar.presentFragment(new za1(6, null));
     }
 
     @Override

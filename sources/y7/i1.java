@@ -1,9 +1,9 @@
 package y7;
 public final class i1 implements na.d {
-    public static final i1 f58957a = new Object();
+    public static final i1 f59046a = new Object();
 
     static {
-        rf.b.p(rf.b.k(h.class, new e(1)));
+        rf.b.q(rf.b.k(h.class, new e(1)));
     }
 
     @Override

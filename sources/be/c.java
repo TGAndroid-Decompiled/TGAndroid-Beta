@@ -705,7 +705,7 @@ public class c implements g {
         mVar.s();
         mVar.resumeWith(af.b.b(o()));
         Object r10 = mVar.r();
-        if (r10 == jd.a.f16643a) {
+        if (r10 == jd.a.f16646a) {
             return r10;
         }
         return gd.k.f13829a;

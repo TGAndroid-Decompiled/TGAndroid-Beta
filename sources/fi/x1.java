@@ -21,7 +21,7 @@ import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.c20;
 import org.telegram.messenger.gf;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.qp;
 import org.telegram.messenger.qs;
 import org.telegram.messenger.t10;
@@ -107,7 +107,7 @@ public final class x1 implements Runnable {
                 String str = (String) this.f13073b;
                 float f10 = b3Var.K;
                 if (obj != null) {
-                    int min = (int) Math.min(org.telegram.messenger.g0.f22544q.x / 3.0f, org.telegram.messenger.g0.L(330.0f));
+                    int min = (int) Math.min(org.telegram.messenger.g0.f22563q.x / 3.0f, org.telegram.messenger.g0.L(330.0f));
                     if (obj instanceof gf) {
                         gf gfVar = (gf) obj;
                         BitmapFactory.Options options = new BitmapFactory.Options();
@@ -227,7 +227,7 @@ public final class x1 implements Runnable {
                     ArrayList O0 = s8Var.O0();
                     for (int i17 = 0; i17 < O0.size(); i17++) {
                         TLRPC.User user = (TLRPC.User) O0.get(i17);
-                        if (user != null && (contains = n8Var.f12487c.contains(Long.valueOf(user.f27102id))) != user.close_friend) {
+                        if (user != null && (contains = n8Var.f12487c.contains(Long.valueOf(user.f27105id))) != user.close_friend) {
                             user.close_friend = contains;
                             if (contains) {
                                 i10 = user.flags2 | 4;
@@ -241,7 +241,7 @@ public final class x1 implements Runnable {
                 }
                 s8Var.M0();
                 if (s8Var.Q1) {
-                    s8Var.N0(new q8(1, s8Var.f28613a, (ArrayList) null), new di.w3(s8Var, 1), false);
+                    s8Var.N0(new q8(1, s8Var.f28616a, (ArrayList) null), new di.w3(s8Var, 1), false);
                     return;
                 }
                 s8Var.M0();
@@ -251,7 +251,7 @@ public final class x1 implements Runnable {
                 ((e7) this.f13073b).O0 = (File) this.d;
                 o9 o9Var = ((va) this.f13074c).f12947d1;
                 if (o9Var != null) {
-                    o9Var.f11667b.f37160f3.O(false);
+                    o9Var.f11667b.f37190f3.O(false);
                     return;
                 }
                 return;
@@ -315,7 +315,7 @@ public final class x1 implements Runnable {
                 org.telegram.ui.web.w wVar = (org.telegram.ui.web.w) this.f13073b;
                 p4.m1 m1Var = (p4.m1) this.d;
                 try {
-                    if (!(e0Var2.f19986a instanceof m9.a)) {
+                    if (!(e0Var2.f19989a instanceof m9.a)) {
                         wVar.run();
                         e0Var2.m(m1Var);
                         return;
@@ -332,15 +332,15 @@ public final class x1 implements Runnable {
                 ArrayList arrayList5 = new ArrayList();
                 for (int i18 = 0; i18 < arrayList4.size(); i18++) {
                     TLRPC.User user2 = (TLRPC.User) arrayList4.get(i18);
-                    Boolean bool = (Boolean) hashMap2.get(Long.valueOf(user2.f27102id));
+                    Boolean bool = (Boolean) hashMap2.get(Long.valueOf(user2.f27105id));
                     if (bool != null && bool.booleanValue()) {
                         z9 = false;
                     } else {
                         z9 = true;
                     }
                     ?? obj2 = new Object();
-                    obj2.f14831a = user2;
-                    obj2.f14832b = z9;
+                    obj2.f14834a = user2;
+                    obj2.f14835b = z9;
                     arrayList5.add(obj2);
                 }
                 c20Var.a(arrayList5);
@@ -367,14 +367,14 @@ public final class x1 implements Runnable {
             case 14:
                 TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) this.f13073b;
                 org.telegram.messenger.g0.g(connectedbotstarref.url);
-                hc.a0((hi.q3) this.f13074c).I(2131623993, hd.M0(2131754333, null), org.telegram.messenger.g0.X2(hd.a0(null, null, 2131754334, hi.j.J0(connectedbotstarref.commission_permille), t10.p((TLRPC.User) this.d)))).j();
+                hc.a0((hi.q3) this.f13074c).I(2131623993, id.M0(2131754333, null), org.telegram.messenger.g0.X2(id.a0(null, null, 2131754334, hi.j.J0(connectedbotstarref.commission_permille), t10.p((TLRPC.User) this.d)))).j();
                 return;
             case 15:
                 hi.q3.D0((hi.q3) this.f13074c, (TLObject) this.d, (org.telegram.ui.ActionBar.u1) this.f13073b);
                 return;
             case 16:
                 jg.u uVar = (jg.u) this.d;
-                int i19 = ((jg.h0) this.f13074c).f16757s0;
+                int i19 = ((jg.h0) this.f13074c).f16760s0;
                 qp s12 = qp.s1(i19);
                 Iterator it = ((HashSet) this.f13073b).iterator();
                 while (it.hasNext()) {
@@ -391,7 +391,7 @@ public final class x1 implements Runnable {
                     yr a02 = yr.a0(i19);
                     if (booleanValue) {
                         try {
-                            sQLiteCursor = a02.f26698b.queryFinalized("SELECT outbox_max FROM dialogs WHERE did = " + longValue, new Object[0]);
+                            sQLiteCursor = a02.f26721b.queryFinalized("SELECT outbox_max FROM dialogs WHERE did = " + longValue, new Object[0]);
                             try {
                                 try {
                                     if (sQLiteCursor.next()) {
@@ -424,7 +424,7 @@ public final class x1 implements Runnable {
                             th = th5;
                         }
                     } else {
-                        sQLiteCursor = a02.f26698b.queryFinalized("SELECT last_mid, inbox_max FROM dialogs WHERE did = " + longValue, new Object[0]);
+                        sQLiteCursor = a02.f26721b.queryFinalized("SELECT last_mid, inbox_max FROM dialogs WHERE did = " + longValue, new Object[0]);
                         if (sQLiteCursor.next()) {
                             int intValue = sQLiteCursor.intValue(0);
                             int intValue2 = sQLiteCursor.intValue(1);
@@ -463,14 +463,14 @@ public final class x1 implements Runnable {
                     } else {
                         i13 = 0;
                     }
-                    if (!i1Var.f16788o0 && (arrayList = i1Var.A0) != null && !arrayList.isEmpty()) {
+                    if (!i1Var.f16791o0 && (arrayList = i1Var.A0) != null && !arrayList.isEmpty()) {
                         i1Var.H();
                         b90 b90Var = i1Var.V;
                         if (i1Var.K() > 0) {
                             z10 = true;
                         }
                         b90Var.a(z10);
-                        i1Var.f16788o0 = true;
+                        i1Var.f16791o0 = true;
                     }
                     if (i12 != i13) {
                         i1Var.f();
@@ -482,27 +482,27 @@ public final class x1 implements Runnable {
             case 19:
                 jg.i1 i1Var2 = (jg.i1) this.f13074c;
                 a0.h hVar = (a0.h) this.d;
-                i1Var2.f16789p0 = null;
+                i1Var2.f16792p0 = null;
                 i1Var2.Y(hVar, (ArrayList) this.f13073b, true);
                 return;
             case 20:
                 jg.z1 z1Var2 = (jg.z1) this.f13074c;
                 ArrayList arrayList8 = (ArrayList) this.f13073b;
-                z1Var2.f17003q = arrayList8;
-                z1Var2.f17004r = (HashMap) this.d;
-                z1Var2.f17005s = true;
-                z1Var2.f16989a.m1(arrayList8);
+                z1Var2.f17006q = arrayList8;
+                z1Var2.f17007r = (HashMap) this.d;
+                z1Var2.f17008s = true;
+                z1Var2.f16992a.m1(arrayList8);
                 return;
             case 21:
                 jg.b2 b2Var = (jg.b2) this.f13074c;
                 TLRPC.TL_messages_foundStickerSets tL_messages_foundStickerSets = (TLRPC.TL_messages_foundStickerSets) this.d;
-                String str5 = ((TLRPC.TL_messages_searchStickerSets) this.f13073b).f27067q;
-                jg.d2 d2Var = b2Var.f16669a;
+                String str5 = ((TLRPC.TL_messages_searchStickerSets) this.f13073b).f27070q;
+                jg.d2 d2Var = b2Var.f16672a;
                 String str6 = d2Var.R;
-                g31 g31Var = d2Var.f16697e;
+                g31 g31Var = d2Var.f16700e;
                 if (str5.equals(str6)) {
                     b2Var.a();
-                    g31Var.f33783b.h.getProgressDrawable().f36657e = false;
+                    g31Var.f33809b.h.getProgressDrawable().f36677e = false;
                     d2Var.N = 0;
                     g31Var.b(true);
                     d2Var.E.addAll(tL_messages_foundStickerSets.sets);
@@ -515,12 +515,12 @@ public final class x1 implements Runnable {
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.f13073b;
                 TLObject tLObject5 = (TLObject) this.d;
                 if (tL_error2 != null) {
-                    cVar.f17315a.b(false);
+                    cVar.f17318a.b(false);
                     hc.d0(tL_error2);
                     return;
                 } else if (tLObject5 instanceof TLRPC.TL_boolFalse) {
-                    cVar.f17315a.b(false);
-                    org.telegram.messenger.k5.p(null, 2131743880, hc.a0(cVar), null);
+                    cVar.f17318a.b(false);
+                    org.telegram.messenger.k5.p(null, 2131743882, hc.a0(cVar), null);
                     return;
                 } else {
                     cVar.finishFragment();
@@ -531,12 +531,12 @@ public final class x1 implements Runnable {
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) this.f13073b;
                 TLObject tLObject6 = (TLObject) this.d;
                 if (tL_error3 != null) {
-                    mVar.f17426f.b(false);
+                    mVar.f17429f.b(false);
                     hc.d0(tL_error3);
                     return;
                 } else if (tLObject6 instanceof TLRPC.TL_boolFalse) {
-                    mVar.f17426f.b(false);
-                    org.telegram.messenger.k5.p(null, 2131743880, hc.a0(mVar), null);
+                    mVar.f17429f.b(false);
+                    org.telegram.messenger.k5.p(null, 2131743882, hc.a0(mVar), null);
                     return;
                 } else {
                     if (mVar.E != null) {
@@ -548,11 +548,11 @@ public final class x1 implements Runnable {
             case 24:
                 kg.y yVar2 = (kg.y) this.f13074c;
                 TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) this.f13073b;
-                ArrayList arrayList9 = yVar2.f17583b;
+                ArrayList arrayList9 = yVar2.f17586b;
                 if (((TLObject) this.d) instanceof TLRPC.TL_boolTrue) {
                     if (arrayList9.contains(tL_businessChatLink)) {
                         arrayList9.remove(tL_businessChatLink);
-                        qs.f(yVar2.f17582a).k(125, new Object[0]);
+                        qs.f(yVar2.f17585a).k(125, new Object[0]);
                     }
                     yVar2.f();
                     return;
@@ -563,17 +563,17 @@ public final class x1 implements Runnable {
                 kg.y yVar3 = (kg.y) this.f13074c;
                 TL_account.deleteBusinessChatLink deletebusinesschatlink = new TL_account.deleteBusinessChatLink();
                 deletebusinesschatlink.slug = (String) this.f13073b;
-                ConnectionsManager.getInstance(yVar3.f17582a).sendRequest(deletebusinesschatlink, new bi.j(19, yVar3, (TL_account.TL_businessChatLink) this.d));
+                ConnectionsManager.getInstance(yVar3.f17585a).sendRequest(deletebusinesschatlink, new bi.j(19, yVar3, (TL_account.TL_businessChatLink) this.d));
                 return;
             case 26:
                 kg.i0 i0Var = (kg.i0) this.f13074c;
                 TL_account.TL_businessBotRecipients tL_businessBotRecipients = (TL_account.TL_businessBotRecipients) this.d;
-                kg.f.a(i0Var.f28613a).b();
+                kg.f.a(i0Var.f28616a).b();
                 i0Var.dismiss();
                 ((TL_account.TL_connectedBot) this.f13073b).recipients = tL_businessBotRecipients;
                 org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
                 if (T != null) {
-                    hc.a0(T).Q(2131623989, 36, hd.a0(null, null, 2131752784, t10.p(i0Var.Q1))).j();
+                    hc.a0(T).Q(2131623989, 36, id.a0(null, null, 2131752784, t10.p(i0Var.Q1))).j();
                     return;
                 }
                 return;
@@ -582,12 +582,12 @@ public final class x1 implements Runnable {
                 TLRPC.TL_error tL_error4 = (TLRPC.TL_error) this.f13073b;
                 TLObject tLObject7 = (TLObject) this.d;
                 if (tL_error4 != null) {
-                    s0Var.f17520a.b(false);
+                    s0Var.f17523a.b(false);
                     hc.d0(tL_error4);
                     return;
                 } else if (tLObject7 instanceof TLRPC.TL_boolFalse) {
-                    s0Var.f17520a.b(false);
-                    org.telegram.messenger.k5.p(null, 2131743880, hc.a0(s0Var), null);
+                    s0Var.f17523a.b(false);
+                    org.telegram.messenger.k5.p(null, 2131743882, hc.a0(s0Var), null);
                     return;
                 } else {
                     s0Var.finishFragment();
@@ -607,10 +607,10 @@ public final class x1 implements Runnable {
                     SerializedData serializedData = new SerializedData(tLObject8.getObjectSize());
                     tLObject8.serializeToStream(serializedData);
                     sharedPreferences.edit().putString("timezones", Utilities.f(serializedData.toByteArray())).apply();
-                    qs.f(x1Var.f17577a).k(214, new Object[0]);
+                    qs.f(x1Var.f17580a).k(214, new Object[0]);
                 }
-                x1Var.f17579c = true;
-                x1Var.f17578b = false;
+                x1Var.f17582c = true;
+                x1Var.f17581b = false;
                 return;
         }
     }

@@ -1,110 +1,165 @@
 package wi;
 
-import android.content.SharedPreferences;
-import java.lang.reflect.Array;
-public abstract class v0 {
-    public static final String[] f58127a = {"round_video_switch_back_to_front_ms", "round_video_switch_front_to_back_ms"};
-    public static final int[][] f58128b = (int[][]) Array.newInstance(Integer.TYPE, 2, 8);
-    public static final int[] f58129c = new int[2];
-    public static final int[] d = new int[2];
-    public static boolean f58130e;
+import android.graphics.SurfaceTexture;
+import android.opengl.EGL14;
+import android.opengl.EGLConfig;
+import android.opengl.EGLContext;
+import android.opengl.EGLDisplay;
+import android.opengl.EGLSurface;
+import android.opengl.GLES20;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.view.Surface;
+import java.nio.ByteBuffer;
+import java.nio.FloatBuffer;
+public final class v0 {
+    public static final float[] f58223n = {-1.0f, -1.0f, 0.0f, 0.0f, 1.0f, -1.0f, 1.0f, 0.0f, -1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f};
+    public final int f58224a;
+    public final FloatBuffer d;
+    public final HandlerThread f58227e;
+    public int f58230i;
+    public int f58231j;
+    public SurfaceTexture f58232k;
+    public Surface f58233l;
+    public boolean f58234m;
+    public final Object f58225b = new Object();
+    public final float[] f58226c = new float[16];
+    public EGLDisplay f58228f = EGL14.EGL_NO_DISPLAY;
+    public EGLContext f58229g = EGL14.EGL_NO_CONTEXT;
+    public EGLSurface h = EGL14.EGL_NO_SURFACE;
 
-    public static int a(int i7) {
-        int i10 = f58129c[i7];
-        if (i10 == 0) {
-            if (i7 == 0) {
-                return 680;
-            }
-            return 630;
+    public v0(Surface surface, int i7) {
+        this.f58224a = i7;
+        FloatBuffer g10 = org.telegram.messenger.camera.q.g(ByteBuffer.allocateDirect(64));
+        this.d = g10;
+        g10.put(f58223n).position(0);
+        HandlerThread handlerThread = new HandlerThread("RoundVideoTranscoderFrames");
+        this.f58227e = handlerThread;
+        handlerThread.start();
+        try {
+            c(surface);
+            this.f58230i = b();
+            int[] iArr = new int[1];
+            GLES20.glGenTextures(1, iArr, 0);
+            int i10 = iArr[0];
+            this.f58231j = i10;
+            GLES20.glBindTexture(36197, i10);
+            GLES20.glTexParameteri(36197, 10241, 9729);
+            GLES20.glTexParameteri(36197, 10240, 9729);
+            GLES20.glTexParameteri(36197, 10242, 33071);
+            GLES20.glTexParameteri(36197, 10243, 33071);
+            SurfaceTexture surfaceTexture = new SurfaceTexture(this.f58231j);
+            this.f58232k = surfaceTexture;
+            surfaceTexture.setOnFrameAvailableListener(new p(this, 2), new Handler(handlerThread.getLooper()));
+            this.f58233l = new Surface(this.f58232k);
+        } catch (RuntimeException e10) {
+            d();
+            throw e10;
         }
-        int i11 = 0;
-        for (int i12 = 0; i12 < i10; i12++) {
-            i11 += f58128b[i7][i12];
-        }
-        return Math.round(i11 / i10);
     }
 
-    public static void b() {
-        int[] iArr = f58129c;
-        if (!f58130e) {
-            f58130e = true;
-            SharedPreferences sharedPreferences = org.telegram.messenger.t0.f25563b.getSharedPreferences("mainconfig", 0);
-            int i7 = 0;
-            while (true) {
-                String[] strArr = f58127a;
-                if (i7 < 2) {
-                    String string = sharedPreferences.getString(strArr[i7], null);
-                    if (string != null && !string.isEmpty()) {
-                        String[] split = string.split(",");
-                        for (int max = Math.max(0, split.length - 8); max < split.length; max++) {
-                            try {
-                                int max2 = Math.max(200, Math.min(2000, Integer.parseInt(split[max])));
-                                int[] iArr2 = f58128b[i7];
-                                int i10 = iArr[i7];
-                                iArr[i7] = i10 + 1;
-                                iArr2[i10] = max2;
-                            } catch (NumberFormatException unused) {
-                            }
+    public static int a(int i7, String str) {
+        int glCreateShader = GLES20.glCreateShader(i7);
+        GLES20.glShaderSource(glCreateShader, str);
+        GLES20.glCompileShader(glCreateShader);
+        int[] iArr = new int[1];
+        GLES20.glGetShaderiv(glCreateShader, 35713, iArr, 0);
+        if (iArr[0] != 0) {
+            return glCreateShader;
+        }
+        String glGetShaderInfoLog = GLES20.glGetShaderInfoLog(glCreateShader);
+        GLES20.glDeleteShader(glCreateShader);
+        throw new IllegalStateException(rf.b.i("Unable to compile shader: ", glGetShaderInfoLog));
+    }
+
+    public static int b() {
+        int a10 = a(35633, "uniform mat4 uTextureMatrix;\nattribute vec4 aPosition;\nattribute vec4 aTextureCoord;\nvarying vec2 vTextureCoord;\nvoid main() {\n    gl_Position = aPosition;\n    vTextureCoord = (uTextureMatrix * aTextureCoord).xy;\n}\n");
+        int a11 = a(35632, "#extension GL_OES_EGL_image_external : require\nprecision mediump float;\nvarying vec2 vTextureCoord;\nuniform samplerExternalOES sTexture;\nvoid main() {\n    gl_FragColor = texture2D(sTexture, vTextureCoord);\n}\n");
+        int glCreateProgram = GLES20.glCreateProgram();
+        GLES20.glAttachShader(glCreateProgram, a10);
+        GLES20.glAttachShader(glCreateProgram, a11);
+        GLES20.glLinkProgram(glCreateProgram);
+        GLES20.glDeleteShader(a10);
+        GLES20.glDeleteShader(a11);
+        int[] iArr = new int[1];
+        GLES20.glGetProgramiv(glCreateProgram, 35714, iArr, 0);
+        if (iArr[0] != 0) {
+            return glCreateProgram;
+        }
+        String glGetProgramInfoLog = GLES20.glGetProgramInfoLog(glCreateProgram);
+        GLES20.glDeleteProgram(glCreateProgram);
+        throw new IllegalStateException(rf.b.i("Unable to link program: ", glGetProgramInfoLog));
+    }
+
+    public final void c(Surface surface) {
+        EGLDisplay eglGetDisplay = EGL14.eglGetDisplay(0);
+        this.f58228f = eglGetDisplay;
+        int[] iArr = new int[2];
+        if (eglGetDisplay != EGL14.EGL_NO_DISPLAY && EGL14.eglInitialize(eglGetDisplay, iArr, 0, iArr, 1)) {
+            EGLConfig[] eGLConfigArr = new EGLConfig[1];
+            int[] iArr2 = new int[1];
+            if (EGL14.eglChooseConfig(this.f58228f, new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12352, 4, 12610, 1, 12344}, 0, eGLConfigArr, 0, 1, iArr2, 0) && iArr2[0] != 0) {
+                EGLContext eglCreateContext = EGL14.eglCreateContext(this.f58228f, eGLConfigArr[0], EGL14.EGL_NO_CONTEXT, new int[]{12440, 2, 12344}, 0);
+                this.f58229g = eglCreateContext;
+                if (eglCreateContext != EGL14.EGL_NO_CONTEXT) {
+                    EGLSurface eglCreateWindowSurface = EGL14.eglCreateWindowSurface(this.f58228f, eGLConfigArr[0], surface, new int[]{12344}, 0);
+                    this.h = eglCreateWindowSurface;
+                    if (eglCreateWindowSurface != EGL14.EGL_NO_SURFACE) {
+                        if (EGL14.eglMakeCurrent(this.f58228f, eglCreateWindowSurface, eglCreateWindowSurface, this.f58229g)) {
+                            return;
                         }
-                        d[i7] = iArr[i7] % 8;
+                        throw new IllegalStateException("Unable to make EGL context current");
                     }
-                    i7++;
-                } else {
-                    return;
+                    throw new IllegalStateException("Unable to create EGL surface");
                 }
+                throw new IllegalStateException("Unable to create EGL context");
             }
+            throw new IllegalStateException("Unable to choose EGL config");
         }
+        throw new IllegalStateException("Unable to initialize EGL");
     }
 
-    public static void c(int i7) {
-        int i10;
-        int i11 = f58129c[i7];
-        if (i11 == 8) {
-            i10 = d[i7];
-        } else {
-            i10 = 0;
-        }
-        StringBuilder sb2 = new StringBuilder(i11 * 5);
-        for (int i12 = 0; i12 < i11; i12++) {
-            if (i12 > 0) {
-                sb2.append(',');
+    public final void d() {
+        EGLDisplay eGLDisplay = this.f58228f;
+        if (eGLDisplay != EGL14.EGL_NO_DISPLAY) {
+            EGLSurface eGLSurface = this.h;
+            EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.f58229g);
+            int i7 = this.f58230i;
+            if (i7 != 0) {
+                GLES20.glDeleteProgram(i7);
             }
-            sb2.append(f58128b[i7][(i10 + i12) % 8]);
-        }
-        org.telegram.messenger.t0.f25563b.getSharedPreferences("mainconfig", 0).edit().putString(f58127a[i7], sb2.toString()).apply();
-    }
-
-    public static synchronized int d(n0 n0Var, n0 n0Var2, int i7) {
-        int i10;
-        int a10;
-        synchronized (v0.class) {
-            try {
-                b();
-                if (n0Var != n0Var2) {
-                    if (n0Var == n0.f58019b) {
-                        i10 = 0;
-                    } else {
-                        i10 = 1;
-                    }
-                    int max = Math.max(200, Math.min(2000, i7));
-                    int[] iArr = f58128b[i10];
-                    int[] iArr2 = d;
-                    iArr[iArr2[i10]] = max;
-                    iArr2[i10] = (iArr2[i10] + 1) % 8;
-                    int[] iArr3 = f58129c;
-                    int i11 = iArr3[i10];
-                    if (i11 < 8) {
-                        iArr3[i10] = i11 + 1;
-                    }
-                    c(i10);
-                    a10 = a(i10);
-                } else {
-                    throw new IllegalArgumentException("Camera switch direction must change");
-                }
-            } catch (Throwable th2) {
-                throw th2;
+            int i10 = this.f58231j;
+            if (i10 != 0) {
+                GLES20.glDeleteTextures(1, new int[]{i10}, 0);
             }
+            EGLDisplay eGLDisplay2 = this.f58228f;
+            EGLSurface eGLSurface2 = EGL14.EGL_NO_SURFACE;
+            EGL14.eglMakeCurrent(eGLDisplay2, eGLSurface2, eGLSurface2, EGL14.EGL_NO_CONTEXT);
+            EGLSurface eGLSurface3 = this.h;
+            if (eGLSurface3 != EGL14.EGL_NO_SURFACE) {
+                EGL14.eglDestroySurface(this.f58228f, eGLSurface3);
+            }
+            EGLContext eGLContext = this.f58229g;
+            if (eGLContext != EGL14.EGL_NO_CONTEXT) {
+                EGL14.eglDestroyContext(this.f58228f, eGLContext);
+            }
+            EGL14.eglReleaseThread();
         }
-        return a10;
+        this.f58228f = EGL14.EGL_NO_DISPLAY;
+        this.f58229g = EGL14.EGL_NO_CONTEXT;
+        this.h = EGL14.EGL_NO_SURFACE;
+        this.f58230i = 0;
+        this.f58231j = 0;
+        Surface surface = this.f58233l;
+        if (surface != null) {
+            surface.release();
+            this.f58233l = null;
+        }
+        SurfaceTexture surfaceTexture = this.f58232k;
+        if (surfaceTexture != null) {
+            surfaceTexture.release();
+            this.f58232k = null;
+        }
+        this.f58227e.quitSafely();
     }
 }

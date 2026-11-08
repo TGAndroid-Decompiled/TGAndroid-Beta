@@ -1,118 +1,22 @@
 package z3;
 
-import a8.ia;
-import h2.m0;
+import h2.x;
 public final class t {
-    public final q f59605a;
-    public final int f59606b;
-    public final long[] f59607c;
-    public final int[] d;
-    public final int f59608e;
-    public final long[] f59609f;
-    public final int[] f59610g;
-    public final int[] h;
-    public final long f59611i;
-    public final boolean f59612j;
-
-    public t(q qVar, long[] jArr, int[] iArr, int i7, long[] jArr2, int[] iArr2, int[] iArr3, boolean z9, long j3, int i10) {
-        boolean z10;
-        boolean z11;
-        if (iArr.length == jArr2.length) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        ia.f(z10);
-        if (jArr.length == jArr2.length) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        ia.f(z11);
-        ia.f(iArr2.length == jArr2.length);
-        this.f59605a = qVar;
-        this.f59607c = jArr;
-        this.d = iArr;
-        this.f59608e = i7;
-        this.f59609f = jArr2;
-        this.f59610g = iArr2;
-        this.h = iArr3;
-        this.f59612j = z9;
-        this.f59611i = j3;
-        this.f59606b = i10;
-        if (iArr2.length > 0) {
-            int length = iArr2.length - 1;
-            iArr2[length] = iArr2[length] | 536870912;
-        }
-    }
-
-    public final int a(long j3) {
-        long[] jArr = this.f59609f;
-        if (jArr.length <= 0) {
-            return -1;
-        }
-        int i7 = 0;
-        if (this.f59612j) {
-            return m0.f(jArr, j3, false);
-        }
-        int[] iArr = this.h;
-        int length = iArr.length - 1;
-        int i10 = -1;
-        while (i7 <= length) {
-            int D = jg.g.D(length, i7, 2, i7);
-            if (jArr[iArr[D]] <= j3) {
-                i7 = D + 1;
-                i10 = D;
-            } else {
-                length = D - 1;
-            }
-        }
-        if (i10 == -1) {
-            return -1;
-        }
-        long j10 = jArr[iArr[i10]];
-        if (j10 == j3) {
-            while (i10 > 0 && jArr[iArr[i10 - 1]] == j10) {
-                i10--;
-            }
-        }
-        return iArr[i10];
-    }
-
-    public final int b(long j3) {
-        long[] jArr = this.f59609f;
-        if (jArr.length <= 0) {
-            return -1;
-        }
-        if (this.f59612j) {
-            return m0.b(jArr, j3, true);
-        }
-        int[] iArr = this.h;
-        int length = iArr.length - 1;
-        int i7 = 0;
-        int i10 = -1;
-        while (i7 <= length) {
-            int D = jg.g.D(length, i7, 2, i7);
-            if (jArr[iArr[D]] >= j3) {
-                length = D - 1;
-                i10 = D;
-            } else {
-                i7 = D + 1;
-            }
-        }
-        if (i10 == -1) {
-            return -1;
-        }
-        long j10 = jArr[iArr[i10]];
-        if (j10 == j3) {
-            while (i10 < iArr.length - 1) {
-                int i11 = i10 + 1;
-                if (jArr[iArr[i11]] != j10) {
-                    break;
-                }
-                i10 = i11;
-            }
-        }
-        return iArr[i10];
-    }
+    public d f59683a;
+    public long f59684b;
+    public long f59685c;
+    public int d;
+    public int f59686e;
+    public boolean f59691k;
+    public s f59693m;
+    public boolean f59695o;
+    public long f59696p;
+    public boolean f59697q;
+    public long[] f59687f = new long[0];
+    public int[] f59688g = new int[0];
+    public int[] h = new int[0];
+    public long[] f59689i = new long[0];
+    public boolean[] f59690j = new boolean[0];
+    public boolean[] f59692l = new boolean[0];
+    public final x f59694n = new x();
 }

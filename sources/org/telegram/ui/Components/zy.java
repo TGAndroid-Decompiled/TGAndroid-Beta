@@ -1,16 +1,73 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class zy extends v4.c0 {
-    public final jg.i0 f41156r;
+import android.animation.ValueAnimator;
+import android.view.View;
+public final class zy extends v4.k {
+    public final fz F;
 
-    public zy(jg.i0 i0Var, Context context) {
-        super(context);
-        this.f41156r = i0Var;
+    public zy(fz fzVar) {
+        this.F = fzVar;
     }
 
     @Override
-    public final void g(android.view.View r6, v4.y0 r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.zy.g(android.view.View, v4.y0):void");
+    public final void C(v4.d1 d1Var, v4.j jVar) {
+        super.C(d1Var, jVar);
+        View view = d1Var.f57043a;
+        if (view instanceof dz) {
+            dz dzVar = (dz) view;
+            if (dzVar.f33136x) {
+                ValueAnimator valueAnimator = dzVar.f33115a;
+                if (valueAnimator != null) {
+                    valueAnimator.removeAllListeners();
+                    dzVar.f33115a.removeAllUpdateListeners();
+                    dzVar.f33115a.cancel();
+                }
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                ofFloat.addUpdateListener(new yy(dzVar, 0));
+                ofFloat.addListener(new z5(dzVar, 26));
+                dzVar.f33115a = ofFloat;
+                ofFloat.setDuration(this.f57116e);
+                ofFloat.start();
+            }
+        }
+    }
+
+    @Override
+    public final void f(v4.d1 d1Var) {
+        super.f(d1Var);
+        View view = d1Var.f57043a;
+        view.setTranslationX(0.0f);
+        if (view instanceof dz) {
+            ((dz) view).a();
+        }
+    }
+
+    @Override
+    public final void m() {
+        boolean isEmpty = this.f57100p.isEmpty();
+        boolean isEmpty2 = this.f57102r.isEmpty();
+        boolean isEmpty3 = this.f57103s.isEmpty();
+        boolean isEmpty4 = this.f57101q.isEmpty();
+        if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.1f);
+            ofFloat.addUpdateListener(new e6(this, 23));
+            ofFloat.setDuration(this.f57116e);
+            ofFloat.start();
+        }
+        super.m();
+    }
+
+    @Override
+    public final boolean r(v4.d1 r34, e2.r0 r35, int r36, int r37, int r38, int r39) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.zy.r(v4.d1, e2.r0, int, int, int, int):boolean");
+    }
+
+    @Override
+    public final void x(v4.d1 d1Var) {
+        d1Var.f57043a.setTranslationX(0.0f);
+        View view = d1Var.f57043a;
+        if (view instanceof dz) {
+            ((dz) view).a();
+        }
     }
 }

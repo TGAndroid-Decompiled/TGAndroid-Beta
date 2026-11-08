@@ -3,26 +3,26 @@ package o0;
 import android.util.Base64;
 import java.util.List;
 public final class d {
-    public final String f20675a;
-    public final String f20676b;
-    public final String f20677c;
+    public final String f20678a;
+    public final String f20679b;
+    public final String f20680c;
     public final List d;
-    public final String f20678e;
+    public final String f20681e;
 
     public d(String str, String str2, String str3, List list) {
         str.getClass();
-        this.f20675a = str;
+        this.f20678a = str;
         str2.getClass();
-        this.f20676b = str2;
-        this.f20677c = str3;
+        this.f20679b = str2;
+        this.f20680c = str3;
         list.getClass();
         this.d = list;
-        this.f20678e = str + "-" + str2 + "-" + str3;
+        this.f20681e = str + "-" + str2 + "-" + str3;
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder();
-        sb2.append("FontRequest {mProviderAuthority: " + this.f20675a + ", mProviderPackage: " + this.f20676b + ", mQuery: " + this.f20677c + ", mCertificates:");
+        sb2.append("FontRequest {mProviderAuthority: " + this.f20678a + ", mProviderPackage: " + this.f20679b + ", mQuery: " + this.f20680c + ", mCertificates:");
         int i7 = 0;
         while (true) {
             List list = this.d;

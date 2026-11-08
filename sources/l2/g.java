@@ -1,8 +1,8 @@
 package l2;
 public final class g {
-    public int f17815a;
-    public boolean f17816b;
-    public int f17817c;
+    public int f17818a;
+    public boolean f17819b;
+    public int f17820c;
     public int d;
 
     public final synchronized void a() {

@@ -4,26 +4,26 @@ import android.view.View;
 import androidx.appcompat.view.menu.ActionMenuItemView;
 import m.v1;
 public final class b extends v1 {
-    public final int f17629s = 0;
-    public final View f17630w;
+    public final int f17632s = 0;
+    public final View f17633w;
 
     public b(ActionMenuItemView actionMenuItemView) {
         super(actionMenuItemView);
-        this.f17630w = actionMenuItemView;
+        this.f17633w = actionMenuItemView;
     }
 
     @Override
     public final b0 b() {
         m.e eVar;
-        switch (this.f17629s) {
+        switch (this.f17632s) {
             case 0:
-                c cVar = ((ActionMenuItemView) this.f17630w).f1896y;
-                if (cVar != null && (eVar = ((m.f) cVar).f19098a.J) != null) {
+                c cVar = ((ActionMenuItemView) this.f17633w).f1896y;
+                if (cVar != null && (eVar = ((m.f) cVar).f19101a.J) != null) {
                     return eVar.a();
                 }
                 return null;
             default:
-                m.e eVar2 = ((m.h) this.f17630w).d.I;
+                m.e eVar2 = ((m.h) this.f17633w).d.I;
                 if (eVar2 == null) {
                     return null;
                 }
@@ -34,25 +34,25 @@ public final class b extends v1 {
     @Override
     public final boolean c() {
         b0 b10;
-        switch (this.f17629s) {
+        switch (this.f17632s) {
             case 0:
-                ActionMenuItemView actionMenuItemView = (ActionMenuItemView) this.f17630w;
+                ActionMenuItemView actionMenuItemView = (ActionMenuItemView) this.f17633w;
                 j jVar = actionMenuItemView.f1894w;
                 if (jVar != null && jVar.a(actionMenuItemView.f1891n) && (b10 = b()) != null && b10.a()) {
                     return true;
                 }
                 return false;
             default:
-                ((m.h) this.f17630w).d.l();
+                ((m.h) this.f17633w).d.l();
                 return true;
         }
     }
 
     @Override
     public boolean d() {
-        switch (this.f17629s) {
+        switch (this.f17632s) {
             case 1:
-                m.i iVar = ((m.h) this.f17630w).d;
+                m.i iVar = ((m.h) this.f17633w).d;
                 if (iVar.K != null) {
                     return false;
                 }
@@ -65,6 +65,6 @@ public final class b extends v1 {
 
     public b(m.h hVar, m.h hVar2) {
         super(hVar2);
-        this.f17630w = hVar;
+        this.f17633w = hVar;
     }
 }

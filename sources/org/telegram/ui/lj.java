@@ -28,8 +28,8 @@ public final class lj extends FragmentContextView {
         switch (this.X0) {
             case 0:
                 an anVar = this.Y0;
-                org.telegram.ui.Components.lg lgVar = anVar.f43717a1;
-                FrameLayout frameLayout = anVar.f43898o2;
+                org.telegram.ui.Components.lg lgVar = anVar.f43723a1;
+                FrameLayout frameLayout = anVar.f43904o2;
                 if (i7 == 0) {
                     z9 = true;
                 } else {
@@ -39,8 +39,8 @@ public final class lj extends FragmentContextView {
                 return;
             default:
                 an anVar2 = this.Y0;
-                org.telegram.ui.Components.lg lgVar2 = anVar2.f43717a1;
-                FrameLayout frameLayout2 = anVar2.f43874m2;
+                org.telegram.ui.Components.lg lgVar2 = anVar2.f43723a1;
+                FrameLayout frameLayout2 = anVar2.f43880m2;
                 if (i7 == 0) {
                     z10 = true;
                 } else {

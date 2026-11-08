@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 public final class l4 implements Runnable {
     public final int f12316a;
     public final o5 f12317b;
@@ -48,7 +48,7 @@ public final class l4 implements Runnable {
                     textView.setPadding(org.telegram.messenger.g0.L(14.0f), 0, org.telegram.messenger.g0.L(14.0f), 0);
                     textView.setTextSize(1, 14.0f);
                     textView.setTag(0);
-                    textView.setText(hd.M0(2131747671, "PaintDelete"));
+                    textView.setText(id.M0(2131747673, "PaintDelete"));
                     textView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
@@ -124,7 +124,7 @@ public final class l4 implements Runnable {
                                         ((tg.q1) jVar4).r(true);
                                     } else if (jVar4 instanceof tg.r1) {
                                         tg.r1 r1Var = (tg.r1) jVar4;
-                                        r1Var.f55836r0 = !r1Var.f55836r0;
+                                        r1Var.f55928r0 = !r1Var.f55928r0;
                                         r1Var.invalidate();
                                     } else {
                                         ((tg.n1) jVar4).r(true);
@@ -193,7 +193,7 @@ public final class l4 implements Runnable {
                     textView2.setTextSize(1, 14.0f);
                     if ((x4Var.c() && !x4Var.d) || o5Var.f12519c2 > 0) {
                         textView2.setTag(3);
-                        textView2.setText(hd.M0(2131747434, null));
+                        textView2.setText(id.M0(2131747436, null));
                         textView2.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view) {
@@ -269,7 +269,7 @@ public final class l4 implements Runnable {
                                             ((tg.q1) jVar4).r(true);
                                         } else if (jVar4 instanceof tg.r1) {
                                             tg.r1 r1Var = (tg.r1) jVar4;
-                                            r1Var.f55836r0 = !r1Var.f55836r0;
+                                            r1Var.f55928r0 = !r1Var.f55928r0;
                                             r1Var.invalidate();
                                         } else {
                                             ((tg.n1) jVar4).r(true);
@@ -326,7 +326,7 @@ public final class l4 implements Runnable {
                         });
                     } else {
                         textView2.setTag(1);
-                        textView2.setText(hd.M0(2131747669, null));
+                        textView2.setText(id.M0(2131747671, null));
                         textView2.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view) {
@@ -402,7 +402,7 @@ public final class l4 implements Runnable {
                                             ((tg.q1) jVar4).r(true);
                                         } else if (jVar4 instanceof tg.r1) {
                                             tg.r1 r1Var = (tg.r1) jVar4;
-                                            r1Var.f55836r0 = !r1Var.f55836r0;
+                                            r1Var.f55928r0 = !r1Var.f55928r0;
                                             r1Var.invalidate();
                                         } else {
                                             ((tg.n1) jVar4).r(true);
@@ -461,7 +461,7 @@ public final class l4 implements Runnable {
                     linearLayout.addView(textView2, c8.ha.o(-2, 44));
                     f10 = 14.0f;
                 } else if (jVar instanceof tg.n0) {
-                    TextView e02 = o5Var.e0(1, hd.M0(2131747669, null));
+                    TextView e02 = o5Var.e0(1, id.M0(2131747671, null));
                     f10 = 14.0f;
                     e02.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -538,7 +538,7 @@ public final class l4 implements Runnable {
                                         ((tg.q1) jVar4).r(true);
                                     } else if (jVar4 instanceof tg.r1) {
                                         tg.r1 r1Var = (tg.r1) jVar4;
-                                        r1Var.f55836r0 = !r1Var.f55836r0;
+                                        r1Var.f55928r0 = !r1Var.f55928r0;
                                         r1Var.invalidate();
                                     } else {
                                         ((tg.n1) jVar4).r(true);
@@ -597,7 +597,7 @@ public final class l4 implements Runnable {
                 } else {
                     f10 = 14.0f;
                     if (jVar instanceof tg.k0) {
-                        TextView e03 = o5Var.e0(1, hd.M0(2131747669, null));
+                        TextView e03 = o5Var.e0(1, id.M0(2131747671, null));
                         e03.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view) {
@@ -673,7 +673,7 @@ public final class l4 implements Runnable {
                                             ((tg.q1) jVar4).r(true);
                                         } else if (jVar4 instanceof tg.r1) {
                                             tg.r1 r1Var = (tg.r1) jVar4;
-                                            r1Var.f55836r0 = !r1Var.f55836r0;
+                                            r1Var.f55928r0 = !r1Var.f55928r0;
                                             r1Var.invalidate();
                                         } else {
                                             ((tg.n1) jVar4).r(true);
@@ -732,7 +732,7 @@ public final class l4 implements Runnable {
                     }
                 }
                 if ((jVar instanceof tg.d2) || (jVar instanceof tg.r1) || (jVar instanceof tg.n1) || (jVar instanceof tg.q1)) {
-                    TextView e04 = o5Var.e0(4, hd.M0(2131750691, null));
+                    TextView e04 = o5Var.e0(4, id.M0(2131750691, null));
                     e04.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
@@ -808,7 +808,7 @@ public final class l4 implements Runnable {
                                         ((tg.q1) jVar4).r(true);
                                     } else if (jVar4 instanceof tg.r1) {
                                         tg.r1 r1Var = (tg.r1) jVar4;
-                                        r1Var.f55836r0 = !r1Var.f55836r0;
+                                        r1Var.f55928r0 = !r1Var.f55928r0;
                                         r1Var.invalidate();
                                     } else {
                                         ((tg.n1) jVar4).r(true);
@@ -877,7 +877,7 @@ public final class l4 implements Runnable {
                     textView3.setPadding(org.telegram.messenger.g0.L(f10), 0, org.telegram.messenger.g0.L(f10), 0);
                     textView3.setTextSize(1, f10);
                     textView3.setTag(2);
-                    textView3.setText(hd.M0(2131747674, null));
+                    textView3.setText(id.M0(2131747676, null));
                     textView3.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
@@ -953,7 +953,7 @@ public final class l4 implements Runnable {
                                         ((tg.q1) jVar4).r(true);
                                     } else if (jVar4 instanceof tg.r1) {
                                         tg.r1 r1Var = (tg.r1) jVar4;
-                                        r1Var.f55836r0 = !r1Var.f55836r0;
+                                        r1Var.f55928r0 = !r1Var.f55928r0;
                                         r1Var.invalidate();
                                     } else {
                                         ((tg.n1) jVar4).r(true);
@@ -1020,7 +1020,7 @@ public final class l4 implements Runnable {
                     textView4.setPadding(org.telegram.messenger.g0.L(14.0f), 0, org.telegram.messenger.g0.L(14.0f), 0);
                     textView4.setTextSize(1, 14.0f);
                     textView4.setTag(2);
-                    textView4.setText(hd.M0(2131747670, "PaintDuplicate"));
+                    textView4.setText(id.M0(2131747672, "PaintDuplicate"));
                     textView4.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
@@ -1096,7 +1096,7 @@ public final class l4 implements Runnable {
                                         ((tg.q1) jVar4).r(true);
                                     } else if (jVar4 instanceof tg.r1) {
                                         tg.r1 r1Var = (tg.r1) jVar4;
-                                        r1Var.f55836r0 = !r1Var.f55836r0;
+                                        r1Var.f55928r0 = !r1Var.f55928r0;
                                         r1Var.invalidate();
                                     } else {
                                         ((tg.n1) jVar4).r(true);
@@ -1155,7 +1155,7 @@ public final class l4 implements Runnable {
                 }
                 for (int i13 = 0; i13 < linearLayout.getChildCount(); i13++) {
                     View childAt = linearLayout.getChildAt(i13);
-                    int i14 = org.telegram.ui.ActionBar.k6.f27941i6;
+                    int i14 = org.telegram.ui.ActionBar.k6.f27944i6;
                     int w02 = org.telegram.ui.ActionBar.k6.w0(i14, g5Var);
                     int i15 = 8;
                     if (i13 == 0) {

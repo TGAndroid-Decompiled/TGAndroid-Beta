@@ -75,13 +75,13 @@ public final class d implements tf {
                 l0Var.c(j3);
             }
             Interpolator interpolator = (Interpolator) this.d;
-            if (interpolator != null && (view = (View) l0Var.f54109a.get()) != null) {
+            if (interpolator != null && (view = (View) l0Var.f54202a.get()) != null) {
                 view.animate().setInterpolator(interpolator);
             }
             if (((m0) this.f1021e) != null) {
                 l0Var.d((i) this.f1022f);
             }
-            View view2 = (View) l0Var.f54109a.get();
+            View view2 = (View) l0Var.f54202a.get();
             if (view2 != null) {
                 view2.animate().start();
             }
@@ -98,17 +98,17 @@ public final class d implements tf {
         boolean z9 = this.f1019b;
         ub.a aVar = (ub.a) this.f1021e;
         gg ggVar = (gg) this.f1022f;
-        r7 r7Var = new r7(3);
+        r7 r7Var = new r7(3, (byte) 0);
         a0 a0Var = new a0(17, false);
         a0Var.f1763b = Long.valueOf(j3 & Long.MAX_VALUE);
         a0Var.f1764c = (eb) this.d;
         a0Var.d = Boolean.valueOf(z9);
         r7Var.f614b = new ta(a0Var);
-        int i10 = aVar.f56400e;
+        int i10 = aVar.f56492e;
         f.f1027l.getClass();
-        int i11 = aVar.f56400e;
+        int i11 = aVar.f56492e;
         if (i11 == -1) {
-            Bitmap bitmap = aVar.f56397a;
+            Bitmap bitmap = aVar.f56489a;
             m.g(bitmap);
             i7 = bitmap.getAllocationByteCount();
         } else if (i11 != 17 && i11 != 842094169) {
@@ -144,8 +144,8 @@ public final class d implements tf {
         } else {
             oaVar = oa.BITMAP;
         }
-        bVar.f57562b = oaVar;
-        bVar.f57563c = Integer.valueOf(i7 & Integer.MAX_VALUE);
+        bVar.f57654b = oaVar;
+        bVar.f57655c = Integer.valueOf(i7 & Integer.MAX_VALUE);
         r7Var.f615c = new pa(bVar);
         r7Var.d = fVar.f1028e.a();
         if (ggVar != null) {

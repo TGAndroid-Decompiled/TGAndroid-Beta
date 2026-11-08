@@ -1,7 +1,7 @@
 package di;
 
-import org.telegram.ui.Components.e10;
-public final class z6 extends e10 {
+import org.telegram.ui.Components.f10;
+public final class z6 extends f10 {
     public int f10020n;
     public int f10021o;
 

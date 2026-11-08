@@ -28,33 +28,33 @@ public final class w7 extends c1 {
     public int F;
     public final ConcurrentHashMap G;
     public final r7 H;
-    public int f26260a;
-    public final lg.f[] f26261b;
-    public final lg.f[] f26262c;
+    public int f26263a;
+    public final lg.f[] f26264b;
+    public final lg.f[] f26265c;
     public final f8 d;
-    public final LinkedList f26263e;
-    public final LinkedList f26264f;
+    public final LinkedList f26266e;
+    public final LinkedList f26267f;
     public final ConcurrentHashMap h;
-    public final ConcurrentHashMap f26265n;
-    public int f26266r;
-    public int f26267s;
-    public final ConcurrentHashMap f26268w;
-    public final ConcurrentHashMap f26269x;
-    public final HashMap f26270y;
+    public final ConcurrentHashMap f26268n;
+    public int f26269r;
+    public int f26270s;
+    public final ConcurrentHashMap f26271w;
+    public final ConcurrentHashMap f26272x;
+    public final HashMap f26273y;
 
     public w7(int i7) {
         super(i7);
-        this.f26261b = new lg.f[5];
-        this.f26262c = new lg.f[5];
-        this.f26263e = new LinkedList();
-        this.f26264f = new LinkedList();
+        this.f26264b = new lg.f[5];
+        this.f26265c = new lg.f[5];
+        this.f26266e = new LinkedList();
+        this.f26267f = new LinkedList();
         this.h = new ConcurrentHashMap();
-        this.f26265n = new ConcurrentHashMap();
-        this.f26266r = 0;
-        this.f26267s = 0;
-        this.f26268w = new ConcurrentHashMap();
-        this.f26269x = new ConcurrentHashMap(10, 1.0f, 2);
-        this.f26270y = new HashMap();
+        this.f26268n = new ConcurrentHashMap();
+        this.f26269r = 0;
+        this.f26270s = 0;
+        this.f26271w = new ConcurrentHashMap();
+        this.f26272x = new ConcurrentHashMap(10, 1.0f, 2);
+        this.f26273y = new HashMap();
         this.D = new HashMap();
         this.E = null;
         this.G = new ConcurrentHashMap();
@@ -62,15 +62,15 @@ public final class w7 extends c1 {
         this.d = new f8(i7);
         int i10 = 0;
         while (true) {
-            lg.f[] fVarArr = this.f26261b;
+            lg.f[] fVarArr = this.f26264b;
             if (i10 >= fVarArr.length) {
                 break;
             }
             fVarArr[i10] = new lg.f(i7, 0, J);
-            this.f26262c[i10] = new lg.f(i7, 1, J);
+            this.f26265c[i10] = new lg.f(i7, 1, J);
             i10++;
         }
-        if (!r2.f25199a) {
+        if (!r2.f25212a) {
             return;
         }
         J.a(this.H);
@@ -178,9 +178,9 @@ public final class w7 extends c1 {
                     Matcher matcher = I.matcher(str);
                     if (matcher.matches()) {
                         ?? obj2 = new Object();
-                        obj2.f22173b = Integer.parseInt(matcher.group(1));
-                        obj2.f22172a = Long.parseLong(matcher.group(2));
-                        obj2.f22174c = Integer.parseInt(matcher.group(3));
+                        obj2.f22197b = Integer.parseInt(matcher.group(1));
+                        obj2.f22196a = Long.parseLong(matcher.group(2));
+                        obj2.f22198c = Integer.parseInt(matcher.group(3));
                         obj2.d = Long.parseLong(matcher.group(4));
                         return obj2;
                     }
@@ -194,15 +194,15 @@ public final class w7 extends c1 {
         } else if (obj instanceof ij) {
             ij ijVar = (ij) obj;
             ?? obj3 = new Object();
-            obj3.f22173b = ijVar.f1();
-            obj3.f22172a = ij.B0(ijVar.f23244k);
-            obj3.f22174c = ijVar.D;
+            obj3.f22197b = ijVar.f1();
+            obj3.f22196a = ij.B0(ijVar.f23262k);
+            obj3.f22198c = ijVar.D;
             obj3.d = ijVar.T1();
             return obj3;
         } else if (obj instanceof TL_stories.StoryItem) {
             ?? obj4 = new Object();
-            obj4.f22172a = ((TL_stories.StoryItem) obj).dialogId;
-            obj4.f22174c = 23;
+            obj4.f22196a = ((TL_stories.StoryItem) obj).dialogId;
+            obj4.f22198c = 23;
             return obj4;
         } else {
             return null;
@@ -338,7 +338,7 @@ public final class w7 extends c1 {
                     return true;
                 }
             }
-            if ((-tL_fileLocationToBeDeprecated.volume_id) == photo.f26977id) {
+            if ((-tL_fileLocationToBeDeprecated.volume_id) == photo.f26980id) {
                 return true;
             }
         }
@@ -361,7 +361,7 @@ public final class w7 extends c1 {
     }
 
     public static boolean m(int i7, long j3) {
-        boolean q10 = p10.i(c.a(i7).f21729a).q();
+        boolean q10 = p10.i(c.a(i7).f21765a).q();
         if (j3 >= 2097152000) {
             if (j3 >= 4194304000L || !q10) {
                 return false;
@@ -418,24 +418,24 @@ public final class w7 extends c1 {
                 StringBuilder sb2 = new StringBuilder();
                 sb2.append(document.dc_id);
                 sb2.append("_");
-                return a8.p0.r(sb2, document.f26959id, str2);
+                return a8.p0.r(sb2, document.f26962id, str2);
             }
-            return document.dc_id + "_" + document.f26959id;
+            return document.dc_id + "_" + document.f26962id;
         } else if (tLObject instanceof ew) {
-            TLRPC.TL_secureFile tL_secureFile = ((ew) tLObject).f22266b;
+            TLRPC.TL_secureFile tL_secureFile = ((ew) tLObject).f22285b;
             StringBuilder sb3 = new StringBuilder();
             sb3.append(tL_secureFile.dc_id);
             sb3.append("_");
-            return a8.p0.r(sb3, tL_secureFile.f27090id, ".jpg");
+            return a8.p0.r(sb3, tL_secureFile.f27093id, ".jpg");
         } else if (tLObject instanceof TLRPC.TL_secureFile) {
             TLRPC.TL_secureFile tL_secureFile2 = (TLRPC.TL_secureFile) tLObject;
             StringBuilder sb4 = new StringBuilder();
             sb4.append(tL_secureFile2.dc_id);
             sb4.append("_");
-            return a8.p0.r(sb4, tL_secureFile2.f27090id, ".jpg");
+            return a8.p0.r(sb4, tL_secureFile2.f27093id, ".jpg");
         } else if (tLObject instanceof m20) {
             m20 m20Var = (m20) tLObject;
-            return Utilities.a(m20Var.f23972a) + "." + gc.B(m20Var.f23972a, H(m20Var.f23975e));
+            return Utilities.a(m20Var.f23976a) + "." + gc.B(m20Var.f23976a, H(m20Var.f23979e));
         } else {
             if (tLObject instanceof TLRPC.PhotoSize) {
                 TLRPC.PhotoSize photoSize = (TLRPC.PhotoSize) tLObject;
@@ -545,7 +545,7 @@ public final class w7 extends c1 {
             for (int i11 = 0; i11 < arrayList.size(); i11++) {
                 TLRPC.VideoSize videoSize2 = (TLRPC.VideoSize) arrayList.get(i11);
                 if (videoSize2 != null && !(videoSize2 instanceof TLRPC.TL_videoSizeEmojiMarkup) && !(videoSize2 instanceof TLRPC.TL_videoSizeStickerMarkup)) {
-                    int max = Math.max(videoSize2.f27106w, videoSize2.h);
+                    int max = Math.max(videoSize2.f27109w, videoSize2.h);
                     if (videoSize == null || ((i7 > 100 && (fileLocation = videoSize.location) != null && fileLocation.dc_id == Integer.MIN_VALUE) || (max <= i7 && i10 < max))) {
                         videoSize = videoSize2;
                         i10 = max;
@@ -561,7 +561,7 @@ public final class w7 extends c1 {
         if (file == null && i7 != 4) {
             file = (File) K.get(4);
         }
-        if (r2.f25200b && file != null) {
+        if (r2.f25213b && file != null) {
             try {
                 if (!file.isDirectory()) {
                     file.mkdirs();
@@ -586,12 +586,12 @@ public final class w7 extends c1 {
             return Integer.MAX_VALUE;
         }
         if (i7 == 3) {
-            i10 = this.f26260a;
-            this.f26260a = i10 + 1;
+            i10 = this.f26263a;
+            this.f26263a = i10 + 1;
             i11 = 1048577;
         } else if (i7 == 2) {
-            i10 = this.f26260a;
-            this.f26260a = i10 + 1;
+            i10 = this.f26263a;
+            this.f26263a = i10 + 1;
             i11 = 65537;
         } else if (i7 == 1) {
             return 65536;
@@ -610,7 +610,7 @@ public final class w7 extends c1 {
     }
 
     public final boolean S(String str) {
-        if (str != null && this.f26269x.containsKey(str)) {
+        if (str != null && this.f26272x.containsKey(str)) {
             return true;
         }
         return false;
@@ -640,12 +640,12 @@ public final class w7 extends c1 {
         if (hcVar == null) {
             return;
         }
-        if (i10 == 0 && (hcVar.f22861c != null || (hcVar.f22867k != null && hcVar.r() == 0))) {
+        if (i10 == 0 && (hcVar.f22867c != null || (hcVar.f22873k != null && hcVar.r() == 0))) {
             i11 = 1;
         } else {
             i11 = i10;
         }
-        X(hcVar.f22865i, hcVar.h, hcVar.v, hcVar.f22863f, hcVar, obj, str, hcVar.r(), i7, i11);
+        X(hcVar.f22871i, hcVar.h, hcVar.v, hcVar.f22869f, hcVar, obj, str, hcVar.r(), i7, i11);
     }
 
     public final void W(TLRPC.Document document, Object obj, int i7, int i10) {
@@ -681,7 +681,7 @@ public final class w7 extends c1 {
         if (i10 != 10 && !TextUtils.isEmpty(str4) && !str4.contains("-2147483648")) {
             ?? obj2 = new Object();
             obj2.f25951a = p7Var;
-            this.f26269x.put(str4, obj2);
+            this.f26272x.put(str4, obj2);
         }
         J.c(p7Var);
     }
@@ -712,7 +712,7 @@ public final class w7 extends c1 {
         }
         m10.append(str);
         if (this.D.remove(m10.toString()) != null) {
-            getNotificationCenter().k(qs.f25000h1, r10);
+            getNotificationCenter().k(qs.f25009h1, r10);
         }
     }
 
@@ -736,8 +736,8 @@ public final class w7 extends c1 {
 
     public final void c() {
         p7 p7Var;
-        for (String str : this.f26269x.keySet()) {
-            v7 v7Var = (v7) this.f26269x.get(str);
+        for (String str : this.f26272x.keySet()) {
+            v7 v7Var = (v7) this.f26272x.get(str);
             if (v7Var != null) {
                 p7Var = v7Var.f25951a;
             } else {
@@ -746,7 +746,7 @@ public final class w7 extends c1 {
             if (p7Var != null) {
                 J.a(p7Var);
             }
-            J.c(new n7(this, str, 0));
+            J.c(new o7(this, str, 0));
         }
     }
 
@@ -771,7 +771,7 @@ public final class w7 extends c1 {
                 }
                 m11.append(str2);
                 hashMap.put(m11.toString(), Boolean.TRUE);
-                getNotificationCenter().k(qs.f25000h1, r10);
+                getNotificationCenter().k(qs.f25009h1, r10);
             }
         }
     }
@@ -791,7 +791,7 @@ public final class w7 extends c1 {
         }
         m10.append(str);
         this.D.put(m10.toString(), Boolean.TRUE);
-        getNotificationCenter().k(qs.f25000h1, r10);
+        getNotificationCenter().k(qs.f25009h1, r10);
     }
 
     public final void e(TLRPC.Document document, ew ewVar, m20 m20Var, TLRPC.FileLocation fileLocation, String str, String str2) {
@@ -807,7 +807,7 @@ public final class w7 extends c1 {
             } else if (m20Var != null) {
                 str2 = r(null, m20Var);
             }
-            v7 v7Var = (v7) this.f26269x.remove(str2);
+            v7 v7Var = (v7) this.f26272x.remove(str2);
             if (v7Var != null) {
                 p7Var = v7Var.f25951a;
             }
@@ -819,7 +819,7 @@ public final class w7 extends c1 {
             if (p7Var != null) {
                 J.a(p7Var);
             }
-            J.c(new n7(this, str2, 1));
+            J.c(new o7(this, str2, 1));
             if (z9 && document != null) {
                 g0.h3(new r7(this, 1));
             }
@@ -842,7 +842,7 @@ public final class w7 extends c1 {
                 }
             }
             int i10 = i7;
-            long j3 = document.f26959id;
+            long j3 = document.f26962id;
             int i11 = document.dc_id;
             f8Var.getClass();
             f8Var.h(new d8(f8Var, j3, i11, i10, str, 1));
@@ -866,22 +866,22 @@ public final class w7 extends c1 {
     }
 
     public final void f0(final String str, final c20 c20Var) {
-        final y4 y4Var = new y4(7, this, r0);
+        final x4 x4Var = new x4(7, this, r0);
         ls[] lsVarArr = {new ls() {
             @Override
             public final void didReceivedNotification(int i7, int i10, Object[] objArr) {
                 int i11 = qs.U1;
                 String str2 = str;
                 c20 c20Var2 = c20Var;
-                y4 y4Var2 = y4Var;
+                x4 x4Var2 = x4Var;
                 if (i7 == i11) {
                     if (objArr[0] == str2) {
                         c20Var2.a((TLRPC.InputFile) objArr[1]);
-                        y4Var2.run();
+                        x4Var2.run();
                     }
                 } else if (i7 == qs.V1 && objArr[0] == str2) {
                     c20Var2.a(null);
-                    y4Var2.run();
+                    x4Var2.run();
                 }
             }
         }};
@@ -906,9 +906,9 @@ public final class w7 extends c1 {
             public final void run() {
                 long j10;
                 w7 w7Var = w7.this;
-                HashMap hashMap = w7Var.f26270y;
+                HashMap hashMap = w7Var.f26273y;
                 ConcurrentHashMap concurrentHashMap = w7Var.h;
-                ConcurrentHashMap concurrentHashMap2 = w7Var.f26265n;
+                ConcurrentHashMap concurrentHashMap2 = w7Var.f26268n;
                 boolean z12 = z9;
                 String str2 = str;
                 if (z12) {
@@ -944,24 +944,24 @@ public final class w7 extends c1 {
                     y8Var.E = true;
                 }
                 boolean z13 = z10;
-                y8Var.f26602o = new t7(w7Var, z12, str3, z13);
+                y8Var.f26611o = new t7(w7Var, z12, str3, z13);
                 if (z13) {
-                    int i11 = w7Var.f26267s;
+                    int i11 = w7Var.f26270s;
                     if (i11 < 1) {
-                        w7Var.f26267s = i11 + 1;
+                        w7Var.f26270s = i11 + 1;
                         y8Var.c();
                         return;
                     }
-                    w7Var.f26264f.add(y8Var);
+                    w7Var.f26267f.add(y8Var);
                     return;
                 }
-                int i12 = w7Var.f26266r;
+                int i12 = w7Var.f26269r;
                 if (i12 < 1) {
-                    w7Var.f26266r = i12 + 1;
+                    w7Var.f26269r = i12 + 1;
                     y8Var.c();
                     return;
                 }
-                w7Var.f26263e.add(y8Var);
+                w7Var.f26266e.add(y8Var);
             }
         });
     }
@@ -980,7 +980,7 @@ public final class w7 extends c1 {
         } else if (m20Var != null) {
             str2 = r(null, m20Var);
         }
-        J.c(new k7(this, str2, i7, 0));
+        J.c(new l7(this, str2, i7, 0));
     }
 
     public final void h0(boolean z9, int i7, String str, boolean z10) {
@@ -992,21 +992,21 @@ public final class w7 extends c1 {
         ArrayList arrayList2 = new ArrayList(getDownloadController().H);
         for (int i7 = 0; i7 < arrayList2.size(); i7++) {
             ((ij) arrayList2.get(i7)).K(true);
-            if (((ij) arrayList2.get(i7)).f23293x0) {
+            if (((ij) arrayList2.get(i7)).f23311x0) {
                 arrayList.add((ij) arrayList2.get(i7));
             }
         }
         if (!arrayList.isEmpty()) {
-            g0.h3(new y4(8, this, arrayList));
+            g0.h3(new x4(8, this, arrayList));
         }
     }
 
     public final boolean k(String str) {
         i7 i7Var;
-        if (str == null || (i7Var = (i7) this.f26268w.get(str)) == null || !i7Var.f23107l) {
+        if (str == null || (i7Var = (i7) this.f26271w.get(str)) == null || !i7Var.f23097l) {
             return false;
         }
-        i7Var.f23107l = false;
+        i7Var.f23097l = false;
         return true;
     }
 
@@ -1020,18 +1020,18 @@ public final class w7 extends c1 {
             long[] jArr = new long[1];
             em emVar = new em(f8Var, arrayList2, jArr, countDownLatch, 6);
             f8Var.d();
-            p5 p5Var = f8Var.f22359a;
-            Handler handler = p5Var.f24512a;
+            p5 p5Var = f8Var.f22378a;
+            Handler handler = p5Var.f24517a;
             if (handler != null) {
                 handler.postAtFrontOfQueue(emVar);
             } else {
-                synchronized (p5Var.f24513b) {
+                synchronized (p5Var.f24518b) {
                     try {
-                        ArrayList arrayList3 = p5Var.f24514c;
+                        ArrayList arrayList3 = p5Var.f24519c;
                         if (arrayList3 != null) {
                             arrayList3.add(new o5(1, 0L, emVar));
                         } else {
-                            p5Var.f24512a.postAtFrontOfQueue(emVar);
+                            p5Var.f24517a.postAtFrontOfQueue(emVar);
                         }
                     } finally {
                     }
@@ -1048,7 +1048,7 @@ public final class w7 extends c1 {
             sb2.append(System.currentTimeMillis() - currentTimeMillis);
             sb2.append(" thread_time=");
             jg.g.u(jArr[0], sb2);
-            boolean z9 = r2.f25199a;
+            boolean z9 = r2.f25212a;
             if (Thread.currentThread() == Looper.getMainLooper().getThread()) {
                 a8.g(new Exception("warning, not allowed in main thread"), true);
             }
@@ -1061,11 +1061,11 @@ public final class w7 extends c1 {
 
     public final float t(String str, float f10) {
         i7 i7Var;
-        if (!TextUtils.isEmpty(str) && (i7Var = (i7) this.f26268w.get(str)) != null) {
+        if (!TextUtils.isEmpty(str) && (i7Var = (i7) this.f26271w.get(str)) != null) {
             ArrayList arrayList = i7Var.N;
-            long j3 = i7Var.f23081b0;
+            long j3 = i7Var.f23071b0;
             if (j3 != 0 && arrayList != null) {
-                return (((float) i7Var.h((int) (((float) j3) * f10), j3, arrayList)) / ((float) i7Var.f23081b0)) + f10;
+                return (((float) i7Var.h((int) (((float) j3) * f10), j3, arrayList)) / ((float) i7Var.f23071b0)) + f10;
             }
         }
         return 0.0f;

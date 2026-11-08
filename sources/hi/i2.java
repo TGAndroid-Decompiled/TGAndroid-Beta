@@ -4,22 +4,22 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class i2 implements RequestDelegate {
-    public final int f14713a;
-    public final a3 f14714b;
+    public final int f14716a;
+    public final a3 f14717b;
 
     public i2(a3 a3Var, int i7) {
-        this.f14713a = i7;
-        this.f14714b = a3Var;
+        this.f14716a = i7;
+        this.f14717b = a3Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f14713a) {
+        switch (this.f14716a) {
             case 0:
-                org.telegram.messenger.g0.h3(new ha.b(3, this.f14714b, tL_error));
+                org.telegram.messenger.g0.h3(new ha.b(3, this.f14717b, tL_error));
                 return;
             case 1:
-                final a3 a3Var = this.f14714b;
+                final a3 a3Var = this.f14717b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -94,7 +94,7 @@ public final class i2 implements RequestDelegate {
                 });
                 return;
             case 2:
-                final a3 a3Var2 = this.f14714b;
+                final a3 a3Var2 = this.f14717b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -169,7 +169,7 @@ public final class i2 implements RequestDelegate {
                 });
                 return;
             case 3:
-                final a3 a3Var3 = this.f14714b;
+                final a3 a3Var3 = this.f14717b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -244,7 +244,7 @@ public final class i2 implements RequestDelegate {
                 });
                 return;
             case 4:
-                final a3 a3Var4 = this.f14714b;
+                final a3 a3Var4 = this.f14717b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -319,7 +319,7 @@ public final class i2 implements RequestDelegate {
                 });
                 return;
             default:
-                final a3 a3Var5 = this.f14714b;
+                final a3 a3Var5 = this.f14717b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {

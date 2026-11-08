@@ -13,19 +13,19 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class vd0 implements RequestDelegate {
-    public final int f50709a;
-    public final be0 f50710b;
+    public final int f50653a;
+    public final be0 f50654b;
 
     public vd0(be0 be0Var, int i7) {
-        this.f50709a = i7;
-        this.f50710b = be0Var;
+        this.f50653a = i7;
+        this.f50654b = be0Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f50709a) {
+        switch (this.f50653a) {
             case 0:
-                final be0 be0Var = this.f50710b;
+                final be0 be0Var = this.f50654b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -37,7 +37,7 @@ public final class vd0 implements RequestDelegate {
                         be0 be0Var2 = be0Var;
                         switch (i10) {
                             case 0:
-                                zd0 zd0Var = be0Var2.f44290a;
+                                zd0 zd0Var = be0Var2.f44293a;
                                 HashMap hashMap = be0Var2.I;
                                 ArrayList arrayList = be0Var2.G;
                                 HashMap hashMap2 = be0Var2.H;
@@ -76,7 +76,7 @@ public final class vd0 implements RequestDelegate {
                                             }
                                         }
                                     }
-                                    ce0 ce0Var = be0Var2.f44301g0;
+                                    ce0 ce0Var = be0Var2.f44304g0;
                                     if (ce0Var.F == 2) {
                                         i7 = ((org.telegram.ui.ActionBar.f2) ce0Var).currentAccount;
                                         String d = pf.b.d(org.telegram.messenger.p10.i(i7).d(), false);
@@ -126,12 +126,12 @@ public final class vd0 implements RequestDelegate {
                                 return;
                             default:
                                 be0Var2.M = false;
-                                ce0 ce0Var2 = be0Var2.f44301g0;
+                                ce0 ce0Var2 = be0Var2.f44304g0;
                                 ce0Var2.N1(false, true);
                                 if (tL_error2 == null) {
                                     TL_account.Password password = (TL_account.Password) tLObject2;
                                     if (!TwoStepVerificationActivity.n0(password, true)) {
-                                        org.telegram.ui.Components.v4.u0(ce0Var2.getParentActivity(), org.telegram.messenger.hd.M0(2131743821, "UpdateAppAlert"), true);
+                                        org.telegram.ui.Components.v4.u0(ce0Var2.getParentActivity(), org.telegram.messenger.id.M0(2131743823, "UpdateAppAlert"), true);
                                         return;
                                     }
                                     Bundle bundle = new Bundle();
@@ -141,14 +141,14 @@ public final class vd0 implements RequestDelegate {
                                     ce0Var2.M1(6, true, bundle, false);
                                     return;
                                 }
-                                ce0Var2.D1(org.telegram.messenger.hd.M0(2131746072, null), tL_error2.text);
+                                ce0Var2.D1(org.telegram.messenger.id.M0(2131746074, null), tL_error2.text);
                                 return;
                         }
                     }
                 });
                 return;
             default:
-                final be0 be0Var2 = this.f50710b;
+                final be0 be0Var2 = this.f50654b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -160,7 +160,7 @@ public final class vd0 implements RequestDelegate {
                         be0 be0Var22 = be0Var2;
                         switch (i10) {
                             case 0:
-                                zd0 zd0Var = be0Var22.f44290a;
+                                zd0 zd0Var = be0Var22.f44293a;
                                 HashMap hashMap = be0Var22.I;
                                 ArrayList arrayList = be0Var22.G;
                                 HashMap hashMap2 = be0Var22.H;
@@ -199,7 +199,7 @@ public final class vd0 implements RequestDelegate {
                                             }
                                         }
                                     }
-                                    ce0 ce0Var = be0Var22.f44301g0;
+                                    ce0 ce0Var = be0Var22.f44304g0;
                                     if (ce0Var.F == 2) {
                                         i7 = ((org.telegram.ui.ActionBar.f2) ce0Var).currentAccount;
                                         String d = pf.b.d(org.telegram.messenger.p10.i(i7).d(), false);
@@ -249,12 +249,12 @@ public final class vd0 implements RequestDelegate {
                                 return;
                             default:
                                 be0Var22.M = false;
-                                ce0 ce0Var2 = be0Var22.f44301g0;
+                                ce0 ce0Var2 = be0Var22.f44304g0;
                                 ce0Var2.N1(false, true);
                                 if (tL_error2 == null) {
                                     TL_account.Password password = (TL_account.Password) tLObject2;
                                     if (!TwoStepVerificationActivity.n0(password, true)) {
-                                        org.telegram.ui.Components.v4.u0(ce0Var2.getParentActivity(), org.telegram.messenger.hd.M0(2131743821, "UpdateAppAlert"), true);
+                                        org.telegram.ui.Components.v4.u0(ce0Var2.getParentActivity(), org.telegram.messenger.id.M0(2131743823, "UpdateAppAlert"), true);
                                         return;
                                     }
                                     Bundle bundle = new Bundle();
@@ -264,7 +264,7 @@ public final class vd0 implements RequestDelegate {
                                     ce0Var2.M1(6, true, bundle, false);
                                     return;
                                 }
-                                ce0Var2.D1(org.telegram.messenger.hd.M0(2131746072, null), tL_error2.text);
+                                ce0Var2.D1(org.telegram.messenger.id.M0(2131746074, null), tL_error2.text);
                                 return;
                         }
                     }

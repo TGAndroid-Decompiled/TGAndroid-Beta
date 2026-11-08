@@ -2,19 +2,19 @@ package org.telegram.ui;
 
 import android.graphics.RectF;
 public final class na implements org.telegram.messenger.sr {
-    public final int f48000a;
-    public final Object f48001b;
+    public final int f48008a;
+    public final Object f48009b;
 
     public na(Object obj, int i7) {
-        this.f48000a = i7;
-        this.f48001b = obj;
+        this.f48008a = i7;
+        this.f48009b = obj;
     }
 
     @Override
     public final void a(int i7) {
         pq0 pq0Var;
-        int i10 = this.f48000a;
-        Object obj = this.f48001b;
+        int i10 = this.f48008a;
+        Object obj = this.f48009b;
         switch (i10) {
             case 0:
                 ((mb) obj).Z0(true);
@@ -24,7 +24,7 @@ public final class na implements org.telegram.messenger.sr {
                 return;
             case 2:
                 PhotoViewer photoViewer = (PhotoViewer) obj;
-                if (photoViewer.D != null && (pq0Var = photoViewer.f41380e0) != null && i7 > 0) {
+                if (photoViewer.D != null && (pq0Var = photoViewer.f41384e0) != null && i7 > 0) {
                     org.telegram.ui.Components.hc.F(pq0Var, true).j();
                     return;
                 }
@@ -39,15 +39,15 @@ public final class na implements org.telegram.messenger.sr {
                     profileActivity.finishFragment();
                     return;
                 }
-                profileActivity.getNotificationCenter().k(79, Long.valueOf(profileActivity.f41712d1));
+                profileActivity.getNotificationCenter().k(79, Long.valueOf(profileActivity.f41716d1));
                 return;
             default:
-                v91 v91Var = ((c91) obj).f44727a;
+                w91 w91Var = ((d91) obj).f45033a;
                 if (i7 == 0) {
-                    v91Var.S0(false);
+                    w91Var.S0(false);
                     return;
                 } else {
-                    v91Var.finishFragment();
+                    w91Var.finishFragment();
                     return;
                 }
         }

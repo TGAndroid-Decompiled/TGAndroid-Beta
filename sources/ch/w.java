@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import bi.ab;
 import bi.x5;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.p10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
@@ -44,14 +44,14 @@ public final class w extends q11 {
                 x5Var.performHapticFeedback(3);
             } catch (Exception unused) {
             }
-            new hc(x5Var, null).r(document, org.telegram.messenger.g0.X2(hd.M0(2131743862, null)), hd.M0(2131747032, null), new ab(this, 10)).j();
+            new hc(x5Var, null).r(document, org.telegram.messenger.g0.X2(id.M0(2131743864, null)), id.M0(2131747034, null), new ab(this, 10)).j();
         } else if (l10 == null && document == null) {
         } else {
             if (document != null) {
-                i5.g(p10.f24467s0).e(document);
+                i5.g(p10.f24470s0).e(document);
             }
             if (l10 == null) {
-                longValue = document.f26959id;
+                longValue = document.f26962id;
             } else {
                 longValue = l10.longValue();
             }

@@ -143,25 +143,25 @@ public abstract class a {
             }
             if (xVar.d(cVar2.getContext())) {
                 fVar.f10776f = vVar;
-                fVar.f59987c = 1;
+                fVar.f60080c = 1;
                 xVar.c(cVar2.getContext(), fVar);
                 return;
             }
             t0 a11 = v1.a();
-            if (a11.f60020c >= 4294967296L) {
+            if (a11.f60113c >= 4294967296L) {
                 fVar.f10776f = vVar;
-                fVar.f59987c = 1;
-                hd.d dVar = a11.f60021e;
+                fVar.f60080c = 1;
+                hd.d dVar = a11.f60114e;
                 if (dVar == null) {
                     dVar = new hd.d();
-                    a11.f60021e = dVar;
+                    a11.f60114e = dVar;
                 }
                 dVar.addLast(fVar);
                 return;
             }
             a11.i(true);
             try {
-                a1 a1Var = (a1) cVar2.getContext().get(y.f60038b);
+                a1 a1Var = (a1) cVar2.getContext().get(y.f60131b);
                 if (a1Var != null && !a1Var.isActive()) {
                     fVar.resumeWith(af.b.b(a1Var.getCancellationException()));
                 } else {

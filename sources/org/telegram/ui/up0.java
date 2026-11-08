@@ -29,7 +29,7 @@ public final class up0 extends tg.g0 {
             photoViewer.n0();
             if (z9) {
                 photoViewer.F2.g0();
-            } else if (photoViewer.I4 && photoViewer.O1() && photoViewer.f41364c2 != 1) {
+            } else if (photoViewer.I4 && photoViewer.O1() && photoViewer.f41368c2 != 1) {
             } else {
                 photoViewer.F2.h0();
             }

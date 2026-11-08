@@ -64,7 +64,7 @@ public final class c {
                 this.f6208c = width - 0.1f;
             }
         }
-        g5.a aVar = Utilities.f21332c;
+        g5.a aVar = Utilities.f21335c;
         this.f6207b = com.google.android.recaptcha.internal.a.c(Math.abs(((int) aVar.nextLong()) % 100), 100.0f, rect.height() * 0.1f, rect.height() * 0.45f);
         if (z9) {
             float c12 = com.google.android.recaptcha.internal.a.c(Math.abs(((int) aVar.nextLong()) % 100), 100.0f, rect.width() * 0.1f, rect.width() * 0.05f);
@@ -91,12 +91,12 @@ public final class c {
         Rect rect = dVar.f6218b;
         if (dVar.f6221f) {
             float width = rect.width() * 1.5f;
-            return com.google.android.recaptcha.internal.a.c(Math.abs(((int) Utilities.f21332c.nextLong()) % 100), 100.0f, width, rect.width() * (-0.25f));
+            return com.google.android.recaptcha.internal.a.c(Math.abs(((int) Utilities.f21335c.nextLong()) % 100), 100.0f, width, rect.width() * (-0.25f));
         }
-        return (Math.abs(((int) Utilities.f21332c.nextLong()) % 100) / 100.0f) * rect.width();
+        return (Math.abs(((int) Utilities.f21335c.nextLong()) % 100) / 100.0f) * rect.width();
     }
 
     public final float c() {
-        return (Math.abs(((int) Utilities.f21332c.nextLong()) % 100) / 100.0f) * this.f6215l.f6218b.height() * 0.5f;
+        return (Math.abs(((int) Utilities.f21335c.nextLong()) % 100) / 100.0f) * this.f6215l.f6218b.height() * 0.5f;
     }
 }

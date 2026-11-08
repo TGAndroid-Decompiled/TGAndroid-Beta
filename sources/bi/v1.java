@@ -19,13 +19,13 @@ public final class v1 extends qh.c implements te.b {
         int i7 = org.telegram.ui.ActionBar.k6.Kl;
         int r12 = org.telegram.ui.ActionBar.k6.r1(0.09411765f, org.telegram.ui.ActionBar.k6.w0(i7, f6Var));
         org.telegram.ui.ActionBar.k6.r1(0.1254902f, org.telegram.ui.ActionBar.k6.w0(i7, f6Var));
-        this.f54058e.setColor(r12);
-        this.f4862n = new qh.b[]{qh.b.c(context, f6Var, qh.a.G, 2131749624), qh.b.c(context, f6Var, qh.a.f54037w, 2131749641), qh.b.c(context, f6Var, qh.a.J, 2131749622)};
+        this.f54151e.setColor(r12);
+        this.f4862n = new qh.b[]{qh.b.c(context, f6Var, qh.a.G, 2131749626), qh.b.c(context, f6Var, qh.a.f54130w, 2131749643), qh.b.c(context, f6Var, qh.a.J, 2131749624)};
         int i10 = 0;
         while (true) {
             qh.b[] bVarArr = this.f4862n;
             if (i10 < bVarArr.length) {
-                this.f54055a.addView(bVarArr[i10], c8.ha.l(1.0f, 0, -1));
+                this.f54148a.addView(bVarArr[i10], c8.ha.l(1.0f, 0, -1));
                 this.f4862n[i10].setOnClickListener(new ai.v(this, i10, 2));
                 i10++;
             } else {
@@ -54,11 +54,11 @@ public final class v1 extends qh.c implements te.b {
     }
 
     public final void b() {
-        float f10 = this.f4861f.f55400f;
+        float f10 = this.f4861f.f55492f;
         int measuredHeight = getMeasuredHeight() - org.telegram.messenger.g0.L(8.0f);
-        Rect rect = this.f54057c;
+        Rect rect = this.f54150c;
         rect.set(org.telegram.messenger.g0.W1(f10 / 3.0f, org.telegram.messenger.g0.L(8.0f), getMeasuredWidth() - org.telegram.messenger.g0.L(8.0f)), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.W1((f10 + 1.0f) / 3.0f, org.telegram.messenger.g0.L(8.0f), getMeasuredWidth() - org.telegram.messenger.g0.L(8.0f)), measuredHeight);
-        int L = org.telegram.messenger.g0.L(this.f54056b * 7.0f);
+        int L = org.telegram.messenger.g0.L(this.f54149b * 7.0f);
         Rect rect2 = this.d;
         rect2.set(rect);
         int i7 = -L;

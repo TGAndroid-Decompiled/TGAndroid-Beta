@@ -2,20 +2,20 @@ package x2;
 
 import java.io.IOException;
 public final class u0 implements c1 {
-    public final int f58392a;
-    public final w0 f58393b;
+    public final int f58481a;
+    public final w0 f58482b;
 
     public u0(w0 w0Var, int i7) {
-        this.f58393b = w0Var;
-        this.f58392a = i7;
+        this.f58482b = w0Var;
+        this.f58481a = i7;
     }
 
     @Override
     public final void a() {
-        int i7 = this.f58392a;
-        w0 w0Var = this.f58393b;
+        int i7 = this.f58481a;
+        w0 w0Var = this.f58482b;
         w0Var.L[i7].C();
-        b3.o oVar = w0Var.f58420y;
+        b3.o oVar = w0Var.f58509y;
         int X0 = w0Var.d.X0(w0Var.V);
         IOException iOException = oVar.f2964c;
         if (iOException == null) {
@@ -37,8 +37,8 @@ public final class u0 implements c1 {
 
     @Override
     public final boolean f() {
-        w0 w0Var = this.f58393b;
-        if (!w0Var.A() && w0Var.L[this.f58392a].A(w0Var.f58413g0)) {
+        w0 w0Var = this.f58482b;
+        if (!w0Var.A() && w0Var.L[this.f58481a].A(w0Var.f58502g0)) {
             return true;
         }
         return false;
@@ -46,14 +46,14 @@ public final class u0 implements c1 {
 
     @Override
     public final int l(long j3) {
-        w0 w0Var = this.f58393b;
+        w0 w0Var = this.f58482b;
         if (w0Var.A()) {
             return 0;
         }
-        int i7 = this.f58392a;
+        int i7 = this.f58481a;
         w0Var.v(i7);
         b1 b1Var = w0Var.L[i7];
-        int x10 = b1Var.x(j3, w0Var.f58413g0);
+        int x10 = b1Var.x(j3, w0Var.f58502g0);
         b1Var.L(x10);
         if (x10 == 0) {
             w0Var.w(i7);
@@ -63,13 +63,13 @@ public final class u0 implements c1 {
 
     @Override
     public final int m(wf.b bVar, k2.h hVar, int i7) {
-        w0 w0Var = this.f58393b;
+        w0 w0Var = this.f58482b;
         if (w0Var.A()) {
             return -3;
         }
-        int i10 = this.f58392a;
+        int i10 = this.f58481a;
         w0Var.v(i10);
-        int F = w0Var.L[i10].F(bVar, hVar, i7, w0Var.f58413g0);
+        int F = w0Var.L[i10].F(bVar, hVar, i7, w0Var.f58502g0);
         if (F == -3) {
             w0Var.w(i10);
         }

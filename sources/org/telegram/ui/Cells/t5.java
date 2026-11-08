@@ -15,25 +15,25 @@ import org.telegram.ui.Components.xq;
 import org.telegram.ui.er0;
 import org.telegram.ui.fr0;
 public final class t5 extends FrameLayout {
-    public final int f30518a = 0;
-    public final org.telegram.ui.Components.l9 f30519b;
-    public final View f30520c;
+    public final int f30522a = 0;
+    public final org.telegram.ui.Components.l9 f30523b;
+    public final View f30524c;
     public final View d;
-    public final View f30521e;
-    public final Object f30522f;
+    public final View f30525e;
+    public final Object f30526f;
 
     public t5(v5 v5Var, Context context) {
         super(context);
-        this.f30522f = v5Var;
+        this.f30526f = v5Var;
         org.telegram.ui.Components.l9 l9Var = new org.telegram.ui.Components.l9(context);
-        this.f30519b = l9Var;
+        this.f30523b = l9Var;
         addView(l9Var, c8.ha.c(-1.0f, -1));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(0);
         linearLayout.setBackgroundResource(2131230867);
         addView(linearLayout, c8.ha.e(-1, 60, 83));
         TextView textView = new TextView(context);
-        this.f30520c = textView;
+        this.f30524c = textView;
         textView.setTextSize(1, 13.0f);
         textView.setTextColor(-1);
         textView.setSingleLine(true);
@@ -51,7 +51,7 @@ public final class t5 extends FrameLayout {
         f10.setGravity(80);
         linearLayout.addView(f10, c8.ha.k(4.0f, 0.0f, 7.0f, 5.0f, -2, -1));
         View view = new View(context);
-        this.f30521e = view;
+        this.f30525e = view;
         view.setBackgroundDrawable(org.telegram.ui.ActionBar.k6.N0(false));
         addView(view, c8.ha.c(-1.0f, -1));
     }
@@ -64,9 +64,9 @@ public final class t5 extends FrameLayout {
     public void dispatchDraw(Canvas canvas) {
         float f10;
         er0 er0Var;
-        switch (this.f30518a) {
+        switch (this.f30522a) {
             case 1:
-                fr0 fr0Var = (fr0) this.f30522f;
+                fr0 fr0Var = (fr0) this.f30526f;
                 float[] fArr = fr0Var.Q;
                 if (fr0Var.C == null) {
                     float f11 = fr0Var.P;
@@ -80,7 +80,7 @@ public final class t5 extends FrameLayout {
                         }
                     }
                 }
-                float interpolation = xq.f40345f.getInterpolation(fr0Var.P) * fr0Var.A;
+                float interpolation = xq.f40366f.getInterpolation(fr0Var.P) * fr0Var.A;
                 float measuredHeight = getMeasuredHeight();
                 float f13 = 0.0f;
                 if (interpolation != 1.0f && (er0Var = fr0Var.F) != null) {
@@ -100,7 +100,7 @@ public final class t5 extends FrameLayout {
                     super.dispatchDraw(canvas);
                     f10 = measuredHeight;
                 }
-                fr0Var.c(canvas, 1.0f - interpolation, fr0Var.f45711o - getLeft(), fr0Var.f45712p - getTop(), f13, f10);
+                fr0Var.c(canvas, 1.0f - interpolation, fr0Var.f45688o - getLeft(), fr0Var.f45689p - getTop(), f13, f10);
                 return;
             default:
                 super.dispatchDraw(canvas);
@@ -110,13 +110,13 @@ public final class t5 extends FrameLayout {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f30518a) {
+        switch (this.f30522a) {
             case 0:
-                v5 v5Var = (v5) this.f30522f;
-                org.telegram.ui.Components.l9 l9Var = this.f30519b;
-                if (!l9Var.getImageReceiver().L() || l9Var.getImageReceiver().f21194h1 != 1.0f) {
-                    v5Var.f30637e.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.X9, false));
-                    canvas.drawRect(0.0f, 0.0f, l9Var.getMeasuredWidth(), l9Var.getMeasuredHeight(), v5Var.f30637e);
+                v5 v5Var = (v5) this.f30526f;
+                org.telegram.ui.Components.l9 l9Var = this.f30523b;
+                if (!l9Var.getImageReceiver().L() || l9Var.getImageReceiver().f21197h1 != 1.0f) {
+                    v5Var.f30641e.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.X9, false));
+                    canvas.drawRect(0.0f, 0.0f, l9Var.getMeasuredWidth(), l9Var.getMeasuredHeight(), v5Var.f30641e);
                     return;
                 }
                 return;
@@ -128,9 +128,9 @@ public final class t5 extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f30518a) {
+        switch (this.f30522a) {
             case 0:
-                this.f30521e.drawableHotspotChanged(motionEvent.getX(), motionEvent.getY());
+                this.f30525e.drawableHotspotChanged(motionEvent.getX(), motionEvent.getY());
                 return super.onTouchEvent(motionEvent);
             default:
                 return super.onTouchEvent(motionEvent);
@@ -139,19 +139,19 @@ public final class t5 extends FrameLayout {
 
     public t5(fr0 fr0Var, Context context) {
         super(context);
-        this.f30522f = fr0Var;
+        this.f30526f = fr0Var;
         new Path();
         new Paint(1);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f30520c = frameLayout;
+        this.f30524c = frameLayout;
         frameLayout.setOutlineProvider(new bg.q0(21));
         frameLayout.setClipToOutline(true);
         org.telegram.ui.Components.l9 l9Var = new org.telegram.ui.Components.l9(context);
-        this.f30519b = l9Var;
+        this.f30523b = l9Var;
         frameLayout.addView(l9Var);
         frameLayout.setWillNotDraw(false);
         org.telegram.ui.j4 j4Var = new org.telegram.ui.j4(context);
-        this.f30521e = j4Var;
+        this.f30525e = j4Var;
         j4Var.setBackgroundColor(0);
         frameLayout.addView(j4Var, c8.ha.e(-1, -1, 17));
         TextureView textureView = new TextureView(context);

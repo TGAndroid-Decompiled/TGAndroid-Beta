@@ -7,36 +7,42 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Looper;
+import android.os.SystemClock;
 import android.os.Trace;
 import j$.util.Objects;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicBoolean;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.telegram.ui.Components.p71;
-import org.telegram.ui.Components.py;
-import org.telegram.ui.d10;
-final class WidgetSandboxBackend implements x, c {
+public final class WidgetSandboxBackend implements y0, g {
+    private static final int MAX_CANVAS_WORDS = 2097152;
+    private static final int MAX_DISPLAY_OPS = 200000;
+    private static final int MAX_FONTS = 4096;
+    private static final int MAX_FRAMES_PER_SECOND = 240;
+    static final long MAX_IMAGE_BYTES = 33554432;
+    static final long MAX_IMAGE_PIXELS = 4194304;
+    private static final int MAX_LAYERS = 256;
+    private static final long MAX_LIST_BYTES = 8388608;
     private static final long MEMORY_BUDGET = 33554432;
     private long imageBytes;
     private long layerParseNanos;
     private int nextFont;
-    private final h0 owner;
-    private m0 text;
+    private int nextRecord;
+    private final h1 owner;
+    private m1 text;
+    private final long[] recordTimes = new long[240];
     private final ConcurrentHashMap<Integer, Paint> fonts = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<Integer, Paint> deviceFonts = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<Integer, Bitmap> images = new ConcurrentHashMap<>();
-    private final ConcurrentHashMap<Integer, d> canvases = new ConcurrentHashMap<>();
-    private final HashMap<Integer, JSONArray> pendingLayers = new HashMap<>();
-    private HashMap<Long, s> layerContents = new HashMap<>();
-    private final y painter = new y();
-    private final Rect bounds = new Rect();
+    private final ConcurrentHashMap<Integer, h> canvases = new ConcurrentHashMap<>();
+    private final HashMap<Integer, i> pendingLayers = new HashMap<>();
+    private HashMap<Long, s0> layerContents = new HashMap<>();
+    private final z0 painter = new z0();
 
-    public WidgetSandboxBackend(h0 h0Var) {
-        this.owner = h0Var;
+    public WidgetSandboxBackend(h1 h1Var) {
+        this.owner = h1Var;
     }
 
     private static void assertWorker() {
@@ -51,14 +57,14 @@ final class WidgetSandboxBackend implements x, c {
         long j3 = i10 * i11;
         if (j3 <= 4194304) {
             long j10 = (j3 * 8) + this.imageBytes;
-            for (Map.Entry<Integer, d> entry : this.canvases.entrySet()) {
+            for (Map.Entry<Integer, h> entry : this.canvases.entrySet()) {
                 if (entry.getKey().intValue() != i7) {
-                    d value = entry.getValue();
-                    Bitmap bitmap = value.f52762o;
+                    h value = entry.getValue();
+                    Bitmap bitmap = value.f52813o;
                     if (bitmap == null) {
                         width = 0;
                     } else {
-                        width = bitmap.getWidth() * value.f52762o.getHeight() * 8;
+                        width = bitmap.getWidth() * value.f52813o.getHeight() * 8;
                     }
                     j10 += width;
                 }
@@ -69,6 +75,10 @@ final class WidgetSandboxBackend implements x, c {
             throw new IllegalArgumentException("Canvas memory budget");
         }
         throw new IllegalArgumentException("Canvas dimensions");
+    }
+
+    public static android.graphics.Bitmap decodeImage(java.lang.String r40, long r41) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.WidgetSandboxBackend.decodeImage(java.lang.String, long):android.graphics.Bitmap");
     }
 
     public static String featureSettings(String str) {
@@ -98,7 +108,7 @@ final class WidgetSandboxBackend implements x, c {
         return sb2.toString();
     }
 
-    private g0[] layers(JSONObject jSONObject, float f10) {
+    private g1[] layers(JSONObject jSONObject, float f10) {
         int length;
         int i7;
         JSONArray jSONArray;
@@ -110,7 +120,7 @@ final class WidgetSandboxBackend implements x, c {
         boolean z9;
         int i11;
         int i12;
-        g fVar;
+        c0 b0Var;
         JSONArray optJSONArray = jSONObject.optJSONArray("l");
         int i13 = 0;
         if (optJSONArray == null) {
@@ -118,8 +128,8 @@ final class WidgetSandboxBackend implements x, c {
         } else {
             length = optJSONArray.length();
         }
-        HashMap<Long, s> hashMap = new HashMap<>();
-        g0[] g0VarArr = new g0[length];
+        HashMap<Long, s0> hashMap = new HashMap<>();
+        g1[] g1VarArr = new g1[length];
         int i14 = 0;
         int i15 = 0;
         while (i14 < length) {
@@ -137,39 +147,39 @@ final class WidgetSandboxBackend implements x, c {
                     int floor2 = (int) Math.floor(optJSONArray2.optDouble(1) * d);
                     int ceil = (int) Math.ceil((optJSONArray2.optDouble(2) + optJSONArray2.optDouble(0)) * d);
                     int ceil2 = (int) Math.ceil((optJSONArray2.optDouble(3) + optJSONArray2.optDouble(1)) * d);
-                    s sVar = this.layerContents.get(Long.valueOf(optLong));
-                    JSONArray jSONArray2 = this.pendingLayers.get(Integer.valueOf(i14));
-                    if (jSONArray2 != null) {
+                    s0 s0Var = this.layerContents.get(Long.valueOf(optLong));
+                    i iVar = this.pendingLayers.get(Integer.valueOf(i14));
+                    if (iVar != null) {
                         if (Build.VERSION.SDK_INT >= 29) {
-                            g eVar = new e("widget-sandbox-layer", floor, floor2, ceil, ceil2);
+                            c0 a0Var = new a0("widget-sandbox-layer", floor, floor2, ceil, ceil2);
                             i12 = floor;
                             i11 = floor2;
                             i10 = i14;
                             j3 = optLong;
-                            fVar = eVar;
+                            b0Var = a0Var;
                         } else {
                             i10 = i14;
                             j3 = optLong;
                             i11 = floor2;
                             i12 = floor;
-                            fVar = new f(i12, i11, ceil, ceil2);
+                            b0Var = new b0(i12, i11, ceil, ceil2);
                         }
-                        Canvas a10 = fVar.a();
+                        Canvas a10 = b0Var.a();
                         try {
                             a10.translate(-i12, -i11);
                             a10.scale(f10, f10);
-                            this.painter.f(a10, jSONArray2, this, f10);
-                            fVar.e();
-                            sVar = new s(fVar, (int) optLong2);
+                            this.painter.e(a10, iVar, this, f10);
+                            b0Var.d();
+                            s0Var = new s0(b0Var, (int) optLong2);
                         } catch (Throwable th2) {
-                            fVar.e();
+                            b0Var.d();
                             throw th2;
                         }
                     } else {
                         i10 = i14;
                         j3 = optLong;
-                        if (sVar != null) {
-                            if (sVar.f52888b != ((int) optLong2)) {
+                        if (s0Var != null) {
+                            if (s0Var.f52963b != ((int) optLong2)) {
                             }
                         }
                         i14 = i10 + 1;
@@ -177,16 +187,16 @@ final class WidgetSandboxBackend implements x, c {
                         optJSONArray = jSONArray;
                         i13 = 0;
                     }
-                    hashMap.put(Long.valueOf(j3), sVar);
+                    hashMap.put(Long.valueOf(j3), s0Var);
                     JSONArray optJSONArray3 = optJSONObject.optJSONArray("l");
                     float[] fArr3 = null;
                     if (optJSONArray3 != null) {
                         float[] fArr4 = new float[4];
-                        y.d(optJSONArray3, fArr4, 4, new float[0]);
+                        z0.c(optJSONArray3, fArr4, 4, new float[0]);
                         JSONArray optJSONArray4 = optJSONObject.optJSONArray("q");
                         if (optJSONArray4 != null) {
                             fArr3 = new float[8];
-                            y.d(optJSONArray4, fArr3, 8, new float[0]);
+                            z0.c(optJSONArray4, fArr3, 8, new float[0]);
                         }
                         fArr2 = fArr3;
                         fArr = fArr4;
@@ -201,9 +211,9 @@ final class WidgetSandboxBackend implements x, c {
                         length2 = (optJSONArray5.length() / 8) * 8;
                     }
                     float[] fArr5 = new float[length2];
-                    y.d(optJSONArray5, fArr5, length2, new float[0]);
+                    z0.c(optJSONArray5, fArr5, length2, new float[0]);
                     int i16 = i15 + 1;
-                    g gVar = sVar.f52887a;
+                    c0 c0Var = s0Var.f52962a;
                     double optDouble2 = optJSONObject.optDouble("ts");
                     double optDouble3 = optJSONObject.optDouble("td");
                     if (optJSONObject.optInt("tr") != 0) {
@@ -211,7 +221,7 @@ final class WidgetSandboxBackend implements x, c {
                     } else {
                         z9 = false;
                     }
-                    g0VarArr[i15] = new g0(gVar, fArr, fArr2, optDouble2, optDouble3, z9, fArr5);
+                    g1VarArr[i15] = new g1(c0Var, fArr, fArr2, optDouble2, optDouble3, z9, fArr5);
                     i15 = i16;
                     i14 = i10 + 1;
                     length = i7;
@@ -230,41 +240,75 @@ final class WidgetSandboxBackend implements x, c {
         int i17 = length;
         this.layerContents = hashMap;
         if (i15 == i17) {
-            return g0VarArr;
+            return g1VarArr;
         }
-        g0[] g0VarArr2 = new g0[i15];
-        System.arraycopy(g0VarArr, 0, g0VarArr2, 0, i15);
-        return g0VarArr2;
+        g1[] g1VarArr2 = new g1[i15];
+        System.arraycopy(g1VarArr, 0, g1VarArr2, 0, i15);
+        return g1VarArr2;
     }
 
-    private static String text(byte[] bArr) {
+    public static float[] metrics(int i7, Paint paint, float f10, Rect rect) {
+        Paint.FontMetrics fontMetrics = paint.getFontMetrics();
+        paint.getTextBounds("x", 0, 1, rect);
+        float f11 = fontMetrics.ascent;
+        float f12 = fontMetrics.descent;
+        return new float[]{i7, (-f11) / f10, f12 / f10, ((f12 - f11) + fontMetrics.leading) / f10, rect.height() / f10, paint.measureText("0") / f10};
+    }
+
+    public static Paint[] paints(String str, float f10, int i7, boolean z9, String str2, float f11) {
+        f10 = (f10 <= 0.0f || f10 > 10000.0f) ? 16.0f : 16.0f;
+        Paint paint = new Paint(129);
+        paint.setTextSize(f10);
+        paint.setTypeface(typeface(str, i7, z9));
+        String featureSettings = featureSettings(str2);
+        if (featureSettings != null) {
+            paint.setFontFeatureSettings(featureSettings);
+        }
+        Paint paint2 = new Paint(paint);
+        paint2.setTextSize(f10 * f11);
+        return new Paint[]{paint, paint2};
+    }
+
+    private void putImage(int i7, Bitmap bitmap) {
+        Bitmap put = this.images.put(Integer.valueOf(i7), bitmap);
+        long allocationByteCount = this.imageBytes + bitmap.getAllocationByteCount();
+        this.imageBytes = allocationByteCount;
+        if (put != null) {
+            this.imageBytes = allocationByteCount - put.getAllocationByteCount();
+        }
+    }
+
+    public static String text(byte[] bArr) {
+        if (bArr == null) {
+            return "";
+        }
         return new String(bArr, StandardCharsets.UTF_8);
     }
 
-    private static android.graphics.Typeface typeface(java.lang.String r9, int r10, boolean r11) {
+    public static android.graphics.Typeface typeface(java.lang.String r9, int r10, boolean r11) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.WidgetSandboxBackend.typeface(java.lang.String, int, boolean):android.graphics.Typeface");
     }
 
     @Override
     public Bitmap canvas(int i7) {
-        d dVar = this.canvases.get(Integer.valueOf(i7));
-        if (dVar == null) {
+        h hVar = this.canvases.get(Integer.valueOf(i7));
+        if (hVar == null) {
             return null;
         }
-        synchronized (dVar) {
+        synchronized (hVar) {
             try {
-                Bitmap bitmap = dVar.f52762o;
+                Bitmap bitmap = hVar.f52813o;
                 if (bitmap == null) {
                     return null;
                 }
-                if (dVar.f52766s == dVar.f52765r) {
-                    if (dVar.f52763p == null) {
+                if (hVar.f52817s == hVar.f52816r) {
+                    if (hVar.f52814p == null) {
                     }
-                    return dVar.f52763p;
+                    return hVar.f52814p;
                 }
-                dVar.f52763p = bitmap.copy(Bitmap.Config.ARGB_8888, false);
-                dVar.f52766s = dVar.f52765r;
-                return dVar.f52763p;
+                hVar.f52814p = bitmap.copy(Bitmap.Config.ARGB_8888, false);
+                hVar.f52817s = hVar.f52816r;
+                return hVar.f52814p;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -273,32 +317,32 @@ final class WidgetSandboxBackend implements x, c {
 
     @Override
     public Bitmap canvasBitmap(int i7) {
-        d dVar = this.canvases.get(Integer.valueOf(i7));
-        if (dVar == null) {
+        h hVar = this.canvases.get(Integer.valueOf(i7));
+        if (hVar == null) {
             return null;
         }
-        return dVar.f52762o;
+        return hVar.f52813o;
     }
 
     public byte[] canvasRead(int i7, int i10, int i11, int i12, int i13) {
         int i14 = i10;
         assertWorker();
         if (i12 > 0 && i13 > 0 && i12 * i13 <= 4194304) {
-            d dVar = this.canvases.get(Integer.valueOf(i7));
-            if (dVar == null) {
+            h hVar = this.canvases.get(Integer.valueOf(i7));
+            if (hVar == null) {
                 return new byte[i12 * i13 * 4];
             }
             byte[] bArr = new byte[Math.max(i13, 0) * Math.max(i12, 0) * 4];
-            if (dVar.f52762o != null) {
+            if (hVar.f52813o != null) {
                 int max = Math.max(0, i14);
                 int max2 = Math.max(0, i11);
-                int min = Math.min(dVar.f52762o.getWidth(), i14 + i12);
-                int min2 = Math.min(dVar.f52762o.getHeight(), i13 + i11);
+                int min = Math.min(hVar.f52813o.getWidth(), i14 + i12);
+                int min2 = Math.min(hVar.f52813o.getHeight(), i13 + i11);
                 if (min > max && min2 > max2) {
                     int i15 = min - max;
                     int i16 = min2 - max2;
                     int[] iArr = new int[i15 * i16];
-                    dVar.f52762o.getPixels(iArr, 0, i15, max, max2, i15, i16);
+                    hVar.f52813o.getPixels(iArr, 0, i15, max, max2, i15, i16);
                     int i17 = max2;
                     while (i17 < min2) {
                         int i18 = max;
@@ -324,17 +368,17 @@ final class WidgetSandboxBackend implements x, c {
 
     public void canvasRelease(int i7) {
         assertWorker();
-        d remove = this.canvases.remove(Integer.valueOf(i7));
+        h remove = this.canvases.remove(Integer.valueOf(i7));
         if (remove != null) {
             synchronized (remove) {
                 try {
-                    Bitmap bitmap = remove.f52762o;
+                    Bitmap bitmap = remove.f52813o;
                     if (bitmap != null) {
                         bitmap.recycle();
                     }
-                    remove.f52762o = null;
-                    remove.f52764q = null;
-                    remove.f52763p = null;
+                    remove.f52813o = null;
+                    remove.f52815q = null;
+                    remove.f52814p = null;
                 } catch (Throwable th2) {
                     throw th2;
                 }
@@ -348,25 +392,25 @@ final class WidgetSandboxBackend implements x, c {
 
     public float[] createFont(byte[] bArr, float f10, int i7, boolean z9, byte[] bArr2) {
         assertWorker();
-        Paint paint = new Paint(129);
-        paint.setTextSize(f10);
-        paint.setTypeface(typeface(text(bArr), i7, z9));
-        String featureSettings = featureSettings(text(bArr2));
-        if (featureSettings != null) {
-            paint.setFontFeatureSettings(featureSettings);
-        }
-        float f11 = this.owner.f52804j;
-        Paint paint2 = new Paint(paint);
-        paint2.setTextSize(f10 * f11);
-        Paint.FontMetrics fontMetrics = paint2.getFontMetrics();
         int i10 = this.nextFont + 1;
         this.nextFont = i10;
-        this.fonts.put(Integer.valueOf(i10), paint);
-        this.deviceFonts.put(Integer.valueOf(i10), paint2);
-        paint2.getTextBounds("x", 0, 1, this.bounds);
-        float f12 = fontMetrics.ascent;
-        float f13 = fontMetrics.descent;
-        return new float[]{i10, (-f12) / f11, f13 / f11, ((f13 - f12) + fontMetrics.leading) / f11, this.bounds.height() / f11, paint2.measureText("0") / f11};
+        return defineFont(i10, bArr, f10, i7, z9, bArr2);
+    }
+
+    public float[] defineFont(int i7, byte[] bArr, float f10, int i10, boolean z9, byte[] bArr2) {
+        if (this.fonts.size() >= 4096 && !this.fonts.containsKey(Integer.valueOf(i7))) {
+            throw new IllegalArgumentException("Too many fonts");
+        }
+        Paint[] paints = paints(text(bArr), f10, i10, z9, text(bArr2), this.owner.f52834l);
+        this.fonts.put(Integer.valueOf(i7), paints[0]);
+        this.deviceFonts.put(Integer.valueOf(i7), paints[1]);
+        return metrics(i7, paints[1], this.owner.f52834l, new Rect());
+    }
+
+    public void defineImage(int i7, Bitmap bitmap) {
+        if (bitmap != null && bitmap.getWidth() > 0 && bitmap.getHeight() > 0 && bitmap.getWidth() * bitmap.getHeight() <= 4194304 && this.imageBytes + bitmap.getAllocationByteCount() <= 33554432) {
+            putImage(i7, bitmap);
+        }
     }
 
     public void deleteFont(int i7) {
@@ -385,7 +429,7 @@ final class WidgetSandboxBackend implements x, c {
     }
 
     public byte[] formatIntl(byte[] bArr) {
-        return t.b(text(bArr)).getBytes(StandardCharsets.UTF_8);
+        return t0.b(text(bArr)).getBytes(StandardCharsets.UTF_8);
     }
 
     @Override
@@ -393,65 +437,89 @@ final class WidgetSandboxBackend implements x, c {
         return this.images.get(Integer.valueOf(i7));
     }
 
-    public float[] loadImage(int r42, byte[] r43) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.WidgetSandboxBackend.loadImage(int, byte[]):float[]");
+    public float[] loadImage(int i7, byte[] bArr) {
+        Bitmap decodeImage = decodeImage(text(bArr), this.imageBytes);
+        if (decodeImage == null) {
+            return null;
+        }
+        putImage(i7, decodeImage);
+        return new float[]{decodeImage.getWidth(), decodeImage.getHeight()};
     }
 
     public void record(byte[] bArr, byte[] bArr2, double d, int i7, int i10, float f10, float f11, int i11, int i12) {
-        g fVar;
+        c0 b0Var;
         int i13;
         int i14;
         assertWorker();
-        this.owner.getClass();
-        this.owner.getClass();
-        Trace.beginSection("WidgetSandbox:Record");
-        long nanoTime = System.nanoTime();
-        double d2 = d - (nanoTime / 1.0E9d);
-        if (Build.VERSION.SDK_INT >= 29) {
-            i13 = i7;
-            fVar = new e("widget-sandbox-content", 0, 0, i13, i10);
-            i14 = i10;
-        } else {
-            i13 = i7;
-            i14 = i10;
-            fVar = new f(0, 0, i13, i14);
-        }
-        g gVar = fVar;
-        try {
-            try {
-                JSONArray jSONArray = new JSONArray(text(bArr));
-                JSONObject jSONObject = new JSONObject(text(bArr2));
-                System.nanoTime();
-                Canvas a10 = gVar.a();
-                try {
-                    a10.scale(f10, f10);
-                    this.painter.f(a10, jSONArray, this, f10);
-                    gVar.e();
-                    g0[] layers = layers(jSONObject, f10);
-                    h0 h0Var = this.owner;
-                    System.nanoTime();
-                    h0Var.getClass();
-                    this.owner.b(gVar, layers, d2, i13, i14, f11, ((float) (System.nanoTime() - nanoTime)) / 1000000.0f, i11, i12, jSONArray.length(), this.text);
-                } catch (Throwable th2) {
-                    gVar.e();
-                    throw th2;
-                }
-            } finally {
+        if (bArr.length <= 8388608) {
+            long elapsedRealtime = SystemClock.elapsedRealtime();
+            long[] jArr = this.recordTimes;
+            int i15 = this.nextRecord;
+            if (elapsedRealtime - jArr[i15] < 1000) {
                 this.pendingLayers.clear();
                 this.layerParseNanos = 0L;
-                Trace.endSection();
+                return;
             }
-        } catch (Exception e10) {
-            gVar.c();
-            throw e10;
+            jArr[i15] = elapsedRealtime;
+            this.nextRecord = (i15 + 1) % jArr.length;
+            this.owner.getClass();
+            this.owner.getClass();
+            Trace.beginSection("WidgetSandbox:Record");
+            long nanoTime = System.nanoTime();
+            double d2 = d - (nanoTime / 1.0E9d);
+            if (Build.VERSION.SDK_INT >= 29) {
+                b0Var = new a0("widget-sandbox-content", 0, 0, i7, i10);
+                i13 = i7;
+                i14 = i10;
+            } else {
+                i13 = i7;
+                i14 = i10;
+                b0Var = new b0(0, 0, i13, i14);
+            }
+            c0 c0Var = b0Var;
+            try {
+                try {
+                    i b10 = i.b(bArr);
+                    JSONObject jSONObject = new JSONObject(text(bArr2));
+                    System.nanoTime();
+                    Canvas a10 = c0Var.a();
+                    try {
+                        a10.scale(f10, f10);
+                        this.painter.e(a10, b10, this, f10);
+                        c0Var.d();
+                        g1[] layers = layers(jSONObject, f10);
+                        h1 h1Var = this.owner;
+                        System.nanoTime();
+                        h1Var.getClass();
+                        this.owner.b(c0Var, layers, d2, i13, i14, f11, ((float) (System.nanoTime() - nanoTime)) / 1000000.0f, i11, i12, b10.f52849b, this.text);
+                        return;
+                    } catch (Throwable th2) {
+                        c0Var.d();
+                        throw th2;
+                    }
+                } finally {
+                    this.pendingLayers.clear();
+                    this.layerParseNanos = 0L;
+                    Trace.endSection();
+                }
+            } catch (Exception e10) {
+                c0Var.b();
+                throw e10;
+            }
         }
+        this.pendingLayers.clear();
+        throw new IllegalArgumentException("Display list");
     }
 
     public void recordLayer(int i7, int i10, byte[] bArr) {
         assertWorker();
         long nanoTime = System.nanoTime();
-        this.pendingLayers.put(Integer.valueOf(i7), new JSONArray(text(bArr)));
-        this.layerParseNanos = (System.nanoTime() - nanoTime) + this.layerParseNanos;
+        if (i7 >= 0 && i7 < 256 && bArr.length <= 8388608) {
+            this.pendingLayers.put(Integer.valueOf(i7), i.b(bArr));
+            this.layerParseNanos = (System.nanoTime() - nanoTime) + this.layerParseNanos;
+            return;
+        }
+        throw new IllegalArgumentException("Layer");
     }
 
     public void selectableText(byte[] bArr) {
@@ -460,253 +528,18 @@ final class WidgetSandboxBackend implements x, c {
             String text = text(bArr);
             ConcurrentHashMap<Integer, Paint> concurrentHashMap = this.deviceFonts;
             Objects.requireNonNull(concurrentHashMap);
-            this.text = m0.a(text, new r(concurrentHashMap), this.owner.f52804j);
+            this.text = m1.a(text, new o(concurrentHashMap), this.owner.f52834l);
         } catch (Exception unused) {
             this.text = null;
         }
     }
 
-    public void signal(int i7, byte[] bArr) {
-        final h0 h0Var = this.owner;
-        final String text = text(bArr);
-        if (i7 == 8) {
-            h0Var.f52797a.post(new Runnable() {
-                @Override
-                public final void run() {
-                    u uVar;
-                    p71 p71Var;
-                    u uVar2;
-                    switch (r3) {
-                        case 0:
-                            h0 h0Var2 = h0Var;
-                            String str = text;
-                            if (h0Var2.K != null) {
-                                try {
-                                    JSONObject jSONObject = new JSONObject(str);
-                                    JSONObject optJSONObject = jSONObject.optJSONObject("values");
-                                    u uVar3 = h0Var2.K;
-                                    String optString = jSONObject.optString("area");
-                                    if (optJSONObject == null) {
-                                        optJSONObject = new JSONObject();
-                                    }
-                                    uVar3.h(optString, optJSONObject);
-                                } catch (Exception unused) {
-                                    return;
-                                }
-                            }
-                            return;
-                        case 1:
-                            h0 h0Var3 = h0Var;
-                            String str2 = text;
-                            if (!h0Var3.f52815u && (uVar = h0Var3.J) != null && (p71Var = uVar.h) != null) {
-                                if (p71Var.F || (p71Var.f36807w && p71Var.E)) {
-                                    p71Var.f36788a.f(str2);
-                                    return;
-                                }
-                                return;
-                            }
-                            return;
-                        default:
-                            h0 h0Var4 = h0Var;
-                            String str3 = text;
-                            if (!h0Var4.f52815u && (uVar2 = h0Var4.J) != null) {
-                                try {
-                                    uVar2.f(new JSONObject(str3));
-                                } catch (Exception unused2) {
-                                    return;
-                                }
-                            }
-                            return;
-                    }
-                }
-            });
-        } else if (i7 == 10) {
-            h0Var.getClass();
-        } else if (!h0Var.f52815u) {
-            if (i7 != 12 && i7 != 13 && i7 != 14 && i7 != 19) {
-                if (i7 == 11) {
-                    h0Var.f52797a.post(new Runnable() {
-                        @Override
-                        public final void run() {
-                            u uVar;
-                            p71 p71Var;
-                            u uVar2;
-                            switch (r3) {
-                                case 0:
-                                    h0 h0Var2 = h0Var;
-                                    String str = text;
-                                    if (h0Var2.K != null) {
-                                        try {
-                                            JSONObject jSONObject = new JSONObject(str);
-                                            JSONObject optJSONObject = jSONObject.optJSONObject("values");
-                                            u uVar3 = h0Var2.K;
-                                            String optString = jSONObject.optString("area");
-                                            if (optJSONObject == null) {
-                                                optJSONObject = new JSONObject();
-                                            }
-                                            uVar3.h(optString, optJSONObject);
-                                        } catch (Exception unused) {
-                                            return;
-                                        }
-                                    }
-                                    return;
-                                case 1:
-                                    h0 h0Var3 = h0Var;
-                                    String str2 = text;
-                                    if (!h0Var3.f52815u && (uVar = h0Var3.J) != null && (p71Var = uVar.h) != null) {
-                                        if (p71Var.F || (p71Var.f36807w && p71Var.E)) {
-                                            p71Var.f36788a.f(str2);
-                                            return;
-                                        }
-                                        return;
-                                    }
-                                    return;
-                                default:
-                                    h0 h0Var4 = h0Var;
-                                    String str3 = text;
-                                    if (!h0Var4.f52815u && (uVar2 = h0Var4.J) != null) {
-                                        try {
-                                            uVar2.f(new JSONObject(str3));
-                                        } catch (Exception unused2) {
-                                            return;
-                                        }
-                                    }
-                                    return;
-                            }
-                        }
-                    });
-                    return;
-                }
-                try {
-                    if (i7 == 18) {
-                        JSONObject jSONObject = new JSONObject(text);
-                        jSONObject.optDouble("receive");
-                        jSONObject.optDouble("animate");
-                        jSONObject.optDouble("paint");
-                        jSONObject.optDouble("serialize");
-                        jSONObject.optDouble("ticks");
-                        jSONObject.optDouble("framesSent");
-                        jSONObject.optDouble("opsLatency");
-                        jSONObject.optDouble("validate", -1.0d);
-                        jSONObject.optDouble("hop", -1.0d);
-                        return;
-                    } else if (i7 != 16 && i7 != 17 && i7 != 9) {
-                        boolean z9 = false;
-                        if (i7 == 6) {
-                            h0Var.f52807m.set(false);
-                            h0Var.f52797a.post(h0Var.N);
-                            return;
-                        } else if (i7 == 1) {
-                            h0Var.f52808n.set(true);
-                            h0Var.f52797a.post(h0Var.R);
-                            return;
-                        } else if (i7 == 2) {
-                            h0Var.f52806l.set(true);
-                            h0Var.f52797a.removeCallbacks(h0Var.N);
-                            h0Var.f52797a.post(h0Var.N);
-                            return;
-                        } else if (i7 == 3) {
-                            JSONObject jSONObject2 = new JSONObject(text);
-                            h0Var.f52797a.post(new py(h0Var, jSONObject2.optBoolean("x"), jSONObject2.optBoolean("y"), jSONObject2.optBoolean("hold"), 2));
-                            return;
-                        } else if (i7 == 4) {
-                            JSONObject jSONObject3 = new JSONObject(text);
-                            if (jSONObject3.optBoolean("loaded")) {
-                                h0Var.v = true;
-                            }
-                            h0Var.f52818y = "bottom".equals(jSONObject3.optString("resizeAnchor"));
-                            if (jSONObject3.optBoolean("rendered") && !h0Var.f52816w) {
-                                double optDouble = jSONObject3.optDouble("height", -1.0d);
-                                double min = Math.min(600.0f, Math.max(50.0f, h0Var.f52812r / h0Var.f52804j));
-                                if (h0Var.f52813s && optDouble > 0.0d && Math.abs(min - optDouble) <= 1.0d) {
-                                    h0Var.f52817x = true;
-                                }
-                                h0Var.f52816w = true;
-                            }
-                            synchronized (h0Var.f52811q) {
-                                if (h0Var.f52815u) {
-                                    return;
-                                }
-                                h0Var.H = jSONObject3;
-                                if (!h0Var.I) {
-                                    h0Var.I = true;
-                                    h0Var.f52797a.post(h0Var.M);
-                                }
-                                return;
-                            }
-                        } else if (i7 == 5) {
-                            h0Var.f52797a.post(new Runnable() {
-                                @Override
-                                public final void run() {
-                                    u uVar;
-                                    p71 p71Var;
-                                    u uVar2;
-                                    switch (r3) {
-                                        case 0:
-                                            h0 h0Var2 = h0Var;
-                                            String str = text;
-                                            if (h0Var2.K != null) {
-                                                try {
-                                                    JSONObject jSONObject4 = new JSONObject(str);
-                                                    JSONObject optJSONObject = jSONObject4.optJSONObject("values");
-                                                    u uVar3 = h0Var2.K;
-                                                    String optString = jSONObject4.optString("area");
-                                                    if (optJSONObject == null) {
-                                                        optJSONObject = new JSONObject();
-                                                    }
-                                                    uVar3.h(optString, optJSONObject);
-                                                } catch (Exception unused) {
-                                                    return;
-                                                }
-                                            }
-                                            return;
-                                        case 1:
-                                            h0 h0Var3 = h0Var;
-                                            String str2 = text;
-                                            if (!h0Var3.f52815u && (uVar = h0Var3.J) != null && (p71Var = uVar.h) != null) {
-                                                if (p71Var.F || (p71Var.f36807w && p71Var.E)) {
-                                                    p71Var.f36788a.f(str2);
-                                                    return;
-                                                }
-                                                return;
-                                            }
-                                            return;
-                                        default:
-                                            h0 h0Var4 = h0Var;
-                                            String str3 = text;
-                                            if (!h0Var4.f52815u && (uVar2 = h0Var4.J) != null) {
-                                                try {
-                                                    uVar2.f(new JSONObject(str3));
-                                                } catch (Exception unused2) {
-                                                    return;
-                                                }
-                                            }
-                                            return;
-                                    }
-                                }
-                            });
-                            return;
-                        } else if (i7 == 7) {
-                            float parseFloat = Float.parseFloat(text);
-                            AtomicBoolean atomicBoolean = h0Var.f52809o;
-                            if (parseFloat == 0.0f) {
-                                z9 = true;
-                            }
-                            atomicBoolean.set(z9);
-                            h0Var.f52797a.post(new org.telegram.ui.b0(h0Var, parseFloat, 4));
-                            return;
-                        } else {
-                            return;
-                        }
-                    } else {
-                        return;
-                    }
-                } catch (NumberFormatException | Exception unused) {
-                    return;
-                }
-            }
-            h0Var.f52797a.post(new d10(h0Var, i7, text, 20));
-        }
+    public h1 session() {
+        return this.owner;
+    }
+
+    public void signal(final int r19, byte[] r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.WidgetSandboxBackend.signal(int, byte[]):void");
     }
 
     public float textWidth(int i7, byte[] bArr) {
@@ -714,6 +547,6 @@ final class WidgetSandboxBackend implements x, c {
         if (paint == null) {
             return 0.0f;
         }
-        return paint.measureText(text(bArr)) / this.owner.f52804j;
+        return paint.measureText(text(bArr)) / this.owner.f52834l;
     }
 }

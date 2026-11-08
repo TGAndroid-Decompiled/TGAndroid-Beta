@@ -1,42 +1,65 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.d20;
-import org.telegram.messenger.v10;
-import org.telegram.messenger.x10;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.la1;
-public final class d3 implements la1 {
-    public final int f42330a;
-    public final int f42331b;
-    public final d20 f42332c;
-    public final v10 d;
-    public final h3 f42333e;
-    public final x10 f42334f;
-    public final boolean h;
-    public final boolean f42335n;
-    public final bg.v0 f42336r;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
+import android.view.View;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.lc;
+import org.telegram.ui.za1;
+public final class d3 implements org.telegram.ui.ActionBar.r1, r0.m, lc {
+    public final int f42387a;
+    public final Object f42388b;
 
-    public d3(int i7, d20 d20Var, v10 v10Var, h3 h3Var, x10 x10Var, boolean z9, boolean z10, bg.v0 v0Var, int i10) {
-        this.f42330a = i10;
-        this.f42331b = i7;
-        this.f42332c = d20Var;
-        this.d = v10Var;
-        this.f42333e = h3Var;
-        this.f42334f = x10Var;
-        this.h = z9;
-        this.f42335n = z10;
-        this.f42336r = v0Var;
+    public d3(Object obj, int i7) {
+        this.f42387a = i7;
+        this.f42388b = obj;
     }
 
     @Override
-    public final void j(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP) {
-        switch (this.f42330a) {
-            case 0:
-                i3.a(this.f42331b, this.f42332c, this.d, tL_inputCheckPasswordSRP, this.f42333e, this.f42334f, this.h, this.f42335n, this.f42336r);
+    public r0.k1 S0(View view, r0.k1 k1Var) {
+        o3 o3Var = (o3) this.f42388b;
+        o3Var.H = k1Var.f54201a.f(647);
+        o3Var.h.requestLayout();
+        return r0.k1.f54200b;
+    }
+
+    public void a(float f10, float f11, int i7) {
+        switch (this.f42387a) {
+            case 2:
+                ((g6) this.f42388b).I.setShadowLayer(f10 * 2.0f, f11, -0.0f, i0.a.o(i7, Math.round(Color.alpha(i7) * 0.5f)));
+                return;
+            case 3:
+                ((TextPaint) this.f42388b).setShadowLayer(f10, 0.0f, f11, i7);
                 return;
             default:
-                i3.a(this.f42331b, this.f42332c, this.d, tL_inputCheckPasswordSRP, this.f42333e, this.f42334f, this.h, this.f42335n, this.f42336r);
+                ((org.telegram.ui.Components.i6) this.f42388b).s(f10, f11, i7);
                 return;
         }
+    }
+
+    @Override
+    public void f0(ImageReceiver imageReceiver, boolean z9, boolean z10, boolean z11) {
+        ((a8) this.f42388b).f42129d0.f0();
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        switch (this.f42387a) {
+            case 0:
+                ((org.telegram.ui.ActionBar.f2) this.f42388b).presentFragment(new za1(6, null));
+                return;
+            default:
+                n8.e0((n8) this.f42388b, u1Var, i7);
+                return;
+        }
+    }
+
+    @Override
+    public void O(ImageReceiver imageReceiver) {
+    }
+
+    @Override
+    public void t0(int i7, Drawable drawable) {
     }
 }

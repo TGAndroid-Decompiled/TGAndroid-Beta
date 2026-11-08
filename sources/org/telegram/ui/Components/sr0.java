@@ -20,19 +20,19 @@ public abstract class sr0 extends FrameLayout {
     public final Paint M;
     public org.telegram.ui.ActionBar.f6 N;
     public Drawable O;
-    public long f38105a;
-    public boolean f38106b;
-    public ObjectAnimator f38107c;
+    public long f38121a;
+    public boolean f38122b;
+    public ObjectAnimator f38123c;
     public v4.k d;
-    public v4.u0 f38108e;
-    public v4.u0 f38109f;
+    public v4.u0 f38124e;
+    public v4.u0 f38125f;
     public cq0 h;
-    public rr0 f38110n;
-    public dq0 f38111r;
-    public lq0 f38112s;
-    public nq0 f38113w;
-    public aq0 f38114x;
-    public kq0 f38115y;
+    public rr0 f38126n;
+    public dq0 f38127r;
+    public lq0 f38128s;
+    public nq0 f38129w;
+    public aq0 f38130x;
+    public kq0 f38131y;
 
     public sr0(Context context) {
         super(context);
@@ -90,7 +90,7 @@ public abstract class sr0 extends FrameLayout {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.f38110n) {
+        if (view == this.f38126n) {
             return true;
         }
         return super.drawChild(canvas, view, j3);
@@ -108,7 +108,7 @@ public abstract class sr0 extends FrameLayout {
             this.O.draw(canvas);
             canvas.restore();
         } else if (this.L) {
-            int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27793a7, this.N);
+            int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27796a7, this.N);
             Paint paint = this.M;
             paint.setColor(w02);
             canvas.drawRect(-L, min, getWidth() + L, max, paint);

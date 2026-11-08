@@ -7,15 +7,15 @@ import f3.i;
 import f3.p;
 import f3.s;
 public final class a {
-    public final e f17190a;
-    public final i f17191b;
-    public f f17192c;
+    public final e f17193a;
+    public final i f17194b;
+    public f f17195c;
     public final int d;
 
     public a(g gVar, i iVar, long j3, long j10, long j11, long j12, long j13, int i7) {
-        this.f17191b = iVar;
+        this.f17194b = iVar;
         this.d = i7;
-        this.f17190a = new e(gVar, j3, j10, j11, j12, j13);
+        this.f17193a = new e(gVar, j3, j10, j11, j12, j13);
     }
 
     public static int a(int i7, byte[] bArr) {
@@ -35,11 +35,11 @@ public final class a {
     }
 
     public final void d(long j3) {
-        f fVar = this.f17192c;
+        f fVar = this.f17195c;
         if (fVar != null && fVar.f11024a == j3) {
             return;
         }
-        e eVar = this.f17190a;
-        this.f17192c = new f(j3, eVar.f11013a.q(j3), eVar.f11015c, eVar.d, eVar.f11016e, eVar.f11017f);
+        e eVar = this.f17193a;
+        this.f17195c = new f(j3, eVar.f11013a.q(j3), eVar.f11015c, eVar.d, eVar.f11016e, eVar.f11017f);
     }
 }

@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import org.telegram.messenger.c20;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ls;
 import org.telegram.messenger.qp;
 import org.telegram.messenger.qs;
@@ -102,7 +102,7 @@ public final class s8 extends org.telegram.ui.ActionBar.v2 implements ls {
         this.P1 = true;
         this.Q1 = false;
         this.H1 = i7;
-        String string = qp.s1(this.f28613a).f24767e7.getString("story_prv_contacts", null);
+        String string = qp.s1(this.f28616a).f24774e7.getString("story_prv_contacts", null);
         if (string != null) {
             String[] split = string.split(",");
             arrayList3.clear();
@@ -113,7 +113,7 @@ public final class s8 extends org.telegram.ui.ActionBar.v2 implements ls {
                 }
             }
         }
-        String string2 = qp.s1(this.f28613a).f24767e7.getString("story_prv_grpcontacts", null);
+        String string2 = qp.s1(this.f28616a).f24774e7.getString("story_prv_grpcontacts", null);
         if (string2 != null) {
             String[] split2 = string2.split(";");
             hashMap2.clear();
@@ -145,7 +145,7 @@ public final class s8 extends org.telegram.ui.ActionBar.v2 implements ls {
         }
         boolean z11 = z10;
         ?? r23 = c11;
-        String string3 = qp.s1(this.f28613a).f24767e7.getString("story_prv_everyoneexcept", null);
+        String string3 = qp.s1(this.f28616a).f24774e7.getString("story_prv_everyoneexcept", null);
         if (string3 != null) {
             String[] split4 = string3.split(",");
             arrayList.clear();
@@ -156,7 +156,7 @@ public final class s8 extends org.telegram.ui.ActionBar.v2 implements ls {
                 }
             }
         }
-        String string4 = qp.s1(this.f28613a).f24767e7.getString("story_prv_grpeveryoneexcept", null);
+        String string4 = qp.s1(this.f28616a).f24774e7.getString("story_prv_grpeveryoneexcept", null);
         if (string4 != null) {
             String[] split5 = string4.split(";");
             hashMap.clear();
@@ -175,7 +175,7 @@ public final class s8 extends org.telegram.ui.ActionBar.v2 implements ls {
                 }
             }
         }
-        String string5 = qp.s1(this.f28613a).f24767e7.getString("story_prv_excluded", null);
+        String string5 = qp.s1(this.f28616a).f24774e7.getString("story_prv_excluded", null);
         if (string5 != null) {
             String[] split7 = string5.split(",");
             arrayList2.clear();
@@ -188,14 +188,14 @@ public final class s8 extends org.telegram.ui.ActionBar.v2 implements ls {
         }
         this.f12809q1 = R0(arrayList3, hashMap2).size();
         this.f12806m1 = R0(arrayList, hashMap).size();
-        this.f12812t1 = !qp.s1(this.f28613a).f24767e7.getBoolean("story_noforwards", r23);
-        this.f12813u1 = qp.s1(this.f28613a).f24767e7.getBoolean("story_keep", z11);
+        this.f12812t1 = !qp.s1(this.f28616a).f24774e7.getBoolean("story_noforwards", r23);
+        this.f12813u1 = qp.s1(this.f28616a).f24774e7.getBoolean("story_keep", z11);
         P0(context);
         this.f12803i1.setAdapter(new q7(this, context, 0));
-        yr a02 = yr.a0(this.f28613a);
-        a02.f26696a.c(new f2.h(18, this, a02));
-        qp.s1(this.f28613a).P1().S();
-        qp.s1(this.f28613a).P1().U();
+        yr a02 = yr.a0(this.f28616a);
+        a02.f26719a.c(new f2.h(18, this, a02));
+        qp.s1(this.f28616a).P1().S();
+        qp.s1(this.f28616a).P1().U();
     }
 
     public static ArrayList J0(s8 s8Var) {
@@ -215,12 +215,12 @@ public final class s8 extends org.telegram.ui.ActionBar.v2 implements ls {
     public static int K0(s8 s8Var, TLRPC.Chat chat) {
         Integer num;
         int i7;
-        TLRPC.ChatFull N0 = qp.s1(s8Var.f28613a).N0(chat.f26953id);
+        TLRPC.ChatFull N0 = qp.s1(s8Var.f28616a).N0(chat.f26956id);
         if (N0 != null && (i7 = N0.participants_count) > 0) {
             return i7;
         }
         HashMap hashMap = s8Var.G1;
-        if (hashMap != null && (num = (Integer) hashMap.get(Long.valueOf(chat.f26953id))) != null) {
+        if (hashMap != null && (num = (Integer) hashMap.get(Long.valueOf(chat.f26956id))) != null) {
             return num.intValue();
         }
         return chat.participants_count;
@@ -250,9 +250,9 @@ public final class s8 extends org.telegram.ui.ActionBar.v2 implements ls {
 
     @Override
     public final void K() {
-        qs.f(this.f28613a).n(this, qs.O);
-        qs.f(this.f28613a).n(this, qs.f24961a3);
-        qs.f(this.f28613a).n(this, qs.f24973c3);
+        qs.f(this.f28616a).n(this, qs.O);
+        qs.f(this.f28616a).n(this, qs.f24970a3);
+        qs.f(this.f28616a).n(this, qs.f24982c3);
         super.K();
     }
 
@@ -282,13 +282,13 @@ public final class s8 extends org.telegram.ui.ActionBar.v2 implements ls {
     public final void N0(q8 q8Var, Runnable runnable, boolean z9) {
         ArrayList arrayList = new ArrayList();
         if (this.J1 != null) {
-            qp s12 = qp.s1(this.f28613a);
+            qp s12 = qp.s1(this.f28616a);
             for (int i7 = 0; i7 < this.J1.size(); i7++) {
                 String str = (String) this.J1.get(i7);
                 TLObject f22 = s12.f2(str);
                 if (f22 instanceof TLRPC.User) {
                     TLRPC.User user = (TLRPC.User) f22;
-                    TLRPC.User a22 = s12.a2(Long.valueOf(user.f27102id));
+                    TLRPC.User a22 = s12.a2(Long.valueOf(user.f27105id));
                     if (a22 != null) {
                         user = a22;
                     }
@@ -310,11 +310,11 @@ public final class s8 extends org.telegram.ui.ActionBar.v2 implements ls {
                 spannableStringBuilder.append((CharSequence) spannableString);
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, getContext(), this.I0);
-            String M0 = hd.M0(2131744490, null);
-            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
+            String M0 = id.M0(2131744492, null);
+            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
             u1Var.R = M0;
-            u1Var.T = org.telegram.messenger.g0.K2(hd.M0(2131744489, null), spannableStringBuilder, "%s");
-            alertDialog$Builder.k(hd.M0(2131746742, null), new a3.h(this, q8Var, runnable, 9));
+            u1Var.T = org.telegram.messenger.g0.K2(id.M0(2131744491, null), spannableStringBuilder, "%s");
+            alertDialog$Builder.k(id.M0(2131746744, null), new a3.h(this, q8Var, runnable, 9));
             jg.g.w(null, 2131752589, alertDialog$Builder, null);
             return;
         }
@@ -327,7 +327,7 @@ public final class s8 extends org.telegram.ui.ActionBar.v2 implements ls {
         }
         y7 y7Var = this.K1;
         if (y7Var != null) {
-            y7Var.l(q8Var, this.f12811s1, this.f12812t1, this.f12813u1, this.f12816x1, this.f12804j1, this.f12817y1, new f2.h(20, dVar, runnable), new di.s7(dVar, 28));
+            y7Var.k(q8Var, this.f12811s1, this.f12812t1, this.f12813u1, this.f12816x1, this.f12804j1, this.f12817y1, new f2.h(20, dVar, runnable), new di.s7(dVar, 28));
         } else {
             runnable.run();
         }
@@ -336,15 +336,15 @@ public final class s8 extends org.telegram.ui.ActionBar.v2 implements ls {
     public final ArrayList O0() {
         TLRPC.User a22;
         ArrayList arrayList = new ArrayList();
-        ArrayList arrayList2 = org.telegram.messenger.g5.r(this.f28613a).f22589e0;
+        ArrayList arrayList2 = org.telegram.messenger.g5.r(this.f28616a).f22608e0;
         if (arrayList2 == null || arrayList2.isEmpty()) {
-            org.telegram.messenger.g5.r(this.f28613a).A(0L, false);
+            org.telegram.messenger.g5.r(this.f28616a).A(0L, false);
         }
-        qp s12 = qp.s1(this.f28613a);
+        qp s12 = qp.s1(this.f28616a);
         if (arrayList2 != null) {
             for (int i7 = 0; i7 < arrayList2.size(); i7++) {
                 TLRPC.TL_contact tL_contact = (TLRPC.TL_contact) arrayList2.get(i7);
-                if (tL_contact != null && (a22 = s12.a2(Long.valueOf(tL_contact.user_id))) != null && !t10.B(a22) && !a22.bot && a22.f27102id != 777000) {
+                if (tL_contact != null && (a22 = s12.a2(Long.valueOf(tL_contact.user_id))) != null && !t10.B(a22) && !a22.bot && a22.f27105id != 777000) {
                     arrayList.add(a22);
                 }
             }
@@ -353,19 +353,19 @@ public final class s8 extends org.telegram.ui.ActionBar.v2 implements ls {
     }
 
     public final void P0(Context context) {
-        cc.a(this.f28619c, new r7(0));
-        qs.f(this.f28613a).c(this, qs.O);
-        qs.f(this.f28613a).c(this, qs.f24961a3);
-        qs.f(this.f28613a).c(this, qs.f24973c3);
-        int i7 = org.telegram.ui.ActionBar.k6.f27922h5;
+        cc.a(this.f28622c, new r7(0));
+        qs.f(this.f28616a).c(this, qs.O);
+        qs.f(this.f28616a).c(this, qs.f24970a3);
+        qs.f(this.f28616a).c(this, qs.f24982c3);
+        int i7 = org.telegram.ui.ActionBar.k6.f27925h5;
         this.I1.setColor(org.telegram.ui.ActionBar.k6.w0(i7, this.I0));
         P(i7);
-        this.f28616b = new x7(this, context);
+        this.f28619b = new x7(this, context);
         g1 g1Var = new g1(1, context, this);
         this.f12803i1 = g1Var;
-        int i10 = this.f28646t0;
+        int i10 = this.f28649t0;
         g1Var.setPadding(i10, 0, i10, 0);
-        this.f28616b.addView(this.f12803i1, c8.ha.e(-1, -1, 119));
+        this.f28619b.addView(this.f12803i1, c8.ha.e(-1, -1, 119));
     }
 
     public final void Q0(boolean z9) {
@@ -512,7 +512,7 @@ public final class s8 extends org.telegram.ui.ActionBar.v2 implements ls {
                 if (view2 instanceof n8) {
                     ((n8) view2).h(true);
                 }
-            } else if (i7 == qs.f24961a3) {
+            } else if (i7 == qs.f24970a3) {
                 View[] viewPages2 = g1Var.getViewPages();
                 while (i11 < viewPages2.length) {
                     View view3 = viewPages2[i11];
@@ -527,7 +527,7 @@ public final class s8 extends org.telegram.ui.ActionBar.v2 implements ls {
                     }
                     i11++;
                 }
-            } else if (i7 == qs.f24973c3) {
+            } else if (i7 == qs.f24982c3) {
                 View[] viewPages3 = g1Var.getViewPages();
                 while (i11 < viewPages3.length) {
                     View view4 = viewPages3[i11];
@@ -555,7 +555,7 @@ public final class s8 extends org.telegram.ui.ActionBar.v2 implements ls {
         if (c20Var != null) {
             int i7 = this.E1;
             if (i7 == 3) {
-                q8Var = new q8(this.E1, this.f28613a, new ArrayList(R0(arrayList3, hashMap2)));
+                q8Var = new q8(this.E1, this.f28616a, new ArrayList(R0(arrayList3, hashMap2)));
                 ArrayList arrayList4 = q8Var.f12680c;
                 arrayList4.clear();
                 arrayList4.addAll(arrayList3);
@@ -563,7 +563,7 @@ public final class s8 extends org.telegram.ui.ActionBar.v2 implements ls {
                 hashMap3.clear();
                 hashMap3.putAll(hashMap2);
             } else if (i7 == 4) {
-                q8Var = new q8(this.E1, this.f28613a, new ArrayList(R0(arrayList2, hashMap)));
+                q8Var = new q8(this.E1, this.f28616a, new ArrayList(R0(arrayList2, hashMap)));
                 ArrayList arrayList5 = q8Var.f12680c;
                 arrayList5.clear();
                 arrayList5.addAll(arrayList2);
@@ -571,14 +571,14 @@ public final class s8 extends org.telegram.ui.ActionBar.v2 implements ls {
                 hashMap4.clear();
                 hashMap4.putAll(hashMap);
             } else if (i7 == 2) {
-                q8Var = new q8(i7, this.f28613a, arrayList);
+                q8Var = new q8(i7, this.f28616a, arrayList);
             } else {
-                q8Var = new q8(i7, this.f28613a, (ArrayList) null);
+                q8Var = new q8(i7, this.f28616a, (ArrayList) null);
             }
             this.L1.a(q8Var);
             this.L1 = null;
         }
-        cc.h(this.f28619c);
+        cc.h(this.f28622c);
         StringBuilder sb2 = new StringBuilder();
         for (Map.Entry entry : hashMap2.entrySet()) {
             if (sb2.length() > 0) {
@@ -597,7 +597,7 @@ public final class s8 extends org.telegram.ui.ActionBar.v2 implements ls {
             sb3.append(",");
             sb3.append(TextUtils.join(",", (Iterable) entry2.getValue()));
         }
-        qp.s1(this.f28613a).f24767e7.edit().putString("story_prv_everyoneexcept", TextUtils.join(",", arrayList2)).putString("story_prv_grpeveryoneexcept", sb3.toString()).putString("story_prv_contacts", TextUtils.join(",", arrayList3)).putString("story_prv_grpcontacts", sb2.toString()).putString("story_prv_excluded", TextUtils.join(",", arrayList)).putBoolean("story_noforwards", !this.f12812t1).putBoolean("story_keep", this.f12813u1).apply();
+        qp.s1(this.f28616a).f24774e7.edit().putString("story_prv_everyoneexcept", TextUtils.join(",", arrayList2)).putString("story_prv_grpeveryoneexcept", sb3.toString()).putString("story_prv_contacts", TextUtils.join(",", arrayList3)).putString("story_prv_grpcontacts", sb2.toString()).putString("story_prv_excluded", TextUtils.join(",", arrayList)).putBoolean("story_noforwards", !this.f12812t1).putBoolean("story_keep", this.f12813u1).apply();
         super.dismiss();
     }
 
@@ -616,8 +616,8 @@ public final class s8 extends org.telegram.ui.ActionBar.v2 implements ls {
     public final void s0() {
         super.s0();
         try {
-            this.I1.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27922h5, this.I0));
-            ViewGroup viewGroup = this.f28616b;
+            this.I1.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27925h5, this.I0));
+            ViewGroup viewGroup = this.f28619b;
             if (viewGroup != null) {
                 viewGroup.invalidate();
             }

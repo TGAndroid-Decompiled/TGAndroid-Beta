@@ -6,22 +6,22 @@ import android.view.ViewGroup;
 import c8.ha;
 import org.telegram.ui.Components.ki0;
 public final class k0 extends j {
-    public final i0 f55707q0;
-    public int f55708r0;
-    public int f55709s0;
-    public boolean f55710t0;
-    public h0 f55711u0;
+    public final i0 f55799q0;
+    public int f55800r0;
+    public int f55801s0;
+    public boolean f55802t0;
+    public h0 f55803u0;
 
     public k0(Context context, PointF pointF, int i7, h0 h0Var, float f10, int i10) {
         super(context, pointF);
         i0 i0Var = new i0(context, f10);
-        this.f55707q0 = i0Var;
+        this.f55799q0 = i0Var;
         i0Var.setMaxWidth(i10);
-        this.f55711u0 = h0Var;
+        this.f55803u0 = h0Var;
         i0Var.b(i7, h0Var, false);
         m();
-        this.f55709s0 = 3;
-        i0Var.c(3, this.f55708r0);
+        this.f55801s0 = 3;
+        i0Var.c(3, this.f55800r0);
         addView(i0Var, ha.e(-2, -2, 51));
         setClipChildren(false);
         setClipToPadding(false);
@@ -34,7 +34,7 @@ public final class k0 extends j {
     }
 
     public int getColor() {
-        return this.f55708r0;
+        return this.f55800r0;
     }
 
     @Override
@@ -43,9 +43,9 @@ public final class k0 extends j {
     }
 
     public int getNextType() {
-        int i7 = this.f55709s0 + 1;
+        int i7 = this.f55801s0 + 1;
         if (i7 == 4) {
-            return !this.f55710t0 ? 1 : 0;
+            return !this.f55802t0 ? 1 : 0;
         }
         return i7;
     }
@@ -67,26 +67,26 @@ public final class k0 extends j {
 
     @Override
     public float getStickyPaddingBottom() {
-        return this.f55707q0.h;
+        return this.f55799q0.h;
     }
 
     @Override
     public float getStickyPaddingLeft() {
-        return this.f55707q0.f55643f;
+        return this.f55799q0.f55735f;
     }
 
     @Override
     public float getStickyPaddingRight() {
-        return this.f55707q0.f55643f;
+        return this.f55799q0.f55735f;
     }
 
     @Override
     public float getStickyPaddingTop() {
-        return this.f55707q0.h;
+        return this.f55799q0.h;
     }
 
     public int getType() {
-        return this.f55709s0;
+        return this.f55801s0;
     }
 
     @Override
@@ -102,16 +102,16 @@ public final class k0 extends j {
     }
 
     public void setColor(int i7) {
-        this.f55710t0 = true;
-        this.f55708r0 = i7;
+        this.f55802t0 = true;
+        this.f55800r0 = i7;
     }
 
     public void setMaxWidth(int i7) {
-        this.f55707q0.setMaxWidth(i7);
+        this.f55799q0.setMaxWidth(i7);
     }
 
     public void setType(int i7) {
-        this.f55709s0 = i7;
-        this.f55707q0.c(i7, this.f55708r0);
+        this.f55801s0 = i7;
+        this.f55799q0.c(i7, this.f55800r0);
     }
 }

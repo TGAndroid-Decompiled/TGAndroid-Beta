@@ -28,15 +28,15 @@ public final class h extends RecyclerView {
     public g X0;
     public a Y0;
     public int Z0;
-    public int f20605a1;
-    public int f20606b1;
+    public int f20608a1;
+    public int f20609b1;
 
     public h(LaunchActivity launchActivity) {
         super(launchActivity);
         Paint paint = new Paint(1);
         this.T0 = paint;
-        this.f20605a1 = Integer.MIN_VALUE;
-        this.f20606b1 = Integer.MIN_VALUE;
+        this.f20608a1 = Integer.MIN_VALUE;
+        this.f20609b1 = Integer.MIN_VALUE;
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
         paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, g0.L(16.0f), 0, -16777216, Shader.TileMode.CLAMP));
         setLayoutManager(new b0(1, true, 1));
@@ -45,7 +45,7 @@ public final class h extends RecyclerView {
         this.S0 = eVar;
         setAdapter(eVar);
         f fVar = new f(this);
-        fVar.f56978m = false;
+        fVar.f57070m = false;
         fVar.C = false;
         fVar.o(xq.h);
         fVar.n(320L);
@@ -67,15 +67,15 @@ public final class h extends RecyclerView {
     public final void D0(int i7, TLRPC.InputGroupCall inputGroupCall) {
         int i10;
         e eVar = this.S0;
-        if (eVar.d && (i10 = eVar.f20603e) != -1 && eVar.f20604f != null) {
-            GroupCallMessagesController.getInstance(i10).unsubscribeFromCallMessages(eVar.f20604f.f26970id, eVar);
+        if (eVar.d && (i10 = eVar.f20606e) != -1 && eVar.f20607f != null) {
+            GroupCallMessagesController.getInstance(i10).unsubscribeFromCallMessages(eVar.f20607f.f26973id, eVar);
         }
-        eVar.f20603e = i7;
-        eVar.f20604f = inputGroupCall;
+        eVar.f20606e = i7;
+        eVar.f20607f = inputGroupCall;
         if (eVar.d) {
-            eVar.f20602c = GroupCallMessagesController.getInstance(i7).getCallMessages(eVar.f20604f.f26970id);
+            eVar.f20605c = GroupCallMessagesController.getInstance(i7).getCallMessages(eVar.f20607f.f26973id);
             eVar.f();
-            GroupCallMessagesController.getInstance(i7).subscribeToCallMessages(eVar.f20604f.f26970id, eVar);
+            GroupCallMessagesController.getInstance(i7).subscribeToCallMessages(eVar.f20607f.f26973id, eVar);
         }
     }
 
@@ -95,20 +95,20 @@ public final class h extends RecyclerView {
         float f12 = measuredWidth;
         int saveLayer = canvas.saveLayer(0.0f, f11, f12, f10, null);
         canvas.clipRect(0, measuredHeight, measuredWidth, i7);
-        this.f20605a1 = measuredHeight;
-        this.f20606b1 = i7;
+        this.f20608a1 = measuredHeight;
+        this.f20609b1 = i7;
         super.dispatchDraw(canvas);
         canvas.translate(0.0f, f11);
         canvas.drawRect(0.0f, 0.0f, f12, L, this.T0);
         canvas.restoreToCount(saveLayer);
         canvas.save();
         canvas.clipRect(0, i7, measuredWidth, measuredHeight2);
-        this.f20605a1 = i7;
-        this.f20606b1 = getMeasuredHeight();
+        this.f20608a1 = i7;
+        this.f20609b1 = getMeasuredHeight();
         super.dispatchDraw(canvas);
         canvas.restore();
-        this.f20605a1 = Integer.MIN_VALUE;
-        this.f20606b1 = Integer.MIN_VALUE;
+        this.f20608a1 = Integer.MIN_VALUE;
+        this.f20609b1 = Integer.MIN_VALUE;
     }
 
     @Override
@@ -131,7 +131,7 @@ public final class h extends RecyclerView {
                         if (cVar.getVisibility() == 0) {
                             float x11 = x10 - childAt.getX();
                             float y11 = y10 - childAt.getY();
-                            j0 j0Var = cVar.f20600x;
+                            j0 j0Var = cVar.f20603x;
                             if (j0Var == null) {
                                 contains = false;
                             } else {
@@ -160,10 +160,10 @@ public final class h extends RecyclerView {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (this.f20605a1 != Integer.MIN_VALUE && view.getY() + view.getHeight() < this.f20605a1) {
+        if (this.f20608a1 != Integer.MIN_VALUE && view.getY() + view.getHeight() < this.f20608a1) {
             return true;
         }
-        if (this.f20606b1 != Integer.MIN_VALUE && view.getY() > this.f20606b1) {
+        if (this.f20609b1 != Integer.MIN_VALUE && view.getY() > this.f20609b1) {
             return true;
         }
         return super.drawChild(canvas, view, j3);
@@ -174,11 +174,11 @@ public final class h extends RecyclerView {
         super.onAttachedToWindow();
         e eVar = this.S0;
         eVar.d = true;
-        int i7 = eVar.f20603e;
-        if (i7 != -1 && eVar.f20604f != null) {
-            eVar.f20602c = GroupCallMessagesController.getInstance(i7).getCallMessages(eVar.f20604f.f26970id);
+        int i7 = eVar.f20606e;
+        if (i7 != -1 && eVar.f20607f != null) {
+            eVar.f20605c = GroupCallMessagesController.getInstance(i7).getCallMessages(eVar.f20607f.f26973id);
             eVar.f();
-            GroupCallMessagesController.getInstance(eVar.f20603e).subscribeToCallMessages(eVar.f20604f.f26970id, eVar);
+            GroupCallMessagesController.getInstance(eVar.f20606e).subscribeToCallMessages(eVar.f20607f.f26973id, eVar);
         }
     }
 
@@ -187,9 +187,9 @@ public final class h extends RecyclerView {
         super.onDetachedFromWindow();
         e eVar = this.S0;
         eVar.d = false;
-        int i7 = eVar.f20603e;
-        if (i7 != -1 && eVar.f20604f != null) {
-            GroupCallMessagesController.getInstance(i7).unsubscribeFromCallMessages(eVar.f20604f.f26970id, eVar);
+        int i7 = eVar.f20606e;
+        if (i7 != -1 && eVar.f20607f != null) {
+            GroupCallMessagesController.getInstance(i7).unsubscribeFromCallMessages(eVar.f20607f.f26973id, eVar);
         }
     }
 

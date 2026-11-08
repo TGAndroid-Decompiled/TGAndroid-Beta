@@ -1,17 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class fu extends mo0 {
-    public final qu R2;
+public final class fu extends g.p {
+    public final ru f33644c;
 
-    public fu(qu quVar, Context context, String str, String str2, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, null, str, false, str2, false, f6Var);
-        this.R2 = quVar;
+    public fu(ru ruVar) {
+        this.f33644c = ruVar;
     }
 
     @Override
-    public final void R0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z9) {
-        org.telegram.messenger.g0.i3(new org.telegram.ui.q8(this, hVar, i7, 6), 100L);
+    public final int i(int i7) {
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet;
+        TLRPC.StickerSet stickerSet;
+        ru ruVar = this.f33644c;
+        v4.s sVar = ruVar.f37785u1;
+        du duVar = ruVar.l1;
+        fi.v vVar = ruVar.n1;
+        if (vVar.getAdapter() != null && vVar.getAdapter().d(i7) == 1) {
+            int i10 = 0;
+            int i11 = 0;
+            while (true) {
+                ArrayList[] arrayListArr = duVar.f37103c;
+                if (i10 >= arrayListArr.length) {
+                    break;
+                }
+                int size = arrayListArr[i10].size();
+                if (duVar.f37103c.length > 1) {
+                    size = Math.min(sVar.J * 2, size);
+                }
+                i11 += size + 2;
+                if (i7 < i11) {
+                    break;
+                }
+                i10++;
+            }
+            ArrayList arrayList = duVar.f37102b;
+            if (arrayList != null && i10 < arrayList.size()) {
+                tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) duVar.f37102b.get(i10);
+            } else {
+                tL_messages_stickerSet = null;
+            }
+            if (tL_messages_stickerSet != null && (stickerSet = tL_messages_stickerSet.set) != null && !stickerSet.emojis) {
+                return 8;
+            }
+            return 5;
+        }
+        return sVar.J;
     }
 }

@@ -11,12 +11,12 @@ import java.util.HashMap;
 import java.util.HashSet;
 import org.telegram.messenger.c20;
 import org.telegram.messenger.gz;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.qp;
 import org.telegram.ui.Cells.ma;
-import org.telegram.ui.Components.l10;
-import org.telegram.ui.Components.vt;
+import org.telegram.ui.Components.vs;
+import org.telegram.ui.Components.wt;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ProfileActivity;
@@ -49,7 +49,7 @@ public final class e implements c20 {
             case 3:
                 View view2 = (View) obj;
                 if (view2 instanceof kg.p1) {
-                    ((kg.p1) view2).f17476c.invalidate();
+                    ((kg.p1) view2).f17479c.invalidate();
                     return;
                 }
                 return;
@@ -70,11 +70,11 @@ public final class e implements c20 {
                 return;
             case 7:
                 Boolean bool2 = (Boolean) obj;
-                int i7 = org.telegram.ui.ActionBar.b3.f27337r;
+                int i7 = org.telegram.ui.ActionBar.b3.f27340r;
                 return;
             case 8:
                 ArrayList arrayList = (ArrayList) obj;
-                int i10 = ma.f29576n;
+                int i10 = ma.f29579n;
                 return;
             case 9:
                 rc.f1((View) obj);
@@ -96,7 +96,7 @@ public final class e implements c20 {
                 return;
             case 12:
                 SurfaceTexture surfaceTexture = (SurfaceTexture) obj;
-                vt vtVar = vt.O1;
+                wt wtVar = wt.O1;
                 return;
             case 13:
                 View view6 = (View) obj;
@@ -111,11 +111,11 @@ public final class e implements c20 {
                 View view7 = (View) obj;
                 if (view7 instanceof org.telegram.ui.Cells.f5) {
                     org.telegram.ui.Cells.f5 f5Var = (org.telegram.ui.Cells.f5) view7;
-                    f5Var.f29116b.invalidate();
-                    f5Var.f29117c.invalidate();
+                    f5Var.f29119b.invalidate();
+                    f5Var.f29120c.invalidate();
                     return;
                 } else if (view7 instanceof kg.p1) {
-                    ((kg.p1) view7).f17476c.invalidate();
+                    ((kg.p1) view7).f17479c.invalidate();
                     return;
                 } else {
                     view7.invalidate();
@@ -151,7 +151,7 @@ public final class e implements c20 {
                     }
                     return;
                 }
-                org.telegram.messenger.g0.h3(new l10(24));
+                org.telegram.messenger.g0.h3(new vs(26));
                 return;
             case 20:
                 SurfaceTexture surfaceTexture2 = (SurfaceTexture) obj;
@@ -171,7 +171,7 @@ public final class e implements c20 {
                 return;
             case 23:
                 HashSet hashSet = (HashSet) obj;
-                String str2 = hd.E0().B.f22185f;
+                String str2 = id.E0().B.f22400f;
                 hashSet.addAll(qy0.d0());
                 SharedPreferences.Editor edit = qp.e1().edit();
                 if (hashSet.size() == 1 && TextUtils.equals((CharSequence) hashSet.iterator().next(), str2)) {
@@ -180,10 +180,10 @@ public final class e implements c20 {
                     edit.putStringSet("translate_button_restricted_languages", hashSet);
                 }
                 edit.putInt("translate_button_restricted_languages_version", 2).apply();
-                qy0.f49324s = false;
+                qy0.f49327s = false;
                 for (int i11 = 0; i11 < 4; i11++) {
                     try {
-                        qp.s1(i11).f24889s7.g();
+                        qp.s1(i11).f24896s7.g();
                     } catch (Exception unused) {
                     }
                 }
@@ -195,13 +195,13 @@ public final class e implements c20 {
                 return;
             case 25:
                 String str3 = (String) obj;
-                ArrayList arrayList2 = org.telegram.ui.Wallet.v2.f43230a;
+                ArrayList arrayList2 = org.telegram.ui.Wallet.u2.f43196a;
                 return;
             case 26:
-                ((org.telegram.ui.Wallet.t2) obj).a();
+                ((org.telegram.ui.Wallet.s2) obj).a();
                 return;
             case 27:
-                ((org.telegram.ui.Wallet.t2) obj).b();
+                ((org.telegram.ui.Wallet.s2) obj).b();
                 return;
             case 28:
                 View view11 = (View) obj;

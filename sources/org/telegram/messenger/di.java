@@ -6,25 +6,25 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class di implements RequestDelegate {
-    public final int f22006a;
-    public final c1 f22007b;
-    public final Object f22008c;
+    public final int f22031a;
+    public final c1 f22032b;
+    public final Object f22033c;
     public final Object d;
 
     public di(c1 c1Var, Object obj, Object obj2, int i7) {
-        this.f22006a = i7;
-        this.f22007b = c1Var;
-        this.f22008c = obj;
+        this.f22031a = i7;
+        this.f22032b = c1Var;
+        this.f22033c = obj;
         this.d = obj2;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         long j3;
-        int i7 = this.f22006a;
+        int i7 = this.f22031a;
         Object obj = this.d;
-        Object obj2 = this.f22008c;
-        c1 c1Var = this.f22007b;
+        Object obj2 = this.f22033c;
+        c1 c1Var = this.f22032b;
         switch (i7) {
             case 0:
                 ui uiVar = (ui) c1Var;
@@ -91,16 +91,16 @@ public final class di implements RequestDelegate {
                 if (tLObject != null) {
                     TLRPC.TL_messages_affectedHistory tL_messages_affectedHistory = (TLRPC.TL_messages_affectedHistory) tLObject;
                     if (t3.T(chat)) {
-                        qpVar4.L3(tL_messages_affectedHistory.pts, tL_messages_affectedHistory.pts_count, chat.f26953id);
+                        qpVar4.L3(tL_messages_affectedHistory.pts, tL_messages_affectedHistory.pts_count, chat.f26956id);
                     } else {
                         qpVar4.M3(tL_messages_affectedHistory.pts, -1, tL_messages_affectedHistory.pts_count);
                     }
                     new ArrayList();
                     yr messagesStorage = qpVar4.getMessagesStorage();
                     if (chat != null) {
-                        j3 = -chat.f26953id;
+                        j3 = -chat.f26956id;
                     } else {
-                        j3 = user.f27102id;
+                        j3 = user.f27105id;
                     }
                     messagesStorage.c2(j3, null, false, 0, 0, false, null);
                     return;
@@ -122,7 +122,7 @@ public final class di implements RequestDelegate {
                 qpVar6.getClass();
                 if (tLObject != null) {
                     qpVar6.O3((TLRPC.Updates) tLObject, false);
-                    g0.h3(new sn(qpVar6, 2));
+                    g0.h3(new sn(qpVar6, 3));
                     if (runnable != null) {
                         runnable.run();
                         return;
@@ -141,10 +141,10 @@ public final class di implements RequestDelegate {
                     return;
                 }
             case 9:
-                g0.h3(new yw((gz) c1Var, (String) obj2, (List) obj, 1));
+                g0.h3(new xw((gz) c1Var, (String) obj2, (List) obj, 1));
                 return;
             case 10:
-                g0.h3(new em((gz) c1Var, tLObject, (sy) obj2, (String) obj, 24));
+                g0.h3(new em((gz) c1Var, tLObject, (sy) obj2, (String) obj, 23));
                 return;
             default:
                 gz gzVar = (gz) c1Var;
@@ -154,7 +154,7 @@ public final class di implements RequestDelegate {
                     gzVar.getMessagesController().O3((TLRPC.Updates) tLObject, false);
                     return;
                 } else {
-                    g0.h3(new uw(gzVar, tL_error, f2Var3, tL_messages_editMessage, 0));
+                    g0.h3(new tw(gzVar, tL_error, f2Var3, tL_messages_editMessage, 0));
                     return;
                 }
         }

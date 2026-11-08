@@ -11,7 +11,7 @@ import org.telegram.ui.Components.q41;
 import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.x31;
 public final class d5 extends w31 {
-    public static final int f18523b = 0;
+    public static final int f18526b = 0;
 
     static {
         w31.h(new w31());
@@ -23,13 +23,13 @@ public final class d5 extends w31 {
         e5 e5Var = (e5) view;
         a aVar = (a) x31Var.G;
         c5 c5Var = (c5) x31Var.H;
-        g1 g1Var = e5Var.f18536r;
-        e5Var.f18986a = aVar;
-        e5Var.f18537s = c5Var;
+        g1 g1Var = e5Var.f18539r;
+        e5Var.f18989a = aVar;
+        e5Var.f18540s = c5Var;
         e5Var.f(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(8.0f));
         e5Var.c(aVar);
         if (c5Var != null) {
-            richText = (TL_iv.RichText) ((z2) c5Var).f19043a.f18896t3.get(Long.valueOf(aVar.f18405t));
+            richText = (TL_iv.RichText) ((z2) c5Var).f19046a.f18899t3.get(Long.valueOf(aVar.f18408t));
         } else {
             richText = null;
         }

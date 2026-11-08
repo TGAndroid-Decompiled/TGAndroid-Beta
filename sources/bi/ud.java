@@ -78,7 +78,7 @@ public final class ud {
     }
 
     public final void b(Canvas canvas, int i7, float f10) {
-        if (!org.telegram.messenger.rc.e(131072)) {
+        if (!org.telegram.messenger.sc.e(131072)) {
             return;
         }
         int i10 = this.f4850j;
@@ -128,7 +128,7 @@ public final class ud {
     public final void c(td tdVar, long j3, boolean z9) {
         long j10;
         tdVar.f4775f = j3;
-        g5.a aVar = Utilities.f21332c;
+        g5.a aVar = Utilities.f21335c;
         tdVar.f4776g = org.telegram.messenger.g0.W1(aVar.nextFloat(), 500, 2500) * this.f4849i;
         if (z9) {
             tdVar.f4775f -= Utilities.l(aVar.nextFloat()) * ((float) j10);
@@ -154,7 +154,7 @@ public final class ud {
 
     public final boolean d() {
         float f10;
-        if (org.telegram.messenger.rc.e(131072)) {
+        if (org.telegram.messenger.sc.e(131072)) {
             long currentTimeMillis = System.currentTimeMillis();
             float min = (((float) Math.min(this.f4855o - currentTimeMillis, 16L)) / 1000.0f) * this.h;
             int i7 = 0;

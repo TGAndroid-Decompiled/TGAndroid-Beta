@@ -30,7 +30,7 @@ public final class c8 implements View.OnClickListener {
                 d dVar = n8Var.f12493w;
                 if (!dVar.Q) {
                     int i10 = s8.U1;
-                    int i11 = s8Var.f28613a;
+                    int i11 = s8Var.f28616a;
                     HashMap hashMap2 = s8Var.l1;
                     ArrayList arrayList2 = s8Var.f12805k1;
                     HashMap hashMap3 = s8Var.f12808p1;
@@ -46,14 +46,14 @@ public final class c8 implements View.OnClickListener {
                         return;
                     } else if (i12 == 1) {
                         TLRPC.TL_editCloseFriends tL_editCloseFriends = new TLRPC.TL_editCloseFriends();
-                        tL_editCloseFriends.f27003id.addAll(arrayList);
+                        tL_editCloseFriends.f27006id.addAll(arrayList);
                         dVar.setLoading(true);
-                        ConnectionsManager.getInstance(s8Var.f28613a).sendRequest(tL_editCloseFriends, new bi.j(14, n8Var, s12));
+                        ConnectionsManager.getInstance(s8Var.f28616a).sendRequest(tL_editCloseFriends, new bi.j(14, n8Var, s12));
                         return;
                     } else if (i12 == 0) {
                         int i13 = s8Var.E1;
                         if (i13 == 3) {
-                            q8Var = new q8(s8Var.E1, s8Var.f28613a, new ArrayList(s8.R0(arrayList3, hashMap3)));
+                            q8Var = new q8(s8Var.E1, s8Var.f28616a, new ArrayList(s8.R0(arrayList3, hashMap3)));
                             ArrayList arrayList4 = q8Var.f12680c;
                             arrayList4.clear();
                             arrayList4.addAll(arrayList3);
@@ -61,9 +61,9 @@ public final class c8 implements View.OnClickListener {
                             hashMap4.clear();
                             hashMap4.putAll(hashMap3);
                         } else if (i13 == 2) {
-                            q8Var = new q8(i13, s8Var.f28613a, s8Var.n1);
+                            q8Var = new q8(i13, s8Var.f28616a, s8Var.n1);
                         } else if (i13 == 4) {
-                            q8Var = new q8(s8Var.E1, s8Var.f28613a, new ArrayList(s8.R0(arrayList2, hashMap2)));
+                            q8Var = new q8(s8Var.E1, s8Var.f28616a, new ArrayList(s8.R0(arrayList2, hashMap2)));
                             ArrayList arrayList5 = q8Var.f12680c;
                             arrayList5.clear();
                             arrayList5.addAll(arrayList2);
@@ -71,14 +71,14 @@ public final class c8 implements View.OnClickListener {
                             hashMap5.clear();
                             hashMap5.putAll(hashMap2);
                         } else {
-                            q8Var = new q8(i13, s8Var.f28613a, (ArrayList) null);
+                            q8Var = new q8(i13, s8Var.f28616a, (ArrayList) null);
                         }
                         s8Var.N0(q8Var, new di.w3(s8Var, 1), false);
                         return;
                     } else if (i12 == 2) {
                         if (s8Var.Q1) {
                             s8Var.M0();
-                            s8Var.N0(new q8(2, s8Var.f28613a, arrayList), new di.w3(s8Var, 1), false);
+                            s8Var.N0(new q8(2, s8Var.f28616a, arrayList), new di.w3(s8Var, 1), false);
                             return;
                         }
                         s8Var.M0();
@@ -89,7 +89,7 @@ public final class c8 implements View.OnClickListener {
                             HashSet R0 = s8.R0(arrayList, hashMap);
                             if (!R0.isEmpty()) {
                                 s8Var.M0();
-                                q8 q8Var2 = new q8(3, s8Var.f28613a, new ArrayList(R0));
+                                q8 q8Var2 = new q8(3, s8Var.f28616a, new ArrayList(R0));
                                 ArrayList arrayList6 = q8Var2.f12680c;
                                 arrayList6.clear();
                                 arrayList6.addAll(arrayList);
@@ -111,7 +111,7 @@ public final class c8 implements View.OnClickListener {
                     } else if (i12 == 6) {
                         HashSet R02 = s8.R0(arrayList, hashMap);
                         dVar.setLoading(true);
-                        di.y6 P1 = qp.s1(s8Var.f28613a).P1();
+                        di.y6 P1 = qp.s1(s8Var.f28616a).P1();
                         d8 d8Var = new d8(n8Var, 1);
                         int i14 = P1.f9963a;
                         TLRPC.TL_contacts_setBlocked tL_contacts_setBlocked = new TLRPC.TL_contacts_setBlocked();
@@ -130,7 +130,7 @@ public final class c8 implements View.OnClickListener {
                             TLRPC.InputPeer j12 = qp.s1(i14).j1(l10.longValue());
                             if (!(j12 instanceof TLRPC.TL_inputPeerEmpty)) {
                                 hashSet.add(l10);
-                                tL_contacts_setBlocked.f27000id.add(j12);
+                                tL_contacts_setBlocked.f27003id.add(j12);
                             }
                         }
                         P1.N = hashSet.size() + P1.N;

@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import c8.ua;
 import org.telegram.messenger.c20;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.p10;
 import org.telegram.messenger.qs;
@@ -45,14 +45,14 @@ public final class f0 implements bj0 {
                 n0 n0Var = (n0) view;
                 s0 s0Var = n0Var.K;
                 k60 F = k60.F((ViewGroup) obj2, new b(), view);
-                F.p(15, -1, hd.a0(null, null, 2131748807, hd.x(s0Var.d, true)));
+                F.p(15, -1, id.a0(null, null, 2131748809, id.x(s0Var.d, true)));
                 F.k();
-                F.c(2131232266, hd.M0(2131747785, null), new bi.a4(27, (p9) obj, s0Var), false);
-                F.l(2131232103, hd.M0(2131751767, null), new bi.a4(28, g2Var, n0Var), !s0Var.f9739e);
+                F.c(2131232266, id.M0(2131747787, null), new bi.a4(27, (p9) obj, s0Var), false);
+                F.l(2131232103, id.M0(2131751767, null), new bi.a4(28, g2Var, n0Var), !s0Var.f9739e);
                 if (g2Var.M != p10.i(g2Var.N).e() && !g2Var.f()) {
                     z9 = false;
                 }
-                F.l(2131232108, hd.M0(2131751599, null), new bi.a4(29, g2Var, s0Var), z9);
+                F.l(2131232108, id.M0(2131751599, null), new bi.a4(29, g2Var, s0Var), z9);
                 F.Z();
                 return;
             case 1:
@@ -62,17 +62,17 @@ public final class f0 implements bj0 {
                 if (view instanceof org.telegram.ui.Cells.g7) {
                     ij message = ((org.telegram.ui.Cells.g7) view).getMessage();
                     if (message != null) {
-                        org.telegram.messenger.z5.q(w6Var.f28613a).v(w6Var);
+                        org.telegram.messenger.z5.q(w6Var.f28616a).v(w6Var);
                         if (w6Var.Y1 != null) {
-                            org.telegram.messenger.w7.G(w6Var.f28613a).f(w6Var.Y1.F0());
+                            org.telegram.messenger.w7.G(w6Var.f28616a).f(w6Var.Y1.F0());
                             w6Var.Y1 = null;
                         }
-                        if (!message.f23289w0 && !message.f23293x0) {
+                        if (!message.f23307w0 && !message.f23311x0) {
                             String S0 = message.S0();
                             if (!TextUtils.isEmpty(S0)) {
                                 w6Var.Y1 = message;
-                                org.telegram.messenger.z5.q(w6Var.f28613a).a(S0, message, w6Var);
-                                org.telegram.messenger.w7.G(w6Var.f28613a).W(message.F0(), message, 1, 0);
+                                org.telegram.messenger.z5.q(w6Var.f28616a).a(S0, message, w6Var);
+                                org.telegram.messenger.w7.G(w6Var.f28616a).W(message.F0(), message, 1, 0);
                                 return;
                             }
                             return;
@@ -112,17 +112,17 @@ public final class f0 implements bj0 {
                 x31 G2 = m7Var.P1.G(i7 - 1);
                 if (G2 != null) {
                     if (G2.H(fi.k7.class) && (webPage = m7Var.Y1) != null && !fi.m7.g1(webPage)) {
-                        tg.i2 i2Var = new tg.i2(context, m7Var.f28613a);
+                        tg.i2 i2Var = new tg.i2(context, m7Var.f28616a);
                         tg.h0 h0Var = new tg.h0();
-                        h0Var.f55617c = k3Var2.d.getText().toString();
+                        h0Var.f55709c = k3Var2.d.getText().toString();
                         if (m7Var.f12458e2) {
                             str = k3Var.d.getText().toString();
                         }
-                        h0Var.f55616b = str;
+                        h0Var.f55708b = str;
                         TLRPC.WebPage webPage2 = m7Var.Y1;
                         h0Var.d = webPage2;
-                        h0Var.f55618e = m7Var.f12460g2;
-                        h0Var.f55619f = m7Var.f12459f2;
+                        h0Var.f55710e = m7Var.f12460g2;
+                        h0Var.f55711f = m7Var.f12459f2;
                         ai.i iVar = new ai.i(m7Var, 26);
                         i2Var.G = h0Var;
                         if (webPage2 != null && (webPage2.photo != null || ij.L4(webPage2.document))) {
@@ -130,13 +130,13 @@ public final class f0 implements bj0 {
                         } else {
                             i10 = 8;
                         }
-                        ha0 ha0Var = i2Var.f55673y;
+                        ha0 ha0Var = i2Var.f55765y;
                         ha0Var.setVisibility(i10);
-                        i2Var.f55667f.b(i2Var.f55663a, h0Var, false);
-                        i2Var.f55672x.a(!h0Var.f55619f, false);
-                        ha0Var.a(!h0Var.f55618e, false);
+                        i2Var.f55759f.b(i2Var.f55755a, h0Var, false);
+                        i2Var.f55764x.a(!h0Var.f55711f, false);
+                        ha0Var.a(!h0Var.f55710e, false);
                         i2Var.H = iVar;
-                        i2Var.f55666e.setImageDrawable(new fi.l3(y5Var, 9));
+                        i2Var.f55758e.setImageDrawable(new fi.l3(y5Var, 9));
                         i2Var.show();
                         return;
                     } else if (G2.d == 2 && (view instanceof org.telegram.ui.Cells.r8)) {
@@ -161,14 +161,14 @@ public final class f0 implements bj0 {
                 org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) obj2;
                 Context context2 = (Context) obj;
                 org.telegram.ui.Cells.s sVar = (org.telegram.ui.Cells.s) view;
-                w80 w80Var = (w80) tVar.f30288e3.get(i7);
-                if (w80Var.f51023e && !p10.o()) {
+                w80 w80Var = (w80) tVar.f30292e3.get(i7);
+                if (w80Var.f50977e && !p10.o()) {
                     f2Var.showDialog(new ug.w0(f2Var, 10, true));
                     return;
                 } else if (!ua.a(w80Var)) {
                     v4.c0 c0Var = new v4.c0(context2);
-                    c0Var.f57120a = i7;
-                    tVar.f30289f3.w0(c0Var);
+                    c0Var.f57212a = i7;
+                    tVar.f30293f3.w0(c0Var);
                     ua.b(w80Var);
                     int i12 = org.telegram.ui.Cells.s.h;
                     sVar.b(true, true);

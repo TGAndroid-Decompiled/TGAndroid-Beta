@@ -7,41 +7,41 @@ import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
 import java.util.HashSet;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.Components.s41;
 public final class y1 extends View implements org.telegram.ui.ActionBar.a6 {
-    public final s41 f30910a;
-    public final org.telegram.ui.ActionBar.f6 f30911b;
-    public int f30912c;
+    public final s41 f30914a;
+    public final org.telegram.ui.ActionBar.f6 f30915b;
+    public int f30916c;
     public int d;
-    public l1 f30913e;
-    public float f30914f;
+    public l1 f30917e;
+    public float f30918f;
     public int h;
 
     public y1(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f30911b = f6Var;
+        this.f30915b = f6Var;
         s41 s41Var = new s41();
-        this.f30910a = s41Var;
+        this.f30914a = s41Var;
         s41Var.setCallback(this);
-        s41Var.f37894n = hd.M0(2131743828, null);
-        s41Var.f37895o = hd.M0(2131743829, null);
-        s41Var.f37896p = hd.M0(2131743827, null);
-        s41Var.f37890j = new f(this, 1);
+        s41Var.f37910n = id.M0(2131743830, null);
+        s41Var.f37911o = id.M0(2131743831, null);
+        s41Var.f37912p = id.M0(2131743829, null);
+        s41Var.f37906j = new f(this, 1);
     }
 
     public final void a(Canvas canvas) {
         Paint paint;
         boolean d12;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f30911b;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f30915b;
         if (f6Var != null) {
-            f6Var.b(0.0f, this.f30914f, getMeasuredWidth(), this.h);
+            f6Var.b(0.0f, this.f30918f, getMeasuredWidth(), this.h);
         } else {
-            org.telegram.ui.ActionBar.k6.r(0.0f, this.f30914f, getMeasuredWidth(), this.h);
+            org.telegram.ui.ActionBar.k6.r(0.0f, this.f30918f, getMeasuredWidth(), this.h);
         }
         float L = org.telegram.messenger.g0.L(18.0f);
         float L2 = org.telegram.messenger.g0.L(6.0f);
-        float L3 = org.telegram.messenger.g0.L(18.0f) + this.f30912c;
+        float L3 = org.telegram.messenger.g0.L(18.0f) + this.f30916c;
         float L4 = org.telegram.messenger.g0.L(6.0f) + this.d;
         float L5 = org.telegram.messenger.g0.L(18.0f);
         float L6 = org.telegram.messenger.g0.L(18.0f);
@@ -60,12 +60,12 @@ public final class y1 extends View implements org.telegram.ui.ActionBar.a6 {
             d12 = org.telegram.ui.ActionBar.k6.d1();
         }
         if (d12) {
-            canvas.drawRoundRect(org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(18.0f) + this.f30912c, org.telegram.messenger.g0.L(6.0f) + this.d, org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(18.0f), org.telegram.ui.ActionBar.k6.f27919h2);
+            canvas.drawRoundRect(org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(18.0f) + this.f30916c, org.telegram.messenger.g0.L(6.0f) + this.d, org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(18.0f), org.telegram.ui.ActionBar.k6.f27922h2);
         }
     }
 
     public final void b(float f10, int i7) {
-        this.f30914f = f10;
+        this.f30918f = f10;
         this.h = i7;
     }
 
@@ -73,9 +73,9 @@ public final class y1 extends View implements org.telegram.ui.ActionBar.a6 {
     public final void onDraw(Canvas canvas) {
         int L = org.telegram.messenger.g0.L(18.0f);
         int L2 = org.telegram.messenger.g0.L(6.0f);
-        int L3 = org.telegram.messenger.g0.L(18.0f) + this.f30912c;
+        int L3 = org.telegram.messenger.g0.L(18.0f) + this.f30916c;
         int L4 = org.telegram.messenger.g0.L(6.0f) + this.d;
-        s41 s41Var = this.f30910a;
+        s41 s41Var = this.f30914a;
         s41Var.setBounds(L, L2, L3, L4);
         s41Var.draw(canvas);
     }
@@ -84,29 +84,29 @@ public final class y1 extends View implements org.telegram.ui.ActionBar.a6 {
     public final void onMeasure(int i7, int i10) {
         int size = View.MeasureSpec.getSize(i7);
         int L = size - org.telegram.messenger.g0.L(36.0f);
-        this.f30912c = L;
-        int a10 = this.f30910a.a(L);
+        this.f30916c = L;
+        int a10 = this.f30914a.a(L);
         this.d = a10;
         setMeasuredDimension(size, org.telegram.messenger.g0.L(12.0f) + a10);
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return this.f30910a.f37889i.a(this, motionEvent);
+        return this.f30914a.f37905i.a(this, motionEvent);
     }
 
     public void setDelegate(l1 l1Var) {
-        this.f30913e = l1Var;
+        this.f30917e = l1Var;
     }
 
     @Override
     public final void updateColors() {
-        this.f30910a.b();
+        this.f30914a.b();
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (!super.verifyDrawable(drawable) && drawable != this.f30910a) {
+        if (!super.verifyDrawable(drawable) && drawable != this.f30914a) {
             return false;
         }
         return true;

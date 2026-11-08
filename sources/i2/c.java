@@ -3,19 +3,19 @@ package i2;
 import java.util.ArrayList;
 import java.util.Arrays;
 public final class c extends dd.k {
-    public final long f15148c;
+    public final long f15151c;
     public final ArrayList d;
-    public final ArrayList f15149e;
+    public final ArrayList f15152e;
 
     public c(int i7, long j3) {
         super(i7, 1);
-        this.f15148c = j3;
+        this.f15151c = j3;
         this.d = new ArrayList();
-        this.f15149e = new ArrayList();
+        this.f15152e = new ArrayList();
     }
 
     public final c d(int i7) {
-        ArrayList arrayList = this.f15149e;
+        ArrayList arrayList = this.f15152e;
         int size = arrayList.size();
         for (int i10 = 0; i10 < size; i10++) {
             c cVar = (c) arrayList.get(i10);
@@ -40,6 +40,6 @@ public final class c extends dd.k {
 
     @Override
     public final String toString() {
-        return dd.k.a(this.f8650b) + " leaves: " + Arrays.toString(this.d.toArray()) + " containers: " + Arrays.toString(this.f15149e.toArray());
+        return dd.k.a(this.f8650b) + " leaves: " + Arrays.toString(this.d.toArray()) + " containers: " + Arrays.toString(this.f15152e.toArray());
     }
 }

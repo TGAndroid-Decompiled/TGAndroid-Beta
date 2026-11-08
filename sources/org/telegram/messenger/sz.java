@@ -18,18 +18,18 @@ import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 public abstract class sz {
-    public static final double[] f25558a = new double[128];
-    public static final Pattern f25559b;
+    public static final double[] f25561a = new double[128];
+    public static final Pattern f25562b;
 
     static {
         int i7 = 0;
         while (true) {
-            double[] dArr = f25558a;
+            double[] dArr = f25561a;
             if (i7 < dArr.length) {
                 dArr[i7] = Math.pow(10.0d, i7);
                 i7++;
             } else {
-                f25559b = Pattern.compile("(?<=\\))\\s*(?=[A-Za-z])");
+                f25562b = Pattern.compile("(?<=\\))\\s*(?=[A-Za-z])");
                 return;
             }
         }
@@ -66,12 +66,12 @@ public abstract class sz {
 
     public static Bitmap c(float f10, int i7, int i10, int i11, int i12, int i13) {
         try {
-            InputStream openRawResource = t0.f25563b.getResources().openRawResource(i7);
+            InputStream openRawResource = t0.f25566b.getResources().openRawResource(i7);
             XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
             pz pzVar = new pz(i10, i11, Integer.valueOf(i12), false, f10, i13);
             xMLReader.setContentHandler(pzVar);
             xMLReader.parse(new InputSource(openRawResource));
-            Bitmap bitmap = pzVar.f24642b;
+            Bitmap bitmap = pzVar.f24648b;
             if (openRawResource != null) {
                 openRawResource.close();
             }
@@ -92,7 +92,7 @@ public abstract class sz {
             pz pzVar = new pz(i7, i10, null, false);
             xMLReader.setContentHandler(pzVar);
             xMLReader.parse(new InputSource(new StringReader(str)));
-            return pzVar.f24642b;
+            return pzVar.f24648b;
         } catch (Exception e10) {
             a8.g(e10, true);
             return null;
@@ -107,7 +107,7 @@ public abstract class sz {
             pzVar.E = true;
             xMLReader.setContentHandler(pzVar);
             xMLReader.parse(new InputSource(fileInputStream));
-            Bitmap bitmap = pzVar.f24642b;
+            Bitmap bitmap = pzVar.f24648b;
             fileInputStream.close();
             return bitmap;
         } catch (Exception e10) {
@@ -122,7 +122,7 @@ public abstract class sz {
             pz pzVar = new pz(i7, i10, null, false);
             xMLReader.setContentHandler(pzVar);
             xMLReader.parse(new InputSource(filterInputStream));
-            return pzVar.f24642b;
+            return pzVar.f24648b;
         } catch (Exception e10) {
             a8.g(e10, true);
             return null;
@@ -134,8 +134,8 @@ public abstract class sz {
             XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
             pz pzVar = new pz(0, 0, num, true);
             xMLReader.setContentHandler(pzVar);
-            xMLReader.parse(new InputSource(t0.f25563b.getResources().openRawResource(i7)));
-            return pzVar.f24643c;
+            xMLReader.parse(new InputSource(t0.f25566b.getResources().openRawResource(i7)));
+            return pzVar.f24649c;
         } catch (Exception e10) {
             a8.g(e10, true);
             return null;
@@ -148,7 +148,7 @@ public abstract class sz {
             pz pzVar = new pz(0, 0, null, true);
             xMLReader.setContentHandler(pzVar);
             xMLReader.parse(new InputSource(new StringReader(str)));
-            return pzVar.f24643c;
+            return pzVar.f24649c;
         } catch (Exception e10) {
             a8.g(e10, true);
             return null;
@@ -158,10 +158,10 @@ public abstract class sz {
     public static rz j(int i7, int i10, Path path) {
         try {
             rz rzVar = new rz();
-            rzVar.f25383a.add(path);
-            rzVar.f25384b.put(path, new Paint(1));
-            rzVar.f25386e = i7;
-            rzVar.f25387f = i10;
+            rzVar.f25379a.add(path);
+            rzVar.f25380b.put(path, new Paint(1));
+            rzVar.f25382e = i7;
+            rzVar.f25383f = i10;
             return rzVar;
         } catch (Exception e10) {
             a8.g(e10, true);
@@ -302,7 +302,7 @@ public abstract class sz {
             if (trim.isEmpty()) {
                 list = Collections.EMPTY_LIST;
             } else {
-                String[] split = f25559b.split(trim);
+                String[] split = f25562b.split(trim);
                 ArrayList arrayList = new ArrayList(split.length);
                 for (String str2 : split) {
                     String trim2 = str2.trim();

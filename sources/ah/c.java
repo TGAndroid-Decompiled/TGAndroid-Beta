@@ -6,8 +6,8 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import c8.ha;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.hd;
 import org.telegram.messenger.i6;
+import org.telegram.messenger.id;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
@@ -25,16 +25,16 @@ public final class c extends yg.c {
         this.f1063x = textPaint;
         this.f1064y = new a3.f(this, 3);
         textPaint.setTextSize(g0.L(20.0f));
-        this.f59343f.setVisibility(8);
-        this.f59341c.setVisibility(8);
+        this.f59435f.setVisibility(8);
+        this.f59433c.setVisibility(8);
         wo woVar = new wo(21, context, f6Var);
         this.f1061s = woVar;
-        woVar.b(k6.B5, k6.f27959j7, k6.C5);
+        woVar.b(k6.B5, k6.f27962j7, k6.C5);
         woVar.setDrawUnchecked(true);
         woVar.setDrawBackgroundAsArc(10);
         addView(woVar);
         woVar.a(false, false);
-        if (hd.f22878a0) {
+        if (id.f23157a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -70,7 +70,7 @@ public final class c extends yg.c {
         float f13;
         float f14;
         float f15;
-        boolean z9 = hd.f22878a0;
+        boolean z9 = id.f23157a0;
         int i11 = 3;
         if (z9) {
             i7 = 5;
@@ -89,7 +89,7 @@ public final class c extends yg.c {
             f11 = 20.0f;
         }
         this.d.setLayoutParams(ha.d(-1, -2.0f, i12, f10, 0.0f, f11, 0.0f));
-        boolean z10 = hd.f22878a0;
+        boolean z10 = id.f23157a0;
         if (z10) {
             i10 = 5;
         } else {
@@ -106,8 +106,8 @@ public final class c extends yg.c {
         } else {
             f13 = 20.0f;
         }
-        this.f59342e.setLayoutParams(ha.d(-1, -2.0f, i13, f12, 0.0f, f13, 0.0f));
-        boolean z11 = hd.f22878a0;
+        this.f59434e.setLayoutParams(ha.d(-1, -2.0f, i13, f12, 0.0f, f13, 0.0f));
+        boolean z11 = id.f23157a0;
         if (z11) {
             i11 = 5;
         }
@@ -122,13 +122,13 @@ public final class c extends yg.c {
         } else {
             f15 = 15.0f;
         }
-        this.f59343f.setLayoutParams(ha.d(22, 22.0f, i14, f14, 0.0f, f15, 0.0f));
+        this.f59435f.setLayoutParams(ha.d(22, 22.0f, i14, f14, 0.0f, f15, 0.0f));
     }
 
     public final void f() {
         TLRPC.TL_help_country tL_help_country = this.f1062w;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        CharSequence o4 = i6.o(hd.F0(tL_help_country.iso2), this.f1063x.getFontMetricsInt(), 0, this.f1064y);
+        CharSequence o4 = i6.o(id.F0(tL_help_country.iso2), this.f1063x.getFontMetricsInt(), 0, this.f1064y);
         if (o4 != null) {
             spannableStringBuilder.append(o4).append((CharSequence) " ");
             spannableStringBuilder.setSpan(new b(16), o4.length(), o4.length() + 1, 0);
@@ -136,7 +136,7 @@ public final class c extends yg.c {
             spannableStringBuilder.append((CharSequence) " ");
             spannableStringBuilder.setSpan(new b(34), 0, 1, 0);
         }
-        String i02 = hd.i0(2131750520, tL_help_country.iso2);
+        String i02 = id.i0(2131750522, tL_help_country.iso2);
         if (TextUtils.isEmpty(i02)) {
             i02 = tL_help_country.default_name;
         }

@@ -9,20 +9,20 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.Components.k21;
 public final class z3 implements Runnable {
-    public final int f26783a = 0;
-    public final long f26784b;
-    public final boolean f26785c;
+    public final int f26804a = 0;
+    public final long f26805b;
+    public final boolean f26806c;
     public final c1 d;
-    public final Object f26786e;
-    public final Object f26787f;
+    public final Object f26807e;
+    public final Object f26808f;
     public final Object h;
 
     public z3(d4 d4Var, TLObject tLObject, long j3, boolean z9, String str, Runnable runnable) {
         this.d = d4Var;
-        this.f26786e = tLObject;
-        this.f26784b = j3;
-        this.f26785c = z9;
-        this.f26787f = str;
+        this.f26807e = tLObject;
+        this.f26805b = j3;
+        this.f26806c = z9;
+        this.f26808f = str;
         this.h = runnable;
     }
 
@@ -35,13 +35,13 @@ public final class z3 implements Runnable {
         TLRPC.WallPaper wallPaper = null;
         int i7 = 0;
         char c11 = 1;
-        switch (this.f26783a) {
+        switch (this.f26804a) {
             case 0:
                 d4 d4Var = (d4) this.d;
-                TLObject tLObject = (TLObject) this.f26786e;
-                long j3 = this.f26784b;
-                boolean z9 = this.f26785c;
-                String str2 = (String) this.f26787f;
+                TLObject tLObject = (TLObject) this.f26807e;
+                long j3 = this.f26805b;
+                boolean z9 = this.f26806c;
+                String str2 = (String) this.f26808f;
                 Runnable runnable = (Runnable) this.h;
                 if (tLObject instanceof TLRPC.Updates) {
                     TLRPC.Updates updates = (TLRPC.Updates) tLObject;
@@ -115,32 +115,32 @@ public final class z3 implements Runnable {
                 return;
             case 1:
                 qp qpVar = (qp) this.d;
-                TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers = (TLRPC.TL_channels_sendAsPeers) this.f26786e;
-                a0.h hVar = (a0.h) this.f26787f;
-                long j10 = this.f26784b;
+                TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers = (TLRPC.TL_channels_sendAsPeers) this.f26807e;
+                a0.h hVar = (a0.h) this.f26808f;
+                long j10 = this.f26805b;
                 lp lpVar = (lp) this.h;
-                boolean z10 = this.f26785c;
+                boolean z10 = this.f26806c;
                 if (tL_channels_sendAsPeers == null) {
                     hVar.l(j10);
                     return;
                 }
                 SystemClock.elapsedRealtime();
-                lpVar.f23918a = tL_channels_sendAsPeers;
+                lpVar.f23924a = tL_channels_sendAsPeers;
                 qpVar.getNotificationCenter().k(16, Long.valueOf(j10), tL_channels_sendAsPeers, Boolean.valueOf(z10));
                 return;
             case 2:
                 k00 k00Var = (k00) this.d;
-                TLObject tLObject2 = (TLObject) this.f26786e;
-                boolean z11 = this.f26785c;
-                long j11 = this.f26784b;
-                HashSet hashSet = (HashSet) this.f26787f;
+                TLObject tLObject2 = (TLObject) this.f26807e;
+                boolean z11 = this.f26806c;
+                long j11 = this.f26805b;
+                HashSet hashSet = (HashSet) this.f26808f;
                 Runnable runnable2 = (Runnable) this.h;
                 if (tLObject2 != null && z11) {
                     a0.h hVar2 = new a0.h();
                     TLRPC.TL_messages_savedDialogs tL_messages_savedDialogs = (TLRPC.TL_messages_savedDialogs) tLObject2;
                     ArrayList l10 = qg.d.l(tL_messages_savedDialogs.dialogs);
                     while (i7 < tL_messages_savedDialogs.messages.size()) {
-                        hVar2.k(tL_messages_savedDialogs.messages.get(i7), tL_messages_savedDialogs.messages.get(i7).f26974id);
+                        hVar2.k(tL_messages_savedDialogs.messages.get(i7), tL_messages_savedDialogs.messages.get(i7).f26977id);
                         i7++;
                     }
                     g0.h3(new fi(k00Var, tL_messages_savedDialogs, j11, l10, hVar2, hashSet, runnable2));
@@ -149,7 +149,7 @@ public final class z3 implements Runnable {
                     a0.h hVar3 = new a0.h();
                     TLRPC.TL_messages_forumTopics tL_messages_forumTopics = (TLRPC.TL_messages_forumTopics) tLObject2;
                     while (i7 < tL_messages_forumTopics.messages.size()) {
-                        hVar3.k(tL_messages_forumTopics.messages.get(i7), tL_messages_forumTopics.messages.get(i7).f26974id);
+                        hVar3.k(tL_messages_forumTopics.messages.get(i7), tL_messages_forumTopics.messages.get(i7).f26977id);
                         i7++;
                     }
                     g0.h3(new bi.m3(k00Var, tLObject2, j11, tL_messages_forumTopics, hVar3, runnable2, 4));
@@ -159,10 +159,10 @@ public final class z3 implements Runnable {
                 }
             default:
                 f10 f10Var = (f10) this.d;
-                HashMap hashMap = (HashMap) this.f26786e;
-                long j12 = this.f26784b;
-                b10 b10Var = (b10) this.f26787f;
-                boolean z12 = this.f26785c;
+                HashMap hashMap = (HashMap) this.f26807e;
+                long j12 = this.f26805b;
+                b10 b10Var = (b10) this.f26808f;
+                boolean z12 = this.f26806c;
                 HashSet hashSet2 = (HashSet) this.h;
                 synchronized (f10Var) {
                     try {
@@ -181,23 +181,23 @@ public final class z3 implements Runnable {
                     TLRPC.TL_messages_translateText tL_messages_translateText = new TLRPC.TL_messages_translateText();
                     if (z12) {
                         tL_messages_translateText.flags |= 2;
-                        tL_messages_translateText.text.addAll(b10Var.f21575c);
+                        tL_messages_translateText.text.addAll(b10Var.f21599c);
                     } else {
                         tL_messages_translateText.flags |= 1;
                         tL_messages_translateText.peer = f10Var.getMessagesController().j1(j12);
-                        tL_messages_translateText.f27077id = b10Var.f21574b;
+                        tL_messages_translateText.f27080id = b10Var.f21598b;
                     }
-                    tL_messages_translateText.to_lang = f10.D(b10Var.f21576e);
+                    tL_messages_translateText.to_lang = f10.D(b10Var.f21600e);
                     int sendRequest = f10Var.getConnectionsManager().sendRequest(tL_messages_translateText, new y3(f10Var, b10Var, z12, j12, hashSet2, 4));
                     synchronized (f10Var) {
                         b10Var.h = sendRequest;
                     }
                     return;
                 }
-                String str4 = b10Var.f21576e;
-                while (i7 < b10Var.f21574b.size()) {
+                String str4 = b10Var.f21600e;
+                while (i7 < b10Var.f21598b.size()) {
                     String str5 = str4;
-                    k21.J0(((TLRPC.TL_textWithEntities) b10Var.f21575c.get(i7)).text, null, str5, new r00(f10Var, (z10) b10Var.d.get(i7), z12, ((Integer) b10Var.f21574b.get(i7)).intValue(), str4, j12, 0));
+                    k21.J0(((TLRPC.TL_textWithEntities) b10Var.f21599c.get(i7)).text, null, str5, new r00(f10Var, (z10) b10Var.d.get(i7), z12, ((Integer) b10Var.f21598b.get(i7)).intValue(), str4, j12, 0));
                     i7++;
                     str4 = str5;
                 }
@@ -207,28 +207,28 @@ public final class z3 implements Runnable {
 
     public z3(qp qpVar, TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers, a0.h hVar, long j3, lp lpVar, boolean z9) {
         this.d = qpVar;
-        this.f26786e = tL_channels_sendAsPeers;
-        this.f26787f = hVar;
-        this.f26784b = j3;
+        this.f26807e = tL_channels_sendAsPeers;
+        this.f26808f = hVar;
+        this.f26805b = j3;
         this.h = lpVar;
-        this.f26785c = z9;
+        this.f26806c = z9;
     }
 
     public z3(k00 k00Var, TLObject tLObject, boolean z9, long j3, HashSet hashSet, Runnable runnable) {
         this.d = k00Var;
-        this.f26786e = tLObject;
-        this.f26785c = z9;
-        this.f26784b = j3;
-        this.f26787f = hashSet;
+        this.f26807e = tLObject;
+        this.f26806c = z9;
+        this.f26805b = j3;
+        this.f26808f = hashSet;
         this.h = runnable;
     }
 
     public z3(f10 f10Var, HashMap hashMap, long j3, b10 b10Var, boolean z9, HashSet hashSet) {
         this.d = f10Var;
-        this.f26786e = hashMap;
-        this.f26784b = j3;
-        this.f26787f = b10Var;
-        this.f26785c = z9;
+        this.f26807e = hashMap;
+        this.f26805b = j3;
+        this.f26808f = b10Var;
+        this.f26806c = z9;
         this.h = hashSet;
     }
 }

@@ -13,7 +13,7 @@ public final class z7 extends LinearLayout {
         setOrientation(1);
         TextView textView = new TextView(context);
         this.f13251a = textView;
-        org.telegram.messenger.k5.n(textView, org.telegram.ui.ActionBar.k6.f27957j5, f6Var, 1, 20.0f);
+        org.telegram.messenger.k5.n(textView, org.telegram.ui.ActionBar.k6.f27960j5, f6Var, 1, 20.0f);
         if (z9) {
             i7 = 4;
         } else {
@@ -22,7 +22,7 @@ public final class z7 extends LinearLayout {
         addView(textView, c8.ha.t(-1, -2, 55, 27, 16, 27, i7));
         TextView textView2 = new TextView(context);
         this.f13252b = textView2;
-        org.telegram.ui.ActionBar.r6.V(textView2, org.telegram.ui.ActionBar.k6.f28088q5, f6Var);
+        org.telegram.ui.ActionBar.r6.V(textView2, org.telegram.ui.ActionBar.k6.f28091q5, f6Var);
         textView2.setTextSize(1, 14.0f);
         if (z9) {
             addView(textView2, c8.ha.t(-1, -2, 55, 27, 0, 27, 13));

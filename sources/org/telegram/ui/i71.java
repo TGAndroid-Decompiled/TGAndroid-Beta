@@ -1,47 +1,26 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
-import android.graphics.Point;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import org.telegram.messenger.Utilities;
-public final class i71 extends nq0 {
-    public final org.telegram.messenger.gf f46591a;
-    public final j71 f46592b;
+import android.app.Activity;
+import org.telegram.tgnet.TLRPC;
+public final class i71 extends org.telegram.ui.Components.mo0 {
+    public final k71 R2;
 
-    public i71(j71 j71Var, org.telegram.messenger.gf gfVar) {
-        this.f46592b = j71Var;
-        this.f46591a = gfVar;
+    public i71(k71 k71Var, Activity activity, String str, String str2) {
+        super(activity, null, str, false, str2, false, null);
+        this.R2 = k71Var;
     }
 
     @Override
-    public final void o(int i7, org.telegram.messenger.j20 j20Var, boolean z9, int i10, int i11, boolean z10) {
-        u71 u71Var = this.f46592b.f46865a;
-        org.telegram.messenger.gf gfVar = this.f46591a;
-        if (gfVar.h != null) {
-            File z11 = org.telegram.messenger.w7.z(4);
-            File file = new File(z11, Utilities.f21331b.nextInt() + ".jpg");
-            Point c12 = org.telegram.messenger.g0.c1();
-            Bitmap K = org.telegram.messenger.gc.K(gfVar.h, null, (float) c12.x, (float) c12.y, true);
-            try {
-                K.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
-            } catch (FileNotFoundException e10) {
-                e10.printStackTrace();
-            }
-            File file2 = new File(gfVar.h);
-            u71Var.C1 = new pc1(file2, file2, "");
-            u71Var.D1 = K;
-            u71Var.f50276c2 = 0;
-            u71Var.f50331y0.requestLayout();
-            u71Var.g1(false);
-            u71Var.f50329x1 = null;
-            u71Var.n1();
+    public final void R0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z9) {
+        if (!z9) {
+            return;
         }
-    }
-
-    @Override
-    public final boolean z() {
-        return false;
+        int m10 = hVar.m();
+        k71 k71Var = this.R2;
+        if (m10 == 1) {
+            k71Var.f47135a.m0.m(((TLRPC.Dialog) hVar.n(0)).f26960id, Integer.valueOf(i7), 61);
+        } else {
+            k71Var.f47135a.m0.k(0L, 61, Integer.valueOf(i7), Integer.valueOf(hVar.m()), null, null);
+        }
     }
 }

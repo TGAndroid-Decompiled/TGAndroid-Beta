@@ -1,5 +1,5 @@
 package org.telegram.messenger;
 public final class qi {
-    public String f24698a;
-    public String f24699b;
+    public String f24701a;
+    public String f24702b;
 }

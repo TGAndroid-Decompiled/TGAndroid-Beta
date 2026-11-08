@@ -5,23 +5,23 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.IInterface;
 public final class e0 implements ServiceConnection {
-    public final int f53771a;
-    public final d f53772b;
+    public final int f53864a;
+    public final d f53865b;
 
     public e0(d dVar, int i7) {
-        this.f53772b = dVar;
-        this.f53771a = i7;
+        this.f53865b = dVar;
+        this.f53864a = i7;
     }
 
     @Override
     public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
         z zVar;
-        d dVar = this.f53772b;
+        d dVar = this.f53865b;
         if (iBinder == null) {
             dVar.z();
             return;
         }
-        synchronized (dVar.f53754m) {
+        synchronized (dVar.f53847m) {
             try {
                 IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.common.internal.IGmsServiceBroker");
                 if (queryLocalInterface != null && (queryLocalInterface instanceof z)) {
@@ -29,28 +29,28 @@ public final class e0 implements ServiceConnection {
                 } else {
                     zVar = new z(iBinder);
                 }
-                dVar.f53755n = zVar;
+                dVar.f53848n = zVar;
             } catch (Throwable th2) {
                 throw th2;
             }
         }
-        d dVar2 = this.f53772b;
-        int i7 = this.f53771a;
+        d dVar2 = this.f53865b;
+        int i7 = this.f53864a;
         dVar2.getClass();
         g0 g0Var = new g0(dVar2, 0, null);
-        c0 c0Var = dVar2.f53752k;
+        c0 c0Var = dVar2.f53845k;
         c0Var.sendMessage(c0Var.obtainMessage(7, i7, -1, g0Var));
     }
 
     @Override
     public final void onServiceDisconnected(ComponentName componentName) {
-        d dVar = this.f53772b;
-        synchronized (dVar.f53754m) {
-            dVar.f53755n = null;
+        d dVar = this.f53865b;
+        synchronized (dVar.f53847m) {
+            dVar.f53848n = null;
         }
-        d dVar2 = this.f53772b;
-        int i7 = this.f53771a;
-        c0 c0Var = dVar2.f53752k;
+        d dVar2 = this.f53865b;
+        int i7 = this.f53864a;
+        c0 c0Var = dVar2.f53845k;
         c0Var.sendMessage(c0Var.obtainMessage(6, i7, 1));
     }
 }

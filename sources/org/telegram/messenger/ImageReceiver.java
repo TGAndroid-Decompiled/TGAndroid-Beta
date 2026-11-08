@@ -80,78 +80,78 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
     public String Y;
     public Integer Y0;
     public int Z;
-    public List f21174a;
-    public Drawable f21175a0;
-    public boolean f21177b;
-    public BitmapShader f21178b0;
-    public ArrayList f21180c;
-    public BitmapShader f21181c0;
-    public int f21183d0;
-    public View f21185e;
-    public int f21186e0;
-    public int f21187e1;
-    public int f21188f;
-    public hc f21189f0;
-    public boolean f21190f1;
-    public String f21191g0;
-    public lc f21192g1;
+    public List f21177a;
+    public Drawable f21178a0;
+    public boolean f21180b;
+    public BitmapShader f21181b0;
+    public ArrayList f21183c;
+    public BitmapShader f21184c0;
+    public int f21186d0;
+    public View f21188e;
+    public int f21189e0;
+    public int f21190e1;
+    public int f21191f;
+    public hc f21192f0;
+    public boolean f21193f1;
+    public String f21194g0;
+    public lc f21195g1;
     public Object h;
-    public String f21193h0;
-    public float f21194h1;
-    public int f21195i0;
-    public Drawable f21197j0;
-    public long f21198j1;
-    public BitmapShader f21199k0;
+    public String f21196h0;
+    public float f21197h1;
+    public int f21198i0;
+    public Drawable f21200j0;
+    public long f21201j1;
+    public BitmapShader f21202k0;
     public boolean l1;
     public Drawable m0;
-    public boolean f21202m1;
-    public boolean f21203n;
-    public String f21204n0;
-    public boolean f21205o0;
-    public ColorFilter f21206o1;
-    public int f21207p0;
-    public boolean f21208p1;
-    public long f21209q0;
-    public long f21210q1;
-    public boolean f21211r;
-    public int f21212r0;
-    public long f21213r1;
-    public long f21214s;
-    public float f21218t1;
-    public int f21220u1;
-    public boolean f21221v0;
-    public String f21222v1;
-    public boolean f21224w0;
-    public int f21226x;
-    public boolean f21228x1;
-    public boolean f21229y;
-    public boolean f21231y1;
-    public boolean f21232z0;
-    public int f21223w = 1;
-    public boolean f21201l0 = true;
-    public boolean f21215s0 = true;
-    public boolean f21217t0 = true;
-    public boolean f21219u0 = true;
-    public int f21227x0 = 1;
-    public int f21230y0 = -1;
+    public boolean f21205m1;
+    public boolean f21206n;
+    public String f21207n0;
+    public boolean f21208o0;
+    public ColorFilter f21209o1;
+    public int f21210p0;
+    public boolean f21211p1;
+    public long f21212q0;
+    public long f21213q1;
+    public boolean f21214r;
+    public int f21215r0;
+    public long f21216r1;
+    public long f21217s;
+    public float f21221t1;
+    public int f21223u1;
+    public boolean f21224v0;
+    public String f21225v1;
+    public boolean f21227w0;
+    public int f21229x;
+    public boolean f21231x1;
+    public boolean f21232y;
+    public boolean f21234y1;
+    public boolean f21235z0;
+    public int f21226w = 1;
+    public boolean f21204l0 = true;
+    public boolean f21218s0 = true;
+    public boolean f21220t0 = true;
+    public boolean f21222u0 = true;
+    public int f21230x0 = 1;
+    public int f21233y0 = -1;
     public final RectF P0 = new RectF();
     public boolean Q0 = true;
     public boolean V0 = true;
     public final int[] W0 = new int[4];
     public boolean X0 = true;
-    public final RectF f21176a1 = new RectF();
-    public final Matrix f21179b1 = new Matrix();
-    public final Path f21182c1 = new Path();
-    public float f21184d1 = 1.0f;
-    public float f21196i1 = 1.0f;
-    public byte f21200k1 = 1;
+    public final RectF f21179a1 = new RectF();
+    public final Matrix f21182b1 = new Matrix();
+    public final Path f21185c1 = new Path();
+    public float f21187d1 = 1.0f;
+    public float f21199i1 = 1.0f;
+    public byte f21203k1 = 1;
     public float n1 = 0.05f;
-    public int f21216s1 = 150;
-    public final ArrayList f21225w1 = new ArrayList();
-    public boolean f21233z1 = false;
+    public int f21219s1 = 150;
+    public final ArrayList f21228w1 = new ArrayList();
+    public boolean f21236z1 = false;
     public boolean B1 = true;
     public final Paint Z0 = new Paint(3);
-    public int d = p10.f24467s0;
+    public int d = p10.f24470s0;
 
     static {
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
@@ -161,7 +161,7 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
     }
 
     public ImageReceiver(View view) {
-        this.f21185e = view;
+        this.f21188e = view;
     }
 
     public final float A() {
@@ -178,7 +178,7 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
     }
 
     public final zg0 B() {
-        Drawable drawable = this.f21197j0;
+        Drawable drawable = this.f21200j0;
         if (drawable instanceof zg0) {
             return (zg0) drawable;
         }
@@ -186,7 +186,7 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
         if (drawable2 instanceof zg0) {
             return (zg0) drawable2;
         }
-        Drawable drawable3 = this.f21175a0;
+        Drawable drawable3 = this.f21178a0;
         if (drawable3 instanceof zg0) {
             return (zg0) drawable3;
         }
@@ -225,9 +225,9 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
     }
 
     public final void E0(int i7) {
-        this.f21226x = i7;
-        if (this.f21228x1) {
-            this.D = qs.e().f25128p & (~this.f21226x);
+        this.f21229x = i7;
+        if (this.f21231x1) {
+            this.D = qs.e().f25137p & (~this.f21229x);
         }
     }
 
@@ -236,9 +236,9 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
     }
 
     public final void F0(long j3, long j10) {
-        this.f21210q1 = j3;
-        this.f21213r1 = j10;
-        Drawable drawable = this.f21197j0;
+        this.f21213q1 = j3;
+        this.f21216r1 = j10;
+        Drawable drawable = this.f21200j0;
         if (drawable instanceof org.telegram.ui.Components.v5) {
             ((org.telegram.ui.Components.v5) drawable).C(j3, j10);
         }
@@ -249,7 +249,7 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
             return this.Z;
         }
         if (i7 == 3) {
-            return this.f21195i0;
+            return this.f21198i0;
         }
         return this.R;
     }
@@ -261,11 +261,11 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
         while (i7 > 360) {
             i7 -= 360;
         }
-        this.f21183d0 = i7;
+        this.f21186d0 = i7;
         this.U = i7;
-        this.f21186e0 = i10;
+        this.f21189e0 = i10;
         this.V = i10;
-        this.f21190f1 = z9;
+        this.f21193f1 = z9;
     }
 
     public final boolean H() {
@@ -273,29 +273,29 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
     }
 
     public final void H0(View view) {
-        this.f21185e = view;
+        this.f21188e = view;
         org.telegram.ui.Components.v5 m10 = m();
-        if (m10 != null && this.f21228x1) {
-            View view2 = this.f21185e;
-            if (m10.f38845r0 == null) {
-                m10.f38845r0 = new WeakReference(view2);
+        if (m10 != null && this.f21231x1) {
+            View view2 = this.f21188e;
+            if (m10.f38880r0 == null) {
+                m10.f38880r0 = new WeakReference(view2);
             }
         }
     }
 
     public final boolean I() {
-        if (this.S == null && this.f21175a0 == null && this.m0 == null && this.f21197j0 == null) {
+        if (this.S == null && this.f21178a0 == null && this.m0 == null && this.f21200j0 == null) {
             return false;
         }
         return true;
     }
 
     public final void I0(int i7) {
-        this.f21187e1 = i7;
+        this.f21190e1 = i7;
     }
 
     public final boolean J() {
-        if (this.S == null && this.f21197j0 == null) {
+        if (this.S == null && this.f21200j0 == null) {
             return false;
         }
         return true;
@@ -306,7 +306,7 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
     }
 
     public final boolean K() {
-        if (this.S == null && this.f21197j0 == null && this.f21175a0 == null && this.m0 == null && this.Q == null && this.f21193h0 == null) {
+        if (this.S == null && this.f21200j0 == null && this.f21178a0 == null && this.m0 == null && this.Q == null && this.f21196h0 == null) {
             return false;
         }
         return true;
@@ -317,7 +317,7 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
     }
 
     public final boolean L() {
-        if (this.S == null && this.f21197j0 == null && !(this.m0 instanceof d51)) {
+        if (this.S == null && this.f21200j0 == null && !(this.m0 instanceof d51)) {
             return false;
         }
         return true;
@@ -349,11 +349,11 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
             if (drawable != null && this.T == null) {
                 R0(drawable);
             }
-            Drawable drawable2 = this.f21197j0;
-            if (drawable2 != null && this.f21199k0 == null) {
+            Drawable drawable2 = this.f21200j0;
+            if (drawable2 != null && this.f21202k0 == null) {
                 R0(drawable2);
             }
-            Drawable drawable3 = this.f21175a0;
+            Drawable drawable3 = this.f21178a0;
             if (drawable3 != null) {
                 R0(drawable3);
             }
@@ -366,7 +366,7 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
 
     public final boolean M() {
         org.telegram.ui.Components.v5 m10 = m();
-        if (m10 != null && m10.f38825b0) {
+        if (m10 != null && m10.f38860b0) {
             return true;
         }
         return false;
@@ -379,11 +379,11 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
             if (drawable != null && this.T == null) {
                 R0(drawable);
             }
-            Drawable drawable2 = this.f21197j0;
-            if (drawable2 != null && this.f21199k0 == null) {
+            Drawable drawable2 = this.f21200j0;
+            if (drawable2 != null && this.f21202k0 == null) {
                 R0(drawable2);
             }
-            Drawable drawable3 = this.f21175a0;
+            Drawable drawable3 = this.f21178a0;
             if (drawable3 != null) {
                 R0(drawable3);
             }
@@ -415,10 +415,10 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
                 r6Var = null;
             }
             this.m0 = drawable;
-            if (this.f21228x1 && (drawable instanceof org.telegram.ui.Components.r6)) {
+            if (this.f21231x1 && (drawable instanceof org.telegram.ui.Components.r6)) {
                 ((org.telegram.ui.Components.r6) drawable).c(this);
             }
-            if (this.f21228x1 && r6Var != null) {
+            if (this.f21231x1 && r6Var != null) {
                 r6Var.b(this);
             }
         }
@@ -450,21 +450,21 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
     }
 
     public final boolean P() {
-        if (!this.f21228x1) {
-            this.f21228x1 = true;
-            this.D = qs.e().f25128p & (~this.f21226x);
-            boolean z9 = this.f21229y;
-            int i7 = qs.f25012j1;
+        if (!this.f21231x1) {
+            this.f21231x1 = true;
+            this.D = qs.e().f25137p & (~this.f21229x);
+            boolean z9 = this.f21232y;
+            int i7 = qs.f25021j1;
             if (!z9) {
                 ab.b0 b0Var = this.D1;
                 if (b0Var != null) {
                     b0Var.b();
                     this.D1 = null;
                 }
-                ab.b0 b0Var2 = (ab.b0) new ps(qs.e(), this).f24612b;
-                b0Var2.c(qs.f25030m4);
+                ab.b0 b0Var2 = (ab.b0) new ps(qs.e(), this).f24620b;
+                b0Var2.c(qs.f25039m4);
                 b0Var2.c(i7);
-                b0Var2.c(qs.f25017k1);
+                b0Var2.c(qs.f25026k1);
                 this.D1 = b0Var2;
             }
             if (Y()) {
@@ -473,16 +473,16 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
             zg0 B = B();
             if (B != null) {
                 B.I0.add(this);
-                B.E = this.f21215s0;
+                B.E = this.f21218s0;
             }
-            if (B != null && this.f21219u0 && (!B.z() || this.D == 0)) {
+            if (B != null && this.f21222u0 && (!B.z() || this.D == 0)) {
                 B.start();
             }
             org.telegram.ui.Components.v5 m10 = m();
             if (m10 != null) {
                 m10.e(this);
             }
-            if (m10 != null && this.f21217t0 && this.D == 0) {
+            if (m10 != null && this.f21220t0 && this.D == 0) {
                 m10.j();
                 invalidate();
             }
@@ -497,9 +497,9 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
             if (drawable instanceof org.telegram.ui.Components.r6) {
                 ((org.telegram.ui.Components.r6) drawable).c(this);
             }
-            if (this.f21180c != null) {
-                for (int i10 = 0; i10 < this.f21180c.size(); i10++) {
-                    ((kc) this.f21180c.get(i10)).a(this);
+            if (this.f21183c != null) {
+                for (int i10 = 0; i10 < this.f21183c.size(); i10++) {
+                    ((kc) this.f21183c.get(i10)).a(this);
                 }
             }
         }
@@ -509,31 +509,31 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
     public final void P0(boolean z9) {
         org.telegram.ui.Components.v5 m10 = m();
         if (m10 != null) {
-            boolean z10 = this.f21221v0;
-            if (!m10.f38840n0) {
-                m10.f38850v0 = z10;
+            boolean z10 = this.f21224v0;
+            if (!m10.f38875n0) {
+                m10.f38885v0 = z10;
             }
             m10.start();
             return;
         }
         zg0 B = B();
-        if (B != null && !B.f40984k0) {
+        if (B != null && !B.f41003k0) {
             B.H(z9);
         }
     }
 
     public final void Q(Drawable drawable) {
-        if (drawable == this.f21197j0 && this.f21193h0 != null) {
-            gc.D().Q(this.f21193h0);
-            this.f21193h0 = null;
+        if (drawable == this.f21200j0 && this.f21196h0 != null) {
+            gc.D().Q(this.f21196h0);
+            this.f21196h0 = null;
         } else if (drawable == this.S && this.Q != null) {
             gc.D().Q(this.Q);
             this.Q = null;
-        } else if (drawable == this.f21175a0 && this.Y != null) {
+        } else if (drawable == this.f21178a0 && this.Y != null) {
             gc.D().Q(this.Y);
             this.Y = null;
         }
-        u0(this.f21189f0, this.f21191g0, this.O, this.P, this.W, this.X, this.f21175a0, this.f21209q0, this.f21204n0, this.h, this.f21212r0);
+        u0(this.f21192f0, this.f21194g0, this.O, this.P, this.W, this.X, this.f21178a0, this.f21212q0, this.f21207n0, this.h, this.f21215r0);
     }
 
     public final void Q0() {
@@ -550,27 +550,27 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
 
     public final void R() {
         ab.b0 b0Var;
-        if (this.f21228x1) {
-            this.f21228x1 = false;
+        if (this.f21231x1) {
+            this.f21231x1 = false;
             hc hcVar = this.O;
-            if (hcVar != null || this.f21189f0 != null || this.W != null || this.m0 != null) {
+            if (hcVar != null || this.f21192f0 != null || this.W != null || this.m0 != null) {
                 if (this.E == null) {
                     this.E = new Object();
                 }
                 nc ncVar = this.E;
-                ncVar.f24172e = this.f21189f0;
-                ncVar.f24173f = this.f21191g0;
-                ncVar.f24169a = hcVar;
-                ncVar.f24170b = this.P;
-                ncVar.f24171c = this.W;
+                ncVar.f24178e = this.f21192f0;
+                ncVar.f24179f = this.f21194g0;
+                ncVar.f24175a = hcVar;
+                ncVar.f24176b = this.P;
+                ncVar.f24177c = this.W;
                 ncVar.d = this.X;
-                ncVar.f24174g = this.m0;
-                ncVar.h = this.f21209q0;
-                ncVar.f24177k = this.f21204n0;
-                ncVar.f24175i = this.f21212r0;
-                ncVar.f24176j = this.h;
+                ncVar.f24180g = this.m0;
+                ncVar.h = this.f21212q0;
+                ncVar.f24183k = this.f21207n0;
+                ncVar.f24181i = this.f21215r0;
+                ncVar.f24182j = this.h;
             }
-            if (!this.f21229y && (b0Var = this.D1) != null) {
+            if (!this.f21232y && (b0Var = this.D1) != null) {
                 b0Var.b();
                 this.D1 = null;
             }
@@ -580,12 +580,12 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
             }
             if (this.m0 != null) {
                 N0(null);
-                this.f21181c0 = null;
+                this.f21184c0 = null;
             }
             f();
             this.Z0.setShader(null);
-            if (this.f21187e1 == 0) {
-                this.f21218t1 = 0.0f;
+            if (this.f21190e1 == 0) {
+                this.f21221t1 = 0.0f;
             }
             org.telegram.ui.Components.i5 l10 = l();
             if (l10 != null) {
@@ -599,9 +599,9 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
             if (B != null) {
                 B.F(this);
             }
-            if (this.f21180c != null) {
-                for (int i7 = 0; i7 < this.f21180c.size(); i7++) {
-                    ArrayList arrayList = ((di.u9) ((kc) this.f21180c.get(i7))).f9853a;
+            if (this.f21183c != null) {
+                for (int i7 = 0; i7 < this.f21183c.size(); i7++) {
+                    ArrayList arrayList = ((di.u9) ((kc) this.f21183c.get(i7))).f9853a;
                     if (arrayList != null) {
                         for (int i10 = 0; i10 < arrayList.size(); i10++) {
                             ((di.q9) arrayList.get(i10)).b(false);
@@ -622,7 +622,7 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
                 float f11 = E[1];
                 float f12 = E[2];
                 float f13 = E[3];
-                float[] fArr = npVar.f36397f;
+                float[] fArr = npVar.f36413f;
                 float max = Math.max(0.0f, f10);
                 fArr[1] = max;
                 fArr[0] = max;
@@ -638,12 +638,12 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
                 if (f10 > 0.0f || f11 > 0.0f || f12 > 0.0f || f13 > 0.0f) {
                     z9 = true;
                 }
-                npVar.f36396e = z9;
+                npVar.f36412e = z9;
                 npVar.a();
             } else if (!(drawable instanceof BitmapDrawable) && !(drawable instanceof org.telegram.ui.Components.w8)) {
                 f0(drawable, null);
             } else if (drawable instanceof org.telegram.ui.Components.w8) {
-                ((org.telegram.ui.Components.w8) drawable).f39922r = E[0];
+                ((org.telegram.ui.Components.w8) drawable).f39872r = E[0];
             } else {
                 BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
                 if (!(bitmapDrawable instanceof zg0)) {
@@ -664,19 +664,19 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
         Drawable drawable;
         String str3;
         if (i7 == 3) {
-            str2 = this.f21193h0;
-            drawable = this.f21197j0;
+            str2 = this.f21196h0;
+            drawable = this.f21200j0;
         } else if (i7 == 2) {
             str2 = this.D0;
             drawable = this.C0;
         } else if (i7 == 1) {
             str2 = this.Y;
-            drawable = this.f21175a0;
+            drawable = this.f21178a0;
         } else {
             str2 = this.Q;
             drawable = this.S;
         }
-        if (str2 != null && ((str2.startsWith("-") || str2.startsWith("strippedmessage-")) && (str3 = (String) gc.D().f22633t.get(str2)) != null)) {
+        if (str2 != null && ((str2.startsWith("-") || str2.startsWith("strippedmessage-")) && (str3 = (String) gc.D().f22652t.get(str2)) != null)) {
             str2 = str3;
         }
         if (drawable instanceof zg0) {
@@ -697,7 +697,7 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
                 }
             } else if (drawable instanceof org.telegram.ui.Components.v5) {
                 org.telegram.ui.Components.v5 v5Var = (org.telegram.ui.Components.v5) drawable;
-                if (v5Var.f38840n0) {
+                if (v5Var.f38875n0) {
                     boolean p11 = gc.D().p(str2);
                     if (!gc.D().J(str2, true)) {
                         if (p11) {
@@ -706,7 +706,7 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
                     } else if (p11) {
                         v5Var.stop();
                     }
-                } else if (v5Var.f38848t0.isEmpty()) {
+                } else if (v5Var.f38883t0.isEmpty()) {
                     v5Var.u();
                 }
             } else if (drawable instanceof BitmapDrawable) {
@@ -720,17 +720,17 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
             }
         }
         if (i7 == 3) {
-            this.f21193h0 = null;
-            this.f21197j0 = null;
-            this.f21199k0 = null;
+            this.f21196h0 = null;
+            this.f21200j0 = null;
+            this.f21202k0 = null;
         } else if (i7 == 2) {
             this.D0 = null;
             this.C0 = null;
             this.E0 = null;
         } else if (i7 == 1) {
-            this.f21175a0 = null;
+            this.f21178a0 = null;
             this.Y = null;
-            this.f21178b0 = null;
+            this.f21181b0 = null;
         } else {
             this.S = null;
             this.Q = null;
@@ -739,11 +739,11 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
     }
 
     public final void T(boolean z9) {
-        this.f21224w0 = z9;
+        this.f21227w0 = z9;
     }
 
     public final void U(boolean z9) {
-        this.f21217t0 = z9;
+        this.f21220t0 = z9;
     }
 
     public final void V(boolean z9) {
@@ -751,7 +751,7 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
     }
 
     public final void W(int i7) {
-        this.f21227x0 = i7;
+        this.f21230x0 = i7;
         zg0 B = B();
         if (B != null) {
             B.K(i7);
@@ -759,40 +759,40 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
     }
 
     public final void X(int i7) {
-        this.f21230y0 = i7;
+        this.f21233y0 = i7;
         if (B() != null) {
             B().L = i7;
             return;
         }
         this.C1 = i7;
         if (m() != null) {
-            m().f38856y0 = 0;
+            m().f38891y0 = 0;
         }
     }
 
     public final boolean Y() {
         nc ncVar = this.E;
         if (ncVar != null) {
-            if (ncVar.f24169a != null || ncVar.f24171c != null || ncVar.f24172e != null || ncVar.f24174g != null) {
+            if (ncVar.f24175a != null || ncVar.f24177c != null || ncVar.f24178e != null || ncVar.f24180g != null) {
                 this.E = null;
-                Drawable drawable = ncVar.f24174g;
+                Drawable drawable = ncVar.f24180g;
                 if (drawable instanceof BitmapDrawable) {
                     BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
                     if (!(bitmapDrawable instanceof zg0) && !(bitmapDrawable instanceof org.telegram.ui.Components.v5) && bitmapDrawable.getBitmap() != null && bitmapDrawable.getBitmap().isRecycled()) {
-                        ncVar.f24174g = null;
+                        ncVar.f24180g = null;
                     }
                 }
-                u0(ncVar.f24172e, ncVar.f24173f, ncVar.f24169a, ncVar.f24170b, ncVar.f24171c, ncVar.d, ncVar.f24174g, ncVar.h, ncVar.f24177k, ncVar.f24176j, ncVar.f24175i);
-                ncVar.f24169a = null;
-                ncVar.f24171c = null;
-                ncVar.f24172e = null;
-                ncVar.f24174g = null;
+                u0(ncVar.f24178e, ncVar.f24179f, ncVar.f24175a, ncVar.f24176b, ncVar.f24177c, ncVar.d, ncVar.f24180g, ncVar.h, ncVar.f24183k, ncVar.f24182j, ncVar.f24181i);
+                ncVar.f24175a = null;
+                ncVar.f24177c = null;
+                ncVar.f24178e = null;
+                ncVar.f24180g = null;
                 this.E = ncVar;
                 zg0 B = B();
                 if (B != null) {
-                    B.E = this.f21215s0;
+                    B.E = this.f21218s0;
                 }
-                if (B != null && this.f21219u0) {
+                if (B != null && this.f21222u0) {
                     if (!B.z() || this.D == 0) {
                         B.start();
                         return true;
@@ -812,32 +812,32 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
     }
 
     public final void a(di.u9 u9Var) {
-        if (this.f21180c == null) {
-            this.f21180c = new ArrayList();
+        if (this.f21183c == null) {
+            this.f21183c = new ArrayList();
         }
-        this.f21180c.add(u9Var);
-        if (this.f21228x1) {
+        this.f21183c.add(u9Var);
+        if (this.f21231x1) {
             u9Var.a(this);
         }
     }
 
     public final void a0(ColorFilter colorFilter) {
-        this.f21206o1 = colorFilter;
+        this.f21209o1 = colorFilter;
     }
 
     public final void b() {
         gc D = gc.D();
-        D.f22632s.c(new k7(D, this, this.f21223w, 3));
+        D.f22651s.c(new l7(D, this, this.f21226w, 3));
     }
 
     public final void b0(int i7) {
-        this.f21216s1 = i7;
+        this.f21219s1 = i7;
     }
 
     public final void c() {
-        this.f21211r = false;
+        this.f21214r = false;
         gc.D().h(this, true);
-        this.f21203n = true;
+        this.f21206n = true;
     }
 
     public final void c0(boolean z9) {
@@ -846,26 +846,26 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
 
     public final void d(boolean z9, ic icVar) {
         if (!this.l1) {
-            float f10 = this.f21194h1;
+            float f10 = this.f21197h1;
             if (f10 != 1.0f) {
                 if (!z9) {
                     if (icVar != null) {
                         long currentTimeMillis = System.currentTimeMillis();
-                        long j3 = this.f21198j1;
+                        long j3 = this.f21201j1;
                         long j10 = currentTimeMillis - j3;
                         if (j3 == 0) {
                             j10 = 16;
                         }
-                        if (j10 > 30 && g0.f22545r > 60.0f) {
+                        if (j10 > 30 && g0.f22564r > 60.0f) {
                             j10 = 30;
                         }
-                        this.f21194h1 = (((float) j10) / this.f21216s1) + this.f21194h1;
+                        this.f21197h1 = (((float) j10) / this.f21219s1) + this.f21197h1;
                     } else {
-                        this.f21194h1 = (16.0f / this.f21216s1) + f10;
+                        this.f21197h1 = (16.0f / this.f21219s1) + f10;
                     }
-                    if (this.f21194h1 > 1.0f) {
-                        this.f21194h1 = 1.0f;
-                        this.f21196i1 = 1.0f;
+                    if (this.f21197h1 > 1.0f) {
+                        this.f21197h1 = 1.0f;
+                        this.f21199i1 = 1.0f;
                         if (this.C0 != null) {
                             S(2, null);
                             this.E0 = null;
@@ -882,22 +882,22 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
     }
 
     public final void d0(lc lcVar) {
-        this.f21192g1 = lcVar;
+        this.f21195g1 = lcVar;
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         int i11;
-        if (i7 == qs.f25030m4) {
+        if (i7 == qs.f25039m4) {
             String str = (String) objArr[0];
-            String str2 = this.f21193h0;
+            String str2 = this.f21196h0;
             if (str2 != null && str2.equals(str)) {
-                this.f21193h0 = (String) objArr[1];
+                this.f21196h0 = (String) objArr[1];
                 hc hcVar = (hc) objArr[2];
-                this.f21189f0 = hcVar;
+                this.f21192f0 = hcVar;
                 nc ncVar = this.E;
                 if (ncVar != null) {
-                    ncVar.f24172e = hcVar;
+                    ncVar.f24178e = hcVar;
                 }
             }
             String str3 = this.Q;
@@ -907,7 +907,7 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
                 this.O = hcVar2;
                 nc ncVar2 = this.E;
                 if (ncVar2 != null) {
-                    ncVar2.f24169a = hcVar2;
+                    ncVar2.f24175a = hcVar2;
                 }
             }
             String str4 = this.Y;
@@ -917,12 +917,12 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
                 this.W = hcVar3;
                 nc ncVar3 = this.E;
                 if (ncVar3 != null) {
-                    ncVar3.f24171c = hcVar3;
+                    ncVar3.f24177c = hcVar3;
                 }
             }
-        } else if (i7 == qs.f25012j1) {
+        } else if (i7 == qs.f25021j1) {
             Integer num = (Integer) objArr[0];
-            if (this.f21226x < num.intValue()) {
+            if (this.f21229x < num.intValue()) {
                 int intValue = num.intValue() | this.D;
                 this.D = intValue;
                 if (intValue != 0) {
@@ -936,21 +936,21 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
                     }
                 }
             }
-        } else if (i7 == qs.f25017k1) {
+        } else if (i7 == qs.f25026k1) {
             Integer num2 = (Integer) objArr[0];
-            if (this.f21226x < num2.intValue() && (i11 = this.D) != 0) {
+            if (this.f21229x < num2.intValue() && (i11 = this.D) != 0) {
                 int i12 = (~num2.intValue()) & i11;
                 this.D = i12;
                 if (i12 == 0) {
                     zg0 B2 = B();
                     if (B2 != null) {
-                        B2.E = this.f21215s0;
+                        B2.E = this.f21218s0;
                     }
-                    if (this.f21219u0 && B2 != null && B2.z()) {
+                    if (this.f21222u0 && B2 != null && B2.z()) {
                         B2.start();
                     }
                     org.telegram.ui.Components.v5 m11 = m();
-                    if (this.f21217t0 && m11 != null) {
+                    if (this.f21220t0 && m11 != null) {
                         m11.j();
                         invalidate();
                     }
@@ -960,10 +960,10 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
     }
 
     public final void e() {
-        if (this.f21180c != null) {
-            if (this.f21228x1) {
-                for (int i7 = 0; i7 < this.f21180c.size(); i7++) {
-                    ArrayList arrayList = ((di.u9) ((kc) this.f21180c.get(i7))).f9853a;
+        if (this.f21183c != null) {
+            if (this.f21231x1) {
+                for (int i7 = 0; i7 < this.f21183c.size(); i7++) {
+                    ArrayList arrayList = ((di.u9) ((kc) this.f21183c.get(i7))).f9853a;
                     if (arrayList != null) {
                         for (int i10 = 0; i10 < arrayList.size(); i10++) {
                             ((di.q9) arrayList.get(i10)).b(false);
@@ -971,7 +971,7 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
                     }
                 }
             }
-            this.f21180c.clear();
+            this.f21183c.clear();
         }
     }
 
@@ -981,40 +981,40 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
         if (icVar == null) {
             ?? obj = new Object();
             obj.h = new int[4];
-            obj.f23165y = new RectF();
+            obj.f23155y = new RectF();
             icVar2 = obj;
         }
         icVar2.d = i7;
-        icVar2.f23148f = m();
-        icVar2.f23149g = B();
+        icVar2.f23138f = m();
+        icVar2.f23139g = B();
         boolean z9 = false;
         for (int i10 = 0; i10 < 4; i10++) {
             icVar2.h[i10] = this.W0[i10];
         }
-        icVar2.f23151j = this.f21197j0;
-        icVar2.f23150i = this.f21199k0;
-        icVar2.f23153l = this.S;
-        icVar2.f23152k = this.T;
-        icVar2.f23154m = this.f21175a0;
-        icVar2.f23155n = this.f21178b0;
-        icVar2.f23147e = this.f21181c0;
-        icVar2.f23156o = this.m0;
-        icVar2.f23164x = this.C0;
-        icVar2.f23166z = this.f21206o1;
-        icVar2.f23163w = this.B0;
-        icVar2.f23157p = this.f21194h1;
-        icVar2.f23158q = this.f21196i1;
-        icVar2.f23159r = this.E0;
-        org.telegram.ui.Components.v5 v5Var = icVar2.f23148f;
-        if ((v5Var != null && !v5Var.s()) || ((zg0Var = icVar2.f23149g) != null && !zg0Var.u())) {
+        icVar2.f23141j = this.f21200j0;
+        icVar2.f23140i = this.f21202k0;
+        icVar2.f23143l = this.S;
+        icVar2.f23142k = this.T;
+        icVar2.f23144m = this.f21178a0;
+        icVar2.f23145n = this.f21181b0;
+        icVar2.f23137e = this.f21184c0;
+        icVar2.f23146o = this.m0;
+        icVar2.f23154x = this.C0;
+        icVar2.f23156z = this.f21209o1;
+        icVar2.f23153w = this.B0;
+        icVar2.f23147p = this.f21197h1;
+        icVar2.f23148q = this.f21199i1;
+        icVar2.f23149r = this.E0;
+        org.telegram.ui.Components.v5 v5Var = icVar2.f23138f;
+        if ((v5Var != null && !v5Var.s()) || ((zg0Var = icVar2.f23139g) != null && !zg0Var.u())) {
             z9 = true;
         }
-        icVar2.f23144a = z9;
-        icVar2.f23162u = this.K0;
+        icVar2.f23134a = z9;
+        icVar2.f23152u = this.K0;
         icVar2.v = this.L0;
-        icVar2.f23161t = this.M0;
-        icVar2.f23160s = this.N0;
-        icVar2.f23145b = this.f21184d1;
+        icVar2.f23151t = this.M0;
+        icVar2.f23150s = this.N0;
+        icVar2.f23135b = this.f21187d1;
         return icVar2;
     }
 
@@ -1026,12 +1026,12 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
     }
 
     public final void f0(Drawable drawable, BitmapShader bitmapShader) {
-        if (drawable == this.f21175a0) {
-            this.f21178b0 = bitmapShader;
+        if (drawable == this.f21178a0) {
+            this.f21181b0 = bitmapShader;
         } else if (drawable == this.m0) {
-            this.f21181c0 = bitmapShader;
-        } else if (drawable == this.f21197j0) {
-            this.f21199k0 = bitmapShader;
+            this.f21184c0 = bitmapShader;
+        } else if (drawable == this.f21200j0) {
+            this.f21202k0 = bitmapShader;
         } else if (drawable == this.S) {
             this.T = bitmapShader;
             if (this.H != null && (drawable instanceof BitmapDrawable)) {
@@ -1070,12 +1070,12 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
     public final void g0(boolean z9) {
         if (this.F1 != z9) {
             this.F1 = z9;
-            this.f21219u0 = !z9;
+            this.f21222u0 = !z9;
             zg0 B = B();
             if (B != null) {
                 if (z9) {
                     B.stop();
-                } else if (!B.f40984k0) {
+                } else if (!B.f41003k0) {
                     B.start();
                 }
             }
@@ -1083,7 +1083,7 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
     }
 
     public float getAlpha() {
-        return this.f21184d1;
+        return this.f21187d1;
     }
 
     public final boolean h(android.graphics.Canvas r32, org.telegram.messenger.ic r33) {
@@ -1091,11 +1091,11 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
     }
 
     public final void h0(int i7) {
-        if (this.f21223w != i7) {
-            this.f21223w = i7;
-            if (this.f21228x1 && K()) {
+        if (this.f21226w != i7) {
+            this.f21226w = i7;
+            if (this.f21231x1 && K()) {
                 gc D = gc.D();
-                D.f22632s.c(new k7(D, this, this.f21223w, 3));
+                D.f22651s.c(new l7(D, this, this.f21226w, 3));
             }
         }
     }
@@ -1104,14 +1104,14 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
         if (icVar != null) {
             if (bitmapDrawable instanceof zg0) {
                 zg0 zg0Var = (zg0) bitmapDrawable;
-                float f10 = icVar.f23162u;
+                float f10 = icVar.f23152u;
                 float f11 = icVar.v;
-                float f12 = icVar.f23161t;
-                float f13 = icVar.f23160s;
-                ColorFilter colorFilter = icVar.f23166z;
+                float f12 = icVar.f23151t;
+                float f13 = icVar.f23150s;
+                ColorFilter colorFilter = icVar.f23156z;
                 int i10 = icVar.d;
-                Paint[] paintArr = zg0Var.f40983j0;
-                RectF[] rectFArr = zg0Var.f40982i0;
+                Paint[] paintArr = zg0Var.f41002j0;
+                RectF[] rectFArr = zg0Var.f41001i0;
                 if (rectFArr[i10] == null) {
                     rectFArr[i10] = new RectF();
                     Paint paint = new Paint(1);
@@ -1125,14 +1125,14 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
                 return;
             } else if (bitmapDrawable instanceof org.telegram.ui.Components.v5) {
                 org.telegram.ui.Components.v5 v5Var = (org.telegram.ui.Components.v5) bitmapDrawable;
-                float f14 = icVar.f23162u;
+                float f14 = icVar.f23152u;
                 float f15 = icVar.v;
-                float f16 = icVar.f23161t;
-                float f17 = icVar.f23160s;
-                ColorFilter colorFilter2 = icVar.f23166z;
+                float f16 = icVar.f23151t;
+                float f17 = icVar.f23150s;
+                ColorFilter colorFilter2 = icVar.f23156z;
                 int i11 = icVar.d;
-                Paint[] paintArr2 = v5Var.f38843q0;
-                RectF[] rectFArr2 = v5Var.f38842p0;
+                Paint[] paintArr2 = v5Var.f38878q0;
+                RectF[] rectFArr2 = v5Var.f38877p0;
                 if (rectFArr2[i11] == null) {
                     rectFArr2[i11] = new RectF();
                     Paint paint2 = new Paint();
@@ -1151,10 +1151,10 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
                         icVar.A = new Paint(1);
                     }
                     icVar.A.setAlpha(i7);
-                    icVar.A.setColorFilter(icVar.f23166z);
+                    icVar.A.setColorFilter(icVar.f23156z);
                     canvas.save();
-                    canvas.translate(icVar.f23162u, icVar.v);
-                    canvas.scale(icVar.f23161t / bitmap.getWidth(), icVar.f23160s / bitmap.getHeight());
+                    canvas.translate(icVar.f23152u, icVar.v);
+                    canvas.scale(icVar.f23151t / bitmap.getWidth(), icVar.f23150s / bitmap.getHeight());
                     canvas.drawBitmap(bitmap, 0.0f, 0.0f, icVar.A);
                     canvas.restore();
                     return;
@@ -1164,9 +1164,9 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
         }
         bitmapDrawable.setAlpha(i7);
         if (bitmapDrawable instanceof zg0) {
-            ((zg0) bitmapDrawable).q(canvas, null, false, this.f21214s, 0);
+            ((zg0) bitmapDrawable).q(canvas, null, false, this.f21217s, 0);
         } else if (bitmapDrawable instanceof org.telegram.ui.Components.v5) {
-            ((org.telegram.ui.Components.v5) bitmapDrawable).l(canvas, false, this.f21214s, 0);
+            ((org.telegram.ui.Components.v5) bitmapDrawable).l(canvas, false, this.f21217s, 0);
         } else {
             bitmapDrawable.draw(canvas);
         }
@@ -1177,7 +1177,7 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
     }
 
     public void invalidate() {
-        View view = this.f21185e;
+        View view = this.f21188e;
         if (view == null) {
             return;
         }
@@ -1199,37 +1199,37 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
     }
 
     public final void k(Canvas canvas, Drawable drawable, int i7, BitmapShader bitmapShader, int i10, int i11, ic icVar) {
-        if (this.f21187e1 == 0) {
-            float f10 = this.f21218t1;
+        if (this.f21190e1 == 0) {
+            float f10 = this.f21221t1;
             if (f10 != 0.0f) {
                 float f11 = f10 - 0.10666667f;
-                this.f21218t1 = f11;
+                this.f21221t1 = f11;
                 if (f11 < 0.0f) {
-                    this.f21218t1 = 0.0f;
+                    this.f21221t1 = 0.0f;
                 }
                 invalidate();
             }
         }
-        int i12 = this.f21187e1;
+        int i12 = this.f21190e1;
         if (i12 != 0) {
-            this.f21218t1 = 1.0f;
-            this.f21220u1 = i12;
+            this.f21221t1 = 1.0f;
+            this.f21223u1 = i12;
         }
-        float f12 = this.f21218t1;
+        float f12 = this.f21221t1;
         if (f12 != 0.0f && f12 != 1.0f) {
             j(canvas, drawable, i7, bitmapShader, i10, i11, i12, icVar);
-            j(canvas, drawable, (int) (i7 * this.f21218t1), bitmapShader, i10, i11, this.f21220u1, icVar);
+            j(canvas, drawable, (int) (i7 * this.f21221t1), bitmapShader, i10, i11, this.f21223u1, icVar);
             return;
         }
         j(canvas, drawable, i7, bitmapShader, i10, i11, i12, icVar);
     }
 
     public final void k0() {
-        this.f21211r = false;
+        this.f21214r = false;
     }
 
     public final org.telegram.ui.Components.i5 l() {
-        Drawable drawable = this.f21197j0;
+        Drawable drawable = this.f21200j0;
         if (drawable instanceof org.telegram.ui.Components.i5) {
             return (org.telegram.ui.Components.i5) drawable;
         }
@@ -1237,7 +1237,7 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
         if (drawable2 instanceof org.telegram.ui.Components.i5) {
             return (org.telegram.ui.Components.i5) drawable2;
         }
-        Drawable drawable3 = this.f21175a0;
+        Drawable drawable3 = this.f21178a0;
         if (drawable3 instanceof org.telegram.ui.Components.i5) {
             return (org.telegram.ui.Components.i5) drawable3;
         }
@@ -1253,7 +1253,7 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
     }
 
     public final org.telegram.ui.Components.v5 m() {
-        Drawable drawable = this.f21197j0;
+        Drawable drawable = this.f21200j0;
         if (drawable instanceof org.telegram.ui.Components.v5) {
             return (org.telegram.ui.Components.v5) drawable;
         }
@@ -1261,7 +1261,7 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
         if (drawable2 instanceof org.telegram.ui.Components.v5) {
             return (org.telegram.ui.Components.v5) drawable2;
         }
-        Drawable drawable3 = this.f21175a0;
+        Drawable drawable3 = this.f21178a0;
         if (drawable3 instanceof org.telegram.ui.Components.v5) {
             return (org.telegram.ui.Components.v5) drawable3;
         }
@@ -1309,7 +1309,7 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
         if (m10 != null && m10.s()) {
             return m10.m();
         }
-        Drawable drawable = this.f21197j0;
+        Drawable drawable = this.f21200j0;
         if ((drawable instanceof BitmapDrawable) && !(drawable instanceof org.telegram.ui.Components.v5) && !(drawable instanceof zg0)) {
             return ((BitmapDrawable) drawable).getBitmap();
         }
@@ -1317,7 +1317,7 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
         if ((drawable2 instanceof BitmapDrawable) && !(drawable2 instanceof org.telegram.ui.Components.v5) && !(drawable instanceof zg0)) {
             return ((BitmapDrawable) drawable2).getBitmap();
         }
-        Drawable drawable3 = this.f21175a0;
+        Drawable drawable3 = this.f21178a0;
         if ((drawable3 instanceof BitmapDrawable) && !(drawable3 instanceof org.telegram.ui.Components.v5) && !(drawable instanceof zg0)) {
             return ((BitmapDrawable) drawable3).getBitmap();
         }
@@ -1343,7 +1343,7 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
         }
         zg0 B = B();
         if (B != null) {
-            return B.f40973c;
+            return B.f40992c;
         }
         Bitmap n10 = n();
         if (n10 == null) {
@@ -1383,7 +1383,7 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
         }
         zg0 B = B();
         if (B != null) {
-            return B.f40971b;
+            return B.f40990b;
         }
         Bitmap n10 = n();
         if (n10 == null) {
@@ -1421,11 +1421,11 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
     }
 
     public void setAlpha(float f10) {
-        this.f21184d1 = f10;
+        this.f21187d1 = f10;
     }
 
     public final Drawable t() {
-        Drawable drawable = this.f21197j0;
+        Drawable drawable = this.f21200j0;
         if (drawable != null) {
             return drawable;
         }
@@ -1433,7 +1433,7 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
         if (drawable2 != null) {
             return drawable2;
         }
-        Drawable drawable3 = this.f21175a0;
+        Drawable drawable3 = this.f21178a0;
         if (drawable3 != null) {
             return drawable3;
         }
@@ -1451,16 +1451,16 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
     public final jc u() {
         String str;
         String str2;
-        Drawable drawable = this.f21197j0;
+        Drawable drawable = this.f21200j0;
         jc jcVar = 0;
         if ((drawable instanceof BitmapDrawable) && !(drawable instanceof org.telegram.ui.Components.v5) && !(drawable instanceof zg0)) {
-            str = this.f21193h0;
+            str = this.f21196h0;
         } else {
             Drawable drawable2 = this.S;
             if ((drawable2 instanceof BitmapDrawable) && !(drawable2 instanceof org.telegram.ui.Components.v5) && !(drawable instanceof zg0)) {
                 str2 = this.Q;
             } else {
-                drawable2 = this.f21175a0;
+                drawable2 = this.f21178a0;
                 if ((drawable2 instanceof BitmapDrawable) && !(drawable2 instanceof org.telegram.ui.Components.v5) && !(drawable instanceof zg0)) {
                     str2 = this.Y;
                 } else {
@@ -1480,10 +1480,10 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
         if (drawable != null) {
             jcVar = new Object();
             jcVar.d = drawable;
-            jcVar.f23514a = str;
-            jcVar.f23517e = 0;
+            jcVar.f23533a = str;
+            jcVar.f23536e = 0;
             if (str != null) {
-                gc.D().H(jcVar.f23514a);
+                gc.D().H(jcVar.f23533a);
             }
         }
         return jcVar;
@@ -1523,12 +1523,12 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
                 this.C0 = this.S;
                 this.D0 = this.Q;
                 this.B0 = true;
-            } else if (this.f21175a0 != null) {
+            } else if (this.f21178a0 != null) {
                 S(0, null);
                 S(2, null);
                 S(3, null);
-                this.E0 = this.f21178b0;
-                this.C0 = this.f21175a0;
+                this.E0 = this.f21181b0;
+                this.C0 = this.f21178a0;
                 this.D0 = this.Y;
                 this.B0 = true;
             } else if (this.m0 != null) {
@@ -1536,7 +1536,7 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
                 S(1, null);
                 S(2, null);
                 S(3, null);
-                this.E0 = this.f21181c0;
+                this.E0 = this.f21184c0;
                 this.C0 = this.m0;
                 this.B0 = true;
                 this.D0 = null;
@@ -1554,65 +1554,65 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
         Drawable drawable2 = this.m0;
         if (drawable2 instanceof li0) {
             jb0 jb0Var = (jb0) ((li0) drawable2);
-            z5.q(jb0Var.f34927r.I1).v(jb0Var);
-            jb0Var.f34926n = null;
-            jb0Var.f34927r = null;
+            z5.q(jb0Var.f34948r.I1).v(jb0Var);
+            jb0Var.f34947n = null;
+            jb0Var.f34948r = null;
         }
         if (drawable instanceof org.telegram.ui.Components.i5) {
             org.telegram.ui.Components.i5 i5Var = (org.telegram.ui.Components.i5) drawable;
-            if (this.f21228x1) {
+            if (this.f21231x1) {
                 i5Var.b(this);
             }
         } else if (drawable instanceof org.telegram.ui.Components.v5) {
             org.telegram.ui.Components.v5 v5Var = (org.telegram.ui.Components.v5) drawable;
-            View view = this.f21185e;
-            if (v5Var.f38845r0 == null) {
-                v5Var.f38845r0 = new WeakReference(view);
+            View view = this.f21188e;
+            if (v5Var.f38880r0 == null) {
+                v5Var.f38880r0 = new WeakReference(view);
             }
-            if (this.f21228x1) {
+            if (this.f21231x1) {
                 v5Var.e(this);
             }
-            if (!this.f21221v0 && !v5Var.f38840n0) {
+            if (!this.f21224v0 && !v5Var.f38875n0) {
                 z9 = false;
             } else {
                 z9 = true;
             }
-            if (!v5Var.f38840n0) {
-                v5Var.f38850v0 = z9;
+            if (!v5Var.f38875n0) {
+                v5Var.f38885v0 = z9;
             }
-            if (this.f21217t0 && this.D == 0) {
+            if (this.f21220t0 && this.D == 0) {
                 v5Var.j();
             }
-            boolean z12 = this.f21224w0;
+            boolean z12 = this.f21227w0;
             v5Var.D = z12;
             if (z12) {
                 v5Var.x(false);
             }
         } else if (drawable instanceof zg0) {
             zg0 zg0Var = (zg0) drawable;
-            if (this.f21228x1) {
+            if (this.f21231x1) {
                 zg0Var.I0.add(this);
             }
-            zg0Var.E = this.f21215s0;
-            if (this.f21219u0 && (!zg0Var.z() || this.D == 0)) {
+            zg0Var.E = this.f21218s0;
+            if (this.f21222u0 && (!zg0Var.z() || this.D == 0)) {
                 zg0Var.start();
             }
             zg0Var.J(true);
         }
-        this.f21181c0 = null;
-        this.f21178b0 = null;
+        this.f21184c0 = null;
+        this.f21181b0 = null;
         this.Z0.setShader(null);
         N0(drawable);
         R0(drawable);
-        this.f21189f0 = null;
-        this.f21191g0 = null;
-        Drawable drawable3 = this.f21197j0;
+        this.f21192f0 = null;
+        this.f21194g0 = null;
+        Drawable drawable3 = this.f21200j0;
         if (drawable3 instanceof org.telegram.ui.Components.v5) {
             ((org.telegram.ui.Components.v5) drawable3).v(this);
         }
-        this.f21197j0 = null;
-        this.f21193h0 = null;
-        this.f21199k0 = null;
+        this.f21200j0 = null;
+        this.f21196h0 = null;
+        this.f21202k0 = null;
         this.O = null;
         this.P = null;
         this.S = null;
@@ -1630,21 +1630,21 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
         this.X = null;
         this.Y = null;
         this.I0 = false;
-        this.f21204n0 = null;
-        this.f21209q0 = 0L;
-        this.f21212r0 = 0;
-        this.f21194h1 = 1.0f;
-        this.f21196i1 = 1.0f;
+        this.f21207n0 = null;
+        this.f21212q0 = 0L;
+        this.f21215r0 = 0;
+        this.f21197h1 = 1.0f;
+        this.f21199i1 = 1.0f;
         nc ncVar = this.E;
         if (ncVar != null) {
-            ncVar.f24169a = null;
-            ncVar.f24171c = null;
-            ncVar.f24172e = null;
-            ncVar.f24174g = null;
+            ncVar.f24175a = null;
+            ncVar.f24177c = null;
+            ncVar.f24178e = null;
+            ncVar.f24180g = null;
         }
-        lc lcVar = this.f21192g1;
+        lc lcVar = this.f21195g1;
         if (lcVar != null) {
-            if (this.f21175a0 == null && this.m0 == null) {
+            if (this.f21178a0 == null && this.m0 == null) {
                 z10 = false;
             } else {
                 z10 = true;
@@ -1653,12 +1653,12 @@ public class ImageReceiver implements ls, org.telegram.ui.Components.o5 {
         }
         invalidate();
         if (this.U0 && this.A0 && this.C0 != null) {
-            this.f21194h1 = 0.0f;
-            this.f21198j1 = System.currentTimeMillis();
-            if (this.f21175a0 == null && this.m0 == null) {
+            this.f21197h1 = 0.0f;
+            this.f21201j1 = System.currentTimeMillis();
+            if (this.f21178a0 == null && this.m0 == null) {
                 z11 = false;
             }
-            this.f21202m1 = z11;
+            this.f21205m1 = z11;
         }
     }
 

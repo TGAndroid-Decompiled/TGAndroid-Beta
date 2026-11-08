@@ -7,10 +7,10 @@ import org.telegram.ui.Cells.t2;
 import org.telegram.ui.Components.pj0;
 import org.telegram.ui.an;
 public final class j1 implements p2 {
-    public final m1 f16811a;
+    public final m1 f16814a;
 
     public j1(m1 m1Var) {
-        this.f16811a = m1Var;
+        this.f16814a = m1Var;
     }
 
     @Override
@@ -20,11 +20,11 @@ public final class j1 implements p2 {
 
     @Override
     public final void u(t2 t2Var) {
-        m1 m1Var = this.f16811a;
-        an anVar = m1Var.f16840f;
-        if (qp.s1(m1Var.f16842r).P1().K(t2Var.getDialogId())) {
+        m1 m1Var = this.f16814a;
+        an anVar = m1Var.f16843f;
+        if (qp.s1(m1Var.f16845r).P1().K(t2Var.getDialogId())) {
             anVar.getOrCreateStoryViewer().getClass();
-            anVar.getOrCreateStoryViewer().J(m1Var.f16838c, t2Var.getDialogId(), h7.a((pj0) t2Var.getParent()));
+            anVar.getOrCreateStoryViewer().J(m1Var.f16841c, t2Var.getDialogId(), h7.a((pj0) t2Var.getParent()));
         }
     }
 

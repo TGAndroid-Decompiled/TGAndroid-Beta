@@ -12,37 +12,37 @@ import org.telegram.messenger.video.VideoPlayerHolderBase;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class d3 extends nq0 {
-    public final int[] f44939a = new int[2];
-    public final List f44940b;
-    public final g4 f44941c;
+    public final int[] f44944a = new int[2];
+    public final List f44945b;
+    public final g4 f44946c;
 
     public d3(g4 g4Var, List list) {
-        this.f44941c = g4Var;
-        this.f44940b = list;
+        this.f44946c = g4Var;
+        this.f44945b = list;
     }
 
     @Override
     public final void D() {
-        this.f44941c.l();
+        this.f44946c.l();
     }
 
     @Override
     public final wq0 E(org.telegram.messenger.ij ijVar, TLRPC.FileLocation fileLocation, int i7, boolean z9, boolean z10) {
         if (i7 >= 0) {
-            List list = this.f44940b;
+            List list = this.f44945b;
             if (i7 < list.size()) {
-                g4 g4Var = this.f44941c;
-                int[] iArr = this.f44939a;
-                ImageReceiver d02 = d0(g4Var.f45842u0[0].f47087b, (TL_iv.PageBlock) list.get(i7), iArr);
+                g4 g4Var = this.f44946c;
+                int[] iArr = this.f44944a;
+                ImageReceiver d02 = d0(g4Var.f45819u0[0].f47085b, (TL_iv.PageBlock) list.get(i7), iArr);
                 if (d02 != null) {
                     wq0 wq0Var = new wq0();
-                    wq0Var.f51477b = iArr[0];
-                    wq0Var.f51478c = iArr[1];
-                    wq0Var.d = g4Var.f45842u0[0].f47087b;
-                    wq0Var.f51476a = d02;
-                    wq0Var.f51479e = d02.p();
+                    wq0Var.f51484b = iArr[0];
+                    wq0Var.f51485c = iArr[1];
+                    wq0Var.d = g4Var.f45819u0[0].f47085b;
+                    wq0Var.f51483a = d02;
+                    wq0Var.f51486e = d02.p();
                     wq0Var.h = d02.E();
-                    wq0Var.f51483j = g4Var.J0;
+                    wq0Var.f51490j = g4Var.J0;
                     return wq0Var;
                 }
                 return null;
@@ -77,16 +77,16 @@ public final class d3 extends nq0 {
             a2 a2Var = (a2) view;
             if (a2Var.N == pageBlock) {
                 view.getLocationInWindow(iArr);
-                return a2Var.f43543e;
+                return a2Var.f43546e;
             }
             return null;
         } else if (view instanceof v2) {
             v2 v2Var = (v2) view;
-            ImageReceiver imageReceiver = v2Var.f50558e;
-            TextureView textureView = v2Var.f50560n;
+            ImageReceiver imageReceiver = v2Var.f50481e;
+            TextureView textureView = v2Var.f50483n;
             if (v2Var.L == pageBlock) {
                 view.getLocationInWindow(iArr);
-                g4 g4Var = this.f44941c;
+                g4 g4Var = this.f44946c;
                 if (v2Var == g4Var.f48276y && (videoPlayerHolderBase = g4Var.f48275x) != null && videoPlayerHolderBase.firstFrameRendered && textureView.getSurfaceTexture() != null) {
                     if (Build.VERSION.SDK_INT >= 24) {
                         Surface surface = new Surface(textureView.getSurfaceTexture());
@@ -104,7 +104,7 @@ public final class d3 extends nq0 {
             }
             return null;
         } else if (view instanceof h1) {
-            ImageReceiver d02 = d0(((h1) view).f46180a, pageBlock, iArr);
+            ImageReceiver d02 = d0(((h1) view).f46182a, pageBlock, iArr);
             if (d02 != null) {
                 return d02;
             }
@@ -117,11 +117,11 @@ public final class d3 extends nq0 {
             return null;
         } else if (view instanceof v1) {
             org.telegram.ui.Components.xi0 xi0Var2 = ((v1) view).d;
-            if (xi0Var2 != null && (e03 = e0(xi0Var2.f56951a, pageBlock, iArr)) != null) {
+            if (xi0Var2 != null && (e03 = e0(xi0Var2.f57043a, pageBlock, iArr)) != null) {
                 return e03;
             }
             return null;
-        } else if ((view instanceof y1) && (xi0Var = ((y1) view).d) != null && (e02 = e0(xi0Var.f56951a, pageBlock, iArr)) != null) {
+        } else if ((view instanceof y1) && (xi0Var = ((y1) view).d) != null && (e02 = e0(xi0Var.f57043a, pageBlock, iArr)) != null) {
             return e02;
         } else {
             return null;

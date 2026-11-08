@@ -35,9 +35,9 @@ public final class c0 implements Runnable {
                         try {
                             n6.a aVar = new n6.a(i7, null, null);
                             g6.o oVar = (g6.o) qVar;
-                            Parcel P0 = oVar.P0();
-                            com.google.android.gms.internal.cast.t.c(P0, aVar);
-                            oVar.T0(P0, 3);
+                            Parcel p12 = oVar.p1();
+                            com.google.android.gms.internal.cast.t.c(p12, aVar);
+                            oVar.t1(p12, 3);
                         } catch (RemoteException e10) {
                             g6.c.f13543m.a(e10, "Unable to call %s on %s.", "onDisconnected", g6.q.class.getSimpleName());
                         }
@@ -85,9 +85,9 @@ public final class c0 implements Runnable {
                 if (qVar != null) {
                     n6.a aVar = new n6.a(i7, null, null);
                     g6.o oVar = (g6.o) qVar;
-                    Parcel P0 = oVar.P0();
-                    com.google.android.gms.internal.cast.t.c(P0, aVar);
-                    oVar.T0(P0, 3);
+                    Parcel p12 = oVar.p1();
+                    com.google.android.gms.internal.cast.t.c(p12, aVar);
+                    oVar.t1(p12, 3);
                 }
             }
         }
@@ -118,9 +118,9 @@ public final class c0 implements Runnable {
                             if (qVar != null) {
                                 try {
                                     g6.o oVar = (g6.o) qVar;
-                                    Parcel P0 = oVar.P0();
-                                    P0.writeInt(i7);
-                                    oVar.T0(P0, 2);
+                                    Parcel p12 = oVar.p1();
+                                    p12.writeInt(i7);
+                                    oVar.t1(p12, 2);
                                 } catch (RemoteException e10) {
                                     g6.c.f13543m.a(e10, "Unable to call %s on %s.", "onConnectionSuspended", g6.q.class.getSimpleName());
                                 }

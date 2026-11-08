@@ -13,13 +13,13 @@ public final class mu extends fu {
 
     @Override
     public final int I() {
-        Rect rect = this.f22451b;
+        Rect rect = this.f22470b;
         return k5.C(6.0f, rect.top, 1) + rect.bottom;
     }
 
     @Override
     public final int K() {
-        Rect rect = this.f22451b;
+        Rect rect = this.f22470b;
         return g0.L(32.0f) + rect.left + rect.right;
     }
 
@@ -28,7 +28,7 @@ public final class mu extends fu {
         int i7;
         int i10;
         float f10;
-        kv kvVar = this.f22450a;
+        kv kvVar = this.f22469a;
         if (kvVar.E()) {
             i7 = org.telegram.ui.ActionBar.k6.ul;
         } else {
@@ -39,7 +39,7 @@ public final class mu extends fu {
         paint.setColor(w02);
         float f11 = -kvVar.S;
         int i11 = kvVar.C + kvVar.T;
-        Rect rect = this.f22451b;
+        Rect rect = this.f22470b;
         float f12 = (i11 - rect.left) - rect.right;
         float f13 = 0.0f;
         if (kvVar.f23779s) {
@@ -57,7 +57,7 @@ public final class mu extends fu {
         }
         lu luVar = this.L;
         if (luVar != null) {
-            i10 = luVar.f22451b.bottom;
+            i10 = luVar.f22470b.bottom;
         } else {
             i10 = 0;
         }

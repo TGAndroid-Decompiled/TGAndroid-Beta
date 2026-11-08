@@ -41,7 +41,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.c20;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.j20;
 import org.telegram.messenger.p5;
@@ -125,7 +125,7 @@ public final class i implements c20 {
                     }
                     if (!TextUtils.equals(l1Var.d, str3)) {
                         l1Var.d = str3;
-                        Utilities.f21333e.c(new a1.e(18, str3, new b1(l1Var, str3, 0)));
+                        Utilities.f21336e.c(new a1.e(18, str3, new b1(l1Var, str3, 0)));
                     }
                     l1Var.setLinkExpires(tL_exportedContactToken.expires);
                     return;
@@ -148,7 +148,7 @@ public final class i implements c20 {
                 int i12 = bi.a1.f3420p2[((Integer) obj).intValue()];
                 if (a1Var.f3426g2 != i12) {
                     a1Var.f3426g2 = i12;
-                    a1Var.Y1.setText(hd.G(i12 / 3600, "GiftOfferHours", new Object[0]));
+                    a1Var.Y1.setText(id.G(i12 / 3600, "GiftOfferHours", new Object[0]));
                 }
                 a1Var.e1(true);
                 return;
@@ -184,18 +184,18 @@ public final class i implements c20 {
                 if (starGift != null) {
                     if (starGift instanceof TL_stars.TL_starGiftUnique) {
                         if (starGift.availability_remains <= 0) {
-                            str = hd.H(',', "Gift2QuantityIssuedNone", starGift.availability_total);
+                            str = id.H(',', "Gift2QuantityIssuedNone", starGift.availability_total);
                         } else {
-                            str = hd.H(',', "Gift2QuantityIssued1", starGift.availability_issued) + hd.H(',', "Gift2QuantityIssued2", starGift.availability_total);
+                            str = id.H(',', "Gift2QuantityIssued1", starGift.availability_issued) + id.H(',', "Gift2QuantityIssued2", starGift.availability_total);
                         }
                         textView.setText(str);
                         return;
                     }
                     int i13 = starGift.availability_remains;
                     if (i13 <= 0) {
-                        K = hd.H(',', "Gift2Availability2ValueNone", starGift.availability_total);
+                        K = id.H(',', "Gift2Availability2ValueNone", starGift.availability_total);
                     } else {
-                        K = hd.K("Gift2Availability4Value", i13, ',', hd.E(starGift.availability_total, ','));
+                        K = id.K("Gift2Availability4Value", i13, ',', id.E(starGift.availability_total, ','));
                     }
                     textView.setText(K);
                     return;
@@ -210,7 +210,7 @@ public final class i implements c20 {
                     di.g1.W = g1Var;
                     g1Var.J = NativeInstance.createVideoCapturer(g1Var.H, g1Var.I ? 1 : 0);
                     if (g1Var.E != null) {
-                        p5 p5Var = Utilities.f21333e;
+                        p5 p5Var = Utilities.f21336e;
                         NativeInstance nativeInstance = g1Var.E;
                         Objects.requireNonNull(nativeInstance);
                         p5Var.c(new org.telegram.messenger.voip.p0(nativeInstance, 3));
@@ -219,7 +219,7 @@ public final class i implements c20 {
                     }
                     g1Var.c();
                     g1Var.k();
-                    qs.f(g1Var.f9025e).k(176, Long.valueOf(g1Var.f9026f.f26970id));
+                    qs.f(g1Var.f9025e).k(176, Long.valueOf(g1Var.f9026f.f26973id));
                     return;
                 }
                 return;
@@ -302,7 +302,7 @@ public final class i implements c20 {
                 j20 j20Var = (j20) obj;
                 ij ijVar = q0Var2.f12639c;
                 if (ijVar != null) {
-                    ijVar.f23262p0 = j20Var;
+                    ijVar.f23280p0 = j20Var;
                     MediaController.B().h0(q0Var2.f12639c, false, true, false);
                     return;
                 }
@@ -313,7 +313,7 @@ public final class i implements c20 {
                 org.telegram.messenger.g0.i3(new f2.h(4, p2Var, (Runnable) obj), 80L);
                 return;
             case 20:
-                ((f3) this.f1237b).f11972s.animate().translationY(((-((Integer) obj).intValue()) / 2.0f) + org.telegram.messenger.g0.L(80.0f)).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.i1.f27541w).start();
+                ((f3) this.f1237b).f11972s.animate().translationY(((-((Integer) obj).intValue()) / 2.0f) + org.telegram.messenger.g0.L(80.0f)).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.i1.f27544w).start();
                 return;
             case 21:
                 b4 b4Var = (b4) this.f1237b;
@@ -322,7 +322,7 @@ public final class i implements c20 {
                 if (view2 instanceof a4) {
                     w3Var.getClass();
                     int R = RecyclerView.R(view2);
-                    x31 G = w3Var.f37160f3.G(R);
+                    x31 G = w3Var.f37190f3.G(R);
                     if (G != null) {
                         a4 a4Var = (a4) view2;
                         a4Var.setPosition(b4Var.b(R));
@@ -404,7 +404,7 @@ public final class i implements c20 {
                 Long l11 = (Long) obj;
                 w6Var.f13054w2 = false;
                 if (l11 != null) {
-                    user = qp.s1(w6Var.f28613a).a2(l11);
+                    user = qp.s1(w6Var.f28616a).a2(l11);
                 }
                 w6Var.f13053v2 = user;
                 if (user == null) {
@@ -423,8 +423,8 @@ public final class i implements c20 {
                     m7Var.e1();
                     return;
                 }
-                m7Var.f12460g2 = h0Var.f55618e;
-                m7Var.f12459f2 = h0Var.f55619f;
+                m7Var.f12460g2 = h0Var.f55710e;
+                m7Var.f12459f2 = h0Var.f55711f;
                 return;
             case 27:
                 ((j8) this.f1237b).f12241n.W.f12817y1 = ((Integer) obj).intValue();
@@ -434,11 +434,11 @@ public final class i implements c20 {
                 return;
             default:
                 hi.q qVar = (hi.q) this.f1237b;
-                ArrayList arrayList5 = qVar.f14872b;
+                ArrayList arrayList5 = qVar.f14875b;
                 arrayList5.clear();
                 arrayList5.addAll((ArrayList) obj);
-                q41 q41Var = qVar.f14871a;
-                if (q41Var != null && (l41Var = q41Var.f37160f3) != null) {
+                q41 q41Var = qVar.f14874a;
+                if (q41Var != null && (l41Var = q41Var.f37190f3) != null) {
                     l41Var.O(true);
                     return;
                 }

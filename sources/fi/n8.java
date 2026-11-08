@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ls;
 import org.telegram.messenger.qp;
 import org.telegram.messenger.qs;
@@ -77,7 +77,7 @@ public final class n8 extends FrameLayout implements View.OnClickListener, ls {
         this.D = x3Var;
         g8 g8Var = new g8(this, context, s8Var.I0, new d8(this, 4));
         this.f12495y = g8Var;
-        int i10 = org.telegram.ui.ActionBar.k6.f27922h5;
+        int i10 = org.telegram.ui.ActionBar.k6.f27925h5;
         org.telegram.ui.ActionBar.r6.i(i10, g8Var, s8Var.I0);
         g8Var.setOnSearchTextChange(new e8(this, 3));
         a8 a8Var = new a8(context, s8Var.I0);
@@ -85,7 +85,7 @@ public final class n8 extends FrameLayout implements View.OnClickListener, ls {
         a8Var.h = new d8(this, 5);
         FrameLayout frameLayout = new FrameLayout(context);
         this.f12488e = frameLayout;
-        frameLayout.setPadding(0, org.telegram.messenger.g0.L(56.0f) + org.telegram.messenger.g0.f22538m, 0, 0);
+        frameLayout.setPadding(0, org.telegram.messenger.g0.L(56.0f) + org.telegram.messenger.g0.f22557m, 0, 0);
         frameLayout.setClipToPadding(true);
         addView(frameLayout, c8.ha.e(-1, -1, 119));
         pj0 pj0Var = new pj0(context, s8Var.I0);
@@ -106,7 +106,7 @@ public final class n8 extends FrameLayout implements View.OnClickListener, ls {
         i8Var.n(350L);
         i8Var.o(xq.h);
         i8Var.C = false;
-        i8Var.f56978m = false;
+        i8Var.f57070m = false;
         pj0Var.setItemAnimator(i8Var);
         frameLayout.addView(g8Var, c8.ha.e(-1, -2, 55));
         frameLayout.addView(x3Var, c8.ha.e(-1, 32, 55));
@@ -115,7 +115,7 @@ public final class n8 extends FrameLayout implements View.OnClickListener, ls {
         this.f12491r = l8Var;
         l8Var.setClickable(true);
         l8Var.setOrientation(1);
-        l8Var.setPadding(org.telegram.messenger.g0.L(10.0f) + s8Var.f28646t0, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(10.0f) + s8Var.f28646t0, org.telegram.messenger.g0.L(10.0f));
+        l8Var.setPadding(org.telegram.messenger.g0.L(10.0f) + s8Var.f28649t0, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(10.0f) + s8Var.f28649t0, org.telegram.messenger.g0.L(10.0f));
         org.telegram.ui.ActionBar.r6.i(i10, l8Var, s8Var.I0);
         d dVar = new d(context, s8Var.I0, true);
         this.f12493w = dVar;
@@ -189,7 +189,7 @@ public final class n8 extends FrameLayout implements View.OnClickListener, ls {
             ArrayList arrayList = this.f12487c;
             arrayList.clear();
             int i7 = s8.U1;
-            arrayList.addAll(qp.s1(this.W.f28613a).P1().L);
+            arrayList.addAll(qp.s1(this.W.f28616a).P1().L);
             int i10 = 0;
             while (true) {
                 a0.h hVar = this.f12486b;
@@ -230,7 +230,7 @@ public final class n8 extends FrameLayout implements View.OnClickListener, ls {
             arrayList.addAll(s8Var.A1);
         } else if (i7 == 1) {
             ArrayList J0 = s8.J0(s8Var);
-            for (int i11 = 0; i11 < J0.size(); i11 = com.google.android.recaptcha.internal.a.g(i11, 1, ((TLRPC.User) J0.get(i11)).f27102id, arrayList)) {
+            for (int i11 = 0; i11 < J0.size(); i11 = com.google.android.recaptcha.internal.a.g(i11, 1, ((TLRPC.User) J0.get(i11)).f27105id, arrayList)) {
             }
         } else if (i7 == 2) {
             arrayList.addAll(s8Var.n1);
@@ -286,11 +286,11 @@ public final class n8 extends FrameLayout implements View.OnClickListener, ls {
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         TLRPC.ChatFull chatFull;
         org.telegram.ui.ActionBar.u1 u1Var;
-        if (i7 == qs.T && (chatFull = (TLRPC.ChatFull) objArr[0]) != null && (u1Var = this.G) != null && this.H == chatFull.f26954id) {
+        if (i7 == qs.T && (chatFull = (TLRPC.ChatFull) objArr[0]) != null && (u1Var = this.G) != null && this.H == chatFull.f26957id) {
             u1Var.c(350L);
             this.G = null;
             this.H = -1L;
-            e(chatFull.f26954id, chatFull.participants);
+            e(chatFull.f26957id, chatFull.participants);
         }
     }
 
@@ -310,8 +310,8 @@ public final class n8 extends FrameLayout implements View.OnClickListener, ls {
             for (int i11 = 0; i11 < chatParticipants.participants.size(); i11++) {
                 long j10 = chatParticipants.participants.get(i11).user_id;
                 int i12 = s8.U1;
-                TLRPC.User a22 = qp.s1(s8Var.f28613a).a2(Long.valueOf(j10));
-                if (a22 != null && !t10.B(a22) && !a22.bot && a22.f27102id != 777000 && j10 != 0) {
+                TLRPC.User a22 = qp.s1(s8Var.f28616a).a2(Long.valueOf(j10));
+                if (a22 != null && !t10.B(a22) && !a22.bot && a22.f27105id != 777000 && j10 != 0) {
                     if (z9 && !a22.contact) {
                         arrayList2.add(Long.valueOf(j10));
                     } else {
@@ -326,15 +326,15 @@ public final class n8 extends FrameLayout implements View.OnClickListener, ls {
                 Context context = getContext();
                 int i13 = s8.U1;
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, s8Var.I0);
-                alertDialog$Builder.f27293a.T = hd.M0(2131744539, null);
+                alertDialog$Builder.f27296a.T = id.M0(2131744541, null);
                 jg.g.w(null, 2131752589, alertDialog$Builder, null);
                 return;
             }
             Context context2 = getContext();
             int i14 = s8.U1;
             AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(0, context2, s8Var.I0);
-            alertDialog$Builder2.f27293a.T = hd.G(arrayList2.size(), "StoryPrivacyGroupNonContacts", new Object[0]);
-            alertDialog$Builder2.k(hd.G(arrayList.size(), "StoryPrivacyGroupAddContacts", new Object[0]), new bi.i(this, j3, arrayList, 2));
+            alertDialog$Builder2.f27296a.T = id.G(arrayList2.size(), "StoryPrivacyGroupNonContacts", new Object[0]);
+            alertDialog$Builder2.k(id.G(arrayList.size(), "StoryPrivacyGroupAddContacts", new Object[0]), new bi.i(this, j3, arrayList, 2));
             jg.g.w(null, 2131752589, alertDialog$Builder2, null);
             return;
         }
@@ -365,20 +365,20 @@ public final class n8 extends FrameLayout implements View.OnClickListener, ls {
             dVar2.setEnabled(true);
             dVar2.c(0, z9);
             if (s8Var.C1) {
-                dVar2.i(hd.M0(2131744555, null), z9, true);
+                dVar2.i(id.M0(2131744557, null), z9, true);
             } else if (s8Var.Q1) {
-                dVar2.i(hd.M0(2131744555, null), z9, true);
+                dVar2.i(id.M0(2131744557, null), z9, true);
             } else {
                 int i12 = s8Var.f12818z1;
                 if (i12 == 1) {
                     if (s8Var.B1) {
-                        i7 = 2131744620;
+                        i7 = 2131744622;
                     } else {
-                        i7 = 2131744559;
+                        i7 = 2131744561;
                     }
-                    dVar2.i(hd.M0(i7, null), z9, true);
+                    dVar2.i(id.M0(i7, null), z9, true);
                 } else {
-                    dVar2.i(hd.H(',', "StoryPrivacyButtonPostMultiple", i12), z9, true);
+                    dVar2.i(id.H(',', "StoryPrivacyButtonPostMultiple", i12), z9, true);
                 }
             }
             dVar.setVisibility(8);
@@ -388,7 +388,7 @@ public final class n8 extends FrameLayout implements View.OnClickListener, ls {
         if (i10 == 1) {
             dVar2.setShowZero(false);
             dVar2.setEnabled(true);
-            dVar2.i(hd.M0(2131744554, null), z9, true);
+            dVar2.i(id.M0(2131744556, null), z9, true);
             dVar2.c(arrayList.size(), z9);
             dVar.setVisibility(8);
             return;
@@ -397,7 +397,7 @@ public final class n8 extends FrameLayout implements View.OnClickListener, ls {
         if (i10 == 3) {
             int size = s8.R0(arrayList, this.d).size();
             s8Var.f12809q1 = size;
-            dVar2.i(hd.M0(2131744555, null), z9, true);
+            dVar2.i(id.M0(2131744557, null), z9, true);
             dVar2.setShowZero(false);
             if (size <= 0) {
                 z10 = true;
@@ -415,10 +415,10 @@ public final class n8 extends FrameLayout implements View.OnClickListener, ls {
             dVar2.setShowZero(false);
             dVar2.setEnabled(true);
             if (arrayList.isEmpty()) {
-                dVar2.i(hd.M0(2131744555, null), z9, true);
+                dVar2.i(id.M0(2131744557, null), z9, true);
                 dVar2.c(0, z9);
             } else {
-                dVar2.i(hd.M0(2131744560, null), z9, true);
+                dVar2.i(id.M0(2131744562, null), z9, true);
                 dVar2.c(arrayList.size(), z9);
             }
             dVar.setVisibility(8);
@@ -430,9 +430,9 @@ public final class n8 extends FrameLayout implements View.OnClickListener, ls {
         } else if (i10 == 6) {
             dVar2.setShowZero(false);
             dVar2.setEnabled(true);
-            dVar2.i(hd.M0(2131744554, null), z9, true);
+            dVar2.i(id.M0(2131744556, null), z9, true);
             int i13 = s8.U1;
-            di.y6 P1 = qp.s1(s8Var.f28613a).P1();
+            di.y6 P1 = qp.s1(s8Var.f28616a).P1();
             if (!P1.O) {
                 while (true) {
                     a0.h hVar = this.f12486b;
@@ -451,7 +451,7 @@ public final class n8 extends FrameLayout implements View.OnClickListener, ls {
         } else if (i10 == 4) {
             int size2 = s8.R0(s8Var.f12805k1, s8Var.l1).size();
             s8Var.f12806m1 = size2;
-            dVar2.i(hd.M0(2131744555, null), z9, true);
+            dVar2.i(id.M0(2131744557, null), z9, true);
             dVar2.setShowZero(false);
             l8Var.b(false, z9);
             dVar2.c(size2, z9);
@@ -522,16 +522,16 @@ public final class n8 extends FrameLayout implements View.OnClickListener, ls {
                 } else {
                     TLRPC.User user = b8Var.f11694g;
                     if (user != null) {
-                        boolean contains = arrayList6.contains(Long.valueOf(user.f27102id));
+                        boolean contains = arrayList6.contains(Long.valueOf(user.f27105id));
                         b8Var.f11697k = contains;
-                        if (contains || !R0.contains(Long.valueOf(b8Var.f11694g.f27102id))) {
+                        if (contains || !R0.contains(Long.valueOf(b8Var.f11694g.f27105id))) {
                             z11 = false;
                         }
                         b8Var.f11698l = z11;
                     } else {
                         TLRPC.Chat chat = b8Var.h;
                         if (chat != null) {
-                            b8Var.f11697k = hashMap3.containsKey(Long.valueOf(chat.f26953id));
+                            b8Var.f11697k = hashMap3.containsKey(Long.valueOf(chat.f26956id));
                             b8Var.f11698l = false;
                         }
                     }
@@ -585,11 +585,11 @@ public final class n8 extends FrameLayout implements View.OnClickListener, ls {
             return;
         }
         if (s8.R0(this.f12487c, this.d).size() > 0) {
-            x3Var.a(hd.M0(2131743631, null), new c8(this, 2));
+            x3Var.a(id.M0(2131743633, null), new c8(this, 2));
         } else if (z9) {
             x3Var.setRightText(null);
         } else {
-            org.telegram.ui.Cells.w3 w3Var = x3Var.f30873b;
+            org.telegram.ui.Cells.w3 w3Var = x3Var.f30877b;
             w3Var.c(null, false, true);
             w3Var.setOnClickListener(null);
             w3Var.setVisibility(0);
@@ -611,7 +611,7 @@ public final class n8 extends FrameLayout implements View.OnClickListener, ls {
         } else if (i7 == 4) {
             s8Var.f12806m1 = R0.size();
         }
-        qp s12 = qp.s1(s8Var.f28613a);
+        qp s12 = qp.s1(s8Var.f28616a);
         ArrayList arrayList2 = new ArrayList();
         ArrayList arrayList3 = new ArrayList();
         int i10 = 0;
@@ -783,14 +783,14 @@ public final class n8 extends FrameLayout implements View.OnClickListener, ls {
             }
             y1Var.c(true, f10);
         }
-        a8Var.setTranslationY(Math.max(org.telegram.messenger.g0.f22538m, f11));
+        a8Var.setTranslationY(Math.max(org.telegram.messenger.g0.f22557m, f11));
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         int i7 = s8.U1;
-        qs.f(this.W.f28613a).c(this, qs.T);
+        qs.f(this.W.f28616a).c(this, qs.T);
     }
 
     @Override
@@ -859,7 +859,7 @@ public final class n8 extends FrameLayout implements View.OnClickListener, ls {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         int i7 = s8.U1;
-        qs.f(this.W.f28613a).n(this, qs.T);
+        qs.f(this.W.f28616a).n(this, qs.T);
     }
 
     @Override
@@ -875,12 +875,12 @@ public final class n8 extends FrameLayout implements View.OnClickListener, ls {
         float f10;
         int i13 = s8.U1;
         s8 s8Var = this.W;
-        int i14 = s8Var.f28627f;
+        int i14 = s8Var.f28630f;
         if (i14 > 0) {
             this.T = i14;
         }
         super.onMeasure(i7, i10);
-        int i15 = org.telegram.messenger.g0.f22538m;
+        int i15 = org.telegram.messenger.g0.f22557m;
         if (this.f12485a == 0) {
             L = 0;
         } else {
@@ -895,8 +895,8 @@ public final class n8 extends FrameLayout implements View.OnClickListener, ls {
             float c10 = c();
             if (s8Var.d && c10 + Math.min(org.telegram.messenger.g0.L(150.0f), this.f12495y.K) > pj0Var.getPaddingTop()) {
                 mi.m mVar = new mi.m(getContext(), 2, 0.7f);
-                mVar.f57120a = 1;
-                mVar.f20108p = -org.telegram.messenger.g0.L(56.0f);
+                mVar.f57212a = 1;
+                mVar.f20111p = -org.telegram.messenger.g0.L(56.0f);
                 this.h.w0(mVar);
             }
             int i16 = this.f12485a;
@@ -931,7 +931,7 @@ public final class n8 extends FrameLayout implements View.OnClickListener, ls {
                 l8Var.d.addListener(new bi.t5(l8Var, 25));
                 l8Var.d.setDuration(250L);
                 ValueAnimator valueAnimator2 = l8Var.d;
-                xq xqVar = org.telegram.ui.ActionBar.i1.f27541w;
+                xq xqVar = org.telegram.ui.ActionBar.i1.f27544w;
                 valueAnimator2.setInterpolator(xqVar);
                 l8Var.d.start();
                 if (s8Var.d) {

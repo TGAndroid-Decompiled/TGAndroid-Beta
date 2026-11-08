@@ -9,46 +9,46 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import org.telegram.messenger.r2;
 public class c0 extends z0 {
-    public static final boolean f56933q;
-    public PointF f56936k;
-    public final DisplayMetrics f56937l;
-    public float f56939n;
-    public final LinearInterpolator f56934i = new LinearInterpolator();
-    public final DecelerateInterpolator f56935j = new DecelerateInterpolator();
-    public boolean f56938m = false;
-    public int f56940o = 0;
-    public int f56941p = 0;
+    public static final boolean f57025q;
+    public PointF f57028k;
+    public final DisplayMetrics f57029l;
+    public float f57031n;
+    public final LinearInterpolator f57026i = new LinearInterpolator();
+    public final DecelerateInterpolator f57027j = new DecelerateInterpolator();
+    public boolean f57030m = false;
+    public int f57032o = 0;
+    public int f57033p = 0;
 
     static {
-        boolean z9 = r2.f25199a;
-        f56933q = true;
+        boolean z9 = r2.f25212a;
+        f57025q = true;
     }
 
     public c0(Context context) {
-        this.f56937l = context.getResources().getDisplayMetrics();
+        this.f57029l = context.getResources().getDisplayMetrics();
     }
 
     @Override
     public final void d(int i7, int i10, y0 y0Var) {
         PointF pointF;
-        if (this.f57121b.f2873y.r() == 0) {
+        if (this.f57213b.f2873y.r() == 0) {
             h();
-        } else if (f56933q && (pointF = this.f56936k) != null && (pointF.x * i7 < 0.0f || pointF.y * i10 < 0.0f)) {
+        } else if (f57025q && (pointF = this.f57028k) != null && (pointF.x * i7 < 0.0f || pointF.y * i10 < 0.0f)) {
             throw new IllegalStateException("Scroll happened in the opposite direction of the target. Some calculations are wrong");
         } else {
-            int i11 = this.f56940o;
+            int i11 = this.f57032o;
             int i12 = i11 - i7;
             int i13 = 0;
             if (i11 * i12 <= 0) {
                 i12 = 0;
             }
-            this.f56940o = i12;
-            int i14 = this.f56941p;
+            this.f57032o = i12;
+            int i14 = this.f57033p;
             int i15 = i14 - i10;
             if (i14 * i15 > 0) {
                 i13 = i15;
             }
-            this.f56941p = i13;
+            this.f57033p = i13;
             if (i12 == 0 && i13 == 0) {
                 q(y0Var);
             }
@@ -57,9 +57,9 @@ public class c0 extends z0 {
 
     @Override
     public final void f() {
-        this.f56941p = 0;
-        this.f56940o = 0;
-        this.f56936k = null;
+        this.f57033p = 0;
+        this.f57032o = 0;
+        this.f57028k = null;
     }
 
     @Override
@@ -68,7 +68,7 @@ public class c0 extends z0 {
         int k10 = k(p(), view);
         int m10 = m((int) Math.sqrt((k10 * k10) + (j3 * j3)));
         if (m10 > 0) {
-            y0Var.b(-j3, -k10, m10, this.f56935j);
+            y0Var.b(-j3, -k10, m10, this.f57027j);
         }
     }
 
@@ -94,19 +94,19 @@ public class c0 extends z0 {
     }
 
     public final int j(int i7, View view) {
-        n0 n0Var = this.f57122c;
+        n0 n0Var = this.f57214c;
         if (n0Var != null && n0Var.d()) {
             o0 o0Var = (o0) view.getLayoutParams();
-            return i(n0.x(view) - ((ViewGroup.MarginLayoutParams) o0Var).leftMargin, n0.y(view) + ((ViewGroup.MarginLayoutParams) o0Var).rightMargin, n0Var.D(), n0Var.f57048m - n0Var.E(), i7);
+            return i(n0.x(view) - ((ViewGroup.MarginLayoutParams) o0Var).leftMargin, n0.y(view) + ((ViewGroup.MarginLayoutParams) o0Var).rightMargin, n0Var.D(), n0Var.f57140m - n0Var.E(), i7);
         }
         return 0;
     }
 
     public int k(int i7, View view) {
-        n0 n0Var = this.f57122c;
+        n0 n0Var = this.f57214c;
         if (n0Var != null && n0Var.e()) {
             o0 o0Var = (o0) view.getLayoutParams();
-            return i(n0.z(view) - ((ViewGroup.MarginLayoutParams) o0Var).topMargin, n0.v(view) + ((ViewGroup.MarginLayoutParams) o0Var).bottomMargin, n0Var.F(), n0Var.f57049n - n0Var.C(), i7);
+            return i(n0.z(view) - ((ViewGroup.MarginLayoutParams) o0Var).topMargin, n0.v(view) + ((ViewGroup.MarginLayoutParams) o0Var).bottomMargin, n0Var.F(), n0Var.f57141n - n0Var.C(), i7);
         }
         return 0;
     }
@@ -121,15 +121,15 @@ public class c0 extends z0 {
 
     public int n(int i7) {
         float abs = Math.abs(i7);
-        if (!this.f56938m) {
-            this.f56939n = l(this.f56937l);
-            this.f56938m = true;
+        if (!this.f57030m) {
+            this.f57031n = l(this.f57029l);
+            this.f57030m = true;
         }
-        return (int) Math.ceil(abs * this.f56939n);
+        return (int) Math.ceil(abs * this.f57031n);
     }
 
     public final int o() {
-        PointF pointF = this.f56936k;
+        PointF pointF = this.f57028k;
         if (pointF != null) {
             float f10 = pointF.x;
             if (f10 != 0.0f) {
@@ -144,7 +144,7 @@ public class c0 extends z0 {
     }
 
     public int p() {
-        PointF pointF = this.f56936k;
+        PointF pointF = this.f57028k;
         if (pointF != null) {
             float f10 = pointF.y;
             if (f10 != 0.0f) {
@@ -159,16 +159,16 @@ public class c0 extends z0 {
     }
 
     public void q(y0 y0Var) {
-        PointF a10 = a(this.f57120a);
+        PointF a10 = a(this.f57212a);
         if (a10 != null && (a10.x != 0.0f || a10.y != 0.0f)) {
             z0.b(a10);
-            this.f56936k = a10;
-            this.f56940o = (int) (a10.x * 10000.0f);
-            this.f56941p = (int) (a10.y * 10000.0f);
-            y0Var.b((int) (this.f56940o * 1.2f), (int) (this.f56941p * 1.2f), (int) (n(10000) * 1.2f), this.f56934i);
+            this.f57028k = a10;
+            this.f57032o = (int) (a10.x * 10000.0f);
+            this.f57033p = (int) (a10.y * 10000.0f);
+            y0Var.b((int) (this.f57032o * 1.2f), (int) (this.f57033p * 1.2f), (int) (n(10000) * 1.2f), this.f57026i);
             return;
         }
-        y0Var.d = this.f57120a;
+        y0Var.d = this.f57212a;
         h();
     }
 

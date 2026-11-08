@@ -5,35 +5,35 @@ import org.telegram.messenger.fj;
 import org.telegram.messenger.gj;
 import org.telegram.messenger.ij;
 public final class c1 implements Runnable {
-    public final int f28969a;
-    public final q1 f28970b;
+    public final int f28972a;
+    public final q1 f28973b;
 
     public c1(q1 q1Var, int i7) {
-        this.f28969a = i7;
-        this.f28970b = q1Var;
+        this.f28972a = i7;
+        this.f28973b = q1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f28969a) {
+        switch (this.f28972a) {
             case 0:
-                this.f28970b.p2();
+                this.f28973b.p2();
                 return;
             case 1:
-                this.f28970b.q2();
+                this.f28973b.q2();
                 return;
             case 2:
-                q1 q1Var = this.f28970b;
-                ob.c cVar = q1Var.f30057x;
+                q1 q1Var = this.f28973b;
+                ob.c cVar = q1Var.f30061x;
                 cVar.a(q1Var.Xb);
                 cVar.a(q1Var.Yb);
-                q1Var.g3();
+                q1Var.h3();
                 ij ijVar = q1Var.P5;
                 if (ijVar != null) {
                     ijVar.n0(null);
                     ij ijVar2 = q1Var.P5;
-                    if (ijVar2.f23300z != null) {
-                        ijVar2.f23300z = null;
+                    if (ijVar2.f23318z != null) {
+                        ijVar2.f23318z = null;
                         ijVar2.k0();
                     }
                     l1 l1Var = q1Var.Ra;
@@ -45,73 +45,73 @@ public final class c1 implements Runnable {
                 }
                 return;
             case 3:
-                q1 q1Var2 = this.f28970b;
-                if (q1Var2.f29814d8 && !q1Var2.f29827e8 && q1Var2.f29841f8) {
-                    q1Var2.f29827e8 = true;
+                q1 q1Var2 = this.f28973b;
+                if (q1Var2.f29817d8 && !q1Var2.f29830e8 && q1Var2.f29844f8) {
+                    q1Var2.f29830e8 = true;
                     q1Var2.Ja.setState(new int[]{16842919, 16842910});
                     return;
                 }
                 return;
             case 4:
-                q1 q1Var3 = this.f28970b;
+                q1 q1Var3 = this.f28973b;
                 q1Var3.Ja.setState(new int[0]);
                 q1Var3.invalidate();
                 return;
             case 5:
-                q1 q1Var4 = this.f28970b;
+                q1 q1Var4 = this.f28973b;
                 q1Var4.Ja.setState(new int[0]);
                 q1Var4.invalidate();
                 return;
             case 6:
-                q1 q1Var5 = this.f28970b;
+                q1 q1Var5 = this.f28973b;
                 int i7 = 0;
                 q1Var5.O5 = false;
                 q1Var5.getMessageObject().L0 = true;
-                gj gjVar = q1Var5.f29957p3;
+                gj gjVar = q1Var5.f29961p3;
                 if (gjVar != null) {
-                    ArrayList arrayList = gjVar.f22660e;
+                    ArrayList arrayList = gjVar.f22680e;
                     int size = arrayList.size();
                     int i10 = 0;
                     while (i10 < size) {
                         Object obj = arrayList.get(i10);
                         i10++;
-                        ((fj) obj).f22404y.clear();
+                        ((fj) obj).f22431y.clear();
                     }
                 }
-                gj gjVar2 = q1Var5.f29909l3;
+                gj gjVar2 = q1Var5.f29913l3;
                 if (gjVar2 != null) {
-                    ArrayList arrayList2 = gjVar2.f22660e;
+                    ArrayList arrayList2 = gjVar2.f22680e;
                     int size2 = arrayList2.size();
                     while (i7 < size2) {
                         Object obj2 = arrayList2.get(i7);
                         i7++;
-                        ((fj) obj2).f22404y.clear();
+                        ((fj) obj2).f22431y.clear();
                     }
                 } else {
-                    ArrayList arrayList3 = q1Var5.P5.f23303z2;
+                    ArrayList arrayList3 = q1Var5.P5.f23321z2;
                     if (arrayList3 != null) {
                         int size3 = arrayList3.size();
                         while (i7 < size3) {
                             Object obj3 = arrayList3.get(i7);
                             i7++;
-                            ((fj) obj3).f22404y.clear();
+                            ((fj) obj3).f22431y.clear();
                         }
                     }
                 }
                 q1Var5.invalidate();
                 return;
             case 7:
-                q1 q1Var6 = this.f28970b;
+                q1 q1Var6 = this.f28973b;
                 q1Var6.getMessageObject().C.L0 = true;
                 q1Var6.Sb.clear();
                 q1Var6.invalidate();
                 return;
             case 8:
-                q1 q1Var7 = this.f28970b;
+                q1 q1Var7 = this.f28973b;
                 q1Var7.post(new c1(q1Var7, 6));
                 return;
             case 9:
-                q1 q1Var8 = this.f28970b;
+                q1 q1Var8 = this.f28973b;
                 l1 l1Var2 = q1Var8.Ra;
                 if (l1Var2 != null) {
                     l1Var2.r(q1Var8);
@@ -119,7 +119,7 @@ public final class c1 implements Runnable {
                 }
                 return;
             default:
-                this.f28970b.g3();
+                this.f28973b.h3();
                 return;
         }
     }

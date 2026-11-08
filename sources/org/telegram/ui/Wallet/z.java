@@ -1,16 +1,23 @@
 package org.telegram.ui.Wallet;
-public final class z implements Runnable {
-    public final int f43406a;
 
-    public z(int i7) {
-        this.f43406a = i7;
+import org.telegram.messenger.c20;
+import org.telegram.ui.PasscodeActivity;
+public final class z extends PasscodeActivity {
+    public final boolean[] W;
+    public final c20 X;
+
+    public z(boolean[] zArr, c20 c20Var) {
+        super(3);
+        this.W = zArr;
+        this.X = c20Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.z.run():void");
-    }
-
-    private final void a() {
+    public final void onFragmentDestroy() {
+        c20 c20Var;
+        super.onFragmentDestroy();
+        if (!this.W[0] && (c20Var = this.X) != null) {
+            c20Var.a("PASSCODE_FAILED");
+        }
     }
 }

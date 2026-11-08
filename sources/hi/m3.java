@@ -6,8 +6,8 @@ import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import org.telegram.messenger.hd;
 import org.telegram.messenger.i6;
+import org.telegram.messenger.id;
 import org.telegram.messenger.qp;
 import org.telegram.messenger.t10;
 import org.telegram.tgnet.TLRPC;
@@ -24,7 +24,7 @@ import org.telegram.ui.Components.w8;
 import org.telegram.ui.Components.x31;
 import org.telegram.ui.ez;
 public final class m3 extends w31 {
-    public static final int f14795b = 0;
+    public static final int f14798b = 0;
 
     static {
         w31.h(new w31());
@@ -42,14 +42,14 @@ public final class m3 extends w31 {
         if (obj instanceof TL_payments.connectedBotStarRef) {
             n3 n3Var = (n3) view;
             TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) obj;
-            boolean z10 = x31Var.f40165r;
-            f6 f6Var = n3Var.f14813b;
-            View view2 = n3Var.f14815e;
-            ImageView imageView = n3Var.f14816f;
-            TLRPC.User a22 = qp.s1(n3Var.f14812a).a2(Long.valueOf(connectedbotstarref.bot_id));
+            boolean z10 = x31Var.f40186r;
+            f6 f6Var = n3Var.f14816b;
+            View view2 = n3Var.f14818e;
+            ImageView imageView = n3Var.f14819f;
+            TLRPC.User a22 = qp.s1(n3Var.f14815a).a2(Long.valueOf(connectedbotstarref.bot_id));
             w8 w8Var = new w8((f6) null);
             w8Var.r(a22);
-            n3Var.f14814c.e(a22, w8Var);
+            n3Var.f14817c.e(a22, w8Var);
             TextView textView = n3Var.h;
             textView.setText(i6.m(t10.p(a22), textView.getPaint().getFontMetricsInt(), false, null, 0));
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
@@ -57,27 +57,27 @@ public final class m3 extends w31 {
                 spannableStringBuilder.append((CharSequence) " d");
                 ez ezVar = new ez();
                 int i14 = k6.ik;
-                ezVar.f45442f = k6.w0(i14, null);
-                ezVar.f45444r = i14;
-                ezVar.f45445s = null;
-                ezVar.f45443n = true;
-                ezVar.f45446w = j.J0(connectedbotstarref.commission_permille);
-                if (ezVar.f45440c != null) {
-                    ezVar.f45440c = null;
+                ezVar.f45401f = k6.w0(i14, null);
+                ezVar.f45403r = i14;
+                ezVar.f45404s = null;
+                ezVar.f45402n = true;
+                ezVar.f45405w = j.J0(connectedbotstarref.commission_permille);
+                if (ezVar.f45399c != null) {
+                    ezVar.f45399c = null;
                     ezVar.a();
                 }
                 spannableStringBuilder.setSpan(ezVar, 1, 2, 33);
             }
             int i15 = connectedbotstarref.duration_months;
             if (i15 == 0) {
-                spannableStringBuilder.append((CharSequence) hd.M0(2131748985, null));
+                spannableStringBuilder.append((CharSequence) id.M0(2131748987, null));
             } else if (i15 >= 12 && i15 % 12 == 0) {
-                spannableStringBuilder.append((CharSequence) hd.G(i15 / 12, "Years", new Object[0]));
+                spannableStringBuilder.append((CharSequence) id.G(i15 / 12, "Years", new Object[0]));
             } else {
-                spannableStringBuilder.append((CharSequence) hd.G(i15, "Months", new Object[0]));
+                spannableStringBuilder.append((CharSequence) id.G(i15, "Months", new Object[0]));
             }
-            n3Var.f14817n.setText(spannableStringBuilder);
-            ImageView imageView2 = n3Var.f14818r;
+            n3Var.f14820n.setText(spannableStringBuilder);
+            ImageView imageView2 = n3Var.f14821r;
             if (z10) {
                 i7 = 0;
             } else {
@@ -119,51 +119,51 @@ public final class m3 extends w31 {
                 f11 = 0.8f;
             }
             imageView.setScaleY(f11);
-            n3Var.f14819s = z9;
+            n3Var.f14822s = z9;
             n3Var.setWillNotDraw(!z9);
         } else if (obj instanceof TL_payments.starRefProgram) {
             n3 n3Var2 = (n3) view;
             TL_payments.starRefProgram starrefprogram = (TL_payments.starRefProgram) obj;
-            boolean z11 = x31Var.f40165r;
-            TLRPC.User a23 = qp.s1(n3Var2.f14812a).a2(Long.valueOf(starrefprogram.bot_id));
+            boolean z11 = x31Var.f40186r;
+            TLRPC.User a23 = qp.s1(n3Var2.f14815a).a2(Long.valueOf(starrefprogram.bot_id));
             w8 w8Var2 = new w8((f6) null);
             w8Var2.r(a23);
-            n3Var2.f14814c.e(a23, w8Var2);
+            n3Var2.f14817c.e(a23, w8Var2);
             n3Var2.h.setText(t10.p(a23));
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
             if (starrefprogram.commission_permille > 0) {
                 spannableStringBuilder2.append((CharSequence) " d");
                 ez ezVar2 = new ez();
                 int i16 = k6.ik;
-                ezVar2.f45442f = k6.w0(i16, null);
-                ezVar2.f45444r = i16;
-                ezVar2.f45445s = null;
-                ezVar2.f45443n = true;
-                ezVar2.f45446w = j.J0(starrefprogram.commission_permille);
-                if (ezVar2.f45440c != null) {
-                    ezVar2.f45440c = null;
+                ezVar2.f45401f = k6.w0(i16, null);
+                ezVar2.f45403r = i16;
+                ezVar2.f45404s = null;
+                ezVar2.f45402n = true;
+                ezVar2.f45405w = j.J0(starrefprogram.commission_permille);
+                if (ezVar2.f45399c != null) {
+                    ezVar2.f45399c = null;
                     ezVar2.a();
                 }
                 spannableStringBuilder2.setSpan(ezVar2, 1, 2, 33);
             }
             int i17 = starrefprogram.duration_months;
             if (i17 == 0) {
-                spannableStringBuilder2.append((CharSequence) hd.M0(2131748985, null));
+                spannableStringBuilder2.append((CharSequence) id.M0(2131748987, null));
             } else if (i17 >= 12 && i17 % 12 == 0) {
-                spannableStringBuilder2.append((CharSequence) hd.G(i17 / 12, "Years", new Object[0]));
+                spannableStringBuilder2.append((CharSequence) id.G(i17 / 12, "Years", new Object[0]));
             } else {
-                spannableStringBuilder2.append((CharSequence) hd.G(i17, "Months", new Object[0]));
+                spannableStringBuilder2.append((CharSequence) id.G(i17, "Months", new Object[0]));
             }
-            n3Var2.f14817n.setText(spannableStringBuilder2);
-            ImageView imageView3 = n3Var2.f14818r;
+            n3Var2.f14820n.setText(spannableStringBuilder2);
+            ImageView imageView3 = n3Var2.f14821r;
             if (!z11) {
                 i13 = 8;
             }
             imageView3.setVisibility(i13);
             n3Var2.d.setVisibility(8);
-            n3Var2.f14816f.setVisibility(8);
-            n3Var2.f14815e.setVisibility(8);
-            n3Var2.f14819s = z9;
+            n3Var2.f14819f.setVisibility(8);
+            n3Var2.f14818e.setVisibility(8);
+            n3Var2.f14822s = z9;
             n3Var2.setWillNotDraw(!z9);
         }
     }

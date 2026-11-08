@@ -41,7 +41,7 @@ public final class a extends v61 {
                 }
                 return;
             case 1:
-                ((yp0) this.f10809a0).f47336b.f38513b0.get(i7, -1);
+                ((yp0) this.f10809a0).f47341b.f38528b0.get(i7, -1);
                 ((xp0) this.W).d.U0(1.0f);
                 return;
             default:
@@ -60,10 +60,10 @@ public final class a extends v61 {
         switch (this.V) {
             case 2:
                 up0 up0Var = (up0) this.f10809a0;
-                u61 u61Var = up0Var.f60222n;
+                u61 u61Var = up0Var.f60287n;
                 if (up0Var.b() && u61Var != null) {
                     if (up0Var.J == null) {
-                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(jg.g.l(2131750097, null, new StringBuilder("+ ")));
+                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(jg.g.l(2131750099, null, new StringBuilder("+ ")));
                         wp wpVar = new wp(2131232560, 0);
                         wpVar.G = 0.8f;
                         spannableStringBuilder.setSpan(wpVar, 0, 1, 33);
@@ -108,7 +108,7 @@ public final class a extends v61 {
                 }
                 return;
             case 1:
-                ((xp0) this.W).d.U0(((yp0) this.f10809a0).f47336b.getAnimatingIndicatorProgress());
+                ((xp0) this.W).d.U0(((yp0) this.f10809a0).f47341b.getAnimatingIndicatorProgress());
                 return;
             default:
                 up0 up0Var = (up0) this.f10809a0;
@@ -147,13 +147,13 @@ public final class a extends v61 {
     public void z(int i7, boolean z9) {
         switch (this.V) {
             case 1:
-                int i10 = ((yp0) this.f10809a0).f47336b.f38513b0.get(i7, -1);
+                int i10 = ((yp0) this.f10809a0).f47341b.f38528b0.get(i7, -1);
                 xs0 xs0Var = ((xp0) this.W).d;
                 if (i10 <= 0) {
                     xs0.t(xs0Var, 8, z9);
                     return;
                 } else {
-                    xs0.t(xs0Var, xs0Var.v1(i10).f40085a, z9);
+                    xs0.t(xs0Var, xs0Var.v1(i10).f40037a, z9);
                     return;
                 }
             default:

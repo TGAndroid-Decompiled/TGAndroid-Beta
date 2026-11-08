@@ -9,13 +9,13 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 public abstract class a3 {
-    public static final ThreadLocal f19059a = new ThreadLocal();
-    public static final int[] f19060b = {-16842910};
-    public static final int[] f19061c = {16842908};
+    public static final ThreadLocal f19062a = new ThreadLocal();
+    public static final int[] f19063b = {-16842910};
+    public static final int[] f19064c = {16842908};
     public static final int[] d = {16842919};
-    public static final int[] f19062e = {16842912};
-    public static final int[] f19063f = new int[0];
-    public static final int[] f19064g = new int[1];
+    public static final int[] f19065e = {16842912};
+    public static final int[] f19066f = new int[0];
+    public static final int[] f19067g = new int[1];
 
     public static void a(View view, Context context) {
         TypedArray obtainStyledAttributes = context.obtainStyledAttributes(f.a.f10862j);
@@ -31,9 +31,9 @@ public abstract class a3 {
     public static int b(Context context, int i7) {
         ColorStateList d2 = d(context, i7);
         if (d2 != null && d2.isStateful()) {
-            return d2.getColorForState(f19060b, d2.getDefaultColor());
+            return d2.getColorForState(f19063b, d2.getDefaultColor());
         }
-        ThreadLocal threadLocal = f19059a;
+        ThreadLocal threadLocal = f19062a;
         TypedValue typedValue = (TypedValue) threadLocal.get();
         if (typedValue == null) {
             typedValue = new TypedValue();
@@ -46,7 +46,7 @@ public abstract class a3 {
     }
 
     public static int c(Context context, int i7) {
-        int[] iArr = f19064g;
+        int[] iArr = f19067g;
         iArr[0] = i7;
         TypedArray obtainStyledAttributes = context.obtainStyledAttributes((AttributeSet) null, iArr);
         try {
@@ -59,7 +59,7 @@ public abstract class a3 {
     public static ColorStateList d(Context context, int i7) {
         ColorStateList colorStateList;
         int resourceId;
-        int[] iArr = f19064g;
+        int[] iArr = f19067g;
         iArr[0] = i7;
         TypedArray obtainStyledAttributes = context.obtainStyledAttributes((AttributeSet) null, iArr);
         try {

@@ -76,7 +76,7 @@ public final class m implements r {
                 if (!this.f11064b) {
                     i12 = 16;
                 }
-                arrayList.add(new z3.l(sVar3, i13 | i12));
+                arrayList.add(new z3.m(sVar3, i13 | i12));
                 return;
             case 9:
                 arrayList.add(new Object());
@@ -93,10 +93,10 @@ public final class m implements r {
                 return;
             case 12:
                 ?? obj = new Object();
-                obj.f20389c = 0;
+                obj.f20392c = 0;
                 obj.d = -1L;
-                obj.f20391f = -1;
-                obj.f20392g = -1L;
+                obj.f20394f = -1;
+                obj.f20395g = -1L;
                 arrayList.add(obj);
                 return;
             case 13:

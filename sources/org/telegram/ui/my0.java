@@ -35,10 +35,10 @@ public final class my0 implements View.OnClickListener {
             case 2:
                 SaveToGallerySettingsActivity saveToGallerySettingsActivity = (SaveToGallerySettingsActivity) this.f47920b;
                 if (saveToGallerySettingsActivity.d) {
-                    LongSparseArray m10 = saveToGallerySettingsActivity.getUserConfig().m(saveToGallerySettingsActivity.f41883a);
-                    org.telegram.messenger.qv qvVar = saveToGallerySettingsActivity.f41885c;
+                    LongSparseArray m10 = saveToGallerySettingsActivity.getUserConfig().m(saveToGallerySettingsActivity.f41887a);
+                    org.telegram.messenger.qv qvVar = saveToGallerySettingsActivity.f41889c;
                     m10.put(qvVar.d, qvVar);
-                    saveToGallerySettingsActivity.getUserConfig().A(saveToGallerySettingsActivity.f41883a, m10);
+                    saveToGallerySettingsActivity.getUserConfig().A(saveToGallerySettingsActivity.f41887a, m10);
                 }
                 saveToGallerySettingsActivity.finishFragment();
                 return;
@@ -47,11 +47,11 @@ public final class my0 implements View.OnClickListener {
                 return;
             case 4:
                 SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f47920b;
-                org.telegram.messenger.ij ijVar = secretMediaViewer.f41908f0;
+                org.telegram.messenger.ij ijVar = secretMediaViewer.f41912f0;
                 if (ijVar != null) {
-                    TLRPC.Message message = ijVar.f23244k;
+                    TLRPC.Message message = ijVar.f23262k;
                     if (message.destroyTime != 0 || message.ttl == Integer.MAX_VALUE) {
-                        fi.m3 m3Var = secretMediaViewer.f41930r;
+                        fi.m3 m3Var = secretMediaViewer.f41934r;
                         if (m3Var.V) {
                             m3Var.f(true);
                             return;
@@ -76,7 +76,7 @@ public final class my0 implements View.OnClickListener {
                 }
                 return;
             case 6:
-                SessionsActivity sessionsActivity = ((z21) this.f47920b).f52449f;
+                SessionsActivity sessionsActivity = ((z21) this.f47920b).f52429f;
                 if (sessionsActivity.getParentActivity() != null) {
                     if (sessionsActivity.getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
                         sessionsActivity.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 34);
@@ -93,8 +93,8 @@ public final class my0 implements View.OnClickListener {
                 edit.putBoolean("compactMode", org.telegram.messenger.iz.H0);
                 edit.apply();
                 org.telegram.ui.ActionBar.k6.k(false, false);
-                g61Var.f45874c.setChecked(org.telegram.messenger.iz.H0);
-                org.telegram.ui.Cells.z9 z9Var = g61Var.f45872a;
+                g61Var.f45851c.setChecked(org.telegram.messenger.iz.H0);
+                org.telegram.ui.Cells.z9 z9Var = g61Var.f45849a;
                 for (org.telegram.ui.Cells.q1 q1Var : z9Var.getCells()) {
                     q1Var.getMessageObject().Q1 = false;
                     q1Var.G1();
@@ -104,38 +104,38 @@ public final class my0 implements View.OnClickListener {
                 org.telegram.messenger.qs.e().k(276, new Object[0]);
                 return;
             case 8:
-                ((f81) this.f47920b).c(true);
+                ((g81) this.f47920b).c(true);
                 return;
             case 9:
-                ((f81) ((bi.g5) this.f47920b).f3941c).c(true);
+                ((g81) ((bi.g5) this.f47920b).f3941c).c(true);
                 return;
             case 10:
-                m81 m81Var = (m81) this.f47920b;
-                ArrayList arrayList = m81Var.f47729f;
-                HashSet hashSet = m81Var.f47734x;
+                n81 n81Var = (n81) this.f47920b;
+                ArrayList arrayList = n81Var.f48000f;
+                HashSet hashSet = n81Var.f48005x;
                 if (!hashSet.isEmpty()) {
-                    TLRPC.User a22 = m81Var.getMessagesController().a2(Long.valueOf(m81Var.getUserConfig().e()));
+                    TLRPC.User a22 = n81Var.getMessagesController().a2(Long.valueOf(n81Var.getUserConfig().e()));
                     ArrayList arrayList2 = new ArrayList();
                     for (int i7 = 0; i7 < arrayList.size(); i7++) {
-                        if (hashSet.contains(Long.valueOf(((TLRPC.Chat) arrayList.get(i7)).f26953id))) {
+                        if (hashSet.contains(Long.valueOf(((TLRPC.Chat) arrayList.get(i7)).f26956id))) {
                             arrayList2.add((TLRPC.Chat) arrayList.get(i7));
                         }
                     }
                     for (int i10 = 0; i10 < arrayList2.size(); i10++) {
                         TLRPC.Chat chat = (TLRPC.Chat) arrayList2.get(i10);
-                        m81Var.getMessagesController().Q3(chat, false);
-                        m81Var.getMessagesController().f0(chat.f26953id, a22);
+                        n81Var.getMessagesController().Q3(chat, false);
+                        n81Var.getMessagesController().f0(chat.f26956id, a22);
                     }
-                    m81Var.finishFragment();
+                    n81Var.finishFragment();
                     return;
                 }
                 return;
             default:
-                vc1 vc1Var = (vc1) this.f47920b;
-                vc1Var.f50695a.c(!c2Var.b(), true);
-                vc1Var.f50697c.setEnabled(vc1Var.f50695a.b());
-                ViewPropertyAnimator animate = vc1Var.f50697c.animate();
-                if (vc1Var.f50695a.b()) {
+                wc1 wc1Var = (wc1) this.f47920b;
+                wc1Var.f51061a.c(!c2Var.b(), true);
+                wc1Var.f51063c.setEnabled(wc1Var.f51061a.b());
+                ViewPropertyAnimator animate = wc1Var.f51063c.animate();
+                if (wc1Var.f51061a.b()) {
                     f10 = 1.0f;
                 } else {
                     f10 = 0.5f;

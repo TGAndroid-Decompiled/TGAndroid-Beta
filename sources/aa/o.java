@@ -58,6 +58,6 @@ public final class o implements Callable {
         if (!qVar.f835b.a()) {
             return Tasks.forResult(null);
         }
-        return ((TaskCompletionSource) ((AtomicReference) cVar.f15421i).get()).getTask().onSuccessTask(qVar.f837e.f3135a, new cb.c(this, g10));
+        return ((TaskCompletionSource) ((AtomicReference) cVar.f15424i).get()).getTask().onSuccessTask(qVar.f837e.f3135a, new cb.c(this, g10));
     }
 }

@@ -23,10 +23,10 @@ public abstract class bv extends fu {
             z9 = false;
         }
         this.Z = z9;
-        jv jvVar2 = new jv(kvVar, spannableStringBuilder, this.f22452c, alignment);
+        jv jvVar2 = new jv(kvVar, spannableStringBuilder, this.f22471c, alignment);
         this.W = jvVar2;
         if (!TextUtils.isEmpty(spannableStringBuilder2)) {
-            jvVar = new jv(kvVar, spannableStringBuilder2, this.f22452c, alignment);
+            jvVar = new jv(kvVar, spannableStringBuilder2, this.f22471c, alignment);
         } else {
             jvVar = null;
         }
@@ -37,11 +37,11 @@ public abstract class bv extends fu {
     @Override
     public final int I() {
         int i7;
-        Rect rect = this.f22451b;
-        int i02 = i0() + this.W.f23593b.getHeight() + rect.top;
+        Rect rect = this.f22470b;
+        int i02 = i0() + this.W.f23605b.getHeight() + rect.top;
         jv jvVar = this.X;
         if (jvVar != null) {
-            i7 = jvVar.f23593b.getHeight();
+            i7 = jvVar.f23605b.getHeight();
         } else {
             i7 = 0;
         }
@@ -54,14 +54,14 @@ public abstract class bv extends fu {
         if (jvVar == null) {
             jvVar = this.W;
         }
-        Rect rect = this.f22451b;
+        Rect rect = this.f22470b;
         return jvVar.q() + rect.left + rect.right;
     }
 
     @Override
     public final int K() {
         int i7;
-        Rect rect = this.f22451b;
+        Rect rect = this.f22470b;
         int i10 = rect.left;
         int r10 = this.W.r();
         jv jvVar = this.X;
@@ -106,7 +106,7 @@ public abstract class bv extends fu {
         jv jvVar2 = this.X;
         if (jvVar2 != null) {
             canvas.save();
-            canvas.translate(j0(jvVar2), i0() + jvVar.f23593b.getHeight());
+            canvas.translate(j0(jvVar2), i0() + jvVar.f23605b.getHeight());
             jvVar2.d(canvas, jvVar2.S);
             canvas.restore();
         }
@@ -116,7 +116,7 @@ public abstract class bv extends fu {
     public final boolean Y(MotionEvent motionEvent) {
         int i7;
         jv jvVar = this.W;
-        int height = jvVar.f23593b.getHeight();
+        int height = jvVar.f23605b.getHeight();
         float y10 = motionEvent.getY();
         int i10 = 0;
         if (y10 >= 0.0f && y10 < height) {
@@ -139,20 +139,20 @@ public abstract class bv extends fu {
     @Override
     public final void Z(int i7, int i10, int i11) {
         jv jvVar = this.W;
-        jvVar.f23594c = (j0(jvVar) + i7) - jvVar.f23596f;
+        jvVar.f23606c = (j0(jvVar) + i7) - jvVar.f23608f;
         jvVar.d = i10;
-        jvVar.f23595e = i11;
+        jvVar.f23607e = i11;
         jv jvVar2 = this.X;
         if (jvVar2 != null) {
-            jvVar2.f23594c = (j0(jvVar2) + i7) - jvVar2.f23596f;
-            jvVar2.d = i0() + jvVar.f23593b.getHeight() + i10;
-            jvVar2.f23595e = i11;
+            jvVar2.f23606c = (j0(jvVar2) + i7) - jvVar2.f23608f;
+            jvVar2.d = i0() + jvVar.f23605b.getHeight() + i10;
+            jvVar2.f23607e = i11;
         }
     }
 
     @Override
     public final Layout a() {
-        return this.W.f23593b;
+        return this.W.f23605b;
     }
 
     public final int i0() {
@@ -166,8 +166,8 @@ public abstract class bv extends fu {
         int L;
         int r10;
         boolean z9 = this.Z;
-        Rect rect = this.f22451b;
-        kv kvVar = this.f22450a;
+        Rect rect = this.f22470b;
+        kv kvVar = this.f22469a;
         if (z9) {
             L = (((kvVar.C + kvVar.T) - kvVar.S) - jvVar.r()) / 2;
             r10 = rect.left;
@@ -189,16 +189,16 @@ public abstract class bv extends fu {
     public final boolean u(CharacterStyle characterStyle, int i7, wt wtVar) {
         jv jvVar = this.W;
         boolean o4 = jvVar.o(characterStyle, wtVar);
-        Rect rect = this.f22451b;
+        Rect rect = this.f22470b;
         if (o4) {
-            wtVar.f26368e = (j0(jvVar) + rect.left) - jvVar.f23596f;
-            wtVar.f26369f = i7 + rect.top;
+            wtVar.f26374e = (j0(jvVar) + rect.left) - jvVar.f23608f;
+            wtVar.f26375f = i7 + rect.top;
             return true;
         }
         jv jvVar2 = this.X;
         if (jvVar2 != null && jvVar2.o(characterStyle, wtVar)) {
-            wtVar.f26368e = (j0(jvVar2) + rect.left) - jvVar2.f23596f;
-            wtVar.f26369f = i0() + jvVar.f23593b.getHeight() + i7 + rect.top;
+            wtVar.f26374e = (j0(jvVar2) + rect.left) - jvVar2.f23608f;
+            wtVar.f26375f = i0() + jvVar.f23605b.getHeight() + i7 + rect.top;
             return true;
         }
         return false;

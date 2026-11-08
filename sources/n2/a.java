@@ -6,9 +6,9 @@ import j$.util.Objects;
 import java.util.Set;
 public final class a {
     public static final a d;
-    public final int f20123a;
-    public final int f20124b;
-    public final h9.t0 f20125c;
+    public final int f20126a;
+    public final int f20127b;
+    public final h9.t0 f20128c;
 
     static {
         a aVar;
@@ -25,15 +25,15 @@ public final class a {
     }
 
     public a(int i7, Set set) {
-        this.f20123a = i7;
+        this.f20126a = i7;
         h9.t0 q10 = h9.t0.q(set);
-        this.f20125c = q10;
+        this.f20128c = q10;
         h2 it = q10.iterator();
         int i10 = 0;
         while (it.hasNext()) {
             i10 = Math.max(i10, Integer.bitCount(((Integer) it.next()).intValue()));
         }
-        this.f20124b = i10;
+        this.f20127b = i10;
     }
 
     public final boolean equals(Object obj) {
@@ -44,7 +44,7 @@ public final class a {
             return false;
         }
         a aVar = (a) obj;
-        if (this.f20123a == aVar.f20123a && this.f20124b == aVar.f20124b && Objects.equals(this.f20125c, aVar.f20125c)) {
+        if (this.f20126a == aVar.f20126a && this.f20127b == aVar.f20127b && Objects.equals(this.f20128c, aVar.f20128c)) {
             return true;
         }
         return false;
@@ -52,8 +52,8 @@ public final class a {
 
     public final int hashCode() {
         int hashCode;
-        int i7 = ((this.f20123a * 31) + this.f20124b) * 31;
-        h9.t0 t0Var = this.f20125c;
+        int i7 = ((this.f20126a * 31) + this.f20127b) * 31;
+        h9.t0 t0Var = this.f20128c;
         if (t0Var == null) {
             hashCode = 0;
         } else {
@@ -63,12 +63,12 @@ public final class a {
     }
 
     public final String toString() {
-        return "AudioProfile[format=" + this.f20123a + ", maxChannelCount=" + this.f20124b + ", channelMasks=" + this.f20125c + "]";
+        return "AudioProfile[format=" + this.f20126a + ", maxChannelCount=" + this.f20127b + ", channelMasks=" + this.f20128c + "]";
     }
 
     public a(int i7, int i10) {
-        this.f20123a = i7;
-        this.f20124b = i10;
-        this.f20125c = null;
+        this.f20126a = i7;
+        this.f20127b = i10;
+        this.f20128c = null;
     }
 }

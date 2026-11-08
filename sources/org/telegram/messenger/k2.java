@@ -46,10 +46,10 @@ public final class k2 extends c1 {
             while (it.hasNext()) {
                 hi.a3 a3Var = (hi.a3) it.next();
                 hi.q4 q4Var = a3Var.f14540w0;
-                if (q4Var != null && q4Var.f14891g == 5) {
-                    long j11 = q4Var.f14887b;
+                if (q4Var != null && q4Var.f14894g == 5) {
+                    long j11 = q4Var.f14890b;
                     if (j11 == j3 || j11 == 0) {
-                        TLObject tLObject = q4Var.f14900q;
+                        TLObject tLObject = q4Var.f14903q;
                         if ((tLObject instanceof TLRPC.TL_webViewResultUrl) && ((TLRPC.TL_webViewResultUrl) tLObject).query_id == j10) {
                             a3Var.o(false);
                             return;
@@ -78,7 +78,7 @@ public final class k2 extends c1 {
                         k2Var.c(j13, j14, j12, true);
                         b6.n(k2Var.currentAccount, j14);
                     }
-                }, new ai.m0(22));
+                }, new ai.m0(24));
                 return;
             } else {
                 c(j3, j10, j11, true);

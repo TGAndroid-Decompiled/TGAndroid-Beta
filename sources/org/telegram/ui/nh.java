@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import android.app.Activity;
 import java.util.ArrayList;
-public final class nh extends org.telegram.ui.Components.qu {
+public final class nh extends org.telegram.ui.Components.ru {
     public final oh N1;
 
     public nh(oh ohVar, org.telegram.ui.ActionBar.f2 f2Var, Activity activity, org.telegram.ui.ActionBar.f6 f6Var, ArrayList arrayList) {
@@ -13,7 +13,7 @@ public final class nh extends org.telegram.ui.Components.qu {
     @Override
     public final void dismiss() {
         super.dismiss();
-        an anVar = this.N1.f48411p;
+        an anVar = this.N1.f48405p;
         anVar.getClass();
         anVar.v8(false, true, 0.0f);
     }

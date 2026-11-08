@@ -6,20 +6,20 @@ import java.util.List;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 public final class ro implements ResultCallback {
-    public final org.telegram.messenger.d4 f37714a;
-    public final vo f37715b;
+    public final org.telegram.messenger.d4 f37735a;
+    public final vo f37736b;
 
     public ro(vo voVar, org.telegram.messenger.d4 d4Var) {
-        this.f37715b = voVar;
-        this.f37714a = d4Var;
+        this.f37736b = voVar;
+        this.f37735a = d4Var;
     }
 
     @Override
     public final void onComplete(Object obj) {
         List list = (List) obj;
-        ArrayList e10 = this.f37714a.e(7);
-        vo voVar = this.f37715b;
-        org.telegram.messenger.qs.f(voVar.f28613a).d(new f(28, this, e10));
+        ArrayList e10 = this.f37735a.e(7);
+        vo voVar = this.f37736b;
+        org.telegram.messenger.qs.f(voVar.f28616a).d(new f(28, this, e10));
         voVar.R1 = false;
     }
 
@@ -30,6 +30,6 @@ public final class ro implements ResultCallback {
 
     @Override
     public final void onError(TLRPC.TL_error tL_error) {
-        Toast.makeText(this.f37715b.getContext(), tL_error.text, 0).show();
+        Toast.makeText(this.f37736b.getContext(), tL_error.text, 0).show();
     }
 }

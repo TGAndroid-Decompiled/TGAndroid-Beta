@@ -2,18 +2,18 @@ package o0;
 
 import android.net.Uri;
 public final class h {
-    public final Uri f20688a;
-    public final int f20689b;
-    public final int f20690c;
+    public final Uri f20691a;
+    public final int f20692b;
+    public final int f20693c;
     public final boolean d;
-    public final int f20691e;
+    public final int f20694e;
 
     public h(Uri uri, int i7, int i10, boolean z9, int i11) {
         uri.getClass();
-        this.f20688a = uri;
-        this.f20689b = i7;
-        this.f20690c = i10;
+        this.f20691a = uri;
+        this.f20692b = i7;
+        this.f20693c = i10;
         this.d = z9;
-        this.f20691e = i11;
+        this.f20694e = i11;
     }
 }

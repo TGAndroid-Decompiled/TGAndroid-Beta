@@ -174,7 +174,7 @@ public final class l extends r6.a {
                                     if (i7 != 4) {
                                         if (i7 == 5) {
                                             long j3 = bundle.getLong(str);
-                                            Pattern pattern = j6.a.f16503a;
+                                            Pattern pattern = j6.a.f16506a;
                                             jSONObject.put(str2, j3 / 1000.0d);
                                         }
                                     }
@@ -274,7 +274,7 @@ public final class l extends r6.a {
                                                 if (i7 != 4) {
                                                     if (i7 == 5) {
                                                         long optLong = jSONObject.optLong(next);
-                                                        Pattern pattern = j6.a.f16503a;
+                                                        Pattern pattern = j6.a.f16506a;
                                                         hashSet = hashSet2;
                                                         try {
                                                             bundle.putLong(str, optLong * 1000);

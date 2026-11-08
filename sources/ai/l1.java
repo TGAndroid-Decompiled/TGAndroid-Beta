@@ -45,11 +45,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ls;
 import org.telegram.messenger.p10;
 import org.telegram.messenger.qs;
-import org.telegram.messenger.rc;
+import org.telegram.messenger.sc;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.y1;
@@ -659,7 +659,7 @@ public final class l1 extends View {
         this.F1 = new RectF();
         this.I1 = -1;
         this.U1 = new Paint(1);
-        this.V1 = hd.M0(2131746469, null);
+        this.V1 = id.M0(2131746471, null);
         this.Y1 = new Paint(1);
         this.f1320a2 = 1;
         this.f1342c2 = new HashMap();
@@ -702,7 +702,7 @@ public final class l1 extends View {
                                 i11++;
                                 TL_stars.StarGiftAttribute starGiftAttribute2 = starGiftAttribute;
                                 if ((starGiftAttribute2 instanceof TL_stars.starGiftAttributeModel) && (document = ((TL_stars.starGiftAttributeModel) starGiftAttribute2).document) != null) {
-                                    l1Var.g0(tL_starGiftUnique.f27182id, document);
+                                    l1Var.g0(tL_starGiftUnique.f27185id, document);
                                 }
                             }
                             l1Var.m1(tL_starGiftUnique);
@@ -764,8 +764,8 @@ public final class l1 extends View {
         this.f1478q3 = new double[3];
         this.f1489r3 = new double[3];
         this.f1500s3 = new double[3];
-        this.f1508t3 = org.telegram.messenger.g0.f22538m;
-        this.f1517u3 = org.telegram.messenger.g0.f22539n;
+        this.f1508t3 = org.telegram.messenger.g0.f22557m;
+        this.f1517u3 = org.telegram.messenger.g0.f22558n;
         this.B3 = new Paint(2);
         this.C3 = new RectF();
         this.G3 = 5.0f;
@@ -930,8 +930,8 @@ public final class l1 extends View {
         TextPaint textPaint2 = new TextPaint(129);
         this.f1368e8 = textPaint2;
         textPaint2.setXfermode(new PorterDuffXfermode(mode2));
-        this.f1407i8 = hd.M0(2131746491, null);
-        this.f1416j8 = hd.M0(2131746501, null);
+        this.f1407i8 = id.M0(2131746493, null);
+        this.f1416j8 = id.M0(2131746503, null);
         int[] iArr = a.f1115b;
         this.f1494r8 = new LinearGradient[iArr.length];
         this.f1504s8 = new int[iArr.length];
@@ -975,7 +975,7 @@ public final class l1 extends View {
                                 i11++;
                                 TL_stars.StarGiftAttribute starGiftAttribute2 = starGiftAttribute;
                                 if ((starGiftAttribute2 instanceof TL_stars.starGiftAttributeModel) && (document = ((TL_stars.starGiftAttributeModel) starGiftAttribute2).document) != null) {
-                                    l1Var.g0(tL_starGiftUnique.f27182id, document);
+                                    l1Var.g0(tL_starGiftUnique.f27185id, document);
                                 }
                             }
                             l1Var.m1(tL_starGiftUnique);
@@ -1067,7 +1067,7 @@ public final class l1 extends View {
         i6Var.w(org.telegram.messenger.g0.L(11.0f));
         i6Var.n(0.35f, 280L, xq.h);
         i6Var.setCallback(this);
-        i6Var.f34508b = 3;
+        i6Var.f34552b = 3;
         j1 t6 = t(G9);
         this.f1446n = t6;
         this.f1336b7 = W0(t6.f1301c);
@@ -1258,7 +1258,7 @@ public final class l1 extends View {
     }
 
     public static boolean i() {
-        if (a0.f() && rc.e(256)) {
+        if (a0.f() && sc.e(256)) {
             return true;
         }
         return false;
@@ -2099,7 +2099,7 @@ public final class l1 extends View {
             return;
         }
         if (i7 == 2 && !p10.i(this.f1328b).q()) {
-            d1(0, hd.M0(2131746473, null), hd.M0(2131746472, null));
+            d1(0, id.M0(2131746475, null), id.M0(2131746474, null));
             i0();
             return;
         }
@@ -2185,7 +2185,7 @@ public final class l1 extends View {
         final i1 i1Var = new i1();
         i1Var.f1274a = 2;
         i1Var.f1288q = i7;
-        long j3 = tL_starGiftUnique.f27182id;
+        long j3 = tL_starGiftUnique.f27185id;
         i1Var.f1289r = (int) (j3 ^ (j3 >>> 32));
         ArrayList<TL_stars.StarGiftAttribute> arrayList = tL_starGiftUnique.attributes;
         int size = arrayList.size();
@@ -2248,7 +2248,7 @@ public final class l1 extends View {
                 while (true) {
                     if (i12 < document3.attributes.size()) {
                         TLRPC.DocumentAttribute documentAttribute = document3.attributes.get(i12);
-                        if (((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) && (i10 = documentAttribute.f26960w) > 0 && (i11 = documentAttribute.h) > 0) {
+                        if (((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) && (i10 = documentAttribute.f26963w) > 0 && (i11 = documentAttribute.h) > 0) {
                             break;
                         }
                         i12++;
@@ -2263,7 +2263,7 @@ public final class l1 extends View {
                 final float f13 = f12 / i10;
                 final float f14 = f12 / i11;
                 final int i15 = i1Var.f1281j;
-                Utilities.f21333e.c(new Runnable() {
+                Utilities.f21336e.c(new Runnable() {
                     @Override
                     public final void run() {
                         Bitmap bitmap;
@@ -2588,19 +2588,19 @@ public final class l1 extends View {
         textPaint.setSubpixelText(true);
         textPaint.setLinearText(false);
         boolean z10 = this.f1546x0;
-        String M0 = hd.M0(2131746484, null);
+        String M0 = id.M0(2131746486, null);
         if (z10) {
+            i7 = 2131746490;
+        } else {
             i7 = 2131746488;
-        } else {
-            i7 = 2131746486;
         }
-        String[] strArr = {M0, hd.M0(i7, null), hd.M0(2131746483, null)};
+        String[] strArr = {M0, id.M0(i7, null), id.M0(2131746485, null)};
         if (this.f1546x0) {
-            i10 = 2131746487;
+            i10 = 2131746489;
         } else {
-            i10 = 2131746485;
+            i10 = 2131746487;
         }
-        String[] strArr2 = {null, hd.M0(i10, null), null};
+        String[] strArr2 = {null, id.M0(i10, null), null};
         int i14 = 0;
         float f34 = f15;
         while (i14 < 3) {
@@ -2730,7 +2730,7 @@ public final class l1 extends View {
     public final void K0() {
         if (this.W4 == null && !this.V4) {
             this.V4 = true;
-            Utilities.f21333e.c(new z0(this, i0.a.o(i0.a.f(0.4f, N0(), -16777216), 16), 0));
+            Utilities.f21336e.c(new z0(this, i0.a.o(i0.a.f(0.4f, N0(), -16777216), 16), 0));
         }
     }
 
@@ -3249,7 +3249,7 @@ public final class l1 extends View {
 
     public final Bitmap V(i5 i5Var) {
         Bitmap n10;
-        z2 z2Var = i5Var.f34497k;
+        z2 z2Var = i5Var.f34541k;
         if (z2Var != null) {
             zg0 B = z2Var.B();
             if (B != null) {
@@ -3366,14 +3366,14 @@ public final class l1 extends View {
         z2 z2Var;
         if (i1Var != null && i1Var.f1277e == null && (i5Var = i1Var.f1276c) != null) {
             y yVar = i1Var.F;
-            if ((yVar == null || yVar.h) && (z2Var = i5Var.f34497k) != null && z2Var.J() && z2Var.L()) {
+            if ((yVar == null || yVar.h) && (z2Var = i5Var.f34541k) != null && z2Var.J() && z2Var.L()) {
                 int L = org.telegram.messenger.g0.L(48.0f);
                 Bitmap createBitmap = Bitmap.createBitmap(L, L, Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);
                 i1Var.f1276c.setBounds(0, 0, L, L);
                 i1Var.f1276c.setColorFilter(null);
                 i1Var.f1276c.setAlpha(255);
-                z2Var.f21194h1 = 1.0f;
+                z2Var.f21197h1 = 1.0f;
                 i1Var.f1276c.draw(canvas);
                 E0(i1Var, createBitmap);
             }
@@ -3381,7 +3381,7 @@ public final class l1 extends View {
     }
 
     public final String a0() {
-        String M0 = hd.M0(2131746478, null);
+        String M0 = id.M0(2131746480, null);
         if (!M0.equals(this.f1516u2)) {
             this.f1516u2 = M0;
             Matcher matcher = Pattern.compile("\\d+").matcher(M0);
@@ -3775,7 +3775,7 @@ public final class l1 extends View {
         Long l10;
         TL_stars.TL_starGiftUnique themeGift = getThemeGift();
         if (themeGift != null) {
-            l10 = (Long) this.f1558y1.get(Long.valueOf(themeGift.f27182id));
+            l10 = (Long) this.f1558y1.get(Long.valueOf(themeGift.f27185id));
         } else {
             l10 = null;
         }
@@ -3869,7 +3869,7 @@ public final class l1 extends View {
     }
 
     public final k1 m1(TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        Long valueOf = Long.valueOf(tL_starGiftUnique.f27182id);
+        Long valueOf = Long.valueOf(tL_starGiftUnique.f27185id);
         HashMap hashMap = this.K7;
         k1 k1Var = (k1) hashMap.get(valueOf);
         k1 k1Var2 = k1Var;
@@ -3892,9 +3892,9 @@ public final class l1 extends View {
                 obj.f1310a = g5Var;
                 g5Var.i(document, false);
                 obj.f1310a.a();
-                obj.f1311b = document.f26959id;
+                obj.f1311b = document.f26962id;
             }
-            hashMap.put(Long.valueOf(tL_starGiftUnique.f27182id), obj);
+            hashMap.put(Long.valueOf(tL_starGiftUnique.f27185id), obj);
             k1Var2 = obj;
         }
         return k1Var2;
@@ -4015,7 +4015,7 @@ public final class l1 extends View {
     public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
         int top;
         super.onLayout(z9, i7, i10, i11, i12);
-        int i13 = org.telegram.messenger.g0.f22538m;
+        int i13 = org.telegram.messenger.g0.f22557m;
         View view = this;
         int i14 = 0;
         while (true) {
@@ -4033,7 +4033,7 @@ public final class l1 extends View {
         while (true) {
             int top2 = view2.getTop() + i15;
             if (!(view2.getParent() instanceof View)) {
-                this.f1517u3 = jg.g.e(20.0f, org.telegram.messenger.g0.L(22.0f), Math.max(0, org.telegram.messenger.g0.f22539n - (height - (getHeight() + top2))));
+                this.f1517u3 = jg.g.e(20.0f, org.telegram.messenger.g0.L(22.0f), Math.max(0, org.telegram.messenger.g0.f22558n - (height - (getHeight() + top2))));
                 return;
             }
             view2 = (View) view2.getParent();
@@ -4218,7 +4218,7 @@ public final class l1 extends View {
         if (i7 <= 0) {
             str = "";
         } else {
-            str = hd.a0(null, null, 2131746480, hd.E(j3, ','));
+            str = id.a0(null, null, 2131746482, id.E(j3, ','));
         }
         int indexOf = str.indexOf(9733);
         if (indexOf >= 0) {
@@ -4244,7 +4244,7 @@ public final class l1 extends View {
             this.f1514u0 = null;
             return;
         }
-        Utilities.f21333e.c(new a1.e(18, str, new b1(this, str, 1)));
+        Utilities.f21336e.c(new a1.e(18, str, new b1(this, str, 1)));
     }
 
     public void setGiftsOwner(long j3) {
@@ -4427,8 +4427,8 @@ public final class l1 extends View {
         if (this.f1524v0) {
             if (!this.f1535w0) {
                 StringBuilder sb3 = new StringBuilder();
-                org.telegram.messenger.camera.q.q(null, 2131746489, sb3, " · ");
-                sb2 = jg.g.l(2131746482, null, sb3);
+                org.telegram.messenger.camera.q.q(null, 2131746491, sb3, " · ");
+                sb2 = jg.g.l(2131746484, null, sb3);
                 this.A2 = -1;
             } else {
                 long currentTimeMillis = System.currentTimeMillis();
@@ -4441,8 +4441,8 @@ public final class l1 extends View {
                 if (ceil != this.A2 || this.f1569z2 == null) {
                     this.A2 = ceil;
                     StringBuilder sb4 = new StringBuilder();
-                    org.telegram.messenger.camera.q.q(null, 2131746489, sb4, " · ");
-                    sb4.append(hd.a0(null, null, 2131746490, String.format(Locale.US, "%d:%02d", Integer.valueOf(ceil / 60), Integer.valueOf(ceil % 60))));
+                    org.telegram.messenger.camera.q.q(null, 2131746491, sb4, " · ");
+                    sb4.append(id.a0(null, null, 2131746492, String.format(Locale.US, "%d:%02d", Integer.valueOf(ceil / 60), Integer.valueOf(ceil % 60))));
                     sb2 = sb4.toString();
                 } else {
                     return;
@@ -4497,7 +4497,7 @@ public final class l1 extends View {
         int i10 = i1Var.f1274a;
         ArrayList arrayList = this.f1525v1;
         if (i10 == 2 && (i7 = i1Var.f1288q) >= 0 && i7 < arrayList.size()) {
-            j3 = ((TL_stars.TL_starGiftUnique) arrayList.get(this.F.f1288q)).f27182id;
+            j3 = ((TL_stars.TL_starGiftUnique) arrayList.get(this.F.f1288q)).f27185id;
         } else {
             j3 = 0;
         }
@@ -4522,7 +4522,7 @@ public final class l1 extends View {
                 TL_stars.TL_starGiftUnique tL_starGiftUnique2 = (TL_stars.TL_starGiftUnique) starGift;
                 if (!tL_starGiftUnique2.burned) {
                     arrayList.add(tL_starGiftUnique2);
-                    hashMap.put(Long.valueOf(savedStarGift.gift.f27182id), Long.valueOf(savedStarGift.saved_id));
+                    hashMap.put(Long.valueOf(savedStarGift.gift.f27185id), Long.valueOf(savedStarGift.saved_id));
                 }
             }
         }
@@ -4530,7 +4530,7 @@ public final class l1 extends View {
             int i13 = 0;
             while (true) {
                 if (i13 < arrayList.size()) {
-                    if (((TL_stars.TL_starGiftUnique) arrayList.get(i13)).f27182id == j3) {
+                    if (((TL_stars.TL_starGiftUnique) arrayList.get(i13)).f27185id == j3) {
                         break;
                     }
                     i13++;

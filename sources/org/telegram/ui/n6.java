@@ -86,7 +86,7 @@ public final class n6 implements org.telegram.messenger.v10 {
                                 if (wwVar3.G.user_admin_rights != null) {
                                     org.telegram.messenger.qp messagesController2 = wwVar3.getMessagesController();
                                     Long l11 = l10;
-                                    wwVar3.getMessagesController().P4(l11.longValue(), org.telegram.messenger.p10.i(wwVar3.getAccountInstance().f21729a).f(), kp.x0(messagesController2.M0(l11).admin_rights, wwVar3.G.user_admin_rights), null, true, wwVar3, false, true, null, runnable2, new ve(4, runnable2));
+                                    wwVar3.getMessagesController().P4(l11.longValue(), org.telegram.messenger.p10.i(wwVar3.getAccountInstance().f21765a).f(), kp.x0(messagesController2.M0(l11).admin_rights, wwVar3.G.user_admin_rights), null, true, wwVar3, false, true, null, runnable2, new ve(4, runnable2));
                                     return;
                                 }
                                 runnable2.run();
@@ -124,7 +124,7 @@ public final class n6 implements org.telegram.messenger.v10 {
                                 if (wwVar3.G.user_admin_rights != null) {
                                     org.telegram.messenger.qp messagesController2 = wwVar3.getMessagesController();
                                     Long l11 = l10;
-                                    wwVar3.getMessagesController().P4(l11.longValue(), org.telegram.messenger.p10.i(wwVar3.getAccountInstance().f21729a).f(), kp.x0(messagesController2.M0(l11).admin_rights, wwVar3.G.user_admin_rights), null, true, wwVar3, false, true, null, runnable2, new ve(4, runnable2));
+                                    wwVar3.getMessagesController().P4(l11.longValue(), org.telegram.messenger.p10.i(wwVar3.getAccountInstance().f21765a).f(), kp.x0(messagesController2.M0(l11).admin_rights, wwVar3.G.user_admin_rights), null, true, wwVar3, false, true, null, runnable2, new ve(4, runnable2));
                                     return;
                                 }
                                 runnable2.run();
@@ -142,7 +142,7 @@ public final class n6 implements org.telegram.messenger.v10 {
                 if (passkeys != null) {
                     v2Var.dismiss();
                     while (i10 < passkeys.passkeys.size()) {
-                        if (TextUtils.equals(passkeys.passkeys.get(i10).f27160id, passkey.f27160id)) {
+                        if (TextUtils.equals(passkeys.passkeys.get(i10).f27163id, passkey.f27163id)) {
                             passkeys.passkeys.remove(i10);
                             i10--;
                         }

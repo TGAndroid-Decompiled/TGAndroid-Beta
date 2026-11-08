@@ -43,31 +43,31 @@ public final class i extends j {
             byte[] copyOf = Arrays.copyOf(xVar.f14162a, xVar.f14164c);
             int i7 = copyOf[9] & 255;
             ArrayList a10 = o.a(copyOf);
-            if (((u) qVar.f53710b) == null) {
+            if (((u) qVar.f53803b) == null) {
                 t tVar = new t();
                 tVar.f10562q = s0.n("audio/ogg");
                 tVar.f10563r = s0.n("audio/opus");
                 tVar.J = i7;
                 tVar.K = 48000;
                 tVar.f10566u = a10;
-                qVar.f53710b = new u(tVar);
+                qVar.f53803b = new u(tVar);
                 return true;
             }
         } else if (e(xVar, f177p)) {
-            ((u) qVar.f53710b).getClass();
+            ((u) qVar.f53803b).getClass();
             if (!this.f178n) {
                 this.f178n = true;
                 xVar.O(8);
                 q0 r10 = f3.b.r(i0.r(f3.b.u(xVar, false, false).f11060a));
                 if (r10 != null) {
-                    t a11 = ((u) qVar.f53710b).a();
-                    a11.f10556k = r10.b(((u) qVar.f53710b).f10608l);
-                    qVar.f53710b = new u(a11);
+                    t a11 = ((u) qVar.f53803b).a();
+                    a11.f10556k = r10.b(((u) qVar.f53803b).f10608l);
+                    qVar.f53803b = new u(a11);
                     return true;
                 }
             }
         } else {
-            ((u) qVar.f53710b).getClass();
+            ((u) qVar.f53803b).getClass();
             return false;
         }
         return true;

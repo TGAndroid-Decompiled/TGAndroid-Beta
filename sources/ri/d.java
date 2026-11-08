@@ -4,14 +4,14 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import java.util.Iterator;
 public final class d implements a, dh.b, pi.a {
-    public final a f54472a;
-    public final a f54473b;
-    public final xe.b f54474c = new xe.b();
+    public final a f54564a;
+    public final a f54565b;
+    public final xe.b f54566c = new xe.b();
     public float d;
 
     public d(a aVar, a aVar2) {
-        this.f54472a = aVar;
-        this.f54473b = aVar2;
+        this.f54564a = aVar;
+        this.f54565b = aVar2;
     }
 
     public static pi.a i(a aVar) {
@@ -38,7 +38,7 @@ public final class d implements a, dh.b, pi.a {
 
     @Override
     public final void c(fh.g gVar) {
-        this.f54474c.add(gVar);
+        this.f54566c.add(gVar);
     }
 
     @Override
@@ -54,7 +54,7 @@ public final class d implements a, dh.b, pi.a {
             i10 = i7;
             canvas2 = canvas;
             rectF2 = rectF;
-            i(this.f54472a).d(f12, f13, i10, canvas2, rectF2);
+            i(this.f54564a).d(f12, f13, i10, canvas2, rectF2);
         } else {
             f12 = f10;
             f13 = f11;
@@ -70,7 +70,7 @@ public final class d implements a, dh.b, pi.a {
             RectF rectF3 = rectF2;
             Canvas canvas3 = canvas2;
             int i11 = i10;
-            i(this.f54473b).d(f12, f13, i11, canvas3, rectF3);
+            i(this.f54565b).d(f12, f13, i11, canvas3, rectF3);
             if (this.d < 1.0f) {
                 canvas3.restore();
             }
@@ -90,7 +90,7 @@ public final class d implements a, dh.b, pi.a {
             f15 = f11;
             f16 = f12;
             f17 = f13;
-            this.f54472a.e(canvas2, f14, f15, f16, f17);
+            this.f54564a.e(canvas2, f14, f15, f16, f17);
         } else {
             canvas2 = canvas;
             f14 = f10;
@@ -108,7 +108,7 @@ public final class d implements a, dh.b, pi.a {
             float f21 = f15;
             float f22 = f14;
             Canvas canvas3 = canvas2;
-            this.f54473b.e(canvas3, f22, f21, f20, f19);
+            this.f54565b.e(canvas3, f22, f21, f20, f19);
             if (this.d < 1.0f) {
                 canvas3.restore();
             }
@@ -127,15 +127,15 @@ public final class d implements a, dh.b, pi.a {
 
     @Override
     public final boolean h() {
-        if (i(this.f54472a) != null && i(this.f54473b) != null) {
+        if (i(this.f54564a) != null && i(this.f54565b) != null) {
             return true;
         }
         return false;
     }
 
     public final pi.a j() {
-        pi.a i7 = i(this.f54472a);
-        pi.a i10 = i(this.f54473b);
+        pi.a i7 = i(this.f54564a);
+        pi.a i10 = i(this.f54565b);
         if (i7.f() <= i10.f()) {
             return i7;
         }
@@ -145,7 +145,7 @@ public final class d implements a, dh.b, pi.a {
     public final void k(float f10) {
         if (this.d != f10) {
             this.d = f10;
-            Iterator it = this.f54474c.iterator();
+            Iterator it = this.f54566c.iterator();
             while (it.hasNext()) {
                 fh.g gVar = (fh.g) it.next();
                 gVar.updateColors();

@@ -4,7 +4,7 @@ import android.app.Activity;
 import hi.u1;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.qp;
 import org.telegram.messenger.voip.k;
 import org.telegram.tgnet.ConnectionsManager;
@@ -26,17 +26,17 @@ public final class h extends na {
 
     public h(Activity activity, f6 f6Var, TL_stats.TL_statsPollStats tL_statsPollStats) {
         super(activity, null, true, false, 2, f6Var);
-        v0(k6.w0(k6.f27793a7, f6Var));
-        this.f28651x = true;
-        this.f28637n = false;
+        v0(k6.w0(k6.f27796a7, f6Var));
+        this.f28654x = true;
+        this.f28640n = false;
         this.C1 = false;
         this.B1 = g0.L(12.0f);
-        this.Q1 = c51.i0(tL_statsPollStats.votes_graph, hd.M0(2131747118, null), 2, false);
-        pj0 pj0Var = this.f36261k1;
-        int i7 = this.f28646t0;
-        pj0Var.setPadding(i7, 0, i7, g0.f22539n);
-        this.f36261k1.setClipToPadding(false);
-        this.f36261k1.setSections(true);
+        this.Q1 = c51.i0(tL_statsPollStats.votes_graph, id.M0(2131747120, null), 2, false);
+        pj0 pj0Var = this.f36277k1;
+        int i7 = this.f28649t0;
+        pj0Var.setPadding(i7, 0, i7, g0.f22558n);
+        this.f36277k1.setClipToPadding(false);
+        this.f36277k1.setSections(true);
         y q10 = this.l1.q();
         q10.a(-1, 2131231269);
         q10.setTranslationX(-g0.L(5.0f));
@@ -52,22 +52,22 @@ public final class h extends na {
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        l41 l41Var = new l41(pj0Var, getContext(), this.f28613a, 0, true, new u1(this, 23), this.I0);
+        l41 l41Var = new l41(pj0Var, getContext(), this.f28616a, 0, true, new u1(this, 23), this.I0);
         this.P1 = l41Var;
-        l41Var.f35510r = false;
+        l41Var.f35528r = false;
         return l41Var;
     }
 
     @Override
     public final CharSequence O0() {
-        return hd.M0(2131747119, null);
+        return id.M0(2131747121, null);
     }
 
     @Override
     public final void s0() {
         super.s0();
         try {
-            int w02 = k6.w0(k6.f27793a7, this.I0);
+            int w02 = k6.w0(k6.f27796a7, this.I0);
             if (this.R1 && w02 == this.S1) {
                 return;
             }

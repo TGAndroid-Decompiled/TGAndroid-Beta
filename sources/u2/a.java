@@ -5,19 +5,19 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 public final class a implements MediaCodec.OnFrameRenderedListener {
-    public final int f56128a;
-    public final d3.k f56129b;
+    public final int f56217a;
+    public final d3.k f56218b;
 
     public a(l lVar, d3.k kVar, int i7) {
-        this.f56128a = i7;
-        this.f56129b = kVar;
+        this.f56217a = i7;
+        this.f56218b = kVar;
     }
 
     @Override
     public final void onFrameRendered(MediaCodec mediaCodec, long j3, long j10) {
-        switch (this.f56128a) {
+        switch (this.f56217a) {
             case 0:
-                d3.k kVar = this.f56129b;
+                d3.k kVar = this.f56218b;
                 Handler handler = kVar.f8030a;
                 if (Build.VERSION.SDK_INT < 30) {
                     handler.sendMessageAtFrontOfQueue(Message.obtain(handler, 0, (int) (j3 >> 32), (int) j3));
@@ -27,7 +27,7 @@ public final class a implements MediaCodec.OnFrameRenderedListener {
                     return;
                 }
             default:
-                d3.k kVar2 = this.f56129b;
+                d3.k kVar2 = this.f56218b;
                 Handler handler2 = kVar2.f8030a;
                 if (Build.VERSION.SDK_INT < 30) {
                     handler2.sendMessageAtFrontOfQueue(Message.obtain(handler2, 0, (int) (j3 >> 32), (int) j3));

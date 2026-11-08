@@ -28,21 +28,21 @@ public final class w3 implements v10 {
         switch (this.f4956a) {
             case 0:
                 k7 k7Var = (k7) this.d;
-                zh.i0 i0Var = (zh.i0) this.f4960f;
+                zh.h0 h0Var = (zh.h0) this.f4960f;
                 String str = (String) obj2;
                 ((vf.b) this.f4959e).b();
                 if (((Boolean) obj).booleanValue()) {
                     l5 l5Var = k7Var.J2;
                     if (l5Var != null) {
-                        if (i0Var != null) {
+                        if (h0Var != null) {
                             z9 = true;
                         } else {
                             z9 = false;
                         }
                         l5Var.a(this.f4957b, this.f4958c, z9);
                     }
-                    if (i0Var != null) {
-                        org.telegram.messenger.g0.h3(new z3(i0Var, 0));
+                    if (h0Var != null) {
+                        org.telegram.messenger.g0.h3(new z3(h0Var, 0));
                         k7Var.N0 = true;
                     }
                     k7Var.dismiss();

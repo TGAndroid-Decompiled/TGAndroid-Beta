@@ -23,14 +23,14 @@ public class l {
     }
 
     public static void b(a0 a0Var, ia.e eVar) {
-        String str = (String) eVar.f15424b;
+        String str = (String) eVar.f15427b;
         if (str != null) {
             a0Var.l("X-CRASHLYTICS-GOOGLE-APP-ID", str);
         }
         a0Var.l("X-CRASHLYTICS-API-CLIENT-TYPE", "android");
         a0Var.l("X-CRASHLYTICS-API-CLIENT-VERSION", "20.1.1");
         a0Var.l("Accept", "application/json");
-        String str2 = (String) eVar.f15425c;
+        String str2 = (String) eVar.f15428c;
         if (str2 != null) {
             a0Var.l("X-CRASHLYTICS-DEVICE-MODEL", str2);
         }
@@ -38,11 +38,11 @@ public class l {
         if (str3 != null) {
             a0Var.l("X-CRASHLYTICS-OS-BUILD-VERSION", str3);
         }
-        String str4 = (String) eVar.f15426e;
+        String str4 = (String) eVar.f15429e;
         if (str4 != null) {
             a0Var.l("X-CRASHLYTICS-OS-DISPLAY-VERSION", str4);
         }
-        String str5 = ((b0) eVar.f15429i).c().f784a;
+        String str5 = ((b0) eVar.f15432i).c().f784a;
         if (str5 != null) {
             a0Var.l("X-CRASHLYTICS-INSTALLATION-ID", str5);
         }
@@ -51,9 +51,9 @@ public class l {
     public static HashMap c(ia.e eVar) {
         HashMap hashMap = new HashMap();
         hashMap.put("build_version", (String) eVar.h);
-        hashMap.put("display_version", (String) eVar.f15428g);
-        hashMap.put("source", Integer.toString(eVar.f15423a));
-        String str = (String) eVar.f15427f;
+        hashMap.put("display_version", (String) eVar.f15431g);
+        hashMap.put("source", Integer.toString(eVar.f15426a));
+        String str = (String) eVar.f15430f;
         if (!TextUtils.isEmpty(str)) {
             hashMap.put("instance", str);
         }
@@ -84,7 +84,7 @@ public class l {
 
     public JSONObject d(z0 z0Var) {
         int i7 = z0Var.f7297b;
-        x9.b bVar = x9.b.f58576a;
+        x9.b bVar = x9.b.f58665a;
         bVar.c("Settings response code was: " + i7);
         String str = this.f13591a;
         if (i7 != 200 && i7 != 201 && i7 != 202 && i7 != 203) {

@@ -1,7 +1,7 @@
 package b3;
 
 import android.opengl.GLES20;
-import wi.e0;
+import wi.d0;
 public class h {
     public final int f2947a;
     public final int f2948b;
@@ -33,9 +33,9 @@ public class h {
     }
 
     public h(String str, String str2) {
-        int a10 = e0.a(35633, str);
+        int a10 = d0.a(35633, str);
         this.f2948b = a10;
-        int a11 = e0.a(35632, str2);
+        int a11 = d0.a(35632, str2);
         this.f2949c = a11;
         int glCreateProgram = GLES20.glCreateProgram();
         GLES20.glAttachShader(glCreateProgram, a10);

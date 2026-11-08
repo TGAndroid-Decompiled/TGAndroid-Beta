@@ -190,11 +190,11 @@ public final class ExtendedDefaultDataSource implements h {
             z9 = false;
         }
         ia.p(z9);
-        Uri uri = mVar.f16446a;
+        Uri uri = mVar.f16449a;
         if ("mtproto".equals(uri.getScheme())) {
-            uri = this.mtprotoUris.get(Long.parseLong(mVar.f16446a.toString().substring(8)));
+            uri = this.mtprotoUris.get(Long.parseLong(mVar.f16449a.toString().substring(8)));
             l a10 = mVar.a();
-            a10.f16442e = uri;
+            a10.f16445e = uri;
             mVar = a10.d();
         }
         String scheme = uri.getScheme();

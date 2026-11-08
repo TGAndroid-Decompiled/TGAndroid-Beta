@@ -53,13 +53,13 @@ public final class nf0 extends l9 implements ot0 {
         sf0 sf0Var = this.P;
         float[] fArr = sf0Var.O0;
         Path path = sf0Var.M0;
-        ArrayList arrayList = sf0Var.f38033b1;
+        ArrayList arrayList = sf0Var.f38049b1;
         RectF rectF = sf0Var.N0;
-        org.telegram.ui.fr0 fr0Var = sf0Var.f38039h1;
-        if (fr0Var == null || !fr0Var.f45710n) {
+        org.telegram.ui.fr0 fr0Var = sf0Var.f38055h1;
+        if (fr0Var == null || !fr0Var.f45687n) {
             if (this.H != null) {
                 int k10 = sf0Var.D0.k(this.M);
-                if (sf0Var.f38040i1) {
+                if (sf0Var.f38056i1) {
                     k10--;
                 }
                 Drawable t6 = getImageReceiver().t();
@@ -67,12 +67,12 @@ public final class nf0 extends l9 implements ot0 {
                 if (k10 >= arrayList.size() || arrayList.get(k10) == null ? !(t6 == null || (this.L && (!(t6 instanceof v5) || ((v5) t6).d[4] <= 0))) : ((Float) arrayList.get(k10)).floatValue() >= 1.0f) {
                     if (this.I == null) {
                         RadialProgress2 radialProgress2 = this.H;
-                        if (radialProgress2.f31474c) {
-                            p80Var = radialProgress2.f31479j;
+                        if (radialProgress2.f31478c) {
+                            p80Var = radialProgress2.f31483j;
                         } else {
-                            p80Var = radialProgress2.f31478i;
+                            p80Var = radialProgress2.f31482i;
                         }
-                        if (p80Var.f36835w < 1.0f) {
+                        if (p80Var.f36861w < 1.0f) {
                             radialProgress2.p(true, 1.0f);
                             j10 = 100;
                         }
@@ -81,7 +81,7 @@ public final class nf0 extends l9 implements ot0 {
                         this.I = ofFloat;
                         ofFloat.setStartDelay(j10);
                         this.I.setDuration(this.J * 250.0f);
-                        this.I.setInterpolator(xq.f40345f);
+                        this.I.setInterpolator(xq.f40366f);
                         this.I.addUpdateListener(new c60(this, 3));
                         this.I.addListener(new hi.m2(this, k10, 11));
                         this.I.start();
@@ -97,17 +97,17 @@ public final class nf0 extends l9 implements ot0 {
                             j3 = 750;
                         }
                         if (currentTimeMillis <= 250 + j3 && currentTimeMillis > j3) {
-                            this.H.E = xq.f40345f.getInterpolation(((float) (currentTimeMillis - j3)) / 250.0f);
+                            this.H.E = xq.f40366f.getInterpolation(((float) (currentTimeMillis - j3)) / 250.0f);
                         }
                     }
-                    if (sf0Var.f38038g1) {
+                    if (sf0Var.f38054g1) {
                         invalidate();
                     } else {
                         postInvalidateOnAnimation();
                     }
                     invalidate();
                 }
-                int i7 = sf0Var.f38043m1;
+                int i7 = sf0Var.f38059m1;
                 if (i7 == 0 && sf0Var.n1 == 0) {
                     canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.N);
                     canvas2 = canvas;
@@ -117,13 +117,13 @@ public final class nf0 extends l9 implements ot0 {
                     Paint paint = this.N;
                     if (i7 == i10) {
                         rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                        float f10 = sf0Var.f38043m1;
+                        float f10 = sf0Var.f38059m1;
                         canvas2.drawRoundRect(rectF, f10, f10, paint);
                     } else {
                         path.reset();
                         rectF.set(0.0f, 0.0f, getWidth(), getHeight());
                         for (int i11 = 0; i11 < 4; i11++) {
-                            fArr[i11] = sf0Var.f38043m1;
+                            fArr[i11] = sf0Var.f38059m1;
                             fArr[i11 + 4] = sf0Var.n1;
                         }
                         path.addRoundRect(rectF, fArr, Path.Direction.CW);
@@ -146,8 +146,8 @@ public final class nf0 extends l9 implements ot0 {
         int i13;
         super.onSizeChanged(i7, i10, i11, i12);
         if (this.H != null) {
-            if (this.P.f38050z0.getOccupyStatusBar()) {
-                i13 = org.telegram.messenger.g0.f22538m;
+            if (this.P.f38066z0.getOccupyStatusBar()) {
+                i13 = org.telegram.messenger.g0.f22557m;
             } else {
                 i13 = 0;
             }
@@ -173,7 +173,7 @@ public final class nf0 extends l9 implements ot0 {
     public final void invalidate() {
         super.invalidate();
         sf0 sf0Var = this.P;
-        if (sf0Var.f38038g1) {
+        if (sf0Var.f38054g1) {
             sf0Var.invalidate();
         }
         Runnable runnable = this.O;

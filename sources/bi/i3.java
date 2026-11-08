@@ -50,21 +50,21 @@ public final class i3 implements Runnable {
                             ra2.whenFullyVisible(new s3(k7Var, ra2, j3, 0));
                             T.presentFragment(ra2);
                         } else {
-                            org.telegram.ui.Components.cc I = org.telegram.ui.Components.hc.a0(T).I(2131624028, org.telegram.messenger.hd.M0(2131749896, null), org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0(null, null, 2131749897, k7Var.z1(), org.telegram.messenger.m5.t(j3))));
-                            I.f32524t = true;
+                            org.telegram.ui.Components.cc I = org.telegram.ui.Components.hc.a0(T).I(2131624028, org.telegram.messenger.id.M0(2131749898, null), org.telegram.messenger.g0.X2(org.telegram.messenger.id.a0(null, null, 2131749899, k7Var.z1(), org.telegram.messenger.m5.t(j3))));
+                            I.f32555t = true;
                             I.j();
                         }
                     } else {
                         org.telegram.ui.Components.hc.a0(T).f0(tL_error, false);
                     }
                 }
-                ea.y(k7Var.f28613a, false).P(j3);
-                ea.y(k7Var.f28613a, false).P(j10);
+                ea.y(k7Var.f28616a, false).P(j3);
+                ea.y(k7Var.f28616a, false).P(j10);
                 return;
             default:
-                org.telegram.ui.Wallet.r0 r0Var = (org.telegram.ui.Wallet.r0) this.f4037e;
+                org.telegram.ui.Wallet.q0 q0Var = (org.telegram.ui.Wallet.q0) this.f4037e;
                 String str3 = (String) this.f4038f;
-                org.telegram.ui.Wallet.k0 k0Var = (org.telegram.ui.Wallet.k0) this.h;
+                org.telegram.ui.Wallet.j0 j0Var = (org.telegram.ui.Wallet.j0) this.h;
                 long j11 = this.f4035b;
                 ?? r72 = this.f4036c;
                 c20 c20Var2 = this.d;
@@ -82,49 +82,49 @@ public final class i3 implements Runnable {
                 } catch (Exception e11) {
                     e = e11;
                     arrayList = arrayList2;
-                    r72 = k0Var;
+                    r72 = j0Var;
                     linkedHashMap = linkedHashMap2;
                 } catch (Throwable th3) {
                     th = th3;
                     arrayList = arrayList2;
-                    r72 = k0Var;
+                    r72 = j0Var;
                     linkedHashMap = linkedHashMap2;
                 }
-                if (!str3.isEmpty() && k0Var != null && !k0Var.d()) {
-                    Object obj = org.telegram.ui.Wallet.r0.f43078f;
+                if (!str3.isEmpty() && j0Var != null && !j0Var.d()) {
+                    Object obj = org.telegram.ui.Wallet.q0.f43047f;
                     synchronized (obj) {
                         try {
-                            r0Var.c(j11);
+                            q0Var.c(j11);
                             try {
-                                ew0 r10 = r0Var.r();
+                                ew0 r10 = q0Var.r();
                                 try {
-                                    if (!((LinkedHashMap) r10.f33361e).isEmpty() && r10.f33358a != r72) {
+                                    if (!((LinkedHashMap) r10.f33394e).isEmpty() && r10.f33391a != r72) {
                                         throw new Exception("USER_MISMATCH");
                                     }
-                                    r10.f33358a = r72;
+                                    r10.f33391a = r72;
                                     arrayList = arrayList2;
                                     try {
-                                        r0Var.s(r10, str3, linkedHashMap2, arrayList, j11);
+                                        q0Var.s(r10, str3, linkedHashMap2, arrayList, j11);
                                         linkedHashMap = linkedHashMap2;
                                         try {
-                                            ((LinkedHashMap) r10.f33361e).put(str3, r0Var.j(r10, str3, k0Var, arrayList, j11));
-                                            linkedHashMap.put(str3, k0Var);
-                                            r10.f33359b = ConnectionsManager.getInstance(r0Var.f43082b).getCurrentTime();
+                                            ((LinkedHashMap) r10.f33394e).put(str3, q0Var.j(r10, str3, j0Var, arrayList, j11));
+                                            linkedHashMap.put(str3, j0Var);
+                                            r10.f33392b = ConnectionsManager.getInstance(q0Var.f43051b).getCurrentTime();
                                             synchronized (obj) {
-                                                r0Var.c(j11);
-                                                r0Var.v(r10, linkedHashMap);
-                                                r0Var.d(r10);
+                                                q0Var.c(j11);
+                                                q0Var.v(r10, linkedHashMap);
+                                                q0Var.d(r10);
                                             }
-                                            k0Var.close();
-                                            for (org.telegram.ui.Wallet.k0 k0Var2 : linkedHashMap.values()) {
-                                                k0Var2.close();
+                                            j0Var.close();
+                                            for (org.telegram.ui.Wallet.j0 j0Var2 : linkedHashMap.values()) {
+                                                j0Var2.close();
                                             }
                                             str2 = null;
                                         } catch (Exception e12) {
                                             e = e12;
-                                            r72 = k0Var;
+                                            r72 = j0Var;
                                             org.telegram.messenger.a8.g(e, true);
-                                            if (e instanceof org.telegram.ui.Wallet.q0) {
+                                            if (e instanceof org.telegram.ui.Wallet.p0) {
                                                 str = e.getMessage();
                                             } else {
                                                 str = "STORAGE_BROKEN";
@@ -132,23 +132,23 @@ public final class i3 implements Runnable {
                                             if (r72 != 0) {
                                                 r72.close();
                                             }
-                                            for (org.telegram.ui.Wallet.k0 k0Var3 : linkedHashMap.values()) {
-                                                k0Var3.close();
+                                            for (org.telegram.ui.Wallet.j0 j0Var3 : linkedHashMap.values()) {
+                                                j0Var3.close();
                                             }
                                             str2 = str;
-                                            r0Var.e(arrayList);
-                                            org.telegram.messenger.g0.h3(new w2(r0Var, c20Var2, j11, str2));
+                                            q0Var.e(arrayList);
+                                            org.telegram.messenger.g0.h3(new w2(q0Var, c20Var2, j11, str2));
                                             return;
                                         } catch (Throwable th4) {
                                             th = th4;
-                                            r72 = k0Var;
+                                            r72 = j0Var;
                                             if (r72 != 0) {
                                                 r72.close();
                                             }
-                                            for (org.telegram.ui.Wallet.k0 k0Var4 : linkedHashMap.values()) {
-                                                k0Var4.close();
+                                            for (org.telegram.ui.Wallet.j0 j0Var4 : linkedHashMap.values()) {
+                                                j0Var4.close();
                                             }
-                                            r0Var.e(arrayList);
+                                            q0Var.e(arrayList);
                                             throw th;
                                         }
                                     } catch (Exception e13) {
@@ -160,17 +160,17 @@ public final class i3 implements Runnable {
                                     }
                                 } catch (Exception e14) {
                                     e = e14;
-                                    r72 = k0Var;
+                                    r72 = j0Var;
                                     linkedHashMap = linkedHashMap2;
                                     arrayList = arrayList2;
                                 } catch (Throwable th6) {
                                     th = th6;
-                                    r72 = k0Var;
+                                    r72 = j0Var;
                                     linkedHashMap = linkedHashMap2;
                                     arrayList = arrayList2;
                                 }
-                                r0Var.e(arrayList);
-                                org.telegram.messenger.g0.h3(new w2(r0Var, c20Var2, j11, str2));
+                                q0Var.e(arrayList);
+                                org.telegram.messenger.g0.h3(new w2(q0Var, c20Var2, j11, str2));
                                 return;
                             } catch (Throwable th7) {
                                 th = th7;
@@ -193,10 +193,10 @@ public final class i3 implements Runnable {
         }
     }
 
-    public i3(org.telegram.ui.Wallet.r0 r0Var, String str, org.telegram.ui.Wallet.k0 k0Var, long j3, long j10, c20 c20Var) {
-        this.f4037e = r0Var;
+    public i3(org.telegram.ui.Wallet.q0 q0Var, String str, org.telegram.ui.Wallet.j0 j0Var, long j3, long j10, c20 c20Var) {
+        this.f4037e = q0Var;
         this.f4038f = str;
-        this.h = k0Var;
+        this.h = j0Var;
         this.f4035b = j3;
         this.f4036c = j10;
         this.d = c20Var;

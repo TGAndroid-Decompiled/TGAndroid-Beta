@@ -12,7 +12,7 @@ public final class fl extends org.telegram.ui.Cells.f0 {
     @Override
     public final int getSideMenuWidth() {
         an anVar = this.L.Q;
-        int i7 = an.f43706id;
+        int i7 = an.f43712id;
         return anVar.l9();
     }
 }

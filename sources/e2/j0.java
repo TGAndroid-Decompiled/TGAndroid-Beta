@@ -18,16 +18,16 @@ public final class j0 {
         this.f10288a = 0;
         this.f10289b = 0;
         this.f10293g = new HashSet();
-        hashSet.add(u9.q.a(cls));
+        hashSet.add(u9.r.a(cls));
         for (Class cls2 : clsArr) {
             tc.a(cls2, "Null interface");
-            ((HashSet) this.f10290c).add(u9.q.a(cls2));
+            ((HashSet) this.f10290c).add(u9.r.a(cls2));
         }
     }
 
-    public void a(u9.i iVar) {
-        if (!((HashSet) this.f10290c).contains(iVar.f56381a)) {
-            ((HashSet) this.f10291e).add(iVar);
+    public void a(u9.j jVar) {
+        if (!((HashSet) this.f10290c).contains(jVar.f56473a)) {
+            ((HashSet) this.f10291e).add(jVar);
             return;
         }
         throw new IllegalArgumentException("Components are not allowed to depend on interfaces they themselves provide.");

@@ -14,59 +14,59 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.view.View;
 public final class my0 {
-    public final TextPaint f36123a;
-    public StaticLayout f36124b;
-    public float f36125c;
+    public final TextPaint f36145a;
+    public StaticLayout f36146b;
+    public float f36147c;
     public float d;
-    public float f36126e;
-    public int f36127f;
-    public Layout.Alignment f36128g;
+    public float f36148e;
+    public int f36149f;
+    public Layout.Alignment f36150g;
     public float h;
-    public boolean f36129i;
-    public View f36130j;
-    public n5 f36131k;
-    public int f36132l;
-    public PorterDuffColorFilter f36133m;
-    public int f36134n;
-    public boolean f36135o;
-    public float f36136p;
-    public LinearGradient f36137q;
-    public Matrix f36138r;
-    public Paint f36139s;
-    public int f36140t;
+    public boolean f36151i;
+    public View f36152j;
+    public n5 f36153k;
+    public int f36154l;
+    public PorterDuffColorFilter f36155m;
+    public int f36156n;
+    public boolean f36157o;
+    public float f36158p;
+    public LinearGradient f36159q;
+    public Matrix f36160r;
+    public Paint f36161s;
+    public int f36162t;
 
     public my0(CharSequence charSequence, TextPaint textPaint) {
-        this.f36126e = 9999.0f;
-        this.f36127f = 1;
-        this.f36128g = Layout.Alignment.ALIGN_NORMAL;
-        this.f36132l = 0;
-        this.f36136p = -1.0f;
-        this.f36123a = textPaint;
+        this.f36148e = 9999.0f;
+        this.f36149f = 1;
+        this.f36150g = Layout.Alignment.ALIGN_NORMAL;
+        this.f36154l = 0;
+        this.f36158p = -1.0f;
+        this.f36145a = textPaint;
         q(charSequence);
     }
 
     public final void a() {
         Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
-        if (this.f36128g != alignment) {
-            this.f36128g = alignment;
-            q(this.f36124b.getText());
+        if (this.f36150g != alignment) {
+            this.f36150g = alignment;
+            q(this.f36146b.getText());
         }
     }
 
     public final float b() {
         float f10 = 0.0f;
-        for (int i7 = 0; i7 < this.f36124b.getLineCount(); i7++) {
-            f10 = Math.max(f10, this.f36124b.getLineWidth(i7));
+        for (int i7 = 0; i7 < this.f36146b.getLineCount(); i7++) {
+            f10 = Math.max(f10, this.f36146b.getLineWidth(i7));
         }
         return f10;
     }
 
     public final void c(float f10, float f11, float f12, int i7, Canvas canvas) {
         float height;
-        if (this.f36124b == null) {
+        if (this.f36146b == null) {
             return;
         }
-        TextPaint textPaint = this.f36123a;
+        TextPaint textPaint = this.f36145a;
         textPaint.setColor(i7);
         textPaint.linkColor = i7;
         int alpha = textPaint.getAlpha();
@@ -74,10 +74,10 @@ public final class my0 {
             textPaint.setAlpha((int) (alpha * f12));
         }
         canvas.save();
-        if (this.f36127f > 1) {
+        if (this.f36149f > 1) {
             height = 0.0f;
         } else {
-            height = this.f36124b.getHeight() / 2.0f;
+            height = this.f36146b.getHeight() / 2.0f;
         }
         canvas.translate(f10, f11 - height);
         d(canvas);
@@ -86,45 +86,45 @@ public final class my0 {
     }
 
     public final void d(Canvas canvas) {
-        StaticLayout staticLayout = this.f36124b;
+        StaticLayout staticLayout = this.f36146b;
         if (staticLayout != null) {
-            float f10 = this.f36136p;
-            if (f10 >= 0.0f && this.f36125c > f10) {
-                canvas.saveLayerAlpha(0.0f, -this.f36140t, f10 - 1.0f, staticLayout.getHeight() + this.f36140t, 255, 31);
+            float f10 = this.f36158p;
+            if (f10 >= 0.0f && this.f36147c > f10) {
+                canvas.saveLayerAlpha(0.0f, -this.f36162t, f10 - 1.0f, staticLayout.getHeight() + this.f36162t, 255, 31);
             }
             canvas.save();
             canvas.translate(-this.d, 0.0f);
-            boolean z9 = this.f36135o;
-            TextPaint textPaint = this.f36123a;
+            boolean z9 = this.f36157o;
+            TextPaint textPaint = this.f36145a;
             if (z9) {
-                canvas.drawText(this.f36124b.getText().toString(), 0.0f, -textPaint.getFontMetricsInt().ascent, textPaint);
+                canvas.drawText(this.f36146b.getText().toString(), 0.0f, -textPaint.getFontMetricsInt().ascent, textPaint);
             } else {
-                this.f36124b.draw(canvas);
+                this.f36146b.draw(canvas);
             }
-            if (this.f36129i) {
-                if (this.f36133m == null || textPaint.getColor() != this.f36134n) {
+            if (this.f36151i) {
+                if (this.f36155m == null || textPaint.getColor() != this.f36156n) {
                     int color = textPaint.getColor();
-                    this.f36134n = color;
-                    this.f36133m = new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN);
+                    this.f36156n = color;
+                    this.f36155m = new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN);
                 }
-                r5.drawAnimatedEmojis(canvas, this.f36124b, this.f36131k, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, this.f36133m);
+                r5.drawAnimatedEmojis(canvas, this.f36146b, this.f36153k, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, this.f36155m);
             }
             canvas.restore();
-            float f11 = this.f36136p;
-            if (f11 >= 0.0f && this.f36125c > f11) {
-                if (this.f36137q == null) {
-                    this.f36137q = new LinearGradient(0.0f, 0.0f, org.telegram.messenger.g0.L(8.0f), 0.0f, new int[]{16777215, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-                    this.f36138r = new Matrix();
+            float f11 = this.f36158p;
+            if (f11 >= 0.0f && this.f36147c > f11) {
+                if (this.f36159q == null) {
+                    this.f36159q = new LinearGradient(0.0f, 0.0f, org.telegram.messenger.g0.L(8.0f), 0.0f, new int[]{16777215, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                    this.f36160r = new Matrix();
                     Paint paint = new Paint(1);
-                    this.f36139s = paint;
+                    this.f36161s = paint;
                     paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-                    this.f36139s.setShader(this.f36137q);
+                    this.f36161s.setShader(this.f36159q);
                 }
                 canvas.save();
-                this.f36138r.reset();
-                this.f36138r.postTranslate(this.f36136p - org.telegram.messenger.g0.L(8.0f), 0.0f);
-                this.f36137q.setLocalMatrix(this.f36138r);
-                canvas.drawRect(this.f36136p - org.telegram.messenger.g0.L(8.0f), 0.0f, this.f36136p, this.f36124b.getHeight(), this.f36139s);
+                this.f36160r.reset();
+                this.f36160r.postTranslate(this.f36158p - org.telegram.messenger.g0.L(8.0f), 0.0f);
+                this.f36159q.setLocalMatrix(this.f36160r);
+                canvas.drawRect(this.f36158p - org.telegram.messenger.g0.L(8.0f), 0.0f, this.f36158p, this.f36146b.getHeight(), this.f36161s);
                 canvas.restore();
                 canvas.restore();
             }
@@ -137,17 +137,17 @@ public final class my0 {
 
     public final void f(Canvas canvas, float f10, float f11, float f12) {
         float height;
-        if (this.f36124b == null) {
+        if (this.f36146b == null) {
             return;
         }
         canvas.save();
-        if (this.f36127f > 1) {
+        if (this.f36149f > 1) {
             height = 0.0f;
         } else {
-            height = this.f36124b.getHeight() / 2.0f;
+            height = this.f36146b.getHeight() / 2.0f;
         }
         canvas.translate(f10, f11 - height);
-        TextPaint textPaint = this.f36123a;
+        TextPaint textPaint = this.f36145a;
         int alpha = textPaint.getAlpha();
         textPaint.setAlpha((int) (alpha * f12));
         d(canvas);
@@ -156,92 +156,92 @@ public final class my0 {
     }
 
     public final float g() {
-        return this.f36125c;
+        return this.f36147c;
     }
 
     public final Paint.FontMetricsInt h() {
-        return this.f36123a.getFontMetricsInt();
+        return this.f36145a.getFontMetricsInt();
     }
 
     public final float i() {
-        return this.f36124b.getHeight();
+        return this.f36146b.getHeight();
     }
 
     public final CharSequence j() {
-        StaticLayout staticLayout = this.f36124b;
+        StaticLayout staticLayout = this.f36146b;
         if (staticLayout != null && staticLayout.getText() != null) {
-            return this.f36124b.getText();
+            return this.f36146b.getText();
         }
         return "";
     }
 
     public final float k() {
-        float f10 = this.f36136p;
+        float f10 = this.f36158p;
         if (f10 >= 0.0f) {
-            return Math.min(f10, this.f36125c);
+            return Math.min(f10, this.f36147c);
         }
-        return this.f36125c;
+        return this.f36147c;
     }
 
     public final void l(float f10) {
         if (this.h != f10) {
             this.h = f10;
-            q(this.f36124b.getText());
+            q(this.f36146b.getText());
         }
     }
 
     public final void m(int i7) {
-        this.f36127f = i7;
-        q(this.f36124b.getText());
+        this.f36149f = i7;
+        q(this.f36146b.getText());
     }
 
     public final void n(int i7) {
-        this.f36123a.setColor(i7);
+        this.f36145a.setColor(i7);
     }
 
     public final void o(int i7) {
-        if (this.f36132l != i7) {
-            this.f36132l = i7;
-            if (this.f36129i) {
-                r5.release(this.f36130j, this.f36131k);
-                this.f36131k = r5.update(this.f36132l, this.f36130j, this.f36131k, this.f36124b);
+        if (this.f36154l != i7) {
+            this.f36154l = i7;
+            if (this.f36151i) {
+                r5.release(this.f36152j, this.f36153k);
+                this.f36153k = r5.update(this.f36154l, this.f36152j, this.f36153k, this.f36146b);
             }
         }
     }
 
     public final void p(float f10) {
-        this.f36126e = f10;
-        q(this.f36124b.getText());
+        this.f36148e = f10;
+        q(this.f36146b.getText());
     }
 
     public final void q(CharSequence charSequence) {
-        if (this.f36127f > 1) {
-            this.f36124b = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), this.f36123a, (int) Math.max(this.f36126e, 1.0f)).setAlignment(this.f36128g).setMaxLines(this.f36127f).setLineSpacing(this.h, 1.0f).build();
+        if (this.f36149f > 1) {
+            this.f36146b = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), this.f36145a, (int) Math.max(this.f36148e, 1.0f)).setAlignment(this.f36150g).setMaxLines(this.f36149f).setLineSpacing(this.h, 1.0f).build();
         } else {
-            this.f36124b = new StaticLayout(org.telegram.messenger.g0.N2(charSequence), this.f36123a, (int) Math.max(this.f36126e, 1.0f), this.f36128g, 1.0f, this.h, false);
+            this.f36146b = new StaticLayout(org.telegram.messenger.g0.N2(charSequence), this.f36145a, (int) Math.max(this.f36148e, 1.0f), this.f36150g, 1.0f, this.h, false);
         }
-        if (this.f36128g == Layout.Alignment.ALIGN_CENTER) {
-            this.f36125c = this.f36124b.getWidth();
+        if (this.f36150g == Layout.Alignment.ALIGN_CENTER) {
+            this.f36147c = this.f36146b.getWidth();
             this.d = 0.0f;
         } else {
-            this.f36125c = 0.0f;
-            this.d = this.f36124b.getWidth();
-            for (int i7 = 0; i7 < this.f36124b.getLineCount(); i7++) {
-                this.f36125c = Math.max(this.f36125c, this.f36124b.getLineWidth(i7));
-                this.d = Math.min(this.d, this.f36124b.getLineLeft(i7));
+            this.f36147c = 0.0f;
+            this.d = this.f36146b.getWidth();
+            for (int i7 = 0; i7 < this.f36146b.getLineCount(); i7++) {
+                this.f36147c = Math.max(this.f36147c, this.f36146b.getLineWidth(i7));
+                this.d = Math.min(this.d, this.f36146b.getLineLeft(i7));
             }
         }
-        View view = this.f36130j;
+        View view = this.f36152j;
         if (view != null && view.isAttachedToWindow()) {
-            this.f36131k = r5.update(this.f36132l, this.f36130j, this.f36131k, this.f36124b);
+            this.f36153k = r5.update(this.f36154l, this.f36152j, this.f36153k, this.f36146b);
         }
     }
 
     public final void r(View view) {
-        this.f36129i = true;
-        this.f36130j = view;
+        this.f36151i = true;
+        this.f36152j = view;
         if (view.isAttachedToWindow()) {
-            this.f36131k = r5.update(this.f36132l, view, this.f36131k, this.f36124b);
+            this.f36153k = r5.update(this.f36154l, view, this.f36153k, this.f36146b);
         }
         view.addOnAttachStateChangeListener(new aa(1, this, view));
     }
@@ -251,13 +251,13 @@ public final class my0 {
     }
 
     public my0(CharSequence charSequence, float f10, Typeface typeface) {
-        this.f36126e = 9999.0f;
-        this.f36127f = 1;
-        this.f36128g = Layout.Alignment.ALIGN_NORMAL;
-        this.f36132l = 0;
-        this.f36136p = -1.0f;
+        this.f36148e = 9999.0f;
+        this.f36149f = 1;
+        this.f36150g = Layout.Alignment.ALIGN_NORMAL;
+        this.f36154l = 0;
+        this.f36158p = -1.0f;
         TextPaint textPaint = new TextPaint(1);
-        this.f36123a = textPaint;
+        this.f36145a = textPaint;
         textPaint.setTextSize(org.telegram.messenger.g0.L(f10));
         textPaint.setTypeface(typeface);
         q(charSequence);

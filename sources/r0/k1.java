@@ -6,39 +6,39 @@ import android.view.WindowInsets;
 import j$.util.Objects;
 import java.util.WeakHashMap;
 public final class k1 {
-    public static final k1 f54107b;
-    public final h1 f54108a;
+    public static final k1 f54200b;
+    public final h1 f54201a;
 
     static {
         int i7 = Build.VERSION.SDK_INT;
         if (i7 >= 34) {
-            f54107b = g1.f54090s;
+            f54200b = g1.f54183s;
         } else if (i7 >= 30) {
-            f54107b = f1.f54088r;
+            f54200b = f1.f54181r;
         } else {
-            f54107b = h1.f54095b;
+            f54200b = h1.f54188b;
         }
     }
 
     public k1(WindowInsets windowInsets) {
         int i7 = Build.VERSION.SDK_INT;
         if (i7 >= 34) {
-            this.f54108a = new g1(this, windowInsets);
+            this.f54201a = new g1(this, windowInsets);
         } else if (i7 >= 30) {
-            this.f54108a = new f1(this, windowInsets);
+            this.f54201a = new f1(this, windowInsets);
         } else if (i7 >= 29) {
-            this.f54108a = new e1(this, windowInsets);
+            this.f54201a = new e1(this, windowInsets);
         } else if (i7 >= 28) {
-            this.f54108a = new d1(this, windowInsets);
+            this.f54201a = new d1(this, windowInsets);
         } else {
-            this.f54108a = new c1(this, windowInsets);
+            this.f54201a = new c1(this, windowInsets);
         }
     }
 
     public static i0.b e(i0.b bVar, int i7, int i10, int i11, int i12) {
-        int max = Math.max(0, bVar.f15117a - i7);
-        int max2 = Math.max(0, bVar.f15118b - i10);
-        int max3 = Math.max(0, bVar.f15119c - i11);
+        int max = Math.max(0, bVar.f15120a - i7);
+        int max2 = Math.max(0, bVar.f15121b - i10);
+        int max3 = Math.max(0, bVar.f15122c - i11);
         int max4 = Math.max(0, bVar.d - i12);
         if (max == i7 && max2 == i10 && max3 == i11 && max4 == i12) {
             return bVar;
@@ -50,9 +50,9 @@ public final class k1 {
         windowInsets.getClass();
         k1 k1Var = new k1(windowInsets);
         if (view != null && view.isAttachedToWindow()) {
-            WeakHashMap weakHashMap = i0.f54097a;
+            WeakHashMap weakHashMap = i0.f54190a;
             k1 a10 = b0.a(view);
-            h1 h1Var = k1Var.f54108a;
+            h1 h1Var = k1Var.f54201a;
             h1Var.r(a10);
             h1Var.d(view.getRootView());
             h1Var.t(view.getWindowSystemUiVisibility());
@@ -61,19 +61,19 @@ public final class k1 {
     }
 
     public final int a() {
-        return this.f54108a.k().d;
+        return this.f54201a.k().d;
     }
 
     public final int b() {
-        return this.f54108a.k().f15117a;
+        return this.f54201a.k().f15120a;
     }
 
     public final int c() {
-        return this.f54108a.k().f15119c;
+        return this.f54201a.k().f15122c;
     }
 
     public final int d() {
-        return this.f54108a.k().f15118b;
+        return this.f54201a.k().f15121b;
     }
 
     public final boolean equals(Object obj) {
@@ -83,7 +83,7 @@ public final class k1 {
         if (!(obj instanceof k1)) {
             return false;
         }
-        return Objects.equals(this.f54108a, ((k1) obj).f54108a);
+        return Objects.equals(this.f54201a, ((k1) obj).f54201a);
     }
 
     public final k1 f(int i7, int i10, int i11, int i12) {
@@ -103,15 +103,15 @@ public final class k1 {
     }
 
     public final WindowInsets g() {
-        h1 h1Var = this.f54108a;
+        h1 h1Var = this.f54201a;
         if (h1Var instanceof b1) {
-            return ((b1) h1Var).f54075c;
+            return ((b1) h1Var).f54168c;
         }
         return null;
     }
 
     public final int hashCode() {
-        h1 h1Var = this.f54108a;
+        h1 h1Var = this.f54201a;
         if (h1Var == null) {
             return 0;
         }
@@ -119,6 +119,6 @@ public final class k1 {
     }
 
     public k1() {
-        this.f54108a = new h1(this);
+        this.f54201a = new h1(this);
     }
 }

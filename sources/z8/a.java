@@ -6,14 +6,14 @@ import c8.xb;
 import y8.v;
 public final class a extends r6.a {
     public static final Parcelable.Creator<a> CREATOR = new v(8);
-    public String f59906a;
-    public String f59907b;
+    public String f59999a;
+    public String f60000b;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = xb.r(parcel, 20293);
-        xb.l(parcel, 2, this.f59906a);
-        xb.l(parcel, 3, this.f59907b);
+        xb.l(parcel, 2, this.f59999a);
+        xb.l(parcel, 3, this.f60000b);
         xb.s(parcel, r10);
     }
 }

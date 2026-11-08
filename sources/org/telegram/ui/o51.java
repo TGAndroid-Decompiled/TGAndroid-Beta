@@ -20,7 +20,7 @@ public final class o51 implements Runnable {
                 ThemeActivity themeActivity = this.f48278b;
                 String str = null;
                 try {
-                    List<Address> fromLocation = new Geocoder(org.telegram.messenger.t0.f25563b, Locale.getDefault()).getFromLocation(org.telegram.ui.ActionBar.k6.f28215x, org.telegram.ui.ActionBar.k6.f28234y, 1);
+                    List<Address> fromLocation = new Geocoder(org.telegram.messenger.t0.f25566b, Locale.getDefault()).getFromLocation(org.telegram.ui.ActionBar.k6.f28218x, org.telegram.ui.ActionBar.k6.f28237y, 1);
                     if (fromLocation.size() > 0) {
                         str = fromLocation.get(0).getLocality();
                     }
@@ -30,7 +30,7 @@ public final class o51 implements Runnable {
                 return;
             default:
                 ThemeActivity themeActivity2 = this.f48278b;
-                themeActivity2.f42009b.e1(new n51(themeActivity2, 0), 700, true);
+                themeActivity2.f42013b.e1(new n51(themeActivity2, 0), 700, true);
                 return;
         }
     }

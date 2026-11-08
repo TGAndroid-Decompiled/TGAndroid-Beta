@@ -34,7 +34,7 @@ public final class l implements lf.a {
     public l(wf.b bVar) {
         HashMap hashMap = new HashMap();
         c(Arrays.asList(new hf.a(0), new hf.a(1)), hashMap);
-        c((List) bVar.f57562b, hashMap);
+        c((List) bVar.f57654b, hashMap);
         this.f13929c = hashMap;
         Set<Character> keySet = hashMap.keySet();
         BitSet bitSet = new BitSet();
@@ -95,13 +95,13 @@ public final class l implements lf.a {
     public static void e(s sVar, s sVar2, int i7) {
         if (sVar != null && sVar2 != null && sVar != sVar2) {
             StringBuilder sb2 = new StringBuilder(i7);
-            sb2.append(sVar.f17283g);
-            kf.p pVar = (kf.p) sVar2.f17281f;
-            for (kf.p pVar2 = (kf.p) sVar.f17281f; pVar2 != pVar; pVar2 = (kf.p) pVar2.f17281f) {
-                sb2.append(((s) pVar2).f17283g);
+            sb2.append(sVar.f17286g);
+            kf.p pVar = (kf.p) sVar2.f17284f;
+            for (kf.p pVar2 = (kf.p) sVar.f17284f; pVar2 != pVar; pVar2 = (kf.p) pVar2.f17284f) {
+                sb2.append(((s) pVar2).f17286g);
                 pVar2.g();
             }
-            sVar.f17283g = sb2.toString();
+            sVar.f17286g = sb2.toString();
         }
     }
 
@@ -115,7 +115,7 @@ public final class l implements lf.a {
                 if (sVar == null) {
                     sVar = sVar2;
                 }
-                i7 = sVar2.f17283g.length() + i7;
+                i7 = sVar2.f17286g.length() + i7;
             } else {
                 e(sVar, sVar2, i7);
                 sVar = null;
@@ -125,7 +125,7 @@ public final class l implements lf.a {
             if (pVar == pVar2) {
                 break;
             }
-            pVar = (kf.p) pVar.f17281f;
+            pVar = (kf.p) pVar.f17284f;
         }
         e(sVar, sVar2, i7);
     }
@@ -201,16 +201,16 @@ public final class l implements lf.a {
                     s sVar2 = eVar4.f13880a;
                     eVar4.f13885g -= i7;
                     eVar2.f13885g -= i7;
-                    sVar2.f17283g = com.google.android.recaptcha.internal.a.k(sVar2.f17283g, i7, 0);
-                    sVar.f17283g = com.google.android.recaptcha.internal.a.k(sVar.f17283g, i7, 0);
+                    sVar2.f17286g = com.google.android.recaptcha.internal.a.k(sVar2.f17286g, i7, 0);
+                    sVar.f17286g = com.google.android.recaptcha.internal.a.k(sVar.f17286g, i7, 0);
                     e eVar5 = eVar2.f13883e;
                     while (eVar5 != null && eVar5 != eVar4) {
                         e eVar6 = eVar5.f13883e;
                         i(eVar5);
                         eVar5 = eVar6;
                     }
-                    if (sVar2 != sVar && (pVar = (kf.p) sVar2.f17281f) != sVar) {
-                        f(pVar, (kf.p) sVar.f17280e);
+                    if (sVar2 != sVar && (pVar = (kf.p) sVar2.f17284f) != sVar) {
+                        f(pVar, (kf.p) sVar.f17283e);
                     }
                     aVar.a(sVar2, sVar, i7);
                     if (eVar4.f13885g == 0) {

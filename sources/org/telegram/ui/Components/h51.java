@@ -6,44 +6,44 @@ import android.graphics.Matrix;
 import android.graphics.SurfaceTexture;
 import android.view.TextureView;
 public final class h51 extends TextureView implements TextureView.SurfaceTextureListener {
-    public t51 f34178a;
-    public ry f34179b;
-    public final ki0 f34180c;
+    public t51 f34115a;
+    public sy f34116b;
+    public final ki0 f34117c;
     public int d;
-    public int f34181e;
-    public fi.d7 f34182f;
+    public int f34118e;
+    public fi.d7 f34119f;
     public g51 h;
-    public int f34183n;
-    public int f34184r;
-    public y9 f34185s;
+    public int f34120n;
+    public int f34121r;
+    public y9 f34122s;
 
     public h51(Context context, t51 t51Var) {
         super(context);
-        this.f34180c = new Object();
-        this.f34178a = t51Var;
+        this.f34117c = new Object();
+        this.f34115a = t51Var;
         setSurfaceTextureListener(this);
     }
 
     public final void a(float f10, float f11, float f12, float f13) {
-        ki0 ki0Var = this.f34180c;
-        ki0Var.f35313a = f10;
-        ki0Var.f35314b = f11;
-        ki0Var.f35315c = f12;
+        ki0 ki0Var = this.f34117c;
+        ki0Var.f35339a = f10;
+        ki0Var.f35340b = f11;
+        ki0Var.f35341c = f12;
         ki0Var.d = f13;
     }
 
     public Bitmap getUiBlurBitmap() {
         da daVar;
-        ry ryVar = this.f34179b;
-        if (ryVar == null || (daVar = ryVar.I) == null) {
+        sy syVar = this.f34116b;
+        if (syVar == null || (daVar = syVar.I) == null) {
             return null;
         }
-        synchronized (daVar.f32840n) {
+        synchronized (daVar.f32848n) {
             try {
-                if (!daVar.f32843q) {
+                if (!daVar.f32851q) {
                     return null;
                 }
-                return daVar.f32842p;
+                return daVar.f32850p;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -51,7 +51,7 @@ public final class h51 extends TextureView implements TextureView.SurfaceTexture
     }
 
     public int getVideoHeight() {
-        return this.f34181e;
+        return this.f34118e;
     }
 
     public int getVideoWidth() {
@@ -61,44 +61,44 @@ public final class h51 extends TextureView implements TextureView.SurfaceTexture
     @Override
     public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i7, int i10) {
         int i11;
-        if (this.f34179b == null && surfaceTexture != null && this.f34178a != null) {
-            ry ryVar = new ry(surfaceTexture, new ax(this, 26), this.f34182f, this.f34185s, i7, i10);
-            this.f34179b = ryVar;
-            ryVar.h(this.f34183n, this.f34184r);
-            ry ryVar2 = this.f34179b;
-            y9 y9Var = this.f34185s;
-            da daVar = ryVar2.I;
+        if (this.f34116b == null && surfaceTexture != null && this.f34115a != null) {
+            sy syVar = new sy(surfaceTexture, new bx(this, 26), this.f34119f, this.f34122s, i7, i10);
+            this.f34116b = syVar;
+            syVar.h(this.f34120n, this.f34121r);
+            sy syVar2 = this.f34116b;
+            y9 y9Var = this.f34122s;
+            da daVar = syVar2.I;
             if (daVar != null) {
-                y9 y9Var2 = daVar.f32846t;
-                if (y9Var2 != null && y9Var2.f40609m != null) {
-                    y9Var2.f40609m = null;
+                y9 y9Var2 = daVar.f32854t;
+                if (y9Var2 != null && y9Var2.f40635m != null) {
+                    y9Var2.f40635m = null;
                 }
-                daVar.f32846t = y9Var;
-                if (y9Var != null && y9Var.f40609m != daVar) {
-                    y9Var.f40609m = daVar;
+                daVar.f32854t = y9Var;
+                if (y9Var != null && y9Var.f40635m != daVar) {
+                    y9Var.f40635m = daVar;
                     y9Var.d();
                 }
             }
             int i12 = this.d;
-            if (i12 != 0 && (i11 = this.f34181e) != 0) {
-                ry ryVar3 = this.f34179b;
-                ryVar3.getClass();
-                ryVar3.postRunnable(new ny(ryVar3, i12, i11, 0));
+            if (i12 != 0 && (i11 = this.f34118e) != 0) {
+                sy syVar3 = this.f34116b;
+                syVar3.getClass();
+                syVar3.postRunnable(new oy(syVar3, i12, i11, 0));
             }
-            this.f34179b.c(true, true, false);
+            this.f34116b.c(true, true, false);
             g51 g51Var = this.h;
             if (g51Var != null) {
-                g51Var.a(this.f34179b);
+                g51Var.a(this.f34116b);
             }
         }
     }
 
     @Override
     public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        ry ryVar = this.f34179b;
-        if (ryVar != null) {
-            ryVar.postRunnable(new oy(ryVar, 0));
-            this.f34179b = null;
+        sy syVar = this.f34116b;
+        if (syVar != null) {
+            syVar.postRunnable(new py(syVar, 0));
+            this.f34116b = null;
             return true;
         }
         return true;
@@ -106,42 +106,42 @@ public final class h51 extends TextureView implements TextureView.SurfaceTexture
 
     @Override
     public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i7, int i10) {
-        ry ryVar = this.f34179b;
-        if (ryVar != null) {
-            ryVar.postRunnable(new ny(ryVar, i7, i10, 1));
-            this.f34179b.c(false, true, false);
-            this.f34179b.postRunnable(new ir0(this, 28));
+        sy syVar = this.f34116b;
+        if (syVar != null) {
+            syVar.postRunnable(new oy(syVar, i7, i10, 1));
+            this.f34116b.c(false, true, false);
+            this.f34116b.postRunnable(new ir0(this, 28));
         }
     }
 
     public void setDelegate(g51 g51Var) {
         this.h = g51Var;
-        ry ryVar = this.f34179b;
-        if (ryVar != null) {
+        sy syVar = this.f34116b;
+        if (syVar != null) {
             if (g51Var == null) {
-                ryVar.d(null);
+                syVar.d(null);
             } else {
-                g51Var.a(ryVar);
+                g51Var.a(syVar);
             }
         }
     }
 
     public void setHDRInfo(fi.d7 d7Var) {
-        this.f34182f = d7Var;
-        ry ryVar = this.f34179b;
-        if (ryVar != null) {
-            ryVar.postRunnable(new fq(16, ryVar, d7Var));
+        this.f34119f = d7Var;
+        sy syVar = this.f34116b;
+        if (syVar != null) {
+            syVar.postRunnable(new fq(16, syVar, d7Var));
         }
     }
 
     @Override
     public void setTransform(Matrix matrix) {
         super.setTransform(matrix);
-        ry ryVar = this.f34179b;
-        if (ryVar != null) {
+        sy syVar = this.f34116b;
+        if (syVar != null) {
             int width = getWidth();
             int height = getHeight();
-            da daVar = ryVar.I;
+            da daVar = syVar.I;
             if (daVar != null) {
                 Matrix matrix2 = daVar.v;
                 matrix.invert(matrix2);
@@ -150,7 +150,7 @@ public final class h51 extends TextureView implements TextureView.SurfaceTexture
                 matrix2.preScale(f10, f11);
                 matrix2.postScale(1.0f / f10, 1.0f / f11);
                 daVar.c(matrix2);
-                ryVar.c(false, false, false);
+                syVar.c(false, false, false);
             }
         }
     }

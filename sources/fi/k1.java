@@ -6,14 +6,14 @@ import android.graphics.Rect;
 import java.util.ArrayList;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.ic;
-import org.telegram.messenger.rc;
+import org.telegram.messenger.sc;
 import org.telegram.ui.Components.is;
 public final class k1 extends is {
     public int M;
     public int N;
     public ArrayList O;
     public final ArrayList P = new ArrayList();
-    public final boolean Q = rc.e(8200);
+    public final boolean Q = sc.e(8200);
     public final m1 R;
 
     public k1(m1 m1Var) {

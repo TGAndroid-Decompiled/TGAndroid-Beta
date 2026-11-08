@@ -38,7 +38,7 @@ public final class a {
     }
 
     public a(i0 i0Var) {
-        Context context = (Context) i0Var.f54975b;
+        Context context = (Context) i0Var.f55067b;
         int e10 = aa.g.e(context, "com.google.firebase.crashlytics.unity_version", "string");
         if (e10 != 0) {
             this.f11112a = "Unity";

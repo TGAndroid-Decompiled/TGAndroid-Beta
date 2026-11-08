@@ -10,16 +10,16 @@ import android.graphics.drawable.Drawable;
 import androidx.recyclerview.widget.RecyclerView;
 import java.io.File;
 public final class rl extends v4.m0 implements eh.a {
-    public Drawable f37701a;
-    public final Path f37702b = new Path();
-    public final Drawable f37703c;
+    public Drawable f37722a;
+    public final Path f37723b = new Path();
+    public final Drawable f37724c;
     public final jl d;
-    public final ChatAttachAlertPhotoLayout f37704e;
+    public final ChatAttachAlertPhotoLayout f37725e;
 
     public rl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, jl jlVar) {
-        this.f37704e = chatAttachAlertPhotoLayout;
+        this.f37725e = chatAttachAlertPhotoLayout;
         this.d = jlVar;
-        this.f37703c = chatAttachAlertPhotoLayout.getContext().getResources().getDrawable(2131230927).mutate();
+        this.f37724c = chatAttachAlertPhotoLayout.getContext().getResources().getDrawable(2131230927).mutate();
     }
 
     @Override
@@ -44,15 +44,15 @@ public final class rl extends v4.m0 implements eh.a {
         boolean z10;
         boolean z11;
         ql qlVar2;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f37704e;
-        if (!chatAttachAlertPhotoLayout.f31195d0 && !chatAttachAlertPhotoLayout.f31191b0 && chatAttachAlertPhotoLayout.G.f38353e && !chatAttachAlertPhotoLayout.O0 && !chatAttachAlertPhotoLayout.P0) {
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f37725e;
+        if (!chatAttachAlertPhotoLayout.f31199d0 && !chatAttachAlertPhotoLayout.f31195b0 && chatAttachAlertPhotoLayout.G.f38381e && !chatAttachAlertPhotoLayout.O0 && !chatAttachAlertPhotoLayout.P0) {
             v4.d1 K = recyclerView.K(0);
             if (K != null) {
-                top = K.f56951a.getTop();
+                top = K.f57043a.getTop();
             } else {
                 K = recyclerView.K(chatAttachAlertPhotoLayout.M0);
                 if (K != null) {
-                    top = (K.f56951a.getTop() - org.telegram.messenger.g0.L(2.0f)) - chatAttachAlertPhotoLayout.K0;
+                    top = (K.f57043a.getTop() - org.telegram.messenger.g0.L(2.0f)) - chatAttachAlertPhotoLayout.K0;
                 } else if (aVar != null) {
                     aVar.f8700a = true;
                     return;
@@ -60,7 +60,7 @@ public final class rl extends v4.m0 implements eh.a {
                     return;
                 }
             }
-            int left = K.f56951a.getLeft();
+            int left = K.f57043a.getLeft();
             int i7 = chatAttachAlertPhotoLayout.K0;
             int i10 = left + i7;
             int L = org.telegram.messenger.g0.L(2.0f) + (i7 * 2) + top;
@@ -71,9 +71,9 @@ public final class rl extends v4.m0 implements eh.a {
                 aVar.a(L);
             }
             if (rectF == null || rectF.intersects(left, top, i10, L)) {
-                Drawable drawable = this.f37703c;
+                Drawable drawable = this.f37724c;
                 if (aVar != null) {
-                    if (this.f37701a != null && ((qlVar2 = chatAttachAlertPhotoLayout.P) == null || !qlVar2.isInited() || chatAttachAlertPhotoLayout.N)) {
+                    if (this.f37722a != null && ((qlVar2 = chatAttachAlertPhotoLayout.P) == null || !qlVar2.isInited() || chatAttachAlertPhotoLayout.N)) {
                         z9 = true;
                     } else {
                         z9 = false;
@@ -94,26 +94,26 @@ public final class rl extends v4.m0 implements eh.a {
                 }
                 if (canvas != null) {
                     float L2 = org.telegram.messenger.g0.L(16.0f);
-                    Path path = this.f37702b;
+                    Path path = this.f37723b;
                     path.rewind();
                     float f10 = left;
                     float f11 = top;
                     path.addRoundRect(f10, f11, i10 + L2, L + L2, L2, L2, Path.Direction.CW);
                     canvas.save();
                     canvas.clipPath(path);
-                    if (this.f37701a != null && ((qlVar = chatAttachAlertPhotoLayout.P) == null || !qlVar.isInited() || chatAttachAlertPhotoLayout.N)) {
-                        this.f37701a.setBounds(left, top, i10, L);
-                        this.f37701a.draw(canvas);
+                    if (this.f37722a != null && ((qlVar = chatAttachAlertPhotoLayout.P) == null || !qlVar.isInited() || chatAttachAlertPhotoLayout.N)) {
+                        this.f37722a.setBounds(left, top, i10, L);
+                        this.f37722a.draw(canvas);
                     }
                     ql qlVar3 = chatAttachAlertPhotoLayout.P;
                     if (qlVar3 != null) {
-                        qlVar3.f37325b = true;
+                        qlVar3.f37355b = true;
                         canvas.save();
                         canvas.clipRect(left, top, i10, L);
                         canvas.translate(f10, f11);
                         chatAttachAlertPhotoLayout.P.draw(canvas);
                         canvas.restore();
-                        chatAttachAlertPhotoLayout.P.f37325b = false;
+                        chatAttachAlertPhotoLayout.P.f37355b = false;
                     }
                     if (drawable != null) {
                         int L3 = org.telegram.messenger.g0.L(24.0f);
@@ -138,11 +138,11 @@ public final class rl extends v4.m0 implements eh.a {
         } catch (Throwable unused) {
             bitmap = null;
         }
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f37704e;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f37725e;
         if (bitmap != null) {
-            this.f37701a = new BitmapDrawable(chatAttachAlertPhotoLayout.getContext().getResources(), bitmap);
+            this.f37722a = new BitmapDrawable(chatAttachAlertPhotoLayout.getContext().getResources(), bitmap);
         } else {
-            this.f37701a = chatAttachAlertPhotoLayout.getContext().getResources().getDrawable(2131231492).mutate();
+            this.f37722a = chatAttachAlertPhotoLayout.getContext().getResources().getDrawable(2131231492).mutate();
         }
         jl jlVar = chatAttachAlertPhotoLayout.E;
         if (jlVar != null) {

@@ -5,7 +5,7 @@ import android.view.View;
 public final class i1 extends View {
     @Override
     public final void onDraw(Canvas canvas) {
-        canvas.drawLine(0.0f, 0.0f, getMeasuredWidth(), 0.0f, g4.f45813s1);
+        canvas.drawLine(0.0f, 0.0f, getMeasuredWidth(), 0.0f, g4.f45790s1);
     }
 
     @Override

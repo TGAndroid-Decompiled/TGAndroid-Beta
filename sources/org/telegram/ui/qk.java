@@ -8,19 +8,19 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 public final class qk implements Runnable {
-    public final int f49247a = 1;
-    public final int f49248b;
-    public final int f49249c;
+    public final int f49250a = 1;
+    public final int f49251b;
+    public final int f49252c;
     public final boolean d;
-    public final Object f49250e;
-    public final Object f49251f;
+    public final Object f49253e;
+    public final Object f49254f;
     public final Serializable h;
 
     public qk(h2.c cVar, Bitmap bitmap, int i7, int i10, String str, boolean z9) {
-        this.f49250e = cVar;
-        this.f49251f = bitmap;
-        this.f49248b = i7;
-        this.f49249c = i10;
+        this.f49253e = cVar;
+        this.f49254f = bitmap;
+        this.f49251b = i7;
+        this.f49252c = i10;
         this.h = str;
         this.d = z9;
     }
@@ -32,25 +32,25 @@ public final class qk implements Runnable {
         int i10;
         int i11;
         Rect rect;
-        int i12 = this.f49247a;
+        int i12 = this.f49250a;
         Serializable serializable = this.h;
-        int i13 = this.f49249c;
-        int i14 = this.f49248b;
-        Object obj = this.f49251f;
-        Object obj2 = this.f49250e;
+        int i13 = this.f49252c;
+        int i14 = this.f49251b;
+        Object obj = this.f49254f;
+        Object obj2 = this.f49253e;
         switch (i12) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj;
                 ArrayList arrayList2 = (ArrayList) serializable;
-                an anVar = ((rk) obj2).f49525b;
+                an anVar = ((rk) obj2).f49504b;
                 if (this.d) {
                     i7 = ((org.telegram.ui.ActionBar.f2) anVar).currentAccount;
-                    org.telegram.messenger.qp.s1(i7).f24757d7.edit().remove("pin_" + anVar.f43842j6).commit();
+                    org.telegram.messenger.qp.s1(i7).f24764d7.edit().remove("pin_" + anVar.f43848j6).commit();
                     anVar.cd(0, true);
                     ccVar = null;
                 } else {
                     ccVar = null;
-                    anVar.getNotificationCenter().k(56, Long.valueOf(anVar.f43842j6), arrayList, Boolean.TRUE, arrayList2, null, 0, Integer.valueOf(i14), Boolean.valueOf(anVar.f43777e5));
+                    anVar.getNotificationCenter().k(56, Long.valueOf(anVar.f43848j6), arrayList, Boolean.TRUE, arrayList2, null, 0, Integer.valueOf(i14), Boolean.valueOf(anVar.f43783e5));
                 }
                 if (i13 == anVar.Q3) {
                     anVar.O3 = ccVar;
@@ -117,11 +117,11 @@ public final class qk implements Runnable {
     }
 
     public qk(rk rkVar, boolean z9, ArrayList arrayList, ArrayList arrayList2, int i7, int i10) {
-        this.f49250e = rkVar;
+        this.f49253e = rkVar;
         this.d = z9;
-        this.f49251f = arrayList;
+        this.f49254f = arrayList;
         this.h = arrayList2;
-        this.f49248b = i7;
-        this.f49249c = i10;
+        this.f49251b = i7;
+        this.f49252c = i10;
     }
 }

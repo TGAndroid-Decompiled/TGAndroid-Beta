@@ -245,7 +245,7 @@ public final class v9 implements w9 {
                     ArrayList arrayList2 = this.f4915l;
                     if (i11 < arrayList2.size()) {
                         TL_stars.StarGift starGift3 = ((TL_stars.SavedStarGift) arrayList2.get(i11)).gift;
-                        if (starGift3 != null && starGift3.f27182id == starGift2.f27182id) {
+                        if (starGift3 != null && starGift3.f27185id == starGift2.f27185id) {
                             arrayList2.remove(i11);
                             this.f4917n = Math.max(0, this.f4917n - 1);
                             z9 = true;

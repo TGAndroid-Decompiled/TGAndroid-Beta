@@ -3,17 +3,17 @@ package org.telegram.ui.Components;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class g30 extends org.telegram.ui.nq0 {
-    public final ArrayList f33780a;
-    public final j30 f33781b;
+    public final ArrayList f33806a;
+    public final j30 f33807b;
 
     public g30(j30 j30Var, ArrayList arrayList) {
-        this.f33781b = j30Var;
-        this.f33780a = arrayList;
+        this.f33807b = j30Var;
+        this.f33806a = arrayList;
     }
 
     @Override
     public final org.telegram.ui.wq0 E(org.telegram.messenger.ij ijVar, TLRPC.FileLocation fileLocation, int i7, boolean z9, boolean z10) {
-        i30 i30Var = this.f33781b.f34859b;
+        i30 i30Var = this.f33807b.f34880b;
         if (i30Var == null) {
             return null;
         }
@@ -27,7 +27,7 @@ public final class g30 extends org.telegram.ui.nq0 {
 
     @Override
     public final void o(int i7, org.telegram.messenger.j20 j20Var, boolean z9, int i10, int i11, boolean z10) {
-        this.f33781b.s((org.telegram.messenger.gf) this.f33780a.get(0));
+        this.f33807b.s((org.telegram.messenger.gf) this.f33806a.get(0));
     }
 
     @Override

@@ -6,19 +6,19 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.hc;
 public final class w0 implements RequestDelegate {
-    public final int f17565a;
-    public final a1 f17566b;
+    public final int f17568a;
+    public final a1 f17569b;
 
     public w0(a1 a1Var, int i7) {
-        this.f17565a = i7;
-        this.f17566b = a1Var;
+        this.f17568a = i7;
+        this.f17569b = a1Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f17565a) {
+        switch (this.f17568a) {
             case 0:
-                final a1 a1Var = this.f17566b;
+                final a1 a1Var = this.f17569b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -28,12 +28,12 @@ public final class w0 implements RequestDelegate {
                         a1 a1Var2 = a1Var;
                         switch (i7) {
                             case 0:
-                                a1Var2.f17299b.b(false);
+                                a1Var2.f17302b.b(false);
                                 if (tL_error2 != null) {
                                     hc.d0(tL_error2);
                                     return;
                                 } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    k5.p(null, 2131743880, hc.a0(a1Var2), null);
+                                    k5.p(null, 2131743882, hc.a0(a1Var2), null);
                                     return;
                                 } else {
                                     a1Var2.finishFragment();
@@ -41,12 +41,12 @@ public final class w0 implements RequestDelegate {
                                 }
                             default:
                                 if (tL_error2 != null) {
-                                    a1Var2.f17299b.b(false);
+                                    a1Var2.f17302b.b(false);
                                     hc.d0(tL_error2);
                                     return;
                                 } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    a1Var2.f17299b.b(false);
-                                    k5.p(null, 2131743880, hc.a0(a1Var2), null);
+                                    a1Var2.f17302b.b(false);
+                                    k5.p(null, 2131743882, hc.a0(a1Var2), null);
                                     return;
                                 } else {
                                     a1Var2.finishFragment();
@@ -57,7 +57,7 @@ public final class w0 implements RequestDelegate {
                 });
                 return;
             default:
-                final a1 a1Var2 = this.f17566b;
+                final a1 a1Var2 = this.f17569b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -67,12 +67,12 @@ public final class w0 implements RequestDelegate {
                         a1 a1Var22 = a1Var2;
                         switch (i7) {
                             case 0:
-                                a1Var22.f17299b.b(false);
+                                a1Var22.f17302b.b(false);
                                 if (tL_error2 != null) {
                                     hc.d0(tL_error2);
                                     return;
                                 } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    k5.p(null, 2131743880, hc.a0(a1Var22), null);
+                                    k5.p(null, 2131743882, hc.a0(a1Var22), null);
                                     return;
                                 } else {
                                     a1Var22.finishFragment();
@@ -80,12 +80,12 @@ public final class w0 implements RequestDelegate {
                                 }
                             default:
                                 if (tL_error2 != null) {
-                                    a1Var22.f17299b.b(false);
+                                    a1Var22.f17302b.b(false);
                                     hc.d0(tL_error2);
                                     return;
                                 } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    a1Var22.f17299b.b(false);
-                                    k5.p(null, 2131743880, hc.a0(a1Var22), null);
+                                    a1Var22.f17302b.b(false);
+                                    k5.p(null, 2131743882, hc.a0(a1Var22), null);
                                     return;
                                 } else {
                                     a1Var22.finishFragment();

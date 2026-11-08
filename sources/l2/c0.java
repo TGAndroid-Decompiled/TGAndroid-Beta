@@ -9,16 +9,16 @@ import java.util.ArrayList;
 import org.telegram.ui.Components.k51;
 import org.telegram.ui.Components.t51;
 public final class c0 implements d3.h0, n2.s, SurfaceHolder.Callback, TextureView.SurfaceTextureListener {
-    public final i0 f17771a;
+    public final i0 f17774a;
 
     public c0(i0 i0Var) {
-        this.f17771a = i0Var;
+        this.f17774a = i0Var;
     }
 
     @Override
     public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i7, int i10) {
-        i0 i0Var = this.f17771a;
-        k51 k51Var = i0Var.f17882s0;
+        i0 i0Var = this.f17774a;
+        k51 k51Var = i0Var.f17885s0;
         if (k51Var != null) {
             k51Var.execute(new a0(this, surfaceTexture, i7, i10, 0));
             return;
@@ -31,8 +31,8 @@ public final class c0 implements d3.h0, n2.s, SurfaceHolder.Callback, TextureVie
 
     @Override
     public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        i0 i0Var = this.f17771a;
-        ArrayList arrayList = i0Var.f17884t0;
+        i0 i0Var = this.f17774a;
+        ArrayList arrayList = i0Var.f17887t0;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
@@ -42,7 +42,7 @@ public final class c0 implements d3.h0, n2.s, SurfaceHolder.Callback, TextureVie
                 return false;
             }
         }
-        k51 k51Var = i0Var.f17882s0;
+        k51 k51Var = i0Var.f17885s0;
         if (k51Var != null) {
             k51Var.execute(new w(this, surfaceTexture));
             return true;
@@ -54,8 +54,8 @@ public final class c0 implements d3.h0, n2.s, SurfaceHolder.Callback, TextureVie
 
     @Override
     public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i7, int i10) {
-        i0 i0Var = this.f17771a;
-        k51 k51Var = i0Var.f17882s0;
+        i0 i0Var = this.f17774a;
+        k51 k51Var = i0Var.f17885s0;
         if (k51Var != null) {
             k51Var.execute(new jg.r(this, surfaceTexture, i7, i10));
         } else {
@@ -65,13 +65,13 @@ public final class c0 implements d3.h0, n2.s, SurfaceHolder.Callback, TextureVie
 
     @Override
     public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        i0 i0Var = this.f17771a;
-        k51 k51Var = i0Var.f17882s0;
+        i0 i0Var = this.f17774a;
+        k51 k51Var = i0Var.f17885s0;
         if (k51Var != null) {
             k51Var.execute(new ha.b(24, this, surfaceTexture));
             return;
         }
-        ArrayList arrayList = i0Var.f17884t0;
+        ArrayList arrayList = i0Var.f17887t0;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
@@ -83,12 +83,12 @@ public final class c0 implements d3.h0, n2.s, SurfaceHolder.Callback, TextureVie
 
     @Override
     public final void surfaceChanged(SurfaceHolder surfaceHolder, int i7, int i10, int i11) {
-        this.f17771a.q1(i10, i11);
+        this.f17774a.q1(i10, i11);
     }
 
     @Override
     public final void surfaceCreated(SurfaceHolder surfaceHolder) {
-        i0 i0Var = this.f17771a;
+        i0 i0Var = this.f17774a;
         if (i0Var.W) {
             i0Var.x1(surfaceHolder.getSurface());
         }
@@ -96,7 +96,7 @@ public final class c0 implements d3.h0, n2.s, SurfaceHolder.Callback, TextureVie
 
     @Override
     public final void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-        i0 i0Var = this.f17771a;
+        i0 i0Var = this.f17774a;
         if (i0Var.W) {
             i0Var.x1(null);
         }

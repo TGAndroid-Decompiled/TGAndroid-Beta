@@ -5,15 +5,15 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 public final class r6 extends Drawable {
-    public final int f30189a;
-    public int f30190b;
-    public Object f30191c;
+    public final int f30193a;
+    public int f30194b;
+    public Object f30195c;
 
     public r6(int i7) {
-        this.f30189a = i7;
+        this.f30193a = i7;
         switch (i7) {
             case 1:
-                this.f30190b = 255;
+                this.f30194b = 255;
                 return;
             default:
                 return;
@@ -22,9 +22,9 @@ public final class r6 extends Drawable {
 
     @Override
     public final void draw(Canvas canvas) {
-        switch (this.f30189a) {
+        switch (this.f30193a) {
             case 0:
-                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, (Paint) this.f30191c);
+                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, (Paint) this.f30195c);
                 return;
             default:
                 return;
@@ -33,9 +33,9 @@ public final class r6 extends Drawable {
 
     @Override
     public int getAlpha() {
-        switch (this.f30189a) {
+        switch (this.f30193a) {
             case 1:
-                return this.f30190b;
+                return this.f30194b;
             default:
                 return super.getAlpha();
         }
@@ -43,9 +43,9 @@ public final class r6 extends Drawable {
 
     @Override
     public ColorFilter getColorFilter() {
-        switch (this.f30189a) {
+        switch (this.f30193a) {
             case 1:
-                return (ColorFilter) this.f30191c;
+                return (ColorFilter) this.f30195c;
             default:
                 return super.getColorFilter();
         }
@@ -53,9 +53,9 @@ public final class r6 extends Drawable {
 
     @Override
     public int getIntrinsicHeight() {
-        switch (this.f30189a) {
+        switch (this.f30193a) {
             case 0:
-                return this.f30190b;
+                return this.f30194b;
             default:
                 return super.getIntrinsicHeight();
         }
@@ -63,9 +63,9 @@ public final class r6 extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        switch (this.f30189a) {
+        switch (this.f30193a) {
             case 0:
-                return this.f30190b;
+                return this.f30194b;
             default:
                 return super.getIntrinsicWidth();
         }
@@ -73,7 +73,7 @@ public final class r6 extends Drawable {
 
     @Override
     public final int getOpacity() {
-        switch (this.f30189a) {
+        switch (this.f30193a) {
             case 0:
                 return -2;
             default:
@@ -83,23 +83,23 @@ public final class r6 extends Drawable {
 
     @Override
     public final void setAlpha(int i7) {
-        switch (this.f30189a) {
+        switch (this.f30193a) {
             case 0:
-                ((Paint) this.f30191c).setAlpha(i7);
+                ((Paint) this.f30195c).setAlpha(i7);
                 return;
             default:
-                this.f30190b = i7;
+                this.f30194b = i7;
                 return;
         }
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f30189a) {
+        switch (this.f30193a) {
             case 0:
                 return;
             default:
-                this.f30191c = colorFilter;
+                this.f30195c = colorFilter;
                 return;
         }
     }

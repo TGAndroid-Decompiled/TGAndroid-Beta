@@ -22,13 +22,13 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
 public final class c61 extends LinearLayout {
-    public final int f44704a;
-    public Object f44705b;
+    public final int f44707a;
+    public Object f44708b;
 
     public c61(int i7, Context context, Object obj) {
         super(context);
-        this.f44704a = i7;
-        this.f44705b = obj;
+        this.f44707a = i7;
+        this.f44708b = obj;
     }
 
     public static void a(RectF rectF, View view) {
@@ -38,9 +38,9 @@ public final class c61 extends LinearLayout {
     @Override
     public void dispatchDraw(Canvas canvas) {
         View childAt;
-        switch (this.f44704a) {
+        switch (this.f44707a) {
             case 1:
-                ai.w wVar = (ai.w) this.f44705b;
+                ai.w wVar = (ai.w) this.f44708b;
                 c61 c61Var = wVar.f1662c;
                 int i7 = wVar.f1663e;
                 if (i7 >= 0 && i7 < c61Var.getChildCount()) {
@@ -67,11 +67,11 @@ public final class c61 extends LinearLayout {
             case 17:
                 int width2 = getWidth() / 2;
                 int height = getHeight() / 2;
-                yb1 yb1Var = (yb1) this.f44705b;
-                Camera camera = yb1Var.L;
+                zb1 zb1Var = (zb1) this.f44708b;
+                Camera camera = zb1Var.L;
                 camera.save();
                 camera.rotateY(7.0f);
-                Matrix matrix = yb1Var.M;
+                Matrix matrix = zb1Var.M;
                 camera.getMatrix(matrix);
                 camera.restore();
                 float f12 = -width2;
@@ -87,7 +87,7 @@ public final class c61 extends LinearLayout {
                 canvas.restore();
                 camera.save();
                 camera.rotateY(-7.0f);
-                Matrix matrix2 = yb1Var.N;
+                Matrix matrix2 = zb1Var.N;
                 camera.getMatrix(matrix2);
                 camera.restore();
                 matrix2.preTranslate(f12, f13);
@@ -99,15 +99,15 @@ public final class c61 extends LinearLayout {
                 canvas.restore();
                 return;
             case 25:
-                zh.g1 g1Var = (zh.g1) this.f44705b;
-                RectF rectF = g1Var.h;
-                RectF rectF2 = g1Var.f60238f;
-                RectF rectF3 = g1Var.f60237e;
-                Paint paint = g1Var.f60239n;
-                paint.setColor(org.telegram.ui.ActionBar.k6.r1(0.1f, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27831c6, false)));
-                float e10 = g1Var.f60236c.e(false, g1Var.f60235b);
+                zh.f1 f1Var = (zh.f1) this.f44708b;
+                RectF rectF = f1Var.h;
+                RectF rectF2 = f1Var.f60315f;
+                RectF rectF3 = f1Var.f60314e;
+                Paint paint = f1Var.f60316n;
+                paint.setColor(org.telegram.ui.ActionBar.k6.r1(0.1f, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27834c6, false)));
+                float e10 = f1Var.f60313c.e(false, f1Var.f60312b);
                 double d = e10;
-                ArrayList arrayList = g1Var.d;
+                ArrayList arrayList = f1Var.d;
                 int j3 = Utilities.j((int) Math.floor(d), arrayList.size() - 1, 0);
                 int j10 = Utilities.j((int) Math.ceil(d), arrayList.size() - 1, 0);
                 if (j3 < arrayList.size()) {
@@ -139,26 +139,26 @@ public final class c61 extends LinearLayout {
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
         int i7;
         View view;
-        switch (this.f44704a) {
+        switch (this.f44707a) {
             case 2:
-                if (!((bi.e7) this.f44705b).f3766a0.c(0)) {
+                if (!((bi.e7) this.f44708b).f3766a0.c(0)) {
                     return false;
                 }
                 return super.dispatchTouchEvent(motionEvent);
             case 3:
-                if (!((bi.dd) this.f44705b).f3726t0) {
+                if (!((bi.dd) this.f44708b).f3726t0) {
                     return false;
                 }
                 return super.dispatchTouchEvent(motionEvent);
             case 4:
-                if (!((gi.f) this.f44705b).f14001s0) {
+                if (!((gi.f) this.f44708b).f14001s0) {
                     return false;
                 }
                 return super.dispatchTouchEvent(motionEvent);
             case 14:
-                ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = (ScrollSlidingTextTabStrip) this.f44705b;
+                ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = (ScrollSlidingTextTabStrip) this.f44708b;
                 SparseIntArray sparseIntArray = scrollSlidingTextTabStrip.O;
-                if (scrollSlidingTextTabStrip.f31519b != null && scrollSlidingTextTabStrip.f31535n0) {
+                if (scrollSlidingTextTabStrip.f31523b != null && scrollSlidingTextTabStrip.f31539n0) {
                     if (motionEvent.getAction() == 0) {
                         float x10 = motionEvent.getX();
                         float y10 = motionEvent.getY();
@@ -173,19 +173,19 @@ public final class c61 extends LinearLayout {
                                 view = null;
                             }
                         }
-                        scrollSlidingTextTabStrip.f31522c0 = view;
+                        scrollSlidingTextTabStrip.f31526c0 = view;
                         if (view != null && getParent() != null) {
-                            sparseIntArray.get(indexOfChild(scrollSlidingTextTabStrip.f31522c0));
-                            scrollSlidingTextTabStrip.f31519b.getClass();
-                            scrollSlidingTextTabStrip.f31522c0 = null;
+                            sparseIntArray.get(indexOfChild(scrollSlidingTextTabStrip.f31526c0));
+                            scrollSlidingTextTabStrip.f31523b.getClass();
+                            scrollSlidingTextTabStrip.f31526c0 = null;
                             return super.dispatchTouchEvent(motionEvent);
                         }
                     } else if (motionEvent.getAction() == 2) {
-                        View view2 = scrollSlidingTextTabStrip.f31522c0;
+                        View view2 = scrollSlidingTextTabStrip.f31526c0;
                         if (view2 != null) {
                             view2.setTranslationX(motionEvent.getX() - 0.0f);
-                            int indexOfChild = indexOfChild(scrollSlidingTextTabStrip.f31522c0);
-                            if (scrollSlidingTextTabStrip.f31534n == indexOfChild) {
+                            int indexOfChild = indexOfChild(scrollSlidingTextTabStrip.f31526c0);
+                            if (scrollSlidingTextTabStrip.f31538n == indexOfChild) {
                                 scrollSlidingTextTabStrip.invalidate();
                             }
                             if (motionEvent.getX() < org.telegram.messenger.g0.L(16.0f)) {
@@ -193,8 +193,8 @@ public final class c61 extends LinearLayout {
                             } else if (motionEvent.getX() >= getWidth() - org.telegram.messenger.g0.L(16.0f)) {
                                 scrollSlidingTextTabStrip.scrollBy(org.telegram.messenger.g0.L(1.0f), 0);
                             }
-                            float width = (scrollSlidingTextTabStrip.f31522c0.getWidth() / 2.0f) + scrollSlidingTextTabStrip.f31522c0.getX();
-                            int width2 = scrollSlidingTextTabStrip.f31522c0.getWidth();
+                            float width = (scrollSlidingTextTabStrip.f31526c0.getWidth() / 2.0f) + scrollSlidingTextTabStrip.f31526c0.getX();
+                            int width2 = scrollSlidingTextTabStrip.f31526c0.getWidth();
                             if (width < 0.0f) {
                                 i7 = 0;
                             } else {
@@ -212,69 +212,69 @@ public final class c61 extends LinearLayout {
                                 }
                             }
                             if (i7 != indexOfChild) {
-                                org.telegram.ui.Components.uk0 uk0Var = scrollSlidingTextTabStrip.f31519b;
+                                org.telegram.ui.Components.uk0 uk0Var = scrollSlidingTextTabStrip.f31523b;
                                 sparseIntArray.get(i7);
                                 uk0Var.getClass();
                             }
                         }
                     } else if (motionEvent.getAction() == 1) {
-                        View view3 = scrollSlidingTextTabStrip.f31522c0;
+                        View view3 = scrollSlidingTextTabStrip.f31526c0;
                         if (view3 != null) {
                             view3.animate().translationX(0.0f).translationY(0.0f).setDuration(320L).setUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                                public final org.telegram.ui.c61 f38081b;
+                                public final org.telegram.ui.c61 f38097b;
 
                                 {
-                                    this.f38081b = this;
+                                    this.f38097b = this;
                                 }
 
                                 @Override
                                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                                     switch (r2) {
                                         case 0:
-                                            org.telegram.ui.c61 c61Var = this.f38081b;
+                                            org.telegram.ui.c61 c61Var = this.f38097b;
                                             c61Var.invalidate();
-                                            ((ScrollSlidingTextTabStrip) c61Var.f44705b).invalidate();
+                                            ((ScrollSlidingTextTabStrip) c61Var.f44708b).invalidate();
                                             return;
                                         default:
-                                            org.telegram.ui.c61 c61Var2 = this.f38081b;
+                                            org.telegram.ui.c61 c61Var2 = this.f38097b;
                                             c61Var2.invalidate();
-                                            ((ScrollSlidingTextTabStrip) c61Var2.f44705b).invalidate();
+                                            ((ScrollSlidingTextTabStrip) c61Var2.f44708b).invalidate();
                                             return;
                                     }
                                 }
                             }).setInterpolator(org.telegram.ui.Components.xq.h).start();
                         }
-                        scrollSlidingTextTabStrip.f31522c0 = null;
+                        scrollSlidingTextTabStrip.f31526c0 = null;
                     } else if (motionEvent.getAction() == 3) {
-                        View view4 = scrollSlidingTextTabStrip.f31522c0;
+                        View view4 = scrollSlidingTextTabStrip.f31526c0;
                         if (view4 != null) {
                             view4.animate().translationX(0.0f).translationY(0.0f).setDuration(320L).setUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                                public final org.telegram.ui.c61 f38081b;
+                                public final org.telegram.ui.c61 f38097b;
 
                                 {
-                                    this.f38081b = this;
+                                    this.f38097b = this;
                                 }
 
                                 @Override
                                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                                     switch (r2) {
                                         case 0:
-                                            org.telegram.ui.c61 c61Var = this.f38081b;
+                                            org.telegram.ui.c61 c61Var = this.f38097b;
                                             c61Var.invalidate();
-                                            ((ScrollSlidingTextTabStrip) c61Var.f44705b).invalidate();
+                                            ((ScrollSlidingTextTabStrip) c61Var.f44708b).invalidate();
                                             return;
                                         default:
-                                            org.telegram.ui.c61 c61Var2 = this.f38081b;
+                                            org.telegram.ui.c61 c61Var2 = this.f38097b;
                                             c61Var2.invalidate();
-                                            ((ScrollSlidingTextTabStrip) c61Var2.f44705b).invalidate();
+                                            ((ScrollSlidingTextTabStrip) c61Var2.f44708b).invalidate();
                                             return;
                                     }
                                 }
                             }).setInterpolator(org.telegram.ui.Components.xq.h).start();
                         }
-                        scrollSlidingTextTabStrip.f31522c0 = null;
+                        scrollSlidingTextTabStrip.f31526c0 = null;
                     }
-                    if (scrollSlidingTextTabStrip.f31522c0 != null || super.dispatchTouchEvent(motionEvent)) {
+                    if (scrollSlidingTextTabStrip.f31526c0 != null || super.dispatchTouchEvent(motionEvent)) {
                         return true;
                     }
                     return false;
@@ -287,7 +287,7 @@ public final class c61 extends LinearLayout {
 
     @Override
     public void draw(Canvas canvas) {
-        switch (this.f44704a) {
+        switch (this.f44707a) {
             case 19:
                 int childCount = getChildCount();
                 for (int i7 = 0; i7 < childCount; i7++) {
@@ -305,38 +305,38 @@ public final class c61 extends LinearLayout {
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j3) {
-        switch (this.f44704a) {
+        switch (this.f44707a) {
             case 8:
-                if ((view instanceof org.telegram.ui.ActionBar.d1) && ((ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f44705b).N != null) {
+                if ((view instanceof org.telegram.ui.ActionBar.d1) && ((ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f44708b).N != null) {
                     return false;
                 }
                 return super.drawChild(canvas, view, j3);
             case 10:
-                if (view == ((org.telegram.ui.Components.t8) this.f44705b).f38264a) {
+                if (view == ((org.telegram.ui.Components.t8) this.f44708b).f38292a) {
                     return true;
                 }
                 return super.drawChild(canvas, view, j3);
             case 13:
-                org.telegram.ui.Components.rk0 rk0Var = (org.telegram.ui.Components.rk0) this.f44705b;
+                org.telegram.ui.Components.rk0 rk0Var = (org.telegram.ui.Components.rk0) this.f44708b;
                 if (view instanceof org.telegram.ui.Components.fv0) {
-                    ((org.telegram.ui.Components.fv0) view).a(rk0Var.f37685i0);
+                    ((org.telegram.ui.Components.fv0) view).a(rk0Var.f37706i0);
                 }
-                if (view == rk0Var.f37696s) {
+                if (view == rk0Var.f37717s) {
                     return true;
                 }
                 return super.drawChild(canvas, view, j3);
             case 18:
                 boolean drawChild = super.drawChild(canvas, view, j3);
-                d50 d50Var = (d50) this.f44705b;
-                if (view == d50Var.f44947b && d50Var.f44956y != null) {
-                    int measuredHeight = d50Var.f44953s.getMeasuredHeight();
-                    d50Var.f44956y.setBounds(0, measuredHeight, getMeasuredWidth(), d50Var.f44956y.getIntrinsicHeight() + measuredHeight);
-                    d50Var.f44956y.draw(canvas);
+                d50 d50Var = (d50) this.f44708b;
+                if (view == d50Var.f44952b && d50Var.f44961y != null) {
+                    int measuredHeight = d50Var.f44958s.getMeasuredHeight();
+                    d50Var.f44961y.setBounds(0, measuredHeight, getMeasuredWidth(), d50Var.f44961y.getIntrinsicHeight() + measuredHeight);
+                    d50Var.f44961y.draw(canvas);
                 }
                 return drawChild;
             case 24:
-                ug.f1 f1Var = (ug.f1) ((bi.k5) this.f44705b).d;
-                if (view == f1Var.f56478j2 && f1Var.f56494z2) {
+                ug.f1 f1Var = (ug.f1) ((bi.k5) this.f44708b).d;
+                if (view == f1Var.f56570j2 && f1Var.f56586z2) {
                     return true;
                 }
                 return super.drawChild(canvas, view, j3);
@@ -347,12 +347,12 @@ public final class c61 extends LinearLayout {
 
     @Override
     public void invalidate() {
-        switch (this.f44704a) {
+        switch (this.f44707a) {
             case 0:
                 super.invalidate();
                 int i7 = 0;
                 while (true) {
-                    org.telegram.ui.Cells.v0[] v0VarArr = (org.telegram.ui.Cells.v0[]) this.f44705b;
+                    org.telegram.ui.Cells.v0[] v0VarArr = (org.telegram.ui.Cells.v0[]) this.f44708b;
                     if (i7 < v0VarArr.length) {
                         v0VarArr[i7].invalidate();
                         i7++;
@@ -368,10 +368,10 @@ public final class c61 extends LinearLayout {
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f44704a) {
+        switch (this.f44707a) {
             case 22:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setVisibleToUser(((ec1) this.f44705b).A0);
+                accessibilityNodeInfo.setVisibleToUser(((fc1) this.f44708b).A0);
                 return;
             default:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
@@ -381,9 +381,9 @@ public final class c61 extends LinearLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.f44704a) {
+        switch (this.f44707a) {
             case 9:
-                return org.telegram.ui.ActionBar.i4.b((org.telegram.ui.ActionBar.i4) this.f44705b);
+                return org.telegram.ui.ActionBar.i4.b((org.telegram.ui.ActionBar.i4) this.f44708b);
             default:
                 return super.onInterceptTouchEvent(motionEvent);
         }
@@ -391,20 +391,20 @@ public final class c61 extends LinearLayout {
 
     @Override
     public void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        switch (this.f44704a) {
+        switch (this.f44707a) {
             case 11:
                 int paddingLeft = getPaddingLeft();
                 int i13 = (i12 - i10) / 2;
                 for (int i14 = 0; i14 < getChildCount(); i14++) {
                     View childAt = getChildAt(i14);
-                    if (childAt != ((org.telegram.ui.Components.yu) this.f44705b).f40727s.F && childAt != null) {
+                    if (childAt != ((org.telegram.ui.Components.zu) this.f44708b).f41150s.F && childAt != null) {
                         childAt.layout(paddingLeft, i13 - (childAt.getMeasuredHeight() / 2), childAt.getMeasuredWidth() + paddingLeft, (childAt.getMeasuredHeight() / 2) + i13);
                         paddingLeft = org.telegram.messenger.k5.C(2.0f, childAt.getMeasuredWidth(), paddingLeft);
                     }
                 }
                 return;
             case 12:
-                ((org.telegram.ui.Components.r00) this.f44705b).f37437c.a(getMeasuredWidth());
+                ((org.telegram.ui.Components.s00) this.f44708b).f37820c.a(getMeasuredWidth());
                 super.onLayout(z9, i7, i10, i11, i12);
                 return;
             case 13:
@@ -413,11 +413,11 @@ public final class c61 extends LinearLayout {
                 return;
             case 14:
                 super.onLayout(z9, i7, i10, i11, i12);
-                ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = (ScrollSlidingTextTabStrip) this.f44705b;
+                ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = (ScrollSlidingTextTabStrip) this.f44708b;
                 SparseIntArray sparseIntArray = scrollSlidingTextTabStrip.P;
-                if (scrollSlidingTextTabStrip.f31533l0 && sparseIntArray.indexOfKey(scrollSlidingTextTabStrip.f31536r) >= 0 && scrollSlidingTextTabStrip.f31517a.getChildAt(sparseIntArray.get(scrollSlidingTextTabStrip.f31536r)) != null) {
-                    scrollSlidingTextTabStrip.h(sparseIntArray.get(scrollSlidingTextTabStrip.f31536r), false);
-                    scrollSlidingTextTabStrip.f31533l0 = false;
+                if (scrollSlidingTextTabStrip.f31537l0 && sparseIntArray.indexOfKey(scrollSlidingTextTabStrip.f31540r) >= 0 && scrollSlidingTextTabStrip.f31521a.getChildAt(sparseIntArray.get(scrollSlidingTextTabStrip.f31540r)) != null) {
+                    scrollSlidingTextTabStrip.h(sparseIntArray.get(scrollSlidingTextTabStrip.f31540r), false);
+                    scrollSlidingTextTabStrip.f31537l0 = false;
                     return;
                 }
                 return;
@@ -432,39 +432,39 @@ public final class c61 extends LinearLayout {
         int i13;
         int i14 = i10;
         int i15 = 0;
-        switch (this.f44704a) {
+        switch (this.f44707a) {
             case 0:
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(123.0f), 1073741824));
                 return;
             case 6:
                 int size2 = View.MeasureSpec.getSize(i7);
                 int paddingRight = getPaddingRight() + getPaddingLeft();
-                li.b2 b2Var = (li.b2) this.f44705b;
+                li.b2 b2Var = (li.b2) this.f44708b;
                 LinearLayout linearLayout = b2Var.m0;
                 if (linearLayout != null) {
                     linearLayout.measure(View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(44.0f), 1073741824));
                     ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) b2Var.m0.getLayoutParams();
                     paddingRight += b2Var.m0.getMeasuredWidth() + marginLayoutParams.leftMargin + marginLayoutParams.rightMargin;
                 }
-                LinearLayout linearLayout2 = b2Var.f18456n0;
+                LinearLayout linearLayout2 = b2Var.f18459n0;
                 if (linearLayout2 != null) {
                     linearLayout2.measure(View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(44.0f), 1073741824));
-                    ViewGroup.MarginLayoutParams marginLayoutParams2 = (ViewGroup.MarginLayoutParams) b2Var.f18456n0.getLayoutParams();
-                    paddingRight += b2Var.f18456n0.getMeasuredWidth() + marginLayoutParams2.leftMargin + marginLayoutParams2.rightMargin;
+                    ViewGroup.MarginLayoutParams marginLayoutParams2 = (ViewGroup.MarginLayoutParams) b2Var.f18459n0.getLayoutParams();
+                    paddingRight += b2Var.f18459n0.getMeasuredWidth() + marginLayoutParams2.leftMargin + marginLayoutParams2.rightMargin;
                 }
-                LinearLayout linearLayout3 = b2Var.f18457o0;
+                LinearLayout linearLayout3 = b2Var.f18460o0;
                 if (linearLayout3 != null) {
                     linearLayout3.measure(View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(44.0f), 1073741824));
-                    ViewGroup.MarginLayoutParams marginLayoutParams3 = (ViewGroup.MarginLayoutParams) b2Var.f18457o0.getLayoutParams();
-                    paddingRight += b2Var.f18457o0.getMeasuredWidth() + marginLayoutParams3.leftMargin + marginLayoutParams3.rightMargin;
+                    ViewGroup.MarginLayoutParams marginLayoutParams3 = (ViewGroup.MarginLayoutParams) b2Var.f18460o0.getLayoutParams();
+                    paddingRight += b2Var.f18460o0.getMeasuredWidth() + marginLayoutParams3.leftMargin + marginLayoutParams3.rightMargin;
                 }
-                b2Var.f18453k0 = Math.max(0, size2 - paddingRight);
+                b2Var.f18456k0 = Math.max(0, size2 - paddingRight);
                 super.onMeasure(i7, i10);
                 return;
             case 7:
                 int size3 = View.MeasureSpec.getSize(i7);
                 int paddingRight2 = getPaddingRight() + getPaddingLeft();
-                li.y3 y3Var = (li.y3) this.f44705b;
+                li.y3 y3Var = (li.y3) this.f44708b;
                 LinearLayout linearLayout4 = y3Var.L;
                 if (linearLayout4 != null) {
                     linearLayout4.measure(View.MeasureSpec.makeMeasureSpec(size3, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(44.0f), 1073741824));
@@ -487,7 +487,7 @@ public final class c61 extends LinearLayout {
                 super.onMeasure(i7, i10);
                 return;
             case 8:
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f44705b;
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f44708b;
                 if (actionBarPopupWindow$ActionBarPopupWindowLayout.O) {
                     actionBarPopupWindow$ActionBarPopupWindowLayout.E = -1000000;
                     actionBarPopupWindow$ActionBarPopupWindowLayout.F = -1000000;
@@ -535,7 +535,7 @@ public final class c61 extends LinearLayout {
                 super.onMeasure(i7, i10);
                 return;
             case 9:
-                org.telegram.ui.ActionBar.i4 i4Var = (org.telegram.ui.ActionBar.i4) this.f44705b;
+                org.telegram.ui.ActionBar.i4 i4Var = (org.telegram.ui.ActionBar.i4) this.f44708b;
                 if (org.telegram.ui.ActionBar.i4.b(i4Var) && (size = i4Var.J) != null) {
                     i11 = View.MeasureSpec.makeMeasureSpec(size.getWidth(), 1073741824);
                 } else {
@@ -544,12 +544,12 @@ public final class c61 extends LinearLayout {
                 super.onMeasure(i11, i14);
                 return;
             case 11:
-                super.onMeasure(Math.max(View.MeasureSpec.getSize(i7), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(((org.telegram.ui.Components.yu) this.f44705b).f38992b.getChildCount() * 32), 1073741824)), i14);
+                super.onMeasure(Math.max(View.MeasureSpec.getSize(i7), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(((org.telegram.ui.Components.zu) this.f44708b).f39027b.getChildCount() * 32), 1073741824)), i14);
                 return;
             case 16:
                 super.onMeasure(i7, i10);
-                if (org.telegram.messenger.hd.f22878a0) {
-                    ((org.telegram.ui.Components.i21) this.f44705b).f34469c.setPivotX(getMeasuredWidth());
+                if (org.telegram.messenger.id.f23157a0) {
+                    ((org.telegram.ui.Components.i21) this.f44708b).f34513c.setPivotX(getMeasuredWidth());
                     return;
                 }
                 return;
@@ -565,14 +565,14 @@ public final class c61 extends LinearLayout {
                 int size6 = View.MeasureSpec.getSize(i14);
                 if (i19 != 0) {
                     int min = Math.min(org.telegram.messenger.g0.L(56.0f), size5 / i19);
-                    if (((PhotoViewer) this.f44705b).f41425j1.getVisibility() == 0) {
-                        if (((PhotoViewer) this.f44705b).X7 < 2) {
+                    if (((PhotoViewer) this.f44708b).f41429j1.getVisibility() == 0) {
+                        if (((PhotoViewer) this.f44708b).X7 < 2) {
                             i12 = 48;
                         } else {
                             i12 = 64;
                         }
                         int max = Math.max(0, (min - org.telegram.messenger.g0.L(i12)) / 2);
-                        ((PhotoViewer) this.f44705b).f41425j1.setPadding(max, 0, max, 0);
+                        ((PhotoViewer) this.f44708b).f41429j1.setPadding(max, 0, max, 0);
                     }
                     while (i15 < childCount2) {
                         View childAt2 = getChildAt(i15);
@@ -588,16 +588,16 @@ public final class c61 extends LinearLayout {
                 return;
             case 21:
                 super.onMeasure(i7, i10);
-                ya1 ya1Var = (ya1) this.f44705b;
-                ViewGroup.MarginLayoutParams marginLayoutParams7 = (ViewGroup.MarginLayoutParams) ya1Var.f52184c.getLayoutParams();
-                if (ya1Var.f52180a.getVisibility() == 8) {
-                    i13 = org.telegram.messenger.g0.f22538m;
+                za1 za1Var = (za1) this.f44708b;
+                ViewGroup.MarginLayoutParams marginLayoutParams7 = (ViewGroup.MarginLayoutParams) za1Var.f52500c.getLayoutParams();
+                if (za1Var.f52496a.getVisibility() == 8) {
+                    i13 = org.telegram.messenger.g0.f22557m;
                 } else {
                     i13 = 0;
                 }
                 int L = org.telegram.messenger.g0.L(8.0f) + i13;
-                if (ya1Var.O == 2 && org.telegram.messenger.g0.O1()) {
-                    Point point = org.telegram.messenger.g0.f22544q;
+                if (za1Var.O == 2 && org.telegram.messenger.g0.O1()) {
+                    Point point = org.telegram.messenger.g0.f22563q;
                     if (point.x <= point.y) {
                         i15 = org.telegram.messenger.g0.L(32.0f);
                     }
@@ -606,7 +606,7 @@ public final class c61 extends LinearLayout {
                 return;
             case 23:
                 super.onMeasure(i7, i10);
-                setMeasuredDimension(getMeasuredWidth(), Math.round((1.0f - ((org.telegram.ui.Wallet.y5) this.f44705b).A0) * getMeasuredHeight()));
+                setMeasuredDimension(getMeasuredWidth(), Math.round((1.0f - ((org.telegram.ui.Wallet.x5) this.f44708b).A0) * getMeasuredHeight()));
                 return;
             default:
                 super.onMeasure(i7, i10);
@@ -616,10 +616,10 @@ public final class c61 extends LinearLayout {
 
     @Override
     public void setAlpha(float f10) {
-        switch (this.f44704a) {
+        switch (this.f44707a) {
             case 14:
                 super.setAlpha(f10);
-                ((ScrollSlidingTextTabStrip) this.f44705b).invalidate();
+                ((ScrollSlidingTextTabStrip) this.f44708b).invalidate();
                 return;
             default:
                 super.setAlpha(f10);
@@ -629,13 +629,13 @@ public final class c61 extends LinearLayout {
 
     @Override
     public void setVisibility(int i7) {
-        switch (this.f44704a) {
+        switch (this.f44707a) {
             case 15:
-                org.telegram.ui.Components.av0 av0Var = (org.telegram.ui.Components.av0) this.f44705b;
-                org.telegram.ui.Components.l9 l9Var = av0Var.f31923b;
+                org.telegram.ui.Components.av0 av0Var = (org.telegram.ui.Components.av0) this.f44708b;
+                org.telegram.ui.Components.l9 l9Var = av0Var.f31925b;
                 if (getVisibility() == 8 && i7 == 0) {
                     av0Var.c();
-                    if (org.telegram.messenger.rc.e(3)) {
+                    if (org.telegram.messenger.sc.e(3)) {
                         l9Var.getImageReceiver().P0(false);
                     }
                 } else if (i7 == 8) {
@@ -651,15 +651,15 @@ public final class c61 extends LinearLayout {
 
     public c61(Context context, int i7) {
         super(context);
-        this.f44704a = i7;
+        this.f44707a = i7;
     }
 
     public c61(ContextThemeWrapper contextThemeWrapper, final ln0 ln0Var) {
         super(contextThemeWrapper);
-        this.f44704a = 20;
-        this.f44705b = r9;
+        this.f44707a = 20;
+        this.f44708b = r9;
         setOrientation(1);
-        org.telegram.ui.ActionBar.z0 c10 = org.telegram.ui.ActionBar.r0.c(false, false, this, 2131232369, org.telegram.messenger.hd.M0(2131745264, null), false, null);
+        org.telegram.ui.ActionBar.z0 c10 = org.telegram.ui.ActionBar.r0.c(false, false, this, 2131232369, org.telegram.messenger.id.M0(2131745266, null), false, null);
         c10.d(-328966, -328966);
         c10.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -668,27 +668,27 @@ public final class c61 extends LinearLayout {
                 ln0 ln0Var2 = ln0Var;
                 switch (i7) {
                     case 0:
-                        PhotoViewer photoViewer = ln0Var2.f47563a;
+                        PhotoViewer photoViewer = ln0Var2.f47560a;
                         Drawable[] drawableArr = PhotoViewer.Y8;
                         photoViewer.w0(true, true, 0.2f);
                         return;
                     case 1:
-                        PhotoViewer photoViewer2 = ln0Var2.f47563a;
+                        PhotoViewer photoViewer2 = ln0Var2.f47560a;
                         Drawable[] drawableArr2 = PhotoViewer.Y8;
                         photoViewer2.w0(true, true, 0.5f);
                         return;
                     case 2:
-                        PhotoViewer photoViewer3 = ln0Var2.f47563a;
+                        PhotoViewer photoViewer3 = ln0Var2.f47560a;
                         Drawable[] drawableArr3 = PhotoViewer.Y8;
                         photoViewer3.w0(true, true, 1.0f);
                         return;
                     case 3:
-                        PhotoViewer photoViewer4 = ln0Var2.f47563a;
+                        PhotoViewer photoViewer4 = ln0Var2.f47560a;
                         Drawable[] drawableArr4 = PhotoViewer.Y8;
                         photoViewer4.w0(true, true, 1.5f);
                         return;
                     default:
-                        PhotoViewer photoViewer5 = ln0Var2.f47563a;
+                        PhotoViewer photoViewer5 = ln0Var2.f47560a;
                         Drawable[] drawableArr5 = PhotoViewer.Y8;
                         photoViewer5.w0(true, true, 2.0f);
                         return;
@@ -696,7 +696,7 @@ public final class c61 extends LinearLayout {
             }
         });
         c10.setSelectorColor(268435455);
-        org.telegram.ui.ActionBar.z0 c11 = org.telegram.ui.ActionBar.r0.c(false, false, this, 2131232373, org.telegram.messenger.hd.M0(2131745267, null), false, null);
+        org.telegram.ui.ActionBar.z0 c11 = org.telegram.ui.ActionBar.r0.c(false, false, this, 2131232373, org.telegram.messenger.id.M0(2131745269, null), false, null);
         c11.d(-328966, -328966);
         c11.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -705,27 +705,27 @@ public final class c61 extends LinearLayout {
                 ln0 ln0Var2 = ln0Var;
                 switch (i7) {
                     case 0:
-                        PhotoViewer photoViewer = ln0Var2.f47563a;
+                        PhotoViewer photoViewer = ln0Var2.f47560a;
                         Drawable[] drawableArr = PhotoViewer.Y8;
                         photoViewer.w0(true, true, 0.2f);
                         return;
                     case 1:
-                        PhotoViewer photoViewer2 = ln0Var2.f47563a;
+                        PhotoViewer photoViewer2 = ln0Var2.f47560a;
                         Drawable[] drawableArr2 = PhotoViewer.Y8;
                         photoViewer2.w0(true, true, 0.5f);
                         return;
                     case 2:
-                        PhotoViewer photoViewer3 = ln0Var2.f47563a;
+                        PhotoViewer photoViewer3 = ln0Var2.f47560a;
                         Drawable[] drawableArr3 = PhotoViewer.Y8;
                         photoViewer3.w0(true, true, 1.0f);
                         return;
                     case 3:
-                        PhotoViewer photoViewer4 = ln0Var2.f47563a;
+                        PhotoViewer photoViewer4 = ln0Var2.f47560a;
                         Drawable[] drawableArr4 = PhotoViewer.Y8;
                         photoViewer4.w0(true, true, 1.5f);
                         return;
                     default:
-                        PhotoViewer photoViewer5 = ln0Var2.f47563a;
+                        PhotoViewer photoViewer5 = ln0Var2.f47560a;
                         Drawable[] drawableArr5 = PhotoViewer.Y8;
                         photoViewer5.w0(true, true, 2.0f);
                         return;
@@ -733,7 +733,7 @@ public final class c61 extends LinearLayout {
             }
         });
         c11.setSelectorColor(268435455);
-        org.telegram.ui.ActionBar.z0 c12 = org.telegram.ui.ActionBar.r0.c(false, false, this, 2131232372, org.telegram.messenger.hd.M0(2131745268, null), false, null);
+        org.telegram.ui.ActionBar.z0 c12 = org.telegram.ui.ActionBar.r0.c(false, false, this, 2131232372, org.telegram.messenger.id.M0(2131745270, null), false, null);
         c12.d(-328966, -328966);
         c12.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -742,27 +742,27 @@ public final class c61 extends LinearLayout {
                 ln0 ln0Var2 = ln0Var;
                 switch (i7) {
                     case 0:
-                        PhotoViewer photoViewer = ln0Var2.f47563a;
+                        PhotoViewer photoViewer = ln0Var2.f47560a;
                         Drawable[] drawableArr = PhotoViewer.Y8;
                         photoViewer.w0(true, true, 0.2f);
                         return;
                     case 1:
-                        PhotoViewer photoViewer2 = ln0Var2.f47563a;
+                        PhotoViewer photoViewer2 = ln0Var2.f47560a;
                         Drawable[] drawableArr2 = PhotoViewer.Y8;
                         photoViewer2.w0(true, true, 0.5f);
                         return;
                     case 2:
-                        PhotoViewer photoViewer3 = ln0Var2.f47563a;
+                        PhotoViewer photoViewer3 = ln0Var2.f47560a;
                         Drawable[] drawableArr3 = PhotoViewer.Y8;
                         photoViewer3.w0(true, true, 1.0f);
                         return;
                     case 3:
-                        PhotoViewer photoViewer4 = ln0Var2.f47563a;
+                        PhotoViewer photoViewer4 = ln0Var2.f47560a;
                         Drawable[] drawableArr4 = PhotoViewer.Y8;
                         photoViewer4.w0(true, true, 1.5f);
                         return;
                     default:
-                        PhotoViewer photoViewer5 = ln0Var2.f47563a;
+                        PhotoViewer photoViewer5 = ln0Var2.f47560a;
                         Drawable[] drawableArr5 = PhotoViewer.Y8;
                         photoViewer5.w0(true, true, 2.0f);
                         return;
@@ -770,7 +770,7 @@ public final class c61 extends LinearLayout {
             }
         });
         c12.setSelectorColor(268435455);
-        org.telegram.ui.ActionBar.z0 c13 = org.telegram.ui.ActionBar.r0.c(false, false, this, 2131232370, org.telegram.messenger.hd.M0(2131745271, null), false, null);
+        org.telegram.ui.ActionBar.z0 c13 = org.telegram.ui.ActionBar.r0.c(false, false, this, 2131232370, org.telegram.messenger.id.M0(2131745273, null), false, null);
         c13.d(-328966, -328966);
         c13.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -779,27 +779,27 @@ public final class c61 extends LinearLayout {
                 ln0 ln0Var2 = ln0Var;
                 switch (i7) {
                     case 0:
-                        PhotoViewer photoViewer = ln0Var2.f47563a;
+                        PhotoViewer photoViewer = ln0Var2.f47560a;
                         Drawable[] drawableArr = PhotoViewer.Y8;
                         photoViewer.w0(true, true, 0.2f);
                         return;
                     case 1:
-                        PhotoViewer photoViewer2 = ln0Var2.f47563a;
+                        PhotoViewer photoViewer2 = ln0Var2.f47560a;
                         Drawable[] drawableArr2 = PhotoViewer.Y8;
                         photoViewer2.w0(true, true, 0.5f);
                         return;
                     case 2:
-                        PhotoViewer photoViewer3 = ln0Var2.f47563a;
+                        PhotoViewer photoViewer3 = ln0Var2.f47560a;
                         Drawable[] drawableArr3 = PhotoViewer.Y8;
                         photoViewer3.w0(true, true, 1.0f);
                         return;
                     case 3:
-                        PhotoViewer photoViewer4 = ln0Var2.f47563a;
+                        PhotoViewer photoViewer4 = ln0Var2.f47560a;
                         Drawable[] drawableArr4 = PhotoViewer.Y8;
                         photoViewer4.w0(true, true, 1.5f);
                         return;
                     default:
-                        PhotoViewer photoViewer5 = ln0Var2.f47563a;
+                        PhotoViewer photoViewer5 = ln0Var2.f47560a;
                         Drawable[] drawableArr5 = PhotoViewer.Y8;
                         photoViewer5.w0(true, true, 2.0f);
                         return;
@@ -807,7 +807,7 @@ public final class c61 extends LinearLayout {
             }
         });
         c13.setSelectorColor(268435455);
-        org.telegram.ui.ActionBar.z0 c14 = org.telegram.ui.ActionBar.r0.c(false, false, this, 2131232374, org.telegram.messenger.hd.M0(2131745265, null), false, null);
+        org.telegram.ui.ActionBar.z0 c14 = org.telegram.ui.ActionBar.r0.c(false, false, this, 2131232374, org.telegram.messenger.id.M0(2131745267, null), false, null);
         c14.d(-328966, -328966);
         c14.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -816,27 +816,27 @@ public final class c61 extends LinearLayout {
                 ln0 ln0Var2 = ln0Var;
                 switch (i7) {
                     case 0:
-                        PhotoViewer photoViewer = ln0Var2.f47563a;
+                        PhotoViewer photoViewer = ln0Var2.f47560a;
                         Drawable[] drawableArr = PhotoViewer.Y8;
                         photoViewer.w0(true, true, 0.2f);
                         return;
                     case 1:
-                        PhotoViewer photoViewer2 = ln0Var2.f47563a;
+                        PhotoViewer photoViewer2 = ln0Var2.f47560a;
                         Drawable[] drawableArr2 = PhotoViewer.Y8;
                         photoViewer2.w0(true, true, 0.5f);
                         return;
                     case 2:
-                        PhotoViewer photoViewer3 = ln0Var2.f47563a;
+                        PhotoViewer photoViewer3 = ln0Var2.f47560a;
                         Drawable[] drawableArr3 = PhotoViewer.Y8;
                         photoViewer3.w0(true, true, 1.0f);
                         return;
                     case 3:
-                        PhotoViewer photoViewer4 = ln0Var2.f47563a;
+                        PhotoViewer photoViewer4 = ln0Var2.f47560a;
                         Drawable[] drawableArr4 = PhotoViewer.Y8;
                         photoViewer4.w0(true, true, 1.5f);
                         return;
                     default:
-                        PhotoViewer photoViewer5 = ln0Var2.f47563a;
+                        PhotoViewer photoViewer5 = ln0Var2.f47560a;
                         Drawable[] drawableArr5 = PhotoViewer.Y8;
                         photoViewer5.w0(true, true, 2.0f);
                         return;
@@ -850,7 +850,7 @@ public final class c61 extends LinearLayout {
         sq0Var.setBackgroundColor(-15198184);
         addView(sq0Var);
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) sq0Var.getLayoutParams();
-        if (org.telegram.messenger.hd.f22878a0) {
+        if (org.telegram.messenger.id.f23157a0) {
             layoutParams.gravity = 5;
         }
         layoutParams.width = -1;

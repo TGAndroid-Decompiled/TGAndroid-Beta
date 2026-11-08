@@ -7,38 +7,38 @@ import android.widget.TextView;
 import org.telegram.messenger.gf;
 import org.telegram.messenger.we;
 public final class v5 extends FrameLayout {
-    public t5[] f30634a;
-    public we[] f30635b;
-    public int f30636c;
+    public t5[] f30638a;
+    public we[] f30639b;
+    public int f30640c;
     public u5 d;
-    public Paint f30637e;
+    public Paint f30641e;
 
     public final void a(int i7, we weVar) {
-        t5[] t5VarArr = this.f30634a;
-        this.f30635b[i7] = weVar;
+        t5[] t5VarArr = this.f30638a;
+        this.f30639b[i7] = weVar;
         if (weVar != null) {
             gf gfVar = weVar.d;
             t5 t5Var = t5VarArr[i7];
-            org.telegram.ui.Components.l9 l9Var = t5Var.f30519b;
+            org.telegram.ui.Components.l9 l9Var = t5Var.f30523b;
             l9Var.r();
             if (gfVar != null) {
                 int i10 = gfVar.C;
                 String str = gfVar.I;
                 if (str != null) {
                     l9Var.s(gfVar.J, gfVar.K, true);
-                    if (gfVar.f26824b) {
+                    if (gfVar.f26845b) {
                         l9Var.h("vthumb://" + i10 + ":" + str, null, org.telegram.ui.ActionBar.k6.R4);
                     } else {
                         l9Var.h("thumb://" + i10 + ":" + str, null, org.telegram.ui.ActionBar.k6.R4);
                     }
-                    ((TextView) t5Var.f30520c).setText(weVar.f26296c);
-                    ((TextView) t5Var.d).setText(String.format("%d", Integer.valueOf(weVar.f26297e.size())));
+                    ((TextView) t5Var.f30524c).setText(weVar.f26299c);
+                    ((TextView) t5Var.d).setText(String.format("%d", Integer.valueOf(weVar.f26300e.size())));
                     return;
                 }
             }
             l9Var.setImageDrawable(org.telegram.ui.ActionBar.k6.R4);
-            ((TextView) t5Var.f30520c).setText(weVar.f26296c);
-            ((TextView) t5Var.d).setText(String.format("%d", Integer.valueOf(weVar.f26297e.size())));
+            ((TextView) t5Var.f30524c).setText(weVar.f26299c);
+            ((TextView) t5Var.d).setText(String.format("%d", Integer.valueOf(weVar.f26300e.size())));
             return;
         }
         t5VarArr[i7].setVisibility(4);
@@ -47,13 +47,13 @@ public final class v5 extends FrameLayout {
     @Override
     public final void onMeasure(int i7, int i10) {
         int A;
-        View[] viewArr = this.f30634a;
+        View[] viewArr = this.f30638a;
         if (org.telegram.messenger.g0.Q1()) {
-            A = org.telegram.messenger.camera.q.A(4.0f, this.f30636c - 1, org.telegram.messenger.g0.L(490.0f) - org.telegram.messenger.g0.L(12.0f)) / this.f30636c;
+            A = org.telegram.messenger.camera.q.A(4.0f, this.f30640c - 1, org.telegram.messenger.g0.L(490.0f) - org.telegram.messenger.g0.L(12.0f)) / this.f30640c;
         } else {
-            A = org.telegram.messenger.camera.q.A(4.0f, this.f30636c - 1, org.telegram.messenger.g0.f22544q.x - org.telegram.messenger.g0.L(12.0f)) / this.f30636c;
+            A = org.telegram.messenger.camera.q.A(4.0f, this.f30640c - 1, org.telegram.messenger.g0.f22563q.x - org.telegram.messenger.g0.L(12.0f)) / this.f30640c;
         }
-        for (int i11 = 0; i11 < this.f30636c; i11++) {
+        for (int i11 = 0; i11 < this.f30640c; i11++) {
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) viewArr[i11].getLayoutParams();
             layoutParams.topMargin = org.telegram.messenger.g0.L(4.0f);
             layoutParams.leftMargin = (org.telegram.messenger.g0.L(4.0f) + A) * i11;
@@ -69,7 +69,7 @@ public final class v5 extends FrameLayout {
         int i10;
         int i11 = 0;
         while (true) {
-            t5[] t5VarArr = this.f30634a;
+            t5[] t5VarArr = this.f30638a;
             if (i11 < t5VarArr.length) {
                 t5 t5Var = t5VarArr[i11];
                 if (i11 < i7) {
@@ -80,7 +80,7 @@ public final class v5 extends FrameLayout {
                 t5Var.setVisibility(i10);
                 i11++;
             } else {
-                this.f30636c = i7;
+                this.f30640c = i7;
                 return;
             }
         }

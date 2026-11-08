@@ -1,89 +1,67 @@
 package org.telegram.ui;
 
-import android.app.Activity;
 import android.view.View;
-import java.util.HashMap;
-public final class l91 extends View {
-    public final HashMap f47479a;
-    public final m91 f47480b;
+public final class l91 extends v4.k {
+    public Runnable F;
+    public int G;
+    public final w91 H;
 
-    public l91(m91 m91Var, Activity activity) {
-        super(activity);
-        this.f47480b = m91Var;
-        this.f47479a = new HashMap();
+    public l91(w91 w91Var) {
+        this.H = w91Var;
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        int i11;
-        int i12;
-        float f10;
-        int i13;
-        int L;
-        boolean z9;
-        int i14;
-        m91 m91Var = this.f47480b;
-        v91 v91Var = m91Var.d;
-        int size = View.MeasureSpec.getSize(i7);
-        int L2 = org.telegram.messenger.g0.L(64.0f);
-        int i15 = 0;
-        int i16 = 0;
-        for (int i17 = 0; i17 < m91Var.F().size(); i17++) {
-            if (m91Var.F().get(i17) != null && ((n91) m91Var.F().get(i17)).f47999c != null) {
-                String str = ((n91) m91Var.F().get(i17)).f47999c.title;
-                HashMap hashMap = this.f47479a;
-                Boolean bool = (Boolean) hashMap.get(str);
-                if (bool == null) {
-                    int i18 = 50;
-                    if (!org.telegram.messenger.hd.f22878a0) {
-                        if (v91Var.isInPreviewMode()) {
-                            i14 = 11;
-                        } else {
-                            i14 = 50;
-                        }
-                        f10 = i14 + 4;
-                    } else {
-                        f10 = 18.0f;
-                    }
-                    int L3 = org.telegram.messenger.g0.L(f10);
-                    if (!org.telegram.messenger.hd.f22878a0) {
-                        i13 = size - L3;
-                        L = org.telegram.messenger.g0.L(22.0f);
-                    } else {
-                        i13 = size - L3;
-                        if (v91Var.isInPreviewMode()) {
-                            i18 = 11;
-                        }
-                        L = org.telegram.messenger.g0.L(i18 + 13);
-                    }
-                    if (org.telegram.ui.ActionBar.k6.B0[0].measureText(str) <= (i13 - L) - ((int) Math.ceil(org.telegram.ui.ActionBar.k6.I0.measureText("00:00")))) {
-                        z9 = true;
-                    } else {
-                        z9 = false;
-                    }
-                    bool = Boolean.valueOf(z9);
-                    hashMap.put(str, bool);
-                }
-                if (!bool.booleanValue()) {
-                    i12 = 20;
-                } else {
-                    i12 = 0;
-                }
-                int L4 = org.telegram.messenger.g0.L(i12 + 64);
-                if (((n91) m91Var.F().get(i17)).f47999c.f27005id == 1) {
-                    L2 = L4;
-                }
-                if (((n91) m91Var.F().get(i17)).f47999c.hidden) {
-                    i15++;
-                }
-                i16 += L4;
+    public final void F() {
+        if (this.G == -1) {
+            this.G = this.H.getNotificationCenter().q(null, this.G, false);
+            Runnable runnable = this.F;
+            if (runnable != null) {
+                org.telegram.messenger.g0.r(runnable);
+                this.F = null;
             }
         }
-        if (i15 > 0) {
-            i11 = (((v91Var.N.getMeasuredHeight() - v91Var.N.getPaddingTop()) - v91Var.N.getPaddingBottom()) - i16) + L2;
-        } else {
-            i11 = 0;
+    }
+
+    @Override
+    public final void N() {
+        Runnable runnable = this.F;
+        if (runnable != null) {
+            org.telegram.messenger.g0.r(runnable);
+            this.F = null;
         }
-        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.max(0, i11), 1073741824));
+        k91 k91Var = new k91(this, 0);
+        this.F = k91Var;
+        org.telegram.messenger.g0.h3(k91Var);
+    }
+
+    @Override
+    public final void g() {
+        super.g();
+        Runnable runnable = this.F;
+        if (runnable != null) {
+            org.telegram.messenger.g0.r(runnable);
+        }
+        k91 k91Var = new k91(this, 1);
+        this.F = k91Var;
+        org.telegram.messenger.g0.h3(k91Var);
+    }
+
+    @Override
+    public final void z(v4.d1 d1Var) {
+        w91 w91Var = this.H;
+        View view = w91Var.f51000c1;
+        if (view == d1Var.f57043a) {
+            view.setTranslationX(0.0f);
+            c91 c91Var = w91Var.O;
+            if (c91Var != null) {
+                c91Var.F.clear();
+            }
+            View view2 = w91Var.f51000c1;
+            if (view2 instanceof t91) {
+                t91 t91Var = (t91) view2;
+                t91Var.setTopicIcon(t91Var.f49986c5);
+            }
+            w91Var.f51000c1 = null;
+        }
     }
 }

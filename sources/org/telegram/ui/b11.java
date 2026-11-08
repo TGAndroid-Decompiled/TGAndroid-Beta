@@ -13,22 +13,22 @@ import java.util.HashSet;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
 public final class b11 extends org.telegram.ui.Components.oj0 {
-    public int f44151c;
+    public int f44157c;
     public int d;
     public int h;
-    public final q11 f44156s;
-    public int f44152e = -1;
-    public int f44153f = -1;
-    public int f44154n = 1;
-    public final ArrayList f44155r = new ArrayList();
+    public final q11 f44162s;
+    public int f44158e = -1;
+    public int f44159f = -1;
+    public int f44160n = 1;
+    public final ArrayList f44161r = new ArrayList();
 
     public b11(q11 q11Var) {
-        this.f44156s = q11Var;
+        this.f44162s = q11Var;
     }
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f56955f;
+        int i7 = d1Var.f57047f;
         if (i7 != 3 && i7 != 4) {
             return false;
         }
@@ -36,40 +36,40 @@ public final class b11 extends org.telegram.ui.Components.oj0 {
     }
 
     public final void E(boolean z9) {
-        q11 q11Var = this.f44156s;
+        q11 q11Var = this.f44162s;
         int i7 = q11Var.W;
         boolean z10 = q11Var.I;
-        ArrayList arrayList = this.f44155r;
+        ArrayList arrayList = this.f44161r;
         new ArrayList(arrayList);
         this.h = -1;
-        this.f44151c = -1;
+        this.f44157c = -1;
         boolean z11 = false;
-        this.f44154n = 0;
+        this.f44160n = 0;
         arrayList.clear();
         ArrayList arrayList2 = q11Var.B1;
         if (arrayList2 != null) {
             if (i7 == 4 && !arrayList2.isEmpty()) {
-                int i10 = this.f44154n;
-                this.f44154n = i10 + 1;
-                this.f44152e = i10;
+                int i10 = this.f44160n;
+                this.f44160n = i10 + 1;
+                this.f44158e = i10;
                 arrayList.add(1);
             }
-            this.d = this.f44154n;
+            this.d = this.f44160n;
             for (int i11 = 0; i11 < q11Var.B1.size(); i11++) {
-                this.f44154n++;
+                this.f44160n++;
                 arrayList.add(Integer.valueOf(Objects.hash(-4342, q11Var.B1.get(i11))));
             }
         }
         if (i7 == 14) {
             ArrayList arrayList3 = q11Var.C1;
             if (arrayList3 != null && !arrayList3.isEmpty()) {
-                int i12 = this.f44154n;
-                this.f44154n = i12 + 1;
-                this.f44153f = i12;
+                int i12 = this.f44160n;
+                this.f44160n = i12 + 1;
+                this.f44159f = i12;
                 arrayList.add(2);
-                this.f44151c = this.f44154n;
+                this.f44157c = this.f44160n;
                 for (int i13 = 0; i13 < q11Var.C1.size(); i13++) {
-                    this.f44154n++;
+                    this.f44160n++;
                     arrayList.add(Integer.valueOf(Objects.hash(-7453, q11Var.C1.get(i13))));
                 }
             }
@@ -77,26 +77,26 @@ public final class b11 extends org.telegram.ui.Components.oj0 {
             ArrayList arrayList4 = q11Var.D1;
             if (arrayList4 != null) {
                 if (i7 == 4 && !arrayList4.isEmpty()) {
-                    int i14 = this.f44154n;
-                    this.f44154n = i14 + 1;
-                    this.f44153f = i14;
+                    int i14 = this.f44160n;
+                    this.f44160n = i14 + 1;
+                    this.f44159f = i14;
                     arrayList.add(2);
                 }
-                this.f44151c = this.f44154n;
+                this.f44157c = this.f44160n;
                 for (int i15 = 0; i15 < q11Var.D1.size(); i15++) {
-                    this.f44154n++;
+                    this.f44160n++;
                     arrayList.add(Integer.valueOf(Objects.hash(-7453, q11Var.D1.get(i15))));
                 }
             }
         }
         ArrayList arrayList5 = q11Var.E1;
         if (arrayList5 != null) {
-            int i16 = this.f44154n;
+            int i16 = this.f44160n;
             this.h = i16;
-            this.f44154n = arrayList5.size() + i16;
+            this.f44160n = arrayList5.size() + i16;
         }
         f();
-        if (q11Var.f49074z1 && this.f44154n == 0) {
+        if (q11Var.f49077z1 && this.f44160n == 0) {
             z11 = true;
         }
         if (q11Var.H1 != z11) {
@@ -113,30 +113,30 @@ public final class b11 extends org.telegram.ui.Components.oj0 {
             q11Var.I1.setDuration(100L);
             q11Var.I1.start();
             if (z11) {
-                q11.D(q11Var.V, q11Var.f49042l0);
+                q11.D(q11Var.V, q11Var.f49045l0);
             }
         }
     }
 
     @Override
     public final int b() {
-        return this.f44154n;
+        return this.f44160n;
     }
 
     @Override
     public final int d(int i7) {
         int i10;
-        if (i7 == this.f44152e || i7 == this.f44153f) {
+        if (i7 == this.f44158e || i7 == this.f44159f) {
             return 6;
         }
-        q11 q11Var = this.f44156s;
+        q11 q11Var = this.f44162s;
         if (q11Var.W == 14) {
             ArrayList arrayList = q11Var.C1;
-            if (arrayList != null && i7 >= (i10 = this.f44151c) && i7 - i10 < arrayList.size()) {
+            if (arrayList != null && i7 >= (i10 = this.f44157c) && i7 - i10 < arrayList.size()) {
                 return 4;
             }
         } else {
-            int i11 = this.f44151c;
+            int i11 = this.f44157c;
             if (i7 > i11 && (i7 - i11) - 1 < q11Var.D1.size()) {
                 return 5;
             }
@@ -171,13 +171,13 @@ public final class b11 extends org.telegram.ui.Components.oj0 {
         int cacheType2;
         int i12;
         int indexOf;
-        q11 q11Var = this.f44156s;
+        q11 q11Var = this.f44162s;
         HashSet hashSet = q11Var.K;
         int i13 = q11Var.W;
         int i14 = q11Var.V;
-        e01 e01Var = q11Var.f49036i0;
-        int i15 = d1Var.f56955f;
-        View view = d1Var.f56951a;
+        e01 e01Var = q11Var.f49039i0;
+        int i15 = d1Var.f57047f;
+        View view = d1Var.f57043a;
         if (i15 == 6) {
             w01 w01Var = (w01) view;
             ArrayList arrayList = q11Var.E1;
@@ -189,39 +189,39 @@ public final class b11 extends org.telegram.ui.Components.oj0 {
                     w01Var.getClass();
                     if (charSequence != null && str != null && (indexOf = charSequence.toString().toLowerCase().indexOf(str.toLowerCase())) >= 0) {
                         SpannableString spannableString = new SpannableString(charSequence);
-                        spannableString.setSpan(new ForegroundColorSpan(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Jf, w01Var.f50877f.Z0)), indexOf, str.length() + indexOf, 33);
+                        spannableString.setSpan(new ForegroundColorSpan(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Jf, w01Var.f50821f.Z0)), indexOf, str.length() + indexOf, 33);
                         charSequence = spannableString;
                     }
-                    w01Var.f50873a.setText(charSequence);
+                    w01Var.f50817a.setText(charSequence);
                     w01Var.b(false);
                 }
-            } else if (i7 == this.f44152e) {
-                w01Var.a(org.telegram.messenger.hd.M0(2131751197, null), false);
+            } else if (i7 == this.f44158e) {
+                w01Var.a(org.telegram.messenger.id.M0(2131751197, null), false);
             } else if (i13 == 14) {
-                w01Var.a(org.telegram.messenger.hd.M0(2131744877, null), false);
+                w01Var.a(org.telegram.messenger.id.M0(2131744879, null), false);
             } else {
-                w01Var.a(org.telegram.messenger.hd.M0(2131754756, null), false);
+                w01Var.a(org.telegram.messenger.id.M0(2131754756, null), false);
             }
-            w01Var.f50875c.setVisibility(8);
+            w01Var.f50819c.setVisibility(8);
         } else if (i15 == 5) {
-            TLRPC.Document document3 = (TLRPC.Document) q11Var.D1.get((i7 - this.f44151c) - 1);
+            TLRPC.Document document3 = (TLRPC.Document) q11Var.D1.get((i7 - this.f44157c) - 1);
             a11 a11Var = (a11) view;
             a11Var.a(e01Var);
-            a11Var.h.r0(org.telegram.messenger.hc.b(document3), "100_100_firstframe", null, null, org.telegram.messenger.t5.f(document3, org.telegram.ui.ActionBar.k6.f28014m6, 0.2f, null), 0L, "tgs", document3, 0);
+            a11Var.h.r0(org.telegram.messenger.hc.b(document3), "100_100_firstframe", null, null, org.telegram.messenger.t5.f(document3, org.telegram.ui.ActionBar.k6.f28017m6, 0.2f, null), 0L, "tgs", document3, 0);
             a11Var.Q = true;
             a11Var.d = document3;
-            a11Var.f43532e = null;
+            a11Var.f43535e = null;
         } else if (i15 == 4) {
             a11 a11Var2 = (a11) view;
-            a11Var2.f43531c = i7;
-            ImageReceiver imageReceiver = a11Var2.f43534n;
+            a11Var2.f43534c = i7;
+            ImageReceiver imageReceiver = a11Var2.f43537n;
             ArrayList arrayList2 = q11Var.B1;
             if (arrayList2 != null && i7 >= 0 && i7 < arrayList2.size()) {
                 o0Var = (ch.o0) q11Var.B1.get(i7);
             } else {
                 ArrayList arrayList3 = q11Var.C1;
-                if (arrayList3 != null && i7 >= (i11 = this.f44151c) && i7 - i11 < arrayList3.size()) {
-                    o0Var = (ch.o0) q11Var.C1.get(i7 - this.f44151c);
+                if (arrayList3 != null && i7 >= (i11 = this.f44157c) && i7 - i11 < arrayList3.size()) {
+                    o0Var = (ch.o0) q11Var.C1.get(i7 - this.f44157c);
                 } else {
                     return;
                 }
@@ -233,19 +233,19 @@ public final class b11 extends org.telegram.ui.Components.oj0 {
                 a11Var2.h.P();
             }
             a11Var2.h.H0(e01Var);
-            a11Var2.f43539y = o0Var;
+            a11Var2.f43542y = o0Var;
             a11Var2.D = false;
             a11Var2.d(q11Var.J.contains(o0Var), false);
-            a11Var2.f43530b = false;
+            a11Var2.f43533b = false;
             a11Var2.invalidate();
             if (i13 == 13) {
                 a11Var2.setDrawable(org.telegram.messenger.i6.g(o0Var.f6356f));
             } else if (!o0Var.f6353b && o0Var.f6356f != null) {
-                a11Var2.f43536s = true;
-                TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) org.telegram.messenger.ui.b0(i14).f25833r.get(o0Var.f6356f);
+                a11Var2.f43539s = true;
+                TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) org.telegram.messenger.ui.b0(i14).f25836r.get(o0Var.f6356f);
                 if (tL_availableReaction != null) {
-                    org.telegram.messenger.rz f10 = org.telegram.messenger.t5.f(tL_availableReaction.activate_animation, org.telegram.ui.ActionBar.k6.f28014m6, 0.2f, null);
-                    if (!org.telegram.messenger.rc.e(8200)) {
+                    org.telegram.messenger.rz f10 = org.telegram.messenger.t5.f(tL_availableReaction.activate_animation, org.telegram.ui.ActionBar.k6.f28017m6, 0.2f, null);
+                    if (!org.telegram.messenger.sc.e(8200)) {
                         a11Var2.h.r0(org.telegram.messenger.hc.b(tL_availableReaction.select_animation), "60_60_firstframe", null, null, f10, 0L, "tgs", o0Var, 0);
                     } else {
                         ch.o0 o0Var2 = o0Var;
@@ -258,7 +258,7 @@ public final class b11 extends org.telegram.ui.Components.oj0 {
                     a11Var2.h.f();
                     imageReceiver.f();
                 }
-                a11Var2.f43532e = null;
+                a11Var2.f43535e = null;
                 a11Var2.d = null;
                 a11Var2.setDrawable(null);
                 z01 z01Var = a11Var2.J;
@@ -270,16 +270,16 @@ public final class b11 extends org.telegram.ui.Components.oj0 {
                     a11Var2.setDrawable(org.telegram.messenger.i6.g(o0Var.f6356f));
                 }
             } else {
-                a11Var2.f43536s = false;
-                a11Var2.f43532e = new org.telegram.ui.Components.r5(o0Var.f6357g, (Paint.FontMetricsInt) null);
+                a11Var2.f43539s = false;
+                a11Var2.f43535e = new org.telegram.ui.Components.r5(o0Var.f6357g, (Paint.FontMetricsInt) null);
                 a11Var2.d = null;
                 a11Var2.h.f();
                 imageReceiver.f();
-                org.telegram.ui.Components.i5 i5Var = (org.telegram.ui.Components.i5) e01Var.f49882k3.get(a11Var2.f43532e.getDocumentId());
+                org.telegram.ui.Components.i5 i5Var = (org.telegram.ui.Components.i5) e01Var.f49873k3.get(a11Var2.f43535e.getDocumentId());
                 if (i5Var == null) {
                     cacheType2 = q11Var.getCacheType();
-                    i5Var = org.telegram.ui.Components.i5.m(i14, a11Var2.f43532e.getDocumentId(), null, cacheType2);
-                    e01Var.f49882k3.put(a11Var2.f43532e.getDocumentId(), i5Var);
+                    i5Var = org.telegram.ui.Components.i5.m(i14, a11Var2.f43535e.getDocumentId(), null, cacheType2);
+                    e01Var.f49873k3.put(a11Var2.f43535e.getDocumentId(), i5Var);
                 }
                 a11Var2.setDrawable(i5Var);
             }
@@ -300,14 +300,14 @@ public final class b11 extends org.telegram.ui.Components.oj0 {
             }
         } else if (i15 == 3) {
             a11 a11Var3 = (a11) view;
-            a11Var3.f43529a = false;
-            a11Var3.f43531c = i7;
+            a11Var3.f43532a = false;
+            a11Var3.f43534c = i7;
             a11Var3.setPadding(org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(1.0f));
             a11Var3.setDrawable(null);
             ArrayList arrayList4 = q11Var.B1;
             if (arrayList4 != null && i7 >= 0 && i7 < arrayList4.size()) {
                 ch.o0 o0Var3 = (ch.o0) q11Var.B1.get(i7);
-                a11Var3.f43539y = o0Var3;
+                a11Var3.f43542y = o0Var3;
                 long j3 = o0Var3.f6357g;
                 if (j3 == 0) {
                     boolean contains2 = q11Var.J.contains(o0Var3);
@@ -342,20 +342,20 @@ public final class b11 extends org.telegram.ui.Components.oj0 {
                 contains = false;
             } else {
                 if (document != null) {
-                    a11Var3.f43532e = new org.telegram.ui.Components.r5(document, (Paint.FontMetricsInt) null);
+                    a11Var3.f43535e = new org.telegram.ui.Components.r5(document, (Paint.FontMetricsInt) null);
                     a11Var3.d = document;
-                    contains = hashSet.contains(Long.valueOf(document.f26959id));
+                    contains = hashSet.contains(Long.valueOf(document.f26962id));
                 } else {
                     org.telegram.ui.Components.r5 r5Var = new org.telegram.ui.Components.r5(l10.longValue(), (Paint.FontMetricsInt) null);
-                    a11Var3.f43532e = r5Var;
+                    a11Var3.f43535e = r5Var;
                     a11Var3.d = r5Var.document;
                     contains = hashSet.contains(l10);
                 }
-                org.telegram.ui.Components.i5 i5Var2 = (org.telegram.ui.Components.i5) e01Var.f49882k3.get(a11Var3.f43532e.getDocumentId());
+                org.telegram.ui.Components.i5 i5Var2 = (org.telegram.ui.Components.i5) e01Var.f49873k3.get(a11Var3.f43535e.getDocumentId());
                 if (i5Var2 == null) {
                     cacheType = q11Var.getCacheType();
-                    i5Var2 = org.telegram.ui.Components.i5.m(i14, a11Var3.f43532e.getDocumentId(), null, cacheType);
-                    e01Var.f49882k3.put(a11Var3.f43532e.getDocumentId(), i5Var2);
+                    i5Var2 = org.telegram.ui.Components.i5.m(i14, a11Var3.f43535e.getDocumentId(), null, cacheType);
+                    e01Var.f49873k3.put(a11Var3.f43535e.getDocumentId(), i5Var2);
                 }
                 a11Var3.setDrawable(i5Var2);
             }
@@ -367,7 +367,7 @@ public final class b11 extends org.telegram.ui.Components.oj0 {
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         View a11Var;
         boolean z9;
-        q11 q11Var = this.f44156s;
+        q11 q11Var = this.f44162s;
         if (i7 == 6) {
             Context context = q11Var.getContext();
             if (q11Var.W == 6) {

@@ -1,64 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.view.MotionEvent;
-import android.view.ViewGroup;
-public final class vv extends c5.k {
-    public final gy f39714w0;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.widget.FrameLayout;
+public final class vv extends FrameLayout {
+    public final Paint f39733a;
+    public final hy f39734b;
 
-    public vv(gy gyVar, Context context) {
+    public vv(hy hyVar, Context context) {
         super(context);
-        this.f39714w0 = gyVar;
+        this.f39734b = hyVar;
+        this.f39733a = new Paint();
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f39714w0.f34040f) {
-            return false;
+    public final void dispatchDraw(Canvas canvas) {
+        hy hyVar = this.f39734b;
+        uv uvVar = hyVar.B0;
+        float L = org.telegram.messenger.g0.L(50.0f) * hyVar.f34452t1.p();
+        if (L > getMeasuredHeight()) {
+            return;
         }
-        if (getParent() != null) {
-            getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
+        canvas.save();
+        if (L != 0.0f) {
+            canvas.clipRect(0.0f, L, getMeasuredWidth(), getMeasuredHeight());
         }
-        try {
-            return super.onInterceptTouchEvent(motionEvent);
-        } catch (IllegalArgumentException unused) {
-            return false;
-        }
-    }
-
-    @Override
-    public final void x(int i7, boolean z9) {
-        boolean z10;
-        gy gyVar = this.f39714w0;
-        kw kwVar = gyVar.I;
-        if (i7 == 1) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        gy.a(gyVar, z10);
-        if (i7 == getCurrentItem()) {
-            if (i7 == 0) {
-                gyVar.Q0[1] = 0;
-                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(kwVar, ViewGroup.TRANSLATION_Y, 0.0f);
-                ofFloat.setDuration(150L);
-                ofFloat.setInterpolator(xq.h);
-                ofFloat.start();
-                gyVar.G(1, 0);
-                if (kwVar != null) {
-                    kwVar.j(0, true);
-                    return;
-                }
-                return;
-            } else if (i7 == 1) {
-                gyVar.f34047h0.y0(0);
-                return;
-            } else {
-                gyVar.D0.y0(1);
-                return;
+        int z9 = hyVar.z(org.telegram.ui.ActionBar.k6.f28214wf);
+        Paint paint = this.f39733a;
+        paint.setColor(z9);
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), uvVar.getExpandedOffset() + org.telegram.messenger.g0.L(36.0f), paint);
+        super.dispatchDraw(canvas);
+        if (uvVar.f37717s != null) {
+            canvas.save();
+            float f10 = uvVar.f37698c0 - uvVar.f37699d0;
+            float f11 = uvVar.f37719w;
+            if (f11 > 0.0f) {
+                f10 = ((uvVar.f37717s.getX() - uvVar.getScrollX()) * uvVar.f37719w) + ((1.0f - f11) * f10);
             }
+            canvas.translate(f10, 0.0f);
+            uvVar.f37717s.draw(canvas);
+            canvas.restore();
         }
-        super.x(i7, z9);
+        canvas.restore();
+    }
+
+    @Override
+    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
+        super.onLayout(z9, i7, i10, i11, i12);
+        this.f39734b.Z();
     }
 }

@@ -12,14 +12,14 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.f6;
 public final class i4 extends ReplacementSpan {
-    public final TL_iv.textButton f18638a;
-    public iu f18639b;
-    public View f18640c;
-    public int d = p10.f24467s0;
-    public f6 f18641e;
+    public final TL_iv.textButton f18641a;
+    public iu f18642b;
+    public View f18643c;
+    public int d = p10.f24470s0;
+    public f6 f18644e;
 
     public i4(TL_iv.textButton textbutton) {
-        this.f18638a = textbutton;
+        this.f18641a = textbutton;
     }
 
     public static boolean c(TL_keyboard.InlineButtonType inlineButtonType) {
@@ -31,30 +31,30 @@ public final class i4 extends ReplacementSpan {
 
     public final void a(int i7, View view, f6 f6Var) {
         View view2;
-        iu iuVar = this.f18639b;
-        if (iuVar != null && (view2 = this.f18640c) != null) {
+        iu iuVar = this.f18642b;
+        if (iuVar != null && (view2 = this.f18643c) != null) {
             iuVar.h = null;
-            iuVar.f23343a.f22705a.f(view2);
+            iuVar.f23365a.f22722a.f(view2);
         }
-        this.f18640c = view;
+        this.f18643c = view;
         this.d = i7;
-        this.f18641e = f6Var;
-        this.f18639b = null;
+        this.f18644e = f6Var;
+        this.f18642b = null;
         b();
     }
 
     public final iu b() {
-        if (this.f18639b == null) {
+        if (this.f18642b == null) {
             int i7 = this.d;
             int L = org.telegram.messenger.g0.L(240.0f);
-            iu iuVar = new iu(new kv(i7, L, this.f18641e), L, this.f18638a, Boolean.FALSE);
-            this.f18639b = iuVar;
-            View view = this.f18640c;
+            iu iuVar = new iu(new kv(i7, L, this.f18644e), L, this.f18641a, Boolean.FALSE);
+            this.f18642b = iuVar;
+            View view = this.f18643c;
             if (view != null) {
                 iuVar.a(view);
             }
         }
-        return this.f18639b;
+        return this.f18642b;
     }
 
     public final void d(Editable editable) {

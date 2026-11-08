@@ -15,11 +15,11 @@ public final class tk extends org.telegram.ui.Components.ty0 {
         super(activity);
         this.K = anVar;
         TextPaint textPaint = new TextPaint(1);
-        this.f38427b = textPaint;
+        this.f38456b = textPaint;
         Paint paint = new Paint(1);
-        this.f38428c = paint;
+        this.f38457c = paint;
         this.d = org.telegram.messenger.g0.L(24.0f);
-        this.f38429e = new OvershootInterpolator();
+        this.f38458e = new OvershootInterpolator();
         this.H = new org.telegram.ui.Components.ir0(this, 12);
         this.J = new Path();
         int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.vj, f6Var);

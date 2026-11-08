@@ -1,9 +1,9 @@
 package zh;
 
-import android.view.MotionEvent;
-public final class r extends z0 {
+import org.telegram.ui.Components.hc;
+public final class r extends a4 {
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        return false;
+    public final hc e1() {
+        return new hc(this.f28622c, this.I0);
     }
 }

@@ -12,18 +12,18 @@ import android.view.Window;
 import android.widget.FrameLayout;
 import java.util.HashSet;
 public final class e21 extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
-    public final Path f33143a;
-    public final Paint f33144b;
-    public Boolean f33145c;
+    public final Path f33174a;
+    public final Paint f33175b;
+    public Boolean f33176c;
     public final k21 d;
 
     public e21(k21 k21Var, Context context) {
         super(context);
         this.d = k21Var;
-        this.f33143a = new Path();
+        this.f33174a = new Path();
         Paint paint = new Paint(1);
-        this.f33144b = paint;
-        paint.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27922h5, k21Var.I0));
+        this.f33175b = paint;
+        paint.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27925h5, k21Var.I0));
         org.telegram.ui.ActionBar.k6.n(paint);
     }
 
@@ -35,20 +35,20 @@ public final class e21 extends FrameLayout implements org.telegram.ui.ActionBar.
         boolean z10 = true;
         float L0 = k21Var.L0(true);
         float W1 = org.telegram.messenger.g0.W1(c8.j9.a(L0 / org.telegram.messenger.g0.N(24.0f), 0.0f, 1.0f), 0, org.telegram.messenger.g0.L(12.0f));
-        k21Var.f35147t1.setTranslationY(Math.max(org.telegram.messenger.g0.f22538m, L0));
-        if (L0 <= org.telegram.messenger.g0.f22538m / 2.0f) {
+        k21Var.f35173t1.setTranslationY(Math.max(org.telegram.messenger.g0.f22557m, L0));
+        if (L0 <= org.telegram.messenger.g0.f22557m / 2.0f) {
             z9 = true;
         } else {
             z9 = false;
         }
-        Boolean bool = this.f33145c;
+        Boolean bool = this.f33176c;
         if (bool == null || bool.booleanValue() != z9) {
-            this.f33145c = Boolean.valueOf(z9);
+            this.f33176c = Boolean.valueOf(z9);
             Window window = k21Var.getWindow();
             if (z9) {
-                w10 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27922h5, k21Var.I0);
+                w10 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27925h5, k21Var.I0);
             } else {
-                w10 = org.telegram.ui.ActionBar.k6.w(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28129s8, k21Var.I0), 855638016);
+                w10 = org.telegram.ui.ActionBar.k6.w(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28132s8, k21Var.I0), 855638016);
             }
             if (org.telegram.messenger.g0.B(w10) <= 0.721f) {
                 z10 = false;
@@ -57,14 +57,14 @@ public final class e21 extends FrameLayout implements org.telegram.ui.ActionBar.
         }
         FrameLayout frameLayout = k21Var.E;
         float translationY = getTranslationY() + ((-frameLayout.getTop()) - k21Var.E.getHeight());
-        int i7 = org.telegram.messenger.g0.f22538m;
+        int i7 = org.telegram.messenger.g0.f22557m;
         frameLayout.setTranslationY(Math.max(k21Var.E.getHeight() + org.telegram.messenger.g0.L(56.0f) + i7, L0) + translationY);
-        Path path = this.f33143a;
+        Path path = this.f33174a;
         path.rewind();
         RectF rectF = org.telegram.messenger.g0.P;
         rectF.set(0.0f, L0, getWidth(), getHeight() + W1);
         path.addRoundRect(rectF, W1, W1, Path.Direction.CW);
-        canvas.drawPath(path, this.f33144b);
+        canvas.drawPath(path, this.f33175b);
         super.dispatchDraw(canvas);
     }
 
@@ -112,13 +112,13 @@ public final class e21 extends FrameLayout implements org.telegram.ui.ActionBar.
         super.setTranslationY(f10);
         k21 k21Var = this.d;
         FrameLayout frameLayout = k21Var.E;
-        frameLayout.setTranslationY(Math.max(k21Var.E.getHeight() + org.telegram.messenger.g0.L(56.0f) + org.telegram.messenger.g0.f22538m, k21Var.L0(true)) + ((-frameLayout.getTop()) - k21Var.E.getHeight()) + f10);
+        frameLayout.setTranslationY(Math.max(k21Var.E.getHeight() + org.telegram.messenger.g0.L(56.0f) + org.telegram.messenger.g0.f22557m, k21Var.L0(true)) + ((-frameLayout.getTop()) - k21Var.E.getHeight()) + f10);
     }
 
     @Override
     public final void updateColors() {
         try {
-            this.f33144b.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27922h5, this.d.I0));
+            this.f33175b.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27925h5, this.d.I0));
             invalidate();
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

@@ -11,19 +11,19 @@ import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_update;
 public final class rj implements RequestDelegate {
-    public final int f25295a;
-    public final qp f25296b;
+    public final int f25298a;
+    public final qp f25299b;
 
     public rj(qp qpVar, int i7) {
-        this.f25295a = i7;
-        this.f25296b = qpVar;
+        this.f25298a = i7;
+        this.f25299b = qpVar;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f25295a) {
+        switch (this.f25298a) {
             case 0:
-                qp qpVar = this.f25296b;
+                qp qpVar = this.f25299b;
                 ConcurrentHashMap concurrentHashMap = qpVar.P;
                 ConcurrentHashMap concurrentHashMap2 = qpVar.O;
                 if (tLObject != null) {
@@ -32,11 +32,11 @@ public final class rj implements RequestDelegate {
                     for (int i7 = 0; i7 < tL_messages_peerDialogs.dialogs.size(); i7++) {
                         TLRPC.Dialog dialog = tL_messages_peerDialogs.dialogs.get(i7);
                         m5.x(dialog);
-                        Integer num = (Integer) concurrentHashMap2.get(Long.valueOf(dialog.f26957id));
+                        Integer num = (Integer) concurrentHashMap2.get(Long.valueOf(dialog.f26960id));
                         if (num == null) {
                             num = 0;
                         }
-                        concurrentHashMap2.put(Long.valueOf(dialog.f26957id), Integer.valueOf(Math.max(dialog.read_inbox_max_id, num.intValue())));
+                        concurrentHashMap2.put(Long.valueOf(dialog.f26960id), Integer.valueOf(Math.max(dialog.read_inbox_max_id, num.intValue())));
                         if (num.intValue() == 0) {
                             if (dialog.peer.channel_id != 0) {
                                 TL_update.TL_updateReadChannelInbox tL_updateReadChannelInbox = new TL_update.TL_updateReadChannelInbox();
@@ -51,11 +51,11 @@ public final class rj implements RequestDelegate {
                                 arrayList.add(tL_updateReadHistoryInbox);
                             }
                         }
-                        Integer num2 = (Integer) concurrentHashMap.get(Long.valueOf(dialog.f26957id));
+                        Integer num2 = (Integer) concurrentHashMap.get(Long.valueOf(dialog.f26960id));
                         if (num2 == null) {
                             num2 = 0;
                         }
-                        concurrentHashMap.put(Long.valueOf(dialog.f26957id), Integer.valueOf(Math.max(dialog.read_outbox_max_id, num2.intValue())));
+                        concurrentHashMap.put(Long.valueOf(dialog.f26960id), Integer.valueOf(Math.max(dialog.read_outbox_max_id, num2.intValue())));
                         if (dialog.read_outbox_max_id > num2.intValue()) {
                             if (dialog.peer.channel_id != 0) {
                                 TL_update.TL_updateReadChannelOutbox tL_updateReadChannelOutbox = new TL_update.TL_updateReadChannelOutbox();
@@ -80,12 +80,12 @@ public final class rj implements RequestDelegate {
             case 1:
                 if (tL_error == null && (tLObject instanceof TLRPC.TL_messages_affectedMessages)) {
                     TLRPC.TL_messages_affectedMessages tL_messages_affectedMessages = (TLRPC.TL_messages_affectedMessages) tLObject;
-                    this.f25296b.M3(tL_messages_affectedMessages.pts, -1, tL_messages_affectedMessages.pts_count);
+                    this.f25299b.M3(tL_messages_affectedMessages.pts, -1, tL_messages_affectedMessages.pts_count);
                     return;
                 }
                 return;
             case 2:
-                qp qpVar2 = this.f25296b;
+                qp qpVar2 = this.f25299b;
                 qpVar2.getClass();
                 if (tLObject != null) {
                     qpVar2.O3((TLRPC.Updates) tLObject, false);
@@ -93,7 +93,7 @@ public final class rj implements RequestDelegate {
                 }
                 return;
             case 3:
-                qp qpVar3 = this.f25296b;
+                qp qpVar3 = this.f25299b;
                 qpVar3.E2 = false;
                 if (tLObject instanceof TLRPC.TL_help_termsOfServiceUpdateEmpty) {
                     qpVar3.F2 = ((TLRPC.TL_help_termsOfServiceUpdateEmpty) tLObject).expires;
@@ -104,11 +104,11 @@ public final class rj implements RequestDelegate {
                 } else {
                     qpVar3.F2 = qpVar3.getConnectionsManager().getCurrentTime() + 3600;
                 }
-                qpVar3.f24757d7.edit().putInt("nextTosCheckTime", qpVar3.F2).commit();
+                qpVar3.f24764d7.edit().putInt("nextTosCheckTime", qpVar3.F2).commit();
                 return;
             case 4:
                 if (tL_error == null) {
-                    final qp qpVar4 = this.f25296b;
+                    final qp qpVar4 = this.f25299b;
                     g0.h3(new Runnable() {
                         @Override
                         public final void run() {
@@ -124,7 +124,7 @@ public final class rj implements RequestDelegate {
                                 case 0:
                                     if (tLObject2 instanceof TL_account.TL_reactionsNotifySettings) {
                                         TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings = (TL_account.TL_reactionsNotifySettings) tLObject2;
-                                        SharedPreferences.Editor edit = qpVar5.f24757d7.edit();
+                                        SharedPreferences.Editor edit = qpVar5.f24764d7.edit();
                                         if (tL_reactionsNotifySettings.messages_notify_from != null) {
                                             z9 = true;
                                         } else {
@@ -144,7 +144,7 @@ public final class rj implements RequestDelegate {
                                             edit.putBoolean("EnableReactionsStoriesContacts", reactionNotificationsFrom2 instanceof TL_account.TL_reactionNotificationsFromContacts);
                                         }
                                         edit.putBoolean("EnableReactionsPreview", tL_reactionsNotifySettings.show_previews);
-                                        qpVar5.getNotificationsController().f22076g0.a(tL_reactionsNotifySettings.sound, edit, 0L, 0L, 4);
+                                        qpVar5.getNotificationsController().f22094g0.a(tL_reactionsNotifySettings.sound, edit, 0L, 0L, 4);
                                         edit.apply();
                                         qpVar5.getNotificationCenter().k(42, new Object[0]);
                                         return;
@@ -160,8 +160,8 @@ public final class rj implements RequestDelegate {
                                     qpVar5.getNotificationCenter().k(186, new Object[0]);
                                     return;
                                 case 2:
-                                    qpVar5.f24885s2 = false;
-                                    SharedPreferences.Editor edit2 = qpVar5.f24757d7.edit();
+                                    qpVar5.f24892s2 = false;
+                                    SharedPreferences.Editor edit2 = qpVar5.f24764d7.edit();
                                     edit2.putBoolean("EnableContactJoined", tLObject2 instanceof TLRPC.TL_boolFalse);
                                     edit2.commit();
                                     qpVar5.getUserConfig().T = true;
@@ -171,16 +171,16 @@ public final class rj implements RequestDelegate {
                                     TLRPC.TL_help_recentMeUrls tL_help_recentMeUrls = (TLRPC.TL_help_recentMeUrls) tLObject2;
                                     qpVar5.Y3(tL_help_recentMeUrls.users, false);
                                     qpVar5.S3(tL_help_recentMeUrls.chats, false);
-                                    ArrayList arrayList3 = qpVar5.f24882s;
+                                    ArrayList arrayList3 = qpVar5.f24889s;
                                     arrayList3.clear();
                                     arrayList3.addAll(tL_help_recentMeUrls.urls);
                                     qpVar5.getNotificationCenter().k(3, new Object[0]);
                                     return;
                                 case 4:
-                                    qpVar5.f24875r2--;
+                                    qpVar5.f24882r2--;
                                     if (tLObject2 instanceof TL_account.TL_reactionsNotifySettings) {
                                         TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings2 = (TL_account.TL_reactionsNotifySettings) tLObject2;
-                                        SharedPreferences.Editor edit3 = qpVar5.f24757d7.edit();
+                                        SharedPreferences.Editor edit3 = qpVar5.f24764d7.edit();
                                         if (tL_reactionsNotifySettings2.messages_notify_from != null) {
                                             z10 = true;
                                         } else {
@@ -202,10 +202,10 @@ public final class rj implements RequestDelegate {
                                             edit3.putBoolean("EnableReactionsStoriesContacts", reactionNotificationsFrom4 instanceof TL_account.TL_reactionNotificationsFromContacts);
                                         }
                                         edit3.putBoolean("EnableReactionsPreview", tL_reactionsNotifySettings2.show_previews);
-                                        qpVar5.getNotificationsController().f22076g0.a(tL_reactionsNotifySettings2.sound, edit3, 0L, 0L, 4);
+                                        qpVar5.getNotificationsController().f22094g0.a(tL_reactionsNotifySettings2.sound, edit3, 0L, 0L, 4);
                                         edit3.apply();
                                     }
-                                    if (qpVar5.f24875r2 == 0) {
+                                    if (qpVar5.f24882r2 == 0) {
                                         qpVar5.getUserConfig().S = true;
                                         qpVar5.getUserConfig().v(false);
                                         return;
@@ -213,33 +213,33 @@ public final class rj implements RequestDelegate {
                                     return;
                                 case 5:
                                     if (tLObject2 instanceof TL_account.contentSettings) {
-                                        qpVar5.f24836m8 = (TL_account.contentSettings) tLObject2;
-                                        qpVar5.f24828l8 = System.currentTimeMillis();
+                                        qpVar5.f24843m8 = (TL_account.contentSettings) tLObject2;
+                                        qpVar5.f24835l8 = System.currentTimeMillis();
                                     }
-                                    qpVar5.f24811j8 = false;
-                                    TL_account.contentSettings contentsettings = qpVar5.f24836m8;
+                                    qpVar5.f24818j8 = false;
+                                    TL_account.contentSettings contentsettings = qpVar5.f24843m8;
                                     if (contentsettings != null && (set = qpVar5.C4) != null) {
                                         if (contentsettings.sensitive_enabled) {
                                             set.add("sensitive");
                                         } else {
                                             set.remove("sensitive");
                                         }
-                                        SharedPreferences sharedPreferences = qpVar5.f24767e7;
+                                        SharedPreferences sharedPreferences = qpVar5.f24774e7;
                                         if (sharedPreferences != null) {
                                             sharedPreferences.edit().putStringSet("ignoreRestrictionReasons", qpVar5.C4).apply();
                                         }
                                     }
-                                    ArrayList arrayList4 = qpVar5.f24820k8;
+                                    ArrayList arrayList4 = qpVar5.f24827k8;
                                     if (arrayList4 != null) {
                                         int size = arrayList4.size();
                                         int i11 = 0;
                                         while (i11 < size) {
                                             Object obj = arrayList4.get(i11);
                                             i11++;
-                                            ((c20) obj).a(qpVar5.f24836m8);
+                                            ((c20) obj).a(qpVar5.f24843m8);
                                         }
-                                        qpVar5.f24820k8.clear();
-                                        qpVar5.f24820k8 = null;
+                                        qpVar5.f24827k8.clear();
+                                        qpVar5.f24827k8 = null;
                                     }
                                     qpVar5.getNotificationCenter().k(243, new Object[0]);
                                     return;
@@ -275,7 +275,7 @@ public final class rj implements RequestDelegate {
                                                 }
                                                 i12++;
                                             } else {
-                                                qpVar6.getUserConfig().f24495x = true;
+                                                qpVar6.getUserConfig().f24498x = true;
                                                 qpVar6.getUserConfig().v(false);
                                                 qpVar6.getNotificationCenter().k(2, 256);
                                                 qpVar6.d2 = false;
@@ -295,12 +295,12 @@ public final class rj implements RequestDelegate {
             case 5:
                 if (tL_error == null) {
                     TLRPC.TL_messages_affectedMessages tL_messages_affectedMessages2 = (TLRPC.TL_messages_affectedMessages) tLObject;
-                    this.f25296b.M3(tL_messages_affectedMessages2.pts, -1, tL_messages_affectedMessages2.pts_count);
+                    this.f25299b.M3(tL_messages_affectedMessages2.pts, -1, tL_messages_affectedMessages2.pts_count);
                     return;
                 }
                 return;
             case 6:
-                final qp qpVar5 = this.f25296b;
+                final qp qpVar5 = this.f25299b;
                 g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -316,7 +316,7 @@ public final class rj implements RequestDelegate {
                             case 0:
                                 if (tLObject2 instanceof TL_account.TL_reactionsNotifySettings) {
                                     TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings = (TL_account.TL_reactionsNotifySettings) tLObject2;
-                                    SharedPreferences.Editor edit = qpVar52.f24757d7.edit();
+                                    SharedPreferences.Editor edit = qpVar52.f24764d7.edit();
                                     if (tL_reactionsNotifySettings.messages_notify_from != null) {
                                         z9 = true;
                                     } else {
@@ -336,7 +336,7 @@ public final class rj implements RequestDelegate {
                                         edit.putBoolean("EnableReactionsStoriesContacts", reactionNotificationsFrom2 instanceof TL_account.TL_reactionNotificationsFromContacts);
                                     }
                                     edit.putBoolean("EnableReactionsPreview", tL_reactionsNotifySettings.show_previews);
-                                    qpVar52.getNotificationsController().f22076g0.a(tL_reactionsNotifySettings.sound, edit, 0L, 0L, 4);
+                                    qpVar52.getNotificationsController().f22094g0.a(tL_reactionsNotifySettings.sound, edit, 0L, 0L, 4);
                                     edit.apply();
                                     qpVar52.getNotificationCenter().k(42, new Object[0]);
                                     return;
@@ -352,8 +352,8 @@ public final class rj implements RequestDelegate {
                                 qpVar52.getNotificationCenter().k(186, new Object[0]);
                                 return;
                             case 2:
-                                qpVar52.f24885s2 = false;
-                                SharedPreferences.Editor edit2 = qpVar52.f24757d7.edit();
+                                qpVar52.f24892s2 = false;
+                                SharedPreferences.Editor edit2 = qpVar52.f24764d7.edit();
                                 edit2.putBoolean("EnableContactJoined", tLObject2 instanceof TLRPC.TL_boolFalse);
                                 edit2.commit();
                                 qpVar52.getUserConfig().T = true;
@@ -363,16 +363,16 @@ public final class rj implements RequestDelegate {
                                 TLRPC.TL_help_recentMeUrls tL_help_recentMeUrls = (TLRPC.TL_help_recentMeUrls) tLObject2;
                                 qpVar52.Y3(tL_help_recentMeUrls.users, false);
                                 qpVar52.S3(tL_help_recentMeUrls.chats, false);
-                                ArrayList arrayList3 = qpVar52.f24882s;
+                                ArrayList arrayList3 = qpVar52.f24889s;
                                 arrayList3.clear();
                                 arrayList3.addAll(tL_help_recentMeUrls.urls);
                                 qpVar52.getNotificationCenter().k(3, new Object[0]);
                                 return;
                             case 4:
-                                qpVar52.f24875r2--;
+                                qpVar52.f24882r2--;
                                 if (tLObject2 instanceof TL_account.TL_reactionsNotifySettings) {
                                     TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings2 = (TL_account.TL_reactionsNotifySettings) tLObject2;
-                                    SharedPreferences.Editor edit3 = qpVar52.f24757d7.edit();
+                                    SharedPreferences.Editor edit3 = qpVar52.f24764d7.edit();
                                     if (tL_reactionsNotifySettings2.messages_notify_from != null) {
                                         z10 = true;
                                     } else {
@@ -394,10 +394,10 @@ public final class rj implements RequestDelegate {
                                         edit3.putBoolean("EnableReactionsStoriesContacts", reactionNotificationsFrom4 instanceof TL_account.TL_reactionNotificationsFromContacts);
                                     }
                                     edit3.putBoolean("EnableReactionsPreview", tL_reactionsNotifySettings2.show_previews);
-                                    qpVar52.getNotificationsController().f22076g0.a(tL_reactionsNotifySettings2.sound, edit3, 0L, 0L, 4);
+                                    qpVar52.getNotificationsController().f22094g0.a(tL_reactionsNotifySettings2.sound, edit3, 0L, 0L, 4);
                                     edit3.apply();
                                 }
-                                if (qpVar52.f24875r2 == 0) {
+                                if (qpVar52.f24882r2 == 0) {
                                     qpVar52.getUserConfig().S = true;
                                     qpVar52.getUserConfig().v(false);
                                     return;
@@ -405,33 +405,33 @@ public final class rj implements RequestDelegate {
                                 return;
                             case 5:
                                 if (tLObject2 instanceof TL_account.contentSettings) {
-                                    qpVar52.f24836m8 = (TL_account.contentSettings) tLObject2;
-                                    qpVar52.f24828l8 = System.currentTimeMillis();
+                                    qpVar52.f24843m8 = (TL_account.contentSettings) tLObject2;
+                                    qpVar52.f24835l8 = System.currentTimeMillis();
                                 }
-                                qpVar52.f24811j8 = false;
-                                TL_account.contentSettings contentsettings = qpVar52.f24836m8;
+                                qpVar52.f24818j8 = false;
+                                TL_account.contentSettings contentsettings = qpVar52.f24843m8;
                                 if (contentsettings != null && (set = qpVar52.C4) != null) {
                                     if (contentsettings.sensitive_enabled) {
                                         set.add("sensitive");
                                     } else {
                                         set.remove("sensitive");
                                     }
-                                    SharedPreferences sharedPreferences = qpVar52.f24767e7;
+                                    SharedPreferences sharedPreferences = qpVar52.f24774e7;
                                     if (sharedPreferences != null) {
                                         sharedPreferences.edit().putStringSet("ignoreRestrictionReasons", qpVar52.C4).apply();
                                     }
                                 }
-                                ArrayList arrayList4 = qpVar52.f24820k8;
+                                ArrayList arrayList4 = qpVar52.f24827k8;
                                 if (arrayList4 != null) {
                                     int size = arrayList4.size();
                                     int i11 = 0;
                                     while (i11 < size) {
                                         Object obj = arrayList4.get(i11);
                                         i11++;
-                                        ((c20) obj).a(qpVar52.f24836m8);
+                                        ((c20) obj).a(qpVar52.f24843m8);
                                     }
-                                    qpVar52.f24820k8.clear();
-                                    qpVar52.f24820k8 = null;
+                                    qpVar52.f24827k8.clear();
+                                    qpVar52.f24827k8 = null;
                                 }
                                 qpVar52.getNotificationCenter().k(243, new Object[0]);
                                 return;
@@ -467,7 +467,7 @@ public final class rj implements RequestDelegate {
                                             }
                                             i12++;
                                         } else {
-                                            qpVar6.getUserConfig().f24495x = true;
+                                            qpVar6.getUserConfig().f24498x = true;
                                             qpVar6.getUserConfig().v(false);
                                             qpVar6.getNotificationCenter().k(2, 256);
                                             qpVar6.d2 = false;
@@ -483,7 +483,7 @@ public final class rj implements RequestDelegate {
                 });
                 return;
             case 7:
-                qp qpVar6 = this.f25296b;
+                qp qpVar6 = this.f25299b;
                 qpVar6.getClass();
                 if (tLObject instanceof Vector) {
                     ArrayList<T> arrayList2 = ((Vector) tLObject).objects;
@@ -498,7 +498,7 @@ public final class rj implements RequestDelegate {
                 }
                 return;
             case 8:
-                qp qpVar7 = this.f25296b;
+                qp qpVar7 = this.f25299b;
                 qpVar7.getClass();
                 if (tLObject != null) {
                     qpVar7.O3((TLRPC.Updates) tLObject, false);
@@ -506,7 +506,7 @@ public final class rj implements RequestDelegate {
                 }
                 return;
             case 9:
-                qp qpVar8 = this.f25296b;
+                qp qpVar8 = this.f25299b;
                 if (tL_error == null) {
                     qpVar8.getClass();
                     qpVar8.J2 = System.currentTimeMillis();
@@ -521,7 +521,7 @@ public final class rj implements RequestDelegate {
                 qpVar8.K2 = 0;
                 return;
             case 10:
-                qp qpVar9 = this.f25296b;
+                qp qpVar9 = this.f25299b;
                 if (tL_error == null) {
                     qpVar9.M2 = true;
                 } else {
@@ -533,7 +533,7 @@ public final class rj implements RequestDelegate {
                 qpVar9.K2 = 0;
                 return;
             case 11:
-                final qp qpVar10 = this.f25296b;
+                final qp qpVar10 = this.f25299b;
                 g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -549,7 +549,7 @@ public final class rj implements RequestDelegate {
                             case 0:
                                 if (tLObject2 instanceof TL_account.TL_reactionsNotifySettings) {
                                     TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings = (TL_account.TL_reactionsNotifySettings) tLObject2;
-                                    SharedPreferences.Editor edit = qpVar52.f24757d7.edit();
+                                    SharedPreferences.Editor edit = qpVar52.f24764d7.edit();
                                     if (tL_reactionsNotifySettings.messages_notify_from != null) {
                                         z9 = true;
                                     } else {
@@ -569,7 +569,7 @@ public final class rj implements RequestDelegate {
                                         edit.putBoolean("EnableReactionsStoriesContacts", reactionNotificationsFrom2 instanceof TL_account.TL_reactionNotificationsFromContacts);
                                     }
                                     edit.putBoolean("EnableReactionsPreview", tL_reactionsNotifySettings.show_previews);
-                                    qpVar52.getNotificationsController().f22076g0.a(tL_reactionsNotifySettings.sound, edit, 0L, 0L, 4);
+                                    qpVar52.getNotificationsController().f22094g0.a(tL_reactionsNotifySettings.sound, edit, 0L, 0L, 4);
                                     edit.apply();
                                     qpVar52.getNotificationCenter().k(42, new Object[0]);
                                     return;
@@ -585,8 +585,8 @@ public final class rj implements RequestDelegate {
                                 qpVar52.getNotificationCenter().k(186, new Object[0]);
                                 return;
                             case 2:
-                                qpVar52.f24885s2 = false;
-                                SharedPreferences.Editor edit2 = qpVar52.f24757d7.edit();
+                                qpVar52.f24892s2 = false;
+                                SharedPreferences.Editor edit2 = qpVar52.f24764d7.edit();
                                 edit2.putBoolean("EnableContactJoined", tLObject2 instanceof TLRPC.TL_boolFalse);
                                 edit2.commit();
                                 qpVar52.getUserConfig().T = true;
@@ -596,16 +596,16 @@ public final class rj implements RequestDelegate {
                                 TLRPC.TL_help_recentMeUrls tL_help_recentMeUrls = (TLRPC.TL_help_recentMeUrls) tLObject2;
                                 qpVar52.Y3(tL_help_recentMeUrls.users, false);
                                 qpVar52.S3(tL_help_recentMeUrls.chats, false);
-                                ArrayList arrayList32 = qpVar52.f24882s;
+                                ArrayList arrayList32 = qpVar52.f24889s;
                                 arrayList32.clear();
                                 arrayList32.addAll(tL_help_recentMeUrls.urls);
                                 qpVar52.getNotificationCenter().k(3, new Object[0]);
                                 return;
                             case 4:
-                                qpVar52.f24875r2--;
+                                qpVar52.f24882r2--;
                                 if (tLObject2 instanceof TL_account.TL_reactionsNotifySettings) {
                                     TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings2 = (TL_account.TL_reactionsNotifySettings) tLObject2;
-                                    SharedPreferences.Editor edit3 = qpVar52.f24757d7.edit();
+                                    SharedPreferences.Editor edit3 = qpVar52.f24764d7.edit();
                                     if (tL_reactionsNotifySettings2.messages_notify_from != null) {
                                         z10 = true;
                                     } else {
@@ -627,10 +627,10 @@ public final class rj implements RequestDelegate {
                                         edit3.putBoolean("EnableReactionsStoriesContacts", reactionNotificationsFrom4 instanceof TL_account.TL_reactionNotificationsFromContacts);
                                     }
                                     edit3.putBoolean("EnableReactionsPreview", tL_reactionsNotifySettings2.show_previews);
-                                    qpVar52.getNotificationsController().f22076g0.a(tL_reactionsNotifySettings2.sound, edit3, 0L, 0L, 4);
+                                    qpVar52.getNotificationsController().f22094g0.a(tL_reactionsNotifySettings2.sound, edit3, 0L, 0L, 4);
                                     edit3.apply();
                                 }
-                                if (qpVar52.f24875r2 == 0) {
+                                if (qpVar52.f24882r2 == 0) {
                                     qpVar52.getUserConfig().S = true;
                                     qpVar52.getUserConfig().v(false);
                                     return;
@@ -638,33 +638,33 @@ public final class rj implements RequestDelegate {
                                 return;
                             case 5:
                                 if (tLObject2 instanceof TL_account.contentSettings) {
-                                    qpVar52.f24836m8 = (TL_account.contentSettings) tLObject2;
-                                    qpVar52.f24828l8 = System.currentTimeMillis();
+                                    qpVar52.f24843m8 = (TL_account.contentSettings) tLObject2;
+                                    qpVar52.f24835l8 = System.currentTimeMillis();
                                 }
-                                qpVar52.f24811j8 = false;
-                                TL_account.contentSettings contentsettings = qpVar52.f24836m8;
+                                qpVar52.f24818j8 = false;
+                                TL_account.contentSettings contentsettings = qpVar52.f24843m8;
                                 if (contentsettings != null && (set = qpVar52.C4) != null) {
                                     if (contentsettings.sensitive_enabled) {
                                         set.add("sensitive");
                                     } else {
                                         set.remove("sensitive");
                                     }
-                                    SharedPreferences sharedPreferences = qpVar52.f24767e7;
+                                    SharedPreferences sharedPreferences = qpVar52.f24774e7;
                                     if (sharedPreferences != null) {
                                         sharedPreferences.edit().putStringSet("ignoreRestrictionReasons", qpVar52.C4).apply();
                                     }
                                 }
-                                ArrayList arrayList4 = qpVar52.f24820k8;
+                                ArrayList arrayList4 = qpVar52.f24827k8;
                                 if (arrayList4 != null) {
                                     int size = arrayList4.size();
                                     int i11 = 0;
                                     while (i11 < size) {
                                         Object obj = arrayList4.get(i11);
                                         i11++;
-                                        ((c20) obj).a(qpVar52.f24836m8);
+                                        ((c20) obj).a(qpVar52.f24843m8);
                                     }
-                                    qpVar52.f24820k8.clear();
-                                    qpVar52.f24820k8 = null;
+                                    qpVar52.f24827k8.clear();
+                                    qpVar52.f24827k8 = null;
                                 }
                                 qpVar52.getNotificationCenter().k(243, new Object[0]);
                                 return;
@@ -700,7 +700,7 @@ public final class rj implements RequestDelegate {
                                             }
                                             i12++;
                                         } else {
-                                            qpVar62.getUserConfig().f24495x = true;
+                                            qpVar62.getUserConfig().f24498x = true;
                                             qpVar62.getUserConfig().v(false);
                                             qpVar62.getNotificationCenter().k(2, 256);
                                             qpVar62.d2 = false;
@@ -716,24 +716,24 @@ public final class rj implements RequestDelegate {
                 });
                 return;
             case 12:
-                qp qpVar11 = this.f25296b;
+                qp qpVar11 = this.f25299b;
                 qpVar11.getClass();
                 if (tLObject != null) {
                     qpVar11.O3((TLRPC.Updates) tLObject, false);
-                    g0.h3(new wj(qpVar11, 24));
+                    g0.h3(new vj(qpVar11, 25));
                     return;
                 }
                 return;
             case 13:
                 if (tLObject != null) {
-                    qp qpVar12 = this.f25296b;
+                    qp qpVar12 = this.f25299b;
                     qpVar12.O3((TLRPC.Updates) tLObject, false);
-                    g0.h3(new wj(qpVar12, 28));
+                    g0.h3(new vj(qpVar12, 29));
                     return;
                 }
                 return;
             case 14:
-                qp qpVar13 = this.f25296b;
+                qp qpVar13 = this.f25299b;
                 qpVar13.getClass();
                 if (tL_error == null) {
                     TLRPC.TL_messages_affectedMessages tL_messages_affectedMessages3 = (TLRPC.TL_messages_affectedMessages) tLObject;
@@ -742,7 +742,7 @@ public final class rj implements RequestDelegate {
                 }
                 return;
             case 15:
-                final qp qpVar14 = this.f25296b;
+                final qp qpVar14 = this.f25299b;
                 g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -758,7 +758,7 @@ public final class rj implements RequestDelegate {
                             case 0:
                                 if (tLObject2 instanceof TL_account.TL_reactionsNotifySettings) {
                                     TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings = (TL_account.TL_reactionsNotifySettings) tLObject2;
-                                    SharedPreferences.Editor edit = qpVar52.f24757d7.edit();
+                                    SharedPreferences.Editor edit = qpVar52.f24764d7.edit();
                                     if (tL_reactionsNotifySettings.messages_notify_from != null) {
                                         z9 = true;
                                     } else {
@@ -778,7 +778,7 @@ public final class rj implements RequestDelegate {
                                         edit.putBoolean("EnableReactionsStoriesContacts", reactionNotificationsFrom2 instanceof TL_account.TL_reactionNotificationsFromContacts);
                                     }
                                     edit.putBoolean("EnableReactionsPreview", tL_reactionsNotifySettings.show_previews);
-                                    qpVar52.getNotificationsController().f22076g0.a(tL_reactionsNotifySettings.sound, edit, 0L, 0L, 4);
+                                    qpVar52.getNotificationsController().f22094g0.a(tL_reactionsNotifySettings.sound, edit, 0L, 0L, 4);
                                     edit.apply();
                                     qpVar52.getNotificationCenter().k(42, new Object[0]);
                                     return;
@@ -794,8 +794,8 @@ public final class rj implements RequestDelegate {
                                 qpVar52.getNotificationCenter().k(186, new Object[0]);
                                 return;
                             case 2:
-                                qpVar52.f24885s2 = false;
-                                SharedPreferences.Editor edit2 = qpVar52.f24757d7.edit();
+                                qpVar52.f24892s2 = false;
+                                SharedPreferences.Editor edit2 = qpVar52.f24764d7.edit();
                                 edit2.putBoolean("EnableContactJoined", tLObject2 instanceof TLRPC.TL_boolFalse);
                                 edit2.commit();
                                 qpVar52.getUserConfig().T = true;
@@ -805,16 +805,16 @@ public final class rj implements RequestDelegate {
                                 TLRPC.TL_help_recentMeUrls tL_help_recentMeUrls = (TLRPC.TL_help_recentMeUrls) tLObject2;
                                 qpVar52.Y3(tL_help_recentMeUrls.users, false);
                                 qpVar52.S3(tL_help_recentMeUrls.chats, false);
-                                ArrayList arrayList32 = qpVar52.f24882s;
+                                ArrayList arrayList32 = qpVar52.f24889s;
                                 arrayList32.clear();
                                 arrayList32.addAll(tL_help_recentMeUrls.urls);
                                 qpVar52.getNotificationCenter().k(3, new Object[0]);
                                 return;
                             case 4:
-                                qpVar52.f24875r2--;
+                                qpVar52.f24882r2--;
                                 if (tLObject2 instanceof TL_account.TL_reactionsNotifySettings) {
                                     TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings2 = (TL_account.TL_reactionsNotifySettings) tLObject2;
-                                    SharedPreferences.Editor edit3 = qpVar52.f24757d7.edit();
+                                    SharedPreferences.Editor edit3 = qpVar52.f24764d7.edit();
                                     if (tL_reactionsNotifySettings2.messages_notify_from != null) {
                                         z10 = true;
                                     } else {
@@ -836,10 +836,10 @@ public final class rj implements RequestDelegate {
                                         edit3.putBoolean("EnableReactionsStoriesContacts", reactionNotificationsFrom4 instanceof TL_account.TL_reactionNotificationsFromContacts);
                                     }
                                     edit3.putBoolean("EnableReactionsPreview", tL_reactionsNotifySettings2.show_previews);
-                                    qpVar52.getNotificationsController().f22076g0.a(tL_reactionsNotifySettings2.sound, edit3, 0L, 0L, 4);
+                                    qpVar52.getNotificationsController().f22094g0.a(tL_reactionsNotifySettings2.sound, edit3, 0L, 0L, 4);
                                     edit3.apply();
                                 }
-                                if (qpVar52.f24875r2 == 0) {
+                                if (qpVar52.f24882r2 == 0) {
                                     qpVar52.getUserConfig().S = true;
                                     qpVar52.getUserConfig().v(false);
                                     return;
@@ -847,33 +847,33 @@ public final class rj implements RequestDelegate {
                                 return;
                             case 5:
                                 if (tLObject2 instanceof TL_account.contentSettings) {
-                                    qpVar52.f24836m8 = (TL_account.contentSettings) tLObject2;
-                                    qpVar52.f24828l8 = System.currentTimeMillis();
+                                    qpVar52.f24843m8 = (TL_account.contentSettings) tLObject2;
+                                    qpVar52.f24835l8 = System.currentTimeMillis();
                                 }
-                                qpVar52.f24811j8 = false;
-                                TL_account.contentSettings contentsettings = qpVar52.f24836m8;
+                                qpVar52.f24818j8 = false;
+                                TL_account.contentSettings contentsettings = qpVar52.f24843m8;
                                 if (contentsettings != null && (set = qpVar52.C4) != null) {
                                     if (contentsettings.sensitive_enabled) {
                                         set.add("sensitive");
                                     } else {
                                         set.remove("sensitive");
                                     }
-                                    SharedPreferences sharedPreferences = qpVar52.f24767e7;
+                                    SharedPreferences sharedPreferences = qpVar52.f24774e7;
                                     if (sharedPreferences != null) {
                                         sharedPreferences.edit().putStringSet("ignoreRestrictionReasons", qpVar52.C4).apply();
                                     }
                                 }
-                                ArrayList arrayList4 = qpVar52.f24820k8;
+                                ArrayList arrayList4 = qpVar52.f24827k8;
                                 if (arrayList4 != null) {
                                     int size = arrayList4.size();
                                     int i11 = 0;
                                     while (i11 < size) {
                                         Object obj = arrayList4.get(i11);
                                         i11++;
-                                        ((c20) obj).a(qpVar52.f24836m8);
+                                        ((c20) obj).a(qpVar52.f24843m8);
                                     }
-                                    qpVar52.f24820k8.clear();
-                                    qpVar52.f24820k8 = null;
+                                    qpVar52.f24827k8.clear();
+                                    qpVar52.f24827k8 = null;
                                 }
                                 qpVar52.getNotificationCenter().k(243, new Object[0]);
                                 return;
@@ -909,7 +909,7 @@ public final class rj implements RequestDelegate {
                                             }
                                             i12++;
                                         } else {
-                                            qpVar62.getUserConfig().f24495x = true;
+                                            qpVar62.getUserConfig().f24498x = true;
                                             qpVar62.getUserConfig().v(false);
                                             qpVar62.getNotificationCenter().k(2, 256);
                                             qpVar62.d2 = false;
@@ -925,16 +925,16 @@ public final class rj implements RequestDelegate {
                 });
                 return;
             case 16:
-                qp qpVar15 = this.f25296b;
+                qp qpVar15 = this.f25299b;
                 qpVar15.getClass();
                 if (tLObject != null) {
                     qpVar15.O3((TLRPC.Updates) tLObject, false);
-                    g0.h3(new wj(qpVar15, 27));
+                    g0.h3(new vj(qpVar15, 28));
                     return;
                 }
                 return;
             case 17:
-                final qp qpVar16 = this.f25296b;
+                final qp qpVar16 = this.f25299b;
                 g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -950,7 +950,7 @@ public final class rj implements RequestDelegate {
                             case 0:
                                 if (tLObject2 instanceof TL_account.TL_reactionsNotifySettings) {
                                     TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings = (TL_account.TL_reactionsNotifySettings) tLObject2;
-                                    SharedPreferences.Editor edit = qpVar52.f24757d7.edit();
+                                    SharedPreferences.Editor edit = qpVar52.f24764d7.edit();
                                     if (tL_reactionsNotifySettings.messages_notify_from != null) {
                                         z9 = true;
                                     } else {
@@ -970,7 +970,7 @@ public final class rj implements RequestDelegate {
                                         edit.putBoolean("EnableReactionsStoriesContacts", reactionNotificationsFrom2 instanceof TL_account.TL_reactionNotificationsFromContacts);
                                     }
                                     edit.putBoolean("EnableReactionsPreview", tL_reactionsNotifySettings.show_previews);
-                                    qpVar52.getNotificationsController().f22076g0.a(tL_reactionsNotifySettings.sound, edit, 0L, 0L, 4);
+                                    qpVar52.getNotificationsController().f22094g0.a(tL_reactionsNotifySettings.sound, edit, 0L, 0L, 4);
                                     edit.apply();
                                     qpVar52.getNotificationCenter().k(42, new Object[0]);
                                     return;
@@ -986,8 +986,8 @@ public final class rj implements RequestDelegate {
                                 qpVar52.getNotificationCenter().k(186, new Object[0]);
                                 return;
                             case 2:
-                                qpVar52.f24885s2 = false;
-                                SharedPreferences.Editor edit2 = qpVar52.f24757d7.edit();
+                                qpVar52.f24892s2 = false;
+                                SharedPreferences.Editor edit2 = qpVar52.f24764d7.edit();
                                 edit2.putBoolean("EnableContactJoined", tLObject2 instanceof TLRPC.TL_boolFalse);
                                 edit2.commit();
                                 qpVar52.getUserConfig().T = true;
@@ -997,16 +997,16 @@ public final class rj implements RequestDelegate {
                                 TLRPC.TL_help_recentMeUrls tL_help_recentMeUrls = (TLRPC.TL_help_recentMeUrls) tLObject2;
                                 qpVar52.Y3(tL_help_recentMeUrls.users, false);
                                 qpVar52.S3(tL_help_recentMeUrls.chats, false);
-                                ArrayList arrayList32 = qpVar52.f24882s;
+                                ArrayList arrayList32 = qpVar52.f24889s;
                                 arrayList32.clear();
                                 arrayList32.addAll(tL_help_recentMeUrls.urls);
                                 qpVar52.getNotificationCenter().k(3, new Object[0]);
                                 return;
                             case 4:
-                                qpVar52.f24875r2--;
+                                qpVar52.f24882r2--;
                                 if (tLObject2 instanceof TL_account.TL_reactionsNotifySettings) {
                                     TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings2 = (TL_account.TL_reactionsNotifySettings) tLObject2;
-                                    SharedPreferences.Editor edit3 = qpVar52.f24757d7.edit();
+                                    SharedPreferences.Editor edit3 = qpVar52.f24764d7.edit();
                                     if (tL_reactionsNotifySettings2.messages_notify_from != null) {
                                         z10 = true;
                                     } else {
@@ -1028,10 +1028,10 @@ public final class rj implements RequestDelegate {
                                         edit3.putBoolean("EnableReactionsStoriesContacts", reactionNotificationsFrom4 instanceof TL_account.TL_reactionNotificationsFromContacts);
                                     }
                                     edit3.putBoolean("EnableReactionsPreview", tL_reactionsNotifySettings2.show_previews);
-                                    qpVar52.getNotificationsController().f22076g0.a(tL_reactionsNotifySettings2.sound, edit3, 0L, 0L, 4);
+                                    qpVar52.getNotificationsController().f22094g0.a(tL_reactionsNotifySettings2.sound, edit3, 0L, 0L, 4);
                                     edit3.apply();
                                 }
-                                if (qpVar52.f24875r2 == 0) {
+                                if (qpVar52.f24882r2 == 0) {
                                     qpVar52.getUserConfig().S = true;
                                     qpVar52.getUserConfig().v(false);
                                     return;
@@ -1039,33 +1039,33 @@ public final class rj implements RequestDelegate {
                                 return;
                             case 5:
                                 if (tLObject2 instanceof TL_account.contentSettings) {
-                                    qpVar52.f24836m8 = (TL_account.contentSettings) tLObject2;
-                                    qpVar52.f24828l8 = System.currentTimeMillis();
+                                    qpVar52.f24843m8 = (TL_account.contentSettings) tLObject2;
+                                    qpVar52.f24835l8 = System.currentTimeMillis();
                                 }
-                                qpVar52.f24811j8 = false;
-                                TL_account.contentSettings contentsettings = qpVar52.f24836m8;
+                                qpVar52.f24818j8 = false;
+                                TL_account.contentSettings contentsettings = qpVar52.f24843m8;
                                 if (contentsettings != null && (set = qpVar52.C4) != null) {
                                     if (contentsettings.sensitive_enabled) {
                                         set.add("sensitive");
                                     } else {
                                         set.remove("sensitive");
                                     }
-                                    SharedPreferences sharedPreferences = qpVar52.f24767e7;
+                                    SharedPreferences sharedPreferences = qpVar52.f24774e7;
                                     if (sharedPreferences != null) {
                                         sharedPreferences.edit().putStringSet("ignoreRestrictionReasons", qpVar52.C4).apply();
                                     }
                                 }
-                                ArrayList arrayList4 = qpVar52.f24820k8;
+                                ArrayList arrayList4 = qpVar52.f24827k8;
                                 if (arrayList4 != null) {
                                     int size = arrayList4.size();
                                     int i11 = 0;
                                     while (i11 < size) {
                                         Object obj = arrayList4.get(i11);
                                         i11++;
-                                        ((c20) obj).a(qpVar52.f24836m8);
+                                        ((c20) obj).a(qpVar52.f24843m8);
                                     }
-                                    qpVar52.f24820k8.clear();
-                                    qpVar52.f24820k8 = null;
+                                    qpVar52.f24827k8.clear();
+                                    qpVar52.f24827k8 = null;
                                 }
                                 qpVar52.getNotificationCenter().k(243, new Object[0]);
                                 return;
@@ -1101,7 +1101,7 @@ public final class rj implements RequestDelegate {
                                             }
                                             i12++;
                                         } else {
-                                            qpVar62.getUserConfig().f24495x = true;
+                                            qpVar62.getUserConfig().f24498x = true;
                                             qpVar62.getUserConfig().v(false);
                                             qpVar62.getNotificationCenter().k(2, 256);
                                             qpVar62.d2 = false;
@@ -1118,7 +1118,7 @@ public final class rj implements RequestDelegate {
                 return;
             case 18:
                 boolean z9 = tLObject instanceof Vector;
-                qp qpVar17 = this.f25296b;
+                qp qpVar17 = this.f25299b;
                 if (z9) {
                     ArrayList arrayList4 = new ArrayList();
                     Vector vector = (Vector) tLObject;
@@ -1126,20 +1126,20 @@ public final class rj implements RequestDelegate {
                         arrayList4.add((TLRPC.DialogFilter) vector.objects.get(i11));
                     }
                     yr messagesStorage = qpVar17.getMessagesStorage();
-                    messagesStorage.f26696a.c(new lg(messagesStorage, arrayList4, new sn(qpVar17, 10), 22));
+                    messagesStorage.f26719a.c(new lg(messagesStorage, arrayList4, new sn(qpVar17, 10), 22));
                     return;
                 } else if (tLObject instanceof TLRPC.TL_messages_dialogFilters) {
                     TLRPC.TL_messages_dialogFilters tL_messages_dialogFilters = (TLRPC.TL_messages_dialogFilters) tLObject;
                     boolean z10 = qpVar17.A7;
                     boolean z11 = tL_messages_dialogFilters.tags_enabled;
                     if (z10 != z11) {
-                        SharedPreferences.Editor edit = qpVar17.f24767e7.edit();
+                        SharedPreferences.Editor edit = qpVar17.f24774e7.edit();
                         qpVar17.A7 = z11;
                         edit.putBoolean("folderTags", z11).apply();
                         g0.h3(new sn(qpVar17, 11));
                     }
                     yr messagesStorage2 = qpVar17.getMessagesStorage();
-                    messagesStorage2.f26696a.c(new lg(messagesStorage2, tL_messages_dialogFilters.filters, new sn(qpVar17, 12), 22));
+                    messagesStorage2.f26719a.c(new lg(messagesStorage2, tL_messages_dialogFilters.filters, new sn(qpVar17, 12), 22));
                     return;
                 } else {
                     g0.h3(new sn(qpVar17, 13));
@@ -1147,7 +1147,7 @@ public final class rj implements RequestDelegate {
                 }
             case 19:
                 if (tL_error == null) {
-                    qp qpVar18 = this.f25296b;
+                    qp qpVar18 = this.f25299b;
                     TLRPC.User a22 = qpVar18.a2(Long.valueOf(qpVar18.getUserConfig().e()));
                     if (a22 == null) {
                         a22 = qpVar18.getUserConfig().f();
@@ -1162,30 +1162,30 @@ public final class rj implements RequestDelegate {
                         TLRPC.PhotoSize w11 = w7.w(arrayList5, 1000, false, null, false);
                         TLRPC.TL_userProfilePhoto tL_userProfilePhoto = new TLRPC.TL_userProfilePhoto();
                         a22.photo = tL_userProfilePhoto;
-                        tL_userProfilePhoto.photo_id = tL_photos_photo.photo.f26977id;
+                        tL_userProfilePhoto.photo_id = tL_photos_photo.photo.f26980id;
                         if (w10 != null) {
                             tL_userProfilePhoto.photo_small = w10.location;
                         }
                         if (w11 != null) {
                             tL_userProfilePhoto.photo_big = w11.location;
                         }
-                        qpVar18.U0(a22.f27102id).f();
-                        qpVar18.U0(a22.f27102id).a(0, 80);
+                        qpVar18.U0(a22.f27105id).f();
+                        qpVar18.U0(a22.f27105id).a(0, 80);
                         ArrayList arrayList6 = new ArrayList();
                         arrayList6.add(a22);
                         qpVar18.getMessagesStorage().m1(arrayList6, null, false, true);
-                        g0.h3(new wj(qpVar18, 0));
+                        g0.h3(new vj(qpVar18, 0));
                         return;
                     }
                     return;
                 }
                 return;
             case 20:
-                this.f25296b.getConnectionsManager().cleanup(false);
+                this.f25299b.getConnectionsManager().cleanup(false);
                 g0.h3(new a(tLObject, 23));
                 return;
             case 21:
-                qp qpVar19 = this.f25296b;
+                qp qpVar19 = this.f25299b;
                 qpVar19.getClass();
                 if (tL_error == null) {
                     qpVar19.O3((TLRPC.Updates) tLObject, false);
@@ -1195,22 +1195,22 @@ public final class rj implements RequestDelegate {
             case 22:
                 if (tLObject instanceof TLRPC.TL_help_peerColors) {
                     final TLRPC.TL_help_peerColors tL_help_peerColors = (TLRPC.TL_help_peerColors) tLObject;
-                    final qp qpVar20 = this.f25296b;
+                    final qp qpVar20 = this.f25299b;
                     g0.h3(new Runnable() {
                         @Override
                         public final void run() {
                             switch (r3) {
                                 case 0:
                                     qp qpVar21 = qpVar20;
-                                    qpVar21.f24750c8 = false;
-                                    qpVar21.f24877r4 = gp.c(1, tL_help_peerColors);
-                                    qpVar21.f24767e7.edit().putString("profilePeerColors", qpVar21.f24877r4.toString()).apply();
+                                    qpVar21.f24757c8 = false;
+                                    qpVar21.f24884r4 = gp.c(1, tL_help_peerColors);
+                                    qpVar21.f24774e7.edit().putString("profilePeerColors", qpVar21.f24884r4.toString()).apply();
                                     return;
                                 default:
                                     qp qpVar22 = qpVar20;
-                                    qpVar22.f24740b8 = false;
-                                    qpVar22.f24867q4 = gp.c(0, tL_help_peerColors);
-                                    qpVar22.f24767e7.edit().putString("peerColors", qpVar22.f24867q4.toString()).apply();
+                                    qpVar22.f24747b8 = false;
+                                    qpVar22.f24874q4 = gp.c(0, tL_help_peerColors);
+                                    qpVar22.f24774e7.edit().putString("peerColors", qpVar22.f24874q4.toString()).apply();
                                     return;
                             }
                         }
@@ -1221,22 +1221,22 @@ public final class rj implements RequestDelegate {
             case 23:
                 if (tLObject instanceof TLRPC.TL_help_peerColors) {
                     final TLRPC.TL_help_peerColors tL_help_peerColors2 = (TLRPC.TL_help_peerColors) tLObject;
-                    final qp qpVar21 = this.f25296b;
+                    final qp qpVar21 = this.f25299b;
                     g0.h3(new Runnable() {
                         @Override
                         public final void run() {
                             switch (r3) {
                                 case 0:
                                     qp qpVar212 = qpVar21;
-                                    qpVar212.f24750c8 = false;
-                                    qpVar212.f24877r4 = gp.c(1, tL_help_peerColors2);
-                                    qpVar212.f24767e7.edit().putString("profilePeerColors", qpVar212.f24877r4.toString()).apply();
+                                    qpVar212.f24757c8 = false;
+                                    qpVar212.f24884r4 = gp.c(1, tL_help_peerColors2);
+                                    qpVar212.f24774e7.edit().putString("profilePeerColors", qpVar212.f24884r4.toString()).apply();
                                     return;
                                 default:
                                     qp qpVar22 = qpVar21;
-                                    qpVar22.f24740b8 = false;
-                                    qpVar22.f24867q4 = gp.c(0, tL_help_peerColors2);
-                                    qpVar22.f24767e7.edit().putString("peerColors", qpVar22.f24867q4.toString()).apply();
+                                    qpVar22.f24747b8 = false;
+                                    qpVar22.f24874q4 = gp.c(0, tL_help_peerColors2);
+                                    qpVar22.f24774e7.edit().putString("peerColors", qpVar22.f24874q4.toString()).apply();
                                     return;
                             }
                         }
@@ -1245,8 +1245,8 @@ public final class rj implements RequestDelegate {
                 }
                 return;
             case 24:
-                qp qpVar22 = this.f25296b;
-                qpVar22.f24790h2 = false;
+                qp qpVar22 = this.f25299b;
+                qpVar22.f24797h2 = false;
                 if (tL_error == null) {
                     TLRPC.TL_updates_state tL_updates_state = (TLRPC.TL_updates_state) tLObject;
                     qpVar22.getMessagesStorage().H1(tL_updates_state.date);
@@ -1259,26 +1259,26 @@ public final class rj implements RequestDelegate {
                     yr messagesStorage3 = qpVar22.getMessagesStorage();
                     yr messagesStorage4 = qpVar22.getMessagesStorage();
                     messagesStorage4.H();
-                    int i13 = messagesStorage4.f26708w;
+                    int i13 = messagesStorage4.f26731w;
                     yr messagesStorage5 = qpVar22.getMessagesStorage();
                     messagesStorage5.H();
-                    int i14 = messagesStorage5.f26706r;
+                    int i14 = messagesStorage5.f26729r;
                     yr messagesStorage6 = qpVar22.getMessagesStorage();
                     messagesStorage6.H();
-                    int i15 = messagesStorage6.f26705n;
+                    int i15 = messagesStorage6.f26728n;
                     yr messagesStorage7 = qpVar22.getMessagesStorage();
                     messagesStorage7.H();
-                    messagesStorage3.A1(i13, i14, i15, messagesStorage7.f26707s);
+                    messagesStorage3.A1(i13, i14, i15, messagesStorage7.f26730s);
                     return;
                 } else if (tL_error.code != 401) {
-                    qpVar22.f24790h2 = true;
+                    qpVar22.f24797h2 = true;
                     qpVar22.getConnectionsManager().sendRequest(new TLRPC.TL_updates_getState(), new rj(qpVar22, 24));
                     return;
                 } else {
                     return;
                 }
             case 25:
-                final qp qpVar23 = this.f25296b;
+                final qp qpVar23 = this.f25299b;
                 g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -1294,7 +1294,7 @@ public final class rj implements RequestDelegate {
                             case 0:
                                 if (tLObject2 instanceof TL_account.TL_reactionsNotifySettings) {
                                     TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings = (TL_account.TL_reactionsNotifySettings) tLObject2;
-                                    SharedPreferences.Editor edit2 = qpVar52.f24757d7.edit();
+                                    SharedPreferences.Editor edit2 = qpVar52.f24764d7.edit();
                                     if (tL_reactionsNotifySettings.messages_notify_from != null) {
                                         z92 = true;
                                     } else {
@@ -1314,7 +1314,7 @@ public final class rj implements RequestDelegate {
                                         edit2.putBoolean("EnableReactionsStoriesContacts", reactionNotificationsFrom2 instanceof TL_account.TL_reactionNotificationsFromContacts);
                                     }
                                     edit2.putBoolean("EnableReactionsPreview", tL_reactionsNotifySettings.show_previews);
-                                    qpVar52.getNotificationsController().f22076g0.a(tL_reactionsNotifySettings.sound, edit2, 0L, 0L, 4);
+                                    qpVar52.getNotificationsController().f22094g0.a(tL_reactionsNotifySettings.sound, edit2, 0L, 0L, 4);
                                     edit2.apply();
                                     qpVar52.getNotificationCenter().k(42, new Object[0]);
                                     return;
@@ -1330,8 +1330,8 @@ public final class rj implements RequestDelegate {
                                 qpVar52.getNotificationCenter().k(186, new Object[0]);
                                 return;
                             case 2:
-                                qpVar52.f24885s2 = false;
-                                SharedPreferences.Editor edit22 = qpVar52.f24757d7.edit();
+                                qpVar52.f24892s2 = false;
+                                SharedPreferences.Editor edit22 = qpVar52.f24764d7.edit();
                                 edit22.putBoolean("EnableContactJoined", tLObject2 instanceof TLRPC.TL_boolFalse);
                                 edit22.commit();
                                 qpVar52.getUserConfig().T = true;
@@ -1341,16 +1341,16 @@ public final class rj implements RequestDelegate {
                                 TLRPC.TL_help_recentMeUrls tL_help_recentMeUrls = (TLRPC.TL_help_recentMeUrls) tLObject2;
                                 qpVar52.Y3(tL_help_recentMeUrls.users, false);
                                 qpVar52.S3(tL_help_recentMeUrls.chats, false);
-                                ArrayList arrayList32 = qpVar52.f24882s;
+                                ArrayList arrayList32 = qpVar52.f24889s;
                                 arrayList32.clear();
                                 arrayList32.addAll(tL_help_recentMeUrls.urls);
                                 qpVar52.getNotificationCenter().k(3, new Object[0]);
                                 return;
                             case 4:
-                                qpVar52.f24875r2--;
+                                qpVar52.f24882r2--;
                                 if (tLObject2 instanceof TL_account.TL_reactionsNotifySettings) {
                                     TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings2 = (TL_account.TL_reactionsNotifySettings) tLObject2;
-                                    SharedPreferences.Editor edit3 = qpVar52.f24757d7.edit();
+                                    SharedPreferences.Editor edit3 = qpVar52.f24764d7.edit();
                                     if (tL_reactionsNotifySettings2.messages_notify_from != null) {
                                         z102 = true;
                                     } else {
@@ -1372,10 +1372,10 @@ public final class rj implements RequestDelegate {
                                         edit3.putBoolean("EnableReactionsStoriesContacts", reactionNotificationsFrom4 instanceof TL_account.TL_reactionNotificationsFromContacts);
                                     }
                                     edit3.putBoolean("EnableReactionsPreview", tL_reactionsNotifySettings2.show_previews);
-                                    qpVar52.getNotificationsController().f22076g0.a(tL_reactionsNotifySettings2.sound, edit3, 0L, 0L, 4);
+                                    qpVar52.getNotificationsController().f22094g0.a(tL_reactionsNotifySettings2.sound, edit3, 0L, 0L, 4);
                                     edit3.apply();
                                 }
-                                if (qpVar52.f24875r2 == 0) {
+                                if (qpVar52.f24882r2 == 0) {
                                     qpVar52.getUserConfig().S = true;
                                     qpVar52.getUserConfig().v(false);
                                     return;
@@ -1383,33 +1383,33 @@ public final class rj implements RequestDelegate {
                                 return;
                             case 5:
                                 if (tLObject2 instanceof TL_account.contentSettings) {
-                                    qpVar52.f24836m8 = (TL_account.contentSettings) tLObject2;
-                                    qpVar52.f24828l8 = System.currentTimeMillis();
+                                    qpVar52.f24843m8 = (TL_account.contentSettings) tLObject2;
+                                    qpVar52.f24835l8 = System.currentTimeMillis();
                                 }
-                                qpVar52.f24811j8 = false;
-                                TL_account.contentSettings contentsettings = qpVar52.f24836m8;
+                                qpVar52.f24818j8 = false;
+                                TL_account.contentSettings contentsettings = qpVar52.f24843m8;
                                 if (contentsettings != null && (set = qpVar52.C4) != null) {
                                     if (contentsettings.sensitive_enabled) {
                                         set.add("sensitive");
                                     } else {
                                         set.remove("sensitive");
                                     }
-                                    SharedPreferences sharedPreferences = qpVar52.f24767e7;
+                                    SharedPreferences sharedPreferences = qpVar52.f24774e7;
                                     if (sharedPreferences != null) {
                                         sharedPreferences.edit().putStringSet("ignoreRestrictionReasons", qpVar52.C4).apply();
                                     }
                                 }
-                                ArrayList arrayList42 = qpVar52.f24820k8;
+                                ArrayList arrayList42 = qpVar52.f24827k8;
                                 if (arrayList42 != null) {
                                     int size = arrayList42.size();
                                     int i112 = 0;
                                     while (i112 < size) {
                                         Object obj = arrayList42.get(i112);
                                         i112++;
-                                        ((c20) obj).a(qpVar52.f24836m8);
+                                        ((c20) obj).a(qpVar52.f24843m8);
                                     }
-                                    qpVar52.f24820k8.clear();
-                                    qpVar52.f24820k8 = null;
+                                    qpVar52.f24827k8.clear();
+                                    qpVar52.f24827k8 = null;
                                 }
                                 qpVar52.getNotificationCenter().k(243, new Object[0]);
                                 return;
@@ -1445,7 +1445,7 @@ public final class rj implements RequestDelegate {
                                             }
                                             i122++;
                                         } else {
-                                            qpVar62.getUserConfig().f24495x = true;
+                                            qpVar62.getUserConfig().f24498x = true;
                                             qpVar62.getUserConfig().v(false);
                                             qpVar62.getNotificationCenter().k(2, 256);
                                             qpVar62.d2 = false;
@@ -1461,7 +1461,7 @@ public final class rj implements RequestDelegate {
                 });
                 return;
             default:
-                final qp qpVar24 = this.f25296b;
+                final qp qpVar24 = this.f25299b;
                 qpVar24.getClass();
                 g0.h3(new Runnable() {
                     @Override
@@ -1478,7 +1478,7 @@ public final class rj implements RequestDelegate {
                             case 0:
                                 if (tLObject2 instanceof TL_account.TL_reactionsNotifySettings) {
                                     TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings = (TL_account.TL_reactionsNotifySettings) tLObject2;
-                                    SharedPreferences.Editor edit2 = qpVar52.f24757d7.edit();
+                                    SharedPreferences.Editor edit2 = qpVar52.f24764d7.edit();
                                     if (tL_reactionsNotifySettings.messages_notify_from != null) {
                                         z92 = true;
                                     } else {
@@ -1498,7 +1498,7 @@ public final class rj implements RequestDelegate {
                                         edit2.putBoolean("EnableReactionsStoriesContacts", reactionNotificationsFrom2 instanceof TL_account.TL_reactionNotificationsFromContacts);
                                     }
                                     edit2.putBoolean("EnableReactionsPreview", tL_reactionsNotifySettings.show_previews);
-                                    qpVar52.getNotificationsController().f22076g0.a(tL_reactionsNotifySettings.sound, edit2, 0L, 0L, 4);
+                                    qpVar52.getNotificationsController().f22094g0.a(tL_reactionsNotifySettings.sound, edit2, 0L, 0L, 4);
                                     edit2.apply();
                                     qpVar52.getNotificationCenter().k(42, new Object[0]);
                                     return;
@@ -1514,8 +1514,8 @@ public final class rj implements RequestDelegate {
                                 qpVar52.getNotificationCenter().k(186, new Object[0]);
                                 return;
                             case 2:
-                                qpVar52.f24885s2 = false;
-                                SharedPreferences.Editor edit22 = qpVar52.f24757d7.edit();
+                                qpVar52.f24892s2 = false;
+                                SharedPreferences.Editor edit22 = qpVar52.f24764d7.edit();
                                 edit22.putBoolean("EnableContactJoined", tLObject2 instanceof TLRPC.TL_boolFalse);
                                 edit22.commit();
                                 qpVar52.getUserConfig().T = true;
@@ -1525,16 +1525,16 @@ public final class rj implements RequestDelegate {
                                 TLRPC.TL_help_recentMeUrls tL_help_recentMeUrls = (TLRPC.TL_help_recentMeUrls) tLObject2;
                                 qpVar52.Y3(tL_help_recentMeUrls.users, false);
                                 qpVar52.S3(tL_help_recentMeUrls.chats, false);
-                                ArrayList arrayList32 = qpVar52.f24882s;
+                                ArrayList arrayList32 = qpVar52.f24889s;
                                 arrayList32.clear();
                                 arrayList32.addAll(tL_help_recentMeUrls.urls);
                                 qpVar52.getNotificationCenter().k(3, new Object[0]);
                                 return;
                             case 4:
-                                qpVar52.f24875r2--;
+                                qpVar52.f24882r2--;
                                 if (tLObject2 instanceof TL_account.TL_reactionsNotifySettings) {
                                     TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings2 = (TL_account.TL_reactionsNotifySettings) tLObject2;
-                                    SharedPreferences.Editor edit3 = qpVar52.f24757d7.edit();
+                                    SharedPreferences.Editor edit3 = qpVar52.f24764d7.edit();
                                     if (tL_reactionsNotifySettings2.messages_notify_from != null) {
                                         z102 = true;
                                     } else {
@@ -1556,10 +1556,10 @@ public final class rj implements RequestDelegate {
                                         edit3.putBoolean("EnableReactionsStoriesContacts", reactionNotificationsFrom4 instanceof TL_account.TL_reactionNotificationsFromContacts);
                                     }
                                     edit3.putBoolean("EnableReactionsPreview", tL_reactionsNotifySettings2.show_previews);
-                                    qpVar52.getNotificationsController().f22076g0.a(tL_reactionsNotifySettings2.sound, edit3, 0L, 0L, 4);
+                                    qpVar52.getNotificationsController().f22094g0.a(tL_reactionsNotifySettings2.sound, edit3, 0L, 0L, 4);
                                     edit3.apply();
                                 }
-                                if (qpVar52.f24875r2 == 0) {
+                                if (qpVar52.f24882r2 == 0) {
                                     qpVar52.getUserConfig().S = true;
                                     qpVar52.getUserConfig().v(false);
                                     return;
@@ -1567,33 +1567,33 @@ public final class rj implements RequestDelegate {
                                 return;
                             case 5:
                                 if (tLObject2 instanceof TL_account.contentSettings) {
-                                    qpVar52.f24836m8 = (TL_account.contentSettings) tLObject2;
-                                    qpVar52.f24828l8 = System.currentTimeMillis();
+                                    qpVar52.f24843m8 = (TL_account.contentSettings) tLObject2;
+                                    qpVar52.f24835l8 = System.currentTimeMillis();
                                 }
-                                qpVar52.f24811j8 = false;
-                                TL_account.contentSettings contentsettings = qpVar52.f24836m8;
+                                qpVar52.f24818j8 = false;
+                                TL_account.contentSettings contentsettings = qpVar52.f24843m8;
                                 if (contentsettings != null && (set = qpVar52.C4) != null) {
                                     if (contentsettings.sensitive_enabled) {
                                         set.add("sensitive");
                                     } else {
                                         set.remove("sensitive");
                                     }
-                                    SharedPreferences sharedPreferences = qpVar52.f24767e7;
+                                    SharedPreferences sharedPreferences = qpVar52.f24774e7;
                                     if (sharedPreferences != null) {
                                         sharedPreferences.edit().putStringSet("ignoreRestrictionReasons", qpVar52.C4).apply();
                                     }
                                 }
-                                ArrayList arrayList42 = qpVar52.f24820k8;
+                                ArrayList arrayList42 = qpVar52.f24827k8;
                                 if (arrayList42 != null) {
                                     int size = arrayList42.size();
                                     int i112 = 0;
                                     while (i112 < size) {
                                         Object obj = arrayList42.get(i112);
                                         i112++;
-                                        ((c20) obj).a(qpVar52.f24836m8);
+                                        ((c20) obj).a(qpVar52.f24843m8);
                                     }
-                                    qpVar52.f24820k8.clear();
-                                    qpVar52.f24820k8 = null;
+                                    qpVar52.f24827k8.clear();
+                                    qpVar52.f24827k8 = null;
                                 }
                                 qpVar52.getNotificationCenter().k(243, new Object[0]);
                                 return;
@@ -1629,7 +1629,7 @@ public final class rj implements RequestDelegate {
                                             }
                                             i122++;
                                         } else {
-                                            qpVar62.getUserConfig().f24495x = true;
+                                            qpVar62.getUserConfig().f24498x = true;
                                             qpVar62.getUserConfig().v(false);
                                             qpVar62.getNotificationCenter().k(2, 256);
                                             qpVar62.d2 = false;

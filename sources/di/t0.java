@@ -27,7 +27,7 @@ public final class t0 {
                 i10 = Math.max(i10, t.b(this.f9773a, (int) s0Var.f9741g, 0) + s0Var.d);
             }
         }
-        Typeface typeface = org.telegram.messenger.g0.f22516a;
+        Typeface typeface = org.telegram.messenger.g0.f22535a;
         return (currentTime - i10) / (i7 - i10);
     }
 

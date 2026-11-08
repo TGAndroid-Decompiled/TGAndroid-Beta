@@ -52,7 +52,7 @@ import org.telegram.ui.Components.q41;
 import org.telegram.ui.Components.x31;
 import org.telegram.ui.Components.zj0;
 public final class t3 extends q41 {
-    public static final ArrayList f18870z4 = new ArrayList();
+    public static final ArrayList f18873z4 = new ArrayList();
     public float A3;
     public float B3;
     public float C3;
@@ -79,92 +79,92 @@ public final class t3 extends q41 {
     public int X3;
     public boolean Y3;
     public a Z3;
-    public boolean f18871a4;
-    public final l3 f18872b4;
-    public final q2 f18873c4;
-    public final m3 f18874d4;
-    public final n3 f18875e4;
-    public final o3 f18876f4;
-    public final IdentityHashMap f18877g4;
-    public final IdentityHashMap f18878h4;
-    public a f18879i4;
-    public a f18880j4;
-    public final p3 f18881k4;
-    public final y2 f18882l4;
-    public final int f18883m3;
-    public final z2 f18884m4;
-    public final f6 f18885n3;
-    public final a3 f18886n4;
-    public final r3 f18887o3;
+    public boolean f18874a4;
+    public final l3 f18875b4;
+    public final q2 f18876c4;
+    public final m3 f18877d4;
+    public final n3 f18878e4;
+    public final o3 f18879f4;
+    public final IdentityHashMap f18880g4;
+    public final IdentityHashMap f18881h4;
+    public a f18882i4;
+    public a f18883j4;
+    public final p3 f18884k4;
+    public final y2 f18885l4;
+    public final int f18886m3;
+    public final z2 f18887m4;
+    public final f6 f18888n3;
+    public final a3 f18889n4;
+    public final r3 f18890o3;
     public final b3 o4;
-    public ij f18888p3;
-    public m5 f18889p4;
-    public boolean f18890q3;
-    public k60 f18891q4;
-    public TL_iv.RichMessage f18892r3;
-    public int f18893r4;
-    public final ArrayList f18894s3;
-    public int f18895s4;
-    public final HashMap f18896t3;
-    public final r2 f18897t4;
-    public final g3 f18898u3;
-    public final c3 f18899u4;
-    public final u9 f18900v3;
-    public final gf.g f18901v4;
-    public int f18902w3;
-    public final ArrayList f18903w4;
-    public int f18904x3;
-    public zj0 f18905x4;
-    public int f18906y3;
-    public int f18907y4;
-    public boolean f18908z3;
+    public ij f18891p3;
+    public m5 f18892p4;
+    public boolean f18893q3;
+    public k60 f18894q4;
+    public TL_iv.RichMessage f18895r3;
+    public int f18896r4;
+    public final ArrayList f18897s3;
+    public int f18898s4;
+    public final HashMap f18899t3;
+    public final r2 f18900t4;
+    public final g3 f18901u3;
+    public final c3 f18902u4;
+    public final u9 f18903v3;
+    public final gf.g f18904v4;
+    public int f18905w3;
+    public final ArrayList f18906w4;
+    public int f18907x3;
+    public zj0 f18908x4;
+    public int f18909y3;
+    public int f18910y4;
+    public boolean f18911z3;
 
     public t3(Context context, int i7, f6 f6Var, r3 r3Var) {
         super(context, i7, 0, false, new hi.u1(r1, 18), new l2.y(r1, 7), null, f6Var);
-        this.f18890q3 = true;
-        this.f18894s3 = new ArrayList();
-        this.f18896t3 = new HashMap();
-        this.f18902w3 = -1;
-        this.f18904x3 = -1;
-        this.f18906y3 = 0;
+        this.f18893q3 = true;
+        this.f18897s3 = new ArrayList();
+        this.f18899t3 = new HashMap();
+        this.f18905w3 = -1;
+        this.f18907x3 = -1;
+        this.f18909y3 = 0;
         this.T3 = new i(this, 2);
         this.Y3 = true;
-        this.f18872b4 = new l3(this);
-        this.f18873c4 = new q2(this);
-        this.f18874d4 = new m3(this);
-        this.f18875e4 = new n3(this);
-        this.f18876f4 = new o3(this);
-        this.f18877g4 = new IdentityHashMap();
-        this.f18878h4 = new IdentityHashMap();
-        this.f18881k4 = new p3(this);
-        this.f18882l4 = new y2(this);
-        this.f18884m4 = new z2(this);
-        this.f18886n4 = new a3(this);
+        this.f18875b4 = new l3(this);
+        this.f18876c4 = new q2(this);
+        this.f18877d4 = new m3(this);
+        this.f18878e4 = new n3(this);
+        this.f18879f4 = new o3(this);
+        this.f18880g4 = new IdentityHashMap();
+        this.f18881h4 = new IdentityHashMap();
+        this.f18884k4 = new p3(this);
+        this.f18885l4 = new y2(this);
+        this.f18887m4 = new z2(this);
+        this.f18889n4 = new a3(this);
         this.o4 = new b3(this);
-        this.f18893r4 = -1;
-        this.f18895s4 = -1;
-        this.f18897t4 = new r2(this);
-        this.f18899u4 = new c3(this);
+        this.f18896r4 = -1;
+        this.f18898s4 = -1;
+        this.f18900t4 = new r2(this);
+        this.f18902u4 = new c3(this);
         gf.g gVar = new gf.g(this, 13);
-        this.f18901v4 = gVar;
-        this.f18903w4 = new ArrayList();
-        this.f18907y4 = -1;
+        this.f18904v4 = gVar;
+        this.f18906w4 = new ArrayList();
+        this.f18910y4 = -1;
         t3[] t3VarArr = {this};
-        this.f18883m3 = i7;
-        this.f18885n3 = f6Var;
-        this.f18887o3 = r3Var;
-        this.f37160f3.f35510r = false;
+        this.f18886m3 = i7;
+        this.f18888n3 = f6Var;
+        this.f18890o3 = r3Var;
+        this.f37190f3.f35528r = false;
         setClipToPadding(false);
         setClipChildren(false);
         E1(new hi.u1(this, 19), false);
         setReorderLongPressEnabled(false);
         z1(true);
         g3 g3Var = new g3(this, r3Var);
-        this.f18898u3 = g3Var;
+        this.f18901u3 = g3Var;
         g3Var.S(this);
-        g3Var.f29324z0 = this.f37159e3;
+        g3Var.f29327z0 = this.f37189e3;
         u9 n10 = g3Var.n(context);
-        this.f18900v3 = n10;
+        this.f18903v3 = n10;
         org.telegram.messenger.g0.E2(n10);
         g3Var.D = new i3(this, r3Var);
         j(new ai.o0(1, this, r3Var));
@@ -172,7 +172,7 @@ public final class t3 extends q41 {
     }
 
     public static boolean A3(a aVar) {
-        if (aVar != null && (aVar.f18389b instanceof TL_iv.pageBlockDetails)) {
+        if (aVar != null && (aVar.f18392b instanceof TL_iv.pageBlockDetails)) {
             return true;
         }
         return false;
@@ -221,7 +221,7 @@ public final class t3 extends q41 {
     }
 
     public static boolean I3(a aVar) {
-        if (aVar != null && !aVar.f18394i && !A3(aVar) && (aVar.f18389b instanceof TL_iv.pageBlockParagraph) && aVar.f18390c == 0 && aVar.d == 0 && !aVar.f18391e && aVar.f18396k.isEmpty()) {
+        if (aVar != null && !aVar.f18397i && !A3(aVar) && (aVar.f18392b instanceof TL_iv.pageBlockParagraph) && aVar.f18393c == 0 && aVar.d == 0 && !aVar.f18394e && aVar.f18399k.isEmpty()) {
             return true;
         }
         return false;
@@ -237,37 +237,37 @@ public final class t3 extends q41 {
         TLRPC.Document document;
         TL_iv.pageBlockCollage pageblockcollage;
         long j3;
-        TL_iv.PageBlock pageBlock = aVar.f18389b;
+        TL_iv.PageBlock pageBlock = aVar.f18392b;
         if (pageBlock instanceof TL_iv.pageBlockDivider) {
             arrayList.add(pageBlock);
         } else if (pageBlock instanceof TL_iv.pageBlockPhoto) {
-            s sVar = aVar.f18393g;
+            s sVar = aVar.f18396g;
             if (sVar != null && sVar.b()) {
-                TL_iv.PageBlock pageBlock2 = aVar.f18389b;
+                TL_iv.PageBlock pageBlock2 = aVar.f18392b;
                 if (((TL_iv.pageBlockPhoto) pageBlock2).photo_id != 0) {
                     if (pageBlock2.caption == null) {
                         pageBlock2.caption = new TL_iv.PageCaption();
-                        aVar.f18389b.caption.text = new TL_iv.textEmpty();
-                        aVar.f18389b.caption.credit = new TL_iv.textEmpty();
+                        aVar.f18392b.caption.text = new TL_iv.textEmpty();
+                        aVar.f18392b.caption.credit = new TL_iv.textEmpty();
                     }
-                    arrayList.add(aVar.f18389b);
+                    arrayList.add(aVar.f18392b);
                 }
             }
         } else if (pageBlock instanceof TL_iv.pageBlockVideo) {
-            s sVar2 = aVar.f18393g;
+            s sVar2 = aVar.f18396g;
             if (sVar2 != null && sVar2.b()) {
-                TL_iv.PageBlock pageBlock3 = aVar.f18389b;
+                TL_iv.PageBlock pageBlock3 = aVar.f18392b;
                 if (((TL_iv.pageBlockVideo) pageBlock3).video_id != 0) {
                     if (pageBlock3.caption == null) {
                         pageBlock3.caption = new TL_iv.PageCaption();
-                        aVar.f18389b.caption.text = new TL_iv.textEmpty();
-                        aVar.f18389b.caption.credit = new TL_iv.textEmpty();
+                        aVar.f18392b.caption.text = new TL_iv.textEmpty();
+                        aVar.f18392b.caption.credit = new TL_iv.textEmpty();
                     }
-                    arrayList.add(aVar.f18389b);
+                    arrayList.add(aVar.f18392b);
                 }
             }
         } else if (E3(pageBlock)) {
-            ArrayList j32 = j3(aVar.f18389b);
+            ArrayList j32 = j3(aVar.f18392b);
             List T3 = T3(aVar);
             ArrayList<TL_iv.PageBlock> arrayList2 = new ArrayList<>();
             for (int i11 = 0; j32 != null && i11 < j32.size() && i11 < T3.size(); i11++) {
@@ -287,15 +287,15 @@ public final class t3 extends q41 {
                 }
             }
             if (arrayList2.size() >= 2) {
-                if (aVar.f18389b instanceof TL_iv.pageBlockSlideshow) {
+                if (aVar.f18392b instanceof TL_iv.pageBlockSlideshow) {
                     TL_iv.pageBlockSlideshow pageblockslideshow = new TL_iv.pageBlockSlideshow();
                     pageblockslideshow.items = arrayList2;
-                    pageblockslideshow.caption = aVar.f18389b.caption;
+                    pageblockslideshow.caption = aVar.f18392b.caption;
                     pageblockcollage = pageblockslideshow;
                 } else {
                     TL_iv.pageBlockCollage pageblockcollage2 = new TL_iv.pageBlockCollage();
                     pageblockcollage2.items = arrayList2;
-                    pageblockcollage2.caption = aVar.f18389b.caption;
+                    pageblockcollage2.caption = aVar.f18392b.caption;
                     pageblockcollage = pageblockcollage2;
                 }
                 j0.d(pageblockcollage);
@@ -304,30 +304,30 @@ public final class t3 extends q41 {
                 arrayList.add(arrayList2.get(0));
             }
         } else {
-            TL_iv.PageBlock pageBlock5 = aVar.f18389b;
+            TL_iv.PageBlock pageBlock5 = aVar.f18392b;
             if (pageBlock5 instanceof TL_iv.pageBlockAudio) {
-                s sVar3 = aVar.f18393g;
+                s sVar3 = aVar.f18396g;
                 if (sVar3 != null && sVar3.b()) {
-                    TL_iv.PageBlock pageBlock6 = aVar.f18389b;
+                    TL_iv.PageBlock pageBlock6 = aVar.f18392b;
                     if (((TL_iv.pageBlockAudio) pageBlock6).audio_id != 0) {
                         if (pageBlock6.caption == null) {
                             pageBlock6.caption = new TL_iv.PageCaption();
-                            aVar.f18389b.caption.text = new TL_iv.textEmpty();
-                            aVar.f18389b.caption.credit = new TL_iv.textEmpty();
+                            aVar.f18392b.caption.text = new TL_iv.textEmpty();
+                            aVar.f18392b.caption.credit = new TL_iv.textEmpty();
                         }
-                        arrayList.add(aVar.f18389b);
+                        arrayList.add(aVar.f18392b);
                     }
                 }
             } else if (pageBlock5 instanceof TL_iv.pageBlockDocument) {
-                s sVar4 = aVar.f18393g;
+                s sVar4 = aVar.f18396g;
                 if (sVar4 != null && (document = sVar4.h) != null) {
-                    ((TL_iv.pageBlockDocument) pageBlock5).document_id = document.f26959id;
+                    ((TL_iv.pageBlockDocument) pageBlock5).document_id = document.f26962id;
                 }
                 if (sVar4 != null && sVar4.b()) {
-                    TL_iv.PageBlock pageBlock7 = aVar.f18389b;
+                    TL_iv.PageBlock pageBlock7 = aVar.f18392b;
                     if (((TL_iv.pageBlockDocument) pageBlock7).document_id != 0) {
                         j0.d(pageBlock7);
-                        arrayList.add(aVar.f18389b);
+                        arrayList.add(aVar.f18392b);
                     }
                 }
             } else if (pageBlock5 instanceof TL_iv.pageBlockMap) {
@@ -344,7 +344,7 @@ public final class t3 extends q41 {
                 }
             } else if (pageBlock5 instanceof TL_iv.pageBlockMath) {
                 if (!TextUtils.isEmpty(((TL_iv.pageBlockMath) pageBlock5).source)) {
-                    arrayList.add(aVar.f18389b);
+                    arrayList.add(aVar.f18392b);
                 }
             } else if (pageBlock5 instanceof TL_iv.pageBlockTable) {
                 TL_iv.pageBlockTable pageblocktable = (TL_iv.pageBlockTable) pageBlock5;
@@ -403,7 +403,7 @@ public final class t3 extends q41 {
     public static void O1(t3 t3Var, int i7, int i10, int i11) {
         g1 editText;
         if (i7 >= 0) {
-            View m10 = t3Var.f37159e3.m(i7);
+            View m10 = t3Var.f37189e3.m(i7);
             if (m10 instanceof a6) {
                 a6 a6Var = (a6) m10;
                 if (i10 == 1 && a6Var.n()) {
@@ -468,8 +468,8 @@ public final class t3 extends q41 {
             t3Var.getClass();
             return;
         }
-        g1Var.W1 = t3Var.f18890q3;
-        g1Var.setInlineButtonContext(t3Var.f18883m3);
+        g1Var.W1 = t3Var.f18893q3;
+        g1Var.setInlineButtonContext(t3Var.f18886m3);
         g1Var.setInlineButtonClickListener(new r2(t3Var));
     }
 
@@ -484,8 +484,8 @@ public final class t3 extends q41 {
                             W1(arrayList, ((TL_iv.pageBlockParagraph) pageBlock).text, i7, i10, z10, z11);
                         } else {
                             a aVar = new a(pageBlock, i7, i10);
-                            aVar.f18391e = z10;
-                            aVar.f18392f = z11;
+                            aVar.f18394e = z10;
+                            aVar.f18395f = z11;
                             arrayList.add(aVar);
                         }
                         z12 = true;
@@ -508,8 +508,8 @@ public final class t3 extends q41 {
 
     public static TL_iv.PageBlock Q3(a aVar, s sVar) {
         int i7;
-        if (E3(aVar.f18389b)) {
-            ArrayList j3 = j3(aVar.f18389b);
+        if (E3(aVar.f18392b)) {
+            ArrayList j3 = j3(aVar.f18392b);
             ArrayList arrayList = aVar.h;
             if (arrayList != null) {
                 i7 = arrayList.indexOf(sVar);
@@ -521,15 +521,15 @@ public final class t3 extends q41 {
             }
             return null;
         }
-        return aVar.f18389b;
+        return aVar.f18392b;
     }
 
     public static void R1(a aVar, s sVar, t3 t3Var) {
-        r3 r3Var = t3Var.f18887o3;
-        IdentityHashMap identityHashMap = t3Var.f18878h4;
-        IdentityHashMap identityHashMap2 = t3Var.f18877g4;
+        r3 r3Var = t3Var.f18890o3;
+        IdentityHashMap identityHashMap = t3Var.f18881h4;
+        IdentityHashMap identityHashMap2 = t3Var.f18880g4;
         if (sVar == null) {
-            ArrayList arrayList = t3Var.f18894s3;
+            ArrayList arrayList = t3Var.f18897s3;
             for (s sVar2 : T3(aVar)) {
                 y4 y4Var = (y4) identityHashMap2.remove(sVar2);
                 if (y4Var != null) {
@@ -547,7 +547,7 @@ public final class t3 extends q41 {
                     f2Var.d();
                 }
                 arrayList.remove(indexOf);
-                t3Var.f37160f3.O(true);
+                t3Var.f37190f3.O(true);
                 f2 f2Var2 = t3Var.Q3;
                 if (f2Var2 != null) {
                     f2Var2.h();
@@ -638,7 +638,7 @@ public final class t3 extends q41 {
         if (f2Var != null) {
             f2Var.h();
         }
-        t3Var.f18887o3.h();
+        t3Var.f18890o3.h();
         t3Var.r4();
     }
 
@@ -671,7 +671,7 @@ public final class t3 extends q41 {
     }
 
     public static void T1(t3 t3Var, a aVar) {
-        ArrayList arrayList = t3Var.f18894s3;
+        ArrayList arrayList = t3Var.f18897s3;
         int indexOf = arrayList.indexOf(aVar);
         if (indexOf < 0) {
             return;
@@ -681,10 +681,10 @@ public final class t3 extends q41 {
             f2Var.d();
         }
         a aVar2 = new a(new TL_iv.pageBlockParagraph(), 0, 0);
-        aVar2.f18396k.addAll(aVar.f18396k);
+        aVar2.f18399k.addAll(aVar.f18399k);
         arrayList.add(indexOf + 1, aVar2);
         t3Var.v4();
-        t3Var.f37160f3.O(false);
+        t3Var.f37190f3.O(false);
         f2 f2Var2 = t3Var.Q3;
         if (f2Var2 != null) {
             f2Var2.h();
@@ -696,14 +696,14 @@ public final class t3 extends q41 {
         if (aVar == null) {
             return Collections.EMPTY_LIST;
         }
-        if (E3(aVar.f18389b)) {
+        if (E3(aVar.f18392b)) {
             ArrayList arrayList = aVar.h;
             if (arrayList != null) {
                 return arrayList;
             }
             return Collections.EMPTY_LIST;
         }
-        s sVar = aVar.f18393g;
+        s sVar = aVar.f18396g;
         if (sVar != null) {
             return Collections.singletonList(sVar);
         }
@@ -770,8 +770,8 @@ public final class t3 extends q41 {
         }
         pageblockparagraph.text = richText;
         a aVar = new a(pageblockparagraph, i7, i10);
-        aVar.f18391e = z9;
-        aVar.f18392f = z10;
+        aVar.f18394e = z9;
+        aVar.f18395f = z10;
         arrayList.add(aVar);
     }
 
@@ -779,10 +779,10 @@ public final class t3 extends q41 {
         boolean z9;
         int i7;
         s sVar = new s();
-        sVar.f18812b = gfVar.f26824b;
-        sVar.f18814e = str;
-        sVar.f18818j = gfVar.F;
-        sVar.f18819k = gfVar.G;
+        sVar.f18815b = gfVar.f26845b;
+        sVar.f18817e = str;
+        sVar.f18821j = gfVar.F;
+        sVar.f18822k = gfVar.G;
         String str2 = gfVar.h;
         int i10 = 0;
         if (str2 != null && str != null && str.equals(str2)) {
@@ -795,13 +795,13 @@ public final class t3 extends q41 {
         } else {
             i7 = gfVar.J;
         }
-        sVar.f18820l = i7;
+        sVar.f18823l = i7;
         if (!z9) {
             i10 = gfVar.K;
         }
-        sVar.f18821m = i10;
-        sVar.f18811a = 1;
-        sVar.f18815f = 0.0f;
+        sVar.f18824m = i10;
+        sVar.f18814a = 1;
+        sVar.f18818f = 0.0f;
         return sVar;
     }
 
@@ -836,14 +836,14 @@ public final class t3 extends q41 {
                             arrayList.add(new a(new TL_iv.pageBlockParagraph(), 0, 0));
                         }
                         a aVar = new a(new TL_iv.pageBlockParagraph(), 0, 0);
-                        aVar.f18394i = true;
+                        aVar.f18397i = true;
                         arrayList.add(aVar);
                     } else if (pageBlock instanceof TL_iv.pageBlockBlockquoteBlocks) {
                         TL_iv.pageBlockBlockquoteBlocks pageblockblockquoteblocks = (TL_iv.pageBlockBlockquoteBlocks) pageBlock;
                         long a10 = n0.a();
                         Z2(arrayList, pageblockblockquoteblocks.blocks, map);
                         for (int size3 = arrayList.size(); size3 < arrayList.size(); size3++) {
-                            ((a) arrayList.get(size3)).f18396k.add(0, Long.valueOf(a10));
+                            ((a) arrayList.get(size3)).f18399k.add(0, Long.valueOf(a10));
                         }
                         if (map != null && (richText = pageblockblockquoteblocks.caption) != null && !(richText instanceof TL_iv.textEmpty)) {
                             map.put(Long.valueOf(a10), pageblockblockquoteblocks.caption);
@@ -869,7 +869,7 @@ public final class t3 extends q41 {
         int i10;
         e6 e6Var = m5Var.F;
         if (e6Var != null) {
-            i7 = e6Var.f18545g.size();
+            i7 = e6Var.f18548g.size();
         } else {
             i7 = 0;
         }
@@ -923,11 +923,11 @@ public final class t3 extends q41 {
             return org.telegram.messenger.g0.L(2.0f);
         }
         if (z9) {
-            i10 = aVar.f18397l;
+            i10 = aVar.f18400l;
         } else {
-            i10 = aVar.f18398m;
+            i10 = aVar.f18401m;
         }
-        int size = aVar.f18396k.size() - i10;
+        int size = aVar.f18399k.size() - i10;
         return org.telegram.messenger.k5.D(16.0f, Math.max(0, i7 - size), org.telegram.messenger.g0.L(2.0f));
     }
 
@@ -939,12 +939,12 @@ public final class t3 extends q41 {
     }
 
     public static int o4(a aVar, a aVar2) {
-        ArrayList arrayList = aVar.f18396k;
+        ArrayList arrayList = aVar.f18399k;
         int i7 = 0;
         if (aVar2 == null) {
             return 0;
         }
-        ArrayList arrayList2 = aVar2.f18396k;
+        ArrayList arrayList2 = aVar2.f18399k;
         int min = Math.min(arrayList.size(), arrayList2.size());
         while (i7 < min && ((Long) arrayList.get(i7)).equals(arrayList2.get(i7))) {
             i7++;
@@ -994,13 +994,13 @@ public final class t3 extends q41 {
         HashMap hashMap = new HashMap();
         int i7 = 0;
         while (true) {
-            arrayList = this.f18894s3;
+            arrayList = this.f18897s3;
             if (i7 >= arrayList.size()) {
                 break;
             }
             a aVar = (a) arrayList.get(i7);
-            boolean z9 = aVar.f18394i;
-            ArrayList arrayList2 = aVar.f18396k;
+            boolean z9 = aVar.f18397i;
+            ArrayList arrayList2 = aVar.f18399k;
             if (!z9) {
                 for (int i10 = 0; i10 < arrayList2.size(); i10++) {
                     Map.EL.merge(hashMap, (Long) arrayList2.get(i10), 1, new Object());
@@ -1011,24 +1011,24 @@ public final class t3 extends q41 {
         boolean z10 = false;
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
             a aVar2 = (a) arrayList.get(i11);
-            ArrayList arrayList3 = aVar2.f18396k;
-            if (arrayList3.size() == 1 && (aVar2.f18389b instanceof TL_iv.pageBlockParagraph)) {
+            ArrayList arrayList3 = aVar2.f18399k;
+            if (arrayList3.size() == 1 && (aVar2.f18392b instanceof TL_iv.pageBlockParagraph)) {
                 Long l10 = (Long) arrayList3.get(0);
                 l10.getClass();
                 Integer num = (Integer) hashMap.get(l10);
                 if (num != null && num.intValue() == 1) {
                     TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
-                    TL_iv.RichText richText = aVar2.f18389b.text;
+                    TL_iv.RichText richText = aVar2.f18392b.text;
                     if (richText == null) {
                         richText = new TL_iv.textEmpty();
                     }
                     pageblockblockquote.text = richText;
-                    TL_iv.RichText richText2 = (TL_iv.RichText) this.f18896t3.remove(l10);
+                    TL_iv.RichText richText2 = (TL_iv.RichText) this.f18899t3.remove(l10);
                     if (richText2 == null) {
                         richText2 = new TL_iv.textEmpty();
                     }
                     pageblockblockquote.caption = richText2;
-                    aVar2.f18389b = pageblockblockquote;
+                    aVar2.f18392b = pageblockblockquote;
                     arrayList3.clear();
                     z10 = true;
                 }
@@ -1042,7 +1042,7 @@ public final class t3 extends q41 {
             View childAt = getChildAt(i7);
             if (childAt instanceof j4) {
                 y yVar = (y) ((j4) childAt);
-                yVar.f18987b.a(yVar.f18986a, new l2.y(yVar, 4));
+                yVar.f18990b.a(yVar.f18989a, new l2.y(yVar, 4));
             }
         }
         invalidate();
@@ -1056,15 +1056,15 @@ public final class t3 extends q41 {
         HashSet hashSet = new HashSet();
         int i7 = 0;
         while (true) {
-            ArrayList arrayList2 = this.f18894s3;
+            ArrayList arrayList2 = this.f18897s3;
             if (i7 < arrayList2.size()) {
                 a aVar = (a) arrayList2.get(i7);
-                if ((aVar.f18389b instanceof TL_iv.pageBlockDocument) && (sVar = aVar.f18393g) != null && sVar.b() && (document2 = aVar.f18393g.h) != null) {
-                    ((TL_iv.pageBlockDocument) aVar.f18389b).document_id = document2.f26959id;
+                if ((aVar.f18392b instanceof TL_iv.pageBlockDocument) && (sVar = aVar.f18396g) != null && sVar.b() && (document2 = aVar.f18396g.h) != null) {
+                    ((TL_iv.pageBlockDocument) aVar.f18392b).document_id = document2.f26962id;
                 }
                 for (s sVar2 : T3(aVar)) {
                     if (sVar2.b() && (document = sVar2.h) != null) {
-                        long j3 = document.f26959id;
+                        long j3 = document.f26962id;
                         if (j3 != 0 && document.access_hash != 0 && hashSet.add(Long.valueOf(j3))) {
                             arrayList.add(sVar2.h);
                         }
@@ -1079,8 +1079,8 @@ public final class t3 extends q41 {
 
     public final boolean B3() {
         int i7;
-        g3 g3Var = this.f18898u3;
-        if (g3Var != null && g3Var.x() && (i7 = g3Var.f29314p0) == g3Var.f29317s0 && A3(B4(i7))) {
+        g3 g3Var = this.f18901u3;
+        if (g3Var != null && g3Var.x() && (i7 = g3Var.f29317p0) == g3Var.f29320s0 && A3(B4(i7))) {
             return true;
         }
         return false;
@@ -1088,7 +1088,7 @@ public final class t3 extends q41 {
 
     public final a B4(int i7) {
         if (i7 >= 0) {
-            ArrayList arrayList = this.f18903w4;
+            ArrayList arrayList = this.f18906w4;
             if (i7 < arrayList.size()) {
                 return (a) arrayList.get(i7);
             }
@@ -1102,12 +1102,12 @@ public final class t3 extends q41 {
         ArrayList arrayList = new ArrayList();
         HashSet hashSet = new HashSet();
         while (i7 <= i10) {
-            ArrayList arrayList2 = this.f18894s3;
+            ArrayList arrayList2 = this.f18897s3;
             if (i7 >= arrayList2.size()) {
                 break;
             }
             for (s sVar : T3((a) arrayList2.get(i7))) {
-                if (sVar.b() && (document = sVar.h) != null && hashSet.add(Long.valueOf(document.f26959id))) {
+                if (sVar.b() && (document = sVar.h) != null && hashSet.add(Long.valueOf(document.f26962id))) {
                     arrayList.add(sVar.h);
                 }
             }
@@ -1117,16 +1117,16 @@ public final class t3 extends q41 {
     }
 
     public final void C4() {
-        ArrayList arrayList = this.f18894s3;
+        ArrayList arrayList = this.f18897s3;
         arrayList.clear();
         arrayList.add(new a(new TL_iv.pageBlockHeading1(), 0, 0));
         arrayList.add(new a(new TL_iv.pageBlockParagraph(), 0, 0));
-        this.f37160f3.O(false);
+        this.f37190f3.O(false);
     }
 
     @Override
     public final boolean D1() {
-        return this.f18871a4;
+        return this.f18874a4;
     }
 
     public final ArrayList D2(int i7, int i10) {
@@ -1134,13 +1134,13 @@ public final class t3 extends q41 {
         ArrayList arrayList = new ArrayList();
         HashSet hashSet = new HashSet();
         while (i7 <= i10) {
-            ArrayList arrayList2 = this.f18894s3;
+            ArrayList arrayList2 = this.f18897s3;
             if (i7 >= arrayList2.size()) {
                 break;
             }
             for (s sVar : T3((a) arrayList2.get(i7))) {
-                if (sVar.b() && (photo = sVar.f18816g) != null && hashSet.add(Long.valueOf(photo.f26977id))) {
-                    arrayList.add(sVar.f18816g);
+                if (sVar.b() && (photo = sVar.f18819g) != null && hashSet.add(Long.valueOf(photo.f26980id))) {
+                    arrayList.add(sVar.f18819g);
                 }
             }
             i7++;
@@ -1152,7 +1152,7 @@ public final class t3 extends q41 {
         if (i7 < 0) {
             return null;
         }
-        return this.f37159e3.m(i7);
+        return this.f37189e3.m(i7);
     }
 
     public final ArrayList E2() {
@@ -1161,11 +1161,11 @@ public final class t3 extends q41 {
         HashSet hashSet = new HashSet();
         int i7 = 0;
         while (true) {
-            ArrayList arrayList2 = this.f18894s3;
+            ArrayList arrayList2 = this.f18897s3;
             if (i7 < arrayList2.size()) {
                 for (s sVar : T3((a) arrayList2.get(i7))) {
-                    if (sVar.b() && (photo = sVar.f18816g) != null && hashSet.add(Long.valueOf(photo.f26977id))) {
-                        arrayList.add(sVar.f18816g);
+                    if (sVar.b() && (photo = sVar.f18819g) != null && hashSet.add(Long.valueOf(photo.f26980id))) {
+                        arrayList.add(sVar.f18819g);
                     }
                 }
                 i7++;
@@ -1177,11 +1177,11 @@ public final class t3 extends q41 {
 
     public final int[] E4() {
         int i7;
-        ArrayList arrayList = this.f18894s3;
-        g3 g3Var = this.f18898u3;
+        ArrayList arrayList = this.f18897s3;
+        g3 g3Var = this.f18901u3;
         if (g3Var != null && g3Var.x()) {
-            int indexOf = arrayList.indexOf(B4(g3Var.f29314p0));
-            int indexOf2 = arrayList.indexOf(B4(g3Var.f29317s0));
+            int indexOf = arrayList.indexOf(B4(g3Var.f29317p0));
+            int indexOf2 = arrayList.indexOf(B4(g3Var.f29320s0));
             if (indexOf >= 0 && indexOf2 >= 0) {
                 return new int[]{Math.min(indexOf, indexOf2), Math.max(indexOf, indexOf2)};
             }
@@ -1201,7 +1201,7 @@ public final class t3 extends q41 {
 
     @Override
     public final void F1() {
-        r3 r3Var = this.f18887o3;
+        r3 r3Var = this.f18890o3;
         if (r3Var != null) {
             r3Var.x();
         }
@@ -1212,20 +1212,20 @@ public final class t3 extends q41 {
         if (f2Var != null) {
             f2Var.h();
         }
-        ArrayList arrayList = this.f18894s3;
+        ArrayList arrayList = this.f18897s3;
         SpannableStringBuilder g10 = a5.g(arrayList);
         J2();
         arrayList.clear();
-        HashMap hashMap = this.f18896t3;
+        HashMap hashMap = this.f18899t3;
         hashMap.clear();
-        this.f18892r3 = null;
+        this.f18895r3 = null;
         Z2(arrayList, a5.b(g10), hashMap);
-        this.f37160f3.O(false);
+        this.f37190f3.O(false);
         f2 f2Var2 = this.Q3;
         if (f2Var2 != null) {
             f2Var2.h();
         }
-        r3 r3Var = this.f18887o3;
+        r3 r3Var = this.f18890o3;
         if (r3Var != null) {
             r3Var.onContentChanged();
             r3Var.N();
@@ -1237,14 +1237,14 @@ public final class t3 extends q41 {
         int i10;
         int i11;
         int i12;
-        g3 g3Var = this.f18898u3;
+        g3 g3Var = this.f18901u3;
         if (g3Var != null && g3Var.x()) {
             if (O3()) {
-                int i13 = g3Var.f29314p0;
-                int i14 = g3Var.f29315q0;
-                int i15 = g3Var.f29318t0;
-                int i16 = g3Var.f29316r0;
-                int i17 = g3Var.f29319u0;
+                int i13 = g3Var.f29317p0;
+                int i14 = g3Var.f29318q0;
+                int i15 = g3Var.f29321t0;
+                int i16 = g3Var.f29319r0;
+                int i17 = g3Var.f29322u0;
                 for (int i18 = i14; i18 <= i15; i18++) {
                     g1 Q4 = Q4(i13, i18);
                     if (Q4 != null) {
@@ -1269,39 +1269,39 @@ public final class t3 extends q41 {
                     }
                 }
             } else if (B3()) {
-                g1 L2 = L2(g3Var.f29314p0);
-                if (L2 != null && Math.max(0, Math.min(Math.min(g3Var.f29316r0, g3Var.f29319u0), L2.length())) < Math.max(0, Math.min(Math.max(g3Var.f29316r0, g3Var.f29319u0), L2.length()))) {
+                g1 L2 = L2(g3Var.f29317p0);
+                if (L2 != null && Math.max(0, Math.min(Math.min(g3Var.f29319r0, g3Var.f29322u0), L2.length())) < Math.max(0, Math.min(Math.max(g3Var.f29319r0, g3Var.f29322u0), L2.length()))) {
                     return true;
                 }
             } else if (z3()) {
-                g1 v22 = v2(g3Var.f29314p0);
+                g1 v22 = v2(g3Var.f29317p0);
                 if (v22 != null) {
-                    int i19 = g3Var.f29316r0;
-                    int i20 = g3Var.f29319u0;
+                    int i19 = g3Var.f29319r0;
+                    int i20 = g3Var.f29322u0;
                     if (Math.max(0, Math.min(Math.min(i19, i20), v22.length())) < Math.max(0, Math.min(Math.max(i19, i20), v22.length()))) {
                         return true;
                     }
                 }
             } else if (J3()) {
-                g1 m42 = m4(g3Var.f29314p0);
+                g1 m42 = m4(g3Var.f29317p0);
                 if (m42 != null) {
-                    int i21 = g3Var.f29316r0;
-                    int i22 = g3Var.f29319u0;
+                    int i21 = g3Var.f29319r0;
+                    int i22 = g3Var.f29322u0;
                     if (Math.max(0, Math.min(Math.min(i21, i22), m42.length())) < Math.max(0, Math.min(Math.max(i21, i22), m42.length()))) {
                         return true;
                     }
                 }
             } else {
-                int i23 = g3Var.f29314p0;
-                int i24 = g3Var.f29317s0;
-                int i25 = g3Var.f29316r0;
-                int i26 = g3Var.f29319u0;
-                if (i23 >= 0 && i24 >= 0 && i24 >= i23 && i24 < this.f18903w4.size()) {
+                int i23 = g3Var.f29317p0;
+                int i24 = g3Var.f29320s0;
+                int i25 = g3Var.f29319r0;
+                int i26 = g3Var.f29322u0;
+                if (i23 >= 0 && i24 >= 0 && i24 >= i23 && i24 < this.f18906w4.size()) {
                     for (int i27 = i23; i27 <= i24; i27++) {
                         a B4 = B4(i27);
                         if (B4 != null) {
-                            if (B4.f18405t == 0) {
-                                TL_iv.PageBlock pageBlock = B4.f18389b;
+                            if (B4.f18408t == 0) {
+                                TL_iv.PageBlock pageBlock = B4.f18392b;
                                 if (!D3(pageBlock)) {
                                     continue;
                                 } else if (pageBlock instanceof TL_iv.pageBlockPreformatted) {
@@ -1332,7 +1332,7 @@ public final class t3 extends q41 {
 
     @Override
     public final void G1() {
-        r3 r3Var = this.f18887o3;
+        r3 r3Var = this.f18890o3;
         if (r3Var != null) {
             r3Var.G();
         }
@@ -1346,23 +1346,23 @@ public final class t3 extends q41 {
         if (T2 != null) {
             return T2;
         }
-        g3 g3Var = this.f18898u3;
-        if (g3Var != null && (i7 = g3Var.f29314p0) >= 0 && (B4 = B4(i7)) != null) {
+        g3 g3Var = this.f18901u3;
+        if (g3Var != null && (i7 = g3Var.f29317p0) >= 0 && (B4 = B4(i7)) != null) {
             return B4;
         }
         return null;
     }
 
     public final int[] G4() {
-        g3 g3Var = this.f18898u3;
+        g3 g3Var = this.f18901u3;
         if (g3Var != null) {
-            int i7 = g3Var.f29314p0;
-            int i10 = g3Var.f29317s0;
+            int i7 = g3Var.f29317p0;
+            int i10 = g3Var.f29320s0;
             if (i7 >= 0 && i10 >= 0) {
                 a B4 = B4(i7);
                 a B42 = B4(i10);
                 if (B4 != null && B42 != null) {
-                    ArrayList arrayList = this.f18894s3;
+                    ArrayList arrayList = this.f18897s3;
                     int indexOf = arrayList.indexOf(B4);
                     int indexOf2 = arrayList.indexOf(B42);
                     if (indexOf >= 0 && indexOf2 >= 0) {
@@ -1383,23 +1383,23 @@ public final class t3 extends q41 {
 
     @Override
     public final void H1(v4.d1 d1Var) {
-        r3 r3Var = this.f18887o3;
+        r3 r3Var = this.f18890o3;
         if (r3Var != null && d1Var != null) {
-            View view = d1Var.f56951a;
+            View view = d1Var.f57043a;
             int[] iArr = new int[2];
             view.getLocationOnScreen(iArr);
             view.getWidth();
-            this.f18871a4 = r3Var.a(view.getHeight() + iArr[1]);
+            this.f18874a4 = r3Var.a(view.getHeight() + iArr[1]);
         }
     }
 
     public final void H2() {
         ArrayList arrayList;
-        g3 g3Var = this.f18898u3;
-        int i7 = g3Var.f29314p0;
-        int i10 = g3Var.f29316r0;
-        int i11 = g3Var.f29317s0;
-        if (!a2(i7, i10, i11, g3Var.f29319u0, new String[]{""})) {
+        g3 g3Var = this.f18901u3;
+        int i7 = g3Var.f29317p0;
+        int i10 = g3Var.f29319r0;
+        int i11 = g3Var.f29320s0;
+        if (!a2(i7, i10, i11, g3Var.f29322u0, new String[]{""})) {
             if (i7 > i11) {
                 i11 = i7;
                 i7 = i11;
@@ -1407,16 +1407,16 @@ public final class t3 extends q41 {
             ArrayList arrayList2 = new ArrayList();
             int max = Math.max(0, i7);
             while (true) {
-                arrayList = this.f18894s3;
+                arrayList = this.f18897s3;
                 if (max > i11) {
                     break;
                 }
-                ArrayList arrayList3 = this.f18903w4;
+                ArrayList arrayList3 = this.f18906w4;
                 if (max >= arrayList3.size()) {
                     break;
                 }
                 a aVar = (a) arrayList3.get(max);
-                if (aVar.f18405t == 0 && arrayList.indexOf(aVar) >= 0) {
+                if (aVar.f18408t == 0 && arrayList.indexOf(aVar) >= 0) {
                     arrayList2.add(aVar);
                 }
                 max++;
@@ -1431,11 +1431,11 @@ public final class t3 extends q41 {
                 if (arrayList.isEmpty()) {
                     arrayList.add(new a(new TL_iv.pageBlockParagraph(), 0, 0));
                 }
-                HashMap hashMap = this.f18896t3;
+                HashMap hashMap = this.f18899t3;
                 if (!hashMap.isEmpty()) {
                     HashSet hashSet = new HashSet();
                     for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                        hashSet.addAll(((a) arrayList.get(i12)).f18396k);
+                        hashSet.addAll(((a) arrayList.get(i12)).f18399k);
                     }
                     hashMap.keySet().retainAll(hashSet);
                 }
@@ -1443,7 +1443,7 @@ public final class t3 extends q41 {
                 Y3();
                 v4();
                 g3Var.f(false);
-                this.f37160f3.O(false);
+                this.f37190f3.O(false);
                 f2 f2Var2 = this.Q3;
                 if (f2Var2 != null) {
                     f2Var2.h();
@@ -1454,7 +1454,7 @@ public final class t3 extends q41 {
     }
 
     public final void H4(g1 g1Var) {
-        g1Var.W1 = this.f18890q3;
+        g1Var.W1 = this.f18893q3;
         g1Var.C(new b(this, 4));
     }
 
@@ -1462,7 +1462,7 @@ public final class t3 extends q41 {
     public final void I1(v4.d1 d1Var) {
         a aVar = this.Z3;
         this.Z3 = null;
-        this.f18871a4 = false;
+        this.f18874a4 = false;
         if (aVar != null) {
             f2 f2Var = this.Q3;
             if (f2Var != null) {
@@ -1473,23 +1473,23 @@ public final class t3 extends q41 {
             if (f2Var2 != null) {
                 f2Var2.h();
             }
-            r3 r3Var = this.f18887o3;
+            r3 r3Var = this.f18890o3;
             if (r3Var != null) {
                 r3Var.onContentChanged();
             }
         } else if (d1Var != null) {
-            View view = d1Var.f56951a;
+            View view = d1Var.f57043a;
             view.setTranslationX(0.0f);
             view.setTranslationY(0.0f);
         }
     }
 
     public final boolean I2() {
-        g3 g3Var = this.f18898u3;
+        g3 g3Var = this.f18901u3;
         if (g3Var != null && g3Var.x()) {
             g3Var.f(false);
             return true;
-        } else if (this.f18889p4 == null) {
+        } else if (this.f18892p4 == null) {
             return false;
         } else {
             P2();
@@ -1506,33 +1506,33 @@ public final class t3 extends q41 {
         int b10;
         x31 G;
         a aVar = null;
-        if (d1Var != null && (b10 = d1Var.b()) >= 0 && (G = this.f37160f3.G(b10)) != null) {
+        if (d1Var != null && (b10 = d1Var.b()) >= 0 && (G = this.f37190f3.G(b10)) != null) {
             Object obj = G.G;
             if (obj instanceof a) {
                 aVar = (a) obj;
             }
         }
         this.Z3 = aVar;
-        this.f18871a4 = false;
-        r3 r3Var = this.f18887o3;
+        this.f18874a4 = false;
+        r3 r3Var = this.f18890o3;
         if (r3Var != null) {
             r3Var.q();
         }
     }
 
     public final void J2() {
-        g3 g3Var = this.f18898u3;
+        g3 g3Var = this.f18901u3;
         if (g3Var != null) {
             g3Var.f(true);
         }
         P2();
         q3();
-        IdentityHashMap identityHashMap = this.f18877g4;
+        IdentityHashMap identityHashMap = this.f18880g4;
         for (y4 y4Var : identityHashMap.values()) {
             y4Var.b();
         }
         identityHashMap.clear();
-        IdentityHashMap identityHashMap2 = this.f18878h4;
+        IdentityHashMap identityHashMap2 = this.f18881h4;
         for (u4 u4Var : identityHashMap2.values()) {
             u4Var.a();
         }
@@ -1542,20 +1542,20 @@ public final class t3 extends q41 {
     public final boolean J3() {
         int i7;
         a B4;
-        g3 g3Var = this.f18898u3;
-        if (g3Var != null && g3Var.x() && (i7 = g3Var.f29314p0) == g3Var.f29317s0 && i7 >= 0 && i7 < this.f18903w4.size() && g3Var.f29315q0 == 1 && g3Var.f29318t0 == 1 && (B4 = B4(i7)) != null && a6.p(B4.f18389b)) {
+        g3 g3Var = this.f18901u3;
+        if (g3Var != null && g3Var.x() && (i7 = g3Var.f29317p0) == g3Var.f29320s0 && i7 >= 0 && i7 < this.f18906w4.size() && g3Var.f29318q0 == 1 && g3Var.f29321t0 == 1 && (B4 = B4(i7)) != null && a6.p(B4.f18392b)) {
             return true;
         }
         return false;
     }
 
     public final a6 J4() {
-        g3 g3Var = this.f18898u3;
+        g3 g3Var = this.f18901u3;
         if (g3Var != null && g3Var.x()) {
-            int i7 = g3Var.f29314p0;
-            int i10 = g3Var.f29317s0;
+            int i7 = g3Var.f29317p0;
+            int i10 = g3Var.f29320s0;
             a B4 = B4(i7);
-            if (i7 == i10 && B4 != null && D3(B4.f18389b)) {
+            if (i7 == i10 && B4 != null && D3(B4.f18392b)) {
                 return x2(i7);
             }
             return null;
@@ -1566,13 +1566,13 @@ public final class t3 extends q41 {
     public final int K2(int i7) {
         int i10 = 0;
         for (int i11 = 0; i11 < i7; i11++) {
-            ArrayList arrayList = this.f18894s3;
+            ArrayList arrayList = this.f18897s3;
             if (i11 >= arrayList.size()) {
                 break;
             }
             if (A3((a) arrayList.get(i11))) {
                 i10++;
-            } else if (((a) arrayList.get(i11)).f18394i) {
+            } else if (((a) arrayList.get(i11)).f18397i) {
                 i10--;
             }
         }
@@ -1581,13 +1581,13 @@ public final class t3 extends q41 {
 
     public final boolean K3(int i7, int i10) {
         if (i7 >= 0) {
-            ArrayList arrayList = this.f18894s3;
+            ArrayList arrayList = this.f18897s3;
             if (i10 < arrayList.size() && i7 <= i10) {
                 boolean z9 = false;
                 while (i7 <= i10) {
                     a aVar = (a) arrayList.get(i7);
-                    if (!aVar.f18394i && !A3(aVar)) {
-                        if (!aVar.f18396k.isEmpty() || a6.p(aVar.f18389b)) {
+                    if (!aVar.f18397i && !A3(aVar)) {
+                        if (!aVar.f18399k.isEmpty() || a6.p(aVar.f18392b)) {
                             z9 = true;
                         }
                     }
@@ -1615,14 +1615,14 @@ public final class t3 extends q41 {
                 return null;
             } else {
                 a B4 = B4(i7);
-                if (B4 != null && D3(B4.f18389b)) {
+                if (B4 != null && D3(B4.f18392b)) {
                     int l22 = l2(i7);
                     if (jg.g.B(i10, i12, l22, 0) < jg.g.f(i10, i12, l22, 0)) {
                         a6 x22 = x2(i7);
                         if (x22 != null) {
                             return x22.getEditText().getText();
                         }
-                        return a6.A(B4.f18389b);
+                        return a6.A(B4.f18392b);
                     }
                     return null;
                 }
@@ -1644,16 +1644,16 @@ public final class t3 extends q41 {
     }
 
     public final boolean L3() {
-        g3 g3Var = this.f18898u3;
+        g3 g3Var = this.f18901u3;
         if (g3Var != null && g3Var.x()) {
-            int i7 = g3Var.f29314p0;
-            int i10 = g3Var.f29317s0;
+            int i7 = g3Var.f29317p0;
+            int i10 = g3Var.f29320s0;
             if (i7 >= 0 && i10 >= 0 && i10 >= i7) {
                 boolean z9 = false;
                 while (i7 <= i10) {
                     a B4 = B4(i7);
                     if (B4 != null) {
-                        if (F3(B4.f18389b)) {
+                        if (F3(B4.f18392b)) {
                             z9 = true;
                         }
                     }
@@ -1671,17 +1671,17 @@ public final class t3 extends q41 {
 
     public final boolean M1(a aVar, a aVar2, int i7) {
         float f10;
-        if (D3(aVar.f18389b)) {
-            TL_iv.PageBlock pageBlock = aVar2.f18389b;
-            ArrayList arrayList = aVar2.f18396k;
+        if (D3(aVar.f18392b)) {
+            TL_iv.PageBlock pageBlock = aVar2.f18392b;
+            ArrayList arrayList = aVar2.f18399k;
             if (D3(pageBlock)) {
                 View C1 = C1(aVar2);
                 if (C1 instanceof a6) {
                     g1 editText = ((a6) C1).getEditText();
                     if (editText.isFocused()) {
-                        SpannableStringBuilder A = a6.A(aVar.f18389b);
+                        SpannableStringBuilder A = a6.A(aVar.f18392b);
                         Paint.FontMetricsInt fontMetricsInt = editText.getPaint().getFontMetricsInt();
-                        if (F3(aVar.f18389b)) {
+                        if (F3(aVar.f18392b)) {
                             f10 = 0.85f;
                         } else {
                             f10 = 1.0f;
@@ -1690,19 +1690,19 @@ public final class t3 extends q41 {
                         int length = n10.length();
                         Editable text = editText.getText();
                         if (text != null && n10.length() != 0) {
-                            editText.f18583c2 = true;
+                            editText.f18586c2 = true;
                             text.insert(0, n10);
-                            editText.f18583c2 = false;
+                            editText.f18586c2 = false;
                         }
-                        a6.d(aVar.f18389b, editText.getText());
-                        aVar2.f18389b = aVar.f18389b;
-                        aVar2.f18390c = aVar.f18390c;
+                        a6.d(aVar.f18392b, editText.getText());
+                        aVar2.f18392b = aVar.f18392b;
+                        aVar2.f18393c = aVar.f18393c;
                         aVar2.d = aVar.d;
-                        aVar2.f18391e = aVar.f18391e;
-                        aVar2.f18392f = aVar.f18392f;
+                        aVar2.f18394e = aVar.f18394e;
+                        aVar2.f18395f = aVar.f18395f;
                         arrayList.clear();
-                        arrayList.addAll(aVar.f18396k);
-                        this.f18894s3.remove(i7 - 1);
+                        arrayList.addAll(aVar.f18399k);
+                        this.f18897s3.remove(i7 - 1);
                         A2();
                         v4();
                         c5();
@@ -1722,9 +1722,9 @@ public final class t3 extends q41 {
     public final void M4(View view) {
         v4.d1 T;
         int b10;
-        if (view != null && this.f37161g3 != null && this.j3 && (T = T(view)) != null && (b10 = T.b()) >= 0 && this.f37160f3.H(b10) >= 0) {
+        if (view != null && this.f37191g3 != null && this.j3 && (T = T(view)) != null && (b10 = T.b()) >= 0 && this.f37190f3.H(b10) >= 0) {
             this.H3 = true;
-            g3 g3Var = this.f18898u3;
+            g3 g3Var = this.f18901u3;
             if (g3Var.x()) {
                 g3Var.f(false);
             }
@@ -1732,7 +1732,7 @@ public final class t3 extends q41 {
                 view.performHapticFeedback(0);
             } catch (Exception unused) {
             }
-            this.f37161g3.t(T);
+            this.f37191g3.t(T);
         }
     }
 
@@ -1775,21 +1775,21 @@ public final class t3 extends q41 {
     public final void N4(a aVar, s sVar, gf gfVar) {
         int i7;
         float f10;
-        y4 y4Var = (y4) this.f18877g4.remove(sVar);
+        y4 y4Var = (y4) this.f18880g4.remove(sVar);
         if (y4Var != null) {
             y4Var.b();
         }
-        IdentityHashMap identityHashMap = this.f18878h4;
+        IdentityHashMap identityHashMap = this.f18881h4;
         u4 u4Var = (u4) identityHashMap.remove(sVar);
         if (u4Var != null) {
             u4Var.a();
         }
-        sVar.f18811a = 1;
-        sVar.f18815f = 0.0f;
-        u4 u4Var2 = new u4(this.f18883m3, gfVar, new h6.m(this, sVar, aVar, false, 10));
+        sVar.f18814a = 1;
+        sVar.f18818f = 0.0f;
+        u4 u4Var2 = new u4(this.f18886m3, gfVar, new h6.m(this, sVar, aVar, false, 10));
         identityHashMap.put(sVar, u4Var2);
-        if (!u4Var2.f18920f && !u4Var2.h && !u4Var2.f18921n) {
-            u4Var2.f18920f = true;
+        if (!u4Var2.f18923f && !u4Var2.h && !u4Var2.f18924n) {
+            u4Var2.f18923f = true;
             int i10 = gfVar.F;
             String str = gfVar.I;
             int i11 = gfVar.G;
@@ -1815,53 +1815,53 @@ public final class t3 extends q41 {
                     i10 = i13;
                 }
                 j20 j20Var2 = new j20();
-                j20Var2.f23450a = 0L;
+                j20Var2.f23471a = 0L;
                 j20Var2.d = (float) 0;
-                j20Var2.f23452b = Math.min(3000L, gfVar.f26840t);
+                j20Var2.f23473b = Math.min(3000L, gfVar.f26861t);
                 while (true) {
-                    long j3 = j20Var2.f23452b;
+                    long j3 = j20Var2.f23473b;
                     i7 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
                     if (i7 <= 0 || j3 >= 1000) {
                         break;
                     }
-                    j20Var2.f23452b = j3 * 2;
+                    j20Var2.f23473b = j3 * 2;
                 }
                 if (i7 <= 0) {
-                    j20Var2.f23452b = 3000L;
+                    j20Var2.f23473b = 3000L;
                 }
-                long j10 = j20Var2.f23452b;
-                j20Var2.f23455e = (float) j10;
-                j20Var2.f23456f = 1;
-                j20Var2.f23457g = 0;
-                j20Var2.f23464o = str;
-                j20Var2.f23466q = (int) ((f10 / 1000.0f) * 115200.0f);
-                j20Var2.f23467r = j10;
-                j20Var2.f23463n = 30;
+                long j10 = j20Var2.f23473b;
+                j20Var2.f23476e = (float) j10;
+                j20Var2.f23477f = 1;
+                j20Var2.f23478g = 0;
+                j20Var2.f23485o = str;
+                j20Var2.f23487q = (int) ((f10 / 1000.0f) * 115200.0f);
+                j20Var2.f23488r = j10;
+                j20Var2.f23484n = 30;
                 j20Var2.v = j10;
-                j20Var2.A = gfVar.f26835o;
-                String str2 = gfVar.f26831k;
+                j20Var2.A = gfVar.f26856o;
+                String str2 = gfVar.f26852k;
                 if (str2 != null) {
                     j20Var2.B = str2;
-                    ArrayList arrayList2 = gfVar.f26837q;
+                    ArrayList arrayList2 = gfVar.f26858q;
                     if (arrayList2 != null && !arrayList2.isEmpty()) {
-                        arrayList = gfVar.f26837q;
+                        arrayList = gfVar.f26858q;
                     }
                     j20Var2.G = arrayList;
                 } else {
-                    j20Var2.B = gfVar.f26830j;
-                    j20Var2.G = gfVar.f26836p;
+                    j20Var2.B = gfVar.f26851j;
+                    j20Var2.G = gfVar.f26857p;
                 }
                 j20Var2.I = true;
                 ye yeVar = gfVar.A;
                 if (yeVar != null) {
-                    int i14 = yeVar.f26633k;
+                    int i14 = yeVar.f26642k;
                     if (i14 == 90 || i14 == 270) {
                         int i15 = i11;
                         i11 = i10;
                         i10 = i15;
                     }
-                    i10 = (int) (i10 * yeVar.f26629e);
-                    i11 = (int) (i11 * yeVar.f26630f);
+                    i10 = (int) (i10 * yeVar.f26638e);
+                    i11 = (int) (i11 * yeVar.f26639f);
                 }
                 float f11 = i10;
                 float f12 = i11;
@@ -1877,30 +1877,30 @@ public final class t3 extends q41 {
                 if (i17 % 16 != 0) {
                     i17 = Math.max(1, Math.round(i17 / 16.0f)) * 16;
                 }
-                j20Var2.f23460k = i16;
+                j20Var2.f23481k = i16;
                 j20Var2.h = i16;
-                j20Var2.f23461l = i17;
-                j20Var2.f23458i = i17;
-                j20Var2.f23462m = -1;
-                j20Var2.f23469t = true;
-                j20Var2.f23454c = 0L;
+                j20Var2.f23482l = i17;
+                j20Var2.f23479i = i17;
+                j20Var2.f23483m = -1;
+                j20Var2.f23490t = true;
+                j20Var2.f23475c = 0L;
                 j20Var = j20Var2;
             }
             u4Var2.d = j20Var;
             if (j20Var != null && j20Var.c()) {
                 TLRPC.TL_message tL_message = new TLRPC.TL_message();
-                tL_message.f26974id = 1;
+                tL_message.f26977id = 1;
                 String absolutePath = new File(w7.z(4), "rich_anim_" + iz.p() + ".mp4").getAbsolutePath();
-                u4Var2.f18919e = absolutePath;
+                u4Var2.f18922e = absolutePath;
                 tL_message.attachPath = absolutePath;
-                ij ijVar = new ij(u4Var2.f18916a, tL_message, null, false, false);
-                u4Var2.f18918c = ijVar;
-                ijVar.f23262p0 = u4Var2.d;
-                qs f13 = qs.f(u4Var2.f18916a);
-                f13.b(u4Var2, qs.f24960a2);
-                f13.b(u4Var2, qs.f24966b2);
-                f13.b(u4Var2, qs.f24972c2);
-                MediaController.B().h0(u4Var2.f18918c, false, false, false);
+                ij ijVar = new ij(u4Var2.f18919a, tL_message, null, false, false);
+                u4Var2.f18921c = ijVar;
+                ijVar.f23280p0 = u4Var2.d;
+                qs f13 = qs.f(u4Var2.f18919a);
+                f13.b(u4Var2, qs.f24969a2);
+                f13.b(u4Var2, qs.f24975b2);
+                f13.b(u4Var2, qs.f24981c2);
+                MediaController.B().h0(u4Var2.f18921c, false, false, false);
                 return;
             }
             u4Var2.b();
@@ -1908,12 +1908,12 @@ public final class t3 extends q41 {
     }
 
     public final boolean O3() {
-        g3 g3Var = this.f18898u3;
+        g3 g3Var = this.f18901u3;
         if (g3Var != null && g3Var.x()) {
-            int i7 = g3Var.f29314p0;
-            int i10 = g3Var.f29317s0;
+            int i7 = g3Var.f29317p0;
+            int i10 = g3Var.f29320s0;
             a B4 = B4(i7);
-            if (i7 == i10 && B4 != null && (B4.f18389b instanceof TL_iv.pageBlockTable)) {
+            if (i7 == i10 && B4 != null && (B4.f18392b instanceof TL_iv.pageBlockTable)) {
                 return true;
             }
             return false;
@@ -1922,12 +1922,12 @@ public final class t3 extends q41 {
     }
 
     public final void O4(a aVar, s sVar, String str, boolean z9, int i7, int i10, int i11) {
-        IdentityHashMap identityHashMap = this.f18877g4;
+        IdentityHashMap identityHashMap = this.f18880g4;
         y4 y4Var = (y4) identityHashMap.remove(sVar);
         if (y4Var != null) {
             y4Var.b();
         }
-        y4 y4Var2 = new y4(this.f18883m3, str, z9, i7, i10, i11, new f3(aVar, sVar, this));
+        y4 y4Var2 = new y4(this.f18886m3, str, z9, i7, i10, i11, new f3(aVar, sVar, this));
         identityHashMap.put(sVar, y4Var2);
         y4Var2.d();
     }
@@ -1940,32 +1940,32 @@ public final class t3 extends q41 {
         this.J3 = false;
         this.K3 = null;
         this.L3 = null;
-        k60 k60Var = this.f18891q4;
+        k60 k60Var = this.f18894q4;
         if (k60Var != null) {
-            this.f18891q4 = null;
+            this.f18894q4 = null;
             k60Var.u();
         }
-        m5 m5Var = this.f18889p4;
+        m5 m5Var = this.f18892p4;
         if (m5Var != null) {
             LinkedHashSet linkedHashSet = m5Var.H;
             if (!linkedHashSet.isEmpty()) {
                 linkedHashSet.clear();
-                m5Var.f18708w.invalidate();
+                m5Var.f18711w.invalidate();
                 m5Var.v();
             }
-            this.f18889p4 = null;
+            this.f18892p4 = null;
         }
-        this.f18895s4 = -1;
-        this.f18893r4 = -1;
+        this.f18898s4 = -1;
+        this.f18896r4 = -1;
         setEditTextsLocked(false);
     }
 
     public final boolean P3() {
-        org.telegram.messenger.p0 p0Var = qp.s1(this.f18883m3).f24935x7;
+        org.telegram.messenger.p0 p0Var = qp.s1(this.f18886m3).f24942x7;
         int i7 = 0;
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f18894s3;
+            ArrayList arrayList = this.f18897s3;
             if (i7 >= arrayList.size()) {
                 break;
             }
@@ -1975,11 +1975,11 @@ public final class t3 extends q41 {
         ArrayList c32 = c3();
         ?? obj = new Object();
         obj.d = i10;
-        obj.f18607b = c32.size() + obj.f18607b;
+        obj.f18610b = c32.size() + obj.f18610b;
         for (int i11 = 0; i11 < c32.size(); i11++) {
             g2.b((TL_iv.PageBlock) c32.get(i11), 1, obj);
         }
-        if (obj.f18606a > ((org.telegram.messenger.j0) p0Var.V.f13555b).f23439c || obj.f18607b > ((org.telegram.messenger.j0) p0Var.W.f13555b).f23439c || obj.f18608c > ((org.telegram.messenger.j0) p0Var.X.f13555b).f23439c || obj.d > ((org.telegram.messenger.j0) p0Var.Y.f13555b).f23439c || obj.f18609e > ((org.telegram.messenger.j0) p0Var.Z.f13555b).f23439c) {
+        if (obj.f18609a > ((org.telegram.messenger.j0) p0Var.V.f13555b).f23460c || obj.f18610b > ((org.telegram.messenger.j0) p0Var.W.f13555b).f23460c || obj.f18611c > ((org.telegram.messenger.j0) p0Var.X.f13555b).f23460c || obj.d > ((org.telegram.messenger.j0) p0Var.Y.f13555b).f23460c || obj.f18612e > ((org.telegram.messenger.j0) p0Var.Z.f13555b).f23460c) {
             return false;
         }
         return true;
@@ -1990,7 +1990,7 @@ public final class t3 extends q41 {
         if (C1 instanceof a6) {
             return ((a6) C1).getEditText().getText();
         }
-        return a6.A(aVar.f18389b);
+        return a6.A(aVar.f18392b);
     }
 
     public final g1 Q4(int i7, int i10) {
@@ -2004,14 +2004,14 @@ public final class t3 extends q41 {
     public final int[] R3(int i7) {
         int i10 = 0;
         for (int i11 = 0; i11 < this.U3.size(); i11++) {
-            int length = a6.z(((a) this.U3.get(i11)).f18389b).length();
+            int length = a6.z(((a) this.U3.get(i11)).f18392b).length();
             if (i7 <= i10 + length) {
                 return new int[]{i11, i7 - i10};
             }
             i10 += length + 1;
         }
         int size = this.U3.size() - 1;
-        return new int[]{size, a6.z(((a) this.U3.get(size)).f18389b).length()};
+        return new int[]{size, a6.z(((a) this.U3.get(size)).f18392b).length()};
     }
 
     public final g1 S2() {
@@ -2032,12 +2032,12 @@ public final class t3 extends q41 {
         int i10 = 1;
         int i11 = i7 + 1;
         while (true) {
-            ArrayList arrayList = this.f18894s3;
+            ArrayList arrayList = this.f18897s3;
             if (i11 < arrayList.size()) {
                 a aVar = (a) arrayList.get(i11);
                 if (A3(aVar)) {
                     i10++;
-                } else if (aVar.f18394i && i10 - 1 == 0) {
+                } else if (aVar.f18397i && i10 - 1 == 0) {
                     return i11;
                 }
                 i11++;
@@ -2067,7 +2067,7 @@ public final class t3 extends q41 {
             int i7 = E4[0];
             int i10 = E4[1];
             if (i7 >= 0) {
-                ArrayList arrayList = this.f18894s3;
+                ArrayList arrayList = this.f18897s3;
                 if (i10 < arrayList.size() && i7 <= i10) {
                     f2 f2Var = this.Q3;
                     if (f2Var != null) {
@@ -2076,13 +2076,13 @@ public final class t3 extends q41 {
                     if (K3(i7, i10)) {
                         for (int i11 = i7; i11 <= i10; i11++) {
                             a aVar = (a) arrayList.get(i11);
-                            boolean z10 = aVar.f18394i;
-                            ArrayList arrayList2 = aVar.f18396k;
+                            boolean z10 = aVar.f18397i;
+                            ArrayList arrayList2 = aVar.f18399k;
                             if (!z10 && !A3(aVar)) {
-                                if (a6.p(aVar.f18389b)) {
+                                if (a6.p(aVar.f18392b)) {
                                     TL_iv.pageBlockParagraph pageblockparagraph = new TL_iv.pageBlockParagraph();
-                                    pageblockparagraph.text = aVar.f18389b.text;
-                                    aVar.f18389b = pageblockparagraph;
+                                    pageblockparagraph.text = aVar.f18392b.text;
+                                    aVar.f18392b = pageblockparagraph;
                                 } else if (!arrayList2.isEmpty()) {
                                     a8.p0.z(1, arrayList2);
                                 }
@@ -2092,19 +2092,19 @@ public final class t3 extends q41 {
                         long a10 = n0.a();
                         for (int i12 = i7; i12 <= i10; i12++) {
                             a aVar2 = (a) arrayList.get(i12);
-                            boolean z11 = aVar2.f18394i;
-                            ArrayList arrayList3 = aVar2.f18396k;
+                            boolean z11 = aVar2.f18397i;
+                            ArrayList arrayList3 = aVar2.f18399k;
                             if (!z11 && !A3(aVar2)) {
-                                if (a6.p(aVar2.f18389b)) {
+                                if (a6.p(aVar2.f18392b)) {
                                     long a11 = n0.a();
-                                    TL_iv.RichText j3 = a6.j(aVar2.f18389b);
+                                    TL_iv.RichText j3 = a6.j(aVar2.f18392b);
                                     if (j3 != null && !(j3 instanceof TL_iv.textEmpty)) {
-                                        this.f18896t3.put(Long.valueOf(a11), j3);
+                                        this.f18899t3.put(Long.valueOf(a11), j3);
                                     }
                                     arrayList3.add(Long.valueOf(a11));
                                     TL_iv.pageBlockParagraph pageblockparagraph2 = new TL_iv.pageBlockParagraph();
-                                    pageblockparagraph2.text = aVar2.f18389b.text;
-                                    aVar2.f18389b = pageblockparagraph2;
+                                    pageblockparagraph2.text = aVar2.f18392b.text;
+                                    aVar2.f18392b = pageblockparagraph2;
                                 }
                                 arrayList3.add(0, Long.valueOf(a10));
                             }
@@ -2113,7 +2113,7 @@ public final class t3 extends q41 {
                     A2();
                     Y3();
                     v4();
-                    g3 g3Var = this.f18898u3;
+                    g3 g3Var = this.f18901u3;
                     if (g3Var != null && g3Var.x()) {
                         z9 = true;
                     } else {
@@ -2121,7 +2121,7 @@ public final class t3 extends q41 {
                     }
                     a aVar3 = (a) arrayList.get(Math.max(0, Math.min(i7, arrayList.size() - 1)));
                     a aVar4 = (a) arrayList.get(Math.max(0, Math.min(i10, arrayList.size() - 1)));
-                    this.f37160f3.O(false);
+                    this.f37190f3.O(false);
                     f2 f2Var2 = this.Q3;
                     if (f2Var2 != null) {
                         f2Var2.h();
@@ -2161,29 +2161,29 @@ public final class t3 extends q41 {
             return null;
         }
         int i10 = 0;
-        for (int i11 = 0; i11 < this.f18894s3.size(); i11++) {
-            for (s sVar : T3((a) this.f18894s3.get(i11))) {
-                if (sVar != null && (document = sVar.h) != null && document.f26959id == j3) {
+        for (int i11 = 0; i11 < this.f18897s3.size(); i11++) {
+            for (s sVar : T3((a) this.f18897s3.get(i11))) {
+                if (sVar != null && (document = sVar.h) != null && document.f26962id == j3) {
                     return document;
                 }
             }
         }
-        TL_iv.RichMessage richMessage = this.f18892r3;
+        TL_iv.RichMessage richMessage = this.f18895r3;
         if (richMessage != null && (arrayList = richMessage.documents) != null) {
             int size = arrayList.size();
             while (i10 < size) {
                 TLRPC.Document document3 = arrayList.get(i10);
                 i10++;
                 TLRPC.Document document4 = document3;
-                if (document4 != null && document4.f26959id == j3) {
+                if (document4 != null && document4.f26962id == j3) {
                     return document4;
                 }
             }
         }
-        HashMap hashMap = t4.f18909a;
+        HashMap hashMap = t4.f18912a;
         synchronized (t4.class) {
             if (i7 != 0) {
-                document2 = (TLRPC.Document) t4.f18910b.get(Long.valueOf(j3));
+                document2 = (TLRPC.Document) t4.f18913b.get(Long.valueOf(j3));
             }
         }
         return document2;
@@ -2195,22 +2195,22 @@ public final class t3 extends q41 {
 
     public final int W2(int i7, int i10) {
         while (i7 >= 0) {
-            ArrayList arrayList = this.f18894s3;
+            ArrayList arrayList = this.f18897s3;
             if (i7 >= arrayList.size()) {
                 break;
             }
             a aVar = (a) arrayList.get(i7);
-            if (!aVar.f18394i) {
+            if (!aVar.f18397i) {
                 int i11 = -1;
                 int i12 = 0;
                 for (int i13 = 0; i13 < i7; i13++) {
                     a aVar2 = (a) arrayList.get(i13);
                     if (A3(aVar2)) {
                         i12++;
-                        if (i11 == -1 && !((TL_iv.pageBlockDetails) aVar2.f18389b).open) {
+                        if (i11 == -1 && !((TL_iv.pageBlockDetails) aVar2.f18392b).open) {
                             i11 = i12;
                         }
-                    } else if (aVar2.f18394i) {
+                    } else if (aVar2.f18397i) {
                         if (i11 != -1 && i12 == i11) {
                             i11 = -1;
                         }
@@ -2220,7 +2220,7 @@ public final class t3 extends q41 {
                 if (i11 != -1) {
                     continue;
                 } else {
-                    TL_iv.PageBlock pageBlock = aVar.f18389b;
+                    TL_iv.PageBlock pageBlock = aVar.f18392b;
                     if (!H3(pageBlock) || o3(pageBlock) || (pageBlock instanceof TL_iv.pageBlockTable)) {
                         return i7;
                     }
@@ -2238,7 +2238,7 @@ public final class t3 extends q41 {
     public final void X1(a aVar, gf gfVar) {
         TL_iv.PageBlock pageblockvideo;
         t3 t3Var;
-        if (aVar != null && G3(aVar.f18389b)) {
+        if (aVar != null && G3(aVar.f18392b)) {
             String str = gfVar.h;
             if (str == null) {
                 str = gfVar.I;
@@ -2251,64 +2251,64 @@ public final class t3 extends q41 {
                 }
                 s W3 = W3(gfVar, str2);
                 boolean c10 = u4.c(gfVar);
-                if (!gfVar.f26824b && !c10) {
+                if (!gfVar.f26845b && !c10) {
                     pageblockvideo = new TL_iv.pageBlockPhoto();
                 } else {
                     pageblockvideo = new TL_iv.pageBlockVideo();
                 }
-                if (E3(aVar.f18389b)) {
-                    j3(aVar.f18389b).add(pageblockvideo);
+                if (E3(aVar.f18392b)) {
+                    j3(aVar.f18392b).add(pageblockvideo);
                     if (aVar.h == null) {
                         aVar.h = new ArrayList();
                     }
                     aVar.h.add(W3);
                 } else {
-                    s sVar = aVar.f18393g;
-                    if (sVar != null && sVar.f18811a != 0) {
+                    s sVar = aVar.f18396g;
+                    if (sVar != null && sVar.f18814a != 0) {
                         TL_iv.pageBlockCollage pageblockcollage = new TL_iv.pageBlockCollage();
-                        pageblockcollage.caption = aVar.f18389b.caption;
+                        pageblockcollage.caption = aVar.f18392b.caption;
                         j0.d(pageblockcollage);
                         ArrayList<TL_iv.PageBlock> arrayList = new ArrayList<>();
                         pageblockcollage.items = arrayList;
-                        arrayList.add(aVar.f18389b);
+                        arrayList.add(aVar.f18392b);
                         pageblockcollage.items.add(pageblockvideo);
                         ArrayList arrayList2 = new ArrayList();
                         aVar.h = arrayList2;
-                        arrayList2.add(aVar.f18393g);
+                        arrayList2.add(aVar.f18396g);
                         aVar.h.add(W3);
-                        aVar.f18393g = null;
-                        aVar.f18389b = pageblockcollage;
+                        aVar.f18396g = null;
+                        aVar.f18392b = pageblockcollage;
                     } else {
-                        aVar.f18389b = pageblockvideo;
-                        aVar.f18393g = W3;
+                        aVar.f18392b = pageblockvideo;
+                        aVar.f18396g = W3;
                     }
                 }
-                this.f37160f3.O(false);
+                this.f37190f3.O(false);
                 q4(aVar);
                 if (c10) {
                     N4(aVar, W3, gfVar);
                     t3Var = this;
                 } else {
                     t3Var = this;
-                    t3Var.O4(aVar, W3, str2, gfVar.f26824b, gfVar.F, gfVar.G, gfVar.E);
+                    t3Var.O4(aVar, W3, str2, gfVar.f26845b, gfVar.F, gfVar.G, gfVar.E);
                 }
                 f2 f2Var2 = t3Var.Q3;
                 if (f2Var2 != null) {
                     f2Var2.h();
                 }
-                t3Var.f18887o3.onContentChanged();
+                t3Var.f18890o3.onContentChanged();
             }
         }
     }
 
     public final a X3(int i7, int i10) {
         while (i7 >= 0) {
-            ArrayList arrayList = this.f18903w4;
+            ArrayList arrayList = this.f18906w4;
             if (i7 < arrayList.size()) {
                 a aVar = (a) arrayList.get(i7);
-                if (!aVar.f18394i) {
-                    if (aVar.f18405t == 0) {
-                        TL_iv.PageBlock pageBlock = aVar.f18389b;
+                if (!aVar.f18397i) {
+                    if (aVar.f18408t == 0) {
+                        TL_iv.PageBlock pageBlock = aVar.f18392b;
                         if (H3(pageBlock) && !o3(pageBlock) && !(pageBlock instanceof TL_iv.pageBlockTable)) {
                         }
                     }
@@ -2329,18 +2329,18 @@ public final class t3 extends q41 {
         }
         a aVar2 = aVar;
         if (aVar2 != null && pageBlock != null) {
-            ArrayList arrayList = this.f18894s3;
-            if (arrayList.indexOf(aVar2) >= 0 && !A3(aVar2) && !aVar2.f18394i) {
-                TL_iv.PageBlock pageBlock2 = aVar2.f18389b;
+            ArrayList arrayList = this.f18897s3;
+            if (arrayList.indexOf(aVar2) >= 0 && !A3(aVar2) && !aVar2.f18397i) {
+                TL_iv.PageBlock pageBlock2 = aVar2.f18392b;
                 if (pageBlock != pageBlock2 && D3(pageBlock2) && D3(pageBlock)) {
                     a6 x22 = x2(arrayList.indexOf(aVar2));
                     if (x22 != null) {
                         A = x22.getEditText().getText();
                     } else {
-                        A = a6.A(aVar2.f18389b);
+                        A = a6.A(aVar2.f18392b);
                     }
                     a6.d(pageBlock, A);
-                    TL_iv.RichText j3 = a6.j(aVar2.f18389b);
+                    TL_iv.RichText j3 = a6.j(aVar2.f18392b);
                     if (j3 != null && a6.j(pageBlock) != null) {
                         if (pageBlock instanceof TL_iv.pageBlockBlockquote) {
                             ((TL_iv.pageBlockBlockquote) pageBlock).caption = j3;
@@ -2362,9 +2362,9 @@ public final class t3 extends q41 {
             if (f2Var != null) {
                 f2Var.d();
             }
-            TL_iv.RichMessage richMessage2 = this.f18892r3;
+            TL_iv.RichMessage richMessage2 = this.f18895r3;
             if (richMessage2 == null) {
-                this.f18892r3 = richMessage;
+                this.f18895r3 = richMessage;
             } else {
                 ArrayList<TLRPC.Photo> arrayList2 = richMessage.photos;
                 if (arrayList2 != null) {
@@ -2372,20 +2372,20 @@ public final class t3 extends q41 {
                 }
                 ArrayList<TLRPC.Document> arrayList3 = richMessage.documents;
                 if (arrayList3 != null) {
-                    this.f18892r3.documents.addAll(arrayList3);
+                    this.f18895r3.documents.addAll(arrayList3);
                 }
             }
             ArrayList arrayList4 = new ArrayList();
-            Z2(arrayList4, richMessage.blocks, this.f18896t3);
+            Z2(arrayList4, richMessage.blocks, this.f18899t3);
             if (!arrayList4.isEmpty()) {
                 for (int i7 = 0; i7 < arrayList4.size(); i7++) {
                     y4((a) arrayList4.get(i7));
                 }
-                ArrayList arrayList5 = this.f18894s3;
+                ArrayList arrayList5 = this.f18897s3;
                 int size = arrayList5.size();
                 a T2 = T2();
                 if (T2 != null && (indexOf = arrayList5.indexOf(T2)) >= 0) {
-                    TL_iv.PageBlock pageBlock = T2.f18389b;
+                    TL_iv.PageBlock pageBlock = T2.f18392b;
                     if ((pageBlock instanceof TL_iv.pageBlockParagraph) && a6.z(pageBlock).isEmpty()) {
                         arrayList5.remove(indexOf);
                         size = indexOf;
@@ -2396,12 +2396,12 @@ public final class t3 extends q41 {
                 arrayList5.addAll(size, arrayList4);
                 Y3();
                 v4();
-                this.f37160f3.O(false);
+                this.f37190f3.O(false);
                 f2 f2Var2 = this.Q3;
                 if (f2Var2 != null) {
                     f2Var2.h();
                 }
-                r3 r3Var = this.f18887o3;
+                r3 r3Var = this.f18890o3;
                 if (r3Var != null) {
                     r3Var.onContentChanged();
                 }
@@ -2414,7 +2414,7 @@ public final class t3 extends q41 {
             View childAt = getChildAt(i7);
             if (childAt instanceof a6) {
                 a6 a6Var = (a6) childAt;
-                a6Var.f18426f.J();
+                a6Var.f18429f.J();
                 a6Var.h.J();
             } else if (childAt instanceof k0) {
                 ((k0) childAt).getCaptionEditText().J();
@@ -2427,19 +2427,19 @@ public final class t3 extends q41 {
     public final void Y3() {
         int i7 = 0;
         while (true) {
-            ArrayList arrayList = this.f18894s3;
+            ArrayList arrayList = this.f18897s3;
             if (i7 < arrayList.size()) {
                 a aVar = (a) arrayList.get(i7);
-                if (!aVar.f18396k.isEmpty() && a6.p(aVar.f18389b)) {
+                if (!aVar.f18399k.isEmpty() && a6.p(aVar.f18392b)) {
                     long a10 = n0.a();
-                    TL_iv.RichText j3 = a6.j(aVar.f18389b);
+                    TL_iv.RichText j3 = a6.j(aVar.f18392b);
                     if (j3 != null && !(j3 instanceof TL_iv.textEmpty)) {
-                        this.f18896t3.put(Long.valueOf(a10), j3);
+                        this.f18899t3.put(Long.valueOf(a10), j3);
                     }
-                    aVar.f18396k.add(Long.valueOf(a10));
+                    aVar.f18399k.add(Long.valueOf(a10));
                     TL_iv.pageBlockParagraph pageblockparagraph = new TL_iv.pageBlockParagraph();
-                    pageblockparagraph.text = aVar.f18389b.text;
-                    aVar.f18389b = pageblockparagraph;
+                    pageblockparagraph.text = aVar.f18392b.text;
+                    aVar.f18392b = pageblockparagraph;
                 }
                 i7++;
             } else {
@@ -2456,16 +2456,16 @@ public final class t3 extends q41 {
         if (aVar2 == null) {
             return;
         }
-        X4(aVar2, pageBlock, aVar2.f18390c, aVar2.d, aVar2.f18391e, aVar2.f18392f);
+        X4(aVar2, pageBlock, aVar2.f18393c, aVar2.d, aVar2.f18394e, aVar2.f18395f);
     }
 
     public final a Z1(a aVar, int i7) {
         int i10;
-        ArrayList arrayList = this.f18903w4;
+        ArrayList arrayList = this.f18906w4;
         int indexOf = arrayList.indexOf(aVar);
         if (indexOf >= 0 && (i10 = indexOf + i7) >= 0 && i10 < arrayList.size()) {
             a aVar2 = (a) arrayList.get(i10);
-            if (aVar2.f18405t != 0) {
+            if (aVar2.f18408t != 0) {
                 return aVar2;
             }
             return null;
@@ -2491,10 +2491,10 @@ public final class t3 extends q41 {
             return;
         }
         if (i7 == 0) {
-            X4(aVar2, aVar2.f18389b, 0, 0, false, false);
+            X4(aVar2, aVar2.f18392b, 0, 0, false, false);
             return;
         }
-        int max = Math.max(1, aVar2.f18390c);
+        int max = Math.max(1, aVar2.f18393c);
         if (i7 == 2) {
             i10 = Math.max(1, aVar2.d);
         } else {
@@ -2505,11 +2505,11 @@ public final class t3 extends q41 {
         } else {
             z9 = false;
         }
-        TL_iv.PageBlock pageBlock2 = aVar2.f18389b;
+        TL_iv.PageBlock pageBlock2 = aVar2.f18392b;
         if (!(pageBlock2 instanceof TL_iv.pageBlockParagraph)) {
             pageBlock2 = new TL_iv.pageBlockParagraph();
         }
-        if (z9 && aVar2.f18392f) {
+        if (z9 && aVar2.f18395f) {
             z10 = true;
             pageBlock = pageBlock2;
             t3Var = this;
@@ -2543,11 +2543,11 @@ public final class t3 extends q41 {
         int B5;
         int f14;
         boolean O3 = O3();
-        g3 g3Var = this.f18898u3;
+        g3 g3Var = this.f18901u3;
         if (O3) {
-            int i7 = g3Var.f29314p0;
-            int i10 = g3Var.f29315q0;
-            if (i10 == g3Var.f29318t0 && (Q4 = Q4(i7, i10)) != null && (B5 = jg.g.B(g3Var.f29316r0, g3Var.f29319u0, (length5 = Q4.length()), 0)) < (f14 = jg.g.f(g3Var.f29316r0, g3Var.f29319u0, length5, 0))) {
+            int i7 = g3Var.f29317p0;
+            int i10 = g3Var.f29318q0;
+            if (i10 == g3Var.f29321t0 && (Q4 = Q4(i7, i10)) != null && (B5 = jg.g.B(g3Var.f29319r0, g3Var.f29322u0, (length5 = Q4.length()), 0)) < (f14 = jg.g.f(g3Var.f29319r0, g3Var.f29322u0, length5, 0))) {
                 f2 f2Var = this.Q3;
                 if (f2Var != null) {
                     f2Var.d();
@@ -2567,9 +2567,9 @@ public final class t3 extends q41 {
                 Q4.B();
             }
         } else if (B3()) {
-            int i11 = g3Var.f29314p0;
+            int i11 = g3Var.f29317p0;
             g1 L2 = L2(i11);
-            if (L2 != null && (B4 = jg.g.B(g3Var.f29316r0, g3Var.f29319u0, (length4 = L2.length()), 0)) < (f13 = jg.g.f(g3Var.f29316r0, g3Var.f29319u0, length4, 0))) {
+            if (L2 != null && (B4 = jg.g.B(g3Var.f29319r0, g3Var.f29322u0, (length4 = L2.length()), 0)) < (f13 = jg.g.f(g3Var.f29319r0, g3Var.f29322u0, length4, 0))) {
                 f2 f2Var3 = this.Q3;
                 if (f2Var3 != null) {
                     f2Var3.d();
@@ -2589,9 +2589,9 @@ public final class t3 extends q41 {
                 L2.B();
             }
         } else if (z3()) {
-            int i12 = g3Var.f29314p0;
+            int i12 = g3Var.f29317p0;
             g1 v22 = v2(i12);
-            if (v22 != null && (B3 = jg.g.B(g3Var.f29316r0, g3Var.f29319u0, (length3 = v22.length()), 0)) < (f12 = jg.g.f(g3Var.f29316r0, g3Var.f29319u0, length3, 0))) {
+            if (v22 != null && (B3 = jg.g.B(g3Var.f29319r0, g3Var.f29322u0, (length3 = v22.length()), 0)) < (f12 = jg.g.f(g3Var.f29319r0, g3Var.f29322u0, length3, 0))) {
                 f2 f2Var5 = this.Q3;
                 if (f2Var5 != null) {
                     f2Var5.d();
@@ -2611,9 +2611,9 @@ public final class t3 extends q41 {
                 v22.B();
             }
         } else if (J3()) {
-            int i13 = g3Var.f29314p0;
+            int i13 = g3Var.f29317p0;
             g1 m42 = m4(i13);
-            if (m42 != null && (B2 = jg.g.B(g3Var.f29316r0, g3Var.f29319u0, (length2 = m42.length()), 0)) < (f11 = jg.g.f(g3Var.f29316r0, g3Var.f29319u0, length2, 0))) {
+            if (m42 != null && (B2 = jg.g.B(g3Var.f29319r0, g3Var.f29322u0, (length2 = m42.length()), 0)) < (f11 = jg.g.f(g3Var.f29319r0, g3Var.f29322u0, length2, 0))) {
                 f2 f2Var7 = this.Q3;
                 if (f2Var7 != null) {
                     f2Var7.d();
@@ -2634,7 +2634,7 @@ public final class t3 extends q41 {
             }
         } else {
             a6 J4 = J4();
-            if (J4 == null || (B = jg.g.B(g3Var.f29316r0, g3Var.f29319u0, (length = J4.getEditText().length()), 0)) >= (f10 = jg.g.f(g3Var.f29316r0, g3Var.f29319u0, length, 0))) {
+            if (J4 == null || (B = jg.g.B(g3Var.f29319r0, g3Var.f29322u0, (length = J4.getEditText().length()), 0)) >= (f10 = jg.g.f(g3Var.f29319r0, g3Var.f29322u0, length, 0))) {
                 return;
             }
             f2 f2Var9 = this.Q3;
@@ -2662,7 +2662,7 @@ public final class t3 extends q41 {
         g3 g3Var;
         int i7;
         a T2 = T2();
-        if (T2 == null && (g3Var = this.f18898u3) != null && g3Var.x() && (i7 = g3Var.f29314p0) == g3Var.f29317s0) {
+        if (T2 == null && (g3Var = this.f18901u3) != null && g3Var.x() && (i7 = g3Var.f29317p0) == g3Var.f29320s0) {
             return B4(i7);
         }
         return T2;
@@ -2672,10 +2672,10 @@ public final class t3 extends q41 {
         a6 a6Var;
         a aVar;
         x5 x5Var;
-        this.f37160f3.T();
+        this.f37190f3.T();
         for (int i7 = 0; i7 < getChildCount(); i7++) {
             View childAt = getChildAt(i7);
-            if ((childAt instanceof a6) && (aVar = (a6Var = (a6) childAt).f18432y) != null && (x5Var = a6Var.D) != null) {
+            if ((childAt instanceof a6) && (aVar = (a6Var = (a6) childAt).f18435y) != null && (x5Var = a6Var.D) != null) {
                 a6Var.f(aVar, x5Var, a6Var.E);
             }
         }
@@ -2691,10 +2691,10 @@ public final class t3 extends q41 {
         ArrayList arrayList = new ArrayList();
         int i14 = i7;
         while (i14 < i10) {
-            ArrayList arrayList2 = this.f18894s3;
+            ArrayList arrayList2 = this.f18897s3;
             a aVar = (a) arrayList2.get(i14);
-            boolean z11 = aVar.f18394i;
-            ArrayList arrayList3 = aVar.f18396k;
+            boolean z11 = aVar.f18397i;
+            ArrayList arrayList3 = aVar.f18399k;
             if (z11) {
                 i14++;
             } else if (arrayList3.size() > i11) {
@@ -2703,7 +2703,7 @@ public final class t3 extends q41 {
                 int i15 = i14 + 1;
                 while (i15 < i10) {
                     a aVar2 = (a) arrayList2.get(i15);
-                    if (aVar2.f18396k.size() <= i11 || ((Long) aVar2.f18396k.get(i11)).longValue() != longValue) {
+                    if (aVar2.f18399k.size() <= i11 || ((Long) aVar2.f18399k.get(i11)).longValue() != longValue) {
                         break;
                     }
                     i15++;
@@ -2712,7 +2712,7 @@ public final class t3 extends q41 {
                 if (b32.isEmpty()) {
                     pageblockblockquoteblocks = null;
                 } else {
-                    TL_iv.RichText richText = (TL_iv.RichText) this.f18896t3.get(l10);
+                    TL_iv.RichText richText = (TL_iv.RichText) this.f18899t3.get(l10);
                     if (richText == null) {
                         richText = new TL_iv.textEmpty();
                     }
@@ -2737,7 +2737,7 @@ public final class t3 extends q41 {
                 }
                 i14 = i15;
             } else if (A3(aVar)) {
-                TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) aVar.f18389b;
+                TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) aVar.f18392b;
                 if (pageblockdetails.title == null) {
                     pageblockdetails.title = new TL_iv.textEmpty();
                 }
@@ -2746,7 +2746,7 @@ public final class t3 extends q41 {
                 arrayList.add(pageblockdetails);
                 i14 = S3 + 1;
             } else {
-                int i16 = aVar.f18390c;
+                int i16 = aVar.f18393c;
                 if (i16 <= 0) {
                     M2(arrayList, aVar);
                     i14++;
@@ -2819,17 +2819,17 @@ public final class t3 extends q41 {
         int i18;
         int i19;
         int i20;
-        g3 g3Var = this.f18898u3;
+        g3 g3Var = this.f18901u3;
         if (g3Var != null && g3Var.x()) {
             boolean O3 = O3();
-            r3 r3Var = this.f18887o3;
+            r3 r3Var = this.f18890o3;
             int i21 = 0;
             if (O3) {
-                int i22 = g3Var.f29314p0;
-                int i23 = g3Var.f29315q0;
-                int i24 = g3Var.f29318t0;
-                int i25 = g3Var.f29316r0;
-                int i26 = g3Var.f29319u0;
+                int i22 = g3Var.f29317p0;
+                int i23 = g3Var.f29318q0;
+                int i24 = g3Var.f29321t0;
+                int i25 = g3Var.f29319r0;
+                int i26 = g3Var.f29322u0;
                 boolean N3 = N3(i7, i22, i23, i25, i24, i26);
                 if (!N3) {
                     i17 = z2(i7);
@@ -2894,9 +2894,9 @@ public final class t3 extends q41 {
                     r4();
                 }
             } else if (B3()) {
-                int i29 = g3Var.f29314p0;
+                int i29 = g3Var.f29317p0;
                 g1 L2 = L2(i29);
-                if (L2 != null && (B3 = jg.g.B(g3Var.f29316r0, g3Var.f29319u0, (length3 = L2.length()), 0)) < (f12 = jg.g.f(g3Var.f29316r0, g3Var.f29319u0, length3, 0))) {
+                if (L2 != null && (B3 = jg.g.B(g3Var.f29319r0, g3Var.f29322u0, (length3 = L2.length()), 0)) < (f12 = jg.g.f(g3Var.f29319r0, g3Var.f29322u0, length3, 0))) {
                     if ((L2.c(B3, f12) & i7) == 0) {
                         z12 = true;
                     } else {
@@ -2928,9 +2928,9 @@ public final class t3 extends q41 {
                     r4();
                 }
             } else if (z3()) {
-                int i30 = g3Var.f29314p0;
+                int i30 = g3Var.f29317p0;
                 g1 v22 = v2(i30);
-                if (v22 != null && (B2 = jg.g.B(g3Var.f29316r0, g3Var.f29319u0, (length2 = v22.length()), 0)) < (f11 = jg.g.f(g3Var.f29316r0, g3Var.f29319u0, length2, 0))) {
+                if (v22 != null && (B2 = jg.g.B(g3Var.f29319r0, g3Var.f29322u0, (length2 = v22.length()), 0)) < (f11 = jg.g.f(g3Var.f29319r0, g3Var.f29322u0, length2, 0))) {
                     if ((v22.c(B2, f11) & i7) == 0) {
                         z11 = true;
                     } else {
@@ -2966,9 +2966,9 @@ public final class t3 extends q41 {
                     r4();
                 }
             } else if (J3()) {
-                int i31 = g3Var.f29314p0;
+                int i31 = g3Var.f29317p0;
                 g1 m42 = m4(i31);
-                if (m42 != null && (B = jg.g.B(g3Var.f29316r0, g3Var.f29319u0, (length = m42.length()), 0)) < (f10 = jg.g.f(g3Var.f29316r0, g3Var.f29319u0, length, 0))) {
+                if (m42 != null && (B = jg.g.B(g3Var.f29319r0, g3Var.f29322u0, (length = m42.length()), 0)) < (f10 = jg.g.f(g3Var.f29319r0, g3Var.f29322u0, length, 0))) {
                     if ((m42.c(B, f10) & i7) == 0) {
                         z10 = true;
                     } else {
@@ -3004,11 +3004,11 @@ public final class t3 extends q41 {
                     r4();
                 }
             } else {
-                int i32 = g3Var.f29314p0;
-                int i33 = g3Var.f29317s0;
-                int i34 = g3Var.f29316r0;
-                int i35 = g3Var.f29319u0;
-                if (i32 >= 0 && i33 >= 0 && i33 >= i32 && i33 < this.f18903w4.size()) {
+                int i32 = g3Var.f29317p0;
+                int i33 = g3Var.f29320s0;
+                int i34 = g3Var.f29319r0;
+                int i35 = g3Var.f29322u0;
+                if (i32 >= 0 && i33 >= 0 && i33 >= i32 && i33 < this.f18906w4.size()) {
                     int i36 = i7;
                     boolean M3 = M3(i36, i32, i34, i33, i35);
                     boolean z14 = !M3;
@@ -3027,7 +3027,7 @@ public final class t3 extends q41 {
                     while (i37 <= i33) {
                         a B4 = B4(i37);
                         if (B4 != null) {
-                            TL_iv.PageBlock pageBlock = B4.f18389b;
+                            TL_iv.PageBlock pageBlock = B4.f18392b;
                             if (D3(pageBlock) && !(pageBlock instanceof TL_iv.pageBlockPreformatted)) {
                                 int l22 = l2(i37);
                                 if (i37 == i32) {
@@ -3067,7 +3067,7 @@ public final class t3 extends q41 {
                                         x22.x();
                                         i11 = i10;
                                     } else {
-                                        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(a6.A(B4.f18389b));
+                                        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(a6.A(B4.f18392b));
                                         if (!M3 && i10 != 0) {
                                             i11 = i10;
                                             i14 = max3;
@@ -3079,7 +3079,7 @@ public final class t3 extends q41 {
                                             i14 = max3;
                                         }
                                         c6.o(spannableStringBuilder, i14, max4, i36, z14, null);
-                                        a6.d(B4.f18389b, spannableStringBuilder);
+                                        a6.d(B4.f18392b, spannableStringBuilder);
                                     }
                                     z15 = true;
                                     i37++;
@@ -3113,7 +3113,7 @@ public final class t3 extends q41 {
 
     public final void b5(float f10, float f11) {
         TL_iv.pageTableCell n10;
-        m5 m5Var = this.f18889p4;
+        m5 m5Var = this.f18892p4;
         if (this.I3 && m5Var != null && this.E3 == m5Var && (n10 = m5Var.n((int) ((f10 - m5Var.getLeft()) - getLeft()), (int) ((f11 - m5Var.getTop()) - getTop()))) != null && n10 != this.L3) {
             this.L3 = n10;
             m5Var.y(this.K3, n10);
@@ -3135,13 +3135,13 @@ public final class t3 extends q41 {
                 if ((C1 instanceof a6) && (C12 instanceof a6)) {
                     int i11 = 0;
                     while (true) {
-                        ArrayList arrayList2 = this.f18894s3;
+                        ArrayList arrayList2 = this.f18897s3;
                         int size = arrayList2.size();
-                        g3Var = this.f18898u3;
+                        g3Var = this.f18901u3;
                         if (i11 >= size) {
                             break;
                         }
-                        g3Var.X(i11, a6.z(((a) arrayList2.get(i11)).f18389b));
+                        g3Var.X(i11, a6.z(((a) arrayList2.get(i11)).f18392b));
                         i11++;
                     }
                     a6 a6Var = (a6) C1;
@@ -3172,7 +3172,7 @@ public final class t3 extends q41 {
     }
 
     public final ArrayList c3() {
-        return b3(0, this.f18894s3.size(), 0, false);
+        return b3(0, this.f18897s3.size(), 0, false);
     }
 
     public final void c4(android.view.View r11) {
@@ -3185,10 +3185,10 @@ public final class t3 extends q41 {
         x5 x5Var;
         v4.l0 itemAnimator = getItemAnimator();
         setItemAnimator(null);
-        this.f37160f3.O(true);
+        this.f37190f3.O(true);
         for (int i7 = 0; i7 < getChildCount(); i7++) {
             View childAt = getChildAt(i7);
-            if ((childAt instanceof a6) && (aVar = (a6Var = (a6) childAt).f18432y) != null && (x5Var = a6Var.D) != null) {
+            if ((childAt instanceof a6) && (aVar = (a6Var = (a6) childAt).f18435y) != null && (x5Var = a6Var.D) != null) {
                 a6Var.f(aVar, x5Var, a6Var.E);
             }
         }
@@ -3212,14 +3212,14 @@ public final class t3 extends q41 {
         int i16 = 0;
         int i17 = 0;
         while (true) {
-            ArrayList arrayList6 = this.f18894s3;
+            ArrayList arrayList6 = this.f18897s3;
             if (i17 < arrayList6.size()) {
                 a aVar = (a) arrayList6.get(i17);
-                ArrayList arrayList7 = aVar.f18395j;
-                ArrayList arrayList8 = aVar.f18396k;
+                ArrayList arrayList7 = aVar.f18398j;
+                ArrayList arrayList8 = aVar.f18399k;
                 arrayList7.clear();
                 int i18 = 1;
-                if (aVar.f18394i) {
+                if (aVar.f18397i) {
                     if (!arrayList.isEmpty()) {
                         a8.p0.z(1, arrayList);
                     }
@@ -3236,7 +3236,7 @@ public final class t3 extends q41 {
                     for (int i20 = i16; i20 < arrayList.size(); i20++) {
                         arrayList7.add((n0) arrayList.get(i20));
                     }
-                    int max = Math.max(i16, aVar.f18390c);
+                    int max = Math.max(i16, aVar.f18393c);
                     if (max == 0) {
                         arrayList2.clear();
                         arrayList3.clear();
@@ -3296,14 +3296,14 @@ public final class t3 extends q41 {
                             }
                             ((Long) arrayList2.get(i22)).getClass();
                             if (i10 != 0) {
-                                if (((Long) arrayList5.get(i22)).longValue() != 0 && H3(aVar.f18389b)) {
+                                if (((Long) arrayList5.get(i22)).longValue() != 0 && H3(aVar.f18392b)) {
                                     i14 = i11;
                                 } else {
                                     i14 = i13;
                                 }
                                 if (i14 != 0) {
                                     arrayList4.set(i22, Integer.valueOf(((Integer) arrayList4.get(i22)).intValue() + 1));
-                                    arrayList5.set(i22, Long.valueOf(aVar.f18388a));
+                                    arrayList5.set(i22, Long.valueOf(aVar.f18391a));
                                 } else {
                                     ((Integer) arrayList4.get(i22)).getClass();
                                     ((Long) arrayList5.get(i22)).getClass();
@@ -3320,7 +3320,7 @@ public final class t3 extends q41 {
                     }
                     i15 = i16;
                     if (A3(aVar)) {
-                        boolean z10 = ((TL_iv.pageBlockDetails) aVar.f18389b).open;
+                        boolean z10 = ((TL_iv.pageBlockDetails) aVar.f18392b).open;
                         n0.a();
                         arrayList.add(new Object());
                         arrayList2.clear();
@@ -3328,7 +3328,7 @@ public final class t3 extends q41 {
                         arrayList4.clear();
                         arrayList5.clear();
                     }
-                    if (a6.p(aVar.f18389b)) {
+                    if (a6.p(aVar.f18392b)) {
                         n0.a();
                         arrayList7.add(new Object());
                     }
@@ -3343,13 +3343,13 @@ public final class t3 extends q41 {
 
     public final boolean d3() {
         a aVar;
-        ArrayList arrayList = this.f18894s3;
+        ArrayList arrayList = this.f18897s3;
         if (arrayList.isEmpty()) {
             aVar = null;
         } else {
             aVar = (a) jg.g.i(1, arrayList);
         }
-        if (aVar != null && !H3(aVar.f18389b) && !aVar.f18394i && !A3(aVar) && !N2(aVar.f18389b)) {
+        if (aVar != null && !H3(aVar.f18392b) && !aVar.f18397i && !A3(aVar) && !N2(aVar.f18392b)) {
             if (!(C1(aVar) instanceof a6)) {
                 return false;
             }
@@ -3362,7 +3362,7 @@ public final class t3 extends q41 {
         }
         a aVar2 = new a(new TL_iv.pageBlockParagraph(), 0, 0);
         arrayList.add(aVar2);
-        this.f37160f3.O(false);
+        this.f37190f3.O(false);
         f2 f2Var2 = this.Q3;
         if (f2Var2 != null) {
             f2Var2.h();
@@ -3389,12 +3389,12 @@ public final class t3 extends q41 {
         int B5;
         int f14;
         boolean O3 = O3();
-        r3 r3Var = this.f18887o3;
-        g3 g3Var = this.f18898u3;
+        r3 r3Var = this.f18890o3;
+        g3 g3Var = this.f18901u3;
         if (O3) {
-            int i7 = g3Var.f29314p0;
-            int i10 = g3Var.f29315q0;
-            if (i10 == g3Var.f29318t0 && (Q4 = Q4(i7, i10)) != null && (B5 = jg.g.B(g3Var.f29316r0, g3Var.f29319u0, (length5 = Q4.length()), 0)) < (f14 = jg.g.f(g3Var.f29316r0, g3Var.f29319u0, length5, 0))) {
+            int i7 = g3Var.f29317p0;
+            int i10 = g3Var.f29318q0;
+            if (i10 == g3Var.f29321t0 && (Q4 = Q4(i7, i10)) != null && (B5 = jg.g.B(g3Var.f29319r0, g3Var.f29322u0, (length5 = Q4.length()), 0)) < (f14 = jg.g.f(g3Var.f29319r0, g3Var.f29322u0, length5, 0))) {
                 if (c6.h(Q4.getText(), B5, f14)) {
                     f2 f2Var = this.Q3;
                     if (f2Var != null) {
@@ -3431,9 +3431,9 @@ public final class t3 extends q41 {
                 H4(Q4);
             }
         } else if (B3()) {
-            int i11 = g3Var.f29314p0;
+            int i11 = g3Var.f29317p0;
             g1 L2 = L2(i11);
-            if (L2 != null && (B4 = jg.g.B(g3Var.f29316r0, g3Var.f29319u0, (length4 = L2.length()), 0)) < (f13 = jg.g.f(g3Var.f29316r0, g3Var.f29319u0, length4, 0))) {
+            if (L2 != null && (B4 = jg.g.B(g3Var.f29319r0, g3Var.f29322u0, (length4 = L2.length()), 0)) < (f13 = jg.g.f(g3Var.f29319r0, g3Var.f29322u0, length4, 0))) {
                 if (c6.h(L2.getText(), B4, f13)) {
                     f2 f2Var5 = this.Q3;
                     if (f2Var5 != null) {
@@ -3470,9 +3470,9 @@ public final class t3 extends q41 {
                 H4(L2);
             }
         } else if (z3()) {
-            int i12 = g3Var.f29314p0;
+            int i12 = g3Var.f29317p0;
             g1 v22 = v2(i12);
-            if (v22 != null && (B3 = jg.g.B(g3Var.f29316r0, g3Var.f29319u0, (length3 = v22.length()), 0)) < (f12 = jg.g.f(g3Var.f29316r0, g3Var.f29319u0, length3, 0))) {
+            if (v22 != null && (B3 = jg.g.B(g3Var.f29319r0, g3Var.f29322u0, (length3 = v22.length()), 0)) < (f12 = jg.g.f(g3Var.f29319r0, g3Var.f29322u0, length3, 0))) {
                 if (c6.h(v22.getText(), B3, f12)) {
                     f2 f2Var9 = this.Q3;
                     if (f2Var9 != null) {
@@ -3509,9 +3509,9 @@ public final class t3 extends q41 {
                 H4(v22);
             }
         } else if (J3()) {
-            int i13 = g3Var.f29314p0;
+            int i13 = g3Var.f29317p0;
             g1 m42 = m4(i13);
-            if (m42 != null && (B2 = jg.g.B(g3Var.f29316r0, g3Var.f29319u0, (length2 = m42.length()), 0)) < (f11 = jg.g.f(g3Var.f29316r0, g3Var.f29319u0, length2, 0))) {
+            if (m42 != null && (B2 = jg.g.B(g3Var.f29319r0, g3Var.f29322u0, (length2 = m42.length()), 0)) < (f11 = jg.g.f(g3Var.f29319r0, g3Var.f29322u0, length2, 0))) {
                 if (c6.h(m42.getText(), B2, f11)) {
                     f2 f2Var13 = this.Q3;
                     if (f2Var13 != null) {
@@ -3549,7 +3549,7 @@ public final class t3 extends q41 {
             }
         } else {
             a6 J4 = J4();
-            if (J4 == null || (B = jg.g.B(g3Var.f29316r0, g3Var.f29319u0, (length = J4.getEditText().length()), 0)) >= (f10 = jg.g.f(g3Var.f29316r0, g3Var.f29319u0, length, 0))) {
+            if (J4 == null || (B = jg.g.B(g3Var.f29319r0, g3Var.f29322u0, (length = J4.getEditText().length()), 0)) >= (f10 = jg.g.f(g3Var.f29319r0, g3Var.f29322u0, length, 0))) {
                 return;
             }
             if (c6.h(J4.getEditText().getText(), B, f10)) {
@@ -3593,7 +3593,7 @@ public final class t3 extends q41 {
     public final void d5(String str, a aVar) {
         a aVar2;
         if (aVar != null) {
-            TL_iv.PageBlock pageBlock = aVar.f18389b;
+            TL_iv.PageBlock pageBlock = aVar.f18392b;
             if (pageBlock instanceof TL_iv.pageBlockPreformatted) {
                 TL_iv.pageBlockPreformatted pageblockpreformatted = (TL_iv.pageBlockPreformatted) pageBlock;
                 if (!TextUtils.equals(pageblockpreformatted.language, str)) {
@@ -3602,9 +3602,9 @@ public final class t3 extends q41 {
                         f2Var.d();
                     }
                     pageblockpreformatted.language = str;
-                    a6 x22 = x2(this.f18894s3.indexOf(aVar));
-                    if (x22 != null && (aVar2 = x22.f18432y) != null) {
-                        x22.J(aVar2.f18389b, true);
+                    a6 x22 = x2(this.f18897s3.indexOf(aVar));
+                    if (x22 != null && (aVar2 = x22.f18435y) != null) {
+                        x22.J(aVar2.f18392b, true);
                         x22.H = null;
                         x22.C();
                     }
@@ -3639,7 +3639,7 @@ public final class t3 extends q41 {
             int i12 = 0;
             int i13 = 0;
             while (true) {
-                arrayList = this.f18903w4;
+                arrayList = this.f18906w4;
                 if (i12 >= childCount) {
                     break;
                 }
@@ -3650,7 +3650,7 @@ public final class t3 extends q41 {
                     aVar5 = null;
                 }
                 if (aVar5 != null) {
-                    ArrayList arrayList3 = aVar5.f18396k;
+                    ArrayList arrayList3 = aVar5.f18399k;
                     if (arrayList3.size() > i13) {
                         i13 = arrayList3.size();
                     }
@@ -3658,11 +3658,11 @@ public final class t3 extends q41 {
                 i12++;
             }
             if (i13 != 0) {
-                if (this.f18905x4 == null) {
+                if (this.f18908x4 == null) {
                     zj0 zj0Var = new zj0(this);
-                    this.f18905x4 = zj0Var;
-                    zj0Var.a(null, null, null, this.f18885n3, 1);
-                    c8.l1.a(this.f18905x4, this.f18885n3);
+                    this.f18908x4 = zj0Var;
+                    zj0Var.a(null, null, null, this.f18888n3, 1);
+                    c8.l1.a(this.f18908x4, this.f18888n3);
                 }
                 int i14 = 0;
                 while (i14 < i13) {
@@ -3684,7 +3684,7 @@ public final class t3 extends q41 {
                                 aVar = null;
                             }
                             if (aVar != null) {
-                                ArrayList arrayList4 = aVar.f18396k;
+                                ArrayList arrayList4 = aVar.f18399k;
                                 if (i14 < arrayList4.size()) {
                                     l10 = (Long) arrayList4.get(i14);
                                     i7 = childCount;
@@ -3729,9 +3729,9 @@ public final class t3 extends q41 {
                                     rectF.set(L2, n42 + f11, z11, f13 - n43);
                                     aVar2 = aVar6;
                                     aVar3 = aVar7;
-                                    this.f18905x4.c(floor, floor, floor, f12, canvas, rectF);
+                                    this.f18908x4.c(floor, floor, floor, f12, canvas, rectF);
                                     f10 = f12;
-                                    this.f18905x4.f(canvas, rectF, f10);
+                                    this.f18908x4.f(canvas, rectF, f10);
                                     z10 = false;
                                 }
                             }
@@ -3799,14 +3799,14 @@ public final class t3 extends q41 {
             boolean z9 = false;
             a aVar = new a(pageblockaudio, 0, 0);
             s sVar = new s();
-            aVar.f18393g = sVar;
-            sVar.f18813c = true;
-            long j3 = F0.f26959id;
+            aVar.f18396g = sVar;
+            sVar.f18816c = true;
+            long j3 = F0.f26962id;
             if (j3 == 0 || F0.dc_id == 0 || F0.access_hash == 0) {
                 z9 = true;
             }
             if (z9) {
-                TLRPC.Message message = ijVar.f23244k;
+                TLRPC.Message message = ijVar.f23262k;
                 if (message != null) {
                     str = message.attachPath;
                 } else {
@@ -3815,27 +3815,27 @@ public final class t3 extends q41 {
                 if (TextUtils.isEmpty(str)) {
                     return;
                 }
-                s sVar2 = aVar.f18393g;
-                sVar2.f18817i = F0;
-                sVar2.f18814e = str;
-                sVar2.f18811a = 1;
-                sVar2.f18815f = 0.0f;
+                s sVar2 = aVar.f18396g;
+                sVar2.f18820i = F0;
+                sVar2.f18817e = str;
+                sVar2.f18814a = 1;
+                sVar2.f18818f = 0.0f;
             } else {
                 sVar.h = F0;
-                sVar.f18817i = F0;
-                sVar.f18811a = 2;
+                sVar.f18820i = F0;
+                sVar.f18814a = 2;
                 pageblockaudio.audio_id = j3;
             }
             x3(aVar);
             if (z9) {
-                s sVar3 = aVar.f18393g;
-                String str2 = sVar3.f18814e;
-                IdentityHashMap identityHashMap = this.f18877g4;
+                s sVar3 = aVar.f18396g;
+                String str2 = sVar3.f18817e;
+                IdentityHashMap identityHashMap = this.f18880g4;
                 y4 y4Var = (y4) identityHashMap.remove(sVar3);
                 if (y4Var != null) {
                     y4Var.b();
                 }
-                y4 y4Var2 = new y4(this.f18883m3, str2, F0, new e3(aVar, sVar3, this));
+                y4 y4Var2 = new y4(this.f18886m3, str2, F0, new e3(aVar, sVar3, this));
                 identityHashMap.put(sVar3, y4Var2);
                 y4Var2.d();
             }
@@ -3843,7 +3843,7 @@ public final class t3 extends q41 {
             if (f2Var2 != null) {
                 f2Var2.h();
             }
-            this.f18887o3.onContentChanged();
+            this.f18890o3.onContentChanged();
         }
     }
 
@@ -3851,7 +3851,7 @@ public final class t3 extends q41 {
         int i7;
         View C1 = C1(aVar);
         if (C1 instanceof e5) {
-            g1 g1Var = ((e5) C1).f18536r;
+            g1 g1Var = ((e5) C1).f18539r;
             g1Var.N();
             if (z9) {
                 i7 = g1Var.length();
@@ -3870,27 +3870,27 @@ public final class t3 extends q41 {
         int length;
         final int B;
         final int f10;
-        g3 g3Var = this.f18898u3;
+        g3 g3Var = this.f18901u3;
         if (g3Var != null && g3Var.x()) {
             if (O3()) {
-                int i7 = g3Var.f29314p0;
-                int i10 = g3Var.f29315q0;
-                if (i10 == g3Var.f29318t0) {
+                int i7 = g3Var.f29317p0;
+                int i10 = g3Var.f29318q0;
+                if (i10 == g3Var.f29321t0) {
                     editText = Q4(i7, i10);
                     i2Var = new n2(this, i7, i10, 1);
                 } else {
                     return;
                 }
             } else if (B3()) {
-                int i11 = g3Var.f29314p0;
+                int i11 = g3Var.f29317p0;
                 editText = L2(i11);
                 i2Var = new h2(this, i11, 3);
             } else if (z3()) {
-                int i12 = g3Var.f29314p0;
+                int i12 = g3Var.f29317p0;
                 editText = v2(i12);
                 i2Var = new h2(this, i12, 0);
             } else if (J3()) {
-                int i13 = g3Var.f29314p0;
+                int i13 = g3Var.f29317p0;
                 editText = m4(i13);
                 i2Var = new h2(this, i13, 1);
             } else {
@@ -3904,14 +3904,14 @@ public final class t3 extends q41 {
             }
             final g1 g1Var = editText;
             final Runnable runnable = i2Var;
-            if (g1Var != null && (B = jg.g.B(g3Var.f29316r0, g3Var.f29319u0, (length = g1Var.length()), 0)) <= (f10 = jg.g.f(g3Var.f29316r0, g3Var.f29319u0, length, 0))) {
+            if (g1Var != null && (B = jg.g.B(g3Var.f29319r0, g3Var.f29322u0, (length = g1Var.length()), 0)) <= (f10 = jg.g.f(g3Var.f29319r0, g3Var.f29322u0, length, 0))) {
                 Editable text = g1Var.getText();
                 int i14 = r.h;
                 String str = null;
                 if (text != null) {
                     r[] rVarArr = (r[]) text.getSpans(B, f10, r.class);
                     if (rVarArr.length > 0) {
-                        str = rVarArr[0].f18794a;
+                        str = rVarArr[0].f18797a;
                     }
                 }
                 if (str == null) {
@@ -3919,7 +3919,7 @@ public final class t3 extends q41 {
                 }
                 final float L = org.telegram.messenger.g0.L(iz.W0 + 4);
                 int i15 = k6.G6;
-                f6 f6Var = this.f18885n3;
+                f6 f6Var = this.f18888n3;
                 final int w02 = k6.w0(i15, f6Var);
                 p.Z(getContext(), str, new c20() {
                     @Override
@@ -3935,7 +3935,7 @@ public final class t3 extends q41 {
                         if (f2Var != null) {
                             f2Var.d();
                         }
-                        g3 g3Var2 = t3Var.f18898u3;
+                        g3 g3Var2 = t3Var.f18901u3;
                         if (g3Var2 != null) {
                             g3Var2.f(false);
                         }
@@ -3951,7 +3951,7 @@ public final class t3 extends q41 {
                         if (f2Var2 != null) {
                             f2Var2.h();
                         }
-                        t3Var.f18887o3.onContentChanged();
+                        t3Var.f18890o3.onContentChanged();
                         int min = Math.min(max + 1, g1Var2.length());
                         g1Var2.N();
                         t3Var.post(new t2(g1Var2, min, 3));
@@ -3970,7 +3970,7 @@ public final class t3 extends q41 {
                 return;
             }
             TLRPC.TL_document tL_document = new TLRPC.TL_document();
-            tL_document.f26959id = 0L;
+            tL_document.f26962id = 0L;
             tL_document.dc_id = 0;
             tL_document.size = file.length();
             String name = file.getName();
@@ -3995,17 +3995,17 @@ public final class t3 extends q41 {
         View C1 = C1(aVar);
         if (C1 instanceof m5) {
             m5 m5Var = (m5) C1;
-            g1 g1Var = m5Var.f18706r;
+            g1 g1Var = m5Var.f18709r;
             e6 e6Var = m5Var.F;
             if (e6Var != null) {
                 if (!z9) {
                     g1Var.N();
                     g1Var.setSelection(0);
                     return;
-                } else if (!e6Var.f18545g.isEmpty()) {
-                    p5 m10 = m5Var.f18708w.m((TL_iv.pageTableCell) jg.g.i(1, m5Var.F.f18545g));
+                } else if (!e6Var.f18548g.isEmpty()) {
+                    p5 m10 = m5Var.f18711w.m((TL_iv.pageTableCell) jg.g.i(1, m5Var.F.f18548g));
                     if (m10 != null) {
-                        g1 g1Var2 = m10.f18775a;
+                        g1 g1Var2 = m10.f18778a;
                         g1Var2.N();
                         g1Var2.setSelection(g1Var2.length());
                         return;
@@ -4053,36 +4053,36 @@ public final class t3 extends q41 {
             boolean z9 = false;
             a aVar = new a(pageblockdocument, 0, 0);
             s sVar = new s();
-            aVar.f18393g = sVar;
+            aVar.f18396g = sVar;
             sVar.d = true;
-            long j3 = document.f26959id;
+            long j3 = document.f26962id;
             if (j3 == 0 || document.dc_id == 0 || document.access_hash == 0) {
                 z9 = true;
             }
             if (z9) {
                 if (!TextUtils.isEmpty(str) && a8.p0.B(str)) {
-                    s sVar2 = aVar.f18393g;
+                    s sVar2 = aVar.f18396g;
                     sVar2.h = document;
-                    sVar2.f18814e = str;
-                    sVar2.f18811a = 1;
-                    sVar2.f18815f = 0.0f;
+                    sVar2.f18817e = str;
+                    sVar2.f18814a = 1;
+                    sVar2.f18818f = 0.0f;
                 } else {
                     return;
                 }
             } else {
                 sVar.h = document;
-                sVar.f18811a = 2;
+                sVar.f18814a = 2;
                 pageblockdocument.document_id = j3;
             }
             x3(aVar);
             if (z9) {
-                s sVar3 = aVar.f18393g;
-                IdentityHashMap identityHashMap = this.f18877g4;
+                s sVar3 = aVar.f18396g;
+                IdentityHashMap identityHashMap = this.f18880g4;
                 y4 y4Var = (y4) identityHashMap.remove(sVar3);
                 if (y4Var != null) {
                     y4Var.b();
                 }
-                y4 y4Var2 = new y4(this.f18883m3, str, document, new d3(this, sVar3, aVar, str));
+                y4 y4Var2 = new y4(this.f18886m3, str, document, new d3(this, sVar3, aVar, str));
                 identityHashMap.put(sVar3, y4Var2);
                 y4Var2.d();
             }
@@ -4090,7 +4090,7 @@ public final class t3 extends q41 {
             if (f2Var2 != null) {
                 f2Var2.h();
             }
-            this.f18887o3.onContentChanged();
+            this.f18890o3.onContentChanged();
         }
     }
 
@@ -4119,23 +4119,23 @@ public final class t3 extends q41 {
     }
 
     public k4 getMapDelegate() {
-        return this.f18881k4;
+        return this.f18884k4;
     }
 
     public View getOverlayView() {
-        return this.f18900v3;
+        return this.f18903v3;
     }
 
     public i9 getTextSelectionHelper() {
-        return this.f18898u3;
+        return this.f18901u3;
     }
 
     public final void h2(Uri uri) {
         boolean contains;
         if (uri != null) {
-            a aVar = this.f18879i4;
+            a aVar = this.f18882i4;
             String str = null;
-            this.f18879i4 = null;
+            this.f18882i4 = null;
             Context context = getContext();
             if (context == null) {
                 return;
@@ -4152,9 +4152,9 @@ public final class t3 extends q41 {
                 contains = uri.toString().contains("video");
             }
             boolean z9 = contains;
-            int i7 = this.f18907y4;
-            this.f18907y4 = i7 - 1;
-            Utilities.f21333e.c(new p2(this, uri, z9, str2, i7, aVar));
+            int i7 = this.f18910y4;
+            this.f18910y4 = i7 - 1;
+            Utilities.f21336e.c(new p2(this, uri, z9, str2, i7, aVar));
         }
     }
 
@@ -4177,7 +4177,7 @@ public final class t3 extends q41 {
         a B4 = B4(i7);
         g1 L2 = L2(i7);
         if (A3(B4) && L2 != null) {
-            ((TL_iv.pageBlockDetails) B4.f18389b).title = c6.f(L2.getText());
+            ((TL_iv.pageBlockDetails) B4.f18392b).title = c6.f(L2.getText());
         }
     }
 
@@ -4197,26 +4197,26 @@ public final class t3 extends q41 {
             f2Var.d();
         }
         boolean c10 = u4.c(gfVar);
-        if (!gfVar.f26824b && !c10) {
+        if (!gfVar.f26845b && !c10) {
             pageblockvideo = new TL_iv.pageBlockPhoto();
         } else {
             pageblockvideo = new TL_iv.pageBlockVideo();
         }
         a aVar = new a(pageblockvideo, 0, 0);
-        aVar.f18393g = W3(gfVar, str2);
+        aVar.f18396g = W3(gfVar, str2);
         x3(aVar);
         if (c10) {
-            N4(aVar, aVar.f18393g, gfVar);
+            N4(aVar, aVar.f18396g, gfVar);
             t3Var = this;
         } else {
             t3Var = this;
-            t3Var.O4(aVar, aVar.f18393g, str2, gfVar.f26824b, gfVar.F, gfVar.G, gfVar.E);
+            t3Var.O4(aVar, aVar.f18396g, str2, gfVar.f26845b, gfVar.F, gfVar.G, gfVar.E);
         }
         f2 f2Var2 = t3Var.Q3;
         if (f2Var2 != null) {
             f2Var2.h();
         }
-        t3Var.f18887o3.onContentChanged();
+        t3Var.f18890o3.onContentChanged();
     }
 
     public final void i3(a aVar) {
@@ -4240,21 +4240,21 @@ public final class t3 extends q41 {
     }
 
     public final void j2(m5 m5Var) {
-        m5 m5Var2 = this.f18889p4;
+        m5 m5Var2 = this.f18892p4;
         if (m5Var2 != null && m5Var2 != m5Var) {
             LinkedHashSet linkedHashSet = m5Var2.H;
             if (!linkedHashSet.isEmpty()) {
                 linkedHashSet.clear();
-                m5Var2.f18708w.invalidate();
+                m5Var2.f18711w.invalidate();
                 m5Var2.v();
             }
         }
-        this.f18889p4 = m5Var;
+        this.f18892p4 = m5Var;
         this.J3 = false;
-        this.f18895s4 = -1;
-        this.f18893r4 = -1;
-        m5Var.setCellSelectionListener(this.f18897t4);
-        g3 g3Var = this.f18898u3;
+        this.f18898s4 = -1;
+        this.f18896r4 = -1;
+        m5Var.setCellSelectionListener(this.f18900t4);
+        g3 g3Var = this.f18901u3;
         if (g3Var != null && g3Var.x()) {
             g3Var.f(false);
         }
@@ -4272,7 +4272,7 @@ public final class t3 extends q41 {
             }
             TL_iv.pageTableCell g10 = m5Var.g(i10);
             if (g10 != null && (m10 = m5Var.getGrid().m(g10)) != null) {
-                e6.d(g10, m10.f18775a.getText());
+                e6.d(g10, m10.f18778a.getText());
             }
         }
     }
@@ -4280,12 +4280,12 @@ public final class t3 extends q41 {
     public final k3 k2() {
         int i7;
         int i10;
-        g3 g3Var = this.f18898u3;
+        g3 g3Var = this.f18901u3;
         if (g3Var != null && g3Var.x() && !J3()) {
-            a B4 = B4(g3Var.f29314p0);
-            ArrayList arrayList = this.f18894s3;
+            a B4 = B4(g3Var.f29317p0);
+            ArrayList arrayList = this.f18897s3;
             int indexOf = arrayList.indexOf(B4);
-            int indexOf2 = arrayList.indexOf(B4(g3Var.f29317s0));
+            int indexOf2 = arrayList.indexOf(B4(g3Var.f29320s0));
             if (indexOf >= 0 && indexOf2 >= 0) {
                 if (indexOf > indexOf2) {
                     i10 = indexOf;
@@ -4296,11 +4296,11 @@ public final class t3 extends q41 {
                 }
                 for (int i11 = i7; i11 <= i10; i11++) {
                     a aVar = (a) arrayList.get(i11);
-                    if (aVar.f18394i || A3(aVar)) {
+                    if (aVar.f18397i || A3(aVar)) {
                         return null;
                     }
                 }
-                return new k3(this, i7, i10, g3Var.f29316r0, g3Var.f29319u0);
+                return new k3(this, i7, i10, g3Var.f29319r0, g3Var.f29322u0);
             }
             return null;
         }
@@ -4324,7 +4324,7 @@ public final class t3 extends q41 {
         if (B4 == null) {
             return 0;
         }
-        return a6.z(B4.f18389b).length();
+        return a6.z(B4.f18392b).length();
     }
 
     public final boolean l3(android.view.MotionEvent r14) {
@@ -4381,23 +4381,23 @@ public final class t3 extends q41 {
         int B;
         int f10;
         i4[] i4VarArr;
-        g3 g3Var = this.f18898u3;
-        if (g3Var == null || !g3Var.x() || g3Var.f29314p0 != g3Var.f29317s0) {
+        g3 g3Var = this.f18901u3;
+        if (g3Var == null || !g3Var.x() || g3Var.f29317p0 != g3Var.f29320s0) {
             return false;
         }
         if (O3()) {
-            int i7 = g3Var.f29314p0;
-            int i10 = g3Var.f29315q0;
-            if (i10 != g3Var.f29318t0) {
+            int i7 = g3Var.f29317p0;
+            int i10 = g3Var.f29318q0;
+            if (i10 != g3Var.f29321t0) {
                 return false;
             }
             editText = Q4(i7, i10);
         } else if (B3()) {
-            editText = L2(g3Var.f29314p0);
+            editText = L2(g3Var.f29317p0);
         } else if (z3()) {
-            editText = v2(g3Var.f29314p0);
+            editText = v2(g3Var.f29317p0);
         } else if (J3()) {
-            editText = m4(g3Var.f29314p0);
+            editText = m4(g3Var.f29317p0);
         } else {
             a6 J4 = J4();
             if (J4 == null) {
@@ -4405,7 +4405,7 @@ public final class t3 extends q41 {
             }
             editText = J4.getEditText();
         }
-        if (editText == null || (B = jg.g.B(g3Var.f29316r0, g3Var.f29319u0, (length = editText.length()), 0)) >= (f10 = jg.g.f(g3Var.f29316r0, g3Var.f29319u0, length, 0))) {
+        if (editText == null || (B = jg.g.B(g3Var.f29319r0, g3Var.f29322u0, (length = editText.length()), 0)) >= (f10 = jg.g.f(g3Var.f29319r0, g3Var.f29322u0, length, 0))) {
             return false;
         }
         Editable text = editText.getText();
@@ -4429,7 +4429,7 @@ public final class t3 extends q41 {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         getViewTreeObserver().removeOnGlobalFocusChangeListener(this.T3);
-        this.f37162h3 = false;
+        this.f37192h3 = false;
     }
 
     @Override
@@ -4467,7 +4467,7 @@ public final class t3 extends q41 {
             return q2(G2());
         }
         for (int i7 = G4[0]; i7 <= G4[1]; i7++) {
-            if (q2((a) this.f18894s3.get(i7))) {
+            if (q2((a) this.f18897s3.get(i7))) {
                 return true;
             }
         }
@@ -4477,7 +4477,7 @@ public final class t3 extends q41 {
     public final boolean p3() {
         int i7 = 0;
         while (true) {
-            ArrayList arrayList = this.f18894s3;
+            ArrayList arrayList = this.f18897s3;
             if (i7 >= arrayList.size()) {
                 return false;
             }
@@ -4493,7 +4493,7 @@ public final class t3 extends q41 {
     public final boolean p4(int i7, int i10, boolean z9) {
         boolean z10;
         if (i7 >= 0 && i10 >= i7) {
-            ArrayList arrayList = this.f18894s3;
+            ArrayList arrayList = this.f18897s3;
             if (i10 < arrayList.size()) {
                 f2 f2Var = this.Q3;
                 if (f2Var != null) {
@@ -4509,7 +4509,7 @@ public final class t3 extends q41 {
                     }
                 } else {
                     a aVar = (a) arrayList.get(i7);
-                    if (aVar.f18390c >= 1 && (i7 == 0 || ((a) arrayList.get(i7 - 1)).f18390c < aVar.f18390c)) {
+                    if (aVar.f18393c >= 1 && (i7 == 0 || ((a) arrayList.get(i7 - 1)).f18393c < aVar.f18393c)) {
                         return false;
                     }
                     z10 = false;
@@ -4525,7 +4525,7 @@ public final class t3 extends q41 {
                     if (findFocus() instanceof g1) {
                         b2();
                     } else {
-                        this.f37160f3.O(false);
+                        this.f37190f3.O(false);
                     }
                     f2 f2Var2 = this.Q3;
                     if (f2Var2 != null) {
@@ -4541,14 +4541,14 @@ public final class t3 extends q41 {
     public final boolean q2(a aVar) {
         ArrayList arrayList;
         int indexOf;
-        if (aVar != null && (indexOf = (arrayList = this.f18894s3).indexOf(aVar)) >= 0 && indexOf >= 0 && indexOf < arrayList.size()) {
+        if (aVar != null && (indexOf = (arrayList = this.f18897s3).indexOf(aVar)) >= 0 && indexOf >= 0 && indexOf < arrayList.size()) {
             a aVar2 = (a) arrayList.get(indexOf);
-            if (aVar2.f18390c == 0) {
-                TL_iv.PageBlock pageBlock = aVar2.f18389b;
+            if (aVar2.f18393c == 0) {
+                TL_iv.PageBlock pageBlock = aVar2.f18392b;
                 if (!(pageBlock instanceof TL_iv.pageBlockParagraph) && !F3(pageBlock) && !(pageBlock instanceof TL_iv.pageBlockPreformatted) && !(pageBlock instanceof TL_iv.pageBlockFooter) && !r2(indexOf)) {
                     return false;
                 }
-            } else if (indexOf <= 0 || ((a) arrayList.get(indexOf - 1)).f18390c < aVar2.f18390c) {
+            } else if (indexOf <= 0 || ((a) arrayList.get(indexOf - 1)).f18393c < aVar2.f18393c) {
                 return false;
             }
             if (s3(indexOf)) {
@@ -4564,16 +4564,16 @@ public final class t3 extends q41 {
             View childAt = getChildAt(i7);
             if (childAt instanceof a6) {
                 a6 a6Var = (a6) childAt;
-                a6Var.f18426f.m();
+                a6Var.f18429f.m();
                 a6Var.h.m();
             } else if (childAt instanceof m5) {
                 m5 m5Var = (m5) childAt;
-                o5 o5Var = m5Var.f18708w;
-                m5Var.f18706r.m();
+                o5 o5Var = m5Var.f18711w;
+                m5Var.f18709r.m();
                 for (int i10 = 0; i10 < o5Var.getChildCount(); i10++) {
                     View childAt2 = o5Var.getChildAt(i10);
                     if (childAt2 instanceof p5) {
-                        ((p5) childAt2).f18775a.m();
+                        ((p5) childAt2).f18778a.m();
                     }
                 }
             } else if (childAt instanceof k0) {
@@ -4589,7 +4589,7 @@ public final class t3 extends q41 {
         if (C1 instanceof s4) {
             s4 s4Var = (s4) C1;
             ArrayList arrayList = s4Var.D;
-            if (s4Var.f18986a != null) {
+            if (s4Var.f18989a != null) {
                 s4Var.p();
                 if (s4Var.W >= arrayList.size()) {
                     s4Var.W = Math.max(0, arrayList.size() - 1);
@@ -4603,8 +4603,8 @@ public final class t3 extends q41 {
 
     public final boolean r2(int i7) {
         if (i7 > 0) {
-            ArrayList arrayList = this.f18894s3;
-            if (i7 < arrayList.size() && H3(((a) arrayList.get(i7)).f18389b) && ((a) arrayList.get(i7 - 1)).f18390c >= 1) {
+            ArrayList arrayList = this.f18897s3;
+            if (i7 < arrayList.size() && H3(((a) arrayList.get(i7)).f18392b) && ((a) arrayList.get(i7 - 1)).f18393c >= 1) {
                 return true;
             }
             return false;
@@ -4613,7 +4613,7 @@ public final class t3 extends q41 {
     }
 
     public final void r3(boolean z9) {
-        g3 g3Var = this.f18898u3;
+        g3 g3Var = this.f18901u3;
         if (g3Var != null) {
             if (z9) {
                 g3Var.f(false);
@@ -4639,7 +4639,7 @@ public final class t3 extends q41 {
             return t2(G2());
         }
         for (int i7 = G4[0]; i7 <= G4[1]; i7++) {
-            if (t2((a) this.f18894s3.get(i7))) {
+            if (t2((a) this.f18897s3.get(i7))) {
                 return true;
             }
         }
@@ -4647,18 +4647,18 @@ public final class t3 extends q41 {
     }
 
     public final boolean s3(int i7) {
-        if (((a) this.f18894s3.get(i7)).f18390c + 1 <= ((org.telegram.messenger.j0) qp.s1(this.f18883m3).f24935x7.X.f13555b).f23439c - 6) {
+        if (((a) this.f18897s3.get(i7)).f18393c + 1 <= ((org.telegram.messenger.j0) qp.s1(this.f18886m3).f24942x7.X.f13555b).f23460c - 6) {
             return true;
         }
         return false;
     }
 
     public final void s4(int i7) {
-        ArrayList arrayList = this.f18894s3;
+        ArrayList arrayList = this.f18897s3;
         int min = Math.min(arrayList.size() - 1, i7 + 1);
         for (int max = Math.max(0, i7 - 1); max <= min; max++) {
             a aVar = (a) arrayList.get(max);
-            if (aVar.f18390c > 0) {
+            if (aVar.f18393c > 0) {
                 View C1 = C1(aVar);
                 if (C1 instanceof a6) {
                     ((a6) C1).F();
@@ -4668,7 +4668,7 @@ public final class t3 extends q41 {
     }
 
     public void setAdaptiveLinkDialogs(boolean z9) {
-        this.f18890q3 = z9;
+        this.f18893q3 = z9;
     }
 
     public void setAllowTapAboveContent(boolean z9) {
@@ -4676,7 +4676,7 @@ public final class t3 extends q41 {
     }
 
     public void setFileRefParentObject(ij ijVar) {
-        this.f18888p3 = ijVar;
+        this.f18891p3 = ijVar;
     }
 
     public void setInitialText(CharSequence charSequence) {
@@ -4684,18 +4684,18 @@ public final class t3 extends q41 {
             return;
         }
         this.U3 = new ArrayList();
-        ArrayList arrayList = this.f18894s3;
-        Z2(arrayList, a5.b(charSequence), this.f18896t3);
+        ArrayList arrayList = this.f18897s3;
+        Z2(arrayList, a5.b(charSequence), this.f18899t3);
         for (int size = arrayList.size(); size < arrayList.size(); size++) {
             this.U3.add((a) arrayList.get(size));
         }
-        this.f37160f3.O(false);
+        this.f37190f3.O(false);
     }
 
     public final boolean t2(a aVar) {
         ArrayList arrayList;
         int indexOf;
-        if (aVar == null || (indexOf = (arrayList = this.f18894s3).indexOf(aVar)) < 0 || aVar.f18390c <= 0 || indexOf < 0 || indexOf >= arrayList.size() || ((a) arrayList.get(indexOf)).f18390c <= 0) {
+        if (aVar == null || (indexOf = (arrayList = this.f18897s3).indexOf(aVar)) < 0 || aVar.f18393c <= 0 || indexOf < 0 || indexOf >= arrayList.size() || ((a) arrayList.get(indexOf)).f18393c <= 0) {
             return false;
         }
         return true;
@@ -4707,16 +4707,16 @@ public final class t3 extends q41 {
         int i10;
         int i11 = 0;
         if (i7 >= 0) {
-            ArrayList arrayList = this.f18894s3;
+            ArrayList arrayList = this.f18897s3;
             if (i7 < arrayList.size()) {
                 a aVar2 = (a) arrayList.get(i7);
                 if (z9) {
-                    if (aVar2.f18390c > 0) {
+                    if (aVar2.f18393c > 0) {
                         w2(i7);
                         return true;
                     }
-                } else if (aVar2.f18390c == 0) {
-                    TL_iv.PageBlock pageBlock = aVar2.f18389b;
+                } else if (aVar2.f18393c == 0) {
+                    TL_iv.PageBlock pageBlock = aVar2.f18392b;
                     if (!(pageBlock instanceof TL_iv.pageBlockParagraph) && !F3(pageBlock) && !(pageBlock instanceof TL_iv.pageBlockPreformatted) && !(pageBlock instanceof TL_iv.pageBlockFooter)) {
                         z11 = false;
                     } else {
@@ -4729,26 +4729,26 @@ public final class t3 extends q41 {
                             aVar = null;
                         }
                         if (z11) {
-                            aVar2.f18390c = 1;
+                            aVar2.f18393c = 1;
                             if (aVar != null && aVar.d > 0) {
                                 i11 = 1;
                             }
                             aVar2.d = i11;
                             return true;
                         }
-                        aVar2.f18390c = aVar.f18390c;
+                        aVar2.f18393c = aVar.f18393c;
                         if (aVar.d > 0) {
                             i10 = 1;
                         } else {
                             i10 = 0;
                         }
                         aVar2.d = i10;
-                        aVar2.f18391e = false;
-                        aVar2.f18392f = false;
+                        aVar2.f18394e = false;
+                        aVar2.f18395f = false;
                         return true;
                     }
-                } else if ((z10 || (i7 != 0 && ((a) arrayList.get(i7 - 1)).f18390c >= aVar2.f18390c)) && s3(i7)) {
-                    aVar2.f18390c++;
+                } else if ((z10 || (i7 != 0 && ((a) arrayList.get(i7 - 1)).f18393c >= aVar2.f18393c)) && s3(i7)) {
+                    aVar2.f18393c++;
                     return true;
                 }
             }
@@ -4761,8 +4761,8 @@ public final class t3 extends q41 {
         if (aVar == null) {
             return;
         }
-        if (E3(aVar.f18389b)) {
-            ArrayList j3 = j3(aVar.f18389b);
+        if (E3(aVar.f18392b)) {
+            ArrayList j3 = j3(aVar.f18392b);
             ArrayList arrayList = aVar.h;
             if (arrayList != null) {
                 i7 = arrayList.indexOf(sVar);
@@ -4780,13 +4780,13 @@ public final class t3 extends q41 {
                 return;
             }
             int size = aVar.h.size();
-            l41 l41Var = this.f37160f3;
+            l41 l41Var = this.f37190f3;
             if (size == 1) {
-                TL_iv.PageCaption pageCaption = aVar.f18389b.caption;
+                TL_iv.PageCaption pageCaption = aVar.f18392b.caption;
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) j3.get(0);
-                aVar.f18389b = pageBlock;
+                aVar.f18392b = pageBlock;
                 pageBlock.caption = pageCaption;
-                aVar.f18393g = (s) aVar.h.get(0);
+                aVar.f18396g = (s) aVar.h.get(0);
                 aVar.h = null;
                 l41Var.O(true);
                 q4(aVar);
@@ -4802,7 +4802,7 @@ public final class t3 extends q41 {
     public final boolean u2() {
         f2 f2Var = this.Q3;
         if (f2Var != null) {
-            if (f2Var.f18558e || !f2Var.f18556b.isEmpty()) {
+            if (f2Var.f18561e || !f2Var.f18559b.isEmpty()) {
                 return true;
             }
             return false;
@@ -4822,7 +4822,7 @@ public final class t3 extends q41 {
         if (G4 == null) {
             aVar = G2();
         } else {
-            aVar = (a) this.f18894s3.get(G4[0]);
+            aVar = (a) this.f18897s3.get(G4[0]);
         }
         if (aVar != null) {
             Z3(aVar, z9);
@@ -4830,11 +4830,11 @@ public final class t3 extends q41 {
     }
 
     public final void u4(a aVar) {
-        ArrayList arrayList = this.f18894s3;
+        ArrayList arrayList = this.f18897s3;
         int indexOf = arrayList.indexOf(aVar);
         if (indexOf >= 0) {
             arrayList.remove(indexOf);
-            this.f37160f3.O(true);
+            this.f37190f3.O(true);
         }
     }
 
@@ -4847,7 +4847,7 @@ public final class t3 extends q41 {
     }
 
     public final void v3(a aVar, ArrayList arrayList, HashMap hashMap, ArrayList arrayList2) {
-        ArrayList arrayList3 = aVar.f18396k;
+        ArrayList arrayList3 = aVar.f18399k;
         int size = arrayList3.size();
         int i7 = 0;
         while (i7 < size && i7 < arrayList.size() && ((Long) arrayList3.get(i7)).equals(arrayList.get(i7))) {
@@ -4857,18 +4857,18 @@ public final class t3 extends q41 {
             Long l10 = (Long) arrayList3.get(i10);
             long longValue = l10.longValue();
             Integer num = (Integer) hashMap.get(l10);
-            if (num != null && (num.intValue() >= 2 || i10 != 0 || this.f18896t3.containsKey(l10))) {
+            if (num != null && (num.intValue() >= 2 || i10 != 0 || this.f18899t3.containsKey(l10))) {
                 a aVar2 = new a(new TL_iv.pageBlockParagraph(), 0, 0);
-                aVar2.f18405t = longValue;
+                aVar2.f18408t = longValue;
                 for (int i11 = 0; i11 <= i10; i11++) {
-                    aVar2.f18396k.add((Long) arrayList3.get(i11));
+                    aVar2.f18399k.add((Long) arrayList3.get(i11));
                 }
-                int i12 = d5.f18523b;
+                int i12 = d5.f18526b;
                 x31 K = x31.K(d5.class);
                 K.G = aVar2;
-                K.H = this.f18884m4;
+                K.H = this.f18887m4;
                 arrayList2.add(K);
-                this.f18903w4.add(aVar2);
+                this.f18906w4.add(aVar2);
             }
         }
     }
@@ -4876,19 +4876,19 @@ public final class t3 extends q41 {
     public final void v4() {
         int i7 = 0;
         while (true) {
-            ArrayList arrayList = this.f18894s3;
+            ArrayList arrayList = this.f18897s3;
             if (i7 < arrayList.size()) {
                 a aVar = (a) arrayList.get(i7);
-                if (aVar.f18390c > 0 && aVar.d > 0 && !H3(aVar.f18389b)) {
-                    int i10 = aVar.f18390c;
+                if (aVar.f18393c > 0 && aVar.d > 0 && !H3(aVar.f18392b)) {
+                    int i10 = aVar.f18393c;
                     int i11 = 1;
                     for (int i12 = i7 - 1; i12 >= 0; i12--) {
                         a aVar2 = (a) arrayList.get(i12);
-                        int i13 = aVar2.f18390c;
+                        int i13 = aVar2.f18393c;
                         if (i13 < i10) {
                             break;
                         }
-                        if (i13 == i10 && !H3(aVar2.f18389b)) {
+                        if (i13 == i10 && !H3(aVar2.f18392b)) {
                             if (aVar2.d <= 0) {
                                 break;
                             }
@@ -4907,21 +4907,21 @@ public final class t3 extends q41 {
     public final void w2(int i7) {
         a aVar;
         int i10;
-        ArrayList arrayList = this.f18894s3;
+        ArrayList arrayList = this.f18897s3;
         a aVar2 = (a) arrayList.get(i7);
-        int i11 = aVar2.f18390c;
+        int i11 = aVar2.f18393c;
         if (i11 > 0) {
             int i12 = i11 - 1;
-            aVar2.f18390c = i12;
+            aVar2.f18393c = i12;
             if (i12 == 0) {
                 aVar2.d = 0;
-                aVar2.f18391e = false;
-                aVar2.f18392f = false;
+                aVar2.f18394e = false;
+                aVar2.f18395f = false;
             }
             while (true) {
                 i7++;
-                if (i7 < arrayList.size() && (i10 = (aVar = (a) arrayList.get(i7)).f18390c) > i11) {
-                    aVar.f18390c = i10 - 1;
+                if (i7 < arrayList.size() && (i10 = (aVar = (a) arrayList.get(i7)).f18393c) > i11) {
+                    aVar.f18393c = i10 - 1;
                 } else {
                     return;
                 }
@@ -4934,15 +4934,15 @@ public final class t3 extends q41 {
     }
 
     public final void w4(String str) {
-        g3 g3Var = this.f18898u3;
-        a2(g3Var.f29314p0, g3Var.f29316r0, g3Var.f29317s0, g3Var.f29319u0, str.split("\n", -1));
+        g3 g3Var = this.f18901u3;
+        a2(g3Var.f29317p0, g3Var.f29319r0, g3Var.f29320s0, g3Var.f29322u0, str.split("\n", -1));
     }
 
     public final a6 x2(int i7) {
         if (i7 < 0) {
             return null;
         }
-        View m10 = this.f37159e3.m(i7);
+        View m10 = this.f37189e3.m(i7);
         if (!(m10 instanceof a6)) {
             return null;
         }
@@ -4962,10 +4962,10 @@ public final class t3 extends q41 {
                 return null;
             }
             s sVar = new s();
-            sVar.f18813c = true;
-            sVar.f18811a = 2;
+            sVar.f18816c = true;
+            sVar.f18814a = 2;
             sVar.h = V2;
-            sVar.f18817i = V2;
+            sVar.f18820i = V2;
             return sVar;
         } else if (pageBlock instanceof TL_iv.pageBlockDocument) {
             TLRPC.Document V22 = V2(((TL_iv.pageBlockDocument) pageBlock).document_id);
@@ -4974,7 +4974,7 @@ public final class t3 extends q41 {
             }
             s sVar2 = new s();
             sVar2.d = true;
-            sVar2.f18811a = 2;
+            sVar2.f18814a = 2;
             sVar2.h = V22;
             return sVar2;
         } else {
@@ -4985,15 +4985,15 @@ public final class t3 extends q41 {
                     return null;
                 }
                 s sVar3 = new s();
-                sVar3.f18812b = true;
-                sVar3.f18811a = 2;
+                sVar3.f18815b = true;
+                sVar3.f18814a = 2;
                 sVar3.h = V23;
-                sVar3.f18822n = pageblockvideo.spoiler;
+                sVar3.f18825n = pageblockvideo.spoiler;
                 for (int i7 = 0; i7 < V23.attributes.size(); i7++) {
                     if (V23.attributes.get(i7) instanceof TLRPC.TL_documentAttributeVideo) {
                         TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo = (TLRPC.TL_documentAttributeVideo) V23.attributes.get(i7);
-                        sVar3.f18818j = tL_documentAttributeVideo.f26960w;
-                        sVar3.f18819k = tL_documentAttributeVideo.h;
+                        sVar3.f18821j = tL_documentAttributeVideo.f26963w;
+                        sVar3.f18822k = tL_documentAttributeVideo.h;
                         return sVar3;
                     }
                 }
@@ -5009,15 +5009,15 @@ public final class t3 extends q41 {
                 } else {
                     int i11 = 0;
                     loop1: while (true) {
-                        if (i11 < this.f18894s3.size()) {
-                            for (s sVar4 : T3((a) this.f18894s3.get(i11))) {
-                                if (sVar4 != null && (photo = sVar4.f18816g) != null && photo.f26977id == j3) {
+                        if (i11 < this.f18897s3.size()) {
+                            for (s sVar4 : T3((a) this.f18897s3.get(i11))) {
+                                if (sVar4 != null && (photo = sVar4.f18819g) != null && photo.f26980id == j3) {
                                     break loop1;
                                 }
                             }
                             i11++;
                         } else {
-                            TL_iv.RichMessage richMessage = this.f18892r3;
+                            TL_iv.RichMessage richMessage = this.f18895r3;
                             if (richMessage != null && (arrayList = richMessage.photos) != null) {
                                 int size = arrayList.size();
                                 int i12 = 0;
@@ -5025,18 +5025,18 @@ public final class t3 extends q41 {
                                     TLRPC.Photo photo2 = arrayList.get(i12);
                                     i12++;
                                     TLRPC.Photo photo3 = photo2;
-                                    if (photo3 != null && photo3.f26977id == j3) {
+                                    if (photo3 != null && photo3.f26980id == j3) {
                                         photo = photo3;
                                         break;
                                     }
                                 }
                             }
-                            HashMap hashMap = t4.f18909a;
+                            HashMap hashMap = t4.f18912a;
                             synchronized (t4.class) {
                                 if (i10 == 0) {
                                     photo = null;
                                 } else {
-                                    photo = (TLRPC.Photo) t4.f18909a.get(Long.valueOf(j3));
+                                    photo = (TLRPC.Photo) t4.f18912a.get(Long.valueOf(j3));
                                 }
                             }
                         }
@@ -5046,13 +5046,13 @@ public final class t3 extends q41 {
                     return null;
                 }
                 s sVar5 = new s();
-                sVar5.f18811a = 2;
-                sVar5.f18816g = photo;
-                sVar5.f18822n = pageblockphoto.spoiler;
+                sVar5.f18814a = 2;
+                sVar5.f18819g = photo;
+                sVar5.f18825n = pageblockphoto.spoiler;
                 TLRPC.PhotoSize w10 = w7.w(photo.sizes, org.telegram.messenger.g0.Z0(false), false, null, false);
                 if (w10 != null) {
-                    sVar5.f18818j = w10.f26978w;
-                    sVar5.f18819k = w10.h;
+                    sVar5.f18821j = w10.f26981w;
+                    sVar5.f18822k = w10.h;
                 }
                 return sVar5;
             }
@@ -5061,13 +5061,13 @@ public final class t3 extends q41 {
 
     public final void y2() {
         J2();
-        this.f18892r3 = null;
-        this.f18879i4 = null;
-        this.f18880j4 = null;
-        this.Q3 = new f2(this.f18901v4);
+        this.f18895r3 = null;
+        this.f18882i4 = null;
+        this.f18883j4 = null;
+        this.Q3 = new f2(this.f18904v4);
         C4();
         this.Q3.j();
-        r3 r3Var = this.f18887o3;
+        r3 r3Var = this.f18890o3;
         if (r3Var != null) {
             r3Var.N();
         }
@@ -5075,9 +5075,9 @@ public final class t3 extends q41 {
 
     public final void y4(a aVar) {
         TL_iv.PageBlock pageBlock;
-        if (this.f18892r3 != null && aVar != null && (pageBlock = aVar.f18389b) != null) {
+        if (this.f18895r3 != null && aVar != null && (pageBlock = aVar.f18392b) != null) {
             if (E3(pageBlock)) {
-                ArrayList j3 = j3(aVar.f18389b);
+                ArrayList j3 = j3(aVar.f18392b);
                 aVar.h = new ArrayList();
                 if (j3 != null) {
                     for (int i7 = 0; i7 < j3.size(); i7++) {
@@ -5092,17 +5092,17 @@ public final class t3 extends q41 {
                 }
                 return;
             }
-            s x43 = x4(aVar.f18389b);
+            s x43 = x4(aVar.f18392b);
             if (x43 != null) {
-                aVar.f18393g = x43;
+                aVar.f18396g = x43;
             }
         }
     }
 
     public final boolean z3() {
         int i7;
-        g3 g3Var = this.f18898u3;
-        if (g3Var != null && g3Var.x() && (i7 = g3Var.f29314p0) == g3Var.f29317s0 && i7 >= 0 && i7 < this.f18903w4.size()) {
+        g3 g3Var = this.f18901u3;
+        if (g3Var != null && g3Var.x() && (i7 = g3Var.f29317p0) == g3Var.f29320s0 && i7 >= 0 && i7 < this.f18906w4.size()) {
             return D4(i7) instanceof k0;
         }
         return false;
@@ -5116,8 +5116,8 @@ public final class t3 extends q41 {
             Object obj = arrayList.get(i7);
             i7++;
             a aVar = (a) obj;
-            if (E3(aVar.f18389b)) {
-                ArrayList j3 = j3(aVar.f18389b);
+            if (E3(aVar.f18392b)) {
+                ArrayList j3 = j3(aVar.f18392b);
                 ArrayList arrayList3 = new ArrayList();
                 ArrayList arrayList4 = new ArrayList();
                 if (j3 != null) {
@@ -5141,13 +5141,13 @@ public final class t3 extends q41 {
                     arrayList2.add(aVar);
                 }
             } else {
-                TL_iv.PageBlock pageBlock2 = aVar.f18389b;
+                TL_iv.PageBlock pageBlock2 = aVar.f18392b;
                 if (!(pageBlock2 instanceof TL_iv.pageBlockPhoto) && !(pageBlock2 instanceof TL_iv.pageBlockVideo) && !(pageBlock2 instanceof TL_iv.pageBlockAudio) && !(pageBlock2 instanceof TL_iv.pageBlockDocument)) {
                     arrayList2.add(aVar);
                 } else {
                     s x43 = x4(pageBlock2);
                     if (x43 != null) {
-                        aVar.f18393g = x43;
+                        aVar.f18396g = x43;
                         arrayList2.add(aVar);
                     }
                 }

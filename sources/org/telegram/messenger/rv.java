@@ -1,11 +1,11 @@
 package org.telegram.messenger;
 public abstract class rv {
-    public boolean f25350a;
-    public boolean f25351b;
-    public long f25352c = 104857600;
+    public boolean f25345a;
+    public boolean f25346b;
+    public long f25347c = 104857600;
 
     public final boolean a() {
-        if (!this.f25350a && !this.f25351b) {
+        if (!this.f25345a && !this.f25346b) {
             return false;
         }
         return true;
@@ -13,11 +13,11 @@ public abstract class rv {
 
     public void b() {
         if (a()) {
-            this.f25351b = false;
-            this.f25350a = false;
+            this.f25346b = false;
+            this.f25345a = false;
             return;
         }
-        this.f25350a = true;
-        this.f25351b = true;
+        this.f25345a = true;
+        this.f25346b = true;
     }
 }

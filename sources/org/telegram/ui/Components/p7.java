@@ -3,19 +3,19 @@ package org.telegram.ui.Components;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class p7 extends AnimatorListenerAdapter {
-    public final int f36786a;
-    public final b8 f36787b;
+    public final int f36812a;
+    public final b8 f36813b;
 
     public p7(b8 b8Var, int i7) {
-        this.f36786a = i7;
-        this.f36787b = b8Var;
+        this.f36812a = i7;
+        this.f36813b = b8Var;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f36786a) {
+        switch (this.f36812a) {
             case 2:
-                this.f36787b.f32088s2 = null;
+                this.f36813b.f32109s2 = null;
                 return;
             default:
                 super.onAnimationCancel(animator);
@@ -25,15 +25,15 @@ public final class p7 extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f36786a) {
+        switch (this.f36812a) {
             case 0:
-                this.f36787b.f32064c2 = false;
+                this.f36813b.f32085c2 = false;
                 return;
             case 1:
-                b8 b8Var = this.f36787b;
+                b8 b8Var = this.f36813b;
                 b8Var.Y1.setVisibility(4);
                 b8Var.Z1.setImageBitmap(null);
-                b8Var.f32064c2 = false;
+                b8Var.f32085c2 = false;
                 return;
             default:
                 return;

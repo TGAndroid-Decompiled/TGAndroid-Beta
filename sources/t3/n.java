@@ -9,15 +9,15 @@ import h9.t1;
 import j$.util.Objects;
 import java.util.ArrayList;
 public final class n extends i {
-    public final String f55320b;
-    public final i0 f55321c;
+    public final String f55412b;
+    public final i0 f55413c;
 
     public n(String str, String str2, t1 t1Var) {
         super(str);
         ia.f(!t1Var.isEmpty());
-        this.f55320b = str2;
+        this.f55412b = str2;
         i0 q10 = i0.q(t1Var);
-        this.f55321c = q10;
+        this.f55413c = q10;
         String str3 = (String) q10.get(0);
     }
 
@@ -48,7 +48,7 @@ public final class n extends i {
     public final void b(n0 n0Var) {
         char c10;
         Integer num;
-        String str = this.f55310a;
+        String str = this.f55402a;
         switch (str.hashCode()) {
             case 82815:
                 if (str.equals("TAL")) {
@@ -215,7 +215,7 @@ public final class n extends i {
                 c10 = 65535;
                 break;
         }
-        i0 i0Var = this.f55321c;
+        i0 i0Var = this.f55413c;
         try {
             switch (c10) {
                 case 0:
@@ -326,7 +326,7 @@ public final class n extends i {
         }
         if (obj != null && n.class == obj.getClass()) {
             n nVar = (n) obj;
-            if (Objects.equals(this.f55310a, nVar.f55310a) && Objects.equals(this.f55320b, nVar.f55320b) && this.f55321c.equals(nVar.f55321c)) {
+            if (Objects.equals(this.f55402a, nVar.f55402a) && Objects.equals(this.f55412b, nVar.f55412b) && this.f55413c.equals(nVar.f55413c)) {
                 return true;
             }
         }
@@ -335,18 +335,18 @@ public final class n extends i {
 
     public final int hashCode() {
         int i7;
-        int h = com.google.android.recaptcha.internal.a.h(527, 31, this.f55310a);
-        String str = this.f55320b;
+        int h = com.google.android.recaptcha.internal.a.h(527, 31, this.f55402a);
+        String str = this.f55412b;
         if (str != null) {
             i7 = str.hashCode();
         } else {
             i7 = 0;
         }
-        return this.f55321c.hashCode() + ((h + i7) * 31);
+        return this.f55413c.hashCode() + ((h + i7) * 31);
     }
 
     @Override
     public final String toString() {
-        return this.f55310a + ": description=" + this.f55320b + ": values=" + this.f55321c;
+        return this.f55402a + ": description=" + this.f55412b + ": values=" + this.f55413c;
     }
 }

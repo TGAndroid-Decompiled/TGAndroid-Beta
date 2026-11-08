@@ -30,7 +30,7 @@ public final class i1 implements ti.m {
     public static boolean a(g1 g1Var) {
         ti.o oVar;
         i1 i1Var = f9120w;
-        if (g1Var == null || i1Var == null || i1Var.f9122b != g1Var || (oVar = i1Var.f9121a) == null || !oVar.d() || i1Var.f9121a.f56032c == 0) {
+        if (g1Var == null || i1Var == null || i1Var.f9122b != g1Var || (oVar = i1Var.f9121a) == null || !oVar.d() || i1Var.f9121a.f56124c == 0) {
             return false;
         }
         return true;
@@ -184,7 +184,7 @@ public final class i1 implements ti.m {
         if (g1Var != null) {
             int i7 = g1Var.f9025e;
             if (!g1Var.f9031x) {
-                if (i7 != p10.f24467s0 && (launchActivity = LaunchActivity.G1) != null) {
+                if (i7 != p10.f24470s0 && (launchActivity = LaunchActivity.G1) != null) {
                     launchActivity.O0(i7);
                 }
                 org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
@@ -292,11 +292,11 @@ public final class i1 implements ti.m {
     }
 
     @Override
-    public final void g(ti.q qVar) {
+    public final void g(ti.p pVar) {
         if (this.f9122b == null) {
             return;
         }
-        org.telegram.ui.Components.voip.q0 q0Var = new org.telegram.ui.Components.voip.q0(qVar);
+        org.telegram.ui.Components.voip.q0 q0Var = new org.telegram.ui.Components.voip.q0(pVar);
         this.f9124e = q0Var;
         this.d.f9065a = q0Var;
         g1 g1Var = this.f9122b;
@@ -346,7 +346,7 @@ public final class i1 implements ti.m {
         if (g1Var != null) {
             i7 = g1Var.f9025e;
         } else {
-            i7 = p10.f24467s0;
+            i7 = p10.f24470s0;
         }
         return new fi.s3(launchActivity, i7);
     }

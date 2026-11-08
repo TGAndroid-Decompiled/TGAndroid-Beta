@@ -29,7 +29,7 @@ public final class m1 extends View {
                 int height = getHeight();
                 cp cpVar2 = this.f9344b;
                 cpVar2.setBounds(0, 0, width, height);
-                cpVar2.b(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28013m5, false));
+                cpVar2.b(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28016m5, false));
                 cpVar2.setAlpha(255);
                 cpVar2.draw(canvas);
                 invalidate();
@@ -40,6 +40,6 @@ public final class m1 extends View {
 
     public m1(Activity activity) {
         super(activity);
-        this.f9344b = new cp(org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(3.0f), org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28013m5, false));
+        this.f9344b = new cp(org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(3.0f), org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28016m5, false));
     }
 }

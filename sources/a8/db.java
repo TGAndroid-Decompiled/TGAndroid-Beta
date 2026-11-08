@@ -4,15 +4,15 @@ import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
 public final class db extends a implements fb {
-    public final cb X0(a7.b bVar, hb hbVar) {
+    public final cb x1(a7.b bVar, hb hbVar) {
         cb aVar;
-        Parcel P0 = P0();
+        Parcel p12 = p1();
         int i7 = g0.f404a;
-        P0.writeStrongBinder(bVar);
-        P0.writeInt(1);
-        hbVar.writeToParcel(P0, 0);
-        Parcel R0 = R0(P0, 1);
-        IBinder readStrongBinder = R0.readStrongBinder();
+        p12.writeStrongBinder(bVar);
+        p12.writeInt(1);
+        hbVar.writeToParcel(p12, 0);
+        Parcel r12 = r1(p12, 1);
+        IBinder readStrongBinder = r12.readStrongBinder();
         if (readStrongBinder == null) {
             aVar = 0;
         } else {
@@ -23,7 +23,7 @@ public final class db extends a implements fb {
                 aVar = new a(readStrongBinder, "com.google.mlkit.vision.label.aidls.IImageLabeler", 0);
             }
         }
-        R0.recycle();
+        r12.recycle();
         return aVar;
     }
 }

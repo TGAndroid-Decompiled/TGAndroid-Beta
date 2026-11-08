@@ -18,30 +18,30 @@ public final class r71 extends View {
     public q71 L;
     public boolean M;
     public final org.telegram.ui.Cells.f2 N;
-    public final Drawable f37529a;
-    public final Drawable f37530b;
-    public final Drawable f37531c;
+    public final Drawable f37550a;
+    public final Drawable f37551b;
+    public final Drawable f37552c;
     public final Drawable d;
-    public final Drawable f37532e;
-    public final Drawable f37533f;
+    public final Drawable f37553e;
+    public final Drawable f37554f;
     public int h;
-    public int f37534n;
-    public int f37535r;
-    public int f37536s;
-    public int f37537w;
-    public int f37538x;
-    public int f37539y;
+    public int f37555n;
+    public int f37556r;
+    public int f37557s;
+    public int f37558w;
+    public int f37559x;
+    public int f37560y;
 
     public r71(Context context) {
         super(context);
         this.M = true;
         this.N = new org.telegram.ui.Cells.f2(this);
-        this.f37529a = context.getResources().getDrawable(2131232862);
-        this.f37530b = context.getResources().getDrawable(2131232863);
-        this.f37531c = context.getResources().getDrawable(2131232866);
+        this.f37550a = context.getResources().getDrawable(2131232862);
+        this.f37551b = context.getResources().getDrawable(2131232863);
+        this.f37552c = context.getResources().getDrawable(2131232866);
         this.d = context.getResources().getDrawable(2131232867);
-        this.f37532e = context.getResources().getDrawable(2131232864);
-        this.f37533f = context.getResources().getDrawable(2131232865);
+        this.f37553e = context.getResources().getDrawable(2131232864);
+        this.f37554f = context.getResources().getDrawable(2131232865);
     }
 
     public final boolean a(float f10) {
@@ -86,55 +86,55 @@ public final class r71 extends View {
         }
         if (z9) {
             this.h = org.telegram.messenger.g0.L(41.0f);
-            this.f37534n = measuredHeight;
-            this.f37535r = getMeasuredWidth() - org.telegram.messenger.g0.L(41.0f);
-            this.f37536s = measuredHeight;
-            this.f37537w = org.telegram.messenger.g0.L(18.0f) + this.h;
-            this.f37538x = measuredHeight;
-            this.f37539y = this.f37535r - org.telegram.messenger.g0.L(18.0f);
+            this.f37555n = measuredHeight;
+            this.f37556r = getMeasuredWidth() - org.telegram.messenger.g0.L(41.0f);
+            this.f37557s = measuredHeight;
+            this.f37558w = org.telegram.messenger.g0.L(18.0f) + this.h;
+            this.f37559x = measuredHeight;
+            this.f37560y = this.f37556r - org.telegram.messenger.g0.L(18.0f);
             this.D = measuredHeight;
         } else {
             this.h = measuredWidth;
-            this.f37534n = org.telegram.messenger.g0.L(41.0f);
-            this.f37535r = measuredWidth;
-            this.f37536s = getMeasuredHeight() - org.telegram.messenger.g0.L(41.0f);
-            this.f37537w = measuredWidth;
-            this.f37538x = org.telegram.messenger.g0.L(18.0f) + this.f37534n;
-            this.f37539y = measuredWidth;
-            this.D = this.f37536s - org.telegram.messenger.g0.L(18.0f);
+            this.f37555n = org.telegram.messenger.g0.L(41.0f);
+            this.f37556r = measuredWidth;
+            this.f37557s = getMeasuredHeight() - org.telegram.messenger.g0.L(41.0f);
+            this.f37558w = measuredWidth;
+            this.f37559x = org.telegram.messenger.g0.L(18.0f) + this.f37555n;
+            this.f37560y = measuredWidth;
+            this.D = this.f37557s - org.telegram.messenger.g0.L(18.0f);
         }
         int L = this.h - org.telegram.messenger.g0.L(7.0f);
-        int L2 = this.f37534n - org.telegram.messenger.g0.L(7.0f);
+        int L2 = this.f37555n - org.telegram.messenger.g0.L(7.0f);
         int L3 = org.telegram.messenger.g0.L(7.0f) + this.h;
-        int L4 = org.telegram.messenger.g0.L(7.0f) + this.f37534n;
-        Drawable drawable2 = this.f37529a;
+        int L4 = org.telegram.messenger.g0.L(7.0f) + this.f37555n;
+        Drawable drawable2 = this.f37550a;
         drawable2.setBounds(L, L2, L3, L4);
         drawable2.draw(canvas);
-        int L5 = this.f37535r - org.telegram.messenger.g0.L(7.0f);
-        int L6 = this.f37536s - org.telegram.messenger.g0.L(7.0f);
-        int L7 = org.telegram.messenger.g0.L(7.0f) + this.f37535r;
-        int L8 = org.telegram.messenger.g0.L(7.0f) + this.f37536s;
-        Drawable drawable3 = this.f37530b;
+        int L5 = this.f37556r - org.telegram.messenger.g0.L(7.0f);
+        int L6 = this.f37557s - org.telegram.messenger.g0.L(7.0f);
+        int L7 = org.telegram.messenger.g0.L(7.0f) + this.f37556r;
+        int L8 = org.telegram.messenger.g0.L(7.0f) + this.f37557s;
+        Drawable drawable3 = this.f37551b;
         drawable3.setBounds(L5, L6, L7, L8);
         drawable3.draw(canvas);
-        int i7 = this.f37539y;
-        int i10 = this.f37537w;
+        int i7 = this.f37560y;
+        int i10 = this.f37558w;
         int i11 = this.D;
-        int i12 = this.f37538x;
+        int i12 = this.f37559x;
         float f10 = this.E;
         int i13 = (int) (((i7 - i10) * f10) + i10);
         int i14 = (int) (((i11 - i12) * f10) + i12);
         Drawable drawable4 = this.d;
-        Drawable drawable5 = this.f37531c;
+        Drawable drawable5 = this.f37552c;
         if (z9) {
-            drawable5.setBounds(i10, i12 - org.telegram.messenger.g0.L(3.0f), this.f37539y, org.telegram.messenger.g0.L(3.0f) + this.f37538x);
-            drawable4.setBounds(this.f37537w, this.f37538x - org.telegram.messenger.g0.L(3.0f), i13, org.telegram.messenger.g0.L(3.0f) + this.f37538x);
+            drawable5.setBounds(i10, i12 - org.telegram.messenger.g0.L(3.0f), this.f37560y, org.telegram.messenger.g0.L(3.0f) + this.f37559x);
+            drawable4.setBounds(this.f37558w, this.f37559x - org.telegram.messenger.g0.L(3.0f), i13, org.telegram.messenger.g0.L(3.0f) + this.f37559x);
         } else {
             drawable5.setBounds(i12, 0, i11, org.telegram.messenger.g0.L(6.0f));
-            drawable4.setBounds(this.f37538x, 0, i14, org.telegram.messenger.g0.L(6.0f));
+            drawable4.setBounds(this.f37559x, 0, i14, org.telegram.messenger.g0.L(6.0f));
             canvas.save();
             canvas.rotate(90.0f);
-            canvas.translate(0.0f, (-this.f37537w) - org.telegram.messenger.g0.L(3.0f));
+            canvas.translate(0.0f, (-this.f37558w) - org.telegram.messenger.g0.L(3.0f));
         }
         drawable5.draw(canvas);
         drawable4.draw(canvas);
@@ -142,9 +142,9 @@ public final class r71 extends View {
             canvas.restore();
         }
         if (this.G) {
-            drawable = this.f37533f;
+            drawable = this.f37554f;
         } else {
-            drawable = this.f37532e;
+            drawable = this.f37553e;
         }
         int intrinsicWidth = drawable.getIntrinsicWidth() / 2;
         drawable.setBounds(i13 - intrinsicWidth, i14 - intrinsicWidth, i13 + intrinsicWidth, i14 + intrinsicWidth);

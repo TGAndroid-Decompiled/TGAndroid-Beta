@@ -34,9 +34,9 @@ public final class h2 implements x10 {
                 ArrayList arrayList = (ArrayList) obj;
                 v10 v10Var = (v10) obj2;
                 Runnable runnable = (Runnable) obj3;
-                zh.k3 k3Var = k7Var.O2;
-                if (k3Var != null) {
-                    k3Var.b();
+                zh.j3 j3Var = k7Var.O2;
+                if (j3Var != null) {
+                    j3Var.b();
                     k7Var.O2 = null;
                 }
                 TL_stars.craftStarGift craftstargift = new TL_stars.craftStarGift();
@@ -49,7 +49,7 @@ public final class h2 implements x10 {
                     tL_inputSavedStarGiftSlug.slug = ((TL_stars.StarGift) obj4).slug;
                     craftstargift.stargift.add(tL_inputSavedStarGiftSlug);
                 }
-                ConnectionsManager.getInstance(k7Var.f28613a).sendRequestTyped(craftstargift, new d3.b(1), new q2(k7Var, v10Var, arrayList, runnable, 0));
+                ConnectionsManager.getInstance(k7Var.f28616a).sendRequestTyped(craftstargift, new d3.b(1), new q2(k7Var, v10Var, arrayList, runnable, 0));
                 return;
             default:
                 fi.va vaVar = (fi.va) this.f3987b;

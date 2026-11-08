@@ -73,15 +73,15 @@ public class n7 {
         boolean z9;
         TLRPC.TL_recentStory tL_recentStory4;
         this.R = view;
-        y6 P1 = qp.s1(p10.f24467s0).P1();
+        y6 P1 = qp.s1(p10.f24470s0).P1();
         boolean z10 = false;
         if (motionEvent.getAction() == 0) {
             if (this.F.contains(motionEvent.getX(), motionEvent.getY())) {
                 TLRPC.Chat chat = null;
                 if (this.f9428x > 0) {
-                    user = qp.s1(p10.f24467s0).a2(Long.valueOf(this.f9428x));
+                    user = qp.s1(p10.f24470s0).a2(Long.valueOf(this.f9428x));
                 } else {
-                    chat = qp.s1(p10.f24467s0).M0(Long.valueOf(-this.f9428x));
+                    chat = qp.s1(p10.f24470s0).M0(Long.valueOf(-this.f9428x));
                     user = null;
                 }
                 if (c(chat, user)) {
@@ -89,17 +89,17 @@ public class n7 {
                 } else if (this.f9423r) {
                     z9 = !P1.h.isEmpty();
                 } else {
-                    if (this.f9428x <= 0 ? qp.s1(p10.f24467s0).P1().K(this.f9428x) || (chat != null && !chat.stories_unavailable && (tL_recentStory3 = chat.stories_max_id) != null && tL_recentStory3.max_id > 0) : qp.s1(p10.f24467s0).P1().K(this.f9428x) || (user != null && !user.stories_unavailable && (tL_recentStory4 = user.stories_max_id) != null && tL_recentStory4.max_id > 0)) {
+                    if (this.f9428x <= 0 ? qp.s1(p10.f24470s0).P1().K(this.f9428x) || (chat != null && !chat.stories_unavailable && (tL_recentStory3 = chat.stories_max_id) != null && tL_recentStory3.max_id > 0) : qp.s1(p10.f24470s0).P1().K(this.f9428x) || (user != null && !user.stories_unavailable && (tL_recentStory4 = user.stories_max_id) != null && tL_recentStory4.max_id > 0)) {
                         z10 = true;
                     }
                     z9 = z10;
                 }
-                if (this.f9428x != p10.i(p10.f24467s0).f24486n && z9) {
+                if (this.f9428x != p10.i(p10.f24470s0).f24489n && z9) {
                     ic icVar = this.H;
                     if (icVar == null) {
                         this.H = new ic(view, 1.5f, 5.0f);
                     } else {
-                        icVar.f34579a = view;
+                        icVar.f34623a = view;
                     }
                     view.getParent().requestDisallowInterceptTouchEvent(true);
                     this.H.c(true);
@@ -120,10 +120,10 @@ public class n7 {
             }
         }
         if (motionEvent.getAction() == 2 && this.N) {
-            if (Math.abs(this.O - motionEvent.getX()) > org.telegram.messenger.g0.f22523e || Math.abs(this.P - motionEvent.getY()) > org.telegram.messenger.g0.f22523e) {
+            if (Math.abs(this.O - motionEvent.getX()) > org.telegram.messenger.g0.f22542e || Math.abs(this.P - motionEvent.getY()) > org.telegram.messenger.g0.f22542e) {
                 ic icVar2 = this.H;
                 if (icVar2 != null) {
-                    icVar2.f34579a = view;
+                    icVar2.f34623a = view;
                     icVar2.c(false);
                 }
                 z0 z0Var3 = this.Q;
@@ -136,15 +136,15 @@ public class n7 {
         } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
             ic icVar3 = this.H;
             if (icVar3 != null) {
-                icVar3.f34579a = view;
+                icVar3.f34623a = view;
                 icVar3.c(false);
             }
             if (this.N && motionEvent.getAction() == 1 && !d(this.f9428x)) {
-                qp s12 = qp.s1(p10.f24467s0);
+                qp s12 = qp.s1(p10.f24470s0);
                 y6 P12 = s12.P1();
                 if (this.f9423r) {
                     f(0L);
-                } else if (this.f9428x != p10.i(p10.f24467s0).e()) {
+                } else if (this.f9428x != p10.i(p10.f24470s0).e()) {
                     if (P12.K(this.f9428x)) {
                         f(this.f9428x);
                     } else {

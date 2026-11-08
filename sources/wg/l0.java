@@ -5,22 +5,22 @@ import android.view.View;
 import di.d4;
 import java.util.ArrayList;
 import java.util.Date;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.k5;
 import org.telegram.ui.Components.pj0;
 public final class l0 extends CountDownTimer {
-    public final q0 f57682a;
+    public final q0 f57774a;
 
     public l0(q0 q0Var) {
         super(Long.MAX_VALUE, 1000L);
-        this.f57682a = q0Var;
+        this.f57774a = q0Var;
     }
 
     @Override
     public final void onTick(long j3) {
-        q0 q0Var = this.f57682a;
-        pj0 pj0Var = q0Var.f36261k1;
+        q0 q0Var = this.f57774a;
+        pj0 pj0Var = q0Var.f36277k1;
         ArrayList arrayList = q0Var.Q1;
         ArrayList arrayList2 = new ArrayList(arrayList.size());
         int size = arrayList.size();
@@ -42,16 +42,16 @@ public final class l0 extends CountDownTimer {
                 if (childAt instanceof ah.r) {
                     ah.r rVar = (ah.r) childAt;
                     if (arrayList2.contains(rVar.getBoost())) {
-                        k5 k5Var = rVar.f59342e;
+                        k5 k5Var = rVar.f59434e;
                         d4 d4Var = rVar.d;
                         int i11 = rVar.J.cooldown_until_date;
                         if (i11 > 0) {
-                            rVar.setSubtitle(hd.a0(null, null, 2131753594, ah.r.f((i11 * 1000) - System.currentTimeMillis())));
+                            rVar.setSubtitle(id.a0(null, null, 2131753594, ah.r.f((i11 * 1000) - System.currentTimeMillis())));
                             d4Var.setAlpha(0.65f);
                             k5Var.setAlpha(0.65f);
                             rVar.i(false, 0.3f);
                         } else {
-                            rVar.setSubtitle(hd.a0(null, null, 2131753661, hd.E0().o0().format(new Date(rVar.J.expires * 1000))));
+                            rVar.setSubtitle(id.a0(null, null, 2131753661, id.E0().o0().format(new Date(rVar.J.expires * 1000))));
                             if (d4Var.getAlpha() < 1.0f) {
                                 d4Var.animate().alpha(1.0f).start();
                                 k5Var.animate().alpha(1.0f).start();

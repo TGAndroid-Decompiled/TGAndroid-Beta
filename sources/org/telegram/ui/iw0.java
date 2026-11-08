@@ -7,7 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.iw0;
-import org.telegram.ui.ya1;
+import org.telegram.ui.za1;
 public final class iw0 extends org.telegram.ui.Cells.x6 {
     public final jw0 h;
 
@@ -20,39 +20,39 @@ public final class iw0 extends org.telegram.ui.Cells.x6 {
         int i13;
         int i14;
         this.h = jw0Var;
-        this.f30890f = org.telegram.messenger.p10.f24467s0;
+        this.f30894f = org.telegram.messenger.p10.f24470s0;
         setOrientation(1);
         TextView textView = new TextView(context);
-        this.f30886a = textView;
+        this.f30890a = textView;
         com.google.android.recaptcha.internal.a.q(textView, 1, 15.0f);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        if (org.telegram.messenger.hd.f22878a0) {
+        if (org.telegram.messenger.id.f23157a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         textView.setGravity(i7 | 16);
         org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.L6, f6Var);
-        if (org.telegram.messenger.hd.f22878a0) {
+        if (org.telegram.messenger.id.f23157a0) {
             i10 = 5;
         } else {
             i10 = 3;
         }
         addView(textView, c8.ha.t(-1, -2, i10 | 48, 21, 15, 21, 0));
         org.telegram.ui.Components.w70 w70Var = new org.telegram.ui.Components.w70(context, f6Var);
-        this.f30887b = w70Var;
+        this.f30891b = w70Var;
         org.telegram.ui.ActionBar.r6.V(w70Var, org.telegram.ui.ActionBar.k6.G6, f6Var);
         w70Var.setTextSize(1, 14.0f);
         org.telegram.ui.ActionBar.r6.H(w70Var, org.telegram.ui.ActionBar.k6.J6, f6Var);
         org.telegram.ui.ActionBar.r6.D(w70Var, org.telegram.ui.ActionBar.k6.K6, f6Var);
         w70Var.setMovementMethod(new org.telegram.messenger.c0(false));
-        if (org.telegram.messenger.hd.f22878a0) {
+        if (org.telegram.messenger.id.f23157a0) {
             i11 = 5;
         } else {
             i11 = 3;
         }
         w70Var.setGravity(i11);
-        if (org.telegram.messenger.hd.f22878a0) {
+        if (org.telegram.messenger.id.f23157a0) {
             i12 = 5;
         } else {
             i12 = 3;
@@ -83,30 +83,30 @@ public final class iw0 extends org.telegram.ui.Cells.x6 {
             }
             linearLayout.addView(textView2, c8.ha.m(0.5f, 0, 44, i13, i14, 0));
             if (i15 == 0) {
-                this.f30888c = textView2;
+                this.f30892c = textView2;
                 textView2.setOnClickListener(new View.OnClickListener(this) {
-                    public final iw0 f30730b;
+                    public final iw0 f30734b;
 
                     {
-                        this.f30730b = this;
+                        this.f30734b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         switch (r2) {
                             case 0:
-                                iw0 iw0Var = this.f30730b;
-                                org.telegram.messenger.g0.h3(new org.telegram.ui.Components.r2(iw0Var, iw0Var.f30889e, 24));
+                                iw0 iw0Var = this.f30734b;
+                                org.telegram.messenger.g0.h3(new org.telegram.ui.Components.r2(iw0Var, iw0Var.f30893e, 24));
                                 return;
                             default:
-                                iw0 iw0Var2 = this.f30730b;
-                                int i16 = iw0Var2.f30889e;
-                                ProfileActivity profileActivity = iw0Var2.h.f47049e;
+                                iw0 iw0Var2 = this.f30734b;
+                                int i16 = iw0Var2.f30893e;
+                                ProfileActivity profileActivity = iw0Var2.h.f47047e;
                                 if (i16 == 0) {
                                     profileActivity.presentFragment(new org.telegram.ui.g(3));
                                     return;
                                 } else {
-                                    profileActivity.presentFragment(new ya1(8, null));
+                                    profileActivity.presentFragment(new za1(8, null));
                                     return;
                                 }
                         }
@@ -115,28 +115,28 @@ public final class iw0 extends org.telegram.ui.Cells.x6 {
             } else {
                 this.d = textView2;
                 textView2.setOnClickListener(new View.OnClickListener(this) {
-                    public final iw0 f30730b;
+                    public final iw0 f30734b;
 
                     {
-                        this.f30730b = this;
+                        this.f30734b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         switch (r2) {
                             case 0:
-                                iw0 iw0Var = this.f30730b;
-                                org.telegram.messenger.g0.h3(new org.telegram.ui.Components.r2(iw0Var, iw0Var.f30889e, 24));
+                                iw0 iw0Var = this.f30734b;
+                                org.telegram.messenger.g0.h3(new org.telegram.ui.Components.r2(iw0Var, iw0Var.f30893e, 24));
                                 return;
                             default:
-                                iw0 iw0Var2 = this.f30730b;
-                                int i16 = iw0Var2.f30889e;
-                                ProfileActivity profileActivity = iw0Var2.h.f47049e;
+                                iw0 iw0Var2 = this.f30734b;
+                                int i16 = iw0Var2.f30893e;
+                                ProfileActivity profileActivity = iw0Var2.h.f47047e;
                                 if (i16 == 0) {
                                     profileActivity.presentFragment(new org.telegram.ui.g(3));
                                     return;
                                 } else {
-                                    profileActivity.presentFragment(new ya1(8, null));
+                                    profileActivity.presentFragment(new za1(8, null));
                                     return;
                                 }
                         }

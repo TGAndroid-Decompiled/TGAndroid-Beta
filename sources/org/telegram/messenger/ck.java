@@ -1,113 +1,51 @@
 package org.telegram.messenger;
 
-import java.io.Serializable;
+import j$.util.concurrent.ConcurrentHashMap;
 import java.util.ArrayList;
-import org.telegram.SQLite.SQLitePreparedStatement;
-import org.telegram.tgnet.NativeByteBuffer;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
 public final class ck implements Runnable {
-    public final int f21841a;
-    public final int f21842b;
-    public final Object f21843c;
-    public final Object d;
-    public final Object f21844e;
-    public final Object f21845f;
+    public final int f21874a;
+    public final qp f21875b;
+    public final bg.u f21876c;
+    public final ConcurrentHashMap d;
+    public final ConcurrentHashMap f21877e;
 
-    public ck(Object obj, Object obj2, int i7, Object obj3, Object obj4, int i10) {
-        this.f21841a = i10;
-        this.f21843c = obj;
-        this.d = obj2;
-        this.f21842b = i7;
-        this.f21844e = obj3;
-        this.f21845f = obj4;
-    }
-
-    private final void a() {
-        TLRPC.MessageMedia messageMedia;
-        yr yrVar = (yr) this.f21843c;
-        String str = (String) this.d;
-        TLObject tLObject = (TLObject) this.f21844e;
-        int i7 = this.f21842b;
-        String str2 = (String) this.f21845f;
-        yrVar.getClass();
-        SQLitePreparedStatement sQLitePreparedStatement = null;
-        try {
-            try {
-                String a10 = Utilities.a(str);
-                if (a10 != null) {
-                    if (tLObject instanceof TLRPC.Photo) {
-                        messageMedia = new TLRPC.TL_messageMediaPhoto();
-                        messageMedia.photo = (TLRPC.Photo) tLObject;
-                        messageMedia.flags |= 1;
-                    } else if (tLObject instanceof TLRPC.Document) {
-                        messageMedia = new TLRPC.TL_messageMediaDocument();
-                        messageMedia.document = (TLRPC.Document) tLObject;
-                        messageMedia.flags |= 1;
-                    } else {
-                        messageMedia = null;
-                    }
-                    if (messageMedia != null) {
-                        sQLitePreparedStatement = yrVar.f26698b.executeFast("REPLACE INTO sent_files_v2 VALUES(?, ?, ?, ?)");
-                        sQLitePreparedStatement.requery();
-                        NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(messageMedia.getObjectSize());
-                        messageMedia.serializeToStream(nativeByteBuffer);
-                        sQLitePreparedStatement.bindString(1, a10);
-                        sQLitePreparedStatement.bindInteger(2, i7);
-                        sQLitePreparedStatement.bindByteBuffer(3, nativeByteBuffer);
-                        sQLitePreparedStatement.bindString(4, str2);
-                        sQLitePreparedStatement.step();
-                        nativeByteBuffer.reuse();
-                    } else {
-                        return;
-                    }
-                }
-                if (sQLitePreparedStatement != null) {
-                    sQLitePreparedStatement.dispose();
-                }
-            } catch (Exception e10) {
-                yrVar.o(e10, true);
-                if (sQLitePreparedStatement != null) {
-                    sQLitePreparedStatement.dispose();
-                }
-            }
-        } catch (Throwable th2) {
-            if (sQLitePreparedStatement != null) {
-                sQLitePreparedStatement.dispose();
-            }
-            throw th2;
-        }
+    public ck(qp qpVar, bg.u uVar, ConcurrentHashMap concurrentHashMap, ConcurrentHashMap concurrentHashMap2, int i7) {
+        this.f21874a = i7;
+        this.f21875b = qpVar;
+        this.f21876c = uVar;
+        this.d = concurrentHashMap;
+        this.f21877e = concurrentHashMap2;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ck.run():void");
-    }
-
-    public ck(Object obj, Object obj2, Object obj3, Object obj4, int i7, int i10) {
-        this.f21841a = i10;
-        this.f21843c = obj;
-        this.d = obj2;
-        this.f21844e = obj3;
-        this.f21845f = obj4;
-        this.f21842b = i7;
-    }
-
-    public ck(c1 c1Var, Serializable serializable, Object obj, int i7, Serializable serializable2, int i10) {
-        this.f21841a = i10;
-        this.f21843c = c1Var;
-        this.d = serializable;
-        this.f21844e = obj;
-        this.f21842b = i7;
-        this.f21845f = serializable2;
-    }
-
-    public ck(wz wzVar, int i7, ArrayList arrayList, a0.h hVar, a0.h hVar2) {
-        this.f21841a = 6;
-        this.f21843c = wzVar;
-        this.f21842b = i7;
-        this.d = arrayList;
-        this.f21844e = hVar;
-        this.f21845f = hVar2;
+        switch (this.f21874a) {
+            case 0:
+                qp qpVar = this.f21875b;
+                int i7 = qpVar.currentAccount;
+                bg.u uVar = this.f21876c;
+                uVar.b(i7, this.d, this.f21877e, 0);
+                g0.h3(new vl(qpVar, uVar, 1));
+                return;
+            case 1:
+                qp qpVar2 = this.f21875b;
+                int i10 = qpVar2.currentAccount;
+                bg.u uVar2 = this.f21876c;
+                uVar2.b(i10, this.d, this.f21877e, 0);
+                g0.h3(new vl(qpVar2, uVar2, 2));
+                return;
+            default:
+                qp qpVar3 = this.f21875b;
+                yr messagesStorage = qpVar3.getMessagesStorage();
+                bg.u uVar3 = this.f21876c;
+                ArrayList arrayList = uVar3.f3373a;
+                ck ckVar = new ck(qpVar3, uVar3, this.d, this.f21877e, 1);
+                messagesStorage.getClass();
+                if (arrayList != null && !arrayList.isEmpty()) {
+                    messagesStorage.I(new ng(messagesStorage, arrayList, ckVar, 3));
+                    return;
+                }
+                return;
+        }
     }
 }

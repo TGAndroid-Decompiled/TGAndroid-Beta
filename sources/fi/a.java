@@ -15,7 +15,7 @@ import java.util.HashSet;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.gf;
 import org.telegram.messenger.hc;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.Components.xp;
 public final class a extends View implements org.telegram.ui.ActionBar.a6 {
     public final ImageReceiver f11575a;
@@ -59,19 +59,19 @@ public final class a extends View implements org.telegram.ui.ActionBar.a6 {
         Drawable mutate = context.getResources().getDrawable(2131232220).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(1308622847, PorterDuff.Mode.MULTIPLY));
         xp xpVar = new xp(org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(6.0f), -13750737), mutate);
-        xpVar.f40340x = false;
+        xpVar.f40361x = false;
         int L = org.telegram.messenger.g0.L(18.0f);
         int L2 = org.telegram.messenger.g0.L(18.0f);
-        xpVar.f40334e = L;
-        xpVar.f40335f = L2;
-        if (gfVar != null && (str2 = gfVar.f26825c) != null) {
+        xpVar.f40355e = L;
+        xpVar.f40356f = L2;
+        if (gfVar != null && (str2 = gfVar.f26846c) != null) {
             imageReceiver.s0(hc.g(str2), "30.0_30.0", null, null, xpVar, null, 0);
         } else {
             if (gfVar != null) {
                 int i11 = gfVar.C;
                 String str5 = gfVar.I;
                 if (str5 != null) {
-                    if (gfVar.f26824b) {
+                    if (gfVar.f26845b) {
                         imageReceiver.s0(hc.g("vthumb://" + i11 + ":" + str5), "30.0_30.0", null, null, xpVar, null, 0);
                     } else {
                         imageReceiver.s0(hc.g("thumb://" + i11 + ":" + str5), "30.0_30.0", null, null, xpVar, null, 0);
@@ -83,7 +83,7 @@ public final class a extends View implements org.telegram.ui.ActionBar.a6 {
         StringBuilder sb2 = new StringBuilder();
         sb2.append((Object) str4);
         if (i7 > 0) {
-            str3 = " " + hd.H(',', "Media", i7);
+            str3 = " " + id.H(',', "Media", i7);
         }
         sb2.append(str3);
         setContentDescription(sb2.toString());

@@ -79,7 +79,7 @@ public final class n implements h2.j, h2.o, RequestDelegateTimestamp, r1, wr, y0
 
     @Override
     public void c(g1 g1Var, v vVar) {
-        g1Var.s(((c1) this.d).M0(vVar, g1Var, this.f5294b), this.f5295c);
+        g1Var.s(((c1) this.d).m1(vVar, g1Var, this.f5294b), this.f5295c);
     }
 
     @Override
@@ -143,7 +143,7 @@ public final class n implements h2.j, h2.o, RequestDelegateTimestamp, r1, wr, y0
                 return;
             default:
                 Runnable runnable = (Runnable) obj;
-                SharedPreferences.Editor edit = qp.s1(p10.f24467s0).f24757d7.edit();
+                SharedPreferences.Editor edit = qp.s1(p10.f24470s0).f24764d7.edit();
                 if (j3 != 0) {
                     edit.putInt("color_" + j3, 0);
                 } else if (i11 == 1) {
@@ -167,28 +167,28 @@ public final class n implements h2.j, h2.o, RequestDelegateTimestamp, r1, wr, y0
     }
 
     @Override
-    public Object i(d0 d0Var, v vVar, int i7) {
+    public void invoke(Object obj) {
+        m2.b bVar = (m2.b) obj;
+        bVar.d((m2.a) this.d, this.f5294b, this.f5295c);
+    }
+
+    @Override
+    public Object l(d0 d0Var, v vVar, int i7) {
         int i10;
         long j3;
         List list = (List) this.d;
         int i11 = this.f5294b;
         if (i11 == -1) {
-            i10 = d0Var.f53124t.o0();
+            i10 = d0Var.f53217t.o0();
         } else {
             i10 = i11;
         }
         if (i11 == -1) {
-            j3 = d0Var.f53124t.l();
+            j3 = d0Var.f53217t.l();
         } else {
             j3 = this.f5295c;
         }
         return d0Var.q(vVar, list, i10, j3);
-    }
-
-    @Override
-    public void invoke(Object obj) {
-        m2.b bVar = (m2.b) obj;
-        bVar.d((m2.a) this.d, this.f5294b, this.f5295c);
     }
 
     @Override

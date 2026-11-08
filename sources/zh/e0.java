@@ -1,64 +1,26 @@
 package zh;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.ui.Components.qa0;
-import org.telegram.ui.Components.rt0;
-public final class e0 extends rt0 {
-    public final i0 f60203f0;
+import android.app.Activity;
+import android.view.Menu;
+import org.telegram.ui.Components.ChatActivityEnterView;
+import org.telegram.ui.an;
+public final class e0 extends ChatActivityEnterView {
+    public final h0 f60302t5;
 
-    public e0(i0 i0Var, Context context) {
-        super(context, null);
-        this.f60203f0 = i0Var;
+    public e0(h0 h0Var, Activity activity, d0 d0Var) {
+        super(activity, d0Var, null, false, null);
+        this.f60302t5 = h0Var;
     }
 
     @Override
-    public final boolean O() {
-        return false;
+    public final void A0(float f10) {
+        h0 h0Var = this.f60302t5;
+        h0Var.f60349m1.setInputBubbleHeight(f10);
+        h0Var.I0();
     }
 
     @Override
-    public final boolean P() {
-        return false;
-    }
-
-    @Override
-    public final void T(Drawable drawable) {
-        if (drawable instanceof qa0) {
-            ((qa0) drawable).p();
-        }
-        i0 i0Var = this.f60203f0;
-        i0Var.f60271k1.f54485a = i0Var.f60270j1.c(drawable);
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.L) {
-            i0 i0Var = this.f60203f0;
-            ri.a aVar = i0Var.f60271k1.f54485a;
-            if (aVar instanceof ri.b) {
-                ((ri.b) aVar).b(getWidth(), getHeight());
-            }
-            i0Var.f60271k1.e(canvas, 0.0f, 0.0f, getWidth(), getHeight());
-            return false;
-        }
-        return super.drawChild(canvas, view, j3);
-    }
-
-    @Override
-    public final Drawable getNewDrawable() {
-        Drawable drawable = this.f60203f0.f60279u1;
-        if (drawable != null) {
-            return drawable;
-        }
-        return super.getNewDrawable();
-    }
-
-    @Override
-    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        super.onLayout(z9, i7, i10, i11, i12);
-        this.f60203f0.I0();
+    public final void e0(Menu menu) {
+        an.A8(menu, null, false, false, false, false);
     }
 }

@@ -41,32 +41,32 @@ import x2.c0;
 import x2.k0;
 import x2.u;
 public final class e implements a1, k0, k {
-    public final g0 f19525a;
-    public final i1 f19526b;
-    public final k1 f19527c;
+    public final g0 f19528a;
+    public final i1 f19529b;
+    public final k1 f19530c;
     public final b8 d;
-    public final SparseArray f19528e;
-    public r f19529f;
+    public final SparseArray f19531e;
+    public r f19532f;
     public c1 h;
-    public i0 f19530n;
-    public boolean f19531r;
+    public i0 f19533n;
+    public boolean f19534r;
 
     public e(g0 g0Var) {
         g0Var.getClass();
-        this.f19525a = g0Var;
+        this.f19528a = g0Var;
         String str = m0.f14112a;
         Looper myLooper = Looper.myLooper();
-        this.f19529f = new r((myLooper == null ? Looper.getMainLooper() : myLooper).getThread());
+        this.f19532f = new r((myLooper == null ? Looper.getMainLooper() : myLooper).getThread());
         i1 i1Var = new i1();
-        this.f19526b = i1Var;
-        this.f19527c = new k1();
+        this.f19529b = i1Var;
+        this.f19530c = new k1();
         ?? obj = new Object();
         obj.f335a = i1Var;
         h9.g0 g0Var2 = h9.i0.f14329b;
         obj.f336b = t1.f14397e;
         obj.f337c = y1.h;
         this.d = obj;
-        this.f19528e = new SparseArray();
+        this.f19531e = new SparseArray();
     }
 
     @Override
@@ -176,7 +176,7 @@ public final class e implements a1, k0, k {
         } else {
             g0Var2 = g0Var;
         }
-        this.f19525a.getClass();
+        this.f19528a.getClass();
         long elapsedRealtime = SystemClock.elapsedRealtime();
         if (l1Var.equals(this.h.y0()) && i7 == this.h.o0()) {
             z9 = true;
@@ -185,13 +185,13 @@ public final class e implements a1, k0, k {
         }
         long j3 = 0;
         if (g0Var2 != null && g0Var2.b()) {
-            if (z9 && this.h.n0() == g0Var2.f58241b && this.h.O() == g0Var2.f58242c) {
+            if (z9 && this.h.n0() == g0Var2.f58330b && this.h.O() == g0Var2.f58331c) {
                 j3 = this.h.l();
             }
         } else if (z9) {
             j3 = this.h.a0();
         } else if (!l1Var.p()) {
-            j3 = m0.h0(l1Var.m(i7, this.f19527c, 0L).f10333l);
+            j3 = m0.h0(l1Var.m(i7, this.f19530c, 0L).f10333l);
         }
         return new a(elapsedRealtime, l1Var, i7, g0Var2, j3, this.h.y0(), this.h.o0(), (x2.g0) this.d.d, this.h.l(), this.h.r());
     }
@@ -205,7 +205,7 @@ public final class e implements a1, k0, k {
             l1Var = (l1) ((y1) this.d.f337c).get(g0Var);
         }
         if (g0Var != null && l1Var != null) {
-            return R(l1Var, l1Var.g(g0Var.f58240a, this.f19526b).f10282c, g0Var);
+            return R(l1Var, l1Var.g(g0Var.f58329a, this.f19529b).f10282c, g0Var);
         }
         int o02 = this.h.o0();
         l1 y02 = this.h.y0();
@@ -235,8 +235,8 @@ public final class e implements a1, k0, k {
     }
 
     public final void V(a aVar, int i7, o oVar) {
-        this.f19528e.put(i7, aVar);
-        this.f19529f.e(i7, oVar);
+        this.f19531e.put(i7, aVar);
+        this.f19532f.e(i7, oVar);
     }
 
     public final void W(l2.i0 i0Var, Looper looper) {
@@ -250,16 +250,16 @@ public final class e implements a1, k0, k {
         ia.p(z9);
         i0Var.getClass();
         this.h = i0Var;
-        this.f19530n = this.f19525a.a(looper, null);
-        r rVar = this.f19529f;
+        this.f19533n = this.f19528a.a(looper, null);
+        r rVar = this.f19532f;
         ab.g gVar = new ab.g(26, this, i0Var);
         rVar.getClass();
-        g0 g0Var = this.f19525a;
+        g0 g0Var = this.f19528a;
         if (g0Var == null) {
             z10 = false;
         }
         ia.p(z10);
-        this.f19529f = new r(rVar.d, looper, looper.getThread(), g0Var, gVar, rVar.f14145i);
+        this.f19532f = new r(rVar.d, looper, looper.getThread(), g0Var, gVar, rVar.f14145i);
     }
 
     @Override
@@ -367,7 +367,7 @@ public final class e implements a1, k0, k {
     @Override
     public final void s(b1 b1Var, b1 b1Var2, int i7) {
         if (i7 == 1) {
-            this.f19531r = false;
+            this.f19534r = false;
         }
         c1 c1Var = this.h;
         c1Var.getClass();

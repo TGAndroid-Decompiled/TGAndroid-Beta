@@ -7,7 +7,7 @@ import android.graphics.Rect;
 public abstract class ra {
     public static int a(pb.b bVar) {
         bVar.getClass();
-        return Math.max(1, (int) Math.ceil(0.5f * org.telegram.messenger.g0.f22543p)) + (((int) Math.ceil(1.9f * org.telegram.messenger.g0.f22543p)) * 2);
+        return Math.max(1, (int) Math.ceil(0.5f * org.telegram.messenger.g0.f22562p)) + (((int) Math.ceil(1.9f * org.telegram.messenger.g0.f22562p)) * 2);
     }
 
     public static void b(Canvas canvas, Bitmap bitmap, int i7, float f10, float f11, int i10, int i11, Paint paint) {

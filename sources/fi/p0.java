@@ -2,7 +2,7 @@ package fi;
 
 import android.net.Uri;
 import org.telegram.messenger.c20;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 public final class p0 implements c20 {
     public final int f12572a;
     public final t0 f12573b;
@@ -28,7 +28,7 @@ public final class p0 implements c20 {
             case 1:
                 Uri uri = (Uri) obj;
                 if (t0Var.f12831c && t0Var.f12835r != null) {
-                    t0Var.f12834n.b(2131624055, 3500, hd.N0("VideoSavedHint"));
+                    t0Var.f12834n.b(2131624055, 3500, id.N0("VideoSavedHint"));
                     t0Var.f12831c = false;
                     t0Var.d();
                     t0Var.f12837w = uri;
@@ -46,7 +46,7 @@ public final class p0 implements c20 {
                 }
                 s0 s0Var3 = new s0(t0Var.getContext());
                 t0Var.f12834n = s0Var3;
-                s0Var3.b(2131624055, 2500, hd.N0("PhotoSavedHint"));
+                s0Var3.b(2131624055, 2500, id.N0("PhotoSavedHint"));
                 t0Var.f12830b.addView(t0Var.f12834n);
                 t0Var.f12837w = uri2;
                 return;

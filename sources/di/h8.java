@@ -59,19 +59,19 @@ public class h8 extends NestedScrollView implements j60 {
         this.f9095b0 = g8Var;
         org.telegram.ui.Cells.s9 s9Var = new org.telegram.ui.Cells.s9(g8Var, f6Var);
         this.W = s9Var;
-        s9Var.f30657h0 = false;
+        s9Var.f30661h0 = false;
         frameLayout.addView(g8Var, -1, -2);
         addView(frameLayout, new ViewGroup.LayoutParams(-1, -2));
         paint.setColor(-16777216);
         setFadingEdgeLength(org.telegram.messenger.g0.L(12.0f));
         setVerticalFadingEdgeEnabled(true);
         setWillNotDraw(false);
-        r1.g gVar = new r1.g((Object) g8Var, (r1.e) r1.g.f54158p, 0.0f);
+        r1.g gVar = new r1.g((Object) g8Var, (r1.e) r1.g.f54251p, 0.0f);
         this.f9094a0 = gVar;
-        gVar.f54174m.b(100.0f);
+        gVar.f54267m.b(100.0f);
         gVar.f(1.0f);
         gVar.b(new a8(0, this));
-        gVar.f54174m.a(1.0f);
+        gVar.f54267m.a(1.0f);
         try {
             NestedScrollView.class.getDeclaredMethod("a", null).setAccessible(true);
         } catch (Exception e10) {
@@ -117,7 +117,7 @@ public class h8 extends NestedScrollView implements j60 {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new z7(this, getScrollY(), f10, 0));
         ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(xq.f40345f);
+        ofFloat.setInterpolator(xq.f40366f);
         ofFloat.start();
     }
 
@@ -130,7 +130,7 @@ public class h8 extends NestedScrollView implements j60 {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new z7(this, getScrollY(), f10, 1));
         ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(xq.f40345f);
+        ofFloat.setInterpolator(xq.f40366f);
         ofFloat.start();
     }
 
@@ -144,8 +144,8 @@ public class h8 extends NestedScrollView implements j60 {
 
     public final void K(float f10) {
         r1.g gVar = this.f9094a0;
-        if (!gVar.f54168f) {
-            gVar.f54164a = f10;
+        if (!gVar.f54261f) {
+            gVar.f54257a = f10;
             gVar.h();
         }
         if (getScrollY() < org.telegram.messenger.g0.L(2.0f)) {
@@ -223,7 +223,7 @@ public class h8 extends NestedScrollView implements j60 {
                 boolean z9 = this.f9096c0;
                 g8 g8Var = this.f9095b0;
                 if (!z9) {
-                    if (!this.f9094a0.f54168f) {
+                    if (!this.f9094a0.f54261f) {
                         OverScroller overScroller = this.f9104k0;
                         if (overScroller != null) {
                             f10 = overScroller.getCurrVelocity();
@@ -231,7 +231,7 @@ public class h8 extends NestedScrollView implements j60 {
                             f10 = Float.NaN;
                         }
                         if (!Float.isNaN(f10)) {
-                            Point point = org.telegram.messenger.g0.f22544q;
+                            Point point = org.telegram.messenger.g0.f22563q;
                             if (point.x > point.y) {
                                 f12 = 3000.0f;
                             } else {

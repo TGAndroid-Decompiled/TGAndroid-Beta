@@ -27,50 +27,50 @@ public final class t31 extends FrameLayout implements org.telegram.messenger.ls 
     public final org.telegram.ui.ActionBar.f6 P;
     public float Q;
     public final Paint R;
-    public final int f38196a;
-    public final p31 f38197b;
-    public final TLRPC.StickerSetCovered[] f38198c;
+    public final int f38224a;
+    public final p31 f38225b;
+    public final TLRPC.StickerSetCovered[] f38226c;
     public final LongSparseArray d;
-    public final LongSparseArray f38199e;
-    public final View f38200f;
+    public final LongSparseArray f38227e;
+    public final View f38228f;
     public final h31 h;
-    public final i31 f38201n;
-    public final j31 f38202r;
-    public final s31 f38203s;
-    public final jg.d2 f38204w;
-    public final FrameLayout f38205x;
-    public org.telegram.ui.ActionBar.f2 f38206y;
+    public final i31 f38229n;
+    public final j31 f38230r;
+    public final s31 f38231s;
+    public final jg.d2 f38232w;
+    public final FrameLayout f38233x;
+    public org.telegram.ui.ActionBar.f2 f38234y;
 
     public t31(Context context, final p31 p31Var, TLRPC.StickerSetCovered[] stickerSetCoveredArr, LongSparseArray longSparseArray, LongSparseArray longSparseArray2, TLRPC.StickerSetCovered stickerSetCovered, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        int i7 = org.telegram.messenger.p10.f24467s0;
-        this.f38196a = i7;
+        int i7 = org.telegram.messenger.p10.f24470s0;
+        this.f38224a = i7;
         this.Q = 1.0f;
         this.R = new Paint();
-        this.f38197b = p31Var;
-        this.f38198c = stickerSetCoveredArr;
+        this.f38225b = p31Var;
+        this.f38226c = stickerSetCoveredArr;
         this.d = longSparseArray;
-        this.f38199e = longSparseArray2;
+        this.f38227e = longSparseArray2;
         this.O = stickerSetCovered;
         this.P = f6Var;
         s31 s31Var = new s31(this, context);
-        this.f38203s = s31Var;
-        this.f38204w = new jg.d2(context, new g31(this, p31Var), stickerSetCoveredArr, longSparseArray, longSparseArray2, f6Var);
+        this.f38231s = s31Var;
+        this.f38232w = new jg.d2(context, new g31(this, p31Var), stickerSetCoveredArr, longSparseArray, longSparseArray2, f6Var);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f38205x = frameLayout;
-        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27922h5, frameLayout, f6Var);
+        this.f38233x = frameLayout;
+        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27925h5, frameLayout, f6Var);
         h31 h31Var = new h31(this, context, f6Var);
         this.h = h31Var;
-        h31Var.setHint(org.telegram.messenger.hd.M0(2131745706, null));
+        h31Var.setHint(org.telegram.messenger.id.M0(2131745708, null));
         frameLayout.addView(h31Var, c8.ha.e(-1, -1, 48));
         i31 i31Var = new i31(this, context, p31Var);
-        this.f38201n = i31Var;
+        this.f38229n = i31Var;
         final k kVar = new k(this, 20);
         i31Var.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
                 k kVar2 = kVar;
-                return p31Var.e(t31.this.f38201n, kVar2, motionEvent);
+                return p31Var.e(t31.this.f38229n, kVar2, motionEvent);
             }
         });
         i31Var.setOverScrollMode(2);
@@ -78,7 +78,7 @@ public final class t31 extends FrameLayout implements org.telegram.messenger.ls 
         i31Var.setItemAnimator(null);
         i31Var.setLayoutAnimation(null);
         j31 j31Var = new j31(this, org.telegram.messenger.g0.L(58.0f), i31Var);
-        this.f38202r = j31Var;
+        this.f38230r = j31Var;
         i31Var.setLayoutManager(j31Var);
         j31Var.O = new k31(this);
         i31Var.setOnScrollListener(new l31(this));
@@ -86,7 +86,7 @@ public final class t31 extends FrameLayout implements org.telegram.messenger.ls 
         i31Var.setOnItemClickListener(kVar);
         addView(i31Var, c8.ha.d(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
         View view = new View(context);
-        this.f38200f = view;
+        this.f38228f = view;
         org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.V5, view, f6Var);
         view.setAlpha(0.0f);
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, org.telegram.messenger.g0.f1());
@@ -95,15 +95,15 @@ public final class t31 extends FrameLayout implements org.telegram.messenger.ls 
         addView(frameLayout, c8.ha.e(-1, 58, 51));
         d();
         org.telegram.messenger.qs f10 = org.telegram.messenger.qs.f(i7);
-        f10.c(this, org.telegram.messenger.qs.f25095x0);
-        f10.c(this, org.telegram.messenger.qs.f25109z0);
+        f10.c(this, org.telegram.messenger.qs.f25104x0);
+        f10.c(this, org.telegram.messenger.qs.f25118z0);
     }
 
     private void setShadowVisible(boolean z9) {
         float f10;
         if (this.G != z9) {
             this.G = z9;
-            ViewPropertyAnimator animate = this.f38200f.animate();
+            ViewPropertyAnimator animate = this.f38228f.animate();
             if (z9) {
                 f10 = 1.0f;
             } else {
@@ -123,7 +123,7 @@ public final class t31 extends FrameLayout implements org.telegram.messenger.ls 
                 ofFloat.addUpdateListener(new o31(this, contentTopOffset));
                 this.L.addListener(new f11(this, 2));
                 this.L.setDuration(250L);
-                this.L.setInterpolator(org.telegram.ui.ActionBar.i1.f27541w);
+                this.L.setInterpolator(org.telegram.ui.ActionBar.i1.f27544w);
                 this.L.start();
                 return;
             }
@@ -142,31 +142,31 @@ public final class t31 extends FrameLayout implements org.telegram.messenger.ls 
         if (stickerSet != null) {
             inputStickerSet = new TLRPC.TL_inputStickerSetID();
             inputStickerSet.access_hash = stickerSet.access_hash;
-            inputStickerSet.f26973id = stickerSet.f26980id;
+            inputStickerSet.f26976id = stickerSet.f26983id;
         }
         TLRPC.InputStickerSet inputStickerSet2 = inputStickerSet;
         if (inputStickerSet2 != null) {
-            p31 p31Var = this.f38197b;
+            p31 p31Var = this.f38225b;
             p31Var.getClass();
-            if (p31Var instanceof aw) {
+            if (p31Var instanceof bw) {
                 m31Var = new m31(this);
             } else {
                 m31Var = null;
             }
-            yv0 yv0Var = new yv0(getContext(), this.f38206y, inputStickerSet2, null, m31Var, this.P);
-            yv0Var.f40752a2 = false;
+            yv0 yv0Var = new yv0(getContext(), this.f38234y, inputStickerSet2, null, m31Var, this.P);
+            yv0Var.f40776a2 = false;
             yv0Var.T1 = new n31(this, inputStickerSet2);
-            this.f38206y.showDialog(yv0Var);
+            this.f38234y.showDialog(yv0Var);
         }
     }
 
     public final boolean c() {
         int i7;
         boolean z9;
-        i31 i31Var = this.f38201n;
+        i31 i31Var = this.f38229n;
         int childCount = i31Var.getChildCount();
-        View view = this.f38200f;
-        FrameLayout frameLayout = this.f38205x;
+        View view = this.f38228f;
+        FrameLayout frameLayout = this.f38233x;
         if (childCount <= 0) {
             int paddingTop = i31Var.getPaddingTop();
             this.E = paddingTop;
@@ -207,14 +207,14 @@ public final class t31 extends FrameLayout implements org.telegram.messenger.ls 
     }
 
     public final void d() {
-        i31 i31Var = this.f38201n;
+        i31 i31Var = this.f38229n;
         v4.g0 adapter = i31Var.getAdapter();
-        s31 s31Var = this.f38203s;
+        s31 s31Var = this.f38231s;
         if (adapter == s31Var) {
             s31Var.getClass();
             return;
         }
-        this.f38204w.getClass();
+        this.f38232w.getClass();
         int childCount = i31Var.getChildCount();
         for (int i7 = 0; i7 < childCount; i7++) {
             View childAt = i31Var.getChildAt(i7);
@@ -228,9 +228,9 @@ public final class t31 extends FrameLayout implements org.telegram.messenger.ls 
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        int i11 = org.telegram.messenger.qs.f25095x0;
-        i31 i31Var = this.f38201n;
-        s31 s31Var = this.f38203s;
+        int i11 = org.telegram.messenger.qs.f25104x0;
+        i31 i31Var = this.f38229n;
+        s31 s31Var = this.f38231s;
         if (i7 == i11) {
             if (((Integer) objArr[0]).intValue() == 0) {
                 if (this.J) {
@@ -243,8 +243,8 @@ public final class t31 extends FrameLayout implements org.telegram.messenger.ls 
                 }
                 s31Var.G();
             }
-        } else if (i7 == org.telegram.messenger.qs.f25109z0) {
-            if (this.K != org.telegram.messenger.ui.b0(this.f38196a).X()) {
+        } else if (i7 == org.telegram.messenger.qs.f25118z0) {
+            if (this.K != org.telegram.messenger.ui.b0(this.f38224a).X()) {
                 this.J = false;
             }
             if (this.J) {
@@ -275,10 +275,10 @@ public final class t31 extends FrameLayout implements org.telegram.messenger.ls 
             } else {
                 invalidate();
             }
-            Integer num = (Integer) this.f38203s.h.get(stickerSetCovered);
+            Integer num = (Integer) this.f38231s.h.get(stickerSetCovered);
             if (num != null) {
                 int intValue = num.intValue();
-                j31 j31Var = this.f38202r;
+                j31 j31Var = this.f38230r;
                 View m10 = j31Var.m(intValue);
                 if (m10 != null) {
                     i7 = (int) m10.getY();
@@ -321,7 +321,7 @@ public final class t31 extends FrameLayout implements org.telegram.messenger.ls 
         boolean dispatchTouchEvent = super.dispatchTouchEvent(motionEvent);
         if (!this.F) {
             MotionEvent obtain = MotionEvent.obtain(motionEvent);
-            this.f38201n.dispatchTouchEvent(obtain);
+            this.f38229n.dispatchTouchEvent(obtain);
             obtain.recycle();
         }
         return dispatchTouchEvent;
@@ -334,7 +334,7 @@ public final class t31 extends FrameLayout implements org.telegram.messenger.ls 
     @Override
     public final void onConfigurationChanged(Configuration configuration) {
         super.onConfigurationChanged(configuration);
-        v4.g0 adapter = this.f38201n.getAdapter();
+        v4.g0 adapter = this.f38229n.getAdapter();
         adapter.g(adapter.b() - 1);
         this.I = false;
     }
@@ -345,18 +345,18 @@ public final class t31 extends FrameLayout implements org.telegram.messenger.ls 
         super.onLayout(z9, i7, i10, i11, i12);
         if (!this.I) {
             this.I = true;
-            s31 s31Var = this.f38203s;
+            s31 s31Var = this.f38231s;
             s31Var.G();
             TLRPC.StickerSetCovered stickerSetCovered = this.O;
             if (stickerSetCovered != null && (num = (Integer) s31Var.h.get(stickerSetCovered)) != null) {
-                this.f38202r.h1(num.intValue(), org.telegram.messenger.g0.L(58.0f) + (-this.f38201n.getPaddingTop()));
+                this.f38230r.h1(num.intValue(), org.telegram.messenger.g0.L(58.0f) + (-this.f38229n.getPaddingTop()));
             }
         }
     }
 
     public void setContentViewPaddingTop(int i7) {
         int L = org.telegram.messenger.g0.L(58.0f) + i7;
-        i31 i31Var = this.f38201n;
+        i31 i31Var = this.f38229n;
         if (i31Var.getPaddingTop() != L) {
             this.H = true;
             i31Var.setPadding(0, L, 0, 0);
@@ -369,6 +369,6 @@ public final class t31 extends FrameLayout implements org.telegram.messenger.ls 
     }
 
     public void setParentFragment(org.telegram.ui.ActionBar.f2 f2Var) {
-        this.f38206y = f2Var;
+        this.f38234y = f2Var;
     }
 }

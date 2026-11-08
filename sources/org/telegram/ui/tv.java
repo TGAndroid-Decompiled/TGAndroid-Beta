@@ -6,21 +6,21 @@ import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class tv extends q11 {
-    public final h11[] f50155e2;
-    public final ww f50156f2;
+    public final h11[] f50147e2;
+    public final ww f50148f2;
 
     public tv(ww wwVar, ww wwVar2, Activity activity, Integer num, org.telegram.ui.ActionBar.f6 f6Var, h11[] h11VarArr) {
         super(wwVar2, activity, true, num, 0, f6Var);
-        this.f50156f2 = wwVar;
-        this.f50155e2 = h11VarArr;
+        this.f50148f2 = wwVar;
+        this.f50147e2 = h11VarArr;
     }
 
     @Override
     public final boolean F(TL_stars.TL_starGiftUnique tL_starGiftUnique) {
         int i7;
         if (tL_starGiftUnique != null) {
-            i7 = ((org.telegram.ui.ActionBar.f2) this.f50156f2).currentAccount;
-            if (bi.ea.y(i7, false).n(tL_starGiftUnique.f27182id) != null && org.telegram.messenger.qp.e1().getInt("statusgiftpage", 0) < 2) {
+            i7 = ((org.telegram.ui.ActionBar.f2) this.f50148f2).currentAccount;
+            if (bi.ea.y(i7, false).n(tL_starGiftUnique.f27185id) != null && org.telegram.messenger.qp.e1().getInt("statusgiftpage", 0) < 2) {
                 return false;
             }
             return true;
@@ -36,14 +36,14 @@ public final class tv extends q11 {
         int i10;
         int i11;
         org.telegram.ui.ActionBar.f6 f6Var;
-        h11[] h11VarArr = this.f50155e2;
-        ww wwVar = this.f50156f2;
+        h11[] h11VarArr = this.f50147e2;
+        ww wwVar = this.f50148f2;
         if (l10 == null) {
             emojiStatus = new TLRPC.TL_emojiStatusEmpty();
         } else {
             if (tL_starGiftUnique != null) {
                 i7 = ((org.telegram.ui.ActionBar.f2) wwVar).currentAccount;
-                TL_stars.SavedStarGift n10 = bi.ea.y(i7, false).n(tL_starGiftUnique.f27182id);
+                TL_stars.SavedStarGift n10 = bi.ea.y(i7, false).n(tL_starGiftUnique.f27185id);
                 if (n10 != null && org.telegram.messenger.qp.e1().getInt("statusgiftpage", 0) < 2) {
                     org.telegram.messenger.qp.e1().edit().putInt("statusgiftpage", org.telegram.messenger.qp.e1().getInt("statusgiftpage", 0) + 1).apply();
                     Context context = getContext();
@@ -64,7 +64,7 @@ public final class tv extends q11 {
                     return;
                 }
                 TLRPC.TL_inputEmojiStatusCollectible tL_inputEmojiStatusCollectible = new TLRPC.TL_inputEmojiStatusCollectible();
-                tL_inputEmojiStatusCollectible.collectible_id = tL_starGiftUnique.f27182id;
+                tL_inputEmojiStatusCollectible.collectible_id = tL_starGiftUnique.f27185id;
                 tL_emojiStatus = tL_inputEmojiStatusCollectible;
                 if (num != null) {
                     tL_inputEmojiStatusCollectible.flags |= 1;

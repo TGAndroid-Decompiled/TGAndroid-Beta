@@ -19,7 +19,7 @@ public final class i implements Parcelable.ClassLoaderCreator {
                 return new j(parcel, classLoader);
             case 1:
                 if (parcel.readParcelable(classLoader) == null) {
-                    return j1.b.f16401b;
+                    return j1.b.f16404b;
                 }
                 throw new IllegalStateException("superState must be null");
             case 2:
@@ -54,7 +54,7 @@ public final class i implements Parcelable.ClassLoaderCreator {
                 return new j(parcel, null);
             case 1:
                 if (parcel.readParcelable(null) == null) {
-                    return j1.b.f16401b;
+                    return j1.b.f16404b;
                 }
                 throw new IllegalStateException("superState must be null");
             case 2:

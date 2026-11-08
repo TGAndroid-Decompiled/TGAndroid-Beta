@@ -23,34 +23,34 @@ public abstract class s2 extends FrameLayout implements a6 {
     public boolean E;
     public final Paint F;
     public final v2 G;
-    public VelocityTracker f28483a;
-    public int f28484b;
-    public int f28485c;
+    public VelocityTracker f28486a;
+    public int f28487b;
+    public int f28488c;
     public int d;
-    public boolean f28486e;
-    public boolean f28487f;
+    public boolean f28489e;
+    public boolean f28490f;
     public AnimatorSet h;
-    public final e2.r0 f28488n;
-    public final Rect f28489r;
-    public final Paint f28490s;
-    public boolean f28491w;
-    public int f28492x;
-    public float f28493y;
+    public final e2.r0 f28491n;
+    public final Rect f28492r;
+    public final Paint f28493s;
+    public boolean f28494w;
+    public int f28495x;
+    public float f28496y;
 
     public s2(v2 v2Var, Context context) {
         super(context);
         this.G = v2Var;
-        this.f28483a = null;
+        this.f28486a = null;
         this.d = -1;
-        this.f28486e = false;
-        this.f28487f = false;
+        this.f28489e = false;
+        this.f28490f = false;
         this.h = null;
-        this.f28489r = new Rect();
-        this.f28490s = new Paint();
-        this.f28493y = 0.0f;
+        this.f28492r = new Rect();
+        this.f28493s = new Paint();
+        this.f28496y = 0.0f;
         this.D = 0.0f;
         this.F = new Paint(1);
-        this.f28488n = new Object();
+        this.f28491n = new Object();
         setWillNotDraw(false);
     }
 
@@ -70,24 +70,24 @@ public abstract class s2 extends FrameLayout implements a6 {
 
     public final void b(float f10, float f11) {
         v2 v2Var = this.G;
-        float translationY = v2Var.f28616b.getTranslationY();
+        float translationY = v2Var.f28619b.getTranslationY();
         if ((translationY < org.telegram.messenger.g0.a1(false, 0.8f) && (f11 < 3500.0f || Math.abs(f11) < Math.abs(f10))) || (f11 < 0.0f && Math.abs(f11) >= 3500.0f)) {
-            this.f28486e = false;
+            this.f28489e = false;
             this.h = new AnimatorSet();
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             ofFloat.addUpdateListener(new q2(this, 1));
-            this.h.playTogether(ObjectAnimator.ofFloat(v2Var.f28616b, "translationY", 0.0f), ofFloat);
+            this.h.playTogether(ObjectAnimator.ofFloat(v2Var.f28619b, "translationY", 0.0f), ofFloat);
             this.h.setDuration((int) ((Math.max(0.0f, translationY) / org.telegram.messenger.g0.a1(false, 0.8f)) * 250.0f));
-            this.h.setInterpolator(xq.f40345f);
+            this.h.setInterpolator(xq.f40366f);
             this.h.addListener(new r2(this, 0));
-            qs.e().k(qs.f25012j1, 512);
+            qs.e().k(qs.f25021j1, 512);
             this.h.start();
             return;
         }
-        boolean z9 = v2Var.f28622d0;
-        v2Var.f28622d0 = false;
+        boolean z9 = v2Var.f28625d0;
+        v2Var.f28625d0 = false;
         v2Var.dismiss();
-        v2Var.f28622d0 = z9;
+        v2Var.f28625d0 = z9;
     }
 
     public final void c(Canvas canvas, float f10) {
@@ -95,7 +95,7 @@ public abstract class s2 extends FrameLayout implements a6 {
         float max;
         int left;
         int i10 = Build.VERSION.SDK_INT;
-        Paint paint = this.f28490s;
+        Paint paint = this.f28493s;
         v2 v2Var = this.G;
         if (i10 >= 26) {
             int i11 = v2Var.F0;
@@ -107,8 +107,8 @@ public abstract class s2 extends FrameLayout implements a6 {
         } else {
             paint.setColor(-16777216);
         }
-        if (!v2Var.V0 || v2Var.f28616b.getVisibility() == 0) {
-            boolean z9 = v2Var.f28637n;
+        if (!v2Var.V0 || v2Var.f28619b.getVisibility() == 0) {
+            boolean z9 = v2Var.f28640n;
             float f11 = 0.0f;
             if ((z9 && v2Var.R != 0) || v2Var.E0 != 0.0f) {
                 if (z9) {
@@ -116,30 +116,30 @@ public abstract class s2 extends FrameLayout implements a6 {
                 } else {
                     i7 = 0;
                 }
-                if (!v2Var.f28649w && (i10 < 29 || v2.B(v2Var) <= 0)) {
+                if (!v2Var.f28652w && (i10 < 29 || v2.B(v2Var) <= 0)) {
                     max = 0.0f;
-                } else if (v2Var.f28644s) {
-                    max = Math.max(0.0f, Math.min(i7 - v2Var.E0, v2Var.f28616b.getTranslationY()));
+                } else if (v2Var.f28647s) {
+                    max = Math.max(0.0f, Math.min(i7 - v2Var.E0, v2Var.f28619b.getTranslationY()));
                 } else {
-                    max = Math.max(0.0f, v2Var.Q() - (v2Var.f28616b.getMeasuredHeight() - v2Var.f28616b.getTranslationY()));
+                    max = Math.max(0.0f, v2Var.Q() - (v2Var.f28619b.getMeasuredHeight() - v2Var.f28619b.getTranslationY()));
                 }
                 int alpha = paint.getAlpha();
                 if (v2Var.V0) {
-                    f10 *= v2Var.f28616b.getAlpha();
+                    f10 *= v2Var.f28619b.getAlpha();
                 }
                 if (v2Var.V0) {
-                    left = (int) v2Var.f28616b.getX();
+                    left = (int) v2Var.f28619b.getX();
                 } else {
-                    left = v2Var.f28616b.getLeft();
+                    left = v2Var.f28619b.getLeft();
                 }
                 int i12 = left;
                 int i13 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));
                 if (i13 < 0) {
                     paint.setAlpha((int) (alpha * f10));
                 }
-                canvas.drawRect(v2Var.f28646t0 + i12, ((getMeasuredHeight() - i7) + max) - v2Var.E0, v2Var.f28616b.getRight() - v2Var.f28646t0, getMeasuredHeight() + max, paint);
+                canvas.drawRect(v2Var.f28649t0 + i12, ((getMeasuredHeight() - i7) + max) - v2Var.E0, v2Var.f28619b.getRight() - v2Var.f28649t0, getMeasuredHeight() + max, paint);
                 paint.setAlpha(alpha);
-                int i14 = v2Var.f28623d1;
+                int i14 = v2Var.f28626d1;
                 if (i14 != 0) {
                     paint.setColor(i14);
                     int alpha2 = paint.getAlpha();
@@ -150,7 +150,7 @@ public abstract class s2 extends FrameLayout implements a6 {
                         f11 = max;
                     }
                     if (paint.getAlpha() > 0) {
-                        canvas.drawRect(i12 + v2Var.f28646t0, ((getMeasuredHeight() - i7) + f11) - v2Var.E0, v2Var.f28616b.getRight() - v2Var.f28646t0, getMeasuredHeight() + f11, paint);
+                        canvas.drawRect(i12 + v2Var.f28649t0, ((getMeasuredHeight() - i7) + f11) - v2Var.E0, v2Var.f28619b.getRight() - v2Var.f28649t0, getMeasuredHeight() + f11, paint);
                     }
                     paint.setAlpha(alpha2);
                 }
@@ -160,104 +160,104 @@ public abstract class s2 extends FrameLayout implements a6 {
 
     public final boolean d(MotionEvent motionEvent, boolean z9) {
         v2 v2Var = this.G;
-        l2 l2Var = v2Var.f28619c;
-        int i7 = v2Var.f28633i0;
+        l2 l2Var = v2Var.f28622c;
+        int i7 = v2Var.f28636i0;
         if (!v2Var.I) {
             if (!v2Var.f0(motionEvent)) {
                 if (!v2Var.I(motionEvent) && !this.E) {
-                    if (v2Var.H() && motionEvent != null && ((motionEvent.getAction() == 0 || motionEvent.getAction() == 2) && !this.f28487f && !this.f28486e && motionEvent.getPointerCount() == 1)) {
-                        this.f28484b = (int) motionEvent.getX();
+                    if (v2Var.H() && motionEvent != null && ((motionEvent.getAction() == 0 || motionEvent.getAction() == 2) && !this.f28490f && !this.f28489e && motionEvent.getPointerCount() == 1)) {
+                        this.f28487b = (int) motionEvent.getX();
                         int y10 = (int) motionEvent.getY();
-                        this.f28485c = y10;
-                        if (v2Var.X(this.f28484b, y10)) {
+                        this.f28488c = y10;
+                        if (v2Var.X(this.f28487b, y10)) {
                             v2Var.o0();
                             return true;
                         }
                         this.d = motionEvent.getPointerId(0);
-                        this.f28486e = true;
+                        this.f28489e = true;
                         a();
-                        VelocityTracker velocityTracker = this.f28483a;
+                        VelocityTracker velocityTracker = this.f28486a;
                         if (velocityTracker != null) {
                             velocityTracker.clear();
                         }
                     } else if (v2Var.G() && motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.d) {
-                        if (this.f28483a == null) {
-                            this.f28483a = VelocityTracker.obtain();
+                        if (this.f28486a == null) {
+                            this.f28486a = VelocityTracker.obtain();
                         }
-                        float abs = Math.abs((int) (motionEvent.getX() - this.f28484b));
-                        float y11 = ((int) motionEvent.getY()) - this.f28485c;
-                        this.f28483a.addMovement(motionEvent);
-                        if (!v2Var.D0 && this.f28486e && !this.f28487f && y11 > 0.0f && y11 / 3.0f > Math.abs(abs) && Math.abs(y11) >= i7) {
-                            this.f28485c = (int) motionEvent.getY();
-                            this.f28486e = false;
-                            this.f28487f = true;
+                        float abs = Math.abs((int) (motionEvent.getX() - this.f28487b));
+                        float y11 = ((int) motionEvent.getY()) - this.f28488c;
+                        this.f28486a.addMovement(motionEvent);
+                        if (!v2Var.D0 && this.f28489e && !this.f28490f && y11 > 0.0f && y11 / 3.0f > Math.abs(abs) && Math.abs(y11) >= i7) {
+                            this.f28488c = (int) motionEvent.getY();
+                            this.f28489e = false;
+                            this.f28490f = true;
                             requestDisallowInterceptTouchEvent(true);
-                        } else if (this.f28487f) {
-                            float f10 = this.f28493y + y11;
-                            this.f28493y = f10;
+                        } else if (this.f28490f) {
+                            float f10 = this.f28496y + y11;
+                            this.f28496y = f10;
                             float max = Math.max(f10, 0.0f);
-                            this.f28493y = max;
-                            v2Var.f28616b.setTranslationY(Math.max(max, 0.0f));
+                            this.f28496y = max;
+                            v2Var.f28619b.setTranslationY(Math.max(max, 0.0f));
                             v2Var.h0();
-                            this.f28485c = (int) motionEvent.getY();
+                            this.f28488c = (int) motionEvent.getY();
                             l2Var.invalidate();
                         }
                     } else if (motionEvent == null || (motionEvent.getPointerId(0) == this.d && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6))) {
-                        if (this.f28483a == null) {
-                            this.f28483a = VelocityTracker.obtain();
+                        if (this.f28486a == null) {
+                            this.f28486a = VelocityTracker.obtain();
                         }
-                        this.f28483a.computeCurrentVelocity(1000);
-                        if (!this.f28487f && this.f28493y <= 0.0f) {
-                            this.f28486e = false;
+                        this.f28486a.computeCurrentVelocity(1000);
+                        if (!this.f28490f && this.f28496y <= 0.0f) {
+                            this.f28489e = false;
                         } else {
-                            b(this.f28483a.getXVelocity(), this.f28483a.getYVelocity());
+                            b(this.f28486a.getXVelocity(), this.f28486a.getYVelocity());
                         }
-                        this.f28487f = false;
-                        VelocityTracker velocityTracker2 = this.f28483a;
+                        this.f28490f = false;
+                        VelocityTracker velocityTracker2 = this.f28486a;
                         if (velocityTracker2 != null) {
                             velocityTracker2.recycle();
-                            this.f28483a = null;
+                            this.f28486a = null;
                         }
                         this.d = -1;
                     }
-                } else if (motionEvent != null && ((motionEvent.getAction() == 0 || motionEvent.getAction() == 2) && !this.f28487f && !this.f28486e && motionEvent.getPointerCount() == 1)) {
+                } else if (motionEvent != null && ((motionEvent.getAction() == 0 || motionEvent.getAction() == 2) && !this.f28490f && !this.f28489e && motionEvent.getPointerCount() == 1)) {
                     this.E = true;
-                    this.f28484b = (int) motionEvent.getX();
-                    this.f28485c = (int) motionEvent.getY();
+                    this.f28487b = (int) motionEvent.getX();
+                    this.f28488c = (int) motionEvent.getY();
                     this.d = motionEvent.getPointerId(0);
-                    this.f28486e = true;
+                    this.f28489e = true;
                     a();
                 } else if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.d) {
-                    float x10 = motionEvent.getX() - this.f28484b;
-                    float y12 = motionEvent.getY() - this.f28485c;
-                    if (this.f28483a == null) {
-                        this.f28483a = VelocityTracker.obtain();
+                    float x10 = motionEvent.getX() - this.f28487b;
+                    float y12 = motionEvent.getY() - this.f28488c;
+                    if (this.f28486a == null) {
+                        this.f28486a = VelocityTracker.obtain();
                     }
-                    this.f28483a.addMovement(motionEvent);
-                    if (!v2Var.D0 && this.f28486e && !this.f28487f && x10 > 0.0f && x10 / 3.0f > Math.abs(y12) && Math.abs(x10) >= i7) {
-                        this.f28484b = (int) motionEvent.getX();
-                        this.f28486e = false;
-                        this.f28487f = true;
-                    } else if (this.f28487f) {
+                    this.f28486a.addMovement(motionEvent);
+                    if (!v2Var.D0 && this.f28489e && !this.f28490f && x10 > 0.0f && x10 / 3.0f > Math.abs(y12) && Math.abs(x10) >= i7) {
+                        this.f28487b = (int) motionEvent.getX();
+                        this.f28489e = false;
+                        this.f28490f = true;
+                    } else if (this.f28490f) {
                         float f11 = this.D + x10;
                         this.D = f11;
-                        v2Var.f28616b.setTranslationX(Math.max(f11, 0.0f));
-                        this.f28484b = (int) motionEvent.getX();
+                        v2Var.f28619b.setTranslationX(Math.max(f11, 0.0f));
+                        this.f28487b = (int) motionEvent.getX();
                         l2Var.invalidate();
                     }
                 } else if (motionEvent == null || (motionEvent.getPointerId(0) == this.d && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6))) {
-                    if (this.f28483a == null) {
-                        this.f28483a = VelocityTracker.obtain();
+                    if (this.f28486a == null) {
+                        this.f28486a = VelocityTracker.obtain();
                     }
-                    float xVelocity = this.f28483a.getXVelocity();
-                    float yVelocity = this.f28483a.getYVelocity();
-                    if (this.D < v2Var.f28616b.getMeasuredWidth() / 3.0f && (xVelocity < 3500.0f || xVelocity < yVelocity)) {
+                    float xVelocity = this.f28486a.getXVelocity();
+                    float yVelocity = this.f28486a.getYVelocity();
+                    if (this.D < v2Var.f28619b.getMeasuredWidth() / 3.0f && (xVelocity < 3500.0f || xVelocity < yVelocity)) {
                         float max2 = Math.max(this.D, 0.0f);
                         this.D = max2;
                         ValueAnimator ofFloat = ValueAnimator.ofFloat(max2, 0.0f);
                         ofFloat.addUpdateListener(new q2(this, 2));
                         ofFloat.addListener(new r2(this, 1));
-                        ofFloat.setInterpolator(xq.f40345f);
+                        ofFloat.setInterpolator(xq.f40366f);
                         ofFloat.setDuration(220L);
                         ofFloat.start();
                     } else {
@@ -274,12 +274,12 @@ public abstract class s2 extends FrameLayout implements a6 {
                         ofFloat3.setDuration(320L);
                         ofFloat3.start();
                     }
-                    this.f28486e = false;
-                    this.f28487f = false;
+                    this.f28489e = false;
+                    this.f28490f = false;
                     this.d = -1;
                     this.E = false;
                 }
-                if ((z9 || !this.f28486e) && !this.f28487f && (v2Var.G() || v2Var.I(motionEvent))) {
+                if ((z9 || !this.f28489e) && !this.f28490f && (v2Var.G() || v2Var.I(motionEvent))) {
                 }
             }
             return true;
@@ -305,7 +305,7 @@ public abstract class s2 extends FrameLayout implements a6 {
 
     @Override
     public int getNestedScrollAxes() {
-        return this.f28488n.b();
+        return this.f28491n.b();
     }
 
     @Override
@@ -320,22 +320,22 @@ public abstract class s2 extends FrameLayout implements a6 {
         int i7;
         int i10;
         int i11;
-        Paint paint = this.f28490s;
+        Paint paint = this.f28493s;
         int alpha = paint.getAlpha();
         v2 v2Var = this.G;
         int i12 = 0;
-        if (alpha < 255 && v2Var.f28637n) {
+        if (alpha < 255 && v2Var.f28640n) {
             float f10 = 0.0f;
-            if (v2Var.f28649w || (Build.VERSION.SDK_INT >= 29 && v2.B(v2Var) > 0)) {
-                f10 = Math.max(0.0f, v2Var.Q() - (v2Var.f28616b.getMeasuredHeight() - v2Var.f28616b.getTranslationY()));
+            if (v2Var.f28652w || (Build.VERSION.SDK_INT >= 29 && v2.B(v2Var) > 0)) {
+                f10 = Math.max(0.0f, v2Var.Q() - (v2Var.f28619b.getMeasuredHeight() - v2Var.f28619b.getTranslationY()));
             }
-            if (v2Var.f28637n) {
+            if (v2Var.f28640n) {
                 i11 = v2Var.Q();
             } else {
                 i11 = 0;
             }
             canvas.save();
-            canvas.clipRect(v2Var.f28616b.getLeft() + v2Var.f28646t0, ((getMeasuredHeight() - i11) + f10) - v2Var.E0, v2Var.f28616b.getRight() - v2Var.f28646t0, getMeasuredHeight() + f10, Region.Op.DIFFERENCE);
+            canvas.clipRect(v2Var.f28619b.getLeft() + v2Var.f28649t0, ((getMeasuredHeight() - i11) + f10) - v2Var.E0, v2Var.f28619b.getRight() - v2Var.f28649t0, getMeasuredHeight() + f10, Region.Op.DIFFERENCE);
             canvas2 = canvas;
             z9 = true;
         } else {
@@ -343,25 +343,25 @@ public abstract class s2 extends FrameLayout implements a6 {
             z9 = false;
         }
         super.onDraw(canvas2);
-        if (v2Var.f28637n && v2Var.h != null && v2Var.f28627f != 0) {
-            int i13 = v2Var.f28614a0;
+        if (v2Var.f28640n && v2Var.h != null && v2Var.f28630f != 0) {
+            int i13 = v2Var.f28617a0;
             if (i13 >= 0) {
                 i7 = k6.w0(i13, v2Var.I0);
             } else {
                 i7 = 0;
             }
             paint.setColor(i7);
-            float left = v2Var.f28616b.getLeft() + v2Var.f28646t0;
-            int measuredHeight = getMeasuredHeight() - v2Var.f28627f;
-            if (v2Var.f28637n) {
+            float left = v2Var.f28619b.getLeft() + v2Var.f28649t0;
+            int measuredHeight = getMeasuredHeight() - v2Var.f28630f;
+            if (v2Var.f28640n) {
                 i10 = v2Var.Q();
             } else {
                 i10 = 0;
             }
             float f11 = measuredHeight - i10;
-            float right = v2Var.f28616b.getRight() - v2Var.f28646t0;
+            float right = v2Var.f28619b.getRight() - v2Var.f28649t0;
             int measuredHeight2 = getMeasuredHeight();
-            if (v2Var.f28637n) {
+            if (v2Var.f28640n) {
                 i12 = v2Var.Q();
             }
             canvas2.drawRect(left, f11, right, measuredHeight2 - i12, paint);
@@ -404,9 +404,9 @@ public abstract class s2 extends FrameLayout implements a6 {
     @Override
     public final void onNestedPreScroll(View view, int i7, int i10, int[] iArr) {
         v2 v2Var = this.G;
-        if (!v2Var.I && v2Var.f28641q0) {
+        if (!v2Var.I && v2Var.f28644q0) {
             a();
-            float translationY = v2Var.f28616b.getTranslationY();
+            float translationY = v2Var.f28619b.getTranslationY();
             float f10 = 0.0f;
             if (translationY > 0.0f && i10 > 0) {
                 float f11 = translationY - i10;
@@ -414,9 +414,9 @@ public abstract class s2 extends FrameLayout implements a6 {
                 if (f11 >= 0.0f) {
                     f10 = f11;
                 }
-                v2Var.f28616b.setTranslationY(f10);
+                v2Var.f28619b.setTranslationY(f10);
                 v2Var.h0();
-                v2Var.f28619c.invalidate();
+                v2Var.f28622c.invalidate();
             }
         }
     }
@@ -424,25 +424,25 @@ public abstract class s2 extends FrameLayout implements a6 {
     @Override
     public final void onNestedScroll(View view, int i7, int i10, int i11, int i12) {
         v2 v2Var = this.G;
-        if (!v2Var.I && v2Var.f28641q0) {
+        if (!v2Var.I && v2Var.f28644q0) {
             a();
             if (i12 != 0) {
-                float translationY = v2Var.f28616b.getTranslationY() - i12;
+                float translationY = v2Var.f28619b.getTranslationY() - i12;
                 if (translationY < 0.0f) {
                     translationY = 0.0f;
                 }
-                v2Var.f28616b.setTranslationY(translationY);
+                v2Var.f28619b.setTranslationY(translationY);
                 v2Var.h0();
-                v2Var.f28619c.invalidate();
+                v2Var.f28622c.invalidate();
             }
         }
     }
 
     @Override
     public final void onNestedScrollAccepted(View view, View view2, int i7) {
-        this.f28488n.f10533a = i7;
+        this.f28491n.f10533a = i7;
         v2 v2Var = this.G;
-        if (!v2Var.I && v2Var.f28641q0) {
+        if (!v2Var.I && v2Var.f28644q0) {
             a();
         }
     }
@@ -450,7 +450,7 @@ public abstract class s2 extends FrameLayout implements a6 {
     @Override
     public final boolean onStartNestedScroll(View view, View view2, int i7) {
         v2 v2Var = this.G;
-        if (!v2Var.I && v2Var.f28641q0 && i7 == 2 && !v2Var.G()) {
+        if (!v2Var.I && v2Var.f28644q0 && i7 == 2 && !v2Var.G()) {
             return true;
         }
         return false;
@@ -458,9 +458,9 @@ public abstract class s2 extends FrameLayout implements a6 {
 
     @Override
     public final void onStopNestedScroll(View view) {
-        this.f28488n.f10533a = 0;
+        this.f28491n.f10533a = 0;
         v2 v2Var = this.G;
-        if (!v2Var.I && v2Var.f28641q0) {
+        if (!v2Var.I && v2Var.f28644q0) {
             b(0.0f, 0.0f);
         }
     }
@@ -472,7 +472,7 @@ public abstract class s2 extends FrameLayout implements a6 {
 
     @Override
     public final void requestDisallowInterceptTouchEvent(boolean z9) {
-        if (this.f28486e && !this.f28487f) {
+        if (this.f28489e && !this.f28490f) {
             d(null, false);
         }
         super.requestDisallowInterceptTouchEvent(z9);

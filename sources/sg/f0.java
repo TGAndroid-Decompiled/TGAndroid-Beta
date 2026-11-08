@@ -1,29 +1,29 @@
 package sg;
 
-import org.telegram.ui.Components.uy;
+import org.telegram.ui.Components.vy;
 public final class f0 implements Runnable {
-    public final int f54955a;
-    public final j0 f54956b;
+    public final int f55047a;
+    public final j0 f55048b;
 
     public f0(j0 j0Var, int i7) {
-        this.f54955a = i7;
-        this.f54956b = j0Var;
+        this.f55047a = i7;
+        this.f55048b = j0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f54955a) {
+        switch (this.f55047a) {
             case 0:
-                j0 j0Var = this.f54956b;
-                j0Var.f54995c = null;
-                uy uyVar = j0Var.f54993a;
-                if (uyVar != null) {
-                    uyVar.b();
+                j0 j0Var = this.f55048b;
+                j0Var.f55087c = null;
+                vy vyVar = j0Var.f55085a;
+                if (vyVar != null) {
+                    vyVar.b();
                     return;
                 }
                 return;
             default:
-                this.f54956b.b();
+                this.f55048b.b();
                 return;
         }
     }

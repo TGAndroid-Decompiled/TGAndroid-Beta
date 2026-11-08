@@ -31,11 +31,11 @@ import org.telegram.messenger.a8;
 import org.telegram.messenger.c20;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.gc;
+import org.telegram.messenger.jl;
 import org.telegram.messenger.qp;
 import org.telegram.messenger.qs;
 import org.telegram.messenger.r2;
 import org.telegram.messenger.t0;
-import org.telegram.messenger.vj;
 import org.telegram.tgnet.SerializedData;
 public class CameraController implements MediaRecorder.OnInfoListener {
     private static final int CORE_POOL_SIZE = 1;
@@ -212,7 +212,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
             }
             this.onFinishCameraInitRunnables.clear();
         }
-        qs.e().k(qs.f25025l4, new Object[0]);
+        qs.e().k(qs.f25034l4, new Object[0]);
     }
 
     public void lambda$initCamera$2(Runnable runnable) {
@@ -236,7 +236,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
             if (this.cameraInfos == null) {
                 SharedPreferences e12 = qp.e1();
                 String string = e12.getString("cameraCache", null);
-                vj vjVar = new vj(22);
+                jl jlVar = new jl(22);
                 ArrayList<CameraInfo> arrayList = new ArrayList<>();
                 int i7 = 0;
                 if (string != null) {
@@ -253,8 +253,8 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                             cameraInfo.pictureSizes.add(new Size(serializedData.readInt32(false), serializedData.readInt32(false)));
                         }
                         arrayList.add(cameraInfo);
-                        Collections.sort(cameraInfo.previewSizes, vjVar);
-                        Collections.sort(cameraInfo.pictureSizes, vjVar);
+                        Collections.sort(cameraInfo.previewSizes, jlVar);
+                        Collections.sort(cameraInfo.pictureSizes, jlVar);
                     }
                     serializedData.cleanup();
                 } else {
@@ -265,7 +265,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                     while (i14 < numberOfCameras) {
                         Camera.getCameraInfo(i14, cameraInfo2);
                         CameraInfo cameraInfo3 = new CameraInfo(i14, cameraInfo2.facing);
-                        if (t0.f25571x && t0.D) {
+                        if (t0.f25574x && t0.D) {
                             throw new RuntimeException("APP_PAUSED");
                         }
                         Camera open = Camera.open(cameraInfo3.getCameraId());
@@ -287,7 +287,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                                 if (i18 < 2160) {
                                     parameters = parameters2;
                                     cameraInfo3.previewSizes.add(new Size(i18, i16));
-                                    if (r2.f25199a) {
+                                    if (r2.f25212a) {
                                         a8.b("preview size = " + size.width + " " + size.height);
                                     }
                                     i15++;
@@ -316,15 +316,15 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                             Camera.Size size2 = supportedPictureSizes.get(i20);
                             if (!"samsung".equals(Build.MANUFACTURER) || !"jflteuc".equals(Build.PRODUCT) || size2.width < 2048) {
                                 cameraInfo3.pictureSizes.add(new Size(size2.width, size2.height));
-                                if (r2.f25199a) {
+                                if (r2.f25212a) {
                                     a8.b("picture size = " + size2.width + " " + size2.height);
                                 }
                             }
                         }
                         camera2.release();
                         arrayList.add(cameraInfo3);
-                        Collections.sort(cameraInfo3.previewSizes, vjVar);
-                        Collections.sort(cameraInfo3.pictureSizes, vjVar);
+                        Collections.sort(cameraInfo3.previewSizes, jlVar);
+                        Collections.sort(cameraInfo3.pictureSizes, jlVar);
                         i13 += ((cameraInfo3.previewSizes.size() + cameraInfo3.pictureSizes.size()) * 8) + 8;
                         i14 = i19 + 1;
                         e12 = sharedPreferences;
@@ -412,7 +412,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
     public static void lambda$openRound$9(CameraSession cameraSession, Runnable runnable, SurfaceTexture surfaceTexture, Runnable runnable2) {
         Camera camera = cameraSession.cameraInfo.camera;
         try {
-            if (r2.f25199a) {
+            if (r2.f25212a) {
                 a8.b("start creating round camera session");
             }
             if (camera == null) {
@@ -445,7 +445,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
             if (runnable2 != null) {
                 g0.h3(runnable2);
             }
-            if (r2.f25199a) {
+            if (r2.f25212a) {
                 a8.b("round camera session created");
             }
         } catch (Exception e10) {
@@ -758,7 +758,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
     public void openRound(CameraSession cameraSession, SurfaceTexture surfaceTexture, Runnable runnable, Runnable runnable2) {
         if (cameraSession != null && surfaceTexture != null) {
             this.threadPool.execute(new ai.d0(cameraSession, runnable2, surfaceTexture, runnable, 25));
-        } else if (r2.f25199a) {
+        } else if (r2.f25212a) {
             a8.b("failed to open round " + cameraSession + " tex = " + surfaceTexture);
         }
     }

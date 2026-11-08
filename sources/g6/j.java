@@ -18,7 +18,7 @@ public final class j extends a8.q {
     }
 
     @Override
-    public final boolean K0(int i7, Parcel parcel, Parcel parcel2) {
+    public final boolean k1(int i7, Parcel parcel, Parcel parcel2) {
         int i10;
         long g10;
         Object[] objArr;
@@ -81,10 +81,10 @@ public final class j extends a8.q {
                         if (qVar != null) {
                             try {
                                 o oVar = (o) qVar;
-                                Parcel P0 = oVar.P0();
-                                P0.writeInt(i10);
-                                P0.writeInt(0);
-                                oVar.T0(P0, 6);
+                                Parcel p12 = oVar.p1();
+                                p12.writeInt(i10);
+                                p12.writeInt(0);
+                                oVar.t1(p12, 6);
                             } catch (RemoteException e10) {
                                 c.f13543m.a(e10, "Unable to call %s on %s.", "disconnectFromDevice", q.class.getSimpleName());
                             }
@@ -142,8 +142,8 @@ public final class j extends a8.q {
                                     i6.h hVar2 = cVar3.h;
                                     if (hVar2 != null) {
                                         j6.b bVar4 = i6.h.v;
-                                        Log.i(bVar4.f16505a, bVar4.d("update Cast device to %s", castDevice));
-                                        hVar2.f15387o = castDevice;
+                                        Log.i(bVar4.f16508a, bVar4.d("update Cast device to %s", castDevice));
+                                        hVar2.f15390o = castDevice;
                                         hVar2.b();
                                     }
                                     Iterator it = new HashSet(cVar3.d).iterator();

@@ -4,15 +4,15 @@ import android.view.View;
 import org.telegram.messenger.c20;
 import org.telegram.tgnet.TLRPC;
 public final class c implements c20 {
-    public final int f53509a;
+    public final int f53602a;
 
     public c(int i7) {
-        this.f53509a = i7;
+        this.f53602a = i7;
     }
 
     @Override
     public final void a(Object obj) {
-        switch (this.f53509a) {
+        switch (this.f53602a) {
             case 0:
                 ((View) obj).invalidate();
                 return;

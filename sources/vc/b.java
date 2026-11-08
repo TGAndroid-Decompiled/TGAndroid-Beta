@@ -16,7 +16,7 @@ import org.json.JSONObject;
 import org.telegram.ui.Cells.f1;
 import tc.g;
 public abstract class b {
-    public static final c f57225a = new c();
+    public static final c f57317a = new c();
 
     public static HttpURLConnection a(String str, l lVar) {
         Throwable th2;
@@ -45,7 +45,7 @@ public abstract class b {
             httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
         }
         if (httpURLConnection instanceof HttpsURLConnection) {
-            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f57225a);
+            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f57317a);
         }
         httpURLConnection.setDoOutput(true);
         httpURLConnection.setRequestMethod("POST");
@@ -77,8 +77,8 @@ public abstract class b {
             if (sb2.length() > 0) {
                 sb2.append("&");
             }
-            String str = aVar.f57223a;
-            String str2 = aVar.f57224b;
+            String str = aVar.f57315a;
+            String str2 = aVar.f57316b;
             if (str == null) {
                 encode = null;
             } else {
@@ -120,13 +120,13 @@ public abstract class b {
         if (obj instanceof List) {
             List<Object> list = (List) obj;
             LinkedList linkedList = new LinkedList();
-            String q10 = rf.b.q(str, "[]");
+            String r10 = rf.b.r(str, "[]");
             if (list.isEmpty()) {
                 linkedList.add(new a(str, ""));
                 return linkedList;
             }
             for (Object obj2 : list) {
-                linkedList.addAll(e(obj2, q10));
+                linkedList.addAll(e(obj2, r10));
             }
             return linkedList;
         } else if (!"".equals(obj)) {

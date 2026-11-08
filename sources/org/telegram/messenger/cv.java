@@ -21,14 +21,14 @@ public final class cv extends fu {
     public final jv[] X;
     public int Y;
     public LinearGradient Z;
-    public final Matrix f21908a0;
-    public final Paint f21909b0;
+    public final Matrix f21937a0;
+    public final Paint f21938b0;
 
     public cv(kv kvVar, Rect rect, int i7, SpannableStringBuilder spannableStringBuilder) {
         super(kvVar, rect, i7);
-        this.f21908a0 = new Matrix();
-        this.f21909b0 = new Paint(1);
-        jv jvVar = new jv(kvVar, spannableStringBuilder, this.f22452c);
+        this.f21937a0 = new Matrix();
+        this.f21938b0 = new Paint(1);
+        jv jvVar = new jv(kvVar, spannableStringBuilder, this.f22471c);
         this.W = jvVar;
         this.X = r2;
         jv[] jvVarArr = {jvVar};
@@ -36,19 +36,19 @@ public final class cv extends fu {
 
     @Override
     public final int I() {
-        Rect rect = this.f22451b;
-        return this.W.f23593b.getHeight() + rect.top + rect.bottom;
+        Rect rect = this.f22470b;
+        return this.W.f23605b.getHeight() + rect.top + rect.bottom;
     }
 
     @Override
     public final int J() {
-        Rect rect = this.f22451b;
+        Rect rect = this.f22470b;
         return this.W.q() + rect.left + rect.right;
     }
 
     @Override
     public final int K() {
-        Rect rect = this.f22451b;
+        Rect rect = this.f22470b;
         return this.W.r() + rect.left + rect.right;
     }
 
@@ -69,31 +69,31 @@ public final class cv extends fu {
 
     @Override
     public final void W(Canvas canvas) {
-        kv kvVar = this.f22450a;
+        kv kvVar = this.f22469a;
         canvas.saveLayerAlpha(0.0f, 0.0f, kvVar.C, I(), 255, 31);
         int i02 = i0();
         jv jvVar = this.W;
         if (i02 != 0) {
-            jvVar.f23594c = (this.f22451b.left + i02) - jvVar.f23596f;
+            jvVar.f23606c = (this.f22470b.left + i02) - jvVar.f23608f;
             canvas.save();
             canvas.translate(i02, 0.0f);
         }
         jvVar.d(canvas, jvVar.S);
         if (kvVar.F()) {
             canvas.save();
-            canvas.translate(-jvVar.f23596f, 0.0f);
-            org.telegram.ui.Components.r5.drawAnimatedEmojis(canvas, jvVar.f23593b, jvVar.E, 0.0f, jvVar.f23601x, 0.0f, 0.0f, 0.0f, 1.0f);
+            canvas.translate(-jvVar.f23608f, 0.0f);
+            org.telegram.ui.Components.r5.drawAnimatedEmojis(canvas, jvVar.f23605b, jvVar.E, 0.0f, jvVar.f23613x, 0.0f, 0.0f, 0.0f, 1.0f);
             canvas.restore();
         }
         if (i02 != 0) {
             canvas.restore();
         }
         j0();
-        Matrix matrix = this.f21908a0;
+        Matrix matrix = this.f21937a0;
         matrix.reset();
-        matrix.postTranslate((((float) (System.currentTimeMillis() % 2000)) / 2000.0f) * this.f22452c, 0.0f);
+        matrix.postTranslate((((float) (System.currentTimeMillis() % 2000)) / 2000.0f) * this.f22471c, 0.0f);
         this.Z.setLocalMatrix(matrix);
-        canvas.drawRect(0.0f, 0.0f, kvVar.C, I(), this.f21909b0);
+        canvas.drawRect(0.0f, 0.0f, kvVar.C, I(), this.f21938b0);
         canvas.restore();
         View view = this.V;
         if (view != null) {
@@ -104,17 +104,17 @@ public final class cv extends fu {
     @Override
     public final void X(Canvas canvas, int i7, float f10) {
         int i10;
-        kv kvVar = this.f22450a;
+        kv kvVar = this.f22469a;
         int i11 = kvVar.C;
         TextPaint textPaint = kvVar.f23782w;
         canvas.saveLayerAlpha(0.0f, 0.0f, i11, I(), 255, 31);
         int i02 = i0();
         jv jvVar = this.W;
         if (i02 != 0) {
-            jvVar.f23594c = (this.f22451b.left + i02) - jvVar.f23596f;
+            jvVar.f23606c = (this.f22470b.left + i02) - jvVar.f23608f;
         }
         canvas.save();
-        canvas.translate(i02 - jvVar.f23596f, 0.0f);
+        canvas.translate(i02 - jvVar.f23608f, 0.0f);
         int color = textPaint.getColor();
         textPaint.setColor(-1);
         if (kvVar.E()) {
@@ -123,15 +123,15 @@ public final class cv extends fu {
             i10 = org.telegram.ui.ActionBar.k6.Uc;
         }
         textPaint.linkColor = org.telegram.ui.ActionBar.k6.w0(i10, kvVar.D);
-        tg0.b(canvas, jvVar.f23593b, i7, f10, new o(5, this, this.V));
+        tg0.b(canvas, jvVar.f23605b, i7, f10, new o(5, this, this.V));
         canvas.restore();
         textPaint.setColor(color);
         j0();
-        Matrix matrix = this.f21908a0;
+        Matrix matrix = this.f21937a0;
         matrix.reset();
-        matrix.postTranslate((((float) (System.currentTimeMillis() % 2000)) / 2000.0f) * this.f22452c, 0.0f);
+        matrix.postTranslate((((float) (System.currentTimeMillis() % 2000)) / 2000.0f) * this.f22471c, 0.0f);
         this.Z.setLocalMatrix(matrix);
-        canvas.drawRect(0.0f, 0.0f, kvVar.C, I(), this.f21909b0);
+        canvas.drawRect(0.0f, 0.0f, kvVar.C, I(), this.f21938b0);
         canvas.restore();
         View view = this.V;
         if (view != null) {
@@ -159,28 +159,28 @@ public final class cv extends fu {
         if (i02 != 0) {
             int i12 = i7 + i02;
             jv jvVar = this.W;
-            jvVar.f23594c = i12 - jvVar.f23596f;
+            jvVar.f23606c = i12 - jvVar.f23608f;
         }
     }
 
     @Override
     public final Layout a() {
-        return this.W.f23593b;
+        return this.W.f23605b;
     }
 
     public final int i0() {
-        kv kvVar = this.f22450a;
+        kv kvVar = this.f22469a;
         if (!kvVar.I()) {
             return 0;
         }
         int L = (kvVar.C + kvVar.T) - g0.L(14.0f);
-        Rect rect = this.f22451b;
+        Rect rect = this.f22470b;
         return ((L - rect.right) - rect.left) - this.W.r();
     }
 
     public final void j0() {
         int i7;
-        kv kvVar = this.f22450a;
+        kv kvVar = this.f22469a;
         if (kvVar.E()) {
             i7 = org.telegram.ui.ActionBar.k6.Tc;
         } else {
@@ -191,9 +191,9 @@ public final class cv extends fu {
             return;
         }
         this.Y = w02;
-        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, this.f22452c, 0.0f, new int[]{org.telegram.ui.ActionBar.k6.r1(0.7f, w02), org.telegram.ui.ActionBar.k6.r1(0.25f, w02), org.telegram.ui.ActionBar.k6.r1(0.7f, w02)}, new float[]{0.0f, 0.5f, 1.0f}, Shader.TileMode.REPEAT);
+        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, this.f22471c, 0.0f, new int[]{org.telegram.ui.ActionBar.k6.r1(0.7f, w02), org.telegram.ui.ActionBar.k6.r1(0.25f, w02), org.telegram.ui.ActionBar.k6.r1(0.7f, w02)}, new float[]{0.0f, 0.5f, 1.0f}, Shader.TileMode.REPEAT);
         this.Z = linearGradient;
-        Paint paint = this.f21909b0;
+        Paint paint = this.f21938b0;
         paint.setShader(linearGradient);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
     }
@@ -212,9 +212,9 @@ public final class cv extends fu {
     public final boolean u(CharacterStyle characterStyle, int i7, wt wtVar) {
         jv jvVar = this.W;
         if (jvVar.o(characterStyle, wtVar)) {
-            Rect rect = this.f22451b;
-            wtVar.f26368e = (i0() + rect.left) - jvVar.f23596f;
-            wtVar.f26369f = i7 + rect.top;
+            Rect rect = this.f22470b;
+            wtVar.f26374e = (i0() + rect.left) - jvVar.f23608f;
+            wtVar.f26375f = i7 + rect.top;
             return true;
         }
         return false;

@@ -7,7 +7,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public abstract class m5 {
     public static boolean A() {
-        TLRPC.User a22 = qp.s1(p10.f24467s0).a2(0L);
+        TLRPC.User a22 = qp.s1(p10.f24470s0).a2(0L);
         if (a22 == null) {
             return false;
         }
@@ -58,7 +58,7 @@ public abstract class m5 {
         if (tLObject instanceof TLRPC.User) {
             TLRPC.User user = (TLRPC.User) tLObject;
             if (t10.z(user)) {
-                String M0 = hd.M0(2131746265, null);
+                String M0 = id.M0(2131746267, null);
                 if (w8Var != null) {
                     w8Var.g(12);
                 }
@@ -67,7 +67,7 @@ public abstract class m5 {
                 }
                 return M0;
             } else if (t10.B(user)) {
-                String M02 = hd.M0(2131745902, null);
+                String M02 = id.M0(2131745904, null);
                 if (w8Var != null) {
                     w8Var.g(1);
                 }
@@ -170,10 +170,10 @@ public abstract class m5 {
 
     public static long d(TLObject tLObject) {
         if (tLObject instanceof TLRPC.User) {
-            return ((TLRPC.User) tLObject).f27102id;
+            return ((TLRPC.User) tLObject).f27105id;
         }
         if (tLObject instanceof TLRPC.Chat) {
-            return -((TLRPC.Chat) tLObject).f26953id;
+            return -((TLRPC.Chat) tLObject).f26956id;
         }
         return 0L;
     }
@@ -343,7 +343,7 @@ public abstract class m5 {
     }
 
     public static String t(long j3) {
-        return u(qp.s1(p10.f24467s0).e2(j3));
+        return u(qp.s1(p10.f24470s0).e2(j3));
     }
 
     public static String u(TLObject tLObject) {
@@ -389,48 +389,48 @@ public abstract class m5 {
     }
 
     public static String w(long j3) {
-        int i7 = p10.f24467s0;
+        int i7 = p10.f24470s0;
         TLObject e22 = qp.s1(i7).e2(j3);
         if (e22 instanceof TLRPC.User) {
-            return hd.d0(i7, (TLRPC.User) e22, null, null);
+            return id.d0(i7, (TLRPC.User) e22, null, null);
         }
         if (e22 instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) e22;
             if (chat.participants_count > 1) {
                 if (t3.V(chat)) {
-                    return hd.H(',', "Subscribers", chat.participants_count);
+                    return id.H(',', "Subscribers", chat.participants_count);
                 }
-                return hd.H(',', "Members", chat.participants_count);
+                return id.H(',', "Members", chat.participants_count);
             } else if (t3.V(chat)) {
-                return hd.M0(2131751391, null);
+                return id.M0(2131751391, null);
             } else {
-                return hd.M0(2131754876, null);
+                return id.M0(2131754876, null);
             }
         }
         return "";
     }
 
     public static void x(TLRPC.Dialog dialog) {
-        if (dialog != null && dialog.f26957id == 0) {
+        if (dialog != null && dialog.f26960id == 0) {
             if (dialog instanceof TLRPC.TL_dialog) {
                 TLRPC.Peer peer = dialog.peer;
                 if (peer != null) {
                     long j3 = peer.user_id;
                     if (j3 != 0) {
-                        dialog.f26957id = j3;
+                        dialog.f26960id = j3;
                         return;
                     }
                     long j10 = peer.chat_id;
                     if (j10 != 0) {
-                        dialog.f26957id = -j10;
+                        dialog.f26960id = -j10;
                     } else {
-                        dialog.f26957id = -peer.channel_id;
+                        dialog.f26960id = -peer.channel_id;
                     }
                 }
             } else if (dialog instanceof TLRPC.TL_dialogFolder) {
-                dialog.f26957id = 2305843009213693952L | ((TLRPC.TL_dialogFolder) dialog).folder.f27004id;
+                dialog.f26960id = 2305843009213693952L | ((TLRPC.TL_dialogFolder) dialog).folder.f27007id;
             } else if (dialog instanceof TLRPC.TL_dialogCommunity) {
-                dialog.f26957id = -dialog.community_id;
+                dialog.f26960id = -dialog.community_id;
             }
         }
     }

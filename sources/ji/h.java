@@ -20,7 +20,7 @@ import java.util.HashSet;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.camera.q;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.ActionBar.a6;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
@@ -34,46 +34,46 @@ public final class h extends FrameLayout implements a6 {
     public e E;
     public long F;
     public long G;
-    public final f6 f17084a;
-    public final int f17085b;
-    public final l9 f17086c;
+    public final f6 f17087a;
+    public final int f17088b;
+    public final l9 f17089c;
     public final TextView d;
-    public final l9 f17087e;
-    public final TextView f17088f;
+    public final l9 f17090e;
+    public final TextView f17091f;
     public final TextView h;
-    public final TextView f17089n;
-    public final fi.d f17090r;
-    public final wp f17091s;
-    public final ri.f f17092w;
-    public final fh.g f17093x;
-    public boolean f17094y;
+    public final TextView f17092n;
+    public final fi.d f17093r;
+    public final wp f17094s;
+    public final ri.f f17095w;
+    public final fh.g f17096x;
+    public boolean f17097y;
 
     public h(int i7, Context context, f6 f6Var) {
         super(context);
         dh.c cVar;
-        this.D = r6.f28476b;
-        this.f17084a = f6Var;
-        this.f17085b = i7;
+        this.D = r6.f28479b;
+        this.f17087a = f6Var;
+        this.f17088b = i7;
         if (Build.VERSION.SDK_INT >= 31) {
             ri.f fVar = new ri.f(null);
-            this.f17092w = fVar;
+            this.f17095w = fVar;
             fVar.m(g0.L(7.0f), o0.a());
-            fVar.f54481n = true;
+            fVar.f54573n = true;
             cVar = new dh.c(fVar, fVar, fVar);
         } else {
-            this.f17092w = null;
+            this.f17095w = null;
             ri.c cVar2 = new ri.c();
             cVar2.a(-16777216);
             cVar = new dh.c(cVar2, cVar2, cVar2);
         }
         FrameLayout frameLayout = new FrameLayout(context);
         l9 l9Var = new l9(context);
-        this.f17086c = l9Var;
+        this.f17089c = l9Var;
         l9Var.setRoundRadius(g0.L(52.0f) / 2);
         addView(l9Var, ha.d(52, 52.0f, 51, 11.0f, 9.0f, 0.0f, 0.0f));
         wp wpVar = new wp(2131231978, 0);
-        this.f17091s = wpVar;
-        wpVar.f40070r = g0.L(2.0f);
+        this.f17094s = wpVar;
+        wpVar.f40020r = g0.L(2.0f);
         TextView textView = new TextView(context);
         this.d = textView;
         textView.setTypeface(g0.o());
@@ -98,13 +98,13 @@ public final class h extends FrameLayout implements a6 {
         eVar.h = N2;
         c10.p(eVar);
         c10.r(g0.L(7.0f));
-        this.f17093x = c10;
+        this.f17096x = c10;
         textView.setBackground(c10);
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         linearLayout.setClipChildren(false);
         TextView textView2 = new TextView(context);
-        this.f17088f = textView2;
+        this.f17091f = textView2;
         textView2.setTypeface(g0.o());
         textView2.setTextSize(1, 16.0f);
         textView2.setSingleLine(true);
@@ -112,20 +112,20 @@ public final class h extends FrameLayout implements a6 {
         textView2.setEllipsize(truncateAt);
         linearLayout.addView(textView2, ha.k(0.0f, 10.0f, 0.0f, 1.33f, -1, -2));
         l9 l9Var2 = new l9(context);
-        this.f17087e = l9Var2;
+        this.f17090e = l9Var2;
         l9Var2.setRoundRadius(g0.L(8.0f));
         l9Var2.setOnClickListener(new View.OnClickListener(this) {
-            public final h f17079b;
+            public final h f17082b;
 
             {
-                this.f17079b = this;
+                this.f17082b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        h hVar = this.f17079b;
+                        h hVar = this.f17082b;
                         e eVar2 = hVar.E;
                         if (eVar2 != null) {
                             long j3 = hVar.G;
@@ -138,7 +138,7 @@ public final class h extends FrameLayout implements a6 {
                         }
                         return;
                     case 1:
-                        h hVar2 = this.f17079b;
+                        h hVar2 = this.f17082b;
                         e eVar3 = hVar2.E;
                         if (eVar3 != null) {
                             long j10 = hVar2.G;
@@ -151,7 +151,7 @@ public final class h extends FrameLayout implements a6 {
                         }
                         return;
                     case 2:
-                        h hVar3 = this.f17079b;
+                        h hVar3 = this.f17082b;
                         e eVar4 = hVar3.E;
                         if (eVar4 != null) {
                             ((l0) eVar4).g(hVar3.F, false);
@@ -159,7 +159,7 @@ public final class h extends FrameLayout implements a6 {
                         }
                         return;
                     default:
-                        h hVar4 = this.f17079b;
+                        h hVar4 = this.f17082b;
                         e eVar5 = hVar4.E;
                         if (eVar5 != null) {
                             ((l0) eVar5).g(hVar4.F, true);
@@ -176,17 +176,17 @@ public final class h extends FrameLayout implements a6 {
         textView3.setSingleLine(true);
         textView3.setEllipsize(truncateAt);
         textView3.setOnClickListener(new View.OnClickListener(this) {
-            public final h f17079b;
+            public final h f17082b;
 
             {
-                this.f17079b = this;
+                this.f17082b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        h hVar = this.f17079b;
+                        h hVar = this.f17082b;
                         e eVar2 = hVar.E;
                         if (eVar2 != null) {
                             long j3 = hVar.G;
@@ -199,7 +199,7 @@ public final class h extends FrameLayout implements a6 {
                         }
                         return;
                     case 1:
-                        h hVar2 = this.f17079b;
+                        h hVar2 = this.f17082b;
                         e eVar3 = hVar2.E;
                         if (eVar3 != null) {
                             long j10 = hVar2.G;
@@ -212,7 +212,7 @@ public final class h extends FrameLayout implements a6 {
                         }
                         return;
                     case 2:
-                        h hVar3 = this.f17079b;
+                        h hVar3 = this.f17082b;
                         e eVar4 = hVar3.E;
                         if (eVar4 != null) {
                             ((l0) eVar4).g(hVar3.F, false);
@@ -220,7 +220,7 @@ public final class h extends FrameLayout implements a6 {
                         }
                         return;
                     default:
-                        h hVar4 = this.f17079b;
+                        h hVar4 = this.f17082b;
                         e eVar5 = hVar4.E;
                         if (eVar5 != null) {
                             ((l0) eVar5).g(hVar4.F, true);
@@ -231,7 +231,7 @@ public final class h extends FrameLayout implements a6 {
             }
         });
         TextView f10 = q.f(linearLayout, textView3, ha.k(20.0f, 0.0f, 0.0f, 1.33f, -1, -2), context);
-        this.f17089n = f10;
+        this.f17092n = f10;
         f10.setTextSize(1, 13.0f);
         int L = g0.L(12.0f);
         int i10 = k6.D6;
@@ -244,7 +244,7 @@ public final class h extends FrameLayout implements a6 {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) "* ");
         spannableStringBuilder.setSpan(new wp(2131231942, 0), 0, 1, 33);
-        spannableStringBuilder.append((CharSequence) hd.M0(2131751899, null));
+        spannableStringBuilder.append((CharSequence) id.M0(2131751899, null));
         f10.setText(spannableStringBuilder);
         f10.setVisibility(8);
         linearLayout.addView(f10, ha.k(0.0f, 7.0f, 0.0f, 1.33f, -2, -2));
@@ -252,12 +252,12 @@ public final class h extends FrameLayout implements a6 {
         linearLayout2.setOrientation(0);
         linearLayout2.setClipChildren(false);
         fi.d dVar = new fi.d(context, f6Var, true);
-        this.f17090r = dVar;
+        this.f17093r = dVar;
         dVar.setUseWrapContent(true);
         dVar.setPadding(g0.L(15.0f), 0, g0.L(15.0f), 0);
         dVar.f();
         dVar.e();
-        int i11 = k6.f28259z6;
+        int i11 = k6.f28262z6;
         dVar.setColor(k6.r1(0.14f, k6.w0(i11, f6Var)));
         dVar.setTextColor(k6.x0(null, k6.G6, false));
         if (dVar.getBackground() != null) {
@@ -266,19 +266,19 @@ public final class h extends FrameLayout implements a6 {
             dVar.setBackground(background);
             r6.k(dVar, background, L3, null, f6Var);
         }
-        dVar.i(hd.M0(2131751605, null), false, true);
+        dVar.i(id.M0(2131751605, null), false, true);
         dVar.setOnClickListener(new View.OnClickListener(this) {
-            public final h f17079b;
+            public final h f17082b;
 
             {
-                this.f17079b = this;
+                this.f17082b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        h hVar = this.f17079b;
+                        h hVar = this.f17082b;
                         e eVar2 = hVar.E;
                         if (eVar2 != null) {
                             long j3 = hVar.G;
@@ -291,7 +291,7 @@ public final class h extends FrameLayout implements a6 {
                         }
                         return;
                     case 1:
-                        h hVar2 = this.f17079b;
+                        h hVar2 = this.f17082b;
                         e eVar3 = hVar2.E;
                         if (eVar3 != null) {
                             long j10 = hVar2.G;
@@ -304,7 +304,7 @@ public final class h extends FrameLayout implements a6 {
                         }
                         return;
                     case 2:
-                        h hVar3 = this.f17079b;
+                        h hVar3 = this.f17082b;
                         e eVar4 = hVar3.E;
                         if (eVar4 != null) {
                             ((l0) eVar4).g(hVar3.F, false);
@@ -312,7 +312,7 @@ public final class h extends FrameLayout implements a6 {
                         }
                         return;
                     default:
-                        h hVar4 = this.f17079b;
+                        h hVar4 = this.f17082b;
                         e eVar5 = hVar4.E;
                         if (eVar5 != null) {
                             ((l0) eVar5).g(hVar4.F, true);
@@ -327,19 +327,19 @@ public final class h extends FrameLayout implements a6 {
         dVar2.setUseWrapContent(true);
         dVar2.setPadding(g0.L(15.0f), 0, g0.L(15.0f), 0);
         dVar2.f();
-        dVar2.i(hd.M0(2131754486, null), false, true);
+        dVar2.i(id.M0(2131754486, null), false, true);
         dVar2.setOnClickListener(new View.OnClickListener(this) {
-            public final h f17079b;
+            public final h f17082b;
 
             {
-                this.f17079b = this;
+                this.f17082b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        h hVar = this.f17079b;
+                        h hVar = this.f17082b;
                         e eVar2 = hVar.E;
                         if (eVar2 != null) {
                             long j3 = hVar.G;
@@ -352,7 +352,7 @@ public final class h extends FrameLayout implements a6 {
                         }
                         return;
                     case 1:
-                        h hVar2 = this.f17079b;
+                        h hVar2 = this.f17082b;
                         e eVar3 = hVar2.E;
                         if (eVar3 != null) {
                             long j10 = hVar2.G;
@@ -365,7 +365,7 @@ public final class h extends FrameLayout implements a6 {
                         }
                         return;
                     case 2:
-                        h hVar3 = this.f17079b;
+                        h hVar3 = this.f17082b;
                         e eVar4 = hVar3.E;
                         if (eVar4 != null) {
                             ((l0) eVar4).g(hVar3.F, false);
@@ -373,7 +373,7 @@ public final class h extends FrameLayout implements a6 {
                         }
                         return;
                     default:
-                        h hVar4 = this.f17079b;
+                        h hVar4 = this.f17082b;
                         e eVar5 = hVar4.E;
                         if (eVar5 != null) {
                             ((l0) eVar5).g(hVar4.F, true);
@@ -398,11 +398,11 @@ public final class h extends FrameLayout implements a6 {
     public final void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
         int i7 = this.D;
-        int i10 = r6.f28476b;
+        int i10 = r6.f28479b;
         if (i7 != i10) {
             this.D = i10;
             try {
-                fi.d dVar = this.f17090r;
+                fi.d dVar = this.f17093r;
                 if (dVar != null) {
                     dVar.setTextColor(k6.x0(null, k6.G6, false));
                 }
@@ -410,9 +410,9 @@ public final class h extends FrameLayout implements a6 {
                 a8.g(e10, true);
             }
         }
-        if (this.f17094y) {
+        if (this.f17097y) {
             canvas2 = canvas;
-            canvas2.drawLine(g0.L(76.0f), getHeight() - 1, getMeasuredWidth(), getHeight() - 1, k6.f27972k0);
+            canvas2.drawLine(g0.L(76.0f), getHeight() - 1, getMeasuredWidth(), getHeight() - 1, k6.f27975k0);
         } else {
             canvas2 = canvas;
         }
@@ -423,14 +423,14 @@ public final class h extends FrameLayout implements a6 {
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         ri.f fVar;
         l9 l9Var;
-        if (Build.VERSION.SDK_INT >= 31 && (fVar = this.f17092w) != null && view == (l9Var = this.f17086c)) {
+        if (Build.VERSION.SDK_INT >= 31 && (fVar = this.f17095w) != null && view == (l9Var = this.f17089c)) {
             int L = g0.L(9.0f);
             int left = l9Var.getLeft() - L;
             int top = l9Var.getTop() - L;
             int L2 = (L * 2) + g0.L(52.0f);
             RecordingCanvas i7 = fVar.i(L2, L2);
             i7.translate(-left, -top);
-            i7.drawColor(k6.w0(k6.f27849d6, this.f17084a));
+            i7.drawColor(k6.w0(k6.f27852d6, this.f17087a));
             i7.save();
             float f10 = L2 / 2.0f;
             i7.scale(1.125f, 1.125f, f10, f10);
@@ -446,16 +446,16 @@ public final class h extends FrameLayout implements a6 {
     public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
         super.onLayout(z9, i7, i10, i11, i12);
         int left = this.d.getLeft();
-        this.f17093x.i(g0.L(9.0f) + left, g0.L(48.0f));
+        this.f17096x.i(g0.L(9.0f) + left, g0.L(48.0f));
     }
 
     @Override
     public final void updateColors() {
         int i7 = k6.G6;
-        f6 f6Var = this.f17084a;
-        this.f17088f.setTextColor(k6.w0(i7, f6Var));
-        int i10 = k6.f28259z6;
+        f6 f6Var = this.f17087a;
+        this.f17091f.setTextColor(k6.w0(i7, f6Var));
+        int i10 = k6.f28262z6;
         this.h.setTextColor(k6.w0(i10, f6Var));
-        this.f17089n.setTextColor(k6.w0(i10, f6Var));
+        this.f17092n.setTextColor(k6.w0(i10, f6Var));
     }
 }

@@ -20,11 +20,11 @@ public final class xb extends ClickableSpan {
         int i7;
         this.f5047a[0].dismiss();
         if (this.f5049c) {
-            i7 = 2131744928;
+            i7 = 2131744930;
         } else {
-            i7 = 2131744925;
+            i7 = 2131744927;
         }
-        vf.c.t(this.f5048b, org.telegram.messenger.hd.M0(i7, null));
+        vf.c.t(this.f5048b, org.telegram.messenger.id.M0(i7, null));
     }
 
     @Override

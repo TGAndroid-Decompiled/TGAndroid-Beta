@@ -8,12 +8,12 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.di;
 import org.telegram.ui.Components.mj;
 public final class r1 implements mj {
-    public final di f18805a;
-    public final b2 f18806b;
+    public final di f18808a;
+    public final b2 f18809b;
 
     public r1(b2 b2Var, di diVar) {
-        this.f18806b = b2Var;
-        this.f18805a = diVar;
+        this.f18809b = b2Var;
+        this.f18808a = diVar;
     }
 
     @Override
@@ -21,7 +21,7 @@ public final class r1 implements mj {
         try {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
             intent.setType("*/*");
-            this.f18806b.startActivityForResult(intent, 21);
+            this.f18809b.startActivityForResult(intent, 21);
         } catch (Exception e10) {
             a8.g(e10, true);
         }
@@ -31,7 +31,7 @@ public final class r1 implements mj {
     public final void n(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z9, int i7, long j3, boolean z10, long j10) {
         String str2;
         boolean isEmpty = arrayList.isEmpty();
-        b2 b2Var = this.f18806b;
+        b2 b2Var = this.f18809b;
         if (!isEmpty) {
             b2Var.P.f2((String) arrayList.get(0));
         } else if (!arrayList3.isEmpty()) {
@@ -40,7 +40,7 @@ public final class r1 implements mj {
             t3Var.getClass();
             if (ijVar != null && ijVar.F0() != null) {
                 TLRPC.Document F0 = ijVar.F0();
-                TLRPC.Message message = ijVar.f23244k;
+                TLRPC.Message message = ijVar.f23262k;
                 if (message != null) {
                     str2 = message.attachPath;
                 } else {
@@ -49,7 +49,7 @@ public final class r1 implements mj {
                 t3Var.g2(F0, str2);
             }
         }
-        this.f18805a.a(true);
+        this.f18808a.a(true);
     }
 
     @Override

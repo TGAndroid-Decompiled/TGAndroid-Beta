@@ -5,17 +5,25 @@ import android.os.IBinder;
 import android.os.Parcel;
 import java.lang.ref.WeakReference;
 public final class e extends Binder implements b {
-    public static final int f53673b = 0;
-    public final WeakReference f53674a;
+    public static final int f53766b = 0;
+    public final WeakReference f53767a;
 
     public e() {
         attachInterface(this, "android.support.v4.media.session.IMediaControllerCallback");
-        this.f53674a = new WeakReference(null);
+        this.f53767a = new WeakReference(null);
+    }
+
+    @Override
+    public final void S0(w wVar) {
+        if (this.f53767a.get() == null) {
+            return;
+        }
+        throw new ClassCastException();
     }
 
     @Override
     public final void e(int i7) {
-        if (this.f53674a.get() == null) {
+        if (this.f53767a.get() == null) {
             return;
         }
         throw new ClassCastException();
@@ -23,7 +31,7 @@ public final class e extends Binder implements b {
 
     @Override
     public final void j(int i7) {
-        if (this.f53674a.get() == null) {
+        if (this.f53767a.get() == null) {
             return;
         }
         throw new ClassCastException();
@@ -35,7 +43,7 @@ public final class e extends Binder implements b {
         if (i7 != 3) {
             if (i7 != 9) {
                 if (i7 != 1598968902) {
-                    WeakReference weakReference = this.f53674a;
+                    WeakReference weakReference = this.f53767a;
                     switch (i7) {
                         case 11:
                             parcel.enforceInterface("android.support.v4.media.session.IMediaControllerCallback");
@@ -73,16 +81,8 @@ public final class e extends Binder implements b {
         } else {
             wVar = null;
         }
-        x0(wVar);
+        S0(wVar);
         return true;
-    }
-
-    @Override
-    public final void x0(w wVar) {
-        if (this.f53674a.get() == null) {
-            return;
-        }
-        throw new ClassCastException();
     }
 
     @Override

@@ -59,9 +59,9 @@ public final class p7 extends View {
         i6Var.w(org.telegram.messenger.g0.L(40.0f));
         i6Var.x(org.telegram.messenger.g0.o1("fonts/num.otf"));
         i6Var.s(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(3.5f), 0);
-        i6Var.M = org.telegram.messenger.g0.f22544q.x;
+        i6Var.M = org.telegram.messenger.g0.f22563q.x;
         i6Var.u(-1);
-        i6Var.f34508b = 17;
+        i6Var.f34552b = 17;
         this.H = new n7(this, 0);
         this.f4528y = new a4(5, this, anVar);
     }
@@ -144,7 +144,7 @@ public final class p7 extends View {
                     }
                     ((zg0) arrayList.remove(0)).C(true);
                 }
-                g5.a aVar = Utilities.f21332c;
+                g5.a aVar = Utilities.f21335c;
                 int[] iArr = this.K;
                 zg0 zg0Var = new zg0(iArr[aVar.nextInt(iArr.length)], org.telegram.messenger.g0.L(70.0f), org.telegram.messenger.g0.L(70.0f));
                 zg0Var.R(this);

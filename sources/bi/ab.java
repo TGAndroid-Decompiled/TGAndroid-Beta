@@ -38,7 +38,7 @@ public final class ab implements Runnable {
         }
         if (map != null) {
             m.q3 q3Var = (m.q3) qVar.d;
-            ((ca.h) q3Var.f19225a).h((String) q3Var.f19227c, map, qVar.f989a);
+            ((ca.h) q3Var.f19228a).h((String) q3Var.f19230c, map, qVar.f989a);
         }
     }
 
@@ -59,21 +59,21 @@ public final class ab implements Runnable {
                 ((h1[]) this.f3465b)[0].dismiss();
                 return;
             case 3:
-                vf.c.t(((tc) this.f3465b).getContext(), org.telegram.messenger.hd.M0(2131744967, null));
+                vf.c.t(((tc) this.f3465b).getContext(), org.telegram.messenger.id.M0(2131744969, null));
                 return;
             case 4:
-                vf.c.t(((uc) this.f3465b).getContext(), org.telegram.messenger.hd.M0(2131744967, null));
+                vf.c.t(((uc) this.f3465b).getContext(), org.telegram.messenger.id.M0(2131744969, null));
                 return;
             case 5:
                 ((c1.e) this.f3465b).f().a(new w0.h(2, "Failed to launch the selector UI. Hint: ensure the `context` parameter is an Activity-based context."));
                 return;
             case 6:
                 m.q3 q3Var = (m.q3) this.f3465b;
-                synchronized (((AtomicMarkableReference) q3Var.f19230g)) {
+                synchronized (((AtomicMarkableReference) q3Var.f19233g)) {
                     try {
-                        if (((AtomicMarkableReference) q3Var.f19230g).isMarked()) {
-                            str = (String) ((AtomicMarkableReference) q3Var.f19230g).getReference();
-                            ((AtomicMarkableReference) q3Var.f19230g).set(str, false);
+                        if (((AtomicMarkableReference) q3Var.f19233g).isMarked()) {
+                            str = (String) ((AtomicMarkableReference) q3Var.f19233g).getReference();
+                            ((AtomicMarkableReference) q3Var.f19233g).set(str, false);
                             z9 = true;
                         }
                     } catch (Throwable th2) {
@@ -81,7 +81,7 @@ public final class ab implements Runnable {
                     }
                 }
                 if (z9) {
-                    ((ca.h) q3Var.f19225a).i((String) q3Var.f19227c, str);
+                    ((ca.h) q3Var.f19228a).i((String) q3Var.f19230c, str);
                     return;
                 }
                 return;
@@ -139,7 +139,7 @@ public final class ab implements Runnable {
             case 17:
                 di.i1 i1Var = (di.i1) this.f3465b;
                 di.p9 p9Var = i1Var.f9123c;
-                if (p9Var != null && i1Var.E() && (oVar = i1Var.f9121a) != null && oVar.f56032c == 0 && (launchActivity = LaunchActivity.G1) != null && c8.kc.a(launchActivity)) {
+                if (p9Var != null && i1Var.E() && (oVar = i1Var.f9121a) != null && oVar.f56124c == 0 && (launchActivity = LaunchActivity.G1) != null && c8.kc.a(launchActivity)) {
                     p9Var.T();
                     return;
                 }
@@ -183,7 +183,7 @@ public final class ab implements Runnable {
                 return;
             case 22:
                 ProfileStoriesView profileStoriesView = (ProfileStoriesView) this.f3465b;
-                int i7 = ProfileStoriesView.f41975s0;
+                int i7 = ProfileStoriesView.f41979s0;
                 profileStoriesView.getClass();
                 org.telegram.messenger.g0.c4(profileStoriesView);
                 return;

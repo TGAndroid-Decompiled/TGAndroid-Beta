@@ -29,9 +29,9 @@ public final class x8 extends FragmentContextView {
                 prVar.i(frameLayout, z9, true);
                 return;
             default:
-                v91 v91Var = (v91) this.Y0;
-                org.telegram.ui.Components.pr prVar2 = v91Var.U0;
-                FrameLayout frameLayout2 = v91Var.F0;
+                w91 w91Var = (w91) this.Y0;
+                org.telegram.ui.Components.pr prVar2 = w91Var.U0;
+                FrameLayout frameLayout2 = w91Var.F0;
                 if (i7 == 0) {
                     z10 = true;
                 } else {
@@ -42,8 +42,8 @@ public final class x8 extends FragmentContextView {
         }
     }
 
-    public x8(v91 v91Var, Context context, v91 v91Var2) {
-        super(context, v91Var2, null, false, null);
-        this.Y0 = v91Var;
+    public x8(w91 w91Var, Context context, w91 w91Var2) {
+        super(context, w91Var2, null, false, null);
+        this.Y0 = w91Var;
     }
 }

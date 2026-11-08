@@ -4,7 +4,7 @@ import android.content.Context;
 import android.widget.TextView;
 import bi.r3;
 import java.util.ArrayList;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ls;
 import org.telegram.messenger.qp;
 import org.telegram.ui.ActionBar.f6;
@@ -14,64 +14,64 @@ import org.telegram.ui.ActionBar.u1;
 import org.telegram.ui.Components.v4;
 import org.telegram.ui.an;
 public final class m implements Runnable {
-    public final int f15574a;
-    public final boolean f15575b;
-    public final boolean f15576c;
+    public final int f15577a;
+    public final boolean f15578b;
+    public final boolean f15579c;
     public final long d;
-    public final ls f15577e;
+    public final ls f15580e;
 
     public m(ls lsVar, boolean z9, boolean z10, long j3, int i7) {
-        this.f15574a = i7;
-        this.f15577e = lsVar;
-        this.f15575b = z9;
-        this.f15576c = z10;
+        this.f15577a = i7;
+        this.f15580e = lsVar;
+        this.f15578b = z9;
+        this.f15579c = z10;
         this.d = j3;
     }
 
     @Override
     public final void run() {
         ArrayList arrayList;
-        int i7 = this.f15574a;
+        int i7 = this.f15577a;
         int i10 = 2131751914;
-        boolean z9 = this.f15576c;
-        boolean z10 = this.f15575b;
+        boolean z9 = this.f15579c;
+        boolean z10 = this.f15578b;
         long j3 = this.d;
-        ls lsVar = this.f15577e;
+        ls lsVar = this.f15580e;
         switch (i7) {
             case 0:
                 p pVar = (p) lsVar;
-                String M0 = hd.M0(2131751915, null);
+                String M0 = id.M0(2131751915, null);
                 if (z10) {
                     i10 = 2131751917;
                 } else if (z9) {
                     i10 = 2131751916;
                 }
-                v4.s0(pVar, M0, hd.M0(i10, null), hd.M0(2131746320, null), true, new h(pVar, j3, 0));
+                v4.s0(pVar, M0, id.M0(i10, null), id.M0(2131746322, null), true, new h(pVar, j3, 0));
                 return;
             case 1:
                 d0 d0Var = (d0) lsVar;
                 Context context = d0Var.getContext();
                 f6 f6Var = d0Var.I0;
-                String M02 = hd.M0(2131751915, null);
+                String M02 = id.M0(2131751915, null);
                 if (z10) {
                     i10 = 2131751917;
                 } else if (z9) {
                     i10 = 2131751916;
                 }
-                u1 M = v4.M(context, f6Var, M02, hd.M0(i10, null), hd.M0(2131746320, null), new r3(d0Var, j3, 10));
+                u1 M = v4.M(context, f6Var, M02, id.M0(i10, null), id.M0(2131746322, null), new r3(d0Var, j3, 10));
                 M.show();
                 TextView textView = (TextView) M.d(-1);
                 if (textView != null) {
-                    r6.V(textView, k6.f28090q7, null);
+                    r6.V(textView, k6.f28093q7, null);
                     return;
                 }
                 return;
             case 2:
                 qp qpVar = (qp) lsVar;
                 if (z10) {
-                    arrayList = qpVar.f24908v0;
+                    arrayList = qpVar.f24915v0;
                 } else {
-                    arrayList = qpVar.f24899u0;
+                    arrayList = qpVar.f24906u0;
                 }
                 if (z9) {
                     if (!arrayList.contains(Long.valueOf(j3))) {
@@ -89,10 +89,10 @@ public final class m implements Runnable {
     }
 
     public m(an anVar, long j3, boolean z9, boolean z10) {
-        this.f15574a = 3;
-        this.f15577e = anVar;
+        this.f15577a = 3;
+        this.f15580e = anVar;
         this.d = j3;
-        this.f15575b = z9;
-        this.f15576c = z10;
+        this.f15578b = z9;
+        this.f15579c = z10;
     }
 }

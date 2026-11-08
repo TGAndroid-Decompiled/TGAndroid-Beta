@@ -64,7 +64,7 @@ public final class j extends mf.a {
                     sb2.append((CharSequence) arrayList.get(i7));
                     sb2.append('\n');
                 }
-                ((kf.l) this.f13909b).f17274g = sb2.toString();
+                ((kf.l) this.f13909b).f17277g = sb2.toString();
                 return;
             default:
                 return;
@@ -112,7 +112,7 @@ public final class j extends mf.a {
         this.f13908a = 0;
         ?? pVar = new kf.p();
         this.f13909b = pVar;
-        pVar.f17270g = i7;
+        pVar.f17273g = i7;
         this.f13910c = str;
     }
 }

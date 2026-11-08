@@ -2,7 +2,7 @@ package gh;
 
 import android.graphics.Color;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.rc;
+import org.telegram.messenger.sc;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
@@ -18,7 +18,7 @@ public class b implements a {
     public int f13964r;
 
     public b(int i7, f6 f6Var) {
-        this(f6Var, i7, rc.e(262144) ? 0.85f : 0.76f);
+        this(f6Var, i7, sc.e(262144) ? 0.85f : 0.76f);
     }
 
     @Override
@@ -59,13 +59,13 @@ public class b implements a {
     public int R0() {
         a();
         if (b()) {
-            return k6.w0(k6.f28226xa, this.f13958a);
+            return k6.w0(k6.f28229xa, this.f13958a);
         }
         return this.f13961e;
     }
 
     public final void a() {
-        if (this.f13964r != r6.f28476b) {
+        if (this.f13964r != r6.f28479b) {
             d();
         }
     }
@@ -85,7 +85,7 @@ public class b implements a {
     }
 
     public final void d() {
-        this.f13964r = r6.f28476b;
+        this.f13964r = r6.f28479b;
         this.d = k6.r1(this.f13960c, k6.w0(this.f13959b, this.f13958a));
         if (c()) {
             this.f13962f = 687865855;
@@ -127,7 +127,7 @@ public class b implements a {
 
     public b(f6 f6Var, int i7, float f10) {
         this.f13963n = -1;
-        this.f13964r = r6.f28476b;
+        this.f13964r = r6.f28479b;
         this.f13958a = f6Var;
         this.f13959b = i7;
         this.f13960c = f10;

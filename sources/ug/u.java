@@ -1,7 +1,7 @@
 package ug;
 
 import java.util.ArrayList;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.t3;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
@@ -9,26 +9,26 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.pp0;
 public final class u implements RequestDelegate {
-    public final int f56735a;
-    public final i0 f56736b;
+    public final int f56827a;
+    public final i0 f56828b;
 
     public u(i0 i0Var, int i7) {
-        this.f56735a = i7;
-        this.f56736b = i0Var;
+        this.f56827a = i7;
+        this.f56828b = i0Var;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         String G;
-        int i7 = this.f56735a;
-        i0 i0Var = this.f56736b;
+        int i7 = this.f56827a;
+        i0 i0Var = this.f56828b;
         switch (i7) {
             case 0:
-                org.telegram.messenger.g0.h3(new ti.p(7, i0Var, tLObject));
+                org.telegram.messenger.g0.h3(new u9.f(2, i0Var, tLObject));
                 return;
             case 1:
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    org.telegram.messenger.g0.h3(i0Var.f56535z2);
+                    org.telegram.messenger.g0.h3(i0Var.f56627z2);
                     return;
                 } else {
                     i0Var.getClass();
@@ -41,23 +41,23 @@ public final class u implements RequestDelegate {
                     int min = Math.min(tL_messages_inactiveChats.chats.size(), tL_messages_inactiveChats.dates.size());
                     int i10 = 0;
                     while (true) {
-                        i0 i0Var2 = this.f56736b;
+                        i0 i0Var2 = this.f56828b;
                         if (i10 < min) {
                             TLRPC.Chat chat = tL_messages_inactiveChats.chats.get(i10);
-                            int currentTime = (ConnectionsManager.getInstance(i0Var2.f28613a).getCurrentTime() - tL_messages_inactiveChats.dates.get(i10).intValue()) / 86400;
+                            int currentTime = (ConnectionsManager.getInstance(i0Var2.f28616a).getCurrentTime() - tL_messages_inactiveChats.dates.get(i10).intValue()) / 86400;
                             if (currentTime < 30) {
-                                G = hd.G(currentTime, "Days", new Object[0]);
+                                G = id.G(currentTime, "Days", new Object[0]);
                             } else if (currentTime < 365) {
-                                G = hd.G(currentTime / 30, "Months", new Object[0]);
+                                G = id.G(currentTime / 30, "Months", new Object[0]);
                             } else {
-                                G = hd.G(currentTime / 365, "Years", new Object[0]);
+                                G = id.G(currentTime / 365, "Years", new Object[0]);
                             }
                             if (t3.n0(chat)) {
-                                arrayList.add(hd.a0("InactiveChatSignature", null, 2131749210, hd.G(chat.participants_count, "Members", new Object[0]), G));
+                                arrayList.add(id.a0("InactiveChatSignature", null, 2131749212, id.G(chat.participants_count, "Members", new Object[0]), G));
                             } else if (t3.T(chat)) {
-                                arrayList.add(hd.a0("InactiveChannelSignature", null, 2131749211, G));
+                                arrayList.add(id.a0("InactiveChannelSignature", null, 2131749213, G));
                             } else {
-                                arrayList.add(hd.a0("InactiveChatSignature", null, 2131749210, hd.G(chat.participants_count, "Members", new Object[0]), G));
+                                arrayList.add(id.a0("InactiveChatSignature", null, 2131749212, id.G(chat.participants_count, "Members", new Object[0]), G));
                             }
                             i10++;
                         } else {

@@ -1,128 +1,74 @@
 package r2;
 
-import e2.s0;
+import e2.p0;
+import e2.q0;
+import e2.t;
 import e2.u;
-import f3.i0;
-import f3.j0;
-import h2.x;
-import j$.util.Objects;
-import java.io.EOFException;
-import java.util.Arrays;
-public final class o implements j0 {
-    public static final u f54254f;
-    public static final u f54255g;
-    public final j0 f54256a;
-    public final u f54257b;
-    public u f54258c;
-    public byte[] d;
-    public int f54259e;
+import java.util.Map;
+import x2.b1;
+public final class o extends b1 {
+    public final Map J;
+    public e2.r K;
 
-    static {
-        e2.t tVar = new e2.t();
-        tVar.f10563r = s0.n("application/id3");
-        f54254f = new u(tVar);
-        e2.t tVar2 = new e2.t();
-        tVar2.f10563r = s0.n("application/x-emsg");
-        f54255g = new u(tVar2);
+    public o(h6.m mVar, q2.m mVar2, q2.j jVar, Map map) {
+        super(mVar, mVar2, jVar);
+        this.J = map;
     }
 
-    public o(j0 j0Var, int i7) {
-        this.f54256a = j0Var;
-        if (i7 != 1) {
-            if (i7 == 3) {
-                this.f54257b = f54255g;
-            } else {
-                throw new IllegalArgumentException(jg.g.j(i7, "Unknown metadataType: "));
-            }
-        } else {
-            this.f54257b = f54254f;
+    @Override
+    public final u r(u uVar) {
+        e2.r rVar;
+        e2.r rVar2 = this.K;
+        if (rVar2 == null) {
+            rVar2 = uVar.f10618w;
         }
-        this.d = new byte[0];
-        this.f54259e = 0;
-    }
-
-    @Override
-    public final void a(x xVar, int i7, int i10) {
-        int i11 = this.f54259e + i7;
-        byte[] bArr = this.d;
-        if (bArr.length < i11) {
-            this.d = Arrays.copyOf(bArr, (i11 / 2) + i11);
+        if (rVar2 != null && (rVar = (e2.r) this.J.get(rVar2.f10532c)) != null) {
+            rVar2 = rVar;
         }
-        xVar.k(this.f54259e, i7, this.d);
-        this.f54259e += i7;
-    }
-
-    @Override
-    public final void b(int i7, x xVar) {
-        com.google.android.recaptcha.internal.a.a(this, xVar, i7);
-    }
-
-    @Override
-    public final void c(long j3, int i7, int i10, int i11, i0 i0Var) {
-        this.f54258c.getClass();
-        int i12 = this.f54259e - i11;
-        x xVar = new x(Arrays.copyOfRange(this.d, i12 - i10, i12));
-        byte[] bArr = this.d;
-        System.arraycopy(bArr, i12, bArr, 0, i11);
-        this.f54259e = i11;
-        String str = this.f54258c.f10615s;
-        u uVar = this.f54257b;
-        String str2 = uVar.f10615s;
-        String str3 = uVar.f10615s;
-        if (!Objects.equals(str, str2)) {
-            if ("application/x-emsg".equals(this.f54258c.f10615s)) {
-                q3.a c10 = p3.b.c(xVar);
-                u a10 = c10.a();
-                if (a10 != null && Objects.equals(str3, a10.f10615s)) {
-                    byte[] c11 = c10.c();
-                    c11.getClass();
-                    xVar = new x(c11);
+        q0 q0Var = uVar.f10608l;
+        q0 q0Var2 = null;
+        if (q0Var != null) {
+            p0[] p0VarArr = q0Var.f10484a;
+            int length = p0VarArr.length;
+            int i7 = 0;
+            while (true) {
+                if (i7 < length) {
+                    p0 p0Var = p0VarArr[i7];
+                    if ((p0Var instanceof t3.m) && "com.apple.streaming.transportStreamTimestamp".equals(((t3.m) p0Var).f55410b)) {
+                        break;
+                    }
+                    i7++;
                 } else {
-                    u a11 = c10.a();
-                    h2.a.l("HlsSampleStreamWrapper", "Ignoring EMSG. Expected it to contain wrapped " + str3 + " but actual wrapped format: " + a11);
-                    return;
+                    i7 = -1;
+                    break;
                 }
-            } else {
-                h2.a.l("HlsSampleStreamWrapper", "Ignoring sample for unsupported format: " + this.f54258c.f10615s);
-                return;
             }
-        }
-        int a12 = xVar.a();
-        j0 j0Var = this.f54256a;
-        j0Var.b(a12, xVar);
-        j0Var.c(j3, i7, a12, 0, i0Var);
-    }
-
-    @Override
-    public final int e(e2.n nVar, int i7, boolean z9) {
-        return f(nVar, i7, z9);
-    }
-
-    @Override
-    public final int f(e2.n nVar, int i7, boolean z9) {
-        int i10 = this.f54259e + i7;
-        byte[] bArr = this.d;
-        if (bArr.length < i10) {
-            this.d = Arrays.copyOf(bArr, (i10 / 2) + i10);
-        }
-        int read = nVar.read(this.d, this.f54259e, i7);
-        if (read == -1) {
-            if (z9) {
-                return -1;
+            if (i7 != -1) {
+                if (length != 1) {
+                    p0[] p0VarArr2 = new p0[length - 1];
+                    for (int i10 = 0; i10 < length; i10++) {
+                        if (i10 != i7) {
+                            p0VarArr2[i10 < i7 ? i10 : i10 - 1] = p0VarArr[i10];
+                        }
+                    }
+                    q0Var2 = new q0(p0VarArr2);
+                }
             }
-            throw new EOFException();
+            if (rVar2 == uVar.f10618w || q0Var != uVar.f10608l) {
+                t a10 = uVar.a();
+                a10.v = rVar2;
+                a10.f10556k = q0Var;
+                uVar = new u(a10);
+            }
+            return super.r(uVar);
         }
-        this.f54259e += read;
-        return read;
-    }
-
-    @Override
-    public final void g(u uVar) {
-        this.f54258c = uVar;
-        this.f54256a.g(this.f54257b);
-    }
-
-    @Override
-    public final void d(long j3) {
+        q0Var = q0Var2;
+        if (rVar2 == uVar.f10618w) {
+        }
+        t a102 = uVar.a();
+        a102.v = rVar2;
+        a102.f10556k = q0Var;
+        uVar = new u(a102);
+        return super.r(uVar);
     }
 }

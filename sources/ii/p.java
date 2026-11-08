@@ -18,7 +18,7 @@ import fi.p5;
 import java.util.WeakHashMap;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.hc;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ls;
 import org.telegram.messenger.m5;
 import org.telegram.messenger.qp;
@@ -58,23 +58,23 @@ public final class p extends f2 implements i30, ls, te.b {
     public TLRPC.ChatFull J;
     public final u1[] K;
     public final n L;
-    public ri.c f15580a;
-    public final te.a f15581b;
-    public long f15582c;
+    public ri.c f15583a;
+    public final te.a f15584b;
+    public long f15585c;
     public s1 d;
-    public q41 f15583e;
-    public String f15584f;
+    public q41 f15586e;
+    public String f15587f;
     public boolean h;
-    public boolean f15585n;
-    public e5 f15586r;
-    public o f15587s;
-    public p5 f15588w;
-    public l9 f15589x;
-    public AnimatorSet f15590y;
+    public boolean f15588n;
+    public e5 f15589r;
+    public o f15590s;
+    public p5 f15591w;
+    public l9 f15592x;
+    public AnimatorSet f15593y;
 
     public p(Bundle bundle) {
         super(bundle);
-        this.f15581b = new te.a(0, this, xq.h, 320L, false);
+        this.f15584b = new te.a(0, this, xq.h, 320L, false);
         this.K = new u1[1];
         this.L = new n(this);
     }
@@ -89,7 +89,7 @@ public final class p extends f2 implements i30, ls, te.b {
         Object obj = x31Var.G;
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
-            j3 = -chat.f26953id;
+            j3 = -chat.f26956id;
             boolean V = t3.V(chat);
             TLRPC.Chat chat2 = pVar.I;
             if (chat2 != null && (chat.creator || t3.y(27, chat2))) {
@@ -102,7 +102,7 @@ public final class p extends f2 implements i30, ls, te.b {
         } else {
             if (obj instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) obj;
-                j3 = user.f27102id;
+                j3 = user.f27105id;
                 t6 = t10.t(user);
                 TLRPC.Chat chat3 = pVar.I;
                 if (chat3 != null && ((user.bot && user.bot_can_edit) || t3.y(27, chat3))) {
@@ -130,9 +130,9 @@ public final class p extends f2 implements i30, ls, te.b {
             } else {
                 i7 = 2131751908;
             }
-            F.l(2131232422, hd.M0(i7, null), new h(pVar, j3, 1), z11);
-            F.m(2131232087, new m(pVar, t6, z10, j3, 0), hd.M0(2131751915, null), z12, true);
-            F.W(pVar.f15583e.U0(view, true));
+            F.l(2131232422, id.M0(i7, null), new h(pVar, j3, 1), z11);
+            F.m(2131232087, new m(pVar, t6, z10, j3, 0), id.M0(2131751915, null), z12, true);
+            F.W(pVar.f15586e.U0(view, true));
             F.Z();
             return true;
         }
@@ -144,7 +144,7 @@ public final class p extends f2 implements i30, ls, te.b {
         TLRPC.ChatPhoto chatPhoto;
         int i7 = x31Var.d;
         if (i7 == 140) {
-            if (!pVar.F.g() && (chatPhoto = (M0 = pVar.getMessagesController().M0(Long.valueOf(pVar.f15582c))).photo) != null && chatPhoto.photo_big != null) {
+            if (!pVar.F.g() && (chatPhoto = (M0 = pVar.getMessagesController().M0(Long.valueOf(pVar.f15585c))).photo) != null && chatPhoto.photo_big != null) {
                 hc hcVar = null;
                 PhotoViewer.p1().H2(null, pVar, null);
                 TLRPC.ChatPhoto chatPhoto2 = M0.photo;
@@ -173,21 +173,21 @@ public final class p extends f2 implements i30, ls, te.b {
             j30Var.n(z9, new i(pVar, 0), new d1(6), 0);
         } else if (i7 == 142) {
             Bundle bundle = new Bundle();
-            bundle.putLong("chat_id", pVar.f15582c);
+            bundle.putLong("chat_id", pVar.f15585c);
             bundle.putInt("type", 1);
             oq oqVar = new oq(bundle);
             oqVar.C0(pVar.J);
             pVar.presentFragment(oqVar);
         } else if (i7 == 144) {
             Bundle bundle2 = new Bundle();
-            bundle2.putLong("chat_id", pVar.f15582c);
+            bundle2.putLong("chat_id", pVar.f15585c);
             bundle2.putInt("type", 0);
             oq oqVar2 = new oq(bundle2);
             oqVar2.C0(pVar.J);
             pVar.presentFragment(oqVar2);
         } else if (i7 == 143) {
             Bundle bundle3 = new Bundle();
-            bundle3.putLong("community_id", pVar.f15582c);
+            bundle3.putLong("community_id", pVar.f15585c);
             pVar.presentFragment(new s(bundle3));
         } else if (i7 == 150) {
             pVar.e0(true);
@@ -200,22 +200,22 @@ public final class p extends f2 implements i30, ls, te.b {
         } else {
             Object obj = x31Var.G;
             if (obj instanceof TLRPC.Chat) {
-                pVar.presentFragment(an.ra(-((TLRPC.Chat) obj).f26953id));
+                pVar.presentFragment(an.ra(-((TLRPC.Chat) obj).f26956id));
             } else if (obj instanceof TLRPC.User) {
-                pVar.presentFragment(an.ra(((TLRPC.User) obj).f27102id));
+                pVar.presentFragment(an.ra(((TLRPC.User) obj).f27105id));
             }
         }
     }
 
     public static void b0(p pVar) {
         pVar.G = null;
-        qp.s1(pVar.currentAccount).B(pVar.f15582c, null, null, null, null, 0.0d, null, null, null, null);
+        qp.s1(pVar.currentAccount).B(pVar.f15585c, null, null, null, null, 0.0d, null, null, null, null);
         pVar.f0(false, true);
-        pVar.f15589x.j(null, null, pVar.E, pVar.I);
+        pVar.f15592x.j(null, null, pVar.E, pVar.I);
     }
 
     public static void c0(p pVar, long j3) {
-        qp.s1(pVar.currentAccount).Q2(j3, pVar.f15582c, true, false, new j(pVar, 0));
+        qp.s1(pVar.currentAccount).Q2(j3, pVar.f15585c, true, false, new j(pVar, 0));
     }
 
     @Override
@@ -266,20 +266,20 @@ public final class p extends f2 implements i30, ls, te.b {
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setActionBarMenuOnItemClick(new bi.s(this, 6));
         ri.c cVar = new ri.c();
-        this.f15580a = cVar;
-        cVar.a(getThemedColor(k6.f27849d6));
+        this.f15583a = cVar;
+        cVar.a(getThemedColor(k6.f27852d6));
         this.actionBar.M(new dh.c(cVar, cVar, cVar), c8.g0.p(this.resourceProvider), false);
         this.actionBar.Q0 = true;
         s1 s1Var = new s1(this, context);
         this.d = s1Var;
-        r6.i(k6.f27793a7, s1Var, null);
+        r6.i(k6.f27796a7, s1Var, null);
         this.E = new w8(this.I);
         o oVar = new o(context);
-        this.f15587s = oVar;
-        oVar.f15579a.e(this.I, this.E);
-        this.f15589x = this.f15587s.f15579a;
+        this.f15590s = oVar;
+        oVar.f15582a.e(this.I, this.E);
+        this.f15592x = this.f15590s.f15582a;
         String m10 = m5.m(this.I);
-        this.f15584f = m10;
+        this.f15587f = m10;
         f6 f6Var = this.resourceProvider;
         e5 e5Var = new e5(6, context, false);
         bi.v vVar = new bi.v(context, 2);
@@ -294,20 +294,20 @@ public final class p extends f2 implements i30, ls, te.b {
         vVar.setInputType(vVar.getInputType() | 16384);
         vVar.setPadding(org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(11.0f));
         vVar.setMinHeight(org.telegram.messenger.g0.L(50.0f));
-        if (hd.f22878a0) {
+        if (id.f23157a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         e5Var.addView(vVar, ha.d(-1, -2.0f, i7 | 16, 13.0f, 0.0f, 13.0f, 0.0f));
-        this.f15586r = e5Var;
+        this.f15589r = e5Var;
         vVar.setText(m10);
-        ((bi.v) this.f15586r.f3761b).setSelection(m10.length());
-        ((bi.v) this.f15586r.f3761b).addTextChangedListener(new ah.j(this, 7));
+        ((bi.v) this.f15589r.f3761b).setSelection(m10.length());
+        ((bi.v) this.f15589r.f3761b).addTextChangedListener(new ah.j(this, 7));
         ei.k kVar = new ei.k(this, context);
         this.H = kVar;
         r6.V(kVar, k6.Gi, getResourceProvider());
-        this.H.setText(hd.M0(2131745947, null));
+        this.H.setText(id.M0(2131745949, null));
         this.H.setTypeface(org.telegram.messenger.g0.o());
         this.H.setTextSize(1, 14.0f);
         this.H.setGravity(17);
@@ -317,29 +317,29 @@ public final class p extends f2 implements i30, ls, te.b {
         ka.a(this.H);
         this.actionBar.addView(this.H, ha.d(-2, 56.0f, 85, 0.0f, 0.0f, 12.0f, 0.0f));
         p5 p5Var = new p5(this, context);
-        this.f15588w = p5Var;
-        this.f15587s.addView(p5Var, ha.d(72, 72.0f, 81, 0.0f, 0.0f, 0.0f, 28.0f));
+        this.f15591w = p5Var;
+        this.f15590s.addView(p5Var, ha.d(72, 72.0f, 81, 0.0f, 0.0f, 0.0f, 28.0f));
         RadialProgressView radialProgressView = new RadialProgressView(context, null);
         this.D = radialProgressView;
         radialProgressView.setSize(org.telegram.messenger.g0.L(30.0f));
         this.D.setProgressColor(-1);
         this.D.setNoProgress(false);
-        this.f15587s.addView(this.D, ha.d(64, 64.0f, 81, 0.0f, 0.0f, 0.0f, 32.0f));
+        this.f15590s.addView(this.D, ha.d(64, 64.0f, 81, 0.0f, 0.0f, 0.0f, 32.0f));
         f0(false, false);
         q41 q41Var = new q41(this, new j(this, 1), new k(this), new k(this));
-        this.f15583e = q41Var;
+        this.f15586e = q41Var;
         q41Var.setClipToPadding(false);
-        q41 q41Var2 = this.f15583e;
-        l41 l41Var = q41Var2.f37160f3;
-        l41Var.f35510r = false;
-        l41Var.f35511s = true;
+        q41 q41Var2 = this.f15586e;
+        l41 l41Var = q41Var2.f37190f3;
+        l41Var.f35528r = false;
+        l41Var.f35529s = true;
         q41Var2.r1();
         this.actionBar.setBackground(null);
-        this.d.addView(this.f15583e, ha.c(-1.0f, -1));
+        this.d.addView(this.f15586e, ha.c(-1.0f, -1));
         this.d.addView(this.actionBar, ha.e(-1, -2, 48));
         s1 s1Var2 = this.d;
         k kVar2 = new k(this);
-        WeakHashMap weakHashMap = r0.i0.f54097a;
+        WeakHashMap weakHashMap = r0.i0.f54190a;
         r0.a0.i(s1Var2, kVar2);
         s1 s1Var3 = this.d;
         this.fragmentView = s1Var3;
@@ -348,21 +348,21 @@ public final class p extends f2 implements i30, ls, te.b {
 
     public final void d0() {
         boolean z9;
-        if (this.h == this.f15585n && TextUtils.equals(((bi.v) this.f15586r.f3761b).getText().toString(), this.f15584f)) {
+        if (this.h == this.f15588n && TextUtils.equals(((bi.v) this.f15589r.f3761b).getText().toString(), this.f15587f)) {
             z9 = false;
         } else {
             z9 = true;
         }
-        this.f15581b.a(z9, true);
+        this.f15584b.a(z9, true);
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         if (i7 == qs.T) {
             TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
-            if (chatFull.f26954id == this.f15582c) {
+            if (chatFull.f26957id == this.f15585c) {
                 this.J = chatFull;
-                this.f15583e.f37160f3.O(true);
+                this.f15586e.f37190f3.O(true);
             }
         }
     }
@@ -377,7 +377,7 @@ public final class p extends f2 implements i30, ls, te.b {
 
     @Override
     public final boolean dismissDialogOnPause(Dialog dialog) {
-        if (dialog != this.F.f34860c && super.dismissDialogOnPause(dialog)) {
+        if (dialog != this.F.f34881c && super.dismissDialogOnPause(dialog)) {
             return true;
         }
         return false;
@@ -394,18 +394,18 @@ public final class p extends f2 implements i30, ls, te.b {
     }
 
     public final void e0(boolean z9) {
-        if (this.f15585n == z9) {
+        if (this.f15588n == z9) {
             return;
         }
-        h6 h6Var = (h6) this.f15583e.B1(151);
+        h6 h6Var = (h6) this.f15586e.B1(151);
         if (h6Var != null) {
             h6Var.a(!z9);
         }
-        h6 h6Var2 = (h6) this.f15583e.B1(150);
+        h6 h6Var2 = (h6) this.f15586e.B1(150);
         if (h6Var2 != null) {
             h6Var2.a(z9);
         }
-        this.f15585n = z9;
+        this.f15588n = z9;
         d0();
     }
 
@@ -413,39 +413,39 @@ public final class p extends f2 implements i30, ls, te.b {
         if (this.D == null) {
             return;
         }
-        AnimatorSet animatorSet = this.f15590y;
+        AnimatorSet animatorSet = this.f15593y;
         if (animatorSet != null) {
             animatorSet.cancel();
-            this.f15590y = null;
+            this.f15593y = null;
         }
         if (z10) {
             AnimatorSet animatorSet2 = new AnimatorSet();
-            this.f15590y = animatorSet2;
+            this.f15593y = animatorSet2;
             if (z9) {
                 this.D.setVisibility(0);
-                this.f15588w.setVisibility(0);
-                AnimatorSet animatorSet3 = this.f15590y;
+                this.f15591w.setVisibility(0);
+                AnimatorSet animatorSet3 = this.f15593y;
                 RadialProgressView radialProgressView = this.D;
                 Property property = View.ALPHA;
-                animatorSet3.playTogether(ObjectAnimator.ofFloat(radialProgressView, property, 1.0f), ObjectAnimator.ofFloat(this.f15588w, property, 1.0f));
+                animatorSet3.playTogether(ObjectAnimator.ofFloat(radialProgressView, property, 1.0f), ObjectAnimator.ofFloat(this.f15591w, property, 1.0f));
             } else {
                 RadialProgressView radialProgressView2 = this.D;
                 Property property2 = View.ALPHA;
-                animatorSet2.playTogether(ObjectAnimator.ofFloat(radialProgressView2, property2, 0.0f), ObjectAnimator.ofFloat(this.f15588w, property2, 0.0f));
+                animatorSet2.playTogether(ObjectAnimator.ofFloat(radialProgressView2, property2, 0.0f), ObjectAnimator.ofFloat(this.f15591w, property2, 0.0f));
             }
-            this.f15590y.setDuration(180L);
-            this.f15590y.addListener(new ch.y(15, this, z9));
-            this.f15590y.start();
+            this.f15593y.setDuration(180L);
+            this.f15593y.addListener(new ch.y(15, this, z9));
+            this.f15593y.start();
         } else if (z9) {
             this.D.setAlpha(1.0f);
             this.D.setVisibility(0);
-            this.f15588w.setAlpha(1.0f);
-            this.f15588w.setVisibility(0);
+            this.f15591w.setAlpha(1.0f);
+            this.f15591w.setVisibility(0);
         } else {
             this.D.setAlpha(0.0f);
             this.D.setVisibility(4);
-            this.f15588w.setAlpha(0.0f);
-            this.f15588w.setVisibility(4);
+            this.f15591w.setAlpha(0.0f);
+            this.f15591w.setVisibility(4);
         }
     }
 
@@ -456,7 +456,7 @@ public final class p extends f2 implements i30, ls, te.b {
 
     @Override
     public final String getInitialSearchString() {
-        return ((bi.v) this.f15586r.f3761b).getText().toString();
+        return ((bi.v) this.f15589r.f3761b).getText().toString();
     }
 
     @Override
@@ -473,8 +473,8 @@ public final class p extends f2 implements i30, ls, te.b {
     public final boolean onFragmentCreate() {
         boolean z9;
         TLRPC.TL_chatBannedRights tL_chatBannedRights;
-        this.f15582c = this.arguments.getLong("community_id", 0L);
-        TLRPC.Chat M0 = getMessagesController().M0(Long.valueOf(this.f15582c));
+        this.f15585c = this.arguments.getLong("community_id", 0L);
+        TLRPC.Chat M0 = getMessagesController().M0(Long.valueOf(this.f15585c));
         this.I = M0;
         if (M0 != null && ((tL_chatBannedRights = M0.default_banned_rights) == null || !tL_chatBannedRights.manage_linked_peers)) {
             z9 = true;
@@ -482,12 +482,12 @@ public final class p extends f2 implements i30, ls, te.b {
             z9 = false;
         }
         this.h = z9;
-        this.f15585n = z9;
-        this.J = getMessagesController().N0(this.f15582c);
+        this.f15588n = z9;
+        this.J = getMessagesController().N0(this.f15585c);
         j30 j30Var = new j30(3, true, true);
         this.F = j30Var;
-        j30Var.f34858a = this;
-        j30Var.f34859b = this;
+        j30Var.f34879a = this;
+        j30Var.f34880b = this;
         getNotificationCenter().c(this, qs.T);
         return super.onFragmentCreate();
     }
@@ -523,9 +523,9 @@ public final class p extends f2 implements i30, ls, te.b {
     public final void onThemeColorsChanged() {
         super.onThemeColorsChanged();
         try {
-            ri.c cVar = this.f15580a;
+            ri.c cVar = this.f15583a;
             if (cVar != null) {
-                cVar.a(getThemedColor(k6.f27849d6));
+                cVar.a(getThemedColor(k6.f27852d6));
             }
             org.telegram.ui.ActionBar.k kVar = this.actionBar;
             if (kVar != null) {
@@ -540,7 +540,7 @@ public final class p extends f2 implements i30, ls, te.b {
     public final void restoreSelfArgs(Bundle bundle) {
         j30 j30Var = this.F;
         if (j30Var != null) {
-            j30Var.f34862f = bundle.getString("path");
+            j30Var.f34883f = bundle.getString("path");
         }
     }
 
@@ -548,10 +548,10 @@ public final class p extends f2 implements i30, ls, te.b {
     public final void saveSelfArgs(Bundle bundle) {
         String str;
         j30 j30Var = this.F;
-        if (j30Var != null && (str = j30Var.f34862f) != null) {
+        if (j30Var != null && (str = j30Var.f34883f) != null) {
             bundle.putString("path", str);
         }
-        e5 e5Var = this.f15586r;
+        e5 e5Var = this.f15589r;
         if (e5Var != null) {
             String obj = ((bi.v) e5Var.f3761b).getText().toString();
             if (!obj.isEmpty()) {

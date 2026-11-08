@@ -4,12 +4,12 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class qu implements View.OnLongClickListener {
-    public final int f49313a;
-    public final ww f49314b;
+    public final int f49316a;
+    public final ww f49317b;
 
     public qu(ww wwVar, int i7) {
-        this.f49313a = i7;
-        this.f49314b = wwVar;
+        this.f49316a = i7;
+        this.f49317b = wwVar;
     }
 
     @Override
@@ -18,8 +18,8 @@ public final class qu implements View.OnLongClickListener {
         boolean z10;
         int i7;
         int i10;
-        int i11 = this.f49313a;
-        ww wwVar = this.f49314b;
+        int i11 = this.f49316a;
+        ww wwVar = this.f49317b;
         switch (i11) {
             case 0:
                 ArrayList arrayList = wwVar.I2;
@@ -68,22 +68,22 @@ public final class qu implements View.OnLongClickListener {
                 }
                 org.telegram.ui.Components.k60 H = org.telegram.ui.Components.k60.H(wwVar, view);
                 if (z10) {
-                    i7 = 2131745636;
+                    i7 = 2131745638;
                 } else {
-                    i7 = 2131745637;
+                    i7 = 2131745639;
                 }
-                H.l(2131232359, org.telegram.messenger.hd.M0(i7, null), new cu(wwVar, 5), z9);
-                H.c(2131231508, org.telegram.messenger.hd.M0(2131745584, null), new cu(wwVar, 6), false);
+                H.l(2131232359, org.telegram.messenger.id.M0(i7, null), new cu(wwVar, 5), z9);
+                H.c(2131231508, org.telegram.messenger.id.M0(2131745586, null), new cu(wwVar, 6), false);
                 if (z11) {
-                    i10 = 2131745515;
+                    i10 = 2131745517;
                 } else {
-                    i10 = 2131745860;
+                    i10 = 2131745862;
                 }
-                H.l(2131232077, org.telegram.messenger.hd.M0(i10, null), new org.telegram.ui.Components.tp0(6, wwVar, z11), z12);
+                H.l(2131232077, org.telegram.messenger.id.M0(i10, null), new org.telegram.ui.Components.tp0(6, wwVar, z11), z12);
                 H.Z();
                 return true;
             case 1:
-                ww wwVar2 = this.f49314b;
+                ww wwVar2 = this.f49317b;
                 wwVar2.D4(wwVar2.I2, 104, true, true, null);
                 return true;
             case 2:

@@ -12,30 +12,30 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.zip.Inflater;
 public final class b implements m {
-    public static final c4.a f17214e;
-    public final x f17215a = new x();
-    public final x f17216b = new x();
-    public final a f17217c;
+    public static final c4.a f17217e;
+    public final x f17218a = new x();
+    public final x f17219b = new x();
+    public final a f17220c;
     public Inflater d;
 
     static {
         g0 g0Var = i0.f14329b;
-        f17214e = new c4.a(-9223372036854775807L, -9223372036854775807L, t1.f14397e);
+        f17217e = new c4.a(-9223372036854775807L, -9223372036854775807L, t1.f14397e);
     }
 
     public b(List list) {
         String[] split;
         int i7;
         a aVar = new a();
-        this.f17217c = aVar;
+        this.f17220c = aVar;
         String trim = new String((byte[]) list.get(0), StandardCharsets.UTF_8).trim();
         String str = m0.f14112a;
         for (String str2 : trim.split("\\r?\\n", -1)) {
             if (str2.startsWith("palette: ")) {
                 String[] split2 = str2.substring(9).split(",", -1);
-                aVar.f17209f = new int[split2.length];
+                aVar.f17212f = new int[split2.length];
                 for (int i10 = 0; i10 < split2.length; i10++) {
-                    int[] iArr = aVar.f17209f;
+                    int[] iArr = aVar.f17212f;
                     try {
                         i7 = Integer.parseInt(split2[i10].trim(), 16);
                     } catch (RuntimeException e10) {
@@ -50,7 +50,7 @@ public final class b implements m {
                     h2.a.l("VobsubParser", "Ignoring malformed IDX size line: '" + str2 + "'");
                 } else {
                     try {
-                        aVar.f17210g = Integer.parseInt(split3[0]);
+                        aVar.f17213g = Integer.parseInt(split3[0]);
                         aVar.h = Integer.parseInt(split3[1]);
                         aVar.d = true;
                     } catch (RuntimeException e11) {

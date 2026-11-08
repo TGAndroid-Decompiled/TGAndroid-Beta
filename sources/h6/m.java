@@ -97,7 +97,7 @@ import org.telegram.ui.Components.di;
 import org.telegram.ui.Components.e51;
 import org.telegram.ui.Components.hi0;
 import org.telegram.ui.Components.mx0;
-import org.telegram.ui.Components.qt;
+import org.telegram.ui.Components.rt;
 import org.telegram.ui.Components.v4;
 import org.telegram.ui.Components.vj;
 import org.telegram.ui.Components.yw0;
@@ -274,7 +274,7 @@ public final class m implements ib.b, c4.d, a0, OnCompleteListener, q5.b, ILocat
     public void D(b3.a aVar) {
         m2.j jVar = (m2.j) ((HashMap) this.f14264b).remove(aVar);
         jVar.getClass();
-        l2.g gVar = (l2.g) ((l2.h) this.d).f17836p.get(jVar);
+        l2.g gVar = (l2.g) ((l2.h) this.d).f17839p.get(jVar);
         if (gVar != null) {
             synchronized (gVar) {
                 gVar.d--;
@@ -296,7 +296,7 @@ public final class m implements ib.b, c4.d, a0, OnCompleteListener, q5.b, ILocat
     }
 
     public synchronized void G() {
-        ((l2.h) this.d).f17825c.e();
+        ((l2.h) this.d).f17828c.e();
     }
 
     public void H(boolean z9, float f10) {
@@ -327,7 +327,7 @@ public final class m implements ib.b, c4.d, a0, OnCompleteListener, q5.b, ILocat
         this.f14265c = k0Var;
         g0Var.b();
         g0Var.c();
-        j0 O1 = qVar.O1(g0Var.f19670c, 5);
+        j0 O1 = qVar.O1(g0Var.f19673c, 5);
         this.d = O1;
         O1.g((u) this.f14264b);
     }
@@ -370,19 +370,19 @@ public final class m implements ib.b, c4.d, a0, OnCompleteListener, q5.b, ILocat
     @Override
     public void checkLocationSettings(sa saVar, q0.a aVar) {
         ArrayList arrayList = new ArrayList();
-        arrayList.add(((ba) saVar).f21606a);
+        arrayList.add(((ba) saVar).f21633a);
         u7.c cVar = (u7.c) this.f14265c;
         j8.c cVar2 = new j8.c(arrayList, false, false);
         cVar.getClass();
         s b10 = com.google.android.gms.common.api.internal.t.b();
-        b10.f6682c = new qt(cVar2, 19);
+        b10.f6682c = new rt(cVar2, 19);
         b10.f6680a = 2426;
         cVar.e(0, b10.a()).addOnCompleteListener(new y9(aVar, 1));
     }
 
     @Override
     public boolean checkServices() {
-        return tt.f25660b.hasServices();
+        return tt.f25661b.hasServices();
     }
 
     @Override
@@ -426,7 +426,7 @@ public final class m implements ib.b, c4.d, a0, OnCompleteListener, q5.b, ILocat
         u7.c cVar = (u7.c) this.f14264b;
         cVar.getClass();
         s b10 = com.google.android.gms.common.api.internal.t.b();
-        b10.f6682c = u7.a.f56270c;
+        b10.f6682c = u7.a.f56359c;
         b10.f6680a = 2414;
         cVar.e(0, b10.a()).addOnCompleteListener(new y9(aVar, 0));
     }
@@ -454,9 +454,9 @@ public final class m implements ib.b, c4.d, a0, OnCompleteListener, q5.b, ILocat
 
     @Override
     public void init(Context context) {
-        com.google.android.gms.common.api.e eVar = j8.b.f16581a;
+        com.google.android.gms.common.api.e eVar = j8.b.f16584a;
         com.google.android.gms.common.api.i iVar = com.google.android.gms.common.api.i.f6542c;
-        com.google.android.gms.common.api.e eVar2 = u7.c.f56272l;
+        com.google.android.gms.common.api.e eVar2 = u7.c.f56361l;
         com.google.android.gms.common.api.a aVar = com.google.android.gms.common.api.b.f6532j;
         this.f14264b = new com.google.android.gms.common.api.j(context, eVar2, aVar, iVar);
         this.f14265c = new com.google.android.gms.common.api.j(context, eVar2, aVar, iVar);
@@ -551,7 +551,7 @@ public final class m implements ib.b, c4.d, a0, OnCompleteListener, q5.b, ILocat
     public void onComplete(Task task) {
         String str = (String) this.f14265c;
         ScheduledFuture scheduledFuture = (ScheduledFuture) this.d;
-        a0.l lVar = ((m6.c) this.f14264b).f19887a;
+        a0.l lVar = ((m6.c) this.f14264b).f19890a;
         synchronized (lVar) {
             lVar.remove(str);
         }
@@ -562,7 +562,7 @@ public final class m implements ib.b, c4.d, a0, OnCompleteListener, q5.b, ILocat
     public sa onCreateLocationRequest() {
         LocationRequest locationRequest = new LocationRequest(102, 3600000L, 600000L, 0L, Long.MAX_VALUE, Long.MAX_VALUE, Integer.MAX_VALUE, 0.0f, true, 3600000L, 0, 0, null, false, new WorkSource(), null);
         ?? obj = new Object();
-        obj.f21606a = locationRequest;
+        obj.f21633a = locationRequest;
         return obj;
     }
 
@@ -570,19 +570,19 @@ public final class m implements ib.b, c4.d, a0, OnCompleteListener, q5.b, ILocat
     public ta onCreateLocationServicesAPI(Context context, pa paVar, final qa qaVar) {
         List list;
         boolean z9;
-        Context context2 = t0.f25563b;
+        Context context2 = t0.f25566b;
         HashSet hashSet = new HashSet();
         HashSet hashSet2 = new HashSet();
         ?? lVar = new a0.l(0);
         ?? lVar2 = new a0.l(0);
         Object obj = n6.d.d;
-        a9.e eVar = q8.b.f53953a;
+        a9.e eVar = q8.b.f54046a;
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
         Looper mainLooper = context2.getMainLooper();
         String packageName = context2.getPackageName();
         String name = context2.getClass().getName();
-        com.google.android.gms.common.api.e eVar2 = j8.b.f16581a;
+        com.google.android.gms.common.api.e eVar2 = j8.b.f16584a;
         q6.m.h(eVar2, "Api must not be null");
         com.google.android.gms.common.api.e eVar3 = null;
         lVar2.put(eVar2, null);
@@ -614,13 +614,13 @@ public final class m implements ib.b, c4.d, a0, OnCompleteListener, q5.b, ILocat
         });
         boolean z10 = true;
         q6.m.a("must call addApi() to add at least one API", !lVar2.isEmpty());
-        q8.a aVar = q8.a.f53952a;
-        com.google.android.gms.common.api.e eVar5 = q8.b.f53954b;
+        q8.a aVar = q8.a.f54045a;
+        com.google.android.gms.common.api.e eVar5 = q8.b.f54047b;
         if (lVar2.containsKey(eVar5)) {
             aVar = (q8.a) lVar2.get(eVar5);
         }
         q3 q3Var = new q3(hashSet, lVar, packageName, name, aVar);
-        Map map = (Map) q3Var.f19227c;
+        Map map = (Map) q3Var.f19230c;
         a0.l lVar3 = new a0.l(0);
         a0.l lVar4 = new a0.l(0);
         ArrayList arrayList3 = new ArrayList();
@@ -713,7 +713,7 @@ public final class m implements ib.b, c4.d, a0, OnCompleteListener, q5.b, ILocat
             m.r a10 = m.r.a();
             Context context = (Context) this.f14264b;
             synchronized (a10) {
-                f10 = a10.f19233a.f(resourceId, context, true);
+                f10 = a10.f19236a.f(resourceId, context, true);
             }
             return f10;
         }
@@ -743,7 +743,7 @@ public final class m implements ib.b, c4.d, a0, OnCompleteListener, q5.b, ILocat
                         return null;
                     }
                     int i11 = typedValue.assetCookie;
-                    a0.j jVar = i0.e.f15124b;
+                    a0.j jVar = i0.e.f15127b;
                     Typeface typeface = (Typeface) jVar.a(i0.e.b(resources, resourceId, charSequence2, i11, i10));
                     if (typeface != null) {
                         new Handler(Looper.getMainLooper()).post(new f2.h(23, j0Var, typeface));
@@ -792,7 +792,7 @@ public final class m implements ib.b, c4.d, a0, OnCompleteListener, q5.b, ILocat
                         j0Var2 = j0Var;
                         try {
                             int i12 = typedValue.assetCookie;
-                            Typeface e14 = i0.e.f15123a.e(context, resources, resourceId, charSequence2, i10);
+                            Typeface e14 = i0.e.f15126a.e(context, resources, resourceId, charSequence2, i10);
                             if (e14 != null) {
                                 jVar.b(i0.e.b(resources, resourceId, charSequence2, i12, i10), e14);
                             }
@@ -838,7 +838,7 @@ public final class m implements ib.b, c4.d, a0, OnCompleteListener, q5.b, ILocat
             cVar.getClass();
             String simpleName = z9.class.getSimpleName();
             q6.m.f(simpleName, "Listener type must not be empty");
-            cVar.c(new com.google.android.gms.common.api.internal.m(z9Var, simpleName), 2418).continueWith(u7.b.f56271a, u7.a.f56269b);
+            cVar.c(new com.google.android.gms.common.api.internal.m(z9Var, simpleName), 2418).continueWith(u7.b.f56360a, u7.a.f56358b);
         }
     }
 
@@ -850,11 +850,11 @@ public final class m implements ib.b, c4.d, a0, OnCompleteListener, q5.b, ILocat
             cVar.getClass();
             String simpleName = z9.class.getSimpleName();
             q6.m.f(simpleName, "Listener type must not be empty");
-            cVar.c(new com.google.android.gms.common.api.internal.m(z9Var, simpleName), 2418).continueWith(u7.b.f56271a, u7.a.f56269b);
+            cVar.c(new com.google.android.gms.common.api.internal.m(z9Var, simpleName), 2418).continueWith(u7.b.f56360a, u7.a.f56358b);
         }
         z9 z9Var2 = new z9(raVar);
         ((HashMap) this.d).put(raVar, z9Var2);
-        ((u7.c) this.f14264b).f(((ba) saVar).f21606a, z9Var2, Looper.getMainLooper());
+        ((u7.c) this.f14264b).f(((ba) saVar).f21633a, z9Var2, Looper.getMainLooper());
     }
 
     @Override
@@ -867,7 +867,7 @@ public final class m implements ib.b, c4.d, a0, OnCompleteListener, q5.b, ILocat
             int i10 = i7 * 2;
             if (jArr[i10] <= j3 && j3 < jArr[i10 + 1]) {
                 l4.c cVar = (l4.c) list.get(i7);
-                g2.b bVar = cVar.f18143a;
+                g2.b bVar = cVar.f18146a;
                 if (bVar.f13439e == -3.4028235E38f) {
                     arrayList2.add(cVar);
                 } else {
@@ -877,7 +877,7 @@ public final class m implements ib.b, c4.d, a0, OnCompleteListener, q5.b, ILocat
         }
         Collections.sort(arrayList2, new jg.x(6));
         for (int i11 = 0; i11 < arrayList2.size(); i11++) {
-            g2.b bVar2 = ((l4.c) arrayList2.get(i11)).f18143a;
+            g2.b bVar2 = ((l4.c) arrayList2.get(i11)).f18146a;
             arrayList.add(new g2.b(bVar2.f13436a, bVar2.f13437b, bVar2.f13438c, bVar2.d, (-1) - i11, 1, bVar2.f13441g, bVar2.h, bVar2.f13442i, bVar2.f13447n, bVar2.f13448o, bVar2.f13443j, bVar2.f13444k, bVar2.f13445l, bVar2.f13446m, bVar2.f13449p, bVar2.f13450q, bVar2.f13451r));
         }
         return arrayList;
@@ -887,9 +887,9 @@ public final class m implements ib.b, c4.d, a0, OnCompleteListener, q5.b, ILocat
         try {
             l8.f fVar = (l8.f) this.f14265c;
             k8.c cVar = new k8.c(haVar);
-            Parcel P0 = fVar.P0();
-            v7.b.c(P0, cVar);
-            fVar.T0(P0, 9);
+            Parcel p12 = fVar.p1();
+            v7.b.c(p12, cVar);
+            fVar.t1(p12, 9);
         } catch (RemoteException e10) {
             throw new RuntimeException(e10);
         }
@@ -944,7 +944,7 @@ public final class m implements ib.b, c4.d, a0, OnCompleteListener, q5.b, ILocat
             vj vjVar = (vj) this.d;
             HashMap hashMap = (HashMap) this.f14264b;
             ArrayList arrayList = (ArrayList) this.f14265c;
-            di diVar = vjVar.f38969b;
+            di diVar = vjVar.f39004b;
             if (!hashMap.isEmpty() && vjVar.Q != null && !vjVar.K) {
                 vjVar.K = true;
                 ArrayList arrayList2 = new ArrayList();
@@ -956,24 +956,24 @@ public final class m implements ib.b, c4.d, a0, OnCompleteListener, q5.b, ILocat
                         gf gfVar = (gf) obj;
                         String str2 = gfVar.h;
                         if (str2 != null) {
-                            obj2.f22493c = str2;
+                            obj2.f22512c = str2;
                         } else {
-                            obj2.f22493c = gfVar.I;
+                            obj2.f22512c = gfVar.I;
                         }
-                        obj2.f22494e = gfVar.f26825c;
-                        obj2.f22495f = gfVar.f26828g;
-                        obj2.f22499k = gfVar.f26839s;
-                        obj2.f22503o = gfVar.f26824b;
-                        CharSequence charSequence = gfVar.f26823a;
+                        obj2.f22513e = gfVar.f26846c;
+                        obj2.f22514f = gfVar.f26849g;
+                        obj2.f22518k = gfVar.f26860s;
+                        obj2.f22522o = gfVar.f26845b;
+                        CharSequence charSequence = gfVar.f26844a;
                         if (charSequence != null) {
                             str = charSequence.toString();
                         } else {
                             str = null;
                         }
                         obj2.d = str;
-                        obj2.f22497i = gfVar.f26834n;
-                        obj2.f22498j = gfVar.f26838r;
-                        obj2.h = gfVar.f26843x;
+                        obj2.f22516i = gfVar.f26855n;
+                        obj2.f22517j = gfVar.f26859r;
+                        obj2.h = gfVar.f26864x;
                     }
                 }
                 v4.X(diVar.D3, diVar.X0() + arrayList2.size(), diVar.b1(), new r2(i7, 2, vjVar, arrayList2, z10));
@@ -991,7 +991,7 @@ public final class m implements ib.b, c4.d, a0, OnCompleteListener, q5.b, ILocat
             i10++;
             ic.e eVar2 = (ic.e) obj;
             int i11 = eVar2.d;
-            gc.d dVar = eVar2.f15445a;
+            gc.d dVar = eVar2.f15448a;
             int a10 = dVar.a(eVar);
             int i12 = a10 + 4;
             int ordinal = dVar.ordinal();
@@ -1063,7 +1063,7 @@ public final class m implements ib.b, c4.d, a0, OnCompleteListener, q5.b, ILocat
     public m(h hVar) {
         this.f14263a = 0;
         this.d = hVar;
-        this.f14265c = new AtomicLong((j6.a.f16504b.nextLong() & 65535) * 10000);
+        this.f14265c = new AtomicLong((j6.a.f16507b.nextLong() & 65535) * 10000);
     }
 
     public m(ih.b bVar) {
@@ -1098,8 +1098,8 @@ public final class m implements ib.b, c4.d, a0, OnCompleteListener, q5.b, ILocat
             l4.c cVar = (l4.c) arrayList.get(i7);
             int i10 = i7 * 2;
             long[] jArr = (long[]) this.f14265c;
-            jArr[i10] = cVar.f18144b;
-            jArr[i10 + 1] = cVar.f18145c;
+            jArr[i10] = cVar.f18147b;
+            jArr[i10 + 1] = cVar.f18148c;
         }
         long[] jArr2 = (long[]) this.f14265c;
         long[] copyOf = Arrays.copyOf(jArr2, jArr2.length);
@@ -1224,21 +1224,21 @@ public final class m implements ib.b, c4.d, a0, OnCompleteListener, q5.b, ILocat
             if (dVar3 == null) {
                 break;
             }
-            int i13 = dVar3.f15442c;
+            int i13 = dVar3.f15445c;
             int i14 = i11 + dVar3.d;
-            ic.d dVar4 = dVar3.f15443e;
+            ic.d dVar4 = dVar3.f15446e;
             int i15 = i12;
-            gc.d dVar5 = dVar3.f15440a;
-            boolean z9 = (dVar5 == gc.d.BYTE && dVar4 == null && i13 != 0) || !(dVar4 == null || i13 == dVar4.f15442c);
+            gc.d dVar5 = dVar3.f15443a;
+            boolean z9 = (dVar5 == gc.d.BYTE && dVar4 == null && i13 != 0) || !(dVar4 == null || i13 == dVar4.f15445c);
             i7 = z9 ? 1 : i15;
-            if (dVar4 == null || dVar4.f15440a != dVar5 || z9) {
-                ((ArrayList) this.f14264b).add(0, new ic.e(this, dVar5, dVar3.f15441b, i13, i14));
+            if (dVar4 == null || dVar4.f15443a != dVar5 || z9) {
+                ((ArrayList) this.f14264b).add(0, new ic.e(this, dVar5, dVar3.f15444b, i13, i14));
                 i10 = 0;
             } else {
                 i10 = i14;
             }
             if (z9) {
-                ((ArrayList) this.f14264b).add(0, new ic.e(this, dVar2, dVar3.f15441b, dVar3.f15442c, 0));
+                ((ArrayList) this.f14264b).add(0, new ic.e(this, dVar2, dVar3.f15444b, dVar3.f15445c, 0));
             }
             i12 = i7;
             dVar3 = dVar4;
@@ -1249,10 +1249,10 @@ public final class m implements ib.b, c4.d, a0, OnCompleteListener, q5.b, ILocat
         gc.b bVar = (gc.b) qVar.d;
         if (z10) {
             ic.e eVar2 = (ic.e) ((ArrayList) this.f14264b).get(0);
-            if (eVar2 != null && eVar2.f15445a != dVar2 && i16 != 0) {
+            if (eVar2 != null && eVar2.f15448a != dVar2 && i16 != 0) {
                 ((ArrayList) this.f14264b).add(0, new ic.e(this, dVar2, 0, 0, 0));
             }
-            ((ArrayList) this.f14264b).add(((ic.e) ((ArrayList) this.f14264b).get(0)).f15445a == dVar2 ? 1 : 0, new ic.e(this, gc.d.FNC1_FIRST_POSITION, 0, 0, 0));
+            ((ArrayList) this.f14264b).add(((ic.e) ((ArrayList) this.f14264b).get(0)).f15448a == dVar2 ? 1 : 0, new ic.e(this, gc.d.FNC1_FIRST_POSITION, 0, 0, 0));
         }
         int i17 = eVar.f13812a;
         int i18 = 26;

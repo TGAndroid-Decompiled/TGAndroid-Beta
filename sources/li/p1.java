@@ -8,24 +8,24 @@ import org.telegram.ui.Components.di;
 import org.telegram.ui.Components.ki;
 import org.telegram.ui.Components.vk;
 public final class p1 implements vk, ki {
-    public final b2 f18765a;
-    public final di f18766b;
+    public final b2 f18768a;
+    public final di f18769b;
 
     public p1(b2 b2Var, di diVar) {
-        this.f18765a = b2Var;
-        this.f18766b = diVar;
+        this.f18768a = b2Var;
+        this.f18769b = diVar;
     }
 
     @Override
     public void d(TLRPC.MessageMedia messageMedia, int i7, boolean z9, int i10, long j3) {
-        b2 b2Var = this.f18765a;
+        b2 b2Var = this.f18768a;
         b2Var.getClass();
-        di diVar = this.f18766b;
+        di diVar = this.f18769b;
         if (messageMedia != null && messageMedia.geo != null) {
             TL_iv.pageBlockMap pageblockmap = new TL_iv.pageBlockMap();
             pageblockmap.geo = messageMedia.geo;
             pageblockmap.zoom = 15;
-            pageblockmap.f27178w = 600;
+            pageblockmap.f27181w = 600;
             pageblockmap.h = 400;
             b2Var.P.V1(pageblockmap);
             diVar.a(true);
@@ -37,8 +37,8 @@ public final class p1 implements vk, ki {
     @Override
     public void e(ArrayList arrayList, CharSequence charSequence, boolean z9, int i7, int i10, long j3, boolean z10, long j10) {
         if (!arrayList.isEmpty()) {
-            this.f18765a.P.e2((ij) arrayList.get(0));
+            this.f18768a.P.e2((ij) arrayList.get(0));
         }
-        this.f18766b.a(true);
+        this.f18769b.a(true);
     }
 }

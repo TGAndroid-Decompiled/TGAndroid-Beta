@@ -32,7 +32,7 @@ public final class b extends aa {
     public final void b(Canvas canvas, ri.a aVar) {
         ri.b bVar = (ri.b) g.v(aVar);
         g gVar = this.f11486f;
-        int i7 = gVar.f21073c;
+        int i7 = gVar.f21076c;
         Bitmap bitmap = bVar.d;
         Object obj = this.d.get();
         Paint paint = this.f11482a;
@@ -52,10 +52,10 @@ public final class b extends aa {
             gVar.f11531c0.c(canvas, 0);
         }
         if (this.f11485e != null && bitmap != null && !bitmap.isRecycled() && i7 > 0) {
-            Matrix matrix = bVar.f54465b;
+            Matrix matrix = bVar.f54557b;
             Matrix matrix2 = this.f11484c;
             matrix2.set(matrix);
-            matrix2.postTranslate(-gVar.d, -gVar.f21074e);
+            matrix2.postTranslate(-gVar.d, -gVar.f21077e);
             this.f11485e.setLocalMatrix(matrix2);
             paint.setAlpha(i7);
             gVar.Q.c(canvas, paint);

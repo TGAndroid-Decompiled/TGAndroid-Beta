@@ -8,19 +8,19 @@ import java.util.ArrayList;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.ej;
 import org.telegram.messenger.f6;
-import org.telegram.messenger.hd;
 import org.telegram.messenger.i6;
+import org.telegram.messenger.id;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.m3;
-import org.telegram.ui.Components.hx;
+import org.telegram.ui.Components.ix;
 import org.telegram.ui.Components.r5;
 import org.telegram.ui.Components.t31;
-public final class a0 implements hx {
-    public final g0 f55462a;
+public final class a0 implements ix {
+    public final g0 f55554a;
 
     public a0(g0 g0Var) {
-        this.f55462a = g0Var;
+        this.f55554a = g0Var;
     }
 
     @Override
@@ -60,7 +60,7 @@ public final class a0 implements hx {
 
     @Override
     public final boolean k() {
-        b editText = ((k2) this.f55462a.B0).getEditText();
+        b editText = ((k2) this.f55554a.B0).getEditText();
         if (editText == null || editText.length() == 0) {
             return false;
         }
@@ -73,7 +73,7 @@ public final class a0 implements hx {
         k2 k2Var;
         b editText;
         f6[] f6VarArr;
-        j jVar = this.f55462a.B0;
+        j jVar = this.f55554a.B0;
         if (!(jVar instanceof k2) || (editText = (k2Var = (k2) jVar).getEditText()) == null) {
             return;
         }
@@ -85,7 +85,7 @@ public final class a0 implements hx {
             CharSequence m10 = i6.m(str, k2Var.getFontMetricsInt(), false, null, 0);
             if ((m10 instanceof Spanned) && (f6VarArr = (f6[]) ((Spanned) m10).getSpans(0, m10.length(), f6.class)) != null) {
                 for (f6 f6Var : f6VarArr) {
-                    f6Var.f22351b = 0.85f;
+                    f6Var.f22370b = 0.85f;
                 }
             }
             editText.setText(editText.getText().insert(selectionEnd, m10));
@@ -100,14 +100,14 @@ public final class a0 implements hx {
 
     @Override
     public final void n() {
-        g0 g0Var = this.f55462a;
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, g0Var.getContext(), g0Var.f55612z1);
-        String M0 = hd.M0(2131752068, null);
-        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
+        g0 g0Var = this.f55554a;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, g0Var.getContext(), g0Var.f55704z1);
+        String M0 = id.M0(2131752068, null);
+        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
         u1Var.R = M0;
-        u1Var.T = hd.M0(2131752069, null);
-        alertDialog$Builder.k(hd.M0(2131752099, null), new m3(this, 22));
-        alertDialog$Builder.h(hd.M0(2131752589, null), null);
+        u1Var.T = id.M0(2131752069, null);
+        alertDialog$Builder.k(id.M0(2131752099, null), new m3(this, 22));
+        alertDialog$Builder.h(id.M0(2131752589, null), null);
         alertDialog$Builder.p();
     }
 
@@ -119,7 +119,7 @@ public final class a0 implements hx {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z9) {
         r5 r5Var;
-        b editText = ((k2) this.f55462a.B0).getEditText();
+        b editText = ((k2) this.f55554a.B0).getEditText();
         if (editText == null) {
             return;
         }

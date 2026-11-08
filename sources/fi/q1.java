@@ -7,10 +7,10 @@ import org.telegram.messenger.camera.CameraController;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.ox;
-import org.telegram.ui.Components.ys;
+import org.telegram.ui.Components.px;
+import org.telegram.ui.Components.zs;
 import org.telegram.ui.hl0;
-import org.telegram.ui.ya1;
+import org.telegram.ui.za1;
 public final class q1 implements Runnable {
     public final int f12642a;
     public final boolean f12643b;
@@ -78,18 +78,18 @@ public final class q1 implements Runnable {
         this.f12645e = f2Var;
     }
 
-    public q1(ys ysVar, boolean z9, bi.v vVar, String str, TextView textView) {
+    public q1(zs zsVar, boolean z9, bi.v vVar, String str, TextView textView) {
         this.f12642a = 8;
-        this.f12644c = ysVar;
+        this.f12644c = zsVar;
         this.f12643b = z9;
         this.d = vVar;
         this.f12646f = str;
         this.f12645e = textView;
     }
 
-    public q1(ox oxVar, String str, boolean z9, String str2, TLObject tLObject) {
+    public q1(px pxVar, String str, boolean z9, String str2, TLObject tLObject) {
         this.f12642a = 9;
-        this.f12644c = oxVar;
+        this.f12644c = pxVar;
         this.f12646f = str;
         this.f12643b = z9;
         this.f12645e = str2;
@@ -114,21 +114,21 @@ public final class q1 implements Runnable {
         this.f12645e = updatepasswordsettings;
     }
 
-    public q1(ya1 ya1Var, TLObject tLObject, boolean z9, String str, TL_account.passwordInputSettings passwordinputsettings) {
+    public q1(za1 za1Var, TLObject tLObject, boolean z9, String str, TL_account.passwordInputSettings passwordinputsettings) {
         this.f12642a = 14;
-        this.f12644c = ya1Var;
+        this.f12644c = za1Var;
         this.d = tLObject;
         this.f12643b = z9;
         this.f12646f = str;
         this.f12645e = passwordinputsettings;
     }
 
-    public q1(wi.u0 u0Var, boolean z9, wi.y yVar, wi.q0 q0Var, File file) {
+    public q1(wi.t0 t0Var, boolean z9, wi.x xVar, wi.p0 p0Var, File file) {
         this.f12642a = 16;
-        this.f12644c = u0Var;
+        this.f12644c = t0Var;
         this.f12643b = z9;
-        this.d = yVar;
-        this.f12645e = q0Var;
+        this.d = xVar;
+        this.f12645e = p0Var;
         this.f12646f = file;
     }
 }

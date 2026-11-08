@@ -160,16 +160,16 @@ public final class i implements lf.a {
                     s sVar2 = eVar4.f13880a;
                     eVar4.f13885g -= i7;
                     eVar2.f13885g -= i7;
-                    sVar2.f17283g = com.google.android.recaptcha.internal.a.k(sVar2.f17283g, i7, 0);
-                    sVar.f17283g = com.google.android.recaptcha.internal.a.k(sVar.f17283g, i7, 0);
+                    sVar2.f17286g = com.google.android.recaptcha.internal.a.k(sVar2.f17286g, i7, 0);
+                    sVar.f17286g = com.google.android.recaptcha.internal.a.k(sVar.f17286g, i7, 0);
                     gf.e eVar5 = eVar2.f13883e;
                     while (eVar5 != null && eVar5 != eVar4) {
                         gf.e eVar6 = eVar5.f13883e;
                         f(eVar5);
                         eVar5 = eVar6;
                     }
-                    if (sVar2 != sVar && (pVar = (p) sVar2.f17281f) != sVar) {
-                        x9.b(pVar, (p) sVar.f17280e);
+                    if (sVar2 != sVar && (pVar = (p) sVar2.f17284f) != sVar) {
+                        x9.b(pVar, (p) sVar.f17283e);
                     }
                     aVar.a(sVar2, sVar, i7);
                     if (eVar4.f13885g == 0) {

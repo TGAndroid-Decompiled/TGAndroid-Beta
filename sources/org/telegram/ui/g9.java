@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class g9 extends org.telegram.ui.Components.w31 {
-    public static final int f45923b = 0;
+    public static final int f45916b = 0;
 
     static {
         org.telegram.ui.Components.w31.h(new org.telegram.ui.Components.w31());
@@ -16,23 +16,23 @@ public final class g9 extends org.telegram.ui.Components.w31 {
         h9 h9Var = (h9) view;
         TLRPC.Chat chat = (TLRPC.Chat) x31Var.G;
         View.OnClickListener onClickListener = x31Var.D;
-        h9Var.f46294c = chat;
-        org.telegram.ui.Components.ag0 ag0Var = h9Var.f46293b;
-        ag0Var.setTag(Long.valueOf(chat.f26953id));
+        h9Var.f46296c = chat;
+        org.telegram.ui.Components.ag0 ag0Var = h9Var.f46295b;
+        ag0Var.setTag(Long.valueOf(chat.f26956id));
         if (org.telegram.messenger.t3.T(chat) && !chat.megagroup) {
             if (!org.telegram.messenger.t3.t0(chat)) {
-                lowerCase = org.telegram.messenger.hd.M0(2131752329, null).toLowerCase();
+                lowerCase = org.telegram.messenger.id.M0(2131752329, null).toLowerCase();
             } else {
-                lowerCase = org.telegram.messenger.hd.M0(2131752318, null).toLowerCase();
+                lowerCase = org.telegram.messenger.id.M0(2131752318, null).toLowerCase();
             }
         } else if (chat.has_geo) {
-            lowerCase = org.telegram.messenger.hd.M0(2131748641, null);
+            lowerCase = org.telegram.messenger.id.M0(2131748643, null);
         } else if (!org.telegram.messenger.t3.t0(chat)) {
-            lowerCase = org.telegram.messenger.hd.M0(2131748640, null).toLowerCase();
+            lowerCase = org.telegram.messenger.id.M0(2131748642, null).toLowerCase();
         } else {
-            lowerCase = org.telegram.messenger.hd.M0(2131748637, null).toLowerCase();
+            lowerCase = org.telegram.messenger.id.M0(2131748639, null).toLowerCase();
         }
-        h9Var.f46292a.x(chat, null, null, lowerCase, false, false);
+        h9Var.f46294a.x(chat, null, null, lowerCase, false, false);
         ag0Var.setOnClickListener(onClickListener);
     }
 

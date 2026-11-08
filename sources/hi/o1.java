@@ -3,24 +3,24 @@ package hi;
 import android.text.SpannableStringBuilder;
 import java.util.Arrays;
 import org.telegram.messenger.c20;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.qp;
 import org.telegram.messenger.t10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.hc;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.v91;
+import org.telegram.ui.w91;
 import org.telegram.ui.ww;
 public final class o1 implements c20 {
-    public final v91 f14836a;
-    public final ww f14837b;
-    public final long f14838c;
+    public final w91 f14839a;
+    public final ww f14840b;
+    public final long f14841c;
     public final int d;
 
-    public o1(v91 v91Var, ww wwVar, long j3, int i7) {
-        this.f14836a = v91Var;
-        this.f14837b = wwVar;
-        this.f14838c = j3;
+    public o1(w91 w91Var, ww wwVar, long j3, int i7) {
+        this.f14839a = w91Var;
+        this.f14840b = wwVar;
+        this.f14841c = j3;
         this.d = i7;
     }
 
@@ -30,10 +30,10 @@ public final class o1 implements c20 {
         TLRPC.User user;
         int i7;
         Boolean bool = (Boolean) obj;
-        v91 v91Var = this.f14836a;
-        ww wwVar = this.f14837b;
-        if (v91Var != null) {
-            v91Var.finishFragment();
+        w91 w91Var = this.f14839a;
+        ww wwVar = this.f14840b;
+        if (w91Var != null) {
+            w91Var.finishFragment();
             wwVar.removeSelfFromStack();
         } else {
             wwVar.finishFragment();
@@ -42,7 +42,7 @@ public final class o1 implements c20 {
         if (T == null) {
             return;
         }
-        long j3 = this.f14838c;
+        long j3 = this.f14841c;
         int i10 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
         int i11 = this.d;
         if (i10 >= 0) {
@@ -65,7 +65,7 @@ public final class o1 implements c20 {
         } else {
             i7 = 2131752987;
         }
-        SpannableStringBuilder X2 = org.telegram.messenger.g0.X2(hd.a0(null, null, i7, str));
+        SpannableStringBuilder X2 = org.telegram.messenger.g0.X2(id.a0(null, null, i7, str));
         a02.getClass();
         a02.V(Arrays.asList(user), X2, null, null).k(false);
     }

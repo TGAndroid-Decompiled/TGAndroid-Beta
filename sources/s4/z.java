@@ -2,24 +2,24 @@ package s4;
 
 import android.os.Bundle;
 public final class z {
-    public final int f54835a;
-    public final boolean f54836b;
-    public final boolean f54837c;
+    public final int f54927a;
+    public final boolean f54928b;
+    public final boolean f54929c;
     public final boolean d;
-    public final Bundle f54838e;
+    public final Bundle f54930e;
 
     public z(y yVar) {
         Bundle bundle;
-        this.f54835a = yVar.f54831a;
-        this.f54836b = yVar.f54832b;
-        this.f54837c = yVar.f54833c;
+        this.f54927a = yVar.f54923a;
+        this.f54928b = yVar.f54924b;
+        this.f54929c = yVar.f54925c;
         this.d = yVar.d;
-        Bundle bundle2 = yVar.f54834e;
+        Bundle bundle2 = yVar.f54926e;
         if (bundle2 == null) {
             bundle = Bundle.EMPTY;
         } else {
             bundle = new Bundle(bundle2);
         }
-        this.f54838e = bundle;
+        this.f54930e = bundle;
     }
 }

@@ -60,12 +60,12 @@ public final class r7 implements Runnable {
         this.f4628n = obj7;
     }
 
-    public r7(JSONObject jSONObject, String str, org.telegram.ui.Wallet.u2 u2Var, org.telegram.ui.Wallet.n0 n0Var, String str2, byte[] bArr, byte[] bArr2) {
+    public r7(JSONObject jSONObject, String str, org.telegram.ui.Wallet.t2 t2Var, org.telegram.ui.Wallet.m0 m0Var, String str2, byte[] bArr, byte[] bArr2) {
         this.f4623a = 14;
         this.f4624b = jSONObject;
         this.f4626e = str;
-        this.f4625c = u2Var;
-        this.d = n0Var;
+        this.f4625c = t2Var;
+        this.d = m0Var;
         this.f4627f = str2;
         this.h = bArr;
         this.f4628n = bArr2;

@@ -15,13 +15,13 @@ public final class rp0 extends us0 {
         super.f();
         xs0 xs0Var = this.G;
         sr0 g02 = xs0Var.g0(9);
-        if (g02 != null && g02.f38110n.getVisibility() == 0) {
-            xs0Var.f40394h0.f();
+        if (g02 != null && g02.f38126n.getVisibility() == 0) {
+            xs0Var.f40415h0.f();
         }
         if (g02 != null) {
-            nq0 nq0Var = g02.f38113w;
-            di.q6 q6Var = this.f38717s;
-            if (q6Var != null && (q6Var.k() || (xs0Var.t0() && this.f38717s.g() > 0))) {
+            nq0 nq0Var = g02.f38129w;
+            di.q6 q6Var = this.f38732s;
+            if (q6Var != null && (q6Var.k() || (xs0Var.t0() && this.f38732s.g() > 0))) {
                 z9 = true;
             } else {
                 z9 = false;

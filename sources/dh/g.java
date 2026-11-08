@@ -7,7 +7,7 @@ import android.graphics.RectF;
 import android.graphics.RenderNode;
 import android.support.v4.media.session.w;
 import java.util.ArrayList;
-import org.telegram.messenger.rc;
+import org.telegram.messenger.sc;
 import org.telegram.messenger.ui;
 public final class g {
     public final boolean f8734a;
@@ -26,7 +26,7 @@ public final class g {
 
     public g(boolean z9) {
         int i7;
-        boolean e10 = rc.e(262144);
+        boolean e10 = sc.e(262144);
         this.f8734a = e10;
         this.f8736c = true;
         if (!e10 && !z9) {
@@ -277,7 +277,7 @@ public final class g {
 
     public final void h(qi.a aVar) {
         ArrayList arrayList;
-        this.f8742k = aVar.f54060b;
+        this.f8742k = aVar.f54153b;
         while (true) {
             int i7 = this.f8742k;
             arrayList = this.f8741j;

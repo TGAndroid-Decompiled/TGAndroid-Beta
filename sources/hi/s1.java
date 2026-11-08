@@ -6,7 +6,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.ShapeDrawable;
 import android.widget.FrameLayout;
 import c8.ha;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.qp;
 import org.telegram.messenger.t10;
 import org.telegram.tgnet.ConnectionsManager;
@@ -61,7 +61,7 @@ public abstract class s1 {
         l9Var2.setAnimatedEmojiDrawable(i5.m(i7, botVerifierSettings.icon, null, 3));
         frameLayout2.addView(l9Var2, ha.d(20, 20.0f, 19, 34.0f, 0.0f, 0.0f, 0.0f));
         k5 k5Var = new k5(activity);
-        r6.Y(k5Var, k6.f27957j5, null);
+        r6.Y(k5Var, k6.f27960j5, null);
         k5Var.setTextSize(13);
         k5Var.setEllipsizeByGradient(true);
         k5Var.l(str, false);
@@ -70,18 +70,18 @@ public abstract class s1 {
         frameLayout.addView(frameLayout2, ha.d(-2, -2.0f, 17, 16.0f, 0.0f, 16.0f, 0.0f));
         final boolean[] zArr = new boolean[1];
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity);
-        String M02 = hd.M0(2131752997, null);
-        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
+        String M02 = id.M0(2131752997, null);
+        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
         u1Var.R = M02;
         if (i11 >= 0) {
             i10 = 2131752998;
         } else {
             i10 = 2131752999;
         }
-        u1Var.T = hd.M0(i10, null);
+        u1Var.T = id.M0(i10, null);
         alertDialog$Builder.o(frameLayout);
-        alertDialog$Builder.h(hd.M0(2131752589, null), null);
-        alertDialog$Builder.k(hd.M0(2131746320, null), new org.telegram.ui.ActionBar.r1() {
+        alertDialog$Builder.h(id.M0(2131752589, null), null);
+        alertDialog$Builder.k(id.M0(2131746322, null), new org.telegram.ui.ActionBar.r1() {
             @Override
             public final void g(org.telegram.ui.ActionBar.u1 u1Var2, int i13) {
                 boolean[] zArr2 = zArr;

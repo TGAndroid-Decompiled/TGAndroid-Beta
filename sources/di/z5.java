@@ -116,7 +116,7 @@ public final class z5 implements Runnable {
                 ai.m0 m0Var = (ai.m0) obj;
                 int i12 = l7Var.f9337a;
                 yr yrVar = l7Var.f9338b;
-                SQLiteDatabase sQLiteDatabase = yrVar.f26698b;
+                SQLiteDatabase sQLiteDatabase = yrVar.f26721b;
                 int i13 = 0;
                 while (i13 < arrayList.size()) {
                     TL_stories.PeerStories peerStories = (TL_stories.PeerStories) arrayList.get(i13);
@@ -125,7 +125,7 @@ public final class z5 implements Runnable {
                         ArrayList<TL_stories.StoryItem> arrayList2 = peerStories.stories;
                         for (int i14 = i10; i14 < arrayList2.size(); i14++) {
                             if (arrayList2.get(i14) instanceof TL_stories.TL_storyItemSkipped) {
-                                TL_stories.StoryItem f10 = l7Var.f(arrayList2.get(i14).f27192id, o4);
+                                TL_stories.StoryItem f10 = l7Var.f(arrayList2.get(i14).f27195id, o4);
                                 if (f10 instanceof TL_stories.TL_storyItem) {
                                     arrayList2.set(i14, f10);
                                 }
@@ -162,7 +162,7 @@ public final class z5 implements Runnable {
                                 }
                             }
                         }
-                        if (org.telegram.messenger.r2.f25199a) {
+                        if (org.telegram.messenger.r2.f25212a) {
                             org.telegram.messenger.a8.b("StoriesStorage delete dialogs " + TextUtils.join(",", arrayList3));
                         }
                         Locale locale = Locale.US;
@@ -186,7 +186,7 @@ public final class z5 implements Runnable {
                 String[] strArr = (String[]) obj;
                 final LinkedHashSet linkedHashSet = new LinkedHashSet();
                 final LinkedHashSet linkedHashSet2 = new LinkedHashSet();
-                final HashMap hashMap = ui.b0(q11Var.V).f25833r;
+                final HashMap hashMap = ui.b0(q11Var.V).f25836r;
                 final ArrayList arrayList4 = new ArrayList();
                 final ArrayList arrayList5 = new ArrayList();
                 boolean d = org.telegram.messenger.i6.d(str);
@@ -224,9 +224,9 @@ public final class z5 implements Runnable {
                                 if (str4 != str3) {
                                     return;
                                 }
-                                q11Var3.f49074z1 = true;
+                                q11Var3.f49077z1 = true;
                                 q11Var3.z(true, z14);
-                                i01 i01Var = q11Var3.f49030f0;
+                                i01 i01Var = q11Var3.f49033f0;
                                 if (i01Var != null) {
                                     i01Var.d(true);
                                 }
@@ -255,7 +255,7 @@ public final class z5 implements Runnable {
                                     arrayList15.clear();
                                 }
                                 int i16 = 0;
-                                q11Var3.f49036i0.v0(0);
+                                q11Var3.f49039i0.v0(0);
                                 int i17 = q11Var3.W;
                                 if (i17 == 1 || i17 == 14 || i17 == 11 || i17 == 2) {
                                     ArrayList arrayList16 = arrayList8;
@@ -295,7 +295,7 @@ public final class z5 implements Runnable {
                                     i16++;
                                     q11Var3.D1.addAll((ArrayList) obj6);
                                 }
-                                q11Var3.f49050q0.E(true ^ z15);
+                                q11Var3.f49053q0.E(true ^ z15);
                             }
                         });
                     }
@@ -308,7 +308,7 @@ public final class z5 implements Runnable {
                             switch (r4) {
                                 case 0:
                                     q11 q11Var2 = q11Var;
-                                    org.telegram.messenger.ui.b0(q11Var2.V).V(q11.f49013b2, str, false, new lk0(12, linkedHashSet2, (Runnable) obj4), false, false, false, false, 0);
+                                    org.telegram.messenger.ui.b0(q11Var2.V).V(q11.f49016b2, str, false, new lk0(12, linkedHashSet2, (Runnable) obj4), false, false, false, false, 0);
                                     return;
                                 default:
                                     q11 q11Var3 = q11Var;
@@ -319,7 +319,7 @@ public final class z5 implements Runnable {
                                         a01Var.a(new ArrayList());
                                         return;
                                     }
-                                    Utilities.f21335g.c(new org.telegram.messenger.em(str2, b02.s0(5), b02.f25837s0[1], a01Var, 16));
+                                    Utilities.f21338g.c(new org.telegram.messenger.em(str2, b02.s0(5), b02.f25840s0[1], a01Var, 16));
                                     return;
                             }
                         }
@@ -356,7 +356,7 @@ public final class z5 implements Runnable {
                                         return;
                                     default:
                                         q11 q11Var2 = q11Var;
-                                        org.telegram.messenger.ui.b0(q11Var2.V).V(q11.f49013b2, str, false, new a1.d(q11Var2, arrayList5, arrayList4, (Runnable) obj4, 18), false, false, false, false, 0);
+                                        org.telegram.messenger.ui.b0(q11Var2.V).V(q11.f49016b2, str, false, new a1.d(q11Var2, arrayList5, arrayList4, (Runnable) obj4, 18), false, false, false, false, 0);
                                         return;
                                 }
                             }
@@ -391,7 +391,7 @@ public final class z5 implements Runnable {
                                         return;
                                     default:
                                         q11 q11Var2 = q11Var;
-                                        org.telegram.messenger.ui.b0(q11Var2.V).V(q11.f49013b2, str, false, new a1.d(q11Var2, arrayList5, arrayList4, (Runnable) obj4, 18), false, false, false, false, 0);
+                                        org.telegram.messenger.ui.b0(q11Var2.V).V(q11.f49016b2, str, false, new a1.d(q11Var2, arrayList5, arrayList4, (Runnable) obj4, 18), false, false, false, false, 0);
                                         return;
                                 }
                             }
@@ -406,7 +406,7 @@ public final class z5 implements Runnable {
                             switch (r4) {
                                 case 0:
                                     q11 q11Var2 = q11Var;
-                                    org.telegram.messenger.ui.b0(q11Var2.V).V(q11.f49013b2, str, false, new lk0(12, linkedHashSet, (Runnable) obj4), false, false, false, false, 0);
+                                    org.telegram.messenger.ui.b0(q11Var2.V).V(q11.f49016b2, str, false, new lk0(12, linkedHashSet, (Runnable) obj4), false, false, false, false, 0);
                                     return;
                                 default:
                                     q11 q11Var3 = q11Var;
@@ -417,7 +417,7 @@ public final class z5 implements Runnable {
                                         a01Var.a(new ArrayList());
                                         return;
                                     }
-                                    Utilities.f21335g.c(new org.telegram.messenger.em(str2, b02.s0(5), b02.f25837s0[1], a01Var, 16));
+                                    Utilities.f21338g.c(new org.telegram.messenger.em(str2, b02.s0(5), b02.f25840s0[1], a01Var, 16));
                                     return;
                             }
                         }
@@ -427,7 +427,7 @@ public final class z5 implements Runnable {
             case 4:
                 p4.v vVar = (p4.v) obj;
                 p4.d0 d0Var = ((p4.m0) ((m.c3) obj3).d).h;
-                p4.g1 g1Var = d0Var.f53124t;
+                p4.g1 g1Var = d0Var.f53217t;
                 ab.b(g1Var, (p4.w) obj2);
                 int i17 = g1Var.i();
                 if (z11) {
@@ -465,11 +465,11 @@ public final class z5 implements Runnable {
             default:
                 Bitmap[] bitmapArr = (Bitmap[]) obj2;
                 CountDownLatch countDownLatch = (CountDownLatch) obj;
-                sg.j0 j0Var = ((sg.u0) obj3).D.f55158c;
-                mt0 mt0Var = j0Var.f54998g;
-                sg.i0 h = j0Var.h(new RectF(0.0f, 0.0f, mt0Var.f36086a, mt0Var.f36087b), false, z11, z10);
+                sg.j0 j0Var = ((sg.u0) obj3).D.f55250c;
+                mt0 mt0Var = j0Var.f55090g;
+                sg.i0 h = j0Var.h(new RectF(0.0f, 0.0f, mt0Var.f36114a, mt0Var.f36115b), false, z11, z10);
                 if (h != null) {
-                    bitmapArr[0] = (Bitmap) h.f54975b;
+                    bitmapArr[0] = (Bitmap) h.f55067b;
                 }
                 countDownLatch.countDown();
                 return;

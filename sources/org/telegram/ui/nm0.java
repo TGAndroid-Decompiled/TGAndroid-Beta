@@ -59,13 +59,13 @@ public final class nm0 extends FrameLayout {
         int i7;
         int i10;
         pm0 pm0Var = this.H;
-        BitmapDrawable bitmapDrawable = pm0Var.f48852b;
+        BitmapDrawable bitmapDrawable = pm0Var.f48855b;
         if (bitmapDrawable != null) {
             try {
                 int i11 = this.f48090y;
                 int i12 = this.D;
                 bitmapDrawable.setBounds(i11, i12, this.f48088w + i11, this.f48089x + i12);
-                pm0Var.f48852b.draw(canvas);
+                pm0Var.f48855b.draw(canvas);
             } catch (Throwable th2) {
                 org.telegram.messenger.a8.g(th2, true);
             }
@@ -123,7 +123,7 @@ public final class nm0 extends FrameLayout {
         this.E = (i11 - i7) - org.telegram.messenger.g0.L(28.0f);
         int L = (i12 - i10) - org.telegram.messenger.g0.L(28.0f);
         this.F = L;
-        if (this.E != 0 && L != 0 && (bitmap = (pm0Var = this.H).f48851a) != null) {
+        if (this.E != 0 && L != 0 && (bitmap = (pm0Var = this.H).f48854a) != null) {
             float f11 = this.f48084f - this.f48090y;
             float f12 = this.f48088w;
             float f13 = f11 / f12;
@@ -133,7 +133,7 @@ public final class nm0 extends FrameLayout {
             float f17 = this.d / f12;
             float f18 = this.f48083e / f15;
             float width = bitmap.getWidth();
-            float height = pm0Var.f48851a.getHeight();
+            float height = pm0Var.f48854a.getHeight();
             int i15 = this.E;
             float f19 = i15 / width;
             int i16 = this.F;

@@ -4,21 +4,21 @@ import android.view.MotionEvent;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 public final class tj0 implements v4.r0 {
-    public RecyclerView f38338a;
-    public boolean f38340c;
+    public RecyclerView f38366a;
+    public boolean f38368c;
     public int d;
-    public int f38341e;
-    public int f38342f;
-    public boolean f38343g;
+    public int f38369e;
+    public int f38370f;
+    public boolean f38371g;
     public boolean h;
-    public int f38344i;
-    public final sj0 f38346k;
-    public int f38339b = -1;
-    public final int f38345j = org.telegram.messenger.g0.L(80.0f);
-    public final dt f38347l = new dt(this, 12);
+    public int f38372i;
+    public final sj0 f38374k;
+    public int f38367b = -1;
+    public final int f38373j = org.telegram.messenger.g0.L(80.0f);
+    public final et f38375l = new et(this, 12);
 
     public tj0(sj0 sj0Var) {
-        this.f38346k = sj0Var;
+        this.f38374k = sj0Var;
     }
 
     @Override
@@ -33,36 +33,36 @@ public final class tj0 implements v4.r0 {
         }
         float y10 = motionEvent.getY();
         int action = motionEvent.getAction();
-        sj0 sj0Var = this.f38346k;
-        dt dtVar = this.f38347l;
+        sj0 sj0Var = this.f38374k;
+        et etVar = this.f38375l;
         if (action != 1) {
             if (action == 2) {
-                if (this.f38345j > -1) {
+                if (this.f38373j > -1) {
                     float f10 = 0;
                     if (y10 >= f10 && y10 <= this.d) {
                         this.h = false;
-                        if (!this.f38343g) {
-                            this.f38343g = true;
-                            org.telegram.messenger.g0.r(dtVar);
-                            org.telegram.messenger.g0.h3(dtVar);
+                        if (!this.f38371g) {
+                            this.f38371g = true;
+                            org.telegram.messenger.g0.r(etVar);
+                            org.telegram.messenger.g0.h3(etVar);
                         }
-                        this.f38344i = ((int) (this.d - (y10 - f10))) / 2;
-                    } else if (y10 >= this.f38341e && y10 <= this.f38342f) {
-                        this.f38343g = false;
+                        this.f38372i = ((int) (this.d - (y10 - f10))) / 2;
+                    } else if (y10 >= this.f38369e && y10 <= this.f38370f) {
+                        this.f38371g = false;
                         if (!this.h) {
                             this.h = true;
-                            org.telegram.messenger.g0.r(dtVar);
-                            org.telegram.messenger.g0.h3(dtVar);
+                            org.telegram.messenger.g0.r(etVar);
+                            org.telegram.messenger.g0.h3(etVar);
                         }
-                        this.f38344i = ((int) ((y10 + this.f38342f) - (this.f38341e + i10))) / 2;
-                    } else if (this.f38343g || this.h) {
-                        org.telegram.messenger.g0.r(dtVar);
-                        this.f38343g = false;
+                        this.f38372i = ((int) ((y10 + this.f38370f) - (this.f38369e + i10))) / 2;
+                    } else if (this.f38371g || this.h) {
+                        org.telegram.messenger.g0.r(etVar);
+                        this.f38371g = false;
                         this.h = false;
                     }
                 }
-                if (i7 != -1 && this.f38339b != i7) {
-                    this.f38339b = i7;
+                if (i7 != -1 && this.f38367b != i7) {
+                    this.f38367b = i7;
                     sj0Var.j(E, !sj0Var.k(i7));
                     return;
                 }
@@ -70,10 +70,10 @@ public final class tj0 implements v4.r0 {
             }
             return;
         }
-        this.f38340c = false;
-        this.f38343g = false;
+        this.f38368c = false;
+        this.f38371g = false;
         this.h = false;
-        org.telegram.messenger.g0.r(dtVar);
+        org.telegram.messenger.g0.r(etVar);
         sj0Var.d(false);
     }
 
@@ -86,47 +86,47 @@ public final class tj0 implements v4.r0 {
         } else {
             z9 = true;
         }
-        if (this.f38340c && !z9) {
+        if (this.f38368c && !z9) {
             z10 = true;
         } else {
             z10 = false;
         }
         if (z10) {
-            this.f38338a = recyclerView;
-            int i7 = this.f38345j;
+            this.f38366a = recyclerView;
+            int i7 = this.f38373j;
             if (i7 > -1) {
                 this.d = i7;
-                this.f38341e = recyclerView.getMeasuredHeight() - i7;
-                this.f38342f = recyclerView.getMeasuredHeight();
+                this.f38369e = recyclerView.getMeasuredHeight() - i7;
+                this.f38370f = recyclerView.getMeasuredHeight();
             }
         }
         if (z10 && motionEvent.getAction() == 1) {
-            this.f38340c = false;
-            this.f38343g = false;
+            this.f38368c = false;
+            this.f38371g = false;
             this.h = false;
-            org.telegram.messenger.g0.r(this.f38347l);
-            this.f38346k.d(false);
+            org.telegram.messenger.g0.r(this.f38375l);
+            this.f38374k.d(false);
         }
         return z10;
     }
 
     public final void d(int i7, View view, boolean z9) {
-        if (this.f38340c) {
+        if (this.f38368c) {
             return;
         }
-        this.f38339b = -1;
-        org.telegram.messenger.g0.r(this.f38347l);
-        this.f38343g = false;
+        this.f38367b = -1;
+        org.telegram.messenger.g0.r(this.f38375l);
+        this.f38371g = false;
         this.h = false;
-        sj0 sj0Var = this.f38346k;
+        sj0 sj0Var = this.f38374k;
         if (!sj0Var.e(i7)) {
-            this.f38340c = false;
+            this.f38368c = false;
             return;
         }
         sj0Var.d(true);
         sj0Var.j(view, z9);
-        this.f38340c = true;
-        this.f38339b = i7;
+        this.f38368c = true;
+        this.f38367b = i7;
     }
 
     @Override

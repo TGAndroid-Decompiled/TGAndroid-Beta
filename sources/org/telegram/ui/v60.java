@@ -2,24 +2,24 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.tl.TL_stories;
 public final class v60 implements org.telegram.messenger.c20 {
-    public final int f50580a;
-    public final LaunchActivity f50581b;
-    public final q10 f50582c;
+    public final int f50503a;
+    public final LaunchActivity f50504b;
+    public final q10 f50505c;
     public final Long d;
 
     public v60(LaunchActivity launchActivity, q10 q10Var, Long l10, int i7) {
-        this.f50580a = i7;
-        this.f50581b = launchActivity;
-        this.f50582c = q10Var;
+        this.f50503a = i7;
+        this.f50504b = launchActivity;
+        this.f50505c = q10Var;
         this.d = l10;
     }
 
     @Override
     public final void a(Object obj) {
-        int i7 = this.f50580a;
+        int i7 = this.f50503a;
         Long l10 = this.d;
-        q10 q10Var = this.f50582c;
-        LaunchActivity launchActivity = this.f50581b;
+        q10 q10Var = this.f50505c;
+        LaunchActivity launchActivity = this.f50504b;
         TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj;
         switch (i7) {
             case 0:
@@ -33,14 +33,14 @@ public final class v60 implements org.telegram.messenger.c20 {
                 if (storyItem == null) {
                     org.telegram.ui.Components.hc X = org.telegram.ui.Components.hc.X();
                     if (X != null) {
-                        org.telegram.messenger.k5.o(null, 2131744607, X, 2131624236, 36);
+                        org.telegram.messenger.k5.o(null, 2131744609, X, 2131624236, 36);
                         return;
                     }
                     return;
                 } else if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
                     org.telegram.ui.Components.hc X2 = org.telegram.ui.Components.hc.X();
                     if (X2 != null) {
-                        org.telegram.messenger.k5.o(null, 2131744607, X2, 2131624235, 36);
+                        org.telegram.messenger.k5.o(null, 2131744609, X2, 2131624235, 36);
                         return;
                     }
                     return;
@@ -64,14 +64,14 @@ public final class v60 implements org.telegram.messenger.c20 {
                 if (storyItem == null) {
                     org.telegram.ui.Components.hc X3 = org.telegram.ui.Components.hc.X();
                     if (X3 != null) {
-                        org.telegram.messenger.k5.o(null, 2131744607, X3, 2131624236, 36);
+                        org.telegram.messenger.k5.o(null, 2131744609, X3, 2131624236, 36);
                         return;
                     }
                     return;
                 } else if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
                     org.telegram.ui.Components.hc X4 = org.telegram.ui.Components.hc.X();
                     if (X4 != null) {
-                        org.telegram.messenger.k5.o(null, 2131744607, X4, 2131624235, 36);
+                        org.telegram.messenger.k5.o(null, 2131744609, X4, 2131624235, 36);
                         return;
                     }
                     return;

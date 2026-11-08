@@ -3,19 +3,19 @@ package org.telegram.ui.ActionBar;
 import android.view.View;
 import android.widget.TextView;
 public final class v4 implements View.OnClickListener {
-    public final int f28662a;
-    public final y4 f28663b;
+    public final int f28665a;
+    public final y4 f28666b;
 
     public v4(y4 y4Var, int i7) {
-        this.f28662a = i7;
-        this.f28663b = y4Var;
+        this.f28665a = i7;
+        this.f28666b = y4Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f28662a) {
+        switch (this.f28665a) {
             case 0:
-                y4 y4Var = this.f28663b;
+                y4 y4Var = this.f28666b;
                 if (!y4Var.G && y4Var.F) {
                     y4Var.j(true);
                     return;
@@ -27,17 +27,17 @@ public final class v4 implements View.OnClickListener {
                 }
                 return;
             default:
-                y4 y4Var2 = this.f28663b;
-                if (y4Var2.f28802s.length() != 0) {
-                    y4Var2.f28802s.setText("");
+                y4 y4Var2 = this.f28666b;
+                if (y4Var2.f28805s.length() != 0) {
+                    y4Var2.f28805s.setText("");
                 } else {
-                    TextView textView = y4Var2.f28804x;
+                    TextView textView = y4Var2.f28807x;
                     if (textView != null && textView.getVisibility() == 0) {
                         y4Var2.i();
                     }
                 }
-                y4Var2.f28802s.requestFocus();
-                org.telegram.messenger.g0.K3(y4Var2.f28802s);
+                y4Var2.f28805s.requestFocus();
+                org.telegram.messenger.g0.K3(y4Var2.f28805s);
                 return;
         }
     }

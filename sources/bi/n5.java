@@ -80,7 +80,7 @@ public final class n5 implements View.OnClickListener {
                             d6Var2.T = null;
                         }
                         textView.setText("");
-                        d6Var2.L.setText(org.telegram.messenger.hd.a0(null, null, 2131749775, hi.j.J0(d6Var2.getGiftsSuccessChance())));
+                        d6Var2.L.setText(org.telegram.messenger.id.a0(null, null, 2131749777, hi.j.J0(d6Var2.getGiftsSuccessChance())));
                         for (int i10 = 0; i10 < b6VarArr.length; i10++) {
                             b6 b6Var3 = b6VarArr[i10];
                             if (b6Var3 != null) {
@@ -110,7 +110,7 @@ public final class n5 implements View.OnClickListener {
                                         if (starGift6 == null) {
                                             starGift6 = null;
                                         }
-                                        textView.setText(starGift6.title + " #" + org.telegram.messenger.hd.E(starGift6.num, ','));
+                                        textView.setText(starGift6.title + " #" + org.telegram.messenger.id.E(starGift6.num, ','));
                                     }
                                 }
                                 i11++;

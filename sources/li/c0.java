@@ -12,28 +12,28 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.f6;
 public final class c0 extends View {
-    public final gu f18491a;
-    public final int f18492b;
-    public boolean f18493c;
+    public final gu f18494a;
+    public final int f18495b;
+    public boolean f18496c;
     public boolean d;
-    public final bg.m0 f18494e;
-    public final f0 f18495f;
+    public final bg.m0 f18497e;
+    public final f0 f18498f;
 
     public c0(f0 f0Var, Context context, TL_keyboard.PageButton pageButton, int i7) {
         super(context);
-        this.f18495f = f0Var;
-        this.f18492b = i7;
-        int i10 = f0Var.f18549n;
-        int e10 = jg.g.e(32.0f, org.telegram.messenger.g0.f22544q.x, org.telegram.messenger.g0.L(240.0f));
-        f6 f6Var = f0Var.f18550r;
+        this.f18498f = f0Var;
+        this.f18495b = i7;
+        int i10 = f0Var.f18552n;
+        int e10 = jg.g.e(32.0f, org.telegram.messenger.g0.f22563q.x, org.telegram.messenger.g0.L(240.0f));
+        f6 f6Var = f0Var.f18553r;
         l2.w wVar = new l2.w(this, 5);
         kv kvVar = new kv(i10, e10, f6Var);
         SpannableStringBuilder l10 = kvVar.l(pageButton.text, kv.R(16, 13));
         TL_keyboard.InlineButtonType inlineButtonType = pageButton.type;
         gu guVar = new gu(kvVar, e10, l10, pageButton, inlineButtonType, pageButton.style, inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeDisabled, false, false, false, false, Boolean.FALSE, wVar);
-        this.f18491a = guVar;
-        this.f18494e = new bg.m0(this, i7, 14);
-        guVar.f22708e = guVar.h();
+        this.f18494a = guVar;
+        this.f18497e = new bg.m0(this, i7, 14);
+        guVar.f22725e = guVar.h();
         setContentDescription(c6.l(pageButton.text));
         setClickable(true);
         setLongClickable(true);
@@ -42,13 +42,13 @@ public final class c0 extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f18491a.f22705a.i(this);
+        this.f18494a.f22722a.i(this);
     }
 
     @Override
     public final void onDetachedFromWindow() {
-        org.telegram.messenger.g0.r(this.f18494e);
-        this.f18491a.f22705a.f(this);
+        org.telegram.messenger.g0.r(this.f18497e);
+        this.f18494a.f22722a.f(this);
         super.onDetachedFromWindow();
     }
 
@@ -57,7 +57,7 @@ public final class c0 extends View {
         super.onDraw(canvas);
         canvas.save();
         int height = getHeight();
-        gu guVar = this.f18491a;
+        gu guVar = this.f18494a;
         canvas.translate(0.0f, (height - guVar.c()) / 2.0f);
         guVar.a(canvas);
         canvas.restore();
@@ -65,8 +65,8 @@ public final class c0 extends View {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        gu guVar = this.f18491a;
-        setMeasuredDimension(guVar.f22708e, org.telegram.messenger.g0.L(8.0f) + guVar.c());
+        gu guVar = this.f18494a;
+        setMeasuredDimension(guVar.f22725e, org.telegram.messenger.g0.L(8.0f) + guVar.c());
     }
 
     @Override
@@ -80,39 +80,39 @@ public final class c0 extends View {
         boolean z12;
         boolean z13;
         int actionMasked = motionEvent.getActionMasked();
-        bg.m0 m0Var = this.f18494e;
-        gu guVar = this.f18491a;
+        bg.m0 m0Var = this.f18497e;
+        gu guVar = this.f18494a;
         if (actionMasked != 0) {
             if (actionMasked != 1) {
                 if (actionMasked != 2) {
                     if (actionMasked != 3) {
                         return super.onTouchEvent(motionEvent);
                     }
-                    this.f18493c = false;
+                    this.f18496c = false;
                     guVar.m(false);
                     org.telegram.messenger.g0.r(m0Var);
                     return true;
                 } else if (motionEvent.getX() < 0.0f || motionEvent.getY() < 0.0f || motionEvent.getX() > getWidth() || motionEvent.getY() > getHeight()) {
-                    this.f18493c = false;
+                    this.f18496c = false;
                     guVar.m(false);
                     org.telegram.messenger.g0.r(m0Var);
                     return true;
                 }
             } else {
-                if (this.f18493c && !this.d) {
+                if (this.f18496c && !this.d) {
                     z9 = true;
                 } else {
                     z9 = false;
                 }
-                this.f18493c = false;
+                this.f18496c = false;
                 guVar.m(false);
                 org.telegram.messenger.g0.r(m0Var);
-                if (z9 && (d0Var = (f0Var = this.f18495f).E) != null && (aVar = f0Var.f18986a) != null) {
-                    t3 t3Var = ((l3) d0Var).f18686a;
-                    TL_iv.PageBlock pageBlock = aVar.f18389b;
+                if (z9 && (d0Var = (f0Var = this.f18498f).E) != null && (aVar = f0Var.f18989a) != null) {
+                    t3 t3Var = ((l3) d0Var).f18689a;
+                    TL_iv.PageBlock pageBlock = aVar.f18392b;
                     if (pageBlock instanceof TL_iv.pageBlockButtonRow) {
                         TL_iv.pageBlockButtonRow pageblockbuttonrow = (TL_iv.pageBlockButtonRow) pageBlock;
-                        int i7 = this.f18492b;
+                        int i7 = this.f18495b;
                         if (i7 >= 0 && i7 < pageblockbuttonrow.buttons.size()) {
                             f2 f2Var = t3Var.Q3;
                             if (f2Var != null) {
@@ -155,19 +155,19 @@ public final class c0 extends View {
                                 richButtonStyle.link = false;
                                 pageButton.style = richButtonStyle;
                             }
-                            t3Var.f37160f3.O(false);
+                            t3Var.f37190f3.O(false);
                             f2 f2Var2 = t3Var.Q3;
                             if (f2Var2 != null) {
                                 f2Var2.h();
                             }
-                            t3Var.f18887o3.onContentChanged();
+                            t3Var.f18890o3.onContentChanged();
                         }
                     }
                 }
             }
             return true;
         }
-        this.f18493c = true;
+        this.f18496c = true;
         this.d = false;
         guVar.m(true);
         org.telegram.messenger.g0.i3(m0Var, ViewConfiguration.getLongPressTimeout());

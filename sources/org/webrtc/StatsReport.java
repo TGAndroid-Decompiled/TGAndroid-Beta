@@ -2,7 +2,7 @@ package org.webrtc;
 
 import a8.p0;
 public class StatsReport {
-    public final String f52938id;
+    public final String f53031id;
     public final double timestamp;
     public final String type;
     public final Value[] values;
@@ -25,7 +25,7 @@ public class StatsReport {
     }
 
     public StatsReport(String str, String str2, double d, Value[] valueArr) {
-        this.f52938id = str;
+        this.f53031id = str;
         this.type = str2;
         this.timestamp = d;
         this.values = valueArr;
@@ -33,7 +33,7 @@ public class StatsReport {
 
     public String toString() {
         StringBuilder sb2 = new StringBuilder("id: ");
-        sb2.append(this.f52938id);
+        sb2.append(this.f53031id);
         sb2.append(", type: ");
         sb2.append(this.type);
         sb2.append(", timestamp: ");

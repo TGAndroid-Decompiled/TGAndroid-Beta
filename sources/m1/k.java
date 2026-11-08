@@ -3,25 +3,25 @@ package m1;
 import java.io.Serializable;
 import java.util.Iterator;
 public final class k extends kd.j implements rd.l {
-    public Object f19410a;
-    public Serializable f19411b;
-    public Object f19412c;
+    public Object f19413a;
+    public Serializable f19414b;
+    public Object f19415c;
     public Object d;
-    public Iterator f19413e;
-    public int f19414f;
+    public Iterator f19416e;
+    public int f19417f;
     public int h;
-    public final b0 f19415n;
-    public final ui.e f19416r;
+    public final b0 f19418n;
+    public final ui.e f19419r;
 
     public k(b0 b0Var, ui.e eVar, id.c cVar) {
         super(1, cVar);
-        this.f19415n = b0Var;
-        this.f19416r = eVar;
+        this.f19418n = b0Var;
+        this.f19419r = eVar;
     }
 
     @Override
     public final id.c create(id.c cVar) {
-        return new k(this.f19415n, this.f19416r, cVar);
+        return new k(this.f19418n, this.f19419r, cVar);
     }
 
     @Override

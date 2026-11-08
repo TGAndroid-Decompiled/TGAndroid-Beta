@@ -55,37 +55,37 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
     public a I;
     public final ka J;
     public final RectF K;
-    public final te.a f20591a;
-    public final te.a f20592b;
-    public final l9 f20593c;
+    public final te.a f20594a;
+    public final te.a f20595b;
+    public final l9 f20596c;
     public final ImageReceiver d;
-    public final Paint f20594e;
-    public final Paint f20595f;
+    public final Paint f20597e;
+    public final Paint f20598f;
     public final n h;
-    public final ImageReceiver f20596n;
-    public i5 f20597r;
-    public o0 f20598s;
-    public final l f20599w;
-    public j0 f20600x;
-    public boolean f20601y;
+    public final ImageReceiver f20599n;
+    public i5 f20600r;
+    public o0 f20601s;
+    public final l f20602w;
+    public j0 f20603x;
+    public boolean f20604y;
 
     public c(Context context) {
         super(context);
         xq xqVar = xq.h;
-        this.f20591a = new te.a(0, this, xqVar, 320L, false);
-        this.f20592b = new te.a(1, this, xqVar, 320L, false);
-        this.f20593c = new l9(this);
+        this.f20594a = new te.a(0, this, xqVar, 320L, false);
+        this.f20595b = new te.a(1, this, xqVar, 320L, false);
+        this.f20596c = new l9(this);
         Paint paint = new Paint(1);
-        this.f20594e = paint;
+        this.f20597e = paint;
         Paint paint2 = new Paint(1);
-        this.f20595f = paint2;
+        this.f20598f = paint2;
         n nVar = new n();
         this.h = nVar;
         this.D = new w(this, 14);
         this.J = new ka(this, 1);
         this.K = new RectF();
         l lVar = new l(context);
-        this.f20599w = lVar;
+        this.f20602w = lVar;
         lVar.setDisablePaddingsOffset(true);
         lVar.setTextSize(14.0f);
         lVar.setTextColor(-1);
@@ -98,8 +98,8 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.d = imageReceiver;
         imageReceiver.J0(g0.L(11.0f));
-        nVar.f39337c.setStrokeWidth(g0.L(1.0f));
-        this.f20596n = new ImageReceiver(this);
+        nVar.f39372c.setStrokeWidth(g0.L(1.0f));
+        this.f20599n = new ImageReceiver(this);
         setWillNotDraw(false);
     }
 
@@ -126,16 +126,16 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
 
     @Override
     public final void Y(int i7, float f10, float f11, te.c cVar) {
-        this.f20595f.setAlpha(Math.round(this.f20592b.f55394e * 100.0f));
-        int round = Math.round(this.f20591a.f55394e * 220.0f);
+        this.f20598f.setAlpha(Math.round(this.f20595b.f55486e * 100.0f));
+        int round = Math.round(this.f20594a.f55486e * 220.0f);
         n nVar = this.h;
-        nVar.f39335a.setAlpha(round);
-        nVar.f39337c.setAlpha(round);
+        nVar.f39370a.setAlpha(round);
+        nVar.f39372c.setAlpha(round);
         invalidate();
     }
 
     public final int a(float f10, float f11) {
-        j0 j0Var = this.f20600x;
+        j0 j0Var = this.f20603x;
         if (j0Var == null) {
             return -1;
         }
@@ -145,7 +145,7 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
         if (rectF.contains(f10, f11)) {
             return 1;
         }
-        if (!((RectF) this.f20600x.f10290c).contains(f10, f11)) {
+        if (!((RectF) this.f20603x.f10290c).contains(f10, f11)) {
             return -1;
         }
         return 0;
@@ -158,16 +158,16 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == qs.f25009i4) {
+        if (i7 == qs.f25018i4) {
             invalidate();
         }
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        j0 j0Var = this.f20600x;
+        j0 j0Var = this.f20603x;
         if (j0Var != null) {
-            canvas.drawPath((Path) j0Var.d, this.f20594e);
+            canvas.drawPath((Path) j0Var.d, this.f20597e);
             if (Build.VERSION.SDK_INT >= 29 && this.E != null && canvas.isHardwareAccelerated()) {
                 View view = this;
                 float f10 = 0.0f;
@@ -181,28 +181,28 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
                     }
                 }
                 canvas.save();
-                canvas.clipPath((Path) this.f20600x.d);
+                canvas.clipPath((Path) this.f20603x.d);
                 canvas.translate(0.0f, -f10);
                 float f11 = this.F;
                 canvas.scale(f11, f11);
                 canvas.drawRenderNode(this.E);
                 canvas.restore();
             }
-            Paint paint = this.f20595f;
+            Paint paint = this.f20598f;
             if (paint.getAlpha() > 0) {
-                canvas.drawPath((Path) this.f20600x.d, paint);
+                canvas.drawPath((Path) this.f20603x.d, paint);
             }
-            if (this.f20591a.f55394e > 0.0f) {
+            if (this.f20594a.f55486e > 0.0f) {
                 RectF rectF = this.K;
-                rectF.set((RectF) this.f20600x.f10290c);
+                rectF.set((RectF) this.f20603x.f10290c);
                 rectF.inset(g0.L(1.0f), g0.L(1.0f));
                 this.h.a(g0.L(14.0f), canvas, rectF, null);
                 invalidate();
             }
             super.dispatchDraw(canvas);
             this.d.h(canvas, null);
-            this.f20596n.h(canvas, null);
-            i5 i5Var = this.f20597r;
+            this.f20599n.h(canvas, null);
+            i5 i5Var = this.f20600r;
             if (i5Var != null) {
                 i5Var.draw(canvas);
             }
@@ -219,7 +219,7 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
     }
 
     public float getReactionCenterX() {
-        j0 j0Var = this.f20600x;
+        j0 j0Var = this.f20603x;
         if (j0Var != null) {
             return ((RectF) j0Var.f10292f).centerX();
         }
@@ -240,12 +240,12 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.d.P();
-        this.f20596n.P();
-        i5 i5Var = this.f20597r;
+        this.f20599n.P();
+        i5 i5Var = this.f20600r;
         if (i5Var != null) {
             i5Var.a(this);
         }
-        qs.e().c(this, qs.f25009i4);
+        qs.e().c(this, qs.f25018i4);
         GroupCallMessage groupCallMessage = this.H;
         if (groupCallMessage != null) {
             groupCallMessage.subscribeToStateUpdates(this.D);
@@ -256,12 +256,12 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.d.R();
-        this.f20596n.R();
-        i5 i5Var = this.f20597r;
+        this.f20599n.R();
+        i5 i5Var = this.f20600r;
         if (i5Var != null) {
             i5Var.n(this);
         }
-        qs.e().n(this, qs.f25009i4);
+        qs.e().n(this, qs.f25018i4);
         GroupCallMessage groupCallMessage = this.H;
         if (groupCallMessage != null) {
             groupCallMessage.unsubscribeFromStateUpdates(this.D);
@@ -270,13 +270,13 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
 
     @Override
     public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        j0 j0Var = this.f20600x;
+        j0 j0Var = this.f20603x;
         if (j0Var == null) {
             return;
         }
         int round = Math.round(((PointF) j0Var.f10293g).x);
-        int round2 = Math.round(((PointF) this.f20600x.f10293g).y);
-        l lVar = this.f20599w;
+        int round2 = Math.round(((PointF) this.f20603x.f10293g).y);
+        l lVar = this.f20602w;
         lVar.layout(round, round2, lVar.getMeasuredWidth() + round, lVar.getMeasuredHeight() + round2);
     }
 
@@ -287,14 +287,14 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
         boolean z9;
         float f10;
         int size = View.MeasureSpec.getSize(i7);
-        j0 j0Var = this.f20600x;
-        if (j0Var == null || this.f20601y || j0Var.f10288a != size) {
+        j0 j0Var = this.f20603x;
+        if (j0Var == null || this.f20604y || j0Var.f10288a != size) {
             int paddingLeft = getPaddingLeft();
             int paddingRight = getPaddingRight();
-            o0 o0Var = this.f20598s;
+            o0 o0Var = this.f20601s;
             int c10 = q.c(44.0f, (size - paddingLeft) - paddingRight, Integer.MIN_VALUE);
             int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
-            l lVar = this.f20599w;
+            l lVar = this.f20602w;
             lVar.measure(c10, makeMeasureSpec);
             float measuredWidth = lVar.getMeasuredWidth();
             if (o0Var == null) {
@@ -349,22 +349,22 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
             } else {
                 pointF.offset(rectF3.left + g0.L(32.0f), 0.0f);
             }
-            this.f20600x = obj;
+            this.f20603x = obj;
             this.d.A0(rectF);
-            this.f20596n.A0((RectF) this.f20600x.f10292f);
-            if (this.f20597r != null) {
+            this.f20599n.A0((RectF) this.f20603x.f10292f);
+            if (this.f20600r != null) {
                 Rect rect = L;
-                ((RectF) this.f20600x.f10292f).round(rect);
-                this.f20597r.setBounds(rect);
+                ((RectF) this.f20603x.f10292f).round(rect);
+                this.f20600r.setBounds(rect);
             }
         }
-        setMeasuredDimension(size, this.f20600x.f10289b);
-        this.h.f39339f = Math.round(((RectF) this.f20600x.f10290c).width() + g0.L(48.0f));
+        setMeasuredDimension(size, this.f20603x.f10289b);
+        this.h.f39374f = Math.round(((RectF) this.f20603x.f10290c).width() + g0.L(48.0f));
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return this.f20593c.a(this, motionEvent);
+        return this.f20596c.a(this, motionEvent);
     }
 
     public void set(GroupCallMessage groupCallMessage) {
@@ -382,25 +382,25 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
         }
         GroupCallMessage groupCallMessage4 = this.H;
         if (groupCallMessage4 != null) {
-            this.f20591a.a(groupCallMessage4.isSendDelayed(), false);
-            this.f20592b.a(this.H.isSendError(), false);
+            this.f20594a.a(groupCallMessage4.isSendDelayed(), false);
+            this.f20595b.a(this.H.isSendError(), false);
         }
-        TLObject e22 = qp.s1(p10.f24467s0).e2(groupCallMessage.fromId);
+        TLObject e22 = qp.s1(p10.f24470s0).e2(groupCallMessage.fromId);
         String m10 = m5.m(e22);
         w8 w8Var = new w8((f6) null);
         w8Var.p(e22);
         this.d.i0(e22, w8Var, null);
-        ImageReceiver imageReceiver = this.f20596n;
+        ImageReceiver imageReceiver = this.f20599n;
         imageReceiver.q0(null, null, null, null, null, 0);
-        if (this.f20597r != null && isAttachedToWindow()) {
-            this.f20597r.n(this);
+        if (this.f20600r != null && isAttachedToWindow()) {
+            this.f20600r.n(this);
         }
-        this.f20597r = null;
+        this.f20600r = null;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(m10);
         spannableStringBuilder.setSpan(new u31(g0.o()), 0, spannableStringBuilder.length(), 33);
         spannableStringBuilder.setSpan(this.J, 0, spannableStringBuilder.length(), 33);
         o0 o0Var = groupCallMessage.visibleReaction;
-        l lVar = this.f20599w;
+        l lVar = this.f20602w;
         if (o0Var == null) {
             CharSequence j02 = ij.j0(groupCallMessage.message, false, true, lVar.getPaint());
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
@@ -422,27 +422,27 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
             spannableStringBuilder2.append(j02);
             spannableStringBuilder = spannableStringBuilder2;
         } else if (o0Var.f6356f != null) {
-            TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) ui.b0(groupCallMessage.currentAccount).f25833r.get(groupCallMessage.visibleReaction.f6356f);
+            TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) ui.b0(groupCallMessage.currentAccount).f25836r.get(groupCallMessage.visibleReaction.f6356f);
             if (tL_availableReaction != null) {
                 imageReceiver.q0(hc.b(tL_availableReaction.select_animation), "28_28", null, null, null, 0);
             }
         } else if (o0Var.f6357g != 0) {
             i5 i5Var = new i5(0, groupCallMessage.currentAccount, groupCallMessage.visibleReaction.f6357g);
-            this.f20597r = i5Var;
+            this.f20600r = i5Var;
             i5Var.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
             if (isAttachedToWindow()) {
-                this.f20597r.a(this);
+                this.f20600r.a(this);
             }
         }
-        this.f20598s = groupCallMessage.visibleReaction;
-        this.f20601y = true;
+        this.f20601s = groupCallMessage.visibleReaction;
+        this.f20604y = true;
         lVar.setText(spannableStringBuilder);
         requestLayout();
     }
 
     @Override
     public void setBackgroundColor(int i7) {
-        this.f20594e.setColor(i7);
+        this.f20597e.setColor(i7);
     }
 
     public void setDelegate(a aVar) {

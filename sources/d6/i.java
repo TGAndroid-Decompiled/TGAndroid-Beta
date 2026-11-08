@@ -316,7 +316,7 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
     @Override
     public void Y() {
         x9 x9Var = (x9) this.f8209b;
-        x9Var.m0.f55054a.f();
+        x9Var.m0.f55146a.f();
         x9Var.M0.setViewHidden(false);
     }
 
@@ -362,17 +362,17 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
                 obtain.writeStrongBinder(dVar);
                 obtain.writeInt(1);
                 ((o8.c) this.f8209b).writeToParcel(obtain, 0);
-                ((d8.c) ((d8.f) obj).n()).H0(obtain, 1);
+                ((d8.c) ((d8.f) obj).n()).h1(obtain, 1);
                 return;
             default:
                 w wVar = (w) obj;
                 j6.f fVar = (j6.f) wVar.n();
                 d0 d0Var = ((f6.e0) this.f8209b).f11250l;
-                Parcel P0 = fVar.P0();
-                t.d(P0, d0Var);
-                fVar.U0(P0, 18);
+                Parcel p12 = fVar.p1();
+                t.d(p12, d0Var);
+                fVar.u1(p12, 18);
                 j6.f fVar2 = (j6.f) wVar.n();
-                fVar2.U0(fVar2.P0(), 17);
+                fVar2.u1(fVar2.p1(), 17);
                 ((TaskCompletionSource) obj2).setResult(null);
                 return;
         }
@@ -717,7 +717,7 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
             return;
         }
         x9Var.T0.b(1);
-        x9Var.w((sg.h) sg.h.f54967a.get(0));
+        x9Var.w((sg.h) sg.h.f55059a.get(0));
     }
 
     public synchronized void p0() {
@@ -797,8 +797,8 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
             Log.w("FirebaseCrashlytics", "Received null app settings at app startup. Cannot send cached reports", null);
             return Tasks.forResult(null);
         }
-        aa.q qVar2 = (aa.q) qVar.f53711c;
-        aa.q.b((aa.q) qVar.f53711c);
+        aa.q qVar2 = (aa.q) qVar.f53804c;
+        aa.q.b((aa.q) qVar.f53804c);
         qVar2.f844m.h(null, qVar2.f837e.f3135a);
         qVar2.f848q.trySetResult(null);
         return Tasks.forResult(null);

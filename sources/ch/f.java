@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import bi.l1;
 import c8.ha;
 import org.telegram.messenger.c20;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.n6;
@@ -29,13 +29,13 @@ public final class f extends FrameLayout {
         eVar.setImageResource(2131232739);
         r6.t(eVar, k6.Gf, f6Var, PorterDuff.Mode.MULTIPLY);
         eVar.setScaleType(ImageView.ScaleType.CENTER);
-        eVar.setContentDescription(hd.M0(2131754920, null));
+        eVar.setContentDescription(id.M0(2131754920, null));
         eVar.setFocusable(true);
         eVar.setOnClickListener(new l1(1));
         addView(eVar, ha.e(36, 36, 17));
-        int x03 = k6.x0(null, k6.f27941i6, false);
+        int x03 = k6.x0(null, k6.f27944i6, false);
         int L = org.telegram.messenger.g0.L(36.0f);
-        int i7 = k6.f27849d6;
+        int i7 = k6.f27852d6;
         if (f6Var != null) {
             x02 = f6Var.h(i7);
         } else {

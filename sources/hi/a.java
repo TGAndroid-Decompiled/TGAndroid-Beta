@@ -19,12 +19,12 @@ public final class a implements c20 {
                 return;
             case 1:
                 j jVar = this.f14493b;
-                jVar.f14729a0.commission_permille = ((Integer) obj).intValue();
+                jVar.f14732a0.commission_permille = ((Integer) obj).intValue();
                 jVar.L0();
                 return;
             default:
                 j jVar2 = this.f14493b;
-                jVar2.f14729a0.duration_months = ((Integer) jVar2.f14731c0.get(((Integer) obj).intValue())).intValue();
+                jVar2.f14732a0.duration_months = ((Integer) jVar2.f14734c0.get(((Integer) obj).intValue())).intValue();
                 jVar2.L0();
                 return;
         }

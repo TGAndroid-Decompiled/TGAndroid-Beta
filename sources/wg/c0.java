@@ -5,7 +5,7 @@ import android.net.Uri;
 import di.s2;
 import fi.r7;
 import java.util.concurrent.atomic.AtomicBoolean;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.p10;
 import org.telegram.messenger.qp;
 import org.telegram.tgnet.ConnectionsManager;
@@ -35,18 +35,18 @@ public final class c0 extends na {
         this.Q1 = z9;
         this.P1 = tL_payments_checkedGiftCode;
         this.S1 = str;
-        this.f28647u0 = false;
-        this.f28648v0 = false;
+        this.f28650u0 = false;
+        this.f28651v0 = false;
         N();
         b1();
         b0 b0Var = this.R1;
-        l2 l2Var = this.f28619c;
+        l2 l2Var = this.f28622c;
         b0Var.getClass();
         b0Var.d = tL_payments_checkedGiftCode.used_date == 0;
-        b0Var.f58637e = f2Var;
-        b0Var.f58638f = tL_payments_checkedGiftCode;
+        b0Var.f58726e = f2Var;
+        b0Var.f58727f = tL_payments_checkedGiftCode;
         b0Var.h = str;
-        b0Var.f58639n = l2Var;
+        b0Var.f58728n = l2Var;
     }
 
     public static boolean d1(Intent intent, vf.b bVar) {
@@ -87,12 +87,12 @@ public final class c0 extends na {
         AtomicBoolean atomicBoolean = new AtomicBoolean(false);
         if (bVar != null) {
             bVar.d();
-            bVar.f57231b = new c(atomicBoolean, 1);
+            bVar.f57323b = new c(atomicBoolean, 1);
         }
         s2 s2Var = new s2(atomicBoolean, f2Var, str, bVar, 16);
         e eVar = new e(atomicBoolean, bVar, 1);
-        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(p10.f24467s0);
-        qp s12 = qp.s1(p10.f24467s0);
+        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(p10.f24470s0);
+        qp s12 = qp.s1(p10.f24470s0);
         TLRPC.TL_payments_checkGiftCode tL_payments_checkGiftCode = new TLRPC.TL_payments_checkGiftCode();
         tL_payments_checkGiftCode.slug = str;
         connectionsManager.sendRequest(tL_payments_checkGiftCode, new bi.f2(s12, s2Var, eVar, 22));
@@ -108,13 +108,13 @@ public final class c0 extends na {
     @Override
     public final CharSequence O0() {
         if (this.Q1) {
-            return hd.M0(2131753500, null);
+            return id.M0(2131753500, null);
         }
-        return hd.M0(2131753173, null);
+        return id.M0(2131753173, null);
     }
 
     @Override
     public final void U0(rt0 rt0Var) {
-        cc.a(this.f28619c, new r7(14));
+        cc.a(this.f28622c, new r7(14));
     }
 }

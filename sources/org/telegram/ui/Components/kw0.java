@@ -5,10 +5,10 @@ import android.text.SpannableStringBuilder;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class kw0 implements org.telegram.ui.is {
-    public final ow0 f35424a;
+    public final ow0 f35438a;
 
     public kw0(ow0 ow0Var) {
-        this.f35424a = ow0Var;
+        this.f35438a = ow0Var;
     }
 
     @Override
@@ -23,13 +23,13 @@ public final class kw0 implements org.telegram.ui.is {
 
     @Override
     public final void C(TLRPC.Document document) {
-        ow0 ow0Var = this.f35424a;
-        mw0 mw0Var = ow0Var.f36689c;
+        ow0 ow0Var = this.f35438a;
+        mw0 mw0Var = ow0Var.f36709c;
         if (mw0Var != null) {
             org.telegram.ui.ActionBar.f2 parentFragment = mw0Var.getParentFragment();
             if (parentFragment instanceof org.telegram.ui.an) {
                 ((org.telegram.ui.an) parentFragment).Cb(document);
-                ow0Var.f36689c.setFieldText("");
+                ow0Var.f36709c.setFieldText("");
             }
         }
     }
@@ -41,10 +41,10 @@ public final class kw0 implements org.telegram.ui.is {
 
     @Override
     public final boolean E(TLRPC.Document document) {
-        if (this.f35424a.D) {
+        if (this.f35438a.D) {
             return false;
         }
-        return org.telegram.messenger.p10.i(org.telegram.messenger.p10.f24467s0).q();
+        return org.telegram.messenger.p10.i(org.telegram.messenger.p10.f24470s0).q();
     }
 
     @Override
@@ -57,7 +57,7 @@ public final class kw0 implements org.telegram.ui.is {
         mw0 mw0Var;
         SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(org.telegram.messenger.ij.U(document));
         valueOf.setSpan(new r5(document, (Paint.FontMetricsInt) null), 0, valueOf.length(), 33);
-        if (org.telegram.messenger.g0.g(valueOf) && (mw0Var = this.f35424a.f36689c) != null) {
+        if (org.telegram.messenger.g0.g(valueOf) && (mw0Var = this.f35438a.f36709c) != null) {
             org.telegram.messenger.camera.q.r(null, 2131751185, hc.a0(mw0Var.getParentFragment()));
         }
     }
@@ -81,11 +81,11 @@ public final class kw0 implements org.telegram.ui.is {
     public final Boolean P(TLRPC.Document document) {
         TLRPC.User f10;
         boolean z9;
-        if (this.f35424a.E || !org.telegram.messenger.p10.i(org.telegram.messenger.p10.f24467s0).q() || (f10 = org.telegram.messenger.p10.i(org.telegram.messenger.p10.f24467s0).f()) == null) {
+        if (this.f35438a.E || !org.telegram.messenger.p10.i(org.telegram.messenger.p10.f24470s0).q() || (f10 = org.telegram.messenger.p10.i(org.telegram.messenger.p10.f24470s0).f()) == null) {
             return null;
         }
         Long h = org.telegram.messenger.t10.h(f10);
-        if (document != null && (h == null || h.longValue() != document.f26959id)) {
+        if (document != null && (h == null || h.longValue() != document.f26962id)) {
             z9 = true;
         } else {
             z9 = false;
@@ -110,7 +110,7 @@ public final class kw0 implements org.telegram.ui.is {
 
     @Override
     public final boolean c() {
-        mw0 mw0Var = this.f35424a.f36689c;
+        mw0 mw0Var = this.f35438a.f36709c;
         if (mw0Var == null) {
             return false;
         }
@@ -153,7 +153,7 @@ public final class kw0 implements org.telegram.ui.is {
 
     @Override
     public final boolean k(int i7) {
-        mw0 mw0Var = this.f35424a.f36689c;
+        mw0 mw0Var = this.f35438a.f36709c;
         if (mw0Var == null) {
             return false;
         }
@@ -161,7 +161,7 @@ public final class kw0 implements org.telegram.ui.is {
         if (parentFragment instanceof org.telegram.ui.an) {
             org.telegram.ui.an anVar = (org.telegram.ui.an) parentFragment;
             if (anVar.S6()) {
-                if (!org.telegram.messenger.p10.i(org.telegram.messenger.p10.f24467s0).q()) {
+                if (!org.telegram.messenger.p10.i(org.telegram.messenger.p10.f24470s0).q()) {
                     if (anVar.j() != null && org.telegram.messenger.t10.B(anVar.j())) {
                         return true;
                     }
@@ -188,24 +188,24 @@ public final class kw0 implements org.telegram.ui.is {
         TLRPC.EmojiStatus emojiStatus;
         Object obj;
         org.telegram.ui.ActionBar.f2 parentFragment;
-        ow0 ow0Var = this.f35424a;
-        org.telegram.ui.ActionBar.f6 f6Var = ow0Var.f36687b;
+        ow0 ow0Var = this.f35438a;
+        org.telegram.ui.ActionBar.f6 f6Var = ow0Var.f36707b;
         if (document == null) {
             emojiStatus = new TLRPC.TL_emojiStatusEmpty();
         } else {
             TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
-            tL_emojiStatus.document_id = document.f26959id;
+            tL_emojiStatus.document_id = document.f26962id;
             emojiStatus = tL_emojiStatus;
         }
-        TLRPC.User f10 = org.telegram.messenger.p10.i(org.telegram.messenger.p10.f24467s0).f();
+        TLRPC.User f10 = org.telegram.messenger.p10.i(org.telegram.messenger.p10.f24470s0).f();
         if (f10 == null) {
             obj = new TLRPC.TL_emojiStatusEmpty();
         } else {
             obj = f10.emoji_status;
         }
-        org.telegram.messenger.qp.s1(ow0Var.f36685a).h5(emojiStatus, null);
+        org.telegram.messenger.qp.s1(ow0Var.f36705a).h5(emojiStatus, null);
         v80 v80Var = new v80(20, this, obj);
-        mw0 mw0Var = ow0Var.f36689c;
+        mw0 mw0Var = ow0Var.f36709c;
         if (mw0Var == null) {
             parentFragment = null;
         } else {
@@ -214,15 +214,15 @@ public final class kw0 implements org.telegram.ui.is {
         if (parentFragment != null) {
             if (document == null) {
                 ub ubVar = new ub(ow0Var.getContext(), f6Var);
-                ubVar.f38577b.setText(org.telegram.messenger.hd.M0(2131746286, null));
-                ubVar.f38576a.setImageResource(2131232362);
+                ubVar.f38592b.setText(org.telegram.messenger.id.M0(2131746288, null));
+                ubVar.f38591a.setImageResource(2131232362);
                 ac acVar = new ac(ow0Var.getContext(), f6Var, true);
-                acVar.f31756b = v80Var;
+                acVar.f31765b = v80Var;
                 ubVar.setButton(acVar);
                 cc.g(parentFragment, ubVar, 1500).j();
                 return;
             }
-            hc.a0(parentFragment).r(document, org.telegram.messenger.hd.M0(2131745546, null), org.telegram.messenger.hd.M0(2131743886, null), v80Var).j();
+            hc.a0(parentFragment).r(document, org.telegram.messenger.id.M0(2131745548, null), org.telegram.messenger.id.M0(2131743888, null), v80Var).j();
         }
     }
 
@@ -288,7 +288,7 @@ public final class kw0 implements org.telegram.ui.is {
     }
 
     @Override
-    public final void u(CharSequence charSequence, String str, ex exVar) {
+    public final void u(CharSequence charSequence, String str, fx fxVar) {
     }
 
     @Override

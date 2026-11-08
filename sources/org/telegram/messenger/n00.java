@@ -4,37 +4,37 @@ import android.icu.text.Collator;
 import java.util.Comparator;
 import java.util.List;
 public final class n00 implements Comparator {
-    public final int f24113a;
-    public final Object f24114b;
+    public final int f24119a;
+    public final Object f24120b;
 
     public n00(Object obj, int i7) {
-        this.f24113a = i7;
-        this.f24114b = obj;
+        this.f24119a = i7;
+        this.f24120b = obj;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
-        switch (this.f24113a) {
+        switch (this.f24119a) {
             case 0:
-                return f10.a((Collator) this.f24114b, (y00) obj, (y00) obj2);
+                return f10.a((Collator) this.f24120b, (y00) obj, (y00) obj2);
             default:
-                ed edVar = (ed) this.f24114b;
-                ed edVar2 = (ed) obj;
-                ed edVar3 = (ed) obj2;
-                if (edVar2 != edVar) {
-                    if (edVar3 != edVar) {
+                fd fdVar = (fd) this.f24120b;
+                fd fdVar2 = (fd) obj;
+                fd fdVar3 = (fd) obj2;
+                if (fdVar2 != fdVar) {
+                    if (fdVar3 != fdVar) {
                         List list = f10.M;
-                        int indexOf = list.indexOf(edVar2.f22185f);
-                        int indexOf2 = list.indexOf(edVar3.f22185f);
+                        int indexOf = list.indexOf(fdVar2.f22400f);
+                        int indexOf2 = list.indexOf(fdVar3.f22400f);
                         if (indexOf >= 0 && indexOf2 >= 0) {
                             return indexOf - indexOf2;
                         }
                         if (indexOf < 0) {
                             if (indexOf2 < 0) {
-                                int i7 = edVar2.f22189k;
-                                int i10 = edVar3.f22189k;
+                                int i7 = fdVar2.f22404k;
+                                int i10 = fdVar3.f22404k;
                                 if (i7 == i10) {
-                                    return edVar2.f22181a.compareTo(edVar3.f22181a);
+                                    return fdVar2.f22396a.compareTo(fdVar3.f22396a);
                                 }
                                 if (i7 <= i10) {
                                     if (i7 >= i10) {

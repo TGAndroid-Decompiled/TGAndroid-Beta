@@ -29,7 +29,7 @@ public final class l extends q {
     }
 
     @Override
-    public final boolean J0(int i7, Parcel parcel, Parcel parcel2) {
+    public final boolean j1(int i7, Parcel parcel, Parcel parcel2) {
         boolean z9;
         BasePendingResult basePendingResult;
         String e10;
@@ -42,10 +42,10 @@ public final class l extends q {
                     if (i7 != 2) {
                         return false;
                     }
-                    M0();
+                    m1();
                     i.o0(revocationBoundService).p0();
                 } else {
-                    M0();
+                    m1();
                     b a10 = b.a(revocationBoundService);
                     GoogleSignInAccount b10 = a10.b();
                     GoogleSignInOptions googleSignInOptions = GoogleSignInOptions.f6462w;
@@ -104,7 +104,7 @@ public final class l extends q {
         }
     }
 
-    public void M0() {
+    public void m1() {
         if (x6.b.e((RevocationBoundService) this.f8211c, Binder.getCallingUid())) {
             return;
         }

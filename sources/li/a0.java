@@ -5,34 +5,34 @@ import android.text.Layout;
 import org.telegram.ui.Cells.t9;
 import org.telegram.ui.Components.ck0;
 public final class a0 implements t9 {
-    public final int f18406a = 0;
-    public final Object f18407b;
-    public final Object f18408c;
+    public final int f18409a = 0;
+    public final Object f18410b;
+    public final Object f18411c;
 
     public a0(Layout layout, Rect rect) {
-        this.f18407b = layout;
-        this.f18408c = rect;
+        this.f18410b = layout;
+        this.f18411c = rect;
     }
 
     @Override
     public final Layout a() {
-        switch (this.f18406a) {
+        switch (this.f18409a) {
             case 0:
-                return (Layout) this.f18407b;
+                return (Layout) this.f18410b;
             default:
-                org.telegram.utils.twidget.k0 k0Var = (org.telegram.utils.twidget.k0) this.f18407b;
-                if (k0Var.h == null) {
-                    k0Var.h = new org.telegram.utils.twidget.l0(k0Var);
+                org.telegram.utils.twidget.k1 k1Var = (org.telegram.utils.twidget.k1) this.f18410b;
+                if (k1Var.h == null) {
+                    k1Var.h = new org.telegram.utils.twidget.l1(k1Var);
                 }
-                return k0Var.h;
+                return k1Var.h;
         }
     }
 
     @Override
     public final Rect c() {
-        switch (this.f18406a) {
+        switch (this.f18409a) {
             case 0:
-                return (Rect) this.f18408c;
+                return (Rect) this.f18411c;
             default:
                 return null;
         }
@@ -40,7 +40,7 @@ public final class a0 implements t9 {
 
     @Override
     public final CharSequence getPrefix() {
-        switch (this.f18406a) {
+        switch (this.f18409a) {
             case 0:
                 return null;
             default:
@@ -50,17 +50,17 @@ public final class a0 implements t9 {
 
     @Override
     public final int getRow() {
-        switch (this.f18406a) {
+        switch (this.f18409a) {
             case 0:
                 return 0;
             default:
-                return ((ck0) this.f18408c).U;
+                return ((ck0) this.f18411c).U;
         }
     }
 
     @Override
     public final CharSequence getText() {
-        switch (this.f18406a) {
+        switch (this.f18409a) {
             case 0:
                 Layout a10 = a();
                 if (a10 == null) {
@@ -78,27 +78,27 @@ public final class a0 implements t9 {
 
     @Override
     public final int getX() {
-        switch (this.f18406a) {
+        switch (this.f18409a) {
             case 0:
                 return 0;
             default:
-                ck0 ck0Var = (ck0) this.f18408c;
-                return (ck0Var.S - ck0Var.f32588j0) + ((org.telegram.utils.twidget.k0) this.f18407b).f52835b;
+                ck0 ck0Var = (ck0) this.f18411c;
+                return (ck0Var.S - ck0Var.f32619j0) + ((org.telegram.utils.twidget.k1) this.f18410b).f52891b;
         }
     }
 
     @Override
     public final int getY() {
-        switch (this.f18406a) {
+        switch (this.f18409a) {
             case 0:
                 return 0;
             default:
-                return ((ck0) this.f18408c).T + ((org.telegram.utils.twidget.k0) this.f18407b).f52836c;
+                return ((ck0) this.f18411c).T + ((org.telegram.utils.twidget.k1) this.f18410b).f52892c;
         }
     }
 
-    public a0(ck0 ck0Var, org.telegram.utils.twidget.k0 k0Var) {
-        this.f18408c = ck0Var;
-        this.f18407b = k0Var;
+    public a0(ck0 ck0Var, org.telegram.utils.twidget.k1 k1Var) {
+        this.f18411c = ck0Var;
+        this.f18410b = k1Var;
     }
 }

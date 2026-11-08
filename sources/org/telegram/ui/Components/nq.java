@@ -9,15 +9,15 @@ import android.widget.TextView;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class nq extends oj0 {
-    public final oq f36401c;
+    public final oq f36417c;
 
     public nq(oq oqVar) {
-        this.f36401c = oqVar;
+        this.f36417c = oqVar;
     }
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f56955f == 3) {
+        if (d1Var.f57047f == 3) {
             return true;
         }
         return false;
@@ -25,7 +25,7 @@ public final class nq extends oj0 {
 
     @Override
     public final int b() {
-        oq oqVar = this.f36401c;
+        oq oqVar = this.f36417c;
         if (oqVar.R1) {
             return oqVar.Q1.size() + 3;
         }
@@ -55,18 +55,18 @@ public final class nq extends oj0 {
         TLObject M0;
         String str;
         boolean z9;
-        int i10 = d1Var.f56955f;
-        View view = d1Var.f56951a;
+        int i10 = d1Var.f57047f;
+        View view = d1Var.f57043a;
         boolean z10 = true;
         if (i10 == 3) {
-            oq oqVar = this.f36401c;
+            oq oqVar = this.f36417c;
             TLRPC.Peer peer = (TLRPC.Peer) oqVar.Q1.get(i7 - 3);
             long C1 = org.telegram.messenger.ij.C1(peer);
             if (C1 > 0) {
-                M0 = org.telegram.messenger.qp.s1(oqVar.f28613a).a2(Long.valueOf(C1));
-                str = org.telegram.messenger.hd.M0(2131743350, null);
+                M0 = org.telegram.messenger.qp.s1(oqVar.f28616a).a2(Long.valueOf(C1));
+                str = org.telegram.messenger.id.M0(2131743352, null);
             } else {
-                M0 = org.telegram.messenger.qp.s1(oqVar.f28613a).M0(Long.valueOf(-C1));
+                M0 = org.telegram.messenger.qp.s1(oqVar.f28616a).M0(Long.valueOf(-C1));
                 str = null;
             }
             org.telegram.ui.Cells.h4 h4Var = (org.telegram.ui.Cells.h4) view;
@@ -84,9 +84,9 @@ public final class nq extends oj0 {
             org.telegram.ui.Cells.n4 n4Var = (org.telegram.ui.Cells.n4) view;
             n4Var.setTextSize(15.0f);
             n4Var.setPadding(0, 0, 0, org.telegram.messenger.g0.L(2.0f));
-            n4Var.setText(org.telegram.messenger.hd.M0(2131743444, null).replace(":", ""));
+            n4Var.setText(org.telegram.messenger.id.M0(2131743446, null).replace(":", ""));
         } else if (i10 == 1) {
-            ((org.telegram.ui.Cells.z8) view).setText(org.telegram.messenger.g0.I2(org.telegram.messenger.g0.S2(org.telegram.messenger.hd.M0(2131743431, null), org.telegram.ui.ActionBar.k6.L6, 0, new gp(this, 3), null), true, org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(1.0f)));
+            ((org.telegram.ui.Cells.z8) view).setText(org.telegram.messenger.g0.I2(org.telegram.messenger.g0.S2(org.telegram.messenger.id.M0(2131743433, null), org.telegram.ui.ActionBar.k6.L6, 0, new gp(this, 3), null), true, org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(1.0f)));
         }
     }
 
@@ -96,7 +96,7 @@ public final class nq extends oj0 {
         String a02;
         String a03;
         Context context = viewGroup.getContext();
-        oq oqVar = this.f36401c;
+        oq oqVar = this.f36417c;
         if (i7 != 1) {
             if (i7 != 2) {
                 if (i7 != 3) {
@@ -111,9 +111,9 @@ public final class nq extends oj0 {
                     TextView textView = new TextView(context);
                     textView.setTypeface(org.telegram.messenger.g0.o());
                     if (z9) {
-                        a02 = org.telegram.messenger.hd.a0(null, null, 2131744904, new Object[0]);
+                        a02 = org.telegram.messenger.id.a0(null, null, 2131744906, new Object[0]);
                     } else {
-                        a02 = org.telegram.messenger.hd.a0(null, null, 2131744901, new Object[0]);
+                        a02 = org.telegram.messenger.id.a0(null, null, 2131744903, new Object[0]);
                     }
                     textView.setText(a02);
                     textView.setTextSize(1, 20.0f);
@@ -122,11 +122,11 @@ public final class nq extends oj0 {
                     TextView textView2 = new TextView(context);
                     textView2.setTextSize(1, 14.0f);
                     textView2.setGravity(1);
-                    org.telegram.ui.ActionBar.r6.V(textView2, org.telegram.ui.ActionBar.k6.f27957j5, null);
+                    org.telegram.ui.ActionBar.r6.V(textView2, org.telegram.ui.ActionBar.k6.f27960j5, null);
                     if (z9) {
-                        a03 = org.telegram.messenger.hd.a0(null, null, 2131743459, new Object[0]);
+                        a03 = org.telegram.messenger.id.a0(null, null, 2131743461, new Object[0]);
                     } else {
-                        a03 = org.telegram.messenger.hd.a0(null, null, 2131743334, new Object[0]);
+                        a03 = org.telegram.messenger.id.a0(null, null, 2131743336, new Object[0]);
                     }
                     textView2.setText(a03);
                     textView2.setLineSpacing(textView2.getLineSpacingExtra(), textView2.getLineSpacingMultiplier() * 1.1f);
@@ -140,7 +140,7 @@ public final class nq extends oj0 {
             }
         } else {
             org.telegram.ui.Cells.z8 z8Var = new org.telegram.ui.Cells.z8(context);
-            org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27793a7, z8Var, oqVar.I0);
+            org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27796a7, z8Var, oqVar.I0);
             z8Var.setTopPadding(17);
             z8Var.setBottomPadding(17);
             frameLayout = z8Var;

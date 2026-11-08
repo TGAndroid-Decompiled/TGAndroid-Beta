@@ -1,38 +1,101 @@
 package zh;
 
+import android.app.Activity;
+import android.content.Context;
+import android.text.InputFilter;
+import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.messenger.hd;
-import org.telegram.ui.Components.hc;
-public final class i implements View.OnClickListener {
-    public final int f60267a;
-    public final m f60268b;
+import android.widget.LinearLayout;
+import bi.zd;
+import c8.ha;
+import fi.h7;
+import org.telegram.messenger.id;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.Cells.z5;
+import org.telegram.ui.LaunchActivity;
+public final class i extends zd {
+    public final l m0;
 
-    public i(m mVar, int i7) {
-        this.f60267a = i7;
-        this.f60268b = mVar;
+    public i(l lVar, Context context, f6 f6Var) {
+        super(context, f6Var);
+        this.m0 = lVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i7 = this.f60267a;
-        m mVar = this.f60268b;
-        switch (i7) {
-            case 0:
-                mVar.dismiss();
-                return;
-            case 1:
-                int value = mVar.U1.getValue();
-                int e10 = (int) mVar.d2.e();
-                if (value < e10) {
-                    org.telegram.messenger.g0.F3(mVar.S1);
-                    org.telegram.messenger.camera.q.s(hd.G(e10, "Gift2AuctionMinimumBidIncreased", new Object[0]), new hc(mVar.f28619c, mVar.I0), 2131624067, 36);
-                    return;
-                }
-                mVar.g1(value);
-                return;
-            default:
-                mVar.U1.setValueAnimated((int) mVar.d2.e());
-                return;
+    public final boolean d(float f10) {
+        if (getProgress() <= 0.99d && f10 <= getMeasuredWidth() * 0.9f) {
+            return false;
         }
+        l lVar = this.m0;
+        Context context = lVar.getContext();
+        Activity W = org.telegram.messenger.g0.W(context);
+        org.telegram.ui.ActionBar.f2 Q = LaunchActivity.Q();
+        if (W != null) {
+            W.getCurrentFocus();
+        }
+        View[] viewArr = new View[1];
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, lVar.I0);
+        String M0 = id.M0(2131750344, null);
+        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
+        u1Var.R = M0;
+        u1Var.T = id.a0(null, null, 2131750343, Integer.valueOf(lVar.d2.d.gifts_per_round));
+        z5 z5Var = new z5(context, lVar.I0, jg.g.h(context, 2131232752));
+        z5Var.setTextSize(1, 18.0f);
+        r6.V(z5Var, k6.f27960j5, lVar.I0);
+        r6.m(z5Var, 34, k6.Li, lVar.I0);
+        z5Var.setHintText(id.M0(2131750342, null));
+        z5Var.setFocusable(true);
+        z5Var.setInputType(2);
+        z5Var.setFilters(new InputFilter[]{new InputFilter.LengthFilter(9)});
+        r6.G(z5Var, k6.f27981k6, k6.f27999l6, k6.f28073p7, lVar.I0);
+        z5Var.setImeOptions(268435462);
+        z5Var.setBackgroundDrawable(null);
+        z5Var.f31351k1 = org.telegram.messenger.g0.L(24.0f);
+        z5Var.setPadding(org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(6.0f), 0, org.telegram.messenger.g0.L(6.0f));
+        z5Var.addTextChangedListener(new h7(11, lVar, viewArr));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        linearLayout.addView(z5Var, ha.k(24.0f, 0.0f, 24.0f, 10.0f, -1, -2));
+        alertDialog$Builder.c();
+        alertDialog$Builder.o(linearLayout);
+        u1Var.f28551a = org.telegram.messenger.g0.L(300.0f);
+        alertDialog$Builder.k(id.M0(2131750346, null), new org.telegram.ui.web.a0(26, lVar, z5Var));
+        alertDialog$Builder.h(id.M0(2131752589, null), new z3.j(1));
+        org.telegram.ui.ActionBar.u1[] u1VarArr = {u1Var};
+        if (Q != null) {
+            org.telegram.messenger.g0.Z2(W, Q.getClassGuid());
+        }
+        u1VarArr[0].setOnDismissListener(new hi.o0(z5Var, Q, W, 5));
+        u1VarArr[0].setOnShowListener(new kg.r(z5Var, 2));
+        u1VarArr[0].show();
+        View d = u1VarArr[0].d(-1);
+        viewArr[0] = d;
+        d.setAlpha(0.6f);
+        u1VarArr[0].f28574j0 = false;
+        z5Var.setSelection(z5Var.getText().length());
+        return true;
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0 && motionEvent.getY() > getMeasuredHeight() - org.telegram.messenger.g0.L(48.0f)) {
+            return false;
+        }
+        super.dispatchTouchEvent(motionEvent);
+        return true;
+    }
+
+    @Override
+    public final void e(int i7) {
+        l.d1(this.m0, i7);
+    }
+
+    @Override
+    public final void setValue(int i7) {
+        super.setValue(i7);
+        l.d1(this.m0, i7);
     }
 }

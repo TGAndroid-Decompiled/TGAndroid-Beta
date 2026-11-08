@@ -11,7 +11,7 @@ public final class j10 extends v4.k {
         c40 c40Var = this.F;
         c40Var.H1.invalidate();
         c40Var.R3.invalidate();
-        c40Var.f28616b.invalidate();
+        c40Var.f28619b.invalidate();
         c40.P0(c40Var);
     }
 }

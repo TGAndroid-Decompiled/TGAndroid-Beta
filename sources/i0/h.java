@@ -12,13 +12,13 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
 public class h extends f {
-    public final Class f15132f;
-    public final Constructor f15133g;
+    public final Class f15135f;
+    public final Constructor f15136g;
     public final Method h;
-    public final Method f15134i;
-    public final Method f15135j;
-    public final Method f15136k;
-    public final Method f15137l;
+    public final Method f15137i;
+    public final Method f15138j;
+    public final Method f15139k;
+    public final Method f15140l;
 
     public h() {
         Method method;
@@ -47,13 +47,13 @@ public class h extends f {
             method4 = null;
             method5 = null;
         }
-        this.f15132f = cls;
-        this.f15133g = constructor;
+        this.f15135f = cls;
+        this.f15136g = constructor;
         this.h = method2;
-        this.f15134i = method3;
-        this.f15135j = method4;
-        this.f15136k = method5;
-        this.f15137l = method;
+        this.f15137i = method3;
+        this.f15138j = method4;
+        this.f15139k = method5;
+        this.f15140l = method;
     }
 
     public static Method l(Class cls) {
@@ -70,7 +70,7 @@ public class h extends f {
         }
         if (method != null) {
             try {
-                obj = this.f15133g.newInstance(null);
+                obj = this.f15136g.newInstance(null);
             } catch (IllegalAccessException | InstantiationException | InvocationTargetException unused) {
                 obj = null;
             }
@@ -84,7 +84,7 @@ public class h extends f {
                         Context context2 = context;
                         if (!i(context2, obj, fVar.f14013a, fVar.f14016e, fVar.f14014b, fVar.f14015c ? 1 : 0, FontVariationAxis.fromFontVariationSettings(fVar.d))) {
                             try {
-                                this.f15136k.invoke(obj, null);
+                                this.f15139k.invoke(obj, null);
                                 break;
                             } catch (IllegalAccessException | InvocationTargetException unused2) {
                             }
@@ -116,14 +116,14 @@ public class h extends f {
         }
         if (method != null) {
             try {
-                obj = this.f15133g.newInstance(null);
+                obj = this.f15136g.newInstance(null);
             } catch (IllegalAccessException | InstantiationException | InvocationTargetException unused) {
                 obj = null;
             }
             if (obj != null) {
                 if (!i(context, obj, str, 0, -1, -1, null)) {
                     try {
-                        this.f15136k.invoke(obj, null);
+                        this.f15139k.invoke(obj, null);
                     } catch (IllegalAccessException | InvocationTargetException unused2) {
                     }
                 } else if (k(obj)) {
@@ -145,9 +145,9 @@ public class h extends f {
 
     public Typeface j(Object obj) {
         try {
-            Object newInstance = Array.newInstance(this.f15132f, 1);
+            Object newInstance = Array.newInstance(this.f15135f, 1);
             Array.set(newInstance, 0, obj);
-            return (Typeface) this.f15137l.invoke(null, newInstance, -1, -1);
+            return (Typeface) this.f15140l.invoke(null, newInstance, -1, -1);
         } catch (IllegalAccessException | InvocationTargetException unused) {
             return null;
         }
@@ -155,7 +155,7 @@ public class h extends f {
 
     public final boolean k(Object obj) {
         try {
-            return ((Boolean) this.f15135j.invoke(obj, null)).booleanValue();
+            return ((Boolean) this.f15138j.invoke(obj, null)).booleanValue();
         } catch (IllegalAccessException | InvocationTargetException unused) {
             return false;
         }

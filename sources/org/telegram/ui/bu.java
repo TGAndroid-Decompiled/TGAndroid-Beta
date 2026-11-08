@@ -3,18 +3,18 @@ package org.telegram.ui;
 import android.app.Activity;
 import android.content.Context;
 public final class bu implements Runnable {
-    public final int f44486a;
-    public final Context f44487b;
+    public final int f44489a;
+    public final Context f44490b;
 
     public bu(Context context, int i7) {
-        this.f44486a = i7;
-        this.f44487b = context;
+        this.f44489a = i7;
+        this.f44490b = context;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f44486a;
-        Context context = this.f44487b;
+        int i7 = this.f44489a;
+        Context context = this.f44490b;
         switch (i7) {
             case 0:
                 org.telegram.ui.ActionBar.k6.K(context, false);
@@ -48,7 +48,7 @@ public final class bu implements Runnable {
                 vf.c.t(context, "https://promote.telegram.org/guidelines");
                 return;
             default:
-                vf.c.t(context, org.telegram.messenger.hd.M0(2131742944, null));
+                vf.c.t(context, org.telegram.messenger.id.M0(2131742946, null));
                 return;
         }
     }

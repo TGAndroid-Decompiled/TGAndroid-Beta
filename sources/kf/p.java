@@ -5,20 +5,20 @@ import java.io.DataInputStream;
 import java.io.EOFException;
 import java.io.IOException;
 public abstract class p {
-    public final int f17277a;
-    public Object f17278b;
-    public Object f17279c;
+    public final int f17280a;
+    public Object f17281b;
+    public Object f17282c;
     public Object d;
-    public Object f17280e;
-    public Object f17281f;
+    public Object f17283e;
+    public Object f17284f;
 
     public p() {
-        this.f17277a = 0;
-        this.f17278b = null;
-        this.f17279c = null;
+        this.f17280a = 0;
+        this.f17281b = null;
+        this.f17282c = null;
         this.d = null;
-        this.f17280e = null;
-        this.f17281f = null;
+        this.f17283e = null;
+        this.f17284f = null;
     }
 
     public abstract void a(b1 b1Var);
@@ -28,23 +28,23 @@ public abstract class p {
         pVar.e(this);
         p pVar2 = (p) this.d;
         if (pVar2 != null) {
-            pVar2.f17281f = pVar;
-            pVar.f17280e = pVar2;
+            pVar2.f17284f = pVar;
+            pVar.f17283e = pVar2;
             this.d = pVar;
             return;
         }
-        this.f17279c = pVar;
+        this.f17282c = pVar;
         this.d = pVar;
     }
 
     public sf.b c() {
         uf.a aVar;
-        ab.d dVar = (ab.d) this.f17278b;
-        DataInputStream dataInputStream = (DataInputStream) this.f17280e;
-        sf.b bVar = (sf.b) this.f17281f;
+        ab.d dVar = (ab.d) this.f17281b;
+        DataInputStream dataInputStream = (DataInputStream) this.f17283e;
+        sf.b bVar = (sf.b) this.f17284f;
         if (bVar != null) {
             while (bVar.i() > 0) {
-                if (((uf.a) ((ab.d) bVar.f17278b)).skip(bVar.i()) == 0) {
+                if (((uf.a) ((ab.d) bVar.f17281b)).skip(bVar.i()) == 0) {
                     throw new EOFException("Cannot skip atom");
                 }
             }
@@ -59,7 +59,7 @@ public abstract class p {
             aVar = new uf.a(dVar, 8L, readInt - 8);
         }
         sf.b bVar2 = new sf.b(aVar, this, str, 0);
-        this.f17281f = bVar2;
+        this.f17284f = bVar2;
         return bVar2;
     }
 
@@ -73,7 +73,7 @@ public abstract class p {
     }
 
     public void e(p pVar) {
-        this.f17278b = pVar;
+        this.f17281b = pVar;
     }
 
     public String f() {
@@ -81,31 +81,31 @@ public abstract class p {
     }
 
     public void g() {
-        p pVar = (p) this.f17280e;
+        p pVar = (p) this.f17283e;
         if (pVar != null) {
-            pVar.f17281f = (p) this.f17281f;
+            pVar.f17284f = (p) this.f17284f;
         } else {
-            p pVar2 = (p) this.f17278b;
+            p pVar2 = (p) this.f17281b;
             if (pVar2 != null) {
-                pVar2.f17279c = (p) this.f17281f;
+                pVar2.f17282c = (p) this.f17284f;
             }
         }
-        p pVar3 = (p) this.f17281f;
+        p pVar3 = (p) this.f17284f;
         if (pVar3 != null) {
-            pVar3.f17280e = pVar;
+            pVar3.f17283e = pVar;
         } else {
-            p pVar4 = (p) this.f17278b;
+            p pVar4 = (p) this.f17281b;
             if (pVar4 != null) {
                 pVar4.d = pVar;
             }
         }
-        this.f17278b = null;
-        this.f17281f = null;
-        this.f17280e = null;
+        this.f17281b = null;
+        this.f17284f = null;
+        this.f17283e = null;
     }
 
     public String toString() {
-        switch (this.f17277a) {
+        switch (this.f17280a) {
             case 0:
                 return getClass().getSimpleName() + "{" + f() + "}";
             default:
@@ -114,10 +114,10 @@ public abstract class p {
     }
 
     public p(ab.d dVar, p pVar, String str) {
-        this.f17277a = 1;
-        this.f17278b = dVar;
-        this.f17279c = pVar;
+        this.f17280a = 1;
+        this.f17281b = dVar;
+        this.f17282c = pVar;
         this.d = str;
-        this.f17280e = new DataInputStream(dVar);
+        this.f17283e = new DataInputStream(dVar);
     }
 }

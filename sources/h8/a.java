@@ -23,7 +23,7 @@ public final class a extends Binder implements j, IInterface {
     }
 
     @Override
-    public void G(int i7, boolean z9) {
+    public void P(int i7, boolean z9) {
         switch (this.f14274a) {
             case 1:
                 k8.a(new Status(i7, null, null, null), Boolean.valueOf(z9), this.f14275b);
@@ -34,10 +34,10 @@ public final class a extends Binder implements j, IInterface {
     }
 
     @Override
-    public void T(Status status, y8.i iVar) {
+    public void d0(Status status, y8.i iVar) {
         switch (this.f14274a) {
             case 0:
-                int i7 = y8.a.f59167c;
+                int i7 = y8.a.f59256c;
                 boolean b10 = status.b();
                 TaskCompletionSource taskCompletionSource = this.f14275b;
                 if (b10) {
@@ -47,17 +47,6 @@ public final class a extends Binder implements j, IInterface {
                     taskCompletionSource.setException(m.l(status));
                     return;
                 }
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public void g0(Status status, boolean z9) {
-        switch (this.f14274a) {
-            case 1:
-                k8.a(status, Boolean.valueOf(z9), this.f14275b);
-                return;
             default:
                 return;
         }
@@ -91,7 +80,7 @@ public final class a extends Binder implements j, IInterface {
                     z9 = true;
                 }
                 Bundle bundle3 = (Bundle) c.a(parcel, Bundle.CREATOR);
-                G(readInt, z9);
+                P(readInt, z9);
                 return true;
             case 4:
                 parcel.readInt();
@@ -121,7 +110,7 @@ public final class a extends Binder implements j, IInterface {
                     z9 = true;
                 }
                 Bundle bundle8 = (Bundle) c.a(parcel, Bundle.CREATOR);
-                g0(status3, z9);
+                x0(status3, z9);
                 return true;
             case 10:
                 Status status4 = (Status) c.a(parcel, Status.CREATOR);
@@ -143,7 +132,7 @@ public final class a extends Binder implements j, IInterface {
                 return true;
             case 14:
                 Bundle bundle13 = (Bundle) c.a(parcel, Bundle.CREATOR);
-                T((Status) c.a(parcel, Status.CREATOR), (y8.i) c.a(parcel, y8.i.CREATOR));
+                d0((Status) c.a(parcel, Status.CREATOR), (y8.i) c.a(parcel, y8.i.CREATOR));
                 return true;
             case 15:
                 Status status8 = (Status) c.a(parcel, Status.CREATOR);
@@ -173,16 +162,27 @@ public final class a extends Binder implements j, IInterface {
     }
 
     @Override
+    public void x0(Status status, boolean z9) {
+        switch (this.f14274a) {
+            case 1:
+                k8.a(status, Boolean.valueOf(z9), this.f14275b);
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
     public final IBinder asBinder() {
         return this;
     }
 
-    public final void H0(Status status, boolean z9) {
+    public final void h1(Status status, boolean z9) {
     }
 
-    public final void I0(Status status, y8.i iVar) {
+    public final void i1(Status status, y8.i iVar) {
     }
 
-    public final void J0(int i7, boolean z9) {
+    public final void j1(int i7, boolean z9) {
     }
 }

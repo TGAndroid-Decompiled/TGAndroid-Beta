@@ -19,9 +19,9 @@ public final class n3 implements View.OnLayoutChangeListener {
                 return;
             case 1:
                 ng.c cVar = (ng.c) this.f12476b;
-                TextView textView = cVar.f20543c;
+                TextView textView = cVar.f20546c;
                 textView.setPivotX(textView.getMeasuredWidth() * 0.7f);
-                TextView textView2 = cVar.f20542b;
+                TextView textView2 = cVar.f20545b;
                 textView2.setPivotX(textView2.getMeasuredWidth() * 0.7f);
                 return;
             default:

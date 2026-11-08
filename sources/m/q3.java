@@ -25,26 +25,26 @@ import org.telegram.messenger.ha;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 public final class q3 {
-    public Object f19225a;
-    public Object f19226b;
-    public Object f19227c;
+    public Object f19228a;
+    public Object f19229b;
+    public Object f19230c;
     public Object d;
-    public Object f19228e;
-    public Object f19229f;
-    public Object f19230g;
+    public Object f19231e;
+    public Object f19232f;
+    public Object f19233g;
 
     public q3(Set set, a0.f fVar, String str, String str2, q8.a aVar) {
         Set unmodifiableSet = set == null ? Collections.EMPTY_SET : DesugarCollections.unmodifiableSet(set);
-        this.f19225a = unmodifiableSet;
+        this.f19228a = unmodifiableSet;
         a0.f fVar2 = fVar == null ? Collections.EMPTY_MAP : fVar;
-        this.f19227c = fVar2;
+        this.f19230c = fVar2;
         this.d = str;
-        this.f19228e = str2;
-        this.f19229f = aVar == null ? q8.a.f53952a : aVar;
+        this.f19231e = str2;
+        this.f19232f = aVar == null ? q8.a.f54045a : aVar;
         HashSet hashSet = new HashSet(unmodifiableSet);
         Iterator it = fVar2.values().iterator();
         if (!it.hasNext()) {
-            this.f19226b = DesugarCollections.unmodifiableSet(hashSet);
+            this.f19229b = DesugarCollections.unmodifiableSet(hashSet);
         } else {
             it.next().getClass();
             throw new ClassCastException();
@@ -52,9 +52,9 @@ public final class q3 {
     }
 
     public static void a(FrameLayout frameLayout) {
-        n6.d dVar = n6.d.f20495e;
+        n6.d dVar = n6.d.f20498e;
         Context context = frameLayout.getContext();
-        int d = dVar.d(context, n6.e.f20497a);
+        int d = dVar.d(context, n6.e.f20500a);
         String b10 = q6.s.b(context, d);
         String c10 = q6.s.c(context, d);
         LinearLayout linearLayout = new LinearLayout(frameLayout.getContext());
@@ -77,32 +77,32 @@ public final class q3 {
     }
 
     public void b(a7.c cVar) {
-        if (((h6.m) this.f19226b) != null) {
+        if (((h6.m) this.f19229b) != null) {
             cVar.b();
             return;
         }
-        if (((LinkedList) this.f19227c) == null) {
-            this.f19227c = new LinkedList();
+        if (((LinkedList) this.f19230c) == null) {
+            this.f19230c = new LinkedList();
         }
-        ((LinkedList) this.f19227c).add(cVar);
+        ((LinkedList) this.f19230c).add(cVar);
         cb.c cVar2 = (cb.c) this.d;
-        this.f19229f = cVar2;
-        ArrayList arrayList = (ArrayList) this.f19230g;
-        Context context = (Context) this.f19225a;
-        if (cVar2 != null && ((h6.m) this.f19226b) == null) {
+        this.f19232f = cVar2;
+        ArrayList arrayList = (ArrayList) this.f19233g;
+        Context context = (Context) this.f19228a;
+        if (cVar2 != null && ((h6.m) this.f19229b) == null) {
             try {
                 synchronized (k8.b.class) {
                     k8.b.a(context);
                 }
-                l8.f Y0 = c8.d1.a(context).Y0(new a7.b(context));
-                if (Y0 != null) {
-                    ((cb.c) this.f19229f).v(new h6.m((x5) this.f19228e, Y0));
+                l8.f y12 = c8.d1.a(context).y1(new a7.b(context));
+                if (y12 != null) {
+                    ((cb.c) this.f19232f).v(new h6.m((x5) this.f19231e, y12));
                     int size = arrayList.size();
                     int i7 = 0;
                     while (i7 < size) {
                         Object obj = arrayList.get(i7);
                         i7++;
-                        ((h6.m) this.f19226b).t((ha) obj);
+                        ((h6.m) this.f19229b).t((ha) obj);
                     }
                     arrayList.clear();
                 }
@@ -115,27 +115,27 @@ public final class q3 {
 
     public q3(String str, ga.d dVar, ba.e eVar) {
         this.d = new ab.q(this, false);
-        this.f19228e = new ab.q(this, true);
-        this.f19229f = new f5.u(3, (short) 0);
-        this.f19230g = new AtomicMarkableReference(null, false);
-        this.f19227c = str;
-        this.f19225a = new ca.h(dVar);
-        this.f19226b = eVar;
+        this.f19231e = new ab.q(this, true);
+        this.f19232f = new f5.u(3, (short) 0);
+        this.f19233g = new AtomicMarkableReference(null, false);
+        this.f19230c = str;
+        this.f19228a = new ca.h(dVar);
+        this.f19229b = eVar;
     }
 
     public q3(Context context, f6 f6Var) {
         TextPaint textPaint = new TextPaint(1);
-        this.f19225a = textPaint;
+        this.f19228a = textPaint;
         Paint paint = new Paint();
-        this.f19226b = paint;
-        this.f19228e = new Paint();
-        this.f19229f = new SparseArray();
-        this.f19230g = new HashMap();
+        this.f19229b = paint;
+        this.f19231e = new Paint();
+        this.f19232f = new SparseArray();
+        this.f19233g = new HashMap();
         textPaint.setTextSize(org.telegram.messenger.g0.L(12.0f));
         textPaint.setColor(-1);
         textPaint.setTypeface(org.telegram.messenger.g0.o());
         Drawable mutate = context.getDrawable(2131232549).mutate();
-        this.f19227c = mutate;
+        this.f19230c = mutate;
         mutate.setBounds(0, 0, mutate.getIntrinsicWidth(), mutate.getIntrinsicHeight());
         Drawable mutate2 = context.getDrawable(2131231185).mutate();
         this.d = mutate2;

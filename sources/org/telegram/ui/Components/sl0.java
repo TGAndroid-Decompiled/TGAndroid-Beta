@@ -5,8 +5,8 @@ public final class sl0 extends av0 {
     public final int K;
     public final org.telegram.ui.fw L;
 
-    public sl0(org.telegram.ui.fw fwVar, Context context, lz lzVar, int i7) {
-        super(context, lzVar, 1, null);
+    public sl0(org.telegram.ui.fw fwVar, Context context, mz mzVar, int i7) {
+        super(context, mzVar, 1, null);
         this.K = i7;
         this.L = fwVar;
     }

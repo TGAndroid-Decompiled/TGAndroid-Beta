@@ -99,11 +99,11 @@ public final class o6 {
                 return this.h;
             }
         }
-        Typeface typeface = org.telegram.messenger.g0.f22516a;
+        Typeface typeface = org.telegram.messenger.g0.f22535a;
         if (arrayList2.isEmpty()) {
             obj = null;
         } else {
-            obj = arrayList2.get(Math.abs(((int) Utilities.f21332c.nextLong()) % arrayList2.size()));
+            obj = arrayList2.get(Math.abs(((int) Utilities.f21335c.nextLong()) % arrayList2.size()));
         }
         int intValue = ((Integer) obj).intValue();
         this.f4472n = intValue;
@@ -139,7 +139,7 @@ public final class o6 {
             j3 = i7;
         }
         org.telegram.ui.Components.w5 w5Var = this.f4471m;
-        w5Var.f39858g = j3;
+        w5Var.f39808g = j3;
         if (i10 >= i11) {
             z10 = true;
         } else {

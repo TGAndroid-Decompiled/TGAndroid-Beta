@@ -23,7 +23,7 @@ public final class mi0 extends org.telegram.ui.Components.w31 {
         org.telegram.ui.ActionBar.f6 f6Var = ni0Var.d;
         FrameLayout frameLayout = ni0Var.f48050e;
         org.telegram.ui.Components.l9 l9Var = ni0Var.f48051f;
-        ni0Var.f48055w = passkey.f27160id;
+        ni0Var.f48055w = passkey.f27163id;
         long j3 = passkey.software_emoji_id;
         if (j3 != 0) {
             l9Var.setAnimatedEmojiDrawable(org.telegram.ui.Components.i5.m(ni0Var.f48049c, j3, null, 3));
@@ -43,15 +43,15 @@ public final class mi0 extends org.telegram.ui.Components.w31 {
             l9Var.setAnimatedEmojiDrawable(null);
         }
         if (TextUtils.isEmpty(passkey.name)) {
-            textView2.setText(org.telegram.messenger.hd.M0(2131747627, null));
+            textView2.setText(org.telegram.messenger.id.M0(2131747629, null));
         } else {
             textView2.setText(passkey.name);
         }
         int i10 = passkey.last_usage_date;
         if (i10 != 0) {
-            textView.setText(org.telegram.messenger.hd.a0(null, null, 2131747633, org.telegram.messenger.hd.x(i10, false)));
+            textView.setText(org.telegram.messenger.id.a0(null, null, 2131747635, org.telegram.messenger.id.x(i10, false)));
         } else {
-            textView.setText(org.telegram.messenger.hd.a0(null, null, 2131747646, org.telegram.messenger.hd.x(passkey.date, false)));
+            textView.setText(org.telegram.messenger.id.a0(null, null, 2131747648, org.telegram.messenger.id.x(passkey.date, false)));
         }
         ni0Var.f48053r.setOnClickListener(onClickListener);
         ni0Var.f48054s = z9;

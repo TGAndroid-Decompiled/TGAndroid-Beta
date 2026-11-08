@@ -10,20 +10,20 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 public final class da0 extends Drawable {
-    public final int f32848a;
-    public boolean f32849b;
-    public Object f32850c;
+    public final int f32856a;
+    public boolean f32857b;
+    public Object f32858c;
     public Object d;
-    public Object f32851e;
+    public Object f32859e;
 
     public da0(int i7) {
-        this.f32848a = i7;
+        this.f32856a = i7;
         switch (i7) {
             case 1:
-                this.f32850c = new Paint(1);
+                this.f32858c = new Paint(1);
                 Paint paint = new Paint(1);
                 this.d = paint;
-                this.f32851e = new Matrix();
+                this.f32859e = new Matrix();
                 paint.setStyle(Paint.Style.STROKE);
                 paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, org.telegram.messenger.g0.L(28.0f), new int[]{1308622847, 0, 452984831}, new float[]{0.0f, 0.5f, 1.0f}, Shader.TileMode.CLAMP));
                 return;
@@ -33,21 +33,21 @@ public final class da0 extends Drawable {
     }
 
     public void b(int i7, int i10) {
-        ((Paint) this.f32850c).setShader(new LinearGradient(0.0f, 0.0f, 0.0f, org.telegram.messenger.g0.L(28.0f), new int[]{i7, i10}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+        ((Paint) this.f32858c).setShader(new LinearGradient(0.0f, 0.0f, 0.0f, org.telegram.messenger.g0.L(28.0f), new int[]{i7, i10}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
     }
 
     @Override
     public final void draw(Canvas canvas) {
         zg0 zg0Var;
-        switch (this.f32848a) {
+        switch (this.f32856a) {
             case 0:
                 zg0 zg0Var2 = (zg0) this.d;
-                zg0 zg0Var3 = (zg0) this.f32850c;
+                zg0 zg0Var3 = (zg0) this.f32858c;
                 Rect rect = org.telegram.messenger.g0.Q;
                 rect.set(getBounds().centerX() - org.telegram.messenger.g0.L(12.0f), getBounds().centerY() - org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f) + getBounds().centerX(), org.telegram.messenger.g0.L(12.0f) + getBounds().centerY());
-                if (((zg0) this.f32851e).A()) {
-                    zg0 zg0Var4 = (zg0) this.f32851e;
-                    boolean z9 = this.f32849b;
+                if (((zg0) this.f32859e).A()) {
+                    zg0 zg0Var4 = (zg0) this.f32859e;
+                    boolean z9 = this.f32857b;
                     if (z9) {
                         zg0Var = zg0Var3;
                     } else {
@@ -57,23 +57,23 @@ public final class da0 extends Drawable {
                         if (z9) {
                             zg0Var2 = zg0Var3;
                         }
-                        this.f32851e = zg0Var2;
-                        zg0Var2.M(zg0Var2.f40976e[0] - 1);
+                        this.f32859e = zg0Var2;
+                        zg0Var2.M(zg0Var2.f40995e[0] - 1);
                     }
                 }
-                ((zg0) this.f32851e).setBounds(rect);
-                ((zg0) this.f32851e).draw(canvas);
+                ((zg0) this.f32859e).setBounds(rect);
+                ((zg0) this.f32859e).draw(canvas);
                 return;
             default:
                 Paint paint = (Paint) this.d;
                 float L = org.telegram.messenger.g0.L(10.0f);
                 RectF rectF = org.telegram.messenger.g0.P;
                 rectF.set(getBounds());
-                Matrix matrix = (Matrix) this.f32851e;
+                Matrix matrix = (Matrix) this.f32859e;
                 matrix.reset();
                 matrix.postTranslate(rectF.left, rectF.top);
-                canvas.drawRoundRect(rectF, L, L, (Paint) this.f32850c);
-                if (this.f32849b) {
+                canvas.drawRoundRect(rectF, L, L, (Paint) this.f32858c);
+                if (this.f32857b) {
                     float L2 = org.telegram.messenger.g0.L(1.0f);
                     paint.setStrokeWidth(L2);
                     matrix.reset();
@@ -89,7 +89,7 @@ public final class da0 extends Drawable {
 
     @Override
     public int getIntrinsicHeight() {
-        switch (this.f32848a) {
+        switch (this.f32856a) {
             case 0:
                 return org.telegram.messenger.g0.L(24.0f);
             default:
@@ -99,7 +99,7 @@ public final class da0 extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        switch (this.f32848a) {
+        switch (this.f32856a) {
             case 0:
                 return org.telegram.messenger.g0.L(24.0f);
             default:
@@ -109,7 +109,7 @@ public final class da0 extends Drawable {
 
     @Override
     public final int getOpacity() {
-        switch (this.f32848a) {
+        switch (this.f32856a) {
             case 0:
                 return -2;
             default:
@@ -119,9 +119,9 @@ public final class da0 extends Drawable {
 
     @Override
     public final void setAlpha(int i7) {
-        switch (this.f32848a) {
+        switch (this.f32856a) {
             case 0:
-                ((zg0) this.f32850c).setAlpha(i7);
+                ((zg0) this.f32858c).setAlpha(i7);
                 ((zg0) this.d).setAlpha(i7);
                 return;
             default:
@@ -131,9 +131,9 @@ public final class da0 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f32848a) {
+        switch (this.f32856a) {
             case 0:
-                ((zg0) this.f32850c).setColorFilter(colorFilter);
+                ((zg0) this.f32858c).setColorFilter(colorFilter);
                 ((zg0) this.d).setColorFilter(colorFilter);
                 return;
             default:

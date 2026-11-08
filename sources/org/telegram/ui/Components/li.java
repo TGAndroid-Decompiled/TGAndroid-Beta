@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.view.View;
 public final class li extends w31 {
-    public static final int f35684b = 0;
+    public static final int f35702b = 0;
 
     static {
         w31.h(new w31());
@@ -12,10 +12,10 @@ public final class li extends w31 {
     @Override
     public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
         mi miVar = (mi) view;
-        CharSequence charSequence = x31Var.f40159l;
-        CharSequence charSequence2 = x31Var.f40160m;
-        miVar.f35958b.setText(charSequence);
-        miVar.f35959c.setText(charSequence2);
+        CharSequence charSequence = x31Var.f40180l;
+        CharSequence charSequence2 = x31Var.f40181m;
+        miVar.f35986b.setText(charSequence);
+        miVar.f35987c.setText(charSequence2);
     }
 
     @Override

@@ -1,73 +1,30 @@
 package org.telegram.ui.Components;
 
 import android.animation.ValueAnimator;
-import android.view.View;
-public final class yy extends v4.k {
-    public final ez F;
+public final class yy implements ValueAnimator.AnimatorUpdateListener {
+    public final int f40823a;
+    public final dz f40824b;
 
-    public yy(ez ezVar) {
-        this.F = ezVar;
+    public yy(dz dzVar, int i7) {
+        this.f40823a = i7;
+        this.f40824b = dzVar;
     }
 
     @Override
-    public final void C(v4.d1 d1Var, v4.j jVar) {
-        super.C(d1Var, jVar);
-        View view = d1Var.f56951a;
-        if (view instanceof cz) {
-            cz czVar = (cz) view;
-            if (czVar.f32728x) {
-                ValueAnimator valueAnimator = czVar.f32707a;
-                if (valueAnimator != null) {
-                    valueAnimator.removeAllListeners();
-                    czVar.f32707a.removeAllUpdateListeners();
-                    czVar.f32707a.cancel();
-                }
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                ofFloat.addUpdateListener(new xy(czVar, 0));
-                ofFloat.addListener(new z5(czVar, 26));
-                czVar.f32707a = ofFloat;
-                ofFloat.setDuration(this.f57024e);
-                ofFloat.start();
-            }
-        }
-    }
-
-    @Override
-    public final void f(v4.d1 d1Var) {
-        super.f(d1Var);
-        View view = d1Var.f56951a;
-        view.setTranslationX(0.0f);
-        if (view instanceof cz) {
-            ((cz) view).a();
-        }
-    }
-
-    @Override
-    public final void m() {
-        boolean isEmpty = this.f57008p.isEmpty();
-        boolean isEmpty2 = this.f57010r.isEmpty();
-        boolean isEmpty3 = this.f57011s.isEmpty();
-        boolean isEmpty4 = this.f57009q.isEmpty();
-        if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.1f);
-            ofFloat.addUpdateListener(new e6(this, 23));
-            ofFloat.setDuration(this.f57024e);
-            ofFloat.start();
-        }
-        super.m();
-    }
-
-    @Override
-    public final boolean r(v4.d1 r34, e2.r0 r35, int r36, int r37, int r38, int r39) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.yy.r(v4.d1, e2.r0, int, int, int, int):boolean");
-    }
-
-    @Override
-    public final void x(v4.d1 d1Var) {
-        d1Var.f56951a.setTranslationX(0.0f);
-        View view = d1Var.f56951a;
-        if (view instanceof cz) {
-            ((cz) view).a();
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f40823a) {
+            case 0:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                dz dzVar = this.f40824b;
+                dzVar.f33137y = floatValue;
+                dzVar.invalidate();
+                return;
+            default:
+                dz dzVar2 = this.f40824b;
+                dzVar2.getClass();
+                dzVar2.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                dzVar2.invalidate();
+                return;
         }
     }
 }

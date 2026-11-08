@@ -14,23 +14,23 @@ import bi.a4;
 import bi.t5;
 import java.util.HashSet;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.ActionBar.a6;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.uy;
-import org.telegram.ui.Components.ys;
-public abstract class d0 extends ys implements a6 {
+import org.telegram.ui.Components.vy;
+import org.telegram.ui.Components.zs;
+public abstract class d0 extends zs implements a6 {
     public final f6 Y1;
-    public final uy Z1;
+    public final vy Z1;
     public Runnable f6227a2;
     public int f6228b2;
 
     public d0(int i7, Context context, f6 f6Var) {
         super(context, f6Var);
         this.Y1 = f6Var;
-        this.Z1 = new uy(getContext(), new GestureDetector.SimpleOnGestureListener());
+        this.Z1 = new vy(getContext(), new GestureDetector.SimpleOnGestureListener());
         setBackground(null);
         setIncludeFontPadding(true);
         int i10 = Build.VERSION.SDK_INT;
@@ -44,12 +44,12 @@ public abstract class d0 extends ys implements a6 {
         setPadding(org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(12.0f));
         r6.V(this, k6.Ie, f6Var);
         r6.H(this, k6.Vc, f6Var);
-        r6.D(this, k6.f27949ig, f6Var);
+        r6.D(this, k6.f27952ig, f6Var);
         int i11 = k6.Je;
         r6.m(this, 34, i11, f6Var);
         r6.E(this, i11, f6Var);
         r6.m(this, 30, k6.Ke, f6Var);
-        r6.m(this, 36, k6.f27968jg, f6Var);
+        r6.m(this, 36, k6.f27971jg, f6Var);
         if (i10 >= 28) {
             setFallbackLineSpacing(false);
         }
@@ -94,7 +94,7 @@ public abstract class d0 extends ys implements a6 {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (((GestureDetector) this.Z1.f38750b).onTouchEvent(motionEvent) && !isLongClickable()) {
+        if (((GestureDetector) this.Z1.f39747b).onTouchEvent(motionEvent) && !isLongClickable()) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -123,7 +123,7 @@ public abstract class d0 extends ys implements a6 {
     @Override
     public final void o(ActionMode actionMode, Menu menu) {
         menu.clear();
-        menu.add(2131296494, 2131296494, 0, hd.M0(2131751599, null));
+        menu.add(2131296494, 2131296494, 0, id.M0(2131751599, null));
     }
 
     @Override
@@ -151,7 +151,7 @@ public abstract class d0 extends ys implements a6 {
         try {
             setHintColor(k6.w0(k6.Je, f6Var));
             setCursorColor(k6.w0(k6.Ke, f6Var));
-            setHandlesColor(k6.w0(k6.f27968jg, f6Var));
+            setHandlesColor(k6.w0(k6.f27971jg, f6Var));
             invalidate();
         } catch (Exception e10) {
             a8.g(e10, true);

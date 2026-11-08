@@ -3,7 +3,7 @@ package q8;
 import java.util.Arrays;
 import q6.m;
 public final class a implements com.google.android.gms.common.api.b {
-    public static final a f53952a = new Object();
+    public static final a f54045a = new Object();
 
     public final boolean equals(Object obj) {
         if (obj == this) {

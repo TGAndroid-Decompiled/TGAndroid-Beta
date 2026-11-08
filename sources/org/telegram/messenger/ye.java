@@ -7,55 +7,55 @@ import org.telegram.tgnet.TLObject;
 public final class ye extends TLObject {
     public Matrix B;
     public boolean C;
-    public float f26626a;
-    public float f26627b;
+    public float f26635a;
+    public float f26636b;
     public float d;
-    public int f26631i;
-    public int f26632j;
-    public int f26633k;
-    public boolean f26634l;
-    public float f26635m;
-    public float f26636o;
-    public Matrix f26637r;
-    public int f26638s;
-    public int f26639t;
-    public boolean f26640u;
+    public int f26640i;
+    public int f26641j;
+    public int f26642k;
+    public boolean f26643l;
+    public float f26644m;
+    public float f26645o;
+    public Matrix f26646r;
+    public int f26647s;
+    public int f26648t;
+    public boolean f26649u;
     public float v;
-    public int f26641z;
-    public float f26628c = 1.0f;
-    public float f26629e = 1.0f;
-    public float f26630f = 1.0f;
+    public int f26650z;
+    public float f26637c = 1.0f;
+    public float f26638e = 1.0f;
+    public float f26639f = 1.0f;
 
     public final ye clone() {
         ye yeVar = new ye();
-        yeVar.f26626a = this.f26626a;
-        yeVar.f26627b = this.f26627b;
-        yeVar.f26628c = this.f26628c;
+        yeVar.f26635a = this.f26635a;
+        yeVar.f26636b = this.f26636b;
+        yeVar.f26637c = this.f26637c;
         yeVar.d = this.d;
-        yeVar.f26629e = this.f26629e;
-        yeVar.f26630f = this.f26630f;
-        yeVar.f26631i = this.f26631i;
-        yeVar.f26632j = this.f26632j;
-        yeVar.f26633k = this.f26633k;
-        yeVar.f26634l = this.f26634l;
-        yeVar.f26635m = this.f26635m;
-        yeVar.f26636o = this.f26636o;
-        yeVar.f26637r = this.f26637r;
-        yeVar.f26638s = this.f26638s;
-        yeVar.f26639t = this.f26639t;
-        yeVar.f26640u = this.f26640u;
+        yeVar.f26638e = this.f26638e;
+        yeVar.f26639f = this.f26639f;
+        yeVar.f26640i = this.f26640i;
+        yeVar.f26641j = this.f26641j;
+        yeVar.f26642k = this.f26642k;
+        yeVar.f26643l = this.f26643l;
+        yeVar.f26644m = this.f26644m;
+        yeVar.f26645o = this.f26645o;
+        yeVar.f26646r = this.f26646r;
+        yeVar.f26647s = this.f26647s;
+        yeVar.f26648t = this.f26648t;
+        yeVar.f26649u = this.f26649u;
         yeVar.v = this.v;
-        yeVar.f26641z = this.f26641z;
+        yeVar.f26650z = this.f26650z;
         yeVar.C = this.C;
         yeVar.B = this.B;
         return yeVar;
     }
 
     public final boolean b() {
-        Matrix matrix = this.f26637r;
+        Matrix matrix = this.f26646r;
         if (matrix == null || matrix.isIdentity()) {
             Matrix matrix2 = this.B;
-            if ((matrix2 == null || matrix2.isIdentity()) && this.f26629e == 1.0f && this.f26630f == 1.0f && this.f26628c == 1.0f && this.d == 0.0f && this.f26631i == 0 && this.f26632j == 0 && this.f26633k == 0 && !this.f26634l && this.f26635m == 0.0f && this.f26636o == 0.0f && this.f26638s == 0 && this.f26639t == 0 && !this.f26640u && this.v == 0.0f) {
+            if ((matrix2 == null || matrix2.isIdentity()) && this.f26638e == 1.0f && this.f26639f == 1.0f && this.f26637c == 1.0f && this.d == 0.0f && this.f26640i == 0 && this.f26641j == 0 && this.f26642k == 0 && !this.f26643l && this.f26644m == 0.0f && this.f26645o == 0.0f && this.f26647s == 0 && this.f26648t == 0 && !this.f26649u && this.v == 0.0f) {
                 return true;
             }
             return false;
@@ -65,28 +65,28 @@ public final class ye extends TLObject {
 
     @Override
     public final void readParams(InputSerializedData inputSerializedData, boolean z9) {
-        this.f26626a = inputSerializedData.readFloat(z9);
-        this.f26627b = inputSerializedData.readFloat(z9);
-        this.f26628c = inputSerializedData.readFloat(z9);
+        this.f26635a = inputSerializedData.readFloat(z9);
+        this.f26636b = inputSerializedData.readFloat(z9);
+        this.f26637c = inputSerializedData.readFloat(z9);
         this.d = inputSerializedData.readFloat(z9);
-        this.f26629e = inputSerializedData.readFloat(z9);
-        this.f26630f = inputSerializedData.readFloat(z9);
-        this.f26631i = inputSerializedData.readInt32(z9);
-        this.f26632j = inputSerializedData.readInt32(z9);
-        this.f26633k = inputSerializedData.readInt32(z9);
-        this.f26634l = inputSerializedData.readBool(z9);
-        this.f26635m = inputSerializedData.readFloat(z9);
-        this.f26636o = inputSerializedData.readFloat(z9);
+        this.f26638e = inputSerializedData.readFloat(z9);
+        this.f26639f = inputSerializedData.readFloat(z9);
+        this.f26640i = inputSerializedData.readInt32(z9);
+        this.f26641j = inputSerializedData.readInt32(z9);
+        this.f26642k = inputSerializedData.readInt32(z9);
+        this.f26643l = inputSerializedData.readBool(z9);
+        this.f26644m = inputSerializedData.readFloat(z9);
+        this.f26645o = inputSerializedData.readFloat(z9);
         float[] fArr = new float[9];
         for (int i7 = 0; i7 < 9; i7++) {
             fArr[i7] = inputSerializedData.readFloat(z9);
         }
         Matrix matrix = new Matrix();
-        this.f26637r = matrix;
+        this.f26646r = matrix;
         matrix.setValues(fArr);
-        this.f26638s = inputSerializedData.readInt32(z9);
-        this.f26639t = inputSerializedData.readInt32(z9);
-        this.f26640u = inputSerializedData.readBool(z9);
+        this.f26647s = inputSerializedData.readInt32(z9);
+        this.f26648t = inputSerializedData.readInt32(z9);
+        this.f26649u = inputSerializedData.readBool(z9);
         this.v = inputSerializedData.readFloat(z9);
         if (inputSerializedData.readInt32(z9) == 178403937) {
             for (int i10 = 0; i10 < 9; i10++) {
@@ -97,26 +97,26 @@ public final class ye extends TLObject {
             matrix2.setValues(fArr);
         }
         this.C = inputSerializedData.readBool(z9);
-        this.f26641z = inputSerializedData.readInt32(z9);
+        this.f26650z = inputSerializedData.readInt32(z9);
     }
 
     @Override
     public final void serializeToStream(OutputSerializedData outputSerializedData) {
         outputSerializedData.writeInt32(1151577037);
-        outputSerializedData.writeFloat(this.f26626a);
-        outputSerializedData.writeFloat(this.f26627b);
-        outputSerializedData.writeFloat(this.f26628c);
+        outputSerializedData.writeFloat(this.f26635a);
+        outputSerializedData.writeFloat(this.f26636b);
+        outputSerializedData.writeFloat(this.f26637c);
         outputSerializedData.writeFloat(this.d);
-        outputSerializedData.writeFloat(this.f26629e);
-        outputSerializedData.writeFloat(this.f26630f);
-        outputSerializedData.writeInt32(this.f26631i);
-        outputSerializedData.writeInt32(this.f26632j);
-        outputSerializedData.writeInt32(this.f26633k);
-        outputSerializedData.writeBool(this.f26634l);
-        outputSerializedData.writeFloat(this.f26635m);
-        outputSerializedData.writeFloat(this.f26636o);
+        outputSerializedData.writeFloat(this.f26638e);
+        outputSerializedData.writeFloat(this.f26639f);
+        outputSerializedData.writeInt32(this.f26640i);
+        outputSerializedData.writeInt32(this.f26641j);
+        outputSerializedData.writeInt32(this.f26642k);
+        outputSerializedData.writeBool(this.f26643l);
+        outputSerializedData.writeFloat(this.f26644m);
+        outputSerializedData.writeFloat(this.f26645o);
         float[] fArr = new float[9];
-        Matrix matrix = this.f26637r;
+        Matrix matrix = this.f26646r;
         if (matrix != null) {
             matrix.getValues(fArr);
         } else {
@@ -127,9 +127,9 @@ public final class ye extends TLObject {
         for (int i10 = 0; i10 < 9; i10++) {
             outputSerializedData.writeFloat(fArr[i10]);
         }
-        outputSerializedData.writeInt32(this.f26638s);
-        outputSerializedData.writeInt32(this.f26639t);
-        outputSerializedData.writeBool(this.f26640u);
+        outputSerializedData.writeInt32(this.f26647s);
+        outputSerializedData.writeInt32(this.f26648t);
+        outputSerializedData.writeBool(this.f26649u);
         outputSerializedData.writeFloat(this.v);
         if (this.B == null) {
             outputSerializedData.writeInt32(1450380236);
@@ -141,6 +141,6 @@ public final class ye extends TLObject {
             }
         }
         outputSerializedData.writeBool(this.C);
-        outputSerializedData.writeInt32(this.f26641z);
+        outputSerializedData.writeInt32(this.f26650z);
     }
 }

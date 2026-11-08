@@ -30,7 +30,7 @@ public final class b implements ServiceConnection {
             e9.a aVar = (e9.a) cVar;
             Parcel obtain = Parcel.obtain();
             obtain.writeInterfaceToken("com.google.android.search.verification.api.ISearchActionVerificationService");
-            int i7 = k5.a.f17218a;
+            int i7 = k5.a.f17221a;
             if (intent == null) {
                 obtain.writeInt(0);
             } else {
@@ -39,13 +39,13 @@ public final class b implements ServiceConnection {
             }
             obtain.writeInt(1);
             bundle.writeToParcel(obtain, 0);
-            Parcel H0 = aVar.H0(obtain, 1);
-            if (H0.readInt() != 0) {
+            Parcel h12 = aVar.h1(obtain, 1);
+            if (h12.readInt() != 0) {
                 z9 = true;
             } else {
                 z9 = false;
             }
-            H0.recycle();
+            h12.recycle();
             if (z9) {
                 return true;
             }

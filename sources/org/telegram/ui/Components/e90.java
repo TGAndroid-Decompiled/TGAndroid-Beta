@@ -4,10 +4,10 @@ import android.graphics.Rect;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 public final class e90 extends v4.m0 {
-    public final f90 f33198a;
+    public final f90 f33229a;
 
     public e90(f90 f90Var) {
-        this.f33198a = f90Var;
+        this.f33229a = f90Var;
     }
 
     @Override
@@ -19,9 +19,9 @@ public final class e90 extends v4.m0 {
         rect.top = 0;
         rect.bottom = 0;
         v4.n0 layoutManager = recyclerView.getLayoutManager();
-        g90 g90Var = this.f33198a.f33500i3;
-        if (layoutManager == g90Var.d && (R = RecyclerView.R(view)) != 0 && !g90Var.f33871f.N()) {
-            if (g90Var.f33871f.I() == null && g90Var.f33871f.U == null) {
+        g90 g90Var = this.f33229a.f33507i3;
+        if (layoutManager == g90Var.d && (R = RecyclerView.R(view)) != 0 && !g90Var.f33897f.N()) {
+            if (g90Var.f33897f.I() == null && g90Var.f33897f.U == null) {
                 rect.top = org.telegram.messenger.g0.L(2.0f);
             } else if (R != 0) {
                 R--;

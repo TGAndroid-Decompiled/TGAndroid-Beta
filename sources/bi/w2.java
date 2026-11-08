@@ -45,10 +45,10 @@ public final class w2 implements Runnable {
         org.telegram.ui.ActionBar.u1[] u1VarArr = (org.telegram.ui.ActionBar.u1[]) this.d;
         TLRPC.User user = (TLRPC.User) this.f4955e;
         org.telegram.messenger.r3 r3Var = c40Var.R2;
-        if (r3Var != null && !c40Var.f44582j2) {
+        if (r3Var != null && !c40Var.f44585j2) {
             r3Var.a(this.f4954c);
             c40Var.Q0(true);
-            h20 h20Var = c40Var.f44637v3;
+            h20 h20Var = c40Var.f44640v3;
             if (h20Var != null) {
                 h20Var.dismiss();
             }
@@ -83,7 +83,7 @@ public final class w2 implements Runnable {
         org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) this.f4955e;
         if (str != null) {
             org.telegram.messenger.c a10 = org.telegram.messenger.c.a(launchActivity.O);
-            int i7 = a10.f21729a;
+            int i7 = a10.f21765a;
             qp s12 = qp.s1(i7);
             long j3 = this.f4954c;
             long j10 = -j3;
@@ -91,14 +91,14 @@ public final class w2 implements Runnable {
             if (g12 != null) {
                 TLRPC.Chat M0 = qp.s1(i7).M0(Long.valueOf(j10));
                 qp.s1(i7).j1(j3);
-                org.telegram.ui.Components.voip.y1.l(M0, null, false, Boolean.valueOf(!g12.f25209b.rtmp_stream), launchActivity, f2Var, a10);
+                org.telegram.ui.Components.voip.y1.l(M0, null, false, Boolean.valueOf(!g12.f25222b.rtmp_stream), launchActivity, f2Var, a10);
                 return;
             }
             TLRPC.ChatFull N0 = qp.s1(i7).N0(j10);
             if (N0 != null) {
                 if (N0.call == null) {
                     if (f2Var.getParentActivity() != null) {
-                        org.telegram.messenger.k5.o(null, 2131749151, org.telegram.ui.Components.hc.a0(f2Var), 2131624079, 36);
+                        org.telegram.messenger.k5.o(null, 2131749153, org.telegram.ui.Components.hc.a0(f2Var), 2131624079, 36);
                         return;
                     }
                     return;
@@ -130,13 +130,13 @@ public final class w2 implements Runnable {
     }
 
     private final void f() {
-        org.telegram.ui.Wallet.k0 k0Var;
+        org.telegram.ui.Wallet.j0 j0Var;
         String message;
         byte[] bArr;
         TL_wallet.mnemonic_decryptedKeyPart mnemonic_decryptedkeypart;
         byte[] bArr2;
         byte[] bArr3;
-        org.telegram.ui.Wallet.n0 n0Var = (org.telegram.ui.Wallet.n0) this.f4953b;
+        org.telegram.ui.Wallet.m0 m0Var = (org.telegram.ui.Wallet.m0) this.f4953b;
         TL_wallet.encryptedSecretPhrasePart[] encryptedsecretphrasepartArr = (TL_wallet.encryptedSecretPhrasePart[]) this.d;
         long j3 = this.f4954c;
         org.telegram.ui.Wallet.j jVar = (org.telegram.ui.Wallet.j) this.f4955e;
@@ -159,7 +159,7 @@ public final class w2 implements Runnable {
                                 if (bArr4 == null) {
                                     bArr4 = (byte[]) bArr6.clone();
                                 } else if (bArr6.length != bArr4.length) {
-                                    org.telegram.ui.Wallet.n0.j("getSecretPhrase: part " + i7 + " has length " + mnemonic_decryptedkeypart.share.length + " while other had " + bArr4.length);
+                                    org.telegram.ui.Wallet.m0.j("getSecretPhrase: part " + i7 + " has length " + mnemonic_decryptedkeypart.share.length + " while other had " + bArr4.length);
                                     jVar.a(null, "WALLET_PART_SHARE_UNEQUAL_LENGHTS");
                                     byte[] bArr7 = mnemonic_decryptedkeypart.share;
                                     if (bArr7 != null) {
@@ -191,7 +191,7 @@ public final class w2 implements Runnable {
                             throw th;
                         }
                     }
-                    org.telegram.ui.Wallet.n0.j("getSecretPhrase: couldn't decrypt " + i7 + " part");
+                    org.telegram.ui.Wallet.m0.j("getSecretPhrase: couldn't decrypt " + i7 + " part");
                     jVar.a(null, "WALLET_PART_" + i7 + "_CANT_DECRYPT");
                     if (mnemonic_decryptedkeypart != null && (bArr3 = mnemonic_decryptedkeypart.share) != null) {
                         Arrays.fill(bArr3, (byte) 0);
@@ -209,11 +209,11 @@ public final class w2 implements Runnable {
                 }
             } catch (Throwable th4) {
                 th = th4;
-                k0Var = null;
+                j0Var = null;
             }
         }
         if (bArr4 == null) {
-            org.telegram.ui.Wallet.n0.j("getSecretPhrase: no parts???");
+            org.telegram.ui.Wallet.m0.j("getSecretPhrase: no parts???");
             jVar.a(null, "WALLET_NO_PARTS");
             if (bArr4 != null) {
                 Arrays.fill(bArr4, (byte) 0);
@@ -221,11 +221,11 @@ public final class w2 implements Runnable {
             }
             return;
         }
-        k0Var = new org.telegram.ui.Wallet.k0(bArr4);
+        j0Var = new org.telegram.ui.Wallet.j0(bArr4);
         try {
             Arrays.fill(bArr4, (byte) 0);
-            byte[] secretPhraseToPublicKey = WalletEngine2.secretPhraseToPublicKey(k0Var);
-            TL_wallet.WalletState walletState = n0Var.f42795e;
+            byte[] secretPhraseToPublicKey = WalletEngine2.secretPhraseToPublicKey(j0Var);
+            TL_wallet.WalletState walletState = m0Var.f42765e;
             if (walletState instanceof TL_wallet.TL_walletState) {
                 bArr = ((TL_wallet.TL_walletState) walletState).public_key;
             } else {
@@ -233,19 +233,19 @@ public final class w2 implements Runnable {
             }
             if (secretPhraseToPublicKey != null && bArr != null && Arrays.equals(secretPhraseToPublicKey, bArr)) {
                 Arrays.fill(bArr4, (byte) 0);
-                org.telegram.ui.Wallet.n0.H("getSecretPhrase, received the phrase!");
-                jVar.a(k0Var, null);
+                org.telegram.ui.Wallet.m0.H("getSecretPhrase, received the phrase!");
+                jVar.a(j0Var, null);
                 return;
             }
-            org.telegram.ui.Wallet.n0.j("getSecretPhrase: mnemonic public key doesn't match one from server: server=" + Utilities.f(bArr) + " derived=" + Utilities.f(secretPhraseToPublicKey));
-            k0Var.close();
+            org.telegram.ui.Wallet.m0.j("getSecretPhrase: mnemonic public key doesn't match one from server: server=" + Utilities.f(bArr) + " derived=" + Utilities.f(secretPhraseToPublicKey));
+            j0Var.close();
             jVar.a(null, "WALLET_WORDS_DONT_MATCH");
             Arrays.fill(bArr4, (byte) 0);
         } catch (Throwable th5) {
             th = th5;
-            if (k0Var != null) {
+            if (j0Var != null) {
                 try {
-                    k0Var.close();
+                    j0Var.close();
                 } catch (Throwable th6) {
                     if (bArr4 != null) {
                         Arrays.fill(bArr4, (byte) 0);
@@ -259,7 +259,7 @@ public final class w2 implements Runnable {
                 message = th.getMessage();
             }
             jVar.a(null, message);
-            org.telegram.ui.Wallet.n0.k("getSecretPhrase: encryption error", th);
+            org.telegram.ui.Wallet.m0.k("getSecretPhrase: encryption error", th);
             if (bArr4 != null) {
                 Arrays.fill(bArr4, (byte) 0);
             }
@@ -267,34 +267,34 @@ public final class w2 implements Runnable {
     }
 
     private final void g() {
-        org.telegram.ui.Wallet.r0 r0Var = (org.telegram.ui.Wallet.r0) this.f4953b;
+        org.telegram.ui.Wallet.q0 q0Var = (org.telegram.ui.Wallet.q0) this.f4953b;
         c20 c20Var = (c20) this.f4955e;
         String str = (String) this.d;
         if (c20Var != null) {
-            if (this.f4954c != r0Var.l()) {
+            if (this.f4954c != q0Var.l()) {
                 str = "STORAGE_CANCELED";
             }
             c20Var.a(str);
             return;
         }
-        r0Var.getClass();
+        q0Var.getClass();
     }
 
     private final void h() {
-        org.telegram.ui.Wallet.k0 k0Var;
-        org.telegram.ui.Wallet.r0 r0Var = (org.telegram.ui.Wallet.r0) this.f4953b;
-        org.telegram.ui.Wallet.k0 k0Var2 = (org.telegram.ui.Wallet.k0) this.d;
+        org.telegram.ui.Wallet.j0 j0Var;
+        org.telegram.ui.Wallet.q0 q0Var = (org.telegram.ui.Wallet.q0) this.f4953b;
+        org.telegram.ui.Wallet.j0 j0Var2 = (org.telegram.ui.Wallet.j0) this.d;
         c20 c20Var = (c20) this.f4955e;
         try {
-            if (this.f4954c == r0Var.l()) {
-                k0Var = k0Var2;
+            if (this.f4954c == q0Var.l()) {
+                j0Var = j0Var2;
             } else {
-                k0Var = null;
+                j0Var = null;
             }
-            c20Var.a(k0Var);
+            c20Var.a(j0Var);
         } finally {
-            if (k0Var2 != null) {
-                k0Var2.close();
+            if (j0Var2 != null) {
+                j0Var2.close();
             }
         }
     }
@@ -336,9 +336,9 @@ public final class w2 implements Runnable {
         this.f4954c = j3;
     }
 
-    public w2(org.telegram.ui.Wallet.r0 r0Var, c20 c20Var, long j3, String str) {
+    public w2(org.telegram.ui.Wallet.q0 q0Var, c20 c20Var, long j3, String str) {
         this.f4952a = 25;
-        this.f4953b = r0Var;
+        this.f4953b = q0Var;
         this.f4955e = c20Var;
         this.f4954c = j3;
         this.d = str;

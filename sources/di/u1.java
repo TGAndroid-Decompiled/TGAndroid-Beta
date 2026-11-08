@@ -44,8 +44,8 @@ public final class u1 implements View.OnClickListener {
                 b70 b70Var = (b70) this.f9829c;
                 b70Var.dismiss();
                 TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite = new TLRPC.TL_messages_importChatInvite();
-                tL_messages_importChatInvite.hash = b70Var.f32052j1;
-                ConnectionsManager.getInstance(b70Var.f28613a).sendRequestTyped(tL_messages_importChatInvite, null, new mc(b70Var, this.f9828b, tL_messages_importChatInvite), 2);
+                tL_messages_importChatInvite.hash = b70Var.f32073j1;
+                ConnectionsManager.getInstance(b70Var.f28616a).sendRequestTyped(tL_messages_importChatInvite, null, new mc(b70Var, this.f9828b, tL_messages_importChatInvite), 2);
                 return;
             case 2:
                 ww wwVar = (ww) this.f9829c;
@@ -61,15 +61,15 @@ public final class u1 implements View.OnClickListener {
                 wwVar.finishPreviewFragment();
                 return;
             case 3:
-                c20 c20Var = ((sh.m) this.f9829c).f55235f;
+                c20 c20Var = ((sh.m) this.f9829c).f55327f;
                 if (c20Var != null) {
                     c20Var.a(Long.valueOf(this.f9828b));
                     return;
                 }
                 return;
             case 4:
-                zh.m mVar = (zh.m) this.f9829c;
-                mVar.getClass();
+                zh.l lVar = (zh.l) this.f9829c;
+                lVar.getClass();
                 org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
                 if (T != null) {
                     long j11 = this.f9828b;
@@ -77,7 +77,7 @@ public final class u1 implements View.OnClickListener {
                         Bundle bundle2 = new Bundle();
                         if (j11 > 0) {
                             bundle2.putLong("user_id", j11);
-                            if (j11 == p10.i(mVar.f28613a).e()) {
+                            if (j11 == p10.i(lVar.f28616a).e()) {
                                 bundle2.putBoolean("my_profile", true);
                             }
                         } else {
@@ -89,18 +89,18 @@ public final class u1 implements View.OnClickListener {
                         return;
                     }
                 }
-                Runnable runnable = mVar.f60352f2;
+                Runnable runnable = lVar.f60424f2;
                 if (runnable != null) {
                     runnable.run();
                 }
-                mVar.dismiss();
+                lVar.dismiss();
                 return;
             default:
-                zh.h1 h1Var = (zh.h1) this.f9829c;
-                h1Var.getClass();
+                zh.g1 g1Var = (zh.g1) this.f9829c;
+                g1Var.getClass();
                 org.telegram.ui.ActionBar.f2 T2 = LaunchActivity.T();
                 if (T2 != null) {
-                    h1Var.dismiss();
+                    g1Var.dismiss();
                     T2.presentFragment(ProfileActivity.A4(this.f9828b));
                     return;
                 }

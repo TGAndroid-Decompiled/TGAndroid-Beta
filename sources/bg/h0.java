@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.telegram.messenger.gc;
 import org.telegram.messenger.hc;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.voip.ConferenceCall;
 import org.telegram.messenger.w7;
@@ -83,7 +83,7 @@ public final class h0 implements Runnable {
                     }
                     TLRPC.TL_userProfilePhoto tL_userProfilePhoto = new TLRPC.TL_userProfilePhoto();
                     a22.photo = tL_userProfilePhoto;
-                    tL_userProfilePhoto.photo_id = tL_photos_photo.photo.f26977id;
+                    tL_userProfilePhoto.photo_id = tL_photos_photo.photo.f26980id;
                     if (w10 != null) {
                         tL_userProfilePhoto.photo_small = w10.location;
                     }
@@ -120,7 +120,7 @@ public final class h0 implements Runnable {
                         w7.G(anVar.getCurrentAccount());
                         w7.J(fileLocationArr[0], null, true, true).renameTo(J2);
                     }
-                    anVar.getMessagesController().U0(a22.f27102id);
+                    anVar.getMessagesController().U0(a22.f27105id);
                     ArrayList arrayList2 = new ArrayList();
                     arrayList2.add(a22);
                     anVar.getMessagesStorage().m1(arrayList2, null, false, true);
@@ -128,7 +128,7 @@ public final class h0 implements Runnable {
                     b22.profile_photo = tL_photos_photo.photo;
                     anVar.getMessagesStorage().j2(b22, false);
                     an anVar3 = anVar;
-                    org.telegram.ui.Components.hc.a0(anVar3).V(Collections.singletonList(a22), org.telegram.messenger.g0.X2(hd.M0(2131754219, null)), org.telegram.messenger.g0.U2(hd.M0(2131754220, null), new j0(j3, anVar3)), null).j();
+                    org.telegram.ui.Components.hc.a0(anVar3).V(Collections.singletonList(a22), org.telegram.messenger.g0.X2(id.M0(2131754219, null)), org.telegram.messenger.g0.U2(id.M0(2131754220, null), new j0(j3, anVar3)), null).j();
                     return;
                 }
                 return;
@@ -138,7 +138,7 @@ public final class h0 implements Runnable {
             case 2:
                 m50 m50Var = (m50) obj5;
                 ((u1) obj2).c(400L);
-                m50.M0((Context) obj6, m50Var.f28613a, -j3, ((TLRPC.TL_chatInviteExported) obj4).subscription_pricing, (TLRPC.TL_chatInviteImporter) obj3, (TLRPC.ChannelParticipant) obj, m50Var.I0);
+                m50.M0((Context) obj6, m50Var.f28616a, -j3, ((TLRPC.TL_chatInviteExported) obj4).subscription_pricing, (TLRPC.TL_chatInviteImporter) obj3, (TLRPC.ChannelParticipant) obj, m50Var.I0);
                 return;
             case 3:
                 final m11 m11Var = (m11) obj5;
@@ -154,17 +154,17 @@ public final class h0 implements Runnable {
                 }
                 z0Var.setVisibility(0);
                 if (z10) {
-                    i7 = 2131743913;
+                    i7 = 2131743915;
                 } else {
                     i7 = 2131753726;
                 }
-                z0Var.setText(hd.M0(i7, null));
+                z0Var.setText(id.M0(i7, null));
                 final long j10 = this.f3291b;
                 z0Var.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
                         m11 m11Var2 = m11.this;
-                        int i11 = m11Var2.f35822e;
+                        int i11 = m11Var2.f35850e;
                         k60Var.u();
                         boolean z11 = z10;
                         TLRPC.User user2 = user;
@@ -185,7 +185,7 @@ public final class h0 implements Runnable {
                 f6 f6Var = (f6) obj4;
                 oy0 oy0Var = new oy0(activity, f6Var, this.f3291b, (byte[]) obj3);
                 oy0Var.N0((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) ((TLObject) obj6));
-                oy0Var.f48574r1 = new ab.b0((an) obj2, activity, f6Var, (ij) obj, 10);
+                oy0Var.f48568r1 = new ab.b0((an) obj2, activity, f6Var, (ij) obj, 10);
                 oy0Var.show();
                 return;
         }

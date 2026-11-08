@@ -1,14 +1,14 @@
 package org.telegram.ui.Components;
 public final class cb extends r1.e {
-    public final int f32503a;
+    public final int f32534a;
 
     public cb(int i7) {
-        this.f32503a = i7;
+        this.f32534a = i7;
     }
 
     @Override
     public final float a(Object obj) {
-        switch (this.f32503a) {
+        switch (this.f32534a) {
             case 0:
                 return ((gb) obj).inOutOffset;
             case 1:
@@ -20,7 +20,7 @@ public final class cb extends r1.e {
 
     @Override
     public final void b(Object obj, float f10) {
-        switch (this.f32503a) {
+        switch (this.f32534a) {
             case 0:
                 gb.access$2200((gb) obj, f10);
                 return;

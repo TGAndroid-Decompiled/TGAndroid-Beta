@@ -6,20 +6,20 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import java.util.ArrayList;
 public final class m21 implements View.OnClickListener {
-    public final int f35842a;
-    public final v21 f35843b;
+    public final int f35870a;
+    public final v21 f35871b;
 
     public m21(v21 v21Var, int i7) {
-        this.f35842a = i7;
-        this.f35843b = v21Var;
+        this.f35870a = i7;
+        this.f35871b = v21Var;
     }
 
     @Override
     public final void onClick(View view) {
         LinearLayout linearLayout;
         boolean z9;
-        int i7 = this.f35842a;
-        v21 v21Var = this.f35843b;
+        int i7 = this.f35870a;
+        v21 v21Var = this.f35871b;
         switch (i7) {
             case 0:
                 v21Var.dismiss();
@@ -38,11 +38,11 @@ public final class m21 implements View.OnClickListener {
                 v21Var.dismiss();
                 return;
             default:
-                final v21 v21Var2 = this.f35843b;
-                k60 F = k60.F(v21Var2.f28619c, v21Var2.I0, view);
+                final v21 v21Var2 = this.f35871b;
+                k60 F = k60.F(v21Var2.f28622c, v21Var2.I0, view);
                 F.X = org.telegram.messenger.g0.L(450.0f);
                 int i10 = 0;
-                F.f35206t = false;
+                F.f35232t = false;
                 F.Y = true;
                 ScrollView scrollView = new ScrollView(v21Var2.getContext());
                 LinearLayout linearLayout2 = new LinearLayout(v21Var2.getContext());
@@ -58,7 +58,7 @@ public final class m21 implements View.OnClickListener {
                         linearLayout = linearLayout2;
                         z9 = false;
                     }
-                    v21Var2.d1(F, linearLayout, z9, v21Var2.f38797a2[i11], new r2(v21Var2, i11, 10));
+                    v21Var2.d1(F, linearLayout, z9, v21Var2.f38832a2[i11], new r2(v21Var2, i11, 10));
                     i11++;
                     linearLayout2 = linearLayout;
                 }
@@ -76,15 +76,15 @@ public final class m21 implements View.OnClickListener {
                 while (i12 < size) {
                     int i13 = i12 + 1;
                     final org.telegram.messenger.y00 y00Var = (org.telegram.messenger.y00) o4.get(i12);
-                    if (!TextUtils.equals(y00Var.f26562a, v21Var2.X1)) {
-                        v21Var2.d1(F, linearLayout3, false, y00Var.f26563b, new Runnable() {
+                    if (!TextUtils.equals(y00Var.f26569a, v21Var2.X1)) {
+                        v21Var2.d1(F, linearLayout3, false, y00Var.f26570b, new Runnable() {
                             @Override
                             public final void run() {
                                 switch (r3) {
                                     case 0:
                                         v21 v21Var3 = v21Var2;
                                         v21Var3.e1();
-                                        String str = y00Var.f26562a;
+                                        String str = y00Var.f26569a;
                                         v21Var3.X1 = str;
                                         k21.S0(str);
                                         v21Var3.f1();
@@ -92,7 +92,7 @@ public final class m21 implements View.OnClickListener {
                                     default:
                                         v21 v21Var4 = v21Var2;
                                         v21Var4.e1();
-                                        String str2 = y00Var.f26562a;
+                                        String str2 = y00Var.f26569a;
                                         v21Var4.X1 = str2;
                                         k21.S0(str2);
                                         v21Var4.f1();
@@ -111,14 +111,14 @@ public final class m21 implements View.OnClickListener {
                     Object obj = n10.get(i10);
                     i10++;
                     final org.telegram.messenger.y00 y00Var2 = (org.telegram.messenger.y00) obj;
-                    v21Var2.d1(F, linearLayout3, TextUtils.equals(y00Var2.f26562a, v21Var2.X1), y00Var2.f26563b, new Runnable() {
+                    v21Var2.d1(F, linearLayout3, TextUtils.equals(y00Var2.f26569a, v21Var2.X1), y00Var2.f26570b, new Runnable() {
                         @Override
                         public final void run() {
                             switch (r3) {
                                 case 0:
                                     v21 v21Var3 = v21Var2;
                                     v21Var3.e1();
-                                    String str = y00Var2.f26562a;
+                                    String str = y00Var2.f26569a;
                                     v21Var3.X1 = str;
                                     k21.S0(str);
                                     v21Var3.f1();
@@ -126,7 +126,7 @@ public final class m21 implements View.OnClickListener {
                                 default:
                                     v21 v21Var4 = v21Var2;
                                     v21Var4.e1();
-                                    String str2 = y00Var2.f26562a;
+                                    String str2 = y00Var2.f26569a;
                                     v21Var4.X1 = str2;
                                     k21.S0(str2);
                                     v21Var4.f1();

@@ -6,11 +6,11 @@ import h2.m0;
 import h2.x;
 import java.nio.charset.StandardCharsets;
 public abstract class c {
-    public static final byte[] f59492a;
+    public static final byte[] f59584a;
 
     static {
         String str = m0.f14112a;
-        f59492a = "OpusHead".getBytes(StandardCharsets.UTF_8);
+        f59584a = "OpusHead".getBytes(StandardCharsets.UTF_8);
     }
 
     public static void a(x xVar) {
@@ -104,7 +104,7 @@ public abstract class c {
         boolean z10;
         boolean z11;
         Integer num;
-        r rVar;
+        s sVar;
         Pair create;
         int i11;
         int i12;
@@ -192,22 +192,22 @@ public abstract class c {
                                     bArr = bArr3;
                                 }
                                 num = num2;
-                                rVar = new r(z12, str, A2, bArr2, i12, i11, bArr);
+                                sVar = new s(z12, str, A2, bArr2, i12, i11, bArr);
                             } else {
                                 i17 += m13;
                             }
                         } else {
                             num = num3;
-                            rVar = null;
+                            sVar = null;
                             break;
                         }
                     }
-                    if (rVar != null) {
+                    if (sVar != null) {
                         z13 = true;
                     }
                     f3.b.b("tenc atom is mandatory", z13);
                     String str2 = m0.f14112a;
-                    create = Pair.create(num, rVar);
+                    create = Pair.create(num, sVar);
                 }
                 if (create != null) {
                     return create;

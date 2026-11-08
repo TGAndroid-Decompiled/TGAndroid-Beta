@@ -77,7 +77,7 @@ public interface is {
 
     void t();
 
-    void u(CharSequence charSequence, String str, org.telegram.ui.Components.ex exVar);
+    void u(CharSequence charSequence, String str, org.telegram.ui.Components.fx fxVar);
 
     void v(TLRPC.Document document);
 

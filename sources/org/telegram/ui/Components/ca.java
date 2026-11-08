@@ -19,27 +19,27 @@ import android.os.Build;
 import android.view.View;
 import java.util.ArrayList;
 public final class ca {
-    public final y9 f32470a;
-    public final View f32471b;
-    public final ColorMatrix f32472c;
+    public final y9 f32501a;
+    public final View f32502b;
+    public final ColorMatrix f32503c;
     public final boolean d;
-    public boolean f32473e;
-    public float f32474f;
-    public Paint f32475g;
+    public boolean f32504e;
+    public float f32505f;
+    public Paint f32506g;
     public Paint h;
-    public final int f32476i;
-    public final Integer f32477j;
-    public final Path f32478k;
-    public int f32479l;
-    public int f32480m;
-    public Bitmap f32481n;
-    public BitmapShader f32482o;
-    public final Matrix f32483p;
-    public final RectF f32484q;
-    public boolean f32485r;
-    public Paint[] f32486s;
-    public ValueAnimator f32487t;
-    public final int[] f32488u;
+    public final int f32507i;
+    public final Integer f32508j;
+    public final Path f32509k;
+    public int f32510l;
+    public int f32511m;
+    public Bitmap f32512n;
+    public BitmapShader f32513o;
+    public final Matrix f32514p;
+    public final RectF f32515q;
+    public boolean f32516r;
+    public Paint[] f32517s;
+    public ValueAnimator f32518t;
+    public final int[] f32519u;
     public final int[] v;
 
     public ca(y9 y9Var, View view) {
@@ -55,28 +55,28 @@ public final class ca {
         int i10;
         int i11;
         int i12;
-        y9 y9Var = this.f32470a;
+        y9 y9Var = this.f32501a;
         if (y9Var.c() && Build.VERSION.SDK_INT >= 31) {
             boolean isHardwareAccelerated = canvas.isHardwareAccelerated();
-            Integer num = this.f32477j;
+            Integer num = this.f32508j;
             if (!isHardwareAccelerated) {
                 if (num != null) {
                     i12 = num.intValue();
                 } else {
-                    i12 = y9Var.f40605i;
+                    i12 = y9Var.f40631i;
                 }
                 canvas.drawColor(i12);
                 return;
             }
-            RenderNode renderNode = (RenderNode) y9Var.f40608l;
+            RenderNode renderNode = (RenderNode) y9Var.f40634l;
             if (!renderNode.hasDisplayList()) {
-                RenderNode renderNode2 = (RenderNode) y9Var.f40607k;
+                RenderNode renderNode2 = (RenderNode) y9Var.f40633k;
                 renderNode.setPosition(0, 0, renderNode2.getWidth(), renderNode2.getHeight());
                 RecordingCanvas beginRecording = renderNode.beginRecording();
                 if (num != null) {
                     i11 = num.intValue();
                 } else {
-                    i11 = y9Var.f40605i;
+                    i11 = y9Var.f40631i;
                 }
                 beginRecording.drawColor(i11);
                 beginRecording.drawRenderNode(renderNode2);
@@ -86,7 +86,7 @@ public final class ca {
                 if (num != null) {
                     i10 = num.intValue();
                 } else {
-                    i10 = y9Var.f40605i;
+                    i10 = y9Var.f40631i;
                 }
                 canvas.drawColor(i10);
                 return;
@@ -94,27 +94,27 @@ public final class ca {
             if (num != null) {
                 i7 = num.intValue();
             } else {
-                i7 = y9Var.f40605i;
+                i7 = y9Var.f40631i;
             }
             canvas.drawColor(i7);
             f(renderNode.getWidth(), renderNode.getHeight(), true);
             if (renderNode.hasDisplayList()) {
-                Matrix matrix = this.f32483p;
+                Matrix matrix = this.f32514p;
                 matrix.postTranslate(-0.0f, -0.0f);
                 this.h.setAlpha((int) 255.0f);
                 canvas.saveLayer(null, this.h);
                 canvas.concat(matrix);
                 if (z9) {
-                    int i13 = this.f32479l;
+                    int i13 = this.f32510l;
                     int width = renderNode.getWidth();
-                    Path path = this.f32478k;
-                    if (i13 != width || this.f32480m != renderNode.getHeight()) {
+                    Path path = this.f32509k;
+                    if (i13 != width || this.f32511m != renderNode.getHeight()) {
                         path.rewind();
                         RectF rectF = org.telegram.messenger.g0.P;
                         int width2 = renderNode.getWidth();
-                        this.f32479l = width2;
+                        this.f32510l = width2;
                         int height = renderNode.getHeight();
-                        this.f32480m = height;
+                        this.f32511m = height;
                         rectF.set(0.0f, 0.0f, width2, height);
                         path.addRoundRect(rectF, org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f), Path.Direction.CW);
                     }
@@ -135,38 +135,38 @@ public final class ca {
     public final Paint c(float f10) {
         Bitmap b10;
         Bitmap bitmap;
-        y9 y9Var = this.f32470a;
+        y9 y9Var = this.f32501a;
         if (y9Var == null || (b10 = y9Var.b()) == null) {
             return null;
         }
-        BitmapShader bitmapShader = this.f32482o;
-        if (bitmapShader == null || this.f32481n != b10) {
-            if (this.d && bitmapShader != null && (bitmap = this.f32481n) != null && !bitmap.isRecycled() && !b10.isRecycled()) {
+        BitmapShader bitmapShader = this.f32513o;
+        if (bitmapShader == null || this.f32512n != b10) {
+            if (this.d && bitmapShader != null && (bitmap = this.f32512n) != null && !bitmap.isRecycled() && !b10.isRecycled()) {
                 Paint paint = this.h;
-                this.h = this.f32475g;
-                this.f32475g = paint;
-                this.f32473e = true;
-                ValueAnimator valueAnimator = this.f32487t;
+                this.h = this.f32506g;
+                this.f32506g = paint;
+                this.f32504e = true;
+                ValueAnimator valueAnimator = this.f32518t;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
-                    this.f32487t = null;
+                    this.f32518t = null;
                 }
-                this.f32474f = 1.0f;
+                this.f32505f = 1.0f;
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
-                this.f32487t = ofFloat;
+                this.f32518t = ofFloat;
                 ofFloat.addUpdateListener(new e6(this, 6));
-                this.f32487t.start();
+                this.f32518t.start();
             }
-            this.f32481n = b10;
+            this.f32512n = b10;
             Shader.TileMode tileMode = Shader.TileMode.CLAMP;
             BitmapShader bitmapShader2 = new BitmapShader(b10, tileMode, tileMode);
-            this.f32482o = bitmapShader2;
+            this.f32513o = bitmapShader2;
             this.h.setShader(bitmapShader2);
         }
         f(b10.getWidth(), b10.getHeight(), false);
-        Matrix matrix = this.f32483p;
+        Matrix matrix = this.f32514p;
         matrix.postTranslate(-0.0f, -0.0f);
-        this.f32482o.setLocalMatrix(matrix);
+        this.f32513o.setLocalMatrix(matrix);
         this.h.setAlpha((int) (f10 * 255.0f));
         return this.h;
     }
@@ -174,22 +174,22 @@ public final class ca {
     public final Paint[] d() {
         Paint paint;
         Paint c10 = c(1.0f);
-        boolean z9 = this.f32473e;
+        boolean z9 = this.f32504e;
         if (z9) {
-            paint = this.f32475g;
+            paint = this.f32506g;
         } else {
             paint = null;
         }
         if (c10 != null && z9) {
-            c10.setAlpha((int) org.telegram.messenger.k5.A(1.0f, this.f32474f, 255.0f, 1.0f));
+            c10.setAlpha((int) org.telegram.messenger.k5.A(1.0f, this.f32505f, 255.0f, 1.0f));
         }
         if (paint != null) {
             paint.setAlpha((int) 255.0f);
         }
-        if (this.f32486s == null) {
-            this.f32486s = new Paint[2];
+        if (this.f32517s == null) {
+            this.f32517s = new Paint[2];
         }
-        Paint[] paintArr = this.f32486s;
+        Paint[] paintArr = this.f32517s;
         paintArr[0] = paint;
         paintArr[1] = c10;
         return paintArr;
@@ -198,48 +198,48 @@ public final class ca {
     public final void e(float f10, float f11, float f12, float f13) {
         RectF rectF = org.telegram.messenger.g0.P;
         rectF.set(f10, f11, f12, f13);
-        RectF rectF2 = this.f32484q;
+        RectF rectF2 = this.f32515q;
         if (rectF2.top != rectF.top || rectF2.bottom != rectF.bottom || rectF2.left != rectF.left || rectF2.right != rectF.right) {
             rectF2.set(rectF);
-            Bitmap b10 = this.f32470a.b();
+            Bitmap b10 = this.f32501a.b();
             if (b10 == null) {
                 return;
             }
-            if (this.f32482o == null || this.f32481n != b10) {
-                this.f32481n = b10;
+            if (this.f32513o == null || this.f32512n != b10) {
+                this.f32512n = b10;
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader = new BitmapShader(b10, tileMode, tileMode);
-                this.f32482o = bitmapShader;
+                this.f32513o = bitmapShader;
                 this.h.setShader(bitmapShader);
             }
-            float width = rectF2.width() / this.f32481n.getWidth();
-            float height = rectF2.height() / this.f32481n.getHeight();
-            Matrix matrix = this.f32483p;
+            float width = rectF2.width() / this.f32512n.getWidth();
+            float height = rectF2.height() / this.f32512n.getHeight();
+            Matrix matrix = this.f32514p;
             matrix.reset();
             matrix.postTranslate(rectF2.left, rectF2.top);
             matrix.preScale(width, height);
-            this.f32482o.setLocalMatrix(matrix);
+            this.f32513o.setLocalMatrix(matrix);
         }
     }
 
     public final void f(int i7, int i10, boolean z9) {
         View view;
         View view2;
-        Matrix matrix = this.f32483p;
+        Matrix matrix = this.f32514p;
         matrix.reset();
-        y9 y9Var = this.f32470a;
+        y9 y9Var = this.f32501a;
         if (y9Var != null) {
             if (z9) {
-                view = y9Var.f40606j;
+                view = y9Var.f40632j;
             } else {
-                view = y9Var.f40600b;
+                view = y9Var.f40626b;
             }
         } else {
             view = null;
         }
         if (y9Var != null) {
-            ArrayList arrayList = y9Var.f40601c;
-            View view3 = this.f32471b;
+            ArrayList arrayList = y9Var.f40627c;
+            View view3 = this.f32502b;
             do {
                 matrix.preScale(1.0f / view3.getScaleX(), 1.0f / view3.getScaleY(), view3.getPivotX(), view3.getPivotY());
                 matrix.preRotate(-view3.getRotation(), view3.getPivotX(), view3.getPivotY());
@@ -251,7 +251,7 @@ public final class ca {
             if (view != view3) {
                 int indexOf = arrayList.indexOf(view3) + 1;
                 if (indexOf == 0 && (view2 = (View) arrayList.get(indexOf)) != null) {
-                    int[] iArr = this.f32488u;
+                    int[] iArr = this.f32519u;
                     view3.getLocationOnScreen(iArr);
                     int[] iArr2 = this.v;
                     view2.getLocationOnScreen(iArr2);
@@ -274,33 +274,33 @@ public final class ca {
     }
 
     public ca(y9 y9Var, View view, int i7, boolean z9) {
-        this.f32475g = new Paint(3);
+        this.f32506g = new Paint(3);
         this.h = new Paint(3);
-        this.f32478k = new Path();
-        this.f32483p = new Matrix();
-        this.f32484q = new RectF();
-        this.f32485r = false;
-        this.f32488u = new int[2];
+        this.f32509k = new Path();
+        this.f32514p = new Matrix();
+        this.f32515q = new RectF();
+        this.f32516r = false;
+        this.f32519u = new int[2];
         this.v = new int[2];
-        this.f32470a = y9Var;
-        this.f32471b = view;
-        this.f32476i = i7;
+        this.f32501a = y9Var;
+        this.f32502b = view;
+        this.f32507i = i7;
         this.d = z9;
         ColorMatrix colorMatrix = new ColorMatrix();
-        this.f32472c = colorMatrix;
+        this.f32503c = colorMatrix;
         if (i7 == 0) {
             org.telegram.messenger.g0.i(colorMatrix, 0.45f);
         } else if (i7 == 5) {
             Paint paint = this.h;
             PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
             paint.setXfermode(new PorterDuffXfermode(mode));
-            this.f32475g.setXfermode(new PorterDuffXfermode(mode));
+            this.f32506g.setXfermode(new PorterDuffXfermode(mode));
             org.telegram.messenger.g0.i(colorMatrix, 0.3f);
         } else if (i7 == 2) {
             Paint paint2 = this.h;
             PorterDuff.Mode mode2 = PorterDuff.Mode.SRC_IN;
             paint2.setXfermode(new PorterDuffXfermode(mode2));
-            this.f32475g.setXfermode(new PorterDuffXfermode(mode2));
+            this.f32506g.setXfermode(new PorterDuffXfermode(mode2));
             org.telegram.messenger.g0.h(colorMatrix, 0.4f);
             org.telegram.messenger.g0.i(colorMatrix, 0.3f);
         } else if (i7 == 1) {
@@ -310,7 +310,7 @@ public final class ca {
         } else if (i7 == 3) {
             org.telegram.messenger.g0.i(colorMatrix, 0.5f);
         } else if (i7 == 4) {
-            this.f32477j = -10329502;
+            this.f32508j = -10329502;
             org.telegram.messenger.g0.i(colorMatrix, 0.6f);
             org.telegram.messenger.g0.h(colorMatrix, 0.3f);
             org.telegram.messenger.g0.n2(colorMatrix, 1.2f);
@@ -327,16 +327,16 @@ public final class ca {
             Paint paint3 = this.h;
             PorterDuff.Mode mode3 = PorterDuff.Mode.SRC_IN;
             paint3.setXfermode(new PorterDuffXfermode(mode3));
-            this.f32475g.setXfermode(new PorterDuffXfermode(mode3));
+            this.f32506g.setXfermode(new PorterDuffXfermode(mode3));
             org.telegram.messenger.g0.h(colorMatrix, 0.4f);
             org.telegram.messenger.g0.i(colorMatrix, 0.45f);
         } else if (i7 == 10) {
             colorMatrix.setSaturation(1.6f);
-            org.telegram.messenger.g0.n2(colorMatrix, this.f32485r ? 0.97f : 0.92f);
-            org.telegram.messenger.g0.h(colorMatrix, this.f32485r ? 0.12f : -0.06f);
+            org.telegram.messenger.g0.n2(colorMatrix, this.f32516r ? 0.97f : 0.92f);
+            org.telegram.messenger.g0.h(colorMatrix, this.f32516r ? 0.12f : -0.06f);
         }
         this.h.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-        this.f32475g.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+        this.f32506g.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
         if (view.isAttachedToWindow() && y9Var != null) {
             y9Var.d.add(this);
         }

@@ -5,22 +5,22 @@ import android.os.IBinder;
 import android.os.Parcel;
 import c8.ya;
 public final class k implements l {
-    public IBinder f53243a;
+    public IBinder f53336a;
 
-    public final void H0(int i7, Bundle bundle) {
+    @Override
+    public final IBinder asBinder() {
+        return this.f53336a;
+    }
+
+    public final void h1(int i7, Bundle bundle) {
         Parcel obtain = Parcel.obtain();
         try {
             obtain.writeInterfaceToken("androidx.media3.session.IMediaController");
             obtain.writeInt(i7);
             ya.a(obtain, bundle);
-            this.f53243a.transact(3001, obtain, null, 1);
+            this.f53336a.transact(3001, obtain, null, 1);
         } finally {
             obtain.recycle();
         }
-    }
-
-    @Override
-    public final IBinder asBinder() {
-        return this.f53243a;
     }
 }

@@ -10,7 +10,7 @@ import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.p10;
 import org.telegram.messenger.t10;
 import org.telegram.tgnet.TLRPC;
@@ -39,7 +39,7 @@ public final class t5 extends FrameLayout {
         String p10 = t10.p(f10);
         di.d4 d4Var = e4Var.f8960b;
         d4Var.l(org.telegram.messenger.i6.m(p10, d4Var.getPaint().getFontMetricsInt(), false, null, 0), false);
-        e4Var.c(hd.M0(2131745999, null), false);
+        e4Var.c(id.M0(2131746001, null), false);
         s1Var.addView(e4Var, c8.ha.d(-1, -2.0f, 55, 0.0f, 17.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(activity);
         imageView.setImageDrawable(getContext().getResources().getDrawable(2131231269).mutate());
@@ -63,7 +63,7 @@ public final class t5 extends FrameLayout {
         TextView textView = new TextView(activity);
         textView.setTextSize(1, 18.0f);
         textView.setTextColor(1694498815);
-        textView.setText(hd.M0(2131746256, null));
+        textView.setText(id.M0(2131746258, null));
         frameLayout2.addView(textView, c8.ha.d(-2, -2.0f, 19, 24.0f, 0.0f, 24.0f, 0.0f));
         ImageView imageView3 = new ImageView(activity);
         imageView3.setImageResource(2131231495);

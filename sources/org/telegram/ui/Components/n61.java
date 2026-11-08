@@ -2,19 +2,19 @@ package org.telegram.ui.Components;
 
 import android.animation.ValueAnimator;
 public final class n61 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f36240a;
-    public final Object f36241b;
+    public final int f36256a;
+    public final Object f36257b;
 
     public n61(Object obj, int i7) {
-        this.f36240a = i7;
-        this.f36241b = obj;
+        this.f36256a = i7;
+        this.f36257b = obj;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f36240a) {
+        switch (this.f36256a) {
             case 0:
-                u61 u61Var = (u61) this.f36241b;
+                u61 u61Var = (u61) this.f36257b;
                 u61Var.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 u61Var.setAnimationIdicatorProgress(floatValue);
@@ -25,10 +25,10 @@ public final class n61 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             default:
-                k60 k60Var = (k60) this.f36241b;
+                k60 k60Var = (k60) this.f36257b;
                 k60Var.getClass();
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                i60 i60Var = k60Var.f35209x;
+                i60 i60Var = k60Var.f35235x;
                 if (i60Var != null) {
                     i60Var.setProgress(floatValue2);
                     return;

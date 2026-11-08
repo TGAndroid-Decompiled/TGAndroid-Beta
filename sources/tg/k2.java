@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import c8.ha;
 import java.util.Iterator;
 import org.telegram.messenger.f6;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.qs;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.ki0;
@@ -19,23 +19,23 @@ import org.telegram.ui.Components.r5;
 import org.telegram.ui.tb0;
 public final class k2 extends j {
     public String A0;
-    public final j2 f55715q0;
-    public sg.j1 f55716r0;
-    public int f55717s0;
-    public int f55718t0;
-    public int f55719u0;
-    public sg.b0 f55720v0;
-    public int f55721w0;
-    public int f55722x0;
-    public Runnable f55723y0;
-    public boolean f55724z0;
+    public final j2 f55807q0;
+    public sg.j1 f55808r0;
+    public int f55809s0;
+    public int f55810t0;
+    public int f55811u0;
+    public sg.b0 f55812v0;
+    public int f55813w0;
+    public int f55814x0;
+    public Runnable f55815y0;
+    public boolean f55816z0;
 
     public k2(Context context, PointF pointF, int i7, CharSequence charSequence, sg.j1 j1Var, int i10) {
         super(context, pointF);
-        this.f55720v0 = sg.b0.f54921e;
-        this.f55718t0 = i7;
+        this.f55812v0 = sg.b0.f55013e;
+        this.f55810t0 = i7;
         j2 j2Var = new j2(this, context);
-        this.f55715q0 = j2Var;
+        this.f55807q0 = j2Var;
         qs.i(j2Var);
         j2Var.setGravity(19);
         j2Var.setBackgroundColor(0);
@@ -43,11 +43,11 @@ public final class k2 extends j {
         j2Var.setClickable(false);
         j2Var.setEnabled(false);
         j2Var.setCursorColor(-1);
-        j2Var.setTextSize(0, this.f55718t0);
-        j2Var.setCursorSize(org.telegram.messenger.g0.L(this.f55718t0 * 0.4f));
+        j2Var.setTextSize(0, this.f55810t0);
+        j2Var.setCursorSize(org.telegram.messenger.g0.L(this.f55810t0 * 0.4f));
         j2Var.setText(charSequence);
         s();
-        j2Var.setTextColor(j1Var.f55016a);
+        j2Var.setTextColor(j1Var.f55108a);
         j2Var.setTypeface(null, 1);
         j2Var.setHorizontallyScrolling(false);
         int i11 = Build.VERSION.SDK_INT;
@@ -77,27 +77,27 @@ public final class k2 extends j {
     }
 
     public int getAlign() {
-        return this.f55719u0;
+        return this.f55811u0;
     }
 
     public int getBaseFontSize() {
-        return this.f55718t0;
+        return this.f55810t0;
     }
 
     public b getEditText() {
-        return this.f55715q0;
+        return this.f55807q0;
     }
 
     public View getFocusedView() {
-        return this.f55715q0;
+        return this.f55807q0;
     }
 
     public Paint.FontMetricsInt getFontMetricsInt() {
-        return this.f55715q0.getPaint().getFontMetricsInt();
+        return this.f55807q0.getPaint().getFontMetricsInt();
     }
 
     public float getFontSize() {
-        return this.f55715q0.getTextSize();
+        return this.f55807q0.getTextSize();
     }
 
     @Override
@@ -111,13 +111,13 @@ public final class k2 extends j {
         float L2 = (org.telegram.messenger.g0.L(52.0f) / scaleX) + (getScale() * getMeasuredHeight());
         float x10 = org.telegram.messenger.camera.q.x(L, 2.0f, getPositionX(), scaleX);
         float positionY = getPositionY();
-        j2 j2Var = this.f55715q0;
+        j2 j2Var = this.f55807q0;
         return new ki0(x10, (positionY - (((L2 - j2Var.getExtendedPaddingTop()) - org.telegram.messenger.g0.N(4.0f)) / 2.0f)) * scaleX, ((L * scaleX) + x10) - x10, (L2 - j2Var.getExtendedPaddingBottom()) * scaleX);
     }
 
     @Override
     public float getStickyPaddingBottom() {
-        RectF rectF = this.f55715q0.Q1;
+        RectF rectF = this.f55807q0.Q1;
         if (rectF == null) {
             return 0.0f;
         }
@@ -126,7 +126,7 @@ public final class k2 extends j {
 
     @Override
     public float getStickyPaddingLeft() {
-        RectF rectF = this.f55715q0.Q1;
+        RectF rectF = this.f55807q0.Q1;
         if (rectF == null) {
             return 0.0f;
         }
@@ -135,7 +135,7 @@ public final class k2 extends j {
 
     @Override
     public float getStickyPaddingRight() {
-        RectF rectF = this.f55715q0.Q1;
+        RectF rectF = this.f55807q0.Q1;
         if (rectF == null) {
             return 0.0f;
         }
@@ -144,7 +144,7 @@ public final class k2 extends j {
 
     @Override
     public float getStickyPaddingTop() {
-        RectF rectF = this.f55715q0.Q1;
+        RectF rectF = this.f55807q0.Q1;
         if (rectF == null) {
             return 0.0f;
         }
@@ -152,23 +152,23 @@ public final class k2 extends j {
     }
 
     public sg.j1 getSwatch() {
-        return this.f55716r0;
+        return this.f55808r0;
     }
 
     public CharSequence getText() {
-        return this.f55715q0.getText();
+        return this.f55807q0.getText();
     }
 
     public int getTextSize() {
-        return (int) this.f55715q0.getTextSize();
+        return (int) this.f55807q0.getTextSize();
     }
 
     public int getType() {
-        return this.f55717s0;
+        return this.f55809s0;
     }
 
     public sg.b0 getTypeface() {
-        return this.f55720v0;
+        return this.f55812v0;
     }
 
     @Override
@@ -184,7 +184,7 @@ public final class k2 extends j {
     }
 
     public final void q() {
-        j2 j2Var = this.f55715q0;
+        j2 j2Var = this.f55807q0;
         j2Var.setEnabled(true);
         j2Var.setClickable(true);
         j2Var.requestFocus();
@@ -194,14 +194,14 @@ public final class k2 extends j {
 
     public final void r() {
         int i7;
-        j2 j2Var = this.f55715q0;
+        j2 j2Var = this.f55807q0;
         j2Var.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
-        int i10 = this.f55716r0.f55016a;
-        int i11 = this.f55717s0;
+        int i10 = this.f55808r0.f55108a;
+        int i11 = this.f55809s0;
         int i12 = -1;
         if (i11 == 0) {
             j2Var.setFrameColor(i10);
-            i10 = org.telegram.messenger.g0.B(this.f55716r0.f55016a) >= 0.721f ? -16777216 : -1;
+            i10 = org.telegram.messenger.g0.B(this.f55808r0.f55108a) >= 0.721f ? -16777216 : -1;
         } else if (i11 == 1) {
             if (org.telegram.messenger.g0.B(i10) >= 0.25f) {
                 i7 = -1728053248;
@@ -224,9 +224,9 @@ public final class k2 extends j {
     }
 
     public final void s() {
-        j2 j2Var = this.f55715q0;
+        j2 j2Var = this.f55807q0;
         if (j2Var.getText().length() <= 0) {
-            j2Var.setHint(hd.M0(2131744194, null));
+            j2Var.setHint(id.M0(2131744196, null));
             j2Var.setHintTextColor(1627389951);
             return;
         }
@@ -234,13 +234,13 @@ public final class k2 extends j {
     }
 
     public void setAlign(int i7) {
-        this.f55719u0 = i7;
+        this.f55811u0 = i7;
     }
 
     public void setBaseFontSize(int i7) {
-        this.f55718t0 = i7;
+        this.f55810t0 = i7;
         float f10 = i7;
-        j2 j2Var = this.f55715q0;
+        j2 j2Var = this.f55807q0;
         j2Var.setTextSize(0, f10);
         j2Var.setCursorSize(org.telegram.messenger.g0.L(f10 * 0.4f));
         if (j2Var.getText() != null) {
@@ -249,15 +249,15 @@ public final class k2 extends j {
             for (int i10 = 0; i10 < f6VarArr.length; i10++) {
                 f6 f6Var = f6VarArr[i10];
                 Paint.FontMetricsInt fontMetricsInt = getFontMetricsInt();
-                f6Var.f22350a = fontMetricsInt;
+                f6Var.f22369a = fontMetricsInt;
                 if (fontMetricsInt != null) {
-                    int abs = Math.abs(f6Var.f22350a.ascent) + Math.abs(fontMetricsInt.descent);
-                    f6Var.f22352c = abs;
+                    int abs = Math.abs(f6Var.f22369a.ascent) + Math.abs(fontMetricsInt.descent);
+                    f6Var.f22371c = abs;
                     if (abs == 0) {
-                        f6Var.f22352c = org.telegram.messenger.g0.L(20.0f);
+                        f6Var.f22371c = org.telegram.messenger.g0.L(20.0f);
                     }
                 }
-                f6VarArr[i10].f22351b = 0.85f;
+                f6VarArr[i10].f22370b = 0.85f;
             }
             for (r5 r5Var : (r5[]) text.getSpans(0, text.length(), r5.class)) {
                 r5Var.replaceFontMetrics(getFontMetricsInt());
@@ -267,28 +267,28 @@ public final class k2 extends j {
     }
 
     public void setMaxWidth(int i7) {
-        this.f55715q0.setMaxWidth(i7);
+        this.f55807q0.setMaxWidth(i7);
     }
 
     public void setSwatch(sg.j1 j1Var) {
-        this.f55716r0 = new sg.j1(j1Var.f55017b, j1Var.f55018c, j1Var.f55016a);
+        this.f55808r0 = new sg.j1(j1Var.f55109b, j1Var.f55110c, j1Var.f55108a);
         r();
     }
 
     public void setText(CharSequence charSequence) {
-        this.f55715q0.setText(charSequence);
+        this.f55807q0.setText(charSequence);
         s();
     }
 
     public void setType(int i7) {
-        this.f55717s0 = i7;
+        this.f55809s0 = i7;
         r();
     }
 
     public void setTypeface(sg.b0 b0Var) {
-        this.f55720v0 = b0Var;
+        this.f55812v0 = b0Var;
         if (b0Var != null) {
-            this.f55715q0.setTypeface(b0Var.d());
+            this.f55807q0.setTypeface(b0Var.d());
         }
         m();
     }
@@ -300,7 +300,7 @@ public final class k2 extends j {
                 break;
             }
             sg.b0 b0Var = (sg.b0) it.next();
-            if (b0Var.f54925a.equals(str)) {
+            if (b0Var.f55017a.equals(str)) {
                 setTypeface(b0Var);
                 str = null;
                 break;
@@ -311,20 +311,20 @@ public final class k2 extends j {
     }
 
     public k2(Context context, k2 k2Var, PointF pointF) {
-        this(context, pointF, k2Var.f55718t0, k2Var.getText(), k2Var.getSwatch(), k2Var.f55717s0);
+        this(context, pointF, k2Var.f55810t0, k2Var.getText(), k2Var.getSwatch(), k2Var.f55809s0);
         setRotation(k2Var.getRotation());
         setScale(k2Var.getScale());
         setTypeface(k2Var.getTypeface());
         setAlign(k2Var.getAlign());
         int align = getAlign();
         int i7 = 2;
-        this.f55715q0.setGravity(align != 1 ? align != 2 ? 19 : 21 : 17);
+        this.f55807q0.setGravity(align != 1 ? align != 2 ? 19 : 21 : 17);
         int align2 = getAlign();
         if (align2 == 1) {
             i7 = 4;
-        } else if (align2 == 2 ? !hd.f22878a0 : hd.f22878a0) {
+        } else if (align2 == 2 ? !id.f23157a0 : id.f23157a0) {
             i7 = 3;
         }
-        this.f55715q0.setTextAlignment(i7);
+        this.f55807q0.setTextAlignment(i7);
     }
 }

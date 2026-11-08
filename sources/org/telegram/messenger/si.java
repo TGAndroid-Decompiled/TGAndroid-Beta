@@ -2,21 +2,21 @@ package org.telegram.messenger;
 
 import j$.util.Objects;
 public final class si {
-    public final boolean f25474a;
-    public final String f25475b;
-    public final String f25476c;
+    public final boolean f25480a;
+    public final String f25481b;
+    public final String f25482c;
 
     public si(String str, String str2, boolean z9) {
-        this.f25474a = z9;
-        this.f25475b = str;
-        this.f25476c = str2;
+        this.f25480a = z9;
+        this.f25481b = str;
+        this.f25482c = str2;
     }
 
     public final boolean equals(Object obj) {
         if (this != obj) {
             if (obj != null && si.class == obj.getClass()) {
                 si siVar = (si) obj;
-                if (this.f25474a == siVar.f25474a && Objects.equals(this.f25475b, siVar.f25475b) && Objects.equals(this.f25476c, siVar.f25476c)) {
+                if (this.f25480a == siVar.f25480a && Objects.equals(this.f25481b, siVar.f25481b) && Objects.equals(this.f25482c, siVar.f25482c)) {
                     return true;
                 }
                 return false;
@@ -27,6 +27,6 @@ public final class si {
     }
 
     public final int hashCode() {
-        return Objects.hash(Boolean.valueOf(this.f25474a), this.f25475b, this.f25476c);
+        return Objects.hash(Boolean.valueOf(this.f25480a), this.f25481b, this.f25482c);
     }
 }

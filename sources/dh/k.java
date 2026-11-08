@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import org.telegram.ui.Components.pj0;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.n40;
-import org.telegram.ui.t91;
+import org.telegram.ui.u91;
 public final class k implements eh.a {
     public final ViewGroup f8786c;
     public final n40 d;
@@ -80,11 +80,11 @@ public final class k implements eh.a {
                             if (childAt == profileActivity.N) {
                                 break;
                             } else {
-                                profileActivity.f41687a.drawChild(canvas, childAt, uptimeMillis);
+                                profileActivity.f41691a.drawChild(canvas, childAt, uptimeMillis);
                                 continue;
                             }
                         default:
-                            ((t91) obj).drawChild(canvas, childAt, uptimeMillis);
+                            ((u91) obj).drawChild(canvas, childAt, uptimeMillis);
                             continue;
                     }
                 }

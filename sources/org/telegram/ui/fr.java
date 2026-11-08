@@ -2,23 +2,23 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 public final class fr implements Runnable {
-    public final int f45696a;
-    public final nr f45697b;
-    public final TLRPC.User f45698c;
+    public final int f45673a;
+    public final nr f45674b;
+    public final TLRPC.User f45675c;
 
     public fr(nr nrVar, TLRPC.User user, int i7) {
-        this.f45696a = i7;
-        this.f45697b = nrVar;
-        this.f45698c = user;
+        this.f45673a = i7;
+        this.f45674b = nrVar;
+        this.f45675c = user;
     }
 
     @Override
     public final void run() {
         String str;
-        switch (this.f45696a) {
+        switch (this.f45673a) {
             case 0:
-                nr nrVar = this.f45697b;
-                TLRPC.User user = this.f45698c;
+                nr nrVar = this.f45674b;
+                TLRPC.User user = this.f45675c;
                 if (user != null && nrVar.M == null && nrVar.N == null) {
                     if (user.phone == null && (str = nrVar.L) != null) {
                         user.phone = pf.b.d(str, false);
@@ -44,7 +44,7 @@ public final class fr implements Runnable {
                 }
                 return;
             default:
-                nr.a0(this.f45697b, this.f45698c);
+                nr.a0(this.f45674b, this.f45675c);
                 return;
         }
     }

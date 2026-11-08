@@ -7,12 +7,12 @@ import java.util.Set;
 import kotlin.jvm.internal.j;
 import p1.i;
 public final class d {
-    public final ka.b f20698a;
-    public final i f20699b;
-    public final Context f20700c;
+    public final ka.b f20701a;
+    public final i f20702b;
+    public final Context f20703c;
     public final String d;
-    public final gd.i f20701e;
-    public final LinkedHashSet f20702f;
+    public final gd.i f20704e;
+    public final LinkedHashSet f20705f;
 
     public d(Context context, String sharedPreferencesName, Set keysToMigrate, ka.b bVar, i iVar) {
         LinkedHashSet linkedHashSet;
@@ -20,17 +20,17 @@ public final class d {
         j.e(sharedPreferencesName, "sharedPreferencesName");
         j.e(keysToMigrate, "keysToMigrate");
         a aVar = new a(0, context, sharedPreferencesName);
-        this.f20698a = bVar;
-        this.f20699b = iVar;
-        this.f20700c = context;
+        this.f20701a = bVar;
+        this.f20702b = iVar;
+        this.f20703c = context;
         this.d = sharedPreferencesName;
-        this.f20701e = ab.b(aVar);
-        if (keysToMigrate == e.f20703a) {
+        this.f20704e = ab.b(aVar);
+        if (keysToMigrate == e.f20706a) {
             linkedHashSet = null;
         } else {
             linkedHashSet = new LinkedHashSet(keysToMigrate);
         }
-        this.f20702f = linkedHashSet;
+        this.f20705f = linkedHashSet;
     }
 
     public final java.lang.Object a(java.lang.Object r5, kd.c r6) {

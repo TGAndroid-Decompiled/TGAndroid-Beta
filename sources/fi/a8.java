@@ -11,7 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.Components.ec0;
 import org.telegram.ui.Components.qe;
 import org.telegram.ui.Components.zb0;
@@ -205,7 +205,7 @@ public final class a8 extends FrameLayout {
         }
         imageView.setVisibility(i7);
         TextView textView = (TextView) this.d;
-        boolean z10 = hd.f22878a0;
+        boolean z10 = id.f23157a0;
         if (!z10 && z9) {
             f10 = 53.0f;
         } else {
@@ -225,7 +225,7 @@ public final class a8 extends FrameLayout {
             case 0:
                 super.dispatchDraw(canvas);
                 Paint paint = (Paint) this.f11615f;
-                paint.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27850d7, (org.telegram.ui.ActionBar.f6) this.f11612b));
+                paint.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27853d7, (org.telegram.ui.ActionBar.f6) this.f11612b));
                 canvas.drawRect(0.0f, getHeight() - org.telegram.messenger.g0.f1(), getWidth(), getHeight(), paint);
                 return;
             default:
@@ -300,9 +300,9 @@ public final class a8 extends FrameLayout {
         TextView textView = new TextView(context);
         this.d = textView;
         org.telegram.messenger.camera.q.m(textView, 1, 20.0f);
-        textView.setGravity(hd.f22878a0 ? 5 : 3);
-        org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f27957j5, f6Var);
-        boolean z9 = hd.f22878a0;
+        textView.setGravity(id.f23157a0 ? 5 : 3);
+        org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f27960j5, f6Var);
+        boolean z9 = id.f23157a0;
         addView(textView, c8.ha.d(-1, -2.0f, 23, z9 ? 16.0f : 53.0f, 0.0f, z9 ? 53.0f : 16.0f, 0.0f));
         ImageView imageView = new ImageView(context);
         this.f11613c = imageView;
@@ -311,8 +311,8 @@ public final class a8 extends FrameLayout {
         imageView.setImageDrawable(y1Var);
         y1Var.a(-1);
         y1Var.b(-1);
-        y1Var.f28772k = 220.0f;
-        addView(imageView, c8.ha.d(24, 24.0f, (hd.f22878a0 ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
+        y1Var.f28775k = 220.0f;
+        addView(imageView, c8.ha.d(24, 24.0f, (id.f23157a0 ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
         imageView.setOnClickListener(new ah.d(this, 25));
     }
 }

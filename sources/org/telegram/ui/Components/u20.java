@@ -16,18 +16,18 @@ public abstract class u20 extends l41 {
     public boolean X;
     public int Y;
     public String Z;
-    public String f38482a0;
-    public int f38483b0;
-    public org.telegram.ui.q8 f38484c0;
-    public final boolean[] f38485d0;
+    public String f38497a0;
+    public int f38498b0;
+    public org.telegram.ui.q8 f38499c0;
+    public final boolean[] f38500d0;
 
     public u20(pj0 pj0Var, Context context, int i7) {
         super(pj0Var, context, i7, 0, false, null, null);
         this.Q = new ArrayList();
         this.V = 0;
         this.W = -1;
-        this.f38485d0 = new boolean[1];
-        this.f35512w = new d(this, 16);
+        this.f38500d0 = new boolean[1];
+        this.f35530w = new d(this, 16);
         this.P = i7;
     }
 
@@ -68,7 +68,7 @@ public abstract class u20 extends l41 {
             ConnectionsManager.getInstance(this.P).cancelRequest(this.W, true);
             this.W = -1;
         }
-        org.telegram.messenger.g0.r(this.f38484c0);
+        org.telegram.messenger.g0.r(this.f38499c0);
         this.V++;
         this.U = false;
     }
@@ -77,7 +77,7 @@ public abstract class u20 extends l41 {
         pj0 pj0Var;
         if (!TextUtils.isEmpty(this.Z) && !this.X && !this.U && (pj0Var = this.d) != null) {
             for (int i7 = 0; i7 < pj0Var.getChildCount(); i7++) {
-                if (pj0Var.getChildAt(i7) instanceof lz) {
+                if (pj0Var.getChildAt(i7) instanceof mz) {
                     Z(this.Z);
                     return;
                 }
@@ -87,8 +87,8 @@ public abstract class u20 extends l41 {
 
     public final void Z(String str) {
         this.Z = str;
-        String Y = Y(str, this.f38485d0);
-        if (!TextUtils.equals(this.f38482a0, Y)) {
+        String Y = Y(str, this.f38500d0);
+        if (!TextUtils.equals(this.f38497a0, Y)) {
             this.Q.clear();
             this.X = false;
             this.Y = 0;
@@ -104,7 +104,7 @@ public abstract class u20 extends l41 {
         this.U = true;
         O(true);
         org.telegram.ui.q8 q8Var = new org.telegram.ui.q8(this, i7, Y);
-        this.f38484c0 = q8Var;
+        this.f38499c0 = q8Var;
         org.telegram.messenger.g0.i3(q8Var, 300L);
     }
 }

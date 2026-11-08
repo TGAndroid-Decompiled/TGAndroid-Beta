@@ -8,25 +8,25 @@ import java.util.ArrayList;
 import org.telegram.ui.Cells.q1;
 import v4.d1;
 public final class i extends AnimatorListenerAdapter {
-    public final int f20078a;
-    public final v4.i f20079b;
-    public final ViewPropertyAnimator f20080c;
+    public final int f20081a;
+    public final v4.i f20082b;
+    public final ViewPropertyAnimator f20083c;
     public final View d;
-    public final l f20081e;
+    public final l f20084e;
 
     public i(l lVar, v4.i iVar, ViewPropertyAnimator viewPropertyAnimator, View view, int i7) {
-        this.f20078a = i7;
-        this.f20081e = lVar;
-        this.f20079b = iVar;
-        this.f20080c = viewPropertyAnimator;
+        this.f20081a = i7;
+        this.f20084e = lVar;
+        this.f20082b = iVar;
+        this.f20083c = viewPropertyAnimator;
         this.d = view;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f20078a) {
+        switch (this.f20081a) {
             case 0:
-                this.f20080c.setListener(null);
+                this.f20083c.setListener(null);
                 View view = this.d;
                 view.setAlpha(1.0f);
                 view.setScaleX(1.0f);
@@ -37,17 +37,17 @@ public final class i extends AnimatorListenerAdapter {
                     view.setTranslationX(0.0f);
                 }
                 view.setTranslationY(0.0f);
-                l lVar = this.f20081e;
+                l lVar = this.f20084e;
                 ArrayList arrayList = lVar.B;
-                v4.i iVar = this.f20079b;
-                if (arrayList.remove(iVar.f56995a)) {
-                    lVar.d(iVar.f56995a);
+                v4.i iVar = this.f20082b;
+                if (arrayList.remove(iVar.f57087a)) {
+                    lVar.d(iVar.f57087a);
                     lVar.G();
                     return;
                 }
                 return;
             default:
-                this.f20080c.setListener(null);
+                this.f20083c.setListener(null);
                 View view2 = this.d;
                 view2.setAlpha(1.0f);
                 view2.setScaleX(1.0f);
@@ -58,11 +58,11 @@ public final class i extends AnimatorListenerAdapter {
                     view2.setTranslationX(0.0f);
                 }
                 view2.setTranslationY(0.0f);
-                l lVar2 = this.f20081e;
+                l lVar2 = this.f20084e;
                 ArrayList arrayList2 = lVar2.B;
-                v4.i iVar2 = this.f20079b;
-                if (arrayList2.remove(iVar2.f56996b)) {
-                    lVar2.d(iVar2.f56996b);
+                v4.i iVar2 = this.f20082b;
+                if (arrayList2.remove(iVar2.f57088b)) {
+                    lVar2.d(iVar2.f57088b);
                     lVar2.G();
                     return;
                 }
@@ -72,14 +72,14 @@ public final class i extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationStart(Animator animator) {
-        switch (this.f20078a) {
+        switch (this.f20081a) {
             case 0:
-                d1 d1Var = this.f20079b.f56995a;
-                this.f20081e.getClass();
+                d1 d1Var = this.f20082b.f57087a;
+                this.f20084e.getClass();
                 return;
             default:
-                d1 d1Var2 = this.f20079b.f56996b;
-                this.f20081e.getClass();
+                d1 d1Var2 = this.f20082b.f57088b;
+                this.f20084e.getClass();
                 return;
         }
     }

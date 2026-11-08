@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import c8.ha;
 import java.util.ArrayList;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.m5;
 import org.telegram.messenger.p10;
 import org.telegram.messenger.qp;
@@ -22,19 +22,19 @@ import org.telegram.ui.Components.xq;
 import org.telegram.ui.i2;
 import org.telegram.ui.sq0;
 public final class p0 extends LinearLayout {
-    public final ArrayList f57701a;
-    public final n0 f57702b;
-    public final FrameLayout f57703c;
+    public final ArrayList f57793a;
+    public final n0 f57794b;
+    public final FrameLayout f57795c;
     public final FrameLayout d;
-    public final w70 f57704e;
+    public final w70 f57796e;
 
     public p0(Context context) {
         super(context);
-        this.f57701a = new ArrayList();
+        this.f57793a = new ArrayList();
         setOrientation(1);
         setClipChildren(false);
         FrameLayout frameLayout = new FrameLayout(getContext());
-        this.f57703c = frameLayout;
+        this.f57795c = frameLayout;
         frameLayout.setClipChildren(false);
         FrameLayout frameLayout2 = new FrameLayout(getContext());
         this.d = frameLayout2;
@@ -47,21 +47,21 @@ public final class p0 extends LinearLayout {
         sq0Var.addView(imageView);
         frameLayout.addView(sq0Var, ha.e(24, 24, 17));
         n0 n0Var = new n0(context);
-        this.f57702b = n0Var;
+        this.f57794b = n0Var;
         n0Var.setLayerType(2, null);
         frameLayout.addView(n0Var, ha.e(70, 70, 17));
         addView(frameLayout, ha.k(0.0f, 15.0f, 0.0f, 0.0f, -1, 70));
         TextView textView = new TextView(context);
         textView.setTypeface(org.telegram.messenger.g0.o());
-        textView.setText(hd.M0(2131753321, null));
+        textView.setText(id.M0(2131753321, null));
         textView.setTextSize(1, 20.0f);
         r6.V(textView, k6.G6, null);
         addView(textView, ha.t(-2, -2, 1, 0, 15, 0, 7));
         w70 w70Var = new w70(getContext(), null);
-        this.f57704e = w70Var;
+        this.f57796e = w70Var;
         w70Var.setTextSize(1, 14.0f);
         w70Var.setGravity(1);
-        r6.V(w70Var, k6.f27957j5, null);
+        r6.V(w70Var, k6.f27960j5, null);
         w70Var.setLineSpacing(w70Var.getLineSpacingExtra(), w70Var.getLineSpacingMultiplier() * 1.1f);
         addView(w70Var, ha.t(-2, -2, 1, 28, 0, 28, 18));
     }
@@ -81,15 +81,15 @@ public final class p0 extends LinearLayout {
         while (i12 < size) {
             Object obj = arrayList.get(i12);
             i12++;
-            arrayList3.add(qp.s1(p10.f24467s0).M0(Long.valueOf(-m5.o(((TL_stories.TL_myBoost) obj).peer))));
+            arrayList3.add(qp.s1(p10.f24470s0).M0(Long.valueOf(-m5.o(((TL_stories.TL_myBoost) obj).peer))));
         }
         ArrayList arrayList4 = new ArrayList();
         ArrayList arrayList5 = new ArrayList();
-        xq xqVar = xq.f40345f;
+        xq xqVar = xq.f40366f;
         int size2 = arrayList3.size();
         int i13 = 0;
         while (true) {
-            arrayList2 = this.f57701a;
+            arrayList2 = this.f57793a;
             if (i13 >= size2) {
                 break;
             }
@@ -136,9 +136,9 @@ public final class p0 extends LinearLayout {
             n0 n0Var3 = new n0(getContext());
             n0Var3.setLayerType(2, null);
             n0Var3.d = chat4;
-            w8 w8Var = n0Var3.f57694e;
+            w8 w8Var = n0Var3.f57786e;
             w8Var.q(chat4);
-            n0Var3.f57691a.e(chat4, w8Var);
+            n0Var3.f57783a.e(chat4, w8Var);
             int size5 = arrayList6.size();
             frameLayout.addView(n0Var3, i11, ha.e(70, 70, 17));
             n0Var3.setTranslationX(org.telegram.messenger.g0.L(23.0f) * (-size5));
@@ -148,7 +148,7 @@ public final class p0 extends LinearLayout {
             ArrayList arrayList7 = arrayList5;
             n0Var3.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setInterpolator(xqVar).setDuration(200).start();
             if (size5 == 0) {
-                i2 i2Var = n0Var3.f57692b;
+                i2 i2Var = n0Var3.f57784b;
                 i2Var.setScaleY(1.0f);
                 i2Var.setScaleX(1.0f);
                 i2Var.setAlpha(1.0f);
@@ -202,9 +202,9 @@ public final class p0 extends LinearLayout {
                 i7 = size6;
                 if (jg.g.i(1, arrayList6) == n0Var && arrayList6.size() > 1) {
                     c11 = 2;
-                    ((n0) jg.g.i(2, arrayList6)).f57692b.setScaleY(0.1f);
-                    ((n0) arrayList6.get(arrayList6.size() - 2)).f57692b.setScaleX(0.1f);
-                    ((n0) arrayList6.get(arrayList6.size() - 2)).f57692b.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(j3).setInterpolator(xqVar).start();
+                    ((n0) jg.g.i(2, arrayList6)).f57784b.setScaleY(0.1f);
+                    ((n0) arrayList6.get(arrayList6.size() - 2)).f57784b.setScaleX(0.1f);
+                    ((n0) arrayList6.get(arrayList6.size() - 2)).f57784b.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(j3).setInterpolator(xqVar).start();
                     c10 = c11;
                     size6 = i7;
                 } else {
@@ -217,16 +217,16 @@ public final class p0 extends LinearLayout {
             c10 = c11;
             size6 = i7;
         }
-        n0 n0Var5 = this.f57702b;
+        n0 n0Var5 = this.f57794b;
         if (n0Var5.d == null) {
             n0Var5.d = chat;
-            w8 w8Var2 = n0Var5.f57694e;
+            w8 w8Var2 = n0Var5.f57786e;
             w8Var2.q(chat);
-            n0Var5.f57691a.e(chat, w8Var2);
+            n0Var5.f57783a.e(chat, w8Var2);
         }
         arrayList2.removeAll(arrayList4);
         arrayList2.addAll(arrayList8);
-        FrameLayout frameLayout2 = this.f57703c;
+        FrameLayout frameLayout2 = this.f57795c;
         frameLayout2.animate().cancel();
         if (!arrayList2.isEmpty() && arrayList2.size() != 1) {
             frameLayout2.animate().setInterpolator(xqVar).translationX(org.telegram.messenger.g0.L(11.5f) * (arrayList2.size() - 1)).setDuration(200).start();

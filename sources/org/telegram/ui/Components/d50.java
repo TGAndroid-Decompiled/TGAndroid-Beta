@@ -12,11 +12,11 @@ public final class d50 extends q70 {
 
     @Override
     public final void e(SpannableStringBuilder spannableStringBuilder) {
-        m50 m50Var = this.M.f34177c;
-        org.telegram.ui.ActionBar.l2 l2Var = m50Var.f28619c;
-        int i7 = m50.f35869e2;
+        m50 m50Var = this.M.f34114c;
+        org.telegram.ui.ActionBar.l2 l2Var = m50Var.f28622c;
+        int i7 = m50.f35897e2;
         cc Q = new hc(l2Var, m50Var.I0).Q(2131624028, 36, spannableStringBuilder);
-        Q.f32522r = false;
+        Q.f32553r = false;
         Q.k(true);
     }
 }

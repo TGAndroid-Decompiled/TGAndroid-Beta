@@ -113,7 +113,7 @@ public final class g implements p, l5.g, tr, r1, bp {
                 d0 d0Var = (d0) this.f85c;
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.d;
                 q3 q3Var = (q3) this.f86e;
-                int i10 = q3Var.f18786b;
+                int i10 = q3Var.f18789b;
                 if (!z9) {
                     d0Var.run();
                     return;
@@ -175,7 +175,7 @@ public final class g implements p, l5.g, tr, r1, bp {
                 if (z11) {
                     try {
                         Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                        intent.setData(Uri.parse("package:" + t0.f25563b.getPackageName()));
+                        intent.setData(Uri.parse("package:" + t0.f25566b.getPackageName()));
                         context.startActivity(intent);
                         return;
                     } catch (Exception e10) {
@@ -234,8 +234,8 @@ public final class g implements p, l5.g, tr, r1, bp {
         if (j3 == 0) {
             return;
         }
-        fVar.f15523b = -j3;
-        fVar.f15524c = fVar.getMessagesController().M0(Long.valueOf(j3));
+        fVar.f15526b = -j3;
+        fVar.f15527c = fVar.getMessagesController().M0(Long.valueOf(j3));
         fVar.a0(str, this.f84b);
     }
 

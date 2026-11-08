@@ -297,7 +297,7 @@ public class m3 extends View {
                 i11 = Math.max(max, spanEnd2);
                 if (i11 - max > 0) {
                     Typeface typeface = textPaint3.getTypeface();
-                    textPaint3.setTypeface(u31VarArr[i12].f38494a);
+                    textPaint3.setTypeface(u31VarArr[i12].f38509a);
                     textPaint3.setTypeface(typeface);
                     f10 = textPaint3.measureText(spanned, max, i11) + f10;
                 }
@@ -398,7 +398,7 @@ public class m3 extends View {
             if (this.I) {
                 f10 = this.P;
             } else {
-                f10 = i6Var.f34511e;
+                f10 = i6Var.f34555e;
             }
             if (this.f12437r) {
                 if (this.f12432n == null) {
@@ -764,7 +764,7 @@ public class m3 extends View {
         invalidate();
         Runnable runnable2 = this.f12436q0;
         if (runnable2 != null) {
-            org.telegram.messenger.g0.i3(runnable2, w5Var.f39855c * ((float) w5Var.f39858g));
+            org.telegram.messenger.g0.i3(runnable2, w5Var.f39805c * ((float) w5Var.f39808g));
         }
         this.Q.f(true);
     }
@@ -793,7 +793,7 @@ public class m3 extends View {
             return charSequence;
         }
         if (!this.I) {
-            return this.H.f34514i;
+            return this.H.f34558i;
         }
         StaticLayout staticLayout = this.L;
         if (staticLayout != null) {
@@ -806,7 +806,7 @@ public class m3 extends View {
         if (this.I) {
             return this.J;
         }
-        return this.H.f34506a;
+        return this.H.f34550a;
     }
 
     public final void i(float f10) {
@@ -1037,7 +1037,7 @@ public class m3 extends View {
             this.f12449y0 = ofFloat;
             ofFloat.addUpdateListener(new ah.h(this, 29));
             this.f12449y0.addListener(new bi.t5(this, 19));
-            this.f12449y0.setInterpolator(xq.f40349k);
+            this.f12449y0.setInterpolator(xq.f40370k);
             this.f12449y0.setDuration(300L);
             this.f12449y0.start();
         }

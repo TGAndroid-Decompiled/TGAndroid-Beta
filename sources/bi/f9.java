@@ -48,7 +48,7 @@ public final class f9 implements Runnable {
         switch (i7) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj;
-                SQLiteDatabase sQLiteDatabase = ((yr) obj2).f26698b;
+                SQLiteDatabase sQLiteDatabase = ((yr) obj2).f26721b;
                 try {
                     try {
                         sQLiteDatabase.executeFast("DELETE FROM star_gifts2").stepThis().dispose();
@@ -57,7 +57,7 @@ public final class f9 implements Runnable {
                             for (int i11 = 0; i11 < arrayList.size(); i11++) {
                                 TL_stars.StarGift starGift = (TL_stars.StarGift) arrayList.get(i11);
                                 sQLitePreparedStatement.requery();
-                                sQLitePreparedStatement.bindLong(1, starGift.f27182id);
+                                sQLitePreparedStatement.bindLong(1, starGift.f27185id);
                                 NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(starGift.getObjectSize());
                                 starGift.serializeToStream(nativeByteBuffer);
                                 sQLitePreparedStatement.bindByteBuffer(2, nativeByteBuffer);
@@ -132,45 +132,45 @@ public final class f9 implements Runnable {
                 return;
             case 5:
                 rc.u uVar = (rc.u) obj;
-                org.telegram.ui.Wallet.a1 a1Var = ((org.telegram.ui.Wallet.z0) obj2).f43409c;
-                if (!a1Var.c(uVar, i10)) {
-                    a1Var.d("closing stale connected websocket; attempt=" + i10);
+                org.telegram.ui.Wallet.z0 z0Var = ((org.telegram.ui.Wallet.y0) obj2).f43381c;
+                if (!z0Var.c(uVar, i10)) {
+                    z0Var.d("closing stale connected websocket; attempt=" + i10);
                     uVar.c();
                     return;
                 }
-                a1Var.d("websocket connected after " + (SystemClock.elapsedRealtime() - j3) + " ms");
-                org.telegram.ui.Wallet.x0 x0Var = a1Var.f42093o;
+                z0Var.d("websocket connected after " + (SystemClock.elapsedRealtime() - j3) + " ms");
+                org.telegram.ui.Wallet.w0 w0Var = z0Var.f43460o;
                 try {
-                    JSONArray put = new JSONArray().put(a1Var.f42082b);
+                    JSONArray put = new JSONArray().put(z0Var.f43449b);
                     StringBuilder sb2 = new StringBuilder("wallet-");
-                    int i12 = a1Var.f42086g + 1;
-                    a1Var.f42086g = i12;
+                    int i12 = z0Var.f43453g + 1;
+                    z0Var.f43453g = i12;
                     sb2.append(i12);
-                    a1Var.f42085f = sb2.toString();
-                    JSONObject put2 = new JSONObject().put("operation", "subscribe").put("id", a1Var.f42085f).put("types", new JSONArray().put("transactions").put("account_state_change")).put("include_address_book", true).put("addresses", put).put("min_finality", "pending");
-                    org.telegram.messenger.g0.r(x0Var);
-                    org.telegram.messenger.g0.i3(x0Var, 30000L);
-                    a1Var.g(put2.toString());
+                    z0Var.f43452f = sb2.toString();
+                    JSONObject put2 = new JSONObject().put("operation", "subscribe").put("id", z0Var.f43452f).put("types", new JSONArray().put("transactions").put("account_state_change")).put("include_address_book", true).put("addresses", put).put("min_finality", "pending");
+                    org.telegram.messenger.g0.r(w0Var);
+                    org.telegram.messenger.g0.i3(w0Var, 30000L);
+                    z0Var.g(put2.toString());
                     return;
                 } catch (JSONException unused) {
-                    a1Var.f("could not encode subscription");
+                    z0Var.f("could not encode subscription");
                     return;
                 }
             case 6:
-                org.telegram.ui.Wallet.f2 f2Var = (org.telegram.ui.Wallet.f2) obj2;
-                f2Var.getClass();
+                org.telegram.ui.Wallet.e2 e2Var = (org.telegram.ui.Wallet.e2) obj2;
+                e2Var.getClass();
                 TL_wallet.tonConnectGetPending tonconnectgetpending = new TL_wallet.tonConnectGetPending();
                 long j10 = this.f3883c;
                 tonconnectgetpending.session_id = Long.valueOf(j10);
-                f2Var.f42463f.sendRequestTyped(tonconnectgetpending, new d3.b(1), new org.telegram.ui.Wallet.p1(f2Var, (l60) obj, j10, this.f3882b, 0));
+                e2Var.f42431f.sendRequestTyped(tonconnectgetpending, new d3.b(1), new org.telegram.ui.Wallet.o1(e2Var, (l60) obj, j10, this.f3882b, 0));
                 return;
             default:
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, (Context) obj2, (org.telegram.ui.ActionBar.f6) obj);
-                String M0 = org.telegram.messenger.hd.M0(2131743074, null);
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
+                String M0 = org.telegram.messenger.id.M0(2131743076, null);
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
                 u1Var.R = M0;
-                u1Var.T = org.telegram.messenger.g0.W2(org.telegram.messenger.hd.V(null, null, 2131743072, org.telegram.ui.Wallet.n0.x(i10).m(j3, true)));
-                jg.g.C(null, 2131743064, alertDialog$Builder, null);
+                u1Var.T = org.telegram.messenger.g0.W2(org.telegram.messenger.id.V(null, null, 2131743074, org.telegram.ui.Wallet.m0.x(i10).m(j3, true)));
+                jg.g.C(null, 2131743066, alertDialog$Builder, null);
                 return;
         }
     }
@@ -183,9 +183,9 @@ public final class f9 implements Runnable {
         this.f3884e = arrayList;
     }
 
-    public f9(org.telegram.ui.Wallet.f2 f2Var, long j3, l60 l60Var, int i7) {
+    public f9(org.telegram.ui.Wallet.e2 e2Var, long j3, l60 l60Var, int i7) {
         this.f3881a = 6;
-        this.d = f2Var;
+        this.d = e2Var;
         this.f3883c = j3;
         this.f3884e = l60Var;
         this.f3882b = i7;

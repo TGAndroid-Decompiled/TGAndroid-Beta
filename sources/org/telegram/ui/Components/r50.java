@@ -5,14 +5,14 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class r50 implements Runnable {
-    public final int f37497a;
-    public final s50 f37498b;
-    public final String f37499c;
+    public final int f37518a;
+    public final s50 f37519b;
+    public final String f37520c;
 
     public r50(s50 s50Var, String str, int i7) {
-        this.f37497a = i7;
-        this.f37498b = s50Var;
-        this.f37499c = str;
+        this.f37518a = i7;
+        this.f37519b = s50Var;
+        this.f37520c = str;
     }
 
     @Override
@@ -24,18 +24,18 @@ public final class r50 implements Runnable {
         boolean z9;
         char c10;
         Object obj;
-        switch (this.f37497a) {
+        switch (this.f37518a) {
             case 0:
-                s50 s50Var = this.f37498b;
-                String str2 = this.f37499c;
+                s50 s50Var = this.f37519b;
+                String str2 = this.f37520c;
                 s50Var.getClass();
                 org.telegram.messenger.g0.h3(new r50(s50Var, str2, 1));
                 return;
             case 1:
-                s50 s50Var2 = this.f37498b;
-                String str3 = this.f37499c;
-                jg.z1 z1Var = s50Var2.f37911e;
-                org.telegram.ui.wr wrVar = s50Var2.f37913n.d2;
+                s50 s50Var2 = this.f37519b;
+                String str3 = this.f37520c;
+                jg.z1 z1Var = s50Var2.f37927e;
+                org.telegram.ui.wr wrVar = s50Var2.f37929n.d2;
                 boolean z10 = false;
                 boolean z11 = false;
                 if (wrVar != null) {
@@ -45,15 +45,15 @@ public final class r50 implements Runnable {
                     z11 = true;
                 }
                 z1Var.g(str3, true, z10, true, z11, 0L, false, 0, 0);
-                org.telegram.messenger.p5 p5Var = Utilities.f21335g;
+                org.telegram.messenger.p5 p5Var = Utilities.f21338g;
                 r50 r50Var = new r50(s50Var2, str3, 2);
                 s50Var2.h = r50Var;
                 p5Var.c(r50Var);
                 return;
             default:
-                s50 s50Var3 = this.f37498b;
-                String str4 = this.f37499c;
-                ArrayList arrayList2 = s50Var3.f37913n.V1;
+                s50 s50Var3 = this.f37519b;
+                String str4 = this.f37520c;
+                ArrayList arrayList2 = s50Var3.f37929n.V1;
                 String lowerCase = str4.trim().toLowerCase();
                 if (lowerCase.length() == 0) {
                     org.telegram.messenger.g0.h3(new ng(s50Var3, new ArrayList(), new ArrayList(), 11));
@@ -61,7 +61,7 @@ public final class r50 implements Runnable {
                 }
                 boolean z12 = true;
                 ?? r62 = 0;
-                String S0 = org.telegram.messenger.hd.E0().S0(lowerCase, true, false);
+                String S0 = org.telegram.messenger.id.E0().S0(lowerCase, true, false);
                 S0 = (lowerCase.equals(S0) || S0.length() == 0) ? null : null;
                 if (S0 != null) {
                     i7 = 1;
@@ -89,7 +89,7 @@ public final class r50 implements Runnable {
                         str = chat.title;
                         K = org.telegram.messenger.t3.K(chat, r62);
                     }
-                    String S02 = org.telegram.messenger.hd.E0().S0(str, z12, r62);
+                    String S02 = org.telegram.messenger.id.E0().S0(str, z12, r62);
                     if (str.equals(S02)) {
                         S02 = null;
                     }

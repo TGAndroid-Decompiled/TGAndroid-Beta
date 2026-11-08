@@ -3,19 +3,19 @@ package t3;
 import j$.util.Objects;
 import java.util.Arrays;
 public final class d extends i {
-    public final String f55299b;
-    public final boolean f55300c;
+    public final String f55391b;
+    public final boolean f55392c;
     public final boolean d;
-    public final String[] f55301e;
-    public final i[] f55302f;
+    public final String[] f55393e;
+    public final i[] f55394f;
 
     public d(String str, boolean z9, boolean z10, String[] strArr, i[] iVarArr) {
         super("CTOC");
-        this.f55299b = str;
-        this.f55300c = z9;
+        this.f55391b = str;
+        this.f55392c = z9;
         this.d = z10;
-        this.f55301e = strArr;
-        this.f55302f = iVarArr;
+        this.f55393e = strArr;
+        this.f55394f = iVarArr;
     }
 
     public final boolean equals(Object obj) {
@@ -24,7 +24,7 @@ public final class d extends i {
         }
         if (obj != null && d.class == obj.getClass()) {
             d dVar = (d) obj;
-            if (this.f55300c == dVar.f55300c && this.d == dVar.d && Objects.equals(this.f55299b, dVar.f55299b) && Arrays.equals(this.f55301e, dVar.f55301e) && Arrays.equals(this.f55302f, dVar.f55302f)) {
+            if (this.f55392c == dVar.f55392c && this.d == dVar.d && Objects.equals(this.f55391b, dVar.f55391b) && Arrays.equals(this.f55393e, dVar.f55393e) && Arrays.equals(this.f55394f, dVar.f55394f)) {
                 return true;
             }
         }
@@ -33,8 +33,8 @@ public final class d extends i {
 
     public final int hashCode() {
         int i7;
-        int i10 = (((527 + (this.f55300c ? 1 : 0)) * 31) + (this.d ? 1 : 0)) * 31;
-        String str = this.f55299b;
+        int i10 = (((527 + (this.f55392c ? 1 : 0)) * 31) + (this.d ? 1 : 0)) * 31;
+        String str = this.f55391b;
         if (str != null) {
             i7 = str.hashCode();
         } else {

@@ -1,31 +1,33 @@
 package org.telegram.messenger;
-
-import android.content.SharedPreferences;
-import org.telegram.ui.f60;
 public final class wc implements Runnable {
-    public final int f26282a;
-    public final hd f26283b;
-    public final String f26284c;
-    public final f60 d;
+    public final int f26285a;
+    public final id f26286b;
+    public final int f26287c;
 
-    public wc(hd hdVar, String str, f60 f60Var, int i7) {
-        this.f26282a = i7;
-        this.f26283b = hdVar;
-        this.f26284c = str;
-        this.d = f60Var;
+    public wc(id idVar, int i7, int i10) {
+        this.f26285a = i10;
+        this.f26286b = idVar;
+        this.f26287c = i7;
     }
 
     @Override
     public final void run() {
-        switch (this.f26282a) {
+        switch (this.f26285a) {
             case 0:
-                g0.h3(new wc(this.f26283b, this.f26284c, this.d, 1));
+                id idVar = this.f26286b;
+                idVar.P = false;
+                idVar.j(this.f26287c);
+                return;
+            case 1:
+                id idVar2 = this.f26286b;
+                idVar2.P = false;
+                idVar2.j(this.f26287c);
+                return;
+            case 2:
+                this.f26286b.Z0(this.f26287c, null, true, null);
                 return;
             default:
-                SharedPreferences.Editor edit = qp.e1().edit();
-                edit.putBoolean("langpack_patched" + this.f26284c, true).apply();
-                this.d.run();
-                this.f26283b.Q = false;
+                this.f26286b.Z0(this.f26287c, null, true, null);
                 return;
         }
     }

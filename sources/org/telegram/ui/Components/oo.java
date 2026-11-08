@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.pc1;
+import org.telegram.ui.qc1;
 public final class oo implements bi {
-    public final vo f36653a;
+    public final vo f36673a;
 
     public oo(vo voVar) {
-        this.f36653a = voVar;
+        this.f36673a = voVar;
     }
 
     @Override
@@ -25,9 +25,9 @@ public final class oo implements bi {
     @Override
     public final void M0(Object obj) {
         lo loVar = new lo(obj, null, true, 3);
-        vo voVar = this.f36653a;
+        vo voVar = this.f36673a;
         loVar.W1 = voVar.V1;
-        loVar.h1(voVar.f39024r1.a());
+        loVar.h1(voVar.f39059r1.a());
         loVar.J1 = new no(this, 1);
         vo.I0(voVar, loVar);
     }
@@ -44,9 +44,9 @@ public final class oo implements bi {
 
     @Override
     public final void o1(int i7, boolean z9, boolean z10, int i10, int i11, long j3, boolean z11, boolean z12, long j10) {
-        vo voVar = this.f36653a;
+        vo voVar = this.f36673a;
         try {
-            HashMap<Object, Object> selectedPhotos = voVar.O1.f32924a2.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = voVar.O1.f32932a2.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 org.telegram.messenger.gf gfVar = (org.telegram.messenger.gf) selectedPhotos.values().iterator().next();
                 String str = gfVar.h;
@@ -55,16 +55,16 @@ public final class oo implements bi {
                 }
                 if (str != null) {
                     File z13 = org.telegram.messenger.w7.z(4);
-                    File file = new File(z13, Utilities.f21331b.nextInt() + ".jpg");
+                    File file = new File(z13, Utilities.f21334b.nextInt() + ".jpg");
                     Point c12 = org.telegram.messenger.g0.c1();
                     Bitmap K = org.telegram.messenger.gc.K(str, null, (float) c12.x, (float) c12.y, true);
                     K.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
-                    lo loVar = new lo(new pc1(file, file, ""), K, false, 2);
+                    lo loVar = new lo(new qc1(file, file, ""), K, false, 2);
                     loVar.W1 = voVar.V1;
                     loVar.G1 = false;
                     loVar.F1 = false;
-                    loVar.f50307o1 = 0.2f;
-                    loVar.h1(voVar.f39024r1.a());
+                    loVar.f50562o1 = 0.2f;
+                    loVar.h1(voVar.f39059r1.a());
                     loVar.J1 = new no(this, 0);
                     vo.I0(voVar, loVar);
                 }

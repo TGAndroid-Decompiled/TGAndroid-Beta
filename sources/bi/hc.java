@@ -28,7 +28,7 @@ public final class hc extends l41 {
                 super.t(d1Var, i7);
                 di.g2 g2Var = (di.g2) this.Q;
                 if (g2Var.D) {
-                    View view = d1Var.f56951a;
+                    View view = d1Var.f57043a;
                     if ((view instanceof di.n0) && (s0Var = (n0Var = (di.n0) view).K) != null && s0Var.f9736a == g2Var.f9826y) {
                         n0Var.a();
                         g2Var.D = false;
@@ -94,12 +94,12 @@ public final class hc extends l41 {
                 }
                 return super.x(viewGroup, i7);
             case 5:
-                zh.l3 l3Var = (zh.l3) this.Q;
+                zh.k3 k3Var = (zh.k3) this.Q;
                 if (i7 == 0) {
-                    return new v4.d1(new org.telegram.ui.Cells.n4(l3Var.getContext(), org.telegram.ui.ActionBar.k6.L6, 13, 12, 4, false, false, l3Var.I0));
+                    return new v4.d1(new org.telegram.ui.Cells.n4(k3Var.getContext(), org.telegram.ui.ActionBar.k6.L6, 13, 12, 4, false, false, k3Var.I0));
                 }
                 if (i7 == 42) {
-                    return new v4.d1(new org.telegram.ui.Cells.n4(l3Var.getContext(), org.telegram.ui.ActionBar.k6.L6, 13, 12, 4, false, true, l3Var.I0));
+                    return new v4.d1(new org.telegram.ui.Cells.n4(k3Var.getContext(), org.telegram.ui.ActionBar.k6.L6, 13, 12, 4, false, true, k3Var.I0));
                 }
                 return super.x(viewGroup, i7);
         }
@@ -114,7 +114,7 @@ public final class hc extends l41 {
                 super.y(d1Var);
                 di.g2 g2Var = (di.g2) this.Q;
                 if (g2Var.D) {
-                    View view = d1Var.f56951a;
+                    View view = d1Var.f57043a;
                     if ((view instanceof di.n0) && (s0Var = (n0Var = (di.n0) view).K) != null && s0Var.f9736a == g2Var.f9826y) {
                         n0Var.a();
                         g2Var.D = false;

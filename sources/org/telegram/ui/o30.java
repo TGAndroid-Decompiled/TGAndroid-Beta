@@ -15,7 +15,7 @@ public final class o30 implements org.telegram.ui.Components.o5 {
     public final void invalidate() {
         switch (this.f48247a) {
             case 0:
-                Iterator it = ((p30) this.f48248b).f48604i.iterator();
+                Iterator it = ((p30) this.f48248b).f48598i.iterator();
                 while (it.hasNext()) {
                     ((View) it.next()).invalidate();
                 }

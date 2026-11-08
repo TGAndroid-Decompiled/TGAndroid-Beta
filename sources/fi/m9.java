@@ -55,7 +55,7 @@ public final class m9 implements v10 {
                                 x9Var2.U1 = true;
                                 j5 j5Var = x9Var2.A0;
                                 if ((tLObject instanceof TLRPC.Photo) && (w10 = org.telegram.messenger.w7.w(((TLRPC.Photo) tLObject).sizes, 1000, false, null, false)) != null) {
-                                    f10 = w10.f26978w / w10.h;
+                                    f10 = w10.f26981w / w10.h;
                                 } else {
                                     f10 = 1.0f;
                                 }
@@ -92,7 +92,7 @@ public final class m9 implements v10 {
                         boolean z11 = obj instanceof gf;
                         if (z11) {
                             gf gfVar = (gf) obj;
-                            if (gfVar.f26824b && !gfVar.d()) {
+                            if (gfVar.f26845b && !gfVar.d()) {
                                 i10 = 1;
                             }
                             vaVar.O1 = i10;
@@ -154,15 +154,15 @@ public final class m9 implements v10 {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 if (tL_error != null) {
                     if (TextUtils.equals("COMMUNITY_REQUEST_CREATED", tL_error.text)) {
-                        ii.m0.f(new hc((FrameLayout) d0Var.f28616b, d0Var.I0), 2, z10);
-                        d0Var.f15502k1.E(0);
+                        ii.m0.f(new hc((FrameLayout) d0Var.f28619b, d0Var.I0), 2, z10);
+                        d0Var.f15505k1.E(0);
                         return;
                     }
-                    org.telegram.ui.Cells.f1.r((FrameLayout) d0Var.f28616b, d0Var.I0, tL_error, false);
+                    org.telegram.ui.Cells.f1.r((FrameLayout) d0Var.f28619b, d0Var.I0, tL_error, false);
                     return;
                 }
-                ii.m0.f(new hc((FrameLayout) d0Var.f28616b, d0Var.I0), 1, z10);
-                d0Var.f15502k1.E(0);
+                ii.m0.f(new hc((FrameLayout) d0Var.f28619b, d0Var.I0), 1, z10);
+                d0Var.f15505k1.E(0);
                 return;
             case 2:
                 ProfileActivity profileActivity = (ProfileActivity) obj3;
@@ -174,7 +174,7 @@ public final class m9 implements v10 {
                         if (num.intValue() == 1) {
                             hc.l(null, profileActivity, z10).j();
                         } else if (num.intValue() == 2) {
-                            hc.l(org.telegram.messenger.m5.t(profileActivity.f41712d1), profileActivity, z10).j();
+                            hc.l(org.telegram.messenger.m5.t(profileActivity.f41716d1), profileActivity, z10).j();
                         } else if (tL_error2 != null) {
                             hc.d0(tL_error2);
                         }
@@ -188,14 +188,14 @@ public final class m9 implements v10 {
                 }
                 return;
             default:
-                org.telegram.ui.Wallet.f0 f0Var = (org.telegram.ui.Wallet.f0) obj3;
+                org.telegram.ui.Wallet.e0 e0Var = (org.telegram.ui.Wallet.e0) obj3;
                 TL_wallet.nftItems nftitems = (TL_wallet.nftItems) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
-                ArrayList arrayList = f0Var.f42443b;
-                ArrayList arrayList2 = f0Var.f42444c;
-                f0Var.f42451l = -1;
-                f0Var.f42449j = false;
-                f0Var.f42448i = false;
+                ArrayList arrayList = e0Var.f42411b;
+                ArrayList arrayList2 = e0Var.f42412c;
+                e0Var.f42419l = -1;
+                e0Var.f42417j = false;
+                e0Var.f42416i = false;
                 if (nftitems != null) {
                     if (z10) {
                         arrayList.clear();
@@ -210,7 +210,7 @@ public final class m9 implements v10 {
                         int i13 = 0;
                         while (true) {
                             if (i13 < arrayList.size()) {
-                                if (org.telegram.ui.Wallet.n0.b(((TL_wallet.nftItem) arrayList.get(i13)).address, nftitem2.address)) {
+                                if (org.telegram.ui.Wallet.m0.b(((TL_wallet.nftItem) arrayList.get(i13)).address, nftitem2.address)) {
                                     arrayList.set(i13, nftitem2);
                                 } else {
                                     i13++;
@@ -221,32 +221,32 @@ public final class m9 implements v10 {
                         }
                     }
                     String str2 = nftitems.next_offset;
-                    f0Var.f42446f = str2;
+                    e0Var.f42414f = str2;
                     boolean isEmpty = TextUtils.isEmpty(str2);
-                    f0Var.f42447g = isEmpty;
-                    f0Var.h = true;
+                    e0Var.f42415g = isEmpty;
+                    e0Var.h = true;
                     if (isEmpty) {
                         for (int size2 = arrayList2.size() - 1; size2 >= 0; size2--) {
                             TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) arrayList2.get(size2);
-                            if (!wallettransaction.pending && !wallettransaction.failed && !f0Var.d(wallettransaction.nft.address)) {
+                            if (!wallettransaction.pending && !wallettransaction.failed && !e0Var.d(wallettransaction.nft.address)) {
                                 arrayList2.remove(size2);
                             }
                         }
                     }
-                    f0Var.h();
+                    e0Var.h();
                 } else {
                     if (z10) {
-                        f0Var.f42447g = false;
-                        f0Var.h = false;
+                        e0Var.f42415g = false;
+                        e0Var.h = false;
                     }
                     if (tL_error3 == null) {
                         str = "Could not load collectibles";
                     } else {
                         str = tL_error3.text;
                     }
-                    f0Var.f42450k = str;
+                    e0Var.f42418k = str;
                 }
-                f0Var.g();
+                e0Var.g();
                 return;
         }
     }

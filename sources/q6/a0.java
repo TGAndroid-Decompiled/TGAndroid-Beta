@@ -1,9 +1,9 @@
 package q6;
 public final class a0 extends Exception {
-    public final n6.a f53740a;
+    public final n6.a f53833a;
 
     public a0(n6.a aVar) {
         m.a("ResolvableConnectionException can only be created with a connection result containing a resolution.", aVar.b());
-        this.f53740a = aVar;
+        this.f53833a = aVar;
     }
 }

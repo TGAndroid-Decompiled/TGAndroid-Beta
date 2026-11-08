@@ -3,14 +3,14 @@ package org.telegram.messenger;
 import android.text.TextUtils;
 import org.telegram.tgnet.SerializedData;
 public final class hz {
-    public ui.a f23003a;
-    public long f23004b;
-    public boolean f23005c;
+    public ui.a f22994a;
+    public long f22995b;
+    public boolean f22996c;
     public boolean d;
-    public long f23006e;
+    public long f22997e;
 
     public hz(ui.a aVar) {
-        this.f23003a = aVar;
+        this.f22994a = aVar;
     }
 
     public static hz a(int i7, SerializedData serializedData) {
@@ -23,8 +23,8 @@ public final class hz {
         if (readString == null) {
             readString = "";
         }
-        a10.f20253c = readString;
-        a10.f20252b = serializedData.readInt32(false);
+        a10.f20256c = readString;
+        a10.f20255b = serializedData.readInt32(false);
         String readString2 = serializedData.readString(false);
         if (readString2 == null) {
             readString2 = "";
@@ -34,12 +34,12 @@ public final class hz {
         if (readString3 == null) {
             readString3 = "";
         }
-        a10.f20254e = readString3;
+        a10.f20257e = readString3;
         String readString4 = serializedData.readString(false);
         if (readString4 != null) {
             str = readString4;
         }
-        a10.f20255f = str;
+        a10.f20258f = str;
         int i10 = 2;
         if (i7 >= 2) {
             j3 = serializedData.readInt64(false);
@@ -57,8 +57,8 @@ public final class hz {
             a10.p(i10);
         }
         hz hzVar = new hz(a10.d());
-        hzVar.f23006e = j10;
-        hzVar.f23004b = j3;
+        hzVar.f22997e = j10;
+        hzVar.f22995b = j3;
         if (j3 > 0) {
             z9 = true;
         }

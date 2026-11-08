@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.c20;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.Components.k60;
 import org.telegram.ui.Components.my0;
 import org.telegram.ui.Components.wk0;
@@ -227,7 +227,7 @@ public final class fb extends View {
         paint3.setColor(-16777216);
         paint5.setColor(-1);
         paint4.setColor(637534208);
-        this.f12028q0 = new my0(hd.M0(2131744457, null), 12.0f, org.telegram.messenger.g0.o());
+        this.f12028q0 = new my0(id.M0(2131744459, null), 12.0f, org.telegram.messenger.g0.o());
         Drawable mutate = getContext().getResources().getDrawable(2131232780).mutate();
         this.f12031r0 = mutate;
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
@@ -299,11 +299,11 @@ public final class fb extends View {
                 int i11 = fbVar.f12041v1;
                 int i12 = fbVar.f12050y1;
                 int i13 = fbVar.f12047x1;
-                float min2 = Math.min((i11 - i12) - i13, ((((org.telegram.messenger.g0.T1(fbVar.T, 1.0f, fbVar.f12008f0.f39855c) * ((float) fbVar.R)) + ((float) (fbVar.Q - fbVar.f12007f))) / ((float) min)) * fbVar.f12039u1) + i12 + i13);
+                float min2 = Math.min((i11 - i12) - i13, ((((org.telegram.messenger.g0.T1(fbVar.T, 1.0f, fbVar.f12008f0.f39805c) * ((float) fbVar.R)) + ((float) (fbVar.Q - fbVar.f12007f))) / ((float) min)) * fbVar.f12039u1) + i12 + i13);
                 k60 F = k60.F(viewGroup, f6Var, fbVar);
                 F.q(y6Var);
                 F.o();
-                F.c(2131232108, hd.M0(2131744721, null), new wa(fbVar, 1), false);
+                F.c(2131232108, id.M0(2131744723, null), new wa(fbVar, 1), false);
                 F.V(5);
                 F.U = true;
                 F.a0((-(fbVar.f12041v1 - min2)) + org.telegram.messenger.g0.L(18.0f), fbVar.F0.top);
@@ -362,11 +362,11 @@ public final class fb extends View {
                 int i14 = fbVar.f12041v1;
                 int i15 = fbVar.f12050y1;
                 int i16 = fbVar.f12047x1;
-                float min4 = Math.min((i14 - i15) - i16, ((((org.telegram.messenger.g0.T1(fbVar.K, 1.0f, fbVar.f12002d0.f39855c) * ((float) fbVar.H)) + ((float) (fbVar.I - fbVar.f12007f))) / ((float) min3)) * fbVar.f12039u1) + i15 + i16);
+                float min4 = Math.min((i14 - i15) - i16, ((((org.telegram.messenger.g0.T1(fbVar.K, 1.0f, fbVar.f12002d0.f39805c) * ((float) fbVar.H)) + ((float) (fbVar.I - fbVar.f12007f))) / ((float) min3)) * fbVar.f12039u1) + i15 + i16);
                 k60 F2 = k60.F(viewGroup, f6Var, fbVar);
                 F2.q(y6Var2);
                 F2.o();
-                F2.c(2131232108, hd.M0(2131744488, null), new wa(fbVar, 2), false);
+                F2.c(2131232108, id.M0(2131744490, null), new wa(fbVar, 2), false);
                 F2.V(5);
                 F2.U = true;
                 F2.a0((-(fbVar.f12041v1 - min4)) + org.telegram.messenger.g0.L(18.0f), fbVar.f12046x0.top);
@@ -478,7 +478,7 @@ public final class fb extends View {
             if (f10 > 0.0f) {
                 f10 += org.telegram.messenger.g0.L(4.0f);
             }
-            f10 += org.telegram.messenger.g0.W1(((ab) arrayList.get(i7)).f11627k.f39855c, org.telegram.messenger.g0.L(28.0f), org.telegram.messenger.g0.L(38.0f));
+            f10 += org.telegram.messenger.g0.W1(((ab) arrayList.get(i7)).f11627k.f39805c, org.telegram.messenger.g0.L(28.0f), org.telegram.messenger.g0.L(38.0f));
         }
         return f10;
     }
@@ -495,7 +495,7 @@ public final class fb extends View {
         if (abVar == null) {
             return 0.0f;
         }
-        return org.telegram.messenger.g0.W1(abVar.f11627k.f39855c, org.telegram.messenger.g0.L(28.0f), org.telegram.messenger.g0.L(38.0f));
+        return org.telegram.messenger.g0.W1(abVar.f11627k.f39805c, org.telegram.messenger.g0.L(28.0f), org.telegram.messenger.g0.L(38.0f));
     }
 
     public final int c(android.view.MotionEvent r21) {
@@ -506,7 +506,7 @@ public final class fb extends View {
     public final void computeScroll() {
         wk0 wk0Var = this.W0;
         if (wk0Var.b()) {
-            int i7 = wk0Var.f40037j;
+            int i7 = wk0Var.f39987j;
             long min = Math.min(getBaseDuration(), getMaxScrollDuration());
             if (this.f12029q1) {
                 this.f12007f = Math.max(0.0f, (((i7 - this.f12050y1) - this.f12047x1) / this.f12039u1) * ((float) min));
@@ -704,7 +704,7 @@ public final class fb extends View {
     }
 
     public int getTimelineHeight() {
-        return org.telegram.messenger.g0.W1(this.f12014i0.f39855c, org.telegram.messenger.g0.L(28.0f) + this.f12052z1 + this.f12052z1, getContentHeight());
+        return org.telegram.messenger.g0.W1(this.f12014i0.f39805c, org.telegram.messenger.g0.L(28.0f) + this.f12052z1 + this.f12052z1, getContentHeight());
     }
 
     public final void h(float f10) {

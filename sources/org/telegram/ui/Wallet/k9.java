@@ -1,12 +1,123 @@
 package org.telegram.ui.Wallet;
-public final class k9 {
-    public final String f42714a;
-    public final boolean f42715b;
-    public final l9 f42716c;
 
-    public k9(m9 m9Var, String str, boolean z9, l9 l9Var) {
-        this.f42714a = str;
-        this.f42715b = z9;
-        this.f42716c = new l9(m9Var, l9Var, l9Var.f42743a, true);
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.os.SystemClock;
+public final class k9 {
+    public final float f42714a;
+    public final float f42715b;
+    public final float f42716c;
+    public final float d;
+    public final float f42717e;
+    public final boolean f42718f;
+    public final long f42719g;
+    public final l9 h;
+
+    public k9(l9 l9Var, k9 k9Var, float f10, boolean z9) {
+        float z10;
+        this.h = l9Var;
+        this.f42718f = z9;
+        this.f42715b = f10;
+        this.f42714a = k9Var != null ? k9Var.f42714a : f10;
+        this.f42719g = (k9Var == null || z9) ? SystemClock.uptimeMillis() : k9Var.f42719g;
+        float f11 = 0.0f;
+        float a10 = (k9Var == null || !z9) ? 0.0f : k9Var.a();
+        if (k9Var != null) {
+            float f12 = k9Var.f42716c;
+            f11 = com.google.android.recaptcha.internal.a.z(1.0f, f12, a10, f12);
+        }
+        this.f42716c = f11;
+        if (k9Var == null) {
+            z10 = l9Var.O;
+        } else {
+            float f13 = k9Var.d;
+            z10 = com.google.android.recaptcha.internal.a.z(1.0f, f13, a10, f13);
+        }
+        this.d = z10;
+        this.f42717e = k9Var == null ? (-org.telegram.messenger.g0.N(44.0f)) * 0.1f : k9Var.f42717e * (1.0f - a10);
+    }
+
+    public final float a() {
+        if (this.h.I >= 1.0f) {
+            return 1.0f;
+        }
+        return l9.S.getInterpolation(Math.min(1.0f, ((float) (SystemClock.uptimeMillis() - this.f42719g)) / 320.0f));
+    }
+
+    public final void b(Canvas canvas, Paint paint, String str, float f10, int i7) {
+        float f11;
+        float f12;
+        float a10 = a();
+        float f13 = 1.0f;
+        boolean z9 = this.f42718f;
+        if (z9) {
+            f11 = 0.0f;
+        } else {
+            f11 = 1.0f;
+        }
+        float f14 = this.f42716c;
+        float z10 = com.google.android.recaptcha.internal.a.z(f11, f14, a10, f14);
+        if (z10 <= 0.0f) {
+            return;
+        }
+        int alpha = paint.getAlpha();
+        float measureText = paint.measureText(str);
+        canvas.save();
+        float d = d() + f10;
+        float f15 = i7;
+        float f16 = this.f42717e;
+        float f17 = f15 + f16;
+        if (z9) {
+            f12 = org.telegram.messenger.g0.N(44.0f) * 0.1f;
+        } else {
+            f12 = 0.0f;
+        }
+        canvas.translate(d, com.google.android.recaptcha.internal.a.z(f12, f16, a10, f17));
+        if (z9) {
+            f13 = this.h.O;
+        }
+        float f18 = this.d;
+        float z11 = com.google.android.recaptcha.internal.a.z(f13, f18, a10, f18);
+        canvas.scale(z11, z11, measureText / 2.0f, (paint.descent() + paint.ascent()) / 2.0f);
+        paint.setAlpha(Math.round(alpha * z10));
+        canvas.drawText(str, 0.0f, 0.0f, paint);
+        paint.setAlpha(alpha);
+        canvas.restore();
+    }
+
+    public final k9 c() {
+        l9 l9Var = this.h;
+        if (l9Var.I >= 1.0f) {
+            return new k9(l9Var, d());
+        }
+        return new k9(l9Var, d(), this);
+    }
+
+    public final float d() {
+        float f10 = this.f42715b;
+        float f11 = this.f42714a;
+        return (l9.S.getInterpolation(this.h.I) * (f10 - f11)) + f11;
+    }
+
+    public k9(l9 l9Var, float f10) {
+        this.h = l9Var;
+        this.f42718f = false;
+        this.f42715b = f10;
+        this.f42714a = f10;
+        this.f42716c = 1.0f;
+        this.d = 1.0f;
+        this.f42717e = 0.0f;
+        this.f42719g = SystemClock.uptimeMillis();
+    }
+
+    public k9(l9 l9Var, float f10, k9 k9Var) {
+        this.h = l9Var;
+        this.f42718f = k9Var.f42718f;
+        this.f42715b = f10;
+        this.f42714a = f10;
+        this.f42716c = k9Var.f42716c;
+        this.d = k9Var.d;
+        this.f42717e = k9Var.f42717e;
+        this.f42719g = k9Var.f42719g;
     }
 }

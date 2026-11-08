@@ -14,7 +14,7 @@ public final class nu extends fu {
 
     @Override
     public final int I() {
-        Rect rect = this.f22451b;
+        Rect rect = this.f22470b;
         return g0.L(12.0f) + rect.top + rect.bottom;
     }
 
@@ -26,11 +26,11 @@ public final class nu extends fu {
     @Override
     public final void W(Canvas canvas) {
         int i7;
-        kv kvVar = this.f22450a;
+        kv kvVar = this.f22469a;
         int i10 = kvVar.C;
         int i11 = kvVar.S;
         int i12 = i10 + i11 + kvVar.T;
-        Rect rect = this.f22451b;
+        Rect rect = this.f22470b;
         int i13 = rect.left;
         int i14 = (i12 - i13) - rect.right;
         int i15 = i14 / 2;

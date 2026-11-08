@@ -3,43 +3,43 @@ package org.telegram.ui;
 import android.content.Context;
 import org.telegram.tgnet.TLRPC;
 public final class x70 implements org.telegram.messenger.c20 {
-    public final int f51785a;
-    public final LaunchActivity f51786b;
+    public final int f51794a;
+    public final LaunchActivity f51795b;
 
     public x70(LaunchActivity launchActivity, int i7) {
-        this.f51785a = i7;
-        this.f51786b = launchActivity;
+        this.f51794a = i7;
+        this.f51795b = launchActivity;
     }
 
     @Override
     public final void a(Object obj) {
         org.telegram.ui.ActionBar.f2 lastFragment;
-        int i7 = this.f51785a;
-        LaunchActivity launchActivity = this.f51786b;
+        int i7 = this.f51794a;
+        LaunchActivity launchActivity = this.f51795b;
         switch (i7) {
             case 0:
                 boolean booleanValue = ((Boolean) obj).booleanValue();
-                if (launchActivity.f41275o0 != null && booleanValue && org.telegram.messenger.rc.c() < 100 && (lastFragment = launchActivity.f41275o0.getLastFragment()) != null && !(lastFragment instanceof w90)) {
-                    int b10 = org.telegram.messenger.rc.b();
+                if (launchActivity.f41279o0 != null && booleanValue && org.telegram.messenger.sc.c() < 100 && (lastFragment = launchActivity.f41279o0.getLastFragment()) != null && !(lastFragment instanceof w90)) {
+                    int b10 = org.telegram.messenger.sc.b();
                     org.telegram.ui.Components.hc a02 = org.telegram.ui.Components.hc.a0(lastFragment);
                     org.telegram.ui.Components.n9 n9Var = new org.telegram.ui.Components.n9(b10 / 100.0f, lastFragment.getThemedColor(org.telegram.ui.ActionBar.k6.Y5));
-                    String M0 = org.telegram.messenger.hd.M0(2131748714, null);
-                    String a03 = org.telegram.messenger.hd.a0("LowPowerEnabledSubtitle", null, 2131748715, String.format("%d%%", Integer.valueOf(b10)));
-                    String M02 = org.telegram.messenger.hd.M0(2131751436, null);
+                    String M0 = org.telegram.messenger.id.M0(2131748716, null);
+                    String a03 = org.telegram.messenger.id.a0("LowPowerEnabledSubtitle", null, 2131748717, String.format("%d%%", Integer.valueOf(b10)));
+                    String M02 = org.telegram.messenger.id.M0(2131751436, null);
                     s60 s60Var = new s60(launchActivity, 11);
                     a02.getClass();
                     Context W = a02.W();
-                    org.telegram.ui.ActionBar.f6 f6Var = a02.f34277c;
+                    org.telegram.ui.ActionBar.f6 f6Var = a02.f34214c;
                     org.telegram.ui.Components.zb zbVar = new org.telegram.ui.Components.zb(W, f6Var);
-                    zbVar.f40927a.setImageDrawable(n9Var);
-                    zbVar.f40928b.setText(M0);
-                    zbVar.f40929c.setText(a03);
+                    zbVar.f40946a.setImageDrawable(n9Var);
+                    zbVar.f40947b.setText(M0);
+                    zbVar.f40948c.setText(a03);
                     org.telegram.ui.Components.ac acVar = new org.telegram.ui.Components.ac(a02.W(), f6Var, true);
                     acVar.e(M02);
-                    acVar.f31756b = s60Var;
+                    acVar.f31765b = s60Var;
                     zbVar.setButton(acVar);
                     org.telegram.ui.Components.cc b11 = a02.b(zbVar, 2750);
-                    b11.f32514j = 5000;
+                    b11.f32545j = 5000;
                     b11.j();
                     return;
                 }

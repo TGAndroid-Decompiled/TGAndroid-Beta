@@ -1,31 +1,52 @@
 package zh;
 
 import android.content.Context;
+import android.text.SpannableStringBuilder;
 import android.view.View;
+import android.widget.TextView;
+import c8.ka;
 import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.q41;
-import org.telegram.ui.Components.w31;
-import org.telegram.ui.Components.x31;
-public final class t2 extends w31 {
-    static {
-        w31.h(new w31());
-    }
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.Components.wp;
+public final class t2 extends TextView {
+    public final wp f60531a;
 
-    public static x31 i(String str) {
-        x31 K = x31.K(t2.class);
-        K.f40159l = str;
-        return K;
+    public t2(Context context, f6 f6Var) {
+        super(context);
+        int i7 = k6.f28246y8;
+        int w02 = k6.w0(i7, f6Var);
+        r6.V(this, i7, f6Var);
+        org.telegram.ui.Cells.y b02 = k6.b0(k6.r1(0.08f, w02), k6.r1(0.15f, w02), org.telegram.messenger.g0.L(13.0f), org.telegram.messenger.g0.L(13.0f));
+        n6 L = r6.L(0.08f, i7);
+        n6 L2 = r6.L(0.15f, i7);
+        setBackground(b02);
+        r6.k(this, b02, L, L2, f6Var);
+        setPadding(org.telegram.messenger.g0.L(11.0f), 0, org.telegram.messenger.g0.L(11.0f), 0);
+        setGravity(17);
+        setTypeface(org.telegram.messenger.g0.o());
+        ka.a(this);
+        wp wpVar = new wp(2131230873, 0);
+        this.f60531a = wpVar;
+        wpVar.G = 0.8f;
+        wpVar.f40020r = 0.0f;
+        wpVar.f40021s = org.telegram.messenger.g0.L(1.0f);
     }
 
     @Override
-    public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
-        ((u2) view).set(x31Var.f40159l);
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(26.0f), 1073741824));
     }
 
-    @Override
-    public final View d(Context context, pj0 pj0Var, int i7, f6 f6Var) {
-        return new u2(context, f6Var);
+    public void setSorting(zh.a3 r7) {
+        throw new UnsupportedOperationException("Method not decompiled: zh.t2.setSorting(zh.a3):void");
+    }
+
+    public void setValue(CharSequence charSequence) {
+        SpannableStringBuilder append = new SpannableStringBuilder(charSequence).append((CharSequence) " v");
+        int length = append.length();
+        append.setSpan(this.f60531a, append.length() - 1, length, 33);
+        setText(append);
     }
 }

@@ -9,10 +9,10 @@ import org.telegram.ui.Components.m51;
 import org.telegram.ui.Components.s51;
 import org.telegram.ui.Components.t51;
 public final class x0 extends f2.o {
-    public final b6 f20337i;
+    public final b6 f20340i;
 
     public x0(b6 b6Var) {
-        this.f20337i = b6Var;
+        this.f20340i = b6Var;
     }
 
     @Override
@@ -26,13 +26,13 @@ public final class x0 extends f2.o {
         }
         String str = h2.m0.f14112a;
         ByteBuffer order = byteBuffer.asReadOnlyBuffer().order(byteBuffer.order());
-        b6 b6Var = this.f20337i;
+        b6 b6Var = this.f20340i;
         float[] fArr2 = (float[]) b6Var.d;
-        n1 n1Var = (n1) b6Var.f18480c;
-        ByteBuffer byteBuffer2 = (ByteBuffer) b6Var.f18481e;
-        t51 t51Var = (t51) b6Var.f18482f;
+        n1 n1Var = (n1) b6Var.f18483c;
+        ByteBuffer byteBuffer2 = (ByteBuffer) b6Var.f18484e;
+        t51 t51Var = (t51) b6Var.f18485f;
         m51 m51Var = t51Var.K;
-        Handler handler = t51Var.f38222a0;
+        Handler handler = t51Var.f38250a0;
         if (m51Var != null) {
             int i7 = 0;
             if (order != f2.n.f10922a && t51Var.I) {
@@ -43,15 +43,15 @@ public final class x0 extends f2.o {
                         t51Var.K.F(false, null);
                     } else {
                         byteBuffer2.put(order);
-                        int i10 = b6Var.f18478a + limit;
-                        b6Var.f18478a = i10;
+                        int i10 = b6Var.f18481a + limit;
+                        b6Var.f18481a = i10;
                         if (i10 >= 1024) {
                             byteBuffer2.position(0);
                             for (int i11 = 0; i11 < 1024; i11++) {
                                 fArr2[i11] = byteBuffer2.getShort() / 32768.0f;
                             }
                             byteBuffer2.rewind();
-                            b6Var.f18478a = 0;
+                            b6Var.f18481a = 0;
                             n1Var.getClass();
                             float f12 = 0.0f;
                             if (fArr2.length != 1024) {
@@ -159,8 +159,8 @@ public final class x0 extends f2.o {
                                     }
                                 }
                             }
-                            if (System.currentTimeMillis() - b6Var.f18479b >= 64) {
-                                b6Var.f18479b = System.currentTimeMillis();
+                            if (System.currentTimeMillis() - b6Var.f18482b >= 64) {
+                                b6Var.f18482b = System.currentTimeMillis();
                                 handler.postDelayed(new l51(1, b6Var, fArr6), 130L);
                             }
                         }
@@ -194,7 +194,7 @@ public final class x0 extends f2.o {
             int i7 = kVar.f10917a;
             int i10 = kVar.f10918b;
             int i11 = kVar.f10919c;
-            this.f20337i.getClass();
+            this.f20340i.getClass();
         }
     }
 

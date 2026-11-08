@@ -1,42 +1,19 @@
 package org.telegram.ui.Wallet;
-public final class z1 implements Runnable {
-    public final int f43410a;
-    public final boolean[] f43411b;
-    public final b2 f43412c;
-    public final z2 d;
 
-    public z1(boolean[] zArr, b2 b2Var, z2 z2Var, int i7) {
-        this.f43410a = i7;
-        this.f43411b = zArr;
-        this.f43412c = b2Var;
-        this.d = z2Var;
-    }
+import org.telegram.tgnet.tl.TL_wallet;
+public final class z1 {
+    public final String f43462a;
+    public final String f43463b;
+    public final String f43464c;
+    public final String d;
+    public TL_wallet.tonConnectSession f43465e;
+    public boolean f43466f;
 
-    @Override
-    public final void run() {
-        switch (this.f43410a) {
-            case 0:
-                if (!this.f43411b[0]) {
-                    if (this.f43412c.f42131m) {
-                        org.telegram.messenger.g0.i3(this, 1000L);
-                        return;
-                    } else {
-                        this.d.dismiss();
-                        return;
-                    }
-                }
-                return;
-            default:
-                if (!this.f43411b[0]) {
-                    if (this.f43412c.f42131m) {
-                        org.telegram.messenger.g0.i3(this, 1000L);
-                        return;
-                    } else {
-                        this.d.dismiss();
-                        return;
-                    }
-                }
-                return;
-        }
+    public z1(TL_wallet.tonConnectSession tonconnectsession, String str, String str2, String str3, String str4) {
+        this.f43465e = tonconnectsession;
+        this.f43462a = str;
+        this.f43463b = str2;
+        this.f43464c = str3;
+        this.d = str4;
     }
 }

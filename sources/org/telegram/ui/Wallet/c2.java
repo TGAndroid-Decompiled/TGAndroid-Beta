@@ -2,22 +2,49 @@ package org.telegram.ui.Wallet;
 
 import android.util.Base64;
 import org.json.JSONObject;
-import org.telegram.tgnet.tl.TL_wallet;
 public final class c2 {
-    public final String f42215a;
-    public final byte[] f42216b;
-    public final byte[] f42217c;
-    public TL_wallet.walletOwnershipProof d;
+    public final String f42296a;
+    public final String f42297b;
+    public final String f42298c;
+    public final String d;
+    public final long f42299e;
+    public final boolean f42300f;
 
     public c2(JSONObject jSONObject) {
-        byte[] bArr;
-        this.f42215a = jSONObject.getString("clientId");
-        if (jSONObject.has("challengeAnswer")) {
-            bArr = Base64.decode(jSONObject.getString("challengeAnswer"), 2);
-        } else {
-            bArr = null;
+        String str;
+        String string = jSONObject.getString("address");
+        this.f42296a = string;
+        if (!string.contains(":") && WalletEngine2.isValidAddress(string)) {
+            this.f42300f = (Base64.decode(string.replace('-', '+').replace('_', '/'), 2)[0] & Byte.MAX_VALUE) == 17;
+            Object obj = jSONObject.get("amount");
+            if (obj instanceof String) {
+                String str2 = (String) obj;
+                if (str2.matches("[0-9]+")) {
+                    long parseLong = Long.parseLong(str2);
+                    this.f42299e = parseLong;
+                    if (jSONObject.has("extra_currency") && jSONObject.getJSONObject("extra_currency").length() != 0) {
+                        throw new IllegalArgumentException("Extra currencies are not supported");
+                    }
+                    if (parseLong >= 0) {
+                        if (jSONObject.has("payload")) {
+                            str = jSONObject.getString("payload");
+                        } else {
+                            str = null;
+                        }
+                        this.f42297b = str;
+                        String string2 = jSONObject.has("stateInit") ? jSONObject.getString("stateInit") : null;
+                        this.f42298c = string2;
+                        if ((str != null && !WalletEngine2.isValidCellBoc(str)) || (string2 != null && !WalletEngine2.isValidCellBoc(string2))) {
+                            throw new IllegalArgumentException("Invalid transaction cell");
+                        }
+                        this.d = WalletEngine2.textCommentFromBody(str);
+                        return;
+                    }
+                    throw new IllegalArgumentException("Transfer amount must not be negative");
+                }
+            }
+            throw new IllegalArgumentException("Invalid transfer amount");
         }
-        this.f42216b = bArr;
-        this.f42217c = jSONObject.has("body") ? Base64.decode(jSONObject.getString("body"), 2) : null;
+        throw new IllegalArgumentException("Expected a friendly destination address");
     }
 }

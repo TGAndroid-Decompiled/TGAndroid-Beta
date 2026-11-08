@@ -24,7 +24,7 @@ public class j0 {
     public Object d;
 
     public j0(int[] iArr) {
-        SecureRandom secureRandom = rc.k.f54367a;
+        SecureRandom secureRandom = rc.k.f54459a;
         int i7 = Integer.MAX_VALUE;
         for (int i10 : iArr) {
             if (i10 < i7) {
@@ -161,15 +161,15 @@ public class j0 {
         }
         x0 x0Var = (x0) this.d;
         WeakReference weakReference = (WeakReference) this.f14099c;
-        if (x0Var.f19289m) {
-            x0Var.f19288l = typeface;
+        if (x0Var.f19292m) {
+            x0Var.f19291l = typeface;
             TextView textView = (TextView) weakReference.get();
             if (textView != null) {
-                WeakHashMap weakHashMap = r0.i0.f54097a;
+                WeakHashMap weakHashMap = r0.i0.f54190a;
                 if (textView.isAttachedToWindow()) {
-                    textView.post(new androidx.activity.g(textView, typeface, x0Var.f19286j, 4));
+                    textView.post(new androidx.activity.g(textView, typeface, x0Var.f19289j, 4));
                 } else {
-                    textView.setTypeface(typeface, x0Var.f19286j);
+                    textView.setTypeface(typeface, x0Var.f19289j);
                 }
             }
         }
@@ -256,7 +256,7 @@ public class j0 {
                     int i13 = i7 - 1;
                     int i14 = 0;
                     while (i13 >= 0) {
-                        if (uVar.k(i12 + i13)) {
+                        if (uVar.n(i12 + i13)) {
                             i14 += i10;
                         }
                         i13--;
@@ -351,7 +351,7 @@ public class j0 {
     public j0(int i7, int i10) {
         switch (i10) {
             case 5:
-                this.f14099c = new z3.r[i7];
+                this.f14099c = new z3.s[i7];
                 this.f14098b = 0;
                 return;
             default:

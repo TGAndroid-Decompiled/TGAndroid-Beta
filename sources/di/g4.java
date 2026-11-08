@@ -35,12 +35,12 @@ public final class g4 {
         if (storyItem != null && (messageMedia = storyItem.media) != null) {
             if (messageMedia.photo != null) {
                 StringBuilder sb2 = new StringBuilder("photo#");
-                sb2.append(g4Var.f9038a.media.photo.f26977id);
+                sb2.append(g4Var.f9038a.media.photo.f26980id);
                 sb2.append("at");
                 return a8.p0.n(g4Var.f9038a.media.photo.dc_id, "dc", sb2);
             } else if (messageMedia.document != null) {
                 StringBuilder sb3 = new StringBuilder("doc#");
-                sb3.append(g4Var.f9038a.media.document.f26959id);
+                sb3.append(g4Var.f9038a.media.document.f26962id);
                 sb3.append("at");
                 return a8.p0.n(g4Var.f9038a.media.document.dc_id, "dc", sb3);
             } else {
@@ -88,7 +88,7 @@ public final class g4 {
             if (i4Var.f9213x1.f9042f) {
                 return String.format(Locale.US, "https://t.me/%1$s/s/live", t10.n(a22));
             }
-            return String.format(Locale.US, "https://t.me/%1$s/s/%2$s", t10.n(a22), Integer.valueOf(i4Var.f9213x1.f9038a.f27192id));
+            return String.format(Locale.US, "https://t.me/%1$s/s/%2$s", t10.n(a22), Integer.valueOf(i4Var.f9213x1.f9038a.f27195id));
         }
         TLRPC.Chat M0 = qp.s1(i4Var.f9168l2).M0(Long.valueOf(-i4Var.f9164k1));
         if (org.telegram.messenger.t3.K(M0, false) == null) {
@@ -97,7 +97,7 @@ public final class g4 {
         if (i4Var.f9213x1.f9042f) {
             return String.format(Locale.US, "https://t.me/%1$s/s/live", org.telegram.messenger.t3.K(M0, false));
         }
-        return String.format(Locale.US, "https://t.me/%1$s/s/%2$s", org.telegram.messenger.t3.K(M0, false), Integer.valueOf(i4Var.f9213x1.f9038a.f27192id));
+        return String.format(Locale.US, "https://t.me/%1$s/s/%2$s", org.telegram.messenger.t3.K(M0, false), Integer.valueOf(i4Var.f9213x1.f9038a.f27195id));
     }
 
     public final String f() {
@@ -226,7 +226,7 @@ public final class g4 {
                     }
                     if (tL_mediaAreaChannelPost != null && (M02 = qp.s1(i10).M0(Long.valueOf(tL_mediaAreaChannelPost.channel_id))) != null) {
                         c8Var = new c8();
-                        c8Var.f8880b = Long.valueOf(-M02.f26953id);
+                        c8Var.f8880b = Long.valueOf(-M02.f26956id);
                         c8Var.f8882e = true;
                         c8Var.f8879a = i10;
                         c8Var.f8883f = true;
@@ -263,7 +263,7 @@ public final class g4 {
                                 Boolean D = fi.e7.D(ijVar);
                                 if (D != null) {
                                     if (D.booleanValue()) {
-                                        i7 = ijVar.f23244k.fwd_from.channel_post;
+                                        i7 = ijVar.f23262k.fwd_from.channel_post;
                                     } else {
                                         i7 = ijVar.f1();
                                     }
@@ -312,7 +312,7 @@ public final class g4 {
         TL_stories.StoryItem storyItem = this.f9038a;
         if (storyItem != null) {
             TLRPC.MessageMedia messageMedia = storyItem.media;
-            if ((messageMedia instanceof TLRPC.TL_messageMediaVideoStream) && j3 == ((TLRPC.TL_messageMediaVideoStream) messageMedia).call.f26970id) {
+            if ((messageMedia instanceof TLRPC.TL_messageMediaVideoStream) && j3 == ((TLRPC.TL_messageMediaVideoStream) messageMedia).call.f26973id) {
                 return true;
             }
             return false;

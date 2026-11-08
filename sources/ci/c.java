@@ -105,7 +105,7 @@ public final class c {
                     int i7 = 0;
                     while (true) {
                         if (i7 < sparseArray.size()) {
-                            ArrayList arrayList = ((t6) sparseArray.valueAt(i7)).f49953b;
+                            ArrayList arrayList = ((t6) sparseArray.valueAt(i7)).f49944b;
                             int size = arrayList.size();
                             int i10 = 0;
                             while (i10 < size) {
@@ -117,7 +117,7 @@ public final class c {
                             }
                             i7++;
                         } else {
-                            hashSet3.add(Long.valueOf(s6Var.f49660a));
+                            hashSet3.add(Long.valueOf(s6Var.f49639a));
                             break;
                         }
                     }

@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
 public final class sk implements org.telegram.ui.Components.bi {
-    public final an f49784a;
+    public final an f49775a;
 
     public sk(an anVar) {
-        this.f49784a = anVar;
+        this.f49775a = anVar;
     }
 
     @Override
     public final void F0() {
-        this.f49784a.Z.L();
+        this.f49775a.Z.L();
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class sk implements org.telegram.ui.Components.bi {
     @Override
     public final void Y0(TLRPC.User user) {
         String n10 = org.telegram.messenger.t10.n(user);
-        an anVar = this.f49784a;
+        an anVar = this.f49775a;
         if (anVar.Z != null && user != null && !TextUtils.isEmpty(n10)) {
             qj qjVar = anVar.Z;
             qjVar.setFieldText("@" + n10 + " ");
@@ -34,12 +34,12 @@ public final class sk implements org.telegram.ui.Components.bi {
 
     @Override
     public final void c0(org.telegram.ui.Components.qg qgVar) {
-        this.f49784a.w8(qgVar);
+        this.f49775a.w8(qgVar);
     }
 
     @Override
     public final boolean f0() {
-        return this.f49784a.pa();
+        return this.f49775a.pa();
     }
 
     @Override
@@ -60,15 +60,15 @@ public final class sk implements org.telegram.ui.Components.bi {
         boolean z17;
         String str2;
         TLRPC.Message message;
-        an anVar = this.f49784a;
+        an anVar = this.f49775a;
         if (anVar.getParentActivity() != null && (u2Var = anVar.X1) != null) {
-            boolean z18 = u2Var.f33003x1;
+            boolean z18 = u2Var.f33011x1;
             org.telegram.messenger.ij ijVar = u2Var.B3;
             anVar.F5 = ijVar;
-            if (ijVar != null && (message = ijVar.f23244k) != null) {
+            if (ijVar != null && (message = ijVar.f23262k) != null) {
                 message.invert_media = z11;
             }
-            if (i7 != 8 && i7 != 7 && (i7 != 4 || u2Var.f32924a2.getSelectedPhotos().isEmpty())) {
+            if (i7 != 8 && i7 != 7 && (i7 != 4 || u2Var.f32932a2.getSelectedPhotos().isEmpty())) {
                 di.u2 u2Var2 = anVar.X1;
                 if (u2Var2 != null) {
                     u2Var2.L(i7);
@@ -80,8 +80,8 @@ public final class sk implements org.telegram.ui.Components.bi {
             if (u2Var3 != null && i7 != 8) {
                 u2Var3.a(true);
             }
-            HashMap<Object, Object> selectedPhotos = anVar.X1.f32924a2.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = anVar.X1.f32924a2.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = anVar.X1.f32932a2.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = anVar.X1.f32932a2.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 int ceil = (int) Math.ceil(selectedPhotos.size() / 10.0f);
                 int i14 = 0;
@@ -98,55 +98,55 @@ public final class sk implements org.telegram.ui.Components.bi {
                         } else {
                             org.telegram.messenger.gf gfVar = (org.telegram.messenger.gf) selectedPhotos.get(selectedPhotosOrder.get(i17));
                             ?? obj = new Object();
-                            obj.f22492b = gfVar.h;
+                            obj.f22511b = gfVar.h;
                             boolean d = gfVar.d();
-                            obj.f22504p = d;
-                            boolean z19 = gfVar.f26824b;
+                            obj.f22523p = d;
+                            boolean z19 = gfVar.f26845b;
                             if (z18 && d) {
-                                obj.f22504p = false;
+                                obj.f22523p = false;
                                 z19 = false;
                             }
                             if (!z19 && (str2 = gfVar.h) != null) {
-                                obj.f22493c = str2;
+                                obj.f22512c = str2;
                                 if (!z18 && gfVar.c()) {
-                                    obj.f22512y = gfVar.clone();
+                                    obj.f22531y = gfVar.clone();
                                 }
                             } else {
                                 String str3 = gfVar.I;
                                 if (str3 != null) {
-                                    obj.f22493c = str3;
+                                    obj.f22512c = str3;
                                 }
                             }
-                            obj.f22494e = gfVar.f26825c;
-                            obj.f22495f = gfVar.f26828g;
-                            obj.f22496g = gfVar.f26826e;
-                            obj.f22503o = z19;
-                            obj.f22505q = gfVar.j();
+                            obj.f22513e = gfVar.f26846c;
+                            obj.f22514f = gfVar.f26849g;
+                            obj.f22515g = gfVar.f26847e;
+                            obj.f22522o = z19;
+                            obj.f22524q = gfVar.j();
                             hashMap2 = selectedPhotos;
                             z16 = z18;
-                            obj.f22513z = gfVar.f26833m;
+                            obj.f22532z = gfVar.f26854m;
                             obj.A = gfVar.P;
-                            CharSequence charSequence = gfVar.f26823a;
+                            CharSequence charSequence = gfVar.f26844a;
                             if (charSequence != null) {
                                 str = charSequence.toString();
                             } else {
                                 str = null;
                             }
                             obj.d = str;
-                            obj.f22497i = gfVar.f26834n;
-                            obj.f22498j = gfVar.f26838r;
-                            obj.h = gfVar.f26843x;
-                            obj.f22499k = gfVar.f26839s;
-                            obj.f22506r = gfVar.L;
-                            obj.f22508t = org.telegram.messenger.gz.h(gfVar.f26823a);
-                            obj.f22509u = gfVar.M;
-                            obj.f22510w = gfVar.N;
+                            obj.f22516i = gfVar.f26855n;
+                            obj.f22517j = gfVar.f26859r;
+                            obj.h = gfVar.f26864x;
+                            obj.f22518k = gfVar.f26860s;
+                            obj.f22525r = gfVar.L;
+                            obj.f22527t = org.telegram.messenger.gz.h(gfVar.f26844a);
+                            obj.f22528u = gfVar.M;
+                            obj.f22529w = gfVar.N;
                             if (!z16 && gfVar.c()) {
                                 z17 = true;
                             } else {
                                 z17 = false;
                             }
-                            obj.f22511x = z17;
+                            obj.f22530x = z17;
                             arrayList2.add(obj);
                             gfVar.e();
                         }
@@ -157,24 +157,24 @@ public final class sk implements org.telegram.ui.Components.bi {
                     HashMap<Object, Object> hashMap3 = selectedPhotos;
                     boolean z20 = z18;
                     if (i14 == 0) {
-                        anVar.B8(((org.telegram.messenger.fz) arrayList2.get(0)).d, ((org.telegram.messenger.fz) arrayList2.get(0)).f22497i);
-                        z13 = ((org.telegram.messenger.fz) arrayList2.get(0)).f22508t;
+                        anVar.B8(((org.telegram.messenger.fz) arrayList2.get(0)).d, ((org.telegram.messenger.fz) arrayList2.get(0)).f22516i);
+                        z13 = ((org.telegram.messenger.fz) arrayList2.get(0)).f22527t;
                     } else {
                         z13 = false;
                     }
                     org.telegram.messenger.ij ijVar2 = anVar.F5;
                     if (ijVar2 != null && ijVar2.q5()) {
-                        org.telegram.messenger.nj njVar = anVar.f44004w5;
+                        org.telegram.messenger.nj njVar = anVar.f44010w5;
                         if (njVar == null) {
-                            njVar = org.telegram.messenger.nj.b(anVar.F5.f23244k.suggested_post);
+                            njVar = org.telegram.messenger.nj.b(anVar.F5.f23262k.suggested_post);
                         }
                         org.telegram.messenger.nj njVar2 = njVar;
                         org.telegram.messenger.c accountInstance = anVar.getAccountInstance();
                         int i18 = ceil;
-                        long j11 = anVar.f43842j6;
+                        long j11 = anVar.f43848j6;
                         org.telegram.messenger.ij ijVar3 = anVar.F5;
                         int i19 = i14;
-                        org.telegram.messenger.ij ijVar4 = anVar.f43864l4;
+                        org.telegram.messenger.ij ijVar4 = anVar.f43870l4;
                         qm qmVar = anVar.B5;
                         if (i7 != 4 && !z12) {
                             c11 = 4;
@@ -194,16 +194,16 @@ public final class sk implements org.telegram.ui.Components.bi {
                         i13 = i14;
                         c10 = 4;
                         org.telegram.messenger.c accountInstance2 = anVar.getAccountInstance();
-                        long j12 = anVar.f43842j6;
+                        long j12 = anVar.f43848j6;
                         org.telegram.messenger.ij ijVar5 = anVar.D5;
-                        org.telegram.messenger.ij ijVar6 = anVar.f43864l4;
+                        org.telegram.messenger.ij ijVar6 = anVar.f43870l4;
                         qm qmVar2 = anVar.B5;
                         if (i7 != 4 && !z12) {
                             z14 = false;
                         } else {
                             z14 = true;
                         }
-                        org.telegram.messenger.gz.X(accountInstance2, arrayList2, j12, ijVar5, ijVar6, null, qmVar2, z14, z9, anVar.F5, null, z10, i10, i11, z13, null, anVar.W8(), j3, z11, j10, anVar.h9(), anVar.f44004w5, null, false);
+                        org.telegram.messenger.gz.X(accountInstance2, arrayList2, j12, ijVar5, ijVar6, null, qmVar2, z14, z9, anVar.F5, null, z10, i10, i11, z13, null, anVar.W8(), j3, z11, j10, anVar.h9(), anVar.f44010w5, null, false);
                     }
                     i14 = i13 + 1;
                     ceil = i12;
@@ -217,10 +217,10 @@ public final class sk implements org.telegram.ui.Components.bi {
                 hashMap = selectedPhotos;
             }
             if (i10 != 0) {
-                if (anVar.f43802g4 == -1) {
-                    anVar.f43802g4 = 0;
+                if (anVar.f43808g4 == -1) {
+                    anVar.f43808g4 = 0;
                 }
-                anVar.f43802g4 += hashMap.size();
+                anVar.f43808g4 += hashMap.size();
                 anVar.id(true);
             }
         }

@@ -2,95 +2,95 @@ package org.telegram.ui.Wallet;
 
 import org.telegram.messenger.c20;
 public final class q implements c20 {
-    public final int f43033a = 3;
-    public final Object f43034b;
-    public final n0 f43035c;
+    public final int f43043a = 3;
+    public final Object f43044b;
+    public final m0 f43045c;
     public final Object d;
-    public final Object f43036e;
+    public final Object f43046e;
 
-    public q(c20 c20Var, n0 n0Var, r0 r0Var, o8 o8Var) {
-        this.d = o8Var;
-        this.f43034b = c20Var;
-        this.f43036e = r0Var;
-        this.f43035c = n0Var;
+    public q(c20 c20Var, m0 m0Var, q0 q0Var, n8 n8Var) {
+        this.d = n8Var;
+        this.f43044b = c20Var;
+        this.f43046e = q0Var;
+        this.f43045c = m0Var;
     }
 
     @Override
     public final void a(Object obj) {
         String o4;
-        switch (this.f43033a) {
+        switch (this.f43043a) {
             case 0:
-                e0 e0Var = (e0) this.d;
-                Runnable runnable = (Runnable) this.f43036e;
-                n0 n0Var = this.f43035c;
-                n0Var.getClass();
-                e0Var.f42405c = (byte[]) obj;
-                if (n0Var.N.get((String) this.f43034b) == e0Var) {
-                    n0Var.k0(e0Var);
-                    n0Var.L();
+                d0 d0Var = (d0) this.d;
+                Runnable runnable = (Runnable) this.f43046e;
+                m0 m0Var = this.f43045c;
+                m0Var.getClass();
+                d0Var.f42375c = (byte[]) obj;
+                if (m0Var.N.get((String) this.f43044b) == d0Var) {
+                    m0Var.k0(d0Var);
+                    m0Var.L();
                 }
                 runnable.run();
                 return;
             case 1:
-                f8.Z((f8) this.d, (String) this.f43034b, this.f43035c, (org.telegram.ui.ActionBar.f2) this.f43036e, (String) obj);
+                e8.Z((e8) this.d, (String) this.f43044b, this.f43045c, (org.telegram.ui.ActionBar.f2) this.f43046e, (String) obj);
                 return;
             case 2:
-                r0 r0Var = (r0) this.f43036e;
-                n0 n0Var2 = this.f43035c;
-                n0Var2.u((String) this.f43034b, new q((c20) obj, n0Var2, r0Var, (o8) this.d));
+                q0 q0Var = (q0) this.f43046e;
+                m0 m0Var2 = this.f43045c;
+                m0Var2.u((String) this.f43044b, new q((c20) obj, m0Var2, q0Var, (n8) this.d));
                 return;
             default:
-                o8 o8Var = (o8) this.d;
-                c20 c20Var = (c20) this.f43034b;
-                r0 r0Var2 = (r0) this.f43036e;
-                e0 e0Var2 = (e0) obj;
-                if (e0Var2 == null) {
+                n8 n8Var = (n8) this.d;
+                c20 c20Var = (c20) this.f43044b;
+                q0 q0Var2 = (q0) this.f43046e;
+                d0 d0Var2 = (d0) obj;
+                if (d0Var2 == null) {
                     c20Var.a("ADDRESS_NO_INFO");
                     return;
                 }
-                byte[] bArr = e0Var2.f42405c;
+                byte[] bArr = d0Var2.f42375c;
                 if (bArr == null) {
-                    byte[][] m10 = r0Var2.m();
+                    byte[][] m10 = q0Var2.m();
                     if (m10.length <= 0) {
                         c20Var.a("STORAGE_NO_PUBLIC_KEY");
                         return;
                     }
                     bArr = m10[0];
                 }
-                if (!r0Var2.f(bArr)) {
+                if (!q0Var2.f(bArr)) {
                     c20Var.a("STORAGE_OLD_PUBLIC_KEY");
                     return;
                 }
-                m mVar = new m(c20Var, this.f43035c, r0Var2, o8Var);
+                m mVar = new m(c20Var, this.f43045c, q0Var2, n8Var);
                 if (bArr == null) {
                     o4 = "";
                 } else {
-                    o4 = r0.o(bArr);
+                    o4 = q0.o(bArr);
                 }
                 String str = o4;
-                r0.h.execute(new org.telegram.ui.Components.j2(r0Var2, r0Var2.l(), str, false, (c20) mVar));
+                q0.h.execute(new org.telegram.ui.Components.j2(q0Var2, q0Var2.l(), str, false, (c20) mVar));
                 return;
         }
     }
 
-    public q(n0 n0Var, e0 e0Var, String str, Runnable runnable) {
-        this.f43035c = n0Var;
-        this.d = e0Var;
-        this.f43034b = str;
-        this.f43036e = runnable;
+    public q(m0 m0Var, d0 d0Var, String str, Runnable runnable) {
+        this.f43045c = m0Var;
+        this.d = d0Var;
+        this.f43044b = str;
+        this.f43046e = runnable;
     }
 
-    public q(f8 f8Var, String str, n0 n0Var, org.telegram.ui.ActionBar.f2 f2Var) {
-        this.d = f8Var;
-        this.f43034b = str;
-        this.f43035c = n0Var;
-        this.f43036e = f2Var;
+    public q(e8 e8Var, String str, m0 m0Var, org.telegram.ui.ActionBar.f2 f2Var) {
+        this.d = e8Var;
+        this.f43044b = str;
+        this.f43045c = m0Var;
+        this.f43046e = f2Var;
     }
 
-    public q(o8 o8Var, n0 n0Var, String str, r0 r0Var) {
-        this.d = o8Var;
-        this.f43035c = n0Var;
-        this.f43034b = str;
-        this.f43036e = r0Var;
+    public q(n8 n8Var, m0 m0Var, String str, q0 q0Var) {
+        this.d = n8Var;
+        this.f43045c = m0Var;
+        this.f43044b = str;
+        this.f43046e = q0Var;
     }
 }

@@ -6,8 +6,8 @@ public final class p7 {
     public final Integer f577b;
 
     public p7(wf.b bVar) {
-        this.f576a = (o7) bVar.f57562b;
-        this.f577b = (Integer) bVar.f57563c;
+        this.f576a = (o7) bVar.f57654b;
+        this.f577b = (Integer) bVar.f57655c;
     }
 
     public final boolean equals(Object obj) {

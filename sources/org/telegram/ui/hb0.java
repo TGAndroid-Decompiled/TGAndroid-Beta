@@ -2,22 +2,22 @@ package org.telegram.ui;
 
 import android.widget.FrameLayout;
 public final class hb0 implements Runnable {
-    public final int f46315a;
-    public final ob0 f46316b;
+    public final int f46319a;
+    public final ob0 f46320b;
 
     public hb0(ob0 ob0Var, int i7) {
-        this.f46315a = i7;
-        this.f46316b = ob0Var;
+        this.f46319a = i7;
+        this.f46320b = ob0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f46315a) {
+        switch (this.f46319a) {
             case 0:
-                this.f46316b.o();
+                this.f46320b.o();
                 return;
             case 1:
-                ob0 ob0Var = this.f46316b;
+                ob0 ob0Var = this.f46320b;
                 ob0Var.postDelayed(new hb0(ob0Var, 2), 150L);
                 hb0 hb0Var = ob0Var.S;
                 ob0Var.removeCallbacks(hb0Var);
@@ -25,12 +25,12 @@ public final class hb0 implements Runnable {
                 ob0Var.R = true;
                 return;
             case 2:
-                lb0 lb0Var = this.f46316b.f48352a;
+                lb0 lb0Var = this.f46320b.f48350a;
                 int i7 = 0;
-                lb0Var.f52308e = false;
-                lb0Var.f52309f[0].requestFocus();
+                lb0Var.f52288e = false;
+                lb0Var.f52289f[0].requestFocus();
                 while (true) {
-                    br[] brVarArr = lb0Var.f52309f;
+                    br[] brVarArr = lb0Var.f52289f;
                     if (i7 < brVarArr.length) {
                         brVarArr[i7].z(0.0f);
                         i7++;
@@ -39,24 +39,24 @@ public final class hb0 implements Runnable {
                     }
                 }
             case 3:
-                ob0 ob0Var2 = this.f46316b;
+                ob0 ob0Var2 = this.f46320b;
                 ob0Var2.postDelayed(new hb0(ob0Var2, 5), 150L);
                 return;
             case 4:
-                ob0 ob0Var3 = this.f46316b;
+                ob0 ob0Var3 = this.f46320b;
                 nb0 nb0Var = ob0Var3.Q;
                 boolean z9 = false;
                 ob0Var3.R = false;
                 int i10 = 0;
                 while (true) {
-                    br[] brVarArr2 = ob0Var3.f48352a.f52309f;
+                    br[] brVarArr2 = ob0Var3.f48350a.f52289f;
                     if (i10 < brVarArr2.length) {
                         brVarArr2[i10].z(0.0f);
                         i10++;
-                    } else if (nb0Var.getCurrentView() != ob0Var3.f48355e) {
+                    } else if (nb0Var.getCurrentView() != ob0Var3.f48353e) {
                         nb0Var.showNext();
                         FrameLayout frameLayout = ob0Var3.h;
-                        if (ob0Var3.f48356f.getVisibility() != 0 && ob0Var3.W.F != 3 && !ob0Var3.P) {
+                        if (ob0Var3.f48354f.getVisibility() != 0 && ob0Var3.W.F != 3 && !ob0Var3.P) {
                             z9 = true;
                         }
                         org.telegram.messenger.g0.Z3(frameLayout, z9, 1.0f, true, true);
@@ -67,12 +67,12 @@ public final class hb0 implements Runnable {
                 }
                 break;
             case 5:
-                lb0 lb0Var2 = this.f46316b.f48352a;
+                lb0 lb0Var2 = this.f46320b.f48350a;
                 int i11 = 0;
-                lb0Var2.f52308e = false;
-                lb0Var2.f52309f[0].requestFocus();
+                lb0Var2.f52288e = false;
+                lb0Var2.f52289f[0].requestFocus();
                 while (true) {
-                    br[] brVarArr3 = lb0Var2.f52309f;
+                    br[] brVarArr3 = lb0Var2.f52289f;
                     if (i11 < brVarArr3.length) {
                         brVarArr3[i11].z(0.0f);
                         i11++;
@@ -81,20 +81,20 @@ public final class hb0 implements Runnable {
                     }
                 }
             case 6:
-                this.f46316b.p(true);
+                this.f46320b.p(true);
                 return;
             case 7:
-                this.f46316b.q();
+                this.f46320b.q();
                 return;
             default:
-                ob0 ob0Var4 = this.f46316b;
-                org.telegram.ui.Components.ch0 ch0Var = ob0Var4.f48361x;
+                ob0 ob0Var4 = this.f46320b;
+                org.telegram.ui.Components.ch0 ch0Var = ob0Var4.f48359x;
                 ch0Var.getAnimatedDrawable().N(0, false, false);
                 ch0Var.d();
-                lb0 lb0Var3 = ob0Var4.f48352a;
-                if (lb0Var3 != null && lb0Var3.f52309f != null) {
+                lb0 lb0Var3 = ob0Var4.f48350a;
+                if (lb0Var3 != null && lb0Var3.f52289f != null) {
                     lb0Var3.setText("");
-                    lb0Var3.f52309f[0].requestFocus();
+                    lb0Var3.f52289f[0].requestFocus();
                     return;
                 }
                 return;

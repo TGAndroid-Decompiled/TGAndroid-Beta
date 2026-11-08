@@ -34,26 +34,26 @@ public final class d0 extends ViewGroup {
     public int S;
     public final j T;
     public final e0 U;
-    public final String f39094a;
-    public s3 f39095b;
-    public final k2 f39096c;
+    public final String f39129a;
+    public s3 f39130b;
+    public final k2 f39131c;
     public final h d;
-    public final TextView f39097e;
-    public final Paint f39098f;
+    public final TextView f39132e;
+    public final Paint f39133f;
     public final RectF h;
-    public TLRPC.GroupCallParticipant f39099n;
-    public boolean f39100r;
-    public volatile long f39101s;
-    public volatile int f39102w;
-    public volatile int f39103x;
-    public long f39104y;
+    public TLRPC.GroupCallParticipant f39134n;
+    public boolean f39135r;
+    public volatile long f39136s;
+    public volatile int f39137w;
+    public volatile int f39138x;
+    public long f39139y;
 
     public d0(e0 e0Var, Context context, String str, s3 s3Var) {
         super(context);
         Context context2;
         this.U = e0Var;
         Paint paint = new Paint(1);
-        this.f39098f = paint;
+        this.f39133f = paint;
         this.h = new RectF();
         this.D = SystemClock.elapsedRealtime();
         this.E = false;
@@ -63,20 +63,20 @@ public final class d0 extends ViewGroup {
         this.N = new float[4];
         this.O = new float[4];
         this.T = new j(this, 1);
-        this.f39094a = str;
-        this.f39095b = s3Var;
+        this.f39129a = str;
+        this.f39130b = s3Var;
         setBackgroundColor(-14999773);
         setOutlineProvider(new bg.q0(17));
         setClipToOutline(true);
         if (s3Var != null) {
             context2 = context;
             k2 k2Var = new k2(context2, false, false, false, false);
-            this.f39096c = k2Var;
+            this.f39131c = k2Var;
             RendererCommon.ScalingType scalingType = RendererCommon.ScalingType.SCALE_ASPECT_FIT;
             j2 j2Var = k2Var.d;
             j2Var.setScalingType(scalingType);
             j2Var.setEnableHardwareScaler(true);
-            k2Var.f39296a0 = 1;
+            k2Var.f39331a0 = 1;
             j2Var.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), new c0(this));
             View view = k2Var.h;
             if (view != null) {
@@ -85,13 +85,13 @@ public final class d0 extends ViewGroup {
             addView(k2Var);
         } else {
             context2 = context;
-            this.f39096c = null;
+            this.f39131c = null;
         }
         h hVar = new h(context2);
         this.d = hVar;
         addView(hVar);
         TextView textView = new TextView(context2);
-        this.f39097e = textView;
+        this.f39132e = textView;
         textView.setTextColor(-1);
         textView.setTextSize(1, 13.0f);
         textView.setSingleLine();
@@ -101,29 +101,29 @@ public final class d0 extends ViewGroup {
         addView(textView);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
-        paint.setColor(k6.x0(null, k6.f27878eh, false));
+        paint.setColor(k6.x0(null, k6.f27881eh, false));
         setWillNotDraw(false);
         c();
     }
 
     public static void a(d0 d0Var) {
         e0 e0Var = d0Var.U;
-        a0 a0Var = e0Var.f39132b;
+        a0 a0Var = e0Var.f39167b;
         if (a0Var != null) {
-            if (a0Var.f39041a.contains(d0Var) || e0Var.f39132b.f39043c.contains(d0Var)) {
-                e0Var.f39132b.j(false);
+            if (a0Var.f39076a.contains(d0Var) || e0Var.f39167b.f39078c.contains(d0Var)) {
+                e0Var.f39167b.j(false);
             }
         }
     }
 
     public final void b() {
         VoIPService sharedInstance = VoIPService.getSharedInstance();
-        TLRPC.GroupCallParticipant groupCallParticipant = this.f39099n;
+        TLRPC.GroupCallParticipant groupCallParticipant = this.f39134n;
         if (groupCallParticipant != null && sharedInstance != null) {
-            sharedInstance.removeExtraRemoteSink(groupCallParticipant, this.f39100r, this.T);
+            sharedInstance.removeExtraRemoteSink(groupCallParticipant, this.f39135r, this.T);
         }
-        this.f39099n = null;
-        k2 k2Var = this.f39096c;
+        this.f39134n = null;
+        k2 k2Var = this.f39131c;
         if (k2Var != null) {
             k2Var.d.release();
         }
@@ -131,11 +131,11 @@ public final class d0 extends ViewGroup {
 
     public final void c() {
         VoIPService sharedInstance = VoIPService.getSharedInstance();
-        s3 s3Var = this.f39095b;
-        if (s3Var != null && this.f39096c != null && this.f39099n == null && sharedInstance != null && sharedInstance.addExtraRemoteSink(s3Var.f25413a, s3Var.f25414b, this.T)) {
-            s3 s3Var2 = this.f39095b;
-            this.f39099n = s3Var2.f25413a;
-            this.f39100r = s3Var2.f25414b;
+        s3 s3Var = this.f39130b;
+        if (s3Var != null && this.f39131c != null && this.f39134n == null && sharedInstance != null && sharedInstance.addExtraRemoteSink(s3Var.f25409a, s3Var.f25410b, this.T)) {
+            s3 s3Var2 = this.f39130b;
+            this.f39134n = s3Var2.f25409a;
+            this.f39135r = s3Var2.f25410b;
         }
     }
 
@@ -144,17 +144,17 @@ public final class d0 extends ViewGroup {
         j2 j2Var;
         int i7;
         int i10;
-        int i11 = this.f39102w;
-        int i12 = this.f39103x;
+        int i11 = this.f39137w;
+        int i12 = this.f39138x;
         if (i11 > 0 && i12 > 0) {
             this.J = i11 / i12;
             return;
         }
-        k2 k2Var = this.f39096c;
-        if (k2Var != null && k2Var.d.isFirstFrameRendered() && (i7 = (j2Var = this.f39096c.d).rotatedFrameWidth) > 0 && (i10 = j2Var.rotatedFrameHeight) > 0) {
+        k2 k2Var = this.f39131c;
+        if (k2Var != null && k2Var.d.isFirstFrameRendered() && (i7 = (j2Var = this.f39131c.d).rotatedFrameWidth) > 0 && (i10 = j2Var.rotatedFrameHeight) > 0) {
             this.J = i7 / i10;
-        } else if (z9 && this.J <= 0.0f && (s3Var = this.f39095b) != null) {
-            float f10 = s3Var.f25415c;
+        } else if (z9 && this.J <= 0.0f && (s3Var = this.f39130b) != null) {
+            float f10 = s3Var.f25411c;
             if (f10 > 0.0f) {
                 this.J = f10;
             }
@@ -183,7 +183,7 @@ public final class d0 extends ViewGroup {
         float min2 = (Math.min(1.0f, ((float) min) / 150.0f) * (f10 - f11)) + f11;
         this.H = min2;
         if (min2 > 0.01f) {
-            Paint paint = this.f39098f;
+            Paint paint = this.f39133f;
             float strokeWidth = paint.getStrokeWidth() / 2.0f;
             RectF rectF = this.h;
             rectF.set(strokeWidth, strokeWidth, getWidth() - strokeWidth, getHeight() - strokeWidth);
@@ -205,7 +205,7 @@ public final class d0 extends ViewGroup {
         int i14 = i12 - i10;
         int i15 = 0;
         this.d.layout(0, 0, i13, i14);
-        k2 k2Var = this.f39096c;
+        k2 k2Var = this.f39131c;
         if (k2Var != null) {
             int measuredWidth = k2Var.getMeasuredWidth();
             int measuredHeight = k2Var.getMeasuredHeight();
@@ -224,7 +224,7 @@ public final class d0 extends ViewGroup {
         if (!z10) {
             i15 = 8;
         }
-        TextView textView = this.f39097e;
+        TextView textView = this.f39132e;
         textView.setVisibility(i15);
         int L = (i14 - org.telegram.messenger.g0.L(6.0f)) - textView.getMeasuredHeight();
         textView.layout(org.telegram.messenger.g0.L(6.0f), L, textView.getMeasuredWidth() + org.telegram.messenger.g0.L(6.0f), textView.getMeasuredHeight() + L);
@@ -237,8 +237,8 @@ public final class d0 extends ViewGroup {
         int size2 = View.MeasureSpec.getSize(i10);
         setMeasuredDimension(size, size2);
         this.d.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-        this.f39097e.measure(View.MeasureSpec.makeMeasureSpec(Math.max(0, size - org.telegram.messenger.g0.L(12.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
-        k2 k2Var = this.f39096c;
+        this.f39132e.measure(View.MeasureSpec.makeMeasureSpec(Math.max(0, size - org.telegram.messenger.g0.L(12.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
+        k2 k2Var = this.f39131c;
         if (k2Var != null) {
             int i11 = this.R;
             if (i11 > 0) {

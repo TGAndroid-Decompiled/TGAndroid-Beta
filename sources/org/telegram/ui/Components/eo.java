@@ -1,51 +1,51 @@
 package org.telegram.ui.Components;
 public final class eo implements Runnable {
-    public final int f33310a;
-    public final vo f33311b;
+    public final int f33341a;
+    public final vo f33342b;
 
     public eo(vo voVar, int i7) {
-        this.f33310a = i7;
-        this.f33311b = voVar;
+        this.f33341a = i7;
+        this.f33342b = voVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f33310a) {
+        switch (this.f33341a) {
             case 0:
-                this.f33311b.n1.f();
+                this.f33342b.n1.f();
                 return;
             case 1:
-                this.f33311b.K0(true);
+                this.f33342b.K0(true);
                 return;
             case 2:
-                vo voVar = this.f33311b;
-                org.telegram.ui.an anVar = voVar.f39024r1;
+                vo voVar = this.f33342b;
+                org.telegram.ui.an anVar = voVar.f39059r1;
                 org.telegram.ui.ActionBar.f2 g02 = org.telegram.ui.c51.g0(anVar.getMessagesController().M0(Long.valueOf(-anVar.a())), true);
                 ?? obj = new Object();
-                obj.f27421a = true;
+                obj.f27424a = true;
                 g02.setResourceProvider(anVar.getResourceProvider());
-                obj.f27423c = new org.telegram.messenger.pd(26);
+                obj.f27426c = new org.telegram.messenger.rc(28);
                 obj.d = new eo(voVar, 3);
-                obj.f27422b = new eo(voVar, 4);
-                obj.f27424e = true;
+                obj.f27425b = new eo(voVar, 4);
+                obj.f27427e = true;
                 voVar.N1 = g02;
                 anVar.showAsSheet(g02, obj);
                 return;
             case 3:
-                this.f33311b.O0();
+                this.f33342b.O0();
                 return;
             case 4:
-                this.f33311b.N1 = null;
+                this.f33342b.N1 = null;
                 return;
             case 5:
-                this.f33311b.O0();
+                this.f33342b.O0();
                 return;
             case 6:
-                this.f33311b.N1 = null;
+                this.f33342b.N1 = null;
                 return;
             default:
-                vo voVar2 = this.f33311b;
-                voVar2.K1.c(voVar2.f39029w1);
+                vo voVar2 = this.f33342b;
+                voVar2.K1.c(voVar2.f39064w1);
                 return;
         }
     }

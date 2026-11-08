@@ -11,7 +11,7 @@ import bi.r4;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.k5;
 import org.telegram.messenger.qp;
 import org.telegram.messenger.t10;
@@ -30,24 +30,24 @@ import org.telegram.ui.hl0;
 import org.telegram.ui.qj;
 import org.telegram.ui.ww;
 public final class v2 implements org.telegram.ui.web.d0 {
-    public boolean f15000a;
-    public final Context f15001b;
-    public final f6 f15002c;
+    public boolean f15003a;
+    public final Context f15004b;
+    public final f6 f15005c;
     public final a3 d;
 
     public v2(a3 a3Var, Context context, f6 f6Var) {
         this.d = a3Var;
-        this.f15001b = context;
-        this.f15002c = f6Var;
+        this.f15004b = context;
+        this.f15005c = f6Var;
     }
 
     @Override
     public final v0 A() {
         a3 a3Var = this.d;
         if (a3Var.C0 == null) {
-            v0 v0Var = new v0(this.f15001b);
+            v0 v0Var = new v0(this.f15004b);
             a3Var.C0 = v0Var;
-            v0Var.f14987k = a3Var.D.getWebView();
+            v0Var.f14990k = a3Var.D.getWebView();
         }
         return a3Var.C0;
     }
@@ -57,9 +57,9 @@ public final class v2 implements org.telegram.ui.web.d0 {
         a3 a3Var = this.d;
         TLRPC.User a22 = qp.s1(a3Var.H).a2(Long.valueOf(a3Var.I));
         ?? obj = new Object();
-        obj.f19608a = new t2(this, 0);
-        cc V = new hc(a3Var.f14531q0, a3Var.F).V(Arrays.asList(a22), org.telegram.messenger.g0.X2(hd.a0(null, null, 2131753087, t10.p(a22))), null, obj);
-        V.f32514j = 5000;
+        obj.f19611a = new t2(this, 0);
+        cc V = new hc(a3Var.f14531q0, a3Var.F).V(Arrays.asList(a22), org.telegram.messenger.g0.X2(id.a0(null, null, 2131753087, t10.p(a22))), null, obj);
+        V.f32545j = 5000;
         V.k(true);
     }
 
@@ -83,17 +83,17 @@ public final class v2 implements org.telegram.ui.web.d0 {
     @Override
     public final void d(TLRPC.Document document) {
         a3 a3Var = this.d;
-        new hc(a3Var.f14531q0, a3Var.F).q(document, hd.M0(2131753075, null)).k(true);
+        new hc(a3Var.f14531q0, a3Var.F).q(document, id.M0(2131753075, null)).k(true);
     }
 
     @Override
     public final void e(String str) {
         a3 a3Var = this.d;
-        if (!a3Var.q() && a3Var.K == 0 && !this.f15000a) {
-            this.f15000a = true;
+        if (!a3Var.q() && a3Var.K == 0 && !this.f15003a) {
+            this.f15003a = true;
             TLRPC.TL_messages_sendWebViewData tL_messages_sendWebViewData = new TLRPC.TL_messages_sendWebViewData();
             tL_messages_sendWebViewData.bot = qp.s1(a3Var.H).o1(a3Var.I);
-            tL_messages_sendWebViewData.random_id = Utilities.f21331b.nextLong();
+            tL_messages_sendWebViewData.random_id = Utilities.f21334b.nextLong();
             tL_messages_sendWebViewData.button_text = a3Var.N;
             tL_messages_sendWebViewData.data = str;
             ConnectionsManager.getInstance(a3Var.H).sendRequest(tL_messages_sendWebViewData, new u2(this, 0));
@@ -106,9 +106,9 @@ public final class v2 implements org.telegram.ui.web.d0 {
         int size = arrayList.size();
         a3 a3Var = this.d;
         if (size == 1) {
-            G = hd.a0(null, null, 2131752973, qp.s1(a3Var.H).B1(((Long) arrayList.get(0)).longValue(), false));
+            G = id.a0(null, null, 2131752973, qp.s1(a3Var.H).B1(((Long) arrayList.get(0)).longValue(), false));
         } else {
-            G = hd.G(arrayList.size(), "BotSharedToMany", new Object[0]);
+            G = id.G(arrayList.size(), "BotSharedToMany", new Object[0]);
         }
         new hc(a3Var.f14531q0, a3Var.F).Q(2131624028, 36, org.telegram.messenger.g0.X2(G)).k(true);
     }
@@ -173,24 +173,24 @@ public final class v2 implements org.telegram.ui.web.d0 {
         a3 a3Var = this.d;
         w2 w2Var = a3Var.m0;
         ?? obj = new Object();
-        obj.f14933a = z9;
-        obj.f14934b = z10;
-        obj.f14935c = z11;
+        obj.f14936a = z9;
+        obj.f14937b = z10;
+        obj.f14938c = z11;
         obj.d = z12;
-        obj.f14936e = str;
-        obj.f14937f = j3;
-        obj.f14938g = i7;
+        obj.f14939e = str;
+        obj.f14940f = j3;
+        obj.f14941g = i7;
         obj.h = i10;
-        obj.f14939i = str2;
+        obj.f14942i = str2;
         int totalHeight = w2Var.getTotalHeight();
-        w2Var.f14948e.d = obj;
-        t.b(w2Var.f14949f[1].f14911l, obj, true);
+        w2Var.f14951e.d = obj;
+        t.b(w2Var.f14952f[1].f14914l, obj, true);
         w2Var.invalidate();
-        if (totalHeight != w2Var.getTotalHeight() && w2Var.f14951r != null) {
+        if (totalHeight != w2Var.getTotalHeight() && w2Var.f14954r != null) {
             if (totalHeight < w2Var.getTotalHeight()) {
-                org.telegram.messenger.g0.i3(w2Var.f14951r, 200L);
+                org.telegram.messenger.g0.i3(w2Var.f14954r, 200L);
             } else {
-                w2Var.f14951r.run();
+                w2Var.f14954r.run();
             }
         }
         if (a3Var.f14518e0) {
@@ -228,10 +228,10 @@ public final class v2 implements org.telegram.ui.web.d0 {
         if (hl0Var != null) {
             r2Var.e(r2Var.getTopActionBarOffsetY() + (-r2Var.getOffsetY()));
             org.telegram.messenger.g0.v1(z2Var);
-            mb0 mb0Var = new mb0(this.f15001b);
+            mb0 mb0Var = new mb0(this.f15004b);
             mb0Var.show();
             hl0Var.Z0 = new a3.h((Object) this, (Object) mb0Var, str, 12);
-            hl0Var.Y0 = this.f15002c;
+            hl0Var.Y0 = this.f15005c;
             mb0Var.c(hl0Var);
         }
     }
@@ -246,34 +246,34 @@ public final class v2 implements org.telegram.ui.web.d0 {
         a3 a3Var = this.d;
         w2 w2Var = a3Var.m0;
         ?? obj = new Object();
-        obj.f14933a = z9;
-        obj.f14934b = z10;
-        obj.f14935c = z11;
+        obj.f14936a = z9;
+        obj.f14937b = z10;
+        obj.f14938c = z11;
         obj.d = z12;
-        obj.f14936e = str;
-        obj.f14937f = j3;
-        obj.f14938g = i7;
+        obj.f14939e = str;
+        obj.f14940f = j3;
+        obj.f14941g = i7;
         obj.h = i10;
-        obj.f14939i = null;
+        obj.f14942i = null;
         int totalHeight = w2Var.getTotalHeight();
-        w2Var.f14948e.f701c = obj;
-        r[] rVarArr = w2Var.f14949f;
-        rVarArr[0].f14911l.a();
-        if (obj.f14937f != 0) {
+        w2Var.f14951e.f701c = obj;
+        r[] rVarArr = w2Var.f14952f;
+        rVarArr[0].f14914l.a();
+        if (obj.f14940f != 0) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append((CharSequence) "* ");
-            spannableStringBuilder.append((CharSequence) obj.f14936e);
-            spannableStringBuilder.setSpan(new r5(obj.f14937f, 1.4f, rVarArr[0].f14911l.f34506a.getFontMetricsInt()), 0, 1, 33);
-            rVarArr[0].f14911l.t(spannableStringBuilder, true, true);
+            spannableStringBuilder.append((CharSequence) obj.f14939e);
+            spannableStringBuilder.setSpan(new r5(obj.f14940f, 1.4f, rVarArr[0].f14914l.f34550a.getFontMetricsInt()), 0, 1, 33);
+            rVarArr[0].f14914l.t(spannableStringBuilder, true, true);
         } else {
-            rVarArr[0].f14911l.t(obj.f14936e, true, true);
+            rVarArr[0].f14914l.t(obj.f14939e, true, true);
         }
         w2Var.invalidate();
-        if (totalHeight != w2Var.getTotalHeight() && w2Var.f14951r != null) {
+        if (totalHeight != w2Var.getTotalHeight() && w2Var.f14954r != null) {
             if (totalHeight < w2Var.getTotalHeight()) {
-                org.telegram.messenger.g0.i3(w2Var.f14951r, 200L);
+                org.telegram.messenger.g0.i3(w2Var.f14954r, 200L);
             } else {
-                w2Var.f14951r.run();
+                w2Var.f14954r.run();
             }
         }
         if (a3Var.f14518e0) {
@@ -337,7 +337,7 @@ public final class v2 implements org.telegram.ui.web.d0 {
         bundle.putBoolean("allowBots", arrayList.contains("bots"));
         ww wwVar = new ww(bundle);
         org.telegram.messenger.g0.v1(a3Var.f14519f);
-        mb0 mb0Var = new mb0(this.f15001b);
+        mb0 mb0Var = new mb0(this.f15004b);
         wwVar.C2 = new a1.d(this, user, str, mb0Var, 5);
         mb0Var.show();
         mb0Var.c(wwVar);
@@ -351,19 +351,19 @@ public final class v2 implements org.telegram.ui.web.d0 {
         TLRPC.User a22 = qp.s1(a3Var.H).a2(Long.valueOf(a3Var.I));
         if (z9) {
             ?? obj = new Object();
-            hd.M0(2131743886, null);
-            obj.f19608a = new t2(this, 1);
-            cc V = new hc(frameLayout, f6Var).V(Arrays.asList(a22), org.telegram.messenger.g0.X2(hd.a0(null, null, 2131753054, t10.p(a22))), null, obj);
-            V.f32514j = 5000;
+            id.M0(2131743888, null);
+            obj.f19611a = new t2(this, 1);
+            cc V = new hc(frameLayout, f6Var).V(Arrays.asList(a22), org.telegram.messenger.g0.X2(id.a0(null, null, 2131753054, t10.p(a22))), null, obj);
+            V.f32545j = 5000;
             V.k(true);
             return;
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         k5.q(null, null, 2131753056, new Object[]{t10.p(a22)}, spannableStringBuilder);
         spannableStringBuilder.append((CharSequence) " ");
-        spannableStringBuilder.append((CharSequence) org.telegram.messenger.g0.H2(org.telegram.messenger.g0.k2(hd.M0(2131753055, null), new t2(this, 2)), true));
+        spannableStringBuilder.append((CharSequence) org.telegram.messenger.g0.H2(org.telegram.messenger.g0.k2(id.M0(2131753055, null), new t2(this, 2)), true));
         cc P = new hc(frameLayout, f6Var).P(2131624011, spannableStringBuilder);
-        P.f32514j = 5000;
+        P.f32545j = 5000;
         P.k(true);
     }
 

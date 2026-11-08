@@ -2,24 +2,24 @@ package jg;
 
 import org.telegram.ui.vw;
 public final class f implements Runnable {
-    public final int f16720a;
-    public final n f16721b;
+    public final int f16723a;
+    public final n f16724b;
 
     public f(n nVar, int i7) {
-        this.f16720a = i7;
-        this.f16721b = nVar;
+        this.f16723a = i7;
+        this.f16724b = nVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f16720a) {
+        switch (this.f16723a) {
             case 0:
-                for (vw vwVar : this.f16721b.R.f51549e0) {
-                    ((v4.b0) vwVar.f50838a.getLayoutManager()).f56926u = false;
+                for (vw vwVar : this.f16724b.R.f51556e0) {
+                    ((v4.b0) vwVar.f50782a.getLayoutManager()).f57018u = false;
                 }
                 return;
             default:
-                this.f16721b.K();
+                this.f16724b.K();
                 return;
         }
     }

@@ -28,7 +28,7 @@ public final class n30 extends Dialog {
         this.f47951f = new Matrix();
         this.f47948b = l00Var;
         l00Var.setVisibility(4);
-        org.telegram.messenger.g0.l2(new org.telegram.ui.Components.ex(12, this, l00Var), 14.0f);
+        org.telegram.messenger.g0.l2(new org.telegram.ui.Components.fx(12, this, l00Var), 14.0f);
         di.b3 b3Var = new di.b3(this, context, l00Var);
         this.f47947a = b3Var;
         b3Var.setOnClickListener(new a(this, 28));
@@ -79,7 +79,7 @@ public final class n30 extends Dialog {
         int i7 = attributes.flags & (-3);
         attributes.softInputMode = 48;
         attributes.flags = (-2013069056) | i7;
-        boolean z9 = org.telegram.messenger.r2.f25199a;
+        boolean z9 = org.telegram.messenger.r2.f25212a;
         attributes.flags = i7 | (-2013060864);
         org.telegram.messenger.g0.h2();
         attributes.flags |= 1152;

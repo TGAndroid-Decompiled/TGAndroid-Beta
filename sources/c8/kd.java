@@ -22,7 +22,7 @@ public abstract class kd {
         return -1;
     }
 
-    public static int b(MediaExtractor mediaExtractor, MediaCodec mediaCodec, MediaCodec mediaCodec2, wi.w0 w0Var, long j3, long j10, wi.x0 x0Var) {
+    public static int b(MediaExtractor mediaExtractor, MediaCodec mediaCodec, MediaCodec mediaCodec2, wi.v0 v0Var, long j3, long j10, wi.w0 w0Var) {
         long j11;
         boolean z9;
         long j12;
@@ -107,13 +107,13 @@ public abstract class kd {
                 }
                 mediaCodec3.releaseOutputBuffer(dequeueOutputBuffer, z14);
                 if (z14) {
-                    synchronized (w0Var.f58136b) {
+                    synchronized (v0Var.f58225b) {
                         long elapsedRealtime2 = SystemClock.elapsedRealtime() + 2500;
-                        while (!w0Var.f58145m) {
+                        while (!v0Var.f58234m) {
                             long elapsedRealtime3 = elapsedRealtime2 - SystemClock.elapsedRealtime();
                             if (elapsedRealtime3 > j13) {
                                 try {
-                                    w0Var.f58136b.wait(elapsedRealtime3);
+                                    v0Var.f58225b.wait(elapsedRealtime3);
                                     j13 = 0;
                                 } catch (InterruptedException e10) {
                                     Thread.currentThread().interrupt();
@@ -123,29 +123,29 @@ public abstract class kd {
                                 throw new IOException("Decoded frame did not arrive");
                             }
                         }
-                        w0Var.f58145m = false;
+                        v0Var.f58234m = false;
                     }
-                    w0Var.f58143k.updateTexImage();
-                    w0Var.f58143k.getTransformMatrix(w0Var.f58137c);
-                    int i15 = w0Var.f58135a;
+                    v0Var.f58232k.updateTexImage();
+                    v0Var.f58232k.getTransformMatrix(v0Var.f58226c);
+                    int i15 = v0Var.f58224a;
                     GLES20.glViewport(0, 0, i15, i15);
-                    GLES20.glUseProgram(w0Var.f58141i);
+                    GLES20.glUseProgram(v0Var.f58230i);
                     GLES20.glActiveTexture(33984);
-                    GLES20.glBindTexture(36197, w0Var.f58142j);
-                    int glGetAttribLocation = GLES20.glGetAttribLocation(w0Var.f58141i, "aPosition");
-                    int glGetAttribLocation2 = GLES20.glGetAttribLocation(w0Var.f58141i, "aTextureCoord");
-                    FloatBuffer floatBuffer = w0Var.d;
+                    GLES20.glBindTexture(36197, v0Var.f58231j);
+                    int glGetAttribLocation = GLES20.glGetAttribLocation(v0Var.f58230i, "aPosition");
+                    int glGetAttribLocation2 = GLES20.glGetAttribLocation(v0Var.f58230i, "aTextureCoord");
+                    FloatBuffer floatBuffer = v0Var.d;
                     floatBuffer.position(0);
-                    GLES20.glVertexAttribPointer(glGetAttribLocation, 2, 5126, false, 16, (Buffer) w0Var.d);
+                    GLES20.glVertexAttribPointer(glGetAttribLocation, 2, 5126, false, 16, (Buffer) v0Var.d);
                     GLES20.glEnableVertexAttribArray(glGetAttribLocation);
                     floatBuffer.position(2);
-                    GLES20.glVertexAttribPointer(glGetAttribLocation2, 2, 5126, false, 16, (Buffer) w0Var.d);
+                    GLES20.glVertexAttribPointer(glGetAttribLocation2, 2, 5126, false, 16, (Buffer) v0Var.d);
                     GLES20.glEnableVertexAttribArray(glGetAttribLocation2);
                     z11 = true;
-                    GLES20.glUniformMatrix4fv(GLES20.glGetUniformLocation(w0Var.f58141i, "uTextureMatrix"), 1, false, w0Var.f58137c, 0);
+                    GLES20.glUniformMatrix4fv(GLES20.glGetUniformLocation(v0Var.f58230i, "uTextureMatrix"), 1, false, v0Var.f58226c, 0);
                     GLES20.glDrawArrays(5, 0, 4);
-                    EGLExt.eglPresentationTimeANDROID(w0Var.f58139f, w0Var.h, j15 * 1000);
-                    if (!EGL14.eglSwapBuffers(w0Var.f58139f, w0Var.h)) {
+                    EGLExt.eglPresentationTimeANDROID(v0Var.f58228f, v0Var.h, j15 * 1000);
+                    if (!EGL14.eglSwapBuffers(v0Var.f58228f, v0Var.h)) {
                         throw new IllegalStateException("eglSwapBuffers failed: 0x" + Integer.toHexString(EGL14.eglGetError()));
                     }
                 } else {
@@ -172,7 +172,7 @@ public abstract class kd {
                     if (dequeueOutputBuffer2 == -2) {
                         MediaFormat outputFormat = mediaCodec2.getOutputFormat();
                         i16 = wi.n.f(outputFormat);
-                        x0Var.w(outputFormat);
+                        w0Var.w(outputFormat);
                     } else if (dequeueOutputBuffer2 >= 0) {
                         ByteBuffer outputBuffer = mediaCodec2.getOutputBuffer(dequeueOutputBuffer2);
                         int i17 = bufferInfo2.flags;
@@ -186,7 +186,7 @@ public abstract class kd {
                                 bufferInfo2.offset += i16;
                                 bufferInfo2.size = i10 - i16;
                             }
-                            x0Var.r(outputBuffer, bufferInfo2);
+                            w0Var.r(outputBuffer, bufferInfo2);
                             i13++;
                         }
                         if ((bufferInfo2.flags & 4) != 0) {
@@ -224,7 +224,7 @@ public abstract class kd {
         return i13;
     }
 
-    public static void c(java.io.File r3, long r4, long r6, long r8, int r10, int r11, int r12, wi.x0 r13) {
-        throw new UnsupportedOperationException("Method not decompiled: c8.kd.c(java.io.File, long, long, long, int, int, int, wi.x0):void");
+    public static void c(java.io.File r3, long r4, long r6, long r8, int r10, int r11, int r12, wi.w0 r13) {
+        throw new UnsupportedOperationException("Method not decompiled: c8.kd.c(java.io.File, long, long, long, int, int, int, wi.w0):void");
     }
 }

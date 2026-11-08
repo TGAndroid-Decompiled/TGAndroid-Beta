@@ -5,12 +5,12 @@ import android.util.SparseArray;
 import java.util.ArrayList;
 import java.util.Collections;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.v91;
-public final class uo0 implements m00, org.telegram.messenger.wr, org.telegram.ui.qw {
-    public final xs0 f38687a;
+import org.telegram.ui.w91;
+public final class uo0 implements n00, org.telegram.messenger.wr, org.telegram.ui.qw {
+    public final xs0 f38702a;
 
     public uo0(xs0 xs0Var) {
-        this.f38687a = xs0Var;
+        this.f38702a = xs0Var;
     }
 
     @Override
@@ -25,11 +25,11 @@ public final class uo0 implements m00, org.telegram.messenger.wr, org.telegram.u
 
     @Override
     public void a(String str) {
-        r0.getStoriesController().r(r0.l1, str, new ro0(this.f38687a, 0));
+        r0.getStoriesController().r(r0.l1, str, new ro0(this.f38702a, 0));
     }
 
     public void b(boolean z9) {
-        xs0 xs0Var = this.f38687a;
+        xs0 xs0Var = this.f38702a;
         if (!z9) {
             xs0Var.requestLayout();
         }
@@ -37,12 +37,12 @@ public final class uo0 implements m00, org.telegram.messenger.wr, org.telegram.u
     }
 
     @Override
-    public boolean y(org.telegram.ui.ww wwVar, ArrayList arrayList, CharSequence charSequence, boolean z9, boolean z10, int i7, int i10, v91 v91Var) {
+    public boolean y(org.telegram.ui.ww wwVar, ArrayList arrayList, CharSequence charSequence, boolean z9, boolean z10, int i7, int i10, w91 w91Var) {
         int i11;
         UndoView undoView;
-        xs0 xs0Var = this.f38687a;
-        SparseArray[] sparseArrayArr = xs0Var.f40375b1;
-        org.telegram.ui.ActionBar.f2 f2Var = xs0Var.f40440x1;
+        xs0 xs0Var = this.f38702a;
+        SparseArray[] sparseArrayArr = xs0Var.f40396b1;
+        org.telegram.ui.ActionBar.f2 f2Var = xs0Var.f40461x1;
         ArrayList arrayList2 = new ArrayList();
         boolean z11 = true;
         int i12 = 1;
@@ -68,15 +68,15 @@ public final class uo0 implements m00, org.telegram.messenger.wr, org.telegram.u
             sparseArrayArr[i12].clear();
             i12--;
         }
-        xs0Var.f40379c1 = 0;
+        xs0Var.f40400c1 = 0;
         xs0Var.o1(false);
         is0 is0Var = xs0Var.T;
         if (is0Var != null) {
-            is0Var.f34776x.clear();
+            is0Var.f34820x.clear();
         }
         UndoView undoView2 = null;
-        if (arrayList.size() <= 1 && ((org.telegram.messenger.xr) arrayList.get(0)).f26513a != f2Var.getUserConfig().e() && charSequence == null) {
-            long j3 = ((org.telegram.messenger.xr) arrayList.get(0)).f26513a;
+        if (arrayList.size() <= 1 && ((org.telegram.messenger.xr) arrayList.get(0)).f26520a != f2Var.getUserConfig().e() && charSequence == null) {
+            long j3 = ((org.telegram.messenger.xr) arrayList.get(0)).f26520a;
             Bundle k10 = a8.p0.k("scrollToTopOnResume", true);
             if (org.telegram.messenger.m5.C(j3)) {
                 k10.putInt("enc_id", (int) (j3 & 4294967295L));
@@ -90,7 +90,7 @@ public final class uo0 implements m00, org.telegram.messenger.wr, org.telegram.u
                     return true;
                 }
             }
-            f2Var.getNotificationCenter().k(org.telegram.messenger.qs.f25067t, new Object[0]);
+            f2Var.getNotificationCenter().k(org.telegram.messenger.qs.f25076t, new Object[0]);
             org.telegram.ui.an anVar = new org.telegram.ui.an(k10);
             qg.d.a(anVar, (org.telegram.messenger.xr) arrayList.get(0));
             wwVar.presentFragment(anVar, true);
@@ -100,7 +100,7 @@ public final class uo0 implements m00, org.telegram.messenger.wr, org.telegram.u
         xs0Var.J1(true);
         int i14 = 0;
         while (i14 < arrayList.size()) {
-            long j10 = ((org.telegram.messenger.xr) arrayList.get(i14)).f26513a;
+            long j10 = ((org.telegram.messenger.xr) arrayList.get(i14)).f26520a;
             if (charSequence != null) {
                 f2Var.getSendMessagesHelper().r0(org.telegram.messenger.ez.b(charSequence.toString(), j10, null, null, null, true, null, null, null, true, 0, 0, null, false));
             }
@@ -120,7 +120,7 @@ public final class uo0 implements m00, org.telegram.messenger.wr, org.telegram.u
         }
         if (undoView != null) {
             if (arrayList.size() == z12) {
-                undoView.m(((org.telegram.messenger.xr) arrayList.get(0)).f26513a, Integer.valueOf(arrayList2.size()), 53);
+                undoView.m(((org.telegram.messenger.xr) arrayList.get(0)).f26520a, Integer.valueOf(arrayList2.size()), 53);
                 return z12;
             }
             undoView.k(0L, 53, Integer.valueOf(arrayList2.size()), Integer.valueOf(arrayList.size()), null, null);

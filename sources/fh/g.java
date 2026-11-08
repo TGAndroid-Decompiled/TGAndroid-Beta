@@ -56,7 +56,7 @@ public final class g extends oi.e implements a6 {
     public int f11541y;
     public boolean f11538s = true;
     public float I = -1.0f;
-    public int M = r6.f28476b;
+    public int M = r6.f28479b;
     public final l N = new l();
 
     public g(ri.a aVar, ri.a aVar2, ri.a aVar3) {
@@ -69,10 +69,10 @@ public final class g extends oi.e implements a6 {
         this.f11534f = aVar;
         this.h = aVar2;
         this.f11536n = aVar3;
-        r rVar = this.f21072b;
-        if (!rVar.f21119a) {
+        r rVar = this.f21075b;
+        if (!rVar.f21122a) {
             aVar = aVar3;
-        } else if (!this.W || !rVar.f21120b || Build.VERSION.SDK_INT < 33) {
+        } else if (!this.W || !rVar.f21123b || Build.VERSION.SDK_INT < 33) {
             aVar = aVar2;
         }
         this.f11537r = aVar;
@@ -99,7 +99,7 @@ public final class g extends oi.e implements a6 {
 
     public static ri.a v(ri.a aVar) {
         while (aVar instanceof ri.g) {
-            aVar = ((ri.g) aVar).f54485a;
+            aVar = ((ri.g) aVar).f54577a;
         }
         return aVar;
     }
@@ -131,7 +131,7 @@ public final class g extends oi.e implements a6 {
     @Override
     public final void draw(Canvas canvas) {
         ri.a aVar;
-        int i7 = r6.f28476b;
+        int i7 = r6.f28479b;
         if (this.M != i7) {
             this.M = i7;
             try {
@@ -144,8 +144,8 @@ public final class g extends oi.e implements a6 {
         if (this.X != i10) {
             this.X = i10;
             r f10 = q.f();
-            if (!Objects.equals(this.f21072b, f10)) {
-                this.f21072b = f10;
+            if (!Objects.equals(this.f21075b, f10)) {
+                this.f21075b = f10;
                 g(f10);
             }
         }
@@ -155,14 +155,14 @@ public final class g extends oi.e implements a6 {
             ri.a aVar2 = this.f11537r;
             if (o4 == this.f11535f0 && !canvas.isHardwareAccelerated()) {
                 ri.a v = v(v(this.f11537r));
-                if (Build.VERSION.SDK_INT >= 29 && (v instanceof ri.f) && (aVar = ((ri.f) v).f54476a) != null) {
+                if (Build.VERSION.SDK_INT >= 29 && (v instanceof ri.f) && (aVar = ((ri.f) v).f54568a) != null) {
                     v = v(aVar);
                 }
                 aVar2 = v;
                 o4 = k(aVar2);
             }
             o4.b(canvas, aVar2);
-            float f11 = this.f21073c / 255.0f;
+            float f11 = this.f21076c / 255.0f;
             Rect rect = fVar.f11515m;
             if (fVar.e()) {
                 Path path = fVar.f11513k;
@@ -325,10 +325,10 @@ public final class g extends oi.e implements a6 {
         ri.a aVar;
         boolean z10 = true;
         if (this.Z) {
-            r rVar = this.f21072b;
-            if (!rVar.f21119a) {
+            r rVar = this.f21075b;
+            if (!rVar.f21122a) {
                 aVar = this.f11536n;
-            } else if (this.W && rVar.f21120b && Build.VERSION.SDK_INT >= 33) {
+            } else if (this.W && rVar.f21123b && Build.VERSION.SDK_INT >= 33) {
                 aVar = this.f11534f;
             } else {
                 aVar = this.h;
@@ -356,7 +356,7 @@ public final class g extends oi.e implements a6 {
                 if (this.f11535f0 == null) {
                     e eVar2 = new e(this);
                     eVar2.g(this.f11538s);
-                    eVar2.f(this.f21073c / 255.0f);
+                    eVar2.f(this.f21076c / 255.0f);
                     eVar2.d();
                     this.f11535f0 = eVar2;
                 }
@@ -366,7 +366,7 @@ public final class g extends oi.e implements a6 {
             }
             e eVar3 = this.f11535f0;
             if (eVar3 != null) {
-                if (k10 != eVar3 || !this.W || !this.f21072b.f21120b || i7 < 33) {
+                if (k10 != eVar3 || !this.W || !this.f21075b.f21123b || i7 < 33) {
                     z10 = false;
                 }
                 eVar3.h(z10);
@@ -484,7 +484,7 @@ public final class g extends oi.e implements a6 {
 
     @Override
     public final void updateColors() {
-        this.M = r6.f28476b;
+        this.M = r6.f28479b;
         gh.a aVar = this.f11539w;
         if (aVar != null) {
             if (aVar instanceof gh.b) {

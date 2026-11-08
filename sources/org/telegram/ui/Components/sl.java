@@ -13,6 +13,6 @@ public final class sl extends v8 {
     @Override
     public final void onMeasure(int i7, int i10) {
         tl tlVar = this.E;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(tlVar.f38358w.K0, 1073741824), View.MeasureSpec.makeMeasureSpec(tlVar.f38358w.K0, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(tlVar.f38386w.K0, 1073741824), View.MeasureSpec.makeMeasureSpec(tlVar.f38386w.K0, 1073741824));
     }
 }

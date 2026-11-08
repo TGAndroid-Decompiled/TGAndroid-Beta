@@ -7,7 +7,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.view.View;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.Components.ic;
 import org.telegram.ui.Components.xq;
 import org.telegram.ui.Components.zg0;
@@ -45,24 +45,24 @@ public final class ib extends View {
         org.telegram.ui.Components.i6 i6Var = new org.telegram.ui.Components.i6(true, true, false);
         this.f12191b = i6Var;
         i6Var.n(0.3f, 250L, xqVar);
-        i6Var.M = org.telegram.messenger.g0.f22544q.x;
+        i6Var.M = org.telegram.messenger.g0.f22563q.x;
         i6Var.w(org.telegram.messenger.g0.L(14.0f));
         i6Var.u(-1);
         i6Var.s(org.telegram.messenger.g0.N(1.33f), org.telegram.messenger.g0.L(1.0f), 1073741824);
-        i6Var.t(hd.M0(2131743946, null), true, true);
-        i6Var.f34508b = 17;
+        i6Var.t(id.M0(2131743948, null), true, true);
+        i6Var.f34552b = 17;
     }
 
     public final void a(boolean z9, boolean z10) {
         int i7;
         this.f12193e.c(z9);
         if (!z9 && !z10) {
-            i7 = 2131743946;
+            i7 = 2131743948;
         } else {
-            i7 = 2131743945;
+            i7 = 2131743947;
         }
         boolean z11 = true;
-        this.f12191b.t(hd.M0(i7, null), true, true);
+        this.f12191b.t(id.M0(i7, null), true, true);
         int i10 = 0;
         if (!z9 || z10) {
             z11 = false;
@@ -70,7 +70,7 @@ public final class ib extends View {
         this.f12194f = z11;
         zg0 zg0Var = this.f12190a;
         if (z11) {
-            if (zg0Var.f40970a0 > 34) {
+            if (zg0Var.f40989a0 > 34) {
                 zg0Var.N(0, false, false);
             }
             zg0Var.P(33);

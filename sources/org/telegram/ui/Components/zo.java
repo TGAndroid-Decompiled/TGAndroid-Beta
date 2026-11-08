@@ -35,7 +35,7 @@ public final class zo extends fi.m3 {
                 canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) (Math.min(this.F.getAlpha(), i1Var.b().getAlpha()) * f10), 31);
                 Path path = this.E0;
                 canvas.drawPath(path, paint);
-                if (i1Var.f39223e) {
+                if (i1Var.f39258e) {
                     paint.setShader(((Paint) i1Var.d.f335a).getShader());
                     canvas.drawPath(path, paint);
                 }
@@ -96,7 +96,7 @@ public final class zo extends fi.m3 {
             int length = spannableStringBuilder.length();
             spannableStringBuilder.append((CharSequence) "x");
             spannableStringBuilder.setSpan(new yo(((zg0[]) this.X0)[i7]), length, spannableStringBuilder.length(), 33);
-            spannableStringBuilder.append((CharSequence) org.telegram.messenger.hd.M0(i7 == 0 ? 2131749297 : 2131749298, null));
+            spannableStringBuilder.append((CharSequence) org.telegram.messenger.id.M0(i7 == 0 ? 2131749299 : 2131749300, null));
             i7++;
         }
         u(spannableStringBuilder);

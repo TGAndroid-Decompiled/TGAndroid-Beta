@@ -3,30 +3,30 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.View;
 public final class h3 extends hi.b4 {
-    public boolean f46202c0;
-    public final k3 f46203d0;
+    public boolean f46204c0;
+    public final k3 f46205d0;
 
     public h3(k3 k3Var, Context context) {
         super(context);
-        this.f46203d0 = k3Var;
+        this.f46205d0 = k3Var;
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        this.f46202c0 = true;
+        this.f46204c0 = true;
         setOffsetY(View.MeasureSpec.getSize(i10) * 0.4f);
-        this.f46202c0 = false;
+        this.f46204c0 = false;
         int size = View.MeasureSpec.getSize(i10);
-        t3 t3Var = this.f46203d0.L.K;
+        t3 t3Var = this.f46205d0.L.K;
         if (t3Var != null) {
             t3Var.getClass();
         }
-        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec((size - org.telegram.messenger.g0.L(56.0f)) - org.telegram.messenger.g0.f22538m, 1073741824));
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec((size - org.telegram.messenger.g0.L(56.0f)) - org.telegram.messenger.g0.f22557m, 1073741824));
     }
 
     @Override
     public final void requestLayout() {
-        if (!this.f46202c0) {
+        if (!this.f46204c0) {
             super.requestLayout();
         }
     }

@@ -1,9 +1,9 @@
 package org.telegram.ui;
 public final class wh implements org.telegram.ui.Components.ej0 {
-    public final an f51434a;
+    public final an f51441a;
 
     public wh(an anVar) {
-        this.f51434a = anVar;
+        this.f51441a = anVar;
     }
 
     @Override

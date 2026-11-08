@@ -5,14 +5,14 @@ import android.animation.AnimatorListenerAdapter;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
 public final class k01 extends AnimatorListenerAdapter {
-    public final int f47072a;
-    public final boolean f47073b;
-    public final q11 f47074c;
+    public final int f47070a;
+    public final boolean f47071b;
+    public final q11 f47072c;
 
     public k01(q11 q11Var, boolean z9, int i7) {
-        this.f47072a = i7;
-        this.f47074c = q11Var;
-        this.f47073b = z9;
+        this.f47070a = i7;
+        this.f47072c = q11Var;
+        this.f47071b = z9;
     }
 
     @Override
@@ -21,19 +21,19 @@ public final class k01 extends AnimatorListenerAdapter {
         ArrayList arrayList;
         ArrayList arrayList2;
         int i10;
-        switch (this.f47072a) {
+        switch (this.f47070a) {
             case 0:
-                q11 q11Var = this.f47074c;
-                e01 e01Var = q11Var.f49036i0;
+                q11 q11Var = this.f47072c;
+                e01 e01Var = q11Var.f49039i0;
                 int i11 = 8;
-                boolean z9 = this.f47073b;
+                boolean z9 = this.f47071b;
                 if (z9) {
                     i7 = 0;
                 } else {
                     i7 = 8;
                 }
                 e01Var.setVisibility(i7);
-                o01 o01Var = q11Var.f49034h0;
+                o01 o01Var = q11Var.f49037h0;
                 if (!z9) {
                     i11 = 0;
                 }
@@ -45,7 +45,7 @@ public final class k01 extends AnimatorListenerAdapter {
                     if (arrayList3 != null) {
                         arrayList3.clear();
                     }
-                    q11Var.f49050q0.E(false);
+                    q11Var.f49053q0.E(false);
                 }
                 if (!z9 && (arrayList = q11Var.C1) != null) {
                     arrayList.clear();
@@ -53,9 +53,9 @@ public final class k01 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                q11 q11Var2 = this.f47074c;
-                FrameLayout frameLayout = q11Var2.f49038j0;
-                if (this.f47073b && q11Var2.f49036i0.getVisibility() == 0) {
+                q11 q11Var2 = this.f47072c;
+                FrameLayout frameLayout = q11Var2.f49041j0;
+                if (this.f47071b && q11Var2.f49039i0.getVisibility() == 0) {
                     i10 = 0;
                 } else {
                     i10 = 8;

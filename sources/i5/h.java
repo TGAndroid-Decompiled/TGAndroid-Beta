@@ -3,16 +3,16 @@ package i5;
 import java.nio.ByteBuffer;
 import java.nio.channels.WritableByteChannel;
 public final class h extends com.googlecode.mp4parser.b {
-    public final int f15286f;
+    public final int f15289f;
 
     public h(String str, int i7) {
         super(str);
-        this.f15286f = i7;
+        this.f15289f = i7;
     }
 
     @Override
     public void getBox(WritableByteChannel writableByteChannel) {
-        switch (this.f15286f) {
+        switch (this.f15289f) {
             case 1:
                 writableByteChannel.write(d());
                 ByteBuffer allocate = ByteBuffer.allocate(8);
@@ -31,7 +31,7 @@ public final class h extends com.googlecode.mp4parser.b {
     @Override
     public long getSize() {
         int i7;
-        switch (this.f15286f) {
+        switch (this.f15289f) {
             case 1:
                 long b10 = b();
                 long j3 = 8 + b10;

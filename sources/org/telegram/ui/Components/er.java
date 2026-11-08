@@ -8,12 +8,12 @@ import java.util.regex.Pattern;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class er implements Runnable {
-    public final int f33332a;
-    public final lr f33333b;
+    public final int f33363a;
+    public final lr f33364b;
 
     public er(lr lrVar, int i7) {
-        this.f33332a = i7;
-        this.f33333b = lrVar;
+        this.f33363a = i7;
+        this.f33364b = lrVar;
     }
 
     @Override
@@ -21,8 +21,8 @@ public final class er implements Runnable {
         Context context;
         boolean z9;
         CharSequence charSequence;
-        int i7 = this.f33332a;
-        lr lrVar = this.f33333b;
+        int i7 = this.f33363a;
+        lr lrVar = this.f33364b;
         boolean z10 = false;
         switch (i7) {
             case 0:
@@ -31,21 +31,21 @@ public final class er implements Runnable {
             default:
                 Context context2 = lrVar.getContext();
                 org.telegram.ui.ActionBar.f6 f6Var = lrVar.I0;
-                int i10 = lrVar.f28613a;
-                long j3 = lrVar.f35734i2;
-                ArrayList<Long> arrayList = lrVar.f35735j2.joined_chat_ids;
+                int i10 = lrVar.f28616a;
+                long j3 = lrVar.f35752i2;
+                ArrayList<Long> arrayList = lrVar.f35753j2.joined_chat_ids;
                 fr frVar = new fr(lrVar, 5);
-                Pattern pattern = v4.f38813a;
+                Pattern pattern = v4.f38848a;
                 LinearLayout f10 = org.telegram.messenger.k5.f(context2, 1);
                 org.telegram.ui.ActionBar.u1[] u1VarArr = new org.telegram.ui.ActionBar.u1[1];
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context2, f6Var);
                 Object obj = null;
-                String M0 = org.telegram.messenger.hd.M0(2131751959, null);
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
+                String M0 = org.telegram.messenger.id.M0(2131751959, null);
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
                 u1Var.R = M0;
-                u1Var.T = org.telegram.messenger.g0.X2(org.telegram.messenger.hd.G(arrayList.size(), "CommunityBanWillRemoveFromChats", org.telegram.messenger.m5.s(i10, j3)));
-                alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131747830, null), null);
-                alertDialog$Builder.h(org.telegram.messenger.hd.M0(2131752589, null), null);
+                u1Var.T = org.telegram.messenger.g0.X2(org.telegram.messenger.id.G(arrayList.size(), "CommunityBanWillRemoveFromChats", org.telegram.messenger.m5.s(i10, j3)));
+                alertDialog$Builder.k(org.telegram.messenger.id.M0(2131747832, null), null);
+                alertDialog$Builder.h(org.telegram.messenger.id.M0(2131752589, null), null);
                 alertDialog$Builder.o(f10);
                 int size = arrayList.size();
                 int i11 = 0;
@@ -66,7 +66,7 @@ public final class er implements Runnable {
                         if (N0 != null) {
                             context = context2;
                             z9 = false;
-                            charSequence = org.telegram.messenger.hd.G(N0.participants_count, "Members", new Object[0]);
+                            charSequence = org.telegram.messenger.id.G(N0.participants_count, "Members", new Object[0]);
                         } else {
                             context = context2;
                             z9 = false;

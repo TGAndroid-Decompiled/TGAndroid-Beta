@@ -10,12 +10,12 @@ import android.view.ScaleGestureDetector;
 import android.view.TextureView;
 import android.view.View;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.gy;
+import org.telegram.ui.Components.hy;
 import org.telegram.ui.Components.ii0;
-import org.telegram.ui.Components.qt;
+import org.telegram.ui.Components.rt;
 import org.telegram.ui.Components.rt0;
 public final class ua extends rt0 {
-    public final qt f12901f0;
+    public final rt f12901f0;
     public final ScaleGestureDetector f12902g0;
     public boolean f12903h0;
     public boolean f12904i0;
@@ -29,7 +29,7 @@ public final class ua extends rt0 {
         super(activity, null);
         this.f12908n0 = vaVar;
         this.f12905j0 = false;
-        this.f12901f0 = new qt(activity, new sa(this));
+        this.f12901f0 = new rt(activity, new sa(this));
         this.f12902g0 = new ScaleGestureDetector(activity, new ta(this));
     }
 
@@ -164,7 +164,7 @@ public final class ua extends rt0 {
     public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
         int i13;
         bi.x5 x5Var;
-        gy emojiView;
+        hy emojiView;
         int measuredWidth = getMeasuredWidth();
         int measuredHeight = getMeasuredHeight();
         va vaVar = this.f12908n0;
@@ -210,9 +210,9 @@ public final class ua extends rt0 {
         }
         x9 x9Var = vaVar.f13002v1;
         if (x9Var != null) {
-            gy gyVar = x9Var.Y1;
-            if (gyVar != null) {
-                gyVar.layout(vaVar.Y, (measuredHeight - vaVar.f12939b0) - gyVar.getMeasuredHeight(), measuredWidth - vaVar.f12935a0, measuredHeight - vaVar.f12939b0);
+            hy hyVar = x9Var.Y1;
+            if (hyVar != null) {
+                hyVar.layout(vaVar.Y, (measuredHeight - vaVar.f12939b0) - hyVar.getMeasuredHeight(), measuredWidth - vaVar.f12935a0, measuredHeight - vaVar.f12939b0);
             }
             ii0 ii0Var = vaVar.f13002v1.I1;
             if (ii0Var != null) {
@@ -309,7 +309,7 @@ public final class ua extends rt0 {
         }
         la laVar = vaVar.f12944c1;
         if (laVar != null) {
-            gy emojiView = laVar.f12365f.getEmojiView();
+            hy emojiView = laVar.f12365f.getEmojiView();
             Q();
             org.telegram.messenger.g0.L(20.0f);
             if (emojiView != null) {
@@ -318,9 +318,9 @@ public final class ua extends rt0 {
         }
         x9 x9Var = vaVar.f13002v1;
         if (x9Var != null) {
-            gy gyVar = x9Var.Y1;
-            if (gyVar != null) {
-                gyVar.measure(View.MeasureSpec.makeMeasureSpec(i15, 1073741824), View.MeasureSpec.makeMeasureSpec(vaVar.f13002v1.Y1.getLayoutParams().height, 1073741824));
+            hy hyVar = x9Var.Y1;
+            if (hyVar != null) {
+                hyVar.measure(View.MeasureSpec.makeMeasureSpec(i15, 1073741824), View.MeasureSpec.makeMeasureSpec(vaVar.f13002v1.Y1.getLayoutParams().height, 1073741824));
             }
             ii0 ii0Var = vaVar.f13002v1.I1;
             if (ii0Var != null) {

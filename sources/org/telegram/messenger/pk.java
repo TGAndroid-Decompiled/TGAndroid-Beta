@@ -1,94 +1,56 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_update;
 public final class pk implements RequestDelegate {
-    public final int f24570a;
-    public final qp f24571b;
-    public final int f24572c;
+    public final int f24577a;
+    public final qp f24578b;
+    public final long f24579c;
     public final long d;
-    public final long f24573e;
 
     public pk(int i7, long j3, long j10, qp qpVar) {
-        this.f24570a = 0;
-        this.f24571b = qpVar;
-        this.d = j3;
-        this.f24572c = i7;
-        this.f24573e = j10;
+        this.f24577a = i7;
+        this.f24578b = qpVar;
+        this.f24579c = j3;
+        this.d = j10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        TLRPC.Chat chat;
-        switch (this.f24570a) {
+        switch (this.f24577a) {
             case 0:
-                qp qpVar = this.f24571b;
+                qp qpVar = this.f24578b;
+                qpVar.getClass();
+                if (tL_error == null) {
+                    TLRPC.TL_messages_affectedMessages tL_messages_affectedMessages = (TLRPC.TL_messages_affectedMessages) tLObject;
+                    qpVar.L3(tL_messages_affectedMessages.pts, tL_messages_affectedMessages.pts_count, this.f24579c);
+                }
                 long j3 = this.d;
-                long j10 = this.f24573e;
-                if (tLObject != null) {
-                    TLRPC.updates_ChannelDifference updates_channeldifference = (TLRPC.updates_ChannelDifference) tLObject;
-                    a0.h hVar = new a0.h();
-                    int i7 = 0;
-                    for (int i10 = 0; i10 < updates_channeldifference.users.size(); i10++) {
-                        TLRPC.User user = updates_channeldifference.users.get(i10);
-                        hVar.k(user, user.f27102id);
-                    }
-                    int i11 = 0;
-                    while (true) {
-                        if (i11 < updates_channeldifference.chats.size()) {
-                            chat = updates_channeldifference.chats.get(i11);
-                            if (chat.f26953id != j3) {
-                                i11++;
-                            }
-                        } else {
-                            chat = null;
-                        }
-                    }
-                    TLRPC.Chat chat2 = chat;
-                    ArrayList arrayList = new ArrayList();
-                    if (!updates_channeldifference.other_updates.isEmpty()) {
-                        while (i7 < updates_channeldifference.other_updates.size()) {
-                            TLRPC.Update update = updates_channeldifference.other_updates.get(i7);
-                            if (update instanceof TL_update.TL_updateMessageID) {
-                                arrayList.add((TL_update.TL_updateMessageID) update);
-                                updates_channeldifference.other_updates.remove(i7);
-                                i7--;
-                            }
-                            i7++;
-                        }
-                    }
-                    qpVar.getMessagesStorage().m1(updates_channeldifference.users, updates_channeldifference.chats, true, true);
-                    g0.h3(new hi(16, qpVar, updates_channeldifference));
-                    qpVar.getMessagesStorage().f26696a.c(new rk(qpVar, arrayList, j3, updates_channeldifference, chat2, hVar, this.f24572c, j10));
-                    return;
-                } else if (tL_error != null) {
-                    g0.h3(new zl(qpVar, tL_error, j3, 0));
-                    qpVar.Z0.e(j3);
-                    if (j10 != 0) {
-                        qpVar.getMessagesStorage().q1(j10);
-                        return;
-                    }
-                    return;
-                } else {
+                if (j3 != 0) {
+                    qpVar.getMessagesStorage().q1(j3);
                     return;
                 }
-            case 1:
-                g0.h3(new wk(this.f24571b, this.f24572c, this.d, this.f24573e, 0));
                 return;
             default:
-                g0.h3(new wk(this.f24571b, this.f24572c, this.d, this.f24573e, 2));
+                qp qpVar2 = this.f24578b;
+                if (tLObject != null) {
+                    TLRPC.TL_messages_peerDialogs tL_messages_peerDialogs = (TLRPC.TL_messages_peerDialogs) tLObject;
+                    if (!tL_messages_peerDialogs.dialogs.isEmpty()) {
+                        TLRPC.TL_messages_dialogs tL_messages_dialogs = new TLRPC.TL_messages_dialogs();
+                        tL_messages_dialogs.dialogs.addAll(tL_messages_peerDialogs.dialogs);
+                        tL_messages_dialogs.messages.addAll(tL_messages_peerDialogs.messages);
+                        tL_messages_dialogs.users.addAll(tL_messages_peerDialogs.users);
+                        tL_messages_dialogs.chats.addAll(tL_messages_peerDialogs.chats);
+                        qpVar2.J3(tL_messages_dialogs, null, null, ((TLRPC.TL_dialog) tL_messages_peerDialogs.dialogs.get(0)).folder_id, 0, 1, qpVar2.P7, false, false, false);
+                    }
+                }
+                long j10 = this.f24579c;
+                if (j10 != 0) {
+                    qpVar2.getMessagesStorage().q1(j10);
+                }
+                qpVar2.f24750c1.e(this.d);
                 return;
         }
-    }
-
-    public pk(qp qpVar, int i7, long j3, long j10, int i10) {
-        this.f24570a = i10;
-        this.f24571b = qpVar;
-        this.f24572c = i7;
-        this.d = j3;
-        this.f24573e = j10;
     }
 }

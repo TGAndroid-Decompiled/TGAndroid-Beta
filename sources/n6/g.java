@@ -9,16 +9,16 @@ import android.util.Log;
 import androidx.biometric.t;
 import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class g {
-    public static boolean f20501b = false;
-    public static boolean f20502c = false;
-    public static final int f20503e = 0;
-    public static final AtomicBoolean f20500a = new AtomicBoolean();
+    public static boolean f20504b = false;
+    public static boolean f20505c = false;
+    public static final int f20506e = 0;
+    public static final AtomicBoolean f20503a = new AtomicBoolean();
     public static final AtomicBoolean d = new AtomicBoolean();
 
     public static boolean a(Context context) {
         int i7;
         try {
-            if (!f20502c) {
+            if (!f20505c) {
                 try {
                     t a10 = z6.b.a(context);
                     if (Build.VERSION.SDK_INT >= 28) {
@@ -29,22 +29,22 @@ public abstract class g {
                     PackageInfo c10 = a10.c(i7, "com.google.android.gms");
                     h.a(context);
                     if (c10 != null && !h.b(c10, false) && h.b(c10, true)) {
-                        f20501b = true;
+                        f20504b = true;
                     } else {
-                        f20501b = false;
+                        f20504b = false;
                     }
-                    f20502c = true;
+                    f20505c = true;
                 } catch (PackageManager.NameNotFoundException e10) {
                     Log.w("GooglePlayServicesUtil", "Cannot find Google Play services package name.", e10);
-                    f20502c = true;
+                    f20505c = true;
                 }
             }
-            if (!f20501b && "user".equals(Build.TYPE)) {
+            if (!f20504b && "user".equals(Build.TYPE)) {
                 return false;
             }
             return true;
         } catch (Throwable th2) {
-            f20502c = true;
+            f20505c = true;
             throw th2;
         }
     }

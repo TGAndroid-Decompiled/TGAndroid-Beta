@@ -11,7 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import bi.ud;
 import c8.ka;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.Components.wp;
 import org.telegram.ui.Components.xq;
 public final class r1 extends View {
@@ -138,7 +138,7 @@ public final class r1 extends View {
         if (i7 > 50000) {
             i6Var.t(org.telegram.messenger.g0.o0(i7, 0), true, true);
         } else {
-            i6Var.t(hd.E(i7, ','), true, true);
+            i6Var.t(id.E(i7, ','), true, true);
         }
         invalidate();
         requestLayout();

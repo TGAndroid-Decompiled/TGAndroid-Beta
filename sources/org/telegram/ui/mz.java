@@ -1,7 +1,7 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class mz extends org.telegram.ui.Components.lz {
+public final class mz extends org.telegram.ui.Components.mz {
     public final int U;
     public final Object V;
 
@@ -15,9 +15,9 @@ public final class mz extends org.telegram.ui.Components.lz {
     public final int getColumnsCount() {
         switch (this.U) {
             case 0:
-                return ((yz) this.V).f52402s;
+                return ((yz) this.V).f52382s;
             default:
-                return ((wz) this.V).d.f52402s;
+                return ((wz) this.V).d.f52382s;
         }
     }
 }

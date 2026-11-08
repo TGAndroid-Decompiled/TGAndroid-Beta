@@ -7,39 +7,39 @@ import j$.time.ZoneId;
 import j$.time.format.TextStyle;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.qp;
 import org.telegram.messenger.qs;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 public final class x1 {
-    public static volatile x1[] f17575e = new x1[4];
-    public static final Object[] f17576f = new Object[4];
-    public final int f17577a;
-    public boolean f17578b;
-    public boolean f17579c;
+    public static volatile x1[] f17578e = new x1[4];
+    public static final Object[] f17579f = new Object[4];
+    public final int f17580a;
+    public boolean f17581b;
+    public boolean f17582c;
     public final ArrayList d = new ArrayList();
 
     static {
         for (int i7 = 0; i7 < 4; i7++) {
-            f17576f[i7] = new Object();
+            f17579f[i7] = new Object();
         }
     }
 
     public x1(int i7) {
-        this.f17577a = i7;
+        this.f17580a = i7;
     }
 
     public static x1 b(int i7) {
         x1 x1Var;
-        x1 x1Var2 = f17575e[i7];
+        x1 x1Var2 = f17578e[i7];
         if (x1Var2 == null) {
-            synchronized (f17576f[i7]) {
+            synchronized (f17579f[i7]) {
                 try {
-                    x1Var = f17575e[i7];
+                    x1Var = f17578e[i7];
                     if (x1Var == null) {
-                        x1[] x1VarArr = f17575e;
+                        x1[] x1VarArr = f17578e;
                         x1 x1Var3 = new x1(i7);
                         x1VarArr[i7] = x1Var3;
                         x1Var = x1Var3;
@@ -88,7 +88,7 @@ public final class x1 {
         }
         m10.append(str2);
         m10.append(i10);
-        StringBuilder m11 = com.google.android.recaptcha.internal.a.m(rf.b.q(m10.toString(), ":"));
+        StringBuilder m11 = com.google.android.recaptcha.internal.a.m(rf.b.r(m10.toString(), ":"));
         if (i11 < 10) {
             str3 = "0";
         }
@@ -109,7 +109,7 @@ public final class x1 {
                 return null;
             }
             TLRPC.TL_timezone tL_timezone = (TLRPC.TL_timezone) arrayList.get(i7);
-            if (TextUtils.equals(tL_timezone.f27093id, str)) {
+            if (TextUtils.equals(tL_timezone.f27096id, str)) {
                 return tL_timezone;
             }
             i7++;
@@ -132,7 +132,7 @@ public final class x1 {
             return "";
         }
         if (z9) {
-            String displayName = of2.getRules().getOffset(Instant.now()).getDisplayName(TextStyle.FULL, hd.E0().f22906y);
+            String displayName = of2.getRules().getOffset(Instant.now()).getDisplayName(TextStyle.FULL, id.E0().f23185y);
             str2 = "GMT";
             if (displayName.length() != 1 || displayName.charAt(0) != 'Z') {
                 str2 = "GMT".concat(displayName);
@@ -150,10 +150,10 @@ public final class x1 {
     }
 
     public final void g() {
-        if (!this.f17578b && !this.f17579c) {
-            this.f17578b = true;
-            int i7 = this.f17577a;
-            SharedPreferences sharedPreferences = qp.s1(i7).f24767e7;
+        if (!this.f17581b && !this.f17582c) {
+            this.f17581b = true;
+            int i7 = this.f17580a;
+            SharedPreferences sharedPreferences = qp.s1(i7).f24774e7;
             TLRPC.help_timezonesList help_timezoneslist = null;
             String string = sharedPreferences.getString("timezones", null);
             int i10 = 0;
@@ -166,7 +166,7 @@ public final class x1 {
             if (help_timezoneslist != null) {
                 arrayList.addAll(help_timezoneslist.timezones);
             }
-            qs.f(i7).k(qs.f25058r3, new Object[0]);
+            qs.f(i7).k(qs.f25067r3, new Object[0]);
             TLRPC.TL_help_getTimezonesList tL_help_getTimezonesList = new TLRPC.TL_help_getTimezonesList();
             if (help_timezoneslist != null) {
                 i10 = help_timezoneslist.hash;

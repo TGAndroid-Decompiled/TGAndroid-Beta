@@ -28,7 +28,7 @@ public final class s2 extends org.telegram.ui.web.x0 {
                     a3Var.m();
                     org.telegram.ui.b3 b3Var = a3Var.Y0;
                     if (a3Var.q()) {
-                        p10 = a3Var.f14540w0.f14889e;
+                        p10 = a3Var.f14540w0.f14892e;
                     } else {
                         p10 = t10.p(qp.s1(a3Var.H).a2(Long.valueOf(a3Var.I)));
                     }
@@ -61,7 +61,7 @@ public final class s2 extends org.telegram.ui.web.x0 {
                 a3Var.f14541x.setWebView(u0Var);
                 v0 v0Var = a3Var.C0;
                 if (v0Var != null) {
-                    v0Var.f14987k = u0Var;
+                    v0Var.f14990k = u0Var;
                 }
                 a3Var.f14528n0.setWebView(u0Var);
                 a3Var.K();
@@ -78,8 +78,8 @@ public final class s2 extends org.telegram.ui.web.x0 {
             case 0:
                 a3 a3Var = (a3) this.U0;
                 v0 v0Var = a3Var.C0;
-                if (v0Var != null && v0Var.f14987k == u0Var) {
-                    v0Var.f14987k = null;
+                if (v0Var != null && v0Var.f14990k == u0Var) {
+                    v0Var.f14990k = null;
                     v0Var.b();
                 }
                 a3Var.f14528n0.setWebView(null);

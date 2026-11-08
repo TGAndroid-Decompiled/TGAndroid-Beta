@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Set;
 public abstract class z0 {
-    public static final Set f26769a = Collections.newSetFromMap(new ConcurrentHashMap());
+    public static final Set f26790a = Collections.newSetFromMap(new ConcurrentHashMap());
 
     public static void a(File file, ArrayList arrayList) {
         File[] listFiles;
@@ -14,7 +14,7 @@ public abstract class z0 {
             for (File file2 : listFiles) {
                 if (file2.isDirectory()) {
                     a(file2, arrayList);
-                } else if (!file2.getName().equals(".nomedia") && !f26769a.contains(file2.getAbsolutePath())) {
+                } else if (!file2.getName().equals(".nomedia") && !f26790a.contains(file2.getAbsolutePath())) {
                     arrayList.add(new y0(file2));
                 }
             }
@@ -26,6 +26,6 @@ public abstract class z0 {
         if (file == null || (absolutePath = file.getAbsolutePath()) == null) {
             return;
         }
-        f26769a.remove(absolutePath);
+        f26790a.remove(absolutePath);
     }
 }

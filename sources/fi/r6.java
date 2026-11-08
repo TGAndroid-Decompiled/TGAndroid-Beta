@@ -3,7 +3,7 @@ package fi;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import java.util.ArrayList;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.kp;
 import org.telegram.messenger.p10;
@@ -39,21 +39,21 @@ public final class r6 implements v10 {
                 int L = org.telegram.messenger.g0.L(64.0f);
                 arrayList.add(x31.D(org.telegram.messenger.g0.L(64.0f)));
                 if (w6Var.R1 || w6Var.Z1) {
-                    L += w6Var.d1(true, arrayList, hd.M0(2131753905, null), w6Var.T1, false, false, -1);
+                    L += w6Var.d1(true, arrayList, id.M0(2131753905, null), w6Var.T1, false, false, -1);
                 }
                 if (!w6Var.R1) {
                     if (TextUtils.isEmpty(w6Var.f13041j2) && !w6Var.Z1) {
                         l41Var.V();
-                        x31 c10 = x31.c(1, 2131232027, hd.M0(2131744610, null));
-                        c10.f40164q = true;
+                        x31 c10 = x31.c(1, 2131232027, id.M0(2131744612, null));
+                        c10.f40185q = true;
                         arrayList.add(c10);
                         l41Var.U();
                         L += org.telegram.messenger.g0.L(50.0f);
                     }
                     if (!w6Var.Z1 && kpVar != null) {
-                        L += w6Var.d1(true, arrayList, hd.M0(2131753904, null), kpVar.f23741c, kpVar.f23743f, !kpVar.f23742e, 2);
+                        L += w6Var.d1(true, arrayList, id.M0(2131753904, null), kpVar.f23741c, kpVar.f23743f, !kpVar.f23742e, 2);
                     }
-                    String M0 = hd.M0(2131753907, null);
+                    String M0 = id.M0(2131753907, null);
                     ArrayList arrayList2 = w6Var.U1;
                     if (!w6Var.f13045n2 && !w6Var.f13044m2) {
                         z9 = false;
@@ -61,7 +61,7 @@ public final class r6 implements v10 {
                         z9 = true;
                     }
                     int d12 = L + w6Var.d1(false, arrayList, M0, arrayList2, z9, w6Var.f13043l2, 3);
-                    String M02 = hd.M0(2131753906, null);
+                    String M02 = id.M0(2131753906, null);
                     ArrayList arrayList3 = w6Var.V1;
                     if (!w6Var.f13052u2 && !w6Var.f13051t2) {
                         z10 = false;
@@ -78,30 +78,30 @@ public final class r6 implements v10 {
                 }
                 if (size <= i7) {
                     if (TextUtils.isEmpty(w6Var.f13041j2)) {
-                        String M03 = hd.M0(2131748242, null);
-                        String M04 = hd.M0(2131748243, null);
-                        int i11 = li.f35684b;
+                        String M03 = id.M0(2131748244, null);
+                        String M04 = id.M0(2131748245, null);
+                        int i11 = li.f35702b;
                         x31 K = x31.K(li.class);
-                        K.f40159l = M03;
-                        K.f40160m = M04;
+                        K.f40180l = M03;
+                        K.f40181m = M04;
                         arrayList.add(K);
                     } else {
-                        String M05 = hd.M0(2131748242, null);
+                        String M05 = id.M0(2131748244, null);
                         if (w6Var.f13041j2.length() >= 3) {
-                            i10 = 2131748240;
+                            i10 = 2131748242;
                         } else {
-                            i10 = 2131748241;
+                            i10 = 2131748243;
                         }
-                        SpannableStringBuilder X2 = org.telegram.messenger.g0.X2(hd.a0(null, null, i10, w6Var.f13041j2));
-                        int i12 = li.f35684b;
+                        SpannableStringBuilder X2 = org.telegram.messenger.g0.X2(id.a0(null, null, i10, w6Var.f13041j2));
+                        int i12 = li.f35702b;
                         x31 K2 = x31.K(li.class);
-                        K2.f40159l = M05;
-                        K2.f40160m = X2;
+                        K2.f40180l = M05;
+                        K2.f40181m = X2;
                         arrayList.add(K2);
                     }
                 }
                 arrayList.add(x31.C(null));
-                arrayList.add(x31.D(Math.max(0, org.telegram.messenger.g0.L(24.0f) + (((org.telegram.messenger.g0.f22544q.y - (org.telegram.messenger.g0.L(12.0f) + L)) - org.telegram.messenger.g0.f22538m) - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()))));
+                arrayList.add(x31.D(Math.max(0, org.telegram.messenger.g0.L(24.0f) + (((org.telegram.messenger.g0.f22563q.y - (org.telegram.messenger.g0.L(12.0f) + L)) - org.telegram.messenger.g0.f22557m) - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()))));
                 return;
             default:
                 TLRPC.messages_BotResults messages_botresults = (TLRPC.messages_BotResults) obj;
@@ -111,7 +111,7 @@ public final class r6 implements v10 {
                 w6Var2.f13051t2 = false;
                 w6Var2.f13052u2 = false;
                 if (messages_botresults != null) {
-                    qp.s1(w6Var2.f28613a).Y3(messages_botresults.users, false);
+                    qp.s1(w6Var2.f28616a).Y3(messages_botresults.users, false);
                     ArrayList<TLRPC.BotInlineResult> arrayList5 = messages_botresults.results;
                     int size2 = arrayList5.size();
                     int i13 = 0;
@@ -126,12 +126,12 @@ public final class r6 implements v10 {
                                 tL_message.out = true;
                                 int i14 = w6Var2.A2;
                                 w6Var2.A2 = i14 - 1;
-                                tL_message.f26974id = i14;
+                                tL_message.f26977id = i14;
                                 tL_message.peer_id = new TLRPC.TL_peerUser();
                                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                                 tL_message.from_id = tL_peerUser;
                                 TLRPC.Peer peer = tL_message.peer_id;
-                                long e10 = p10.i(w6Var2.f28613a).e();
+                                long e10 = p10.i(w6Var2.f28616a).e();
                                 tL_peerUser.user_id = e10;
                                 peer.user_id = e10;
                                 tL_message.date = (int) (System.currentTimeMillis() / 1000);
@@ -141,7 +141,7 @@ public final class r6 implements v10 {
                                 tL_messageMediaDocument.flags |= 3;
                                 tL_messageMediaDocument.document = tL_botInlineMediaResult.document;
                                 tL_message.flags |= 768;
-                                arrayList4.add(new ij(w6Var2.f28613a, tL_message, false, true));
+                                arrayList4.add(new ij(w6Var2.f28616a, tL_message, false, true));
                             }
                         }
                     }

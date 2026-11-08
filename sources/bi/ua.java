@@ -55,7 +55,7 @@ public final class ua implements Runnable {
                 int i10 = this.f4836b;
                 long j11 = this.f4837c;
                 try {
-                    SQLitePreparedStatement executeFast = yr.a0(i10).f26698b.executeFast("REPLACE INTO search_recent VALUES(?, ?)");
+                    SQLitePreparedStatement executeFast = yr.a0(i10).f26721b.executeFast("REPLACE INTO search_recent VALUES(?, ?)");
                     executeFast.requery();
                     executeFast.bindLong(1, j11);
                     executeFast.bindInteger(2, (int) (System.currentTimeMillis() / 1000));

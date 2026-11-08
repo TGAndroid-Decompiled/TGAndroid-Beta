@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import android.app.Activity;
 import java.util.ArrayList;
-public final class li extends org.telegram.ui.Components.qu {
+public final class li extends org.telegram.ui.Components.ru {
     public final an N1;
 
     public li(an anVar, org.telegram.ui.ActionBar.f2 f2Var, Activity activity, org.telegram.ui.ActionBar.f6 f6Var, ArrayList arrayList) {

@@ -30,7 +30,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
-import org.telegram.messenger.p1;
+import org.telegram.messenger.j1;
 import org.telegram.messenger.q1;
 import org.telegram.messenger.r1;
 public class b {
@@ -222,12 +222,12 @@ public class b {
         throw new UnsupportedOperationException("Method not decompiled: f5.b.b(android.app.Activity, f5.e):f5.f");
     }
 
-    public void c(aa.n nVar, p1 p1Var) {
-        if (f(new q(this, p1Var, nVar, 1), 30000L, new m9.u(16, this, p1Var), r(), e()) == null) {
+    public void c(aa.n nVar, j1 j1Var) {
+        if (f(new q(this, j1Var, nVar, 1), 30000L, new m9.u(16, this, j1Var), r(), e()) == null) {
             f u10 = u();
             y(25, 7, u10);
             com.google.android.gms.internal.play_billing.p pVar = com.google.android.gms.internal.play_billing.r.f7444b;
-            ((q1) p1Var.f24466b).a(u10, com.google.android.gms.internal.play_billing.v.f7471e);
+            ((q1) j1Var.f23465b).a(u10, com.google.android.gms.internal.play_billing.v.f7471e);
         }
     }
 
@@ -257,10 +257,10 @@ public class b {
             q4.q qVar = this.h;
             int i7 = this.f11126l;
             qVar.getClass();
-            o3 o3Var = (o3) ((p3) qVar.f53710b).g();
+            o3 o3Var = (o3) ((p3) qVar.f53803b).g();
             o3Var.c();
             p3.p((p3) o3Var.f7469b, i7);
-            qVar.f53710b = (p3) o3Var.a();
+            qVar.f53803b = (p3) o3Var.a();
             qVar.h(g3Var);
         } catch (Throwable th2) {
             com.google.android.gms.internal.play_billing.u.i("BillingClient", "Unable to log.", th2);
@@ -272,11 +272,11 @@ public class b {
             q4.q qVar = this.h;
             int i7 = this.f11126l;
             qVar.getClass();
-            o3 o3Var = (o3) ((p3) qVar.f53710b).g();
+            o3 o3Var = (o3) ((p3) qVar.f53803b).g();
             o3Var.c();
             p3.p((p3) o3Var.f7469b, i7);
             p3 p3Var = (p3) o3Var.a();
-            qVar.f53710b = p3Var;
+            qVar.f53803b = p3Var;
             qVar.q(i3Var, p3Var);
         } catch (Throwable th2) {
             com.google.android.gms.internal.play_billing.u.i("BillingClient", "Unable to log.", th2);

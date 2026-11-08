@@ -4,7 +4,7 @@ import android.content.Context;
 import android.widget.FrameLayout;
 import org.telegram.messenger.ls;
 import org.telegram.messenger.qs;
-import org.telegram.ui.Components.lz;
+import org.telegram.ui.Components.mz;
 import org.telegram.ui.Components.q41;
 public final class ad extends FrameLayout implements ls {
     public final q41 f3468a;
@@ -31,20 +31,20 @@ public final class ad extends FrameLayout implements ls {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        int i11 = qs.f25112z3;
+        int i11 = qs.f25121z3;
         q41 q41Var = this.f3468a;
         if (i7 == i11) {
-            q41Var.f37160f3.O(true);
+            q41Var.f37190f3.O(true);
             if (q41Var.canScrollVertically(1)) {
                 for (int i12 = 0; i12 < q41Var.getChildCount(); i12++) {
-                    if (!(q41Var.getChildAt(i12) instanceof lz)) {
+                    if (!(q41Var.getChildAt(i12) instanceof mz)) {
                     }
                 }
                 return;
             }
             this.h.run();
         } else if (i7 == qs.D3 && ((Long) objArr[0]).longValue() == this.f3472f) {
-            q41Var.f37160f3.O(true);
+            q41Var.f37190f3.O(true);
         }
     }
 
@@ -56,9 +56,9 @@ public final class ad extends FrameLayout implements ls {
         if (i7 != 0) {
             qs.f(i10).c(this, qs.D3);
         } else {
-            qs.f(i10).c(this, qs.f25112z3);
+            qs.f(i10).c(this, qs.f25121z3);
         }
-        this.f3468a.f37160f3.O(false);
+        this.f3468a.f37190f3.O(false);
     }
 
     @Override
@@ -69,7 +69,7 @@ public final class ad extends FrameLayout implements ls {
         if (i7 != 0) {
             qs.f(i10).n(this, qs.D3);
         } else {
-            qs.f(i10).n(this, qs.f25112z3);
+            qs.f(i10).n(this, qs.f25121z3);
         }
     }
 }

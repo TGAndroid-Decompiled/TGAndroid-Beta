@@ -21,7 +21,7 @@ import bi.nc;
 import c8.ha;
 import java.util.ArrayList;
 import java.util.Collections;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.qp;
 import org.telegram.messenger.qs;
@@ -226,7 +226,7 @@ public final class n0 extends FrameLayout implements j60 {
                 spannableStringBuilder.append((CharSequence) ("#" + s0Var.h));
                 z9 = z13;
                 wp wpVar = new wp(0, new j0(getContext(), s0Var.h));
-                wpVar.f40071s = org.telegram.messenger.g0.L(1.0f);
+                wpVar.f40021s = org.telegram.messenger.g0.L(1.0f);
                 spannableStringBuilder.setSpan(wpVar, 0, spannableStringBuilder.length(), 33);
                 spannableStringBuilder.append((CharSequence) "\u2009");
             } else {
@@ -248,7 +248,7 @@ public final class n0 extends FrameLayout implements j60 {
         if (tL_textWithEntities != null) {
             CharSequence j02 = ij.j0(tL_textWithEntities, false, false, lVar.getPaint());
             this.f9384w = j02;
-            Typeface typeface = org.telegram.messenger.g0.f22516a;
+            Typeface typeface = org.telegram.messenger.g0.f22535a;
             if (j02 == null) {
                 z10 = true;
                 str2 = " ";
@@ -374,7 +374,7 @@ public final class n0 extends FrameLayout implements j60 {
             ncVar.invalidate();
             lVar.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
             int L = org.telegram.messenger.g0.L(13.0f);
-            int i22 = org.telegram.ui.ActionBar.k6.f27785a;
+            int i22 = org.telegram.ui.ActionBar.k6.f27788a;
             GradientDrawable gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, new int[]{b10, b11});
             gradientDrawable.setShape(0);
             gradientDrawable.setCornerRadius(L);
@@ -400,7 +400,7 @@ public final class n0 extends FrameLayout implements j60 {
                 textView2.setText(dd.X0(false, jg.g.m(s0Var.f9741g, ',', new StringBuilder("⭐️ ")), 0.75f, this.G, org.telegram.messenger.g0.L(0.66f), 1.0f));
                 wp wpVar2 = this.G[0];
                 if (wpVar2 != null) {
-                    wpVar2.f40064a = this.f9377b;
+                    wpVar2.f40014a = this.f9377b;
                 }
             }
         } else if (s0Var.f9737b) {
@@ -417,10 +417,10 @@ public final class n0 extends FrameLayout implements j60 {
             spannableStringBuilder2.append((CharSequence) org.telegram.messenger.m5.l(i14, s0Var.f9738c));
             spannableStringBuilder2.append((CharSequence) str2);
             int length2 = spannableStringBuilder2.length();
-            spannableStringBuilder2.append((CharSequence) hd.M0(2131748824, null));
+            spannableStringBuilder2.append((CharSequence) id.M0(2131748826, null));
             spannableStringBuilder2.setSpan(new k0(0), length2, spannableStringBuilder2.length(), 33);
             this.f9382r.setText(spannableStringBuilder2);
-            this.f9383s.setText(hd.M0(2131748827, null));
+            this.f9383s.setText(id.M0(2131748829, null));
             textView.setVisibility(8);
             textView2.setVisibility(8);
         } else {
@@ -438,8 +438,8 @@ public final class n0 extends FrameLayout implements j60 {
     public void setDrawStar(boolean z9) {
         this.f9377b = z9;
         wp wpVar = this.G[0];
-        if (wpVar != null && wpVar.f40064a != z9) {
-            wpVar.f40064a = z9;
+        if (wpVar != null && wpVar.f40014a != z9) {
+            wpVar.f40014a = z9;
             this.E.invalidate();
         }
     }

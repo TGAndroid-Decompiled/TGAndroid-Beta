@@ -5,7 +5,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
 import org.telegram.ui.Components.bm;
-import org.telegram.ui.u71;
+import org.telegram.ui.v71;
 public final class w2 extends org.telegram.ui.ActionBar.r0 {
     public final Object A0;
     public final int f13026z0;
@@ -25,22 +25,22 @@ public final class w2 extends org.telegram.ui.ActionBar.r0 {
                 return;
             case 1:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(((ChatAttachAlertPhotoLayout) this.A0).f31231y.getText());
+                accessibilityNodeInfo.setText(((ChatAttachAlertPhotoLayout) this.A0).f31235y.getText());
                 return;
             case 2:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(((bm) this.A0).f32203y.getText());
+                accessibilityNodeInfo.setText(((bm) this.A0).f32224y.getText());
                 return;
             default:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(((u71) this.A0).h.getText());
+                accessibilityNodeInfo.setText(((v71) this.A0).h.getText());
                 return;
         }
     }
 
-    public w2(u71 u71Var, Context context, org.telegram.ui.ActionBar.y yVar) {
+    public w2(v71 v71Var, Context context, org.telegram.ui.ActionBar.y yVar) {
         super(context, yVar, 0);
         this.f13026z0 = 3;
-        this.A0 = u71Var;
+        this.A0 = v71Var;
     }
 }

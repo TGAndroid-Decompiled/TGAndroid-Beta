@@ -37,7 +37,7 @@ public final class w extends v4.g0 {
         boolean z9;
         switch (this.f13019c) {
             case 0:
-                x xVar = (x) d1Var.f56951a;
+                x xVar = (x) d1Var.f57043a;
                 t tVar = (t) t.a().get(i7);
                 if (i7 == xVar.f13068s) {
                     z9 = true;
@@ -53,21 +53,21 @@ public final class w extends v4.g0 {
                 ArrayList arrayList = bg0Var.M;
                 boolean z10 = true;
                 ij ijVar = (ij) arrayList.get((b() - 1) - i7);
-                org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) d1Var.f56951a;
+                org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) d1Var.f57043a;
                 dj k10 = bg0Var.k(ijVar);
                 int i10 = 0;
                 if (k10 == null) {
                     z10 = false;
                 }
                 q1Var.setInvalidatesParent(z10);
-                q1Var.v3(ijVar, k10, false, false, false, false);
+                q1Var.w3(ijVar, k10, false, false, false, false);
                 if (!bg0Var.O.i() && arrayList.size() >= 10) {
                     i10 = arrayList.size() % 10;
                 }
                 if (i7 == i10 && !ijVar.o5()) {
                     bg0Var.P = q1Var;
-                    Point point = org.telegram.messenger.g0.f22544q;
-                    q1Var.x3(point.x, point.y);
+                    Point point = org.telegram.messenger.g0.f22563q;
+                    q1Var.y3(point.x, point.y);
                     bg0Var.Q = ijVar.f1();
                     return;
                 }
@@ -85,7 +85,7 @@ public final class w extends v4.g0 {
                 return new v4.d1(gbVar);
             default:
                 bg0 bg0Var = (bg0) this.f13021f;
-                ag0 ag0Var = new ag0(bg0Var, this.d, bg0Var.f44319c, (org.telegram.ui.ActionBar.f6) this.f13020e);
+                ag0 ag0Var = new ag0(bg0Var, this.d, bg0Var.f44322c, (org.telegram.ui.ActionBar.f6) this.f13020e);
                 ag0Var.setDelegate(new qb.a(18));
                 return new v4.d1(ag0Var);
         }
@@ -95,7 +95,7 @@ public final class w extends v4.g0 {
     public void y(v4.d1 d1Var) {
         switch (this.f13019c) {
             case 0:
-                x xVar = (x) d1Var.f56951a;
+                x xVar = (x) d1Var.f57043a;
                 ((p2) this.f13020e).a(xVar);
                 int i7 = xVar.f13068s;
                 if (i7 >= 0 && i7 < t.a().size()) {
@@ -114,7 +114,7 @@ public final class w extends v4.g0 {
     public void z(v4.d1 d1Var) {
         switch (this.f13019c) {
             case 0:
-                ((p2) this.f13020e).d.remove((x) d1Var.f56951a);
+                ((p2) this.f13020e).d.remove((x) d1Var.f57043a);
                 return;
             default:
                 return;

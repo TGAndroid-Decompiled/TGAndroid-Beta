@@ -1,63 +1,35 @@
 package org.telegram.ui.Wallet;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.text.TextUtils;
-import android.view.View;
-public final class q9 implements View.OnClickListener {
-    public final int f43072a;
-    public final x9 f43073b;
+import org.telegram.messenger.c20;
+import org.telegram.tgnet.TLRPC;
+public final class q9 implements c20 {
+    public final int f43080a;
+    public final w9 f43081b;
 
-    public q9(x9 x9Var, int i7) {
-        this.f43072a = i7;
-        this.f43073b = x9Var;
+    public q9(w9 w9Var, int i7) {
+        this.f43080a = i7;
+        this.f43081b = w9Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f43072a) {
+    public final void a(Object obj) {
+        ah.i iVar;
+        switch (this.f43080a) {
             case 0:
-                x9 x9Var = this.f43073b;
-                if (x9Var.f43347y != null) {
-                    org.telegram.messenger.g0.v1(x9Var.N);
-                    x9Var.m0(x9Var.f43347y, null);
-                    return;
-                }
-                return;
-            case 1:
-                x9 x9Var2 = this.f43073b;
-                if (x9Var2.f43347y != null) {
-                    org.telegram.messenger.g0.v1(x9Var2.N);
-                    x9Var2.m0(x9Var2.f43347y, null);
-                    return;
-                }
-                return;
-            case 2:
-                x9 x9Var3 = this.f43073b;
-                ClipboardManager clipboardManager = (ClipboardManager) x9Var3.getParentActivity().getSystemService("clipboard");
-                if (clipboardManager != null && clipboardManager.hasPrimaryClip()) {
-                    ClipData primaryClip = clipboardManager.getPrimaryClip();
-                    if (primaryClip != null && primaryClip.getItemCount() != 0) {
-                        CharSequence coerceToText = primaryClip.getItemAt(0).coerceToText(x9Var3.getParentActivity());
-                        if (!TextUtils.isEmpty(coerceToText)) {
-                            x9Var3.N.setText(coerceToText.toString().trim());
-                            ah.i iVar = x9Var3.N;
-                            iVar.setSelection(iVar.length());
-                            return;
-                        }
-                        x9Var3.S = false;
-                        x9Var3.p0(true);
-                        return;
-                    }
-                    x9Var3.S = false;
-                    x9Var3.p0(true);
-                    return;
-                }
-                x9Var3.S = false;
-                x9Var3.p0(true);
+                w9.e0(this.f43081b, (String) obj);
                 return;
             default:
-                this.f43073b.i0();
+                TLRPC.User user = (TLRPC.User) obj;
+                w9 w9Var = this.f43081b;
+                if (!w9Var.isFinished && (iVar = w9Var.N) != null) {
+                    if (user == null) {
+                        org.telegram.messenger.g0.h3(new r9(w9Var, 1));
+                        return;
+                    }
+                    org.telegram.messenger.g0.v1(iVar);
+                    w9Var.m0(null, user);
+                    return;
+                }
                 return;
         }
     }

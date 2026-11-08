@@ -107,7 +107,7 @@ public final class s1 implements org.telegram.ui.ActionBar.r1, lh.a {
                                 int i14 = i11;
                                 while (true) {
                                     if (i14 < peerStories.stories.size()) {
-                                        if (peerStories.stories.get(i14).f27192id == storyItem2.f27192id) {
+                                        if (peerStories.stories.get(i14).f27195id == storyItem2.f27195id) {
                                             peerStories.stories.remove(i14);
                                             if (peerStories.stories.size() == 0) {
                                                 if (!y6Var.M(j10)) {
@@ -150,10 +150,10 @@ public final class s1 implements org.telegram.ui.ActionBar.r1, lh.a {
                         }
                         TL_stories.TL_stories_deleteStories tL_stories_deleteStories = new TL_stories.TL_stories_deleteStories();
                         tL_stories_deleteStories.peer = qp.s1(i12).j1(j10);
-                        tL_stories_deleteStories.f27195id.add(Integer.valueOf(storyItem2.f27192id));
+                        tL_stories_deleteStories.f27198id.add(Integer.valueOf(storyItem2.f27195id));
                         ConnectionsManager.getInstance(i12).sendRequest(tL_stories_deleteStories, new x5(y6Var, 4));
                         l7 l7Var = y6Var.f9971k;
-                        l7Var.f9338b.f26696a.c(new i7(l7Var, j10, storyItem2.f27192id, 1));
+                        l7Var.f9338b.f26719a.c(new i7(l7Var, j10, storyItem2.f27195id, 1));
                         qs.f(i12).k(324, new Object[0]);
                         qp.s1(i12).D();
                         y6Var.n0(j10, Arrays.asList(storyItem2));

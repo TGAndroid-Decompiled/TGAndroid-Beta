@@ -72,11 +72,11 @@ public final class vc extends w31 {
             if (starsSubscription.photo != null) {
                 q50 q50Var = new q50(14.0f, i10, textView3);
                 q50Var.a(4.0f);
-                q50Var.f49112f = false;
+                q50Var.f49115f = false;
                 SpannableString spannableString = new SpannableString("x");
                 k5Var = k5Var2;
                 spannableString.setSpan(q50Var, 0, 1, 33);
-                q50Var.f49109b.q0(org.telegram.messenger.hc.p(m20.c(starsSubscription.photo)), "14_14", null, null, 0, 0);
+                q50Var.f49112b.q0(org.telegram.messenger.hc.p(m20.c(starsSubscription.photo)), "14_14", null, null, 0, 0);
                 spannableStringBuilder.append((CharSequence) spannableString).append((CharSequence) " ");
             } else {
                 k5Var = k5Var2;
@@ -92,21 +92,21 @@ public final class vc extends w31 {
             f10 = 14.0f;
         }
         textView2.setTextSize(1, f10);
-        int i11 = 2131744991;
+        int i11 = 2131744993;
         if (!starsSubscription.canceled && !starsSubscription.bot_canceled) {
             long j3 = starsSubscription.until_date;
             if (j3 < currentTime) {
-                textView2.setText(org.telegram.messenger.hd.a0(null, null, 2131744991, org.telegram.messenger.hd.u(j3, false)));
+                textView2.setText(org.telegram.messenger.id.a0(null, null, 2131744993, org.telegram.messenger.id.u(j3, false)));
                 textView.setVisibility(8);
-                org.telegram.messenger.camera.q.o(textView4, org.telegram.ui.ActionBar.k6.kk, f6Var, null, 2131744973);
+                org.telegram.messenger.camera.q.o(textView4, org.telegram.ui.ActionBar.k6.kk, f6Var, null, 2131744975);
             } else {
-                textView2.setText(org.telegram.messenger.hd.a0(null, null, 2131744978, org.telegram.messenger.hd.u(j3, false)));
+                textView2.setText(org.telegram.messenger.id.a0(null, null, 2131744980, org.telegram.messenger.id.u(j3, false)));
                 textView.setVisibility(0);
                 textView.setText(dd.a1(false, "⭐️ " + Long.toString(starsSubscription.pricing.amount), 0.8f, null));
-                org.telegram.ui.ActionBar.r6.V(textView4, org.telegram.ui.ActionBar.k6.f28259z6, f6Var);
+                org.telegram.ui.ActionBar.r6.V(textView4, org.telegram.ui.ActionBar.k6.f28262z6, f6Var);
                 int i12 = starsSubscription.pricing.period;
                 if (i12 == 2592000) {
-                    textView4.setText(org.telegram.messenger.hd.M0(2131745057, null));
+                    textView4.setText(org.telegram.messenger.id.M0(2131745059, null));
                 } else if (i12 == 60) {
                     textView4.setText("per minute");
                 } else if (i12 == 300) {
@@ -116,21 +116,21 @@ public final class vc extends w31 {
         } else {
             long j10 = starsSubscription.until_date;
             if (j10 >= currentTime) {
-                i11 = 2131744985;
+                i11 = 2131744987;
             }
-            textView2.setText(org.telegram.messenger.hd.a0(null, null, i11, org.telegram.messenger.hd.u(j10, false)));
+            textView2.setText(org.telegram.messenger.id.a0(null, null, i11, org.telegram.messenger.id.u(j10, false)));
             textView.setVisibility(8);
             org.telegram.ui.ActionBar.r6.V(textView4, org.telegram.ui.ActionBar.k6.kk, f6Var);
             if (starsSubscription.bot_canceled) {
                 if (z11) {
-                    i7 = 2131744976;
+                    i7 = 2131744978;
                 } else {
-                    i7 = 2131744975;
+                    i7 = 2131744977;
                 }
             } else {
-                i7 = 2131744974;
+                i7 = 2131744976;
             }
-            textView4.setText(org.telegram.messenger.hd.M0(i7, null));
+            textView4.setText(org.telegram.messenger.id.M0(i7, null));
         }
         wcVar.f4998s = z9;
         wcVar.setWillNotDraw(!z9);
@@ -148,7 +148,7 @@ public final class vc extends w31 {
             if (obj instanceof TL_stars.StarsSubscription) {
                 Object obj2 = x31Var2.G;
                 if (obj2 instanceof TL_stars.StarsSubscription) {
-                    return TextUtils.equals(((TL_stars.StarsSubscription) obj).f27183id, ((TL_stars.StarsSubscription) obj2).f27183id);
+                    return TextUtils.equals(((TL_stars.StarsSubscription) obj).f27186id, ((TL_stars.StarsSubscription) obj2).f27186id);
                 }
                 return false;
             }

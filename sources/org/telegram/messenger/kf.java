@@ -21,10 +21,10 @@ public final class kf extends ze {
     @Override
     public final String a() {
         if (this.L != null) {
-            w7.G(p10.f24467s0);
+            w7.G(p10.f24470s0);
             return w7.J(this.L, null, true, true).getAbsolutePath();
         } else if (this.J != null) {
-            w7.G(p10.f24467s0);
+            w7.G(p10.f24470s0);
             return w7.J(this.J, null, true, true).getAbsolutePath();
         } else {
             return gc.A(this.C).getAbsolutePath();
@@ -52,10 +52,10 @@ public final class kf extends ze {
 
     public final String g() {
         if (this.L != null) {
-            w7.G(p10.f24467s0);
+            w7.G(p10.f24470s0);
             return w7.J(this.L, null, true, true).getAbsolutePath();
         } else if (this.J != null) {
-            w7.G(p10.f24467s0);
+            w7.G(p10.f24470s0);
             return w7.J(this.J, null, true, true).getAbsolutePath();
         } else {
             return this.C;

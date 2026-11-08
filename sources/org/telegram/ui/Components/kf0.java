@@ -27,19 +27,19 @@ public final class kf0 extends View {
     public final ot0[] J;
     public final w5 K;
     public final di.n5 L;
-    public boolean f35268a;
-    public final Object f35269b;
-    public final xf0[] f35270c;
+    public boolean f35294a;
+    public final Object f35295b;
+    public final xf0[] f35296c;
     public final xf0[] d;
-    public volatile boolean f35271e;
-    public final Paint[] f35272f;
+    public volatile boolean f35297e;
+    public final Paint[] f35298f;
     public sf0 h;
-    public int f35273n;
-    public int f35274r;
-    public final jf0 f35275s;
-    public final jf0 f35276w;
-    public int f35277x;
-    public int f35278y;
+    public int f35299n;
+    public int f35300r;
+    public final jf0 f35301s;
+    public final jf0 f35302w;
+    public int f35303x;
+    public int f35304y;
 
     public kf0(Context context) {
         super(context);
@@ -49,26 +49,26 @@ public final class kf0 extends View {
         } else {
             z9 = false;
         }
-        this.f35268a = z9;
-        this.f35269b = new Object();
-        this.f35270c = new xf0[3];
+        this.f35294a = z9;
+        this.f35295b = new Object();
+        this.f35296c = new xf0[3];
         this.d = new xf0[3];
-        this.f35271e = false;
+        this.f35297e = false;
         Paint[] paintArr = {new Paint(), new Paint()};
-        this.f35272f = paintArr;
-        this.f35275s = new jf0(this, 0);
-        this.f35276w = new jf0(this, 1);
-        this.f35277x = -1;
+        this.f35298f = paintArr;
+        this.f35301s = new jf0(this, 0);
+        this.f35302w = new jf0(this, 1);
+        this.f35303x = -1;
         this.F = false;
         this.G = false;
         this.H = false;
         this.J = new ot0[3];
-        w5 w5Var = new w5(this, 0L, 350L, xq.f40345f);
+        w5 w5Var = new w5(this, 0L, 350L, xq.f40366f);
         this.K = w5Var;
         this.L = new di.n5(2, this);
         w5Var.e(true, 1.0f);
-        boolean z10 = this.f35268a & org.telegram.messenger.iz.f23365a0;
-        this.f35268a = z10;
+        boolean z10 = this.f35294a & org.telegram.messenger.iz.f23386a0;
+        this.f35294a = z10;
         if (z10) {
             setLayerType(2, null);
             return;
@@ -78,9 +78,9 @@ public final class kf0 extends View {
     }
 
     public static void a(kf0 kf0Var, int i7, int i10, int i11) {
-        synchronized (kf0Var.f35269b) {
+        synchronized (kf0Var.f35295b) {
             try {
-                xf0[] xf0VarArr = kf0Var.f35270c;
+                xf0[] xf0VarArr = kf0Var.f35296c;
                 xf0 xf0Var = xf0VarArr[i7];
                 xf0VarArr[i7] = xf0VarArr[i10];
                 xf0VarArr[i10] = xf0Var;
@@ -89,21 +89,21 @@ public final class kf0 extends View {
                 xf0VarArr2[i7] = xf0VarArr2[i10];
                 xf0VarArr2[i10] = xf0Var2;
                 if (i7 == 2) {
-                    if (xf0Var2.f40288f) {
-                        kf0Var.b(xf0Var2.f40285b, i10);
+                    if (xf0Var2.f40309f) {
+                        kf0Var.b(i10, xf0Var2.f40306b);
                     }
                 } else {
-                    Paint[] paintArr = kf0Var.f35272f;
+                    Paint[] paintArr = kf0Var.f35298f;
                     Paint paint = paintArr[i7];
                     paintArr[i7] = paintArr[i10];
                     paintArr[i10] = paint;
                 }
                 if (i11 != -1) {
-                    kf0Var.f35272f[i11].setShader(null);
-                    xf0 xf0Var3 = kf0Var.f35270c[i11];
-                    if (xf0Var3 != null && !xf0Var3.f40287e && !xf0Var3.d) {
-                        xf0Var3.f40288f = false;
-                        xf0Var3.f40285b.eraseColor(0);
+                    kf0Var.f35298f[i11].setShader(null);
+                    xf0 xf0Var3 = kf0Var.f35296c[i11];
+                    if (xf0Var3 != null && !xf0Var3.f40308e && !xf0Var3.d) {
+                        xf0Var3.f40309f = false;
+                        xf0Var3.f40306b.eraseColor(0);
                     }
                 }
             } finally {
@@ -145,11 +145,11 @@ public final class kf0 extends View {
         return org.telegram.messenger.g0.L(1.0f);
     }
 
-    public final void b(Bitmap bitmap, int i7) {
+    public final void b(int i7, Bitmap bitmap) {
         if (i7 < 2 && bitmap != null && !bitmap.isRecycled()) {
-            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, this.f35274r / 6.0f, new int[]{0, -1}, new float[]{0.0f, org.telegram.messenger.g0.N(56.0f) / this.f35274r}, Shader.TileMode.CLAMP);
+            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, this.f35300r / 6.0f, new int[]{0, -1}, new float[]{0.0f, org.telegram.messenger.g0.N(56.0f) / this.f35300r}, Shader.TileMode.CLAMP);
             Shader.TileMode tileMode = Shader.TileMode.MIRROR;
-            this.f35272f[i7].setShader(new ComposeShader(new BitmapShader(bitmap, tileMode, tileMode), linearGradient, PorterDuff.Mode.DST_IN));
+            this.f35298f[i7].setShader(new ComposeShader(new BitmapShader(bitmap, tileMode, tileMode), linearGradient, PorterDuff.Mode.DST_IN));
         }
     }
 
@@ -168,19 +168,19 @@ public final class kf0 extends View {
             }
             this.h = null;
         }
-        this.f35271e = false;
-        yf0.f40640a.cancelRunnable(this.f35275s);
+        this.f35297e = false;
+        yf0.f40666a.cancelRunnable(this.f35301s);
         if (Build.VERSION.SDK_INT >= 29 && (renderNode = this.I) != null) {
             renderNode.discardDisplayList();
             this.I = null;
         }
-        synchronized (this.f35269b) {
+        synchronized (this.f35295b) {
             for (int i7 = 0; i7 < 3; i7++) {
                 try {
-                    xf0 xf0Var = this.f35270c[i7];
+                    xf0 xf0Var = this.f35296c[i7];
                     if (xf0Var != null) {
                         xf0Var.a();
-                        this.f35270c[i7] = null;
+                        this.f35296c[i7] = null;
                     }
                     xf0 xf0Var2 = this.d[i7];
                     if (xf0Var2 != null) {
@@ -196,8 +196,8 @@ public final class kf0 extends View {
                     throw th2;
                 }
             }
-            this.f35272f[0].setShader(null);
-            this.f35272f[1].setShader(null);
+            this.f35298f[0].setShader(null);
+            this.f35298f[1].setShader(null);
         }
     }
 
@@ -208,7 +208,7 @@ public final class kf0 extends View {
         Canvas canvas2 = canvas;
         sf0 sf0Var = this.h;
         if (sf0Var != null && sf0Var.isAttachedToWindow() && this.h.getVisibility() != 8) {
-            if (this.f35268a && Build.VERSION.SDK_INT >= 31) {
+            if (this.f35294a && Build.VERSION.SDK_INT >= 31) {
                 if (canvas2.isHardwareAccelerated()) {
                     if (wv0Var == null && getVisibility() == 0 && getAlpha() > 0.0f) {
                         i();
@@ -222,17 +222,17 @@ public final class kf0 extends View {
                             ot0Var2.f(null);
                         }
                         float renderNodeScale = getRenderNodeScale();
-                        this.I.setPosition(0, 0, (int) Math.ceil(f10 / renderNodeScale), (int) Math.ceil((this.f35274r + this.f35273n) / renderNodeScale));
+                        this.I.setPosition(0, 0, (int) Math.ceil(f10 / renderNodeScale), (int) Math.ceil((this.f35300r + this.f35299n) / renderNodeScale));
                         RecordingCanvas beginRecording = this.I.beginRecording();
                         float f16 = 1.0f / renderNodeScale;
                         beginRecording.scale(f16, f16);
                         beginRecording.save();
-                        beginRecording.translate(-this.f35278y, 0.0f);
+                        beginRecording.translate(-this.f35304y, 0.0f);
                         h(beginRecording, 0);
                         beginRecording.restore();
-                        if (this.f35278y != 0) {
+                        if (this.f35304y != 0) {
                             beginRecording.save();
-                            beginRecording.translate((-this.f35278y) + f10, 0.0f);
+                            beginRecording.translate((-this.f35304y) + f10, 0.0f);
                             h(beginRecording, 1);
                             beginRecording.restore();
                         }
@@ -245,21 +245,21 @@ public final class kf0 extends View {
                         return;
                     } else if (wv0Var != null) {
                         float measuredWidth = f10 / this.h.getMeasuredWidth();
-                        float f17 = this.f35274r * (1.0f - f12) * measuredWidth;
+                        float f17 = this.f35300r * (1.0f - f12) * measuredWidth;
                         float renderNodeScale2 = getRenderNodeScale() * measuredWidth;
                         i();
-                        this.I.setPosition(0, 0, (int) Math.ceil(f10 / renderNodeScale2), (int) Math.ceil((f15 + this.f35273n) / renderNodeScale2));
+                        this.I.setPosition(0, 0, (int) Math.ceil(f10 / renderNodeScale2), (int) Math.ceil((f15 + this.f35299n) / renderNodeScale2));
                         RecordingCanvas beginRecording2 = this.I.beginRecording();
                         float f18 = 1.0f / renderNodeScale2;
                         beginRecording2.scale(f18, f18);
-                        i5 i5Var = wv0Var.f35585e;
+                        i5 i5Var = wv0Var.f35603e;
                         if (i5Var != null) {
-                            imageReceiver = i5Var.f34497k;
+                            imageReceiver = i5Var.f34541k;
                         } else {
-                            imageReceiver = wv0Var.f35582a;
+                            imageReceiver = wv0Var.f35600a;
                         }
                         f(imageReceiver, beginRecording2, f17, f11);
-                        if (wv0Var.f51517a0 && wv0Var.V > 0.0f) {
+                        if (wv0Var.f51524a0 && wv0Var.V > 0.0f) {
                             f(wv0Var.U, beginRecording2, f17, f11);
                         }
                         this.I.endRecording();
@@ -272,61 +272,61 @@ public final class kf0 extends View {
                         return;
                     }
                 } else if (wv0Var == null && !org.telegram.messenger.g0.m0) {
-                    this.f35268a = false;
-                    setLayerType(1, this.f35272f[0]);
-                    setLayerType(1, this.f35272f[1]);
+                    this.f35294a = false;
+                    setLayerType(1, this.f35298f[0]);
+                    setLayerType(1, this.f35298f[1]);
                 } else {
                     return;
                 }
             }
-            if (this.H || this.G || this.F || (this.f35272f[0].getShader() == null && this.f35272f[1].getShader() == null && !this.f35271e)) {
+            if (this.H || this.G || this.F || (this.f35298f[0].getShader() == null && this.f35298f[1].getShader() == null && !this.f35297e)) {
                 boolean c10 = c();
-                if (!this.f35271e && c10) {
-                    this.f35271e = true;
-                    org.telegram.messenger.q5 q5Var = yf0.f40640a;
-                    q5Var.cancelRunnable(this.f35275s);
-                    q5Var.postRunnable(this.f35275s);
+                if (!this.f35297e && c10) {
+                    this.f35297e = true;
+                    org.telegram.messenger.q5 q5Var = yf0.f40666a;
+                    q5Var.cancelRunnable(this.f35301s);
+                    q5Var.postRunnable(this.f35301s);
                 }
             }
-            if (this.f35272f[0].getShader() != null || this.f35272f[1].getShader() != null) {
-                synchronized (this.f35269b) {
+            if (this.f35298f[0].getShader() != null || this.f35298f[1].getShader() != null) {
+                synchronized (this.f35295b) {
                     try {
                         float f19 = f10 / this.D;
                         if (z9) {
                             canvas2.translate(0.0f, (-f19) * this.E);
                         }
                         canvas2.scale(f19, f19);
-                        float f20 = this.f35273n / f19;
-                        if (this.f35272f[0].getShader() != null) {
+                        float f20 = this.f35299n / f19;
+                        if (this.f35298f[0].getShader() != null) {
                             canvas2.save();
-                            canvas2.translate((-this.f35278y) / f19, 0.0f);
+                            canvas2.translate((-this.f35304y) / f19, 0.0f);
                             canvas2.save();
                             canvas2.scale(1.0f, 2.0f, 0.0f, this.E);
                             float f21 = this.E;
                             f14 = 2.0f;
-                            canvas2.drawRect(0.0f, f21, this.D, f21 + f20, this.f35272f[0]);
+                            canvas2.drawRect(0.0f, f21, this.D, f21 + f20, this.f35298f[0]);
                             canvas.restore();
-                            this.f35272f[0].setAlpha((int) (f13 * 255.0f));
+                            this.f35298f[0].setAlpha((int) (f13 * 255.0f));
                             float f22 = this.E;
                             canvas2 = canvas;
-                            canvas2.drawRect(0.0f, f22 * f12, this.D, f22, this.f35272f[0]);
-                            this.f35272f[0].setAlpha(255);
+                            canvas2.drawRect(0.0f, f22 * f12, this.D, f22, this.f35298f[0]);
+                            this.f35298f[0].setAlpha(255);
                             canvas2.restore();
                         } else {
                             f14 = 2.0f;
                         }
-                        if (this.f35278y != 0 && this.f35272f[1].getShader() != null) {
+                        if (this.f35304y != 0 && this.f35298f[1].getShader() != null) {
                             canvas2.save();
-                            canvas2.translate(((-this.f35278y) + f10) / f19, 0.0f);
+                            canvas2.translate(((-this.f35304y) + f10) / f19, 0.0f);
                             canvas2.save();
                             canvas2.scale(1.0f, f14, 0.0f, this.E);
                             float f23 = this.E;
-                            canvas2.drawRect(0.0f, f23, this.D, f23 + f20, this.f35272f[1]);
+                            canvas2.drawRect(0.0f, f23, this.D, f23 + f20, this.f35298f[1]);
                             canvas.restore();
-                            this.f35272f[1].setAlpha((int) (f13 * 255.0f));
+                            this.f35298f[1].setAlpha((int) (f13 * 255.0f));
                             float f24 = this.E;
-                            canvas.drawRect(0.0f, f24 * f12, this.D, f24, this.f35272f[1]);
-                            this.f35272f[1].setAlpha(255);
+                            canvas.drawRect(0.0f, f24 * f12, this.D, f24, this.f35298f[1]);
+                            this.f35298f[1].setAlpha(255);
                             canvas.restore();
                         }
                     } catch (Throwable th2) {
@@ -338,17 +338,17 @@ public final class kf0 extends View {
     }
 
     public final void g(int i7, View view) {
-        xf0 xf0Var = this.f35270c[i7];
-        if (view != null && !xf0Var.f40287e) {
-            Canvas canvas = xf0Var.f40284a;
+        xf0 xf0Var = this.f35296c[i7];
+        if (view != null && !xf0Var.f40308e) {
+            Canvas canvas = xf0Var.f40305a;
             canvas.save();
             canvas.scale(0.16666667f, 0.16666667f);
-            canvas.translate(0.0f, this.f35274r - view.getMeasuredHeight());
+            canvas.translate(0.0f, this.f35300r - view.getMeasuredHeight());
             view.draw(canvas);
             canvas.restore();
-            xf0Var.f40288f = true;
+            xf0Var.f40309f = true;
         }
-        if (i7 != 0 && (this.f35278y == 0 || i7 != 1)) {
+        if (i7 != 0 && (this.f35304y == 0 || i7 != 1)) {
             return;
         }
         boolean z9 = view instanceof ot0;
@@ -361,16 +361,16 @@ public final class kf0 extends View {
     }
 
     public final void h(Canvas canvas, int i7) {
-        View E = this.h.E(this.f35277x + i7);
+        View E = this.h.E(this.f35303x + i7);
         if (E != null) {
             int measuredHeight = E.getMeasuredHeight();
             canvas.save();
-            canvas.translate(0.0f, this.f35274r - measuredHeight);
+            canvas.translate(0.0f, this.f35300r - measuredHeight);
             E.draw(canvas);
             canvas.restore();
             canvas.save();
             canvas.scale(1.0f, -1.0f);
-            canvas.translate(0.0f, (-measuredHeight) - this.f35274r);
+            canvas.translate(0.0f, (-measuredHeight) - this.f35300r);
             canvas.scale(1.0f, 2.0f, 0.0f, measuredHeight);
             E.draw(canvas);
             canvas.restore();
@@ -380,7 +380,7 @@ public final class kf0 extends View {
         if (z9) {
             ot0 ot0Var = (ot0) E;
             ot0VarArr[i7] = ot0Var;
-            ot0Var.f(this.f35276w);
+            ot0Var.f(this.f35302w);
             return;
         }
         ot0VarArr[i7] = null;
@@ -391,9 +391,9 @@ public final class kf0 extends View {
         if (this.I == null) {
             float renderNodeScale = getRenderNodeScale();
             this.I = new RenderNode("profileBlurNode");
-            float[] fArr = {0.0f, org.telegram.messenger.g0.N(56.0f) / this.f35274r};
+            float[] fArr = {0.0f, org.telegram.messenger.g0.N(56.0f) / this.f35300r};
             Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, this.f35274r / renderNodeScale, new int[]{0, -1}, fArr, tileMode);
+            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, this.f35300r / renderNodeScale, new int[]{0, -1}, fArr, tileMode);
             float blurRadius = getBlurRadius();
             RenderNode renderNode = this.I;
             RenderEffect createBlurEffect = RenderEffect.createBlurEffect(blurRadius, blurRadius, tileMode);
@@ -410,30 +410,30 @@ public final class kf0 extends View {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i7), this.f35274r + this.f35273n);
+        setMeasuredDimension(View.MeasureSpec.getSize(i7), this.f35300r + this.f35299n);
     }
 
     @Override
     public void setAlpha(float f10) {
         super.setAlpha(f10);
-        if (f10 != 0.0f && this.f35268a) {
+        if (f10 != 0.0f && this.f35294a) {
             invalidate();
         }
     }
 
     public void setSize(int i7) {
-        if (this.f35273n != i7) {
+        if (this.f35299n != i7) {
             invalidate();
         }
-        this.f35273n = i7;
-        this.f35274r = (int) (org.telegram.messenger.g0.L(64.0f) * 1.5f);
+        this.f35299n = i7;
+        this.f35300r = (int) (org.telegram.messenger.g0.L(64.0f) * 1.5f);
     }
 
     public void setView(sf0 sf0Var) {
         d();
         this.h = sf0Var;
-        this.f35277x = sf0Var.getCurrentItem();
-        this.f35278y = 0;
+        this.f35303x = sf0Var.getCurrentItem();
+        this.f35304y = 0;
         sf0Var.b(this.L);
     }
 }

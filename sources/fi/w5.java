@@ -1,8 +1,8 @@
 package fi;
 
 import org.telegram.ui.Components.h51;
-import org.telegram.ui.Components.oy;
-import org.telegram.ui.Components.ry;
+import org.telegram.ui.Components.py;
+import org.telegram.ui.Components.sy;
 import org.telegram.ui.Components.t51;
 public final class w5 implements Runnable {
     public final int f13031a;
@@ -64,7 +64,7 @@ public final class w5 implements Runnable {
                     }
                     if (y5Var.f13169e.d0()) {
                         org.telegram.messenger.g0.r(w5Var);
-                        org.telegram.messenger.g0.i3(w5Var, 1000.0f / org.telegram.messenger.g0.f22545r);
+                        org.telegram.messenger.g0.i3(w5Var, 1000.0f / org.telegram.messenger.g0.f22564r);
                     }
                     y5Var.I = S;
                     return;
@@ -92,7 +92,7 @@ public final class w5 implements Runnable {
                     y5Var2.F.setProgress(S2);
                     if (y5Var2.D.d0()) {
                         org.telegram.messenger.g0.r(w5Var2);
-                        org.telegram.messenger.g0.i3(w5Var2, 1000.0f / org.telegram.messenger.g0.f22545r);
+                        org.telegram.messenger.g0.i3(w5Var2, 1000.0f / org.telegram.messenger.g0.f22564r);
                         return;
                     }
                     return;
@@ -121,7 +121,7 @@ public final class w5 implements Runnable {
                     y5Var3.F.setProgress(S3);
                     if (y5Var3.f13195y.d0()) {
                         org.telegram.messenger.g0.r(w5Var3);
-                        org.telegram.messenger.g0.i3(w5Var3, 1000.0f / org.telegram.messenger.g0.f22545r);
+                        org.telegram.messenger.g0.i3(w5Var3, 1000.0f / org.telegram.messenger.g0.f22564r);
                         return;
                     }
                     return;
@@ -131,11 +131,11 @@ public final class w5 implements Runnable {
                 y5 y5Var4 = this.f13032b;
                 h51 h51Var = y5Var4.f13179n;
                 if (h51Var != null) {
-                    ry ryVar = h51Var.f34179b;
-                    if (ryVar != null) {
-                        ryVar.postRunnable(new oy(ryVar, 0));
+                    sy syVar = h51Var.f34116b;
+                    if (syVar != null) {
+                        syVar.postRunnable(new py(syVar, 0));
                     }
-                    h51Var.f34178a = null;
+                    h51Var.f34115a = null;
                     y5Var4.removeView(y5Var4.f13179n);
                     y5Var4.f13179n = null;
                     return;

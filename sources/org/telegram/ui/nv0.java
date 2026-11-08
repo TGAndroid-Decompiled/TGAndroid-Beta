@@ -18,7 +18,7 @@ public final class nv0 extends AnimatorListenerAdapter {
     public void onAnimationCancel(Animator animator) {
         switch (this.f48146a) {
             case 1:
-                this.f48148c.f41726f0 = null;
+                this.f48148c.f41730f0 = null;
                 return;
             default:
                 super.onAnimationCancel(animator);
@@ -38,9 +38,9 @@ public final class nv0 extends AnimatorListenerAdapter {
                 profileActivity.X.setClickable(true);
                 if (z9) {
                     org.telegram.ui.ActionBar.f5 f5Var = profileActivity.T0;
-                    if (f5Var.F.getWidth() != 0 && !f5Var.f28426e.isFocused()) {
-                        f5Var.f28426e.requestFocus();
-                        org.telegram.messenger.g0.K3(f5Var.f28426e);
+                    if (f5Var.F.getWidth() != 0 && !f5Var.f28429e.isFocused()) {
+                        f5Var.f28429e.requestFocus();
+                        org.telegram.messenger.g0.K3(f5Var.f28429e);
                     }
                 }
                 profileActivity.y4(true);
@@ -58,11 +58,11 @@ public final class nv0 extends AnimatorListenerAdapter {
                 return;
             default:
                 ProfileActivity profileActivity2 = this.f48148c;
-                if (profileActivity2.f41726f0 != null && (b4Var = profileActivity2.f41733g0) != null) {
+                if (profileActivity2.f41730f0 != null && (b4Var = profileActivity2.f41737g0) != null) {
                     if (!this.f48147b) {
                         b4Var.setVisibility(4);
                     }
-                    profileActivity2.f41726f0 = null;
+                    profileActivity2.f41730f0 = null;
                     return;
                 }
                 return;

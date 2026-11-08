@@ -20,8 +20,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import org.telegram.messenger.ApplicationLoaderImpl;
 import org.telegram.tgnet.TLRPC;
-public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
-    public za1 D;
+public final class je0 extends ob1 implements org.telegram.messenger.ls, te.b {
+    public ab1 D;
     public FrameLayout E;
     public le0 F;
     public fh.g G;
@@ -38,9 +38,9 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
     public final ri.c R;
     public final ri.f S;
     public final ri.f T;
-    public org.telegram.ui.Components.y41 f46944x;
-    public boolean f46945y;
-    public final te.a f46943w = new te.a(0, this, org.telegram.ui.Components.xq.h, 380, true);
+    public org.telegram.ui.Components.y41 f46942x;
+    public boolean f46943y;
+    public final te.a f46941w = new te.a(0, this, org.telegram.ui.Components.xq.h, 380, true);
     public final RectF U = new RectF();
     public final RectF V = new RectF();
     public final fe0 W = new fe0(this, 0);
@@ -49,14 +49,14 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
         if (Build.VERSION.SDK_INT >= 31) {
             ri.f fVar = new ri.f(null);
             ca.i iVar = new ca.i(this, false);
-            if (fVar.f54478c == null) {
-                fVar.f54478c = new dh.i(fVar.f54477b, iVar);
+            if (fVar.f54570c == null) {
+                fVar.f54570c = new dh.i(fVar.f54569b, iVar);
             }
             this.S = fVar;
             ri.f fVar2 = new ri.f(null);
             ca.i iVar2 = new ca.i(this, true);
-            if (fVar2.f54478c == null) {
-                fVar2.f54478c = new dh.i(fVar2.f54477b, iVar2);
+            if (fVar2.f54570c == null) {
+                fVar2.f54570c = new dh.i(fVar2.f54569b, iVar2);
             }
             this.T = fVar2;
         } else {
@@ -66,7 +66,7 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
         this.R = new ri.c();
         y8 y8Var = new y8(this, 5);
         setBulletinDelegate(y8Var);
-        org.telegram.ui.Components.cc.a(this.f48013b, y8Var);
+        org.telegram.ui.Components.cc.a(this.f48362b, y8Var);
     }
 
     public static void d0(je0 je0Var, int i7, org.telegram.ui.Components.k60 k60Var) {
@@ -103,13 +103,13 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
                     org.telegram.ui.ActionBar.z0 z0Var = new org.telegram.ui.ActionBar.z0(2, je0Var.getParentActivity(), je0Var.getResourceProvider(), false, false);
                     z0Var.setPadding(org.telegram.messenger.g0.L(18.0f), r22, org.telegram.messenger.g0.L(18.0f), r22);
                     if (voVar.e()) {
-                        str = org.telegram.messenger.hd.M0(2131750808, null);
+                        str = org.telegram.messenger.id.M0(2131750808, null);
                     } else {
-                        str = voVar.f26065b;
+                        str = voVar.f26071b;
                     }
                     CharSequence m10 = org.telegram.messenger.i6.m(str, z0Var.getTextView().getPaint().getFontMetricsInt(), r22, null, r22);
                     if (!voVar.e()) {
-                        m10 = org.telegram.messenger.ij.C5(m10, voVar.f26066c, z0Var.getTextView().getPaint().getFontMetricsInt(), r22);
+                        m10 = org.telegram.messenger.ij.C5(m10, voVar.f26072c, z0Var.getTextView().getPaint().getFontMetricsInt(), r22);
                     }
                     if (voVar.e()) {
                         i7 = org.telegram.messenger.yr.a0(je0Var.currentAccount).K;
@@ -126,14 +126,14 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
                             arrayList = messagesController.W0(r22);
                         } else {
                             z9 = z11;
-                            arrayList = messagesController.f24937y;
+                            arrayList = messagesController.f24944y;
                         }
                         int i14 = r22;
                         while (true) {
                             if (i14 < arrayList.size()) {
                                 TLRPC.Dialog dialog = (TLRPC.Dialog) arrayList.get(i14);
                                 if (!voVar.e()) {
-                                    long j3 = dialog.f26957id;
+                                    long j3 = dialog.f26960id;
                                     if (org.telegram.messenger.m5.C(j3)) {
                                         arrayList2 = arrayList;
                                         i10 = i13;
@@ -155,7 +155,7 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
                                     arrayList2 = arrayList;
                                     i10 = i13;
                                 }
-                                if ((messagesController.V0(dialog) > 0 || dialog.unread_mark) && !messagesController.r2(dialog.f26957id, 0L, null)) {
+                                if ((messagesController.V0(dialog) > 0 || dialog.unread_mark) && !messagesController.r2(dialog.f26960id, 0L, null)) {
                                     z10 = z9 ? 1 : 0;
                                     break;
                                 }
@@ -170,11 +170,11 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
                         }
                         spannableStringBuilder2.setSpan(new he0(je0Var, i7, z10), length, spannableStringBuilder2.length(), 33);
                         if (voVar.e()) {
-                            str2 = org.telegram.messenger.hd.M0(2131750808, null);
+                            str2 = org.telegram.messenger.id.M0(2131750808, null);
                         } else {
-                            str2 = voVar.f26065b;
+                            str2 = voVar.f26071b;
                         }
-                        String G = org.telegram.messenger.hd.G(i7, "AccDescrUnreadCount", new Object[0]);
+                        String G = org.telegram.messenger.id.G(i7, "AccDescrUnreadCount", new Object[0]);
                         CharSequence[] charSequenceArr = new CharSequence[3];
                         charSequenceArr[0] = str2;
                         charSequenceArr[z9 ? 1 : 0] = "\n";
@@ -186,18 +186,18 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
                         i10 = i13;
                         spannableStringBuilder = m10;
                     }
-                    if (voVar.f26075n) {
+                    if (voVar.f26081n) {
                         i11 = 26;
                     } else {
                         i11 = 0;
                     }
                     z0Var.setEmojiCacheType(i11);
                     if (je0Var.getMessagesController().A7) {
-                        i12 = voVar.f26074m;
+                        i12 = voVar.f26080m;
                     } else {
                         i12 = -1;
                     }
-                    z0Var.j(spannableStringBuilder, 0, new org.telegram.ui.Components.wz(je0Var.getParentActivity(), 2131232156, i12));
+                    z0Var.j(spannableStringBuilder, 0, new org.telegram.ui.Components.xz(je0Var.getParentActivity(), 2131232156, i12));
                     z0Var.getTextView().setEmojiColor(je0Var.getThemedColor(org.telegram.ui.ActionBar.k6.Ci));
                     z0Var.setMinimumWidth(160);
                     z0Var.setOnClickListener(new z(je0Var, H, voVar, 11));
@@ -209,10 +209,10 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
                 boolean z12 = z11;
                 H.a0(-org.telegram.messenger.g0.L(8.0f), -org.telegram.messenger.g0.L(4.0f));
                 H.X = org.telegram.messenger.g0.L(400.0f);
-                ShapeDrawable d02 = org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(28.0f), je0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f27849d6));
+                ShapeDrawable d02 = org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(28.0f), je0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f27852d6));
                 d02.getPaint().setShadowLayer(org.telegram.messenger.g0.L(6.0f), 0.0f, org.telegram.messenger.g0.L(1.0f), org.telegram.ui.ActionBar.k6.r1(0.15f, -16777216));
                 H.W(d02);
-                H.f35187i = 3;
+                H.f35213i = 3;
                 H.Z();
                 return z12;
             }
@@ -305,8 +305,8 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
     @Override
     public final void addThemeColorKeys(HashSet hashSet) {
         super.addThemeColorKeys(hashSet);
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.f27922h5));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.f27849d6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.f27925h5));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.f27852d6));
     }
 
     @Override
@@ -329,40 +329,40 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
         this.F.setMaxWidth(org.telegram.messenger.g0.L(344.0f));
         qh.b[] bVarArr = new qh.b[5];
         this.K = bVarArr;
-        bVarArr[0] = qh.b.c(context, this.resourceProvider, qh.a.f54034n, 2131748706);
-        this.K[1] = qh.b.c(context, this.resourceProvider, qh.a.f54033f, 2131748705);
-        this.K[2] = qh.b.c(context, this.resourceProvider, qh.a.f54035r, 2131745496);
-        this.K[3] = qh.b.c(context, this.resourceProvider, qh.a.h, 2131748707);
+        bVarArr[0] = qh.b.c(context, this.resourceProvider, qh.a.f54127n, 2131748708);
+        this.K[1] = qh.b.c(context, this.resourceProvider, qh.a.f54126f, 2131748707);
+        this.K[2] = qh.b.c(context, this.resourceProvider, qh.a.f54128r, 2131745498);
+        this.K[3] = qh.b.c(context, this.resourceProvider, qh.a.h, 2131748709);
         qh.b[] bVarArr2 = this.K;
         org.telegram.ui.ActionBar.f6 f6Var = this.resourceProvider;
         int i10 = this.currentAccount;
         qh.b bVar = new qh.b(context);
         org.telegram.ui.Components.y41 y41Var = null;
-        bVar.f54044a.setText(org.telegram.messenger.hd.M0(2131748704, null));
-        bVar.f54045b.setVisibility(8);
+        bVar.f54137a.setText(org.telegram.messenger.id.M0(2131748706, null));
+        bVar.f54138b.setVisibility(8);
         TLRPC.User a22 = org.telegram.messenger.qp.s1(i10).a2(Long.valueOf(org.telegram.messenger.p10.i(i10).e()));
         org.telegram.ui.Components.w8 w8Var = new org.telegram.ui.Components.w8(0, a22);
         org.telegram.ui.Components.l9 l9Var = new org.telegram.ui.Components.l9(context);
         l9Var.e(a22, w8Var);
         l9Var.setRoundRadius(org.telegram.messenger.g0.L(11.0f));
-        bVar.f54046c = l9Var;
+        bVar.f54139c = l9Var;
         bVar.addView(l9Var, c8.ha.d(22, 22.0f, 49, 0.0f, 5.0f, 0.0f, 0.0f));
-        bVar.f54053x = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Ql, f6Var);
-        bVar.f54051s = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Ol, f6Var);
-        bVar.f54052w = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Pl, f6Var);
+        bVar.f54146x = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Ql, f6Var);
+        bVar.f54144s = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Ol, f6Var);
+        bVar.f54145w = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Pl, f6Var);
         bVar.a();
         bVarArr2[4] = bVar;
         this.K[0].setOnLongClickListener(new View.OnLongClickListener(this) {
-            public final je0 f45987b;
+            public final je0 f45989b;
 
             {
-                this.f45987b = this;
+                this.f45989b = this;
             }
 
             @Override
             public final boolean onLongClick(View view) {
                 int i11 = r2;
-                je0 je0Var = this.f45987b;
+                je0 je0Var = this.f45989b;
                 switch (i11) {
                     case 0:
                         return je0.e0(je0Var, view);
@@ -371,13 +371,13 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
                             return false;
                         }
                         org.telegram.ui.Components.k60 H = org.telegram.ui.Components.k60.H(je0Var, view);
-                        H.c(2131232099, org.telegram.messenger.hd.M0(2131748282, null), new fe0(je0Var, 6), false);
-                        H.c(2131232083, org.telegram.messenger.hd.M0(2131743440, null), new fe0(je0Var, 7), false);
-                        H.f35207u = true;
+                        H.c(2131232099, org.telegram.messenger.id.M0(2131748284, null), new fe0(je0Var, 6), false);
+                        H.c(2131232083, org.telegram.messenger.id.M0(2131743442, null), new fe0(je0Var, 7), false);
+                        H.f35233u = true;
                         H.v = true;
                         H.a0(0.0f, -org.telegram.messenger.g0.L(4.0f));
-                        H.f35187i = 3;
-                        ShapeDrawable d02 = org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(28.0f), je0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f27849d6));
+                        H.f35213i = 3;
+                        ShapeDrawable d02 = org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(28.0f), je0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f27852d6));
                         d02.getPaint().setShadowLayer(org.telegram.messenger.g0.L(6.0f), 0.0f, org.telegram.messenger.g0.L(1.0f), org.telegram.ui.ActionBar.k6.r1(0.15f, -16777216));
                         H.W(d02);
                         H.Z();
@@ -387,16 +387,16 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
                             return false;
                         }
                         org.telegram.ui.Components.k60 H2 = org.telegram.ui.Components.k60.H(je0Var, view);
-                        H2.c(2131231770, org.telegram.messenger.hd.M0(2131749489, null), new fe0(je0Var, 2), false);
+                        H2.c(2131231770, org.telegram.messenger.id.M0(2131749491, null), new fe0(je0Var, 2), false);
                         if (je0Var.getUserConfig().W) {
-                            H2.c(2131232053, org.telegram.messenger.hd.M0(2131749321, null), new fe0(je0Var, 3), false);
+                            H2.c(2131232053, org.telegram.messenger.id.M0(2131749323, null), new fe0(je0Var, 3), false);
                         } else {
-                            H2.c(2131231764, org.telegram.messenger.hd.M0(2131749460, null), new fe0(je0Var, 4), false);
+                            H2.c(2131231764, org.telegram.messenger.id.M0(2131749462, null), new fe0(je0Var, 4), false);
                         }
-                        H2.f35207u = true;
+                        H2.f35233u = true;
                         H2.v = true;
                         H2.a0(0.0f, -org.telegram.messenger.g0.L(4.0f));
-                        ShapeDrawable d03 = org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(28.0f), je0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f27849d6));
+                        ShapeDrawable d03 = org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(28.0f), je0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f27852d6));
                         d03.getPaint().setShadowLayer(org.telegram.messenger.g0.L(6.0f), 0.0f, org.telegram.messenger.g0.L(1.0f), org.telegram.ui.ActionBar.k6.r1(0.15f, -16777216));
                         H2.W(d03);
                         H2.Z();
@@ -408,16 +408,16 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
             }
         });
         this.K[1].setOnLongClickListener(new View.OnLongClickListener(this) {
-            public final je0 f45987b;
+            public final je0 f45989b;
 
             {
-                this.f45987b = this;
+                this.f45989b = this;
             }
 
             @Override
             public final boolean onLongClick(View view) {
                 int i11 = r2;
-                je0 je0Var = this.f45987b;
+                je0 je0Var = this.f45989b;
                 switch (i11) {
                     case 0:
                         return je0.e0(je0Var, view);
@@ -426,13 +426,13 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
                             return false;
                         }
                         org.telegram.ui.Components.k60 H = org.telegram.ui.Components.k60.H(je0Var, view);
-                        H.c(2131232099, org.telegram.messenger.hd.M0(2131748282, null), new fe0(je0Var, 6), false);
-                        H.c(2131232083, org.telegram.messenger.hd.M0(2131743440, null), new fe0(je0Var, 7), false);
-                        H.f35207u = true;
+                        H.c(2131232099, org.telegram.messenger.id.M0(2131748284, null), new fe0(je0Var, 6), false);
+                        H.c(2131232083, org.telegram.messenger.id.M0(2131743442, null), new fe0(je0Var, 7), false);
+                        H.f35233u = true;
                         H.v = true;
                         H.a0(0.0f, -org.telegram.messenger.g0.L(4.0f));
-                        H.f35187i = 3;
-                        ShapeDrawable d02 = org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(28.0f), je0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f27849d6));
+                        H.f35213i = 3;
+                        ShapeDrawable d02 = org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(28.0f), je0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f27852d6));
                         d02.getPaint().setShadowLayer(org.telegram.messenger.g0.L(6.0f), 0.0f, org.telegram.messenger.g0.L(1.0f), org.telegram.ui.ActionBar.k6.r1(0.15f, -16777216));
                         H.W(d02);
                         H.Z();
@@ -442,16 +442,16 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
                             return false;
                         }
                         org.telegram.ui.Components.k60 H2 = org.telegram.ui.Components.k60.H(je0Var, view);
-                        H2.c(2131231770, org.telegram.messenger.hd.M0(2131749489, null), new fe0(je0Var, 2), false);
+                        H2.c(2131231770, org.telegram.messenger.id.M0(2131749491, null), new fe0(je0Var, 2), false);
                         if (je0Var.getUserConfig().W) {
-                            H2.c(2131232053, org.telegram.messenger.hd.M0(2131749321, null), new fe0(je0Var, 3), false);
+                            H2.c(2131232053, org.telegram.messenger.id.M0(2131749323, null), new fe0(je0Var, 3), false);
                         } else {
-                            H2.c(2131231764, org.telegram.messenger.hd.M0(2131749460, null), new fe0(je0Var, 4), false);
+                            H2.c(2131231764, org.telegram.messenger.id.M0(2131749462, null), new fe0(je0Var, 4), false);
                         }
-                        H2.f35207u = true;
+                        H2.f35233u = true;
                         H2.v = true;
                         H2.a0(0.0f, -org.telegram.messenger.g0.L(4.0f));
-                        ShapeDrawable d03 = org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(28.0f), je0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f27849d6));
+                        ShapeDrawable d03 = org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(28.0f), je0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f27852d6));
                         d03.getPaint().setShadowLayer(org.telegram.messenger.g0.L(6.0f), 0.0f, org.telegram.messenger.g0.L(1.0f), org.telegram.ui.ActionBar.k6.r1(0.15f, -16777216));
                         H2.W(d03);
                         H2.Z();
@@ -463,16 +463,16 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
             }
         });
         this.K[3].setOnLongClickListener(new View.OnLongClickListener(this) {
-            public final je0 f45987b;
+            public final je0 f45989b;
 
             {
-                this.f45987b = this;
+                this.f45989b = this;
             }
 
             @Override
             public final boolean onLongClick(View view) {
                 int i11 = r2;
-                je0 je0Var = this.f45987b;
+                je0 je0Var = this.f45989b;
                 switch (i11) {
                     case 0:
                         return je0.e0(je0Var, view);
@@ -481,13 +481,13 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
                             return false;
                         }
                         org.telegram.ui.Components.k60 H = org.telegram.ui.Components.k60.H(je0Var, view);
-                        H.c(2131232099, org.telegram.messenger.hd.M0(2131748282, null), new fe0(je0Var, 6), false);
-                        H.c(2131232083, org.telegram.messenger.hd.M0(2131743440, null), new fe0(je0Var, 7), false);
-                        H.f35207u = true;
+                        H.c(2131232099, org.telegram.messenger.id.M0(2131748284, null), new fe0(je0Var, 6), false);
+                        H.c(2131232083, org.telegram.messenger.id.M0(2131743442, null), new fe0(je0Var, 7), false);
+                        H.f35233u = true;
                         H.v = true;
                         H.a0(0.0f, -org.telegram.messenger.g0.L(4.0f));
-                        H.f35187i = 3;
-                        ShapeDrawable d02 = org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(28.0f), je0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f27849d6));
+                        H.f35213i = 3;
+                        ShapeDrawable d02 = org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(28.0f), je0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f27852d6));
                         d02.getPaint().setShadowLayer(org.telegram.messenger.g0.L(6.0f), 0.0f, org.telegram.messenger.g0.L(1.0f), org.telegram.ui.ActionBar.k6.r1(0.15f, -16777216));
                         H.W(d02);
                         H.Z();
@@ -497,16 +497,16 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
                             return false;
                         }
                         org.telegram.ui.Components.k60 H2 = org.telegram.ui.Components.k60.H(je0Var, view);
-                        H2.c(2131231770, org.telegram.messenger.hd.M0(2131749489, null), new fe0(je0Var, 2), false);
+                        H2.c(2131231770, org.telegram.messenger.id.M0(2131749491, null), new fe0(je0Var, 2), false);
                         if (je0Var.getUserConfig().W) {
-                            H2.c(2131232053, org.telegram.messenger.hd.M0(2131749321, null), new fe0(je0Var, 3), false);
+                            H2.c(2131232053, org.telegram.messenger.id.M0(2131749323, null), new fe0(je0Var, 3), false);
                         } else {
-                            H2.c(2131231764, org.telegram.messenger.hd.M0(2131749460, null), new fe0(je0Var, 4), false);
+                            H2.c(2131231764, org.telegram.messenger.id.M0(2131749462, null), new fe0(je0Var, 4), false);
                         }
-                        H2.f35207u = true;
+                        H2.f35233u = true;
                         H2.v = true;
                         H2.a0(0.0f, -org.telegram.messenger.g0.L(4.0f));
-                        ShapeDrawable d03 = org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(28.0f), je0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f27849d6));
+                        ShapeDrawable d03 = org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(28.0f), je0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f27852d6));
                         d03.getPaint().setShadowLayer(org.telegram.messenger.g0.L(6.0f), 0.0f, org.telegram.messenger.g0.L(1.0f), org.telegram.ui.ActionBar.k6.r1(0.15f, -16777216));
                         H2.W(d03);
                         H2.Z();
@@ -518,16 +518,16 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
             }
         });
         this.K[4].setOnLongClickListener(new View.OnLongClickListener(this) {
-            public final je0 f45987b;
+            public final je0 f45989b;
 
             {
-                this.f45987b = this;
+                this.f45989b = this;
             }
 
             @Override
             public final boolean onLongClick(View view) {
                 int i11 = r2;
-                je0 je0Var = this.f45987b;
+                je0 je0Var = this.f45989b;
                 switch (i11) {
                     case 0:
                         return je0.e0(je0Var, view);
@@ -536,13 +536,13 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
                             return false;
                         }
                         org.telegram.ui.Components.k60 H = org.telegram.ui.Components.k60.H(je0Var, view);
-                        H.c(2131232099, org.telegram.messenger.hd.M0(2131748282, null), new fe0(je0Var, 6), false);
-                        H.c(2131232083, org.telegram.messenger.hd.M0(2131743440, null), new fe0(je0Var, 7), false);
-                        H.f35207u = true;
+                        H.c(2131232099, org.telegram.messenger.id.M0(2131748284, null), new fe0(je0Var, 6), false);
+                        H.c(2131232083, org.telegram.messenger.id.M0(2131743442, null), new fe0(je0Var, 7), false);
+                        H.f35233u = true;
                         H.v = true;
                         H.a0(0.0f, -org.telegram.messenger.g0.L(4.0f));
-                        H.f35187i = 3;
-                        ShapeDrawable d02 = org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(28.0f), je0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f27849d6));
+                        H.f35213i = 3;
+                        ShapeDrawable d02 = org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(28.0f), je0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f27852d6));
                         d02.getPaint().setShadowLayer(org.telegram.messenger.g0.L(6.0f), 0.0f, org.telegram.messenger.g0.L(1.0f), org.telegram.ui.ActionBar.k6.r1(0.15f, -16777216));
                         H.W(d02);
                         H.Z();
@@ -552,16 +552,16 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
                             return false;
                         }
                         org.telegram.ui.Components.k60 H2 = org.telegram.ui.Components.k60.H(je0Var, view);
-                        H2.c(2131231770, org.telegram.messenger.hd.M0(2131749489, null), new fe0(je0Var, 2), false);
+                        H2.c(2131231770, org.telegram.messenger.id.M0(2131749491, null), new fe0(je0Var, 2), false);
                         if (je0Var.getUserConfig().W) {
-                            H2.c(2131232053, org.telegram.messenger.hd.M0(2131749321, null), new fe0(je0Var, 3), false);
+                            H2.c(2131232053, org.telegram.messenger.id.M0(2131749323, null), new fe0(je0Var, 3), false);
                         } else {
-                            H2.c(2131231764, org.telegram.messenger.hd.M0(2131749460, null), new fe0(je0Var, 4), false);
+                            H2.c(2131231764, org.telegram.messenger.id.M0(2131749462, null), new fe0(je0Var, 4), false);
                         }
-                        H2.f35207u = true;
+                        H2.f35233u = true;
                         H2.v = true;
                         H2.a0(0.0f, -org.telegram.messenger.g0.L(4.0f));
-                        ShapeDrawable d03 = org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(28.0f), je0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f27849d6));
+                        ShapeDrawable d03 = org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(28.0f), je0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f27852d6));
                         d03.getPaint().setShadowLayer(org.telegram.messenger.g0.L(6.0f), 0.0f, org.telegram.messenger.g0.L(1.0f), org.telegram.ui.ActionBar.k6.r1(0.15f, -16777216));
                         H2.W(d03);
                         H2.Z();
@@ -594,11 +594,11 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
             i11++;
         }
         m0(getUserConfig().W, false);
-        s0(this.f48014c.getCurrentPosition(), false);
-        int themedColor = getThemedColor(org.telegram.ui.ActionBar.k6.f27849d6);
+        s0(this.f48363c.getCurrentPosition(), false);
+        int themedColor = getThemedColor(org.telegram.ui.ActionBar.k6.f27852d6);
         ri.c cVar = this.R;
         cVar.a(themedColor);
-        jh.k kVar = new jh.k(this.f48013b);
+        jh.k kVar = new jh.k(this.f48362b);
         ri.a aVar = this.S;
         if (aVar == null) {
             aVar = cVar;
@@ -608,7 +608,7 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
             aVar2 = cVar;
         }
         dh.c cVar2 = new dh.c(aVar, aVar2, cVar);
-        k0 k0Var = this.f48013b;
+        k0 k0Var = this.f48362b;
         cVar2.h = kVar;
         cVar2.f8708i = k0Var;
         cVar2.f8710k = true;
@@ -618,35 +618,35 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
         this.G.q(org.telegram.messenger.g0.L(7.666f));
         this.F.setBackground(this.G);
         dh.c cVar3 = new dh.c(cVar, cVar, cVar);
-        k0 k0Var2 = this.f48013b;
+        k0 k0Var2 = this.f48362b;
         cVar3.h = kVar;
         cVar3.f8708i = k0Var2;
         this.H = new View(context);
         dh.d dVar = new dh.d(cVar3.c(this.H, null, false));
         dVar.b(org.telegram.messenger.g0.L(60.0f), true);
         this.H.setBackground(dVar);
-        this.f48013b.addView(this.H, c8.ha.e(-1, 0, 80));
+        this.f48362b.addView(this.H, c8.ha.e(-1, 0, 80));
         FrameLayout frameLayout = new FrameLayout(context);
         this.E = frameLayout;
         frameLayout.setOnClickListener(new bi.l1(19));
         this.E.addView(this.F, c8.ha.e(-1, 72, 81));
         this.E.setClipToPadding(false);
-        this.f48013b.addView(this.E, c8.ha.e(-1, -2, 80));
-        za1 za1Var = new za1(context);
-        this.D = za1Var;
-        this.f48013b.addView(za1Var, c8.ha.e(-1, -2, 80));
-        org.telegram.messenger.t0 t0Var = org.telegram.messenger.t0.f25562a;
+        this.f48362b.addView(this.E, c8.ha.e(-1, -2, 80));
+        ab1 ab1Var = new ab1(context);
+        this.D = ab1Var;
+        this.f48362b.addView(ab1Var, c8.ha.e(-1, -2, 80));
+        org.telegram.messenger.t0 t0Var = org.telegram.messenger.t0.f25565a;
         Activity parentActivity = getParentActivity();
-        za1 za1Var2 = this.D;
+        ab1 ab1Var2 = this.D;
         if (((ApplicationLoaderImpl) t0Var).q()) {
-            y41Var = new org.telegram.ui.Components.y41(parentActivity, za1Var2);
+            y41Var = new org.telegram.ui.Components.y41(parentActivity, ab1Var2);
         }
-        this.f46944x = y41Var;
+        this.f46942x = y41Var;
         if (y41Var != null) {
             y41Var.updateAppUpdateViews(this.currentAccount, false);
         }
         p0(false);
-        return this.f48013b;
+        return this.f48362b;
     }
 
     @Override
@@ -656,18 +656,18 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
         boolean z9 = false;
         boolean z10 = false;
         z9 = false;
-        if (i7 != org.telegram.messenger.qs.G4 && i7 != org.telegram.messenger.qs.f25054r) {
+        if (i7 != org.telegram.messenger.qs.G4 && i7 != org.telegram.messenger.qs.f25063r) {
             if (i7 == org.telegram.messenger.qs.R4) {
-                org.telegram.ui.Components.y41 y41Var = this.f46944x;
+                org.telegram.ui.Components.y41 y41Var = this.f46942x;
                 if (y41Var != null) {
                     y41Var.updateFileProgress(null);
-                    this.f46944x.updateAppUpdateViews(this.currentAccount, true);
+                    this.f46942x.updateAppUpdateViews(this.currentAccount, true);
                     return;
                 }
                 return;
             } else if (i7 == org.telegram.messenger.qs.Y1) {
                 String str = (String) objArr[0];
-                TLRPC.TL_help_appUpdate tL_help_appUpdate = org.telegram.messenger.iz.f23391j1;
+                TLRPC.TL_help_appUpdate tL_help_appUpdate = org.telegram.messenger.iz.f23412j1;
                 if (tL_help_appUpdate != null && tL_help_appUpdate.document != null) {
                     org.telegram.messenger.t0.u();
                     return;
@@ -675,58 +675,58 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
                 return;
             } else if (i7 == org.telegram.messenger.qs.Z1) {
                 String str2 = (String) objArr[0];
-                TLRPC.TL_help_appUpdate tL_help_appUpdate2 = org.telegram.messenger.iz.f23391j1;
+                TLRPC.TL_help_appUpdate tL_help_appUpdate2 = org.telegram.messenger.iz.f23412j1;
                 if (tL_help_appUpdate2 != null && tL_help_appUpdate2.document != null) {
                     org.telegram.messenger.t0.u();
                     return;
                 }
                 return;
             } else if (i7 == org.telegram.messenger.qs.X1) {
-                org.telegram.ui.Components.y41 y41Var2 = this.f46944x;
+                org.telegram.ui.Components.y41 y41Var2 = this.f46942x;
                 if (y41Var2 != null) {
                     y41Var2.updateFileProgress(objArr);
                     return;
                 }
                 return;
             } else if (i7 == org.telegram.messenger.qs.Q4) {
-                org.telegram.ui.Components.y41 y41Var3 = this.f46944x;
+                org.telegram.ui.Components.y41 y41Var3 = this.f46942x;
                 if (y41Var3 != null && (launchActivity = LaunchActivity.G1) != null) {
                     int i11 = this.currentAccount;
-                    if (launchActivity.f41256d0.size() == 1) {
+                    if (launchActivity.f41260d0.size() == 1) {
                         z10 = true;
                     }
                     y41Var3.updateAppUpdateViews(i11, z10);
                     return;
                 }
                 return;
-            } else if (i7 == org.telegram.messenger.qs.f25072t4) {
-                int currentPosition = this.f48014c.getCurrentPosition();
-                SparseArray sparseArray = this.f48012a;
+            } else if (i7 == org.telegram.messenger.qs.f25081t4) {
+                int currentPosition = this.f48363c.getCurrentPosition();
+                SparseArray sparseArray = this.f48361a;
                 int size = sparseArray.size();
                 for (int i12 = 0; i12 < size; i12++) {
-                    lb1 lb1Var = (lb1) sparseArray.valueAt(i12);
-                    if (sparseArray.keyAt(i12) != currentPosition && lb1Var != null) {
-                        lb1Var.f47504a.clearViews();
+                    mb1 mb1Var = (mb1) sparseArray.valueAt(i12);
+                    if (sparseArray.keyAt(i12) != currentPosition && mb1Var != null) {
+                        mb1Var.f47776a.clearViews();
                     }
                 }
                 return;
             } else if (i7 == org.telegram.messenger.qs.O5) {
                 m0(getUserConfig().W, true);
-                mb1 mb1Var = this.f48014c;
-                if (mb1Var != null && mb1Var.getCurrentPosition() == 2) {
-                    this.f48014c.E(0);
+                nb1 nb1Var = this.f48363c;
+                if (nb1Var != null && nb1Var.getCurrentPosition() == 2) {
+                    this.f48363c.E(0);
                     s0(0, true);
-                    this.f46945y = true;
+                    this.f46943y = true;
                     return;
                 }
                 b0(2);
                 return;
-            } else if (i7 == org.telegram.messenger.qs.f25011j0) {
+            } else if (i7 == org.telegram.messenger.qs.f25020j0) {
                 qh.b[] bVarArr = this.K;
                 if (bVarArr != null && (bVar = bVarArr[4]) != null) {
                     int i13 = this.currentAccount;
                     TLRPC.User a22 = org.telegram.messenger.qp.s1(i13).a2(Long.valueOf(org.telegram.messenger.p10.i(i13).e()));
-                    bVar.f54046c.e(a22, new org.telegram.ui.Components.w8(0, a22));
+                    bVar.f54139c.e(a22, new org.telegram.ui.Components.w8(0, a22));
                     return;
                 }
                 return;
@@ -755,7 +755,7 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
 
     @Override
     public final org.telegram.ui.ActionBar.o3 getEdgeToEdgeSupportMode() {
-        return org.telegram.ui.ActionBar.o3.f28338c;
+        return org.telegram.ui.ActionBar.o3.f28341c;
     }
 
     public final void i0() {
@@ -767,25 +767,25 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
             int measuredHeight = this.fragmentView.getMeasuredHeight();
             k0();
             oi.r f10 = oi.q.f();
-            if (!f10.f21119a) {
+            if (!f10.f21122a) {
                 fVar = null;
-            } else if (!f10.f21120b || i7 < 33) {
+            } else if (!f10.f21123b || i7 < 33) {
                 fVar = this.T;
             }
             if (fVar != null) {
                 fVar.n(measuredWidth, measuredHeight);
-                fVar.f54478c.a();
+                fVar.f54570c.a();
             }
         }
     }
 
     public final void j0() {
         float f10;
-        int themedColor = getThemedColor(org.telegram.ui.ActionBar.k6.f27793a7);
-        int themedColor2 = getThemedColor(org.telegram.ui.ActionBar.k6.f27849d6);
-        mb1 mb1Var = this.f48014c;
-        if (mb1Var != null) {
-            f10 = mb1Var.r(0);
+        int themedColor = getThemedColor(org.telegram.ui.ActionBar.k6.f27796a7);
+        int themedColor2 = getThemedColor(org.telegram.ui.ActionBar.k6.f27852d6);
+        nb1 nb1Var = this.f48363c;
+        if (nb1Var != null) {
+            f10 = nb1Var.r(0);
         } else {
             f10 = 1.0f;
         }
@@ -818,18 +818,18 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
     public final void k0() {
         int i7;
         int height;
-        if (Build.VERSION.SDK_INT >= 31 && this.S != null && this.f48013b != null) {
-            za1 za1Var = this.D;
-            if (za1Var != null && za1Var.a()) {
+        if (Build.VERSION.SDK_INT >= 31 && this.S != null && this.f48362b != null) {
+            ab1 ab1Var = this.D;
+            if (ab1Var != null && ab1Var.a()) {
                 i7 = org.telegram.messenger.g0.L(44.0f);
             } else {
                 i7 = 0;
             }
-            int height2 = (((this.f48013b.getHeight() - this.L) - i7) - org.telegram.messenger.g0.L(8.0f)) - org.telegram.messenger.g0.L(56.0f);
-            SparseArray sparseArray = this.f48012a;
+            int height2 = (((this.f48362b.getHeight() - this.L) - i7) - org.telegram.messenger.g0.L(8.0f)) - org.telegram.messenger.g0.L(56.0f);
+            SparseArray sparseArray = this.f48361a;
             int size = sparseArray.size();
             for (int i10 = 0; i10 < size; i10++) {
-                org.telegram.ui.ActionBar.f2 f2Var = ((lb1) sparseArray.valueAt(i10)).f47504a;
+                org.telegram.ui.ActionBar.f2 f2Var = ((mb1) sparseArray.valueAt(i10)).f47776a;
                 View view = f2Var.fragmentView;
                 if (view != null && view.getWidth() > 0 && (f2Var instanceof ie0)) {
                     if (height2 >= view.getHeight()) {
@@ -868,10 +868,10 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
 
     public final void n0() {
         int i7;
-        mb1 mb1Var = this.f48014c;
-        if (mb1Var != null && this.H != null) {
-            float a10 = 1.0f - c8.j9.a(Math.abs(3.0f - mb1Var.getPositionAnimated()), 0.0f, 1.0f);
-            float T1 = (1.0f - ((1.0f - org.telegram.messenger.g0.T1(0.0f, 1.0f, org.telegram.messenger.g0.R0(this.L))) * a10)) * this.f46943w.f55394e;
+        nb1 nb1Var = this.f48363c;
+        if (nb1Var != null && this.H != null) {
+            float a10 = 1.0f - c8.j9.a(Math.abs(3.0f - nb1Var.getPositionAnimated()), 0.0f, 1.0f);
+            float T1 = (1.0f - ((1.0f - org.telegram.messenger.g0.T1(0.0f, 1.0f, org.telegram.messenger.g0.R0(this.L))) * a10)) * this.f46941w.f55486e;
             this.H.setAlpha(T1);
             this.H.setTranslationY(a10 * org.telegram.messenger.g0.L(48.0f));
             View view = this.H;
@@ -894,7 +894,7 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
             i7 = 0;
         }
         int i11 = -i7;
-        float f10 = this.f46943w.f55394e;
+        float f10 = this.f46941w.f55486e;
         this.E.setTranslationY(org.telegram.messenger.g0.W1(f10, org.telegram.messenger.g0.L(40.0f) + i11, i11));
         le0 le0Var = this.F;
         int i12 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));
@@ -921,10 +921,10 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
     @Override
     public final boolean onBackPressed(boolean z9) {
         boolean onBackPressed = super.onBackPressed(z9);
-        if (onBackPressed && this.f48014c.getCurrentPosition() != 0) {
+        if (onBackPressed && this.f48363c.getCurrentPosition() != 0) {
             onBackPressed = false;
             if (z9) {
-                this.f48014c.E(0);
+                this.f48363c.E(0);
             }
         }
         return onBackPressed;
@@ -946,13 +946,13 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
         b0Var.c(org.telegram.messenger.qs.X1);
         b0Var.c(org.telegram.messenger.qs.Z1);
         b0Var.c(org.telegram.messenger.qs.G4);
-        b0Var.c(org.telegram.messenger.qs.f25054r);
+        b0Var.c(org.telegram.messenger.qs.f25063r);
         b0Var.c(org.telegram.messenger.qs.O5);
-        b0Var.c(org.telegram.messenger.qs.f25011j0);
+        b0Var.c(org.telegram.messenger.qs.f25020j0);
         b0Var.c(org.telegram.messenger.qs.P5);
         b0Var.e(org.telegram.messenger.qs.Q4);
         b0Var.e(org.telegram.messenger.qs.R4);
-        b0Var.e(org.telegram.messenger.qs.f25072t4);
+        b0Var.e(org.telegram.messenger.qs.f25081t4);
         this.O = b0Var;
         return super.onFragmentCreate();
     }
@@ -960,7 +960,7 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
     @Override
     public final void onFragmentDestroy() {
         setBulletinDelegate(null);
-        org.telegram.ui.Components.cc.h(this.f48013b);
+        org.telegram.ui.Components.cc.h(this.f48362b);
         ab.b0 b0Var = this.O;
         if (b0Var != null) {
             b0Var.b();
@@ -987,7 +987,7 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
         if (this.Q) {
             return;
         }
-        if (this.P == null && org.telegram.ui.Components.z20.f40847r.c()) {
+        if (this.P == null && org.telegram.ui.Components.z20.f40866r.c()) {
             org.telegram.messenger.g0.i3(new fe0(this, 8), 1500L);
         }
         this.Q = true;
@@ -1017,7 +1017,7 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
         }
         int i7 = org.telegram.messenger.yr.a0(this.currentAccount).K;
         if (i7 > 0) {
-            this.K[0].e(org.telegram.messenger.hd.E(i7, ','), false, z9);
+            this.K[0].e(org.telegram.messenger.id.E(i7, ','), false, z9);
             return;
         }
         this.K[0].e(null, false, z9);
@@ -1043,7 +1043,7 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
         Collections.sort(arrayList, new oe(27));
         org.telegram.ui.Components.k60 H = org.telegram.ui.Components.k60.H(this, view);
         if (org.telegram.messenger.p10.c() < 4) {
-            H.c(2131232044, org.telegram.messenger.hd.M0(2131754484, null), new fe0(this, 1), false);
+            H.c(2131232044, org.telegram.messenger.id.M0(2131754484, null), new fe0(this, 1), false);
         }
         if (arrayList.size() > 0) {
             if (H.x() > 0) {
@@ -1062,7 +1062,7 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
                 }
                 LinearLayout linearLayout = new LinearLayout(getParentActivity());
                 linearLayout.setOrientation(0);
-                int i11 = org.telegram.ui.ActionBar.k6.f27941i6;
+                int i11 = org.telegram.ui.ActionBar.k6.f27944i6;
                 Drawable a02 = org.telegram.ui.ActionBar.k6.a0(getThemedColor(i11), 0, 0);
                 org.telegram.ui.ActionBar.n6 N = org.telegram.ui.ActionBar.r6.N(i11);
                 org.telegram.ui.ActionBar.f6 resourceProvider = getResourceProvider();
@@ -1084,7 +1084,7 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
                 r3Var.addView(l9Var, c8.ha.t(32, 32, 17, 1, 1, 1, 1));
                 TextView textView = new TextView(getParentActivity());
                 textView.setTextSize(1, 16.0f);
-                org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f27957j5, getResourceProvider());
+                org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f27960j5, getResourceProvider());
                 textView.setText(org.telegram.messenger.t10.p(f10));
                 textView.setMaxLines(2);
                 textView.setEllipsize(TextUtils.TruncateAt.END);
@@ -1093,14 +1093,14 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
                 H.r(linearLayout, c8.ha.o(230, 48));
             }
         }
-        H.f35207u = true;
+        H.f35233u = true;
         H.v = true;
         H.a0(0.0f, -org.telegram.messenger.g0.L(4.0f));
-        ShapeDrawable d02 = org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(28.0f), getThemedColor(org.telegram.ui.ActionBar.k6.f27849d6));
+        ShapeDrawable d02 = org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(28.0f), getThemedColor(org.telegram.ui.ActionBar.k6.f27852d6));
         d02.getPaint().setShadowLayer(org.telegram.messenger.g0.L(6.0f), 0.0f, org.telegram.messenger.g0.L(1.0f), org.telegram.ui.ActionBar.k6.r1(0.15f, -16777216));
         H.W(d02);
         H.Z();
-        org.telegram.ui.Components.z20.f40847r.a();
+        org.telegram.ui.Components.z20.f40866r.a();
     }
 
     public final ww r0(Bundle bundle) {
@@ -1111,7 +1111,7 @@ public final class je0 extends nb1 implements org.telegram.messenger.ls, te.b {
         ww wwVar = new ww(bundle);
         this.J = wwVar;
         wwVar.I3 = new f(this, 23);
-        this.f48012a.put(0, new lb1(wwVar));
+        this.f48361a.put(0, new mb1(wwVar));
         return this.J;
     }
 

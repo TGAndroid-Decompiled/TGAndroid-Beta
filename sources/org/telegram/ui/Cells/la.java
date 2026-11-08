@@ -7,20 +7,20 @@ import android.widget.TextView;
 import org.telegram.ui.Components.cp;
 import org.telegram.ui.Components.xq;
 public final class la extends TextView {
-    public boolean f29521a;
-    public final org.telegram.ui.Components.w5 f29522b;
-    public cp f29523c;
+    public boolean f29524a;
+    public final org.telegram.ui.Components.w5 f29525b;
+    public cp f29526c;
 
     public la(Context context) {
         super(context);
-        this.f29522b = new org.telegram.ui.Components.w5(this, 0L, 350L, xq.h);
+        this.f29525b = new org.telegram.ui.Components.w5(this, 0L, 350L, xq.h);
     }
 
     public final void a(boolean z9, boolean z10) {
-        this.f29521a = z9;
+        this.f29524a = z9;
         boolean z11 = true;
         if (!z10) {
-            this.f29522b.f(z9, true);
+            this.f29525b.f(z9, true);
         }
         if (!isPressed() && !z9) {
             z11 = false;
@@ -32,7 +32,7 @@ public final class la extends TextView {
     @Override
     public final void onDraw(Canvas canvas) {
         Canvas canvas2;
-        float d = this.f29522b.d(this.f29521a);
+        float d = this.f29525b.d(this.f29524a);
         if (d > 0.0f) {
             if (d < 1.0f) {
                 canvas2 = canvas;
@@ -45,16 +45,16 @@ public final class la extends TextView {
             } else {
                 canvas2 = canvas;
             }
-            if (this.f29523c == null) {
+            if (this.f29526c == null) {
                 cp cpVar = new cp(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(2.0f), getCurrentTextColor());
-                this.f29523c = cpVar;
+                this.f29526c = cpVar;
                 cpVar.setCallback(this);
             }
-            this.f29523c.b(getCurrentTextColor());
+            this.f29526c.b(getCurrentTextColor());
             float f11 = 1.0f - d;
-            this.f29523c.setBounds(getWidth() / 2, (getHeight() / 2) + ((int) (org.telegram.messenger.g0.L(12.0f) * f11)), getWidth() / 2, (getHeight() / 2) + ((int) (f11 * org.telegram.messenger.g0.L(12.0f))));
-            this.f29523c.setAlpha((int) (d * 255.0f));
-            this.f29523c.draw(canvas2);
+            this.f29526c.setBounds(getWidth() / 2, (getHeight() / 2) + ((int) (org.telegram.messenger.g0.L(12.0f) * f11)), getWidth() / 2, (getHeight() / 2) + ((int) (f11 * org.telegram.messenger.g0.L(12.0f))));
+            this.f29526c.setAlpha((int) (d * 255.0f));
+            this.f29526c.draw(canvas2);
             invalidate();
             return;
         }
@@ -64,7 +64,7 @@ public final class la extends TextView {
     @Override
     public final void setPressed(boolean z9) {
         boolean z10;
-        if (!z9 && !this.f29521a) {
+        if (!z9 && !this.f29524a) {
             z10 = false;
         } else {
             z10 = true;
@@ -74,7 +74,7 @@ public final class la extends TextView {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f29523c != drawable && !super.verifyDrawable(drawable)) {
+        if (this.f29526c != drawable && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

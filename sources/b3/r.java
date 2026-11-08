@@ -6,7 +6,7 @@ import j2.c0;
 import java.io.IOException;
 import x2.u;
 public final class r implements l {
-    public final long f2965a = u.f58386g.getAndIncrement();
+    public final long f2965a = u.f58475g.getAndIncrement();
     public final j2.m f2966b;
     public final int f2967c;
     public final c0 d;
@@ -22,11 +22,11 @@ public final class r implements l {
 
     @Override
     public final void a() {
-        this.d.f16413b = 0L;
+        this.d.f16416b = 0L;
         j2.k kVar = new j2.k(this.d, this.f2966b);
         try {
             kVar.a();
-            Uri uri = this.d.f16412a.getUri();
+            Uri uri = this.d.f16415a.getUri();
             uri.getClass();
             this.f2969f = this.f2968e.L1(uri, kVar);
             try {

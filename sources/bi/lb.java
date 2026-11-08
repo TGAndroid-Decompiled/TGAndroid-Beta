@@ -102,21 +102,21 @@ public final class lb implements View.OnClickListener {
                 return;
             default:
                 boolean[] zArr3 = (boolean[]) obj6;
-                org.telegram.ui.Wallet.a3[] a3VarArr = (org.telegram.ui.Wallet.a3[]) obj5;
+                org.telegram.ui.Wallet.z2[] z2VarArr = (org.telegram.ui.Wallet.z2[]) obj5;
                 org.telegram.ui.ActionBar.f6 f6Var2 = (org.telegram.ui.ActionBar.f6) obj4;
                 xh.l lVar = (xh.l) obj3;
                 TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj2;
                 String str = (String) obj;
                 if (!zArr3[0]) {
                     zArr3[0] = true;
-                    org.telegram.ui.Wallet.r rVar = new org.telegram.ui.Wallet.r(zArr3, a3VarArr, f6Var2, lVar, 9);
+                    org.telegram.ui.Wallet.r rVar = new org.telegram.ui.Wallet.r(zArr3, z2VarArr, f6Var2, lVar, 9);
                     if (wallettransaction.comment_encrypted_preparing) {
                         rVar.a(wallettransaction.comment, null);
                         return;
                     }
-                    org.telegram.ui.Wallet.n0 x10 = org.telegram.ui.Wallet.n0.x(i10);
+                    org.telegram.ui.Wallet.m0 x10 = org.telegram.ui.Wallet.m0.x(i10);
                     String str2 = wallettransaction.comment;
-                    org.telegram.ui.Wallet.n0.H("decrypting transaction comment");
+                    org.telegram.ui.Wallet.m0.H("decrypting transaction comment");
                     x10.z(new org.telegram.ui.Wallet.j(x10, rVar, str, str2), true, false);
                     return;
                 }
@@ -144,9 +144,9 @@ public final class lb implements View.OnClickListener {
         this.f4292n = animatorSetArr;
     }
 
-    public lb(boolean[] zArr, org.telegram.ui.Wallet.a3[] a3VarArr, org.telegram.ui.ActionBar.f6 f6Var, xh.l lVar, TL_wallet.walletTransaction wallettransaction, int i7, String str) {
+    public lb(boolean[] zArr, org.telegram.ui.Wallet.z2[] z2VarArr, org.telegram.ui.ActionBar.f6 f6Var, xh.l lVar, TL_wallet.walletTransaction wallettransaction, int i7, String str) {
         this.h = zArr;
-        this.f4289c = a3VarArr;
+        this.f4289c = z2VarArr;
         this.f4291f = f6Var;
         this.d = lVar;
         this.f4290e = wallettransaction;

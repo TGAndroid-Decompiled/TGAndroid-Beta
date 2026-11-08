@@ -1,17 +1,17 @@
 package o5;
 
 import java.io.Closeable;
-import org.telegram.ui.Components.uy;
+import org.telegram.ui.Components.vy;
 public final class j implements Closeable {
-    public fd.a f20826a;
-    public e.a f20827b;
-    public fd.a f20828c;
-    public uy d;
-    public fd.a f20829e;
-    public fd.a f20830f;
+    public fd.a f20829a;
+    public e.a f20830b;
+    public fd.a f20831c;
+    public vy d;
+    public fd.a f20832e;
+    public fd.a f20833f;
 
     @Override
     public final void close() {
-        ((v5.g) ((v5.d) this.f20829e.mo24get())).close();
+        ((v5.g) ((v5.d) this.f20832e.mo24get())).close();
     }
 }

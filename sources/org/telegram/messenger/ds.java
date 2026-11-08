@@ -16,12 +16,12 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.hv0;
 public final class ds implements Runnable {
-    public final int f22055a;
-    public final Object f22056b;
+    public final int f22073a;
+    public final Object f22074b;
 
     public ds(Object obj, int i7) {
-        this.f22055a = i7;
-        this.f22056b = obj;
+        this.f22073a = i7;
+        this.f22074b = obj;
     }
 
     @Override
@@ -30,36 +30,36 @@ public final class ds implements Runnable {
         Task task;
         TLRPC.Message message;
         boolean z9;
-        switch (this.f22055a) {
+        switch (this.f22073a) {
             case 0:
                 try {
-                    t0.f25563b.getContentResolver().call(Uri.parse("content://com.huawei.android.launcher.settings/badge/"), "change_badge", (String) null, (Bundle) this.f22056b);
+                    t0.f25566b.getContentResolver().call(Uri.parse("content://com.huawei.android.launcher.settings/badge/"), "change_badge", (String) null, (Bundle) this.f22074b);
                     return;
                 } catch (Exception e10) {
                     a8.g(e10, true);
                     return;
                 }
             case 1:
-                qs.f(((et) this.f22056b).f22256a).k(42, new Object[0]);
+                qs.f(((et) this.f22074b).f22275a).k(42, new Object[0]);
                 return;
             case 2:
-                qt qtVar = (qt) this.f22056b;
-                qtVar.f25131a = true;
-                int i7 = p10.f24467s0;
+                qt qtVar = (qt) this.f22074b;
+                qtVar.f25140a = true;
+                int i7 = p10.f24470s0;
                 int i10 = 0;
                 boolean z10 = false;
                 while (true) {
-                    ArrayList arrayList = iz.f23435z1;
+                    ArrayList arrayList = iz.f23456z1;
                     if (i10 < arrayList.size()) {
                         hz hzVar = (hz) arrayList.get(i10);
-                        if (!hzVar.f23005c && SystemClock.elapsedRealtime() - hzVar.f23006e >= 120000) {
-                            hzVar.f23005c = true;
-                            ConnectionsManager.getInstance(i7).checkProxy(hzVar.f23003a, new p1(hzVar, 14));
+                        if (!hzVar.f22996c && SystemClock.elapsedRealtime() - hzVar.f22997e >= 120000) {
+                            hzVar.f22996c = true;
+                            ConnectionsManager.getInstance(i7).checkProxy(hzVar.f22994a, new j1(hzVar, 14));
                             z10 = true;
                         }
                         i10++;
                     } else if (!z10) {
-                        qtVar.f25131a = false;
+                        qtVar.f25140a = false;
                         qtVar.a();
                         return;
                     } else {
@@ -68,10 +68,10 @@ public final class ds implements Runnable {
                 }
                 break;
             case 3:
-                tt ttVar = (tt) this.f22056b;
+                tt ttVar = (tt) this.f22074b;
                 try {
-                    iz.f23386i = SystemClock.elapsedRealtime();
-                    o9.g.f(t0.f25563b);
+                    iz.f23407i = SystemClock.elapsedRealtime();
+                    o9.g.f(t0.f25566b);
                     ab.d0 d0Var = FirebaseMessaging.f7886m;
                     synchronized (FirebaseMessaging.class) {
                         firebaseMessaging = FirebaseMessaging.getInstance(o9.g.c());
@@ -90,36 +90,36 @@ public final class ds implements Runnable {
                     return;
                 }
             case 4:
-                au auVar = (au) this.f22056b;
-                kv kvVar = auVar.f21519e;
+                au auVar = (au) this.f22074b;
+                kv kvVar = auVar.f21535e;
                 if (kvVar == null || !kvVar.H()) {
-                    auVar.f21524w.l0();
+                    auVar.f21540w.l0();
                     return;
                 }
                 return;
             case 5:
-                View view = ((hu) this.f22056b).V;
+                View view = ((hu) this.f22074b).V;
                 if (view != null) {
                     view.invalidate();
                     return;
                 }
                 return;
             case 6:
-                View view2 = ((iu) this.f22056b).h;
+                View view2 = ((iu) this.f22074b).h;
                 if (view2 != null) {
                     view2.invalidate();
                     return;
                 }
                 return;
             case 7:
-                org.telegram.ui.Cells.l1 l1Var = ((kv) this.f22056b).F;
+                org.telegram.ui.Cells.l1 l1Var = ((kv) this.f22074b).F;
                 if (l1Var != null) {
                     l1Var.k();
                     return;
                 }
                 return;
             case 8:
-                jv jvVar = (jv) this.f22056b;
+                jv jvVar = (jv) this.f22074b;
                 jvVar.J = null;
                 if (jvVar.Q != null) {
                     jvVar.K = true;
@@ -131,10 +131,10 @@ public final class ds implements Runnable {
                         }
                     }
                     iu iuVar = jvVar.Q;
-                    kv kvVar2 = jvVar.f23592a;
+                    kv kvVar2 = jvVar.f23604a;
                     org.telegram.ui.Cells.q1 q1Var = kvVar2.E;
                     org.telegram.ui.Cells.l1 l1Var2 = kvVar2.F;
-                    TL_iv.textButton textbutton = iuVar.f23344b;
+                    TL_iv.textButton textbutton = iuVar.f23366b;
                     if (q1Var != null && l1Var2 != null) {
                         l1Var2.v1(q1Var, textbutton);
                         return;
@@ -160,8 +160,8 @@ public final class ds implements Runnable {
                     return;
                 }
             case 9:
-                dw dwVar = (dw) this.f22056b;
-                ArrayList arrayList2 = dwVar.f22109f;
+                dw dwVar = (dw) this.f22074b;
+                ArrayList arrayList2 = dwVar.f22127f;
                 if (!arrayList2.isEmpty()) {
                     dwVar.getMessagesController().N3(arrayList2, null, null, false, 0);
                     arrayList2.clear();
@@ -169,13 +169,13 @@ public final class ds implements Runnable {
                 }
                 return;
             case 10:
-                ((hv0) this.f22056b).a(null);
+                ((hv0) this.f22074b).a(null);
                 return;
             case 11:
-                g0.h3((ex) this.f22056b);
+                g0.h3((dx) this.f22074b);
                 return;
             case 12:
-                gz gzVar = (gz) this.f22056b;
+                gz gzVar = (gz) this.f22074b;
                 gzVar.getNotificationCenter().b(gzVar, 138);
                 gzVar.getNotificationCenter().b(gzVar, 140);
                 gzVar.getNotificationCenter().b(gzVar, 139);
@@ -188,14 +188,14 @@ public final class ds implements Runnable {
                 gzVar.getNotificationCenter().b(gzVar, 143);
                 return;
             case 13:
-                ij ijVar = (ij) this.f22056b;
-                if (ijVar != null && (message = ijVar.f23244k) != null) {
+                ij ijVar = (ij) this.f22074b;
+                if (ijVar != null && (message = ijVar.f23262k) != null) {
                     message.reqId = 0;
                     return;
                 }
                 return;
             case 14:
-                a8.b8 b8Var = (a8.b8) this.f22056b;
+                a8.b8 b8Var = (a8.b8) this.f22074b;
                 cz czVar = (cz) b8Var.f335a;
                 Location location = (Location) b8Var.f339f;
                 if (location != null) {
@@ -206,19 +206,19 @@ public final class ds implements Runnable {
                 b8Var.d();
                 return;
             case 15:
-                wz wzVar = (wz) this.f22056b;
-                android.support.v4.media.session.a0 a0Var = wzVar.f26401b;
-                int i11 = p10.f24467s0;
-                wzVar.f26402c = i11;
-                wzVar.d = g0.b1(qp.s1(i11).f24757d7, "auto_lastSelectedDialog", 0L);
-                wzVar.f26403e = false;
-                wzVar.f26404f = false;
-                wzVar.f26405g.clear();
+                wz wzVar = (wz) this.f22074b;
+                android.support.v4.media.session.a0 a0Var = wzVar.f26410b;
+                int i11 = p10.f24470s0;
+                wzVar.f26411c = i11;
+                wzVar.d = g0.b1(qp.s1(i11).f24764d7, "auto_lastSelectedDialog", 0L);
+                wzVar.f26412e = false;
+                wzVar.f26413f = false;
+                wzVar.f26414g.clear();
                 wzVar.h.b();
-                wzVar.f26406i.b();
-                wzVar.f26407j.b();
-                wzVar.f26408k.b();
-                wzVar.f26409l.b();
+                wzVar.f26415i.b();
+                wzVar.f26416j.b();
+                wzVar.f26417k.b();
+                wzVar.f26418l.b();
                 try {
                     a0Var.v(null);
                     ((android.support.v4.media.session.u) a0Var.f1763b).f1793a.setQueueTitle(null);
@@ -227,12 +227,12 @@ public final class ds implements Runnable {
                     return;
                 }
             case 16:
-                qs.f(((vz) this.f22056b).f26235g.f26402c).k(150, 0);
+                qs.f(((vz) this.f22074b).f26238g.f26411c).k(150, 0);
                 return;
             default:
-                f10 f10Var = (f10) this.f22056b;
-                qp qpVar = f10Var.f22328n;
-                String string = qpVar.f24767e7.getString("translating_dialog_languages2", null);
+                f10 f10Var = (f10) this.f22074b;
+                qp qpVar = f10Var.f22347n;
+                String string = qpVar.f24774e7.getString("translating_dialog_languages2", null);
                 if (string != null) {
                     for (String str : string.split(";")) {
                         String[] split = str.split("=");
@@ -255,10 +255,10 @@ public final class ds implements Runnable {
                                     str3 = null;
                                 }
                                 if (str2 != null) {
-                                    f10Var.f22326e.put(Long.valueOf(parseLong), str2);
+                                    f10Var.f22345e.put(Long.valueOf(parseLong), str2);
                                     if (!f10Var.w(str2)) {
-                                        f10Var.f22323a.put(parseLong, Boolean.valueOf(!z9));
-                                        f10Var.f22324b.add(Long.valueOf(parseLong));
+                                        f10Var.f22342a.put(parseLong, Boolean.valueOf(!z9));
+                                        f10Var.f22343b.add(Long.valueOf(parseLong));
                                     }
                                     if (str3 != null) {
                                         f10Var.d.put(Long.valueOf(parseLong), str3);
@@ -267,7 +267,7 @@ public final class ds implements Runnable {
                             }
                         }
                     }
-                    Set<String> stringSet = qpVar.f24767e7.getStringSet("hidden_translation_at", null);
+                    Set<String> stringSet = qpVar.f24774e7.getStringSet("hidden_translation_at", null);
                     if (stringSet != null) {
                         for (String str4 : stringSet) {
                             try {
@@ -285,7 +285,7 @@ public final class ds implements Runnable {
     }
 
     public ds(gz gzVar, ij ijVar) {
-        this.f22055a = 13;
-        this.f22056b = ijVar;
+        this.f22073a = 13;
+        this.f22074b = ijVar;
     }
 }

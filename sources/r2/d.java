@@ -1,41 +1,40 @@
 package r2;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-public final class d extends LinkedHashMap {
-    public final int f54195a;
+import c8.p0;
+import java.util.Arrays;
+public final class d extends y2.f {
+    public byte[] f54288s;
+    public volatile boolean f54289w;
+    public byte[] f54290x;
 
-    public d(float f10, int i7, int i10, boolean z9) {
-        super(i7, f10, z9);
-        this.f54195a = i10;
-    }
-
-    public static Matcher b(String str, Pattern pattern, d dVar) {
-        Matcher matcher = (Matcher) dVar.get(pattern);
-        if (matcher == null) {
-            Matcher matcher2 = pattern.matcher(str);
-            dVar.put(pattern, matcher2);
-            return matcher2;
+    @Override
+    public final void a() {
+        try {
+            this.f58900r.open(this.f58895b);
+            int i7 = 0;
+            int i10 = 0;
+            while (i7 != -1 && !this.f54289w) {
+                byte[] bArr = this.f54288s;
+                if (bArr.length < i10 + 16384) {
+                    this.f54288s = Arrays.copyOf(bArr, bArr.length + 16384);
+                }
+                i7 = this.f58900r.read(this.f54288s, i10, 16384);
+                if (i7 != -1) {
+                    i10 += i7;
+                }
+            }
+            if (!this.f54289w) {
+                this.f54290x = Arrays.copyOf(this.f54288s, i10);
+            }
+            p0.a(this.f58900r);
+        } catch (Throwable th2) {
+            p0.a(this.f58900r);
+            throw th2;
         }
-        matcher.reset(str);
-        return matcher;
     }
 
     @Override
-    public final boolean removeEldestEntry(Map.Entry entry) {
-        switch (this.f54195a) {
-            case 0:
-                if (size() > 4) {
-                    return true;
-                }
-                return false;
-            default:
-                if (size() > 32) {
-                    return true;
-                }
-                return false;
-        }
+    public final void q0() {
+        this.f54289w = true;
     }
 }

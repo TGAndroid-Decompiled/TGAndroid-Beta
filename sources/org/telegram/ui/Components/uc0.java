@@ -12,6 +12,6 @@ public final class uc0 extends org.telegram.ui.ActionBar.k {
     @Override
     public final void setAlpha(float f10) {
         super.setAlpha(f10);
-        this.F1.f28616b.invalidate();
+        this.F1.f28619b.invalidate();
     }
 }

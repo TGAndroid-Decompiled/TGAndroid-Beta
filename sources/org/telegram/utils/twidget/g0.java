@@ -1,20 +1,50 @@
 package org.telegram.utils.twidget;
-public final class g0 {
-    public final g f52790a;
-    public final float[] f52791b;
-    public final float[] f52792c;
-    public final double d;
-    public final double f52793e;
-    public final boolean f52794f;
-    public final float[] f52795g;
 
-    public g0(g gVar, float[] fArr, float[] fArr2, double d, double d2, boolean z9, float[] fArr3) {
-        this.f52790a = gVar;
-        this.f52791b = fArr;
-        this.f52792c = fArr2;
-        this.d = d;
-        this.f52793e = d2;
-        this.f52794f = z9;
-        this.f52795g = fArr3;
+import org.telegram.messenger.v10;
+import org.telegram.tgnet.TLRPC;
+public final class g0 implements v10 {
+    public final boolean[] f52792a;
+    public final bi.i0 f52793b;
+    public final v0 f52794c;
+    public final long d;
+
+    public g0(boolean[] zArr, bi.i0 i0Var, v0 v0Var, long j3) {
+        this.f52792a = zArr;
+        this.f52793b = i0Var;
+        this.f52794c = v0Var;
+        this.d = j3;
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        String str;
+        TLRPC.TL_messages_botWidgetQueryAnswer tL_messages_botWidgetQueryAnswer = (TLRPC.TL_messages_botWidgetQueryAnswer) obj;
+        TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+        boolean[] zArr = this.f52792a;
+        if (zArr[0]) {
+            return;
+        }
+        int i7 = 1;
+        zArr[0] = true;
+        org.telegram.messenger.g0.r(this.f52793b);
+        v0 v0Var = this.f52794c;
+        long j3 = this.d;
+        if (tL_messages_botWidgetQueryAnswer != null) {
+            v0Var.b(0, n0.C(tL_messages_botWidgetQueryAnswer.result), j3);
+            return;
+        }
+        if (tL_error != null) {
+            str = tL_error.text;
+        } else {
+            str = "";
+        }
+        if (!"WIDGET_RESPONSE_TIMEOUT".equals(str)) {
+            if (str != null && str.startsWith("FLOOD_WAIT")) {
+                i7 = 2;
+            } else {
+                i7 = 3;
+            }
+        }
+        v0Var.b(i7, null, j3);
     }
 }

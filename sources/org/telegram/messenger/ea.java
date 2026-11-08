@@ -5,28 +5,28 @@ import android.os.Parcelable;
 import android.os.RemoteException;
 import com.google.android.gms.maps.model.LatLng;
 public final class ea {
-    public final m8.f f22176a;
+    public final m8.f f22200a;
 
     public ea(m8.f fVar) {
-        this.f22176a = fVar;
+        this.f22200a = fVar;
     }
 
     public final cb a() {
         LatLng createFromParcel;
-        m8.f fVar = this.f22176a;
+        m8.f fVar = this.f22200a;
         fVar.getClass();
         try {
-            v7.i iVar = (v7.i) fVar.f19939a;
-            Parcel O0 = iVar.O0(iVar.P0(), 4);
+            v7.i iVar = (v7.i) fVar.f19942a;
+            Parcel o12 = iVar.o1(iVar.p1(), 4);
             Parcelable.Creator<LatLng> creator = LatLng.CREATOR;
-            int i7 = v7.b.f57154a;
-            if (O0.readInt() == 0) {
+            int i7 = v7.b.f57246a;
+            if (o12.readInt() == 0) {
                 createFromParcel = null;
             } else {
-                createFromParcel = creator.createFromParcel(O0);
+                createFromParcel = creator.createFromParcel(o12);
             }
             LatLng latLng = createFromParcel;
-            O0.recycle();
+            o12.recycle();
             return new cb(latLng.f7696a, latLng.f7697b);
         } catch (RemoteException e10) {
             throw new RuntimeException(e10);
@@ -34,14 +34,14 @@ public final class ea {
     }
 
     public final void b(cb cbVar) {
-        LatLng latLng = new LatLng(cbVar.f21797a, cbVar.f21798b);
-        m8.f fVar = this.f22176a;
+        LatLng latLng = new LatLng(cbVar.f21833a, cbVar.f21834b);
+        m8.f fVar = this.f22200a;
         fVar.getClass();
         try {
-            v7.i iVar = (v7.i) fVar.f19939a;
-            Parcel P0 = iVar.P0();
-            v7.b.b(P0, latLng);
-            iVar.T0(P0, 3);
+            v7.i iVar = (v7.i) fVar.f19942a;
+            Parcel p12 = iVar.p1();
+            v7.b.b(p12, latLng);
+            iVar.t1(p12, 3);
         } catch (RemoteException e10) {
             throw new RuntimeException(e10);
         }
@@ -49,13 +49,13 @@ public final class ea {
 
     public final void c(int i7) {
         float f10 = i7;
-        m8.f fVar = this.f22176a;
+        m8.f fVar = this.f22200a;
         fVar.getClass();
         try {
-            v7.i iVar = (v7.i) fVar.f19939a;
-            Parcel P0 = iVar.P0();
-            P0.writeFloat(f10);
-            iVar.T0(P0, 22);
+            v7.i iVar = (v7.i) fVar.f19942a;
+            Parcel p12 = iVar.p1();
+            p12.writeFloat(f10);
+            iVar.t1(p12, 22);
         } catch (RemoteException e10) {
             throw new RuntimeException(e10);
         }

@@ -34,7 +34,7 @@ public final class mc implements v10 {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultOk) {
                     TLRPC.Updates updates2 = ((TLRPC.TL_chatInviteJoinResultOk) chatInviteJoinResult).updates;
-                    qp.s1(b70Var.f28613a).O3(updates2, false);
+                    qp.s1(b70Var.f28616a).O3(updates2, false);
                     updates = updates2;
                 } else {
                     if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultWebView) {
@@ -45,12 +45,12 @@ public final class mc implements v10 {
                 org.telegram.messenger.g0.h3(new org.telegram.ui.m6(b70Var, tL_error, updates, tL_messages_importChatInvite, 24));
                 return;
             default:
-                zh.l3 l3Var = (zh.l3) this.f4378c;
+                zh.k3 k3Var = (zh.k3) this.f4378c;
                 TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) this.d;
                 h6 h6Var = (h6) obj;
                 vf.b bVar = (vf.b) obj2;
                 bVar.d();
-                ea.x(l3Var.f28613a, h6Var.f3997a).h(h6Var.f3998b, tL_starGiftUnique, this.f4377b, null, true, new t0(l3Var, bVar, tL_starGiftUnique, 8));
+                ea.x(k3Var.f28616a, h6Var.f3997a).h(h6Var.f3998b, tL_starGiftUnique, this.f4377b, null, true, new t0(k3Var, bVar, tL_starGiftUnique, 8));
                 return;
         }
     }

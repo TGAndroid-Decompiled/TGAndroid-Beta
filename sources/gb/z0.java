@@ -1,6 +1,4 @@
 package gb;
-
-import android.util.Log;
 public final class z0 extends kd.j implements rd.q {
     public int f13787a;
     public ce.d f13788b;
@@ -22,7 +20,7 @@ public final class z0 extends kd.j implements rd.q {
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        jd.a aVar = jd.a.f16643a;
+        jd.a aVar = jd.a.f16646a;
         int i7 = this.f13787a;
         if (i7 != 0) {
             if (i7 == 1) {
@@ -36,7 +34,10 @@ public final class z0 extends kd.j implements rd.q {
             Throwable th2 = this.f13789c;
             o0 a10 = this.d.f13677b.a(null);
             k0 k0Var = new k0(a10, null, null);
-            Log.d("FirebaseSessions", "Init session datastore failed with exception message: " + th2.getMessage() + ". Emit fallback session " + a10.f13736a);
+            StringBuilder sb2 = new StringBuilder("Init session datastore failed with exception message: ");
+            sb2.append(th2.getMessage());
+            sb2.append(". Emit fallback session ");
+            rf.b.p(sb2, a10.f13736a, "FirebaseSessions");
             this.f13788b = null;
             this.f13787a = 1;
             if (dVar.a(k0Var, this) == aVar) {

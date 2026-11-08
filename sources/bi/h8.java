@@ -37,7 +37,7 @@ public final class h8 implements q0.a {
                 org.telegram.messenger.g0.h3(new u7(mcVar, z9, j3, 2));
                 return;
             case 1:
-                org.telegram.ui.Wallet.v1 v1Var = (org.telegram.ui.Wallet.v1) this.f4005c;
+                org.telegram.ui.Wallet.u1 u1Var = (org.telegram.ui.Wallet.u1) this.f4005c;
                 f5.f fVar2 = (f5.f) obj;
                 int i10 = ((f5.f) this.f4004b).f11151a;
                 if (i10 == 0) {
@@ -50,7 +50,7 @@ public final class h8 implements q0.a {
                 } else {
                     j10 = org.telegram.messenger.r1.j(i10);
                 }
-                org.telegram.messenger.g0.h3(new u7(v1Var, z10, j10, 1));
+                org.telegram.messenger.g0.h3(new u7(u1Var, z10, j10, 1));
                 return;
             case 2:
                 fi.o5.X((fi.x9) this.f4004b, (sg.l0) this.f4005c, (Integer) obj);
@@ -58,14 +58,14 @@ public final class h8 implements q0.a {
             case 3:
                 org.telegram.ui.b5 b5Var = (org.telegram.ui.b5) this.f4004b;
                 org.telegram.ui.w4 w4Var = (org.telegram.ui.w4) this.f4005c;
-                org.telegram.ui.c5[] c5VarArr = w4Var.f50921i;
-                org.telegram.ui.y4 y4Var = w4Var.f50922j;
+                org.telegram.ui.c5[] c5VarArr = w4Var.f50865i;
+                org.telegram.ui.y4 y4Var = w4Var.f50866j;
                 if (!b5Var.E) {
                     if (obj instanceof TLRPC.UserFull) {
-                        b5Var.a(org.telegram.ui.w4.c((TLRPC.User) y4Var.f52070c, (TLRPC.UserFull) obj, c5VarArr));
+                        b5Var.a(org.telegram.ui.w4.c((TLRPC.User) y4Var.f52063c, (TLRPC.UserFull) obj, c5VarArr));
                         return;
                     } else if (obj instanceof TLRPC.ChatFull) {
-                        b5Var.a(org.telegram.ui.w4.a((TLRPC.Chat) y4Var.f52070c, (TLRPC.ChatFull) obj, c5VarArr));
+                        b5Var.a(org.telegram.ui.w4.a((TLRPC.Chat) y4Var.f52063c, (TLRPC.ChatFull) obj, c5VarArr));
                         return;
                     } else {
                         return;

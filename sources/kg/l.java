@@ -29,13 +29,13 @@ public final class l extends k3 {
         w3 w3Var2;
         switch (this.E) {
             case 0:
-                if (z9 && (w3Var = this.F.f36227a) != null) {
+                if (z9 && (w3Var = this.F.f36243a) != null) {
                     w3Var.y0(2);
                     return;
                 }
                 return;
             default:
-                if (z9 && (w3Var2 = this.F.f36227a) != null) {
+                if (z9 && (w3Var2 = this.F.f36243a) != null) {
                     w3Var2.y0(3);
                     return;
                 }
@@ -48,12 +48,12 @@ public final class l extends k3 {
         switch (this.E) {
             case 0:
                 m mVar = this.F;
-                mVar.f17427n.d(mVar.f17429s.getText().toString(), mVar.f17430w.getText().toString());
+                mVar.f17430n.d(mVar.f17432s.getText().toString(), mVar.f17433w.getText().toString());
                 mVar.j0(true);
                 return;
             default:
                 m mVar2 = this.F;
-                mVar2.f17427n.d(mVar2.f17429s.getText().toString(), mVar2.f17430w.getText().toString());
+                mVar2.f17430n.d(mVar2.f17432s.getText().toString(), mVar2.f17433w.getText().toString());
                 mVar2.j0(true);
                 return;
         }

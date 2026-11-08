@@ -6,7 +6,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.c20;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ls;
 import org.telegram.messenger.qp;
 import org.telegram.messenger.qs;
@@ -29,16 +29,16 @@ public final class w7 extends org.telegram.ui.ActionBar.v2 implements ls {
         this.f13058i1 = i7;
         this.f13059j1 = qp.s1(i7).P1().T;
         this.f13060k1 = inputPeer;
-        this.f28616b = new t7(this, context, f6Var);
+        this.f28619b = new t7(this, context, f6Var);
         pj0 pj0Var = new pj0(context, f6Var);
         this.l1 = pj0Var;
-        int i11 = this.f28646t0;
+        int i11 = this.f28649t0;
         pj0Var.setPadding(i11, 0, i11, 0);
         v7 v7Var = new v7(this);
         this.f13061m1 = v7Var;
         pj0Var.setAdapter(v7Var);
         pj0Var.setLayoutManager(new v4.b0());
-        this.f28616b.addView(pj0Var, c8.ha.e(-1, -1, 119));
+        this.f28619b.addView(pj0Var, c8.ha.e(-1, -1, 119));
         pj0Var.setOnItemClickListener(new bj0() {
             @Override
             public final void c(int i12, View view) {
@@ -67,21 +67,21 @@ public final class w7 extends org.telegram.ui.ActionBar.v2 implements ls {
         this.n1 = textView;
         org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.G6, f6Var);
         textView.setTextSize(1, 20.0f);
-        textView.setPadding(org.telegram.messenger.g0.L(22.0f) + this.f28646t0, org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(22.0f) + this.f28646t0, org.telegram.messenger.g0.L(14.0f));
-        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27922h5, textView, f6Var);
+        textView.setPadding(org.telegram.messenger.g0.L(22.0f) + this.f28649t0, org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(22.0f) + this.f28649t0, org.telegram.messenger.g0.L(14.0f));
+        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27925h5, textView, f6Var);
         textView.setTypeface(org.telegram.messenger.g0.o());
         if (z9) {
-            i10 = 2131744518;
+            i10 = 2131744520;
         } else {
-            i10 = 2131744519;
+            i10 = 2131744521;
         }
-        textView.setText(hd.M0(i10, null));
-        this.f28616b.addView(textView, c8.ha.c(-2.0f, -1));
+        textView.setText(id.M0(i10, null));
+        this.f28619b.addView(textView, c8.ha.c(-2.0f, -1));
     }
 
     @Override
     public final boolean G() {
-        if (I0() > ((int) (org.telegram.messenger.g0.f22544q.y * 0.5f))) {
+        if (I0() > ((int) (org.telegram.messenger.g0.f22563q.y * 0.5f))) {
             return true;
         }
         return false;
@@ -89,7 +89,7 @@ public final class w7 extends org.telegram.ui.ActionBar.v2 implements ls {
 
     public final float I0() {
         int R;
-        float measuredHeight = this.f28616b.getMeasuredHeight();
+        float measuredHeight = this.f28619b.getMeasuredHeight();
         int i7 = 0;
         while (true) {
             pj0 pj0Var = this.l1;
@@ -107,7 +107,7 @@ public final class w7 extends org.telegram.ui.ActionBar.v2 implements ls {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == qs.f24973c3) {
+        if (i7 == qs.f24982c3) {
             this.f13059j1 = qp.s1(this.f13058i1).P1().T;
             this.f13061m1.f();
         }
@@ -116,12 +116,12 @@ public final class w7 extends org.telegram.ui.ActionBar.v2 implements ls {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        qs.f(this.f13058i1).c(this, qs.f24973c3);
+        qs.f(this.f13058i1).c(this, qs.f24982c3);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        qs.f(this.f13058i1).n(this, qs.f24973c3);
+        qs.f(this.f13058i1).n(this, qs.f24982c3);
     }
 }

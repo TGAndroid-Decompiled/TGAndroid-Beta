@@ -9,29 +9,29 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.ui.Components.RadioButton;
 public final class k60 extends org.telegram.ui.Components.oj0 {
-    public final int f47125c;
+    public final int f47123c;
     public final Context d;
-    public final boolean f47126e;
-    public final org.telegram.ui.ActionBar.f2 f47127f;
+    public final boolean f47124e;
+    public final org.telegram.ui.ActionBar.f2 f47125f;
 
     public k60(org.telegram.ui.ActionBar.f2 f2Var, Context context, boolean z9, int i7) {
-        this.f47125c = i7;
-        this.f47127f = f2Var;
+        this.f47123c = i7;
+        this.f47125f = f2Var;
         this.d = context;
-        this.f47126e = z9;
+        this.f47124e = z9;
     }
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        switch (this.f47125c) {
+        switch (this.f47123c) {
             case 0:
-                int i7 = d1Var.f56955f;
+                int i7 = d1Var.f57047f;
                 if (i7 != 0 && i7 != 4 && i7 != 5 && i7 != 2) {
                     return false;
                 }
                 return true;
             default:
-                if (d1Var.f56955f == 0) {
+                if (d1Var.f57047f == 0) {
                     return true;
                 }
                 return false;
@@ -42,11 +42,11 @@ public final class k60 extends org.telegram.ui.Components.oj0 {
     public final int b() {
         int i7;
         int i10;
-        switch (this.f47125c) {
+        switch (this.f47123c) {
             case 0:
-                LanguageSelectActivity languageSelectActivity = (LanguageSelectActivity) this.f47127f;
-                if (this.f47126e) {
-                    ArrayList arrayList = languageSelectActivity.f41246e;
+                LanguageSelectActivity languageSelectActivity = (LanguageSelectActivity) this.f47125f;
+                if (this.f47124e) {
+                    ArrayList arrayList = languageSelectActivity.f41250e;
                     if (arrayList == null) {
                         return 0;
                     }
@@ -68,22 +68,22 @@ public final class k60 extends org.telegram.ui.Components.oj0 {
                     }
                     i10 = i7 + 1;
                 }
-                int size = i10 + 1 + languageSelectActivity.f41247f.size();
+                int size = i10 + 1 + languageSelectActivity.f41251f.size();
                 if (!languageSelectActivity.h.isEmpty()) {
                     return languageSelectActivity.h.size() + 1 + size;
                 }
                 return size;
             default:
-                qy0 qy0Var = (qy0) this.f47127f;
+                qy0 qy0Var = (qy0) this.f47125f;
                 int i11 = 0;
-                if (this.f47126e) {
-                    ArrayList arrayList2 = qy0Var.f49330f;
+                if (this.f47124e) {
+                    ArrayList arrayList2 = qy0Var.f49333f;
                     if (arrayList2 == null) {
                         return 0;
                     }
                     return arrayList2.size();
                 }
-                if (qy0Var.f49329e >= 0) {
+                if (qy0Var.f49332e >= 0) {
                     i11 = 1;
                 }
                 return i11 + qy0Var.h.size();
@@ -111,7 +111,7 @@ public final class k60 extends org.telegram.ui.Components.oj0 {
         float f12;
         org.telegram.ui.Cells.y6 y6Var;
         org.telegram.ui.Cells.n4 n4Var;
-        int i14 = this.f47125c;
+        int i14 = this.f47123c;
         Context context = this.d;
         switch (i14) {
             case 0:
@@ -136,14 +136,14 @@ public final class k60 extends org.telegram.ui.Components.oj0 {
                     }
                 } else {
                     ?? frameLayout = new FrameLayout(context);
-                    frameLayout.f28942e = 50;
-                    frameLayout.f28945r = 21;
+                    frameLayout.f28945e = 50;
+                    frameLayout.f28948r = 21;
                     TextView textView = new TextView(context);
-                    frameLayout.f28939a = textView;
+                    frameLayout.f28942a = textView;
                     org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.G6, null);
                     org.telegram.messenger.camera.q.n(textView, 1, 16.0f, 1, 1);
                     textView.setSingleLine(true);
-                    if (org.telegram.messenger.hd.f22878a0) {
+                    if (org.telegram.messenger.id.f23157a0) {
                         i10 = 5;
                     } else {
                         i10 = 3;
@@ -151,7 +151,7 @@ public final class k60 extends org.telegram.ui.Components.oj0 {
                     textView.setGravity(i10 | 16);
                     TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
                     textView.setEllipsize(truncateAt);
-                    boolean z9 = org.telegram.messenger.hd.f22878a0;
+                    boolean z9 = org.telegram.messenger.id.f23157a0;
                     if (z9) {
                         i11 = 5;
                     } else {
@@ -171,10 +171,10 @@ public final class k60 extends org.telegram.ui.Components.oj0 {
                     }
                     frameLayout.addView(textView, c8.ha.d(-1, -1.0f, i16, f10, 0.0f, f11, 0.0f));
                     TextView textView2 = new TextView(context);
-                    frameLayout.f28940b = textView2;
-                    org.telegram.ui.ActionBar.r6.V(textView2, org.telegram.ui.ActionBar.k6.f28259z6, null);
+                    frameLayout.f28943b = textView2;
+                    org.telegram.ui.ActionBar.r6.V(textView2, org.telegram.ui.ActionBar.k6.f28262z6, null);
                     textView2.setTextSize(1, 13.0f);
-                    if (org.telegram.messenger.hd.f22878a0) {
+                    if (org.telegram.messenger.id.f23157a0) {
                         i12 = 5;
                     } else {
                         i12 = 3;
@@ -185,7 +185,7 @@ public final class k60 extends org.telegram.ui.Components.oj0 {
                     textView2.setSingleLine(true);
                     textView2.setPadding(0, 0, 0, 0);
                     textView2.setEllipsize(truncateAt);
-                    boolean z10 = org.telegram.messenger.hd.f22878a0;
+                    boolean z10 = org.telegram.messenger.id.f23157a0;
                     if (z10) {
                         i13 = 5;
                     } else {
@@ -202,14 +202,14 @@ public final class k60 extends org.telegram.ui.Components.oj0 {
                     }
                     frameLayout.addView(textView2, c8.ha.d(-2, -2.0f, i17, f12, 36.0f, f13, 0.0f));
                     RadioButton radioButton = new RadioButton(context);
-                    frameLayout.f28941c = radioButton;
+                    frameLayout.f28944c = radioButton;
                     radioButton.setSize(org.telegram.messenger.g0.L(20.0f));
-                    org.telegram.ui.ActionBar.r6.P(radioButton, org.telegram.ui.ActionBar.k6.f27905g7, org.telegram.ui.ActionBar.k6.h7, null);
-                    if (!org.telegram.messenger.hd.f22878a0) {
+                    org.telegram.ui.ActionBar.r6.P(radioButton, org.telegram.ui.ActionBar.k6.f27908g7, org.telegram.ui.ActionBar.k6.h7, null);
+                    if (!org.telegram.messenger.id.f23157a0) {
                         i15 = 3;
                     }
                     frameLayout.addView(radioButton, c8.ha.d(20, 20.0f, i15 | 16, 22.0f, 0.0f, 22.0f, 0.0f));
-                    frameLayout.f28944n = org.telegram.messenger.hd.f22878a0;
+                    frameLayout.f28947n = org.telegram.messenger.id.f23157a0;
                     frameLayout.setClipChildren(false);
                     y6Var = frameLayout;
                 }
@@ -220,7 +220,7 @@ public final class k60 extends org.telegram.ui.Components.oj0 {
                         n4Var = new org.telegram.ui.Cells.y6(context, (org.telegram.ui.Cells.f1) null);
                     } else {
                         org.telegram.ui.Cells.n4 n4Var2 = new org.telegram.ui.Cells.n4(context);
-                        n4Var2.setText(org.telegram.messenger.hd.M0(2131752124, null));
+                        n4Var2.setText(org.telegram.messenger.id.M0(2131752124, null));
                         n4Var = n4Var2;
                     }
                 } else {
@@ -232,9 +232,9 @@ public final class k60 extends org.telegram.ui.Components.oj0 {
 
     @Override
     public void y(v4.d1 d1Var) {
-        switch (this.f47125c) {
+        switch (this.f47123c) {
             case 0:
-                View view = d1Var.f56951a;
+                View view = d1Var.f57043a;
                 if (view instanceof org.telegram.ui.Cells.b9) {
                     ((org.telegram.ui.Cells.b9) view).c();
                     return;

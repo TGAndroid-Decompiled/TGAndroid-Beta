@@ -9,12 +9,12 @@ import bi.ab;
 import c8.ha;
 import c8.ka;
 import java.util.ArrayList;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.qp;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.la0;
-import org.telegram.ui.Components.lz;
+import org.telegram.ui.Components.mz;
 import org.telegram.ui.Components.oa0;
 import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.w70;
@@ -29,7 +29,7 @@ public final class g5 extends oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f56955f == 1) {
+        if (d1Var.f57047f == 1) {
             return true;
         }
         return false;
@@ -138,11 +138,11 @@ public final class g5 extends oj0 {
         TLRPC.Message message2;
         k5 k5Var = this.d;
         int i15 = k5Var.f9307w;
-        if (d1Var.f56955f == 1 && i7 >= 0) {
+        if (d1Var.f57047f == 1 && i7 >= 0) {
             ArrayList arrayList = this.f9047c;
             if (i7 < arrayList.size()) {
                 b5 b5Var = (b5) arrayList.get(i7);
-                org.telegram.ui.Cells.m6 m6Var = (org.telegram.ui.Cells.m6) d1Var.f56951a;
+                org.telegram.ui.Cells.m6 m6Var = (org.telegram.ui.Cells.m6) d1Var.f57043a;
                 TL_stories.StoryView storyView = b5Var.f8844b;
                 TL_stories.StoryReaction storyReaction = b5Var.f8845c;
                 if (storyView != null) {
@@ -224,7 +224,7 @@ public final class g5 extends oj0 {
                     } else {
                         z11 = true;
                     }
-                    m6Var.f29546a = z11;
+                    m6Var.f29549a = z11;
                     if (k5Var.d(storyView)) {
                         f10 = 1.0f;
                     } else {
@@ -279,7 +279,7 @@ public final class g5 extends oj0 {
                     if (i11 != 1 && i11 != 11 && i11 != i10) {
                         z12 = false;
                     }
-                    m6Var.f29546a = z12;
+                    m6Var.f29549a = z12;
                     m6Var.a(false, 1.0f);
                 }
             }
@@ -310,11 +310,11 @@ public final class g5 extends oj0 {
                 w70Var = new org.telegram.ui.Cells.v3(k5Var.getContext(), 70);
                 break;
             case 4:
-                lz lzVar = new lz(k5Var.getContext(), bVar);
-                lzVar.setIsSingleCell(true);
-                lzVar.setViewType(28);
-                lzVar.f35802x = false;
-                w70Var = lzVar;
+                mz mzVar = new mz(k5Var.getContext(), bVar);
+                mzVar.setIsSingleCell(true);
+                mzVar.setViewType(28);
+                mzVar.f36172x = false;
+                w70Var = mzVar;
                 break;
             case 5:
             case 7:
@@ -331,23 +331,23 @@ public final class g5 extends oj0 {
                 xh.l lVar = f5Var.d;
                 if (i7 == 7) {
                     lVar.setVisibility(8);
-                    f5Var.setSubtitle(hd.M0(2131748166, null));
+                    f5Var.setSubtitle(id.M0(2131748168, null));
                 } else if (i7 == 8) {
                     lVar.setVisibility(8);
-                    f5Var.setSubtitle(hd.M0(2131748221, null));
+                    f5Var.setSubtitle(id.M0(2131748223, null));
                 } else if (i7 == 10) {
                     lVar.setVisibility(0);
-                    lVar.setText(hd.M0(2131745563, null));
-                    f5Var.setSubtitle(hd.M0(2131745565, null));
+                    lVar.setText(id.M0(2131745565, null));
+                    f5Var.setSubtitle(id.M0(2131745567, null));
                 } else if (k5Var.F.f9262j) {
                     lVar.setVisibility(8);
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                    spannableStringBuilder.append((CharSequence) org.telegram.messenger.g0.X2(hd.M0(2131750872, null)));
+                    spannableStringBuilder.append((CharSequence) org.telegram.messenger.g0.X2(id.M0(2131750872, null)));
                     boolean D3 = qp.s1(i11).D3();
-                    w70 w70Var2 = f5Var.f31925e;
+                    w70 w70Var2 = f5Var.f31927e;
                     if (!D3) {
                         spannableStringBuilder.append((CharSequence) "\n\n");
-                        spannableStringBuilder.append((CharSequence) org.telegram.messenger.g0.U2(hd.M0(2131750871, null), new Runnable() {
+                        spannableStringBuilder.append((CharSequence) org.telegram.messenger.g0.U2(id.M0(2131750871, null), new Runnable() {
                             @Override
                             public final void run() {
                                 switch (r2) {
@@ -360,7 +360,7 @@ public final class g5 extends oj0 {
                                 }
                             }
                         }));
-                        String M0 = hd.M0(2131749009, null);
+                        String M0 = id.M0(2131749011, null);
                         Runnable runnable = new Runnable() {
                             @Override
                             public final void run() {
@@ -378,7 +378,7 @@ public final class g5 extends oj0 {
                         TextView textView = new TextView(f5Var.getContext());
                         textView.setText(M0);
                         int i12 = org.telegram.ui.ActionBar.k6.Gi;
-                        org.telegram.ui.ActionBar.f6 f6Var = f5Var.f31927n;
+                        org.telegram.ui.ActionBar.f6 f6Var = f5Var.f31929n;
                         org.telegram.ui.ActionBar.r6.V(textView, i12, f6Var);
                         textView.setPadding(org.telegram.messenger.g0.L(45.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(45.0f), org.telegram.messenger.g0.L(12.0f));
                         textView.setGravity(17);
@@ -397,7 +397,7 @@ public final class g5 extends oj0 {
                         org.telegram.ui.ActionBar.r6.k(a4Var, k02, N, h, f6Var);
                         ka.b(a4Var, 0.05f, 1.5f);
                         a4Var.addView(textView);
-                        c61 c61Var = f5Var.f31922a;
+                        c61 c61Var = f5Var.f31924a;
                         c61Var.setClipChildren(false);
                         c61Var.addView(a4Var, ha.t(-2, -2, 1, 0, 28, 0, 4));
                     }
@@ -405,30 +405,30 @@ public final class g5 extends oj0 {
                 } else {
                     lVar.setVisibility(0);
                     if (k5Var.F.f9259f) {
-                        lVar.setText(hd.M0(2131748174, null));
-                        f5Var.setSubtitle(hd.M0(2131748172, null));
+                        lVar.setText(id.M0(2131748176, null));
+                        f5Var.setSubtitle(id.M0(2131748174, null));
                     } else {
-                        lVar.setText(hd.M0(2131748131, null));
-                        f5Var.setSubtitle(hd.M0(2131748130, null));
+                        lVar.setText(id.M0(2131748133, null));
+                        f5Var.setSubtitle(id.M0(2131748132, null));
                     }
                 }
                 f5Var.e(false, false);
                 w70Var = f5Var;
                 break;
             case 6:
-                lz lzVar2 = new lz(k5Var.getContext(), bVar);
-                lzVar2.setIsSingleCell(true);
-                lzVar2.setIgnoreHeightCheck(true);
-                lzVar2.setItemsCount(20);
-                lzVar2.setViewType(28);
-                lzVar2.f35802x = false;
-                w70Var = lzVar2;
+                mz mzVar2 = new mz(k5Var.getContext(), bVar);
+                mzVar2.setIsSingleCell(true);
+                mzVar2.setIgnoreHeightCheck(true);
+                mzVar2.setItemsCount(20);
+                mzVar2.setViewType(28);
+                mzVar2.f36172x = false;
+                w70Var = mzVar2;
                 break;
             case 11:
             case 12:
                 w70 w70Var3 = new w70(k5Var.getContext(), null);
                 w70Var3.setTextSize(1, 13.0f);
-                org.telegram.ui.ActionBar.r6.V(w70Var3, org.telegram.ui.ActionBar.k6.f28241y6, bVar);
+                org.telegram.ui.ActionBar.r6.V(w70Var3, org.telegram.ui.ActionBar.k6.f28244y6, bVar);
                 org.telegram.ui.ActionBar.r6.H(w70Var3, org.telegram.ui.ActionBar.k6.J6, bVar);
                 int L2 = org.telegram.messenger.g0.L(16.0f);
                 int L3 = org.telegram.messenger.g0.L(21.0f);
@@ -437,9 +437,9 @@ public final class g5 extends oj0 {
                 w70Var3.setGravity(17);
                 w70Var3.setDisablePaddingsOffsetY(true);
                 if (i7 == 11) {
-                    w70Var3.setText(org.telegram.messenger.g0.U2(hd.M0(2131744447, null), new ab(this, 23)));
+                    w70Var3.setText(org.telegram.messenger.g0.U2(id.M0(2131744449, null), new ab(this, 23)));
                 } else {
-                    w70Var3.setText(hd.M0(2131745564, null));
+                    w70Var3.setText(id.M0(2131745566, null));
                 }
                 w70Var3.setLayoutParams(new v4.o0(-1, -2));
                 w70Var = w70Var3;

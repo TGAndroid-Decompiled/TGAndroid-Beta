@@ -10,7 +10,7 @@ import c8.ha;
 import java.io.File;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
@@ -70,8 +70,8 @@ public final class e0 extends za {
             f6 f6Var = this.f14622a;
             if (i7 == 1) {
                 ac acVar = new ac(getContext(), f6Var, true);
-                acVar.e(hd.M0(2131753074, null));
-                acVar.f31756b = new Runnable(this) {
+                acVar.e(id.M0(2131753074, null));
+                acVar.f31765b = new Runnable(this) {
                     public final e0 f14550b;
 
                     {
@@ -86,7 +86,7 @@ public final class e0 extends za {
                                 e0 e0Var = this.f14550b;
                                 cc bulletin = e0Var.getBulletin();
                                 if (bulletin != null) {
-                                    bulletin.f32514j = 2750;
+                                    bulletin.f32545j = 2750;
                                     bulletin.i(true);
                                 }
                                 f0 f0Var = e0Var.f14626f;
@@ -117,8 +117,8 @@ public final class e0 extends za {
                 setButton(acVar);
             } else if (i7 == 2) {
                 ac acVar2 = new ac(getContext(), f6Var, true);
-                acVar2.e(hd.M0(2131753073, null));
-                acVar2.f31756b = new Runnable(this) {
+                acVar2.e(id.M0(2131753073, null));
+                acVar2.f31765b = new Runnable(this) {
                     public final e0 f14550b;
 
                     {
@@ -133,7 +133,7 @@ public final class e0 extends za {
                                 e0 e0Var = this.f14550b;
                                 cc bulletin = e0Var.getBulletin();
                                 if (bulletin != null) {
-                                    bulletin.f32514j = 2750;
+                                    bulletin.f32545j = 2750;
                                     bulletin.i(true);
                                 }
                                 f0 f0Var = e0Var.f14626f;
@@ -203,7 +203,7 @@ public final class e0 extends za {
             }
             d0Var.invalidateSelf();
             if (((Long) b10.first).longValue() <= 0) {
-                textView.setText(hd.M0(2131753071, null));
+                textView.setText(id.M0(2131753071, null));
             } else if (((Long) b10.second).longValue() <= 0) {
                 textView.setText(org.telegram.messenger.g0.i0(((Long) b10.first).longValue(), false, false));
             } else {
@@ -219,7 +219,7 @@ public final class e0 extends za {
             return true;
         } else {
             if (f0Var.h) {
-                textView.setText(hd.M0(2131753072, null));
+                textView.setText(id.M0(2131753072, null));
                 setButton(2);
                 if (!d0Var.h) {
                     d0Var.h = true;
@@ -233,7 +233,7 @@ public final class e0 extends za {
                 cc bulletin2 = getBulletin();
                 if (bulletin2 != null) {
                     bulletin2.i(false);
-                    bulletin2.f32514j = 5000;
+                    bulletin2.f32545j = 5000;
                     bulletin2.i(true);
                 }
             }

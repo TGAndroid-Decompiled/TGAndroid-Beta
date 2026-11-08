@@ -1,50 +1,77 @@
 package org.telegram.utils.twidget;
 
-import org.telegram.messenger.v10;
-import org.telegram.tgnet.TLRPC;
-public final class i implements v10 {
-    public final boolean[] f52820a;
-    public final bi.i0 f52821b;
-    public final u f52822c;
-    public final long d;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+public final class i {
+    public final ByteBuffer f52848a;
+    public final int f52849b;
+    public final boolean f52850c;
+    public final int d;
+    public final int[] f52851e;
+    public final int[] f52852f;
+    public final String[] f52853g;
 
-    public i(boolean[] zArr, bi.i0 i0Var, u uVar, long j3) {
-        this.f52820a = zArr;
-        this.f52821b = i0Var;
-        this.f52822c = uVar;
-        this.d = j3;
+    public i(ByteBuffer byteBuffer, int i7, boolean z9, int i10, int[] iArr, int[] iArr2) {
+        this.f52848a = byteBuffer;
+        this.f52849b = i7;
+        this.f52850c = z9;
+        this.d = i10;
+        this.f52851e = iArr;
+        this.f52852f = iArr2;
+        this.f52853g = new String[iArr.length];
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        String str;
-        TLRPC.TL_messages_botWidgetQueryAnswer tL_messages_botWidgetQueryAnswer = (TLRPC.TL_messages_botWidgetQueryAnswer) obj;
-        TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-        boolean[] zArr = this.f52820a;
-        if (zArr[0]) {
-            return;
-        }
-        int i7 = 1;
-        zArr[0] = true;
-        org.telegram.messenger.g0.r(this.f52821b);
-        u uVar = this.f52822c;
-        long j3 = this.d;
-        if (tL_messages_botWidgetQueryAnswer != null) {
-            uVar.a(0, p.A(tL_messages_botWidgetQueryAnswer.result), j3);
-            return;
-        }
-        if (tL_error != null) {
-            str = tL_error.text;
-        } else {
-            str = "";
-        }
-        if (!"WIDGET_RESPONSE_TIMEOUT".equals(str)) {
-            if (str != null && str.startsWith("FLOOD_WAIT")) {
-                i7 = 2;
-            } else {
-                i7 = 3;
+    public static IllegalArgumentException a() {
+        return new IllegalArgumentException("Display list");
+    }
+
+    public static i b(byte[] bArr) {
+        boolean z9;
+        if (bArr.length >= 24 && (bArr.length & 3) == 0) {
+            ByteBuffer order = ByteBuffer.wrap(bArr).order(ByteOrder.LITTLE_ENDIAN);
+            if (order.getInt(0) == 1279547220 && order.getInt(4) == 1) {
+                int i7 = order.getInt(8);
+                int i10 = order.getInt(12);
+                long j3 = order.getInt(16) * 4;
+                if (i7 >= 0 && i7 <= 200000 && j3 >= 20 && 4 + j3 <= bArr.length) {
+                    int i11 = (int) j3;
+                    int i12 = order.getInt(i11);
+                    int i13 = i11 + 4;
+                    if (i12 >= 0 && i12 <= i7 && i12 <= (bArr.length - i13) / 4) {
+                        int[] iArr = new int[i12];
+                        int i14 = i13;
+                        int[] iArr2 = new int[i12];
+                        for (int i15 = 0; i15 < i12; i15++) {
+                            int i16 = i14 + 4;
+                            if (i16 <= bArr.length) {
+                                int i17 = order.getInt(i14);
+                                if (i17 >= 0 && i17 <= (bArr.length - i14) - 4) {
+                                    iArr[i15] = i16;
+                                    iArr2[i15] = i17;
+                                    i14 += ((i17 + 3) & (-4)) + 4;
+                                } else {
+                                    throw a();
+                                }
+                            } else {
+                                throw a();
+                            }
+                        }
+                        if (i14 <= bArr.length) {
+                            if ((i10 & 1) != 0) {
+                                z9 = true;
+                            } else {
+                                z9 = false;
+                            }
+                            return new i(order, i7, z9, i11, iArr, iArr2);
+                        }
+                        throw a();
+                    }
+                    throw a();
+                }
+                throw a();
             }
+            throw a();
         }
-        uVar.a(i7, null, j3);
+        throw a();
     }
 }

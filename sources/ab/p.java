@@ -35,7 +35,7 @@ public final class p implements OnSuccessListener {
                 d0 d0Var = FirebaseMessaging.f7886m;
                 firebaseMessaging.getClass();
                 if (aVar != null) {
-                    b1.b(aVar.f19879a);
+                    b1.b(aVar.f19882a);
                     firebaseMessaging.e();
                     return;
                 }

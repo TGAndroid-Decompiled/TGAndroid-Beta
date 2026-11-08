@@ -1,25 +1,25 @@
 package org.telegram.ui;
 public final class ta0 implements org.telegram.ui.ActionBar.r1 {
-    public final int f50000a;
-    public final ce0 f50001b;
+    public final int f49998a;
+    public final ce0 f49999b;
 
     public ta0(ce0 ce0Var, int i7) {
-        this.f50000a = i7;
-        this.f50001b = ce0Var;
+        this.f49998a = i7;
+        this.f49999b = ce0Var;
     }
 
     @Override
     public final void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f50000a) {
+        switch (this.f49998a) {
             case 0:
-                ce0 ce0Var = this.f50001b;
-                ce0Var.f44758b[ce0Var.f44756a].d();
+                ce0 ce0Var = this.f49999b;
+                ce0Var.f44763b[ce0Var.f44761a].d();
                 ce0Var.C1(true, true);
                 return;
             default:
-                ce0 ce0Var2 = this.f50001b;
-                ce0Var2.f44772l0 = true;
-                if (ce0Var2.f44756a != 0) {
+                ce0 ce0Var2 = this.f49999b;
+                ce0Var2.f44777l0 = true;
+                if (ce0Var2.f44761a != 0) {
                     ce0Var2.M1(0, true, null, true);
                     return;
                 }

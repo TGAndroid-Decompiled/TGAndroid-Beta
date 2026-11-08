@@ -42,7 +42,7 @@ public final class ku extends fu {
                 this.X.add(ytVar);
             }
         }
-        int i14 = this.f22452c;
+        int i14 = this.f22471c;
         ArrayList arrayList = this.X;
         this.Y = new int[arrayList.size()];
         if (arrayList.isEmpty()) {
@@ -55,7 +55,7 @@ public final class ku extends fu {
             float f13 = ytVar2.E;
             f13 = f13 <= 0.0f ? 1.0f : f13;
             int i16 = (int) (i14 / f13);
-            Point point = g0.f22544q;
+            Point point = g0.f22563q;
             int max = (int) (Math.max(point.x, point.y) * 0.55f);
             if (i16 > max) {
                 i14 = (int) (max * f13);
@@ -78,31 +78,31 @@ public final class ku extends fu {
         int i19 = i18 + 1;
         float[] fArr2 = new float[i19];
         for (aj ajVar2 : e10) {
-            byte b10 = ajVar2.f21444c;
+            byte b10 = ajVar2.f21443c;
             if (b10 == ajVar2.d) {
-                fArr2[b10] = Math.max(fArr2[b10], ajVar2.f21446f);
+                fArr2[b10] = Math.max(fArr2[b10], ajVar2.f21445f);
             }
         }
         int length = e10.length;
         int i20 = 0;
         while (i20 < length) {
             aj ajVar3 = e10[i20];
-            int i21 = ajVar3.f21444c;
+            int i21 = ajVar3.f21443c;
             byte b11 = ajVar3.d;
             if (i21 != b11) {
                 int i22 = (b11 - i21) + i15;
-                float[] fArr3 = ajVar3.f21452m;
+                float[] fArr3 = ajVar3.f21451m;
                 if (fArr3 != null && fArr3.length == i22) {
                     int i23 = 0;
                     while (i23 < i22) {
-                        int i24 = ajVar3.f21444c + i23;
-                        fArr2[i24] = Math.max(fArr2[i24], ajVar3.f21452m[i23]);
+                        int i24 = ajVar3.f21443c + i23;
+                        fArr2[i24] = Math.max(fArr2[i24], ajVar3.f21451m[i23]);
                         i23++;
                         i15 = i15;
                     }
                 } else {
                     i11 = i15;
-                    float f14 = ajVar3.f21446f / i22;
+                    float f14 = ajVar3.f21445f / i22;
                     while (i21 <= ajVar3.d) {
                         fArr2[i21] = Math.max(fArr2[i21], f14);
                         i21++;
@@ -115,7 +115,7 @@ public final class ku extends fu {
             i20++;
             i15 = i11;
         }
-        Point point2 = g0.f22544q;
+        Point point2 = g0.f22563q;
         float max2 = Math.max(point2.x, point2.y) * 0.5f;
         int[] iArr = new int[i18 + 2];
         float f15 = 0.0f;
@@ -124,7 +124,7 @@ public final class ku extends fu {
             f15 += fArr2[i25];
         }
         iArr[i19] = Math.round(f15 * max2);
-        if (this.f22450a.D()) {
+        if (this.f22469a.D()) {
             f10 = 3.0f;
         } else {
             f10 = 2.0f;
@@ -133,10 +133,10 @@ public final class ku extends fu {
         int i26 = 0;
         while (i26 < e10.length) {
             aj ajVar4 = e10[i26];
-            int i27 = iArr[ajVar4.f21444c];
+            int i27 = iArr[ajVar4.f21443c];
             int i28 = iArr[ajVar4.d + 1] - i27;
             float f16 = 1000.0f;
-            if (ajVar4.f21449j > 0) {
+            if (ajVar4.f21448j > 0) {
                 round = Math.round((i10 * i14) / 1000.0f);
                 f11 = 1000.0f;
             } else {
@@ -148,10 +148,10 @@ public final class ku extends fu {
                     } else {
                         aj ajVar5 = e10[i29];
                         f12 = f16;
-                        byte b12 = ajVar5.f21444c;
-                        byte b13 = ajVar4.f21444c;
-                        if (b12 <= b13 && ajVar5.d >= b13 && ajVar5.f21442a < ajVar4.f21442a) {
-                            i30 += ajVar5.f21445e;
+                        byte b12 = ajVar5.f21443c;
+                        byte b13 = ajVar4.f21443c;
+                        if (b12 <= b13 && ajVar5.d >= b13 && ajVar5.f21441a < ajVar4.f21441a) {
+                            i30 += ajVar5.f21444e;
                         }
                     }
                     i29++;
@@ -160,16 +160,16 @@ public final class ku extends fu {
                 f11 = f16;
                 round = Math.round((i30 * i14) / f11);
             }
-            if ((ajVar4.f21451l & 2) != 0) {
+            if ((ajVar4.f21450l & 2) != 0) {
                 round2 = i14 - round;
             } else {
-                round2 = Math.round((ajVar4.f21445e * i14) / f11) - L;
+                round2 = Math.round((ajVar4.f21444e * i14) / f11) - L;
             }
-            if ((ajVar4.f21451l & 8) == 0) {
+            if ((ajVar4.f21450l & 8) == 0) {
                 i28 -= L;
             }
             ((yt) arrayList.get(i26)).l(round, i27, Math.max(0, round2), Math.max(0, i28));
-            this.Y[i26] = ajVar4.f21451l;
+            this.Y[i26] = ajVar4.f21450l;
             i26++;
             i12 = 0;
         }
@@ -182,7 +182,7 @@ public final class ku extends fu {
             ArrayList arrayList = this.X;
             if (i7 < arrayList.size()) {
                 yt ytVar = (yt) arrayList.get(i7);
-                Rect rect2 = this.f22451b;
+                Rect rect2 = this.f22470b;
                 int i10 = rect2.left + ytVar.F;
                 int i11 = ((int) this.M) + rect2.top + ytVar.G;
                 rect.set(i10, i11, ytVar.H + i10, ytVar.I + i11);
@@ -219,8 +219,8 @@ public final class ku extends fu {
 
     @Override
     public final int K() {
-        Rect rect = this.f22451b;
-        return rect.left + this.f22452c + rect.right;
+        Rect rect = this.f22470b;
+        return rect.left + this.f22471c + rect.right;
     }
 
     @Override
@@ -234,7 +234,7 @@ public final class ku extends fu {
             yt ytVar = (yt) obj;
             View view = this.V;
             ytVar.S = view;
-            ImageReceiver imageReceiver = ytVar.f26714c;
+            ImageReceiver imageReceiver = ytVar.f26737c;
             imageReceiver.H0(view);
             imageReceiver.P();
             ImageReceiver imageReceiver2 = ytVar.d;
@@ -266,10 +266,10 @@ public final class ku extends fu {
             Object obj = arrayList.get(i7);
             i7++;
             yt ytVar = (yt) obj;
-            ytVar.f26714c.R();
+            ytVar.f26737c.R();
             ytVar.d.R();
-            ytVar.f26715e = null;
-            z5.q(ytVar.f26712a.f23763a).v(ytVar);
+            ytVar.f26738e = null;
+            z5.q(ytVar.f26735a.f23763a).v(ytVar);
         }
     }
 
@@ -301,7 +301,7 @@ public final class ku extends fu {
         }
         boolean R = kuVar.R();
         int L2 = g0.L(2.0f);
-        kv kvVar = kuVar.f22450a;
+        kv kvVar = kuVar.f22469a;
         if (!R && !kvVar.D()) {
             i7 = kvVar.S - L2;
         } else {
@@ -312,7 +312,7 @@ public final class ku extends fu {
         } else {
             i10 = 0;
         }
-        int i19 = kuVar.f22452c;
+        int i19 = kuVar.f22471c;
         if (i19 > 0 && (i7 > 0 || i10 > 0)) {
             f10 = ((i19 + i7) + i10) / i19;
         } else {
@@ -324,7 +324,7 @@ public final class ku extends fu {
             if (i20 < arrayList.size()) {
                 yt ytVar = (yt) arrayList.get(i20);
                 int i21 = ytVar.F;
-                ImageReceiver imageReceiver = ytVar.f26714c;
+                ImageReceiver imageReceiver = ytVar.f26737c;
                 int round = Math.round(i21 * f10) - i7;
                 int round2 = Math.round(ytVar.H * f10);
                 int[] iArr = kuVar.Y;
@@ -416,7 +416,7 @@ public final class ku extends fu {
                 }
                 float f12 = round;
                 imageReceiver.y0(f12, ytVar.G, round2, ytVar.I);
-                if (!imageReceiver.I() || imageReceiver.f21194h1 != f11) {
+                if (!imageReceiver.I() || imageReceiver.f21197h1 != f11) {
                     canvas.drawRect(f12, ytVar.G, round + round2, i14 + ytVar.I, f23761b0);
                 }
                 ytVar.c(canvas);
@@ -433,7 +433,7 @@ public final class ku extends fu {
     public final boolean Y(MotionEvent motionEvent) {
         ArrayList arrayList = this.X;
         int actionMasked = motionEvent.getActionMasked();
-        Rect rect = this.f22451b;
+        Rect rect = this.f22470b;
         motionEvent.offsetLocation(-rect.left, -rect.top);
         try {
             if (actionMasked == 0) {

@@ -3,19 +3,19 @@ package org.telegram.ui;
 import android.graphics.RectF;
 import org.telegram.messenger.voip.VoIPService;
 public final class ru0 implements Runnable {
-    public final int f49574a;
-    public final Object f49575b;
+    public final int f49553a;
+    public final Object f49554b;
 
     public ru0(Object obj, int i7) {
-        this.f49574a = i7;
-        this.f49575b = obj;
+        this.f49553a = i7;
+        this.f49554b = obj;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f49574a;
+        int i7 = this.f49553a;
         int i10 = 0;
-        Object obj = this.f49575b;
+        Object obj = this.f49554b;
         switch (i7) {
             case 0:
                 su0 su0Var = (su0) obj;
@@ -23,8 +23,8 @@ public final class ru0 implements Runnable {
                 return;
             case 1:
                 ProfileActivity profileActivity = (ProfileActivity) ((bi.x5) obj).f5027c;
-                if (profileActivity.f41784n5 != 1.0f) {
-                    av0 av0Var = profileActivity.f41780n0;
+                if (profileActivity.f41788n5 != 1.0f) {
+                    av0 av0Var = profileActivity.f41784n0;
                     while (av0Var.D0.k(i10) != av0Var.getRealCount() - 1) {
                         i10++;
                     }
@@ -33,9 +33,9 @@ public final class ru0 implements Runnable {
                 }
                 return;
             case 2:
-                ProfileActivity profileActivity2 = ((rv0) obj).f49577b;
+                ProfileActivity profileActivity2 = ((rv0) obj).f49556b;
                 RectF rectF = ProfileActivity.S6;
-                profileActivity2.getMessagesController().d5(profileActivity2.f41712d1, 0, true, new fi.m9(2, profileActivity2, true));
+                profileActivity2.getMessagesController().d5(profileActivity2.f41716d1, 0, true, new fi.m9(2, profileActivity2, true));
                 return;
             case 3:
                 vv0 vv0Var = (vv0) obj;
@@ -49,7 +49,7 @@ public final class ru0 implements Runnable {
                 return;
             case 6:
                 xw0 xw0Var = (xw0) obj;
-                xw0Var.f52004f.add(xw0Var.f52002c);
+                xw0Var.f51997f.add(xw0Var.f51995c);
                 xw0Var.a();
                 return;
             case 7:
@@ -67,8 +67,8 @@ public final class ru0 implements Runnable {
                         hcVar = org.telegram.ui.Components.hc.a0(LaunchActivity.T());
                     }
                     if (hcVar != null) {
-                        org.telegram.ui.Components.cc I = hcVar.I(2131624091, org.telegram.messenger.hd.M0(2131746223, null), org.telegram.messenger.hd.M0(2131746186, null));
-                        I.f32514j = 5000;
+                        org.telegram.ui.Components.cc I = hcVar.I(2131624091, org.telegram.messenger.id.M0(2131746225, null), org.telegram.messenger.id.M0(2131746188, null));
+                        I.f32545j = 5000;
                         I.j();
                         return;
                     }
@@ -80,17 +80,17 @@ public final class ru0 implements Runnable {
                 return;
             case 11:
                 SaveToGallerySettingsActivity saveToGallerySettingsActivity = (SaveToGallerySettingsActivity) obj;
-                saveToGallerySettingsActivity.f41891w.clear();
-                saveToGallerySettingsActivity.getUserConfig().A(saveToGallerySettingsActivity.f41883a, saveToGallerySettingsActivity.f41891w);
+                saveToGallerySettingsActivity.f41895w.clear();
+                saveToGallerySettingsActivity.getUserConfig().A(saveToGallerySettingsActivity.f41887a, saveToGallerySettingsActivity.f41895w);
                 saveToGallerySettingsActivity.e0();
                 return;
             case 12:
                 org.telegram.ui.Components.m20 m20Var = (org.telegram.ui.Components.m20) obj;
                 m20Var.dismiss();
-                vf.c.t(m20Var.getContext(), org.telegram.messenger.hd.M0(2131746617, null));
+                vf.c.t(m20Var.getContext(), org.telegram.messenger.id.M0(2131746619, null));
                 return;
             case 13:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) ((org.telegram.ui.Components.v50) obj).f38860c;
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) ((org.telegram.ui.Components.v50) obj).f38895c;
                 Runnable runnable = secretMediaViewer.m0;
                 if (runnable != null) {
                     runnable.run();
@@ -99,7 +99,7 @@ public final class ru0 implements Runnable {
                 }
                 return;
             case 14:
-                rz0 rz0Var = ((qz0) obj).f49336a;
+                rz0 rz0Var = ((qz0) obj).f49339a;
                 rz0Var.Q = true;
                 rz0Var.N.invalidate();
                 return;
@@ -107,10 +107,10 @@ public final class ru0 implements Runnable {
                 ((org.telegram.messenger.qs) obj).o();
                 return;
             case 16:
-                org.telegram.messenger.g0.V3(((i01) obj).f46538c, true, true);
+                org.telegram.messenger.g0.V3(((i01) obj).f46537c, true, true);
                 return;
             case 17:
-                org.telegram.ui.Components.l41 l41Var = ((a21) obj).f43551a2;
+                org.telegram.ui.Components.l41 l41Var = ((a21) obj).f43554a2;
                 if (l41Var != null) {
                     l41Var.O(true);
                     return;
@@ -124,47 +124,47 @@ public final class ru0 implements Runnable {
                 return;
             case 20:
                 c51 c51Var = (c51) obj;
-                c51Var.m0.a(c51Var.f44677j0.f34410e0, c51Var.f44678k0.isAttachedToWindow());
+                c51Var.m0.a(c51Var.f44680j0.f34347e0, c51Var.f44681k0.isAttachedToWindow());
                 return;
             case 21:
-                ((z81) obj).J.f50664r.f();
+                ((a91) obj).J.f51028r.f();
                 return;
             case 22:
-                ((h91) obj).f46307b.G0();
+                ((i91) obj).f46613b.G0();
                 return;
             case 23:
                 ((VoIPFeedbackActivity) obj).finish();
                 return;
             case 24:
-                ((vb1) obj).f50690a.y();
+                ((wb1) obj).f51054a.y();
                 return;
             case 25:
-                ((wb1) obj).f51049a.y();
+                ((xb1) obj).f51823a.y();
                 return;
             case 26:
-                ec1 ec1Var = ((ub1) obj).f50388b;
-                ec1Var.K0.e();
+                fc1 fc1Var = ((vb1) obj).f50634b;
+                fc1Var.K0.e();
                 org.telegram.ui.Components.voip.e2.d().getClass();
                 if (VoIPService.getSharedInstance() != null) {
                     VoIPService.getSharedInstance().swapSinks();
                 }
-                ec1Var.Y.setCornerRadius(-1.0f);
-                ec1Var.f45278c0.d.release();
-                ec1Var.f45280d0.d.release();
-                ec1Var.f45275b0.release();
-                ec1Var.c();
-                ec1Var.f45308t0.d();
+                fc1Var.Y.setCornerRadius(-1.0f);
+                fc1Var.f45546c0.d.release();
+                fc1Var.f45548d0.d.release();
+                fc1Var.f45543b0.release();
+                fc1Var.c();
+                fc1Var.f45576t0.d();
                 org.telegram.ui.Components.voip.e2.S = false;
-                ec1Var.D0 = false;
-                ec1.l1 = null;
+                fc1Var.D0 = false;
+                fc1.l1 = null;
                 org.telegram.ui.Components.voip.f2.d();
                 return;
             case 27:
-                cc1 cc1Var = (cc1) obj;
-                cc1Var.getClass();
+                dc1 dc1Var = (dc1) obj;
+                dc1Var.getClass();
                 if (VoIPService.getSharedState() != null) {
                     VoIPService.getSharedState().acceptIncomingCall();
-                    if (cc1Var.f44749a.m0 && VoIPService.getSharedInstance() != null) {
+                    if (dc1Var.f45045a.m0 && VoIPService.getSharedInstance() != null) {
                         VoIPService.getSharedInstance().requestVideoCall(false);
                         return;
                     }

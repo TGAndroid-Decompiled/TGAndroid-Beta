@@ -17,22 +17,22 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public class Utilities {
-    public static final Pattern f21330a = Pattern.compile("[\\-0-9]+");
-    public static final SecureRandom f21331b;
-    public static final g5.a f21332c;
+    public static final Pattern f21333a = Pattern.compile("[\\-0-9]+");
+    public static final SecureRandom f21334b;
+    public static final g5.a f21335c;
     public static volatile p5 d;
-    public static volatile p5 f21333e;
-    public static volatile p5 f21334f;
-    public static volatile p5 f21335g;
+    public static volatile p5 f21336e;
+    public static volatile p5 f21337f;
+    public static volatile p5 f21338g;
     public static volatile p5 h;
-    public static volatile p5 f21336i;
-    public static volatile p5 f21337j;
-    public static volatile q5 f21338k;
-    public static final char[] f21339l;
+    public static volatile p5 f21339i;
+    public static volatile p5 f21340j;
+    public static volatile q5 f21341k;
+    public static final char[] f21342l;
 
     static {
         SecureRandom secureRandom = new SecureRandom();
-        f21331b = secureRandom;
+        f21334b = secureRandom;
         long nextLong = secureRandom.nextLong();
         ?? random = new Random(0L);
         long a10 = a8.fa.a(nextLong);
@@ -44,15 +44,15 @@ public class Utilities {
             random.f13516a = a12;
             random.f13517b = a8.fa.a(a12);
         }
-        f21332c = random;
+        f21335c = random;
         d = new p5("stageQueue");
-        f21333e = new p5("globalQueue");
-        f21334f = new p5("cacheClearQueue");
-        f21335g = new p5("searchQueue");
+        f21336e = new p5("globalQueue");
+        f21337f = new p5("cacheClearQueue");
+        f21338g = new p5("searchQueue");
         h = new p5("phoneBookQueue");
-        f21336i = new p5("themeQueue");
-        f21337j = new p5("externalNetworkQueue");
-        f21339l = "0123456789ABCDEF".toCharArray();
+        f21339i = new p5("themeQueue");
+        f21340j = new p5("externalNetworkQueue");
+        f21342l = "0123456789ABCDEF".toCharArray();
         try {
             FileInputStream fileInputStream = new FileInputStream(new File("/dev/urandom"));
             byte[] bArr = new byte[1024];
@@ -70,7 +70,7 @@ public class Utilities {
             return 0L;
         }
         try {
-            Matcher matcher = f21330a.matcher(str);
+            Matcher matcher = f21333a.matcher(str);
             if (matcher.find()) {
                 j3 = Long.parseLong(matcher.group(0));
             }
@@ -224,7 +224,7 @@ public class Utilities {
         for (int i7 = 0; i7 < bArr.length; i7++) {
             byte b10 = bArr[i7];
             int i10 = i7 * 2;
-            char[] cArr2 = f21339l;
+            char[] cArr2 = f21342l;
             cArr[i10] = cArr2[(b10 & 255) >>> 4];
             cArr[i10 + 1] = cArr2[b10 & 15];
         }

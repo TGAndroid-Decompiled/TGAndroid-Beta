@@ -10,26 +10,26 @@ import android.widget.FrameLayout;
 import java.util.HashSet;
 import org.telegram.ui.Components.CheckBox;
 public abstract class ua extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
-    public int f30589a;
-    public boolean f30590b;
-    public final ta[] f30591c;
+    public int f30593a;
+    public boolean f30594b;
+    public final ta[] f30595c;
     public int d;
-    public boolean f30592e;
-    public boolean f30593f;
+    public boolean f30596e;
+    public boolean f30597f;
     public int h;
-    public final Paint f30594n;
-    public final Paint f30595r;
-    public final Paint f30596s;
-    public final Drawable f30597w;
+    public final Paint f30598n;
+    public final Paint f30599r;
+    public final Paint f30600s;
+    public final Drawable f30601w;
 
     public ua(Context context, int i7) {
         super(context);
-        this.f30590b = true;
+        this.f30594b = true;
         this.d = 3;
-        this.f30591c = new ta[i7];
+        this.f30595c = new ta[i7];
         int i10 = 0;
         while (true) {
-            ta[] taVarArr = this.f30591c;
+            ta[] taVarArr = this.f30595c;
             if (i10 < taVarArr.length) {
                 ta taVar = new ta(this, context);
                 taVarArr[i10] = taVar;
@@ -40,12 +40,12 @@ public abstract class ua extends FrameLayout implements org.telegram.ui.ActionBa
                 i10++;
             } else {
                 Paint paint = new Paint();
-                this.f30594n = paint;
+                this.f30598n = paint;
                 paint.setColor(855638016);
-                this.f30595r = new Paint(1);
-                this.f30597w = jg.g.h(context, 2131230880);
+                this.f30599r = new Paint(1);
+                this.f30601w = jg.g.h(context, 2131230880);
                 Paint paint2 = new Paint();
-                this.f30596s = paint2;
+                this.f30600s = paint2;
                 paint2.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.zi, false));
                 return;
             }
@@ -61,22 +61,22 @@ public abstract class ua extends FrameLayout implements org.telegram.ui.ActionBa
     public final void c(int i7, boolean z9, boolean z10) {
         float f10;
         float f11;
-        ta taVar = this.f30591c[i7];
-        di.c4 c4Var = taVar.f30540a;
-        CheckBox checkBox = taVar.f30542c;
+        ta taVar = this.f30595c[i7];
+        di.c4 c4Var = taVar.f30544a;
+        CheckBox checkBox = taVar.f30546c;
         if (checkBox.getVisibility() != 0) {
             checkBox.setVisibility(0);
         }
         checkBox.b(z9, z10);
-        AnimatorSet animatorSet = taVar.f30544f;
+        AnimatorSet animatorSet = taVar.f30548f;
         if (animatorSet != null) {
             animatorSet.cancel();
-            taVar.f30544f = null;
+            taVar.f30548f = null;
         }
         float f12 = 1.0f;
         if (z10) {
             AnimatorSet animatorSet2 = new AnimatorSet();
-            taVar.f30544f = animatorSet2;
+            taVar.f30548f = animatorSet2;
             if (z9) {
                 f11 = 0.8875f;
             } else {
@@ -87,9 +87,9 @@ public abstract class ua extends FrameLayout implements org.telegram.ui.ActionBa
                 f12 = 0.8875f;
             }
             animatorSet2.playTogether(ofFloat, ObjectAnimator.ofFloat(c4Var, "scaleY", f12));
-            taVar.f30544f.setDuration(200L);
-            taVar.f30544f.addListener(new ch.y(25, taVar, z9));
-            taVar.f30544f.start();
+            taVar.f30548f.setDuration(200L);
+            taVar.f30548f.addListener(new ch.y(25, taVar, z9));
+            taVar.f30548f.start();
         } else {
             if (z9) {
                 f10 = 0.8875f;
@@ -112,11 +112,11 @@ public abstract class ua extends FrameLayout implements org.telegram.ui.ActionBa
         boolean z14;
         int i10;
         this.d = i7;
-        this.f30592e = z9;
-        this.f30593f = z10;
+        this.f30596e = z9;
+        this.f30597f = z10;
         int i11 = 0;
         while (true) {
-            ta[] taVarArr = this.f30591c;
+            ta[] taVarArr = this.f30595c;
             if (i11 < taVarArr.length) {
                 bg.t0 t0Var = null;
                 if ((!z9 && !z10) || (i11 != 0 && i11 != i7 - 1)) {
@@ -166,7 +166,7 @@ public abstract class ua extends FrameLayout implements org.telegram.ui.ActionBa
 
     public final void e(int i7, Object obj, Object obj2, int i10) {
         this.h = i7;
-        ta[] taVarArr = this.f30591c;
+        ta[] taVarArr = this.f30595c;
         if (obj == null) {
             taVarArr[i10].setVisibility(8);
             taVarArr[i10].clearAnimation();
@@ -180,7 +180,7 @@ public abstract class ua extends FrameLayout implements org.telegram.ui.ActionBa
     public final void invalidate() {
         super.invalidate();
         for (int i7 = 0; i7 < this.d; i7++) {
-            this.f30591c[i7].invalidate();
+            this.f30595c[i7].invalidate();
         }
     }
 
@@ -192,13 +192,13 @@ public abstract class ua extends FrameLayout implements org.telegram.ui.ActionBa
             return;
         }
         int L = org.telegram.messenger.g0.L(12.0f);
-        if (this.f30592e) {
+        if (this.f30596e) {
             i13 = org.telegram.messenger.g0.L(12.0f);
         } else {
             i13 = 0;
         }
         for (int i14 = 0; i14 < this.d; i14++) {
-            ta[] taVarArr = this.f30591c;
+            ta[] taVarArr = this.f30595c;
             int measuredWidth = taVarArr[i14].getMeasuredWidth();
             ta taVar = taVarArr[i14];
             taVar.layout(L, i13, L + measuredWidth, taVar.getMeasuredHeight() + i13);
@@ -214,7 +214,7 @@ public abstract class ua extends FrameLayout implements org.telegram.ui.ActionBa
         float f10 = 3.0f;
         int i13 = 0;
         if (this.d == 1) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f30589a, 1073741824), org.telegram.messenger.camera.q.B(3.0f, this.f30589a, 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f30593a, 1073741824), org.telegram.messenger.camera.q.B(3.0f, this.f30593a, 1073741824));
             setPadding(0, 0, 0, org.telegram.messenger.g0.L(3.0f));
             return;
         }
@@ -227,20 +227,20 @@ public abstract class ua extends FrameLayout implements org.telegram.ui.ActionBa
         } else {
             L = org.telegram.messenger.g0.L(180.0f);
         }
-        if (this.f30592e) {
+        if (this.f30596e) {
             i11 = org.telegram.messenger.g0.L(12.0f);
         } else {
             i11 = 0;
         }
         int i16 = i11 + L;
-        if (this.f30593f) {
+        if (this.f30597f) {
             f10 = 12.0f;
         }
         setMeasuredDimension(size, org.telegram.messenger.g0.L(f10) + i16);
         while (true) {
             int i17 = this.d;
             if (i13 < i17) {
-                ta taVar = this.f30591c[i13];
+                ta taVar = this.f30595c[i13];
                 if (i13 == i17 - 1) {
                     i12 = L2;
                 } else {
@@ -256,8 +256,8 @@ public abstract class ua extends FrameLayout implements org.telegram.ui.ActionBa
     }
 
     public void setSize(int i7) {
-        if (this.f30589a != i7) {
-            this.f30589a = i7;
+        if (this.f30593a != i7) {
+            this.f30593a = i7;
             requestLayout();
         }
     }
@@ -265,7 +265,7 @@ public abstract class ua extends FrameLayout implements org.telegram.ui.ActionBa
     @Override
     public final void updateColors() {
         try {
-            this.f30596s.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.zi, false));
+            this.f30600s.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.zi, false));
             invalidate();
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

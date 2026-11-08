@@ -2,12 +2,12 @@ package lc;
 
 import java.nio.ByteBuffer;
 public abstract class b {
-    public int f18228a;
-    public int f18229b;
-    public int f18230c;
+    public int f18231a;
+    public int f18232b;
+    public int f18233c;
 
     public final int a() {
-        return this.f18229b + 1 + this.f18230c;
+        return this.f18232b + 1 + this.f18233c;
     }
 
     public abstract void b(ByteBuffer byteBuffer);

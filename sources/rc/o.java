@@ -5,8 +5,8 @@ import java.nio.ByteBuffer;
 import java.util.zip.Deflater;
 import java.util.zip.DeflaterOutputStream;
 public final class o extends w {
-    public static final byte[] f54371e = {0, 0, -1, -1};
-    public int f54372c;
+    public static final byte[] f54463e = {0, 0, -1, -1};
+    public int f54464c;
     public f5.u d;
 
     public static byte[] a(byte[] r13) {
@@ -14,7 +14,7 @@ public final class o extends w {
     }
 
     public final byte[] b(byte[] bArr) {
-        int i7 = this.f54372c;
+        int i7 = this.f54464c;
         if (i7 == 32768 || bArr.length < i7) {
             try {
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -32,28 +32,28 @@ public final class o extends w {
     }
 
     public final byte[] c(byte[] bArr) {
-        f5.u uVar = new f5.u(bArr.length + 4, 13);
-        uVar.n(bArr);
-        uVar.n(f54371e);
+        f5.u uVar = new f5.u(bArr.length + 4, 14);
+        uVar.r(bArr);
+        uVar.r(f54463e);
         if (this.d == null) {
-            this.d = new f5.u(0, 13);
+            this.d = new f5.u(0, 14);
         }
         f5.u uVar2 = this.d;
         int i7 = uVar2.f11190b;
         try {
             c.a(uVar, uVar2);
             f5.u uVar3 = this.d;
-            byte[] r10 = uVar3.r(i7, uVar3.f11190b);
+            byte[] w10 = uVar3.w(i7, uVar3.f11190b);
             f5.u uVar4 = this.d;
             if (((ByteBuffer) uVar4.f11191c).capacity() > 0) {
                 int i10 = uVar4.f11190b;
-                byte[] r11 = uVar4.r(i10, i10);
-                ByteBuffer wrap = ByteBuffer.wrap(r11);
+                byte[] w11 = uVar4.w(i10, i10);
+                ByteBuffer wrap = ByteBuffer.wrap(w11);
                 uVar4.f11191c = wrap;
-                wrap.position(r11.length);
-                uVar4.f11190b = r11.length;
+                wrap.position(w11.length);
+                uVar4.f11190b = w11.length;
             }
-            return r10;
+            return w10;
         } catch (Exception e10) {
             throw new v(43, rf.b.i("Failed to decompress the message: ", e10.getMessage()), e10);
         }

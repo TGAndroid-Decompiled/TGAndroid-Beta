@@ -55,7 +55,7 @@ public final class vb implements Runnable {
                 qa0 qa0Var = new qa0();
                 qa0Var.n(o12, o13, o14, o4);
                 qa0Var.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
-                qa0Var.s(bitmap, wallPaper.settings.intensity);
+                qa0Var.s(wallPaper.settings.intensity, bitmap);
                 qa0Var.draw(canvas);
                 z9 = false;
                 i7 = g10;
@@ -91,9 +91,9 @@ public final class vb implements Runnable {
             canvas = new Canvas(createBitmap);
         }
         zg0Var.b();
-        Bitmap createBitmap2 = Bitmap.createBitmap(zg0Var.f40971b, zg0Var.f40973c, Bitmap.Config.ARGB_8888);
+        Bitmap createBitmap2 = Bitmap.createBitmap(zg0Var.f40990b, zg0Var.f40992c, Bitmap.Config.ARGB_8888);
         if (z9) {
-            i11 = zg0Var.f40976e[0] - 1;
+            i11 = zg0Var.f40995e[0] - 1;
         } else {
             i11 = 0;
         }
@@ -119,7 +119,7 @@ public final class vb implements Runnable {
     }
 
     public final void c(BitmapDrawable bitmapDrawable) {
-        g0.h3(new y4(19, this, bitmapDrawable));
+        g0.h3(new x4(19, this, bitmapDrawable));
     }
 
     public final void d() {

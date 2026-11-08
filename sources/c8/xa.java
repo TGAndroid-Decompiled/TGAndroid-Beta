@@ -4,6 +4,7 @@ import android.util.LongSparseArray;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.c20;
+import org.telegram.ui.o61;
 public abstract class xa {
     public static boolean f5953a;
     public static boolean f5954b;
@@ -34,22 +35,22 @@ public abstract class xa {
             f5953a = true;
             f5955c = new ArrayList();
             d = new LongSparseArray();
-            Utilities.f21333e.c(new org.telegram.ui.Wallet.z(6));
+            Utilities.f21336e.c(new o61(8));
         }
     }
 
     public static void c(org.telegram.ui.web.y0 y0Var) {
         if (y0Var != null && y0Var.d != null) {
             b();
-            org.telegram.ui.web.y0 y0Var2 = (org.telegram.ui.web.y0) d.get(y0Var.f51395a);
+            org.telegram.ui.web.y0 y0Var2 = (org.telegram.ui.web.y0) d.get(y0Var.f51402a);
             if (y0Var2 != null) {
                 y0Var2.d = y0Var.d;
             } else {
                 f5955c.add(y0Var);
-                d.put(y0Var.f51395a, y0Var);
+                d.put(y0Var.f51402a, y0Var);
             }
-            org.telegram.messenger.g0.r(new org.telegram.ui.Wallet.z(5));
-            org.telegram.messenger.g0.i3(new org.telegram.ui.Wallet.z(5), 1000L);
+            org.telegram.messenger.g0.r(new o61(7));
+            org.telegram.messenger.g0.i3(new o61(7), 1000L);
         }
     }
 }

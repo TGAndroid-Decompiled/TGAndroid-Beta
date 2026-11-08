@@ -1,16 +1,11 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.tl.TL_account;
-public final class ja1 extends ya1 {
-    public final TwoStepVerificationActivity f46915k0;
-
-    public ja1(TwoStepVerificationActivity twoStepVerificationActivity, int i7, TL_account.Password password) {
-        super(i7, 4, password);
-        this.f46915k0 = twoStepVerificationActivity;
-    }
-
+import android.view.ViewGroup;
+import org.telegram.ui.Components.RadialProgressView;
+public final class ja1 extends RadialProgressView {
     @Override
-    public final void G0() {
-        this.f46915k0.N = true;
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, i10);
+        ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = org.telegram.messenger.g0.f22557m / 2;
     }
 }

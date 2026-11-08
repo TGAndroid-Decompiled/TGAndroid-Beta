@@ -62,7 +62,7 @@ public final class l implements c, g6.h {
                 if (t51Var != null) {
                     j3 = t51Var.S();
                 }
-            } else if (i7 == 1 && (ijVar = (B = MediaController.B()).f21292u0) != null) {
+            } else if (i7 == 1 && (ijVar = (B = MediaController.B()).f21295u0) != null) {
                 j3 = B.D(ijVar);
             }
             if (j3 >= 0) {

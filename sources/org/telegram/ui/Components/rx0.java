@@ -6,14 +6,14 @@ import android.graphics.RectF;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class rx0 extends FrameLayout {
-    public final tx0 f37772a;
-    public boolean f37773b;
-    public boolean f37774c;
+    public final tx0 f37801a;
+    public boolean f37802b;
+    public boolean f37803c;
     public boolean d;
 
     public rx0(tx0 tx0Var, View view, boolean z9) {
         super(tx0Var.getContext());
-        this.f37772a = tx0Var;
+        this.f37801a = tx0Var;
         setWillNotDraw(false);
         if (!z9) {
             setPadding(org.telegram.messenger.g0.L(12.66f), org.telegram.messenger.g0.L(9.33f), org.telegram.messenger.g0.L(12.66f), org.telegram.messenger.g0.L(9.33f));
@@ -28,13 +28,13 @@ public final class rx0 extends FrameLayout {
         float f11;
         float f12;
         float f13;
-        boolean z9 = this.f37774c;
-        tx0 tx0Var = this.f37772a;
+        boolean z9 = this.f37803c;
+        tx0 tx0Var = this.f37801a;
         if (z9 || this.d) {
             canvas2 = canvas;
             float L = org.telegram.messenger.g0.L(10.0f);
-            float[] fArr = tx0Var.f38421c;
-            boolean z10 = this.f37774c;
+            float[] fArr = tx0Var.f38444c;
+            boolean z10 = this.f37803c;
             if (z10) {
                 f10 = L;
             } else {
@@ -62,7 +62,7 @@ public final class rx0 extends FrameLayout {
             }
             fArr[7] = L;
             fArr[6] = L;
-            tx0Var.f38420b.rewind();
+            tx0Var.f38443b.rewind();
             RectF rectF = org.telegram.messenger.g0.P;
             float f14 = tx0Var.h;
             float width = getWidth() - tx0Var.h;
@@ -74,13 +74,13 @@ public final class rx0 extends FrameLayout {
                 f13 = 1.0f;
             }
             rectF.set(f14, f14, width, (f15 * f13) + height);
-            tx0Var.f38420b.addRoundRect(rectF, tx0Var.f38421c, Path.Direction.CW);
-            if (this.f37773b) {
-                canvas2.drawPath(tx0Var.f38420b, tx0Var.d);
+            tx0Var.f38443b.addRoundRect(rectF, tx0Var.f38444c, Path.Direction.CW);
+            if (this.f37802b) {
+                canvas2.drawPath(tx0Var.f38443b, tx0Var.d);
             }
-            canvas2.drawPath(tx0Var.f38420b, tx0Var.f38422e);
+            canvas2.drawPath(tx0Var.f38443b, tx0Var.f38445e);
         } else {
-            if (this.f37773b) {
+            if (this.f37802b) {
                 float f16 = tx0Var.h;
                 canvas2 = canvas;
                 canvas2.drawRect(f16, f16, getWidth() + tx0Var.h, getHeight() + tx0Var.h, tx0Var.d);
@@ -88,12 +88,12 @@ public final class rx0 extends FrameLayout {
                 canvas2 = canvas;
             }
             float f17 = tx0Var.h;
-            canvas2.drawRect(f17, f17, getWidth() - tx0Var.h, getHeight() + tx0Var.h, tx0Var.f38422e);
+            canvas2.drawRect(f17, f17, getWidth() - tx0Var.h, getHeight() + tx0Var.h, tx0Var.f38445e);
         }
         super.onDraw(canvas2);
     }
 
     public void setFilled(boolean z9) {
-        this.f37773b = z9;
+        this.f37802b = z9;
     }
 }

@@ -11,26 +11,26 @@ import android.view.View;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.RadialProgress2;
 public abstract class ru extends fu implements x5 {
-    public static Paint f25335o0;
-    public static ColorMatrixColorFilter f25336p0;
+    public static Paint f25330o0;
+    public static ColorMatrixColorFilter f25331p0;
     public final boolean W;
     public final ImageReceiver X;
     public final ImageReceiver Y;
     public Bitmap Z;
-    public RadialProgress2 f25337a0;
-    public int f25338b0;
-    public int f25339c0;
-    public boolean f25340d0;
-    public final int f25341e0;
-    public int f25342f0;
-    public boolean f25343g0;
-    public boolean f25344h0;
-    public int f25345i0;
-    public int f25346j0;
-    public final int f25347k0;
-    public boolean f25348l0;
+    public RadialProgress2 f25332a0;
+    public int f25333b0;
+    public int f25334c0;
+    public boolean f25335d0;
+    public final int f25336e0;
+    public int f25337f0;
+    public boolean f25338g0;
+    public boolean f25339h0;
+    public int f25340i0;
+    public int f25341j0;
+    public final int f25342k0;
+    public boolean f25343l0;
     public final Path m0;
-    public final fv f25349n0;
+    public final fv f25344n0;
 
     public ru(kv kvVar, Rect rect, int i7, boolean z9) {
         super(kvVar, rect, i7);
@@ -38,24 +38,24 @@ public abstract class ru extends fu implements x5 {
         this.X = imageReceiver;
         ImageReceiver imageReceiver2 = new ImageReceiver(null);
         this.Y = imageReceiver2;
-        this.f25342f0 = -1;
-        this.f25347k0 = g0.L(48.0f);
+        this.f25337f0 = -1;
+        this.f25342k0 = g0.L(48.0f);
         this.m0 = new Path();
-        this.f25349n0 = new fv();
+        this.f25344n0 = new fv();
         this.W = z9;
-        this.f25341e0 = z5.q(kvVar.f23763a).k();
-        imageReceiver.f21233z1 = true;
-        imageReceiver2.f21233z1 = true;
-        imageReceiver.f21192g1 = new h9.f1(this, 24);
+        this.f25336e0 = z5.q(kvVar.f23763a).k();
+        imageReceiver.f21236z1 = true;
+        imageReceiver2.f21236z1 = true;
+        imageReceiver.f21195g1 = new h9.f1(this, 24);
     }
 
     @Override
     public final void A(int i7, Rect rect) {
         int i10;
-        Rect rect2 = this.f22451b;
+        Rect rect2 = this.f22470b;
         int i11 = rect2.left;
-        int i12 = (this.f22450a.C - i11) - rect2.right;
-        int i13 = this.f25338b0;
+        int i12 = (this.f22469a.C - i11) - rect2.right;
+        int i13 = this.f25333b0;
         if (i12 > i13) {
             i10 = (i12 - i13) / 2;
         } else {
@@ -63,7 +63,7 @@ public abstract class ru extends fu implements x5 {
         }
         int i14 = i10 + i11;
         int i15 = ((int) this.M) + rect2.top;
-        rect.set(i14, i15, i13 + i14, this.f25339c0 + i15);
+        rect.set(i14, i15, i13 + i14, this.f25334c0 + i15);
     }
 
     @Override
@@ -84,17 +84,17 @@ public abstract class ru extends fu implements x5 {
         } else {
             i10 = 2131753948;
         }
-        String M0 = hd.M0(i10, null);
-        if (r0() && !this.f25349n0.b()) {
-            return TextUtils.concat(M0, ", ", hd.M0(2131745263, null));
+        String M0 = id.M0(i10, null);
+        if (r0() && !this.f25344n0.b()) {
+            return TextUtils.concat(M0, ", ", id.M0(2131745265, null));
         }
         return M0;
     }
 
     @Override
     public final int I() {
-        Rect rect = this.f22451b;
-        return rect.top + this.f25339c0 + rect.bottom;
+        Rect rect = this.f22470b;
+        return rect.top + this.f25334c0 + rect.bottom;
     }
 
     @Override
@@ -104,17 +104,17 @@ public abstract class ru extends fu implements x5 {
 
     @Override
     public final int K() {
-        Rect rect = this.f22451b;
-        return rect.left + this.f25338b0 + rect.right;
+        Rect rect = this.f22470b;
+        return rect.left + this.f25333b0 + rect.right;
     }
 
     @Override
     public final void M(String str) {
-        RadialProgress2 radialProgress2 = this.f25337a0;
+        RadialProgress2 radialProgress2 = this.f25332a0;
         if (radialProgress2 != null) {
             radialProgress2.p(true, 1.0f);
         }
-        if (p0() && (i0() || this.f25348l0)) {
+        if (p0() && (i0() || this.f25343l0)) {
             j0(true);
         }
         t0(true);
@@ -136,8 +136,8 @@ public abstract class ru extends fu implements x5 {
     @Override
     public final boolean U(int i7, View view) {
         if (r0()) {
-            fv fvVar = this.f25349n0;
-            if (!fvVar.f22462b && fvVar.f22465f == null) {
+            fv fvVar = this.f25344n0;
+            if (!fvVar.f22481b && fvVar.f22484f == null) {
                 ImageReceiver imageReceiver = this.X;
                 float f10 = imageReceiver.M0;
                 float f11 = imageReceiver.N0;
@@ -145,7 +145,7 @@ public abstract class ru extends fu implements x5 {
                 return true;
             }
         }
-        kv kvVar = this.f22450a;
+        kv kvVar = this.f22469a;
         org.telegram.ui.Cells.l1 l1Var = kvVar.F;
         if (l1Var != null) {
             l1Var.b2(kvVar.E, n0());
@@ -159,7 +159,7 @@ public abstract class ru extends fu implements x5 {
         this.X.R();
         this.Y.R();
         this.Z = null;
-        z5.q(this.f22450a.f23763a).v(this);
+        z5.q(this.f22469a.f23763a).v(this);
     }
 
     @Override
@@ -174,13 +174,13 @@ public abstract class ru extends fu implements x5 {
 
     @Override
     public final int getObserverTag() {
-        return this.f25341e0;
+        return this.f25336e0;
     }
 
     @Override
     public final void i(long j3, long j10) {
         float f10;
-        RadialProgress2 radialProgress2 = this.f25337a0;
+        RadialProgress2 radialProgress2 = this.f25332a0;
         if (radialProgress2 != null) {
             if (j10 <= 0) {
                 f10 = 0.0f;
@@ -189,7 +189,7 @@ public abstract class ru extends fu implements x5 {
             }
             radialProgress2.p(true, Math.min(1.0f, f10));
         }
-        if (this.f25342f0 != 1) {
+        if (this.f25337f0 != 1) {
             t0(true);
         }
     }
@@ -201,7 +201,7 @@ public abstract class ru extends fu implements x5 {
     public abstract void j0(boolean z9);
 
     public boolean k0() {
-        if ((z5.q(this.f22450a.f23763a).m() & 1) != 0) {
+        if ((z5.q(this.f22469a.f23763a).m() & 1) != 0) {
             return true;
         }
         return false;
@@ -211,13 +211,13 @@ public abstract class ru extends fu implements x5 {
 
     public final void m0() {
         boolean z9;
-        this.X.y0(0.0f, 0.0f, this.f25338b0, this.f25339c0);
-        int i7 = this.f25338b0;
-        int i10 = this.f25347k0;
-        this.f25345i0 = (i7 - i10) / 2;
-        this.f25346j0 = (this.f25339c0 - i10) / 2;
+        this.X.y0(0.0f, 0.0f, this.f25333b0, this.f25334c0);
+        int i7 = this.f25333b0;
+        int i10 = this.f25342k0;
+        this.f25340i0 = (i7 - i10) / 2;
+        this.f25341j0 = (this.f25334c0 - i10) / 2;
         boolean k02 = k0();
-        this.f25340d0 = k02;
+        this.f25335d0 = k02;
         if (!k02 && !l0()) {
             z9 = false;
         } else {
@@ -249,13 +249,13 @@ public abstract class ru extends fu implements x5 {
             if (n10 != this.Z || imageReceiver.n() == null) {
                 this.Z = n10;
                 imageReceiver.v0(Utilities.D(n10, false));
-                if (f25336p0 == null) {
+                if (f25331p0 == null) {
                     ColorMatrix colorMatrix = new ColorMatrix();
                     g0.n2(colorMatrix, 0.9f);
                     g0.i(colorMatrix, 0.6f);
-                    f25336p0 = new ColorMatrixColorFilter(colorMatrix);
+                    f25331p0 = new ColorMatrixColorFilter(colorMatrix);
                 }
-                imageReceiver.f21206o1 = f25336p0;
+                imageReceiver.f21209o1 = f25331p0;
             }
         }
     }
@@ -264,28 +264,28 @@ public abstract class ru extends fu implements x5 {
         View view;
         boolean z10;
         View view2;
-        RadialProgress2 radialProgress2 = this.f25337a0;
-        int i7 = this.f25347k0;
+        RadialProgress2 radialProgress2 = this.f25332a0;
+        int i7 = this.f25342k0;
         if (radialProgress2 == null && (view2 = this.V) != null) {
             RadialProgress2 radialProgress22 = new RadialProgress2(view2, null);
-            this.f25337a0 = radialProgress22;
+            this.f25332a0 = radialProgress22;
             radialProgress22.d = -1;
             radialProgress22.setColors(1711276032, 2130706432, -1, -2500135);
-            RadialProgress2 radialProgress23 = this.f25337a0;
-            int i10 = this.f25345i0;
-            int i11 = this.f25346j0;
+            RadialProgress2 radialProgress23 = this.f25332a0;
+            int i10 = this.f25340i0;
+            int i11 = this.f25341j0;
             radialProgress23.r(i10, i11, i10 + i7, i7 + i11);
         } else if (radialProgress2 != null && (view = this.V) != null) {
             radialProgress2.n(view);
-            RadialProgress2 radialProgress24 = this.f25337a0;
-            int i12 = this.f25345i0;
-            int i13 = this.f25346j0;
+            RadialProgress2 radialProgress24 = this.f25332a0;
+            int i12 = this.f25340i0;
+            int i13 = this.f25341j0;
             radialProgress24.r(i12, i13, i12 + i7, i7 + i13);
         }
         String o02 = o0();
         if (TextUtils.isEmpty(o02)) {
-            this.f25342f0 = -1;
-            RadialProgress2 radialProgress25 = this.f25337a0;
+            this.f25337f0 = -1;
+            RadialProgress2 radialProgress25 = this.f25332a0;
             if (radialProgress25 != null) {
                 radialProgress25.setIcon(4, false, false);
                 return;
@@ -300,56 +300,56 @@ public abstract class ru extends fu implements x5 {
             z10 = false;
         }
         boolean l02 = l0();
-        kv kvVar = this.f22450a;
+        kv kvVar = this.f22469a;
         if (!l02 && (!p0() || !z10)) {
             z5.q(kvVar.f23763a).a(o02, null, this);
             float f10 = 0.0f;
-            if (!this.f25340d0 && !this.f25348l0 && !w7.G(kvVar.f23763a).S(o02)) {
+            if (!this.f25335d0 && !this.f25343l0 && !w7.G(kvVar.f23763a).S(o02)) {
                 if (q0()) {
-                    this.f25342f0 = 3;
-                    RadialProgress2 radialProgress26 = this.f25337a0;
+                    this.f25337f0 = 3;
+                    RadialProgress2 radialProgress26 = this.f25332a0;
                     if (radialProgress26 != null) {
                         radialProgress26.setIcon(0, true, z9);
                     }
                 } else {
-                    this.f25342f0 = 0;
-                    RadialProgress2 radialProgress27 = this.f25337a0;
+                    this.f25337f0 = 0;
+                    RadialProgress2 radialProgress27 = this.f25332a0;
                     if (radialProgress27 != null) {
                         radialProgress27.setIcon(2, true, z9);
                     }
                 }
             } else {
-                this.f25342f0 = 1;
+                this.f25337f0 = 1;
                 Float w10 = gc.D().w(o02);
                 if (w10 != null) {
                     f10 = w10.floatValue();
                 }
-                RadialProgress2 radialProgress28 = this.f25337a0;
+                RadialProgress2 radialProgress28 = this.f25332a0;
                 if (radialProgress28 != null) {
                     radialProgress28.setIcon(3, true, z9);
                 }
             }
-            RadialProgress2 radialProgress29 = this.f25337a0;
+            RadialProgress2 radialProgress29 = this.f25332a0;
             if (radialProgress29 != null) {
                 radialProgress29.p(false, f10);
             }
         } else {
             z5.q(kvVar.f23763a).v(this);
             if (q0() && !z10) {
-                this.f25342f0 = 3;
-                RadialProgress2 radialProgress210 = this.f25337a0;
+                this.f25337f0 = 3;
+                RadialProgress2 radialProgress210 = this.f25332a0;
                 if (radialProgress210 != null) {
                     radialProgress210.setIcon(0, false, z9);
                 }
-            } else if (p0() && !z10 && !i0() && !this.f25348l0) {
-                this.f25342f0 = 2;
-                RadialProgress2 radialProgress211 = this.f25337a0;
+            } else if (p0() && !z10 && !i0() && !this.f25343l0) {
+                this.f25337f0 = 2;
+                RadialProgress2 radialProgress211 = this.f25332a0;
                 if (radialProgress211 != null) {
                     radialProgress211.setIcon(8, false, z9);
                 }
             } else {
-                this.f25342f0 = -1;
-                RadialProgress2 radialProgress212 = this.f25337a0;
+                this.f25337f0 = -1;
+                RadialProgress2 radialProgress212 = this.f25332a0;
                 if (radialProgress212 != null) {
                     radialProgress212.setIcon(4, false, z9);
                 }
@@ -375,7 +375,7 @@ public abstract class ru extends fu implements x5 {
             L = g0.L(i10);
         }
         int min = Math.min(g0.L(3.0f), L);
-        kv kvVar = this.f22450a;
+        kv kvVar = this.f22469a;
         if (kvVar.D()) {
             imageReceiver.J0(g0.L(12.0f));
             return;

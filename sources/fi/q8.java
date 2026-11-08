@@ -2,7 +2,7 @@ package fi;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.qp;
 import org.telegram.tgnet.TLRPC;
 public final class q8 {
@@ -105,10 +105,10 @@ public final class q8 {
         ArrayList arrayList = this.f12680c;
         int i7 = this.f12678a;
         if (i7 == 4) {
-            return !arrayList.contains(Long.valueOf(user.f27102id));
+            return !arrayList.contains(Long.valueOf(user.f27105id));
         }
         if (i7 == 2) {
-            if (arrayList.contains(Long.valueOf(user.f27102id)) || !user.contact) {
+            if (arrayList.contains(Long.valueOf(user.f27105id)) || !user.contact) {
                 return false;
             }
             return true;
@@ -116,11 +116,11 @@ public final class q8 {
             return user.close_friend;
         } else {
             if (i7 == 3) {
-                if (arrayList.contains(Long.valueOf(user.f27102id))) {
+                if (arrayList.contains(Long.valueOf(user.f27105id))) {
                     return true;
                 }
                 for (ArrayList arrayList2 : this.d.values()) {
-                    if (arrayList2.contains(Long.valueOf(user.f27102id))) {
+                    if (arrayList2.contains(Long.valueOf(user.f27105id))) {
                         return true;
                     }
                 }
@@ -135,11 +135,11 @@ public final class q8 {
         int size;
         ArrayList arrayList = this.f12682f;
         if (!arrayList.isEmpty()) {
-            return hd.G(arrayList.size(), "StoryPrivacyRecipients", new Object[0]);
+            return id.G(arrayList.size(), "StoryPrivacyRecipients", new Object[0]);
         }
         ArrayList arrayList2 = this.f12679b;
         if (arrayList2.isEmpty()) {
-            return hd.M0(2131744534, null);
+            return id.M0(2131744536, null);
         }
         TLRPC.InputPrivacyRule inputPrivacyRule3 = (TLRPC.InputPrivacyRule) arrayList2.get(0);
         int i7 = this.f12678a;
@@ -150,14 +150,14 @@ public final class q8 {
                 inputPrivacyRule2 = null;
             }
             if ((inputPrivacyRule2 instanceof TLRPC.TL_inputPrivacyValueDisallowUsers) && (size = ((TLRPC.TL_inputPrivacyValueDisallowUsers) inputPrivacyRule2).users.size()) > 0) {
-                return hd.G(size, "StoryPrivacyEveryoneExclude", new Object[0]);
+                return id.G(size, "StoryPrivacyEveryoneExclude", new Object[0]);
             }
-            return hd.M0(2131744546, null);
+            return id.M0(2131744548, null);
         } else if (i7 == 1) {
-            return hd.M0(2131744553, null);
+            return id.M0(2131744555, null);
         } else {
             if (i7 == 3 && (inputPrivacyRule3 instanceof TLRPC.TL_inputPrivacyValueAllowUsers)) {
-                return hd.G(((TLRPC.TL_inputPrivacyValueAllowUsers) inputPrivacyRule3).users.size(), "StoryPrivacyContacts", new Object[0]);
+                return id.G(((TLRPC.TL_inputPrivacyValueAllowUsers) inputPrivacyRule3).users.size(), "StoryPrivacyContacts", new Object[0]);
             }
             if (i7 == 2) {
                 if (arrayList2.size() >= 2) {
@@ -168,22 +168,22 @@ public final class q8 {
                 if (inputPrivacyRule instanceof TLRPC.TL_inputPrivacyValueDisallowUsers) {
                     int size2 = ((TLRPC.TL_inputPrivacyValueDisallowUsers) inputPrivacyRule).users.size();
                     if (size2 > 0) {
-                        return hd.G(size2, "StoryPrivacyContactsExclude", new Object[0]);
+                        return id.G(size2, "StoryPrivacyContactsExclude", new Object[0]);
                     }
-                    return hd.M0(2131744561, null);
+                    return id.M0(2131744563, null);
                 }
-                return hd.M0(2131744561, null);
+                return id.M0(2131744563, null);
             } else if (i7 == 0) {
                 if (inputPrivacyRule3 instanceof TLRPC.TL_inputPrivacyValueAllowUsers) {
                     int size3 = ((TLRPC.TL_inputPrivacyValueAllowUsers) inputPrivacyRule3).users.size();
                     if (size3 <= 0) {
-                        return hd.M0(2131744534, null);
+                        return id.M0(2131744536, null);
                     }
-                    return hd.G(size3, "StoryPrivacyContacts", new Object[0]);
+                    return id.G(size3, "StoryPrivacyContacts", new Object[0]);
                 }
-                return hd.M0(2131744534, null);
+                return id.M0(2131744536, null);
             } else {
-                return hd.M0(2131744534, null);
+                return id.M0(2131744536, null);
             }
         }
     }

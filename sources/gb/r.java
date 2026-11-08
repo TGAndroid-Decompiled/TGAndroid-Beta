@@ -12,7 +12,7 @@ public final class r {
             System.loadLibrary("datastore_shared_counter");
             return new m1.b0(new m1.f0(y0Var, new m1.y(cVar, 1), aVar), c8.d0.a(new be.l(nVar, (id.c) null, 8)), f1Var, cVar);
         } catch (SecurityException | UnsatisfiedLinkError unused) {
-            return new m1.b0(new m1.f0(y0Var, m1.e0.f19363b, aVar), c8.d0.a(new be.l(nVar, (id.c) null, 8)), f1Var, cVar);
+            return new m1.b0(new m1.f0(y0Var, m1.e0.f19366b, aVar), c8.d0.a(new be.l(nVar, (id.c) null, 8)), f1Var, cVar);
         }
     }
 

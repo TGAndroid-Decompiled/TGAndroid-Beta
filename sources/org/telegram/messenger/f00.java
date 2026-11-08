@@ -2,18 +2,18 @@ package org.telegram.messenger;
 
 import android.content.SharedPreferences;
 public final class f00 implements Runnable {
-    public final int f22319a;
-    public final k00 f22320b;
+    public final int f22338a;
+    public final k00 f22339b;
 
     public f00(k00 k00Var, int i7) {
-        this.f22319a = i7;
-        this.f22320b = k00Var;
+        this.f22338a = i7;
+        this.f22339b = k00Var;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f22319a;
-        k00 k00Var = this.f22320b;
+        int i7 = this.f22338a;
+        k00 k00Var = this.f22339b;
         switch (i7) {
             case 0:
                 qs f10 = qs.f(k00Var.currentAccount);
@@ -21,8 +21,8 @@ public final class f00 implements Runnable {
                 f10.k(2, 512);
                 return;
             default:
-                k00Var.f23637a.b();
-                k00Var.f23638b.b();
+                k00Var.f23640a.b();
+                k00Var.f23641b.b();
                 k00Var.d.clear();
                 SharedPreferences.Editor edit = k00Var.getUserConfig().k().edit();
                 for (String str : k00Var.getUserConfig().k().getAll().keySet()) {

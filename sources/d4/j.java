@@ -68,7 +68,7 @@ public abstract class j implements c4.e {
         ia.f(z9);
         h hVar = (h) iVar;
         if (!hVar.isEndOfStream()) {
-            long j3 = hVar.f17173e;
+            long j3 = hVar.f17176e;
             if (j3 != Long.MIN_VALUE) {
                 long j10 = this.f8183g;
                 if (j10 != -9223372036854775807L && j3 < j10) {
@@ -124,7 +124,7 @@ public abstract class j implements c4.e {
             ArrayDeque arrayDeque2 = this.f8180c;
             if (!arrayDeque2.isEmpty()) {
                 String str = m0.f14112a;
-                if (((h) arrayDeque2.peek()).f17173e <= this.f8181e) {
+                if (((h) arrayDeque2.peek()).f17176e <= this.f8181e) {
                     h hVar = (h) arrayDeque2.poll();
                     boolean isEndOfStream = hVar.isEndOfStream();
                     ArrayDeque arrayDeque3 = this.f8178a;
@@ -139,7 +139,7 @@ public abstract class j implements c4.e {
                     if (i()) {
                         d6.i f10 = f();
                         c4.j jVar2 = (c4.j) arrayDeque.pollFirst();
-                        long j3 = hVar.f17173e;
+                        long j3 = hVar.f17176e;
                         jVar2.timeUs = j3;
                         jVar2.f5287a = f10;
                         jVar2.f5288b = j3;

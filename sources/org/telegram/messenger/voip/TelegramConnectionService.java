@@ -11,14 +11,14 @@ public class TelegramConnectionService extends ConnectionService {
     @Override
     public void onCreate() {
         super.onCreate();
-        if (r2.f25199a) {
+        if (r2.f25212a) {
             a8.l("ConnectionService created");
         }
     }
 
     @Override
     public Connection onCreateIncomingConnection(PhoneAccountHandle phoneAccountHandle, ConnectionRequest connectionRequest) {
-        if (r2.f25199a) {
+        if (r2.f25212a) {
             a8.b("onCreateIncomingConnection ");
         }
         Bundle extras = connectionRequest.getExtras();
@@ -35,7 +35,7 @@ public class TelegramConnectionService extends ConnectionService {
 
     @Override
     public void onCreateIncomingConnectionFailed(PhoneAccountHandle phoneAccountHandle, ConnectionRequest connectionRequest) {
-        if (r2.f25199a) {
+        if (r2.f25212a) {
             a8.d("onCreateIncomingConnectionFailed ");
         }
         if (VoIPService.getSharedInstance() != null) {
@@ -45,7 +45,7 @@ public class TelegramConnectionService extends ConnectionService {
 
     @Override
     public Connection onCreateOutgoingConnection(PhoneAccountHandle phoneAccountHandle, ConnectionRequest connectionRequest) {
-        if (r2.f25199a) {
+        if (r2.f25212a) {
             a8.b("onCreateOutgoingConnection ");
         }
         Bundle extras = connectionRequest.getExtras();
@@ -62,7 +62,7 @@ public class TelegramConnectionService extends ConnectionService {
 
     @Override
     public void onCreateOutgoingConnectionFailed(PhoneAccountHandle phoneAccountHandle, ConnectionRequest connectionRequest) {
-        if (r2.f25199a) {
+        if (r2.f25212a) {
             a8.d("onCreateOutgoingConnectionFailed ");
         }
         if (VoIPService.getSharedInstance() != null) {
@@ -73,7 +73,7 @@ public class TelegramConnectionService extends ConnectionService {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (r2.f25199a) {
+        if (r2.f25212a) {
             a8.l("ConnectionService destroyed");
         }
     }

@@ -1,6 +1,6 @@
 package fi;
 
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 public final class n0 implements Runnable {
     public final int f12470a;
     public final t0 f12471b;
@@ -34,7 +34,7 @@ public final class n0 implements Runnable {
                 return;
             default:
                 if (t0Var.f12831c && t0Var.f12835r != null) {
-                    t0Var.f12834n.b(2131624011, 3500, hd.N0("VideoConvertFail"));
+                    t0Var.f12834n.b(2131624011, 3500, id.N0("VideoConvertFail"));
                     t0Var.f12831c = false;
                     t0Var.d();
                     return;

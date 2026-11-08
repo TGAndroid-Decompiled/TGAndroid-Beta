@@ -1,24 +1,21 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class x91 implements fx0 {
-    public final TLRPC.TL_forumTopic f51803a;
-    public final y91 f51804b;
+import java.util.Iterator;
+public final class x91 implements org.telegram.ui.ActionBar.r1 {
+    public final z91 f51802a;
 
-    public x91(y91 y91Var, TLRPC.TL_forumTopic tL_forumTopic) {
-        this.f51804b = y91Var;
-        this.f51803a = tL_forumTopic;
+    public x91(z91 z91Var) {
+        this.f51802a = z91Var;
     }
 
     @Override
-    public final void c0() {
-        ba1 ba1Var = this.f51804b.f52176a;
-        TLRPC.TL_forumTopic tL_forumTopic = this.f51803a;
-        ba1.Z(ba1Var, tL_forumTopic.f27005id);
-        org.telegram.messenger.g0.i3(new by0(21, this, tL_forumTopic), 300L);
-    }
-
-    @Override
-    public final void t(oh0 oh0Var) {
+    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        ca1 ca1Var = this.f51802a.f52493a;
+        Iterator it = ca1Var.f44737e.iterator();
+        while (it.hasNext()) {
+            ca1.Z(ca1Var, ((Integer) it.next()).intValue());
+        }
+        ca1Var.f44737e.clear();
+        ca1Var.a0();
     }
 }

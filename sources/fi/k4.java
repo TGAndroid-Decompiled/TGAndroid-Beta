@@ -30,14 +30,14 @@ public final class k4 implements ValueAnimator.AnimatorUpdateListener {
             case 0:
                 o5 o5Var = (o5) obj;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                o5Var.f12531j1.f55016a = i0.a.f(floatValue, i11, i10);
+                o5Var.f12531j1.f55108a = i0.a.f(floatValue, i11, i10);
                 o5Var.C0.invalidate();
                 return;
             case 1:
                 org.telegram.ui.Cells.f4 f4Var = (org.telegram.ui.Cells.f4) obj;
                 f4Var.getClass();
                 int S0 = org.telegram.messenger.g0.S0(valueAnimator.getAnimatedFraction(), 1.0f, i11, i10);
-                ch0 ch0Var = f4Var.f29107f;
+                ch0 ch0Var = f4Var.f29110f;
                 ch0Var.setColorFilter(new PorterDuffColorFilter(S0, PorterDuff.Mode.SRC_IN));
                 org.telegram.ui.ActionBar.k6.H1(ch0Var.getDrawable(), S0 & 620756991, true);
                 return;
@@ -49,29 +49,29 @@ public final class k4 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 3:
                 ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = (ScrollSlidingTextTabStrip) obj;
-                int i12 = ScrollSlidingTextTabStrip.f31516o0;
+                int i12 = ScrollSlidingTextTabStrip.f31520o0;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 scrollSlidingTextTabStrip.W = i11 * floatValue2;
-                scrollSlidingTextTabStrip.f31518a0 = i10 * floatValue2;
-                scrollSlidingTextTabStrip.f31517a.invalidate();
+                scrollSlidingTextTabStrip.f31522a0 = i10 * floatValue2;
+                scrollSlidingTextTabStrip.f31521a.invalidate();
                 scrollSlidingTextTabStrip.invalidate();
                 return;
             case 4:
                 float animatedFraction = valueAnimator.getAnimatedFraction();
-                yv0 yv0Var = (yv0) ((nk0) obj).f36366b;
-                yv0Var.f40761j1.setAlpha(animatedFraction);
+                yv0 yv0Var = (yv0) ((nk0) obj).f36382b;
+                yv0Var.f40785j1.setAlpha(animatedFraction);
                 yv0Var.n1.setAlpha(animatedFraction);
                 if (i11 != 0) {
                     int i13 = (int) ((1.0f - animatedFraction) * i11);
                     yv0Var.W0(i10 + i13);
-                    yv0Var.f40761j1.setTranslationY(i13);
+                    yv0Var.f40785j1.setTranslationY(i13);
                     return;
                 }
                 return;
             default:
                 tg.g0 g0Var = (tg.g0) obj;
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                g0Var.f55600t1.f55016a = i0.a.f(floatValue3, i11, i10);
+                g0Var.f55692t1.f55108a = i0.a.f(floatValue3, i11, i10);
                 g0Var.L0.invalidate();
                 return;
         }

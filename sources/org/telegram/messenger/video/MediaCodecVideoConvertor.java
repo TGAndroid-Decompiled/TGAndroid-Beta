@@ -114,12 +114,12 @@ public class MediaCodecVideoConvertor {
             convertVideoParams.mediaEntities = j20Var.G;
             convertVideoParams.isPhoto = j20Var.I;
             convertVideoParams.cropState = j20Var.H;
-            convertVideoParams.isRound = j20Var.f23468s;
+            convertVideoParams.isRound = j20Var.f23489s;
             convertVideoParams.callback = mfVar;
             convertVideoParams.gradientTopColor = j20Var.Q;
             convertVideoParams.gradientBottomColor = j20Var.R;
-            convertVideoParams.muted = j20Var.f23469t;
-            convertVideoParams.volume = j20Var.f23470u;
+            convertVideoParams.muted = j20Var.f23490t;
+            convertVideoParams.volume = j20Var.f23491u;
             convertVideoParams.isStory = j20Var.J;
             convertVideoParams.hdrInfo = j20Var.K;
             convertVideoParams.isDark = j20Var.T;
@@ -180,7 +180,7 @@ public class MediaCodecVideoConvertor {
             long j3 = 0;
             while (!this.stopFeeding) {
                 try {
-                    if (MediaCodecVideoConvertor.this.callback != null && ((j20) ((re) MediaCodecVideoConvertor.this.callback).f25280b).W) {
+                    if (MediaCodecVideoConvertor.this.callback != null && ((j20) ((re) MediaCodecVideoConvertor.this.callback).f25283b).W) {
                         return;
                     }
                     int sampleTrackIndex = this.extractor.getSampleTrackIndex();
@@ -301,7 +301,7 @@ public class MediaCodecVideoConvertor {
 
     private void checkConversionCanceled() {
         mf mfVar = this.callback;
-        if (mfVar != null && ((j20) ((re) mfVar).f25280b).W) {
+        if (mfVar != null && ((j20) ((re) mfVar).f25283b).W) {
             throw new ConversionCanceledException();
         }
     }

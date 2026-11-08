@@ -6,21 +6,21 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class bj extends oj0 {
-    public final Context f32187c;
+    public final Context f32208c;
     public ArrayList d = new ArrayList();
-    public ArrayList f32188e = new ArrayList();
-    public aj f32189f;
+    public ArrayList f32209e = new ArrayList();
+    public aj f32210f;
     public int h;
-    public final fj f32190n;
+    public final fj f32211n;
 
     public bj(fj fjVar, Context context) {
-        this.f32190n = fjVar;
-        this.f32187c = context;
+        this.f32211n = fjVar;
+        this.f32208c = context;
     }
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f56955f == 0) {
+        if (d1Var.f57047f == 0) {
             return true;
         }
         return false;
@@ -53,15 +53,15 @@ public final class bj extends oj0 {
     @Override
     public final void f() {
         super.f();
-        this.f32190n.R();
+        this.f32211n.R();
     }
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
         boolean z9;
         TLRPC.User user;
-        if (d1Var.f56955f == 0) {
-            ej ejVar = (ej) d1Var.f56951a;
+        if (d1Var.f57047f == 0) {
+            ej ejVar = (ej) d1Var.f57043a;
             if (i7 != b() - 2) {
                 z9 = true;
             } else {
@@ -70,19 +70,19 @@ public final class bj extends oj0 {
             Object E = E(i7);
             if (E instanceof org.telegram.messenger.d5) {
                 org.telegram.messenger.d5 d5Var = (org.telegram.messenger.d5) E;
-                user = d5Var.f21973m;
+                user = d5Var.f21996m;
                 if (user == null) {
-                    ejVar.setCurrentId(d5Var.f21963a);
-                    ejVar.a(null, (CharSequence) this.f32188e.get(i7 - 1), new xi(d5Var, 1), z9);
+                    ejVar.setCurrentId(d5Var.f21986a);
+                    ejVar.a(null, (CharSequence) this.f32209e.get(i7 - 1), new xi(d5Var, 1), z9);
                     user = null;
                 }
             } else {
                 user = (TLRPC.User) E;
             }
             if (user != null) {
-                ejVar.a(user, (CharSequence) this.f32188e.get(i7 - 1), new yi(1, user), z9);
+                ejVar.a(user, (CharSequence) this.f32209e.get(i7 - 1), new yi(1, user), z9);
             }
-            boolean containsKey = this.f32190n.f33556x.containsKey(vi.a(E));
+            boolean containsKey = this.f32211n.f33563x.containsKey(vi.a(E));
             wo woVar = ejVar.d;
             if (woVar.getVisibility() != 0) {
                 woVar.setVisibility(0);
@@ -94,7 +94,7 @@ public final class bj extends oj0 {
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         View ejVar;
-        Context context = this.f32187c;
+        Context context = this.f32208c;
         if (i7 != 0) {
             if (i7 != 1) {
                 ejVar = new View(context);
@@ -105,7 +105,7 @@ public final class bj extends oj0 {
                 ejVar.setTag(-33024);
             }
         } else {
-            ejVar = new ej(context, this.f32190n.f38968a);
+            ejVar = new ej(context, this.f32211n.f39003a);
         }
         return new v4.d1(ejVar);
     }

@@ -30,7 +30,7 @@ public final class kp {
             this.f23743f = true;
             TLRPC.TL_getSavedMusic tL_getSavedMusic = new TLRPC.TL_getSavedMusic();
             int i7 = this.f23739a;
-            tL_getSavedMusic.f27007id = qp.s1(i7).o1(this.f23740b);
+            tL_getSavedMusic.f27010id = qp.s1(i7).o1(this.f23740b);
             tL_getSavedMusic.offset = this.f23741c.size();
             tL_getSavedMusic.limit = 30;
             ConnectionsManager.getInstance(i7).sendRequest(tL_getSavedMusic, new s1(this, 6));
@@ -64,8 +64,8 @@ public final class kp {
             return;
         }
         TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-        tL_account_saveMusic.f26981id = tL_inputDocument;
-        tL_inputDocument.f26965id = F02.f26959id;
+        tL_account_saveMusic.f26984id = tL_inputDocument;
+        tL_inputDocument.f26968id = F02.f26962id;
         tL_inputDocument.access_hash = F02.access_hash;
         byte[] bArr = F02.file_reference;
         tL_inputDocument.file_reference = bArr;
@@ -76,7 +76,7 @@ public final class kp {
             tL_account_saveMusic.flags |= 2;
             TLRPC.TL_inputDocument tL_inputDocument2 = new TLRPC.TL_inputDocument();
             tL_account_saveMusic.after_id = tL_inputDocument2;
-            tL_inputDocument2.f26965id = F0.f26959id;
+            tL_inputDocument2.f26968id = F0.f26962id;
             tL_inputDocument2.access_hash = F0.access_hash;
             byte[] bArr2 = F0.file_reference;
             tL_inputDocument2.file_reference = bArr2;
@@ -90,7 +90,7 @@ public final class kp {
 
     public final ij d(TLRPC.Document document) {
         TLRPC.TL_message tL_message = new TLRPC.TL_message();
-        tL_message.f26974id = iz.p();
+        tL_message.f26977id = iz.p();
         int i7 = this.f23739a;
         qp s12 = qp.s1(i7);
         long j3 = this.f23740b;

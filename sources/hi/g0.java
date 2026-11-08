@@ -46,7 +46,7 @@ public final class g0 {
     }
 
     public static void a() {
-        Context context = org.telegram.messenger.t0.f25563b;
+        Context context = org.telegram.messenger.t0.f25566b;
         if (context == null) {
             return;
         }

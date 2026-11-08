@@ -4,7 +4,7 @@ import android.content.Context;
 import android.text.SpannableStringBuilder;
 import java.util.ArrayList;
 import org.telegram.messenger.c20;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.qp;
 import org.telegram.messenger.t10;
 import org.telegram.tgnet.TLRPC;
@@ -12,8 +12,8 @@ import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.Components.hc;
 import org.telegram.ui.Components.v4;
-import org.telegram.ui.h91;
-import org.telegram.ui.v91;
+import org.telegram.ui.i91;
+import org.telegram.ui.w91;
 public final class f3 implements c20 {
     public final int f14652a = 0;
     public final int f14653b;
@@ -66,7 +66,7 @@ public final class f3 implements c20 {
                 int[] iArr = (int[]) obj3;
                 ArrayList arrayList = (ArrayList) obj2;
                 TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers2 = (TLRPC.TL_messages_invitedUsers) obj;
-                v91 v91Var = ((h91) obj5).f46307b;
+                w91 w91Var = ((i91) obj5).f46613b;
                 if (tL_messages_invitedUsers2 != null) {
                     tL_messages_invitedUsers.missing_invitees.addAll(tL_messages_invitedUsers2.missing_invitees);
                 }
@@ -76,27 +76,27 @@ public final class f3 implements c20 {
                     boolean isEmpty = tL_messages_invitedUsers.missing_invitees.isEmpty();
                     long j10 = this.f14654c;
                     if (isEmpty) {
-                        hc a02 = hc.a0(v91Var);
-                        TLRPC.Chat M0 = v91Var.getMessagesController().M0(Long.valueOf(j10));
+                        hc a02 = hc.a0(w91Var);
+                        TLRPC.Chat M0 = w91Var.getMessagesController().M0(Long.valueOf(j10));
                         a02.getClass();
                         if (arrayList.size() == 0) {
                             X2 = null;
                         } else if (arrayList.size() == 1) {
                             if (org.telegram.messenger.t3.V(M0)) {
-                                X2 = org.telegram.messenger.g0.X2(hd.a0("HasBeenAddedToChannel", null, 2131749363, "**" + t10.j((TLRPC.User) arrayList.get(0), true) + "**"));
+                                X2 = org.telegram.messenger.g0.X2(id.a0("HasBeenAddedToChannel", null, 2131749365, "**" + t10.j((TLRPC.User) arrayList.get(0), true) + "**"));
                             } else {
-                                X2 = org.telegram.messenger.g0.X2(hd.a0("HasBeenAddedToGroup", null, 2131749362, "**" + t10.j((TLRPC.User) arrayList.get(0), true) + "**"));
+                                X2 = org.telegram.messenger.g0.X2(id.a0("HasBeenAddedToGroup", null, 2131749364, "**" + t10.j((TLRPC.User) arrayList.get(0), true) + "**"));
                             }
                         } else if (org.telegram.messenger.t3.V(M0)) {
-                            X2 = org.telegram.messenger.g0.X2(hd.G(arrayList.size(), "AddedMembersToChannel", new Object[0]));
+                            X2 = org.telegram.messenger.g0.X2(id.G(arrayList.size(), "AddedMembersToChannel", new Object[0]));
                         } else {
-                            X2 = org.telegram.messenger.g0.X2(hd.G(arrayList.size(), "AddedSubscribersToChannel", new Object[0]));
+                            X2 = org.telegram.messenger.g0.X2(id.G(arrayList.size(), "AddedSubscribersToChannel", new Object[0]));
                         }
                         a02.V(arrayList, X2, null, null).j();
                         return;
                     }
-                    TLRPC.Chat M02 = v91Var.getMessagesController().M0(Long.valueOf(j10));
-                    i7 = ((org.telegram.ui.ActionBar.f2) v91Var).currentAccount;
+                    TLRPC.Chat M02 = w91Var.getMessagesController().M0(Long.valueOf(j10));
+                    i7 = ((org.telegram.ui.ActionBar.f2) w91Var).currentAccount;
                     v4.f(i7, M02, tL_messages_invitedUsers);
                     return;
                 }
@@ -104,8 +104,8 @@ public final class f3 implements c20 {
         }
     }
 
-    public f3(h91 h91Var, TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers, int[] iArr, int i7, ArrayList arrayList, long j3) {
-        this.d = h91Var;
+    public f3(i91 i91Var, TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers, int[] iArr, int i7, ArrayList arrayList, long j3) {
+        this.d = i91Var;
         this.f14655e = tL_messages_invitedUsers;
         this.f14656f = iArr;
         this.f14653b = i7;

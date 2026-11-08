@@ -5,12 +5,12 @@ public class MulticolumnAtom extends Atom {
     protected int beforeVlines;
     protected int col;
     protected Atom cols;
-    protected int f21136n;
+    protected int f21139n;
     protected int row;
-    protected float f21137w = 0.0f;
+    protected float f21140w = 0.0f;
 
     public MulticolumnAtom(int i7, String str, Atom atom) {
-        this.f21136n = i7 < 1 ? 1 : i7;
+        this.f21139n = i7 < 1 ? 1 : i7;
         this.cols = atom;
         this.align = parseAlign(str);
     }
@@ -69,10 +69,10 @@ public class MulticolumnAtom extends Atom {
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
         Box horizontalBox;
-        if (this.f21137w == 0.0f) {
+        if (this.f21140w == 0.0f) {
             horizontalBox = this.cols.createBox(teXEnvironment);
         } else {
-            horizontalBox = new HorizontalBox(this.cols.createBox(teXEnvironment), this.f21137w, this.align);
+            horizontalBox = new HorizontalBox(this.cols.createBox(teXEnvironment), this.f21140w, this.align);
         }
         horizontalBox.type = 12;
         return horizontalBox;
@@ -87,7 +87,7 @@ public class MulticolumnAtom extends Atom {
     }
 
     public int getSkipped() {
-        return this.f21136n;
+        return this.f21139n;
     }
 
     public boolean hasRightVline() {
@@ -103,6 +103,6 @@ public class MulticolumnAtom extends Atom {
     }
 
     public void setWidth(float f10) {
-        this.f21137w = f10;
+        this.f21140w = f10;
     }
 }

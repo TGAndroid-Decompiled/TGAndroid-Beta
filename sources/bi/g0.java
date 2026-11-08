@@ -3,13 +3,13 @@ package bi;
 import android.content.DialogInterface;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.Components.ChatActivityEnterView;
-import org.telegram.ui.Components.cx;
-import org.telegram.ui.Components.gx;
+import org.telegram.ui.Components.dx;
+import org.telegram.ui.Components.hx;
 import org.telegram.ui.c40;
 import org.telegram.ui.lm;
 import org.telegram.ui.pa0;
 import org.telegram.ui.pn;
-import org.telegram.ui.x71;
+import org.telegram.ui.y71;
 public final class g0 implements DialogInterface.OnCancelListener {
     public final int f3910a;
     public final int f3911b;
@@ -31,28 +31,28 @@ public final class g0 implements DialogInterface.OnCancelListener {
                 org.telegram.ui.la.a0((org.telegram.ui.la) this.f3912c, this.f3911b);
                 return;
             case 2:
-                ((lm) this.f3912c).f47560a.getConnectionsManager().cancelRequest(this.f3911b, true);
+                ((lm) this.f3912c).f47557a.getConnectionsManager().cancelRequest(this.f3911b, true);
                 return;
             case 3:
                 pn pnVar = (pn) this.f3912c;
                 pnVar.N0 = false;
-                pnVar.f48858b = null;
+                pnVar.f48861b = null;
                 pnVar.getConnectionsManager().cancelRequest(this.f3911b, true);
                 return;
             case 4:
                 ((ChatActivityEnterView) this.f3912c).P2.getConnectionsManager().cancelRequest(this.f3911b, true);
                 return;
             case 5:
-                ConnectionsManager.getInstance(((gx) ((cx) this.f3912c).f32680c.f2833b).F.f34032c1).cancelRequest(this.f3911b, true);
+                ConnectionsManager.getInstance(((hx) ((dx) this.f3912c).f33106c.f2833b).F.f34400c1).cancelRequest(this.f3911b, true);
                 return;
             case 6:
-                ConnectionsManager.getInstance(((c40) this.f3912c).f44585k1.f21729a).cancelRequest(this.f3911b, true);
+                ConnectionsManager.getInstance(((c40) this.f3912c).f44588k1.f21765a).cancelRequest(this.f3911b, true);
                 return;
             case 7:
                 ((pa0) this.f3912c).getConnectionsManager().cancelRequest(this.f3911b, true);
                 return;
             default:
-                x71.Z((x71) this.f3912c, this.f3911b);
+                y71.Z((y71) this.f3912c, this.f3911b);
                 return;
         }
     }

@@ -11,12 +11,12 @@ public abstract class q9 {
             v7.e eVar = f5820a;
             q6.m.h(eVar, "IBitmapDescriptorFactory is not initialized");
             v7.c cVar = (v7.c) eVar;
-            Parcel P0 = cVar.P0();
-            v7.b.b(P0, bitmap);
-            Parcel O0 = cVar.O0(P0, 6);
-            a7.a M0 = a7.b.M0(O0.readStrongBinder());
-            O0.recycle();
-            return new k8.a(M0, 1);
+            Parcel p12 = cVar.p1();
+            v7.b.b(p12, bitmap);
+            Parcel o12 = cVar.o1(p12, 6);
+            a7.a m12 = a7.b.m1(o12.readStrongBinder());
+            o12.recycle();
+            return new k8.a(m12, 1);
         } catch (RemoteException e10) {
             throw new RuntimeException(e10);
         }
@@ -27,12 +27,12 @@ public abstract class q9 {
             v7.e eVar = f5820a;
             q6.m.h(eVar, "IBitmapDescriptorFactory is not initialized");
             v7.c cVar = (v7.c) eVar;
-            Parcel P0 = cVar.P0();
-            P0.writeInt(i7);
-            Parcel O0 = cVar.O0(P0, 1);
-            a7.a M0 = a7.b.M0(O0.readStrongBinder());
-            O0.recycle();
-            return new k8.a(M0, 1);
+            Parcel p12 = cVar.p1();
+            p12.writeInt(i7);
+            Parcel o12 = cVar.o1(p12, 1);
+            a7.a m12 = a7.b.m1(o12.readStrongBinder());
+            o12.recycle();
+            return new k8.a(m12, 1);
         } catch (RemoteException e10) {
             throw new RuntimeException(e10);
         }

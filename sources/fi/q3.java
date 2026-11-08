@@ -41,7 +41,7 @@ public class q3 {
 
     public final void a() {
         if (this.f12652e) {
-            if (this.f12658l >= org.telegram.messenger.g0.L(20.0f) + org.telegram.messenger.g0.f22539n) {
+            if (this.f12658l >= org.telegram.messenger.g0.L(20.0f) + org.telegram.messenger.g0.f22558n) {
                 this.f12652e = false;
             } else {
                 return;
@@ -59,7 +59,7 @@ public class q3 {
     }
 
     public final boolean c() {
-        if (this.f12658l <= org.telegram.messenger.g0.L(20.0f) + org.telegram.messenger.g0.f22539n && !this.f12652e) {
+        if (this.f12658l <= org.telegram.messenger.g0.L(20.0f) + org.telegram.messenger.g0.f22558n && !this.f12652e) {
             return false;
         }
         return true;
@@ -76,10 +76,10 @@ public class q3 {
                 if (view2 != null) {
                     view = view2;
                 }
-                WeakHashMap weakHashMap = r0.i0.f54097a;
+                WeakHashMap weakHashMap = r0.i0.f54190a;
                 r0.k1 a10 = r0.b0.a(view);
                 if (a10 != null) {
-                    i7 = a10.f54108a.f(8).d;
+                    i7 = a10.f54201a.f(8).d;
                 } else {
                     i7 = 0;
                 }
@@ -94,7 +94,7 @@ public class q3 {
                 this.f12658l = view.getHeight() - rect.bottom;
             }
             if (this.f12654g) {
-                this.f12658l = Math.max(0, this.f12658l - org.telegram.messenger.g0.f22539n);
+                this.f12658l = Math.max(0, this.f12658l - org.telegram.messenger.g0.f22558n);
             }
             int i10 = this.f12657k;
             int i11 = this.f12658l;

@@ -44,7 +44,7 @@ public class TL_stories {
         public boolean gift;
         public boolean giveaway;
         public int giveaway_msg_id;
-        public String f27187id;
+        public String f27190id;
         public int multiplier;
         public long stars;
         public boolean unclaimed;
@@ -125,9 +125,9 @@ public class TL_stories {
         public double h;
         public double radius;
         public double rotation;
-        public double f27188w;
-        public double f27189x;
-        public double f27190y;
+        public double f27191w;
+        public double f27192x;
+        public double f27193y;
 
         public static MediaAreaCoordinates TLdeserialize(InputSerializedData inputSerializedData, int i7, boolean z9) {
             TLObject tL_mediaAreaCoordinates;
@@ -169,7 +169,7 @@ public class TL_stories {
     public static class PrepaidGiveaway extends TLObject {
         public int boosts;
         public int date;
-        public long f27191id;
+        public long f27194id;
         public int quantity;
 
         public static PrepaidGiveaway TLdeserialize(InputSerializedData inputSerializedData, int i7, boolean z9) {
@@ -221,7 +221,7 @@ public class TL_stories {
         public int flags;
         public TLRPC.Peer from_id;
         public StoryFwdHeader fwd_from;
-        public int f27192id;
+        public int f27195id;
         public boolean isPublic;
         public boolean justUploaded;
         public long lastUpdateTime;
@@ -414,7 +414,7 @@ public class TL_stories {
             this.gift = TLObject.hasFlag(readInt32, 2);
             this.giveaway = TLObject.hasFlag(this.flags, 4);
             this.unclaimed = TLObject.hasFlag(this.flags, 8);
-            this.f27187id = inputSerializedData.readString(z9);
+            this.f27190id = inputSerializedData.readString(z9);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.user_id = inputSerializedData.readInt64(z9);
             }
@@ -444,7 +444,7 @@ public class TL_stories {
             int flag3 = TLObject.setFlag(flag2, 8, this.unclaimed);
             this.flags = flag3;
             outputSerializedData.writeInt32(flag3);
-            outputSerializedData.writeString(this.f27187id);
+            outputSerializedData.writeString(this.f27190id);
             if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeInt64(this.user_id);
             }
@@ -475,7 +475,7 @@ public class TL_stories {
             this.gift = TLObject.hasFlag(readInt32, 2);
             this.giveaway = TLObject.hasFlag(this.flags, 4);
             this.unclaimed = TLObject.hasFlag(this.flags, 8);
-            this.f27187id = inputSerializedData.readString(z9);
+            this.f27190id = inputSerializedData.readString(z9);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.user_id = inputSerializedData.readInt64(z9);
             }
@@ -502,7 +502,7 @@ public class TL_stories {
             int flag3 = TLObject.setFlag(flag2, 8, this.unclaimed);
             this.flags = flag3;
             outputSerializedData.writeInt32(flag3);
-            outputSerializedData.writeString(this.f27187id);
+            outputSerializedData.writeString(this.f27190id);
             if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeInt64(this.user_id);
             }
@@ -755,7 +755,7 @@ public class TL_stories {
         public static final int constructor = -1179482081;
         public int flags;
         public boolean forwards_first;
-        public int f27193id;
+        public int f27196id;
         public int limit;
         public String offset;
         public TLRPC.InputPeer peer;
@@ -773,7 +773,7 @@ public class TL_stories {
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.f27193id);
+            outputSerializedData.writeInt32(this.f27196id);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.reaction.serializeToStream(outputSerializedData);
             }
@@ -853,9 +853,9 @@ public class TL_stories {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z9) {
             this.flags = inputSerializedData.readInt32(z9);
-            this.f27189x = inputSerializedData.readDouble(z9);
-            this.f27190y = inputSerializedData.readDouble(z9);
-            this.f27188w = inputSerializedData.readDouble(z9);
+            this.f27192x = inputSerializedData.readDouble(z9);
+            this.f27193y = inputSerializedData.readDouble(z9);
+            this.f27191w = inputSerializedData.readDouble(z9);
             this.h = inputSerializedData.readDouble(z9);
             this.rotation = inputSerializedData.readDouble(z9);
             if (TLObject.hasFlag(this.flags, 1)) {
@@ -867,9 +867,9 @@ public class TL_stories {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-808853502);
             outputSerializedData.writeInt32(this.flags);
-            outputSerializedData.writeDouble(this.f27189x);
-            outputSerializedData.writeDouble(this.f27190y);
-            outputSerializedData.writeDouble(this.f27188w);
+            outputSerializedData.writeDouble(this.f27192x);
+            outputSerializedData.writeDouble(this.f27193y);
+            outputSerializedData.writeDouble(this.f27191w);
             outputSerializedData.writeDouble(this.h);
             outputSerializedData.writeDouble(this.rotation);
             if (TLObject.hasFlag(this.flags, 1)) {
@@ -883,9 +883,9 @@ public class TL_stories {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z9) {
-            this.f27189x = inputSerializedData.readDouble(z9);
-            this.f27190y = inputSerializedData.readDouble(z9);
-            this.f27188w = inputSerializedData.readDouble(z9);
+            this.f27192x = inputSerializedData.readDouble(z9);
+            this.f27193y = inputSerializedData.readDouble(z9);
+            this.f27191w = inputSerializedData.readDouble(z9);
             this.h = inputSerializedData.readDouble(z9);
             this.rotation = inputSerializedData.readDouble(z9);
         }
@@ -893,9 +893,9 @@ public class TL_stories {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(64088654);
-            outputSerializedData.writeDouble(this.f27189x);
-            outputSerializedData.writeDouble(this.f27190y);
-            outputSerializedData.writeDouble(this.f27188w);
+            outputSerializedData.writeDouble(this.f27192x);
+            outputSerializedData.writeDouble(this.f27193y);
+            outputSerializedData.writeDouble(this.f27191w);
             outputSerializedData.writeDouble(this.h);
             outputSerializedData.writeDouble(this.rotation);
         }
@@ -1455,7 +1455,7 @@ public class TL_stories {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z9) {
-            this.f27191id = inputSerializedData.readInt64(z9);
+            this.f27194id = inputSerializedData.readInt64(z9);
             this.months = inputSerializedData.readInt32(z9);
             this.quantity = inputSerializedData.readInt32(z9);
             this.date = inputSerializedData.readInt32(z9);
@@ -1464,7 +1464,7 @@ public class TL_stories {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1303143084);
-            outputSerializedData.writeInt64(this.f27191id);
+            outputSerializedData.writeInt64(this.f27194id);
             outputSerializedData.writeInt32(this.months);
             outputSerializedData.writeInt32(this.quantity);
             outputSerializedData.writeInt32(this.date);
@@ -1477,7 +1477,7 @@ public class TL_stories {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z9) {
-            this.f27191id = inputSerializedData.readInt64(z9);
+            this.f27194id = inputSerializedData.readInt64(z9);
             this.stars = inputSerializedData.readInt64(z9);
             this.quantity = inputSerializedData.readInt32(z9);
             this.boosts = inputSerializedData.readInt32(z9);
@@ -1487,7 +1487,7 @@ public class TL_stories {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1700956192);
-            outputSerializedData.writeInt64(this.f27191id);
+            outputSerializedData.writeInt64(this.f27194id);
             outputSerializedData.writeInt64(this.stars);
             outputSerializedData.writeInt32(this.quantity);
             outputSerializedData.writeInt32(this.boosts);
@@ -1599,7 +1599,7 @@ public class TL_stories {
         public static final int constructor = 927985472;
         public boolean dark;
         public int flags;
-        public int f27194id;
+        public int f27197id;
         public TLRPC.InputPeer peer;
 
         @Override
@@ -1619,7 +1619,7 @@ public class TL_stories {
             this.flags = i7;
             outputSerializedData.writeInt32(i7);
             this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.f27194id);
+            outputSerializedData.writeInt32(this.f27197id);
         }
     }
 
@@ -1794,7 +1794,7 @@ public class TL_stories {
 
     public static class TL_stories_deleteStories extends TLObject {
         public static final int constructor = -1369842849;
-        public ArrayList<Integer> f27195id = new ArrayList<>();
+        public ArrayList<Integer> f27198id = new ArrayList<>();
         public TLRPC.InputPeer peer;
 
         @Override
@@ -1806,7 +1806,7 @@ public class TL_stories {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1369842849);
             this.peer.serializeToStream(outputSerializedData);
-            Vector.serializeInt(outputSerializedData, this.f27195id);
+            Vector.serializeInt(outputSerializedData, this.f27198id);
         }
     }
 
@@ -1814,7 +1814,7 @@ public class TL_stories {
         public static final int constructor = 744728363;
         public String caption;
         public int flags;
-        public int f27196id;
+        public int f27199id;
         public TLRPC.InputMedia media;
         public TLRPC.InputDocument music;
         public TLRPC.InputPeer peer;
@@ -1832,7 +1832,7 @@ public class TL_stories {
             outputSerializedData.writeInt32(744728363);
             outputSerializedData.writeInt32(this.flags);
             this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.f27196id);
+            outputSerializedData.writeInt32(this.f27199id);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.media.serializeToStream(outputSerializedData);
             }
@@ -1856,7 +1856,7 @@ public class TL_stories {
 
     public static class TL_stories_exportStoryLink extends TLObject {
         public static final int constructor = 2072899360;
-        public int f27197id;
+        public int f27200id;
         public TLRPC.InputPeer peer;
 
         @Override
@@ -1868,7 +1868,7 @@ public class TL_stories {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(2072899360);
             this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.f27197id);
+            outputSerializedData.writeInt32(this.f27200id);
         }
     }
 
@@ -1950,12 +1950,12 @@ public class TL_stories {
 
     public static class TL_stories_getPeerMaxIDs extends TLMethod<Vector<TLRPC.TL_recentStory>> {
         public static final int constructor = 2018087280;
-        public ArrayList<TLRPC.InputPeer> f27198id = new ArrayList<>();
+        public ArrayList<TLRPC.InputPeer> f27201id = new ArrayList<>();
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(2018087280);
-            Vector.serialize(outputSerializedData, this.f27198id);
+            Vector.serialize(outputSerializedData, this.f27201id);
         }
 
         @Override
@@ -2022,7 +2022,7 @@ public class TL_stories {
 
     public static class TL_stories_getStoriesByID extends TLObject {
         public static final int constructor = 1467271796;
-        public ArrayList<Integer> f27199id = new ArrayList<>();
+        public ArrayList<Integer> f27202id = new ArrayList<>();
         public TLRPC.InputPeer peer;
 
         @Override
@@ -2034,13 +2034,13 @@ public class TL_stories {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1467271796);
             this.peer.serializeToStream(outputSerializedData);
-            Vector.serializeInt(outputSerializedData, this.f27199id);
+            Vector.serializeInt(outputSerializedData, this.f27202id);
         }
     }
 
     public static class TL_stories_getStoriesViews extends TLObject {
         public static final int constructor = 685862088;
-        public ArrayList<Integer> f27200id = new ArrayList<>();
+        public ArrayList<Integer> f27203id = new ArrayList<>();
         public TLRPC.InputPeer peer;
 
         @Override
@@ -2052,7 +2052,7 @@ public class TL_stories {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(685862088);
             this.peer.serializeToStream(outputSerializedData);
-            Vector.serializeInt(outputSerializedData, this.f27200id);
+            Vector.serializeInt(outputSerializedData, this.f27203id);
         }
     }
 
@@ -2060,12 +2060,12 @@ public class TL_stories {
         public static final int constructor = 2127707223;
         public int flags;
         public boolean forwards_first;
-        public int f27201id;
+        public int f27204id;
         public boolean just_contacts;
         public int limit;
         public String offset;
         public TLRPC.InputPeer peer;
-        public String f27202q;
+        public String f27205q;
         public boolean reactions_first;
 
         @Override
@@ -2085,9 +2085,9 @@ public class TL_stories {
             outputSerializedData.writeInt32(flag3);
             this.peer.serializeToStream(outputSerializedData);
             if (TLObject.hasFlag(this.flags, 2)) {
-                outputSerializedData.writeString(this.f27202q);
+                outputSerializedData.writeString(this.f27205q);
             }
-            outputSerializedData.writeInt32(this.f27201id);
+            outputSerializedData.writeInt32(this.f27204id);
             outputSerializedData.writeString(this.offset);
             outputSerializedData.writeInt32(this.limit);
         }
@@ -2095,7 +2095,7 @@ public class TL_stories {
 
     public static class TL_stories_incrementStoryViews extends TLObject {
         public static final int constructor = -1308456197;
-        public ArrayList<Integer> f27203id = new ArrayList<>();
+        public ArrayList<Integer> f27206id = new ArrayList<>();
         public TLRPC.InputPeer peer;
 
         @Override
@@ -2107,7 +2107,7 @@ public class TL_stories {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1308456197);
             this.peer.serializeToStream(outputSerializedData);
-            Vector.serializeInt(outputSerializedData, this.f27203id);
+            Vector.serializeInt(outputSerializedData, this.f27206id);
         }
     }
 
@@ -2163,7 +2163,7 @@ public class TL_stories {
 
     public static class TL_stories_report extends TLMethod<TLRPC.ReportResult> {
         public static final int constructor = 433646405;
-        public ArrayList<Integer> f27204id = new ArrayList<>();
+        public ArrayList<Integer> f27207id = new ArrayList<>();
         public String message;
         public byte[] option;
         public TLRPC.InputPeer peer;
@@ -2172,7 +2172,7 @@ public class TL_stories {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(433646405);
             this.peer.serializeToStream(outputSerializedData);
-            Vector.serialize(outputSerializedData, new v(outputSerializedData, 1), this.f27204id);
+            Vector.serialize(outputSerializedData, new v(outputSerializedData, 1), this.f27207id);
             outputSerializedData.writeByteArray(this.option);
             outputSerializedData.writeString(this.message);
         }
@@ -2515,7 +2515,7 @@ public class TL_stories {
             this.contacts = TLObject.hasFlag(this.flags, 4096);
             this.selected_contacts = TLObject.hasFlag(this.flags, 8192);
             this.out = TLObject.hasFlag(this.flags, 65536);
-            this.f27192id = inputSerializedData.readInt32(z9);
+            this.f27195id = inputSerializedData.readInt32(z9);
             this.date = inputSerializedData.readInt32(z9);
             if (TLObject.hasFlag(this.flags, 262144)) {
                 this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z9), z9);
@@ -2581,7 +2581,7 @@ public class TL_stories {
             int flag10 = TLObject.setFlag(flag9, 524288, z9);
             this.flags = flag10;
             outputSerializedData.writeInt32(flag10);
-            outputSerializedData.writeInt32(this.f27192id);
+            outputSerializedData.writeInt32(this.f27195id);
             outputSerializedData.writeInt32(this.date);
             if (TLObject.hasFlag(this.flags, 262144)) {
                 this.from_id.serializeToStream(outputSerializedData);
@@ -2623,13 +2623,13 @@ public class TL_stories {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z9) {
-            this.f27192id = inputSerializedData.readInt32(z9);
+            this.f27195id = inputSerializedData.readInt32(z9);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1374088783);
-            outputSerializedData.writeInt32(this.f27192id);
+            outputSerializedData.writeInt32(this.f27195id);
         }
     }
 
@@ -2643,7 +2643,7 @@ public class TL_stories {
             this.flags = readInt32;
             this.close_friends = TLObject.hasFlag(readInt32, 256);
             this.live = TLObject.hasFlag(this.flags, 512);
-            this.f27192id = inputSerializedData.readInt32(z9);
+            this.f27195id = inputSerializedData.readInt32(z9);
             this.date = inputSerializedData.readInt32(z9);
             this.expire_date = inputSerializedData.readInt32(z9);
         }
@@ -2656,7 +2656,7 @@ public class TL_stories {
             int flag2 = TLObject.setFlag(flag, 512, this.live);
             this.flags = flag2;
             outputSerializedData.writeInt32(flag2);
-            outputSerializedData.writeInt32(this.f27192id);
+            outputSerializedData.writeInt32(this.f27195id);
             outputSerializedData.writeInt32(this.date);
             outputSerializedData.writeInt32(this.expire_date);
         }
@@ -2677,7 +2677,7 @@ public class TL_stories {
             this.edited = TLObject.hasFlag(this.flags, 2048);
             this.contacts = TLObject.hasFlag(this.flags, 4096);
             this.selected_contacts = TLObject.hasFlag(this.flags, 8192);
-            this.f27192id = inputSerializedData.readInt32(z9);
+            this.f27195id = inputSerializedData.readInt32(z9);
             this.date = inputSerializedData.readInt32(z9);
             this.expire_date = inputSerializedData.readInt32(z9);
             if (TLObject.hasFlag(this.flags, 1)) {
@@ -2715,7 +2715,7 @@ public class TL_stories {
             int flag8 = TLObject.setFlag(flag7, 8192, this.selected_contacts);
             this.flags = flag8;
             outputSerializedData.writeInt32(flag8);
-            outputSerializedData.writeInt32(this.f27192id);
+            outputSerializedData.writeInt32(this.f27195id);
             outputSerializedData.writeInt32(this.date);
             outputSerializedData.writeInt32(this.expire_date);
             if (TLObject.hasFlag(this.flags, 1)) {
@@ -2750,7 +2750,7 @@ public class TL_stories {
             this.contacts = TLObject.hasFlag(this.flags, 4096);
             this.selected_contacts = TLObject.hasFlag(this.flags, 8192);
             this.out = TLObject.hasFlag(this.flags, 65536);
-            this.f27192id = inputSerializedData.readInt32(z9);
+            this.f27195id = inputSerializedData.readInt32(z9);
             this.date = inputSerializedData.readInt32(z9);
             this.expire_date = inputSerializedData.readInt32(z9);
             if (TLObject.hasFlag(this.flags, 1)) {
@@ -2796,7 +2796,7 @@ public class TL_stories {
             int flag9 = TLObject.setFlag(flag8, 65536, this.out);
             this.flags = flag9;
             outputSerializedData.writeInt32(flag9);
-            outputSerializedData.writeInt32(this.f27192id);
+            outputSerializedData.writeInt32(this.f27195id);
             outputSerializedData.writeInt32(this.date);
             outputSerializedData.writeInt32(this.expire_date);
             if (TLObject.hasFlag(this.flags, 1)) {
@@ -2837,7 +2837,7 @@ public class TL_stories {
             this.contacts = TLObject.hasFlag(this.flags, 4096);
             this.selected_contacts = TLObject.hasFlag(this.flags, 8192);
             this.out = TLObject.hasFlag(this.flags, 65536);
-            this.f27192id = inputSerializedData.readInt32(z9);
+            this.f27195id = inputSerializedData.readInt32(z9);
             this.date = inputSerializedData.readInt32(z9);
             if (TLObject.hasFlag(this.flags, 131072)) {
                 this.fwd_from = StoryFwdHeader.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z9), z9);
@@ -2886,7 +2886,7 @@ public class TL_stories {
             int flag9 = TLObject.setFlag(flag8, 65536, this.out);
             this.flags = flag9;
             outputSerializedData.writeInt32(flag9);
-            outputSerializedData.writeInt32(this.f27192id);
+            outputSerializedData.writeInt32(this.f27195id);
             outputSerializedData.writeInt32(this.date);
             if (TLObject.hasFlag(this.flags, 131072)) {
                 this.fwd_from.serializeToStream(outputSerializedData);
@@ -2930,7 +2930,7 @@ public class TL_stories {
             this.contacts = TLObject.hasFlag(this.flags, 4096);
             this.selected_contacts = TLObject.hasFlag(this.flags, 8192);
             this.out = TLObject.hasFlag(this.flags, 65536);
-            this.f27192id = inputSerializedData.readInt32(z9);
+            this.f27195id = inputSerializedData.readInt32(z9);
             this.date = inputSerializedData.readInt32(z9);
             if (TLObject.hasFlag(this.flags, 262144)) {
                 this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z9), z9);
@@ -2982,7 +2982,7 @@ public class TL_stories {
             int flag9 = TLObject.setFlag(flag8, 65536, this.out);
             this.flags = flag9;
             outputSerializedData.writeInt32(flag9);
-            outputSerializedData.writeInt32(this.f27192id);
+            outputSerializedData.writeInt32(this.f27195id);
             outputSerializedData.writeInt32(this.date);
             if (TLObject.hasFlag(this.flags, 262144)) {
                 this.from_id.serializeToStream(outputSerializedData);
@@ -3029,7 +3029,7 @@ public class TL_stories {
             this.contacts = TLObject.hasFlag(this.flags, 4096);
             this.selected_contacts = TLObject.hasFlag(this.flags, 8192);
             this.out = TLObject.hasFlag(this.flags, 65536);
-            this.f27192id = inputSerializedData.readInt32(z9);
+            this.f27195id = inputSerializedData.readInt32(z9);
             this.date = inputSerializedData.readInt32(z9);
             if (TLObject.hasFlag(this.flags, 262144)) {
                 this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z9), z9);
@@ -3092,7 +3092,7 @@ public class TL_stories {
             int flag10 = TLObject.setFlag(flag9, 524288, z9);
             this.flags = flag10;
             outputSerializedData.writeInt32(flag10);
-            outputSerializedData.writeInt32(this.f27192id);
+            outputSerializedData.writeInt32(this.f27195id);
             outputSerializedData.writeInt32(this.date);
             if (TLObject.hasFlag(this.flags, 262144)) {
                 this.from_id.serializeToStream(outputSerializedData);
@@ -3474,7 +3474,7 @@ public class TL_stories {
 
     public static class TL_togglePinnedToTop extends TLObject {
         public static final int constructor = 187268763;
-        public ArrayList<Integer> f27205id = new ArrayList<>();
+        public ArrayList<Integer> f27208id = new ArrayList<>();
         public TLRPC.InputPeer peer;
 
         @Override
@@ -3486,7 +3486,7 @@ public class TL_stories {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(187268763);
             this.peer.serializeToStream(outputSerializedData);
-            Vector.serializeInt(outputSerializedData, this.f27205id);
+            Vector.serializeInt(outputSerializedData, this.f27208id);
         }
     }
 
@@ -3649,7 +3649,7 @@ public class TL_stories {
 
     public static class togglePinned extends TLObject {
         public static final int constructor = -1703566865;
-        public ArrayList<Integer> f27206id = new ArrayList<>();
+        public ArrayList<Integer> f27209id = new ArrayList<>();
         public TLRPC.InputPeer peer;
         public boolean pinned;
 
@@ -3662,7 +3662,7 @@ public class TL_stories {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1703566865);
             this.peer.serializeToStream(outputSerializedData);
-            Vector.serializeInt(outputSerializedData, this.f27206id);
+            Vector.serializeInt(outputSerializedData, this.f27209id);
             outputSerializedData.writeBool(this.pinned);
         }
     }

@@ -88,41 +88,41 @@ public final class o7 extends AnimatorListenerAdapter {
                 return;
             default:
                 PhotoViewer photoViewer = (PhotoViewer) obj;
-                photoViewer.f41471o6 = null;
-                photoViewer.f41386e6 = 0.0f;
-                photoViewer.f41348a6 = 0.0f;
-                photoViewer.f41396f6 = 0.0f;
+                photoViewer.f41475o6 = null;
+                photoViewer.f41390e6 = 0.0f;
+                photoViewer.f41352a6 = 0.0f;
+                photoViewer.f41400f6 = 0.0f;
                 float o22 = photoViewer.o2(false);
-                photoViewer.f41376d6 = o22;
+                photoViewer.f41380d6 = o22;
                 photoViewer.Z5 = o22;
-                photoViewer.f41380e0.invalidate();
-                CropAreaView cropAreaView = photoViewer.C1.f33518b.f21004a;
+                photoViewer.f41384e0.invalidate();
+                CropAreaView cropAreaView = photoViewer.C1.f33525b.f21007a;
                 float o23 = photoViewer.o2(false);
-                cropAreaView.f31312n0 = 0.0f;
-                cropAreaView.f31313o0 = o23;
-                cropAreaView.f31314p0 = 0.0f;
-                cropAreaView.f31315q0 = 0.0f;
+                cropAreaView.f31316n0 = 0.0f;
+                cropAreaView.f31317o0 = o23;
+                cropAreaView.f31318p0 = 0.0f;
+                cropAreaView.f31319q0 = 0.0f;
                 cropAreaView.invalidate();
-                photoViewer.C1.f33519c.setRotated(false);
+                photoViewer.C1.f33526c.setRotated(false);
                 if (Math.abs(f10) > 0.0f) {
                     fd0 fd0Var = photoViewer.C1;
-                    og.f fVar = fd0Var.f33519c;
+                    og.f fVar = fd0Var.f33526c;
                     if (fVar != null) {
                         fVar.b(0.0f);
                         fVar.setRotated(false);
                     }
-                    if (fd0Var.f33518b.m(f10)) {
-                        org.telegram.ui.ActionBar.r6.t(photoViewer.f41353b1, org.telegram.ui.ActionBar.k6.f28040ng, photoViewer.f41530v2, PorterDuff.Mode.MULTIPLY);
+                    if (fd0Var.f33525b.m(f10)) {
+                        org.telegram.ui.ActionBar.r6.t(photoViewer.f41357b1, org.telegram.ui.ActionBar.k6.f28043ng, photoViewer.f41534v2, PorterDuff.Mode.MULTIPLY);
                     } else {
-                        photoViewer.f41353b1.setColorFilter((ColorFilter) null);
+                        photoViewer.f41357b1.setColorFilter((ColorFilter) null);
                     }
                 }
                 ye yeVar = photoViewer.W4.f47865c;
                 if (yeVar != null) {
-                    yeVar.f26627b = 0.0f;
-                    yeVar.f26626a = 0.0f;
-                    yeVar.f26630f = 1.0f;
-                    yeVar.f26629e = 1.0f;
+                    yeVar.f26636b = 0.0f;
+                    yeVar.f26635a = 0.0f;
+                    yeVar.f26639f = 1.0f;
+                    yeVar.f26638e = 1.0f;
                 }
                 if (runnable != null) {
                     runnable.run();

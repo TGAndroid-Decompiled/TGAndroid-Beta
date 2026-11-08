@@ -11,7 +11,7 @@ public final class p extends mf.a {
     @Override
     public final boolean b(kf.a aVar) {
         if (this.f13947c) {
-            kf.a aVar2 = (kf.a) ((kf.p) this.f13945a.f17278b);
+            kf.a aVar2 = (kf.a) ((kf.p) this.f13945a.f17281b);
             return true;
         }
         return true;
@@ -31,7 +31,7 @@ public final class p extends mf.a {
     public final a h(h hVar) {
         boolean z9 = false;
         if (hVar.h) {
-            if (((kf.p) this.f13945a.f17279c) != null) {
+            if (((kf.p) this.f13945a.f17282c) != null) {
                 kf.a e10 = hVar.h().e();
                 this.f13947c = ((e10 instanceof kf.r) || (e10 instanceof kf.o)) ? true : true;
                 return a.a(hVar.f13895e);

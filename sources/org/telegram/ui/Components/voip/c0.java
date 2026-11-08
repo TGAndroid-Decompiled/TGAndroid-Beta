@@ -2,19 +2,19 @@ package org.telegram.ui.Components.voip;
 
 import org.webrtc.RendererCommon;
 public final class c0 implements RendererCommon.RendererEvents {
-    public final d0 f39088a;
+    public final d0 f39123a;
 
     public c0(d0 d0Var) {
-        this.f39088a = d0Var;
+        this.f39123a = d0Var;
     }
 
     @Override
     public final void onFirstFrameRendered() {
-        org.telegram.messenger.g0.h3(new b0(this.f39088a, 0));
+        org.telegram.messenger.g0.h3(new b0(this.f39123a, 0));
     }
 
     @Override
     public final void onFrameResolutionChanged(int i7, int i10, int i11) {
-        org.telegram.messenger.g0.h3(new b0(this.f39088a, 1));
+        org.telegram.messenger.g0.h3(new b0(this.f39123a, 1));
     }
 }

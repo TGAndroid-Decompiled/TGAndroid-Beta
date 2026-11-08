@@ -47,58 +47,58 @@ public final class n40 extends t40 {
     public final int[] J;
     public final i40 J0;
     public final Matrix K;
-    public final qt K0;
+    public final rt K0;
     public final float[] L;
     public final Paint M;
     public final int N;
-    public wi.u0 O;
-    public wi.s0 P;
-    public wi.t0 Q;
-    public wi.m0 R;
+    public wi.t0 O;
+    public wi.r0 P;
+    public wi.s0 Q;
+    public wi.l0 R;
     public hy0 S;
     public org.telegram.messenger.j20 T;
     public m40 U;
     public boolean V;
     public boolean W;
-    public AnimatorSet f36194a0;
-    public ValueAnimator f36195b0;
-    public ValueAnimator f36196c0;
-    public final zg0 f36197d0;
-    public final b40 f36198e;
-    public zg0 f36199e0;
-    public final int f36200f;
-    public zg0 f36201f0;
-    public boolean f36202g0;
+    public AnimatorSet f36210a0;
+    public ValueAnimator f36211b0;
+    public ValueAnimator f36212c0;
+    public final zg0 f36213d0;
+    public final b40 f36214e;
+    public zg0 f36215e0;
+    public final int f36216f;
+    public zg0 f36217f0;
+    public boolean f36218g0;
     public final int h;
-    public boolean f36203h0;
-    public boolean f36204i0;
-    public boolean f36205j0;
-    public boolean f36206k0;
-    public boolean f36207l0;
+    public boolean f36219h0;
+    public boolean f36220i0;
+    public boolean f36221j0;
+    public boolean f36222k0;
+    public boolean f36223l0;
     public boolean m0;
-    public final boolean f36208n;
-    public boolean f36209n0;
-    public boolean f36210o0;
-    public boolean f36211p0;
-    public boolean f36212q0;
-    public final View f36213r;
-    public boolean f36214r0;
-    public final l40 f36215s;
-    public long f36216s0;
-    public int f36217t0;
-    public Bitmap f36218u0;
-    public long f36219v0;
-    public final fk0 f36220w;
-    public float f36221w0;
-    public final FrameLayout f36222x;
-    public float f36223x0;
-    public final k40 f36224y;
-    public float f36225y0;
-    public float f36226z0;
+    public final boolean f36224n;
+    public boolean f36225n0;
+    public boolean f36226o0;
+    public boolean f36227p0;
+    public boolean f36228q0;
+    public final View f36229r;
+    public boolean f36230r0;
+    public final l40 f36231s;
+    public long f36232s0;
+    public int f36233t0;
+    public Bitmap f36234u0;
+    public long f36235v0;
+    public final fk0 f36236w;
+    public float f36237w0;
+    public final FrameLayout f36238x;
+    public float f36239x0;
+    public final k40 f36240y;
+    public float f36241y0;
+    public float f36242z0;
 
     public n40(Activity activity, b40 b40Var, org.telegram.ui.ActionBar.f6 f6Var) {
         super(activity);
-        this.f36200f = org.telegram.messenger.p10.f24467s0;
+        this.f36216f = org.telegram.messenger.p10.f24470s0;
         this.J = new int[2];
         this.K = new Matrix();
         this.L = new float[9];
@@ -107,11 +107,11 @@ public final class n40 extends t40 {
         this.B0 = -1;
         this.E0 = Float.NaN;
         this.J0 = new i40(this, 0);
-        this.K0 = new qt(this, 2);
-        this.f36198e = b40Var;
+        this.K0 = new rt(this, 2);
+        this.f36214e = b40Var;
         this.h = b40Var.getClassGuid();
-        this.f36208n = b40Var.z();
-        this.f36213r = b40Var.getFragmentView();
+        this.f36224n = b40Var.z();
+        this.f36229r = b40Var.getFragmentView();
         setWillNotDraw(false);
         fi.p2 p2Var = new fi.p2(activity, null, this, null);
         this.I = p2Var;
@@ -120,18 +120,18 @@ public final class n40 extends t40 {
         p2Var.g();
         addView(p2Var.f12575b, c8.ha.e(-1, -1, 119));
         l40 l40Var = new l40(this, activity);
-        this.f36215s = l40Var;
+        this.f36231s = l40Var;
         fk0 fk0Var = new fk0(activity);
-        this.f36220w = fk0Var;
+        this.f36236w = fk0Var;
         FrameLayout frameLayout = new FrameLayout(activity);
-        this.f36222x = frameLayout;
+        this.f36238x = frameLayout;
         k40 k40Var = new k40(0, activity, this);
         k40Var.setOpaque(true);
         k40Var.setClickable(true);
         k40Var.setCameraDistance(org.telegram.messenger.g0.L(8000.0f));
         k40Var.setOutlineProvider(new bg.q0(12));
         k40Var.setClipToOutline(true);
-        this.f36224y = k40Var;
+        this.f36240y = k40Var;
         frameLayout.addView(k40Var, c8.ha.e(-1, -1, 119));
         Paint paint = new Paint(1);
         paint.setColor(Color.argb(40, 0, 0, 0));
@@ -154,80 +154,80 @@ public final class n40 extends t40 {
         this.F = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
-        imageView.setContentDescription(org.telegram.messenger.hd.M0(2131754752, null));
+        imageView.setContentDescription(org.telegram.messenger.id.M0(2131754752, null));
         linearLayout.addView((View) imageView, c8.ha.o(44, 44));
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final n40 f34871b;
+            public final n40 f34892b;
 
             {
-                this.f34871b = this;
+                this.f34892b = this;
             }
 
             @Override
             public final void onClick(View view) {
-                wi.t0 t0Var;
-                wi.m0 m0Var;
+                wi.s0 s0Var;
+                wi.l0 l0Var;
                 boolean z9;
-                wi.t0 t0Var2;
+                wi.s0 s0Var2;
                 int i10;
                 switch (r2) {
                     case 0:
-                        n40 n40Var = this.f34871b;
-                        wi.u0 u0Var = n40Var.O;
-                        if (u0Var != null && (t0Var = n40Var.Q) != null && (m0Var = n40Var.R) != null && t0Var.f58049a == 3 && !t0Var.f58053f && !n40Var.f36210o0) {
-                            wi.n0 n0Var = m0Var.f57988a;
-                            wi.n0 n0Var2 = wi.n0.f58018a;
-                            if (n0Var == n0Var2) {
-                                n0Var2 = wi.n0.f58019b;
+                        n40 n40Var = this.f34892b;
+                        wi.t0 t0Var = n40Var.O;
+                        if (t0Var != null && (s0Var = n40Var.Q) != null && (l0Var = n40Var.R) != null && s0Var.f58138a == 3 && !s0Var.f58142f && !n40Var.f36226o0) {
+                            wi.m0 m0Var = l0Var.f58078a;
+                            wi.m0 m0Var2 = wi.m0.f58083a;
+                            if (m0Var == m0Var2) {
+                                m0Var2 = wi.m0.f58084b;
                             }
-                            u0Var.getClass();
-                            wi.u0.v();
-                            int i11 = u0Var.f58103a0;
+                            t0Var.getClass();
+                            wi.t0.v();
+                            int i11 = t0Var.f58192a0;
                             if (i11 != 7 && i11 != 8 && i11 != 9 && i11 != 10) {
-                                if (u0Var.f58119r != n0Var2) {
-                                    u0Var.f58114m.b("camera facing requested: " + u0Var.f58119r + " -> " + n0Var2 + ", state=" + rf.b.t(u0Var.f58103a0));
-                                    u0Var.f58119r = n0Var2;
-                                    int i12 = u0Var.f58103a0;
+                                if (t0Var.f58208r != m0Var2) {
+                                    t0Var.f58203m.b("camera facing requested: " + t0Var.f58208r + " -> " + m0Var2 + ", state=" + rf.b.u(t0Var.f58192a0));
+                                    t0Var.f58208r = m0Var2;
+                                    int i12 = t0Var.f58192a0;
                                     if (i12 == 3 || i12 == 2) {
-                                        u0Var.e();
-                                        wi.k kVar = u0Var.f58113l;
-                                        kVar.F = n0Var2;
-                                        Handler handler = kVar.f57940n;
+                                        t0Var.e();
+                                        wi.k kVar = t0Var.f58202l;
+                                        kVar.F = m0Var2;
+                                        Handler handler = kVar.f58035n;
                                         if (kVar.V && handler != null) {
-                                            handler.post(new ti.p(28, kVar, n0Var2));
+                                            handler.post(new u9.f(23, kVar, m0Var2));
                                             z9 = true;
                                         } else {
                                             z9 = false;
                                         }
-                                        u0Var.f58125y = z9;
+                                        t0Var.f58214y = z9;
                                     }
-                                    u0Var.n();
-                                    u0Var.o();
+                                    t0Var.n();
+                                    t0Var.o();
                                 }
-                                n40Var.f36197d0.M(0);
-                                n40Var.f36197d0.start();
+                                n40Var.f36213d0.M(0);
+                                n40Var.f36213d0.start();
                                 return;
                             }
                             return;
                         }
                         return;
                     default:
-                        n40 n40Var2 = this.f34871b;
-                        wi.u0 u0Var2 = n40Var2.O;
-                        if (u0Var2 != null && (t0Var2 = n40Var2.Q) != null && n40Var2.R != null) {
-                            boolean z10 = !t0Var2.f58054g;
-                            wi.k kVar2 = u0Var2.f58113l;
-                            wi.u0.v();
-                            if (u0Var2.f58103a0 == 3 && !u0Var2.f58125y && (i10 = u0Var2.f58105b0) != 1) {
-                                u0Var2.f58123w = z10;
+                        n40 n40Var2 = this.f34892b;
+                        wi.t0 t0Var2 = n40Var2.O;
+                        if (t0Var2 != null && (s0Var2 = n40Var2.Q) != null && n40Var2.R != null) {
+                            boolean z10 = !s0Var2.f58143g;
+                            wi.k kVar2 = t0Var2.f58202l;
+                            wi.t0.v();
+                            if (t0Var2.f58192a0 == 3 && !t0Var2.f58214y && (i10 = t0Var2.f58194b0) != 1) {
+                                t0Var2.f58212w = z10;
                                 if (i10 == 3) {
-                                    u0Var2.w(z10);
+                                    t0Var2.w(z10);
                                     kVar2.S(false);
                                 } else {
-                                    u0Var2.w(false);
+                                    t0Var2.w(false);
                                     kVar2.S(z10);
                                 }
-                                u0Var2.o();
+                                t0Var2.o();
                                 n40Var2.E();
                                 return;
                             }
@@ -242,77 +242,77 @@ public final class n40 extends t40 {
         imageView2.setScaleType(scaleType);
         linearLayout.addView((View) imageView2, c8.ha.o(44, 44));
         imageView2.setOnClickListener(new View.OnClickListener(this) {
-            public final n40 f34871b;
+            public final n40 f34892b;
 
             {
-                this.f34871b = this;
+                this.f34892b = this;
             }
 
             @Override
             public final void onClick(View view) {
-                wi.t0 t0Var;
-                wi.m0 m0Var;
+                wi.s0 s0Var;
+                wi.l0 l0Var;
                 boolean z9;
-                wi.t0 t0Var2;
+                wi.s0 s0Var2;
                 int i10;
                 switch (r2) {
                     case 0:
-                        n40 n40Var = this.f34871b;
-                        wi.u0 u0Var = n40Var.O;
-                        if (u0Var != null && (t0Var = n40Var.Q) != null && (m0Var = n40Var.R) != null && t0Var.f58049a == 3 && !t0Var.f58053f && !n40Var.f36210o0) {
-                            wi.n0 n0Var = m0Var.f57988a;
-                            wi.n0 n0Var2 = wi.n0.f58018a;
-                            if (n0Var == n0Var2) {
-                                n0Var2 = wi.n0.f58019b;
+                        n40 n40Var = this.f34892b;
+                        wi.t0 t0Var = n40Var.O;
+                        if (t0Var != null && (s0Var = n40Var.Q) != null && (l0Var = n40Var.R) != null && s0Var.f58138a == 3 && !s0Var.f58142f && !n40Var.f36226o0) {
+                            wi.m0 m0Var = l0Var.f58078a;
+                            wi.m0 m0Var2 = wi.m0.f58083a;
+                            if (m0Var == m0Var2) {
+                                m0Var2 = wi.m0.f58084b;
                             }
-                            u0Var.getClass();
-                            wi.u0.v();
-                            int i11 = u0Var.f58103a0;
+                            t0Var.getClass();
+                            wi.t0.v();
+                            int i11 = t0Var.f58192a0;
                             if (i11 != 7 && i11 != 8 && i11 != 9 && i11 != 10) {
-                                if (u0Var.f58119r != n0Var2) {
-                                    u0Var.f58114m.b("camera facing requested: " + u0Var.f58119r + " -> " + n0Var2 + ", state=" + rf.b.t(u0Var.f58103a0));
-                                    u0Var.f58119r = n0Var2;
-                                    int i12 = u0Var.f58103a0;
+                                if (t0Var.f58208r != m0Var2) {
+                                    t0Var.f58203m.b("camera facing requested: " + t0Var.f58208r + " -> " + m0Var2 + ", state=" + rf.b.u(t0Var.f58192a0));
+                                    t0Var.f58208r = m0Var2;
+                                    int i12 = t0Var.f58192a0;
                                     if (i12 == 3 || i12 == 2) {
-                                        u0Var.e();
-                                        wi.k kVar = u0Var.f58113l;
-                                        kVar.F = n0Var2;
-                                        Handler handler = kVar.f57940n;
+                                        t0Var.e();
+                                        wi.k kVar = t0Var.f58202l;
+                                        kVar.F = m0Var2;
+                                        Handler handler = kVar.f58035n;
                                         if (kVar.V && handler != null) {
-                                            handler.post(new ti.p(28, kVar, n0Var2));
+                                            handler.post(new u9.f(23, kVar, m0Var2));
                                             z9 = true;
                                         } else {
                                             z9 = false;
                                         }
-                                        u0Var.f58125y = z9;
+                                        t0Var.f58214y = z9;
                                     }
-                                    u0Var.n();
-                                    u0Var.o();
+                                    t0Var.n();
+                                    t0Var.o();
                                 }
-                                n40Var.f36197d0.M(0);
-                                n40Var.f36197d0.start();
+                                n40Var.f36213d0.M(0);
+                                n40Var.f36213d0.start();
                                 return;
                             }
                             return;
                         }
                         return;
                     default:
-                        n40 n40Var2 = this.f34871b;
-                        wi.u0 u0Var2 = n40Var2.O;
-                        if (u0Var2 != null && (t0Var2 = n40Var2.Q) != null && n40Var2.R != null) {
-                            boolean z10 = !t0Var2.f58054g;
-                            wi.k kVar2 = u0Var2.f58113l;
-                            wi.u0.v();
-                            if (u0Var2.f58103a0 == 3 && !u0Var2.f58125y && (i10 = u0Var2.f58105b0) != 1) {
-                                u0Var2.f58123w = z10;
+                        n40 n40Var2 = this.f34892b;
+                        wi.t0 t0Var2 = n40Var2.O;
+                        if (t0Var2 != null && (s0Var2 = n40Var2.Q) != null && n40Var2.R != null) {
+                            boolean z10 = !s0Var2.f58143g;
+                            wi.k kVar2 = t0Var2.f58202l;
+                            wi.t0.v();
+                            if (t0Var2.f58192a0 == 3 && !t0Var2.f58214y && (i10 = t0Var2.f58194b0) != 1) {
+                                t0Var2.f58212w = z10;
                                 if (i10 == 3) {
-                                    u0Var2.w(z10);
+                                    t0Var2.w(z10);
                                     kVar2.S(false);
                                 } else {
-                                    u0Var2.w(false);
+                                    t0Var2.w(false);
                                     kVar2.S(z10);
                                 }
-                                u0Var2.o();
+                                t0Var2.o();
                                 n40Var2.E();
                                 return;
                             }
@@ -325,9 +325,9 @@ public final class n40 extends t40 {
         int L = org.telegram.messenger.g0.L(24.0f);
         this.N = L;
         zg0 zg0Var = new zg0(2131624187, L, L);
-        this.f36197d0 = zg0Var;
+        this.f36213d0 = zg0Var;
         zg0Var.setCallback(imageView);
-        zg0Var.M(zg0Var.f40976e[0] - 1);
+        zg0Var.M(zg0Var.f40995e[0] - 1);
         imageView.setImageDrawable(zg0Var);
         E();
         if (f6Var != null && !f6Var.a()) {
@@ -345,27 +345,27 @@ public final class n40 extends t40 {
     }
 
     public long getCameraFlipElapsedMs() {
-        if (this.f36216s0 == 0) {
+        if (this.f36232s0 == 0) {
             return 0L;
         }
-        return Math.max(0L, SystemClock.elapsedRealtime() - this.f36216s0);
+        return Math.max(0L, SystemClock.elapsedRealtime() - this.f36232s0);
     }
 
     private long getCurrentDurationMs() {
-        wi.t0 t0Var;
-        wi.u0 u0Var = this.O;
-        if (u0Var != null && (t0Var = this.Q) != null) {
-            if (t0Var.f58049a == 3) {
-                return u0Var.j();
+        wi.s0 s0Var;
+        wi.t0 t0Var = this.O;
+        if (t0Var != null && (s0Var = this.Q) != null) {
+            if (s0Var.f58138a == 3) {
+                return t0Var.j();
             }
-            return t0Var.f58050b;
+            return s0Var.f58139b;
         }
         return 0L;
     }
 
     public static void n(n40 n40Var) {
-        if (n40Var.f36210o0 && n40Var.f36214r0 && n40Var.f36211p0 && n40Var.f36212q0) {
-            n40Var.f36210o0 = false;
+        if (n40Var.f36226o0 && n40Var.f36230r0 && n40Var.f36227p0 && n40Var.f36228q0) {
+            n40Var.f36226o0 = false;
             org.telegram.messenger.a8.b("RoundVideo camera flip completed: elapsedMs=" + n40Var.getCameraFlipElapsedMs());
             n40Var.D();
         }
@@ -395,8 +395,8 @@ public final class n40 extends t40 {
             }
             if (this.d != z9) {
                 this.d = z9;
-                r40 r40Var = this.f38209c;
-                if (r40Var != null && (qjVar = ((org.telegram.ui.wi) r40Var).f51445a.Z) != null) {
+                r40 r40Var = this.f38237c;
+                if (r40Var != null && (qjVar = ((org.telegram.ui.wi) r40Var).f51452a.Z) != null) {
                     qjVar.setRoundVideoUiFrameClockActive(z9);
                 }
             }
@@ -404,7 +404,7 @@ public final class n40 extends t40 {
     }
 
     public void setScreenFlashEnabled(boolean z9) {
-        Activity parentActivity = this.f36198e.getParentActivity();
+        Activity parentActivity = this.f36214e.getParentActivity();
         if (parentActivity == null) {
             parentActivity = org.telegram.messenger.g0.W(getContext());
         }
@@ -431,14 +431,14 @@ public final class n40 extends t40 {
 
     public final void A(boolean z9) {
         Bitmap bitmap;
-        k40 k40Var = this.f36224y;
+        k40 k40Var = this.f36240y;
         if (k40Var.isAvailable() && (bitmap = k40Var.getBitmap(180, 180)) != null) {
             try {
                 if (bitmap.getWidth() != 0 && bitmap.getHeight() != 0 && bitmap.getPixel(bitmap.getWidth() / 2, bitmap.getHeight() / 2) != 0) {
                     bitmap = r(bitmap);
                     Utilities.stackBlurBitmap(bitmap, 15);
-                    Bitmap bitmap2 = this.f36218u0;
-                    this.f36218u0 = bitmap;
+                    Bitmap bitmap2 = this.f36234u0;
+                    this.f36234u0 = bitmap;
                     if (bitmap2 != null && bitmap2 != bitmap && !bitmap2.isRecycled()) {
                         bitmap2.recycle();
                     }
@@ -450,14 +450,14 @@ public final class n40 extends t40 {
                         } catch (Throwable unused) {
                         }
                     }
-                    if (bitmap != this.f36218u0) {
+                    if (bitmap != this.f36234u0) {
                         bitmap.recycle();
                         return;
                     }
                     return;
                 }
             } finally {
-                if (bitmap != this.f36218u0) {
+                if (bitmap != this.f36234u0) {
                     bitmap.recycle();
                 }
             }
@@ -472,32 +472,32 @@ public final class n40 extends t40 {
         float f14;
         float f15;
         float f16;
-        p40 p40Var = this.f38207a;
+        p40 p40Var = this.f38235a;
         if (p40Var != null) {
-            ((org.telegram.ui.fe) p40Var).f45614b.Zc.a(z9, true);
+            ((org.telegram.ui.fe) p40Var).f45591b.Zc.a(z9, true);
         }
-        AnimatorSet animatorSet = this.f36194a0;
+        AnimatorSet animatorSet = this.f36210a0;
         if (animatorSet != null) {
             animatorSet.removeAllListeners();
-            this.f36194a0.cancel();
+            this.f36210a0.cancel();
         }
         PipRoundVideoView pipRoundVideoView = PipRoundVideoView.F;
         if (pipRoundVideoView != null) {
             pipRoundVideoView.e(!z9);
         }
-        l40 l40Var = this.f36215s;
-        if (z9 && !this.f36207l0) {
+        l40 l40Var = this.f36231s;
+        if (z9 && !this.f36223l0) {
             l40Var.setTranslationX(0.0f);
             float measuredHeight = getMeasuredHeight() * 0.5f;
-            this.f36223x0 = measuredHeight;
-            l40Var.setTranslationY(measuredHeight + this.f36221w0);
+            this.f36239x0 = measuredHeight;
+            l40Var.setTranslationY(measuredHeight + this.f36237w0);
         }
-        this.f36207l0 = z9;
-        View view = this.f36213r;
+        this.f36223l0 = z9;
+        View view = this.f36229r;
         if (view != null) {
             view.invalidate();
         }
-        if (!z9 && Math.max(getCurrentDurationMs(), this.f36219v0) > 300) {
+        if (!z9 && Math.max(getCurrentDurationMs(), this.f36235v0) > 300) {
             f10 = org.telegram.messenger.g0.L(24.0f) - (getMeasuredWidth() * 0.5f);
         } else {
             f10 = 0.0f;
@@ -515,7 +515,7 @@ public final class n40 extends t40 {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f12);
         ofFloat.addUpdateListener(new h40(this, 0));
         AnimatorSet animatorSet2 = new AnimatorSet();
-        this.f36194a0 = animatorSet2;
+        this.f36210a0 = animatorSet2;
         if (z9) {
             f13 = 1.0f;
         } else {
@@ -543,20 +543,20 @@ public final class n40 extends t40 {
         }
         ObjectAnimator ofFloat5 = ObjectAnimator.ofFloat(l40Var, View.SCALE_Y, f17);
         ObjectAnimator ofFloat6 = ObjectAnimator.ofFloat(l40Var, View.TRANSLATION_X, f10);
-        if (this.f36205j0 && z9) {
+        if (this.f36221j0 && z9) {
             f16 = 1.0f;
         } else {
             f16 = 0.0f;
         }
         animatorSet2.playTogether(ofFloat2, ofFloat3, ofFloat4, ofFloat5, ofFloat6, ObjectAnimator.ofFloat(this.H, property, f16), ofFloat);
-        this.f36194a0.setDuration(180L);
-        this.f36194a0.setInterpolator(new DecelerateInterpolator());
+        this.f36210a0.setDuration(180L);
+        this.f36210a0.setInterpolator(new DecelerateInterpolator());
         if (!z9) {
-            this.f36194a0.addListener(new z5(this, 29));
+            this.f36210a0.addListener(new z5(this, 29));
         } else {
             setTranslationX(0.0f);
         }
-        this.f36194a0.start();
+        this.f36210a0.start();
     }
 
     public final void C() {
@@ -564,21 +564,21 @@ public final class n40 extends t40 {
             return;
         }
         this.D0 = false;
-        org.telegram.messenger.qs.e().k(org.telegram.messenger.qs.f25017k1, 512);
+        org.telegram.messenger.qs.e().k(org.telegram.messenger.qs.f25026k1, 512);
     }
 
     public final void D() {
         boolean z9;
-        wi.m0 m0Var;
-        wi.t0 t0Var = this.Q;
+        wi.l0 l0Var;
+        wi.s0 s0Var = this.Q;
         boolean z10 = false;
-        if (t0Var != null && t0Var.f58049a == 3 && !t0Var.f58053f && !this.f36210o0) {
+        if (s0Var != null && s0Var.f58138a == 3 && !s0Var.f58142f && !this.f36226o0) {
             z9 = true;
         } else {
             z9 = false;
         }
         this.F.setEnabled(z9);
-        if (z9 && (m0Var = this.R) != null && m0Var.f57989b != 1) {
+        if (z9 && (l0Var = this.R) != null && l0Var.f58079b != 1) {
             z10 = true;
         }
         this.G.setEnabled(z10);
@@ -586,67 +586,67 @@ public final class n40 extends t40 {
     }
 
     public final void E() {
-        wi.t0 t0Var = this.Q;
+        wi.s0 s0Var = this.Q;
         int i7 = this.N;
         fi.n2 n2Var = this.G;
-        if (t0Var != null && t0Var.f58054g) {
-            if (this.f36201f0 == null) {
+        if (s0Var != null && s0Var.f58143g) {
+            if (this.f36217f0 == null) {
                 zg0 zg0Var = new zg0(2131624185, i7, i7);
-                this.f36201f0 = zg0Var;
+                this.f36217f0 = zg0Var;
                 zg0Var.setCallback(n2Var);
             }
-            n2Var.setImageDrawable(this.f36201f0);
+            n2Var.setImageDrawable(this.f36217f0);
             return;
         }
-        if (this.f36199e0 == null) {
+        if (this.f36215e0 == null) {
             zg0 zg0Var2 = new zg0(2131624186, i7, i7);
-            this.f36199e0 = zg0Var2;
+            this.f36215e0 = zg0Var2;
             zg0Var2.setCallback(n2Var);
         }
-        n2Var.setImageDrawable(this.f36199e0);
+        n2Var.setImageDrawable(this.f36215e0);
     }
 
     public final void F() {
         org.telegram.ui.qj qjVar;
         float f10;
-        wi.t0 t0Var = this.Q;
-        if (t0Var != null) {
-            long j3 = t0Var.d;
-            if (t0Var.f58049a == 3) {
-                long min = Math.min(j3, (SystemClock.elapsedRealtime() + t0Var.f58050b) - t0Var.f58051c);
-                this.f36219v0 = min;
-                this.f36220w.setProgress(((float) min) / ((float) j3));
-                r40 r40Var = this.f38209c;
-                if (r40Var != null && (qjVar = ((org.telegram.ui.wi) r40Var).f51445a.Z) != null && qjVar.f31068j1) {
-                    qjVar.f31062i1 = min;
+        wi.s0 s0Var = this.Q;
+        if (s0Var != null) {
+            long j3 = s0Var.d;
+            if (s0Var.f58138a == 3) {
+                long min = Math.min(j3, (SystemClock.elapsedRealtime() + s0Var.f58139b) - s0Var.f58140c);
+                this.f36235v0 = min;
+                this.f36236w.setProgress(((float) min) / ((float) j3));
+                r40 r40Var = this.f38237c;
+                if (r40Var != null && (qjVar = ((org.telegram.ui.wi) r40Var).f51452a.Z) != null && qjVar.f31072j1) {
+                    qjVar.f31066i1 = min;
                     fg fgVar = qjVar.Y0;
-                    if (fgVar != null && fgVar.f33538r) {
+                    if (fgVar != null && fgVar.f33545r) {
                         fgVar.h = min;
                         fgVar.invalidate();
                     }
                     cg cgVar = qjVar.l1;
-                    if (cgVar != null && cgVar.f32552n) {
+                    if (cgVar != null && cgVar.f32583n) {
                         if (!cgVar.h) {
-                            long j10 = cgVar.f32553r;
+                            long j10 = cgVar.f32584r;
                             if (j10 >= 0) {
-                                if (!cgVar.f32550e) {
+                                if (!cgVar.f32581e) {
                                     long max = Math.max(0L, min - j10) % 1200;
                                     if (max < 600) {
                                         f10 = 1.0f - (((float) max) / 600.0f);
                                     } else {
                                         f10 = ((float) (max - 600)) / 600.0f;
                                     }
-                                    cgVar.f32547a = f10;
+                                    cgVar.f32578a = f10;
                                 }
                                 cgVar.invalidate();
                             }
                         }
-                        cgVar.f32553r = min;
-                        cgVar.f32547a = 1.0f;
+                        cgVar.f32584r = min;
+                        cgVar.f32578a = 1.0f;
                         cgVar.invalidate();
                     }
-                    ChatActivityEnterView.SlideTextView slideTextView = qjVar.f31073k1;
-                    if (slideTextView != null && slideTextView.J && slideTextView.f31178n != 1.0f) {
+                    ChatActivityEnterView.SlideTextView slideTextView = qjVar.f31077k1;
+                    if (slideTextView != null && slideTextView.J && slideTextView.f31182n != 1.0f) {
                         slideTextView.invalidate();
                     }
                 }
@@ -656,9 +656,9 @@ public final class n40 extends t40 {
 
     @Override
     public final void a(boolean z9) {
-        wi.u0 u0Var;
+        wi.t0 t0Var;
         int i7;
-        if (!x() && (u0Var = this.O) != null && u0Var.a()) {
+        if (!x() && (t0Var = this.O) != null && t0Var.a()) {
             this.U = null;
             if (z9) {
                 i7 = 0;
@@ -678,22 +678,22 @@ public final class n40 extends t40 {
 
     @Override
     public final void b(float f10, int i7) {
-        wi.t0 t0Var;
-        if (this.O != null && (t0Var = this.Q) != null && t0Var.f58049a == 5) {
+        wi.s0 s0Var;
+        if (this.O != null && (s0Var = this.Q) != null && s0Var.f58138a == 5) {
             q();
             if (i7 == 0) {
                 this.O.r();
             } else if (i7 == 1) {
                 this.O.p();
             } else if (i7 == 2) {
-                wi.u0 u0Var = this.O;
-                long j3 = f10 * ((float) this.Q.f58050b);
-                u0Var.getClass();
-                wi.u0.v();
-                if (u0Var.f58103a0 == 5 && u0Var.W != null) {
-                    long j10 = u0Var.K;
-                    u0Var.W.Z0(5, Math.max(j10, Math.min(Math.max(j10, u0Var.L - 1), j3)));
-                    u0Var.d.getClass();
+                wi.t0 t0Var = this.O;
+                long j3 = f10 * ((float) this.Q.f58139b);
+                t0Var.getClass();
+                wi.t0.v();
+                if (t0Var.f58192a0 == 5 && t0Var.W != null) {
+                    long j10 = t0Var.K;
+                    t0Var.W.Z0(5, Math.max(j10, Math.min(Math.max(j10, t0Var.L - 1), j3)));
+                    t0Var.d.getClass();
                 }
             }
         }
@@ -703,7 +703,7 @@ public final class n40 extends t40 {
     public final void c(boolean z9) {
         setRecordingUiFrameClockActive(false);
         s();
-        ValueAnimator valueAnimator = this.f36195b0;
+        ValueAnimator valueAnimator = this.f36211b0;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
@@ -711,15 +711,15 @@ public final class n40 extends t40 {
             this.W = true;
             this.O.s();
         } else {
-            wi.u0 u0Var = this.O;
-            if (u0Var != null) {
-                u0Var.s();
+            wi.t0 t0Var = this.O;
+            if (t0Var != null) {
+                t0Var.s();
                 this.O = null;
             }
         }
         hy0 hy0Var = this.S;
         if (hy0Var != null && !this.W) {
-            hy0Var.d(true ^ this.f36206k0);
+            hy0Var.d(true ^ this.f36222k0);
             this.S = null;
         }
         setScreenFlashEnabled(false);
@@ -730,19 +730,19 @@ public final class n40 extends t40 {
     @Override
     public final void d(boolean z9) {
         c(true);
-        l40 l40Var = this.f36215s;
+        l40 l40Var = this.f36231s;
         l40Var.setTranslationX(0.0f);
-        this.f36223x0 = 0.0f;
-        l40Var.setTranslationY(0.0f + this.f36221w0);
+        this.f36239x0 = 0.0f;
+        l40Var.setTranslationY(0.0f + this.f36237w0);
         l40Var.setImageReceiver(null);
         MediaController.B().c0();
     }
 
     @Override
     public final boolean f() {
-        wi.t0 t0Var = this.Q;
-        if (t0Var != null) {
-            int i7 = t0Var.f58049a;
+        wi.s0 s0Var = this.Q;
+        if (s0Var != null) {
+            int i7 = s0Var.f58138a;
             if (i7 == 4 || i7 == 5 || i7 == 6) {
                 return true;
             }
@@ -754,8 +754,8 @@ public final class n40 extends t40 {
     @Override
     public final void g(float f10) {
         float f11 = f10 * 0.5f;
-        this.f36221w0 = f11;
-        this.f36215s.setTranslationY(this.f36223x0 + f11);
+        this.f36237w0 = f11;
+        this.f36231s.setTranslationY(this.f36239x0 + f11);
     }
 
     @Override
@@ -765,12 +765,12 @@ public final class n40 extends t40 {
 
     @Override
     public q40 getCameraContainer() {
-        return this.f36215s;
+        return this.f36231s;
     }
 
     @Override
     public RectF getCameraRect() {
-        k40 k40Var = this.f36224y;
+        k40 k40Var = this.f36240y;
         int[] iArr = this.J;
         k40Var.getLocationOnScreen(iArr);
         int i7 = iArr[0];
@@ -784,12 +784,12 @@ public final class n40 extends t40 {
 
     @Override
     public Paint getPaint() {
-        return this.f36220w.getPaint();
+        return this.f36236w.getPaint();
     }
 
     @Override
     public TextureView getTextureView() {
-        return this.f36224y;
+        return this.f36240y;
     }
 
     @Override
@@ -800,14 +800,14 @@ public final class n40 extends t40 {
             } else if ((i7 == 1 || i7 == 4) && this.U == null) {
                 long currentDurationMs = getCurrentDurationMs();
                 if (currentDurationMs < 800) {
-                    org.telegram.messenger.qs.f(this.f36200f).k(org.telegram.messenger.qs.f25070t2, Integer.valueOf(this.h), Boolean.TRUE, Integer.valueOf((int) currentDurationMs));
+                    org.telegram.messenger.qs.f(this.f36216f).k(org.telegram.messenger.qs.f25079t2, Integer.valueOf(this.h), Boolean.TRUE, Integer.valueOf((int) currentDurationMs));
                     a(false);
                     return;
                 }
-                if (this.Q.f58049a == 3) {
+                if (this.Q.f58138a == 3) {
                     z(5);
                 }
-                this.f36203h0 = false;
+                this.f36219h0 = false;
                 this.U = new m40(i10, i11, j3, j10, z9);
                 u();
             }
@@ -829,24 +829,24 @@ public final class n40 extends t40 {
             return;
         }
         setVisibility(0);
-        this.f36220w.getPaint().setAlpha(255);
-        this.f36206k0 = false;
-        this.f36205j0 = false;
+        this.f36236w.getPaint().setAlpha(255);
+        this.f36222k0 = false;
+        this.f36221j0 = false;
         this.U = null;
         this.V = false;
-        this.f36202g0 = false;
-        this.f36204i0 = false;
-        this.f36219v0 = 0L;
-        this.f36220w.setProgress(0.0f);
+        this.f36218g0 = false;
+        this.f36220i0 = false;
+        this.f36235v0 = 0L;
+        this.f36236w.setProgress(0.0f);
         org.telegram.ui.pk pkVar = this.D;
         if (!this.m0) {
-            if (this.f36218u0 == null) {
+            if (this.f36234u0 == null) {
                 try {
-                    this.f36218u0 = BitmapFactory.decodeFile(new File(org.telegram.messenger.t0.h(), "icthumb.jpg").getAbsolutePath());
+                    this.f36234u0 = BitmapFactory.decodeFile(new File(org.telegram.messenger.t0.h(), "icthumb.jpg").getAbsolutePath());
                 } catch (Throwable unused) {
                 }
             }
-            Bitmap bitmap = this.f36218u0;
+            Bitmap bitmap = this.f36234u0;
             if (bitmap != null) {
                 pkVar.setImageBitmap(bitmap);
             } else {
@@ -857,43 +857,43 @@ public final class n40 extends t40 {
             pkVar.setAlpha(1.0f);
             pkVar.invalidate();
         }
-        this.S = new hy0(this.f36200f, this.f36208n);
-        this.P = (wi.s0) xi.e.f58770e.a();
-        wi.l0 l0Var = new wi.l0(getContext(), this.f36224y);
-        l0Var.f57978c = new File(org.telegram.messenger.t0.h(), "cache");
-        l0Var.d = (wi.n0) xi.e.f58774j.a();
-        l0Var.f57979e = this.P;
-        l0Var.h = xi.e.h.a();
-        l0Var.f57980f = (wi.o0) xi.e.f58771f.a();
-        l0Var.f57981g = (wi.p0) xi.e.f58772g.a();
-        xi.a aVar = xi.e.f58773i;
+        this.S = new hy0(this.f36216f, this.f36224n);
+        this.P = (wi.r0) xi.e.f58859e.a();
+        wi.k0 k0Var = new wi.k0(getContext(), this.f36240y);
+        k0Var.f58068c = new File(org.telegram.messenger.t0.h(), "cache");
+        k0Var.d = (wi.m0) xi.e.f58863j.a();
+        k0Var.f58069e = this.P;
+        k0Var.h = xi.e.h.a();
+        k0Var.f58070f = (wi.n0) xi.e.f58860f.a();
+        k0Var.f58071g = (wi.o0) xi.e.f58861g.a();
+        xi.a aVar = xi.e.f58862i;
         aVar.a();
-        l0Var.f57982i = aVar.d;
-        qt qtVar = this.K0;
-        l0Var.f57983j = qtVar;
+        k0Var.f58072i = aVar.d;
+        rt rtVar = this.K0;
+        k0Var.f58073j = rtVar;
         hy0 hy0Var = this.S;
-        l0Var.f57984k = hy0Var;
-        l0Var.f57985l = new ax(this, 5);
-        if (l0Var.d != null) {
-            if (l0Var.f57979e != null) {
-                if (l0Var.h > 0) {
-                    if (l0Var.f57980f != null) {
-                        if (l0Var.f57981g != null) {
-                            if (qtVar != null) {
+        k0Var.f58074k = hy0Var;
+        k0Var.f58075l = new bx(this, 5);
+        if (k0Var.d != null) {
+            if (k0Var.f58069e != null) {
+                if (k0Var.h > 0) {
+                    if (k0Var.f58070f != null) {
+                        if (k0Var.f58071g != null) {
+                            if (rtVar != null) {
                                 if (hy0Var != null) {
-                                    this.O = new wi.u0(l0Var);
+                                    this.O = new wi.t0(k0Var);
                                     MediaController.B().Y(true);
-                                    wi.u0 u0Var = this.O;
-                                    u0Var.getClass();
-                                    wi.u0.v();
-                                    if (u0Var.f58103a0 == 1) {
+                                    wi.t0 t0Var = this.O;
+                                    t0Var.getClass();
+                                    wi.t0.v();
+                                    if (t0Var.f58192a0 == 1) {
                                         try {
-                                            u0Var.f58114m.b("start requested");
-                                            u0Var.c(true);
-                                            u0Var.x(2);
-                                            u0Var.f58113l.W(u0Var.U, 0L, u0Var.f58119r);
+                                            t0Var.f58203m.b("start requested");
+                                            t0Var.c(true);
+                                            t0Var.x(2);
+                                            t0Var.f58202l.W(t0Var.U, 0L, t0Var.f58208r);
                                         } catch (Exception e10) {
-                                            u0Var.h(e10);
+                                            t0Var.h(e10);
                                         }
                                     }
                                     B(true, false);
@@ -916,24 +916,24 @@ public final class n40 extends t40 {
 
     @Override
     public final void k() {
-        wi.t0 t0Var;
-        wi.u0 u0Var = this.O;
-        if (u0Var != null && (t0Var = this.Q) != null) {
-            int i7 = t0Var.f58049a;
+        wi.s0 s0Var;
+        wi.t0 t0Var = this.O;
+        if (t0Var != null && (s0Var = this.Q) != null) {
+            int i7 = s0Var.f58138a;
             if (i7 == 3) {
                 y();
             } else if (i7 == 5) {
-                wi.u0.v();
-                if (u0Var.f58103a0 == 5 && u0Var.L - u0Var.K < u0Var.f58118q) {
-                    u0Var.Q++;
-                    u0Var.D = false;
-                    u0Var.f58114m.b("resume requested: trim=" + u0Var.K + ".." + u0Var.L + ", sourceDurationMs=" + u0Var.I);
-                    u0Var.t();
-                    u0Var.x(6);
-                    u0Var.f58111j.execute(new fi.q1(u0Var, u0Var.l(), u0Var.U, u0Var.T, u0Var.V));
+                wi.t0.v();
+                if (t0Var.f58192a0 == 5 && t0Var.L - t0Var.K < t0Var.f58207q) {
+                    t0Var.Q++;
+                    t0Var.D = false;
+                    t0Var.f58203m.b("resume requested: trim=" + t0Var.K + ".." + t0Var.L + ", sourceDurationMs=" + t0Var.I);
+                    t0Var.t();
+                    t0Var.x(6);
+                    t0Var.f58200j.execute(new fi.q1(t0Var, t0Var.l(), t0Var.U, t0Var.T, t0Var.V));
                     this.T = null;
-                    this.f36203h0 = true;
-                    this.f36204i0 = false;
+                    this.f36219h0 = true;
+                    this.f36220i0 = false;
                 }
             }
         }
@@ -959,11 +959,11 @@ public final class n40 extends t40 {
         if (View.MeasureSpec.getSize(i10) - getPaddingBottom() > View.MeasureSpec.getSize(i7) * 1.3f) {
             i11 = org.telegram.messenger.g0.v;
         } else {
-            i11 = org.telegram.messenger.g0.f22548u;
+            i11 = org.telegram.messenger.g0.f22567u;
         }
         if (this.F0 != i11) {
             this.F0 = i11;
-            l40 l40Var = this.f36215s;
+            l40 l40Var = this.f36231s;
             l40Var.getLayoutParams().width = org.telegram.messenger.g0.L(28.0f) + i11;
             l40Var.getLayoutParams().height = org.telegram.messenger.g0.L(28.0f) + i11;
             ((FrameLayout.LayoutParams) this.H.getLayoutParams()).topMargin = (i11 / 2) - org.telegram.messenger.g0.L(24.0f);
@@ -986,50 +986,50 @@ public final class n40 extends t40 {
 
     @Override
     public final void onWindowVisibilityChanged(int i7) {
-        wi.u0 u0Var;
         wi.t0 t0Var;
+        wi.s0 s0Var;
         super.onWindowVisibilityChanged(i7);
-        if (i7 != 0 && (u0Var = this.O) != null && (t0Var = this.Q) != null) {
-            if (t0Var.f58049a == 3) {
+        if (i7 != 0 && (t0Var = this.O) != null && (s0Var = this.Q) != null) {
+            if (s0Var.f58138a == 3) {
                 y();
-            } else if (t0Var.f58052e) {
-                u0Var.p();
+            } else if (s0Var.f58141e) {
+                t0Var.p();
             }
         }
     }
 
     public final void q() {
-        wi.t0 t0Var;
+        wi.s0 s0Var;
         org.telegram.messenger.j20 j20Var;
-        if (this.O != null && (t0Var = this.Q) != null && (j20Var = this.T) != null) {
-            long j3 = t0Var.f58050b;
-            long max = Math.max(0L, j20Var.f23450a);
-            long j10 = this.T.f23452b;
+        if (this.O != null && (s0Var = this.Q) != null && (j20Var = this.T) != null) {
+            long j3 = s0Var.f58139b;
+            long max = Math.max(0L, j20Var.f23471a);
+            long j10 = this.T.f23473b;
             if (j10 >= 0) {
                 j3 = Math.min(j3, j10);
             }
-            wi.u0 u0Var = this.O;
-            u0Var.getClass();
-            wi.u0.v();
-            if (u0Var.f58103a0 == 5) {
-                long max2 = Math.max(0L, Math.min(u0Var.I, max));
-                long max3 = Math.max(max2, Math.min(u0Var.I, j3));
-                if (max3 - max2 >= Math.min(800L, u0Var.I)) {
-                    u0Var.K = max2;
-                    u0Var.L = max3;
-                    l2.i0 i0Var = u0Var.W;
+            wi.t0 t0Var = this.O;
+            t0Var.getClass();
+            wi.t0.v();
+            if (t0Var.f58192a0 == 5) {
+                long max2 = Math.max(0L, Math.min(t0Var.I, max));
+                long max3 = Math.max(max2, Math.min(t0Var.I, j3));
+                if (max3 - max2 >= Math.min(800L, t0Var.I)) {
+                    t0Var.K = max2;
+                    t0Var.L = max3;
+                    l2.i0 i0Var = t0Var.W;
                     if (i0Var != null) {
                         i0Var.Z0(5, max2);
                     }
-                    u0Var.d.getClass();
-                    u0Var.o();
+                    t0Var.d.getClass();
+                    t0Var.o();
                 }
             }
         }
     }
 
     public final Bitmap r(Bitmap bitmap) {
-        k40 k40Var = this.f36224y;
+        k40 k40Var = this.f36240y;
         if (k40Var.getWidth() > 0 && k40Var.getHeight() > 0) {
             Matrix matrix = this.K;
             k40Var.getTransform(matrix);
@@ -1055,24 +1055,24 @@ public final class n40 extends t40 {
     }
 
     public final void s() {
-        if (!this.f36210o0 && this.f36196c0 == null) {
+        if (!this.f36226o0 && this.f36212c0 == null) {
             return;
         }
-        this.f36217t0++;
-        ValueAnimator valueAnimator = this.f36196c0;
+        this.f36233t0++;
+        ValueAnimator valueAnimator = this.f36212c0;
         if (valueAnimator != null) {
             valueAnimator.removeAllListeners();
-            this.f36196c0.cancel();
-            this.f36196c0 = null;
+            this.f36212c0.cancel();
+            this.f36212c0 = null;
         }
-        FrameLayout frameLayout = this.f36222x;
+        FrameLayout frameLayout = this.f36238x;
         frameLayout.animate().cancel();
         frameLayout.animate().setListener(null);
         frameLayout.setRotationY(0.0f);
-        this.f36210o0 = false;
-        this.f36211p0 = false;
-        this.f36212q0 = false;
-        this.f36214r0 = false;
+        this.f36226o0 = false;
+        this.f36227p0 = false;
+        this.f36228q0 = false;
+        this.f36230r0 = false;
         w(false);
     }
 
@@ -1083,14 +1083,14 @@ public final class n40 extends t40 {
 
     @Override
     public void setIsMessageTransition(boolean z9) {
-        this.f36215s.getClass();
+        this.f36231s.getClass();
     }
 
     @Override
     public void setVisibility(int i7) {
         super.setVisibility(i7);
         this.E.setAlpha(0.0f);
-        l40 l40Var = this.f36215s;
+        l40 l40Var = this.f36231s;
         l40Var.setAlpha(0.0f);
         l40Var.setScaleX(0.1f);
         l40Var.setScaleY(0.1f);
@@ -1099,7 +1099,7 @@ public final class n40 extends t40 {
         imageView.setAlpha(0.0f);
         imageView.setScaleX(1.0f);
         imageView.setScaleY(1.0f);
-        this.f36220w.getPaint().setAlpha(0);
+        this.f36236w.getPaint().setAlpha(0);
         try {
             Activity activity = (Activity) getContext();
             if (i7 == 0) {
@@ -1116,91 +1116,91 @@ public final class n40 extends t40 {
         long j10;
         int i7;
         int i10;
-        wi.p0 p0Var;
+        wi.o0 o0Var;
         org.telegram.messenger.j20 j20Var = new org.telegram.messenger.j20();
-        j20Var.f23450a = -1L;
-        j20Var.f23452b = -1L;
-        j20Var.f23467r = j3;
+        j20Var.f23471a = -1L;
+        j20Var.f23473b = -1L;
+        j20Var.f23488r = j3;
         if (gy0Var == null) {
             j10 = file.length();
         } else {
-            j10 = gy0Var.f34107a;
+            j10 = gy0Var.f34039a;
         }
-        j20Var.f23466q = Math.max(1L, j10);
-        j20Var.f23468s = true;
-        wi.u0 u0Var = this.O;
-        if (u0Var != null && (p0Var = u0Var.f58122u) != null) {
-            i7 = p0Var.f58031a;
+        j20Var.f23487q = Math.max(1L, j10);
+        j20Var.f23489s = true;
+        wi.t0 t0Var = this.O;
+        if (t0Var != null && (o0Var = t0Var.f58211u) != null) {
+            i7 = o0Var.f58121a;
         } else {
             i7 = 30;
         }
-        j20Var.f23463n = i7;
-        wi.s0 s0Var = this.P;
-        if (s0Var == null) {
+        j20Var.f23484n = i7;
+        wi.r0 r0Var = this.P;
+        if (r0Var == null) {
             i10 = 480;
         } else {
-            i10 = s0Var.f58048a;
+            i10 = r0Var.f58137a;
         }
         j20Var.h = i10;
-        j20Var.f23460k = i10;
-        j20Var.f23458i = i10;
-        j20Var.f23461l = i10;
-        j20Var.f23464o = file.getAbsolutePath();
+        j20Var.f23481k = i10;
+        j20Var.f23479i = i10;
+        j20Var.f23482l = i10;
+        j20Var.f23485o = file.getAbsolutePath();
         if (gy0Var != null) {
-            j20Var.f23471w = gy0Var.f34108b;
-            j20Var.f23472x = gy0Var.f34109c;
-            j20Var.f23473y = gy0Var.d;
-            j20Var.f23474z = gy0Var.f34110e;
+            j20Var.f23492w = gy0Var.f34040b;
+            j20Var.f23493x = gy0Var.f34041c;
+            j20Var.f23494y = gy0Var.d;
+            j20Var.f23495z = gy0Var.f34042e;
         }
         return j20Var;
     }
 
     public final void u() {
-        wi.t0 t0Var;
+        wi.s0 s0Var;
         boolean z9;
         int i7;
-        if (this.U != null && !this.V && this.O != null && (t0Var = this.Q) != null) {
-            int i10 = t0Var.f58049a;
+        if (this.U != null && !this.V && this.O != null && (s0Var = this.Q) != null) {
+            int i10 = s0Var.f58138a;
             if (i10 == 5) {
                 q();
             } else if (i10 != 3) {
                 return;
             }
-            wi.u0 u0Var = this.O;
-            boolean z10 = this.f36205j0;
+            wi.t0 t0Var = this.O;
+            boolean z10 = this.f36221j0;
             boolean z11 = !z10;
-            u0Var.getClass();
-            wi.u0.v();
-            int i11 = u0Var.f58103a0;
+            t0Var.getClass();
+            wi.t0.v();
+            int i11 = t0Var.f58192a0;
             boolean z12 = false;
             if (i11 == 3 || i11 == 5) {
-                u0Var.f58114m.b("finish requested: state=" + rf.b.t(u0Var.f58103a0) + ", includeAudio=" + z11 + ", durationMs=" + u0Var.j() + ", trim=" + u0Var.K + ".." + u0Var.L);
-                u0Var.B = z11;
-                if (u0Var.f58103a0 == 3) {
-                    u0Var.I = u0Var.j();
-                    u0Var.A = true;
-                    u0Var.e();
-                    u0Var.f58110i.removeCallbacks(u0Var.X);
-                    u0Var.x(7);
-                    boolean X = u0Var.f58113l.X();
-                    u0Var.E = X;
+                t0Var.f58203m.b("finish requested: state=" + rf.b.u(t0Var.f58192a0) + ", includeAudio=" + z11 + ", durationMs=" + t0Var.j() + ", trim=" + t0Var.K + ".." + t0Var.L);
+                t0Var.B = z11;
+                if (t0Var.f58192a0 == 3) {
+                    t0Var.I = t0Var.j();
+                    t0Var.A = true;
+                    t0Var.e();
+                    t0Var.f58199i.removeCallbacks(t0Var.X);
+                    t0Var.x(7);
+                    boolean X = t0Var.f58202l.X();
+                    t0Var.E = X;
                     if (!X) {
-                        u0Var.h(new IllegalStateException("Unable to stop the camera segment"));
+                        t0Var.h(new IllegalStateException("Unable to stop the camera segment"));
                     }
                 } else {
-                    u0Var.t();
-                    u0Var.x(7);
-                    if (!u0Var.l() && !z10) {
+                    t0Var.t();
+                    t0Var.x(7);
+                    if (!t0Var.l() && !z10) {
                         z9 = false;
                     } else {
                         z9 = true;
                     }
-                    if (u0Var.l()) {
+                    if (t0Var.l()) {
                         i7 = 1;
                     } else {
                         i7 = 2;
                     }
-                    u0Var.f58111j.execute(new bi.sb(u0Var, u0Var.U, z9, u0Var.V, z11, i7, u0Var.T));
+                    t0Var.f58200j.execute(new bi.sb(t0Var, t0Var.U, z9, t0Var.V, z11, i7, t0Var.T));
                 }
                 z12 = true;
             }
@@ -1216,23 +1216,23 @@ public final class n40 extends t40 {
             if (this.O == null) {
                 return;
             }
-            ValueAnimator valueAnimator = this.f36195b0;
+            ValueAnimator valueAnimator = this.f36211b0;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f36226z0, 0.0f);
-            this.f36195b0 = ofFloat;
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f36242z0, 0.0f);
+            this.f36211b0 = ofFloat;
             ofFloat.setDuration(350L);
-            this.f36195b0.addUpdateListener(new h40(this, 1));
-            this.f36195b0.start();
+            this.f36211b0.addUpdateListener(new h40(this, 1));
+            this.f36211b0.start();
         }
     }
 
     public final void w(boolean z9) {
-        if (!this.f36209n0) {
+        if (!this.f36225n0) {
             return;
         }
-        this.f36209n0 = false;
+        this.f36225n0 = false;
         org.telegram.ui.pk pkVar = this.D;
         pkVar.animate().cancel();
         if (z9) {
@@ -1243,10 +1243,10 @@ public final class n40 extends t40 {
     }
 
     public final boolean x() {
-        wi.u0 u0Var;
-        if (this.U != null && this.V && (u0Var = this.O) != null) {
-            wi.u0.v();
-            if (u0Var.f58103a0 == 7) {
+        wi.t0 t0Var;
+        if (this.U != null && this.V && (t0Var = this.O) != null) {
+            wi.t0.v();
+            if (t0Var.f58192a0 == 7) {
                 return true;
             }
             return false;
@@ -1255,18 +1255,18 @@ public final class n40 extends t40 {
     }
 
     public final void y() {
-        wi.t0 t0Var;
-        if (this.O != null && (t0Var = this.Q) != null && t0Var.f58049a == 3) {
+        wi.s0 s0Var;
+        if (this.O != null && (s0Var = this.Q) != null && s0Var.f58138a == 3) {
             z(2);
             this.O.q();
         }
     }
 
     public final void z(int i7) {
-        if (this.f36204i0 && i7 == 2) {
+        if (this.f36220i0 && i7 == 2) {
             return;
         }
-        this.f36204i0 = true;
-        org.telegram.messenger.qs.f(this.f36200f).k(org.telegram.messenger.qs.f25033n2, Integer.valueOf(this.h), Integer.valueOf(i7));
+        this.f36220i0 = true;
+        org.telegram.messenger.qs.f(this.f36216f).k(org.telegram.messenger.qs.f25042n2, Integer.valueOf(this.h), Integer.valueOf(i7));
     }
 }

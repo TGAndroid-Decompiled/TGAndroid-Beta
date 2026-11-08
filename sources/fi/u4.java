@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.SparseIntArray;
 import android.view.View;
 import org.telegram.messenger.d20;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.p10;
 import org.telegram.tgnet.tl.TL_aicompose;
@@ -36,7 +36,7 @@ public final class u4 implements d20 {
                 o5 o5Var = (o5) obj4;
                 boolean[] zArr = (boolean[]) obj3;
                 c5 c5Var = (c5) obj2;
-                org.telegram.ui.ActionBar.l2 l2Var = c5Var.f28619c;
+                org.telegram.ui.ActionBar.l2 l2Var = c5Var.f28622c;
                 Integer num = (Integer) obj;
                 j5 j5Var = o5Var.A0;
                 g5 g5Var = o5Var.f12540p1;
@@ -46,7 +46,7 @@ public final class u4 implements d20 {
                     return Boolean.TRUE;
                 } else if (num.intValue() == 5) {
                     zArr[0] = false;
-                    c8.ia.c(2131624119, 2131747301, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new String[]{"android.permission.ACCESS_COARSE_LOCATION"}, new bi.b9(3, new bi.b9(2, new ai.f1(10, o5Var, c5Var), true), true));
+                    c8.ia.c(2131624119, 2131747303, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new String[]{"android.permission.ACCESS_COARSE_LOCATION"}, new bi.b9(3, new bi.b9(2, new ai.f1(10, o5Var, c5Var), true), true));
                     return Boolean.FALSE;
                 } else if (num.intValue() == 2) {
                     c5Var.dismiss();
@@ -72,7 +72,7 @@ public final class u4 implements d20 {
                             l2Var.performHapticFeedback(3);
                         } catch (Exception unused) {
                         }
-                        new hc(l2Var, g5Var).Q(2131624216, 36, org.telegram.messenger.g0.x2(hd.M0(2131744636, null), new m4(o5Var, 1))).k(true);
+                        new hc(l2Var, g5Var).Q(2131624216, 36, org.telegram.messenger.g0.x2(id.M0(2131744638, null), new m4(o5Var, 1))).k(true);
                         return Boolean.FALSE;
                     }
                     int i10 = 0;
@@ -82,7 +82,7 @@ public final class u4 implements d20 {
                         }
                     }
                     if (i10 >= 3) {
-                        new hc(l2Var, g5Var).I(2131624079, hd.M0(2131744639, null), hd.G(3, "StoryLinkLimitMessage", new Object[0])).k(true);
+                        new hc(l2Var, g5Var).I(2131624079, id.M0(2131744641, null), id.G(3, "StoryLinkLimitMessage", new Object[0])).k(true);
                         return Boolean.FALSE;
                     }
                     zArr[0] = false;
@@ -97,12 +97,12 @@ public final class u4 implements d20 {
                 final org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) obj3;
                 Context context = (Context) obj2;
                 org.telegram.ui.Components.e0 e0Var = (org.telegram.ui.Components.e0) obj;
-                TL_aicompose.AiComposeTone aiComposeTone = e0Var.f33108e;
+                TL_aicompose.AiComposeTone aiComposeTone = e0Var.f33149e;
                 if (aiComposeTone instanceof TL_aicompose.TL_aiComposeTone) {
                     final TL_aicompose.TL_aiComposeTone tL_aiComposeTone = (TL_aicompose.TL_aiComposeTone) aiComposeTone;
-                    k60 F = k60.F(g0Var.f28619c, f6Var, e0Var);
-                    F.W(org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(12.0f), org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27849d6, f6Var)));
-                    F.l(2131232116, hd.M0(2131754996, null), new Runnable() {
+                    k60 F = k60.F(g0Var.f28622c, f6Var, e0Var);
+                    F.W(org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(12.0f), org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27852d6, f6Var)));
+                    F.l(2131232116, id.M0(2131754996, null), new Runnable() {
                         @Override
                         public final void run() {
                             boolean z9;
@@ -113,40 +113,40 @@ public final class u4 implements d20 {
                             switch (i12) {
                                 case 0:
                                     a0 a0Var = new a0(g0Var2.getContext(), f6Var2);
-                                    a0Var.f31616b2 = tL_aiComposeTone2;
+                                    a0Var.f31620b2 = tL_aiComposeTone2;
                                     a0Var.Z1 = Long.valueOf(tL_aiComposeTone2.emoji_id);
                                     a0Var.f1();
-                                    a0Var.S1.setText(a0Var.f31616b2.title);
-                                    a0Var.T1.setText(a0Var.f31616b2.prompt);
-                                    if (a0Var.f31616b2.author_id != 0) {
+                                    a0Var.S1.setText(a0Var.f31620b2.title);
+                                    a0Var.T1.setText(a0Var.f31620b2.prompt);
+                                    if (a0Var.f31620b2.author_id != 0) {
                                         z9 = true;
                                     } else {
                                         z9 = false;
                                     }
                                     a0Var.V1.a(z9, false);
-                                    a0Var.l1.setTitle(org.telegram.messenger.hd.M0(2131754996, null));
-                                    a0Var.Y1.setText(org.telegram.messenger.hd.M0(2131754979, null));
+                                    a0Var.l1.setTitle(org.telegram.messenger.id.M0(2131754996, null));
+                                    a0Var.Y1.setText(org.telegram.messenger.id.M0(2131754979, null));
                                     a0Var.e1();
-                                    a0Var.f31619f2.O(false);
+                                    a0Var.f31623f2.O(false);
                                     a0Var.d2 = new g(g0Var2, 2);
                                     a0Var.show();
                                     return;
                                 default:
                                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, g0Var2.getContext(), f6Var2);
-                                    String M0 = org.telegram.messenger.hd.M0(2131754998, null);
-                                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
+                                    String M0 = org.telegram.messenger.id.M0(2131754998, null);
+                                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
                                     u1Var.R = M0;
-                                    u1Var.T = org.telegram.messenger.hd.M0(2131754997, null);
-                                    alertDialog$Builder.h(org.telegram.messenger.hd.M0(2131752589, null), null);
-                                    alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131751599, null), new ni.c(22, g0Var2, tL_aiComposeTone2));
+                                    u1Var.T = org.telegram.messenger.id.M0(2131754997, null);
+                                    alertDialog$Builder.h(org.telegram.messenger.id.M0(2131752589, null), null);
+                                    alertDialog$Builder.k(org.telegram.messenger.id.M0(2131751599, null), new ni.c(22, g0Var2, tL_aiComposeTone2));
                                     alertDialog$Builder.d(-1);
                                     alertDialog$Builder.p();
                                     return;
                             }
                         }
                     }, tL_aiComposeTone.creator);
-                    F.c(2131232363, hd.M0(2131754983, null), new org.telegram.ui.m6(g0Var, tL_aiComposeTone, context, f6Var, 14), false);
-                    F.m(2131232108, new org.telegram.ui.Components.f(0, g0Var, tL_aiComposeTone), hd.M0(2131754985, null), !tL_aiComposeTone.creator, true);
+                    F.c(2131232363, id.M0(2131754983, null), new org.telegram.ui.m6(g0Var, tL_aiComposeTone, context, f6Var, 14), false);
+                    F.m(2131232108, new org.telegram.ui.Components.f(0, g0Var, tL_aiComposeTone), id.M0(2131754985, null), !tL_aiComposeTone.creator, true);
                     F.m(2131232108, new Runnable() {
                         @Override
                         public final void run() {
@@ -158,45 +158,45 @@ public final class u4 implements d20 {
                             switch (i12) {
                                 case 0:
                                     a0 a0Var = new a0(g0Var2.getContext(), f6Var2);
-                                    a0Var.f31616b2 = tL_aiComposeTone2;
+                                    a0Var.f31620b2 = tL_aiComposeTone2;
                                     a0Var.Z1 = Long.valueOf(tL_aiComposeTone2.emoji_id);
                                     a0Var.f1();
-                                    a0Var.S1.setText(a0Var.f31616b2.title);
-                                    a0Var.T1.setText(a0Var.f31616b2.prompt);
-                                    if (a0Var.f31616b2.author_id != 0) {
+                                    a0Var.S1.setText(a0Var.f31620b2.title);
+                                    a0Var.T1.setText(a0Var.f31620b2.prompt);
+                                    if (a0Var.f31620b2.author_id != 0) {
                                         z9 = true;
                                     } else {
                                         z9 = false;
                                     }
                                     a0Var.V1.a(z9, false);
-                                    a0Var.l1.setTitle(org.telegram.messenger.hd.M0(2131754996, null));
-                                    a0Var.Y1.setText(org.telegram.messenger.hd.M0(2131754979, null));
+                                    a0Var.l1.setTitle(org.telegram.messenger.id.M0(2131754996, null));
+                                    a0Var.Y1.setText(org.telegram.messenger.id.M0(2131754979, null));
                                     a0Var.e1();
-                                    a0Var.f31619f2.O(false);
+                                    a0Var.f31623f2.O(false);
                                     a0Var.d2 = new g(g0Var2, 2);
                                     a0Var.show();
                                     return;
                                 default:
                                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, g0Var2.getContext(), f6Var2);
-                                    String M0 = org.telegram.messenger.hd.M0(2131754998, null);
-                                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
+                                    String M0 = org.telegram.messenger.id.M0(2131754998, null);
+                                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
                                     u1Var.R = M0;
-                                    u1Var.T = org.telegram.messenger.hd.M0(2131754997, null);
-                                    alertDialog$Builder.h(org.telegram.messenger.hd.M0(2131752589, null), null);
-                                    alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131751599, null), new ni.c(22, g0Var2, tL_aiComposeTone2));
+                                    u1Var.T = org.telegram.messenger.id.M0(2131754997, null);
+                                    alertDialog$Builder.h(org.telegram.messenger.id.M0(2131752589, null), null);
+                                    alertDialog$Builder.k(org.telegram.messenger.id.M0(2131751599, null), new ni.c(22, g0Var2, tL_aiComposeTone2));
                                     alertDialog$Builder.d(-1);
                                     alertDialog$Builder.p();
                                     return;
                             }
                         }
-                    }, hd.M0(2131754998, null), tL_aiComposeTone.creator, true);
+                    }, id.M0(2131754998, null), tL_aiComposeTone.creator, true);
                     F.Z();
                     return Boolean.TRUE;
                 }
                 return Boolean.FALSE;
             case 2:
                 View view = (View) obj;
-                ij ijVar = ((th.g) obj2).f55968b;
+                ij ijVar = ((th.g) obj2).f56060b;
                 return th.c.d(view, (String) obj4, (String) obj3, ijVar.F0(), ijVar);
             default:
                 pj0 pj0Var = (pj0) obj4;
@@ -211,7 +211,7 @@ public final class u4 implements d20 {
                     boolean booleanValue = bool.booleanValue();
                     v4.d1 T = pj0Var.T(view2);
                     if (T != null) {
-                        sparseIntArray.put(T.f56955f, booleanValue ? 1 : 0);
+                        sparseIntArray.put(T.f57047f, booleanValue ? 1 : 0);
                     }
                     return bool;
                 } catch (Exception unused2) {

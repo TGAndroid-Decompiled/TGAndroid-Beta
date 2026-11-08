@@ -25,7 +25,7 @@ public final class x0 implements Runnable {
                 yr yrVar = this.f13070b;
                 ArrayList arrayList = this.f13071c;
                 try {
-                    SQLiteDatabase sQLiteDatabase = yrVar.f26698b;
+                    SQLiteDatabase sQLiteDatabase = yrVar.f26721b;
                     if (sQLiteDatabase != null) {
                         sQLiteDatabase.executeFast("DELETE FROM story_drafts WHERE id IN (" + TextUtils.join(", ", arrayList) + ")").stepThis().dispose();
                         return;
@@ -41,7 +41,7 @@ public final class x0 implements Runnable {
                 SQLitePreparedStatement sQLitePreparedStatement = null;
                 try {
                     try {
-                        SQLiteDatabase sQLiteDatabase2 = yrVar2.f26698b;
+                        SQLiteDatabase sQLiteDatabase2 = yrVar2.f26721b;
                         sQLiteDatabase2.executeFast("DELETE FROM business_links").stepThis().dispose();
                         sQLitePreparedStatement = sQLiteDatabase2.executeFast("REPLACE INTO business_links VALUES(?, ?)");
                         for (int i7 = 0; i7 < arrayList2.size(); i7++) {
@@ -74,7 +74,7 @@ public final class x0 implements Runnable {
                 yr yrVar3 = this.f13070b;
                 ArrayList arrayList3 = this.f13071c;
                 try {
-                    SQLiteDatabase sQLiteDatabase3 = yrVar3.f26698b;
+                    SQLiteDatabase sQLiteDatabase3 = yrVar3.f26721b;
                     String join = TextUtils.join(", ", arrayList3);
                     sQLiteDatabase3.executeFast("DELETE FROM quick_replies_messages WHERE topic_id IN (" + join + ")").stepThis().dispose();
                     return;

@@ -4,20 +4,20 @@ import c8.r0;
 import java.math.RoundingMode;
 import java.util.Arrays;
 public final class a {
-    public final String f15397a;
-    public final char[] f15398b;
-    public final int f15399c;
+    public final String f15400a;
+    public final char[] f15401b;
+    public final int f15402c;
     public final int d;
-    public final int f15400e;
-    public final int f15401f;
-    public final byte[] f15402g;
+    public final int f15403e;
+    public final int f15404f;
+    public final byte[] f15405g;
     public final boolean h;
 
     public a(String str, char[] cArr, byte[] bArr, boolean z9) {
         str.getClass();
-        this.f15397a = str;
+        this.f15400a = str;
         cArr.getClass();
-        this.f15398b = cArr;
+        this.f15401b = cArr;
         try {
             int length = cArr.length;
             RoundingMode roundingMode = RoundingMode.UNNECESSARY;
@@ -25,12 +25,12 @@ public final class a {
             this.d = c10;
             int numberOfTrailingZeros = Integer.numberOfTrailingZeros(c10);
             int i7 = 1 << (3 - numberOfTrailingZeros);
-            this.f15400e = i7;
-            this.f15401f = c10 >> numberOfTrailingZeros;
-            this.f15399c = cArr.length - 1;
-            this.f15402g = bArr;
+            this.f15403e = i7;
+            this.f15404f = c10 >> numberOfTrailingZeros;
+            this.f15402c = cArr.length - 1;
+            this.f15405g = bArr;
             boolean[] zArr = new boolean[i7];
-            for (int i10 = 0; i10 < this.f15401f; i10++) {
+            for (int i10 = 0; i10 < this.f15404f; i10++) {
                 int i11 = this.d;
                 RoundingMode roundingMode2 = RoundingMode.CEILING;
                 zArr[r0.b(i10 * 8, i11)] = true;
@@ -44,7 +44,7 @@ public final class a {
     public final boolean equals(Object obj) {
         if (obj instanceof a) {
             a aVar = (a) obj;
-            if (this.h == aVar.h && Arrays.equals(this.f15398b, aVar.f15398b)) {
+            if (this.h == aVar.h && Arrays.equals(this.f15401b, aVar.f15401b)) {
                 return true;
             }
             return false;
@@ -54,7 +54,7 @@ public final class a {
 
     public final int hashCode() {
         int i7;
-        int hashCode = Arrays.hashCode(this.f15398b);
+        int hashCode = Arrays.hashCode(this.f15401b);
         if (this.h) {
             i7 = 1231;
         } else {
@@ -64,7 +64,7 @@ public final class a {
     }
 
     public final String toString() {
-        return this.f15397a;
+        return this.f15400a;
     }
 
     public a(java.lang.String r9, char[] r10) {

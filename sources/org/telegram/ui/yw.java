@@ -14,36 +14,36 @@ import org.telegram.messenger.ImageReceiver;
 public final class yw extends View implements org.telegram.messenger.ls, org.telegram.ui.ActionBar.a6 {
     public boolean D;
     public int E;
-    public final Paint f52343a;
-    public final Paint f52344b;
-    public final int f52345c;
+    public final Paint f52323a;
+    public final Paint f52324b;
+    public final int f52325c;
     public final ArrayList d;
-    public float f52346e;
-    public float f52347f;
+    public float f52326e;
+    public float f52327f;
     public float h;
-    public final ImageReceiver f52348n;
-    public final ImageReceiver f52349r;
-    public final org.telegram.ui.Components.zg0 f52350s;
-    public final org.telegram.ui.Components.zg0 f52351w;
-    public boolean f52352x;
-    public int f52353y;
+    public final ImageReceiver f52328n;
+    public final ImageReceiver f52329r;
+    public final org.telegram.ui.Components.zg0 f52330s;
+    public final org.telegram.ui.Components.zg0 f52331w;
+    public boolean f52332x;
+    public int f52333y;
 
     public yw(Context context, int i7) {
         super(context);
-        this.f52343a = new Paint(1);
-        this.f52344b = new Paint(1);
+        this.f52323a = new Paint(1);
+        this.f52324b = new Paint(1);
         this.d = new ArrayList();
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f52348n = imageReceiver;
+        this.f52328n = imageReceiver;
         ImageReceiver imageReceiver2 = new ImageReceiver(this);
-        this.f52349r = imageReceiver2;
-        this.f52345c = i7;
-        imageReceiver.f21229y = true;
-        imageReceiver2.f21229y = true;
+        this.f52329r = imageReceiver2;
+        this.f52325c = i7;
+        imageReceiver.f21232y = true;
+        imageReceiver2.f21232y = true;
         org.telegram.ui.Components.zg0 zg0Var = new org.telegram.ui.Components.zg0(2131624004, org.telegram.messenger.g0.L(28.0f), org.telegram.messenger.g0.L(28.0f), true, null);
-        this.f52350s = zg0Var;
+        this.f52330s = zg0Var;
         org.telegram.ui.Components.zg0 zg0Var2 = new org.telegram.ui.Components.zg0(2131624003, org.telegram.messenger.g0.L(28.0f), org.telegram.messenger.g0.L(28.0f), true, null);
-        this.f52351w = zg0Var2;
+        this.f52331w = zg0Var2;
         imageReceiver.w0(zg0Var);
         imageReceiver2.w0(zg0Var2);
         imageReceiver.W(1);
@@ -53,7 +53,7 @@ public final class yw extends View implements org.telegram.messenger.ls, org.tel
 
     public final void a() {
         ArrayList arrayList;
-        int i7 = this.f52345c;
+        int i7 = this.f52325c;
         ArrayList arrayList2 = org.telegram.messenger.z5.q(i7).G;
         HashMap hashMap = new HashMap();
         int i10 = 0;
@@ -62,7 +62,7 @@ public final class yw extends View implements org.telegram.messenger.ls, org.tel
             if (i10 >= arrayList.size()) {
                 break;
             }
-            hashMap.put(((xw) arrayList.get(i10)).f51999c, (xw) arrayList.get(i10));
+            hashMap.put(((xw) arrayList.get(i10)).f51992c, (xw) arrayList.get(i10));
             org.telegram.messenger.z5.q(i7).v((org.telegram.messenger.x5) arrayList.get(i10));
             i10++;
         }
@@ -80,19 +80,19 @@ public final class yw extends View implements org.telegram.messenger.ls, org.tel
         }
         if (arrayList.size() == 0 && !this.D) {
             if (org.telegram.messenger.z5.q(i7).I.size() > 0) {
-                this.f52346e = 1.0f;
-                this.f52347f = 1.0f;
-                this.f52352x = true;
+                this.f52326e = 1.0f;
+                this.f52327f = 1.0f;
+                this.f52332x = true;
                 return;
             }
-            this.f52346e = 0.0f;
-            this.f52347f = 0.0f;
-            this.f52352x = false;
+            this.f52326e = 0.0f;
+            this.f52327f = 0.0f;
+            this.f52332x = false;
         }
     }
 
     public final void b() {
-        org.telegram.messenger.yr.a0(this.f52345c);
+        org.telegram.messenger.yr.a0(this.f52325c);
         int i7 = 0;
         long j3 = 0;
         long j10 = 0;
@@ -101,28 +101,28 @@ public final class yw extends View implements org.telegram.messenger.ls, org.tel
             if (i7 >= arrayList.size()) {
                 break;
             }
-            j3 += ((xw) arrayList.get(i7)).f51997a;
-            j10 += ((xw) arrayList.get(i7)).f51998b;
+            j3 += ((xw) arrayList.get(i7)).f51990a;
+            j10 += ((xw) arrayList.get(i7)).f51991b;
             i7++;
         }
         if (j3 == 0) {
-            this.f52346e = 1.0f;
+            this.f52326e = 1.0f;
         } else {
-            this.f52346e = ((float) j10) / ((float) j3);
+            this.f52326e = ((float) j10) / ((float) j3);
         }
-        float f10 = this.f52346e;
+        float f10 = this.f52326e;
         if (f10 > 1.0f) {
-            this.f52346e = 1.0f;
+            this.f52326e = 1.0f;
         } else if (f10 < 0.0f) {
-            this.f52346e = 0.0f;
+            this.f52326e = 0.0f;
         }
-        this.h = ((this.f52346e - this.f52347f) * 16.0f) / 150.0f;
+        this.h = ((this.f52326e - this.f52327f) * 16.0f) / 150.0f;
         invalidate();
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.qs.f24969b5) {
+        if (i7 == org.telegram.messenger.qs.f24978b5) {
             a();
             b();
         }
@@ -132,9 +132,9 @@ public final class yw extends View implements org.telegram.messenger.ls, org.tel
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         a();
-        org.telegram.messenger.qs.f(this.f52345c).c(this, org.telegram.messenger.qs.f24969b5);
-        this.f52348n.P();
-        this.f52349r.P();
+        org.telegram.messenger.qs.f(this.f52325c).c(this, org.telegram.messenger.qs.f24978b5);
+        this.f52328n.P();
+        this.f52329r.P();
     }
 
     @Override
@@ -144,15 +144,15 @@ public final class yw extends View implements org.telegram.messenger.ls, org.tel
         while (true) {
             ArrayList arrayList = this.d;
             int size = arrayList.size();
-            int i10 = this.f52345c;
+            int i10 = this.f52325c;
             if (i7 < size) {
                 org.telegram.messenger.z5.q(i10).v((org.telegram.messenger.x5) arrayList.get(i7));
                 i7++;
             } else {
                 arrayList.clear();
-                org.telegram.messenger.qs.f(i10).n(this, org.telegram.messenger.qs.f24969b5);
-                this.f52348n.R();
-                this.f52349r.R();
+                org.telegram.messenger.qs.f(i10).n(this, org.telegram.messenger.qs.f24978b5);
+                this.f52328n.R();
+                this.f52329r.R();
                 return;
             }
         }
@@ -162,33 +162,33 @@ public final class yw extends View implements org.telegram.messenger.ls, org.tel
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (getAlpha() != 0.0f) {
-            int i7 = this.f52353y;
-            int i10 = org.telegram.ui.ActionBar.k6.f28186v8;
+            int i7 = this.f52333y;
+            int i10 = org.telegram.ui.ActionBar.k6.f28189v8;
             int x02 = org.telegram.ui.ActionBar.k6.x0(null, i10, false);
-            ImageReceiver imageReceiver = this.f52349r;
-            ImageReceiver imageReceiver2 = this.f52348n;
-            Paint paint = this.f52343a;
-            Paint paint2 = this.f52344b;
+            ImageReceiver imageReceiver = this.f52329r;
+            ImageReceiver imageReceiver2 = this.f52328n;
+            Paint paint = this.f52323a;
+            Paint paint2 = this.f52324b;
             if (i7 != x02) {
-                this.f52353y = org.telegram.ui.ActionBar.k6.x0(null, i10, false);
+                this.f52333y = org.telegram.ui.ActionBar.k6.x0(null, i10, false);
                 paint.setColor(org.telegram.ui.ActionBar.k6.x0(null, i10, false));
                 paint2.setColor(org.telegram.ui.ActionBar.k6.x0(null, i10, false));
                 int x03 = org.telegram.ui.ActionBar.k6.x0(null, i10, false);
                 PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-                imageReceiver2.f21206o1 = new PorterDuffColorFilter(x03, mode);
-                imageReceiver.f21206o1 = new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.x0(null, i10, false), mode);
+                imageReceiver2.f21209o1 = new PorterDuffColorFilter(x03, mode);
+                imageReceiver.f21209o1 = new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.x0(null, i10, false), mode);
                 paint2.setAlpha(100);
             }
-            float f10 = this.f52347f;
-            float f11 = this.f52346e;
+            float f10 = this.f52327f;
+            float f11 = this.f52326e;
             if (f10 != f11) {
                 float f12 = this.h;
                 float f13 = f10 + f12;
-                this.f52347f = f13;
+                this.f52327f = f13;
                 if (f12 > 0.0f && f13 > f11) {
-                    this.f52347f = f11;
+                    this.f52327f = f11;
                 } else if (f12 < 0.0f && f13 < f11) {
-                    this.f52347f = f11;
+                    this.f52327f = f11;
                 } else {
                     invalidate();
                 }
@@ -202,23 +202,23 @@ public final class yw extends View implements org.telegram.messenger.ls, org.tel
             float f15 = measuredHeight + L2;
             rectF.set(L3, f14, getMeasuredWidth() - L3, f15);
             canvas.drawRoundRect(rectF, L2, L2, paint2);
-            rectF.set(L3, f14, ((getMeasuredWidth() - (2.0f * L3)) * this.f52347f) + L3, f15);
+            rectF.set(L3, f14, ((getMeasuredWidth() - (2.0f * L3)) * this.f52327f) + L3, f15);
             canvas.drawRoundRect(rectF, L2, L2, paint);
             canvas.save();
             canvas.clipRect(0.0f, 0.0f, getMeasuredWidth(), f14);
-            if (this.f52346e != 1.0f) {
-                this.f52352x = false;
+            if (this.f52326e != 1.0f) {
+                this.f52332x = false;
             }
-            if (this.f52352x) {
+            if (this.f52332x) {
                 imageReceiver.h(canvas, null);
             } else {
                 imageReceiver2.h(canvas, null);
             }
-            if (this.f52346e == 1.0f && !this.f52352x && this.f52350s.f40970a0 == 0) {
-                org.telegram.ui.Components.zg0 zg0Var = this.f52351w;
+            if (this.f52326e == 1.0f && !this.f52332x && this.f52330s.f40989a0 == 0) {
+                org.telegram.ui.Components.zg0 zg0Var = this.f52331w;
                 zg0Var.N(0, false, false);
                 zg0Var.start();
-                this.f52352x = true;
+                this.f52332x = true;
             }
             canvas.restore();
             if (getAlpha() != 0.0f) {
@@ -233,8 +233,8 @@ public final class yw extends View implements org.telegram.messenger.ls, org.tel
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824));
         int L = org.telegram.messenger.g0.L(15.0f);
         float f10 = L;
-        this.f52348n.y0(f10, f10, getMeasuredWidth() - i11, getMeasuredHeight() - i11);
-        this.f52349r.y0(f10, f10, getMeasuredWidth() - i11, getMeasuredHeight() - (L * 2));
+        this.f52328n.y0(f10, f10, getMeasuredWidth() - i11, getMeasuredHeight() - i11);
+        this.f52329r.y0(f10, f10, getMeasuredWidth() - i11, getMeasuredHeight() - (L * 2));
     }
 
     @Override
@@ -256,9 +256,9 @@ public final class yw extends View implements org.telegram.messenger.ls, org.tel
     @Override
     public final void updateColors() {
         org.telegram.ui.Components.zg0 zg0Var;
-        org.telegram.ui.Components.zg0 zg0Var2 = this.f52350s;
-        if (zg0Var2 != null && (zg0Var = this.f52351w) != null) {
-            int x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28186v8, false);
+        org.telegram.ui.Components.zg0 zg0Var2 = this.f52330s;
+        if (zg0Var2 != null && (zg0Var = this.f52331w) != null) {
+            int x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28189v8, false);
             if (x02 != this.E || zg0Var2.getColorFilter() == null) {
                 this.E = x02;
                 zg0Var2.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));

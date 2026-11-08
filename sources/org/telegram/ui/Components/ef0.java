@@ -37,33 +37,33 @@ public final class ef0 extends View {
     public float U;
     public float V;
     public long W;
-    public final ArrayList f33236a;
-    public af0 f33237a0;
-    public final Paint f33238b;
-    public final Paint f33239c;
+    public final ArrayList f33267a;
+    public af0 f33268a0;
+    public final Paint f33269b;
+    public final Paint f33270c;
     public float d;
-    public boolean f33240e;
-    public float f33241f;
+    public boolean f33271e;
+    public float f33272f;
     public dh.c h;
-    public final ArrayList f33242n;
-    public int f33243r;
-    public int f33244s;
-    public final int f33245w;
-    public float f33246x;
-    public df0 f33247y;
+    public final ArrayList f33273n;
+    public int f33274r;
+    public int f33275s;
+    public final int f33276w;
+    public float f33277x;
+    public df0 f33278y;
 
     public ef0(Context context, int i7) {
         super(context);
-        this.f33236a = new ArrayList();
+        this.f33267a = new ArrayList();
         Paint paint = new Paint();
-        this.f33238b = paint;
-        this.f33239c = new Paint();
-        this.f33240e = true;
-        this.f33241f = -1.0f;
-        this.f33242n = new ArrayList();
-        this.f33244s = 0;
-        this.f33246x = 0.0f;
-        this.f33247y = null;
+        this.f33269b = paint;
+        this.f33270c = new Paint();
+        this.f33271e = true;
+        this.f33272f = -1.0f;
+        this.f33273n = new ArrayList();
+        this.f33275s = 0;
+        this.f33277x = 0.0f;
+        this.f33278y = null;
         this.D = new HashSet();
         this.E = 6;
         this.H = null;
@@ -77,7 +77,7 @@ public final class ef0 extends View {
         this.L = N;
         float N2 = org.telegram.messenger.g0.N(8.0f);
         this.M = N2;
-        this.f33245w = (int) ((i7 - N) - N2);
+        this.f33276w = (int) ((i7 - N) - N2);
         setBackgroundColor(0);
         setImportantForAccessibility(1);
     }
@@ -85,7 +85,7 @@ public final class ef0 extends View {
     private float getItemWidth() {
         int measuredWidth = getMeasuredWidth();
         float f10 = this.K;
-        int i7 = this.f33244s;
+        int i7 = this.f33275s;
         return ((measuredWidth - ((f10 / 2.0f) * (i7 - 1))) - (f10 * 2.0f)) / i7;
     }
 
@@ -93,7 +93,7 @@ public final class ef0 extends View {
         int size = list.size();
         for (int i10 = 0; i10 < size; i10++) {
             bf0 bf0Var = (bf0) list.get(i10);
-            if (!bf0Var.f32161o && bf0Var.f32149a == i7) {
+            if (!bf0Var.f32182o && bf0Var.f32170a == i7) {
                 return bf0Var;
             }
         }
@@ -102,20 +102,20 @@ public final class ef0 extends View {
 
     public final void a() {
         bf0 bf0Var = new bf0(this, cf0.SET_PHOTO);
-        bf0Var.f32149a = 14;
-        this.f33236a.add(bf0Var);
+        bf0Var.f32170a = 14;
+        this.f33267a.add(bf0Var);
     }
 
     public final void b() {
         bf0 bf0Var = new bf0(this, cf0.EDIT_INFO);
-        bf0Var.f32149a = 16;
-        this.f33236a.add(bf0Var);
+        bf0Var.f32170a = 16;
+        this.f33267a.add(bf0Var);
     }
 
     public final void c() {
         bf0 bf0Var = new bf0(this, cf0.SETTINGS);
-        bf0Var.f32149a = 17;
-        this.f33236a.add(bf0Var);
+        bf0Var.f32170a = 17;
+        this.f33267a.add(bf0Var);
     }
 
     public final void d() {
@@ -124,7 +124,7 @@ public final class ef0 extends View {
             return;
         }
         if (this.E == 6) {
-            this.f33244s = this.f33236a.size();
+            this.f33275s = this.f33267a.size();
             invalidate();
             return;
         }
@@ -215,7 +215,7 @@ public final class ef0 extends View {
         int i7 = this.N;
         if (i7 != 0) {
             if (!this.O) {
-                this.f33238b.setColor(i7);
+                this.f33269b.setColor(i7);
                 return;
             }
             int measuredWidth = getMeasuredWidth();
@@ -223,9 +223,9 @@ public final class ef0 extends View {
                 return;
             }
             float f11 = this.K;
-            float max = ((measuredWidth - ((f11 / 2.0f) * Math.max(0, this.f33244s - 1))) - (f11 * 2.0f)) / Math.max(1, this.f33244s);
+            float max = ((measuredWidth - ((f11 / 2.0f) * Math.max(0, this.f33275s - 1))) - (f11 * 2.0f)) / Math.max(1, this.f33275s);
             float f12 = max / 2.0f;
-            float f13 = this.f33245w / 2.0f;
+            float f13 = this.f33276w / 2.0f;
             if (this.O) {
                 f10 = max * 0.65f;
             } else {
@@ -233,16 +233,16 @@ public final class ef0 extends View {
             }
             RadialGradient radialGradient = new RadialGradient(f12, f13, f10, org.telegram.ui.ActionBar.k6.r1(0.8f, this.N), this.N, Shader.TileMode.CLAMP);
             this.P = radialGradient;
-            this.f33239c.setShader(radialGradient);
+            this.f33270c.setShader(radialGradient);
         }
     }
 
     @Override
     public AccessibilityNodeProvider getAccessibilityNodeProvider() {
-        if (this.f33237a0 == null) {
-            this.f33237a0 = new af0(this);
+        if (this.f33268a0 == null) {
+            this.f33268a0 = new af0(this);
         }
-        return this.f33237a0;
+        return this.f33268a0;
     }
 
     public float getRoundRadius() {
@@ -259,7 +259,7 @@ public final class ef0 extends View {
     }
 
     public final bf0 j(int i7) {
-        bf0 i10 = i(i7, this.f33236a);
+        bf0 i10 = i(i7, this.f33267a);
         if (i10 != null) {
             if (i7 == 1) {
                 p(i10, false);
@@ -279,8 +279,8 @@ public final class ef0 extends View {
                 break;
             case 3:
                 i10 = new bf0(this, cf0.GIFT);
-                i10.f32166t = true;
-                i10.f32169x = 200;
+                i10.f32187t = true;
+                i10.f32190x = 200;
                 break;
             case 4:
                 i10 = new bf0(this, cf0.SHARE);
@@ -288,53 +288,53 @@ public final class ef0 extends View {
             case 5:
                 i10 = new bf0(this, cf0.CALL);
                 this.H = i10;
-                i10.f32166t = true;
-                i10.f32169x = 500;
+                i10.f32187t = true;
+                i10.f32190x = 500;
                 break;
             case 6:
                 i10 = new bf0(this, cf0.VIDEO);
-                i10.f32166t = true;
-                i10.f32169x = 500;
+                i10.f32187t = true;
+                i10.f32190x = 500;
                 break;
             case 7:
                 i10 = new bf0(this, cf0.JOIN);
-                i10.f32166t = true;
+                i10.f32187t = true;
                 i10.v = 300;
                 break;
             case 8:
                 i10 = new bf0(this, cf0.REPORT);
-                i10.f32166t = true;
-                i10.f32169x = 500;
+                i10.f32187t = true;
+                i10.f32190x = 500;
                 break;
             case 9:
                 i10 = new bf0(this, cf0.LEAVE);
-                i10.f32166t = true;
-                i10.f32167u = 2131624163;
-                i10.f32169x = 300;
+                i10.f32187t = true;
+                i10.f32188u = 2131624163;
+                i10.f32190x = 300;
                 break;
             case 10:
                 i10 = new bf0(this, cf0.VOICE_CHAT);
-                i10.f32166t = true;
-                i10.f32167u = 2131624166;
-                i10.f32169x = 500;
+                i10.f32187t = true;
+                i10.f32188u = 2131624166;
+                i10.f32190x = 500;
                 break;
             case 11:
                 i10 = new bf0(this, cf0.STREAM);
-                i10.f32166t = true;
-                i10.f32167u = 2131624166;
-                i10.f32169x = 500;
+                i10.f32187t = true;
+                i10.f32188u = 2131624166;
+                i10.f32190x = 500;
                 break;
             case 12:
                 i10 = new bf0(this, cf0.STORY);
                 break;
             case 13:
                 i10 = new bf0(this, cf0.STOP);
-                i10.f32166t = true;
-                i10.f32169x = 300;
+                i10.f32187t = true;
+                i10.f32190x = 300;
                 break;
         }
         if (i10 != null) {
-            i10.f32149a = i7;
+            i10.f32170a = i7;
         }
         return i10;
     }
@@ -347,9 +347,9 @@ public final class ef0 extends View {
     }
 
     public final void l() {
-        int i7 = this.f33243r;
+        int i7 = this.f33274r;
         while (true) {
-            ArrayList arrayList = this.f33242n;
+            ArrayList arrayList = this.f33273n;
             if (i7 < arrayList.size()) {
                 fh.g gVar = (fh.g) arrayList.get(i7);
                 if (!gVar.getBounds().isEmpty()) {
@@ -396,19 +396,19 @@ public final class ef0 extends View {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i7), View.MeasureSpec.makeMeasureSpec((int) (this.f33245w + this.M + this.L), 1073741824));
+        setMeasuredDimension(View.MeasureSpec.getSize(i7), View.MeasureSpec.makeMeasureSpec((int) (this.f33276w + this.M + this.L), 1073741824));
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         bf0 bf0Var;
-        if (this.f33246x >= org.telegram.messenger.g0.L(8.0f)) {
+        if (this.f33277x >= org.telegram.messenger.g0.L(8.0f)) {
             float x10 = motionEvent.getX();
             float y10 = motionEvent.getY();
             int action = motionEvent.getAction();
             if (action == 0) {
                 this.T = null;
-                ArrayList arrayList = this.f33236a;
+                ArrayList arrayList = this.f33267a;
                 int size = arrayList.size();
                 int i7 = 0;
                 while (true) {
@@ -416,23 +416,23 @@ public final class ef0 extends View {
                         break;
                     }
                     bf0 bf0Var2 = (bf0) arrayList.get(i7);
-                    if (!bf0Var2.f32161o && bf0Var2.d.contains(x10, y10)) {
+                    if (!bf0Var2.f32182o && bf0Var2.d.contains(x10, y10)) {
                         this.T = bf0Var2;
                         this.U = x10;
                         this.V = y10;
                         this.W = System.currentTimeMillis();
-                        this.T.f32150b.c(true);
+                        this.T.f32171b.c(true);
                         break;
                     }
                     i7++;
                 }
             } else if (action == 2) {
                 if (this.T != null && (Math.abs(x10 - this.U) > 20.0f || Math.abs(y10 - this.V) > 20.0f)) {
-                    this.T.f32150b.c(false);
+                    this.T.f32171b.c(false);
                     this.T = null;
                 }
             } else if ((action == 1 || action == 3) && (bf0Var = this.T) != null) {
-                bf0Var.f32150b.c(false);
+                bf0Var.f32171b.c(false);
                 if (action == 1 && this.T.d.contains(x10, y10)) {
                     if (System.currentTimeMillis() - this.W > 250) {
                         try {
@@ -441,24 +441,24 @@ public final class ef0 extends View {
                         }
                     }
                     bf0 bf0Var3 = this.T;
-                    if (bf0Var3.f32166t && !bf0Var3.f32165s) {
-                        bf0Var3.f32165s = true;
+                    if (bf0Var3.f32187t && !bf0Var3.f32186s) {
+                        bf0Var3.f32186s = true;
                         invalidate();
                     }
                     bf0 bf0Var4 = this.T;
-                    int i10 = bf0Var4.f32167u;
+                    int i10 = bf0Var4.f32188u;
                     if (i10 != 0) {
                         bf0Var4.d(i10, 0, 0);
                     }
-                    this.T.f32168w = System.currentTimeMillis();
+                    this.T.f32189w = System.currentTimeMillis();
                     bf0 bf0Var5 = this.T;
-                    df0 df0Var = this.f33247y;
+                    df0 df0Var = this.f33278y;
                     if (df0Var != null) {
                         int i11 = bf0Var5.v;
                         if (i11 == 0) {
-                            int i12 = bf0Var5.f32149a;
+                            int i12 = bf0Var5.f32170a;
                             RectF rectF = bf0Var5.d;
-                            ProfileActivity.m0(((org.telegram.ui.tt0) df0Var).f50149b, i12, rectF.left, rectF.top);
+                            ProfileActivity.m0(((org.telegram.ui.tt0) df0Var).f50141b, i12, rectF.left, rectF.top);
                         } else {
                             postDelayed(new v80(4, this, bf0Var5), i11);
                         }
@@ -478,11 +478,11 @@ public final class ef0 extends View {
         cf0 cf0Var;
         if (z9) {
             if (this.G) {
-                bf0Var.c(org.telegram.messenger.hd.M0(2131746686, null));
+                bf0Var.c(org.telegram.messenger.id.M0(2131746688, null));
                 bf0Var.d(2131624165, 2131231155, 2131232495);
                 return;
             }
-            bf0Var.c(org.telegram.messenger.hd.M0(2131746685, null));
+            bf0Var.c(org.telegram.messenger.id.M0(2131746687, null));
             bf0Var.d(2131624164, 2131231161, 2131232500);
             return;
         }
@@ -491,14 +491,14 @@ public final class ef0 extends View {
         } else {
             cf0Var = cf0.NOTIFICATION_UNMUTE;
         }
-        bf0Var.d(0, cf0Var.f32545b, cf0Var.f32546c);
-        bf0Var.c(org.telegram.messenger.hd.M0(cf0Var.f32544a, null));
+        bf0Var.d(0, cf0Var.f32576b, cf0Var.f32577c);
+        bf0Var.c(org.telegram.messenger.id.M0(cf0Var.f32575a, null));
     }
 
     public void setGlassFactory(dh.c cVar) {
         this.h = cVar;
-        this.f33242n.clear();
-        this.f33243r = 0;
+        this.f33273n.clear();
+        this.f33274r = 0;
         invalidate();
     }
 
@@ -510,7 +510,7 @@ public final class ef0 extends View {
             z10 = false;
         }
         this.G = z9;
-        bf0 i7 = i(1, this.f33236a);
+        bf0 i7 = i(1, this.f33267a);
         if (i7 != null) {
             p(i7, z10);
             invalidate();
@@ -521,7 +521,7 @@ public final class ef0 extends View {
     }
 
     public void setOnActionClickListener(df0 df0Var) {
-        this.f33247y = df0Var;
+        this.f33278y = df0Var;
     }
 
     public void setParentExpanded(float f10) {

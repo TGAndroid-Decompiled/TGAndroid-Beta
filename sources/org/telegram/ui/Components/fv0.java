@@ -12,48 +12,48 @@ public final class fv0 extends FrameLayout {
     public float D;
     public boolean E;
     public float F;
-    public final int f33639a;
-    public float f33640b;
-    public boolean f33641c;
+    public final int f33648a;
+    public float f33649b;
+    public boolean f33650c;
     public boolean d;
-    public final l9 f33642e;
-    public final ImageView f33643f;
+    public final l9 f33651e;
+    public final ImageView f33652f;
     public final bi.md h;
-    public final View f33644n;
-    public boolean f33645r;
-    public final int f33646s;
-    public org.telegram.messenger.rz f33647w;
-    public boolean f33648x;
-    public ValueAnimator f33649y;
+    public final View f33653n;
+    public boolean f33654r;
+    public final int f33655s;
+    public org.telegram.messenger.rz f33656w;
+    public boolean f33657x;
+    public ValueAnimator f33658y;
 
     public fv0(Context context, int i7) {
         super(context);
-        this.f33639a = i7;
+        this.f33648a = i7;
         int i10 = G;
         G = i10 + 1;
-        this.f33646s = i10;
+        this.f33655s = i10;
         if (i7 == 2) {
             l9 l9Var = new l9(getContext());
-            this.f33642e = l9Var;
+            this.f33651e = l9Var;
             l9Var.setLayerNum(1);
             l9Var.setAspectFit(false);
             l9Var.setRoundRadius(org.telegram.messenger.g0.L(6.0f));
             addView(l9Var, c8.ha.e(26, 26, 17));
-            this.f33644n = l9Var;
+            this.f33653n = l9Var;
         } else if (i7 == 1) {
             ImageView imageView = new ImageView(context);
-            this.f33643f = imageView;
+            this.f33652f = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             addView(imageView, c8.ha.e(24, 24, 17));
-            this.f33644n = imageView;
+            this.f33653n = imageView;
         } else {
             l9 l9Var2 = new l9(getContext());
-            this.f33642e = l9Var2;
+            this.f33651e = l9Var2;
             l9Var2.setLayerNum(1);
             l9Var2.setAspectFit(true);
             l9Var2.setRoundRadius(org.telegram.messenger.g0.L(6.0f));
             addView(l9Var2, c8.ha.e(26, 26, 17));
-            this.f33644n = l9Var2;
+            this.f33653n = l9Var2;
         }
         bi.md mdVar = new bi.md(context, 26);
         this.h = mdVar;
@@ -70,12 +70,12 @@ public final class fv0 extends FrameLayout {
     public final void a(float f10) {
         float f11;
         float f12;
-        int i7 = this.f33639a;
+        int i7 = this.f33648a;
         if (i7 == 2) {
             return;
         }
-        boolean z9 = this.f33645r;
-        View view = this.f33644n;
+        boolean z9 = this.f33654r;
+        View view = this.f33653n;
         if (z9) {
             if (i7 == 1) {
                 f11 = 24.0f;
@@ -87,7 +87,7 @@ public final class fv0 extends FrameLayout {
             } else {
                 f12 = 44.0f;
             }
-            int i10 = rk0.f37671t0;
+            int i10 = rk0.f37692t0;
             float f13 = 1.0f - f10;
             view.setTranslationY((((org.telegram.messenger.g0.L(36.0f - f11) / 2.0f) - (org.telegram.messenger.g0.L(86.0f - f12) / 2.0f)) * f13) - (org.telegram.messenger.g0.L(8.0f) * f10));
             view.setTranslationX(((org.telegram.messenger.g0.L(33.0f - f11) / 2.0f) - (org.telegram.messenger.g0.L(64.0f - f12) / 2.0f)) * f13);
@@ -118,9 +118,9 @@ public final class fv0 extends FrameLayout {
         float f11;
         float f12;
         int i7;
-        int i10 = this.f33639a;
+        int i10 = this.f33648a;
         if (i10 != 2) {
-            this.f33645r = z9;
+            this.f33654r = z9;
             if (i10 == 1) {
                 f10 = 24.0f;
             } else {
@@ -131,7 +131,7 @@ public final class fv0 extends FrameLayout {
             } else {
                 f11 = 44.0f;
             }
-            View view = this.f33644n;
+            View view = this.f33653n;
             ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
             if (z9) {
                 f12 = f11;
@@ -150,8 +150,8 @@ public final class fv0 extends FrameLayout {
                 i7 = 8;
             }
             this.h.setVisibility(i7);
-            if (i10 != 1 && this.f33648x) {
-                this.f33642e.setRoundRadius(org.telegram.messenger.g0.L(view.getLayoutParams().width / 2.0f));
+            if (i10 != 1 && this.f33657x) {
+                this.f33651e.setRoundRadius(org.telegram.messenger.g0.L(view.getLayoutParams().width / 2.0f));
             }
         }
     }

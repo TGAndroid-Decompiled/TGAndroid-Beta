@@ -7,13 +7,13 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 public class b extends DialogFragment {
-    public Dialog f20489a;
-    public DialogInterface.OnCancelListener f20490b;
-    public AlertDialog f20491c;
+    public Dialog f20492a;
+    public DialogInterface.OnCancelListener f20493b;
+    public AlertDialog f20494c;
 
     @Override
     public final void onCancel(DialogInterface dialogInterface) {
-        DialogInterface.OnCancelListener onCancelListener = this.f20490b;
+        DialogInterface.OnCancelListener onCancelListener = this.f20493b;
         if (onCancelListener != null) {
             onCancelListener.onCancel(dialogInterface);
         }
@@ -21,15 +21,15 @@ public class b extends DialogFragment {
 
     @Override
     public final Dialog onCreateDialog(Bundle bundle) {
-        Dialog dialog = this.f20489a;
+        Dialog dialog = this.f20492a;
         if (dialog == null) {
             setShowsDialog(false);
-            if (this.f20491c == null) {
+            if (this.f20494c == null) {
                 Activity activity = getActivity();
                 q6.m.g(activity);
-                this.f20491c = new AlertDialog.Builder(activity).create();
+                this.f20494c = new AlertDialog.Builder(activity).create();
             }
-            return this.f20491c;
+            return this.f20494c;
         }
         return dialog;
     }

@@ -10,7 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import c8.ha;
 import java.util.HashSet;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.tgnet.TLRPC;
 public final class n8 extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
     public final Paint f9431a;
@@ -27,12 +27,12 @@ public final class n8 extends FrameLayout implements org.telegram.ui.ActionBar.a
         Paint paint2 = new Paint(1);
         this.f9432b = paint2;
         this.f9435f = f6Var;
-        paint.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28090q7, f6Var));
+        paint.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28093q7, f6Var));
         paint2.setColor(-1);
         setWillNotDraw(false);
         TextView textView = new TextView(context);
         this.f9433c = textView;
-        jg.g.v(textView, 1, 14.0f, null, 2131744669);
+        jg.g.v(textView, 1, 14.0f, null, 2131744671);
         textView.setTextColor(-1);
         addView(textView, ha.d(-2, -2.0f, 19, 44.0f, 0.0f, 0.0f, 0.0f));
         TextView textView2 = new TextView(context);
@@ -48,7 +48,7 @@ public final class n8 extends FrameLayout implements org.telegram.ui.ActionBar.a
         int L = org.telegram.messenger.g0.L(16.0f);
         textView3.setBackground(org.telegram.ui.ActionBar.k6.k0(L, L, L, L, 536870911, 956301311, 956301311));
         textView3.setTypeface(org.telegram.messenger.g0.o());
-        textView3.setText(hd.M0(2131743944, null));
+        textView3.setText(id.M0(2131743946, null));
         textView3.setTextSize(1, 14.0f);
         textView3.setTextColor(-1);
         textView3.setGravity(17);
@@ -90,7 +90,7 @@ public final class n8 extends FrameLayout implements org.telegram.ui.ActionBar.a
     @Override
     public final void updateColors() {
         try {
-            this.f9431a.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28090q7, this.f9435f));
+            this.f9431a.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28093q7, this.f9435f));
             invalidate();
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

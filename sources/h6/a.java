@@ -41,10 +41,10 @@ public final class a extends r6.a {
         k kVar = this.f14215c;
         if (kVar != null) {
             try {
-                Parcel R0 = kVar.R0(kVar.P0(), 2);
-                a7.a M0 = a7.b.M0(R0.readStrongBinder());
-                R0.recycle();
-                if (a7.b.N0(M0) != null) {
+                Parcel r12 = kVar.r1(kVar.p1(), 2);
+                a7.a m12 = a7.b.m1(r12.readStrongBinder());
+                r12.recycle();
+                if (a7.b.n1(m12) != null) {
                     throw new ClassCastException();
                 }
             } catch (RemoteException e10) {

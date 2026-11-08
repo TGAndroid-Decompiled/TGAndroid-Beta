@@ -69,11 +69,11 @@ public final class d extends ResultReceiver {
                             return;
                         } catch (com.google.android.gms.common.api.f e10) {
                             ?? obj = new Object();
-                            obj.f17612a = new h(2, e10.getMessage());
+                            obj.f17615a = new h(2, e10.getMessage());
                             if (e10.getStatusCode() == 16) {
-                                obj.f17612a = new g(e10.getMessage());
+                                obj.f17615a = new g(e10.getMessage());
                             } else if (b1.d.f2898b.contains(Integer.valueOf(e10.getStatusCode()))) {
-                                obj.f17612a = new w0.j(e10.getMessage());
+                                obj.f17615a = new w0.j(e10.getMessage());
                             }
                             CancellationSignal cancellationSignal = eVar.h;
                             CredentialProviderPlayServicesImpl.Companion.getClass();
@@ -295,7 +295,7 @@ public final class d extends ResultReceiver {
                                 if (i16 >= 34) {
                                     a10 = h1.a.a(intent3);
                                 } else {
-                                    int i17 = w0.d.f57479a;
+                                    int i17 = w0.d.f57571a;
                                     Bundle bundleExtra2 = intent3.getBundleExtra("android.service.credentials.extra.CREATE_CREDENTIAL_EXCEPTION");
                                     if (bundleExtra2 == null) {
                                         a10 = null;
@@ -399,22 +399,22 @@ public final class d extends ResultReceiver {
             default:
                 q4.f fVar = (q4.f) ((WeakReference) this.f5253b).get();
                 if (fVar != null && resultData != null) {
-                    synchronized (fVar.f53676b) {
-                        p pVar = fVar.f53678e;
+                    synchronized (fVar.f53769b) {
+                        p pVar = fVar.f53771e;
                         IBinder binder = resultData.getBinder("android.support.v4.media.session.EXTRA_BINDER");
-                        int i20 = q4.k.f53690b;
+                        int i20 = q4.k.f53783b;
                         if (binder != null) {
                             IInterface queryLocalInterface = binder.queryLocalInterface("android.support.v4.media.session.IMediaSession");
                             if (queryLocalInterface != null && (queryLocalInterface instanceof q4.d)) {
                                 dVar2 = (q4.d) queryLocalInterface;
                             } else {
                                 ?? obj2 = new Object();
-                                obj2.f53672a = binder;
+                                obj2.f53765a = binder;
                                 dVar2 = obj2;
                             }
                         }
                         pVar.b(dVar2);
-                        fVar.f53678e.c(b5.a.c(resultData));
+                        fVar.f53771e.c(b5.a.c(resultData));
                         fVar.a();
                     }
                     return;

@@ -42,8 +42,8 @@ public final class k extends l {
         hy0 hy0Var2 = new hy0(8, false);
         ((hy0) hy0Var.d).d = hy0Var2;
         hy0Var.d = hy0Var2;
-        hy0Var2.f46528c = valueOf;
-        hy0Var2.f46527b = "errorCode";
+        hy0Var2.f46527c = valueOf;
+        hy0Var2.f46526b = "errorCode";
         String str = this.f11397b;
         if (str != null) {
             hy0Var.N(str, "errorMessage");

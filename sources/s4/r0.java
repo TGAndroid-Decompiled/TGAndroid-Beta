@@ -15,27 +15,27 @@ import com.google.android.gms.internal.vision.g3;
 import java.util.ArrayList;
 import java.util.List;
 import org.telegram.ui.ActionBar.m3;
-import org.telegram.ui.Components.uy;
+import org.telegram.ui.Components.vy;
 public final class r0 extends g3 implements ServiceConnection {
     public static final int G = 0;
     public m0 D;
     public boolean E;
     public m3 F;
-    public final ComponentName f54793r;
-    public final com.google.android.gms.internal.cast.y f54794s;
-    public final ArrayList f54795w;
-    public boolean f54796x;
-    public boolean f54797y;
+    public final ComponentName f54885r;
+    public final com.google.android.gms.internal.cast.y f54886s;
+    public final ArrayList f54887w;
+    public boolean f54888x;
+    public boolean f54889y;
 
     static {
         Log.isLoggable("MediaRouteProviderProxy", 3);
     }
 
     public r0(Context context, ComponentName componentName) {
-        super(context, new uy(componentName, 15));
-        this.f54795w = new ArrayList();
-        this.f54793r = componentName;
-        this.f54794s = new Handler();
+        super(context, new vy(componentName, 15));
+        this.f54887w = new ArrayList();
+        this.f54885r = componentName;
+        this.f54886s = new Handler();
     }
 
     @Override
@@ -48,7 +48,7 @@ public final class r0 extends g3 implements ServiceConnection {
                 for (int i7 = 0; i7 < size; i7++) {
                     if (((m) list.get(i7)).d().equals(str)) {
                         p0 p0Var = new p0(this, str);
-                        this.f54795w.add(p0Var);
+                        this.f54887w.add(p0Var);
                         if (this.E) {
                             p0Var.a(this.D);
                         }
@@ -90,7 +90,7 @@ public final class r0 extends g3 implements ServiceConnection {
             int i7 = m0Var.d;
             m0Var.d = i7 + 1;
             if (nVar != null) {
-                bundle = nVar.f54765a;
+                bundle = nVar.f54857a;
             } else {
                 bundle = null;
             }
@@ -101,16 +101,16 @@ public final class r0 extends g3 implements ServiceConnection {
 
     public final void n() {
         int i7;
-        if (!this.f54797y) {
+        if (!this.f54889y) {
             Intent intent = new Intent("android.media.MediaRouteProviderService");
-            intent.setComponent(this.f54793r);
+            intent.setComponent(this.f54885r);
             try {
                 if (Build.VERSION.SDK_INT >= 29) {
                     i7 = 4097;
                 } else {
                     i7 = 1;
                 }
-                this.f54797y = this.f7533a.bindService(intent, this, i7);
+                this.f54889y = this.f7533a.bindService(intent, this, i7);
             } catch (SecurityException unused) {
             }
         }
@@ -124,7 +124,7 @@ public final class r0 extends g3 implements ServiceConnection {
             for (int i7 = 0; i7 < size; i7++) {
                 if (((m) list.get(i7)).d().equals(str)) {
                     q0 q0Var = new q0(this, str, str2);
-                    this.f54795w.add(q0Var);
+                    this.f54887w.add(q0Var);
                     if (this.E) {
                         q0Var.a(this.D);
                     }
@@ -140,7 +140,7 @@ public final class r0 extends g3 implements ServiceConnection {
     @Override
     public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
         Messenger messenger;
-        if (this.f54797y) {
+        if (this.f54889y) {
             p();
             if (iBinder != null) {
                 messenger = new Messenger(iBinder);
@@ -153,10 +153,10 @@ public final class r0 extends g3 implements ServiceConnection {
                         m0 m0Var = new m0(this, messenger);
                         int i7 = m0Var.d;
                         m0Var.d = i7 + 1;
-                        m0Var.f54763g = i7;
+                        m0Var.f54855g = i7;
                         if (m0Var.b(1, i7, 4, null, null)) {
                             try {
-                                m0Var.f54758a.getBinder().linkToDeath(m0Var, 0);
+                                m0Var.f54850a.getBinder().linkToDeath(m0Var, 0);
                                 this.D = m0Var;
                                 return;
                             } catch (RemoteException unused) {
@@ -182,23 +182,23 @@ public final class r0 extends g3 implements ServiceConnection {
         if (this.D != null) {
             g(null);
             this.E = false;
-            ArrayList arrayList = this.f54795w;
+            ArrayList arrayList = this.f54887w;
             int size = arrayList.size();
             for (int i7 = 0; i7 < size; i7++) {
                 ((n0) arrayList.get(i7)).c();
             }
             m0 m0Var = this.D;
             m0Var.b(2, 0, 0, null, null);
-            m0Var.f54759b.f13297b.clear();
-            m0Var.f54758a.getBinder().unlinkToDeath(m0Var, 0);
-            m0Var.f54764i.f54794s.post(new l0(m0Var, 0));
+            m0Var.f54851b.f13297b.clear();
+            m0Var.f54850a.getBinder().unlinkToDeath(m0Var, 0);
+            m0Var.f54856i.f54886s.post(new l0(m0Var, 0));
             this.D = null;
         }
     }
 
     public final void q() {
-        if (this.f54797y) {
-            this.f54797y = false;
+        if (this.f54889y) {
+            this.f54889y = false;
             p();
             try {
                 this.f7533a.unbindService(this);
@@ -209,7 +209,7 @@ public final class r0 extends g3 implements ServiceConnection {
     }
 
     public final void r() {
-        if (this.f54796x && (((n) this.h) != null || !this.f54795w.isEmpty())) {
+        if (this.f54888x && (((n) this.h) != null || !this.f54887w.isEmpty())) {
             n();
         } else {
             q();
@@ -217,6 +217,6 @@ public final class r0 extends g3 implements ServiceConnection {
     }
 
     public final String toString() {
-        return "Service connection " + this.f54793r.flattenToShortString();
+        return "Service connection " + this.f54885r.flattenToShortString();
     }
 }

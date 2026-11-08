@@ -29,9 +29,9 @@ public final class h0 implements og.e {
                 m0Var.f12395e.invalidate();
                 return m0Var.h.j();
             default:
-                ed0 ed0Var = ((fd0) frameLayout).f33517a;
+                ed0 ed0Var = ((fd0) frameLayout).f33524a;
                 if (ed0Var != null) {
-                    PhotoViewer photoViewer = ((ro0) ed0Var).f49542a;
+                    PhotoViewer photoViewer = ((ro0) ed0Var).f49521a;
                     Drawable[] drawableArr = PhotoViewer.Y8;
                     return photoViewer.H0();
                 }
@@ -49,7 +49,7 @@ public final class h0 implements og.e {
                 ((m0) this.f12122b).h.o();
                 return;
             default:
-                ((fd0) this.f12122b).f33518b.o();
+                ((fd0) this.f12122b).f33525b.o();
                 return;
         }
     }
@@ -58,13 +58,13 @@ public final class h0 implements og.e {
     public final void c() {
         switch (this.f12121a) {
             case 0:
-                ((j0) this.f12122b).f12201f.f21004a.g(1, true);
+                ((j0) this.f12122b).f12201f.f21007a.g(1, true);
                 return;
             case 1:
-                ((m0) this.f12122b).h.f21004a.g(1, true);
+                ((m0) this.f12122b).h.f21007a.g(1, true);
                 return;
             default:
-                ((fd0) this.f12122b).f33518b.f21004a.g(1, true);
+                ((fd0) this.f12122b).f33525b.f21007a.g(1, true);
                 return;
         }
     }
@@ -89,11 +89,11 @@ public final class h0 implements og.e {
                 m0Var.f12395e.invalidate();
                 return m11;
             default:
-                ed0 ed0Var = ((fd0) frameLayout).f33517a;
+                ed0 ed0Var = ((fd0) frameLayout).f33524a;
                 if (ed0Var == null) {
                     return false;
                 }
-                PhotoViewer photoViewer = ((ro0) ed0Var).f49542a;
+                PhotoViewer photoViewer = ((ro0) ed0Var).f49521a;
                 Drawable[] drawableArr = PhotoViewer.Y8;
                 return photoViewer.I0(-90.0f, false, null);
         }
@@ -109,7 +109,7 @@ public final class h0 implements og.e {
                 ((m0) this.f12122b).h.k();
                 return;
             default:
-                ((fd0) this.f12122b).f33518b.k();
+                ((fd0) this.f12122b).f33525b.k();
                 return;
         }
     }
@@ -125,9 +125,9 @@ public final class h0 implements og.e {
                 return;
             default:
                 fd0 fd0Var = (fd0) this.f12122b;
-                fd0Var.f33518b.setRotation(f10);
+                fd0Var.f33525b.setRotation(f10);
                 fd0Var.getClass();
-                ed0 ed0Var = fd0Var.f33517a;
+                ed0 ed0Var = fd0Var.f33524a;
                 if (ed0Var != null) {
                     ((ro0) ed0Var).m(false);
                     return;

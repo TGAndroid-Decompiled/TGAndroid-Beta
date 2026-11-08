@@ -15,7 +15,7 @@ public final class v8 implements Runnable {
     public final TLObject f4904n;
     public final Object f4905r;
 
-    public v8(ea eaVar, boolean[] zArr, TL_stars.StarGift starGift, boolean z9, boolean z10, long j3, TLRPC.TL_textWithEntities tL_textWithEntities, zh.p3 p3Var) {
+    public v8(ea eaVar, boolean[] zArr, TL_stars.StarGift starGift, boolean z9, boolean z10, long j3, TLRPC.TL_textWithEntities tL_textWithEntities, zh.o3 o3Var) {
         this.f4902e = eaVar;
         this.f4903f = zArr;
         this.h = starGift;
@@ -23,7 +23,7 @@ public final class v8 implements Runnable {
         this.d = z10;
         this.f4901c = j3;
         this.f4904n = tL_textWithEntities;
-        this.f4905r = p3Var;
+        this.f4905r = o3Var;
     }
 
     @Override

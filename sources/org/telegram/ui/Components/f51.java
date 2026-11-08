@@ -11,45 +11,45 @@ import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.View;
 public final class f51 extends View {
-    public final i6 f33455a;
-    public final i6 f33456b;
-    public final Paint f33457c;
+    public final i6 f33462a;
+    public final i6 f33463b;
+    public final Paint f33464c;
     public final Paint d;
-    public final Paint f33458e;
-    public boolean f33459f;
+    public final Paint f33465e;
+    public boolean f33466f;
     public final w5 h;
-    public final int[] f33460n;
+    public final int[] f33467n;
 
     public f51(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f33457c = paint;
+        this.f33464c = paint;
         Paint paint2 = new Paint(1);
         this.d = paint2;
         Paint paint3 = new Paint(1);
-        this.f33458e = paint3;
+        this.f33465e = paint3;
         xq xqVar = xq.h;
         this.h = new w5(this, 0L, 300L, xqVar);
-        this.f33460n = new int[]{144, 240, 360, 480, 720, 1080, 1440, 2160};
+        this.f33467n = new int[]{144, 240, 360, 480, 720, 1080, 1440, 2160};
         i6 i6Var = new i6(true, false, false);
-        this.f33455a = i6Var;
+        this.f33462a = i6Var;
         i6Var.n(0.4f, 360L, xqVar);
         i6Var.x(org.telegram.messenger.g0.o1("fonts/num.otf"));
         i6Var.u(-1);
         i6Var.w(org.telegram.messenger.g0.N(10.6f));
         i6Var.setCallback(this);
-        i6Var.f34508b = 17;
+        i6Var.f34552b = 17;
         i6 i6Var2 = new i6(true, false, false);
-        this.f33456b = i6Var2;
+        this.f33463b = i6Var2;
         i6Var2.n(0.2f, 360L, xqVar);
         i6Var2.x(org.telegram.messenger.g0.o1("fonts/num.otf"));
         i6Var2.u(-1);
         i6Var2.w(org.telegram.messenger.g0.N(8.6f));
         i6Var2.setCallback(this);
-        i6Var2.f34508b = 5;
+        i6Var2.f34552b = 5;
         PorterDuff.Mode mode = PorterDuff.Mode.CLEAR;
-        i6Var2.f34506a.setXfermode(new PorterDuffXfermode(mode));
-        i6Var2.M = org.telegram.messenger.g0.f22544q.x;
+        i6Var2.f34550a.setXfermode(new PorterDuffXfermode(mode));
+        i6Var2.M = org.telegram.messenger.g0.f22563q.x;
         paint.setColor(-1);
         paint.setStyle(Paint.Style.STROKE);
         paint2.setColor(-1);
@@ -64,9 +64,9 @@ public final class f51 extends View {
         } else {
             z11 = true;
         }
-        this.f33459f = z11;
-        i6 i6Var = this.f33455a;
-        i6 i6Var2 = this.f33456b;
+        this.f33466f = z11;
+        i6 i6Var = this.f33462a;
+        i6 i6Var2 = this.f33463b;
         if (z10) {
             i6Var.t("GIF", true, true);
             i6Var2.t("", true, true);
@@ -77,7 +77,7 @@ public final class f51 extends View {
                 str = "SD";
             }
             i6Var.t(str, true, true);
-            int[] iArr = this.f33460n;
+            int[] iArr = this.f33467n;
             int length = iArr.length - 1;
             while (true) {
                 if (length >= 0) {
@@ -93,14 +93,14 @@ public final class f51 extends View {
             if (length < 0) {
                 i6Var2.t("", true, true);
             } else if (length == 6) {
-                i6Var2.t("2K", TextUtils.isEmpty(i6Var2.f34514i), true);
+                i6Var2.t("2K", TextUtils.isEmpty(i6Var2.f34558i), true);
             } else if (length == 7) {
-                i6Var2.t("4K", TextUtils.isEmpty(i6Var2.f34514i), true);
+                i6Var2.t("4K", TextUtils.isEmpty(i6Var2.f34558i), true);
             } else {
-                i6Var2.t("" + iArr[length], TextUtils.isEmpty(i6Var2.f34514i), true);
+                i6Var2.t("" + iArr[length], TextUtils.isEmpty(i6Var2.f34558i), true);
             }
         }
-        setClickable(!this.f33459f);
+        setClickable(!this.f33466f);
         invalidate();
     }
 
@@ -108,14 +108,14 @@ public final class f51 extends View {
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-        float C = com.google.android.recaptcha.internal.a.C(this.h.d(this.f33459f), 0.35f, 1.0f, 255.0f);
+        float C = com.google.android.recaptcha.internal.a.C(this.h.d(this.f33466f), 0.35f, 1.0f, 255.0f);
         int i7 = (int) C;
-        Paint paint = this.f33457c;
+        Paint paint = this.f33464c;
         paint.setAlpha(i7);
         paint.setStrokeWidth(org.telegram.messenger.g0.N(1.33f));
         float N = org.telegram.messenger.g0.N(21.33f);
         float N2 = org.telegram.messenger.g0.N(6.0f);
-        i6 i6Var = this.f33455a;
+        i6 i6Var = this.f33462a;
         float max = Math.max(N, i6Var.c() + N2);
         float N3 = org.telegram.messenger.g0.N(17.33f);
         RectF rectF = org.telegram.messenger.g0.P;
@@ -126,13 +126,13 @@ public final class f51 extends View {
         i6Var.setBounds(rect);
         i6Var.B = i7;
         i6Var.draw(canvas);
-        i6 i6Var2 = this.f33456b;
+        i6 i6Var2 = this.f33463b;
         float c10 = i6Var2.c() + (org.telegram.messenger.g0.N(2.0f) * i6Var2.i());
         float N4 = org.telegram.messenger.g0.N(8.33f);
         rect.set((int) ((org.telegram.messenger.g0.N(16.0f) + (getWidth() / 2.0f)) - c10), (int) ((getHeight() / 2.0f) - org.telegram.messenger.g0.N(14.0f)), (int) (org.telegram.messenger.g0.N(16.0f) + (getWidth() / 2.0f)), (int) (((getHeight() / 2.0f) - org.telegram.messenger.g0.N(14.0f)) + N4));
         rectF.set(rect);
         rectF.inset(-org.telegram.messenger.g0.N(1.33f), -org.telegram.messenger.g0.N(1.33f));
-        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.N(1.66f), org.telegram.messenger.g0.N(1.66f), this.f33458e);
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.N(1.66f), org.telegram.messenger.g0.N(1.66f), this.f33465e);
         canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
         rectF.set(rect);
         Paint paint2 = this.d;
@@ -149,19 +149,19 @@ public final class f51 extends View {
 
     public void setPhotoState(boolean z9) {
         String str;
-        this.f33459f = false;
+        this.f33466f = false;
         if (z9) {
             str = "HD";
         } else {
             str = "SD";
         }
-        this.f33455a.t(str, true, true);
-        this.f33456b.t("", false, true);
+        this.f33462a.t(str, true, true);
+        this.f33463b.t("", false, true);
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f33455a != drawable && this.f33456b != drawable && !super.verifyDrawable(drawable)) {
+        if (this.f33462a != drawable && this.f33463b != drawable && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

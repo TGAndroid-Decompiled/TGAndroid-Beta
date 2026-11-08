@@ -3,25 +3,25 @@ package org.telegram.messenger;
 import java.util.ArrayList;
 import java.util.HashMap;
 public final class dj {
-    public long f22009a;
-    public boolean f22010b;
-    public boolean f22011c;
+    public long f22034a;
+    public boolean f22035b;
+    public boolean f22036c;
     public ij h;
-    public boolean f22015i;
-    public boolean f22016j;
-    public final cj f22019m;
-    public boolean f22020n;
+    public boolean f22040i;
+    public boolean f22041j;
+    public final cj f22044m;
+    public boolean f22045n;
     public final ArrayList d = new ArrayList();
-    public final ArrayList f22012e = new ArrayList();
-    public final HashMap f22013f = new HashMap();
-    public final a0.h f22014g = new a0.h();
-    public int f22017k = -1;
-    public int f22018l = 800;
+    public final ArrayList f22037e = new ArrayList();
+    public final HashMap f22038f = new HashMap();
+    public final a0.h f22039g = new a0.h();
+    public int f22042k = -1;
+    public int f22043l = 800;
 
     public dj() {
         ?? obj = new Object();
-        obj.f21838n = 1.0f;
-        this.f22019m = obj;
+        obj.f21871n = 1.0f;
+        this.f22044m = obj;
     }
 
     public final void a() {
@@ -31,14 +31,14 @@ public final class dj {
     public final ij b(int i7) {
         ArrayList arrayList = this.d;
         boolean isEmpty = arrayList.isEmpty();
-        HashMap hashMap = this.f22013f;
+        HashMap hashMap = this.f22038f;
         if (!isEmpty && hashMap.isEmpty()) {
             a();
         }
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             ij ijVar = (ij) arrayList.get(i10);
             aj ajVar = (aj) hashMap.get(ijVar);
-            if (ajVar != null && (ajVar.f21451l & i7) == i7) {
+            if (ajVar != null && (ajVar.f21450l & i7) == i7) {
                 return ijVar;
             }
         }
@@ -47,7 +47,7 @@ public final class dj {
 
     public final ij c() {
         int i7;
-        if (this.f22020n) {
+        if (this.f22045n) {
             i7 = 10;
         } else {
             i7 = 5;
@@ -59,9 +59,9 @@ public final class dj {
         if (ijVar == null) {
             return null;
         }
-        aj ajVar = (aj) this.f22013f.get(ijVar);
+        aj ajVar = (aj) this.f22038f.get(ijVar);
         if (ajVar == null) {
-            return (aj) this.f22014g.f(ijVar.f1());
+            return (aj) this.f22039g.f(ijVar.f1());
         }
         return ajVar;
     }
@@ -72,6 +72,6 @@ public final class dj {
             f10 += fArr[i7];
             i7++;
         }
-        return this.f22018l / f10;
+        return this.f22043l / f10;
     }
 }

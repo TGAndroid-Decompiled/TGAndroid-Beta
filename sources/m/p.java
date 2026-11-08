@@ -11,9 +11,9 @@ import android.widget.CheckedTextView;
 import c8.h9;
 import c8.mc;
 public final class p extends CheckedTextView implements u0.k {
-    public final q f19192a;
-    public final h2.c f19193b;
-    public final x0 f19194c;
+    public final q f19195a;
+    public final h2.c f19196b;
+    public final x0 f19197c;
     public u d;
 
     public p(android.content.Context r8, android.util.AttributeSet r9) {
@@ -30,15 +30,15 @@ public final class p extends CheckedTextView implements u0.k {
     @Override
     public final void drawableStateChanged() {
         super.drawableStateChanged();
-        x0 x0Var = this.f19194c;
+        x0 x0Var = this.f19197c;
         if (x0Var != null) {
             x0Var.b();
         }
-        h2.c cVar = this.f19193b;
+        h2.c cVar = this.f19196b;
         if (cVar != null) {
             cVar.b();
         }
-        q qVar = this.f19192a;
+        q qVar = this.f19195a;
         if (qVar != null) {
             qVar.b();
         }
@@ -50,7 +50,7 @@ public final class p extends CheckedTextView implements u0.k {
     }
 
     public ColorStateList getSupportBackgroundTintList() {
-        h2.c cVar = this.f19193b;
+        h2.c cVar = this.f19196b;
         if (cVar != null) {
             return cVar.v();
         }
@@ -58,7 +58,7 @@ public final class p extends CheckedTextView implements u0.k {
     }
 
     public PorterDuff.Mode getSupportBackgroundTintMode() {
-        h2.c cVar = this.f19193b;
+        h2.c cVar = this.f19196b;
         if (cVar != null) {
             return cVar.w();
         }
@@ -66,27 +66,27 @@ public final class p extends CheckedTextView implements u0.k {
     }
 
     public ColorStateList getSupportCheckMarkTintList() {
-        q qVar = this.f19192a;
+        q qVar = this.f19195a;
         if (qVar != null) {
-            return (ColorStateList) qVar.f19211a;
+            return (ColorStateList) qVar.f19214a;
         }
         return null;
     }
 
     public PorterDuff.Mode getSupportCheckMarkTintMode() {
-        q qVar = this.f19192a;
+        q qVar = this.f19195a;
         if (qVar != null) {
-            return (PorterDuff.Mode) qVar.f19212b;
+            return (PorterDuff.Mode) qVar.f19215b;
         }
         return null;
     }
 
     public ColorStateList getSupportCompoundDrawablesTintList() {
-        return this.f19194c.d();
+        return this.f19197c.d();
     }
 
     public PorterDuff.Mode getSupportCompoundDrawablesTintMode() {
-        return this.f19194c.e();
+        return this.f19197c.e();
     }
 
     @Override
@@ -105,7 +105,7 @@ public final class p extends CheckedTextView implements u0.k {
     @Override
     public void setBackgroundDrawable(Drawable drawable) {
         super.setBackgroundDrawable(drawable);
-        h2.c cVar = this.f19193b;
+        h2.c cVar = this.f19196b;
         if (cVar != null) {
             cVar.y();
         }
@@ -114,7 +114,7 @@ public final class p extends CheckedTextView implements u0.k {
     @Override
     public void setBackgroundResource(int i7) {
         super.setBackgroundResource(i7);
-        h2.c cVar = this.f19193b;
+        h2.c cVar = this.f19196b;
         if (cVar != null) {
             cVar.z(i7);
         }
@@ -123,13 +123,13 @@ public final class p extends CheckedTextView implements u0.k {
     @Override
     public void setCheckMarkDrawable(Drawable drawable) {
         super.setCheckMarkDrawable(drawable);
-        q qVar = this.f19192a;
+        q qVar = this.f19195a;
         if (qVar != null) {
-            if (qVar.f19214e) {
-                qVar.f19214e = false;
+            if (qVar.f19217e) {
+                qVar.f19217e = false;
                 return;
             }
-            qVar.f19214e = true;
+            qVar.f19217e = true;
             qVar.b();
         }
     }
@@ -137,7 +137,7 @@ public final class p extends CheckedTextView implements u0.k {
     @Override
     public final void setCompoundDrawables(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
         super.setCompoundDrawables(drawable, drawable2, drawable3, drawable4);
-        x0 x0Var = this.f19194c;
+        x0 x0Var = this.f19197c;
         if (x0Var != null) {
             x0Var.b();
         }
@@ -146,7 +146,7 @@ public final class p extends CheckedTextView implements u0.k {
     @Override
     public final void setCompoundDrawablesRelative(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
         super.setCompoundDrawablesRelative(drawable, drawable2, drawable3, drawable4);
-        x0 x0Var = this.f19194c;
+        x0 x0Var = this.f19197c;
         if (x0Var != null) {
             x0Var.b();
         }
@@ -162,32 +162,32 @@ public final class p extends CheckedTextView implements u0.k {
     }
 
     public void setSupportBackgroundTintList(ColorStateList colorStateList) {
-        h2.c cVar = this.f19193b;
+        h2.c cVar = this.f19196b;
         if (cVar != null) {
             cVar.D(colorStateList);
         }
     }
 
     public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
-        h2.c cVar = this.f19193b;
+        h2.c cVar = this.f19196b;
         if (cVar != null) {
             cVar.E(mode);
         }
     }
 
     public void setSupportCheckMarkTintList(ColorStateList colorStateList) {
-        q qVar = this.f19192a;
+        q qVar = this.f19195a;
         if (qVar != null) {
-            qVar.f19211a = colorStateList;
-            qVar.f19213c = true;
+            qVar.f19214a = colorStateList;
+            qVar.f19216c = true;
             qVar.b();
         }
     }
 
     public void setSupportCheckMarkTintMode(PorterDuff.Mode mode) {
-        q qVar = this.f19192a;
+        q qVar = this.f19195a;
         if (qVar != null) {
-            qVar.f19212b = mode;
+            qVar.f19215b = mode;
             qVar.d = true;
             qVar.b();
         }
@@ -195,14 +195,14 @@ public final class p extends CheckedTextView implements u0.k {
 
     @Override
     public void setSupportCompoundDrawablesTintList(ColorStateList colorStateList) {
-        x0 x0Var = this.f19194c;
+        x0 x0Var = this.f19197c;
         x0Var.l(colorStateList);
         x0Var.b();
     }
 
     @Override
     public void setSupportCompoundDrawablesTintMode(PorterDuff.Mode mode) {
-        x0 x0Var = this.f19194c;
+        x0 x0Var = this.f19197c;
         x0Var.m(mode);
         x0Var.b();
     }
@@ -210,7 +210,7 @@ public final class p extends CheckedTextView implements u0.k {
     @Override
     public final void setTextAppearance(Context context, int i7) {
         super.setTextAppearance(context, i7);
-        x0 x0Var = this.f19194c;
+        x0 x0Var = this.f19197c;
         if (x0Var != null) {
             x0Var.g(context, i7);
         }

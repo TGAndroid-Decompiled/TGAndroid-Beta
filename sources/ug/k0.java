@@ -5,35 +5,35 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import org.telegram.messenger.r2;
-import org.telegram.ui.Components.qt;
+import org.telegram.ui.Components.rt;
 public final class k0 {
-    public static boolean f56581i = true;
-    public final int f56582a;
-    public int f56583b;
-    public Object f56584c;
+    public static boolean f56673i = true;
+    public final int f56674a;
+    public int f56675b;
+    public Object f56676c;
     public Serializable d;
-    public Object f56585e;
-    public Object f56586f;
-    public Object f56587g;
+    public Object f56677e;
+    public Object f56678f;
+    public Object f56679g;
     public Object h;
 
     public k0(int i7) {
-        this.f56582a = i7;
+        this.f56674a = i7;
     }
 
     public boolean a(int i7) {
-        ArrayList arrayList = (ArrayList) this.f56585e;
+        ArrayList arrayList = (ArrayList) this.f56677e;
         int size = arrayList.size();
         for (int i10 = 0; i10 < size; i10++) {
             v4.a aVar = (v4.a) arrayList.get(i10);
-            int i11 = aVar.f56899a;
+            int i11 = aVar.f56991a;
             if (i11 == 8) {
                 if (f(aVar.d, i10 + 1) == i7) {
                     return true;
                 }
             } else {
                 if (i11 == 1) {
-                    int i12 = aVar.f56900b;
+                    int i12 = aVar.f56992b;
                     int i13 = aVar.d + i12;
                     while (i12 < i13) {
                         if (f(i12, i10 + 1) == i7) {
@@ -51,60 +51,60 @@ public final class k0 {
     }
 
     public void b() {
-        ArrayList arrayList = (ArrayList) this.f56585e;
+        ArrayList arrayList = (ArrayList) this.f56677e;
         int size = arrayList.size();
         for (int i7 = 0; i7 < size; i7++) {
-            ((qt) this.f56586f).g0((v4.a) arrayList.get(i7));
+            ((rt) this.f56678f).g0((v4.a) arrayList.get(i7));
         }
         l(arrayList);
-        this.f56583b = 0;
+        this.f56675b = 0;
     }
 
     public void c() {
-        qt qtVar = (qt) this.f56586f;
+        rt rtVar = (rt) this.f56678f;
         b();
         ArrayList arrayList = (ArrayList) this.d;
         int size = arrayList.size();
         for (int i7 = 0; i7 < size; i7++) {
             v4.a aVar = (v4.a) arrayList.get(i7);
-            int i10 = aVar.f56899a;
+            int i10 = aVar.f56991a;
             if (i10 != 1) {
                 if (i10 != 2) {
                     if (i10 != 4) {
                         if (i10 == 8) {
-                            qtVar.g0(aVar);
-                            qtVar.l0(aVar.f56900b, aVar.d);
+                            rtVar.g0(aVar);
+                            rtVar.l0(aVar.f56992b, aVar.d);
                         }
                     } else {
-                        qtVar.g0(aVar);
-                        qtVar.i0(aVar.f56900b, aVar.d, aVar.f56901c);
+                        rtVar.g0(aVar);
+                        rtVar.i0(aVar.f56992b, aVar.d, aVar.f56993c);
                     }
                 } else {
-                    qtVar.g0(aVar);
-                    int i11 = aVar.f56900b;
+                    rtVar.g0(aVar);
+                    int i11 = aVar.f56992b;
                     int i12 = aVar.d;
-                    RecyclerView recyclerView = (RecyclerView) qtVar.f37389b;
+                    RecyclerView recyclerView = (RecyclerView) rtVar.f37758b;
                     recyclerView.f0(i11, i12, true);
                     recyclerView.f2872x0 = true;
-                    recyclerView.f2867u0.f56907c += i12;
+                    recyclerView.f2867u0.f56999c += i12;
                 }
             } else {
-                qtVar.g0(aVar);
-                qtVar.k0(aVar.f56900b, aVar.d);
+                rtVar.g0(aVar);
+                rtVar.k0(aVar.f56992b, aVar.d);
             }
         }
         l(arrayList);
-        this.f56583b = 0;
+        this.f56675b = 0;
     }
 
     public void d(v4.a aVar) {
         int i7;
-        f5.u uVar = (f5.u) this.f56584c;
-        int i10 = aVar.f56899a;
+        f5.u uVar = (f5.u) this.f56676c;
+        int i10 = aVar.f56991a;
         if (i10 != 1 && i10 != 8) {
-            int n10 = n(aVar.f56900b, i10);
-            int i11 = aVar.f56900b;
-            int i12 = aVar.f56899a;
+            int n10 = n(aVar.f56992b, i10);
+            int i11 = aVar.f56992b;
+            int i12 = aVar.f56991a;
             if (i12 != 2) {
                 if (i12 == 4) {
                     i7 = 1;
@@ -116,30 +116,30 @@ public final class k0 {
             }
             int i13 = 1;
             for (int i14 = 1; i14 < aVar.d; i14++) {
-                int n11 = n((i7 * i14) + aVar.f56900b, aVar.f56899a);
-                int i15 = aVar.f56899a;
+                int n11 = n((i7 * i14) + aVar.f56992b, aVar.f56991a);
+                int i15 = aVar.f56991a;
                 if (i15 == 2 ? n11 == n10 : !(i15 != 4 || n11 != n10 + 1)) {
                     i13++;
                 } else {
-                    v4.a i16 = i(i15, n10, aVar.f56901c, i13);
+                    v4.a i16 = i(i15, n10, aVar.f56993c, i13);
                     e(i16, i11);
-                    i16.f56901c = null;
-                    uVar.q(i16);
-                    if (aVar.f56899a == 4) {
+                    i16.f56993c = null;
+                    uVar.v(i16);
+                    if (aVar.f56991a == 4) {
                         i11 += i13;
                     }
                     i13 = 1;
                     n10 = n11;
                 }
             }
-            Object obj = aVar.f56901c;
-            aVar.f56901c = null;
-            uVar.q(aVar);
+            Object obj = aVar.f56993c;
+            aVar.f56993c = null;
+            uVar.v(aVar);
             if (i13 > 0) {
-                v4.a i17 = i(aVar.f56899a, n10, obj, i13);
+                v4.a i17 = i(aVar.f56991a, n10, obj, i13);
                 e(i17, i11);
-                i17.f56901c = null;
-                uVar.q(i17);
+                i17.f56993c = null;
+                uVar.v(i17);
                 return;
             }
             return;
@@ -148,31 +148,31 @@ public final class k0 {
     }
 
     public void e(v4.a aVar, int i7) {
-        qt qtVar = (qt) this.f56586f;
-        qtVar.g0(aVar);
-        int i10 = aVar.f56899a;
+        rt rtVar = (rt) this.f56678f;
+        rtVar.g0(aVar);
+        int i10 = aVar.f56991a;
         if (i10 != 2) {
             if (i10 == 4) {
-                qtVar.i0(i7, aVar.d, aVar.f56901c);
+                rtVar.i0(i7, aVar.d, aVar.f56993c);
                 return;
             }
             throw new IllegalArgumentException("only remove and update ops can be dispatched in first pass");
         }
         int i11 = aVar.d;
-        RecyclerView recyclerView = (RecyclerView) qtVar.f37389b;
+        RecyclerView recyclerView = (RecyclerView) rtVar.f37758b;
         recyclerView.f0(i7, i11, true);
         recyclerView.f2872x0 = true;
-        recyclerView.f2867u0.f56907c += i11;
+        recyclerView.f2867u0.f56999c += i11;
     }
 
     public int f(int i7, int i10) {
-        ArrayList arrayList = (ArrayList) this.f56585e;
+        ArrayList arrayList = (ArrayList) this.f56677e;
         int size = arrayList.size();
         while (i10 < size) {
             v4.a aVar = (v4.a) arrayList.get(i10);
-            int i11 = aVar.f56899a;
+            int i11 = aVar.f56991a;
             if (i11 == 8) {
-                int i12 = aVar.f56900b;
+                int i12 = aVar.f56992b;
                 if (i12 == i7) {
                     i7 = aVar.d;
                 } else {
@@ -184,7 +184,7 @@ public final class k0 {
                     }
                 }
             } else {
-                int i13 = aVar.f56900b;
+                int i13 = aVar.f56992b;
                 if (i13 > i7) {
                     continue;
                 } else if (i11 == 2) {
@@ -241,46 +241,46 @@ public final class k0 {
     }
 
     public v4.a i(int i7, int i10, Object obj, int i11) {
-        v4.a aVar = (v4.a) ((f5.u) this.f56584c).a();
+        v4.a aVar = (v4.a) ((f5.u) this.f56676c).a();
         if (aVar == null) {
             ?? obj2 = new Object();
-            obj2.f56899a = i7;
-            obj2.f56900b = i10;
+            obj2.f56991a = i7;
+            obj2.f56992b = i10;
             obj2.d = i11;
-            obj2.f56901c = obj;
+            obj2.f56993c = obj;
             return obj2;
         }
-        aVar.f56899a = i7;
-        aVar.f56900b = i10;
+        aVar.f56991a = i7;
+        aVar.f56992b = i10;
         aVar.d = i11;
-        aVar.f56901c = obj;
+        aVar.f56993c = obj;
         return aVar;
     }
 
     public void j(v4.a aVar) {
-        qt qtVar = (qt) this.f56586f;
-        ((ArrayList) this.f56585e).add(aVar);
-        int i7 = aVar.f56899a;
+        rt rtVar = (rt) this.f56678f;
+        ((ArrayList) this.f56677e).add(aVar);
+        int i7 = aVar.f56991a;
         if (i7 != 1) {
             if (i7 != 2) {
                 if (i7 != 4) {
                     if (i7 == 8) {
-                        qtVar.l0(aVar.f56900b, aVar.d);
+                        rtVar.l0(aVar.f56992b, aVar.d);
                         return;
                     }
                     throw new IllegalArgumentException("Unknown update op type for " + aVar);
                 }
-                qtVar.i0(aVar.f56900b, aVar.d, aVar.f56901c);
+                rtVar.i0(aVar.f56992b, aVar.d, aVar.f56993c);
                 return;
             }
-            int i10 = aVar.f56900b;
+            int i10 = aVar.f56992b;
             int i11 = aVar.d;
-            RecyclerView recyclerView = (RecyclerView) qtVar.f37389b;
+            RecyclerView recyclerView = (RecyclerView) rtVar.f37758b;
             recyclerView.f0(i10, i11, false);
             recyclerView.f2872x0 = true;
             return;
         }
-        qtVar.k0(aVar.f56900b, aVar.d);
+        rtVar.k0(aVar.f56992b, aVar.d);
     }
 
     public void k() {
@@ -291,8 +291,8 @@ public final class k0 {
         int size = arrayList.size();
         for (int i7 = 0; i7 < size; i7++) {
             v4.a aVar = (v4.a) arrayList.get(i7);
-            aVar.f56901c = null;
-            ((f5.u) this.f56584c).q(aVar);
+            aVar.f56993c = null;
+            ((f5.u) this.f56676c).v(aVar);
         }
         arrayList.clear();
     }
@@ -304,13 +304,13 @@ public final class k0 {
     public int n(int i7, int i10) {
         int i11;
         int i12;
-        f5.u uVar = (f5.u) this.f56584c;
-        ArrayList arrayList = (ArrayList) this.f56585e;
+        f5.u uVar = (f5.u) this.f56676c;
+        ArrayList arrayList = (ArrayList) this.f56677e;
         for (int size = arrayList.size() - 1; size >= 0; size--) {
             v4.a aVar = (v4.a) arrayList.get(size);
-            int i13 = aVar.f56899a;
+            int i13 = aVar.f56991a;
             if (i13 == 8) {
-                int i14 = aVar.f56900b;
+                int i14 = aVar.f56992b;
                 int i15 = aVar.d;
                 if (i14 < i15) {
                     i12 = i14;
@@ -329,23 +329,23 @@ public final class k0 {
                         i7++;
                     } else {
                         if (i10 == 1) {
-                            aVar.f56900b = i14 + 1;
+                            aVar.f56992b = i14 + 1;
                         } else if (i10 == 2) {
-                            aVar.f56900b = i14 - 1;
+                            aVar.f56992b = i14 - 1;
                         }
                         i7--;
                     }
                 } else if (i7 < i14) {
                     if (i10 == 1) {
-                        aVar.f56900b = i14 + 1;
+                        aVar.f56992b = i14 + 1;
                         aVar.d = i15 + 1;
                     } else if (i10 == 2) {
-                        aVar.f56900b = i14 - 1;
+                        aVar.f56992b = i14 - 1;
                         aVar.d = i15 - 1;
                     }
                 }
             } else {
-                int i16 = aVar.f56900b;
+                int i16 = aVar.f56992b;
                 if (i16 <= i7) {
                     if (i13 == 1) {
                         i7 -= aVar.d;
@@ -353,49 +353,49 @@ public final class k0 {
                         i7 += aVar.d;
                     }
                 } else if (i10 == 1) {
-                    aVar.f56900b = i16 + 1;
+                    aVar.f56992b = i16 + 1;
                 } else if (i10 == 2) {
-                    aVar.f56900b = i16 - 1;
+                    aVar.f56992b = i16 - 1;
                 }
             }
         }
         for (int size2 = arrayList.size() - 1; size2 >= 0; size2--) {
             v4.a aVar2 = (v4.a) arrayList.get(size2);
-            if (aVar2.f56899a == 8) {
+            if (aVar2.f56991a == 8) {
                 int i17 = aVar2.d;
-                if (i17 == aVar2.f56900b || i17 < 0) {
+                if (i17 == aVar2.f56992b || i17 < 0) {
                     arrayList.remove(size2);
-                    aVar2.f56901c = null;
-                    uVar.q(aVar2);
+                    aVar2.f56993c = null;
+                    uVar.v(aVar2);
                 }
             } else if (aVar2.d <= 0) {
                 arrayList.remove(size2);
-                aVar2.f56901c = null;
-                uVar.q(aVar2);
+                aVar2.f56993c = null;
+                uVar.v(aVar2);
             }
         }
         return i7;
     }
 
     public String toString() {
-        switch (this.f56582a) {
+        switch (this.f56674a) {
             case 2:
-                ze.b bVar = ze.b.f60047e;
+                ze.b bVar = ze.b.f60140e;
                 return m();
             default:
                 return super.toString();
         }
     }
 
-    public k0(qt qtVar) {
-        this.f56582a = 1;
-        this.f56584c = new f5.u(30, 12);
+    public k0(rt rtVar) {
+        this.f56674a = 1;
+        this.f56676c = new f5.u(30, 13);
         this.d = new ArrayList();
-        this.f56585e = new ArrayList();
-        this.f56583b = 0;
-        boolean z9 = r2.f25199a;
+        this.f56677e = new ArrayList();
+        this.f56675b = 0;
+        boolean z9 = r2.f25212a;
         this.h = new ArrayList();
-        this.f56586f = qtVar;
-        this.f56587g = new qt(this, 21);
+        this.f56678f = rtVar;
+        this.f56679g = new rt(this, 21);
     }
 }

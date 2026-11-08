@@ -4,15 +4,15 @@ import android.content.Context;
 import android.view.ViewPropertyAnimator;
 import android.widget.TextView;
 import org.telegram.ui.Components.av0;
-import org.telegram.ui.Components.lz;
+import org.telegram.ui.Components.mz;
 import org.telegram.ui.Components.vj;
-import org.telegram.ui.v91;
+import org.telegram.ui.w91;
 public final class f5 extends av0 {
     public final int K = 0;
     public final Object L;
 
-    public f5(vj vjVar, Context context, lz lzVar, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, lzVar, 1, f6Var);
+    public f5(vj vjVar, Context context, mz mzVar, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, mzVar, 1, f6Var);
         this.L = vjVar;
     }
 
@@ -20,19 +20,19 @@ public final class f5 extends av0 {
     public void e(boolean z9, boolean z10) {
         switch (this.K) {
             case 2:
-                v91 v91Var = (v91) this.L;
+                w91 w91Var = (w91) this.L;
                 super.e(z9, z10);
                 float f10 = 1.0f;
                 if (z10) {
-                    ViewPropertyAnimator animate = ((TextView) v91Var.f50657n.d).animate();
+                    ViewPropertyAnimator animate = ((TextView) w91Var.f51021n.d).animate();
                     if (z9) {
                         f10 = 0.0f;
                     }
                     animate.alpha(f10).start();
                     return;
                 }
-                ((TextView) v91Var.f50657n.d).animate().cancel();
-                TextView textView = (TextView) v91Var.f50657n.d;
+                ((TextView) w91Var.f51021n.d).animate().cancel();
+                TextView textView = (TextView) w91Var.f51021n.d;
                 if (z9) {
                     f10 = 0.0f;
                 }
@@ -84,8 +84,8 @@ public final class f5 extends av0 {
         this.L = g5Var;
     }
 
-    public f5(v91 v91Var, Context context, lz lzVar) {
-        super(context, lzVar, 0, null);
-        this.L = v91Var;
+    public f5(w91 w91Var, Context context, mz mzVar) {
+        super(context, mzVar, 0, null);
+        this.L = w91Var;
     }
 }

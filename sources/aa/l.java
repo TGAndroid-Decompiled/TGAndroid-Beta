@@ -76,7 +76,7 @@ public final class l implements Function {
                 return Integer.valueOf(Integer.bitCount(((Integer) obj).intValue()));
             case 3:
                 String str = (String) obj;
-                Pattern pattern = Utilities.f21330a;
+                Pattern pattern = Utilities.f21333a;
                 try {
                     j3 = Long.parseLong(str);
                 } catch (Exception unused) {
@@ -91,7 +91,7 @@ public final class l implements Function {
             case 6:
                 return qp.a((int[]) obj);
             case 7:
-                return ((y00) obj).f26563b;
+                return ((y00) obj).f26570b;
             case 8:
                 return Long.valueOf(m5.o((TLRPC.Peer) obj));
             case 9:

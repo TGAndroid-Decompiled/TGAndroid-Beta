@@ -23,7 +23,7 @@ public final class k10 implements Runnable {
         boolean z10;
         switch (this.f23647a) {
             case 0:
-                m10 m10Var = this.f23648b.f23826i;
+                m10 m10Var = this.f23648b.f23832i;
                 if ((this.f23649c instanceof TLRPC.TL_boolTrue) && this.f23650e == null) {
                     z9 = true;
                 } else {
@@ -34,21 +34,21 @@ public final class k10 implements Runnable {
                 m10Var.getClass();
                 return;
             case 1:
-                m10 m10Var2 = this.f23648b.f23826i;
+                m10 m10Var2 = this.f23648b.f23832i;
                 TLObject tLObject = this.f23649c;
                 boolean z11 = tLObject instanceof TLRPC.Updates;
                 boolean z12 = false;
                 if (z11) {
-                    qp.s1(m10Var2.f23965a).O3((TLRPC.Updates) tLObject, false);
+                    qp.s1(m10Var2.f23969a).O3((TLRPC.Updates) tLObject, false);
                 }
-                kg.f.a(m10Var2.f23965a).b();
+                kg.f.a(m10Var2.f23969a).b();
                 if (z11 && this.f23650e == null) {
                     z12 = true;
                 }
                 this.d.a(Boolean.valueOf(z12));
                 return;
             default:
-                m10 m10Var3 = this.f23648b.f23826i;
+                m10 m10Var3 = this.f23648b.f23832i;
                 if ((this.f23649c instanceof TLRPC.TL_boolTrue) && this.f23650e == null) {
                     z10 = true;
                 } else {

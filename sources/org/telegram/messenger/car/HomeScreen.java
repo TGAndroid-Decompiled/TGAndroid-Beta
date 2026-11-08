@@ -8,15 +8,15 @@ import org.telegram.messenger.qs;
 public class HomeScreen extends m implements e, ls {
     @Override
     public final void a(t tVar) {
-        qs.e().c(this, qs.f24979d4);
+        qs.e().c(this, qs.f24988d4);
         qs.e().c(this, qs.G4);
-        qs.e().c(this, qs.f24974c4);
+        qs.e().c(this, qs.f24983c4);
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 != qs.f24974c4) {
-            if ((i7 != qs.f24979d4 && i7 != qs.G4) || !"tab_notifications".equals(null)) {
+        if (i7 != qs.f24983c4) {
+            if ((i7 != qs.f24988d4 && i7 != qs.G4) || !"tab_notifications".equals(null)) {
                 return;
             }
             throw null;
@@ -26,9 +26,9 @@ public class HomeScreen extends m implements e, ls {
 
     @Override
     public final void e(t tVar) {
-        qs.e().n(this, qs.f24979d4);
+        qs.e().n(this, qs.f24988d4);
         qs.e().n(this, qs.G4);
-        qs.e().n(this, qs.f24974c4);
+        qs.e().n(this, qs.f24983c4);
     }
 
     @Override

@@ -6,7 +6,7 @@ import android.widget.LinearLayout;
 import c8.ha;
 import java.util.ArrayList;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.s9;
 import org.telegram.messenger.u9;
 import org.telegram.messenger.w9;
@@ -32,10 +32,10 @@ public final class f extends na implements u9 {
         int i7 = 0;
         this.Q1 = new LongSparseArray();
         this.R1 = new ArrayList();
-        int x02 = k6.x0(null, k6.f27793a7, false);
+        int x02 = k6.x0(null, k6.f27796a7, false);
         this.U1 = x02;
         v0(x02);
-        w9.c(this.f28613a).f26278f.add(this);
+        w9.c(this.f28616a).f26281f.add(this);
         this.C1 = false;
         this.B1 = org.telegram.messenger.g0.L(12.0f);
         N();
@@ -45,28 +45,28 @@ public final class f extends na implements u9 {
         linearLayout.setClipToPadding(false);
         linearLayout.setClickable(true);
         this.P1 = x31.j(-1, linearLayout);
-        this.f36261k1.setPadding(this.f28646t0, org.telegram.messenger.g0.L(9.0f), this.f28646t0, org.telegram.messenger.g0.L(9.0f));
-        this.f36261k1.setOverScrollMode(2);
+        this.f36277k1.setPadding(this.f28649t0, org.telegram.messenger.g0.L(9.0f), this.f28649t0, org.telegram.messenger.g0.L(9.0f));
+        this.f36277k1.setOverScrollMode(2);
         this.T1.O(false);
-        ArrayList arrayList = w9.c(this.f28613a).f26276c;
+        ArrayList arrayList = w9.c(this.f28616a).f26279c;
         int size = arrayList.size();
         while (i7 < size) {
             Object obj = arrayList.get(i7);
             i7++;
             s9 s9Var = (s9) obj;
             e eVar = new e(context, s9Var);
-            eVar.f60197a.setOnClickListener(new td0(this, context, s9Var, 4));
+            eVar.f60296a.setOnClickListener(new td0(this, context, s9Var, 4));
             linearLayout.addView(eVar, ha.o(-1, -2));
-            this.Q1.put(s9Var.f25439b, eVar);
+            this.Q1.put(s9Var.f25435b, eVar);
         }
         g(arrayList);
     }
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        l41 l41Var = new l41(this.f36261k1, getContext(), this.f28613a, 0, true, new hi.u1(this, 26), this.I0);
+        l41 l41Var = new l41(this.f36277k1, getContext(), this.f28616a, 0, true, new hi.u1(this, 26), this.I0);
         this.T1 = l41Var;
-        l41Var.f35510r = false;
+        l41Var.f35528r = false;
         return l41Var;
     }
 
@@ -76,12 +76,12 @@ public final class f extends na implements u9 {
         if (arrayList == null) {
             return null;
         }
-        return hd.a0(null, null, 2131750417, Integer.valueOf(arrayList.size()));
+        return id.a0(null, null, 2131750419, Integer.valueOf(arrayList.size()));
     }
 
     @Override
     public final void dismiss() {
-        w9.c(this.f28613a).f26278f.remove(this);
+        w9.c(this.f28616a).f26281f.remove(this);
         super.dismiss();
     }
 
@@ -96,18 +96,18 @@ public final class f extends na implements u9 {
             Object obj = arrayList.get(i10);
             i10++;
             s9 s9Var = (s9) obj;
-            TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = s9Var.f25442f;
+            TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = s9Var.f25438f;
             if (tL_starGiftAuctionState != null) {
                 i7 = tL_starGiftAuctionState.next_round_at;
             } else {
                 i7 = 0;
             }
-            e eVar = (e) this.Q1.get(s9Var.f25439b);
+            e eVar = (e) this.Q1.get(s9Var.f25435b);
             if (eVar != null) {
                 eVar.b(this.S1);
-                long max = Math.max(0, i7 - ConnectionsManager.getInstance(this.f28613a).getCurrentTime());
+                long max = Math.max(0, i7 - ConnectionsManager.getInstance(this.f28616a).getCurrentTime());
                 eVar.a(max, this.S1);
-                eVar.f60201f.a(max);
+                eVar.f60300f.a(max);
             }
         }
     }
@@ -116,7 +116,7 @@ public final class f extends na implements u9 {
     public final void s0() {
         try {
             super.s0();
-            int x02 = k6.x0(null, k6.f27793a7, false);
+            int x02 = k6.x0(null, k6.f27796a7, false);
             if (x02 != this.U1) {
                 this.U1 = x02;
                 v0(x02);

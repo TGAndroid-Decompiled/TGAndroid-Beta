@@ -4,17 +4,17 @@ import a8.ua;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import e2.r0;
-import org.telegram.ui.Components.uy;
+import org.telegram.ui.Components.vy;
 import org.telegram.ui.hy0;
 import v4.d1;
 import v4.f1;
 import v4.n0;
 import v4.v0;
 public final class g {
-    public final RecyclerView f17046a;
+    public final RecyclerView f17049a;
 
     public g(RecyclerView recyclerView) {
-        this.f17046a = recyclerView;
+        this.f17049a = recyclerView;
     }
 
     public void a(d1 d1Var, r0 r0Var, r0 r0Var2) {
@@ -23,7 +23,7 @@ public final class g {
         boolean z9;
         d1 T;
         int i11;
-        RecyclerView recyclerView = this.f17046a;
+        RecyclerView recyclerView = this.f17049a;
         recyclerView.f2842b.k(d1Var);
         recyclerView.h(d1Var);
         d1Var.q(false);
@@ -31,7 +31,7 @@ public final class g {
         f1Var.getClass();
         int i12 = r0Var.f10533a;
         int i13 = r0Var.f10534b;
-        View view = d1Var.f56951a;
+        View view = d1Var.f57043a;
         if (r0Var2 == null) {
             i7 = view.getLeft();
         } else {
@@ -58,7 +58,7 @@ public final class g {
                     }
                 }
             }
-            d1Var.f56957i = (d1Var.h - i17) + (i17 * 1000);
+            d1Var.f57049i = (d1Var.h - i17) + (i17 * 1000);
             f1Var.s(d1Var, r0Var);
             z9 = true;
         }
@@ -68,18 +68,18 @@ public final class g {
     }
 
     public void b(d1 d1Var) {
-        RecyclerView recyclerView = this.f17046a;
+        RecyclerView recyclerView = this.f17049a;
         n0 n0Var = recyclerView.f2873y;
-        View view = d1Var.f56951a;
+        View view = d1Var.f57043a;
         v0 v0Var = recyclerView.f2842b;
-        hy0 hy0Var = n0Var.f57038a;
-        uy uyVar = (uy) hy0Var.f46527b;
-        int indexOfChild = ((RecyclerView) uyVar.f38750b).indexOfChild(view);
+        hy0 hy0Var = n0Var.f57130a;
+        vy vyVar = (vy) hy0Var.f46526b;
+        int indexOfChild = ((RecyclerView) vyVar.f39747b).indexOfChild(view);
         if (indexOfChild >= 0) {
-            if (((ua) hy0Var.f46528c).G(indexOfChild)) {
+            if (((ua) hy0Var.f46527c).G(indexOfChild)) {
                 hy0Var.M(view);
             }
-            uyVar.Q(indexOfChild);
+            vyVar.Q(indexOfChild);
         }
         v0Var.g(view);
     }

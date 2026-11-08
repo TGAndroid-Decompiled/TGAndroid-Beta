@@ -5,18 +5,18 @@ import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.o6;
 import org.telegram.ui.y6;
 public final class n implements Runnable {
-    public final int f26031a;
-    public final boolean f26032b;
-    public final long f26033c;
+    public final int f26034a;
+    public final boolean f26035b;
+    public final long f26036c;
     public final Object d;
-    public final Object f26034e;
+    public final Object f26037e;
 
     public n(Object obj, long j3, boolean z9, Object obj2, int i7) {
-        this.f26031a = i7;
+        this.f26034a = i7;
         this.d = obj;
-        this.f26033c = j3;
-        this.f26032b = z9;
-        this.f26034e = obj2;
+        this.f26036c = j3;
+        this.f26035b = z9;
+        this.f26037e = obj2;
     }
 
     @Override
@@ -25,18 +25,18 @@ public final class n implements Runnable {
     }
 
     public n(y6 y6Var, boolean z9, long j3, o6 o6Var) {
-        this.f26031a = 1;
+        this.f26034a = 1;
         this.d = y6Var;
-        this.f26032b = z9;
-        this.f26033c = j3;
-        this.f26034e = o6Var;
+        this.f26035b = z9;
+        this.f26036c = j3;
+        this.f26037e = o6Var;
     }
 
     public n(ProfileActivity profileActivity, long j3, ArrayList arrayList, boolean z9) {
-        this.f26031a = 2;
+        this.f26034a = 2;
         this.d = profileActivity;
-        this.f26033c = j3;
-        this.f26034e = arrayList;
-        this.f26032b = z9;
+        this.f26036c = j3;
+        this.f26037e = arrayList;
+        this.f26035b = z9;
     }
 }

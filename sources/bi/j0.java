@@ -49,7 +49,7 @@ public final class j0 implements RequestDelegate {
             case 4:
                 ce ceVar = (ce) obj;
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    yr.a0(ceVar.f3615j1).j1(new ArrayList(Arrays.asList(ceVar.C1.f23244k)), true, true, true, 0, false, 0, 0L);
+                    yr.a0(ceVar.f3615j1).j1(new ArrayList(Arrays.asList(ceVar.C1.f23262k)), true, true, true, 0, false, 0, 0L);
                     return;
                 } else {
                     ceVar.getClass();
@@ -135,8 +135,8 @@ public final class j0 implements RequestDelegate {
                         }
                     }
                     if (Build.VERSION.SDK_INT >= 24) {
-                        if (org.telegram.messenger.hd.E0().f22906y != null) {
-                            locale = org.telegram.messenger.hd.E0().f22906y;
+                        if (org.telegram.messenger.id.E0().f23185y != null) {
+                            locale = org.telegram.messenger.id.E0().f23185y;
                         } else {
                             locale = Locale.getDefault();
                         }
@@ -181,7 +181,7 @@ public final class j0 implements RequestDelegate {
                         }
                         if (!tL_help_country2.hidden || equalsIgnoreCase) {
                             if (equalsIgnoreCase) {
-                                String M0 = org.telegram.messenger.hd.M0(2131750520, null);
+                                String M0 = org.telegram.messenger.id.M0(2131750522, null);
                                 tL_help_country2.default_name = M0;
                                 tL_help_country2.name = M0;
                             }
@@ -196,8 +196,8 @@ public final class j0 implements RequestDelegate {
                         }
                     }
                     if (Build.VERSION.SDK_INT >= 24) {
-                        if (org.telegram.messenger.hd.E0().f22906y != null) {
-                            locale2 = org.telegram.messenger.hd.E0().f22906y;
+                        if (org.telegram.messenger.id.E0().f23185y != null) {
+                            locale2 = org.telegram.messenger.id.E0().f23185y;
                         } else {
                             locale2 = Locale.getDefault();
                         }
@@ -228,13 +228,13 @@ public final class j0 implements RequestDelegate {
                 }
                 return;
             case 25:
-                org.telegram.messenger.g0.h3(new ti.p(26, (wg.f1) obj, tLObject));
+                org.telegram.messenger.g0.h3(new u9.f(21, (wg.f1) obj, tLObject));
                 return;
             case 26:
-                org.telegram.messenger.g0.h3(new wi.s(4, (yf.c) obj, tLObject));
+                org.telegram.messenger.g0.h3(new u9.f(29, (yf.d) obj, tLObject));
                 return;
             default:
-                org.telegram.messenger.g0.h3(new r31((yf.d) obj, tLObject, tL_error));
+                org.telegram.messenger.g0.h3(new r31((yf.e) obj, tLObject, tL_error));
                 return;
         }
     }

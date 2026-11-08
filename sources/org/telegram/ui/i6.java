@@ -32,7 +32,7 @@ public final class i6 extends t7 {
     public void onMeasure(int i7, int i10) {
         switch (this.G) {
             case 1:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec((((wt) this.H).n1 - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - org.telegram.messenger.g0.f22538m, 1073741824));
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec((((wt) this.H).n1 - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - org.telegram.messenger.g0.f22557m, 1073741824));
                 return;
             default:
                 super.onMeasure(i7, i10);

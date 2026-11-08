@@ -4,13 +4,18 @@ import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
 public final class z implements IInterface {
-    public final IBinder f53864a;
+    public final IBinder f53957a;
 
     public z(IBinder iBinder) {
-        this.f53864a = iBinder;
+        this.f53957a = iBinder;
     }
 
-    public final void H0(d0 d0Var, g gVar) {
+    @Override
+    public final IBinder asBinder() {
+        return this.f53957a;
+    }
+
+    public final void h1(d0 d0Var, g gVar) {
         Parcel obtain = Parcel.obtain();
         Parcel obtain2 = Parcel.obtain();
         try {
@@ -18,16 +23,11 @@ public final class z implements IInterface {
             obtain.writeStrongBinder(d0Var);
             obtain.writeInt(1);
             q4.x.a(gVar, obtain, 0);
-            this.f53864a.transact(46, obtain, obtain2, 0);
+            this.f53957a.transact(46, obtain, obtain2, 0);
             obtain2.readException();
         } finally {
             obtain2.recycle();
             obtain.recycle();
         }
-    }
-
-    @Override
-    public final IBinder asBinder() {
-        return this.f53864a;
     }
 }

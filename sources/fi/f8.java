@@ -62,7 +62,7 @@ public final class f8 implements c20 {
                 yu0 yu0Var = (yu0) this.f11989c;
                 TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) obj;
                 if (tL_messages_emojiGroups != null) {
-                    qs.f(p10.f24467s0).d(new bi.d3(yu0Var, tL_messages_emojiGroups, this.f11988b, 25));
+                    qs.f(p10.f24470s0).d(new bi.d3(yu0Var, tL_messages_emojiGroups, this.f11988b, 25));
                     return;
                 }
                 return;

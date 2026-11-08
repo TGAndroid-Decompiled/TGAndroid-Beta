@@ -9,7 +9,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicReference;
-import org.telegram.ui.Components.uy;
+import org.telegram.ui.Components.vy;
 public final class u {
     public final Context f857a;
     public final x f858b;
@@ -23,20 +23,20 @@ public final class u {
     public final w9.a f864j;
     public final j f865k;
     public final x9.a f866l;
-    public final uy f867m;
+    public final vy f867m;
     public final ba.e f868n;
 
-    public u(o9.g gVar, b0 b0Var, x9.a aVar, x xVar, w9.a aVar2, w9.a aVar3, ga.d dVar, j jVar, uy uyVar, ba.e eVar) {
+    public u(o9.g gVar, b0 b0Var, x9.a aVar, x xVar, w9.a aVar2, w9.a aVar3, ga.d dVar, j jVar, vy vyVar, ba.e eVar) {
         this.f858b = xVar;
         gVar.a();
-        this.f857a = gVar.f20872a;
+        this.f857a = gVar.f20875a;
         this.f862g = b0Var;
         this.f866l = aVar;
         this.f863i = aVar2;
         this.f864j = aVar3;
         this.h = dVar;
         this.f865k = jVar;
-        this.f867m = uyVar;
+        this.f867m = vyVar;
         this.f868n = eVar;
         System.currentTimeMillis();
         this.f859c = new q4.q(4);
@@ -53,11 +53,11 @@ public final class u {
             try {
                 this.f863i.a(new a3.l(3));
                 this.f861f.i();
-                if (cVar.b().f15411b.f15407a) {
+                if (cVar.b().f15414b.f15410a) {
                     if (!this.f861f.f(cVar)) {
                         Log.w("FirebaseCrashlytics", "Previous sessions could not be finalized.", null);
                     }
-                    this.f861f.j(((TaskCompletionSource) ((AtomicReference) cVar.f15421i).get()).getTask());
+                    this.f861f.j(((TaskCompletionSource) ((AtomicReference) cVar.f15424i).get()).getTask());
                     c();
                     return;
                 }
@@ -96,9 +96,9 @@ public final class u {
         ba.e.a();
         try {
             wf.b bVar = this.d;
-            ga.d dVar = (ga.d) bVar.f57563c;
+            ga.d dVar = (ga.d) bVar.f57655c;
             dVar.getClass();
-            if (!new File((File) dVar.d, (String) bVar.f57562b).delete()) {
+            if (!new File((File) dVar.d, (String) bVar.f57654b).delete()) {
                 Log.w("FirebaseCrashlytics", "Initialization marker file was not properly removed.", null);
             }
         } catch (Exception e10) {

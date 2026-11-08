@@ -14,7 +14,7 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.ic;
@@ -130,13 +130,13 @@ public final class u8 extends View {
 
     public final void c(float f10, int i7) {
         if (i7 == 2131232386) {
-            setContentDescription(hd.M0(2131744533, null));
+            setContentDescription(id.M0(2131744535, null));
         } else if (i7 == 2131232162) {
-            setContentDescription(hd.M0(2131744531, null));
+            setContentDescription(id.M0(2131744533, null));
         } else if (i7 == 2131232160) {
-            setContentDescription(hd.M0(2131744521, null));
+            setContentDescription(id.M0(2131744523, null));
         } else if (i7 == 2131232159) {
-            setContentDescription(hd.M0(2131744529, null));
+            setContentDescription(id.M0(2131744531, null));
         }
         Drawable[] drawableArr = this.f9847n;
         Drawable drawable = drawableArr[0];

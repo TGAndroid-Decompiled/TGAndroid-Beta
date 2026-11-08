@@ -17,26 +17,26 @@ import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stats;
 import org.telegram.tgnet.tl.TL_update;
 public final class z9 implements RequestDelegate {
-    public final int f52507a;
-    public final Object f52508b;
-    public final Object f52509c;
+    public final int f52488a;
+    public final Object f52489b;
+    public final Object f52490c;
     public final Object d;
 
     public z9(Object obj, Object obj2, Object obj3, int i7) {
-        this.f52507a = i7;
-        this.f52508b = obj;
-        this.f52509c = obj2;
+        this.f52488a = i7;
+        this.f52489b = obj;
+        this.f52490c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i7 = this.f52507a;
+        int i7 = this.f52488a;
         mg.b bVar = null;
         int i10 = 0;
         Object obj = this.d;
-        Object obj2 = this.f52509c;
-        Object obj3 = this.f52508b;
+        Object obj2 = this.f52490c;
+        Object obj3 = this.f52489b;
         switch (i7) {
             case 0:
                 org.telegram.messenger.g0.h3(new bi.u0((Object) ((la) obj3), (Object) ((String) obj2), tL_error, tLObject, (Object) ((TL_account.checkUsername) obj), 20));
@@ -112,9 +112,9 @@ public final class z9 implements RequestDelegate {
                 an anVar = (an) obj3;
                 long[] jArr = (long[]) obj;
                 org.telegram.messenger.g0.r((m6) obj2);
-                anVar.f43965t5.f23244k.voiceTranscriptionRated = true;
+                anVar.f43971t5.f23262k.voiceTranscriptionRated = true;
                 org.telegram.messenger.yr messagesStorage = anVar.getMessagesStorage();
-                messagesStorage.f26696a.c(new org.telegram.messenger.ik(messagesStorage, anVar.f43965t5.f1(), org.telegram.messenger.ij.B0(anVar.f43965t5.f23244k), anVar.f43965t5.f23244k, 6));
+                messagesStorage.f26719a.c(new org.telegram.messenger.hk(messagesStorage, anVar.f43971t5.f1(), org.telegram.messenger.ij.B0(anVar.f43971t5.f23262k), anVar.f43971t5.f23262k, 6));
                 xf xfVar = new xf(anVar, 15);
                 long j3 = 0;
                 if (jArr[0] > 0) {
@@ -165,7 +165,7 @@ public final class z9 implements RequestDelegate {
                             }
                         }
                     }
-                    org.telegram.messenger.qp.s1(c40Var.f44585k1.f21729a).O3(updates, false);
+                    org.telegram.messenger.qp.s1(c40Var.f44588k1.f21765a).O3(updates, false);
                     return;
                 }
                 org.telegram.messenger.g0.h3(new org.telegram.ui.Components.l51(29, c40Var, tL_error));
@@ -179,7 +179,7 @@ public final class z9 implements RequestDelegate {
             case 14:
                 l50 l50Var = (l50) obj3;
                 String str = (String) obj;
-                m50 m50Var = l50Var.f47422r;
+                m50 m50Var = l50Var.f47427r;
                 if (Objects.equals(l50Var.h, (String) obj2) && (tLObject instanceof TLRPC.TL_messages_foundStickerSets)) {
                     ArrayList arrayList = new ArrayList();
                     ArrayList<TLRPC.StickerSetCovered> arrayList2 = ((TLRPC.TL_messages_foundStickerSets) tLObject).sets;
@@ -266,7 +266,7 @@ public final class z9 implements RequestDelegate {
                 b51 b51Var = (b51) obj;
                 if (tLObject instanceof TL_stats.TL_statsGraph) {
                     try {
-                        bVar = c51.h0(new JSONObject(((TL_stats.TL_statsGraph) tLObject).json.data), gg0Var.f47414r.f48259i, false);
+                        bVar = c51.h0(new JSONObject(((TL_stats.TL_statsGraph) tLObject).json.data), gg0Var.f47419r.f48259i, false);
                     } catch (JSONException e11) {
                         e11.printStackTrace();
                     }
@@ -299,9 +299,9 @@ public final class z9 implements RequestDelegate {
     }
 
     public z9(Object obj, TLObject tLObject, String str, int i7) {
-        this.f52507a = i7;
-        this.f52508b = obj;
+        this.f52488a = i7;
+        this.f52489b = obj;
         this.d = tLObject;
-        this.f52509c = str;
+        this.f52490c = str;
     }
 }

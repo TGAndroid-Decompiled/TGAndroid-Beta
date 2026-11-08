@@ -1,7 +1,7 @@
 package tg;
 
 import android.view.ViewGroup;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.Components.oj0;
 public final class i1 extends oj0 {
     @Override
@@ -16,13 +16,13 @@ public final class i1 extends oj0 {
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        d1 d1Var2 = (d1) d1Var.f56951a;
+        d1 d1Var2 = (d1) d1Var.f57043a;
         sg.b0 b0Var = (sg.b0) sg.b0.c().get(i7);
         d1Var2.getClass();
         d1Var2.setTypeface(b0Var.d());
-        String str = b0Var.f54927c;
+        String str = b0Var.f55019c;
         if (str == null) {
-            str = hd.N0(b0Var.f54926b);
+            str = id.N0(b0Var.f55018b);
         }
         d1Var2.setText(str);
     }

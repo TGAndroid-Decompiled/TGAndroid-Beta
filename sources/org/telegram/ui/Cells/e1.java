@@ -7,26 +7,26 @@ import android.view.ViewConfiguration;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class e1 {
-    public final q1 f29043a;
-    public final HashMap f29044b;
-    public final HashMap f29045c;
+    public final q1 f29046a;
+    public final HashMap f29047b;
+    public final HashMap f29048c;
     public String d;
 
     public e1(q1 q1Var) {
         new Path();
-        this.f29044b = new HashMap();
-        this.f29045c = new HashMap();
-        this.f29043a = q1Var;
+        this.f29047b = new HashMap();
+        this.f29048c = new HashMap();
+        this.f29046a = q1Var;
     }
 
     public final boolean a(MotionEvent motionEvent) {
         int i7;
         float f10;
         int L;
-        q1 q1Var = this.f29043a;
+        q1 q1Var = this.f29046a;
         ArrayList arrayList = q1Var.H5;
         ArrayList arrayList2 = q1Var.H5;
         if (!arrayList.isEmpty()) {
@@ -49,24 +49,24 @@ public final class e1 {
                 }
                 for (int i11 = 0; i11 < arrayList2.size(); i11++) {
                     c0 c0Var = (c0) arrayList2.get(i11);
-                    int L2 = (c0Var.d + q1Var.f29813d7) - org.telegram.messenger.g0.L(2.0f);
+                    int L2 = (c0Var.d + q1Var.f29816d7) - org.telegram.messenger.g0.L(2.0f);
                     float f11 = x10;
                     float f12 = widthForButtons;
-                    float f13 = (c0Var.f28950c * f12) + L;
-                    if (f11 >= f13 && f11 <= (c0Var.f28951e * f12) + f13 && M1 >= L2 && M1 <= c0Var.f28952f + L2) {
+                    float f13 = (c0Var.f28953c * f12) + L;
+                    if (f11 >= f13 && f11 <= (c0Var.f28954e * f12) + f13 && M1 >= L2 && M1 <= c0Var.f28955f + L2) {
                         q1Var.M5 = i11;
                         q1Var.p2();
-                        if (c0Var.f28964s == null) {
+                        if (c0Var.f28967s == null) {
                             y a02 = org.telegram.ui.ActionBar.k6.a0(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.bd, q1Var.Pb), 6, 6);
-                            c0Var.f28964s = a02;
+                            c0Var.f28967s = a02;
                             a02.setCallback(q1Var);
-                            y yVar = c0Var.f28964s;
-                            int i12 = ((int) (c0Var.f28950c * f12)) + L;
-                            yVar.setBounds(i12, L2, ((int) (c0Var.f28951e * f12)) + i12, c0Var.f28952f + L2);
+                            y yVar = c0Var.f28967s;
+                            int i12 = ((int) (c0Var.f28953c * f12)) + L;
+                            yVar.setBounds(i12, L2, ((int) (c0Var.f28954e * f12)) + i12, c0Var.f28955f + L2);
                         }
-                        c0Var.f28964s.setHotspot(f11, M1);
-                        c0Var.f28964s.setState(q1Var.M2);
-                        c0Var.b(!c0Var.f28958m);
+                        c0Var.f28967s.setHotspot(f11, M1);
+                        c0Var.f28967s.setState(q1Var.M2);
+                        c0Var.b(!c0Var.f28961m);
                         q1Var.postDelayed(new bg.m0(this, q1Var.M5, 19), ViewConfiguration.getLongPressTimeout() - 1);
                         return true;
                     }
@@ -75,21 +75,21 @@ public final class e1 {
                 if (q1Var.M5 != -1) {
                     q1Var.playSoundEffect(0);
                     c0 c0Var2 = (c0) arrayList2.get(q1Var.M5);
-                    y yVar2 = c0Var2.f28964s;
+                    y yVar2 = c0Var2.f28967s;
                     if (yVar2 != null) {
                         yVar2.setState(StateSet.NOTHING);
                     }
                     c0Var2.b(false);
-                    if (q1Var.P5.f23263p1) {
-                        Toast.makeText(q1Var.getContext(), hd.M0(2131748529, null), 1).show();
+                    if (q1Var.P5.f23281p1) {
+                        Toast.makeText(q1Var.getContext(), id.M0(2131748531, null), 1).show();
                     } else {
                         l1 l1Var = q1Var.Ra;
-                        if (l1Var != null && !c0Var2.f28958m) {
-                            org.telegram.messenger.o2 o2Var = c0Var2.f28955j;
+                        if (l1Var != null && !c0Var2.f28961m) {
+                            org.telegram.messenger.o2 o2Var = c0Var2.f28958j;
                             if (o2Var != null) {
                                 l1Var.G(q1Var, o2Var);
                             } else {
-                                TL_keyboard.KeyboardInlineButton keyboardInlineButton = c0Var2.f28954i;
+                                TL_keyboard.KeyboardInlineButton keyboardInlineButton = c0Var2.f28957i;
                                 if (keyboardInlineButton != null) {
                                     l1Var.b1(q1Var, keyboardInlineButton);
                                 }
@@ -102,7 +102,7 @@ public final class e1 {
                 }
             } else if (motionEvent.getAction() == 3 && (i7 = q1Var.M5) != -1) {
                 c0 c0Var3 = (c0) arrayList2.get(i7);
-                y yVar3 = c0Var3.f28964s;
+                y yVar3 = c0Var3.f28967s;
                 if (yVar3 != null) {
                     yVar3.setState(StateSet.NOTHING);
                 }

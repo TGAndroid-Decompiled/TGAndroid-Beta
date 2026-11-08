@@ -53,19 +53,19 @@ public final class k7 implements RequestDelegate {
                             int size = tL_stories_stories.stories.size();
                             long j3 = this.f9312c;
                             if (i11 < size) {
-                                if (tL_stories_stories.stories.get(i11).f27192id == l7.e(ijVar)) {
+                                if (tL_stories_stories.stories.get(i11).f27195id == l7.e(ijVar)) {
                                     l7.b(i7, j3, ijVar, tL_stories_stories.stories.get(i11));
                                 } else {
                                     i11++;
                                 }
                             } else {
                                 TL_stories.TL_storyItemDeleted tL_storyItemDeleted = new TL_stories.TL_storyItemDeleted();
-                                tL_storyItemDeleted.f27192id = l7.e(ijVar);
+                                tL_storyItemDeleted.f27195id = l7.e(ijVar);
                                 l7.b(i7, j3, ijVar, tL_storyItemDeleted);
                             }
                         }
                         if (this.d) {
-                            l7Var.f9338b.f26696a.c(new z0(16, l7Var, arrayList));
+                            l7Var.f9338b.f26719a.c(new z0(16, l7Var, arrayList));
                         }
                     }
                 } else if (tL_error != null) {

@@ -5,20 +5,20 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.LaunchActivity;
 public final class kf implements Runnable {
-    public final org.telegram.messenger.ij f35263a;
-    public final long f35264b;
-    public final TL_keyboard.KeyboardButtonProto f35265c;
+    public final org.telegram.messenger.ij f35289a;
+    public final long f35290b;
+    public final TL_keyboard.KeyboardButtonProto f35291c;
     public final org.telegram.messenger.ij d;
-    public final TLRPC.User f35266e;
-    public final ChatActivityEnterView f35267f;
+    public final TLRPC.User f35292e;
+    public final ChatActivityEnterView f35293f;
 
     public kf(ChatActivityEnterView chatActivityEnterView, org.telegram.messenger.ij ijVar, long j3, TL_keyboard.KeyboardButtonProto keyboardButtonProto, org.telegram.messenger.ij ijVar2, TLRPC.User user) {
-        this.f35267f = chatActivityEnterView;
-        this.f35263a = ijVar;
-        this.f35264b = j3;
-        this.f35265c = keyboardButtonProto;
+        this.f35293f = chatActivityEnterView;
+        this.f35289a = ijVar;
+        this.f35290b = j3;
+        this.f35291c = keyboardButtonProto;
         this.d = ijVar2;
-        this.f35266e = user;
+        this.f35292e = user;
     }
 
     @Override
@@ -26,19 +26,19 @@ public final class kf implements Runnable {
         int i7;
         long h92;
         String F1;
-        ChatActivityEnterView chatActivityEnterView = this.f35267f;
+        ChatActivityEnterView chatActivityEnterView = this.f35293f;
         org.telegram.ui.an anVar = chatActivityEnterView.P2;
-        if (chatActivityEnterView.f31083m1.Q() <= org.telegram.messenger.g0.L(20.0f) && !chatActivityEnterView.s0()) {
+        if (chatActivityEnterView.f31087m1.Q() <= org.telegram.messenger.g0.L(20.0f) && !chatActivityEnterView.s0()) {
             if (anVar != null) {
                 int i10 = chatActivityEnterView.Q;
-                long j3 = this.f35263a.f23244k.dialog_id;
-                TL_keyboard.KeyboardButtonProto keyboardButtonProto = this.f35265c;
+                long j3 = this.f35289a.f23262k.dialog_id;
+                TL_keyboard.KeyboardButtonProto keyboardButtonProto = this.f35291c;
                 String text = keyboardButtonProto.getText();
                 String url = keyboardButtonProto.getUrl();
                 boolean c10 = cg.c.c(keyboardButtonProto, TL_keyboard.TL_buttonTypeSimpleWebView.class);
                 org.telegram.messenger.ij ijVar = this.d;
                 if (ijVar != null) {
-                    i7 = ijVar.f23244k.f26974id;
+                    i7 = ijVar.f23262k.f26977id;
                 } else {
                     i7 = 0;
                 }
@@ -47,17 +47,17 @@ public final class kf implements Runnable {
                 } else {
                     h92 = anVar.h9();
                 }
-                hi.q4 b10 = hi.q4.b(i10, j3, this.f35264b, text, url, c10 ? 1 : 0, i7, h92, null, false, null, null, 0, false, false);
+                hi.q4 b10 = hi.q4.b(i10, j3, this.f35290b, text, url, c10 ? 1 : 0, i7, h92, null, false, null, null, 0, false, false);
                 LaunchActivity launchActivity = LaunchActivity.G1;
                 if (launchActivity != null && launchActivity.O() != null && LaunchActivity.G1.O().k(b10) != null) {
-                    hi.y yVar = chatActivityEnterView.f31078l0;
+                    hi.y yVar = chatActivityEnterView.f31082l0;
                     if (yVar != null) {
                         yVar.setOpened(false);
                         return;
                     }
                     return;
                 }
-                TLRPC.User user = this.f35266e;
+                TLRPC.User user = this.f35292e;
                 if (user == null) {
                     F1 = null;
                 } else {

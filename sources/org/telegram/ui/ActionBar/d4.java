@@ -6,23 +6,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 public final class d4 extends ArrayAdapter {
-    public final i4 f27436a;
+    public final i4 f27439a;
 
     public d4(i4 i4Var, Context context) {
         super(context, 0);
-        this.f27436a = i4Var;
+        this.f27439a = i4Var;
     }
 
     @Override
     public final View getView(int i7, View view, ViewGroup viewGroup) {
-        i4 i4Var = this.f27436a;
-        ab.v vVar = i4Var.f27578q;
+        i4 i4Var = this.f27439a;
+        ab.v vVar = i4Var.f27581q;
         MenuItem menuItem = (MenuItem) getItem(i7);
         int width = i4Var.I.getWidth();
         boolean z9 = false;
         if (view != null) {
             int i10 = vVar.f1002a;
-            if (((i4) vVar.f1005e).Q.f27743j != null) {
+            if (((i4) vVar.f1005e).Q.f27746j != null) {
                 z9 = true;
             }
             k4.e(view, menuItem, z9);

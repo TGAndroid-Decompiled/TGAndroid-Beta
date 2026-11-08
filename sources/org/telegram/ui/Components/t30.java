@@ -3,31 +3,31 @@ package org.telegram.ui.Components;
 import android.graphics.Paint;
 import org.telegram.ui.ProfileActivity;
 public final class t30 extends Paint {
-    public final int f38194a;
-    public final Object f38195b;
+    public final int f38222a;
+    public final Object f38223b;
 
     public t30(Object obj, int i7) {
         super(1);
-        this.f38194a = i7;
-        this.f38195b = obj;
+        this.f38222a = i7;
+        this.f38223b = obj;
     }
 
     @Override
     public final void setAlpha(int i7) {
-        switch (this.f38194a) {
+        switch (this.f38222a) {
             case 0:
                 super.setAlpha(i7);
-                ((o40) this.f38195b).invalidate();
+                ((o40) this.f38223b).invalidate();
                 return;
             case 1:
                 super.setAlpha(i7);
-                fk0 fk0Var = (fk0) this.f38195b;
-                fk0Var.f33561a.setAlpha(Math.round(i7 * 0.2f));
+                fk0 fk0Var = (fk0) this.f38223b;
+                fk0Var.f33568a.setAlpha(Math.round(i7 * 0.2f));
                 fk0Var.invalidate();
                 return;
             default:
                 super.setAlpha(i7);
-                ((ProfileActivity) this.f38195b).fragmentView.invalidate();
+                ((ProfileActivity) this.f38223b).fragmentView.invalidate();
                 return;
         }
     }

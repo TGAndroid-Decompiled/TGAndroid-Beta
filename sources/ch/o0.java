@@ -70,7 +70,7 @@ public final class o0 {
         ?? obj = new Object();
         boolean z9 = true;
         obj.f6353b = true;
-        long j3 = tL_availableEffect.f26984id;
+        long j3 = tL_availableEffect.f26987id;
         obj.f6354c = j3;
         if (tL_availableEffect.effect_animation_id != 0) {
             z9 = false;
@@ -86,7 +86,7 @@ public final class o0 {
     public final o0 a() {
         String V;
         long j3 = this.f6357g;
-        if (j3 != 0 && (V = ij.V(i5.e(p10.f24467s0, j3), null, null)) != null) {
+        if (j3 != 0 && (V = ij.V(i5.e(p10.f24470s0, j3), null, null)) != null) {
             return b(V);
         }
         return this;
@@ -139,7 +139,7 @@ public final class o0 {
             return this.f6356f;
         }
         long j3 = this.f6357g;
-        if (j3 != 0 && (e10 = i5.e(p10.f24467s0, j3)) != null) {
+        if (j3 != 0 && (e10 = i5.e(p10.f24470s0, j3)) != null) {
             return ij.V(e10, null, null);
         }
         StringBuilder sb2 = new StringBuilder("VisibleReaction{");

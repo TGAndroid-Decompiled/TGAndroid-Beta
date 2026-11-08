@@ -26,10 +26,10 @@ public final class o0 extends l41 {
     public int I(int i7) {
         switch (this.P) {
             case 1:
-                if (i7 == org.telegram.ui.ActionBar.k6.f27940i5) {
+                if (i7 == org.telegram.ui.ActionBar.k6.f27943i5) {
                     return -15921907;
                 }
-                return org.telegram.ui.ActionBar.k6.w0(i7, this.f35513x);
+                return org.telegram.ui.ActionBar.k6.w0(i7, this.f35531x);
             default:
                 return super.I(i7);
         }

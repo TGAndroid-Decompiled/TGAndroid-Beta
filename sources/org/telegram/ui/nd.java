@@ -28,7 +28,7 @@ public final class nd implements TextView.OnEditorActionListener {
                     TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
                     id idVar = new id(zdVar, twoStepVerificationActivity, 1);
                     twoStepVerificationActivity.Z = 1;
-                    twoStepVerificationActivity.f42051b0 = idVar;
+                    twoStepVerificationActivity.f42055b0 = idVar;
                     zdVar.G0.setLoading(true);
                     twoStepVerificationActivity.x0(new jd(zdVar, c51Var, twoStepVerificationActivity, 1));
                     return true;
@@ -44,8 +44,8 @@ public final class nd implements TextView.OnEditorActionListener {
                 return true;
             case 2:
                 org.telegram.ui.Components.zm zmVar = (org.telegram.ui.Components.zm) this.f48028c;
-                org.telegram.ui.Components.bn bnVar = (org.telegram.ui.Components.bn) ((l4) this.f48027b).f47405e;
-                e61 e61Var = bnVar.f32239s;
+                org.telegram.ui.Components.bn bnVar = (org.telegram.ui.Components.bn) ((l4) this.f48027b).f47410e;
+                e61 e61Var = bnVar.f32260s;
                 if (i7 == 5) {
                     View F = e61Var.F(zmVar);
                     if (F == null) {
@@ -56,7 +56,7 @@ public final class nd implements TextView.OnEditorActionListener {
                     if (T == null || (b10 = T.b()) == -1) {
                         return true;
                     }
-                    int i10 = b10 - bnVar.f32241t0;
+                    int i10 = b10 - bnVar.f32262t0;
                     int i11 = bnVar.M;
                     int i12 = i11 - 1;
                     if (i10 == i12 && i11 < bnVar.J) {
@@ -70,7 +70,7 @@ public final class nd implements TextView.OnEditorActionListener {
                         if (K == null) {
                             return true;
                         }
-                        View view = K.f56951a;
+                        View view = K.f57043a;
                         if (!(view instanceof org.telegram.ui.Cells.a6)) {
                             return true;
                         }
@@ -83,7 +83,7 @@ public final class nd implements TextView.OnEditorActionListener {
                 mr0 mr0Var = (mr0) this.f48028c;
                 pr0 pr0Var = ((nr0) this.f48027b).d;
                 if (i7 == 5) {
-                    e61 e61Var2 = pr0Var.f48916c;
+                    e61 e61Var2 = pr0Var.f48919c;
                     View F2 = e61Var2.F(mr0Var);
                     if (F2 == null) {
                         T2 = null;
@@ -93,21 +93,21 @@ public final class nd implements TextView.OnEditorActionListener {
                     if (T2 == null || (b11 = T2.b()) == -1) {
                         return true;
                     }
-                    int i13 = b11 - pr0Var.f48930n0;
+                    int i13 = b11 - pr0Var.f48933n0;
                     int i14 = pr0Var.D;
                     int i15 = i14 - 1;
-                    if (i13 == i15 && i14 < pr0Var.f48929n) {
+                    if (i13 == i15 && i14 < pr0Var.f48932n) {
                         pr0Var.k0();
                         return true;
                     } else if (i13 == i15) {
                         org.telegram.messenger.g0.v1(mr0Var.getTextView());
                         return true;
                     } else {
-                        v4.d1 K2 = pr0Var.f48916c.K(b11 + 1);
+                        v4.d1 K2 = pr0Var.f48919c.K(b11 + 1);
                         if (K2 == null) {
                             return true;
                         }
-                        View view2 = K2.f56951a;
+                        View view2 = K2.f57043a;
                         if (!(view2 instanceof org.telegram.ui.Cells.a6)) {
                             return true;
                         }

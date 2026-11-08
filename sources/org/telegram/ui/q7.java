@@ -4,11 +4,11 @@ import android.view.ViewGroup;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class q7 extends g7 {
-    public final t7 f49129n;
+    public final t7 f49132n;
 
     public q7(t7 t7Var) {
         super(t7Var, 3);
-        this.f49129n = t7Var;
+        this.f49132n = t7Var;
     }
 
     @Override
@@ -16,30 +16,30 @@ public final class q7 extends g7 {
         boolean z9;
         boolean z10;
         float f10;
-        k7 k7Var = (k7) d1Var.f56951a;
-        org.telegram.ui.Cells.g7 g7Var = (org.telegram.ui.Cells.g7) k7Var.f47131b.getChildAt(0);
-        ci.b bVar = ((m7) this.f45508e.get(i7)).d;
+        k7 k7Var = (k7) d1Var.f57043a;
+        org.telegram.ui.Cells.g7 g7Var = (org.telegram.ui.Cells.g7) k7Var.f47129b.getChildAt(0);
+        ci.b bVar = ((m7) this.f45467e.get(i7)).d;
         if (bVar == k7Var.getTag()) {
             z9 = true;
         } else {
             z9 = false;
         }
-        if (i7 != this.f45508e.size() - 1) {
+        if (i7 != this.f45467e.size() - 1) {
             z10 = true;
         } else {
             z10 = false;
         }
         k7Var.setTag(bVar);
-        t7 t7Var = this.f49129n;
+        t7 t7Var = this.f49132n;
         if (bVar.f6421f == null) {
             TLRPC.TL_message tL_message = new TLRPC.TL_message();
             tL_message.out = true;
-            tL_message.f26974id = i7;
+            tL_message.f26977id = i7;
             tL_message.peer_id = new TLRPC.TL_peerUser();
             TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
             tL_message.from_id = tL_peerUser;
             TLRPC.Peer peer = tL_message.peer_id;
-            long e10 = org.telegram.messenger.p10.i(t7Var.f49966e.getCurrentAccount()).e();
+            long e10 = org.telegram.messenger.p10.i(t7Var.f49954e.getCurrentAccount()).e();
             tL_peerUser.user_id = e10;
             peer.user_id = e10;
             tL_message.date = (int) (System.currentTimeMillis() / 1000);
@@ -53,7 +53,7 @@ public final class q7 extends g7 {
             tL_message.dialog_id = bVar.f6418b;
             String D = org.telegram.messenger.w7.D(bVar.f6417a);
             TLRPC.Document document = tL_message.media.document;
-            document.f26959id = 0L;
+            document.f26962id = 0L;
             document.access_hash = 0L;
             document.file_reference = new byte[0];
             document.date = tL_message.date;
@@ -69,16 +69,16 @@ public final class q7 extends g7 {
                 ?? obj = new Object();
                 bVar.f6420e = obj;
                 obj.f6416a = true;
-                Utilities.f21333e.c(new o1(t7Var, bVar, tL_documentAttributeAudio, 4));
+                Utilities.f21336e.c(new o1(t7Var, bVar, tL_documentAttributeAudio, 4));
             }
             tL_documentAttributeAudio.flags |= 3;
             tL_message.media.document.attributes.add(tL_documentAttributeAudio);
             TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
             tL_documentAttributeFilename.file_name = bVar.f6417a.getName();
             tL_message.media.document.attributes.add(tL_documentAttributeFilename);
-            org.telegram.messenger.ij ijVar = new org.telegram.messenger.ij(t7Var.f49966e.getCurrentAccount(), tL_message, false, false);
+            org.telegram.messenger.ij ijVar = new org.telegram.messenger.ij(t7Var.f49954e.getCurrentAccount(), tL_message, false, false);
             bVar.f6421f = ijVar;
-            ijVar.f23293x0 = true;
+            ijVar.f23311x0 = true;
         }
         g7Var.f(bVar.f6421f, z10);
         boolean z11 = bVar.f6420e.f6416a;
@@ -89,24 +89,24 @@ public final class q7 extends g7 {
             } else {
                 f10 = 0.0f;
             }
-            g7Var.f29187g0 = f10;
+            g7Var.f29190g0 = f10;
         }
-        if (g7Var.f29186f0 != z12) {
-            g7Var.f29186f0 = z12;
+        if (g7Var.f29189f0 != z12) {
+            g7Var.f29189f0 = z12;
             g7Var.invalidate();
         }
         k7Var.d = z10;
-        k7Var.f47132c.setText(org.telegram.messenger.g0.i0(bVar.f6419c, false, false));
-        k7Var.f47130a.a(this.f49129n.h.f6430j.contains(bVar), z9);
+        k7Var.f47130c.setText(org.telegram.messenger.g0.i0(bVar.f6419c, false, false));
+        k7Var.f47128a.a(this.f49132n.h.f6430j.contains(bVar), z9);
     }
 
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         k7 k7Var = new k7(this, viewGroup.getContext(), 1);
-        k7Var.f47133e = 3;
+        k7Var.f47131e = 3;
         p7 p7Var = new p7(this, viewGroup.getContext(), k7Var);
         p7Var.setCheckForButtonPress(true);
-        k7Var.f47131b.addView(p7Var);
+        k7Var.f47129b.addView(p7Var);
         return new v4.d1(k7Var);
     }
 }

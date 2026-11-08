@@ -10,7 +10,7 @@ import bi.kd;
 import bi.r3;
 import fi.ob;
 import java.util.ArrayList;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.m5;
 import org.telegram.messenger.p10;
 import org.telegram.messenger.q9;
@@ -34,69 +34,69 @@ import org.telegram.ui.Components.w70;
 import org.telegram.ui.Components.x31;
 import org.telegram.ui.Components.z8;
 public final class l0 implements ji.e {
-    public final Context f15558a;
-    public final f6 f15559b;
-    public final hc f15560c;
+    public final Context f15561a;
+    public final f6 f15562b;
+    public final hc f15563c;
     public final int d;
-    public final long f15561e;
-    public final TLRPC.Chat f15562f;
+    public final long f15564e;
+    public final TLRPC.Chat f15565f;
     public k0 h;
-    public kd f15564i;
-    public String f15566k;
-    public int f15567l;
-    public boolean f15568m;
-    public boolean f15569n;
-    public long f15570o;
-    public int f15571p;
-    public u1 f15572q;
-    public int f15573r;
-    public final a0.h f15563g = new a0.h();
-    public ArrayList f15565j = new ArrayList();
+    public kd f15567i;
+    public String f15569k;
+    public int f15570l;
+    public boolean f15571m;
+    public boolean f15572n;
+    public long f15573o;
+    public int f15574p;
+    public u1 f15575q;
+    public int f15576r;
+    public final a0.h f15566g = new a0.h();
+    public ArrayList f15568j = new ArrayList();
 
     public l0(Context context, f6 f6Var, hc hcVar, int i7, long j3) {
-        this.f15558a = context;
-        this.f15559b = f6Var;
-        this.f15560c = hcVar;
+        this.f15561a = context;
+        this.f15562b = f6Var;
+        this.f15563c = hcVar;
         this.d = i7;
-        this.f15561e = j3;
-        this.f15562f = qp.s1(i7).M0(Long.valueOf(j3));
-        this.f15570o = qp.s1(i7).f24767e7.getLong(p0.o(j3, "community_requests_last_view_time_"), 0L);
+        this.f15564e = j3;
+        this.f15565f = qp.s1(i7).M0(Long.valueOf(j3));
+        this.f15573o = qp.s1(i7).f24774e7.getLong(p0.o(j3, "community_requests_last_view_time_"), 0L);
     }
 
     public final void a() {
         TL_communities.CommunityPeerRequest communityPeerRequest;
-        this.f15571p = 0;
-        ArrayList arrayList = this.f15565j;
+        this.f15574p = 0;
+        ArrayList arrayList = this.f15568j;
         if (arrayList != null) {
             int size = arrayList.size();
             for (int i7 = 0; i7 < size; i7++) {
-                if (!this.f15563g.d(m5.o(((TL_communities.CommunityPeerRequest) this.f15565j.get(i7)).peer))) {
-                    if (communityPeerRequest.date <= this.f15570o) {
+                if (!this.f15566g.d(m5.o(((TL_communities.CommunityPeerRequest) this.f15568j.get(i7)).peer))) {
+                    if (communityPeerRequest.date <= this.f15573o) {
                         return;
                     }
-                    this.f15571p++;
+                    this.f15574p++;
                 }
             }
         }
     }
 
     public final void b(q41 q41Var) {
-        if (!this.f15568m && !this.f15569n && q41Var.f37159e3.N0() + 10 > q41Var.f37160f3.D.size()) {
+        if (!this.f15571m && !this.f15572n && q41Var.f37189e3.N0() + 10 > q41Var.f37190f3.D.size()) {
             d();
         }
     }
 
     public final void c(ArrayList arrayList) {
         boolean z9;
-        ArrayList arrayList2 = this.f15565j;
+        ArrayList arrayList2 = this.f15568j;
         if (arrayList2 != null && !arrayList2.isEmpty()) {
-            ArrayList arrayList3 = this.f15565j;
+            ArrayList arrayList3 = this.f15568j;
             if (arrayList3 != null && !arrayList3.isEmpty()) {
                 int size = arrayList3.size();
                 for (int i7 = 0; i7 < size; i7++) {
                     TL_communities.CommunityPeerRequest communityPeerRequest = (TL_communities.CommunityPeerRequest) arrayList3.get(i7);
                     long o4 = m5.o(communityPeerRequest.peer);
-                    a0.h hVar = this.f15563g;
+                    a0.h hVar = this.f15566g;
                     if (hVar == null || !hVar.d(o4)) {
                         TLRPC.User a22 = qp.s1(this.d).a2(Long.valueOf(communityPeerRequest.requested_by));
                         boolean z10 = !communityPeerRequest.visible;
@@ -105,29 +105,29 @@ public final class l0 implements ji.e {
                         } else {
                             z9 = false;
                         }
-                        int i10 = ji.g.f17083b;
+                        int i10 = ji.g.f17086b;
                         x31 K = x31.K(ji.g.class);
                         K.G = new ji.f(o4, a22, z10);
                         K.H = this;
-                        K.f40157j = !z9;
+                        K.f40178j = !z9;
                         arrayList.add(K);
                     }
                 }
             }
-            if (!this.f15569n) {
+            if (!this.f15572n) {
                 arrayList.add(x31.p(29));
             }
         }
     }
 
     public final void d() {
-        if (!this.f15568m && !this.f15569n && t3.y(27, this.f15562f)) {
-            this.f15568m = true;
+        if (!this.f15571m && !this.f15572n && t3.y(27, this.f15565f)) {
+            this.f15571m = true;
             qp s12 = qp.s1(this.d);
-            String str = this.f15566k;
+            String str = this.f15569k;
             j0 j0Var = new j0(this, 1);
             TL_communities.TL_communities_getPeerLinkRequests tL_communities_getPeerLinkRequests = new TL_communities.TL_communities_getPeerLinkRequests();
-            tL_communities_getPeerLinkRequests.community = s12.h1(this.f15561e);
+            tL_communities_getPeerLinkRequests.community = s12.h1(this.f15564e);
             tL_communities_getPeerLinkRequests.offset = str;
             tL_communities_getPeerLinkRequests.limit = 100;
             s12.getConnectionsManager().sendRequestTyped(tL_communities_getPeerLinkRequests, new d3.b(1), new x3(3, s12, j0Var));
@@ -137,8 +137,8 @@ public final class l0 implements ji.e {
     public final void e() {
         int i7 = this.d;
         long currentTime = ConnectionsManager.getInstance(i7).getCurrentTime();
-        this.f15570o = currentTime;
-        qp.s1(i7).f24767e7.edit().putLong("community_requests_last_view_time_" + this.f15561e, currentTime).apply();
+        this.f15573o = currentTime;
+        qp.s1(i7).f24774e7.edit().putLong("community_requests_last_view_time_" + this.f15564e, currentTime).apply();
         a();
     }
 
@@ -147,57 +147,57 @@ public final class l0 implements ji.e {
         String str;
         int i10;
         TextView textView;
-        if (this.f15572q == null && this.f15573r == 0) {
+        if (this.f15575q == null && this.f15576r == 0) {
             if (z10) {
                 if (z9) {
                     i7 = 2131751983;
                 } else {
                     i7 = 2131751935;
                 }
-                String M0 = hd.M0(i7, null);
+                String M0 = id.M0(i7, null);
                 if (z9) {
                     str = "CommunityAddAllChatsMessage";
                 } else {
                     str = "CommunityDeclineAllMessage";
                 }
-                SpannableStringBuilder X2 = org.telegram.messenger.g0.X2(hd.G(this.f15567l, str, new Object[0]));
+                SpannableStringBuilder X2 = org.telegram.messenger.g0.X2(id.G(this.f15570l, str, new Object[0]));
                 if (z9) {
                     i10 = 2131754486;
                 } else {
                     i10 = 2131751605;
                 }
-                u1 M = v4.M(this.f15558a, this.f15559b, M0, X2, hd.M0(i10, null), new k1(11, this, z9));
+                u1 M = v4.M(this.f15561a, this.f15562b, M0, X2, id.M0(i10, null), new k1(11, this, z9));
                 M.show();
                 if (!z9 && (textView = (TextView) M.d(-1)) != null) {
-                    r6.V(textView, k6.f28090q7, null);
+                    r6.V(textView, k6.f28093q7, null);
                     return;
                 }
                 return;
             }
-            kd kdVar = this.f15564i;
+            kd kdVar = this.f15567i;
             if (kdVar != null) {
                 kdVar.run();
             }
-            this.f15564i = null;
-            u1 u1Var = new u1(3, this.f15558a, this.f15559b);
-            this.f15572q = u1Var;
+            this.f15567i = null;
+            u1 u1Var = new u1(3, this.f15561a, this.f15562b);
+            this.f15575q = u1Var;
             u1Var.setOnCancelListener(new ob(this, 3));
-            this.f15572q.r(500L);
+            this.f15575q.r(500L);
             qp s12 = qp.s1(this.d);
             j0 j0Var = new j0(this, 0);
             TL_communities.TL_communities_toggleAllPeerLinkRequestApproval tL_communities_toggleAllPeerLinkRequestApproval = new TL_communities.TL_communities_toggleAllPeerLinkRequestApproval();
-            long j3 = this.f15561e;
+            long j3 = this.f15564e;
             tL_communities_toggleAllPeerLinkRequestApproval.community = s12.h1(j3);
             tL_communities_toggleAllPeerLinkRequestApproval.reject = !z9;
-            this.f15573r = s12.getConnectionsManager().sendRequestTyped(tL_communities_toggleAllPeerLinkRequestApproval, new d3.b(1), new q9(s12, j3, j0Var, 1));
+            this.f15576r = s12.getConnectionsManager().sendRequestTyped(tL_communities_toggleAllPeerLinkRequestApproval, new d3.b(1), new q9(s12, j3, j0Var, 1));
         }
     }
 
     public final void g(long j3, boolean z9) {
         int i7;
         int i10;
-        this.f15563g.k(null, j3);
-        this.f15567l--;
+        this.f15566g.k(null, j3);
+        this.f15570l--;
         a();
         k0 k0Var = this.h;
         if (k0Var != null) {
@@ -209,20 +209,20 @@ public final class l0 implements ji.e {
             i7 = 2131751879;
         }
         int i11 = this.d;
-        SpannableStringBuilder X2 = org.telegram.messenger.g0.X2(hd.a0(null, null, i7, m5.s(i11, j3)));
-        kd kdVar = this.f15564i;
+        SpannableStringBuilder X2 = org.telegram.messenger.g0.X2(id.a0(null, null, i7, m5.s(i11, j3)));
+        kd kdVar = this.f15567i;
         if (kdVar != null) {
             kdVar.run();
         }
-        this.f15564i = new kd(this, j3, z9, 2);
-        Context context = this.f15558a;
-        f6 f6Var = this.f15559b;
+        this.f15567i = new kd(this, j3, z9, 2);
+        Context context = this.f15561a;
+        f6 f6Var = this.f15562b;
         bc bcVar = new bc(context, f6Var, false);
         TLObject e22 = qp.s1(i11).e2(j3);
-        z8 z8Var = bcVar.f32127a;
+        z8 z8Var = bcVar.f32148a;
         if (e22 != null) {
             z8Var.setCount(1);
-            z8Var.b(0, p10.f24467s0, e22);
+            z8Var.b(0, p10.f24470s0, e22);
             i10 = 1;
         } else {
             i10 = 0;
@@ -231,27 +231,27 @@ public final class l0 implements ji.e {
         z8Var.setScaleX(1.333f);
         z8Var.setScaleY(1.333f);
         z8Var.a(false);
-        w70 w70Var = bcVar.f32128b;
+        w70 w70Var = bcVar.f32149b;
         w70Var.setSingleLine(false);
         w70Var.setMaxLines(2);
         w70Var.setTextSize(1, 14.0f);
         w70Var.setText(X2);
         if (w70Var.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
             int L = org.telegram.messenger.g0.L(74 - ((3 - i10) * 12));
-            if (hd.f22878a0) {
+            if (id.f23157a0) {
                 ((ViewGroup.MarginLayoutParams) w70Var.getLayoutParams()).rightMargin = L;
             } else {
                 ((ViewGroup.MarginLayoutParams) w70Var.getLayoutParams()).leftMargin = L;
             }
         }
-        if (hd.f22878a0) {
+        if (id.f23157a0) {
             z8Var.setTranslationX(org.telegram.messenger.g0.L(32 - ((i10 - 1) * 12)));
         }
         ac acVar = new ac(context, f6Var, true, true);
-        acVar.e(hd.M0(2131743886, null));
-        acVar.f31756b = new r3(this, j3, 11);
-        acVar.f31757c = this.f15564i;
+        acVar.e(id.M0(2131743888, null));
+        acVar.f31765b = new r3(this, j3, 11);
+        acVar.f31766c = this.f15567i;
         bcVar.setButton(acVar);
-        this.f15560c.b(bcVar, 5000).j();
+        this.f15563c.b(bcVar, 5000).j();
     }
 }

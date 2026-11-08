@@ -3,15 +3,15 @@ package org.telegram.ui.Components;
 import android.content.Intent;
 import java.util.ArrayList;
 public final class nh implements mj {
-    public final di f36332a;
+    public final di f36348a;
 
     public nh(di diVar) {
-        this.f36332a = diVar;
+        this.f36348a = diVar;
     }
 
     @Override
     public final void A() {
-        di diVar = this.f36332a;
+        di diVar = this.f36348a;
         mj mjVar = diVar.O1;
         if (mjVar != null) {
             mjVar.A();
@@ -35,12 +35,12 @@ public final class nh implements mj {
 
     @Override
     public final void S() {
-        this.f36332a.p1(true);
+        this.f36348a.p1(true);
     }
 
     @Override
     public final void n(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z9, int i7, long j3, boolean z10, long j10) {
-        di diVar = this.f36332a;
+        di diVar = this.f36348a;
         mj mjVar = diVar.O1;
         if (mjVar != null) {
             mjVar.n(arrayList, str, arrayList2, arrayList3, z9, i7, j3, z10, j10);
@@ -55,7 +55,7 @@ public final class nh implements mj {
             int size = arrayList.size();
             for (int i10 = 0; i10 < size; i10++) {
                 ?? obj = new Object();
-                obj.f22493c = (String) arrayList.get(i10);
+                obj.f22512c = (String) arrayList.get(i10);
                 arrayList4.add(obj);
             }
             bk0Var.K1(arrayList4);
@@ -64,7 +64,7 @@ public final class nh implements mj {
 
     @Override
     public final void p(ArrayList arrayList, boolean z9, int i7, long j3) {
-        di diVar = this.f36332a;
+        di diVar = this.f36348a;
         mj mjVar = diVar.O1;
         if (mjVar != null) {
             mjVar.p(arrayList, z9, i7, j3);

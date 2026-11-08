@@ -18,7 +18,7 @@ public abstract class l1 {
             return 0;
         }
         int c10 = c(aVar);
-        int max = Math.max(0, aVar.f18390c);
+        int max = Math.max(0, aVar.f18393c);
         if (max > 0) {
             i7 = org.telegram.messenger.g0.L(com.google.android.recaptcha.internal.a.e(max, 1, 24, 28));
         }
@@ -30,7 +30,7 @@ public abstract class l1 {
         if (aVar == null) {
             size = 0;
         } else {
-            size = aVar.f18396k.size();
+            size = aVar.f18399k.size();
         }
         if (size <= 0) {
             return 0;
@@ -43,7 +43,7 @@ public abstract class l1 {
         if (aVar == null) {
             size = 0;
         } else {
-            size = aVar.f18396k.size();
+            size = aVar.f18399k.size();
         }
         if (size <= 0) {
             return 0;

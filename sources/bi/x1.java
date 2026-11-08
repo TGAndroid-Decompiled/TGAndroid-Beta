@@ -34,8 +34,8 @@ public final class x1 implements Runnable {
                 boolean z10 = this.f5015f;
                 if (z9) {
                     TL_account.tmpPassword tmppassword = (TL_account.tmpPassword) tLObject;
-                    p10.i(k7Var.f28613a).f24496y = tmppassword;
-                    p10.i(k7Var.f28613a).v(false);
+                    p10.i(k7Var.f28616a).f24499y = tmppassword;
+                    p10.i(k7Var.f28616a).v(false);
                     k7Var.J1(tmppassword.tmp_password, twoStepVerificationActivity2, z10, null);
                     return;
                 }
@@ -51,7 +51,7 @@ public final class x1 implements Runnable {
                     gettmppassword.password = q02;
                     gettmppassword.period = 600;
                     k7 k7Var2 = this.f5012b;
-                    ConnectionsManager.getInstance(k7Var2.f28613a).sendRequest(gettmppassword, new i4(k7Var2, twoStepVerificationActivity, this.f5015f, 0));
+                    ConnectionsManager.getInstance(k7Var2.f28616a).sendRequest(gettmppassword, new i4(k7Var2, twoStepVerificationActivity, this.f5015f, 0));
                     return;
                 }
                 return;

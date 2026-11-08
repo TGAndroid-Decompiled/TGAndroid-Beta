@@ -100,7 +100,7 @@ public final class h implements TextWatcher {
                 qp.s1(mVar.U).a2(Long.valueOf(mVar.f12389y));
                 TLRPC.Chat M0 = qp.s1(mVar.U).M0(Long.valueOf(-mVar.f12389y));
                 adapter.getClass();
-                adapter.f16785l0 = M0;
+                adapter.f16788l0 = M0;
                 mVar.M.getAdapter().U(charSequence, gVar.getEditText().getSelectionStart(), null, false, false);
             }
         }

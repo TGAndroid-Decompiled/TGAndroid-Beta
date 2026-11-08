@@ -1,6 +1,6 @@
 package org.telegram.messenger;
 public final class g6 {
-    public int f22604a;
-    public int f22605b;
-    public CharSequence f22606c;
+    public int f22623a;
+    public int f22624b;
+    public CharSequence f22625c;
 }

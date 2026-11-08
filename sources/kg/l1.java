@@ -5,16 +5,16 @@ import android.view.View;
 import org.telegram.ui.ActionBar.q4;
 import org.telegram.ui.Components.rt0;
 public final class l1 extends rt0 {
-    public final int f17424f0;
+    public final int f17427f0;
 
     public l1(Context context, q4 q4Var, int i7) {
         super(context, q4Var);
-        this.f17424f0 = i7;
+        this.f17427f0 = i7;
     }
 
     @Override
     public boolean O() {
-        switch (this.f17424f0) {
+        switch (this.f17427f0) {
             case 2:
                 return false;
             case 3:
@@ -26,7 +26,7 @@ public final class l1 extends rt0 {
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f17424f0) {
+        switch (this.f17427f0) {
             case 0:
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824));
                 return;

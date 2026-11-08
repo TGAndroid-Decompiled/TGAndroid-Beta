@@ -23,10 +23,10 @@ public final class i {
                     hVar.u();
                 }
                 o oVar = (o) qVar;
-                Parcel P0 = oVar.P0();
+                Parcel p12 = oVar.p1();
                 int i7 = com.google.android.gms.internal.cast.t.f6991a;
-                P0.writeInt(0);
-                oVar.T0(P0, 1);
+                p12.writeInt(0);
+                oVar.t1(p12, 1);
             } catch (RemoteException e10) {
                 c.f13543m.a(e10, "Unable to call %s on %s.", "onConnected", q.class.getSimpleName());
             }

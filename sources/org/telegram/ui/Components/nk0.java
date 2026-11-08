@@ -11,28 +11,28 @@ import java.util.Map;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.SecretMediaViewer;
 public final class nk0 extends Transition {
-    public final int f36365a;
-    public final Object f36366b;
+    public final int f36381a;
+    public final Object f36382b;
 
     public nk0(Object obj, int i7) {
-        this.f36365a = i7;
-        this.f36366b = obj;
+        this.f36381a = i7;
+        this.f36382b = obj;
     }
 
     @Override
     public final void captureEndValues(TransitionValues transitionValues) {
-        switch (this.f36365a) {
+        switch (this.f36381a) {
             case 0:
                 return;
             case 1:
                 transitionValues.values.put("start", Boolean.FALSE);
                 Map map = transitionValues.values;
-                yv0 yv0Var = (yv0) this.f36366b;
-                map.put("offset", Integer.valueOf(yv0Var.f28616b.getTop() + yv0Var.V1));
+                yv0 yv0Var = (yv0) this.f36382b;
+                map.put("offset", Integer.valueOf(yv0Var.f28619b.getTop() + yv0Var.V1));
                 return;
             case 2:
                 View view = transitionValues.view;
-                PhotoViewer photoViewer = (PhotoViewer) this.f36366b;
+                PhotoViewer photoViewer = (PhotoViewer) this.f36382b;
                 if (view == photoViewer.Q1) {
                     transitionValues.values.put("translationY", Integer.valueOf(photoViewer.T1.getPendingMarginTopDiff()));
                     return;
@@ -40,7 +40,7 @@ public final class nk0 extends Transition {
                 return;
             default:
                 View view2 = transitionValues.view;
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f36366b;
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f36382b;
                 if (view2 == secretMediaViewer.X) {
                     transitionValues.values.put("translationY", Integer.valueOf(secretMediaViewer.Y.getPendingMarginTopDiff()));
                     return;
@@ -51,18 +51,18 @@ public final class nk0 extends Transition {
 
     @Override
     public final void captureStartValues(TransitionValues transitionValues) {
-        switch (this.f36365a) {
+        switch (this.f36381a) {
             case 0:
                 return;
             case 1:
                 transitionValues.values.put("start", Boolean.TRUE);
                 Map map = transitionValues.values;
-                yv0 yv0Var = (yv0) this.f36366b;
-                map.put("offset", Integer.valueOf(yv0Var.f28616b.getTop() + yv0Var.V1));
+                yv0 yv0Var = (yv0) this.f36382b;
+                map.put("offset", Integer.valueOf(yv0Var.f28619b.getTop() + yv0Var.V1));
                 return;
             case 2:
                 View view = transitionValues.view;
-                org.telegram.ui.vp0 vp0Var = ((PhotoViewer) this.f36366b).T1;
+                org.telegram.ui.vp0 vp0Var = ((PhotoViewer) this.f36382b).T1;
                 if (view == vp0Var) {
                     transitionValues.values.put("scrollY", Integer.valueOf(vp0Var.getScrollY()));
                     return;
@@ -70,7 +70,7 @@ public final class nk0 extends Transition {
                 return;
             default:
                 View view2 = transitionValues.view;
-                org.telegram.ui.vp0 vp0Var2 = ((SecretMediaViewer) this.f36366b).Y;
+                org.telegram.ui.vp0 vp0Var2 = ((SecretMediaViewer) this.f36382b).Y;
                 if (view2 == vp0Var2) {
                     transitionValues.values.put("scrollY", Integer.valueOf(vp0Var2.getScrollY()));
                     return;
@@ -83,8 +83,8 @@ public final class nk0 extends Transition {
     public final Animator createAnimator(ViewGroup viewGroup, TransitionValues transitionValues, TransitionValues transitionValues2) {
         int intValue;
         int intValue2;
-        int i7 = this.f36365a;
-        Object obj = this.f36366b;
+        int i7 = this.f36381a;
+        Object obj = this.f36382b;
         switch (i7) {
             case 0:
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);

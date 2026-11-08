@@ -18,7 +18,7 @@ public abstract class g {
                 invoke = pVar.invoke(obj, mVar);
             }
             ee.a.g(hVar, l10);
-            if (invoke == jd.a.f16643a) {
+            if (invoke == jd.a.f16646a) {
                 kotlin.jvm.internal.j.e(frame, "frame");
             }
             return invoke;

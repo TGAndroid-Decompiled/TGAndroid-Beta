@@ -83,11 +83,11 @@ public final class b implements Callable {
             case 1:
                 ta taVar = (ta) this.f55b;
                 taVar.getClass();
-                return j.f53798c.a(taVar.f669g);
+                return j.f53891c.a(taVar.f669g);
             case 2:
                 uf ufVar = (uf) this.f55b;
                 ufVar.getClass();
-                return j.f53798c.a(ufVar.f5897g);
+                return j.f53891c.a(ufVar.f5897g);
             case 3:
                 s sVar = (s) this.f55b;
                 f5.b bVar = sVar.d;
@@ -126,13 +126,13 @@ public final class b implements Callable {
                                         if (bundle == null) {
                                             try {
                                                 com.google.android.gms.internal.play_billing.a aVar2 = (com.google.android.gms.internal.play_billing.a) cVar;
-                                                Parcel V0 = aVar2.V0();
-                                                V0.writeInt(i12);
-                                                V0.writeString(packageName);
-                                                V0.writeString("subs");
-                                                Parcel W0 = aVar2.W0(V0, 1);
-                                                int readInt = W0.readInt();
-                                                W0.recycle();
+                                                Parcel v12 = aVar2.v1();
+                                                v12.writeInt(i12);
+                                                v12.writeString(packageName);
+                                                v12.writeString("subs");
+                                                Parcel w12 = aVar2.w1(v12, 1);
+                                                int readInt = w12.readInt();
+                                                w12.recycle();
                                                 i11 = readInt;
                                             } catch (Exception e10) {
                                                 u.i("BillingClient", "Exception while checking if billing is supported; try to reconnect", e10);
@@ -166,7 +166,7 @@ public final class b implements Callable {
                                                 sVar.c(fVar2);
                                             }
                                         } else {
-                                            i11 = ((com.google.android.gms.internal.play_billing.a) cVar).X0(i12, packageName, "subs", bundle);
+                                            i11 = ((com.google.android.gms.internal.play_billing.a) cVar).x1(i12, packageName, "subs", bundle);
                                         }
                                         if (i11 == 0) {
                                             u.g("BillingClient", "highestLevelSupportedForSubs: " + i12);
@@ -195,15 +195,15 @@ public final class b implements Callable {
                                     if (i14 >= 3) {
                                         if (bundle == null) {
                                             com.google.android.gms.internal.play_billing.a aVar3 = (com.google.android.gms.internal.play_billing.a) cVar;
-                                            Parcel V02 = aVar3.V0();
-                                            V02.writeInt(i14);
-                                            V02.writeString(packageName);
-                                            V02.writeString("inapp");
-                                            Parcel W02 = aVar3.W0(V02, 1);
-                                            i13 = W02.readInt();
-                                            W02.recycle();
+                                            Parcel v13 = aVar3.v1();
+                                            v13.writeInt(i14);
+                                            v13.writeString(packageName);
+                                            v13.writeString("inapp");
+                                            Parcel w13 = aVar3.w1(v13, 1);
+                                            i13 = w13.readInt();
+                                            w13.recycle();
                                         } else {
-                                            i13 = ((com.google.android.gms.internal.play_billing.a) cVar).X0(i14, packageName, "inapp", bundle);
+                                            i13 = ((com.google.android.gms.internal.play_billing.a) cVar).x1(i14, packageName, "inapp", bundle);
                                         }
                                         if (i13 == 0) {
                                             bVar3.f11126l = i14;
@@ -337,14 +337,14 @@ public final class b implements Callable {
             case 5:
                 p pVar = (p) this.f55b;
                 pVar.getClass();
-                return j.f53798c.a(pVar.f57514a);
+                return j.f53891c.a(pVar.f57606a);
             case 6:
                 ArrayList arrayList = new ArrayList();
                 Iterator it = ((e) ((ShortcutInfoCompatSaverImpl) this.f55b).f2879b.values()).iterator();
                 while (true) {
                     a0.b bVar5 = (a0.b) it;
                     if (bVar5.hasNext()) {
-                        g0.c cVar2 = ((x4.f) bVar5.next()).f58543c;
+                        g0.c cVar2 = ((x4.f) bVar5.next()).f58632c;
                         ?? obj = new Object();
                         obj.f13396a = cVar2.f13396a;
                         obj.f13397b = cVar2.f13397b;
@@ -383,15 +383,15 @@ public final class b implements Callable {
                 }
                 throw new IllegalArgumentException("Shortcut must have an intent");
             case 7:
-                return BitmapFactory.decodeFile(((x4.f) this.f55b).f58542b);
+                return BitmapFactory.decodeFile(((x4.f) this.f55b).f58631b);
             case 8:
                 e9 e9Var = (e9) this.f55b;
                 e9Var.getClass();
-                return j.f53798c.a(e9Var.f58930g);
+                return j.f53891c.a(e9Var.f59019g);
             default:
                 ma maVar = (ma) this.f55b;
                 maVar.getClass();
-                return j.f53798c.a(maVar.f59805g);
+                return j.f53891c.a(maVar.f59898g);
         }
     }
 }

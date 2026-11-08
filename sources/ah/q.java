@@ -20,7 +20,7 @@ public final class q extends w31 {
     public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
         r rVar = (r) view;
         rVar.setUser((TLRPC.User) x31Var.G);
-        rVar.c(x31Var.f40153e, false);
+        rVar.c(x31Var.f40174e, false);
         rVar.setDivider(z9);
     }
 

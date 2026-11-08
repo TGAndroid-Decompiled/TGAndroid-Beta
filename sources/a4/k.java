@@ -33,8 +33,8 @@ public class k implements a0 {
     public Object f193e;
     public Object f194f;
 
-    public k(int i7, byte b10) {
-        this.f190a = i7;
+    public k() {
+        this.f190a = 2;
     }
 
     public static void d(float[] fArr, int i7, float f10, float f11, float f12, float f13) {
@@ -102,12 +102,12 @@ public class k implements a0 {
         d4.f fVar2 = (d4.f) this.f192c;
         e0 e0Var = (e0) this.f194f;
         SparseArray sparseArray3 = e0Var.h;
-        SparseBooleanArray sparseBooleanArray = e0Var.f19637i;
-        m4.f fVar3 = e0Var.f19635f;
-        List list = e0Var.f19633c;
-        int i14 = e0Var.f19631a;
+        SparseBooleanArray sparseBooleanArray = e0Var.f19640i;
+        m4.f fVar3 = e0Var.f19638f;
+        List list = e0Var.f19636c;
+        int i14 = e0Var.f19634a;
         if (xVar.A() == 2) {
-            if (i14 != 1 && i14 != 2 && e0Var.f19642n != 1) {
+            if (i14 != 1 && i14 != 2 && e0Var.f19645n != 1) {
                 k0Var = new k0(((k0) list.get(0)).d());
                 list.add(k0Var);
             } else {
@@ -120,16 +120,16 @@ public class k implements a0 {
                 xVar.k(0, 2, (byte[]) fVar2.f8164b);
                 fVar2.J(0);
                 fVar2.L(3);
-                e0Var.f19648t = fVar2.j(13);
+                e0Var.f19651t = fVar2.j(13);
                 xVar.k(0, 2, (byte[]) fVar2.f8164b);
                 fVar2.J(0);
                 fVar2.L(4);
                 xVar.O(fVar2.j(12));
-                if (i14 == 2 && e0Var.f19646r == null) {
+                if (i14 == 2 && e0Var.f19649r == null) {
                     h0 a11 = fVar3.a(21, new n(21, null, 0, null, m0.f14113b));
-                    e0Var.f19646r = a11;
+                    e0Var.f19649r = a11;
                     if (a11 != null) {
-                        a11.b(k0Var, e0Var.f19641m, new g0(H, 21, 8192));
+                        a11.b(k0Var, e0Var.f19644m, new g0(H, 21, 8192));
                     }
                 }
                 sparseArray2.clear();
@@ -271,7 +271,7 @@ public class k implements a0 {
                     } else {
                         c10 = 21;
                         if (i14 == 2 && j3 == 21) {
-                            a10 = e0Var.f19646r;
+                            a10 = e0Var.f19649r;
                         } else {
                             a10 = fVar3.a(j3, nVar);
                         }
@@ -295,13 +295,13 @@ public class k implements a0 {
                     int keyAt = sparseIntArray.keyAt(i23);
                     int valueAt = sparseIntArray.valueAt(i23);
                     sparseBooleanArray.put(keyAt, true);
-                    e0Var.f19638j.put(valueAt, true);
+                    e0Var.f19641j.put(valueAt, true);
                     h0 h0Var = (h0) sparseArray2.valueAt(i23);
                     if (h0Var != null) {
-                        if (h0Var != e0Var.f19646r) {
+                        if (h0Var != e0Var.f19649r) {
                             i10 = i22;
                             k0Var2 = k0Var6;
-                            h0Var.b(k0Var2, e0Var.f19641m, new g0(i10, keyAt, 8192));
+                            h0Var.b(k0Var2, e0Var.f19644m, new g0(i10, keyAt, 8192));
                         } else {
                             k0Var2 = k0Var6;
                             i10 = i22;
@@ -320,10 +320,10 @@ public class k implements a0 {
                 }
                 SparseArray sparseArray7 = sparseArray6;
                 if (i14 == 2) {
-                    if (!e0Var.f19643o) {
-                        e0Var.f19641m.U0();
-                        e0Var.f19642n = 0;
-                        e0Var.f19643o = true;
+                    if (!e0Var.f19646o) {
+                        e0Var.f19644m.U0();
+                        e0Var.f19645n = 0;
+                        e0Var.f19646o = true;
                         return;
                     }
                     return;
@@ -332,12 +332,12 @@ public class k implements a0 {
                 if (i14 == 1) {
                     i7 = 0;
                 } else {
-                    i7 = e0Var.f19642n - 1;
+                    i7 = e0Var.f19645n - 1;
                 }
-                e0Var.f19642n = i7;
+                e0Var.f19645n = i7;
                 if (i7 == 0) {
-                    e0Var.f19641m.U0();
-                    e0Var.f19643o = true;
+                    e0Var.f19644m.U0();
+                    e0Var.f19646o = true;
                 }
             }
         }
@@ -407,7 +407,7 @@ public class k implements a0 {
                                     i12 = a(i12, str);
                                 } else {
                                     if (charAt2 < 'u') {
-                                        c10 = qe.c.f53997a[charAt2];
+                                        c10 = qe.c.f54090a[charAt2];
                                     } else {
                                         c10 = 0;
                                     }
@@ -682,7 +682,7 @@ public class k implements a0 {
                 }
                 sb2.append(">>\n");
                 return sb2.toString();
-            case 8:
+            case 7:
                 return "JsonReader(source='" + ((Object) ((String) this.f194f)) + "', currentPosition=" + this.f191b + ')';
             default:
                 return super.toString();
@@ -741,7 +741,7 @@ public class k implements a0 {
         }
         iArr[i7] = 1;
         for (ax0 ax0Var : ((ax0[][]) this.d)[i7]) {
-            x(ax0Var.f31938a.f34021b);
+            x(ax0Var.f31938a.f34035b);
             int i10 = this.f191b;
             this.f191b = i10 - 1;
             ((ax0[]) this.f192c)[i10] = ax0Var;
@@ -750,7 +750,7 @@ public class k implements a0 {
     }
 
     public k(int i7) {
-        this.f190a = 5;
+        this.f190a = 4;
         this.f191b = i7;
         int i10 = i7 * 8;
         this.f192c = new float[i10];
@@ -781,7 +781,7 @@ public class k implements a0 {
     }
 
     public k(String source) {
-        this.f190a = 8;
+        this.f190a = 7;
         kotlin.jvm.internal.j.e(source, "source");
         wa waVar = new wa((char) 0, 21);
         waVar.f701c = new Object[8];
@@ -806,7 +806,7 @@ public class k implements a0 {
     }
 
     public k(Canvas canvas) {
-        this.f190a = 7;
+        this.f190a = 6;
         this.d = new Matrix();
         this.f193e = new ArrayList();
         this.f194f = new ArrayList();
@@ -823,7 +823,7 @@ public class k implements a0 {
     }
 
     public k(cx0 cx0Var, ax0[] ax0VarArr) {
-        this.f190a = 6;
+        this.f190a = 5;
         this.f194f = cx0Var;
         int length = ax0VarArr.length;
         this.f192c = new ax0[length];
@@ -832,7 +832,7 @@ public class k implements a0 {
         ax0[][] ax0VarArr2 = new ax0[e10];
         int[] iArr = new int[e10];
         for (ax0 ax0Var : ax0VarArr) {
-            int i7 = ax0Var.f31938a.f34020a;
+            int i7 = ax0Var.f31938a.f34034a;
             iArr[i7] = iArr[i7] + 1;
         }
         for (int i10 = 0; i10 < e10; i10++) {
@@ -840,7 +840,7 @@ public class k implements a0 {
         }
         Arrays.fill(iArr, 0);
         for (ax0 ax0Var2 : ax0VarArr) {
-            int i11 = ax0Var2.f31938a.f34020a;
+            int i11 = ax0Var2.f31938a.f34034a;
             ax0[] ax0VarArr3 = ax0VarArr2[i11];
             int i12 = iArr[i11];
             iArr[i11] = i12 + 1;

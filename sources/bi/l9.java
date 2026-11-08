@@ -1,7 +1,7 @@
 package bi;
 
 import org.telegram.messenger.c20;
-import org.telegram.ui.Components.l10;
+import org.telegram.ui.Components.vs;
 public final class l9 implements Runnable {
     public final int f4281a;
     public final boolean[] f4282b;
@@ -33,7 +33,7 @@ public final class l9 implements Runnable {
                     zArr2[0] = true;
                     c20Var2.a(Boolean.TRUE);
                 }
-                org.telegram.messenger.g0.i3(new l10(26), 220L);
+                org.telegram.messenger.g0.i3(new vs(28), 220L);
                 return;
             default:
                 boolean[] zArr3 = this.f4282b;

@@ -1,7 +1,7 @@
 package ii;
 
 import java.util.ArrayList;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.m5;
 import org.telegram.messenger.t3;
 import org.telegram.messenger.v10;
@@ -11,12 +11,12 @@ import org.telegram.ui.Components.hc;
 import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.x31;
 public final class j implements v10 {
-    public final int f15546a;
-    public final p f15547b;
+    public final int f15549a;
+    public final p f15550b;
 
     public j(p pVar, int i7) {
-        this.f15546a = i7;
-        this.f15547b = pVar;
+        this.f15549a = i7;
+        this.f15550b = pVar;
     }
 
     @Override
@@ -26,9 +26,9 @@ public final class j implements v10 {
         String str2;
         int i7;
         TLRPC.ChatPhoto chatPhoto;
-        int i10 = this.f15546a;
+        int i10 = this.f15549a;
         int i11 = 0;
-        p pVar = this.f15547b;
+        p pVar = this.f15550b;
         switch (i10) {
             case 0:
                 TLRPC.Bool bool = (TLRPC.Bool) obj;
@@ -42,7 +42,7 @@ public final class j implements v10 {
             default:
                 ArrayList arrayList2 = (ArrayList) obj;
                 l41 l41Var = (l41) obj2;
-                arrayList2.add(x31.l(140, pVar.f15587s));
+                arrayList2.add(x31.l(140, pVar.f15590s));
                 if (t3.y(1, pVar.I)) {
                     TLRPC.Chat chat = pVar.I;
                     if (chat != null && (chatPhoto = chat.photo) != null && !(chatPhoto instanceof TLRPC.TL_chatPhotoEmpty)) {
@@ -50,26 +50,26 @@ public final class j implements v10 {
                     } else {
                         i7 = 2131751851;
                     }
-                    x31 c10 = x31.c(141, 2131232496, hd.M0(i7, null));
-                    c10.f40164q = true;
+                    x31 c10 = x31.c(141, 2131232496, id.M0(i7, null));
+                    c10.f40185q = true;
                     arrayList2.add(c10);
                     arrayList2.add(x31.E(2, org.telegram.messenger.g0.L(14.0f)));
-                    arrayList2.add(x31.t(0, hd.M0(2131751874, null)));
-                    arrayList2.add(x31.j(7, pVar.f15586r));
+                    arrayList2.add(x31.t(0, id.M0(2131751874, null)));
+                    arrayList2.add(x31.j(7, pVar.f15589r));
                     arrayList2.add(x31.E(1, org.telegram.messenger.g0.L(14.0f)));
                 }
                 if (t3.w(2, pVar.I)) {
-                    arrayList2.add(x31.t(3, hd.M0(2131751872, null)));
-                    x31 y10 = x31.y(150, hd.M0(2131751843, null), hd.M0(2131751842, null));
-                    y10.L(pVar.f15585n);
+                    arrayList2.add(x31.t(3, id.M0(2131751872, null)));
+                    x31 y10 = x31.y(150, id.M0(2131751843, null), id.M0(2131751842, null));
+                    y10.L(pVar.f15588n);
                     arrayList2.add(y10);
-                    x31 y11 = x31.y(151, hd.M0(2131751841, null), hd.M0(2131751840, null));
-                    y11.L(!pVar.f15585n);
+                    x31 y11 = x31.y(151, id.M0(2131751841, null), id.M0(2131751840, null));
+                    y11.L(!pVar.f15588n);
                     arrayList2.add(y11);
                     arrayList2.add(x31.E(4, org.telegram.messenger.g0.L(14.0f)));
                 }
                 if (t3.N(pVar.I)) {
-                    String M0 = hd.M0(2131751965, null);
+                    String M0 = id.M0(2131751965, null);
                     TLRPC.ChatFull chatFull = pVar.J;
                     String str3 = "";
                     if (chatFull == null) {
@@ -78,7 +78,7 @@ public final class j implements v10 {
                         str = Integer.toString(chatFull.admins_count);
                     }
                     arrayList2.add(x31.d(142, 2131232049, M0, str));
-                    String M02 = hd.M0(2131751895, null);
+                    String M02 = id.M0(2131751895, null);
                     TLRPC.ChatFull chatFull2 = pVar.J;
                     if (chatFull2 == null) {
                         str2 = "";
@@ -86,7 +86,7 @@ public final class j implements v10 {
                         str2 = Integer.toString(chatFull2.requests_pending);
                     }
                     arrayList2.add(x31.d(143, 2131231029, M02, str2));
-                    String M03 = hd.M0(2131751881, null);
+                    String M03 = id.M0(2131751881, null);
                     TLRPC.ChatFull chatFull3 = pVar.J;
                     if (chatFull3 != null) {
                         str3 = Integer.toString(chatFull3.kicked_count);
@@ -94,8 +94,8 @@ public final class j implements v10 {
                     arrayList2.add(x31.d(144, 2131232415, M03, str3));
                 }
                 arrayList2.add(x31.E(5, org.telegram.messenger.g0.L(14.0f)));
-                x31 c11 = x31.c(146, 2131232176, hd.M0(2131751918, null));
-                c11.f40164q = true;
+                x31 c11 = x31.c(146, 2131232176, id.M0(2131751918, null));
+                c11.f40185q = true;
                 arrayList2.add(c11);
                 TLRPC.ChatFull chatFull4 = pVar.J;
                 if (chatFull4 != null && (arrayList = chatFull4.linked_peers) != null) {

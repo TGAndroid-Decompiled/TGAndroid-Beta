@@ -4,12 +4,12 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 public class ImportingService extends Service implements ls {
-    public e0.q f21234a;
+    public e0.q f21237a;
 
     public ImportingService() {
         for (int i7 = 0; i7 < 4; i7++) {
-            qs.f(i7).b(this, qs.f25082v1);
-            qs.f(i7).b(this, qs.f25089w1);
+            qs.f(i7).b(this, qs.f25091v1);
+            qs.f(i7).b(this, qs.f25098w1);
         }
     }
 
@@ -24,7 +24,7 @@ public class ImportingService extends Service implements ls {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if ((i7 == qs.f25082v1 || i7 == qs.f25089w1) && !a() && !a()) {
+        if ((i7 == qs.f25091v1 || i7 == qs.f25098w1) && !a() && !a()) {
             stopSelf();
         }
     }
@@ -41,12 +41,12 @@ public class ImportingService extends Service implements ls {
             stopForeground(true);
         } catch (Throwable unused) {
         }
-        new e0.i0(t0.f25563b).b(5, null);
+        new e0.i0(t0.f25566b).b(5, null);
         for (int i7 = 0; i7 < 4; i7++) {
-            qs.f(i7).n(this, qs.f25082v1);
-            qs.f(i7).n(this, qs.f25089w1);
+            qs.f(i7).n(this, qs.f25091v1);
+            qs.f(i7).n(this, qs.f25098w1);
         }
-        if (r2.f25199a) {
+        if (r2.f25212a) {
             a8.b("destroy import service");
         }
     }
@@ -61,35 +61,35 @@ public class ImportingService extends Service implements ls {
             stopSelf();
             return 2;
         }
-        if (r2.f25199a) {
+        if (r2.f25212a) {
             a8.b("start import service");
         }
-        if (this.f21234a == null) {
+        if (this.f21237a == null) {
             dt.i();
-            e0.q qVar = new e0.q(t0.f25563b, null);
-            this.f21234a = qVar;
+            e0.q qVar = new e0.q(t0.f25566b, null);
+            this.f21237a = qVar;
             qVar.F.icon = 17301640;
             qVar.F.when = System.currentTimeMillis();
-            e0.q qVar2 = this.f21234a;
-            qVar2.f10115y = dt.f22057j0;
-            qVar2.g(hd.M0(2131689472, null));
+            e0.q qVar2 = this.f21237a;
+            qVar2.f10115y = dt.f22075j0;
+            qVar2.g(id.M0(2131689472, null));
             int i12 = 0;
             while (true) {
                 if (i12 < 4) {
                     if (gz.C(i12).D.m() != 0) {
-                        this.f21234a.p(hd.M0(2131749266, null));
-                        this.f21234a.f(hd.M0(2131749266, null));
+                        this.f21237a.p(id.M0(2131749268, null));
+                        this.f21237a.f(id.M0(2131749268, null));
                         break;
                     }
                     i12++;
                 } else {
-                    this.f21234a.p(hd.M0(2131749265, null));
-                    this.f21234a.f(hd.M0(2131749265, null));
+                    this.f21237a.p(id.M0(2131749267, null));
+                    this.f21237a.f(id.M0(2131749267, null));
                     break;
                 }
             }
         }
-        e0.q qVar3 = this.f21234a;
+        e0.q qVar3 = this.f21237a;
         qVar3.f10105n = 100;
         qVar3.f10106o = 0;
         qVar3.f10107p = true;
@@ -98,7 +98,7 @@ public class ImportingService extends Service implements ls {
         } catch (Throwable th2) {
             a8.g(th2, true);
         }
-        new e0.i0(t0.f25563b).e(null, 5, this.f21234a.b());
+        new e0.i0(t0.f25566b).e(null, 5, this.f21237a.b());
         return 2;
     }
 

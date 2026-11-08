@@ -16,13 +16,13 @@ public final class n90 extends v61 {
         boolean z9;
         int i7 = 0;
         while (true) {
-            View[] viewArr = this.V.f34572f.f38890e;
+            View[] viewArr = this.V.f34616f.f38925e;
             if (i7 < viewArr.length) {
                 View view = viewArr[i7];
                 if (view != null) {
                     ca0 ca0Var = (ca0) view;
-                    if (ca0Var.f32489a == 0) {
-                        z9 = ca0Var.f32495e.f30658i;
+                    if (ca0Var.f32520a == 0) {
+                        z9 = ca0Var.f32526e.f30662i;
                         break;
                     }
                 }
@@ -40,24 +40,24 @@ public final class n90 extends v61 {
 
     @Override
     public final void u() {
-        View view = this.f38890e[0];
+        View view = this.f38925e[0];
         if (view instanceof ca0) {
-            ((ca0) view).f32495e.V();
+            ((ca0) view).f32526e.V();
         }
     }
 
     @Override
     public final void w(boolean z9) {
         ia0 ia0Var = this.V;
-        ia0Var.f34571e.setSelectedTab(ia0Var.f34572f.getPositionAnimated());
-        View[] viewArr = this.f38890e;
+        ia0Var.f34615e.setSelectedTab(ia0Var.f34616f.getPositionAnimated());
+        View[] viewArr = this.f38925e;
         View view = viewArr[0];
         if (view instanceof ca0) {
-            ((ca0) view).f32495e.G();
+            ((ca0) view).f32526e.G();
         }
         View view2 = viewArr[1];
         if (view2 instanceof ca0) {
-            ((ca0) view2).f32495e.G();
+            ((ca0) view2).f32526e.G();
         }
     }
 }

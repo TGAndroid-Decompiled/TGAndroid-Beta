@@ -1,46 +1,29 @@
 package org.telegram.ui.Wallet;
 
-import android.text.TextUtils;
-import org.telegram.messenger.c20;
-import org.telegram.ui.Components.hc;
-public final class k4 implements c20 {
-    public final int f42703a;
-    public final fi.d f42704b;
-    public final org.telegram.ui.ActionBar.v2 f42705c;
-    public final org.telegram.ui.ActionBar.f6 d;
+import android.animation.ValueAnimator;
+public final class k4 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f42706a;
+    public final x5 f42707b;
 
-    public k4(fi.d dVar, org.telegram.ui.ActionBar.v2 v2Var, org.telegram.ui.ActionBar.f6 f6Var, int i7) {
-        this.f42703a = i7;
-        this.f42704b = dVar;
-        this.f42705c = v2Var;
-        this.d = f6Var;
+    public k4(x5 x5Var, int i7) {
+        this.f42706a = i7;
+        this.f42707b = x5Var;
     }
 
     @Override
-    public final void a(Object obj) {
-        String str = (String) obj;
-        switch (this.f42703a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f42706a) {
             case 0:
-                this.f42704b.setLoading(false);
-                boolean isEmpty = TextUtils.isEmpty(str);
-                org.telegram.ui.ActionBar.v2 v2Var = this.f42705c;
-                if (!isEmpty) {
-                    new hc(v2Var.E, this.d).e0(str, false);
-                    return;
-                } else {
-                    v2Var.dismiss();
-                    return;
-                }
+                x5 x5Var = this.f42707b;
+                x5Var.getClass();
+                x5Var.M0(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
             default:
-                this.f42704b.setLoading(false);
-                org.telegram.ui.ActionBar.v2 v2Var2 = this.f42705c;
-                if (str != null) {
-                    new hc(v2Var2.E, this.d).e0(str, false);
-                    return;
-                } else {
-                    v2Var2.dismiss();
-                    return;
-                }
+                x5 x5Var2 = this.f42707b;
+                x5Var2.getClass();
+                x5Var2.H0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                x5Var2.T0();
+                return;
         }
     }
 }

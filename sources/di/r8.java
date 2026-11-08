@@ -14,7 +14,7 @@ import android.view.animation.LinearInterpolator;
 import j$.util.Objects;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.ic;
-import org.telegram.ui.Components.nt;
+import org.telegram.ui.Components.ot;
 public class r8 extends View {
     public final boolean D;
     public boolean E;
@@ -106,7 +106,7 @@ public class r8 extends View {
             if (getParent() instanceof View) {
                 View view = (View) getParent();
                 Objects.requireNonNull(view);
-                icVar.f34583f = new nt(1, view);
+                icVar.f34627f = new ot(1, view);
             }
             icVar.c(true);
             yVar.setHotspot(motionEvent.getX(), motionEvent.getY());

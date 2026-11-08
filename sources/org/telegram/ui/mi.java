@@ -11,15 +11,15 @@ public final class mi extends org.telegram.ui.ActionBar.g1 {
     public final void dismiss() {
         d(true);
         an anVar = this.f47812o;
-        if (anVar.f43781e9 == this) {
-            anVar.f43781e9 = null;
-            anVar.f43820h9 = null;
-            anVar.f43807g9 = null;
+        if (anVar.f43787e9 == this) {
+            anVar.f43787e9 = null;
+            anVar.f43826h9 = null;
+            anVar.f43813g9 = null;
             anVar.B0.R = true;
-            if (anVar.f43795f9) {
+            if (anVar.f43801f9) {
                 anVar.v8(false, true, 0.0f);
             } else {
-                anVar.f43795f9 = true;
+                anVar.f43801f9 = true;
             }
             qj qjVar = anVar.Z;
             if (qjVar != null && qjVar.getEditField() != null) {

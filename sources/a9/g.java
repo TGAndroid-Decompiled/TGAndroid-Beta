@@ -21,7 +21,7 @@ public final class g extends Handler {
             return;
         }
         if (Log.isLoggable("WearableLS", 2)) {
-            String valueOf = String.valueOf(this.f761c.f21345a);
+            String valueOf = String.valueOf(this.f761c.f21348a);
             Log.v("WearableLS", "unbindService: " + str + ", " + valueOf);
         }
         try {
@@ -38,7 +38,7 @@ public final class g extends Handler {
             try {
                 if (!this.f759a) {
                     if (Log.isLoggable("WearableLS", 2)) {
-                        Log.v("WearableLS", "bindService: ".concat(String.valueOf(this.f761c.f21345a)));
+                        Log.v("WearableLS", "bindService: ".concat(String.valueOf(this.f761c.f21348a)));
                     }
                     WearAuthListenerService wearAuthListenerService = this.f761c;
                     wearAuthListenerService.bindService(wearAuthListenerService.d, this.f760b, 1);

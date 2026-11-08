@@ -28,7 +28,7 @@ public final class x0 implements Runnable {
                 return;
             case 3:
                 g1 g1Var = this.f9916b;
-                qs.f(g1Var.f9025e).k(176, Long.valueOf(g1Var.f9030w.f26963id));
+                qs.f(g1Var.f9025e).k(176, Long.valueOf(g1Var.f9030w.f26966id));
                 g1Var.u(true);
                 return;
             case 4:
@@ -40,7 +40,7 @@ public final class x0 implements Runnable {
             case 6:
                 g1 g1Var2 = this.f9916b;
                 if (g1Var2.E != null) {
-                    org.telegram.messenger.p5 p5Var = Utilities.f21333e;
+                    org.telegram.messenger.p5 p5Var = Utilities.f21336e;
                     NativeInstance nativeInstance = g1Var2.E;
                     Objects.requireNonNull(nativeInstance);
                     p5Var.c(new org.telegram.messenger.voip.p0(nativeInstance, 3));
@@ -58,7 +58,7 @@ public final class x0 implements Runnable {
             case 9:
                 g1 g1Var3 = this.f9916b;
                 if (g1Var3.E != null) {
-                    org.telegram.messenger.p5 p5Var2 = Utilities.f21333e;
+                    org.telegram.messenger.p5 p5Var2 = Utilities.f21336e;
                     NativeInstance nativeInstance2 = g1Var3.E;
                     Objects.requireNonNull(nativeInstance2);
                     p5Var2.c(new org.telegram.messenger.voip.p0(nativeInstance2, 3));

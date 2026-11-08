@@ -95,7 +95,7 @@ public final class d implements l {
                     Intent intent3 = new Intent(context3, IdentityCredentialApiHiddenActivity.class);
                     intent3.setFlags(65536);
                     intent3.putExtra("RESULT_RECEIVER", b1.d.d(aVar.f13413i));
-                    intent3.putExtra("EXTRA_FLOW_PENDING_INTENT", mVar.f16575a);
+                    intent3.putExtra("EXTRA_FLOW_PENDING_INTENT", mVar.f16578a);
                     intent3.putExtra("EXTRA_ERROR_NAME", "GET_UNKNOWN");
                     context3.startActivity(intent3);
                 }

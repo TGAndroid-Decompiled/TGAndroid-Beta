@@ -1,7 +1,8 @@
 package org.telegram.ui;
-public final class n71 extends org.telegram.messenger.ij {
-    @Override
-    public final boolean l5() {
-        return false;
-    }
+public interface n71 {
+    boolean a();
+
+    boolean a1();
+
+    void t1(boolean z9);
 }

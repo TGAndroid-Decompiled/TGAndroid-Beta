@@ -26,7 +26,7 @@ public final class o60 implements org.telegram.ui.ActionBar.r1 {
                 boolean z9 = this.d;
                 boolean z10 = this.f48286e;
                 String str = LaunchActivity.B1;
-                Utilities.f21333e.c(new org.telegram.messenger.j4(org.telegram.messenger.g5.r(i10), hashMap, z9, z10, true));
+                Utilities.f21336e.c(new org.telegram.messenger.i4(org.telegram.messenger.g5.r(i10), hashMap, z9, z10, true));
                 return;
             case 1:
                 int i11 = this.f48284b;
@@ -34,7 +34,7 @@ public final class o60 implements org.telegram.ui.ActionBar.r1 {
                 boolean z11 = this.d;
                 boolean z12 = this.f48286e;
                 String str2 = LaunchActivity.B1;
-                Utilities.f21333e.c(new org.telegram.messenger.j4(org.telegram.messenger.g5.r(i11), hashMap2, z11, z12, false));
+                Utilities.f21336e.c(new org.telegram.messenger.i4(org.telegram.messenger.g5.r(i11), hashMap2, z11, z12, false));
                 return;
             default:
                 int i12 = this.f48284b;
@@ -42,7 +42,7 @@ public final class o60 implements org.telegram.ui.ActionBar.r1 {
                 boolean z13 = this.d;
                 boolean z14 = this.f48286e;
                 String str3 = LaunchActivity.B1;
-                Utilities.f21333e.c(new org.telegram.messenger.j4(org.telegram.messenger.g5.r(i12), hashMap3, z13, z14, true));
+                Utilities.f21336e.c(new org.telegram.messenger.i4(org.telegram.messenger.g5.r(i12), hashMap3, z13, z14, true));
                 return;
         }
     }

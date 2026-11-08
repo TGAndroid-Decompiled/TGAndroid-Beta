@@ -19,8 +19,8 @@ public final class j4 implements Runnable {
         cv0 cv0Var = this.f9254b;
         switch (i7) {
             case 0:
-                int i10 = ProfileStoriesView.f41975s0;
-                ProfileActivity profileActivity = cv0Var.f44903u0;
+                int i10 = ProfileStoriesView.f41979s0;
+                ProfileActivity profileActivity = cv0Var.f44908u0;
                 RectF rectF = ProfileActivity.S6;
                 profileActivity.K4(false);
                 return;

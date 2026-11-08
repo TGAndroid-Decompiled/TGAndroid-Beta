@@ -40,7 +40,7 @@ public final class q implements g9.u {
                 return new l2.h(new b3.e(), 1000, 1000, 1000, 2000, 1000, true, y1.h);
             case 4:
                 byte[] bArr = new byte[12];
-                m2.g.f19538i.nextBytes(bArr);
+                m2.g.f19541i.nextBytes(bArr);
                 return Base64.encodeToString(bArr, 10);
             default:
                 Resources system = Resources.getSystem();

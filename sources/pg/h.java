@@ -21,28 +21,28 @@ import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Components.j6;
-import org.telegram.ui.Components.uy;
+import org.telegram.ui.Components.vy;
 import tg.f0;
 import ug.w0;
 import ug.y0;
 public final class h extends FrameLayout {
-    public final int f53521a;
-    public final Object f53522b;
-    public final Object f53523c;
+    public final int f53614a;
+    public final Object f53615b;
+    public final Object f53616c;
 
     public h(Object obj, Context context, Object obj2, int i7) {
         super(context);
-        this.f53521a = i7;
-        this.f53523c = obj;
-        this.f53522b = obj2;
+        this.f53614a = i7;
+        this.f53616c = obj;
+        this.f53615b = obj2;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f53521a) {
+        switch (this.f53614a) {
             case 1:
-                c0 c0Var = (c0) this.f53523c;
-                c0Var.b(k6.r1(0.65f, k6.w0(k6.f27849d6, (f6) this.f53522b)));
+                c0 c0Var = (c0) this.f53616c;
+                c0Var.b(k6.r1(0.65f, k6.w0(k6.f27852d6, (f6) this.f53615b)));
                 c0Var.draw(canvas);
                 super.dispatchDraw(canvas);
                 return;
@@ -51,14 +51,14 @@ public final class h extends FrameLayout {
                 super.dispatchDraw(canvas);
                 return;
             case 3:
-                ((y0) this.f53522b).d(0, 0.0f, 0, getMeasuredWidth(), 0.0f, getMeasuredHeight());
+                ((y0) this.f53615b).d(0, 0.0f, 0, getMeasuredWidth(), 0.0f, getMeasuredHeight());
                 RectF rectF = g0.P;
                 rectF.set(0.0f, g0.L(2.0f), getMeasuredWidth(), g0.L(18.0f) + getMeasuredHeight());
                 canvas.save();
                 canvas.clipRect(0, 0, getMeasuredWidth(), getMeasuredHeight());
-                y0 y0Var = (y0) this.f53522b;
-                y0Var.f56776f.setAlpha(((w0) this.f53523c).B1);
-                canvas.drawRoundRect(rectF, g0.L(24.0f) - 1, g0.L(24.0f) - 1, y0Var.f56776f);
+                y0 y0Var = (y0) this.f53615b;
+                y0Var.f56868f.setAlpha(((w0) this.f53616c).B1);
+                canvas.drawRoundRect(rectF, g0.L(24.0f) - 1, g0.L(24.0f) - 1, y0Var.f56868f);
                 canvas.restore();
                 super.dispatchDraw(canvas);
                 return;
@@ -67,7 +67,7 @@ public final class h extends FrameLayout {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f53521a) {
+        switch (this.f53614a) {
             case 1:
                 super.dispatchTouchEvent(motionEvent);
                 return true;
@@ -80,15 +80,15 @@ public final class h extends FrameLayout {
     public boolean drawChild(Canvas canvas, View view, long j3) {
         boolean z9;
         float f10;
-        switch (this.f53521a) {
+        switch (this.f53614a) {
             case 2:
-                Path path = (Path) this.f53522b;
-                f0 f0Var = (f0) this.f53523c;
-                if (f0Var.h != null && (((z9 = f0Var.f55563f) && view == f0Var.d) || (!z9 && view == f0Var.f55561c))) {
+                Path path = (Path) this.f53615b;
+                f0 f0Var = (f0) this.f53616c;
+                if (f0Var.h != null && (((z9 = f0Var.f55655f) && view == f0Var.d) || (!z9 && view == f0Var.f55653c))) {
                     if (z9) {
-                        f10 = f0Var.f55562e;
+                        f10 = f0Var.f55654e;
                     } else {
-                        f10 = 1.0f - f0Var.f55562e;
+                        f10 = 1.0f - f0Var.f55654e;
                     }
                     canvas.save();
                     path.rewind();
@@ -106,10 +106,10 @@ public final class h extends FrameLayout {
 
     @Override
     public void invalidate() {
-        switch (this.f53521a) {
+        switch (this.f53614a) {
             case 0:
                 super.invalidate();
-                ((j) this.f53523c).invalidate();
+                ((j) this.f53616c).invalidate();
                 return;
             default:
                 super.invalidate();
@@ -119,9 +119,9 @@ public final class h extends FrameLayout {
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f53521a) {
+        switch (this.f53614a) {
             case 3:
-                super.onMeasure(i7, q.B(2.0f, ((w0) this.f53523c).f56757q1, 1073741824));
+                super.onMeasure(i7, q.B(2.0f, ((w0) this.f53616c).f56849q1, 1073741824));
                 return;
             default:
                 super.onMeasure(i7, i10);
@@ -131,10 +131,10 @@ public final class h extends FrameLayout {
 
     @Override
     public void onSizeChanged(int i7, int i10, int i11, int i12) {
-        switch (this.f53521a) {
+        switch (this.f53614a) {
             case 1:
                 super.onSizeChanged(i7, i10, i11, i12);
-                c0 c0Var = (c0) this.f53523c;
+                c0 c0Var = (c0) this.f53616c;
                 c0Var.setBounds(0, 0, i7, i10);
                 c0Var.c(0, g0.L(24.0f) + getPaddingBottom());
                 return;
@@ -148,31 +148,31 @@ public final class h extends FrameLayout {
     public boolean onTouchEvent(MotionEvent motionEvent) {
         DisplayMetrics displayMetrics;
         float f10;
-        switch (this.f53521a) {
+        switch (this.f53614a) {
             case 0:
-                j jVar = (j) this.f53523c;
-                d dVar = jVar.f53536r;
-                boolean onTouchEvent = ((GestureDetector) ((uy) this.f53522b).f38750b).onTouchEvent(motionEvent);
+                j jVar = (j) this.f53616c;
+                d dVar = jVar.f53629r;
+                boolean onTouchEvent = ((GestureDetector) ((vy) this.f53615b).f39747b).onTouchEvent(motionEvent);
                 if (motionEvent.getAction() == 0) {
                     g0.i3(dVar, 200L);
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
                     g0.r(dVar);
                     if (!jVar.h) {
-                        r1.h hVar = jVar.f53532c.f54174m;
-                        if (((float) hVar.f54182i) >= getWidth() / 2.0f) {
+                        r1.h hVar = jVar.f53625c.f54267m;
+                        if (((float) hVar.f54275i) >= getWidth() / 2.0f) {
                             displayMetrics = getResources().getDisplayMetrics();
                             f10 = 2.1474836E9f;
                         } else {
                             displayMetrics = getResources().getDisplayMetrics();
                             f10 = -2.1474836E9f;
                         }
-                        hVar.f54182i = j.a(displayMetrics, f10);
-                        jVar.d.f54174m.f54182i = j.b(getResources().getDisplayMetrics(), (float) jVar.d.f54174m.f54182i);
-                        jVar.f53532c.h();
+                        hVar.f54275i = j.a(displayMetrics, f10);
+                        jVar.d.f54267m.f54275i = j.b(getResources().getDisplayMetrics(), (float) jVar.d.f54267m.f54275i);
+                        jVar.f53625c.h();
                         jVar.d.h();
                     }
-                    jVar.f53535n = false;
-                    jVar.f53534f = false;
+                    jVar.f53628n = false;
+                    jVar.f53627f = false;
                     jVar.h = false;
                 }
                 return onTouchEvent;
@@ -183,10 +183,10 @@ public final class h extends FrameLayout {
 
     @Override
     public void setTranslationX(float f10) {
-        switch (this.f53521a) {
+        switch (this.f53614a) {
             case 0:
                 super.setTranslationX(f10);
-                ((j) this.f53523c).invalidate();
+                ((j) this.f53616c).invalidate();
                 return;
             default:
                 super.setTranslationX(f10);
@@ -196,10 +196,10 @@ public final class h extends FrameLayout {
 
     @Override
     public void setTranslationY(float f10) {
-        switch (this.f53521a) {
+        switch (this.f53614a) {
             case 0:
                 super.setTranslationY(f10);
-                ((j) this.f53523c).invalidate();
+                ((j) this.f53616c).invalidate();
                 return;
             default:
                 super.setTranslationY(f10);
@@ -209,20 +209,20 @@ public final class h extends FrameLayout {
 
     public h(int i7, Context context, f6 f6Var) {
         super(context);
-        this.f53521a = i7;
+        this.f53614a = i7;
         switch (i7) {
             case 4:
                 super(context);
                 LinearLayout f10 = k5.f(context, 1);
                 j6 j6Var = new j6(context, false, false, false);
-                this.f53522b = j6Var;
+                this.f53615b = j6Var;
                 int i10 = k6.G6;
                 r6.Z(j6Var, i10, f6Var);
                 j6Var.setTextSize(g0.L(17.0f));
                 j6Var.setTypeface(g0.o());
                 f10.addView(j6Var, ha.r(-2, 23, 1));
                 TextView textView = new TextView(context);
-                this.f53523c = textView;
+                this.f53616c = textView;
                 textView.setTextSize(1, 11.0f);
                 r6.V(textView, i10, f6Var);
                 textView.setSingleLine();
@@ -232,16 +232,16 @@ public final class h extends FrameLayout {
                 addView(f10, ha.e(-2, -2, 17));
                 return;
             default:
-                this.f53523c = new c0(8);
-                this.f53522b = f6Var;
+                this.f53616c = new c0(8);
+                this.f53615b = f6Var;
                 return;
         }
     }
 
     public h(f0 f0Var, Context context) {
         super(context);
-        this.f53521a = 2;
-        this.f53523c = f0Var;
-        this.f53522b = new Path();
+        this.f53614a = 2;
+        this.f53616c = f0Var;
+        this.f53615b = new Path();
     }
 }

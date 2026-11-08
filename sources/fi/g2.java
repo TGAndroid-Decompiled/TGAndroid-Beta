@@ -29,7 +29,7 @@ public final class g2 extends f2 {
         mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         String upperCase = str.toUpperCase();
         TextPaint textPaint = (TextPaint) ndVar.f4439c;
-        StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(upperCase, textPaint, org.telegram.messenger.g0.f22544q.x * 0.8f, TextUtils.TruncateAt.END), textPaint, 99999, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(upperCase, textPaint, org.telegram.messenger.g0.f22563q.x * 0.8f, TextUtils.TruncateAt.END), textPaint, 99999, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         this.f12058k = staticLayout;
         this.f12059l = staticLayout.getLineCount() > 0 ? this.f12058k.getLineWidth(0) : 0.0f;
         this.f12060m = this.f12058k.getLineCount() > 0 ? this.f12058k.getLineLeft(0) : 0.0f;
@@ -53,7 +53,7 @@ public final class g2 extends f2 {
             org.telegram.messenger.e6 f12 = org.telegram.messenger.i6.f(null);
             this.f12056i = f12;
             if (com.google.android.recaptcha.internal.a.u(f12)) {
-                f12.f22167a = false;
+                f12.f22191a = false;
             }
         }
         if (this.f12056i != null) {
@@ -83,7 +83,7 @@ public final class g2 extends f2 {
         this.f12062o = ndVar;
         this.f11949a = 5;
         TextPaint textPaint = (TextPaint) ndVar.f4439c;
-        StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(charSequence, textPaint, org.telegram.messenger.g0.f22544q.x * 0.8f, TextUtils.TruncateAt.END), textPaint, 99999, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(charSequence, textPaint, org.telegram.messenger.g0.f22563q.x * 0.8f, TextUtils.TruncateAt.END), textPaint, 99999, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         this.f12058k = staticLayout;
         this.f12059l = staticLayout.getLineCount() > 0 ? this.f12058k.getLineWidth(0) : 0.0f;
         this.f12060m = this.f12058k.getLineCount() > 0 ? this.f12058k.getLineLeft(0) : 0.0f;

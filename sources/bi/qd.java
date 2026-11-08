@@ -14,7 +14,7 @@ public final class qd extends vg.m {
     public void h() {
         switch (this.f4597i0) {
             case 2:
-                boolean z9 = org.telegram.messenger.r2.f25199a;
+                boolean z9 = org.telegram.messenger.r2.f25212a;
                 return;
             default:
                 return;

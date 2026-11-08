@@ -5,16 +5,16 @@ import android.graphics.Canvas;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class l3 extends FrameLayout {
-    public final EditTextBoldCursor f29487a;
+    public final EditTextBoldCursor f29490a;
 
     public l3(Context context) {
         super(context);
         int i7;
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
-        this.f29487a = editTextBoldCursor;
+        this.f29490a = editTextBoldCursor;
         org.telegram.ui.ActionBar.r6.V(editTextBoldCursor, org.telegram.ui.ActionBar.k6.G6, null);
         org.telegram.ui.ActionBar.r6.E(editTextBoldCursor, org.telegram.ui.ActionBar.k6.H6, null);
         editTextBoldCursor.setTextSize(1, 16.0f);
@@ -22,7 +22,7 @@ public final class l3 extends FrameLayout {
         editTextBoldCursor.setMaxLines(1);
         editTextBoldCursor.setSingleLine(true);
         editTextBoldCursor.setEllipsize(TextUtils.TruncateAt.END);
-        if (hd.f22878a0) {
+        if (id.f23157a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -31,32 +31,32 @@ public final class l3 extends FrameLayout {
         editTextBoldCursor.setBackgroundDrawable(null);
         editTextBoldCursor.setPadding(0, 0, 0, 0);
         editTextBoldCursor.setInputType(editTextBoldCursor.getInputType() | 16384);
-        addView(editTextBoldCursor, c8.ha.d(-1, -1.0f, (hd.f22878a0 ? 5 : 3) | 48, 21.0f, 0.0f, 21.0f, 0.0f));
+        addView(editTextBoldCursor, c8.ha.d(-1, -1.0f, (id.f23157a0 ? 5 : 3) | 48, 21.0f, 0.0f, 21.0f, 0.0f));
     }
 
     public final void a(String str) {
-        EditTextBoldCursor editTextBoldCursor = this.f29487a;
+        EditTextBoldCursor editTextBoldCursor = this.f29490a;
         editTextBoldCursor.setText("");
         editTextBoldCursor.setHint(str);
         setWillNotDraw(true);
     }
 
     public String getText() {
-        return this.f29487a.getText().toString();
+        return this.f29490a.getText().toString();
     }
 
     public EditTextBoldCursor getTextView() {
-        return this.f29487a;
+        return this.f29490a;
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
         setMeasuredDimension(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.L(50.0f));
-        this.f29487a.measure(View.MeasureSpec.makeMeasureSpec(((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - org.telegram.messenger.g0.L(42.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+        this.f29490a.measure(View.MeasureSpec.makeMeasureSpec(((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - org.telegram.messenger.g0.L(42.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
     }
 
     public void setTextColor(int i7) {
-        this.f29487a.setTextColor(i7);
+        this.f29490a.setTextColor(i7);
     }
 
     @Override

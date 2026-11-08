@@ -32,7 +32,7 @@ public final class c8 implements RequestDelegate {
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         switch (this.f3578a) {
             case 0:
-                org.telegram.messenger.g0.h3(new n8(tLObject, (f5.l) this.f3579b, (f5.f) this.f3580c, (org.telegram.ui.Wallet.v1) this.f3582f, (Activity) this.d, (TLRPC.TL_inputStorePaymentStarsGiveaway) this.f3583g, this.f3581e, tL_error, 0));
+                org.telegram.messenger.g0.h3(new n8(tLObject, (f5.l) this.f3579b, (f5.f) this.f3580c, (org.telegram.ui.Wallet.u1) this.f3582f, (Activity) this.d, (TLRPC.TL_inputStorePaymentStarsGiveaway) this.f3583g, this.f3581e, tL_error, 0));
                 return;
             case 1:
                 org.telegram.messenger.g0.h3(new n8(tLObject, (f5.l) this.f3579b, (f5.f) this.f3580c, (mc) this.f3582f, (Activity) this.d, (TLRPC.TL_inputStorePaymentStarsGift) this.f3583g, this.f3581e, tL_error, 1));

@@ -28,12 +28,12 @@ public class ChatsWidgetProvider extends AppWidgetProvider {
             int i13 = sharedPreferences.getInt("account" + i7, -1);
             if (i13 == -1) {
                 SharedPreferences.Editor edit = sharedPreferences.edit();
-                edit.putInt(jg.g.j(i7, "account"), p10.f24467s0);
+                edit.putInt(jg.g.j(i7, "account"), p10.f24470s0);
                 edit.putInt("type" + i7, 0).commit();
             }
             ArrayList arrayList = new ArrayList();
             if (i13 >= 0) {
-                yr.a0(c.a(i13).f21729a).q0(i7, 0, arrayList, null, null, false);
+                yr.a0(c.a(i13).f21765a).q0(i7, 0, arrayList, null, null, false);
             }
             if (i11 != 1 && arrayList.size() > 1) {
                 i12 = (i11 == 2 || arrayList.size() <= 2) ? 2131492959 : (i11 == 3 || arrayList.size() <= 3) ? 2131492960 : 2131492961;
@@ -42,11 +42,11 @@ public class ChatsWidgetProvider extends AppWidgetProvider {
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), i12);
         remoteViews.setRemoteAdapter(i7, 2131296476, intent);
         remoteViews.setEmptyView(2131296476, 2131296423);
-        Intent intent2 = new Intent(t0.f25563b, LaunchActivity.class);
+        Intent intent2 = new Intent(t0.f25566b, LaunchActivity.class);
         intent2.setAction("com.tmessages.openchat" + Math.random() + Integer.MAX_VALUE);
         intent2.addFlags(67108864);
         intent2.addCategory("android.intent.category.LAUNCHER");
-        remoteViews.setPendingIntentTemplate(2131296476, PendingIntent.getActivity(t0.f25563b, 0, intent2, 167772160));
+        remoteViews.setPendingIntentTemplate(2131296476, PendingIntent.getActivity(t0.f25566b, 0, intent2, 167772160));
         appWidgetManager.updateAppWidget(i7, remoteViews);
         appWidgetManager.notifyAppWidgetViewDataChanged(i7, 2131296476);
     }
@@ -66,8 +66,8 @@ public class ChatsWidgetProvider extends AppWidgetProvider {
         for (int i7 = 0; i7 < iArr.length; i7++) {
             int i10 = sharedPreferences.getInt("account" + iArr[i7], -1);
             if (i10 >= 0) {
-                yr a02 = yr.a0(c.a(i10).f21729a);
-                a02.f26696a.c(new tp(a02, iArr[i7], 2));
+                yr a02 = yr.a0(c.a(i10).f21765a);
+                a02.f26719a.c(new tp(a02, iArr[i7], 2));
             }
             edit.remove("account" + iArr[i7]);
             edit.remove("type" + iArr[i7]);

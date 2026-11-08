@@ -12,33 +12,33 @@ import fi.n3;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
 public class c extends FrameLayout {
-    public final TextView f20541a;
-    public final TextView f20542b;
-    public final TextView f20543c;
+    public final TextView f20544a;
+    public final TextView f20545b;
+    public final TextView f20546c;
     public final TextView d;
-    public boolean f20544e;
-    public boolean f20545f;
+    public boolean f20547e;
+    public boolean f20548f;
     public final Drawable h;
-    public final int f20546n;
-    public final f6 f20547r;
+    public final int f20549n;
+    public final f6 f20550r;
 
     public c(Context context, f6 f6Var) {
         super(context);
-        this.f20544e = true;
+        this.f20547e = true;
         new SimpleDateFormat("d MMM yyyy");
-        this.f20547r = f6Var;
+        this.f20550r = f6Var;
         TextPaint textPaint = new TextPaint();
         textPaint.setTextSize(14.0f);
         textPaint.setTypeface(g0.o());
         int measureText = (int) textPaint.measureText("00 MMM 0000 - 00 MMM 000");
-        this.f20546n = measureText;
+        this.f20549n = measureText;
         TextView textView = new TextView(context);
-        this.f20541a = textView;
+        this.f20544a = textView;
         com.google.android.recaptcha.internal.a.q(textView, 1, 15.0f);
         addView(textView, ha.d(-2, -2.0f, 8388627, 16.0f, 0.0f, measureText, 0.0f));
         TextView textView2 = new TextView(context);
@@ -48,20 +48,20 @@ public class c extends FrameLayout {
         textView2.setGravity(8388627);
         addView(textView2, ha.d(-2, -2.0f, 8388627, 8.0f, 0.0f, 8.0f, 0.0f));
         TextView textView3 = new TextView(context);
-        this.f20542b = textView3;
+        this.f20545b = textView3;
         textView3.setTextSize(1, 13.0f);
         textView3.setTypeface(g0.o());
         textView3.setGravity(8388629);
         addView(textView3, ha.d(-2, -2.0f, 8388629, 16.0f, 0.0f, 16.0f, 0.0f));
         TextView textView4 = new TextView(context);
-        this.f20543c = textView4;
+        this.f20546c = textView4;
         textView4.setTextSize(1, 13.0f);
         textView4.setTypeface(g0.o());
         textView4.setGravity(8388629);
         addView(textView4, ha.d(-2, -2.0f, 8388629, 16.0f, 0.0f, 16.0f, 0.0f));
         textView4.setVisibility(8);
         textView2.setVisibility(8);
-        textView2.setText(hd.M0(2131742788, null));
+        textView2.setText(id.M0(2131742790, null));
         Drawable drawable = getContext().getDrawable(2131232440);
         this.h = drawable;
         textView2.setCompoundDrawablesWithIntrinsicBounds(drawable, (Drawable) null, (Drawable) null, (Drawable) null);
@@ -73,12 +73,12 @@ public class c extends FrameLayout {
     }
 
     public final void a() {
-        int i7 = k6.f27957j5;
-        TextView textView = this.f20541a;
-        f6 f6Var = this.f20547r;
+        int i7 = k6.f27960j5;
+        TextView textView = this.f20544a;
+        f6 f6Var = this.f20550r;
         r6.V(textView, i7, f6Var);
-        r6.V(this.f20542b, i7, f6Var);
-        r6.V(this.f20543c, i7, f6Var);
+        r6.V(this.f20545b, i7, f6Var);
+        r6.V(this.f20546c, i7, f6Var);
         int i10 = k6.Tj;
         r6.V(this.d, i10, f6Var);
         r6.y(this, this.h, i10, f6Var, PorterDuff.Mode.SRC_IN);
@@ -86,43 +86,43 @@ public class c extends FrameLayout {
 
     public final void b(long j3, long j10) {
         String format;
-        boolean z9 = this.f20544e;
-        TextView textView = this.f20542b;
+        boolean z9 = this.f20547e;
+        TextView textView = this.f20545b;
         if (!z9) {
             textView.setVisibility(8);
-            this.f20543c.setVisibility(8);
+            this.f20546c.setVisibility(8);
             return;
         }
-        if (this.f20545f) {
+        if (this.f20548f) {
             j10 += 604800000;
         }
         if (j10 - j3 >= 86400000) {
-            format = hd.E0().C0().format(new Date(j3)) + " — " + hd.E0().C0().format(new Date(j10));
+            format = id.E0().C0().format(new Date(j3)) + " — " + id.E0().C0().format(new Date(j10));
         } else {
-            format = hd.E0().C0().format(new Date(j3));
+            format = id.E0().C0().format(new Date(j3));
         }
         textView.setText(format);
         textView.setVisibility(0);
     }
 
     public final void c(boolean z9) {
-        this.f20544e = z9;
-        TextView textView = this.f20541a;
+        this.f20547e = z9;
+        TextView textView = this.f20544a;
         if (!z9) {
-            this.f20543c.setVisibility(8);
-            this.f20542b.setVisibility(8);
+            this.f20546c.setVisibility(8);
+            this.f20545b.setVisibility(8);
             textView.setLayoutParams(ha.d(-2, -2.0f, 8388627, 16.0f, 0.0f, 16.0f, 0.0f));
             textView.requestLayout();
             return;
         }
-        textView.setLayoutParams(ha.d(-2, -2.0f, 8388627, 16.0f, 0.0f, this.f20546n, 0.0f));
+        textView.setLayoutParams(ha.d(-2, -2.0f, 8388627, 16.0f, 0.0f, this.f20549n, 0.0f));
     }
 
     public final void d(long j3, boolean z9) {
         b(j3, j3);
         TextView textView = this.d;
         textView.setVisibility(0);
-        TextView textView2 = this.f20541a;
+        TextView textView2 = this.f20544a;
         if (z9) {
             textView.setAlpha(0.0f);
             textView.setScaleX(0.3f);
@@ -149,10 +149,10 @@ public class c extends FrameLayout {
     }
 
     public void setTitle(String str) {
-        this.f20541a.setText(str);
+        this.f20544a.setText(str);
     }
 
     public void setUseWeekInterval(boolean z9) {
-        this.f20545f = z9;
+        this.f20548f = z9;
     }
 }

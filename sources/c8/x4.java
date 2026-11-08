@@ -3,7 +3,7 @@ public final class x4 implements na.d {
     public static final x4 f5936a = new Object();
 
     static {
-        rf.b.p(a8.p0.x(w.class, a8.p0.l(a8.p0.x(w.class, a8.p0.l(a8.p0.x(w.class, new s(1)), 2)), 3)));
+        rf.b.q(a8.p0.x(w.class, a8.p0.l(a8.p0.x(w.class, a8.p0.l(a8.p0.x(w.class, new s(1)), 2)), 3)));
     }
 
     @Override

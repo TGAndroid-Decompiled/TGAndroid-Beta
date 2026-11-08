@@ -6,26 +6,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class fu0 implements org.telegram.messenger.c20 {
-    public final int f45730a;
-    public final ProfileActivity f45731b;
+    public final int f45707a;
+    public final ProfileActivity f45708b;
 
     public fu0(ProfileActivity profileActivity, int i7) {
-        this.f45730a = i7;
-        this.f45731b = profileActivity;
+        this.f45707a = i7;
+        this.f45708b = profileActivity;
     }
 
     @Override
     public final void a(Object obj) {
-        int i7 = this.f45730a;
-        ProfileActivity profileActivity = this.f45731b;
+        int i7 = this.f45707a;
+        ProfileActivity profileActivity = this.f45708b;
         switch (i7) {
             case 0:
                 View view = (View) obj;
                 RectF rectF = ProfileActivity.S6;
                 if (view instanceof org.telegram.ui.Cells.x8) {
                     org.telegram.ui.Cells.x8 x8Var = (org.telegram.ui.Cells.x8) view;
-                    x8Var.f30900a.setLoading(profileActivity.f41752i5);
-                    x8Var.f30901b.setLoading(profileActivity.f41752i5);
+                    x8Var.f30904a.setLoading(profileActivity.f41756i5);
+                    x8Var.f30905b.setLoading(profileActivity.f41756i5);
                     return;
                 }
                 return;
@@ -37,13 +37,13 @@ public final class fu0 implements org.telegram.messenger.c20 {
                 profileActivity.getClass();
                 ArrayList arrayList = new ArrayList(1);
                 arrayList.add((TLRPC.InputStickerSet) obj);
-                profileActivity.showDialog(new org.telegram.ui.Components.qu(profileActivity, profileActivity.getParentActivity(), profileActivity.f41865z0, arrayList));
+                profileActivity.showDialog(new org.telegram.ui.Components.ru(profileActivity, profileActivity.getParentActivity(), profileActivity.f41869z0, arrayList));
                 return;
             default:
                 View view2 = (View) obj;
                 RectF rectF3 = ProfileActivity.S6;
                 if (view2 instanceof org.telegram.ui.Cells.n4) {
-                    ((org.telegram.ui.Cells.n4) view2).setTextColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.L6, profileActivity.f41865z0));
+                    ((org.telegram.ui.Cells.n4) view2).setTextColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.L6, profileActivity.f41869z0));
                 } else if (view2 instanceof org.telegram.ui.Cells.x8) {
                     ((org.telegram.ui.Cells.x8) view2).updateColors();
                 } else if (view2 instanceof org.telegram.ui.Cells.m8) {
@@ -54,10 +54,10 @@ public final class fu0 implements org.telegram.messenger.c20 {
                     ((org.telegram.ui.Cells.h5) view2).getCheckBox().invalidate();
                 } else if (view2 instanceof kg.f1) {
                     kg.f1 f1Var = (kg.f1) view2;
-                    org.telegram.ui.Components.mp mpVar = f1Var.f17374r;
+                    org.telegram.ui.Components.mp mpVar = f1Var.f17377r;
                     int L = org.telegram.messenger.g0.L(8.0f);
-                    int i10 = org.telegram.ui.ActionBar.k6.f28049o6;
-                    org.telegram.ui.ActionBar.f6 f6Var = f1Var.f17368a;
+                    int i10 = org.telegram.ui.ActionBar.k6.f28052o6;
+                    org.telegram.ui.ActionBar.f6 f6Var = f1Var.f17371a;
                     int w02 = org.telegram.ui.ActionBar.k6.w0(i10, f6Var);
                     f1Var.a(w02);
                     int r12 = org.telegram.ui.ActionBar.k6.r1(0.1f, w02);
@@ -72,7 +72,7 @@ public final class fu0 implements org.telegram.messenger.c20 {
                     ((org.telegram.ui.Cells.f6) view2).updateColors();
                 }
                 jw0 jw0Var = profileActivity.d;
-                profileActivity.f41687a.getClass();
+                profileActivity.f41691a.getClass();
                 jw0Var.d(RecyclerView.R(view2));
                 profileActivity.d.getClass();
                 return;

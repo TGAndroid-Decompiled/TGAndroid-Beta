@@ -15,7 +15,7 @@ public class NotificationBadge$NewHtcHomeBadger implements cs {
         if (!fs.a(intent) && !fs.a(intent2)) {
             return;
         }
-        g0.h3(new yq(9, intent, intent2));
+        g0.h3(new zq(9, intent, intent2));
     }
 
     @Override

@@ -2,29 +2,29 @@ package org.telegram.ui;
 
 import android.app.Activity;
 import org.telegram.ui.Components.UndoView;
-public final class yk extends org.telegram.ui.Components.d10 {
-    public final an f52258j1;
+public final class yk extends org.telegram.ui.Components.e10 {
+    public final an f52238j1;
 
     public yk(an anVar, Activity activity, org.telegram.ui.ActionBar.f2 f2Var) {
         super(activity, f2Var);
-        this.f52258j1 = anVar;
+        this.f52238j1 = anVar;
     }
 
     @Override
     public final void I0() {
-        an anVar = this.f52258j1;
+        an anVar = this.f52238j1;
         anVar.f8();
         UndoView undoView = anVar.M3;
         if (undoView == null) {
             return;
         }
         undoView.j(75, 0L, null);
-        anVar.getMessagesController().k4(anVar.f43842j6, "CONVERT_GIGAGROUP");
+        anVar.getMessagesController().k4(anVar.f43848j6, "CONVERT_GIGAGROUP");
     }
 
     @Override
     public final void J0() {
-        an anVar = this.f52258j1;
-        anVar.getMessagesController().S(anVar.getParentActivity(), anVar.f43771e, anVar, new w0(this, 21));
+        an anVar = this.f52238j1;
+        anVar.getMessagesController().S(anVar.getParentActivity(), anVar.f43777e, anVar, new w0(this, 21));
     }
 }

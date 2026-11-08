@@ -24,11 +24,11 @@ public final class q0 implements ls {
         if (this.f12639c != null) {
             return;
         }
-        qs.f(i7).b(this, qs.f24960a2);
-        qs.f(i7).b(this, qs.f24966b2);
-        qs.f(i7).b(this, qs.f24972c2);
+        qs.f(i7).b(this, qs.f24969a2);
+        qs.f(i7).b(this, qs.f24975b2);
+        qs.f(i7).b(this, qs.f24981c2);
         TLRPC.TL_message tL_message = new TLRPC.TL_message();
-        tL_message.f26974id = 1;
+        tL_message.f26977id = 1;
         tL_message.attachPath = file.getAbsolutePath();
         this.f12639c = new ij(i7, tL_message, null, false, false);
         e7Var.s(new ai.i(this, 18));
@@ -39,9 +39,9 @@ public final class q0 implements ls {
             return;
         }
         int i7 = this.f12637a;
-        qs.f(i7).n(this, qs.f24960a2);
-        qs.f(i7).n(this, qs.f24966b2);
-        qs.f(i7).n(this, qs.f24972c2);
+        qs.f(i7).n(this, qs.f24969a2);
+        qs.f(i7).n(this, qs.f24975b2);
+        qs.f(i7).n(this, qs.f24981c2);
         if (z9) {
             MediaController.B().i(this.f12639c);
         }
@@ -50,9 +50,9 @@ public final class q0 implements ls {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == qs.f24960a2) {
+        if (i7 == qs.f24969a2) {
             ij ijVar = (ij) objArr[0];
-        } else if (i7 == qs.f24966b2) {
+        } else if (i7 == qs.f24975b2) {
             if (((ij) objArr[0]) == this.f12639c) {
                 String str = (String) objArr[1];
                 ((Long) objArr[2]).getClass();
@@ -62,14 +62,14 @@ public final class q0 implements ls {
                 this.f12640e.a(f10);
                 if (longValue > 0) {
                     this.d.run();
-                    VideoEncodingService videoEncodingService = VideoEncodingService.f21340e;
+                    VideoEncodingService videoEncodingService = VideoEncodingService.f21343e;
                     if (videoEncodingService != null) {
                         videoEncodingService.stopSelf();
                     }
                     a(false);
                 }
             }
-        } else if (i7 == qs.f24972c2 && ((ij) objArr[0]) == this.f12639c) {
+        } else if (i7 == qs.f24981c2 && ((ij) objArr[0]) == this.f12639c) {
             a(false);
             try {
                 File file = this.f12638b;

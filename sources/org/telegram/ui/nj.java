@@ -16,7 +16,7 @@ public final class nj extends org.telegram.ui.Components.co {
         anVar.F7();
         anVar.I7();
         anVar.J7();
-        hk hkVar = anVar.f44023xb;
+        hk hkVar = anVar.f44029xb;
         if (hkVar != null) {
             hkVar.setTranslationY(anVar.P9 + getCurrentHeight());
         }

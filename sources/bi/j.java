@@ -48,8 +48,8 @@ public final class j implements RequestDelegate {
                 org.telegram.ui.ActionBar.u1 u1Var = (org.telegram.ui.ActionBar.u1) this.f4073c;
                 if (tLObject instanceof TL_stars.TL_payments_uniqueStarGift) {
                     TL_stars.TL_payments_uniqueStarGift tL_payments_uniqueStarGift = (TL_stars.TL_payments_uniqueStarGift) tLObject;
-                    qp.s1(k7Var.f28613a).Y3(tL_payments_uniqueStarGift.users, false);
-                    qp.s1(k7Var.f28613a).S3(tL_payments_uniqueStarGift.chats, false);
+                    qp.s1(k7Var.f28616a).Y3(tL_payments_uniqueStarGift.users, false);
+                    qp.s1(k7Var.f28616a).S3(tL_payments_uniqueStarGift.chats, false);
                     if (tL_payments_uniqueStarGift.gift instanceof TL_stars.TL_starGiftUnique) {
                         org.telegram.messenger.g0.h3(new a1.e(25, k7Var, tL_payments_uniqueStarGift));
                         return;
@@ -65,8 +65,8 @@ public final class j implements RequestDelegate {
                 TL_stars.InputSavedStarGift inputSavedStarGift = (TL_stars.InputSavedStarGift) this.f4073c;
                 if (tLObject instanceof TLRPC.Updates) {
                     TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-                    qp.s1(k7Var2.f28613a).Y3(updates.users, false);
-                    qp.s1(k7Var2.f28613a).S3(updates.chats, false);
+                    qp.s1(k7Var2.f28616a).Y3(updates.users, false);
+                    qp.s1(k7Var2.f28616a).S3(updates.chats, false);
                 }
                 org.telegram.messenger.g0.h3(new ai.d0(k7Var2, tL_error, tLObject, inputSavedStarGift, 8));
                 return;
@@ -157,7 +157,7 @@ public final class j implements RequestDelegate {
                         if (wallPaper instanceof TLRPC.TL_wallPaper) {
                             TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) wallPaper;
                             if (tL_wallPaper.pattern) {
-                                org.telegram.messenger.w7.G(p10.f24467s0);
+                                org.telegram.messenger.w7.G(p10.f24470s0);
                                 File J = org.telegram.messenger.w7.J(tL_wallPaper.document, str, true, true);
                                 int size2 = arrayList3.size();
                                 String str2 = str;
@@ -166,7 +166,7 @@ public final class j implements RequestDelegate {
                                 Bitmap bitmap = str2;
                                 while (i10 < size2) {
                                     org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) arrayList3.get(i10);
-                                    if (h6Var.f27528o.equals(tL_wallPaper.slug)) {
+                                    if (h6Var.f27531o.equals(tL_wallPaper.slug)) {
                                         if (bool == null) {
                                             bool = Boolean.valueOf(J.exists());
                                         }
@@ -179,22 +179,22 @@ public final class j implements RequestDelegate {
                                             arrayList4.add(h6Var);
                                         } else {
                                             String r10 = org.telegram.messenger.w7.r(null, tL_wallPaper.document);
-                                            if (e6Var.f27457b == null) {
-                                                e6Var.f27457b = new HashMap();
+                                            if (e6Var.f27460b == null) {
+                                                e6Var.f27460b = new HashMap();
                                             }
-                                            org.telegram.ui.ActionBar.d6 d6Var2 = (org.telegram.ui.ActionBar.d6) e6Var.f27457b.get(r10);
+                                            org.telegram.ui.ActionBar.d6 d6Var2 = (org.telegram.ui.ActionBar.d6) e6Var.f27460b.get(r10);
                                             if (d6Var2 == null) {
                                                 ?? obj = new Object();
                                                 arrayList2 = arrayList3;
-                                                obj.f27442b = new ArrayList();
-                                                obj.f27441a = tL_wallPaper;
-                                                e6Var.f27457b.put(r10, obj);
+                                                obj.f27445b = new ArrayList();
+                                                obj.f27444a = tL_wallPaper;
+                                                e6Var.f27460b.put(r10, obj);
                                                 d6Var = obj;
                                             } else {
                                                 arrayList2 = arrayList3;
                                                 d6Var = d6Var2;
                                             }
-                                            d6Var.f27442b.add(h6Var);
+                                            d6Var.f27445b.add(h6Var);
                                         }
                                     } else {
                                         arrayList2 = arrayList3;

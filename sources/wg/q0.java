@@ -4,7 +4,7 @@ import android.view.ViewGroup;
 import c8.ha;
 import di.p4;
 import java.util.ArrayList;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.m5;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
@@ -28,7 +28,7 @@ public final class q0 extends na {
         super(f2Var, false);
         this.P1 = new ArrayList();
         this.Q1 = new ArrayList();
-        this.f36266r1 = 0.3f;
+        this.f36282r1 = 0.3f;
         this.R1 = chat;
         ArrayList<TL_stories.TL_myBoost> arrayList = tL_premium_myBoosts.my_boosts;
         int size = arrayList.size();
@@ -38,32 +38,32 @@ public final class q0 extends na {
             i7++;
             TL_stories.TL_myBoost tL_myBoost2 = tL_myBoost;
             TLRPC.Peer peer = tL_myBoost2.peer;
-            if (peer != null && m5.o(peer) != (-chat.f26953id)) {
+            if (peer != null && m5.o(peer) != (-chat.f26956id)) {
                 this.Q1.add(tL_myBoost2);
             }
         }
-        ah.a aVar = new ah.a(getContext(), this.I0, this.f36261k1);
+        ah.a aVar = new ah.a(getContext(), this.I0, this.f36277k1);
         aVar.setClickable(true);
         aVar.setOrientation(1);
         aVar.setPadding(org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f));
-        r6.i(k6.f27922h5, aVar, this.I0);
+        r6.i(k6.f27925h5, aVar, this.I0);
         d0 d0Var = new d0(getContext(), this.I0);
         this.S1 = d0Var;
         d0Var.k();
         d0Var.setCounterColor(-6785796);
         d0Var.setOnClickListener(new fk0(29, this, chat));
         aVar.addView(d0Var, ha.r(-1, 48, 87));
-        ViewGroup viewGroup = this.f28616b;
-        int i10 = this.f28646t0;
+        ViewGroup viewGroup = this.f28619b;
+        int i10 = this.f28649t0;
         viewGroup.addView(aVar, ha.f(-2.0f, -1, 87, i10, 0, i10, 0));
-        pj0 pj0Var = this.f36261k1;
-        int i11 = this.f28646t0;
+        pj0 pj0Var = this.f36277k1;
+        int i11 = this.f28649t0;
         pj0Var.setPadding(i11, 0, i11, org.telegram.messenger.g0.L(64.0f));
-        this.f36261k1.setOnItemClickListener(new p4(24, this, chat));
+        this.f36277k1.setOnItemClickListener(new p4(24, this, chat));
         N();
         b1();
         d1(false);
-        cc.a(this.f28619c, new Object());
+        cc.a(this.f28622c, new Object());
     }
 
     @Override
@@ -73,7 +73,7 @@ public final class q0 extends na {
 
     @Override
     public final CharSequence O0() {
-        return hd.M0(2131753321, null);
+        return id.M0(2131753321, null);
     }
 
     public final void d1(boolean z9) {
@@ -82,9 +82,9 @@ public final class q0 extends na {
         d0Var.setShowZero(false);
         ArrayList arrayList = this.P1;
         if (arrayList.size() > 1) {
-            d0Var.i(hd.M0(2131753316, null), z9, true);
+            d0Var.i(id.M0(2131753316, null), z9, true);
         } else {
-            d0Var.i(hd.M0(2131753321, null), z9, true);
+            d0Var.i(id.M0(2131753321, null), z9, true);
         }
         d0Var.c(arrayList.size(), z9);
         if (arrayList.size() > 0) {

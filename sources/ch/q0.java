@@ -17,7 +17,7 @@ import org.telegram.ui.LaunchActivity;
 public abstract class q0 {
     public static void a(TLRPC.TL_availableReaction tL_availableReaction, LinkedHashMap linkedHashMap, ArrayList arrayList, SpannableStringBuilder spannableStringBuilder, m mVar, Paint.FontMetricsInt fontMetricsInt) {
         TLRPC.Document document = tL_availableReaction.activate_animation;
-        long j3 = document.f26959id;
+        long j3 = document.f26962id;
         r5 e10 = e(document, Long.valueOf(j3), fontMetricsInt);
         linkedHashMap.put(Long.valueOf(j3), e10);
         arrayList.add(Long.valueOf(j3));
@@ -86,7 +86,7 @@ public abstract class q0 {
     public static r5 e(TLRPC.Document document, Long l10, Paint.FontMetricsInt fontMetricsInt) {
         r5 r5Var;
         if (document != null) {
-            r5Var = new r5(document.f26959id, 1.0f, fontMetricsInt);
+            r5Var = new r5(document.f26962id, 1.0f, fontMetricsInt);
             r5Var.document = document;
         } else {
             r5Var = new r5(l10.longValue(), 1.0f, fontMetricsInt);
@@ -98,7 +98,7 @@ public abstract class q0 {
     public static void f(long j3, int i7, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
         f2 Q = LaunchActivity.Q();
         if (Q != null && tL_premium_boostsStatus != null) {
-            ug.i0 i0Var = new ug.i0(21, p10.f24467s0, Q.getContext(), Q, Q.getResourceProvider());
+            ug.i0 i0Var = new ug.i0(21, p10.f24470s0, Q.getContext(), Q, Q.getResourceProvider());
             i0Var.J2 = i7;
             i0Var.z1(tL_premium_boostsStatus, true);
             i0Var.B1(j3);

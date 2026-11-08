@@ -6,7 +6,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import c8.ha;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.t10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f6;
@@ -21,30 +21,30 @@ import org.telegram.ui.Components.xq;
 import org.telegram.ui.an;
 public final class e extends FrameLayout {
     public float D;
-    public final int f17341a;
-    public final w8 f17342b;
-    public final l9 f17343c;
+    public final int f17344a;
+    public final w8 f17345b;
+    public final l9 f17346c;
     public final LinearLayout d;
-    public final j6 f17344e;
-    public final j6 f17345f;
+    public final j6 f17347e;
+    public final j6 f17348f;
     public final mp h;
-    public final ImageView f17346n;
-    public boolean f17347r;
-    public long f17348s;
-    public long f17349w;
-    public int f17350x;
-    public String f17351y;
+    public final ImageView f17349n;
+    public boolean f17350r;
+    public long f17351s;
+    public long f17352w;
+    public int f17353x;
+    public String f17354y;
 
     public e(Activity activity, f6 f6Var, an anVar) {
         super(activity);
         int i7;
-        this.f17341a = anVar.getCurrentAccount();
-        this.f17347r = false;
+        this.f17344a = anVar.getCurrentAccount();
+        this.f17350r = false;
         l9 l9Var = new l9(activity);
-        this.f17343c = l9Var;
-        TLRPC.User a22 = anVar.getMessagesController().a2(Long.valueOf(this.f17349w));
+        this.f17346c = l9Var;
+        TLRPC.User a22 = anVar.getMessagesController().a2(Long.valueOf(this.f17352w));
         w8 w8Var = new w8((f6) null);
-        this.f17342b = w8Var;
+        this.f17345b = w8Var;
         w8Var.r(a22);
         l9Var.setRoundRadius(org.telegram.messenger.g0.L(16.0f));
         l9Var.e(a22, w8Var);
@@ -53,8 +53,8 @@ public final class e extends FrameLayout {
         this.d = linearLayout;
         linearLayout.setOrientation(1);
         j6 j6Var = new j6(activity, false, false, false);
-        this.f17344e = j6Var;
-        j6Var.f34901n = false;
+        this.f17347e = j6Var;
+        j6Var.f34922n = false;
         j6Var.getDrawable().r(true, false);
         j6Var.setTypeface(org.telegram.messenger.g0.o());
         j6Var.setTextSize(org.telegram.messenger.g0.L(14.0f));
@@ -63,11 +63,11 @@ public final class e extends FrameLayout {
         j6Var.setEllipsizeByGradient(true);
         linearLayout.addView(j6Var, ha.k(0.0f, 0.0f, 0.0f, 1.0f, -1, 17));
         j6 j6Var2 = new j6(activity, false, false, false);
-        this.f17345f = j6Var2;
-        j6Var2.f34901n = false;
+        this.f17348f = j6Var2;
+        j6Var2.f34922n = false;
         j6Var2.getDrawable().r(true, false);
         j6Var2.setTextSize(org.telegram.messenger.g0.L(13.0f));
-        j6Var2.setText(hd.M0(2131753700, null));
+        j6Var2.setText(id.M0(2131753700, null));
         r6.Z(j6Var2, k6.Ue, f6Var);
         j6Var2.setEllipsizeByGradient(true);
         linearLayout.addView(j6Var2, ha.o(-1, 17));
@@ -92,18 +92,18 @@ public final class e extends FrameLayout {
         mpVar.setPadding(org.telegram.messenger.g0.L(13.0f), 0, org.telegram.messenger.g0.L(13.0f), 0);
         mpVar.setOnClickListener(new ii.g(this, 7));
         mpVar.setOnWidthUpdatedListener(new d(this, 0));
-        if (this.f17347r) {
+        if (this.f17350r) {
             i7 = 2131753701;
         } else {
             i7 = 2131753698;
         }
-        mpVar.setText(hd.M0(i7, null));
+        mpVar.setText(id.M0(i7, null));
         addView(mpVar, ha.d(64, 28.0f, 21, 0.0f, 0.0f, 46.0f, 0.0f));
         ImageView imageView = new ImageView(activity);
-        this.f17346n = imageView;
+        this.f17349n = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(2131232237);
-        int i11 = k6.f27941i6;
+        int i11 = k6.f27944i6;
         org.telegram.ui.Cells.y O = k6.O(k6.w0(i11, f6Var), 0, 0);
         n6 N2 = r6.N(i11);
         imageView.setBackground(O);
@@ -117,13 +117,13 @@ public final class e extends FrameLayout {
         float f10 = this.D;
         mp mpVar = this.h;
         float c10 = mpVar.getDrawable().c() + f10 + mpVar.getPaddingLeft() + mpVar.getPaddingRight() + org.telegram.messenger.g0.L(12.0f);
-        this.f17344e.setRightPadding(c10);
-        this.f17345f.setRightPadding(c10);
+        this.f17347e.setRightPadding(c10);
+        this.f17348f.setRightPadding(c10);
     }
 
     public void setLeftMargin(float f10) {
         this.D = f10;
-        this.f17343c.setTranslationX(f10);
+        this.f17346c.setTranslationX(f10);
         this.d.setTranslationX(f10);
         a();
     }

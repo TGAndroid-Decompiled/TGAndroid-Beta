@@ -48,7 +48,7 @@ public final class c9 implements Runnable {
             case 1:
                 l2.r0 r0Var = (l2.r0) obj;
                 m2.e eVar = r0Var.M;
-                int i12 = r0Var.f18001a[i11].f18033a.f17757b;
+                int i12 = r0Var.f18004a[i11].f18036a.f17760b;
                 m2.a U = eVar.U();
                 eVar.V(U, 1033, new m2.c(U, i11, i12, z9));
                 return;
@@ -56,7 +56,7 @@ public final class c9 implements Runnable {
                 qp qpVar = (qp) obj;
                 int i13 = 0;
                 while (i13 < qpVar.P0.size()) {
-                    if (((vo) qpVar.P0.get(i13)).f26064a == i11) {
+                    if (((vo) qpVar.P0.get(i13)).f26070a == i11) {
                         qpVar.P0.remove(i13);
                         i13--;
                     }
@@ -79,22 +79,22 @@ public final class c9 implements Runnable {
                 }
                 return;
             case 4:
-                ((zd0) obj).f40937a.f31784b.w3(i11, z9);
+                ((zd0) obj).f40956a.f31793b.w3(i11, z9);
                 return;
             case 5:
                 fl0 fl0Var = (fl0) obj;
-                fl0Var.f33581o = null;
+                fl0Var.f33588o = null;
                 fl0Var.c(i11, z9, true);
                 return;
             case 6:
-                xs0 xs0Var = ((uq0) obj).f38697a;
-                org.telegram.ui.ActionBar.f2 f2Var = xs0Var.f40440x1;
+                xs0 xs0Var = ((uq0) obj).f38712a;
+                org.telegram.ui.ActionBar.f2 f2Var = xs0Var.f40461x1;
                 if (f2Var != null) {
                     if (z9) {
                         TLRPC.TL_channels_setMainProfileTab tL_channels_setMainProfileTab = new TLRPC.TL_channels_setMainProfileTab();
                         tL_channels_setMainProfileTab.tab = xs0.o0(i11, true);
-                        tL_channels_setMainProfileTab.channel = f2Var.getMessagesController().h1(xs0Var.f40389f1.f26954id);
-                        TLRPC.ChatFull chatFull = xs0Var.f40389f1;
+                        tL_channels_setMainProfileTab.channel = f2Var.getMessagesController().h1(xs0Var.f40410f1.f26957id);
+                        TLRPC.ChatFull chatFull = xs0Var.f40410f1;
                         chatFull.flags2 |= 4194304;
                         chatFull.main_tab = tL_channels_setMainProfileTab.tab;
                         tL_account_setMainProfileTab = tL_channels_setMainProfileTab;
@@ -102,12 +102,12 @@ public final class c9 implements Runnable {
                         TLRPC.TL_account_setMainProfileTab tL_account_setMainProfileTab2 = new TLRPC.TL_account_setMainProfileTab();
                         TLRPC.ProfileTab o02 = xs0.o0(i11, true);
                         tL_account_setMainProfileTab2.tab = o02;
-                        TLRPC.UserFull userFull = xs0Var.f40392g1;
+                        TLRPC.UserFull userFull = xs0Var.f40413g1;
                         tL_account_setMainProfileTab = tL_account_setMainProfileTab2;
                         if (userFull != null) {
                             userFull.flags2 |= 1048576;
                             userFull.main_tab = o02;
-                            f2Var.getMessagesStorage().j2(xs0Var.f40392g1, true);
+                            f2Var.getMessagesStorage().j2(xs0Var.f40413g1, true);
                             tL_account_setMainProfileTab = tL_account_setMainProfileTab2;
                         }
                     }
@@ -124,12 +124,12 @@ public final class c9 implements Runnable {
                     i7 = 2131624026;
                 }
                 if (z9) {
-                    G = org.telegram.messenger.hd.G(i11, "FolderLinkAddedChats", new Object[0]);
+                    G = org.telegram.messenger.id.G(i11, "FolderLinkAddedChats", new Object[0]);
                 } else {
-                    G = org.telegram.messenger.hd.G(i11, "FolderLinkRemovedChats", new Object[0]);
+                    G = org.telegram.messenger.id.G(i11, "FolderLinkRemovedChats", new Object[0]);
                 }
-                org.telegram.ui.Components.cc I = a02.I(i7, G, org.telegram.messenger.hd.M0(2131750669, null));
-                I.f32514j = 5000;
+                org.telegram.ui.Components.cc I = a02.I(i7, G, org.telegram.messenger.id.M0(2131750669, null));
+                I.f32545j = 5000;
                 I.j();
                 return;
         }

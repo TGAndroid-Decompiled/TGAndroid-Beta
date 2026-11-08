@@ -1,42 +1,42 @@
 package org.telegram.ui;
 public final class rn implements Runnable {
-    public final int f49535a;
-    public final go f49536b;
+    public final int f49514a;
+    public final go f49515b;
 
     public rn(go goVar, int i7) {
-        this.f49535a = i7;
-        this.f49536b = goVar;
+        this.f49514a = i7;
+        this.f49515b = goVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f49535a) {
+        switch (this.f49514a) {
             case 0:
-                go goVar = this.f49536b;
-                goVar.f46050c0 = true;
+                go goVar = this.f49515b;
+                goVar.f46052c0 = true;
                 goVar.h0();
                 return;
             case 1:
-                go goVar2 = this.f49536b;
+                go goVar2 = this.f49515b;
                 goVar2.X = goVar2.getMessagesController().M0(Long.valueOf(goVar2.Z));
                 goVar2.e0();
                 return;
             case 2:
-                this.f49536b.g0(false);
+                this.f49515b.g0(false);
                 return;
             case 3:
-                go goVar3 = this.f49536b;
-                goVar3.f46050c0 = true;
-                if (goVar3.f46047b.length() > 0) {
-                    goVar3.c0(goVar3.f46047b.getText().toString());
+                go goVar3 = this.f49515b;
+                goVar3.f46052c0 = true;
+                if (goVar3.f46049b.length() > 0) {
+                    goVar3.c0(goVar3.f46049b.getText().toString());
                 }
                 goVar3.h0();
                 return;
             case 4:
-                this.f49536b.e0();
+                this.f49515b.e0();
                 return;
             default:
-                this.f49536b.g0(true);
+                this.f49515b.g0(true);
                 return;
         }
     }

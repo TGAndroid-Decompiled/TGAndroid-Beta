@@ -38,8 +38,8 @@ import org.telegram.messenger.c20;
 import org.telegram.messenger.camera.CameraSessionWrapper;
 import org.telegram.messenger.camera.CameraView;
 import org.telegram.messenger.d20;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.rc;
+import org.telegram.messenger.id;
+import org.telegram.messenger.sc;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.ActionBar.q4;
@@ -188,7 +188,7 @@ public final class i0 extends FrameLayout {
     }
 
     public static boolean c() {
-        if (a0.f() && rc.e(256)) {
+        if (a0.f() && sc.e(256)) {
             return true;
         }
         return false;
@@ -253,7 +253,7 @@ public final class i0 extends FrameLayout {
         u8.n nVar;
         String str = null;
         try {
-            Context context = org.telegram.messenger.t0.f25563b;
+            Context context = org.telegram.messenger.t0.f25566b;
             ?? obj = new Object();
             obj.f7660a = 256;
             nVar = new u8.n(new t2(context, (x1) obj));
@@ -264,7 +264,7 @@ public final class i0 extends FrameLayout {
         try {
             q4.q f10 = f(bitmap, nVar, new aa.n(20), d20Var);
             if (f10 != null) {
-                str = (String) f10.f53710b;
+                str = (String) f10.f53803b;
             }
             return str;
         } finally {
@@ -588,11 +588,11 @@ public final class i0 extends FrameLayout {
         this.h.set(f10 - f16, L3, f10 + f16, f17);
         float L4 = (f11 - org.telegram.messenger.g0.L(35.0f)) - f16;
         this.f1256n.set(L4 - f16, L3, L4 + f16, f17);
-        this.Q = new StaticLayout(hd.M0(2131745862, null), this.K, jg.g.e(72.0f, i14, 1), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+        this.Q = new StaticLayout(id.M0(2131745864, null), this.K, jg.g.e(72.0f, i14, 1), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
         RectF rectF2 = this.f1248f;
         if (rectF2.isEmpty()) {
             String[] strArr = l1.B9;
-            int i15 = org.telegram.messenger.g0.f22538m;
+            int i15 = org.telegram.messenger.g0.f22557m;
             View view = this;
             int i16 = 0;
             while (true) {

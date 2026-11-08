@@ -27,72 +27,72 @@ public final class p71 {
     public float P;
     public float Q;
     public int R;
-    public final o71 f36788a;
-    public final float f36789b;
-    public final Handler f36790c = new Handler(Looper.getMainLooper());
+    public final o71 f36814a;
+    public final float f36815b;
+    public final Handler f36816c = new Handler(Looper.getMainLooper());
     public final Paint d;
-    public final Matrix f36791e;
-    public final float[] f36792f;
-    public final float[] f36793g;
+    public final Matrix f36817e;
+    public final float[] f36818f;
+    public final float[] f36819g;
     public final Path h;
-    public final RectF f36794i;
-    public final float[] f36795j;
-    public final n71 f36796k;
-    public final n71 f36797l;
-    public final org.telegram.utils.twidget.h f36798m;
-    public final n71 f36799n;
-    public org.telegram.utils.twidget.f0 f36800o;
-    public org.telegram.utils.twidget.u f36801p;
-    public boolean f36802q;
-    public boolean f36803r;
-    public long f36804s;
-    public long f36805t;
-    public float f36806u;
+    public final RectF f36820i;
+    public final float[] f36821j;
+    public final n71 f36822k;
+    public final n71 f36823l;
+    public final org.telegram.utils.twidget.e0 f36824m;
+    public final n71 f36825n;
+    public org.telegram.utils.twidget.f1 f36826o;
+    public org.telegram.utils.twidget.v0 f36827p;
+    public boolean f36828q;
+    public boolean f36829r;
+    public long f36830s;
+    public long f36831t;
+    public float f36832u;
     public float v;
-    public boolean f36807w;
-    public boolean f36808x;
-    public boolean f36809y;
-    public boolean f36810z;
+    public boolean f36833w;
+    public boolean f36834x;
+    public boolean f36835y;
+    public boolean f36836z;
 
     public p71(o71 o71Var, float f10) {
         Paint paint = new Paint(1);
         this.d = paint;
-        this.f36791e = new Matrix();
-        this.f36792f = new float[9];
-        this.f36793g = new float[7];
+        this.f36817e = new Matrix();
+        this.f36818f = new float[9];
+        this.f36819g = new float[7];
         this.h = new Path();
-        this.f36794i = new RectF();
-        this.f36795j = new float[8];
-        this.f36796k = new Runnable(this) {
-            public final p71 f36246b;
+        this.f36820i = new RectF();
+        this.f36821j = new float[8];
+        this.f36822k = new Runnable(this) {
+            public final p71 f36262b;
 
             {
-                this.f36246b = this;
+                this.f36262b = this;
             }
 
             @Override
             public final void run() {
-                org.telegram.utils.twidget.u uVar;
+                org.telegram.utils.twidget.v0 v0Var;
                 switch (r2) {
                     case 0:
-                        this.f36246b.k(false, false, false);
+                        this.f36262b.k(false, false, false);
                         return;
                     case 1:
-                        p71 p71Var = this.f36246b;
-                        if (p71Var.f36807w && p71Var.f36808x) {
-                            p71Var.a(p71Var.f36798m.f(SystemClock.uptimeMillis()));
+                        p71 p71Var = this.f36262b;
+                        if (p71Var.f36833w && p71Var.f36834x) {
+                            p71Var.a(p71Var.f36824m.f(SystemClock.uptimeMillis()));
                             p71Var.o();
                             return;
                         }
                         return;
                     default:
-                        p71 p71Var2 = this.f36246b;
-                        if (p71Var2.f36800o != null && (uVar = p71Var2.f36801p) != null) {
-                            org.telegram.utils.twidget.f0 c10 = uVar.c();
-                            org.telegram.utils.twidget.f0 f0Var = p71Var2.f36800o;
-                            if (c10 == f0Var) {
-                                f0Var.f52781a.g();
-                                p71Var2.f36788a.h();
+                        p71 p71Var2 = this.f36262b;
+                        if (p71Var2.f36826o != null && (v0Var = p71Var2.f36827p) != null) {
+                            org.telegram.utils.twidget.f1 d = v0Var.d();
+                            org.telegram.utils.twidget.f1 f1Var = p71Var2.f36826o;
+                            if (d == f1Var) {
+                                f1Var.f52786a.f();
+                                p71Var2.f36814a.h();
                                 return;
                             }
                             return;
@@ -101,36 +101,36 @@ public final class p71 {
                 }
             }
         };
-        this.f36797l = new Runnable(this) {
-            public final p71 f36246b;
+        this.f36823l = new Runnable(this) {
+            public final p71 f36262b;
 
             {
-                this.f36246b = this;
+                this.f36262b = this;
             }
 
             @Override
             public final void run() {
-                org.telegram.utils.twidget.u uVar;
+                org.telegram.utils.twidget.v0 v0Var;
                 switch (r2) {
                     case 0:
-                        this.f36246b.k(false, false, false);
+                        this.f36262b.k(false, false, false);
                         return;
                     case 1:
-                        p71 p71Var = this.f36246b;
-                        if (p71Var.f36807w && p71Var.f36808x) {
-                            p71Var.a(p71Var.f36798m.f(SystemClock.uptimeMillis()));
+                        p71 p71Var = this.f36262b;
+                        if (p71Var.f36833w && p71Var.f36834x) {
+                            p71Var.a(p71Var.f36824m.f(SystemClock.uptimeMillis()));
                             p71Var.o();
                             return;
                         }
                         return;
                     default:
-                        p71 p71Var2 = this.f36246b;
-                        if (p71Var2.f36800o != null && (uVar = p71Var2.f36801p) != null) {
-                            org.telegram.utils.twidget.f0 c10 = uVar.c();
-                            org.telegram.utils.twidget.f0 f0Var = p71Var2.f36800o;
-                            if (c10 == f0Var) {
-                                f0Var.f52781a.g();
-                                p71Var2.f36788a.h();
+                        p71 p71Var2 = this.f36262b;
+                        if (p71Var2.f36826o != null && (v0Var = p71Var2.f36827p) != null) {
+                            org.telegram.utils.twidget.f1 d = v0Var.d();
+                            org.telegram.utils.twidget.f1 f1Var = p71Var2.f36826o;
+                            if (d == f1Var) {
+                                f1Var.f52786a.f();
+                                p71Var2.f36814a.h();
                                 return;
                             }
                             return;
@@ -139,37 +139,37 @@ public final class p71 {
                 }
             }
         };
-        this.f36798m = new Object();
-        this.f36799n = new Runnable(this) {
-            public final p71 f36246b;
+        this.f36824m = new Object();
+        this.f36825n = new Runnable(this) {
+            public final p71 f36262b;
 
             {
-                this.f36246b = this;
+                this.f36262b = this;
             }
 
             @Override
             public final void run() {
-                org.telegram.utils.twidget.u uVar;
+                org.telegram.utils.twidget.v0 v0Var;
                 switch (r2) {
                     case 0:
-                        this.f36246b.k(false, false, false);
+                        this.f36262b.k(false, false, false);
                         return;
                     case 1:
-                        p71 p71Var = this.f36246b;
-                        if (p71Var.f36807w && p71Var.f36808x) {
-                            p71Var.a(p71Var.f36798m.f(SystemClock.uptimeMillis()));
+                        p71 p71Var = this.f36262b;
+                        if (p71Var.f36833w && p71Var.f36834x) {
+                            p71Var.a(p71Var.f36824m.f(SystemClock.uptimeMillis()));
                             p71Var.o();
                             return;
                         }
                         return;
                     default:
-                        p71 p71Var2 = this.f36246b;
-                        if (p71Var2.f36800o != null && (uVar = p71Var2.f36801p) != null) {
-                            org.telegram.utils.twidget.f0 c10 = uVar.c();
-                            org.telegram.utils.twidget.f0 f0Var = p71Var2.f36800o;
-                            if (c10 == f0Var) {
-                                f0Var.f52781a.g();
-                                p71Var2.f36788a.h();
+                        p71 p71Var2 = this.f36262b;
+                        if (p71Var2.f36826o != null && (v0Var = p71Var2.f36827p) != null) {
+                            org.telegram.utils.twidget.f1 d = v0Var.d();
+                            org.telegram.utils.twidget.f1 f1Var = p71Var2.f36826o;
+                            if (d == f1Var) {
+                                f1Var.f52786a.f();
+                                p71Var2.f36814a.h();
                                 return;
                             }
                             return;
@@ -179,8 +179,8 @@ public final class p71 {
             }
         };
         this.L = -1;
-        this.f36788a = o71Var;
-        this.f36789b = f10;
+        this.f36814a = o71Var;
+        this.f36815b = f10;
         paint.setTextSize(f10 * 14.0f);
         paint.setColor(-8355712);
     }
@@ -219,10 +219,10 @@ public final class p71 {
             this.L = i7;
             if ((i7 & 32) != 0 && !this.A) {
                 this.A = true;
-                this.f36801p.o(3, this.P, this.Q, 0, true, this.E, this.I, this.H);
+                this.f36827p.o(3, this.P, this.Q, 0, true, this.E, this.I, this.H);
             }
             int i10 = i7 & 3;
-            o71 o71Var = this.f36788a;
+            o71 o71Var = this.f36814a;
             if (i10 == 2) {
                 g();
                 if (((i7 >> 6) & 7) == 1 && !this.D) {
@@ -248,40 +248,40 @@ public final class p71 {
             return;
         }
         this.F = false;
-        org.telegram.utils.twidget.u uVar = this.f36801p;
-        if (uVar != null && !this.f36803r) {
-            uVar.d(this.J, this.K, 1, 0);
+        org.telegram.utils.twidget.v0 v0Var = this.f36827p;
+        if (v0Var != null && !this.f36829r) {
+            v0Var.e(this.J, this.K, 1, 0);
         }
-        this.f36788a.f("auto");
+        this.f36814a.f("auto");
     }
 
     public final void d() {
-        n71 n71Var = this.f36796k;
-        Handler handler = this.f36790c;
+        n71 n71Var = this.f36822k;
+        Handler handler = this.f36816c;
         handler.removeCallbacks(n71Var);
-        handler.removeCallbacks(this.f36797l);
-        this.f36807w = false;
-        this.f36808x = false;
+        handler.removeCallbacks(this.f36823l);
+        this.f36833w = false;
+        this.f36834x = false;
     }
 
     public final void e() {
-        org.telegram.utils.twidget.u uVar;
+        org.telegram.utils.twidget.v0 v0Var;
         if (this.G) {
             this.G = false;
             this.A = true;
         }
-        if (this.f36807w && !this.A && (uVar = this.f36801p) != null) {
+        if (this.f36833w && !this.A && (v0Var = this.f36827p) != null) {
             this.A = true;
-            uVar.o(3, this.P, this.Q, 0, true, this.E, this.I, this.H);
+            v0Var.o(3, this.P, this.Q, 0, true, this.E, this.I, this.H);
         }
     }
 
     public final void f() {
         if (this.G) {
             this.G = false;
-            org.telegram.utils.twidget.u uVar = this.f36801p;
-            if (uVar != null) {
-                uVar.o(0, this.N, this.O, 0, true, this.E, this.I, this.H);
+            org.telegram.utils.twidget.v0 v0Var = this.f36827p;
+            if (v0Var != null) {
+                v0Var.o(0, this.N, this.O, 0, true, this.E, this.I, this.H);
             }
         }
     }
@@ -290,7 +290,7 @@ public final class p71 {
         if (!this.C) {
             this.C = true;
             if (this.B) {
-                this.f36788a.b(false);
+                this.f36814a.b(false);
             }
         }
     }
@@ -298,14 +298,14 @@ public final class p71 {
     public final void h() {
         if (!this.B && !this.C) {
             this.B = true;
-            this.f36788a.b(true);
+            this.f36814a.b(true);
         }
     }
 
     public final float i(float f10) {
         int i7;
-        if (org.telegram.messenger.hd.f22878a0 && (i7 = this.R) > 0) {
-            return (i7 / this.f36789b) - f10;
+        if (org.telegram.messenger.id.f23157a0 && (i7 = this.R) > 0) {
+            return (i7 / this.f36815b) - f10;
         }
         return f10;
     }
@@ -313,10 +313,10 @@ public final class p71 {
     public final void k(boolean z9, boolean z10, boolean z11) {
         boolean z12;
         boolean z13;
-        if (this.f36807w && !this.f36808x) {
-            this.f36790c.removeCallbacks(this.f36796k);
-            this.f36808x = true;
-            int b10 = this.f36798m.b(this.M, i(this.N), this.O, z9, z10, z11, this.E, this.H);
+        if (this.f36833w && !this.f36834x) {
+            this.f36816c.removeCallbacks(this.f36822k);
+            this.f36834x = true;
+            int b10 = this.f36824m.b(this.M, i(this.N), this.O, z9, z10, z11, this.E, this.H);
             boolean z14 = false;
             if ((b10 & 2048) != 0) {
                 z12 = true;
@@ -328,21 +328,21 @@ public final class p71 {
             } else {
                 z13 = false;
             }
-            this.f36809y = z13;
+            this.f36835y = z13;
             if (z11 && !z12) {
                 z14 = true;
             }
-            this.f36810z = z14;
+            this.f36836z = z14;
             a(b10);
             if (this.P != this.N || this.Q != this.O) {
-                a(this.f36798m.d(SystemClock.uptimeMillis(), i(this.P), this.Q));
+                a(this.f36824m.d(SystemClock.uptimeMillis(), i(this.P), this.Q));
             }
-            if (!this.f36809y && !this.f36810z && !this.E) {
+            if (!this.f36835y && !this.f36836z && !this.E) {
                 g();
             } else {
                 h();
-                if ((this.f36809y || this.E) && !this.C) {
-                    this.f36788a.b(true);
+                if ((this.f36835y || this.E) && !this.C) {
+                    this.f36814a.b(true);
                 }
             }
             o();
@@ -350,17 +350,17 @@ public final class p71 {
     }
 
     public final void l(MotionEvent motionEvent, boolean z9) {
-        org.telegram.utils.twidget.u uVar;
-        org.telegram.utils.twidget.h0 h0Var;
+        org.telegram.utils.twidget.v0 v0Var;
+        org.telegram.utils.twidget.h1 h1Var;
         int actionMasked = motionEvent.getActionMasked();
-        if (z9 && actionMasked != 10 && (uVar = this.f36801p) != null && !this.f36803r && (h0Var = uVar.f52893f) != null && h0Var.A) {
+        if (z9 && actionMasked != 10 && (v0Var = this.f36827p) != null && !this.f36829r && (h1Var = v0Var.f52980f) != null && h1Var.C) {
             this.F = true;
             float x10 = motionEvent.getX();
-            float f10 = this.f36789b;
+            float f10 = this.f36815b;
             this.J = x10 / f10;
             float y10 = motionEvent.getY() / f10;
             this.K = y10;
-            this.f36801p.d(this.J, y10, 0, j(motionEvent));
+            this.f36827p.e(this.J, y10, 0, j(motionEvent));
             return;
         }
         c();
@@ -383,45 +383,45 @@ public final class p71 {
     }
 
     public final void o() {
-        Handler handler = this.f36790c;
-        n71 n71Var = this.f36797l;
+        Handler handler = this.f36816c;
+        n71 n71Var = this.f36823l;
         handler.removeCallbacks(n71Var);
-        double c10 = this.f36798m.c();
-        if (this.f36807w && c10 >= 0.0d) {
+        double c10 = this.f36824m.c();
+        if (this.f36833w && c10 >= 0.0d) {
             handler.postDelayed(n71Var, Math.max(0L, ((long) Math.ceil(c10)) - SystemClock.uptimeMillis()));
         }
     }
 
     public final void p(boolean z9) {
-        if (this.f36802q != z9) {
-            this.f36802q = z9;
-            org.telegram.utils.twidget.u uVar = this.f36801p;
-            if (uVar != null && !this.f36803r) {
-                uVar.m(z9);
+        if (this.f36828q != z9) {
+            this.f36828q = z9;
+            org.telegram.utils.twidget.v0 v0Var = this.f36827p;
+            if (v0Var != null && !this.f36829r) {
+                v0Var.m(z9);
             }
         }
     }
 
     public final void q() {
-        if (this.f36801p == null) {
+        if (this.f36827p == null) {
             return;
         }
-        if (this.f36803r) {
-            this.f36803r = false;
-            this.f36801p = null;
+        if (this.f36829r) {
+            this.f36829r = false;
+            this.f36827p = null;
             return;
         }
         e();
         c();
-        this.f36801p.m(false);
-        org.telegram.utils.twidget.u uVar = this.f36801p;
-        if (uVar.h == this) {
-            uVar.h = null;
+        this.f36827p.m(false);
+        org.telegram.utils.twidget.v0 v0Var = this.f36827p;
+        if (v0Var.h == this) {
+            v0Var.h = null;
         }
-        this.f36801p = null;
-        this.f36790c.removeCallbacks(this.f36799n);
-        this.f36800o = null;
+        this.f36827p = null;
+        this.f36816c.removeCallbacks(this.f36825n);
+        this.f36826o = null;
         d();
-        this.f36798m.e();
+        this.f36824m.e();
     }
 }

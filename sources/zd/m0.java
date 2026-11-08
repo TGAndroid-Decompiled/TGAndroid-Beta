@@ -1,16 +1,16 @@
 package zd;
 public final class m0 extends e1 {
-    public final int f60001e;
-    public final Object f60002f;
+    public final int f60094e;
+    public final Object f60095f;
 
     public m0(Object obj, int i7) {
-        this.f60001e = i7;
-        this.f60002f = obj;
+        this.f60094e = i7;
+        this.f60095f = obj;
     }
 
     @Override
     public final boolean i() {
-        switch (this.f60001e) {
+        switch (this.f60094e) {
             case 0:
                 return false;
             case 1:
@@ -24,23 +24,23 @@ public final class m0 extends e1 {
 
     @Override
     public final void j(Throwable th2) {
-        switch (this.f60001e) {
+        switch (this.f60094e) {
             case 0:
-                ((l0) this.f60002f).dispose();
+                ((l0) this.f60095f).dispose();
                 return;
             case 1:
-                ((rd.l) this.f60002f).invoke(th2);
+                ((rd.l) this.f60095f).invoke(th2);
                 return;
             case 2:
-                n1 n1Var = (n1) this.f60002f;
+                n1 n1Var = (n1) this.f60095f;
                 n1Var.getClass();
-                n1.f60006a.get(n1Var);
+                n1.f60099a.get(n1Var);
                 throw null;
             default:
-                f1 f1Var = (f1) this.f60002f;
-                Object obj = n1.f60006a.get(h());
+                f1 f1Var = (f1) this.f60095f;
+                Object obj = n1.f60099a.get(h());
                 if (obj instanceof v) {
-                    f1Var.resumeWith(af.b.b(((v) obj).f60027a));
+                    f1Var.resumeWith(af.b.b(((v) obj).f60120a));
                     return;
                 } else {
                     f1Var.resumeWith(b0.w(obj));
@@ -50,7 +50,7 @@ public final class m0 extends e1 {
     }
 
     public m0(n1 n1Var) {
-        this.f60001e = 2;
-        this.f60002f = n1Var;
+        this.f60094e = 2;
+        this.f60095f = n1Var;
     }
 }

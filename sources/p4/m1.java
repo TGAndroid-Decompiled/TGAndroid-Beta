@@ -4,20 +4,20 @@ import a8.ia;
 import android.os.Bundle;
 import android.os.SystemClock;
 public final class m1 {
-    public static final String f53287e;
-    public static final String f53288f;
-    public static final String f53289g;
+    public static final String f53380e;
+    public static final String f53381f;
+    public static final String f53382g;
     public static final String h;
-    public final int f53290a;
-    public final Bundle f53291b;
-    public final long f53292c;
+    public final int f53383a;
+    public final Bundle f53384b;
+    public final long f53385c;
     public final k1 d;
 
     static {
         String str = h2.m0.f14112a;
-        f53287e = Integer.toString(0, 36);
-        f53288f = Integer.toString(1, 36);
-        f53289g = Integer.toString(2, 36);
+        f53380e = Integer.toString(0, 36);
+        f53381f = Integer.toString(1, 36);
+        f53382g = Integer.toString(2, 36);
         h = Integer.toString(3, 36);
     }
 
@@ -27,14 +27,14 @@ public final class m1 {
 
     public static m1 a(Bundle bundle) {
         k1 k1Var;
-        int i7 = bundle.getInt(f53287e, -1);
-        Bundle o4 = h2.m0.o(bundle.getBundle(f53288f));
-        long j3 = bundle.getLong(f53289g, SystemClock.elapsedRealtime());
+        int i7 = bundle.getInt(f53380e, -1);
+        Bundle o4 = h2.m0.o(bundle.getBundle(f53381f));
+        long j3 = bundle.getLong(f53382g, SystemClock.elapsedRealtime());
         Bundle bundle2 = bundle.getBundle(h);
         if (bundle2 != null) {
             int i10 = bundle2.getInt(k1.d, 1000);
-            String string = bundle2.getString(k1.f53245e, "");
-            Bundle o10 = h2.m0.o(bundle2.getBundle(k1.f53246f));
+            String string = bundle2.getString(k1.f53338e, "");
+            Bundle o10 = h2.m0.o(bundle2.getBundle(k1.f53339f));
             if (o10 == null) {
                 o10 = Bundle.EMPTY;
             }
@@ -53,9 +53,9 @@ public final class m1 {
 
     public m1(int i7, Bundle bundle, long j3, k1 k1Var) {
         ia.f(k1Var == null || i7 < 0);
-        this.f53290a = i7;
-        this.f53291b = new Bundle(bundle);
-        this.f53292c = j3;
+        this.f53383a = i7;
+        this.f53384b = new Bundle(bundle);
+        this.f53385c = j3;
         if (k1Var == null && i7 < 0) {
             k1Var = new k1(i7);
         }

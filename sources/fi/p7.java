@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.c20;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.Components.xq;
 public abstract class p7 extends FrameLayout implements o2 {
     public final o7 f12600a;
@@ -36,7 +36,7 @@ public abstract class p7 extends FrameLayout implements o2 {
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(org.telegram.messenger.g0.o());
         textView.setTextColor(-1);
-        textView.setText(hd.M0(2131744632, null));
+        textView.setText(id.M0(2131744634, null));
         frameLayout.addView(textView, c8.ha.d(-2, -2.0f, 80, 16.0f, 0.0f, 16.0f, 7.0f));
         o7Var.addView(frameLayout, c8.ha.s(-2, -1, 112, 0.0f, 0.0f, 6.66f, 0.0f));
         frameLayout.setOnClickListener(new View.OnClickListener(this) {
@@ -69,7 +69,7 @@ public abstract class p7 extends FrameLayout implements o2 {
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(org.telegram.messenger.g0.o());
         textView2.setTextColor(-1);
-        textView2.setText(hd.M0(2131744586, null));
+        textView2.setText(id.M0(2131744588, null));
         frameLayout2.addView(textView2, c8.ha.d(-2, -2.0f, 80, 16.0f, 0.0f, 16.0f, 7.0f));
         o7Var.addView(frameLayout2, c8.ha.s(-2, -1, 112, 0.0f, 0.0f, 6.66f, 0.0f));
         frameLayout2.setOnClickListener(new View.OnClickListener(this) {
@@ -102,7 +102,7 @@ public abstract class p7 extends FrameLayout implements o2 {
         textView3.setTextSize(1, 14.0f);
         textView3.setTypeface(org.telegram.messenger.g0.o());
         textView3.setTextColor(-1);
-        textView3.setText(hd.M0(2131744451, null));
+        textView3.setText(id.M0(2131744453, null));
         frameLayout3.addView(textView3, c8.ha.d(-2, -2.0f, 80, 16.0f, 0.0f, 16.0f, 7.0f));
         o7Var.addView(frameLayout3, c8.ha.t(-2, -1, 112, 0, 0, 0, 0));
         frameLayout3.setOnClickListener(new View.OnClickListener(this) {

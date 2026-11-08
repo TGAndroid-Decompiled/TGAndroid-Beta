@@ -2,36 +2,36 @@ package yg;
 
 import android.content.Context;
 import c8.ha;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k5;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
 public final class i extends c {
-    public final k5 f59367s;
-    public Object f59368w;
+    public final k5 f59459s;
+    public Object f59460w;
 
     public i(Context context, f6 f6Var) {
         super(context, f6Var);
         int i7;
         float f10;
         float f11;
-        this.f59341c.setVisibility(8);
-        k5 k5Var = this.f59342e;
+        this.f59433c.setVisibility(8);
+        k5 k5Var = this.f59434e;
         int i10 = k6.B6;
         r6.Y(k5Var, i10, f6Var);
         k5 k5Var2 = new k5(context);
-        this.f59367s = k5Var2;
+        this.f59459s = k5Var2;
         k5Var2.setTextSize(16);
         r6.Y(k5Var2, i10, f6Var);
-        if (hd.f22878a0) {
+        if (id.f23157a0) {
             i7 = 3;
         } else {
             i7 = 5;
         }
         k5Var2.setGravity(i7);
         addView(k5Var2);
-        boolean z9 = hd.f22878a0;
+        boolean z9 = id.f23157a0;
         int i11 = (z9 ? 3 : 5) | 16;
         if (z9) {
             f10 = 20.0f;
@@ -52,6 +52,6 @@ public final class i extends c {
     }
 
     public Object getGifCode() {
-        return this.f59368w;
+        return this.f59460w;
     }
 }

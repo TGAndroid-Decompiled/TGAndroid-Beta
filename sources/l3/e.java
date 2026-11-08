@@ -5,16 +5,16 @@ import f3.j0;
 import h2.x;
 import i2.o;
 public final class e extends b1 {
-    public final x f18120b;
-    public final x f18121c;
+    public final x f18123b;
+    public final x f18124c;
     public int d;
-    public boolean f18122e;
-    public boolean f18123f;
-    public int f18124g;
+    public boolean f18125e;
+    public boolean f18126f;
+    public int f18127g;
 
     public e(j0 j0Var) {
         super(j0Var);
-        this.f18120b = new x(o.f15202a);
-        this.f18121c = new x(4);
+        this.f18123b = new x(o.f15205a);
+        this.f18124c = new x(4);
     }
 }

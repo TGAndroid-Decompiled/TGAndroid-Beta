@@ -16,10 +16,10 @@ public final class tz0 extends EditTextBoldCursor {
         MotionEvent obtain = MotionEvent.obtain(motionEvent);
         float rawX = obtain.getRawX();
         float rawY = obtain.getRawY();
-        ThemeEditorView.EditorAlert editorAlert = this.G1.f39810c;
+        ThemeEditorView.EditorAlert editorAlert = this.G1.f39757c;
         int i7 = ThemeEditorView.EditorAlert.D1;
-        obtain.setLocation(rawX, rawY - editorAlert.f28616b.getTranslationY());
-        editorAlert.f31577j1.dispatchTouchEvent(obtain);
+        obtain.setLocation(rawX, rawY - editorAlert.f28619b.getTranslationY());
+        editorAlert.f31581j1.dispatchTouchEvent(obtain);
         obtain.recycle();
         return super.dispatchTouchEvent(motionEvent);
     }

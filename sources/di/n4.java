@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.hc;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.e10;
+import org.telegram.ui.Components.f10;
 import org.telegram.ui.Components.mu0;
 public final class n4 {
     public final ImageReceiver f9399a;
@@ -24,7 +24,7 @@ public final class n4 {
         this.f9399a = imageReceiver;
         TextPaint textPaint = new TextPaint(1);
         this.d = textPaint;
-        imageReceiver.f21233z1 = true;
+        imageReceiver.f21236z1 = true;
         imageReceiver.J0(org.telegram.messenger.g0.L(6.0f));
         textPaint.setColor(-1);
         textPaint.setTextSize(org.telegram.messenger.g0.L(13.0f));
@@ -46,7 +46,7 @@ public final class n4 {
                 r7.x(imageReceiver, storyItem);
             } else {
                 x6 x6Var = r5Var.f9700b;
-                e10[] e10VarArr = r7.f9704a;
+                f10[] f10VarArr = r7.f9704a;
                 if (x6Var.f9930c.K) {
                     imageReceiver.r0(hc.g(x6Var.f9932f), "320_180", null, null, null, 0L, null, null, 0);
                 } else {

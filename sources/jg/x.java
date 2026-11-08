@@ -12,10 +12,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_update;
 public final class x implements Comparator {
-    public final int f16976a;
+    public final int f16979a;
 
     public x(int i7) {
-        this.f16976a = i7;
+        this.f16979a = i7;
     }
 
     @Override
@@ -25,10 +25,10 @@ public final class x implements Comparator {
         int i7;
         int i10;
         int compare;
-        switch (this.f16976a) {
+        switch (this.f16979a) {
             case 0:
-                int i11 = ((g0) obj).f16725b;
-                int i12 = ((g0) obj2).f16725b;
+                int i11 = ((g0) obj).f16728b;
+                int i12 = ((g0) obj2).f16728b;
                 if (i11 < i12) {
                     return 1;
                 }
@@ -39,8 +39,8 @@ public final class x implements Comparator {
             case 1:
                 return Double.compare(((TLRPC.TL_topPeer) obj2).rating, ((TLRPC.TL_topPeer) obj).rating);
             case 2:
-                int i13 = ((x1) obj).f16979b;
-                int i14 = ((x1) obj2).f16979b;
+                int i13 = ((x1) obj).f16982b;
+                int i14 = ((x1) obj2).f16982b;
                 if (i13 < i14) {
                     return 1;
                 }
@@ -51,14 +51,14 @@ public final class x implements Comparator {
             case 3:
                 return ((TL_account.TL_businessWeeklyOpen) obj).start_minute - ((TL_account.TL_businessWeeklyOpen) obj2).start_minute;
             case 4:
-                return ((kg.s1) obj).f17531c - ((kg.s1) obj2).f17531c;
+                return ((kg.s1) obj).f17534c - ((kg.s1) obj2).f17534c;
             case 5:
-                return Integer.compare(((l4.d) obj).f18147a.f18150b, ((l4.d) obj2).f18147a.f18150b);
+                return Integer.compare(((l4.d) obj).f18150a.f18153b, ((l4.d) obj2).f18150a.f18153b);
             case 6:
-                return Long.compare(((l4.c) obj).f18144b, ((l4.c) obj2).f18144b);
+                return Long.compare(((l4.c) obj).f18147b, ((l4.c) obj2).f18147b);
             case 7:
-                top = ((v4.d1) obj2).f56951a.getTop();
-                top2 = ((v4.d1) obj).f56951a.getTop();
+                top = ((v4.d1) obj2).f57043a.getTop();
+                top2 = ((v4.d1) obj).f57043a.getTop();
                 break;
             case 8:
                 top = Integer.bitCount(((Integer) obj2).intValue());
@@ -81,20 +81,20 @@ public final class x implements Comparator {
             case 10:
                 p2.b bVar = (p2.b) obj;
                 p2.b bVar2 = (p2.b) obj2;
-                int compare2 = Integer.compare(bVar.f53003c, bVar2.f53003c);
+                int compare2 = Integer.compare(bVar.f53096c, bVar2.f53096c);
                 if (compare2 == 0) {
-                    return bVar.f53002b.compareTo(bVar2.f53002b);
+                    return bVar.f53095b.compareTo(bVar2.f53095b);
                 }
                 return compare2;
             case 11:
                 org.telegram.messenger.d0 d0Var = (org.telegram.messenger.d0) obj;
                 org.telegram.messenger.d0 d0Var2 = (org.telegram.messenger.d0) obj2;
-                int i16 = d0Var.f21939b;
-                int i17 = d0Var2.f21939b;
+                int i16 = d0Var.f21962b;
+                int i17 = d0Var2.f21962b;
                 if (i16 < i17) {
                     return -1;
                 }
-                if (i16 > i17 || (i7 = d0Var.f21940c) < (i10 = d0Var2.f21940c)) {
+                if (i16 > i17 || (i7 = d0Var.f21963c) < (i10 = d0Var2.f21963c)) {
                     return 1;
                 }
                 if (i7 > i10) {
@@ -102,7 +102,7 @@ public final class x implements Comparator {
                 }
                 return 0;
             case 12:
-                int i18 = (((org.telegram.messenger.y0) obj2).f26561e > ((org.telegram.messenger.y0) obj).f26561e ? 1 : (((org.telegram.messenger.y0) obj2).f26561e == ((org.telegram.messenger.y0) obj).f26561e ? 0 : -1));
+                int i18 = (((org.telegram.messenger.y0) obj2).f26568e > ((org.telegram.messenger.y0) obj).f26568e ? 1 : (((org.telegram.messenger.y0) obj2).f26568e == ((org.telegram.messenger.y0) obj).f26568e ? 0 : -1));
                 if (i18 > 0) {
                     return -1;
                 }
@@ -140,7 +140,7 @@ public final class x implements Comparator {
                 }
                 return 1;
             case 16:
-                int i20 = (((g7) obj).f22607a > ((g7) obj2).f22607a ? 1 : (((g7) obj).f22607a == ((g7) obj2).f22607a ? 0 : -1));
+                int i20 = (((g7) obj).f22626a > ((g7) obj2).f22626a ? 1 : (((g7) obj).f22626a == ((g7) obj2).f22626a ? 0 : -1));
                 if (i20 > 0) {
                     return 1;
                 }
@@ -154,8 +154,8 @@ public final class x implements Comparator {
                 String[] strArr = MediaController.V1;
                 int f12 = ijVar.f1();
                 int f13 = ijVar2.f1();
-                long j3 = ijVar.f23244k.grouped_id;
-                long j10 = ijVar2.f23244k.grouped_id;
+                long j3 = ijVar.f23262k.grouped_id;
+                long j10 = ijVar2.f23262k.grouped_id;
                 if (f12 < 0 && f13 < 0) {
                     if (j3 != 0 && j3 == j10) {
                         compare = Integer.compare(f12, f13);
@@ -245,7 +245,7 @@ public final class x implements Comparator {
                 top2 = ((String) obj).length();
                 break;
             case 27:
-                return ((aj) obj).f21442a - ((aj) obj2).f21442a;
+                return ((aj) obj).f21441a - ((aj) obj2).f21441a;
             case 28:
                 return org.telegram.messenger.g0.A(((TLRPC.Updates) obj).pts, ((TLRPC.Updates) obj2).pts);
             default:

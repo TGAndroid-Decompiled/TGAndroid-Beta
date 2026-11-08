@@ -8,9 +8,9 @@ import org.telegram.messenger.ij;
 import org.telegram.messenger.ls;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.cj0;
-import org.telegram.ui.Components.l10;
 import org.telegram.ui.Components.m11;
 import org.telegram.ui.Components.v80;
+import org.telegram.ui.Components.vs;
 import org.telegram.ui.an;
 public final class n4 implements org.telegram.ui.ActionBar.r1, cj0 {
     public final int f4401a;
@@ -49,7 +49,7 @@ public final class n4 implements org.telegram.ui.ActionBar.r1, cj0 {
                 m11 m11Var = (m11) this.f4403c;
                 ArrayList arrayList = (ArrayList) this.d;
                 HashSet hashSet = (HashSet) this.f4404e;
-                l10 l10Var = (l10) this.f4405f;
+                vs vsVar = (vs) this.f4405f;
                 int size = arrayList.size();
                 int i10 = 0;
                 while (true) {
@@ -61,9 +61,9 @@ public final class n4 implements org.telegram.ui.ActionBar.r1, cj0 {
                             m11Var.n(0L, false);
                         }
                     } else {
-                        m11Var.f35830k0.addAll(hashSet);
+                        m11Var.f35858k0.addAll(hashSet);
                         m11Var.q();
-                        org.telegram.ui.Components.hc.a0(m11Var.f35833s).U(org.telegram.messenger.hd.K0(hashSet.size(), "TopicsDeleted"), false, new w2(m11Var, hashSet, arrayList, j3, 18), new v80(m11Var, arrayList, l10Var, 22)).j();
+                        org.telegram.ui.Components.hc.a0(m11Var.f35861s).U(org.telegram.messenger.id.K0(hashSet.size(), "TopicsDeleted"), false, new w2(m11Var, hashSet, arrayList, j3, 18), new v80(m11Var, arrayList, vsVar, 22)).j();
                         u1Var.dismiss();
                         return;
                     }
@@ -80,13 +80,13 @@ public final class n4 implements org.telegram.ui.ActionBar.r1, cj0 {
         this.f4402b = j3;
     }
 
-    public n4(m11 m11Var, ArrayList arrayList, long j3, HashSet hashSet, l10 l10Var) {
+    public n4(m11 m11Var, ArrayList arrayList, long j3, HashSet hashSet, vs vsVar) {
         this.f4401a = 3;
         this.f4403c = m11Var;
         this.d = arrayList;
         this.f4402b = j3;
         this.f4404e = hashSet;
-        this.f4405f = l10Var;
+        this.f4405f = vsVar;
     }
 
     @Override

@@ -42,11 +42,11 @@ public final class u9 implements RequestDelegate {
                 jg.z1 z1Var = (jg.z1) this.f4834c;
                 String str = (String) this.d;
                 a0.h hVar = z1Var.h;
-                ArrayList arrayList = z1Var.f16994g;
-                int i7 = z1Var.f16999m;
+                ArrayList arrayList = z1Var.f16997g;
+                int i7 = z1Var.f17002m;
                 if (tL_error == null) {
                     TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject;
-                    z1Var.f17000n = str.toLowerCase();
+                    z1Var.f17003n = str.toLowerCase();
                     qp.s1(i7).Y3(tL_channels_channelParticipants.users, false);
                     qp.s1(i7).S3(tL_channels_channelParticipants.chats, false);
                     arrayList.clear();

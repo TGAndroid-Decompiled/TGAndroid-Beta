@@ -20,8 +20,8 @@ public final class o extends w31 {
     public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
         p pVar = (p) view;
         y00 y00Var = (y00) x31Var.G;
-        pVar.f10841a.setText(y00Var.f26563b);
-        pVar.f10842b.setText(y00Var.f26564c);
+        pVar.f10841a.setText(y00Var.f26570b);
+        pVar.f10842b.setText(y00Var.f26571c);
         if (pVar.f10843c != z9) {
             pVar.invalidate();
         }

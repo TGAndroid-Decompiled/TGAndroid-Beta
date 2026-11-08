@@ -4,36 +4,36 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class hl0 implements bj0 {
-    public final int f34354a;
-    public final int f34355b;
-    public final org.telegram.ui.ActionBar.f2 f34356c;
+    public final int f34291a;
+    public final int f34292b;
+    public final org.telegram.ui.ActionBar.f2 f34293c;
     public final Object d;
 
     public hl0(Object obj, int i7, org.telegram.ui.ActionBar.f2 f2Var, int i10) {
-        this.f34354a = i10;
+        this.f34291a = i10;
         this.d = obj;
-        this.f34355b = i7;
-        this.f34356c = f2Var;
+        this.f34292b = i7;
+        this.f34293c = f2Var;
     }
 
     @Override
     public final void c(int i7, View view) {
         ch.o0 o0Var;
-        switch (this.f34354a) {
+        switch (this.f34291a) {
             case 0:
                 ql0 ql0Var = (ql0) this.d;
-                ArrayList arrayList = ql0Var.f37333r;
+                ArrayList arrayList = ql0Var.f37363r;
                 bi.q1 q1Var = ql0Var.d;
                 if (i7 >= 0 && i7 < arrayList.size()) {
-                    if (!org.telegram.messenger.p10.i(this.f34355b).q()) {
-                        new ug.w0(this.f34356c, 24, true).show();
+                    if (!org.telegram.messenger.p10.i(this.f34292b).q()) {
+                        new ug.w0(this.f34293c, 24, true).show();
                         return;
                     }
-                    long j3 = ((nl0) arrayList.get(i7)).f36368a.h;
+                    long j3 = ((nl0) arrayList.get(i7)).f36384a.h;
                     if (ql0Var.h == j3) {
                         o0Var = null;
                     } else {
-                        o0Var = ((nl0) arrayList.get(i7)).f36368a;
+                        o0Var = ((nl0) arrayList.get(i7)).f36384a;
                     }
                     if (ql0Var.f(o0Var)) {
                         for (int i10 = 0; i10 < q1Var.getChildCount(); i10++) {
@@ -68,8 +68,8 @@ public final class hl0 implements bj0 {
                 ug.f1 f1Var = (ug.f1) this.d;
                 if (view instanceof org.telegram.ui.is0) {
                     org.telegram.ui.is0 is0Var = (org.telegram.ui.is0) view;
-                    PremiumPreviewFragment.v0(this.f34355b, is0Var.f46738f.f50822a);
-                    f1Var.t(new ug.w0(this.f34356c, is0Var.f46738f.f50822a, false));
+                    PremiumPreviewFragment.v0(this.f34292b, is0Var.f46741f.f50766a);
+                    f1Var.t(new ug.w0(this.f34293c, is0Var.f46741f.f50766a, false));
                     return;
                 }
                 return;

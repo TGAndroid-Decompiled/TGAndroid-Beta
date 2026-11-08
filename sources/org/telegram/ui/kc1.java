@@ -1,22 +1,20 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
-import java.io.File;
-public final class kc1 implements org.telegram.ui.Components.a71 {
-    public final WallpapersListActivity f47168a;
+import org.telegram.tgnet.TLRPC;
+public final class kc1 implements org.telegram.ui.ActionBar.r1, u71 {
+    public final WallpapersListActivity f47173a;
 
     public kc1(WallpapersListActivity wallpapersListActivity) {
-        this.f47168a = wallpapersListActivity;
+        this.f47173a = wallpapersListActivity;
     }
 
     @Override
-    public final void b(File file, Bitmap bitmap, boolean z9) {
-        u71 u71Var = new u71(new pc1(file, file, ""), bitmap, false);
-        u71Var.h1(0L);
-        this.f47168a.presentFragment(u71Var, z9);
+    public void a(TLRPC.TL_wallPaper tL_wallPaper) {
+        this.f47173a.removeSelfFromStack();
     }
 
     @Override
-    public final void a() {
+    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        WallpapersListActivity.a0(this.f47173a);
     }
 }

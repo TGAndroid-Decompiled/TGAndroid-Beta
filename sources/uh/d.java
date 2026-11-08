@@ -12,44 +12,44 @@ import org.telegram.ui.Components.i6;
 import org.telegram.ui.Components.xq;
 public final class d extends c {
     public final i6 d;
-    public final dh0 f56819e;
-    public final te.a f56820f;
+    public final dh0 f56911e;
+    public final te.a f56912f;
     public float h;
 
     public d(View view, f6 f6Var) {
         super(f6Var);
         dh0 dh0Var = new dh0(view);
-        this.f56819e = dh0Var;
+        this.f56911e = dh0Var;
         dh0Var.d(null, true, false);
         dh0Var.v = 650.0f;
         dh0Var.e(false, 0.69f);
-        dh0Var.f32914p.setStrokeWidth(g0.L(1.5f));
-        this.f56820f = new te.a(view, xq.h, 260L);
+        dh0Var.f32922p.setStrokeWidth(g0.L(1.5f));
+        this.f56912f = new te.a(view, xq.h, 260L);
         i6 i6Var = new i6(true, false, false);
         this.d = i6Var;
         i6Var.x(g0.o());
         i6Var.w(g0.L(13.0f));
-        i6Var.f34508b = 17;
-        int w02 = k6.w0(k6.f27941i6, f6Var);
-        if (this.f56817b != w02) {
-            k6.H1(this.f56816a, w02, false);
-            this.f56817b = w02;
+        i6Var.f34552b = 17;
+        int w02 = k6.w0(k6.f27944i6, f6Var);
+        if (this.f56909b != w02) {
+            k6.H1(this.f56908a, w02, false);
+            this.f56909b = w02;
         }
     }
 
     @Override
     public final void a(int i7) {
-        this.f56816a.setAlpha(i7);
+        this.f56908a.setAlpha(i7);
         this.d.B = i7;
     }
 
     public final float b() {
-        return this.f56820f.f55394e;
+        return this.f56912f.f55486e;
     }
 
     public final void c(int i7) {
         this.d.u(i7);
-        this.f56819e.f32913o = i7;
+        this.f56911e.f32921o = i7;
     }
 
     public final void d(float f10) {
@@ -63,7 +63,7 @@ public final class d extends c {
 
     @Override
     public final void draw(Canvas canvas) {
-        float f10 = this.f56820f.f55394e;
+        float f10 = this.f56912f.f55486e;
         if (f10 < 1.0f) {
             s.b(canvas, this.d, 1.0f - f10);
         }
@@ -72,7 +72,7 @@ public final class d extends c {
             float exactCenterY = getBounds().exactCenterY();
             canvas.save();
             canvas.scale(f10, f10, exactCenterX, exactCenterY);
-            this.f56819e.a(canvas);
+            this.f56911e.a(canvas);
             canvas.restore();
         }
     }
@@ -86,6 +86,6 @@ public final class d extends c {
         int L = g0.L(11.0f);
         int centerX = rect.centerX();
         int centerY = rect.centerY();
-        this.f56819e.f(centerX - L, centerY - L, centerX + L, centerY + L);
+        this.f56911e.f(centerX - L, centerY - L, centerX + L, centerY + L);
     }
 }

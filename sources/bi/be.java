@@ -40,7 +40,7 @@ public final class be extends View implements org.telegram.ui.ActionBar.a6 {
         this.f3537c = z9;
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
         paint.setStrokeWidth(org.telegram.messenger.g0.L(3.0f));
-        paint.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27922h5, ceVar.f3614i1));
+        paint.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27925h5, ceVar.f3614i1));
     }
 
     @Override
@@ -259,7 +259,7 @@ public final class be extends View implements org.telegram.ui.ActionBar.a6 {
                     mutate.setColorFilter(new PorterDuffColorFilter(i17, mode));
                     Drawable mutate2 = beVar.getContext().getResources().getDrawable(2131231175).mutate();
                     aeVar.f3490t = mutate2;
-                    mutate2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27922h5, ceVar.f3614i1), mode));
+                    mutate2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27925h5, ceVar.f3614i1), mode));
                 }
             }
             if (vdVar3.f4929b) {
@@ -270,7 +270,7 @@ public final class be extends View implements org.telegram.ui.ActionBar.a6 {
                     aeVar.f3486p = z13;
                     if (z13) {
                         r22 = null;
-                        t6 = org.telegram.messenger.hd.M0(2131745049, null);
+                        t6 = org.telegram.messenger.id.M0(2131745051, null);
                     } else {
                         r22 = null;
                         t6 = org.telegram.messenger.m5.t(aeVar.f3480j);

@@ -10,7 +10,7 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.Stack;
 import java.util.concurrent.atomic.AtomicReference;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.Components.a80;
 import org.telegram.ui.Components.x70;
 import org.telegram.ui.Components.xq;
@@ -53,7 +53,7 @@ public final class f8 {
         this.f9011k = new gf.c(g8Var, arrayList, new q4(this, 3));
         a80 a80Var = new a80();
         this.f9019s = a80Var;
-        a80Var.f31743y = path;
+        a80Var.f31752y = path;
         a80Var.k(4.0f);
         a80Var.g(org.telegram.ui.ActionBar.k6.r1(0.3f, -1), org.telegram.ui.ActionBar.k6.r1(0.1f, -1), org.telegram.ui.ActionBar.k6.r1(0.2f, -1), org.telegram.ui.ActionBar.k6.r1(0.7f, -1));
         a80Var.setCallback(g8Var);
@@ -201,7 +201,7 @@ public final class f8 {
                             arrayList2 = arrayList;
                             i10 = i12;
                             float T1 = org.telegram.messenger.g0.T1(f12, f13, g8Var.f9060x);
-                            float T12 = org.telegram.messenger.g0.T1(d8Var.d, d8Var.f8938f, xq.f40346g.getInterpolation(g8Var.f9060x));
+                            float T12 = org.telegram.messenger.g0.T1(d8Var.d, d8Var.f8938f, xq.f40367g.getInterpolation(g8Var.f9060x));
                             canvas.translate(g8Var.E + T1, g8Var.F + i7 + T12);
                             if (z9) {
                                 f(d8Var.f8935b, g8Var.E + T1, g8Var.F + i7 + T12);
@@ -325,7 +325,7 @@ public final class f8 {
         if (g8Var.f9052b) {
             float topPadding = this.f9006e.getTopPadding() + this.f9006e.getLineTop(2);
             if (this == f8VarArr[0]) {
-                String M0 = hd.M0(2131745340, null);
+                String M0 = id.M0(2131745342, null);
                 g8Var.f9059w = g8.a(g8Var, textPaint, M0, i7);
                 g8Var.h = ((g8Var.F + i10) + topPadding) - org.telegram.messenger.g0.N(0.3f);
                 g8Var.f9056n = (g8Var.E + i7) - textPaint.measureText(M0);
@@ -442,8 +442,8 @@ public final class f8 {
             c8Var.f8895s = e8Var;
             new zj0(g8Var);
             c8Var.f8886j.setCallback(g8Var);
-            c8Var.h.f39853a = g8Var;
-            c8Var.f8885i.f34579a = g8Var;
+            c8Var.h.f39803a = g8Var;
+            c8Var.f8885i.f34623a = g8Var;
             c8Var.c();
         }
         c8 c8Var3 = this.f9016p;
@@ -453,8 +453,8 @@ public final class f8 {
             c8Var3.f8895s = e8Var2;
             new zj0(g8Var);
             c8Var3.f8886j.setCallback(g8Var);
-            c8Var3.h.f39853a = g8Var;
-            c8Var3.f8885i.f34579a = g8Var;
+            c8Var3.h.f39803a = g8Var;
+            c8Var3.f8885i.f34623a = g8Var;
             c8Var3.c();
         }
         g8Var.f9058s = 0;

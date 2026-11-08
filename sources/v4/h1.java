@@ -1,20 +1,20 @@
 package v4;
 public final class h1 {
-    public int f56991a;
-    public int f56992b;
-    public int f56993c;
+    public int f57083a;
+    public int f57084b;
+    public int f57085c;
     public int d;
-    public int f56994e;
+    public int f57086e;
 
     public final boolean a() {
         int i7;
         int i10;
         int i11;
-        int i12 = this.f56991a;
+        int i12 = this.f57083a;
         int i13 = 2;
         if ((i12 & 7) != 0) {
             int i14 = this.d;
-            int i15 = this.f56992b;
+            int i15 = this.f57084b;
             if (i14 > i15) {
                 i11 = 1;
             } else if (i14 == i15) {
@@ -28,7 +28,7 @@ public final class h1 {
         }
         if ((i12 & 112) != 0) {
             int i16 = this.d;
-            int i17 = this.f56993c;
+            int i17 = this.f57085c;
             if (i16 > i17) {
                 i10 = 1;
             } else if (i16 == i17) {
@@ -41,8 +41,8 @@ public final class h1 {
             }
         }
         if ((i12 & 1792) != 0) {
-            int i18 = this.f56994e;
-            int i19 = this.f56992b;
+            int i18 = this.f57086e;
+            int i19 = this.f57084b;
             if (i18 > i19) {
                 i7 = 1;
             } else if (i18 == i19) {
@@ -55,8 +55,8 @@ public final class h1 {
             }
         }
         if ((i12 & 28672) != 0) {
-            int i20 = this.f56994e;
-            int i21 = this.f56993c;
+            int i20 = this.f57086e;
+            int i21 = this.f57085c;
             if (i20 > i21) {
                 i13 = 1;
             } else if (i20 != i21) {

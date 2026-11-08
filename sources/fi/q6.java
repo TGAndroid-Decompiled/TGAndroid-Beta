@@ -26,7 +26,7 @@ public final class q6 extends View {
     public p6 E;
     public View F;
     public Object G;
-    public org.telegram.messenger.k7 H;
+    public org.telegram.messenger.l7 H;
     public String I;
     public final int[] J;
     public final int[] K;
@@ -96,8 +96,8 @@ public final class q6 extends View {
         float d = this.d.d(this.D);
         my0 my0Var = this.f12670r;
         if (my0Var != null && this.f12671s != null && d > 0.0f) {
-            my0Var.f36136p = getWidth() * 0.7f;
-            this.f12671s.f36136p = getWidth() * 0.7f;
+            my0Var.f36158p = getWidth() * 0.7f;
+            this.f12671s.f36158p = getWidth() * 0.7f;
             float L = org.telegram.messenger.g0.L(5.0f);
             float L2 = org.telegram.messenger.g0.L(10.0f);
             float L3 = org.telegram.messenger.g0.L(32.0f);
@@ -109,7 +109,7 @@ public final class q6 extends View {
             } else {
                 f10 = 0.0f;
             }
-            float max = Math.max(min, Math.max(this.f12670r.f36125c, this.f12671s.f36125c) + f10 + L + org.telegram.messenger.g0.L(15.0f) + L);
+            float max = Math.max(min, Math.max(this.f12670r.f36147c, this.f12671s.f36147c) + f10 + L + org.telegram.messenger.g0.L(15.0f) + L);
             if (this.f12669n) {
                 f11 = L3;
             } else {
@@ -195,11 +195,11 @@ public final class q6 extends View {
                     icVar.c(true);
                 }
             } else if (motionEvent.getAction() == 2) {
-                if (icVar.f34585i && !rectF.contains(motionEvent.getX(), motionEvent.getY())) {
+                if (icVar.f34629i && !rectF.contains(motionEvent.getX(), motionEvent.getY())) {
                     icVar.c(false);
                 }
             } else if (motionEvent.getAction() == 1) {
-                if (icVar.f34585i && (v8Var = this.f12666c) != null && this.E != null) {
+                if (icVar.f34629i && (v8Var = this.f12666c) != null && this.E != null) {
                     v8Var.a(new m6(this, 1));
                 }
                 icVar.c(false);
@@ -208,7 +208,7 @@ public final class q6 extends View {
                 icVar.c(false);
                 this.L = false;
             }
-            if (!this.L && !icVar.f34585i) {
+            if (!this.L && !icVar.f34629i) {
                 return false;
             }
             return true;
@@ -233,11 +233,11 @@ public final class q6 extends View {
     public void setLink(String str) {
         boolean isEmpty = TextUtils.isEmpty(str);
         u8 u8Var = this.f12665b;
-        org.telegram.messenger.k7 k7Var = null;
+        org.telegram.messenger.l7 l7Var = null;
         if (isEmpty) {
-            org.telegram.messenger.k7 k7Var2 = this.H;
-            if (k7Var2 != null) {
-                k7Var2.run();
+            org.telegram.messenger.l7 l7Var2 = this.H;
+            if (l7Var2 != null) {
+                l7Var2.run();
                 this.H = null;
             }
             if (this.D) {
@@ -253,9 +253,9 @@ public final class q6 extends View {
         }
         p6 p6Var = this.E;
         if ((p6Var == null && this.H == null) || (p6Var != null && !TextUtils.equals(p6Var.f12599a, str) && !TextUtils.equals(this.I, str))) {
-            org.telegram.messenger.k7 k7Var3 = this.H;
-            if (k7Var3 != null) {
-                k7Var3.run();
+            org.telegram.messenger.l7 l7Var3 = this.H;
+            if (l7Var3 != null) {
+                l7Var3.run();
                 this.H = null;
             }
             this.E = null;
@@ -279,14 +279,14 @@ public final class q6 extends View {
                                 m6Var.a(new o6(str, (TLRPC.Chat) f22));
                             }
                         }
-                        k7Var = s12.d2().a(str3, queryParameter, new bi.v3(m6Var, s12, str, 4));
+                        l7Var = s12.d2().a(str3, queryParameter, new bi.v3(m6Var, s12, str, 4));
                     }
                 }
             } catch (Exception e10) {
                 org.telegram.messenger.a8.g(e10, true);
-                m6Var.a(k7Var);
+                m6Var.a(l7Var);
             }
-            this.H = k7Var;
+            this.H = l7Var;
             return;
         }
         p6 p6Var2 = this.E;

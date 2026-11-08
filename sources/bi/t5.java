@@ -206,7 +206,7 @@ public final class t5 extends AnimatorListenerAdapter {
             case 26:
                 hi.u uVar = (hi.u) obj;
                 uVar.setVisibility(8);
-                uVar.f14962a = null;
+                uVar.f14965a = null;
                 return;
             case 27:
                 ((hi.a3) obj).E.setVisibility(8);
@@ -217,12 +217,12 @@ public final class t5 extends AnimatorListenerAdapter {
             case 29:
                 super.onAnimationEnd(animator);
                 lg.g gVar = (lg.g) obj;
-                if (!gVar.f18305i1) {
-                    gVar.f18320u0 = false;
-                    gVar.f18319t0.setVisibility(8);
+                if (!gVar.f18308i1) {
+                    gVar.f18323u0 = false;
+                    gVar.f18322t0.setVisibility(8);
                     gVar.invalidate();
                 }
-                gVar.f18298f0 = false;
+                gVar.f18301f0 = false;
                 return;
         }
     }

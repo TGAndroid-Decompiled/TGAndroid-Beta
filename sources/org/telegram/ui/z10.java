@@ -22,25 +22,25 @@ public final class z10 extends org.telegram.ui.Components.voip.k0 {
     @Override
     public final void i(boolean z9) {
         c40 c40Var = this.Q0;
-        a40 a40Var = c40Var.f44624s3;
+        a40 a40Var = c40Var.f44627s3;
         z20 z20Var = c40Var.F1;
         k30 k30Var = c40Var.H1;
-        org.telegram.ui.Components.h10 h10Var = c40Var.f44570g4;
+        org.telegram.ui.Components.i10 i10Var = c40Var.f44573g4;
         z10 z10Var = c40Var.R3;
-        v10 v10Var = c40Var.f44558d4;
-        c40Var.f44582j2 = z9;
+        v10 v10Var = c40Var.f44561d4;
+        c40Var.f44585j2 = z9;
         int i7 = 0;
-        if (c40.f44542x5) {
-            if (!z9 && z10Var.f39258b) {
-                c40Var.f44566f4.H(c40Var.f44562e4, false, true);
+        if (c40.f44545x5) {
+            if (!z9 && z10Var.f39293b) {
+                c40Var.f44569f4.H(c40Var.f44565e4, false, true);
                 return;
             }
             return;
         }
         if (z9) {
-            c40Var.f44545a2[0].d(1, false);
+            c40Var.f44548a2[0].d(1, false);
             z10Var.K0[0].d(2, false);
-            if (!z10Var.f39258b) {
+            if (!z10Var.f39293b) {
                 k30Var.setVisibility(0);
                 z20Var.setVisibility(0);
                 if (a40Var != null) {
@@ -51,16 +51,16 @@ public final class z10 extends org.telegram.ui.Components.voip.k0 {
             c40Var.l1.requestLayout();
             if (v10Var.getVisibility() != 0) {
                 v10Var.setVisibility(0);
-                h10Var.F(v10Var, true);
-                h10Var.G(v10Var, false);
+                i10Var.F(v10Var, true);
+                i10Var.G(v10Var, false);
             } else {
-                h10Var.F(v10Var, true);
+                i10Var.F(v10Var, true);
                 c40Var.Q0(true);
             }
         } else {
-            if (!z10Var.f39258b) {
+            if (!z10Var.f39293b) {
                 v10Var.setVisibility(8);
-                h10Var.F(v10Var, false);
+                i10Var.F(v10Var, false);
             } else {
                 z20Var.setVisibility(8);
                 k30Var.setVisibility(8);
@@ -76,7 +76,7 @@ public final class z10 extends org.telegram.ui.Components.voip.k0 {
                     childAt.setScaleY(1.0f);
                     childAt.setTranslationX(0.0f);
                     childAt.setTranslationY(0.0f);
-                    ((org.telegram.ui.Components.g10) childAt).setProgressToFullscreen(z10Var.f39260c);
+                    ((org.telegram.ui.Components.h10) childAt).setProgressToFullscreen(z10Var.f39295c);
                 }
             }
         }
@@ -85,7 +85,7 @@ public final class z10 extends org.telegram.ui.Components.voip.k0 {
             i7 = 8;
         }
         view.setVisibility(i7);
-        if (!c40Var.f44582j2) {
+        if (!c40Var.f44585j2) {
             c40Var.Q0(true);
         }
     }
@@ -100,10 +100,10 @@ public final class z10 extends org.telegram.ui.Components.voip.k0 {
         if (z10Var == null) {
             f10 = 0.0f;
         } else {
-            f10 = z10Var.f39260c;
+            f10 = z10Var.f39295c;
         }
         c40Var.G0 = org.telegram.messenger.g0.S0(Math.max(f11, f10), 1.0f, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Xg, false), org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Ug, false));
-        c40Var.f28616b.invalidate();
+        c40Var.f28619b.invalidate();
         c40Var.G1(c40Var.L3);
     }
 }

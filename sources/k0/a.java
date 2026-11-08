@@ -7,31 +7,31 @@ import androidx.biometric.x;
 import androidx.biometric.z;
 import d6.i;
 import java.lang.ref.WeakReference;
-import org.telegram.messenger.hd;
-import org.telegram.ui.Wallet.w0;
+import org.telegram.messenger.id;
+import org.telegram.ui.Wallet.v0;
 public final class a extends FingerprintManager.AuthenticationCallback {
-    public final int f17147a;
-    public final Object f17148b;
+    public final int f17150a;
+    public final Object f17151b;
 
     public a(Object obj, int i7) {
-        this.f17147a = i7;
-        this.f17148b = obj;
+        this.f17150a = i7;
+        this.f17151b = obj;
     }
 
     @Override
     public final void onAuthenticationError(int i7, CharSequence charSequence) {
-        switch (this.f17147a) {
+        switch (this.f17150a) {
             case 0:
-                ((x) ((a0) ((i) this.f17148b).f8209b).d).a(i7, charSequence);
+                ((x) ((a0) ((i) this.f17151b).f8209b).d).a(i7, charSequence);
                 return;
             default:
-                w0 w0Var = (w0) this.f17148b;
-                if (w0Var.f() && !w0Var.f43250f) {
+                v0 v0Var = (v0) this.f17151b;
+                if (v0Var.f() && !v0Var.f43221f) {
                     if (i7 == 5) {
-                        w0Var.c("AUTH_CANCELED");
+                        v0Var.c("AUTH_CANCELED");
                         return;
                     } else {
-                        w0Var.a();
+                        v0Var.a();
                         return;
                     }
                 }
@@ -42,8 +42,8 @@ public final class a extends FingerprintManager.AuthenticationCallback {
     @Override
     public final void onAuthenticationFailed() {
         AlertDialog alertDialog;
-        int i7 = this.f17147a;
-        Object obj = this.f17148b;
+        int i7 = this.f17150a;
+        Object obj = this.f17151b;
         switch (i7) {
             case 0:
                 WeakReference weakReference = ((x) ((a0) ((i) obj).f8209b).d).f2026a;
@@ -57,9 +57,9 @@ public final class a extends FingerprintManager.AuthenticationCallback {
                 }
                 return;
             default:
-                w0 w0Var = (w0) obj;
-                if (w0Var.f() && (alertDialog = w0Var.f43252i) != null) {
-                    alertDialog.setMessage(hd.M0(2131743118, null));
+                v0 v0Var = (v0) obj;
+                if (v0Var.f() && (alertDialog = v0Var.f43223i) != null) {
+                    alertDialog.setMessage(id.M0(2131743120, null));
                     return;
                 }
                 return;
@@ -69,9 +69,9 @@ public final class a extends FingerprintManager.AuthenticationCallback {
     @Override
     public final void onAuthenticationHelp(int i7, CharSequence charSequence) {
         AlertDialog alertDialog;
-        switch (this.f17147a) {
+        switch (this.f17150a) {
             case 0:
-                WeakReference weakReference = ((x) ((a0) ((i) this.f17148b).f8209b).d).f2026a;
+                WeakReference weakReference = ((x) ((a0) ((i) this.f17151b).f8209b).d).f2026a;
                 if (weakReference.get() != null) {
                     z zVar = (z) weakReference.get();
                     if (zVar.f2043t == null) {
@@ -82,8 +82,8 @@ public final class a extends FingerprintManager.AuthenticationCallback {
                 }
                 return;
             default:
-                w0 w0Var = (w0) this.f17148b;
-                if (w0Var.f() && (alertDialog = w0Var.f43252i) != null) {
+                v0 v0Var = (v0) this.f17151b;
+                if (v0Var.f() && (alertDialog = v0Var.f43223i) != null) {
                     alertDialog.setMessage(charSequence);
                     return;
                 }

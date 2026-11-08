@@ -4,6 +4,6 @@ import org.telegram.messenger.ij;
 public final class l extends ij {
     @Override
     public final float H1() {
-        return this.f23251m.h;
+        return this.f23269m.h;
     }
 }

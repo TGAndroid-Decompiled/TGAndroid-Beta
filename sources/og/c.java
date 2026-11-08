@@ -8,22 +8,22 @@ import android.view.VelocityTracker;
 import android.view.ViewConfiguration;
 import org.telegram.messenger.g0;
 public final class c {
-    public final ScaleGestureDetector f20940a;
-    public o f20941b;
-    public float f20942c;
+    public final ScaleGestureDetector f20943a;
+    public o f20944b;
+    public float f20945c;
     public float d;
-    public final float f20944f;
-    public VelocityTracker f20945g;
+    public final float f20947f;
+    public VelocityTracker f20948g;
     public boolean h;
-    public long f20948k;
-    public boolean f20949l;
-    public final float f20943e = g0.L(1.0f);
-    public int f20946i = -1;
-    public int f20947j = 0;
+    public long f20951k;
+    public boolean f20952l;
+    public final float f20946e = g0.L(1.0f);
+    public int f20949i = -1;
+    public int f20950j = 0;
 
     public c(Context context) {
-        this.f20944f = ViewConfiguration.get(context).getScaledMinimumFlingVelocity();
-        this.f20940a = new ScaleGestureDetector(context, new b(this, 0));
+        this.f20947f = ViewConfiguration.get(context).getScaledMinimumFlingVelocity();
+        this.f20943a = new ScaleGestureDetector(context, new b(this, 0));
     }
 
     public final void a(MotionEvent motionEvent) {
@@ -35,50 +35,50 @@ public final class c {
         float y12;
         n nVar;
         int i7;
-        this.f20940a.onTouchEvent(motionEvent);
+        this.f20943a.onTouchEvent(motionEvent);
         int action = motionEvent.getAction() & 255;
         boolean z9 = true;
         if (action != 0) {
             if (action != 1 && action != 3) {
                 if (action == 6) {
                     int action2 = (65280 & motionEvent.getAction()) >> 8;
-                    if (motionEvent.getPointerId(action2) == this.f20946i) {
+                    if (motionEvent.getPointerId(action2) == this.f20949i) {
                         if (action2 == 0) {
                             i7 = 1;
                         } else {
                             i7 = 0;
                         }
-                        this.f20946i = motionEvent.getPointerId(i7);
-                        this.f20942c = motionEvent.getX(i7);
+                        this.f20949i = motionEvent.getPointerId(i7);
+                        this.f20945c = motionEvent.getX(i7);
                         this.d = motionEvent.getY(i7);
                     }
                 }
             } else {
-                if (!this.h && SystemClock.elapsedRealtime() - this.f20948k < 800 && (nVar = this.f20941b.M) != null) {
+                if (!this.h && SystemClock.elapsedRealtime() - this.f20951k < 800 && (nVar = this.f20944b.M) != null) {
                     nVar.c0();
                 }
-                this.f20946i = -1;
+                this.f20949i = -1;
             }
         } else {
-            this.f20946i = motionEvent.getPointerId(0);
-            this.f20948k = SystemClock.elapsedRealtime();
+            this.f20949i = motionEvent.getPointerId(0);
+            this.f20951k = SystemClock.elapsedRealtime();
         }
-        int i10 = this.f20946i;
+        int i10 = this.f20949i;
         if (i10 == -1) {
             i10 = 0;
         }
-        this.f20947j = motionEvent.findPointerIndex(i10);
+        this.f20950j = motionEvent.findPointerIndex(i10);
         int action3 = motionEvent.getAction();
         if (action3 != 0) {
             if (action3 != 1) {
                 if (action3 != 2) {
                     if (action3 == 3) {
-                        VelocityTracker velocityTracker = this.f20945g;
+                        VelocityTracker velocityTracker = this.f20948g;
                         if (velocityTracker != null) {
                             velocityTracker.recycle();
-                            this.f20945g = null;
+                            this.f20948g = null;
                         }
-                        this.f20949l = false;
+                        this.f20952l = false;
                         this.h = false;
                         return;
                     }
@@ -86,85 +86,85 @@ public final class c {
                 }
             } else {
                 if (this.h) {
-                    if (this.f20945g != null) {
+                    if (this.f20948g != null) {
                         try {
-                            x12 = motionEvent.getX(this.f20947j);
+                            x12 = motionEvent.getX(this.f20950j);
                         } catch (Exception unused) {
                             x12 = motionEvent.getX();
                         }
-                        this.f20942c = x12;
+                        this.f20945c = x12;
                         try {
-                            y12 = motionEvent.getY(this.f20947j);
+                            y12 = motionEvent.getY(this.f20950j);
                         } catch (Exception unused2) {
                             y12 = motionEvent.getY();
                         }
                         this.d = y12;
-                        this.f20945g.addMovement(motionEvent);
-                        this.f20945g.computeCurrentVelocity(1000);
-                        if (Math.max(Math.abs(this.f20945g.getXVelocity()), Math.abs(this.f20945g.getYVelocity())) >= this.f20944f) {
-                            this.f20941b.getClass();
+                        this.f20948g.addMovement(motionEvent);
+                        this.f20948g.computeCurrentVelocity(1000);
+                        if (Math.max(Math.abs(this.f20948g.getXVelocity()), Math.abs(this.f20948g.getYVelocity())) >= this.f20947f) {
+                            this.f20944b.getClass();
                         }
                     }
                     this.h = false;
                 }
-                VelocityTracker velocityTracker2 = this.f20945g;
+                VelocityTracker velocityTracker2 = this.f20948g;
                 if (velocityTracker2 != null) {
                     velocityTracker2.recycle();
-                    this.f20945g = null;
+                    this.f20948g = null;
                 }
-                this.f20949l = false;
+                this.f20952l = false;
                 return;
             }
         }
-        if (!this.f20949l) {
+        if (!this.f20952l) {
             VelocityTracker obtain = VelocityTracker.obtain();
-            this.f20945g = obtain;
+            this.f20948g = obtain;
             if (obtain != null) {
                 obtain.addMovement(motionEvent);
             }
             try {
-                x11 = motionEvent.getX(this.f20947j);
+                x11 = motionEvent.getX(this.f20950j);
             } catch (Exception unused3) {
                 x11 = motionEvent.getX();
             }
-            this.f20942c = x11;
+            this.f20945c = x11;
             try {
-                y11 = motionEvent.getY(this.f20947j);
+                y11 = motionEvent.getY(this.f20950j);
             } catch (Exception unused4) {
                 y11 = motionEvent.getY();
             }
             this.d = y11;
             this.h = false;
-            this.f20949l = true;
+            this.f20952l = true;
             return;
         }
         try {
-            x10 = motionEvent.getX(this.f20947j);
+            x10 = motionEvent.getX(this.f20950j);
         } catch (Exception unused5) {
             x10 = motionEvent.getX();
         }
         try {
-            y10 = motionEvent.getY(this.f20947j);
+            y10 = motionEvent.getY(this.f20950j);
         } catch (Exception unused6) {
             y10 = motionEvent.getY();
         }
-        float f10 = x10 - this.f20942c;
+        float f10 = x10 - this.f20945c;
         float f11 = y10 - this.d;
         if (!this.h) {
-            if (((float) Math.sqrt((f11 * f11) + (f10 * f10))) < this.f20943e) {
+            if (((float) Math.sqrt((f11 * f11) + (f10 * f10))) < this.f20946e) {
                 z9 = false;
             }
             this.h = z9;
         }
         if (this.h) {
-            o oVar = this.f20941b;
+            o oVar = this.f20944b;
             if (!oVar.F) {
                 m.f(oVar.L, f10, f11);
                 oVar.r(false);
             }
-            this.f20942c = x10;
+            this.f20945c = x10;
             this.d = y10;
-            VelocityTracker velocityTracker3 = this.f20945g;
+            VelocityTracker velocityTracker3 = this.f20948g;
             if (velocityTracker3 != null) {
                 velocityTracker3.addMovement(motionEvent);
             }

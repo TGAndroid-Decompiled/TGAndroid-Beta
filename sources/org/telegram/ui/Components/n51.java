@@ -14,7 +14,7 @@ public final class n51 extends l2.j {
     public final n2.q0 a(Context context) {
         di.h4 h4Var = new di.h4(context, 1);
         ?? obj = new Object();
-        obj.f18482f = this.d;
+        obj.f18485f = this.d;
         ?? obj2 = new Object();
         obj2.f1589e = new float[0];
         obj2.f1586a = 3;
@@ -41,11 +41,11 @@ public final class n51 extends l2.j {
             ((float[]) obj2.f1591g)[i12] = (float) Math.sin(d);
             ((float[]) obj2.h)[i12] = (float) Math.cos(d);
         }
-        obj.f18480c = obj2;
+        obj.f18483c = obj2;
         obj.d = new float[1024];
-        obj.f18478a = 0;
+        obj.f18481a = 0;
         ByteBuffer allocateDirect = ByteBuffer.allocateDirect(8192);
-        obj.f18481e = allocateDirect;
+        obj.f18484e = allocateDirect;
         allocateDirect.position(0);
         h4Var.d = new h6.m(new f2.n[]{new n2.x0(obj)});
         return h4Var.a();

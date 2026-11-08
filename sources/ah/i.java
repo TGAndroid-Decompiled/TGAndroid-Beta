@@ -21,8 +21,8 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.c20;
 import org.telegram.ui.Components.el0;
 import org.telegram.ui.Components.kb0;
-import org.telegram.ui.Components.q00;
 import org.telegram.ui.Components.r00;
+import org.telegram.ui.Components.s00;
 import org.telegram.ui.UsersSelectActivity;
 import org.telegram.ui.dv;
 import org.telegram.ui.ec0;
@@ -128,9 +128,9 @@ public final class i extends EditTextBoldCursor {
         switch (this.G1) {
             case 3:
                 r0 r0Var = (r0) this.H1;
-                if (i7 == 67 && r0Var.f28426e.length() == 0 && ((r0Var.h.getVisibility() == 0 && r0Var.h.length() > 0) || r0Var.r())) {
+                if (i7 == 67 && r0Var.f28429e.length() == 0 && ((r0Var.h.getVisibility() == 0 && r0Var.h.length() > 0) || r0Var.r())) {
                     if (r0Var.r()) {
-                        o0 o0Var = (o0) jg.g.i(1, r0Var.f28430g0);
+                        o0 o0Var = (o0) jg.g.i(1, r0Var.f28433g0);
                         n0 n0Var = r0Var.H;
                         if (n0Var != null) {
                             n0Var.j(o0Var);
@@ -138,13 +138,13 @@ public final class i extends EditTextBoldCursor {
                         r0Var.I(o0Var);
                         return true;
                     }
-                    r0Var.f28443s.callOnClick();
+                    r0Var.f28446s.callOnClick();
                     return true;
                 }
                 return super.onKeyDown(i7, keyEvent);
             case 4:
                 y4 y4Var = (y4) this.H1;
-                if (i7 == 67 && length() == 0 && (textView = y4Var.f28804x) != null && textView.getVisibility() == 0) {
+                if (i7 == 67 && length() == 0 && (textView = y4Var.f28807x) != null && textView.getVisibility() == 0) {
                     y4Var.i();
                     return true;
                 }
@@ -153,17 +153,17 @@ public final class i extends EditTextBoldCursor {
             default:
                 return super.onKeyDown(i7, keyEvent);
             case 6:
-                r00 r00Var = (r00) this.H1;
-                if (i7 == 67 && r00Var.f37441r.length() == 0 && r00Var.d()) {
-                    if (!r00Var.d()) {
+                s00 s00Var = (s00) this.H1;
+                if (i7 == 67 && s00Var.f37824r.length() == 0 && s00Var.d()) {
+                    if (!s00Var.d()) {
                         return true;
                     }
-                    o0 o0Var2 = (o0) jg.g.i(1, r00Var.F);
-                    q00 q00Var = r00Var.H;
-                    if (q00Var != null) {
-                        ((dv) q00Var).h(o0Var2);
+                    o0 o0Var2 = (o0) jg.g.i(1, s00Var.F);
+                    r00 r00Var = s00Var.H;
+                    if (r00Var != null) {
+                        ((dv) r00Var).h(o0Var2);
                     }
-                    r00Var.f(o0Var2);
+                    s00Var.f(o0Var2);
                     return true;
                 }
                 return super.onKeyDown(i7, keyEvent);

@@ -23,22 +23,22 @@ public final class xa implements Runnable {
         switch (i7) {
             case 0:
                 hu0 hu0Var = new hu0(context);
-                if (!org.telegram.messenger.g0.Q1() && !org.telegram.messenger.g0.u1(v2VarArr[0].f28629f1) && (v2Var = v2VarArr[0]) != null && (f2Var = v2Var.f28629f1) != null) {
+                if (!org.telegram.messenger.g0.Q1() && !org.telegram.messenger.g0.u1(v2VarArr[0].f28632f1) && (v2Var = v2VarArr[0]) != null && (f2Var = v2Var.f28632f1) != null) {
                     hu0Var.a0(f2Var);
                 }
                 hu0Var.show();
                 return;
             case 1:
                 v2VarArr[0].dismiss();
-                vf.c.t(context, org.telegram.messenger.hd.M0(2131752035, null));
+                vf.c.t(context, org.telegram.messenger.id.M0(2131752035, null));
                 return;
             case 2:
                 v2VarArr[0].dismiss();
-                vf.c.v(context, org.telegram.messenger.hd.M0(2131752030, null), false);
+                vf.c.v(context, org.telegram.messenger.id.M0(2131752030, null), false);
                 return;
             default:
                 v2VarArr[0].dismiss();
-                vf.c.t(context, org.telegram.messenger.hd.M0(2131752027, null));
+                vf.c.t(context, org.telegram.messenger.id.M0(2131752027, null));
                 return;
         }
     }

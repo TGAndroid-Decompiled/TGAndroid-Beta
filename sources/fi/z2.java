@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.gf;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.Components.pj0;
 import org.telegram.ui.Components.vi0;
 public final class z2 extends vi0 {
@@ -19,7 +19,7 @@ public final class z2 extends vi0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f56955f == 2) {
+        if (d1Var.f57047f == 2) {
             return true;
         }
         return false;
@@ -37,7 +37,7 @@ public final class z2 extends vi0 {
             i10 = i7 - 3;
         } else if (f3Var.f11962d0) {
             if (i10 >= 0 && i10 < f3Var.f11959b0.size()) {
-                return hd.e0(((e7) f3Var.f11959b0.get(i10)).d / 1000, true);
+                return id.e0(((e7) f3Var.f11959b0.get(i10)).d / 1000, true);
             }
             i10 -= f3Var.f11959b0.size();
         }
@@ -49,7 +49,7 @@ public final class z2 extends vi0 {
         if (Build.VERSION.SDK_INT <= 28) {
             j3 /= 1000;
         }
-        return hd.e0(j3, true);
+        return id.e0(j3, true);
     }
 
     @Override
@@ -61,7 +61,7 @@ public final class z2 extends vi0 {
         float f11 = hVar.J;
         int width = (int) (((int) (((pj0Var.getWidth() - pj0Var.getPaddingLeft()) - pj0Var.getPaddingRight()) / f11)) * f3Var.O);
         int ceil = (int) Math.ceil(e10 / f11);
-        float W1 = (org.telegram.messenger.g0.W1(f10, 0, Math.max(0, i7 - ((org.telegram.messenger.g0.f22544q.y - pj0Var.getPaddingTop()) - pj0Var.getPaddingBottom()))) / (ceil * width)) * ceil;
+        float W1 = (org.telegram.messenger.g0.W1(f10, 0, Math.max(0, i7 - ((org.telegram.messenger.g0.f22563q.y - pj0Var.getPaddingTop()) - pj0Var.getPaddingBottom()))) / (ceil * width)) * ceil;
         int round = Math.round(W1);
         iArr[0] = Math.max(0, hVar.J * round) + 2;
         iArr[1] = pj0Var.getPaddingTop() + ((int) ((W1 - round) * width));
@@ -72,7 +72,7 @@ public final class z2 extends vi0 {
         f3 f3Var;
         int e10 = e();
         float f10 = this.f13242c.f11963e.J;
-        return (Math.max(0, pj0Var.computeVerticalScrollOffset() - f3Var.getPadding()) - pj0Var.getPaddingTop()) / ((((int) Math.ceil(e10 / f10)) * ((int) (((int) (((pj0Var.getWidth() - pj0Var.getPaddingLeft()) - pj0Var.getPaddingRight()) / f10)) * f3Var.O))) - (org.telegram.messenger.g0.f22544q.y - pj0Var.getPaddingTop()));
+        return (Math.max(0, pj0Var.computeVerticalScrollOffset() - f3Var.getPadding()) - pj0Var.getPaddingTop()) / ((((int) Math.ceil(e10 / f10)) * ((int) (((int) (((pj0Var.getWidth() - pj0Var.getPaddingLeft()) - pj0Var.getPaddingRight()) / f10)) * f3Var.O))) - (org.telegram.messenger.g0.f22563q.y - pj0Var.getPaddingTop()));
     }
 
     @Override
@@ -119,8 +119,8 @@ public final class z2 extends vi0 {
         f3 f3Var = this.f13242c;
         ArrayList arrayList = f3Var.f11968h0;
         ArrayList arrayList2 = f3Var.f11959b0;
-        int i10 = d1Var.f56955f;
-        View view = d1Var.f56951a;
+        int i10 = d1Var.f57047f;
+        View view = d1Var.f57043a;
         int i11 = -1;
         if (i10 == 0) {
             c3 c3Var = (c3) view;
@@ -175,7 +175,7 @@ public final class z2 extends vi0 {
                 }
                 b3Var.f(indexOf, z11, z12);
                 b3Var.S = gfVar;
-                if (gfVar != null && gfVar.f26824b && !gfVar.d()) {
+                if (gfVar != null && gfVar.f26845b && !gfVar.d()) {
                     str = org.telegram.messenger.g0.g0(gfVar.E, false, false);
                 } else {
                     str = null;
@@ -184,13 +184,13 @@ public final class z2 extends vi0 {
                 b3Var.F = null;
                 if (gfVar == null) {
                     b3Var.O = null;
-                } else if (gfVar.f26824b) {
+                } else if (gfVar.f26845b) {
                     StringBuilder sb2 = new StringBuilder();
                     org.telegram.messenger.camera.q.q(null, 2131753933, sb2, ", ");
-                    sb2.append(hd.z(gfVar.E));
+                    sb2.append(id.z(gfVar.E));
                     b3Var.O = sb2.toString();
                 } else {
-                    b3Var.O = hd.M0(2131753948, null);
+                    b3Var.O = id.M0(2131753948, null);
                 }
                 b3Var.b(gfVar);
                 b3Var.invalidate();
@@ -243,8 +243,8 @@ public final class z2 extends vi0 {
         boolean z9;
         f3 f3Var = this.f13242c;
         ArrayList arrayList = f3Var.f11968h0;
-        if (d1Var.f56955f == 2) {
-            b3 b3Var = (b3) d1Var.f56951a;
+        if (d1Var.f57047f == 2) {
+            b3 b3Var = (b3) d1Var.f57043a;
             Object obj = b3Var.S;
             if (obj instanceof gf) {
                 gf gfVar = (gf) obj;

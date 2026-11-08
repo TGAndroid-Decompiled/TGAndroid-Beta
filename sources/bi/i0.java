@@ -104,9 +104,9 @@ public final class i0 implements Runnable {
         this.f4022b = tLObject2;
     }
 
-    public i0(zh.h1 h1Var, v9 v9Var, long j3, c20 c20Var, Context context) {
+    public i0(zh.g1 g1Var, v9 v9Var, long j3, c20 c20Var, Context context) {
         this.f4021a = 17;
-        this.d = h1Var;
+        this.d = g1Var;
         this.f4024e = v9Var;
         this.f4023c = j3;
         this.f4025f = c20Var;

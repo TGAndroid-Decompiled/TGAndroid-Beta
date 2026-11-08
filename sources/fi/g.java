@@ -14,14 +14,14 @@ import android.view.View;
 import android.view.ViewParent;
 import android.view.WindowInsets;
 import android.widget.FrameLayout;
-import org.telegram.ui.Components.ft;
-import org.telegram.ui.Components.gy;
-import org.telegram.ui.Components.kt;
+import org.telegram.ui.Components.gt;
+import org.telegram.ui.Components.hy;
+import org.telegram.ui.Components.lt;
 import org.telegram.ui.Components.rt0;
 import org.telegram.ui.Components.uc;
 import org.telegram.ui.Components.xq;
-import org.telegram.ui.Components.ys;
-public final class g extends kt {
+import org.telegram.ui.Components.zs;
+public final class g extends lt {
     public org.telegram.ui.Components.ca V;
     public fh.g W;
     public final org.telegram.ui.ActionBar.f6 f12053a0;
@@ -52,16 +52,16 @@ public final class g extends kt {
     @Override
     public final void f() {
         super.f();
-        gy emojiView = getEmojiView();
+        hy emojiView = getEmojiView();
         if (emojiView != null) {
             m mVar = this.f12055c0;
             if (mVar.getEditTextStyle() == 2 || mVar.getEditTextStyle() == 3) {
-                emojiView.f34093w0 = false;
-                emojiView.f34099x2 = false;
+                emojiView.f34461w0 = false;
+                emojiView.f34467x2 = false;
                 emojiView.setShouldDrawBackground(false);
                 if (mVar instanceof uc) {
-                    emojiView.setPadding(0, 0, 0, org.telegram.messenger.g0.f22539n);
-                    emojiView.f34030c = 3;
+                    emojiView.setPadding(0, 0, 0, org.telegram.messenger.g0.f22558n);
+                    emojiView.f34398c = 3;
                 }
                 emojiView.updateColors();
             }
@@ -74,18 +74,18 @@ public final class g extends kt {
     }
 
     @Override
-    public final void g(Canvas canvas, ft ftVar) {
+    public final void g(Canvas canvas, gt gtVar) {
         float W1;
         Bitmap bitmap;
         ?? r12;
         int i7;
         int i10;
         WindowInsets rootWindowInsets;
-        ft ftVar2 = ftVar;
+        gt gtVar2 = gtVar;
         m mVar = this.f12055c0;
         dh.j jVar = mVar.d;
         RectF rectF = mVar.f12390y0;
-        rectF.set(0.0f, 0.0f, ftVar2.getWidth(), org.telegram.messenger.g0.L(29.0f) + ftVar2.getHeight());
+        rectF.set(0.0f, 0.0f, gtVar2.getWidth(), org.telegram.messenger.g0.L(29.0f) + gtVar2.getHeight());
         int i11 = 0;
         if (mVar.f12367g0 != null) {
             if (this.W == null) {
@@ -106,7 +106,7 @@ public final class g extends kt {
                     i7 = 0;
                     i10 = 0;
                 }
-                fh.g c10 = mVar.f12367g0.c(ftVar2, null, false);
+                fh.g c10 = mVar.f12367g0.c(gtVar2, null, false);
                 c10.p(c8.g0.i(this.f12053a0));
                 this.W = c10;
                 c10.t(org.telegram.messenger.g0.L(29.0f), org.telegram.messenger.g0.L(29.0f), i7, i10, true);
@@ -123,9 +123,9 @@ public final class g extends kt {
             this.W.draw(canvas);
         } else if (mVar.g()) {
             if (this.V == null) {
-                this.V = new org.telegram.ui.Components.ca(this.f12054b0, ftVar2, 7, false);
+                this.V = new org.telegram.ui.Components.ca(this.f12054b0, gtVar2, 7, false);
             }
-            mVar.h(this.V, canvas, mVar.f12390y0, org.telegram.messenger.g0.L(29.0f), false, 0.0f, -ftVar2.getY(), false);
+            mVar.h(this.V, canvas, mVar.f12390y0, org.telegram.messenger.g0.L(29.0f), false, 0.0f, -gtVar2.getY(), false);
             jVar.f8783m = org.telegram.messenger.g0.L(29.0f);
             jVar.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, org.telegram.messenger.g0.L(29.0f) + ((int) rectF.bottom));
             jVar.draw(canvas);
@@ -137,18 +137,18 @@ public final class g extends kt {
                 mVar.f12381s0.postScale(frameLayout.getWidth() / mVar.f12377q0.getWidth(), frameLayout.getHeight() / mVar.f12377q0.getHeight());
                 float f10 = 0.0f;
                 float f11 = 0.0f;
-                ft ftVar3 = ftVar2;
-                while (i11 < 8 && ftVar3 != null) {
-                    f10 += ftVar3.getX();
-                    f11 += ftVar3.getY();
-                    ViewParent parent = ftVar3.getParent();
+                gt gtVar3 = gtVar2;
+                while (i11 < 8 && gtVar3 != null) {
+                    f10 += gtVar3.getX();
+                    f11 += gtVar3.getY();
+                    ViewParent parent = gtVar3.getParent();
                     if (parent instanceof View) {
                         r12 = (View) parent;
                     } else {
                         r12 = 0;
                     }
                     i11++;
-                    ftVar3 = r12;
+                    gtVar3 = r12;
                 }
                 mVar.f12381s0.postTranslate(-f10, -f11);
                 mVar.f12379r0.setLocalMatrix(mVar.f12381s0);
@@ -194,7 +194,7 @@ public final class g extends kt {
                         objectAnimator3.cancel();
                     }
                     gVar.getEditText().setScrollY(mVar.f12357a0);
-                    ys editText = gVar.getEditText();
+                    zs editText = gVar.getEditText();
                     int i10 = mVar.f12357a0;
                     mVar.f12359b0 = i7;
                     ObjectAnimator ofInt = ObjectAnimator.ofInt(editText, "scrollY", i10, i7);

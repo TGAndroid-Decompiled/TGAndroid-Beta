@@ -10,8 +10,8 @@ import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.hd;
 import org.telegram.messenger.i6;
+import org.telegram.messenger.id;
 import org.telegram.messenger.p10;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.i5;
@@ -49,9 +49,9 @@ public final class b {
         Paint paint = (Paint) this.d;
         canvas.save();
         my0 my0Var = (my0) this.f13267f;
-        my0Var.f36136p = f10 - g0.L(132.0f);
+        my0Var.f36158p = f10 - g0.L(132.0f);
         Paint paint2 = (Paint) this.f13265c;
-        paint2.setColor(i0.a.f(f11, this.f13264b, k6.x0(null, k6.f27932hh, false)));
+        paint2.setColor(i0.a.f(f11, this.f13264b, k6.x0(null, k6.f27935hh, false)));
         float d = ((w5) this.f13270j).d(this.f13263a);
         int L2 = g0.L(14.0f);
         float k10 = my0Var.k() + g0.L(86.0f) + L2;
@@ -143,39 +143,39 @@ public final class b {
             } else {
                 str = strArr[i7];
             }
-            o30 o30Var = p30Var.f48606k;
-            boolean z11 = p30Var.f48602f;
+            o30 o30Var = p30Var.f48600k;
+            boolean z11 = p30Var.f48596f;
             if (str != null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            p30Var.f48602f = z10;
-            if (str != null && (p30Var.d == null || !TextUtils.equals(p30Var.f48607l, str))) {
+            p30Var.f48596f = z10;
+            if (str != null && (p30Var.d == null || !TextUtils.equals(p30Var.f48601l, str))) {
                 i5 i5Var = p30Var.d;
                 if (i5Var != null) {
                     i5Var.o(o30Var);
                 }
-                p30Var.f48600c = i6.g(str);
+                p30Var.f48594c = i6.g(str);
                 int l10 = p10.l();
                 ?? drawable = new Drawable();
-                drawable.f34498l = 1.0f;
-                drawable.f34500n = null;
-                drawable.f34501o = null;
-                drawable.f34494g = 21;
+                drawable.f34542l = 1.0f;
+                drawable.f34544n = null;
+                drawable.f34545o = null;
+                drawable.f34538g = 21;
                 drawable.h = l10;
                 drawable.x();
                 i5.w();
                 p30Var.d = drawable;
-                p30Var.f48607l = str;
+                p30Var.f48601l = str;
                 drawable.q(str);
                 p30Var.c();
-                if (p30Var.f48605j) {
+                if (p30Var.f48599j) {
                     p30Var.d.b(o30Var);
                 }
             }
-            if (p30Var.f48602f && !z11) {
-                p30Var.f48601e = false;
+            if (p30Var.f48596f && !z11) {
+                p30Var.f48595e = false;
             }
         }
         l00 l00Var = (l00) this.f13269i;
@@ -200,14 +200,14 @@ public final class b {
                 p30VarArr[i7] = new p30(i7);
                 i7++;
             } else {
-                ((Paint) this.f13265c).setColor(k6.x0(null, k6.f27932hh, false));
-                this.f13267f = new my0(hd.M0(2131751821, null), 12.0f, g0.o());
-                my0 my0Var = new my0(hd.M0(2131751819, null), 11.0f, null);
+                ((Paint) this.f13265c).setColor(k6.x0(null, k6.f27935hh, false));
+                this.f13267f = new my0(id.M0(2131751821, null), 12.0f, g0.o());
+                my0 my0Var = new my0(id.M0(2131751819, null), 11.0f, null);
                 my0Var.m(99);
                 my0Var.p(g0.L(200.0f));
                 my0Var.l(g0.L(2.66f));
                 this.f13268g = my0Var;
-                this.h = new my0(hd.M0(2131751820, null), 14.0f, g0.o());
+                this.h = new my0(id.M0(2131751820, null), 14.0f, g0.o());
                 b(null);
                 return;
             }

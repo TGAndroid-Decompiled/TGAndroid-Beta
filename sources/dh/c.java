@@ -70,7 +70,7 @@ public final class c {
         }
         q qVar = this.f8709j;
         if (qVar != null && view != null) {
-            qVar.f21098c.add(new p(view, gVar));
+            qVar.f21101c.add(new p(view, gVar));
         }
         if (this.h != null && this.f8708i != null && view != null) {
             this.h.d(view, this.f8708i, new ab.g(10, gVar, new WeakReference(view)), z9);

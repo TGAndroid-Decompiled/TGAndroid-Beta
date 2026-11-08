@@ -1,18 +1,18 @@
 package org.telegram.ui.web;
 public final class i0 implements Runnable {
-    public final int f51153a;
-    public final j0 f51154b;
+    public final int f51160a;
+    public final j0 f51161b;
 
     public i0(j0 j0Var, int i7) {
-        this.f51153a = i7;
-        this.f51154b = j0Var;
+        this.f51160a = i7;
+        this.f51161b = j0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f51153a) {
+        switch (this.f51160a) {
             case 0:
-                u0 u0Var = this.f51154b.f51171e;
+                u0 u0Var = this.f51161b.f51178e;
                 x0 x0Var = u0Var.Q;
                 if (x0Var != null) {
                     u0Var.h = false;
@@ -21,7 +21,7 @@ public final class i0 implements Runnable {
                 }
                 return;
             case 1:
-                u0 u0Var2 = this.f51154b.f51171e;
+                u0 u0Var2 = this.f51161b.f51178e;
                 x0 x0Var2 = u0Var2.Q;
                 if (x0Var2 != null) {
                     x0Var2.J(!u0Var2.canGoBack(), !u0Var2.canGoForward());
@@ -29,7 +29,7 @@ public final class i0 implements Runnable {
                 }
                 return;
             default:
-                vf.c.t(this.f51154b.f51171e.getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
+                vf.c.t(this.f51161b.f51178e.getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
                 return;
         }
     }

@@ -2,30 +2,30 @@ package org.telegram.ui;
 
 import androidx.recyclerview.widget.RecyclerView;
 public final class b21 extends v4.s0 {
-    public final int f44159a;
-    public final Object f44160b;
+    public final int f44165a;
+    public final Object f44166b;
 
     public b21(Object obj, int i7) {
-        this.f44159a = i7;
-        this.f44160b = obj;
+        this.f44165a = i7;
+        this.f44166b = obj;
     }
 
     @Override
     public void a(RecyclerView recyclerView, int i7) {
-        switch (this.f44159a) {
+        switch (this.f44165a) {
             case 1:
                 if (i7 == 0) {
-                    m31 m31Var = (m31) this.f44160b;
+                    m31 m31Var = (m31) this.f44166b;
                     if (m31Var.E != null) {
                         org.telegram.ui.ActionBar.f5 f5Var = m31Var.d;
                         if (f5Var == null || !f5Var.w()) {
                             float f10 = m31Var.X;
                             if (f10 > 0.0f && f10 < 1.0f) {
                                 if (f10 >= 0.5f) {
-                                    m31Var.f47645c.w0(0, (int) (-(m31Var.Z - m31Var.Y)), org.telegram.ui.Components.xq.h);
+                                    m31Var.f47642c.w0(0, (int) (-(m31Var.Z - m31Var.Y)), org.telegram.ui.Components.xq.h);
                                     return;
                                 } else {
-                                    m31Var.f47645c.w0(0, (int) Math.ceil(m31Var.Y - m31Var.f47642a0), org.telegram.ui.Components.xq.h);
+                                    m31Var.f47642c.w0(0, (int) Math.ceil(m31Var.Y - m31Var.f47639a0), org.telegram.ui.Components.xq.h);
                                     return;
                                 }
                             }
@@ -42,24 +42,24 @@ public final class b21 extends v4.s0 {
                 return;
             case 3:
                 if (i7 == 0) {
-                    ((u71) this.f44160b).f50316s0 = false;
+                    ((v71) this.f44166b).f50571s0 = false;
                     return;
                 }
                 return;
             case 4:
                 if (i7 == 1) {
-                    org.telegram.messenger.g0.v1(((m81) this.f44160b).getParentActivity().getCurrentFocus());
+                    org.telegram.messenger.g0.v1(((n81) this.f44166b).getParentActivity().getCurrentFocus());
                     return;
                 }
                 return;
             case 6:
                 if (i7 == 1) {
-                    org.telegram.messenger.g0.v1(((UsersSelectActivity) this.f44160b).f42072c);
+                    org.telegram.messenger.g0.v1(((UsersSelectActivity) this.f44166b).f42076c);
                     return;
                 }
                 return;
             case 7:
-                WallpapersListActivity wallpapersListActivity = (WallpapersListActivity) this.f44160b;
+                WallpapersListActivity wallpapersListActivity = (WallpapersListActivity) this.f44166b;
                 boolean z9 = true;
                 if (i7 == 1) {
                     org.telegram.messenger.g0.v1(wallpapersListActivity.getParentActivity().getCurrentFocus());
@@ -67,7 +67,7 @@ public final class b21 extends v4.s0 {
                 if (i7 == 0) {
                     z9 = false;
                 }
-                wallpapersListActivity.f43491f0 = z9;
+                wallpapersListActivity.f43494f0 = z9;
                 return;
         }
     }
@@ -75,51 +75,51 @@ public final class b21 extends v4.s0 {
     @Override
     public void b(RecyclerView recyclerView, int i7, int i10) {
         int abs;
-        switch (this.f44159a) {
+        switch (this.f44165a) {
             case 0:
-                ((c21) this.f44160b).d1();
+                ((c21) this.f44166b).d1();
                 return;
             case 1:
-                m31 m31Var = (m31) this.f44160b;
+                m31 m31Var = (m31) this.f44166b;
                 m31Var.o0(false, true);
                 m31Var.p0();
-                if (m31Var.f47645c.I1) {
+                if (m31Var.f47642c.I1) {
                     org.telegram.messenger.g0.v1(m31Var.fragmentView);
                     return;
                 }
                 return;
             case 2:
-                c51 c51Var = (c51) this.f44160b;
-                if (c51Var.f44690u0.size() != c51Var.f44691v0.size() && !c51Var.f44698z0 && c51Var.T.N0() > c51Var.W.f45853c0 - 20) {
+                c51 c51Var = (c51) this.f44166b;
+                if (c51Var.f44693u0.size() != c51Var.f44694v0.size() && !c51Var.f44701z0 && c51Var.T.N0() > c51Var.W.f45830c0 - 20) {
                     c51Var.k0();
                     return;
                 }
                 return;
             case 3:
-                u71 u71Var = (u71) this.f44160b;
-                u71Var.f50322v0.g1();
-                u71Var.f50316s0 = true;
+                v71 v71Var = (v71) this.f44166b;
+                v71Var.f50577v0.g1();
+                v71Var.f50571s0 = true;
                 return;
             case 4:
             case 6:
             default:
                 return;
             case 5:
-                r91 r91Var = (r91) this.f44160b;
-                if (r91Var.f49427o0 && r91Var.f49414a0.N0() + 5 >= r91Var.m0) {
-                    r91Var.L(r91Var.f49417d0);
+                s91 s91Var = (s91) this.f44166b;
+                if (s91Var.f49695o0 && s91Var.f49682a0.N0() + 5 >= s91Var.m0) {
+                    s91Var.L(s91Var.f49685d0);
                 }
-                v91 v91Var = r91Var.f49434v0;
-                if (v91Var.f50667s0) {
+                w91 w91Var = s91Var.f49702v0;
+                if (w91Var.f51031s0) {
                     if (i7 != 0 || i10 != 0) {
-                        org.telegram.messenger.g0.v1(v91Var.f50661p0.getSearchField());
+                        org.telegram.messenger.g0.v1(w91Var.f51025p0.getSearchField());
                         return;
                     }
                     return;
                 }
                 return;
             case 7:
-                WallpapersListActivity wallpapersListActivity = (WallpapersListActivity) this.f44160b;
+                WallpapersListActivity wallpapersListActivity = (WallpapersListActivity) this.f44166b;
                 if (wallpapersListActivity.F.getAdapter() == wallpapersListActivity.H) {
                     int L0 = wallpapersListActivity.I.L0();
                     if (L0 == -1) {
@@ -130,9 +130,9 @@ public final class b21 extends v4.s0 {
                     if (abs > 0) {
                         int B = wallpapersListActivity.I.B();
                         if (abs != 0 && L0 + abs > B - 2) {
-                            rc1 rc1Var = wallpapersListActivity.H;
-                            if (!rc1Var.f49485f && rc1Var.f49488s == 0) {
-                                rc1Var.F(rc1Var.h, rc1Var.f49487r, true);
+                            sc1 sc1Var = wallpapersListActivity.H;
+                            if (!sc1Var.f49733f && sc1Var.f49736s == 0) {
+                                sc1Var.F(sc1Var.h, sc1Var.f49735r, true);
                                 return;
                             }
                             return;

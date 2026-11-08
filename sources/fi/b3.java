@@ -23,7 +23,7 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.gf;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.Components.CheckBoxBase;
 import org.telegram.ui.Components.xq;
 public final class b3 extends FrameLayout {
@@ -105,8 +105,8 @@ public final class b3 extends FrameLayout {
         a3Var.b(org.telegram.ui.ActionBar.k6.W9, org.telegram.ui.ActionBar.k6.X9, org.telegram.ui.ActionBar.k6.V9);
         CheckBoxBase checkBoxBase = a3Var.getCheckBoxBase();
         int i7 = org.telegram.ui.ActionBar.k6.G6;
-        if (checkBoxBase.f31263u != i7) {
-            checkBoxBase.f31263u = i7;
+        if (checkBoxBase.f31267u != i7) {
+            checkBoxBase.f31267u = i7;
             checkBoxBase.b();
         }
         FrameLayout frameLayout = new FrameLayout(context);
@@ -165,11 +165,11 @@ public final class b3 extends FrameLayout {
             return null;
         }
         int i7 = gfVar.C;
-        String str = gfVar.f26825c;
+        String str = gfVar.f26846c;
         if (str != null) {
             return BitmapFactory.decodeFile(str, options);
         }
-        if (gfVar.f26824b && !gfVar.d()) {
+        if (gfVar.f26845b && !gfVar.d()) {
             return MediaStore.Video.Thumbnails.getThumbnail(getContext().getContentResolver(), i7, 1, options);
         }
         return MediaStore.Images.Thumbnails.getThumbnail(getContext().getContentResolver(), i7, 1, options);
@@ -290,9 +290,9 @@ public final class b3 extends FrameLayout {
         this.S = e7Var;
         if (i7 > 0) {
             this.F = null;
-            g(hd.G(i7, "StoryDrafts", new Object[0]));
+            g(id.G(i7, "StoryDrafts", new Object[0]));
             this.f11664x = false;
-            this.O = hd.G(i7, "StoryDrafts", new Object[0]);
+            this.O = id.G(i7, "StoryDrafts", new Object[0]);
         } else {
             if (e7Var != null && e7Var.f11882c) {
                 z9 = true;
@@ -300,11 +300,11 @@ public final class b3 extends FrameLayout {
                 z9 = false;
             }
             if (z9) {
-                String N0 = hd.N0("StoryDraft");
+                String N0 = id.N0("StoryDraft");
                 if (getMeasuredWidth() > 0) {
                     i10 = getMeasuredWidth();
                 } else {
-                    i10 = org.telegram.messenger.g0.f22544q.x;
+                    i10 = org.telegram.messenger.g0.f22563q.x;
                 }
                 StaticLayout staticLayout = new StaticLayout(N0, this.f11662s, i10, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                 this.F = staticLayout;
@@ -331,9 +331,9 @@ public final class b3 extends FrameLayout {
             g(str);
             if (e7Var != null && e7Var.K) {
                 float f12 = e7Var.f11877a0 - e7Var.Z;
-                this.O = hd.M0(2131744683, null) + ", " + hd.z((int) Math.max(0.0f, (f12 * ((float) e7Var.f11894h0)) / 1000.0f));
+                this.O = id.M0(2131744685, null) + ", " + id.z((int) Math.max(0.0f, (f12 * ((float) e7Var.f11894h0)) / 1000.0f));
             } else {
-                this.O = hd.M0(2131744683, null);
+                this.O = id.M0(2131744685, null);
             }
         }
         b(e7Var);
@@ -391,7 +391,7 @@ public final class b3 extends FrameLayout {
             if (getMeasuredWidth() > 0) {
                 i7 = getMeasuredWidth();
             } else {
-                i7 = org.telegram.messenger.g0.f22544q.x;
+                i7 = org.telegram.messenger.g0.f22563q.x;
             }
             StaticLayout staticLayout = new StaticLayout(str, this.f11661r, i7, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.f11665y = staticLayout;
@@ -462,7 +462,7 @@ public final class b3 extends FrameLayout {
             accessibilityNodeInfo.setClassName("android.widget.CheckBox");
             accessibilityNodeInfo.setCheckable(true);
             a3 a3Var = this.J;
-            if (a3Var != null && a3Var.f40058a.f31259q) {
+            if (a3Var != null && a3Var.f40008a.f31263q) {
                 z9 = true;
             } else {
                 z9 = false;

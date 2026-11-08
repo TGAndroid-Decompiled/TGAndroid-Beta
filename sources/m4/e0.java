@@ -14,49 +14,49 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 public final class e0 implements f3.o {
-    public final int f19631a;
-    public final int f19632b;
-    public final List f19633c;
+    public final int f19634a;
+    public final int f19635b;
+    public final List f19636c;
     public final h2.x d;
-    public final SparseIntArray f19634e;
-    public final f f19635f;
-    public final c4.k f19636g;
+    public final SparseIntArray f19637e;
+    public final f f19638f;
+    public final c4.k f19639g;
     public final SparseArray h;
-    public final SparseBooleanArray f19637i;
-    public final SparseBooleanArray f19638j;
-    public final x f19639k;
-    public k3.a f19640l;
-    public f3.q f19641m;
-    public int f19642n;
-    public boolean f19643o;
-    public boolean f19644p;
-    public boolean f19645q;
-    public h0 f19646r;
-    public int f19647s;
-    public int f19648t;
+    public final SparseBooleanArray f19640i;
+    public final SparseBooleanArray f19641j;
+    public final x f19642k;
+    public k3.a f19643l;
+    public f3.q f19644m;
+    public int f19645n;
+    public boolean f19646o;
+    public boolean f19647p;
+    public boolean f19648q;
+    public h0 f19649r;
+    public int f19650s;
+    public int f19651t;
 
     public e0(int i7, int i10, c4.k kVar, k0 k0Var, f fVar) {
-        this.f19635f = fVar;
-        this.f19631a = i7;
-        this.f19632b = i10;
-        this.f19636g = kVar;
+        this.f19638f = fVar;
+        this.f19634a = i7;
+        this.f19635b = i10;
+        this.f19639g = kVar;
         if (i7 != 1 && i7 != 2) {
             ArrayList arrayList = new ArrayList();
-            this.f19633c = arrayList;
+            this.f19636c = arrayList;
             arrayList.add(k0Var);
         } else {
-            this.f19633c = Collections.singletonList(k0Var);
+            this.f19636c = Collections.singletonList(k0Var);
         }
         this.d = new h2.x(new byte[9400], 0);
         SparseBooleanArray sparseBooleanArray = new SparseBooleanArray();
-        this.f19637i = sparseBooleanArray;
-        this.f19638j = new SparseBooleanArray();
+        this.f19640i = sparseBooleanArray;
+        this.f19641j = new SparseBooleanArray();
         SparseArray sparseArray = new SparseArray();
         this.h = sparseArray;
-        this.f19634e = new SparseIntArray();
-        this.f19639k = new x(1);
-        this.f19641m = f3.q.f11069q;
-        this.f19648t = -1;
+        this.f19637e = new SparseIntArray();
+        this.f19642k = new x(1);
+        this.f19644m = f3.q.f11069q;
+        this.f19651t = -1;
         sparseBooleanArray.clear();
         sparseArray.clear();
         SparseArray sparseArray2 = new SparseArray();
@@ -65,10 +65,10 @@ public final class e0 implements f3.o {
             sparseArray.put(sparseArray2.keyAt(i11), (h0) sparseArray2.valueAt(i11));
         }
         ?? obj = new Object();
-        obj.f19609b = this;
-        obj.f19608a = new d4.f(new byte[4], 4);
+        obj.f19612b = this;
+        obj.f19611a = new d4.f(new byte[4], 4);
         sparseArray.put(0, new b0(obj));
-        this.f19646r = null;
+        this.f19649r = null;
     }
 
     @Override
@@ -78,10 +78,10 @@ public final class e0 implements f3.o {
 
     @Override
     public final void c(f3.q qVar) {
-        if ((this.f19632b & 1) == 0) {
-            qVar = new ab.q(qVar, this.f19636g);
+        if ((this.f19635b & 1) == 0) {
+            qVar = new ab.q(qVar, this.f19639g);
         }
-        this.f19641m = qVar;
+        this.f19644m = qVar;
     }
 
     @Override
@@ -89,13 +89,13 @@ public final class e0 implements f3.o {
         boolean z9;
         k3.a aVar;
         boolean z10;
-        if (this.f19631a != 2) {
+        if (this.f19634a != 2) {
             z9 = true;
         } else {
             z9 = false;
         }
         ia.p(z9);
-        List list = this.f19633c;
+        List list = this.f19636c;
         int size = list.size();
         for (int i7 = 0; i7 < size; i7++) {
             k0 k0Var = (k0) list.get(i7);
@@ -116,11 +116,11 @@ public final class e0 implements f3.o {
                 k0Var.g(j10);
             }
         }
-        if (j10 != 0 && (aVar = this.f19640l) != null) {
+        if (j10 != 0 && (aVar = this.f19643l) != null) {
             aVar.d(j10);
         }
         this.d.K(0);
-        this.f19634e.clear();
+        this.f19637e.clear();
         int i10 = 0;
         while (true) {
             SparseArray sparseArray = this.h;
@@ -128,7 +128,7 @@ public final class e0 implements f3.o {
                 ((h0) sparseArray.valueAt(i10)).d();
                 i10++;
             } else {
-                this.f19647s = 0;
+                this.f19650s = 0;
                 return;
             }
         }
@@ -155,24 +155,24 @@ public final class e0 implements f3.o {
         int i15;
         boolean z11;
         long length = pVar.getLength();
-        int i16 = this.f19631a;
+        int i16 = this.f19634a;
         if (i16 == 2) {
             z9 = true;
         } else {
             z9 = false;
         }
-        if (this.f19643o) {
+        if (this.f19646o) {
             int i17 = (length > (-1L) ? 1 : (length == (-1L) ? 0 : -1));
             long j3 = -9223372036854775807L;
-            x xVar = this.f19639k;
+            x xVar = this.f19642k;
             if (i17 != 0 && !z9 && !xVar.d) {
-                int i18 = this.f19648t;
-                k0 k0Var = xVar.f19847b;
-                h2.x xVar2 = xVar.f19848c;
+                int i18 = this.f19651t;
+                k0 k0Var = xVar.f19850b;
+                h2.x xVar2 = xVar.f19851c;
                 if (i18 <= 0) {
                     xVar.a(pVar);
                     return 0;
-                } else if (!xVar.f19850f) {
+                } else if (!xVar.f19853f) {
                     long length2 = pVar.getLength();
                     int min = (int) Math.min(112800, length2);
                     long j10 = length2 - min;
@@ -215,12 +215,12 @@ public final class e0 implements f3.o {
                         i21--;
                     }
                     xVar.h = j3;
-                    xVar.f19850f = true;
+                    xVar.f19853f = true;
                     return 0;
                 } else if (xVar.h == -9223372036854775807L) {
                     xVar.a(pVar);
                     return 0;
-                } else if (!xVar.f19849e) {
+                } else if (!xVar.f19852e) {
                     int min2 = (int) Math.min(112800, pVar.getLength());
                     long j11 = 0;
                     if (pVar.getPosition() != j11) {
@@ -245,51 +245,51 @@ public final class e0 implements f3.o {
                         }
                         i25++;
                     }
-                    xVar.f19851g = j3;
-                    xVar.f19849e = true;
+                    xVar.f19854g = j3;
+                    xVar.f19852e = true;
                     return 0;
                 } else {
-                    long j12 = xVar.f19851g;
+                    long j12 = xVar.f19854g;
                     if (j12 == -9223372036854775807L) {
                         xVar.a(pVar);
                         return 0;
                     }
-                    xVar.f19852i = k0Var.c(xVar.h) - k0Var.b(j12);
+                    xVar.f19855i = k0Var.c(xVar.h) - k0Var.b(j12);
                     xVar.a(pVar);
                     return 0;
                 }
             }
-            if (!this.f19644p) {
-                this.f19644p = true;
-                long j13 = xVar.f19852i;
+            if (!this.f19647p) {
+                this.f19647p = true;
+                long j13 = xVar.f19855i;
                 if (j13 != -9223372036854775807L) {
                     i7 = 1;
                     z11 = false;
                     i10 = i16;
-                    k3.a aVar = new k3.a(new nb.a(8), new wa(this.f19648t, xVar.f19847b), j13, 1 + j13, 0L, length, 188L, 940);
-                    this.f19640l = aVar;
-                    this.f19641m.f(aVar.f17190a);
+                    k3.a aVar = new k3.a(new nb.a(8), new wa(this.f19651t, xVar.f19850b), j13, 1 + j13, 0L, length, 188L, 940);
+                    this.f19643l = aVar;
+                    this.f19644m.f(aVar.f17193a);
                 } else {
                     i7 = 1;
                     z11 = false;
                     i10 = i16;
-                    this.f19641m.f(new f3.t(j13));
+                    this.f19644m.f(new f3.t(j13));
                 }
             } else {
                 i7 = 1;
                 z11 = false;
                 i10 = i16;
             }
-            if (this.f19645q) {
-                this.f19645q = z11;
+            if (this.f19648q) {
+                this.f19648q = z11;
                 d(0L, 0L);
                 if (pVar.getPosition() != 0) {
                     sVar.f11070a = 0L;
                     return i7;
                 }
             }
-            k3.a aVar2 = this.f19640l;
-            if (aVar2 != null && aVar2.f17192c != null) {
+            k3.a aVar2 = this.f19643l;
+            if (aVar2 != null && aVar2.f17195c != null) {
                 return aVar2.b(pVar, sVar);
             }
             pVar2 = pVar;
@@ -326,7 +326,7 @@ public final class e0 implements f3.o {
                             } else {
                                 i15 = i7;
                             }
-                            if (wVar.f19838c == 3 && wVar.f19843j == -1 && ((!z9 || !(wVar.f19836a instanceof k)) && i15 != 0)) {
+                            if (wVar.f19841c == 3 && wVar.f19846j == -1 && ((!z9 || !(wVar.f19839a instanceof k)) && i15 != 0)) {
                                 wVar.a(i7, new h2.x());
                             }
                         }
@@ -349,8 +349,8 @@ public final class e0 implements f3.o {
                 int i32 = i31 + 188;
                 h0 h0Var2 = null;
                 if (i32 > i30) {
-                    int i33 = (i31 - i29) + this.f19647s;
-                    this.f19647s = i33;
+                    int i33 = (i31 - i29) + this.f19650s;
+                    this.f19650s = i33;
                     i11 = i10;
                     i12 = 2;
                     if (i11 == 2 && i33 > 376) {
@@ -359,7 +359,7 @@ public final class e0 implements f3.o {
                 } else {
                     i11 = i10;
                     i12 = 2;
-                    this.f19647s = r12;
+                    this.f19650s = r12;
                 }
                 int i34 = xVar3.f14164c;
                 if (i32 > i34) {
@@ -390,7 +390,7 @@ public final class e0 implements f3.o {
                 }
                 if (i11 != i12) {
                     int i36 = m10 & 15;
-                    SparseIntArray sparseIntArray = this.f19634e;
+                    SparseIntArray sparseIntArray = this.f19637e;
                     int i37 = sparseIntArray.get(i35, i36 - 1);
                     sparseIntArray.put(i35, i36);
                     if (i37 == i36) {
@@ -410,14 +410,14 @@ public final class e0 implements f3.o {
                     i13 |= i14;
                     xVar3.O(A - 1);
                 }
-                boolean z12 = this.f19643o;
-                if (i11 == i12 || z12 || !this.f19638j.get(i35, r12)) {
+                boolean z12 = this.f19646o;
+                if (i11 == i12 || z12 || !this.f19641j.get(i35, r12)) {
                     xVar3.M(i32);
                     h0Var2.a(i13, xVar3);
                     xVar3.M(i34);
                 }
-                if (i11 != i12 && !z12 && this.f19643o && length != -1) {
-                    this.f19645q = true;
+                if (i11 != i12 && !z12 && this.f19646o && length != -1) {
+                    this.f19648q = true;
                 }
                 xVar3.N(i32);
                 return r12;

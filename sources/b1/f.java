@@ -36,7 +36,7 @@ public final class f implements rd.a {
                 me.d dVar = (me.d) this.f2902b;
                 pe.b bVar = (pe.b) this.f2903c;
                 LinkedHashMap linkedHashMap = new LinkedHashMap();
-                bVar.f53483a.getClass();
+                bVar.f53576a.getClass();
                 qe.f.e(dVar, bVar);
                 int f10 = dVar.f();
                 for (int i7 = 0; i7 < f10; i7++) {
@@ -54,7 +54,7 @@ public final class f implements rd.a {
                     pe.d dVar2 = (pe.d) obj;
                     if (dVar2 != null && (names = dVar2.names()) != null) {
                         for (String str2 : names) {
-                            if (j.a(dVar.e(), me.e.f20009c)) {
+                            if (j.a(dVar.e(), me.e.f20012c)) {
                                 str = "enum value";
                             } else {
                                 str = "property";

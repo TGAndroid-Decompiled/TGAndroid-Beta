@@ -10,7 +10,7 @@ import di.x6;
 import fi.e7;
 import java.util.ArrayList;
 import m.q3;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.iz;
 import org.telegram.messenger.qp;
@@ -47,10 +47,10 @@ public class m extends vi0 {
         ij ijVar;
         TL_stories.StoryItem storyItem;
         q6 q6Var = this.f10823e;
-        if (q6Var == null || i7 < 0 || i7 >= q6Var.f9643i.size() || (ijVar = (ij) this.f10823e.f9643i.get(i7)) == null || (storyItem = ijVar.f23248l) == null) {
+        if (q6Var == null || i7 < 0 || i7 >= q6Var.f9643i.size() || (ijVar = (ij) this.f10823e.f9643i.get(i7)) == null || (storyItem = ijVar.f23266l) == null) {
             return null;
         }
-        return hd.e0(storyItem.date, true);
+        return id.e0(storyItem.date, true);
     }
 
     @Override
@@ -109,7 +109,7 @@ public class m extends vi0 {
                     nVar.H = z9;
                 } else if (nVar.H || nVar.d == 1) {
                     nVar.H = false;
-                    nVar.d = Math.max(2, iz.f23421u1);
+                    nVar.d = Math.max(2, iz.f23442u1);
                 }
                 nVar.h.y1(nVar.d);
                 nVar.I = true;
@@ -173,27 +173,27 @@ public class m extends vi0 {
         int i11;
         int i12;
         if (this.f10823e != null) {
-            View view = d1Var.f56951a;
+            View view = d1Var.f57043a;
             if (!(view instanceof o7)) {
                 return;
             }
             o7 o7Var = (o7) view;
-            o7Var.f29663d0 = true;
+            o7Var.f29666d0 = true;
             n nVar = this.f10827s;
             ArrayList arrayList = this.d;
             if (i7 >= 0 && i7 < arrayList.size()) {
                 x6 x6Var = (x6) arrayList.get(i7);
-                o7Var.f29667f0 = false;
+                o7Var.f29670f0 = false;
                 if (x6Var.K == null) {
                     TL_stories.TL_storyItem tL_storyItem = new TL_stories.TL_storyItem();
                     long j3 = x6Var.f9928a;
                     int i13 = (int) (j3 ^ (j3 >>> 32));
                     tL_storyItem.messageId = i13;
-                    tL_storyItem.f27192id = i13;
+                    tL_storyItem.f27195id = i13;
                     tL_storyItem.attachPath = x6Var.f9932f;
                     ij ijVar = new ij(this.f10823e.f9639c, tL_storyItem);
                     x6Var.K = ijVar;
-                    ijVar.f23251m = x6Var;
+                    ijVar.f23269m = x6Var;
                 }
                 ij ijVar2 = x6Var.K;
                 if (this == this.f10824f) {
@@ -202,7 +202,7 @@ public class m extends vi0 {
                     i12 = nVar.d;
                 }
                 o7Var.k(ijVar2, i12, false);
-                o7Var.f29663d0 = true;
+                o7Var.f29666d0 = true;
                 o7Var.setReorder(false);
                 o7Var.i(false, false);
                 return;
@@ -215,7 +215,7 @@ public class m extends vi0 {
                 } else {
                     z9 = false;
                 }
-                o7Var.f29667f0 = z9;
+                o7Var.f29670f0 = z9;
                 o7Var.setReorder(true);
                 if (this == this.f10824f) {
                     i11 = nVar.f10832e;
@@ -232,14 +232,14 @@ public class m extends vi0 {
                     return;
                 }
             }
-            o7Var.f29667f0 = false;
+            o7Var.f29670f0 = false;
             if (this == this.f10824f) {
                 i10 = nVar.f10832e;
             } else {
                 i10 = nVar.d;
             }
             o7Var.k(null, i10, false);
-            o7Var.f29663d0 = true;
+            o7Var.f29666d0 = true;
         }
     }
 
@@ -250,9 +250,9 @@ public class m extends vi0 {
             this.h = new q3(viewGroup.getContext(), sp0Var.f10846c);
         }
         o7 o7Var = new o7(this.f10822c, this.h, sp0Var.f10845b);
-        o7Var.f29687w0 = true;
+        o7Var.f29690w0 = true;
         o7Var.setGradientView(null);
-        o7Var.f29663d0 = true;
+        o7Var.f29666d0 = true;
         return new d1(o7Var);
     }
 

@@ -1,8 +1,8 @@
 package org.telegram.messenger;
 public final class me {
-    public final MediaController f24006a;
+    public final MediaController f24011a;
 
     public me(MediaController mediaController) {
-        this.f24006a = mediaController;
+        this.f24011a = mediaController;
     }
 }

@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ye;
 import org.telegram.ui.Components.Crop.CropAreaView;
 import org.telegram.ui.Components.xq;
@@ -58,7 +58,7 @@ public abstract class m0 extends FrameLayout {
         com.google.android.recaptcha.internal.a.q(textView, 1, 14.0f);
         textView.setBackground(org.telegram.ui.ActionBar.k6.h0(-12763843, 0, -1));
         textView.setTextColor(-1);
-        textView.setText(hd.M0(2131752589, null));
+        textView.setText(id.M0(2131752589, null));
         textView.setPadding(org.telegram.messenger.g0.L(12.0f), 0, org.telegram.messenger.g0.L(12.0f), 0);
         frameLayout2.addView(textView, c8.ha.e(-2, -1, 115));
         textView.setOnClickListener(new View.OnClickListener(this) {
@@ -89,12 +89,12 @@ public abstract class m0 extends FrameLayout {
                             n1Var.G0 = new ye();
                             m0Var2.h.b(m0Var2.f12393b.G0);
                             tg.n1 n1Var2 = m0Var2.f12393b;
-                            n1Var2.G0.f26641z = n1Var2.getOrientation();
+                            n1Var2.G0.f26650z = n1Var2.getOrientation();
                             m0Var2.f12393b.k();
                             m0Var2.f12393b.requestLayout();
-                            m0Var2.f12393b.f55776z0.requestLayout();
-                            m0Var2.f12393b.f55776z0.invalidate();
-                            m0Var2.f12393b.f55776z0.post(new di.s7(m0Var2, 15));
+                            m0Var2.f12393b.f55868z0.requestLayout();
+                            m0Var2.f12393b.f55868z0.invalidate();
+                            m0Var2.f12393b.f55868z0.post(new di.s7(m0Var2, 15));
                         }
                         ((ga) m0Var2).F.k0(-1, false, true);
                         return;
@@ -106,7 +106,7 @@ public abstract class m0 extends FrameLayout {
         textView2.setTypeface(org.telegram.messenger.g0.o());
         textView2.setBackground(org.telegram.ui.ActionBar.k6.h0(-12763843, 0, -1));
         textView2.setTextColor(-1);
-        textView2.setText(hd.M0(2131751697, null));
+        textView2.setText(id.M0(2131751697, null));
         textView2.setPadding(org.telegram.messenger.g0.L(12.0f), 0, org.telegram.messenger.g0.L(12.0f), 0);
         frameLayout2.addView(textView2, c8.ha.e(-2, -1, 113));
         textView2.setOnClickListener(new View.OnClickListener(this) {
@@ -137,12 +137,12 @@ public abstract class m0 extends FrameLayout {
                             n1Var.G0 = new ye();
                             m0Var2.h.b(m0Var2.f12393b.G0);
                             tg.n1 n1Var2 = m0Var2.f12393b;
-                            n1Var2.G0.f26641z = n1Var2.getOrientation();
+                            n1Var2.G0.f26650z = n1Var2.getOrientation();
                             m0Var2.f12393b.k();
                             m0Var2.f12393b.requestLayout();
-                            m0Var2.f12393b.f55776z0.requestLayout();
-                            m0Var2.f12393b.f55776z0.invalidate();
-                            m0Var2.f12393b.f55776z0.post(new di.s7(m0Var2, 15));
+                            m0Var2.f12393b.f55868z0.requestLayout();
+                            m0Var2.f12393b.f55868z0.invalidate();
+                            m0Var2.f12393b.f55868z0.post(new di.s7(m0Var2, 15));
                         }
                         ((ga) m0Var2).F.k0(-1, false, true);
                         return;
@@ -154,7 +154,7 @@ public abstract class m0 extends FrameLayout {
         textView3.setTypeface(org.telegram.messenger.g0.o());
         textView3.setBackground(org.telegram.ui.ActionBar.k6.h0(-12763843, 0, -1));
         textView3.setTextColor(-15098625);
-        textView3.setText(hd.M0(2131744689, null));
+        textView3.setText(id.M0(2131744691, null));
         textView3.setPadding(org.telegram.messenger.g0.L(12.0f), 0, org.telegram.messenger.g0.L(12.0f), 0);
         frameLayout2.addView(textView3, c8.ha.e(-2, -1, 117));
         textView3.setOnClickListener(new View.OnClickListener(this) {
@@ -185,12 +185,12 @@ public abstract class m0 extends FrameLayout {
                             n1Var.G0 = new ye();
                             m0Var2.h.b(m0Var2.f12393b.G0);
                             tg.n1 n1Var2 = m0Var2.f12393b;
-                            n1Var2.G0.f26641z = n1Var2.getOrientation();
+                            n1Var2.G0.f26650z = n1Var2.getOrientation();
                             m0Var2.f12393b.k();
                             m0Var2.f12393b.requestLayout();
-                            m0Var2.f12393b.f55776z0.requestLayout();
-                            m0Var2.f12393b.f55776z0.invalidate();
-                            m0Var2.f12393b.f55776z0.post(new di.s7(m0Var2, 15));
+                            m0Var2.f12393b.f55868z0.requestLayout();
+                            m0Var2.f12393b.f55868z0.invalidate();
+                            m0Var2.f12393b.f55868z0.post(new di.s7(m0Var2, 15));
                         }
                         ((ga) m0Var2).F.k0(-1, false, true);
                         return;
@@ -263,12 +263,12 @@ public abstract class m0 extends FrameLayout {
         org.telegram.ui.Components.w5 w5Var = this.f12394c;
         if (yeVar != null) {
             fVar.b(yeVar.d);
-            if (yeVar.f26633k == 0) {
+            if (yeVar.f26642k == 0) {
                 z9 = false;
             }
             fVar.setRotated(z9);
-            fVar.setMirrored(yeVar.f26634l);
-            w5Var.f(yeVar.f26634l, false);
+            fVar.setMirrored(yeVar.f26643l);
+            w5Var.f(yeVar.f26643l, false);
         } else {
             fVar.b(0.0f);
             fVar.setRotated(false);
@@ -289,8 +289,8 @@ public abstract class m0 extends FrameLayout {
         this.f12399s = f10;
         this.f12395e.invalidate();
         g0 g0Var = this.h;
-        CropAreaView cropAreaView = g0Var.f21004a;
-        CropAreaView cropAreaView2 = g0Var.f21004a;
+        CropAreaView cropAreaView = g0Var.f21007a;
+        CropAreaView cropAreaView2 = g0Var.f21007a;
         cropAreaView.setDimAlpha(0.5f * f10);
         cropAreaView2.setFrameAlpha(f10);
         cropAreaView2.invalidate();

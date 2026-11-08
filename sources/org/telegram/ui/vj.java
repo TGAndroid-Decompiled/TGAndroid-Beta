@@ -11,6 +11,6 @@ public final class vj extends org.telegram.ui.Components.r41 {
 
     @Override
     public final org.telegram.ui.ActionBar.f6 getResourceProvider() {
-        return this.N.f44022xa;
+        return this.N.f44028xa;
     }
 }

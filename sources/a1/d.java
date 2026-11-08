@@ -28,8 +28,8 @@ import kotlin.jvm.internal.j;
 import org.telegram.messenger.ez;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.gz;
-import org.telegram.messenger.hd;
 import org.telegram.messenger.i6;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.k5;
 import org.telegram.messenger.m5;
@@ -52,7 +52,6 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.o4;
 import org.telegram.ui.ActionBar.r1;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.ActionBar.u1;
 import org.telegram.ui.Components.b8;
 import org.telegram.ui.Components.bn;
 import org.telegram.ui.Components.di;
@@ -69,7 +68,7 @@ import org.telegram.ui.Components.v4;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.NotificationsCustomSettingsActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.Wallet.v1;
+import org.telegram.ui.Wallet.u1;
 import org.telegram.ui.a21;
 import org.telegram.ui.ah0;
 import org.telegram.ui.an;
@@ -82,9 +81,9 @@ import org.telegram.ui.n20;
 import org.telegram.ui.q11;
 import org.telegram.ui.qw;
 import org.telegram.ui.t21;
-import org.telegram.ui.v91;
-import org.telegram.ui.w81;
+import org.telegram.ui.w91;
 import org.telegram.ui.ww;
+import org.telegram.ui.x81;
 public final class d implements OnFailureListener, p, q1, qw, r1, t4, fb0, ri, tr, w10 {
     public final int f39a;
     public final Object f40b;
@@ -121,8 +120,8 @@ public final class d implements OnFailureListener, p, q1, qw, r1, t4, fb0, ri, t
                 return;
             case 11:
                 bn bnVar = (bn) this.f40b;
-                bnVar.f32223j0.b((TLRPC.TL_messageMediaPoll) this.f41c, bnVar.O, bnVar.f32228m1, (ArrayList) this.d, z9, i7, ((Long) this.f42e).longValue());
-                bnVar.f38969b.a(true);
+                bnVar.f32244j0.b((TLRPC.TL_messageMediaPoll) this.f41c, bnVar.O, bnVar.f32249m1, (ArrayList) this.d, z9, i7, ((Long) this.f42e).longValue());
+                bnVar.f39004b.a(true);
                 return;
             case 12:
                 is isVar = (is) this.f40b;
@@ -160,7 +159,7 @@ public final class d implements OnFailureListener, p, q1, qw, r1, t4, fb0, ri, t
                 g0.h3(new u0(list, (v10) this.f40b, (TLRPC.TL_inputStorePaymentStarsTopup) this.f41c, (TL_stars.TL_starsTopupOption) this.d, (Activity) this.f42e, 5));
                 return;
             default:
-                g0.h3(new a3((ea) this.f40b, list, (v1) this.f41c, (TLRPC.TL_inputStorePaymentStarsGiveaway) this.d, fVar, (Activity) this.f42e, 2));
+                g0.h3(new a3((ea) this.f40b, list, (u1) this.f41c, (TLRPC.TL_inputStorePaymentStarsGiveaway) this.d, fVar, (Activity) this.f42e, 2));
                 return;
         }
     }
@@ -190,7 +189,7 @@ public final class d implements OnFailureListener, p, q1, qw, r1, t4, fb0, ri, t
         }
         TextView textView = new TextView(context);
         textView.setTypeface(g0.o1("fonts/num.otf"));
-        r6.V(textView, k6.f27957j5, f6Var);
+        r6.V(textView, k6.f27960j5, f6Var);
         StringBuilder sb2 = new StringBuilder("x");
         int i10 = (f10.floatValue() > 0.0f ? 1 : (f10.floatValue() == 0.0f ? 0 : -1));
         Object obj2 = f10;
@@ -219,18 +218,18 @@ public final class d implements OnFailureListener, p, q1, qw, r1, t4, fb0, ri, t
                 if (E0 != null) {
                     for (int i7 = 0; i7 < arrayList.size(); i7++) {
                         try {
-                            if (!((qi) arrayList.get(i7)).f24698a.startsWith("animated_")) {
-                                String c10 = i6.c(((qi) arrayList.get(i7)).f24698a);
+                            if (!((qi) arrayList.get(i7)).f24701a.startsWith("animated_")) {
+                                String c10 = i6.c(((qi) arrayList.get(i7)).f24701a);
                                 for (int i10 = 0; i10 < E0.effects.size(); i10++) {
                                     TLRPC.TL_availableEffect tL_availableEffect = E0.effects.get(i10);
-                                    if (!hashSet.contains(Long.valueOf(tL_availableEffect.f26984id)) && (tL_availableEffect.emoticon.contains(c10) || c10.contains(tL_availableEffect.emoticon))) {
+                                    if (!hashSet.contains(Long.valueOf(tL_availableEffect.f26987id)) && (tL_availableEffect.emoticon.contains(c10) || c10.contains(tL_availableEffect.emoticon))) {
                                         if (tL_availableEffect.effect_animation_id == 0) {
                                             arrayList2 = arrayList4;
                                         } else {
                                             arrayList2 = arrayList5;
                                         }
                                         arrayList2.add(o0.e(tL_availableEffect));
-                                        hashSet.add(Long.valueOf(tL_availableEffect.f26984id));
+                                        hashSet.add(Long.valueOf(tL_availableEffect.f26987id));
                                     }
                                 }
                             }
@@ -247,7 +246,7 @@ public final class d implements OnFailureListener, p, q1, qw, r1, t4, fb0, ri, t
                 Runnable runnable2 = (Runnable) this.f42e;
                 int size = arrayList.size();
                 for (int i11 = 0; i11 < size; i11++) {
-                    String str2 = ((qi) arrayList.get(i11)).f24698a;
+                    String str2 = ((qi) arrayList.get(i11)).f24701a;
                     if (hashMap != null) {
                         arrayList3 = (ArrayList) hashMap.get(str2);
                     } else {
@@ -264,7 +263,7 @@ public final class d implements OnFailureListener, p, q1, qw, r1, t4, fb0, ri, t
     }
 
     @Override
-    public void g(u1 u1Var, int i7) {
+    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
         String str;
         int i10 = this.f39a;
         Object obj = this.f42e;
@@ -291,13 +290,13 @@ public final class d implements OnFailureListener, p, q1, qw, r1, t4, fb0, ri, t
                     } else {
                         str = null;
                     }
-                    kb0 kb0Var = ah0Var.f43652j1;
+                    kb0 kb0Var = ah0Var.f43658j1;
                     if (kb0Var != null) {
                         kb0Var.getEditText().setText(str4);
                     } else {
                         ah0Var.A1 = str4;
                     }
-                    kb0 kb0Var2 = ah0Var.f43653k1;
+                    kb0 kb0Var2 = ah0Var.f43659k1;
                     if (kb0Var2 != null) {
                         kb0Var2.getEditText().setText(str);
                     } else {
@@ -316,17 +315,17 @@ public final class d implements OnFailureListener, p, q1, qw, r1, t4, fb0, ri, t
                 edit.putBoolean((String) obj2, ((boolean[]) obj)[0]);
                 edit.apply();
                 notificationsCustomSettingsActivity.q0(true);
-                notificationsCustomSettingsActivity.getNotificationsController().b0(notificationsCustomSettingsActivity.f41306s);
+                notificationsCustomSettingsActivity.getNotificationsController().b0(notificationsCustomSettingsActivity.f41310s);
                 return;
             default:
-                v91 v91Var = (v91) obj4;
+                w91 w91Var = (w91) obj4;
                 HashSet hashSet = (HashSet) obj3;
                 HashSet hashSet2 = new HashSet();
-                v91Var.A0 = hashSet2;
+                w91Var.A0 = hashSet2;
                 hashSet2.addAll(hashSet);
-                v91Var.Z0(true, false);
-                hc.a0(v91Var).U(hd.K0(hashSet.size(), "TopicsDeleted"), false, new w81(v91Var, 4), new t21(v91Var, (ArrayList) obj2, (Runnable) obj, 7)).j();
-                v91Var.G0();
+                w91Var.Z0(true, false);
+                hc.a0(w91Var).U(id.K0(hashSet.size(), "TopicsDeleted"), false, new x81(w91Var, 4), new t21(w91Var, (ArrayList) obj2, (Runnable) obj, 7)).j();
+                w91Var.G0();
                 u1Var.dismiss();
                 return;
         }
@@ -344,7 +343,7 @@ public final class d implements OnFailureListener, p, q1, qw, r1, t4, fb0, ri, t
         m20 m20Var = (m20) this.d;
         n20 n20Var = (n20) this.f42e;
         try {
-            c40Var.f28619c.performHapticFeedback(3, 2);
+            c40Var.f28622c.performHapticFeedback(3, 2);
         } catch (Exception unused) {
         }
         v4.g(c40Var.K1, c40Var.J1, 0L, 604800L, 2, hb0Var2, m20Var, n20Var);
@@ -375,7 +374,7 @@ public final class d implements OnFailureListener, p, q1, qw, r1, t4, fb0, ri, t
         TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP = (TLRPC.InputCheckPasswordSRP) this.d;
         TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f42e;
         if (j3 != 0) {
-            a21Var.P1 = qp.s1(a21Var.f28613a).M0(Long.valueOf(j3));
+            a21Var.P1 = qp.s1(a21Var.f28616a).M0(Long.valueOf(j3));
             a21Var.e1(user, inputCheckPasswordSRP, twoStepVerificationActivity);
             return;
         }
@@ -383,7 +382,7 @@ public final class d implements OnFailureListener, p, q1, qw, r1, t4, fb0, ri, t
     }
 
     @Override
-    public boolean y(ww wwVar, ArrayList arrayList, CharSequence charSequence, boolean z9, boolean z10, int i7, int i10, v91 v91Var) {
+    public boolean y(ww wwVar, ArrayList arrayList, CharSequence charSequence, boolean z9, boolean z10, int i7, int i10, w91 w91Var) {
         String H;
         long j3;
         TLRPC.TL_document tL_document;
@@ -398,7 +397,7 @@ public final class d implements OnFailureListener, p, q1, qw, r1, t4, fb0, ri, t
                 String str = (String) obj2;
                 mb0 mb0Var = (mb0) obj;
                 hi.a3 a3Var = ((v2) obj4).d;
-                long j10 = ((xr) arrayList.get(0)).f26513a;
+                long j10 = ((xr) arrayList.get(0)).f26520a;
                 Bundle k10 = p0.k("scrollToTopOnResume", true);
                 if (m5.C(j10)) {
                     k10.putInt("enc_id", (int) (j10 & 4294967295L));
@@ -424,7 +423,7 @@ public final class d implements OnFailureListener, p, q1, qw, r1, t4, fb0, ri, t
                             a3Var.Q0 = true;
                         }
                         o4 o4Var = new o4(new an(k10));
-                        o4Var.f28340b = true;
+                        o4Var.f28343b = true;
                         lastFragment.presentFragment(o4Var);
                     }
                 }
@@ -434,9 +433,9 @@ public final class d implements OnFailureListener, p, q1, qw, r1, t4, fb0, ri, t
                 ArrayList arrayList2 = (ArrayList) obj3;
                 TLRPC.TL_document tL_document2 = (TLRPC.TL_document) obj2;
                 ij ijVar = (ij) obj;
-                if (arrayList.size() <= 1 && ((xr) arrayList.get(0)).f26513a != p10.i(b8Var.f28613a).e() && charSequence == null && arrayList2 != null) {
+                if (arrayList.size() <= 1 && ((xr) arrayList.get(0)).f26520a != p10.i(b8Var.f28616a).e() && charSequence == null && arrayList2 != null) {
                     xr xrVar = (xr) arrayList.get(0);
-                    long j11 = xrVar.f26513a;
+                    long j11 = xrVar.f26520a;
                     Bundle k11 = p0.k("scrollToTopOnResume", true);
                     if (m5.C(j11)) {
                         k11.putInt("enc_id", (int) (j11 & 4294967295L));
@@ -446,12 +445,12 @@ public final class d implements OnFailureListener, p, q1, qw, r1, t4, fb0, ri, t
                         k11.putLong("chat_id", -j11);
                     }
                     an anVar = new an(k11);
-                    if (xrVar.f26514b != 0) {
+                    if (xrVar.f26521b != 0) {
                         qg.d.a(anVar, xrVar);
                     }
-                    if (b8Var.f32096w2.u0(anVar, true, false)) {
+                    if (b8Var.f32117w2.u0(anVar, true, false)) {
                         anVar.dc(arrayList2);
-                        if (xrVar.f26514b != 0) {
+                        if (xrVar.f26521b != 0) {
                             wwVar.removeSelfFromStack();
                         }
                     } else {
@@ -460,19 +459,19 @@ public final class d implements OnFailureListener, p, q1, qw, r1, t4, fb0, ri, t
                 } else {
                     int i12 = 0;
                     while (i12 < arrayList.size()) {
-                        long j12 = ((xr) arrayList.get(i12)).f26513a;
+                        long j12 = ((xr) arrayList.get(i12)).f26520a;
                         if (charSequence != null) {
                             j3 = j12;
-                            gz.C(b8Var.f28613a).r0(ez.b(charSequence.toString(), j3, null, null, null, true, null, null, null, true, 0, 0, null, false));
+                            gz.C(b8Var.f28616a).r0(ez.b(charSequence.toString(), j3, null, null, null, true, null, null, null, true, 0, 0, null, false));
                         } else {
                             j3 = j12;
                         }
                         if (arrayList2 != null) {
-                            gz.C(b8Var.f28613a).q0(arrayList2, j3, false, false, true, 0, 0, null, -1, 0L, 0L, null);
+                            gz.C(b8Var.f28616a).q0(arrayList2, j3, false, false, true, 0, 0, null, -1, 0L, 0L, null);
                             tL_document = tL_document2;
                         } else {
                             tL_document = tL_document2;
-                            gz.C(b8Var.f28613a).r0(ez.e(tL_document, null, ijVar.f23244k.attachPath, j3, null, null, null, null, null, z10, i7, 0, 0, b8Var.f32077m2, false));
+                            gz.C(b8Var.f28616a).r0(ez.e(tL_document, null, ijVar.f23262k.attachPath, j3, null, null, null, null, null, z10, i7, 0, 0, b8Var.f32098m2, false));
                         }
                         i12++;
                         tL_document2 = tL_document;
@@ -481,14 +480,14 @@ public final class d implements OnFailureListener, p, q1, qw, r1, t4, fb0, ri, t
                     f2 Q = LaunchActivity.Q();
                     if (Q != null) {
                         hc a02 = hc.a0(Q);
-                        if (arrayList.size() == 1 && ((xr) arrayList.get(0)).f26513a == p10.i(b8Var.f28613a).e()) {
-                            H = hd.M0(2131750497, null);
-                        } else if (arrayList.size() == 1 && ((xr) arrayList.get(0)).f26513a > 0) {
-                            H = hd.a0(null, null, 2131750496, m5.t(((xr) arrayList.get(0)).f26513a));
-                        } else if (arrayList.size() == 1 && ((xr) arrayList.get(0)).f26513a < 0) {
-                            H = hd.a0(null, null, 2131750501, m5.t(((xr) arrayList.get(0)).f26513a));
+                        if (arrayList.size() == 1 && ((xr) arrayList.get(0)).f26520a == p10.i(b8Var.f28616a).e()) {
+                            H = id.M0(2131750499, null);
+                        } else if (arrayList.size() == 1 && ((xr) arrayList.get(0)).f26520a > 0) {
+                            H = id.a0(null, null, 2131750498, m5.t(((xr) arrayList.get(0)).f26520a));
+                        } else if (arrayList.size() == 1 && ((xr) arrayList.get(0)).f26520a < 0) {
+                            H = id.a0(null, null, 2131750503, m5.t(((xr) arrayList.get(0)).f26520a));
                         } else {
-                            H = hd.H(',', "FwdMessageToManyChats", arrayList.size());
+                            H = id.H(',', "FwdMessageToManyChats", arrayList.size());
                         }
                         a02.Q(2131624028, 36, H).j();
                     }
@@ -498,8 +497,8 @@ public final class d implements OnFailureListener, p, q1, qw, r1, t4, fb0, ri, t
                 TLRPC.User user2 = (TLRPC.User) obj3;
                 String str2 = (String) obj2;
                 mb0 mb0Var2 = (mb0) obj;
-                di diVar = ((jh) obj4).f34961e;
-                long j13 = ((xr) arrayList.get(0)).f26513a;
+                di diVar = ((jh) obj4).f34982e;
+                long j13 = ((xr) arrayList.get(0)).f26520a;
                 Bundle k12 = p0.k("scrollToTopOnResume", true);
                 if (m5.C(j13)) {
                     k12.putInt("enc_id", (int) (j13 & 4294967295L));
@@ -514,7 +513,7 @@ public final class d implements OnFailureListener, p, q1, qw, r1, t4, fb0, ri, t
                     mb0Var2.dismiss();
                     diVar.a(true);
                     o4 o4Var2 = new o4(new an(k12));
-                    o4Var2.f28340b = true;
+                    o4Var2.f28343b = true;
                     f2Var.presentFragment(o4Var2);
                 }
                 return true;

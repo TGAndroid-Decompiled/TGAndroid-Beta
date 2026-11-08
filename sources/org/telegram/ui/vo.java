@@ -40,65 +40,65 @@ public final class vo implements org.telegram.messenger.ls {
     public final boolean X;
     public bh Y;
     public long Z;
-    public int f50766a;
-    public View f50767a0;
-    public int f50768b;
-    public boolean f50769b0;
-    public int f50770c;
-    public final org.telegram.ui.Components.bq f50771c0;
+    public int f50710a;
+    public View f50711a0;
+    public int f50712b;
+    public boolean f50713b0;
+    public int f50714c;
+    public final org.telegram.ui.Components.bq f50715c0;
     public float d;
-    public final int[] f50772d0;
-    public final Paint f50773e;
-    public final int f50774e0;
-    public final TextPaint f50775f;
-    public final int f50776f0;
-    public final int f50777g0;
+    public final int[] f50716d0;
+    public final Paint f50717e;
+    public final int f50718e0;
+    public final TextPaint f50719f;
+    public final int f50720f0;
+    public final int f50721g0;
     public final TextPaint h;
-    public final long f50778h0;
-    public final long f50779i0;
-    public final org.telegram.ui.ActionBar.f6 f50780j0;
-    public org.telegram.ui.Components.i5 f50781k0;
-    public qg.c f50782l0;
+    public final long f50722h0;
+    public final long f50723i0;
+    public final org.telegram.ui.ActionBar.f6 f50724j0;
+    public org.telegram.ui.Components.i5 f50725k0;
+    public qg.c f50726l0;
     public int m0;
-    public final Paint f50783n;
-    public int f50784n0;
-    public final Path f50785r;
-    public StaticLayout f50786s;
-    public StaticLayout f50787w;
-    public StaticLayout f50788x;
-    public int f50789y;
+    public final Paint f50727n;
+    public int f50728n0;
+    public final Path f50729r;
+    public StaticLayout f50730s;
+    public StaticLayout f50731w;
+    public StaticLayout f50732x;
+    public int f50733y;
 
     public vo(int i7, View view, long j3, int i10, int i11, long j10, org.telegram.ui.ActionBar.f6 f6Var) {
         Paint paint = new Paint(1);
-        this.f50773e = paint;
+        this.f50717e = paint;
         TextPaint textPaint = new TextPaint(1);
-        this.f50775f = textPaint;
+        this.f50719f = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
         this.h = textPaint2;
         Paint paint2 = new Paint(1);
-        this.f50783n = paint2;
-        this.f50785r = new Path();
+        this.f50727n = paint2;
+        this.f50729r = new Path();
         this.I = 0L;
-        this.f50769b0 = true;
+        this.f50713b0 = true;
         org.telegram.ui.Components.bq bqVar = new org.telegram.ui.Components.bq(null, true, null);
-        this.f50771c0 = bqVar;
-        this.f50772d0 = new int[3];
+        this.f50715c0 = bqVar;
+        this.f50716d0 = new int[3];
         this.T = view;
-        this.f50774e0 = i7;
-        this.f50779i0 = j3;
-        this.f50776f0 = i10;
-        this.f50777g0 = i11;
-        this.f50778h0 = j10;
+        this.f50718e0 = i7;
+        this.f50723i0 = j3;
+        this.f50720f0 = i10;
+        this.f50721g0 = i11;
+        this.f50722h0 = j10;
         this.X = org.telegram.messenger.qp.s1(i7).t2(j3);
-        this.f50780j0 = f6Var;
+        this.f50724j0 = f6Var;
         this.F = new ImageReceiver(view);
         paint.setStrokeWidth(org.telegram.messenger.g0.N(2.8f));
         paint.setStrokeCap(Paint.Cap.ROUND);
-        bqVar.f32306z = 3;
+        bqVar.f32327z = 3;
         bqVar.I = 1;
-        bqVar.f32289g = true;
+        bqVar.f32310g = true;
         bqVar.d = d("paintChatActionBackground");
-        bqVar.f32287e = textPaint;
+        bqVar.f32308e = textPaint;
         textPaint.setTextSize(org.telegram.messenger.g0.L(13.0f));
         textPaint.setTypeface(org.telegram.messenger.g0.o());
         textPaint2.setTextSize(org.telegram.messenger.g0.L(14.0f));
@@ -110,8 +110,8 @@ public final class vo implements org.telegram.messenger.ls {
         ArrayList W0;
         TLRPC.Dialog c10;
         TLRPC.Dialog c11;
-        org.telegram.messenger.qp s12 = org.telegram.messenger.qp.s1(org.telegram.messenger.c.a(org.telegram.messenger.p10.f24467s0).f21729a);
-        SparseArray sparseArray = s12.f24917w;
+        org.telegram.messenger.qp s12 = org.telegram.messenger.qp.s1(org.telegram.messenger.c.a(org.telegram.messenger.p10.f24470s0).f21765a);
+        SparseArray sparseArray = s12.f24924w;
         if (iArr != null) {
             iArr[0] = 0;
             iArr[1] = i7;
@@ -120,7 +120,7 @@ public final class vo implements org.telegram.messenger.ls {
         if (i10 != 0) {
             org.telegram.messenger.vo voVar = (org.telegram.messenger.vo) s12.S0.get(i10);
             if (voVar != null) {
-                W0 = voVar.f26072k;
+                W0 = voVar.f26078k;
             } else {
                 return null;
             }
@@ -130,15 +130,15 @@ public final class vo implements org.telegram.messenger.ls {
         if (W0 != null) {
             for (int i11 = 0; i11 < W0.size(); i11++) {
                 TLRPC.Dialog dialog = (TLRPC.Dialog) W0.get(i11);
-                TLRPC.Chat M0 = s12.M0(Long.valueOf(-dialog.f26957id));
-                if (M0 != null && dialog.f26957id != j3 && dialog.unread_count > 0 && org.telegram.messenger.m5.y(dialog) && !M0.megagroup && !s12.C2(dialog.f26957id, false) && s12.F1(M0.restriction_reason) == null) {
+                TLRPC.Chat M0 = s12.M0(Long.valueOf(-dialog.f26960id));
+                if (M0 != null && dialog.f26960id != j3 && dialog.unread_count > 0 && org.telegram.messenger.m5.y(dialog) && !M0.megagroup && !s12.C2(dialog.f26960id, false) && s12.F1(M0.restriction_reason) == null) {
                     return dialog;
                 }
             }
             if (z9) {
                 if (i10 != 0) {
                     for (int i12 = 0; i12 < s12.P0.size(); i12++) {
-                        int i13 = ((org.telegram.messenger.vo) s12.P0.get(i12)).f26064a;
+                        int i13 = ((org.telegram.messenger.vo) s12.P0.get(i12)).f26070a;
                         if (i10 != i13 && (c11 = c(j3, i7, i13, false, iArr)) != null) {
                             if (iArr != null) {
                                 iArr[0] = 1;
@@ -168,32 +168,32 @@ public final class vo implements org.telegram.messenger.ls {
     }
 
     public final void b(Canvas canvas, int i7, int i10) {
-        int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Ll, this.f50780j0);
+        int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Ll, this.f50724j0);
         TextPaint textPaint = this.h;
         textPaint.setColor(w02);
         Paint d = d("paintChatComposeBackground");
         int alpha = d.getAlpha();
         int alpha2 = textPaint.getAlpha();
         d.setAlpha((int) (alpha * this.S));
-        if (this.f50787w != null) {
+        if (this.f50731w != null) {
             float f10 = this.K;
             if (f10 < 1.0f) {
                 textPaint.setAlpha((int) ((1.0f - f10) * alpha2 * this.S));
-                float height = ((((i10 - i7) - this.f50787w.getHeight()) / 2.0f) + i7) - (org.telegram.messenger.g0.L(10.0f) * this.K);
+                float height = ((((i10 - i7) - this.f50731w.getHeight()) / 2.0f) + i7) - (org.telegram.messenger.g0.L(10.0f) * this.K);
                 canvas.save();
-                canvas.translate((this.f50770c - this.D) / 2.0f, height);
-                this.f50787w.draw(canvas);
+                canvas.translate((this.f50714c - this.D) / 2.0f, height);
+                this.f50731w.draw(canvas);
                 canvas.restore();
             }
         }
-        if (this.f50788x != null) {
+        if (this.f50732x != null) {
             float f11 = this.K;
             if (f11 > 0.0f) {
                 textPaint.setAlpha((int) (alpha2 * f11 * this.S));
-                float L = ((1.0f - this.K) * org.telegram.messenger.g0.L(10.0f)) + (((i10 - i7) - this.f50788x.getHeight()) / 2.0f) + i7;
+                float L = ((1.0f - this.K) * org.telegram.messenger.g0.L(10.0f)) + (((i10 - i7) - this.f50732x.getHeight()) / 2.0f) + i7;
                 canvas.save();
-                canvas.translate((this.f50770c - this.E) / 2.0f, L);
-                this.f50788x.draw(canvas);
+                canvas.translate((this.f50714c - this.E) / 2.0f, L);
+                this.f50732x.draw(canvas);
                 canvas.restore();
             }
         }
@@ -203,7 +203,7 @@ public final class vo implements org.telegram.messenger.ls {
 
     public final Paint d(String str) {
         Paint paint;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f50780j0;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f50724j0;
         if (f6Var != null) {
             paint = f6Var.d(str);
         } else {
@@ -218,15 +218,15 @@ public final class vo implements org.telegram.messenger.ls {
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         TLRPC.Dialog dialog;
-        if (this.Z != 0 && (dialog = (TLRPC.Dialog) org.telegram.messenger.qp.s1(this.f50774e0).Q.f(this.Z)) != null) {
+        if (this.Z != 0 && (dialog = (TLRPC.Dialog) org.telegram.messenger.qp.s1(this.f50718e0).Q.f(this.Z)) != null) {
             int i11 = dialog.unread_count;
             boolean z9 = true;
-            this.f50771c0.c(i11, true);
+            this.f50715c0.c(i11, true);
             if (i11 <= 0) {
                 z9 = false;
             }
-            this.f50769b0 = z9;
-            View view = this.f50767a0;
+            this.f50713b0 = z9;
+            View view = this.f50711a0;
             if (view != null) {
                 view.invalidate();
             }
@@ -242,42 +242,42 @@ public final class vo implements org.telegram.messenger.ls {
         if (z9) {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(this.K, 1.0f);
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final vo f50112b;
+                public final vo f50104b;
 
                 {
-                    this.f50112b = this;
+                    this.f50104b = this;
                 }
 
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                     switch (r3) {
                         case 0:
-                            vo voVar = this.f50112b;
+                            vo voVar = this.f50104b;
                             voVar.getClass();
                             voVar.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             voVar.T.invalidate();
                             return;
                         case 1:
-                            vo voVar2 = this.f50112b;
+                            vo voVar2 = this.f50104b;
                             voVar2.getClass();
                             voVar2.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         case 2:
-                            vo voVar3 = this.f50112b;
+                            vo voVar3 = this.f50104b;
                             voVar3.getClass();
                             voVar3.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         case 3:
-                            vo voVar4 = this.f50112b;
+                            vo voVar4 = this.f50104b;
                             voVar4.getClass();
                             voVar4.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         default:
-                            vo voVar5 = this.f50112b;
+                            vo voVar5 = this.f50104b;
                             voVar5.getClass();
                             voVar5.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             voVar5.T.invalidate();
@@ -291,42 +291,42 @@ public final class vo implements org.telegram.messenger.ls {
             this.L = 0.0f;
             ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
             ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final vo f50112b;
+                public final vo f50104b;
 
                 {
-                    this.f50112b = this;
+                    this.f50104b = this;
                 }
 
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                     switch (r3) {
                         case 0:
-                            vo voVar = this.f50112b;
+                            vo voVar = this.f50104b;
                             voVar.getClass();
                             voVar.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             voVar.T.invalidate();
                             return;
                         case 1:
-                            vo voVar2 = this.f50112b;
+                            vo voVar2 = this.f50104b;
                             voVar2.getClass();
                             voVar2.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         case 2:
-                            vo voVar3 = this.f50112b;
+                            vo voVar3 = this.f50104b;
                             voVar3.getClass();
                             voVar3.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         case 3:
-                            vo voVar4 = this.f50112b;
+                            vo voVar4 = this.f50104b;
                             voVar4.getClass();
                             voVar4.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         default:
-                            vo voVar5 = this.f50112b;
+                            vo voVar5 = this.f50104b;
                             voVar5.getClass();
                             voVar5.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             voVar5.T.invalidate();
@@ -335,47 +335,47 @@ public final class vo implements org.telegram.messenger.ls {
                     }
                 }
             });
-            org.telegram.ui.Components.xq xqVar = org.telegram.ui.Components.xq.f40348j;
+            org.telegram.ui.Components.xq xqVar = org.telegram.ui.Components.xq.f40369j;
             ofFloat2.setInterpolator(xqVar);
             ofFloat2.setDuration(180L);
             ValueAnimator ofFloat3 = ValueAnimator.ofFloat(1.0f, -0.5f);
             ofFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final vo f50112b;
+                public final vo f50104b;
 
                 {
-                    this.f50112b = this;
+                    this.f50104b = this;
                 }
 
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                     switch (r3) {
                         case 0:
-                            vo voVar = this.f50112b;
+                            vo voVar = this.f50104b;
                             voVar.getClass();
                             voVar.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             voVar.T.invalidate();
                             return;
                         case 1:
-                            vo voVar2 = this.f50112b;
+                            vo voVar2 = this.f50104b;
                             voVar2.getClass();
                             voVar2.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         case 2:
-                            vo voVar3 = this.f50112b;
+                            vo voVar3 = this.f50104b;
                             voVar3.getClass();
                             voVar3.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         case 3:
-                            vo voVar4 = this.f50112b;
+                            vo voVar4 = this.f50104b;
                             voVar4.getClass();
                             voVar4.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         default:
-                            vo voVar5 = this.f50112b;
+                            vo voVar5 = this.f50104b;
                             voVar5.getClass();
                             voVar5.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             voVar5.T.invalidate();
@@ -388,42 +388,42 @@ public final class vo implements org.telegram.messenger.ls {
             ofFloat3.setDuration(120L);
             ValueAnimator ofFloat4 = ValueAnimator.ofFloat(-0.5f, 0.0f);
             ofFloat4.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final vo f50112b;
+                public final vo f50104b;
 
                 {
-                    this.f50112b = this;
+                    this.f50104b = this;
                 }
 
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                     switch (r3) {
                         case 0:
-                            vo voVar = this.f50112b;
+                            vo voVar = this.f50104b;
                             voVar.getClass();
                             voVar.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             voVar.T.invalidate();
                             return;
                         case 1:
-                            vo voVar2 = this.f50112b;
+                            vo voVar2 = this.f50104b;
                             voVar2.getClass();
                             voVar2.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         case 2:
-                            vo voVar3 = this.f50112b;
+                            vo voVar3 = this.f50104b;
                             voVar3.getClass();
                             voVar3.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         case 3:
-                            vo voVar4 = this.f50112b;
+                            vo voVar4 = this.f50104b;
                             voVar4.getClass();
                             voVar4.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         default:
-                            vo voVar5 = this.f50112b;
+                            vo voVar5 = this.f50104b;
                             voVar5.getClass();
                             voVar5.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             voVar5.T.invalidate();
@@ -445,42 +445,42 @@ public final class vo implements org.telegram.messenger.ls {
         }
         ValueAnimator ofFloat5 = ValueAnimator.ofFloat(this.K, 0.0f);
         ofFloat5.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-            public final vo f50112b;
+            public final vo f50104b;
 
             {
-                this.f50112b = this;
+                this.f50104b = this;
             }
 
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                 switch (r3) {
                     case 0:
-                        vo voVar = this.f50112b;
+                        vo voVar = this.f50104b;
                         voVar.getClass();
                         voVar.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                         view.invalidate();
                         voVar.T.invalidate();
                         return;
                     case 1:
-                        vo voVar2 = this.f50112b;
+                        vo voVar2 = this.f50104b;
                         voVar2.getClass();
                         voVar2.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                         view.invalidate();
                         return;
                     case 2:
-                        vo voVar3 = this.f50112b;
+                        vo voVar3 = this.f50104b;
                         voVar3.getClass();
                         voVar3.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                         view.invalidate();
                         return;
                     case 3:
-                        vo voVar4 = this.f50112b;
+                        vo voVar4 = this.f50104b;
                         voVar4.getClass();
                         voVar4.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                         view.invalidate();
                         return;
                     default:
-                        vo voVar5 = this.f50112b;
+                        vo voVar5 = this.f50104b;
                         voVar5.getClass();
                         voVar5.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                         voVar5.T.invalidate();
@@ -489,7 +489,7 @@ public final class vo implements org.telegram.messenger.ls {
                 }
             }
         });
-        ofFloat5.setInterpolator(org.telegram.ui.Components.xq.f40345f);
+        ofFloat5.setInterpolator(org.telegram.ui.Components.xq.f40366f);
         ofFloat5.setDuration(220L);
         AnimatorSet animatorSet4 = new AnimatorSet();
         this.J = animatorSet4;
@@ -502,35 +502,35 @@ public final class vo implements org.telegram.messenger.ls {
         boolean z10 = false;
         this.V = false;
         this.H = null;
-        TLRPC.Dialog c10 = c(this.f50779i0, this.f50776f0, this.f50777g0, true, this.f50772d0);
+        TLRPC.Dialog c10 = c(this.f50723i0, this.f50720f0, this.f50721g0, true, this.f50716d0);
         if (c10 != null) {
-            this.Z = c10.f26957id;
-            int[] iArr = this.f50772d0;
+            this.Z = c10.f26960id;
+            int[] iArr = this.f50716d0;
             if (iArr[0] == 1) {
                 z9 = true;
             } else {
                 z9 = false;
             }
             this.W = z9;
-            this.f50766a = iArr[1];
-            this.f50768b = iArr[2];
+            this.f50710a = iArr[1];
+            this.f50712b = iArr[2];
             this.R = false;
-            int i7 = this.f50774e0;
-            TLRPC.Chat M0 = org.telegram.messenger.qp.s1(i7).M0(Long.valueOf(-c10.f26957id));
+            int i7 = this.f50718e0;
+            TLRPC.Chat M0 = org.telegram.messenger.qp.s1(i7).M0(Long.valueOf(-c10.f26960id));
             this.G = M0;
             if (M0 == null) {
-                this.G = org.telegram.messenger.qp.s1(i7).M0(Long.valueOf(c10.f26957id));
+                this.G = org.telegram.messenger.qp.s1(i7).M0(Long.valueOf(c10.f26960id));
             }
             org.telegram.ui.Components.w8 w8Var = new org.telegram.ui.Components.w8((org.telegram.ui.ActionBar.f6) null);
             w8Var.q(this.G);
             this.F.q0(org.telegram.messenger.hc.a(1, this.G), "50_50", w8Var, null, org.telegram.messenger.p10.i(0).f(), 0);
-            org.telegram.messenger.qp.s1(i7).s0(c10.f26957id, 0, null);
+            org.telegram.messenger.qp.s1(i7).s0(c10.f26960id, 0, null);
             int i10 = c10.unread_count;
-            this.f50771c0.c(i10, false);
+            this.f50715c0.c(i10, false);
             if (i10 > 0) {
                 z10 = true;
             }
-            this.f50769b0 = z10;
+            this.f50713b0 = z10;
             return;
         }
         this.G = null;
@@ -545,8 +545,8 @@ public final class vo implements org.telegram.messenger.ls {
             f();
             return;
         }
-        this.Z = -chat.f26953id;
-        int[] iArr = this.f50772d0;
+        this.Z = -chat.f26956id;
+        int[] iArr = this.f50716d0;
         boolean z10 = false;
         if (iArr[0] == 1) {
             z9 = true;
@@ -554,26 +554,26 @@ public final class vo implements org.telegram.messenger.ls {
             z9 = false;
         }
         this.W = z9;
-        this.f50766a = iArr[1];
-        this.f50768b = iArr[2];
+        this.f50710a = iArr[1];
+        this.f50712b = iArr[2];
         this.R = false;
         this.G = chat;
         org.telegram.ui.Components.w8 w8Var = new org.telegram.ui.Components.w8((org.telegram.ui.ActionBar.f6) null);
         w8Var.q(this.G);
         this.F.q0(org.telegram.messenger.hc.a(1, this.G), "50_50", w8Var, null, org.telegram.messenger.p10.i(0).f(), 0);
-        int i10 = this.f50774e0;
-        org.telegram.messenger.qp.s1(i10).s0(-chat.f26953id, 0, null);
-        TLRPC.Dialog S0 = org.telegram.messenger.qp.s1(i10).S0(-chat.f26953id);
+        int i10 = this.f50718e0;
+        org.telegram.messenger.qp.s1(i10).s0(-chat.f26956id, 0, null);
+        TLRPC.Dialog S0 = org.telegram.messenger.qp.s1(i10).S0(-chat.f26956id);
         if (S0 == null) {
             i7 = 0;
         } else {
             i7 = S0.unread_count;
         }
-        this.f50771c0.c(i7, false);
+        this.f50715c0.c(i7, false);
         if (i7 > 0) {
             z10 = true;
         }
-        this.f50769b0 = z10;
+        this.f50713b0 = z10;
         this.V = true;
         this.H = null;
     }
@@ -594,13 +594,13 @@ public final class vo implements org.telegram.messenger.ls {
         this.Z = 0L;
         ImageReceiver imageReceiver = this.F;
         imageReceiver.f();
-        int i7 = this.f50774e0;
-        ArrayList l10 = org.telegram.messenger.qp.s1(i7).f24870q7.l(-this.f50779i0);
+        int i7 = this.f50718e0;
+        ArrayList l10 = org.telegram.messenger.qp.s1(i7).f24877q7.l(-this.f50723i0);
         if (l10 != null && l10.size() > 1) {
             tL_forumTopic = null;
             for (int i10 = 0; i10 < l10.size(); i10++) {
                 TLRPC.TL_forumTopic tL_forumTopic2 = (TLRPC.TL_forumTopic) l10.get(i10);
-                if (tL_forumTopic2.f27005id != this.f50778h0 && !tL_forumTopic2.hidden && tL_forumTopic2.unread_count > 0 && (tL_forumTopic == null || ((message = tL_forumTopic2.topMessage) != null && (message2 = tL_forumTopic.topMessage) != null && message.date > message2.date))) {
+                if (tL_forumTopic2.f27008id != this.f50722h0 && !tL_forumTopic2.hidden && tL_forumTopic2.unread_count > 0 && (tL_forumTopic == null || ((message = tL_forumTopic2.topMessage) != null && (message2 = tL_forumTopic.topMessage) != null && message.date > message2.date))) {
                     tL_forumTopic = tL_forumTopic2;
                 }
             }
@@ -610,55 +610,55 @@ public final class vo implements org.telegram.messenger.ls {
         if (tL_forumTopic != null) {
             this.R = false;
             this.H = tL_forumTopic;
-            int i11 = tL_forumTopic.f27005id;
-            org.telegram.ui.ActionBar.f6 f6Var = this.f50780j0;
+            int i11 = tL_forumTopic.f27008id;
+            org.telegram.ui.ActionBar.f6 f6Var = this.f50724j0;
             if (i11 == 1) {
-                View view3 = this.f50767a0;
-                if (view3 != null && (i5Var2 = this.f50781k0) != null) {
+                View view3 = this.f50711a0;
+                if (view3 != null && (i5Var2 = this.f50725k0) != null) {
                     i5Var2.n(view3);
                 }
-                this.f50781k0 = null;
+                this.f50725k0 = null;
                 Context context = this.T.getContext();
-                int i12 = org.telegram.ui.ActionBar.k6.f28056od;
+                int i12 = org.telegram.ui.ActionBar.k6.f28059od;
                 qg.c c10 = qg.d.c(context, 1.0f, org.telegram.ui.ActionBar.k6.w0(i12, f6Var), true);
                 if (c10 != null) {
                     cVar = c10;
                 }
-                this.f50782l0 = cVar;
+                this.f50726l0 = cVar;
                 this.m0 = org.telegram.ui.ActionBar.k6.w0(i12, f6Var);
                 imageReceiver.w0(c10);
             } else if (tL_forumTopic.icon_emoji_id != 0) {
-                org.telegram.ui.Components.i5 i5Var3 = this.f50781k0;
+                org.telegram.ui.Components.i5 i5Var3 = this.f50725k0;
                 if (i5Var3 == null || i5Var3.h() != tL_forumTopic.icon_emoji_id) {
-                    org.telegram.ui.Components.i5 i5Var4 = this.f50781k0;
-                    if (i5Var4 != null && (view = this.f50767a0) != null) {
+                    org.telegram.ui.Components.i5 i5Var4 = this.f50725k0;
+                    if (i5Var4 != null && (view = this.f50711a0) != null) {
                         i5Var4.n(view);
                     }
                     org.telegram.ui.Components.i5 i5Var5 = new org.telegram.ui.Components.i5(22, i7, tL_forumTopic.icon_emoji_id);
-                    this.f50781k0 = i5Var5;
+                    this.f50725k0 = i5Var5;
                     int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Wc, f6Var);
-                    this.f50784n0 = w02;
+                    this.f50728n0 = w02;
                     i5Var5.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
                 }
-                org.telegram.ui.Components.i5 i5Var6 = this.f50781k0;
-                if (i5Var6 != null && (view2 = this.f50767a0) != null) {
+                org.telegram.ui.Components.i5 i5Var6 = this.f50725k0;
+                if (i5Var6 != null && (view2 = this.f50711a0) != null) {
                     i5Var6.a(view2);
                 }
                 imageReceiver.w0(null);
             } else {
-                View view4 = this.f50767a0;
-                if (view4 != null && (i5Var = this.f50781k0) != null) {
+                View view4 = this.f50711a0;
+                if (view4 != null && (i5Var = this.f50725k0) != null) {
                     i5Var.n(view4);
                 }
-                this.f50781k0 = null;
+                this.f50725k0 = null;
                 imageReceiver.w0(qg.d.e(tL_forumTopic));
             }
             int i13 = tL_forumTopic.unread_count;
-            this.f50771c0.c(i13, false);
+            this.f50715c0.c(i13, false);
             if (i13 > 0) {
                 z9 = true;
             }
-            this.f50769b0 = z9;
+            this.f50713b0 = z9;
             return;
         }
         this.H = null;

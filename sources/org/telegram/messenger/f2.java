@@ -9,32 +9,32 @@ import java.util.List;
 import java.util.Set;
 import java.util.WeakHashMap;
 public final class f2 extends c1 {
-    public static volatile f2[] f22334f = new f2[4];
-    public final g6.d0 f22335a;
-    public final g6.d0 f22336b;
-    public final Set f22337c;
+    public static volatile f2[] f22353f = new f2[4];
+    public final g6.d0 f22354a;
+    public final g6.d0 f22355b;
+    public final Set f22356c;
     public final LongSparseArray d;
-    public final SharedPreferences f22338e;
+    public final SharedPreferences f22357e;
 
     public f2(int i7) {
         super(i7);
-        this.f22335a = new g6.d0(24);
-        this.f22336b = new g6.d0(24);
-        this.f22337c = DesugarCollections.synchronizedSet(Collections.newSetFromMap(new WeakHashMap()));
+        this.f22354a = new g6.d0(24);
+        this.f22355b = new g6.d0(24);
+        this.f22356c = DesugarCollections.synchronizedSet(Collections.newSetFromMap(new WeakHashMap()));
         this.d = new LongSparseArray();
-        Context context = t0.f25563b;
-        this.f22338e = context.getSharedPreferences("bot_drafts" + i7, 0);
+        Context context = t0.f25566b;
+        this.f22357e = context.getSharedPreferences("bot_drafts" + i7, 0);
     }
 
     public static f2 b(int i7) {
         f2 f2Var;
-        f2 f2Var2 = f22334f[i7];
+        f2 f2Var2 = f22353f[i7];
         if (f2Var2 == null) {
             synchronized (f2.class) {
                 try {
-                    f2Var = f22334f[i7];
+                    f2Var = f22353f[i7];
                     if (f2Var == null) {
-                        f2[] f2VarArr = f22334f;
+                        f2[] f2VarArr = f22353f;
                         f2 f2Var3 = new f2(i7);
                         f2VarArr[i7] = f2Var3;
                         f2Var = f2Var3;
@@ -53,11 +53,11 @@ public final class f2 extends c1 {
     }
 
     public final boolean c(int i7, long j3) {
-        LongSparseArray V = this.f22335a.V(j3, i7);
+        LongSparseArray V = this.f22354a.V(j3, i7);
         if (V != null && V.size() > 0) {
             int size = V.size();
             for (int i10 = 0; i10 < size; i10++) {
-                if (!((a2) V.valueAt(i10)).f21372e) {
+                if (!((a2) V.valueAt(i10)).f21375e) {
                     return true;
                 }
             }
@@ -66,16 +66,16 @@ public final class f2 extends c1 {
     }
 
     public final boolean d(long j3, long j10) {
-        return this.f22338e.getBoolean(j3 + "_" + j10, false);
+        return this.f22357e.getBoolean(j3 + "_" + j10, false);
     }
 
     public final void e(long j3, int i7, long j10) {
         long j11 = i7;
-        a2 a2Var = (a2) this.f22335a.a0(j3, j11, j10);
+        a2 a2Var = (a2) this.f22354a.a0(j3, j11, j10);
         if (a2Var == null) {
             return;
         }
-        getNotificationCenter().k(qs.L5, new b2(j3, a2Var.f21370b, j11));
+        getNotificationCenter().k(qs.L5, new b2(j3, a2Var.f21373b, j11));
     }
 
     public final void f(int i7, long j3) {
@@ -93,17 +93,17 @@ public final class f2 extends c1 {
         long j10;
         long j11;
         long j12 = i7;
-        LongSparseArray V = this.f22335a.V(j3, j12);
+        LongSparseArray V = this.f22354a.V(j3, j12);
         if (V != null) {
             int size = V.size();
             int i10 = 0;
             while (i10 < size) {
                 a2 a2Var = (a2) V.valueAt(i10);
-                if (a2Var.f21372e) {
+                if (a2Var.f21375e) {
                     long j13 = j12;
                     j10 = j3;
-                    getNotificationCenter().k(qs.L5, new b2(j10, a2Var.f21370b, j13));
-                    this.f22335a.a0(j10, j13, a2Var.f21369a);
+                    getNotificationCenter().k(qs.L5, new b2(j10, a2Var.f21373b, j13));
+                    this.f22354a.a0(j10, j13, a2Var.f21372a);
                     j11 = j13;
                     i10--;
                     size--;
@@ -119,7 +119,7 @@ public final class f2 extends c1 {
     }
 
     public final void h(long j3, long j10, boolean z9) {
-        SharedPreferences.Editor edit = this.f22338e.edit();
+        SharedPreferences.Editor edit = this.f22357e.edit();
         edit.putBoolean(j3 + "_" + j10, z9).apply();
     }
 }

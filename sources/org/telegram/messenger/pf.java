@@ -3,30 +3,30 @@ package org.telegram.messenger;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class pf implements Runnable {
-    public final int f24542a;
-    public final ui f24543b;
-    public final TLRPC.messages_Messages f24544c;
+    public final int f24549a;
+    public final ui f24550b;
+    public final TLRPC.messages_Messages f24551c;
     public final int d;
-    public final long f24545e;
-    public final ArrayList f24546f;
+    public final long f24552e;
+    public final ArrayList f24553f;
     public final int h;
-    public final int f24547n;
-    public final boolean f24548r;
-    public final int f24549s;
-    public final int f24550w;
+    public final int f24554n;
+    public final boolean f24555r;
+    public final int f24556s;
+    public final int f24557w;
 
     public pf(ui uiVar, TLRPC.messages_Messages messages_messages, int i7, long j3, ArrayList arrayList, int i10, int i11, boolean z9, int i12, int i13, int i14) {
-        this.f24542a = i14;
-        this.f24543b = uiVar;
-        this.f24544c = messages_messages;
+        this.f24549a = i14;
+        this.f24550b = uiVar;
+        this.f24551c = messages_messages;
         this.d = i7;
-        this.f24545e = j3;
-        this.f24546f = arrayList;
+        this.f24552e = j3;
+        this.f24553f = arrayList;
         this.h = i10;
-        this.f24547n = i11;
-        this.f24548r = z9;
-        this.f24549s = i12;
-        this.f24550w = i13;
+        this.f24554n = i11;
+        this.f24555r = z9;
+        this.f24556s = i12;
+        this.f24557w = i13;
     }
 
     @Override
@@ -34,14 +34,14 @@ public final class pf implements Runnable {
         boolean z9;
         boolean z10;
         boolean z11;
-        switch (this.f24542a) {
+        switch (this.f24549a) {
             case 0:
-                g0.h3(new pf(this.f24543b, this.f24544c, this.d, this.f24545e, this.f24546f, this.h, this.f24547n, this.f24548r, this.f24549s, this.f24550w, 1));
+                g0.h3(new pf(this.f24550b, this.f24551c, this.d, this.f24552e, this.f24553f, this.h, this.f24554n, this.f24555r, this.f24556s, this.f24557w, 1));
                 return;
             default:
-                TLRPC.messages_Messages messages_messages = this.f24544c;
+                TLRPC.messages_Messages messages_messages = this.f24551c;
                 int i7 = messages_messages.count;
-                ui uiVar = this.f24543b;
+                ui uiVar = this.f24550b;
                 qp messagesController = uiVar.getMessagesController();
                 ArrayList<TLRPC.User> arrayList = messages_messages.users;
                 int i10 = this.d;
@@ -60,17 +60,17 @@ public final class pf implements Runnable {
                 }
                 messagesController2.S3(arrayList2, z10);
                 qs notificationCenter = uiVar.getNotificationCenter();
-                Long valueOf = Long.valueOf(this.f24545e);
+                Long valueOf = Long.valueOf(this.f24552e);
                 Integer valueOf2 = Integer.valueOf(i7);
                 Integer valueOf3 = Integer.valueOf(this.h);
-                Integer valueOf4 = Integer.valueOf(this.f24547n);
-                Boolean valueOf5 = Boolean.valueOf(this.f24548r);
-                if (this.f24549s != 0) {
+                Integer valueOf4 = Integer.valueOf(this.f24554n);
+                Boolean valueOf5 = Boolean.valueOf(this.f24555r);
+                if (this.f24556s != 0) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                notificationCenter.k(32, valueOf, valueOf2, this.f24546f, valueOf3, valueOf4, valueOf5, Boolean.valueOf(z11), Integer.valueOf(this.f24550w));
+                notificationCenter.k(32, valueOf, valueOf2, this.f24553f, valueOf3, valueOf4, valueOf5, Boolean.valueOf(z11), Integer.valueOf(this.f24557w));
                 return;
         }
     }

@@ -10,7 +10,7 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.Components.ic;
 import org.telegram.ui.Components.xq;
 import org.telegram.ui.Components.zg0;
@@ -84,7 +84,7 @@ public final class s0 extends View {
         paint4.setStrokeWidth(org.telegram.messenger.g0.L(4.0f));
         textPaint.setTextSize(org.telegram.messenger.g0.L(14.0f));
         textPaint2.setTextSize(org.telegram.messenger.g0.N(14.66f));
-        StaticLayout staticLayout = new StaticLayout(str, textPaint, org.telegram.messenger.g0.f22544q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        StaticLayout staticLayout = new StaticLayout(str, textPaint, org.telegram.messenger.g0.f22563q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         this.f12772r = staticLayout;
         this.f12773s = staticLayout.getLineCount() > 0 ? staticLayout.getLineWidth(0) : 0.0f;
         this.f12774w = staticLayout.getLineCount() > 0 ? staticLayout.getLineLeft(0) : 0.0f;
@@ -113,7 +113,7 @@ public final class s0 extends View {
         this.f12771n = zg0Var2;
         zg0Var2.setCallback(this);
         this.f12771n.start();
-        StaticLayout staticLayout = new StaticLayout(charSequence, this.f12768c, org.telegram.messenger.g0.f22544q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        StaticLayout staticLayout = new StaticLayout(charSequence, this.f12768c, org.telegram.messenger.g0.f22563q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         this.f12775x = staticLayout;
         float f11 = 0.0f;
         if (staticLayout.getLineCount() > 0) {
@@ -259,7 +259,7 @@ public final class s0 extends View {
             return true;
         }
         if (motionEvent.getAction() == 1) {
-            if (icVar.f34585i) {
+            if (icVar.f34629i) {
                 if (contains) {
                     if (this.G) {
                         Runnable runnable = this.Q;
@@ -298,6 +298,6 @@ public final class s0 extends View {
     }
 
     public s0(Context context) {
-        this(context, hd.M0(2131746917, null));
+        this(context, id.M0(2131746919, null));
     }
 }

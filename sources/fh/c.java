@@ -23,7 +23,7 @@ public final class c extends aa {
         boolean z9;
         g gVar = this.f11489c;
         f fVar = gVar.Q;
-        int i7 = gVar.f21073c;
+        int i7 = gVar.f21076c;
         if (i7 != 0) {
             int r12 = k6.r1(i7 / 255.0f, gVar.f11541y);
             if (Color.alpha(gVar.f11540x) > 0 && i7 == 255) {
@@ -42,7 +42,7 @@ public final class c extends aa {
             float f14 = gVar.d;
             float f15 = f13 + f14;
             float f16 = rect.top;
-            float f17 = gVar.f21074e;
+            float f17 = gVar.f21077e;
             float f18 = f16 + f17;
             float f19 = rect.right;
             float f20 = f19 + f14;

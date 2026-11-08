@@ -2,37 +2,28 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class tw implements Runnable {
-    public final int f25685a;
-    public final gz f25686b;
-    public final TLRPC.Message f25687c;
-    public final boolean d;
+    public final int f25686a;
+    public final gz f25687b;
+    public final TLRPC.TL_error f25688c;
+    public final org.telegram.ui.ActionBar.f2 d;
+    public final TLRPC.TL_messages_editMessage f25689e;
 
-    public tw(gz gzVar, TLRPC.Message message, boolean z9, int i7) {
-        this.f25685a = i7;
-        this.f25686b = gzVar;
-        this.f25687c = message;
-        this.d = z9;
+    public tw(gz gzVar, TLRPC.TL_error tL_error, org.telegram.ui.ActionBar.f2 f2Var, TLRPC.TL_messages_editMessage tL_messages_editMessage, int i7) {
+        this.f25686a = i7;
+        this.f25687b = gzVar;
+        this.f25688c = tL_error;
+        this.d = f2Var;
+        this.f25689e = tL_messages_editMessage;
     }
 
     @Override
     public final void run() {
-        switch (this.f25685a) {
+        switch (this.f25686a) {
             case 0:
-                gz gzVar = this.f25686b;
-                gzVar.getClass();
-                TLRPC.Message message = this.f25687c;
-                gzVar.d0(message.f26974id);
-                gzVar.i0(message.f26974id, this.d);
-                return;
-            case 1:
-                gz gzVar2 = this.f25686b;
-                gzVar2.getClass();
-                TLRPC.Message message2 = this.f25687c;
-                gzVar2.d0(message2.f26974id);
-                gzVar2.i0(message2.f26974id, this.d);
+                org.telegram.ui.Components.v4.c0(this.f25687b.currentAccount, this.f25688c, this.d, this.f25689e, new Object[0]);
                 return;
             default:
-                this.f25686b.g0(this.f25687c, this.d);
+                org.telegram.ui.Components.v4.c0(this.f25687b.currentAccount, this.f25688c, this.d, this.f25689e, new Object[0]);
                 return;
         }
     }

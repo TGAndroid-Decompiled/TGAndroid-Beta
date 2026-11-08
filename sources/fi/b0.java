@@ -48,12 +48,12 @@ public final class b0 implements Runnable {
                 li.t3 t3Var = (li.t3) this.f11634e;
                 View D4 = t3Var.D4(this.f11632b);
                 if (D4 instanceof org.telegram.ui.Cells.h9) {
-                    t3Var.f18898u3.b0(this.f11633c, this.d, (org.telegram.ui.Cells.h9) D4);
+                    t3Var.f18901u3.b0(this.f11633c, this.d, (org.telegram.ui.Cells.h9) D4);
                     return;
                 }
                 return;
             case 2:
-                li.t3.O1(((li.i3) this.f11634e).f18637b, this.f11632b, this.f11633c, this.d);
+                li.t3.O1(((li.i3) this.f11634e).f18640b, this.f11632b, this.f11633c, this.d);
                 return;
             default:
                 yr yrVar = (yr) this.f11634e;
@@ -64,7 +64,7 @@ public final class b0 implements Runnable {
                 SQLitePreparedStatement sQLitePreparedStatement = null;
                 try {
                     try {
-                        sQLitePreparedStatement = yrVar.f26698b.executeFast("REPLACE INTO messages_seq VALUES(?, ?, ?)");
+                        sQLitePreparedStatement = yrVar.f26721b.executeFast("REPLACE INTO messages_seq VALUES(?, ?, ?)");
                         sQLitePreparedStatement.requery();
                         sQLitePreparedStatement.bindInteger(1, i13);
                         sQLitePreparedStatement.bindInteger(2, i14);

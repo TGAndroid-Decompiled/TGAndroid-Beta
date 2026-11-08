@@ -5,11 +5,11 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 public final class tt0 extends km0 {
     public final int d;
-    public final View f38393e;
+    public final View f38420e;
 
     public tt0(int i7, View view) {
         this.d = i7;
-        this.f38393e = view;
+        this.f38420e = view;
     }
 
     @Override
@@ -46,25 +46,25 @@ public final class tt0 extends km0 {
         int min = Math.min(h(), Math.max(0, i() + i7));
         switch (this.d) {
             case 0:
-                ((vt0) this.f38393e).setOption(min);
+                ((vt0) this.f38420e).setOption(min);
                 return;
             case 1:
-                mm0 mm0Var = ((org.telegram.ui.u90) this.f38393e).h;
+                mm0 mm0Var = ((org.telegram.ui.u90) this.f38420e).h;
                 float f10 = min / 100.0f;
-                mm0Var.f35995y.l(true, f10);
+                mm0Var.f36023y.l(true, f10);
                 mm0Var.setProgress(f10);
                 return;
             default:
-                if (((org.telegram.ui.xq0) this.f38393e).f51968s.Y7 > 0 && (max = Math.max(0, Math.min(((org.telegram.ui.xq0) this.f38393e).f51968s.Y7 - 1, min))) != ((org.telegram.ui.xq0) this.f38393e).f51968s.X7) {
-                    org.telegram.ui.xq0 xq0Var = (org.telegram.ui.xq0) this.f38393e;
-                    xq0Var.f51967r = xq0Var.f51968s.X7;
-                    ((org.telegram.ui.xq0) this.f38393e).f51968s.X7 = max;
-                    ((org.telegram.ui.xq0) this.f38393e).f51968s.L0();
-                    ((org.telegram.ui.xq0) this.f38393e).invalidate();
-                    int i10 = ((org.telegram.ui.xq0) this.f38393e).f51968s.X7;
-                    org.telegram.ui.xq0 xq0Var2 = (org.telegram.ui.xq0) this.f38393e;
-                    if (i10 != xq0Var2.f51967r) {
-                        xq0Var2.f51968s.m2(1);
+                if (((org.telegram.ui.xq0) this.f38420e).f51961s.Y7 > 0 && (max = Math.max(0, Math.min(((org.telegram.ui.xq0) this.f38420e).f51961s.Y7 - 1, min))) != ((org.telegram.ui.xq0) this.f38420e).f51961s.X7) {
+                    org.telegram.ui.xq0 xq0Var = (org.telegram.ui.xq0) this.f38420e;
+                    xq0Var.f51960r = xq0Var.f51961s.X7;
+                    ((org.telegram.ui.xq0) this.f38420e).f51961s.X7 = max;
+                    ((org.telegram.ui.xq0) this.f38420e).f51961s.L0();
+                    ((org.telegram.ui.xq0) this.f38420e).invalidate();
+                    int i10 = ((org.telegram.ui.xq0) this.f38420e).f51961s.X7;
+                    org.telegram.ui.xq0 xq0Var2 = (org.telegram.ui.xq0) this.f38420e;
+                    if (i10 != xq0Var2.f51960r) {
+                        xq0Var2.f51961s.m2(1);
                         return;
                     }
                     return;
@@ -77,7 +77,7 @@ public final class tt0 extends km0 {
     public CharSequence d() {
         switch (this.d) {
             case 0:
-                vt0 vt0Var = (vt0) this.f38393e;
+                vt0 vt0Var = (vt0) this.f38420e;
                 int i7 = vt0Var.I;
                 String[] strArr = vt0Var.F;
                 if (i7 < strArr.length) {
@@ -89,17 +89,17 @@ public final class tt0 extends km0 {
                 return super.d();
             case 2:
                 StringBuilder sb2 = new StringBuilder();
-                sb2.append(org.telegram.messenger.hd.M0(2131754735, "AccDescrVideoQuality"));
-                if (((org.telegram.ui.xq0) this.f38393e).f51968s.Y7 > 0) {
+                sb2.append(org.telegram.messenger.id.M0(2131754735, "AccDescrVideoQuality"));
+                if (((org.telegram.ui.xq0) this.f38420e).f51961s.Y7 > 0) {
                     sb2.append(", ");
-                    sb2.append(((org.telegram.ui.xq0) this.f38393e).f51968s.X7 + 1);
+                    sb2.append(((org.telegram.ui.xq0) this.f38420e).f51961s.X7 + 1);
                     sb2.append(" / ");
-                    sb2.append(((org.telegram.ui.xq0) this.f38393e).f51968s.Y7);
+                    sb2.append(((org.telegram.ui.xq0) this.f38420e).f51961s.Y7);
                 }
                 sb2.append(", ");
-                sb2.append(((org.telegram.ui.xq0) this.f38393e).h);
+                sb2.append(((org.telegram.ui.xq0) this.f38420e).h);
                 sb2.append(" – ");
-                sb2.append(((org.telegram.ui.xq0) this.f38393e).f51966n);
+                sb2.append(((org.telegram.ui.xq0) this.f38420e).f51959n);
                 return sb2.toString();
         }
     }
@@ -120,22 +120,22 @@ public final class tt0 extends km0 {
     public final int h() {
         switch (this.d) {
             case 0:
-                return ((vt0) this.f38393e).F.length - 1;
+                return ((vt0) this.f38420e).F.length - 1;
             case 1:
                 return 100;
             default:
-                return Math.max(0, ((org.telegram.ui.xq0) this.f38393e).f51968s.Y7 - 1);
+                return Math.max(0, ((org.telegram.ui.xq0) this.f38420e).f51961s.Y7 - 1);
         }
     }
 
     public final int i() {
         switch (this.d) {
             case 0:
-                return ((vt0) this.f38393e).I;
+                return ((vt0) this.f38420e).I;
             case 1:
-                return org.telegram.messenger.rc.c();
+                return org.telegram.messenger.sc.c();
             default:
-                return ((org.telegram.ui.xq0) this.f38393e).f51968s.X7;
+                return ((org.telegram.ui.xq0) this.f38420e).f51961s.X7;
         }
     }
 
@@ -144,18 +144,18 @@ public final class tt0 extends km0 {
         switch (this.d) {
             case 1:
                 super.onPopulateAccessibilityEvent(view, accessibilityEvent);
-                StringBuilder sb2 = new StringBuilder(org.telegram.messenger.hd.M0(2131748867, null));
+                StringBuilder sb2 = new StringBuilder(org.telegram.messenger.id.M0(2131748869, null));
                 sb2.append(", ");
-                int c10 = org.telegram.messenger.rc.c();
+                int c10 = org.telegram.messenger.sc.c();
                 if (c10 <= 0) {
-                    sb2.append(org.telegram.messenger.hd.M0(2131748875, null));
+                    sb2.append(org.telegram.messenger.id.M0(2131748877, null));
                 } else if (c10 >= 100) {
-                    sb2.append(org.telegram.messenger.hd.M0(2131748874, null));
+                    sb2.append(org.telegram.messenger.id.M0(2131748876, null));
                 } else {
-                    sb2.append(org.telegram.messenger.hd.a0(null, null, 2131754849, Integer.valueOf(Math.round(c10))));
+                    sb2.append(org.telegram.messenger.id.a0(null, null, 2131754849, Integer.valueOf(Math.round(c10))));
                 }
                 accessibilityEvent.setContentDescription(sb2);
-                ((org.telegram.ui.u90) this.f38393e).setContentDescription(sb2);
+                ((org.telegram.ui.u90) this.f38420e).setContentDescription(sb2);
                 return;
             default:
                 super.onPopulateAccessibilityEvent(view, accessibilityEvent);

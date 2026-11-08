@@ -39,7 +39,7 @@ import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.hc;
 import org.telegram.ui.Components.xq;
-import org.telegram.ui.Components.ys;
+import org.telegram.ui.Components.zs;
 import org.telegram.ui.LaunchActivity;
 public final class p9 implements ls, org.telegram.ui.ActionBar.b2 {
     public static boolean C1;
@@ -152,7 +152,7 @@ public final class p9 implements ls, org.telegram.ui.ActionBar.b2 {
     public static float A1 = 1.0f;
     public static boolean B1 = true;
     public static final LongSparseArray D1 = new LongSparseArray();
-    public boolean f9529a = iz.f23368b0;
+    public boolean f9529a = iz.f23389b0;
     public boolean f9532b = true;
     public boolean f9535c = false;
     public boolean d = false;
@@ -180,7 +180,7 @@ public final class p9 implements ls, org.telegram.ui.ActionBar.b2 {
         if (j3 == 0 || storyItem == null) {
             return "";
         }
-        return (CharSequence) D1.get(j3 + (j3 >> 16) + (storyItem.f27192id << 16), "");
+        return (CharSequence) D1.get(j3 + (j3 >> 16) + (storyItem.f27195id << 16), "");
     }
 
     public static boolean D(ij ijVar) {
@@ -192,7 +192,7 @@ public final class p9 implements ls, org.telegram.ui.ActionBar.b2 {
 
     public static void P(long j3, TL_stories.StoryItem storyItem, Editable editable) {
         if (j3 != 0 && storyItem != null) {
-            D1.put(j3 + (j3 >> 16) + (storyItem.f27192id << 16), editable);
+            D1.put(j3 + (j3 >> 16) + (storyItem.f27195id << 16), editable);
         }
     }
 
@@ -234,7 +234,7 @@ public final class p9 implements ls, org.telegram.ui.ActionBar.b2 {
 
     public static void g(p9 p9Var) {
         md mdVar;
-        ys editField;
+        zs editField;
         i4 currentPeerView = p9Var.f9559n0.getCurrentPeerView();
         if (currentPeerView != null && currentPeerView.K1 != null && (((mdVar = currentPeerView.K2) == null || mdVar.getVisibility() != 0) && (editField = currentPeerView.K1.getEditField()) != null)) {
             editField.requestFocus();
@@ -401,7 +401,7 @@ public final class p9 implements ls, org.telegram.ui.ActionBar.b2 {
             z10 = false;
         }
         this.f9532b = z10;
-        if (iz.f23368b0 && z10) {
+        if (iz.f23389b0 && z10) {
             z11 = true;
         } else {
             z11 = false;
@@ -534,7 +534,7 @@ public final class p9 implements ls, org.telegram.ui.ActionBar.b2 {
         this.f9535c = z13;
         e9 e9Var = this.f9578w;
         q4 q4Var = new q4(this, 4);
-        WeakHashMap weakHashMap = r0.i0.f54097a;
+        WeakHashMap weakHashMap = r0.i0.f54190a;
         r0.a0.i(e9Var, q4Var);
         if (this.f9532b) {
             org.telegram.messenger.g0.E2(this.f9569s);
@@ -578,7 +578,7 @@ public final class p9 implements ls, org.telegram.ui.ActionBar.b2 {
     }
 
     public final void I(Context context, int i7, q6 q6Var, h7 h7Var) {
-        this.h = p10.f24467s0;
+        this.h = p10.f24470s0;
         ArrayList arrayList = new ArrayList();
         arrayList.add(Long.valueOf(q6Var.d));
         this.O0 = i7;
@@ -586,7 +586,7 @@ public final class p9 implements ls, org.telegram.ui.ActionBar.b2 {
     }
 
     public final void J(Context context, long j3, l9 l9Var) {
-        this.h = p10.f24467s0;
+        this.h = p10.f24470s0;
         ArrayList arrayList = new ArrayList();
         arrayList.add(Long.valueOf(j3));
         y6 P1 = qp.s1(this.h).P1();
@@ -604,7 +604,7 @@ public final class p9 implements ls, org.telegram.ui.ActionBar.b2 {
             if (y10.stories.isEmpty() && !P1.L(j3)) {
                 P1.f9968g.remove(y10);
                 P1.h.remove(y10);
-                qs.f(i7).k(qs.f25086v5, new Object[0]);
+                qs.f(i7).k(qs.f25095v5, new Object[0]);
             }
         }
         M(context, null, arrayList, 0, null, null, l9Var, false);
@@ -613,7 +613,7 @@ public final class p9 implements ls, org.telegram.ui.ActionBar.b2 {
     public final void K(Context context, TL_stories.PeerStories peerStories, l9 l9Var) {
         ArrayList<TL_stories.StoryItem> arrayList;
         if (peerStories != null && (arrayList = peerStories.stories) != null && !arrayList.isEmpty()) {
-            this.h = p10.f24467s0;
+            this.h = p10.f24470s0;
             ArrayList arrayList2 = new ArrayList();
             arrayList2.add(Long.valueOf(org.telegram.messenger.m5.o(peerStories.peer)));
             M(context, peerStories.stories.get(0), arrayList2, 0, null, peerStories, l9Var, false);
@@ -623,11 +623,11 @@ public final class p9 implements ls, org.telegram.ui.ActionBar.b2 {
     }
 
     public final void L(Context context, TL_stories.StoryItem storyItem, h7 h7Var) {
-        G(p10.f24467s0, context, storyItem, h7Var);
+        G(p10.f24470s0, context, storyItem, h7Var);
     }
 
     public final void M(Context context, TL_stories.StoryItem storyItem, ArrayList arrayList, int i7, q6 q6Var, TL_stories.PeerStories peerStories, l9 l9Var, boolean z9) {
-        H(p10.f24467s0, context, storyItem, arrayList, i7, q6Var, peerStories, l9Var, z9);
+        H(p10.f24470s0, context, storyItem, arrayList, i7, q6Var, peerStories, l9Var, z9);
     }
 
     public final void N(org.telegram.ui.ActionBar.f2 f2Var) {
@@ -681,7 +681,7 @@ public final class p9 implements ls, org.telegram.ui.ActionBar.b2 {
             ti.o oVar = i1Var.f9121a;
             if (oVar != null && oVar.d()) {
                 ti.o oVar2 = i1Var.f9121a;
-                if (oVar2.f56032c == 0) {
+                if (oVar2.f56124c == 0) {
                     i1Var.f9121a = null;
                     i1Var.f9122b = null;
                     oVar2.f();
@@ -758,7 +758,7 @@ public final class p9 implements ls, org.telegram.ui.ActionBar.b2 {
         if (this.f9532b && launchActivity != null) {
             if (z9) {
                 Window window = launchActivity.getWindow();
-                Typeface typeface = org.telegram.messenger.g0.f22516a;
+                Typeface typeface = org.telegram.messenger.g0.f22535a;
                 if (Build.VERSION.SDK_INT >= 26) {
                     z10 = zc.a(window.getDecorView().getSystemUiVisibility(), 16);
                 } else {
@@ -846,7 +846,7 @@ public final class p9 implements ls, org.telegram.ui.ActionBar.b2 {
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         ArrayList arrayList;
         int i11 = 0;
-        if (i7 == qs.f25100x5) {
+        if (i7 == qs.f25109x5) {
             if (this.N0 == ((q6) objArr[0])) {
                 z();
                 f9 f9Var = this.f9559n0;
@@ -858,16 +858,16 @@ public final class p9 implements ls, org.telegram.ui.ActionBar.b2 {
                     ArrayList arrayList2 = new ArrayList();
                     int i12 = 0;
                     while (i11 < this.N0.f9643i.size()) {
-                        if (selectedStory != null && selectedStory.f27192id == ((ij) this.N0.f9643i.get(i11)).f23248l.f27192id) {
+                        if (selectedStory != null && selectedStory.f27195id == ((ij) this.N0.f9643i.get(i11)).f23266l.f27195id) {
                             i12 = i11;
                         }
-                        arrayList2.add(((ij) this.N0.f9643i.get(i11)).f23248l);
+                        arrayList2.add(((ij) this.N0.f9643i.get(i11)).f23266l);
                         i11++;
                     }
                     this.f9580x.b(i12, this.N0.d, arrayList2);
                 }
             }
-        } else if (i7 == qs.f25086v5) {
+        } else if (i7 == qs.f25095v5) {
             l9 l9Var = this.f9572t0;
             if (l9Var instanceof h7) {
                 h7 h7Var = (h7) l9Var;
@@ -903,13 +903,13 @@ public final class p9 implements ls, org.telegram.ui.ActionBar.b2 {
                 }
             }
         } else {
-            int i14 = qs.f24971c1;
-            if (i7 != i14 && i7 != qs.f24977d1) {
-                if (i7 == qs.f25093w5) {
+            int i14 = qs.f24980c1;
+            if (i7 != i14 && i7 != qs.f24986d1) {
+                if (i7 == qs.f25102w5) {
                     long longValue = ((Long) objArr[0]).longValue();
                     int intValue = ((Integer) objArr[1]).intValue();
                     TL_stories.StoryItem storyItem = this.S0;
-                    if (storyItem != null && storyItem.dialogId == longValue && storyItem.f27192id == intValue) {
+                    if (storyItem != null && storyItem.dialogId == longValue && storyItem.f27195id == intValue) {
                         this.R0 = true;
                         return;
                     }
@@ -973,7 +973,7 @@ public final class p9 implements ls, org.telegram.ui.ActionBar.b2 {
 
     public final void l(boolean z9) {
         boolean z10;
-        boolean z11 = org.telegram.messenger.r2.f25199a;
+        boolean z11 = org.telegram.messenger.r2.f25212a;
         if (this.m0 && !z9) {
             z10 = false;
         } else {
@@ -1027,7 +1027,7 @@ public final class p9 implements ls, org.telegram.ui.ActionBar.b2 {
             ofFloat.addUpdateListener(new x8(this, 2));
             this.H.addListener(new y8(this, 1));
             this.H.setDuration(250L);
-            this.H.setInterpolator(org.telegram.ui.ActionBar.i1.f27541w);
+            this.H.setInterpolator(org.telegram.ui.ActionBar.i1.f27544w);
             this.H.start();
         }
     }
@@ -1066,7 +1066,7 @@ public final class p9 implements ls, org.telegram.ui.ActionBar.b2 {
                 this.f9575u1.setInterpolator(xq.h);
             } else {
                 this.f9575u1.setDuration(350L);
-                this.f9575u1.setInterpolator(xq.f40345f);
+                this.f9575u1.setInterpolator(xq.f40366f);
             }
             this.f9575u1.start();
         }
@@ -1086,7 +1086,7 @@ public final class p9 implements ls, org.telegram.ui.ActionBar.b2 {
             if (currentPage != null) {
                 r4 r4Var = currentPage.f9305r;
                 z4 z4Var = currentPage.f9303f;
-                if (z4Var != null && z4Var.f17102a) {
+                if (z4Var != null && z4Var.f17105a) {
                     z4Var.a();
                     return;
                 } else if (Math.abs(currentPage.f9301c.getTranslationY() - r4Var.getPaddingTop()) > org.telegram.messenger.g0.L(2.0f)) {
@@ -1126,7 +1126,7 @@ public final class p9 implements ls, org.telegram.ui.ActionBar.b2 {
             if (this.N0 != null) {
                 ArrayList arrayList = new ArrayList();
                 for (int i7 = 0; i7 < this.N0.f9643i.size(); i7++) {
-                    arrayList.add(((ij) this.N0.f9643i.get(i7)).f23248l);
+                    arrayList.add(((ij) this.N0.f9643i.get(i7)).f23266l);
                 }
                 this.f9580x.b(currentPeerView.getListPosition(), this.N0.d, arrayList);
                 return;

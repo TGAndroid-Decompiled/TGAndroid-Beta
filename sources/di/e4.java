@@ -77,7 +77,7 @@ public final class e4 extends FrameLayout {
             } else {
                 if (this.f8964n) {
                     this.f8964n = false;
-                    if (this.d.f32905f < 0.2f) {
+                    if (this.d.f32913f < 0.2f) {
                         z11 = true;
                     } else {
                         z11 = false;
@@ -85,7 +85,7 @@ public final class e4 extends FrameLayout {
                     this.f8965r = z11;
                 }
                 if (!this.f8965r) {
-                    this.h = Utilities.i(this.h - ((1000.0f / org.telegram.messenger.g0.f22545r) / 300.0f), 1.0f, 0.0f);
+                    this.h = Utilities.i(this.h - ((1000.0f / org.telegram.messenger.g0.f22564r) / 300.0f), 1.0f, 0.0f);
                 }
                 z10 = true;
                 f11 = 1.0f;
@@ -97,7 +97,7 @@ public final class e4 extends FrameLayout {
                 this.d = dh0Var2;
                 dh0Var2.d(null, true, false);
             }
-            this.d.f32915q = 0;
+            this.d.f32923q = 0;
             ImageReceiver imageReceiver = c4Var.getImageReceiver();
             float v = com.google.android.recaptcha.internal.a.v(1.0f, this.h, org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(3.0f));
             this.d.f((int) (rectF.left - v), (int) (rectF.top - v), (int) (rectF.right + v), (int) (rectF.bottom + v));
@@ -108,15 +108,15 @@ public final class e4 extends FrameLayout {
                 i7 = Utilities.i(f11, 1.0f, 0.0f);
             }
             dh0Var3.e(true, i7);
-            if (this.f8965r && z10 && this.d.f32905f >= 0.9f) {
-                this.h = Utilities.i(this.h - ((1000.0f / org.telegram.messenger.g0.f22545r) / 300.0f), 1.0f, 0.0f);
+            if (this.f8965r && z10 && this.d.f32913f >= 0.9f) {
+                this.h = Utilities.i(this.h - ((1000.0f / org.telegram.messenger.g0.f22564r) / 300.0f), 1.0f, 0.0f);
             }
             if (z9) {
                 if (f10 != 1.0f) {
                     Paint t6 = r7.t(imageReceiver, false);
                     t6.setAlpha((int) (this.h * 255.0f));
                     dh0 dh0Var4 = this.d;
-                    dh0Var4.f32918t = t6;
+                    dh0Var4.f32926t = t6;
                     dh0Var4.a(canvas);
                 }
                 if (this.f8963f == null) {
@@ -129,7 +129,7 @@ public final class e4 extends FrameLayout {
                 }
                 this.f8963f.setAlpha((int) (255.0f * f10 * this.h));
                 dh0 dh0Var5 = this.d;
-                dh0Var5.f32918t = this.f8963f;
+                dh0Var5.f32926t = this.f8963f;
                 dh0Var5.a(canvas);
             }
         }

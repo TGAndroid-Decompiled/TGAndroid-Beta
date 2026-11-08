@@ -39,19 +39,19 @@ public final class c {
     public final void b() {
         switch (this.f300a) {
             case 0:
-                m mVar = (m) this.f301b.f19226b;
+                m mVar = (m) this.f301b.f19229b;
                 ViewGroup viewGroup = (ViewGroup) mVar.f14264b;
                 f fVar = (f) mVar.f14265c;
                 try {
                     Bundle bundle = new Bundle();
-                    Parcel P0 = fVar.P0();
-                    v7.b.b(P0, bundle);
-                    fVar.T0(P0, 2);
+                    Parcel p12 = fVar.p1();
+                    v7.b.b(p12, bundle);
+                    fVar.t1(p12, 2);
                     l8.c.b(bundle, null);
-                    Parcel O0 = fVar.O0(fVar.P0(), 8);
-                    a M0 = b.M0(O0.readStrongBinder());
-                    O0.recycle();
-                    mVar.d = (View) b.N0(M0);
+                    Parcel o12 = fVar.o1(fVar.p1(), 8);
+                    a m12 = b.m1(o12.readStrongBinder());
+                    o12.recycle();
+                    mVar.d = (View) b.n1(m12);
                     viewGroup.removeAllViews();
                     viewGroup.addView((View) mVar.d);
                     return;
@@ -59,11 +59,11 @@ public final class c {
                     throw new RuntimeException(e10);
                 }
             default:
-                m mVar2 = (m) this.f301b.f19226b;
+                m mVar2 = (m) this.f301b.f19229b;
                 mVar2.getClass();
                 try {
                     f fVar2 = (f) mVar2.f14265c;
-                    fVar2.T0(fVar2.P0(), 3);
+                    fVar2.t1(fVar2.p1(), 3);
                     return;
                 } catch (RemoteException e11) {
                     throw new RuntimeException(e11);

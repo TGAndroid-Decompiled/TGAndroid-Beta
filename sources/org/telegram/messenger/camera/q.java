@@ -17,7 +17,7 @@ import java.nio.FloatBuffer;
 import javax.microedition.khronos.egl.EGL10;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.ActionBar.f6;
@@ -116,7 +116,7 @@ public abstract class q {
 
     public static void o(TextView textView, int i7, f6 f6Var, String str, int i10) {
         r6.V(textView, i7, f6Var);
-        textView.setText(hd.M0(i10, str));
+        textView.setText(id.M0(i10, str));
     }
 
     public static void p(fh.g gVar, float f10, float f11) {
@@ -125,12 +125,12 @@ public abstract class q {
     }
 
     public static void q(String str, int i7, StringBuilder sb2, String str2) {
-        sb2.append(hd.M0(i7, str));
+        sb2.append(id.M0(i7, str));
         sb2.append(str2);
     }
 
     public static void r(String str, int i7, hc hcVar) {
-        hcVar.i(hd.M0(i7, str)).j();
+        hcVar.i(id.M0(i7, str)).j();
     }
 
     public static void s(String str, hc hcVar, int i7, int i10) {

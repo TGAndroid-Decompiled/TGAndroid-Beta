@@ -4,38 +4,38 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 public final class lf0 implements Runnable {
-    public final int f47535a;
-    public final bg0 f47536b;
-    public final EditText f47537c;
+    public final int f47532a;
+    public final bg0 f47533b;
+    public final EditText f47534c;
 
     public lf0(bg0 bg0Var, EditText editText, int i7) {
-        this.f47535a = i7;
-        this.f47536b = bg0Var;
-        this.f47537c = editText;
+        this.f47532a = i7;
+        this.f47533b = bg0Var;
+        this.f47534c = editText;
     }
 
     @Override
     public final void run() {
-        switch (this.f47535a) {
+        switch (this.f47532a) {
             case 0:
-                bg0 bg0Var = this.f47536b;
-                if (!bg0Var.f44334o0) {
+                bg0 bg0Var = this.f47533b;
+                if (!bg0Var.f44337o0) {
                     try {
                         Window window = bg0Var.getWindow();
                         WindowManager.LayoutParams attributes = window.getAttributes();
                         attributes.flags &= -131073;
                         window.setAttributes(attributes);
-                        bg0Var.f44334o0 = true;
+                        bg0Var.f44337o0 = true;
                     } catch (Exception e10) {
                         org.telegram.messenger.a8.g(e10, true);
                     }
                 }
-                org.telegram.messenger.g0.i3(new lf0(bg0Var, this.f47537c, 1), 100L);
+                org.telegram.messenger.g0.i3(new lf0(bg0Var, this.f47534c, 1), 100L);
                 return;
             default:
-                bg0 bg0Var2 = this.f47536b;
-                int[] iArr = bg0Var2.f44333n0;
-                org.telegram.messenger.g0.K3(this.f47537c);
+                bg0 bg0Var2 = this.f47533b;
+                int[] iArr = bg0Var2.f44336n0;
+                org.telegram.messenger.g0.K3(this.f47534c);
                 org.telegram.ui.Components.dg dgVar = bg0Var2.V;
                 if (dgVar != null) {
                     dgVar.getLocationOnScreen(iArr);

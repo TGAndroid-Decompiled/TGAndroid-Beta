@@ -11,25 +11,25 @@ import bi.l1;
 import c8.ha;
 import c8.ka;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.oi;
 public final class c extends LinearLayout {
-    public static final int f18350e = 0;
-    public final f6 f18351a;
-    public final r7 f18352b;
-    public final r7 f18353c;
+    public static final int f18353e = 0;
+    public final f6 f18354a;
+    public final r7 f18355b;
+    public final r7 f18356c;
     public float d;
 
     public c(Context context, f6 f6Var, oi oiVar, dh.c cVar) {
         super(context);
         r7 r7Var = new r7(this);
-        this.f18352b = r7Var;
+        this.f18355b = r7Var;
         r7 r7Var2 = new r7(this);
-        this.f18353c = r7Var2;
-        this.f18351a = f6Var;
+        this.f18356c = r7Var2;
+        this.f18354a = f6Var;
         kh.a c10 = kh.a.c(context, cVar, oiVar, f6Var);
         r7Var.f614b = c10;
         c10.setOnClickListener(new l1(5));
@@ -38,8 +38,8 @@ public final class c extends LinearLayout {
         r7Var2.f614b = c11;
         c11.setOnClickListener(new l1(5));
         ka.b((kh.a) r7Var2.f614b, 0.065f, 2.0f);
-        a(r7Var, hd.M0(2131746262, null), 2131231510, false);
-        a(r7Var2, hd.M0(2131750588, null), 2131231502, true);
+        a(r7Var, id.M0(2131746264, null), 2131231510, false);
+        a(r7Var2, id.M0(2131750588, null), 2131231502, true);
         setOrientation(0);
         setClipChildren(false);
         addView((kh.a) r7Var.f614b, ha.m(1.0f, 0, 56, 1, -1, 0));
@@ -55,7 +55,7 @@ public final class c extends LinearLayout {
         textView.setPadding(g0.L(21.0f), 0, g0.L(21.0f), 0);
         textView.setCompoundDrawablePadding(g0.L(6.0f));
         int i10 = k6.Ll;
-        f6 f6Var = this.f18351a;
+        f6 f6Var = this.f18354a;
         r6.V(textView, i10, f6Var);
         textView.setTypeface(g0.o());
         Drawable mutate = getContext().getResources().getDrawable(i7).mutate();
@@ -75,10 +75,10 @@ public final class c extends LinearLayout {
 
     public final void b(r7 r7Var) {
         int i7;
-        float f10 = this.d * ((te.a) r7Var.d).f55394e;
+        float f10 = this.d * ((te.a) r7Var.d).f55486e;
         float f11 = (1.0f - f10) * (-g0.L(54.0f));
-        float interpolation = (1.0f - se.a.f54912a.getInterpolation(f10)) * (getMeasuredWidth() / 2.0f);
-        if (r7Var == this.f18352b) {
+        float interpolation = (1.0f - se.a.f55004a.getInterpolation(f10)) * (getMeasuredWidth() / 2.0f);
+        if (r7Var == this.f18355b) {
             interpolation *= -1.0f;
         }
         ((kh.a) r7Var.f614b).setTranslationX(interpolation);
@@ -94,29 +94,29 @@ public final class c extends LinearLayout {
     }
 
     public View getForwardButton() {
-        return (kh.a) this.f18353c.f614b;
+        return (kh.a) this.f18356c.f614b;
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
-        b(this.f18353c);
-        b(this.f18352b);
+        b(this.f18356c);
+        b(this.f18355b);
     }
 
     public void setForwardButtonOnClickListener(View.OnClickListener onClickListener) {
-        ((kh.a) this.f18353c.f614b).setOnClickListener(onClickListener);
+        ((kh.a) this.f18356c.f614b).setOnClickListener(onClickListener);
     }
 
     public void setReplyButtonOnClickListener(View.OnClickListener onClickListener) {
-        ((kh.a) this.f18352b.f614b).setOnClickListener(onClickListener);
+        ((kh.a) this.f18355b.f614b).setOnClickListener(onClickListener);
     }
 
     public void setTotalVisibilityFactor(float f10) {
         if (this.d != f10) {
             this.d = f10;
-            b(this.f18353c);
-            b(this.f18352b);
+            b(this.f18356c);
+            b(this.f18355b);
         }
     }
 }

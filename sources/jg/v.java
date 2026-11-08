@@ -17,29 +17,29 @@ import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.bu0;
 import org.telegram.ui.c9;
 public final class v implements RequestDelegate {
-    public final int f16948a;
-    public final int f16949b;
-    public final Object f16950c;
+    public final int f16951a;
+    public final int f16952b;
+    public final Object f16953c;
     public final Object d;
 
     public v(int i7, HashSet hashSet, f2 f2Var) {
-        this.f16948a = 4;
-        this.f16949b = i7;
+        this.f16951a = 4;
+        this.f16952b = i7;
         this.d = hashSet;
-        this.f16950c = f2Var;
+        this.f16953c = f2Var;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i7 = this.f16948a;
-        int i10 = this.f16949b;
-        Object obj = this.f16950c;
+        int i7 = this.f16951a;
+        int i10 = this.f16952b;
+        Object obj = this.f16953c;
         Object obj2 = this.d;
         switch (i7) {
             case 0:
                 h0 h0Var = (h0) obj2;
                 h0Var.getClass();
-                org.telegram.messenger.g0.h3(new ai.a1((Object) h0Var, this.f16949b, (Object) tLObject, (String) obj, 8));
+                org.telegram.messenger.g0.h3(new ai.a1((Object) h0Var, this.f16952b, (Object) tLObject, (String) obj, 8));
                 return;
             case 1:
                 ((VoIPService) obj2).lambda$startConferenceGroupCall$34(i10, (String) obj, tLObject, tL_error);
@@ -48,19 +48,19 @@ public final class v implements RequestDelegate {
                 ((VoIPService) obj2).lambda$editCallMember$90(i10, (Runnable) obj, tLObject, tL_error);
                 return;
             case 3:
-                org.telegram.messenger.g0.h3(new ai.a1((c9) obj2, tLObject, this.f16949b, (TLRPC.User) obj, 15));
+                org.telegram.messenger.g0.h3(new ai.a1((c9) obj2, tLObject, this.f16952b, (TLRPC.User) obj, 15));
                 return;
             case 4:
-                org.telegram.messenger.g0.h3(new ub(tLObject, this.f16949b, (HashSet) obj2, tL_error, (f2) obj));
+                org.telegram.messenger.g0.h3(new ub(tLObject, this.f16952b, (HashSet) obj2, tL_error, (f2) obj));
                 return;
             case 5:
-                org.telegram.messenger.g0.h3(new ai.a1((f2) obj2, tLObject, this.f16949b, (c20) obj, 23));
+                org.telegram.messenger.g0.h3(new ai.a1((f2) obj2, tLObject, this.f16952b, (c20) obj, 23));
                 return;
             case 6:
-                org.telegram.messenger.g0.h3(new ai.a1((Object) ((u20) obj2), this.f16949b, (Object) tLObject, (String) obj, 25));
+                org.telegram.messenger.g0.h3(new ai.a1((Object) ((u20) obj2), this.f16952b, (Object) tLObject, (String) obj, 25));
                 return;
             case 7:
-                org.telegram.messenger.g0.h3(new ai.a1((Object) ((po0) obj2), this.f16949b, (Object) tLObject, (String) obj, 27));
+                org.telegram.messenger.g0.h3(new ai.a1((Object) ((po0) obj2), this.f16952b, (Object) tLObject, (String) obj, 27));
                 return;
             case 8:
                 RectF rectF = ProfileActivity.S6;
@@ -85,7 +85,7 @@ public final class v implements RequestDelegate {
                         }
                     }
                     boolean isEmpty = arrayList2.isEmpty();
-                    int i12 = this.f16949b;
+                    int i12 = this.f16952b;
                     if (!isEmpty && wg.s.h()) {
                         org.telegram.messenger.r1.i().o(arrayList2, new bg.f0(arrayList, chat, i12, c20Var, 10));
                         return;
@@ -99,16 +99,16 @@ public final class v implements RequestDelegate {
     }
 
     public v(Object obj, int i7, Object obj2, int i10) {
-        this.f16948a = i10;
+        this.f16951a = i10;
         this.d = obj;
-        this.f16949b = i7;
-        this.f16950c = obj2;
+        this.f16952b = i7;
+        this.f16953c = obj2;
     }
 
     public v(ProfileActivity profileActivity, TLRPC.TL_channels_getParticipants tL_channels_getParticipants, int i7) {
-        this.f16948a = 8;
+        this.f16951a = 8;
         this.d = profileActivity;
-        this.f16950c = tL_channels_getParticipants;
-        this.f16949b = i7;
+        this.f16953c = tL_channels_getParticipants;
+        this.f16952b = i7;
     }
 }

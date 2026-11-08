@@ -3,29 +3,29 @@ package org.telegram.ui;
 import android.text.SpannableStringBuilder;
 import org.telegram.tgnet.ConnectionsManager;
 public final class ed implements Runnable {
-    public final int f45318a;
-    public final zd f45319b;
-    public final int f45320c;
+    public final int f45277a;
+    public final zd f45278b;
+    public final int f45279c;
 
     public ed(zd zdVar, int i7, int i10) {
-        this.f45318a = i10;
-        this.f45319b = zdVar;
-        this.f45320c = i7;
+        this.f45277a = i10;
+        this.f45278b = zdVar;
+        this.f45279c = i7;
     }
 
     @Override
     public final void run() {
         boolean z9;
         String H;
-        int i7 = this.f45318a;
-        int i10 = this.f45320c;
-        zd zdVar = this.f45319b;
+        int i7 = this.f45277a;
+        int i10 = this.f45279c;
+        zd zdVar = this.f45278b;
         switch (i7) {
             case 0:
-                vf.c.t(zdVar.getContext(), org.telegram.messenger.hd.M0(i10, null));
+                vf.c.t(zdVar.getContext(), org.telegram.messenger.id.M0(i10, null));
                 return;
             case 1:
-                ed edVar = zdVar.f52534f1;
+                ed edVar = zdVar.f52538f1;
                 bi.v vVar = zdVar.O0;
                 org.telegram.ui.Components.cc.e();
                 if (zdVar.D0.amount < org.telegram.messenger.qp.s1(i10).R5) {
@@ -43,7 +43,7 @@ public final class ed implements Runnable {
                 edVar.run();
                 return;
             default:
-                ed edVar2 = zdVar.f52534f1;
+                ed edVar2 = zdVar.f52538f1;
                 int currentTime = ConnectionsManager.getInstance(i10).getCurrentTime();
                 pd pdVar = zdVar.G0;
                 if (zdVar.N0 <= 0 && zdVar.B0 <= currentTime) {
@@ -53,21 +53,21 @@ public final class ed implements Runnable {
                 }
                 pdVar.setEnabled(z9);
                 if (currentTime < zdVar.B0) {
-                    pdVar.i(org.telegram.messenger.hd.M0(2131748366, null), true, true);
-                    if (zdVar.f52533e1 == null) {
-                        zdVar.f52533e1 = new SpannableStringBuilder("l");
+                    pdVar.i(org.telegram.messenger.id.M0(2131748368, null), true, true);
+                    if (zdVar.f52537e1 == null) {
+                        zdVar.f52537e1 = new SpannableStringBuilder("l");
                         org.telegram.ui.Components.wp wpVar = new org.telegram.ui.Components.wp(2131231976, 0);
-                        wpVar.f40069n = 1;
-                        zdVar.f52533e1.setSpan(wpVar, 0, 1, 33);
+                        wpVar.f40019n = 1;
+                        zdVar.f52537e1.setSpan(wpVar, 0, 1, 33);
                     }
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                    spannableStringBuilder.append((CharSequence) zdVar.f52533e1).append((CharSequence) bi.z.w0(zdVar.B0 - currentTime));
+                    spannableStringBuilder.append((CharSequence) zdVar.f52537e1).append((CharSequence) bi.z.w0(zdVar.B0 - currentTime));
                     pdVar.g(spannableStringBuilder, true);
                     org.telegram.ui.Components.cc ccVar = zdVar.P0;
                     if (ccVar != null) {
-                        org.telegram.ui.Components.gb gbVar = ccVar.f32510e;
+                        org.telegram.ui.Components.gb gbVar = ccVar.f32541e;
                         if ((gbVar instanceof org.telegram.ui.Components.kb) && gbVar.isAttachedToWindow()) {
-                            org.telegram.messenger.k5.r(null, null, 2131752952, new Object[]{bi.z.w0(zdVar.B0 - currentTime)}, ((org.telegram.ui.Components.kb) zdVar.P0.f32510e).f35243b);
+                            org.telegram.messenger.k5.r(null, null, 2131752952, new Object[]{bi.z.w0(zdVar.B0 - currentTime)}, ((org.telegram.ui.Components.kb) zdVar.P0.f32541e).f35269b);
                         }
                     }
                     org.telegram.messenger.g0.r(edVar2);
@@ -76,9 +76,9 @@ public final class ed implements Runnable {
                 }
                 pdVar.g(null, true);
                 if (zdVar.M0) {
-                    H = org.telegram.messenger.hd.M0(2131748367, null);
+                    H = org.telegram.messenger.id.M0(2131748369, null);
                 } else {
-                    H = org.telegram.messenger.hd.H(' ', "MonetizationStarsWithdraw", (int) zdVar.N0);
+                    H = org.telegram.messenger.id.H(' ', "MonetizationStarsWithdraw", (int) zdVar.N0);
                 }
                 pdVar.i(bi.dd.Y0(false, H, zdVar.H0), true, true);
                 return;

@@ -2,29 +2,29 @@ package x2;
 
 import a8.wa;
 public final class i0 implements h2.j {
-    public final int f58258a;
-    public final wa f58259b;
-    public final u f58260c;
+    public final int f58347a;
+    public final wa f58348b;
+    public final u f58349c;
     public final c0 d;
 
     public i0(wa waVar, u uVar, c0 c0Var, int i7) {
-        this.f58258a = i7;
-        this.f58259b = waVar;
-        this.f58260c = uVar;
+        this.f58347a = i7;
+        this.f58348b = waVar;
+        this.f58349c = uVar;
         this.d = c0Var;
     }
 
     @Override
     public final void accept(Object obj) {
         k0 k0Var = (k0) obj;
-        switch (this.f58258a) {
+        switch (this.f58347a) {
             case 0:
-                wa waVar = this.f58259b;
-                k0Var.G(waVar.f700b, (g0) waVar.f701c, this.f58260c, this.d);
+                wa waVar = this.f58348b;
+                k0Var.G(waVar.f700b, (g0) waVar.f701c, this.f58349c, this.d);
                 return;
             default:
-                wa waVar2 = this.f58259b;
-                k0Var.A(waVar2.f700b, (g0) waVar2.f701c, this.f58260c, this.d);
+                wa waVar2 = this.f58348b;
+                k0Var.A(waVar2.f700b, (g0) waVar2.f701c, this.f58349c, this.d);
                 return;
         }
     }

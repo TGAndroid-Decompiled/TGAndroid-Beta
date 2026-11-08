@@ -35,21 +35,21 @@ public final class jc extends w31 {
             z10 = false;
         }
         kcVar.f4234c = i13;
-        j6Var.c(x31Var.f40159l, z10, true);
-        if (x31Var.f40164q) {
-            i7 = org.telegram.ui.ActionBar.k6.f28049o6;
+        j6Var.c(x31Var.f40180l, z10, true);
+        if (x31Var.f40185q) {
+            i7 = org.telegram.ui.ActionBar.k6.f28052o6;
         } else {
             i7 = org.telegram.ui.ActionBar.k6.G6;
         }
         org.telegram.ui.ActionBar.k6.v0(i7);
-        if (x31Var.f40164q) {
-            i10 = org.telegram.ui.ActionBar.k6.f28049o6;
+        if (x31Var.f40185q) {
+            i10 = org.telegram.ui.ActionBar.k6.f28052o6;
         } else {
             i10 = org.telegram.ui.ActionBar.k6.G6;
         }
         org.telegram.ui.ActionBar.r6.Z(j6Var, i10, null);
-        if (x31Var.f40164q) {
-            i11 = org.telegram.ui.ActionBar.k6.f28049o6;
+        if (x31Var.f40185q) {
+            i11 = org.telegram.ui.ActionBar.k6.f28052o6;
         } else {
             i11 = org.telegram.ui.ActionBar.k6.G6;
         }
@@ -57,12 +57,12 @@ public final class jc extends w31 {
         float f10 = 180.0f;
         if (z10) {
             ViewPropertyAnimator animate = imageView.animate();
-            if (x31Var.f40154f) {
+            if (x31Var.f40175f) {
                 f10 = 0.0f;
             }
             animate.rotation(f10).setDuration(340L).setInterpolator(xq.h);
         } else {
-            if (x31Var.f40154f) {
+            if (x31Var.f40175f) {
                 f10 = 0.0f;
             }
             imageView.setRotation(f10);

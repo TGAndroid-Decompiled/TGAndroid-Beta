@@ -35,17 +35,17 @@ public final class aa implements Runnable {
                     eaVar.f3812g = j3 + caVar.f3595k;
                     qs.f(i10).k(221, new Object[0]);
                     caVar.f3595k = 0L;
-                    qs.f(i10).k(103, Long.valueOf(ij.B0(ijVar.f23244k)), Integer.valueOf(ijVar.f1()), ijVar.f23244k.reactions);
+                    qs.f(i10).k(103, Long.valueOf(ij.B0(ijVar.f23262k)), Integer.valueOf(ijVar.f1()), ijVar.f23262k.reactions);
                 }
                 if (!caVar.f3597m) {
                     caVar.f3597m = true;
-                    caVar.f3591f.f38931b = 5000L;
+                    caVar.f3591f.f38966b = 5000L;
                     org.telegram.messenger.g0.r(aaVar);
                     org.telegram.messenger.g0.i3(aaVar, 5000L);
                     ccVar.k(true);
                     ccVar.v = aaVar;
                 }
-                caVar.f3590e.f39955b.setText(caVar.d());
+                caVar.f3590e.f39905b.setText(caVar.d());
                 return;
         }
     }

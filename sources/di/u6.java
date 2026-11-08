@@ -56,7 +56,7 @@ public final class u6 implements RequestDelegate {
                             storyItem2.attachPath = x6Var.f9931e;
                             storyItem2.firstFramePath = str;
                             storyItem2.justUploaded = !z11;
-                            int i16 = storyItem2.f27192id;
+                            int i16 = storyItem2.f27195id;
                             if (storyItem == null) {
                                 storyItem = storyItem2;
                             } else {
@@ -147,10 +147,10 @@ public final class u6 implements RequestDelegate {
                                             z10 = false;
                                         }
                                         storyItem.pinned = z10;
-                                        storyItem.dialogId = p10.i(i10).f24486n;
+                                        storyItem.dialogId = p10.i(i10).f24489n;
                                         storyItem.attachPath = x6Var.f9931e;
                                         storyItem.firstFramePath = str;
-                                        storyItem.f27192id = tL_updateStoryID.f27212id;
+                                        storyItem.f27195id = tL_updateStoryID.f27215id;
                                         storyItem.justUploaded = !z9;
                                         i14 = i7 + 1;
                                         z11 = z9;
@@ -175,7 +175,7 @@ public final class u6 implements RequestDelegate {
                     if (x6Var.f9936w) {
                         TL_stories.TL_stories_deleteStories tL_stories_deleteStories = new TL_stories.TL_stories_deleteStories();
                         tL_stories_deleteStories.peer = qp.s1(i21).j1(j3);
-                        tL_stories_deleteStories.f27195id.add(Integer.valueOf(i15));
+                        tL_stories_deleteStories.f27198id.add(Integer.valueOf(i15));
                         ConnectionsManager.getInstance(i21).sendRequest(tL_stories_deleteStories, new u6(x6Var, 1));
                     } else {
                         if ((i15 == 0 || z12) && storyItem != null) {

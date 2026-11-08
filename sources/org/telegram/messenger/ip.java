@@ -1,9 +1,9 @@
 package org.telegram.messenger;
 public final class ip {
-    public long f23325a;
-    public long f23326b;
-    public long f23327c;
+    public long f23348a;
+    public long f23349b;
+    public long f23350c;
     public int d;
-    public int f23328e;
-    public long f23329f;
+    public int f23351e;
+    public long f23352f;
 }

@@ -3,27 +3,27 @@ package m;
 import org.telegram.ui.Components.am;
 import org.telegram.ui.Components.bm;
 public final class f3 implements Runnable {
-    public final int f19101a;
-    public Object f19102b;
+    public final int f19104a;
+    public Object f19105b;
 
     public f3() {
-        this.f19101a = 7;
+        this.f19104a = 7;
     }
 
     private final void a() {
         boolean z9;
         float f10;
-        am amVar = (am) this.f19102b;
+        am amVar = (am) this.f19105b;
         bm bmVar = amVar.P;
         if (bmVar.J != null && !bmVar.K) {
-            int computeVerticalScrollOffset = bmVar.f32199r.computeVerticalScrollOffset();
-            if (bmVar.f32199r.computeVerticalScrollExtent() + computeVerticalScrollOffset >= (amVar.e() - amVar.f31849r) + amVar.f31848n) {
+            int computeVerticalScrollOffset = bmVar.f32220r.computeVerticalScrollOffset();
+            if (bmVar.f32220r.computeVerticalScrollExtent() + computeVerticalScrollOffset >= (amVar.e() - amVar.f31858r) + amVar.f31857n) {
                 z9 = true;
             } else {
                 z9 = false;
             }
             float max = Math.max(0.0f, (bmVar.E - Math.max(0, computeVerticalScrollOffset - bmVar.getListTopPadding())) - org.telegram.messenger.g0.L(52.0f));
-            float max2 = Math.max(0.0f, ((bmVar.f32199r.getMeasuredHeight() - (bmVar.E - computeVerticalScrollOffset)) - bmVar.getListTopPadding()) - org.telegram.messenger.g0.L(84.0f));
+            float max2 = Math.max(0.0f, ((bmVar.f32220r.getMeasuredHeight() - (bmVar.E - computeVerticalScrollOffset)) - bmVar.getListTopPadding()) - org.telegram.messenger.g0.L(84.0f));
             float L = org.telegram.messenger.g0.L(32.0f);
             if (max < L && computeVerticalScrollOffset > bmVar.getListTopPadding()) {
                 f10 = (-(1.0f - (max / L))) * org.telegram.messenger.g0.L(6.0f);
@@ -33,9 +33,9 @@ public final class f3 implements Runnable {
                 f10 = 0.0f;
             }
             int i7 = (int) f10;
-            if (Math.abs(i7) > 0 && bmVar.f32199r.canScrollVertically(i7) && (f10 <= 0.0f || !z9)) {
+            if (Math.abs(i7) > 0 && bmVar.f32220r.canScrollVertically(i7) && (f10 <= 0.0f || !z9)) {
                 bmVar.E += f10;
-                bmVar.f32199r.scrollBy(0, i7);
+                bmVar.f32220r.scrollBy(0, i7);
                 amVar.invalidate();
             }
             amVar.L = true;
@@ -49,12 +49,12 @@ public final class f3 implements Runnable {
     }
 
     public f3(Object obj, int i7) {
-        this.f19101a = i7;
-        this.f19102b = obj;
+        this.f19104a = i7;
+        this.f19105b = obj;
     }
 
     public f3(gf.g gVar, int i7) {
-        this.f19101a = 3;
-        this.f19102b = gVar;
+        this.f19104a = 3;
+        this.f19105b = gVar;
     }
 }

@@ -4,25 +4,25 @@ import h9.i0;
 import h9.t1;
 import java.util.List;
 public final class d implements f3.o {
-    public final int f19598a;
+    public final int f19601a;
     public final h2.x d;
-    public final d4.f f19601e;
-    public f3.q f19602f;
-    public long f19603g;
-    public boolean f19605j;
-    public boolean f19606k;
-    public boolean f19607l;
-    public final e f19599b = new e(0, null, "audio/mp4a-latm", true);
-    public final h2.x f19600c = new h2.x(2048);
-    public int f19604i = -1;
+    public final d4.f f19604e;
+    public f3.q f19605f;
+    public long f19606g;
+    public boolean f19608j;
+    public boolean f19609k;
+    public boolean f19610l;
+    public final e f19602b = new e(0, null, "audio/mp4a-latm", true);
+    public final h2.x f19603c = new h2.x(2048);
+    public int f19607i = -1;
     public long h = -1;
 
     public d(int i7) {
-        this.f19598a = i7;
+        this.f19601a = i7;
         h2.x xVar = new h2.x(10);
         this.d = xVar;
         byte[] bArr = xVar.f14162a;
-        this.f19601e = new d4.f(bArr, bArr.length);
+        this.f19604e = new d4.f(bArr, bArr.length);
     }
 
     @Override
@@ -42,7 +42,7 @@ public final class d implements f3.o {
                     return true;
                 }
                 lVar.k(xVar.f14162a, 0, 4, false);
-                d4.f fVar = this.f19601e;
+                d4.f fVar = this.f19604e;
                 fVar.J(14);
                 int j3 = fVar.j(13);
                 if (j3 <= 6) {
@@ -66,16 +66,16 @@ public final class d implements f3.o {
 
     @Override
     public final void c(f3.q qVar) {
-        this.f19602f = qVar;
-        this.f19599b.g(qVar, new g0(0, 1));
+        this.f19605f = qVar;
+        this.f19602b.g(qVar, new g0(0, 1));
         qVar.U0();
     }
 
     @Override
     public final void d(long j3, long j10) {
-        this.f19606k = false;
-        this.f19599b.d();
-        this.f19603g = j10;
+        this.f19609k = false;
+        this.f19602b.d();
+        this.f19606g = j10;
     }
 
     @Override

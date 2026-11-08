@@ -18,7 +18,7 @@ public final class nx extends org.telegram.ui.ActionBar.f2 {
         setHasOwnBackground(true);
         this.simpleActionBar.setBackButtonImage(2131231240);
         this.simpleActionBar.setActionBarMenuOnItemClick(new w9(this, 29));
-        this.simpleActionBar.setTitle(org.telegram.messenger.hd.M0(2131743982, null));
+        this.simpleActionBar.setTitle(org.telegram.messenger.id.M0(2131743984, null));
         FrameLayout frameLayout = new FrameLayout(context);
         kx kxVar = new kx(this, new a5(this, 13), new wr(this, 9), null, 0);
         this.f48157f = kxVar;

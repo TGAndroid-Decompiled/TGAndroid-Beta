@@ -3,24 +3,24 @@ package org.telegram.ui;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class ia0 implements org.telegram.ui.Components.mr0 {
-    public final pa0 f46627a;
+    public final pa0 f46625a;
 
     public ia0(pa0 pa0Var) {
-        this.f46627a = pa0Var;
+        this.f46625a = pa0Var;
     }
 
     @Override
     public final void V() {
         int m0;
         boolean z9;
-        pa0 pa0Var = this.f46627a;
+        pa0 pa0Var = this.f46625a;
         ja0 ja0Var = pa0Var.L0;
         if (ja0Var == null) {
             m0 = 0;
         } else {
             m0 = ja0Var.m0(8);
         }
-        pa0Var.M0.setText(org.telegram.messenger.hd.G(m0, "LocationStories", new Object[0]));
+        pa0Var.M0.setText(org.telegram.messenger.id.G(m0, "LocationStories", new Object[0]));
         ha0 ha0Var = pa0Var.P;
         if (m0 > 0) {
             z9 = true;
@@ -41,7 +41,7 @@ public final class ia0 implements org.telegram.ui.Components.mr0 {
 
     @Override
     public final org.telegram.ui.Components.pj0 f() {
-        return this.f46627a.Q;
+        return this.f46625a.Q;
     }
 
     @Override

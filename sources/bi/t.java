@@ -87,17 +87,17 @@ public final class t extends LinearLayout {
         int i7 = org.telegram.ui.ActionBar.k6.G6;
         org.telegram.ui.ActionBar.r6.V(g10, i7, null);
         g10.setTypeface(org.telegram.messenger.g0.o());
-        g10.setText(org.telegram.messenger.hd.M0(2131754944, null));
+        g10.setText(org.telegram.messenger.id.M0(2131754944, null));
         addView(g10);
         TextView textView = new TextView(context);
         textView.setTextSize(1, 14.0f);
         org.telegram.ui.ActionBar.r6.V(textView, i7, null);
-        textView.setText(org.telegram.messenger.g0.X2(org.telegram.messenger.hd.M0(2131754946, null)));
+        textView.setText(org.telegram.messenger.g0.X2(org.telegram.messenger.id.M0(2131754946, null)));
         addView(textView, c8.ha.q(-1, -2, 0.0f, 0, 0, 0, 0, 0));
         TextView textView2 = new TextView(context);
         textView2.setTextSize(1, 14.0f);
         org.telegram.ui.ActionBar.r6.V(textView2, i7, null);
-        textView2.setText(org.telegram.messenger.g0.X2(org.telegram.messenger.hd.M0(2131754945, null)));
+        textView2.setText(org.telegram.messenger.g0.X2(org.telegram.messenger.id.M0(2131754945, null)));
         addView(textView2, c8.ha.q(-1, -2, 0.0f, 0, 0, 24, 0, 0));
     }
 

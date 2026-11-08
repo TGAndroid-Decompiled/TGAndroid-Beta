@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.xi0;
 public abstract class g {
@@ -23,7 +23,7 @@ public abstract class g {
     }
 
     public static void C(String str, int i7, AlertDialog$Builder alertDialog$Builder, org.telegram.ui.ActionBar.r1 r1Var) {
-        alertDialog$Builder.k(hd.M0(i7, str), r1Var);
+        alertDialog$Builder.k(id.M0(i7, str), r1Var);
         alertDialog$Builder.p();
     }
 
@@ -105,12 +105,12 @@ public abstract class g {
     }
 
     public static String l(int i7, String str, StringBuilder sb2) {
-        sb2.append(hd.M0(i7, str));
+        sb2.append(id.M0(i7, str));
         return sb2.toString();
     }
 
     public static String m(long j3, char c10, StringBuilder sb2) {
-        sb2.append(hd.E(j3, c10));
+        sb2.append(id.E(j3, c10));
         return sb2.toString();
     }
 
@@ -162,11 +162,11 @@ public abstract class g {
 
     public static void v(TextView textView, int i7, float f10, String str, int i10) {
         textView.setTextSize(i7, f10);
-        textView.setText(hd.M0(i10, str));
+        textView.setText(id.M0(i10, str));
     }
 
     public static void w(String str, int i7, AlertDialog$Builder alertDialog$Builder, org.telegram.ui.ActionBar.r1 r1Var) {
-        alertDialog$Builder.h(hd.M0(i7, str), r1Var);
+        alertDialog$Builder.h(id.M0(i7, str), r1Var);
         alertDialog$Builder.p();
     }
 

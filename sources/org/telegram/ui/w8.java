@@ -3,38 +3,38 @@ package org.telegram.ui;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 public final class w8 extends v4.s0 {
-    public boolean f51017a;
-    public final i9 f51018b;
+    public boolean f50971a;
+    public final i9 f50972b;
 
     public w8(i9 i9Var) {
-        this.f51018b = i9Var;
+        this.f50972b = i9Var;
     }
 
     @Override
     public final void b(RecyclerView recyclerView, int i7, int i10) {
         int abs;
-        i9 i9Var = this.f51018b;
-        ArrayList arrayList = i9Var.f46611y;
-        int L0 = i9Var.f46602b.L0();
+        i9 i9Var = this.f50972b;
+        ArrayList arrayList = i9Var.f46608y;
+        int L0 = i9Var.f46599b.L0();
         boolean z9 = false;
         if (L0 == -1) {
             abs = 0;
         } else {
-            abs = Math.abs(i9Var.f46602b.N0() - L0) + 1;
+            abs = Math.abs(i9Var.f46599b.N0() - L0) + 1;
         }
         if (abs > 0) {
-            int size = i9Var.f46603c.f37160f3.D.size();
+            int size = i9Var.f46600c.f37190f3.D.size();
             if (!i9Var.F && !i9Var.D && !arrayList.isEmpty() && L0 + abs >= size - 5) {
                 org.telegram.messenger.g0.h3(new org.telegram.ui.ActionBar.p(14, this, (f9) jg.g.i(1, arrayList)));
             }
         }
-        if (i10 != 0 && this.f51017a) {
-            org.telegram.ui.Components.p00 p00Var = i9Var.f46605f;
+        if (i10 != 0 && this.f50971a) {
+            org.telegram.ui.Components.q00 q00Var = i9Var.f46602f;
             if (i10 < 0) {
                 z9 = true;
             }
-            p00Var.e(z9, true);
+            q00Var.e(z9, true);
         }
-        this.f51017a = true;
+        this.f50971a = true;
     }
 }

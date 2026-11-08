@@ -29,46 +29,46 @@ public final class f extends FrameLayout implements a6 {
     public float J;
     public float K;
     public boolean L;
-    public rh.f f17035a;
-    public final ec f17036b;
-    public final FrameLayout f17037c;
+    public rh.f f17038a;
+    public final ec f17039b;
+    public final FrameLayout f17040c;
     public final e5 d;
-    public boolean f17038e;
-    public fh.g f17039f;
+    public boolean f17041e;
+    public fh.g f17042f;
     public fh.g h;
-    public final Path f17040n;
-    public int f17041r;
-    public float f17042s;
-    public float f17043w;
-    public boolean f17044x;
-    public float f17045y;
+    public final Path f17043n;
+    public int f17044r;
+    public float f17045s;
+    public float f17046w;
+    public boolean f17047x;
+    public float f17048y;
 
     public f(Context context) {
         super(context);
-        this.f17038e = true;
-        this.f17040n = new Path();
+        this.f17041e = true;
+        this.f17043n = new Path();
         this.G = new Rect();
         this.H = new RectF();
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f17037c = frameLayout;
+        this.f17040c = frameLayout;
         addView(frameLayout, ha.e(-1, -2, 80));
         e5 e5Var = new e5(8, context, this);
         this.d = e5Var;
         addView(e5Var, ha.e(-1, -2, 80));
-        this.f17036b = new ec(7, context, this);
+        this.f17039b = new ec(7, context, this);
     }
 
     public final void a(boolean z9) {
         e();
-        int round = Math.round(this.f17042s) + g0.L(9.0f) + this.F;
-        if (this.f17041r == round && !z9) {
+        int round = Math.round(this.f17045s) + g0.L(9.0f) + this.F;
+        if (this.f17044r == round && !z9) {
             return;
         }
-        this.f17041r = round;
+        this.f17044r = round;
         int L = g0.L(29.0f);
         RectF rectF = this.H;
-        rectF.set(0.0f, getMeasuredHeight() - this.f17043w, getMeasuredWidth(), getMeasuredHeight());
-        Path path = this.f17040n;
+        rectF.set(0.0f, getMeasuredHeight() - this.f17046w, getMeasuredWidth(), getMeasuredHeight());
+        Path path = this.f17043n;
         path.rewind();
         float f10 = L;
         path.addRoundRect(rectF, new float[]{f10, f10, f10, f10, 0.0f, 0.0f, 0.0f, 0.0f}, Path.Direction.CW);
@@ -82,20 +82,20 @@ public final class f extends FrameLayout implements a6 {
         dh.d dVar = this.I;
         if (dVar != null && (i7 = dVar.getBounds().top) != (measuredHeight = getMeasuredHeight() - Math.round(this.J))) {
             this.I.setBounds(0, measuredHeight, getMeasuredWidth(), getMeasuredHeight());
-            this.f17036b.invalidate(0, Math.max(0, Math.min(i7, measuredHeight)), getMeasuredWidth(), getMeasuredHeight());
+            this.f17039b.invalidate(0, Math.max(0, Math.min(i7, measuredHeight)), getMeasuredWidth(), getMeasuredHeight());
             invalidate(0, Math.max(0, Math.min(i7, measuredHeight)), getMeasuredWidth(), getMeasuredHeight());
         }
     }
 
     public final void c() {
         int i7;
-        k1 k1Var = ((rh.h) this.f17035a).f54459r;
+        k1 k1Var = ((rh.h) this.f17038a).f54551r;
         if (k1Var != null) {
-            i7 = k1Var.f54108a.f(2).d;
+            i7 = k1Var.f54201a.f(2).d;
         } else {
             i7 = 0;
         }
-        float c10 = ((rh.h) this.f17035a).c();
+        float c10 = ((rh.h) this.f17038a).c();
         e5 e5Var = this.d;
         int childCount = e5Var.getChildCount();
         for (int i10 = 0; i10 < childCount; i10++) {
@@ -113,21 +113,21 @@ public final class f extends FrameLayout implements a6 {
         int i7;
         WindowInsets rootWindowInsets;
         int i10;
-        this.f17042s = ((rh.h) this.f17035a).d();
-        this.f17043w = ((rh.h) this.f17035a).c();
+        this.f17045s = ((rh.h) this.f17038a).d();
+        this.f17046w = ((rh.h) this.f17038a).c();
         int i11 = 0;
         boolean z10 = true;
-        if (((rh.h) this.f17035a).f54460s != 1) {
+        if (((rh.h) this.f17038a).f54552s != 1) {
             z9 = true;
         } else {
             z9 = false;
         }
-        this.f17044x = z9;
+        this.f17047x = z9;
         e5 e5Var = this.d;
         if (e5Var.getVisibility() != 0) {
             z10 = false;
         }
-        boolean z11 = this.f17044x;
+        boolean z11 = this.f17047x;
         if (z10 != z11) {
             if (z11) {
                 i10 = 0;
@@ -138,7 +138,7 @@ public final class f extends FrameLayout implements a6 {
         }
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) e5Var.getLayoutParams();
         int i12 = layoutParams.height;
-        int i13 = ((rh.h) this.f17035a).f54462x;
+        int i13 = ((rh.h) this.f17038a).f54554x;
         if (i12 != i13) {
             layoutParams.height = i13;
             requestLayout();
@@ -166,20 +166,20 @@ public final class f extends FrameLayout implements a6 {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        this.h.setBounds(0, getMeasuredHeight() - ((int) this.f17043w), getMeasuredWidth(), k5.b(58.0f, getMeasuredHeight() - ((int) this.f17043w), getMeasuredHeight()));
-        int measuredHeight = getMeasuredHeight() - this.f17041r;
-        int round = Math.round(this.f17045y);
+        this.h.setBounds(0, getMeasuredHeight() - ((int) this.f17046w), getMeasuredWidth(), k5.b(58.0f, getMeasuredHeight() - ((int) this.f17046w), getMeasuredHeight()));
+        int measuredHeight = getMeasuredHeight() - this.f17044r;
+        int round = Math.round(this.f17048y);
         int measuredWidth = getMeasuredWidth() - Math.round(this.D);
         int i7 = this.F;
         Rect rect = this.G;
         rect.set(round, 0, measuredWidth, i7);
         rect.inset(0, -g0.L(7.0f));
         rect.offset(0, measuredHeight + ((int) this.K));
-        this.f17039f.setBounds(rect);
-        if (this.f17038e) {
-            this.f17039f.draw(canvas);
+        this.f17042f.setBounds(rect);
+        if (this.f17041e) {
+            this.f17042f.draw(canvas);
         }
-        if (this.f17044x) {
+        if (this.f17047x) {
             this.h.draw(canvas);
         }
         super.dispatchDraw(canvas);
@@ -205,13 +205,13 @@ public final class f extends FrameLayout implements a6 {
     }
 
     public final void e() {
-        this.f17037c.setTranslationY((-this.f17042s) - g0.L(9.0f));
+        this.f17040c.setTranslationY((-this.f17045s) - g0.L(9.0f));
         e5 e5Var = this.d;
-        e5Var.setTranslationY(e5Var.getMeasuredHeight() - this.f17043w);
+        e5Var.setTranslationY(e5Var.getMeasuredHeight() - this.f17046w);
     }
 
     public View getFadeView() {
-        return this.f17036b;
+        return this.f17039b;
     }
 
     public FrameLayout getInAppKeyboardBubbleContainer() {
@@ -219,7 +219,7 @@ public final class f extends FrameLayout implements a6 {
     }
 
     public float getInputBubbleBottom() {
-        return (getMeasuredHeight() - this.f17042s) - g0.L(9.0f);
+        return (getMeasuredHeight() - this.f17045s) - g0.L(9.0f);
     }
 
     public float getInputBubbleHeight() {
@@ -231,7 +231,7 @@ public final class f extends FrameLayout implements a6 {
     }
 
     public FrameLayout getInputIslandBubbleContainer() {
-        return this.f17037c;
+        return this.f17040c;
     }
 
     @Override
@@ -258,8 +258,8 @@ public final class f extends FrameLayout implements a6 {
         if (action == 0) {
             int x10 = (int) motionEvent.getX();
             int y10 = (int) motionEvent.getY();
-            fh.g gVar2 = this.f17039f;
-            if ((gVar2 != null && gVar2.f21073c == 255 && gVar2.getBounds().contains(x10, y10)) || ((gVar = this.h) != null && gVar.getBounds().contains(x10, y10))) {
+            fh.g gVar2 = this.f17042f;
+            if ((gVar2 != null && gVar2.f21076c == 255 && gVar2.getBounds().contains(x10, y10)) || ((gVar = this.h) != null && gVar.getBounds().contains(x10, y10))) {
                 z9 = true;
             } else {
                 z9 = false;
@@ -284,7 +284,7 @@ public final class f extends FrameLayout implements a6 {
     }
 
     public void setInputBubbleAlpha(int i7) {
-        fh.g gVar = this.f17039f;
+        fh.g gVar = this.f17042f;
         if (gVar != null) {
             gVar.setAlpha(i7);
         }
@@ -302,9 +302,9 @@ public final class f extends FrameLayout implements a6 {
     }
 
     public void setInputIslandBubbleDrawable(fh.g gVar) {
-        this.f17039f = gVar;
+        this.f17042f = gVar;
         gVar.q(g0.L(7.0f));
-        this.f17039f.r(g0.L(22.0f));
+        this.f17042f.r(g0.L(22.0f));
     }
 
     public void setUnderKeyboardBackgroundDrawable(fh.g gVar) {
@@ -318,12 +318,12 @@ public final class f extends FrameLayout implements a6 {
     }
 
     public void setWindowInsetsProvider(rh.f fVar) {
-        this.f17035a = fVar;
+        this.f17038a = fVar;
     }
 
     @Override
     public final void updateColors() {
-        fh.g gVar = this.f17039f;
+        fh.g gVar = this.f17042f;
         if (gVar != null) {
             gVar.updateColors();
         }

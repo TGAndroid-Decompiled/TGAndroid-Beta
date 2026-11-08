@@ -1,8 +1,8 @@
 package org.telegram.ui.Components;
 public final class ds {
-    public v4.d1 f33067a;
-    public int f33068b;
-    public int f33069c;
+    public v4.d1 f33075a;
+    public int f33076b;
+    public int f33077c;
     public int d;
-    public int f33070e;
+    public int f33078e;
 }

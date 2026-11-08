@@ -3,7 +3,7 @@ package c8;
 import android.os.Parcel;
 import android.os.Parcelable;
 public final class bg extends a8.a {
-    public final gg X0(a7.b bVar, yf yfVar) {
+    public final gg x1(a7.b bVar, yf yfVar) {
         gg createFromParcel;
         Parcel obtain = Parcel.obtain();
         obtain.writeInterfaceToken(this.f307c);
@@ -11,15 +11,15 @@ public final class bg extends a8.a {
         obtain.writeStrongBinder(bVar);
         obtain.writeInt(1);
         yfVar.writeToParcel(obtain, 0);
-        Parcel R0 = R0(obtain, 3);
+        Parcel r12 = r1(obtain, 3);
         Parcelable.Creator<gg> creator = gg.CREATOR;
-        if (R0.readInt() == 0) {
+        if (r12.readInt() == 0) {
             createFromParcel = null;
         } else {
-            createFromParcel = creator.createFromParcel(R0);
+            createFromParcel = creator.createFromParcel(r12);
         }
         gg ggVar = createFromParcel;
-        R0.recycle();
+        r12.recycle();
         return ggVar;
     }
 }

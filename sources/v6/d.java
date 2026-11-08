@@ -6,20 +6,20 @@ import android.os.Parcel;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.TaskCompletionSource;
 public final class d extends q implements b {
-    public final int f57149b;
-    public final TaskCompletionSource f57150c;
+    public final int f57241b;
+    public final TaskCompletionSource f57242c;
 
     public d(f fVar, TaskCompletionSource taskCompletionSource, int i7) {
         super("com.google.android.gms.common.moduleinstall.internal.IModuleInstallCallbacks", 8);
-        this.f57149b = i7;
-        this.f57150c = taskCompletionSource;
+        this.f57241b = i7;
+        this.f57242c = taskCompletionSource;
     }
 
     @Override
-    public void B(Status status, u6.c cVar) {
-        switch (this.f57149b) {
-            case 1:
-                k8.b(status, cVar, this.f57150c);
+    public void C0(Status status, u6.a aVar) {
+        switch (this.f57241b) {
+            case 0:
+                k8.b(status, aVar, this.f57242c);
                 return;
             default:
                 throw new UnsupportedOperationException();
@@ -27,7 +27,18 @@ public final class d extends q implements b {
     }
 
     @Override
-    public final boolean I0(int i7, Parcel parcel, Parcel parcel2) {
+    public void K(Status status, u6.c cVar) {
+        switch (this.f57241b) {
+            case 1:
+                k8.b(status, cVar, this.f57242c);
+                return;
+            default:
+                throw new UnsupportedOperationException();
+        }
+    }
+
+    @Override
+    public final boolean i1(int i7, Parcel parcel, Parcel parcel2) {
         if (i7 != 1) {
             if (i7 != 2) {
                 if (i7 != 3) {
@@ -44,22 +55,11 @@ public final class d extends q implements b {
                 throw new UnsupportedOperationException();
             }
             n7.a.d(parcel);
-            B((Status) n7.a.a(parcel, Status.CREATOR), (u6.c) n7.a.a(parcel, u6.c.CREATOR));
+            K((Status) n7.a.a(parcel, Status.CREATOR), (u6.c) n7.a.a(parcel, u6.c.CREATOR));
             return true;
         }
         n7.a.d(parcel);
-        l0((Status) n7.a.a(parcel, Status.CREATOR), (u6.a) n7.a.a(parcel, u6.a.CREATOR));
+        C0((Status) n7.a.a(parcel, Status.CREATOR), (u6.a) n7.a.a(parcel, u6.a.CREATOR));
         return true;
-    }
-
-    @Override
-    public void l0(Status status, u6.a aVar) {
-        switch (this.f57149b) {
-            case 0:
-                k8.b(status, aVar, this.f57150c);
-                return;
-            default:
-                throw new UnsupportedOperationException();
-        }
     }
 }

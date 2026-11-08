@@ -5,41 +5,41 @@ import android.animation.AnimatorListenerAdapter;
 import android.view.ViewGroup;
 import java.lang.reflect.Method;
 public final class xp0 extends AnimatorListenerAdapter {
-    public final int f51956a;
-    public final org.telegram.ui.Components.nk0 f51957b;
+    public final int f51949a;
+    public final org.telegram.ui.Components.nk0 f51950b;
 
     public xp0(org.telegram.ui.Components.nk0 nk0Var, int i7) {
-        this.f51956a = i7;
-        this.f51957b = nk0Var;
+        this.f51949a = i7;
+        this.f51950b = nk0Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f51956a) {
+        switch (this.f51949a) {
             case 0:
-                PhotoViewer photoViewer = (PhotoViewer) this.f51957b.f36366b;
+                PhotoViewer photoViewer = (PhotoViewer) this.f51950b.f36382b;
                 photoViewer.Q1.getNextView().setText((CharSequence) null);
                 vp0 vp0Var = photoViewer.T1;
-                vp0Var.f46726l0 = false;
+                vp0Var.f46729l0 = false;
                 if (vp0Var.m0 >= 0) {
-                    ((ViewGroup.MarginLayoutParams) vp0Var.f46728o0.getLayoutParams()).topMargin = vp0Var.m0;
+                    ((ViewGroup.MarginLayoutParams) vp0Var.f46731o0.getLayoutParams()).topMargin = vp0Var.m0;
                     vp0Var.m0 = -1;
                     vp0Var.requestLayout();
                     return;
                 }
                 return;
             default:
-                ((PhotoViewer) this.f51957b.f36366b).Q1.setTranslationY(0.0f);
+                ((PhotoViewer) this.f51950b.f36382b).Q1.setTranslationY(0.0f);
                 return;
         }
     }
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f51956a) {
+        switch (this.f51949a) {
             case 0:
-                vp0 vp0Var = ((PhotoViewer) this.f51957b.f36366b).T1;
-                Method method = vp0Var.f46720f0;
+                vp0 vp0Var = ((PhotoViewer) this.f51950b.f36382b).T1;
+                Method method = vp0Var.f46723f0;
                 if (method != null) {
                     try {
                         method.invoke(vp0Var, null);

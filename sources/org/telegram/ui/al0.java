@@ -4,32 +4,32 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 public final class al0 extends AnimatorListenerAdapter {
-    public final int f43697a;
-    public final boolean f43698b;
-    public final hl0 f43699c;
+    public final int f43703a;
+    public final boolean f43704b;
+    public final hl0 f43705c;
 
     public al0(hl0 hl0Var, boolean z9, int i7) {
-        this.f43697a = i7;
-        this.f43699c = hl0Var;
-        this.f43698b = z9;
+        this.f43703a = i7;
+        this.f43705c = hl0Var;
+        this.f43704b = z9;
     }
 
     @Override
     public final void onAnimationCancel(Animator animator) {
-        switch (this.f43697a) {
+        switch (this.f43703a) {
             case 0:
-                hl0 hl0Var = this.f43699c;
-                AnimatorSet animatorSet = hl0Var.f46441w;
+                hl0 hl0Var = this.f43705c;
+                AnimatorSet animatorSet = hl0Var.f46440w;
                 if (animatorSet != null && animatorSet.equals(animator)) {
-                    hl0Var.f46441w = null;
+                    hl0Var.f46440w = null;
                     return;
                 }
                 return;
             default:
-                hl0 hl0Var2 = this.f43699c;
-                AnimatorSet animatorSet2 = hl0Var2.f46441w;
+                hl0 hl0Var2 = this.f43705c;
+                AnimatorSet animatorSet2 = hl0Var2.f46440w;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    hl0Var2.f46441w = null;
+                    hl0Var2.f46440w = null;
                     return;
                 }
                 return;
@@ -38,26 +38,26 @@ public final class al0 extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f43697a) {
+        switch (this.f43703a) {
             case 0:
-                hl0 hl0Var = this.f43699c;
-                AnimatorSet animatorSet = hl0Var.f46441w;
+                hl0 hl0Var = this.f43705c;
+                AnimatorSet animatorSet = hl0Var.f46440w;
                 if (animatorSet != null && animatorSet.equals(animator)) {
-                    if (!this.f43698b) {
-                        hl0Var.f46434r.setVisibility(4);
+                    if (!this.f43704b) {
+                        hl0Var.f46433r.setVisibility(4);
                         return;
                     } else {
-                        hl0Var.f46429n.getContentView().setVisibility(4);
+                        hl0Var.f46428n.getContentView().setVisibility(4);
                         return;
                     }
                 }
                 return;
             default:
-                hl0 hl0Var2 = this.f43699c;
-                AnimatorSet animatorSet2 = hl0Var2.f46441w;
+                hl0 hl0Var2 = this.f43705c;
+                AnimatorSet animatorSet2 = hl0Var2.f46440w;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    if (!this.f43698b) {
-                        hl0Var2.f46436s.setVisibility(4);
+                    if (!this.f43704b) {
+                        hl0Var2.f46435s.setVisibility(4);
                         return;
                     } else {
                         hl0Var2.U.setVisibility(4);

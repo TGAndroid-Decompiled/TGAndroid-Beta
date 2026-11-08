@@ -3,7 +3,7 @@ package bh;
 import android.content.Context;
 import android.graphics.Canvas;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Cells.pa;
@@ -27,7 +27,7 @@ public final class c extends pa {
         float L;
         int i7;
         if (this.S) {
-            if (hd.f22878a0) {
+            if (id.f23157a0) {
                 L = 0.0f;
             } else {
                 L = g0.L(70.0f);
@@ -35,12 +35,12 @@ public final class c extends pa {
             float f10 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (hd.f22878a0) {
+            if (id.f23157a0) {
                 i7 = g0.L(70.0f);
             } else {
                 i7 = 0;
             }
-            canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, k6.f27972k0);
+            canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, k6.f27975k0);
         }
     }
 
@@ -71,6 +71,6 @@ public final class c extends pa {
             aVar2.f3402e = aVar2.f3399a.measureText(valueOf2);
             aVar2.invalidateSelf();
         }
-        this.f29750b.i(this.f3410b0);
+        this.f29753b.i(this.f3410b0);
     }
 }

@@ -11,26 +11,26 @@ import java.util.Iterator;
 import java.util.Map;
 import org.telegram.tgnet.TLRPC;
 public final class rs implements Runnable {
-    public final int f25330a;
-    public final dt f25331b;
+    public final int f25325a;
+    public final dt f25326b;
 
     public rs(dt dtVar, int i7) {
-        this.f25330a = i7;
-        this.f25331b = dtVar;
+        this.f25325a = i7;
+        this.f25326b = dtVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f25330a) {
+        switch (this.f25325a) {
             case 0:
-                dt dtVar = this.f25331b;
-                ArrayList arrayList = dtVar.f22065a;
+                dt dtVar = this.f25326b;
+                ArrayList arrayList = dtVar.f22083a;
                 ArrayList arrayList2 = new ArrayList();
                 for (int i7 = 0; i7 < arrayList.size(); i7++) {
                     ij ijVar = (ij) arrayList.get(i7);
-                    long B0 = ij.B0(ijVar.f23244k);
-                    TLRPC.Message message = ijVar.f23244k;
-                    if ((!message.mentioned || !(message.action instanceof TLRPC.TL_messageActionPinMessage)) && !m5.C(B0) && (ijVar.f23244k.peer_id.channel_id == 0 || ijVar.B4())) {
+                    long B0 = ij.B0(ijVar.f23262k);
+                    TLRPC.Message message = ijVar.f23262k;
+                    if ((!message.mentioned || !(message.action instanceof TLRPC.TL_messageActionPinMessage)) && !m5.C(B0) && (ijVar.f23262k.peer_id.channel_id == 0 || ijVar.B4())) {
                         arrayList2.add(0, ijVar);
                     }
                 }
@@ -40,18 +40,18 @@ public final class rs implements Runnable {
                 }
                 return;
             case 1:
-                dt dtVar2 = this.f25331b;
+                dt dtVar2 = this.f25326b;
                 dtVar2.getClass();
                 int i10 = Calendar.getInstance().get(11);
                 if (i10 >= 11 && i10 <= 22) {
-                    dt.f22059l0.b(dtVar2.f22071d0, null);
+                    dt.f22077l0.b(dtVar2.f22089d0, null);
                     dtVar2.Z(true);
                     return;
                 }
                 dtVar2.R();
                 return;
             case 2:
-                dt dtVar3 = this.f25331b;
+                dt dtVar3 = this.f25326b;
                 try {
                     if (Math.abs(SystemClock.elapsedRealtime() - dtVar3.W) > 100) {
                         dtVar3.W = SystemClock.elapsedRealtime();
@@ -88,9 +88,9 @@ public final class rs implements Runnable {
                                 }
                             });
                         }
-                        if (dtVar3.Z == 0 && !dtVar3.f22068b0) {
-                            dtVar3.f22068b0 = true;
-                            dtVar3.Z = dtVar3.X.load(t0.f25563b, 2131624203, 1);
+                        if (dtVar3.Z == 0 && !dtVar3.f22086b0) {
+                            dtVar3.f22086b0 = true;
+                            dtVar3.Z = dtVar3.X.load(t0.f25566b, 2131624203, 1);
                         }
                         int i11 = dtVar3.Z;
                         if (i11 != 0) {
@@ -110,25 +110,25 @@ public final class rs implements Runnable {
                     return;
                 }
             case 3:
-                this.f25331b.Z(false);
+                this.f25326b.Z(false);
                 return;
             case 4:
-                dt.c(this.f25331b);
+                dt.c(this.f25326b);
                 return;
             case 5:
-                dt dtVar4 = this.f25331b;
+                dt dtVar4 = this.f25326b;
                 a0.h hVar = dtVar4.h;
-                dt.f22059l0.b(dtVar4.f22071d0, null);
-                dtVar4.f22079n.b();
+                dt.f22077l0.b(dtVar4.f22089d0, null);
+                dtVar4.f22097n.b();
                 for (int i12 = 0; i12 < hVar.m(); i12++) {
-                    dt.f22059l0.b(((Integer) hVar.n(i12)).intValue(), null);
+                    dt.f22077l0.b(((Integer) hVar.n(i12)).intValue(), null);
                 }
                 hVar.b();
                 return;
             case 6:
-                dt dtVar5 = this.f25331b;
-                a0.h hVar2 = dtVar5.f22069c;
-                ArrayList arrayList3 = dtVar5.f22065a;
+                dt dtVar5 = this.f25326b;
+                a0.h hVar2 = dtVar5.f22087c;
+                ArrayList arrayList3 = dtVar5.f22083a;
                 int i13 = 0;
                 boolean z9 = false;
                 while (i13 < arrayList3.size()) {
@@ -136,30 +136,30 @@ public final class rs implements Runnable {
                     if (ijVar2 != null && ijVar2.J) {
                         arrayList3.remove(i13);
                         i13--;
-                        SparseArray sparseArray = (SparseArray) hVar2.f(ij.B0(ijVar2.f23244k));
+                        SparseArray sparseArray = (SparseArray) hVar2.f(ij.B0(ijVar2.f23262k));
                         if (sparseArray != null) {
                             sparseArray.remove(ijVar2.f1());
                         }
                         if (sparseArray != null && sparseArray.size() <= 0) {
-                            hVar2.l(ij.B0(ijVar2.f23244k));
+                            hVar2.l(ij.B0(ijVar2.f23262k));
                         }
                         z9 = true;
                     }
                     i13++;
                 }
                 yr messagesStorage = dtVar5.getMessagesStorage();
-                messagesStorage.f26696a.c(new qq(messagesStorage, 18));
+                messagesStorage.f26719a.c(new rq(messagesStorage, 17));
                 if (z9) {
                     dtVar5.Z(false);
                     return;
                 }
                 return;
             case 7:
-                dt dtVar6 = this.f25331b;
+                dt dtVar6 = this.f25326b;
                 dtVar6.S(dtVar6.z());
                 return;
             case 8:
-                dt dtVar7 = this.f25331b;
+                dt dtVar7 = this.f25326b;
                 if (Math.abs(SystemClock.elapsedRealtime()) > 500) {
                     try {
                         if (dtVar7.X == null) {
@@ -195,9 +195,9 @@ public final class rs implements Runnable {
                                 }
                             });
                         }
-                        if (dtVar7.Y == 0 && !dtVar7.f22066a0) {
-                            dtVar7.f22066a0 = true;
-                            dtVar7.Y = dtVar7.X.load(t0.f25563b, 2131624200, 1);
+                        if (dtVar7.Y == 0 && !dtVar7.f22084a0) {
+                            dtVar7.f22084a0 = true;
+                            dtVar7.Y = dtVar7.X.load(t0.f25566b, 2131624200, 1);
                         }
                         int i14 = dtVar7.Y;
                         if (i14 != 0) {
@@ -217,30 +217,30 @@ public final class rs implements Runnable {
                 }
                 return;
             case 9:
-                dt.b(this.f25331b);
+                dt.b(this.f25326b);
                 return;
             case 10:
-                dt dtVar8 = this.f25331b;
+                dt dtVar8 = this.f25326b;
                 ArrayList arrayList4 = dtVar8.D;
                 boolean isEmpty = arrayList4.isEmpty();
                 arrayList4.clear();
                 dtVar8.E.b();
                 yr messagesStorage2 = dtVar8.getMessagesStorage();
-                messagesStorage2.f26696a.c(new qq(messagesStorage2, 15));
+                messagesStorage2.f26719a.c(new rq(messagesStorage2, 14));
                 if (!isEmpty) {
                     dtVar8.Z(false);
                     return;
                 }
                 return;
             case 11:
-                dt dtVar9 = this.f25331b;
+                dt dtVar9 = this.f25326b;
                 ArrayList arrayList5 = dtVar9.D;
                 long currentTimeMillis = System.currentTimeMillis();
                 int i15 = 0;
                 boolean z10 = false;
                 while (i15 < arrayList5.size()) {
                     ct ctVar = (ct) arrayList5.get(i15);
-                    Iterator it = ctVar.f21904c.entrySet().iterator();
+                    Iterator it = ctVar.f21933c.entrySet().iterator();
                     while (it.hasNext()) {
                         if (currentTimeMillis >= ((Long) ((Pair) ((Map.Entry) it.next()).getValue()).second).longValue()) {
                             it.remove();
@@ -248,14 +248,14 @@ public final class rs implements Runnable {
                         }
                     }
                     if (z10) {
-                        if (ctVar.f21904c.isEmpty()) {
+                        if (ctVar.f21933c.isEmpty()) {
                             yr messagesStorage3 = dtVar9.getMessagesStorage();
-                            messagesStorage3.f26696a.c(new xp(messagesStorage3, ctVar.f21902a, 4));
+                            messagesStorage3.f26719a.c(new xp(messagesStorage3, ctVar.f21931a, 4));
                             arrayList5.remove(i15);
                             i15--;
                         } else {
                             yr messagesStorage4 = dtVar9.getMessagesStorage();
-                            messagesStorage4.f26696a.c(new yq(5, messagesStorage4, ctVar));
+                            messagesStorage4.f26719a.c(new zq(5, messagesStorage4, ctVar));
                         }
                     }
                     i15++;
@@ -266,10 +266,10 @@ public final class rs implements Runnable {
                 dtVar9.d0();
                 return;
             case 12:
-                dt dtVar10 = this.f25331b;
+                dt dtVar10 = this.f25326b;
                 PowerManager.WakeLock wakeLock = dtVar10.V;
-                ArrayList arrayList6 = dtVar10.f22067b;
-                if (r2.f25199a) {
+                ArrayList arrayList6 = dtVar10.f22085b;
+                if (r2.f25212a) {
                     a8.b("delay reached");
                 }
                 if (!arrayList6.isEmpty()) {
@@ -287,7 +287,7 @@ public final class rs implements Runnable {
                     return;
                 }
             default:
-                dt dtVar11 = this.f25331b;
+                dt dtVar11 = this.f25326b;
                 dtVar11.getNotificationCenter().b(dtVar11, 142);
                 return;
         }

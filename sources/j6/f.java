@@ -6,7 +6,7 @@ public final class f extends a8.a {
         super(iBinder, "com.google.android.gms.cast.internal.ICastDeviceController", 2);
     }
 
-    public final void X0() {
-        U0(P0(), 1);
+    public final void x1() {
+        u1(p1(), 1);
     }
 }

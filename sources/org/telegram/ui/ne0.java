@@ -33,7 +33,7 @@ public final class ne0 implements RequestDelegate {
                             case 0:
                                 if (tL_error2 == null) {
                                     TLRPC.TL_chatInviteExported tL_chatInviteExported3 = (TLRPC.TL_chatInviteExported) tLObject2;
-                                    cf0Var2.f44799e = tL_chatInviteExported3;
+                                    cf0Var2.f44804e = tL_chatInviteExported3;
                                     TLRPC.ChatFull chatFull = cf0Var2.d;
                                     if (chatFull != null) {
                                         chatFull.exported_invite = tL_chatInviteExported3;
@@ -41,34 +41,34 @@ public final class ne0 implements RequestDelegate {
                                     if (cf0Var2.getParentActivity() != null) {
                                         tL_chatInviteExported2.revoked = true;
                                         ue0 l02 = cf0Var2.l0();
-                                        cf0Var2.f44806j0.add(0, tL_chatInviteExported2);
+                                        cf0Var2.f44811j0.add(0, tL_chatInviteExported2);
                                         cf0Var2.n0(l02);
-                                        org.telegram.messenger.k5.o(null, 2131749116, org.telegram.ui.Components.hc.a0(cf0Var2), 2131624079, 36);
+                                        org.telegram.messenger.k5.o(null, 2131749118, org.telegram.ui.Components.hc.a0(cf0Var2), 2131624079, 36);
                                         return;
                                     }
                                     return;
                                 }
                                 return;
                             default:
-                                ArrayList arrayList = cf0Var2.f44805i0;
+                                ArrayList arrayList = cf0Var2.f44810i0;
                                 if (tL_error2 == null) {
                                     if (tLObject2 instanceof TLRPC.TL_messages_exportedChatInviteReplaced) {
                                         TLRPC.TL_messages_exportedChatInviteReplaced tL_messages_exportedChatInviteReplaced = (TLRPC.TL_messages_exportedChatInviteReplaced) tLObject2;
-                                        if (!cf0Var2.f44811o0) {
-                                            cf0Var2.f44799e = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite;
+                                        if (!cf0Var2.f44816o0) {
+                                            cf0Var2.f44804e = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite;
                                         }
                                         tL_chatInviteExported2.revoked = true;
                                         ue0 l03 = cf0Var2.l0();
-                                        if (cf0Var2.f44811o0 && cf0Var2.f44801f == org.telegram.messenger.p10.i(cf0Var2.getAccountInstance().f21729a).e()) {
+                                        if (cf0Var2.f44816o0 && cf0Var2.f44806f == org.telegram.messenger.p10.i(cf0Var2.getAccountInstance().f21765a).e()) {
                                             arrayList.remove(tL_chatInviteExported2);
                                             arrayList.add(0, (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite);
-                                        } else if (cf0Var2.f44799e != null) {
-                                            cf0Var2.f44799e = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite;
+                                        } else if (cf0Var2.f44804e != null) {
+                                            cf0Var2.f44804e = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite;
                                         }
-                                        cf0Var2.f44806j0.add(0, tL_chatInviteExported2);
+                                        cf0Var2.f44811j0.add(0, tL_chatInviteExported2);
                                         cf0Var2.n0(l03);
                                     } else {
-                                        cf0Var2.f44817s0.b(tL_chatInviteExported2, tLObject2);
+                                        cf0Var2.f44822s0.b(tL_chatInviteExported2, tLObject2);
                                         TLRPC.ChatFull chatFull2 = cf0Var2.d;
                                         if (chatFull2 != null) {
                                             int i10 = chatFull2.invitesCount - 1;
@@ -76,11 +76,11 @@ public final class ne0 implements RequestDelegate {
                                             if (i10 < 0) {
                                                 chatFull2.invitesCount = 0;
                                             }
-                                            cf0Var2.getMessagesStorage().w1(cf0Var2.d.invitesCount, cf0Var2.f44809n);
+                                            cf0Var2.getMessagesStorage().w1(cf0Var2.d.invitesCount, cf0Var2.f44814n);
                                         }
                                     }
                                     if (cf0Var2.getParentActivity() != null) {
-                                        org.telegram.messenger.k5.o(null, 2131749116, org.telegram.ui.Components.hc.a0(cf0Var2), 2131624079, 36);
+                                        org.telegram.messenger.k5.o(null, 2131749118, org.telegram.ui.Components.hc.a0(cf0Var2), 2131624079, 36);
                                         return;
                                     }
                                     return;
@@ -110,7 +110,7 @@ public final class ne0 implements RequestDelegate {
                             case 0:
                                 if (tL_error2 == null) {
                                     TLRPC.TL_chatInviteExported tL_chatInviteExported3 = (TLRPC.TL_chatInviteExported) tLObject2;
-                                    cf0Var22.f44799e = tL_chatInviteExported3;
+                                    cf0Var22.f44804e = tL_chatInviteExported3;
                                     TLRPC.ChatFull chatFull = cf0Var22.d;
                                     if (chatFull != null) {
                                         chatFull.exported_invite = tL_chatInviteExported3;
@@ -118,34 +118,34 @@ public final class ne0 implements RequestDelegate {
                                     if (cf0Var22.getParentActivity() != null) {
                                         tL_chatInviteExported22.revoked = true;
                                         ue0 l02 = cf0Var22.l0();
-                                        cf0Var22.f44806j0.add(0, tL_chatInviteExported22);
+                                        cf0Var22.f44811j0.add(0, tL_chatInviteExported22);
                                         cf0Var22.n0(l02);
-                                        org.telegram.messenger.k5.o(null, 2131749116, org.telegram.ui.Components.hc.a0(cf0Var22), 2131624079, 36);
+                                        org.telegram.messenger.k5.o(null, 2131749118, org.telegram.ui.Components.hc.a0(cf0Var22), 2131624079, 36);
                                         return;
                                     }
                                     return;
                                 }
                                 return;
                             default:
-                                ArrayList arrayList = cf0Var22.f44805i0;
+                                ArrayList arrayList = cf0Var22.f44810i0;
                                 if (tL_error2 == null) {
                                     if (tLObject2 instanceof TLRPC.TL_messages_exportedChatInviteReplaced) {
                                         TLRPC.TL_messages_exportedChatInviteReplaced tL_messages_exportedChatInviteReplaced = (TLRPC.TL_messages_exportedChatInviteReplaced) tLObject2;
-                                        if (!cf0Var22.f44811o0) {
-                                            cf0Var22.f44799e = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite;
+                                        if (!cf0Var22.f44816o0) {
+                                            cf0Var22.f44804e = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite;
                                         }
                                         tL_chatInviteExported22.revoked = true;
                                         ue0 l03 = cf0Var22.l0();
-                                        if (cf0Var22.f44811o0 && cf0Var22.f44801f == org.telegram.messenger.p10.i(cf0Var22.getAccountInstance().f21729a).e()) {
+                                        if (cf0Var22.f44816o0 && cf0Var22.f44806f == org.telegram.messenger.p10.i(cf0Var22.getAccountInstance().f21765a).e()) {
                                             arrayList.remove(tL_chatInviteExported22);
                                             arrayList.add(0, (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite);
-                                        } else if (cf0Var22.f44799e != null) {
-                                            cf0Var22.f44799e = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite;
+                                        } else if (cf0Var22.f44804e != null) {
+                                            cf0Var22.f44804e = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite;
                                         }
-                                        cf0Var22.f44806j0.add(0, tL_chatInviteExported22);
+                                        cf0Var22.f44811j0.add(0, tL_chatInviteExported22);
                                         cf0Var22.n0(l03);
                                     } else {
-                                        cf0Var22.f44817s0.b(tL_chatInviteExported22, tLObject2);
+                                        cf0Var22.f44822s0.b(tL_chatInviteExported22, tLObject2);
                                         TLRPC.ChatFull chatFull2 = cf0Var22.d;
                                         if (chatFull2 != null) {
                                             int i10 = chatFull2.invitesCount - 1;
@@ -153,11 +153,11 @@ public final class ne0 implements RequestDelegate {
                                             if (i10 < 0) {
                                                 chatFull2.invitesCount = 0;
                                             }
-                                            cf0Var22.getMessagesStorage().w1(cf0Var22.d.invitesCount, cf0Var22.f44809n);
+                                            cf0Var22.getMessagesStorage().w1(cf0Var22.d.invitesCount, cf0Var22.f44814n);
                                         }
                                     }
                                     if (cf0Var22.getParentActivity() != null) {
-                                        org.telegram.messenger.k5.o(null, 2131749116, org.telegram.ui.Components.hc.a0(cf0Var22), 2131624079, 36);
+                                        org.telegram.messenger.k5.o(null, 2131749118, org.telegram.ui.Components.hc.a0(cf0Var22), 2131624079, 36);
                                         return;
                                     }
                                     return;

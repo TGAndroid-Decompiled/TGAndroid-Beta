@@ -2,7 +2,7 @@ package ii;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.p10;
 import org.telegram.messenger.qp;
 import org.telegram.messenger.t3;
@@ -23,20 +23,20 @@ public final class i0 extends w31 {
 
     public static x31 i(uo uoVar, p2 p2Var) {
         long j3;
-        TLRPC.User user = uoVar.f25880c;
+        TLRPC.User user = uoVar.f25882c;
         if (user != null) {
             x31 K = x31.K(i0.class);
-            long j10 = user.f27102id;
+            long j10 = user.f27105id;
             K.B = j10;
             K.d = (int) (j10 ^ (j10 >>> 32));
             K.G = user;
             K.H = p2Var;
             return K;
         }
-        TLRPC.Chat chat = uoVar.f25879b;
+        TLRPC.Chat chat = uoVar.f25881b;
         x31 K2 = x31.K(i0.class);
         if (chat != null) {
-            j3 = -chat.f26953id;
+            j3 = -chat.f26956id;
         } else {
             j3 = 0;
         }
@@ -55,8 +55,8 @@ public final class i0 extends w31 {
         boolean z10 = true;
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
-            t2Var.Q0 = t3.e0(p10.f24467s0, chat);
-            TLRPC.Dialog S0 = qp.s1(p10.f24467s0).S0(-chat.f26953id);
+            t2Var.Q0 = t3.e0(p10.f24470s0, chat);
+            TLRPC.Dialog S0 = qp.s1(p10.f24470s0).S0(-chat.f26956id);
             if (S0 != null) {
                 z10 = false;
             }
@@ -66,12 +66,12 @@ public final class i0 extends w31 {
                 t2Var.e0(S0, 0, 0);
                 return;
             }
-            t2Var.setCustomMessageWithoutRebuild(hd.G(chat.participants_count, "Members", new Object[0]));
-            t2Var.d0(-chat.f26953id, null, 0, false, false);
+            t2Var.setCustomMessageWithoutRebuild(id.G(chat.participants_count, "Members", new Object[0]));
+            t2Var.d0(-chat.f26956id, null, 0, false, false);
         } else if (obj instanceof TLRPC.User) {
             TLRPC.User user = (TLRPC.User) obj;
-            t2Var.Q0 = t3.f0(p10.f24467s0, user);
-            TLRPC.Dialog S02 = qp.s1(p10.f24467s0).S0(user.f27102id);
+            t2Var.Q0 = t3.f0(p10.f24470s0, user);
+            TLRPC.Dialog S02 = qp.s1(p10.f24470s0).S0(user.f27105id);
             if (S02 != null) {
                 z10 = false;
             }
@@ -81,8 +81,8 @@ public final class i0 extends w31 {
                 t2Var.e0(S02, 0, 0);
                 return;
             }
-            t2Var.setCustomMessageWithoutRebuild(hd.M0(2131753156, null));
-            t2Var.d0(user.f27102id, null, 0, false, false);
+            t2Var.setCustomMessageWithoutRebuild(id.M0(2131753156, null));
+            t2Var.d0(user.f27105id, null, 0, false, false);
         }
     }
 

@@ -5,27 +5,27 @@ import org.telegram.messenger.qp;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class s3 implements Runnable {
-    public final int f14943a;
-    public final c4 f14944b;
+    public final int f14946a;
+    public final c4 f14947b;
 
     public s3(c4 c4Var, int i7) {
-        this.f14943a = i7;
-        this.f14944b = c4Var;
+        this.f14946a = i7;
+        this.f14947b = c4Var;
     }
 
     @Override
     public final void run() {
         TLRPC.ChatFull N0;
         TLRPC.Peer peer;
-        switch (this.f14943a) {
+        switch (this.f14946a) {
             case 0:
-                this.f14944b.f14592n.R();
+                this.f14947b.f14592n.R();
                 return;
             case 1:
-                this.f14944b.P();
+                this.f14947b.P();
                 return;
             case 2:
-                c4 c4Var = this.f14944b;
+                c4 c4Var = this.f14947b;
                 if (!c4Var.T) {
                     TLRPC.TL_messages_prolongWebView tL_messages_prolongWebView = new TLRPC.TL_messages_prolongWebView();
                     tL_messages_prolongWebView.bot = qp.s1(c4Var.F).o1(c4Var.f14595w);
@@ -58,13 +58,13 @@ public final class s3 implements Runnable {
                 }
                 return;
             case 3:
-                c4 c4Var2 = this.f14944b;
-                c4Var2.f38969b.M1(c4Var2, 0);
+                c4 c4Var2 = this.f14947b;
+                c4Var2.f39004b.M1(c4Var2, 0);
                 c4Var2.f14592n.n(false, false);
                 System.currentTimeMillis();
                 return;
             default:
-                this.f14944b.f14592n.n(true, false);
+                this.f14947b.f14592n.n(true, false);
                 return;
         }
     }

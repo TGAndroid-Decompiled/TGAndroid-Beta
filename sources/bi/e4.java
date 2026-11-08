@@ -28,7 +28,7 @@ public final class e4 implements c20 {
                 wg.f1 f1Var = this.d;
                 if (str != null) {
                     if (f1Var != null) {
-                        k10 = new org.telegram.ui.Components.hc(f1Var.f28619c, k7Var.I0);
+                        k10 = new org.telegram.ui.Components.hc(f1Var.f28622c, k7Var.I0);
                     } else {
                         k10 = k7Var.k();
                     }
@@ -40,8 +40,8 @@ public final class e4 implements c20 {
                 }
                 k7Var.dismiss();
                 org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
-                if (T instanceof org.telegram.ui.Wallet.y5) {
-                    ((org.telegram.ui.Wallet.y5) T).O0();
+                if (T instanceof org.telegram.ui.Wallet.x5) {
+                    ((org.telegram.ui.Wallet.x5) T).O0();
                     return;
                 }
                 return;
@@ -51,7 +51,7 @@ public final class e4 implements c20 {
                     k7 k7Var2 = this.f3758b;
                     wg.f1 f1Var2 = this.d;
                     if (f1Var2 != null) {
-                        k11 = new org.telegram.ui.Components.hc(f1Var2.f28619c, k7Var2.I0);
+                        k11 = new org.telegram.ui.Components.hc(f1Var2.f28622c, k7Var2.I0);
                     } else {
                         k11 = k7Var2.k();
                     }

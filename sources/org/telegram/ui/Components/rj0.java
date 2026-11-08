@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 public class rj0 extends v61 {
     public final ht0 V;
     public boolean W;
-    public View f37667a0;
-    public View f37668b0;
+    public View f37688a0;
+    public View f37689b0;
 
     public rj0(Context context, org.telegram.ui.ActionBar.f6 f6Var, ht0 ht0Var) {
         super(context, f6Var);
@@ -34,8 +34,8 @@ public class rj0 extends v61 {
             View view = viewPages[0];
             View view2 = viewPages[1];
             if (view != null && view2 != null && view.getTranslationX() == 0.0f && view.getMeasuredWidth() > 0 && Math.abs(view2.getTranslationX()) >= view.getMeasuredWidth()) {
-                this.f37667a0 = view;
-                this.f37668b0 = view2;
+                this.f37688a0 = view;
+                this.f37689b0 = view2;
                 ht0 ht0Var = this.V;
                 ht0Var.g("PAGER_DRAG_ABORTED");
                 ht0Var.p();
@@ -54,14 +54,14 @@ public class rj0 extends v61 {
     }
 
     public final void L(View view) {
-        this.f37667a0 = null;
-        this.f37668b0 = null;
+        this.f37688a0 = null;
+        this.f37689b0 = null;
         ht0 ht0Var = this.V;
         ht0Var.f("PAGE_BOUND", view, 0, 0, true);
         if (ht0Var.O == null) {
             return;
         }
-        if (ht0Var.f34408d0) {
+        if (ht0Var.f34345d0) {
             ht0Var.i("page_bound");
         }
         RecyclerView l10 = ht0Var.O.l(view);
@@ -153,8 +153,8 @@ public class rj0 extends v61 {
 
     @Override
     public final void v() {
-        this.f37667a0 = null;
-        this.f37668b0 = null;
+        this.f37688a0 = null;
+        this.f37689b0 = null;
     }
 
     @Override

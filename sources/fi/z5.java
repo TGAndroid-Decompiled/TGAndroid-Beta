@@ -47,21 +47,21 @@ public final class z5 implements Runnable {
                         Bitmap bitmap2 = c6Var.f11736g;
                         String str = c6Var.f11734e;
                         a6 a6Var = null;
-                        if (bitmap2 != null && (nVar = (u8.n) c6Var.f11731a.get()) != null && nVar.f56360b.k()) {
+                        if (bitmap2 != null && (nVar = (u8.n) c6Var.f11731a.get()) != null && nVar.f56449b.k()) {
                             int width2 = bitmap2.getWidth();
                             int height2 = bitmap2.getHeight();
                             hy0 hy0Var = new hy0(17);
                             int width3 = bitmap2.getWidth();
                             int height3 = bitmap2.getHeight();
                             hy0Var.d = bitmap2;
-                            b7.d dVar = (b7.d) hy0Var.f46527b;
+                            b7.d dVar = (b7.d) hy0Var.f46526b;
                             dVar.f2991a = width3;
                             dVar.f2992b = height3;
                             SparseArray e12 = nVar.e1(hy0Var);
                             for (int i7 = 0; i7 < e12.size(); i7++) {
                                 u8.m mVar = (u8.m) e12.valueAt(i7);
-                                String str2 = mVar.f56350b;
-                                Point[] pointArr = mVar.f56352e;
+                                String str2 = mVar.f56439b;
+                                Point[] pointArr = mVar.f56441e;
                                 if (str2 != null) {
                                     String trim = str2.trim();
                                     if (!trim.startsWith(str)) {
@@ -108,8 +108,8 @@ public final class z5 implements Runnable {
                         org.telegram.messenger.g0.h3(new f2.h(11, c6Var, a6Var));
                     }
                     if (!c6Var.f11732b.get()) {
-                        Utilities.f21333e.a(c6Var.h);
-                        Utilities.f21333e.d(c6Var.h, c6Var.b());
+                        Utilities.f21336e.a(c6Var.h);
+                        Utilities.f21336e.d(c6Var.h, c6Var.b());
                         return;
                     }
                     return;

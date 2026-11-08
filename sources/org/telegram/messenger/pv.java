@@ -24,15 +24,15 @@ public abstract class pv {
     }
 
     public static byte[] b(byte[] bArr, TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) {
-        byte[] bArr2 = tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f27082p;
-        int i7 = tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f27081g;
-        Pattern pattern = Utilities.f21330a;
+        byte[] bArr2 = tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f27085p;
+        int i7 = tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f27084g;
+        Pattern pattern = Utilities.f21333a;
         if (!ConnectionsManager.native_isGoodPrime(bArr2, i7)) {
             return null;
         }
-        BigInteger valueOf = BigInteger.valueOf(tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f27081g);
+        BigInteger valueOf = BigInteger.valueOf(tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f27084g);
         a(valueOf);
-        return a(valueOf.modPow(new BigInteger(1, c(bArr, tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow)), new BigInteger(1, tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f27082p)));
+        return a(valueOf.modPow(new BigInteger(1, c(bArr, tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow)), new BigInteger(1, tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f27085p)));
     }
 
     public static byte[] c(byte[] bArr, TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) {
@@ -50,17 +50,17 @@ public abstract class pv {
         byte[] bArr4;
         byte[] bArr5;
         if (bArr != null && bArr2 != null && bArr2.length != 0) {
-            byte[] bArr6 = tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f27082p;
-            int i7 = tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f27081g;
-            Pattern pattern = Utilities.f21330a;
+            byte[] bArr6 = tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f27085p;
+            int i7 = tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f27084g;
+            Pattern pattern = Utilities.f21333a;
             if (ConnectionsManager.native_isGoodPrime(bArr6, i7)) {
-                BigInteger valueOf = BigInteger.valueOf(tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f27081g);
+                BigInteger valueOf = BigInteger.valueOf(tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f27084g);
                 byte[] a11 = a(valueOf);
-                BigInteger bigInteger = new BigInteger(1, tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f27082p);
-                BigInteger bigInteger2 = new BigInteger(1, Utilities.q(tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f27082p, a11));
+                BigInteger bigInteger = new BigInteger(1, tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f27085p);
+                BigInteger bigInteger2 = new BigInteger(1, Utilities.q(tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f27085p, a11));
                 BigInteger bigInteger3 = new BigInteger(1, bArr);
                 byte[] bArr7 = new byte[256];
-                Utilities.f21331b.nextBytes(bArr7);
+                Utilities.f21334b.nextBytes(bArr7);
                 BigInteger bigInteger4 = new BigInteger(1, bArr7);
                 byte[] a12 = a(valueOf.modPow(bigInteger4, bigInteger));
                 BigInteger bigInteger5 = new BigInteger(1, bArr2);
@@ -75,7 +75,7 @@ public abstract class pv {
                         }
                         if (Utilities.w(subtract, bigInteger)) {
                             byte[] o4 = Utilities.o(a10.length, a(subtract.modPow(bigInteger4.add(bigInteger7.multiply(bigInteger3)), bigInteger)));
-                            byte[] o10 = Utilities.o(bArr3.length, tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f27082p);
+                            byte[] o10 = Utilities.o(bArr3.length, tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f27085p);
                             byte[] o11 = Utilities.o(a11.length, a11);
                             for (int i10 = 0; i10 < o10.length; i10++) {
                                 o10[i10] = (byte) (o11[i10] ^ o10[i10]);

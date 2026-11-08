@@ -3,19 +3,19 @@ package org.telegram.ui;
 import android.view.View;
 import android.view.ViewGroup;
 public final class uv0 implements fi.ma {
-    public final ProfileActivity f50507a;
+    public final ProfileActivity f50430a;
 
     public uv0(ProfileActivity profileActivity) {
-        this.f50507a = profileActivity;
+        this.f50430a = profileActivity;
     }
 
     @Override
     public final fi.qa d(long j3) {
         float f10;
-        ProfileActivity profileActivity = this.f50507a;
+        ProfileActivity profileActivity = this.f50430a;
         if (j3 == profileActivity.a()) {
-            profileActivity.f41718e0.setRoundRadiusForExpand((int) org.telegram.messenger.g0.T1(profileActivity.q4(), 0.0f, profileActivity.f41756j2));
-            zu0 zu0Var = profileActivity.f41718e0;
+            profileActivity.f41722e0.setRoundRadiusForExpand((int) org.telegram.messenger.g0.T1(profileActivity.q4(), 0.0f, profileActivity.f41760j2));
+            zu0 zu0Var = profileActivity.f41722e0;
             boolean c02 = org.telegram.messenger.t3.c0(profileActivity.D2);
             if (zu0Var != null && zu0Var.getRootView() != null) {
                 float scaleX = ((View) zu0Var.getParent()).getScaleX();
@@ -44,11 +44,11 @@ public final class uv0 implements fi.ma {
 
     @Override
     public final void g(long j3, bi.r3 r3Var) {
-        ProfileActivity profileActivity = this.f50507a;
-        profileActivity.f41718e0.setHasStories(profileActivity.x4());
-        if (j3 == profileActivity.a() && profileActivity.f41781n2 && profileActivity.f41756j2 > 0.0f) {
-            profileActivity.f41703c.h1(0, profileActivity.j4() - profileActivity.f41687a.getPaddingTop());
-            profileActivity.f41687a.post(new j90(profileActivity, 16));
+        ProfileActivity profileActivity = this.f50430a;
+        profileActivity.f41722e0.setHasStories(profileActivity.x4());
+        if (j3 == profileActivity.a() && profileActivity.f41785n2 && profileActivity.f41760j2 > 0.0f) {
+            profileActivity.f41707c.h1(0, profileActivity.j4() - profileActivity.f41691a.getPaddingTop());
+            profileActivity.f41691a.post(new j90(profileActivity, 16));
         }
         org.telegram.messenger.g0.i3(r3Var, 30L);
     }

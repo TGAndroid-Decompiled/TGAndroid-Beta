@@ -16,9 +16,9 @@ public abstract class v0 {
         }
         zd.m mVar = new zd.m(1, u0.b(wVar));
         mVar.s();
-        task.addOnCompleteListener(je.a.f16651a, new je.b(mVar));
+        task.addOnCompleteListener(je.a.f16654a, new je.b(mVar));
         Object r10 = mVar.r();
-        jd.a aVar = jd.a.f16643a;
+        jd.a aVar = jd.a.f16646a;
         return r10;
     }
 }

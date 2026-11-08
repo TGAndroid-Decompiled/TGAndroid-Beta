@@ -1,7 +1,7 @@
 package fi;
 
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.an;
 public final class o6 extends p6 {
@@ -14,7 +14,7 @@ public final class o6 extends p6 {
 
     @Override
     public final String a() {
-        return hd.M0(2131754819, null);
+        return id.M0(2131754819, null);
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class o6 extends p6 {
 
     @Override
     public final void c(org.telegram.ui.ActionBar.f2 f2Var) {
-        f2Var.presentFragment(an.ra(-this.f12561b.f26953id));
+        f2Var.presentFragment(an.ra(-this.f12561b.f26956id));
     }
 
     @Override

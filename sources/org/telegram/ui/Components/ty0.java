@@ -22,19 +22,19 @@ public abstract class ty0 extends View {
     public ir0 H;
     public boolean I;
     public Path J;
-    public StaticLayout f38426a;
-    public TextPaint f38427b;
-    public Paint f38428c;
+    public StaticLayout f38455a;
+    public TextPaint f38456b;
+    public Paint f38457c;
     public int d;
-    public OvershootInterpolator f38429e;
-    public float f38430f;
+    public OvershootInterpolator f38458e;
+    public float f38459f;
     public int h;
-    public int f38431n;
-    public int f38432r;
-    public float f38433s;
-    public float f38434w;
-    public int f38435x;
-    public int f38436y;
+    public int f38460n;
+    public int f38461r;
+    public float f38462s;
+    public float f38463w;
+    public int f38464x;
+    public int f38465y;
 
     public static void b(Path path, float f10, float f11, float f12, float f13, float f14, float f15, boolean z9, boolean z10) {
         path.reset();
@@ -108,11 +108,11 @@ public abstract class ty0 extends View {
             this.E = true;
             setVisibility(0);
             this.F = 0.0f;
-            this.f38430f = 0.0f;
-            this.f38435x = this.h;
-            this.f38436y = this.f38431n;
-            this.f38433s = 1.0f;
-            this.f38434w = 1.0f;
+            this.f38459f = 0.0f;
+            this.f38464x = this.h;
+            this.f38465y = this.f38460n;
+            this.f38462s = 1.0f;
+            this.f38463w = 1.0f;
             invalidate();
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             ofFloat.addUpdateListener(new sy0(this, 1));
@@ -125,7 +125,7 @@ public abstract class ty0 extends View {
             ValueAnimator ofFloat3 = ValueAnimator.ofFloat(1.0f, 0.0f);
             ofFloat3.setStartDelay(500L);
             ofFloat3.addUpdateListener(new sy0(this, 3));
-            xq xqVar = xq.f40346g;
+            xq xqVar = xq.f40367g;
             ofFloat3.setInterpolator(xqVar);
             ofFloat3.setDuration(500L);
             ValueAnimator ofFloat4 = ValueAnimator.ofFloat(1.0f, 0.0f);
@@ -156,19 +156,19 @@ public abstract class ty0 extends View {
         Path.Direction direction;
         float f11;
         Canvas canvas2 = canvas;
-        TextPaint textPaint2 = this.f38427b;
-        Paint paint = this.f38428c;
+        TextPaint textPaint2 = this.f38456b;
+        Paint paint = this.f38457c;
         Path path = this.J;
-        if (this.f38426a == null) {
+        if (this.f38455a == null) {
             return;
         }
         super.onDraw(canvas);
         canvas2.save();
-        canvas2.translate(this.d, (getMeasuredHeight() - this.f38426a.getHeight()) >> 1);
-        if (this.f38430f != 0.0f) {
-            StaticLayout staticLayout = this.f38426a;
-            int i11 = this.f38435x;
-            int i12 = this.f38436y;
+        canvas2.translate(this.d, (getMeasuredHeight() - this.f38455a.getHeight()) >> 1);
+        if (this.f38459f != 0.0f) {
+            StaticLayout staticLayout = this.f38455a;
+            int i11 = this.f38464x;
+            int i12 = this.f38465y;
             int lineForOffset = staticLayout.getLineForOffset(i11);
             int lineForOffset2 = staticLayout.getLineForOffset(i12);
             int primaryHorizontal = (int) staticLayout.getPrimaryHorizontal(i11);
@@ -188,21 +188,21 @@ public abstract class ty0 extends View {
             }
             canvas2 = canvas;
         }
-        this.f38426a.draw(canvas2);
+        this.f38455a.draw(canvas2);
         int L = org.telegram.messenger.g0.L(14.0f);
-        int lineForOffset3 = this.f38426a.getLineForOffset(this.f38436y);
-        this.f38426a.getPrimaryHorizontal(this.f38436y);
-        int lineBottom = this.f38426a.getLineBottom(lineForOffset3);
-        int i13 = this.f38436y;
-        int i14 = this.f38432r;
+        int lineForOffset3 = this.f38455a.getLineForOffset(this.f38465y);
+        this.f38455a.getPrimaryHorizontal(this.f38465y);
+        int lineBottom = this.f38455a.getLineBottom(lineForOffset3);
+        int i13 = this.f38465y;
+        int i14 = this.f38461r;
         if (i13 == i14) {
-            b(path, this.f38426a.getPrimaryHorizontal(i14), this.f38426a.getLineTop(lineForOffset3), org.telegram.messenger.g0.N(4.0f) + this.f38426a.getPrimaryHorizontal(this.f38432r), this.f38426a.getLineBottom(lineForOffset3), org.telegram.messenger.g0.N(4.0f), org.telegram.messenger.g0.N(4.0f), false, true);
+            b(path, this.f38455a.getPrimaryHorizontal(i14), this.f38455a.getLineTop(lineForOffset3), org.telegram.messenger.g0.N(4.0f) + this.f38455a.getPrimaryHorizontal(this.f38461r), this.f38455a.getLineBottom(lineForOffset3), org.telegram.messenger.g0.N(4.0f), org.telegram.messenger.g0.N(4.0f), false, true);
             canvas2.drawPath(path, paint);
         }
-        float interpolation = this.f38429e.getInterpolation(this.f38430f);
-        float z9 = com.google.android.recaptcha.internal.a.z(1.0f, this.f38434w, org.telegram.messenger.g0.N(4.0f), this.f38426a.getPrimaryHorizontal(this.f38432r));
+        float interpolation = this.f38458e.getInterpolation(this.f38459f);
+        float z9 = com.google.android.recaptcha.internal.a.z(1.0f, this.f38463w, org.telegram.messenger.g0.N(4.0f), this.f38455a.getPrimaryHorizontal(this.f38461r));
         canvas2.save();
-        canvas2.translate((int) (((this.f38426a.getPrimaryHorizontal(this.f38431n) - this.f38426a.getPrimaryHorizontal(this.f38432r)) * this.f38434w) + z9), lineBottom);
+        canvas2.translate((int) (((this.f38455a.getPrimaryHorizontal(this.f38460n) - this.f38455a.getPrimaryHorizontal(this.f38461r)) * this.f38463w) + z9), lineBottom);
         float f12 = L;
         float f13 = f12 / 2.0f;
         canvas2.scale(interpolation, interpolation, f13, f13);
@@ -212,17 +212,17 @@ public abstract class ty0 extends View {
         path.addRect(0.0f, 0.0f, f13, f13, direction2);
         canvas2.drawPath(path, textPaint2);
         canvas2.restore();
-        int lineForOffset4 = this.f38426a.getLineForOffset(this.f38435x);
-        this.f38426a.getPrimaryHorizontal(this.f38435x);
-        int lineBottom2 = this.f38426a.getLineBottom(lineForOffset4);
-        if (this.f38435x == 0) {
+        int lineForOffset4 = this.f38455a.getLineForOffset(this.f38464x);
+        this.f38455a.getPrimaryHorizontal(this.f38464x);
+        int lineBottom2 = this.f38455a.getLineBottom(lineForOffset4);
+        if (this.f38464x == 0) {
             textPaint = textPaint2;
             f11 = 1.0f;
             i7 = L;
             direction = direction2;
             f10 = f12;
             i10 = lineBottom2;
-            b(path, -org.telegram.messenger.g0.L(4.0f), this.f38426a.getLineTop(lineForOffset4), 0.0f, this.f38426a.getLineBottom(lineForOffset4), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), true, false);
+            b(path, -org.telegram.messenger.g0.L(4.0f), this.f38455a.getLineTop(lineForOffset4), 0.0f, this.f38455a.getLineBottom(lineForOffset4), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), true, false);
             canvas2.drawPath(path, paint);
         } else {
             i7 = L;
@@ -233,8 +233,8 @@ public abstract class ty0 extends View {
             f11 = 1.0f;
         }
         canvas2.save();
-        float primaryHorizontal3 = this.f38426a.getPrimaryHorizontal(0);
-        canvas2.translate(((int) (((this.f38426a.getPrimaryHorizontal(this.h) - this.f38426a.getPrimaryHorizontal(0)) * this.f38433s) + com.google.android.recaptcha.internal.a.v(f11, this.f38433s, org.telegram.messenger.g0.L(4.0f), primaryHorizontal3))) - i7, i10);
+        float primaryHorizontal3 = this.f38455a.getPrimaryHorizontal(0);
+        canvas2.translate(((int) (((this.f38455a.getPrimaryHorizontal(this.h) - this.f38455a.getPrimaryHorizontal(0)) * this.f38462s) + com.google.android.recaptcha.internal.a.v(f11, this.f38462s, org.telegram.messenger.g0.L(4.0f), primaryHorizontal3))) - i7, i10);
         canvas2.scale(interpolation, interpolation, f13, f13);
         path.reset();
         path.addCircle(f13, f13, f13, direction);
@@ -247,28 +247,28 @@ public abstract class ty0 extends View {
     @Override
     public void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
-        if (getMeasuredWidth() != this.D || this.f38426a == null) {
+        if (getMeasuredWidth() != this.D || this.f38455a == null) {
             Animator animator = this.G;
             if (animator != null) {
                 animator.removeAllListeners();
                 this.G.cancel();
             }
             String str = null;
-            String M0 = org.telegram.messenger.hd.M0(2131744193, null);
+            String M0 = org.telegram.messenger.id.M0(2131744195, null);
             Matcher matcher = Pattern.compile("\\*\\*.*\\*\\*").matcher(M0);
             if (matcher.matches()) {
                 str = matcher.group();
             }
             String replace = M0.replace("**", "");
-            this.f38426a = new StaticLayout(replace, this.f38427b, getMeasuredWidth() - (this.d * 2), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.f38455a = new StaticLayout(replace, this.f38456b, getMeasuredWidth() - (this.d * 2), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.h = 0;
-            this.f38431n = 0;
+            this.f38460n = 0;
             if (str != null) {
                 this.h = replace.indexOf(str);
             }
             int i11 = this.h;
             if (i11 > 0) {
-                this.f38431n = str.length() + i11;
+                this.f38460n = str.length() + i11;
             } else {
                 int i12 = 0;
                 for (int i13 = 0; i13 < replace.length(); i13++) {
@@ -278,33 +278,33 @@ public abstract class ty0 extends View {
                             this.h = i13 + 1;
                         }
                         if (i12 == 3) {
-                            this.f38431n = i13 - 1;
+                            this.f38460n = i13 - 1;
                         }
                     }
                 }
             }
-            if (this.f38431n == 0) {
-                this.f38431n = replace.length();
+            if (this.f38460n == 0) {
+                this.f38460n = replace.length();
             }
-            StaticLayout staticLayout = this.f38426a;
-            int offsetForHorizontal = staticLayout.getOffsetForHorizontal(staticLayout.getLineForOffset(this.f38431n), this.f38426a.getWidth() - 1);
-            this.f38432r = offsetForHorizontal;
-            this.f38435x = this.h;
-            this.f38436y = this.f38431n;
+            StaticLayout staticLayout = this.f38455a;
+            int offsetForHorizontal = staticLayout.getOffsetForHorizontal(staticLayout.getLineForOffset(this.f38460n), this.f38455a.getWidth() - 1);
+            this.f38461r = offsetForHorizontal;
+            this.f38464x = this.h;
+            this.f38465y = this.f38460n;
             if (this.E) {
                 this.F = 1.0f;
-                this.f38430f = 1.0f;
-                this.f38435x = 0;
-                this.f38436y = offsetForHorizontal;
-                this.f38433s = 0.0f;
-                this.f38434w = 0.0f;
+                this.f38459f = 1.0f;
+                this.f38464x = 0;
+                this.f38465y = offsetForHorizontal;
+                this.f38462s = 0.0f;
+                this.f38463w = 0.0f;
             } else if (this.I) {
                 c();
             }
             this.I = false;
             this.D = getMeasuredWidth();
         }
-        int D = org.telegram.messenger.k5.D(8.0f, 2, this.f38426a.getHeight());
+        int D = org.telegram.messenger.k5.D(8.0f, 2, this.f38455a.getHeight());
         if (D < org.telegram.messenger.g0.L(56.0f)) {
             D = org.telegram.messenger.g0.L(56.0f);
         }

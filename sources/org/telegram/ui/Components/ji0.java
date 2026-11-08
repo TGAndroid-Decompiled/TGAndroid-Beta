@@ -29,30 +29,30 @@ public final class ji0 extends View {
     public boolean T;
     public boolean U;
     public float V;
-    public final org.telegram.ui.ActionBar.f6 f34963a;
-    public final Paint f34964b;
-    public final Paint f34965c;
+    public final org.telegram.ui.ActionBar.f6 f34984a;
+    public final Paint f34985b;
+    public final Paint f34986c;
     public final Paint d;
-    public final Paint f34966e;
-    public final he0 f34967f;
+    public final Paint f34987e;
+    public final he0 f34988f;
     public final i6 h;
-    public t51 f34968n;
-    public float f34969r;
-    public float f34970s;
-    public float f34971w;
-    public boolean f34972x;
-    public final ob0 f34973y;
+    public t51 f34989n;
+    public float f34990r;
+    public float f34991s;
+    public float f34992w;
+    public boolean f34993x;
+    public final ob0 f34994y;
 
     public ji0(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f34964b = new Paint(1);
-        this.f34965c = new Paint(1);
+        this.f34985b = new Paint(1);
+        this.f34986c = new Paint(1);
         this.d = new Paint(1);
-        this.f34966e = new Paint(1);
-        this.f34970s = 0.0f;
-        this.f34971w = 1.0f;
-        this.f34972x = false;
-        this.f34973y = new ob0(this, 13);
+        this.f34987e = new Paint(1);
+        this.f34991s = 0.0f;
+        this.f34992w = 1.0f;
+        this.f34993x = false;
+        this.f34994y = new ob0(this, 13);
         this.D = new RectF();
         this.E = new RectF();
         this.F = new RectF();
@@ -65,10 +65,10 @@ public final class ji0 extends View {
         this.N = new w5(this, 0L, 340L, xqVar);
         this.O = new w5(this, 0L, 340L, xqVar);
         this.P = true;
-        this.f34963a = f6Var;
+        this.f34984a = f6Var;
         he0 he0Var = new he0(12);
-        this.f34967f = he0Var;
-        he0Var.f34299f = this;
+        this.f34988f = he0Var;
+        he0Var.f34236f = this;
         he0Var.setCallback(this);
         i6 i6Var = new i6(false, false, false);
         this.h = i6Var;
@@ -76,7 +76,7 @@ public final class ji0 extends View {
         i6Var.setCallback(this);
         i6Var.w(org.telegram.messenger.g0.L(12.0f));
         i6Var.x(org.telegram.messenger.g0.o());
-        i6Var.M = org.telegram.messenger.g0.f22544q.x;
+        i6Var.M = org.telegram.messenger.g0.f22563q.x;
     }
 
     public final void a(Canvas canvas, RectF rectF) {
@@ -95,28 +95,28 @@ public final class ji0 extends View {
         float i12;
         boolean z9;
         int i13 = org.telegram.ui.ActionBar.k6.Yf;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f34963a;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f34984a;
         int w02 = org.telegram.ui.ActionBar.k6.w0(i13, f6Var);
-        Paint paint4 = this.f34964b;
+        Paint paint4 = this.f34985b;
         paint4.setColor(w02);
         int w03 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Zf, f6Var);
-        Paint paint5 = this.f34965c;
+        Paint paint5 = this.f34986c;
         paint5.setColor(w03);
         int i14 = org.telegram.ui.ActionBar.k6.Wf;
         int w04 = org.telegram.ui.ActionBar.k6.w0(i14, f6Var);
         i6 i6Var2 = this.h;
         i6Var2.u(w04);
         int w05 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Uf, f6Var);
-        he0 he0Var2 = this.f34967f;
-        he0Var2.f34295a.setColor(w05);
+        he0 he0Var2 = this.f34988f;
+        he0Var2.f34232a.setColor(w05);
         int w06 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Vf, f6Var);
         Paint paint6 = this.d;
         paint6.setColor(w06);
         int w07 = org.telegram.ui.ActionBar.k6.w0(i14, f6Var);
-        Paint paint7 = this.f34966e;
+        Paint paint7 = this.f34987e;
         paint7.setColor(w07);
-        int T1 = (int) org.telegram.messenger.g0.T1(rectF.left + org.telegram.messenger.g0.L(11.33f), rectF.right - org.telegram.messenger.g0.L(11.33f), Utilities.l(this.f34970s));
-        int T12 = (int) org.telegram.messenger.g0.T1(rectF.left + org.telegram.messenger.g0.L(11.33f), rectF.right - org.telegram.messenger.g0.L(11.33f), Utilities.l(this.f34971w));
+        int T1 = (int) org.telegram.messenger.g0.T1(rectF.left + org.telegram.messenger.g0.L(11.33f), rectF.right - org.telegram.messenger.g0.L(11.33f), Utilities.l(this.f34991s));
+        int T12 = (int) org.telegram.messenger.g0.T1(rectF.left + org.telegram.messenger.g0.L(11.33f), rectF.right - org.telegram.messenger.g0.L(11.33f), Utilities.l(this.f34992w));
         int measuredWidth = getMeasuredWidth() - org.telegram.messenger.g0.L(27.0f);
         int i15 = this.K;
         Path path = this.M;
@@ -201,20 +201,20 @@ public final class ji0 extends View {
         if (this.U) {
             i12 = this.V;
         } else {
-            t51 t51Var = this.f34968n;
+            t51 t51Var = this.f34989n;
             if (t51Var != null) {
-                f10 = ((float) t51Var.S()) / ((float) this.f34968n.U());
+                f10 = ((float) t51Var.S()) / ((float) this.f34989n.U());
             } else {
                 f10 = 1.0f;
             }
-            i12 = Utilities.i(f10, this.f34971w, this.f34970s);
+            i12 = Utilities.i(f10, this.f34992w, this.f34991s);
         }
         float i19 = Utilities.i(org.telegram.messenger.g0.T1(rectF.left + org.telegram.messenger.g0.L(13.0f), rectF.right - org.telegram.messenger.g0.L(14.0f), i12), f12, f11);
         if (i19 < f12) {
             canvas.save();
             canvas.clipRect(i19, rectF.top, f12, rectF.bottom);
             canvas.translate(rectF.left + org.telegram.messenger.g0.L(14.0f), rectF.centerY());
-            if (this.f34972x && i12 < this.f34970s && !this.U) {
+            if (this.f34993x && i12 < this.f34991s && !this.U) {
                 paint6.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Wf, f6Var));
             } else {
                 paint6.setColor(org.telegram.ui.ActionBar.k6.w0(i18, f6Var));
@@ -226,7 +226,7 @@ public final class ji0 extends View {
             canvas.save();
             canvas.clipRect(f11, rectF.top, i19, rectF.bottom);
             canvas.translate(rectF.left + org.telegram.messenger.g0.L(14.0f), rectF.centerY());
-            if (!b() && !this.f34972x && !this.U) {
+            if (!b() && !this.f34993x && !this.U) {
                 paint6.setColor(org.telegram.ui.ActionBar.k6.w0(i18, f6Var));
             } else {
                 paint6.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Wf, f6Var));
@@ -270,7 +270,7 @@ public final class ji0 extends View {
             canvas.translate(org.telegram.messenger.g0.T1(rectF4.centerX() - (L6 / 2.0f), rectF4.left + org.telegram.messenger.g0.L(6.0f), d2), rectF4.centerY());
             he0 he0Var3 = he0Var;
             he0Var3.setBounds(0, (-L6) / 2, L6, L6 / 2);
-            he0Var3.f34300g = (int) (d * 255.0f);
+            he0Var3.f34237g = (int) (d * 255.0f);
             he0Var3.draw(canvas);
             canvas.restore();
             if (d2 > 0.0f) {
@@ -287,7 +287,7 @@ public final class ji0 extends View {
     }
 
     public final boolean b() {
-        t51 t51Var = this.f34968n;
+        t51 t51Var = this.f34989n;
         if (t51Var != null && t51Var.d0()) {
             return true;
         }
@@ -338,9 +338,9 @@ public final class ji0 extends View {
             this.U = z11;
             if (z11) {
                 b();
-                t51 t51Var = this.f34968n;
+                t51 t51Var = this.f34989n;
                 if (t51Var != null) {
-                    f10 = ((float) t51Var.S()) / ((float) this.f34968n.U());
+                    f10 = ((float) t51Var.S()) / ((float) this.f34989n.U());
                 }
                 this.V = f10;
                 setPlaying(false);
@@ -352,33 +352,33 @@ public final class ji0 extends View {
             boolean z12 = this.R;
             RectF rectF3 = this.D;
             if (z12) {
-                this.f34970s = Utilities.i(org.telegram.messenger.g0.z1(motionEvent.getX(), rectF3.left + org.telegram.messenger.g0.L(11.33f), rectF3.right - org.telegram.messenger.g0.L(11.33f)), Utilities.l(this.f34971w - Math.max(1.0f / this.f34969r, org.telegram.messenger.g0.L(30.0f) / (rectF3.width() - org.telegram.messenger.g0.L(22.66f)))), 0.0f);
+                this.f34991s = Utilities.i(org.telegram.messenger.g0.z1(motionEvent.getX(), rectF3.left + org.telegram.messenger.g0.L(11.33f), rectF3.right - org.telegram.messenger.g0.L(11.33f)), Utilities.l(this.f34992w - Math.max(1.0f / this.f34990r, org.telegram.messenger.g0.L(30.0f) / (rectF3.width() - org.telegram.messenger.g0.L(22.66f)))), 0.0f);
                 invalidate();
             } else if (this.S) {
-                this.f34971w = Utilities.i(org.telegram.messenger.g0.z1(motionEvent.getX(), rectF3.left + org.telegram.messenger.g0.L(11.33f), rectF3.right - org.telegram.messenger.g0.L(11.33f)), 1.0f, Utilities.l(Math.max(1.0f / this.f34969r, org.telegram.messenger.g0.L(30.0f) / (rectF3.width() - org.telegram.messenger.g0.L(22.66f))) + this.f34970s));
+                this.f34992w = Utilities.i(org.telegram.messenger.g0.z1(motionEvent.getX(), rectF3.left + org.telegram.messenger.g0.L(11.33f), rectF3.right - org.telegram.messenger.g0.L(11.33f)), 1.0f, Utilities.l(Math.max(1.0f / this.f34990r, org.telegram.messenger.g0.L(30.0f) / (rectF3.width() - org.telegram.messenger.g0.L(22.66f))) + this.f34991s));
                 invalidate();
             } else if (this.U) {
-                t51 t51Var2 = this.f34968n;
+                t51 t51Var2 = this.f34989n;
                 if (t51Var2 != null) {
-                    this.V = Utilities.i(org.telegram.messenger.g0.z1(motionEvent.getX(), rectF3.left + org.telegram.messenger.g0.L(11.33f), rectF3.right - org.telegram.messenger.g0.L(11.33f)), this.f34971w, this.f34970s);
-                    t51Var2.q0(i7 * ((float) this.f34968n.U()), false);
+                    this.V = Utilities.i(org.telegram.messenger.g0.z1(motionEvent.getX(), rectF3.left + org.telegram.messenger.g0.L(11.33f), rectF3.right - org.telegram.messenger.g0.L(11.33f)), this.f34992w, this.f34991s);
+                    t51Var2.q0(i7 * ((float) this.f34989n.U()), false);
                 }
                 invalidate();
             }
-            this.h.t(org.telegram.messenger.g0.g0(Math.round(Math.max(1.0f, (this.f34971w - this.f34970s) * this.f34969r)), false, false), true, true);
+            this.h.t(org.telegram.messenger.g0.g0(Math.round(Math.max(1.0f, (this.f34992w - this.f34991s) * this.f34990r)), false, false), true, true);
         } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
             if (motionEvent.getAction() == 1 && this.T) {
                 setPlaying(!b());
-            } else if (this.R && this.f34972x) {
-                t51 t51Var3 = this.f34968n;
+            } else if (this.R && this.f34993x) {
+                t51 t51Var3 = this.f34989n;
                 if (t51Var3 != null) {
-                    t51Var3.q0(this.f34970s * ((float) t51Var3.U()), false);
+                    t51Var3.q0(this.f34991s * ((float) t51Var3.U()), false);
                 }
                 setPlaying(true);
-            } else if (this.S && this.f34972x) {
-                t51 t51Var4 = this.f34968n;
+            } else if (this.S && this.f34993x) {
+                t51 t51Var4 = this.f34989n;
                 if (t51Var4 != null) {
-                    t51Var4.q0(Math.max(this.f34970s * ((float) t51Var4.U()), (this.f34971w * ((float) this.f34968n.U())) - 1500), false);
+                    t51Var4.q0(Math.max(this.f34991s * ((float) t51Var4.U()), (this.f34992w * ((float) this.f34989n.U())) - 1500), false);
                 }
                 setPlaying(true);
             } else if (this.U && !b()) {
@@ -396,23 +396,23 @@ public final class ji0 extends View {
     }
 
     public float getAudioLeft() {
-        return this.f34970s;
+        return this.f34991s;
     }
 
     public long getAudioLeftMs() {
-        return this.f34970s * ((float) getDuration());
+        return this.f34991s * ((float) getDuration());
     }
 
     public float getAudioRight() {
-        return this.f34971w;
+        return this.f34992w;
     }
 
     public long getAudioRightMs() {
-        return this.f34971w * ((float) getDuration());
+        return this.f34992w * ((float) getDuration());
     }
 
     public long getDuration() {
-        t51 t51Var = this.f34968n;
+        t51 t51Var = this.f34989n;
         if (t51Var == null) {
             return 0L;
         }
@@ -420,7 +420,7 @@ public final class ji0 extends View {
     }
 
     public double getNewDuration() {
-        return ((this.f34971w - this.f34970s) * ((float) getDuration())) / 1000.0d;
+        return ((this.f34992w - this.f34991s) * ((float) getDuration())) / 1000.0d;
     }
 
     @Override
@@ -450,16 +450,16 @@ public final class ji0 extends View {
         if (this.Q) {
             z9 = false;
         }
-        t51 t51Var2 = this.f34968n;
+        t51 t51Var2 = this.f34989n;
         if (t51Var2 != null) {
-            float S = ((float) t51Var2.S()) / ((float) this.f34968n.U());
-            if (S < this.f34970s || S > this.f34971w) {
-                this.f34968n.q0(f10 * ((float) t51Var.U()), false);
+            float S = ((float) t51Var2.S()) / ((float) this.f34989n.U());
+            if (S < this.f34991s || S > this.f34992w) {
+                this.f34989n.q0(f10 * ((float) t51Var.U()), false);
             }
-            this.f34968n.u0(z9);
+            this.f34989n.u0(z9);
         }
-        this.f34967f.a(z9, true);
-        ob0 ob0Var = this.f34973y;
+        this.f34988f.a(z9, true);
+        ob0 ob0Var = this.f34994y;
         org.telegram.messenger.g0.r(ob0Var);
         if (z9) {
             org.telegram.messenger.g0.i3(ob0Var, 16L);
@@ -468,7 +468,7 @@ public final class ji0 extends View {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (this.h != drawable && this.f34967f != drawable && !super.verifyDrawable(drawable)) {
+        if (this.h != drawable && this.f34988f != drawable && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

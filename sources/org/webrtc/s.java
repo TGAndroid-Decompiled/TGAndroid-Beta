@@ -5,39 +5,39 @@ import java.util.concurrent.CountDownLatch;
 import org.webrtc.GlGenericDrawer;
 import org.webrtc.TextureBufferImpl;
 public final class s implements Runnable {
-    public final int f52971a;
-    public final Object f52972b;
-    public final Object f52973c;
+    public final int f53064a;
+    public final Object f53065b;
+    public final Object f53066c;
 
     public s(int i7, Object obj, Object obj2) {
-        this.f52971a = i7;
-        this.f52972b = obj;
-        this.f52973c = obj2;
+        this.f53064a = i7;
+        this.f53065b = obj;
+        this.f53066c = obj2;
     }
 
     @Override
     public final void run() {
-        switch (this.f52971a) {
+        switch (this.f53064a) {
             case 0:
-                TextureBufferImpl.a((TextureBufferImpl) this.f52972b, (TextureBufferImpl.RefCountMonitor) this.f52973c);
+                TextureBufferImpl.a((TextureBufferImpl) this.f53065b, (TextureBufferImpl.RefCountMonitor) this.f53066c);
                 return;
             case 1:
-                ((EglRenderer) this.f52972b).lambda$getTexture$7((GlGenericDrawer.TextureCallback) this.f52973c);
+                ((EglRenderer) this.f53065b).lambda$getTexture$7((GlGenericDrawer.TextureCallback) this.f53066c);
                 return;
             case 2:
-                ((EglRenderer) this.f52972b).lambda$release$1((CountDownLatch) this.f52973c);
+                ((EglRenderer) this.f53065b).lambda$release$1((CountDownLatch) this.f53066c);
                 return;
             case 3:
-                ((EglRenderer) this.f52972b).lambda$release$2((Looper) this.f52973c);
+                ((EglRenderer) this.f53065b).lambda$release$2((Looper) this.f53066c);
                 return;
             case 4:
-                ((VideoFileRenderer) this.f52972b).lambda$onFrame$0((VideoFrame) this.f52973c);
+                ((VideoFileRenderer) this.f53065b).lambda$onFrame$0((VideoFrame) this.f53066c);
                 return;
             case 5:
-                ((VideoFileRenderer) this.f52972b).lambda$release$2((CountDownLatch) this.f52973c);
+                ((VideoFileRenderer) this.f53065b).lambda$release$2((CountDownLatch) this.f53066c);
                 return;
             default:
-                ((VideoSource) this.f52972b).lambda$setVideoProcessor$0((VideoFrame) this.f52973c);
+                ((VideoSource) this.f53065b).lambda$setVideoProcessor$0((VideoFrame) this.f53066c);
                 return;
         }
     }

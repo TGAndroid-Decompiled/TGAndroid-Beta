@@ -13,18 +13,18 @@ import org.telegram.messenger.p10;
 import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.y9;
 public final class s0 extends oj0 {
-    public final Context f55848c;
+    public final Context f55940c;
     public final y9 d;
-    public final x5 f55849e;
-    public final boolean f55850f;
+    public final x5 f55941e;
+    public final boolean f55942f;
     public final e5 h;
 
     public s0(e5 e5Var, Context context, y9 y9Var, x5 x5Var, boolean z9) {
         this.h = e5Var;
-        this.f55848c = context;
+        this.f55940c = context;
         this.d = y9Var;
-        this.f55849e = x5Var;
-        this.f55850f = z9;
+        this.f55941e = x5Var;
+        this.f55942f = z9;
     }
 
     @Override
@@ -34,12 +34,12 @@ public final class s0 extends oj0 {
 
     @Override
     public final int b() {
-        return this.h.f55871s0.size();
+        return this.h.f55963s0.size();
     }
 
     @Override
     public final int d(int i7) {
-        ArrayList arrayList = this.h.f55871s0;
+        ArrayList arrayList = this.h.f55963s0;
         return ((ij) arrayList.get((arrayList.size() - 1) - i7)).U;
     }
 
@@ -50,14 +50,14 @@ public final class s0 extends oj0 {
         aj d;
         boolean z11;
         e5 e5Var = this.h;
-        ArrayList arrayList = e5Var.f55871s0;
+        ArrayList arrayList = e5Var.f55963s0;
         ij ijVar = (ij) arrayList.get((arrayList.size() - 1) - i7);
-        View view = d1Var.f56951a;
+        View view = d1Var.f57043a;
         if (view instanceof org.telegram.ui.Cells.q1) {
             org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) view;
-            dj djVar = e5Var.f55872t0;
+            dj djVar = e5Var.f55964t0;
             if (djVar != null && (d = djVar.d(ijVar)) != null) {
-                if (d.f21444c != 0) {
+                if (d.f21443c != 0) {
                     z11 = true;
                 } else {
                     z11 = false;
@@ -66,13 +66,13 @@ public final class s0 extends oj0 {
             } else {
                 z9 = false;
             }
-            dj djVar2 = e5Var.f55872t0;
+            dj djVar2 = e5Var.f55964t0;
             if (djVar2 != null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            q1Var.v3(ijVar, djVar2, z10, z9, false, false);
+            q1Var.w3(ijVar, djVar2, z10, z9, false, false);
         } else if (view instanceof org.telegram.ui.Cells.t0) {
             ((org.telegram.ui.Cells.t0) view).setMessageObject(ijVar);
         }
@@ -81,12 +81,12 @@ public final class s0 extends oj0 {
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         t0 t0Var = this.h.D0;
-        Context context = this.f55848c;
+        Context context = this.f55940c;
         if (i7 == 1) {
             return new v4.d1(new q0(this, context, t0Var));
         }
-        r0 r0Var = new r0(this, context, p10.f24467s0, t0Var);
-        r0Var.f29825e6 = true;
+        r0 r0Var = new r0(this, context, p10.f24470s0, t0Var);
+        r0Var.f29828e6 = true;
         return new v4.d1(r0Var);
     }
 }

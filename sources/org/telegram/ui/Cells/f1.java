@@ -11,12 +11,12 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.id;
 import org.telegram.messenger.ij;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.hc;
 import org.telegram.ui.Components.ht0;
-import org.telegram.ui.Components.lz;
+import org.telegram.ui.Components.mz;
 public abstract class f1 {
     public static String A(int i7) {
         if (i7 != 1) {
@@ -46,7 +46,7 @@ public abstract class f1 {
     }
 
     public static boolean a(ij ijVar) {
-        if (ijVar != null && ij.B0(ijVar.f23244k) == 1271266957) {
+        if (ijVar != null && ij.B0(ijVar.f23262k) == 1271266957) {
             return true;
         }
         return false;
@@ -63,7 +63,7 @@ public abstract class f1 {
     }
 
     public static float c(RecyclerView recyclerView) {
-        int i7 = ht0.f34401l0;
+        int i7 = ht0.f34338l0;
         v4.n0 layoutManager = recyclerView.getLayoutManager();
         if (layoutManager == null || !recyclerView.canScrollVertically(-1)) {
             return 0.0f;
@@ -87,8 +87,8 @@ public abstract class f1 {
         return (drawable.getIntrinsicHeight() / i7) + i10;
     }
 
-    public static int g(lz lzVar, int i7) {
-        return lzVar.c(lzVar.getMeasuredWidth()) + i7;
+    public static int g(mz mzVar, int i7) {
+        return mzVar.c(mzVar.getMeasuredWidth()) + i7;
     }
 
     public static Bundle h(int i7, String str, String str2, boolean z9) {
@@ -104,7 +104,7 @@ public abstract class f1 {
     }
 
     public static Integer j(int i7, ArrayList arrayList, int i10, ArrayList arrayList2, int i11) {
-        arrayList.add(hd.M0(i7, null));
+        arrayList.add(id.M0(i7, null));
         arrayList2.add(Integer.valueOf(i10));
         return Integer.valueOf(i11);
     }
@@ -141,7 +141,7 @@ public abstract class f1 {
     }
 
     public static void q(int i7, ArrayList arrayList, ArrayList arrayList2, Integer num) {
-        arrayList.add(hd.M0(i7, null));
+        arrayList.add(id.M0(i7, null));
         arrayList2.add(num);
     }
 
@@ -154,7 +154,7 @@ public abstract class f1 {
     }
 
     public static void t(String str, int i7, ArrayList arrayList, int i10, ArrayList arrayList2) {
-        arrayList.add(hd.M0(i7, str));
+        arrayList.add(id.M0(i7, str));
         arrayList2.add(Integer.valueOf(i10));
     }
 

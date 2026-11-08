@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.oj0;
 public final class g1 extends oj0 {
-    public final s0 f56500c;
+    public final s0 f56592c;
 
     public g1(s0 s0Var) {
-        this.f56500c = s0Var;
+        this.f56592c = s0Var;
     }
 
     @Override
@@ -23,20 +23,20 @@ public final class g1 extends oj0 {
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        s0 s0Var = this.f56500c;
-        ArrayList arrayList = s0Var.f56554e3;
+        s0 s0Var = this.f56592c;
+        ArrayList arrayList = s0Var.f56646e3;
         if (arrayList.isEmpty()) {
             return;
         }
-        i1 i1Var = (i1) d1Var.f56951a;
-        i1Var.f56542r = (TLRPC.Document) arrayList.get(i7 % arrayList.size());
-        i1Var.f56543s = true;
+        i1 i1Var = (i1) d1Var.f57043a;
+        i1Var.f56634r = (TLRPC.Document) arrayList.get(i7 % arrayList.size());
+        i1Var.f56635s = true;
         i1Var.a(true ^ s0Var.j3, false, false);
     }
 
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
-        i1 i1Var = new i1(this.f56500c, viewGroup.getContext());
+        i1 i1Var = new i1(this.f56592c, viewGroup.getContext());
         i1Var.setLayoutParams(new v4.o0(-1, -2));
         return new v4.d1(i1Var);
     }

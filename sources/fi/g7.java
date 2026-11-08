@@ -18,7 +18,7 @@ public final class g7 implements Runnable {
                 TL_account.getWebPagePreview getwebpagepreview = new TL_account.getWebPagePreview();
                 m7 m7Var = this.f12108b;
                 getwebpagepreview.message = m7Var.Q1.d.getText().toString();
-                m7Var.f12455a2 = ConnectionsManager.getInstance(m7Var.f28613a).sendRequest(getwebpagepreview, new bi.j0(m7Var, 11));
+                m7Var.f12455a2 = ConnectionsManager.getInstance(m7Var.f28616a).sendRequest(getwebpagepreview, new bi.j0(m7Var, 11));
                 return;
             case 1:
                 this.f12108b.h1();

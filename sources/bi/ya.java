@@ -17,7 +17,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.cv0;
-import org.telegram.ui.Components.qu;
+import org.telegram.ui.Components.ru;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ProfileActivity;
@@ -53,7 +53,7 @@ public final class ya implements c20 {
                 TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
                 if (savedStarGift != null) {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(jcVar.getText());
-                    spannableStringBuilder.append((CharSequence) " ").append((CharSequence) org.telegram.ui.Components.kc.b(org.telegram.messenger.hd.M0(2131745220, null), new ai.a1(this.f5090b, context, f6Var, savedStarGift, 2), f6Var, null));
+                    spannableStringBuilder.append((CharSequence) " ").append((CharSequence) org.telegram.ui.Components.kc.b(org.telegram.messenger.id.M0(2131745222, null), new ai.a1(this.f5090b, context, f6Var, savedStarGift, 2), f6Var, null));
                     jcVar.setText(spannableStringBuilder);
                     return;
                 }
@@ -61,17 +61,17 @@ public final class ya implements c20 {
             case 1:
                 org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) obj4;
                 TLRPC.Chat chat = (TLRPC.Chat) obj3;
-                long j3 = ((TLRPC.Chat) obj2).f26953id;
+                long j3 = ((TLRPC.Chat) obj2).f26956id;
                 boolean booleanValue = ((Boolean) obj).booleanValue();
                 boolean T = org.telegram.messenger.t3.T(chat);
                 int i11 = this.f5090b;
                 if (!T) {
                     org.telegram.ui.ActionBar.u1 u1Var = new org.telegram.ui.ActionBar.u1(3, f2Var.getContext(), null);
                     u1Var.r(250L);
-                    qp.s1(i11).T(f2Var.getParentActivity(), chat.f26953id, f2Var, new ii.f0(u1Var, f2Var, i11, j3, booleanValue), null);
+                    qp.s1(i11).T(f2Var.getParentActivity(), chat.f26956id, f2Var, new ii.f0(u1Var, f2Var, i11, j3, booleanValue), null);
                     return;
                 }
-                long j10 = chat.f26953id;
+                long j10 = chat.f26956id;
                 qp.s1(i11).Q2(-j10, j3, false, booleanValue, new ii.g0(f2Var, j10, 0));
                 return;
             case 2:
@@ -79,8 +79,8 @@ public final class ya implements c20 {
                 li.a aVar = (li.a) obj3;
                 String str = (String) obj2;
                 SpannableString spannableString = (SpannableString) obj;
-                if (i10 == a6Var.I && a6Var.f18432y == aVar) {
-                    Editable text = a6Var.f18426f.getText();
+                if (i10 == a6Var.I && a6Var.f18435y == aVar) {
+                    Editable text = a6Var.f18429f.getText();
                     if (TextUtils.equals(str, text)) {
                         for (ni.f fVar : (ni.f[]) text.getSpans(0, text.length(), ni.f.class)) {
                             text.removeSpan(fVar);
@@ -101,16 +101,16 @@ public final class ya implements c20 {
                 }
                 return;
             case 3:
-                qu quVar = (qu) obj4;
+                ru ruVar = (ru) obj4;
                 int[] iArr = (int[]) obj3;
                 ArrayList arrayList = (ArrayList) obj2;
-                org.telegram.ui.ActionBar.f2 f2Var2 = quVar.f37391j1;
+                org.telegram.ui.ActionBar.f2 f2Var2 = ruVar.f37776j1;
                 iArr[0] = iArr[0] + 1;
                 if (((Boolean) obj).booleanValue()) {
                     iArr[1] = iArr[1] + 1;
                 }
                 if (iArr[0] == i10 && iArr[1] > 0) {
-                    quVar.dismiss();
+                    ruVar.dismiss();
                     org.telegram.ui.Components.cc.g(f2Var2, new cv0(f2Var2.getFragmentView().getContext(), (TLObject) arrayList.get(0), iArr[1], 2, null, f2Var2.getResourceProvider()), 1500).j();
                     return;
                 }
@@ -130,7 +130,7 @@ public final class ya implements c20 {
                 if (tL_storyAlbum == null) {
                     org.telegram.ui.Components.hc X = org.telegram.ui.Components.hc.X();
                     if (X != null) {
-                        org.telegram.messenger.k5.o(null, 2131744731, X, 2131624236, 36);
+                        org.telegram.messenger.k5.o(null, 2131744733, X, 2131624236, 36);
                         return;
                     }
                     return;
@@ -154,28 +154,28 @@ public final class ya implements c20 {
                 ij ijVar = (ij) obj2;
                 String str3 = (String) obj;
                 if (i10 == photoViewer.P4) {
-                    photoViewer.f41462n5 = str3;
-                    if (f10Var.s() && f10Var.b(ijVar, photoViewer.f41462n5)) {
-                        if (photoViewer.f41453m5) {
-                            photoViewer.f41466o0.S(20);
-                            photoViewer.f41466o0.t(19);
+                    photoViewer.f41466n5 = str3;
+                    if (f10Var.s() && f10Var.b(ijVar, photoViewer.f41466n5)) {
+                        if (photoViewer.f41457m5) {
+                            photoViewer.f41470o0.S(20);
+                            photoViewer.f41470o0.t(19);
                             return;
                         }
-                        photoViewer.f41466o0.S(19);
-                        photoViewer.f41466o0.t(20);
+                        photoViewer.f41470o0.S(19);
+                        photoViewer.f41470o0.t(20);
                         return;
                     }
-                    photoViewer.f41466o0.t(19);
-                    photoViewer.f41466o0.t(20);
+                    photoViewer.f41470o0.t(19);
+                    photoViewer.f41470o0.t(20);
                     return;
                 }
                 return;
         }
     }
 
-    public ya(qu quVar, int[] iArr, int i7, ArrayList arrayList) {
+    public ya(ru ruVar, int[] iArr, int i7, ArrayList arrayList) {
         this.f5089a = 3;
-        this.f5091c = quVar;
+        this.f5091c = ruVar;
         this.d = iArr;
         this.f5090b = i7;
         this.f5092e = arrayList;

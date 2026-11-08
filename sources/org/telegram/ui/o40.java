@@ -1,7 +1,7 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class o40 extends org.telegram.ui.Components.v00 {
+public final class o40 extends org.telegram.ui.Components.w00 {
     public final w40 f48252r;
 
     public o40(w40 w40Var, Context context, int i7) {

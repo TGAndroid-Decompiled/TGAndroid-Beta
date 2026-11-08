@@ -46,14 +46,14 @@ public final class jj extends org.telegram.ui.Components.g90 {
                 return;
             }
             int[] h12 = org.telegram.messenger.ij.h1(botInlineResult);
-            rh rhVar = anVar.f43756cb;
+            rh rhVar = anVar.f43762cb;
             String str = botInlineResult.title;
             if (str == null) {
                 str = "";
             }
             String str2 = botInlineResult.description;
             String str3 = botInlineResult.content.url;
-            org.telegram.ui.Components.vt.N0(anVar, null, rhVar, str, str2, str3, str3, h12[0], h12[1], -1, anVar.T9());
+            org.telegram.ui.Components.wt.N0(anVar, null, rhVar, str, str2, str3, str3, h12[0], h12[1], -1, anVar.T9());
         }
     }
 
@@ -64,13 +64,13 @@ public final class jj extends org.telegram.ui.Components.g90 {
         qj qjVar = anVar.Z;
         if (qjVar != null) {
             jg.i1 adapter = getAdapter();
-            TLRPC.User user = adapter.f16799w0;
+            TLRPC.User user = adapter.f16802w0;
             if (user != null) {
                 str = user.bot_inline_placeholder;
             } else {
-                String str2 = adapter.f16790q0;
+                String str2 = adapter.f16793q0;
                 if (str2 != null && str2.equals("gif")) {
-                    str = org.telegram.messenger.hd.M0(2131745765, null);
+                    str = org.telegram.messenger.id.M0(2131745767, null);
                 } else {
                     str = null;
                 }
@@ -79,12 +79,12 @@ public final class jj extends org.telegram.ui.Components.g90 {
             org.telegram.ui.Components.fe feVar = anVar.Z.P1;
             if (feVar != null) {
                 if (z9) {
-                    feVar.f36657e = true;
-                    feVar.f36655b = System.currentTimeMillis();
+                    feVar.f36677e = true;
+                    feVar.f36675b = System.currentTimeMillis();
                     feVar.invalidateSelf();
                     return;
                 }
-                feVar.f36657e = false;
+                feVar.f36677e = false;
             }
         }
     }
@@ -92,15 +92,15 @@ public final class jj extends org.telegram.ui.Components.g90 {
     @Override
     public final void m() {
         an anVar = this.W;
-        if (anVar.f43913p5 && ((getAdapter().R == null || anVar.f43926q5 || anVar.f43940r5) && anVar.h != null && getAdapter().R != null)) {
+        if (anVar.f43919p5 && ((getAdapter().R == null || anVar.f43932q5 || anVar.f43946r5) && anVar.h != null && getAdapter().R != null)) {
             SharedPreferences e12 = org.telegram.messenger.qp.e1();
             if (!e12.getBoolean("secretbot", false)) {
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, anVar.getParentActivity(), anVar.f44022xa);
-                String M0 = org.telegram.messenger.hd.M0(2131689472, null);
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, anVar.getParentActivity(), anVar.f44028xa);
+                String M0 = org.telegram.messenger.id.M0(2131689472, null);
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
                 u1Var.R = M0;
-                u1Var.T = org.telegram.messenger.hd.M0(2131745695, null);
-                alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131747830, null), null);
+                u1Var.T = org.telegram.messenger.id.M0(2131745697, null);
+                alertDialog$Builder.k(org.telegram.messenger.id.M0(2131747832, null), null);
                 anVar.showDialog(u1Var);
                 e12.edit().putBoolean("secretbot", true).commit();
             }
@@ -113,7 +113,7 @@ public final class jj extends org.telegram.ui.Components.g90 {
         boolean z10;
         if (this.V != z9) {
             an anVar = this.W;
-            org.telegram.ui.Components.ow0 ow0Var = anVar.f43936r1;
+            org.telegram.ui.Components.ow0 ow0Var = anVar.f43942r1;
             if (!anVar.isInPreviewMode() && z9) {
                 z10 = true;
             } else {

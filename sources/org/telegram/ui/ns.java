@@ -29,15 +29,15 @@ public final class ns implements Comparator {
                 }
                 return 0;
             case 2:
-                org.telegram.messenger.ed edVar = (org.telegram.messenger.ed) this.f48129b;
-                org.telegram.messenger.ed edVar2 = (org.telegram.messenger.ed) obj;
-                org.telegram.messenger.ed edVar3 = (org.telegram.messenger.ed) obj2;
-                if (edVar2 != edVar) {
-                    if (edVar3 != edVar) {
-                        int i11 = edVar2.f22189k;
-                        int i12 = edVar3.f22189k;
+                org.telegram.messenger.fd fdVar = (org.telegram.messenger.fd) this.f48129b;
+                org.telegram.messenger.fd fdVar2 = (org.telegram.messenger.fd) obj;
+                org.telegram.messenger.fd fdVar3 = (org.telegram.messenger.fd) obj2;
+                if (fdVar2 != fdVar) {
+                    if (fdVar3 != fdVar) {
+                        int i11 = fdVar2.f22404k;
+                        int i12 = fdVar3.f22404k;
                         if (i11 == i12) {
-                            return edVar2.f22181a.compareTo(edVar3.f22181a);
+                            return fdVar2.f22396a.compareTo(fdVar3.f22396a);
                         }
                         if (i11 <= i12) {
                             if (i11 >= i12) {

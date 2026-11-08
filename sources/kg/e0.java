@@ -6,19 +6,19 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.ui.Components.oj0;
 public final class e0 extends oj0 {
-    public final Context f17352c;
+    public final Context f17355c;
     public final ArrayList d = new ArrayList();
-    public String f17353e;
-    public final g0 f17354f;
+    public String f17356e;
+    public final g0 f17357f;
 
     public e0(g0 g0Var, Context context) {
-        this.f17354f = g0Var;
-        this.f17352c = context;
+        this.f17357f = g0Var;
+        this.f17355c = context;
     }
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f56955f == 0) {
+        if (d1Var.f57047f == 0) {
             return true;
         }
         return false;
@@ -43,7 +43,7 @@ public final class e0 extends oj0 {
     @Override
     public final void f() {
         super.f();
-        this.f17354f.P();
+        this.f17357f.P();
     }
 
     @Override
@@ -54,7 +54,7 @@ public final class e0 extends oj0 {
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         View p1Var;
-        Context context = this.f17352c;
+        Context context = this.f17355c;
         if (i7 != 0) {
             if (i7 != 1) {
                 p1Var = new View(context);
@@ -65,7 +65,7 @@ public final class e0 extends oj0 {
                 p1Var.setTag(-33024);
             }
         } else {
-            p1Var = new p1(context, this.f17354f.f38968a, false);
+            p1Var = new p1(context, this.f17357f.f39003a, false);
         }
         return new v4.d1(p1Var);
     }

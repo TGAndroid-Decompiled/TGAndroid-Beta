@@ -2,10 +2,10 @@ package org.telegram.ui.Components;
 
 import org.telegram.tgnet.TLRPC;
 public final class c90 extends org.telegram.ui.nq0 {
-    public final g90 f32469a;
+    public final g90 f32500a;
 
     public c90(g90 g90Var) {
-        this.f32469a = g90Var;
+        this.f32500a = g90Var;
     }
 
     @Override
@@ -16,9 +16,9 @@ public final class c90 extends org.telegram.ui.nq0 {
     @Override
     public final void o(int i7, org.telegram.messenger.j20 j20Var, boolean z9, int i10, int i11, boolean z10) {
         if (i7 >= 0) {
-            g90 g90Var = this.f32469a;
+            g90 g90Var = this.f32500a;
             if (i7 < g90Var.P.size()) {
-                g90Var.f33877y.M((TLRPC.BotInlineResult) g90Var.P.get(i7), z9, i10);
+                g90Var.f33903y.M((TLRPC.BotInlineResult) g90Var.P.get(i7), z9, i10);
             }
         }
     }

@@ -2,32 +2,32 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class ym0 implements org.telegram.ui.Components.uk0 {
-    public final int f52289a;
-    public final an0 f52290b;
+    public final int f52269a;
+    public final an0 f52270b;
 
     public ym0(an0 an0Var, int i7) {
-        this.f52289a = i7;
-        this.f52290b = an0Var;
+        this.f52269a = i7;
+        this.f52270b = an0Var;
     }
 
     @Override
     public void F0(float f10) {
         int i7 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));
-        an0 an0Var = this.f52290b;
-        if (i7 != 0 || an0Var.f44054n[1].getVisibility() == 0) {
-            if (an0Var.f44057w) {
-                org.telegram.ui.ActionBar.x4 x4Var = an0Var.f44054n[0];
+        an0 an0Var = this.f52270b;
+        if (i7 != 0 || an0Var.f44060n[1].getVisibility() == 0) {
+            if (an0Var.f44063w) {
+                org.telegram.ui.ActionBar.x4 x4Var = an0Var.f44060n[0];
                 x4Var.setTranslationX((-f10) * x4Var.getMeasuredWidth());
-                org.telegram.ui.ActionBar.x4[] x4VarArr = an0Var.f44054n;
-                x4VarArr[1].setTranslationX(x4VarArr[0].getMeasuredWidth() - (f10 * an0Var.f44054n[0].getMeasuredWidth()));
+                org.telegram.ui.ActionBar.x4[] x4VarArr = an0Var.f44060n;
+                x4VarArr[1].setTranslationX(x4VarArr[0].getMeasuredWidth() - (f10 * an0Var.f44060n[0].getMeasuredWidth()));
             } else {
-                org.telegram.ui.ActionBar.x4 x4Var2 = an0Var.f44054n[0];
+                org.telegram.ui.ActionBar.x4 x4Var2 = an0Var.f44060n[0];
                 x4Var2.setTranslationX(x4Var2.getMeasuredWidth() * f10);
-                org.telegram.ui.ActionBar.x4[] x4VarArr2 = an0Var.f44054n;
-                x4VarArr2[1].setTranslationX((f10 * x4VarArr2[0].getMeasuredWidth()) - an0Var.f44054n[0].getMeasuredWidth());
+                org.telegram.ui.ActionBar.x4[] x4VarArr2 = an0Var.f44060n;
+                x4VarArr2[1].setTranslationX((f10 * x4VarArr2[0].getMeasuredWidth()) - an0Var.f44060n[0].getMeasuredWidth());
             }
             if (i7 == 0) {
-                org.telegram.ui.ActionBar.x4[] x4VarArr3 = an0Var.f44054n;
+                org.telegram.ui.ActionBar.x4[] x4VarArr3 = an0Var.f44060n;
                 org.telegram.ui.ActionBar.x4 x4Var3 = x4VarArr3[0];
                 x4VarArr3[0] = x4VarArr3[1];
                 x4VarArr3[1] = x4Var3;
@@ -39,8 +39,8 @@ public final class ym0 implements org.telegram.ui.Components.uk0 {
     @Override
     public void b(int i7, boolean z9) {
         boolean z10;
-        an0 an0Var = this.f52290b;
-        if (an0Var.f44054n[0].f28746b == i7) {
+        an0 an0Var = this.f52270b;
+        if (an0Var.f44060n[0].f28749b == i7) {
             return;
         }
         if (i7 == an0Var.h.getFirstTabId()) {
@@ -48,16 +48,16 @@ public final class ym0 implements org.telegram.ui.Components.uk0 {
         } else {
             z10 = false;
         }
-        an0Var.f44052e = z10;
-        org.telegram.ui.ActionBar.x4 x4Var = an0Var.f44054n[1];
-        x4Var.f28746b = i7;
+        an0Var.f44058e = z10;
+        org.telegram.ui.ActionBar.x4 x4Var = an0Var.f44060n[1];
+        x4Var.f28749b = i7;
         x4Var.setVisibility(0);
         an0Var.o0(true);
-        an0Var.f44057w = z9;
+        an0Var.f44063w = z9;
         if (i7 == 0) {
-            an0Var.f44051c.setSearchFieldHint(org.telegram.messenger.hd.M0(2131745762, null));
+            an0Var.f44057c.setSearchFieldHint(org.telegram.messenger.id.M0(2131745764, null));
         } else {
-            an0Var.f44051c.setSearchFieldHint(org.telegram.messenger.hd.M0(2131745765, null));
+            an0Var.f44057c.setSearchFieldHint(org.telegram.messenger.id.M0(2131745767, null));
         }
     }
 

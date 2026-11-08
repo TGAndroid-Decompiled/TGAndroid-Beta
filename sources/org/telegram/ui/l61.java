@@ -2,33 +2,33 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.tl.TL_stories;
 public final class l61 implements org.telegram.messenger.c20 {
-    public final int f47454a;
-    public final u71 f47455b;
+    public final int f47459a;
+    public final v71 f47460b;
 
-    public l61(u71 u71Var, int i7) {
-        this.f47454a = i7;
-        this.f47455b = u71Var;
+    public l61(v71 v71Var, int i7) {
+        this.f47459a = i7;
+        this.f47460b = v71Var;
     }
 
     @Override
     public final void a(Object obj) {
-        switch (this.f47454a) {
+        switch (this.f47459a) {
             case 0:
-                u71 u71Var = this.f47455b;
-                u71Var.getClass();
-                u71Var.f50307o1 = ((Float) obj).floatValue();
-                u71Var.f50331y0.invalidate();
-                u71Var.a1();
+                v71 v71Var = this.f47460b;
+                v71Var.getClass();
+                v71Var.f50562o1 = ((Float) obj).floatValue();
+                v71Var.f50586y0.invalidate();
+                v71Var.a1();
                 return;
             case 1:
-                u71 u71Var2 = this.f47455b;
-                u71Var2.W1 = (TL_stories.TL_premium_boostsStatus) obj;
-                u71Var2.V1 = true;
-                u71Var2.m1(true);
-                u71Var2.U1 = false;
+                v71 v71Var2 = this.f47460b;
+                v71Var2.W1 = (TL_stories.TL_premium_boostsStatus) obj;
+                v71Var2.V1 = true;
+                v71Var2.m1(true);
+                v71Var2.U1 = false;
                 return;
             default:
-                u71.Z(this.f47455b, (org.telegram.messenger.e3) obj);
+                v71.Z(this.f47460b, (org.telegram.messenger.e3) obj);
                 return;
         }
     }

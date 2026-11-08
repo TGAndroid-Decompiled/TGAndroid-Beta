@@ -13,40 +13,40 @@ import java.util.List;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class hh0 extends FrameLayout {
-    public final lz f34330a;
-    public final TextView f34331b;
-    public final z8 f34332c;
+    public final mz f34267a;
+    public final TextView f34268b;
+    public final z8 f34269c;
     public final ImageView d;
-    public final l9 f34333e;
-    public final int f34334f;
+    public final l9 f34270e;
+    public final int f34271f;
     public boolean h;
-    public final ArrayList f34335n;
-    public final ArrayList f34336r;
-    public final org.telegram.messenger.ij f34337s;
-    public int f34338w;
-    public q0.a f34339x;
+    public final ArrayList f34272n;
+    public final ArrayList f34273r;
+    public final org.telegram.messenger.ij f34274s;
+    public int f34275w;
+    public q0.a f34276x;
 
     public hh0(Context context, int i7, org.telegram.messenger.ij ijVar) {
         super(context);
-        this.f34335n = new ArrayList();
-        this.f34336r = new ArrayList();
-        this.f34334f = i7;
-        this.f34337s = ijVar;
-        lz lzVar = new lz(context, null);
-        this.f34330a = lzVar;
-        lzVar.e(org.telegram.ui.ActionBar.k6.G8, org.telegram.ui.ActionBar.k6.f27941i6, -1);
-        lzVar.setViewType(13);
-        lzVar.setIsSingleCell(false);
-        addView(lzVar, c8.ha.c(-1.0f, -2));
+        this.f34272n = new ArrayList();
+        this.f34273r = new ArrayList();
+        this.f34271f = i7;
+        this.f34274s = ijVar;
+        mz mzVar = new mz(context, null);
+        this.f34267a = mzVar;
+        mzVar.e(org.telegram.ui.ActionBar.k6.G8, org.telegram.ui.ActionBar.k6.f27944i6, -1);
+        mzVar.setViewType(13);
+        mzVar.setIsSingleCell(false);
+        addView(mzVar, c8.ha.c(-1.0f, -2));
         TextView textView = new TextView(context);
-        this.f34331b = textView;
+        this.f34268b = textView;
         org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.E8, null);
         textView.setTextSize(1, 16.0f);
         textView.setLines(1);
         textView.setEllipsize(TextUtils.TruncateAt.END);
         addView(textView, c8.ha.i(-2.0f, -2.0f, 8388627, 40.0f, 0.0f, 62.0f, 0.0f));
         z8 z8Var = new z8(context, false);
-        this.f34332c = z8Var;
+        this.f34269c = z8Var;
         z8Var.setStyle(11);
         z8Var.setAvatarsTextSize(org.telegram.messenger.g0.L(22.0f));
         addView(z8Var, c8.ha.i(56.0f, -1.0f, 8388629, 0.0f, 0.0f, 0.0f, 0.0f));
@@ -58,7 +58,7 @@ public final class hh0 extends FrameLayout {
         imageView.setImageDrawable(mutate);
         imageView.setVisibility(8);
         l9 l9Var = new l9(context);
-        this.f34333e = l9Var;
+        this.f34270e = l9Var;
         addView(l9Var, c8.ha.i(24.0f, 24.0f, 8388627, 11.0f, 0.0f, 0.0f, 0.0f));
         textView.setAlpha(0.0f);
         z8Var.setAlpha(0.0f);
@@ -66,12 +66,12 @@ public final class hh0 extends FrameLayout {
     }
 
     public final void a() {
-        int i7 = this.f34334f;
+        int i7 = this.f34271f;
         org.telegram.messenger.qp s12 = org.telegram.messenger.qp.s1(i7);
         TLRPC.TL_messages_getMessageReactionsList tL_messages_getMessageReactionsList = new TLRPC.TL_messages_getMessageReactionsList();
-        org.telegram.messenger.ij ijVar = this.f34337s;
-        tL_messages_getMessageReactionsList.peer = s12.j1(org.telegram.messenger.ij.B0(ijVar.f23244k));
-        tL_messages_getMessageReactionsList.f27048id = ijVar.f1();
+        org.telegram.messenger.ij ijVar = this.f34274s;
+        tL_messages_getMessageReactionsList.peer = s12.j1(org.telegram.messenger.ij.B0(ijVar.f23262k));
+        tL_messages_getMessageReactionsList.f27051id = ijVar.f1();
         tL_messages_getMessageReactionsList.limit = 3;
         tL_messages_getMessageReactionsList.reaction = null;
         tL_messages_getMessageReactionsList.offset = null;
@@ -79,23 +79,23 @@ public final class hh0 extends FrameLayout {
     }
 
     public List<gh0> getSeenUsers() {
-        return this.f34335n;
+        return this.f34272n;
     }
 
     @Override
     public final void onAttachedToWindow() {
         long j3;
         super.onAttachedToWindow();
-        int i7 = this.f34334f;
+        int i7 = this.f34271f;
         org.telegram.messenger.qp s12 = org.telegram.messenger.qp.s1(i7);
-        org.telegram.messenger.ij ijVar = this.f34337s;
+        org.telegram.messenger.ij ijVar = this.f34274s;
         TLRPC.Chat M0 = s12.M0(Long.valueOf(ijVar.x0()));
         TLRPC.ChatFull N0 = s12.N0(ijVar.x0());
-        if (M0 != null && ijVar.Q3() && ijVar.r4() && !ijVar.Z2() && !ijVar.p4() && !ijVar.o4() && !ijVar.f23244k.media_unread && !ijVar.G4() && ConnectionsManager.getInstance(i7).getCurrentTime() - ijVar.f23244k.date < 604800 && ((org.telegram.messenger.t3.n0(M0) || !org.telegram.messenger.t3.T(M0)) && N0 != null && N0.participants_count <= org.telegram.messenger.qp.s1(i7).f24857p3 && !(ijVar.f23244k.action instanceof TLRPC.TL_messageActionChatJoinedByRequest))) {
+        if (M0 != null && ijVar.Q3() && ijVar.r4() && !ijVar.Z2() && !ijVar.p4() && !ijVar.o4() && !ijVar.f23262k.media_unread && !ijVar.G4() && ConnectionsManager.getInstance(i7).getCurrentTime() - ijVar.f23262k.date < 604800 && ((org.telegram.messenger.t3.n0(M0) || !org.telegram.messenger.t3.T(M0)) && N0 != null && N0.participants_count <= org.telegram.messenger.qp.s1(i7).f24864p3 && !(ijVar.f23262k.action instanceof TLRPC.TL_messageActionChatJoinedByRequest))) {
             TLRPC.TL_messages_getMessageReadParticipants tL_messages_getMessageReadParticipants = new TLRPC.TL_messages_getMessageReadParticipants();
             tL_messages_getMessageReadParticipants.msg_id = ijVar.f1();
-            tL_messages_getMessageReadParticipants.peer = org.telegram.messenger.qp.s1(i7).j1(org.telegram.messenger.ij.B0(ijVar.f23244k));
-            TLRPC.Peer peer = ijVar.f23244k.from_id;
+            tL_messages_getMessageReadParticipants.peer = org.telegram.messenger.qp.s1(i7).j1(org.telegram.messenger.ij.B0(ijVar.f23262k));
+            TLRPC.Peer peer = ijVar.f23262k.from_id;
             if (peer != null) {
                 j3 = peer.user_id;
             } else {
@@ -109,17 +109,17 @@ public final class hh0 extends FrameLayout {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        int i11 = this.f34338w;
+        int i11 = this.f34275w;
         if (i11 > 0) {
             i7 = View.MeasureSpec.makeMeasureSpec(i11, 1073741824);
         }
-        lz lzVar = this.f34330a;
-        if (lzVar.getVisibility() == 0) {
+        mz mzVar = this.f34267a;
+        if (mzVar.getVisibility() == 0) {
             this.h = true;
-            lzVar.setVisibility(8);
+            mzVar.setVisibility(8);
             super.onMeasure(i7, i10);
-            lzVar.getLayoutParams().width = getMeasuredWidth();
-            lzVar.setVisibility(0);
+            mzVar.getLayoutParams().width = getMeasuredWidth();
+            mzVar.setVisibility(0);
             this.h = false;
             super.onMeasure(i7, i10);
             return;
@@ -136,6 +136,6 @@ public final class hh0 extends FrameLayout {
     }
 
     public void setSeenCallback(q0.a aVar) {
-        this.f34339x = aVar;
+        this.f34276x = aVar;
     }
 }

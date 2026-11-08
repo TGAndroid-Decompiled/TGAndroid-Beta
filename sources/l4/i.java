@@ -6,7 +6,7 @@ import h2.x;
 import java.nio.charset.StandardCharsets;
 import java.util.regex.Pattern;
 public abstract class i {
-    public static final Pattern f18166a = Pattern.compile("^NOTE([ \t].*)?$");
+    public static final Pattern f18169a = Pattern.compile("^NOTE([ \t].*)?$");
 
     public static boolean a(x xVar) {
         xVar.getClass();

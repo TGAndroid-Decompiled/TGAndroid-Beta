@@ -6,31 +6,31 @@ import org.telegram.messenger.x10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class u implements x10 {
-    public final int f43183a = 0;
-    public final n0 f43184b;
-    public final Object f43185c;
+    public final int f43188a = 0;
+    public final m0 f43189b;
+    public final Object f43190c;
     public final Object d;
-    public final Object f43186e;
+    public final Object f43191e;
 
-    public u(n0 n0Var, c20 c20Var, byte[] bArr, k0 k0Var) {
-        this.f43184b = n0Var;
-        this.f43185c = c20Var;
+    public u(m0 m0Var, c20 c20Var, byte[] bArr, j0 j0Var) {
+        this.f43189b = m0Var;
+        this.f43190c = c20Var;
         this.d = bArr;
-        this.f43186e = k0Var;
+        this.f43191e = j0Var;
     }
 
     @Override
     public final void a(Object obj, Object obj2, Object obj3) {
-        switch (this.f43183a) {
+        switch (this.f43188a) {
             case 0:
-                c20 c20Var = (c20) this.f43185c;
+                c20 c20Var = (c20) this.f43190c;
                 byte[] bArr = (byte[]) this.d;
-                k0 k0Var = (k0) this.f43186e;
+                j0 j0Var = (j0) this.f43191e;
                 TL_wallet.WalletState walletState = (TL_wallet.WalletState) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP = (TLRPC.InputCheckPasswordSRP) obj3;
-                n0 n0Var = this.f43184b;
-                int i7 = n0Var.f42792a;
+                m0 m0Var = this.f43189b;
+                int i7 = m0Var.f42762a;
                 if (tL_error == null || !"WALLET_PROOF_EXPIRED".equalsIgnoreCase(tL_error.text)) {
                     if (tL_error != null) {
                         String str = tL_error.text;
@@ -40,35 +40,35 @@ public final class u implements x10 {
                         c20Var.a(str);
                         return;
                     }
-                    n0Var.l0(walletState);
-                    new r0(i7, n0.w(), n0Var.t()).p(p10.i(i7).e(), bArr, k0Var, c20Var);
-                    n0Var.R();
+                    m0Var.l0(walletState);
+                    new q0(i7, m0.w(), m0Var.t()).p(p10.i(i7).e(), bArr, j0Var, c20Var);
+                    m0Var.R();
                     return;
                 }
                 return;
             default:
-                x9 x9Var = (x9) this.f43185c;
+                w9 w9Var = (w9) this.f43190c;
                 TLRPC.User user = (TLRPC.User) this.d;
-                String str2 = (String) this.f43186e;
+                String str2 = (String) this.f43191e;
                 String str3 = (String) obj;
                 Boolean bool = (Boolean) obj2;
                 c20 c20Var2 = (c20) obj3;
-                String str4 = x9Var.f43341f;
-                n0 n0Var2 = this.f43184b;
-                if (!n0.b(str4, n0Var2.t())) {
+                String str4 = w9Var.f43310f;
+                m0 m0Var2 = this.f43189b;
+                if (!m0.b(str4, m0Var2.t())) {
                     c20Var2.a("WALLET_CHANGED");
                     return;
                 } else {
-                    n0Var2.d0(user, str2, 0L, str3, null, x9Var.f43340e, null, new t(11, x9Var, c20Var2), null, null);
+                    m0Var2.d0(user, str2, 0L, str3, null, w9Var.f43309e, null, new t(11, w9Var, c20Var2), null, null);
                     return;
                 }
         }
     }
 
-    public u(x9 x9Var, n0 n0Var, TLRPC.User user, String str) {
-        this.f43185c = x9Var;
-        this.f43184b = n0Var;
+    public u(w9 w9Var, m0 m0Var, TLRPC.User user, String str) {
+        this.f43190c = w9Var;
+        this.f43189b = m0Var;
         this.d = user;
-        this.f43186e = str;
+        this.f43191e = str;
     }
 }

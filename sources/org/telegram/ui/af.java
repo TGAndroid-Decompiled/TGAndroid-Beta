@@ -7,22 +7,22 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class af implements Runnable {
-    public final int f43634a;
-    public final an f43635b;
+    public final int f43640a;
+    public final an f43641b;
 
     public af(an anVar, int i7) {
-        this.f43634a = i7;
-        this.f43635b = anVar;
+        this.f43640a = i7;
+        this.f43641b = anVar;
     }
 
     @Override
     public final void run() {
         org.telegram.ui.ActionBar.z0 z0Var;
-        int i7 = this.f43634a;
-        an anVar = this.f43635b;
+        int i7 = this.f43640a;
+        an anVar = this.f43641b;
         switch (i7) {
             case 0:
-                org.telegram.messenger.g0.d0(anVar.f44037z0, new di.e(10));
+                org.telegram.messenger.g0.d0(anVar.f44043z0, new di.e(10));
                 jl jlVar = anVar.C0;
                 if (jlVar != null) {
                     jlVar.O(false);
@@ -41,7 +41,7 @@ public final class af implements Runnable {
             case 4:
                 anVar.O7(false);
                 ug.w0 w0Var = new ug.w0((org.telegram.ui.ActionBar.f2) anVar, 24, true);
-                w0Var.f28639o0 = false;
+                w0Var.f28642o0 = false;
                 w0Var.H0 = new ee(anVar, 2);
                 w0Var.show();
                 return;
@@ -50,9 +50,9 @@ public final class af implements Runnable {
                 return;
             case 6:
                 if (anVar.getUserConfig().q()) {
-                    anVar.f43882mc = null;
+                    anVar.f43888mc = null;
                     anVar.vd(true);
-                    org.telegram.ui.Components.hc.a0(anVar).c(org.telegram.messenger.hd.M0(2131754488, null)).j();
+                    org.telegram.ui.Components.hc.a0(anVar).c(org.telegram.messenger.id.M0(2131754488, null)).j();
                     anVar.getMessagesController().o0(true);
                     return;
                 }
@@ -83,16 +83,16 @@ public final class af implements Runnable {
             case 11:
                 ArrayList arrayList = anVar.K6;
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    TLRPC.Message message = ((org.telegram.messenger.ij) arrayList.get(i10)).f23244k;
+                    TLRPC.Message message = ((org.telegram.messenger.ij) arrayList.get(i10)).f23262k;
                     if (message.mentioned && !message.media_unread) {
                         message.media_unread = false;
                     }
                 }
                 anVar.B6 = 0;
-                anVar.getMessagesController().o3(anVar.f43842j6, anVar.b());
+                anVar.getMessagesController().o3(anVar.f43848j6, anVar.b());
                 anVar.C6 = true;
                 anVar.nc(false);
-                org.telegram.ui.ActionBar.g1 g1Var = anVar.f43781e9;
+                org.telegram.ui.ActionBar.g1 g1Var = anVar.f43787e9;
                 if (g1Var != null) {
                     g1Var.dismiss();
                     return;
@@ -103,10 +103,10 @@ public final class af implements Runnable {
                 for (int i11 = 0; i11 < arrayList2.size(); i11++) {
                     ((org.telegram.messenger.ij) arrayList2.get(i11)).i5();
                 }
-                anVar.f44038z1 = 0;
+                anVar.f44044z1 = 0;
                 anVar.fd(true);
-                anVar.getMessagesController().t3(anVar.f43842j6, anVar.b());
-                org.telegram.ui.ActionBar.g1 g1Var2 = anVar.f43781e9;
+                anVar.getMessagesController().t3(anVar.f43848j6, anVar.b());
+                org.telegram.ui.ActionBar.g1 g1Var2 = anVar.f43787e9;
                 if (g1Var2 != null) {
                     g1Var2.dismiss();
                     return;
@@ -115,7 +115,7 @@ public final class af implements Runnable {
             case 13:
                 ArrayList arrayList3 = anVar.K6;
                 for (int i12 = 0; i12 < arrayList3.size(); i12++) {
-                    TLRPC.Message message2 = ((org.telegram.messenger.ij) arrayList3.get(i12)).f23244k;
+                    TLRPC.Message message2 = ((org.telegram.messenger.ij) arrayList3.get(i12)).f23262k;
                     if (message2 != null) {
                         TLRPC.MessageMedia messageMedia = message2.media;
                         if (messageMedia instanceof TLRPC.TL_messageMediaPoll) {
@@ -125,8 +125,8 @@ public final class af implements Runnable {
                 }
                 anVar.A1 = 0;
                 anVar.ed(true);
-                anVar.getMessagesController().s3(anVar.f43842j6, anVar.b());
-                org.telegram.ui.ActionBar.g1 g1Var3 = anVar.f43781e9;
+                anVar.getMessagesController().s3(anVar.f43848j6, anVar.b());
+                org.telegram.ui.ActionBar.g1 g1Var3 = anVar.f43787e9;
                 if (g1Var3 != null) {
                     g1Var3.dismiss();
                     return;
@@ -141,10 +141,10 @@ public final class af implements Runnable {
             case 16:
                 anVar.Ec(true);
                 anVar.ud(true);
-                org.telegram.ui.Components.hc.z(anVar, 4, 0, anVar.f44022xa).j();
+                org.telegram.ui.Components.hc.z(anVar, 4, 0, anVar.f44028xa).j();
                 return;
             case 17:
-                org.telegram.ui.Components.hc.a0(anVar).I(2131623981, org.telegram.messenger.hd.M0(2131753290, null), org.telegram.messenger.hd.M0(2131753291, null)).j();
+                org.telegram.ui.Components.hc.a0(anVar).I(2131623981, org.telegram.messenger.id.M0(2131753290, null), org.telegram.messenger.id.M0(2131753291, null)).j();
                 return;
             case 18:
                 anVar.finishFragment();
@@ -175,32 +175,32 @@ public final class af implements Runnable {
                 return;
             case 26:
                 anVar.G7 = null;
-                org.telegram.ui.Components.t40 t40Var = anVar.f43911p3;
+                org.telegram.ui.Components.t40 t40Var = anVar.f43917p3;
                 if (t40Var != null) {
                     org.telegram.ui.Components.q40 cameraContainer = t40Var.getCameraContainer();
                     AnimatorSet animatorSet = new AnimatorSet();
                     ObjectAnimator ofFloat = ObjectAnimator.ofFloat(cameraContainer, View.SCALE_X, 0.5f);
                     ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(cameraContainer, View.SCALE_Y, 0.5f);
                     Property property = View.ALPHA;
-                    animatorSet.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(cameraContainer, property, 0.0f), ObjectAnimator.ofFloat(anVar.f43911p3.getButtonsLayout(), property, 0.0f), ObjectAnimator.ofInt(anVar.f43911p3.getPaint(), org.telegram.ui.Components.m6.f35890b, 0), ObjectAnimator.ofFloat(anVar.f43911p3.getMuteImageView(), property, 0.0f));
+                    animatorSet.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(cameraContainer, property, 0.0f), ObjectAnimator.ofFloat(anVar.f43917p3.getButtonsLayout(), property, 0.0f), ObjectAnimator.ofInt(anVar.f43917p3.getPaint(), org.telegram.ui.Components.m6.f35918b, 0), ObjectAnimator.ofFloat(anVar.f43917p3.getMuteImageView(), property, 0.0f));
                     animatorSet.addListener(new ei(anVar, 0));
                     animatorSet.start();
                     return;
                 }
                 return;
             case 27:
-                org.telegram.ui.ActionBar.z0[] z0VarArr = anVar.f43807g9;
+                org.telegram.ui.ActionBar.z0[] z0VarArr = anVar.f43813g9;
                 if (z0VarArr != null && z0VarArr.length > 0 && (z0Var = z0VarArr[0]) != null) {
                     z0Var.requestFocus();
-                    anVar.f43807g9[0].performAccessibilityAction(64, null);
-                    anVar.f43807g9[0].sendAccessibilityEvent(8);
+                    anVar.f43813g9[0].performAccessibilityAction(64, null);
+                    anVar.f43813g9[0].sendAccessibilityEvent(8);
                     return;
                 }
                 return;
             case 28:
                 tj tjVar = anVar.H8;
                 if (tjVar != null && tjVar.getParent() != null) {
-                    anVar.f44037z0.g1();
+                    anVar.f44043z0.g1();
                     anVar.J8.setDrawingReady(false);
                     anVar.H8.setTag(null);
                     anVar.l1.removeView(anVar.H8);

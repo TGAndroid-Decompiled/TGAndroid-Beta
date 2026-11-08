@@ -40,9 +40,9 @@ public final class a1 implements Runnable {
 
     @Override
     public final void run() {
-        org.telegram.ui.Wallet.k0 k0Var;
+        org.telegram.ui.Wallet.j0 j0Var;
         String i7;
-        org.telegram.ui.Wallet.b2 b2Var;
+        org.telegram.ui.Wallet.a2 a2Var;
         switch (this.f14497a) {
             case 0:
                 Context context = (Context) this.d;
@@ -66,47 +66,47 @@ public final class a1 implements Runnable {
                 if (tLObject != null) {
                     TL_phone.joinAsPeers joinaspeers = (TL_phone.joinAsPeers) tLObject;
                     if (joinaspeers.peers.size() == 1) {
-                        r60Var.a(qp.s1(cVar.f21729a).j1(ij.C1(joinaspeers.peers.get(0))), false, false, false);
+                        r60Var.a(qp.s1(cVar.f21765a).j1(ij.C1(joinaspeers.peers.get(0))), false, false, false);
                         return;
                     }
-                    t60.f38243z1 = joinaspeers.peers;
+                    t60.f38271z1 = joinaspeers.peers;
                     long j3 = this.f14499c;
                     t60.B1 = j3;
                     t60.A1 = SystemClock.elapsedRealtime();
-                    int i10 = cVar.f21729a;
+                    int i10 = cVar.f21765a;
                     t60.C1 = i10;
                     qp.s1(i10).S3(joinaspeers.chats, false);
-                    qp.s1(cVar.f21729a).Y3(joinaspeers.users, false);
+                    qp.s1(cVar.f21765a).Y3(joinaspeers.users, false);
                     t60.L0(context2, j3, joinaspeers.peers, f2Var, this.f14500e, peer, r60Var);
                     return;
                 }
                 return;
             default:
-                org.telegram.ui.Wallet.f2 f2Var2 = (org.telegram.ui.Wallet.f2) this.f14498b;
+                org.telegram.ui.Wallet.e2 e2Var = (org.telegram.ui.Wallet.e2) this.f14498b;
                 TL_wallet.tonConnectPending tonconnectpending = (TL_wallet.tonConnectPending) this.d;
                 TL_wallet.tonConnectRequest tonconnectrequest = (TL_wallet.tonConnectRequest) this.f14501f;
-                org.telegram.ui.Wallet.k0 k0Var2 = (org.telegram.ui.Wallet.k0) this.h;
+                org.telegram.ui.Wallet.j0 j0Var2 = (org.telegram.ui.Wallet.j0) this.h;
                 String str = (String) this.f14502n;
                 byte[] bArr = (byte[]) this.f14503r;
-                org.telegram.ui.Wallet.v1 v1Var = (org.telegram.ui.Wallet.v1) this.f14504s;
-                f2Var2.getClass();
+                org.telegram.ui.Wallet.u1 u1Var2 = (org.telegram.ui.Wallet.u1) this.f14504s;
+                e2Var.getClass();
                 try {
-                    k0Var = k0Var2;
+                    j0Var = j0Var2;
                 } catch (Exception e11) {
                     e = e11;
-                    k0Var = k0Var2;
+                    j0Var = j0Var2;
                 }
                 try {
-                    b2Var = new org.telegram.ui.Wallet.b2(tonconnectpending, tonconnectrequest, org.telegram.ui.Wallet.f2.g(k0Var2, tonconnectpending.session, str, bArr, tonconnectrequest.body, f2Var2.f42463f.getCurrentTime()), str, bArr);
+                    a2Var = new org.telegram.ui.Wallet.a2(tonconnectpending, tonconnectrequest, org.telegram.ui.Wallet.e2.g(j0Var2, tonconnectpending.session, str, bArr, tonconnectrequest.body, e2Var.f42431f.getCurrentTime()), str, bArr);
                     i7 = null;
                 } catch (Exception e12) {
                     e = e12;
-                    i7 = org.telegram.ui.Wallet.f2.i("decode request", e);
-                    b2Var = null;
-                    org.telegram.messenger.g0.h3(new pb(f2Var2, b2Var, v1Var, i7, this.f14499c, this.f14500e, k0Var));
+                    i7 = org.telegram.ui.Wallet.e2.i("decode request", e);
+                    a2Var = null;
+                    org.telegram.messenger.g0.h3(new pb(e2Var, a2Var, u1Var2, i7, this.f14499c, this.f14500e, j0Var));
                     return;
                 }
-                org.telegram.messenger.g0.h3(new pb(f2Var2, b2Var, v1Var, i7, this.f14499c, this.f14500e, k0Var));
+                org.telegram.messenger.g0.h3(new pb(e2Var, a2Var, u1Var2, i7, this.f14499c, this.f14500e, j0Var));
                 return;
         }
     }
@@ -123,14 +123,14 @@ public final class a1 implements Runnable {
         this.f14504s = peer;
     }
 
-    public a1(org.telegram.ui.Wallet.f2 f2Var, TL_wallet.tonConnectPending tonconnectpending, TL_wallet.tonConnectRequest tonconnectrequest, org.telegram.ui.Wallet.k0 k0Var, String str, byte[] bArr, org.telegram.ui.Wallet.v1 v1Var, long j3, int i7) {
-        this.f14498b = f2Var;
+    public a1(org.telegram.ui.Wallet.e2 e2Var, TL_wallet.tonConnectPending tonconnectpending, TL_wallet.tonConnectRequest tonconnectrequest, org.telegram.ui.Wallet.j0 j0Var, String str, byte[] bArr, org.telegram.ui.Wallet.u1 u1Var, long j3, int i7) {
+        this.f14498b = e2Var;
         this.d = tonconnectpending;
         this.f14501f = tonconnectrequest;
-        this.h = k0Var;
+        this.h = j0Var;
         this.f14502n = str;
         this.f14503r = bArr;
-        this.f14504s = v1Var;
+        this.f14504s = u1Var;
         this.f14499c = j3;
         this.f14500e = i7;
     }

@@ -19,42 +19,42 @@ public final class uw0 extends FrameLayout implements org.telegram.ui.ActionBar.
     public int I;
     public int J;
     public ir0 K;
-    public int f38735a;
-    public final Paint f38736b;
-    public final Paint f38737c;
+    public int f38754a;
+    public final Paint f38755b;
+    public final Paint f38756c;
     public final Paint d;
-    public final Paint f38738e;
-    public final RectF f38739f;
+    public final Paint f38757e;
+    public final RectF f38758f;
     public final tw0 h;
-    public final String[] f38740n;
-    public final int[] f38741r;
-    public final zg0[] f38742s;
-    public final zg0[] f38743w;
-    public final int[] f38744x;
-    public final int[] f38745y;
+    public final String[] f38759n;
+    public final int[] f38760r;
+    public final zg0[] f38761s;
+    public final zg0[] f38762w;
+    public final int[] f38763x;
+    public final int[] f38764y;
 
     public uw0(Context context, int i7) {
         super(context);
         int i10;
         Paint paint = new Paint(1);
-        this.f38736b = paint;
-        this.f38737c = new Paint(1);
+        this.f38755b = paint;
+        this.f38756c = new Paint(1);
         Paint paint2 = new Paint(1);
         this.d = paint2;
         Paint paint3 = new Paint(1);
-        this.f38738e = paint3;
-        this.f38739f = new RectF();
-        this.f38740n = r7;
-        this.f38741r = r8;
-        this.f38742s = new zg0[6];
-        this.f38743w = new zg0[6];
-        this.f38744x = new int[6];
-        this.f38745y = new int[6];
+        this.f38757e = paint3;
+        this.f38758f = new RectF();
+        this.f38759n = r7;
+        this.f38760r = r8;
+        this.f38761s = new zg0[6];
+        this.f38762w = new zg0[6];
+        this.f38763x = new int[6];
+        this.f38764y = new int[6];
         this.E = new ch0[2];
         this.G = 1.0f;
-        String[] strArr = {org.telegram.messenger.hd.M0(2131744316, null), org.telegram.messenger.hd.M0(2131744315, null), org.telegram.messenger.hd.M0(2131744320, null), org.telegram.messenger.hd.M0(2131744317, null), org.telegram.messenger.hd.M0(2131744319, null), org.telegram.messenger.hd.M0(2131744318, null)};
-        int i11 = org.telegram.ui.ActionBar.k6.f27834c9;
-        int[] iArr = {i11, i11, i11, i11, org.telegram.ui.ActionBar.k6.Y5, org.telegram.ui.ActionBar.k6.f27852d9};
+        String[] strArr = {org.telegram.messenger.id.M0(2131744318, null), org.telegram.messenger.id.M0(2131744317, null), org.telegram.messenger.id.M0(2131744322, null), org.telegram.messenger.id.M0(2131744319, null), org.telegram.messenger.id.M0(2131744321, null), org.telegram.messenger.id.M0(2131744320, null)};
+        int i11 = org.telegram.ui.ActionBar.k6.f27837c9;
+        int[] iArr = {i11, i11, i11, i11, org.telegram.ui.ActionBar.k6.Y5, org.telegram.ui.ActionBar.k6.f27855d9};
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
         paint.setStrokeWidth(org.telegram.messenger.g0.L(1.0f));
@@ -67,7 +67,7 @@ public final class uw0 extends FrameLayout implements org.telegram.ui.ActionBar.
         paint3.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
         tw0 tw0Var = new tw0(this, context);
         this.h = tw0Var;
-        this.f38735a = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27957j5, false);
+        this.f38754a = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27960j5, false);
         tw0Var.setMinValue(0);
         tw0Var.setDrawDividers(false);
         boolean isEmpty = org.telegram.messenger.qp.s1(i7).P0.isEmpty();
@@ -93,7 +93,7 @@ public final class uw0 extends FrameLayout implements org.telegram.ui.ActionBar.
         zg0 a10 = a(this.h.getValue());
         if (a10 != null) {
             this.E[0].setImageDrawable(a10);
-            a10.M(a10.f40976e[0] - 1);
+            a10.M(a10.f40995e[0] - 1);
         }
         org.telegram.messenger.g0.Z3(this.E[0], true, 0.5f, true, false);
         org.telegram.messenger.g0.Z3(this.E[1], false, 0.5f, true, false);
@@ -103,7 +103,7 @@ public final class uw0 extends FrameLayout implements org.telegram.ui.ActionBar.
 
     public final zg0 a(int i7) {
         int i10;
-        zg0[] zg0VarArr = this.f38742s;
+        zg0[] zg0VarArr = this.f38761s;
         if (zg0VarArr[i7] == null) {
             if (i7 != 1) {
                 if (i7 != 2) {
@@ -158,16 +158,16 @@ public final class uw0 extends FrameLayout implements org.telegram.ui.ActionBar.
     }
 
     public final void c(int i7) {
-        zg0[] zg0VarArr = this.f38742s;
+        zg0[] zg0VarArr = this.f38761s;
         if (zg0VarArr[i7] != null) {
-            int f10 = i0.a.f(0.9f, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27849d6, false), org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27834c9, false));
-            int i10 = org.telegram.ui.ActionBar.k6.f27871e9;
+            int f10 = i0.a.f(0.9f, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27852d6, false), org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27837c9, false));
+            int i10 = org.telegram.ui.ActionBar.k6.f27874e9;
             int x02 = org.telegram.ui.ActionBar.k6.x0(null, i10, false);
             zg0 zg0Var = zg0VarArr[i7];
-            zg0[] zg0VarArr2 = this.f38743w;
+            zg0[] zg0VarArr2 = this.f38762w;
             zg0 zg0Var2 = zg0VarArr2[i7];
-            int[] iArr = this.f38745y;
-            int[] iArr2 = this.f38744x;
+            int[] iArr = this.f38764y;
+            int[] iArr2 = this.f38763x;
             if (zg0Var != zg0Var2 || x02 != iArr2[i7] || f10 != iArr[i7]) {
                 zg0VarArr2[i7] = zg0Var;
                 iArr2[i7] = x02;
@@ -194,7 +194,7 @@ public final class uw0 extends FrameLayout implements org.telegram.ui.ActionBar.
         if (accessibilityEvent.getEventType() == 1) {
             tw0 tw0Var = this.h;
             int value = tw0Var.getValue() + 1;
-            setContentDescription(this.f38740n[(value > tw0Var.getMaxValue() || value < 0) ? 0 : 0]);
+            setContentDescription(this.f38759n[(value > tw0Var.getMaxValue() || value < 0) ? 0 : 0]);
             tw0Var.a(true);
         }
     }
@@ -203,7 +203,7 @@ public final class uw0 extends FrameLayout implements org.telegram.ui.ActionBar.
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setEnabled(true);
-        accessibilityNodeInfo.setContentDescription(this.f38740n[this.h.getValue()]);
+        accessibilityNodeInfo.setContentDescription(this.f38759n[this.h.getValue()]);
         accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, null));
     }
 
@@ -216,8 +216,8 @@ public final class uw0 extends FrameLayout implements org.telegram.ui.ActionBar.
     public void setBackgroundColor(int i7) {
         super.setBackgroundColor(i7);
         updateColors();
-        int x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27957j5, false);
-        this.f38735a = x02;
+        int x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27960j5, false);
+        this.f38754a = x02;
         tw0 tw0Var = this.h;
         tw0Var.setTextColor(x02);
         tw0Var.invalidate();
@@ -225,7 +225,7 @@ public final class uw0 extends FrameLayout implements org.telegram.ui.ActionBar.
 
     @Override
     public final void updateColors() {
-        for (int i7 = 0; i7 < this.f38742s.length; i7++) {
+        for (int i7 = 0; i7 < this.f38761s.length; i7++) {
             c(i7);
         }
     }

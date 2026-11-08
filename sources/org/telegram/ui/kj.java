@@ -3,10 +3,10 @@ package org.telegram.ui;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class kj implements is {
-    public final an f47199a;
+    public final an f47204a;
 
     public kj(an anVar) {
-        this.f47199a = anVar;
+        this.f47204a = anVar;
     }
 
     @Override
@@ -47,15 +47,15 @@ public final class kj implements is {
     @Override
     public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z9) {
         if (inputStickerSet != null) {
-            an anVar = this.f47199a;
+            an anVar = this.f47204a;
             if (anVar.getParentActivity() != null) {
                 TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
                 tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
-                tL_inputStickerSetID.f26973id = inputStickerSet.f26973id;
-                org.telegram.ui.Components.yv0 yv0Var = new org.telegram.ui.Components.yv0(anVar.getParentActivity(), anVar, tL_inputStickerSetID, null, anVar.Z, anVar.f44022xa);
+                tL_inputStickerSetID.f26976id = inputStickerSet.f26976id;
+                org.telegram.ui.Components.yv0 yv0Var = new org.telegram.ui.Components.yv0(anVar.getParentActivity(), anVar, tL_inputStickerSetID, null, anVar.Z, anVar.f44028xa);
                 boolean T9 = anVar.T9();
-                yv0Var.f28632h0 = T9;
-                yv0Var.f28637n = T9;
+                yv0Var.f28635h0 = T9;
+                yv0Var.f28640n = T9;
                 yv0Var.Z1 = z9;
                 anVar.showDialog(yv0Var);
             }
@@ -79,17 +79,17 @@ public final class kj implements is {
 
     @Override
     public final long a() {
-        return this.f47199a.f43842j6;
+        return this.f47204a.f43848j6;
     }
 
     @Override
     public final boolean b() {
-        return this.f47199a.R6();
+        return this.f47204a.R6();
     }
 
     @Override
     public final boolean c() {
-        if (this.f47199a.f43790f4 == 1) {
+        if (this.f47204a.f43796f4 == 1) {
             return true;
         }
         return false;
@@ -132,7 +132,7 @@ public final class kj implements is {
 
     @Override
     public final void l(TLRPC.Document document, String str, Object obj, boolean z9, int i7, int i10) {
-        this.f47199a.Z.a(document, str, obj, null, true, z9, i7, i10);
+        this.f47204a.Z.a(document, str, obj, null, true, z9, i7, i10);
     }
 
     @Override
@@ -215,7 +215,7 @@ public final class kj implements is {
     }
 
     @Override
-    public final void u(CharSequence charSequence, String str, org.telegram.ui.Components.ex exVar) {
+    public final void u(CharSequence charSequence, String str, org.telegram.ui.Components.fx fxVar) {
     }
 
     @Override
