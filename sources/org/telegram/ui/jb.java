@@ -175,7 +175,7 @@ public final class jb extends v4.g0 {
 
     @Override
     public final void y(v4.d1 d1Var) {
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         if ((view instanceof org.telegram.ui.Cells.q1) || (view instanceof org.telegram.ui.Cells.t0)) {
             view.getViewTreeObserver().addOnPreDrawListener(new ib(this, view, d1Var));
         }

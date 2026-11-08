@@ -26,9 +26,9 @@ public final class q30 extends v4.k {
 
     @Override
     public final void m() {
-        boolean isEmpty = this.f57100p.isEmpty();
-        boolean isEmpty2 = this.f57102r.isEmpty();
-        boolean isEmpty3 = this.f57101q.isEmpty();
+        boolean isEmpty = this.f57101p.isEmpty();
+        boolean isEmpty2 = this.f57103r.isEmpty();
+        boolean isEmpty3 = this.f57102q.isEmpty();
         ValueAnimator valueAnimator = this.G;
         if (valueAnimator != null) {
             valueAnimator.cancel();

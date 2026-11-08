@@ -216,9 +216,9 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
     @Override
     public void X(float f10) {
         x9 x9Var = (x9) this.f6040b;
-        l0.e(x9Var.f12538o1).k(String.valueOf(h.f55059a.indexOf(x9Var.f12555x0.getCurrentBrush())), f10);
+        l0.e(x9Var.f12538o1).k(String.valueOf(h.f55060a.indexOf(x9Var.f12555x0.getCurrentBrush())), f10);
         j1 j1Var = x9Var.f12531j1;
-        j1Var.f55110c = f10;
+        j1Var.f55111c = f10;
         x9Var.B0(j1Var, null, false);
     }
 
@@ -323,9 +323,9 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
         int i7 = x9Var.f12538o1;
         h currentBrush = x9Var.f12555x0.getCurrentBrush();
         if (currentBrush == null) {
-            return l0.e(i7).f55132i;
+            return l0.e(i7).f55133i;
         }
-        return l0.e(i7).f(String.valueOf(h.f55059a.indexOf(currentBrush)), currentBrush.d());
+        return l0.e(i7).f(String.valueOf(h.f55060a.indexOf(currentBrush)), currentBrush.d());
     }
 
     @Override

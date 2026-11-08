@@ -16,22 +16,22 @@ import org.telegram.ui.ActionBar.a6;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 public final class c extends FrameLayout implements a6 {
-    public final f6 f53640a;
-    public final ImageView f53641b;
-    public final TextView f53642c;
+    public final f6 f53641a;
+    public final ImageView f53642b;
+    public final TextView f53643c;
     public int d;
-    public boolean f53643e;
+    public boolean f53644e;
 
     public c(Context context, f6 f6Var) {
         super(context);
-        this.f53640a = f6Var;
+        this.f53641a = f6Var;
         ImageView imageView = new ImageView(context);
-        this.f53641b = imageView;
+        this.f53642b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(2131232057);
         addView(imageView, ha.d(48, 48.0f, 8388627, 6.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
-        this.f53642c = textView;
+        this.f53643c = textView;
         textView.setText(id.M0(2131751167, null));
         textView.setTextSize(1, 15.0f);
         textView.setTypeface(g0.o());
@@ -42,7 +42,7 @@ public final class c extends FrameLayout implements a6 {
     }
 
     public final int a(float f10) {
-        return i0.a.o(k6.w0(k6.Kl, this.f53640a), (int) (f10 * 255.0f));
+        return i0.a.o(k6.w0(k6.Kl, this.f53641a), (int) (f10 * 255.0f));
     }
 
     @Override
@@ -51,20 +51,20 @@ public final class c extends FrameLayout implements a6 {
     }
 
     public void setOnBackClickListener(View.OnClickListener onClickListener) {
-        this.f53641b.setOnClickListener(onClickListener);
+        this.f53642b.setOnClickListener(onClickListener);
     }
 
     @Override
     public final void updateColors() {
-        this.f53642c.setTextColor(a(0.6f));
+        this.f53643c.setTextColor(a(0.6f));
         int a10 = a(1.0f);
-        if (this.f53643e && a10 == this.d) {
+        if (this.f53644e && a10 == this.d) {
             return;
         }
-        this.f53643e = true;
+        this.f53644e = true;
         this.d = a10;
         PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(a(0.6f), PorterDuff.Mode.MULTIPLY);
-        ImageView imageView = this.f53641b;
+        ImageView imageView = this.f53642b;
         imageView.setColorFilter(porterDuffColorFilter);
         if (imageView.getBackground() != null) {
             k6.H1(imageView.getBackground(), a(0.1f), true);

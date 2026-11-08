@@ -495,7 +495,7 @@ public class w91 extends org.telegram.ui.ActionBar.f2 implements org.telegram.me
                 float L2 = org.telegram.messenger.g0.L(7.0f);
                 org.telegram.ui.Components.pr prVar3 = this.M0.J1;
                 if (prVar3 != null) {
-                    f11 = prVar3.getMetadata().f55502c.f55512a;
+                    f11 = prVar3.getMetadata().f55503c.f55513a;
                 } else {
                     f11 = 0.0f;
                 }
@@ -505,7 +505,7 @@ public class w91 extends org.telegram.ui.ActionBar.f2 implements org.telegram.me
                 int L4 = org.telegram.messenger.g0.L(7.0f);
                 org.telegram.ui.Components.pr prVar5 = this.M0.J1;
                 if (prVar5 != null) {
-                    f12 = prVar5.getMetadata().f55502c.f55512a;
+                    f12 = prVar5.getMetadata().f55503c.f55513a;
                 }
                 f12 = prVar4.c(org.telegram.messenger.g0.W1(f12, L3, L4)) + f13;
             } else {
@@ -1282,7 +1282,7 @@ public class w91 extends org.telegram.ui.ActionBar.f2 implements org.telegram.me
         fvVar2.X = z12;
         l91 l91Var = new l91(this);
         this.N.setHideIfEmpty(false);
-        l91Var.f57070m = false;
+        l91Var.f57071m = false;
         l91Var.C = false;
         j91 j91Var3 = this.N;
         this.I0 = l91Var;
@@ -1500,9 +1500,9 @@ public class w91 extends org.telegram.ui.ActionBar.f2 implements org.telegram.me
             this.U0.h(3, this.R0.b());
             this.U0.g(this.R0.b());
             yh.d dVar2 = this.R0;
-            dVar2.f59518m = new y81(this);
+            dVar2.f59519m = new y81(this);
             TLRPC.ChatFull chatFull = this.J;
-            dVar2.f59515j = chatFull;
+            dVar2.f59516j = chatFull;
             if (chatFull != null) {
                 dVar2.d(chatFull.requests_pending, chatFull.recent_requesters, false);
             }
@@ -1603,7 +1603,7 @@ public class w91 extends org.telegram.ui.ActionBar.f2 implements org.telegram.me
         }
         View view = this.fragmentView;
         y81 y81Var = new y81(this);
-        WeakHashMap weakHashMap = r0.i0.f54190a;
+        WeakHashMap weakHashMap = r0.i0.f54191a;
         r0.a0.i(view, y81Var);
         return this.fragmentView;
     }
@@ -1623,7 +1623,7 @@ public class w91 extends org.telegram.ui.ActionBar.f2 implements org.telegram.me
                 S0(false);
                 yh.d dVar = this.R0;
                 if (dVar != null) {
-                    dVar.f59515j = chatFull2;
+                    dVar.f59516j = chatFull2;
                     dVar.d(chatFull2.requests_pending, chatFull2.recent_requesters, true);
                 }
                 D0(((Boolean) objArr[3]).booleanValue());

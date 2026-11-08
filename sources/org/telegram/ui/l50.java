@@ -126,7 +126,7 @@ public final class l50 extends org.telegram.ui.Components.oj0 {
         if (z9) {
             i7 = (i7 - this.d.size()) - 1;
         }
-        org.telegram.ui.Cells.g8 g8Var = (org.telegram.ui.Cells.g8) d1Var.f57043a;
+        org.telegram.ui.Cells.g8 g8Var = (org.telegram.ui.Cells.g8) d1Var.f57044a;
         TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) arrayList.get(i7);
         if (i7 != arrayList.size() - 1) {
             z10 = true;

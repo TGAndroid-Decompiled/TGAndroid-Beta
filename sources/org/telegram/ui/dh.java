@@ -30,7 +30,7 @@ public final class dh implements org.telegram.messenger.j9, er0, r0.m, org.teleg
         anVar.B7();
         anVar.F7();
         anVar.L9();
-        boolean p10 = N8.f54201a.p(8);
+        boolean p10 = N8.f54202a.p(8);
         if (anVar.mb != p10) {
             anVar.mb = p10;
             anVar.l1.R();
@@ -39,7 +39,7 @@ public final class dh implements org.telegram.messenger.j9, er0, r0.m, org.teleg
         if (g1Var != null) {
             r0.i0.b(g1Var, N8);
         }
-        return r0.k1.f54200b;
+        return r0.k1.f54201b;
     }
 
     @Override

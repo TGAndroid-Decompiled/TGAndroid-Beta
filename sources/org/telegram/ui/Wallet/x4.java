@@ -127,18 +127,18 @@ public final class x4 extends v61 {
                     float L = (-(f12 - v6Var.Q)) * org.telegram.messenger.g0.L(140.0f);
                     v6Var.Q = f12;
                     if (v6Var.O == null) {
-                        r1.g gVar = new r1.g(v6Var, r1.g.f54250o);
+                        r1.g gVar = new r1.g(v6Var, r1.g.f54251o);
                         v6Var.O = gVar;
                         r1.h hVar = new r1.h(0.0f);
                         hVar.a(0.32f);
                         hVar.b(300.0f);
-                        gVar.f54267m = hVar;
+                        gVar.f54268m = hVar;
                         v6Var.O.b(new p6(v6Var, 1));
                     }
                     float z10 = org.telegram.messenger.camera.q.z(v6Var.P, L, org.telegram.messenger.g0.L(1600.0f), -org.telegram.messenger.g0.L(1600.0f));
                     v6Var.P = z10;
                     r1.g gVar2 = v6Var.O;
-                    gVar2.f54257a = z10;
+                    gVar2.f54258a = z10;
                     gVar2.c(0.0f);
                 }
                 if (f11 != 0.0f) {

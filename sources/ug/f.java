@@ -20,22 +20,22 @@ import org.telegram.ui.Components.f10;
 import org.telegram.ui.Components.l9;
 import org.telegram.ui.Components.w8;
 public final class f extends FrameLayout {
-    public final l9 f56557a;
-    public final f10 f56558b;
-    public final int f56559c;
+    public final l9 f56558a;
+    public final f10 f56559b;
+    public final int f56560c;
     public final i d;
 
     public f(i iVar, Context context) {
         super(context);
         this.d = iVar;
         f10 f10Var = new f10();
-        this.f56558b = f10Var;
-        int i7 = iVar.f56602f;
-        f6 f6Var = iVar.f56521a;
+        this.f56559b = f10Var;
+        int i7 = iVar.f56603f;
+        f6 f6Var = iVar.f56522a;
         if (i7 == 0) {
-            this.f56559c = org.telegram.messenger.g0.L(150.0f);
+            this.f56560c = org.telegram.messenger.g0.L(150.0f);
             l9 l9Var = new l9(context);
-            this.f56557a = l9Var;
+            this.f56558a = l9Var;
             l9Var.setRoundRadius((int) (org.telegram.messenger.g0.L(65.0f) / 2.0f));
             addView(l9Var, ha.d(65, 65.0f, 1, 0.0f, 32.0f, 0.0f, 0.0f));
             TLRPC.User f10 = p10.i(p10.f24470s0).f();
@@ -64,8 +64,8 @@ public final class f extends FrameLayout {
             int i10 = k6.Ak;
             canvas.drawColor(i0.a.f(0.5f, k6.w0(i10, f6Var), k6.w0(k6.f27925h5, f6Var)));
             qdVar.setBackgroundBitmap(createBitmap);
-            vg.f fVar = qdVar.f57411b;
-            fVar.f57395z = i10;
+            vg.f fVar = qdVar.f57412b;
+            fVar.f57396z = i10;
             fVar.A = k6.zk;
             fVar.b();
             addView(qdVar, ha.e(160, 160, 1));
@@ -85,13 +85,13 @@ public final class f extends FrameLayout {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        if (this.d.f56602f == 0) {
+        if (this.d.f56603f == 0) {
             Rect rect = org.telegram.messenger.g0.Q;
-            this.f56557a.getHitRect(rect);
+            this.f56558a.getHitRect(rect);
             RectF rectF = org.telegram.messenger.g0.P;
             rectF.set(rect);
             rectF.inset(-org.telegram.messenger.g0.L(5.0f), -org.telegram.messenger.g0.L(5.0f));
-            f10 f10Var = this.f56558b;
+            f10 f10Var = this.f56559b;
             f10Var.c(rectF);
             float f10 = 360.0f / 7;
             for (int i7 = 0; i7 < 7; i7++) {
@@ -106,7 +106,7 @@ public final class f extends FrameLayout {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        int i11 = this.f56559c;
+        int i11 = this.f56560c;
         if (i11 > 0) {
             i10 = View.MeasureSpec.makeMeasureSpec(i11, 1073741824);
         }

@@ -43,10 +43,10 @@ public final class c0 extends na {
         l2 l2Var = this.f28622c;
         b0Var.getClass();
         b0Var.d = tL_payments_checkedGiftCode.used_date == 0;
-        b0Var.f58726e = f2Var;
-        b0Var.f58727f = tL_payments_checkedGiftCode;
+        b0Var.f58727e = f2Var;
+        b0Var.f58728f = tL_payments_checkedGiftCode;
         b0Var.h = str;
-        b0Var.f58728n = l2Var;
+        b0Var.f58729n = l2Var;
     }
 
     public static boolean d1(Intent intent, vf.b bVar) {
@@ -87,7 +87,7 @@ public final class c0 extends na {
         AtomicBoolean atomicBoolean = new AtomicBoolean(false);
         if (bVar != null) {
             bVar.d();
-            bVar.f57323b = new c(atomicBoolean, 1);
+            bVar.f57324b = new c(atomicBoolean, 1);
         }
         s2 s2Var = new s2(atomicBoolean, f2Var, str, bVar, 16);
         e eVar = new e(atomicBoolean, bVar, 1);

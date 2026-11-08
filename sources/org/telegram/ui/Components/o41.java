@@ -41,7 +41,7 @@ public final class o41 extends ky {
         switch (this.X) {
             case 2:
                 super.U(v0Var, a1Var, view, dVar);
-                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f54600a;
+                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f54601a;
                 AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
                 if (collectionItemInfo != null) {
                     oVar = new d9.o(collectionItemInfo);

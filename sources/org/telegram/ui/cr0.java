@@ -25,7 +25,7 @@ public final class cr0 extends FrameLayout {
         r1.f fVar = new r1.f(0.0f);
         this.f44887n = fVar;
         r1.g gVar = new r1.g(fVar);
-        gVar.f54267m = org.telegram.ui.Cells.f1.o(0.0f, 750.0f, 1.0f);
+        gVar.f54268m = org.telegram.ui.Cells.f1.o(0.0f, 750.0f, 1.0f);
         gVar.b(new ab0(this, 3));
         this.f44888r = gVar;
         setWillNotDraw(false);
@@ -88,7 +88,7 @@ public final class cr0 extends FrameLayout {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f44887n.f54249a = 0.0f;
+        this.f44887n.f54250a = 0.0f;
         this.h = 0;
     }
 
@@ -158,8 +158,8 @@ public final class cr0 extends FrameLayout {
         r1.f fVar = this.f44887n;
         if (i12 != 0) {
             float f10 = ceil;
-            if (fVar.f54249a != f10) {
-                gVar.f54267m.f54275i = f10;
+            if (fVar.f54250a != f10) {
+                gVar.f54268m.f54276i = f10;
                 gVar.h();
                 this.h = ceil;
             }
@@ -172,7 +172,7 @@ public final class cr0 extends FrameLayout {
         if (view != null) {
             view.invalidate();
         }
-        fVar.f54249a = ceil;
+        fVar.f54250a = ceil;
         this.h = ceil;
     }
 

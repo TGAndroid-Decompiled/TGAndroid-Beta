@@ -7,11 +7,11 @@ import android.view.inputmethod.InputConnectionWrapper;
 import android.view.inputmethod.InputContentInfo;
 import org.telegram.ui.Components.rt;
 public final class c extends InputConnectionWrapper {
-    public final e f55348a;
+    public final e f55349a;
 
     public c(InputConnection inputConnection, e eVar) {
         super(inputConnection, false);
-        this.f55348a = eVar;
+        this.f55349a = eVar;
     }
 
     @Override
@@ -20,7 +20,7 @@ public final class c extends InputConnectionWrapper {
         if (inputContentInfo != null && Build.VERSION.SDK_INT >= 25) {
             rtVar = new rt(new g(inputContentInfo), 15);
         }
-        if (this.f55348a.k(rtVar, i7, bundle)) {
+        if (this.f55349a.k(rtVar, i7, bundle)) {
             return true;
         }
         return super.commitContent(inputContentInfo, i7, bundle);

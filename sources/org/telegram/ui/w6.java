@@ -33,12 +33,12 @@ public final class w6 extends rg.b {
         switch (this.d) {
             case 0:
                 y6 y6Var = (y6) this.f50911f;
-                if (d1Var.b() != y6Var.J && (((i7 = d1Var.f57047f) != 2 || y6Var.G <= 0 || y6Var.K) && i7 != 5 && i7 != 7 && i7 != 11)) {
+                if (d1Var.b() != y6Var.J && (((i7 = d1Var.f57048f) != 2 || y6Var.G <= 0 || y6Var.K) && i7 != 5 && i7 != 7 && i7 != 11)) {
                     return false;
                 }
                 return true;
             default:
-                int i10 = d1Var.f57047f;
+                int i10 = d1Var.f57048f;
                 if (i10 != 0 && i10 != 4) {
                     return true;
                 }
@@ -60,11 +60,11 @@ public final class w6 extends rg.b {
     public final int d(int i7) {
         switch (this.d) {
             case 0:
-                return ((u6) ((y6) this.f50911f).f52107f0.get(i7)).f54531a;
+                return ((u6) ((y6) this.f50911f).f52107f0.get(i7)).f54532a;
             default:
                 NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = (NotificationsCustomSettingsActivity) this.f50911f;
                 if (i7 >= 0 && i7 < notificationsCustomSettingsActivity.I.size()) {
-                    return ((kh0) notificationsCustomSettingsActivity.I.get(i7)).f54531a;
+                    return ((kh0) notificationsCustomSettingsActivity.I.get(i7)).f54532a;
                 }
                 return 5;
         }
@@ -92,8 +92,8 @@ public final class w6 extends rg.b {
                 y6 y6Var = (y6) f2Var;
                 ArrayList arrayList = y6Var.f52107f0;
                 u6 u6Var = (u6) arrayList.get(i7);
-                int i12 = d1Var.f57047f;
-                View view = d1Var.f57043a;
+                int i12 = d1Var.f57048f;
+                View view = d1Var.f57044a;
                 if (i12 != 0) {
                     if (i12 != 1) {
                         if (i12 != 2) {
@@ -352,13 +352,13 @@ public final class w6 extends rg.b {
                 if (i7 >= 0 && i7 < arrayList2.size()) {
                     kh0 kh0Var = (kh0) arrayList2.get(i7);
                     int i20 = i7 + 1;
-                    if (i20 < arrayList2.size() && ((kh0) arrayList2.get(i20)).f54531a != 4) {
+                    if (i20 < arrayList2.size() && ((kh0) arrayList2.get(i20)).f54532a != 4) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
-                    int i21 = d1Var.f57047f;
-                    View view3 = d1Var.f57043a;
+                    int i21 = d1Var.f57048f;
+                    View view3 = d1Var.f57044a;
                     switch (i21) {
                         case 0:
                             ((org.telegram.ui.Cells.n4) view3).setText(kh0Var.f47197e);
@@ -707,14 +707,14 @@ public final class w6 extends rg.b {
                         B = notificationsCustomSettingsActivity.getNotificationsController().B(i7);
                     }
                     int b10 = d1Var.b();
-                    View view = d1Var.f57043a;
+                    View view = d1Var.f57044a;
                     if (b10 >= 0 && b10 < arrayList3.size()) {
                         kh0Var = (kh0) arrayList3.get(b10);
                     } else {
                         kh0Var = null;
                     }
                     if (kh0Var == null || kh0Var.f47196c != 102) {
-                        int i10 = d1Var.f57047f;
+                        int i10 = d1Var.f57048f;
                         if (i10 != 0) {
                             if (i10 != 1) {
                                 if (i10 != 3) {

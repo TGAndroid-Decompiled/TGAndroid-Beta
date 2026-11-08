@@ -66,12 +66,12 @@ public final class c implements Runnable {
                 h hVar = (h) this.f52717b;
                 g gVar = (g) this.f52718c;
                 try {
-                    bArr = AudioRecorderNative.e(gVar.f57537b.getAbsolutePath());
+                    bArr = AudioRecorderNative.e(gVar.f57538b.getAbsolutePath());
                 } catch (Throwable th3) {
                     hVar.h.a("waveform extraction failed", th3);
                     bArr = null;
                 }
-                hVar.f57546i.post(new r31(hVar, gVar, bArr, 18));
+                hVar.f57547i.post(new r31(hVar, gVar, bArr, 18));
                 return;
         }
     }

@@ -439,14 +439,14 @@ public final class g3 extends v4.s0 {
                             T = e61Var.T(F);
                         }
                         if (T != null) {
-                            View view = T.f57043a;
+                            View view = T.f57044a;
                             if (pr0Var.Q.getDirection() == 0) {
                                 pr0Var.Q.setTranslationY((view.getY() - org.telegram.messenger.g0.L(166.0f)) + view.getMeasuredHeight());
                             } else {
                                 pr0Var.Q.setTranslationY(view.getY());
                             }
                             v4.b0 b0Var = pr0Var.d;
-                            if (!b0Var.f57132c.e(view) || !b0Var.d.e(view)) {
+                            if (!b0Var.f57133c.e(view) || !b0Var.d.e(view)) {
                                 pr0Var.Q.f();
                                 return;
                             }

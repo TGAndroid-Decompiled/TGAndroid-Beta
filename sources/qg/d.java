@@ -41,7 +41,7 @@ import org.telegram.ui.Components.xp;
 import org.telegram.ui.an;
 import org.telegram.ui.w91;
 public abstract class d {
-    public static final int f54125a = 0;
+    public static final int f54126a = 0;
 
     static {
         new SparseArray();
@@ -109,8 +109,8 @@ public abstract class d {
         } else {
             i10 = 2131232144;
         }
-        drawable.f54122a = resources.getDrawable(i10).mutate();
-        drawable.f54123b = f10;
+        drawable.f54123a = resources.getDrawable(i10).mutate();
+        drawable.f54124b = f10;
         drawable.a(i7);
         return drawable;
     }

@@ -37,7 +37,7 @@ public final class k2 implements org.telegram.ui.ActionBar.r1, db0, org.telegram
 
     @Override
     public r0.k1 S0(View view, r0.k1 k1Var) {
-        return r0.k1.f54200b;
+        return r0.k1.f54201b;
     }
 
     @Override

@@ -27,8 +27,8 @@ public final class n3 extends na implements ls {
     public final ri.c X1;
     public l41 Y1;
     public i0.b Z1;
-    public boolean f60479a2;
-    public int f60480b2;
+    public boolean f60480a2;
+    public int f60481b2;
 
     public n3(org.telegram.ui.ActionBar.f2 r20, long r21, int r23, hi.d4 r24) {
         throw new UnsupportedOperationException("Method not decompiled: zh.n3.<init>(org.telegram.ui.ActionBar.f2, long, int, hi.d4):void");
@@ -51,7 +51,7 @@ public final class n3 extends na implements ls {
     public final r0.k1 b0(r0.k1 k1Var) {
         this.Z1 = org.telegram.messenger.g0.I0(k1Var, false);
         d1();
-        return r0.k1.f54200b;
+        return r0.k1.f54201b;
     }
 
     public final void d1() {
@@ -104,11 +104,11 @@ public final class n3 extends na implements ls {
                 cVar2.a(k6.w0(k6.f27796a7, this.I0));
             }
             int w02 = k6.w0(k6.f27796a7, this.I0);
-            if (this.f60479a2 && w02 == this.f60480b2) {
+            if (this.f60480a2 && w02 == this.f60481b2) {
                 return;
             }
-            this.f60479a2 = true;
-            this.f60480b2 = w02;
+            this.f60480a2 = true;
+            this.f60481b2 = w02;
             v0(w02);
         } catch (Exception e10) {
             a8.g(e10, true);

@@ -219,7 +219,7 @@ public final class wr implements ax, org.telegram.ui.Components.cj0, org.telegra
                 ArrayList arrayList = w90Var.f50990s;
                 if (view != null && i7 >= 0 && i7 < arrayList.size()) {
                     r90 r90Var = (r90) arrayList.get(i7);
-                    int i12 = r90Var.f54531a;
+                    int i12 = r90Var.f54532a;
                     int i13 = r90Var.f49419e;
                     if (i12 != 3 && i12 != 4) {
                         if (i12 == 5 && r90Var.f49420f == 1) {
@@ -237,7 +237,7 @@ public final class wr implements ax, org.telegram.ui.Components.cj0, org.telegra
                         if (org.telegram.messenger.sc.f()) {
                             w90Var.f50986e = org.telegram.ui.Components.hc.a0(w90Var).M(new org.telegram.ui.Components.n9(0.1f, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Y5, false)), org.telegram.messenger.id.M0(2131748870, null)).j();
                             return;
-                        } else if (r90Var.f54531a == 3 && Integer.bitCount(i13) > 1 && (!org.telegram.messenger.id.f23157a0 ? f10 < view.getMeasuredWidth() - org.telegram.messenger.g0.L(75.0f) : f10 > org.telegram.messenger.g0.L(75.0f)) && (Z = w90Var.Z(i13)) != -1) {
+                        } else if (r90Var.f54532a == 3 && Integer.bitCount(i13) > 1 && (!org.telegram.messenger.id.f23157a0 ? f10 < view.getMeasuredWidth() - org.telegram.messenger.g0.L(75.0f) : f10 > org.telegram.messenger.g0.L(75.0f)) && (Z = w90Var.Z(i13)) != -1) {
                             w90Var.f50988n[Z] = !zArr[Z];
                             w90Var.d0();
                             w90Var.c0();
@@ -329,16 +329,16 @@ public final class wr implements ax, org.telegram.ui.Components.cj0, org.telegra
                         arrayList.add(document);
                         yf.d dVar = sh0Var.getMediaDataController().f25857z0;
                         TLRPC.Document document2 = qh0Var.f49238e;
-                        ArrayList arrayList2 = dVar.f59415e;
+                        ArrayList arrayList2 = dVar.f59416e;
                         if (document2 != null) {
-                            if (!dVar.f59416f) {
+                            if (!dVar.f59417f) {
                                 dVar.f(true);
-                                dVar.f59416f = true;
+                                dVar.f59417f = true;
                             }
                             int i12 = 0;
                             while (true) {
                                 if (i12 < arrayList2.size()) {
-                                    if (((yf.c) arrayList2.get(i12)).f59407a != null && ((yf.c) arrayList2.get(i12)).f59407a.f26962id == document2.f26962id) {
+                                    if (((yf.c) arrayList2.get(i12)).f59408a != null && ((yf.c) arrayList2.get(i12)).f59408a.f26962id == document2.f26962id) {
                                         arrayList2.remove(i12);
                                     } else {
                                         i12++;
@@ -348,11 +348,11 @@ public final class wr implements ax, org.telegram.ui.Components.cj0, org.telegra
                         }
                     }
                     if (qh0Var.f49240g != null && (eVar = (yf.e) sh0Var.getMediaDataController().Z.get(qh0Var.f49240g)) != null) {
-                        eVar.f59419c = true;
+                        eVar.f59420c = true;
                         eVar.a();
-                        int i13 = eVar.f59417a;
+                        int i13 = eVar.f59418a;
                         org.telegram.messenger.w7 G = org.telegram.messenger.w7.G(i13);
-                        String str2 = eVar.f59418b;
+                        String str2 = eVar.f59419b;
                         G.b(str2, false);
                         org.telegram.messenger.ui.b0(i13).i1(str2, null, true);
                     }

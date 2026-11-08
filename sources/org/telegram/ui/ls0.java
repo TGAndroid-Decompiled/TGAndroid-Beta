@@ -139,9 +139,9 @@ public final class ls0 extends FrameLayout {
         }
         premiumPreviewFragment.U.f50410a.setTranslationX((1.0f - org.telegram.ui.Components.xq.h.getInterpolation(1.0f - f12)) * L5);
         us0 us0Var = premiumPreviewFragment.U;
-        us0Var.d.f57411b.f57389s = (((getMeasuredWidth() * 0.1f) * premiumPreviewFragment.f41608b0) + (premiumPreviewFragment.U.f50412c.getX() + us0Var.getX())) / getMeasuredWidth();
+        us0Var.d.f57412b.f57390s = (((getMeasuredWidth() * 0.1f) * premiumPreviewFragment.f41608b0) + (premiumPreviewFragment.U.f50412c.getX() + us0Var.getX())) / getMeasuredWidth();
         us0 us0Var2 = premiumPreviewFragment.U;
-        us0Var2.d.f57411b.f57390t = (premiumPreviewFragment.U.f50412c.getY() + us0Var2.getY()) / getMeasuredHeight();
+        us0Var2.d.f57412b.f57391t = (premiumPreviewFragment.U.f50412c.getY() + us0Var2.getY()) / getMeasuredHeight();
         if (!premiumPreviewFragment.Z) {
             invalidate();
             premiumPreviewFragment.K.invalidate();
@@ -172,7 +172,7 @@ public final class ls0 extends FrameLayout {
         } else {
             r11 = 0;
             canvas2 = canvas;
-            canvas2.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), y0Var.f56868f);
+            canvas2.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), y0Var.f56869f);
         }
         super.dispatchDraw(canvas);
         if (premiumPreviewFragment.J.getVisibility() != 0) {
@@ -246,13 +246,13 @@ public final class ls0 extends FrameLayout {
         super.onLayout(z9, i7, i10, i11, i12);
         PremiumPreviewFragment premiumPreviewFragment = this.d;
         bi.qd qdVar = premiumPreviewFragment.U.d;
-        qdVar.f57411b.f57391u = qdVar.getMeasuredWidth() / getMeasuredWidth();
+        qdVar.f57412b.f57392u = qdVar.getMeasuredWidth() / getMeasuredWidth();
         bi.qd qdVar2 = premiumPreviewFragment.U.d;
-        qdVar2.f57411b.v = qdVar2.getMeasuredHeight() / getMeasuredHeight();
+        qdVar2.f57412b.v = qdVar2.getMeasuredHeight() / getMeasuredHeight();
         us0 us0Var = premiumPreviewFragment.U;
-        us0Var.d.f57411b.f57389s = (premiumPreviewFragment.U.d.getX() + us0Var.getX()) / getMeasuredWidth();
+        us0Var.d.f57412b.f57390s = (premiumPreviewFragment.U.d.getX() + us0Var.getX()) / getMeasuredWidth();
         us0 us0Var2 = premiumPreviewFragment.U;
-        us0Var2.d.f57411b.f57390t = (premiumPreviewFragment.U.d.getY() + us0Var2.getY()) / getMeasuredHeight();
+        us0Var2.d.f57412b.f57391t = (premiumPreviewFragment.U.d.getY() + us0Var2.getY()) / getMeasuredHeight();
     }
 
     @Override

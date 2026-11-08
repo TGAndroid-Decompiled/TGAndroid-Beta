@@ -365,14 +365,14 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
         e7.b bVar = new e7.b(0, (TaskCompletionSource) obj2);
         m1 m1Var = (m1) ((l1) obj).n();
         Parcel obtain = Parcel.obtain();
-        obtain.writeInterfaceToken(m1Var.f54005b);
-        int i7 = q7.j.f53988a;
+        obtain.writeInterfaceToken(m1Var.f54006b);
+        int i7 = q7.j.f53989a;
         obtain.writeStrongBinder(bVar);
         obtain.writeInt(1);
         ((f7.v) this.f825b).writeToParcel(obtain, 0);
         Parcel obtain2 = Parcel.obtain();
         try {
-            m1Var.f54004a.transact(1, obtain, obtain2, 0);
+            m1Var.f54005a.transact(1, obtain, obtain2, 0);
             obtain2.readException();
         } finally {
             obtain.recycle();
@@ -719,8 +719,8 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
         r1 r1Var = ((y5) this.f825b).f13193x;
         if (r1Var != null) {
             float f11 = i7 / i10;
-            if (Math.abs(r1Var.f55935y0 - f11) >= 1.0E-4f) {
-                r1Var.f55935y0 = f11;
+            if (Math.abs(r1Var.f55936y0 - f11) >= 1.0E-4f) {
+                r1Var.f55936y0 = f11;
                 r1Var.requestLayout();
             }
         }

@@ -35,7 +35,7 @@ public final class f extends k {
             groupCallMessage = (GroupCallMessage) eVar.f20605c.get(b10);
         }
         if (groupCallMessage != null && (o0Var = groupCallMessage.visibleReaction) != null) {
-            View view = d1Var.f57043a;
+            View view = d1Var.f57044a;
             if ((view instanceof c) && (gVar = hVar.X0) != null) {
                 c40 c40Var = ((f20) gVar).f45426a;
                 k0 k0Var = new k0(c40Var.getContext(), null, c40Var.B1, (c) view, null, 0.0f, 0.0f, o0Var, c40Var.f28616a, 1, false);

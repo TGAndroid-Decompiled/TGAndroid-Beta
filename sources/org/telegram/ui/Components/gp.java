@@ -71,7 +71,7 @@ public final class gp implements Runnable {
                 return;
             case 5:
                 nr nrVar = (nr) obj;
-                nrVar.f36418a.a(!aVar.f55487f, true);
+                nrVar.f36418a.a(!aVar.f55488f, true);
                 org.telegram.messenger.g0.i3(nrVar.f36422f, 3000L);
                 return;
             case 6:
@@ -326,7 +326,7 @@ public final class gp implements Runnable {
                 jg.o1 o1Var = g90Var.f33896e;
                 f90 f90Var = g90Var.f33894b;
                 if (f90Var != null && o1Var != null) {
-                    if (g90Var.L && (gVar = g90Var.K) != null && gVar.f54261f && !z10) {
+                    if (g90Var.L && (gVar = g90Var.K) != null && gVar.f54262f && !z10) {
                         g90Var.O = 0;
                         return;
                     }
@@ -381,7 +381,7 @@ public final class gp implements Runnable {
                         r1.h hVar = new r1.h(f14);
                         hVar.a(1.0f);
                         hVar.b(550.0f);
-                        gVar3.f54267m = hVar;
+                        gVar3.f54268m = hVar;
                         g90Var.K = gVar3;
                         final float f16 = f11;
                         r1.d dVar = new r1.d() {

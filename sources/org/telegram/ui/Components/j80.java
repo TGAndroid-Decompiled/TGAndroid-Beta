@@ -371,7 +371,7 @@ public final class j80 extends c8.b1 {
             x(pageblocktable);
         } else if (nVar instanceof zc.a) {
             TL_iv.PageBlock pageblockparagraph = new TL_iv.pageBlockParagraph();
-            pageblockparagraph.text = n80.c(((zc.a) nVar).f60031g);
+            pageblockparagraph.text = n80.c(((zc.a) nVar).f60032g);
             x(pageblockparagraph);
         } else {
             v(nVar);

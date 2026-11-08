@@ -34,8 +34,8 @@ public final class sz extends org.telegram.ui.Components.oj0 {
     public final void t(v4.d1 d1Var, int i7) {
         boolean z9;
         boolean z10;
-        if (d1Var.f57047f == 0) {
-            org.telegram.ui.Cells.t2 t2Var = (org.telegram.ui.Cells.t2) d1Var.f57043a;
+        if (d1Var.f57048f == 0) {
+            org.telegram.ui.Cells.t2 t2Var = (org.telegram.ui.Cells.t2) d1Var.f57044a;
             yz yzVar = this.f49859c;
             org.telegram.messenger.ij ijVar = (org.telegram.messenger.ij) yzVar.f52367f.get(i7);
             t2Var.O = yzVar.f52378p0;

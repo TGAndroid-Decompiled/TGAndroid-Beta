@@ -149,9 +149,9 @@ public final class h extends x2.a {
     }
 
     public static boolean v(p2.h hVar) {
-        List list = hVar.f53127c;
+        List list = hVar.f53128c;
         for (int i7 = 0; i7 < list.size(); i7++) {
-            int i10 = ((p2.a) list.get(i7)).f53090b;
+            int i10 = ((p2.a) list.get(i7)).f53091b;
             if (i10 == 1 || i10 == 2) {
                 return true;
             }
@@ -206,14 +206,14 @@ public final class h extends x2.a {
 
     @Override
     public final e0 c(x2.g0 g0Var, h6.m mVar, long j3) {
-        int intValue = ((Integer) g0Var.f58329a).intValue() - this.N;
+        int intValue = ((Integer) g0Var.f58330a).intValue() - this.N;
         wa b10 = b(g0Var);
-        q2.j jVar = new q2.j(this.d.f53738c, 0, g0Var);
+        q2.j jVar = new q2.j(this.d.f53739c, 0, g0Var);
         int i7 = this.N + intValue;
         p2.c cVar = this.G;
         d0 d0Var = this.B;
         long j10 = this.K;
-        m2.j jVar2 = this.f58269g;
+        m2.j jVar2 = this.f58270g;
         jVar2.getClass();
         b bVar = new b(i7, cVar, this.f20745n, intValue, this.f20741j, d0Var, this.f20743l, jVar, this.f20744m, b10, j10, this.f20755y, mVar, this.f20742k, this.f20754x, jVar2);
         this.f20752u.put(i7, bVar);
@@ -234,7 +234,7 @@ public final class h extends x2.a {
     public final void m(d0 d0Var) {
         this.B = d0Var;
         Looper myLooper = Looper.myLooper();
-        m2.j jVar = this.f58269g;
+        m2.j jVar = this.f58270g;
         jVar.getClass();
         q2.m mVar = this.f20743l;
         mVar.E(myLooper, jVar);

@@ -35,12 +35,12 @@ import sa.d;
 import sg.i0;
 import v6.e;
 public abstract class c {
-    public static i0 f57325a;
-    public static e f57326b;
-    public static ag.a f57327c;
+    public static i0 f57326a;
+    public static e f57327b;
+    public static ag.a f57328c;
     public static String d;
-    public static WeakReference f57328e;
-    public static Pattern f57329f;
+    public static WeakReference f57329e;
+    public static Pattern f57330f;
 
     public static String A(String str) {
         String[] split;
@@ -183,24 +183,24 @@ public abstract class c {
     }
 
     public static i0 e() {
-        e eVar = f57326b;
+        e eVar = f57327b;
         i0 i0Var = null;
         if (eVar == null) {
-            f57325a = null;
-        } else if (f57325a == null) {
+            f57326a = null;
+        } else if (f57326a == null) {
             d dVar = new d(26);
-            zf.e eVar2 = (zf.e) eVar.f57243a;
+            zf.e eVar2 = (zf.e) eVar.f57244a;
             zf.b bVar = new zf.b(dVar);
             try {
                 if (((zf.c) eVar2).h1(bVar)) {
-                    i0Var = new i0(14, bVar, (ComponentName) eVar.f57244b);
+                    i0Var = new i0(14, bVar, (ComponentName) eVar.f57245b);
                 }
             } catch (RemoteException unused) {
             }
-            f57325a = i0Var;
+            f57326a = i0Var;
             new WeakReference(i0Var);
         }
-        return f57325a;
+        return f57326a;
     }
 
     public static boolean f(android.content.Context r8, java.lang.String r9) {
@@ -342,16 +342,16 @@ public abstract class c {
 
     public static boolean k(String str) {
         boolean matches;
-        if (f57329f == null) {
-            f57329f = Pattern.compile("^[a-zA-Z0-9\\-\\_\\.]+\\.[a-zA-Z0-9\\-\\_]+$");
+        if (f57330f == null) {
+            f57330f = Pattern.compile("^[a-zA-Z0-9\\-\\_\\.]+\\.[a-zA-Z0-9\\-\\_]+$");
         }
         String K0 = g0.K0(str, true);
         if (K0 != null && (K0.endsWith(".ton") || K0.endsWith(".adnl"))) {
-            matches = f57329f.matcher(K0).matches();
+            matches = f57330f.matcher(K0).matches();
         } else {
             Uri parse = Uri.parse(str);
             if (parse.getScheme() != null && parse.getScheme().equalsIgnoreCase("tonsite")) {
-                matches = f57329f.matcher(parse.getScheme()).matches();
+                matches = f57330f.matcher(parse.getScheme()).matches();
             } else {
                 return false;
             }
@@ -635,24 +635,24 @@ public abstract class c {
 
     public static void y(Activity activity) {
         Activity activity2;
-        if (f57327c == null) {
+        if (f57328c == null) {
             return;
         }
-        WeakReference weakReference = f57328e;
+        WeakReference weakReference = f57329e;
         if (weakReference == null) {
             activity2 = null;
         } else {
             activity2 = (Activity) weakReference.get();
         }
         if (activity2 == activity) {
-            f57328e.clear();
+            f57329e.clear();
         }
         try {
-            activity.unbindService(f57327c);
+            activity.unbindService(f57328c);
         } catch (Exception unused) {
         }
-        f57326b = null;
-        f57325a = null;
+        f57327b = null;
+        f57326a = null;
     }
 
     public static boolean z(String str) {

@@ -13,18 +13,18 @@ import org.telegram.messenger.p10;
 import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.y9;
 public final class s0 extends oj0 {
-    public final Context f55940c;
+    public final Context f55941c;
     public final y9 d;
-    public final x5 f55941e;
-    public final boolean f55942f;
+    public final x5 f55942e;
+    public final boolean f55943f;
     public final e5 h;
 
     public s0(e5 e5Var, Context context, y9 y9Var, x5 x5Var, boolean z9) {
         this.h = e5Var;
-        this.f55940c = context;
+        this.f55941c = context;
         this.d = y9Var;
-        this.f55941e = x5Var;
-        this.f55942f = z9;
+        this.f55942e = x5Var;
+        this.f55943f = z9;
     }
 
     @Override
@@ -34,12 +34,12 @@ public final class s0 extends oj0 {
 
     @Override
     public final int b() {
-        return this.h.f55963s0.size();
+        return this.h.f55964s0.size();
     }
 
     @Override
     public final int d(int i7) {
-        ArrayList arrayList = this.h.f55963s0;
+        ArrayList arrayList = this.h.f55964s0;
         return ((ij) arrayList.get((arrayList.size() - 1) - i7)).U;
     }
 
@@ -50,12 +50,12 @@ public final class s0 extends oj0 {
         aj d;
         boolean z11;
         e5 e5Var = this.h;
-        ArrayList arrayList = e5Var.f55963s0;
+        ArrayList arrayList = e5Var.f55964s0;
         ij ijVar = (ij) arrayList.get((arrayList.size() - 1) - i7);
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         if (view instanceof org.telegram.ui.Cells.q1) {
             org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) view;
-            dj djVar = e5Var.f55964t0;
+            dj djVar = e5Var.f55965t0;
             if (djVar != null && (d = djVar.d(ijVar)) != null) {
                 if (d.f21443c != 0) {
                     z11 = true;
@@ -66,7 +66,7 @@ public final class s0 extends oj0 {
             } else {
                 z9 = false;
             }
-            dj djVar2 = e5Var.f55964t0;
+            dj djVar2 = e5Var.f55965t0;
             if (djVar2 != null) {
                 z10 = true;
             } else {
@@ -81,7 +81,7 @@ public final class s0 extends oj0 {
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         t0 t0Var = this.h.D0;
-        Context context = this.f55940c;
+        Context context = this.f55941c;
         if (i7 == 1) {
             return new v4.d1(new q0(this, context, t0Var));
         }

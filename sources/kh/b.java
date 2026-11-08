@@ -50,7 +50,7 @@ public final class b extends FrameLayout {
             aVar.addView(aVar.d, ha.e(46, 46, 17));
         }
         te.a aVar2 = aVar.f17591a;
-        if (!aVar2.f55487f && aVar2.f55486e == 0.0f) {
+        if (!aVar2.f55488f && aVar2.f55487e == 0.0f) {
             aVar.f17594e.f32655c = -1L;
         }
         aVar2.a(z9, z10);

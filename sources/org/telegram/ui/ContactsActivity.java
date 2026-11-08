@@ -458,7 +458,7 @@ public class ContactsActivity extends org.telegram.ui.ActionBar.f2 implements te
         v4.k kVar = new v4.k();
         kVar.C = false;
         kVar.n(150L);
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         this.d.setItemAnimator(kVar);
         this.d.setSectionsType(1);
         this.d.setVerticalScrollBarEnabled(false);
@@ -503,7 +503,7 @@ public class ContactsActivity extends org.telegram.ui.ActionBar.f2 implements te
         }
         View view = this.fragmentView;
         qr qrVar = new qr(this);
-        WeakHashMap weakHashMap = r0.i0.f54190a;
+        WeakHashMap weakHashMap = r0.i0.f54191a;
         r0.a0.i(view, qrVar);
         return this.fragmentView;
     }
@@ -757,7 +757,7 @@ public class ContactsActivity extends org.telegram.ui.ActionBar.f2 implements te
 
     @Override
     public final void m(r0.k1 k1Var) {
-        this.f41195l0 = k1Var.f54201a.f(8).d;
+        this.f41195l0 = k1Var.f54202a.f(8).d;
         i0();
     }
 

@@ -81,7 +81,7 @@ public final class r7 extends org.telegram.ui.ActionBar.k {
             case 3:
                 org.telegram.ui.ww wwVar = (org.telegram.ui.ww) this.G1;
                 org.telegram.ui.lw lwVar = wwVar.X;
-                if (lwVar != null && lwVar.getAlpha() > 0.0f && wwVar.f51539b.f55487f) {
+                if (lwVar != null && lwVar.getAlpha() > 0.0f && wwVar.f51539b.f55488f) {
                     return false;
                 }
                 return super.dispatchTouchEvent(motionEvent);
@@ -239,7 +239,7 @@ public final class r7 extends org.telegram.ui.ActionBar.k {
                     org.telegram.messenger.g0.q3(w0Var, z9);
                     return;
                 }
-                org.telegram.ui.ActionBar.f2 f2Var = w0Var.f56843i1;
+                org.telegram.ui.ActionBar.f2 f2Var = w0Var.f56844i1;
                 if (f2Var != null) {
                     org.telegram.messenger.g0.q3(w0Var, f2Var.isLightStatusBar());
                     return;

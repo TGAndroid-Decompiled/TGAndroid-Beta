@@ -161,8 +161,8 @@ public final class me0 extends kj0 {
         TLRPC.Poll poll = qe0Var.f37304p1;
         ArrayList arrayList2 = qe0Var.f37308t1;
         org.telegram.messenger.ij ijVar = qe0Var.f37303o1;
-        int i11 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i11 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         int i12 = 0;
         if (i11 != 2) {
             if (i11 == 3) {
@@ -251,11 +251,11 @@ public final class me0 extends kj0 {
         boolean z9;
         TLRPC.Chat chat;
         boolean z10;
-        if (d1Var.f57047f == 0) {
+        if (d1Var.f57048f == 0) {
             int b10 = d1Var.b();
             int S = S(b10);
             int Q = Q(b10) - 1;
-            PollVotesAlert$UserCell pollVotesAlert$UserCell = (PollVotesAlert$UserCell) d1Var.f57043a;
+            PollVotesAlert$UserCell pollVotesAlert$UserCell = (PollVotesAlert$UserCell) d1Var.f57044a;
             qe0 qe0Var = this.f35977s;
             pe0 pe0Var = (pe0) qe0Var.f37308t1.get(S - 1);
             TLRPC.MessagePeerVote messagePeerVote = (TLRPC.MessagePeerVote) pe0Var.f36912b.get(Q);

@@ -31,7 +31,7 @@ public final class a8 implements r1.d {
             case 2:
                 pg.j jVar = (pg.j) this.f8823b;
                 float f13 = f10 / 1000.0f;
-                pg.h hVar = jVar.f53623a;
+                pg.h hVar = jVar.f53624a;
                 hVar.setPivotX(org.telegram.messenger.g0.L(28.0f));
                 hVar.setPivotY(org.telegram.messenger.g0.L(28.0f));
                 hVar.setScaleX(f13);
@@ -42,12 +42,12 @@ public final class a8 implements r1.d {
             default:
                 tg.g0 g0Var = (tg.g0) this.f8823b;
                 float f14 = f10 / 1000.0f;
-                g0Var.f55679m1 = f14;
-                tg.j1 j1Var2 = g0Var.f55669e1;
+                g0Var.f55680m1 = f14;
+                tg.j1 j1Var2 = g0Var.f55670e1;
                 j1Var2.setAlpha(f14);
                 j1Var2.invalidate();
                 g0Var.M0.invalidate();
-                g0Var.f55668d1.getTypefaceCell().setAlpha(1.0f - g0Var.f55679m1);
+                g0Var.f55669d1.getTypefaceCell().setAlpha(1.0f - g0Var.f55680m1);
                 return;
         }
     }

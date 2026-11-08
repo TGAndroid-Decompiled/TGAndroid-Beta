@@ -29,7 +29,7 @@ public final class ll0 implements r0.m, org.telegram.ui.ActionBar.r1 {
         FrameLayout frameLayout = hm0Var.P;
         i0.b bVar3 = hm0Var.f46451b0;
         frameLayout.setPadding(bVar3.f15120a, 0, bVar3.f15122c, bVar3.d);
-        return r0.k1.f54200b;
+        return r0.k1.f54201b;
     }
 
     @Override

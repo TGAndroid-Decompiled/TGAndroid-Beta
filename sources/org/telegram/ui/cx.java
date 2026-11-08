@@ -13,12 +13,12 @@ public final class cx extends v4.v {
     @Override
     public final void a(RecyclerView recyclerView, v4.d1 d1Var) {
         super.a(recyclerView, d1Var);
-        d1Var.f57043a.setPressed(false);
+        d1Var.f57044a.setPressed(false);
     }
 
     @Override
     public final int e(RecyclerView recyclerView, v4.d1 d1Var) {
-        if (d1Var.f57047f != 3) {
+        if (d1Var.f57048f != 3) {
             return v4.v.l(0, 0);
         }
         return v4.v.l(3, 0);
@@ -28,7 +28,7 @@ public final class cx extends v4.v {
     public final boolean n(RecyclerView recyclerView, v4.d1 d1Var, v4.d1 d1Var2) {
         boolean z9;
         boolean z10 = false;
-        if (d1Var.f57047f != d1Var2.f57047f) {
+        if (d1Var.f57048f != d1Var2.f57048f) {
             return false;
         }
         int b10 = d1Var.b();
@@ -45,14 +45,14 @@ public final class cx extends v4.v {
             arrayList.set(i10, (Long) arrayList.get(i11));
             arrayList.set(i11, (Long) arrayList.get(i10));
             bxVar.j(b10, b11);
-            org.telegram.ui.Cells.h4 h4Var = (org.telegram.ui.Cells.h4) d1Var.f57043a;
+            org.telegram.ui.Cells.h4 h4Var = (org.telegram.ui.Cells.h4) d1Var.f57044a;
             if (b11 != exVar.f45387r - 1) {
                 z9 = true;
             } else {
                 z9 = false;
             }
             h4Var.setDrawDivider(z9);
-            org.telegram.ui.Cells.h4 h4Var2 = (org.telegram.ui.Cells.h4) d1Var2.f57043a;
+            org.telegram.ui.Cells.h4 h4Var2 = (org.telegram.ui.Cells.h4) d1Var2.f57044a;
             if (b10 != exVar.f45387r - 1) {
                 z10 = true;
             }
@@ -67,7 +67,7 @@ public final class cx extends v4.v {
         ex exVar = this.f44914e;
         if (i7 != 0) {
             exVar.f45382b.I0(false);
-            d1Var.f57043a.setPressed(true);
+            d1Var.f57044a.setPressed(true);
         } else if (this.d) {
             dx dxVar = exVar.f45385f;
             if (dxVar != null) {

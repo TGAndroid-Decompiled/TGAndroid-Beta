@@ -27,15 +27,15 @@ public abstract class nb {
         if (z9 != z11) {
             if (z9) {
                 ?? frameLayout = new FrameLayout(launchActivity);
-                frameLayout.f53629r = new pg.d(frameLayout, 3);
+                frameLayout.f53630r = new pg.d(frameLayout, 3);
                 frameLayout.E = new ArrayList();
                 pg.g gVar = new pg.g(frameLayout);
-                frameLayout.f53626e = launchActivity.getSharedPreferences("floating_debug", 0);
+                frameLayout.f53627e = launchActivity.getSharedPreferences("floating_debug", 0);
                 frameLayout.F = ViewConfiguration.get(launchActivity).getScaledTouchSlop();
                 vy vyVar = new vy(launchActivity, gVar);
                 ((GestureDetector) vyVar.f39747b).setIsLongpressEnabled(false);
                 pg.h hVar = new pg.h(frameLayout, launchActivity, vyVar, 0);
-                frameLayout.f53623a = hVar;
+                frameLayout.f53624a = hVar;
                 ImageView imageView = new ImageView(launchActivity);
                 imageView.setImageResource(2131231036);
                 org.telegram.ui.ActionBar.r6.t(imageView, org.telegram.ui.ActionBar.k6.O9, null, PorterDuff.Mode.SRC_IN);
@@ -43,11 +43,11 @@ public abstract class nb {
                 hVar.setVisibility(8);
                 frameLayout.addView(hVar, ha.c(56.0f, 56));
                 LinearLayout linearLayout = new LinearLayout(launchActivity);
-                frameLayout.f53632x = linearLayout;
+                frameLayout.f53633x = linearLayout;
                 linearLayout.setOrientation(1);
                 linearLayout.setVisibility(8);
                 TextView textView = new TextView(launchActivity);
-                frameLayout.f53633y = textView;
+                frameLayout.f53634y = textView;
                 textView.setTextSize(1, 20.0f);
                 textView.setText(org.telegram.messenger.id.M0(2131751647, null));
                 textView.setTypeface(org.telegram.messenger.g0.o());
@@ -66,9 +66,9 @@ public abstract class nb {
                 f5778a = frameLayout;
                 launchActivity.f41291u0.addView((View) frameLayout, new FrameLayout.LayoutParams(-1, -1));
                 pg.j jVar2 = f5778a;
-                jVar2.f53623a.setVisibility(0);
+                jVar2.f53624a.setVisibility(0);
                 r1.g gVar2 = new r1.g(new r1.f(0.0f));
-                gVar2.f54267m = org.telegram.ui.Cells.f1.o(1000.0f, 750.0f, 0.75f);
+                gVar2.f54268m = org.telegram.ui.Cells.f1.o(1000.0f, 750.0f, 0.75f);
                 gVar2.b(new di.a8(2, jVar2));
                 gVar2.h();
             } else {

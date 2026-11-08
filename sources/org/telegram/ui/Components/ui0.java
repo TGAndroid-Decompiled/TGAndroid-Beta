@@ -159,7 +159,7 @@ public final class ui0 extends View implements org.telegram.ui.ActionBar.a6 {
         if (layoutManager instanceof v4.b0) {
             v4.b0 b0Var = (v4.b0) layoutManager;
             boolean z10 = true;
-            if (b0Var.f57012o == 1) {
+            if (b0Var.f57013o == 1) {
                 v4.g0 adapter = pj0Var.getAdapter();
                 if (adapter instanceof vi0) {
                     vi0 vi0Var = (vi0) adapter;

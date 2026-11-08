@@ -33,7 +33,7 @@ public final class s60 extends oj0 {
     public final void t(v4.d1 d1Var, int i7) {
         TLObject M0;
         String str;
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         t60 t60Var = this.d;
         long C1 = org.telegram.messenger.ij.C1((TLRPC.Peer) t60Var.f38277p1.get(i7));
         if (C1 > 0) {
@@ -83,7 +83,7 @@ public final class s60 extends oj0 {
         long j3;
         d1Var.b();
         long C1 = org.telegram.messenger.ij.C1(this.d.f38281t1);
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         boolean z9 = true;
         if (view instanceof org.telegram.ui.Cells.h4) {
             org.telegram.ui.Cells.h4 h4Var = (org.telegram.ui.Cells.h4) view;

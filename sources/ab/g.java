@@ -99,7 +99,7 @@ public final class g implements OnCompleteListener, Continuation, CameraView.Cam
 
     @Override
     public k60 a(g1 g1Var) {
-        li.p pVar = (li.p) ((wf.b) this.f928b).f57655c;
+        li.p pVar = (li.p) ((wf.b) this.f928b).f57656c;
         k60 k60Var = new k60(pVar, (f6) this.f929c, g1Var, false, false, true);
         pVar.H = k60Var;
         return k60Var;
@@ -177,7 +177,7 @@ public final class g implements OnCompleteListener, Continuation, CameraView.Cam
                 u9.a aVar = (u9.a) this.f929c;
                 try {
                     Trace.beginSection(str2);
-                    return aVar.f56455f.e(r7Var);
+                    return aVar.f56456f.e(r7Var);
                 } finally {
                     Trace.endSection();
                 }
@@ -206,7 +206,7 @@ public final class g implements OnCompleteListener, Continuation, CameraView.Cam
         l2 l2Var = s8Var.f28622c;
         if (i7 >= 0 && i7 < arrayList2.size()) {
             b8 b8Var = (b8) arrayList2.get(i7);
-            int i14 = b8Var.f54531a;
+            int i14 = b8Var.f54532a;
             int i15 = 0;
             if (i14 == 3) {
                 if (b8Var.f11700n && s8Var.f12815w1) {

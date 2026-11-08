@@ -65,7 +65,7 @@ public final class ka extends ClickableSpan {
                 org.telegram.ui.Wallet.x5.J0(org.telegram.ui.Wallet.m9.i0(m9Var), m9Var.getParentActivity(), m9Var.getResourceProvider());
                 return;
             case 10:
-                ug.i0 i0Var = ((ug.b0) this.f12281b).f56527c;
+                ug.i0 i0Var = ((ug.b0) this.f12281b).f56528c;
                 wg.l.I0(i0Var.f36279o1, i0Var.I0, i0Var.S1, null);
                 return;
             default:
@@ -119,14 +119,14 @@ public final class ka extends ClickableSpan {
                 super.updateDrawState(textPaint);
                 textPaint.setUnderlineText(false);
                 int i10 = org.telegram.ui.ActionBar.k6.Uc;
-                ug.i0 i0Var = ((ug.b0) obj).f56527c;
+                ug.i0 i0Var = ((ug.b0) obj).f56528c;
                 int i11 = ug.i0.O2;
                 textPaint.setColor(org.telegram.ui.ActionBar.k6.w0(i10, i0Var.I0));
                 return;
             default:
                 super.updateDrawState(textPaint);
                 textPaint.setUnderlineText(false);
-                Integer num = ((ug.f1) obj).f56573m2;
+                Integer num = ((ug.f1) obj).f56574m2;
                 if (num != null) {
                     textPaint.setColor(num.intValue());
                     return;

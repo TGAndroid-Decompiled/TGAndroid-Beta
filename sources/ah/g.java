@@ -365,8 +365,8 @@ public final class g implements View.OnClickListener {
                 if (x9Var.f12533k1) {
                     sg.q qVar = new sg.q(context2, x9Var.f12540p1);
                     x9Var.C1 = qVar;
-                    qVar.I0(x9Var.f12531j1.f55108a, 2);
-                    qVar.f55185o1 = new androidx.activity.n(x9Var, l0Var, 1);
+                    qVar.I0(x9Var.f12531j1.f55109a, 2);
+                    qVar.f55186o1 = new androidx.activity.n(x9Var, l0Var, 1);
                     qVar.n1 = new h8(2, x9Var, l0Var);
                     qVar.show();
                     return;

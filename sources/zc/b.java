@@ -4,29 +4,29 @@ import c8.x0;
 import gf.h;
 import kf.p;
 public final class b extends mf.a {
-    public final a f60032a = new p();
-    public final StringBuilder f60033b = new StringBuilder();
-    public final int f60034c;
+    public final a f60033a = new p();
+    public final StringBuilder f60034b = new StringBuilder();
+    public final int f60035c;
 
     public b(int i7) {
-        this.f60034c = i7;
+        this.f60035c = i7;
     }
 
     @Override
     public final void a(CharSequence charSequence) {
-        StringBuilder sb2 = this.f60033b;
+        StringBuilder sb2 = this.f60034b;
         sb2.append(charSequence);
         sb2.append('\n');
     }
 
     @Override
     public final void d() {
-        this.f60032a.f60031g = this.f60033b.toString();
+        this.f60033a.f60032g = this.f60034b.toString();
     }
 
     @Override
     public final kf.a e() {
-        return this.f60032a;
+        return this.f60033a;
     }
 
     @Override
@@ -49,7 +49,7 @@ public final class b extends mf.a {
                     break;
                 }
             }
-            int i12 = this.f60034c;
+            int i12 = this.f60035c;
             if (i7 == i12 && x0.b(' ', i10 + i12, length, charSequence) == length) {
                 return new gf.a(-1, -1, true);
             }

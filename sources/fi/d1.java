@@ -35,7 +35,7 @@ public final class d1 implements DialogInterface.OnDismissListener {
             case 6:
                 return;
             case 7:
-                org.telegram.utils.twidget.n0.f52922i = false;
+                org.telegram.utils.twidget.n0.f52921i = false;
                 return;
             default:
                 MediaController.f21249g2 = false;

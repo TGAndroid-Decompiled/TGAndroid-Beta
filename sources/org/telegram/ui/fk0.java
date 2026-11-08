@@ -95,7 +95,7 @@ public final class fk0 implements View.OnClickListener {
             if (z9 && e3Var.f22173c == 0) {
                 if (e3Var.f22174e && wg.s.i()) {
                     i0Var.X1 = true;
-                    i0Var.f56617p2.f31455d0 = false;
+                    i0Var.f56618p2.f31455d0 = false;
                     org.telegram.ui.ActionBar.f2 f2Var2 = i0Var.f36279o1;
                     org.telegram.messenger.e3 e3Var2 = i0Var.U1;
                     wg.q0 q0Var = new wg.q0(f2Var2, e3Var2.h, e3Var2.f22179k);
@@ -651,10 +651,10 @@ public final class fk0 implements View.OnClickListener {
                 }
                 long[] jArr = {j3, j11};
                 for (int i18 = 0; i18 < 2; i18++) {
-                    f1Var5.f57746u2.add(Long.valueOf(jArr[i18]));
+                    f1Var5.f57747u2.add(Long.valueOf(jArr[i18]));
                 }
                 f1Var5.o1(false, true);
-                f1Var5.f57747v2 = new jh.b(5);
+                f1Var5.f57748v2 = new jh.b(5);
                 fc1Var.M = f1Var5;
                 f1Var5.show();
                 return;
@@ -739,7 +739,7 @@ public final class fk0 implements View.OnClickListener {
             case 25:
                 sg.q qVar = (sg.q) this.f45636b;
                 Context context5 = (Context) this.f45637c;
-                androidx.activity.n nVar = qVar.f55185o1;
+                androidx.activity.n nVar = qVar.f55186o1;
                 switch (nVar.f1845a) {
                     case 1:
                         z9 = nVar.f1846b;
@@ -749,7 +749,7 @@ public final class fk0 implements View.OnClickListener {
                         break;
                 }
                 if (!z9) {
-                    androidx.activity.n nVar2 = qVar.f55185o1;
+                    androidx.activity.n nVar2 = qVar.f55186o1;
                     switch (nVar2.f1845a) {
                         case 1:
                             view2 = (fi.x9) nVar2.d;
@@ -762,7 +762,7 @@ public final class fk0 implements View.OnClickListener {
                     Bitmap createBitmap = Bitmap.createBitmap(N3.getWidth(), N3.getHeight(), Bitmap.Config.ARGB_8888);
                     Canvas canvas = new Canvas(createBitmap);
                     canvas.drawColor(-16777216);
-                    androidx.activity.n nVar3 = qVar.f55185o1;
+                    androidx.activity.n nVar3 = qVar.f55186o1;
                     switch (nVar3.f1845a) {
                         case 1:
                             fi.i5 i5Var = ((fi.x9) nVar3.d).f12555x0;
@@ -785,7 +785,7 @@ public final class fk0 implements View.OnClickListener {
                             canvas.drawBitmap(N3, 0.0f, 0.0f, (Paint) null);
                             N3.recycle();
                             sg.i iVar = new sg.i(qVar, context5, createBitmap);
-                            androidx.activity.n nVar4 = qVar.f55185o1;
+                            androidx.activity.n nVar4 = qVar.f55186o1;
                             switch (nVar4.f1845a) {
                                 case 1:
                                     frameLayout = ((fi.x9) nVar4.d).E0;
@@ -795,14 +795,14 @@ public final class fk0 implements View.OnClickListener {
                                     break;
                             }
                             frameLayout.addView(iVar, c8.ha.c(-1.0f, -1));
-                            androidx.activity.n nVar5 = qVar.f55185o1;
+                            androidx.activity.n nVar5 = qVar.f55186o1;
                             Objects.requireNonNull(nVar5);
                             iVar.setColorListener(new bi.q9(nVar5, 5));
                             ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
                             duration.setInterpolator(org.telegram.ui.Components.xq.f40366f);
                             duration.addUpdateListener(new fi.v3(iVar, 27));
                             duration.start();
-                            androidx.activity.n nVar6 = qVar.f55185o1;
+                            androidx.activity.n nVar6 = qVar.f55186o1;
                             switch (nVar6.f1845a) {
                                 case 1:
                                     nVar6.f1846b = true;
@@ -823,7 +823,7 @@ public final class fk0 implements View.OnClickListener {
                 tg.c2 c2Var2 = (tg.c2) this.f45636b;
                 fi.nb nbVar = (fi.nb) this.f45637c;
                 tg.z1[] z1VarArr = c2Var2.H;
-                if (z1VarArr != null && z1VarArr.length != 0 && c2Var2.I != null && (j10 = c2Var2.j(c2Var2.f55606n0, c2Var2.f55607o0)) != null) {
+                if (z1VarArr != null && z1VarArr.length != 0 && c2Var2.I != null && (j10 = c2Var2.j(c2Var2.f55607n0, c2Var2.f55608o0)) != null) {
                     nbVar.a(j10);
                     return;
                 }

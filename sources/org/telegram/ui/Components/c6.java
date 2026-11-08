@@ -22,7 +22,7 @@ public final class c6 extends r1.e {
                 }
                 return 0.0f;
             default:
-                return ((r1.f) this.f32460b).f54249a;
+                return ((r1.f) this.f32460b).f54250a;
         }
     }
 
@@ -41,7 +41,7 @@ public final class c6 extends r1.e {
                 }
                 return;
             default:
-                ((r1.f) this.f32460b).f54249a = f10;
+                ((r1.f) this.f32460b).f54250a = f10;
                 return;
         }
     }

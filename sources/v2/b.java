@@ -41,7 +41,7 @@ public final class b extends l2.b implements Handler.Callback {
             handler = new Handler(looper, this);
         }
         this.K = handler;
-        this.I = a.f56980a;
+        this.I = a.f56981a;
         this.L = new o3.a();
         this.R = -9223372036854775807L;
     }
@@ -214,7 +214,7 @@ public final class b extends l2.b implements Handler.Callback {
                         }
                     }
                 } else if (w10 == -5) {
-                    u uVar = (u) bVar.f57655c;
+                    u uVar = (u) bVar.f57656c;
                     uVar.getClass();
                     this.P = uVar.f10619x;
                 }

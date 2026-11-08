@@ -476,7 +476,7 @@ public final class lk0 implements org.telegram.ui.ActionBar.r1, org.telegram.ui.
         Void r10 = (Void) obj;
         PremiumPreviewFragment premiumPreviewFragment = ((ts0) this.f47551b).d.f50415n;
         premiumPreviewFragment.f41623n0.d(0, 0.0f, 0, ss0Var.getMeasuredWidth(), -ss0Var.getTier().h, premiumPreviewFragment.O);
-        return premiumPreviewFragment.f41623n0.f56868f;
+        return premiumPreviewFragment.f41623n0.f56869f;
     }
 
     @Override

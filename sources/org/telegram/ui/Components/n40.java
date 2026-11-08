@@ -174,32 +174,32 @@ public final class n40 extends t40 {
                     case 0:
                         n40 n40Var = this.f34892b;
                         wi.t0 t0Var = n40Var.O;
-                        if (t0Var != null && (s0Var = n40Var.Q) != null && (l0Var = n40Var.R) != null && s0Var.f58138a == 3 && !s0Var.f58142f && !n40Var.f36226o0) {
-                            wi.m0 m0Var = l0Var.f58078a;
-                            wi.m0 m0Var2 = wi.m0.f58083a;
+                        if (t0Var != null && (s0Var = n40Var.Q) != null && (l0Var = n40Var.R) != null && s0Var.f58139a == 3 && !s0Var.f58143f && !n40Var.f36226o0) {
+                            wi.m0 m0Var = l0Var.f58079a;
+                            wi.m0 m0Var2 = wi.m0.f58084a;
                             if (m0Var == m0Var2) {
-                                m0Var2 = wi.m0.f58084b;
+                                m0Var2 = wi.m0.f58085b;
                             }
                             t0Var.getClass();
                             wi.t0.v();
-                            int i11 = t0Var.f58192a0;
+                            int i11 = t0Var.f58193a0;
                             if (i11 != 7 && i11 != 8 && i11 != 9 && i11 != 10) {
-                                if (t0Var.f58208r != m0Var2) {
-                                    t0Var.f58203m.b("camera facing requested: " + t0Var.f58208r + " -> " + m0Var2 + ", state=" + rf.b.u(t0Var.f58192a0));
-                                    t0Var.f58208r = m0Var2;
-                                    int i12 = t0Var.f58192a0;
+                                if (t0Var.f58209r != m0Var2) {
+                                    t0Var.f58204m.b("camera facing requested: " + t0Var.f58209r + " -> " + m0Var2 + ", state=" + rf.b.u(t0Var.f58193a0));
+                                    t0Var.f58209r = m0Var2;
+                                    int i12 = t0Var.f58193a0;
                                     if (i12 == 3 || i12 == 2) {
                                         t0Var.e();
-                                        wi.k kVar = t0Var.f58202l;
+                                        wi.k kVar = t0Var.f58203l;
                                         kVar.F = m0Var2;
-                                        Handler handler = kVar.f58035n;
+                                        Handler handler = kVar.f58036n;
                                         if (kVar.V && handler != null) {
                                             handler.post(new u9.f(23, kVar, m0Var2));
                                             z9 = true;
                                         } else {
                                             z9 = false;
                                         }
-                                        t0Var.f58214y = z9;
+                                        t0Var.f58215y = z9;
                                     }
                                     t0Var.n();
                                     t0Var.o();
@@ -215,11 +215,11 @@ public final class n40 extends t40 {
                         n40 n40Var2 = this.f34892b;
                         wi.t0 t0Var2 = n40Var2.O;
                         if (t0Var2 != null && (s0Var2 = n40Var2.Q) != null && n40Var2.R != null) {
-                            boolean z10 = !s0Var2.f58143g;
-                            wi.k kVar2 = t0Var2.f58202l;
+                            boolean z10 = !s0Var2.f58144g;
+                            wi.k kVar2 = t0Var2.f58203l;
                             wi.t0.v();
-                            if (t0Var2.f58192a0 == 3 && !t0Var2.f58214y && (i10 = t0Var2.f58194b0) != 1) {
-                                t0Var2.f58212w = z10;
+                            if (t0Var2.f58193a0 == 3 && !t0Var2.f58215y && (i10 = t0Var2.f58195b0) != 1) {
+                                t0Var2.f58213w = z10;
                                 if (i10 == 3) {
                                     t0Var2.w(z10);
                                     kVar2.S(false);
@@ -259,32 +259,32 @@ public final class n40 extends t40 {
                     case 0:
                         n40 n40Var = this.f34892b;
                         wi.t0 t0Var = n40Var.O;
-                        if (t0Var != null && (s0Var = n40Var.Q) != null && (l0Var = n40Var.R) != null && s0Var.f58138a == 3 && !s0Var.f58142f && !n40Var.f36226o0) {
-                            wi.m0 m0Var = l0Var.f58078a;
-                            wi.m0 m0Var2 = wi.m0.f58083a;
+                        if (t0Var != null && (s0Var = n40Var.Q) != null && (l0Var = n40Var.R) != null && s0Var.f58139a == 3 && !s0Var.f58143f && !n40Var.f36226o0) {
+                            wi.m0 m0Var = l0Var.f58079a;
+                            wi.m0 m0Var2 = wi.m0.f58084a;
                             if (m0Var == m0Var2) {
-                                m0Var2 = wi.m0.f58084b;
+                                m0Var2 = wi.m0.f58085b;
                             }
                             t0Var.getClass();
                             wi.t0.v();
-                            int i11 = t0Var.f58192a0;
+                            int i11 = t0Var.f58193a0;
                             if (i11 != 7 && i11 != 8 && i11 != 9 && i11 != 10) {
-                                if (t0Var.f58208r != m0Var2) {
-                                    t0Var.f58203m.b("camera facing requested: " + t0Var.f58208r + " -> " + m0Var2 + ", state=" + rf.b.u(t0Var.f58192a0));
-                                    t0Var.f58208r = m0Var2;
-                                    int i12 = t0Var.f58192a0;
+                                if (t0Var.f58209r != m0Var2) {
+                                    t0Var.f58204m.b("camera facing requested: " + t0Var.f58209r + " -> " + m0Var2 + ", state=" + rf.b.u(t0Var.f58193a0));
+                                    t0Var.f58209r = m0Var2;
+                                    int i12 = t0Var.f58193a0;
                                     if (i12 == 3 || i12 == 2) {
                                         t0Var.e();
-                                        wi.k kVar = t0Var.f58202l;
+                                        wi.k kVar = t0Var.f58203l;
                                         kVar.F = m0Var2;
-                                        Handler handler = kVar.f58035n;
+                                        Handler handler = kVar.f58036n;
                                         if (kVar.V && handler != null) {
                                             handler.post(new u9.f(23, kVar, m0Var2));
                                             z9 = true;
                                         } else {
                                             z9 = false;
                                         }
-                                        t0Var.f58214y = z9;
+                                        t0Var.f58215y = z9;
                                     }
                                     t0Var.n();
                                     t0Var.o();
@@ -300,11 +300,11 @@ public final class n40 extends t40 {
                         n40 n40Var2 = this.f34892b;
                         wi.t0 t0Var2 = n40Var2.O;
                         if (t0Var2 != null && (s0Var2 = n40Var2.Q) != null && n40Var2.R != null) {
-                            boolean z10 = !s0Var2.f58143g;
-                            wi.k kVar2 = t0Var2.f58202l;
+                            boolean z10 = !s0Var2.f58144g;
+                            wi.k kVar2 = t0Var2.f58203l;
                             wi.t0.v();
-                            if (t0Var2.f58192a0 == 3 && !t0Var2.f58214y && (i10 = t0Var2.f58194b0) != 1) {
-                                t0Var2.f58212w = z10;
+                            if (t0Var2.f58193a0 == 3 && !t0Var2.f58215y && (i10 = t0Var2.f58195b0) != 1) {
+                                t0Var2.f58213w = z10;
                                 if (i10 == 3) {
                                     t0Var2.w(z10);
                                     kVar2.S(false);
@@ -355,10 +355,10 @@ public final class n40 extends t40 {
         wi.s0 s0Var;
         wi.t0 t0Var = this.O;
         if (t0Var != null && (s0Var = this.Q) != null) {
-            if (s0Var.f58138a == 3) {
+            if (s0Var.f58139a == 3) {
                 return t0Var.j();
             }
-            return s0Var.f58139b;
+            return s0Var.f58140b;
         }
         return 0L;
     }
@@ -572,13 +572,13 @@ public final class n40 extends t40 {
         wi.l0 l0Var;
         wi.s0 s0Var = this.Q;
         boolean z10 = false;
-        if (s0Var != null && s0Var.f58138a == 3 && !s0Var.f58142f && !this.f36226o0) {
+        if (s0Var != null && s0Var.f58139a == 3 && !s0Var.f58143f && !this.f36226o0) {
             z9 = true;
         } else {
             z9 = false;
         }
         this.F.setEnabled(z9);
-        if (z9 && (l0Var = this.R) != null && l0Var.f58079b != 1) {
+        if (z9 && (l0Var = this.R) != null && l0Var.f58080b != 1) {
             z10 = true;
         }
         this.G.setEnabled(z10);
@@ -589,7 +589,7 @@ public final class n40 extends t40 {
         wi.s0 s0Var = this.Q;
         int i7 = this.N;
         fi.n2 n2Var = this.G;
-        if (s0Var != null && s0Var.f58143g) {
+        if (s0Var != null && s0Var.f58144g) {
             if (this.f36217f0 == null) {
                 zg0 zg0Var = new zg0(2131624185, i7, i7);
                 this.f36217f0 = zg0Var;
@@ -612,8 +612,8 @@ public final class n40 extends t40 {
         wi.s0 s0Var = this.Q;
         if (s0Var != null) {
             long j3 = s0Var.d;
-            if (s0Var.f58138a == 3) {
-                long min = Math.min(j3, (SystemClock.elapsedRealtime() + s0Var.f58139b) - s0Var.f58140c);
+            if (s0Var.f58139a == 3) {
+                long min = Math.min(j3, (SystemClock.elapsedRealtime() + s0Var.f58140b) - s0Var.f58141c);
                 this.f36235v0 = min;
                 this.f36236w.setProgress(((float) min) / ((float) j3));
                 r40 r40Var = this.f38237c;
@@ -679,7 +679,7 @@ public final class n40 extends t40 {
     @Override
     public final void b(float f10, int i7) {
         wi.s0 s0Var;
-        if (this.O != null && (s0Var = this.Q) != null && s0Var.f58138a == 5) {
+        if (this.O != null && (s0Var = this.Q) != null && s0Var.f58139a == 5) {
             q();
             if (i7 == 0) {
                 this.O.r();
@@ -687,10 +687,10 @@ public final class n40 extends t40 {
                 this.O.p();
             } else if (i7 == 2) {
                 wi.t0 t0Var = this.O;
-                long j3 = f10 * ((float) this.Q.f58139b);
+                long j3 = f10 * ((float) this.Q.f58140b);
                 t0Var.getClass();
                 wi.t0.v();
-                if (t0Var.f58192a0 == 5 && t0Var.W != null) {
+                if (t0Var.f58193a0 == 5 && t0Var.W != null) {
                     long j10 = t0Var.K;
                     t0Var.W.Z0(5, Math.max(j10, Math.min(Math.max(j10, t0Var.L - 1), j3)));
                     t0Var.d.getClass();
@@ -742,7 +742,7 @@ public final class n40 extends t40 {
     public final boolean f() {
         wi.s0 s0Var = this.Q;
         if (s0Var != null) {
-            int i7 = s0Var.f58138a;
+            int i7 = s0Var.f58139a;
             if (i7 == 4 || i7 == 5 || i7 == 6) {
                 return true;
             }
@@ -804,7 +804,7 @@ public final class n40 extends t40 {
                     a(false);
                     return;
                 }
-                if (this.Q.f58138a == 3) {
+                if (this.Q.f58139a == 3) {
                     z(5);
                 }
                 this.f36219h0 = false;
@@ -858,27 +858,27 @@ public final class n40 extends t40 {
             pkVar.invalidate();
         }
         this.S = new hy0(this.f36216f, this.f36224n);
-        this.P = (wi.r0) xi.e.f58859e.a();
+        this.P = (wi.r0) xi.e.f58860e.a();
         wi.k0 k0Var = new wi.k0(getContext(), this.f36240y);
-        k0Var.f58068c = new File(org.telegram.messenger.t0.h(), "cache");
-        k0Var.d = (wi.m0) xi.e.f58863j.a();
-        k0Var.f58069e = this.P;
+        k0Var.f58069c = new File(org.telegram.messenger.t0.h(), "cache");
+        k0Var.d = (wi.m0) xi.e.f58864j.a();
+        k0Var.f58070e = this.P;
         k0Var.h = xi.e.h.a();
-        k0Var.f58070f = (wi.n0) xi.e.f58860f.a();
-        k0Var.f58071g = (wi.o0) xi.e.f58861g.a();
-        xi.a aVar = xi.e.f58862i;
+        k0Var.f58071f = (wi.n0) xi.e.f58861f.a();
+        k0Var.f58072g = (wi.o0) xi.e.f58862g.a();
+        xi.a aVar = xi.e.f58863i;
         aVar.a();
-        k0Var.f58072i = aVar.d;
+        k0Var.f58073i = aVar.d;
         rt rtVar = this.K0;
-        k0Var.f58073j = rtVar;
+        k0Var.f58074j = rtVar;
         hy0 hy0Var = this.S;
-        k0Var.f58074k = hy0Var;
-        k0Var.f58075l = new bx(this, 5);
+        k0Var.f58075k = hy0Var;
+        k0Var.f58076l = new bx(this, 5);
         if (k0Var.d != null) {
-            if (k0Var.f58069e != null) {
+            if (k0Var.f58070e != null) {
                 if (k0Var.h > 0) {
-                    if (k0Var.f58070f != null) {
-                        if (k0Var.f58071g != null) {
+                    if (k0Var.f58071f != null) {
+                        if (k0Var.f58072g != null) {
                             if (rtVar != null) {
                                 if (hy0Var != null) {
                                     this.O = new wi.t0(k0Var);
@@ -886,12 +886,12 @@ public final class n40 extends t40 {
                                     wi.t0 t0Var = this.O;
                                     t0Var.getClass();
                                     wi.t0.v();
-                                    if (t0Var.f58192a0 == 1) {
+                                    if (t0Var.f58193a0 == 1) {
                                         try {
-                                            t0Var.f58203m.b("start requested");
+                                            t0Var.f58204m.b("start requested");
                                             t0Var.c(true);
                                             t0Var.x(2);
-                                            t0Var.f58202l.W(t0Var.U, 0L, t0Var.f58208r);
+                                            t0Var.f58203l.W(t0Var.U, 0L, t0Var.f58209r);
                                         } catch (Exception e10) {
                                             t0Var.h(e10);
                                         }
@@ -919,18 +919,18 @@ public final class n40 extends t40 {
         wi.s0 s0Var;
         wi.t0 t0Var = this.O;
         if (t0Var != null && (s0Var = this.Q) != null) {
-            int i7 = s0Var.f58138a;
+            int i7 = s0Var.f58139a;
             if (i7 == 3) {
                 y();
             } else if (i7 == 5) {
                 wi.t0.v();
-                if (t0Var.f58192a0 == 5 && t0Var.L - t0Var.K < t0Var.f58207q) {
+                if (t0Var.f58193a0 == 5 && t0Var.L - t0Var.K < t0Var.f58208q) {
                     t0Var.Q++;
                     t0Var.D = false;
-                    t0Var.f58203m.b("resume requested: trim=" + t0Var.K + ".." + t0Var.L + ", sourceDurationMs=" + t0Var.I);
+                    t0Var.f58204m.b("resume requested: trim=" + t0Var.K + ".." + t0Var.L + ", sourceDurationMs=" + t0Var.I);
                     t0Var.t();
                     t0Var.x(6);
-                    t0Var.f58200j.execute(new fi.q1(t0Var, t0Var.l(), t0Var.U, t0Var.T, t0Var.V));
+                    t0Var.f58201j.execute(new fi.q1(t0Var, t0Var.l(), t0Var.U, t0Var.T, t0Var.V));
                     this.T = null;
                     this.f36219h0 = true;
                     this.f36220i0 = false;
@@ -990,9 +990,9 @@ public final class n40 extends t40 {
         wi.s0 s0Var;
         super.onWindowVisibilityChanged(i7);
         if (i7 != 0 && (t0Var = this.O) != null && (s0Var = this.Q) != null) {
-            if (s0Var.f58138a == 3) {
+            if (s0Var.f58139a == 3) {
                 y();
-            } else if (s0Var.f58141e) {
+            } else if (s0Var.f58142e) {
                 t0Var.p();
             }
         }
@@ -1002,7 +1002,7 @@ public final class n40 extends t40 {
         wi.s0 s0Var;
         org.telegram.messenger.j20 j20Var;
         if (this.O != null && (s0Var = this.Q) != null && (j20Var = this.T) != null) {
-            long j3 = s0Var.f58139b;
+            long j3 = s0Var.f58140b;
             long max = Math.max(0L, j20Var.f23471a);
             long j10 = this.T.f23473b;
             if (j10 >= 0) {
@@ -1011,7 +1011,7 @@ public final class n40 extends t40 {
             wi.t0 t0Var = this.O;
             t0Var.getClass();
             wi.t0.v();
-            if (t0Var.f58192a0 == 5) {
+            if (t0Var.f58193a0 == 5) {
                 long max2 = Math.max(0L, Math.min(t0Var.I, max));
                 long max3 = Math.max(max2, Math.min(t0Var.I, j3));
                 if (max3 - max2 >= Math.min(800L, t0Var.I)) {
@@ -1129,8 +1129,8 @@ public final class n40 extends t40 {
         j20Var.f23487q = Math.max(1L, j10);
         j20Var.f23489s = true;
         wi.t0 t0Var = this.O;
-        if (t0Var != null && (o0Var = t0Var.f58211u) != null) {
-            i7 = o0Var.f58121a;
+        if (t0Var != null && (o0Var = t0Var.f58212u) != null) {
+            i7 = o0Var.f58122a;
         } else {
             i7 = 30;
         }
@@ -1139,7 +1139,7 @@ public final class n40 extends t40 {
         if (r0Var == null) {
             i10 = 480;
         } else {
-            i10 = r0Var.f58137a;
+            i10 = r0Var.f58138a;
         }
         j20Var.h = i10;
         j20Var.f23481k = i10;
@@ -1160,7 +1160,7 @@ public final class n40 extends t40 {
         boolean z9;
         int i7;
         if (this.U != null && !this.V && this.O != null && (s0Var = this.Q) != null) {
-            int i10 = s0Var.f58138a;
+            int i10 = s0Var.f58139a;
             if (i10 == 5) {
                 q();
             } else if (i10 != 3) {
@@ -1171,18 +1171,18 @@ public final class n40 extends t40 {
             boolean z11 = !z10;
             t0Var.getClass();
             wi.t0.v();
-            int i11 = t0Var.f58192a0;
+            int i11 = t0Var.f58193a0;
             boolean z12 = false;
             if (i11 == 3 || i11 == 5) {
-                t0Var.f58203m.b("finish requested: state=" + rf.b.u(t0Var.f58192a0) + ", includeAudio=" + z11 + ", durationMs=" + t0Var.j() + ", trim=" + t0Var.K + ".." + t0Var.L);
+                t0Var.f58204m.b("finish requested: state=" + rf.b.u(t0Var.f58193a0) + ", includeAudio=" + z11 + ", durationMs=" + t0Var.j() + ", trim=" + t0Var.K + ".." + t0Var.L);
                 t0Var.B = z11;
-                if (t0Var.f58192a0 == 3) {
+                if (t0Var.f58193a0 == 3) {
                     t0Var.I = t0Var.j();
                     t0Var.A = true;
                     t0Var.e();
-                    t0Var.f58199i.removeCallbacks(t0Var.X);
+                    t0Var.f58200i.removeCallbacks(t0Var.X);
                     t0Var.x(7);
-                    boolean X = t0Var.f58202l.X();
+                    boolean X = t0Var.f58203l.X();
                     t0Var.E = X;
                     if (!X) {
                         t0Var.h(new IllegalStateException("Unable to stop the camera segment"));
@@ -1200,7 +1200,7 @@ public final class n40 extends t40 {
                     } else {
                         i7 = 2;
                     }
-                    t0Var.f58200j.execute(new bi.sb(t0Var, t0Var.U, z9, t0Var.V, z11, i7, t0Var.T));
+                    t0Var.f58201j.execute(new bi.sb(t0Var, t0Var.U, z9, t0Var.V, z11, i7, t0Var.T));
                 }
                 z12 = true;
             }
@@ -1246,7 +1246,7 @@ public final class n40 extends t40 {
         wi.t0 t0Var;
         if (this.U != null && this.V && (t0Var = this.O) != null) {
             wi.t0.v();
-            if (t0Var.f58192a0 == 7) {
+            if (t0Var.f58193a0 == 7) {
                 return true;
             }
             return false;
@@ -1256,7 +1256,7 @@ public final class n40 extends t40 {
 
     public final void y() {
         wi.s0 s0Var;
-        if (this.O != null && (s0Var = this.Q) != null && s0Var.f58138a == 3) {
+        if (this.O != null && (s0Var = this.Q) != null && s0Var.f58139a == 3) {
             z(2);
             this.O.q();
         }

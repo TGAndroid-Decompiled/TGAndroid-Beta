@@ -167,7 +167,7 @@ public final class is0 extends oj0 {
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         if (!(view instanceof org.telegram.ui.Cells.t2)) {
             return;
         }

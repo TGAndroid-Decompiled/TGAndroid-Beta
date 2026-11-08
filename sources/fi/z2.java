@@ -19,7 +19,7 @@ public final class z2 extends vi0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f57047f == 2) {
+        if (d1Var.f57048f == 2) {
             return true;
         }
         return false;
@@ -119,8 +119,8 @@ public final class z2 extends vi0 {
         f3 f3Var = this.f13242c;
         ArrayList arrayList = f3Var.f11968h0;
         ArrayList arrayList2 = f3Var.f11959b0;
-        int i10 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i10 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         int i11 = -1;
         if (i10 == 0) {
             c3 c3Var = (c3) view;
@@ -243,8 +243,8 @@ public final class z2 extends vi0 {
         boolean z9;
         f3 f3Var = this.f13242c;
         ArrayList arrayList = f3Var.f11968h0;
-        if (d1Var.f57047f == 2) {
-            b3 b3Var = (b3) d1Var.f57043a;
+        if (d1Var.f57048f == 2) {
+            b3 b3Var = (b3) d1Var.f57044a;
             Object obj = b3Var.S;
             if (obj instanceof gf) {
                 gf gfVar = (gf) obj;

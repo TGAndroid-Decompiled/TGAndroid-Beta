@@ -25,7 +25,7 @@ public abstract class m extends FrameLayout implements te.i {
         boolean isEmpty = TextUtils.isEmpty(charSequence);
         te.j jVar = this.f28299c;
         if (isEmpty) {
-            jVar.f55511a.m(null, true);
+            jVar.f55512a.m(null, true);
             return;
         }
         int indexOf = TextUtils.indexOf(charSequence, "...");
@@ -60,8 +60,8 @@ public abstract class m extends FrameLayout implements te.i {
             te.e eVar = (te.e) it.next();
             int i7 = k6.Ul;
             f6 f6Var = this.f28297a;
-            ((l) eVar.f55495a).setTextColor(k6.w0(i7, f6Var));
-            ((l) eVar.f55495a).setLinkTextColor(k6.w0(i7, f6Var));
+            ((l) eVar.f55496a).setTextColor(k6.w0(i7, f6Var));
+            ((l) eVar.f55496a).setLinkTextColor(k6.w0(i7, f6Var));
         }
     }
 
@@ -71,7 +71,7 @@ public abstract class m extends FrameLayout implements te.i {
         while (it.hasNext()) {
             te.e eVar = (te.e) it.next();
             float c10 = eVar.c();
-            Object obj = eVar.f55495a;
+            Object obj = eVar.f55496a;
             float T1 = org.telegram.messenger.g0.T1(0.85f, 1.0f, c10);
             l lVar = (l) obj;
             lVar.setAlpha(c10);
@@ -87,7 +87,7 @@ public abstract class m extends FrameLayout implements te.i {
     }
 
     public float getTotalVisibility() {
-        return this.f28299c.f55511a.d.f55502c.f55512a;
+        return this.f28299c.f55512a.d.f55503c.f55513a;
     }
 
     @Override

@@ -37,23 +37,23 @@ public final class a0 extends na implements ls {
     public final ArrayList X1;
     public xg.c Y1;
     public int Z1;
-    public int f57677a2;
-    public int f57678b2;
-    public boolean f57679c2;
+    public int f57678a2;
+    public int f57679b2;
+    public boolean f57680c2;
     public int d2;
-    public long f57680e2;
-    public int f57681f2;
-    public int f57682g2;
-    public long f57683h2;
-    public final yg.a f57684i2;
-    public sg.i0 f57685j2;
-    public int f57686k2;
-    public i f57687l2;
-    public final TL_stories.PrepaidGiveaway f57688m2;
-    public String f57689n2;
-    public boolean f57690o2;
-    public boolean f57691p2;
-    public final t f57692q2;
+    public long f57681e2;
+    public int f57682f2;
+    public int f57683g2;
+    public long f57684h2;
+    public final yg.a f57685i2;
+    public sg.i0 f57686j2;
+    public int f57687k2;
+    public i f57688l2;
+    public final TL_stories.PrepaidGiveaway f57689m2;
+    public String f57690n2;
+    public boolean f57691o2;
+    public boolean f57692p2;
+    public final t f57693q2;
 
     public a0(f2 f2Var, long j3, TL_stories.PrepaidGiveaway prepaidGiveaway) {
         super(f2Var, false);
@@ -77,11 +77,11 @@ public final class a0 extends na implements ls {
         this.V1 = new ArrayList();
         this.W1 = new ArrayList();
         this.X1 = new ArrayList();
-        int i7 = yg.d.f59449w;
+        int i7 = yg.d.f59450w;
         this.Z1 = 2;
-        this.f57677a2 = 0;
-        int i10 = yg.u.f59489w;
-        this.f57678b2 = 0;
+        this.f57678a2 = 0;
+        int i10 = yg.u.f59490w;
+        this.f57679b2 = 0;
         this.d2 = 12;
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(new Date().getTime() + 259200000);
@@ -92,13 +92,13 @@ public final class a0 extends na implements ls {
             i11++;
         }
         calendar.set(12, i11);
-        this.f57680e2 = calendar.getTimeInMillis();
-        this.f57681f2 = 2;
-        this.f57682g2 = 2;
-        this.f57689n2 = "";
-        this.f57691p2 = true;
-        this.f57692q2 = new t(this, 0);
-        this.f57688m2 = prepaidGiveaway;
+        this.f57681e2 = calendar.getTimeInMillis();
+        this.f57682f2 = 2;
+        this.f57683g2 = 2;
+        this.f57690n2 = "";
+        this.f57692p2 = true;
+        this.f57693q2 = new t(this, 0);
+        this.f57689m2 = prepaidGiveaway;
         this.f36282r1 = 0.15f;
         this.f28650u0 = false;
         this.f28651v0 = false;
@@ -108,14 +108,14 @@ public final class a0 extends na implements ls {
         ((ViewGroup.MarginLayoutParams) this.l1.getLayoutParams()).leftMargin = 0;
         ((ViewGroup.MarginLayoutParams) this.l1.getLayoutParams()).rightMargin = 0;
         if (prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway) {
-            int i12 = yg.d.f59449w;
+            int i12 = yg.d.f59450w;
             this.Z1 = 3;
         }
         v4.k kVar = new v4.k();
         kVar.n(350L);
         kVar.o(xq.h);
         kVar.C = false;
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         this.f36277k1.setItemAnimator(kVar);
         pj0 pj0Var = this.f36277k1;
         int i13 = this.f28649t0;
@@ -130,15 +130,15 @@ public final class a0 extends na implements ls {
         u uVar = new u(this);
         u uVar2 = new u(this);
         u uVar3 = new u(this);
-        cVar.f58713e = arrayList;
-        cVar.f58718w = M0;
-        cVar.f58714f = pj0Var2;
+        cVar.f58714e = arrayList;
+        cVar.f58719w = M0;
+        cVar.f58715f = pj0Var2;
         cVar.h = uVar;
-        cVar.f58715n = uVar2;
-        cVar.f58717s = uVar3;
+        cVar.f58716n = uVar2;
+        cVar.f58718s = uVar3;
         k1(false, false);
         yg.a aVar = new yg.a(getContext(), this.I0);
-        this.f57684i2 = aVar;
+        this.f57685i2 = aVar;
         aVar.setOnClickListener(new rq(this, prepaidGiveaway, j3, f2Var));
         j1(false);
         this.f28619b.addView(aVar, ha.d(-1, 68.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
@@ -155,8 +155,8 @@ public final class a0 extends na implements ls {
 
     @Override
     public final CharSequence O0() {
-        int i7 = this.f57677a2;
-        int i10 = yg.d.f59449w;
+        int i7 = this.f57678a2;
+        int i10 = yg.d.f59450w;
         if (i7 == 1) {
             return id.M0(2131749681, null);
         }
@@ -165,7 +165,7 @@ public final class a0 extends na implements ls {
 
     @Override
     public final void R0(Canvas canvas, int i7) {
-        this.f57686k2 = i7;
+        this.f57687k2 = i7;
     }
 
     public final ArrayList d1(long j3) {
@@ -194,7 +194,7 @@ public final class a0 extends na implements ls {
 
     @Override
     public final void dismiss() {
-        i iVar = this.f57687l2;
+        i iVar = this.f57688l2;
         if (iVar != null) {
             iVar.run();
         }
@@ -203,31 +203,31 @@ public final class a0 extends na implements ls {
 
     public final int e1() {
         int i7 = this.Z1;
-        int i10 = yg.d.f59449w;
+        int i10 = yg.d.f59450w;
         if (i7 == 2) {
-            return ((Integer) this.Q1.get(this.f57681f2)).intValue();
+            return ((Integer) this.Q1.get(this.f57682f2)).intValue();
         }
         List h12 = h1();
-        int i11 = this.f57682g2;
+        int i11 = this.f57683g2;
         if (i11 < 0 || i11 >= h12.size()) {
-            this.f57682g2 = 0;
+            this.f57683g2 = 0;
         }
-        if (this.f57682g2 >= h12.size()) {
+        if (this.f57683g2 >= h12.size()) {
             return 0;
         }
-        return ((Integer) h12.get(this.f57682g2)).intValue();
+        return ((Integer) h12.get(this.f57683g2)).intValue();
     }
 
     public final int f1() {
         int e12;
         int g10;
         int i7 = this.Z1;
-        int i10 = yg.d.f59449w;
+        int i10 = yg.d.f59450w;
         if (i7 == 2) {
-            e12 = ((Integer) this.Q1.get(this.f57681f2)).intValue();
+            e12 = ((Integer) this.Q1.get(this.f57682f2)).intValue();
             g10 = s.g();
         } else {
-            TL_stars.TL_starsGiveawayOption g12 = g1(this.f57683h2);
+            TL_stars.TL_starsGiveawayOption g12 = g1(this.f57684h2);
             if (g12 != null) {
                 return g12.yearly_boosts;
             }
@@ -253,12 +253,12 @@ public final class a0 extends na implements ls {
 
     public final List h1() {
         int i7 = this.Z1;
-        int i10 = yg.d.f59449w;
+        int i10 = yg.d.f59450w;
         if (i7 == 2) {
             return this.Q1;
         }
         ArrayList arrayList = new ArrayList();
-        TL_stars.TL_starsGiveawayOption g12 = g1(this.f57683h2);
+        TL_stars.TL_starsGiveawayOption g12 = g1(this.f57684h2);
         if (g12 != null) {
             for (int i11 = 0; i11 < g12.winners.size(); i11++) {
                 TL_stars.TL_starsGiveawayWinnersOption tL_starsGiveawayWinnersOption = g12.winners.get(i11);
@@ -271,7 +271,7 @@ public final class a0 extends na implements ls {
     }
 
     public final boolean i1() {
-        if (this.f57688m2 != null) {
+        if (this.f57689m2 != null) {
             return true;
         }
         return false;
@@ -280,9 +280,9 @@ public final class a0 extends na implements ls {
     public final void j1(boolean z9) {
         boolean z10;
         boolean i12 = i1();
-        yg.a aVar = this.f57684i2;
+        yg.a aVar = this.f57685i2;
         if (i12) {
-            TL_stories.PrepaidGiveaway prepaidGiveaway = this.f57688m2;
+            TL_stories.PrepaidGiveaway prepaidGiveaway = this.f57689m2;
             if (prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway) {
                 aVar.a(prepaidGiveaway.quantity, z9);
                 return;
@@ -290,8 +290,8 @@ public final class a0 extends na implements ls {
             aVar.a(s.g() * prepaidGiveaway.quantity, z9);
             return;
         }
-        int i7 = this.f57677a2;
-        int i10 = yg.d.f59449w;
+        int i7 = this.f57678a2;
+        int i10 = yg.d.f59450w;
         if (i7 == 0) {
             aVar.a(f1(), z9);
             return;
@@ -303,14 +303,14 @@ public final class a0 extends na implements ls {
         } else {
             z10 = false;
         }
-        aVar.f59423e = true;
-        fi.d dVar = aVar.f59420a;
+        aVar.f59424e = true;
+        fi.d dVar = aVar.f59421a;
         dVar.k();
         dVar.setShowZero(true);
         dVar.setEnabled(z10);
         dVar.c(g10, z9);
         dVar.i(id.M0(2131749681, null), z9, true);
-        r6.i(k6.f27925h5, aVar.f59421b, aVar.f59422c);
+        r6.i(k6.f27925h5, aVar.f59422b, aVar.f59423c);
     }
 
     public final void k1(boolean r28, boolean r29) {

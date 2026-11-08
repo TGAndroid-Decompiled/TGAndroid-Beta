@@ -369,21 +369,21 @@ public final class nb implements Runnable {
                 p4.l0 l0Var = (p4.l0) obj;
                 p4.d0 d0Var = m0Var.h;
                 if (!d0Var.j()) {
-                    if (!((q4.l) m0Var.f53369n.f53803b).f53785a.isActive()) {
+                    if (!((q4.l) m0Var.f53370n.f53804b).f53786a.isActive()) {
                         StringBuilder n10 = jg.g.n(i10, "Ignore incoming player command before initialization. command=", ", pid=");
-                        n10.append(rVar.f53805a.f53807b);
+                        n10.append(rVar.f53806a.f53808b);
                         h2.a.l("MediaSessionLegacyStub", n10.toString());
                         return;
                     }
                     p4.v m0 = m0Var.m0(rVar);
-                    if (!m0Var.f53363g.G(m0, i10)) {
-                        if (i10 == 1 && !d0Var.f53217t.u()) {
+                    if (!m0Var.f53364g.G(m0, i10)) {
+                        if (i10 == 1 && !d0Var.f53218t.u()) {
                             h2.a.l("MediaSessionLegacyStub", "Calling play() omitted due to COMMAND_PLAY_PAUSE not being available. If this play command has started the service for instance for playback resumption, this may prevent the service from being started into the foreground.");
                             return;
                         }
                         return;
                     }
-                    pb.b bVar = d0Var.f53203e;
+                    pb.b bVar = d0Var.f53204e;
                     d0Var.s(m0);
                     bVar.getClass();
                     try {

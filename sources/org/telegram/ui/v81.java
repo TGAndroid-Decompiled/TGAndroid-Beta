@@ -107,16 +107,16 @@ public final class v81 extends org.telegram.ui.ActionBar.f2 {
                     case 0:
                         if (v81Var.f50596b == 0 && v81Var.f50604x == null) {
                             qg.a aVar = v81Var.f50605y;
-                            int i11 = aVar.f54116e + 1;
-                            aVar.f54116e = i11;
-                            int[] iArr = qg.a.f54111k;
+                            int i11 = aVar.f54117e + 1;
+                            aVar.f54117e = i11;
+                            int[] iArr = qg.a.f54112k;
                             if (i11 > 5) {
-                                aVar.f54116e = 0;
+                                aVar.f54117e = 0;
                             }
                             int[] iArr2 = aVar.h;
-                            int i12 = iArr[aVar.f54116e];
-                            aVar.f54119i = i12;
-                            aVar.h = (int[]) qg.a.f54112l.get(i12);
+                            int i12 = iArr[aVar.f54117e];
+                            aVar.f54120i = i12;
+                            aVar.h = (int[]) qg.a.f54113l.get(i12);
                             if (org.telegram.ui.ActionBar.k6.I.q()) {
                                 aVar.h = new int[]{i0.a.f(0.2f, aVar.h[0], -1), i0.a.f(0.2f, aVar.h[1], -1)};
                             }
@@ -125,7 +125,7 @@ public final class v81 extends org.telegram.ui.ActionBar.f2 {
                             ofFloat.addUpdateListener(new bi.de(26, aVar, iArr2));
                             ofFloat.setDuration(200L);
                             ofFloat.start();
-                            v81Var.E = iArr[aVar.f54116e];
+                            v81Var.E = iArr[aVar.f54117e];
                             return;
                         }
                         return;
@@ -191,16 +191,16 @@ public final class v81 extends org.telegram.ui.ActionBar.f2 {
                         case 0:
                             if (v81Var.f50596b == 0 && v81Var.f50604x == null) {
                                 qg.a aVar = v81Var.f50605y;
-                                int i112 = aVar.f54116e + 1;
-                                aVar.f54116e = i112;
-                                int[] iArr = qg.a.f54111k;
+                                int i112 = aVar.f54117e + 1;
+                                aVar.f54117e = i112;
+                                int[] iArr = qg.a.f54112k;
                                 if (i112 > 5) {
-                                    aVar.f54116e = 0;
+                                    aVar.f54117e = 0;
                                 }
                                 int[] iArr2 = aVar.h;
-                                int i122 = iArr[aVar.f54116e];
-                                aVar.f54119i = i122;
-                                aVar.h = (int[]) qg.a.f54112l.get(i122);
+                                int i122 = iArr[aVar.f54117e];
+                                aVar.f54120i = i122;
+                                aVar.h = (int[]) qg.a.f54113l.get(i122);
                                 if (org.telegram.ui.ActionBar.k6.I.q()) {
                                     aVar.h = new int[]{i0.a.f(0.2f, aVar.h[0], -1), i0.a.f(0.2f, aVar.h[1], -1)};
                                 }
@@ -209,7 +209,7 @@ public final class v81 extends org.telegram.ui.ActionBar.f2 {
                                 ofFloat.addUpdateListener(new bi.de(26, aVar, iArr2));
                                 ofFloat.setDuration(200L);
                                 ofFloat.start();
-                                v81Var.E = iArr[aVar.f54116e];
+                                v81Var.E = iArr[aVar.f54117e];
                                 return;
                             }
                             return;
@@ -322,7 +322,7 @@ public final class v81 extends org.telegram.ui.ActionBar.f2 {
             }
             this.E = f10.icon_color;
         } else {
-            this.E = qg.a.f54111k[Math.abs(Utilities.f21334b.nextInt() % 6)];
+            this.E = qg.a.f54112k[Math.abs(Utilities.f21334b.nextInt() % 6)];
         }
         return super.onFragmentCreate();
     }

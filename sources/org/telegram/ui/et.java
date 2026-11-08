@@ -39,7 +39,7 @@ public final class et extends org.telegram.ui.Components.nc {
             while (true) {
                 if (i12 < gtVar.j3.size()) {
                     ct ctVar = (ct) gtVar.j3.get(i12);
-                    if (ctVar != null && ctVar.f54531a == 2 && ctVar.h == i11) {
+                    if (ctVar != null && ctVar.f54532a == 2 && ctVar.h == i11) {
                         i10 = i12;
                         break;
                     }

@@ -410,29 +410,29 @@ public final class c implements c20 {
                 return;
             case 19:
                 rh.h hVar = (rh.h) obj2;
-                if (((rh.b) obj) == rh.b.d && ((i7 = hVar.f54552s) == 2 || i7 == 3)) {
-                    hVar.f54552s = 1;
+                if (((rh.b) obj) == rh.b.d && ((i7 = hVar.f54553s) == 2 || i7 == 3)) {
+                    hVar.f54553s = 1;
                 }
                 hVar.h.run();
                 return;
             case 20:
                 sg.w wVar = (sg.w) obj2;
                 sg.z0 z0Var2 = (sg.z0) obj;
-                sg.w0 w0Var2 = wVar.f55225a;
+                sg.w0 w0Var2 = wVar.f55226a;
                 if (z0Var2 != null) {
                     float currentWeight = w0Var2.getCurrentWeight();
-                    z0Var2.f55270f = currentWeight;
-                    double d = wVar.f55238p;
+                    z0Var2.f55271f = currentWeight;
+                    double d = wVar.f55239p;
                     if (d > 0.0d) {
-                        z0Var2.f55270f = (float) ((d / wVar.f55239q) * currentWeight);
+                        z0Var2.f55271f = (float) ((d / wVar.f55240q) * currentWeight);
                     }
-                    if (z0Var2.f55266a.o() == 4) {
-                        z0Var2.f55274k *= z0Var2.f55270f;
+                    if (z0Var2.f55267a.o() == 4) {
+                        z0Var2.f55275k *= z0Var2.f55271f;
                     }
                 }
                 sg.j0 painting = w0Var2.getPainting();
                 if (painting.L == null) {
-                    painting.f55089f.f(new sg.e0(painting, z0Var2, 1));
+                    painting.f55090f.f(new sg.e0(painting, z0Var2, 1));
                     return;
                 }
                 return;
@@ -440,27 +440,27 @@ public final class c implements c20 {
                 sh.b bVar = (sh.b) obj2;
                 sh.c cVar = (sh.c) obj;
                 bVar.h = cVar;
-                bVar.f55284c.b(cVar, true);
+                bVar.f55285c.b(cVar, true);
                 org.telegram.messenger.g0.i3(new t0(bVar, 2), 200L);
                 return;
             case 22:
                 e5 e5Var = (e5) obj2;
                 TextureView textureView = (TextureView) obj;
-                e5Var.f55967w0 = textureView;
+                e5Var.f55968w0 = textureView;
                 if (textureView != null) {
-                    e5Var.f55961q0.addView(textureView, 0);
+                    e5Var.f55962q0.addView(textureView, 0);
                     return;
                 }
                 return;
             case 23:
                 i2 i2Var = (i2) obj2;
-                i2Var.f55760n = (Bitmap) obj;
+                i2Var.f55761n = (Bitmap) obj;
                 Paint paint2 = new Paint(1);
-                i2Var.f55762s = paint2;
-                Bitmap bitmap4 = i2Var.f55760n;
+                i2Var.f55763s = paint2;
+                Bitmap bitmap4 = i2Var.f55761n;
                 Shader.TileMode tileMode3 = Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader2 = new BitmapShader(bitmap4, tileMode3, tileMode3);
-                i2Var.f55761r = bitmapShader2;
+                i2Var.f55762r = bitmapShader2;
                 paint2.setShader(bitmapShader2);
                 ColorMatrix colorMatrix2 = new ColorMatrix();
                 if (!k6.I.q()) {
@@ -473,8 +473,8 @@ public final class c implements c20 {
                     f10 = -0.07f;
                 }
                 org.telegram.messenger.g0.h(colorMatrix2, f10);
-                i2Var.f55762s.setColorFilter(new ColorMatrixColorFilter(colorMatrix2));
-                i2Var.f55763w = new Matrix();
+                i2Var.f55763s.setColorFilter(new ColorMatrixColorFilter(colorMatrix2));
+                i2Var.f55764w = new Matrix();
                 return;
             case 24:
                 ((ug.i0) obj2).y1((HashMap) obj);
@@ -483,8 +483,8 @@ public final class c implements c20 {
                 ug.q1 q1Var2 = (ug.q1) obj2;
                 Boolean bool = (Boolean) obj;
                 boolean e10 = sc.e(131072);
-                if (q1Var2.f56796e != e10) {
-                    q1Var2.f56796e = e10;
+                if (q1Var2.f56797e != e10) {
+                    q1Var2.f56797e = e10;
                     q1Var2.invalidate();
                     return;
                 }

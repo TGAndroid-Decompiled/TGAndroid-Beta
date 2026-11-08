@@ -864,7 +864,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.f2 implements org
                         break;
                     }
                     v4.d1 a10 = jw0Var.a(null, jw0Var.d(i11));
-                    View view = a10.f57043a;
+                    View view = a10.f57044a;
                     profileActivity.d.t(a10, i11);
                     view.measure(makeMeasureSpec, makeMeasureSpec2);
                     i12 += view.getMeasuredHeight();
@@ -911,18 +911,18 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.f2 implements org
         }
         ug.f1 f1Var = new ug.f1(profileActivity, profileActivity.currentAccount, user, null, null, profileActivity.f41869z0);
         k5Var.getLocationOnScreen(new int[2]);
-        f1Var.f56574n2 = k5Var.f27764h0;
-        f1Var.f56575o2 = k5Var.f27765i0;
-        f1Var.f56578r2 = k5Var.getScaleX();
-        f1Var.f56576p2 = k5Var.getLeft();
-        f1Var.f56577q2 = k5Var.getTop();
-        f1Var.f56579s2 = k5Var;
+        f1Var.f56575n2 = k5Var.f27764h0;
+        f1Var.f56576o2 = k5Var.f27765i0;
+        f1Var.f56579r2 = k5Var.getScaleX();
+        f1Var.f56577p2 = k5Var.getLeft();
+        f1Var.f56578q2 = k5Var.getTop();
+        f1Var.f56580s2 = k5Var;
         Drawable rightDrawable = k5Var.getRightDrawable();
         org.telegram.ui.Components.g5 g5Var = profileActivity.F;
         if (rightDrawable == g5Var && g5Var != null) {
             Drawable drawable = g5Var.f33851f[0];
             if (drawable instanceof org.telegram.ui.Components.i5) {
-                f1Var.f56578r2 *= 0.98f;
+                f1Var.f56579r2 *= 0.98f;
                 TLRPC.Document document = ((org.telegram.ui.Components.i5) drawable).f34536e;
                 if (document != null) {
                     org.telegram.ui.Components.l9 l9Var = new org.telegram.ui.Components.l9(profileActivity.getParentActivity());
@@ -950,12 +950,12 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.f2 implements org
                     l9Var.m(hcVar, str2, org.telegram.messenger.hc.c(w10, document), "140_140", d, document);
                     if (((org.telegram.ui.Components.i5) profileActivity.F.f33851f[0]).c()) {
                         l9Var.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28187v6, profileActivity.f41869z0), PorterDuff.Mode.SRC_IN));
-                        f1Var.f56581u2 = org.telegram.messenger.ij.j1(document);
+                        f1Var.f56582u2 = org.telegram.messenger.ij.j1(document);
                     } else {
-                        f1Var.f56581u2 = org.telegram.messenger.ij.j1(document);
+                        f1Var.f56582u2 = org.telegram.messenger.ij.j1(document);
                     }
-                    f1Var.f56580t2 = l9Var;
-                    f1Var.f56583w2 = true;
+                    f1Var.f56581t2 = l9Var;
+                    f1Var.f56584w2 = true;
                 }
             }
         }
@@ -3236,7 +3236,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.f2 implements org
                 int i12 = this.J4;
                 if (i12 != -1 && !z9) {
                     org.telegram.ui.Components.xi0 xi0Var = (org.telegram.ui.Components.xi0) this.f41691a.K(i12);
-                    if (xi0Var != null && xi0Var.f57043a.getTop() <= 0) {
+                    if (xi0Var != null && xi0Var.f57044a.getTop() <= 0) {
                         z9 = true;
                     } else {
                         z9 = false;
@@ -3821,7 +3821,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.f2 implements org
         if (i7 >= 0) {
             if (z9) {
                 mi.m mVar = new mi.m(getParentActivity(), 2, 0.6f);
-                mVar.f57212a = this.J4;
+                mVar.f57213a = this.J4;
                 mVar.f20111p = -this.f41691a.getPaddingTop();
                 this.f41707c.w0(mVar);
                 return;
@@ -6710,7 +6710,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.f2 implements org
             }
             te.a aVar = this.M5;
             aVar.a(z9, true);
-            float f10 = aVar.f55486e;
+            float f10 = aVar.f55487e;
             this.s5.setTranslationY(org.telegram.messenger.g0.W1(f10, org.telegram.messenger.g0.L(60.0f), 0));
             this.s5.setAlpha(f10);
             FrameLayout frameLayout = this.s5;

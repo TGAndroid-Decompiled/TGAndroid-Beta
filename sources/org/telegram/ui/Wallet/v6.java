@@ -155,7 +155,7 @@ public final class v6 extends FrameLayout {
             r1.h hVar = new r1.h(f10);
             hVar.a(0.55f);
             hVar.b(280.0f);
-            gVar.f54267m = hVar;
+            gVar.f54268m = hVar;
             this.J.f(0.001f);
             this.J.b(new p6(this, 0));
             this.J.a(new q6(this, 0));
@@ -172,14 +172,14 @@ public final class v6 extends FrameLayout {
         float f11 = this.f43267g0;
         float f12 = this.f43269i0;
         fVar.d = com.google.android.recaptcha.internal.a.z(1.0f, f12, f11, f10);
-        fVar.f57379i = com.google.android.recaptcha.internal.a.z(1.0f, f12, this.f43268h0, this.H);
+        fVar.f57380i = com.google.android.recaptcha.internal.a.z(1.0f, f12, this.f43268h0, this.H);
     }
 
     public final void f(v6 v6Var) {
         vg.f fVar;
         if (v6Var != null && (fVar = v6Var.f43265f) != null && this.f43265f != null) {
             this.G = fVar.d;
-            this.H = fVar.f57379i;
+            this.H = fVar.f57380i;
             e();
         }
     }
@@ -206,7 +206,7 @@ public final class v6 extends FrameLayout {
         if (fVar == null) {
             return 0.0f;
         }
-        return (float) Math.toRadians(fVar.f57379i + fVar.f57380j);
+        return (float) Math.toRadians(fVar.f57380i + fVar.f57381j);
     }
 
     public float getFlightYaw() {
@@ -214,7 +214,7 @@ public final class v6 extends FrameLayout {
         if (fVar == null) {
             return 0.0f;
         }
-        return (float) Math.toRadians(fVar.d + fVar.f57377f);
+        return (float) Math.toRadians(fVar.d + fVar.f57378f);
     }
 
     public final void h(boolean z9) {
@@ -228,7 +228,7 @@ public final class v6 extends FrameLayout {
             if (fVar != null) {
                 if (z9) {
                     this.f43267g0 = (float) Math.IEEEremainder(fVar.d - this.G, 360.0d);
-                    this.f43268h0 = (float) Math.IEEEremainder(this.f43265f.f57379i - this.H, 360.0d);
+                    this.f43268h0 = (float) Math.IEEEremainder(this.f43265f.f57380i - this.H, 360.0d);
                     this.f43269i0 = 0.0f;
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                     this.I = ofFloat;
@@ -283,13 +283,13 @@ public final class v6 extends FrameLayout {
             if (u6Var != null) {
                 float max = Math.max(1.0f, 3.5f);
                 u6Var.J = max;
-                u6Var.f57362a.h = u6Var.I / max;
+                u6Var.f57363a.h = u6Var.I / max;
                 u6Var.f();
             }
             setIdleAnimationEnabled(false);
             vg.f fVar = this.f43265f;
             this.G = fVar.d;
-            this.H = fVar.f57379i;
+            this.H = fVar.f57380i;
             if (this.f43274r) {
                 Choreographer choreographer = Choreographer.getInstance();
                 r6 r6Var = this.f43270j0;
@@ -331,7 +331,7 @@ public final class v6 extends FrameLayout {
                 } else if (z9) {
                     vg.f fVar = this.f43265f;
                     fVar.d = 0.0f;
-                    fVar.f57379i = 0.0f;
+                    fVar.f57380i = 0.0f;
                     m(new g2(this, i7, 2));
                 }
                 setRendererPaused(!z9);
@@ -355,7 +355,7 @@ public final class v6 extends FrameLayout {
     public final void k() {
         vg.f fVar = this.f43265f;
         if (fVar != null) {
-            fVar.f57377f = this.T + this.L;
+            fVar.f57378f = this.T + this.L;
             return;
         }
         ch0 ch0Var = this.h;
@@ -376,17 +376,17 @@ public final class v6 extends FrameLayout {
     public final void m(Runnable runnable) {
         u6 u6Var = this.d;
         if (u6Var != null) {
-            u6Var.f57370w = runnable;
-            if (u6Var.f57369s && runnable != null) {
-                u6Var.f57370w = null;
+            u6Var.f57371w = runnable;
+            if (u6Var.f57370s && runnable != null) {
+                u6Var.f57371w = null;
                 runnable.run();
             }
         }
         t6 t6Var = this.f43263e;
         if (t6Var != null) {
-            t6Var.f57410a0 = runnable;
+            t6Var.f57411a0 = runnable;
             if (t6Var.W && runnable != null) {
-                t6Var.f57410a0 = null;
+                t6Var.f57411a0 = null;
                 runnable.run();
             }
         }
@@ -474,7 +474,7 @@ public final class v6 extends FrameLayout {
                         vg.f fVar = this.f43265f;
                         fVar.d = com.google.android.recaptcha.internal.a.z(motionEvent.getX(findPointerIndex), this.E, f10, fVar.d);
                         vg.f fVar2 = this.f43265f;
-                        fVar2.f57379i = com.google.android.recaptcha.internal.a.z(motionEvent.getY(findPointerIndex), this.F, f10, fVar2.f57379i);
+                        fVar2.f57380i = com.google.android.recaptcha.internal.a.z(motionEvent.getY(findPointerIndex), this.F, f10, fVar2.f57380i);
                         this.E = motionEvent.getX(findPointerIndex);
                         this.F = motionEvent.getY(findPointerIndex);
                         return true;
@@ -534,7 +534,7 @@ public final class v6 extends FrameLayout {
         this.K = f10;
         vg.f fVar = this.f43265f;
         if (fVar != null) {
-            fVar.f57378g = f10 + this.M;
+            fVar.f57379g = f10 + this.M;
             return;
         }
         ch0 ch0Var = this.h;
@@ -554,7 +554,7 @@ public final class v6 extends FrameLayout {
     public void setHeaderTilt(float f10) {
         vg.f fVar = this.f43265f;
         if (fVar != null) {
-            fVar.f57380j = f10;
+            fVar.f57381j = f10;
         }
     }
 
@@ -575,7 +575,7 @@ public final class v6 extends FrameLayout {
         k();
         vg.f fVar = this.f43265f;
         if (fVar != null) {
-            fVar.f57378g = this.K + this.M;
+            fVar.f57379g = this.K + this.M;
             return;
         }
         ch0 ch0Var = this.h;

@@ -16,24 +16,24 @@ import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Components.vy0;
 public final class t extends FrameLayout {
-    public final xh.l f59485a;
-    public final FrameLayout f59486b;
-    public String f59487c;
+    public final xh.l f59486a;
+    public final FrameLayout f59487b;
+    public String f59488c;
     public String d;
-    public final ImageView f59488e;
+    public final ImageView f59489e;
 
     public t(Context context, f6 f6Var) {
         super(context);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f59486b = frameLayout;
+        this.f59487b = frameLayout;
         xh.l lVar = new xh.l(context);
-        this.f59485a = lVar;
+        this.f59486a = lVar;
         lVar.setPadding(g0.L(18.0f), g0.L(13.0f), g0.L(50.0f), g0.L(13.0f));
         lVar.setTextSize(1, 16.0f);
         lVar.setEllipsize(TextUtils.TruncateAt.MIDDLE);
         lVar.setSingleLine(true);
         r6.V(lVar, k6.G6, f6Var);
-        lVar.f58842r = false;
+        lVar.f58843r = false;
         frameLayout.addView(lVar, ha.e(-2, -2, 17));
         int L = g0.L(8.0f);
         int i7 = k6.f27872e7;
@@ -47,26 +47,26 @@ public final class t extends FrameLayout {
         r6.k(frameLayout, k02, N, h, f6Var);
         addView(frameLayout, ha.d(-1, -2.0f, 0, 14.0f, 0.0f, 14.0f, 0.0f));
         frameLayout.setOnClickListener(new View.OnClickListener(this) {
-            public final t f59484b;
+            public final t f59485b;
 
             {
-                this.f59484b = this;
+                this.f59485b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        g0.g(this.f59484b.d);
+                        g0.g(this.f59485b.d);
                         return;
                     default:
-                        g0.g(this.f59484b.d);
+                        g0.g(this.f59485b.d);
                         return;
                 }
             }
         });
         ImageView imageView = new ImageView(getContext());
-        this.f59488e = imageView;
+        this.f59489e = imageView;
         imageView.setImageResource(2131231782);
         r6.t(imageView, k6.f27960j5, f6Var, PorterDuff.Mode.SRC_ATOP);
         imageView.setPadding(g0.L(8.0f), g0.L(8.0f), g0.L(8.0f), g0.L(8.0f));
@@ -75,20 +75,20 @@ public final class t extends FrameLayout {
         imageView.setBackground(k6.k0(L2, L2, L2, L2, 0, o10, o10));
         addView(imageView, ha.d(40, 40.0f, 21, 15.0f, 0.0f, 17.0f, 0.0f));
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final t f59484b;
+            public final t f59485b;
 
             {
-                this.f59484b = this;
+                this.f59485b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        g0.g(this.f59484b.d);
+                        g0.g(this.f59485b.d);
                         return;
                     default:
-                        g0.g(this.f59484b.d);
+                        g0.g(this.f59485b.d);
                         return;
                 }
             }
@@ -96,27 +96,27 @@ public final class t extends FrameLayout {
     }
 
     public final void a(Runnable runnable) {
-        this.f59488e.setVisibility(4);
+        this.f59489e.setVisibility(4);
         int L = g0.L(18.0f);
         int L2 = g0.L(14.0f);
         int L3 = g0.L(14.0f);
         int L4 = g0.L(18.0f);
-        xh.l lVar = this.f59485a;
+        xh.l lVar = this.f59486a;
         lVar.setPadding(L, L2, L3, L4);
         ?? obj = new Object();
         obj.f38779a |= 256;
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("t.me/giftcode/" + this.f59487c);
-        if (this.f59487c == null) {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("t.me/giftcode/" + this.f59488c);
+        if (this.f59488c == null) {
             spannableStringBuilder.append((CharSequence) "1234567891011123654897566536223");
         }
         spannableStringBuilder.setSpan(new vy0(obj, 0), 0, spannableStringBuilder.length(), 33);
         lVar.setText(spannableStringBuilder);
-        this.f59486b.setOnClickListener(new z6(5, runnable));
+        this.f59487b.setOnClickListener(new z6(5, runnable));
     }
 
     public void setSlug(String str) {
-        this.f59487c = str;
+        this.f59488c = str;
         this.d = rf.b.i("https://t.me/giftcode/", str);
-        this.f59485a.setText("t.me/giftcode/" + str);
+        this.f59486a.setText("t.me/giftcode/" + str);
     }
 }

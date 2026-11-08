@@ -79,7 +79,7 @@ public final class m3 implements r0.m, GlGenericDrawer.TextureCallback, org.tele
             }
         }
         n3Var.invalidate();
-        return r0.k1.f54200b;
+        return r0.k1.f54201b;
     }
 
     @Override
@@ -159,7 +159,7 @@ public final class m3 implements r0.m, GlGenericDrawer.TextureCallback, org.tele
     @Override
     public Object d(c0.i iVar) {
         p4.d0 d0Var = (p4.d0) this.f28305b;
-        d0Var.f53212o.post(new org.telegram.ui.web.w(10, d0Var, iVar));
+        d0Var.f53213o.post(new org.telegram.ui.web.w(10, d0Var, iVar));
         return "onPlayRequested";
     }
 
@@ -167,9 +167,9 @@ public final class m3 implements r0.m, GlGenericDrawer.TextureCallback, org.tele
     public void f() {
         float f10;
         up0 up0Var = (up0) this.f28305b;
-        TextView textView = up0Var.f55672h1;
-        boolean a10 = up0Var.f55681o0.a();
-        ImageView imageView = up0Var.f55670f1;
+        TextView textView = up0Var.f55673h1;
+        boolean a10 = up0Var.f55682o0.a();
+        ImageView imageView = up0Var.f55671f1;
         imageView.animate().cancel();
         ViewPropertyAnimator animate = imageView.animate();
         float f11 = 0.6f;
@@ -220,7 +220,7 @@ public final class m3 implements r0.m, GlGenericDrawer.TextureCallback, org.tele
                 ((cn0) this.f28305b).run();
                 return;
             default:
-                ((tg.a0) this.f28305b).f55554a.O1.r();
+                ((tg.a0) this.f28305b).f55555a.O1.r();
                 return;
         }
     }
@@ -234,7 +234,7 @@ public final class m3 implements r0.m, GlGenericDrawer.TextureCallback, org.tele
             case 27:
                 v5.g gVar = (v5.g) ((v5.c) obj);
                 gVar.getClass();
-                int i10 = r5.a.f54401e;
+                int i10 = r5.a.f54402e;
                 ab.b0 b0Var = new ab.b0(13, false);
                 b0Var.f908c = null;
                 b0Var.d = new ArrayList();
@@ -251,7 +251,7 @@ public final class m3 implements r0.m, GlGenericDrawer.TextureCallback, org.tele
                 }
             case 28:
                 v5.g gVar2 = (v5.g) ((v5.d) obj);
-                long s5 = gVar2.f57230b.s() - gVar2.d.d;
+                long s5 = gVar2.f57231b.s() - gVar2.d.d;
                 a10 = gVar2.a();
                 a10.beginTransaction();
                 try {
@@ -274,7 +274,7 @@ public final class m3 implements r0.m, GlGenericDrawer.TextureCallback, org.tele
                 a10.beginTransaction();
                 try {
                     a10.compileStatement("DELETE FROM log_event_dropped").execute();
-                    a10.compileStatement("UPDATE global_log_event_state SET last_metrics_upload_ms=" + gVar3.f57230b.s()).execute();
+                    a10.compileStatement("UPDATE global_log_event_state SET last_metrics_upload_ms=" + gVar3.f57231b.s()).execute();
                     a10.setTransactionSuccessful();
                     return null;
                 } finally {
@@ -350,8 +350,8 @@ public final class m3 implements r0.m, GlGenericDrawer.TextureCallback, org.tele
             dVar = new m2.i(clipData, 2);
         } else {
             r0.e eVar = new r0.e();
-            eVar.f54174b = clipData;
-            eVar.f54175c = 2;
+            eVar.f54175b = clipData;
+            eVar.f54176c = 2;
             dVar = eVar;
         }
         dVar.b(hVar.f());
@@ -373,7 +373,7 @@ public final class m3 implements r0.m, GlGenericDrawer.TextureCallback, org.tele
                 p4.y0 y0Var = (p4.y0) obj;
                 m9.w wVar = m9.w.f19999b;
                 if (!d0Var.j()) {
-                    y0Var.c(d0Var.f53217t, vVar);
+                    y0Var.c(d0Var.f53218t, vVar);
                     p4.c1.r1(d0Var, vVar, i7, new p4.m1(0));
                 }
                 return m9.w.f19999b;
@@ -395,14 +395,14 @@ public final class m3 implements r0.m, GlGenericDrawer.TextureCallback, org.tele
                 hi.d4 d4Var = (hi.d4) obj2;
                 zb.b bVar2 = (zb.b) obj;
                 ArrayList arrayList = new ArrayList();
-                for (int i10 = 0; i10 < bVar2.f60027a.size(); i10++) {
-                    zb.a aVar = (zb.a) bVar2.f60027a.get(i10);
+                for (int i10 = 0; i10 < bVar2.f60028a.size(); i10++) {
+                    zb.a aVar = (zb.a) bVar2.f60028a.get(i10);
                     ?? obj3 = new Object();
-                    obj3.f55579a = aVar.f60023a;
-                    obj3.f55580b = aVar.d;
-                    obj3.f55581c = aVar.f60026e;
-                    obj3.d = aVar.f60024b;
-                    obj3.f55582e = aVar.f60025c;
+                    obj3.f55580a = aVar.f60024a;
+                    obj3.f55581b = aVar.d;
+                    obj3.f55582c = aVar.f60027e;
+                    obj3.d = aVar.f60025b;
+                    obj3.f55583e = aVar.f60026c;
                     arrayList.add(obj3);
                 }
                 d4Var.a(arrayList);
@@ -414,7 +414,7 @@ public final class m3 implements r0.m, GlGenericDrawer.TextureCallback, org.tele
                     a8.b("objimg: no objects");
                     return;
                 }
-                int i11 = ((wb.a) list.get(0)).f57639c;
+                int i11 = ((wb.a) list.get(0)).f57640c;
                 String str = null;
                 if (ec.f5452a == null) {
                     ec.f5452a = new String[]{"👥", "🔥", "📚", "🏔", "🧊", "🍱", null, "🚰", "🧸", "🗿", "🍔", "🚜", "🛷", "🐠", "🎪", null, "🪑", "🧔", "🌉", "🩰", "🐦", "🚣", "🏞", null, "🏭", "🎓", "🍶", "🌿", "🌸", "🛋", "😎", "🏗", "🎡", "🐠", "🤿", "🐶", "⛵", "🎨", "🏆", "🧗", "🏸", "🦁", "🚲", "🏟", null, "⛵", "🙂", "🏄", "🍟", "🌇", "🌭", "🩳", "🚌", "🐂", "🌌", "🐹", "🪨", "👥", "👗", "👣", null, "🐻", "🍽", "🗼", "🧱", "🗑", "👤", "🏄", "👙", "🎢", "🏕", "🎠", "🚽", "😆", "🎈", "🎤", "👗", "🚧", "📦", "🐠", "🧺", "🌼", "🛒", "🥊", "💍", "💎", "🎰", "🚗", "🪜", "💻", "🍳", "📽️", "🪑", "🖼", "🍷", "🚢", "🛳", "👥", "🧗", "🕳", "👔", "🛠", "🌊", "🤡", "🎉", "🚴", "☄️", "🎓", "🏟", "🎄", "⛪", "🕰", "👨", "🐄", "🌴", "🖥", "🥌", "🍲", "🐱", "🧃", "🍚", null, "👥", "🏙", null, "🧸", "🍪", "🟩", "🕎", "🧶", "🛹", "✂️", "💅", "🥤", "🍴", "📜", null, "👘", "🧸", "📱", "🚦", "❄️", "🇵🇷", "⛓", "💃", "🏜", "🎅", "🦃", "🤵", "👄", "🏜", "🦕", "👳\u200d♂️", "🔥", "🛏", "🥽", "🐉", "🛋", "🛷", "🧢", "📋", "🎩", "🍨", "🐎", "🧶", "👕", "🧣", "🏖", "⚽", "🖤", "🎧", "🏛", "🚘", "🛹", "🦢", "🍖", "🥅", "🧁", "🐕", "🚤", "🌳", "☕", "⚽", "🧸", "🍲", "🧍", "📖", "🍉", "🍜", "✨", "💼", "🌳", "🐕", "🌲", "🚩", "⛵", "🦶", "🧥", null, "🛏", null, "🛁", "🗻", "🤸\u200d♀️", "👂", "🌸", "🐚", "👵", "🏛", "👁️", "🛏", "⚖️", "🎒", "🐎", "✨", "🛸", "💇", "🧸", "👥", "🪟", "🌟", "🐱", "🐄", "🐞", "❄️", "💍", "🚪", "💎", "🧶", "🏺", "🧥", "❤️", "💪", "🏍", "💰", "🕌", "🍽", "💃", "🛶", "🏖", "🧾", "🏞", "🚨", "🐴", "🧥", "📯", "⌚", "🧱", "🤿", "👖", "🏊", "🎸", "🎭", "🤘", "🌕", "🧥", "💍", "📱", "🪖", "🍽", "🎉", "🌌", "📰", "🗞", null, "🎹", "🪴", "🛂", "🐧", "🐕", "🏰", "🏵", "🏇", "📝", "🎶", "⛵", "🍕", "🐾", "🧵", "🐦", "🛹", "🏄", "🏉", "💄", "🏞", "🏁", "🚣", "🛣", "🏃", "🛋", "🏠", "⭐", "🏅", "👟", "🚤", "🪐", "😴", "🤲", "🏊", "🏫", "🍣", "🛋", "🦸", "😎", "⛷", "🚢", "🎵", "📚", "🏙", "🌋", "📺", "🐎", "💉", "🚆", "🚪", "🥤", "🚗", "👜", "💡", "🎫", "🍷", "🍗", "🎡", "🏄", "💻", null, null, "🏡", "🎣", "❤️", "🌱", "☕", "🍞", "🏖", null, "🏛", "🚁", "⛰", "🦆", "🌱", "🐢", "🐊", "🎶", "👟", "🧶", "💍", "🎤", "🎡", "🏂", "🚤", "🧱", "🚀", "🏠", "🏖", "🌈", "🌿", "👨", "🌷", "👗", "🏞", "🐶", "🦸", "🌸", "🍽", "🔊", "⛪", "🏢", "✈️", "🐾", "🐂", "🪑", "🛕", "🦋", "👠", "🏃", "🪡", "🍳", "🏰", "🌌", "🐛", "🏎", null, "✈️", "🚣", "🧵", "🤵", "🎢", "🍲", "🥦", "🚲", "👖", "🪴", "🗄", "🎂", "💺", "✈️", null, "🌫", "🎆", "🚜", "🦭", "📚", "💇", "⚡", "🚐", "🐱", "🚗", "👖", "🌾", "🤿", "☔", "🛣", "⛵", "🐶", "🔳", "🍽", "👰", "💧", null, "🍴", "🚙", "👶", "👓", "🚗", "✈️", "✋", "🐎", "🏞", "🍽", "⚾", "🍷", "👰", "🌿", "🥧", "🎒", "🃏", "🦹", "🪖", "🛶", "🤳", "🛺", "🏚", "🏹", "🚀", null, "⛈", "⛑"};
@@ -425,14 +425,14 @@ public final class m3 implements r0.m, GlGenericDrawer.TextureCallback, org.tele
                         str = strArr[i11];
                     }
                 }
-                c2Var.f55593c0 = str;
+                c2Var.f55594c0 = str;
                 StringBuilder sb2 = new StringBuilder("objimg: detected #");
-                sb2.append(((wb.a) list.get(0)).f57639c);
+                sb2.append(((wb.a) list.get(0)).f57640c);
                 sb2.append(" ");
-                sb2.append(c2Var.f55593c0);
+                sb2.append(c2Var.f55594c0);
                 sb2.append(" ");
-                org.telegram.ui.Cells.f1.u(((wb.a) list.get(0)).f57637a, sb2);
-                org.telegram.messenger.i6.g(c2Var.f55593c0);
+                org.telegram.ui.Cells.f1.u(((wb.a) list.get(0)).f57638a, sb2);
+                org.telegram.messenger.i6.g(c2Var.f55594c0);
                 return;
         }
     }

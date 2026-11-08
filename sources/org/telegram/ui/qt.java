@@ -132,7 +132,7 @@ public final class qt extends org.telegram.ui.Components.n41 {
         arrayList.add(org.telegram.ui.Components.x31.e(10, org.telegram.messenger.id.M0(2131751645, null)));
         arrayList.add(org.telegram.ui.Components.x31.e(37, "Make Memory Dump"));
         org.telegram.ui.Components.x31 i7 = org.telegram.ui.Components.x31.i(42, "Experimental settings");
-        xi.a aVar = xi.e.f58856a;
+        xi.a aVar = xi.e.f58857a;
         aVar.a();
         i7.L(aVar.d);
         arrayList.add(i7);
@@ -654,19 +654,19 @@ public final class qt extends org.telegram.ui.Components.n41 {
                 z9 = true;
                 break;
             case 42:
-                xi.a aVar = xi.e.f58856a;
+                xi.a aVar = xi.e.f58857a;
                 synchronized (aVar) {
-                    if (!aVar.f58848b) {
-                        SharedPreferences sharedPreferences = xi.d.f58855a;
-                        aVar.f58849c = sharedPreferences.contains("experimental_settings_allowed");
+                    if (!aVar.f58849b) {
+                        SharedPreferences sharedPreferences = xi.d.f58856a;
+                        aVar.f58850c = sharedPreferences.contains("experimental_settings_allowed");
                         aVar.d = sharedPreferences.getBoolean("experimental_settings_allowed", true);
-                        aVar.f58848b = true;
+                        aVar.f58849b = true;
                     }
                     boolean z11 = !aVar.d;
                     aVar.d = z11;
-                    aVar.f58849c = true;
-                    aVar.f58848b = true;
-                    xi.d.f58855a.edit().putBoolean("experimental_settings_allowed", z11).apply();
+                    aVar.f58850c = true;
+                    aVar.f58849b = true;
+                    xi.d.f58856a.edit().putBoolean("experimental_settings_allowed", z11).apply();
                 }
                 z9 = true;
                 break;
@@ -736,7 +736,7 @@ public final class qt extends org.telegram.ui.Components.n41 {
                 z9 = true;
                 break;
         }
-        if (x31Var.f54531a == 4) {
+        if (x31Var.f54532a == 4) {
             this.f36243a.f37190f3.O(z9);
         }
     }

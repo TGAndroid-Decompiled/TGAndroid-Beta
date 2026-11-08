@@ -121,9 +121,9 @@ public final class b implements Runnable {
                     if (exc3 == null) {
                         h hVar = (h) eVar.f1025c;
                         hVar.a((g) eVar.f1024b, j3);
-                        hVar.f57546i.post(new xk(eVar, eVar.f1023a, j10, 4));
+                        hVar.f57547i.post(new xk(eVar, eVar.f1023a, j10, 4));
                     } else {
-                        ((h) eVar.f1025c).f57546i.post(new ea0(eVar, eVar.f1023a, exc3, 3));
+                        ((h) eVar.f1025c).f57547i.post(new ea0(eVar, eVar.f1023a, exc3, 3));
                     }
                     dVar.f52726j.quitSafely();
                     dVar.f52728l.clear();
@@ -134,12 +134,12 @@ public final class b implements Runnable {
                 h hVar2 = (h) this.f52715c;
                 g gVar = (g) this.d;
                 try {
-                    bArr = AudioRecorderNative.e(gVar.f57537b.getAbsolutePath());
+                    bArr = AudioRecorderNative.e(gVar.f57538b.getAbsolutePath());
                 } catch (Throwable th6) {
                     hVar2.h.a("final waveform extraction failed", th6);
                     bArr = null;
                 }
-                hVar2.f57546i.post(new w2(hVar2, gVar, this.f52714b, bArr, 27));
+                hVar2.f57547i.post(new w2(hVar2, gVar, this.f52714b, bArr, 27));
                 return;
         }
     }

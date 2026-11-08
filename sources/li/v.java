@@ -187,7 +187,7 @@ public final class v extends na {
         ((ViewGroup.MarginLayoutParams) h.getLayoutParams()).leftMargin += this.f28649t0;
         ((ViewGroup.MarginLayoutParams) h.getLayoutParams()).rightMargin += this.f28649t0;
         v4.k kVar = new v4.k();
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         kVar.C = false;
         kVar.o(xq.h);
         kVar.n(350L);

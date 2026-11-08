@@ -35,7 +35,7 @@ public abstract class jd {
                 mediaExtractor.release();
                 int i7 = dVar.f2993c;
                 synchronized (xVar) {
-                    xVar2.f58254s = i7;
+                    xVar2.f58255s = i7;
                 }
                 if (mediaFormat != null) {
                     xVar2.n(mediaFormat, false);

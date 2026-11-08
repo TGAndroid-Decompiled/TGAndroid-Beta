@@ -446,8 +446,8 @@ public final class go extends org.telegram.ui.ActionBar.f2 implements org.telegr
             return;
         }
         ug.i0 i0Var = new ug.i0(2, this.currentAccount, getParentActivity(), this, null);
-        i0Var.f56615n2 = this.f46048a0;
-        i0Var.f56627z2 = new rn(this, 0);
+        i0Var.f56616n2 = this.f46048a0;
+        i0Var.f56628z2 = new rn(this, 0);
         showDialog(i0Var);
     }
 

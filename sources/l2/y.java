@@ -85,12 +85,12 @@ public final class y implements h2.o, xs, li.m0, a20, org.telegram.ui.ActionBar.
                 for (int i10 = 0; i10 < childCount; i10++) {
                     actionBarLayout.o(actionBarLayout.getChildAt(i10), k1Var);
                 }
-                return r0.k1.f54200b;
+                return r0.k1.f54201b;
             default:
                 k3 k3Var = (k3) obj;
-                k3Var.f27732s = k1Var.f54201a.f(2).d;
+                k3Var.f27732s = k1Var.f54202a.f(2).d;
                 k3Var.invalidate();
-                return r0.k1.f54200b;
+                return r0.k1.f54201b;
         }
     }
 
@@ -140,10 +140,10 @@ public final class y implements h2.o, xs, li.m0, a20, org.telegram.ui.ActionBar.
                 org.telegram.ui.Components.n nVar = bVar.f19876a;
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(gZIPOutputStream));
                 pa.d dVar = (pa.d) nVar.f36175a;
-                pa.e eVar = new pa.e(bufferedWriter, dVar.f53512a, dVar.f53513b, dVar.f53514c, dVar.d);
+                pa.e eVar = new pa.e(bufferedWriter, dVar.f53513a, dVar.f53514b, dVar.f53515c, dVar.d);
                 eVar.h((n5.m) mVar.f14265c);
                 eVar.j();
-                eVar.f53516b.flush();
+                eVar.f53517b.flush();
                 gZIPOutputStream.close();
                 if (outputStream != null) {
                     outputStream.close();
@@ -318,7 +318,7 @@ public final class y implements h2.o, xs, li.m0, a20, org.telegram.ui.ActionBar.
                     if (viewGroup != null) {
                         e10.b(viewGroup.getY(), aVar.f21029m.getWidth(), aVar.f21030n.getY() + aVar.f21030n.getHeight());
                     }
-                    dVar.f21056b = e10.f54153b;
+                    dVar.f21056b = e10.f54154b;
                     while (dVar.f21056b > arrayList.size()) {
                         arrayList.add(new oi.b(arrayList.size()));
                     }

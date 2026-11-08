@@ -46,16 +46,16 @@ public final class b0 implements Runnable {
                 HttpGetFileTask.b((HttpGetFileTask) this.f44143c, this.f44142b);
                 return;
             default:
-                org.telegram.utils.twidget.h1 h1Var = (org.telegram.utils.twidget.h1) this.f44143c;
+                org.telegram.utils.twidget.i1 i1Var = (org.telegram.utils.twidget.i1) this.f44143c;
                 float f11 = this.f44142b;
-                if (!h1Var.f52844w) {
-                    h1Var.f52825a.removeCallbacks(h1Var.Q);
+                if (!i1Var.f52854w) {
+                    i1Var.f52835a.removeCallbacks(i1Var.Q);
                     int i11 = (f11 > 0.0f ? 1 : (f11 == 0.0f ? 0 : -1));
                     if (i11 > 0) {
-                        h1Var.f52825a.postDelayed(h1Var.Q, (long) Math.ceil(f11));
+                        i1Var.f52835a.postDelayed(i1Var.Q, (long) Math.ceil(f11));
                         return;
                     } else if (i11 == 0) {
-                        h1Var.c();
+                        i1Var.d();
                         return;
                     } else {
                         return;

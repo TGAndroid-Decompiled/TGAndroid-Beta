@@ -7,19 +7,19 @@ import java.util.Collection;
 import java.util.Map;
 import na.g;
 public final class e implements na.e, g {
-    public final boolean f53515a = true;
-    public final JsonWriter f53516b;
-    public final Map f53517c;
+    public final boolean f53516a = true;
+    public final JsonWriter f53517b;
+    public final Map f53518c;
     public final Map d;
-    public final na.d f53518e;
-    public final boolean f53519f;
+    public final na.d f53519e;
+    public final boolean f53520f;
 
     public e(Writer writer, Map map, Map map2, na.d dVar, boolean z9) {
-        this.f53516b = new JsonWriter(writer);
-        this.f53517c = map;
+        this.f53517b = new JsonWriter(writer);
+        this.f53518c = map;
         this.d = map2;
-        this.f53518e = dVar;
-        this.f53519f = z9;
+        this.f53519e = dVar;
+        this.f53520f = z9;
     }
 
     @Override
@@ -32,7 +32,7 @@ public final class e implements na.e, g {
     public final na.e b(na.c cVar, double d) {
         String str = cVar.f20532a;
         j();
-        JsonWriter jsonWriter = this.f53516b;
+        JsonWriter jsonWriter = this.f53517b;
         jsonWriter.name(str);
         j();
         jsonWriter.value(d);
@@ -43,7 +43,7 @@ public final class e implements na.e, g {
     public final na.e c(na.c cVar, boolean z9) {
         String str = cVar.f20532a;
         j();
-        JsonWriter jsonWriter = this.f53516b;
+        JsonWriter jsonWriter = this.f53517b;
         jsonWriter.name(str);
         j();
         jsonWriter.value(z9);
@@ -54,7 +54,7 @@ public final class e implements na.e, g {
     public final na.e d(na.c cVar, int i7) {
         String str = cVar.f20532a;
         j();
-        JsonWriter jsonWriter = this.f53516b;
+        JsonWriter jsonWriter = this.f53517b;
         jsonWriter.name(str);
         j();
         jsonWriter.value(i7);
@@ -65,7 +65,7 @@ public final class e implements na.e, g {
     public final na.e e(na.c cVar, long j3) {
         String str = cVar.f20532a;
         j();
-        JsonWriter jsonWriter = this.f53516b;
+        JsonWriter jsonWriter = this.f53517b;
         jsonWriter.name(str);
         j();
         jsonWriter.value(j3);
@@ -75,19 +75,19 @@ public final class e implements na.e, g {
     @Override
     public final g f(String str) {
         j();
-        this.f53516b.value(str);
+        this.f53517b.value(str);
         return this;
     }
 
     @Override
     public final g g(boolean z9) {
         j();
-        this.f53516b.value(z9);
+        this.f53517b.value(z9);
         return this;
     }
 
     public final e h(Object obj) {
-        JsonWriter jsonWriter = this.f53516b;
+        JsonWriter jsonWriter = this.f53517b;
         if (obj == null) {
             jsonWriter.nullValue();
             return this;
@@ -170,7 +170,7 @@ public final class e implements na.e, g {
                 jsonWriter.endObject();
                 return this;
             } else {
-                na.d dVar = (na.d) this.f53517c.get(obj.getClass());
+                na.d dVar = (na.d) this.f53518c.get(obj.getClass());
                 if (dVar != null) {
                     jsonWriter.beginObject();
                     dVar.a(obj, this);
@@ -194,7 +194,7 @@ public final class e implements na.e, g {
                     return this;
                 } else {
                     jsonWriter.beginObject();
-                    this.f53518e.a(obj, this);
+                    this.f53519e.a(obj, this);
                     jsonWriter.endObject();
                     return this;
                 }
@@ -203,8 +203,8 @@ public final class e implements na.e, g {
     }
 
     public final e i(Object obj, String str) {
-        boolean z9 = this.f53519f;
-        JsonWriter jsonWriter = this.f53516b;
+        boolean z9 = this.f53520f;
+        JsonWriter jsonWriter = this.f53517b;
         if (z9) {
             if (obj == null) {
                 return this;
@@ -225,7 +225,7 @@ public final class e implements na.e, g {
     }
 
     public final void j() {
-        if (this.f53515a) {
+        if (this.f53516a) {
             return;
         }
         throw new IllegalStateException("Parent context used since this context was created. Cannot use this context anymore.");

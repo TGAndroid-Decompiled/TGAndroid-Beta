@@ -583,7 +583,7 @@ public class o7 extends FrameLayout {
         }
         xh.e eVar = this.m0;
         if (eVar != null) {
-            if (eVar.f58784i) {
+            if (eVar.f58785i) {
                 this.m0 = xh.e.e(this);
             } else {
                 eVar.a(this);

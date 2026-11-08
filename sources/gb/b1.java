@@ -103,7 +103,7 @@ public final class b1 extends kd.j implements rd.p {
                     }
                 } else {
                     af.b.c(obj);
-                    ce.c data = ((ka.d) this.f13633c).f17253c.f53685a.getData();
+                    ce.c data = ((ka.d) this.f13633c).f17253c.f53686a.getData();
                     this.f13632b = 1;
                     obj = ce.x.e(data, this);
                     if (obj == aVar3) {

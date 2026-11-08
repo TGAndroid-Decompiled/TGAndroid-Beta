@@ -210,7 +210,7 @@ public final class k00 extends c1 {
         if (hVar != null) {
             TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) hVar.f(j10);
             if (tL_forumTopic == null && getMessagesController().y2(-j3)) {
-                int i7 = qg.d.f54125a;
+                int i7 = qg.d.f54126a;
                 return (TLRPC.TL_forumTopic) hVar.f((int) ((j10 >>> 32) ^ j10));
             }
             return tL_forumTopic;

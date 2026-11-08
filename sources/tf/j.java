@@ -1,12 +1,12 @@
 package tf;
 public final class j {
-    public short f55541a;
+    public short f55542a;
 
     public final void a(byte b10) {
         boolean z9;
         int i7 = 128;
         do {
-            short s5 = this.f55541a;
+            short s5 = this.f55542a;
             boolean z10 = false;
             if ((32768 & s5) == 0) {
                 z9 = true;
@@ -17,9 +17,9 @@ public final class j {
                 z10 = true;
             }
             if (z9 ^ z10) {
-                this.f55541a = (short) (((short) (s5 << 1)) ^ 32773);
+                this.f55542a = (short) (((short) (s5 << 1)) ^ 32773);
             } else {
-                this.f55541a = (short) (s5 << 1);
+                this.f55542a = (short) (s5 << 1);
             }
             i7 >>>= 1;
         } while (i7 != 0);

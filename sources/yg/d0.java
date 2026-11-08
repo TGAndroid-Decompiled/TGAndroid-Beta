@@ -14,12 +14,12 @@ public final class d0 extends z8 {
     public Drawable D;
     public int E;
     public boolean F;
-    public final f6 f59451x;
-    public ColorDrawable f59452y;
+    public final f6 f59452x;
+    public ColorDrawable f59453y;
 
     public d0(Context context, f6 f6Var) {
         super(context, f6Var);
-        this.f59451x = f6Var;
+        this.f59452x = f6Var;
     }
 
     public void setBackground(boolean z9) {
@@ -31,10 +31,10 @@ public final class d0 extends z8 {
             i7 = 2131231229;
         }
         int i10 = k6.f27816b7;
-        f6 f6Var = this.f59451x;
+        f6 f6Var = this.f59452x;
         Drawable X0 = k6.X0(context, i7, k6.w0(i10, f6Var));
         ColorDrawable colorDrawable = new ColorDrawable(k6.w0(k6.f27796a7, f6Var));
-        this.f59452y = colorDrawable;
+        this.f59453y = colorDrawable;
         this.D = X0;
         xp xpVar = new xp(colorDrawable, X0, 0, 0);
         xpVar.f40361x = true;
@@ -45,8 +45,8 @@ public final class d0 extends z8 {
     public final void updateColors() {
         super.updateColors();
         try {
-            ColorDrawable colorDrawable = this.f59452y;
-            f6 f6Var = this.f59451x;
+            ColorDrawable colorDrawable = this.f59453y;
+            f6 f6Var = this.f59452x;
             if (colorDrawable != null) {
                 colorDrawable.setColor(k6.w0(k6.f27796a7, f6Var));
             }

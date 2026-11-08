@@ -237,7 +237,7 @@ public final class x7 extends v4.g0 {
                 org.telegram.ui.Components.w90 w90Var = ca0Var.f32526e;
                 org.telegram.ui.Components.ia0 ia0Var = ca0Var.f32525c0;
                 if (ca0Var.f32529r != null && (i7 = ca0Var.f32520a) != 1) {
-                    View view = d1Var.f57043a;
+                    View view = d1Var.f57044a;
                     if (view instanceof org.telegram.ui.Cells.q1) {
                         org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) view;
                         if (i7 == 0) {

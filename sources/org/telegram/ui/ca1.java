@@ -84,7 +84,7 @@ public final class ca1 extends org.telegram.ui.ActionBar.f2 {
         this.f44735b.setSectionsDrawBackground(true);
         v4.k kVar = new v4.k();
         kVar.C = false;
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         this.f44735b.setItemAnimator(kVar);
         this.f44735b.setLayoutManager(new v4.b0());
         org.telegram.ui.Components.pj0 pj0Var2 = this.f44735b;

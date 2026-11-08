@@ -1,10 +1,10 @@
 package qe;
 public final class e {
-    public final oe.d f54092a;
-    public boolean f54093b;
+    public final oe.d f54093a;
+    public boolean f54094b;
 
     public e(me.d descriptor) {
         kotlin.jvm.internal.j.e(descriptor, "descriptor");
-        this.f54092a = new oe.d(descriptor, new c1.c(2, this, e.class, "readIfAbsent", "readIfAbsent(Lkotlinx/serialization/descriptors/SerialDescriptor;I)Z", 0, 5));
+        this.f54093a = new oe.d(descriptor, new c1.c(2, this, e.class, "readIfAbsent", "readIfAbsent(Lkotlinx/serialization/descriptors/SerialDescriptor;I)Z", 0, 5));
     }
 }

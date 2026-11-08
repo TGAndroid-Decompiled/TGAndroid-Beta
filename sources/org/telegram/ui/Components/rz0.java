@@ -81,7 +81,7 @@ public final class rz0 extends oj0 {
     @Override
     public final void t(v4.d1 d1Var, int i7) {
         int c10;
-        if (d1Var.f57047f == 0) {
+        if (d1Var.f57048f == 0) {
             boolean z9 = true;
             int i10 = i7 - 1;
             org.telegram.ui.ActionBar.t6 t6Var = (org.telegram.ui.ActionBar.t6) ((ArrayList) this.f37807e.get(i10)).get(0);
@@ -90,7 +90,7 @@ public final class rz0 extends oj0 {
             } else {
                 c10 = t6Var.c();
             }
-            org.telegram.ui.Cells.u8 u8Var = (org.telegram.ui.Cells.u8) d1Var.f57043a;
+            org.telegram.ui.Cells.u8 u8Var = (org.telegram.ui.Cells.u8) d1Var.f57044a;
             u8Var.f30583a.setText((CharSequence) this.f37808f.get(i10));
             u8Var.f30584b = c10;
             if (c10 != 0) {

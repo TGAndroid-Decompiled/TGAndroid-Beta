@@ -52,7 +52,7 @@ public final class b extends aa {
             gVar.f11531c0.c(canvas, 0);
         }
         if (this.f11485e != null && bitmap != null && !bitmap.isRecycled() && i7 > 0) {
-            Matrix matrix = bVar.f54557b;
+            Matrix matrix = bVar.f54558b;
             Matrix matrix2 = this.f11484c;
             matrix2.set(matrix);
             matrix2.postTranslate(-gVar.d, -gVar.f21077e);

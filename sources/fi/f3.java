@@ -716,7 +716,7 @@ public abstract class f3 extends FrameLayout implements ls {
         ei.h hVar = this.f11963e;
         if (z9) {
             mi.m mVar = new mi.m(getContext(), 2);
-            mVar.f57212a = 1;
+            mVar.f57213a = 1;
             mVar.f20111p = org.telegram.messenger.g0.L(16.0f) + (-org.telegram.ui.ActionBar.k.getCurrentActionBarHeight());
             hVar.w0(mVar);
             return;

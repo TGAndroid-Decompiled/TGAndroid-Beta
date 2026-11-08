@@ -1683,7 +1683,7 @@ public class k7 extends org.telegram.ui.Components.na implements ls {
             int i7 = this.f28616a;
             wg.f1[] f1VarArr = {new wg.f1(context, i7, org.telegram.messenger.v1.a(i7).b(), 3, this.I0)};
             wg.f1 f1Var = f1VarArr[0];
-            f1Var.f57743r2 = org.telegram.messenger.id.M0(2131749915, null);
+            f1Var.f57744r2 = org.telegram.messenger.id.M0(2131749915, null);
             org.telegram.ui.Components.ja jaVar = f1Var.l1;
             if (jaVar != null) {
                 jaVar.setTitle(f1Var.O0());
@@ -1693,10 +1693,10 @@ public class k7 extends org.telegram.ui.Components.na implements ls {
                 mg0Var.setText(f1Var.O0());
             }
             wg.f1 f1Var2 = f1VarArr[0];
-            f1Var2.f57750y2 = true;
+            f1Var2.f57751y2 = true;
             f1Var2.o1(false, true);
             wg.f1 f1Var3 = f1VarArr[0];
-            f1Var3.f57745t2 = new ai.f1(1, this, f1VarArr);
+            f1Var3.f57746t2 = new ai.f1(1, this, f1VarArr);
             f1Var3.show();
         }
     }

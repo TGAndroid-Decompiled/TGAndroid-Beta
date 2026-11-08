@@ -407,7 +407,7 @@ public class k implements a0 {
                                     i12 = a(i12, str);
                                 } else {
                                     if (charAt2 < 'u') {
-                                        c10 = qe.c.f54090a[charAt2];
+                                        c10 = qe.c.f54091a[charAt2];
                                     } else {
                                         c10 = 0;
                                     }

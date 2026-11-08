@@ -176,7 +176,7 @@ public final class p0 {
             }
         }
         if (((h0) this.f24455o0.f13889b).f22780c) {
-            ConcurrentHashMap concurrentHashMap = org.telegram.utils.twidget.n0.f52916a;
+            ConcurrentHashMap concurrentHashMap = org.telegram.utils.twidget.n0.f52915a;
             g0.h3(new o61(11));
         }
         return z9;

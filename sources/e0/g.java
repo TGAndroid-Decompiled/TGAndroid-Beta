@@ -96,17 +96,17 @@ public final class g {
         eVar = null;
         eVar = null;
         eVar = null;
-        if (hVar.G == 5 && hVar.f57562z != null && hVar.f57555r == 0 && hVar.f57556s == hVar.j()) {
+        if (hVar.G == 5 && hVar.f57563z != null && hVar.f57556r == 0 && hVar.f57557s == hVar.j()) {
             hVar.p();
-            vi.g gVar = hVar.f57562z;
+            vi.g gVar = hVar.f57563z;
             long j3 = hVar.j();
-            long length = gVar.f57537b.length();
+            long length = gVar.f57538b.length();
             hVar.a(gVar, length);
-            synchronized (hVar.f57549l) {
-                if (gVar.d && !gVar.f57539e) {
-                    gVar.f57539e = true;
-                    hVar.f57548k.execute(new vi.c(hVar, gVar, length, j3, 0));
-                    File file = gVar.f57537b;
+            synchronized (hVar.f57550l) {
+                if (gVar.d && !gVar.f57540e) {
+                    gVar.f57540e = true;
+                    hVar.f57549k.execute(new vi.c(hVar, gVar, length, j3, 0));
+                    File file = gVar.f57538b;
                     byte[] bArr2 = hVar.B;
                     if (bArr2 != null) {
                         bArr = (byte[]) bArr2.clone();
@@ -197,7 +197,7 @@ public final class g {
         if (hVar.G != 1) {
             return false;
         }
-        File file = hVar.f57541b;
+        File file = hVar.f57542b;
         if ((file.isDirectory() || file.mkdirs()) && file.canWrite()) {
             hVar.h.b("start requested");
             hVar.d();
@@ -217,7 +217,7 @@ public final class g {
         this.f10051a = 1;
         h4 h4Var = new h4(context, 3);
         h4Var.f9076c = file;
-        vi.f fVar = (vi.f) xi.e.f58858c.a();
+        vi.f fVar = (vi.f) xi.e.f58859c.a();
         if (fVar != null) {
             h4Var.d = fVar;
             h4Var.f9074a = false;

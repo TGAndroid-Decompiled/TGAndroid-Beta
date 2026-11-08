@@ -29,14 +29,14 @@ public final class hq0 extends tg.s1 {
         Path path = this.f46474r0;
         path.rewind();
         Path.Direction direction = Path.Direction.CW;
-        path.addRoundRect(this.f55944l0, org.telegram.messenger.g0.L(this.f55947p0), org.telegram.messenger.g0.L(this.f55947p0), direction);
+        path.addRoundRect(this.f55945l0, org.telegram.messenger.g0.L(this.f55948p0), org.telegram.messenger.g0.L(this.f55948p0), direction);
         canvas.clipPath(path);
         canvas.translate(-getX(), -getY());
         PhotoViewer photoViewer = this.f46477u0;
         if (this == photoViewer.f41528u5 || this == photoViewer.f41537v5) {
             canvas.translate(-photoViewer.f41520t5.getX(), -photoViewer.f41520t5.getY());
         }
-        photoViewer.N0(canvas, this.f55943k0, -13948117, 855638016, false, true, false);
+        photoViewer.N0(canvas, this.f55944k0, -13948117, 855638016, false, true, false);
         float d = this.f46476t0.d(this.f46475s0);
         if (d > 0.0f) {
             canvas.drawColor(org.telegram.ui.ActionBar.k6.r1(d, -1));

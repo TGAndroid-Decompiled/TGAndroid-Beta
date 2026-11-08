@@ -11,7 +11,7 @@ public final class n91 extends rg.b {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57047f;
+        int i7 = d1Var.f57048f;
         if (i7 != 0 && i7 != 3) {
             return false;
         }
@@ -34,7 +34,7 @@ public final class n91 extends rg.b {
         if (i7 == b() - 1) {
             return 2;
         }
-        return ((o91) this.d.f50995b.get(i7)).f54531a;
+        return ((o91) this.d.f50995b.get(i7)).f54532a;
     }
 
     @Override
@@ -71,7 +71,7 @@ public final class n91 extends rg.b {
         if (i7 == 3) {
             i10 = ((org.telegram.ui.ActionBar.f2) w91Var).currentAccount;
             boolean v = org.telegram.messenger.t10.v(org.telegram.messenger.qp.s1(i10).a2(Long.valueOf(-w91Var.f50992a)));
-            t91Var.setForumIcon(qg.d.d(qg.a.f54111k[0], ""));
+            t91Var.setForumIcon(qg.d.d(qg.a.f54112k[0], ""));
             if (!v) {
                 i11 = 2131753066;
             } else {

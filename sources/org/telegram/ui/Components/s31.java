@@ -29,7 +29,7 @@ public final class s31 extends oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f57047f == 5) {
+        if (d1Var.f57048f == 5) {
             return true;
         }
         return false;
@@ -235,8 +235,8 @@ public final class s31 extends oj0 {
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        int i10 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i10 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
@@ -261,11 +261,11 @@ public final class s31 extends oj0 {
     @Override
     public final void v(v4.d1 d1Var, int i7, List list) {
         if (list.contains(0)) {
-            int i10 = d1Var.f57047f;
+            int i10 = d1Var.f57048f;
             if (i10 != 2 && i10 != 5) {
                 return;
             }
-            E(i7, d1Var.f57043a, true);
+            E(i7, d1Var.f57044a, true);
             return;
         }
         t(d1Var, i7);

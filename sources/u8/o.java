@@ -8,7 +8,7 @@ import y8.q;
 import y8.r;
 import y8.s;
 public final class o implements Parcelable.Creator {
-    public final int f56450a;
+    public final int f56451a;
 
     @Override
     public final java.lang.Object createFromParcel(android.os.Parcel r26) {
@@ -17,7 +17,7 @@ public final class o implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i7) {
-        switch (this.f56450a) {
+        switch (this.f56451a) {
             case 0:
                 return new a[i7];
             case 1:

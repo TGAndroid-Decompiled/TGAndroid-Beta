@@ -193,7 +193,7 @@ public final class jl extends org.telegram.ui.Components.pi0 {
                     cjVar2.getClass();
                 } else {
                     cjVar2.S.add(K);
-                    View view = K.f57043a;
+                    View view = K.f57044a;
                     if ((view instanceof org.telegram.ui.Cells.q1) && (messageObject = ((org.telegram.ui.Cells.q1) view).getMessageObject()) != null) {
                         messageObject.f23217a0 = true;
                     }

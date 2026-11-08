@@ -75,7 +75,7 @@ public final class n6 {
                                     n6Var.f42890p = I8;
                                 }
                                 b4 b4Var = n6Var.f42890p.I0.f42330m;
-                                if (n6Var.f42894t && l6Var.f57494n && b4Var != null && b4Var.f57494n && b4Var.getWidth() > 0 && !n6Var.f42890p.isLayoutRequested()) {
+                                if (n6Var.f42894t && l6Var.f57495n && b4Var != null && b4Var.f57495n && b4Var.getWidth() > 0 && !n6Var.f42890p.isLayoutRequested()) {
                                     rectF.set(n6Var.c(b4Var));
                                     if (rectF.centerY() > 0.0f && rectF.centerY() < viewGroup2.getHeight() && f10 > 0.01f) {
                                         n6Var.f42895u = true;
@@ -167,7 +167,7 @@ public final class n6 {
                                     n6Var.f42890p = I8;
                                 }
                                 b4 b4Var = n6Var.f42890p.I0.f42330m;
-                                if (n6Var.f42894t && l6Var2.f57494n && b4Var != null && b4Var.f57494n && b4Var.getWidth() > 0 && !n6Var.f42890p.isLayoutRequested()) {
+                                if (n6Var.f42894t && l6Var2.f57495n && b4Var != null && b4Var.f57495n && b4Var.getWidth() > 0 && !n6Var.f42890p.isLayoutRequested()) {
                                     rectF.set(n6Var.c(b4Var));
                                     if (rectF.centerY() > 0.0f && rectF.centerY() < viewGroup2.getHeight() && f10 > 0.01f) {
                                         n6Var.f42895u = true;
@@ -242,7 +242,7 @@ public final class n6 {
                                     n6Var.f42890p = I8;
                                 }
                                 b4 b4Var = n6Var.f42890p.I0.f42330m;
-                                if (n6Var.f42894t && l6Var2.f57494n && b4Var != null && b4Var.f57494n && b4Var.getWidth() > 0 && !n6Var.f42890p.isLayoutRequested()) {
+                                if (n6Var.f42894t && l6Var2.f57495n && b4Var != null && b4Var.f57495n && b4Var.getWidth() > 0 && !n6Var.f42890p.isLayoutRequested()) {
                                     rectF.set(n6Var.c(b4Var));
                                     if (rectF.centerY() > 0.0f && rectF.centerY() < viewGroup2.getHeight() && f10 > 0.01f) {
                                         n6Var.f42895u = true;
@@ -311,9 +311,9 @@ public final class n6 {
                     r1.h hVar = new r1.h(0.0f);
                     hVar.a(0.65f);
                     hVar.b(200.0f);
-                    gVar.f54267m = hVar;
+                    gVar.f54268m = hVar;
                     c4Var.f42311b0.f(0.001f);
-                    c4Var.f42311b0.f54257a = Math.max(20.0f, Math.min(36.0f, centerY * 0.04f));
+                    c4Var.f42311b0.f54258a = Math.max(20.0f, Math.min(36.0f, centerY * 0.04f));
                     c4Var.f42311b0.b(new w3(c4Var, 1));
                     c4Var.f42311b0.h();
                 }
@@ -402,10 +402,10 @@ public final class n6 {
             flightYaw += ((float) Math.IEEEremainder(this.f42890p.I0.g() - flightYaw, 6.283185307179586d)) * C;
             flightPitch += ((this.f42890p.I0.f42326k.E * 0.14f) - flightPitch) * C;
         }
-        l6Var.f57495r = flightYaw;
-        l6Var.f57496s = flightPitch;
-        l6Var.f57497w = true;
-        l6Var.f57498x = true;
+        l6Var.f57496r = flightYaw;
+        l6Var.f57497s = flightPitch;
+        l6Var.f57498w = true;
+        l6Var.f57499x = true;
     }
 
     public final void e() {

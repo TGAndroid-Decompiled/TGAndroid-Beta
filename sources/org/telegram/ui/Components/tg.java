@@ -21,10 +21,10 @@ public final class tg implements DialogInterface.OnCancelListener {
                 if (gVar != null) {
                     gVar.d();
                 }
-                r1.g gVar2 = new r1.g((Object) diVar.f28619b, (r1.e) r1.g.f54251p, 0.0f);
+                r1.g gVar2 = new r1.g((Object) diVar.f28619b, (r1.e) r1.g.f54252p, 0.0f);
                 diVar.f32961j4 = gVar2;
-                gVar2.f54267m.a(1.5f);
-                diVar.f32961j4.f54267m.b(1500.0f);
+                gVar2.f54268m.a(1.5f);
+                diVar.f32961j4.f54268m.b(1500.0f);
                 diVar.f32961j4.h();
                 return;
             default:

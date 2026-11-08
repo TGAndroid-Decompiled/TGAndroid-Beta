@@ -93,12 +93,12 @@ public final class h7 implements TextWatcher {
                         org.telegram.messenger.i6.l(editable, ymVar.getEditField().getPaint().getFontMetricsInt(), false);
                         bnVar.f32269y.setDirection(1);
                         bnVar.f32269y.setDelegate(ymVar);
-                        bnVar.f32269y.setTranslationY(K.f57043a.getY());
+                        bnVar.f32269y.setTranslationY(K.f57044a.getY());
                         bnVar.f32269y.e();
                     }
                     bnVar.P = editable;
                     if (K != null) {
-                        bn.P(bnVar, K.f57043a, bnVar.f32254p0);
+                        bn.P(bnVar, K.f57044a, bnVar.f32254p0);
                     }
                     bnVar.X();
                     return;
@@ -113,7 +113,7 @@ public final class h7 implements TextWatcher {
                     d1Var2 = e61Var.T(F);
                 }
                 if (d1Var2 != null) {
-                    View view = d1Var2.f57043a;
+                    View view = d1Var2.f57044a;
                     int b10 = d1Var2.b();
                     int i10 = b10 - bnVar2.f32262t0;
                     if (i10 >= 0 && i10 < bnVar2.K.length) {
@@ -172,12 +172,12 @@ public final class h7 implements TextWatcher {
                         org.telegram.messenger.i6.l(editable, kr0Var.getEditField().getPaint().getFontMetricsInt(), false);
                         pr0Var.Q.setDirection(1);
                         pr0Var.Q.setDelegate(kr0Var);
-                        pr0Var.Q.setTranslationY(K2.f57043a.getY());
+                        pr0Var.Q.setTranslationY(K2.f57044a.getY());
                         pr0Var.Q.e();
                     }
                     pr0Var.E = editable;
                     if (K2 != null) {
-                        pr0.h0(pr0Var, K2.f57043a, pr0Var.f48928i0);
+                        pr0.h0(pr0Var, K2.f57044a, pr0Var.f48928i0);
                     }
                     pr0Var.n0();
                     return;
@@ -195,12 +195,12 @@ public final class h7 implements TextWatcher {
                         org.telegram.messenger.i6.l(editable, lr0Var.getEditField().getPaint().getFontMetricsInt(), false);
                         pr0Var2.Q.setDirection(1);
                         pr0Var2.Q.setDelegate(lr0Var);
-                        pr0Var2.Q.setTranslationY(K3.f57043a.getY());
+                        pr0Var2.Q.setTranslationY(K3.f57044a.getY());
                         pr0Var2.Q.e();
                     }
                     pr0Var2.F = editable;
                     if (K3 != null) {
-                        pr0.h0(pr0Var2, K3.f57043a, pr0Var2.f48929j0);
+                        pr0.h0(pr0Var2, K3.f57044a, pr0Var2.f48929j0);
                     }
                     pr0Var2.n0();
                     return;
@@ -215,7 +215,7 @@ public final class h7 implements TextWatcher {
                     d1Var = e61Var2.T(F2);
                 }
                 if (d1Var != null) {
-                    View view2 = d1Var.f57043a;
+                    View view2 = d1Var.f57044a;
                     int b11 = d1Var.b() - pr0Var3.f48933n0;
                     if (b11 >= 0 && b11 < pr0Var3.f48944w.length) {
                         if (pr0Var3.Q != null) {
@@ -250,14 +250,14 @@ public final class h7 implements TextWatcher {
                     int i11 = t4Var.f49905b;
                     if (i11 != 1) {
                         if (i11 != 2) {
-                            argb = Color.argb(Color.alpha(qVar.f55184m1), b12, Color.green(qVar.f55184m1), Color.blue(qVar.f55184m1));
+                            argb = Color.argb(Color.alpha(qVar.f55185m1), b12, Color.green(qVar.f55185m1), Color.blue(qVar.f55185m1));
                         } else {
-                            argb = Color.argb(Color.alpha(qVar.f55184m1), Color.red(qVar.f55184m1), Color.green(qVar.f55184m1), b12);
+                            argb = Color.argb(Color.alpha(qVar.f55185m1), Color.red(qVar.f55185m1), Color.green(qVar.f55185m1), b12);
                         }
                     } else {
-                        argb = Color.argb(Color.alpha(qVar.f55184m1), Color.red(qVar.f55184m1), b12, Color.blue(qVar.f55184m1));
+                        argb = Color.argb(Color.alpha(qVar.f55185m1), Color.red(qVar.f55185m1), b12, Color.blue(qVar.f55185m1));
                     }
-                    int i12 = sg.q.f55180q1;
+                    int i12 = sg.q.f55181q1;
                     qVar.I0(argb, 5);
                     return;
                 }

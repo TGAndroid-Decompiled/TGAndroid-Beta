@@ -427,7 +427,7 @@ public final class z5 implements Runnable {
             case 4:
                 p4.v vVar = (p4.v) obj;
                 p4.d0 d0Var = ((p4.m0) ((m.c3) obj3).d).h;
-                p4.g1 g1Var = d0Var.f53217t;
+                p4.g1 g1Var = d0Var.f53218t;
                 ab.b(g1Var, (p4.w) obj2);
                 int i17 = g1Var.i();
                 if (z11) {
@@ -465,11 +465,11 @@ public final class z5 implements Runnable {
             default:
                 Bitmap[] bitmapArr = (Bitmap[]) obj2;
                 CountDownLatch countDownLatch = (CountDownLatch) obj;
-                sg.j0 j0Var = ((sg.u0) obj3).D.f55250c;
-                mt0 mt0Var = j0Var.f55090g;
+                sg.j0 j0Var = ((sg.u0) obj3).D.f55251c;
+                mt0 mt0Var = j0Var.f55091g;
                 sg.i0 h = j0Var.h(new RectF(0.0f, 0.0f, mt0Var.f36114a, mt0Var.f36115b), false, z11, z10);
                 if (h != null) {
-                    bitmapArr[0] = (Bitmap) h.f55067b;
+                    bitmapArr[0] = (Bitmap) h.f55068b;
                 }
                 countDownLatch.countDown();
                 return;

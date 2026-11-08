@@ -141,9 +141,9 @@ public final class os extends org.telegram.ui.Components.kj0 {
 
     @Override
     public final void W(int i7, int i10, v4.d1 d1Var) {
-        if (d1Var.f57047f == 0) {
+        if (d1Var.f57048f == 0) {
             ms msVar = (ms) ((ArrayList) this.f48531s.get(this.f48532w.get(i7))).get(i10);
-            org.telegram.ui.Cells.w9 w9Var = (org.telegram.ui.Cells.w9) d1Var.f57043a;
+            org.telegram.ui.Cells.w9 w9Var = (org.telegram.ui.Cells.w9) d1Var.f57044a;
             String str = null;
             CharSequence m10 = org.telegram.messenger.i6.m(qs.a0(msVar), w9Var.getTextView().getPaint().getFontMetricsInt(), false, null, 0);
             if (this.f48533x.h) {

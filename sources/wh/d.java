@@ -20,22 +20,22 @@ import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.Cells.q1;
 import org.telegram.ui.Components.w8;
 public final class d implements ValueAnimator.AnimatorUpdateListener {
-    public final h f57855a;
-    public final q1 f57856b;
-    public final ImageReceiver f57857c;
+    public final h f57856a;
+    public final q1 f57857b;
+    public final ImageReceiver f57858c;
     public final long d;
-    public b f57858e;
-    public b f57859f;
-    public Paint f57860g;
+    public b f57859e;
+    public b f57860f;
+    public Paint f57861g;
     public final StaticLayout h;
-    public float f57861i;
-    public float f57862j;
-    public ValueAnimator f57863k;
-    public float f57864l;
-    public boolean f57865m;
-    public ValueAnimator f57866n;
-    public float f57867o;
-    public boolean f57868p;
+    public float f57862i;
+    public float f57863j;
+    public ValueAnimator f57864k;
+    public float f57865l;
+    public boolean f57866m;
+    public ValueAnimator f57867n;
+    public float f57868o;
+    public boolean f57869p;
 
     public d(h hVar, long j3) {
         ImageReceiver imageReceiver;
@@ -45,15 +45,15 @@ public final class d implements ValueAnimator.AnimatorUpdateListener {
         CharSequence ellipsize;
         w8 w8Var = new w8((f6) null);
         int i7 = p10.f24470s0;
-        this.f57864l = 1.0f;
-        this.f57865m = true;
-        this.f57867o = 0.0f;
-        this.f57868p = false;
-        ImageReceiver imageReceiver2 = new ImageReceiver(hVar.f57897a);
-        this.f57857c = imageReceiver2;
-        this.f57855a = hVar;
+        this.f57865l = 1.0f;
+        this.f57866m = true;
+        this.f57868o = 0.0f;
+        this.f57869p = false;
+        ImageReceiver imageReceiver2 = new ImageReceiver(hVar.f57898a);
+        this.f57858c = imageReceiver2;
+        this.f57856a = hVar;
         q1 q1Var = hVar.D;
-        this.f57856b = q1Var;
+        this.f57857b = q1Var;
         this.d = j3;
         w8Var.f39870p = 1.0f;
         if (m5.E(j3)) {
@@ -65,7 +65,7 @@ public final class d implements ValueAnimator.AnimatorUpdateListener {
                 w8Var.f39870p = 0.75f;
                 imageReceiver = imageReceiver2;
                 imageReceiver.r0(null, null, null, null, w8Var, 0L, null, a22, 0);
-                imageReceiver.J0(g0.L(g.f57890a / 2.0f));
+                imageReceiver.J0(g0.L(g.f57891a / 2.0f));
                 imageReceiver.y0(0.0f, 0.0f, g0.L(f10), g0.L(f10));
                 Paint Z1 = q1Var.Z1("paintChatActionText");
                 if (str2 == null && Z1 != null) {
@@ -86,7 +86,7 @@ public final class d implements ValueAnimator.AnimatorUpdateListener {
             imageReceiver.i0(M0, w8Var, null);
         }
         str2 = str;
-        imageReceiver.J0(g0.L(g.f57890a / 2.0f));
+        imageReceiver.J0(g0.L(g.f57891a / 2.0f));
         imageReceiver.y0(0.0f, 0.0f, g0.L(f10), g0.L(f10));
         Paint Z12 = q1Var.Z1("paintChatActionText");
         if (str2 == null) {
@@ -121,22 +121,22 @@ public final class d implements ValueAnimator.AnimatorUpdateListener {
     public final void a(Canvas canvas, float f10, float f11, float f12, float f13) {
         canvas.save();
         canvas.translate(f10 - f12, f11 - f12);
-        int i7 = g.f57890a;
+        int i7 = g.f57891a;
         float f14 = 21;
         canvas.scale(f12 / g0.L(f14), f12 / g0.L(f14));
-        ImageReceiver imageReceiver = this.f57857c;
-        imageReceiver.setAlpha(((this.f57864l * 0.25f) + 0.75f) * f13);
+        ImageReceiver imageReceiver = this.f57858c;
+        imageReceiver.setAlpha(((this.f57865l * 0.25f) + 0.75f) * f13);
         imageReceiver.h(canvas, null);
         canvas.restore();
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        if (valueAnimator == this.f57866n) {
-            this.f57867o = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        } else if (valueAnimator == this.f57863k) {
-            this.f57864l = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        if (valueAnimator == this.f57867n) {
+            this.f57868o = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        } else if (valueAnimator == this.f57864k) {
+            this.f57865l = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         }
-        this.f57855a.invalidateSelf();
+        this.f57856a.invalidateSelf();
     }
 }

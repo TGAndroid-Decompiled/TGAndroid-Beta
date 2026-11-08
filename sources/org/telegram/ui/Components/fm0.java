@@ -94,13 +94,13 @@ public abstract class fm0 extends v61 implements org.telegram.ui.xz, org.telegra
         this.R0 = dvVar;
         v4.k kVar = new v4.k();
         this.f33597c0 = kVar;
-        kVar.f57115c = 150L;
-        kVar.f57116e = 350L;
-        kVar.f57117f = 0L;
-        kVar.f57118g = 0L;
+        kVar.f57116c = 150L;
+        kVar.f57117e = 350L;
+        kVar.f57118f = 0L;
+        kVar.f57119g = 0L;
         kVar.d = 0L;
-        kVar.f57119i = new OvershootInterpolator(1.1f);
-        kVar.f57099o = xq.h;
+        kVar.f57120i = new OvershootInterpolator(1.1f);
+        kVar.f57100o = xq.h;
         org.telegram.ui.fw fwVar = (org.telegram.ui.fw) this;
         this.f33598d0 = new yl0(fwVar, context, wwVar, i7, i10, kVar, wwVar.F, wwVar, context);
         if (i10 == 15) {
@@ -159,7 +159,7 @@ public abstract class fm0 extends v61 implements org.telegram.ui.xz, org.telegra
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.f33602h0 = frameLayout2;
         zl0 zl0Var = new zl0(fwVar);
-        zl0Var.f57070m = false;
+        zl0Var.f57071m = false;
         zl0Var.C = false;
         xq xqVar = xq.h;
         zl0Var.o(xqVar);
@@ -202,7 +202,7 @@ public abstract class fm0 extends v61 implements org.telegram.ui.xz, org.telegra
         FrameLayout frameLayout3 = new FrameLayout(context);
         this.m0 = frameLayout3;
         rl0 rl0Var = new rl0(fwVar);
-        rl0Var.f57070m = false;
+        rl0Var.f57071m = false;
         rl0Var.C = false;
         rl0Var.o(xqVar);
         rl0Var.n(350L);
@@ -244,7 +244,7 @@ public abstract class fm0 extends v61 implements org.telegram.ui.xz, org.telegra
         FrameLayout frameLayout4 = new FrameLayout(context);
         this.f33613t0 = frameLayout4;
         vl0 vl0Var = new vl0(fwVar);
-        vl0Var.f57070m = false;
+        vl0Var.f57071m = false;
         vl0Var.C = false;
         vl0Var.o(xqVar);
         vl0Var.n(350L);

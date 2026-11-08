@@ -33,7 +33,7 @@ public final class qw extends oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57047f;
+        int i7 = d1Var.f57048f;
         if (i7 != 0 && i7 != 4 && i7 != 3 && i7 != 6) {
             return false;
         }
@@ -357,8 +357,8 @@ public final class qw extends oj0 {
         hw hwVar = hyVar.Q;
         int i12 = hyVar.f34400c1;
         ArrayList arrayList = hyVar.f34441q1;
-        int i13 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i13 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         int i14 = 8;
         boolean z9 = true;
         uw uwVar2 = null;

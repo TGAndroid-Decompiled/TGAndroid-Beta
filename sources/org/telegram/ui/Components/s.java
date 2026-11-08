@@ -90,7 +90,7 @@ public final class s extends na implements org.telegram.messenger.ls {
         this.f36282r1 = 0.35f;
         this.F1 = true;
         r rVar = new r(this);
-        rVar.f57070m = false;
+        rVar.f57071m = false;
         rVar.C = false;
         rVar.o(xq.h);
         rVar.n(350L);

@@ -224,9 +224,9 @@ public final class l9 extends FrameLayout implements org.telegram.ui.ActionBar.a
         r1.h hVar = new r1.h(0.0f);
         hVar.a(0.3f);
         hVar.b(180.0f);
-        gVar3.f54267m = hVar;
+        gVar3.f54268m = hVar;
         gVar3.f(0.1f);
-        gVar3.f54257a = (-f12) * 10.0f;
+        gVar3.f54258a = (-f12) * 10.0f;
         gVar3.b(new p3(this, 3));
         gVar3.h();
         this.f42754s = gVar3;
@@ -240,12 +240,12 @@ public final class l9 extends FrameLayout implements org.telegram.ui.ActionBar.a
         if (textView.getAlpha() < 0.01f) {
             textView.setRotation(f13);
         }
-        r1.g gVar4 = new r1.g(textView, r1.g.f54254s);
+        r1.g gVar4 = new r1.g(textView, r1.g.f54255s);
         r1.h hVar2 = new r1.h(0.0f);
         hVar2.a(0.3f);
         hVar2.b(180.0f);
-        gVar4.f54267m = hVar2;
-        gVar4.f54257a = (-f13) * 10.0f;
+        gVar4.f54268m = hVar2;
+        gVar4.f54258a = (-f13) * 10.0f;
         gVar4.h();
         this.f42753r = gVar4;
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);

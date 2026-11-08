@@ -4,9 +4,9 @@ import j$.util.DesugarCollections;
 import java.util.ArrayList;
 import java.util.List;
 public final class f extends b {
-    public final List f56990a;
+    public final List f56991a;
 
     public f(ArrayList arrayList) {
-        this.f56990a = DesugarCollections.unmodifiableList(arrayList);
+        this.f56991a = DesugarCollections.unmodifiableList(arrayList);
     }
 }

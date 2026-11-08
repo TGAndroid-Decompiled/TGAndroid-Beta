@@ -20,7 +20,7 @@ public final class w50 extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final void A(v4.d1 d1Var) {
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         if (view instanceof org.telegram.ui.Cells.q4) {
             ((org.telegram.ui.Cells.q4) view).f30125a.getImageReceiver().c();
         }
@@ -28,7 +28,7 @@ public final class w50 extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f57047f != 2) {
+        if (d1Var.f57048f != 2) {
             return true;
         }
         return false;
@@ -98,8 +98,8 @@ public final class w50 extends org.telegram.ui.Components.oj0 {
     public final void t(v4.d1 d1Var, int i7) {
         org.telegram.messenger.d5 d5Var;
         CharSequence charSequence;
-        if (d1Var.f57047f == 0) {
-            org.telegram.ui.Cells.q4 q4Var = (org.telegram.ui.Cells.q4) d1Var.f57043a;
+        if (d1Var.f57048f == 0) {
+            org.telegram.ui.Cells.q4 q4Var = (org.telegram.ui.Cells.q4) d1Var.f57044a;
             boolean z9 = this.h;
             z50 z50Var = this.f50905n;
             if (z9) {

@@ -37,7 +37,7 @@ public final class r0 implements org.telegram.ui.ActionBar.r1, a20 {
         s0 s0Var = this.f17519b;
         if (!s0Var.f17525c.h(x31Var)) {
             int i7 = x31Var.d;
-            if (i7 != 2 && x31Var.f54531a != 17) {
+            if (i7 != 2 && x31Var.f54532a != 17) {
                 if (i7 == 1) {
                     s0Var.f17529r = !s0Var.f17529r;
                     s0Var.f17524b.f37190f3.O(true);

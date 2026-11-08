@@ -32,14 +32,14 @@ import yh.m;
 import zh.y0;
 import zh.z1;
 public final class b implements Runnable {
-    public final int f59404a;
-    public final Object f59405b;
-    public final Object f59406c;
+    public final int f59405a;
+    public final Object f59406b;
+    public final Object f59407c;
 
     public b(int i7, Object obj, Object obj2) {
-        this.f59404a = i7;
-        this.f59405b = obj;
-        this.f59406c = obj2;
+        this.f59405a = i7;
+        this.f59406b = obj;
+        this.f59407c = obj2;
     }
 
     @Override
@@ -47,17 +47,17 @@ public final class b implements Runnable {
         TLRPC.Document document;
         boolean z9;
         int i7;
-        int i10 = this.f59404a;
-        Object obj = this.f59406c;
-        Object obj2 = this.f59405b;
+        int i10 = this.f59405a;
+        Object obj = this.f59407c;
+        Object obj2 = this.f59406b;
         switch (i10) {
             case 0:
                 d dVar = (d) obj2;
                 ArrayList arrayList = (ArrayList) obj;
                 for (int i11 = 0; i11 < arrayList.size(); i11++) {
                     c cVar = (c) arrayList.get(i11);
-                    if (cVar != null && ((TextUtils.isEmpty(cVar.f59408b) || !new File(cVar.f59408b).exists()) && (document = cVar.f59407a) != null)) {
-                        w7.G(dVar.f59414c);
+                    if (cVar != null && ((TextUtils.isEmpty(cVar.f59409b) || !new File(cVar.f59409b).exists()) && (document = cVar.f59408a) != null)) {
+                        w7.G(dVar.f59415c);
                         File I = w7.I(document);
                         if (I == null || !I.exists()) {
                             g0.h3(new b(1, dVar, document));
@@ -67,11 +67,11 @@ public final class b implements Runnable {
                 return;
             case 1:
                 TLRPC.Document document2 = (TLRPC.Document) obj;
-                w7.G(((d) obj2).f59414c).W(document2, document2, 0, 0);
+                w7.G(((d) obj2).f59415c).W(document2, document2, 0, 0);
                 return;
             case 2:
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
-                int i12 = ((e) obj2).f59417a;
+                int i12 = ((e) obj2).f59418a;
                 if (tL_error.text.equals("RINGTONE_DURATION_TOO_LONG")) {
                     qs.e().k(292, 4, id.a0("TooLongError", null, 2131744044, new Object[0]), id.a0("ErrorRingtoneDurationTooLong", null, 2131751105, Integer.valueOf(qp.s1(i12).f24823k4)));
                     return;
@@ -88,10 +88,10 @@ public final class b implements Runnable {
             case 4:
                 m mVar = (m) obj2;
                 e5 e5Var = (e5) obj;
-                int i13 = mVar.f59550k;
-                f2 f2Var = mVar.f59547g;
+                int i13 = mVar.f59551k;
+                f2 f2Var = mVar.f59548g;
                 TLRPC.TL_chatInviteImporter importer = e5Var.getImporter();
-                mVar.f59557r = importer;
+                mVar.f59558r = importer;
                 LongSparseArray longSparseArray = mVar.d;
                 TLRPC.User user = (TLRPC.User) longSparseArray.get(importer.user_id);
                 if (user != null) {
@@ -103,13 +103,13 @@ public final class b implements Runnable {
                         z9 = false;
                     }
                     if (user.photo != null && !z9) {
-                        if (mVar.f59558s == null) {
-                            l lVar = new l(mVar, f2Var.getParentActivity(), (pj0) e5Var.getParent(), f2Var.getResourceProvider(), mVar.f59542a);
-                            mVar.f59558s = lVar;
-                            TLRPC.TL_chatInviteImporter tL_chatInviteImporter = mVar.f59557r;
+                        if (mVar.f59559s == null) {
+                            l lVar = new l(mVar, f2Var.getParentActivity(), (pj0) e5Var.getParent(), f2Var.getResourceProvider(), mVar.f59543a);
+                            mVar.f59559s = lVar;
+                            TLRPC.TL_chatInviteImporter tL_chatInviteImporter = mVar.f59558r;
                             l9 avatarImageView = e5Var.getAvatarImageView();
-                            lVar.f59537r = tL_chatInviteImporter;
-                            lVar.f59539w = avatarImageView;
+                            lVar.f59538r = tL_chatInviteImporter;
+                            lVar.f59540w = avatarImageView;
                             TLRPC.User a22 = qp.s1(i13).a2(Long.valueOf(tL_chatInviteImporter.user_id));
                             hc m10 = hc.m(i13, 0, a22);
                             hc m11 = hc.m(i13, 1, a22);
@@ -122,7 +122,7 @@ public final class b implements Runnable {
                             sf0Var.H(null, m10, m11, true);
                             lVar.d.setText(t10.p((TLRPC.User) longSparseArray.get(tL_chatInviteImporter.user_id)));
                             String str = tL_chatInviteImporter.about;
-                            TextView textView = lVar.f59534e;
+                            TextView textView = lVar.f59535e;
                             textView.setText(str);
                             if (TextUtils.isEmpty(tL_chatInviteImporter.about)) {
                                 i7 = 8;
@@ -131,13 +131,13 @@ public final class b implements Runnable {
                             }
                             textView.setVisibility(i7);
                             lVar.D.requestLayout();
-                            mVar.f59558s.setOnDismissListener(new eb(mVar, 15));
-                            mVar.f59558s.show();
+                            mVar.f59559s.setOnDismissListener(new eb(mVar, 15));
+                            mVar.f59559s.show();
                             return;
                         }
                         return;
                     }
-                    mVar.f59543b = true;
+                    mVar.f59544b = true;
                     f2Var.dismissCurrentDialog();
                     Bundle bundle = new Bundle();
                     ProfileActivity profileActivity = new ProfileActivity(bundle, null);
@@ -170,7 +170,7 @@ public final class b implements Runnable {
                 return;
             default:
                 g0.g((String) obj);
-                org.telegram.ui.Components.hc.a0(((z1) obj2).f60621a.f60282a).k(false).j();
+                org.telegram.ui.Components.hc.a0(((z1) obj2).f60622a.f60283a).k(false).j();
                 return;
         }
     }

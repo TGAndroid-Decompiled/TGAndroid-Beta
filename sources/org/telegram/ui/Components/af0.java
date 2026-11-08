@@ -77,7 +77,7 @@ public class af0 extends AccessibilityNodeProvider {
                 if (s5 == null) {
                     return null;
                 }
-                return s5.f54600a;
+                return s5.f54601a;
         }
     }
 
@@ -100,7 +100,7 @@ public class af0 extends AccessibilityNodeProvider {
                 if (v == null) {
                     return null;
                 }
-                return v.f54600a;
+                return v.f54601a;
             default:
                 return super.findFocus(i7);
         }

@@ -20,12 +20,12 @@ public final class l {
 
     public final int a(ri.a aVar) {
         if (aVar instanceof ri.c) {
-            return ((ri.c) aVar).f54563b;
+            return ((ri.c) aVar).f54564b;
         }
         if (aVar instanceof ri.b) {
             return ((Integer) this.d.n(((ri.b) aVar).d)).intValue();
         } else if (aVar instanceof ri.g) {
-            return a(((ri.g) aVar).f54577a);
+            return a(((ri.g) aVar).f54578a);
         } else {
             return 0;
         }
@@ -33,12 +33,12 @@ public final class l {
 
     public final int b(ri.a aVar) {
         if (aVar instanceof ri.c) {
-            return ((ri.c) aVar).f54563b;
+            return ((ri.c) aVar).f54564b;
         }
         if (aVar instanceof ri.b) {
             return ((Integer) this.f17068e.n(((ri.b) aVar).d)).intValue();
         } else if (aVar instanceof ri.g) {
-            return b(((ri.g) aVar).f54577a);
+            return b(((ri.g) aVar).f54578a);
         } else {
             return 0;
         }
@@ -76,13 +76,13 @@ public final class l {
                 float f11 = f10 / 1.0f;
                 int round = Math.round(f11);
                 int round2 = Math.round(f11);
-                Bitmap bitmap = bVar.f54560f;
-                if (bitmap != null && !bitmap.isRecycled() && bVar.f54560f.getWidth() == round2 && bVar.f54560f.getHeight() == round2) {
-                    bVar.f54560f.eraseColor(0);
+                Bitmap bitmap = bVar.f54561f;
+                if (bitmap != null && !bitmap.isRecycled() && bVar.f54561f.getWidth() == round2 && bVar.f54561f.getHeight() == round2) {
+                    bVar.f54561f.eraseColor(0);
                 } else {
-                    bVar.f54560f = Bitmap.createBitmap(round, round2, Bitmap.Config.ARGB_8888);
+                    bVar.f54561f = Bitmap.createBitmap(round, round2, Bitmap.Config.ARGB_8888);
                 }
-                Canvas canvas = new Canvas(bVar.f54560f);
+                Canvas canvas = new Canvas(bVar.f54561f);
                 canvas.scale(f10 / round, 160 / round2);
                 Rect bounds = drawable.getBounds();
                 Rect rect = f17064f;
@@ -90,8 +90,8 @@ public final class l {
                 drawable.setBounds(0, 0, 120, 160);
                 drawable.draw(canvas);
                 drawable.setBounds(rect);
-                bVar.a(bVar.f54560f);
-                bVar.f54560f = null;
+                bVar.a(bVar.f54561f);
+                bVar.f54561f = null;
                 bVar.a((Bitmap) mVar.n(bVar.d));
             }
             return bVar;

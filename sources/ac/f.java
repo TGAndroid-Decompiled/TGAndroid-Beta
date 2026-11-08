@@ -39,8 +39,8 @@ import q6.k;
 import q6.m;
 import q6.p;
 public final class f extends pb.e {
-    public static final n6.c[] f1026k = {j.f53539c};
-    public static final vb.a f1027l = vb.a.f57306a;
+    public static final n6.c[] f1026k = {j.f53540c};
+    public static final vb.a f1027l = vb.a.f57307a;
     public final Context d;
     public final zb.d f1028e;
     public final uf f1029f;
@@ -90,7 +90,7 @@ public final class f extends pb.e {
                     a7.b bVar = new a7.b(this.d);
                     this.f1028e.getClass();
                     zb.d dVar = this.f1028e;
-                    this.f1032j = ((cg) aVar).x1(bVar, new hg(false, dVar.f60028a, dVar.f60029b, false, dVar.f60030c));
+                    this.f1032j = ((cg) aVar).x1(bVar, new hg(false, dVar.f60029a, dVar.f60030b, false, dVar.f60031c));
                 }
                 try {
                     bg bgVar = this.f1032j;
@@ -135,7 +135,7 @@ public final class f extends pb.e {
             ufVar.f5898i.put(fbVar, Long.valueOf(elapsedRealtime));
             ga.d dVar = new ga.d(1);
             dVar.d = db.TYPE_THIN;
-            pb.m.f53544a.execute(new pa(ufVar, new wa(dVar, 0), fbVar, ufVar.c(), 1));
+            pb.m.f53545a.execute(new pa(ufVar, new wa(dVar, 0), fbVar, ufVar.c(), 1));
         }
     }
 
@@ -151,14 +151,14 @@ public final class f extends pb.e {
                     long elapsedRealtime = SystemClock.elapsedRealtime();
                     bg bgVar = this.f1032j;
                     m.g(bgVar);
-                    yf yfVar = new yf(aVar.f56492e, aVar.f56490b, aVar.f56491c, SystemClock.elapsedRealtime(), xc.a(aVar.d));
-                    int i7 = aVar.f56492e;
+                    yf yfVar = new yf(aVar.f56493e, aVar.f56491b, aVar.f56492c, SystemClock.elapsedRealtime(), xc.a(aVar.d));
+                    int i7 = aVar.f56493e;
                     try {
                         if (i7 != -1) {
                             if (i7 != 17) {
                                 if (i7 != 35) {
                                     if (i7 != 842094169) {
-                                        int i10 = aVar.f56492e;
+                                        int i10 = aVar.f56493e;
                                         throw new lb.a("Unsupported image format: " + i10, 3);
                                     }
                                 } else {
@@ -168,13 +168,13 @@ public final class f extends pb.e {
                             m.g(null);
                             throw null;
                         }
-                        Bitmap bitmap = aVar.f56489a;
+                        Bitmap bitmap = aVar.f56490a;
                         m.g(bitmap);
                         bVar = new a7.b(bitmap);
                         try {
                             gg x12 = bgVar.x1(bVar, yfVar);
                             ArrayList arrayList = new ArrayList();
-                            if (this.f1028e.f60029b) {
+                            if (this.f1028e.f60030b) {
                                 for (fg fgVar : x12.f5690a) {
                                     float[] fArr = fgVar.f5669a;
                                     if (fArr != null) {
@@ -241,7 +241,7 @@ public final class f extends pb.e {
         a0Var.d = this.f1028e.a();
         a0Var.f1763b = ebVar;
         a0Var.f1764c = Boolean.valueOf(z9);
-        pb.m.f53544a.execute(new qa(this.f1029f, new h1(a0Var), elapsedRealtime));
+        pb.m.f53545a.execute(new qa(this.f1029f, new h1(a0Var), elapsedRealtime));
         long currentTimeMillis = System.currentTimeMillis();
         long j10 = currentTimeMillis - elapsedRealtime;
         va vaVar = this.f1030g;

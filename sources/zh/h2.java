@@ -9,14 +9,14 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.k60;
 import org.telegram.ui.Components.x31;
 public final class h2 implements a20 {
-    public final int f60364a;
-    public final l3 f60365b;
-    public final k60 f60366c;
+    public final int f60365a;
+    public final l3 f60366b;
+    public final k60 f60367c;
 
     public h2(l3 l3Var, k60 k60Var, int i7) {
-        this.f60364a = i7;
-        this.f60365b = l3Var;
-        this.f60366c = k60Var;
+        this.f60365a = i7;
+        this.f60366b = l3Var;
+        this.f60367c = k60Var;
     }
 
     @Override
@@ -26,11 +26,11 @@ public final class h2 implements a20 {
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
-        switch (this.f60364a) {
+        switch (this.f60365a) {
             case 0:
                 long j3 = ((TL_stars.starGiftAttributePattern) x31Var.G).document.f26962id;
-                b3 b3Var = this.f60365b.d;
-                HashSet hashSet = b3Var.f60242l;
+                b3 b3Var = this.f60366b.d;
+                HashSet hashSet = b3Var.f60243l;
                 if (!hashSet.contains(Long.valueOf(j3))) {
                     if (hashSet.isEmpty()) {
                         ArrayList arrayList = b3Var.h;
@@ -51,15 +51,15 @@ public final class h2 implements a20 {
                     hashSet.remove(Long.valueOf(j3));
                 }
                 b3Var.h();
-                this.f60366c.u();
+                this.f60367c.u();
                 return;
             case 1:
                 int i10 = ((TL_stars.starGiftAttributeBackdrop) x31Var.G).backdrop_id;
-                b3 b3Var2 = this.f60365b.d;
-                HashSet hashSet2 = b3Var2.f60241k;
+                b3 b3Var2 = this.f60366b.d;
+                HashSet hashSet2 = b3Var2.f60242k;
                 if (!hashSet2.contains(Integer.valueOf(i10))) {
                     if (hashSet2.isEmpty()) {
-                        ArrayList arrayList2 = b3Var2.f60238g;
+                        ArrayList arrayList2 = b3Var2.f60239g;
                         int size2 = arrayList2.size();
                         int i11 = 0;
                         while (i11 < size2) {
@@ -77,15 +77,15 @@ public final class h2 implements a20 {
                     hashSet2.remove(Integer.valueOf(i10));
                 }
                 b3Var2.h();
-                this.f60366c.u();
+                this.f60367c.u();
                 return;
             default:
                 long j11 = ((TL_stars.starGiftAttributeModel) x31Var.G).document.f26962id;
-                b3 b3Var3 = this.f60365b.d;
-                HashSet hashSet3 = b3Var3.f60240j;
+                b3 b3Var3 = this.f60366b.d;
+                HashSet hashSet3 = b3Var3.f60241j;
                 if (!hashSet3.contains(Long.valueOf(j11))) {
                     if (hashSet3.isEmpty()) {
-                        ArrayList arrayList3 = b3Var3.f60237f;
+                        ArrayList arrayList3 = b3Var3.f60238f;
                         int size3 = arrayList3.size();
                         int i13 = 0;
                         while (i13 < size3) {
@@ -103,7 +103,7 @@ public final class h2 implements a20 {
                     hashSet3.remove(Long.valueOf(j11));
                 }
                 b3Var3.h();
-                this.f60366c.u();
+                this.f60367c.u();
                 return;
         }
     }

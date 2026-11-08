@@ -4,23 +4,23 @@ import android.opengl.EGL14;
 import android.opengl.EGLSurface;
 import android.view.Surface;
 public final class q {
-    public final r f57478a;
-    public final Surface f57479b;
+    public final r f57479a;
+    public final Surface f57480b;
     public volatile boolean d;
-    public volatile p f57481e;
-    public int f57482f;
-    public int f57483g;
-    public boolean f57484i;
-    public boolean f57485j;
-    public volatile boolean f57480c = true;
+    public volatile p f57482e;
+    public int f57483f;
+    public int f57484g;
+    public boolean f57485i;
+    public boolean f57486j;
+    public volatile boolean f57481c = true;
     public EGLSurface h = EGL14.EGL_NO_SURFACE;
-    public int f57486k = -1;
-    public float f57487l = -1.0f;
+    public int f57487k = -1;
+    public float f57488l = -1.0f;
 
     public q(r rVar, Surface surface, int i7) {
-        this.f57478a = rVar;
-        this.f57479b = surface;
-        this.f57483g = i7;
-        this.f57482f = i7;
+        this.f57479a = rVar;
+        this.f57480b = surface;
+        this.f57484g = i7;
+        this.f57483f = i7;
     }
 }

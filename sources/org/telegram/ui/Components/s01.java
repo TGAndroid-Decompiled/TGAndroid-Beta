@@ -473,10 +473,10 @@ public final class s01 extends FrameLayout implements org.telegram.messenger.ls 
         pj0Var.setClipToPadding(false);
         pj0Var.setVerticalScrollBarEnabled(false);
         v4.k kVar = new v4.k();
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         kVar.C = false;
         xq xqVar = xq.h;
-        kVar.f57119i = xqVar;
+        kVar.f57120i = xqVar;
         kVar.n(350L);
         kVar.d = 160L;
         pj0Var.setItemAnimator(kVar);
@@ -497,7 +497,7 @@ public final class s01 extends FrameLayout implements org.telegram.messenger.ls 
         e61Var.setHorizontalScrollBarEnabled(false);
         e61Var.setOverScrollMode(2);
         v4.k kVar2 = new v4.k();
-        kVar2.f57070m = false;
+        kVar2.f57071m = false;
         kVar2.C = false;
         kVar2.o(xqVar);
         kVar2.n(320L);
@@ -981,10 +981,10 @@ public final class s01 extends FrameLayout implements org.telegram.messenger.ls 
     @Override
     public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
         int i13;
-        WeakHashMap weakHashMap = r0.i0.f54190a;
+        WeakHashMap weakHashMap = r0.i0.f54191a;
         r0.k1 a10 = r0.b0.a(this);
         if (a10 != null) {
-            i13 = a10.f54201a.f(2).d;
+            i13 = a10.f54202a.f(2).d;
         } else {
             i13 = 0;
         }
@@ -1012,7 +1012,7 @@ public final class s01 extends FrameLayout implements org.telegram.messenger.ls 
         org.telegram.ui.an anVar;
         org.telegram.ui.ActionBar.r0 m92;
         org.telegram.ui.ActionBar.k kVar;
-        WeakHashMap weakHashMap = r0.i0.f54190a;
+        WeakHashMap weakHashMap = r0.i0.f54191a;
         r0.k1 a10 = r0.b0.a(this);
         int i12 = 0;
         if (a10 != null) {

@@ -10,14 +10,14 @@ import java.util.Map;
 import java.util.Set;
 import rd.q;
 public final class i extends kd.j implements q {
-    public o1.f f53086a;
-    public q1.b f53087b;
+    public o1.f f53087a;
+    public q1.b f53088b;
 
     @Override
     public final Object b(Object obj, Object obj2, Object obj3) {
         ?? jVar = new kd.j(3, (id.c) obj3);
-        jVar.f53086a = (o1.f) obj;
-        jVar.f53087b = (q1.b) obj2;
+        jVar.f53087a = (o1.f) obj;
+        jVar.f53088b = (q1.b) obj2;
         return jVar.invokeSuspend(k.f13829a);
     }
 
@@ -25,12 +25,12 @@ public final class i extends kd.j implements q {
     public final Object invokeSuspend(Object obj) {
         jd.a aVar = jd.a.f16646a;
         af.b.c(obj);
-        o1.f fVar = this.f53086a;
-        q1.b bVar = this.f53087b;
+        o1.f fVar = this.f53087a;
+        q1.b bVar = this.f53088b;
         Set<q1.e> keySet = bVar.a().keySet();
         ArrayList arrayList = new ArrayList(hd.h.d(keySet, 10));
         for (q1.e eVar : keySet) {
-            arrayList.add(eVar.f53686a);
+            arrayList.add(eVar.f53687a);
         }
         Map<String, ?> all = fVar.f20707a.getAll();
         kotlin.jvm.internal.j.d(all, "prefs.all");

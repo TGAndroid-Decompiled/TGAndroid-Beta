@@ -29,12 +29,12 @@ public final class p31 implements Runnable {
                 b0Var.presentFragment(an.ra(j3));
                 return;
             case 2:
-                org.telegram.utils.twidget.h1 h1Var = (org.telegram.utils.twidget.h1) this.f48605c;
+                org.telegram.utils.twidget.i1 i1Var = (org.telegram.utils.twidget.i1) this.f48605c;
                 long j10 = this.f48604b;
                 Trace.beginSection("WidgetSandbox:Destroy");
                 try {
-                    org.telegram.utils.twidget.r0 r0Var = h1Var.f52827c;
-                    org.telegram.utils.twidget.o0 o0Var = (org.telegram.utils.twidget.o0) r0Var.f52957e.remove(Long.valueOf(j10));
+                    org.telegram.utils.twidget.r0 r0Var = i1Var.f52837c;
+                    org.telegram.utils.twidget.o0 o0Var = (org.telegram.utils.twidget.o0) r0Var.f52958e.remove(Long.valueOf(j10));
                     if (o0Var != null) {
                         org.telegram.utils.twidget.b h12 = o0Var.h1();
                         if (h12 != null) {
@@ -43,8 +43,8 @@ public final class p31 implements Runnable {
                             } catch (RemoteException unused) {
                             }
                         }
-                        synchronized (r0Var.f52955b) {
-                            r0Var.i(o0Var.f52928a);
+                        synchronized (r0Var.f52956b) {
+                            r0Var.j(o0Var.f52929a);
                         }
                     }
                     return;
@@ -54,13 +54,13 @@ public final class p31 implements Runnable {
             case 3:
                 long j11 = this.f48604b;
                 vi.h hVar = (vi.h) ((ac.e) this.f48605c).f1025c;
-                if (j11 == hVar.f57552o && (i7 = hVar.G) != 9 && i7 != 10 && i7 != 8) {
+                if (j11 == hVar.f57553o && (i7 = hVar.G) != 9 && i7 != 10 && i7 != 8) {
                     SystemClock.elapsedRealtime();
-                    hVar.f57559w = false;
+                    hVar.f57560w = false;
                     hVar.s(3);
-                    hVar.f57546i.removeCallbacks(hVar.D);
+                    hVar.f57547i.removeCallbacks(hVar.D);
                     vi.b bVar = hVar.h;
-                    bVar.b("recording started: retainedDurationMs=" + vi.h.r(hVar.f57553p));
+                    bVar.b("recording started: retainedDurationMs=" + vi.h.r(hVar.f57554p));
                     return;
                 }
                 return;

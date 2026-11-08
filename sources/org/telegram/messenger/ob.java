@@ -24,16 +24,16 @@ public final class ob implements Runnable {
                 qs.f(i10).k(139, str, Boolean.valueOf(z9));
                 return;
             default:
-                org.telegram.utils.twidget.k0 k0Var = (org.telegram.utils.twidget.k0) org.telegram.utils.twidget.n0.f52916a.get(str);
-                if (k0Var != null && k0Var.f52884t != null) {
-                    if (org.telegram.utils.twidget.n0.f52921g.contains(k0Var)) {
+                org.telegram.utils.twidget.k0 k0Var = (org.telegram.utils.twidget.k0) org.telegram.utils.twidget.n0.f52915a.get(str);
+                if (k0Var != null && k0Var.f52881t != null) {
+                    if (org.telegram.utils.twidget.n0.f52920g.contains(k0Var)) {
                         k0Var.E = i10;
-                        k0Var.f52884t.n(i10);
+                        k0Var.f52881t.n(i10);
                         return;
                     }
                     k0Var.E = i10;
                     k0Var.F = z9;
-                    ArrayList arrayList = org.telegram.utils.twidget.n0.f52920f;
+                    ArrayList arrayList = org.telegram.utils.twidget.n0.f52919f;
                     arrayList.remove(k0Var);
                     arrayList.add(k0Var);
                     org.telegram.utils.twidget.n0.p();

@@ -12,7 +12,7 @@ import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.x31;
 import org.telegram.ui.if0;
 public final class j extends w31 {
-    public static final int f55320b = 0;
+    public static final int f55321b = 0;
 
     static {
         w31.h(new w31());

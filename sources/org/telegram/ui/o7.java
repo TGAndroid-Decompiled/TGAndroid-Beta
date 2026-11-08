@@ -49,7 +49,7 @@ public final class o7 extends g7 {
             this.f48290s = xpVar;
             xpVar.f40361x = true;
         }
-        org.telegram.ui.Cells.o7 o7Var = (org.telegram.ui.Cells.o7) d1Var.f57043a;
+        org.telegram.ui.Cells.o7 o7Var = (org.telegram.ui.Cells.o7) d1Var.f57044a;
         ci.b bVar = ((m7) this.f45467e.get(i7)).d;
         Object tag = o7Var.getTag();
         ImageReceiver imageReceiver = o7Var.f29664c;

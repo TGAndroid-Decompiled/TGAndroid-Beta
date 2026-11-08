@@ -85,7 +85,7 @@ public final class rz0 extends Dialog {
         x5Var.setClipToPadding(false);
         k0Var.addView(x5Var, c8.ha.e(-1, -1, 119));
         oz0 oz0Var = new oz0(this, 0);
-        WeakHashMap weakHashMap = r0.i0.f54190a;
+        WeakHashMap weakHashMap = r0.i0.f54191a;
         r0.a0.i(k0Var, oz0Var);
         if (org.telegram.messenger.iz.f23435s0) {
             this.E = new org.telegram.ui.Components.js();

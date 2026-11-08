@@ -41,7 +41,7 @@ public final class w30 extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57047f;
+        int i7 = d1Var.f57048f;
         if (i7 != 3 && i7 != 4 && i7 != 5 && i7 != 6) {
             return true;
         }
@@ -424,8 +424,8 @@ public final class w30 extends org.telegram.ui.Components.oj0 {
         int i7;
         int i10;
         z20 z20Var = this.M.F1;
-        int i11 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i11 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         boolean z9 = false;
         if (i11 == 1) {
             org.telegram.ui.Cells.f4 f4Var = (org.telegram.ui.Cells.f4) view;

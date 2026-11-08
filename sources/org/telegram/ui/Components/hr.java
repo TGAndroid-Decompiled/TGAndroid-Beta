@@ -192,7 +192,7 @@ public final class hr implements org.telegram.messenger.f20, org.telegram.messen
             rf.b.p(sb2, str2, c10);
         }
         ((Long) gVar.c(new hr(gVar, hVar, iVar, 13))).getClass();
-        aVar.f55445a.J(iVar, 1, false);
+        aVar.f55446a.J(iVar, 1, false);
         return null;
     }
 
@@ -234,7 +234,7 @@ public final class hr implements org.telegram.messenger.f20, org.telegram.messen
         switch (i7) {
             case 9:
                 p4.d0 d0Var = (p4.d0) obj4;
-                Handler handler = d0Var.f53209l;
+                Handler handler = d0Var.f53210l;
                 org.telegram.ui.web.w wVar = new org.telegram.ui.web.w(d0Var, (p4.v) obj3, new r31(d0Var, (p4.r0) obj2, (p4.w) obj, 14));
                 p4.m1 m1Var = new p4.m1(0);
                 String str = h2.m0.f14112a;
@@ -245,7 +245,7 @@ public final class hr implements org.telegram.messenger.f20, org.telegram.messen
                 p4.d0 d0Var2 = (p4.d0) obj4;
                 p4.v vVar = (p4.v) obj3;
                 List list = (List) obj;
-                Handler handler2 = d0Var2.f53209l;
+                Handler handler2 = d0Var2.f53210l;
                 org.telegram.ui.web.w wVar2 = new org.telegram.ui.web.w(d0Var2, vVar, new org.telegram.ui.jo0(d0Var2, (p4.z0) obj2, vVar, list, 25));
                 p4.m1 m1Var2 = new p4.m1(0);
                 String str2 = h2.m0.f14112a;

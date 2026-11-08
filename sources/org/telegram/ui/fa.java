@@ -32,7 +32,7 @@ public final class fa implements TextView.OnEditorActionListener {
                 an anVar = (an) this.f45523b;
                 if (i7 == 6) {
                     sh.b bVar = anVar.f43817gd;
-                    if (bVar != null && (q1Var = bVar.f55287n) != null) {
+                    if (bVar != null && (q1Var = bVar.f55288n) != null) {
                         anVar.Ta(q1Var);
                         return true;
                     }

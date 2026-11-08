@@ -128,7 +128,7 @@ public final class x3 extends FrameLayout implements org.telegram.ui.ActionBar.a
         FrameLayout.LayoutParams d = c8.ha.d(-2, -1.0f, (id.f23157a0 ? 3 : 5) | 48, f10, 0.0f, f10, 0.0f);
         this.f30878c = d;
         addView(w3Var, d);
-        WeakHashMap weakHashMap = r0.i0.f54190a;
+        WeakHashMap weakHashMap = r0.i0.f54191a;
         new r0.v(2131296684, Boolean.class, 0, 28, 2).d(this, Boolean.TRUE);
     }
 

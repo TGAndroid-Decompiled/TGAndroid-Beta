@@ -345,7 +345,7 @@ public final class yz extends FrameLayout implements org.telegram.ui.ActionBar.a
 
     public final void b() {
         int i7;
-        float f10 = this.f52358a.f55486e;
+        float f10 = this.f52358a.f55487e;
         float f11 = (1.0f - f10) * (-org.telegram.messenger.g0.L(24.0f));
         qz qzVar = this.m0;
         qzVar.setTranslationY(f11);

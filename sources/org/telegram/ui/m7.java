@@ -15,8 +15,8 @@ public final class m7 extends rg.a {
         }
         if (obj != null && m7.class == obj.getClass()) {
             m7 m7Var = (m7) obj;
-            int i7 = this.f54531a;
-            if (i7 == m7Var.f54531a) {
+            int i7 = this.f54532a;
+            if (i7 == m7Var.f54532a) {
                 if (i7 == 1 && (s6Var = this.f47687c) != null && (s6Var2 = m7Var.f47687c) != null) {
                     if (s6Var.f49639a == s6Var2.f49639a) {
                         return true;

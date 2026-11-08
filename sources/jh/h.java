@@ -74,7 +74,7 @@ public final class h extends View {
                 Paint paint = this.f17051b;
                 paint.setColor(w02);
                 canvas.drawCircle(width, height, g0.L(19.0f), paint);
-                float f10 = ((te.a) this.f17052c).f55486e;
+                float f10 = ((te.a) this.f17052c).f55487e;
                 float f11 = 1.0f - f10;
                 if (f11 > 0.0f) {
                     s.b(canvas, (v31) this.f17053e, f11 * 1.35f);
@@ -142,7 +142,7 @@ public final class h extends View {
     public boolean verifyDrawable(Drawable drawable) {
         switch (this.f17050a) {
             case 0:
-                if (!super.verifyDrawable(drawable) && (drawable != ((v31) this.f17053e) || ((te.a) this.f17052c).f55487f)) {
+                if (!super.verifyDrawable(drawable) && (drawable != ((v31) this.f17053e) || ((te.a) this.f17052c).f55488f)) {
                     return false;
                 }
                 return true;

@@ -1,9 +1,9 @@
 package zd;
 public abstract class v1 {
-    public static final ThreadLocal f60122a = new ThreadLocal();
+    public static final ThreadLocal f60123a = new ThreadLocal();
 
     public static t0 a() {
-        ThreadLocal threadLocal = f60122a;
+        ThreadLocal threadLocal = f60123a;
         t0 t0Var = (t0) threadLocal.get();
         if (t0Var == null) {
             i iVar = new i(Thread.currentThread());

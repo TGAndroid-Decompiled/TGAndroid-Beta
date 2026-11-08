@@ -22,6 +22,6 @@ public abstract class n {
         hashMap2.remove(r5.b.class);
         hashMap.put(r5.f.class, f.f20812a);
         hashMap2.remove(r5.f.class);
-        f20837a = new hy0(new HashMap(hashMap), new HashMap(hashMap2), qa.f.f54058a, 10);
+        f20837a = new hy0(new HashMap(hashMap), new HashMap(hashMap2), qa.f.f54059a, 10);
     }
 }

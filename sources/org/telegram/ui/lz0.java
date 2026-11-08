@@ -23,7 +23,7 @@ public final class lz0 extends FrameLayout {
         r1.f fVar = new r1.f(0.0f);
         this.f47604f = fVar;
         r1.g gVar = new r1.g(fVar);
-        gVar.f54267m = org.telegram.ui.Cells.f1.o(0.0f, 750.0f, 1.0f);
+        gVar.f54268m = org.telegram.ui.Cells.f1.o(0.0f, 750.0f, 1.0f);
         gVar.b(new ab0(this, 5));
         this.h = gVar;
         this.f47605n = new q0("progress", 7);
@@ -33,7 +33,7 @@ public final class lz0 extends FrameLayout {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f47604f.f54249a = 0.0f;
+        this.f47604f.f54250a = 0.0f;
         this.f47603e = 0;
     }
 

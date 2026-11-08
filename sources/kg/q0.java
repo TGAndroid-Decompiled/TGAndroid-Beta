@@ -153,7 +153,7 @@ public final class q0 extends f2 {
                 q0Var.M = null;
                 q0Var.f17502c.f37190f3.O(true);
                 q0Var.d0(true);
-            } else if (x31Var.f54531a == 13) {
+            } else if (x31Var.f54532a == 13) {
                 TLRPC.User user = (TLRPC.User) q0Var.N.get(x31Var.f40191x);
                 if (user != null) {
                     if (!user.bot_business) {
@@ -908,7 +908,7 @@ public final class q0 extends f2 {
         boolean z9;
         TLRPC.User user;
         TL_account.TL_connectedBot tL_connectedBot;
-        if (!this.f17500a.f27358y.f55487f) {
+        if (!this.f17500a.f27358y.f55488f) {
             if (!e0()) {
                 finishFragment();
             } else if (this.f17508w.k(this.f17502c)) {

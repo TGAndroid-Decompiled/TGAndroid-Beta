@@ -17,7 +17,7 @@ public final class j extends ThreadLocal {
                 return new Random();
             default:
                 ?? obj = new Object();
-                obj.f55524a = new byte[4096];
+                obj.f55525a = new byte[4096];
                 return obj;
         }
     }

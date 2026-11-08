@@ -31,7 +31,7 @@ public final class oj extends oj0 {
     public final boolean D(v4.d1 d1Var) {
         switch (this.f36649c) {
             case 0:
-                if (d1Var.f57047f == 1) {
+                if (d1Var.f57048f == 1) {
                     return true;
                 }
                 return false;
@@ -115,8 +115,8 @@ public final class oj extends oj0 {
         switch (i10) {
             case 0:
                 vj vjVar = (vj) obj;
-                int i11 = d1Var.f57047f;
-                View view = d1Var.f57043a;
+                int i11 = d1Var.f57048f;
+                View view = d1Var.f57044a;
                 if (i11 != 0) {
                     if (i11 == 1) {
                         pj E = E(i7);
@@ -155,7 +155,7 @@ public final class oj extends oj0 {
                 }
             default:
                 org.telegram.ui.ms msVar = (org.telegram.ui.ms) this.f36650e.get(i7);
-                org.telegram.ui.Cells.w9 w9Var = (org.telegram.ui.Cells.w9) d1Var.f57043a;
+                org.telegram.ui.Cells.w9 w9Var = (org.telegram.ui.Cells.w9) d1Var.f57044a;
                 CharSequence m10 = org.telegram.messenger.i6.m(org.telegram.ui.qs.a0(msVar), w9Var.getTextView().getPaint().getFontMetricsInt(), false, null, 0);
                 if (((org.telegram.ui.qs) obj).h) {
                     str = "+" + msVar.f47871c;

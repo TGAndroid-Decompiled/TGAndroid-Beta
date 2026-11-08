@@ -36,7 +36,7 @@ public final class xm implements TextWatcher {
             org.telegram.messenger.i6.l(editable, wmVar.getEditField().getPaint().getFontMetricsInt(), false);
             bnVar.f32269y.setDirection(1);
             bnVar.f32269y.setDelegate(wmVar);
-            bnVar.f32269y.setTranslationY(K.f57043a.getY());
+            bnVar.f32269y.setTranslationY(K.f57044a.getY());
             bnVar.f32269y.e();
         }
         if (i10 == 11) {
@@ -45,7 +45,7 @@ public final class xm implements TextWatcher {
             bnVar.N = editable;
         }
         if (K != null) {
-            bn.P(bnVar, K.f57043a, i7);
+            bn.P(bnVar, K.f57044a, i7);
         }
         bnVar.X();
     }

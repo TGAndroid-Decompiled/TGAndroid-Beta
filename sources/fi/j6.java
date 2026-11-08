@@ -51,13 +51,13 @@ public final class j6 implements ValueAnimator.AnimatorUpdateListener {
                 org.telegram.ui.Cells.x9 x9Var = (org.telegram.ui.Cells.x9) this.f12237f;
                 x9Var.getClass();
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                vg.f fVar = ((vg.e) x9Var.f30911b).f57362a;
+                vg.f fVar = ((vg.e) x9Var.f30911b).f57363a;
                 float f17 = this.f12235c;
                 float f18 = this.f12234b;
                 fVar.d = com.google.android.recaptcha.internal.a.z(f17, f18, floatValue3, f18);
                 float f19 = this.f12236e;
                 float f20 = this.d;
-                fVar.f57379i = com.google.android.recaptcha.internal.a.z(f19, f20, floatValue3, f20);
+                fVar.f57380i = com.google.android.recaptcha.internal.a.z(f19, f20, floatValue3, f20);
                 return;
         }
     }

@@ -41,7 +41,7 @@ public final class nc extends org.telegram.ui.Components.oj0 {
         pc pcVar = this.f48022e;
         ArrayList arrayList = pcVar.f48773c;
         int b10 = d1Var.b();
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         if (b10 >= 0 && b10 < arrayList.size()) {
             org.telegram.ui.Components.uo uoVar = (org.telegram.ui.Components.uo) arrayList.get(b10);
             org.telegram.ui.Components.zz0 zz0Var = (org.telegram.ui.Components.zz0) view;

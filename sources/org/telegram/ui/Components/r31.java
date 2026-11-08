@@ -44,8 +44,8 @@ public final class r31 implements Runnable {
 
     private final void a() {
         File file = (File) this.d;
-        m4.d0 d0Var = ((vi.h) this.f37505b).f57545g;
-        long j3 = ((vi.g) this.f37506c).f57536a;
+        m4.d0 d0Var = ((vi.h) this.f37505b).f57546g;
+        long j3 = ((vi.g) this.f37506c).f57537a;
         synchronized (((e0.g) d0Var.f19612b).f10055f) {
             ((HashMap) ((e0.g) d0Var.f19612b).f10056g).put(Long.valueOf(j3), file);
         }
@@ -54,8 +54,8 @@ public final class r31 implements Runnable {
 
     private final void b() {
         File file = (File) this.d;
-        wi.q0 q0Var = ((wi.t0) this.f37505b).f58196e;
-        long j3 = ((wi.p0) this.f37506c).f58124a;
+        wi.q0 q0Var = ((wi.t0) this.f37505b).f58197e;
+        long j3 = ((wi.p0) this.f37506c).f58125a;
         hy0 hy0Var = (hy0) q0Var;
         synchronized (hy0Var) {
             if (hy0Var.d) {
@@ -467,24 +467,24 @@ public final class r31 implements Runnable {
                 p4.a0 a0Var = (p4.a0) this.f37505b;
                 p4.v vVar = (p4.v) this.f37506c;
                 KeyEvent keyEvent = (KeyEvent) this.d;
-                p4.d0 d0Var = a0Var.f53163b;
+                p4.d0 d0Var = a0Var.f53164b;
                 if (d0Var.i(vVar)) {
                     d0Var.b(keyEvent, false, false);
                 } else {
                     p4.m0 m0Var = d0Var.h;
-                    q4.r rVar = vVar.f53450a;
+                    q4.r rVar = vVar.f53451a;
                     rVar.getClass();
                     m0Var.getClass();
                     m0Var.i0(1, new p4.g0(m0Var, 9), rVar, true);
                 }
-                a0Var.f53162a = null;
+                a0Var.f53163a = null;
                 return;
             case 14:
                 p4.d0 d0Var2 = (p4.d0) this.f37505b;
                 p4.r0 r0Var = (p4.r0) this.f37506c;
                 p4.w wVar = (p4.w) this.d;
                 if (!d0Var2.j()) {
-                    p4.g1 g1Var = d0Var2.f53217t;
+                    p4.g1 g1Var = d0Var2.f53218t;
                     r0Var.getClass();
                     c8.ab.b(g1Var, wVar);
                     return;
@@ -492,24 +492,24 @@ public final class r31 implements Runnable {
                 return;
             case 15:
                 q2.j jVar = (q2.j) this.f37505b;
-                this.f37506c.K(jVar.f53736a, jVar.f53737b, (Exception) this.d);
+                this.f37506c.K(jVar.f53737a, jVar.f53738b, (Exception) this.d);
                 return;
             case 16:
                 q2.j jVar2 = (q2.j) this.f37505b;
-                this.f37506c.b(jVar2.f53736a, jVar2.f53737b, (qb.a) this.d);
+                this.f37506c.b(jVar2.f53737a, jVar2.f53738b, (qb.a) this.d);
                 return;
             case 17:
                 ui.i iVar = (ui.i) this.f37505b;
                 WebView webView = (WebView) this.f37506c;
                 e5.f fVar = (e5.f) this.d;
-                synchronized (iVar.f56941a) {
-                    if (!iVar.f56959u && iVar.f56953o == webView && iVar.f56954p == fVar && !iVar.f56956r) {
-                        if (iVar.f56957s) {
+                synchronized (iVar.f56942a) {
+                    if (!iVar.f56960u && iVar.f56954o == webView && iVar.f56955p == fVar && !iVar.f56957r) {
+                        if (iVar.f56958s) {
                             org.telegram.messenger.a8.d("WEB proxy: Base64 bridge installation timed out again; transport stopped");
                             iVar.q();
                             return;
                         }
-                        iVar.f56957s = true;
+                        iVar.f56958s = true;
                         org.telegram.messenger.a8.d("WEB proxy: Base64 bridge installation timed out; retrying once");
                         iVar.h();
                         return;
@@ -519,20 +519,20 @@ public final class r31 implements Runnable {
             case 18:
                 vi.h hVar = (vi.h) this.f37505b;
                 byte[] bArr2 = (byte[]) this.d;
-                File file = ((vi.g) this.f37506c).f57537b;
+                File file = ((vi.g) this.f37506c).f57538b;
                 if (hVar.G == 4) {
                     hVar.B = bArr2;
                     try {
                         hVar.p();
-                        if (hVar.f57543e) {
-                            l2.i0 a10 = new l2.n(hVar.f57540a).a();
+                        if (hVar.f57544e) {
+                            l2.i0 a10 = new l2.n(hVar.f57541a).a();
                             hVar.A = a10;
                             a10.I0(hVar.F);
                             hVar.A.m0(e2.l0.b(Uri.fromFile(file)));
                             hVar.A.a();
                         }
                         hVar.s(5);
-                        j2.n nVar = hVar.f57544f;
+                        j2.n nVar = hVar.f57545f;
                         long j3 = hVar.j();
                         byte[] bArr3 = hVar.B;
                         if (bArr3 != null) {
@@ -607,12 +607,12 @@ public final class r31 implements Runnable {
                 wi.t0 t0Var = (wi.t0) this.f37505b;
                 wi.x xVar = (wi.x) this.f37506c;
                 File file2 = (File) this.d;
-                Handler handler = t0Var.f58199i;
+                Handler handler = t0Var.f58200i;
                 try {
                     xVar.c(file2);
                     t0Var.g();
                     long h = xVar.h();
-                    t0Var.f58203m.b("preview snapshot completed: durationMs=" + h + ", size=" + file2.length() + ", elapsedMs=" + wi.t0.f(t0Var.N));
+                    t0Var.f58204m.b("preview snapshot completed: durationMs=" + h + ", size=" + file2.length() + ", elapsedMs=" + wi.t0.f(t0Var.N));
                     handler.post(new wi.f0(t0Var, h, 1));
                     return;
                 } catch (Exception e15) {
@@ -630,7 +630,7 @@ public final class r31 implements Runnable {
                 if (v70Var != null && lVar.H == x70Var) {
                     v70Var.a(clickableSpan);
                     lVar.H = null;
-                    lVar.f58846y.f(true);
+                    lVar.f58847y.f(true);
                     return;
                 }
                 return;
@@ -638,8 +638,8 @@ public final class r31 implements Runnable {
                 yf.e eVar = (yf.e) this.f37505b;
                 TLObject tLObject3 = (TLObject) this.d;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) this.f37506c;
-                String str6 = eVar.f59418b;
-                int i25 = eVar.f59417a;
+                String str6 = eVar.f59419b;
+                int i25 = eVar.f59418a;
                 if (tLObject3 != null) {
                     org.telegram.messenger.ui.b0(i25).i1(str6, (TLRPC.Document) tLObject3, false);
                 } else {

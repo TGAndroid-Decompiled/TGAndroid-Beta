@@ -20,15 +20,15 @@ import org.telegram.ui.Cells.y6;
 import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.w70;
 public final class m0 extends oj0 {
-    public final q0 f57779c;
+    public final q0 f57780c;
 
     public m0(q0 q0Var) {
-        this.f57779c = q0Var;
+        this.f57780c = q0Var;
     }
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f57047f == 3) {
+        if (d1Var.f57048f == 3) {
             return true;
         }
         return false;
@@ -36,7 +36,7 @@ public final class m0 extends oj0 {
 
     @Override
     public final int b() {
-        return this.f57779c.Q1.size() + 3;
+        return this.f57780c.Q1.size() + 3;
     }
 
     @Override
@@ -57,9 +57,9 @@ public final class m0 extends oj0 {
     @Override
     public final void t(v4.d1 d1Var, int i7) {
         String str;
-        int i10 = d1Var.f57047f;
-        View view = d1Var.f57043a;
-        q0 q0Var = this.f57779c;
+        int i10 = d1Var.f57048f;
+        View view = d1Var.f57044a;
+        q0 q0Var = this.f57780c;
         if (i10 == 3) {
             TL_stories.TL_myBoost tL_myBoost = (TL_stories.TL_myBoost) q0Var.Q1.get(i7 - 3);
             ah.r rVar = (ah.r) view;
@@ -74,7 +74,7 @@ public final class m0 extends oj0 {
             p0 p0Var = (p0) view;
             q0Var.T1 = p0Var;
             TLRPC.Chat chat = q0Var.R1;
-            w70 w70Var = p0Var.f57796e;
+            w70 w70Var = p0Var.f57797e;
             try {
                 int i11 = (int) qp.s1(p10.f24470s0).f24880r0;
                 if (chat == null) {
@@ -98,7 +98,7 @@ public final class m0 extends oj0 {
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         View view;
         Context context = viewGroup.getContext();
-        q0 q0Var = this.f57779c;
+        q0 q0Var = this.f57780c;
         if (i7 != 0) {
             if (i7 != 1) {
                 if (i7 != 2) {

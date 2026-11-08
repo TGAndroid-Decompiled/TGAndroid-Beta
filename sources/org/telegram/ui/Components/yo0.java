@@ -30,15 +30,15 @@ public final class yo0 implements View.OnClickListener {
                 return;
             default:
                 up0 up0Var = (up0) this.d;
-                if (up0Var.f60285e.h() && up0Var.h.getCurrentPosition() != 0) {
+                if (up0Var.f60286e.h() && up0Var.h.getCurrentPosition() != 0) {
                     up0Var.a();
                     return;
                 }
                 boolean z9 = this.f40728b;
                 int i7 = this.f40729c;
                 if (z9) {
-                    zh.g1 g1Var = new zh.g1(up0Var.getContext(), i7, up0Var.f60284c, null, null);
-                    g1Var.e1(org.telegram.messenger.v1.a(i7).c(up0Var.f60284c));
+                    zh.g1 g1Var = new zh.g1(up0Var.getContext(), i7, up0Var.f60285c, null, null);
+                    g1Var.e1(org.telegram.messenger.v1.a(i7).c(up0Var.f60285c));
                     g1Var.show();
                     return;
                 }

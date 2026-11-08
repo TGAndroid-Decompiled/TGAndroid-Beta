@@ -84,7 +84,7 @@ public final class d0 extends v2 implements ls, te.b, p2 {
 
     @Override
     public final boolean G() {
-        if (!this.f15503i1.f55487f && !this.f15504j1.f55487f) {
+        if (!this.f15503i1.f55488f && !this.f15504j1.f55488f) {
             View currentView = this.f15505k1.getCurrentView();
             if (currentView instanceof b0) {
                 return ((b0) currentView).f15493e;
@@ -338,7 +338,7 @@ public final class d0 extends v2 implements ls, te.b, p2 {
         if (this.f15505k1.getCurrentPosition() > 0) {
             if (this.f15505k1.getCurrentPosition() == 2) {
                 te.a aVar = this.f15504j1;
-                if (aVar.f55487f) {
+                if (aVar.f55488f) {
                     this.f15512t1.d.f37189e3.h1(1, this.L1.f15121b);
                     aVar.a(false, true);
                     this.f28644q0 = true;
@@ -486,7 +486,7 @@ public final class d0 extends v2 implements ls, te.b, p2 {
         cc.a((FrameLayout) this.f28619b, new r7(5));
         ViewGroup viewGroup = this.f28619b;
         u uVar = new u(this, 1);
-        WeakHashMap weakHashMap = r0.i0.f54190a;
+        WeakHashMap weakHashMap = r0.i0.f54191a;
         r0.a0.i(viewGroup, uVar);
     }
 

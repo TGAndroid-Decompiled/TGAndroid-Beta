@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import org.json.JSONObject;
 import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.utils.twidget.h1;
+import org.telegram.utils.twidget.i1;
 public final class b implements Runnable {
     public final int f20611a = 1;
     public final int f20612b;
@@ -37,8 +37,8 @@ public final class b implements Runnable {
         this.h = nVar;
     }
 
-    public b(h1 h1Var, int i7, long j3, JSONObject jSONObject, String str, boolean z9) {
-        this.f20614e = h1Var;
+    public b(i1 i1Var, int i7, long j3, JSONObject jSONObject, String str, boolean z9) {
+        this.f20614e = i1Var;
         this.f20612b = i7;
         this.f20613c = j3;
         this.f20615f = jSONObject;

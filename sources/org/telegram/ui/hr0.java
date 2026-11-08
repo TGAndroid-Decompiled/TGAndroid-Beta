@@ -192,7 +192,7 @@ public final class hr0 extends org.telegram.ui.ActionBar.j {
                     for (int i28 = pr0Var.f48933n0; i28 < pr0Var.f48933n0 + pr0Var.D; i28++) {
                         v4.d1 K = pr0Var.f48919c.K(i28);
                         if (K != null) {
-                            View view = K.f57043a;
+                            View view = K.f57044a;
                             if (view instanceof org.telegram.ui.Cells.a6) {
                                 org.telegram.ui.Cells.a6 a6Var = (org.telegram.ui.Cells.a6) view;
                                 if (a6Var.getTop() > org.telegram.messenger.g0.L(40.0f)) {

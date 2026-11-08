@@ -42,7 +42,7 @@ public final class a implements a20, org.telegram.ui.ActionBar.r1 {
         final c cVar = this.f17288b;
         if (!cVar.f17320c.h(x31Var)) {
             int i7 = x31Var.d;
-            if (i7 != 2 && x31Var.f54531a != 17) {
+            if (i7 != 2 && x31Var.f54532a != 17) {
                 if (i7 == 1) {
                     cVar.f17324r = !cVar.f17324r;
                     cVar.f17319b.f37190f3.O(true);

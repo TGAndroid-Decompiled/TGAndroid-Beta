@@ -121,14 +121,14 @@ public final class f implements Runnable {
                             long max = Math.max(0L, Math.min(j10, audioLeftMs));
                             long max2 = Math.max(max, Math.min(j10, audioRightMs));
                             j3 = audioRightMs;
-                            if (max2 - max >= Math.min(hVar.f57542c, j10)) {
-                                hVar.f57555r = max;
-                                hVar.f57556s = max2;
+                            if (max2 - max >= Math.min(hVar.f57543c, j10)) {
+                                hVar.f57556r = max;
+                                hVar.f57557s = max2;
                                 l2.i0 i0Var = hVar.A;
                                 if (i0Var != null) {
                                     i0Var.Z0(5, max);
                                 }
-                                hVar.f57544f.getClass();
+                                hVar.f57545f.getClass();
                                 hVar.m();
                                 org.telegram.messenger.g0.h3(xfVar);
                                 return;

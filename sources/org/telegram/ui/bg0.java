@@ -144,7 +144,7 @@ public class bg0 extends Dialog implements org.telegram.messenger.ls {
         wf0Var.setClipToPadding(false);
         pf0Var.addView(wf0Var, c8.ha.e(-1, -1, 119));
         f fVar = new f(this, 25);
-        WeakHashMap weakHashMap = r0.i0.f54190a;
+        WeakHashMap weakHashMap = r0.i0.f54191a;
         r0.a0.i(pf0Var, fVar);
         xf0 xf0Var = new xf0(this, context, f6Var);
         this.J = xf0Var;

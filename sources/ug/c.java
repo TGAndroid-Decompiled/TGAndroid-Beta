@@ -18,25 +18,25 @@ import org.telegram.ui.Components.Premium.LimitPreviewView;
 import org.telegram.ui.Components.oj0;
 import org.telegram.ui.sq0;
 public final class c extends oj0 {
-    public final f6 f56529c;
+    public final f6 f56530c;
     public final int d;
-    public final int f56530e;
-    public final ArrayList f56531f;
+    public final int f56531e;
+    public final ArrayList f56532f;
     public final y0 h;
-    public int f56532n;
-    public b f56533r;
-    public final boolean f56534s;
+    public int f56533n;
+    public b f56534r;
+    public final boolean f56535s;
 
     public c(int i7, f6 f6Var) {
         ArrayList arrayList = new ArrayList();
-        this.f56531f = arrayList;
-        this.f56534s = true;
-        this.f56529c = f6Var;
+        this.f56532f = arrayList;
+        this.f56535s = true;
+        this.f56530c = f6Var;
         y0 y0Var = new y0(k6.zk, k6.Ak, k6.Bk, k6.Ck, f6Var);
         this.h = y0Var;
-        y0Var.f56876o = 0.0f;
-        y0Var.f56877p = 0.0f;
-        y0Var.f56878q = 1.0f;
+        y0Var.f56877o = 0.0f;
+        y0Var.f56878p = 0.0f;
+        y0Var.f56879q = 1.0f;
         qp s12 = qp.s1(i7);
         arrayList.add(new d(s12.D4, s12.E4, id.M0(2131749380, null), id.a0(null, null, 2131749381, Integer.valueOf(s12.E4))));
         arrayList.add(new d(s12.P4, s12.Q4, id.M0(2131747249, null), id.a0(null, null, 2131747250, Integer.valueOf(s12.Q4))));
@@ -50,7 +50,7 @@ public final class c extends oj0 {
         arrayList.add(new d(3, 4, id.M0(2131751810, null), id.a0(null, null, 2131751811, 4)));
         arrayList.add(new d(s12.f24929w4, s12.f24939x4, id.M0(2131745318, null), id.a0(null, null, 2131745319, Integer.valueOf(s12.f24939x4))));
         this.d = 1;
-        this.f56530e = 1;
+        this.f56531e = 1;
         this.d = arrayList.size() + 1;
     }
 
@@ -77,14 +77,14 @@ public final class c extends oj0 {
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        if (d1Var.f57047f == 0) {
-            e eVar = (e) d1Var.f57043a;
-            int i10 = i7 - this.f56530e;
-            ArrayList arrayList = this.f56531f;
+        if (d1Var.f57048f == 0) {
+            e eVar = (e) d1Var.f57044a;
+            int i10 = i7 - this.f56531e;
+            ArrayList arrayList = this.f56532f;
             eVar.a((d) arrayList.get(i10));
-            LimitPreviewView limitPreviewView = eVar.f56549c;
-            limitPreviewView.F = ((d) arrayList.get(i10)).f56541e;
-            limitPreviewView.f31453c = this.f56532n;
+            LimitPreviewView limitPreviewView = eVar.f56550c;
+            limitPreviewView.F = ((d) arrayList.get(i10)).f56542e;
+            limitPreviewView.f31453c = this.f56533n;
         }
     }
 
@@ -92,19 +92,19 @@ public final class c extends oj0 {
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         v3 v3Var;
         Context context = viewGroup.getContext();
-        f6 f6Var = this.f56529c;
+        f6 f6Var = this.f56530c;
         if (i7 != 1) {
             if (i7 != 2) {
                 ?? eVar = new e(context, f6Var);
-                b bVar = this.f56533r;
-                LimitPreviewView limitPreviewView = eVar.f56549c;
+                b bVar = this.f56534r;
+                LimitPreviewView limitPreviewView = eVar.f56550c;
                 limitPreviewView.setParentViewForGradien(bVar);
                 limitPreviewView.setStaticGradinet(this.h);
                 v3Var = eVar;
             } else {
                 v3Var = new v3(context, 16);
             }
-        } else if (this.f56534s) {
+        } else if (this.f56535s) {
             ?? sq0Var = new sq0(context, 18);
             LinearLayout f10 = k5.f(context, 0);
             ImageView imageView = new ImageView(context);

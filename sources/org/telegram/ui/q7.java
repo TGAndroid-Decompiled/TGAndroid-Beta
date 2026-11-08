@@ -16,7 +16,7 @@ public final class q7 extends g7 {
         boolean z9;
         boolean z10;
         float f10;
-        k7 k7Var = (k7) d1Var.f57043a;
+        k7 k7Var = (k7) d1Var.f57044a;
         org.telegram.ui.Cells.g7 g7Var = (org.telegram.ui.Cells.g7) k7Var.f47129b.getChildAt(0);
         ci.b bVar = ((m7) this.f45467e.get(i7)).d;
         if (bVar == k7Var.getTag()) {

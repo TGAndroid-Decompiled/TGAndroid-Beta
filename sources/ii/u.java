@@ -35,14 +35,14 @@ public final class u implements a20, r0.m, b20 {
 
     @Override
     public k1 S0(View view, k1 k1Var) {
-        h1 h1Var = k1Var.f54201a;
+        h1 h1Var = k1Var.f54202a;
         i0.b f10 = h1Var.f(527);
         d0 d0Var = this.f15610b;
         d0Var.K1 = f10;
         d0Var.L1 = h1Var.f(519);
         d0Var.f15515w1.j(org.telegram.messenger.g0.L(56.0f) + d0Var.K1.f15121b, d0Var.K1.d, false);
         d0Var.f15517y1.invalidate();
-        return k1.f54200b;
+        return k1.f54201b;
     }
 
     @Override

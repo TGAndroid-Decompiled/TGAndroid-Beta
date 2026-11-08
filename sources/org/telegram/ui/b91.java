@@ -25,7 +25,7 @@ public final class b91 extends v4.s0 {
                     v4.d1 K = recyclerView.K(L0);
                     boolean z10 = false;
                     if (K != null) {
-                        i11 = K.f57043a.getTop();
+                        i11 = K.f57044a.getTop();
                     } else {
                         i11 = 0;
                     }

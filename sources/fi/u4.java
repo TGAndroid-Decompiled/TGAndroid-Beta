@@ -196,7 +196,7 @@ public final class u4 implements d20 {
                 return Boolean.FALSE;
             case 2:
                 View view = (View) obj;
-                ij ijVar = ((th.g) obj2).f56060b;
+                ij ijVar = ((th.g) obj2).f56061b;
                 return th.c.d(view, (String) obj4, (String) obj3, ijVar.F0(), ijVar);
             default:
                 pj0 pj0Var = (pj0) obj4;
@@ -211,7 +211,7 @@ public final class u4 implements d20 {
                     boolean booleanValue = bool.booleanValue();
                     v4.d1 T = pj0Var.T(view2);
                     if (T != null) {
-                        sparseIntArray.put(T.f57047f, booleanValue ? 1 : 0);
+                        sparseIntArray.put(T.f57048f, booleanValue ? 1 : 0);
                     }
                     return bool;
                 } catch (Exception unused2) {

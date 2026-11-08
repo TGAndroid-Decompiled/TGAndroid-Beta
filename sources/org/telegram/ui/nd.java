@@ -70,7 +70,7 @@ public final class nd implements TextView.OnEditorActionListener {
                         if (K == null) {
                             return true;
                         }
-                        View view = K.f57043a;
+                        View view = K.f57044a;
                         if (!(view instanceof org.telegram.ui.Cells.a6)) {
                             return true;
                         }
@@ -107,7 +107,7 @@ public final class nd implements TextView.OnEditorActionListener {
                         if (K2 == null) {
                             return true;
                         }
-                        View view2 = K2.f57043a;
+                        View view2 = K2.f57044a;
                         if (!(view2 instanceof org.telegram.ui.Cells.a6)) {
                             return true;
                         }

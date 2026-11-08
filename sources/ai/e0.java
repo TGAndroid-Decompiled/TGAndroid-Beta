@@ -235,8 +235,8 @@ public final class e0 implements Runnable {
                 tg.h1 h1Var = o5Var.T0;
                 int i20 = h1Var.d + 1;
                 h1Var.a(i20);
-                org.telegram.messenger.g0.R3(h1Var.f55713a[i20], i19);
-                h1Var.f55716e = true;
+                org.telegram.messenger.g0.R3(h1Var.f55714a[i20], i19);
+                h1Var.f55717e = true;
                 return;
             case 12:
                 org.telegram.messenger.g0.h3(new bg.m0(this.f1164b, ((yr) this.f1165c).l0(new ArrayList((HashSet) this.d)), 8));

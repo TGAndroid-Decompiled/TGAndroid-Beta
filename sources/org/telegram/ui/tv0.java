@@ -310,7 +310,7 @@ public final class tv0 extends org.telegram.ui.Components.rt0 implements r0.l {
                     if (top <= 0 && (currentListView = profileActivity.N.getCurrentListView()) != null && (L0 = ((v4.b0) currentListView.getLayoutManager()).L0()) != -1) {
                         v4.d1 K = currentListView.K(L0);
                         if (K != null) {
-                            i13 = K.f57043a.getTop();
+                            i13 = K.f57044a.getTop();
                         }
                         int paddingTop = currentListView.getPaddingTop();
                         if (i13 != paddingTop || L0 != 0) {

@@ -40,7 +40,7 @@ public final class jo0 extends oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57047f;
+        int i7 = d1Var.f57048f;
         if (i7 != 1 && i7 != 4) {
             return true;
         }
@@ -168,8 +168,8 @@ public final class jo0 extends oj0 {
         int A12;
         mo0 mo0Var = this.K;
         a0.h hVar = mo0Var.M1;
-        int i10 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i10 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         if (i10 != 0 && i10 != 5) {
             if (i10 == 2) {
                 ((pj0) view).getAdapter().f();

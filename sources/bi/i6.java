@@ -61,7 +61,7 @@ public final class i6 implements org.telegram.ui.ActionBar.r1, fb0, ri, org.tele
         org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f4047e;
         Integer num = (Integer) number;
         View view = (View) obj;
-        t9 t9Var = up0Var.f60285e;
+        t9 t9Var = up0Var.f60286e;
         if (num.intValue() != -1 && num.intValue() != -2 && num.intValue() != 0 && !up0Var.O) {
             int i10 = 0;
             while (true) {
@@ -79,7 +79,7 @@ public final class i6 implements org.telegram.ui.ActionBar.r1, fb0, ri, org.tele
                 }
             }
             int i11 = this.f4045b;
-            String r10 = org.telegram.messenger.m5.r(qp.s1(i11).e2(up0Var.f60284c));
+            String r10 = org.telegram.messenger.m5.r(qp.s1(i11).e2(up0Var.f60285c));
             boolean h = t9Var.h();
             if (TextUtils.isEmpty(r10) && !h) {
                 return Boolean.FALSE;
@@ -212,7 +212,7 @@ public final class i6 implements org.telegram.ui.ActionBar.r1, fb0, ri, org.tele
         int i7 = this.f4045b;
         jn0 jn0Var = (jn0) this.f4047e;
         hi.d4 d4Var = (hi.d4) this.f4048f;
-        c2Var.f55614y = false;
+        c2Var.f55615y = false;
         org.telegram.messenger.a8.g(exc, true);
         if ((exc instanceof lb.a) && exc.getMessage() != null && exc.getMessage().contains("segmentation optional module to be downloaded") && c2Var.isAttachedToWindow()) {
             org.telegram.messenger.g0.i3(new pp0(c2Var, bitmap, i7, jn0Var, 23), 2000L);

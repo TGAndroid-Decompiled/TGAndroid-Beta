@@ -41,7 +41,7 @@ public final class p71 {
     public final n71 f36823l;
     public final org.telegram.utils.twidget.e0 f36824m;
     public final n71 f36825n;
-    public org.telegram.utils.twidget.f1 f36826o;
+    public org.telegram.utils.twidget.g1 f36826o;
     public org.telegram.utils.twidget.v0 f36827p;
     public boolean f36828q;
     public boolean f36829r;
@@ -88,10 +88,10 @@ public final class p71 {
                     default:
                         p71 p71Var2 = this.f36262b;
                         if (p71Var2.f36826o != null && (v0Var = p71Var2.f36827p) != null) {
-                            org.telegram.utils.twidget.f1 d = v0Var.d();
-                            org.telegram.utils.twidget.f1 f1Var = p71Var2.f36826o;
-                            if (d == f1Var) {
-                                f1Var.f52786a.f();
+                            org.telegram.utils.twidget.g1 d = v0Var.d();
+                            org.telegram.utils.twidget.g1 g1Var = p71Var2.f36826o;
+                            if (d == g1Var) {
+                                g1Var.f52790a.f();
                                 p71Var2.f36814a.h();
                                 return;
                             }
@@ -126,10 +126,10 @@ public final class p71 {
                     default:
                         p71 p71Var2 = this.f36262b;
                         if (p71Var2.f36826o != null && (v0Var = p71Var2.f36827p) != null) {
-                            org.telegram.utils.twidget.f1 d = v0Var.d();
-                            org.telegram.utils.twidget.f1 f1Var = p71Var2.f36826o;
-                            if (d == f1Var) {
-                                f1Var.f52786a.f();
+                            org.telegram.utils.twidget.g1 d = v0Var.d();
+                            org.telegram.utils.twidget.g1 g1Var = p71Var2.f36826o;
+                            if (d == g1Var) {
+                                g1Var.f52790a.f();
                                 p71Var2.f36814a.h();
                                 return;
                             }
@@ -165,10 +165,10 @@ public final class p71 {
                     default:
                         p71 p71Var2 = this.f36262b;
                         if (p71Var2.f36826o != null && (v0Var = p71Var2.f36827p) != null) {
-                            org.telegram.utils.twidget.f1 d = v0Var.d();
-                            org.telegram.utils.twidget.f1 f1Var = p71Var2.f36826o;
-                            if (d == f1Var) {
-                                f1Var.f52786a.f();
+                            org.telegram.utils.twidget.g1 d = v0Var.d();
+                            org.telegram.utils.twidget.g1 g1Var = p71Var2.f36826o;
+                            if (d == g1Var) {
+                                g1Var.f52790a.f();
                                 p71Var2.f36814a.h();
                                 return;
                             }
@@ -351,9 +351,9 @@ public final class p71 {
 
     public final void l(MotionEvent motionEvent, boolean z9) {
         org.telegram.utils.twidget.v0 v0Var;
-        org.telegram.utils.twidget.h1 h1Var;
+        org.telegram.utils.twidget.i1 i1Var;
         int actionMasked = motionEvent.getActionMasked();
-        if (z9 && actionMasked != 10 && (v0Var = this.f36827p) != null && !this.f36829r && (h1Var = v0Var.f52980f) != null && h1Var.C) {
+        if (z9 && actionMasked != 10 && (v0Var = this.f36827p) != null && !this.f36829r && (i1Var = v0Var.f52981f) != null && i1Var.C) {
             this.F = true;
             float x10 = motionEvent.getX();
             float f10 = this.f36815b;

@@ -768,7 +768,7 @@ public final class oq extends org.telegram.ui.ActionBar.f2 implements org.telegr
         bqVar.n(420L);
         bqVar.o(org.telegram.ui.Components.xq.h);
         bqVar.C = false;
-        bqVar.f57070m = false;
+        bqVar.f57071m = false;
         this.f48468c.setItemAnimator(bqVar);
         bi.q1 q1Var3 = this.f48468c;
         q1Var3.W1 = true;

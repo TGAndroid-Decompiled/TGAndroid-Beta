@@ -312,9 +312,9 @@ public final class w6 extends org.telegram.ui.Components.na implements ls, org.t
             this.d2 = gVar;
             this.X0.a(gVar);
             ri.f fVar = new ri.f(d);
-            fVar.f54572f = d;
+            fVar.f54573f = d;
             fVar.d = gVar;
-            fVar.f54571e = -2;
+            fVar.f54572e = -2;
             dh.c cVar = new dh.c(fVar, fVar, fVar);
             this.f13037f2 = cVar;
             cVar.f8710k = true;
@@ -368,7 +368,7 @@ public final class w6 extends org.telegram.ui.Components.na implements ls, org.t
         pj0Var.setPadding(i10, 0, i10, 0);
         this.f36277k1.r1();
         v4.k kVar = new v4.k();
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         kVar.C = false;
         kVar.o(xqVar);
         kVar.n(350L);

@@ -81,9 +81,9 @@ public class x50 extends b51 implements org.telegram.messenger.ls {
         this.f32043k1.setOnItemClickListener(new org.telegram.ui.nb(this, j3, f2Var, hVar, context));
         bi.q1 q1Var2 = this.f32043k1;
         v4.k kVar = new v4.k();
-        kVar.f57099o = xq.f40366f;
-        kVar.f57116e = 150L;
-        kVar.f57115c = 150L;
+        kVar.f57100o = xq.f40366f;
+        kVar.f57117e = 150L;
+        kVar.f57116c = 150L;
         kVar.d = 150L;
         this.f28628e0 = false;
         q1Var2.setItemAnimator(kVar);

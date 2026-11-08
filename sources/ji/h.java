@@ -58,7 +58,7 @@ public final class h extends FrameLayout implements a6 {
             ri.f fVar = new ri.f(null);
             this.f17095w = fVar;
             fVar.m(g0.L(7.0f), o0.a());
-            fVar.f54573n = true;
+            fVar.f54574n = true;
             cVar = new dh.c(fVar, fVar, fVar);
         } else {
             this.f17095w = null;

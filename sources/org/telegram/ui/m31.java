@@ -453,7 +453,7 @@ public final class m31 extends org.telegram.ui.ActionBar.f2 implements org.teleg
         if (!m31Var.getMessagesController().h7) {
             arrayList.add(i31.i(16, -816335, -1940716, 2131232708, org.telegram.messenger.id.M0(2131745642, null), null, null));
         }
-        if (((org.telegram.ui.Components.x31) jg.g.i(1, arrayList)).f54531a != 7) {
+        if (((org.telegram.ui.Components.x31) jg.g.i(1, arrayList)).f54532a != 7) {
             arrayList.add(org.telegram.ui.Components.x31.C(null));
         }
         arrayList.add(org.telegram.ui.Components.x31.u(org.telegram.messenger.id.M0(2131745482, null)));
@@ -461,7 +461,7 @@ public final class m31 extends org.telegram.ui.ActionBar.f2 implements org.teleg
         arrayList.add(i31.i(18, -14965523, -15431455, 2131232705, org.telegram.messenger.id.M0(2131744245, null), null, null));
         arrayList.add(i31.i(23, -3903756, -6335009, 2131232706, org.telegram.messenger.id.M0(2131744242, null), null, null));
         arrayList.add(i31.i(19, -11154873, -14175180, 2131232713, org.telegram.messenger.id.M0(2131746784, null), null, null));
-        xi.a aVar = xi.e.f58856a;
+        xi.a aVar = xi.e.f58857a;
         aVar.a();
         if (aVar.d) {
             arrayList.add(org.telegram.ui.Components.x31.C(null));
@@ -789,7 +789,7 @@ public final class m31 extends org.telegram.ui.ActionBar.f2 implements org.teleg
         o0(true, false);
         v8 v8Var3 = this.f47640b;
         c31 c31Var = new c31(this);
-        WeakHashMap weakHashMap = r0.i0.f54190a;
+        WeakHashMap weakHashMap = r0.i0.f54191a;
         r0.a0.i(v8Var3, c31Var);
         v8 v8Var4 = this.f47640b;
         this.fragmentView = v8Var4;
@@ -844,7 +844,7 @@ public final class m31 extends org.telegram.ui.ActionBar.f2 implements org.teleg
 
     @Override
     public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
-        return !this.f47638a.f55487f;
+        return !this.f47638a.f55488f;
     }
 
     public final void j0() {

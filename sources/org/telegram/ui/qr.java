@@ -21,7 +21,7 @@ public final class qr implements org.telegram.ui.Components.dj0, r0.m, org.teleg
         oi.a.e(contactsActivity.d, I0.f15121b, i7, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), contactsActivity.f41191h0);
         contactsActivity.j0();
         contactsActivity.i0();
-        return r0.k1.f54200b;
+        return r0.k1.f54201b;
     }
 
     @Override

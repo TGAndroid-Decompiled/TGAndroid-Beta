@@ -21,7 +21,7 @@ public final class k40 extends TextureView {
         switch (this.f35186a) {
             case 0:
                 n40 n40Var = (n40) this.f35187b;
-                if (!n40Var.I0 && (s0Var = n40Var.Q) != null && s0Var.f58138a == 3) {
+                if (!n40Var.I0 && (s0Var = n40Var.Q) != null && s0Var.f58139a == 3) {
                     n40Var.I0 = true;
                     try {
                         n40Var.G0 = SystemClock.elapsedRealtimeNanos();
@@ -47,7 +47,7 @@ public final class k40 extends TextureView {
                 return;
             case 2:
                 xh.e eVar = (xh.e) this.f35187b;
-                setMeasuredDimension(eVar.f58783g, eVar.h);
+                setMeasuredDimension(eVar.f58784g, eVar.h);
                 return;
             default:
                 super.onMeasure(i7, i10);

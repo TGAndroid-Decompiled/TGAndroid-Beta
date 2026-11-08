@@ -36,8 +36,8 @@ public final class u1 implements v10 {
                 for (TLRPC.TL_help_country tL_help_country : (List) gVar.R1.get((String) obj3)) {
                     if (TextUtils.isEmpty(gVar.U1) || wg.w0.g1(tL_help_country, org.telegram.messenger.g0.O3(gVar.U1).toLowerCase())) {
                         i7 -= org.telegram.messenger.g0.L(44.0f);
-                        boolean containsKey = gVar.f57513b2.containsKey(tL_help_country.iso2);
-                        int i11 = vh.f.f57510b;
+                        boolean containsKey = gVar.f57514b2.containsKey(tL_help_country.iso2);
+                        int i11 = vh.f.f57511b;
                         x31 K = x31.K(vh.f.class);
                         K.f40180l = tL_help_country.iso2;
                         K.G = tL_help_country;
@@ -61,7 +61,7 @@ public final class u1 implements v10 {
         for (TL_stars.TL_StarGiftAuctionAcquiredGift tL_StarGiftAuctionAcquiredGift : list) {
             s9 s9Var = dVar.Q1;
             wg.z0 z0Var = new wg.z0(6, dVar, tL_StarGiftAuctionAcquiredGift);
-            int i7 = zh.b.f60223b;
+            int i7 = zh.b.f60224b;
             x31 K = x31.K(zh.b.class);
             K.G = tL_StarGiftAuctionAcquiredGift;
             K.H = s9Var;

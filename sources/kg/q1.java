@@ -139,7 +139,7 @@ public final class q1 extends f2 implements ls {
     public static void b0(q1 q1Var, x31 x31Var, View view) {
         if (x31Var.d == 1) {
             i0(q1Var.getParentActivity(), q1Var.currentAccount, null, null, q1Var.getResourceProvider(), new ii.c(q1Var, 7));
-        } else if (x31Var.f54531a == 16 && (x31Var.G instanceof s1)) {
+        } else if (x31Var.f54532a == 16 && (x31Var.G instanceof s1)) {
             if (!q1Var.f17513b.isEmpty()) {
                 q1Var.j0(x31Var, view);
                 return;

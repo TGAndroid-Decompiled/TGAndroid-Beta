@@ -93,10 +93,10 @@ public final class td0 implements View.OnClickListener {
                 org.telegram.ui.up0 up0Var = (org.telegram.ui.up0) callback;
                 Context context2 = (Context) obj2;
                 Bitmap bitmap = (Bitmap) obj;
-                if (up0Var.f55694u1) {
-                    sg.q qVar = new sg.q(context2, up0Var.f55704z1);
-                    qVar.I0(up0Var.f55692t1.f55108a, 2);
-                    qVar.f55185o1 = new androidx.activity.n(up0Var, bitmap, 6);
+                if (up0Var.f55695u1) {
+                    sg.q qVar = new sg.q(context2, up0Var.f55705z1);
+                    qVar.I0(up0Var.f55693t1.f55109a, 2);
+                    qVar.f55186o1 = new androidx.activity.n(up0Var, bitmap, 6);
                     qVar.n1 = new tg.m(up0Var, 1);
                     qVar.show();
                     return;
@@ -124,7 +124,7 @@ public final class td0 implements View.OnClickListener {
             case 6:
                 zh.u uVar = (zh.u) callback;
                 int i10 = uVar.f28616a;
-                org.telegram.messenger.s9 s9Var = uVar.f60537e2;
+                org.telegram.messenger.s9 s9Var = uVar.f60538e2;
                 new bi.w1((Context) obj2, (org.telegram.ui.ActionBar.f6) obj, i10, s9Var.d.title, s9Var.h, false).show();
                 uVar.dismiss();
                 return;
@@ -141,7 +141,7 @@ public final class td0 implements View.OnClickListener {
             default:
                 zh.z1 z1Var = (zh.z1) callback;
                 ((k60) obj2).u();
-                up0 up0Var2 = z1Var.f60621a;
+                up0 up0Var2 = z1Var.f60622a;
                 zh.s1 s1Var = new zh.s1(z1Var, (TL_stars.SavedStarGift) obj, 0);
                 HashMap hashMap = zh.d2.U;
                 up0Var2.h(null, s1Var);

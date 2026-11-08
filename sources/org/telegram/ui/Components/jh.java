@@ -218,7 +218,7 @@ public final class jh implements org.telegram.ui.web.d0 {
     public final void u(int i7, final int i10, boolean z9) {
         int i11;
         di diVar = this.f34982e;
-        final int i12 = diVar.A4.f54563b;
+        final int i12 = diVar.A4.f54564b;
         final hi.t1 t1Var = new hi.t1();
         int i13 = 0;
         if (diVar.R1) {

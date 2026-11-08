@@ -77,8 +77,8 @@ public final class nr0 extends org.telegram.ui.Components.oj0 {
         pr0 pr0Var = this.d;
         int i14 = pr0Var.N;
         boolean z9 = pr0Var.f48921d0;
-        int i15 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i15 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         boolean z10 = true;
         if (i15 != 0) {
             boolean z11 = false;
@@ -276,8 +276,8 @@ public final class nr0 extends org.telegram.ui.Components.oj0 {
         int i11;
         pr0 pr0Var = this.d;
         boolean z10 = pr0Var.f48921d0;
-        int i12 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i12 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         float f10 = 0.6f;
         CharSequence charSequence = "";
         float f11 = 1.0f;
@@ -368,9 +368,9 @@ public final class nr0 extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final void z(v4.d1 d1Var) {
-        int i7 = d1Var.f57047f;
+        int i7 = d1Var.f57048f;
         if (i7 == 4 || i7 == 5) {
-            EditTextBoldCursor textView = ((org.telegram.ui.Cells.a6) d1Var.f57043a).getTextView();
+            EditTextBoldCursor textView = ((org.telegram.ui.Cells.a6) d1Var.f57044a).getTextView();
             if (textView.isFocused()) {
                 pr0 pr0Var = this.d;
                 if (pr0Var.f48920c0) {

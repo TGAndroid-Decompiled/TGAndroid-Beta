@@ -15,7 +15,7 @@ public final class h20 extends org.telegram.ui.Components.lt {
         if (view == getEditText()) {
             canvas.save();
             c40 c40Var = this.V;
-            c40Var.f44650y1.getEditText().setTranslationY(view.getMeasuredHeight() - c40Var.s5.f55492f);
+            c40Var.f44650y1.getEditText().setTranslationY(view.getMeasuredHeight() - c40Var.s5.f55493f);
             boolean drawChild = super.drawChild(canvas, view, j3);
             canvas.restore();
             return drawChild;
@@ -39,7 +39,7 @@ public final class h20 extends org.telegram.ui.Components.lt {
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
         te.c cVar = this.V.s5;
-        if (cVar.f55492f == 0.0f) {
+        if (cVar.f55493f == 0.0f) {
             cVar.c(getMeasuredHeight());
         } else {
             cVar.a(getMeasuredHeight());

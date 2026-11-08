@@ -100,12 +100,12 @@ public final class a2 implements ri, org.telegram.ui.ActionBar.r1, h2.o, NativeI
         byte[] bArr;
         p4.m0 m0Var = (p4.m0) this.f16669c;
         q4.h hVar = (q4.h) this.d;
-        if (TextUtils.isEmpty(hVar.f53772a)) {
+        if (TextUtils.isEmpty(hVar.f53773a)) {
             h2.a.l("MediaSessionLegacyStub", "onAddQueueItem(): Media ID shouldn't be empty");
             return;
         }
-        int i7 = p4.n.f53386a;
-        String str = hVar.f53772a;
+        int i7 = p4.n.f53387a;
+        String str = hVar.f53773a;
         e2.z zVar = new e2.z();
         h9.g0 g0Var = h9.i0.f14329b;
         h9.t1 t1Var = h9.t1.f14397e;
@@ -117,36 +117,36 @@ public final class a2 implements ri, org.telegram.ui.ActionBar.r1, h2.o, NativeI
         }
         String str2 = str;
         android.support.v4.media.session.a0 a0Var = new android.support.v4.media.session.a0(20, false);
-        a0Var.f1763b = hVar.f53778r;
+        a0Var.f1763b = hVar.f53779r;
         e2.h0 h0Var2 = new e2.h0(a0Var);
-        CharSequence charSequence = hVar.f53773b;
+        CharSequence charSequence = hVar.f53774b;
         e2.n0 n0Var = new e2.n0();
-        n0Var.f10381f = hVar.f53774c;
+        n0Var.f10381f = hVar.f53775c;
         n0Var.f10382g = hVar.d;
         n0Var.f10388n = hVar.h;
         Bundle bundle = null;
         n0Var.f10383i = p4.n.c(null);
-        Bitmap bitmap = hVar.f53775e;
+        Bitmap bitmap = hVar.f53776e;
         if (bitmap == null) {
             bArr = null;
         } else {
-            if (hVar.f53776f == null) {
+            if (hVar.f53777f == null) {
                 try {
                     ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.PNG, 0, byteArrayOutputStream);
-                    hVar.f53776f = byteArrayOutputStream.toByteArray();
+                    hVar.f53777f = byteArrayOutputStream.toByteArray();
                     byteArrayOutputStream.close();
                 } catch (IOException e10) {
                     h2.a.m("MediaDescriptionCompat", "Failed to compress MediaDescriptionCompat artwork", e10);
                 }
             }
-            bArr = hVar.f53776f;
+            bArr = hVar.f53777f;
         }
         int i10 = 3;
         if (bArr != null) {
             n0Var.b(bArr, 3);
         }
-        Bundle bundle2 = hVar.f53777n;
+        Bundle bundle2 = hVar.f53778n;
         if (bundle2 != null) {
             bundle = new Bundle(bundle2);
         }

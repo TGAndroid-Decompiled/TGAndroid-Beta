@@ -88,7 +88,7 @@ public final class ay0 extends org.telegram.ui.ActionBar.f2 implements org.teleg
         this.f44122a = pj0Var;
         pj0Var.r1();
         this.f44122a.setSectionsDrawBackground(true);
-        ((v4.k) this.f44122a.getItemAnimator()).f57070m = false;
+        ((v4.k) this.f44122a.getItemAnimator()).f57071m = false;
         this.f44122a.setLayoutManager(new v4.b0());
         org.telegram.ui.Components.pj0 pj0Var2 = this.f44122a;
         wx0 wx0Var = new wx0(this, context);

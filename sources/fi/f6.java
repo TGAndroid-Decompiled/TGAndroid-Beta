@@ -206,7 +206,7 @@ public final class f6 extends k1.b {
         View view = this.f11984q;
         switch (i11) {
             case 0:
-                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f54600a;
+                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f54601a;
                 g6 g6Var = (g6) view;
                 dVar.i("android.widget.Button");
                 if (i7 != 0) {
@@ -230,7 +230,7 @@ public final class f6 extends k1.b {
                         }
                         accessibilityNodeInfo.setEnabled(z10);
                         if (z10) {
-                            dVar.b(s0.c.f54593c);
+                            dVar.b(s0.c.f54594c);
                             return;
                         }
                         return;
@@ -253,7 +253,7 @@ public final class f6 extends k1.b {
                     dVar.j(M02);
                     accessibilityNodeInfo.setEnabled(!g6Var.f12098u0);
                     if (!g6Var.f12098u0) {
-                        dVar.b(s0.c.f54593c);
+                        dVar.b(s0.c.f54594c);
                         return;
                     }
                     return;
@@ -275,7 +275,7 @@ public final class f6 extends k1.b {
                 }
                 accessibilityNodeInfo.setEnabled(z10);
                 if (z10) {
-                    dVar.b(s0.c.f54593c);
+                    dVar.b(s0.c.f54594c);
                     return;
                 }
                 return;
@@ -283,7 +283,7 @@ public final class f6 extends k1.b {
                 org.telegram.ui.ActionBar.k3 k3Var = (org.telegram.ui.ActionBar.k3) view;
                 ArrayList arrayList = k3Var.R;
                 dVar.i("android.widget.Button");
-                dVar.b(s0.c.f54593c);
+                dVar.b(s0.c.f54594c);
                 if (i7 == 1) {
                     org.telegram.ui.Cells.y yVar = k3Var.f27728i0;
                     if (yVar != null) {

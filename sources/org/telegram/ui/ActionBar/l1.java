@@ -206,7 +206,7 @@ public final class l1 implements View.OnClickListener {
                         return;
                     } else if (t3Var != null) {
                         au0 au0Var = new au0(activity);
-                        au0Var.f57212a = 1;
+                        au0Var.f57213a = 1;
                         au0Var.f31919s = -org.telegram.messenger.g0.L(32.0f);
                         k3Var.d.w0(au0Var);
                         return;

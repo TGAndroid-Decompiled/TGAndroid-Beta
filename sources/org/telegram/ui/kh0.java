@@ -54,7 +54,7 @@ public final class kh0 extends rg.a {
         }
         if (obj != null && kh0.class == obj.getClass()) {
             kh0 kh0Var = (kh0) obj;
-            if (this.f47196c == kh0Var.f47196c && this.h == kh0Var.h && ((this.f54531a == 8 || (this.d == kh0Var.d && Objects.equals(this.f47197e, kh0Var.f47197e) && (this.f54531a == 6 || Objects.equals(this.f47198f, kh0Var.f47198f)))) && this.f47199g == kh0Var.f47199g)) {
+            if (this.f47196c == kh0Var.f47196c && this.h == kh0Var.h && ((this.f54532a == 8 || (this.d == kh0Var.d && Objects.equals(this.f47197e, kh0Var.f47197e) && (this.f54532a == 6 || Objects.equals(this.f47198f, kh0Var.f47198f)))) && this.f47199g == kh0Var.f47199g)) {
                 return true;
             }
         }

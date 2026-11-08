@@ -3,14 +3,14 @@ package s0;
 import android.os.Build;
 import android.view.accessibility.AccessibilityNodeInfo;
 public final class c {
-    public static final c f54593c;
+    public static final c f54594c;
     public static final c d;
-    public static final c f54594e;
-    public static final c f54595f;
-    public static final c f54596g;
+    public static final c f54595e;
+    public static final c f54596f;
+    public static final c f54597g;
     public static final c h;
-    public final Object f54597a;
-    public final int f54598b;
+    public final Object f54598a;
+    public final int f54599b;
 
     static {
         AccessibilityNodeInfo.AccessibilityAction accessibilityAction;
@@ -32,7 +32,7 @@ public final class c {
         new c(null, 2, null, null);
         new c(null, 4, null, null);
         new c(null, 8, null, null);
-        f54593c = new c(null, 16, null, null);
+        f54594c = new c(null, 16, null, null);
         new c(null, 32, null, null);
         new c(null, 64, null, null);
         new c(null, 128, null, null);
@@ -41,7 +41,7 @@ public final class c {
         new c(null, 1024, null, g.class);
         new c(null, 2048, null, g.class);
         d = new c(null, 4096, null, null);
-        f54594e = new c(null, 8192, null, null);
+        f54595e = new c(null, 8192, null, null);
         new c(null, 16384, null, null);
         new c(null, 32768, null, null);
         new c(null, 65536, null, null);
@@ -53,9 +53,9 @@ public final class c {
         int i7 = Build.VERSION.SDK_INT;
         new c(AccessibilityNodeInfo.AccessibilityAction.ACTION_SHOW_ON_SCREEN, 16908342, null, null);
         new c(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_TO_POSITION, 16908343, null, i.class);
-        f54595f = new c(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_UP, 16908344, null, null);
+        f54596f = new c(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_UP, 16908344, null, null);
         new c(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_LEFT, 16908345, null, null);
-        f54596g = new c(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_DOWN, 16908346, null, null);
+        f54597g = new c(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_DOWN, 16908346, null, null);
         new c(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_RIGHT, 16908347, null, null);
         if (i7 >= 29) {
             accessibilityAction = AccessibilityNodeInfo.AccessibilityAction.ACTION_PAGE_UP;
@@ -151,11 +151,11 @@ public final class c {
     }
 
     public c(Object obj, int i7, CharSequence charSequence, Class cls) {
-        this.f54598b = i7;
+        this.f54599b = i7;
         if (obj == null) {
-            this.f54597a = new AccessibilityNodeInfo.AccessibilityAction(i7, charSequence);
+            this.f54598a = new AccessibilityNodeInfo.AccessibilityAction(i7, charSequence);
         } else {
-            this.f54597a = obj;
+            this.f54598a = obj;
         }
     }
 
@@ -163,8 +163,8 @@ public final class c {
         if (obj == null || !(obj instanceof c)) {
             return false;
         }
-        Object obj2 = ((c) obj).f54597a;
-        Object obj3 = this.f54597a;
+        Object obj2 = ((c) obj).f54598a;
+        Object obj3 = this.f54598a;
         if (obj3 == null) {
             if (obj2 != null) {
                 return false;
@@ -178,7 +178,7 @@ public final class c {
     }
 
     public final int hashCode() {
-        Object obj = this.f54597a;
+        Object obj = this.f54598a;
         if (obj != null) {
             return obj.hashCode();
         }
@@ -187,9 +187,9 @@ public final class c {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("AccessibilityActionCompat: ");
-        String e10 = d.e(this.f54598b);
+        String e10 = d.e(this.f54599b);
         if (e10.equals("ACTION_UNKNOWN")) {
-            Object obj = this.f54597a;
+            Object obj = this.f54598a;
             if (((AccessibilityNodeInfo.AccessibilityAction) obj).getLabel() != null) {
                 e10 = ((AccessibilityNodeInfo.AccessibilityAction) obj).getLabel().toString();
             }

@@ -99,7 +99,7 @@ public final class g5 extends m61 {
                 if (view instanceof cn) {
                     ((cn) view).f44862a.nd(((an) obj).I3);
                 }
-                WeakHashMap weakHashMap = r0.i0.f54190a;
+                WeakHashMap weakHashMap = r0.i0.f54191a;
                 r0.y.c(view);
                 return;
             case 3:
@@ -152,7 +152,7 @@ public final class g5 extends m61 {
                     org.telegram.messenger.g0.E2(f2Var.getActionBar());
                     frameLayout2.addView(f2Var.getActionBar());
                 }
-                WeakHashMap weakHashMap2 = r0.i0.f54190a;
+                WeakHashMap weakHashMap2 = r0.i0.f54191a;
                 r0.y.c(frameLayout2);
                 ob1Var.checkSystemBarColors();
                 ob1Var.Z();
@@ -219,7 +219,7 @@ public final class g5 extends m61 {
                 mj mjVar = new mj(context, anVar.getParentLayout(), bundle, 0);
                 mjVar.h = false;
                 bn bnVar = mjVar.f44862a;
-                bnVar.M.f54577a = anVar.M;
+                bnVar.M.f54578a = anVar.M;
                 bnVar.f44001va = anVar.f44028xa;
                 bnVar.f44015wa = anVar;
                 bnVar.f43851j9 = new org.telegram.ui.f(this, 12);

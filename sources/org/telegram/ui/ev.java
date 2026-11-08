@@ -77,14 +77,14 @@ public final class ev extends v4.s0 {
         if (!arrayList2.isEmpty()) {
             int size = arrayList2.size();
             for (int i14 = 0; i14 < size; i14++) {
-                View view = ((v4.d1) arrayList2.get(i14)).f57043a;
+                View view = ((v4.d1) arrayList2.get(i14)).f57044a;
                 view.setTranslationY(view.getTranslationY() + i13);
             }
         }
         if (!arrayList.isEmpty()) {
             int size2 = arrayList.size();
             for (int i15 = 0; i15 < size2; i15++) {
-                View view2 = ((v4.d1) arrayList.get(i15)).f57043a;
+                View view2 = ((v4.d1) arrayList.get(i15)).f57044a;
                 view2.setTranslationY(view2.getTranslationY() + i13);
             }
         }
@@ -112,7 +112,7 @@ public final class ev extends v4.s0 {
             v4.d1 K = recyclerView.K(i17);
             if (!wwVar.l4() || (K != null && K.b() >= 0)) {
                 if (K != null) {
-                    i12 = K.f57043a.getTop();
+                    i12 = K.f57044a.getTop();
                 } else {
                     i12 = 0;
                 }

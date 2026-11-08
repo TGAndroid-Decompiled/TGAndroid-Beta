@@ -140,7 +140,7 @@ public final class e4 extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57047f;
+        int i7 = d1Var.f57048f;
         if (i7 != 23 && i7 != 24) {
             return false;
         }
@@ -560,7 +560,7 @@ public final class e4 extends org.telegram.ui.Components.oj0 {
         if (i10 >= 0) {
             ArrayList arrayList = this.d;
             if (i10 < arrayList.size()) {
-                H(d1Var.f57047f, d1Var, (TL_iv.PageBlock) arrayList.get(i10), i10, arrayList.size(), false);
+                H(d1Var.f57048f, d1Var, (TL_iv.PageBlock) arrayList.get(i10), i10, arrayList.size(), false);
             }
         }
     }
@@ -700,11 +700,11 @@ public final class e4 extends org.telegram.ui.Components.oj0 {
     @Override
     public final void y(v4.d1 d1Var) {
         int i7;
-        int i10 = d1Var.f57047f;
+        int i10 = d1Var.f57048f;
         if (i10 != 90 && i10 != 91) {
             return;
         }
-        n3 n3Var = (n3) d1Var.f57043a;
+        n3 n3Var = (n3) d1Var.f57044a;
         TL_iv.Page page = this.E.cached_page;
         if (page != null) {
             i7 = page.views;

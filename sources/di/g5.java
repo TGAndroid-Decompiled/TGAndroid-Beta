@@ -29,7 +29,7 @@ public final class g5 extends oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f57047f == 1) {
+        if (d1Var.f57048f == 1) {
             return true;
         }
         return false;
@@ -138,11 +138,11 @@ public final class g5 extends oj0 {
         TLRPC.Message message2;
         k5 k5Var = this.d;
         int i15 = k5Var.f9307w;
-        if (d1Var.f57047f == 1 && i7 >= 0) {
+        if (d1Var.f57048f == 1 && i7 >= 0) {
             ArrayList arrayList = this.f9047c;
             if (i7 < arrayList.size()) {
                 b5 b5Var = (b5) arrayList.get(i7);
-                org.telegram.ui.Cells.m6 m6Var = (org.telegram.ui.Cells.m6) d1Var.f57043a;
+                org.telegram.ui.Cells.m6 m6Var = (org.telegram.ui.Cells.m6) d1Var.f57044a;
                 TL_stories.StoryView storyView = b5Var.f8844b;
                 TL_stories.StoryReaction storyReaction = b5Var.f8845c;
                 if (storyView != null) {

@@ -48,11 +48,11 @@ public final class rl extends v4.m0 implements eh.a {
         if (!chatAttachAlertPhotoLayout.f31199d0 && !chatAttachAlertPhotoLayout.f31195b0 && chatAttachAlertPhotoLayout.G.f38381e && !chatAttachAlertPhotoLayout.O0 && !chatAttachAlertPhotoLayout.P0) {
             v4.d1 K = recyclerView.K(0);
             if (K != null) {
-                top = K.f57043a.getTop();
+                top = K.f57044a.getTop();
             } else {
                 K = recyclerView.K(chatAttachAlertPhotoLayout.M0);
                 if (K != null) {
-                    top = (K.f57043a.getTop() - org.telegram.messenger.g0.L(2.0f)) - chatAttachAlertPhotoLayout.K0;
+                    top = (K.f57044a.getTop() - org.telegram.messenger.g0.L(2.0f)) - chatAttachAlertPhotoLayout.K0;
                 } else if (aVar != null) {
                     aVar.f8700a = true;
                     return;
@@ -60,7 +60,7 @@ public final class rl extends v4.m0 implements eh.a {
                     return;
                 }
             }
-            int left = K.f57043a.getLeft();
+            int left = K.f57044a.getLeft();
             int i7 = chatAttachAlertPhotoLayout.K0;
             int i10 = left + i7;
             int L = org.telegram.messenger.g0.L(2.0f) + (i7 * 2) + top;

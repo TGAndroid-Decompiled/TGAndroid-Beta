@@ -67,7 +67,7 @@ public final class dl0 extends FrameLayout implements org.telegram.messenger.ls 
         q1Var.setOnScrollListener(new ui(this, 14));
         v4.k kVar = new v4.k();
         kVar.C = false;
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         q1Var.setItemAnimator(kVar);
         q1Var.setOnItemClickListener(new yk0(this, i7, 0));
         q1Var.setOnItemLongClickListener(new bx(this, 17));

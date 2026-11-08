@@ -224,7 +224,7 @@ public abstract class b4 extends FrameLayout {
         if (this.J && !z9) {
             f10 = (-getOffsetY()) + getTopActionBarOffsetY();
         }
-        if (this.f14567r != f10 && ((gVar = this.G) == null || ((float) gVar.f54267m.f54275i) != f10)) {
+        if (this.f14567r != f10 && ((gVar = this.G) == null || ((float) gVar.f54268m.f54276i) != f10)) {
             this.f14566n = f10;
             r1.g gVar2 = this.f14569w;
             if (gVar2 != null) {
@@ -235,7 +235,7 @@ public abstract class b4 extends FrameLayout {
                 gVar3.d();
             }
             r1.g gVar4 = new r1.g(this, f14559b0, f10);
-            gVar4.f54267m = org.telegram.ui.Cells.f1.o(f10, 1200.0f, 1.0f);
+            gVar4.f54268m = org.telegram.ui.Cells.f1.o(f10, 1200.0f, 1.0f);
             gVar4.a(new y3(0, this, runnable));
             this.G = gVar4;
             gVar4.h();
@@ -352,7 +352,7 @@ public abstract class b4 extends FrameLayout {
                 gVar2.d();
             }
             r1.g gVar3 = new r1.g(new r1.f(f11));
-            gVar3.f54267m = org.telegram.ui.Cells.f1.o(f10, 1400.0f, 1.0f);
+            gVar3.f54268m = org.telegram.ui.Cells.f1.o(f10, 1400.0f, 1.0f);
             gVar3.b(new r1.d() {
                 @Override
                 public final void a(r1.g gVar4, float f13, float f14) {
@@ -372,10 +372,10 @@ public abstract class b4 extends FrameLayout {
                     }
                     r1.g gVar5 = b4Var.G;
                     if (gVar5 != null) {
-                        r1.h hVar = gVar5.f54267m;
+                        r1.h hVar = gVar5.f54268m;
                         float f18 = b4Var.f14564e;
-                        if (((float) hVar.f54275i) == (-f17) + f18) {
-                            hVar.f54275i = (-f10) + f18;
+                        if (((float) hVar.f54276i) == (-f17) + f18) {
+                            hVar.f54276i = (-f10) + f18;
                         }
                     }
                     b4Var.c();

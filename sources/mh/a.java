@@ -30,15 +30,15 @@ public final class a implements te.b {
         int i10;
         n2 n2Var = this.f20041e;
         if (i7 == 1) {
-            n2Var.setTranslationX(this.f20038a.f55492f);
+            n2Var.setTranslationX(this.f20038a.f55493f);
         }
         if (i7 == 2) {
-            n2Var.setTranslationY(this.f20039b.f55492f);
+            n2Var.setTranslationY(this.f20039b.f55493f);
         }
         te.a aVar = this.d;
         te.a aVar2 = this.f20040c;
         if (i7 == 0) {
-            n2Var.setAlpha(g0.T1(0.5f, 1.0f, aVar.f55486e) * aVar2.f55486e);
+            n2Var.setAlpha(g0.T1(0.5f, 1.0f, aVar.f55487e) * aVar2.f55487e);
             n2Var.setScaleX(g0.T1(0.3f, 1.0f, f10));
             n2Var.setScaleY(g0.T1(0.3f, 1.0f, f10));
             if (f10 > 0.0f) {
@@ -49,7 +49,7 @@ public final class a implements te.b {
             n2Var.setVisibility(i10);
         }
         if (i7 == 3) {
-            n2Var.setAlpha(g0.T1(0.5f, 1.0f, aVar.f55486e) * aVar2.f55486e);
+            n2Var.setAlpha(g0.T1(0.5f, 1.0f, aVar.f55487e) * aVar2.f55487e);
         }
         w wVar = this.f20042f;
         if (wVar != null) {

@@ -193,15 +193,15 @@ public final class tp0 implements Runnable {
                 kVar.Q = kVar.G();
                 kVar.R = 0;
                 kVar.S = 0;
-                kVar.f58025j.b("torch requested: enabled=" + z10 + ", available=" + kVar.G() + ", cameraId=" + kVar.f58037o + ", facing=" + kVar.G);
+                kVar.f58026j.b("torch requested: enabled=" + z10 + ", available=" + kVar.G() + ", cameraId=" + kVar.f58038o + ", facing=" + kVar.G);
                 kVar.f();
                 return;
             default:
                 yh.m mVar = (yh.m) obj;
-                ArrayList arrayList3 = mVar.f59544c;
-                boolean isEmpty = TextUtils.isEmpty(mVar.f59559t);
-                String str = mVar.f59559t;
-                mVar.f59561w = true;
+                ArrayList arrayList3 = mVar.f59545c;
+                boolean isEmpty = TextUtils.isEmpty(mVar.f59560t);
+                String str = mVar.f59560t;
+                mVar.f59562w = true;
                 mVar.A = false;
                 if (isEmpty && !arrayList3.isEmpty()) {
                     tL_chatInviteImporter = (TLRPC.TL_chatInviteImporter) jg.g.i(1, arrayList3);
@@ -220,7 +220,7 @@ public final class tp0 implements Runnable {
                 if (isEmpty) {
                     org.telegram.messenger.g0.i3(eVar2, 300L);
                 }
-                mVar.v = mVar.f59548i.a(mVar.f59549j, str, tL_chatInviteImporter, mVar.d, new bi.t4(mVar, isEmpty, eVar2, str, z9));
+                mVar.v = mVar.f59549i.a(mVar.f59550j, str, tL_chatInviteImporter, mVar.d, new bi.t4(mVar, isEmpty, eVar2, str, z9));
                 return;
         }
     }

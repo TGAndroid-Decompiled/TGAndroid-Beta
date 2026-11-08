@@ -64,7 +64,7 @@ public final class kx0 extends k1.b {
                 rect.set(i10, i11, d.f33681k + i10, d.f33682l + i11);
                 dVar.h(rect);
                 dVar.i("android.widget.TextView");
-                dVar.f54600a.setEnabled(true);
+                dVar.f54601a.setEnabled(true);
                 ex0 ex0Var = d.f33674b;
                 if (ex0Var != null) {
                     str = ex0Var.getText();

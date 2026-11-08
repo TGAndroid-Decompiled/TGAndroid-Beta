@@ -149,10 +149,10 @@ public abstract class gb extends FrameLayout implements org.telegram.ui.ActionBa
                 this.blurVisibilityDrawable = new wh.b(new u(this, 16));
             }
             wh.b bVar = this.blurVisibilityDrawable;
-            if (bVar.f57848c == null) {
+            if (bVar.f57849c == null) {
                 bVar.a(getMeasuredWidth(), getMeasuredHeight(), 6.0f, org.telegram.messenger.g0.L(10.0f));
             }
-            this.blurVisibilityDrawable.f57852i = c8.j9.b((int) org.telegram.messenger.camera.q.x(this.inOutOffset, getMeasuredHeight(), 1.0f, 255.0f), 0, 255);
+            this.blurVisibilityDrawable.f57853i = c8.j9.b((int) org.telegram.messenger.camera.q.x(this.inOutOffset, getMeasuredHeight(), 1.0f, 255.0f), 0, 255);
             this.blurVisibilityDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             this.blurVisibilityDrawable.draw(canvas);
             return;
@@ -246,7 +246,7 @@ public abstract class gb extends FrameLayout implements org.telegram.ui.ActionBa
         ab abVar;
         cc ccVar;
         r1.g gVar;
-        if (this.bulletin != null && (((abVar = this.delegate) == null || abVar.e()) && (gVar = (ccVar = this.bulletin).d) != null && gVar.f54261f)) {
+        if (this.bulletin != null && (((abVar = this.delegate) == null || abVar.e()) && (gVar = (ccVar = this.bulletin).d) != null && gVar.f54262f)) {
             f10 = ccVar.f32550o;
         } else {
             ab abVar2 = this.delegate;
@@ -328,9 +328,9 @@ public abstract class gb extends FrameLayout implements org.telegram.ui.ActionBa
             this.callbacks.get(i7).d();
         }
         wh.b bVar = this.blurVisibilityDrawable;
-        if (bVar != null && (bitmap = bVar.f57848c) != null) {
+        if (bVar != null && (bitmap = bVar.f57849c) != null) {
             bitmap.recycle();
-            bVar.f57848c = null;
+            bVar.f57849c = null;
         }
     }
 

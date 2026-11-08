@@ -60,7 +60,7 @@ public abstract class d {
             Matrix matrix = f15484a;
             matrix.reset();
             matrix.setScale(view.getWidth() / bitmap.getWidth(), view.getHeight() / bitmap.getHeight());
-            bVar.f54557b.set(matrix);
+            bVar.f54558b.set(matrix);
         }
     }
 

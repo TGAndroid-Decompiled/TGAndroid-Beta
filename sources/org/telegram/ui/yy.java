@@ -51,14 +51,14 @@ public final class yy extends rg.a {
         if (this != obj) {
             if (obj != null && yy.class == obj.getClass()) {
                 yy yyVar = (yy) obj;
-                int i7 = this.f54531a;
-                if (i7 == yyVar.f54531a) {
+                int i7 = this.f54532a;
+                if (i7 == yyVar.f54532a) {
                     if (i7 == 11) {
                         if (!TextUtils.equals(this.d, yyVar.d) || !TextUtils.equals(this.f52348e, yyVar.f52348e)) {
                             return false;
                         }
                     } else if ((i7 != 0 && i7 != 1 && i7 != 3 && i7 != 4) || TextUtils.equals(this.d, yyVar.d)) {
-                        int i10 = this.f54531a;
+                        int i10 = this.f54532a;
                         if (i10 == 0) {
                             if (this.f52349f != yyVar.f52349f) {
                                 return false;

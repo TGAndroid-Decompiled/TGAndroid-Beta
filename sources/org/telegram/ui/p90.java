@@ -549,7 +549,7 @@ public final class p90 {
                 this.f48714e.setOnCancelListener(new vf(this, 3));
                 this.f48714e.r(300L);
             } else {
-                bVar.f57323b = new k90(this, 0);
+                bVar.f57324b = new k90(this, 0);
                 bVar.d();
             }
             this.f48715f = true;

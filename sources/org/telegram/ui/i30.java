@@ -571,7 +571,7 @@ public final class i30 extends org.telegram.ui.Components.rt0 {
         }
         FrameLayout.LayoutParams layoutParams7 = (FrameLayout.LayoutParams) v10Var.getLayoutParams();
         if (c40.f44544w5) {
-            if (((v4.b0) v10Var.getLayoutManager()).f57012o != 1) {
+            if (((v4.b0) v10Var.getLayoutManager()).f57013o != 1) {
                 ((v4.b0) v10Var.getLayoutManager()).j1(1);
             }
             layoutParams7.height = -1;
@@ -580,7 +580,7 @@ public final class i30 extends org.telegram.ui.Components.rt0 {
             layoutParams7.rightMargin = org.telegram.messenger.g0.L(100.0f);
             layoutParams7.bottomMargin = 0;
         } else {
-            if (((v4.b0) v10Var.getLayoutManager()).f57012o != 0) {
+            if (((v4.b0) v10Var.getLayoutManager()).f57013o != 0) {
                 ((v4.b0) v10Var.getLayoutManager()).j1(0);
             }
             layoutParams7.height = org.telegram.messenger.g0.L(80.0f);

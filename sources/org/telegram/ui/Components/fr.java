@@ -37,7 +37,7 @@ public final class fr implements org.telegram.messenger.f20, cj0, org.telegram.m
                 ((org.telegram.ui.Cells.q8) view).setChecked(z10);
                 return;
             }
-            int i11 = G.f54531a;
+            int i11 = G.f54532a;
             if (i11 == 37) {
                 int i12 = i10 >>> 24;
                 int i13 = 16777215 & i10;
@@ -175,10 +175,10 @@ public final class fr implements org.telegram.messenger.f20, cj0, org.telegram.m
                                         break;
                                     }
                                     x31 G2 = lrVar.P1.G(i14);
-                                    if (G2.f54531a == 39 && G2.d == 0) {
+                                    if (G2.f54532a == 39 && G2.d == 0) {
                                         v4.d1 K = lrVar.f36277k1.K(i14 + 1);
                                         if (K != null) {
-                                            View view2 = K.f57043a;
+                                            View view2 = K.f57044a;
                                             float f12 = -lrVar.f35767x2;
                                             lrVar.f35767x2 = f12;
                                             org.telegram.messenger.g0.G3(f12, view2, null);

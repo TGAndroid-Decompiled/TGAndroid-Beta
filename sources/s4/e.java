@@ -33,32 +33,32 @@ public final class e {
     public hy0 C;
     public android.support.v4.media.session.a0 D;
     public final vy E;
-    public final qe.h f54789c;
+    public final qe.h f54790c;
     public v d;
-    public q f54790e;
-    public com.google.android.gms.internal.cast.o f54791f;
-    public ri0 f54792g;
+    public q f54791e;
+    public com.google.android.gms.internal.cast.o f54792f;
+    public ri0 f54793g;
     public final Context h;
-    public final h2.s f54798n;
-    public final org.telegram.ui.Components.n f54799o;
-    public final boolean f54800p;
-    public final boolean f54801q;
-    public k f54802r;
-    public final j0 f54803s;
-    public final u1 f54804t;
-    public z f54805u;
+    public final h2.s f54799n;
+    public final org.telegram.ui.Components.n f54800o;
+    public final boolean f54801p;
+    public final boolean f54802q;
+    public k f54803r;
+    public final j0 f54804s;
+    public final u1 f54805t;
+    public z f54806u;
     public v v;
-    public v f54806w;
-    public v f54807x;
-    public p f54808y;
-    public n f54809z;
-    public final b f54787a = new b(this);
-    public final HashMap f54788b = new HashMap();
-    public final ArrayList f54793i = new ArrayList();
-    public final ArrayList f54794j = new ArrayList();
-    public final HashMap f54795k = new HashMap();
-    public final ArrayList f54796l = new ArrayList();
-    public final ArrayList f54797m = new ArrayList();
+    public v f54807w;
+    public v f54808x;
+    public p f54809y;
+    public n f54810z;
+    public final b f54788a = new b(this);
+    public final HashMap f54789b = new HashMap();
+    public final ArrayList f54794i = new ArrayList();
+    public final ArrayList f54795j = new ArrayList();
+    public final HashMap f54796k = new HashMap();
+    public final ArrayList f54797l = new ArrayList();
+    public final ArrayList f54798m = new ArrayList();
 
     static {
         Log.isLoggable("GlobalMediaRouter", 3);
@@ -71,32 +71,32 @@ public final class e {
     public final void a(g3 g3Var, boolean z9) {
         if (d(g3Var) == null) {
             u uVar = new u(g3Var, z9);
-            this.f54796l.add(uVar);
-            this.f54787a.b(513, uVar);
+            this.f54797l.add(uVar);
+            this.f54788a.b(513, uVar);
             m(uVar, (ca.i) g3Var.f7538n);
             x.b();
-            g3Var.f7537f = this.f54799o;
-            g3Var.h(this.f54809z);
+            g3Var.f7537f = this.f54800o;
+            g3Var.h(this.f54810z);
         }
     }
 
     public final String b(u uVar, String str) {
         String D;
         String flattenToShortString = ((ComponentName) uVar.d.f39747b).flattenToShortString();
-        boolean z9 = uVar.f54898c;
+        boolean z9 = uVar.f54899c;
         if (z9) {
             D = str;
         } else {
             D = a8.p0.D(flattenToShortString, ":", str);
         }
-        HashMap hashMap = this.f54795k;
+        HashMap hashMap = this.f54796k;
         if (!z9) {
-            ArrayList arrayList = this.f54794j;
+            ArrayList arrayList = this.f54795j;
             int size = arrayList.size();
             int i7 = 0;
             while (true) {
                 if (i7 < size) {
-                    if (((v) arrayList.get(i7)).f54902c.equals(D)) {
+                    if (((v) arrayList.get(i7)).f54903c.equals(D)) {
                         break;
                     }
                     i7++;
@@ -115,7 +115,7 @@ public final class e {
                     int i11 = 0;
                     while (true) {
                         if (i11 < size2) {
-                            if (((v) arrayList.get(i11)).f54902c.equals(str2)) {
+                            if (((v) arrayList.get(i11)).f54903c.equals(str2)) {
                                 break;
                             }
                             i11++;
@@ -137,14 +137,14 @@ public final class e {
     }
 
     public final v c() {
-        ArrayList arrayList = this.f54794j;
+        ArrayList arrayList = this.f54795j;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
             Object obj = arrayList.get(i7);
             i7++;
             v vVar = (v) obj;
-            if (vVar != this.v && vVar.c() == this.f54803s && vVar.m("android.media.intent.category.LIVE_AUDIO") && !vVar.m("android.media.intent.category.LIVE_VIDEO") && vVar.f()) {
+            if (vVar != this.v && vVar.c() == this.f54804s && vVar.m("android.media.intent.category.LIVE_AUDIO") && !vVar.m("android.media.intent.category.LIVE_VIDEO") && vVar.f()) {
                 return vVar;
             }
         }
@@ -152,14 +152,14 @@ public final class e {
     }
 
     public final u d(g3 g3Var) {
-        ArrayList arrayList = this.f54796l;
+        ArrayList arrayList = this.f54797l;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
             Object obj = arrayList.get(i7);
             i7++;
             u uVar = (u) obj;
-            if (uVar.f54896a == g3Var) {
+            if (uVar.f54897a == g3Var) {
                 return uVar;
             }
         }
@@ -175,9 +175,9 @@ public final class e {
     }
 
     public final boolean f() {
-        if (this.f54801q) {
-            z zVar = this.f54805u;
-            if (zVar == null || zVar.f54928b) {
+        if (this.f54802q) {
+            z zVar = this.f54806u;
+            if (zVar == null || zVar.f54929b) {
                 return true;
             }
             return false;
@@ -190,9 +190,9 @@ public final class e {
             List<v> unmodifiableList = DesugarCollections.unmodifiableList(this.d.v);
             HashSet hashSet = new HashSet();
             for (v vVar : unmodifiableList) {
-                hashSet.add(vVar.f54902c);
+                hashSet.add(vVar.f54903c);
             }
-            HashMap hashMap = this.f54788b;
+            HashMap hashMap = this.f54789b;
             Iterator it = hashMap.entrySet().iterator();
             while (it.hasNext()) {
                 Map.Entry entry = (Map.Entry) it.next();
@@ -204,10 +204,10 @@ public final class e {
                 }
             }
             for (v vVar2 : unmodifiableList) {
-                if (!hashMap.containsKey(vVar2.f54902c)) {
-                    q e10 = vVar2.c().e(vVar2.f54901b, this.d.f54901b);
+                if (!hashMap.containsKey(vVar2.f54903c)) {
+                    q e10 = vVar2.c().e(vVar2.f54902b, this.d.f54902b);
                     e10.e();
-                    hashMap.put(vVar2.f54902c, e10);
+                    hashMap.put(vVar2.f54903c, e10);
                 }
             }
         }
@@ -215,14 +215,14 @@ public final class e {
 
     public final void h(e eVar, v vVar, q qVar, int i7, v vVar2, Collection collection) {
         final com.google.android.gms.internal.cast.o oVar;
-        ri0 ri0Var = this.f54792g;
+        ri0 ri0Var = this.f54793g;
         if (ri0Var != null) {
             ri0Var.a();
-            this.f54792g = null;
+            this.f54793g = null;
         }
         ri0 ri0Var2 = new ri0(eVar, vVar, qVar, i7, vVar2, collection);
-        this.f54792g = ri0Var2;
-        if (ri0Var2.f37673b == 3 && (oVar = this.f54791f) != null) {
+        this.f54793g = ri0Var2;
+        if (ri0Var2.f37673b == 3 && (oVar = this.f54792f) != null) {
             final v vVar3 = this.d;
             final v vVar4 = (v) ri0Var2.f37677g;
             com.google.android.gms.internal.cast.o.f6922c.b("Prepare transfer from Route(%s) to Route(%s)", vVar3, vVar4);
@@ -234,13 +234,13 @@ public final class e {
                     return Boolean.valueOf(oVar2.f6924b.post(new pa(oVar2, vVar3, vVar4, iVar, 2)));
                 }
             });
-            ri0 ri0Var3 = this.f54792g;
+            ri0 ri0Var3 = this.f54793g;
             e eVar2 = (e) ((WeakReference) ri0Var3.f37679j).get();
-            if (eVar2 != null && eVar2.f54792g == ri0Var3) {
+            if (eVar2 != null && eVar2.f54793g == ri0Var3) {
                 if (((c0.l) ri0Var3.f37680k) == null) {
                     ri0Var3.f37680k = a10;
                     m5 m5Var = new m5(ri0Var3, 27);
-                    b bVar = eVar2.f54787a;
+                    b bVar = eVar2.f54788a;
                     Objects.requireNonNull(bVar);
                     a10.f5245b.b(m5Var, new l2.g0(bVar, 3));
                     return;
@@ -255,16 +255,16 @@ public final class e {
     }
 
     public final void i(v vVar, int i7) {
-        if (!this.f54794j.contains(vVar)) {
+        if (!this.f54795j.contains(vVar)) {
             Log.w("GlobalMediaRouter", "Ignoring attempt to select removed route: " + vVar);
-        } else if (!vVar.f54905g) {
+        } else if (!vVar.f54906g) {
             Log.w("GlobalMediaRouter", "Ignoring attempt to select disabled route: " + vVar);
         } else {
             if (Build.VERSION.SDK_INT >= 30) {
                 g3 c10 = vVar.c();
-                k kVar = this.f54802r;
+                k kVar = this.f54803r;
                 if (c10 == kVar && this.d != vVar) {
-                    kVar.s(vVar.f54901b);
+                    kVar.s(vVar.f54902b);
                     return;
                 }
             }
@@ -277,33 +277,33 @@ public final class e {
         if (this.d == vVar) {
             return;
         }
-        if (this.f54807x != null) {
-            this.f54807x = null;
-            p pVar = this.f54808y;
+        if (this.f54808x != null) {
+            this.f54808x = null;
+            p pVar = this.f54809y;
             if (pVar != null) {
                 pVar.h(3);
-                this.f54808y.d();
-                this.f54808y = null;
+                this.f54809y.d();
+                this.f54809y = null;
             }
         }
-        if (f() && (iVar = vVar.f54900a.f54899e) != null && iVar.f6015b) {
-            p c10 = vVar.c().c(vVar.f54901b);
+        if (f() && (iVar = vVar.f54901a.f54900e) != null && iVar.f6015b) {
+            p c10 = vVar.c().c(vVar.f54902b);
             if (c10 != null) {
                 Executor e10 = f0.d.e(this.h);
                 vy vyVar = this.E;
-                synchronized (c10.f54864a) {
+                synchronized (c10.f54865a) {
                     try {
                         if (e10 != null) {
                             if (vyVar != null) {
-                                c10.f54865b = e10;
-                                c10.f54866c = vyVar;
-                                ArrayList arrayList = c10.f54867e;
+                                c10.f54866b = e10;
+                                c10.f54867c = vyVar;
+                                ArrayList arrayList = c10.f54868e;
                                 if (arrayList != null && !arrayList.isEmpty()) {
                                     m mVar = c10.d;
-                                    ArrayList arrayList2 = c10.f54867e;
+                                    ArrayList arrayList2 = c10.f54868e;
                                     c10.d = null;
-                                    c10.f54867e = null;
-                                    c10.f54865b.execute(new pa(c10, vyVar, mVar, arrayList2, false, 5));
+                                    c10.f54868e = null;
+                                    c10.f54866b.execute(new pa(c10, vyVar, mVar, arrayList2, false, 5));
                                 }
                             } else {
                                 throw new NullPointerException("Listener shouldn't be null");
@@ -315,21 +315,21 @@ public final class e {
                         throw th2;
                     }
                 }
-                this.f54807x = vVar;
-                this.f54808y = c10;
+                this.f54808x = vVar;
+                this.f54809y = c10;
                 c10.e();
                 return;
             }
             Log.w("GlobalMediaRouter", "setSelectedRouteInternal: Failed to create dynamic group route controller. route=" + vVar);
         }
-        q d = vVar.c().d(vVar.f54901b);
+        q d = vVar.c().d(vVar.f54902b);
         if (d != null) {
             d.e();
         }
         if (this.d == null) {
             this.d = vVar;
-            this.f54790e = d;
-            Message obtainMessage = this.f54787a.obtainMessage(262, new q0.b(null, vVar));
+            this.f54791e = d;
+            Message obtainMessage = this.f54788a.obtainMessage(262, new q0.b(null, vVar));
             obtainMessage.arg1 = i7;
             obtainMessage.sendToTarget();
             return;
@@ -345,31 +345,31 @@ public final class e {
         int i7;
         v vVar = this.d;
         if (vVar != null) {
-            int i10 = vVar.f54913p;
-            h2.s sVar = this.f54798n;
+            int i10 = vVar.f54914p;
+            h2.s sVar = this.f54799n;
             sVar.f14146a = i10;
-            sVar.f14147b = vVar.f54914q;
+            sVar.f14147b = vVar.f54915q;
             int i11 = 0;
             if (vVar.e() && !x.g()) {
                 i7 = 0;
             } else {
-                i7 = vVar.f54912o;
+                i7 = vVar.f54913o;
             }
             sVar.f14148c = i7;
-            sVar.d = this.d.f54910m;
-            if (f() && this.d.c() == this.f54802r) {
-                sVar.f14149e = k.p(this.f54790e);
+            sVar.d = this.d.f54911m;
+            if (f() && this.d.c() == this.f54803r) {
+                sVar.f14149e = k.p(this.f54791e);
             } else {
                 sVar.f14149e = null;
             }
-            ArrayList arrayList = this.f54797m;
+            ArrayList arrayList = this.f54798m;
             if (arrayList.size() <= 0) {
                 hy0 hy0Var = this.C;
                 if (hy0Var != null) {
                     v vVar2 = this.d;
                     v vVar3 = this.v;
                     if (vVar3 != null) {
-                        if (vVar2 != vVar3 && vVar2 != this.f54806w) {
+                        if (vVar2 != vVar3 && vVar2 != this.f54807w) {
                             if (sVar.f14148c == 1) {
                                 i11 = 2;
                             }
@@ -420,7 +420,7 @@ public final class e {
         int i7 = vVar.i(mVar);
         if (i7 != 0) {
             int i10 = i7 & 1;
-            b bVar = this.f54787a;
+            b bVar = this.f54788a;
             if (i10 != 0) {
                 bVar.b(259, vVar);
             }
@@ -441,8 +441,8 @@ public final class e {
             this.v = null;
         }
         v vVar2 = this.v;
-        j0 j0Var = this.f54803s;
-        ArrayList arrayList = this.f54794j;
+        j0 j0Var = this.f54804s;
+        ArrayList arrayList = this.f54795j;
         if (vVar2 == null) {
             int size = arrayList.size();
             int i7 = 0;
@@ -453,19 +453,19 @@ public final class e {
                 Object obj = arrayList.get(i7);
                 i7++;
                 v vVar3 = (v) obj;
-                if (vVar3.c() == j0Var && vVar3.f54901b.equals("DEFAULT_ROUTE") && vVar3.f()) {
+                if (vVar3.c() == j0Var && vVar3.f54902b.equals("DEFAULT_ROUTE") && vVar3.f()) {
                     this.v = vVar3;
                     Log.i("GlobalMediaRouter", "Found default route: " + this.v);
                     break;
                 }
             }
         }
-        v vVar4 = this.f54806w;
+        v vVar4 = this.f54807w;
         if (vVar4 != null && !vVar4.f()) {
-            Log.i("GlobalMediaRouter", "Clearing the bluetooth route because it is no longer selectable: " + this.f54806w);
-            this.f54806w = null;
+            Log.i("GlobalMediaRouter", "Clearing the bluetooth route because it is no longer selectable: " + this.f54807w);
+            this.f54807w = null;
         }
-        if (this.f54806w == null) {
+        if (this.f54807w == null) {
             int size2 = arrayList.size();
             int i10 = 0;
             while (true) {
@@ -476,14 +476,14 @@ public final class e {
                 i10++;
                 v vVar5 = (v) obj2;
                 if (vVar5.c() == j0Var && vVar5.m("android.media.intent.category.LIVE_AUDIO") && !vVar5.m("android.media.intent.category.LIVE_VIDEO") && vVar5.f()) {
-                    this.f54806w = vVar5;
-                    Log.i("GlobalMediaRouter", "Found bluetooth route: " + this.f54806w);
+                    this.f54807w = vVar5;
+                    Log.i("GlobalMediaRouter", "Found bluetooth route: " + this.f54807w);
                     break;
                 }
             }
         }
         v vVar6 = this.d;
-        if (vVar6 != null && vVar6.f54905g) {
+        if (vVar6 != null && vVar6.f54906g) {
             if (z9) {
                 g();
                 l();

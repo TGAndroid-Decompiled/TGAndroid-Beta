@@ -510,7 +510,7 @@ public final class gy extends org.telegram.ui.ActionBar.f2 {
             String M0 = org.telegram.messenger.id.M0(2131750751, null);
             xh.l lVar = vxVar.f50794a;
             lVar.setText(M0);
-            lVar.f58843s = 0;
+            lVar.f58844s = 0;
             return;
         }
         Paint.FontMetricsInt fontMetricsInt = vxVar.getSubtitleTextView().getPaint().getFontMetricsInt();
@@ -524,7 +524,7 @@ public final class gy extends org.telegram.ui.ActionBar.f2 {
         if (z9) {
             i7 = 26;
         }
-        lVar2.f58843s = i7;
+        lVar2.f58844s = i7;
     }
 
     @Override

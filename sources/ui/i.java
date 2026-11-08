@@ -38,44 +38,44 @@ import org.telegram.ui.n1;
 import org.telegram.ui.web.q1;
 public final class i implements zz {
     public static i A;
-    public static final Object f56939y = new Object();
-    public static i f56940z;
-    public final String f56942b;
-    public final String f56943c;
+    public static final Object f56940y = new Object();
+    public static i f56941z;
+    public final String f56943b;
+    public final String f56944c;
     public final String d;
-    public final String f56944e;
-    public final String f56945f;
-    public final String f56946g;
+    public final String f56945e;
+    public final String f56946f;
+    public final String f56947g;
     public final String h;
-    public final ServerSocket f56947i;
-    public WebView f56953o;
-    public e5.f f56954p;
-    public boolean f56955q;
-    public boolean f56956r;
-    public boolean f56957s;
-    public boolean f56958t;
-    public boolean f56959u;
+    public final ServerSocket f56948i;
+    public WebView f56954o;
+    public e5.f f56955p;
+    public boolean f56956q;
+    public boolean f56957r;
+    public boolean f56958s;
+    public boolean f56959t;
+    public boolean f56960u;
     public boolean v;
-    public int f56960w;
-    public c f56961x;
-    public final Object f56941a = new Object();
-    public final ExecutorService f56948j = Executors.newCachedThreadPool();
-    public final ExecutorService f56949k = Executors.newSingleThreadExecutor();
-    public final AtomicInteger f56950l = new AtomicInteger(1);
-    public final HashMap f56951m = new HashMap();
-    public final ArrayDeque f56952n = new ArrayDeque();
+    public int f56961w;
+    public c f56962x;
+    public final Object f56942a = new Object();
+    public final ExecutorService f56949j = Executors.newCachedThreadPool();
+    public final ExecutorService f56950k = Executors.newSingleThreadExecutor();
+    public final AtomicInteger f56951l = new AtomicInteger(1);
+    public final HashMap f56952m = new HashMap();
+    public final ArrayDeque f56953n = new ArrayDeque();
 
     public i(hy0 hy0Var, String str, byte[] bArr) {
         String l10;
-        this.f56942b = (String) hy0Var.d;
+        this.f56943b = (String) hy0Var.d;
         String str2 = (String) hy0Var.f46526b;
-        this.f56943c = str2;
+        this.f56944c = str2;
         String str3 = (String) hy0Var.f46527c;
         String p10 = str3.isEmpty() ? "/" : p0.p("/", str3, "/");
         this.d = p10;
-        this.f56944e = str;
+        this.f56945e = str;
         String concat = "https://".concat(str2);
-        this.f56945f = concat;
+        this.f56946f = concat;
         byte[] bArr2 = new byte[32];
         new SecureRandom().nextBytes(bArr2);
         String encodeToString = Base64.encodeToString(bArr2, 11);
@@ -88,15 +88,15 @@ public final class i implements zz {
         Mac mac = Mac.getInstance("HmacSHA256");
         mac.init(new SecretKeySpec(bArr, "HmacSHA256"));
         String encodeToString2 = Base64.encodeToString(mac.doFinal(l10.getBytes(StandardCharsets.UTF_8)), 11);
-        this.f56946g = concat + p10 + "?bridge=" + encodeToString2 + "#android=" + encodeToString;
-        this.f56947i = new ServerSocket(0, 64, InetAddress.getByName("127.0.0.1"));
+        this.f56947g = concat + p10 + "?bridge=" + encodeToString2 + "#android=" + encodeToString;
+        this.f56948i = new ServerSocket(0, 64, InetAddress.getByName("127.0.0.1"));
     }
 
     public static void c(i iVar) {
         boolean z9;
-        synchronized (iVar.f56941a) {
+        synchronized (iVar.f56942a) {
             try {
-                if (!iVar.f56959u && iVar.f56953o == null) {
+                if (!iVar.f56960u && iVar.f56954o == null) {
                     r0 r0Var = r0.f25186f;
                     if (r0Var != null) {
                         if (r0Var.f25187a == 0) {
@@ -113,9 +113,9 @@ public final class i implements zz {
                     iVar.g();
                     try {
                         WebView webView = new WebView(t0.f25566b);
-                        iVar.f56953o = webView;
-                        iVar.f56955q = n9.a("WEB_MESSAGE_ARRAY_BUFFER");
-                        iVar.f56956r = false;
+                        iVar.f56954o = webView;
+                        iVar.f56956q = n9.a("WEB_MESSAGE_ARRAY_BUFFER");
+                        iVar.f56957r = false;
                         webView.setBackgroundColor(0);
                         WebSettings settings = webView.getSettings();
                         settings.setJavaScriptEnabled(true);
@@ -134,9 +134,9 @@ public final class i implements zz {
                         }
                         webView.setWebViewClient(new n1(iVar, 4));
                         HashSet hashSet = new HashSet();
-                        hashSet.add(iVar.f56945f);
+                        hashSet.add(iVar.f56946f);
                         d5.b.a(webView, "TelegramWebProxy", hashSet, new u5.e(iVar, 2));
-                        webView.loadUrl(iVar.f56946g);
+                        webView.loadUrl(iVar.f56947g);
                     } catch (Exception e10) {
                         a8.g(e10, true);
                         iVar.h();
@@ -151,23 +151,23 @@ public final class i implements zz {
         int andUpdate;
         while (true) {
             try {
-                Socket accept = iVar.f56947i.accept();
+                Socket accept = iVar.f56948i.accept();
                 accept.setTcpNoDelay(true);
-                synchronized (iVar.f56941a) {
-                    if (!iVar.f56959u && iVar.f56951m.size() < 64) {
+                synchronized (iVar.f56942a) {
+                    if (!iVar.f56960u && iVar.f56952m.size() < 64) {
                         while (true) {
-                            andUpdate = DesugarAtomicInteger.getAndUpdate(iVar.f56950l, new Object());
-                            if (andUpdate != 0 && !iVar.f56951m.containsKey(Integer.valueOf(andUpdate))) {
+                            andUpdate = DesugarAtomicInteger.getAndUpdate(iVar.f56951l, new Object());
+                            if (andUpdate != 0 && !iVar.f56952m.containsKey(Integer.valueOf(andUpdate))) {
                                 break;
                             }
                         }
                         h hVar = new h(andUpdate, accept);
-                        iVar.f56951m.put(Integer.valueOf(andUpdate), hVar);
-                        if (iVar.f56958t) {
-                            hVar.f56938e = true;
+                        iVar.f56952m.put(Integer.valueOf(andUpdate), hVar);
+                        if (iVar.f56959t) {
+                            hVar.f56939e = true;
                             iVar.n(1, andUpdate, null);
                         }
-                        iVar.f56948j.execute(new u9.f(6, iVar, hVar));
+                        iVar.f56949j.execute(new u9.f(6, iVar, hVar));
                     }
                     try {
                         accept.close();
@@ -175,9 +175,9 @@ public final class i implements zz {
                     }
                 }
             } catch (Exception e10) {
-                synchronized (iVar.f56941a) {
+                synchronized (iVar.f56942a) {
                     try {
-                        if (!iVar.f56959u) {
+                        if (!iVar.f56960u) {
                             a8.g(e10, true);
                             iVar.h();
                             return;
@@ -291,33 +291,33 @@ public final class i implements zz {
                 z9 = false;
             }
             if (z9) {
-                synchronized (f56939y) {
+                synchronized (f56940y) {
                     try {
-                        i iVar = f56940z;
-                        if (iVar != null && !iVar.f56947i.isClosed() && f56940z.f56942b.equals((String) k10.d) && f56940z.f56944e.equals(str2)) {
-                            return f56940z.f56947i.getLocalPort();
+                        i iVar = f56941z;
+                        if (iVar != null && !iVar.f56948i.isClosed() && f56941z.f56943b.equals((String) k10.d) && f56941z.f56945e.equals(str2)) {
+                            return f56941z.f56948i.getLocalPort();
                         }
-                        i iVar2 = f56940z;
+                        i iVar2 = f56941z;
                         if (iVar2 != null) {
                             iVar2.q();
-                            f56940z = null;
+                            f56941z = null;
                         }
                         try {
                             i iVar3 = new i(k10, str2, f10);
-                            f56940z = iVar3;
+                            f56941z = iVar3;
                             r0 r0Var = r0.f25186f;
                             if (r0Var != null) {
                                 r0Var.d.add(iVar3);
                             }
-                            iVar3.f56948j.execute(new f(iVar3, 1));
+                            iVar3.f56949j.execute(new f(iVar3, 1));
                             g0.h3(new f(iVar3, 2));
-                            return f56940z.f56947i.getLocalPort();
+                            return f56941z.f56948i.getLocalPort();
                         } catch (Exception e10) {
                             a8.g(e10, true);
-                            i iVar4 = f56940z;
+                            i iVar4 = f56941z;
                             if (iVar4 != null) {
                                 iVar4.q();
-                                f56940z = null;
+                                f56941z = null;
                             }
                         }
                     } catch (Throwable th3) {
@@ -330,12 +330,12 @@ public final class i implements zz {
     }
 
     public static void p() {
-        synchronized (f56939y) {
+        synchronized (f56940y) {
             try {
-                i iVar = f56940z;
+                i iVar = f56941z;
                 if (iVar != null) {
                     iVar.q();
-                    f56940z = null;
+                    f56941z = null;
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -350,24 +350,24 @@ public final class i implements zz {
 
     public final void e(h hVar, boolean z9) {
         boolean z10;
-        synchronized (this.f56941a) {
+        synchronized (this.f56942a) {
             try {
-                if (this.f56951m.get(Integer.valueOf(hVar.f56935a)) != hVar) {
+                if (this.f56952m.get(Integer.valueOf(hVar.f56936a)) != hVar) {
                     return;
                 }
-                this.f56951m.remove(Integer.valueOf(hVar.f56935a));
-                if (z9 && this.f56958t && hVar.f56938e) {
+                this.f56952m.remove(Integer.valueOf(hVar.f56936a));
+                if (z9 && this.f56959t && hVar.f56939e) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                this.f56941a.notifyAll();
+                this.f56942a.notifyAll();
                 try {
-                    hVar.f56936b.close();
+                    hVar.f56937b.close();
                 } catch (Exception unused) {
                 }
                 if (z10) {
-                    n(3, hVar.f56935a, null);
+                    n(3, hVar.f56936a, null);
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -376,10 +376,10 @@ public final class i implements zz {
     }
 
     public final void g() {
-        WebView webView = this.f56953o;
-        this.f56953o = null;
-        this.f56954p = null;
-        this.f56956r = false;
+        WebView webView = this.f56954o;
+        this.f56954o = null;
+        this.f56955p = null;
+        this.f56957r = false;
         if (webView != null) {
             try {
                 webView.stopLoading();
@@ -393,23 +393,23 @@ public final class i implements zz {
     }
 
     public final void h() {
-        synchronized (this.f56941a) {
-            if (!this.f56959u && !this.v) {
+        synchronized (this.f56942a) {
+            if (!this.f56960u && !this.v) {
                 this.v = true;
                 int i7 = 0;
-                this.f56958t = false;
-                this.f56954p = null;
-                this.f56952n.clear();
-                this.f56960w = 0;
-                ArrayList arrayList = new ArrayList(this.f56951m.values());
-                this.f56951m.clear();
-                this.f56941a.notifyAll();
+                this.f56959t = false;
+                this.f56955p = null;
+                this.f56953n.clear();
+                this.f56961w = 0;
+                ArrayList arrayList = new ArrayList(this.f56952m.values());
+                this.f56952m.clear();
+                this.f56942a.notifyAll();
                 int size = arrayList.size();
                 while (i7 < size) {
                     Object obj = arrayList.get(i7);
                     i7++;
                     try {
-                        ((h) obj).f56936b.close();
+                        ((h) obj).f56937b.close();
                     } catch (Exception unused) {
                     }
                 }
@@ -423,15 +423,15 @@ public final class i implements zz {
             JSONObject jSONObject = new JSONObject(str);
             String optString = jSONObject.optString("t");
             if ("tproxy-android-init".equals(optString) && jSONObject.optInt("v") == 1 && this.h.equals(jSONObject.optString("nonce"))) {
-                synchronized (this.f56941a) {
-                    if (!this.f56959u && this.f56954p == null) {
-                        this.f56954p = fVar;
-                        if (this.f56955q) {
-                            this.f56956r = true;
+                synchronized (this.f56942a) {
+                    if (!this.f56960u && this.f56955p == null) {
+                        this.f56955p = fVar;
+                        if (this.f56956q) {
+                            this.f56957r = true;
                             n(16, 0, new byte[]{1});
                             return;
                         }
-                        WebView webView = this.f56953o;
+                        WebView webView = this.f56954o;
                         r31 r31Var = new r31(this, webView, fVar, 17);
                         g0.i3(r31Var, 5000L);
                         try {
@@ -457,7 +457,7 @@ public final class i implements zz {
             return false;
         }
         Uri parse = Uri.parse(url);
-        if (!"https".equalsIgnoreCase(parse.getScheme()) || !this.f56943c.equalsIgnoreCase(parse.getHost()) || parse.getUserInfo() != null || parse.getPort() != -1 || !this.d.equals(parse.getPath())) {
+        if (!"https".equalsIgnoreCase(parse.getScheme()) || !this.f56944c.equalsIgnoreCase(parse.getHost()) || parse.getUserInfo() != null || parse.getPort() != -1 || !this.d.equals(parse.getPath())) {
             return false;
         }
         return true;
@@ -472,10 +472,10 @@ public final class i implements zz {
             bArr = new byte[0];
         }
         byte[] array = ByteBuffer.allocate(bArr.length + 8).put((byte) i7).put((byte) (i10 >> 16)).put((byte) (i10 >> 8)).put((byte) i10).putInt(bArr.length).put(bArr).array();
-        synchronized (this.f56941a) {
-            if (!this.f56959u && this.f56952n.size() < 8192 && this.f56960w <= 67108864 - array.length) {
-                this.f56952n.add(array);
-                this.f56960w += array.length;
+        synchronized (this.f56942a) {
+            if (!this.f56960u && this.f56953n.size() < 8192 && this.f56961w <= 67108864 - array.length) {
+                this.f56953n.add(array);
+                this.f56961w += array.length;
                 g0.h3(new f(this, 4));
                 return;
             }
@@ -484,22 +484,22 @@ public final class i implements zz {
     }
 
     public final void q() {
-        synchronized (this.f56941a) {
+        synchronized (this.f56942a) {
             try {
-                if (this.f56959u) {
+                if (this.f56960u) {
                     return;
                 }
-                this.f56959u = true;
+                this.f56960u = true;
                 int i7 = 0;
-                this.f56958t = false;
+                this.f56959t = false;
                 this.v = false;
-                ArrayList arrayList = new ArrayList(this.f56951m.values());
-                this.f56951m.clear();
-                this.f56952n.clear();
-                this.f56960w = 0;
-                this.f56941a.notifyAll();
+                ArrayList arrayList = new ArrayList(this.f56952m.values());
+                this.f56952m.clear();
+                this.f56953n.clear();
+                this.f56961w = 0;
+                this.f56942a.notifyAll();
                 try {
-                    this.f56947i.close();
+                    this.f56948i.close();
                 } catch (Exception unused) {
                 }
                 r0 r0Var = r0.f25186f;
@@ -511,13 +511,13 @@ public final class i implements zz {
                     Object obj = arrayList.get(i7);
                     i7++;
                     try {
-                        ((h) obj).f56936b.close();
+                        ((h) obj).f56937b.close();
                     } catch (Exception unused2) {
                     }
                 }
                 g0.h3(new f(this, 0));
-                this.f56948j.shutdownNow();
-                this.f56949k.shutdownNow();
+                this.f56949j.shutdownNow();
+                this.f56950k.shutdownNow();
             } catch (Throwable th2) {
                 throw th2;
             }

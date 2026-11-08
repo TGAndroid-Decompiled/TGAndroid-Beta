@@ -19,31 +19,31 @@ public final class m1 extends View {
     public Runnable I;
     public boolean J;
     public l1 K;
-    public final Paint f55840a;
-    public final Paint f55841b;
-    public final Path f55842c;
+    public final Paint f55841a;
+    public final Paint f55842b;
+    public final Path f55843c;
     public final vy d;
-    public final RectF f55843e;
-    public boolean f55844f;
+    public final RectF f55844e;
+    public boolean f55845f;
     public boolean h;
-    public float f55845n;
-    public float f55846r;
-    public long f55847s;
-    public boolean f55848w;
-    public final w5 f55849x;
-    public final w5 f55850y;
+    public float f55846n;
+    public float f55847r;
+    public long f55848s;
+    public boolean f55849w;
+    public final w5 f55850x;
+    public final w5 f55851y;
 
     public m1(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f55840a = paint;
+        this.f55841a = paint;
         Paint paint2 = new Paint(1);
-        this.f55841b = paint2;
-        this.f55842c = new Path();
-        this.f55843e = new RectF();
-        this.f55848w = true;
-        this.f55849x = new w5(this);
-        this.f55850y = new w5(this);
+        this.f55842b = paint2;
+        this.f55843c = new Path();
+        this.f55844e = new RectF();
+        this.f55849w = true;
+        this.f55850x = new w5(this);
+        this.f55851y = new w5(this);
         this.D = new w5(this);
         this.H = new sg.j1(1.0f, 0.016773745f, -1);
         this.J = true;
@@ -58,9 +58,9 @@ public final class m1 extends View {
         if (z9) {
             RectF rectF = org.telegram.messenger.g0.P;
             rectF.set((f10 - f12) - org.telegram.messenger.g0.L(6.0f), (f11 - f12) - org.telegram.messenger.g0.L(6.0f), f10 + f12 + org.telegram.messenger.g0.L(6.0f), f11 + f12 + org.telegram.messenger.g0.L(6.0f));
-            canvas.saveLayerAlpha(rectF, (int) (this.f55846r * 255.0f), 31);
+            canvas.saveLayerAlpha(rectF, (int) (this.f55847r * 255.0f), 31);
         }
-        canvas.drawCircle(f10, f11, f12, this.f55841b);
+        canvas.drawCircle(f10, f11, f12, this.f55842b);
         if (z9) {
             canvas.restore();
         }
@@ -81,7 +81,7 @@ public final class m1 extends View {
     public final void onSizeChanged(int i7, int i10, int i11, int i12) {
         super.onSizeChanged(i7, i10, i11, i12);
         int height = (int) (getHeight() * 0.3f);
-        this.f55843e.set(0.0f, (getHeight() - height) / 2.0f, org.telegram.messenger.g0.L(32.0f), (getHeight() + height) / 2.0f);
+        this.f55844e.set(0.0f, (getHeight() - height) / 2.0f, org.telegram.messenger.g0.L(32.0f), (getHeight() + height) / 2.0f);
     }
 
     @Override
@@ -90,13 +90,13 @@ public final class m1 extends View {
         if (motionEvent.getActionMasked() != 1 && motionEvent.getActionMasked() != 3) {
             return onTouchEvent;
         }
-        this.f55844f = false;
+        this.f55845f = false;
         invalidate();
         return onTouchEvent;
     }
 
     public void setBrushWeight(float f10) {
-        this.H.f55110c = f10;
+        this.H.f55111c = f10;
         invalidate();
     }
 
@@ -119,7 +119,7 @@ public final class m1 extends View {
     }
 
     public void setShowPreview(boolean z9) {
-        this.f55848w = z9;
+        this.f55849w = z9;
         invalidate();
     }
 

@@ -488,7 +488,7 @@ public class u1 extends Dialog implements Drawable.Callback, ls {
             this.f28565f = lVar;
             qs.i(lVar);
             xh.l lVar2 = this.f28565f;
-            lVar2.f58843s = 3;
+            lVar2.f58844s = 3;
             lVar2.setText(this.R);
             xh.l lVar3 = this.f28565f;
             int f17 = f(k6.f27960j5);

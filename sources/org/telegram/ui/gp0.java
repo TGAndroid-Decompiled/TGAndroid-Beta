@@ -47,7 +47,7 @@ public final class gp0 extends AnimatorListenerAdapter {
             case 3:
                 photoViewer.L1.m0(false);
                 up0 up0Var = photoViewer.L1;
-                up0Var.f55668d1.setTypeface(sg.l0.e(up0Var.f55702y1).f55133j);
+                up0Var.f55669d1.setTypeface(sg.l0.e(up0Var.f55703y1).f55134j);
                 up0Var.I0.setVisibility(0);
                 up0Var.F0.setVisibility(0);
                 up0Var.G0.setVisibility(0);

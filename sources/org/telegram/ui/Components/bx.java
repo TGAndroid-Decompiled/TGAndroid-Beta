@@ -283,7 +283,7 @@ public final class bx implements org.telegram.messenger.a20, org.telegram.ui.Act
     @Override
     public Object j(Object obj) {
         qa0 qa0Var = (qa0) obj;
-        return Float.valueOf(((r1.f) this.f32375b).f54249a / 100.0f);
+        return Float.valueOf(((r1.f) this.f32375b).f54250a / 100.0f);
     }
 
     @Override

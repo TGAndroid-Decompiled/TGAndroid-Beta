@@ -18,7 +18,7 @@ public final class e0 extends oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f57047f == 0) {
+        if (d1Var.f57048f == 0) {
             return true;
         }
         return false;

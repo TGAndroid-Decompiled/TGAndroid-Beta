@@ -275,7 +275,7 @@ public final class vy implements q51, og.n, org.telegram.ui.lm0, o2.i, lm0, com.
     @Override
     public int N() {
         v4.n0 n0Var = (v4.n0) this.f39747b;
-        return n0Var.f57140m - n0Var.E();
+        return n0Var.f57141m - n0Var.E();
     }
 
     public int O() {
@@ -312,17 +312,17 @@ public final class vy implements q51, og.n, org.telegram.ui.lm0, o2.i, lm0, com.
         String str;
         List list = (List) treeMap.get("Sec-WebSocket-Protocol");
         if (list != null && (str = (String) list.get(0)) != null && str.length() != 0) {
-            synchronized (((rc.u) this.f39747b).f54486c) {
+            synchronized (((rc.u) this.f39747b).f54487c) {
             }
             throw new rc.n(19, "The protocol contained in the Sec-WebSocket-Protocol header is not supported: ".concat(str), z0Var);
         }
     }
 
     public Object T() {
-        if (q7.a.f53959b == null) {
-            q7.a.f53959b = new Exception();
+        if (q7.a.f53960b == null) {
+            q7.a.f53960b = new Exception();
         }
-        synchronized (q7.a.f53958a) {
+        synchronized (q7.a.f53959a) {
         }
         throw new IllegalStateException("Must call PhenotypeContext.setContext() first");
     }
@@ -335,8 +335,8 @@ public final class vy implements q51, og.n, org.telegram.ui.lm0, o2.i, lm0, com.
     @Override
     public void X(float f10) {
         tg.o0 o0Var = (tg.o0) this.f39747b;
-        sg.l0.e(o0Var.f55871a).k("-1", f10);
-        o0Var.f55874e.setBrushSize(f10);
+        sg.l0.e(o0Var.f55872a).k("-1", f10);
+        o0Var.f55875e.setBrushSize(f10);
     }
 
     @Override
@@ -407,13 +407,13 @@ public final class vy implements q51, og.n, org.telegram.ui.lm0, o2.i, lm0, com.
     public void b() {
         sg.u0 u0Var = ((sg.w0) this.f39747b).d;
         if (u0Var != null) {
-            sg.s0 s0Var = u0Var.f55216s;
+            sg.s0 s0Var = u0Var.f55217s;
             if (s0Var != null) {
                 u0Var.cancelRunnable(s0Var);
-                u0Var.f55216s = null;
+                u0Var.f55217s = null;
             }
             sg.s0 s0Var2 = new sg.s0(u0Var, 1);
-            u0Var.f55216s = s0Var2;
+            u0Var.f55217s = s0Var2;
             u0Var.postRunnable(s0Var2, 1L);
         }
     }
@@ -459,7 +459,7 @@ public final class vy implements q51, og.n, org.telegram.ui.lm0, o2.i, lm0, com.
     public void f(Object obj) {
         com.google.android.gms.common.api.internal.m mVar;
         org.telegram.messenger.z9 z9Var = (org.telegram.messenger.z9) obj;
-        androidx.activity.n nVar = ((u7.i) this.f39747b).f56371b;
+        androidx.activity.n nVar = ((u7.i) this.f39747b).f56372b;
         synchronized (nVar) {
             nVar.f1846b = false;
             mVar = ((com.google.android.gms.common.api.internal.o) nVar.f1847c).f6671b;
@@ -482,8 +482,8 @@ public final class vy implements q51, og.n, org.telegram.ui.lm0, o2.i, lm0, com.
     @Override
     public CharSequence getContentDescription() {
         pg.i iVar = (pg.i) this.f39747b;
-        float f10 = iVar.f53618b;
-        return String.valueOf(Math.round((iVar.f53617a.getProgress() * (iVar.f53619c - f10)) + f10));
+        float f10 = iVar.f53619b;
+        return String.valueOf(Math.round((iVar.f53618a.getProgress() * (iVar.f53620c - f10)) + f10));
     }
 
     @Override
@@ -493,7 +493,7 @@ public final class vy implements q51, og.n, org.telegram.ui.lm0, o2.i, lm0, com.
 
     @Override
     public void invalidate() {
-        ((ti.i) this.f39747b).f56091m.invalidate();
+        ((ti.i) this.f39747b).f56092m.invalidate();
     }
 
     @Override
@@ -509,11 +509,11 @@ public final class vy implements q51, og.n, org.telegram.ui.lm0, o2.i, lm0, com.
     @Override
     public void l(boolean z9, float f10) {
         pg.i iVar = (pg.i) this.f39747b;
-        float f11 = iVar.f53618b;
-        float z10 = com.google.android.recaptcha.internal.a.z(iVar.f53619c, f11, f10, f11);
+        float f11 = iVar.f53619b;
+        float z10 = com.google.android.recaptcha.internal.a.z(iVar.f53620c, f11, f10, f11);
         iVar.d = z10;
         if (z9) {
-            l6 l6Var = iVar.f53620e;
+            l6 l6Var = iVar.f53621e;
             l6Var.getClass();
             l6Var.c(null, z10);
         }
@@ -676,17 +676,17 @@ public final class vy implements q51, og.n, org.telegram.ui.lm0, o2.i, lm0, com.
 
     public void s(s4.p pVar, s4.m mVar, Collection collection) {
         s4.e eVar = (s4.e) this.f39747b;
-        if (pVar == eVar.f54808y && mVar != null) {
-            s4.u uVar = eVar.f54807x.f54900a;
+        if (pVar == eVar.f54809y && mVar != null) {
+            s4.u uVar = eVar.f54808x.f54901a;
             String d = mVar.d();
             s4.v vVar = new s4.v(uVar, d, eVar.b(uVar, d), false);
             vVar.i(mVar);
             if (eVar.d != vVar) {
-                eVar.h(eVar, vVar, eVar.f54808y, 3, eVar.f54807x, collection);
-                eVar.f54807x = null;
-                eVar.f54808y = null;
+                eVar.h(eVar, vVar, eVar.f54809y, 3, eVar.f54808x, collection);
+                eVar.f54808x = null;
+                eVar.f54809y = null;
             }
-        } else if (pVar == eVar.f54790e) {
+        } else if (pVar == eVar.f54791e) {
             if (mVar != null) {
                 eVar.n(eVar.d, mVar);
             }
@@ -755,10 +755,10 @@ public final class vy implements q51, og.n, org.telegram.ui.lm0, o2.i, lm0, com.
     @Override
     public float get() {
         tg.o0 o0Var = (tg.o0) this.f39747b;
-        int i7 = o0Var.f55871a;
-        sg.h currentBrush = o0Var.f55874e.getCurrentBrush();
+        int i7 = o0Var.f55872a;
+        sg.h currentBrush = o0Var.f55875e.getCurrentBrush();
         if (currentBrush == null) {
-            return sg.l0.e(i7).f55132i;
+            return sg.l0.e(i7).f55133i;
         }
         return sg.l0.e(i7).f("-1", currentBrush.d());
     }

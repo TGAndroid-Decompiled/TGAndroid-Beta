@@ -26,7 +26,7 @@ public final class gw extends FrameLayout {
         if (view == twVar && ivVar != null) {
             y10 = Math.max(y10, ivVar.getY() + ivVar.getMeasuredHeight() + 1.0f);
         }
-        canvas.clipRect(0.0f, y10 - (org.telegram.messenger.g0.L(16.0f) * hyVar.f34394b.f55486e), getMeasuredWidth(), getMeasuredHeight());
+        canvas.clipRect(0.0f, y10 - (org.telegram.messenger.g0.L(16.0f) * hyVar.f34394b.f55487e), getMeasuredWidth(), getMeasuredHeight());
         boolean drawChild = super.drawChild(canvas, view, j3);
         canvas.restore();
         return drawChild;

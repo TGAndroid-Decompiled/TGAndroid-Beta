@@ -16,7 +16,7 @@ public final class zy0 extends rg.b {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57047f;
+        int i7 = d1Var.f57048f;
         if (i7 == 1 || i7 == 2 || i7 == 4 || i7 == 6) {
             return true;
         }
@@ -30,23 +30,23 @@ public final class zy0 extends rg.b {
 
     @Override
     public final int d(int i7) {
-        return ((az0) this.d.f41894s.get(i7)).f54531a;
+        return ((az0) this.d.f41894s.get(i7)).f54532a;
     }
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
         String str;
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.d;
         ArrayList arrayList = saveToGallerySettingsActivity.f41894s;
         boolean z9 = false;
-        if (((az0) arrayList.get(i7)).f54531a == 1) {
+        if (((az0) arrayList.get(i7)).f54532a == 1) {
             org.telegram.ui.Cells.m8 m8Var = (org.telegram.ui.Cells.m8) view;
             if (saveToGallerySettingsActivity.f41895w.size() > 0) {
                 z9 = true;
             }
             m8Var.setNeedDivider(z9);
-        } else if (((az0) arrayList.get(i7)).f54531a == 6) {
+        } else if (((az0) arrayList.get(i7)).f54532a == 6) {
             org.telegram.ui.Cells.r8 r8Var = (org.telegram.ui.Cells.r8) view;
             org.telegram.messenger.rv c02 = saveToGallerySettingsActivity.c0();
             if (i7 == saveToGallerySettingsActivity.f41890e) {
@@ -60,7 +60,7 @@ public final class zy0 extends rg.b {
             int i11 = org.telegram.ui.ActionBar.k6.Wj;
             r8Var.c(saveToGallerySettingsActivity.getThemedColor(i11), 2131232141);
             SaveToGallerySettingsActivity.b0(saveToGallerySettingsActivity, r8Var, i11);
-        } else if (((az0) arrayList.get(i7)).f54531a == 7) {
+        } else if (((az0) arrayList.get(i7)).f54532a == 7) {
             org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) view;
             if (i7 == saveToGallerySettingsActivity.h) {
                 long j3 = saveToGallerySettingsActivity.c0().f25347c;
@@ -83,9 +83,9 @@ public final class zy0 extends rg.b {
                 }
             }
             z8Var.setText(((az0) arrayList.get(i7)).d);
-        } else if (((az0) arrayList.get(i7)).f54531a == 5) {
+        } else if (((az0) arrayList.get(i7)).f54532a == 5) {
             ((org.telegram.ui.Cells.n4) view).setText(((az0) arrayList.get(i7)).d);
-        } else if (((az0) arrayList.get(i7)).f54531a == 2) {
+        } else if (((az0) arrayList.get(i7)).f54532a == 2) {
             org.telegram.ui.Cells.pa paVar = (org.telegram.ui.Cells.pa) view;
             org.telegram.messenger.qv qvVar = ((az0) arrayList.get(i7)).f44139c;
             TLObject e22 = saveToGallerySettingsActivity.getMessagesController().e2(qvVar.d);
@@ -121,7 +121,7 @@ public final class zy0 extends rg.b {
             } else {
                 sb2.append(org.telegram.messenger.id.M0(2131745924, null));
             }
-            if (i7 == arrayList.size() - 1 || ((az0) arrayList.get(i7 + 1)).f54531a == 2) {
+            if (i7 == arrayList.size() - 1 || ((az0) arrayList.get(i7 + 1)).f54532a == 2) {
                 z9 = true;
             }
             paVar.d(e22, str, sb2, z9);

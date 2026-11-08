@@ -124,7 +124,7 @@ public final class i0 extends na {
         e10.rightMargin += i12;
         this.f28619b.addView(frameLayout, e10);
         v4.k kVar = new v4.k();
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         kVar.C = false;
         kVar.o(xq.h);
         kVar.n(350L);

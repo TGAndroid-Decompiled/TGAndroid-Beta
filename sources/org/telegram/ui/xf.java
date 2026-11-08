@@ -53,13 +53,13 @@ public final class xf implements Runnable {
                 if (qjVar2 != null && anVar.f43817gd != null) {
                     if (qjVar2.s0()) {
                         anVar.Z.k0(false);
-                        org.telegram.messenger.g0.K3(anVar.f43817gd.f55282a);
-                        ((te.a) anVar.f43817gd.f55283b.f8841b).a(false, true);
+                        org.telegram.messenger.g0.K3(anVar.f43817gd.f55283a);
+                        ((te.a) anVar.f43817gd.f55284b.f8841b).a(false, true);
                         return;
                     }
                     anVar.Z.U0(false, false, false);
                     anVar.Z.s1();
-                    ((te.a) anVar.f43817gd.f55283b.f8841b).a(true, true);
+                    ((te.a) anVar.f43817gd.f55284b.f8841b).a(true, true);
                     return;
                 }
                 return;

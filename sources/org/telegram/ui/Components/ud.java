@@ -130,7 +130,7 @@ public final class ud extends FrameLayout {
                 int max = Math.max(org.telegram.messenger.g0.L(44.0f), getMeasuredHeight());
                 ChatActivityEnterView chatActivityEnterView = this.f38612b;
                 te.c cVar = chatActivityEnterView.f31075j5;
-                if (cVar.f55492f > 0.0f) {
+                if (cVar.f55493f > 0.0f) {
                     cVar.a(max);
                 } else {
                     cVar.c(max);

@@ -42,22 +42,22 @@ public final class sn implements Runnable {
                 wg.a0 a0Var = (wg.a0) obj3;
                 TL_stories.PrepaidGiveaway prepaidGiveaway = (TL_stories.PrepaidGiveaway) obj2;
                 TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway = (TL_stories.TL_prepaidStarsGiveaway) obj;
-                int l10 = wg.s.l(a0Var.f57680e2);
-                int i10 = a0Var.f57678b2;
-                int i11 = yg.u.f59489w;
+                int l10 = wg.s.l(a0Var.f57681e2);
+                int i10 = a0Var.f57679b2;
+                int i11 = yg.u.f59490w;
                 if (i10 == 1) {
                     z9 = true;
                 } else {
                     z9 = false;
                 }
-                a0Var.f57684i2.b(true);
+                a0Var.f57685i2.b(true);
                 ArrayList arrayList = a0Var.U1;
                 ArrayList arrayList2 = a0Var.W1;
                 TLRPC.Chat chat = a0Var.T1;
-                boolean z10 = a0Var.f57691p2;
-                boolean z11 = a0Var.f57690o2;
+                boolean z10 = a0Var.f57692p2;
+                boolean z11 = a0Var.f57691o2;
                 int i12 = prepaidGiveaway.quantity;
-                String str = a0Var.f57689n2;
+                String str = a0Var.f57690n2;
                 wg.y yVar = new wg.y(this.f38101b, this.f38102c, prepaidGiveaway, tL_prepaidStarsGiveaway, a0Var);
                 wg.v vVar = new wg.v(a0Var, 6);
                 org.telegram.messenger.qp s12 = org.telegram.messenger.qp.s1(org.telegram.messenger.p10.f24470s0);

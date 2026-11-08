@@ -113,11 +113,11 @@ public final class q6 implements q0.a {
                 }
                 if (z9 && (recycledViewPool = recyclerView.getRecycledViewPool()) != null) {
                     ArrayList arrayList = new ArrayList();
-                    SparseArray sparseArray = recycledViewPool.f57171a;
+                    SparseArray sparseArray = recycledViewPool.f57172a;
                     for (int i17 = 0; i17 < sparseArray.size(); i17++) {
-                        ArrayList arrayList2 = ((v4.t0) sparseArray.valueAt(i17)).f57157a;
+                        ArrayList arrayList2 = ((v4.t0) sparseArray.valueAt(i17)).f57158a;
                         for (int i18 = 0; i18 < arrayList2.size(); i18++) {
-                            arrayList.add(((v4.d1) arrayList2.get(i18)).f57043a);
+                            arrayList.add(((v4.d1) arrayList2.get(i18)).f57044a);
                         }
                     }
                     while (i7 < arrayList.size()) {

@@ -42,16 +42,16 @@ public class au0 extends v4.c0 {
 
     @Override
     public final void q(v4.y0 y0Var) {
-        PointF a10 = a(this.f57212a);
+        PointF a10 = a(this.f57213a);
         if (a10 != null && (a10.x != 0.0f || a10.y != 0.0f)) {
             v4.z0.b(a10);
-            this.f57028k = a10;
-            this.f57032o = (int) (a10.x * 10000.0f);
-            this.f57033p = (int) (a10.y * 10000.0f);
-            y0Var.b((int) (this.f57032o * 1.2f), (int) (this.f57033p * 1.2f), (int) (n(10000) * 1.2f), this.f31918r);
+            this.f57029k = a10;
+            this.f57033o = (int) (a10.x * 10000.0f);
+            this.f57034p = (int) (a10.y * 10000.0f);
+            y0Var.b((int) (this.f57033o * 1.2f), (int) (this.f57034p * 1.2f), (int) (n(10000) * 1.2f), this.f31918r);
             return;
         }
-        y0Var.d = this.f57212a;
+        y0Var.d = this.f57213a;
         h();
     }
 }

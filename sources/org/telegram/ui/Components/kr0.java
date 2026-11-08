@@ -58,7 +58,7 @@ public final class kr0 extends oj0 {
         boolean z16;
         xs0 xs0Var = this.f35425f;
         org.telegram.ui.ActionBar.f2 f2Var = xs0Var.f40461x1;
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         if (view instanceof org.telegram.ui.Cells.pa) {
             org.telegram.ui.Cells.pa paVar = (org.telegram.ui.Cells.pa) view;
             if (!this.f35424e.isEmpty()) {

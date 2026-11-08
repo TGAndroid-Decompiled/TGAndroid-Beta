@@ -52,7 +52,7 @@ public final class i implements ma1, org.telegram.ui.ActionBar.r1, org.telegram.
         boolean z9;
         String str = (String) this.f4020c;
         SQLiteDatabase sQLiteDatabase = (SQLiteDatabase) obj;
-        int i7 = ((r5.c) this.d).f54412a;
+        int i7 = ((r5.c) this.d).f54413a;
         Cursor rawQuery = sQLiteDatabase.rawQuery("SELECT 1 FROM log_event_dropped WHERE log_source = ? AND reason = ?", new String[]{str, Integer.toString(i7)});
         try {
             if (rawQuery.getCount() > 0) {

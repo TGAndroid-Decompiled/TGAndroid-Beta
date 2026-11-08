@@ -479,7 +479,7 @@ public final class q1 extends pj0 {
             case 16:
                 if (motionEvent.getActionMasked() == 0) {
                     wk wkVar = (wk) obj;
-                    if (motionEvent.getY() < wkVar.f39965s0 && (e5Var = wkVar.J) != null && e5Var.getVisibility() == 0 && (K = K(0)) != null && motionEvent.getY() >= org.telegram.messenger.g0.L(32.0f) + Math.max(0, K.f57043a.getTop())) {
+                    if (motionEvent.getY() < wkVar.f39965s0 && (e5Var = wkVar.J) != null && e5Var.getVisibility() == 0 && (K = K(0)) != null && motionEvent.getY() >= org.telegram.messenger.g0.L(32.0f) + Math.max(0, K.f57044a.getTop())) {
                         return false;
                     }
                 }

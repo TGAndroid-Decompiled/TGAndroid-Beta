@@ -21,7 +21,7 @@ public final class n5 extends rg.b {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        return ((s5) this.d.f49917c0.get(d1Var.b())).f54532b;
+        return ((s5) this.d.f49917c0.get(d1Var.b())).f54533b;
     }
 
     @Override
@@ -31,7 +31,7 @@ public final class n5 extends rg.b {
 
     @Override
     public final int d(int i7) {
-        return ((s5) this.d.f49917c0.get(i7)).f54531a;
+        return ((s5) this.d.f49917c0.get(i7)).f54532a;
     }
 
     @Override
@@ -43,8 +43,8 @@ public final class n5 extends rg.b {
         int i12 = t5Var.S;
         TLRPC.Chat chat = t5Var.f49923i0;
         ArrayList arrayList = t5Var.f49917c0;
-        int i13 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i13 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         if (i13 != 4 && i13 != 14 && i13 != 15) {
             if (i13 != 1 && i13 != 12 && i13 != 16) {
                 if (i13 == 0) {
@@ -143,7 +143,7 @@ public final class n5 extends rg.b {
             ng.c cVar2 = (ng.c) view;
             cVar2.setTitle(((s5) arrayList.get(i7)).f49630c);
             cVar2.c(false);
-            if (d1Var.f57047f == 12) {
+            if (d1Var.f57048f == 12) {
                 cVar2.setPadding(org.telegram.messenger.g0.L(3.0f), cVar2.getPaddingTop(), cVar2.getPaddingRight(), cVar2.getPaddingBottom());
             }
         }

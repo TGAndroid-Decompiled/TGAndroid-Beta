@@ -119,7 +119,7 @@ public final class n1 extends WebViewClient {
             case 4:
                 if (webResourceRequest.isForMainFrame()) {
                     ui.i iVar = (ui.i) this.f47935b;
-                    if (webView == iVar.f56953o) {
+                    if (webView == iVar.f56954o) {
                         iVar.h();
                         return;
                     }
@@ -138,7 +138,7 @@ public final class n1 extends WebViewClient {
             case 4:
                 if (webResourceRequest.isForMainFrame()) {
                     ui.i iVar = (ui.i) this.f47935b;
-                    if (webView == iVar.f56953o) {
+                    if (webView == iVar.f56954o) {
                         iVar.h();
                         return;
                     }
@@ -157,7 +157,7 @@ public final class n1 extends WebViewClient {
             case 4:
                 sslErrorHandler.cancel();
                 ui.i iVar = (ui.i) this.f47935b;
-                if (webView == iVar.f56953o) {
+                if (webView == iVar.f56954o) {
                     iVar.h();
                     return;
                 }
@@ -211,7 +211,7 @@ public final class n1 extends WebViewClient {
                 return super.onRenderProcessGone(webView, renderProcessGoneDetail);
             case 4:
                 ui.i iVar = (ui.i) obj;
-                if (webView == iVar.f56953o) {
+                if (webView == iVar.f56954o) {
                     iVar.h();
                 }
                 return true;
@@ -237,7 +237,7 @@ public final class n1 extends WebViewClient {
                     ui.i iVar = (ui.i) this.f47935b;
                     iVar.getClass();
                     String path = url.getPath();
-                    if (!"https".equalsIgnoreCase(url.getScheme()) || !iVar.f56943c.equalsIgnoreCase(url.getHost()) || url.getUserInfo() != null || ((url.getPort() != -1 && url.getPort() != 443) || path == null || !path.startsWith(iVar.d))) {
+                    if (!"https".equalsIgnoreCase(url.getScheme()) || !iVar.f56944c.equalsIgnoreCase(url.getHost()) || url.getUserInfo() != null || ((url.getPort() != -1 && url.getPort() != 443) || path == null || !path.startsWith(iVar.d))) {
                         return new WebResourceResponse("text/plain", "UTF-8", new ByteArrayInputStream(new byte[0]));
                     }
                 }
@@ -282,7 +282,7 @@ public final class n1 extends WebViewClient {
                     ui.i iVar = (ui.i) this.f47935b;
                     Uri url = webResourceRequest.getUrl();
                     if (url != null) {
-                        if (iVar.f56946g.equals(url.toString())) {
+                        if (iVar.f56947g.equals(url.toString())) {
                             return false;
                         }
                     } else {

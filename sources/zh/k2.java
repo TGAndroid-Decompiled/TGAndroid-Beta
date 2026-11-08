@@ -7,11 +7,11 @@ import org.telegram.messenger.a20;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.x31;
 public final class k2 implements l5, a20 {
-    public final l3 f60415a;
+    public final l3 f60416a;
 
     @Override
     public void a(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, boolean z9) {
-        l3.Z(this.f60415a, tL_starGiftUnique, j3, z9);
+        l3.Z(this.f60416a, tL_starGiftUnique, j3, z9);
     }
 
     @Override
@@ -20,6 +20,6 @@ public final class k2 implements l5, a20 {
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
-        l3.d0(this.f60415a, (x31) obj);
+        l3.d0(this.f60416a, (x31) obj);
     }
 }

@@ -1007,7 +1007,7 @@ public abstract class y5 extends FrameLayout {
             c();
             this.f13193x = r1Var;
             if (r1Var != null && (t51Var = this.f13195y) != null) {
-                t51Var.A0(r1Var.f55931u0);
+                t51Var.A0(r1Var.f55932u0);
             }
             this.F.n(e7Var.f11907o0.getAbsolutePath(), e7Var.f11911q0, e7Var.f11913r0, e7Var.f11915s0, e7Var.f11917t0, e7Var.f11919u0, z9);
             y(true);

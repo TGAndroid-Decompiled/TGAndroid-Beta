@@ -195,7 +195,7 @@ public final class ks {
                     nVar2 = nVar;
                     k60Var.q(a10);
                     nVar2.setText(org.telegram.messenger.id.G(F1.voters, "PollVotesCount", new Object[0]));
-                    nVar2.f55331a.d(F1.recent_voters, false);
+                    nVar2.f55332a.d(F1.recent_voters, false);
                     nVar2.setLayoutParams(c8.ha.o(-1, 48));
                     int i12 = org.telegram.ui.ActionBar.k6.I5;
                     org.telegram.ui.Cells.y a02 = org.telegram.ui.ActionBar.k6.a0(org.telegram.ui.ActionBar.k6.w0(i12, ksVar.f47277c0), 12, 0);
@@ -216,7 +216,7 @@ public final class ks {
             }
             nVar2 = nVar;
             nVar2.setText(org.telegram.messenger.id.G(F1.voters, "PollVotesCount", new Object[0]));
-            nVar2.f55331a.d(F1.recent_voters, false);
+            nVar2.f55332a.d(F1.recent_voters, false);
             nVar2.setLayoutParams(c8.ha.o(-1, 48));
             int i122 = org.telegram.ui.ActionBar.k6.I5;
             org.telegram.ui.Cells.y a022 = org.telegram.ui.ActionBar.k6.a0(org.telegram.ui.ActionBar.k6.w0(i122, ksVar.f47277c0), 12, 0);
@@ -485,7 +485,7 @@ public final class ks {
         this.f47298y.setSystemUiVisibility(1792);
         k0 k0Var2 = this.f47298y;
         yr yrVar = new yr(this);
-        WeakHashMap weakHashMap = r0.i0.f54190a;
+        WeakHashMap weakHashMap = r0.i0.f54191a;
         r0.a0.i(k0Var2, yrVar);
         bi.x5 x5Var = new bi.x5(this, activity);
         this.f47299z = x5Var;

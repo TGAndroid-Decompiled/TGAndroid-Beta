@@ -75,9 +75,9 @@ public final class c extends LinearLayout {
 
     public final void b(r7 r7Var) {
         int i7;
-        float f10 = this.d * ((te.a) r7Var.d).f55486e;
+        float f10 = this.d * ((te.a) r7Var.d).f55487e;
         float f11 = (1.0f - f10) * (-g0.L(54.0f));
-        float interpolation = (1.0f - se.a.f55004a.getInterpolation(f10)) * (getMeasuredWidth() / 2.0f);
+        float interpolation = (1.0f - se.a.f55005a.getInterpolation(f10)) * (getMeasuredWidth() / 2.0f);
         if (r7Var == this.f18355b) {
             interpolation *= -1.0f;
         }

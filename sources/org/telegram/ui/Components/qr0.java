@@ -30,7 +30,7 @@ public final class qr0 extends oj0 {
 
     @Override
     public final void A(v4.d1 d1Var) {
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         if (view instanceof org.telegram.ui.Cells.a5) {
             ((org.telegram.ui.Cells.a5) view).a();
         }
@@ -139,7 +139,7 @@ public final class qr0 extends oj0 {
         } else {
             spannableStringBuilder = null;
         }
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         if (view instanceof org.telegram.ui.Cells.a5) {
             org.telegram.ui.Cells.a5 a5Var = (org.telegram.ui.Cells.a5) view;
             a5Var.setTag(Integer.valueOf(i7));

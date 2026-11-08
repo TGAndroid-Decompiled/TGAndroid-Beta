@@ -298,8 +298,8 @@ public final class ot0 extends org.telegram.ui.Components.oj0 {
         String str5;
         String M05;
         String str6;
-        int i39 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i39 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         String str7 = null;
         boolean z17 = false;
         boolean z18 = true;

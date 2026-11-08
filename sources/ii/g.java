@@ -236,8 +236,8 @@ public final class g implements View.OnClickListener {
                 return;
             case 16:
                 b5 b5Var = (b5) obj;
-                if (!b5Var.f27358y.f55487f) {
-                    if (b5Var.f27357x.f55487f) {
+                if (!b5Var.f27358y.f55488f) {
+                    if (b5Var.f27357x.f55488f) {
                         y4 y4Var = b5Var.f27348a;
                         int i13 = b5Var.f27349b;
                         org.telegram.ui.ActionBar.j jVar = y4Var.V;
@@ -313,12 +313,12 @@ public final class g implements View.OnClickListener {
                 return;
             case 26:
                 PremiumPreviewFragment.u0();
-                PremiumPreviewFragment.p0(((f1) obj).f56572l2, null, "profile", null);
+                PremiumPreviewFragment.p0(((f1) obj).f56573l2, null, "profile", null);
                 return;
             case 27:
                 final wg.g0 g0Var = (wg.g0) obj;
                 yg.a aVar3 = g0Var.I2;
-                if (!aVar3.f59420a.Q) {
+                if (!aVar3.f59421a.Q) {
                     aVar3.b(true);
                     String str = g0Var.J2;
                     c20 c20Var = new c20() {
@@ -370,7 +370,7 @@ public final class g implements View.OnClickListener {
                 ((wg.j0) obj).dismiss();
                 return;
             default:
-                ((wg.b0) ((xg.f) obj)).f57700r.dismiss();
+                ((wg.b0) ((xg.f) obj)).f57701r.dismiss();
                 return;
         }
     }

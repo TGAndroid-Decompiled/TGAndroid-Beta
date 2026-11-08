@@ -35,7 +35,7 @@ public final class wm0 extends oj0 {
     public final void t(v4.d1 d1Var, int i7) {
         long j3;
         String str;
-        an0 an0Var = (an0) d1Var.f57043a;
+        an0 an0Var = (an0) d1Var.f57044a;
         TLRPC.TL_sendAsPeer tL_sendAsPeer = (TLRPC.TL_sendAsPeer) this.d.get(i7);
         TLRPC.Peer peer = tL_sendAsPeer.peer;
         long j10 = peer.channel_id;

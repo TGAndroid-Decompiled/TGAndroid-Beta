@@ -50,12 +50,12 @@ public final class nr0 extends oj0 {
     @Override
     public final void t(v4.d1 d1Var, int i7) {
         char c10;
-        if (d1Var.f57047f == 12) {
+        if (d1Var.f57048f == 12) {
             xs0 xs0Var = this.d;
             org.telegram.messenger.ij ijVar = (org.telegram.messenger.ij) xs0Var.f40455v1[5].f36091a.get(i7);
             TLRPC.Document F0 = ijVar.F0();
             if (F0 != null) {
-                View view = d1Var.f57043a;
+                View view = d1Var.f57044a;
                 if (view instanceof org.telegram.ui.Cells.h2) {
                     org.telegram.ui.Cells.h2 h2Var = (org.telegram.ui.Cells.h2) view;
                     h2Var.d(ijVar.f23262k.date, ijVar, F0);
@@ -96,7 +96,7 @@ public final class nr0 extends oj0 {
 
     @Override
     public final void y(v4.d1 d1Var) {
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         if (view instanceof org.telegram.ui.Cells.h2) {
             ImageReceiver photoImage = ((org.telegram.ui.Cells.h2) view).getPhotoImage();
             if (this.d.m0[0].E == 5) {

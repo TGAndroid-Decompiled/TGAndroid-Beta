@@ -68,7 +68,7 @@ public final class bn0 implements ValueAnimator.AnimatorUpdateListener {
                 up0 up0Var2 = photoViewer.L1;
                 if (up0Var2 != null && Math.abs(floatValue - up0Var2.G1) > 0.1f) {
                     up0Var2.G1 = floatValue;
-                    up0Var2.v0(up0Var2.f55687r0, up0Var2.f55689s0, up0Var2.f55691t0, up0Var2.f55697w0, up0Var2.f55699x0);
+                    up0Var2.v0(up0Var2.f55688r0, up0Var2.f55690s0, up0Var2.f55692t0, up0Var2.f55698w0, up0Var2.f55700x0);
                 }
                 photoViewer.f41384e0.invalidate();
                 return;

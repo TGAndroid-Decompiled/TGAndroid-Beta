@@ -46,7 +46,7 @@ public final class t4 extends FrameLayout {
     public void a(int i7) {
         TextView textView = (TextView) this.d;
         this.f49905b = i7;
-        ((sg.m) this.f49907e).f55138c = i7;
+        ((sg.m) this.f49907e).f55139c = i7;
         if (i7 != 0) {
             if (i7 != 1) {
                 if (i7 == 2) {
@@ -65,7 +65,7 @@ public final class t4 extends FrameLayout {
         sg.q qVar = (sg.q) this.h;
         this.f49906c = true;
         sg.m mVar = (sg.m) this.f49907e;
-        mVar.d = i0.a.o(mVar.f55139e.f55184m1, 255);
+        mVar.d = i0.a.o(mVar.f55140e.f55185m1, 255);
         mVar.a();
         mVar.invalidate();
         EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.f49908f;
@@ -75,13 +75,13 @@ public final class t4 extends FrameLayout {
         if (i7 != 0) {
             if (i7 != 1) {
                 if (i7 == 2) {
-                    editTextBoldCursor.setText(String.valueOf(Color.blue(qVar.f55184m1)));
+                    editTextBoldCursor.setText(String.valueOf(Color.blue(qVar.f55185m1)));
                 }
             } else {
-                editTextBoldCursor.setText(String.valueOf(Color.green(qVar.f55184m1)));
+                editTextBoldCursor.setText(String.valueOf(Color.green(qVar.f55185m1)));
             }
         } else {
-            editTextBoldCursor.setText(String.valueOf(Color.red(qVar.f55184m1)));
+            editTextBoldCursor.setText(String.valueOf(Color.red(qVar.f55185m1)));
         }
         editTextBoldCursor.setSelection(selectionStart, selectionEnd);
         this.f49906c = false;

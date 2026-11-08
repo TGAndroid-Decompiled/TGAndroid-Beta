@@ -436,7 +436,7 @@ public final class k3 extends FrameLayout {
                     i7 = 0;
                 } else {
                     vVar.getLayoutManager().getClass();
-                    i7 = RecyclerView.U(childAt).f57047f;
+                    i7 = RecyclerView.U(childAt).f57048f;
                 }
                 if (i7 == 2147483646) {
                     height = Math.min(height, childAt.getBottom());

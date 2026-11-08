@@ -37,7 +37,7 @@ import org.telegram.ui.Components.xq;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.sq0;
 public final class g1 extends na implements ls {
-    public static final int f60323q2 = 0;
+    public static final int f60324q2 = 0;
     public final int P1;
     public l41 Q1;
     public List R1;
@@ -49,22 +49,22 @@ public final class g1 extends na implements ls {
     public final sq0 X1;
     public final FrameLayout Y1;
     public final LinearLayout Z1;
-    public final ky f60324a2;
-    public final r0 f60325b2;
-    public final jb f60326c2;
+    public final ky f60325a2;
+    public final r0 f60326b2;
+    public final jb f60327c2;
     public final jb d2;
-    public final ArrayList f60327e2;
-    public final v9 f60328f2;
-    public int f60329g2;
-    public int f60330h2;
-    public int f60331i2;
-    public int f60332j2;
-    public boolean f60333k2;
-    public boolean f60334l2;
-    public boolean f60335m2;
-    public gc f60336n2;
-    public final w70 f60337o2;
-    public boolean f60338p2;
+    public final ArrayList f60328e2;
+    public final v9 f60329f2;
+    public int f60330g2;
+    public int f60331h2;
+    public int f60332i2;
+    public int f60333j2;
+    public boolean f60334k2;
+    public boolean f60335l2;
+    public boolean f60336m2;
+    public gc f60337n2;
+    public final w70 f60338o2;
+    public boolean f60339p2;
 
     public g1(LaunchActivity launchActivity, int i7, long j3) {
         this(launchActivity, i7, j3, null, null);
@@ -115,14 +115,14 @@ public final class g1 extends na implements ls {
         } else {
             arrayList.add(x31.k(sq0Var));
             arrayList.add(x31.k(this.Y1));
-            ArrayList arrayList3 = this.f60327e2;
+            ArrayList arrayList3 = this.f60328e2;
             if (arrayList3 != null && !arrayList3.isEmpty()) {
                 int size = arrayList3.size();
                 int i7 = 0;
                 while (i7 < size) {
                     Object obj = arrayList3.get(i7);
                     i7++;
-                    int i10 = x0.f60575b;
+                    int i10 = x0.f60576b;
                     long j12 = j11;
                     x31 K = x31.K(x0.class);
                     K.f40189u = 1;
@@ -147,7 +147,7 @@ public final class g1 extends na implements ls {
         }
         int i11 = this.P1;
         ea y10 = ea.y(i11, false);
-        if (this.f60333k2) {
+        if (this.f60334k2) {
             arrayList2 = y10.J;
         } else {
             arrayList2 = y10.I;
@@ -160,7 +160,7 @@ public final class g1 extends na implements ls {
             arrayList2 = (ArrayList) Collection.EL.stream(arrayList2).filter(new aa.m(7)).collect(Collectors.toCollection(new nk(1)));
         }
         int i13 = (j10 > p10.i(i11).e() ? 1 : (j10 == p10.i(i11).e() ? 0 : -1));
-        v9 v9Var = this.f60328f2;
+        v9 v9Var = this.f60329f2;
         if (i13 != 0 && v9Var != null) {
             ArrayList arrayList4 = v9Var.f4915l;
             int size2 = arrayList4.size();
@@ -191,40 +191,40 @@ public final class g1 extends na implements ls {
                 }
             }
             ArrayList arrayList5 = new ArrayList();
-            this.f60330h2 = -1;
-            this.f60329g2 = -1;
+            this.f60331h2 = -1;
+            this.f60330g2 = -1;
             if (!arrayList2.isEmpty()) {
-                this.f60329g2 = arrayList5.size();
+                this.f60330g2 = arrayList5.size();
                 arrayList5.add(id.M0(2131749951, null));
             }
             TLRPC.DisallowedGiftsSettings disallowedGiftsSettings6 = this.S1;
             if ((disallowedGiftsSettings6 == null || !disallowedGiftsSettings6.disallow_unique_stargifts) && z10) {
-                this.f60330h2 = arrayList5.size();
+                this.f60331h2 = arrayList5.size();
                 arrayList5.add(id.M0(2131749947, null));
             }
-            this.f60331i2 = arrayList5.size();
+            this.f60332i2 = arrayList5.size();
             arrayList5.add(id.M0(2131749950, null));
-            if (this.f60334l2 && !this.f60335m2) {
-                this.f60335m2 = true;
-                this.f60332j2 = this.f60331i2;
+            if (this.f60335l2 && !this.f60336m2) {
+                this.f60336m2 = true;
+                this.f60333j2 = this.f60332i2;
             }
-            int i16 = this.f60332j2;
+            int i16 = this.f60333j2;
             m0 m0Var = new m0(this, 0);
-            int i17 = e1.f60303b;
+            int i17 = e1.f60304b;
             x31 K2 = x31.K(e1.class);
             K2.d = 1;
             K2.G = arrayList5;
             K2.f40193z = i16;
             K2.H = m0Var;
             arrayList.add(K2);
-            if (this.f60332j2 == this.f60331i2 && !z16 && i12 >= 0) {
+            if (this.f60333j2 == this.f60332i2 && !z16 && i12 >= 0) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            if (z11 != this.f60338p2) {
-                this.f60338p2 = z11;
-                ViewPropertyAnimator animate = this.f60326c2.animate();
+            if (z11 != this.f60339p2) {
+                this.f60339p2 = z11;
+                ViewPropertyAnimator animate = this.f60327c2.animate();
                 float f15 = 0.0f;
                 float f16 = 1.0f;
                 if (!z11) {
@@ -263,7 +263,7 @@ public final class g1 extends na implements ls {
                 }
                 scaleX2.scaleY(f16).setDuration(380L).setInterpolator(xqVar).start();
             }
-            if (v9Var != null && this.f60332j2 == this.f60330h2) {
+            if (v9Var != null && this.f60333j2 == this.f60331h2) {
                 arrayList2 = new ArrayList();
                 ArrayList arrayList6 = v9Var.f4915l;
                 int size3 = arrayList6.size();
@@ -280,10 +280,10 @@ public final class g1 extends na implements ls {
             int i19 = 0;
             for (int i20 = 0; i20 < arrayList2.size(); i20++) {
                 TL_stars.StarGift starGift3 = (TL_stars.StarGift) arrayList2.get(i20);
-                int i21 = this.f60332j2;
-                if (i21 == this.f60329g2 || i21 == this.f60330h2 || (i21 == this.f60331i2 && (starGift3.availability_resale > j3 || starGift3.require_premium || starGift3.locked_until_date != 0))) {
-                    if (!starGift3.sold_out && starGift3.availability_resale > j3 && i21 != this.f60331i2) {
-                        if (i21 == this.f60330h2) {
+                int i21 = this.f60333j2;
+                if (i21 == this.f60330g2 || i21 == this.f60331h2 || (i21 == this.f60332i2 && (starGift3.availability_resale > j3 || starGift3.require_premium || starGift3.locked_until_date != 0))) {
+                    if (!starGift3.sold_out && starGift3.availability_resale > j3 && i21 != this.f60332i2) {
+                        if (i21 == this.f60331h2) {
                             z14 = true;
                         } else {
                             z14 = false;
@@ -300,8 +300,8 @@ public final class g1 extends na implements ls {
                     } else {
                         starGift = starGift3;
                     }
-                    int i23 = this.f60332j2;
-                    if (i23 == this.f60330h2) {
+                    int i23 = this.f60333j2;
+                    if (i23 == this.f60331h2) {
                         z12 = true;
                     } else {
                         z12 = false;
@@ -315,8 +315,8 @@ public final class g1 extends na implements ls {
                     i19++;
                 }
             }
-            int i24 = this.f60332j2;
-            int i25 = this.f60330h2;
+            int i24 = this.f60333j2;
+            int i25 = this.f60331h2;
             if (i24 == i25 && v9Var != null && !v9Var.f4913j) {
                 v9Var.a();
                 x31 q13 = x31.q(4, 34);
@@ -389,7 +389,7 @@ public final class g1 extends na implements ls {
                         l41Var3.O(true);
                     }
                 }
-                ArrayList arrayList = this.f60327e2;
+                ArrayList arrayList = this.f60328e2;
                 if (arrayList == null || arrayList.isEmpty()) {
                     f1();
                     l41 l41Var4 = this.Q1;
@@ -407,7 +407,7 @@ public final class g1 extends na implements ls {
                     l41Var5.O(true);
                 }
             }
-        } else if (i7 == qs.G3 && objArr[1] == this.f60328f2 && (l41Var = this.Q1) != null) {
+        } else if (i7 == qs.G3 && objArr[1] == this.f60329f2 && (l41Var = this.Q1) != null) {
             l41Var.O(true);
         }
     }
@@ -424,14 +424,14 @@ public final class g1 extends na implements ls {
     }
 
     public final void e1(boolean z9) {
-        this.f60333k2 = z9;
+        this.f60334k2 = z9;
         this.Q1.O(false);
     }
 
     public final void f1() {
         List list;
         TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption;
-        ArrayList arrayList = this.f60327e2;
+        ArrayList arrayList = this.f60328e2;
         arrayList.clear();
         if (arrayList.isEmpty() && (list = this.R1) != null && !list.isEmpty()) {
             ArrayList arrayList2 = new ArrayList();
@@ -471,7 +471,7 @@ public final class g1 extends na implements ls {
                 while (i7 < size2) {
                     Object obj2 = arrayList.get(i7);
                     i7++;
-                    ((ug.j) obj2).f56642g = j3;
+                    ((ug.j) obj2).f56643g = j3;
                 }
             } else if (!arrayList2.isEmpty()) {
                 System.currentTimeMillis();

@@ -9,14 +9,14 @@ import org.telegram.messenger.id;
 import org.telegram.ui.Components.c10;
 import org.telegram.ui.Components.j51;
 public final class h extends c10 {
-    public float f56078a;
-    public float f56079b;
-    public final int f56080c;
+    public float f56079a;
+    public float f56080b;
+    public final int f56081c;
     public final i d;
 
     public h(i iVar, int i7) {
         this.d = iVar;
-        this.f56080c = i7;
+        this.f56081c = i7;
     }
 
     @Override
@@ -34,9 +34,9 @@ public final class h extends c10 {
         int i7;
         i iVar = this.d;
         j51 j51Var = iVar.F;
-        m mVar = iVar.f56082b;
+        m mVar = iVar.f56083b;
         if (iVar.b() && iVar.c()) {
-            if (motionEvent.getX() >= iVar.f56101x * 0.5f) {
+            if (motionEvent.getX() >= iVar.f56102x * 0.5f) {
                 z9 = true;
             } else {
                 z9 = false;
@@ -66,19 +66,19 @@ public final class h extends c10 {
                 mVar.c(j3);
                 j51Var.g(0L);
                 iVar.I = ((float) j3) / ((float) duration);
-                b3 b3Var = iVar.f56093o;
+                b3 b3Var = iVar.f56094o;
                 if (b3Var != null) {
                     b3Var.invalidate();
                 }
-                e eVar = iVar.f56091m;
+                e eVar = iVar.f56092m;
                 if (eVar != null) {
                     eVar.invalidate();
                 }
-                if (!iVar.f56099u) {
-                    iVar.f56099u = true;
+                if (!iVar.f56100u) {
+                    iVar.f56100u = true;
                     iVar.o(true);
-                    if (!iVar.f56100w) {
-                        iVar.f56100w = true;
+                    if (!iVar.f56101w) {
+                        iVar.f56101w = true;
                         g0.i3(iVar.P, 2500L);
                     }
                 }
@@ -91,37 +91,37 @@ public final class h extends c10 {
     @Override
     public final boolean onDown(MotionEvent motionEvent) {
         i iVar = this.d;
-        if (iVar.f56099u) {
-            for (int i7 = 1; i7 < iVar.f56087i.getChildCount(); i7++) {
-                View childAt = iVar.f56087i.getChildAt(i7);
+        if (iVar.f56100u) {
+            for (int i7 = 1; i7 < iVar.f56088i.getChildCount(); i7++) {
+                View childAt = iVar.f56088i.getChildAt(i7);
                 if (childAt.dispatchTouchEvent(motionEvent)) {
-                    iVar.f56098t = childAt;
+                    iVar.f56099t = childAt;
                     return true;
                 }
             }
         }
-        this.f56078a = iVar.B;
-        this.f56079b = iVar.C;
+        this.f56079a = iVar.B;
+        this.f56080b = iVar.C;
         return true;
     }
 
     @Override
     public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
         i iVar = this.d;
-        if (iVar.f56096r && !iVar.f56097s) {
+        if (iVar.f56097r && !iVar.f56098s) {
             r1.g gVar = iVar.D;
-            gVar.f54257a = f10;
+            gVar.f54258a = f10;
             float f12 = iVar.B;
-            gVar.f54258b = f12;
-            gVar.f54259c = true;
-            gVar.f54267m.f54275i = i.n((f10 / 7.0f) + f12, iVar.f56101x);
+            gVar.f54259b = f12;
+            gVar.f54260c = true;
+            gVar.f54268m.f54276i = i.n((f10 / 7.0f) + f12, iVar.f56102x);
             iVar.D.h();
             r1.g gVar2 = iVar.E;
-            gVar2.f54257a = f11;
+            gVar2.f54258a = f11;
             float f13 = iVar.C;
-            gVar2.f54258b = f13;
-            gVar2.f54259c = true;
-            gVar2.f54267m.f54275i = i.e((f11 / 10.0f) + f13, iVar.f56102y);
+            gVar2.f54259b = f13;
+            gVar2.f54260c = true;
+            gVar2.f54268m.f54276i = i.e((f11 / 10.0f) + f13, iVar.f56103y);
             iVar.E.h();
             return true;
         }
@@ -131,26 +131,26 @@ public final class h extends c10 {
     @Override
     public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
         i iVar = this.d;
-        WindowManager.LayoutParams layoutParams = iVar.f56084e;
-        if (!iVar.f56096r && iVar.v == null && !iVar.f56097s) {
+        WindowManager.LayoutParams layoutParams = iVar.f56085e;
+        if (!iVar.f56097r && iVar.v == null && !iVar.f56098s) {
             float abs = Math.abs(f10);
-            float f12 = this.f56080c;
+            float f12 = this.f56081c;
             if (abs >= f12 || Math.abs(f11) >= f12) {
-                iVar.f56096r = true;
+                iVar.f56097r = true;
                 iVar.D.d();
                 iVar.E.d();
                 iVar.L = false;
-                iVar.f56082b.F();
+                iVar.f56083b.F();
                 g0.r(iVar.N);
             }
         }
-        if (iVar.f56096r && motionEvent != null) {
-            float rawX = (motionEvent2.getRawX() + this.f56078a) - motionEvent.getRawX();
-            float rawY = (motionEvent2.getRawY() + this.f56079b) - motionEvent.getRawY();
+        if (iVar.f56097r && motionEvent != null) {
+            float rawX = (motionEvent2.getRawX() + this.f56079a) - motionEvent.getRawX();
+            float rawY = (motionEvent2.getRawY() + this.f56080b) - motionEvent.getRawY();
             iVar.C = rawY;
             r1.g gVar = iVar.D;
-            if (gVar.f54261f) {
-                gVar.f54267m.f54275i = rawX;
+            if (gVar.f54262f) {
+                gVar.f54268m.f54276i = rawX;
             } else {
                 iVar.B = rawX;
                 layoutParams.x = (int) rawX;
@@ -166,16 +166,16 @@ public final class h extends c10 {
         i iVar = this.d;
         f fVar = iVar.P;
         if (iVar.v == null) {
-            if (iVar.f56100w) {
+            if (iVar.f56101w) {
                 g0.r(fVar);
-                iVar.f56100w = false;
+                iVar.f56101w = false;
             }
-            boolean z9 = !iVar.f56099u;
-            iVar.f56099u = z9;
+            boolean z9 = !iVar.f56100u;
+            iVar.f56100u = z9;
             iVar.o(z9);
-            if (iVar.f56099u) {
+            if (iVar.f56100u) {
                 g0.i3(fVar, 2500L);
-                iVar.f56100w = true;
+                iVar.f56101w = true;
             }
         }
         return true;

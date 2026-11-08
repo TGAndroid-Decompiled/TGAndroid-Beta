@@ -13432,7 +13432,7 @@ public class tw0 extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f57047f == 0) {
+        if (d1Var.f57048f == 0) {
             return true;
         }
         return false;
@@ -13605,8 +13605,8 @@ public class tw0 extends org.telegram.ui.Components.oj0 {
     @Override
     public final void t(v4.d1 d1Var, int i7) {
         int i10;
-        int i11 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i11 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         sw0 sw0Var = null;
         boolean z9 = true;
         if (i11 != 0) {

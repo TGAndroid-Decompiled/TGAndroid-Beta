@@ -508,31 +508,31 @@ public final class l0 implements Runnable {
                 c1 c1Var = (c1) obj5;
                 p4.v vVar = (p4.v) obj4;
                 i1 i1Var = (i1) obj;
-                String str = i1Var.f53308b;
+                String str = i1Var.f53309b;
                 p4.d0 d0Var = (p4.d0) obj3;
                 int i20 = this.f3348c;
                 p4.l lVar = (p4.l) obj2;
-                ui.e eVar = c1Var.f53183b;
+                ui.e eVar = c1Var.f53184b;
                 if (eVar.D(vVar)) {
                     try {
                         p4.d d = p4.d.d(i1Var);
-                        Object obj7 = d.f53199g;
-                        int i21 = d.f53195b;
+                        Object obj7 = d.f53200g;
+                        int i21 = d.f53196b;
                         if (!d.b()) {
                             h2.a.l("MediaSessionStub", "Can't execute predefined custom command: " + str);
                             c1.r1(d0Var, vVar, i20, new m1(-6));
                             return;
                         }
-                        i1 i1Var2 = d.f53194a;
+                        i1 i1Var2 = d.f53195a;
                         if (i1Var2 != null) {
-                            if (i1Var2.f53307a == 40010) {
+                            if (i1Var2.f53308a == 40010) {
                                 z10 = true;
                             }
                             ia.p(z10);
                             c1Var.j1(lVar, i20, null, 40010, new p4.t0(new p4.w0(d), 1));
                             return;
                         }
-                        g1 g1Var = d0Var.f53217t;
+                        g1 g1Var = d0Var.f53218t;
                         if (i21 == 1) {
                             if (obj7 == null) {
                                 if (!g1Var.u()) {

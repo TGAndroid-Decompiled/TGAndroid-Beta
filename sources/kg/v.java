@@ -237,7 +237,7 @@ public final class v extends n41 implements ls {
             createbusinesschatlink.link = tL_inputBusinessChatLink;
             tL_inputBusinessChatLink.message = "";
             ConnectionsManager.getInstance(d.f17585a).sendRequest(createbusinesschatlink, new x(d, 1));
-        } else if (x31Var.f54531a == 29) {
+        } else if (x31Var.f54532a == 29) {
             Object obj = x31Var.G;
             if (obj instanceof u) {
                 Bundle f10 = rf.b.f(6, "chatMode");
@@ -249,7 +249,7 @@ public final class v extends n41 implements ls {
 
     @Override
     public final boolean c0(x31 x31Var, View view) {
-        if (x31Var.f54531a == 29) {
+        if (x31Var.f54532a == 29) {
             Object obj = x31Var.G;
             if (obj instanceof u) {
                 final TL_account.TL_businessChatLink tL_businessChatLink = ((u) obj).f17552a;

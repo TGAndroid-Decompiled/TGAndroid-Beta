@@ -14,7 +14,7 @@ public final class v5 extends rg.b {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57047f;
+        int i7 = d1Var.f57048f;
         if (i7 == 1 || i7 == 2 || i7 == 4) {
             return true;
         }
@@ -28,7 +28,7 @@ public final class v5 extends rg.b {
 
     @Override
     public final int d(int i7) {
-        return ((w5) this.d.f51772c.get(i7)).f54531a;
+        return ((w5) this.d.f51772c.get(i7)).f54532a;
     }
 
     @Override
@@ -36,8 +36,8 @@ public final class v5 extends rg.b {
         String m10;
         x5 x5Var = this.d;
         ArrayList arrayList = x5Var.f51772c;
-        if (((w5) arrayList.get(i7)).f54531a == 2) {
-            org.telegram.ui.Cells.pa paVar = (org.telegram.ui.Cells.pa) d1Var.f57043a;
+        if (((w5) arrayList.get(i7)).f54532a == 2) {
+            org.telegram.ui.Cells.pa paVar = (org.telegram.ui.Cells.pa) d1Var.f57044a;
             org.telegram.messenger.s2 s2Var = ((w5) arrayList.get(i7)).f50901c;
             TLObject e22 = x5Var.getMessagesController().e2(s2Var.f25407a);
             boolean z9 = false;
@@ -55,7 +55,7 @@ public final class v5 extends rg.b {
             }
             paVar.setSelfAsSavedMessages(true);
             String f10 = org.telegram.messenger.u2.f(s2Var.f25408b);
-            if (i7 == arrayList.size() - 1 || ((w5) arrayList.get(i7 + 1)).f54531a == 2) {
+            if (i7 == arrayList.size() - 1 || ((w5) arrayList.get(i7 + 1)).f54532a == 2) {
                 z9 = true;
             }
             paVar.d(e22, str, f10, z9);

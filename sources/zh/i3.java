@@ -14,26 +14,26 @@ import org.telegram.ui.Components.cj0;
 import org.telegram.ui.Components.x31;
 import org.telegram.ui.jl0;
 public final class i3 implements cj0, ni.p {
-    public final Object f60392a;
-    public final Object f60393b;
+    public final Object f60393a;
+    public final Object f60394b;
 
     public i3(Object obj, Object obj2) {
-        this.f60392a = obj;
-        this.f60393b = obj2;
+        this.f60393a = obj;
+        this.f60394b = obj2;
     }
 
     @Override
     public void b(j2.n nVar) {
-        org.telegram.messenger.g0.h3(new l2.z0((SpannableString) this.f60392a, nVar, (org.telegram.ui.ActionBar.p) this.f60393b, 11));
+        org.telegram.messenger.g0.h3(new l2.z0((SpannableString) this.f60393a, nVar, (org.telegram.ui.ActionBar.p) this.f60394b, 11));
     }
 
     @Override
     public void f(float f10, float f11, int i7, View view) {
         TL_stars.SavedStarGift savedStarGift;
         cg.b bVar;
-        k3 k3Var = (k3) this.f60392a;
-        j3 j3Var = (j3) this.f60393b;
-        x31 G = k3Var.f60417a2.G(i7 - 1);
+        k3 k3Var = (k3) this.f60393a;
+        j3 j3Var = (j3) this.f60394b;
+        x31 G = k3Var.f60418a2.G(i7 - 1);
         if (G != null) {
             Object obj = G.G;
             if (obj instanceof TL_stars.StarGift) {
@@ -60,7 +60,7 @@ public final class i3 implements cj0, ni.p {
                     ea.x(k3Var.f28616a, bVar2).H(tL_starGiftUnique, e10, null, true, new jl0(k3Var, u1Var2, bVar2, tL_starGiftUnique, e10));
                 } else {
                     if (!z9) {
-                        ArrayList arrayList = j3Var.f60406b.f4915l;
+                        ArrayList arrayList = j3Var.f60407b.f4915l;
                         int size = arrayList.size();
                         int i10 = 0;
                         while (true) {

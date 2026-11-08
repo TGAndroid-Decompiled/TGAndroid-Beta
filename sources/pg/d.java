@@ -24,12 +24,12 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.h5;
 public final class d implements Runnable {
-    public final int f53603a;
-    public final j f53604b;
+    public final int f53604a;
+    public final j f53605b;
 
     public d(j jVar, int i7) {
-        this.f53603a = i7;
-        this.f53604b = jVar;
+        this.f53604a = i7;
+        this.f53605b = jVar;
     }
 
     @Override
@@ -41,8 +41,8 @@ public final class d implements Runnable {
         int i13;
         int i14;
         int i15;
-        int i16 = this.f53603a;
-        j jVar = this.f53604b;
+        int i16 = this.f53604a;
+        j jVar = this.f53605b;
         switch (i16) {
             case 0:
                 f2 Q = LaunchActivity.Q();
@@ -138,7 +138,7 @@ public final class d implements Runnable {
                 ProfileActivity.V4((Activity) jVar.getContext(), false);
                 return;
             default:
-                jVar.f53628n = true;
+                jVar.f53629n = true;
                 try {
                     jVar.performHapticFeedback(0);
                     return;

@@ -58,7 +58,7 @@ public final class si extends org.telegram.ui.ActionBar.j {
         }
         boolean z15 = true;
         if (i7 == -1) {
-            if (!anVar.f43735ad.f55487f) {
+            if (!anVar.f43735ad.f55488f) {
                 kVar = ((org.telegram.ui.ActionBar.f2) anVar).actionBar;
                 if (kVar.v()) {
                     anVar.N7(false);

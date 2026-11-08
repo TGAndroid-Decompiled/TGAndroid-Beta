@@ -11,13 +11,13 @@ import org.telegram.ui.Cells.n4;
 import org.telegram.ui.Components.j6;
 import org.telegram.ui.Components.xq;
 public final class x extends n4 {
-    public final j6 f59502r;
+    public final j6 f59503r;
 
     public x(Context context, f6 f6Var) {
         super(context, f6Var);
         int i7;
         j6 j6Var = new j6(context, true, true, true);
-        this.f59502r = j6Var;
+        this.f59503r = j6Var;
         j6Var.b(0.45f, 240L, xq.h);
         if (id.f23157a0) {
             i7 = 3;

@@ -86,8 +86,8 @@ public final class a11 extends View {
             return;
         }
         z01Var.h = false;
-        z01Var.f56886n = -1;
-        if (z01Var.f56881a == 2 && (paint = z01Var.f56891y) != null) {
+        z01Var.f56887n = -1;
+        if (z01Var.f56882a == 2 && (paint = z01Var.f56892y) != null) {
             paint.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27796a7, false));
         }
     }

@@ -15,7 +15,7 @@ public final class ec extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57047f;
+        int i7 = d1Var.f57048f;
         if (i7 != 5 && i7 != 6) {
             return false;
         }
@@ -66,8 +66,8 @@ public final class ec extends org.telegram.ui.Components.oj0 {
         int i14;
         rc rcVar = this.f45261c;
         long j3 = rcVar.f49433a;
-        int i15 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i15 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         if (i15 != 1) {
             if (i15 != 3) {
                 if (i15 != 4) {
@@ -403,7 +403,7 @@ public final class ec extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final void y(v4.d1 d1Var) {
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         boolean z9 = view instanceof kc;
         rc rcVar = this.f45261c;
         if (z9) {

@@ -17,7 +17,7 @@ public final class z91 implements org.telegram.ui.Components.bj0 {
     public final void c(int i7, View view) {
         ca1 ca1Var = this.f52493a;
         ArrayList arrayList = ca1Var.d;
-        if (((ba1) arrayList.get(i7)).f54531a == 1) {
+        if (((ba1) arrayList.get(i7)).f54532a == 1) {
             Bundle bundle = new Bundle();
             bundle.putLong("chat_id", -ca1Var.f44736c);
             bundle.putBoolean("for_select", true);
@@ -26,7 +26,7 @@ public final class z91 implements org.telegram.ui.Components.bj0 {
             w91Var.f51035w = new x91(this);
             ca1Var.presentFragment(w91Var);
         }
-        if (((ba1) arrayList.get(i7)).f54531a == 2) {
+        if (((ba1) arrayList.get(i7)).f54532a == 2) {
             TLRPC.TL_forumTopic tL_forumTopic = ((ba1) arrayList.get(i7)).f44241c;
             Bundle bundle2 = new Bundle();
             bundle2.putLong("dialog_id", ca1Var.f44736c);
@@ -36,7 +36,7 @@ public final class z91 implements org.telegram.ui.Components.bj0 {
             gx0Var.f46139s = new y91(this, tL_forumTopic);
             ca1Var.presentFragment(gx0Var);
         }
-        if (((ba1) arrayList.get(i7)).f54531a == 4) {
+        if (((ba1) arrayList.get(i7)).f54532a == 4) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ca1Var.getParentActivity());
             String M0 = org.telegram.messenger.id.M0(2131747914, null);
             org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;

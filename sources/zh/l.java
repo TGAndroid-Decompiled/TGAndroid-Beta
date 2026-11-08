@@ -50,7 +50,7 @@ import org.telegram.ui.Components.xq;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.an;
 public final class l extends na implements v9 {
-    public static final int f60419s2 = 0;
+    public static final int f60420s2 = 0;
     public final long P1;
     public final x31 Q1;
     public final bi.c R1;
@@ -62,24 +62,24 @@ public final class l extends na implements v9 {
     public final pg.h X1;
     public final n4 Y1;
     public final j6 Z1;
-    public final j f60420a2;
-    public final j[] f60421b2;
-    public final FrameLayout f60422c2;
+    public final j f60421a2;
+    public final j[] f60422b2;
+    public final FrameLayout f60423c2;
     public s9 d2;
-    public final k f60423e2;
-    public Runnable f60424f2;
-    public long f60425g2;
-    public long f60426h2;
-    public boolean f60427i2;
-    public final wp[] f60428j2;
-    public r5 f60429k2;
-    public final te.a f60430l2;
-    public final te.a f60431m2;
-    public final wp[] f60432n2;
-    public boolean f60433o2;
-    public l41 f60434p2;
-    public boolean f60435q2;
-    public boolean f60436r2;
+    public final k f60424e2;
+    public Runnable f60425f2;
+    public long f60426g2;
+    public long f60427h2;
+    public boolean f60428i2;
+    public final wp[] f60429j2;
+    public r5 f60430k2;
+    public final te.a f60431l2;
+    public final te.a f60432m2;
+    public final wp[] f60433n2;
+    public boolean f60434o2;
+    public l41 f60435p2;
+    public boolean f60436q2;
+    public boolean f60437r2;
 
     public l(Context context, f6 f6Var, k kVar, s9 s9Var) {
         super(context, null, false, false, 2, f6Var);
@@ -87,16 +87,16 @@ public final class l extends na implements v9 {
         int i7;
         boolean z9;
         ArrayList<TL_stars.TL_AuctionBidLevel> arrayList;
-        this.f60421b2 = new j[3];
-        this.f60427i2 = true;
-        this.f60428j2 = new wp[1];
+        this.f60422b2 = new j[3];
+        this.f60428i2 = true;
+        this.f60429j2 = new wp[1];
         g gVar = new g(this);
         xq xqVar = xq.h;
-        this.f60430l2 = new te.a(0, gVar, xqVar, 380L, false);
-        this.f60431m2 = new te.a(0, new g(this), xqVar, 380L, false);
-        this.f60432n2 = new wp[1];
+        this.f60431l2 = new te.a(0, gVar, xqVar, 380L, false);
+        this.f60432m2 = new te.a(0, new g(this), xqVar, 380L, false);
+        this.f60433n2 = new wp[1];
         this.d2 = s9Var;
-        this.f60423e2 = kVar;
+        this.f60424e2 = kVar;
         long j10 = s9Var.f25435b;
         this.P1 = j10;
         this.I1 = true;
@@ -187,21 +187,21 @@ public final class l extends na implements v9 {
         hVar.setBackground(k02);
         r6.k(hVar, k02, N, null, f6Var);
         hVar.setOnClickListener(new h(this, 2));
-        ((TextView) hVar.f53616c).setText(id.M0(2131750376, null));
+        ((TextView) hVar.f53617c).setText(id.M0(2131750376, null));
         pg.h hVar2 = new pg.h(4, context, f6Var);
         this.W1 = hVar2;
         ShapeDrawable d02 = k6.d0(org.telegram.messenger.g0.L(12.0f), k6.w0(i14, this.I0));
         n6 N2 = r6.N(i14);
         hVar2.setBackground(d02);
         r6.k(hVar2, d02, N2, null, f6Var);
-        ((TextView) hVar2.f53616c).setText(id.M0(2131750374, null));
+        ((TextView) hVar2.f53617c).setText(id.M0(2131750374, null));
         pg.h hVar3 = new pg.h(4, context, f6Var);
         this.X1 = hVar3;
         ShapeDrawable d03 = k6.d0(org.telegram.messenger.g0.L(12.0f), k6.w0(i14, this.I0));
         n6 N3 = r6.N(i14);
         hVar3.setBackground(d03);
         r6.k(hVar3, d03, N3, null, f6Var);
-        ((TextView) hVar3.f53616c).setText(id.M0(2131750377, null));
+        ((TextView) hVar3.f53617c).setText(id.M0(2131750377, null));
         linearLayout2.addView(hVar, ha.l(1.0f, 0, -1));
         linearLayout2.addView(new View(context), ha.l(0.0f, 10, -1));
         linearLayout2.addView(hVar2, ha.l(1.0f, 0, -1));
@@ -235,8 +235,8 @@ public final class l extends na implements v9 {
         n4Var.setOnWidthUpdateListener(new wg.p(this, 5));
         n4Var.addView(j6Var, ha.d(-1, 17.0f, 51, 0.0f, 12.0f, 0.0f, 0.0f));
         j jVar = new j(context, f6Var);
-        this.f60420a2 = jVar;
-        j6 j6Var2 = jVar.f60395b;
+        this.f60421a2 = jVar;
+        j6 j6Var2 = jVar.f60396b;
         r6.r(j6Var2);
         j6Var2.setTextColor(k6.w0(i16, this.I0));
         jVar.c(a22);
@@ -246,23 +246,23 @@ public final class l extends na implements v9 {
         linearLayout.addView(n4Var2, ha.o(-1, -2));
         int i17 = 0;
         while (true) {
-            j[] jVarArr = this.f60421b2;
+            j[] jVarArr = this.f60422b2;
             if (i17 >= jVarArr.length) {
                 break;
             }
             jVarArr[i17] = new j(context, f6Var);
             int i18 = i17 + 1;
-            this.f60421b2[i17].b(i18, true, false);
-            this.f60421b2[i17].setBackground(k6.N0(false));
-            j jVar2 = this.f60421b2[i17];
+            this.f60422b2[i17].b(i18, true, false);
+            this.f60422b2[i17].setBackground(k6.N0(false));
+            j jVar2 = this.f60422b2[i17];
             if (i17 < 2) {
                 z9 = true;
             } else {
                 z9 = false;
             }
-            jVar2.f60398f = z9;
+            jVar2.f60399f = z9;
             jVar2.setOnClickListener(new bi.l1(23));
-            linearLayout.addView(this.f60421b2[i17], ha.o(-1, -2));
+            linearLayout.addView(this.f60422b2[i17], ha.o(-1, -2));
             i17 = i18;
         }
         bi.w wVar = new bi.w(3, context, f6Var, true);
@@ -297,24 +297,24 @@ public final class l extends na implements v9 {
         ka.a(cVar);
         cVar.setOnClickListener(new gd(2, context, f6Var));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f60422c2 = frameLayout;
+        this.f60423c2 = frameLayout;
         this.f28622c.addView(frameLayout, ha.e(-1, 100, 48));
         j1();
-        this.f60434p2.O(false);
+        this.f60435p2.O(false);
     }
 
     public static void d1(l lVar, int i7) {
         lVar.U1.f(di.t.b(lVar.f28616a, i7, 3), di.t.b(lVar.f28616a, i7, 4), true);
-        lVar.l1(lVar.f60433o2);
-        lVar.m1(lVar.f60433o2);
-        lVar.i1(lVar.f60433o2);
+        lVar.l1(lVar.f60434o2);
+        lVar.m1(lVar.f60434o2);
+        lVar.i1(lVar.f60434o2);
         lVar.f1();
     }
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
         l41 l41Var = new l41(this.f36277k1, getContext(), this.f28616a, 0, true, new hi.u1(this, 27), this.I0);
-        this.f60434p2 = l41Var;
+        this.f60435p2 = l41Var;
         l41Var.f35528r = false;
         return l41Var;
     }
@@ -327,7 +327,7 @@ public final class l extends na implements v9 {
     @Override
     public final void c(s9 s9Var) {
         this.d2 = s9Var;
-        n1(this.f60433o2);
+        n1(this.f60434o2);
     }
 
     @Override
@@ -340,13 +340,13 @@ public final class l extends na implements v9 {
     public final void e1() {
         boolean z9;
         float f10;
-        if (this.f60433o2 && !this.I) {
+        if (this.f60434o2 && !this.I) {
             z9 = true;
         } else {
             z9 = false;
         }
-        if (this.f60435q2 != z9) {
-            this.f60435q2 = z9;
+        if (this.f60436q2 != z9) {
+            this.f60436q2 = z9;
             bi.c cVar = this.R1;
             if (cVar != null) {
                 cVar.setEnabled(z9);
@@ -404,7 +404,7 @@ public final class l extends na implements v9 {
 
     public final void g1(int i7) {
         long j3;
-        if (this.f60436r2) {
+        if (this.f60437r2) {
             return;
         }
         long j10 = this.d2.f25437e.bid_amount;
@@ -418,15 +418,15 @@ public final class l extends na implements v9 {
             new tc(getContext(), this.I0, j11, 14, null, null, 0L).show();
             return;
         }
-        this.f60436r2 = true;
+        this.f60437r2 = true;
         this.S1.setLoading(true);
-        w9.c(this.f28616a).k(this.P1, this.f60423e2, i7, new ii.g0(this, j10, 2));
+        w9.c(this.f28616a).k(this.P1, this.f60424e2, i7, new ii.g0(this, j10, 2));
     }
 
     public final void h1() {
         FrameLayout frameLayout;
         Drawable drawable = this.f28646r0;
-        if (drawable != null && this.f28619b != null && (frameLayout = this.f60422c2) != null) {
+        if (drawable != null && this.f28619b != null && (frameLayout = this.f60423c2) != null) {
             frameLayout.setTranslationY(Math.max(0.0f, ((this.f28619b.getY() + drawable.getBounds().top) - frameLayout.getMeasuredHeight()) + org.telegram.messenger.g0.L(10.0f)));
         }
     }
@@ -443,7 +443,7 @@ public final class l extends na implements v9 {
             return;
         }
         int i10 = (j3 > value ? 1 : (j3 == value ? 0 : -1));
-        wp[] wpVarArr = this.f60432n2;
+        wp[] wpVarArr = this.f60433n2;
         if (i10 < 0 && !tL_StarGiftAuctionUserState.returned) {
             wVar.i(dd.Y0(false, id.a0(null, null, 2131750339, id.E(value - j3, ',')), wpVarArr), z9, true);
         } else {
@@ -453,11 +453,11 @@ public final class l extends na implements v9 {
     }
 
     public final void j1() {
-        int f10 = i0.a.f(this.f60430l2.f55486e, i0.a.f(this.f60431m2.f55486e, k6.w0(k6.L6, this.I0), k6.w0(k6.f28093q7, this.I0)), k6.w0(k6.ik, this.I0));
+        int f10 = i0.a.f(this.f60431l2.f55487e, i0.a.f(this.f60432m2.f55487e, k6.w0(k6.L6, this.I0), k6.w0(k6.f28093q7, this.I0)), k6.w0(k6.ik, this.I0));
         this.Y1.setTextColor(f10);
         j6 j6Var = this.Z1;
         j6Var.setTextColor(f10);
-        this.f60420a2.f60395b.setTextColor(f10);
+        this.f60421a2.f60396b.setTextColor(f10);
         if (k6.H1(j6Var.getSizeableBackground(), k6.r1(0.15f, f10), false)) {
             j6Var.invalidate();
         }
@@ -465,7 +465,7 @@ public final class l extends na implements v9 {
 
     public final void k1(long j3, boolean z9) {
         String h02;
-        j6 j6Var = (j6) this.W1.f53615b;
+        j6 j6Var = (j6) this.W1.f53616b;
         if (j3 >= 3600) {
             h02 = org.telegram.messenger.g0.j0((int) j3);
         } else {
@@ -481,7 +481,7 @@ public final class l extends na implements v9 {
         int i10 = s9Var.f25440i;
         int c10 = s9Var.c(ConnectionsManager.getInstance(s9Var.f25434a).getCurrentTime(), value);
         long max = Math.max(value, this.d2.f25437e.bid_amount);
-        j jVar = this.f60420a2;
+        j jVar = this.f60421a2;
         jVar.a(max, false);
         if (i10 > 0) {
             c10 = Math.min(i10, c10);
@@ -525,17 +525,17 @@ public final class l extends na implements v9 {
             } else {
                 n4Var.c(id.M0(2131750372, null), z9);
             }
-            this.f60430l2.a(z11, z9);
-            this.f60431m2.a(z10, z9);
+            this.f60431l2.a(z11, z9);
+            this.f60432m2.a(z10, z9);
         }
         z10 = false;
-        this.f60430l2.a(z11, z9);
-        this.f60431m2.a(z10, z9);
+        this.f60431l2.a(z11, z9);
+        this.f60432m2.a(z10, z9);
     }
 
     @Override
     public final void n0() {
-        this.f60433o2 = false;
+        this.f60434o2 = false;
         e1();
         cc.h(this.f28622c);
     }
@@ -544,7 +544,7 @@ public final class l extends na implements v9 {
         String o02;
         org.telegram.ui.ActionBar.f2 Q;
         int i7;
-        j6 j6Var = (j6) this.V1.f53615b;
+        j6 j6Var = (j6) this.V1.f53616b;
         StringBuilder sb2 = new StringBuilder("⭐️");
         long e10 = (int) this.d2.e();
         if (e10 < 1000000) {
@@ -553,7 +553,7 @@ public final class l extends na implements v9 {
             o02 = org.telegram.messenger.g0.o0((int) e10, 1000000);
         }
         sb2.append(o02);
-        j6Var.c(dd.a1(false, sb2.toString(), 0.78f, this.f60428j2), z9, true);
+        j6Var.c(dd.a1(false, sb2.toString(), 0.78f, this.f60429j2), z9, true);
         if (this.d2.f25438f != null) {
             int currentTime = ConnectionsManager.getInstance(this.f28616a).getCurrentTime();
             boolean g10 = this.d2.g(currentTime);
@@ -567,19 +567,19 @@ public final class l extends na implements v9 {
                 qVar.a(max2);
                 k1(max2, z9);
             }
-            r5 r5Var = this.f60429k2;
+            r5 r5Var = this.f60430k2;
             pg.h hVar = this.X1;
             if (r5Var == null && this.d2.d.sticker != null) {
-                this.f60429k2 = new r5(this.d2.d.sticker.f26962id, ((j6) hVar.f53615b).getPaint().getFontMetricsInt());
+                this.f60430k2 = new r5(this.d2.d.sticker.f26962id, ((j6) hVar.f53616b).getPaint().getFontMetricsInt());
             }
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-            if (this.f60429k2 != null) {
+            if (this.f60430k2 != null) {
                 spannableStringBuilder.append((CharSequence) "* ");
-                spannableStringBuilder.setSpan(this.f60429k2, 0, 1, 33);
+                spannableStringBuilder.setSpan(this.f60430k2, 0, 1, 33);
             }
             spannableStringBuilder.append((CharSequence) id.E(this.d2.f25438f.gifts_left, ','));
-            ((j6) hVar.f53615b).c(spannableStringBuilder, z9, true);
-            TextView textView = (TextView) this.W1.f53616c;
+            ((j6) hVar.f53616b).c(spannableStringBuilder, z9, true);
+            TextView textView = (TextView) this.W1.f53617c;
             s9 s9Var = this.d2;
             s9Var.getClass();
             if (s9Var.g(ConnectionsManager.getInstance(p10.f24470s0).getCurrentTime())) {
@@ -593,7 +593,7 @@ public final class l extends na implements v9 {
                 }
             }
             textView.setText(id.M0(i7, null));
-            j[] jVarArr = this.f60421b2;
+            j[] jVarArr = this.f60422b2;
             int min = Math.min(jVarArr.length, this.d2.f25438f.top_bidders.size());
             if (min > 0) {
                 int i10 = 0;
@@ -621,13 +621,13 @@ public final class l extends na implements v9 {
         f1();
         long o4 = m5.o(this.d2.f25437e.peer);
         long j3 = this.d2.f25437e.acquired_count;
-        if (this.f60426h2 < j3 && !this.f60427i2 && (Q = LaunchActivity.Q()) != null) {
-            long j10 = this.f60425g2;
+        if (this.f60427h2 < j3 && !this.f60428i2 && (Q = LaunchActivity.Q()) != null) {
+            long j10 = this.f60426g2;
             if (j10 != 0) {
                 an ra2 = an.ra(j10);
                 ra2.whenFullyVisible(new qg.b(ra2, 1));
                 Q.presentFragment(ra2);
-                Runnable runnable = this.f60424f2;
+                Runnable runnable = this.f60425f2;
                 if (runnable != null) {
                     runnable.run();
                 }
@@ -635,17 +635,17 @@ public final class l extends na implements v9 {
             }
         }
         if (o4 != 0) {
-            this.f60425g2 = o4;
+            this.f60426g2 = o4;
         }
-        this.f60426h2 = j3;
-        this.f60427i2 = false;
+        this.f60427h2 = j3;
+        this.f60428i2 = false;
     }
 
     @Override
     public final void s0() {
         super.s0();
         try {
-            if (this.Y1 != null && this.Z1 != null && this.f60420a2 != null) {
+            if (this.Y1 != null && this.Z1 != null && this.f60421a2 != null) {
                 j1();
             }
         } catch (Exception e10) {
@@ -655,7 +655,7 @@ public final class l extends na implements v9 {
 
     @Override
     public final void v() {
-        this.f60433o2 = true;
+        this.f60434o2 = true;
         e1();
         cc.a(this.f28622c, new r7(16));
     }

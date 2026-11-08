@@ -4,11 +4,11 @@ import androidx.car.app.model.CarIcon;
 import androidx.core.graphics.drawable.IconCompat;
 import jg.g;
 public final class b {
-    public static final b f55343b = new b(new int[]{1, 2});
-    public final int[] f55344a;
+    public static final b f55344b = new b(new int[]{1, 2});
+    public final int[] f55345a;
 
     public b(int[] iArr) {
-        this.f55344a = iArr;
+        this.f55345a = iArr;
     }
 
     public final void a(CarIcon carIcon) {
@@ -16,7 +16,7 @@ public final class b {
             IconCompat icon = carIcon.getIcon();
             if (icon != null) {
                 int i7 = icon.i();
-                for (int i10 : this.f55344a) {
+                for (int i10 : this.f55345a) {
                     if (i7 == i10) {
                         if (i7 == 4 && !"content".equalsIgnoreCase(icon.j().getScheme())) {
                             throw new IllegalArgumentException("Unsupported URI scheme for: " + icon);

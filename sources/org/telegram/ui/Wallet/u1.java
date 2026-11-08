@@ -66,7 +66,7 @@ public final class u1 implements v10 {
                 String str = (String) obj4;
                 TL_account.webPagePreview webpagepreview = (TL_account.webPagePreview) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                int i11 = oVar.f55334a;
+                int i11 = oVar.f55335a;
                 if (webpagepreview != null) {
                     qp.s1(i11).Y3(webpagepreview.users, false);
                     qp.s1(i11).S3(webpagepreview.chats, false);
@@ -75,8 +75,8 @@ public final class u1 implements v10 {
                         obj3 = messageMedia.webpage;
                     }
                 }
-                oVar.f55335b.put(str, obj3);
-                ArrayList arrayList = (ArrayList) oVar.f55336c.remove(str);
+                oVar.f55336b.put(str, obj3);
+                ArrayList arrayList = (ArrayList) oVar.f55337c.remove(str);
                 if (arrayList != null) {
                     int size = arrayList.size();
                     while (i10 < size) {
@@ -92,7 +92,7 @@ public final class u1 implements v10 {
                 TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) obj4;
                 Boolean bool = (Boolean) obj;
                 String str2 = (String) obj2;
-                a0Var.f57684i2.f59420a.setLoading(false);
+                a0Var.f57685i2.f59421a.setLoading(false);
                 if (a0Var.getContext() != null) {
                     org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
                     r80 r80Var = LaunchActivity.G1.f41293v0;
@@ -133,7 +133,7 @@ public final class u1 implements v10 {
                         int i13 = pl0.f48850b;
                         x31 K = x31.K(pl0.class);
                         K.G = savedStarGift;
-                        if (c2Var.f60270i1 == savedStarGift.gift.f27185id) {
+                        if (c2Var.f60271i1 == savedStarGift.gift.f27185id) {
                             z9 = true;
                         } else {
                             z9 = false;

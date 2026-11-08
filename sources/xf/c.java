@@ -2,7 +2,7 @@ package xf;
 
 import java.util.ArrayList;
 public final class c {
-    public a f58700b;
-    public final ArrayList f58699a = new ArrayList();
-    public final b f58701c = new Object();
+    public a f58701b;
+    public final ArrayList f58700a = new ArrayList();
+    public final b f58702c = new Object();
 }

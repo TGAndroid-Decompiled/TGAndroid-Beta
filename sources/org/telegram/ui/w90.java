@@ -161,7 +161,7 @@ public final class w90 extends org.telegram.ui.ActionBar.f2 {
         kVar.n(350L);
         kVar.o(org.telegram.ui.Components.xq.h);
         kVar.C = false;
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         this.f50984b.setItemAnimator(kVar);
         this.f50983a.addView(this.f50984b, c8.ha.c(-1.0f, -1));
         this.f50984b.setOnItemClickListener(new wr(this, 18));
@@ -189,7 +189,7 @@ public final class w90 extends org.telegram.ui.ActionBar.f2 {
                         ArrayList arrayList = this.f50990s;
                         if (R < arrayList.size()) {
                             r90 r90Var = (r90) arrayList.get(R);
-                            int i10 = r90Var.f54531a;
+                            int i10 = r90Var.f54532a;
                             if (i10 != 3 && i10 != 4) {
                                 if (i10 == 1) {
                                     ((u90) childAt).a();

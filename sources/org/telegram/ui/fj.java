@@ -154,7 +154,7 @@ public final class fj extends v4.s0 {
                 if (1 < mVarArr.length) {
                     mVar = mVarArr[1];
                 }
-                if (mVar != null && ((te.a) mVar.f14265c).f55487f) {
+                if (mVar != null && ((te.a) mVar.f14265c).f55488f) {
                     z11 = true;
                 } else {
                     z11 = false;

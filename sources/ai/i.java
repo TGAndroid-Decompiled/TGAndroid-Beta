@@ -423,8 +423,8 @@ public final class i implements c20 {
                     m7Var.e1();
                     return;
                 }
-                m7Var.f12460g2 = h0Var.f55710e;
-                m7Var.f12459f2 = h0Var.f55711f;
+                m7Var.f12460g2 = h0Var.f55711e;
+                m7Var.f12459f2 = h0Var.f55712f;
                 return;
             case 27:
                 ((j8) this.f1237b).f12241n.W.f12817y1 = ((Integer) obj).intValue();

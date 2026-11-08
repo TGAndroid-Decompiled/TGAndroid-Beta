@@ -16,7 +16,7 @@ public final class w5 extends rg.a {
             return false;
         }
         w5 w5Var = (w5) obj;
-        if (this.f54531a != w5Var.f54531a) {
+        if (this.f54532a != w5Var.f54532a) {
             return false;
         }
         org.telegram.messenger.s2 s2Var2 = this.f50901c;

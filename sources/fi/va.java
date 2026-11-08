@@ -316,7 +316,7 @@ public final class va implements ls {
         ua uaVar = new ua(this, activity);
         this.f12975n = uaVar;
         d9 d9Var = new d9(this, 1);
-        WeakHashMap weakHashMap = r0.i0.f54190a;
+        WeakHashMap weakHashMap = r0.i0.f54191a;
         r0.a0.i(uaVar, d9Var);
         this.f12975n.setFocusable(true);
         this.f12975n.setImportantForAccessibility(2);
@@ -1190,7 +1190,7 @@ public final class va implements ls {
         }
         x9 x9Var = this.f13002v1;
         if (x9Var != null && (u0Var = x9Var.f12555x0.d) != null) {
-            u0Var.postRunnable(u0Var.f55218x);
+            u0Var.postRunnable(u0Var.f55219x);
         }
         ja jaVar = this.X0;
         if (jaVar != null) {
@@ -1674,10 +1674,10 @@ public final class va implements ls {
                 x9 x9Var2 = this.f13002v1;
                 x9Var2.f12543r0 = true;
                 j5 j5Var = x9Var2.A0;
-                j5Var.f55615a = true;
+                j5Var.f55616a = true;
                 j5Var.draw(canvas);
                 x9 x9Var3 = this.f13002v1;
-                x9Var3.A0.f55615a = false;
+                x9Var3.A0.f55616a = false;
                 x9Var3.f12543r0 = false;
                 canvas.restore();
             }
@@ -2193,10 +2193,10 @@ public final class va implements ls {
             }
             this.f12970k2 = z10;
             if (z9) {
-                r1.g gVar2 = new r1.g(i3Var3, r1.g.f54251p, height);
+                r1.g gVar2 = new r1.g(i3Var3, r1.g.f54252p, height);
                 this.f12980o2 = gVar2;
-                gVar2.f54267m.a(0.75f);
-                this.f12980o2.f54267m.b(350.0f);
+                gVar2.f54268m.a(0.75f);
+                this.f12980o2.f54268m.b(350.0f);
                 this.f12980o2.a(new f9(this, height, 0));
                 this.f12980o2.h();
             } else {

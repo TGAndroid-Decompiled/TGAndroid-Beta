@@ -147,7 +147,7 @@ public class DataSettingsActivity extends org.telegram.ui.ActionBar.f2 {
         kVar.n(350L);
         kVar.o(org.telegram.ui.Components.xq.h);
         kVar.C = false;
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         this.f41215b.setItemAnimator(kVar);
         return this.fragmentView;
     }

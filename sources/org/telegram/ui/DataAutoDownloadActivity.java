@@ -719,7 +719,7 @@ public class DataAutoDownloadActivity extends org.telegram.ui.ActionBar.f2 {
         if (pj0Var != null) {
             v4.d1 K = pj0Var.K(this.usageProgressRow);
             if (K != null) {
-                View view = K.f57043a;
+                View view = K.f57044a;
                 if (view instanceof org.telegram.ui.Components.vt0) {
                     r0((org.telegram.ui.Components.vt0) view);
                     return;

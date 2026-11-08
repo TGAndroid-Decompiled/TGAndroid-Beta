@@ -2016,8 +2016,8 @@ public final class b2 extends org.telegram.ui.ActionBar.f2 implements ls {
     public final r0.k1 onInsetsInternal(View view, r0.k1 k1Var) {
         boolean z9;
         k60 k60Var;
-        i0.b f10 = k1Var.f54201a.f(3);
-        int i7 = k1Var.f54201a.f(8).d;
+        i0.b f10 = k1Var.f54202a.f(3);
+        int i7 = k1Var.f54202a.f(8).d;
         this.U0 = i7;
         int i10 = i7 - f10.d;
         boolean z10 = this.G0;
@@ -2045,7 +2045,7 @@ public final class b2 extends org.telegram.ui.ActionBar.f2 implements ls {
             this.f18473x0 = null;
         }
         onInsets(f10.f15120a, f10.f15121b, f10.f15122c, f10.d);
-        return r0.k1.f54200b;
+        return r0.k1.f54201b;
     }
 
     @Override

@@ -47,7 +47,7 @@ public final class l7 extends g7 {
         String name;
         String str;
         float f10;
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         k7 k7Var = (k7) view;
         org.telegram.ui.Cells.h7 h7Var = (org.telegram.ui.Cells.h7) k7Var.f47129b.getChildAt(0);
         ArrayList arrayList = this.f45467e;

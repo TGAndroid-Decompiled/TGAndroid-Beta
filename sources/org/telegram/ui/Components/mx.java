@@ -48,7 +48,7 @@ public final class mx extends oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f57047f == 0) {
+        if (d1Var.f57048f == 0) {
             return true;
         }
         return false;
@@ -387,10 +387,10 @@ public final class mx extends oj0 {
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        if (d1Var.f57047f != 0) {
+        if (d1Var.f57048f != 0) {
             return;
         }
-        org.telegram.ui.Cells.h2 h2Var = (org.telegram.ui.Cells.h2) d1Var.f57043a;
+        org.telegram.ui.Cells.h2 h2Var = (org.telegram.ui.Cells.h2) d1Var.f57044a;
         int i10 = this.J;
         if (i10 >= 0 && i7 >= i10) {
             h2Var.e((TLRPC.BotInlineResult) this.f36133y.get(i7 - i10), this.f36128n, true, false, false, true);

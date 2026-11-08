@@ -3,9 +3,9 @@ package x2;
 import java.util.Arrays;
 import java.util.Random;
 public final class f1 implements h1 {
-    public final Random f58326a;
-    public final int[] f58327b;
-    public final int[] f58328c;
+    public final Random f58327a;
+    public final int[] f58328b;
+    public final int[] f58329c;
 
     public f1() {
         this(new Random());
@@ -14,7 +14,7 @@ public final class f1 implements h1 {
     @Override
     public final h1 a(int i7, int i10) {
         int i11 = i10 - i7;
-        int[] iArr = this.f58327b;
+        int[] iArr = this.f58328b;
         int[] iArr2 = new int[iArr.length - i11];
         int i12 = 0;
         for (int i13 = 0; i13 < iArr.length; i13++) {
@@ -29,12 +29,12 @@ public final class f1 implements h1 {
                 iArr2[i15] = i14;
             }
         }
-        return new f1(iArr2, new Random(this.f58326a.nextLong()));
+        return new f1(iArr2, new Random(this.f58327a.nextLong()));
     }
 
     @Override
     public final int b() {
-        int[] iArr = this.f58327b;
+        int[] iArr = this.f58328b;
         if (iArr.length > 0) {
             return iArr[0];
         }
@@ -48,17 +48,17 @@ public final class f1 implements h1 {
 
     @Override
     public final int d(int i7) {
-        int i10 = this.f58328c[i7] - 1;
+        int i10 = this.f58329c[i7] - 1;
         if (i10 < 0) {
             return -1;
         }
-        return this.f58327b[i10];
+        return this.f58328b[i10];
     }
 
     @Override
     public final int e(int i7) {
-        int i10 = this.f58328c[i7] + 1;
-        int[] iArr = this.f58327b;
+        int i10 = this.f58329c[i7] + 1;
+        int[] iArr = this.f58328b;
         if (i10 < iArr.length) {
             return iArr[i10];
         }
@@ -73,8 +73,8 @@ public final class f1 implements h1 {
         int[] iArr3 = new int[i10];
         int i11 = 0;
         while (true) {
-            iArr = this.f58327b;
-            random = this.f58326a;
+            iArr = this.f58328b;
+            random = this.f58327a;
             if (i11 >= i10) {
                 break;
             }
@@ -108,12 +108,12 @@ public final class f1 implements h1 {
 
     @Override
     public final int getLength() {
-        return this.f58327b.length;
+        return this.f58328b.length;
     }
 
     @Override
     public final int h() {
-        int[] iArr = this.f58327b;
+        int[] iArr = this.f58328b;
         if (iArr.length > 0) {
             return iArr[iArr.length - 1];
         }
@@ -122,15 +122,15 @@ public final class f1 implements h1 {
 
     @Override
     public final h1 i() {
-        return new f1(new Random(this.f58326a.nextLong()));
+        return new f1(new Random(this.f58327a.nextLong()));
     }
 
     public f1(int[] iArr, Random random) {
-        this.f58327b = iArr;
-        this.f58326a = random;
-        this.f58328c = new int[iArr.length];
+        this.f58328b = iArr;
+        this.f58327a = random;
+        this.f58329c = new int[iArr.length];
         for (int i7 = 0; i7 < iArr.length; i7++) {
-            this.f58328c[iArr[i7]] = i7;
+            this.f58329c[iArr[i7]] = i7;
         }
     }
 

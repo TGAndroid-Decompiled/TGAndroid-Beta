@@ -40,8 +40,8 @@ public final class nz extends v4.s0 {
                     aVar.a(true, true);
                 }
                 v4.d1 K = recyclerView.K(L0);
-                if (K != null && K.f57047f == 0) {
-                    View view = K.f57043a;
+                if (K != null && K.f57048f == 0) {
+                    View view = K.f57044a;
                     if (view instanceof org.telegram.ui.Cells.p7) {
                         org.telegram.ui.Cells.p7 p7Var = (org.telegram.ui.Cells.p7) view;
                         if (p7Var.f29740e <= 0) {

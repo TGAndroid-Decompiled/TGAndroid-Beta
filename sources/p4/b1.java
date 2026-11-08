@@ -5,28 +5,28 @@ import android.graphics.Rect;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 public final class b1 implements SurfaceHolder {
-    public final Surface f53173a;
-    public final Rect f53174b;
-    public SurfaceHolder.Callback f53175c;
+    public final Surface f53174a;
+    public final Rect f53175b;
+    public SurfaceHolder.Callback f53176c;
 
     public b1(Surface surface) {
-        this.f53174b = new Rect();
-        this.f53173a = surface;
+        this.f53175b = new Rect();
+        this.f53174a = surface;
     }
 
     @Override
     public final void addCallback(SurfaceHolder.Callback callback) {
-        this.f53175c = callback;
+        this.f53176c = callback;
     }
 
     @Override
     public final Surface getSurface() {
-        return this.f53173a;
+        return this.f53174a;
     }
 
     @Override
     public final Rect getSurfaceFrame() {
-        return this.f53174b;
+        return this.f53175b;
     }
 
     @Override
@@ -41,15 +41,15 @@ public final class b1 implements SurfaceHolder {
 
     @Override
     public final void removeCallback(SurfaceHolder.Callback callback) {
-        if (this.f53175c == callback) {
-            this.f53175c = null;
+        if (this.f53176c == callback) {
+            this.f53176c = null;
         }
     }
 
     @Override
     public final void setFixedSize(int i7, int i10) {
-        this.f53174b.set(0, 0, i7, i10);
-        SurfaceHolder.Callback callback = this.f53175c;
+        this.f53175b.set(0, 0, i7, i10);
+        SurfaceHolder.Callback callback = this.f53176c;
         if (callback != null) {
             callback.surfaceChanged(this, 1, i7, i10);
         }
@@ -62,8 +62,8 @@ public final class b1 implements SurfaceHolder {
 
     public b1(Surface surface, int i7, int i10) {
         Rect rect = new Rect();
-        this.f53174b = rect;
-        this.f53173a = surface;
+        this.f53175b = rect;
+        this.f53174a = surface;
         rect.set(0, 0, i7, i10);
     }
 

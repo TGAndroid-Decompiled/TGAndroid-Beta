@@ -50,7 +50,7 @@ public final class w4 extends org.telegram.ui.ActionBar.f2 {
                 this.actionBar.setBackButtonImage(2131231240);
                 org.telegram.ui.ActionBar.k kVar = this.actionBar;
                 w80 w80Var = (w80) this.f4962b;
-                if (w80Var.f59542a) {
+                if (w80Var.f59543a) {
                     i7 = 2131744439;
                 } else {
                     i7 = 2131748636;
@@ -61,41 +61,41 @@ public final class w4 extends org.telegram.ui.ActionBar.f2 {
                 a10.H = new kg.v1(this, 16);
                 a10.setSearchFieldHint(org.telegram.messenger.id.M0(2131745839, null));
                 a10.setVisibility(8);
-                org.telegram.ui.ActionBar.f2 f2Var = w80Var.f59547g;
-                if (w80Var.f59552m == null) {
+                org.telegram.ui.ActionBar.f2 f2Var = w80Var.f59548g;
+                if (w80Var.f59553m == null) {
                     FrameLayout frameLayout = new FrameLayout(f2Var.getParentActivity());
-                    w80Var.f59552m = frameLayout;
+                    w80Var.f59553m = frameLayout;
                     org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27796a7, frameLayout, f2Var.getResourceProvider());
                     mz b10 = w80Var.b();
-                    w80Var.f59556q = b10;
-                    w80Var.f59552m.addView(b10, -1, -1);
+                    w80Var.f59557q = b10;
+                    w80Var.f59553m.addView(b10, -1, -1);
                     av0 c10 = w80Var.c();
-                    w80Var.f59554o = c10;
-                    w80Var.f59552m.addView(c10, -1, -1);
+                    w80Var.f59555o = c10;
+                    w80Var.f59553m.addView(c10, -1, -1);
                     av0 a11 = w80Var.a();
-                    w80Var.f59553n = a11;
-                    w80Var.f59552m.addView(a11, c8.ha.c(-1.0f, -1));
+                    w80Var.f59554n = a11;
+                    w80Var.f59553m.addView(a11, c8.ha.c(-1.0f, -1));
                     f2Var.getParentActivity();
                     v4.b0 b0Var = new v4.b0();
                     pj0 pj0Var = new pj0(f2Var.getParentActivity(), null);
-                    w80Var.f59555p = pj0Var;
-                    pj0Var.setAdapter(w80Var.f59546f);
-                    w80Var.f59555p.r1();
-                    w80Var.f59555p.setLayoutManager(b0Var);
-                    w80Var.f59555p.setOnItemClickListener(new ai.k(w80Var, 24));
-                    w80Var.f59555p.setOnScrollListener(w80Var.D);
-                    org.telegram.ui.ActionBar.r6.K(w80Var.f59555p, org.telegram.ui.ActionBar.k6.f27944i6, f2Var.getResourceProvider());
-                    w80Var.f59552m.addView(w80Var.f59555p, -1, -1);
+                    w80Var.f59556p = pj0Var;
+                    pj0Var.setAdapter(w80Var.f59547f);
+                    w80Var.f59556p.r1();
+                    w80Var.f59556p.setLayoutManager(b0Var);
+                    w80Var.f59556p.setOnItemClickListener(new ai.k(w80Var, 24));
+                    w80Var.f59556p.setOnScrollListener(w80Var.D);
+                    org.telegram.ui.ActionBar.r6.K(w80Var.f59556p, org.telegram.ui.ActionBar.k6.f27944i6, f2Var.getResourceProvider());
+                    w80Var.f59553m.addView(w80Var.f59556p, -1, -1);
                     v4.k kVar2 = new v4.k();
                     kVar2.n(350L);
                     kVar2.o(xq.h);
                     kVar2.C = false;
-                    kVar2.f57070m = false;
-                    w80Var.f59555p.setItemAnimator(kVar2);
+                    kVar2.f57071m = false;
+                    w80Var.f59556p.setItemAnimator(kVar2);
                 }
-                FrameLayout frameLayout2 = w80Var.f59552m;
+                FrameLayout frameLayout2 = w80Var.f59553m;
                 org.telegram.ui.ActionBar.k kVar3 = this.actionBar;
-                pj0 pj0Var2 = w80Var.f59555p;
+                pj0 pj0Var2 = w80Var.f59556p;
                 kVar3.getClass();
                 kVar3.B(pj0Var2, org.telegram.ui.ActionBar.k6.f27796a7, org.telegram.ui.ActionBar.k6.f28132s8);
                 w80Var.e();
@@ -224,7 +224,7 @@ public final class w4 extends org.telegram.ui.ActionBar.f2 {
             case 10:
                 return ((org.telegram.ui.web.x0) this.f4962b).W;
             case 11:
-                org.telegram.ui.ActionBar.f2 f2Var = ((ug.f1) this.f4962b).f56572l2;
+                org.telegram.ui.ActionBar.f2 f2Var = ((ug.f1) this.f4962b).f56573l2;
                 if (f2Var == null) {
                     return null;
                 }
@@ -308,7 +308,7 @@ public final class w4 extends org.telegram.ui.ActionBar.f2 {
     public boolean onBackPressed(boolean z9) {
         switch (this.f4961a) {
             case 9:
-                yh.l lVar = ((w80) this.f4962b).f59558s;
+                yh.l lVar = ((w80) this.f4962b).f59559s;
                 if (lVar != null) {
                     if (!z9) {
                         return false;

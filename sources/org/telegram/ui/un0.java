@@ -81,11 +81,11 @@ public final class un0 implements Comparator {
             case 10:
                 return (int) (((org.telegram.ui.web.i) obj2).f51159c - ((org.telegram.ui.web.i) obj).f51159c);
             case 11:
-                return Long.compare(((org.telegram.utils.twidget.k0) obj2).f52888y, ((org.telegram.utils.twidget.k0) obj).f52888y);
+                return Long.compare(((org.telegram.utils.twidget.k0) obj2).f52885y, ((org.telegram.utils.twidget.k0) obj).f52885y);
             case 12:
-                return ((s2.e) obj).f54628a.compareTo(((s2.e) obj2).f54628a);
+                return ((s2.e) obj).f54629a.compareTo(((s2.e) obj2).f54629a);
             case 13:
-                return (int) ((((ug.i1) obj).f56628a * 100.0f) - (((ug.i1) obj2).f56628a * 100.0f));
+                return (int) ((((ug.i1) obj).f56629a * 100.0f) - (((ug.i1) obj2).f56629a * 100.0f));
             default:
                 return ((String) obj).compareTo((String) obj2);
         }

@@ -58,7 +58,7 @@ public final class zj implements View.OnTouchListener {
                     n40Var.C0 = false;
                     n40Var.A0 = motionEvent.getPointerId(0);
                     n40Var.B0 = -1;
-                    int i7 = n40Var.Q.f58138a;
+                    int i7 = n40Var.Q.f58139a;
                     if (i7 == 5) {
                         ImageView imageView = n40Var.H;
                         wi.t0 t0Var = n40Var.O;
@@ -66,7 +66,7 @@ public final class zj implements View.OnTouchListener {
                             boolean z10 = n40Var.f36221j0;
                             n40Var.f36221j0 = !z10;
                             wi.t0.v();
-                            if (t0Var.f58192a0 == 5 && (i0Var = t0Var.W) != null) {
+                            if (t0Var.f58193a0 == 5 && (i0Var = t0Var.W) != null) {
                                 if (!z10) {
                                     f11 = 0.0f;
                                 } else {
@@ -89,7 +89,7 @@ public final class zj implements View.OnTouchListener {
                 } else {
                     if (motionEvent.getActionMasked() == 5 && motionEvent.getPointerCount() == 2) {
                         wi.s0 s0Var = n40Var.Q;
-                        if (s0Var.f58138a == 3 && !s0Var.f58142f) {
+                        if (s0Var.f58139a == 3 && !s0Var.f58143f) {
                             n40Var.A0 = motionEvent.getPointerId(0);
                             n40Var.B0 = motionEvent.getPointerId(1);
                             float hypot = (float) Math.hypot(motionEvent.getX(1) - motionEvent.getX(0), motionEvent.getY(1) - motionEvent.getY(0));
@@ -110,7 +110,7 @@ public final class zj implements View.OnTouchListener {
                             if (l0Var == null) {
                                 f10 = 1.0f;
                             } else {
-                                f10 = l0Var.f58080c;
+                                f10 = l0Var.f58081c;
                             }
                             float max = (Math.max(0.0f, hypot2 - 1.0f) / 1.5f) + 1.0f;
                             if (f10 > 1.0f) {

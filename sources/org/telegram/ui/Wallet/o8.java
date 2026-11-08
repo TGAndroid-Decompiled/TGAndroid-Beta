@@ -45,7 +45,7 @@ public final class o8 extends FrameLayout {
             r1.h hVar = new r1.h(f10);
             hVar.a(0.55f);
             hVar.b(280.0f);
-            gVar.f54267m = hVar;
+            gVar.f54268m = hVar;
             this.f42989x.f(0.001f);
             this.f42989x.b(new p3(this, 1));
         }
@@ -96,7 +96,7 @@ public final class o8 extends FrameLayout {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         b4 b4Var = this.f42981b;
         int i7 = 0;
-        if (b4Var.f57494n && b4Var.getVisibility() == 0) {
+        if (b4Var.f57495n && b4Var.getVisibility() == 0) {
             int actionMasked = motionEvent.getActionMasked();
             if (actionMasked != 0) {
                 if (actionMasked != 1) {

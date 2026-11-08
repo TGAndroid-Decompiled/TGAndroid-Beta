@@ -272,7 +272,7 @@ public class d7 extends FrameLayout implements ls {
             r1.h hVar = new r1.h(f11);
             hVar.b(1500.0f);
             hVar.a(1.0f);
-            gVar2.f54267m = hVar;
+            gVar2.f54268m = hVar;
             gVar2.b(new r1.d() {
                 @Override
                 public final void a(r1.g gVar3, float f12, float f13) {

@@ -12,7 +12,7 @@ public final class uy extends rg.b {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57047f;
+        int i7 = d1Var.f57048f;
         if (i7 != 8 && i7 != 7) {
             return false;
         }
@@ -30,7 +30,7 @@ public final class uy extends rg.b {
 
     @Override
     public final int d(int i7) {
-        return ((yy) this.d.W1.get(i7)).f54531a;
+        return ((yy) this.d.W1.get(i7)).f54532a;
     }
 
     @Override
@@ -72,12 +72,12 @@ public final class uy extends rg.b {
     public final void t(v4.d1 d1Var, int i7) {
         boolean z9;
         int i10;
-        int i11 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i11 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         ArrayList arrayList = this.d.W1;
         yy yyVar = (yy) arrayList.get(i7);
         int i12 = i7 + 1;
-        if (i12 < arrayList.size() && (i10 = ((yy) arrayList.get(i12)).f54531a) != 3 && i10 != 6) {
+        if (i12 < arrayList.size() && (i10 = ((yy) arrayList.get(i12)).f54532a) != 3 && i10 != 6) {
             z9 = true;
         } else {
             z9 = false;

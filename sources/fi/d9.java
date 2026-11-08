@@ -42,7 +42,7 @@ public final class d9 implements CameraView.CameraViewDelegate, r0.m, org.telegr
         vaVar.f12935a0 = I0.f15122c;
         vaVar.f12939b0 = I0.d;
         vaVar.f12975n.requestLayout();
-        return r0.k1.f54200b;
+        return r0.k1.f54201b;
     }
 
     @Override

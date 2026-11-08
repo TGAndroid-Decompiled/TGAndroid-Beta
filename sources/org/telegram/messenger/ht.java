@@ -55,7 +55,7 @@ public final class ht implements v10 {
                     } else {
                         TL_account.registerPasskey registerpasskey = new TL_account.registerPasskey();
                         try {
-                            JSONObject jSONObject = new JSONObject(cVar.f56965a.getString("androidx.credentials.BUNDLE_KEY_REGISTRATION_RESPONSE_JSON"));
+                            JSONObject jSONObject = new JSONObject(cVar.f56966a.getString("androidx.credentials.BUNDLE_KEY_REGISTRATION_RESPONSE_JSON"));
                             TL_account.inputPasskeyCredentialPublicKey inputpasskeycredentialpublickey = new TL_account.inputPasskeyCredentialPublicKey();
                             registerpasskey.credential = inputpasskeycredentialpublickey;
                             inputpasskeycredentialpublickey.f27167id = jSONObject.getString("id");

@@ -55,7 +55,7 @@ public final class cy extends oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f57047f == 7) {
+        if (d1Var.f57048f == 7) {
             return true;
         }
         return false;
@@ -298,8 +298,8 @@ public final class cy extends oj0 {
         hy hyVar = this.Q;
         LongSparseArray longSparseArray = hyVar.f34473z1;
         LongSparseArray longSparseArray2 = hyVar.f34470y1;
-        int i11 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i11 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         SparseArray sparseArray = this.f32723r;
         boolean z10 = true;
         char c10 = 1;

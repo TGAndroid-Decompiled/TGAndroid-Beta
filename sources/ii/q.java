@@ -10,8 +10,8 @@ public final class q implements a20, r0.m {
 
     @Override
     public k1 S0(View view, k1 k1Var) {
-        this.f15594a.a0(k1Var.f54201a.f(519).d);
-        return k1.f54200b;
+        this.f15594a.a0(k1Var.f54202a.f(519).d);
+        return k1.f54201b;
     }
 
     @Override

@@ -4721,13 +4721,13 @@ public class q1 extends z implements im0, lc, org.telegram.messenger.x5, q9, ls,
             if (i7 == -2) {
                 w1 w1Var = this.f30051w2;
                 if (w1Var != null && (eVar2 = w1Var.f30710m) != null) {
-                    return eVar2.f55297b;
+                    return eVar2.f55298b;
                 }
                 return null;
             } else if (i7 == -3) {
                 w1 w1Var2 = this.f30051w2;
                 if (w1Var2 != null && (eVar = w1Var2.f30711n) != null) {
-                    return eVar.f55297b;
+                    return eVar.f55298b;
                 }
                 return null;
             } else {
@@ -4741,7 +4741,7 @@ public class q1 extends z implements im0, lc, org.telegram.messenger.x5, q9, ls,
                         p1 p1Var = (p1) obj;
                         uh.b bVar = p1Var.f29731x;
                         if (bVar != null && (pollAnswer = p1Var.f29727s) != null && pollAnswer.unshuffled_index == i7) {
-                            return bVar.f56899c;
+                            return bVar.f56900c;
                         }
                     }
                 }
@@ -5847,7 +5847,7 @@ public class q1 extends z implements im0, lc, org.telegram.messenger.x5, q9, ls,
                 ij ijVar = this.P5;
                 xh.e eVar = this.P9;
                 if (eVar != null) {
-                    Integer num = (Integer) eVar.f58786k.get(this);
+                    Integer num = (Integer) eVar.f58787k.get(this);
                     if (num == null) {
                         num = 0;
                     }
@@ -6287,8 +6287,8 @@ public class q1 extends z implements im0, lc, org.telegram.messenger.x5, q9, ls,
                     z11 = true;
                 }
             }
-            te.a aVar = dVar.f56912f;
-            if (aVar.f55487f != z11) {
+            te.a aVar = dVar.f56913f;
+            if (aVar.f55488f != z11) {
                 aVar.a(z11, z9);
             }
         }
@@ -6686,7 +6686,7 @@ public class q1 extends z implements im0, lc, org.telegram.messenger.x5, q9, ls,
                 i7 = 1;
             }
             org.telegram.ui.ActionBar.f6 f6Var = this.Pb;
-            int i13 = org.telegram.utils.twidget.i1.f52859c[0];
+            int i13 = org.telegram.utils.twidget.j1.f52862c[0];
             if (f6Var != null) {
                 i10 = f6Var.j(i13);
             } else {
@@ -6700,7 +6700,7 @@ public class q1 extends z implements im0, lc, org.telegram.messenger.x5, q9, ls,
                 } else {
                     q10 = org.telegram.ui.ActionBar.k6.I.q();
                 }
-                int b10 = org.telegram.utils.twidget.i1.b(f6Var, true);
+                int b10 = org.telegram.utils.twidget.j1.b(f6Var, true);
                 if (q10) {
                     i11 = -16777216;
                 } else {
@@ -7047,7 +7047,7 @@ public class q1 extends z implements im0, lc, org.telegram.messenger.x5, q9, ls,
             path.computeBounds(rectF, false);
             float sqrt = (float) Math.sqrt(Math.pow(rectF.height(), 2.0d) + Math.pow(rectF.width(), 2.0d));
             this.O5 = true;
-            this.N5.f58803q = new c1(this, 8);
+            this.N5.f58804q = new c1(this, 8);
             gj gjVar5 = this.f29961p3;
             if (gjVar5 != null) {
                 ArrayList arrayList14 = gjVar5.f22680e;
@@ -7130,7 +7130,7 @@ public class q1 extends z implements im0, lc, org.telegram.messenger.x5, q9, ls,
                         q1 q1Var2 = (q1) childAt2;
                         ArrayList arrayList20 = q1Var2.Sb;
                         if (q1Var2.getMessageObject() != null && q1Var2.getMessageObject().O1() == getMessageObject().f1() && !arrayList20.isEmpty()) {
-                            ((xh.f) arrayList20.get(0)).f58803q = new ea(6, this, q1Var2);
+                            ((xh.f) arrayList20.get(0)).f58804q = new ea(6, this, q1Var2);
                             int size16 = arrayList20.size();
                             int i42 = 0;
                             while (i42 < size16) {
@@ -10058,12 +10058,12 @@ public class q1 extends z implements im0, lc, org.telegram.messenger.x5, q9, ls,
         }
         xh.e eVar4 = q1Var.P9;
         if (eVar4 != null) {
-            if (eVar4.f58784i) {
+            if (eVar4.f58785i) {
                 xh.e V2 = V2();
                 q1Var.P9 = V2;
                 Integer num = q1Var.Q9;
                 if (num != null) {
-                    V2.f58786k.put(this, num);
+                    V2.f58787k.put(this, num);
                 }
             } else {
                 eVar4.a(this);
@@ -10111,13 +10111,13 @@ public class q1 extends z implements im0, lc, org.telegram.messenger.x5, q9, ls,
         }
         w1 w1Var = this.f30051w2;
         if (w1Var != null && (eVar2 = w1Var.f30710m) != null) {
-            eVar2.f55297b.R();
-            eVar2.f55312y.f();
+            eVar2.f55298b.R();
+            eVar2.f55313y.f();
         }
         w1 w1Var2 = this.f30051w2;
         if (w1Var2 != null && (eVar = w1Var2.f30711n) != null) {
-            eVar.f55297b.R();
-            eVar.f55312y.f();
+            eVar.f55298b.R();
+            eVar.f55313y.f();
         }
         w1 w1Var3 = this.f30051w2;
         if (w1Var3 != null && (qVar = w1Var3.f30707j) != null) {
@@ -10813,14 +10813,14 @@ public class q1 extends z implements im0, lc, org.telegram.messenger.x5, q9, ls,
     public final void s0(q1 q1Var) {
         xh.e eVar;
         if (q1Var != null && (eVar = q1Var.P9) != null) {
-            int i7 = (Integer) eVar.f58786k.get(q1Var);
+            int i7 = (Integer) eVar.f58787k.get(q1Var);
             if (i7 == null) {
                 i7 = 0;
             }
             this.Q9 = i7;
             xh.e eVar2 = this.P9;
             if (eVar2 != null) {
-                eVar2.f58786k.put(this, i7);
+                eVar2.f58787k.put(this, i7);
             }
         }
     }
@@ -11382,7 +11382,7 @@ public class q1 extends z implements im0, lc, org.telegram.messenger.x5, q9, ls,
                         this.F8 = false;
                         return;
                     }
-                    int i10 = (int) ((1.0f - this.D.f55486e) * 255.0f);
+                    int i10 = (int) ((1.0f - this.D.f55487e) * 255.0f);
                     if (i10 != 255) {
                         float f22 = this.Q8;
                         f11 = 32.0f;
@@ -11530,7 +11530,7 @@ public class q1 extends z implements im0, lc, org.telegram.messenger.x5, q9, ls,
                     return true;
                 }
                 w1 w1Var = this.f30051w2;
-                if (w1Var == null || (aVar = w1Var.f30709l) == null || (drawable != aVar && drawable != aVar.f56908a)) {
+                if (w1Var == null || (aVar = w1Var.f30709l) == null || (drawable != aVar && drawable != aVar.f56909a)) {
                     ArrayList arrayList = this.P4;
                     int size = arrayList.size();
                     int i7 = 0;
@@ -11538,7 +11538,7 @@ public class q1 extends z implements im0, lc, org.telegram.messenger.x5, q9, ls,
                         Object obj = arrayList.get(i7);
                         i7++;
                         p1 p1Var = (p1) obj;
-                        if (p1Var.f29730w != drawable && ((bVar = p1Var.f29731x) == null || (drawable != bVar && drawable != bVar.f56897a && drawable != bVar.f56898b))) {
+                        if (p1Var.f29730w != drawable && ((bVar = p1Var.f29731x) == null || (drawable != bVar && drawable != bVar.f56898a && drawable != bVar.f56899b))) {
                         }
                     }
                     return false;

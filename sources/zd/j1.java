@@ -1,20 +1,20 @@
 package zd;
 public final class j1 extends kd.i implements rd.p {
-    public o1 f60084b;
-    public q f60085c;
+    public o1 f60085b;
+    public q f60086c;
     public int d;
-    public Object f60086e;
-    public final n1 f60087f;
+    public Object f60087e;
+    public final n1 f60088f;
 
     public j1(id.c cVar, n1 n1Var) {
         super(2, cVar);
-        this.f60087f = n1Var;
+        this.f60088f = n1Var;
     }
 
     @Override
     public final id.c create(Object obj, id.c cVar) {
-        j1 j1Var = new j1(cVar, this.f60087f);
-        j1Var.f60086e = obj;
+        j1 j1Var = new j1(cVar, this.f60088f);
+        j1Var.f60087e = obj;
         return j1Var;
     }
 

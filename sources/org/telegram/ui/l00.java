@@ -68,8 +68,8 @@ public final class l00 extends View {
             case 15:
                 super.onAttachedToWindow();
                 zh.d1 d1Var = (zh.d1) this.f47378b;
-                if (d1Var != null && !d1Var.f60281i) {
-                    d1Var.f60281i = true;
+                if (d1Var != null && !d1Var.f60282i) {
+                    d1Var.f60282i = true;
                     d1Var.a();
                     xg.a aVar = new xg.a(d1Var, 3);
                     d1Var.h = aVar;
@@ -110,8 +110,8 @@ public final class l00 extends View {
             case 15:
                 super.onDetachedFromWindow();
                 zh.d1 d1Var = (zh.d1) this.f47378b;
-                if (d1Var != null && d1Var.f60281i) {
-                    d1Var.f60281i = false;
+                if (d1Var != null && d1Var.f60282i) {
+                    d1Var.f60282i = false;
                     d1Var.a();
                     xg.a aVar = d1Var.h;
                     HashSet hashSet = org.telegram.messenger.sc.f25454n;
@@ -197,7 +197,7 @@ public final class l00 extends View {
             case 13:
                 super.onDraw(canvas);
                 ug.i0 i0Var = (ug.i0) this.f47378b;
-                if (i0Var.f56609h2 - i0Var.f56608g2 > 1) {
+                if (i0Var.f56610h2 - i0Var.f56609g2 > 1) {
                     Paint W0 = org.telegram.ui.ActionBar.k6.W0("paintDivider", i0Var.I0);
                     if (W0 == null) {
                         W0 = org.telegram.ui.ActionBar.k6.f27975k0;
@@ -304,8 +304,8 @@ public final class l00 extends View {
                 if (((zh.d1) this.f47378b) != null) {
                     if (isAttachedToWindow()) {
                         zh.d1 d1Var = (zh.d1) this.f47378b;
-                        if (d1Var.f60281i) {
-                            d1Var.f60281i = false;
+                        if (d1Var.f60282i) {
+                            d1Var.f60282i = false;
                             d1Var.a();
                             xg.a aVar = d1Var.h;
                             HashSet hashSet = org.telegram.messenger.sc.f25454n;
@@ -321,8 +321,8 @@ public final class l00 extends View {
                     this.f47378b = (zh.d1) drawable;
                     if (isAttachedToWindow()) {
                         zh.d1 d1Var2 = (zh.d1) this.f47378b;
-                        if (!d1Var2.f60281i) {
-                            d1Var2.f60281i = true;
+                        if (!d1Var2.f60282i) {
+                            d1Var2.f60282i = true;
                             d1Var2.a();
                             xg.a aVar2 = new xg.a(d1Var2, 3);
                             d1Var2.h = aVar2;

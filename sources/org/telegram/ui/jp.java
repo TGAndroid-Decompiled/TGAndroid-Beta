@@ -21,7 +21,7 @@ public final class jp extends org.telegram.ui.Components.oj0 {
     @Override
     public final boolean D(v4.d1 d1Var) {
         TLRPC.Chat chat;
-        int i7 = d1Var.f57047f;
+        int i7 = d1Var.f57048f;
         kp kpVar = this.f47019e;
         TLRPC.TL_chatBannedRights tL_chatBannedRights = kpVar.P;
         int i10 = kpVar.D;
@@ -425,7 +425,7 @@ public final class jp extends org.telegram.ui.Components.oj0 {
         int b10 = d1Var.b();
         kp kpVar = this.f47019e;
         if (b10 == kpVar.f47253u0) {
-            kp.k0(kpVar, d1Var.f57043a);
+            kp.k0(kpVar, d1Var.f57044a);
         }
     }
 

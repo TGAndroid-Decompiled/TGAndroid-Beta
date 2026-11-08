@@ -33,7 +33,7 @@ public final class gc extends org.telegram.ui.Components.oj0 {
     @Override
     public final void t(v4.d1 d1Var, int i7) {
         boolean z9;
-        hc hcVar = (hc) d1Var.f57043a;
+        hc hcVar = (hc) d1Var.f57044a;
         org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27852d6, hcVar, this.d);
         if (i7 == this.f45941f.f46639e) {
             z9 = true;

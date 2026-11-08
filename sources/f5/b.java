@@ -257,10 +257,10 @@ public class b {
             q4.q qVar = this.h;
             int i7 = this.f11126l;
             qVar.getClass();
-            o3 o3Var = (o3) ((p3) qVar.f53803b).g();
+            o3 o3Var = (o3) ((p3) qVar.f53804b).g();
             o3Var.c();
             p3.p((p3) o3Var.f7469b, i7);
-            qVar.f53803b = (p3) o3Var.a();
+            qVar.f53804b = (p3) o3Var.a();
             qVar.h(g3Var);
         } catch (Throwable th2) {
             com.google.android.gms.internal.play_billing.u.i("BillingClient", "Unable to log.", th2);
@@ -272,11 +272,11 @@ public class b {
             q4.q qVar = this.h;
             int i7 = this.f11126l;
             qVar.getClass();
-            o3 o3Var = (o3) ((p3) qVar.f53803b).g();
+            o3 o3Var = (o3) ((p3) qVar.f53804b).g();
             o3Var.c();
             p3.p((p3) o3Var.f7469b, i7);
             p3 p3Var = (p3) o3Var.a();
-            qVar.f53803b = p3Var;
+            qVar.f53804b = p3Var;
             qVar.q(i3Var, p3Var);
         } catch (Throwable th2) {
             com.google.android.gms.internal.play_billing.u.i("BillingClient", "Unable to log.", th2);

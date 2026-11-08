@@ -1184,10 +1184,10 @@ public class ChatAttachAlertPhotoLayout extends vh implements org.telegram.messe
             jl jlVar = this.E;
             v4.d1 K2 = jlVar.K(this.M0 - 1);
             if (K2 != null) {
-                K2.f57043a.invalidateOutline();
+                K2.f57044a.invalidateOutline();
             }
             if ((!this.G.d || !this.N0 || this.T0 != this.U0) && (K = jlVar.K(0)) != null) {
-                K.f57043a.invalidateOutline();
+                K.f57044a.invalidateOutline();
             }
             ql qlVar2 = this.P;
             if (qlVar2 != null) {

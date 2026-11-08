@@ -25,13 +25,13 @@ public final class k60 extends org.telegram.ui.Components.oj0 {
     public final boolean D(v4.d1 d1Var) {
         switch (this.f47123c) {
             case 0:
-                int i7 = d1Var.f57047f;
+                int i7 = d1Var.f57048f;
                 if (i7 != 0 && i7 != 4 && i7 != 5 && i7 != 2) {
                     return false;
                 }
                 return true;
             default:
-                if (d1Var.f57047f == 0) {
+                if (d1Var.f57048f == 0) {
                     return true;
                 }
                 return false;
@@ -234,7 +234,7 @@ public final class k60 extends org.telegram.ui.Components.oj0 {
     public void y(v4.d1 d1Var) {
         switch (this.f47123c) {
             case 0:
-                View view = d1Var.f57043a;
+                View view = d1Var.f57044a;
                 if (view instanceof org.telegram.ui.Cells.b9) {
                     ((org.telegram.ui.Cells.b9) view).c();
                     return;

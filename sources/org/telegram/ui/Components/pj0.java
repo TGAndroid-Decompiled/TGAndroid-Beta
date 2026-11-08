@@ -364,7 +364,7 @@ public class pj0 extends RecyclerView implements eh.a {
             v4.n0 layoutManager = getLayoutManager();
             if (layoutManager instanceof v4.b0) {
                 v4.b0 b0Var = (v4.b0) layoutManager;
-                if (b0Var.f57012o == 1) {
+                if (b0Var.f57013o == 1) {
                     if (this.f36964e1 != null) {
                         if (this.f36998w1 == 1) {
                             paddingTop = 0;
@@ -1178,7 +1178,7 @@ public class pj0 extends RecyclerView implements eh.a {
         }
         v4.d1 K = K(yi0Var.run());
         if (K != null) {
-            View view = K.f57043a;
+            View view = K.f57044a;
             int c10 = K.c();
             this.f36999w2 = c10;
             k1(c10, view);
@@ -1738,7 +1738,7 @@ public class pj0 extends RecyclerView implements eh.a {
         v4.g0 adapter = getAdapter();
         jg.n1 n1Var = this.f36989r2;
         if (adapter != null) {
-            adapter.f57076a.unregisterObserver(n1Var);
+            adapter.f57077a.unregisterObserver(n1Var);
         }
         ArrayList arrayList = this.n1;
         if (arrayList != null) {

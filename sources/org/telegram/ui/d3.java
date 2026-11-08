@@ -117,11 +117,11 @@ public final class d3 extends nq0 {
             return null;
         } else if (view instanceof v1) {
             org.telegram.ui.Components.xi0 xi0Var2 = ((v1) view).d;
-            if (xi0Var2 != null && (e03 = e0(xi0Var2.f57043a, pageBlock, iArr)) != null) {
+            if (xi0Var2 != null && (e03 = e0(xi0Var2.f57044a, pageBlock, iArr)) != null) {
                 return e03;
             }
             return null;
-        } else if ((view instanceof y1) && (xi0Var = ((y1) view).d) != null && (e02 = e0(xi0Var.f57043a, pageBlock, iArr)) != null) {
+        } else if ((view instanceof y1) && (xi0Var = ((y1) view).d) != null && (e02 = e0(xi0Var.f57044a, pageBlock, iArr)) != null) {
             return e02;
         } else {
             return null;

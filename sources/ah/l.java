@@ -394,7 +394,7 @@ public final class l extends AnimatorListenerAdapter {
             case 25:
                 di diVar = (di) obj2;
                 AnimatorSet animatorSet3 = diVar.f28658z0;
-                if (animatorSet3 != null && animatorSet3.equals(animator) && (gVar = diVar.f32961j4) != null && !gVar.f54261f) {
+                if (animatorSet3 != null && animatorSet3.equals(animator) && (gVar = diVar.f32961j4) != null && !gVar.f54262f) {
                     ((ng) obj).run();
                     return;
                 }

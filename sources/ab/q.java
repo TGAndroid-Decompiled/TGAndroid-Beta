@@ -165,7 +165,7 @@ public final class q implements f3.q, wm0 {
             r4 r4Var = new r4(this, context, f6Var, u4Var);
             this.d = r4Var;
             w0 w0Var = new w0(this, 3);
-            WeakHashMap weakHashMap = r0.i0.f54190a;
+            WeakHashMap weakHashMap = r0.i0.f54191a;
             r0.a0.i(r4Var, w0Var);
         }
         ((r4) this.d).a(w4Var);
@@ -216,7 +216,7 @@ public final class q implements f3.q, wm0 {
                     return;
                 }
                 pb.s sVar = (pb.s) ((ArrayDeque) this.f991c).remove();
-                G(sVar.f53559b, sVar.f53558a);
+                G(sVar.f53560b, sVar.f53559a);
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -389,7 +389,7 @@ public final class q implements f3.q, wm0 {
 
     public q2.v m(UUID uuid, q2.o oVar) {
         String str;
-        String str2 = oVar.f53742b;
+        String str2 = oVar.f53743b;
         if (this.f989a || TextUtils.isEmpty(str2)) {
             str2 = (String) this.f991c;
         }
@@ -410,7 +410,7 @@ public final class q implements f3.q, wm0 {
             synchronized (((HashMap) this.d)) {
                 hashMap.putAll((HashMap) this.d);
             }
-            return rb.a(((j2.p) this.f990b).createDataSource(), str2, oVar.f53741a, hashMap);
+            return rb.a(((j2.p) this.f990b).createDataSource(), str2, oVar.f53742a, hashMap);
         }
         Map map = Collections.EMPTY_MAP;
         Uri uri = Uri.EMPTY;
@@ -421,7 +421,7 @@ public final class q implements f3.q, wm0 {
     public q2.v n(q2.p pVar) {
         boolean z9;
         Charset charset = StandardCharsets.UTF_8;
-        byte[][] bArr = {"{\"signedRequest\":\"".getBytes(charset), pVar.f53743a, "\"}".getBytes(charset)};
+        byte[][] bArr = {"{\"signedRequest\":\"".getBytes(charset), pVar.f53744a, "\"}".getBytes(charset)};
         long j3 = 0;
         for (int i7 = 0; i7 < 3; i7++) {
             j3 += bArr[i7].length;
@@ -441,7 +441,7 @@ public final class q implements f3.q, wm0 {
             i11 += bArr3.length;
         }
         j2.h createDataSource = ((j2.p) this.f990b).createDataSource();
-        String str = pVar.f53744b;
+        String str = pVar.f53745b;
         String aVar = k9.a.f17237i.toString();
         String valueOf = String.valueOf(i10);
         h9.o.f("Content-Type", aVar);

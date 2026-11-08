@@ -19,57 +19,57 @@ import org.telegram.ui.Components.ch0;
 import org.telegram.ui.Components.jg;
 import org.telegram.ui.Components.zg0;
 public final class e1 extends FrameLayout implements ls {
-    public static final List f55637x = Arrays.asList(new b1(0, 1, 20, 0), new b1(0, 2, 20, 40), new b1(1, 0, 0, 20), new b1(1, 2, 60, 40), new b1(2, 0, 40, 20), new b1(2, 1, 40, 60));
-    public int f55638a;
-    public final ch0 f55639b;
-    public final ImageView f55640c;
+    public static final List f55638x = Arrays.asList(new b1(0, 1, 20, 0), new b1(0, 2, 20, 40), new b1(1, 0, 0, 20), new b1(1, 2, 60, 40), new b1(2, 0, 40, 20), new b1(2, 1, 40, 60));
+    public int f55639a;
+    public final ch0 f55640b;
+    public final ImageView f55641c;
     public final ImageView d;
-    public final View f55641e;
-    public final d1 f55642f;
+    public final View f55642e;
+    public final d1 f55643f;
     public c1 h;
-    public int f55643n;
-    public int f55644r;
-    public int f55645s;
-    public String f55646w;
+    public int f55644n;
+    public int f55645r;
+    public int f55646s;
+    public String f55647w;
 
     public e1(Context context) {
         super(context);
-        this.f55638a = 0;
+        this.f55639a = 0;
         setWillNotDraw(false);
         View view = new View(context);
-        this.f55641e = view;
+        this.f55642e = view;
         view.setOnClickListener(new View.OnClickListener(this) {
-            public final e1 f55556b;
+            public final e1 f55557b;
 
             {
-                this.f55556b = this;
+                this.f55557b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r2) {
                     case 0:
-                        this.f55556b.h.a();
+                        this.f55557b.h.a();
                         return;
                     case 1:
-                        e1 e1Var = this.f55556b;
-                        e1Var.d((e1Var.f55638a + 1) % 3, true);
+                        e1 e1Var = this.f55557b;
+                        e1Var.d((e1Var.f55639a + 1) % 3, true);
                         return;
                     case 2:
-                        this.f55556b.h.b();
+                        this.f55557b.h.b();
                         return;
                     case 3:
-                        this.f55556b.h.t();
+                        this.f55557b.h.t();
                         return;
                     default:
-                        this.f55556b.h.D();
+                        this.f55557b.h.D();
                         return;
                 }
             }
         });
         addView(view, ha.d(24, 24.0f, 48, 0.0f, 0.0f, 16.0f, 0.0f));
         ?? imageView = new ImageView(context);
-        this.f55639b = imageView;
+        this.f55640b = imageView;
         imageView.f(2131624133, 24, 24, null);
         zg0 animatedDrawable = imageView.getAnimatedDrawable();
         animatedDrawable.h = true;
@@ -78,30 +78,30 @@ public final class e1 extends FrameLayout implements ls {
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(-1, mode));
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final e1 f55556b;
+            public final e1 f55557b;
 
             {
-                this.f55556b = this;
+                this.f55557b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r2) {
                     case 0:
-                        this.f55556b.h.a();
+                        this.f55557b.h.a();
                         return;
                     case 1:
-                        e1 e1Var = this.f55556b;
-                        e1Var.d((e1Var.f55638a + 1) % 3, true);
+                        e1 e1Var = this.f55557b;
+                        e1Var.d((e1Var.f55639a + 1) % 3, true);
                         return;
                     case 2:
-                        this.f55556b.h.b();
+                        this.f55557b.h.b();
                         return;
                     case 3:
-                        this.f55556b.h.t();
+                        this.f55557b.h.t();
                         return;
                     default:
-                        this.f55556b.h.D();
+                        this.f55557b.h.D();
                         return;
                 }
             }
@@ -109,34 +109,34 @@ public final class e1 extends FrameLayout implements ls {
         imageView.setPadding(org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f));
         addView((View) imageView, ha.d(28, 28.0f, 16, 0.0f, 0.0f, 16.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f55640c = imageView2;
+        this.f55641c = imageView2;
         imageView2.setImageResource(2131232399);
         imageView2.setPadding(org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(1.0f));
         imageView2.setOnClickListener(new View.OnClickListener(this) {
-            public final e1 f55556b;
+            public final e1 f55557b;
 
             {
-                this.f55556b = this;
+                this.f55557b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r2) {
                     case 0:
-                        this.f55556b.h.a();
+                        this.f55557b.h.a();
                         return;
                     case 1:
-                        e1 e1Var = this.f55556b;
-                        e1Var.d((e1Var.f55638a + 1) % 3, true);
+                        e1 e1Var = this.f55557b;
+                        e1Var.d((e1Var.f55639a + 1) % 3, true);
                         return;
                     case 2:
-                        this.f55556b.h.b();
+                        this.f55557b.h.b();
                         return;
                     case 3:
-                        this.f55556b.h.t();
+                        this.f55557b.h.t();
                         return;
                     default:
-                        this.f55556b.h.D();
+                        this.f55557b.h.D();
                         return;
                 }
             }
@@ -148,30 +148,30 @@ public final class e1 extends FrameLayout implements ls {
         imageView3.setColorFilter(new PorterDuffColorFilter(-1, mode));
         imageView3.setBackground(k6.h0(1090519039, 1, -1));
         imageView3.setOnClickListener(new View.OnClickListener(this) {
-            public final e1 f55556b;
+            public final e1 f55557b;
 
             {
-                this.f55556b = this;
+                this.f55557b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r2) {
                     case 0:
-                        this.f55556b.h.a();
+                        this.f55557b.h.a();
                         return;
                     case 1:
-                        e1 e1Var = this.f55556b;
-                        e1Var.d((e1Var.f55638a + 1) % 3, true);
+                        e1 e1Var = this.f55557b;
+                        e1Var.d((e1Var.f55639a + 1) % 3, true);
                         return;
                     case 2:
-                        this.f55556b.h.b();
+                        this.f55557b.h.b();
                         return;
                     case 3:
-                        this.f55556b.h.t();
+                        this.f55557b.h.t();
                         return;
                     default:
-                        this.f55556b.h.D();
+                        this.f55557b.h.D();
                         return;
                 }
             }
@@ -179,33 +179,33 @@ public final class e1 extends FrameLayout implements ls {
         imageView3.setPadding(org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f));
         addView(imageView3, ha.d(28, 28.0f, 16, 0.0f, 0.0f, 16.0f, 0.0f));
         d1 d1Var = new d1(context);
-        this.f55642f = d1Var;
+        this.f55643f = d1Var;
         d1Var.setCurrent(true);
         d1Var.setOnClickListener(new View.OnClickListener(this) {
-            public final e1 f55556b;
+            public final e1 f55557b;
 
             {
-                this.f55556b = this;
+                this.f55557b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r2) {
                     case 0:
-                        this.f55556b.h.a();
+                        this.f55557b.h.a();
                         return;
                     case 1:
-                        e1 e1Var = this.f55556b;
-                        e1Var.d((e1Var.f55638a + 1) % 3, true);
+                        e1 e1Var = this.f55557b;
+                        e1Var.d((e1Var.f55639a + 1) % 3, true);
                         return;
                     case 2:
-                        this.f55556b.h.b();
+                        this.f55557b.h.b();
                         return;
                     case 3:
-                        this.f55556b.h.t();
+                        this.f55557b.h.t();
                         return;
                     default:
-                        this.f55556b.h.D();
+                        this.f55557b.h.D();
                         return;
                 }
             }
@@ -217,32 +217,32 @@ public final class e1 extends FrameLayout implements ls {
         if (i7 == 0) {
             i7 = 2131232042;
         }
-        if (this.f55645s != i7) {
-            this.f55645s = i7;
+        if (this.f55646s != i7) {
+            this.f55646s = i7;
             org.telegram.messenger.g0.R3(this.d, i7);
         }
     }
 
     public final void b(RectF rectF) {
-        d1 d1Var = this.f55642f;
+        d1 d1Var = this.f55643f;
         rectF.set(org.telegram.messenger.g0.L(8.0f) + d1Var.getLeft(), d1Var.getTop(), org.telegram.messenger.g0.L(8.0f) + d1Var.getRight(), d1Var.getBottom());
     }
 
     public final void c(View view) {
         if (view.getVisibility() != 8) {
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
-            int i7 = this.f55644r + layoutParams.leftMargin;
-            this.f55644r = i7;
-            view.layout(i7, (getMeasuredHeight() - layoutParams.height) / 2, this.f55644r + layoutParams.width, (getMeasuredHeight() + layoutParams.height) / 2);
-            this.f55644r = layoutParams.width + layoutParams.rightMargin + this.f55644r;
+            int i7 = this.f55645r + layoutParams.leftMargin;
+            this.f55645r = i7;
+            view.layout(i7, (getMeasuredHeight() - layoutParams.height) / 2, this.f55645r + layoutParams.width, (getMeasuredHeight() + layoutParams.height) / 2);
+            this.f55645r = layoutParams.width + layoutParams.rightMargin + this.f55645r;
         }
     }
 
     public final void d(int i7, boolean z9) {
-        int i10 = this.f55638a;
-        this.f55638a = i7;
-        List list = f55637x;
-        ch0 ch0Var = this.f55639b;
+        int i10 = this.f55639a;
+        this.f55639a = i7;
+        List list = f55638x;
+        ch0 ch0Var = this.f55640b;
         if (i10 == i7) {
             zg0 animatedDrawable = ch0Var.getAnimatedDrawable();
             b1 b1Var = (b1) list.get(0);
@@ -252,7 +252,7 @@ public final class e1 extends FrameLayout implements ls {
                     break;
                 }
                 b1 b1Var2 = (b1) it.next();
-                if (this.f55638a == b1Var2.f55577b) {
+                if (this.f55639a == b1Var2.f55578b) {
                     b1Var = b1Var2;
                     break;
                 }
@@ -272,13 +272,13 @@ public final class e1 extends FrameLayout implements ls {
                 break;
             }
             b1 b1Var4 = (b1) it2.next();
-            if (i10 == b1Var4.f55576a && this.f55638a == b1Var4.f55577b) {
+            if (i10 == b1Var4.f55577a && this.f55639a == b1Var4.f55578b) {
                 b1Var3 = b1Var4;
                 break;
             }
         }
         zg0 animatedDrawable2 = ch0Var.getAnimatedDrawable();
-        animatedDrawable2.M(b1Var3.f55578c);
+        animatedDrawable2.M(b1Var3.f55579c);
         animatedDrawable2.P(b1Var3.d);
         animatedDrawable2.start();
         if (z9) {
@@ -289,18 +289,18 @@ public final class e1 extends FrameLayout implements ls {
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         String str;
-        if (i7 == qs.C5 && (str = this.f55646w) != null) {
+        if (i7 == qs.C5 && (str = this.f55647w) != null) {
             setTypeface(str);
-            this.f55646w = null;
+            this.f55647w = null;
         }
     }
 
     public final void e(int i7, boolean z9) {
         int i10;
-        if (this.f55643n == i7) {
+        if (this.f55644n == i7) {
             return;
         }
-        this.f55643n = i7;
+        this.f55644n = i7;
         if (i7 != 1) {
             if (i7 != 2) {
                 if (i7 != 3) {
@@ -314,7 +314,7 @@ public final class e1 extends FrameLayout implements ls {
         } else {
             i10 = 2131232288;
         }
-        ImageView imageView = this.f55640c;
+        ImageView imageView = this.f55641c;
         if (z9) {
             org.telegram.messenger.g0.R3(imageView, i10);
         } else {
@@ -323,7 +323,7 @@ public final class e1 extends FrameLayout implements ls {
     }
 
     public View getColorClickableView() {
-        return this.f55641e;
+        return this.f55642e;
     }
 
     public jg getEmojiButton() {
@@ -331,7 +331,7 @@ public final class e1 extends FrameLayout implements ls {
     }
 
     public d1 getTypefaceCell() {
-        return this.f55642f;
+        return this.f55643f;
     }
 
     @Override
@@ -348,13 +348,13 @@ public final class e1 extends FrameLayout implements ls {
 
     @Override
     public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        this.f55644r = getPaddingLeft();
-        c(this.f55641e);
-        c(this.f55639b);
-        c(this.f55640c);
+        this.f55645r = getPaddingLeft();
+        c(this.f55642e);
+        c(this.f55640b);
+        c(this.f55641c);
         c(this.d);
         int measuredWidth = getMeasuredWidth() - getPaddingRight();
-        d1 d1Var = this.f55642f;
+        d1 d1Var = this.f55643f;
         d1Var.layout(measuredWidth - d1Var.getMeasuredWidth(), (getMeasuredHeight() - d1Var.getMeasuredHeight()) / 2, getMeasuredWidth() - getPaddingRight(), (d1Var.getMeasuredHeight() + getMeasuredHeight()) / 2);
     }
 
@@ -365,7 +365,7 @@ public final class e1 extends FrameLayout implements ls {
         int paddingLeft = (size - getPaddingLeft()) - getPaddingRight();
         for (int i11 = 0; i11 < getChildCount(); i11++) {
             View childAt = getChildAt(i11);
-            d1 d1Var = this.f55642f;
+            d1 d1Var = this.f55643f;
             if (childAt == d1Var) {
                 d1Var.measure(View.MeasureSpec.makeMeasureSpec(paddingLeft, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
             } else {
@@ -390,15 +390,15 @@ public final class e1 extends FrameLayout implements ls {
     }
 
     public void setTypeface(String str) {
-        this.f55646w = str;
-        d1 d1Var = this.f55642f;
+        this.f55647w = str;
+        d1 d1Var = this.f55643f;
         if (d1Var != null) {
             for (sg.b0 b0Var : sg.b0.c()) {
-                if (b0Var.f55017a.equals(str)) {
+                if (b0Var.f55018a.equals(str)) {
                     d1Var.setTypeface(b0Var.d());
-                    String str2 = b0Var.f55019c;
+                    String str2 = b0Var.f55020c;
                     if (str2 == null) {
-                        str2 = id.N0(b0Var.f55018b);
+                        str2 = id.N0(b0Var.f55019b);
                     }
                     d1Var.setText(str2);
                     return;

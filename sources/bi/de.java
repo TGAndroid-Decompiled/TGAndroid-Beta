@@ -323,12 +323,12 @@ public final class de implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue10 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 Paint paint = new Paint(1);
                 LinearGradient linearGradient = new LinearGradient(0.0f, 100.0f, 0.0f, 0.0f, new int[]{i0.a.f(floatValue10, iArr2[0], aVar.h[0]), i0.a.f(floatValue10, iArr2[1], aVar.h[1])}, (float[]) null, Shader.TileMode.CLAMP);
-                aVar.f54114b = linearGradient;
-                linearGradient.setLocalMatrix(aVar.f54115c);
-                paint.setShader(aVar.f54114b);
-                aVar.f54113a.f25394r.put(0, paint);
-                aVar.f54118g.setColor(i0.a.f(0.1f, i0.a.f(floatValue10, iArr2[1], aVar.h[1]), -1));
-                aVar.f54117f.setColor(i0.a.f(0.1f, i0.a.f(floatValue10, iArr2[0], aVar.h[0]), -16777216));
+                aVar.f54115b = linearGradient;
+                linearGradient.setLocalMatrix(aVar.f54116c);
+                paint.setShader(aVar.f54115b);
+                aVar.f54114a.f25394r.put(0, paint);
+                aVar.f54119g.setColor(i0.a.f(0.1f, i0.a.f(floatValue10, iArr2[1], aVar.h[1]), -1));
+                aVar.f54118f.setColor(i0.a.f(0.1f, i0.a.f(floatValue10, iArr2[0], aVar.h[0]), -16777216));
                 aVar.invalidateSelf();
                 return;
             case 27:
@@ -342,17 +342,17 @@ public final class de implements ValueAnimator.AnimatorUpdateListener {
                 if (floatValue11 < 0.5f) {
                     float f17 = floatValue11 / 0.5f;
                     q1Var.setRotationY(90.0f * f17);
-                    q1Var.f55916z0 = ((1.0f - f17) * 0.3f) + 0.7f;
+                    q1Var.f55917z0 = ((1.0f - f17) * 0.3f) + 0.7f;
                     q1Var.invalidate();
                     return;
                 }
                 if (!zArr2[0]) {
                     zArr2[0] = true;
-                    q1Var.f55908r0.b(q1Var.f55915y0, false);
+                    q1Var.f55909r0.b(q1Var.f55916y0, false);
                 }
                 float f18 = (floatValue11 - 0.5f) / 0.5f;
                 q1Var.setRotationY((1.0f - f18) * (-90.0f));
-                q1Var.f55916z0 = (f18 * 0.3f) + 0.7f;
+                q1Var.f55917z0 = (f18 * 0.3f) + 0.7f;
                 q1Var.invalidate();
                 return;
         }

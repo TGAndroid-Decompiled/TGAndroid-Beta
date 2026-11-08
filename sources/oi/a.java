@@ -40,12 +40,12 @@ public final class a {
             d dVar = new d();
             this.f21024g = dVar;
             ri.f fVar = new ri.f(cVar);
-            fVar.f54572f = cVar;
+            fVar.f54573f = cVar;
             fVar.h = dVar.d(2);
             this.h = fVar;
             ri.f fVar2 = new ri.f(cVar);
             this.f21025i = fVar2;
-            fVar2.f54572f = cVar;
+            fVar2.f54573f = cVar;
             fVar2.h = dVar.d(3);
             dh.c cVar2 = new dh.c(fVar, fVar2, cVar);
             this.f21021c = cVar2;
@@ -63,7 +63,7 @@ public final class a {
             this.f21027k = dVar.d(1);
             return;
         }
-        this.f21027k = ri.e.f54567a;
+        this.f21027k = ri.e.f54568a;
         this.f21024g = null;
         this.h = null;
         this.f21025i = null;
@@ -96,38 +96,38 @@ public final class a {
         pi.g gVar = new pi.g(g0.L(32.0f));
         pi.g gVar2 = new pi.g(g0.L(56.0f));
         pi.g gVar3 = new pi.g(g0.L(48.0f));
-        if (fVar.f53674y != 1) {
-            fVar.f53674y = 1;
-            fVar.f53672w = true;
-            fVar.f53673x = true;
+        if (fVar.f53675y != 1) {
+            fVar.f53675y = 1;
+            fVar.f53673w = true;
+            fVar.f53674x = true;
             fVar.invalidateSelf();
         }
         fVar.G = this.f21020b;
-        fVar.f53672w = true;
+        fVar.f53673w = true;
         fVar.updateColors();
         fVar.invalidateSelf();
         fVar.I = 160;
         ri.c cVar = fVar.G;
         if (cVar != null) {
-            fVar.H = k6.r1(160 / 255.0f, cVar.f54563b);
+            fVar.H = k6.r1(160 / 255.0f, cVar.f54564b);
         }
-        fVar.f53672w = true;
+        fVar.f53673w = true;
         fVar.invalidateSelf();
         fVar.D = gVar;
-        fVar.f53672w = true;
+        fVar.f53673w = true;
         fVar.invalidateSelf();
         fVar.E = gVar2;
-        fVar.f53672w = true;
+        fVar.f53673w = true;
         fVar.invalidateSelf();
         fVar.K = 210;
         ri.c cVar2 = fVar.G;
         if (cVar2 != null) {
-            fVar.J = k6.r1(210 / 255.0f, cVar2.f54563b);
+            fVar.J = k6.r1(210 / 255.0f, cVar2.f54564b);
         }
-        fVar.f53673x = true;
+        fVar.f53674x = true;
         fVar.invalidateSelf();
         fVar.F = gVar3;
-        fVar.f53673x = true;
+        fVar.f53674x = true;
         fVar.invalidateSelf();
         this.f21019a.f21101c.add(new p(view, fVar));
         return fVar;
@@ -138,38 +138,38 @@ public final class a {
         pi.g gVar = new pi.g(g0.L(28.0f));
         pi.g gVar2 = new pi.g(g0.L(40.0f));
         pi.g gVar3 = new pi.g(g0.L(30.0f));
-        if (fVar.f53674y != 4) {
-            fVar.f53674y = 4;
-            fVar.f53672w = true;
-            fVar.f53673x = true;
+        if (fVar.f53675y != 4) {
+            fVar.f53675y = 4;
+            fVar.f53673w = true;
+            fVar.f53674x = true;
             fVar.invalidateSelf();
         }
         fVar.G = this.f21020b;
-        fVar.f53672w = true;
+        fVar.f53673w = true;
         fVar.updateColors();
         fVar.invalidateSelf();
         fVar.I = 160;
         ri.c cVar = fVar.G;
         if (cVar != null) {
-            fVar.H = k6.r1(160 / 255.0f, cVar.f54563b);
+            fVar.H = k6.r1(160 / 255.0f, cVar.f54564b);
         }
-        fVar.f53672w = true;
+        fVar.f53673w = true;
         fVar.invalidateSelf();
         fVar.D = gVar;
-        fVar.f53672w = true;
+        fVar.f53673w = true;
         fVar.invalidateSelf();
         fVar.E = gVar2;
-        fVar.f53672w = true;
+        fVar.f53673w = true;
         fVar.invalidateSelf();
         fVar.K = 210;
         ri.c cVar2 = fVar.G;
         if (cVar2 != null) {
-            fVar.J = k6.r1(210 / 255.0f, cVar2.f54563b);
+            fVar.J = k6.r1(210 / 255.0f, cVar2.f54564b);
         }
-        fVar.f53673x = true;
+        fVar.f53674x = true;
         fVar.invalidateSelf();
         fVar.F = gVar3;
-        fVar.f53673x = true;
+        fVar.f53674x = true;
         fVar.invalidateSelf();
         this.f21019a.f21101c.add(new p(view, fVar));
         return fVar;

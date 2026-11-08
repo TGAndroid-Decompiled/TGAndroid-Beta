@@ -32,7 +32,7 @@ public final class yx extends oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        return d1Var.f57043a instanceof pj0;
+        return d1Var.f57044a instanceof pj0;
     }
 
     public final int E(Object obj) {
@@ -151,8 +151,8 @@ public final class yx extends oj0 {
         int i11;
         hy hyVar = this.f40822w;
         int i12 = hyVar.f34400c1;
-        int i13 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i13 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         SparseArray sparseArray = this.h;
         if (i13 != 0) {
             int i14 = 1;

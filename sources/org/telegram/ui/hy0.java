@@ -128,7 +128,7 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
         if (bArr2 != null) {
             bArr = Arrays.copyOf(bArr2, bArr2.length);
         }
-        a8.ia.p(eVar.f53728x.isEmpty());
+        a8.ia.p(eVar.f53729x.isEmpty());
         eVar.K = bArr;
         return eVar;
     }
@@ -171,21 +171,21 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
         org.telegram.ui.Components.vy vyVar = (org.telegram.ui.Components.vy) this.f46526b;
         v4.d1 U = RecyclerView.U(view);
         if (U != null) {
-            View view2 = U.f57043a;
+            View view2 = U.f57044a;
             RecyclerView recyclerView = (RecyclerView) vyVar.f39747b;
-            int i7 = U.f57059s;
+            int i7 = U.f57060s;
             if (i7 != -1) {
-                U.f57058r = i7;
+                U.f57059r = i7;
             } else {
-                WeakHashMap weakHashMap = r0.i0.f54190a;
-                U.f57058r = view2.getImportantForAccessibility();
+                WeakHashMap weakHashMap = r0.i0.f54191a;
+                U.f57059r = view2.getImportantForAccessibility();
             }
             if (recyclerView.c0()) {
-                U.f57059s = 4;
+                U.f57060s = 4;
                 recyclerView.K0.add(U);
                 return;
             }
-            WeakHashMap weakHashMap2 = r0.i0.f54190a;
+            WeakHashMap weakHashMap2 = r0.i0.f54191a;
             view2.setImportantForAccessibility(4);
         }
     }
@@ -216,16 +216,16 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
             }
             v4.d1 U = RecyclerView.U((View) arrayList.get(size));
             if (U != null) {
-                int i10 = U.f57058r;
+                int i10 = U.f57059r;
                 if (recyclerView.c0()) {
-                    U.f57059s = i10;
+                    U.f57060s = i10;
                     recyclerView.K0.add(U);
                 } else {
-                    View view = U.f57043a;
-                    WeakHashMap weakHashMap = r0.i0.f54190a;
+                    View view = U.f57044a;
+                    WeakHashMap weakHashMap = r0.i0.f54191a;
                     view.setImportantForAccessibility(i10);
                 }
-                U.f57058r = 0;
+                U.f57059r = 0;
             }
             arrayList.remove(size);
         }
@@ -295,16 +295,16 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
             long longValue = l10.longValue();
             JobInfo.Builder builder = new JobInfo.Builder(value, componentName);
             builder.setMinimumLatency(aVar.a(dVar, longValue, i7));
-            Set set = ((u5.b) aVar.f56340b.get(dVar)).f56343c;
-            if (set.contains(u5.c.f56344a)) {
+            Set set = ((u5.b) aVar.f56341b.get(dVar)).f56344c;
+            if (set.contains(u5.c.f56345a)) {
                 builder.setRequiredNetworkType(2);
             } else {
                 builder.setRequiredNetworkType(1);
             }
-            if (set.contains(u5.c.f56346c)) {
+            if (set.contains(u5.c.f56347c)) {
                 builder.setRequiresCharging(true);
             }
-            if (set.contains(u5.c.f56345b)) {
+            if (set.contains(u5.c.f56346b)) {
                 builder.setRequiresDeviceIdle(true);
             }
             PersistableBundle persistableBundle = new PersistableBundle();
@@ -349,16 +349,16 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
         }
         wf.a aVar2 = (wf.a) this.d;
         if (aVar2 != null) {
-            h6.h hVar = aVar2.f57647a;
+            h6.h hVar = aVar2.f57648a;
             q6.m.d("Must be called from the main thread.");
             hVar.f14253i.remove(aVar2);
         }
         if (aVar != null) {
-            aVar.f57647a.p(aVar);
+            aVar.f57648a.p(aVar);
             g7.c cVar3 = (g7.c) this.f46527c;
             if (cVar3 != null) {
                 aVar.d = cVar3;
-                aVar.f57652g = 0;
+                aVar.f57653g = 0;
                 aVar.h = 0;
                 aVar.p();
             }
@@ -392,16 +392,16 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
             v4.d1 U = RecyclerView.U(view);
             if (U != null) {
                 RecyclerView recyclerView = (RecyclerView) vyVar.f39747b;
-                int i7 = U.f57058r;
+                int i7 = U.f57059r;
                 if (recyclerView.c0()) {
-                    U.f57059s = i7;
+                    U.f57060s = i7;
                     recyclerView.K0.add(U);
                 } else {
-                    View view2 = U.f57043a;
-                    WeakHashMap weakHashMap = r0.i0.f54190a;
+                    View view2 = U.f57044a;
+                    WeakHashMap weakHashMap = r0.i0.f54191a;
                     view2.setImportantForAccessibility(i7);
                 }
-                U.f57058r = 0;
+                U.f57059r = 0;
             }
         }
     }
@@ -513,7 +513,7 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
             if (!U.l() && !U.r()) {
                 throw new IllegalArgumentException("Called attach on a child which is not detached: " + U + recyclerView.C());
             }
-            U.f57052l &= -257;
+            U.f57053l &= -257;
         }
         recyclerView.attachViewToParent(view, z10, layoutParams);
     }
@@ -542,7 +542,7 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
     public void n() {
         android.support.v4.media.session.a0 a0Var = (android.support.v4.media.session.a0) this.f46526b;
         if (a0Var != null) {
-            int i7 = ((s4.e) this.d).f54798n.d;
+            int i7 = ((s4.e) this.d).f54799n.d;
             android.support.v4.media.session.u uVar = (android.support.v4.media.session.u) a0Var.f1763b;
             uVar.getClass();
             AudioAttributes.Builder builder = new AudioAttributes.Builder();
@@ -595,7 +595,7 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
 
     public tf.e s(tf.f fVar) {
         InflaterInputStream inflaterInputStream;
-        int i7 = fVar.f55531c;
+        int i7 = fVar.f55532c;
         InputStream inputStream = (uf.a) this.f46526b;
         if (fVar.d) {
             org.telegram.ui.Components.vy vyVar = (org.telegram.ui.Components.vy) this.d;
@@ -627,14 +627,14 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
             inputStream = new ByteArrayInputStream(bArr, 0, i11);
             i7 = i11;
         }
-        if (!fVar.f55533f) {
-            if (fVar.f55532e) {
-                i7 = fVar.f55534g;
+        if (!fVar.f55534f) {
+            if (fVar.f55533e) {
+                i7 = fVar.f55535g;
                 inflaterInputStream = new InflaterInputStream(inputStream);
             } else {
                 inflaterInputStream = inputStream;
             }
-            return new tf.e(inflaterInputStream, fVar.f55530b, i7, (tf.h) this.f46527c, fVar);
+            return new tf.e(inflaterInputStream, fVar.f55531b, i7, (tf.h) this.f46527c, fVar);
         }
         throw new Exception("Frame encryption is not supported");
     }
@@ -843,7 +843,7 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
             case 27:
                 this.f46526b = new HashMap();
                 this.f46527c = new HashMap();
-                this.d = y7.i.f59044c;
+                this.d = y7.i.f59045c;
                 return;
             default:
                 this.f46526b = new Object();

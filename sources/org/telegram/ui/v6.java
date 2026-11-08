@@ -24,7 +24,7 @@ public final class v6 extends org.telegram.ui.Components.nc {
         while (true) {
             if (i11 < y6Var.f52107f0.size()) {
                 u6 u6Var = (u6) y6Var.f52107f0.get(i11);
-                if (u6Var != null && u6Var.f54531a == 11 && u6Var.f50235f == i7) {
+                if (u6Var != null && u6Var.f54532a == 11 && u6Var.f50235f == i7) {
                     i10 = i11;
                     break;
                 }

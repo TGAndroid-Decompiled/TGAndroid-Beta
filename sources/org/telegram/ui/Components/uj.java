@@ -167,7 +167,7 @@ public final class uj extends kj0 {
 
     @Override
     public final boolean V(int i7, int i10, v4.d1 d1Var) {
-        int i11 = d1Var.f57047f;
+        int i11 = d1Var.f57048f;
         if (i11 == 1 || i11 == 4) {
             return true;
         }
@@ -179,8 +179,8 @@ public final class uj extends kj0 {
         String e02;
         boolean z9;
         int i11 = i10;
-        int i12 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i12 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         if (i12 != 2 && i12 != 3) {
             HashMap hashMap = this.Q;
             ArrayList arrayList = this.P;

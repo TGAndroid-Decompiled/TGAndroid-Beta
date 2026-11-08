@@ -88,12 +88,12 @@ public final class a0 implements org.telegram.ui.ActionBar.r1, p4.l0, h2.j, p4.a
     @Override
     public void a(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, boolean z9) {
         zh.z1 z1Var = (zh.z1) this.f51086b;
-        up0 up0Var = z1Var.f60621a;
-        z1Var.f60624e.f4915l.remove((TL_stars.SavedStarGift) this.f51087c);
+        up0 up0Var = z1Var.f60622a;
+        z1Var.f60625e.f4915l.remove((TL_stars.SavedStarGift) this.f51087c);
         z1Var.f(true);
-        int i7 = z1Var.f60622b;
+        int i7 = z1Var.f60623b;
         if (j3 == p10.i(i7).e()) {
-            hc a02 = hc.a0(up0Var.f60282a);
+            hc a02 = hc.a0(up0Var.f60283a);
             TLRPC.Document document = tL_starGiftUnique.getDocument();
             String M0 = id.M0(2131752887, null);
             StringBuilder sb2 = new StringBuilder();
@@ -103,7 +103,7 @@ public final class a0 implements org.telegram.ui.ActionBar.r1, p4.l0, h2.j, p4.a
             O.f32553r = false;
             O.j();
         } else {
-            cc O2 = hc.a0(up0Var.f60282a).O(tL_starGiftUnique.getDocument(), id.M0(2131752885, null), id.a0(null, null, 2131752886, m5.s(i7, j3)));
+            cc O2 = hc.a0(up0Var.f60283a).O(tL_starGiftUnique.getDocument(), id.M0(2131752885, null), id.a0(null, null, 2131752886, m5.s(i7, j3)));
             O2.f32553r = false;
             O2.j();
         }
@@ -141,7 +141,7 @@ public final class a0 implements org.telegram.ui.ActionBar.r1, p4.l0, h2.j, p4.a
             case 5:
                 p4.v vVar = (p4.v) this.f51087c;
                 p4.g1 g1Var2 = (p4.g1) obj;
-                p4.d0 d0Var = (p4.d0) ((p4.c1) this.f51086b).f53182a.get();
+                p4.d0 d0Var = (p4.d0) ((p4.c1) this.f51086b).f53183a.get();
                 if (d0Var != null && !d0Var.j()) {
                     d0Var.g(vVar, false);
                     return;
@@ -151,14 +151,14 @@ public final class a0 implements org.telegram.ui.ActionBar.r1, p4.l0, h2.j, p4.a
                 p4.c1 c1Var2 = (p4.c1) this.f51086b;
                 Surface surface = (Surface) this.f51087c;
                 p4.g1 g1Var3 = (p4.g1) obj;
-                ((p4.d0) c1Var2.f53182a.get()).getClass();
+                ((p4.d0) c1Var2.f53183a.get()).getClass();
                 if (surface == null) {
                     g1Var3.S(null);
-                    c1Var2.f53187i = null;
+                    c1Var2.f53188i = null;
                     return;
                 }
                 p4.b1 b1Var = new p4.b1(surface);
-                c1Var2.f53187i = b1Var;
+                c1Var2.f53188i = b1Var;
                 g1Var3.S(b1Var);
                 return;
             default:
@@ -175,10 +175,10 @@ public final class a0 implements org.telegram.ui.ActionBar.r1, p4.l0, h2.j, p4.a
         o5.i iVar = (o5.i) this.f51087c;
         SQLiteDatabase sQLiteDatabase = (SQLiteDatabase) obj;
         v5.a aVar = gVar.d;
-        ArrayList d = gVar.d(sQLiteDatabase, iVar, aVar.f57220b);
+        ArrayList d = gVar.d(sQLiteDatabase, iVar, aVar.f57221b);
         for (l5.d dVar : l5.d.values()) {
             if (dVar != iVar.f20828c) {
-                int size = aVar.f57220b - d.size();
+                int size = aVar.f57221b - d.size();
                 if (size <= 0) {
                     break;
                 }
@@ -188,7 +188,7 @@ public final class a0 implements org.telegram.ui.ActionBar.r1, p4.l0, h2.j, p4.a
         HashMap hashMap = new HashMap();
         StringBuilder sb2 = new StringBuilder("event_id IN (");
         for (int i7 = 0; i7 < d.size(); i7++) {
-            sb2.append(((v5.b) d.get(i7)).f57223a);
+            sb2.append(((v5.b) d.get(i7)).f57224a);
             if (i7 < d.size() - 1) {
                 sb2.append(',');
             }
@@ -213,13 +213,13 @@ public final class a0 implements org.telegram.ui.ActionBar.r1, p4.l0, h2.j, p4.a
         ListIterator listIterator = d.listIterator();
         while (listIterator.hasNext()) {
             v5.b bVar = (v5.b) listIterator.next();
-            long j10 = bVar.f57223a;
+            long j10 = bVar.f57224a;
             if (hashMap.containsKey(Long.valueOf(j10))) {
-                h2.e0 c10 = bVar.f57225c.c();
+                h2.e0 c10 = bVar.f57226c.c();
                 for (v5.f fVar : (Set) hashMap.get(Long.valueOf(j10))) {
-                    c10.a(fVar.f57226a, fVar.f57227b);
+                    c10.a(fVar.f57227a, fVar.f57228b);
                 }
-                listIterator.set(new v5.b(j10, bVar.f57224b, c10.b()));
+                listIterator.set(new v5.b(j10, bVar.f57225b, c10.b()));
             }
         }
         return d;
@@ -272,7 +272,7 @@ public final class a0 implements org.telegram.ui.ActionBar.r1, p4.l0, h2.j, p4.a
         Context context = (Context) this.f51086b;
         e2.u uVar = (e2.u) this.f51087c;
         u2.o oVar = (u2.o) obj;
-        String str = oVar.f56260b;
+        String str = oVar.f56261b;
         if ((!str.equals(uVar.f10615s) && !str.equals(u2.w.c(uVar))) || !oVar.c(context, uVar, false) || !oVar.d(uVar)) {
             return 0;
         }
@@ -284,8 +284,8 @@ public final class a0 implements org.telegram.ui.ActionBar.r1, p4.l0, h2.j, p4.a
         f3.o aVar;
         x2.q qVar = (x2.q) this.f51086b;
         e2.u uVar = (e2.u) this.f51087c;
-        if (qVar.f58441c.w(uVar)) {
-            aVar = new c4.h(qVar.f58441c.l(uVar), null);
+        if (qVar.f58442c.w(uVar)) {
+            aVar = new c4.h(qVar.f58442c.l(uVar), null);
         } else {
             aVar = new n3.a(uVar);
         }
@@ -296,17 +296,17 @@ public final class a0 implements org.telegram.ui.ActionBar.r1, p4.l0, h2.j, p4.a
     public void f(p4.v vVar) {
         switch (this.f51085a) {
             case 2:
-                ((p4.d) this.f51087c).f(((p4.m0) this.f51086b).h.f53217t);
+                ((p4.d) this.f51087c).f(((p4.m0) this.f51086b).h.f53218t);
                 return;
             default:
                 p4.m0 m0Var = (p4.m0) this.f51086b;
                 m0Var.getClass();
-                String str = ((q4.h) this.f51087c).f53772a;
+                String str = ((q4.h) this.f51087c).f53773a;
                 if (TextUtils.isEmpty(str)) {
                     h2.a.l("MediaSessionLegacyStub", "onRemoveQueueItem(): Media ID shouldn't be null");
                     return;
                 }
-                p4.g1 g1Var = m0Var.h.f53217t;
+                p4.g1 g1Var = m0Var.h.f53218t;
                 if (!g1Var.p0(17)) {
                     h2.a.l("MediaSessionLegacyStub", "Can't remove item by ID without COMMAND_GET_TIMELINE being available");
                     return;
@@ -419,12 +419,12 @@ public final class a0 implements org.telegram.ui.ActionBar.r1, p4.l0, h2.j, p4.a
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
         long j3 = ((TL_stars.SavedStarGift) ((x31) obj).G).gift.f27185id;
-        if (c2Var.f60270i1 == j3) {
-            c2Var.f60270i1 = 0L;
+        if (c2Var.f60271i1 == j3) {
+            c2Var.f60271i1 = 0L;
         } else {
-            c2Var.f60270i1 = j3;
+            c2Var.f60271i1 = j3;
         }
-        if (c2Var.f60270i1 != 0) {
+        if (c2Var.f60271i1 != 0) {
             z9 = true;
         } else {
             z9 = false;
@@ -436,7 +436,7 @@ public final class a0 implements org.telegram.ui.ActionBar.r1, p4.l0, h2.j, p4.a
                 View childAt = viewGroup.getChildAt(i7);
                 if (childAt instanceof ql0) {
                     ql0 ql0Var = (ql0) childAt;
-                    if (c2Var.f60270i1 == ql0Var.getGiftId()) {
+                    if (c2Var.f60271i1 == ql0Var.getGiftId()) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -501,7 +501,7 @@ public final class a0 implements org.telegram.ui.ActionBar.r1, p4.l0, h2.j, p4.a
                 int i12 = 0;
                 while (i12 < arrayList.size()) {
                     j10 = ((xr) arrayList.get(i12)).f26520a;
-                    fVar.f58726e.getSendMessagesHelper().r0(ez.b(str2, j10, null, null, null, true, null, null, null, true, 0, 0, null, false));
+                    fVar.f58727e.getSendMessagesHelper().r0(ez.b(str2, j10, null, null, null, true, null, null, null, true, 0, 0, null, false));
                     i12++;
                     fVar = fVar;
                 }

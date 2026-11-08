@@ -121,19 +121,19 @@ public final class w30 implements TextureView.SurfaceTextureListener {
                 return;
             case 4:
                 wi.k kVar = (wi.k) this.f39794b;
-                wi.o oVar = kVar.f58025j;
+                wi.o oVar = kVar.f58026j;
                 oVar.b("preview surface available: view=" + i7 + "x" + i10);
-                Handler handler = kVar.f58035n;
-                if (kVar.V && handler != null && kVar.f58006c.isAvailable()) {
+                Handler handler = kVar.f58036n;
+                if (kVar.V && handler != null && kVar.f58007c.isAvailable()) {
                     handler.post(new wi.a(kVar, 8));
                     return;
                 }
                 return;
             default:
                 xh.e eVar = (xh.e) this.f39794b;
-                if (eVar.f58782f == null) {
+                if (eVar.f58783f == null) {
                     xh.d dVar = new xh.d(eVar, surfaceTexture, i7, i10, new xh.c(eVar, 1));
-                    eVar.f58782f = dVar;
+                    eVar.f58783f = dVar;
                     dVar.start();
                     return;
                 }
@@ -197,17 +197,17 @@ public final class w30 implements TextureView.SurfaceTextureListener {
             case 3:
                 return true;
             case 4:
-                ((wi.k) this.f39794b).f58025j.b("preview surface destroyed: active=" + ((wi.k) this.f39794b).V);
+                ((wi.k) this.f39794b).f58026j.b("preview surface destroyed: active=" + ((wi.k) this.f39794b).V);
                 if (((wi.k) this.f39794b).V) {
                     ((wi.k) this.f39794b).N(new IllegalStateException("Preview SurfaceTexture was destroyed"));
                     return true;
                 }
                 return true;
             default:
-                xh.d dVar = ((xh.e) this.f39794b).f58782f;
+                xh.d dVar = ((xh.e) this.f39794b).f58783f;
                 if (dVar != null) {
-                    dVar.f58766a = false;
-                    ((xh.e) this.f39794b).f58782f = null;
+                    dVar.f58767a = false;
+                    ((xh.e) this.f39794b).f58783f = null;
                     return true;
                 }
                 return true;
@@ -245,17 +245,17 @@ public final class w30 implements TextureView.SurfaceTextureListener {
                 return;
             case 4:
                 wi.k kVar = (wi.k) this.f39794b;
-                wi.o oVar = kVar.f58025j;
+                wi.o oVar = kVar.f58026j;
                 oVar.b("preview surface size changed: view=" + i7 + "x" + i10);
                 kVar.b0();
                 return;
             default:
-                xh.d dVar = ((xh.e) this.f39794b).f58782f;
+                xh.d dVar = ((xh.e) this.f39794b).f58783f;
                 if (dVar != null) {
-                    synchronized (dVar.f58769e) {
-                        dVar.f58770f = true;
+                    synchronized (dVar.f58770e) {
+                        dVar.f58771f = true;
                         dVar.h = i7;
-                        dVar.f58771n = i10;
+                        dVar.f58772n = i10;
                     }
                     return;
                 }
@@ -287,9 +287,9 @@ public final class w30 implements TextureView.SurfaceTextureListener {
             case 4:
                 if (((wi.k) this.f39794b).Y) {
                     ((wi.k) this.f39794b).Y = false;
-                    wi.o oVar = ((wi.k) this.f39794b).f58025j;
+                    wi.o oVar = ((wi.k) this.f39794b).f58026j;
                     StringBuilder sb2 = new StringBuilder("camera switch first preview frame: path=");
-                    if (((wi.k) this.f39794b).f58032l0) {
+                    if (((wi.k) this.f39794b).f58033l0) {
                         str = "DUAL_ACTIVE";
                     } else {
                         str = "SEQUENTIAL";
@@ -298,8 +298,8 @@ public final class w30 implements TextureView.SurfaceTextureListener {
                     sb2.append(", totalElapsedMs=");
                     sb2.append(wi.k.A(((wi.k) this.f39794b).G0));
                     oVar.b(sb2.toString());
-                    wi.t0 t0Var = (wi.t0) ((wi.k) this.f39794b).f58028k.f37758b;
-                    Handler handler = t0Var.f58199i;
+                    wi.t0 t0Var = (wi.t0) ((wi.k) this.f39794b).f58029k.f37758b;
+                    Handler handler = t0Var.f58200i;
                     rt rtVar = t0Var.d;
                     Objects.requireNonNull(rtVar);
                     handler.post(new wg.p(rtVar, 3));
@@ -309,28 +309,28 @@ public final class w30 implements TextureView.SurfaceTextureListener {
                 wi.k kVar = (wi.k) this.f39794b;
                 if (kVar.H0 == 0) {
                     kVar.H0 = elapsedRealtimeNanos;
-                    wi.o oVar2 = kVar.f58025j;
+                    wi.o oVar2 = kVar.f58026j;
                     StringBuilder sb3 = new StringBuilder("preview frame delivery started: thread=");
                     sb3.append(Thread.currentThread().getName());
                     sb3.append(", view=");
-                    sb3.append(((wi.k) this.f39794b).f58006c.getWidth());
+                    sb3.append(((wi.k) this.f39794b).f58007c.getWidth());
                     sb3.append("x");
-                    sb3.append(((wi.k) this.f39794b).f58006c.getHeight());
+                    sb3.append(((wi.k) this.f39794b).f58007c.getHeight());
                     sb3.append(", buffer=");
-                    sb3.append(((wi.k) this.f39794b).f58043q);
+                    sb3.append(((wi.k) this.f39794b).f58044q);
                     sb3.append(", attached=");
-                    sb3.append(((wi.k) this.f39794b).f58006c.isAttachedToWindow());
+                    sb3.append(((wi.k) this.f39794b).f58007c.isAttachedToWindow());
                     sb3.append(", shown=");
-                    sb3.append(((wi.k) this.f39794b).f58006c.isShown());
+                    sb3.append(((wi.k) this.f39794b).f58007c.isShown());
                     sb3.append(", alpha=");
-                    sb3.append(((wi.k) this.f39794b).f58006c.getAlpha());
+                    sb3.append(((wi.k) this.f39794b).f58007c.getAlpha());
                     sb3.append(", hardwareAccelerated=");
-                    sb3.append(((wi.k) this.f39794b).f58006c.isHardwareAccelerated());
+                    sb3.append(((wi.k) this.f39794b).f58007c.isHardwareAccelerated());
                     sb3.append(", displayRefreshRate=");
-                    if (((wi.k) this.f39794b).f58006c.getDisplay() == null) {
+                    if (((wi.k) this.f39794b).f58007c.getDisplay() == null) {
                         valueOf = "unknown";
                     } else {
-                        valueOf = Float.valueOf(((wi.k) this.f39794b).f58006c.getDisplay().getRefreshRate());
+                        valueOf = Float.valueOf(((wi.k) this.f39794b).f58007c.getDisplay().getRefreshRate());
                     }
                     sb3.append(valueOf);
                     oVar2.b(sb3.toString());
@@ -373,20 +373,20 @@ public final class w30 implements TextureView.SurfaceTextureListener {
                 kVar3.K0 = timestamp;
                 kVar3.I0++;
                 if (elapsedRealtimeNanos - kVar3.H0 >= 5000000000L) {
-                    TextureView textureView = kVar3.f58006c;
+                    TextureView textureView = kVar3.f58007c;
                     long j15 = kVar3.U0 - kVar3.T0;
                     if (j15 > j3) {
                         long j16 = kVar3.S0;
                         if (j16 > 1) {
                             f10 = (((float) (j16 - 1)) * 1.0E9f) / ((float) j15);
-                            kVar3.f58025j.b("preview frame delivery: callbackFps=" + ((((float) kVar3.I0) * 1.0E9f) / ((float) j10)) + ", timestampFps=" + f10 + ", callbackIntervalMs={avg=" + wi.k.i(kVar3.M0, kVar3.L0) + ", min=" + (((float) kVar3.O0) / 1000000.0f) + ", max=" + (((float) kVar3.P0) / 1000000.0f) + ", jitter=" + wi.k.V(kVar3.N0, kVar3.M0, kVar3.L0) + "}, gaps={over50ms=" + kVar3.Q0 + ", over100ms=" + kVar3.R0 + "}, nonMonotonicTimestamps=" + kVar3.V0 + ", viewState={shown=" + textureView.isShown() + ", alpha=" + textureView.getAlpha() + ", windowVisibility=" + textureView.getWindowVisibility() + "}");
+                            kVar3.f58026j.b("preview frame delivery: callbackFps=" + ((((float) kVar3.I0) * 1.0E9f) / ((float) j10)) + ", timestampFps=" + f10 + ", callbackIntervalMs={avg=" + wi.k.i(kVar3.M0, kVar3.L0) + ", min=" + (((float) kVar3.O0) / 1000000.0f) + ", max=" + (((float) kVar3.P0) / 1000000.0f) + ", jitter=" + wi.k.V(kVar3.N0, kVar3.M0, kVar3.L0) + "}, gaps={over50ms=" + kVar3.Q0 + ", over100ms=" + kVar3.R0 + "}, nonMonotonicTimestamps=" + kVar3.V0 + ", viewState={shown=" + textureView.isShown() + ", alpha=" + textureView.getAlpha() + ", windowVisibility=" + textureView.getWindowVisibility() + "}");
                             kVar3.P();
                             kVar3.H0 = elapsedRealtimeNanos;
                             return;
                         }
                     }
                     f10 = 0.0f;
-                    kVar3.f58025j.b("preview frame delivery: callbackFps=" + ((((float) kVar3.I0) * 1.0E9f) / ((float) j10)) + ", timestampFps=" + f10 + ", callbackIntervalMs={avg=" + wi.k.i(kVar3.M0, kVar3.L0) + ", min=" + (((float) kVar3.O0) / 1000000.0f) + ", max=" + (((float) kVar3.P0) / 1000000.0f) + ", jitter=" + wi.k.V(kVar3.N0, kVar3.M0, kVar3.L0) + "}, gaps={over50ms=" + kVar3.Q0 + ", over100ms=" + kVar3.R0 + "}, nonMonotonicTimestamps=" + kVar3.V0 + ", viewState={shown=" + textureView.isShown() + ", alpha=" + textureView.getAlpha() + ", windowVisibility=" + textureView.getWindowVisibility() + "}");
+                    kVar3.f58026j.b("preview frame delivery: callbackFps=" + ((((float) kVar3.I0) * 1.0E9f) / ((float) j10)) + ", timestampFps=" + f10 + ", callbackIntervalMs={avg=" + wi.k.i(kVar3.M0, kVar3.L0) + ", min=" + (((float) kVar3.O0) / 1000000.0f) + ", max=" + (((float) kVar3.P0) / 1000000.0f) + ", jitter=" + wi.k.V(kVar3.N0, kVar3.M0, kVar3.L0) + "}, gaps={over50ms=" + kVar3.Q0 + ", over100ms=" + kVar3.R0 + "}, nonMonotonicTimestamps=" + kVar3.V0 + ", viewState={shown=" + textureView.isShown() + ", alpha=" + textureView.getAlpha() + ", windowVisibility=" + textureView.getWindowVisibility() + "}");
                     kVar3.P();
                     kVar3.H0 = elapsedRealtimeNanos;
                     return;

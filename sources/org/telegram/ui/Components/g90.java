@@ -70,12 +70,12 @@ public abstract class g90 extends FrameLayout implements org.telegram.messenger.
         this.d = z80Var;
         z80Var.O = new a90(this);
         v4.k kVar = new v4.k();
-        kVar.f57115c = 150L;
-        kVar.f57116e = 150L;
-        kVar.f57117f = 150L;
-        kVar.f57118g = 150L;
+        kVar.f57116c = 150L;
+        kVar.f57117e = 150L;
+        kVar.f57118f = 150L;
+        kVar.f57119g = 150L;
         kVar.d = 150L;
-        kVar.f57099o = xq.f40366f;
+        kVar.f57100o = xq.f40366f;
         kVar.C = false;
         f90Var.setItemAnimator(kVar);
         f90Var.setClipToPadding(false);
@@ -310,7 +310,7 @@ public abstract class g90 extends FrameLayout implements org.telegram.messenger.
     public final boolean g() {
         v4.n0 layoutManager = this.f33894b.getLayoutManager();
         jg.i0 i0Var = this.f33895c;
-        if (layoutManager == i0Var && i0Var.f57017t) {
+        if (layoutManager == i0Var && i0Var.f57018t) {
             return true;
         }
         return false;

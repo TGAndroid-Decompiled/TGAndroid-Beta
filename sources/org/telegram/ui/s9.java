@@ -391,7 +391,7 @@ public class s9 extends org.telegram.ui.ActionBar.f2 {
             float f10 = Float.MIN_VALUE;
             float f11 = Float.MAX_VALUE;
             int i14 = 0;
-            if (nVar != null && nVar.f56449b.k()) {
+            if (nVar != null && nVar.f56450b.k()) {
                 if (bitmap != null) {
                     hy0Var = new hy0(17);
                     int width = bitmap.getWidth();
@@ -425,8 +425,8 @@ public class s9 extends org.telegram.ui.ActionBar.f2 {
                 SparseArray e12 = this.V.e1(hy0Var);
                 if (e12.size() > 0) {
                     u8.m mVar4 = (u8.m) e12.valueAt(0);
-                    str = mVar4.f56439b;
-                    Point[] pointArr = mVar4.f56441e;
+                    str = mVar4.f56440b;
+                    Point[] pointArr = mVar4.f56442e;
                     PointF[] k02 = k0(pointArr, i12, i13);
                     pointFArr4 = k02;
                     if (pointArr.length != 0) {
@@ -466,8 +466,8 @@ public class s9 extends org.telegram.ui.ActionBar.f2 {
                         SparseArray e13 = this.V.e1(hy0Var2);
                         if (e13.size() > 0) {
                             u8.m mVar5 = (u8.m) e13.valueAt(0);
-                            str = mVar5.f56439b;
-                            Point[] pointArr2 = mVar5.f56441e;
+                            str = mVar5.f56440b;
+                            Point[] pointArr2 = mVar5.f56442e;
                             PointF[] k03 = k0(pointArr2, i12, i13);
                             if (pointArr2.length == 0) {
                                 pointFArr4 = k03;
@@ -503,8 +503,8 @@ public class s9 extends org.telegram.ui.ActionBar.f2 {
                             SparseArray e14 = this.V.e1(hy0Var3);
                             if (e14.size() > 0) {
                                 u8.m mVar6 = (u8.m) e14.valueAt(0);
-                                String str2 = mVar6.f56439b;
-                                Point[] pointArr3 = mVar6.f56441e;
+                                String str2 = mVar6.f56440b;
+                                Point[] pointArr3 = mVar6.f56442e;
                                 PointF[] k04 = k0(pointArr3, width5, height5);
                                 if (pointArr3.length == 0) {
                                     rectF = null;

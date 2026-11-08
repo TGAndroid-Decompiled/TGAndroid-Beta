@@ -46,7 +46,7 @@ public final class tq extends na {
             }
         }
         v4.k kVar = new v4.k();
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         kVar.C = false;
         kVar.o(xq.h);
         kVar.n(350L);
@@ -138,7 +138,7 @@ public final class tq extends na {
         int i11 = this.f28649t0;
         pj0Var.setPadding(i11, 0, i11, org.telegram.messenger.g0.L((z10 ? 52 : 0) + 72));
         v4.k kVar = new v4.k();
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         kVar.C = false;
         kVar.o(xq.h);
         kVar.n(350L);

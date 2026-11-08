@@ -22,7 +22,7 @@ public final class ul0 extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57047f;
+        int i7 = d1Var.f57048f;
         if (i7 != 3 && i7 != 6 && i7 != 8 && i7 != 12) {
             return false;
         }
@@ -87,7 +87,7 @@ public final class ul0 extends org.telegram.ui.Components.oj0 {
         int i13;
         boolean z10;
         TLRPC.TL_peerColorCollectible tL_peerColorCollectible2;
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         bm0 bm0Var = this.f50373e;
         HashMap hashMap = bm0Var.M;
         ArrayList arrayList = bm0Var.f44445l0;
@@ -351,8 +351,8 @@ public final class ul0 extends org.telegram.ui.Components.oj0 {
         TLRPC.TL_peerColorCollectible tL_peerColorCollectible2;
         bm0 bm0Var = this.f50373e;
         ArrayList arrayList = bm0Var.f44445l0;
-        int i7 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i7 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         if (i7 == 10) {
             bm0Var.F = view;
             view.post(new rl0(bm0Var, 2));

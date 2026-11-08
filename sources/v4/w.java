@@ -6,11 +6,11 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.WeakHashMap;
 public final class w extends GestureDetector.SimpleOnGestureListener {
-    public boolean f57182a = true;
-    public final y f57183b;
+    public boolean f57183a = true;
+    public final y f57184b;
 
     public w(y yVar) {
-        this.f57183b = yVar;
+        this.f57184b = yVar;
     }
 
     @Override
@@ -21,25 +21,25 @@ public final class w extends GestureDetector.SimpleOnGestureListener {
     @Override
     public final void onLongPress(MotionEvent motionEvent) {
         d1 T;
-        if (this.f57182a) {
-            y yVar = this.f57183b;
+        if (this.f57183a) {
+            y yVar = this.f57184b;
             View m10 = yVar.m(motionEvent);
-            v vVar = yVar.f57195y;
+            v vVar = yVar.f57196y;
             if (m10 != null && (T = yVar.H.T(m10)) != null) {
                 RecyclerView recyclerView = yVar.H;
                 int e10 = vVar.e(recyclerView, T);
-                WeakHashMap weakHashMap = r0.i0.f54190a;
+                WeakHashMap weakHashMap = r0.i0.f54191a;
                 if ((vVar.b(e10, recyclerView.getLayoutDirection()) & 16711680) != 0) {
                     int pointerId = motionEvent.getPointerId(0);
-                    int i7 = yVar.f57194x;
+                    int i7 = yVar.f57195x;
                     if (pointerId == i7) {
                         int findPointerIndex = motionEvent.findPointerIndex(i7);
                         float x10 = motionEvent.getX(findPointerIndex);
                         float y10 = motionEvent.getY(findPointerIndex);
                         yVar.d = x10;
-                        yVar.f57188e = y10;
-                        yVar.f57191r = 0.0f;
-                        yVar.f57190n = 0.0f;
+                        yVar.f57189e = y10;
+                        yVar.f57192r = 0.0f;
+                        yVar.f57191n = 0.0f;
                         if (vVar.k()) {
                             yVar.r(T, 2);
                         }

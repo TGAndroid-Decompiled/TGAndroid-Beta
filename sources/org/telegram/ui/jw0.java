@@ -35,14 +35,14 @@ public final class jw0 extends org.telegram.ui.Components.oj0 {
                 return false;
             }
         } else {
-            View view = d1Var.f57043a;
+            View view = d1Var.f57044a;
             if (view instanceof org.telegram.ui.Cells.pa) {
                 Object currentObject = ((org.telegram.ui.Cells.pa) view).getCurrentObject();
                 if ((currentObject instanceof TLRPC.User) && org.telegram.messenger.t10.B((TLRPC.User) currentObject)) {
                     return false;
                 }
             }
-            int i7 = d1Var.f57047f;
+            int i7 = d1Var.f57048f;
             if (i7 == 1 || i7 == 5 || i7 == 7 || i7 == 11 || i7 == 31 || i7 == 28 || i7 == 12 || i7 == 13 || i7 == 9 || i7 == 10 || i7 == 25 || i7 == 32) {
                 return false;
             }
@@ -340,7 +340,7 @@ public final class jw0 extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final void y(v4.d1 d1Var) {
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         ProfileActivity profileActivity = this.f47047e;
         if (view == profileActivity.N) {
             profileActivity.P = true;
@@ -353,7 +353,7 @@ public final class jw0 extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final void z(v4.d1 d1Var) {
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         ProfileActivity profileActivity = this.f47047e;
         if (view == profileActivity.N) {
             profileActivity.P = false;

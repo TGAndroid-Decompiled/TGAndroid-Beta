@@ -4,14 +4,14 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.util.Log;
 public abstract class c {
-    public static final f5.a f53524a = new f5.a("CommonUtils", "");
+    public static final f5.a f53525a = new f5.a("CommonUtils", "");
 
     public static String a(Context context) {
         try {
             return String.valueOf(context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode);
         } catch (PackageManager.NameNotFoundException e10) {
             String concat = "Exception thrown when trying to get app version ".concat(e10.toString());
-            f5.a aVar = f53524a;
+            f5.a aVar = f53525a;
             if (Log.isLoggable(aVar.f11112a, 6)) {
                 String str = aVar.f11113b;
                 if (str != null) {

@@ -2,14 +2,14 @@ package wi;
 
 import java.io.File;
 public final class p0 {
-    public final long f58124a;
-    public final File f58125b;
-    public volatile long f58126c;
+    public final long f58125a;
+    public final File f58126b;
+    public volatile long f58127c;
     public volatile boolean d;
-    public volatile boolean f58127e;
+    public volatile boolean f58128e;
 
     public p0(long j3, File file) {
-        this.f58124a = j3;
-        this.f58125b = file;
+        this.f58125a = j3;
+        this.f58126b = file;
     }
 }

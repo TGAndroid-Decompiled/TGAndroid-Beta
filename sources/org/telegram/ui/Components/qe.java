@@ -76,7 +76,7 @@ public final class qe implements Runnable {
                         max = Math.max(i11 - 1, 0);
                     }
                     qo qoVar = voVar.f39065x1;
-                    qoVar.f57212a = max;
+                    qoVar.f57213a = max;
                     layoutManager.w0(qoVar);
                 }
                 voVar.G1 = i11;

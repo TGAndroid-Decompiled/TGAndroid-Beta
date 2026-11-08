@@ -42,7 +42,7 @@ public final class x50 extends FrameLayout {
             case 0:
                 RectF rectF = (RectF) this.f51777e;
                 fh.g gVar = (fh.g) this.d;
-                float f11 = ((z50) this.f51778f).f52455a.f55492f;
+                float f11 = ((z50) this.f51778f).f52455a.f55493f;
                 if (f11 >= 1.0f) {
                     float min = Math.min(1.0f, f11 / org.telegram.messenger.g0.L(44.0f));
                     float L = (1.0f - min) * org.telegram.messenger.g0.L(24.0f);
@@ -93,7 +93,7 @@ public final class x50 extends FrameLayout {
                                 q41Var.f37189e3.getClass();
                                 int H = v4.n0.H(childAt);
                                 View[] viewArr2 = viewPages;
-                                if (H >= 0 && H < l41Var.D.size() && (G = l41Var.G(H)) != null && G.f54531a == 28) {
+                                if (H >= 0 && H < l41Var.D.size() && (G = l41Var.G(H)) != null && G.f54532a == 28) {
                                     paddingTop = childAt.getY() + frameLayout.getPaddingTop();
                                 }
                                 i11++;
@@ -109,7 +109,7 @@ public final class x50 extends FrameLayout {
                                         if (i12 < q41Var.getChildCount()) {
                                             View childAt2 = q41Var.getChildAt(i12);
                                             q41Var.f37189e3.getClass();
-                                            if (l41Var.G(v4.n0.H(childAt2)).f54531a == 28) {
+                                            if (l41Var.G(v4.n0.H(childAt2)).f54532a == 28) {
                                                 f14 = childAt2.getY() + frameLayout.getPaddingTop();
                                             } else {
                                                 i12++;
@@ -179,7 +179,7 @@ public final class x50 extends FrameLayout {
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         switch (this.f51774a) {
             case 0:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() > ((z50) this.f51778f).f52455a.f55492f) {
+                if (motionEvent.getAction() == 0 && motionEvent.getY() > ((z50) this.f51778f).f52455a.f55493f) {
                     return false;
                 }
                 return super.dispatchTouchEvent(motionEvent);

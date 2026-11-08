@@ -81,7 +81,7 @@ public class e extends FrameLayout implements te.b, a6 {
         int i11 = i7 & 65535;
         if (i10 >= 0) {
             n[] nVarArr = this.f18357a;
-            if (i10 < nVarArr.length && (nVar = nVarArr[i10]) != null && i11 == 1 && ((te.a) nVar.d).f55487f) {
+            if (i10 < nVarArr.length && (nVar = nVarArr[i10]) != null && i11 == 1 && ((te.a) nVar.d).f55488f) {
                 fe feVar = this.f18359c[i10];
                 if (feVar != null) {
                     final kh.a aVar = (kh.a) nVar.f1847c;
@@ -247,7 +247,7 @@ public class e extends FrameLayout implements te.b, a6 {
         for (n nVar : nVarArr) {
             if (nVar != null) {
                 kh.a aVar = (kh.a) nVar.f1847c;
-                float f11 = ((te.a) nVar.d).f55486e * this.f18367y;
+                float f11 = ((te.a) nVar.d).f55487e * this.f18367y;
                 if (f11 > 0.0f) {
                     i7 = 0;
                 } else {
@@ -262,7 +262,7 @@ public class e extends FrameLayout implements te.b, a6 {
         int[] iArr2 = I;
         n nVar2 = nVarArr[iArr2[0]];
         if (nVar2 != null) {
-            float L = ((te.a) nVar2.d).f55486e * g0.L(54.0f);
+            float L = ((te.a) nVar2.d).f55487e * g0.L(54.0f);
             ((kh.a) nVar2.f1847c).setTranslationX(g0.L(1.0f) + this.D);
             this.D += L;
         }
@@ -275,7 +275,7 @@ public class e extends FrameLayout implements te.b, a6 {
             n nVar3 = nVarArr[iArr[i10]];
             if (nVar3 != null) {
                 kh.a aVar2 = (kh.a) nVar3.f1847c;
-                float L2 = ((te.a) nVar3.d).f55486e * g0.L(54.0f);
+                float L2 = ((te.a) nVar3.d).f55487e * g0.L(54.0f);
                 aVar2.setTranslationX(((getMeasuredWidth() - aVar2.getMeasuredWidth()) - g0.L(1.0f)) - this.E);
                 this.E += L2;
             }
@@ -299,7 +299,7 @@ public class e extends FrameLayout implements te.b, a6 {
             this.D = f12 * f13;
             this.E *= f13;
         }
-        float f14 = this.f18366x.f55486e;
+        float f14 = this.f18366x.f55487e;
         if (f14 > 0.0f && getMeasuredWidth() > 0) {
             float measuredWidth = getMeasuredWidth();
             for (int i12 = 0; i12 < getContainer().getChildCount(); i12++) {
@@ -335,7 +335,7 @@ public class e extends FrameLayout implements te.b, a6 {
         n[] nVarArr = this.f18357a;
         n nVar = nVarArr[i11];
         if (nVar != null) {
-            if (((te.a) nVar.d).f55487f) {
+            if (((te.a) nVar.d).f55488f) {
                 i10 = g0.L(54.0f);
             } else {
                 i10 = 0;
@@ -345,7 +345,7 @@ public class e extends FrameLayout implements te.b, a6 {
         for (int i12 = 0; i12 < 4; i12++) {
             n nVar2 = nVarArr[J[i12]];
             if (nVar2 != null) {
-                if (((te.a) nVar2.d).f55487f) {
+                if (((te.a) nVar2.d).f55488f) {
                     i7 = g0.L(54.0f);
                 } else {
                     i7 = 0;
@@ -411,7 +411,7 @@ public class e extends FrameLayout implements te.b, a6 {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        int i7 = (int) (this.f18367y * 255.0f * this.f18365w.f55486e);
+        int i7 = (int) (this.f18367y * 255.0f * this.f18365w.f55487e);
         if (i7 > 0) {
             float measuredWidth = (getMeasuredWidth() - g0.L(10.0f)) - this.E;
             float measuredHeight = getMeasuredHeight() - g0.L(9.0f);

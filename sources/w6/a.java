@@ -14,29 +14,29 @@ import q6.j0;
 import q6.m;
 import z6.b;
 public final class a {
-    public static final Object f57580b = new Object();
-    public static volatile a f57581c;
-    public final ConcurrentHashMap f57582a = new ConcurrentHashMap();
+    public static final Object f57581b = new Object();
+    public static volatile a f57582c;
+    public final ConcurrentHashMap f57583a = new ConcurrentHashMap();
 
     public static a a() {
-        if (f57581c == null) {
-            synchronized (f57580b) {
+        if (f57582c == null) {
+            synchronized (f57581b) {
                 try {
-                    if (f57581c == null) {
-                        f57581c = new a();
+                    if (f57582c == null) {
+                        f57582c = new a();
                     }
                 } finally {
                 }
             }
         }
-        a aVar = f57581c;
+        a aVar = f57582c;
         m.g(aVar);
         return aVar;
     }
 
     public final void b(Context context, ServiceConnection serviceConnection) {
         if (!(serviceConnection instanceof j0)) {
-            ConcurrentHashMap concurrentHashMap = this.f57582a;
+            ConcurrentHashMap concurrentHashMap = this.f57583a;
             if (concurrentHashMap.containsKey(serviceConnection)) {
                 try {
                     try {
@@ -70,7 +70,7 @@ public final class a {
             }
         }
         if (!(serviceConnection instanceof j0)) {
-            ConcurrentHashMap concurrentHashMap = this.f57582a;
+            ConcurrentHashMap concurrentHashMap = this.f57583a;
             ServiceConnection serviceConnection2 = (ServiceConnection) concurrentHashMap.putIfAbsent(serviceConnection, serviceConnection);
             if (serviceConnection2 != null && serviceConnection != serviceConnection2) {
                 Log.w("ConnectionTracker", String.format("Duplicate binding with the same ServiceConnection: %s, %s, %s.", serviceConnection, str, intent.getAction()));

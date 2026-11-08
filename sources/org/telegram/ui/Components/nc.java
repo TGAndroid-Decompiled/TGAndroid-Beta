@@ -275,9 +275,9 @@ public abstract class nc extends View implements org.telegram.ui.ActionBar.a6 {
         this.J.setLocalMatrix(matrix2);
         ug.p1 p1Var = this.Q;
         if (p1Var != null) {
-            p1Var.f56763a.set(0.0f, 0.0f, org.telegram.messenger.g0.L(140.0f), org.telegram.messenger.g0.L(140.0f));
-            this.Q.f56763a.offset((getMeasuredWidth() - this.Q.f56763a.width()) / 2.0f, (getMeasuredHeight() - this.Q.f56763a.height()) / 2.0f);
-            this.Q.f56764b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            p1Var.f56764a.set(0.0f, 0.0f, org.telegram.messenger.g0.L(140.0f), org.telegram.messenger.g0.L(140.0f));
+            this.Q.f56764a.offset((getMeasuredWidth() - this.Q.f56764a.width()) / 2.0f, (getMeasuredHeight() - this.Q.f56764a.height()) / 2.0f);
+            this.Q.f56765b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
             this.Q.f();
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(L, 1073741824));

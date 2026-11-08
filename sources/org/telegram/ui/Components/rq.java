@@ -69,8 +69,8 @@ public final class rq implements View.OnClickListener {
                 TLRPC.Chat chat = a0Var.T1;
                 ArrayList arrayList3 = a0Var.V1;
                 ArrayList arrayList4 = a0Var.X1;
-                yg.a aVar = a0Var.f57684i2;
-                if (!aVar.f59420a.Q) {
+                yg.a aVar = a0Var.f57685i2;
+                if (!aVar.f59421a.Q) {
                     if (a0Var.i1()) {
                         if (prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway) {
                             tL_prepaidStarsGiveaway = (TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway;
@@ -99,29 +99,29 @@ public final class rq implements View.OnClickListener {
                     }
                     boolean z11 = true;
                     int i11 = a0Var.Z1;
-                    int i12 = yg.d.f59449w;
+                    int i12 = yg.d.f59450w;
                     if (i11 == 3) {
                         Activity W = org.telegram.messenger.g0.W(a0Var.getContext());
                         if (W == null) {
                             W = LaunchActivity.G1;
                         }
                         if (W != null && !W.isFinishing()) {
-                            TL_stars.TL_starsGiveawayOption g12 = a0Var.g1(a0Var.f57683h2);
+                            TL_stars.TL_starsGiveawayOption g12 = a0Var.g1(a0Var.f57684h2);
                             int e12 = a0Var.e1();
                             if (g12 != null) {
-                                aVar.f59420a.setLoading(true);
-                                int i13 = a0Var.f57678b2;
-                                int i14 = yg.u.f59489w;
+                                aVar.f59421a.setLoading(true);
+                                int i13 = a0Var.f57679b2;
+                                int i14 = yg.u.f59490w;
                                 if (i13 == 1) {
                                     z10 = true;
                                 } else {
                                     z10 = false;
                                 }
                                 bi.ea y10 = bi.ea.y(a0Var.f28616a, false);
-                                int l10 = wg.s.l(a0Var.f57680e2);
-                                boolean z12 = a0Var.f57691p2;
-                                boolean z13 = a0Var.f57690o2;
-                                String str2 = a0Var.f57689n2;
+                                int l10 = wg.s.l(a0Var.f57681e2);
+                                boolean z12 = a0Var.f57692p2;
+                                boolean z13 = a0Var.f57691o2;
+                                String str2 = a0Var.f57690n2;
                                 org.telegram.ui.Wallet.u1 u1Var3 = new org.telegram.ui.Wallet.u1(5, a0Var, g12);
                                 int i15 = y10.f3807a;
                                 if (org.telegram.messenger.qp.s1(i15).f24817j7) {
@@ -199,7 +199,7 @@ public final class rq implements View.OnClickListener {
                         return;
                     }
                     int i18 = 2;
-                    if (a0Var.f57677a2 == 1) {
+                    if (a0Var.f57678a2 == 1) {
                         ArrayList b10 = wg.s.b(arrayList3.size(), arrayList4);
                         int i19 = 0;
                         while (i19 < b10.size()) {
@@ -290,18 +290,18 @@ public final class rq implements View.OnClickListener {
                                     return;
                                 }
                             }
-                            int i29 = a0Var.f57678b2;
-                            int i30 = yg.u.f59489w;
+                            int i29 = a0Var.f57679b2;
+                            int i30 = yg.u.f59490w;
                             if (i29 == 1) {
                                 z9 = true;
                             } else {
                                 z9 = false;
                             }
-                            int l11 = wg.s.l(a0Var.f57680e2);
+                            int l11 = wg.s.l(a0Var.f57681e2);
                             aVar.b(true);
-                            boolean z14 = a0Var.f57691p2;
-                            boolean z15 = a0Var.f57690o2;
-                            String str3 = a0Var.f57689n2;
+                            boolean z14 = a0Var.f57692p2;
+                            boolean z15 = a0Var.f57691o2;
+                            String str3 = a0Var.f57690n2;
                             wg.v vVar2 = new wg.v(a0Var, 3);
                             wg.v vVar3 = new wg.v(a0Var, 4);
                             if (!wg.s.h()) {

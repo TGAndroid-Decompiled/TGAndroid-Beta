@@ -3,16 +3,16 @@ package xd;
 import java.io.Serializable;
 import java.util.regex.Pattern;
 public final class c implements Serializable {
-    public final Pattern f58688a;
+    public final Pattern f58689a;
 
     public c(String str) {
         Pattern compile = Pattern.compile(str);
         kotlin.jvm.internal.j.d(compile, "compile(...)");
-        this.f58688a = compile;
+        this.f58689a = compile;
     }
 
     public final String toString() {
-        String pattern = this.f58688a.toString();
+        String pattern = this.f58689a.toString();
         kotlin.jvm.internal.j.d(pattern, "toString(...)");
         return pattern;
     }

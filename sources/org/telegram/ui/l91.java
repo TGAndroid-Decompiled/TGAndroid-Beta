@@ -50,7 +50,7 @@ public final class l91 extends v4.k {
     public final void z(v4.d1 d1Var) {
         w91 w91Var = this.H;
         View view = w91Var.f51000c1;
-        if (view == d1Var.f57043a) {
+        if (view == d1Var.f57044a) {
             view.setTranslationX(0.0f);
             c91 c91Var = w91Var.O;
             if (c91Var != null) {

@@ -26,7 +26,7 @@ public final class c31 implements org.telegram.messenger.a20, org.telegram.messe
             }
         }
         oi.a.e(m31Var.f47642c, i10, i7, org.telegram.messenger.g0.L(12.0f), m31Var.f47644d0);
-        return r0.k1.f54200b;
+        return r0.k1.f54201b;
     }
 
     @Override

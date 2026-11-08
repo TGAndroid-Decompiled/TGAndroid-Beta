@@ -1385,7 +1385,7 @@ public final class t3 extends q41 {
     public final void H1(v4.d1 d1Var) {
         r3 r3Var = this.f18890o3;
         if (r3Var != null && d1Var != null) {
-            View view = d1Var.f57043a;
+            View view = d1Var.f57044a;
             int[] iArr = new int[2];
             view.getLocationOnScreen(iArr);
             view.getWidth();
@@ -1478,7 +1478,7 @@ public final class t3 extends q41 {
                 r3Var.onContentChanged();
             }
         } else if (d1Var != null) {
-            View view = d1Var.f57043a;
+            View view = d1Var.f57044a;
             view.setTranslationX(0.0f);
             view.setTranslationY(0.0f);
         }

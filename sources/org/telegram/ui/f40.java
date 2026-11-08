@@ -91,7 +91,7 @@ public final class f40 extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        org.telegram.ui.Components.voip.r rVar = (org.telegram.ui.Components.voip.r) d1Var.f57043a;
+        org.telegram.ui.Components.voip.r rVar = (org.telegram.ui.Components.voip.r) d1Var.f57044a;
         org.telegram.messenger.s3 participant = rVar.getParticipant();
         ArrayList arrayList = this.f45435e;
         org.telegram.messenger.s3 s3Var = (org.telegram.messenger.s3) arrayList.get(i7);

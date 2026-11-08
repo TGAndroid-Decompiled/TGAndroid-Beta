@@ -98,7 +98,7 @@ public final class sv extends wy0 {
                 i7 = 0;
             }
             v4.d1 L = this.T.f50782a.L(i7, false);
-            if (L != null && L.f57043a.getTop() >= this.T.f50782a.getPaddingTop()) {
+            if (L != null && L.f57044a.getTop() >= this.T.f50782a.getPaddingTop()) {
                 f11 = 0.0f;
             } else {
                 f11 = -wwVar.f4();

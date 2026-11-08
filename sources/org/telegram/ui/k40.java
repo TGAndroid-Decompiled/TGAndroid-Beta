@@ -21,7 +21,7 @@ public final class k40 implements org.telegram.ui.Components.t00, org.telegram.u
         }
         w40Var.o0();
         w40Var.m0();
-        return r0.k1.f54200b;
+        return r0.k1.f54201b;
     }
 
     @Override

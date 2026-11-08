@@ -1942,7 +1942,7 @@ public abstract class i4 extends rt0 implements ls {
                     view.setTranslationY((this.f9212x0.getY() + (a3Var.getY() + (-(ii0Var2.getMeasuredHeight() - this.f9132a3.getPaddingBottom())))) - org.telegram.messenger.g0.L(18.0f));
                 } else {
                     j3 j3Var = this.L0;
-                    if (view == j3Var && Build.VERSION.SDK_INT >= 31 && canvas.isHardwareAccelerated() && (fVar = this.f9187q3) != null && !fVar.f54574r) {
+                    if (view == j3Var && Build.VERSION.SDK_INT >= 31 && canvas.isHardwareAccelerated() && (fVar = this.f9187q3) != null && !fVar.f54575r) {
                         RecordingCanvas i10 = fVar.i(getMeasuredWidth(), getMeasuredHeight());
                         i10.drawColor(i0.a.f(0.2f, -16777216, -1));
                         i10.translate(j3Var.getX(), j3Var.getY());

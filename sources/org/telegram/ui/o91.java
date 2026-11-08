@@ -15,8 +15,8 @@ public final class o91 extends rg.a {
         }
         if (obj != null && o91.class == obj.getClass()) {
             o91 o91Var = (o91) obj;
-            int i7 = this.f54531a;
-            if (i7 == o91Var.f54531a && i7 == 0 && this.f48337c.f27008id == o91Var.f48337c.f27008id) {
+            int i7 = this.f54532a;
+            if (i7 == o91Var.f54532a && i7 == 0 && this.f48337c.f27008id == o91Var.f48337c.f27008id) {
                 return true;
             }
         }

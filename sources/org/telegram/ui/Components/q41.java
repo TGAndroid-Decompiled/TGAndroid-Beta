@@ -195,7 +195,7 @@ public class q41 extends pj0 {
             setOnItemLongClickListener(new f2(21, this, b20Var));
         }
         p41 p41Var = new p41(this);
-        p41Var.f57070m = false;
+        p41Var.f57071m = false;
         p41Var.C = false;
         p41Var.o(xq.h);
         p41Var.n(350L);

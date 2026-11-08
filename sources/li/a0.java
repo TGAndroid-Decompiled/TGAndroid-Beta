@@ -20,11 +20,11 @@ public final class a0 implements t9 {
             case 0:
                 return (Layout) this.f18410b;
             default:
-                org.telegram.utils.twidget.k1 k1Var = (org.telegram.utils.twidget.k1) this.f18410b;
-                if (k1Var.h == null) {
-                    k1Var.h = new org.telegram.utils.twidget.l1(k1Var);
+                org.telegram.utils.twidget.l1 l1Var = (org.telegram.utils.twidget.l1) this.f18410b;
+                if (l1Var.h == null) {
+                    l1Var.h = new org.telegram.utils.twidget.m1(l1Var);
                 }
-                return k1Var.h;
+                return l1Var.h;
         }
     }
 
@@ -83,7 +83,7 @@ public final class a0 implements t9 {
                 return 0;
             default:
                 ck0 ck0Var = (ck0) this.f18411c;
-                return (ck0Var.S - ck0Var.f32619j0) + ((org.telegram.utils.twidget.k1) this.f18410b).f52891b;
+                return (ck0Var.S - ck0Var.f32619j0) + ((org.telegram.utils.twidget.l1) this.f18410b).f52896b;
         }
     }
 
@@ -93,12 +93,12 @@ public final class a0 implements t9 {
             case 0:
                 return 0;
             default:
-                return ((ck0) this.f18411c).T + ((org.telegram.utils.twidget.k1) this.f18410b).f52892c;
+                return ((ck0) this.f18411c).T + ((org.telegram.utils.twidget.l1) this.f18410b).f52897c;
         }
     }
 
-    public a0(ck0 ck0Var, org.telegram.utils.twidget.k1 k1Var) {
+    public a0(ck0 ck0Var, org.telegram.utils.twidget.l1 l1Var) {
         this.f18411c = ck0Var;
-        this.f18410b = k1Var;
+        this.f18410b = l1Var;
     }
 }

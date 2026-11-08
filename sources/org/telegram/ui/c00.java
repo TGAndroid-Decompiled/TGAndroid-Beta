@@ -19,15 +19,15 @@ public final class c00 extends rg.a {
             return false;
         }
         c00 c00Var = (c00) obj;
-        int i7 = c00Var.f54531a;
-        int i10 = this.f54531a;
+        int i7 = c00Var.f54532a;
+        int i10 = this.f54532a;
         if (i7 != i10) {
             return false;
         }
         if ((i10 == 0 || i10 == 4 || i10 == 3 || i10 == 6) && !TextUtils.equals(this.f44516c, c00Var.f44516c)) {
             return false;
         }
-        int i11 = this.f54531a;
+        int i11 = this.f54532a;
         if (i11 == 2) {
             org.telegram.messenger.vo voVar = this.d;
             if (voVar == null) {

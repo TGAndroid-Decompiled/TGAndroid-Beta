@@ -65,9 +65,9 @@ public final class xk implements Runnable {
                 long j14 = this.f26494c;
                 if (hVar2.G == 7) {
                     long j15 = ((j13 - j14) * 48000) / 1000;
-                    hVar2.f57553p = j15;
-                    hVar2.f57555r = 0L;
-                    hVar2.f57556s = vi.h.r(j15);
+                    hVar2.f57554p = j15;
+                    hVar2.f57556r = 0L;
+                    hVar2.f57557s = vi.h.r(j15);
                     hVar2.i();
                     return;
                 }
@@ -76,11 +76,11 @@ public final class xk implements Runnable {
                 long j16 = this.f26493b;
                 long j17 = this.f26494c;
                 vi.h hVar3 = (vi.h) ((ac.e) this.d).f1025c;
-                if (j16 == hVar3.f57552o) {
-                    hVar3.f57551n = null;
-                    hVar3.f57553p += j17;
-                    hVar3.f57554q = 0L;
-                    hVar3.f57546i.removeCallbacks(hVar3.D);
+                if (j16 == hVar3.f57553o) {
+                    hVar3.f57552n = null;
+                    hVar3.f57554p += j17;
+                    hVar3.f57555q = 0L;
+                    hVar3.f57547i.removeCallbacks(hVar3.D);
                     int i7 = hVar3.G;
                     if (i7 == 10) {
                         hVar3.c();
@@ -96,15 +96,15 @@ public final class xk implements Runnable {
                         hVar3.i();
                         return;
                     } else if (i7 == 4) {
-                        vi.g gVar = hVar3.f57562z;
+                        vi.g gVar = hVar3.f57563z;
                         if (gVar == null) {
                             hVar3.g(new IllegalStateException("Output generation is missing"));
                             return;
                         }
                         long j18 = hVar3.j();
-                        hVar3.f57555r = 0L;
-                        hVar3.f57556s = j18;
-                        hVar3.f57547j.execute(new org.telegram.utils.recorder.audio.c(1, hVar3, gVar));
+                        hVar3.f57556r = 0L;
+                        hVar3.f57557s = j18;
+                        hVar3.f57548j.execute(new org.telegram.utils.recorder.audio.c(1, hVar3, gVar));
                         return;
                     } else {
                         return;

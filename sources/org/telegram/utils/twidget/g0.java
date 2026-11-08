@@ -3,15 +3,15 @@ package org.telegram.utils.twidget;
 import org.telegram.messenger.v10;
 import org.telegram.tgnet.TLRPC;
 public final class g0 implements v10 {
-    public final boolean[] f52792a;
-    public final bi.i0 f52793b;
-    public final v0 f52794c;
+    public final boolean[] f52787a;
+    public final bi.i0 f52788b;
+    public final v0 f52789c;
     public final long d;
 
     public g0(boolean[] zArr, bi.i0 i0Var, v0 v0Var, long j3) {
-        this.f52792a = zArr;
-        this.f52793b = i0Var;
-        this.f52794c = v0Var;
+        this.f52787a = zArr;
+        this.f52788b = i0Var;
+        this.f52789c = v0Var;
         this.d = j3;
     }
 
@@ -20,14 +20,14 @@ public final class g0 implements v10 {
         String str;
         TLRPC.TL_messages_botWidgetQueryAnswer tL_messages_botWidgetQueryAnswer = (TLRPC.TL_messages_botWidgetQueryAnswer) obj;
         TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-        boolean[] zArr = this.f52792a;
+        boolean[] zArr = this.f52787a;
         if (zArr[0]) {
             return;
         }
         int i7 = 1;
         zArr[0] = true;
-        org.telegram.messenger.g0.r(this.f52793b);
-        v0 v0Var = this.f52794c;
+        org.telegram.messenger.g0.r(this.f52788b);
+        v0 v0Var = this.f52789c;
         long j3 = this.d;
         if (tL_messages_botWidgetQueryAnswer != null) {
             v0Var.b(0, n0.C(tL_messages_botWidgetQueryAnswer.result), j3);

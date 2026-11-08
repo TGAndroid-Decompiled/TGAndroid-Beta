@@ -47,7 +47,7 @@ public final class h9 implements v0.g {
         CancellationToken cancellationToken = this.f22859a;
         if (!cancellationToken.isCancellationRequested()) {
             try {
-                String string = new JSONObject(((Bundle) oVar.f56975a.f3500a).getString("androidx.credentials.BUNDLE_KEY_REQUEST_JSON")).getJSONObject("data").getJSONObject("vp_token").getJSONArray("firebase").getString(0);
+                String string = new JSONObject(((Bundle) oVar.f56976a.f3500a).getString("androidx.credentials.BUNDLE_KEY_REQUEST_JSON")).getJSONObject("data").getJSONObject("vp_token").getJSONArray("firebase").getString(0);
                 this.f22861c.run();
                 TLRPC.TL_auth_finishFirebasePnvLogin tL_auth_finishFirebasePnvLogin = new TLRPC.TL_auth_finishFirebasePnvLogin();
                 tL_auth_finishFirebasePnvLogin.google_token = string;

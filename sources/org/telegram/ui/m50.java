@@ -209,7 +209,7 @@ public final class m50 extends org.telegram.ui.ActionBar.f2 implements org.teleg
         this.d.setSectionsDrawBackground(true);
         v4.k kVar = new v4.k();
         kVar.n(200L);
-        kVar.f57070m = true;
+        kVar.f57071m = true;
         this.d.setItemAnimator(kVar);
         v4.b0 b0Var = new v4.b0();
         this.h = b0Var;

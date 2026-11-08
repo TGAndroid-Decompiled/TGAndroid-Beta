@@ -43,8 +43,8 @@ public final class kh0 extends v4.g0 {
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        if (d1Var.f57047f == 0) {
-            ((org.telegram.ui.Cells.m6) d1Var.f57043a).setUserReaction((TLRPC.MessagePeerReaction) this.h.f37665n.get(i7));
+        if (d1Var.f57048f == 0) {
+            ((org.telegram.ui.Cells.m6) d1Var.f57044a).setUserReaction((TLRPC.MessagePeerReaction) this.h.f37665n.get(i7));
         }
     }
 

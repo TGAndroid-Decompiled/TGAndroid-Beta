@@ -25,7 +25,7 @@ public final class h extends v4.o {
     public final boolean a(int i7, int i10) {
         switch (this.f16735b) {
             case 0:
-                if (((l) ((n) this.d).N.get(i7)).f54531a == ((l) this.f16736c.get(i10)).f54531a) {
+                if (((l) ((n) this.d).N.get(i7)).f54532a == ((l) this.f16736c.get(i10)).f54532a) {
                     return true;
                 }
                 return false;
@@ -53,8 +53,8 @@ public final class h extends v4.o {
                 l lVar = (l) ((n) this.d).N.get(i7);
                 l lVar2 = (l) this.f16736c.get(i10);
                 TLRPC.Dialog dialog = lVar.f16820c;
-                int i11 = lVar.f54531a;
-                int i12 = lVar2.f54531a;
+                int i11 = lVar.f54532a;
+                int i12 = lVar2.f54532a;
                 TLRPC.Dialog dialog2 = lVar2.f16820c;
                 if (i11 != i12 || (i11 != 0 ? !(i11 != 14 ? i11 != 4 ? i11 != 6 ? i11 != 5 ? i11 != 10 : lVar.f16825j == lVar2.f16825j : (tL_contact = lVar.f16821e) != null && (tL_contact2 = lVar2.f16821e) != null && tL_contact.user_id == tL_contact2.user_id : (recentMeUrl = lVar.d) != null && lVar2.d != null && (str = recentMeUrl.url) != null && str.equals(str) : dialog != null && dialog2 != null && dialog.f26960id == dialog2.f26960id && dialog.isFolder == dialog2.isFolder) : !(dialog != null && dialog2 != null && dialog.f26960id == dialog2.f26960id && lVar.h == lVar2.h && lVar.f16822f == lVar2.f16822f && lVar.f16823g == lVar2.f16823g))) {
                     return false;

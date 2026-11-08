@@ -12,17 +12,17 @@ import com.google.android.gms.internal.vision.t2;
 import java.nio.ByteBuffer;
 import org.telegram.ui.hy0;
 public final class n extends b1 {
-    public final t2 f56449b;
+    public final t2 f56450b;
 
     public n(t2 t2Var) {
         super(7);
-        this.f56449b = t2Var;
+        this.f56450b = t2Var;
     }
 
     @Override
     public final void X0() {
         super.X0();
-        this.f56449b.l();
+        this.f56450b.l();
     }
 
     public final SparseArray e1(hy0 hy0Var) {
@@ -30,7 +30,7 @@ public final class n extends b1 {
         if (hy0Var != null) {
             f3 b10 = f3.b(hy0Var);
             Bitmap bitmap = (Bitmap) hy0Var.d;
-            t2 t2Var = this.f56449b;
+            t2 t2Var = this.f56450b;
             if (bitmap != null) {
                 if (!t2Var.k()) {
                     mVarArr = new m[0];
@@ -81,7 +81,7 @@ public final class n extends b1 {
             }
             SparseArray sparseArray = new SparseArray(mVarArr.length);
             for (m mVar : mVarArr) {
-                sparseArray.append(mVar.f56439b.hashCode(), mVar);
+                sparseArray.append(mVar.f56440b.hashCode(), mVar);
             }
             return sparseArray;
         }

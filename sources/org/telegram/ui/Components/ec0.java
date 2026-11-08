@@ -1211,14 +1211,14 @@ public class ec0 extends FrameLayout implements org.telegram.messenger.ls {
 
     public final void b(qa0 qa0Var) {
         r1.g gVar = this.T;
-        if (gVar != null && gVar.f54261f) {
+        if (gVar != null && gVar.f54262f) {
             gVar.d();
         }
         r1.f fVar = new r1.f(0.0f);
         qa0Var.D = new bx(fVar, 9);
         qa0Var.y();
         r1.g gVar2 = new r1.g(fVar);
-        gVar2.f54267m = org.telegram.ui.Cells.f1.o(100.0f, 300.0f, 1.0f);
+        gVar2.f54268m = org.telegram.ui.Cells.f1.o(100.0f, 300.0f, 1.0f);
         this.T = gVar2;
         gVar2.a(new hi.y3(4, this, qa0Var));
         this.T.b(new e7(qa0Var, 5));
@@ -1569,7 +1569,7 @@ public class ec0 extends FrameLayout implements org.telegram.messenger.ls {
                             LinkedList linkedList2 = this.V;
                             linkedList2.clear();
                             r1.g gVar = this.T;
-                            if (gVar != null && gVar.f54261f) {
+                            if (gVar != null && gVar.f54262f) {
                                 linkedList.offer(new pa0(qa0Var, 1));
                                 linkedList2.offer(Boolean.FALSE);
                                 return;

@@ -93,7 +93,7 @@ public final class m7 extends org.telegram.ui.Components.na implements ls {
         this.P0 = true;
         this.Q0 = true;
         i7 i7Var = new i7(this);
-        i7Var.f57070m = false;
+        i7Var.f57071m = false;
         i7Var.C = false;
         i7Var.o(xq.h);
         i7Var.n(350L);
@@ -225,16 +225,16 @@ public final class m7 extends org.telegram.ui.Components.na implements ls {
         }
         if (this.W1 != null) {
             tg.h0 h0Var = new tg.h0();
-            h0Var.f55709c = this.Q1.d.getText().toString();
+            h0Var.f55710c = this.Q1.d.getText().toString();
             if (this.f12458e2) {
                 str = this.R1.d.getText().toString();
             } else {
                 str = null;
             }
-            h0Var.f55708b = str;
+            h0Var.f55709b = str;
             h0Var.d = this.Y1;
-            h0Var.f55710e = this.f12460g2;
-            h0Var.f55711f = this.f12459f2;
+            h0Var.f55711e = this.f12460g2;
+            h0Var.f55712f = this.f12459f2;
             this.W1.a(h0Var);
             this.W1 = null;
         }

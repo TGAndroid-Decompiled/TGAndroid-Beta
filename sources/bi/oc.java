@@ -41,7 +41,7 @@ public final class oc extends org.telegram.ui.Components.na implements ls {
         pj0Var.setPadding(i7, 0, i7, 0);
         this.f36277k1.setOnItemClickListener(new ai.k(this, 2));
         v4.k kVar = new v4.k();
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         kVar.C = false;
         kVar.o(xq.h);
         kVar.n(350L);

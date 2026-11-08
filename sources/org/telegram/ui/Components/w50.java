@@ -173,7 +173,7 @@ public final class w50 extends ViewGroup {
             x50Var.f40216f2 = e10;
             if (q1Var.getAdapter() != null && q1Var.getAdapter().b() > 0 && (K = q1Var.K(0)) != null) {
                 q1Var.getAdapter().g(0);
-                x50Var.I1.h1(0, K.f57043a.getTop() - q1Var.getPaddingTop());
+                x50Var.I1.h1(0, K.f57044a.getTop() - q1Var.getPaddingTop());
                 if (q1Var.getItemAnimator() != null) {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                     ofFloat.addUpdateListener(new di.m4(this, 9));

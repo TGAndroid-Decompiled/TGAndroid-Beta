@@ -79,7 +79,7 @@ public final class vy extends org.telegram.ui.Components.na {
         pj0Var.setOverScrollMode(2);
         pj0Var.setOnItemClickListener(new h(this, 11));
         v4.k kVar = new v4.k();
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         kVar.C = false;
         kVar.o(org.telegram.ui.Components.xq.h);
         kVar.n(350L);

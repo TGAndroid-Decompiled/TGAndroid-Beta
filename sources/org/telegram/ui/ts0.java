@@ -24,7 +24,7 @@ public final class ts0 extends org.telegram.ui.Components.oj0 {
     @Override
     public final void t(v4.d1 d1Var, int i7) {
         boolean z9;
-        ug.k1 k1Var = (ug.k1) d1Var.f57043a;
+        ug.k1 k1Var = (ug.k1) d1Var.f57044a;
         PremiumPreviewFragment premiumPreviewFragment = this.d.f50415n;
         ws0 ws0Var = (ws0) premiumPreviewFragment.d.get(i7);
         boolean z10 = true;

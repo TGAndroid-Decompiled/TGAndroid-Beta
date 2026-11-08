@@ -13,47 +13,47 @@ public final class k0 {
     public boolean D;
     public int E;
     public boolean F;
-    public final String f52867a;
-    public final int f52868b;
-    public final long f52869c;
+    public final String f52864a;
+    public final int f52865b;
+    public final long f52866c;
     public final int d;
-    public final int f52870e;
-    public final int f52871f;
-    public final byte[] f52872g;
+    public final int f52867e;
+    public final int f52868f;
+    public final byte[] f52869g;
     public final boolean h;
-    public final boolean f52873i;
-    public final boolean f52874j;
-    public final boolean f52875k;
-    public final long f52876l;
-    public final String f52877m;
-    public final long f52878n;
-    public String f52879o;
-    public String f52880p;
-    public long f52881q;
-    public TLRPC.TL_messageMediaWidget f52882r;
-    public String f52883s;
-    public v0 f52884t;
-    public ck0 f52885u;
-    public ck0 f52886w;
-    public int f52887x;
-    public long f52888y;
-    public boolean f52889z;
+    public final boolean f52870i;
+    public final boolean f52871j;
+    public final boolean f52872k;
+    public final long f52873l;
+    public final String f52874m;
+    public final long f52875n;
+    public String f52876o;
+    public String f52877p;
+    public long f52878q;
+    public TLRPC.TL_messageMediaWidget f52879r;
+    public String f52880s;
+    public v0 f52881t;
+    public ck0 f52882u;
+    public ck0 f52883w;
+    public int f52884x;
+    public long f52885y;
+    public boolean f52886z;
     public final ArrayList v = new ArrayList();
     public final j0 G = new j0(this, 0);
 
     public k0(String str, int i7, long j3, int i10, long j10, TLRPC.TL_messageMediaWidget tL_messageMediaWidget, boolean z9) {
         boolean z10;
         boolean z11;
-        this.f52867a = str;
-        this.f52868b = i7;
-        this.f52869c = j3;
+        this.f52864a = str;
+        this.f52865b = i7;
+        this.f52866c = j3;
         this.d = i10;
-        this.f52878n = j10;
+        this.f52875n = j10;
         boolean z12 = false;
-        this.f52870e = Math.max(0, tL_messageMediaWidget.width);
-        this.f52871f = Math.max(0, tL_messageMediaWidget.height);
-        this.f52872g = tL_messageMediaWidget.payload;
-        this.f52875k = z9;
+        this.f52867e = Math.max(0, tL_messageMediaWidget.width);
+        this.f52868f = Math.max(0, tL_messageMediaWidget.height);
+        this.f52869g = tL_messageMediaWidget.payload;
+        this.f52872k = z9;
         if (!z9 && tL_messageMediaWidget.is_copy) {
             z10 = true;
         } else {
@@ -65,12 +65,12 @@ public final class k0 {
         } else {
             z11 = false;
         }
-        this.f52873i = z11;
+        this.f52870i = z11;
         if (!z9 && tL_messageMediaWidget.background_query && i10 > 0) {
             z12 = true;
         }
-        this.f52874j = z12;
-        this.f52876l = tL_messageMediaWidget.widget_id;
+        this.f52871j = z12;
+        this.f52873l = tL_messageMediaWidget.widget_id;
         String str2 = null;
         if (!z9 && !z10) {
             if (m5.E(j3)) {
@@ -82,15 +82,15 @@ public final class k0 {
                 }
             }
         }
-        this.f52877m = str2;
-        this.f52882r = tL_messageMediaWidget;
-        this.f52879o = n0.C(tL_messageMediaWidget.chat_data);
-        this.f52880p = n0.C(tL_messageMediaWidget.public_data);
-        this.f52881q = tL_messageMediaWidget.public_data_hash;
+        this.f52874m = str2;
+        this.f52879r = tL_messageMediaWidget;
+        this.f52876o = n0.C(tL_messageMediaWidget.chat_data);
+        this.f52877p = n0.C(tL_messageMediaWidget.public_data);
+        this.f52878q = tL_messageMediaWidget.public_data_hash;
     }
 
     public final String a() {
-        long j3 = this.f52869c;
-        return n0.B(this.f52868b, this.d, j3);
+        long j3 = this.f52866c;
+        return n0.B(this.f52865b, this.d, j3);
     }
 }

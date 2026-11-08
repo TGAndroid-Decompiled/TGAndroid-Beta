@@ -111,7 +111,7 @@ public final class gv0 implements View.OnClickListener {
                 int L0 = b0Var.L0();
                 xi0 xi0Var = (xi0) m50Var.d.K(L0);
                 if (xi0Var != null) {
-                    i7 = xi0Var.f57043a.getTop();
+                    i7 = xi0Var.f57044a.getTop();
                 } else {
                     i7 = Integer.MAX_VALUE;
                 }

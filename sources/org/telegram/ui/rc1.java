@@ -14,7 +14,7 @@ public final class rc1 extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f57047f == 0) {
+        if (d1Var.f57048f == 0) {
             return true;
         }
         return false;

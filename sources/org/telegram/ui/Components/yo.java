@@ -54,7 +54,7 @@ public final class yo extends ReplacementSpan {
             case 2:
                 return (int) ((org.telegram.ui.qg0) this.f40726b).f49228f2;
             case 3:
-                return (int) ((wg.f1) this.f40726b).f57737l2;
+                return (int) ((wg.f1) this.f40726b).f57738l2;
             default:
                 return ((org.telegram.messenger.f6) this.f40726b).getSize(paint, charSequence, i7, i10, fontMetricsInt);
         }

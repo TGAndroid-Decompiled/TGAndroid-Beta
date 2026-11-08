@@ -57,7 +57,7 @@ public final class e extends l1 {
         Integer num = null;
         p2.c cVar = this.f20735l;
         if (z9) {
-            str = cVar.b(i7).f53125a;
+            str = cVar.b(i7).f53126a;
         } else {
             str = null;
         }
@@ -65,13 +65,13 @@ public final class e extends l1 {
             num = Integer.valueOf(this.h + i7);
         }
         i1Var.getClass();
-        i1Var.h(str, num, 0, cVar.d(i7), m0.S(cVar.b(i7).f53126b - cVar.b(0).f53126b) - this.f20732i, e2.c.f10190c, false);
+        i1Var.h(str, num, 0, cVar.d(i7), m0.S(cVar.b(i7).f53127b - cVar.b(0).f53127b) - this.f20732i, e2.c.f10190c, false);
         return i1Var;
     }
 
     @Override
     public final int h() {
-        return this.f20735l.f53107m.size();
+        return this.f20735l.f53108m.size();
     }
 
     @Override
@@ -92,7 +92,7 @@ public final class e extends l1 {
         p2.c cVar = this.f20735l;
         boolean z12 = cVar.d;
         long j12 = this.f20734k;
-        if (z12 && cVar.f53100e != -9223372036854775807L && cVar.f53098b == -9223372036854775807L) {
+        if (z12 && cVar.f53101e != -9223372036854775807L && cVar.f53099b == -9223372036854775807L) {
             long j13 = 0;
             if (j3 > 0) {
                 j12 += j3;
@@ -102,7 +102,7 @@ public final class e extends l1 {
                     j12 = -9223372036854775807L;
                     j10 = -9223372036854775807L;
                     Object obj = k1.f10315q;
-                    if (!cVar.d && cVar.f53100e != j10 && cVar.f53098b == j10) {
+                    if (!cVar.d && cVar.f53101e != j10 && cVar.f53099b == j10) {
                         z11 = z9;
                     } else {
                         z11 = z10;
@@ -114,13 +114,13 @@ public final class e extends l1 {
             long j14 = this.f20732i + j12;
             long d = cVar.d(0);
             int i10 = 0;
-            while (i10 < cVar.f53107m.size() - 1 && j14 >= d) {
+            while (i10 < cVar.f53108m.size() - 1 && j14 >= d) {
                 j14 -= d;
                 i10++;
                 d = cVar.d(i10);
             }
             p2.h b10 = cVar.b(i10);
-            List list = b10.f53127c;
+            List list = b10.f53128c;
             z9 = true;
             int size = list.size();
             j10 = -9223372036854775807L;
@@ -128,7 +128,7 @@ public final class e extends l1 {
             while (true) {
                 if (i11 < size) {
                     j11 = j13;
-                    if (((p2.a) list.get(i11)).f53090b == 2) {
+                    if (((p2.a) list.get(i11)).f53091b == 2) {
                         break;
                     }
                     i11++;
@@ -139,7 +139,7 @@ public final class e extends l1 {
                     break;
                 }
             }
-            if (i11 != -1 && (c10 = ((p2.m) ((p2.a) b10.f53127c.get(i11)).f53091c.get(0)).c()) != null && c10.x(d) != j11) {
+            if (i11 != -1 && (c10 = ((p2.m) ((p2.a) b10.f53128c.get(i11)).f53092c.get(0)).c()) != null && c10.x(d) != j11) {
                 j12 = (c10.a(c10.o(j14, d)) + j12) - j14;
             }
         } else {

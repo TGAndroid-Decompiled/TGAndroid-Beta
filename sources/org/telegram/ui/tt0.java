@@ -21,7 +21,7 @@ public final class tt0 implements r40, org.telegram.ui.Components.ku0, org.teleg
     @Override
     public r0.k1 S0(View view, r0.k1 k1Var) {
         RectF rectF = ProfileActivity.S6;
-        int i7 = k1Var.f54201a.f(519).d;
+        int i7 = k1Var.f54202a.f(519).d;
         ProfileActivity profileActivity = this.f50141b;
         profileActivity.I6 = i7;
         FrameLayout frameLayout = profileActivity.s5;
@@ -40,7 +40,7 @@ public final class tt0 implements r40, org.telegram.ui.Components.ku0, org.teleg
                 up0Var.setButtonOffset(profileActivity.I6 + profileActivity.H6);
             }
         }
-        return r0.k1.f54200b;
+        return r0.k1.f54201b;
     }
 
     @Override

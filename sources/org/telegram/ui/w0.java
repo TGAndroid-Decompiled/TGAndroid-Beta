@@ -45,7 +45,7 @@ public final class w0 implements org.telegram.ui.Components.im0, hi.a4, ib1, r0.
         if (r4Var == view && (k0Var = r4Var.f44189b) != null) {
             k0Var.setPadding(I0.f15120a, I0.f15121b, I0.f15122c, I0.d);
         }
-        return r0.k1.f54200b;
+        return r0.k1.f54201b;
     }
 
     @Override
@@ -83,7 +83,7 @@ public final class w0 implements org.telegram.ui.Components.im0, hi.a4, ib1, r0.
     public void f(float f10, float f11, int i7, View view) {
         x5 x5Var = (x5) this.f50814b;
         ArrayList arrayList = x5Var.f51772c;
-        if (((w5) arrayList.get(i7)).f54531a == 1) {
+        if (((w5) arrayList.get(i7)).f54532a == 1) {
             Bundle bundle = new Bundle();
             bundle.putBoolean("onlySelect", true);
             bundle.putBoolean("checkCanWrite", false);
@@ -99,13 +99,13 @@ public final class w0 implements org.telegram.ui.Components.im0, hi.a4, ib1, r0.
             ww wwVar = new ww(bundle);
             wwVar.C2 = new ni.c(4, x5Var, wwVar);
             x5Var.presentFragment(wwVar);
-        } else if (((w5) arrayList.get(i7)).f54531a == 2) {
+        } else if (((w5) arrayList.get(i7)).f54532a == 2) {
             org.telegram.messenger.s2 s2Var = ((w5) arrayList.get(i7)).f50901c;
             e60 e60Var = new e60(view.getContext(), x5Var);
             e60Var.h(false);
             e60Var.setParentWindow(org.telegram.ui.Components.v4.N(x5Var, e60Var, view, f10, f11));
             e60Var.setCallback(new u5(x5Var, s2Var, 0));
-        } else if (((w5) arrayList.get(i7)).f54531a == 4) {
+        } else if (((w5) arrayList.get(i7)).f54532a == 4) {
             org.telegram.ui.ActionBar.u1 u1Var = org.telegram.ui.Components.v4.L(x5Var.getParentActivity(), org.telegram.messenger.id.M0(2131747914, null), org.telegram.messenger.id.M0(2131747915, null), org.telegram.messenger.id.M0(2131751599, null), new gq0(x5Var, 13), null).f27296a;
             u1Var.show();
             u1Var.i();
@@ -427,9 +427,9 @@ public final class w0 implements org.telegram.ui.Components.im0, hi.a4, ib1, r0.
             s9Var.D = gVar2;
             gVar2.b(new k9(s9Var, 0));
             s9Var.D.a(new l9(s9Var, 0));
-            s9Var.D.f54267m = new r1.h(500.0f);
-            s9Var.D.f54267m.a(0.8f);
-            s9Var.D.f54267m.b(250.0f);
+            s9Var.D.f54268m = new r1.h(500.0f);
+            s9Var.D.f54268m.a(0.8f);
+            s9Var.D.f54268m.b(250.0f);
             s9Var.D.h();
         }
     }

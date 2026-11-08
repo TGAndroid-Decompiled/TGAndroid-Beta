@@ -11,28 +11,28 @@ import org.telegram.ui.Components.l2;
 import org.telegram.ui.aj0;
 import org.telegram.ui.t4;
 public final class p extends LinearLayout {
-    public final t4 f55173a;
-    public final t4 f55174b;
-    public final t4 f55175c;
+    public final t4 f55174a;
+    public final t4 f55175b;
+    public final t4 f55176c;
     public final EditTextBoldCursor d;
-    public boolean f55176e;
-    public final q f55177f;
+    public boolean f55177e;
+    public final q f55178f;
 
     public p(q qVar, Context context) {
         super(context);
-        this.f55177f = qVar;
+        this.f55178f = qVar;
         setOrientation(1);
         setPadding(org.telegram.messenger.g0.L(14.0f), 0, org.telegram.messenger.g0.L(14.0f), 0);
         t4 t4Var = new t4(qVar, context);
-        this.f55173a = t4Var;
+        this.f55174a = t4Var;
         t4Var.a(0);
         addView(t4Var, ha.q(-1, -2, 0.0f, 0, 0, 0, 0, 16));
         t4 t4Var2 = new t4(qVar, context);
-        this.f55174b = t4Var2;
+        this.f55175b = t4Var2;
         t4Var2.a(1);
         addView(t4Var2, ha.q(-1, -2, 0.0f, 0, 0, 0, 0, 16));
         t4 t4Var3 = new t4(qVar, context);
-        this.f55175c = t4Var3;
+        this.f55176c = t4Var3;
         t4Var3.a(2);
         addView(t4Var3, ha.q(-1, -2, 0.0f, 0, 0, 0, 0, 16));
         LinearLayout linearLayout = new LinearLayout(context);

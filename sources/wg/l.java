@@ -19,14 +19,14 @@ import org.telegram.ui.ActionBar.v2;
 import org.telegram.ui.Components.cc;
 public final class l extends v2 {
     public static l l1;
-    public final j f57771i1;
-    public final w0 f57772j1;
-    public boolean f57773k1;
+    public final j f57772i1;
+    public final w0 f57773j1;
+    public boolean f57774k1;
 
     public l(Activity activity, a0 a0Var, w0 w0Var, f6 f6Var, boolean z9) {
         super(1, (Context) activity, f6Var, true);
         boolean z10;
-        this.f57772j1 = w0Var;
+        this.f57773j1 = w0Var;
         this.f28651v0 = false;
         this.f28650u0 = false;
         this.T0 = false;
@@ -38,18 +38,18 @@ public final class l extends v2 {
             z10 = false;
         }
         org.telegram.messenger.g0.q3(this, z10);
-        this.f57773k1 = getContext().getResources().getConfiguration().orientation == 2;
+        this.f57774k1 = getContext().getResources().getConfiguration().orientation == 2;
         j jVar = new j(this, getContext(), w0Var, f6Var, a0Var);
-        this.f57771i1 = jVar;
+        this.f57772i1 = jVar;
         jVar.setOverScrollMode(2);
         jVar.setClipToPadding(false);
         jVar.setAdapter(new g5(a0Var, w0Var));
         jVar.setPosition(0);
         this.N = jVar;
-        a0Var.f57687l2 = new i(this, 0);
-        a0Var.f57685j2 = new sg.i0(this, w0Var, false, 9);
-        w0Var.f57831m2 = new k(this, a0Var, f6Var);
-        w0Var.f57829k2 = new i(this, 1);
+        a0Var.f57688l2 = new i(this, 0);
+        a0Var.f57686j2 = new sg.i0(this, w0Var, false, 9);
+        w0Var.f57832m2 = new k(this, a0Var, f6Var);
+        w0Var.f57830k2 = new i(this, 1);
         if (!z9) {
             qp.s1(this.f28616a).P1().U();
         }
@@ -86,21 +86,21 @@ public final class l extends v2 {
     @Override
     public final void c0(Configuration configuration) {
         boolean z9;
-        this.f57772j1.c0(configuration);
+        this.f57773j1.c0(configuration);
         if (getContext().getResources().getConfiguration().orientation == 2) {
             z9 = true;
         } else {
             z9 = false;
         }
-        this.f57773k1 = z9;
+        this.f57774k1 = z9;
     }
 
     @Override
     public final void onBackPressed() {
         String M0;
-        j jVar = this.f57771i1;
+        j jVar = this.f57772i1;
         if (jVar.getCurrentPosition() > 0) {
-            w0 w0Var = this.f57772j1;
+            w0 w0Var = this.f57773j1;
             HashSet hashSet = w0Var.W1;
             int size = hashSet.size();
             HashSet hashSet2 = w0Var.X1;
@@ -111,7 +111,7 @@ public final class l extends v2 {
                 jVar.E(0);
                 return;
             }
-            int i7 = w0Var.f57828j2;
+            int i7 = w0Var.f57829j2;
             Context context = w0Var.getContext();
             f6 f6Var = w0Var.I0;
             r0 r0Var = new r0(w0Var, 0);

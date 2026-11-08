@@ -66,7 +66,7 @@ public final class u80 extends org.telegram.ui.ActionBar.f2 implements qs0, pg.b
     public final List E() {
         String str;
         Activity parentActivity = getParentActivity();
-        org.telegram.messenger.q5 q5Var = sg.d1.f55030m;
+        org.telegram.messenger.q5 q5Var = sg.d1.f55031m;
         if (parentActivity.getSharedPreferences("shapedetector_conf", 0).getBoolean("learning", false)) {
             str = "Disable";
         } else {
@@ -128,7 +128,7 @@ public final class u80 extends org.telegram.ui.ActionBar.f2 implements qs0, pg.b
         if (this.J == null) {
             return;
         }
-        float f10 = this.O.f55486e;
+        float f10 = this.O.f55487e;
         float L = org.telegram.messenger.g0.L(72.0f) + this.mSystemInsets.d;
         this.J.setTranslationY((L * f10) + (-i7));
         float f11 = 1.0f - f10;

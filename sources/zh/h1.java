@@ -7,19 +7,19 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.up0;
 public final class h1 implements Runnable {
-    public final int f60362a;
-    public final up0 f60363b;
+    public final int f60363a;
+    public final up0 f60364b;
 
     public h1(up0 up0Var, int i7) {
-        this.f60362a = i7;
-        this.f60363b = up0Var;
+        this.f60363a = i7;
+        this.f60364b = up0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f60362a) {
+        switch (this.f60363a) {
             case 0:
-                t9 t9Var = this.f60363b.f60285e;
+                t9 t9Var = this.f60364b.f60286e;
                 t9Var.getClass();
                 TL_stars.reorderStarGiftCollections reorderstargiftcollections = new TL_stars.reorderStarGiftCollections();
                 int i7 = t9Var.f4757a;
@@ -36,10 +36,10 @@ public final class h1 implements Runnable {
                 t9Var.j();
                 return;
             case 1:
-                this.f60363b.setReorderingCollections(true);
+                this.f60364b.setReorderingCollections(true);
                 return;
             default:
-                this.f60363b.a();
+                this.f60364b.a();
                 return;
         }
     }

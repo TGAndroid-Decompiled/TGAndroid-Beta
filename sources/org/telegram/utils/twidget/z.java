@@ -8,11 +8,11 @@ import android.os.SystemClock;
 import android.util.Log;
 import java.nio.charset.StandardCharsets;
 public final class z extends Binder implements b {
-    public static final int f53007b = 0;
-    public final WidgetEngineService f53008a;
+    public static final int f53008b = 0;
+    public final WidgetEngineService f53009a;
 
     public z(WidgetEngineService widgetEngineService) {
-        this.f53008a = widgetEngineService;
+        this.f53009a = widgetEngineService;
         attachInterface(this, "org.telegram.utils.twidget.IWidgetEngine");
     }
 
@@ -50,7 +50,7 @@ public final class z extends Binder implements b {
     public final void b1() {
         long uptimeMillis = SystemClock.uptimeMillis();
         try {
-            WidgetEngineService.a(this.f53008a.getAssets());
+            WidgetEngineService.a(this.f53009a.getAssets());
             Log.i("WidgetEngine", "warm: bundles in " + (SystemClock.uptimeMillis() - uptimeMillis) + " ms");
         } catch (RuntimeException e10) {
             Log.e("WidgetEngine", "warmup failed", e10);
@@ -224,7 +224,7 @@ public final class z extends Binder implements b {
     @Override
     public final long t(byte[] bArr, byte[] bArr2, float f10, float f11, int i7, byte[] bArr3, byte[] bArr4, byte[] bArr5, byte[] bArr6, boolean z9, d dVar) {
         long uptimeMillis = SystemClock.uptimeMillis();
-        long create = WidgetSandboxNative.create(WidgetEngineService.a(this.f53008a.getAssets()).getBytes(StandardCharsets.UTF_8), bArr, bArr2, f10, f11, i7, bArr3, bArr4, bArr5, bArr6, z9, new WidgetEngineBackend(dVar, f11));
+        long create = WidgetSandboxNative.create(WidgetEngineService.a(this.f53009a.getAssets()).getBytes(StandardCharsets.UTF_8), bArr, bArr2, f10, f11, i7, bArr3, bArr4, bArr5, bArr6, z9, new WidgetEngineBackend(dVar, f11));
         Log.i("WidgetEngine", "session in " + (SystemClock.uptimeMillis() - uptimeMillis) + " ms (bundles " + (SystemClock.uptimeMillis() - uptimeMillis) + " ms)");
         return create;
     }

@@ -14,7 +14,7 @@ public final class q50 extends oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57047f;
+        int i7 = d1Var.f57048f;
         if (i7 == 3 || i7 == 1) {
             return true;
         }
@@ -66,8 +66,8 @@ public final class q50 extends oj0 {
         boolean z9;
         long j10;
         boolean z10;
-        int i10 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i10 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         if (i10 != 2) {
             if (i10 == 3) {
                 org.telegram.ui.Cells.h4 h4Var = (org.telegram.ui.Cells.h4) view;

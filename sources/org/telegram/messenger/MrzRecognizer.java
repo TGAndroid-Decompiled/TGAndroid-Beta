@@ -393,7 +393,7 @@ public class MrzRecognizer {
             int i14 = 4;
             if (i12 == 12 && (eVar = mVar.D) != null) {
                 ?? obj = new Object();
-                if ("ID".equals(eVar.f56408a)) {
+                if ("ID".equals(eVar.f56409a)) {
                     i7 = 2;
                 } else {
                     i7 = 4;
@@ -410,12 +410,12 @@ public class MrzRecognizer {
                     obj.f26918l = "CA";
                     obj.f26919m = "CA";
                 }
-                obj.f26910b = a(mVar.D.f56409b);
+                obj.f26910b = a(mVar.D.f56410b);
                 obj.f26911c = a(mVar.D.d);
-                obj.d = a(mVar.D.f56410c);
+                obj.d = a(mVar.D.f56411c);
                 u8.e eVar2 = mVar.D;
-                obj.f26912e = eVar2.f56415s;
-                String str2 = eVar2.f56411e;
+                obj.f26912e = eVar2.f56416s;
+                String str2 = eVar2.f56412e;
                 if (str2 != null) {
                     if (!str2.equals("1")) {
                         if (str2.equals("2")) {
@@ -431,25 +431,25 @@ public class MrzRecognizer {
                     i13 = 2;
                 }
                 try {
-                    String str3 = mVar.D.f56418y;
+                    String str3 = mVar.D.f56419y;
                     if (str3 != null && str3.length() == 8) {
-                        obj.f26915i = Integer.parseInt(mVar.D.f56418y.substring(i10, i10 + 4));
-                        obj.f26916j = Integer.parseInt(mVar.D.f56418y.substring(i14, i14 + 2));
-                        obj.f26917k = Integer.parseInt(mVar.D.f56418y.substring(i13, i13 + 2));
+                        obj.f26915i = Integer.parseInt(mVar.D.f56419y.substring(i10, i10 + 4));
+                        obj.f26916j = Integer.parseInt(mVar.D.f56419y.substring(i14, i14 + 2));
+                        obj.f26917k = Integer.parseInt(mVar.D.f56419y.substring(i13, i13 + 2));
                     }
-                    String str4 = mVar.D.f56417x;
+                    String str4 = mVar.D.f56418x;
                     if (str4 != null && str4.length() == 8) {
-                        obj.f26913f = Integer.parseInt(mVar.D.f56417x.substring(i10, i10 + 4));
-                        obj.f26914g = Integer.parseInt(mVar.D.f56417x.substring(i14, i14 + 2));
-                        obj.h = Integer.parseInt(mVar.D.f56417x.substring(i13, i13 + 2));
+                        obj.f26913f = Integer.parseInt(mVar.D.f56418x.substring(i10, i10 + 4));
+                        obj.f26914g = Integer.parseInt(mVar.D.f56418x.substring(i14, i14 + 2));
+                        obj.h = Integer.parseInt(mVar.D.f56418x.substring(i13, i13 + 2));
                     }
                 } catch (NumberFormatException unused) {
                 }
                 return obj;
             }
-            if (i12 == 7 && mVar.f56438a == 2048 && mVar.f56439b.matches("^[A-Za-z0-9=]+$")) {
+            if (i12 == 7 && mVar.f56439a == 2048 && mVar.f56440b.matches("^[A-Za-z0-9=]+$")) {
                 try {
-                    String[] split = new String(Base64.decode(mVar.f56439b, 0), "windows-1251").split("\\|");
+                    String[] split = new String(Base64.decode(mVar.f56440b, 0), "windows-1251").split("\\|");
                     if (split.length >= 10) {
                         ?? obj2 = new Object();
                         obj2.f26909a = 4;

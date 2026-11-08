@@ -152,7 +152,7 @@ public final class kq0 extends xh.l {
         canvas.save();
         canvas.translate(getPaddingLeft(), getPaddingTop());
         canvas.clipRect(0.0f, getScrollY(), getWidth() - getPaddingRight(), (getScrollY() + getHeight()) - (getPaddingBottom() * 0.75f));
-        org.telegram.ui.Components.r5.drawAnimatedEmojis(canvas, getLayout(), this.f47265b0, 0.0f, this.f58837b, 0.0f, 0.0f, 0.0f, 1.0f);
+        org.telegram.ui.Components.r5.drawAnimatedEmojis(canvas, getLayout(), this.f47265b0, 0.0f, this.f58838b, 0.0f, 0.0f, 0.0f, 1.0f);
         canvas.restore();
     }
 

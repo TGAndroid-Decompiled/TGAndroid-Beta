@@ -337,7 +337,7 @@ public final class r implements View.OnClickListener {
                     r0Var.D();
                     return;
                 } else if (q0Var.getFilter().h) {
-                    if (!q0Var.f28387a.f55487f) {
+                    if (!q0Var.f28387a.f55488f) {
                         q0Var.setSelectedForDelete(true);
                         return;
                     }

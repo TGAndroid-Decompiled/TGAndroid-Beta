@@ -35,7 +35,7 @@ public final class la extends oj0 {
             case 0:
                 return ((oj0) this.f35623e).D(d1Var);
             default:
-                if (d1Var.f57047f == 0) {
+                if (d1Var.f57048f == 0) {
                     return true;
                 }
                 return false;
@@ -89,7 +89,7 @@ public final class la extends oj0 {
                 }
                 return;
             default:
-                org.telegram.ui.Cells.ua uaVar = (org.telegram.ui.Cells.ua) d1Var.f57043a;
+                org.telegram.ui.Cells.ua uaVar = (org.telegram.ui.Cells.ua) d1Var.f57044a;
                 uaVar.d(1, false, false);
                 uaVar.setSize(((qi) this.f35624f).f37333r);
                 uaVar.e(1, ((ArrayList) this.f35623e).get(i7), null, 0);

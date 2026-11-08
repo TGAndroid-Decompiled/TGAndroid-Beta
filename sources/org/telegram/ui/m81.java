@@ -29,7 +29,7 @@ public final class m81 extends org.telegram.ui.Components.oj0 {
         ArrayList arrayList = this.f47729c;
         TLRPC.Chat chat = (TLRPC.Chat) arrayList.get(i7);
         String str = (String) this.d.get(i7);
-        org.telegram.ui.Cells.h4 h4Var = (org.telegram.ui.Cells.h4) d1Var.f57043a;
+        org.telegram.ui.Cells.h4 h4Var = (org.telegram.ui.Cells.h4) d1Var.f57044a;
         String str2 = chat.title;
         boolean z9 = true;
         if (i7 == arrayList.size() - 1) {

@@ -49,7 +49,7 @@ public final class d7 extends org.telegram.ui.Components.m61 {
         }
         v4.k kVar = (v4.k) pj0Var.getItemAnimator();
         kVar.C = false;
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         pj0Var.setClipToPadding(false);
         if (i7 != 1 && i7 != 4 && qVar != null) {
             pj0Var.setSections(false);

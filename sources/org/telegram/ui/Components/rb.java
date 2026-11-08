@@ -37,7 +37,7 @@ public final class rb extends GestureDetector.SimpleOnGestureListener {
         }
         float signum = Math.signum(f10);
         gb gbVar = this.f37597a;
-        r1.g gVar = new r1.g(gbVar, r1.g.f54250o, signum * gbVar.getWidth() * 2.0f);
+        r1.g gVar = new r1.g(gbVar, r1.g.f54251o, signum * gbVar.getWidth() * 2.0f);
         if (!z9) {
             gVar.a(new r1.c(this) {
                 public final rb f36878b;
@@ -60,9 +60,9 @@ public final class rb extends GestureDetector.SimpleOnGestureListener {
             });
             gVar.b(new e7(gbVar, 2));
         }
-        gVar.f54267m.a(1.0f);
-        gVar.f54267m.b(100.0f);
-        gVar.f54257a = f10;
+        gVar.f54268m.a(1.0f);
+        gVar.f54268m.b(100.0f);
+        gVar.f54258a = f10;
         gVar.h();
         if (z9) {
             r1.g gVar2 = new r1.g((Object) gbVar, (r1.e) r1.g.v, 0.0f);
@@ -86,9 +86,9 @@ public final class rb extends GestureDetector.SimpleOnGestureListener {
                 }
             });
             gVar2.b(new Object());
-            gVar.f54267m.a(1.0f);
-            gVar.f54267m.b(10.0f);
-            gVar.f54257a = f10;
+            gVar.f54268m.a(1.0f);
+            gVar.f54268m.b(10.0f);
+            gVar.f54258a = f10;
             gVar2.h();
         }
         uaVar.f38583s = true;

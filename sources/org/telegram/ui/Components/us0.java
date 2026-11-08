@@ -176,8 +176,8 @@ public class us0 extends rs0 {
         boolean z10;
         char c10;
         boolean z11;
-        if (this.f38732s != null && d1Var.f57047f == 19) {
-            View view = d1Var.f57043a;
+        if (this.f38732s != null && d1Var.f57048f == 19) {
+            View view = d1Var.f57044a;
             if (view instanceof org.telegram.ui.Cells.o7) {
                 org.telegram.ui.Cells.o7 o7Var = (org.telegram.ui.Cells.o7) view;
                 o7Var.f29666d0 = true;
@@ -249,7 +249,7 @@ public class us0 extends rs0 {
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         v4.d1 x10 = super.x(viewGroup, i7);
-        View view = x10.f57043a;
+        View view = x10.f57044a;
         if (view instanceof org.telegram.ui.Cells.o7) {
             ((org.telegram.ui.Cells.o7) view).f29666d0 = true;
         }

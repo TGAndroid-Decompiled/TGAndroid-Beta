@@ -36,11 +36,11 @@ public final class z1 extends u1 {
         m1Var.setOnItemClickListener(new ai.k(this, 9));
         m1Var.setOnScrollListener(new ai.b(this, 11));
         v4.k kVar = new v4.k();
-        kVar.f57115c = 220L;
-        kVar.f57116e = 220L;
-        kVar.f57117f = 160L;
-        kVar.f57118g = 160L;
-        kVar.f57119i = xq.f40367g;
+        kVar.f57116c = 220L;
+        kVar.f57117e = 220L;
+        kVar.f57118f = 160L;
+        kVar.f57119g = 160L;
+        kVar.f57120i = xq.f40367g;
         m1Var.setItemAnimator(kVar);
         addView(m1Var, c8.ha.c(-1.0f, -1));
         int i7 = k2.f12251y1;

@@ -27,7 +27,7 @@ public abstract class es extends v4.f1 {
     public org.telegram.ui.Cells.t2 f33376z;
 
     public es(pj0 pj0Var) {
-        this.f57070m = false;
+        this.f57071m = false;
         this.C = pj0Var;
     }
 
@@ -54,8 +54,8 @@ public abstract class es extends v4.f1 {
         } else {
             return false;
         }
-        View view = d1Var.f57043a;
-        View view2 = d1Var.f57043a;
+        View view = d1Var.f57044a;
+        View view2 = d1Var.f57044a;
         view.setAlpha(1.0f);
         view2.setTranslationX(0.0f);
         view2.setTranslationY(0.0f);
@@ -70,18 +70,18 @@ public abstract class es extends v4.f1 {
     }
 
     public final void E(v4.d1 d1Var) {
-        d1Var.f57043a.animate().setInterpolator(D);
+        d1Var.f57044a.animate().setInterpolator(D);
         f(d1Var);
     }
 
     @Override
     public final boolean c(v4.d1 d1Var, List list) {
-        return d1Var.f57043a instanceof org.telegram.ui.Cells.z2;
+        return d1Var.f57044a instanceof org.telegram.ui.Cells.z2;
     }
 
     @Override
     public final void f(v4.d1 d1Var) {
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         view.animate().cancel();
         ArrayList arrayList = this.f33368q;
         int size = arrayList.size();
@@ -173,7 +173,7 @@ public abstract class es extends v4.f1 {
                 break;
             }
             ds dsVar = (ds) arrayList.get(size);
-            View view = dsVar.f33075a.f57043a;
+            View view = dsVar.f33075a.f57044a;
             view.setTranslationY(0.0f);
             view.setTranslationX(0.0f);
             v(dsVar.f33075a);
@@ -182,7 +182,7 @@ public abstract class es extends v4.f1 {
         ArrayList arrayList2 = this.f33366o;
         for (int size2 = arrayList2.size() - 1; size2 >= 0; size2--) {
             v4.d1 d1Var = (v4.d1) arrayList2.get(size2);
-            View view2 = d1Var.f57043a;
+            View view2 = d1Var.f57044a;
             view2.setTranslationY(0.0f);
             view2.setTranslationX(0.0f);
             d(d1Var);
@@ -196,7 +196,7 @@ public abstract class es extends v4.f1 {
                 break;
             }
             v4.d1 d1Var2 = (v4.d1) arrayList3.get(size3);
-            View view3 = d1Var2.f57043a;
+            View view3 = d1Var2.f57044a;
             if (view3 instanceof org.telegram.ui.Cells.t2) {
                 ((org.telegram.ui.Cells.t2) view3).setClipProgress(0.0f);
             } else {
@@ -226,7 +226,7 @@ public abstract class es extends v4.f1 {
             ArrayList arrayList6 = (ArrayList) arrayList5.get(size5);
             for (int size6 = arrayList6.size() - 1; size6 >= 0; size6--) {
                 ds dsVar2 = (ds) arrayList6.get(size6);
-                View view4 = dsVar2.f33075a.f57043a;
+                View view4 = dsVar2.f33075a.f57044a;
                 view4.setTranslationY(0.0f);
                 view4.setTranslationX(0.0f);
                 v(dsVar2.f33075a);
@@ -241,7 +241,7 @@ public abstract class es extends v4.f1 {
             ArrayList arrayList8 = (ArrayList) arrayList7.get(size7);
             for (int size8 = arrayList8.size() - 1; size8 >= 0; size8--) {
                 v4.d1 d1Var5 = (v4.d1) arrayList8.get(size8);
-                View view5 = d1Var5.f57043a;
+                View view5 = d1Var5.f57044a;
                 if (view5 instanceof org.telegram.ui.Cells.t2) {
                     ((org.telegram.ui.Cells.t2) view5).setClipProgress(0.0f);
                 } else {
@@ -311,7 +311,7 @@ public abstract class es extends v4.f1 {
                 Object obj = arrayList2.get(i11);
                 i11++;
                 v4.d1 d1Var = (v4.d1) obj;
-                View view = d1Var.f57043a;
+                View view = d1Var.f57044a;
                 this.f33374x.add(d1Var);
                 if (view instanceof org.telegram.ui.Cells.t2) {
                     org.telegram.ui.Cells.t2 t2Var = (org.telegram.ui.Cells.t2) view;
@@ -388,7 +388,7 @@ public abstract class es extends v4.f1 {
                                         int i16 = dsVar.f33077c;
                                         int i17 = dsVar.d;
                                         int i18 = dsVar.f33078e;
-                                        View view2 = d1Var2.f57043a;
+                                        View view2 = d1Var2.f57044a;
                                         int i19 = i17 - i15;
                                         int i20 = i18 - i16;
                                         if (i19 != 0) {
@@ -441,9 +441,9 @@ public abstract class es extends v4.f1 {
                                         if (d1Var3 != null && d1Var4 != null) {
                                             AnimatorSet animatorSet = new AnimatorSet();
                                             animatorSet.setDuration(j3);
-                                            View view3 = d1Var3.f57043a;
+                                            View view3 = d1Var3.f57044a;
                                             Property property = View.ALPHA;
-                                            animatorSet.playTogether(ObjectAnimator.ofFloat(view3, property, 0.0f), ObjectAnimator.ofFloat(d1Var4.f57043a, property, 1.0f));
+                                            animatorSet.playTogether(ObjectAnimator.ofFloat(view3, property, 0.0f), ObjectAnimator.ofFloat(d1Var4.f57044a, property, 1.0f));
                                             arrayList8.add(csVar.f32671a);
                                             arrayList8.add(csVar.f32672b);
                                             animatorSet.addListener(new jg.j0(esVar2, csVar, d1Var3, animatorSet));
@@ -493,7 +493,7 @@ public abstract class es extends v4.f1 {
                                         int i16 = dsVar.f33077c;
                                         int i17 = dsVar.d;
                                         int i18 = dsVar.f33078e;
-                                        View view2 = d1Var2.f57043a;
+                                        View view2 = d1Var2.f57044a;
                                         int i19 = i17 - i15;
                                         int i20 = i18 - i16;
                                         if (i19 != 0) {
@@ -546,9 +546,9 @@ public abstract class es extends v4.f1 {
                                         if (d1Var3 != null && d1Var4 != null) {
                                             AnimatorSet animatorSet = new AnimatorSet();
                                             animatorSet.setDuration(j3);
-                                            View view3 = d1Var3.f57043a;
+                                            View view3 = d1Var3.f57044a;
                                             Property property = View.ALPHA;
-                                            animatorSet.playTogether(ObjectAnimator.ofFloat(view3, property, 0.0f), ObjectAnimator.ofFloat(d1Var4.f57043a, property, 1.0f));
+                                            animatorSet.playTogether(ObjectAnimator.ofFloat(view3, property, 0.0f), ObjectAnimator.ofFloat(d1Var4.f57044a, property, 1.0f));
                                             arrayList8.add(csVar.f32671a);
                                             arrayList8.add(csVar.f32672b);
                                             animatorSet.addListener(new jg.j0(esVar2, csVar, d1Var3, animatorSet));
@@ -576,7 +576,7 @@ public abstract class es extends v4.f1 {
                     Object obj2 = arrayList8.get(i13);
                     i13++;
                     v4.d1 d1Var2 = (v4.d1) obj2;
-                    View view2 = d1Var2.f57043a;
+                    View view2 = d1Var2.f57044a;
                     this.v.add(d1Var2);
                     ViewPropertyAnimator animate2 = view2.animate();
                     animate2.alpha(1.0f).setDuration(180L).setListener(new as(this, d1Var2, view2, animate2)).start();
@@ -590,7 +590,7 @@ public abstract class es extends v4.f1 {
     @Override
     public final void p(v4.d1 d1Var) {
         E(d1Var);
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         if (!(view instanceof org.telegram.ui.Cells.t2)) {
             view.setAlpha(0.0f);
         }
@@ -598,9 +598,9 @@ public abstract class es extends v4.f1 {
         arrayList.add(d1Var);
         if (arrayList.size() > 2) {
             for (int i7 = 0; i7 < arrayList.size(); i7++) {
-                ((v4.d1) arrayList.get(i7)).f57043a.setAlpha(0.0f);
-                if (((v4.d1) arrayList.get(i7)).f57043a instanceof org.telegram.ui.Cells.t2) {
-                    ((org.telegram.ui.Cells.t2) ((v4.d1) arrayList.get(i7)).f57043a).setMoving(true);
+                ((v4.d1) arrayList.get(i7)).f57044a.setAlpha(0.0f);
+                if (((v4.d1) arrayList.get(i7)).f57044a instanceof org.telegram.ui.Cells.t2) {
+                    ((org.telegram.ui.Cells.t2) ((v4.d1) arrayList.get(i7)).f57044a).setMoving(true);
                 }
             }
         }
@@ -608,11 +608,11 @@ public abstract class es extends v4.f1 {
 
     @Override
     public final boolean q(v4.d1 d1Var, v4.d1 d1Var2, e2.r0 r0Var, int i7, int i10, int i11, int i12) {
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         if (view instanceof org.telegram.ui.Cells.t2) {
             E(d1Var);
             E(d1Var2);
-            View view2 = d1Var2.f57043a;
+            View view2 = d1Var2.f57044a;
             view.setAlpha(1.0f);
             view2.setAlpha(0.0f);
             view2.setTranslationX(0.0f);
@@ -631,9 +631,9 @@ public abstract class es extends v4.f1 {
 
     @Override
     public final boolean r(v4.d1 d1Var, e2.r0 r0Var, int i7, int i10, int i11, int i12) {
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         int translationX = i7 + ((int) view.getTranslationX());
-        View view2 = d1Var.f57043a;
+        View view2 = d1Var.f57044a;
         int translationY = i10 + ((int) view2.getTranslationY());
         E(d1Var);
         int i13 = i11 - translationX;
@@ -680,14 +680,14 @@ public abstract class es extends v4.f1 {
             }
             i7++;
         }
-        if (d1Var.f57043a == t2Var) {
+        if (d1Var.f57044a == t2Var) {
             this.f33376z = t2Var;
         }
     }
 
     public final void z(ArrayList arrayList) {
         for (int size = arrayList.size() - 1; size >= 0; size--) {
-            ((v4.d1) arrayList.get(size)).f57043a.animate().cancel();
+            ((v4.d1) arrayList.get(size)).f57044a.animate().cancel();
         }
     }
 }

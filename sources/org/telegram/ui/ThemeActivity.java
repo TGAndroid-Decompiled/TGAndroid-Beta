@@ -970,7 +970,7 @@ public class ThemeActivity extends org.telegram.ui.ActionBar.f2 implements org.t
         edit.commit();
         v4.d1 K = themeActivity.f42013b.K(themeActivity.textSizeRow);
         if (K != null) {
-            View view = K.f57043a;
+            View view = K.f57044a;
             if (view instanceof g61) {
                 g61 g61Var = (g61) view;
                 org.telegram.ui.Cells.q1[] cells = g61Var.f45849a.getCells();
@@ -983,7 +983,7 @@ public class ThemeActivity extends org.telegram.ui.ActionBar.f2 implements org.t
         }
         v4.d1 K2 = themeActivity.f42013b.K(themeActivity.bubbleRadiusRow);
         if (K2 != null) {
-            View view2 = K2.f57043a;
+            View view2 = K2.f57044a;
             if (view2 instanceof w51) {
                 w51 w51Var = (w51) view2;
                 if (z9) {
@@ -1009,7 +1009,7 @@ public class ThemeActivity extends org.telegram.ui.ActionBar.f2 implements org.t
                 org.telegram.ui.ActionBar.k6.Q();
                 v4.d1 K = themeActivity.f42013b.K(themeActivity.textSizeRow);
                 if (K != null) {
-                    View view = K.f57043a;
+                    View view = K.f57044a;
                     if (view instanceof g61) {
                         org.telegram.ui.Cells.q1[] cells = ((g61) view).f45849a.getCells();
                         for (int i10 = 0; i10 < cells.length; i10++) {
@@ -1385,7 +1385,7 @@ public class ThemeActivity extends org.telegram.ui.ActionBar.f2 implements org.t
                     for (int i48 = 0; i48 < 4; i48++) {
                         org.telegram.ui.Components.xi0 xi0Var = (org.telegram.ui.Components.xi0) this.f42013b.K(i48);
                         if (xi0Var != null) {
-                            View view = xi0Var.f57043a;
+                            View view = xi0Var.f57044a;
                             if (view instanceof org.telegram.ui.Cells.aa) {
                                 org.telegram.ui.Cells.aa aaVar = (org.telegram.ui.Cells.aa) view;
                                 if (i48 == org.telegram.ui.ActionBar.k6.f28046o) {
@@ -1577,7 +1577,7 @@ public class ThemeActivity extends org.telegram.ui.ActionBar.f2 implements org.t
         Utilities.f21336e.c(new o51(this, 0));
         org.telegram.ui.Components.xi0 xi0Var = (org.telegram.ui.Components.xi0) this.f42013b.K(this.Z);
         if (xi0Var != null) {
-            View view = xi0Var.f57043a;
+            View view = xi0Var.f57044a;
             if (view instanceof org.telegram.ui.Cells.z8) {
                 ((org.telegram.ui.Cells.z8) view).setText(D0());
             }
@@ -1680,7 +1680,7 @@ public class ThemeActivity extends org.telegram.ui.ActionBar.f2 implements org.t
             kVar.n(350L);
             kVar.o(org.telegram.ui.Components.xq.h);
             kVar.C = false;
-            kVar.f57070m = false;
+            kVar.f57071m = false;
             this.f42013b.setItemAnimator(kVar);
         }
         if (this.T0) {

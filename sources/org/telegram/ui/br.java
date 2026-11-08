@@ -51,16 +51,16 @@ public abstract class br extends EditTextBoldCursor {
     }
 
     public static void B(r1.g gVar, float f10) {
-        r1.h hVar = gVar.f54267m;
-        if (hVar != null && f10 == ((float) hVar.f54275i)) {
+        r1.h hVar = gVar.f54268m;
+        if (hVar != null && f10 == ((float) hVar.f54276i)) {
             return;
         }
         gVar.d();
         r1.h hVar2 = new r1.h(f10);
         hVar2.b(400.0f);
         hVar2.a(1.0f);
-        hVar2.f54275i = f10;
-        gVar.f54267m = hVar2;
+        hVar2.f54276i = f10;
+        gVar.f54268m = hVar2;
         gVar.h();
     }
 
@@ -74,11 +74,11 @@ public abstract class br extends EditTextBoldCursor {
         gVar.d();
         if (f10 != 0.0f) {
             r1.h o4 = org.telegram.ui.Cells.f1.o(1.0f, 500.0f, 0.75f);
-            o4.f54275i = 100.0f;
-            gVar.f54267m = o4;
-            gVar.f54258b = 100.0f;
-            gVar.f54259c = true;
-            gVar.f54257a = 4000.0f;
+            o4.f54276i = 100.0f;
+            gVar.f54268m = o4;
+            gVar.f54259b = 100.0f;
+            gVar.f54260c = true;
+            gVar.f54258a = 4000.0f;
             gVar.h();
             return;
         }

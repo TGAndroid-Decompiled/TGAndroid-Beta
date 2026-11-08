@@ -8057,7 +8057,7 @@ public class ij {
     }
 
     public final boolean x5() {
-        if (!T4() && F0() != null && yf.d.f59411i.contains(F0().mime_type) && F0().size < qp.s1(this.I1).f24831l4 * 2) {
+        if (!T4() && F0() != null && yf.d.f59412i.contains(F0().mime_type) && F0().size < qp.s1(this.I1).f24831l4 * 2) {
             for (int i7 = 0; i7 < F0().attributes.size(); i7++) {
                 TLRPC.DocumentAttribute documentAttribute = F0().attributes.get(i7);
                 if ((documentAttribute instanceof TLRPC.TL_documentAttributeAudio) && documentAttribute.duration < 5.0d) {

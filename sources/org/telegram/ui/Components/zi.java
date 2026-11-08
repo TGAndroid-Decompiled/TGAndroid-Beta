@@ -96,8 +96,8 @@ public final class zi extends kj0 {
     @Override
     public final void W(int i7, int i10, v4.d1 d1Var) {
         TLRPC.User user;
-        if (d1Var.f57047f == 0) {
-            ej ejVar = (ej) d1Var.f57043a;
+        if (d1Var.f57048f == 0) {
+            ej ejVar = (ej) d1Var.f57044a;
             Object O = O(i7, i10);
             boolean z9 = true;
             if (i7 == R() - 2 && i10 == M(i7) - 1) {

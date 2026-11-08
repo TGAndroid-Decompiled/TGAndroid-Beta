@@ -46,7 +46,7 @@ public final class c implements k, l5.e, u9.d, gh.d, b20, jt0, kt0 {
                 p0Var.getClass();
                 n nVar = n.f13731b;
                 Log.d("FirebaseSessions", "Session Event Type: SESSION_START");
-                byte[] bytes = u10.getBytes(xd.a.f58683a);
+                byte[] bytes = u10.getBytes(xd.a.f58684a);
                 j.d(bytes, "getBytes(...)");
                 return bytes;
             default:

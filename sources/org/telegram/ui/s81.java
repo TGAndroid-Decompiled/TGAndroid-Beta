@@ -130,14 +130,14 @@ public final class s81 extends AnimatorListenerAdapter {
                 return;
             case 14:
                 sg.w wVar = (sg.w) obj;
-                wVar.f55225a.getPainting().c(null, wVar.f55225a.getCurrentColor(), true, null);
-                wVar.f55240r = null;
+                wVar.f55226a.getPainting().c(null, wVar.f55226a.getCurrentColor(), true, null);
+                wVar.f55241r = null;
                 return;
             case 15:
                 super.onAnimationEnd(animator);
                 tg.f0 f0Var = (tg.f0) obj;
-                ImageView imageView = f0Var.f55653c;
-                f0Var.f55653c = f0Var.d;
+                ImageView imageView = f0Var.f55654c;
+                f0Var.f55654c = f0Var.d;
                 f0Var.d = imageView;
                 imageView.bringToFront();
                 f0Var.d.setVisibility(8);
@@ -145,10 +145,10 @@ public final class s81 extends AnimatorListenerAdapter {
                 return;
             case 16:
                 tg.h1 h1Var = (tg.h1) obj;
-                if (animator == h1Var.f55719r) {
-                    h1Var.f55717f = h1Var.h;
+                if (animator == h1Var.f55720r) {
+                    h1Var.f55718f = h1Var.h;
                     h1Var.h = -1;
-                    h1Var.f55719r = null;
+                    h1Var.f55720r = null;
                     return;
                 }
                 return;
@@ -157,10 +157,10 @@ public final class s81 extends AnimatorListenerAdapter {
                 return;
             case 18:
                 ug.p0 p0Var = (ug.p0) obj;
-                if (!p0Var.f56758r) {
+                if (!p0Var.f56759r) {
                     f10 = 0.0f;
                 }
-                p0Var.f56759s = f10;
+                p0Var.f56760s = f10;
                 p0Var.e();
                 return;
             case 19:
@@ -179,14 +179,14 @@ public final class s81 extends AnimatorListenerAdapter {
                 return;
             case 22:
                 super.onAnimationEnd(animator);
-                vg.m mVar = ((vg.h) obj).f57399b;
-                mVar.f57411b.d = 0.0f;
-                mVar.f57415d0 = null;
+                vg.m mVar = ((vg.h) obj).f57400b;
+                mVar.f57412b.d = 0.0f;
+                mVar.f57416d0 = null;
                 mVar.j(mVar.L);
                 return;
             case 23:
                 wg.b bVar = (wg.b) obj;
-                bVar.f57697b = 1.0f;
+                bVar.f57698b = 1.0f;
                 bVar.invalidate();
                 return;
             case 24:
@@ -194,21 +194,21 @@ public final class s81 extends AnimatorListenerAdapter {
                 Iterator it = fVar.h.iterator();
                 while (it.hasNext()) {
                     xh.b bVar2 = (xh.b) it.next();
-                    if (fVar.f58791c.size() < fVar.d) {
-                        fVar.f58791c.push(bVar2);
+                    if (fVar.f58792c.size() < fVar.d) {
+                        fVar.f58792c.push(bVar2);
                     }
                     it.remove();
                 }
-                Runnable runnable = fVar.f58803q;
+                Runnable runnable = fVar.f58804q;
                 if (runnable != null) {
                     runnable.run();
-                    fVar.f58803q = null;
+                    fVar.f58804q = null;
                 }
-                fVar.f58804r = null;
+                fVar.f58805r = null;
                 fVar.invalidateSelf();
                 return;
             default:
-                ((zh.f0) obj).f60310b.f60354s1.setVisibility(8);
+                ((zh.f0) obj).f60311b.f60355s1.setVisibility(8);
                 return;
         }
     }

@@ -151,7 +151,7 @@ public final class c4 {
         this.J = new org.telegram.ui.Components.w5(new l(t0Var, 6), 320L, xqVar, 0);
         z3 z3Var = new z3(t0Var, t0Var);
         this.I = z3Var;
-        z3Var.f60232y = -1;
+        z3Var.f60233y = -1;
         zh.b1.d(path, 1.0f, false);
         paint3.setStyle(style);
         paint3.setStrokeWidth(org.telegram.messenger.g0.N(4.0f));
@@ -176,7 +176,7 @@ public final class c4 {
             r1.h hVar = new r1.h(f10);
             hVar.a(0.55f);
             hVar.b(280.0f);
-            gVar.f54267m = hVar;
+            gVar.f54268m = hVar;
             this.F.f(0.001f);
             this.F.b(new w3(this, 0));
         }
@@ -197,10 +197,10 @@ public final class c4 {
         r1.h hVar = new r1.h(1.0f);
         hVar.a(0.55f);
         hVar.b(280.0f);
-        gVar2.f54267m = hVar;
+        gVar2.f54268m = hVar;
         this.Z.f(0.001f);
         r1.g gVar3 = this.Z;
-        gVar3.f54257a = -3.0f;
+        gVar3.f54258a = -3.0f;
         gVar3.b(new w3(this, 2));
         this.Z.h();
     }
@@ -614,10 +614,10 @@ public final class c4 {
         if (!z9 && !this.f42321h0 && this.f42339r == 0.0f && this.f42341s == 0.0f && this.f42343t == 0.0f) {
             z10 = false;
         }
-        b4Var.f57495r = f10;
-        b4Var.f57496s = f11;
-        b4Var.f57497w = z10;
-        b4Var.f57498x = z9;
+        b4Var.f57496r = f10;
+        b4Var.f57497s = f11;
+        b4Var.f57498w = z10;
+        b4Var.f57499x = z9;
     }
 
     public final void q() {

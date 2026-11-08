@@ -1753,7 +1753,7 @@ public final class m11 extends FrameLayout implements org.telegram.messenger.ls,
     }
 
     public float getSideMenuT() {
-        return this.U * this.f35843a.f55486e;
+        return this.U * this.f35843a.f55487e;
     }
 
     public final void h() {
@@ -1761,7 +1761,7 @@ public final class m11 extends FrameLayout implements org.telegram.messenger.ls,
         int i10;
         int i11;
         te.a aVar = this.M;
-        float f10 = aVar.f55486e;
+        float f10 = aVar.f55487e;
         ImageView imageView = this.E;
         imageView.setAlpha(f10);
         imageView.setScaleX(org.telegram.messenger.g0.T1(0.4f, 1.0f, f10));
@@ -1784,7 +1784,7 @@ public final class m11 extends FrameLayout implements org.telegram.messenger.ls,
             i10 = 8;
         }
         imageView2.setVisibility(i10);
-        float f11 = 1.0f - aVar.f55486e;
+        float f11 = 1.0f - aVar.f55487e;
         ImageView imageView3 = this.G;
         imageView3.setAlpha(f11);
         imageView3.setScaleX(org.telegram.messenger.g0.T1(0.4f, 1.0f, f11));
@@ -1811,7 +1811,7 @@ public final class m11 extends FrameLayout implements org.telegram.messenger.ls,
         float T1 = org.telegram.messenger.g0.T1(1.0f, 0.0f, this.U);
         FrameLayout frameLayout = this.f35863x;
         frameLayout.setAlpha(T1);
-        if ((1.0f - this.f35845b.f55486e) * (1.0f - this.U) * this.f35843a.f55486e > 0.0f) {
+        if ((1.0f - this.f35845b.f55487e) * (1.0f - this.U) * this.f35843a.f55487e > 0.0f) {
             i7 = 0;
         } else {
             i7 = 8;
@@ -1825,7 +1825,7 @@ public final class m11 extends FrameLayout implements org.telegram.messenger.ls,
     }
 
     public final float k(i11 i11Var) {
-        float f10 = (1.0f - this.f35845b.f55486e) * this.f35843a.f55486e;
+        float f10 = (1.0f - this.f35845b.f55487e) * this.f35843a.f55487e;
         if (i11Var == i11.f34505b) {
             return this.U * f10;
         }

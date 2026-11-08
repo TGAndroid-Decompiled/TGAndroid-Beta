@@ -114,7 +114,7 @@ public final class ol extends org.telegram.ui.Components.rt0 {
                         rectF2.set(rectF);
                         rectF2.intersect(0.0f, 0.0f, olVar.getWidth(), olVar.getHeight());
                         if (!rectF2.isEmpty()) {
-                            float f10 = anVar3.f43764cd.f55486e;
+                            float f10 = anVar3.f43764cd.f55487e;
                             int i10 = (int) ((1.0f - f10) * 255.0f);
                             int i11 = (int) (255.0f * f10);
                             if (f10 > 0.0f) {
@@ -212,7 +212,7 @@ public final class ol extends org.telegram.ui.Components.rt0 {
                         rectF2.set(rectF);
                         rectF2.intersect(0.0f, 0.0f, olVar.getWidth(), olVar.getHeight());
                         if (!rectF2.isEmpty()) {
-                            float f10 = anVar3.f43764cd.f55486e;
+                            float f10 = anVar3.f43764cd.f55487e;
                             int i10 = (int) ((1.0f - f10) * 255.0f);
                             int i11 = (int) (255.0f * f10);
                             if (f10 > 0.0f) {
@@ -334,10 +334,10 @@ public final class ol extends org.telegram.ui.Components.rt0 {
             z10 = false;
         }
         anVar.f43789ec = z10;
-        anVar.M.f54577a = c10;
+        anVar.M.f54578a = c10;
         ri.f fVar = anVar.I;
         if (fVar != null) {
-            Iterator it = fVar.f54576w.iterator();
+            Iterator it = fVar.f54577w.iterator();
             while (it.hasNext()) {
                 fh.e eVar = ((fh.g) it.next()).f11535f0;
                 if (eVar != null) {
@@ -347,7 +347,7 @@ public final class ol extends org.telegram.ui.Components.rt0 {
         }
         ri.f fVar2 = anVar.J;
         if (fVar2 != null) {
-            Iterator it2 = fVar2.f54576w.iterator();
+            Iterator it2 = fVar2.f54577w.iterator();
             while (it2.hasNext()) {
                 fh.e eVar2 = ((fh.g) it2.next()).f11535f0;
                 if (eVar2 != null) {

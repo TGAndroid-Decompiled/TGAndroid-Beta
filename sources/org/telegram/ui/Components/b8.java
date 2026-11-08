@@ -209,7 +209,7 @@ public final class b8 extends org.telegram.ui.ActionBar.v2 implements org.telegr
         r1.h hVar = new r1.h();
         hVar.b(750.0f);
         hVar.a(1.0f);
-        gVar.f54267m = hVar;
+        gVar.f54268m = hVar;
         gVar.b(new e7(this, 0));
         this.f32086e2 = gVar;
         h70 h70Var = new h70(activity);
@@ -1588,7 +1588,7 @@ public final class b8 extends org.telegram.ui.ActionBar.v2 implements org.telegr
                         }
                         if (f10 != -1.0f) {
                             r1.g gVar = this.f32086e2;
-                            gVar.f54267m.f54275i = f10 * 1000.0f;
+                            gVar.f54268m.f54276i = f10 * 1000.0f;
                             gVar.h();
                             return;
                         }

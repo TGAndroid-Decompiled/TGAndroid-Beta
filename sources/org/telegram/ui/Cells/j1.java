@@ -27,7 +27,7 @@ public final class j1 extends OldVideoPlayerRewinder {
                 PhotoViewer.c(photoViewer, MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
                 photoViewer.f41572z1.f(false);
                 ti.o oVar = photoViewer.O8;
-                if (oVar != null && (iVar = oVar.f56125e) != null) {
+                if (oVar != null && (iVar = oVar.f56126e) != null) {
                     iVar.F.f(false);
                     return;
                 }
@@ -56,16 +56,16 @@ public final class j1 extends OldVideoPlayerRewinder {
                 photoViewer.f41572z1.f(true);
                 photoViewer.f41384e0.invalidate();
                 ti.o oVar = photoViewer.O8;
-                if (oVar != null && (iVar = oVar.f56125e) != null) {
+                if (oVar != null && (iVar = oVar.f56126e) != null) {
                     j51 j51Var2 = iVar.F;
                     j51Var2.e(false);
                     j51Var2.d(z10);
                     j51Var2.f(true);
-                    di.b3 b3Var = iVar.f56093o;
+                    di.b3 b3Var = iVar.f56094o;
                     if (b3Var != null) {
                         b3Var.invalidate();
                     }
-                    ti.e eVar = iVar.f56091m;
+                    ti.e eVar = iVar.f56092m;
                     if (eVar != null) {
                         eVar.invalidate();
                         return;
@@ -97,15 +97,15 @@ public final class j1 extends OldVideoPlayerRewinder {
                     photoViewer.f41490q3.invalidate();
                 }
                 ti.o oVar = photoViewer.O8;
-                if (oVar != null && (iVar = oVar.f56125e) != null) {
+                if (oVar != null && (iVar = oVar.f56126e) != null) {
                     iVar.F.g(0L);
                     if (z9) {
                         iVar.I = f10;
-                        di.b3 b3Var = iVar.f56093o;
+                        di.b3 b3Var = iVar.f56094o;
                         if (b3Var != null) {
                             b3Var.invalidate();
                         }
-                        ti.e eVar = iVar.f56091m;
+                        ti.e eVar = iVar.f56092m;
                         if (eVar != null) {
                             eVar.invalidate();
                             return;

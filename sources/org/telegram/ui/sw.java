@@ -205,10 +205,10 @@ public final class sw extends org.telegram.ui.Components.x9 implements di.f7 {
         vw vwVar = this.f49833m3;
         int L0 = vwVar.f50784c.L0();
         ww wwVar = this.A3;
-        if (L0 != -1 && vwVar.f50785e.D == 0 && vwVar.f50784c.f57021y < 0 && vwVar.f50782a.getScrollState() != 1) {
+        if (L0 != -1 && vwVar.f50785e.D == 0 && vwVar.f50784c.f57022y < 0 && vwVar.f50782a.getScrollState() != 1) {
             v4.d1 K = vwVar.f50782a.K(L0);
             if (K != null) {
-                int top = K.f57043a.getTop();
+                int top = K.f57044a.getTop();
                 if (vwVar.f50789s == 0 && wwVar.l4() && vwVar.f50790w == 2) {
                     L0 = Math.max(1, L0);
                 }
@@ -244,7 +244,7 @@ public final class sw extends org.telegram.ui.Components.x9 implements di.f7 {
         float e42 = wwVar.e4(false);
         org.telegram.ui.Components.pr prVar = wwVar.J1;
         if (prVar != null) {
-            f10 = prVar.getMetadata().f55502c.f55512a;
+            f10 = prVar.getMetadata().f55503c.f55513a;
         } else {
             f10 = 0.0f;
         }
@@ -315,7 +315,7 @@ public final class sw extends org.telegram.ui.Components.x9 implements di.f7 {
                         if (uwVar.f50431e) {
                             uwVar.f50432f = true;
                             if (yVar.i(null, 4) != 0 && (d1Var = vwVar.f50786f.d) != null) {
-                                View view = d1Var.f57043a;
+                                View view = d1Var.f57044a;
                                 if (view instanceof org.telegram.ui.Cells.t2) {
                                     org.telegram.ui.Cells.t2 t2Var = (org.telegram.ui.Cells.t2) view;
                                     long dialogId = t2Var.getDialogId();

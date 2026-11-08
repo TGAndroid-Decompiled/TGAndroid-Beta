@@ -18,7 +18,7 @@ public final class k50 extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f57047f == 0) {
+        if (d1Var.f57048f == 0) {
             return true;
         }
         return false;
@@ -56,8 +56,8 @@ public final class k50 extends org.telegram.ui.Components.oj0 {
         int i12;
         m50 m50Var = this.d;
         boolean z10 = m50Var.N;
-        int i13 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i13 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         boolean z11 = true;
         if (i13 != 0) {
             if (i13 != 1) {

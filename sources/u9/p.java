@@ -2,31 +2,31 @@ package u9;
 
 import org.telegram.ui.web.a0;
 public final class p implements ua.b {
-    public static final s0.b f56484c = new s0.b(27);
+    public static final s0.b f56485c = new s0.b(27);
     public static final ab.m d = new ab.m(2);
-    public ua.a f56485a;
-    public volatile ua.b f56486b;
+    public ua.a f56486a;
+    public volatile ua.b f56487b;
 
     public p(s0.b bVar, ua.b bVar2) {
-        this.f56485a = bVar;
-        this.f56486b = bVar2;
+        this.f56486a = bVar;
+        this.f56487b = bVar2;
     }
 
     public final void a(ua.a aVar) {
         ua.b bVar;
         ua.b bVar2;
-        ua.b bVar3 = this.f56486b;
+        ua.b bVar3 = this.f56487b;
         ab.m mVar = d;
         if (bVar3 != mVar) {
             aVar.c(bVar3);
             return;
         }
         synchronized (this) {
-            bVar = this.f56486b;
+            bVar = this.f56487b;
             if (bVar != mVar) {
                 bVar2 = bVar;
             } else {
-                this.f56485a = new a0(13, this.f56485a, aVar);
+                this.f56486a = new a0(13, this.f56486a, aVar);
                 bVar2 = null;
             }
         }
@@ -37,6 +37,6 @@ public final class p implements ua.b {
 
     @Override
     public final Object get() {
-        return this.f56486b.get();
+        return this.f56487b.get();
     }
 }

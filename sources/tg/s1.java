@@ -13,21 +13,21 @@ import org.telegram.ui.Components.ca;
 import org.telegram.ui.Components.wp;
 import org.telegram.ui.Components.y9;
 public abstract class s1 extends fi.d {
-    public final ca f55943k0;
-    public final RectF f55944l0;
+    public final ca f55944k0;
+    public final RectF f55945l0;
     public int m0;
-    public final c2 f55945n0;
-    public final f6 f55946o0;
-    public int f55947p0;
-    public boolean f55948q0;
+    public final c2 f55946n0;
+    public final f6 f55947o0;
+    public int f55948p0;
+    public boolean f55949q0;
 
     public s1(c2 c2Var, ContextThemeWrapper contextThemeWrapper, f6 f6Var, y9 y9Var) {
         super(contextThemeWrapper, f6Var, false);
-        this.f55944l0 = new RectF();
-        this.f55947p0 = 8;
-        this.f55946o0 = f6Var;
-        this.f55945n0 = c2Var;
-        this.f55943k0 = new ca(y9Var, this, 0, true);
+        this.f55945l0 = new RectF();
+        this.f55948p0 = 8;
+        this.f55947o0 = f6Var;
+        this.f55946n0 = c2Var;
+        this.f55944k0 = new ca(y9Var, this, 0, true);
         setWillNotDraw(false);
         setTextColor(-1);
         setFlickeringLoading(true);
@@ -40,7 +40,7 @@ public abstract class s1 extends fi.d {
     @Override
     public void onDraw(Canvas canvas) {
         boolean z9 = this.f11758g0;
-        RectF rectF = this.f55944l0;
+        RectF rectF = this.f55945l0;
         if (z9) {
             float c10 = this.d.c() + getPaddingLeft() + getPaddingRight();
             rectF.set((getMeasuredWidth() - c10) / 2.0f, 0.0f, (getMeasuredWidth() + c10) / 2.0f, getMeasuredHeight());
@@ -52,7 +52,7 @@ public abstract class s1 extends fi.d {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        if (this.f55948q0) {
+        if (this.f55949q0) {
             i7 = View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + ((int) this.d.c()), 1073741824);
         }
         super.onMeasure(i7, i10);
@@ -61,7 +61,7 @@ public abstract class s1 extends fi.d {
     @Override
     public void setAlpha(float f10) {
         z1[] z1VarArr;
-        c2 c2Var = this.f55945n0;
+        c2 c2Var = this.f55946n0;
         super.setAlpha((!c2Var.D || (z1VarArr = c2Var.H) == null || z1VarArr.length <= 0) ? 0.0f : 0.0f);
     }
 
@@ -106,8 +106,8 @@ public abstract class s1 extends fi.d {
     }
 
     public void setRad(int i7) {
-        this.f55947p0 = i7;
-        setForeground(k6.a0(k6.w0(k6.f27944i6, this.f55946o0), i7, i7));
+        this.f55948p0 = i7;
+        setForeground(k6.a0(k6.w0(k6.f27944i6, this.f55947o0), i7, i7));
     }
 
     public void setRestoreState(boolean z9) {

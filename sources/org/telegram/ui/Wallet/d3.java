@@ -19,9 +19,9 @@ public final class d3 implements org.telegram.ui.ActionBar.r1, r0.m, lc {
     @Override
     public r0.k1 S0(View view, r0.k1 k1Var) {
         o3 o3Var = (o3) this.f42388b;
-        o3Var.H = k1Var.f54201a.f(647);
+        o3Var.H = k1Var.f54202a.f(647);
         o3Var.h.requestLayout();
-        return r0.k1.f54200b;
+        return r0.k1.f54201b;
     }
 
     public void a(float f10, float f11, int i7) {

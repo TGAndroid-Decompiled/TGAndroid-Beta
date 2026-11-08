@@ -12,7 +12,7 @@ public final class zy extends v4.k {
     @Override
     public final void C(v4.d1 d1Var, v4.j jVar) {
         super.C(d1Var, jVar);
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         if (view instanceof dz) {
             dz dzVar = (dz) view;
             if (dzVar.f33136x) {
@@ -26,7 +26,7 @@ public final class zy extends v4.k {
                 ofFloat.addUpdateListener(new yy(dzVar, 0));
                 ofFloat.addListener(new z5(dzVar, 26));
                 dzVar.f33115a = ofFloat;
-                ofFloat.setDuration(this.f57116e);
+                ofFloat.setDuration(this.f57117e);
                 ofFloat.start();
             }
         }
@@ -35,7 +35,7 @@ public final class zy extends v4.k {
     @Override
     public final void f(v4.d1 d1Var) {
         super.f(d1Var);
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         view.setTranslationX(0.0f);
         if (view instanceof dz) {
             ((dz) view).a();
@@ -44,14 +44,14 @@ public final class zy extends v4.k {
 
     @Override
     public final void m() {
-        boolean isEmpty = this.f57100p.isEmpty();
-        boolean isEmpty2 = this.f57102r.isEmpty();
-        boolean isEmpty3 = this.f57103s.isEmpty();
-        boolean isEmpty4 = this.f57101q.isEmpty();
+        boolean isEmpty = this.f57101p.isEmpty();
+        boolean isEmpty2 = this.f57103r.isEmpty();
+        boolean isEmpty3 = this.f57104s.isEmpty();
+        boolean isEmpty4 = this.f57102q.isEmpty();
         if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.1f);
             ofFloat.addUpdateListener(new e6(this, 23));
-            ofFloat.setDuration(this.f57116e);
+            ofFloat.setDuration(this.f57117e);
             ofFloat.start();
         }
         super.m();
@@ -64,8 +64,8 @@ public final class zy extends v4.k {
 
     @Override
     public final void x(v4.d1 d1Var) {
-        d1Var.f57043a.setTranslationX(0.0f);
-        View view = d1Var.f57043a;
+        d1Var.f57044a.setTranslationX(0.0f);
+        View view = d1Var.f57044a;
         if (view instanceof dz) {
             ((dz) view).a();
         }

@@ -32,11 +32,11 @@ public final class g0 extends ug.f1 {
             this.I2 = aVar;
             aVar.setOnClickListener(new ii.g(this, 27));
             yg.a aVar2 = this.I2;
-            aVar2.f59423e = true;
-            fi.d dVar = aVar2.f59420a;
+            aVar2.f59424e = true;
+            fi.d dVar = aVar2.f59421a;
             dVar.setEnabled(true);
             dVar.i(id.M0(2131749676, null), false, true);
-            r6.i(k6.f27925h5, aVar2.f59421b, aVar2.f59422c);
+            r6.i(k6.f27925h5, aVar2.f59422b, aVar2.f59423c);
             this.f28619b.addView(this.I2, ha.d(-1, 68.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         }
         N();
@@ -91,10 +91,10 @@ public final class g0 extends ug.f1 {
         this.Z1 = i7 + 1;
         int i10 = i7 + 2;
         this.X1 = i10;
-        this.f56562a2 = i10;
-        this.f56563b2 = i10;
+        this.f56563a2 = i10;
+        this.f56564b2 = i10;
         int size = this.P1.size() + i10;
-        this.f56564c2 = size;
+        this.f56565c2 = size;
         this.X1 = size + 1;
         this.d2 = size;
     }

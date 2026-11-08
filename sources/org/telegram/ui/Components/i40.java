@@ -18,7 +18,7 @@ public final class i40 implements Runnable {
         switch (i7) {
             case 0:
                 wi.s0 s0Var2 = n40Var.Q;
-                if (s0Var2 != null && s0Var2.f58138a == 3) {
+                if (s0Var2 != null && s0Var2.f58139a == 3) {
                     long elapsedRealtimeNanos = SystemClock.elapsedRealtimeNanos();
                     long j3 = n40Var.G0;
                     if (j3 == 0 || elapsedRealtimeNanos - j3 >= 70000000) {
@@ -36,10 +36,10 @@ public final class i40 implements Runnable {
                 int i11 = n40.L0;
                 wi.t0 t0Var = n40Var.O;
                 if (t0Var != null && (s0Var = n40Var.Q) != null) {
-                    if (s0Var.f58138a == 3) {
+                    if (s0Var.f58139a == 3) {
                         n40Var.y();
                         return;
-                    } else if (s0Var.f58141e) {
+                    } else if (s0Var.f58142e) {
                         t0Var.p();
                         return;
                     } else {

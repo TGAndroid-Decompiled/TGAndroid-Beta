@@ -48,7 +48,7 @@ public final class a91 extends v4.b0 {
             return;
         }
         mi.m mVar = new mi.m(recyclerView.getContext(), 0);
-        mVar.f57212a = i7;
+        mVar.f57213a = i7;
         w0(mVar);
     }
 }

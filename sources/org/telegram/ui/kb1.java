@@ -85,7 +85,7 @@ public final class kb1 extends org.telegram.ui.Components.vi0 {
 
     @Override
     public final void A(v4.d1 d1Var) {
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         if (view instanceof org.telegram.ui.Cells.h4) {
             ((org.telegram.ui.Cells.h4) view).f29262a.getImageReceiver().c();
         }
@@ -93,7 +93,7 @@ public final class kb1 extends org.telegram.ui.Components.vi0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f57047f == 1) {
+        if (d1Var.f57048f == 1) {
             return true;
         }
         return false;

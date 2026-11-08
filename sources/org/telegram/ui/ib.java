@@ -32,7 +32,7 @@ public final class ib implements ViewTreeObserver.OnPreDrawListener {
         if (measuredHeight2 > measuredHeight) {
             measuredHeight2 = i10 + measuredHeight;
         }
-        View view2 = this.f46629b.f57043a;
+        View view2 = this.f46629b.f57044a;
         if (view2 instanceof org.telegram.ui.Cells.q1) {
             ((org.telegram.ui.Cells.q1) view).A3(i10, measuredHeight2 - i10, (mbVar.X.getHeightWithKeyboard() - org.telegram.messenger.g0.L(48.0f)) - mbVar.f47768w.getTop(), 0.0f, (view.getY() + mb.L0(mbVar).getMeasuredHeight()) - mbVar.X.getBackgroundTranslationY(), mbVar.X.getMeasuredWidth(), mbVar.X.getBackgroundSizeY(), 0, 0, 0);
             return true;

@@ -64,7 +64,7 @@ public final class h8 extends v4.s0 {
                     int i13 = L + i10;
                     int i14 = diVar.f28648s0;
                     if (((diVar.V3[0] - i14) - i13) + i14 < (diVar.I2.getAlpha() * diVar.I2.getMeasuredHeight()) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (xi0Var = (xi0) jlVar.K(0)) != null) {
-                        View view = xi0Var.f57043a;
+                        View view = xi0Var.f57044a;
                         int top = view.getTop();
                         topScrollOffset = chatAttachAlertPhotoLayout.getTopScrollOffset();
                         if (top > topScrollOffset) {

@@ -116,7 +116,7 @@ public final class ci extends View {
                 super.onDraw(canvas);
                 float width = getWidth() / 2.0f;
                 float height = getHeight() / 2.0f;
-                float f10 = ((te.a) this.d).f55486e;
+                float f10 = ((te.a) this.d).f55487e;
                 if (f10 < 1.0f) {
                     canvas.save();
                     float f11 = 1.0f - f10;

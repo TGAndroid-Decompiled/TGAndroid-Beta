@@ -24,7 +24,7 @@ public final class e extends d {
         } else {
             i7 = 3;
         }
-        this.f59433c.setLayoutParams(ha.d(40, 40.0f, i7 | 16, 16.0f, 0.0f, 16.0f, 0.0f));
+        this.f59434c.setLayoutParams(ha.d(40, 40.0f, i7 | 16, 16.0f, 0.0f, 16.0f, 0.0f));
         boolean z9 = id.f23157a0;
         if (z9) {
             i10 = 5;
@@ -58,14 +58,14 @@ public final class e extends d {
         } else {
             f13 = 20.0f;
         }
-        this.f59434e.setLayoutParams(ha.d(-1, -2.0f, i13, f12, 0.0f, f13, 0.0f));
+        this.f59435e.setLayoutParams(ha.d(-1, -2.0f, i13, f12, 0.0f, f13, 0.0f));
     }
 
     public void setGiveaway(TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        r6.Y(this.f59434e, k6.f28110r5, this.f59431a);
+        r6.Y(this.f59435e, k6.f28110r5, this.f59432a);
         boolean z9 = prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway;
         d4 d4Var = this.d;
-        w8 w8Var = this.f59432b;
+        w8 w8Var = this.f59433b;
         if (z9) {
             TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway = (TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway;
             w8Var.g(26);
@@ -85,7 +85,7 @@ public final class e extends d {
             }
             setSubtitle(id.G(prepaidGiveaway.quantity, "BoostingPreparedGiveawaySubscriptionsPlural", id.G(tL_prepaidGiveaway.months, "Months", new Object[0])));
         }
-        l9 l9Var = this.f59433c;
+        l9 l9Var = this.f59434c;
         l9Var.setImageDrawable(w8Var);
         l9Var.setRoundRadius(g0.L(20.0f));
     }

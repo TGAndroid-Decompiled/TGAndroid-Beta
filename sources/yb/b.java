@@ -21,34 +21,34 @@ import java.util.Locale;
 import pb.j;
 import q6.m;
 public final class b implements a {
-    public final Context f59337a;
-    public final y6 f59338b;
-    public final String f59339c;
+    public final Context f59338a;
+    public final y6 f59339b;
+    public final String f59340c;
     public boolean d;
-    public z0 f59340e;
+    public z0 f59341e;
 
     public b(Context context, xb.a aVar) {
         String str;
-        this.f59337a = context;
+        this.f59338a = context;
         Locale.getDefault().getLanguage().equals(Locale.ENGLISH.getLanguage());
-        this.f59338b = new y6(1, -1, aVar.f57640a, 1);
+        this.f59339b = new y6(1, -1, aVar.f57641a, 1);
         n6.e.f20501b.getClass();
         if (n6.e.a(context) >= 200400000) {
             str = "com.google.android.gms.vision.ica";
         } else {
             str = "com.google.android.gms.vision.dynamite";
         }
-        this.f59339c = str;
+        this.f59340c = str;
     }
 
     @Override
     public final ArrayList a(ub.a aVar) {
         Bitmap createBitmap;
-        if (this.f59340e == null) {
+        if (this.f59341e == null) {
             zzb();
         }
-        if (this.f59340e != null) {
-            int i7 = aVar.f56492e;
+        if (this.f59341e != null) {
+            int i7 = aVar.f56493e;
             if (i7 != -1) {
                 if (i7 != 17) {
                     if (i7 != 35) {
@@ -64,11 +64,11 @@ public final class b implements a {
                 m.g(null);
                 throw null;
             }
-            Bitmap bitmap = aVar.f56489a;
+            Bitmap bitmap = aVar.f56490a;
             m.g(bitmap);
             int i10 = aVar.d;
-            int i11 = aVar.f56490b;
-            int i12 = aVar.f56491c;
+            int i11 = aVar.f56491b;
+            int i12 = aVar.f56492c;
             if (i10 == 0) {
                 createBitmap = Bitmap.createBitmap(bitmap, 0, 0, i11, i12);
             } else {
@@ -77,7 +77,7 @@ public final class b implements a {
                 createBitmap = Bitmap.createBitmap(bitmap, 0, 0, i11, i12, matrix, true);
             }
             try {
-                z0 z0Var = this.f59340e;
+                z0 z0Var = this.f59341e;
                 m.g(z0Var);
                 a7.b bVar = new a7.b(createBitmap);
                 Parcel p12 = z0Var.p1();
@@ -106,10 +106,10 @@ public final class b implements a {
     @Override
     public final void zzb() {
         IInterface aVar;
-        String str = this.f59339c;
-        Context context = this.f59337a;
+        String str = this.f59340c;
+        Context context = this.f59338a;
         Log.d("LegacyLabelDelegate", "Try to load legacy label module.");
-        if (this.f59340e == null) {
+        if (this.f59341e == null) {
             try {
                 IBinder b10 = b7.f.c(context, b7.f.f2994b, str).b("com.google.android.gms.vision.label.ChimeraNativeImageLabelerCreator");
                 int i7 = w2.f692b;
@@ -123,8 +123,8 @@ public final class b implements a {
                         aVar = new a8.a(b10, "com.google.android.gms.vision.label.internal.client.INativeImageLabelerCreator", 0);
                     }
                 }
-                z0 x12 = ((v1) aVar).x1(new a7.b(context), this.f59338b);
-                this.f59340e = x12;
+                z0 x12 = ((v1) aVar).x1(new a7.b(context), this.f59339b);
+                this.f59341e = x12;
                 if (x12 == null && !this.d) {
                     Log.d("LegacyLabelDelegate", "Request ICA optional module download.");
                     j.b(context);
@@ -149,14 +149,14 @@ public final class b implements a {
 
     @Override
     public final void zzc() {
-        z0 z0Var = this.f59340e;
+        z0 z0Var = this.f59341e;
         if (z0Var != null) {
             try {
                 z0Var.t1(z0Var.p1(), 2);
             } catch (RemoteException e10) {
                 Log.e("LegacyLabelDelegate", "Failed to release legacy image labeler.", e10);
             }
-            this.f59340e = null;
+            this.f59341e = null;
         }
     }
 }

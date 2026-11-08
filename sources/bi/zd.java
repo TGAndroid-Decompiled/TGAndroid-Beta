@@ -437,7 +437,7 @@ public abstract class zd extends View {
         udVar2.a(canvas2, -1);
         canvas2.restore();
         canvas2.save();
-        float f32 = 1.0f - (this.f5203f0.f55486e * f22);
+        float f32 = 1.0f - (this.f5203f0.f55487e * f22);
         canvas2.scale(f32, f32, rectF5.centerX(), rectF5.top - (rectF5.height() * f11));
         this.G.setBounds((int) ((rectF5.centerX() - (i6Var2.c() / f12)) + org.telegram.messenger.g0.L(-12.0f)), (int) (rectF5.centerY() - org.telegram.messenger.g0.L(10.0f)), (int) ((rectF5.centerX() - (i6Var2.c() / f12)) + org.telegram.messenger.g0.L(8.0f)), (int) (rectF5.centerY() + org.telegram.messenger.g0.L(10.0f)));
         if (this.F) {
@@ -447,7 +447,7 @@ public abstract class zd extends View {
         i6Var2.draw(canvas2);
         canvas2.restore();
         i6Var.o(rectF5.left, rectF5.top + org.telegram.messenger.g0.L(10.0f), rectF5.right, rectF5.bottom + org.telegram.messenger.g0.L(10.0f));
-        i6Var.B = (int) (this.f5203f0.f55486e * 255.0f);
+        i6Var.B = (int) (this.f5203f0.f55487e * 255.0f);
         i6Var.draw(canvas2);
         canvas2.restore();
     }

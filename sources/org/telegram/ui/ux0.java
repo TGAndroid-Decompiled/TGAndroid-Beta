@@ -59,7 +59,7 @@ public final class ux0 extends org.telegram.ui.ActionBar.f2 {
         this.E = new float[2];
         this.F = true;
         this.L = new ox0(this);
-        this.J = new org.telegram.messenger.hz(ui.a.f56914i);
+        this.J = new org.telegram.messenger.hz(ui.a.f56915i);
         this.I = true;
     }
 
@@ -258,16 +258,16 @@ public final class ux0 extends org.telegram.ui.ActionBar.f2 {
                         ux0 ux0Var = this.f48974b;
                         ui.a aVar = ux0Var.f50450x;
                         if (aVar != null) {
-                            int i11 = aVar.f56915a;
+                            int i11 = aVar.f56916a;
                             int i12 = 0;
                             while (true) {
                                 EditTextBoldCursor[] editTextBoldCursorArr = ux0Var.f50441a;
                                 if (i12 < editTextBoldCursorArr.length) {
                                     if ((i11 != 1 || i12 != 4) && (i11 != 2 || (i12 != 2 && i12 != 3))) {
                                         if (i12 == 0) {
-                                            str = ux0Var.f50450x.f56916b;
+                                            str = ux0Var.f50450x.f56917b;
                                         } else if (i12 == 1) {
-                                            int i13 = ux0Var.f50450x.f56917c;
+                                            int i13 = ux0Var.f50450x.f56918c;
                                             if (i13 != 0) {
                                                 str = Integer.toString(i13);
                                             }
@@ -275,10 +275,10 @@ public final class ux0 extends org.telegram.ui.ActionBar.f2 {
                                         } else if (i12 == 2) {
                                             str = ux0Var.f50450x.d;
                                         } else if (i12 == 3) {
-                                            str = ux0Var.f50450x.f56918e;
+                                            str = ux0Var.f50450x.f56919e;
                                         } else {
                                             if (i12 == 4) {
-                                                str = ux0Var.f50450x.f56919f;
+                                                str = ux0Var.f50450x.f56920f;
                                             }
                                             str = null;
                                         }
@@ -406,11 +406,11 @@ public final class ux0 extends org.telegram.ui.ActionBar.f2 {
                         if (i12 != 3) {
                             if (i12 == 4) {
                                 this.f50441a[i12].setHintText(org.telegram.messenger.id.M0(2131743787, null));
-                                this.f50441a[i12].setText(hzVar.f22994a.f56919f);
+                                this.f50441a[i12].setText(hzVar.f22994a.f56920f);
                             }
                         } else {
                             this.f50441a[i12].setHintText(org.telegram.messenger.id.M0(2131743790, null));
-                            this.f50441a[i12].setText(hzVar.f22994a.f56918e);
+                            this.f50441a[i12].setText(hzVar.f22994a.f56919e);
                         }
                     } else {
                         this.f50441a[i12].setHintText(org.telegram.messenger.id.M0(2131743777, null));
@@ -418,11 +418,11 @@ public final class ux0 extends org.telegram.ui.ActionBar.f2 {
                     }
                 } else {
                     this.f50441a[i12].setHintText(org.telegram.messenger.id.M0(2131743789, null));
-                    this.f50441a[i12].setText(Integer.toString(hzVar.f22994a.f56917c));
+                    this.f50441a[i12].setText(Integer.toString(hzVar.f22994a.f56918c));
                 }
             } else {
                 this.f50441a[i12].setHintText(org.telegram.messenger.id.M0(2131743794, null));
-                this.f50441a[i12].setText(hzVar.f22994a.f56916b);
+                this.f50441a[i12].setText(hzVar.f22994a.f56917b);
             }
             EditTextBoldCursor editTextBoldCursor3 = this.f50441a[i12];
             editTextBoldCursor3.setSelection(editTextBoldCursor3.length());
@@ -482,16 +482,16 @@ public final class ux0 extends org.telegram.ui.ActionBar.f2 {
                         ux0 ux0Var = this.f48974b;
                         ui.a aVar = ux0Var.f50450x;
                         if (aVar != null) {
-                            int i112 = aVar.f56915a;
+                            int i112 = aVar.f56916a;
                             int i122 = 0;
                             while (true) {
                                 EditTextBoldCursor[] editTextBoldCursorArr = ux0Var.f50441a;
                                 if (i122 < editTextBoldCursorArr.length) {
                                     if ((i112 != 1 || i122 != 4) && (i112 != 2 || (i122 != 2 && i122 != 3))) {
                                         if (i122 == 0) {
-                                            str = ux0Var.f50450x.f56916b;
+                                            str = ux0Var.f50450x.f56917b;
                                         } else if (i122 == 1) {
-                                            int i132 = ux0Var.f50450x.f56917c;
+                                            int i132 = ux0Var.f50450x.f56918c;
                                             if (i132 != 0) {
                                                 str = Integer.toString(i132);
                                             }
@@ -499,10 +499,10 @@ public final class ux0 extends org.telegram.ui.ActionBar.f2 {
                                         } else if (i122 == 2) {
                                             str = ux0Var.f50450x.d;
                                         } else if (i122 == 3) {
-                                            str = ux0Var.f50450x.f56918e;
+                                            str = ux0Var.f50450x.f56919e;
                                         } else {
                                             if (i122 == 4) {
-                                                str = ux0Var.f50450x.f56919f;
+                                                str = ux0Var.f50450x.f56920f;
                                             }
                                             str = null;
                                         }
@@ -556,7 +556,7 @@ public final class ux0 extends org.telegram.ui.ActionBar.f2 {
         this.D = 1.0f;
         Z(false);
         this.f50449w = 0;
-        a0(hzVar.f22994a.f56915a, false, null);
+        a0(hzVar.f22994a.f56916a, false, null);
         this.f50450x = null;
         this.f50451y = null;
         c0();

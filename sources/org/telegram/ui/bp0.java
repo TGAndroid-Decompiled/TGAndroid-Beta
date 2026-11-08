@@ -17,7 +17,7 @@ public final class bp0 extends v4.z0 {
 
     @Override
     public final PointF a(int i7) {
-        v4.n0 n0Var = this.f57214c;
+        v4.n0 n0Var = this.f57215c;
         if (n0Var instanceof v4.b0) {
             return ((v4.b0) n0Var).E0(i7);
         }
@@ -26,7 +26,7 @@ public final class bp0 extends v4.z0 {
 
     @Override
     public final void d(int i7, int i10, v4.y0 y0Var) {
-        if (this.f57213b.f2873y.r() == 0) {
+        if (this.f57214b.f2873y.r() == 0) {
             h();
             return;
         }
@@ -44,7 +44,7 @@ public final class bp0 extends v4.z0 {
         }
         this.f44475m = i13;
         if (i12 == 0 && i13 == 0) {
-            PointF a10 = a(this.f57212a);
+            PointF a10 = a(this.f57213a);
             if (a10 != null && (a10.x != 0.0f || a10.y != 0.0f)) {
                 v4.z0.b(a10);
                 this.f44474l = (int) (a10.x * 10000.0f);
@@ -52,7 +52,7 @@ public final class bp0 extends v4.z0 {
                 y0Var.b((int) (this.f44474l * 1.2f), (int) (this.f44475m * 1.2f), (int) (((int) Math.ceil(Math.abs(10000) * this.f44473k)) * 1.2f), this.f44471i);
                 return;
             }
-            y0Var.d = this.f57212a;
+            y0Var.d = this.f57213a;
             h();
         }
     }

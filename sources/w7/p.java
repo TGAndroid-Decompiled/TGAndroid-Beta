@@ -5,8 +5,8 @@ import android.content.Context;
 import j$.util.Objects;
 import java.util.HashMap;
 public final class p {
-    public static final l f57605b = l.c(1, new Object[]{"optional-module-barcode", "com.google.android.gms.vision.barcode"}, null);
-    public final String f57606a;
+    public static final l f57606b = l.c(1, new Object[]{"optional-module-barcode", "com.google.android.gms.vision.barcode"}, null);
+    public final String f57607a;
 
     public p(Context context, pb.k kVar) {
         new HashMap();
@@ -14,11 +14,11 @@ public final class p {
         context.getPackageName();
         pb.c.a(context);
         synchronized (s.class) {
-            if (s.f57609b == null) {
-                s.f57609b = new s(0, false);
+            if (s.f57610b == null) {
+                s.f57610b = new s(0, false);
             }
         }
-        this.f57606a = "common";
+        this.f57607a = "common";
         pb.f a10 = pb.f.a();
         a2.b bVar = new a2.b(this, 5);
         a10.getClass();
@@ -28,7 +28,7 @@ public final class p {
         oa oaVar = new oa(kVar, 2);
         a11.getClass();
         pb.f.b(oaVar);
-        l lVar = f57605b;
+        l lVar = f57606b;
         if (lVar.containsKey("common")) {
             b7.f.d(context, (String) lVar.get("common"), false);
         }

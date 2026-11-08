@@ -17,7 +17,7 @@ public final class v80 extends RelativeLayout {
         this.f50594c = launchActivity;
         this.f50592a = i0.b.f15119e;
         wr wrVar = new wr(this, 17);
-        WeakHashMap weakHashMap = r0.i0.f54190a;
+        WeakHashMap weakHashMap = r0.i0.f54191a;
         r0.a0.i(this, wrVar);
     }
 

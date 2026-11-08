@@ -277,7 +277,7 @@ public final class g {
 
     public final void h(qi.a aVar) {
         ArrayList arrayList;
-        this.f8742k = aVar.f54153b;
+        this.f8742k = aVar.f54154b;
         while (true) {
             int i7 = this.f8742k;
             arrayList = this.f8741j;

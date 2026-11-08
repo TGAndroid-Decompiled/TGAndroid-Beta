@@ -98,7 +98,7 @@ public final class v1 implements v10 {
                 TLRPC.TL_messages_botWidgetQueryAnswer tL_messages_botWidgetQueryAnswer = (TLRPC.TL_messages_botWidgetQueryAnswer) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 if (!z10 && tL_error2 != null && (str2 = tL_error2.text) != null && (str2.startsWith("INPUT_METHOD_INVALID") || tL_error2.text.startsWith("INPUT_CONSTRUCTOR_INVALID"))) {
-                    org.telegram.utils.twidget.n0.f52924k[k0Var.f52868b] = true;
+                    org.telegram.utils.twidget.n0.f52923k[k0Var.f52865b] = true;
                     org.telegram.utils.twidget.n0.y(k0Var, widgetQueryType, bArr2, iArr, g0Var);
                     return;
                 }

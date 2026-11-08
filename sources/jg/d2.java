@@ -370,8 +370,8 @@ public final class d2 extends oj0 {
     @Override
     public final void t(v4.d1 d1Var, int i7) {
         int i10;
-        int i11 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i11 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         SparseArray sparseArray = this.f16704s;
         if (i11 != 0) {
             if (i11 != 1) {
@@ -419,8 +419,8 @@ public final class d2 extends oj0 {
 
     @Override
     public final void v(v4.d1 d1Var, int i7, List list) {
-        if (list.contains(0) && d1Var.f57047f == 3) {
-            E((u3) d1Var.f57043a, i7, true);
+        if (list.contains(0) && d1Var.f57048f == 3) {
+            E((u3) d1Var.f57044a, i7, true);
         } else {
             t(d1Var, i7);
         }

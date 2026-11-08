@@ -62,7 +62,7 @@ public final class u implements org.telegram.ui.ActionBar.r1, cj0, db0, eb0, fb0
             waVar.setPadding(I0.f15120a, I0.f15121b, I0.f15122c, I0.d);
         }
         view.requestLayout();
-        return r0.k1.f54200b;
+        return r0.k1.f54201b;
     }
 
     @Override

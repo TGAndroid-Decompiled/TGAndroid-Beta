@@ -67,13 +67,13 @@ public final class ea0 implements Runnable {
                 ui.e eVar = (ui.e) this.f45249c;
                 ui.d dVar = (ui.d) this.d;
                 long j11 = this.f45248b;
-                if (((ui.d) eVar.f56931c) == dVar) {
-                    ui.b bVar = (ui.b) eVar.f56932e;
+                if (((ui.d) eVar.f56932c) == dVar) {
+                    ui.b bVar = (ui.b) eVar.f56933e;
                     if (bVar != null) {
                         org.telegram.messenger.g0.r(bVar);
-                        eVar.f56932e = null;
+                        eVar.f56933e = null;
                     }
-                    synchronized (ui.i.f56939y) {
+                    synchronized (ui.i.f56940y) {
                         try {
                             ui.i iVar = ui.i.A;
                             if (iVar != null) {
@@ -84,8 +84,8 @@ public final class ea0 implements Runnable {
                             throw th2;
                         }
                     }
-                    eVar.f56931c = null;
-                    dVar.f56927c.run(j11);
+                    eVar.f56932c = null;
+                    dVar.f56928c.run(j11);
                     eVar.S();
                     return;
                 }
@@ -94,8 +94,8 @@ public final class ea0 implements Runnable {
                 long j12 = this.f45248b;
                 Exception exc = (Exception) this.d;
                 vi.h hVar = (vi.h) ((ac.e) this.f45249c).f1025c;
-                if (j12 == hVar.f57552o) {
-                    hVar.f57551n = null;
+                if (j12 == hVar.f57553o) {
+                    hVar.f57552n = null;
                     int i10 = hVar.G;
                     if (i10 != 10 && i10 != 9) {
                         hVar.g(exc);

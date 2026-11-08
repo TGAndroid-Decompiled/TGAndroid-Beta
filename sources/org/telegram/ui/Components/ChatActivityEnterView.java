@@ -1832,7 +1832,7 @@ public class ChatActivityEnterView extends FrameLayout implements org.telegram.m
             z10 = false;
         }
         te.a aVar = this.f31091m5;
-        if (aVar.f55487f != z10) {
+        if (aVar.f55488f != z10) {
             z11 = true;
         }
         aVar.a(z10, z9);
@@ -2304,9 +2304,9 @@ public class ChatActivityEnterView extends FrameLayout implements org.telegram.m
         int i10;
         View view;
         int i11;
-        float f10 = this.f31081k5.f55486e;
+        float f10 = this.f31081k5.f55487e;
         if (this.G1 != null) {
-            float measuredHeight = getMeasuredHeight() - this.f31075j5.f55492f;
+            float measuredHeight = getMeasuredHeight() - this.f31075j5.f55493f;
             this.G1.setTranslationY(measuredHeight - (view.getMeasuredHeight() * f10));
             View view2 = this.G1;
             if (f10 > 0.0f) {
@@ -6003,7 +6003,7 @@ public class ChatActivityEnterView extends FrameLayout implements org.telegram.m
             z9 = true;
         }
         if (z9) {
-            float measuredHeight = getMeasuredHeight() - this.f31075j5.f55492f;
+            float measuredHeight = getMeasuredHeight() - this.f31075j5.f55493f;
             canvas.save();
             if (view == udVar) {
                 canvas.clipRect(0.0f, measuredHeight, getMeasuredWidth(), getMeasuredHeight());
@@ -6383,7 +6383,7 @@ public class ChatActivityEnterView extends FrameLayout implements org.telegram.m
     }
 
     public float getTopViewEnterProgress() {
-        return this.f31081k5.f55486e;
+        return this.f31081k5.f55487e;
     }
 
     public float getTopViewHeight() {
@@ -8469,18 +8469,18 @@ public class ChatActivityEnterView extends FrameLayout implements org.telegram.m
         te.c cVar = this.f31075j5;
         if (z9) {
             if (cVar.h) {
-                f10 = cVar.f55493g;
+                f10 = cVar.f55494g;
             } else {
-                f10 = cVar.f55492f;
+                f10 = cVar.f55493f;
             }
         } else {
-            f10 = cVar.f55492f;
+            f10 = cVar.f55493f;
         }
         te.a aVar = this.f31081k5;
         if (z9) {
-            f11 = aVar.f55487f ? 1.0f : 0.0f;
+            f11 = aVar.f55488f ? 1.0f : 0.0f;
         } else {
-            f11 = aVar.f55486e;
+            f11 = aVar.f55487e;
         }
         View view = this.G1;
         if (view != null) {
@@ -8607,7 +8607,7 @@ public class ChatActivityEnterView extends FrameLayout implements org.telegram.m
     }
 
     public final boolean x0() {
-        if (!c() && !this.f31091m5.f55487f) {
+        if (!c() && !this.f31091m5.f55488f) {
             return false;
         }
         return true;

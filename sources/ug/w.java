@@ -5,17 +5,17 @@ import org.telegram.ui.ActionBar.u1;
 import org.telegram.ui.Components.dj0;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class w implements org.telegram.ui.ActionBar.r1, dj0 {
-    public final int f56841a;
-    public final i0 f56842b;
+    public final int f56842a;
+    public final i0 f56843b;
 
     public w(i0 i0Var, int i7) {
-        this.f56841a = i7;
-        this.f56842b = i0Var;
+        this.f56842a = i7;
+        this.f56843b = i0Var;
     }
 
     @Override
     public boolean c(int i7, View view) {
-        i0 i0Var = this.f56842b;
+        i0 i0Var = this.f56843b;
         i0Var.f36277k1.getOnItemClickListener().c(i7, view);
         if (i0Var.Z1 != 19) {
             try {
@@ -28,16 +28,16 @@ public final class w implements org.telegram.ui.ActionBar.r1, dj0 {
 
     @Override
     public void g(u1 u1Var, int i7) {
-        switch (this.f56841a) {
+        switch (this.f56842a) {
             case 0:
-                i0 i0Var = this.f56842b;
+                i0 i0Var = this.f56843b;
                 i0Var.C2.presentFragment(new PremiumPreviewFragment(0, null));
                 i0Var.dismiss();
                 u1Var.dismiss();
                 return;
             default:
                 u1Var.dismiss();
-                this.f56842b.i1();
+                this.f56843b.i1();
                 return;
         }
     }

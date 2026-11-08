@@ -55,7 +55,7 @@ public final class q extends org.telegram.ui.ActionBar.f2 {
         int i7;
         l41 l41Var;
         ArrayList arrayList = qVar.f14875b;
-        if (x31Var.f54531a == 4 && (i7 = x31Var.d) >= 0 && i7 < arrayList.size()) {
+        if (x31Var.f54532a == 4 && (i7 = x31Var.d) >= 0 && i7 < arrayList.size()) {
             o oVar = (o) arrayList.get(x31Var.d);
             oVar.f14835b = !oVar.f14835b;
             Activity parentActivity = qVar.getParentActivity();

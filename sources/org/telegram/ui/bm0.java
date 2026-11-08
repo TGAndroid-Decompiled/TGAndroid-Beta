@@ -103,7 +103,7 @@ public final class bm0 extends FrameLayout {
         this.f44431b = sl0Var;
         sl0Var.setClipToPadding(false);
         sl0Var.setSections(true);
-        ((v4.k) sl0Var.getItemAnimator()).f57070m = false;
+        ((v4.k) sl0Var.getItemAnimator()).f57071m = false;
         getContext();
         v4.s sVar = new v4.s(3);
         this.f44433c = sVar;
@@ -132,7 +132,7 @@ public final class bm0 extends FrameLayout {
         kVar.n(350L);
         kVar.o(org.telegram.ui.Components.xq.h);
         kVar.C = false;
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         sl0Var.setItemAnimator(kVar);
         View view = new View(getContext());
         this.f44453x = view;
@@ -578,7 +578,7 @@ public final class bm0 extends FrameLayout {
                 int i20 = this.f44444k0;
                 this.f44434c0 = i20;
                 zh.b3 b3Var = this.J;
-                if (b3Var.f60250t || !b3Var.f60251u) {
+                if (b3Var.f60251t || !b3Var.f60252u) {
                     this.f44435d0 = i20;
                     int i21 = 3 - (size2 % 3);
                     if (size2 <= 0) {

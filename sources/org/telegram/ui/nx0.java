@@ -240,10 +240,10 @@ public final class nx0 extends FrameLayout implements org.telegram.ui.ActionBar.
 
     public void setProxy(org.telegram.messenger.hz hzVar) {
         String str;
-        if (hzVar.f22994a.f56915a == 3) {
-            str = a8.p0.s(new StringBuilder(), hzVar.f22994a.f56916b, " (WEB)");
+        if (hzVar.f22994a.f56916a == 3) {
+            str = a8.p0.s(new StringBuilder(), hzVar.f22994a.f56917b, " (WEB)");
         } else {
-            str = hzVar.f22994a.f56916b + ":" + hzVar.f22994a.f56917c;
+            str = hzVar.f22994a.f56917b + ":" + hzVar.f22994a.f56918c;
         }
         this.f48158a.setText(str);
         this.d = hzVar;

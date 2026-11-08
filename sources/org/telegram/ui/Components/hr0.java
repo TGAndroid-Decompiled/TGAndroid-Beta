@@ -14,7 +14,7 @@ public final class hr0 extends v4.v {
     @Override
     public final void a(RecyclerView recyclerView, v4.d1 d1Var) {
         super.a(recyclerView, d1Var);
-        d1Var.f57043a.setPressed(false);
+        d1Var.f57044a.setPressed(false);
     }
 
     @Override
@@ -154,7 +154,7 @@ public final class hr0 extends v4.v {
             rr0Var4.I0(false);
         }
         if (d1Var != null) {
-            d1Var.f57043a.setPressed(true);
+            d1Var.f57044a.setPressed(true);
         }
     }
 

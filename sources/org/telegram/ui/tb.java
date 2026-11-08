@@ -66,7 +66,7 @@ public final class tb extends FrameLayout {
         pj0Var.setCaptureSectionsDecoratorAllowed(true);
         pj0Var.setLayoutManager(new v4.b0());
         v4.k kVar = new v4.k();
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         kVar.C = false;
         pj0Var.setItemAnimator(kVar);
         pj0Var.setClipToPadding(false);

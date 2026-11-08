@@ -28,7 +28,7 @@ public final class d extends aa {
         ri.a v = g.v(aVar);
         g gVar = this.f11495g;
         if (Color.alpha(gVar.f11541y) != 255 && (v instanceof ri.c)) {
-            i7 = ((ri.c) v).f54563b;
+            i7 = ((ri.c) v).f54564b;
         } else {
             i7 = 0;
         }

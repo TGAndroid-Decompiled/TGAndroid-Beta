@@ -15,7 +15,7 @@ public final class v91 extends v4.v {
     @Override
     public final void a(RecyclerView recyclerView, v4.d1 d1Var) {
         super.a(recyclerView, d1Var);
-        d1Var.f57043a.setPressed(false);
+        d1Var.f57044a.setPressed(false);
     }
 
     @Override
@@ -27,7 +27,7 @@ public final class v91 extends v4.v {
         if (b10 >= 0 && b10 < arrayList.size() && ((o91) arrayList.get(b10)).f48337c != null && org.telegram.messenger.t3.y(15, w91Var.g())) {
             TLRPC.TL_forumTopic tL_forumTopic = ((o91) arrayList.get(b10)).f48337c;
             if (w91Var.f50993a0.isEmpty()) {
-                View view = d1Var.f57043a;
+                View view = d1Var.f57044a;
                 if ((view instanceof t91) && tL_forumTopic.f27008id == 1) {
                     this.d = true;
                     ((t91) view).setSliding(true);
@@ -51,7 +51,7 @@ public final class v91 extends v4.v {
         int b10;
         w91 w91Var = this.f50619e;
         ArrayList arrayList = w91Var.f50995b;
-        if (d1Var.f57047f == d1Var2.f57047f && (b10 = d1Var2.b()) >= 0 && b10 < arrayList.size() && ((o91) arrayList.get(b10)).f48337c != null && ((o91) arrayList.get(b10)).f48337c.pinned) {
+        if (d1Var.f57048f == d1Var2.f57048f && (b10 = d1Var2.b()) >= 0 && b10 < arrayList.size() && ((o91) arrayList.get(b10)).f48337c != null && ((o91) arrayList.get(b10)).f48337c.pinned) {
             n91 n91Var = w91Var.f51028r;
             int b11 = d1Var.b();
             int b12 = d1Var2.b();
@@ -85,13 +85,13 @@ public final class v91 extends v4.v {
             return;
         }
         w91Var.N.I0(false);
-        d1Var.f57043a.setPressed(true);
+        d1Var.f57044a.setPressed(true);
     }
 
     @Override
     public final void q(v4.d1 d1Var) {
         if (d1Var != null) {
-            t91 t91Var = (t91) d1Var.f57043a;
+            t91 t91Var = (t91) d1Var.f57044a;
             TLRPC.TL_forumTopic tL_forumTopic = t91Var.N;
             w91 w91Var = this.f50619e;
             if (tL_forumTopic != null) {

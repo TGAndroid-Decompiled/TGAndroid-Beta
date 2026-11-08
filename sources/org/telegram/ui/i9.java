@@ -513,7 +513,7 @@ public final class i9 extends org.telegram.ui.ActionBar.f2 implements org.telegr
         if (this.f46606w) {
             View view2 = this.fragmentView;
             u8 u8Var = new u8(this);
-            WeakHashMap weakHashMap = r0.i0.f54190a;
+            WeakHashMap weakHashMap = r0.i0.f54191a;
             r0.a0.i(view2, u8Var);
         }
         return this.fragmentView;

@@ -32,22 +32,22 @@ public final class n1 extends j {
     public final Rect E0;
     public final Paint F0;
     public ye G0;
-    public final TLObject f55859q0;
-    public final String f55860r0;
-    public final int f55861s0;
-    public boolean f55862t0;
-    public final w5 f55863u0;
-    public final mt0 f55864v0;
-    public final int f55865w0;
-    public boolean f55866x0;
-    public final w5 f55867y0;
-    public final v41 f55868z0;
+    public final TLObject f55860q0;
+    public final String f55861r0;
+    public final int f55862s0;
+    public boolean f55863t0;
+    public final w5 f55864u0;
+    public final mt0 f55865v0;
+    public final int f55866w0;
+    public boolean f55867x0;
+    public final w5 f55868y0;
+    public final v41 f55869z0;
 
     public n1(Context context, PointF pointF, mt0 mt0Var, String str, int i7) {
         super(context, pointF);
-        this.f55861s0 = -1;
-        this.f55862t0 = false;
-        this.f55866x0 = false;
+        this.f55862s0 = -1;
+        this.f55863t0 = false;
+        this.f55867x0 = false;
         new Rect();
         new RectF();
         new Paint(3);
@@ -56,15 +56,15 @@ public final class n1 extends j {
         this.F0 = new Paint(3);
         setRotation(0.0f);
         setScale(1.0f);
-        this.f55860r0 = str;
-        this.f55864v0 = mt0Var;
+        this.f55861r0 = str;
+        this.f55865v0 = mt0Var;
         v41 v41Var = new v41(this, context);
-        this.f55868z0 = v41Var;
+        this.f55869z0 = v41Var;
         addView(v41Var, ha.c(-1.0f, -1));
         xq xqVar = xq.h;
-        this.f55863u0 = new w5(v41Var, 0L, 500L, xqVar);
-        this.f55867y0 = new w5(v41Var, 0L, 350L, xqVar);
-        this.f55865w0 = i7;
+        this.f55864u0 = new w5(v41Var, 0L, 500L, xqVar);
+        this.f55868y0 = new w5(v41Var, 0L, 350L, xqVar);
+        this.f55866w0 = i7;
         Bitmap q10 = e7.q(new ab.t(str, 2), 1920, 1920, 0, false);
         this.A0 = q10;
         if (q10 != null) {
@@ -85,11 +85,11 @@ public final class n1 extends j {
     }
 
     public int getAnchor() {
-        return this.f55861s0;
+        return this.f55862s0;
     }
 
     public mt0 getBaseSize() {
-        return this.f55864v0;
+        return this.f55865v0;
     }
 
     public int getContentHeight() {
@@ -109,7 +109,7 @@ public final class n1 extends j {
     }
 
     public int getOrientation() {
-        return this.f55865w0;
+        return this.f55866w0;
     }
 
     public Bitmap getSegmentedOutBitmap() {
@@ -136,7 +136,7 @@ public final class n1 extends j {
 
     @Override
     public final void k() {
-        mt0 mt0Var = this.f55864v0;
+        mt0 mt0Var = this.f55865v0;
         float f10 = mt0Var.f36114a / 2.0f;
         float f11 = mt0Var.f36115b / 2.0f;
         ye yeVar = this.G0;
@@ -161,7 +161,7 @@ public final class n1 extends j {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        mt0 mt0Var = this.f55864v0;
+        mt0 mt0Var = this.f55865v0;
         float f10 = mt0Var.f36114a;
         float f11 = mt0Var.f36115b;
         ye yeVar = this.G0;
@@ -173,7 +173,7 @@ public final class n1 extends j {
     }
 
     public final String q(int i7) {
-        TLObject tLObject = this.f55859q0;
+        TLObject tLObject = this.f55860q0;
         if (tLObject instanceof TLRPC.Photo) {
             TLRPC.PhotoSize w10 = w7.w(((TLRPC.Photo) tLObject).sizes, 1000, false, null, false);
             try {
@@ -182,16 +182,16 @@ public final class n1 extends j {
             } catch (Exception unused) {
             }
         }
-        return this.f55860r0;
+        return this.f55861r0;
     }
 
     public final void r(boolean z9) {
-        boolean z10 = !this.f55862t0;
-        this.f55862t0 = z10;
+        boolean z10 = !this.f55863t0;
+        this.f55863t0 = z10;
         if (!z9) {
-            this.f55863u0.f(z10, true);
+            this.f55864u0.f(z10, true);
         }
-        v41 v41Var = this.f55868z0;
+        v41 v41Var = this.f55869z0;
         if (v41Var != null) {
             v41Var.invalidate();
         }
@@ -203,17 +203,17 @@ public final class n1 extends j {
             aVar.f15410a = true;
             zzd a10 = ke.a(new zb.d(aVar));
             this.B0 = true;
-            a10.g(ub.a.a(this.f55865w0, bitmap)).addOnSuccessListener(new m3(this, 23)).addOnFailureListener(new org.telegram.ui.web.a0(9, this, bitmap));
+            a10.g(ub.a.a(this.f55866w0, bitmap)).addOnSuccessListener(new m3(this, 23)).addOnFailureListener(new org.telegram.ui.web.a0(9, this, bitmap));
         }
     }
 
     public final void t(boolean z9) {
-        boolean z10 = !this.f55866x0;
-        this.f55866x0 = z10;
+        boolean z10 = !this.f55867x0;
+        this.f55867x0 = z10;
         if (!z9) {
-            this.f55867y0.f(z10, true);
+            this.f55868y0.f(z10, true);
         }
-        v41 v41Var = this.f55868z0;
+        v41 v41Var = this.f55869z0;
         if (v41Var != null) {
             v41Var.invalidate();
         }
@@ -221,9 +221,9 @@ public final class n1 extends j {
 
     public n1(Context context, PointF pointF, mt0 mt0Var, TLObject tLObject) {
         super(context, pointF);
-        this.f55861s0 = -1;
-        this.f55862t0 = false;
-        this.f55866x0 = false;
+        this.f55862s0 = -1;
+        this.f55863t0 = false;
+        this.f55867x0 = false;
         new Rect();
         new RectF();
         new Paint(3);
@@ -232,14 +232,14 @@ public final class n1 extends j {
         this.F0 = new Paint(3);
         setRotation(0.0f);
         setScale(1.0f);
-        this.f55859q0 = tLObject;
-        this.f55864v0 = mt0Var;
+        this.f55860q0 = tLObject;
+        this.f55865v0 = mt0Var;
         v41 v41Var = new v41(this, context);
-        this.f55868z0 = v41Var;
+        this.f55869z0 = v41Var;
         addView(v41Var, ha.c(-1.0f, -1));
         xq xqVar = xq.h;
-        this.f55863u0 = new w5(v41Var, 0L, 500L, xqVar);
-        this.f55867y0 = new w5(v41Var, 0L, 350L, xqVar);
+        this.f55864u0 = new w5(v41Var, 0L, 500L, xqVar);
+        this.f55868y0 = new w5(v41Var, 0L, 350L, xqVar);
         k();
     }
 }

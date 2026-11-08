@@ -223,12 +223,12 @@ public final class i0 extends v4.b0 {
         switch (this.I) {
             case 2:
                 az azVar = new az(this, recyclerView.getContext());
-                azVar.f57212a = i7;
+                azVar.f57213a = i7;
                 w0(azVar);
                 return;
             case 8:
                 p61 p61Var = new p61(this, recyclerView.getContext());
-                p61Var.f57212a = i7;
+                p61Var.f57213a = i7;
                 w0(p61Var);
                 return;
             default:

@@ -198,7 +198,7 @@ public final class pr0 extends org.telegram.ui.ActionBar.f2 implements org.teleg
                 ow0Var.f();
                 org.telegram.ui.Components.ow0 ow0Var2 = pr0Var.Q;
                 if (ow0Var2 != null && T != null) {
-                    View view = T.f57043a;
+                    View view = T.f57044a;
                     if ((view instanceof org.telegram.ui.Cells.a6) && ow0Var2.getDelegate() != view) {
                         pr0Var.Q.setDelegate((org.telegram.ui.Cells.a6) view);
                     }
@@ -375,7 +375,7 @@ public final class pr0 extends org.telegram.ui.ActionBar.f2 implements org.teleg
         FrameLayout frameLayout = (FrameLayout) this.fragmentView;
         this.f48919c = new e61(12, context, null);
         v4.k kVar3 = new v4.k();
-        kVar3.f57070m = false;
+        kVar3.f57071m = false;
         kVar3.C = false;
         kVar3.o(org.telegram.ui.Components.xq.h);
         kVar3.n(350L);
@@ -669,7 +669,7 @@ public final class pr0 extends org.telegram.ui.ActionBar.f2 implements org.teleg
                 for (int i10 = 0; i10 < e61Var.getChildCount(); i10++) {
                     View childAt = e61Var.getChildAt(i10);
                     v4.d1 T = e61Var.T(childAt);
-                    if (T != null && (((i7 = T.f57047f) == 4 || i7 == 5) && (childAt instanceof org.telegram.ui.Cells.a6) && (z5Var = ((org.telegram.ui.Cells.a6) childAt).d) != null)) {
+                    if (T != null && (((i7 = T.f57048f) == 4 || i7 == 5) && (childAt instanceof org.telegram.ui.Cells.a6) && (z5Var = ((org.telegram.ui.Cells.a6) childAt).d) != null)) {
                         int themedColor = getThemedColor(org.telegram.ui.ActionBar.k6.G6);
                         if (z5Var.isEnabled()) {
                             f10 = 1.0f;

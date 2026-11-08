@@ -47,7 +47,7 @@ public final class x9 extends GestureDetector.SimpleOnGestureListener {
         switch (this.f30910a) {
             case 1:
                 vg.e eVar = (vg.e) this.f30911b;
-                eVar.f57367n = true;
+                eVar.f57368n = true;
                 eVar.b();
                 return true;
             case 2:
@@ -61,9 +61,9 @@ public final class x9 extends GestureDetector.SimpleOnGestureListener {
     public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
         switch (this.f30910a) {
             case 1:
-                vg.f fVar = ((vg.e) this.f30911b).f57362a;
+                vg.f fVar = ((vg.e) this.f30911b).f57363a;
                 fVar.d -= f10 * 0.5f;
-                fVar.f57379i -= f11 * 0.05f;
+                fVar.f57380i -= f11 * 0.05f;
                 return true;
             default:
                 return super.onScroll(motionEvent, motionEvent2, f10, f11);
@@ -77,14 +77,14 @@ public final class x9 extends GestureDetector.SimpleOnGestureListener {
         switch (i7) {
             case 1:
                 vg.e eVar = (vg.e) view;
-                vg.f fVar = eVar.f57362a;
+                vg.f fVar = eVar.f57363a;
                 if (Math.abs(fVar.d) <= 10.0f) {
                     float max = Math.max(1.0f, eVar.getWidth() / 2.0f);
                     float x10 = ((max - motionEvent.getX()) * ((((float) Math.random()) * 30.0f) + 40.0f)) / max;
                     float y10 = ((max - motionEvent.getY()) * ((((float) Math.random()) * 30.0f) + 40.0f)) / max;
                     eVar.b();
                     float f10 = fVar.d;
-                    float f11 = fVar.f57379i;
+                    float f11 = fVar.f57380i;
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                     eVar.d = ofFloat;
                     ofFloat.setDuration(220L);
@@ -97,8 +97,8 @@ public final class x9 extends GestureDetector.SimpleOnGestureListener {
                 return true;
             case 2:
                 yh.k kVar = (yh.k) view;
-                if (!kVar.f59530e.f59533c.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY()) && (kVar.f59530e.f59535f.getLeft() >= motionEvent.getX() || motionEvent.getX() >= kVar.f59530e.f59535f.getRight() || kVar.f59530e.f59535f.getTop() >= motionEvent.getY() || motionEvent.getY() >= kVar.f59530e.f59535f.getBottom())) {
-                    kVar.f59530e.e(false);
+                if (!kVar.f59531e.f59534c.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY()) && (kVar.f59531e.f59536f.getLeft() >= motionEvent.getX() || motionEvent.getX() >= kVar.f59531e.f59536f.getRight() || kVar.f59531e.f59536f.getTop() >= motionEvent.getY() || motionEvent.getY() >= kVar.f59531e.f59536f.getBottom())) {
+                    kVar.f59531e.e(false);
                 }
                 return super.onSingleTapUp(motionEvent);
             default:

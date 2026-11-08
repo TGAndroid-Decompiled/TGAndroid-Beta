@@ -16,7 +16,7 @@ public final class rt0 extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57047f;
+        int i7 = d1Var.f57048f;
         if (i7 != 0 && i7 != 2 && i7 != 4) {
             return false;
         }
@@ -52,8 +52,8 @@ public final class rt0 extends org.telegram.ui.Components.oj0 {
         String M02;
         st0 st0Var = this.d;
         int i10 = st0Var.D;
-        int i11 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i11 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         boolean z9 = false;
         if (i11 != 0) {
             if (i11 != 1) {

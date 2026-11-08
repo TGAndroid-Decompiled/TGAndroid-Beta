@@ -22,7 +22,7 @@ public final class dz extends rg.b {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57047f;
+        int i7 = d1Var.f57048f;
         if (i7 != 3 && i7 != 0 && i7 != 2 && i7 != 5 && i7 != 9 && i7 != 11) {
             return true;
         }
@@ -40,7 +40,7 @@ public final class dz extends rg.b {
         if (yyVar == null) {
             return 3;
         }
-        return yyVar.f54531a;
+        return yyVar.f54532a;
     }
 
     @Override
@@ -57,13 +57,13 @@ public final class dz extends rg.b {
         if (yyVar != null) {
             int i13 = i7 + 1;
             boolean z10 = false;
-            if (i13 < arrayList.size() && (i12 = ((yy) arrayList.get(i13)).f54531a) != 3 && i12 != 6) {
+            if (i13 < arrayList.size() && (i12 = ((yy) arrayList.get(i13)).f54532a) != 3 && i12 != 6) {
                 z9 = true;
             } else {
                 z9 = false;
             }
-            int i14 = d1Var.f57047f;
-            View view = d1Var.f57043a;
+            int i14 = d1Var.f57048f;
+            View view = d1Var.f57044a;
             if (i14 != 0) {
                 if (i14 != 1) {
                     int i15 = -1;
@@ -377,17 +377,17 @@ public final class dz extends rg.b {
 
     @Override
     public final void y(v4.d1 d1Var) {
-        int i7 = d1Var.f57047f;
+        int i7 = d1Var.f57048f;
         if (i7 != 2 && i7 == 9) {
             gz gzVar = this.f45158e;
-            ((wy) d1Var.f57043a).e(org.telegram.ui.Components.r5.cloneSpans(gzVar.f46170x, -1, gzVar.I.f51680s.getPaint().getFontMetricsInt(), 0.5f), true);
+            ((wy) d1Var.f57044a).e(org.telegram.ui.Components.r5.cloneSpans(gzVar.f46170x, -1, gzVar.I.f51680s.getPaint().getFontMetricsInt(), 0.5f), true);
         }
     }
 
     @Override
     public final void z(v4.d1 d1Var) {
-        if (d1Var.f57047f == 2) {
-            org.telegram.ui.Cells.h3 h3Var = (org.telegram.ui.Cells.h3) d1Var.f57043a;
+        if (d1Var.f57048f == 2) {
+            org.telegram.ui.Cells.h3 h3Var = (org.telegram.ui.Cells.h3) d1Var.f57044a;
             h3Var.f29252b.k(true);
             h3Var.f29252b.d();
         }

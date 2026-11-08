@@ -47,7 +47,7 @@ public final class dt implements org.telegram.ui.Components.yi0, org.telegram.ui
         int i7 = 0;
         while (true) {
             if (i7 < arrayList.size()) {
-                if (((ct) arrayList.get(i7)).f54531a == 5) {
+                if (((ct) arrayList.get(i7)).f54532a == 5) {
                     break;
                 }
                 i7++;

@@ -36,28 +36,28 @@ public final class fj0 implements Runnable {
                 return;
             default:
                 vg.h hVar = (vg.h) obj;
-                vg.m mVar = hVar.f57399b;
-                ValueAnimator valueAnimator = mVar.f57414c0;
-                vg.g gVar = mVar.f57421h0;
-                vg.g gVar2 = mVar.f57420g0;
+                vg.m mVar = hVar.f57400b;
+                ValueAnimator valueAnimator = mVar.f57415c0;
+                vg.g gVar = mVar.f57422h0;
+                vg.g gVar2 = mVar.f57421g0;
                 if (valueAnimator != null) {
                     valueAnimator.removeAllListeners();
-                    mVar.f57414c0.cancel();
-                    mVar.f57414c0 = null;
+                    mVar.f57415c0.cancel();
+                    mVar.f57415c0 = null;
                 }
-                AnimatorSet animatorSet = mVar.f57415d0;
+                AnimatorSet animatorSet = mVar.f57416d0;
                 if (animatorSet != null) {
                     animatorSet.removeAllListeners();
-                    mVar.f57415d0.cancel();
-                    mVar.f57415d0 = null;
+                    mVar.f57416d0.cancel();
+                    mVar.f57416d0 = null;
                 }
-                if (Math.abs(mVar.f57411b.d) > 10.0f) {
+                if (Math.abs(mVar.f57412b.d) > 10.0f) {
                     mVar.l();
                     return;
                 }
-                org.telegram.messenger.g0.r(mVar.f57417e0);
-                mVar.f57415d0 = new AnimatorSet();
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(mVar.f57411b.d, f11);
+                org.telegram.messenger.g0.r(mVar.f57418e0);
+                mVar.f57416d0 = new AnimatorSet();
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(mVar.f57412b.d, f11);
                 ofFloat.addUpdateListener(gVar2);
                 long j3 = 220;
                 ofFloat.setDuration(j3);
@@ -69,7 +69,7 @@ public final class fj0 implements Runnable {
                 ofFloat2.setDuration(600L);
                 OvershootInterpolator overshootInterpolator = org.telegram.messenger.g0.H;
                 ofFloat2.setInterpolator(overshootInterpolator);
-                ValueAnimator ofFloat3 = ValueAnimator.ofFloat(mVar.f57411b.f57379i, f10);
+                ValueAnimator ofFloat3 = ValueAnimator.ofFloat(mVar.f57412b.f57380i, f10);
                 ofFloat3.addUpdateListener(gVar);
                 ofFloat3.setDuration(j3);
                 ofFloat3.setInterpolator(xqVar);
@@ -78,9 +78,9 @@ public final class fj0 implements Runnable {
                 ofFloat4.setStartDelay(j3);
                 ofFloat4.setDuration(600L);
                 ofFloat4.setInterpolator(overshootInterpolator);
-                mVar.f57415d0.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4);
-                mVar.f57415d0.addListener(new s81(hVar, 22));
-                mVar.f57415d0.start();
+                mVar.f57416d0.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4);
+                mVar.f57416d0.addListener(new s81(hVar, 22));
+                mVar.f57416d0.start();
                 return;
         }
     }

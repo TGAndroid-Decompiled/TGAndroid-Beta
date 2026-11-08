@@ -232,7 +232,7 @@ public final class hm0 extends org.telegram.ui.ActionBar.f2 implements org.teleg
         }
         this.d.setBackgroundColor(themedColor);
         ri.c cVar = this.F;
-        if (cVar.f54563b != themedColor) {
+        if (cVar.f54564b != themedColor) {
             cVar.a(themedColor);
             Iterator it = this.f46454d0.iterator();
             while (it.hasNext()) {
@@ -616,7 +616,7 @@ public final class hm0 extends org.telegram.ui.ActionBar.f2 implements org.teleg
         F0();
         View view = this.fragmentView;
         ll0 ll0Var = new ll0(this, 0);
-        WeakHashMap weakHashMap = r0.i0.f54190a;
+        WeakHashMap weakHashMap = r0.i0.f54191a;
         r0.a0.i(view, ll0Var);
         return this.d;
     }

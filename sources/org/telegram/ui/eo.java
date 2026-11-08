@@ -12,7 +12,7 @@ public final class eo extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f57047f == 1) {
+        if (d1Var.f57048f == 1) {
             return true;
         }
         return false;
@@ -38,8 +38,8 @@ public final class eo extends org.telegram.ui.Components.oj0 {
     public final void t(v4.d1 d1Var, int i7) {
         fo foVar = this.f45349c;
         go goVar = foVar.f45659h3;
-        int i10 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i10 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         if (i10 != 0) {
             boolean z9 = true;
             if (i10 != 1) {

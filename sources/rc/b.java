@@ -6,18 +6,18 @@ import org.telegram.ui.Components.pp0;
 import org.telegram.ui.Wallet.y0;
 import org.telegram.ui.Wallet.z0;
 public final class b extends z {
-    public final int f54441b;
+    public final int f54442b;
 
     public b(String str, u uVar, int i7, int i10) {
         super(str, uVar, i7);
-        this.f54441b = i10;
+        this.f54442b = i10;
     }
 
     @Override
     public final void a() {
-        switch (this.f54441b) {
+        switch (this.f54442b) {
             case 0:
-                u uVar = this.f54512a;
+                u uVar = this.f54513a;
                 try {
                     uVar.b();
                     return;
@@ -46,7 +46,7 @@ public final class b extends z {
                     return;
                 }
             default:
-                this.f54512a.d();
+                this.f54513a.d();
                 return;
         }
     }

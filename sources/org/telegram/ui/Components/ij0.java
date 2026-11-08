@@ -33,13 +33,13 @@ public final class ij0 implements v4.r0 {
                 if (velocityTracker != null) {
                     velocityTracker.addMovement(motionEvent);
                 }
-                if (yVar.f57194x != -1) {
+                if (yVar.f57195x != -1) {
                     int actionMasked = motionEvent.getActionMasked();
-                    int findPointerIndex = motionEvent.findPointerIndex(yVar.f57194x);
+                    int findPointerIndex = motionEvent.findPointerIndex(yVar.f57195x);
                     if (findPointerIndex >= 0) {
                         yVar.j(actionMasked, findPointerIndex, motionEvent);
                     }
-                    v4.d1 d1Var = yVar.f57187c;
+                    v4.d1 d1Var = yVar.f57188c;
                     if (d1Var != null) {
                         int i7 = 0;
                         if (actionMasked != 1) {
@@ -47,11 +47,11 @@ public final class ij0 implements v4.r0 {
                                 if (actionMasked != 3) {
                                     if (actionMasked == 6) {
                                         int actionIndex = motionEvent.getActionIndex();
-                                        if (motionEvent.getPointerId(actionIndex) == yVar.f57194x) {
+                                        if (motionEvent.getPointerId(actionIndex) == yVar.f57195x) {
                                             if (actionIndex == 0) {
                                                 i7 = 1;
                                             }
-                                            yVar.f57194x = motionEvent.getPointerId(i7);
+                                            yVar.f57195x = motionEvent.getPointerId(i7);
                                             yVar.u(yVar.E, actionIndex, motionEvent);
                                             return;
                                         }
@@ -75,7 +75,7 @@ public final class ij0 implements v4.r0 {
                             }
                         }
                         yVar.r(null, 0);
-                        yVar.f57194x = -1;
+                        yVar.f57195x = -1;
                         return;
                     }
                     return;
@@ -199,15 +199,15 @@ public final class ij0 implements v4.r0 {
                 int actionMasked2 = motionEvent.getActionMasked();
                 v4.u uVar = null;
                 if (actionMasked2 == 0) {
-                    yVar2.f57194x = motionEvent.getPointerId(0);
+                    yVar2.f57195x = motionEvent.getPointerId(0);
                     yVar2.d = motionEvent.getX();
-                    yVar2.f57188e = motionEvent.getY();
+                    yVar2.f57189e = motionEvent.getY();
                     VelocityTracker velocityTracker = yVar2.J;
                     if (velocityTracker != null) {
                         velocityTracker.recycle();
                     }
                     yVar2.J = VelocityTracker.obtain();
-                    if (yVar2.f57187c == null) {
+                    if (yVar2.f57188c == null) {
                         ArrayList arrayList = yVar2.F;
                         if (!arrayList.isEmpty()) {
                             View m10 = yVar2.m(motionEvent);
@@ -215,7 +215,7 @@ public final class ij0 implements v4.r0 {
                             while (true) {
                                 if (size >= 0) {
                                     v4.u uVar2 = (v4.u) arrayList.get(size);
-                                    if (uVar2.f57163e.f57043a == m10) {
+                                    if (uVar2.f57164e.f57044a == m10) {
                                         uVar = uVar2;
                                     } else {
                                         size--;
@@ -224,31 +224,31 @@ public final class ij0 implements v4.r0 {
                             }
                         }
                         if (uVar != null) {
-                            v4.d1 d1Var = uVar.f57163e;
-                            yVar2.d -= uVar.f57166r;
-                            yVar2.f57188e -= uVar.f57167s;
+                            v4.d1 d1Var = uVar.f57164e;
+                            yVar2.d -= uVar.f57167r;
+                            yVar2.f57189e -= uVar.f57168s;
                             yVar2.l(d1Var, true);
-                            if (yVar2.f57185a.remove(d1Var.f57043a)) {
-                                yVar2.f57195y.a(yVar2.H, d1Var);
+                            if (yVar2.f57186a.remove(d1Var.f57044a)) {
+                                yVar2.f57196y.a(yVar2.H, d1Var);
                             }
-                            yVar2.r(d1Var, uVar.f57164f);
+                            yVar2.r(d1Var, uVar.f57165f);
                             yVar2.u(yVar2.E, 0, motionEvent);
                         }
                     }
                 } else if (actionMasked2 != 3 && actionMasked2 != 1) {
-                    int i7 = yVar2.f57194x;
+                    int i7 = yVar2.f57195x;
                     if (i7 != -1 && (findPointerIndex = motionEvent.findPointerIndex(i7)) >= 0) {
                         yVar2.j(actionMasked2, findPointerIndex, motionEvent);
                     }
                 } else {
-                    yVar2.f57194x = -1;
+                    yVar2.f57195x = -1;
                     yVar2.r(null, 0);
                 }
                 VelocityTracker velocityTracker2 = yVar2.J;
                 if (velocityTracker2 != null) {
                     velocityTracker2.addMovement(motionEvent);
                 }
-                if (yVar2.f57187c != null) {
+                if (yVar2.f57188c != null) {
                     return true;
                 }
                 return false;

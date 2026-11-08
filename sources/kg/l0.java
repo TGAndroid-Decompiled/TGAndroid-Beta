@@ -38,7 +38,7 @@ public final class l0 implements RequestDelegate {
                 TLRPC.User user = (TLRPC.User) this.f17426f;
                 TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest = (TLRPC.TL_messages_hideChatJoinRequest) this.f17425e;
                 if (tL_error == null) {
-                    qp.s1(mVar.f59550k).O3((TLRPC.TL_updates) tLObject, false);
+                    qp.s1(mVar.f59551k).O3((TLRPC.TL_updates) tLObject, false);
                 }
                 org.telegram.messenger.g0.h3(new o0(mVar, tL_error, tLObject, tL_chatInviteImporter, this.f17423b, user, tL_messages_hideChatJoinRequest));
                 return;

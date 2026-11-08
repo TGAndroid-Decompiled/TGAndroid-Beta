@@ -34,7 +34,7 @@ public final class ro extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final void A(v4.d1 d1Var) {
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         if (view instanceof org.telegram.ui.Cells.a5) {
             ((org.telegram.ui.Cells.a5) view).a();
         }
@@ -42,7 +42,7 @@ public final class ro extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f57047f != 1) {
+        if (d1Var.f57048f != 1) {
             return true;
         }
         return false;
@@ -87,7 +87,7 @@ public final class ro extends org.telegram.ui.Components.oj0 {
                 charSequence = null;
             }
         }
-        org.telegram.ui.Cells.a5 a5Var = (org.telegram.ui.Cells.a5) d1Var.f57043a;
+        org.telegram.ui.Cells.a5 a5Var = (org.telegram.ui.Cells.a5) d1Var.f57044a;
         a5Var.setTag(Integer.valueOf(i7));
         a5Var.c(chat, charSequence, charSequence2, false);
     }

@@ -130,7 +130,7 @@ public final class x {
                             i21 = i32;
                         } else if (A3 == 39 && i28 == 0 && (j3 = i2.o.j(i30, i30 + H4, bArr)) != null && eVar3 != null) {
                             i12 = 0;
-                            if (j3.f3009a == ((i2.g) ((h9.i0) eVar3.f56930b).get(0)).f15160b) {
+                            if (j3.f3009a == ((i2.g) ((h9.i0) eVar3.f56931b).get(0)).f15160b) {
                                 i24 = 4;
                             } else {
                                 i24 = 5;

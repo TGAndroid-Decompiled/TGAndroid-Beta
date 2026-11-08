@@ -30,7 +30,7 @@ public final class m71 implements o71 {
             v0Var.n(i7);
             if (!this.f35938r) {
                 this.f35938r = true;
-                v0Var.l(org.telegram.utils.twidget.i1.a(this.d, true));
+                v0Var.l(org.telegram.utils.twidget.j1.a(this.d, true));
                 if (this.h == null) {
                     this.h = new p71(this, org.telegram.messenger.g0.f22562p);
                 }

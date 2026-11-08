@@ -24,7 +24,7 @@ public final class hs extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        js jsVar = (js) d1Var.f57043a;
+        js jsVar = (js) d1Var.f57044a;
         TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) this.f46481c.get(i7);
         org.telegram.ui.ActionBar.k5 k5Var = jsVar.f47029b;
         org.telegram.ui.Components.l9 l9Var = jsVar.f47028a;

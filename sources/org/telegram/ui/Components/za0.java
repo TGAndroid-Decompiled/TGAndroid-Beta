@@ -101,7 +101,7 @@ public abstract class za0 extends rt0 implements r0.l, View.OnLayoutChangeListen
                     if (L0 != -1) {
                         v4.d1 K = listView.K(L0);
                         if (K != null) {
-                            i12 = K.f57043a.getTop();
+                            i12 = K.f57044a.getTop();
                         }
                         int paddingTop = listView.getPaddingTop();
                         if (i12 != paddingTop || L0 != 0) {

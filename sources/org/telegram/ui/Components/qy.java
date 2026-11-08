@@ -43,11 +43,11 @@ public final class qy implements Runnable {
                 ((org.telegram.ui.ce0) this.f37455e).O1(this.f37453b, this.f37454c, this.d);
                 return;
             default:
-                org.telegram.utils.twidget.h1 h1Var = (org.telegram.utils.twidget.h1) this.f37455e;
+                org.telegram.utils.twidget.i1 i1Var = (org.telegram.utils.twidget.i1) this.f37455e;
                 boolean z12 = this.f37453b;
                 boolean z13 = this.f37454c;
                 boolean z14 = this.d;
-                if (!h1Var.f52844w && (v0Var = h1Var.L) != null && (p71Var = v0Var.h) != null && p71Var.f36833w && !p71Var.f36834x) {
+                if (!i1Var.f52854w && (v0Var = i1Var.L) != null && (p71Var = v0Var.h) != null && p71Var.f36833w && !p71Var.f36834x) {
                     p71Var.k(z12, z13, z14);
                     return;
                 }

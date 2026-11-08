@@ -214,13 +214,13 @@ public final class m5 implements Runnable {
                 return;
             case 20:
                 q2.d dVar = (q2.d) this.f28310b;
-                if (!dVar.f53718c) {
-                    q2.g gVar = dVar.f53717b;
+                if (!dVar.f53719c) {
+                    q2.g gVar = dVar.f53718b;
                     if (gVar != null) {
-                        gVar.c(dVar.f53716a);
+                        gVar.c(dVar.f53717a);
                     }
-                    dVar.d.f53729y.remove(dVar);
-                    dVar.f53718c = true;
+                    dVar.d.f53730y.remove(dVar);
+                    dVar.f53719c = true;
                     return;
                 }
                 return;
@@ -245,10 +245,10 @@ public final class m5 implements Runnable {
             case 24:
                 iz izVar = (iz) this.f28310b;
                 rh.b bVar = (rh.b) izVar.f34846c;
-                if (bVar == rh.b.f54536b) {
-                    izVar.a(rh.b.f54535a, true);
+                if (bVar == rh.b.f54537b) {
+                    izVar.a(rh.b.f54536a, true);
                     return;
-                } else if (bVar == rh.b.f54537c) {
+                } else if (bVar == rh.b.f54538c) {
                     izVar.a(rh.b.d, true);
                     return;
                 } else {
@@ -258,27 +258,27 @@ public final class m5 implements Runnable {
                 ((s4.e) this.f28310b).k();
                 return;
             case 26:
-                ((s4.g) this.f28310b).f54820n = -1;
+                ((s4.g) this.f28310b).f54821n = -1;
                 return;
             case 27:
                 ((ri0) this.f28310b).b();
                 return;
             case 28:
-                vy vyVar = ((sg.h0) this.f28310b).f55061b.f55085a;
+                vy vyVar = ((sg.h0) this.f28310b).f55062b.f55086a;
                 if (vyVar != null) {
                     vyVar.b();
                     return;
                 }
                 return;
             default:
-                sg.j0 j0Var = ((sg.h0) this.f28310b).f55061b;
+                sg.j0 j0Var = ((sg.h0) this.f28310b).f55062b;
                 if (j0Var.d == null) {
                     j0Var.L = null;
                     return;
                 }
-                int currentColor = j0Var.f55089f.getCurrentColor();
-                j0Var.l(j0Var.f55086b, false, false);
-                wa d = j0Var.d(j0Var.f55086b, currentColor, new RectF(j0Var.h));
+                int currentColor = j0Var.f55090f.getCurrentColor();
+                j0Var.l(j0Var.f55087b, false, false);
+                wa d = j0Var.d(j0Var.f55087b, currentColor, new RectF(j0Var.h));
                 j0Var.b();
                 sg.z0 z0Var = j0Var.d;
                 RectF rectF = new RectF();

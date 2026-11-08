@@ -42,18 +42,18 @@ public final class wr0 implements r0.m, org.telegram.ui.Components.u51, org.tele
         switch (this.f51502a) {
             case 0:
                 zr0 zr0Var = (zr0) this.f51503b;
-                i0.b g10 = k1Var.f54201a.g(519);
+                i0.b g10 = k1Var.f54202a.g(519);
                 zr0Var.f52665r = g10;
                 zr0Var.d.setPadding(g10.f15120a, g10.f15121b, g10.f15122c, g10.d);
                 zr0Var.f52656c.requestLayout();
-                return r0.k1.f54200b;
+                return r0.k1.f54201b;
             default:
                 g81 g81Var = (g81) this.f51503b;
-                i0.b g11 = k1Var.f54201a.g(519);
+                i0.b g11 = k1Var.f54202a.g(519);
                 g81Var.f45910n = g11;
                 g81Var.f45904c.setPadding(g11.f15120a, g11.f15121b, g11.f15122c, g11.d);
                 g81Var.f45902b.requestLayout();
-                return r0.k1.f54200b;
+                return r0.k1.f54201b;
         }
     }
 

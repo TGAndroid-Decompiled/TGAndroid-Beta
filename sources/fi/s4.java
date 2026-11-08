@@ -41,13 +41,13 @@ public final class s4 implements View.OnLongClickListener {
                 int i11 = o5Var.f12538o1;
                 if (o5Var.f12544r1 != null) {
                     sg.l0 e12 = sg.l0.e(i11);
-                    e12.f55134k = !e12.f55134k;
-                    e12.f55126a.edit().putBoolean("fill_shapes", e12.f55134k).apply();
-                    boolean z10 = sg.l0.e(i11).f55134k;
+                    e12.f55135k = !e12.f55135k;
+                    e12.f55127a.edit().putBoolean("fill_shapes", e12.f55135k).apply();
+                    boolean z10 = sg.l0.e(i11).f55135k;
                     for (int i12 = 0; i12 < o5Var.f12544r1.getItemsCount(); i12++) {
                         View childAt = o5Var.f12544r1.L.getChildAt(i12);
                         if (childAt instanceof l5) {
-                            sg.g gVar = (sg.g) sg.g.f55051c.get(i12);
+                            sg.g gVar = (sg.g) sg.g.f55052c.get(i12);
                             if (z10) {
                                 e10 = gVar.m();
                             } else {
@@ -211,16 +211,16 @@ public final class s4 implements View.OnLongClickListener {
                 return true;
             default:
                 tg.g0 g0Var = (tg.g0) obj;
-                int i14 = g0Var.f55702y1;
+                int i14 = g0Var.f55703y1;
                 if (g0Var.B1 != null) {
                     sg.l0 e13 = sg.l0.e(i14);
-                    e13.f55134k = !e13.f55134k;
-                    e13.f55126a.edit().putBoolean("fill_shapes", e13.f55134k).apply();
-                    boolean z11 = sg.l0.e(i14).f55134k;
+                    e13.f55135k = !e13.f55135k;
+                    e13.f55127a.edit().putBoolean("fill_shapes", e13.f55135k).apply();
+                    boolean z11 = sg.l0.e(i14).f55135k;
                     for (int i15 = 0; i15 < g0Var.B1.getItemsCount(); i15++) {
                         View childAt2 = g0Var.B1.L.getChildAt(i15);
                         if (childAt2 instanceof tg.f0) {
-                            sg.g gVar2 = (sg.g) sg.g.f55051c.get(i15);
+                            sg.g gVar2 = (sg.g) sg.g.f55052c.get(i15);
                             if (z11) {
                                 e11 = gVar2.m();
                             } else {

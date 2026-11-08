@@ -36,7 +36,7 @@ public final class w8 implements Runnable {
                     r1.h hVar = new r1.h(1.0f);
                     hVar.a(0.55f);
                     hVar.b(65.0f);
-                    gVar.f54267m = hVar;
+                    gVar.f54268m = hVar;
                     m9Var.f42814a0.f(0.001f);
                     m9Var.f42814a0.b(new p3(m9Var, 2));
                     m9Var.f42814a0.a(new q6(m9Var, 1));

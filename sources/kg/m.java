@@ -411,7 +411,7 @@ public final class m extends n41 implements ls {
     public final void m0() {
         TLRPC.Document document;
         b5 b5Var = this.f17429f;
-        if (b5Var.f27358y.f55487f) {
+        if (b5Var.f27358y.f55488f) {
             return;
         }
         b5Var.b(true);

@@ -89,7 +89,7 @@ public final class q9 implements q0.a {
                         l0Var2.h(intValue, true);
                         l0Var2.g();
                         up0Var.setNewColor(intValue);
-                        tg.d0 d0Var = up0Var.f55684p1;
+                        tg.d0 d0Var = up0Var.f55685p1;
                         d0Var.setSelectedColorIndex(l0Var2.d());
                         d0Var.getAdapter().f();
                         return;

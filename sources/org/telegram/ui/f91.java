@@ -86,11 +86,11 @@ public final class f91 extends org.telegram.ui.Components.rt0 {
             } else {
                 measuredHeight = getMeasuredHeight();
             }
-            if (fVar2 != null && !fVar2.f54574r && fVar2.k(measuredWidth, measuredHeight)) {
+            if (fVar2 != null && !fVar2.f54575r && fVar2.k(measuredWidth, measuredHeight)) {
                 gVar.b(fVar2.i(measuredWidth, measuredHeight), -3);
                 fVar2.j();
             }
-            if (fVar != null && !fVar.f54574r && fVar.k(measuredWidth, measuredHeight)) {
+            if (fVar != null && !fVar.f54575r && fVar.k(measuredWidth, measuredHeight)) {
                 gVar.b(fVar.i(measuredWidth, measuredHeight), -2);
                 fVar.j();
             }

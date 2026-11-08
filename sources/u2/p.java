@@ -1,8 +1,8 @@
 package u2;
 public final class p extends Exception {
-    public final String f56269a;
-    public final boolean f56270b;
-    public final o f56271c;
+    public final String f56270a;
+    public final boolean f56271b;
+    public final o f56272c;
     public final String d;
 
     public p(e2.u uVar, t tVar, boolean z9, int i7) {
@@ -11,9 +11,9 @@ public final class p extends Exception {
 
     public p(String str, Throwable th2, String str2, boolean z9, o oVar, String str3) {
         super(str, th2);
-        this.f56269a = str2;
-        this.f56270b = z9;
-        this.f56271c = oVar;
+        this.f56270a = str2;
+        this.f56271b = z9;
+        this.f56272c = oVar;
         this.d = str3;
     }
 }

@@ -46,7 +46,7 @@ import org.telegram.ui.Components.xq;
 import org.telegram.ui.Wallet.ma;
 import r0.a0;
 public final class g extends na implements te.b {
-    public static final int f57511j2 = 0;
+    public static final int f57512j2 = 0;
     public final te.c P1;
     public final te.a Q1;
     public final HashMap R1;
@@ -58,15 +58,15 @@ public final class g extends na implements te.b {
     public final k X1;
     public final m5 Y1;
     public final w00 Z1;
-    public final x3 f57512a2;
-    public final HashMap f57513b2;
-    public gf.g f57514c2;
+    public final x3 f57513a2;
+    public final HashMap f57514b2;
+    public gf.g f57515c2;
     public int d2;
-    public final int f57515e2;
-    public final FrameLayout f57516f2;
-    public HashSet f57517g2;
-    public final Rect f57518h2;
-    public c20 f57519i2;
+    public final int f57516e2;
+    public final FrameLayout f57517f2;
+    public HashSet f57518g2;
+    public final Rect f57519h2;
+    public c20 f57520i2;
 
     public g(Context context, f6 f6Var) {
         super(context, f6Var, true);
@@ -77,13 +77,13 @@ public final class g extends na implements te.b {
         this.R1 = new HashMap();
         this.S1 = new ArrayList();
         this.T1 = new ArrayList();
-        this.f57513b2 = new HashMap();
-        this.f57518h2 = new Rect();
+        this.f57514b2 = new HashMap();
+        this.f57519h2 = new Rect();
         this.f28654x = true;
         this.f28640n = false;
         this.C1 = false;
         this.f36283s1 = false;
-        this.f57515e2 = ((j0) qp.s1(this.f28616a).f24942x7.H.f13555b).f23460c;
+        this.f57516e2 = ((j0) qp.s1(this.f28616a).f24942x7.H.f13555b).f23460c;
         g0.S(getWindow());
         pj0 pj0Var = this.f36277k1;
         int i7 = this.f28649t0;
@@ -124,7 +124,7 @@ public final class g extends na implements te.b {
         m5Var.addView(s00Var, ha.d(-1, 40.0f, 48, 10.0f, 0.0f, 10.0f, 0.0f));
         m5Var.addView(w00Var, ha.d(-1, 144.0f, 48, -3.0f, 40.0f, -3.0f, 0.0f));
         x3 x3Var = new x3(18, context, f6Var);
-        this.f57512a2 = x3Var;
+        this.f57513a2 = x3Var;
         x3Var.setTranslationY(g0.L(48.0f));
         x3Var.b(id.M0(2131745813, null), id.M0(2131751458, null), new a(this, 2));
         m5Var.addView(x3Var, ha.e(-1, 32, 48));
@@ -134,14 +134,14 @@ public final class g extends na implements te.b {
         frameLayout.addView(dVar, ha.c(48.0f, -1));
         this.f28619b.addView(frameLayout, ha.e(-1, -2, 80));
         FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f57516f2 = frameLayout2;
+        this.f57517f2 = frameLayout2;
         frameLayout2.setTranslationY((-g0.f22558n) - g0.L(68.0f));
         this.f28619b.addView(frameLayout2, ha.e(-1, 150, 80));
         v4.k kVar2 = new v4.k();
         kVar2.n(350L);
         kVar2.o(xqVar);
         kVar2.C = false;
-        kVar2.f57070m = false;
+        kVar2.f57071m = false;
         this.f36277k1.setItemAnimator(kVar2);
         this.f36277k1.i(new e(this, f6Var));
         ii.c cVar = new ii.c(this, 26);
@@ -158,13 +158,13 @@ public final class g extends na implements te.b {
     }
 
     public static void d1(g gVar, Pair pair) {
-        HashMap hashMap = gVar.f57513b2;
+        HashMap hashMap = gVar.f57514b2;
         HashMap hashMap2 = gVar.R1;
         hashMap2.putAll((Map) pair.first);
         ArrayList arrayList = gVar.S1;
         arrayList.addAll((Collection) pair.second);
         Map.EL.forEach(hashMap2, new c(gVar, 0));
-        HashSet hashSet = gVar.f57517g2;
+        HashSet hashSet = gVar.f57518g2;
         if (hashSet != null) {
             Iterator it = hashSet.iterator();
             while (it.hasNext()) {
@@ -214,7 +214,7 @@ public final class g extends na implements te.b {
     public final void Y(int i7, float f10, float f11, te.c cVar) {
         if (i7 == 3) {
             e1();
-            this.f57512a2.setTranslationY(g0.L(48.0f) + f10);
+            this.f57513a2.setTranslationY(g0.L(48.0f) + f10);
             this.Y1.invalidate();
         } else if (i7 == 4) {
             q00.d(this.X1, f10);
@@ -229,9 +229,9 @@ public final class g extends na implements te.b {
 
     public final void e1() {
         boolean z9;
-        int L = g0.L(56.0f) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + g0.f22557m + ((int) this.P1.f55492f);
+        int L = g0.L(56.0f) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + g0.f22557m + ((int) this.P1.f55493f);
         int measuredHeight = (this.f28619b.getMeasuredHeight() - g0.f22558n) - g0.L(34.0f);
-        Rect rect = this.f57518h2;
+        Rect rect = this.f57519h2;
         if (rect.top == L && rect.bottom == measuredHeight) {
             z9 = false;
         } else {
@@ -271,20 +271,20 @@ public final class g extends na implements te.b {
     public final void g1(View view) {
         c20 c20Var = (c20) view;
         if (c20Var.D) {
-            this.f57519i2 = null;
+            this.f57520i2 = null;
             this.Z1.c(c20Var);
             String countryIso2 = c20Var.getCountryIso2();
-            HashMap hashMap = this.f57513b2;
+            HashMap hashMap = this.f57514b2;
             hashMap.remove(countryIso2);
             this.W1.c(hashMap.size(), true);
             this.V1.O(true);
             return;
         }
-        c20 c20Var2 = this.f57519i2;
+        c20 c20Var2 = this.f57520i2;
         if (c20Var2 != null) {
             c20Var2.a();
         }
-        this.f57519i2 = c20Var;
+        this.f57520i2 = c20Var;
         c20Var.b();
     }
 

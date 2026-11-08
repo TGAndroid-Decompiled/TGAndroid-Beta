@@ -75,7 +75,7 @@ public final class k extends org.telegram.ui.ActionBar.f2 implements org.telegra
         kVar.n(350L);
         kVar.o(org.telegram.ui.Components.xq.h);
         kVar.C = false;
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         this.f47062a.setItemAnimator(kVar);
         frameLayout.addView(this.f47062a, c8.ha.c(-1.0f, -1));
         this.f47062a.setOnItemClickListener(new h(this, 0));

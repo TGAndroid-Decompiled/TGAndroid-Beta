@@ -58,7 +58,7 @@ public class l41 extends rg.b {
 
     @Override
     public boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57047f;
+        int i7 = d1Var.f57048f;
         x31 G = G(d1Var.b());
         if (i7 >= 10000) {
             w31 G2 = x31.G(i7);
@@ -119,7 +119,7 @@ public class l41 extends rg.b {
     public final boolean J(int i7) {
         x31 G = G(i7);
         x31 G2 = G(i7 + 1);
-        if (G != null && !G.f40178j && G2 != null && K(G2.f54531a) == K(G.f54531a)) {
+        if (G != null && !G.f40178j && G2 != null && K(G2.f54532a) == K(G.f54532a)) {
             return true;
         }
         return false;
@@ -222,12 +222,12 @@ public class l41 extends rg.b {
 
     public final void P(v4.d1 d1Var) {
         int i7;
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         if (view instanceof org.telegram.ui.ActionBar.a6) {
             ((org.telegram.ui.ActionBar.a6) view).updateColors();
             Object tag = view.getTag(2131296710);
             int i10 = org.telegram.ui.ActionBar.r6.f28479b;
-            if (N(d1Var.f57047f) && (!(tag instanceof Integer) || ((Integer) tag).intValue() != i10)) {
+            if (N(d1Var.f57048f) && (!(tag instanceof Integer) || ((Integer) tag).intValue() != i10)) {
                 if (this.f35527n) {
                     i7 = org.telegram.ui.ActionBar.k6.f27925h5;
                 } else {
@@ -265,8 +265,8 @@ public class l41 extends rg.b {
 
     public final void R(v4.d1 d1Var, boolean z9) {
         if (d1Var != null) {
-            View view = d1Var.f57043a;
-            int i7 = d1Var.f57047f;
+            View view = d1Var.f57044a;
+            int i7 = d1Var.f57048f;
             if (i7 >= 10000) {
                 w31 G = x31.G(i7);
                 if (G != null) {
@@ -347,7 +347,7 @@ public class l41 extends rg.b {
         if (G == null) {
             return 0;
         }
-        return G.f54531a;
+        return G.f54532a;
     }
 
     @Override

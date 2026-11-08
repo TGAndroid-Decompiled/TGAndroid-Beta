@@ -17,22 +17,22 @@ import org.telegram.messenger.rz;
 import org.telegram.messenger.sz;
 import org.telegram.ui.ActionBar.k6;
 public final class a extends Drawable {
-    public static rz f54110j;
-    public static final int[] f54111k = {7322096, 16766590, 13338331, 9367192, 16749490, 16478047};
-    public static final SparseArray f54112l;
-    public final rz f54113a;
-    public LinearGradient f54114b;
-    public int f54116e;
-    public final Paint f54117f;
-    public final Paint f54118g;
+    public static rz f54111j;
+    public static final int[] f54112k = {7322096, 16766590, 13338331, 9367192, 16749490, 16478047};
+    public static final SparseArray f54113l;
+    public final rz f54114a;
+    public LinearGradient f54115b;
+    public int f54117e;
+    public final Paint f54118f;
+    public final Paint f54119g;
     public int[] h;
-    public final Matrix f54115c = new Matrix();
+    public final Matrix f54116c = new Matrix();
     public final ArrayList d = new ArrayList();
-    public int f54119i = -1;
+    public int f54120i = -1;
 
     static {
         SparseArray sparseArray = new SparseArray();
-        f54112l = sparseArray;
+        f54113l = sparseArray;
         sparseArray.put(7322096, new int[]{-16687423, -11814913});
         sparseArray.put(16766590, new int[]{-1419264, -9380});
         sparseArray.put(13338331, new int[]{-6014789, -1737985});
@@ -42,18 +42,18 @@ public final class a extends Drawable {
     }
 
     public a(int i7) {
-        if (f54110j == null) {
-            f54110j = sz.h(2131624293, -1);
+        if (f54111j == null) {
+            f54111j = sz.h(2131624293, -1);
         }
-        rz clone = f54110j.clone();
+        rz clone = f54111j.clone();
         SparseArray sparseArray = clone.f25394r;
-        this.f54113a = clone;
+        this.f54114a = clone;
         ArrayList arrayList = clone.f25379a;
         arrayList.add(arrayList.get(0));
         Paint paint = new Paint(1);
-        this.f54118g = paint;
+        this.f54119g = paint;
         Paint paint2 = new Paint(1);
-        this.f54117f = paint2;
+        this.f54118f = paint2;
         paint2.setStrokeWidth(g0.L(1.0f));
         paint2.setStyle(Paint.Style.STROKE);
         sparseArray.put(1, paint);
@@ -68,22 +68,22 @@ public final class a extends Drawable {
 
     public final void b(int i7) {
         int[] iArr;
-        int i10 = this.f54119i;
+        int i10 = this.f54120i;
         if (i10 == i7 && i10 == -1) {
             return;
         }
-        this.f54119i = i7;
-        int[] iArr2 = f54111k;
+        this.f54120i = i7;
+        int[] iArr2 = f54112k;
         int a10 = a(iArr2[0], i7);
-        this.f54116e = 0;
+        this.f54117e = 0;
         for (int i11 = 0; i11 < 6; i11++) {
             int a11 = a(iArr2[i11], i7);
             if (a11 < a10) {
-                this.f54116e = i11;
+                this.f54117e = i11;
                 a10 = a11;
             }
         }
-        int[] iArr3 = (int[]) f54112l.get(iArr2[this.f54116e]);
+        int[] iArr3 = (int[]) f54113l.get(iArr2[this.f54117e]);
         if (k6.I.q()) {
             iArr = new int[]{i0.a.f(0.2f, iArr3[0], -1), i0.a.f(0.2f, iArr3[1], -1)};
         } else {
@@ -92,22 +92,22 @@ public final class a extends Drawable {
         this.h = iArr;
         Paint paint = new Paint(1);
         LinearGradient linearGradient = new LinearGradient(0.0f, 100.0f, 0.0f, 0.0f, iArr, (float[]) null, Shader.TileMode.CLAMP);
-        this.f54114b = linearGradient;
-        linearGradient.setLocalMatrix(this.f54115c);
-        paint.setShader(this.f54114b);
-        this.f54113a.f25394r.put(0, paint);
-        this.f54118g.setColor(i0.a.f(0.1f, iArr[1], -1));
-        this.f54117f.setColor(i0.a.f(0.1f, iArr[0], -16777216));
+        this.f54115b = linearGradient;
+        linearGradient.setLocalMatrix(this.f54116c);
+        paint.setShader(this.f54115b);
+        this.f54114a.f25394r.put(0, paint);
+        this.f54119g.setColor(i0.a.f(0.1f, iArr[1], -1));
+        this.f54118f.setColor(i0.a.f(0.1f, iArr[0], -16777216));
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        Matrix matrix = this.f54115c;
+        Matrix matrix = this.f54116c;
         matrix.reset();
         matrix.setScale(1.0f, getBounds().height() / 100.0f);
-        this.f54114b.setLocalMatrix(matrix);
+        this.f54115b.setLocalMatrix(matrix);
         Rect bounds = getBounds();
-        rz rzVar = this.f54113a;
+        rz rzVar = this.f54114a;
         rzVar.setBounds(bounds);
         rzVar.draw(canvas);
     }
@@ -144,7 +144,7 @@ public final class a extends Drawable {
 
     @Override
     public final void setAlpha(int i7) {
-        this.f54113a.setAlpha(i7);
+        this.f54114a.setAlpha(i7);
     }
 
     @Override

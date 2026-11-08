@@ -760,8 +760,8 @@ public final class dd extends o00 implements ls {
         gc gcVar = new gc(context, 70, 0, 0);
         frameLayout.addView(gcVar, c8.ha.c(-1.0f, -1));
         vg.m mVar = new vg.m(context, 1, 2);
-        vg.f fVar = mVar.f57411b;
-        fVar.f57395z = org.telegram.ui.ActionBar.k6.Tk;
+        vg.f fVar = mVar.f57412b;
+        fVar.f57396z = org.telegram.ui.ActionBar.k6.Tk;
         fVar.A = org.telegram.ui.ActionBar.k6.Uk;
         fVar.b();
         mVar.setStarParticlesView(gcVar);
@@ -1202,8 +1202,8 @@ public final class dd extends o00 implements ls {
         frameLayout2.setClickable(true);
         vg.m mVar = new vg.m(context, 1, 2);
         this.S = mVar;
-        vg.f fVar = mVar.f57411b;
-        fVar.f57395z = org.telegram.ui.ActionBar.k6.Tk;
+        vg.f fVar = mVar.f57412b;
+        fVar.f57396z = org.telegram.ui.ActionBar.k6.Tk;
         fVar.A = org.telegram.ui.ActionBar.k6.Uk;
         fVar.b();
         this.S.setStarParticlesView(this.f48194e);
@@ -1211,7 +1211,7 @@ public final class dd extends o00 implements ls {
         j0(org.telegram.messenger.id.M0(2131744218, null), org.telegram.messenger.g0.H2(org.telegram.messenger.g0.U2(org.telegram.messenger.id.M0(2131744215, null), new pa(context, 0)), true), this.R, null);
         this.f48193c.setOverScrollMode(2);
         v4.k kVar = new v4.k();
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         kVar.C = false;
         kVar.o(xqVar);
         kVar.n(350L);
@@ -1739,11 +1739,11 @@ public final class dd extends o00 implements ls {
         if (aVar == null) {
             f10 = 0.0f;
         } else {
-            f10 = aVar.f55486e;
+            f10 = aVar.f55487e;
         }
         te.a aVar2 = this.Y;
         if (aVar2 != null) {
-            f11 = aVar2.f55486e;
+            f11 = aVar2.f55487e;
         }
         view.setTranslationY(((-(1.0f - f10)) * org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - ((1.0f - f11) * org.telegram.messenger.g0.L(44.0f)));
     }
@@ -1751,7 +1751,7 @@ public final class dd extends o00 implements ls {
     @Override
     public final void s0(boolean z9) {
         te.a aVar = this.Z;
-        if (aVar != null && aVar.f55487f != z9) {
+        if (aVar != null && aVar.f55488f != z9) {
             aVar.a(z9, true);
         }
     }

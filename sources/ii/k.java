@@ -17,9 +17,9 @@ public final class k implements a20, b20, r0.m, qr {
 
     @Override
     public k1 S0(View view, k1 k1Var) {
-        i0.b f10 = k1Var.f54201a.f(519);
+        i0.b f10 = k1Var.f54202a.f(519);
         this.f15553a.f15586e.setPadding(0, f10.f15121b, 0, f10.d);
-        return k1.f54200b;
+        return k1.f54201b;
     }
 
     @Override

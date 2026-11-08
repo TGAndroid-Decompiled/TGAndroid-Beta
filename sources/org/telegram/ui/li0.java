@@ -46,7 +46,7 @@ public final class li0 implements org.telegram.messenger.a20, org.telegram.ui.Ce
                     i0.b bVar3 = premiumPreviewFragment.f41624o0;
                     frameLayout.setPadding(i11, L, bVar3.f15122c, bVar3.d);
                 }
-                return r0.k1.f54200b;
+                return r0.k1.f54201b;
             default:
                 je0 je0Var = (je0) ((ob1) this.f47547b);
                 i0.b I02 = org.telegram.messenger.g0.I0(k1Var, false);
@@ -82,7 +82,7 @@ public final class li0 implements org.telegram.messenger.a20, org.telegram.ui.Ce
                 }
                 je0Var.E.setPadding(i12, 0, i13, je0Var.L);
                 if (a10) {
-                    k1Var = k1Var.f54201a.m(0, 0, 0, je0Var.L);
+                    k1Var = k1Var.f54202a.m(0, 0, 0, je0Var.L);
                 }
                 je0Var.o0();
                 je0Var.n0();
@@ -94,7 +94,7 @@ public final class li0 implements org.telegram.messenger.a20, org.telegram.ui.Ce
                         r0.i0.b(fragmentView, k1Var);
                     }
                 }
-                return r0.k1.f54200b;
+                return r0.k1.f54201b;
         }
     }
 
@@ -310,7 +310,7 @@ public final class li0 implements org.telegram.messenger.a20, org.telegram.ui.Ce
                 Float f12 = (Float) serializable;
                 Float f13 = (Float) serializable2;
                 oy0 oy0Var = ny0Var.f48176w;
-                if (x31Var.f54531a == 30) {
+                if (x31Var.f54532a == 30) {
                     TLRPC.TL_channels_sponsoredMessageReportResultChooseOption tL_channels_sponsoredMessageReportResultChooseOption = ny0Var.f48169b;
                     if (tL_channels_sponsoredMessageReportResultChooseOption != null) {
                         TLRPC.TL_sponsoredMessageReportOption tL_sponsoredMessageReportOption = tL_channels_sponsoredMessageReportResultChooseOption.options.get(x31Var.d);

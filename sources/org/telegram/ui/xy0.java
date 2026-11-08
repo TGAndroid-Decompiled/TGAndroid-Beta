@@ -20,13 +20,13 @@ public final class xy0 extends org.telegram.ui.ActionBar.f2 {
 
     public static void Z(xy0 xy0Var, int i7) {
         if (i7 == 1) {
-            xi.a aVar = xi.e.f58857b;
+            xi.a aVar = xi.e.f58858b;
             boolean z9 = !MediaController.s0(xy0Var.currentAccount);
             synchronized (aVar) {
                 aVar.d = z9;
-                aVar.f58849c = true;
-                aVar.f58848b = true;
-                xi.d.f58855a.edit().putBoolean("audio_recorder_v2_enabled", z9).apply();
+                aVar.f58850c = true;
+                aVar.f58849b = true;
+                xi.d.f58856a.edit().putBoolean("audio_recorder_v2_enabled", z9).apply();
             }
             ((l4) xy0Var.f52010c).f();
         } else if (MediaController.s0(xy0Var.currentAccount) && i7 == 2) {
@@ -43,9 +43,9 @@ public final class xy0 extends org.telegram.ui.ActionBar.f2 {
             boolean z9 = !org.telegram.ui.Components.t40.e(xy0Var.currentAccount);
             synchronized (aVar) {
                 aVar.d = z9;
-                aVar.f58849c = true;
-                aVar.f58848b = true;
-                xi.d.f58855a.edit().putBoolean("round_video_camera2_enabled", z9).apply();
+                aVar.f58850c = true;
+                aVar.f58849b = true;
+                xi.d.f58856a.edit().putBoolean("round_video_camera2_enabled", z9).apply();
             }
             ((l4) xy0Var.f52010c).f();
         } else if (org.telegram.ui.Components.t40.e(xy0Var.currentAccount)) {
@@ -69,7 +69,7 @@ public final class xy0 extends org.telegram.ui.ActionBar.f2 {
                     }
                 }
             } else if (i7 == 8) {
-                xi.a aVar2 = xi.e.f58862i;
+                xi.a aVar2 = xi.e.f58863i;
                 aVar2.a();
                 aVar2.b(true ^ aVar2.d);
                 ((l4) xy0Var.f52010c).g(i7);

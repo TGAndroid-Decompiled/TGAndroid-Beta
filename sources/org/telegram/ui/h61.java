@@ -53,7 +53,7 @@ public final class h61 extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         int d = d(i7);
         if (d != 0) {
             if (d != 1) {

@@ -75,9 +75,9 @@ public final class y4 extends AnimatorListenerAdapter {
                 ohVar.getClass();
                 ohVar.a(vhVar, valueOf);
                 diVar.R2.setAlpha(0.0f);
-                r1.g gVar = new r1.g((Object) diVar.f32996t2, (r1.e) r1.g.f54251p, 0.0f);
-                gVar.f54267m.a(0.75f);
-                gVar.f54267m.b(500.0f);
+                r1.g gVar = new r1.g((Object) diVar.f32996t2, (r1.e) r1.g.f54252p, 0.0f);
+                gVar.f54268m.a(0.75f);
+                gVar.f54268m.b(500.0f);
                 gVar.b(new org.telegram.ui.Components.e7(this, 3));
                 gVar.a(new hi.y3(3, this, (qg) this.f5073c));
                 diVar.f32974n3 = gVar;

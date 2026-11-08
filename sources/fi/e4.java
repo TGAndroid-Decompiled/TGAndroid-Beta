@@ -26,7 +26,7 @@ public final class e4 implements ValueAnimator.AnimatorUpdateListener {
             case 0:
                 o5 o5Var = (o5) this.f11875c;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                o5Var.f12531j1.f55108a = i0.a.f(floatValue, ((Integer) this.d).intValue(), this.f11874b);
+                o5Var.f12531j1.f55109a = i0.a.f(floatValue, ((Integer) this.d).intValue(), this.f11874b);
                 k5 k5Var = o5Var.C0;
                 if (k5Var != null) {
                     k5Var.invalidate();
@@ -57,7 +57,7 @@ public final class e4 implements ValueAnimator.AnimatorUpdateListener {
             default:
                 tg.g0 g0Var = (tg.g0) this.f11875c;
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                g0Var.f55692t1.f55108a = i0.a.f(floatValue3, ((Integer) this.d).intValue(), this.f11874b);
+                g0Var.f55693t1.f55109a = i0.a.f(floatValue3, ((Integer) this.d).intValue(), this.f11874b);
                 tg.e0 e0Var = g0Var.L0;
                 if (e0Var != null) {
                     e0Var.invalidate();

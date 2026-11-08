@@ -101,11 +101,11 @@ public final class c61 extends LinearLayout {
             case 25:
                 zh.f1 f1Var = (zh.f1) this.f44708b;
                 RectF rectF = f1Var.h;
-                RectF rectF2 = f1Var.f60315f;
-                RectF rectF3 = f1Var.f60314e;
-                Paint paint = f1Var.f60316n;
+                RectF rectF2 = f1Var.f60316f;
+                RectF rectF3 = f1Var.f60315e;
+                Paint paint = f1Var.f60317n;
                 paint.setColor(org.telegram.ui.ActionBar.k6.r1(0.1f, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27834c6, false)));
-                float e10 = f1Var.f60313c.e(false, f1Var.f60312b);
+                float e10 = f1Var.f60314c.e(false, f1Var.f60313b);
                 double d = e10;
                 ArrayList arrayList = f1Var.d;
                 int j3 = Utilities.j((int) Math.floor(d), arrayList.size() - 1, 0);
@@ -336,7 +336,7 @@ public final class c61 extends LinearLayout {
                 return drawChild;
             case 24:
                 ug.f1 f1Var = (ug.f1) ((bi.k5) this.f44708b).d;
-                if (view == f1Var.f56570j2 && f1Var.f56586z2) {
+                if (view == f1Var.f56571j2 && f1Var.f56587z2) {
                     return true;
                 }
                 return super.drawChild(canvas, view, j3);

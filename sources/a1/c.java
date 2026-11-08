@@ -383,7 +383,7 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
                 r7Var.getClass();
                 if (!task.isSuccessful() && (exception = task.getException()) != null && !TextUtils.isEmpty(exception.getMessage()) && exception.getMessage().contains("FID_ALREADY_USED:")) {
                     Log.w("FirebaseMessaging", "FID_ALREADY_USED Detected. Retrying with FID cache clearing!");
-                    ((va.c) ((va.d) r7Var.d)).f57290c.b().delete();
+                    ((va.c) ((va.d) r7Var.d)).f57291c.b().delete();
                     return r7Var.C();
                 }
                 return task;

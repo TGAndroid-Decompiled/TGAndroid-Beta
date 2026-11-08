@@ -4,8 +4,8 @@ import j$.util.Objects;
 import java.util.Arrays;
 import java.util.Set;
 public abstract class o extends h implements Set, j$.util.Set {
-    public static final int f54009c = 0;
-    public transient m f54010b;
+    public static final int f54010c = 0;
+    public transient m f54011b;
 
     public static o m(int i7, Object... objArr) {
         if (i7 != 0) {
@@ -55,7 +55,7 @@ public abstract class o extends h implements Set, j$.util.Set {
             Objects.requireNonNull(obj4);
             return new b0(obj4);
         }
-        return y.f54037s;
+        return y.f54038s;
     }
 
     public static int n(int i7) {
@@ -76,7 +76,7 @@ public abstract class o extends h implements Set, j$.util.Set {
     @Override
     public boolean equals(Object obj) {
         if (obj != this) {
-            if (!(obj instanceof o) || !(this instanceof y) || !(((o) obj) instanceof y) || ((y) this).f54038e == obj.hashCode()) {
+            if (!(obj instanceof o) || !(this instanceof y) || !(((o) obj) instanceof y) || ((y) this).f54039e == obj.hashCode()) {
                 if (obj != this) {
                     if (obj instanceof Set) {
                         Set set = (Set) obj;
@@ -107,18 +107,18 @@ public abstract class o extends h implements Set, j$.util.Set {
     }
 
     public m o() {
-        m mVar = this.f54010b;
+        m mVar = this.f54011b;
         if (mVar == null) {
             m p10 = p();
-            this.f54010b = p10;
+            this.f54011b = p10;
             return p10;
         }
         return mVar;
     }
 
     public m p() {
-        Object[] array = toArray(h.f53977a);
-        i iVar = m.f54000b;
+        Object[] array = toArray(h.f53978a);
+        i iVar = m.f54001b;
         return m.o(array.length, array);
     }
 }

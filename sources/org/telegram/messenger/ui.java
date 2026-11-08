@@ -4269,13 +4269,13 @@ public final class ui extends c1 {
     public final void i1(String str, TLRPC.Document document, boolean z9) {
         this.Z.remove(str);
         yf.d dVar = this.f25857z0;
-        ArrayList arrayList = dVar.f59415e;
+        ArrayList arrayList = dVar.f59416e;
         boolean z10 = true;
         if (z9) {
             int i7 = 0;
             while (true) {
                 if (i7 < arrayList.size()) {
-                    if (((yf.c) arrayList.get(i7)).d && str.equals(((yf.c) arrayList.get(i7)).f59408b)) {
+                    if (((yf.c) arrayList.get(i7)).d && str.equals(((yf.c) arrayList.get(i7)).f59409b)) {
                         arrayList.remove(i7);
                         break;
                     }
@@ -4289,9 +4289,9 @@ public final class ui extends c1 {
             int i10 = 0;
             while (true) {
                 if (i10 < arrayList.size()) {
-                    if (((yf.c) arrayList.get(i10)).d && str.equals(((yf.c) arrayList.get(i10)).f59408b)) {
+                    if (((yf.c) arrayList.get(i10)).d && str.equals(((yf.c) arrayList.get(i10)).f59409b)) {
                         ((yf.c) arrayList.get(i10)).d = false;
-                        ((yf.c) arrayList.get(i10)).f59407a = document;
+                        ((yf.c) arrayList.get(i10)).f59408a = document;
                         break;
                     }
                     i10++;
@@ -4305,7 +4305,7 @@ public final class ui extends c1 {
             }
         }
         if (z10) {
-            qs.f(dVar.f59414c).k(qs.f24995e5, new Object[0]);
+            qs.f(dVar.f59415c).k(qs.f24995e5, new Object[0]);
         }
     }
 
@@ -4504,12 +4504,12 @@ public final class ui extends c1 {
         yf.d dVar = this.f25857z0;
         dVar.getClass();
         ?? obj = new Object();
-        obj.f59408b = str;
+        obj.f59409b = str;
         int i7 = dVar.d;
         dVar.d = i7 + 1;
-        obj.f59409c = i7;
+        obj.f59410c = i7;
         obj.d = true;
-        dVar.f59415e.add(obj);
+        dVar.f59416e.add(obj);
     }
 
     public final void m() {

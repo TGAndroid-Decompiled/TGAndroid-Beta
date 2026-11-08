@@ -282,7 +282,7 @@ public abstract class dt extends EditText {
             this.f33090y = false;
             removeCallbacks(this.J);
             j(true, false);
-            fVar.f58803q = new at(this, 0);
+            fVar.f58804q = new at(this, 0);
             float sqrt = (float) Math.sqrt(Math.pow(getHeight(), 2.0d) + Math.pow(getWidth(), 2.0d));
             ArrayList arrayList = this.f33080a;
             int size = arrayList.size();
@@ -411,7 +411,7 @@ public abstract class dt extends EditText {
         canvas.restore();
         if (!arrayList.isEmpty()) {
             xh.f fVar = (xh.f) arrayList.get(0);
-            if (fVar.f58799m > 0.0f && fVar.f58800n > 0.0f) {
+            if (fVar.f58800m > 0.0f && fVar.f58801n > 0.0f) {
                 canvas.save();
                 canvas.clipPath(path);
                 path.rewind();
@@ -443,7 +443,7 @@ public abstract class dt extends EditText {
                 int i14 = rect.top;
                 int i15 = bounds2.bottom;
                 if ((i14 <= i15 && rect.bottom >= bounds2.top) || (bounds2.top <= rect.bottom && i15 >= i14)) {
-                    if (fVar2.f58810y) {
+                    if (fVar2.f58811y) {
                         color = this.D;
                     } else {
                         color = getPaint().getColor();

@@ -48,13 +48,13 @@ public final class b extends b51 {
         w80Var.B = false;
         this.f28643p0 = 75;
         this.f32049s1.J.setHint(id.M0(2131745761, null));
-        h hVar = w80Var.f59546f;
+        h hVar = w80Var.f59547f;
         this.f32044m1 = hVar;
         this.l1 = hVar;
         this.f32043k1.setAdapter(hVar);
         this.f32043k1.r1();
         q1 q1Var = this.f32043k1;
-        w80Var.f59555p = q1Var;
+        w80Var.f59556p = q1Var;
         q1Var.setOnItemClickListener(new ai.k(w80Var, 23));
         s0 onScrollListener = q1Var.getOnScrollListener();
         if (onScrollListener == null) {
@@ -152,16 +152,16 @@ public final class b extends b51 {
     @Override
     public final void dismiss() {
         d dVar = this.S1;
-        b bVar = dVar.f59514i;
-        if (bVar != null && !bVar.L1.f59543b) {
-            dVar.f59514i = null;
+        b bVar = dVar.f59515i;
+        if (bVar != null && !bVar.L1.f59544b) {
+            dVar.f59515i = null;
         }
         super.dismiss();
     }
 
     @Override
     public final void onBackPressed() {
-        l lVar = this.L1.f59558s;
+        l lVar = this.L1.f59559s;
         if (lVar != null) {
             lVar.e(false);
         } else {
@@ -182,10 +182,10 @@ public final class b extends b51 {
     @Override
     public final void show() {
         w80 w80Var = this.L1;
-        if (w80Var.f59543b && this.f32051u1 == 0) {
+        if (w80Var.f59544b && this.f32051u1 == 0) {
             this.f32051u1 = g0.L(8.0f);
         }
         super.show();
-        w80Var.f59543b = false;
+        w80Var.f59544b = false;
     }
 }

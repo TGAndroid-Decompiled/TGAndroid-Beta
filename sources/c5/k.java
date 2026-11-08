@@ -275,7 +275,7 @@ public class k extends ViewGroup {
                     scrollTo(0, currY);
                 }
             }
-            WeakHashMap weakHashMap = i0.f54190a;
+            WeakHashMap weakHashMap = i0.f54191a;
             postInvalidateOnAnimation();
             return;
         }
@@ -335,7 +335,7 @@ public class k extends ViewGroup {
             }
         }
         if (z9) {
-            WeakHashMap weakHashMap = i0.f54190a;
+            WeakHashMap weakHashMap = i0.f54191a;
             postInvalidateOnAnimation();
         }
     }
@@ -389,7 +389,7 @@ public class k extends ViewGroup {
         if (z10) {
             ra raVar = this.f5348q0;
             if (z9) {
-                WeakHashMap weakHashMap = i0.f54190a;
+                WeakHashMap weakHashMap = i0.f54191a;
                 postOnAnimation(raVar);
                 return;
             }
@@ -773,7 +773,7 @@ public class k extends ViewGroup {
                             this.N = true;
                         }
                         if (this.M && r(x10)) {
-                            WeakHashMap weakHashMap = i0.f54190a;
+                            WeakHashMap weakHashMap = i0.f54191a;
                             postInvalidateOnAnimation();
                         }
                     }
@@ -980,7 +980,7 @@ public class k extends ViewGroup {
                 this.V = motionEvent.getPointerId(0);
             }
             if (z9) {
-                WeakHashMap weakHashMap = i0.f54190a;
+                WeakHashMap weakHashMap = i0.f54191a;
                 postInvalidateOnAnimation();
             }
         }
@@ -1311,7 +1311,7 @@ public class k extends ViewGroup {
                     int min = Math.min(abs, 600);
                     this.f5351s = false;
                     this.f5349r.startScroll(i12, scrollY, i13, i14, min);
-                    WeakHashMap weakHashMap = i0.f54190a;
+                    WeakHashMap weakHashMap = i0.f54191a;
                     postInvalidateOnAnimation();
                 }
             }

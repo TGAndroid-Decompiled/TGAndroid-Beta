@@ -60,7 +60,7 @@ public final class a extends v61 {
         switch (this.V) {
             case 2:
                 up0 up0Var = (up0) this.f10809a0;
-                u61 u61Var = up0Var.f60287n;
+                u61 u61Var = up0Var.f60288n;
                 if (up0Var.b() && u61Var != null) {
                     if (up0Var.J == null) {
                         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(jg.g.l(2131750099, null, new StringBuilder("+ ")));

@@ -8,10 +8,6 @@ import android.widget.TextView;
 public final class c0 extends LinkMovementMethod {
     public final int f21766a;
 
-    public c0(int i7) {
-        this.f21766a = i7;
-    }
-
     @Override
     public final boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
         switch (this.f21766a) {

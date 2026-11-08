@@ -35,8 +35,8 @@ public final class e1 extends v4.g0 {
         g1 g1Var = h1Var.f46190w;
         ArrayList<TL_iv.PageBlock> arrayList = h1Var.f46189s.items;
         TL_iv.PageBlock pageBlock = arrayList.get((arrayList.size() - i7) - 1);
-        int i10 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i10 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         if (i10 != 0) {
             v2 v2Var = (v2) view;
             v2Var.T = (org.telegram.messenger.aj) g1Var.f45752b.get(pageBlock);

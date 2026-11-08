@@ -10,8 +10,8 @@ import android.widget.TextView;
 import org.telegram.messenger.id;
 import org.telegram.ui.ActionBar.z5;
 public final class d1 extends TextView {
-    public boolean f55622a;
-    public Drawable f55623b;
+    public boolean f55623a;
+    public Drawable f55624b;
 
     public d1(Context context) {
         super(context);
@@ -28,20 +28,20 @@ public final class d1 extends TextView {
         canvas.translate(0.0f, org.telegram.messenger.g0.L(-1.0f));
         super.onDraw(canvas);
         canvas.restore();
-        if (this.f55622a) {
+        if (this.f55623a) {
             int y10 = org.telegram.messenger.camera.q.y(16.0f, getHeight(), 2);
             if (id.f23157a0) {
-                this.f55623b.setBounds(org.telegram.messenger.g0.L(7.0f), y10, org.telegram.messenger.g0.L(23.0f), org.telegram.messenger.g0.L(16.0f) + y10);
+                this.f55624b.setBounds(org.telegram.messenger.g0.L(7.0f), y10, org.telegram.messenger.g0.L(23.0f), org.telegram.messenger.g0.L(16.0f) + y10);
             } else {
-                this.f55623b.setBounds(getWidth() - org.telegram.messenger.g0.L(23.0f), y10, getWidth() - org.telegram.messenger.g0.L(7.0f), org.telegram.messenger.g0.L(16.0f) + y10);
+                this.f55624b.setBounds(getWidth() - org.telegram.messenger.g0.L(23.0f), y10, getWidth() - org.telegram.messenger.g0.L(7.0f), org.telegram.messenger.g0.L(16.0f) + y10);
             }
-            this.f55623b.draw(canvas);
+            this.f55624b.draw(canvas);
         }
     }
 
     public void setCurrent(boolean z9) {
         float f10;
-        this.f55622a = z9;
+        this.f55623a = z9;
         if (z9) {
             float f11 = 12.0f;
             if (id.f23157a0) {
@@ -60,9 +60,9 @@ public final class d1 extends TextView {
             setPadding(org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(14.0f));
             setBackground(z5.d(0, z5.b(-14145495), 0.0f));
         }
-        if (this.f55622a && this.f55623b == null) {
+        if (this.f55623a && this.f55624b == null) {
             Drawable drawable = getContext().getDrawable(2131232522);
-            this.f55623b = drawable;
+            this.f55624b = drawable;
             drawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         }
         invalidate();

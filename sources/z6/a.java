@@ -10,8 +10,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 public abstract class a {
-    public static Context f59710a;
-    public static Boolean f59711b;
+    public static Context f59711a;
+    public static Boolean f59712b;
 
     public static Notification.Builder a(Context context, String str) {
         return new Notification.Builder(context, str);
@@ -33,23 +33,23 @@ public abstract class a {
         Boolean bool;
         synchronized (a.class) {
             Context applicationContext = context.getApplicationContext();
-            Context context2 = f59710a;
-            if (context2 != null && (bool = f59711b) != null && context2 == applicationContext) {
+            Context context2 = f59711a;
+            if (context2 != null && (bool = f59712b) != null && context2 == applicationContext) {
                 return bool.booleanValue();
             }
-            f59711b = null;
+            f59712b = null;
             if (x6.b.d()) {
-                f59711b = Boolean.valueOf(applicationContext.getPackageManager().isInstantApp());
+                f59712b = Boolean.valueOf(applicationContext.getPackageManager().isInstantApp());
             } else {
                 try {
                     context.getClassLoader().loadClass("com.google.android.instantapps.supervisor.InstantAppsRuntime");
-                    f59711b = Boolean.TRUE;
+                    f59712b = Boolean.TRUE;
                 } catch (ClassNotFoundException unused) {
-                    f59711b = Boolean.FALSE;
+                    f59712b = Boolean.FALSE;
                 }
             }
-            f59710a = applicationContext;
-            return f59711b.booleanValue();
+            f59711a = applicationContext;
+            return f59712b.booleanValue();
         }
     }
 

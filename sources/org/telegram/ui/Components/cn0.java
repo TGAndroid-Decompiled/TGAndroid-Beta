@@ -45,8 +45,8 @@ public final class cn0 extends View implements org.telegram.ui.ActionBar.a6 {
             if (z10) {
                 float f11 = this.f32645n * 100.0f;
                 r1.g gVar2 = new r1.g(this, f32639x);
-                gVar2.f54258b = f11;
-                gVar2.f54259c = true;
+                gVar2.f54259b = f11;
+                gVar2.f54260c = true;
                 this.f32644f = gVar2;
                 if (f10 < this.f32645n) {
                     z11 = true;
@@ -55,10 +55,10 @@ public final class cn0 extends View implements org.telegram.ui.ActionBar.a6 {
                 this.f32647s = z11;
                 this.f32646r = !z11;
                 r1.h hVar = new r1.h(f12);
-                hVar.f54275i = f12;
+                hVar.f54276i = f12;
                 hVar.b(450.0f);
                 hVar.a(1.0f);
-                gVar2.f54267m = hVar;
+                gVar2.f54268m = hVar;
                 this.f32644f.b(new xg(this, z11, f11, f12));
                 this.f32644f.a(new ta(this, 4));
                 this.f32644f.h();

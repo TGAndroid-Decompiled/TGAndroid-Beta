@@ -88,7 +88,7 @@ public final class n extends FrameLayout {
         this.f10834n = kVar;
         kVar.n(280L);
         kVar.o(xq.h);
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         f fVar = new f(this, context);
         this.f10833f = fVar;
         fVar.setScrollingTouchSlop(1);

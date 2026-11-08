@@ -48,7 +48,7 @@ public class v3 extends View implements a6 {
         r1.h hVar = new r1.h();
         hVar.b(400.0f);
         hVar.a(1.0f);
-        gVar.f54267m = hVar;
+        gVar.f54268m = hVar;
         this.d = gVar;
     }
 
@@ -70,7 +70,7 @@ public class v3 extends View implements a6 {
             setLoadProgress(f10);
             return;
         }
-        gVar.f54267m.f54275i = f10 * 100.0f;
+        gVar.f54268m.f54276i = f10 * 100.0f;
         gVar.h();
     }
 

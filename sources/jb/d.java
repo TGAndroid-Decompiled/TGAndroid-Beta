@@ -14,7 +14,7 @@ public final class d implements q {
 
     static {
         int i7 = yd.a.d;
-        f16610g = (int) yd.a.d(ee.c(24, yd.c.f59398f), yd.c.d);
+        f16610g = (int) yd.a.d(ee.c(24, yd.c.f59399f), yd.c.d);
         h = new xd.c("com/google/firebase/sessions//");
     }
 
@@ -36,7 +36,7 @@ public final class d implements q {
         xd.c cVar = h;
         cVar.getClass();
         kotlin.jvm.internal.j.e(input, "input");
-        String replaceAll = cVar.f58688a.matcher(input).replaceAll("");
+        String replaceAll = cVar.f58689a.matcher(input).replaceAll("");
         kotlin.jvm.internal.j.d(replaceAll, "replaceAll(...)");
         return replaceAll;
     }

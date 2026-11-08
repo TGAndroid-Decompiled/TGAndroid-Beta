@@ -536,13 +536,13 @@ public final class n implements g, j6.n, ja.a, c4.m, f1, f3.i, com.google.androi
 
     public boolean h0(q4.t tVar, String str) {
         Context context = (Context) this.f16456b;
-        int i7 = tVar.f53807b;
+        int i7 = tVar.f53808b;
         if (i7 < 0) {
-            if (context.getPackageManager().checkPermission(str, tVar.f53806a) == 0) {
+            if (context.getPackageManager().checkPermission(str, tVar.f53807a) == 0) {
                 return true;
             }
             return false;
-        } else if (context.checkPermission(str, i7, tVar.f53808c) == 0) {
+        } else if (context.checkPermission(str, i7, tVar.f53809c) == 0) {
             return true;
         } else {
             return false;
@@ -560,9 +560,9 @@ public final class n implements g, j6.n, ja.a, c4.m, f1, f3.i, com.google.androi
         vi.h hVar = (vi.h) gVar.f10054e;
         hVar.getClass();
         vi.h.q();
-        vi.g gVar2 = hVar.f57562z;
+        vi.g gVar2 = hVar.f57563z;
         if (hVar.G == 5 && gVar2 != null) {
-            file = gVar2.f57537b;
+            file = gVar2.f57538b;
         } else {
             file = null;
         }

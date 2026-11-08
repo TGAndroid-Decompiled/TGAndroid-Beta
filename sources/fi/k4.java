@@ -30,7 +30,7 @@ public final class k4 implements ValueAnimator.AnimatorUpdateListener {
             case 0:
                 o5 o5Var = (o5) obj;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                o5Var.f12531j1.f55108a = i0.a.f(floatValue, i11, i10);
+                o5Var.f12531j1.f55109a = i0.a.f(floatValue, i11, i10);
                 o5Var.C0.invalidate();
                 return;
             case 1:
@@ -71,7 +71,7 @@ public final class k4 implements ValueAnimator.AnimatorUpdateListener {
             default:
                 tg.g0 g0Var = (tg.g0) obj;
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                g0Var.f55692t1.f55108a = i0.a.f(floatValue3, i11, i10);
+                g0Var.f55693t1.f55109a = i0.a.f(floatValue3, i11, i10);
                 g0Var.L0.invalidate();
                 return;
         }

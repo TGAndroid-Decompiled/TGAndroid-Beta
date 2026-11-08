@@ -53,7 +53,7 @@ public final class gt extends org.telegram.ui.Components.pj0 {
         kVar.n(220L);
         kVar.o(org.telegram.ui.Components.xq.h);
         kVar.C = false;
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         setItemAnimator(kVar);
         oi.a.e(this, ktVar.h, ktVar.f47312n, org.telegram.messenger.g0.L(42.0f) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 0);
     }

@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import bi.ec;
 import org.telegram.ui.Components.pj0;
 public final class z3 extends v4.m0 {
-    public final PointF f60633a = new PointF();
-    public final a4 f60634b;
+    public final PointF f60634a = new PointF();
+    public final a4 f60635b;
 
     public z3(a4 a4Var) {
-        this.f60634b = a4Var;
+        this.f60635b = a4Var;
     }
 
     @Override
@@ -19,11 +19,11 @@ public final class z3 extends v4.m0 {
         ec ecVar;
         float height = recyclerView.getHeight();
         float width = recyclerView.getWidth();
-        a4 a4Var = this.f60634b;
-        v3 v3Var = a4Var.f60217l2;
+        a4 a4Var = this.f60635b;
+        v3 v3Var = a4Var.f60218l2;
         u3 u3Var = a4Var.Z1;
         pj0 pj0Var = a4Var.f36277k1;
-        PointF pointF = this.f60633a;
+        PointF pointF = this.f60634a;
         float f11 = 0.0f;
         if (jh.k.b(u3Var, pj0Var, pointF)) {
             float f12 = pointF.x;

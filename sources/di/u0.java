@@ -162,7 +162,7 @@ public abstract class u0 extends FrameLayout implements ls {
         addView(q1Var, ha.d(-1, -1.0f, 87, 0.0f, 0.0f, 0.0f, 34.0f));
         q1Var.setOnItemClickListener(new f0(g2Var, viewGroup, p9Var, 0));
         g0 g0Var = new g0(g2Var);
-        g0Var.f57070m = false;
+        g0Var.f57071m = false;
         g0Var.C = false;
         xq xqVar = xq.h;
         g0Var.o(xqVar);
@@ -232,7 +232,7 @@ public abstract class u0 extends FrameLayout implements ls {
         addView(e61Var, ha.d(-1, 26.0f, 87, 0.0f, 0.0f, 0.0f, 9.66f));
         e61Var.setOnItemClickListener(new a1.c(g2Var, 29));
         v4.k kVar = new v4.k();
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         kVar.C = false;
         kVar.o(xqVar);
         kVar.n(350L);

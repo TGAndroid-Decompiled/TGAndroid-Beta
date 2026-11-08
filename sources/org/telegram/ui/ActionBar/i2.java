@@ -74,9 +74,9 @@ public final class i2 implements ValueAnimator.AnimatorUpdateListener {
                 xh.f fVar = (xh.f) this.f27566c;
                 fVar.getClass();
                 float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                fVar.f58800n = floatValue4;
+                fVar.f58801n = floatValue4;
                 fVar.setAlpha((int) ((1.0f - floatValue4) * this.f27565b));
-                fVar.f58802p = true;
+                fVar.f58803p = true;
                 fVar.invalidateSelf();
                 return;
         }

@@ -389,8 +389,8 @@ public final class j extends o00 implements ls {
         frameLayout.setClickable(true);
         vg.m mVar = new vg.m(context, 1, 3);
         this.T = mVar;
-        vg.f fVar = mVar.f57411b;
-        fVar.f57395z = k6.Tk;
+        vg.f fVar = mVar.f57412b;
+        fVar.f57396z = k6.Tk;
         fVar.A = k6.Uk;
         fVar.b();
         this.T.setStarParticlesView(this.f48194e);
@@ -421,7 +421,7 @@ public final class j extends o00 implements ls {
         this.f48193c.setPadding(0, 0, 0, org.telegram.messenger.g0.L(84.0f));
         this.f48193c.setOnItemClickListener(new ai.k(this, 13));
         v4.k kVar = new v4.k();
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         kVar.C = false;
         kVar.o(xq.h);
         kVar.n(350L);

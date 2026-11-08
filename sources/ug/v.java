@@ -12,19 +12,19 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.l00;
 public final class v implements Runnable {
-    public final int f56833a;
-    public final i0 f56834b;
+    public final int f56834a;
+    public final i0 f56835b;
 
     public v(i0 i0Var, int i7) {
-        this.f56833a = i7;
-        this.f56834b = i0Var;
+        this.f56834a = i7;
+        this.f56835b = i0Var;
     }
 
     @Override
     public final void run() {
         String G;
-        int i7 = this.f56833a;
-        i0 i0Var = this.f56834b;
+        int i7 = this.f56834a;
+        i0 i0Var = this.f56835b;
         switch (i7) {
             case 0:
                 if (LaunchActivity.Q() != null) {
@@ -35,11 +35,11 @@ public final class v implements Runnable {
                 }
                 return;
             case 1:
-                i0Var.f56617p2.g(i0Var.T1, false);
+                i0Var.f56618p2.g(i0Var.T1, false);
                 i0Var.t1();
                 return;
             case 2:
-                HashSet hashSet = i0Var.f56618q2;
+                HashSet hashSet = i0Var.f56619q2;
                 hc X = hc.X();
                 if (X != null) {
                     if (hashSet.size() == 1) {
@@ -58,8 +58,8 @@ public final class v implements Runnable {
                 return;
             default:
                 if (t3.N(i0Var.n1())) {
-                    if (i0Var.f56624w2.getParent() != null) {
-                        ((ViewGroup) i0Var.f56624w2.getParent()).removeView(i0Var.f56624w2);
+                    if (i0Var.f56625w2.getParent() != null) {
+                        ((ViewGroup) i0Var.f56625w2.getParent()).removeView(i0Var.f56625w2);
                     }
                     l00 l00Var = i0Var.D2;
                     if (l00Var != null && l00Var.getParent() != null) {

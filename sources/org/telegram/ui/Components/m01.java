@@ -18,7 +18,7 @@ public final class m01 extends v4.o {
             default:
                 rg.a aVar = (rg.a) this.f35837c.get(i7);
                 rg.a aVar2 = (rg.a) this.d.get(i10);
-                if (aVar.f54531a != aVar2.f54531a) {
+                if (aVar.f54532a != aVar2.f54532a) {
                     return false;
                 }
                 return aVar.a(aVar2);
@@ -34,7 +34,7 @@ public final class m01 extends v4.o {
             default:
                 rg.a aVar = (rg.a) this.f35837c.get(i7);
                 rg.a aVar2 = (rg.a) this.d.get(i10);
-                if (aVar.f54531a != aVar2.f54531a) {
+                if (aVar.f54532a != aVar2.f54532a) {
                     return false;
                 }
                 return aVar.equals(aVar2);

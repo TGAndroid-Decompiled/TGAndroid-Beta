@@ -455,7 +455,7 @@ public final class jo0 implements Runnable {
                 AtomicBoolean atomicBoolean = (AtomicBoolean) this.f47015b;
                 p4.h hVar = (p4.h) this.d;
                 AtomicBoolean atomicBoolean2 = (AtomicBoolean) this.f47017e;
-                synchronized (eVar.f56930b) {
+                synchronized (eVar.f56931b) {
                     try {
                         if (!atomicBoolean.get()) {
                             eVar.p(hVar);
@@ -474,13 +474,13 @@ public final class jo0 implements Runnable {
                 p4.v vVar = (p4.v) this.f47015b;
                 p4.d0 d0Var = (p4.d0) this.d;
                 p4.l lVar = (p4.l) this.f47017e;
-                ui.e eVar2 = c1Var.f53183b;
+                ui.e eVar2 = c1Var.f53184b;
                 try {
-                    c1Var.f53184c.remove(vVar);
+                    c1Var.f53185c.remove(vVar);
                     if (!d0Var.j()) {
                         p4.x0 x0Var2 = (p4.x0) vVar.d;
                         x0Var2.getClass();
-                        IBinder asBinder = x0Var2.f53464a.asBinder();
+                        IBinder asBinder = x0Var2.f53465a.asBinder();
                         p4.t m11 = d0Var.m(vVar);
                         if (eVar2.D(vVar)) {
                             try {
@@ -493,39 +493,39 @@ public final class jo0 implements Runnable {
                                 throw th;
                             }
                         }
-                        eVar2.b(asBinder, vVar, m11.f53445a, m11.f53446b);
+                        eVar2.b(asBinder, vVar, m11.f53446a, m11.f53447b);
                         com.google.android.gms.common.api.internal.s C = eVar2.C(vVar);
                         if (C == null) {
                             h2.a.l("MediaSessionStub", "Ignoring connection request from unknown controller info");
                         } else {
-                            p4.g1 g1Var = d0Var.f53217t;
-                            p4.e1 e1Var = d0Var.f53216s;
-                            e2.y0 y0Var = m11.f53446b;
+                            p4.g1 g1Var = d0Var.f53218t;
+                            p4.e1 e1Var = d0Var.f53217s;
+                            e2.y0 y0Var = m11.f53447b;
                             p4.e1 A1 = c1Var.A1(e1Var);
-                            MediaSession.Token token = ((q4.l) d0Var.h.f53369n.f53803b).f53787c.f53800b;
-                            h9.i0 i0Var = m11.f53447c;
+                            MediaSession.Token token = ((q4.l) d0Var.h.f53370n.f53804b).f53788c.f53801b;
+                            h9.i0 i0Var = m11.f53448c;
                             if (i0Var == null) {
-                                i0Var = d0Var.f53221y;
+                                i0Var = d0Var.f53222y;
                             }
                             h9.i0 i0Var2 = m11.d;
                             if (i0Var2 == null) {
-                                i0Var2 = d0Var.f53222z;
+                                i0Var2 = d0Var.f53223z;
                             }
-                            h9.i0 i0Var3 = d0Var.f53215r;
-                            p4.j1 j1Var = m11.f53445a;
+                            h9.i0 i0Var3 = d0Var.f53216r;
+                            p4.j1 j1Var = m11.f53446a;
                             e2.y0 t6 = g1Var.t();
-                            p4.o1 o1Var = d0Var.f53207j.f53392a;
+                            p4.o1 o1Var = d0Var.f53208j.f53393a;
                             o1Var.getClass();
-                            p4.j jVar = new p4.j(c1Var, i0Var, i0Var2, i0Var3, j1Var, y0Var, t6, new Bundle(o1Var.f53417g), d0Var.A, A1, token);
+                            p4.j jVar = new p4.j(c1Var, i0Var, i0Var2, i0Var3, j1Var, y0Var, t6, new Bundle(o1Var.f53418g), d0Var.A, A1, token);
                             if (!d0Var.j()) {
                                 try {
-                                    ((p4.k) lVar).h1(C.e(), jVar.a(vVar.f53452c));
+                                    ((p4.k) lVar).h1(C.e(), jVar.a(vVar.f53453c));
                                     z9 = true;
                                 } catch (RemoteException unused2) {
                                     z9 = false;
                                 }
-                                if (z9 && (!d0Var.f53220x || !p4.d0.k(vVar))) {
-                                    d0Var.f53203e.getClass();
+                                if (z9 && (!d0Var.f53221x || !p4.d0.k(vVar))) {
+                                    d0Var.f53204e.getClass();
                                     break;
                                 }
                                 return;
@@ -561,7 +561,7 @@ public final class jo0 implements Runnable {
                 p4.v vVar2 = (p4.v) this.d;
                 List list = (List) this.f47017e;
                 if (!d0Var2.j()) {
-                    z0Var.a(d0Var2.f53217t, vVar2, list);
+                    z0Var.a(d0Var2.f53218t, vVar2, list);
                     return;
                 }
                 return;
@@ -572,15 +572,15 @@ public final class jo0 implements Runnable {
                 l5.g gVar = (l5.g) this.d;
                 o5.h hVar2 = (o5.h) this.f47017e;
                 aVar.getClass();
-                Logger logger = t5.a.f55444f;
+                Logger logger = t5.a.f55445f;
                 try {
-                    p5.e a10 = aVar.f55447c.a(str7);
+                    p5.e a10 = aVar.f55448c.a(str7);
                     if (a10 == null) {
                         String str8 = "Transport backend '" + str7 + "' is not registered";
                         logger.warning(str8);
                         gVar.b(new IllegalArgumentException(str8));
                     } else {
-                        ((v5.g) aVar.f55448e).f(new org.telegram.ui.Components.hr(aVar, iVar, ((m5.b) a10).a(hVar2), 11));
+                        ((v5.g) aVar.f55449e).f(new org.telegram.ui.Components.hr(aVar, iVar, ((m5.b) a10).a(hVar2), 11));
                         gVar.b(null);
                     }
                     return;
@@ -603,8 +603,8 @@ public final class jo0 implements Runnable {
                 if (tLObject8 instanceof TLRPC.TL_messageMediaDocument) {
                     c2Var2.getClass();
                     TLRPC.TL_messageMediaDocument tL_messageMediaDocument = (TLRPC.TL_messageMediaDocument) tLObject8;
-                    a2Var.f55560e = org.telegram.messenger.ui.a0(tL_messageMediaDocument.document, a2Var.f55559c);
-                    a2Var.f55561f = tL_messageMediaDocument;
+                    a2Var.f55561e = org.telegram.messenger.ui.a0(tL_messageMediaDocument.document, a2Var.f55560c);
+                    a2Var.f55562f = tL_messageMediaDocument;
                     c2Var2.a();
                     return;
                 }
@@ -613,7 +613,7 @@ public final class jo0 implements Runnable {
                 return;
             default:
                 ui.e eVar3 = (ui.e) this.f47016c;
-                ((ArrayDeque) eVar3.f56930b).addLast(new ui.d((l2.y) this.f47015b, (ui.a) this.d, (RequestTimeDelegate) this.f47017e));
+                ((ArrayDeque) eVar3.f56931b).addLast(new ui.d((l2.y) this.f47015b, (ui.a) this.d, (RequestTimeDelegate) this.f47017e));
                 eVar3.S();
                 return;
         }

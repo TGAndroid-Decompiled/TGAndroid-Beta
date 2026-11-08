@@ -31,7 +31,7 @@ public final class jx extends w31 {
         } else if (obj instanceof TLRPC.StickerSetCovered) {
             TLRPC.Document document = ((zw) x31Var.H).f41159e;
             bVar.d.setText(((TLRPC.StickerSetCovered) obj).set.short_name);
-            bVar.f53638c.d(document, null, null, null, false, false);
+            bVar.f53639c.d(document, null, null, null, false, false);
         }
         bVar.a(x31Var.f40174e, false);
     }

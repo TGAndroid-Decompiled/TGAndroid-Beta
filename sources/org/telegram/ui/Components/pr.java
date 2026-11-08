@@ -32,7 +32,7 @@ public class pr extends y5 implements org.telegram.ui.ActionBar.a6 {
         int currentStyle;
         FragmentContextView fragmentContextView;
         Canvas canvas2 = canvas;
-        if (getMetadata().f55502c.f55512a != 0.0f) {
+        if (getMetadata().f55503c.f55513a != 0.0f) {
             fh.g gVar = this.f37076s;
             if (gVar != null) {
                 gVar.draw(canvas2);
@@ -45,7 +45,7 @@ public class pr extends y5 implements org.telegram.ui.ActionBar.a6 {
                 for (int i7 = 0; i7 < entriesCount; i7++) {
                     te.e i10 = hVar.i(i7);
                     float paddingTop = getPaddingTop() + i10.b().top;
-                    View view2 = ((x5) i10.f55495a).f40208a;
+                    View view2 = ((x5) i10.f55496a).f40208a;
                     float c10 = i10.c();
                     if (c10 > 0.0f && (fragmentContextView = this.D) != null && (fragmentContextView == view2 || fragmentContextView.getParent() == view2)) {
                         sc capsuleBlobDrawable = this.D.getCapsuleBlobDrawable();
@@ -69,8 +69,8 @@ public class pr extends y5 implements org.telegram.ui.ActionBar.a6 {
             while (i12 < entriesCount2) {
                 te.e i13 = hVar.i(i12);
                 float paddingTop2 = getPaddingTop() + i13.b().top;
-                View view4 = ((x5) i13.f55495a).f40208a;
-                float min = Math.min(1.0f, i13.f55497c.f55512a) * i13.c();
+                View view4 = ((x5) i13.f55496a).f40208a;
+                float min = Math.min(1.0f, i13.f55498c.f55513a) * i13.c();
                 if (min > 0.0f && view3 != view4) {
                     int alpha = org.telegram.ui.ActionBar.k6.f27975k0.getAlpha();
                     org.telegram.ui.ActionBar.k6.f27975k0.setAlpha((int) (alpha * min));
@@ -132,8 +132,8 @@ public class pr extends y5 implements org.telegram.ui.ActionBar.a6 {
     }
 
     public final void j() {
-        float f10 = getMetadata().f55505g.f55512a;
-        float f11 = getMetadata().f55502c.f55512a;
+        float f10 = getMetadata().f55506g.f55513a;
+        float f11 = getMetadata().f55503c.f55513a;
         RectF rectF = this.f37078x;
         rectF.set(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getPaddingTop() + f10);
         float min = Math.min(org.telegram.messenger.g0.L(this.f37079y), Math.min(rectF.width(), rectF.height()) / 2.0f);

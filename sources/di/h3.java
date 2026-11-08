@@ -216,7 +216,7 @@ public final class h3 extends AnimatorListenerAdapter {
                         zh.y0 y0Var = (zh.y0) view2;
                         FrameLayout frameLayout = y0Var.d;
                         frameLayout.invalidate();
-                        frameLayout.invalidateDrawable(y0Var.f60590e);
+                        frameLayout.invalidateDrawable(y0Var.f60591e);
                         return;
                     }
                     return;

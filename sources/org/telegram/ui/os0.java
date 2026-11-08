@@ -55,8 +55,8 @@ public final class os0 extends is0 {
                 ImageView imageView2 = this.f46739c;
                 rectF2.set(imageView2.getLeft(), imageView2.getTop(), imageView2.getRight(), imageView2.getBottom());
                 bi.k5 k5Var = (bi.k5) this.f48535s;
-                ((ug.f1) k5Var.d).f56568h2.d(0, 0.0f, 0, getMeasuredWidth(), -this.f46741f.f50769e, ((ug.f1) k5Var.d).W1);
-                canvas.drawRoundRect(rectF2, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), ((ug.f1) k5Var.d).f56568h2.f56868f);
+                ((ug.f1) k5Var.d).f56569h2.d(0, 0.0f, 0, getMeasuredWidth(), -this.f46741f.f50769e, ((ug.f1) k5Var.d).W1);
+                canvas.drawRoundRect(rectF2, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), ((ug.f1) k5Var.d).f56569h2.f56869f);
                 super.dispatchDraw(canvas);
                 return;
         }

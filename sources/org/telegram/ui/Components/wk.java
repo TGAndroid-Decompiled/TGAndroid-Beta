@@ -400,7 +400,7 @@ public final class wk extends vh implements org.telegram.ui.ActionBar.a6, org.te
             wkVar.K.P(wkVar.f39960p0);
             v4.d1 K = q1Var.K(0);
             if (K != null) {
-                View view = K.f57043a;
+                View view = K.f57044a;
                 if (view.getLayoutParams() != null && view.getLayoutParams().height != wkVar.f39960p0) {
                     view.getLayoutParams().height = wkVar.f39960p0;
                     view.requestLayout();
@@ -564,7 +564,7 @@ public final class wk extends vh implements org.telegram.ui.ActionBar.a6, org.te
         jk jkVar = new jk(wkVar, 3);
         wf.b bVar = faVar.f22390a;
         org.telegram.messenger.j1 j1Var = new org.telegram.messenger.j1(jkVar, 5);
-        l8.e eVar = (l8.e) bVar.f57654b;
+        l8.e eVar = (l8.e) bVar.f57655b;
         try {
             k8.c cVar = new k8.c(j1Var);
             Parcel p12 = eVar.p1();
@@ -592,7 +592,7 @@ public final class wk extends vh implements org.telegram.ui.ActionBar.a6, org.te
                 jk jkVar2 = new jk(wkVar, 4);
                 wf.b bVar2 = faVar2.f22390a;
                 org.telegram.messenger.j1 j1Var2 = new org.telegram.messenger.j1(jkVar2, 7);
-                l8.e eVar2 = (l8.e) bVar2.f57654b;
+                l8.e eVar2 = (l8.e) bVar2.f57655b;
                 try {
                     k8.c cVar2 = new k8.c(j1Var2, 0);
                     Parcel p13 = eVar2.p1();
@@ -640,7 +640,7 @@ public final class wk extends vh implements org.telegram.ui.ActionBar.a6, org.te
         if (wkVar.E != null && wkVar.J != null && wkVar.getMeasuredHeight() != 0) {
             v4.d1 K = q1Var.K(0);
             if (K != null) {
-                View view = K.f57043a;
+                View view = K.f57044a;
                 int bottom = view.getBottom();
                 int b10 = r0Var.b();
                 int i7 = 1;
@@ -651,7 +651,7 @@ public final class wk extends vh implements org.telegram.ui.ActionBar.a6, org.te
                             if (K2 == null) {
                                 break;
                             }
-                            bottom = Math.max(bottom, K2.f57043a.getBottom());
+                            bottom = Math.max(bottom, K2.f57044a.getBottom());
                         }
                         i7++;
                     } else {
@@ -968,7 +968,7 @@ public final class wk extends vh implements org.telegram.ui.ActionBar.a6, org.te
         if (this.E != null && (e5Var = this.J) != null && (q1Var = this.L) != null) {
             v4.d1 K = q1Var.K(0);
             if (K != null) {
-                i7 = K.f57043a.getTop() + q1Var.getTop();
+                i7 = K.f57044a.getTop() + q1Var.getTop();
             } else {
                 i7 = Integer.MAX_VALUE;
             }
@@ -985,7 +985,7 @@ public final class wk extends vh implements org.telegram.ui.ActionBar.a6, org.te
                     f10 = Math.min(i7, org.telegram.messenger.g0.W1(this.f39967u0, -iArr[1], i7));
                 }
                 int max = (int) Math.max(f10, -getMapExtraTop());
-                int max2 = (Math.max(0, K.f57043a.getTop()) + q1Var.getTop()) - max;
+                int max2 = (Math.max(0, K.f57044a.getTop()) + q1Var.getTop()) - max;
                 int min = (Math.min(this.f39965s0, q1Var.getMeasuredHeight()) + q1Var.getTop()) - max;
                 this.f39970w0 = org.telegram.messenger.g0.L(32.0f) + max2;
                 this.f39972x0 = min;
@@ -1151,7 +1151,7 @@ public final class wk extends vh implements org.telegram.ui.ActionBar.a6, org.te
         int i7 = 0;
         xi0 xi0Var = (xi0) q1Var.K(0);
         if (xi0Var != null) {
-            i7 = Math.max((int) xi0Var.f57043a.getY(), 0);
+            i7 = Math.max((int) xi0Var.f57044a.getY(), 0);
         }
         return org.telegram.messenger.g0.L(56.0f) + i7;
     }
@@ -1249,7 +1249,7 @@ public final class wk extends vh implements org.telegram.ui.ActionBar.a6, org.te
             bi.q1 q1Var = this.L;
             v4.d1 K = q1Var.K(0);
             if (K != null) {
-                K.f57043a.getTop();
+                K.f57044a.getTop();
             } else {
                 e5Var.getMeasuredHeight();
             }
@@ -1266,7 +1266,7 @@ public final class wk extends vh implements org.telegram.ui.ActionBar.a6, org.te
             int measuredHeight = (q1Var.getMeasuredHeight() - getBottomInset()) - i7;
             this.f39965s0 = measuredHeight;
             if (K != null) {
-                int bottom = measuredHeight - K.f57043a.getBottom();
+                int bottom = measuredHeight - K.f57044a.getBottom();
                 int childCount = q1Var.getChildCount();
                 for (int i11 = 0; i11 < childCount; i11++) {
                     View childAt = q1Var.getChildAt(i11);

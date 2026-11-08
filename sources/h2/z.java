@@ -108,21 +108,21 @@ public final class z implements a1 {
             case 2:
                 vi.h hVar = (vi.h) this.f14169b;
                 vi.d dVar = hVar.E;
-                Handler handler = hVar.f57546i;
-                if (hVar.f57558u != z9) {
-                    hVar.f57558u = z9;
+                Handler handler = hVar.f57547i;
+                if (hVar.f57559u != z9) {
+                    hVar.f57559u = z9;
                     handler.removeCallbacks(dVar);
                     if (z9) {
                         handler.post(dVar);
                     }
-                    hVar.f57544f.getClass();
+                    hVar.f57545f.getClass();
                     hVar.m();
                     return;
                 }
                 return;
             default:
                 t0 t0Var = (t0) this.f14169b;
-                if (t0Var.f58192a0 == 5) {
+                if (t0Var.f58193a0 == 5) {
                     t0Var.z(z9);
                     return;
                 }
@@ -191,16 +191,16 @@ public final class z implements a1 {
             case 2:
                 vi.h hVar = (vi.h) this.f14169b;
                 if (i7 == 4 && hVar.G == 5 && (i0Var = hVar.A) != null) {
-                    i0Var.Z0(5, hVar.f57555r);
+                    i0Var.Z0(5, hVar.f57556r);
                     hVar.A.b();
                     return;
                 }
                 return;
             default:
                 t0 t0Var = (t0) this.f14169b;
-                wi.o oVar = t0Var.f58203m;
+                wi.o oVar = t0Var.f58204m;
                 oVar.b("preview playback state=" + i7);
-                if (t0Var.f58192a0 == 5 && i7 == 4 && (i0Var2 = t0Var.W) != null) {
+                if (t0Var.f58193a0 == 5 && i7 == 4 && (i0Var2 = t0Var.W) != null) {
                     i0Var2.Z0(5, t0Var.K);
                     t0Var.W.f();
                     return;
@@ -228,7 +228,7 @@ public final class z implements a1 {
                 return;
             default:
                 t0 t0Var = (t0) this.f14169b;
-                if (t0Var.f58192a0 == 5) {
+                if (t0Var.f58193a0 == 5) {
                     n40.o((n40) t0Var.d.f37758b);
                     return;
                 }
@@ -282,7 +282,7 @@ public final class z implements a1 {
                 return;
             default:
                 t0 t0Var = (t0) this.f14169b;
-                wi.o oVar = t0Var.f58203m;
+                wi.o oVar = t0Var.f58204m;
                 oVar.b("preview player error: code=" + v0Var.f10629a);
                 t0Var.h(v0Var);
                 return;

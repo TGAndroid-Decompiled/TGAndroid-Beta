@@ -63,7 +63,7 @@ public final class aq0 extends ky {
     public final void U(v4.v0 v0Var, v4.a1 a1Var, View view, s0.d dVar) {
         d9.o oVar;
         super.U(v0Var, a1Var, view, dVar);
-        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f54600a;
+        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f54601a;
         AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
         if (collectionItemInfo != null) {
             oVar = new d9.o(collectionItemInfo);

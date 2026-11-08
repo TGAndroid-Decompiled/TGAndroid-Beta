@@ -17,7 +17,7 @@ public final class nq extends oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f57047f == 3) {
+        if (d1Var.f57048f == 3) {
             return true;
         }
         return false;
@@ -55,8 +55,8 @@ public final class nq extends oj0 {
         TLObject M0;
         String str;
         boolean z9;
-        int i10 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i10 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         boolean z10 = true;
         if (i10 == 3) {
             oq oqVar = this.f36417c;

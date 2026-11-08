@@ -56,13 +56,13 @@ public final class tb0 implements TextWatcher {
                 return;
             case 2:
                 tg.k2 k2Var = (tg.k2) view;
-                tg.j2 j2Var = k2Var.f55807q0;
-                if (this.f50015b && k2Var.f55813w0 > 0 && k2Var.f55814x0 > 0 && !k2Var.f55816z0 && j2Var.getLayout() != null) {
+                tg.j2 j2Var = k2Var.f55808q0;
+                if (this.f50015b && k2Var.f55814w0 > 0 && k2Var.f55815x0 > 0 && !k2Var.f55817z0 && j2Var.getLayout() != null) {
                     float f10 = org.telegram.messenger.g0.f22563q.y / 3.0f;
                     float height = j2Var.getLayout().getHeight();
-                    if (height > f10 && (j3 = Utilities.j((int) ((f10 / height) * k2Var.getBaseFontSize()), k2Var.f55814x0, k2Var.f55813w0)) != k2Var.getBaseFontSize()) {
+                    if (height > f10 && (j3 = Utilities.j((int) ((f10 / height) * k2Var.getBaseFontSize()), k2Var.f55815x0, k2Var.f55814w0)) != k2Var.getBaseFontSize()) {
                         k2Var.setBaseFontSize(j3);
-                        Runnable runnable = k2Var.f55815y0;
+                        Runnable runnable = k2Var.f55816y0;
                         if (runnable != null) {
                             runnable.run();
                         }

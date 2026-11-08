@@ -17,7 +17,7 @@ public final class d20 extends oj0 {
 
     @Override
     public final void A(v4.d1 d1Var) {
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         if (view instanceof org.telegram.ui.Cells.a5) {
             ((org.telegram.ui.Cells.a5) view).a();
         }
@@ -25,9 +25,9 @@ public final class d20 extends oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         if (!(view instanceof org.telegram.ui.Cells.a5) || !this.d.W1.contains(Long.valueOf(((org.telegram.ui.Cells.a5) view).getUserId()))) {
-            int i7 = d1Var.f57047f;
+            int i7 = d1Var.f57048f;
             if (i7 == 0 || i7 == 1) {
                 return true;
             }
@@ -73,8 +73,8 @@ public final class d20 extends oj0 {
         long j3;
         h20 h20Var = this.d;
         ArrayList arrayList = h20Var.O1;
-        int i11 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i11 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         boolean z9 = false;
         if (i11 != 0) {
             if (i11 != 1) {

@@ -31,14 +31,14 @@ public final class og0 extends fi.d {
                 return f10;
             default:
                 wg.f1 f1Var = (wg.f1) this.f48393l0;
-                if (f1Var.f57737l2 == 0.0f) {
+                if (f1Var.f57738l2 == 0.0f) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                f1Var.f57737l2 = f10;
+                f1Var.f57738l2 = f10;
                 if (z10) {
-                    f1Var.f57738m2 = new org.telegram.ui.Components.yo(f1Var, 3);
+                    f1Var.f57739m2 = new org.telegram.ui.Components.yo(f1Var, 3);
                     f1Var.n1(false);
                 }
                 return f10;

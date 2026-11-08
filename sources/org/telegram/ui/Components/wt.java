@@ -532,7 +532,7 @@ public final class wt extends org.telegram.ui.ActionBar.v2 {
         ti.o oVar;
         ti.i iVar;
         RectF rectF = new RectF();
-        if (!z9 && (oVar = wtVar.J1) != null && (iVar = oVar.f56125e) != null) {
+        if (!z9 && (oVar = wtVar.J1) != null && (iVar = oVar.f56126e) != null) {
             iVar.g(rectF);
         } else {
             ti.i.j(rectF, 1000, Math.round(1000.0f / f10));

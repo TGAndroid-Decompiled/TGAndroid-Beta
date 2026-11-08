@@ -168,7 +168,7 @@ public final class n00 extends org.telegram.ui.Components.za0 {
             paint2.setColor(themedColor);
             canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), paint2);
         } else {
-            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), o00Var.f48191a.f56868f);
+            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), o00Var.f48191a.f56869f);
         }
         int themedColor2 = o00Var.getThemedColor(org.telegram.ui.ActionBar.k6.f27960j5);
         if (o00Var.M) {

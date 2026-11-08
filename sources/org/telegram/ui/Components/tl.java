@@ -260,8 +260,8 @@ public final class tl extends vi0 {
         boolean z13;
         ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f38386w;
         di diVar = chatAttachAlertPhotoLayout.f39004b;
-        int i10 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i10 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         boolean z14 = this.d;
         int i11 = 0;
         if (i10 != 0) {
@@ -297,7 +297,7 @@ public final class tl extends vi0 {
         if (this == chatAttachAlertPhotoLayout.G) {
             q5Var.setItemSize(chatAttachAlertPhotoLayout.K0);
         } else {
-            if (chatAttachAlertPhotoLayout.f31226s.f57012o == 1) {
+            if (chatAttachAlertPhotoLayout.f31226s.f57013o == 1) {
                 z9 = true;
             } else {
                 z9 = false;
@@ -433,7 +433,7 @@ public final class tl extends vi0 {
 
     @Override
     public final void y(v4.d1 d1Var) {
-        if (d1Var.f57043a instanceof org.telegram.ui.Cells.k5) {
+        if (d1Var.f57044a instanceof org.telegram.ui.Cells.k5) {
             this.f38386w.Q.i();
         }
     }

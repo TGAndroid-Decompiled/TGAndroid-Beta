@@ -201,7 +201,7 @@ public final class g0 extends na implements org.telegram.messenger.ls {
         this.f36277k1.setOnItemClickListener(new k(this, 0));
         this.F1 = true;
         o oVar = new o(this);
-        oVar.f57070m = false;
+        oVar.f57071m = false;
         oVar.C = false;
         oVar.o(xq.h);
         oVar.n(350L);

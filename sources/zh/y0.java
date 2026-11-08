@@ -51,7 +51,7 @@ import org.telegram.ui.Components.xq;
 import org.telegram.ui.Components.zg0;
 import org.telegram.ui.l00;
 public class y0 extends FrameLayout implements a6 {
-    public static final int[] f60582v0 = {-2781403, -3635939};
+    public static final int[] f60583v0 = {-2781403, -3635939};
     public final l9 D;
     public FrameLayout.LayoutParams E;
     public final ug.z0 F;
@@ -72,40 +72,40 @@ public class y0 extends FrameLayout implements a6 {
     public boolean U;
     public boolean V;
     public final w5 W;
-    public final int f60583a;
-    public ug.j f60584a0;
-    public final f6 f60585b;
-    public TL_stars.StarGift f60586b0;
-    public final en0 f60587c;
-    public boolean f60588c0;
+    public final int f60584a;
+    public ug.j f60585a0;
+    public final f6 f60586b;
+    public TL_stars.StarGift f60587b0;
+    public final en0 f60588c;
+    public boolean f60589c0;
     public final FrameLayout d;
-    public boolean f60589d0;
-    public final v0 f60590e;
-    public TL_stars.SavedStarGift f60591e0;
-    public final z0 f60592f;
-    public boolean f60593f0;
-    public boolean f60594g0;
+    public boolean f60590d0;
+    public final v0 f60591e;
+    public TL_stars.SavedStarGift f60592e0;
+    public final z0 f60593f;
+    public boolean f60594f0;
+    public boolean f60595g0;
     public final w8 h;
-    public boolean f60595h0;
-    public boolean f60596i0;
-    public ug.j f60597j0;
-    public TLRPC.Document f60598k0;
-    public TL_stars.SavedStarGift f60599l0;
+    public boolean f60596h0;
+    public boolean f60597i0;
+    public ug.j f60598j0;
+    public TLRPC.Document f60599k0;
+    public TL_stars.SavedStarGift f60600l0;
     public wo m0;
-    public final l9 f60600n;
-    public int f60601n0;
-    public boolean f60602o0;
-    public boolean f60603p0;
-    public int f60604q0;
-    public final FrameLayout.LayoutParams f60605r;
-    public int[] f60606r0;
-    public final FrameLayout.LayoutParams f60607s;
-    public int f60608s0;
-    public boolean f60609t0;
-    public boolean f60610u0;
-    public final FrameLayout f60611w;
-    public final ImageView f60612x;
-    public final TextView f60613y;
+    public final l9 f60601n;
+    public int f60602n0;
+    public boolean f60603o0;
+    public boolean f60604p0;
+    public int f60605q0;
+    public final FrameLayout.LayoutParams f60606r;
+    public int[] f60607r0;
+    public final FrameLayout.LayoutParams f60608s;
+    public int f60609s0;
+    public boolean f60610t0;
+    public boolean f60611u0;
+    public final FrameLayout f60612w;
+    public final ImageView f60613x;
+    public final TextView f60614y;
 
     public y0(int i7, Context context, f6 f6Var) {
         super(context);
@@ -114,20 +114,20 @@ public class y0 extends FrameLayout implements a6 {
         this.P = -1.0f;
         this.S = new Rect();
         this.W = new w5(this, 0L, 320L, xq.h);
-        this.f60601n0 = -1;
-        this.f60610u0 = k6.I.q();
-        this.f60583a = i7;
-        this.f60585b = f6Var;
+        this.f60602n0 = -1;
+        this.f60611u0 = k6.I.q();
+        this.f60584a = i7;
+        this.f60586b = f6Var;
         ka.b(this, 0.04f, 1.5f);
-        this.f60587c = new en0(this);
+        this.f60588c = new en0(this);
         FrameLayout frameLayout = new FrameLayout(context);
         this.d = frameLayout;
         v0 v0Var = new v0(frameLayout, f6Var, true);
-        this.f60590e = v0Var;
+        this.f60591e = v0Var;
         frameLayout.setBackground(v0Var);
         addView(frameLayout, ha.e(-1, -1, 119));
         z0 z0Var = new z0(context);
-        this.f60592f = z0Var;
+        this.f60593f = z0Var;
         addView(z0Var, ha.d(-2, -2.0f, 53, 0.0f, 2.0f, 1.0f, 0.0f));
         l9 l9Var = new l9(context);
         this.D = l9Var;
@@ -195,15 +195,15 @@ public class y0 extends FrameLayout implements a6 {
         frameLayout.addView(textView3, ha.d(-2, -2.0f, 49, 0.0f, 161.0f, 0.0f, 8.0f));
         this.h = new w8((f6) null);
         l9 l9Var2 = new l9(context);
-        this.f60600n = l9Var2;
+        this.f60601n = l9Var2;
         l9Var2.setRoundRadius(org.telegram.messenger.g0.L(20.0f));
         l9Var2.setVisibility(8);
         FrameLayout.LayoutParams d2 = ha.d(20, 20.0f, 51, 2.0f, 2.0f, 2.0f, 2.0f);
-        this.f60605r = d2;
+        this.f60606r = d2;
         frameLayout.addView(l9Var2, d2);
-        this.f60607s = ha.d(20, 20.0f, 51, 5.0f, 5.0f, 2.0f, 2.0f);
+        this.f60608s = ha.d(20, 20.0f, 51, 5.0f, 5.0f, 2.0f, 2.0f);
         FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f60611w = frameLayout2;
+        this.f60612w = frameLayout2;
         frameLayout2.setAlpha(0.0f);
         frameLayout2.setScaleX(0.3f);
         frameLayout2.setScaleY(0.3f);
@@ -214,14 +214,14 @@ public class y0 extends FrameLayout implements a6 {
         frameLayout2.addView(e10, ha.a(12.66f, 12.66f, 17));
         frameLayout.addView(frameLayout2, ha.d(20, 20.0f, 51, 2.0f, 2.0f, 2.0f, 2.0f));
         ImageView imageView = new ImageView(context);
-        this.f60612x = imageView;
+        this.f60613x = imageView;
         imageView.setImageResource(2131231954);
         imageView.setPadding(0, org.telegram.messenger.g0.L(2.0f), 0, 0);
         imageView.setVisibility(8);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         frameLayout.addView(imageView, ha.d(20, 20.0f, 51, 3.0f, 3.0f, 3.0f, 3.0f));
         TextView textView4 = new TextView(context);
-        this.f60613y = textView4;
+        this.f60614y = textView4;
         textView4.setTextSize(1, 10.0f);
         textView4.setTypeface(org.telegram.messenger.g0.o());
         textView4.setPadding(org.telegram.messenger.g0.L(5.0f), 0, org.telegram.messenger.g0.L(5.0f), 0);
@@ -235,7 +235,7 @@ public class y0 extends FrameLayout implements a6 {
     }
 
     private TL_stars.TL_starGiftUnique getUniqueStarGift() {
-        TL_stars.SavedStarGift savedStarGift = this.f60591e0;
+        TL_stars.SavedStarGift savedStarGift = this.f60592e0;
         if (savedStarGift != null) {
             TL_stars.StarGift starGift = savedStarGift.gift;
             if (starGift instanceof TL_stars.TL_starGiftUnique) {
@@ -247,16 +247,16 @@ public class y0 extends FrameLayout implements a6 {
     }
 
     private void setRibbonColorKey(int i7) {
-        this.f60592f.setColor(k6.w0(i7, this.f60585b));
-        this.f60601n0 = i7;
+        this.f60593f.setColor(k6.w0(i7, this.f60586b));
+        this.f60602n0 = i7;
     }
 
     public final void a() {
         int i7;
         int i10;
         boolean q10 = k6.I.q();
-        this.f60610u0 = q10;
-        if (this.f60609t0) {
+        this.f60611u0 = q10;
+        if (this.f60610t0) {
             i7 = 1090519039;
         } else if (q10) {
             i7 = 518759725;
@@ -265,14 +265,14 @@ public class y0 extends FrameLayout implements a6 {
         }
         if (q10) {
             i10 = -1333971;
-        } else if (this.f60608s0 == 2) {
+        } else if (this.f60609s0 == 2) {
             i10 = -4229632;
         } else {
             i10 = -2722014;
         }
         this.K.setBackground(new d1(i7));
         this.L.setTextColor(i10);
-        ImageView imageView = this.f60612x;
+        ImageView imageView = this.f60613x;
         imageView.setColorFilter(i10);
         imageView.setBackground(k6.d0(org.telegram.messenger.g0.L(10.0f), i7));
     }
@@ -295,13 +295,13 @@ public class y0 extends FrameLayout implements a6 {
         TL_stars.TL_starGiftUnique tL_starGiftUnique;
         float f16;
         Canvas canvas2 = canvas;
-        l9 l9Var = this.f60600n;
+        l9 l9Var = this.f60601n;
         l9 l9Var2 = this.D;
-        v0 v0Var = this.f60590e;
-        z0 z0Var = this.f60592f;
+        v0 v0Var = this.f60591e;
+        z0 z0Var = this.f60593f;
         Rect rect = this.S;
-        FrameLayout frameLayout = this.f60611w;
-        ImageView imageView2 = this.f60612x;
+        FrameLayout frameLayout = this.f60612w;
+        ImageView imageView2 = this.f60613x;
         v41 v41Var2 = this.J;
         ug.z0 z0Var2 = this.F;
         canvas2.save();
@@ -411,7 +411,7 @@ public class y0 extends FrameLayout implements a6 {
             this.m0.setDrawUnchecked(false);
             this.d.addView(this.m0, ha.d(24, 24.0f, 51, 4.0f, 4.0f, 4.0f, 4.0f));
         }
-        this.f60600n.setVisibility(8);
+        this.f60601n.setVisibility(8);
         this.m0.a(z9, z10);
     }
 
@@ -427,7 +427,7 @@ public class y0 extends FrameLayout implements a6 {
         float f12 = 0.0f;
         boolean z11 = false;
         float f13 = 0.3f;
-        FrameLayout frameLayout = this.f60611w;
+        FrameLayout frameLayout = this.f60612w;
         if (z10) {
             frameLayout.setVisibility(0);
             ViewPropertyAnimator animate = frameLayout.animate();
@@ -467,7 +467,7 @@ public class y0 extends FrameLayout implements a6 {
             }
             frameLayout.setScaleY(f13);
         }
-        if (!this.T && this.V && !this.f60595h0 && (savedStarGift = this.f60591e0) != null && (savedStarGift.gift instanceof TL_stars.TL_starGiftUnique)) {
+        if (!this.T && this.V && !this.f60596h0 && (savedStarGift = this.f60592e0) != null && (savedStarGift.gift instanceof TL_stars.TL_starGiftUnique)) {
             z11 = true;
         }
         g(z11, z10);
@@ -480,7 +480,7 @@ public class y0 extends FrameLayout implements a6 {
         canvas.translate(getWidth() / 2.0f, getHeight() / 2.0f);
         float d = this.W.d(this.V);
         if (d > 0.0f) {
-            this.f60587c.a(canvas, d);
+            this.f60588c.a(canvas, d);
         }
         canvas.translate((-getWidth()) / 2.0f, (-getHeight()) / 2.0f);
         super.dispatchDraw(canvas);
@@ -498,7 +498,7 @@ public class y0 extends FrameLayout implements a6 {
             this.W.a(z9);
         }
         invalidate();
-        if (!this.T && z9 && !this.f60595h0 && (savedStarGift = this.f60591e0) != null && (savedStarGift.gift instanceof TL_stars.TL_starGiftUnique)) {
+        if (!this.T && z9 && !this.f60596h0 && (savedStarGift = this.f60592e0) != null && (savedStarGift.gift instanceof TL_stars.TL_starGiftUnique)) {
             z11 = true;
         } else {
             z11 = false;
@@ -509,9 +509,9 @@ public class y0 extends FrameLayout implements a6 {
     public final void f(boolean z9, boolean z10) {
         float f10;
         float f11;
-        this.f60590e.f(z9, z10);
+        this.f60591e.f(z9, z10);
         float f12 = 0.0f;
-        ImageView imageView = this.f60612x;
+        ImageView imageView = this.f60613x;
         if (z10) {
             ViewPropertyAnimator animate = imageView.animate();
             if (z9) {
@@ -590,11 +590,11 @@ public class y0 extends FrameLayout implements a6 {
     }
 
     public TL_stars.StarGift getGift() {
-        return this.f60586b0;
+        return this.f60587b0;
     }
 
     public long getGiftId() {
-        TL_stars.StarGift starGift = this.f60586b0;
+        TL_stars.StarGift starGift = this.f60587b0;
         if (starGift != null) {
             return starGift.f27185id;
         }
@@ -602,11 +602,11 @@ public class y0 extends FrameLayout implements a6 {
     }
 
     public ug.j getPremiumTier() {
-        return this.f60584a0;
+        return this.f60585a0;
     }
 
     public TL_stars.SavedStarGift getSavedGift() {
-        return this.f60591e0;
+        return this.f60592e0;
     }
 
     public final void h(org.telegram.tgnet.tl.TL_stars.StarGift r31, boolean r32, boolean r33, boolean r34, boolean r35, boolean r36) {
@@ -635,7 +635,7 @@ public class y0 extends FrameLayout implements a6 {
         }
         j(savedStarGift.gift.getDocument(), savedStarGift);
         TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) ea.l(savedStarGift.gift.attributes, TL_stars.starGiftAttributeBackdrop.class);
-        v0 v0Var = this.f60590e;
+        v0 v0Var = this.f60591e;
         v0Var.d(stargiftattributebackdrop);
         v0Var.e((TL_stars.starGiftAttributePattern) ea.l(savedStarGift.gift.attributes, TL_stars.starGiftAttributePattern.class));
         v0Var.g(null);
@@ -668,22 +668,22 @@ public class y0 extends FrameLayout implements a6 {
         } else {
             i7 = 8;
         }
-        ImageView imageView = this.f60612x;
+        ImageView imageView = this.f60613x;
         imageView.setVisibility(i7);
-        FrameLayout frameLayout = this.f60611w;
+        FrameLayout frameLayout = this.f60612w;
         if (stargiftattributebackdrop != null) {
             frameLayout.setBackground(k6.L(org.telegram.messenger.g0.L(20.0f), k6.b(0.1f, -0.2f, stargiftattributebackdrop.center_color | (-16777216))));
         } else {
             int L = org.telegram.messenger.g0.L(20.0f);
             int i11 = k6.Ci;
-            f6 f6Var = this.f60585b;
+            f6 f6Var = this.f60586b;
             r6.C(frameLayout, k6.L(L, k6.w0(i11, f6Var)), r6.N(i11), f6Var);
         }
         FrameLayout.LayoutParams layoutParams = this.E;
         layoutParams.gravity = 17;
         l9Var.setLayoutParams(layoutParams);
         float f14 = 0.4f;
-        if (this.f60599l0 == savedStarGift) {
+        if (this.f60600l0 == savedStarGift) {
             z0Var.setVisibility(0);
             ViewPropertyAnimator animate = z0Var.animate();
             if (savedStarGift.unsaved) {
@@ -727,11 +727,11 @@ public class y0 extends FrameLayout implements a6 {
             z0Var.setVisibility(i10);
         }
         boolean z15 = savedStarGift.gift instanceof TL_stars.TL_starGiftUnique;
-        l9 l9Var2 = this.f60600n;
+        l9 l9Var2 = this.f60601n;
         l9Var2.setColorFilter(null);
-        this.f60603p0 = false;
-        l9Var2.setLayoutParams(this.f60605r);
-        int i12 = this.f60583a;
+        this.f60604p0 = false;
+        l9Var2.setLayoutParams(this.f60606r);
+        int i12 = this.f60584a;
         if (z15 && savedStarGift.name_hidden) {
             l9Var2.setVisibility(8);
             j3 = 0;
@@ -794,7 +794,7 @@ public class y0 extends FrameLayout implements a6 {
                 wpVar.f40021s = org.telegram.messenger.g0.L(0.5f);
             }
             int w10 = k6.w(stargiftattributebackdrop.center_color | (-16777216), k6.r1(0.55f, stargiftattributebackdrop.pattern_color | (-16777216)));
-            this.f60608s0 = 0;
+            this.f60609s0 = 0;
             l00Var2.setBackground(new d1(1895825407, w10));
             textView.setTextColor(-1);
             imageView.setBackground(k6.d0(org.telegram.messenger.g0.L(10.0f), w10));
@@ -833,30 +833,30 @@ public class y0 extends FrameLayout implements a6 {
                 textView.setText(dd.a1(false, jg.g.m(Math.max(j10, j11), ',', sb2), 0.66f, null));
             }
             if (z15) {
-                this.f60608s0 = 0;
+                this.f60609s0 = 0;
                 textView.setTextColor(-1);
                 l00Var.setBackground(new d1(1090519039));
                 imageView.setBackground(k6.d0(org.telegram.messenger.g0.L(10.0f), 1090519039));
                 imageView.setColorFilter(-1);
             } else {
-                this.f60608s0 = 2;
-                this.f60609t0 = false;
+                this.f60609s0 = 2;
+                this.f60610t0 = false;
                 a();
             }
             ((FrameLayout.LayoutParams) v41Var.getLayoutParams()).gravity = 49;
             ((ViewGroup.MarginLayoutParams) v41Var.getLayoutParams()).topMargin = org.telegram.messenger.g0.L(103.0f);
         }
         this.M.setVisibility(8);
-        this.f60599l0 = savedStarGift;
-        this.f60597j0 = null;
-        TL_stars.SavedStarGift savedStarGift2 = this.f60591e0;
-        this.f60584a0 = null;
-        this.f60586b0 = null;
-        this.f60589d0 = false;
-        this.f60591e0 = savedStarGift;
-        this.f60593f0 = false;
-        this.f60594g0 = false;
-        this.f60595h0 = z10;
+        this.f60600l0 = savedStarGift;
+        this.f60598j0 = null;
+        TL_stars.SavedStarGift savedStarGift2 = this.f60592e0;
+        this.f60585a0 = null;
+        this.f60587b0 = null;
+        this.f60590d0 = false;
+        this.f60592e0 = savedStarGift;
+        this.f60594f0 = false;
+        this.f60595g0 = false;
+        this.f60596h0 = z10;
         this.Q = null;
         this.R = null;
         if (savedStarGift.pinned_to_top && (!z15 || savedStarGift.name_hidden)) {
@@ -881,10 +881,10 @@ public class y0 extends FrameLayout implements a6 {
         l9 l9Var = this.D;
         if (document == null) {
             l9Var.b();
-            this.f60598k0 = null;
-        } else if (this.f60598k0 == document) {
+            this.f60599k0 = null;
+        } else if (this.f60599k0 == document) {
         } else {
-            this.f60598k0 = document;
+            this.f60599k0 = document;
             TLRPC.PhotoSize w10 = w7.w(document.thumbs, org.telegram.messenger.g0.L(100.0f), false, null, false);
             l9Var.m(hc.b(document), "80_80_nolimit_pcache", hc.c(w10, document), "80_80_nolimit_pcache", t5.f(document, k6.f27796a7, 0.3f, null), tLObject);
         }
@@ -943,11 +943,11 @@ public class y0 extends FrameLayout implements a6 {
                 } else {
                     m10 = jg.g.m(uniqueStarGift.num, ',', new StringBuilder("#"));
                 }
-                z0 z0Var = this.f60592f;
+                z0 z0Var = this.f60593f;
                 if (z10) {
                     z0Var.getClass();
-                    z0Var.f60620b = m10;
-                    z0Var.f60619a.g(10, m10);
+                    z0Var.f60621b = m10;
+                    z0Var.f60620a.g(10, m10);
                     return;
                 }
                 z0Var.b(m10, true);
@@ -956,36 +956,36 @@ public class y0 extends FrameLayout implements a6 {
     }
 
     public final void l() {
-        TL_stars.SavedStarGift savedStarGift = this.f60591e0;
-        z0 z0Var = this.f60592f;
+        TL_stars.SavedStarGift savedStarGift = this.f60592e0;
+        z0 z0Var = this.f60593f;
         if (savedStarGift != null) {
             TL_stars.StarGift starGift = savedStarGift.gift;
             if (starGift instanceof TL_stars.TL_starGiftUnique) {
                 z0Var.setVisibility(0);
-                if (this.f60591e0.gift.resell_amount != null) {
+                if (this.f60592e0.gift.resell_amount != null) {
                     int i7 = k6.f27852d6;
-                    f6 f6Var = this.f60585b;
+                    f6 f6Var = this.f60586b;
                     int w10 = k6.w(k6.w0(i7, f6Var), k6.r1(0.04f, k6.w0(k6.G6, f6Var)));
                     setRibbonColorKey(k6.ik);
                     z0Var.setStrokeColor(w10);
-                    this.f60602o0 = true;
+                    this.f60603o0 = true;
                     z0Var.setBackdrop(null);
                     z0Var.b(id.M0(2131750090, null), false);
                     return;
                 }
                 setRibbonColorKey(k6.zj);
                 z0Var.setStrokeColor(0);
-                this.f60602o0 = false;
-                z0Var.setBackdrop((TL_stars.starGiftAttributeBackdrop) ea.l(this.f60591e0.gift.attributes, TL_stars.starGiftAttributeBackdrop.class));
-                z0Var.b(jg.g.m(this.f60591e0.gift.num, ',', new StringBuilder("#")), true);
+                this.f60603o0 = false;
+                z0Var.setBackdrop((TL_stars.starGiftAttributeBackdrop) ea.l(this.f60592e0.gift.attributes, TL_stars.starGiftAttributeBackdrop.class));
+                z0Var.b(jg.g.m(this.f60592e0.gift.num, ',', new StringBuilder("#")), true);
                 return;
             } else if (starGift.limited) {
                 z0Var.setVisibility(0);
                 setRibbonColorKey(k6.zj);
                 z0Var.setStrokeColor(0);
-                this.f60602o0 = false;
+                this.f60603o0 = false;
                 z0Var.setBackdrop(null);
-                z0Var.b(id.a0(null, null, 2131750136, org.telegram.messenger.g0.o0(this.f60591e0.gift.availability_total, 0)), true);
+                z0Var.b(id.a0(null, null, 2131750136, org.telegram.messenger.g0.o0(this.f60592e0.gift.availability_total, 0)), true);
                 return;
             } else {
                 z0Var.setBackdrop(null);
@@ -993,24 +993,24 @@ public class y0 extends FrameLayout implements a6 {
                 return;
             }
         }
-        TL_stars.StarGift starGift2 = this.f60586b0;
+        TL_stars.StarGift starGift2 = this.f60587b0;
         if (starGift2 != null) {
-            if (!this.f60594g0 && !this.f60596i0) {
-                if (this.f60593f0 && starGift2.availability_resale > 0) {
+            if (!this.f60595g0 && !this.f60597i0) {
+                if (this.f60594f0 && starGift2.availability_resale > 0) {
                     z0Var.setVisibility(0);
                     setRibbonColorKey(k6.ik);
                     z0Var.setStrokeColor(0);
-                    this.f60602o0 = false;
+                    this.f60603o0 = false;
                     z0Var.setBackdrop(null);
                     z0Var.b(id.M0(2131750031, null), false);
                     return;
-                } else if (this.f60589d0) {
+                } else if (this.f60590d0) {
                     z0Var.setVisibility(0);
                     setRibbonColorKey(k6.zj);
                     z0Var.setStrokeColor(0);
-                    this.f60602o0 = false;
-                    z0Var.setBackdrop((TL_stars.starGiftAttributeBackdrop) ea.l(this.f60586b0.attributes, TL_stars.starGiftAttributeBackdrop.class));
-                    z0Var.b(id.a0(null, null, 2131750136, org.telegram.messenger.g0.o0(this.f60586b0.availability_issued, 0)), true);
+                    this.f60603o0 = false;
+                    z0Var.setBackdrop((TL_stars.starGiftAttributeBackdrop) ea.l(this.f60587b0.attributes, TL_stars.starGiftAttributeBackdrop.class));
+                    z0Var.b(id.a0(null, null, 2131750136, org.telegram.messenger.g0.o0(this.f60587b0.availability_issued, 0)), true);
                     return;
                 } else {
                     boolean z9 = starGift2.limited;
@@ -1018,18 +1018,18 @@ public class y0 extends FrameLayout implements a6 {
                         z0Var.setVisibility(0);
                         setRibbonColorKey(k6.Aj);
                         z0Var.setStrokeColor(0);
-                        this.f60602o0 = false;
+                        this.f60603o0 = false;
                         z0Var.setBackdrop(null);
                         z0Var.b(id.M0(2131749977, null), true);
                         return;
                     } else if (starGift2.auction) {
                         z0Var.setVisibility(0);
                         z0Var.setBackdrop(null);
-                        this.f60601n0 = -1;
+                        this.f60602n0 = -1;
                         z0Var.a(-2650077, -4227818);
                         z0Var.setStrokeColor(0);
-                        this.f60602o0 = false;
-                        if (this.f60586b0.auction_start_date > ConnectionsManager.getInstance(this.f60583a).getCurrentTime()) {
+                        this.f60603o0 = false;
+                        if (this.f60587b0.auction_start_date > ConnectionsManager.getInstance(this.f60584a).getCurrentTime()) {
                             z0Var.b(id.M0(2131750134, null), true);
                             return;
                         } else {
@@ -1039,24 +1039,24 @@ public class y0 extends FrameLayout implements a6 {
                     } else if (starGift2.require_premium) {
                         z0Var.setVisibility(0);
                         z0Var.setBackdrop(null);
-                        this.f60601n0 = -1;
+                        this.f60602n0 = -1;
                         z0Var.a(-2650077, -4227818);
                         z0Var.setStrokeColor(0);
-                        this.f60602o0 = false;
+                        this.f60603o0 = false;
                         z0Var.b(id.M0(2131750133, null), true);
                         return;
                     } else if (z9) {
                         z0Var.setVisibility(0);
                         setRibbonColorKey(k6.zj);
                         z0Var.setStrokeColor(0);
-                        this.f60602o0 = false;
+                        this.f60603o0 = false;
                         z0Var.setBackdrop(null);
                         z0Var.b(id.M0(2131750132, null), true);
                         return;
                     } else {
                         z0Var.setBackdrop(null);
                         z0Var.setStrokeColor(0);
-                        this.f60602o0 = false;
+                        this.f60603o0 = false;
                         z0Var.setVisibility(8);
                         return;
                     }
@@ -1064,30 +1064,30 @@ public class y0 extends FrameLayout implements a6 {
             }
             z0Var.setVisibility(0);
             setRibbonColorKey(k6.zj);
-            z0Var.setBackdrop((TL_stars.starGiftAttributeBackdrop) ea.l(this.f60586b0.attributes, TL_stars.starGiftAttributeBackdrop.class));
+            z0Var.setBackdrop((TL_stars.starGiftAttributeBackdrop) ea.l(this.f60587b0.attributes, TL_stars.starGiftAttributeBackdrop.class));
             z0Var.setStrokeColor(0);
-            this.f60602o0 = false;
-            z0Var.b(jg.g.m(this.f60586b0.num, ',', new StringBuilder("#")), true);
+            this.f60603o0 = false;
+            z0Var.b(jg.g.m(this.f60587b0.num, ',', new StringBuilder("#")), true);
             return;
         }
-        ug.j jVar = this.f60584a0;
+        ug.j jVar = this.f60585a0;
         if (jVar != null) {
             if (jVar.b() > 0) {
                 z0Var.setVisibility(0);
                 z0Var.setBackdrop(null);
-                this.f60601n0 = -1;
+                this.f60602n0 = -1;
                 z0Var.a(-2535425, -8229377);
                 z0Var.setStrokeColor(0);
-                this.f60602o0 = false;
-                String a02 = id.a0(null, null, 2131749665, Integer.valueOf(this.f60584a0.b()));
-                z0Var.f60620b = a02;
-                z0Var.f60619a.f(12, a02, true);
+                this.f60603o0 = false;
+                String a02 = id.a0(null, null, 2131749665, Integer.valueOf(this.f60585a0.b()));
+                z0Var.f60621b = a02;
+                z0Var.f60620a.f(12, a02, true);
                 return;
             }
             z0Var.setVisibility(8);
             z0Var.setBackdrop(null);
             z0Var.setStrokeColor(0);
-            this.f60602o0 = false;
+            this.f60603o0 = false;
         }
     }
 
@@ -1107,23 +1107,23 @@ public class y0 extends FrameLayout implements a6 {
     }
 
     public void setRibbonColor(int i7) {
-        this.f60601n0 = -1;
-        z0 z0Var = this.f60592f;
+        this.f60602n0 = -1;
+        z0 z0Var = this.f60593f;
         z0Var.setColor(i7);
         z0Var.invalidate();
     }
 
     public void setRibbonText(String str) {
-        this.f60592f.b(str, true);
+        this.f60593f.b(str, true);
     }
 
     public void setRibbonTextOneOf(int i7) {
-        z0 z0Var = this.f60592f;
+        z0 z0Var = this.f60593f;
         z0Var.setVisibility(0);
         setRibbonColorKey(k6.zj);
         z0Var.setStrokeColor(0);
-        this.f60602o0 = false;
-        z0Var.setBackdrop((TL_stars.starGiftAttributeBackdrop) ea.l(this.f60586b0.attributes, TL_stars.starGiftAttributeBackdrop.class));
+        this.f60603o0 = false;
+        z0Var.setBackdrop((TL_stars.starGiftAttributeBackdrop) ea.l(this.f60587b0.attributes, TL_stars.starGiftAttributeBackdrop.class));
         z0Var.b(id.a0(null, null, 2131750136, org.telegram.messenger.g0.o0(i7, 0)), true);
     }
 
@@ -1135,9 +1135,9 @@ public class y0 extends FrameLayout implements a6 {
         int i7;
         try {
             boolean q10 = k6.I.q();
-            if (q10 != this.f60610u0) {
-                this.f60610u0 = q10;
-                if (this.f60608s0 != 0 && this.K != null && this.L != null && this.f60612x != null) {
+            if (q10 != this.f60611u0) {
+                this.f60611u0 = q10;
+                if (this.f60609s0 != 0 && this.K != null && this.L != null && this.f60613x != null) {
                     a();
                 }
                 TextView textView = this.M;
@@ -1150,31 +1150,31 @@ public class y0 extends FrameLayout implements a6 {
                     textView.setTextColor(i7);
                 }
             }
-            z0 z0Var = this.f60592f;
-            f6 f6Var = this.f60585b;
+            z0 z0Var = this.f60593f;
+            f6 f6Var = this.f60586b;
             if (z0Var != null) {
-                int i10 = this.f60601n0;
+                int i10 = this.f60602n0;
                 if (i10 >= 0) {
-                    b1 b1Var = z0Var.f60619a;
+                    b1 b1Var = z0Var.f60620a;
                     ((Paint) b1Var.f220b).setColor(k6.w0(i10, f6Var));
                     b1Var.invalidateSelf();
                 }
-                if (this.f60602o0) {
+                if (this.f60603o0) {
                     z0Var.setStrokeColor(k6.w(k6.w0(k6.f27852d6, f6Var), k6.r1(0.04f, k6.w0(k6.G6, f6Var))));
                 }
                 z0Var.invalidate();
             }
-            if (this.f60603p0 && (l9Var = this.f60600n) != null && (w03 = k6.w0(k6.kk, f6Var)) != this.f60604q0) {
-                this.f60604q0 = w03;
+            if (this.f60604p0 && (l9Var = this.f60601n) != null && (w03 = k6.w0(k6.kk, f6Var)) != this.f60605q0) {
+                this.f60605q0 = w03;
                 l9Var.setColorFilter(new PorterDuffColorFilter(w03, PorterDuff.Mode.SRC_IN));
             }
-            v0 v0Var = this.f60590e;
+            v0 v0Var = this.f60591e;
             if (v0Var != null) {
-                int[] iArr = this.f60606r0;
-                if (iArr != null && v0Var.f60556m == iArr && (iArr[0] != (w02 = k6.w0(k6.Aj, f6Var)) || iArr[1] != w02)) {
+                int[] iArr = this.f60607r0;
+                if (iArr != null && v0Var.f60557m == iArr && (iArr[0] != (w02 = k6.w0(k6.Aj, f6Var)) || iArr[1] != w02)) {
                     iArr[1] = w02;
                     iArr[0] = w02;
-                    v0Var.f60557n = null;
+                    v0Var.f60558n = null;
                 }
                 v0Var.invalidateSelf();
             }

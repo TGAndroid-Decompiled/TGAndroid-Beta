@@ -644,7 +644,7 @@ public class pa0 extends org.telegram.ui.ActionBar.f2 implements org.telegram.me
         int i11;
         v4.d1 K = this.Q.K(0);
         if (K != null) {
-            i7 = (int) K.f57043a.getY();
+            i7 = (int) K.f57044a.getY();
             i10 = Math.min(i7, 0) + this.I0;
             this.f48724a0 = (this.I0 + i7) - this.f48734g0;
         } else {
@@ -1247,12 +1247,12 @@ public class pa0 extends org.telegram.ui.ActionBar.f2 implements org.telegram.me
         wf.b bVar3 = faVar.f22390a;
         bVar3.getClass();
         try {
-            l8.e eVar = (l8.e) bVar3.f57654b;
+            l8.e eVar = (l8.e) bVar3.f57655b;
             Parcel p12 = eVar.p1();
             v7.b.b(p12, bVar2);
             Parcel o12 = eVar.o1(p12, 35);
             IBinder readStrongBinder = o12.readStrongBinder();
-            int i10 = v7.g.f57248b;
+            int i10 = v7.g.f57249b;
             if (readStrongBinder == null) {
                 aVar = 0;
             } else {

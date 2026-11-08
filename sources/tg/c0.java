@@ -5,14 +5,14 @@ import android.graphics.Paint;
 import org.telegram.ui.up0;
 public final class c0 extends d {
     public final Paint h;
-    public long f55583n;
-    public float f55584r;
-    public float f55585s;
-    public final up0 f55586w;
+    public long f55584n;
+    public float f55585r;
+    public float f55586s;
+    public final up0 f55587w;
 
     public c0(up0 up0Var, Context context, org.telegram.ui.Components.n nVar) {
         super(context, nVar);
-        this.f55586w = up0Var;
+        this.f55587w = up0Var;
         Paint paint = new Paint();
         this.h = paint;
         setWillNotDraw(false);

@@ -28,7 +28,7 @@ public final class j8 extends rg.b {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57047f;
+        int i7 = d1Var.f57048f;
         if ((i7 != 3 || !this.f12241n.W.f12815w1) && i7 != 7 && i7 != 9 && i7 != 10) {
             return false;
         }
@@ -49,7 +49,7 @@ public final class j8 extends rg.b {
         n8 n8Var = this.f12241n;
         ArrayList arrayList = n8Var.L;
         if (arrayList != null && i7 >= 0 && i7 < arrayList.size()) {
-            return ((b8) n8Var.L.get(i7)).f54531a;
+            return ((b8) n8Var.L.get(i7)).f54532a;
         }
         return -1;
     }
@@ -66,8 +66,8 @@ public final class j8 extends rg.b {
         ArrayList arrayList = n8Var.L;
         if (arrayList != null && i7 >= 0 && i7 < arrayList.size()) {
             b8 b8Var2 = (b8) arrayList.get(i7);
-            int i13 = d1Var.f57047f;
-            View view = d1Var.f57043a;
+            int i13 = d1Var.f57048f;
+            View view = d1Var.f57044a;
             boolean z10 = true;
             int i14 = i7 + 1;
             if (i14 < arrayList.size()) {
@@ -75,7 +75,7 @@ public final class j8 extends rg.b {
             } else {
                 b8Var = null;
             }
-            if (b8Var != null && ((i12 = b8Var.f54531a) == i13 || (i12 == 9 && b8Var.f11703q == 1))) {
+            if (b8Var != null && ((i12 = b8Var.f54532a) == i13 || (i12 == 9 && b8Var.f11703q == 1))) {
                 z9 = true;
             } else {
                 z9 = false;

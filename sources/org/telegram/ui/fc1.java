@@ -255,7 +255,7 @@ public final class fc1 implements VoIPService.StateListener, org.telegram.messen
                 yb1Var2.setLockOnScreen(l1.I0);
                 fc1Var3.f45576t0 = yb1Var2;
                 qb1 qb1Var = new qb1(fc1Var3, 3);
-                WeakHashMap weakHashMap = r0.i0.f54190a;
+                WeakHashMap weakHashMap = r0.i0.f54191a;
                 r0.a0.i(yb1Var2, qb1Var);
                 ((WindowManager) activity.getSystemService("window")).addView(yb1Var2, org.telegram.ui.Components.voip.o2.a());
                 fc1Var3.f45575s0 = ViewConfiguration.get(activity).getScaledTouchSlop();
@@ -446,7 +446,7 @@ public final class fc1 implements VoIPService.StateListener, org.telegram.messen
                 frameLayout2.d = l2Var;
                 frameLayout2.addView(l2Var, c8.ha.c(-2.0f, -1));
                 fc1Var3.F = frameLayout2;
-                WeakHashMap weakHashMap2 = r0.i0.f54190a;
+                WeakHashMap weakHashMap2 = r0.i0.f54191a;
                 frameLayout2.setImportantForAccessibility(4);
                 fc1Var3.X.addView(fc1Var3.F, c8.ha.t(-2, -2, 1, 0, 0, 0, 6));
                 if (sharedState != null && sharedState.getUser() != null && sharedState.isConference() && sharedState.getGroupCall() != null) {

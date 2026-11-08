@@ -12,7 +12,7 @@ public final class y81 implements yh.c, org.telegram.messenger.bp, r0.m, org.tel
 
     @Override
     public r0.k1 S0(View view, r0.k1 k1Var) {
-        int i7 = k1Var.f54201a.f(519).d;
+        int i7 = k1Var.f54202a.f(519).d;
         w91 w91Var = this.f52170a;
         w91Var.f51008f1 = i7;
         s91 s91Var = w91Var.f51029r0;
@@ -25,7 +25,7 @@ public final class y81 implements yh.c, org.telegram.messenger.bp, r0.m, org.tel
         }
         w91Var.h.setTranslationY(((-w91Var.X0) - w91Var.f51008f1) - w91Var.f51005e1);
         w91Var.F0();
-        return r0.k1.f54200b;
+        return r0.k1.f54201b;
     }
 
     @Override

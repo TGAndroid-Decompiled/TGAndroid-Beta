@@ -171,7 +171,7 @@ public final class y extends b0 {
     public float b() {
         switch (this.h) {
             case 0:
-                return j7.a(this.f15617n.f15504j1.f55486e) * super.b();
+                return j7.a(this.f15617n.f15504j1.f55487e) * super.b();
             default:
                 return super.b();
         }

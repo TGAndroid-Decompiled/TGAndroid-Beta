@@ -50,9 +50,9 @@ public final class w implements Runnable {
     private final void a() {
         u2.c cVar = (u2.c) this.f51349c;
         w wVar = (w) this.f51348b;
-        cVar.f56223c.i();
-        u2.f fVar = cVar.f56222b;
-        synchronized (fVar.f56236a) {
+        cVar.f56224c.i();
+        u2.f fVar = cVar.f56223b;
+        synchronized (fVar.f56237a) {
             fVar.b();
             wVar.run();
         }
@@ -181,16 +181,16 @@ public final class w implements Runnable {
                 p4.d0 d0Var2 = (p4.d0) this.f51349c;
                 p4.g1 g1Var = (p4.g1) this.f51348b;
                 p4.m0 m0Var = d0Var2.h;
-                d0Var2.f53217t = g1Var;
+                d0Var2.f53218t = g1Var;
                 df dfVar = new df(d0Var2, g1Var);
                 g1Var.I0(dfVar);
-                d0Var2.f53218u = dfVar;
+                d0Var2.f53219u = dfVar;
                 try {
-                    m0Var.f53365j.p(0, g1Var);
+                    m0Var.f53366j.p(0, g1Var);
                 } catch (RemoteException e10) {
                     h2.a.d("MediaSessionImpl", "Exception in using media1 API", e10);
                 }
-                ((q4.l) m0Var.f53369n.f53803b).f53785a.setActive(true);
+                ((q4.l) m0Var.f53370n.f53804b).f53786a.setActive(true);
                 e2.v0 W = g1Var.W();
                 p4.l1 R0 = g1Var.R0();
                 e2.b1 Q0 = g1Var.Q0();
@@ -247,7 +247,7 @@ public final class w implements Runnable {
                 } else {
                     s1Var = e2.s1.f10545b;
                 }
-                d0Var2.f53216s = new p4.e1(W, 0, R0, Q0, Q02, 0, j3, m10, D0, C, T0, 0, o0Var2, f11, 1.0f, eVar2, 0, dVar2, K, i7, z9, u10, 1, w02, i13, h, g10, U0, O0, Z, z11, s1Var, g1Var.E0());
+                d0Var2.f53217s = new p4.e1(W, 0, R0, Q0, Q02, 0, j3, m10, D0, C, T0, 0, o0Var2, f11, 1.0f, eVar2, 0, dVar2, K, i7, z9, u10, 1, w02, i13, h, g10, U0, O0, Z, z11, s1Var, g1Var.E0());
                 d0Var2.f(g1Var.t());
                 return;
             case 10:
@@ -271,10 +271,10 @@ public final class w implements Runnable {
                     h2.a.m("MediaSessionLegacyStub", "Custom command failed", e);
                     m1Var = new p4.m1(-1);
                 }
-                resultReceiver.send(m1Var.f53383a, m1Var.f53384b);
+                resultReceiver.send(m1Var.f53384a, m1Var.f53385b);
                 return;
             case 12:
-                ui.e eVar3 = ((p4.c1) this.f51349c).f53183b;
+                ui.e eVar3 = ((p4.c1) this.f51349c).f53184b;
                 p4.v x10 = eVar3.x(((p4.l) this.f51348b).asBinder());
                 if (x10 != null) {
                     eVar3.T(x10);
@@ -282,17 +282,17 @@ public final class w implements Runnable {
                 }
                 return;
             case 13:
-                ((p4.c1) this.f51349c).f53183b.q((p4.v) this.f51348b);
+                ((p4.c1) this.f51349c).f53184b.q((p4.v) this.f51348b);
                 return;
             case 14:
                 q2.d dVar3 = (q2.d) this.f51349c;
                 e2.u uVar = (e2.u) this.f51348b;
                 q2.e eVar4 = dVar3.d;
-                if (eVar4.E != 0 && !dVar3.f53718c) {
+                if (eVar4.E != 0 && !dVar3.f53719c) {
                     Looper looper = eVar4.I;
                     looper.getClass();
-                    dVar3.f53717b = eVar4.b(looper, dVar3.f53716a, uVar, false);
-                    eVar4.f53729y.add(dVar3);
+                    dVar3.f53718b = eVar4.b(looper, dVar3.f53717a, uVar, false);
+                    eVar4.f53730y.add(dVar3);
                     return;
                 }
                 return;
@@ -300,9 +300,9 @@ public final class w implements Runnable {
                 CarResultStub.i1((Map.Entry) this.f51349c, this.f51348b);
                 return;
             case 16:
-                rt rtVar = ((r2.p) this.f51349c).f54357c;
-                Uri uri = ((r2.i) this.f51348b).f54318y;
-                s2.c cVar = (s2.c) ((r2.j) rtVar.f37758b).f54320b.d.get(uri);
+                rt rtVar = ((r2.p) this.f51349c).f54358c;
+                Uri uri = ((r2.i) this.f51348b).f54319y;
+                s2.c cVar = (s2.c) ((r2.j) rtVar.f37758b).f54321b.d.get(uri);
                 if (cVar != null) {
                     s2.c.b(cVar, uri, true);
                     return;
@@ -310,22 +310,22 @@ public final class w implements Runnable {
                 return;
             case 17:
                 s2.b bVar = (s2.b) this.f51349c;
-                bVar.f54610s = false;
+                bVar.f54611s = false;
                 bVar.b((Uri) this.f51348b);
                 return;
             case 18:
                 sg.j0 j0Var = (sg.j0) this.f51349c;
                 j0Var.v = true;
                 RectF f12 = j0Var.f();
-                Object obj2 = j0Var.f55085a.f39747b;
-                j0Var.f55104w = new wa((ByteBuffer) j0Var.h(j0Var.f(), true, false, false).f55068c, 0, f12);
+                Object obj2 = j0Var.f55086a.f39747b;
+                j0Var.f55105w = new wa((ByteBuffer) j0Var.h(j0Var.f(), true, false, false).f55069c, 0, f12);
                 j0Var.a(false);
                 ((sg.q0) this.f51348b).run();
                 return;
             case 19:
                 Runnable runnable = (Runnable) this.f51348b;
                 sg.u0 u0Var = ((sg.w0) this.f51349c).d;
-                if (u0Var != null && u0Var.f55213f) {
+                if (u0Var != null && u0Var.f55214f) {
                     sg.u0.a(u0Var);
                     runnable.run();
                     return;
@@ -345,19 +345,19 @@ public final class w implements Runnable {
                 tg.z1[] z1VarArr = (tg.z1[]) ((ArrayList) this.f51348b).toArray(new tg.z1[0]);
                 c2Var.H = z1VarArr;
                 if (z1VarArr.length > 0) {
-                    c2Var.f55591b0.setScaleX(0.3f);
-                    c2Var.f55591b0.setScaleY(0.3f);
-                    c2Var.f55591b0.setAlpha(0.0f);
-                    c2Var.f55591b0.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).setInterpolator(xq.f40366f).start();
+                    c2Var.f55592b0.setScaleX(0.3f);
+                    c2Var.f55592b0.setScaleY(0.3f);
+                    c2Var.f55592b0.setAlpha(0.0f);
+                    c2Var.f55592b0.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).setInterpolator(xq.f40366f).start();
                     return;
                 }
                 return;
             case 23:
                 ti.i iVar = (ti.i) this.f51349c;
                 ti.p pVar = (ti.p) this.f51348b;
-                ti.m mVar = iVar.f56082b;
-                if (iVar.f56088j == pVar) {
-                    ImageView imageView = iVar.f56090l;
+                ti.m mVar = iVar.f56083b;
+                if (iVar.f56089j == pVar) {
+                    ImageView imageView = iVar.f56091l;
                     if (imageView != null && imageView.getVisibility() == 0) {
                         pVar.setFirstFrameCallback(new ti.b(iVar, 3));
                     }
@@ -376,12 +376,12 @@ public final class w implements Runnable {
                 ti.i iVar2 = (ti.i) this.f51349c;
                 c20 c20Var = (c20) this.f51348b;
                 iVar2.l();
-                ti.p pVar2 = iVar2.f56088j;
-                iVar2.f56088j = null;
+                ti.p pVar2 = iVar2.f56089j;
+                iVar2.f56089j = null;
                 if (pVar2 != null) {
                     org.telegram.messenger.g0.E2(pVar2);
-                    SurfaceTexture surfaceTexture2 = pVar2.f56128a;
-                    pVar2.f56128a = null;
+                    SurfaceTexture surfaceTexture2 = pVar2.f56129a;
+                    pVar2.f56129a = null;
                     surfaceTexture = surfaceTexture2;
                 }
                 c20Var.a(surfaceTexture);
@@ -389,7 +389,7 @@ public final class w implements Runnable {
             case 25:
                 ti.p pVar3 = (ti.p) this.f51349c;
                 SurfaceTexture surfaceTexture3 = (SurfaceTexture) this.f51348b;
-                if (pVar3.f56128a == surfaceTexture3 && pVar3.getSurfaceTexture() == null) {
+                if (pVar3.f56129a == surfaceTexture3 && pVar3.getSurfaceTexture() == null) {
                     pVar3.setSurfaceTexture(surfaceTexture3);
                     return;
                 }
@@ -408,11 +408,11 @@ public final class w implements Runnable {
             default:
                 u9.p pVar4 = (u9.p) this.f51349c;
                 ua.b bVar2 = (ua.b) this.f51348b;
-                if (pVar4.f56486b == u9.p.d) {
+                if (pVar4.f56487b == u9.p.d) {
                     synchronized (pVar4) {
-                        aVar = pVar4.f56485a;
-                        pVar4.f56485a = null;
-                        pVar4.f56486b = bVar2;
+                        aVar = pVar4.f56486a;
+                        pVar4.f56486a = null;
+                        pVar4.f56487b = bVar2;
                     }
                     aVar.c(bVar2);
                     return;

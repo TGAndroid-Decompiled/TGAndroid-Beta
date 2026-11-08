@@ -19,7 +19,7 @@ public final class q0 implements VideoSink {
         eglRenderer.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), EglBase.CONFIG_PLAIN, new GlRectDrawer());
         pVar.setSurfaceTextureListener(new w30(this, 3));
         SurfaceTexture surfaceTexture = pVar.getSurfaceTexture();
-        if (surfaceTexture != null && pVar.f56128a != null) {
+        if (surfaceTexture != null && pVar.f56129a != null) {
             int width = pVar.getWidth();
             int height = pVar.getHeight();
             if (!this.f39480c && this.f39479b != surfaceTexture) {

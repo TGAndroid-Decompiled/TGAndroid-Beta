@@ -94,7 +94,7 @@ public final class k extends TextView {
             case 11:
                 Paint paint3 = (Paint) this.f10820b;
                 int i10 = k6.f28262z6;
-                i0 i0Var = ((h0) obj).f56599e;
+                i0 i0Var = ((h0) obj).f56600e;
                 int i11 = i0.O2;
                 paint3.setColor(k6.r1(0.8f, k6.w0(i10, i0Var.I0)));
                 paint3.setStyle(Paint.Style.STROKE);
@@ -251,19 +251,19 @@ public final class k extends TextView {
                 p1Var.G = false;
                 p1Var.K = true;
                 p1Var.H = true;
-                p1Var.f56778r = 1;
-                p1Var.f56782w = 0.98f;
+                p1Var.f56779r = 1;
+                p1Var.f56783w = 0.98f;
                 p1Var.v = 0.98f;
-                p1Var.f56781u = 0.98f;
-                p1Var.f56768g = false;
-                p1Var.f56775o = 0.0f;
-                p1Var.f56783x = 750L;
-                p1Var.f56784y = 750;
+                p1Var.f56782u = 0.98f;
+                p1Var.f56769g = false;
+                p1Var.f56776o = 0.0f;
+                p1Var.f56784x = 750L;
+                p1Var.f56785y = 750;
                 p1Var.c();
                 RectF rectF = g0.P;
                 rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                ((p1) this.f10820b).f56763a.set(rectF);
-                ((p1) this.f10820b).f56764b.set(rectF);
+                ((p1) this.f10820b).f56764a.set(rectF);
+                ((p1) this.f10820b).f56765b.set(rectF);
                 ((p1) this.f10820b).f();
                 Path path = (Path) this.f10821c;
                 path.reset();

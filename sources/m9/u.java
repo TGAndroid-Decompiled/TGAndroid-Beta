@@ -518,9 +518,9 @@ public final class u implements Runnable {
             case 0:
                 android.support.v4.media.session.a0 a0Var = new android.support.v4.media.session.a0(u.class.getSimpleName(), 28);
                 wf.b bVar = new wf.b(19, false);
-                ((wf.b) a0Var.d).f57655c = bVar;
+                ((wf.b) a0Var.d).f57656c = bVar;
                 a0Var.d = bVar;
-                bVar.f57654b = (t) this.f19998c;
+                bVar.f57655b = (t) this.f19998c;
                 return a0Var.toString();
             default:
                 return super.toString();

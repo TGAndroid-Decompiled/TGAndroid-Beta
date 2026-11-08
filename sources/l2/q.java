@@ -103,7 +103,7 @@ public final class q implements h2.o, qr, db0, lc, t4, dj0, cj0, org.telegram.ui
                 h2.a.m("MediaSessionStub", "Library operation failed", e);
                 String str = p4.o.d;
                 p4.k1 k1Var = new p4.k1("no error message provided", -1, Bundle.EMPTY);
-                oVar = new p4.o(k1Var.f53340a, SystemClock.elapsedRealtime(), k1Var);
+                oVar = new p4.o(k1Var.f53341a, SystemClock.elapsedRealtime(), k1Var);
                 oVar2 = oVar;
                 p4.u uVar = vVar.d;
                 uVar.getClass();
@@ -112,7 +112,7 @@ public final class q implements h2.o, qr, db0, lc, t4, dj0, cj0, org.telegram.ui
                 h2.a.m("MediaSessionStub", "Library operation cancelled", e11);
                 String str2 = p4.o.d;
                 p4.k1 k1Var2 = new p4.k1("no error message provided", 1, Bundle.EMPTY);
-                oVar = new p4.o(k1Var2.f53340a, SystemClock.elapsedRealtime(), k1Var2);
+                oVar = new p4.o(k1Var2.f53341a, SystemClock.elapsedRealtime(), k1Var2);
                 oVar2 = oVar;
                 p4.u uVar2 = vVar.d;
                 uVar2.getClass();
@@ -122,7 +122,7 @@ public final class q implements h2.o, qr, db0, lc, t4, dj0, cj0, org.telegram.ui
                 h2.a.m("MediaSessionStub", "Library operation failed", e);
                 String str3 = p4.o.d;
                 p4.k1 k1Var3 = new p4.k1("no error message provided", -1, Bundle.EMPTY);
-                oVar = new p4.o(k1Var3.f53340a, SystemClock.elapsedRealtime(), k1Var3);
+                oVar = new p4.o(k1Var3.f53341a, SystemClock.elapsedRealtime(), k1Var3);
                 oVar2 = oVar;
                 p4.u uVar22 = vVar.d;
                 uVar22.getClass();
@@ -430,7 +430,7 @@ public final class q implements h2.o, qr, db0, lc, t4, dj0, cj0, org.telegram.ui
                 hashSet.remove(Long.valueOf(j3));
             } else {
                 hashSet.add(Long.valueOf(j3));
-                f1Var.f57731f2.put(Long.valueOf(j3), user);
+                f1Var.f57732f2.put(Long.valueOf(j3), user);
             }
             if (hashSet.size() == f1Var.h1() + 1) {
                 hashSet.remove(Long.valueOf(j3));
@@ -441,11 +441,11 @@ public final class q implements h2.o, qr, db0, lc, t4, dj0, cj0, org.telegram.ui
             if (z9 != z10) {
                 aVar.setVisibility(0);
                 aVar.animate().alpha(z10 ? 1.0f : 0.0f).translationY(z10 ? 0.0f : org.telegram.messenger.g0.L(12.0f)).setInterpolator(xq.h).setDuration(320L).withEndAction(!z10 ? new wg.x0(f1Var, 7) : null).start();
-                xg.i iVar = f1Var.f57733h2;
+                xg.i iVar = f1Var.f57734h2;
                 boolean z11 = !z10;
                 if (iVar.D != z11) {
                     iVar.D = z11;
-                    org.telegram.messenger.g0.d0(iVar.f58745f, new xg.g(z11));
+                    org.telegram.messenger.g0.d0(iVar.f58746f, new xg.g(z11));
                 }
             }
             f1Var.e1();

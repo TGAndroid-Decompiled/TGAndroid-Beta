@@ -56,8 +56,8 @@ public final class q1 implements ValueCallback {
                 e5.f fVar = (e5.f) this.f51286e;
                 String str3 = (String) obj;
                 org.telegram.messenger.g0.r((r31) this.d);
-                synchronized (iVar.f56941a) {
-                    if (!iVar.f56959u && iVar.f56953o == webView3 && iVar.f56954p == fVar && !iVar.f56956r) {
+                synchronized (iVar.f56942a) {
+                    if (!iVar.f56960u && iVar.f56954o == webView3 && iVar.f56955p == fVar && !iVar.f56957r) {
                         if (!"true".equals(str3)) {
                             a8.d("WEB proxy: Base64 bridge installation failed; transport stopped");
                             iVar.q();
@@ -66,8 +66,8 @@ public final class q1 implements ValueCallback {
                             iVar.h();
                             return;
                         } else {
-                            iVar.f56957s = false;
-                            iVar.f56956r = true;
+                            iVar.f56958s = false;
+                            iVar.f56957r = true;
                             a8.b("WEB proxy: Base64 bridge ready");
                             iVar.n(16, 0, new byte[]{1});
                             return;

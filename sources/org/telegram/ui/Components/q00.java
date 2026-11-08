@@ -115,7 +115,7 @@ public final class q00 extends FrameLayout implements te.b, org.telegram.ui.Acti
             this.f37142f = new ArrayList();
         }
         this.f37142f.add(view);
-        d(view, 1.0f - this.f37139b.f55486e);
+        d(view, 1.0f - this.f37139b.f55487e);
     }
 
     @Override
@@ -136,11 +136,11 @@ public final class q00 extends FrameLayout implements te.b, org.telegram.ui.Acti
     }
 
     public boolean getButtonVisible() {
-        return this.f37138a.f55487f;
+        return this.f37138a.f55488f;
     }
 
     public boolean getProgressVisible() {
-        return this.f37139b.f55487f;
+        return this.f37139b.f55488f;
     }
 
     @Override

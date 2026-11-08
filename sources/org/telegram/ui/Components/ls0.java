@@ -100,11 +100,11 @@ public final class ls0 extends kj0 {
         char c10;
         xs0 xs0Var = this.f35776s;
         ms0[] ms0VarArr = xs0Var.f40455v1;
-        int i11 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i11 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         if (i11 != 6 && i11 != 5) {
             ArrayList arrayList = (ArrayList) ms0VarArr[3].d.get((String) ms0VarArr[3].f36093c.get(i7));
-            int i12 = d1Var.f57047f;
+            int i12 = d1Var.f57048f;
             boolean z10 = false;
             if (i12 != 3) {
                 if (i12 == 4) {

@@ -61,8 +61,8 @@ public final class aj extends sl {
         this.f43689v3 = fVar;
         r1.g gVar = new r1.g(fVar);
         gVar.h = 0.0f;
-        gVar.f54262g = 2000.0f;
-        gVar.f54267m = org.telegram.ui.Cells.f1.o(0.0f, 1500.0f, 1.0f);
+        gVar.f54263g = 2000.0f;
+        gVar.f54268m = org.telegram.ui.Cells.f1.o(0.0f, 1500.0f, 1.0f);
         gVar.b(new r1.d(this) {
             public final aj f52597b;
 
@@ -90,7 +90,7 @@ public final class aj extends sl {
         this.f43691x3 = fVar2;
         r1.g gVar2 = new r1.g(fVar2);
         gVar2.h = 0.0f;
-        gVar2.f54267m = org.telegram.ui.Cells.f1.o(0.0f, 400.0f, 0.5f);
+        gVar2.f54268m = org.telegram.ui.Cells.f1.o(0.0f, 400.0f, 0.5f);
         gVar2.b(new r1.d(this) {
             public final aj f52597b;
 
@@ -118,7 +118,7 @@ public final class aj extends sl {
         this.f43693z3 = fVar3;
         r1.g gVar3 = new r1.g(fVar3);
         gVar3.h = 0.0f;
-        gVar3.f54267m = org.telegram.ui.Cells.f1.o(0.0f, 200.0f, 1.0f);
+        gVar3.f54268m = org.telegram.ui.Cells.f1.o(0.0f, 200.0f, 1.0f);
         gVar3.b(new r1.d(this) {
             public final aj f52597b;
 
@@ -455,7 +455,7 @@ public final class aj extends sl {
                             float f12 = (x11 - t0Var.K0) - (t0Var.f30323j0 / 2.0f);
                             float paddingTop = (y10 - t0Var.L0) - t0Var.getPaddingTop();
                             org.telegram.ui.Wallet.b4 b4Var = c4Var.f42330m;
-                            if (b4Var != null && b4Var.f57494n && c4Var.f42348w.contains((int) f12, (int) paddingTop)) {
+                            if (b4Var != null && b4Var.f57495n && c4Var.f42348w.contains((int) f12, (int) paddingTop)) {
                                 return;
                             }
                         } else {

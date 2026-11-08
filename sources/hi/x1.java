@@ -97,9 +97,9 @@ public final class x1 implements Runnable {
                     }
                     float f10 = i10 * 100.0f;
                     r1.g gVar = a3Var.d;
-                    r1.h hVar = gVar.f54267m;
-                    if (((float) hVar.f54275i) != f10) {
-                        hVar.f54275i = f10;
+                    r1.h hVar = gVar.f54268m;
+                    if (((float) hVar.f54276i) != f10) {
+                        hVar.f54276i = f10;
                         gVar.h();
                     }
                 }

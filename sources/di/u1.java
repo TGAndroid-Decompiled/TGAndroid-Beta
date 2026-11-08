@@ -61,7 +61,7 @@ public final class u1 implements View.OnClickListener {
                 wwVar.finishPreviewFragment();
                 return;
             case 3:
-                c20 c20Var = ((sh.m) this.f9829c).f55327f;
+                c20 c20Var = ((sh.m) this.f9829c).f55328f;
                 if (c20Var != null) {
                     c20Var.a(Long.valueOf(this.f9828b));
                     return;
@@ -89,7 +89,7 @@ public final class u1 implements View.OnClickListener {
                         return;
                     }
                 }
-                Runnable runnable = lVar.f60424f2;
+                Runnable runnable = lVar.f60425f2;
                 if (runnable != null) {
                     runnable.run();
                 }

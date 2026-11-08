@@ -143,7 +143,7 @@ public final class w1 {
                         uh.d dVar = new uh.d(q1Var, q1Var.Pb);
                         this.f30708k = dVar;
                         dVar.setCallback(q1Var);
-                        dVar.f56908a.setCallback(q1Var);
+                        dVar.f56909a.setCallback(q1Var);
                         dVar.d.setCallback(q1Var);
                     }
                     q1Var.f30077y2 = charSequence;
@@ -172,7 +172,7 @@ public final class w1 {
             int M1 = (int) q1Var.M1(motionEvent);
             sh.e eVar3 = this.f30710m;
             if (eVar3 != null) {
-                if (eVar3.X && eVar3.f55295a.f55487f && eVar3.K.e(x10 - eVar3.L, M1 - eVar3.M, action)) {
+                if (eVar3.X && eVar3.f55296a.f55488f && eVar3.K.e(x10 - eVar3.L, M1 - eVar3.M, action)) {
                     if (action == 0) {
                         q1Var.getParent().requestDisallowInterceptTouchEvent(true);
                     }
@@ -188,7 +188,7 @@ public final class w1 {
                 }
             }
             if (q1Var.P5.J0 && (eVar2 = this.f30711n) != null) {
-                if (eVar2.X && eVar2.f55295a.f55487f && eVar2.K.e(x10 - eVar2.L, M1 - eVar2.M, action)) {
+                if (eVar2.X && eVar2.f55296a.f55488f && eVar2.K.e(x10 - eVar2.L, M1 - eVar2.M, action)) {
                     if (action == 0) {
                         q1Var.getParent().requestDisallowInterceptTouchEvent(true);
                     }
@@ -224,7 +224,7 @@ public final class w1 {
                 int i7 = this.G;
                 if (i7 == -2) {
                     sh.e eVar7 = this.f30710m;
-                    ImageReceiver imageReceiver = eVar7.f55297b;
+                    ImageReceiver imageReceiver = eVar7.f55298b;
                     TLRPC.MessageMedia messageMedia = eVar7.T;
                     l1 l1Var = q1Var.Ra;
                     if (l1Var != null) {
@@ -232,7 +232,7 @@ public final class w1 {
                     }
                 } else if (i7 == -3) {
                     sh.e eVar8 = this.f30711n;
-                    ImageReceiver imageReceiver2 = eVar8.f55297b;
+                    ImageReceiver imageReceiver2 = eVar8.f55298b;
                     TLRPC.MessageMedia messageMedia2 = eVar8.T;
                     l1 l1Var2 = q1Var.Ra;
                     if (l1Var2 != null) {
@@ -295,7 +295,7 @@ public final class w1 {
         }
         uh.a aVar = this.f30709l;
         if (aVar != null) {
-            aVar.f56908a.setState(StateSet.NOTHING);
+            aVar.f56909a.setState(StateSet.NOTHING);
         }
     }
 

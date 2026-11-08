@@ -44,8 +44,8 @@ public final class j7 extends f7 {
         String H;
         float f10;
         boolean z10;
-        if (d1Var.f57047f == 1) {
-            x6 x6Var = (x6) d1Var.f57043a;
+        if (d1Var.f57048f == 1) {
+            x6 x6Var = (x6) d1Var.f57044a;
             ArrayList arrayList = this.f45467e;
             s6 s6Var = ((m7) arrayList.get(i7)).f47687c;
             t7 t7Var = this.h;

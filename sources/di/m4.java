@@ -132,14 +132,14 @@ public final class m4 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 12:
                 ug.p0 p0Var = (ug.p0) this.f9350b;
-                p0Var.f56759s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                p0Var.f56760s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 p0Var.e();
                 return;
             case 13:
                 ((ug.n0) this.f9350b).setOffset(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             default:
-                ((v4.u) this.f9350b).f57170y = valueAnimator.getAnimatedFraction();
+                ((v4.u) this.f9350b).f57171y = valueAnimator.getAnimatedFraction();
                 return;
         }
     }

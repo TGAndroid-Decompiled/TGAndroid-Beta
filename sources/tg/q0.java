@@ -9,16 +9,16 @@ import fi.e5;
 import org.telegram.messenger.iz;
 import org.telegram.ui.Components.ca;
 public final class q0 extends org.telegram.ui.Cells.t0 {
-    public final ca f55904t2;
-    public final TextPaint f55905u2;
-    public final s0 f55906v2;
+    public final ca f55905t2;
+    public final TextPaint f55906u2;
+    public final s0 f55907v2;
 
     public q0(s0 s0Var, Context context, t0 t0Var) {
         super(context, t0Var, false);
-        this.f55906v2 = s0Var;
-        this.f55904t2 = new ca(s0Var.d, this, 10, false);
+        this.f55907v2 = s0Var;
+        this.f55905t2 = new ca(s0Var.d, this, 10, false);
         TextPaint textPaint = new TextPaint(1);
-        this.f55905u2 = textPaint;
+        this.f55906u2 = textPaint;
         textPaint.setTypeface(org.telegram.messenger.g0.o());
         textPaint.setTextSize(org.telegram.messenger.g0.L(Math.max(16, iz.W0) - 2));
         textPaint.setColor(-1);
@@ -30,10 +30,10 @@ public final class q0 extends org.telegram.ui.Cells.t0 {
         float f11;
         if (!"paintChatActionText".equals(str) && !"paintChatActionText2".equals(str)) {
             if ("paintChatActionBackground".equals(str)) {
-                e5 e5Var = this.f55906v2.h;
-                e5Var.f55966v0 = true;
+                e5 e5Var = this.f55907v2.h;
+                e5Var.f55967v0 = true;
                 boolean z9 = e5Var.B0;
-                ca caVar = this.f55904t2;
+                ca caVar = this.f55905t2;
                 if (caVar.f32516r != z9) {
                     caVar.f32516r = z9;
                     if (caVar.f32507i == 10) {
@@ -62,6 +62,6 @@ public final class q0 extends org.telegram.ui.Cells.t0 {
             }
             return super.N(str);
         }
-        return this.f55905u2;
+        return this.f55906u2;
     }
 }

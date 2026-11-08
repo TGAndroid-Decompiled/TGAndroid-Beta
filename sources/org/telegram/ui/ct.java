@@ -24,8 +24,8 @@ public final class ct extends rg.a {
         }
         ct ctVar = (ct) obj;
         CharSequence charSequence = ctVar.f44897f;
-        int i7 = ctVar.f54531a;
-        int i10 = this.f54531a;
+        int i7 = ctVar.f54532a;
+        int i10 = this.f54532a;
         if (i7 != i10) {
             return false;
         }

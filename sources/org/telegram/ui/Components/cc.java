@@ -112,7 +112,7 @@ public class cc {
             if (f32537w == this) {
                 f32537w = null;
             }
-            WeakHashMap weakHashMap = r0.i0.f54190a;
+            WeakHashMap weakHashMap = r0.i0.f54191a;
             if (gbVar.isLaidOut() || this.f32555t) {
                 gbVar.removeCallbacks(this.f32544i);
                 if (z9) {
@@ -214,15 +214,15 @@ public class cc {
                             int i18 = ccVar2.f32550o;
                             if (i18 != i17) {
                                 r1.g gVar = ccVar2.d;
-                                if (gVar != null && gVar.f54261f) {
-                                    gVar.f54267m.f54275i = i17;
+                                if (gVar != null && gVar.f54262f) {
+                                    gVar.f54268m.f54276i = i17;
                                 } else {
                                     r1.g gVar2 = new r1.g(new r1.f(i18));
                                     r1.h hVar = new r1.h();
-                                    hVar.f54275i = i17;
+                                    hVar.f54276i = i17;
                                     hVar.b(900.0f);
                                     hVar.a(1.0f);
-                                    gVar2.f54267m = hVar;
+                                    gVar2.f54268m = hVar;
                                     ccVar2.d = gVar2;
                                     gVar2.b(new e7(ccVar2, 1));
                                     ccVar2.d.a(new ta(ccVar2, 0));

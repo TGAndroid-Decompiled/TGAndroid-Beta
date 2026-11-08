@@ -169,7 +169,7 @@ public class q0 extends FrameLayout implements te.b, a6 {
 
     public void setSelectedForDelete(boolean z9) {
         te.a aVar = this.f28387a;
-        if (aVar.f55487f != z9) {
+        if (aVar.f55488f != z9) {
             l2.w wVar = this.h;
             org.telegram.messenger.g0.r(wVar);
             aVar.a(z9, true);
@@ -182,7 +182,7 @@ public class q0 extends FrameLayout implements te.b, a6 {
     @Override
     public final void updateColors() {
         int w02;
-        float f10 = this.f28387a.f55486e;
+        float f10 = this.f28387a.f55487e;
         boolean z9 = this.f28393r;
         f6 f6Var = this.f28392n;
         if (z9) {

@@ -1695,8 +1695,8 @@ public class PhotoViewer implements org.telegram.messenger.ls, org.telegram.ui.C
         }
         tp0 tp0Var = new tp0(this, this.D, this.T, createBitmap2, createBitmap, this.B4.U, yeVar2);
         this.N1 = tp0Var;
-        tp0Var.f55878s.setOnClickListener(new dn0(this, 5));
-        this.N1.f55879w.setOnClickListener(new dn0(this, 6));
+        tp0Var.f55879s.setOnClickListener(new dn0(this, 5));
+        this.N1.f55880w.setOnClickListener(new dn0(this, 6));
         this.N1.setEraser(this.M1);
         int indexOfChild = this.f41384e0.indexOfChild(this.f41520t5) - 1;
         if (indexOfChild < 0) {
@@ -2575,7 +2575,7 @@ public class PhotoViewer implements org.telegram.messenger.ls, org.telegram.ui.C
             linearLayout2.setOrientation(0);
             hq0 hq0Var2 = new hq0(this);
             this.f41528u5 = hq0Var2;
-            hq0Var2.f55948q0 = true;
+            hq0Var2.f55949q0 = true;
             hq0Var2.setRad(18);
             this.f41528u5.setEraseState(false);
             this.f41528u5.setOnClickListener(new dn0(this, 15));
@@ -2583,7 +2583,7 @@ public class PhotoViewer implements org.telegram.messenger.ls, org.telegram.ui.C
             this.f41520t5.addView(new Space(this.D), c8.ha.o(12, -1));
             hq0 hq0Var3 = new hq0(this);
             this.f41537v5 = hq0Var3;
-            hq0Var3.f55948q0 = true;
+            hq0Var3.f55949q0 = true;
             hq0Var3.setRad(18);
             this.f41537v5.setRestoreState(false);
             this.f41537v5.setOnClickListener(new dn0(this, 16));
@@ -2594,7 +2594,7 @@ public class PhotoViewer implements org.telegram.messenger.ls, org.telegram.ui.C
             hq0Var4.setUndoState(false);
             this.f41547w5.setRad(18);
             hq0 hq0Var5 = this.f41547w5;
-            hq0Var5.f55948q0 = true;
+            hq0Var5.f55949q0 = true;
             hq0Var5.setOnClickListener(new dn0(this, 17));
             this.f41384e0.addView(this.f41547w5, c8.ha.e(-2, 36, 17));
             hq0 hq0Var6 = new hq0(this);
@@ -2602,7 +2602,7 @@ public class PhotoViewer implements org.telegram.messenger.ls, org.telegram.ui.C
             hq0Var6.setOutlineState(false);
             this.f41557x5.setRad(18);
             hq0 hq0Var7 = this.f41557x5;
-            hq0Var7.f55948q0 = true;
+            hq0Var7.f55949q0 = true;
             hq0Var7.setOnClickListener(new dn0(this, 18));
             this.f41384e0.addView(this.f41557x5, c8.ha.e(-2, 36, 17));
             T2(false, false);
@@ -5713,7 +5713,7 @@ public class PhotoViewer implements org.telegram.messenger.ls, org.telegram.ui.C
         int i7 = 0;
         this.D2 = false;
         ti.o oVar = this.O8;
-        if (oVar != null && oVar.f56124c == 0) {
+        if (oVar != null && oVar.f56125c == 0) {
             this.O8 = null;
             oVar.f();
         }
@@ -6956,7 +6956,7 @@ public class PhotoViewer implements org.telegram.messenger.ls, org.telegram.ui.C
         ti.o oVar;
         ti.i iVar;
         RectF rectF = new RectF();
-        if (!z9 && (oVar = this.O8) != null && (iVar = oVar.f56125e) != null) {
+        if (!z9 && (oVar = this.O8) != null && (iVar = oVar.f56126e) != null) {
             iVar.g(rectF);
         } else {
             ro0 ro0Var = this.W8;
@@ -7260,7 +7260,7 @@ public class PhotoViewer implements org.telegram.messenger.ls, org.telegram.ui.C
                         e1();
                         float L2 = g12 - org.telegram.messenger.g0.L(20.0f);
                         tg.c2 c2Var = this.f41474o5;
-                        if (c2Var != null && c2Var.f55601i0 && c2Var.getSourceBitmap() != null) {
+                        if (c2Var != null && c2Var.f55602i0 && c2Var.getSourceBitmap() != null) {
                             canvas.save();
                             canvas.translate(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f);
                             canvas.scale(createBitmap.getWidth() / L2, createBitmap.getHeight() / L2);
@@ -7476,9 +7476,9 @@ public class PhotoViewer implements org.telegram.messenger.ls, org.telegram.ui.C
                             this.f41492q5 = new ArrayList();
                         }
                         if (this.f41492q5.isEmpty()) {
-                            String str6 = this.f41474o5.f55593c0;
+                            String str6 = this.f41474o5.f55594c0;
                             if (str6 != null && org.telegram.messenger.i6.g(str6) != null) {
-                                this.f41492q5.add(this.f41474o5.f55593c0);
+                                this.f41492q5.add(this.f41474o5.f55594c0);
                             } else if (str != null) {
                                 this.f41492q5.add(str);
                             } else {
@@ -7577,7 +7577,7 @@ public class PhotoViewer implements org.telegram.messenger.ls, org.telegram.ui.C
             } else {
                 z9 = false;
             }
-            LinearLayout linearLayout = up0Var.f55671g1;
+            LinearLayout linearLayout = up0Var.f55672g1;
             boolean z10 = !z9;
             if (up0Var.H1 != z10) {
                 up0Var.H1 = z10;
@@ -8405,17 +8405,17 @@ public class PhotoViewer implements org.telegram.messenger.ls, org.telegram.ui.C
         up0 up0Var = this.L1;
         Activity activity = this.D;
         cn0 cn0Var = new cn0(this, 1);
-        if (up0Var.f55694u1) {
+        if (up0Var.f55695u1) {
             up0Var.w0(false);
         } else if (up0Var.P1) {
             up0Var.k0(true);
         } else if (up0Var.C0 && up0Var.B0 != null) {
             up0Var.r0(null, true);
-        } else if (up0Var.f55681o0.a()) {
+        } else if (up0Var.f55682o0.a()) {
             if (activity == null) {
                 return;
             }
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, activity, up0Var.f55704z1);
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, activity, up0Var.f55705z1);
             String M0 = org.telegram.messenger.id.M0(2131747279, null);
             org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
             u1Var.T = M0;

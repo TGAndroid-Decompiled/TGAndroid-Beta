@@ -87,7 +87,7 @@ public final class l9 implements ValueAnimator.AnimatorUpdateListener {
             case 6:
                 te.c cVar = (te.c) obj;
                 if (cVar.h) {
-                    DecelerateInterpolator decelerateInterpolator = se.a.f55004a;
+                    DecelerateInterpolator decelerateInterpolator = se.a.f55005a;
                     float animatedFraction = valueAnimator.getAnimatedFraction();
                     cVar.d((f10 * animatedFraction) + f11, animatedFraction);
                     return;
@@ -97,9 +97,9 @@ public final class l9 implements ValueAnimator.AnimatorUpdateListener {
                 vg.e eVar = (vg.e) obj;
                 eVar.getClass();
                 float floatValue6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                vg.f fVar = eVar.f57362a;
+                vg.f fVar = eVar.f57363a;
                 fVar.d = f11 * floatValue6;
-                fVar.f57379i = f10 * floatValue6;
+                fVar.f57380i = f10 * floatValue6;
                 return;
         }
     }

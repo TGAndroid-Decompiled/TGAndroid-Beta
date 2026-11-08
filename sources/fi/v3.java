@@ -210,18 +210,18 @@ public final class v3 implements ValueAnimator.AnimatorUpdateListener {
             case 25:
                 tg.h1 h1Var = (tg.h1) this.f12919b;
                 h1Var.getClass();
-                h1Var.f55718n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                h1Var.f55719n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 h1Var.invalidate();
                 return;
             case 26:
                 tg.o1 o1Var = (tg.o1) this.f12919b;
                 o1Var.getClass();
-                o1Var.f55892y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                o1Var.f55893y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 o1Var.invalidate();
                 return;
             case 27:
                 sg.i iVar = (sg.i) this.f12919b;
-                iVar.f55892y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                iVar.f55893y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 iVar.invalidate();
                 return;
             case 28:
@@ -233,11 +233,11 @@ public final class v3 implements ValueAnimator.AnimatorUpdateListener {
                 tg.i2 i2Var = (tg.i2) this.f12919b;
                 float floatValue8 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 i2Var.D = floatValue8;
-                bi.t tVar = i2Var.f55757c;
+                bi.t tVar = i2Var.f55758c;
                 tVar.setAlpha(floatValue8);
                 tVar.setScaleX(org.telegram.messenger.g0.T1(0.9f, 1.0f, i2Var.D));
                 tVar.setScaleY(org.telegram.messenger.g0.T1(0.9f, 1.0f, i2Var.D));
-                i2Var.f55756b.invalidate();
+                i2Var.f55757b.invalidate();
                 return;
         }
     }

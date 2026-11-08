@@ -14,7 +14,7 @@ public abstract class t40 extends FrameLayout {
     public static boolean e(int i7) {
         xi.a aVar = xi.e.d;
         aVar.a();
-        if (aVar.f58849c) {
+        if (aVar.f58850c) {
             aVar.a();
             return aVar.d;
         } else if (!((org.telegram.messenger.h0) org.telegram.messenger.qp.s1(i7).f24942x7.f24441g0.f13889b).f22780c) {

@@ -349,7 +349,7 @@ public final class k implements bj0 {
                 y1 y1Var = z1Var.f13236c;
                 if (i7 >= 0) {
                     z1Var.d.getClass();
-                    if (RecyclerView.U(view).f57047f != 4) {
+                    if (RecyclerView.U(view).f57048f != 4) {
                         ArrayList arrayList2 = y1Var.f13149s;
                         ArrayList arrayList3 = y1Var.f13150w;
                         if (i7 < arrayList2.size()) {
@@ -390,11 +390,11 @@ public final class k implements bj0 {
             case 10:
                 x9 x9Var = (x9) obj;
                 sg.b0 b0Var = (sg.b0) sg.b0.c().get(i7);
-                x9Var.U0.setTypeface(b0Var.f55017a);
+                x9Var.U0.setTypeface(b0Var.f55018a);
                 sg.l0 e10 = sg.l0.e(x9Var.f12538o1);
-                String str2 = b0Var.f55017a;
-                e10.f55133j = str2;
-                e10.f55126a.edit().putString("typeface", str2).apply();
+                String str2 = b0Var.f55018a;
+                e10.f55134j = str2;
+                e10.f55127a.edit().putString("typeface", str2).apply();
                 tg.j jVar = x9Var.f12545s0;
                 if (jVar instanceof tg.k2) {
                     ((tg.k2) jVar).setTypeface(b0Var);
@@ -558,7 +558,7 @@ public final class k implements bj0 {
                 }
             case 18:
                 pg.j jVar2 = (pg.j) obj;
-                Runnable runnable = ((pg.a) jVar2.E.get(i7)).f53599c;
+                Runnable runnable = ((pg.a) jVar2.E.get(i7)).f53600c;
                 if (runnable != null) {
                     runnable.run();
                     jVar2.c(false);
@@ -568,11 +568,11 @@ public final class k implements bj0 {
             case 19:
                 up0 up0Var = (up0) obj;
                 sg.b0 b0Var2 = (sg.b0) sg.b0.c().get(i7);
-                up0Var.f55668d1.setTypeface(b0Var2.f55017a);
-                sg.l0 e11 = sg.l0.e(up0Var.f55702y1);
-                String str3 = b0Var2.f55017a;
-                e11.f55133j = str3;
-                e11.f55126a.edit().putString("typeface", str3).apply();
+                up0Var.f55669d1.setTypeface(b0Var2.f55018a);
+                sg.l0 e11 = sg.l0.e(up0Var.f55703y1);
+                String str3 = b0Var2.f55018a;
+                e11.f55134j = str3;
+                e11.f55127a.edit().putString("typeface", str3).apply();
                 tg.j jVar3 = up0Var.B0;
                 if (jVar3 instanceof tg.k2) {
                     ((tg.k2) jVar3).setTypeface(b0Var2);
@@ -581,14 +581,14 @@ public final class k implements bj0 {
                 return;
             case 20:
                 tg.y0 y0Var = (tg.y0) obj;
-                y0Var.f56010i3.accept(Integer.valueOf(y0Var.f56009h3.b(i7)));
-                sg.l0 l0Var = y0Var.f56009h3;
-                l0Var.f55128c.put(Integer.valueOf(l0Var.f55130f), Integer.valueOf(l0Var.b(i7)));
-                l0Var.f55129e = true;
+                y0Var.f56011i3.accept(Integer.valueOf(y0Var.f56010h3.b(i7)));
+                sg.l0 l0Var = y0Var.f56010h3;
+                l0Var.f55129c.put(Integer.valueOf(l0Var.f55131f), Integer.valueOf(l0Var.b(i7)));
+                l0Var.f55130e = true;
                 return;
             case 21:
                 ug.i0 i0Var2 = (ug.i0) obj;
-                HashSet hashSet = i0Var2.f56618q2;
+                HashSet hashSet = i0Var2.f56619q2;
                 if (view instanceof org.telegram.ui.Cells.n) {
                     org.telegram.ui.Cells.n nVar2 = (org.telegram.ui.Cells.n) view;
                     TLRPC.Chat currentChannel = nVar2.getCurrentChannel();
@@ -641,7 +641,7 @@ public final class k implements bj0 {
                 ug.s0 s0Var2 = (ug.s0) obj;
                 if (view != null) {
                     s0Var2.z1(view, true);
-                    s0Var2.f56651k3 = false;
+                    s0Var2.f56652k3 = false;
                     s0Var2.w0(0, view.getTop() - ((s0Var2.getMeasuredHeight() - view.getMeasuredHeight()) / 2), org.telegram.messenger.g0.H);
                     return;
                 }

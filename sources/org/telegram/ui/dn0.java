@@ -388,7 +388,7 @@ public final class dn0 implements View.OnClickListener {
                 PhotoViewer photoViewer18 = this.f45114b;
                 tp0 tp0Var3 = photoViewer18.N1;
                 if (tp0Var3 != null) {
-                    sg.m1 m1Var = tp0Var3.f55872b;
+                    sg.m1 m1Var = tp0Var3.f55873b;
                     if (m1Var.a()) {
                         m1Var.c();
                         return;

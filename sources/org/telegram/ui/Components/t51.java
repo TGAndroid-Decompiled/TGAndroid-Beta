@@ -686,7 +686,7 @@ public class t51 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.ls {
                 str5 = queryParameter;
             }
             v4.v0 v0Var = new v4.v0(this.Q, str5, i7);
-            v0Var.f57181g = str2;
+            v0Var.f57182g = str2;
             v0Var.h = str3;
             return new g7.c(new wf.e(v0Var));
         }
@@ -718,12 +718,12 @@ public class t51 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.ls {
                     str4 = "video/mp4";
                 }
                 v4.v0 v0Var2 = new v4.v0(r51Var.d, str4, sb3);
-                v0Var2.f57181g = str2;
+                v0Var2.f57182g = str2;
                 v0Var2.h = str3;
                 int i12 = r51Var.f37527i;
                 int i13 = r51Var.f37528j;
-                v0Var2.f57176a = i12;
-                v0Var2.f57177b = i13;
+                v0Var2.f57177a = i12;
+                v0Var2.f57178b = i13;
                 arrayList.add(new wf.e(v0Var2));
                 arrayList2 = arrayList4;
             }
@@ -826,7 +826,7 @@ public class t51 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.ls {
         try {
             l2.i0 i0Var = this.d;
             i0Var.F1();
-            MediaFormat mediaFormat = ((u2.r) i0Var.f17862g[0]).f56283f0;
+            MediaFormat mediaFormat = ((u2.r) i0Var.f17862g[0]).f56284f0;
             ByteBuffer byteBuffer = mediaFormat.getByteBuffer("hdr-static-info");
             byteBuffer.order(ByteOrder.LITTLE_ENDIAN);
             if (byteBuffer.get() == 0) {
@@ -1230,17 +1230,17 @@ public class t51 implements e2.a1, e2.w1, m2.b, org.telegram.messenger.ls {
                     l0Var2.f10350b.getClass();
                     if (this.f2667b == null) {
                         ?? obj2 = new Object();
-                        obj2.f54285a = new s(5, false);
-                        obj2.f54287c = 3;
+                        obj2.f54286a = new s(5, false);
+                        obj2.f54288c = 3;
                         this.f2667b = obj2;
                     }
                     s sVar = this.f2668c;
                     if (sVar != null) {
-                        this.f2667b.f54285a = sVar;
+                        this.f2667b.f54286a = sVar;
                     }
                     c cVar = this.f2667b;
-                    cVar.f54286b = this.d;
-                    cVar.f54287c = this.f2669e;
+                    cVar.f54287b = this.d;
+                    cVar.f54288c = this.f2669e;
                     List list2 = l0Var2.f10350b.f10262e;
                     boolean isEmpty = list2.isEmpty();
                     t tVar = this.f2670f;

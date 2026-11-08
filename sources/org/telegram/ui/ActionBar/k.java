@@ -1127,9 +1127,9 @@ public class k extends FrameLayout implements te.b, a6, s4 {
         te.c cVar = this.l1;
         if (z9) {
             if (cVar.h) {
-                f10 = cVar.f55493g;
+                f10 = cVar.f55494g;
             } else {
-                f10 = cVar.f55492f;
+                f10 = cVar.f55493f;
             }
             float f11 = min;
             if (f10 != f11) {
@@ -1192,9 +1192,9 @@ public class k extends FrameLayout implements te.b, a6, s4 {
         this.f27682o1.a(z9, this.f27694t1);
         te.c cVar = this.n1;
         if (cVar.h) {
-            f10 = cVar.f55493g;
+            f10 = cVar.f55494g;
         } else {
-            f10 = cVar.f55492f;
+            f10 = cVar.f55493f;
         }
         float f11 = max;
         if (f10 != f11) {

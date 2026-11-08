@@ -8,13 +8,13 @@ public final class c implements ke.a {
     @Override
     public final void a(qe.h hVar, Object obj) {
         double doubleValue = ((Number) obj).doubleValue();
-        ca.i iVar = (ca.i) hVar.f54097b;
-        if (hVar.f54096a) {
+        ca.i iVar = (ca.i) hVar.f54098b;
+        if (hVar.f54097a) {
             hVar.j(String.valueOf(doubleValue));
         } else {
             ((mc.a) iVar.f6016c).c(String.valueOf(doubleValue));
         }
-        ((p0) hVar.f54100f).getClass();
+        ((p0) hVar.f54101f).getClass();
         if (!Double.isInfinite(doubleValue) && !Double.isNaN(doubleValue)) {
             return;
         }
@@ -30,7 +30,7 @@ public final class c implements ke.a {
         String k10 = kVar.k();
         try {
             double parseDouble = Double.parseDouble(k10);
-            ((pe.b) decoder.f14058b).f53576a.getClass();
+            ((pe.b) decoder.f14058b).f53577a.getClass();
             if (!Double.isInfinite(parseDouble) && !Double.isNaN(parseDouble)) {
                 return Double.valueOf(parseDouble);
             }

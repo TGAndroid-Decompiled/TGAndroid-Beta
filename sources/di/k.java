@@ -210,7 +210,7 @@ public final class k extends v4.m0 {
                 xi0 xi0Var3 = (xi0) recyclerView.T(view);
                 if (xi0Var3 != null) {
                     int i15 = 0;
-                    if (xi0Var3.f57047f != 5) {
+                    if (xi0Var3.f57048f != 5) {
                         rect.right = 0;
                         rect.left = 0;
                         return;

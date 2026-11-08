@@ -126,7 +126,7 @@ public final class eh extends pj0 {
                     canvas.saveLayer(L, getPaddingTop(), org.telegram.messenger.g0.L(19.0f), getMeasuredHeight() - getPaddingBottom(), null);
                     super.drawChild(canvas, view, j3);
                     canvas.save();
-                    canvas.translate(com.google.android.recaptcha.internal.a.v(1.0f, ((te.a) this.j3).f55486e, org.telegram.messenger.g0.L(8.0f), L), 0.0f);
+                    canvas.translate(com.google.android.recaptcha.internal.a.v(1.0f, ((te.a) this.j3).f55487e, org.telegram.messenger.g0.L(8.0f), L), 0.0f);
                     canvas.drawPaint(this.f33287f3);
                     canvas.restore();
                     canvas.restore();
@@ -136,7 +136,7 @@ public final class eh extends pj0 {
                     canvas.saveLayer(measuredWidth, getPaddingTop(), getMeasuredWidth() - org.telegram.messenger.g0.L(11.0f), getMeasuredHeight() - getPaddingBottom(), null);
                     super.drawChild(canvas, view, j3);
                     canvas.save();
-                    canvas.translate(com.google.android.recaptcha.internal.a.z(1.0f, ((te.a) this.f33291k3).f55486e, org.telegram.messenger.g0.L(8.0f), measuredWidth), 0.0f);
+                    canvas.translate(com.google.android.recaptcha.internal.a.z(1.0f, ((te.a) this.f33291k3).f55487e, org.telegram.messenger.g0.L(8.0f), measuredWidth), 0.0f);
                     canvas.drawPaint(this.f33288g3);
                     canvas.restore();
                     canvas.restore();

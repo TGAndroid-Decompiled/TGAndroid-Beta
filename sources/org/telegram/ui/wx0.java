@@ -15,7 +15,7 @@ public final class wx0 extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57047f;
+        int i7 = d1Var.f57048f;
         if (i7 != 3 && i7 != 2) {
             return false;
         }
@@ -66,7 +66,7 @@ public final class wx0 extends org.telegram.ui.Components.oj0 {
         i10 = ((org.telegram.ui.ActionBar.f2) ay0Var).currentAccount;
         boolean contains = str.contains(org.telegram.messenger.ui.b0(i10).Q());
         i11 = ((org.telegram.ui.ActionBar.f2) ay0Var).currentAccount;
-        ((org.telegram.ui.Cells.x) d1Var.f57043a).a(tL_availableReaction, contains, i11);
+        ((org.telegram.ui.Cells.x) d1Var.f57044a).a(tL_availableReaction, contains, i11);
     }
 
     @Override

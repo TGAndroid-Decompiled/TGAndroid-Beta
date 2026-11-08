@@ -41,23 +41,23 @@ public final class f {
             if (g0Var.d <= j3) {
                 g0 g0Var2 = this.d;
                 if (g0Var2 != null) {
-                    int i7 = g0Var2.f58330b;
-                    int b10 = l1Var.b(g0Var.f58329a);
-                    int b11 = l1Var.b(g0Var2.f58329a);
+                    int i7 = g0Var2.f58331b;
+                    int b10 = l1Var.b(g0Var.f58330a);
+                    int b11 = l1Var.b(g0Var2.f58330a);
                     if (g0Var.d >= g0Var2.d && b10 >= b11) {
                         if (b10 <= b11) {
                             if (g0Var.b()) {
-                                int i10 = g0Var.f58330b;
-                                int i11 = g0Var.f58331c;
+                                int i10 = g0Var.f58331b;
+                                int i11 = g0Var.f58332c;
                                 if (i10 <= i7) {
-                                    if (i10 == i7 && i11 > g0Var2.f58331c) {
+                                    if (i10 == i7 && i11 > g0Var2.f58332c) {
                                         return true;
                                     }
                                     return false;
                                 }
                                 return true;
                             }
-                            int i12 = g0Var.f58332e;
+                            int i12 = g0Var.f58333e;
                             if (i12 == -1 || i12 > i7) {
                                 return true;
                             }

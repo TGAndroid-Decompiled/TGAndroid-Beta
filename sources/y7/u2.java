@@ -1,15 +1,15 @@
 package y7;
 public final class u2 implements na.d {
-    public static final u2 f59166a = new Object();
-    public static final na.c f59167b = new na.c("identifyLanguageConfidenceThreshold", jg.g.q(rf.b.k(h.class, new e(1))));
-    public static final na.c f59168c = new na.c("identifyAllLanguagesConfidenceThreshold", jg.g.q(rf.b.k(h.class, new e(2))));
+    public static final u2 f59167a = new Object();
+    public static final na.c f59168b = new na.c("identifyLanguageConfidenceThreshold", jg.g.q(rf.b.k(h.class, new e(1))));
+    public static final na.c f59169c = new na.c("identifyAllLanguagesConfidenceThreshold", jg.g.q(rf.b.k(h.class, new e(2))));
     public static final na.c d = new na.c("confidenceThreshold", jg.g.q(rf.b.k(h.class, new e(3))));
 
     @Override
     public final void a(Object obj, Object obj2) {
         na.e eVar = (na.e) obj2;
-        eVar.a(f59167b, null);
-        eVar.a(f59168c, null);
-        eVar.a(d, ((j6) obj).f59074a);
+        eVar.a(f59168b, null);
+        eVar.a(f59169c, null);
+        eVar.a(d, ((j6) obj).f59075a);
     }
 }

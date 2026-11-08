@@ -2,6 +2,10 @@ package gb;
 public final class u implements ib.b {
     public final int f13758a;
 
+    public u(int i7) {
+        this.f13758a = i7;
+    }
+
     public java.lang.Object a(va.d r9, kd.c r10) {
         throw new UnsupportedOperationException("Method not decompiled: gb.u.a(va.d, kd.c):java.lang.Object");
     }

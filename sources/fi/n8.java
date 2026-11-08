@@ -106,7 +106,7 @@ public final class n8 extends FrameLayout implements View.OnClickListener, ls {
         i8Var.n(350L);
         i8Var.o(xq.h);
         i8Var.C = false;
-        i8Var.f57070m = false;
+        i8Var.f57071m = false;
         pj0Var.setItemAnimator(i8Var);
         frameLayout.addView(g8Var, c8.ha.e(-1, -2, 55));
         frameLayout.addView(x3Var, c8.ha.e(-1, 32, 55));
@@ -895,7 +895,7 @@ public final class n8 extends FrameLayout implements View.OnClickListener, ls {
             float c10 = c();
             if (s8Var.d && c10 + Math.min(org.telegram.messenger.g0.L(150.0f), this.f12495y.K) > pj0Var.getPaddingTop()) {
                 mi.m mVar = new mi.m(getContext(), 2, 0.7f);
-                mVar.f57212a = 1;
+                mVar.f57213a = 1;
                 mVar.f20111p = -org.telegram.messenger.g0.L(56.0f);
                 this.h.w0(mVar);
             }

@@ -24,7 +24,7 @@ public final class fu implements org.telegram.ui.Components.oo0, org.telegram.ui
         i0.b I0 = org.telegram.messenger.g0.I0(k1Var, false);
         wwVar.f51560e4 = I0.f15121b;
         wwVar.f51566f4 = I0.d;
-        int i7 = k1Var.f54201a.f(8).d;
+        int i7 = k1Var.f54202a.f(8).d;
         if (wwVar.f51571g4 != i7) {
             wwVar.f51571g4 = i7;
             wwVar.fragmentView.requestLayout();
@@ -45,7 +45,7 @@ public final class fu implements org.telegram.ui.Components.oo0, org.telegram.ui
         if (svVar != null) {
             r0.i0.b(svVar, k1Var);
         }
-        return r0.k1.f54200b;
+        return r0.k1.f54201b;
     }
 
     @Override

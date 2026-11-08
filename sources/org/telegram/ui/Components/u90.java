@@ -68,9 +68,9 @@ public final class u90 extends v4.t {
                 return false;
             default:
                 fi.e5 e5Var = (fi.e5) this.T;
-                ArrayList arrayList3 = e5Var.f55963s0;
+                ArrayList arrayList3 = e5Var.f55964s0;
                 int size3 = (arrayList3.size() - 1) - i7;
-                org.telegram.messenger.dj djVar = e5Var.f55964t0;
+                org.telegram.messenger.dj djVar = e5Var.f55965t0;
                 if (djVar != null && size3 >= 0 && size3 < arrayList3.size() && (d = djVar.d((org.telegram.messenger.ij) arrayList3.get(size3))) != null && d.f21441a != d.f21442b && (b12 = d.f21443c) == d.d && b12 != 0) {
                     int size4 = djVar.f22037e.size();
                     for (int i12 = 0; i12 < size4; i12++) {

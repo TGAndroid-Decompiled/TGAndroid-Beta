@@ -1116,7 +1116,7 @@ public final class gz extends org.telegram.ui.ActionBar.f2 {
         this.f46161a.setOnItemClickListener(new h(this, 10));
         this.f46161a.setOnItemLongClickListener(new jy(this, 0));
         v4.k kVar = new v4.k();
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         kVar.C = false;
         kVar.o(org.telegram.ui.Components.xq.h);
         kVar.n(350L);
@@ -1157,7 +1157,7 @@ public final class gz extends org.telegram.ui.ActionBar.f2 {
     }
 
     public final boolean n0(boolean z9) {
-        if (this.f46163c.f27357x.f55487f) {
+        if (this.f46163c.f27357x.f55488f) {
             if (z9) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
                 boolean z10 = this.f46168s;

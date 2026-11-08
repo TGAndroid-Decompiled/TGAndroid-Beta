@@ -106,7 +106,7 @@ public final class by0 implements Runnable {
                 org.telegram.ui.ActionBar.k6.w1();
                 org.telegram.ui.Components.pj0 pj0Var = themeActivity2.f42013b;
                 if (pj0Var != null && (xi0Var = (org.telegram.ui.Components.xi0) pj0Var.K(themeActivity2.Y)) != null) {
-                    View view2 = xi0Var.f57043a;
+                    View view2 = xi0Var.f57044a;
                     if (view2 instanceof org.telegram.ui.Cells.w9) {
                         ((org.telegram.ui.Cells.w9) view2).c(org.telegram.messenger.id.M0(2131753781, "AutoNightUpdateLocation"), org.telegram.ui.ActionBar.k6.f28199w, false, false);
                         return;

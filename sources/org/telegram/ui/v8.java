@@ -282,7 +282,7 @@ public final class v8 extends org.telegram.ui.Components.rt0 {
                     i14 = 0;
                 }
                 layoutParams2.topMargin = org.telegram.messenger.g0.L(47.0f) + currentActionBarHeight2 + i14;
-                FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) l3Var.f60450n.getLayoutParams();
+                FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) l3Var.f60451n.getLayoutParams();
                 int currentActionBarHeight3 = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
                 if (zh.l3.g0(l3Var).getOccupyStatusBar()) {
                     i15 = org.telegram.messenger.g0.f22557m;
@@ -290,7 +290,7 @@ public final class v8 extends org.telegram.ui.Components.rt0 {
                     i15 = 0;
                 }
                 layoutParams3.topMargin = currentActionBarHeight3 + i15;
-                FrameLayout.LayoutParams layoutParams4 = (FrameLayout.LayoutParams) l3Var.f60454x.getLayoutParams();
+                FrameLayout.LayoutParams layoutParams4 = (FrameLayout.LayoutParams) l3Var.f60455x.getLayoutParams();
                 int currentActionBarHeight4 = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
                 if (zh.l3.h0(l3Var).getOccupyStatusBar()) {
                     i20 = org.telegram.messenger.g0.f22557m;

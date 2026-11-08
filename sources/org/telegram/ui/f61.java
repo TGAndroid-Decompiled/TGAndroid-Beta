@@ -23,7 +23,7 @@ public final class f61 extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57047f;
+        int i7 = d1Var.f57048f;
         if (i7 == 0 || i7 == 1 || i7 == 4 || i7 == 7 || i7 == 10 || i7 == 11 || i7 == 12 || i7 == 14 || i7 == 18 || i7 == 20 || i7 == 21) {
             return true;
         }
@@ -173,8 +173,8 @@ public final class f61 extends org.telegram.ui.Components.oj0 {
         int i22;
         String M03;
         String M04;
-        int i23 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i23 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         ThemeActivity themeActivity = this.f45466e;
         boolean z10 = false;
         boolean z11 = true;
@@ -752,8 +752,8 @@ public final class f61 extends org.telegram.ui.Components.oj0 {
     @Override
     public final void y(v4.d1 d1Var) {
         boolean z9;
-        if (d1Var.f57047f == 4) {
-            org.telegram.ui.Cells.aa aaVar = (org.telegram.ui.Cells.aa) d1Var.f57043a;
+        if (d1Var.f57048f == 4) {
+            org.telegram.ui.Cells.aa aaVar = (org.telegram.ui.Cells.aa) d1Var.f57044a;
             if (d1Var.b() == org.telegram.ui.ActionBar.k6.f28046o) {
                 z9 = true;
             } else {

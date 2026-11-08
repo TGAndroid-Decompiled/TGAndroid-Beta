@@ -416,13 +416,13 @@ public final class vn implements Runnable {
                 boolean z25 = this.f50704b;
                 p4.v vVar = (p4.v) this.d;
                 Runnable runnable = (Runnable) this.f50706e;
-                p4.c1 c1Var = d0Var.f53205g;
+                p4.c1 c1Var = d0Var.f53206g;
                 if (z25) {
                     p4.i1 i1Var = new p4.i1("androidx.media3.session.NOTIFICATION_DISMISSED_EVENT_KEY", Bundle.EMPTY);
                     try {
-                        com.google.android.gms.common.api.internal.s C = c1Var.f53183b.C(vVar);
+                        com.google.android.gms.common.api.internal.s C = c1Var.f53184b.C(vVar);
                         if (C != null) {
-                            i11 = C.b(p4.d0.B).f53290n;
+                            i11 = C.b(p4.d0.B).f53291n;
                         } else if (!d0Var.h(vVar)) {
                             c8.s9.b(new p4.m1(-100));
                         } else {
@@ -434,7 +434,7 @@ public final class vn implements Runnable {
                             uVar.j(i11, i1Var);
                         }
                     } catch (DeadObjectException unused) {
-                        c1Var.f53183b.T(vVar);
+                        c1Var.f53184b.T(vVar);
                         c8.s9.b(new p4.m1(-100));
                     } catch (RemoteException e10) {
                         h2.a.m("MediaSessionImpl", "Exception in " + vVar, e10);
@@ -442,13 +442,13 @@ public final class vn implements Runnable {
                     }
                 }
                 runnable.run();
-                c1Var.f53183b.q(vVar);
+                c1Var.f53184b.q(vVar);
                 return;
             case 16:
                 sg.j0 j0Var = (sg.j0) this.f50705c;
                 boolean z26 = this.f50704b;
-                j0Var.f55089f.f(new sg.g0(j0Var, (a8.wa) this.d, 0));
-                j0Var.f55089f.f(new sg.g0(j0Var, (a8.wa) this.f50706e, 0));
+                j0Var.f55090f.f(new sg.g0(j0Var, (a8.wa) this.d, 0));
+                j0Var.f55090f.f(new sg.g0(j0Var, (a8.wa) this.f50706e, 0));
                 j0Var.E = z26;
                 return;
             case 17:
@@ -485,13 +485,13 @@ public final class vn implements Runnable {
                 wi.x xVar = (wi.x) this.d;
                 boolean z28 = this.f50704b;
                 wi.p0 p0Var = (wi.p0) this.f50706e;
-                long j10 = t0Var.f58207q;
+                long j10 = t0Var.f58208q;
                 long nanoTime = System.nanoTime();
                 try {
                     xVar.g();
                     h = xVar.h();
-                    r12 = t0Var.f58203m;
-                    r12.b("active output finalized: size=" + xVar.f58238a.length() + ", durationMs=" + h + ", elapsedMs=" + wi.t0.f(nanoTime));
+                    r12 = t0Var.f58204m;
+                    r12.b("active output finalized: size=" + xVar.f58239a.length() + ", durationMs=" + h + ", elapsedMs=" + wi.t0.f(nanoTime));
                     t0Var.g();
                     if (h > j10) {
                         z10 = true;
@@ -504,17 +504,17 @@ public final class vn implements Runnable {
                 }
                 try {
                     if (z28 && !z10) {
-                        File file2 = xVar.f58238a;
-                        ?? r02 = t0Var.f58201k;
+                        File file2 = xVar.f58239a;
+                        ?? r02 = t0Var.f58202k;
                         ?? g0Var = new wi.g0(t0Var, p0Var, file2, h, true);
                         r02.execute(g0Var);
                         t0Var = g0Var;
                     } else {
-                        File file3 = xVar.f58238a;
+                        File file3 = xVar.f58239a;
                         try {
                             synchronized (xVar) {
                                 try {
-                                    i14 = xVar.f58254s;
+                                    i14 = xVar.f58255s;
                                 } finally {
                                     th = th;
                                     File file4 = file3;
@@ -548,7 +548,7 @@ public final class vn implements Runnable {
                     return;
                 } catch (Exception e12) {
                     e = e12;
-                    r12.f58199i.post(new wi.e0(r12, e, 2));
+                    r12.f58200i.post(new wi.e0(r12, e, 2));
                     return;
                 }
         }

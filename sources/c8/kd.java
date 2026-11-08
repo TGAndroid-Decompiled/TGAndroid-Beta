@@ -107,13 +107,13 @@ public abstract class kd {
                 }
                 mediaCodec3.releaseOutputBuffer(dequeueOutputBuffer, z14);
                 if (z14) {
-                    synchronized (v0Var.f58225b) {
+                    synchronized (v0Var.f58226b) {
                         long elapsedRealtime2 = SystemClock.elapsedRealtime() + 2500;
-                        while (!v0Var.f58234m) {
+                        while (!v0Var.f58235m) {
                             long elapsedRealtime3 = elapsedRealtime2 - SystemClock.elapsedRealtime();
                             if (elapsedRealtime3 > j13) {
                                 try {
-                                    v0Var.f58225b.wait(elapsedRealtime3);
+                                    v0Var.f58226b.wait(elapsedRealtime3);
                                     j13 = 0;
                                 } catch (InterruptedException e10) {
                                     Thread.currentThread().interrupt();
@@ -123,17 +123,17 @@ public abstract class kd {
                                 throw new IOException("Decoded frame did not arrive");
                             }
                         }
-                        v0Var.f58234m = false;
+                        v0Var.f58235m = false;
                     }
-                    v0Var.f58232k.updateTexImage();
-                    v0Var.f58232k.getTransformMatrix(v0Var.f58226c);
-                    int i15 = v0Var.f58224a;
+                    v0Var.f58233k.updateTexImage();
+                    v0Var.f58233k.getTransformMatrix(v0Var.f58227c);
+                    int i15 = v0Var.f58225a;
                     GLES20.glViewport(0, 0, i15, i15);
-                    GLES20.glUseProgram(v0Var.f58230i);
+                    GLES20.glUseProgram(v0Var.f58231i);
                     GLES20.glActiveTexture(33984);
-                    GLES20.glBindTexture(36197, v0Var.f58231j);
-                    int glGetAttribLocation = GLES20.glGetAttribLocation(v0Var.f58230i, "aPosition");
-                    int glGetAttribLocation2 = GLES20.glGetAttribLocation(v0Var.f58230i, "aTextureCoord");
+                    GLES20.glBindTexture(36197, v0Var.f58232j);
+                    int glGetAttribLocation = GLES20.glGetAttribLocation(v0Var.f58231i, "aPosition");
+                    int glGetAttribLocation2 = GLES20.glGetAttribLocation(v0Var.f58231i, "aTextureCoord");
                     FloatBuffer floatBuffer = v0Var.d;
                     floatBuffer.position(0);
                     GLES20.glVertexAttribPointer(glGetAttribLocation, 2, 5126, false, 16, (Buffer) v0Var.d);
@@ -142,10 +142,10 @@ public abstract class kd {
                     GLES20.glVertexAttribPointer(glGetAttribLocation2, 2, 5126, false, 16, (Buffer) v0Var.d);
                     GLES20.glEnableVertexAttribArray(glGetAttribLocation2);
                     z11 = true;
-                    GLES20.glUniformMatrix4fv(GLES20.glGetUniformLocation(v0Var.f58230i, "uTextureMatrix"), 1, false, v0Var.f58226c, 0);
+                    GLES20.glUniformMatrix4fv(GLES20.glGetUniformLocation(v0Var.f58231i, "uTextureMatrix"), 1, false, v0Var.f58227c, 0);
                     GLES20.glDrawArrays(5, 0, 4);
-                    EGLExt.eglPresentationTimeANDROID(v0Var.f58228f, v0Var.h, j15 * 1000);
-                    if (!EGL14.eglSwapBuffers(v0Var.f58228f, v0Var.h)) {
+                    EGLExt.eglPresentationTimeANDROID(v0Var.f58229f, v0Var.h, j15 * 1000);
+                    if (!EGL14.eglSwapBuffers(v0Var.f58229f, v0Var.h)) {
                         throw new IllegalStateException("eglSwapBuffers failed: 0x" + Integer.toHexString(EGL14.eglGetError()));
                     }
                 } else {

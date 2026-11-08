@@ -212,7 +212,7 @@ public final class a extends AnimatorListenerAdapter {
                 return;
             case 20:
                 org.telegram.ui.Cells.j jVar = (org.telegram.ui.Cells.j) this.f19053b;
-                ((ew0) jVar).f45380e0.f47047e.f41707c.f57015r = false;
+                ((ew0) jVar).f45380e0.f47047e.f41707c.f57016r = false;
                 FrameLayout frameLayout = jVar.J;
                 if (frameLayout.getBackground() == null) {
                     frameLayout.setBackground(jVar.K);
@@ -290,7 +290,7 @@ public final class a extends AnimatorListenerAdapter {
                 }
                 return;
             case 20:
-                ((ew0) ((org.telegram.ui.Cells.j) this.f19053b)).f45380e0.f47047e.f41707c.f57015r = true;
+                ((ew0) ((org.telegram.ui.Cells.j) this.f19053b)).f45380e0.f47047e.f41707c.f57016r = true;
                 return;
             default:
                 super.onAnimationStart(animator);

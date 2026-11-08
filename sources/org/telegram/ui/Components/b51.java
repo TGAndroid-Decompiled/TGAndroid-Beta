@@ -245,7 +245,7 @@ public abstract class b51 extends org.telegram.ui.ActionBar.v2 {
         if (q1Var.getChildCount() > 0) {
             v4.d1 K = q1Var.K(0);
             if (K != null) {
-                i7 = K.f57043a.getTop() - org.telegram.messenger.g0.L(8.0f);
+                i7 = K.f57044a.getTop() - org.telegram.messenger.g0.L(8.0f);
             } else {
                 i7 = 0;
             }

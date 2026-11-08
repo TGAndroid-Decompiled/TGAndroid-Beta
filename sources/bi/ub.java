@@ -373,20 +373,20 @@ public final class ub implements Runnable {
         p4.i1 i1Var = (p4.i1) this.d;
         q4.r rVar = (q4.r) this.f4841e;
         p4.l0 l0Var = (p4.l0) this.f4842f;
-        ui.e eVar = m0Var.f53363g;
+        ui.e eVar = m0Var.f53364g;
         if (!m0Var.h.j()) {
-            boolean isActive = ((q4.l) m0Var.f53369n.f53803b).f53785a.isActive();
+            boolean isActive = ((q4.l) m0Var.f53370n.f53804b).f53786a.isActive();
             int i7 = this.f4839b;
             if (!isActive) {
                 StringBuilder sb2 = new StringBuilder("Ignore incoming session command before initialization. command=");
                 if (i1Var == null) {
                     obj = Integer.valueOf(i7);
                 } else {
-                    obj = i1Var.f53308b;
+                    obj = i1Var.f53309b;
                 }
                 sb2.append(obj);
                 sb2.append(", pid=");
-                sb2.append(rVar.f53805a.f53807b);
+                sb2.append(rVar.f53806a.f53808b);
                 h2.a.l("MediaSessionLegacyStub", sb2.toString());
                 return;
             }
@@ -428,46 +428,46 @@ public final class ub implements Runnable {
             if (list.isEmpty()) {
                 tg.z1 z1Var = new tg.z1(c2Var);
                 z1Var.h.set(0.0f, 0.0f, c2Var.I.getWidth(), c2Var.I.getHeight());
-                z1Var.f56021i.set(z1Var.h);
-                matrix.mapRect(z1Var.f56021i);
-                z1Var.f56017c = i11;
+                z1Var.f56022i.set(z1Var.h);
+                matrix.mapRect(z1Var.f56022i);
+                z1Var.f56018c = i11;
                 Bitmap d = c2Var.d(0, 0, c2Var.I, false);
                 z1Var.d = d;
                 if (d == null) {
                     org.telegram.messenger.a8.g(new RuntimeException("createSmoothEdgesSegmentedImage failed on empty image"), true);
                     return;
                 }
-                z1Var.f56019f = z1Var.c();
+                z1Var.f56020f = z1Var.c();
                 tg.c2.c(z1Var, c2Var.T, c2Var.U);
-                c2Var.O = z1Var.f56022j;
-                c2Var.P = z1Var.f56023k;
+                c2Var.O = z1Var.f56023j;
+                c2Var.P = z1Var.f56024k;
                 arrayList.add(z1Var);
                 org.telegram.messenger.g0.h3(new jo0(c2Var, arrayList, jn0Var, z1Var, 27));
                 c2Var.E = z1Var;
                 c2Var.D = true;
-                c2Var.f55614y = false;
+                c2Var.f55615y = false;
                 return;
             }
             for (int i12 = 0; i12 < list.size(); i12++) {
                 tg.b2 b2Var = (tg.b2) list.get(i12);
                 tg.z1 z1Var2 = new tg.z1(c2Var);
-                z1Var2.h.set(b2Var.f55580b, b2Var.f55581c, i7 + b2Var.d, i10 + b2Var.f55582e);
-                z1Var2.f56021i.set(z1Var2.h);
-                matrix.mapRect(z1Var2.f56021i);
-                z1Var2.f56017c = i11;
-                Bitmap d2 = c2Var.d(b2Var.f55580b, b2Var.f55581c, b2Var.f55579a, false);
+                z1Var2.h.set(b2Var.f55581b, b2Var.f55582c, i7 + b2Var.d, i10 + b2Var.f55583e);
+                z1Var2.f56022i.set(z1Var2.h);
+                matrix.mapRect(z1Var2.f56022i);
+                z1Var2.f56018c = i11;
+                Bitmap d2 = c2Var.d(b2Var.f55581b, b2Var.f55582c, b2Var.f55580a, false);
                 z1Var2.d = d2;
                 if (d2 != null) {
-                    z1Var2.f56019f = z1Var2.c();
+                    z1Var2.f56020f = z1Var2.c();
                     tg.c2.c(z1Var2, c2Var.T, c2Var.U);
-                    c2Var.O = z1Var2.f56022j;
-                    c2Var.P = z1Var2.f56023k;
+                    c2Var.O = z1Var2.f56023j;
+                    c2Var.P = z1Var2.f56024k;
                     arrayList.add(z1Var2);
                 }
             }
             c2Var.E = null;
             c2Var.D = true;
-            c2Var.f55614y = false;
+            c2Var.f55615y = false;
             org.telegram.messenger.g0.h3(new org.telegram.ui.web.w(22, c2Var, arrayList));
         }
     }

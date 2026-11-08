@@ -39,7 +39,7 @@ public class FiltersSetupActivity extends org.telegram.ui.ActionBar.f2 implement
         c00 c00Var;
         ArrayList arrayList = filtersSetupActivity.f41241n;
         if (i7 >= 0 && i7 < arrayList.size() && (c00Var = (c00) arrayList.get(i7)) != null) {
-            int i10 = c00Var.f54531a;
+            int i10 = c00Var.f54532a;
             if (i10 == 6) {
                 if (!filtersSetupActivity.getUserConfig().q()) {
                     filtersSetupActivity.showDialog(new ug.w0((org.telegram.ui.ActionBar.f2) filtersSetupActivity, 35, true));
@@ -110,7 +110,7 @@ public class FiltersSetupActivity extends org.telegram.ui.ActionBar.f2 implement
         kVar.n(350L);
         kVar.o(org.telegram.ui.Components.xq.h);
         kVar.C = false;
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         this.f41236a.setItemAnimator(kVar);
         this.f41236a.setSectionsDrawBackground(true);
         ((v4.k) this.f41236a.getItemAnimator()).C = false;

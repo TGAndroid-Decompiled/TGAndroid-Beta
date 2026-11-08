@@ -7,18 +7,18 @@ import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.PrivacyControlActivity;
 import org.telegram.ui.ng0;
 public final class x0 implements Runnable {
-    public final int f57835a;
-    public final f1 f57836b;
+    public final int f57836a;
+    public final f1 f57837b;
 
     public x0(f1 f1Var, int i7) {
-        this.f57835a = i7;
-        this.f57836b = f1Var;
+        this.f57836a = i7;
+        this.f57837b = f1Var;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f57835a;
-        f1 f1Var = this.f57836b;
+        int i7 = this.f57836a;
+        f1 f1Var = this.f57837b;
         switch (i7) {
             case 0:
                 f1Var.j1(true);
@@ -43,7 +43,7 @@ public final class x0 implements Runnable {
                 f1Var.p1(true, false);
                 return;
             case 6:
-                ArrayList arrayList = f1Var.f57728b2;
+                ArrayList arrayList = f1Var.f57729b2;
                 if (arrayList.isEmpty()) {
                     arrayList.addAll(ui.b0(f1Var.f28616a).f25821i1);
                     f1Var.o1(true, true);

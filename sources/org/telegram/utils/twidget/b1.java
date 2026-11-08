@@ -10,20 +10,20 @@ import org.telegram.ui.Components.o71;
 import org.telegram.ui.Components.p71;
 public final class b1 implements Runnable {
     public final int f52756a;
-    public final h1 f52757b;
+    public final i1 f52757b;
 
-    public b1(h1 h1Var, int i7) {
+    public b1(i1 i1Var, int i7) {
         this.f52756a = i7;
-        this.f52757b = h1Var;
+        this.f52757b = i1Var;
     }
 
     @Override
     public final void run() {
-        f1 f1Var;
+        g1 g1Var;
         JSONObject jSONObject;
         v0 v0Var;
         p71 p71Var;
-        h1 h1Var;
+        i1 i1Var;
         k0 h;
         int i7;
         String str;
@@ -31,52 +31,52 @@ public final class b1 implements Runnable {
         b h12;
         switch (this.f52756a) {
             case 0:
-                h1 h1Var2 = this.f52757b;
-                synchronized (h1Var2.f52841s) {
-                    f1Var = h1Var2.I;
-                    h1Var2.I = null;
-                    jSONObject = h1Var2.J;
-                    h1Var2.J = null;
-                    h1Var2.K = false;
+                i1 i1Var2 = this.f52757b;
+                synchronized (i1Var2.f52851s) {
+                    g1Var = i1Var2.I;
+                    i1Var2.I = null;
+                    jSONObject = i1Var2.J;
+                    i1Var2.J = null;
+                    i1Var2.K = false;
                 }
-                if (h1Var2.f52844w) {
-                    if (f1Var != null) {
-                        f1Var.f52786a.b();
+                if (i1Var2.f52854w) {
+                    if (g1Var != null) {
+                        g1Var.f52790a.b();
                         return;
                     }
                     return;
                 }
-                if (f1Var != null && (i7 = h1Var2.G) != 0 && Math.abs(f1Var.d - i7) > 1) {
-                    f1Var.f52786a.b();
-                    h1Var2.E = false;
-                    f1Var = null;
+                if (g1Var != null && (i7 = i1Var2.G) != 0 && Math.abs(g1Var.d - i7) > 1) {
+                    g1Var.f52790a.b();
+                    i1Var2.E = false;
+                    g1Var = null;
                 }
-                if (f1Var != null) {
-                    h1Var2.H = f1Var;
-                    h1Var2.E = false;
-                    v0 v0Var2 = h1Var2.L;
+                if (g1Var != null) {
+                    i1Var2.H = g1Var;
+                    i1Var2.E = false;
+                    v0 v0Var2 = i1Var2.L;
                     if (v0Var2 != null) {
-                        v0Var2.h(h1Var2);
+                        v0Var2.h(i1Var2);
                     }
                 }
-                if (jSONObject != null && (v0Var = h1Var2.L) != null) {
-                    if (v0Var.f52979e != null) {
+                if (jSONObject != null && (v0Var = i1Var2.L) != null) {
+                    if (v0Var.f52980e != null) {
                         String optString = jSONObject.optString("dead");
                         if (!TextUtils.isEmpty(optString) && (h = n0.h(v0Var)) != null) {
                             int i10 = h.C;
-                            int i11 = v0Var.f52990q;
+                            int i11 = v0Var.f52991q;
                             if (i10 != i11) {
                                 h.C = i11;
                                 h.B++;
                                 h.D = true;
-                                a8.b("widget " + v0Var.f52976a + " stopped (" + h.B + "): " + optString);
+                                a8.b("widget " + v0Var.f52977a + " stopped (" + h.B + "): " + optString);
                                 n0.a(h);
                                 n0.b();
                             }
                         }
                     }
-                    if (jSONObject.optBoolean("loaded") && v0Var.f52981g != null && (h1Var = v0Var.f52980f) != null) {
-                        v0Var.h(h1Var);
+                    if (jSONObject.optBoolean("loaded") && v0Var.f52982g != null && (i1Var = v0Var.f52981f) != null) {
+                        v0Var.h(i1Var);
                         return;
                     } else if (v0Var.f() && (p71Var = v0Var.h) != null) {
                         o71 o71Var = p71Var.f36814a;
@@ -89,20 +89,20 @@ public final class b1 implements Runnable {
                 }
                 return;
             case 1:
-                h1 h1Var3 = this.f52757b;
-                if (!h1Var3.f52844w && h1Var3.v != 0) {
-                    h1Var3.v = 0L;
+                i1 i1Var3 = this.f52757b;
+                if (!i1Var3.f52854w && i1Var3.v != 0) {
+                    i1Var3.v = 0L;
                     boolean z9 = false;
-                    h1Var3.f52837o.set(false);
-                    h1Var3.N = "Widget engine stopped";
-                    v0 v0Var3 = h1Var3.L;
+                    i1Var3.f52847o.set(false);
+                    i1Var3.N = "Widget engine stopped";
+                    v0 v0Var3 = i1Var3.L;
                     if (v0Var3 != null) {
                         long elapsedRealtime = SystemClock.elapsedRealtime();
                         if (elapsedRealtime - v0Var3.C > 60000) {
                             v0Var3.C = elapsedRealtime;
                             v0Var3.B = 0;
                         }
-                        if (v0Var3.f52988o) {
+                        if (v0Var3.f52989o) {
                             int i12 = v0Var3.B;
                             v0Var3.B = i12 + 1;
                             if (i12 < 2) {
@@ -110,10 +110,10 @@ public final class b1 implements Runnable {
                             }
                         }
                         v0Var3.p();
-                        if (v0Var3.f52979e != null) {
+                        if (v0Var3.f52980e != null) {
                             k0 h7 = n0.h(v0Var3);
                             StringBuilder sb2 = new StringBuilder("widget ");
-                            sb2.append(v0Var3.f52976a);
+                            sb2.append(v0Var3.f52977a);
                             sb2.append(": engine process died");
                             if (z9) {
                                 str = ", restarting";
@@ -121,7 +121,7 @@ public final class b1 implements Runnable {
                                 str = "";
                             }
                             org.telegram.ui.Cells.f1.u(str, sb2);
-                            if (z9 && h7 != null && (ck0Var = h7.f52886w) != null && ck0Var.f32614e0 && ck0Var.X != null) {
+                            if (z9 && h7 != null && (ck0Var = h7.f52883w) != null && ck0Var.f32614e0 && ck0Var.X != null) {
                                 ck0Var.s0();
                                 ck0Var.r0();
                             }
@@ -138,24 +138,24 @@ public final class b1 implements Runnable {
                 }
                 return;
             case 2:
-                this.f52757b.c();
+                this.f52757b.d();
                 return;
             case 3:
-                h1 h1Var4 = this.f52757b;
-                h1Var4.f52840r.set(true);
-                h1Var4.c();
+                i1 i1Var4 = this.f52757b;
+                i1Var4.f52850r.set(true);
+                i1Var4.d();
                 return;
             default:
-                h1 h1Var5 = this.f52757b;
-                long j3 = h1Var5.v;
+                i1 i1Var5 = this.f52757b;
+                long j3 = i1Var5.v;
                 long nanoTime = System.nanoTime();
                 long max = (long) (1.0E9d / Math.max(30.0f, org.telegram.messenger.g0.f22564r));
-                if (!h1Var5.f52844w && j3 != 0 && h1Var5.F && h1Var5.f52838p.get() && nanoTime - h1Var5.S >= (max * 9) / 10 && h1Var5.f52837o.compareAndSet(false, true)) {
-                    h1Var5.f52838p.set(false);
-                    h1Var5.S = nanoTime;
-                    r0 r0Var = h1Var5.f52827c;
-                    float f10 = ((float) (nanoTime - h1Var5.f52835m)) / 1000000.0f;
-                    o0 o0Var = (o0) r0Var.f52957e.get(Long.valueOf(j3));
+                if (!i1Var5.f52854w && j3 != 0 && i1Var5.F && i1Var5.f52848p.get() && nanoTime - i1Var5.S >= (max * 9) / 10 && i1Var5.f52847o.compareAndSet(false, true)) {
+                    i1Var5.f52848p.set(false);
+                    i1Var5.S = nanoTime;
+                    r0 r0Var = i1Var5.f52837c;
+                    float f10 = ((float) (nanoTime - i1Var5.f52845m)) / 1000000.0f;
+                    o0 o0Var = (o0) r0Var.f52958e.get(Long.valueOf(j3));
                     if (o0Var == null) {
                         h12 = null;
                     } else {
@@ -172,7 +172,7 @@ public final class b1 implements Runnable {
                     }
                     return;
                 }
-                h1Var5.c();
+                i1Var5.d();
                 return;
         }
     }

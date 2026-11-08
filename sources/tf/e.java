@@ -4,18 +4,18 @@ import java.io.EOFException;
 import java.io.InputStream;
 import org.telegram.ui.Components.vy;
 public final class e {
-    public static final b7.j f55525e = new b7.j(4);
-    public final uf.a f55526a;
-    public final h f55527b;
-    public final f f55528c;
+    public static final b7.j f55526e = new b7.j(4);
+    public final uf.a f55527a;
+    public final h f55528b;
+    public final f f55529c;
     public final vy d;
 
     public e(InputStream inputStream, long j3, int i7, h hVar, f fVar) {
         uf.a aVar = new uf.a(inputStream, j3, i7);
-        this.f55526a = aVar;
+        this.f55527a = aVar;
         this.d = new vy(aVar, 19);
-        this.f55527b = hVar;
-        this.f55528c = fVar;
+        this.f55528b = hVar;
+        this.f55529c = fVar;
     }
 
     public static String a(byte[] bArr, int i7, b bVar, boolean z9) {
@@ -24,7 +24,7 @@ public final class e {
             for (int i11 = 0; i11 < i7; i11++) {
                 if (bArr[i11] == 0 && (bVar != b.UTF_16 || i10 != 0 || i11 % 2 == 0)) {
                     i10++;
-                    int i12 = bVar.f55523b;
+                    int i12 = bVar.f55524b;
                     if (i10 == i12) {
                         i7 = (i11 + 1) - i12;
                         break;
@@ -35,7 +35,7 @@ public final class e {
             }
         }
         try {
-            String str = new String(bArr, 0, i7, bVar.f55522a.name());
+            String str = new String(bArr, 0, i7, bVar.f55523a.name());
             if (str.length() > 0 && str.charAt(0) == 65279) {
                 return str.substring(1);
             }
@@ -63,17 +63,17 @@ public final class e {
     }
 
     public final String c(int i7, b bVar) {
-        if (i7 <= this.f55526a.e()) {
-            d dVar = (d) f55525e.get();
-            byte[] bArr = dVar.f55524a;
+        if (i7 <= this.f55527a.e()) {
+            d dVar = (d) f55526e.get();
+            byte[] bArr = dVar.f55525a;
             if (i7 > bArr.length) {
                 int length = bArr.length;
                 do {
                     length *= 2;
                 } while (i7 > length);
-                dVar.f55524a = new byte[length];
+                dVar.f55525a = new byte[length];
             }
-            byte[] bArr2 = dVar.f55524a;
+            byte[] bArr2 = dVar.f55525a;
             int i10 = 0;
             while (true) {
                 vy vyVar = this.d;
@@ -95,24 +95,24 @@ public final class e {
     }
 
     public final String d(int i7, b bVar) {
-        int min = Math.min(i7, (int) this.f55526a.e());
-        d dVar = (d) f55525e.get();
-        byte[] bArr = dVar.f55524a;
+        int min = Math.min(i7, (int) this.f55527a.e());
+        d dVar = (d) f55526e.get();
+        byte[] bArr = dVar.f55525a;
         if (min > bArr.length) {
             int length = bArr.length;
             do {
                 length *= 2;
             } while (min > length);
-            dVar.f55524a = new byte[length];
+            dVar.f55525a = new byte[length];
         }
-        byte[] bArr2 = dVar.f55524a;
+        byte[] bArr2 = dVar.f55525a;
         int i10 = 0;
         for (int i11 = 0; i11 < min; i11++) {
             byte M = this.d.M();
             bArr2[i11] = M;
             if (M == 0 && (bVar != b.UTF_16 || i10 != 0 || i11 % 2 == 0)) {
                 i10++;
-                int i12 = bVar.f55523b;
+                int i12 = bVar.f55524b;
                 if (i10 == i12) {
                     return a(bArr2, (i11 + 1) - i12, bVar, false);
                 }
@@ -125,7 +125,7 @@ public final class e {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("id3v2frame[pos=");
-        uf.a aVar = this.f55526a;
+        uf.a aVar = this.f55527a;
         sb2.append(aVar.f915b);
         sb2.append(", ");
         sb2.append(aVar.e());

@@ -28,12 +28,12 @@ public final class j20 extends FrameLayout {
         float y10 = k20Var.getY() + k20Var.getMeasuredHeight();
         te.c cVar = c40Var.s5;
         RectF rectF = this.f46818a;
-        rectF.set(0.0f, y10 - cVar.f55492f, getMeasuredWidth(), getMeasuredHeight());
+        rectF.set(0.0f, y10 - cVar.f55493f, getMeasuredWidth(), getMeasuredHeight());
         RectF rectF2 = this.f46819b;
         rectF2.set(0.0f, k20Var.getY() + k20Var.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
         float y11 = k20Var.getY() + k20Var.getMeasuredHeight();
         RectF rectF3 = this.f46820c;
-        rectF3.set(0.0f, (k20Var.getY() + k20Var.getMeasuredHeight()) - cVar.f55492f, getMeasuredWidth(), y11);
+        rectF3.set(0.0f, (k20Var.getY() + k20Var.getMeasuredHeight()) - cVar.f55493f, getMeasuredWidth(), y11);
         int i7 = Build.VERSION.SDK_INT;
         Paint paint = this.d;
         if (i7 >= 29 && c40Var.H4 != null && canvas.isHardwareAccelerated()) {

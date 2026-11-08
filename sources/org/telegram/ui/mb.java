@@ -169,13 +169,13 @@ public final class mb extends org.telegram.ui.ActionBar.f2 implements org.telegr
             this.glassEngine.a(gVar);
             ri.f fVar = new ri.f(obj);
             fVar.d = gVar;
-            fVar.f54571e = -3;
-            fVar.f54572f = obj;
+            fVar.f54572e = -3;
+            fVar.f54573f = obj;
             if (org.telegram.messenger.sc.e(262144)) {
                 ri.f fVar2 = new ri.f(obj);
                 fVar2.d = gVar;
-                fVar2.f54571e = -2;
-                fVar2.f54572f = obj;
+                fVar2.f54572e = -2;
+                fVar2.f54573f = obj;
                 dh.c cVar2 = new dh.c(fVar2, fVar2, fVar2);
                 this.f47743c = cVar2;
                 cVar2.f8709j = this.glassEngine;

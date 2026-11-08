@@ -85,7 +85,7 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
     @Override
     public int N() {
         v4.n0 n0Var = (v4.n0) this.f37758b;
-        return n0Var.f57141n - n0Var.C();
+        return n0Var.f57142n - n0Var.C();
     }
 
     @Override
@@ -119,7 +119,7 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
         jk0 jk0Var = (jk0) this.f37758b;
         jk0Var.f35012w.setPadding(I0.f15120a, I0.f15121b, I0.f15122c, I0.d);
         jk0Var.f35011s.requestLayout();
-        return r0.k1.f54200b;
+        return r0.k1.f54201b;
     }
 
     @Override
@@ -157,9 +157,9 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
     @Override
     public void X(float f10) {
         org.telegram.ui.up0 up0Var = (org.telegram.ui.up0) this.f37758b;
-        sg.l0.e(up0Var.f55702y1).k(String.valueOf(sg.h.f55059a.indexOf(up0Var.F0.getCurrentBrush())), f10);
-        sg.j1 j1Var = up0Var.f55692t1;
-        j1Var.f55110c = f10;
+        sg.l0.e(up0Var.f55703y1).k(String.valueOf(sg.h.f55060a.indexOf(up0Var.F0.getCurrentBrush())), f10);
+        sg.j1 j1Var = up0Var.f55693t1;
+        j1Var.f55111c = f10;
         up0Var.s0(j1Var, null);
     }
 
@@ -171,8 +171,8 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
     @Override
     public void Y() {
         tg.o0 o0Var = (tg.o0) this.f37758b;
-        o0Var.f55872b.f55146a.f();
-        o0Var.f55880x.setViewHidden(false);
+        o0Var.f55873b.f55147a.f();
+        o0Var.f55881x.setViewHidden(false);
         PhotoViewer photoViewer = ((org.telegram.ui.tp0) o0Var).K;
         Drawable[] drawableArr = PhotoViewer.Y8;
         photoViewer.U2(true, true);
@@ -204,7 +204,7 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
                 u7.x xVar = (u7.x) ((u7.k) obj).n();
                 u7.f fVar = new u7.f(1, (TaskCompletionSource) obj2);
                 Parcel p12 = xVar.p1();
-                int i7 = u7.d.f56362a;
+                int i7 = u7.d.f56363a;
                 p12.writeInt(1);
                 ((j8.c) this.f37758b).writeToParcel(p12, 0);
                 u7.d.c(p12, fVar);
@@ -250,7 +250,7 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
 
     @Override
     public void d0() {
-        ((tg.o0) this.f37758b).f55880x.setViewHidden(true);
+        ((tg.o0) this.f37758b).f55881x.setViewHidden(true);
     }
 
     @Override
@@ -260,23 +260,23 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
 
     public void g0(v4.a aVar) {
         RecyclerView recyclerView = (RecyclerView) this.f37758b;
-        int i7 = aVar.f56991a;
+        int i7 = aVar.f56992a;
         if (i7 != 1) {
             if (i7 != 2) {
                 if (i7 != 4) {
                     if (i7 != 8) {
                         return;
                     }
-                    recyclerView.f2873y.X(recyclerView, aVar.f56992b, aVar.d);
+                    recyclerView.f2873y.X(recyclerView, aVar.f56993b, aVar.d);
                     return;
                 }
-                recyclerView.f2873y.a0(recyclerView, aVar.f56992b, aVar.d, aVar.f56993c);
+                recyclerView.f2873y.a0(recyclerView, aVar.f56993b, aVar.d, aVar.f56994c);
                 return;
             }
-            recyclerView.f2873y.Y(recyclerView, aVar.f56992b, aVar.d);
+            recyclerView.f2873y.Y(recyclerView, aVar.f56993b, aVar.d);
             return;
         }
-        recyclerView.f2873y.V(recyclerView, aVar.f56992b, aVar.d);
+        recyclerView.f2873y.V(recyclerView, aVar.f56993b, aVar.d);
     }
 
     @Override
@@ -317,26 +317,26 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
         for (int i14 = 0; i14 < B; i14++) {
             View A = recyclerView.f2847e.A(i14);
             v4.d1 U = RecyclerView.U(A);
-            if (U != null && !U.r() && (i12 = U.f57045c) >= i7 && i12 < i13) {
+            if (U != null && !U.r() && (i12 = U.f57046c) >= i7 && i12 < i13) {
                 U.a(2);
                 if (obj == null) {
                     U.a(1024);
-                } else if ((1024 & U.f57052l) == 0) {
-                    if (U.f57053m == null) {
+                } else if ((1024 & U.f57053l) == 0) {
+                    if (U.f57054m == null) {
                         ArrayList arrayList = new ArrayList();
-                        U.f57053m = arrayList;
-                        U.f57054n = DesugarCollections.unmodifiableList(arrayList);
+                        U.f57054m = arrayList;
+                        U.f57055n = DesugarCollections.unmodifiableList(arrayList);
                     }
-                    U.f57053m.add(obj);
+                    U.f57054m.add(obj);
                 }
-                ((v4.o0) A.getLayoutParams()).f57145c = true;
+                ((v4.o0) A.getLayoutParams()).f57146c = true;
             }
         }
         v4.v0 v0Var = recyclerView.f2842b;
-        ArrayList arrayList2 = (ArrayList) v0Var.f57179e;
+        ArrayList arrayList2 = (ArrayList) v0Var.f57180e;
         for (int size = arrayList2.size() - 1; size >= 0; size--) {
             v4.d1 d1Var = (v4.d1) arrayList2.get(size);
-            if (d1Var != null && (i11 = d1Var.f57045c) >= i7 && i11 < i13) {
+            if (d1Var != null && (i11 = d1Var.f57046c) >= i7 && i11 < i13) {
                 d1Var.a(2);
                 v0Var.f(size);
             }
@@ -364,16 +364,16 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
         int B = recyclerView.f2847e.B();
         for (int i11 = 0; i11 < B; i11++) {
             v4.d1 U = RecyclerView.U(recyclerView.f2847e.A(i11));
-            if (U != null && !U.r() && U.f57045c >= i7) {
+            if (U != null && !U.r() && U.f57046c >= i7) {
                 U.n(i10, false);
-                recyclerView.f2867u0.f57001f = true;
+                recyclerView.f2867u0.f57002f = true;
             }
         }
-        ArrayList arrayList = (ArrayList) recyclerView.f2842b.f57179e;
+        ArrayList arrayList = (ArrayList) recyclerView.f2842b.f57180e;
         int size = arrayList.size();
         for (int i12 = 0; i12 < size; i12++) {
             v4.d1 d1Var = (v4.d1) arrayList.get(i12);
-            if (d1Var != null && d1Var.f57045c >= i7) {
+            if (d1Var != null && d1Var.f57046c >= i7) {
                 d1Var.n(i10, true);
             }
         }
@@ -413,16 +413,16 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
         }
         for (int i19 = 0; i19 < B; i19++) {
             v4.d1 U = RecyclerView.U(recyclerView.f2847e.A(i19));
-            if (U != null && (i17 = U.f57045c) >= i12 && i17 <= i11) {
+            if (U != null && (i17 = U.f57046c) >= i12 && i17 <= i11) {
                 if (i17 == i7) {
                     U.n(i10 - i7, false);
                 } else {
                     U.n(i13, false);
                 }
-                recyclerView.f2867u0.f57001f = true;
+                recyclerView.f2867u0.f57002f = true;
             }
         }
-        ArrayList arrayList = (ArrayList) recyclerView.f2842b.f57179e;
+        ArrayList arrayList = (ArrayList) recyclerView.f2842b.f57180e;
         if (i7 < i10) {
             i15 = i7;
             i14 = i10;
@@ -434,7 +434,7 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
         int size = arrayList.size();
         for (int i20 = 0; i20 < size; i20++) {
             v4.d1 d1Var = (v4.d1) arrayList.get(i20);
-            if (d1Var != null && (i16 = d1Var.f57045c) >= i15 && i16 <= i14) {
+            if (d1Var != null && (i16 = d1Var.f57046c) >= i15 && i16 <= i14) {
                 if (i16 == i7) {
                     d1Var.n(i10 - i7, false);
                 } else {
@@ -458,13 +458,13 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
         int i10 = 0;
         for (r2.p pVar : jVar.J) {
             pVar.l();
-            i10 += pVar.Y.f58448a;
+            i10 += pVar.Y.f58449a;
         }
         e2.m1[] m1VarArr = new e2.m1[i10];
         int i11 = 0;
         for (r2.p pVar2 : jVar.J) {
             pVar2.l();
-            int i12 = pVar2.Y.f58448a;
+            int i12 = pVar2.Y.f58449a;
             int i13 = 0;
             while (i13 < i12) {
                 pVar2.l();
@@ -480,7 +480,7 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
     @Override
     public void n() {
         tg.o0 o0Var = (tg.o0) this.f37758b;
-        o0Var.f55874e.animate().alpha(1.0f).setDuration(320L).setUpdateListener(new fi.v3(o0Var, 24)).setInterpolator(xq.h);
+        o0Var.f55875e.animate().alpha(1.0f).setDuration(320L).setUpdateListener(new fi.v3(o0Var, 24)).setInterpolator(xq.h);
     }
 
     public boolean n0(android.view.MotionEvent r22) {
@@ -547,7 +547,7 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
     public androidx.lifecycle.p0 t(Class cls, y1.b bVar) {
         androidx.lifecycle.m0 m0Var = null;
         for (y1.c cVar : (y1.c[]) this.f37758b) {
-            if (cVar.f58871a.equals(cls)) {
+            if (cVar.f58872a.equals(cls)) {
                 m0Var = new androidx.lifecycle.m0();
             }
         }
@@ -615,12 +615,12 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
     @Override
     public float get() {
         org.telegram.ui.up0 up0Var = (org.telegram.ui.up0) this.f37758b;
-        int i7 = up0Var.f55702y1;
+        int i7 = up0Var.f55703y1;
         sg.h currentBrush = up0Var.F0.getCurrentBrush();
         if (currentBrush == null) {
-            return sg.l0.e(i7).f55132i;
+            return sg.l0.e(i7).f55133i;
         }
-        return sg.l0.e(i7).f(String.valueOf(sg.h.f55059a.indexOf(currentBrush)), currentBrush.d());
+        return sg.l0.e(i7).f(String.valueOf(sg.h.f55060a.indexOf(currentBrush)), currentBrush.d());
     }
 
     public rt(Uri uri, ClipDescription clipDescription, Uri uri2) {

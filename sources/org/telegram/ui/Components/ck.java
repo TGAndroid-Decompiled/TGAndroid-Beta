@@ -39,7 +39,7 @@ public final class ck implements Runnable {
                         r1.h hVar = new r1.h(1.0f);
                         hVar.a(0.55f);
                         hVar.b(65.0f);
-                        gVar.f54267m = hVar;
+                        gVar.f54268m = hVar;
                         ikVar3.f34741l0.f(0.001f);
                         ikVar3.f34741l0.b(new e7(ikVar3, 4));
                         ikVar3.f34741l0.a(new ta(ikVar3, 2));

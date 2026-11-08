@@ -766,7 +766,7 @@ public final class m6 implements Runnable {
                     chatActivityEnterView.f31103p0.setAlpha(f11);
                     org.telegram.ui.Components.ne neVar = chatActivityEnterView.f31109q0;
                     boolean z17 = chatActivityEnterView.f31108p5;
-                    r1.b bVar = r1.g.f54252q;
+                    r1.b bVar = r1.g.f54253q;
                     if (z17) {
                         c10 = 4;
                         f12 = 0.5f;
@@ -775,20 +775,20 @@ public final class m6 implements Runnable {
                         c10 = 4;
                         gVar = new r1.g(chatActivityEnterView.f31103p0, bVar);
                         f12 = 0.5f;
-                        gVar.f54267m = org.telegram.ui.Cells.f1.o(0.5f, 750.0f, f11);
+                        gVar.f54268m = org.telegram.ui.Cells.f1.o(0.5f, 750.0f, f11);
                     }
                     boolean z18 = chatActivityEnterView.f31108p5;
-                    r1.b bVar2 = r1.g.f54253r;
+                    r1.b bVar2 = r1.g.f54254r;
                     if (z18) {
                         f13 = f15;
                         gVar2 = null;
                     } else {
                         f13 = f15;
                         gVar2 = new r1.g(chatActivityEnterView.f31103p0, bVar2);
-                        gVar2.f54267m = org.telegram.ui.Cells.f1.o(f12, 750.0f, f11);
+                        gVar2.f54268m = org.telegram.ui.Cells.f1.o(f12, 750.0f, f11);
                     }
                     r1.g gVar3 = new r1.g(chatActivityEnterView.f31103p0, r1.g.v);
-                    gVar3.f54267m = org.telegram.ui.Cells.f1.o(0.0f, 750.0f, f11);
+                    gVar3.f54268m = org.telegram.ui.Cells.f1.o(0.0f, 750.0f, f11);
                     r1.c cVar = new r1.c() {
                         @Override
                         public final void a(r1.g gVar4, boolean z19, float f18, float f19) {
@@ -838,16 +838,16 @@ public final class m6 implements Runnable {
                     };
                     float f18 = f13;
                     gVar3.a(cVar);
-                    r1.g gVar4 = new r1.g(it0Var, r1.g.f54250o);
-                    gVar4.f54258b = c8.j9.a(L2, f14 - org.telegram.messenger.g0.L(6.0f), L2);
-                    gVar4.f54259c = true;
-                    gVar4.f54267m = org.telegram.ui.Cells.f1.o(f14, 700.0f, 0.75f);
+                    r1.g gVar4 = new r1.g(it0Var, r1.g.f54251o);
+                    gVar4.f54259b = c8.j9.a(L2, f14 - org.telegram.messenger.g0.L(6.0f), L2);
+                    gVar4.f54260c = true;
+                    gVar4.f54268m = org.telegram.ui.Cells.f1.o(f14, 700.0f, 0.75f);
                     gVar4.h = f14 - org.telegram.messenger.g0.L(6.0f);
-                    r1.g gVar5 = new r1.g(it0Var, r1.g.f54251p);
-                    gVar5.f54258b = c8.j9.a(f16, f16, org.telegram.messenger.g0.L(6.0f) + f18);
-                    gVar5.f54259c = true;
-                    gVar5.f54267m = org.telegram.ui.Cells.f1.o(f18, 700.0f, 0.75f);
-                    gVar5.f54262g = org.telegram.messenger.g0.L(6.0f) + f18;
+                    r1.g gVar5 = new r1.g(it0Var, r1.g.f54252p);
+                    gVar5.f54259b = c8.j9.a(f16, f16, org.telegram.messenger.g0.L(6.0f) + f18);
+                    gVar5.f54260c = true;
+                    gVar5.f54268m = org.telegram.ui.Cells.f1.o(f18, 700.0f, 0.75f);
+                    gVar5.f54263g = org.telegram.messenger.g0.L(6.0f) + f18;
                     gVar5.b(new org.telegram.ui.Components.re(f18, it0Var));
                     gVar5.a(new r1.c() {
                         @Override
@@ -897,9 +897,9 @@ public final class m6 implements Runnable {
                         }
                     });
                     r1.g gVar6 = new r1.g(it0Var, bVar);
-                    gVar6.f54267m = org.telegram.ui.Cells.f1.o(L3, 1000.0f, 1.0f);
+                    gVar6.f54268m = org.telegram.ui.Cells.f1.o(L3, 1000.0f, 1.0f);
                     r1.g gVar7 = new r1.g(it0Var, bVar2);
-                    gVar7.f54267m = org.telegram.ui.Cells.f1.o(L3, 1000.0f, 1.0f);
+                    gVar7.f54268m = org.telegram.ui.Cells.f1.o(L3, 1000.0f, 1.0f);
                     r1.g[] gVarArr = new r1.g[7];
                     gVarArr[0] = gVar;
                     gVarArr[1] = gVar2;

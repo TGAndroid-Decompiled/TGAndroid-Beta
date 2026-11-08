@@ -31,8 +31,8 @@ public final class u6 extends rg.a {
         if (this != obj) {
             if (obj != null && u6.class == obj.getClass()) {
                 u6 u6Var = (u6) obj;
-                int i7 = this.f54531a;
-                if (i7 == u6Var.f54531a) {
+                int i7 = this.f54532a;
+                if (i7 == u6Var.f54532a) {
                     if (i7 != 9 && i7 != 10 && i7 != 8 && i7 != 4 && i7 != 2 && i7 != 0 && i7 != 13) {
                         if (i7 == 3) {
                             return Objects.equals(this.d, u6Var.d);

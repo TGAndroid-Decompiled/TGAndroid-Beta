@@ -15,13 +15,13 @@ public final class b0 extends sg.w0 {
 
     @Override
     public final void g(sg.h hVar) {
-        int indexOf = sg.h.f55059a.indexOf(hVar);
+        int indexOf = sg.h.f55060a.indexOf(hVar);
         int i7 = indexOf + 1;
         if (i7 <= 1 || this.E != null) {
             indexOf = i7;
         }
         up0 up0Var = this.F;
-        up0Var.f55667c1.b(indexOf);
+        up0Var.f55668c1.b(indexOf);
         up0Var.w(hVar);
     }
 }

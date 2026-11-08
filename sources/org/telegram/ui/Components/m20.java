@@ -135,8 +135,8 @@ public final class m20 extends na {
         bi.gc gcVar = new bi.gc(context, 70, 0, 0);
         frameLayout.addView(gcVar, c8.ha.c(-1.0f, -1));
         vg.m mVar = new vg.m(context, 1, 2);
-        vg.f fVar = mVar.f57411b;
-        fVar.f57395z = org.telegram.ui.ActionBar.k6.Tk;
+        vg.f fVar = mVar.f57412b;
+        fVar.f57396z = org.telegram.ui.ActionBar.k6.Tk;
         fVar.A = org.telegram.ui.ActionBar.k6.Uk;
         fVar.b();
         mVar.setStarParticlesView(gcVar);

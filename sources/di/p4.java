@@ -58,7 +58,7 @@ public final class p4 implements bj0 {
         wg.a0 a0Var = (wg.a0) this.f9510b;
         org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) this.f9511c;
         ArrayList arrayList = a0Var.V1;
-        wg.t tVar = a0Var.f57692q2;
+        wg.t tVar = a0Var.f57693q2;
         if (view instanceof yg.y) {
             yg.y yVar = (yg.y) view;
             int type = yVar.getType();
@@ -67,21 +67,21 @@ public final class p4 implements bj0 {
             yVar.setChecked(z12);
             int i10 = yg.y.L;
             if (type == 0) {
-                a0Var.f57691p2 = z12;
+                a0Var.f57692p2 = z12;
                 a0Var.k1(false, false);
             } else if (type == 1) {
                 yVar.setDivider(z12);
-                a0Var.f57690o2 = z12;
+                a0Var.f57691o2 = z12;
                 a0Var.k1(false, false);
                 xg.c cVar = a0Var.Y1;
                 int i11 = 0;
                 while (true) {
-                    if (i11 >= cVar.f58713e.size()) {
+                    if (i11 >= cVar.f58714e.size()) {
                         break;
                     }
-                    xg.b bVar = (xg.b) cVar.f58713e.get(i11);
-                    if (bVar.f54531a == 15) {
-                        int i12 = bVar.f58711l;
+                    xg.b bVar = (xg.b) cVar.f58714e.get(i11);
+                    if (bVar.f54532a == 15) {
+                        int i12 = bVar.f58712l;
                         int i13 = yg.y.L;
                         if (i12 == 1) {
                             if (!z11) {
@@ -94,7 +94,7 @@ public final class p4 implements bj0 {
                     i11++;
                 }
                 a0Var.Y1.G();
-                if (!a0Var.f57690o2) {
+                if (!a0Var.f57691o2) {
                     org.telegram.messenger.g0.i3(tVar, 250L);
                 } else {
                     org.telegram.messenger.g0.r(tVar);
@@ -104,25 +104,25 @@ public final class p4 implements bj0 {
         if (view instanceof yg.c) {
             if (view instanceof yg.d) {
                 int selectedType = ((yg.d) view).getSelectedType();
-                int i14 = yg.d.f59449w;
+                int i14 = yg.d.f59450w;
                 if (selectedType != 2 && selectedType != 3) {
                     if (selectedType == 1) {
-                        sg.i0 i0Var2 = a0Var.f57685j2;
+                        sg.i0 i0Var2 = a0Var.f57686j2;
                         if (i0Var2 != null) {
-                            ((wg.w0) i0Var2.f55067b).h1(1, arrayList);
-                            ((wg.l) i0Var2.f55068c).f57771i1.E(1);
+                            ((wg.w0) i0Var2.f55068b).h1(1, arrayList);
+                            ((wg.l) i0Var2.f55069c).f57772i1.E(1);
                         }
                     } else {
-                        a0Var.f57677a2 = selectedType;
+                        a0Var.f57678a2 = selectedType;
                         a0Var.k1(true, true);
                         a0Var.j1(true);
                         a0Var.b1();
                     }
                 } else if (selectedType == 2 && a0Var.Z1 == selectedType) {
-                    sg.i0 i0Var3 = a0Var.f57685j2;
+                    sg.i0 i0Var3 = a0Var.f57686j2;
                     if (i0Var3 != null) {
-                        ((wg.w0) i0Var3.f55067b).h1(1, arrayList);
-                        ((wg.l) i0Var3.f55068c).f57771i1.E(1);
+                        ((wg.w0) i0Var3.f55068b).h1(1, arrayList);
+                        ((wg.l) i0Var3.f55069c).f57772i1.E(1);
                         return;
                     }
                     return;
@@ -153,11 +153,11 @@ public final class p4 implements bj0 {
         }
         if (view instanceof yg.u) {
             int selectedType2 = ((yg.u) view).getSelectedType();
-            if (a0Var.f57678b2 == selectedType2 && (i0Var = a0Var.f57685j2) != null) {
-                ((wg.w0) i0Var.f55067b).h1(3, a0Var.W1);
-                ((wg.l) i0Var.f55068c).f57771i1.E(1);
+            if (a0Var.f57679b2 == selectedType2 && (i0Var = a0Var.f57686j2) != null) {
+                ((wg.w0) i0Var.f55068b).h1(3, a0Var.W1);
+                ((wg.l) i0Var.f55069c).f57772i1.E(1);
             }
-            a0Var.f57678b2 = selectedType2;
+            a0Var.f57679b2 = selectedType2;
             a0Var.k1(false, false);
         } else if (view instanceof yg.i) {
             a0Var.d2 = ((TLRPC.TL_premiumGiftCodeOption) ((yg.i) view).getGifCode()).months;
@@ -165,7 +165,7 @@ public final class p4 implements bj0 {
             a0Var.Y1.G();
         } else if (view instanceof yg.h) {
             Context context = f2Var.getContext();
-            long j3 = a0Var.f57680e2;
+            long j3 = a0Var.f57681e2;
             wg.u uVar = new wg.u(a0Var);
             org.telegram.ui.ActionBar.f6 f6Var = a0Var.I0;
             org.telegram.ui.Components.s4 s4Var = new org.telegram.ui.Components.s4(f6Var);
@@ -275,21 +275,21 @@ public final class p4 implements bj0 {
             }
             org.telegram.messenger.g0.q3(v2Var, z9);
         } else if (view instanceof yg.b) {
-            sg.i0 i0Var4 = a0Var.f57685j2;
+            sg.i0 i0Var4 = a0Var.f57686j2;
             if (i0Var4 != null) {
-                ((wg.w0) i0Var4.f55067b).h1(2, a0Var.U1);
-                ((wg.l) i0Var4.f55068c).f57771i1.E(1);
+                ((wg.w0) i0Var4.f55068b).h1(2, a0Var.U1);
+                ((wg.l) i0Var4.f55069c).f57772i1.E(1);
             }
         } else if (view instanceof yg.w) {
             TL_stars.TL_starsGiveawayOption option = ((yg.w) view).getOption();
             if (option != null) {
-                a0Var.f57683h2 = option.stars;
+                a0Var.f57684h2 = option.stars;
                 a0Var.k1(true, true);
                 a0Var.j1(true);
                 a0Var.b1();
             }
         } else if (view instanceof kc) {
-            a0Var.f57679c2 = true;
+            a0Var.f57680c2 = true;
             a0Var.k1(true, true);
         }
     }

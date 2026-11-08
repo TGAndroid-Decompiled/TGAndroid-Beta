@@ -94,13 +94,13 @@ public abstract class b implements m1 {
             return m10;
         }
         if (m10 == -5) {
-            e2.u uVar = (e2.u) bVar.f57655c;
+            e2.u uVar = (e2.u) bVar.f57656c;
             uVar.getClass();
             long j10 = uVar.f10619x;
             if (j10 != Long.MAX_VALUE) {
                 e2.t a10 = uVar.a();
                 a10.f10567w = j10 + this.f17767w;
-                bVar.f57655c = new e2.u(a10);
+                bVar.f57656c = new e2.u(a10);
             }
         }
         return m10;

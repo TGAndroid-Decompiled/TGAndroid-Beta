@@ -83,7 +83,7 @@ public class r0 extends c {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57047f;
+        int i7 = d1Var.f57048f;
         if (i7 == 6) {
             if (sd.f(this.f16905x).h(this.L) == null && this.F == null) {
                 return false;
@@ -478,8 +478,8 @@ public class r0 extends c {
     public final void t(v4.d1 d1Var, int i7) {
         boolean z9;
         long j3;
-        int i10 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i10 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         if (i10 != 0) {
             boolean z10 = true;
             if (i10 != 1) {
@@ -724,8 +724,8 @@ public class r0 extends c {
 
     @Override
     public final void y(v4.d1 d1Var) {
-        if (d1Var.f57047f == 1) {
-            this.E = (q6) d1Var.f57043a;
+        if (d1Var.f57048f == 1) {
+            this.E = (q6) d1Var.f57044a;
             Q();
         }
     }

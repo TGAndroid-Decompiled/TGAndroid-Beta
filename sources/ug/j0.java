@@ -1,6 +1,6 @@
 package ug;
 public final class j0 {
-    public int f56643a;
-    public int f56644b = 5;
-    public long f56645c;
+    public int f56644a;
+    public int f56645b = 5;
+    public long f56646c;
 }

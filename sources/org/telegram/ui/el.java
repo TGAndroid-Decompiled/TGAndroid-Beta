@@ -196,7 +196,7 @@ public final class el implements org.telegram.ui.Cells.q0 {
         }
         messageObject.K1 = true;
         aj ajVar = anVar.f44043z0;
-        if (ajVar != null && (djVar = anVar.B0) != null && djVar.f57021y < 0) {
+        if (ajVar != null && (djVar = anVar.B0) != null && djVar.f57022y < 0) {
             int childCount = ajVar.getChildCount() - 1;
             while (true) {
                 if (childCount < 0) {

@@ -14,12 +14,12 @@ public final class e extends VolumeProvider {
     @Override
     public final void onAdjustVolume(int i7) {
         p pVar = this.f2911a;
-        ((s4.e) ((hy0) pVar.f2327f).d).f54787a.post(new s4.c(pVar, i7, 1));
+        ((s4.e) ((hy0) pVar.f2327f).d).f54788a.post(new s4.c(pVar, i7, 1));
     }
 
     @Override
     public final void onSetVolumeTo(int i7) {
         p pVar = this.f2911a;
-        ((s4.e) ((hy0) pVar.f2327f).d).f54787a.post(new s4.c(pVar, i7, 0));
+        ((s4.e) ((hy0) pVar.f2327f).d).f54788a.post(new s4.c(pVar, i7, 0));
     }
 }

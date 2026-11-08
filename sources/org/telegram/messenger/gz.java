@@ -1363,7 +1363,7 @@ public final class gz extends c1 implements ls {
             }
         }
         if (fVar != null) {
-            j13 = fVar.f55315c;
+            j13 = fVar.f55316c;
         } else {
             j13 = 0;
         }

@@ -96,7 +96,7 @@ public final class d extends Drawable implements a6 {
             int i10 = 0;
             Matrix matrix2 = this.f8714e;
             if (!z10 && (v instanceof ri.c)) {
-                int i11 = ((ri.c) v).f54563b;
+                int i11 = ((ri.c) v).f54564b;
                 int i12 = this.E;
                 Paint paint = this.D;
                 if (i12 != i11 || this.f8715f == null) {
@@ -148,7 +148,7 @@ public final class d extends Drawable implements a6 {
                     matrix2.set(matrix);
                     matrix2.postTranslate(bounds.left, bounds.top + i10);
                     this.f8715f.setLocalMatrix(matrix2);
-                    Matrix matrix3 = bVar.f54557b;
+                    Matrix matrix3 = bVar.f54558b;
                     Matrix matrix4 = this.f8717r;
                     matrix4.set(matrix3);
                     matrix4.postTranslate(-gVar.d, -gVar.f21077e);

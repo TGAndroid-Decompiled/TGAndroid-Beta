@@ -18,7 +18,7 @@ public final class xa extends Dialog {
         this.f40275a = waVar;
         setContentView(waVar, new ViewGroup.LayoutParams(-1, -1));
         u uVar = new u(this, 15);
-        WeakHashMap weakHashMap = r0.i0.f54190a;
+        WeakHashMap weakHashMap = r0.i0.f54191a;
         r0.a0.i(waVar, uVar);
         int i7 = Build.VERSION.SDK_INT;
         if (i7 >= 30) {

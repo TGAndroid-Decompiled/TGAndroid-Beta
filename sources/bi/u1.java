@@ -31,7 +31,7 @@ public final class u1 extends FrameLayout implements te.b, org.telegram.ui.Actio
         zh.v0 v0Var = new zh.v0(frameLayout, f6Var, true);
         this.f4786c = v0Var;
         frameLayout.setBackground(v0Var);
-        v0Var.f60565w = 1;
+        v0Var.f60566w = 1;
         addView(frameLayout, c8.ha.e(-1, -1, 119));
         org.telegram.ui.Components.l9 l9Var = new org.telegram.ui.Components.l9(context);
         this.d = l9Var;
@@ -91,21 +91,21 @@ public final class u1 extends FrameLayout implements te.b, org.telegram.ui.Actio
     public final void b() {
         int f10;
         zh.v0 v0Var = this.f4786c;
-        v0Var.f60568z = null;
+        v0Var.f60569z = null;
         Integer num = this.h;
         te.a aVar = this.f4790r;
         TextView textView = this.f4788f;
         if (num != null) {
-            f10 = org.telegram.ui.ActionBar.k6.w(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27852d6, false), org.telegram.ui.ActionBar.k6.r1(org.telegram.messenger.g0.T1(0.15f, 1.0f, aVar.f55486e), this.h.intValue()));
-            v0Var.f60568z = this.h;
+            f10 = org.telegram.ui.ActionBar.k6.w(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27852d6, false), org.telegram.ui.ActionBar.k6.r1(org.telegram.messenger.g0.T1(0.15f, 1.0f, aVar.f55487e), this.h.intValue()));
+            v0Var.f60569z = this.h;
             this.f4785b.invalidate();
-            textView.setTextColor(i0.a.f(aVar.f55486e, this.h.intValue(), -1));
+            textView.setTextColor(i0.a.f(aVar.f55487e, this.h.intValue(), -1));
         } else if (this.f4791s) {
             int i7 = org.telegram.ui.ActionBar.k6.f27852d6;
             int x02 = org.telegram.ui.ActionBar.k6.x0(null, i7, false);
             int i10 = org.telegram.ui.ActionBar.k6.G6;
-            int f11 = i0.a.f(aVar.f55486e, i0.a.f(0.05f, x02, org.telegram.ui.ActionBar.k6.x0(null, i10, false)), org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Ci, false));
-            textView.setTextColor(i0.a.f(aVar.f55486e, i0.a.f(0.5f, org.telegram.ui.ActionBar.k6.x0(null, i7, false), org.telegram.ui.ActionBar.k6.x0(null, i10, false)), -1));
+            int f11 = i0.a.f(aVar.f55487e, i0.a.f(0.05f, x02, org.telegram.ui.ActionBar.k6.x0(null, i10, false)), org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Ci, false));
+            textView.setTextColor(i0.a.f(aVar.f55487e, i0.a.f(0.5f, org.telegram.ui.ActionBar.k6.x0(null, i7, false), org.telegram.ui.ActionBar.k6.x0(null, i10, false)), -1));
             f10 = f11;
         } else {
             f10 = i0.a.f(0.5f, i0.a.o(this.f4792w.f4604a.center_color, 255), i0.a.o(this.f4792w.f4604a.pattern_color, 255));

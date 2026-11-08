@@ -24,8 +24,8 @@ public final class f extends r0.b {
         boolean z9;
         switch (this.d) {
             case 0:
-                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f54600a;
-                this.f54161a.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
+                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f54601a;
+                this.f54162a.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
                 dVar.i(k.class.getName());
                 k kVar = (k) this.f5317e;
                 a aVar = kVar.f5334e;
@@ -44,7 +44,7 @@ public final class f extends r0.b {
                 }
                 return;
             default:
-                this.f54161a.onInitializeAccessibilityNodeInfo(view, dVar.f54600a);
+                this.f54162a.onInitializeAccessibilityNodeInfo(view, dVar.f54601a);
                 e1 e1Var = (e1) this.f5317e;
                 boolean e10 = e1Var.e();
                 RecyclerView recyclerView = e1Var.d;
@@ -82,7 +82,7 @@ public final class f extends r0.b {
                 boolean e10 = e1Var.e();
                 RecyclerView recyclerView = e1Var.d;
                 if (!e10 && recyclerView.getLayoutManager() != null) {
-                    v0 v0Var = recyclerView.getLayoutManager().f57131b.f2842b;
+                    v0 v0Var = recyclerView.getLayoutManager().f57132b.f2842b;
                 }
                 return false;
         }

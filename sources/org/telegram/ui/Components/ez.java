@@ -21,14 +21,14 @@ public final class ez extends v4.v {
         switch (this.d) {
             case 0:
                 super.a(recyclerView, d1Var);
-                View view = d1Var.f57043a;
+                View view = d1Var.f57044a;
                 view.setPressed(false);
                 view.setBackground(null);
                 view.setTag(2131296419, null);
                 return;
             default:
                 super.a(recyclerView, d1Var);
-                View view2 = d1Var.f57043a;
+                View view2 = d1Var.f57044a;
                 view2.setPressed(false);
                 view2.setTag(2131296419, null);
                 if (view2 instanceof org.telegram.ui.a00) {
@@ -49,7 +49,7 @@ public final class ez extends v4.v {
                 }
                 return v4.v.l(12, 0);
             default:
-                if (d1Var.f57047f != 2) {
+                if (d1Var.f57048f != 2) {
                     return v4.v.l(0, 0);
                 }
                 return v4.v.l(3, 0);
@@ -143,7 +143,7 @@ public final class ez extends v4.v {
                 }
                 return true;
             default:
-                if (d1Var.f57047f != d1Var2.f57047f) {
+                if (d1Var.f57048f != d1Var2.f57048f) {
                     return false;
                 }
                 org.telegram.ui.e00 e00Var = ((FiltersSetupActivity) this.f33410f).f41237b;
@@ -186,14 +186,14 @@ public final class ez extends v4.v {
                 fz fzVar = (fz) obj;
                 if (i7 != 0) {
                     fzVar.F.I0(false);
-                    d1Var.f57043a.setPressed(true);
-                    org.telegram.ui.ActionBar.r6.i(fzVar.f33701b0, d1Var.f57043a, fzVar.f33698a);
+                    d1Var.f57044a.setPressed(true);
+                    org.telegram.ui.ActionBar.r6.i(fzVar.f33701b0, d1Var.f57044a, fzVar.f33698a);
                 } else {
                     org.telegram.messenger.g0.r(gpVar);
                     org.telegram.messenger.g0.i3(gpVar, 320L);
                 }
                 if (d1Var != null) {
-                    View view = d1Var.f57043a;
+                    View view = d1Var.f57044a;
                     if (i7 == 2) {
                         bool = Boolean.TRUE;
                     }
@@ -205,13 +205,13 @@ public final class ez extends v4.v {
                 org.telegram.ui.hz hzVar = (org.telegram.ui.hz) runnable;
                 if (i7 != 0) {
                     ((FiltersSetupActivity) obj).f41236a.I0(false);
-                    d1Var.f57043a.setPressed(true);
+                    d1Var.f57044a.setPressed(true);
                 } else {
                     org.telegram.messenger.g0.r(hzVar);
                     org.telegram.messenger.g0.i3(hzVar, 320L);
                 }
                 if (d1Var != null) {
-                    View view2 = d1Var.f57043a;
+                    View view2 = d1Var.f57044a;
                     if (i7 == 2) {
                         bool = Boolean.TRUE;
                     }

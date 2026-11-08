@@ -65,7 +65,7 @@ public final class zs extends org.telegram.ui.Components.pj0 {
             case 2:
                 if (getAdapter() == ((yz) this.f52671f3).U) {
                     for (int i7 = 0; i7 < getChildCount(); i7++) {
-                        if (T(getChildAt(i7)).f57047f == 1) {
+                        if (T(getChildAt(i7)).f57048f == 1) {
                             canvas.save();
                             canvas.translate(getChildAt(i7).getX(), (getChildAt(i7).getY() - getChildAt(i7).getMeasuredHeight()) + org.telegram.messenger.g0.L(2.0f));
                             getChildAt(i7).draw(canvas);
@@ -165,7 +165,7 @@ public final class zs extends org.telegram.ui.Components.pj0 {
     public boolean drawChild(Canvas canvas, View view, long j3) {
         switch (this.f52670e3) {
             case 2:
-                if (getAdapter() == ((yz) this.f52671f3).U && T(view).f57047f == 1) {
+                if (getAdapter() == ((yz) this.f52671f3).U && T(view).f57048f == 1) {
                     return true;
                 }
                 return super.drawChild(canvas, view, j3);

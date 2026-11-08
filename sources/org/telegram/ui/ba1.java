@@ -18,7 +18,7 @@ public final class ba1 extends rg.a {
             return false;
         }
         ba1 ba1Var = (ba1) obj;
-        if (this.f54531a != ba1Var.f54531a) {
+        if (this.f54532a != ba1Var.f54532a) {
             return false;
         }
         TLRPC.TL_forumTopic tL_forumTopic2 = this.f44241c;

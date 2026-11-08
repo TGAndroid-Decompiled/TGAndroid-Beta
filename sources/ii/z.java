@@ -77,7 +77,7 @@ public final class z extends b0 {
 
     @Override
     public final float b() {
-        return j7.a(this.f15619r.f15503i1.f55486e) * super.b();
+        return j7.a(this.f15619r.f15503i1.f55487e) * super.b();
     }
 
     @Override

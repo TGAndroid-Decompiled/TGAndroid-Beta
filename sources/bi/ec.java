@@ -166,7 +166,7 @@ public final class ec extends View {
                 super.onDraw(canvas);
                 ii.d0 d0Var = (ii.d0) this.f3833b;
                 bg.c0 c0Var = d0Var.B1;
-                float max = Math.max(d0Var.f15503i1.f55486e, d0Var.f15504j1.f55486e);
+                float max = Math.max(d0Var.f15503i1.f55487e, d0Var.f15504j1.f55487e);
                 bg.c0 c0Var2 = d0Var.A1;
                 c0Var2.c(org.telegram.messenger.g0.L(42.0f) + d0Var.L1.f15121b, 0);
                 c0Var2.setBounds(0, 0, getWidth(), org.telegram.messenger.g0.L(56.0f) + d0Var.L1.f15121b);

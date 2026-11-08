@@ -390,7 +390,7 @@ public class zs extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
             pj0Var.r1();
             pj0Var.setOnItemClickListener(new di.p4(15, naVar, f6Var2));
             v4.k kVar = new v4.k();
-            kVar.f57070m = false;
+            kVar.f57071m = false;
             kVar.C = false;
             kVar.o(xq.h);
             kVar.n(350L);
@@ -699,8 +699,8 @@ public class zs extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
                 break;
             }
             s0.c cVar = (s0.c) d.get(i7);
-            if (((AccessibilityNodeInfo.AccessibilityAction) cVar.f54597a).getId() == 268435456) {
-                dVar.f54600a.removeAction((AccessibilityNodeInfo.AccessibilityAction) cVar.f54597a);
+            if (((AccessibilityNodeInfo.AccessibilityAction) cVar.f54598a).getId() == 268435456) {
+                dVar.f54601a.removeAction((AccessibilityNodeInfo.AccessibilityAction) cVar.f54598a);
                 break;
             }
             i7++;

@@ -45,7 +45,7 @@ public final class fy extends oj0 {
         int i10;
         String str;
         ColorFilter colorFilter;
-        l9 l9Var = (l9) d1Var.f57043a;
+        l9 l9Var = (l9) d1Var.f57044a;
         hy hyVar = this.d;
         boolean z9 = this.f33690c;
         if (z9) {

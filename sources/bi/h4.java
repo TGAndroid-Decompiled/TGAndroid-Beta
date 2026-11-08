@@ -43,7 +43,7 @@ public final class h4 implements Runnable {
                 long j3 = this.f3992b;
                 long j10 = this.f3993c;
                 String str2 = h2.m0.f14112a;
-                m2.e eVar = ((l2.c0) ((d3.h0) ((wf.b) this.d).f57655c)).f17774a.f17884s;
+                m2.e eVar = ((l2.c0) ((d3.h0) ((wf.b) this.d).f57656c)).f17774a.f17884s;
                 m2.a U = eVar.U();
                 eVar.V(U, 1016, new m2.c(U, str, j10, j3, 13));
                 return;
@@ -105,9 +105,9 @@ public final class h4 implements Runnable {
                 wi.p0 p0Var = (wi.p0) this.f3994e;
                 long j17 = this.f3992b;
                 long j18 = this.f3993c;
-                synchronized (t0Var.f58198g) {
-                    if (!p0Var.d && !p0Var.f58127e) {
-                        ((hy0) t0Var.f58196e).a(p0Var.f58124a, p0Var.f58125b, j17, j18);
+                synchronized (t0Var.f58199g) {
+                    if (!p0Var.d && !p0Var.f58128e) {
+                        ((hy0) t0Var.f58197e).a(p0Var.f58125a, p0Var.f58126b, j17, j18);
                         return;
                     }
                     return;

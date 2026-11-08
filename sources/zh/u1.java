@@ -13,10 +13,10 @@ import org.telegram.ui.Components.hc;
 import org.telegram.ui.Components.up0;
 import org.telegram.ui.Components.x31;
 public final class u1 implements a20, b20 {
-    public final z1 f60540a;
+    public final z1 f60541a;
 
     public u1(z1 z1Var) {
-        this.f60540a = z1Var;
+        this.f60541a = z1Var;
     }
 
     @Override
@@ -31,10 +31,10 @@ public final class u1 implements a20, b20 {
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
-        z1 z1Var = this.f60540a;
-        up0 up0Var = z1Var.f60621a;
-        int i7 = z1Var.f60622b;
-        if (z1Var.f60624e != null) {
+        z1 z1Var = this.f60541a;
+        up0 up0Var = z1Var.f60622a;
+        int i7 = z1Var.f60623b;
+        if (z1Var.f60625e != null) {
             Object obj3 = x31Var.G;
             if (obj3 instanceof TL_stars.SavedStarGift) {
                 TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj3;
@@ -45,25 +45,25 @@ public final class u1 implements a20, b20 {
                         if (!z9 && savedStarGift.unsaved) {
                             savedStarGift.unsaved = false;
                             TL_stars.saveStarGift savestargift = new TL_stars.saveStarGift();
-                            savestargift.stargift = z1Var.f60624e.h(savedStarGift);
+                            savestargift.stargift = z1Var.f60625e.h(savedStarGift);
                             savestargift.unsave = savedStarGift.unsaved;
                             ConnectionsManager.getInstance(i7).sendRequest(savestargift, null, 64);
                         }
-                        if (z1Var.f60624e.o(savedStarGift, z10, true)) {
-                            hc.a0(up0Var.f60282a).Q(2131623981, 36, id.H(',', "GiftsPinLimit", qp.s1(i7).K6)).j();
+                        if (z1Var.f60625e.o(savedStarGift, z10, true)) {
+                            hc.a0(up0Var.f60283a).Q(2131623981, 36, id.H(',', "GiftsPinLimit", qp.s1(i7).K6)).j();
                         }
                         if (!z9) {
-                            z1Var.f60625f.v0(0);
+                            z1Var.f60626f.v0(0);
                             return;
                         }
                         return;
                     }
                     return;
                 }
-                k7 k7Var = new k7(z1Var.getContext(), z1Var.f60622b, up0Var.f60284c, z1Var.f60623c, null);
+                k7 k7Var = new k7(z1Var.getContext(), z1Var.f60623b, up0Var.f60285c, z1Var.f60624c, null);
                 k7Var.f4169c3 = new p1(z1Var, 2);
                 k7Var.J2 = new org.telegram.ui.web.a0(28, z1Var, savedStarGift);
-                k7Var.j2(savedStarGift, z1Var.f60624e);
+                k7Var.j2(savedStarGift, z1Var.f60625e);
                 k7Var.show();
             }
         }

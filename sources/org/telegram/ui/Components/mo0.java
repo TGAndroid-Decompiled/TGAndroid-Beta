@@ -349,7 +349,7 @@ public class mo0 extends org.telegram.ui.ActionBar.v2 implements org.telegram.me
             }
             hVar.b(f10);
             hVar.a(1.0f);
-            gVar2.f54267m = hVar;
+            gVar2.f54268m = hVar;
             this.f36064t2 = gVar2;
             gVar2.b(new fn0(this, d7Var, iArr, 0));
             this.f36064t2.a(new ta(this, 5));
@@ -1154,7 +1154,7 @@ public class mo0 extends org.telegram.ui.ActionBar.v2 implements org.telegram.me
             } else {
                 i7 = 1;
             }
-            WeakHashMap weakHashMap = r0.i0.f54190a;
+            WeakHashMap weakHashMap = r0.i0.f54191a;
             frameLayout2.setImportantForAccessibility(i7);
         }
         LinearLayout linearLayout = this.f36065u1;
@@ -1162,7 +1162,7 @@ public class mo0 extends org.telegram.ui.ActionBar.v2 implements org.telegram.me
             if (!z9) {
                 i10 = 1;
             }
-            WeakHashMap weakHashMap2 = r0.i0.f54190a;
+            WeakHashMap weakHashMap2 = r0.i0.f54191a;
             linearLayout.setImportantForAccessibility(i10);
         }
         this.f36067v1 = new AnimatorSet();

@@ -79,7 +79,7 @@ public final class v1 extends ViewGroup implements org.telegram.ui.Cells.h9, c3 
         }
         org.telegram.ui.Components.xi0 xi0Var = this.d;
         if (xi0Var != null) {
-            View view = xi0Var.f57043a;
+            View view = xi0Var.f57044a;
             if ((view instanceof c3) && (boundLeft = ((c3) view).getBoundLeft()) != -1) {
                 i7 = Math.min(i7, this.f50471n + boundLeft);
             }
@@ -108,7 +108,7 @@ public final class v1 extends ViewGroup implements org.telegram.ui.Cells.h9, c3 
         }
         org.telegram.ui.Components.xi0 xi0Var = this.d;
         if (xi0Var != null) {
-            View view = xi0Var.f57043a;
+            View view = xi0Var.f57044a;
             if ((view instanceof c3) && (boundRight = ((c3) view).getBoundRight()) != -1) {
                 i7 = Math.max(i7, this.f50471n + boundRight);
             }
@@ -131,7 +131,7 @@ public final class v1 extends ViewGroup implements org.telegram.ui.Cells.h9, c3 
         } else {
             org.telegram.ui.Components.xi0 xi0Var = this.d;
             if (xi0Var != null) {
-                View view = xi0Var.f57043a;
+                View view = xi0Var.f57044a;
                 if ((view instanceof c3) && (lastLineBoundRight = ((c3) view).getLastLineBoundRight()) != -1) {
                     i7 = this.f50471n;
                 }
@@ -150,7 +150,7 @@ public final class v1 extends ViewGroup implements org.telegram.ui.Cells.h9, c3 
         super.invalidate();
         org.telegram.ui.Components.xi0 xi0Var = this.d;
         if (xi0Var != null) {
-            xi0Var.f57043a.invalidate();
+            xi0Var.f57044a.invalidate();
         }
     }
 
@@ -158,7 +158,7 @@ public final class v1 extends ViewGroup implements org.telegram.ui.Cells.h9, c3 
     public final void k(ArrayList arrayList) {
         org.telegram.ui.Components.xi0 xi0Var = this.d;
         if (xi0Var != null) {
-            View view = xi0Var.f57043a;
+            View view = xi0Var.f57044a;
             if (view instanceof org.telegram.ui.Cells.h9) {
                 ((org.telegram.ui.Cells.h9) view).k(arrayList);
             }
@@ -256,9 +256,9 @@ public final class v1 extends ViewGroup implements org.telegram.ui.Cells.h9, c3 
     public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
         org.telegram.ui.Components.xi0 xi0Var = this.d;
         if (xi0Var != null) {
-            View view = xi0Var.f57043a;
+            View view = xi0Var.f57044a;
             int i13 = this.f50471n;
-            view.layout(i13, this.f50472r, view.getMeasuredWidth() + i13, this.d.f57043a.getMeasuredHeight() + this.f50472r);
+            view.layout(i13, this.f50472r, view.getMeasuredWidth() + i13, this.d.f57044a.getMeasuredHeight() + this.f50472r);
         }
     }
 
@@ -407,7 +407,7 @@ public final class v1 extends ViewGroup implements org.telegram.ui.Cells.h9, c3 
                     this.f50472r = i24;
                     org.telegram.ui.Components.xi0 xi0Var = this.d;
                     if (xi0Var != null) {
-                        View view = xi0Var.f57043a;
+                        View view = xi0Var.f57044a;
                         if (view instanceof z1) {
                             float f11 = 8;
                             this.f50472r = i24 - org.telegram.messenger.g0.L(f11);
@@ -431,7 +431,7 @@ public final class v1 extends ViewGroup implements org.telegram.ui.Cells.h9, c3 
                                     }
                                     i14 = i15 - org.telegram.messenger.g0.L(8);
                                     i13 = size;
-                                } else if (this.d.f57043a instanceof s2) {
+                                } else if (this.d.f57044a instanceof s2) {
                                     this.f50471n -= org.telegram.messenger.g0.L(f10);
                                     L2 = org.telegram.messenger.g0.L(36);
                                 } else {
@@ -447,8 +447,8 @@ public final class v1 extends ViewGroup implements org.telegram.ui.Cells.h9, c3 
                             i13 = L2 + i22;
                             i14 = 0;
                         }
-                        this.d.f57043a.measure(View.MeasureSpec.makeMeasureSpec(i13, 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
-                        if ((this.d.f57043a instanceof z1) && (z2Var = this.f50475x.f50845i) != null && z2Var.d.getLineCount() > 0 && (z2Var2 = (z1Var = (z1) this.d.f57043a).f52403c) != null && z2Var2.d.getLineCount() > 0) {
+                        this.d.f57044a.measure(View.MeasureSpec.makeMeasureSpec(i13, 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
+                        if ((this.d.f57044a instanceof z1) && (z2Var = this.f50475x.f50845i) != null && z2Var.d.getLineCount() > 0 && (z2Var2 = (z1Var = (z1) this.d.f57044a).f52403c) != null && z2Var2.d.getLineCount() > 0) {
                             this.h = (org.telegram.messenger.g0.L(2.5f) + this.f50475x.f50845i.d.getLineAscent(0)) - z1Var.f52403c.d.getLineAscent(0);
                         }
                         w3 w3Var6 = this.f50475x;
@@ -460,7 +460,7 @@ public final class v1 extends ViewGroup implements org.telegram.ui.Cells.h9, c3 
                             }
                             i14 -= org.telegram.messenger.g0.L(8);
                         } else {
-                            View view2 = this.d.f57043a;
+                            View view2 = this.d.f57044a;
                             if (view2 instanceof y1) {
                                 this.f50473s = ((y1) view2).f52040w;
                             } else if (view2 instanceof v1) {
@@ -468,10 +468,10 @@ public final class v1 extends ViewGroup implements org.telegram.ui.Cells.h9, c3 
                             }
                         }
                         if (this.f50473s && this.f50475x.f50845i != null) {
-                            this.f50470f = ((this.d.f57043a.getMeasuredHeight() - this.f50475x.f50845i.d.getHeight()) / 2) - org.telegram.messenger.g0.L(4.0f);
+                            this.f50470f = ((this.d.f57044a.getMeasuredHeight() - this.f50475x.f50845i.d.getHeight()) / 2) - org.telegram.messenger.g0.L(4.0f);
                             this.f50476y = false;
                         }
-                        i12 = this.d.f57043a.getMeasuredHeight() + i14;
+                        i12 = this.d.f57044a.getMeasuredHeight() + i14;
                     } else {
                         i12 = 0;
                     }
@@ -495,10 +495,10 @@ public final class v1 extends ViewGroup implements org.telegram.ui.Cells.h9, c3 
                 z2Var4.f52422w = this.f50470f;
             }
             org.telegram.ui.Components.xi0 xi0Var2 = this.d;
-            if (xi0Var2 != null && (xi0Var2.f57043a instanceof org.telegram.ui.Cells.h9) && (i9Var = ((g4) o50Var).P0) != null) {
+            if (xi0Var2 != null && (xi0Var2.f57044a instanceof org.telegram.ui.Cells.h9) && (i9Var = ((g4) o50Var).P0) != null) {
                 ArrayList arrayList = i9Var.A0;
                 arrayList.clear();
-                ((org.telegram.ui.Cells.h9) this.d.f57043a).k(arrayList);
+                ((org.telegram.ui.Cells.h9) this.d.f57044a).k(arrayList);
                 int size3 = arrayList.size();
                 while (i19 < size3) {
                     Object obj = arrayList.get(i19);
@@ -530,7 +530,7 @@ public final class v1 extends ViewGroup implements org.telegram.ui.Cells.h9, c3 
             this.f50475x = w3Var;
             org.telegram.ui.Components.xi0 xi0Var = this.d;
             if (xi0Var != null) {
-                removeView(xi0Var.f57043a);
+                removeView(xi0Var.f57044a);
                 this.d = null;
             }
             TL_iv.PageBlock pageBlock = this.f50475x.d;
@@ -539,7 +539,7 @@ public final class v1 extends ViewGroup implements org.telegram.ui.Cells.h9, c3 
                 this.f50474w = I;
                 v4.d1 x10 = e4Var.x(this, I);
                 this.d = (org.telegram.ui.Components.xi0) x10;
-                addView(x10.f57043a);
+                addView(x10.f57044a);
             }
         }
         TL_iv.PageBlock pageBlock2 = this.f50475x.d;

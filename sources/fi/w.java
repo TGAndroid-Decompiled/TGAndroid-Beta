@@ -37,7 +37,7 @@ public final class w extends v4.g0 {
         boolean z9;
         switch (this.f13019c) {
             case 0:
-                x xVar = (x) d1Var.f57043a;
+                x xVar = (x) d1Var.f57044a;
                 t tVar = (t) t.a().get(i7);
                 if (i7 == xVar.f13068s) {
                     z9 = true;
@@ -53,7 +53,7 @@ public final class w extends v4.g0 {
                 ArrayList arrayList = bg0Var.M;
                 boolean z10 = true;
                 ij ijVar = (ij) arrayList.get((b() - 1) - i7);
-                org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) d1Var.f57043a;
+                org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) d1Var.f57044a;
                 dj k10 = bg0Var.k(ijVar);
                 int i10 = 0;
                 if (k10 == null) {
@@ -95,7 +95,7 @@ public final class w extends v4.g0 {
     public void y(v4.d1 d1Var) {
         switch (this.f13019c) {
             case 0:
-                x xVar = (x) d1Var.f57043a;
+                x xVar = (x) d1Var.f57044a;
                 ((p2) this.f13020e).a(xVar);
                 int i7 = xVar.f13068s;
                 if (i7 >= 0 && i7 < t.a().size()) {
@@ -114,7 +114,7 @@ public final class w extends v4.g0 {
     public void z(v4.d1 d1Var) {
         switch (this.f13019c) {
             case 0:
-                ((p2) this.f13020e).d.remove((x) d1Var.f57043a);
+                ((p2) this.f13020e).d.remove((x) d1Var.f57044a);
                 return;
             default:
                 return;

@@ -31,7 +31,7 @@ public final class t6 extends vg.m {
         int round = Math.round(Math.min(i7, i10) * 3.5f);
         surfaceTexture.setDefaultBufferSize(round, round);
         this.D = round;
-        this.f57427y = round;
+        this.f57428y = round;
     }
 
     @Override

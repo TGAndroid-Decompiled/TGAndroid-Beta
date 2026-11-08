@@ -47,8 +47,8 @@ public class ky extends v4.s {
         boolean z10;
         float f10;
         SparseIntArray sparseIntArray = this.R;
-        if (sparseIntArray.size() != A() || this.W != this.f57140m || this.T != this.J) {
-            int i10 = this.f57140m;
+        if (sparseIntArray.size() != A() || this.W != this.f57141m || this.T != this.J) {
+            int i10 = this.f57141m;
             this.W = i10;
             float f11 = i10;
             if (f11 == 0.0f) {

@@ -93,16 +93,16 @@ public final class e0 implements ti.m {
             if (p10Var != null && p10Var.f36774r) {
                 z9 = true;
             }
-            int i7 = oVar2.f56124c;
+            int i7 = oVar2.f56125c;
             if (i7 != 3) {
-                oVar2.f56126f = r42;
-                oVar2.f56127g = z9;
+                oVar2.f56127f = r42;
+                oVar2.f56128g = z9;
                 if (i7 == 2) {
                     oVar2.d = r42;
                 } else {
-                    oVar2.f56124c = r42;
+                    oVar2.f56125c = r42;
                 }
-                oVar2.f56123b.f();
+                oVar2.f56124b.f();
             }
         }
     }
@@ -158,7 +158,7 @@ public final class e0 implements ti.m {
                     String sb3 = sb2.toString();
                     if (!sb3.equals(e0Var.d)) {
                         e0Var.d = sb3;
-                        e0Var.f39168c = jc.a(fArr, fArr2, 0.45f, 2.35f, null, 0.0f).f56112a;
+                        e0Var.f39168c = jc.a(fArr, fArr2, 0.45f, 2.35f, null, 0.0f).f56113a;
                     }
                 }
             }

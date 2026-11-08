@@ -19,7 +19,7 @@ public final class fy extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f57047f == 4) {
+        if (d1Var.f57048f == 4) {
             return true;
         }
         return false;
@@ -61,8 +61,8 @@ public final class fy extends org.telegram.ui.Components.oj0 {
         gy gyVar = this.f45720c;
         ArrayList arrayList = gyVar.f46147f;
         TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite = gyVar.d;
-        int i10 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i10 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         if (i10 == 0) {
             gyVar.P = (vx) view;
             gyVar.l0();

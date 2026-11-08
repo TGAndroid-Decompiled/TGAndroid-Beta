@@ -12,14 +12,14 @@ import org.telegram.ui.Components.s40;
 import org.telegram.ui.fe;
 import org.telegram.ui.qj;
 public final class f0 implements Runnable {
-    public final int f57963a;
-    public final t0 f57964b;
-    public final long f57965c;
+    public final int f57964a;
+    public final t0 f57965b;
+    public final long f57966c;
 
     public f0(t0 t0Var, long j3, int i7) {
-        this.f57963a = i7;
-        this.f57964b = t0Var;
-        this.f57965c = j3;
+        this.f57964a = i7;
+        this.f57965b = t0Var;
+        this.f57966c = j3;
     }
 
     @Override
@@ -29,41 +29,41 @@ public final class f0 implements Runnable {
         long j10;
         qj qjVar;
         h61 h61Var;
-        switch (this.f57963a) {
+        switch (this.f57964a) {
             case 0:
-                t0 t0Var = this.f57964b;
-                long j11 = this.f57965c;
-                if (t0Var.f58192a0 == 6) {
+                t0 t0Var = this.f57965b;
+                long j11 = this.f57966c;
+                if (t0Var.f58193a0 == 6) {
                     t0Var.I = j11;
                     t0Var.O = 0L;
                     t0Var.K = 0L;
                     t0Var.L = j11;
                     t0Var.x(2);
-                    t0Var.f58202l.W(t0Var.U, t0Var.I * 1000, t0Var.f58208r);
+                    t0Var.f58203l.W(t0Var.U, t0Var.I * 1000, t0Var.f58209r);
                     return;
                 }
                 return;
             default:
-                t0 t0Var2 = this.f57964b;
-                long j12 = this.f57965c;
-                if (t0Var2.f58192a0 == 4) {
+                t0 t0Var2 = this.f57965b;
+                long j12 = this.f57966c;
+                if (t0Var2.f58193a0 == 4) {
                     t0Var2.O = j12;
-                    long min = Math.min(t0Var2.f58207q, j12);
+                    long min = Math.min(t0Var2.f58208q, j12);
                     t0Var2.I = min;
                     t0Var2.K = 0L;
                     t0Var2.L = min;
-                    t0Var2.f58193b.setSurfaceTextureListener(null);
-                    t0Var2.f58193b.setTransform(t0Var2.h);
-                    l2.i0 a10 = new l2.n(t0Var2.f58191a).a();
+                    t0Var2.f58194b.setSurfaceTextureListener(null);
+                    t0Var2.f58194b.setTransform(t0Var2.h);
+                    l2.i0 a10 = new l2.n(t0Var2.f58192a).a();
                     t0Var2.W = a10;
-                    a10.z1(t0Var2.f58193b);
+                    a10.z1(t0Var2.f58194b);
                     t0Var2.W.m0(e2.l0.b(Uri.fromFile(t0Var2.V)));
                     t0Var2.W.k(0);
                     t0Var2.W.T(1.0f);
                     t0Var2.W.I0(t0Var2.Z);
                     t0Var2.W.a();
                     t0Var2.W.Z0(5, t0Var2.K);
-                    t0Var2.f58203m.b("preview player prepared: durationMs=" + t0Var2.I + ", trim=" + t0Var2.K + ".." + t0Var2.L);
+                    t0Var2.f58204m.b("preview player prepared: durationMs=" + t0Var2.I + ", trim=" + t0Var2.K + ".." + t0Var2.L);
                     t0Var2.x(5);
                     rt rtVar = t0Var2.d;
                     long j13 = t0Var2.I;

@@ -245,9 +245,9 @@ public final class k0 extends FrameLayout {
                 w40Var.m0();
                 org.telegram.ui.Components.s00 s00Var = w40Var.f50876f;
                 te.c cVar = w40Var.f50869b;
-                s00Var.setTranslationY(cVar.f55492f);
+                s00Var.setTranslationY(cVar.f55493f);
                 w40Var.n0();
-                w40Var.f50874e.setTranslationY(org.telegram.messenger.g0.L(48.0f) + cVar.f55492f);
+                w40Var.f50874e.setTranslationY(org.telegram.messenger.g0.L(48.0f) + cVar.f55493f);
                 return;
             case 10:
                 super.onLayout(z9, i7, i10, i11, i12);
@@ -577,7 +577,7 @@ public final class k0 extends FrameLayout {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) "d ").setSpan(new org.telegram.ui.Components.wp(0, context.getDrawable(2131232309)), 0, 1, 0);
         spannableStringBuilder.append((CharSequence) M0);
-        p0Var.f56756f.setText(spannableStringBuilder);
+        p0Var.f56757f.setText(spannableStringBuilder);
         linearLayout.addView(p0Var, c8.ha.t(-1, 48, 0, 16, 0, 16, 16));
     }
 
@@ -610,7 +610,7 @@ public final class k0 extends FrameLayout {
         if (voVar != null && voVar.f26081n) {
             i10 = 26;
         }
-        lVar.f58843s = i10;
+        lVar.f58844s = i10;
         addView(lVar, c8.ha.d(-2, -2.0f, 49, 20.0f, 84.0f, 20.0f, 0.0f));
         TextView textView = new TextView(context);
         if (vyVar.R1.isEmpty()) {

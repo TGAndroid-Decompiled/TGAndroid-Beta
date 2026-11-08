@@ -1220,7 +1220,7 @@ public class PrivacyControlActivity extends org.telegram.ui.ActionBar.f2 impleme
     }
 
     public final boolean G0(boolean z9) {
-        if (this.f41643b.f27357x.f55487f) {
+        if (this.f41643b.f27357x.f55488f) {
             if (z9) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
                 String M0 = org.telegram.messenger.id.M0(2131743729, null);

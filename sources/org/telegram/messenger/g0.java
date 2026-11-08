@@ -787,11 +787,11 @@ public abstract class g0 {
         }
         view.setTag(2131296664, Float.valueOf(view.getTranslationX()));
         float translationX = view.getTranslationX();
-        r1.g gVar = new r1.g(view, r1.g.f54250o, translationX);
+        r1.g gVar = new r1.g(view, r1.g.f54251o, translationX);
         r1.h hVar = new r1.h(translationX);
         hVar.b(600.0f);
-        gVar.f54267m = hVar;
-        gVar.f54257a = (-L2) * 100;
+        gVar.f54268m = hVar;
+        gVar.f54258a = (-L2) * 100;
         gVar.a(new fi.h3(translationX, view, runnable));
         view.setTag(2131296663, gVar);
         gVar.h();
@@ -853,8 +853,8 @@ public abstract class g0 {
     }
 
     public static i0.b I0(r0.k1 k1Var, boolean z9) {
-        i0.b g10 = k1Var.f54201a.g(647);
-        r0.h1 h1Var = k1Var.f54201a;
+        i0.b g10 = k1Var.f54202a.g(647);
+        r0.h1 h1Var = k1Var.f54202a;
         i0.b a10 = i0.b.a(g10, h1Var.f(647));
         if (z9) {
             return i0.b.a(a10, h1Var.f(8));
@@ -1161,11 +1161,11 @@ public abstract class g0 {
         if (!aVar.g()) {
             return;
         }
-        String str = aVar.f56916b;
-        int i7 = aVar.f56917c;
+        String str = aVar.f56917b;
+        int i7 = aVar.f56918c;
         String str2 = aVar.d;
-        String str3 = aVar.f56918e;
-        String str4 = aVar.f56919f;
+        String str3 = aVar.f56919e;
+        String str4 = aVar.f56920f;
         org.telegram.ui.ActionBar.v2 v2Var = new org.telegram.ui.ActionBar.v2(1, (Context) launchActivity, (org.telegram.ui.ActionBar.f6) null, false);
         v2Var.N();
         v2Var.f28650u0 = false;

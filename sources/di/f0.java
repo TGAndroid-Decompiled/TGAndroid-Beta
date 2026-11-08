@@ -114,15 +114,15 @@ public final class f0 implements bj0 {
                     if (G2.H(fi.k7.class) && (webPage = m7Var.Y1) != null && !fi.m7.g1(webPage)) {
                         tg.i2 i2Var = new tg.i2(context, m7Var.f28616a);
                         tg.h0 h0Var = new tg.h0();
-                        h0Var.f55709c = k3Var2.d.getText().toString();
+                        h0Var.f55710c = k3Var2.d.getText().toString();
                         if (m7Var.f12458e2) {
                             str = k3Var.d.getText().toString();
                         }
-                        h0Var.f55708b = str;
+                        h0Var.f55709b = str;
                         TLRPC.WebPage webPage2 = m7Var.Y1;
                         h0Var.d = webPage2;
-                        h0Var.f55710e = m7Var.f12460g2;
-                        h0Var.f55711f = m7Var.f12459f2;
+                        h0Var.f55711e = m7Var.f12460g2;
+                        h0Var.f55712f = m7Var.f12459f2;
                         ai.i iVar = new ai.i(m7Var, 26);
                         i2Var.G = h0Var;
                         if (webPage2 != null && (webPage2.photo != null || ij.L4(webPage2.document))) {
@@ -130,13 +130,13 @@ public final class f0 implements bj0 {
                         } else {
                             i10 = 8;
                         }
-                        ha0 ha0Var = i2Var.f55765y;
+                        ha0 ha0Var = i2Var.f55766y;
                         ha0Var.setVisibility(i10);
-                        i2Var.f55759f.b(i2Var.f55755a, h0Var, false);
-                        i2Var.f55764x.a(!h0Var.f55711f, false);
-                        ha0Var.a(!h0Var.f55710e, false);
+                        i2Var.f55760f.b(i2Var.f55756a, h0Var, false);
+                        i2Var.f55765x.a(!h0Var.f55712f, false);
+                        ha0Var.a(!h0Var.f55711e, false);
                         i2Var.H = iVar;
-                        i2Var.f55758e.setImageDrawable(new fi.l3(y5Var, 9));
+                        i2Var.f55759e.setImageDrawable(new fi.l3(y5Var, 9));
                         i2Var.show();
                         return;
                     } else if (G2.d == 2 && (view instanceof org.telegram.ui.Cells.r8)) {
@@ -167,7 +167,7 @@ public final class f0 implements bj0 {
                     return;
                 } else if (!ua.a(w80Var)) {
                     v4.c0 c0Var = new v4.c0(context2);
-                    c0Var.f57212a = i7;
+                    c0Var.f57213a = i7;
                     tVar.f30293f3.w0(c0Var);
                     ua.b(w80Var);
                     int i12 = org.telegram.ui.Cells.s.h;

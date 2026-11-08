@@ -459,8 +459,8 @@ public final class q3 extends o00 implements ls {
         vg.m mVar = new vg.m(context, 1, 3);
         this.T = mVar;
         mVar.setImportantForAccessibility(4);
-        vg.f fVar = this.T.f57411b;
-        fVar.f57395z = k6.Tk;
+        vg.f fVar = this.T.f57412b;
+        fVar.f57396z = k6.Tk;
         fVar.A = k6.Uk;
         fVar.b();
         this.T.setStarParticlesView(this.f48194e);
@@ -469,7 +469,7 @@ public final class q3 extends o00 implements ls {
         this.f48193c.setOnItemClickListener(new di.p4(2, this, context));
         this.f48193c.setOnItemLongClickListener(new ab.g(16, this, context));
         v4.k kVar = new v4.k();
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         kVar.C = false;
         kVar.o(xq.h);
         kVar.n(350L);

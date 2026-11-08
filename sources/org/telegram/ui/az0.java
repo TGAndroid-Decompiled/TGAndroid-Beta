@@ -19,7 +19,7 @@ public final class az0 extends rg.a {
             return false;
         }
         az0 az0Var = (az0) obj;
-        if (this.f54531a != az0Var.f54531a) {
+        if (this.f54532a != az0Var.f54532a) {
             return false;
         }
         String str = this.d;

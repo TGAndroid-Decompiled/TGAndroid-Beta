@@ -243,14 +243,14 @@ public final class a0 extends ViewGroup {
         int width = getWidth();
         int height = getHeight();
         float f14 = 0.001f;
-        if (Math.abs(a10.f56112a - this.f39081n) <= 0.001f && width > 0 && height > 0 && !f(width, height) && c()) {
+        if (Math.abs(a10.f56113a - this.f39081n) <= 0.001f && width > 0 && height > 0 && !f(width, height) && c()) {
             float f15 = width / height;
             a10 = jc.a(fArr, fArr2, f15, f15, iArr, 0.0f);
             z10 = true;
         } else {
             z10 = false;
         }
-        this.E = a10.f56112a;
+        this.E = a10.f56113a;
         if (org.telegram.messenger.r2.f25212a) {
             StringBuilder sb2 = new StringBuilder("group call pip: mosaic ");
             sb2.append(Arrays.toString(fArr));
@@ -312,7 +312,7 @@ public final class a0 extends ViewGroup {
         ArrayList arrayList3 = new ArrayList(size);
         for (int i16 = 0; i16 < size; i16++) {
             d0 d0Var4 = (d0) arrayList.get(i16);
-            System.arraycopy(a10.f56113b, i16 * 4, d0Var4.N, 0, 4);
+            System.arraycopy(a10.f56114b, i16 * 4, d0Var4.N, 0, 4);
             d0Var4.Q = 1.0f;
             d0Var4.K = fArr[i16];
             if (!d0Var4.L || !z9) {
@@ -326,19 +326,19 @@ public final class a0 extends ViewGroup {
                 d0Var4.L = true;
             }
         }
-        for (int i17 : a10.f56114c) {
+        for (int i17 : a10.f56115c) {
             arrayList3.add((d0) arrayList.get(i17));
         }
         arrayList.clear();
         arrayList.addAll(arrayList3);
         this.H = null;
-        if (!z10 && Math.abs(a10.f56112a - this.f39081n) > f20) {
+        if (!z10 && Math.abs(a10.f56113a - this.f39081n) > f20) {
             z11 = true;
         } else {
             z11 = false;
         }
         if (z11) {
-            this.f39081n = a10.f56112a;
+            this.f39081n = a10.f56113a;
             ti.o oVar = this.J.f39166a;
             if (oVar != null) {
                 oVar.c();

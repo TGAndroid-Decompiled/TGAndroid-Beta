@@ -102,7 +102,7 @@ public class ow0 extends FrameLayout implements org.telegram.messenger.ls, org.t
             this.f36712e.setLayoutManager(b0Var);
             v4.k kVar = new v4.k();
             kVar.n(45L);
-            kVar.f57099o = xqVar;
+            kVar.f57100o = xqVar;
             this.f36712e.setItemAnimator(kVar);
             org.telegram.ui.ActionBar.r6.K(this.f36712e, org.telegram.ui.ActionBar.k6.f27944i6, this.f36707b);
             lw0 lw0Var2 = this.f36712e;

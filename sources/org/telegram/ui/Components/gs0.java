@@ -90,8 +90,8 @@ public final class gs0 extends oj0 {
             ArrayList arrayList = this.f34019n;
             if (i7 < arrayList.size()) {
                 org.telegram.messenger.ij ijVar = (org.telegram.messenger.ij) arrayList.get(i7);
-                int i10 = d1Var.f57047f;
-                View view = d1Var.f57043a;
+                int i10 = d1Var.f57048f;
+                View view = d1Var.f57044a;
                 if (i10 == 0) {
                     ((org.telegram.ui.Cells.q1) view).w3(ijVar, null, false, false, false, false);
                 } else {

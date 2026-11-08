@@ -18,7 +18,7 @@ public final class e10 extends v4.s0 {
             int L = org.telegram.messenger.g0.L(74.0f);
             k30Var.getChildAt(0);
             if ((c40Var.f44611p2 - L) + c40Var.f28648s0 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && k30Var.canScrollVertically(1) && (xi0Var = (org.telegram.ui.Components.xi0) k30Var.K(0)) != null) {
-                View view = xi0Var.f57043a;
+                View view = xi0Var.f57044a;
                 if (view.getTop() > 0) {
                     k30Var.w0(0, view.getTop(), null);
                     return;

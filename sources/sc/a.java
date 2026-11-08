@@ -12,16 +12,16 @@ import org.telegram.ui.hl0;
 import org.telegram.ui.hy0;
 import tc.g;
 public final class a extends AsyncTask {
-    public final String f54997a;
-    public final uc.a f54998b;
-    public final f f54999c;
+    public final String f54998a;
+    public final uc.a f54999b;
+    public final f f55000c;
     public final n d;
 
     public a(n nVar, String str, uc.a aVar, f fVar) {
         this.d = nVar;
-        this.f54997a = str;
-        this.f54998b = aVar;
-        this.f54999c = fVar;
+        this.f54998a = str;
+        this.f54999b = aVar;
+        this.f55000c = fVar;
     }
 
     @Override
@@ -29,7 +29,7 @@ public final class a extends AsyncTask {
         Void[] voidArr = (Void[]) objArr;
         n nVar = this.d;
         try {
-            hy0 c10 = vc.b.c(pd.a(this.f54998b), new l(this.f54997a, 2));
+            hy0 c10 = vc.b.c(pd.a(this.f54999b), new l(this.f54998a, 2));
             Object obj = nVar.f36175a;
             return new b(c10, null);
         } catch (g e10) {
@@ -42,8 +42,8 @@ public final class a extends AsyncTask {
     public final void onPostExecute(Object obj) {
         b bVar = (b) obj;
         Object obj2 = this.d.f36175a;
-        hy0 hy0Var = bVar.f55000a;
-        f fVar = this.f54999c;
+        hy0 hy0Var = bVar.f55001a;
+        f fVar = this.f55000c;
         if (hy0Var != null) {
             hl0 hl0Var = (hl0) fVar.f45409b;
             if (hl0Var.Q0) {
@@ -53,7 +53,7 @@ public final class a extends AsyncTask {
             g0.h3(new ef0(fVar, 11));
             return;
         }
-        Exception exc = bVar.f55001b;
+        Exception exc = bVar.f55002b;
         if (exc != null) {
             fVar.Y1(exc);
         } else {

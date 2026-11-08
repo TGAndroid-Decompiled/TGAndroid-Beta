@@ -196,15 +196,15 @@ public final class l extends g.p {
                 }
                 return i15;
             case 15:
-                int size = (e5Var.f55963s0.size() - 1) - i7;
-                dj djVar = ((e5) this.d).f55964t0;
+                int size = (e5Var.f55964s0.size() - 1) - i7;
+                dj djVar = ((e5) this.d).f55965t0;
                 if (djVar != null && size >= 0 && size < djVar.d.size() && (d = djVar.d((ij) djVar.d.get(size))) != null) {
                     return d.f21447i;
                 }
                 return 1000;
             case 16:
                 zh.g1 g1Var = (zh.g1) this.d;
-                ky kyVar3 = g1Var.f60324a2;
+                ky kyVar3 = g1Var.f60325a2;
                 l41 l41Var2 = g1Var.Q1;
                 if (l41Var2 != null && i7 != 0) {
                     x31 G3 = l41Var2.G(i7 - 1);
@@ -215,7 +215,7 @@ public final class l extends g.p {
                 }
                 return kyVar3.J;
             case 17:
-                x31 G4 = ((k3) this.d).f60417a2.G(i7 - 1);
+                x31 G4 = ((k3) this.d).f60418a2.G(i7 - 1);
                 if (G4 == null || (i17 = G4.f40189u) == -1) {
                     return 3;
                 }

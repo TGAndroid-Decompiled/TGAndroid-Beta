@@ -31,7 +31,7 @@ public final class h implements Runnable {
                     qs.e().k(98, 512);
                     oVar.f6343c.setVisibility(0);
                     oVar.f6343c.setLayerType(2, null);
-                    oVar.j0(oVar.Q.f55486e);
+                    oVar.j0(oVar.Q.f55487e);
                     oVar.Q.a(true, true);
                     return;
                 }

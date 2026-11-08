@@ -42,7 +42,7 @@ public final class t71 extends org.telegram.ui.Components.oj0 {
     @Override
     public final void t(v4.d1 d1Var, int i7) {
         BlendMode blendMode;
-        org.telegram.ui.Cells.i5 i5Var = (org.telegram.ui.Cells.i5) d1Var.f57043a;
+        org.telegram.ui.Cells.i5 i5Var = (org.telegram.ui.Cells.i5) d1Var.f57044a;
         v71 v71Var = this.d;
         i5Var.setPattern((TLRPC.TL_wallPaper) v71Var.V0.get(i7));
         i5Var.getImageReceiver().f21209o1 = new PorterDuffColorFilter(v71Var.f50555k1, v71Var.f50574t1);

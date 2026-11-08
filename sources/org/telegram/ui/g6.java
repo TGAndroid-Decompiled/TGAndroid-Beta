@@ -14,7 +14,7 @@ public final class g6 implements org.telegram.ui.Components.et0, i7 {
     @Override
     public void F(boolean z9) {
         te.a aVar = this.f45845a.T;
-        if (aVar != null && aVar.f55487f != z9) {
+        if (aVar != null && aVar.f55488f != z9) {
             aVar.a(z9, true);
         }
     }

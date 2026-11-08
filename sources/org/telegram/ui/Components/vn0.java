@@ -76,7 +76,7 @@ public final class vn0 implements org.telegram.messenger.ls {
                 }
                 hVar.b(f10);
                 hVar.a(1.0f);
-                gVar2.f54267m = hVar;
+                gVar2.f54268m = hVar;
                 mo0Var.f36064t2 = gVar2;
                 gVar2.b(new fn0(this, this.f39048c, iArr, 1));
                 mo0Var.f36064t2.a(new ta(this, 6));

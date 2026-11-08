@@ -444,15 +444,15 @@ public class e7 extends FrameLayout {
         zh.z0 z0Var = new zh.z0(context);
         this.f3782n = z0Var;
         z0Var.b(org.telegram.messenger.id.M0(2131749754, null), true);
-        zh.b1 b1Var = z0Var.f60619a;
-        if (b1Var.f60230w == null) {
+        zh.b1 b1Var = z0Var.f60620a;
+        if (b1Var.f60231w == null) {
             ud udVar = new ud(2, 12);
-            b1Var.f60230w = udVar;
+            b1Var.f60231w = udVar;
             udVar.h = 5.0f;
         }
-        Path path = b1Var.f60226f;
-        float f16 = b1Var.f60229s;
-        b1Var.f60231x = true;
+        Path path = b1Var.f60227f;
+        float f16 = b1Var.f60230s;
+        b1Var.f60232x = true;
         zh.b1.d(path, f16, true);
         z0Var.setScaleX(1.2f);
         z0Var.setScaleY(1.2f);
@@ -1139,7 +1139,7 @@ public class e7 extends FrameLayout {
                 x5VarArr[2].setOnClickListener(this.U);
             }
             this.f3775f0 = starGift.crafted;
-            this.f3782n.f60619a.e(stargiftattributebackdropArr[0], false, true);
+            this.f3782n.f60620a.e(stargiftattributebackdropArr[0], false, true);
         } else {
             stargiftattributebackdropArr[0] = null;
             w70VarArr[0].setTextSize(1, 14.0f);

@@ -266,7 +266,7 @@ public final class js0 extends oj0 {
     public final void t(v4.d1 d1Var, int i7) {
         boolean z9;
         if (i7 >= 0) {
-            View view = d1Var.f57043a;
+            View view = d1Var.f57044a;
             if (view instanceof org.telegram.ui.Cells.t2) {
                 org.telegram.ui.Cells.t2 t2Var = (org.telegram.ui.Cells.t2) view;
                 if (i7 + 1 < b()) {

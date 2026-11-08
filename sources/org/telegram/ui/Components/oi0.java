@@ -57,7 +57,7 @@ public final class oi0 implements View.OnLayoutChangeListener {
                 ((org.telegram.ui.Cells.p4) childAt).c(true, false);
             }
             v4.g0 g0Var = this.f36645a;
-            if (g0Var != null && (g0Var.f57077b || ri0Var.f37674c)) {
+            if (g0Var != null && (g0Var.f57078b || ri0Var.f37674c)) {
                 pj0Var.getClass();
                 long c10 = g0Var.c(RecyclerView.R(childAt));
                 if (hashMap.containsKey(Long.valueOf(c10)) && (view2 = (View) hashMap.get(Long.valueOf(c10))) != null) {

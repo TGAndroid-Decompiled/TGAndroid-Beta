@@ -137,14 +137,14 @@ public final class jn0 implements org.telegram.messenger.c20 {
                     f11 = 1.0f;
                 }
                 ObjectAnimator ofFloat5 = ObjectAnimator.ofFloat(a5Var, property2, f11);
-                tg.v0 v0Var = photoViewer3.L1.f55674j0;
+                tg.v0 v0Var = photoViewer3.L1.f55675j0;
                 if (max > org.telegram.messenger.g0.L(20.0f)) {
                     f12 = 0.0f;
                 } else {
                     f12 = 1.0f;
                 }
                 ObjectAnimator ofFloat6 = ObjectAnimator.ofFloat(v0Var, property2, f12);
-                tg.z0 z0Var = photoViewer3.L1.f55676k0;
+                tg.z0 z0Var = photoViewer3.L1.f55677k0;
                 if (max > org.telegram.messenger.g0.L(20.0f)) {
                     f13 = 0.0f;
                 } else {
@@ -155,7 +155,7 @@ public final class jn0 implements org.telegram.messenger.c20 {
                 animatorSet2.setInterpolator(xqVar);
                 animatorSet2.start();
                 up0 up0Var = photoViewer3.L1;
-                tg.e1 e1Var = up0Var.f55668d1;
+                tg.e1 e1Var = up0Var.f55669d1;
                 if (e1Var != null) {
                     if (up0Var.Q1) {
                         e1Var.a(2131231512);
@@ -165,7 +165,7 @@ public final class jn0 implements org.telegram.messenger.c20 {
                         e1Var.a(2131232042);
                     }
                 }
-                TextView textView = up0Var.f55672h1;
+                TextView textView = up0Var.f55673h1;
                 if (!up0Var.Q1 && !up0Var.P1) {
                     z9 = true;
                     z10 = false;
@@ -174,21 +174,21 @@ public final class jn0 implements org.telegram.messenger.c20 {
                     z10 = false;
                 }
                 org.telegram.messenger.g0.U3(1.0f, textView, z9, z10);
-                ImageView imageView = up0Var.f55670f1;
+                ImageView imageView = up0Var.f55671f1;
                 if (!up0Var.Q1 && !up0Var.P1) {
                     z11 = true;
                 } else {
                     z11 = z10;
                 }
                 org.telegram.messenger.g0.U3(1.0f, imageView, z11, z10);
-                TextView textView2 = up0Var.f55675j1;
+                TextView textView2 = up0Var.f55676j1;
                 if (!up0Var.Q1 && !up0Var.P1) {
                     z12 = z10;
                 } else {
                     z12 = true;
                 }
                 org.telegram.messenger.g0.U3(1.0f, textView2, z12, z10);
-                TextView textView3 = up0Var.f55673i1;
+                TextView textView3 = up0Var.f55674i1;
                 if (!up0Var.Q1 && !up0Var.P1) {
                     z13 = z10;
                 }

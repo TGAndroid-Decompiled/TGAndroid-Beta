@@ -149,8 +149,8 @@ public final class ks0 extends vi0 {
         SparseArray[] sparseArrayArr = xs0Var.f40396b1;
         ms0 ms0Var = xs0Var.f40455v1[this.d];
         ArrayList arrayList = ms0Var.f36091a;
-        int i10 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i10 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         boolean z11 = false;
         if (i10 != 7) {
             if (i10 == 10 && (view instanceof org.telegram.ui.Cells.g7)) {

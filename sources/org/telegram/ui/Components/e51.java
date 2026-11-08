@@ -9,10 +9,10 @@ public final class e51 implements View.OnLayoutChangeListener {
 
     public e51(h6.m mVar, View view) {
         this.f33206c = mVar;
-        r1.g gVar = new r1.g((Object) view, (r1.e) r1.g.f54251p, 0.0f);
+        r1.g gVar = new r1.g((Object) view, (r1.e) r1.g.f54252p, 0.0f);
         mVar.f14265c = gVar;
-        gVar.f54267m.a(1.0f);
-        ((r1.g) mVar.f14265c).f54267m.b(350.0f);
+        gVar.f54268m.a(1.0f);
+        ((r1.g) mVar.f14265c).f54268m.b(350.0f);
     }
 
     @Override
@@ -36,7 +36,7 @@ public final class e51 implements View.OnLayoutChangeListener {
                 view.setTranslationY(0.0f);
                 return;
             }
-            ((r1.g) mVar.f14265c).f54267m.f54275i = 0.0f;
+            ((r1.g) mVar.f14265c).f54268m.f54276i = 0.0f;
             view.setTranslationY((i14 - i10) + 0.0f);
             ((r1.g) mVar.f14265c).h();
             return;

@@ -293,7 +293,7 @@ public abstract class q11 extends FrameLayout implements org.telegram.messenger.
             return;
         }
         fi.j1 j1Var = new fi.j1(4, q11Var.f49037h0.getContext(), q11Var);
-        j1Var.f57212a = i7;
+        j1Var.f57213a = i7;
         j1Var.f20111p = i10;
         f01Var.w0(j1Var);
     }
@@ -1464,13 +1464,13 @@ public abstract class q11 extends FrameLayout implements org.telegram.messenger.
         this.f49037h0 = o01Var;
         ?? kVar = new v4.k();
         this.f49031e1 = kVar;
-        kVar.f57115c = 220L;
-        kVar.f57116e = 260L;
-        kVar.f57117f = 160L;
-        kVar.f57118g = 160L;
-        kVar.f57070m = false;
+        kVar.f57116c = 220L;
+        kVar.f57117e = 260L;
+        kVar.f57118f = 160L;
+        kVar.f57119g = 160L;
+        kVar.f57071m = false;
         org.telegram.ui.Components.xq xqVar = org.telegram.ui.Components.xq.h;
-        kVar.f57119i = xqVar;
+        kVar.f57120i = xqVar;
         kVar.C = false;
         o01Var.setItemAnimator(kVar);
         o01Var.setPadding(org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(38.0f));
@@ -1492,7 +1492,7 @@ public abstract class q11 extends FrameLayout implements org.telegram.messenger.
         if (e01Var.getItemAnimator() != null) {
             f11 = f10;
             e01Var.getItemAnimator().n(180L);
-            e01Var.getItemAnimator().f57119i = xqVar;
+            e01Var.getItemAnimator().f57120i = xqVar;
         } else {
             f11 = f10;
         }

@@ -289,7 +289,7 @@ public final class u3 implements View.OnClickListener {
                 int i17 = 0;
                 while (true) {
                     if (i17 < i16.size()) {
-                        if (((TL_stars.SavedStarGift) i16.get(i17)).gift.f27185id == c2Var.f60270i1) {
+                        if (((TL_stars.SavedStarGift) i16.get(i17)).gift.f27185id == c2Var.f60271i1) {
                             savedStarGift = (TL_stars.SavedStarGift) i16.get(i17);
                             i7 = i17;
                         } else {

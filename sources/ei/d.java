@@ -60,42 +60,42 @@ public final class d extends v {
         switch (this.d) {
             case 0:
                 super.a(recyclerView, d1Var);
-                d1Var.f57043a.setPressed(false);
+                d1Var.f57044a.setPressed(false);
                 return;
             case 1:
                 super.a(recyclerView, d1Var);
-                View view = d1Var.f57043a;
+                View view = d1Var.f57044a;
                 view.setPressed(false);
                 view.setTag(2131296419, null);
                 return;
             case 2:
                 super.a(recyclerView, d1Var);
-                d1Var.f57043a.setPressed(false);
+                d1Var.f57044a.setPressed(false);
                 return;
             case 3:
                 super.a(recyclerView, d1Var);
-                View view2 = d1Var.f57043a;
+                View view2 = d1Var.f57044a;
                 view2.setPressed(false);
                 view2.setTag(2131296419, null);
                 return;
             case 4:
                 super.a(recyclerView, d1Var);
-                View view3 = d1Var.f57043a;
+                View view3 = d1Var.f57044a;
                 view3.setPressed(false);
                 view3.setBackground(null);
                 return;
             case 5:
                 super.a(recyclerView, d1Var);
-                d1Var.f57043a.setPressed(false);
+                d1Var.f57044a.setPressed(false);
                 return;
             case 6:
                 super.a(recyclerView, d1Var);
-                d1Var.f57043a.setPressed(false);
+                d1Var.f57044a.setPressed(false);
                 return;
             case 7:
                 q41 q41Var = (q41) this.f10813e;
                 super.a(recyclerView, d1Var);
-                View view4 = d1Var.f57043a;
+                View view4 = d1Var.f57044a;
                 view4.setPressed(false);
                 if (view4.getBackground() instanceof y1) {
                     y1 y1Var = (y1) view4.getBackground();
@@ -116,7 +116,7 @@ public final class d extends v {
                 return;
             case 9:
                 super.a(recyclerView, d1Var);
-                d1Var.f57043a.setPressed(false);
+                d1Var.f57044a.setPressed(false);
                 return;
         }
     }
@@ -133,22 +133,22 @@ public final class d extends v {
                 }
                 return v.l(0, 0);
             case 1:
-                if (d1Var.f57047f == 4 && ((ia) d1Var.f57043a).G) {
+                if (d1Var.f57048f == 4 && ((ia) d1Var.f57044a).G) {
                     return v.l(3, 0);
                 }
                 return v.l(0, 0);
             case 2:
-                if (d1Var.f57047f == 1 && ((ia) d1Var.f57043a).G) {
+                if (d1Var.f57048f == 1 && ((ia) d1Var.f57044a).G) {
                     return v.l(3, 0);
                 }
                 return v.l(0, 0);
             case 3:
-                if (d1Var.f57047f != 0) {
+                if (d1Var.f57048f != 0) {
                     return 0;
                 }
                 return v.l(3, 0);
             case 4:
-                if (d1Var.f57047f != 5) {
+                if (d1Var.f57048f != 5) {
                     return v.l(0, 0);
                 }
                 return v.l(3, 0);
@@ -170,7 +170,7 @@ public final class d extends v {
                 q41 q41Var = (q41) this.f10813e;
                 if (q41Var.j3 && q41Var.f37190f3.H(d1Var.b()) >= 0) {
                     int i7 = 15;
-                    if (q41Var.f37189e3.f57012o == 0) {
+                    if (q41Var.f37189e3.f57013o == 0) {
                         if (!q41Var.f37193i3) {
                             i7 = 12;
                         }
@@ -186,7 +186,7 @@ public final class d extends v {
                 }
                 return v.l(0, 0);
             default:
-                if (d1Var.f57047f == 5 && r(d1Var.b())) {
+                if (d1Var.f57048f == 5 && r(d1Var.b())) {
                     return v.l(3, 0);
                 }
                 return v.l(0, 0);
@@ -280,8 +280,8 @@ public final class d extends v {
                 iVar.j(b10, b11);
                 return true;
             case 1:
-                if (d1Var.f57047f == d1Var2.f57047f) {
-                    View view = d1Var2.f57043a;
+                if (d1Var.f57048f == d1Var2.f57048f) {
+                    View view = d1Var2.f57044a;
                     if (!(view instanceof ia) || ((ia) view).G) {
                         ea eaVar = ((la) obj).f47479c;
                         int b12 = d1Var.b();
@@ -313,8 +313,8 @@ public final class d extends v {
                 }
                 return false;
             case 2:
-                if (d1Var.f57047f == d1Var2.f57047f) {
-                    View view2 = d1Var2.f57043a;
+                if (d1Var.f57048f == d1Var2.f57048f) {
+                    View view2 = d1Var2.f57044a;
                     if (!(view2 instanceof ia) || ((ia) view2).G) {
                         eo eoVar = ((fo) obj).f45656e3;
                         int b14 = d1Var.b();
@@ -360,7 +360,7 @@ public final class d extends v {
                 b8Var.f32104q1.j(b16, b17);
                 return true;
             case 4:
-                if (d1Var.f57047f != d1Var2.f57047f) {
+                if (d1Var.f57048f != d1Var2.f57048f) {
                     return false;
                 }
                 l4 l4Var = ((bn) obj).f32258r;
@@ -375,7 +375,7 @@ public final class d extends v {
                     return true;
                 }
                 sh.c b20 = dVar.b(i21);
-                SparseArray sparseArray = dVar.f55294a;
+                SparseArray sparseArray = dVar.f55295a;
                 sparseArray.put(i21, dVar.b(i22));
                 sparseArray.put(i22, b20);
                 CharSequence[] charSequenceArr = bnVar.K;
@@ -493,7 +493,7 @@ public final class d extends v {
                 m61Var.a(arrayList10);
                 return true;
             default:
-                if (d1Var.f57047f != d1Var2.f57047f || !r(d1Var.b()) || !r(d1Var2.b())) {
+                if (d1Var.f57048f != d1Var2.f57048f || !r(d1Var.b()) || !r(d1Var2.b())) {
                     return false;
                 }
                 nr0 nr0Var = ((pr0) obj).f48917b;
@@ -592,7 +592,7 @@ public final class d extends v {
                 }
                 fVar.I0(false);
                 if (d1Var != null) {
-                    d1Var.f57043a.setPressed(true);
+                    d1Var.f57044a.setPressed(true);
                     return;
                 }
                 return;
@@ -602,10 +602,10 @@ public final class d extends v {
                     la.d0(laVar);
                 } else {
                     laVar.f47478b.I0(false);
-                    d1Var.f57043a.setPressed(true);
+                    d1Var.f57044a.setPressed(true);
                 }
                 if (d1Var != null) {
-                    View view = d1Var.f57043a;
+                    View view = d1Var.f57044a;
                     if (i7 == 2) {
                         bool = Boolean.TRUE;
                     }
@@ -655,7 +655,7 @@ public final class d extends v {
                 }
                 goVar.L = true;
                 foVar.I0(false);
-                d1Var.f57043a.setPressed(true);
+                d1Var.f57044a.setPressed(true);
                 return;
             case 3:
                 n7 n7Var = ((b8) obj).f32100o1;
@@ -665,11 +665,11 @@ public final class d extends v {
                 if (i7 != 0) {
                     n7Var.I0(false);
                     if (d1Var != null) {
-                        d1Var.f57043a.setPressed(true);
+                        d1Var.f57044a.setPressed(true);
                     }
                 }
                 if (d1Var != null) {
-                    View view2 = d1Var.f57043a;
+                    View view2 = d1Var.f57044a;
                     if (i7 == 2) {
                         bool = Boolean.TRUE;
                     }
@@ -683,15 +683,15 @@ public final class d extends v {
                 if (i7 != 0) {
                     e61Var.setItemAnimator(bnVar.f32265w);
                     e61Var.I0(false);
-                    d1Var.f57043a.setPressed(true);
-                    r6.i(k6.f27925h5, d1Var.f57043a, bnVar.f39003a);
+                    d1Var.f57044a.setPressed(true);
+                    r6.i(k6.f27925h5, d1Var.f57044a, bnVar.f39003a);
                     return;
                 }
                 return;
             case 5:
                 if (i7 != 0) {
                     ((dl0) obj).f33036b.I0(false);
-                    d1Var.f57043a.setPressed(true);
+                    d1Var.f57044a.setPressed(true);
                     return;
                 }
                 return;
@@ -726,7 +726,7 @@ public final class d extends v {
                 }
                 q41Var.I0(false);
                 if (d1Var != null) {
-                    View view3 = d1Var.f57043a;
+                    View view3 = d1Var.f57044a;
                     view3.setPressed(true);
                     if (view3.getBackground() instanceof y1) {
                         y1 y1Var = (y1) view3.getBackground();
@@ -749,7 +749,7 @@ public final class d extends v {
             case 9:
                 if (i7 != 0) {
                     ((pr0) obj).f48919c.I0(false);
-                    d1Var.f57043a.setPressed(true);
+                    d1Var.f57044a.setPressed(true);
                     return;
                 }
                 return;

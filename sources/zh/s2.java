@@ -11,7 +11,7 @@ import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Components.l9;
 import org.telegram.ui.Components.zg0;
 public final class s2 extends LinearLayout {
-    public final TextView f60520a;
+    public final TextView f60521a;
 
     public s2(Context context, f6 f6Var) {
         super(context);
@@ -20,7 +20,7 @@ public final class s2 extends LinearLayout {
         l9Var.setImageDrawable(new zg0(2131624319, org.telegram.messenger.g0.L(130.0f), org.telegram.messenger.g0.L(130.0f)));
         addView(l9Var, ha.t(64, 64, 17, 0, 32, 0, 0));
         TextView textView = new TextView(context);
-        this.f60520a = textView;
+        this.f60521a = textView;
         r6.V(textView, k6.A6, f6Var);
         textView.setTextSize(1, 14.0f);
         textView.setGravity(17);
@@ -37,6 +37,6 @@ public final class s2 extends LinearLayout {
     }
 
     public void set(CharSequence charSequence) {
-        this.f60520a.setText(charSequence);
+        this.f60521a.setText(charSequence);
     }
 }

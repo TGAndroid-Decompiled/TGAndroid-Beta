@@ -71,16 +71,16 @@ public class lb0 extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
 
     public static void d(r1.g gVar, float f10) {
         float f11 = f10 * 100.0f;
-        r1.h hVar = gVar.f54267m;
-        if (hVar != null && f11 == ((float) hVar.f54275i)) {
+        r1.h hVar = gVar.f54268m;
+        if (hVar != null && f11 == ((float) hVar.f54276i)) {
             return;
         }
         gVar.d();
         r1.h hVar2 = new r1.h(f11);
         hVar2.b(500.0f);
         hVar2.a(1.0f);
-        hVar2.f54275i = f11;
-        gVar.f54267m = hVar2;
+        hVar2.f54276i = f11;
+        gVar.f54268m = hVar2;
         gVar.h();
     }
 

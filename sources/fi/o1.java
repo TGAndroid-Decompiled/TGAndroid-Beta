@@ -182,7 +182,7 @@ public final class o1 extends v4.m0 {
                 int R3 = RecyclerView.R(view);
                 wg.w0 w0Var = (wg.w0) this.f12511b;
                 if (R3 == w0Var.V1.size()) {
-                    rect.bottom = w0Var.f57826h2;
+                    rect.bottom = w0Var.f57827h2;
                     return;
                 }
                 return;
@@ -191,7 +191,7 @@ public final class o1 extends v4.m0 {
                 int R4 = RecyclerView.R(view);
                 wg.f1 f1Var = (wg.f1) this.f12511b;
                 if (R4 == f1Var.Y1.size()) {
-                    rect.bottom = f1Var.f57734i2;
+                    rect.bottom = f1Var.f57735i2;
                     return;
                 }
                 return;

@@ -7,9 +7,9 @@ import e2.u;
 import java.util.ArrayList;
 public final class c {
     public static final int[] d = {8, 13, 11, 2, 0, 1, 7};
-    public w7.s f54285a;
-    public boolean f54286b;
-    public int f54287c;
+    public w7.s f54286a;
+    public boolean f54287b;
+    public int f54288c;
 
     public static void a(int i7, ArrayList arrayList) {
         if (e1.d(i7, 0, 7, d) != -1 && !arrayList.contains(Integer.valueOf(i7))) {
@@ -19,11 +19,11 @@ public final class c {
 
     public final u b(u uVar) {
         String str;
-        if (this.f54286b && this.f54285a.w(uVar)) {
+        if (this.f54287b && this.f54286a.w(uVar)) {
             t a10 = uVar.a();
             String str2 = uVar.f10607k;
             a10.f10563r = s0.n("application/x-media3-cues");
-            a10.P = this.f54285a.D(uVar);
+            a10.P = this.f54286a.D(uVar);
             StringBuilder sb2 = new StringBuilder();
             sb2.append(uVar.f10615s);
             if (str2 != null) {

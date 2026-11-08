@@ -26,8 +26,8 @@ public final class pl0 extends org.telegram.ui.Components.w31 {
         if (z0Var != null) {
             z0Var.setBackdrop(ql0Var.f49260b);
             String m10 = jg.g.m(savedStarGift.gift.num, ',', new StringBuilder("#"));
-            z0Var.f60620b = m10;
-            z0Var.f60619a.f(9, m10, false);
+            z0Var.f60621b = m10;
+            z0Var.f60620a.f(9, m10, false);
         }
         ql0Var.b(x31Var.f40174e, false);
     }

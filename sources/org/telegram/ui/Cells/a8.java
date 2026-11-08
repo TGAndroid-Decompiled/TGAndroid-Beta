@@ -22,7 +22,7 @@ public final class a8 implements View.OnClickListener {
                 TextView textView = g8Var.E;
                 TextView textView2 = g8Var.D;
                 ug.p0 p0Var = g8Var.F;
-                if (p0Var.getVisibility() == 0 && p0Var.f56760w.isEnabled()) {
+                if (p0Var.getVisibility() == 0 && p0Var.f56761w.isEnabled()) {
                     p0Var.performClick();
                     return;
                 } else if (textView2.getVisibility() == 0 && textView2.isEnabled()) {

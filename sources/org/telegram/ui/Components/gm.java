@@ -49,10 +49,10 @@ public final class gm implements bj0 {
                 org.telegram.ui.ActionBar.f6 f6Var = this.f33978b;
                 if (i7 == i12) {
                     vh.g gVar = new vh.g(bnVar.getContext(), f6Var);
-                    gVar.f57514c2 = new gf.g(bnVar, 29);
+                    gVar.f57515c2 = new gf.g(bnVar, 29);
                     ArrayList arrayList = bnVar.P0;
                     gVar.U1 = null;
-                    gVar.f57517g2 = new HashSet(arrayList);
+                    gVar.f57518g2 = new HashSet(arrayList);
                     gVar.show();
                     return;
                 } else if (i7 == bnVar.I0) {
@@ -105,7 +105,7 @@ public final class gm implements bj0 {
                                         if (i18 >= 0) {
                                             v4.d1 K = bnVar2.f32260s.K(i18);
                                             if (K != null) {
-                                                View view2 = K.f57043a;
+                                                View view2 = K.f57044a;
                                                 if (view2 instanceof org.telegram.ui.Cells.x5) {
                                                     ((org.telegram.ui.Cells.x5) view2).setDivider(z10);
                                                 }
@@ -160,7 +160,7 @@ public final class gm implements bj0 {
                                         if (i20 < 0) {
                                             v4.d1 K2 = e61Var.K(bnVar.H0);
                                             if (K2 != null) {
-                                                View view3 = K2.f57043a;
+                                                View view3 = K2.f57044a;
                                                 if (view3 instanceof org.telegram.ui.Cells.x5) {
                                                     ((org.telegram.ui.Cells.x5) view3).setDivider(z9);
                                                 }
@@ -177,7 +177,7 @@ public final class gm implements bj0 {
                                         l4Var.p(i21, 3);
                                         v4.d1 K3 = e61Var.K(bnVar.H0);
                                         if (K3 != null) {
-                                            View view4 = K3.f57043a;
+                                            View view4 = K3.f57044a;
                                             if (view4 instanceof org.telegram.ui.Cells.x5) {
                                                 ((org.telegram.ui.Cells.x5) view4).setDivider(false);
                                             }
@@ -221,8 +221,8 @@ public final class gm implements bj0 {
                                     int childCount = e61Var.getChildCount();
                                     for (int i24 = 0; i24 < childCount; i24++) {
                                         v4.d1 T = e61Var.T(e61Var.getChildAt(i24));
-                                        if (T.f57047f == 5) {
-                                            ((org.telegram.ui.Cells.a6) T.f57043a).f28888a.a(bnVar.f32228b0, z9);
+                                        if (T.f57048f == 5) {
+                                            ((org.telegram.ui.Cells.a6) T.f57044a).f28888a.a(bnVar.f32228b0, z9);
                                         }
                                     }
                                 } else if (i7 == bnVar.J0) {
@@ -247,7 +247,7 @@ public final class gm implements bj0 {
                                             if (i26 >= 0) {
                                                 v4.d1 K4 = e61Var.K(i26);
                                                 if (K4 != null) {
-                                                    ((org.telegram.ui.Cells.x5) K4.f57043a).setChecked(false);
+                                                    ((org.telegram.ui.Cells.x5) K4.f57044a).setChecked(false);
                                                 } else {
                                                     l4Var.g(bnVar.D0);
                                                 }
@@ -282,7 +282,7 @@ public final class gm implements bj0 {
                         for (int i29 = bnVar.f32262t0; i29 < bnVar.f32262t0 + bnVar.M; i29++) {
                             v4.d1 K5 = e61Var.K(i29);
                             if (K5 != null) {
-                                View view5 = K5.f57043a;
+                                View view5 = K5.f57044a;
                                 if (view5 instanceof org.telegram.ui.Cells.a6) {
                                     org.telegram.ui.Cells.a6 a6Var = (org.telegram.ui.Cells.a6) view5;
                                     a6Var.m(bnVar.f32230c0, z9);

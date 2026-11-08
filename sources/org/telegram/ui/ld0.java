@@ -64,8 +64,8 @@ public final class ld0 extends org.telegram.ui.Components.wt0 {
         int i11 = org.telegram.ui.ActionBar.k6.Ak;
         canvas.drawColor(i0.a.f(0.5f, org.telegram.ui.ActionBar.k6.x0(null, i11, false), org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27925h5, false)));
         qdVar.setBackgroundBitmap(createBitmap);
-        vg.f fVar = qdVar.f57411b;
-        fVar.f57395z = i11;
+        vg.f fVar = qdVar.f57412b;
+        fVar.f57396z = i11;
         fVar.A = org.telegram.ui.ActionBar.k6.zk;
         fVar.b();
         frameLayout.addView(qdVar, c8.ha.e(160, 160, 1));

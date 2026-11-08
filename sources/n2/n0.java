@@ -87,7 +87,7 @@ public final class n0 {
                 } else {
                     str2 = null;
                 }
-                if (!TextUtils.isEmpty(str) && str.indexOf(58) < 0 && str.indexOf(63) < 0 && str.indexOf(35) < 0 && (str2 == null || (str2.length() <= 128 && ui.a.f56913g.matcher(str2).matches()))) {
+                if (!TextUtils.isEmpty(str) && str.indexOf(58) < 0 && str.indexOf(63) < 0 && str.indexOf(35) < 0 && (str2 == null || (str2.length() <= 128 && ui.a.f56914g.matcher(str2).matches()))) {
                     try {
                         String lowerCase = IDN.toASCII(str, 3).toLowerCase(Locale.US);
                         if (str2 == null) {

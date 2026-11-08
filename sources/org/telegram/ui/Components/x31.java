@@ -296,7 +296,7 @@ public final class x31 extends rg.a {
     public final boolean H(Class cls) {
         HashMap hashMap;
         w31 w31Var;
-        if (this.f54531a >= 10000 && (hashMap = L) != null && (w31Var = (w31) hashMap.get(cls)) != null && w31Var.f39795a == this.f54531a) {
+        if (this.f54532a >= 10000 && (hashMap = L) != null && (w31Var = (w31) hashMap.get(cls)) != null && w31Var.f39795a == this.f54532a) {
             return true;
         }
         return false;
@@ -315,8 +315,8 @@ public final class x31 extends rg.a {
 
     public final void L(boolean z9) {
         this.f40174e = z9;
-        if (this.f54531a == 11) {
-            this.f54531a = 12;
+        if (this.f54532a == 11) {
+            this.f54532a = 12;
         }
     }
 
@@ -326,8 +326,8 @@ public final class x31 extends rg.a {
         if (this != aVar) {
             if (x31.class == aVar.getClass()) {
                 x31 x31Var = (x31) aVar;
-                int i7 = this.f54531a;
-                if (i7 == x31Var.f54531a) {
+                int i7 = this.f54532a;
+                if (i7 == x31Var.f54532a) {
                     if (i7 == 31) {
                         if (TextUtils.equals(this.f40180l, x31Var.f40180l) && TextUtils.equals(this.f40181m, x31Var.f40181m)) {
                             return true;
@@ -361,8 +361,8 @@ public final class x31 extends rg.a {
         if (this != obj) {
             if (obj != null && x31.class == obj.getClass()) {
                 x31 x31Var = (x31) obj;
-                int i7 = this.f54531a;
-                if (i7 == x31Var.f54531a) {
+                int i7 = this.f54532a;
+                if (i7 == x31Var.f54532a) {
                     if (i7 != 36 && i7 != 35) {
                         if (i7 == 28) {
                             if (this.d == x31Var.d) {

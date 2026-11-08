@@ -179,10 +179,10 @@ public class rs0 extends vi0 {
         xs0 xs0Var = this.f37756f;
         int[] iArr = xs0Var.f40435o1;
         ms0[] ms0VarArr = xs0Var.f40455v1;
-        if (d1Var.f57047f == 0) {
+        if (d1Var.f57048f == 0) {
             ArrayList c11 = ms0VarArr[0].c();
             int d = i7 - ms0VarArr[0].d();
-            View view = d1Var.f57043a;
+            View view = d1Var.f57044a;
             if (view instanceof org.telegram.ui.Cells.o7) {
                 org.telegram.ui.Cells.o7 o7Var = (org.telegram.ui.Cells.o7) view;
                 int messageId = o7Var.getMessageId();

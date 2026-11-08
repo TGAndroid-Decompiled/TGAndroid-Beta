@@ -95,7 +95,7 @@ public final class a21 extends org.telegram.ui.Components.na {
         this.f36277k1.setClipToPadding(false);
         this.f36277k1.setOnItemClickListener(new vx0(this, 3));
         v11 v11Var = new v11(this);
-        v11Var.f57070m = false;
+        v11Var.f57071m = false;
         v11Var.C = false;
         v11Var.o(org.telegram.ui.Components.xq.h);
         v11Var.n(350L);

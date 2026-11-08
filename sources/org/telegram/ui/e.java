@@ -23,7 +23,7 @@ public final class e extends ViewGroup {
             case 3:
                 canvas.save();
                 ti.i iVar = (ti.i) this.f45162b;
-                canvas.scale(iVar.f56101x / iVar.f56087i.getWidth(), iVar.f56102y / iVar.f56087i.getHeight());
+                canvas.scale(iVar.f56102x / iVar.f56088i.getWidth(), iVar.f56103y / iVar.f56088i.getHeight());
                 super.draw(canvas);
                 canvas.restore();
                 return;
@@ -299,7 +299,7 @@ public final class e extends ViewGroup {
                 return;
             default:
                 ti.i iVar = (ti.i) this.f45162b;
-                iVar.f56087i.layout(0, 0, iVar.f56101x, iVar.f56102y);
+                iVar.f56088i.layout(0, 0, iVar.f56102x, iVar.f56103y);
                 return;
         }
     }
@@ -437,7 +437,7 @@ public final class e extends ViewGroup {
             default:
                 setMeasuredDimension(View.MeasureSpec.getSize(i7), View.MeasureSpec.getSize(i10));
                 ti.i iVar = (ti.i) this.f45162b;
-                iVar.f56087i.measure(View.MeasureSpec.makeMeasureSpec(iVar.f56101x, 1073741824), View.MeasureSpec.makeMeasureSpec(iVar.f56102y, 1073741824));
+                iVar.f56088i.measure(View.MeasureSpec.makeMeasureSpec(iVar.f56102x, 1073741824), View.MeasureSpec.makeMeasureSpec(iVar.f56103y, 1073741824));
                 return;
         }
     }

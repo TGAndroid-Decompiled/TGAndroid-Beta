@@ -48,7 +48,7 @@ public final class v7 implements c5.g {
                 return;
             default:
                 ug.w0 w0Var = (ug.w0) callback;
-                ArrayList arrayList = w0Var.f56845k1;
+                ArrayList arrayList = w0Var.f56846k1;
                 if (((vs0) arrayList.get(i7)).f50766a == 0) {
                     w0Var.E1.setTitle(id.M0(2131751350, null));
                     w0Var.E1.requestLayout();
@@ -101,14 +101,14 @@ public final class v7 implements c5.g {
                 eaVar.f33232c = i7;
                 eaVar.invalidate();
                 ug.w0 w0Var = (ug.w0) this.f9875c;
-                w0Var.f56856x1 = i7;
+                w0Var.f56857x1 = i7;
                 if (i10 > 0) {
                     i12 = i7 + 1;
                 } else {
                     i12 = i7 - 1;
                 }
-                w0Var.f56857y1 = i12;
-                w0Var.f56858z1 = f10;
+                w0Var.f56858y1 = i12;
+                w0Var.f56859z1 = f10;
                 d();
                 return;
         }
@@ -143,8 +143,8 @@ public final class v7 implements c5.g {
         int i7;
         int i10;
         ug.w0 w0Var = (ug.w0) this.f9875c;
-        ug.u0 u0Var = w0Var.f56847o1;
-        ArrayList arrayList = w0Var.f56845k1;
+        ug.u0 u0Var = w0Var.f56848o1;
+        ArrayList arrayList = w0Var.f56846k1;
         int i11 = 0;
         while (true) {
             float f10 = 0.0f;
@@ -152,65 +152,65 @@ public final class v7 implements c5.g {
                 break;
             }
             ug.v0 v0Var = (ug.v0) u0Var.getChildAt(i11);
-            if (!w0Var.f56851s1 || !(v0Var.f56839f instanceof ug.n0)) {
-                int i12 = v0Var.f56835a;
-                ug.l0 l0Var = v0Var.f56838e;
-                if (i12 == w0Var.f56856x1) {
-                    f10 = (-v0Var.getMeasuredWidth()) * w0Var.f56858z1;
+            if (!w0Var.f56852s1 || !(v0Var.f56840f instanceof ug.n0)) {
+                int i12 = v0Var.f56836a;
+                ug.l0 l0Var = v0Var.f56839e;
+                if (i12 == w0Var.f56857x1) {
+                    f10 = (-v0Var.getMeasuredWidth()) * w0Var.f56859z1;
                     l0Var.setOffset(f10);
-                } else if (i12 == w0Var.f56857y1) {
-                    f10 = ((-v0Var.getMeasuredWidth()) * w0Var.f56858z1) + v0Var.getMeasuredWidth();
+                } else if (i12 == w0Var.f56858y1) {
+                    f10 = ((-v0Var.getMeasuredWidth()) * w0Var.f56859z1) + v0Var.getMeasuredWidth();
                     l0Var.setOffset(f10);
                 } else {
                     l0Var.setOffset(v0Var.getMeasuredWidth());
                 }
             }
-            if (v0Var.f56839f instanceof ug.n0) {
+            if (v0Var.f56840f instanceof ug.n0) {
                 v0Var.setTranslationX(-f10);
-                v0Var.f56836b.setTranslationX(f10);
-                v0Var.f56837c.setTranslationX(f10);
+                v0Var.f56837b.setTranslationX(f10);
+                v0Var.f56838c.setTranslationX(f10);
             }
             i11++;
         }
-        int i13 = w0Var.f56856x1;
-        if (i13 >= 0 && i13 < arrayList.size() && ((i10 = ((vs0) arrayList.get(w0Var.f56856x1)).f50766a) == 0 || i10 == 14 || i10 == 28)) {
+        int i13 = w0Var.f56857x1;
+        if (i13 >= 0 && i13 < arrayList.size() && ((i10 = ((vs0) arrayList.get(w0Var.f56857x1)).f50766a) == 0 || i10 == 14 || i10 == 28)) {
             z9 = true;
         } else {
             z9 = false;
         }
-        int i14 = w0Var.f56857y1;
-        if (i14 >= 0 && i14 < arrayList.size() && ((i7 = ((vs0) arrayList.get(w0Var.f56857y1)).f50766a) == 0 || i7 == 14 || i7 == 28)) {
+        int i14 = w0Var.f56858y1;
+        if (i14 >= 0 && i14 < arrayList.size() && ((i7 = ((vs0) arrayList.get(w0Var.f56858y1)).f50766a) == 0 || i7 == 14 || i7 == 28)) {
             z10 = true;
         } else {
             z10 = false;
         }
         if (z9 && z10) {
-            w0Var.f56846m1 = 1.0f;
-            float f11 = w0Var.f56858z1;
+            w0Var.f56847m1 = 1.0f;
+            float f11 = w0Var.f56859z1;
             if (f11 == 0.0f) {
                 f11 = 1.0f;
             }
             w0Var.l1 = f11;
             w0Var.n1 = true;
         } else if (z9) {
-            float f12 = 1.0f - w0Var.f56858z1;
+            float f12 = 1.0f - w0Var.f56859z1;
             w0Var.l1 = f12;
-            w0Var.f56846m1 = f12;
+            w0Var.f56847m1 = f12;
             w0Var.n1 = true;
         } else if (z10) {
-            float f13 = w0Var.f56858z1;
+            float f13 = w0Var.f56859z1;
             w0Var.l1 = f13;
-            w0Var.f56846m1 = f13;
+            w0Var.f56847m1 = f13;
             w0Var.n1 = false;
         } else {
             w0Var.l1 = 0.0f;
-            w0Var.f56846m1 = 0.0f;
+            w0Var.f56847m1 = 0.0f;
             w0Var.n1 = true;
         }
         int i15 = (int) ((1.0f - w0Var.l1) * 255.0f);
         if (i15 != w0Var.B1) {
             w0Var.B1 = i15;
-            w0Var.f56848p1.invalidate();
+            w0Var.f56849p1.invalidate();
             org.telegram.messenger.g0.h3(new sg.t0(this, 18));
         }
     }

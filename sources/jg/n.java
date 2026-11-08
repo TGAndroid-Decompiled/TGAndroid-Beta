@@ -147,7 +147,7 @@ public class n extends oj0 implements p2 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57047f;
+        int i7 = d1Var.f57048f;
         if (i7 != 1 && i7 != 5 && i7 != 3 && i7 != 8 && i7 != 7 && i7 != 10 && i7 != 11 && i7 != 13 && i7 != 15 && i7 != 16 && i7 != 18 && i7 != 19 && i7 != 20) {
             return true;
         }
@@ -357,7 +357,7 @@ public class n extends oj0 implements p2 {
 
     @Override
     public final int d(int i7) {
-        return ((l) this.M.get(i7)).f54531a;
+        return ((l) this.M.get(i7)).f54532a;
     }
 
     @Override
@@ -615,7 +615,7 @@ public class n extends oj0 implements p2 {
 
     @Override
     public final void y(v4.d1 d1Var) {
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         if (view instanceof t2) {
             t2 t2Var = (t2) view;
             t2Var.a0(this.H, false);

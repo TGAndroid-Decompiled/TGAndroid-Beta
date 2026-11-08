@@ -137,7 +137,7 @@ public abstract class na extends org.telegram.ui.ActionBar.v2 {
                 v4.d1 K = pj0Var.K(0);
                 int i12 = -org.telegram.messenger.g0.L(16.0f);
                 if (K != null) {
-                    View view2 = K.f57043a;
+                    View view2 = K.f57044a;
                     i12 = view2.getBottom() - org.telegram.messenger.g0.L(16.0f);
                     if (this.F1) {
                         i7 = ((int) view2.getTranslationY()) + i12;

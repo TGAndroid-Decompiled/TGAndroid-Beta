@@ -54,8 +54,8 @@ public final class qn0 implements Runnable {
                 PhotoViewer photoViewer = (PhotoViewer) this.f49283b;
                 tg.o0 o0Var = (tg.o0) this.f49284c;
                 Drawable[] drawableArr = PhotoViewer.Y8;
-                o0Var.f55874e.h();
-                o0Var.f55873c.postRunnable(new o61(17));
+                o0Var.f55875e.h();
+                o0Var.f55874c.postRunnable(new o61(17));
                 photoViewer.f41384e0.removeView(photoViewer.N1);
                 return;
             case 1:
@@ -110,8 +110,8 @@ public final class qn0 implements Runnable {
             case 4:
                 pp0 pp0Var = (pp0) this.f49283b;
                 tg.o0 o0Var2 = (tg.o0) this.f49284c;
-                o0Var2.f55874e.h();
-                o0Var2.f55873c.postRunnable(new o61(17));
+                o0Var2.f55875e.h();
+                o0Var2.f55874c.postRunnable(new o61(17));
                 try {
                     pp0Var.f48906b.f41384e0.removeView(o0Var2);
                     return;

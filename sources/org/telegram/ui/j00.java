@@ -28,7 +28,7 @@ public final class j00 implements org.telegram.messenger.d20 {
                 if (parent != pj0Var) {
                     return Boolean.FALSE;
                 }
-                return Boolean.valueOf(!org.telegram.ui.Components.l41.K(pj0Var.T(view).f57047f));
+                return Boolean.valueOf(!org.telegram.ui.Components.l41.K(pj0Var.T(view).f57048f));
             case 1:
                 ld0 ld0Var = (ld0) obj2;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;

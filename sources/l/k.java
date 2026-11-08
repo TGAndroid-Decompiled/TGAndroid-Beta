@@ -67,7 +67,7 @@ public class k implements Menu {
         this.f17679k = true;
         if (resources.getConfiguration().keyboard != 1) {
             ViewConfiguration viewConfiguration = ViewConfiguration.get(context);
-            Method method = j0.f54198a;
+            Method method = j0.f54199a;
             if (Build.VERSION.SDK_INT >= 28) {
                 z9 = d1.f.B(viewConfiguration);
             } else {

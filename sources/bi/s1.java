@@ -48,7 +48,7 @@ public final class s1 extends FrameLayout implements te.b {
             f10 = 0.0f;
         }
         float L = f10 + org.telegram.messenger.g0.L(32.0f);
-        if (z9 && cVar.f55492f > 0.0f) {
+        if (z9 && cVar.f55493f > 0.0f) {
             cVar.a(L);
             return;
         }
@@ -236,7 +236,7 @@ public final class s1 extends FrameLayout implements te.b {
                 }
                 return drawChild;
             case 13:
-                tg.g2 g2Var = ((tg.i2) this.d).f55759f;
+                tg.g2 g2Var = ((tg.i2) this.d).f55760f;
                 if (view == g2Var) {
                     canvas.save();
                     canvas.translate(((org.telegram.ui.Components.w5) this.f4662b).e(false, view.getX()), ((org.telegram.ui.Components.w5) this.f4663c).e(false, view.getY()));
@@ -254,7 +254,7 @@ public final class s1 extends FrameLayout implements te.b {
     public void onDraw(Canvas canvas) {
         switch (this.f4661a) {
             case 6:
-                float min = Math.min(((te.c) this.f4663c).f55492f, getWidth() - org.telegram.messenger.g0.L(24.0f));
+                float min = Math.min(((te.c) this.f4663c).f55493f, getWidth() - org.telegram.messenger.g0.L(24.0f));
                 float width = getWidth() / 2.0f;
                 float height = getHeight() / 2.0f;
                 RectF rectF = (RectF) this.d;
@@ -296,7 +296,7 @@ public final class s1 extends FrameLayout implements te.b {
                 RectF rectF = (RectF) this.f4663c;
                 rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 path.addRoundRect(rectF, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(10.0f), Path.Direction.CW);
-                tg.g2 g2Var = ((tg.i2) this.d).f55759f;
+                tg.g2 g2Var = ((tg.i2) this.d).f55760f;
                 if (g2Var != null) {
                     g2Var.setMaxWidth(getMeasuredWidth() - org.telegram.messenger.g0.L(32.0f));
                     return;

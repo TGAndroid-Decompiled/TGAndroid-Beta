@@ -27,8 +27,8 @@ public final class r90 extends rg.a {
         if (this != obj) {
             if (obj instanceof r90) {
                 r90 r90Var = (r90) obj;
-                int i7 = r90Var.f54531a;
-                int i10 = this.f54531a;
+                int i7 = r90Var.f54532a;
+                int i10 = this.f54532a;
                 if (i7 == i10) {
                     if (i10 != 3 || r90Var.d == this.d) {
                         if (i10 != 5 || r90Var.f49420f == this.f49420f) {

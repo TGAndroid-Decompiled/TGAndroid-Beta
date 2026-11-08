@@ -1,8 +1,6 @@
 package ai;
 
 import a8.wa;
-import android.app.ActivityManager;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.BatteryManager;
@@ -53,7 +51,6 @@ public final class m0 implements Runnable {
     public final void run() {
         hc X;
         f2 c02;
-        ActivityManager activityManager;
         switch (this.f1578a) {
             case 0:
                 hc.X().N(id.M0(2131745864, null), id.M0(2131751106, null)).j();
@@ -178,16 +175,7 @@ public final class m0 implements Runnable {
                 org.telegram.messenger.t0.x();
                 return;
             case 22:
-                Context context = org.telegram.messenger.t0.f25566b;
-                if (!org.telegram.utils.twidget.h1.a() && (activityManager = (ActivityManager) context.getSystemService("activity")) != null && !activityManager.isLowRamDevice()) {
-                    try {
-                        org.telegram.utils.twidget.r0.f52954i.h(context);
-                        return;
-                    } catch (Exception e10) {
-                        a8.g(e10, true);
-                        return;
-                    }
-                }
+                org.telegram.utils.twidget.i1.c(org.telegram.messenger.t0.f25566b);
                 return;
             case 23:
                 if (((tt) org.telegram.messenger.t0.l()).hasServices()) {

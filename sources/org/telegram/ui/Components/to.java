@@ -77,7 +77,7 @@ public final class to extends oj0 {
         int h;
         int intValue;
         String[] split;
-        zz0 zz0Var = (zz0) d1Var.f57043a;
+        zz0 zz0Var = (zz0) d1Var.f57044a;
         org.telegram.ui.ActionBar.j6 i10 = ((uo) this.d.get(i7)).f38699a.i(((uo) this.d.get(i7)).f38701c);
         if (i10 != null && i10.f27631b != null && !i10.T && new File(i10.f27631b).exists() && i10.f27631b != null) {
             try {

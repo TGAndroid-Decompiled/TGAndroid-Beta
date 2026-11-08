@@ -75,8 +75,8 @@ public final class lr0 extends oj0 {
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        if (d1Var.f57047f == 14) {
-            View view = d1Var.f57043a;
+        if (d1Var.f57048f == 14) {
+            View view = d1Var.f57044a;
             if (view instanceof org.telegram.ui.Cells.g6) {
                 org.telegram.ui.Cells.g6 g6Var = (org.telegram.ui.Cells.g6) view;
                 ArrayList arrayList = this.d;

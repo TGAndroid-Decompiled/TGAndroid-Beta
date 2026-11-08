@@ -42,7 +42,7 @@ public final class r1 extends oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f57047f == 2) {
+        if (d1Var.f57048f == 2) {
             return true;
         }
         return false;
@@ -185,8 +185,8 @@ public final class r1 extends oj0 {
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        int i10 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i10 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         if (i10 == 0) {
             view.setTag(34);
             view.setLayoutParams(new v4.o0(-1, (int) this.f12723s.f12845r.f12256o1));

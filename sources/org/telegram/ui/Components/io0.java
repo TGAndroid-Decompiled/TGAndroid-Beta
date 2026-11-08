@@ -15,7 +15,7 @@ public final class io0 extends jg.c0 {
         TLRPC.Chat chat;
         boolean z9;
         String str;
-        org.telegram.ui.Cells.o4 o4Var = (org.telegram.ui.Cells.o4) d1Var.f57043a;
+        org.telegram.ui.Cells.o4 o4Var = (org.telegram.ui.Cells.o4) d1Var.f57044a;
         mo0 mo0Var = this.f34779n.K;
         TLRPC.User user = null;
         if (mo0Var.Z1 || mo0Var.f36036a2) {

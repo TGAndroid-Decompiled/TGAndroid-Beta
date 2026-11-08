@@ -377,14 +377,14 @@ public final class h implements org.telegram.ui.Components.bj0 {
                         onClickListener.onClick(view);
                         return;
                     }
-                    int i18 = yyVar.f54531a;
+                    int i18 = yyVar.f54532a;
                     if (i18 == 1) {
                         org.telegram.ui.Cells.pa paVar = (org.telegram.ui.Cells.pa) view;
                         gzVar.B0(yyVar, paVar.getName(), paVar.getCurrentObject(), yyVar.f52350g);
                         return;
                     } else if (i18 == 7) {
                         org.telegram.ui.Components.l51 l51Var = new org.telegram.ui.Components.l51(21, gzVar, yyVar);
-                        if (gzVar.f46163c.f27357x.f55487f) {
+                        if (gzVar.f46163c.f27357x.f55488f) {
                             gzVar.y0(l51Var, false);
                             return;
                         } else {
@@ -394,7 +394,7 @@ public final class h implements org.telegram.ui.Components.bj0 {
                     } else if (i18 == 8 || (i18 == 4 && yyVar.f52353k == 2131232031)) {
                         org.telegram.messenger.vo voVar = gzVar.f46167r;
                         org.telegram.messenger.p2 p2Var = org.telegram.messenger.p2.APP_ERROR;
-                        if (gzVar.f46168s && gzVar.f46163c.f27357x.f55487f) {
+                        if (gzVar.f46168s && gzVar.f46163c.f27357x.f55488f) {
                             float f10 = -gzVar.Q;
                             gzVar.Q = f10;
                             org.telegram.messenger.g0.G3(f10, view, null);
@@ -467,7 +467,7 @@ public final class h implements org.telegram.ui.Components.bj0 {
                 int i23 = i7 - 1;
                 if (i23 >= 0 && i23 < arrayList6.size()) {
                     yy yyVar2 = (yy) arrayList6.get(i23);
-                    int i24 = yyVar2.f54531a;
+                    int i24 = yyVar2.f54532a;
                     if (i24 == 7) {
                         vyVar.dismiss();
                         vyVar.f36279o1.presentFragment(new gy(vyVar.Q1, yyVar2.f52355m));
@@ -734,7 +734,7 @@ public final class h implements org.telegram.ui.Components.bj0 {
                                     pr0Var.w0();
                                     v4.d1 K = pr0Var.f48919c.K(pr0Var.f48941t0);
                                     if (K != null) {
-                                        ((org.telegram.ui.Cells.r8) K.f57043a).setChecked(false);
+                                        ((org.telegram.ui.Cells.r8) K.f57044a).setChecked(false);
                                     } else {
                                         pr0Var.f48917b.g(pr0Var.f48941t0);
                                     }
@@ -754,7 +754,7 @@ public final class h implements org.telegram.ui.Components.bj0 {
                                     pr0Var.K = false;
                                     v4.d1 K2 = pr0Var.f48919c.K(pr0Var.f48940s0);
                                     if (K2 != null) {
-                                        ((org.telegram.ui.Cells.r8) K2.f57043a).setChecked(false);
+                                        ((org.telegram.ui.Cells.r8) K2.f57044a).setChecked(false);
                                     } else {
                                         pr0Var.f48917b.g(pr0Var.f48940s0);
                                     }
@@ -782,7 +782,7 @@ public final class h implements org.telegram.ui.Components.bj0 {
                     for (int i34 = pr0Var.f48933n0; i34 < pr0Var.f48933n0 + pr0Var.D; i34++) {
                         v4.d1 K3 = pr0Var.f48919c.K(i34);
                         if (K3 != null) {
-                            View view2 = K3.f57043a;
+                            View view2 = K3.f57044a;
                             if (view2 instanceof org.telegram.ui.Cells.a6) {
                                 org.telegram.ui.Cells.a6 a6Var = (org.telegram.ui.Cells.a6) view2;
                                 a6Var.m(pr0Var.L, true);

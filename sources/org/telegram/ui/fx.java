@@ -48,9 +48,9 @@ public final class fx implements Runnable {
                 while (!((Set) this.f45719c).isEmpty()) {
                     try {
                         pb.l lVar = (pb.l) referenceQueue.remove();
-                        if (lVar.f53542a.remove(lVar)) {
+                        if (lVar.f53543a.remove(lVar)) {
                             lVar.clear();
-                            lVar.f53543b.getClass();
+                            lVar.f53544b.getClass();
                         }
                     } catch (InterruptedException unused) {
                     }
@@ -72,7 +72,7 @@ public final class fx implements Runnable {
             case 3:
                 pb.i iVar = (pb.i) this.f45718b;
                 TaskCompletionSource taskCompletionSource2 = (TaskCompletionSource) this.f45719c;
-                int decrementAndGet = iVar.f53535b.decrementAndGet();
+                int decrementAndGet = iVar.f53536b.decrementAndGet();
                 if (decrementAndGet >= 0) {
                     z9 = true;
                 } else {
@@ -81,10 +81,10 @@ public final class fx implements Runnable {
                 q6.m.j(z9);
                 if (decrementAndGet == 0) {
                     iVar.c();
-                    iVar.f53536c.set(false);
+                    iVar.f53537c.set(false);
                 }
-                w7.n.f57604a.clear();
-                w7.r.f57608a.clear();
+                w7.n.f57605a.clear();
+                w7.r.f57609a.clear();
                 taskCompletionSource2.setResult(null);
                 return;
             case 4:
@@ -111,19 +111,19 @@ public final class fx implements Runnable {
                 }
             case 5:
                 v4.u uVar = (v4.u) this.f45718b;
-                v4.d1 d1Var = uVar.f57163e;
+                v4.d1 d1Var = uVar.f57164e;
                 v4.y yVar = (v4.y) this.f45719c;
                 RecyclerView recyclerView = yVar.H;
-                if (recyclerView != null && recyclerView.G && !uVar.f57168w && d1Var.b() != -1) {
+                if (recyclerView != null && recyclerView.G && !uVar.f57169w && d1Var.b() != -1) {
                     v4.l0 itemAnimator = yVar.H.getItemAnimator();
                     if (itemAnimator == null || !itemAnimator.k()) {
                         ArrayList arrayList = yVar.F;
                         int size = arrayList.size();
                         for (int i7 = 0; i7 < size; i7++) {
-                            if (((v4.u) arrayList.get(i7)).f57169x) {
+                            if (((v4.u) arrayList.get(i7)).f57170x) {
                             }
                         }
-                        yVar.f57195y.q(d1Var);
+                        yVar.f57196y.q(d1Var);
                         return;
                     }
                     yVar.H.post(this);
@@ -135,8 +135,8 @@ public final class fx implements Runnable {
                     a();
                     return;
                 } catch (Error e12) {
-                    synchronized (((v9.i) this.f45719c).f57276b) {
-                        ((v9.i) this.f45719c).f57277c = 1;
+                    synchronized (((v9.i) this.f45719c).f57277b) {
+                        ((v9.i) this.f45719c).f57278c = 1;
                         throw e12;
                     }
                 }
@@ -268,7 +268,7 @@ public final class fx implements Runnable {
                     return "SequentialExecutorWorker{running=" + runnable + "}";
                 }
                 StringBuilder sb2 = new StringBuilder("SequentialExecutorWorker{state=");
-                int i7 = ((v9.i) this.f45719c).f57277c;
+                int i7 = ((v9.i) this.f45719c).f57278c;
                 if (i7 != 1) {
                     if (i7 != 2) {
                         if (i7 != 3) {

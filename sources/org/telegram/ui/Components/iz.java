@@ -15,7 +15,7 @@ public final class iz {
             if (z9) {
                 ((ii.c) this.f34845b).a(bVar);
             }
-            if (bVar == rh.b.f54536b || bVar == rh.b.f54537c) {
+            if (bVar == rh.b.f54537b || bVar == rh.b.f54538c) {
                 org.telegram.messenger.g0.i3(m5Var, this.f34844a);
             }
         }

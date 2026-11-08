@@ -180,15 +180,15 @@ public class e extends FrameLayout {
             boolean z15 = fVar.f20579n;
             mg.a aVar = fVar.f20568a;
             if (!z15) {
-                ((LinearLayout) eVar.f56932e).setVisibility(8);
+                ((LinearLayout) eVar.f56933e).setVisibility(8);
                 z11 = z12;
                 i14 = i20;
                 i15 = i17;
             } else {
-                LinearLayout linearLayout = (LinearLayout) eVar.f56932e;
+                LinearLayout linearLayout = (LinearLayout) eVar.f56933e;
                 TextView textView2 = (TextView) eVar.d;
-                TextView textView3 = (TextView) eVar.f56931c;
-                q5 q5Var = (q5) eVar.f56930b;
+                TextView textView3 = (TextView) eVar.f56932c;
+                q5 q5Var = (q5) eVar.f56931b;
                 if (linearLayout.getMeasuredHeight() == 0) {
                     linearLayout.requestLayout();
                 }
@@ -342,7 +342,7 @@ public class e extends FrameLayout {
         this.f20559c = new ui.e[i7];
         for (int i10 = 0; i10 < i7; i10++) {
             this.f20559c[i10] = new ui.e(this);
-            linearLayout.addView((LinearLayout) this.f20559c[i10].f56932e);
+            linearLayout.addView((LinearLayout) this.f20559c[i10].f56933e);
         }
     }
 

@@ -513,7 +513,7 @@ public abstract class u61 extends FrameLayout implements org.telegram.ui.ActionB
         if (this.m0 && this.f38544o0 == null) {
             q61 q61Var = new q61(this);
             this.f38544o0 = q61Var;
-            q61Var.f57070m = false;
+            q61Var.f57071m = false;
             q61Var.C = false;
             q61Var.o(xq.h);
             this.f38544o0.n(350L);

@@ -46,7 +46,7 @@ public final class f2 implements ti.m {
                 f2Var.f39193a = l2.i.d().k(f2Var);
             }
             ti.o oVar2 = f2Var.f39193a;
-            if (oVar2.f56124c == 2) {
+            if (oVar2.f56125c == 2) {
                 oVar2.c();
                 return;
             }
@@ -62,16 +62,16 @@ public final class f2 implements ti.m {
             if (e2Var == null || !e2Var.f39174e) {
                 z10 = false;
             }
-            int i7 = oVar3.f56124c;
+            int i7 = oVar3.f56125c;
             if (i7 != 3) {
-                oVar3.f56126f = r52;
-                oVar3.f56127g = z10;
+                oVar3.f56127f = r52;
+                oVar3.f56128g = z10;
                 if (i7 == 2) {
                     oVar3.d = r52;
                 } else {
-                    oVar3.f56124c = r52;
+                    oVar3.f56125c = r52;
                 }
-                oVar3.f56123b.f();
+                oVar3.f56124b.f();
             }
             f2Var.f39193a.c();
             return;

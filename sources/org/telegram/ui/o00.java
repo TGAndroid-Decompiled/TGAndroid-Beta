@@ -60,7 +60,7 @@ public abstract class o00 extends org.telegram.ui.ActionBar.f2 {
         this.E = -1;
         this.G = true;
         this.K = new Paint();
-        k00Var.f56875n = true;
+        k00Var.f56876n = true;
         this.P = -1;
     }
 
@@ -268,7 +268,7 @@ public abstract class o00 extends org.telegram.ui.ActionBar.f2 {
                 drawable.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
             }
             ug.q1 q1Var = this.f48194e;
-            if (q1Var != null && q1Var.f56793a != null && this.f48198s != null) {
+            if (q1Var != null && q1Var.f56794a != null && this.f48198s != null) {
                 x0();
             }
         } catch (Exception e10) {
@@ -339,7 +339,7 @@ public abstract class o00 extends org.telegram.ui.ActionBar.f2 {
         int measuredHeight = this.f48198s.getMeasuredHeight();
         k00 k00Var = this.f48192b;
         k00Var.d(0, (-f10) - ((this.f48198s.getMeasuredWidth() * 0.1f) * this.f48196n), 0, measuredWidth, -f11, measuredHeight);
-        return k00Var.f56868f;
+        return k00Var.f56869f;
     }
 
     public final void w0() {
@@ -351,7 +351,7 @@ public abstract class o00 extends org.telegram.ui.ActionBar.f2 {
             Canvas canvas = this.f48200x;
             canvas.save();
             canvas.scale(100.0f / this.f48198s.getMeasuredWidth(), 100.0f / this.f48198s.getMeasuredHeight());
-            canvas.drawRect(0.0f, 0.0f, this.f48198s.getMeasuredWidth(), this.f48198s.getMeasuredHeight(), k00Var.f56868f);
+            canvas.drawRect(0.0f, 0.0f, this.f48198s.getMeasuredWidth(), this.f48198s.getMeasuredHeight(), k00Var.f56869f);
             canvas.restore();
         }
     }
@@ -372,7 +372,7 @@ public abstract class o00 extends org.telegram.ui.ActionBar.f2 {
                         kVar.C(o4, false);
                     }
                 }
-                this.f48194e.f56793a.g();
+                this.f48194e.f56794a.g();
                 ah.a aVar = this.D;
                 if (aVar != null) {
                     TextView textView = (TextView) aVar.f1057b;

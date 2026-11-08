@@ -170,14 +170,14 @@ public final class y21 extends org.telegram.ui.Components.oj0 {
     public final void t(v4.d1 d1Var, int i7) {
         int i10;
         String G;
-        int i11 = d1Var.f57047f;
+        int i11 = d1Var.f57048f;
         boolean z9 = false;
         if (i11 != 0) {
             if (i11 != 1) {
                 if (i11 != 2) {
                     if (i11 != 5) {
                         if (i11 != 6) {
-                            org.telegram.ui.Cells.s6 s6Var = (org.telegram.ui.Cells.s6) d1Var.f57043a;
+                            org.telegram.ui.Cells.s6 s6Var = (org.telegram.ui.Cells.s6) d1Var.f57044a;
                             SessionsActivity sessionsActivity = this.d;
                             if (i7 == sessionsActivity.f41965y) {
                                 TLRPC.TL_authorization tL_authorization = sessionsActivity.h;
@@ -248,7 +248,7 @@ public final class y21 extends org.telegram.ui.Components.oj0 {
                             }
                             return;
                         }
-                        org.telegram.ui.Cells.w9 w9Var = (org.telegram.ui.Cells.w9) d1Var.f57043a;
+                        org.telegram.ui.Cells.w9 w9Var = (org.telegram.ui.Cells.w9) d1Var.f57044a;
                         int i16 = this.d.f41962s;
                         if (i16 > 30 && i16 <= 183) {
                             G = org.telegram.messenger.id.G(i16 / 30, "Months", new Object[0]);
@@ -262,7 +262,7 @@ public final class y21 extends org.telegram.ui.Components.oj0 {
                     }
                     return;
                 }
-                org.telegram.ui.Cells.n4 n4Var = (org.telegram.ui.Cells.n4) d1Var.f57043a;
+                org.telegram.ui.Cells.n4 n4Var = (org.telegram.ui.Cells.n4) d1Var.f57044a;
                 SessionsActivity sessionsActivity3 = this.d;
                 if (i7 == sessionsActivity3.f41964x) {
                     n4Var.setText(org.telegram.messenger.id.M0(2131751694, null));
@@ -285,7 +285,7 @@ public final class y21 extends org.telegram.ui.Components.oj0 {
                     return;
                 }
             }
-            org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) d1Var.f57043a;
+            org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) d1Var.f57044a;
             z8Var.setFixedSize(0);
             SessionsActivity sessionsActivity4 = this.d;
             if (i7 == sessionsActivity4.D) {
@@ -319,7 +319,7 @@ public final class y21 extends org.telegram.ui.Components.oj0 {
                 return;
             }
         }
-        org.telegram.ui.Cells.m8 m8Var = (org.telegram.ui.Cells.m8) d1Var.f57043a;
+        org.telegram.ui.Cells.m8 m8Var = (org.telegram.ui.Cells.m8) d1Var.f57044a;
         i10 = this.d.terminateAllSessionsRow;
         if (i7 == i10) {
             int i17 = org.telegram.ui.ActionBar.k6.f28073p7;

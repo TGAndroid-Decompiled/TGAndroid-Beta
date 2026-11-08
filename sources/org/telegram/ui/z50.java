@@ -281,7 +281,7 @@ public final class z50 extends org.telegram.ui.ActionBar.f2 implements org.teleg
         if (this.h == null) {
             return;
         }
-        float f10 = this.f52455a.f55492f;
+        float f10 = this.f52455a.f55493f;
         int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
         if (f10 > 0.0f) {
             i7 = org.telegram.messenger.g0.L(4.0f) + ((int) f10);
@@ -333,7 +333,7 @@ public final class z50 extends org.telegram.ui.ActionBar.f2 implements org.teleg
 
     @Override
     public final void m(r0.k1 k1Var) {
-        int i7 = k1Var.f54201a.f(8).d;
+        int i7 = k1Var.f54202a.f(8).d;
         this.I = i7;
         org.telegram.ui.Components.q00 q00Var = this.f52456b;
         if (q00Var != null) {

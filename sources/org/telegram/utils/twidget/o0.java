@@ -7,26 +7,26 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import java.io.ByteArrayOutputStream;
 public final class o0 extends Binder implements d {
-    public final q0 f52928a;
-    public final int f52929b;
-    public final WidgetSandboxBackend f52930c;
+    public final q0 f52929a;
+    public final int f52930b;
+    public final WidgetSandboxBackend f52931c;
     public volatile long d;
-    public final ByteArrayOutputStream f52931e;
-    public final r0 f52932f;
+    public final ByteArrayOutputStream f52932e;
+    public final r0 f52933f;
 
     public o0(r0 r0Var, q0 q0Var, int i7, WidgetSandboxBackend widgetSandboxBackend) {
-        this.f52932f = r0Var;
+        this.f52933f = r0Var;
         attachInterface(this, "org.telegram.utils.twidget.IWidgetEngineCallback");
-        this.f52931e = new ByteArrayOutputStream();
-        this.f52928a = q0Var;
-        this.f52929b = i7;
-        this.f52930c = widgetSandboxBackend;
+        this.f52932e = new ByteArrayOutputStream();
+        this.f52929a = q0Var;
+        this.f52930b = i7;
+        this.f52931c = widgetSandboxBackend;
     }
 
     @Override
     public final byte[] A(int i7, int i10, int i11, int i12, int i13) {
         try {
-            return this.f52930c.canvasRead(i7, i10, i11, i12, i13);
+            return this.f52931c.canvasRead(i7, i10, i11, i12, i13);
         } catch (Exception e10) {
             throw new IllegalStateException(e10.toString());
         }
@@ -35,7 +35,7 @@ public final class o0 extends Binder implements d {
     @Override
     public final void D(int i7) {
         try {
-            this.f52930c.canvasRelease(i7);
+            this.f52931c.canvasRelease(i7);
         } catch (Exception e10) {
             throw new IllegalStateException(e10.toString());
         }
@@ -46,7 +46,7 @@ public final class o0 extends Binder implements d {
         byte[] i13 = i1(bArr);
         try {
             if (i7 >= 0 && i10 >= 0 && i7 <= 16384 && i10 <= 16384 && f10 > 0.0f && f10 <= 10.0f) {
-                WidgetSandboxBackend widgetSandboxBackend = this.f52930c;
+                WidgetSandboxBackend widgetSandboxBackend = this.f52931c;
                 if (bArr2 == null) {
                     bArr2 = new byte[]{123, 125};
                 }
@@ -62,7 +62,7 @@ public final class o0 extends Binder implements d {
     @Override
     public final float[] G(int i7, byte[] bArr, float f10, int i10, boolean z9, byte[] bArr2) {
         try {
-            return this.f52930c.defineFont(i7, bArr, f10, i10, z9, bArr2);
+            return this.f52931c.defineFont(i7, bArr, f10, i10, z9, bArr2);
         } catch (Exception e10) {
             throw new IllegalStateException(e10.toString());
         }
@@ -71,7 +71,7 @@ public final class o0 extends Binder implements d {
     @Override
     public final void J0(int i7, int i10, byte[] bArr) {
         try {
-            this.f52930c.recordLayer(i7, i10, i1(bArr));
+            this.f52931c.recordLayer(i7, i10, i1(bArr));
         } catch (Exception e10) {
             throw new IllegalStateException(e10.toString());
         }
@@ -80,18 +80,18 @@ public final class o0 extends Binder implements d {
     @Override
     public final synchronized void Q0(byte[] bArr) {
         if (bArr != null) {
-            if (this.f52931e.size() + bArr.length <= 16777216) {
-                this.f52931e.write(bArr, 0, bArr.length);
+            if (this.f52932e.size() + bArr.length <= 16777216) {
+                this.f52932e.write(bArr, 0, bArr.length);
             }
         }
-        this.f52931e.reset();
+        this.f52932e.reset();
         throw new IllegalStateException("Widget engine: argument too large");
     }
 
     @Override
     public final void Z0(int i7, Bitmap bitmap) {
         try {
-            this.f52930c.defineImage(i7, bitmap);
+            this.f52931c.defineImage(i7, bitmap);
         } catch (Exception e10) {
             throw new IllegalStateException(e10.toString());
         }
@@ -99,13 +99,13 @@ public final class o0 extends Binder implements d {
 
     @Override
     public final void f1(int i7) {
-        this.f52930c.deleteFont(i7);
+        this.f52931c.deleteFont(i7);
     }
 
     @Override
     public final void h0(byte[] bArr) {
         try {
-            this.f52930c.selectableText(i1(bArr));
+            this.f52931c.selectableText(i1(bArr));
         } catch (Exception e10) {
             throw new IllegalStateException(e10.toString());
         }
@@ -113,11 +113,11 @@ public final class o0 extends Binder implements d {
 
     public final b h1() {
         b bVar;
-        synchronized (this.f52932f.f52955b) {
+        synchronized (this.f52933f.f52956b) {
             try {
-                q0 q0Var = this.f52928a;
-                if (q0Var.f52943b == this.f52929b) {
-                    bVar = q0Var.f52942a;
+                q0 q0Var = this.f52929a;
+                if (q0Var.f52944b == this.f52930b) {
+                    bVar = q0Var.f52943a;
                 } else {
                     bVar = null;
                 }
@@ -132,8 +132,8 @@ public final class o0 extends Binder implements d {
         if (bArr != null) {
             return bArr;
         }
-        byte[] byteArray = this.f52931e.toByteArray();
-        this.f52931e.reset();
+        byte[] byteArray = this.f52932e.toByteArray();
+        this.f52932e.reset();
         return byteArray;
     }
 
@@ -227,7 +227,7 @@ public final class o0 extends Binder implements d {
         if (bArr != null) {
             try {
                 if (bArr.length <= 262144) {
-                    return this.f52930c.textWidth(i7, bArr);
+                    return this.f52931c.textWidth(i7, bArr);
                 }
             } catch (Exception e10) {
                 throw new IllegalStateException(e10.toString());
@@ -239,7 +239,7 @@ public final class o0 extends Binder implements d {
     @Override
     public final void t0(int i7, int i10, int i11, int[] iArr) {
         try {
-            WidgetSandboxBackend widgetSandboxBackend = this.f52930c;
+            WidgetSandboxBackend widgetSandboxBackend = this.f52931c;
             if (iArr == null) {
                 iArr = new int[0];
             }
@@ -252,7 +252,7 @@ public final class o0 extends Binder implements d {
     @Override
     public final void v0(int i7, byte[] bArr) {
         try {
-            this.f52930c.signal(i7, i1(bArr));
+            this.f52931c.signal(i7, i1(bArr));
         } catch (Exception e10) {
             throw new IllegalStateException(e10.toString());
         }

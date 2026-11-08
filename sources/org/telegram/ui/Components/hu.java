@@ -16,7 +16,7 @@ public final class hu extends oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f57047f == 1) {
+        if (d1Var.f57048f == 1) {
             return true;
         }
         return false;

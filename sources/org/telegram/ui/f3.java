@@ -108,7 +108,7 @@ public final class f3 implements q0.a {
                 }
                 return;
             default:
-                View view = ((ProxyListActivity) obj2).f41877b.T((View) obj).f57043a;
+                View view = ((ProxyListActivity) obj2).f41877b.T((View) obj).f57044a;
                 if (view instanceof nx0) {
                     nx0 nx0Var = (nx0) view;
                     if (nx0Var.d != org.telegram.messenger.iz.B1) {

@@ -505,12 +505,12 @@ public final class a1 extends org.telegram.ui.Components.na {
         cg.b bVar = this.f3425f2.f6160a;
         aa.n nVar = this.f3424e2;
         q4.q[] qVarArr = (q4.q[]) nVar.f825b;
-        long j3 = ((cg.a) ((q4.q[]) nVar.f825b)[bVar.ordinal()].f53804c).f6161b;
+        long j3 = ((cg.a) ((q4.q[]) nVar.f825b)[bVar.ordinal()].f53805c).f6161b;
         cg.a aVar3 = this.f3425f2;
         if (j3 < aVar3.f6161b) {
             this.f3427h2 |= 4;
         }
-        if (!aVar3.k() && ((cg.a) qVarArr[this.f3425f2.f6160a.ordinal()].f53803b).f6161b > this.f3425f2.f6161b) {
+        if (!aVar3.k() && ((cg.a) qVarArr[this.f3425f2.f6160a.ordinal()].f53804b).f6161b > this.f3425f2.f6161b) {
             this.f3427h2 |= 2;
         }
         if (!z10 && aVar2.f6160a == this.f3425f2.f6160a) {
@@ -547,11 +547,11 @@ public final class a1 extends org.telegram.ui.Components.na {
             if (bVar4 == bVar2) {
                 org.telegram.messenger.k5.r(null, null, 2131749730, new Object[]{t6}, textView);
                 editTextBoldCursor.setInputType(2);
-                editTextBoldCursor.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Long.toString(((cg.a) qVarArr[this.f3425f2.f6160a.ordinal()].f53804c).a()).length())});
+                editTextBoldCursor.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Long.toString(((cg.a) qVarArr[this.f3425f2.f6160a.ordinal()].f53805c).a()).length())});
             } else if (bVar4 == bVar3) {
                 org.telegram.messenger.k5.r(null, null, 2131749729, new Object[]{t6}, textView);
                 editTextBoldCursor.setInputType(8194);
-                editTextBoldCursor.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Long.toString(((cg.a) qVarArr[this.f3425f2.f6160a.ordinal()].f53804c).a()).length() + 3)});
+                editTextBoldCursor.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Long.toString(((cg.a) qVarArr[this.f3425f2.f6160a.ordinal()].f53805c).a()).length() + 3)});
             }
             ImageView imageView = this.d2;
             ImageView imageView2 = this.f3423c2;
@@ -649,7 +649,7 @@ public final class a1 extends org.telegram.ui.Components.na {
                 } else {
                     i14 = 2131749690;
                 }
-                String d2 = ((cg.a) qVarArr[bVar6.ordinal()].f53804c).d();
+                String d2 = ((cg.a) qVarArr[bVar6.ordinal()].f53805c).d();
                 Object[] objArr = new Object[2];
                 objArr[z18 ? 1 : 0] = d2;
                 objArr[i7] = str;
@@ -660,7 +660,7 @@ public final class a1 extends org.telegram.ui.Components.na {
                 } else {
                     i12 = 2131749689;
                 }
-                String d10 = ((cg.a) qVarArr[bVar6.ordinal()].f53803b).d();
+                String d10 = ((cg.a) qVarArr[bVar6.ordinal()].f53804b).d();
                 Object[] objArr2 = new Object[2];
                 objArr2[z18 ? 1 : 0] = d10;
                 objArr2[i7] = str;

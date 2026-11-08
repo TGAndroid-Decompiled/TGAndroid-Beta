@@ -551,14 +551,14 @@ public final class r71 extends org.telegram.ui.Components.oj0 {
         boolean z9;
         boolean z10;
         boolean z11;
-        int i10 = d1Var.f57047f;
+        int i10 = d1Var.f57048f;
         if (i10 != 2 && i10 != 3) {
             if (F()) {
                 i7--;
             }
             ArrayList arrayList = this.d;
             org.telegram.messenger.ij ijVar = (org.telegram.messenger.ij) arrayList.get(i7);
-            View view = d1Var.f57043a;
+            View view = d1Var.f57044a;
             boolean z12 = view instanceof org.telegram.ui.Cells.q1;
             v71 v71Var = this.f49413f;
             if (z12) {
@@ -569,11 +569,11 @@ public final class r71 extends org.telegram.ui.Components.oj0 {
                 int d = d(i11);
                 int i12 = i7 + 1;
                 int d2 = d(i12);
-                if (!(ijVar.f23262k.reply_markup instanceof TLRPC.TL_replyInlineMarkup) && d == d1Var.f57047f) {
+                if (!(ijVar.f23262k.reply_markup instanceof TLRPC.TL_replyInlineMarkup) && d == d1Var.f57048f) {
                     org.telegram.messenger.ij ijVar2 = (org.telegram.messenger.ij) arrayList.get(i11);
                     if (ijVar2.Q3() == ijVar.Q3() && Math.abs(ijVar2.f23262k.date - ijVar.f23262k.date) <= 300) {
                         z9 = true;
-                        if (d2 != d1Var.f57047f && i12 < arrayList.size()) {
+                        if (d2 != d1Var.f57048f && i12 < arrayList.size()) {
                             org.telegram.messenger.ij ijVar3 = (org.telegram.messenger.ij) arrayList.get(i12);
                             if (!(ijVar3.f23262k.reply_markup instanceof TLRPC.TL_replyInlineMarkup) && ijVar3.Q3() == ijVar.Q3() && Math.abs(ijVar3.f23262k.date - ijVar.f23262k.date) <= 300) {
                                 z11 = true;
@@ -593,7 +593,7 @@ public final class r71 extends org.telegram.ui.Components.oj0 {
                     }
                 }
                 z9 = false;
-                if (d2 != d1Var.f57047f) {
+                if (d2 != d1Var.f57048f) {
                 }
                 z10 = false;
                 if (!this.f49412e) {

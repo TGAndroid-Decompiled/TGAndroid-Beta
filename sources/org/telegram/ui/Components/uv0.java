@@ -147,11 +147,11 @@ public final class uv0 extends oj0 {
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         yv0 yv0Var = this.f38745r;
         ArrayList arrayList = yv0Var.N1;
         if (arrayList != null) {
-            int i10 = d1Var.f57047f;
+            int i10 = d1Var.f57048f;
             SparseArray sparseArray = this.f38742e;
             if (i10 != 0) {
                 if (i10 != 1) {
@@ -167,7 +167,7 @@ public final class uv0 extends oj0 {
             ((org.telegram.ui.Cells.z7) view).d((TLRPC.Document) sparseArray.get(i7), null, this.f38743f.get(i7), null, false, false);
         } else if (yv0Var.O1 != null) {
             ((org.telegram.ui.Cells.z7) view).setSticker((org.telegram.messenger.zy) yv0Var.P1.get(i7));
-        } else if (d1Var.f57047f != 3) {
+        } else if (d1Var.f57048f != 3) {
             org.telegram.ui.Cells.z7 z7Var = (org.telegram.ui.Cells.z7) view;
             TLRPC.TL_messages_stickerSet tL_messages_stickerSet = yv0Var.J1;
             if (tL_messages_stickerSet != null) {

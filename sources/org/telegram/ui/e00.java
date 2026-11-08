@@ -19,7 +19,7 @@ public final class e00 extends rg.b {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57047f;
+        int i7 = d1Var.f57048f;
         if (i7 != 3 && i7 != 0 && i7 != 5 && i7 != 1) {
             return true;
         }
@@ -39,7 +39,7 @@ public final class e00 extends rg.b {
             if (i7 >= filtersSetupActivity.f41241n.size() || (c00Var = (c00) filtersSetupActivity.f41241n.get(i7)) == null) {
                 return 3;
             }
-            return c00Var.f54531a;
+            return c00Var.f54532a;
         }
         return 3;
     }

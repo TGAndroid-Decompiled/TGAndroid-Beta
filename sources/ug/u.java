@@ -9,26 +9,26 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.pp0;
 public final class u implements RequestDelegate {
-    public final int f56827a;
-    public final i0 f56828b;
+    public final int f56828a;
+    public final i0 f56829b;
 
     public u(i0 i0Var, int i7) {
-        this.f56827a = i7;
-        this.f56828b = i0Var;
+        this.f56828a = i7;
+        this.f56829b = i0Var;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         String G;
-        int i7 = this.f56827a;
-        i0 i0Var = this.f56828b;
+        int i7 = this.f56828a;
+        i0 i0Var = this.f56829b;
         switch (i7) {
             case 0:
                 org.telegram.messenger.g0.h3(new u9.f(2, i0Var, tLObject));
                 return;
             case 1:
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    org.telegram.messenger.g0.h3(i0Var.f56627z2);
+                    org.telegram.messenger.g0.h3(i0Var.f56628z2);
                     return;
                 } else {
                     i0Var.getClass();
@@ -41,7 +41,7 @@ public final class u implements RequestDelegate {
                     int min = Math.min(tL_messages_inactiveChats.chats.size(), tL_messages_inactiveChats.dates.size());
                     int i10 = 0;
                     while (true) {
-                        i0 i0Var2 = this.f56828b;
+                        i0 i0Var2 = this.f56829b;
                         if (i10 < min) {
                             TLRPC.Chat chat = tL_messages_inactiveChats.chats.get(i10);
                             int currentTime = (ConnectionsManager.getInstance(i0Var2.f28616a).getCurrentTime() - tL_messages_inactiveChats.dates.get(i10).intValue()) / 86400;

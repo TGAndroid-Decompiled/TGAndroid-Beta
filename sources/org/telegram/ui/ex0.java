@@ -25,7 +25,7 @@ public final class ex0 extends org.telegram.ui.Components.oj0 {
         if (d1Var.b() == gx0Var.X) {
             return true;
         }
-        switch (d1Var.f57047f) {
+        switch (d1Var.f57048f) {
             case 0:
             case 2:
             case 5:
@@ -91,8 +91,8 @@ public final class ex0 extends org.telegram.ui.Components.oj0 {
         org.telegram.ui.ActionBar.f6 f6Var = gx0Var.f46135e;
         long j3 = gx0Var.h;
         long j10 = gx0Var.f46136f;
-        int i17 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i17 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         boolean z10 = true;
         boolean z11 = false;
         switch (i17) {
@@ -434,8 +434,8 @@ public final class ex0 extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final void y(v4.d1 d1Var) {
-        int i7 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i7 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         gx0 gx0Var = this.d;
         if (i7 != 0) {
             if (i7 != 1) {

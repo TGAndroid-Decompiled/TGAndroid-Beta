@@ -56,7 +56,7 @@ public final class a20 extends c5.a {
                 }
                 return 2;
             default:
-                return ((ug.w0) this.d).f56845k1.size();
+                return ((ug.w0) this.d).f56846k1.size();
         }
     }
 
@@ -192,16 +192,16 @@ public final class a20 extends c5.a {
                 ug.w0 w0Var = (ug.w0) obj;
                 ug.v0 v0Var = new ug.v0(w0Var, w0Var.getContext(), i7);
                 kVar.addView(v0Var);
-                v0Var.f56835a = i7;
-                org.telegram.ui.vs0 vs0Var = (org.telegram.ui.vs0) w0Var.f56845k1.get(i7);
+                v0Var.f56836a = i7;
+                org.telegram.ui.vs0 vs0Var = (org.telegram.ui.vs0) w0Var.f56846k1.get(i7);
                 int i16 = vs0Var.f50766a;
                 String str = vs0Var.d;
                 CharSequence charSequence = vs0Var.f50768c;
-                TextView textView4 = v0Var.f56836b;
-                w70 w70Var = v0Var.f56837c;
+                TextView textView4 = v0Var.f56837b;
+                w70 w70Var = v0Var.f56838c;
                 if (i16 != 0 && i16 != 14 && i16 != 28) {
-                    if (w0Var.f56854v1) {
-                        int i17 = w0Var.f56853u1;
+                    if (w0Var.f56855v1) {
+                        int i17 = w0Var.f56854u1;
                         if (i17 == 4) {
                             textView4.setText(org.telegram.messenger.id.M0(2131754353, null));
                             w70Var.setText(org.telegram.messenger.g0.X2(org.telegram.messenger.id.M0(2131754352, null)));

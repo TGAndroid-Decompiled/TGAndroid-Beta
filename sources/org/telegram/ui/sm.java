@@ -28,7 +28,7 @@ public final class sm extends org.telegram.ui.ActionBar.n0 {
     public final boolean b() {
         an anVar;
         an anVar2 = this.f49781b;
-        if (!anVar2.f43790ed.f55487f) {
+        if (!anVar2.f43790ed.f55488f) {
             if (anVar2.I3 != null && anVar2.D1 != null) {
                 View currentView = anVar2.E1.getCurrentView();
                 if (currentView instanceof cn) {
@@ -36,7 +36,7 @@ public final class sm extends org.telegram.ui.ActionBar.n0 {
                 } else {
                     anVar = anVar2;
                 }
-                if (!anVar.f43764cd.f55487f) {
+                if (!anVar.f43764cd.f55488f) {
                     anVar.oc(true);
                     return false;
                 }
@@ -46,7 +46,7 @@ public final class sm extends org.telegram.ui.ActionBar.n0 {
                     anVar2.D1.f32649a.d(i7, i7);
                     return false;
                 }
-            } else if (anVar2.f43764cd.f55487f) {
+            } else if (anVar2.f43764cd.f55488f) {
                 anVar2.oc(false);
                 return false;
             }
@@ -414,7 +414,7 @@ public final class sm extends org.telegram.ui.ActionBar.n0 {
             } else {
                 z9 = false;
             }
-            if (z9 != aVar.f55487f) {
+            if (z9 != aVar.f55488f) {
                 if (z9) {
                     anVar.b8();
                 }

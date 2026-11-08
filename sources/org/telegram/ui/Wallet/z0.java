@@ -116,7 +116,7 @@ public final class z0 {
     public static String a(rc.v vVar) {
         String str;
         com.google.android.gms.internal.clearcut.z0 z0Var;
-        switch (vVar.f54503a) {
+        switch (vVar.f54504a) {
             case 1:
                 str = "NOT_IN_CREATED_STATE";
                 break;
@@ -268,7 +268,7 @@ public final class z0 {
                 str = "null";
                 break;
         }
-        if ((vVar instanceof rc.n) && (z0Var = ((rc.n) vVar).f54462b) != null) {
+        if ((vVar instanceof rc.n) && (z0Var = ((rc.n) vVar).f54463b) != null) {
             StringBuilder j3 = rf.b.j(str, ", HTTP ");
             j3.append(z0Var.f7297b);
             return j3.toString();
@@ -427,12 +427,12 @@ public final class z0 {
         rc.u uVar = this.f43456k;
         uVar.getClass();
         ?? obj = new Object();
-        obj.f54506a = true;
-        obj.f54509e = 1;
+        obj.f54507a = true;
+        obj.f54510e = 1;
         if (str != null && str.length() != 0) {
             obj.c(rc.k.a(str));
         } else {
-            obj.f54511g = null;
+            obj.f54512g = null;
         }
         uVar.g(obj);
     }

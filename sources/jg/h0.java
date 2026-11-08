@@ -154,7 +154,7 @@ public abstract class h0 extends oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57047f;
+        int i7 = d1Var.f57048f;
         if (i7 != 1 && i7 != 4 && i7 != 10) {
             return true;
         }

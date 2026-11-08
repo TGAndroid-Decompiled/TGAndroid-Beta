@@ -311,7 +311,7 @@ public final class ce0 extends org.telegram.ui.ActionBar.f2 implements org.teleg
         if (eVar == null) {
             str2 = null;
         } else {
-            str2 = eVar.f53499a;
+            str2 = eVar.f53500a;
         }
         if (str2 != null) {
             TLRPC.TL_auth_requestFirebaseSms tL_auth_requestFirebaseSms = new TLRPC.TL_auth_requestFirebaseSms();
@@ -1498,7 +1498,7 @@ public final class ce0 extends org.telegram.ui.ActionBar.f2 implements org.teleg
                     });
                     return;
                 }
-                com.google.android.gms.common.api.j jVar = new com.google.android.gms.common.api.j(org.telegram.messenger.t0.f25566b, p8.c.f53498a, (com.google.android.gms.common.api.a) null, new sa.d(6));
+                com.google.android.gms.common.api.j jVar = new com.google.android.gms.common.api.j(org.telegram.messenger.t0.f25566b, p8.c.f53499a, (com.google.android.gms.common.api.a) null, new sa.d(6));
                 byte[] bArr = auth_sentcode.type.nonce;
                 String str2 = org.telegram.messenger.r2.f25216f;
                 com.google.android.gms.common.api.internal.n0 n0Var = jVar.f6721i;

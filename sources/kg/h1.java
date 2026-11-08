@@ -11,7 +11,7 @@ public final class h1 implements a20, b20 {
     @Override
     public Boolean a(x31 x31Var, View view, Integer num, Float f10, Float f11) {
         boolean z9;
-        if (x31Var.f54531a == 16) {
+        if (x31Var.f54532a == 16) {
             Object obj = x31Var.G;
             if (!(obj instanceof s1) || !((s1) obj).f17537g) {
                 this.f17399a.j0(x31Var, view);

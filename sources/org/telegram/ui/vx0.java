@@ -168,7 +168,7 @@ public final class vx0 implements org.telegram.ui.Components.bj0 {
                         pj0Var2.d1(false);
                         int N0 = ((v4.b0) pj0Var2.getLayoutManager()).N0();
                         if ((N0 == pj0Var2.getAdapter().b() - 1 || (N0 == pj0Var2.getAdapter().b() - 2 && pj0Var2 == n81Var.f47996a)) && (K = pj0Var2.K(N0)) != null) {
-                            int bottom = K.f57043a.getBottom();
+                            int bottom = K.f57044a.getBottom();
                             if (N0 == n81Var.d.f47139c - 2) {
                                 bottom += org.telegram.messenger.g0.L(12.0f);
                             }

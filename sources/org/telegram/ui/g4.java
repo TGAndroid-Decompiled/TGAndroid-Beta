@@ -957,11 +957,11 @@ public final class g4 extends o50 implements org.telegram.messenger.ls {
         if (view instanceof v1) {
             org.telegram.ui.Components.xi0 xi0Var2 = ((v1) view).d;
             if (xi0Var2 != null) {
-                return w(xi0Var2.f57043a);
+                return w(xi0Var2.f57044a);
             }
             return view;
         } else if ((view instanceof y1) && (xi0Var = ((y1) view).d) != null) {
-            return w(xi0Var.f57043a);
+            return w(xi0Var.f57044a);
         } else {
             return view;
         }
@@ -1561,7 +1561,7 @@ public final class g4 extends o50 implements org.telegram.messenger.ls {
         tL_messages_getWebPage.hash = 0;
         this.G0 = ConnectionsManager.getInstance(this.X).sendRequest(tL_messages_getWebPage, new org.telegram.messenger.nx(this, i7, bVar, str2, f0Var, tL_messages_getWebPage));
         if (bVar != null) {
-            bVar.f57323b = new ai.e0(this, i7, bVar, 27);
+            bVar.f57324b = new ai.e0(this, i7, bVar, 27);
             bVar.d();
         }
     }
@@ -1663,7 +1663,7 @@ public final class g4 extends o50 implements org.telegram.messenger.ls {
                     this.f45819u0[0].f47086c.getClass();
                     int I = e4.I(pageblockparagraph);
                     v4.d1 x10 = this.f45819u0[0].f47086c.x(null, I);
-                    View view = x10.f57043a;
+                    View view = x10.f57044a;
                     this.f45819u0[0].f47086c.H(I, x10, pageblockparagraph, 0, 0, false);
                     org.telegram.ui.ActionBar.v2 h = org.telegram.messenger.camera.q.h(this.L, false, 1, null);
                     h.f28650u0 = false;
@@ -1718,7 +1718,7 @@ public final class g4 extends o50 implements org.telegram.messenger.ls {
                             int I2 = e4.I(pageBlock);
                             v4.d1 x12 = this.f45819u0[0].f47086c.x(null, I2);
                             this.f45819u0[0].f47086c.H(I2, x12, pageBlock, 0, 0, false);
-                            x12.f57043a.measure(View.MeasureSpec.makeMeasureSpec(this.f45819u0[0].f47085b.getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
+                            x12.f57044a.measure(View.MeasureSpec.makeMeasureSpec(this.f45819u0[0].f47085b.getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
                             Integer num4 = (Integer) this.f45819u0[0].f47086c.f45188n.get(lowerCase2);
                             if (num4.intValue() != -1) {
                                 num = num4;
@@ -1732,7 +1732,7 @@ public final class g4 extends o50 implements org.telegram.messenger.ls {
                     }
                     if (z9) {
                         org.telegram.ui.Components.au0 au0Var = new org.telegram.ui.Components.au0(this.f45819u0[0].getContext());
-                        au0Var.f57212a = num2.intValue();
+                        au0Var.f57213a = num2.intValue();
                         au0Var.f31919s = (-org.telegram.messenger.g0.L(56.0f)) - num.intValue();
                         this.f45819u0[0].d.w0(au0Var);
                         return true;

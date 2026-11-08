@@ -20,7 +20,7 @@ public final class b00 implements org.telegram.ui.ActionBar.m0, te.i, org.telegr
     public void f(te.j jVar) {
         FragmentContextView fragmentContextView = this.f31977a;
         te.j jVar2 = fragmentContextView.U0;
-        float f10 = 1.0f - jVar2.f55511a.d.f55502c.f55512a;
+        float f10 = 1.0f - jVar2.f55512a.d.f55503c.f55513a;
         fragmentContextView.d.setAlpha(f10);
         fragmentContextView.d.setScaleX(org.telegram.messenger.g0.T1(0.7f, 1.0f, f10));
         fragmentContextView.d.setScaleY(org.telegram.messenger.g0.T1(0.7f, 1.0f, f10));
@@ -28,7 +28,7 @@ public final class b00 implements org.telegram.ui.ActionBar.m0, te.i, org.telegr
         while (it.hasNext()) {
             te.e eVar = (te.e) it.next();
             float c10 = eVar.c();
-            Object obj = eVar.f55495a;
+            Object obj = eVar.f55496a;
             float T1 = org.telegram.messenger.g0.T1(0.7f, 1.0f, c10);
             nh.c cVar = ((m00) obj).f35835b;
             cVar.setAlpha(eVar.c());

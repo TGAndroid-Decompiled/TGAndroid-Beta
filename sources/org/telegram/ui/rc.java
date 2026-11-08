@@ -512,7 +512,7 @@ public class rc extends org.telegram.ui.ActionBar.f2 implements org.telegram.mes
         kVar.n(350L);
         kVar.o(org.telegram.ui.Components.xq.h);
         kVar.C = false;
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         this.M.setItemAnimator(kVar);
         fi.d dVar = new fi.d(context, this.resourceProvider, true);
         dVar.setRoundRadius(24);

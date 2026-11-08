@@ -112,9 +112,9 @@ public final class w1 extends org.telegram.ui.Components.na {
             this.f4943j2 = gVar;
             this.X0.a(gVar);
             ri.f fVar = new ri.f(d);
-            fVar.f54572f = d;
+            fVar.f54573f = d;
             fVar.d = gVar;
-            fVar.f54571e = -2;
+            fVar.f54572e = -2;
             dh.c cVar = new dh.c(fVar, fVar, fVar);
             this.f4944k2 = cVar;
             cVar.f8710k = true;
@@ -143,7 +143,7 @@ public final class w1 extends org.telegram.ui.Components.na {
         ?? kVar = new v4.k();
         this.f4935a2 = kVar;
         kVar.C = false;
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         kVar.n(280L);
         kVar.o(xq.h);
         kVar.D = 30L;
@@ -449,7 +449,7 @@ public final class w1 extends org.telegram.ui.Components.na {
                 org.telegram.ui.ActionBar.f6 f6Var = v1Var.f4863r;
                 int r12 = org.telegram.ui.ActionBar.k6.r1(0.09411765f, org.telegram.ui.ActionBar.k6.w0(i7, f6Var));
                 org.telegram.ui.ActionBar.k6.r1(0.1254902f, org.telegram.ui.ActionBar.k6.w0(i7, f6Var));
-                v1Var.f54151e.setColor(r12);
+                v1Var.f54152e.setColor(r12);
                 v1Var.invalidate();
             }
         } catch (Exception e10) {

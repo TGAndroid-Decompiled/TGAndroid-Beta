@@ -20,7 +20,7 @@ public final class v6 implements View.OnFocusChangeListener {
                     w6 w6Var = (w6) this.f12928b;
                     w6Var.f13033a2 = true;
                     mi.m mVar = new mi.m(w6Var.getContext(), 2);
-                    mVar.f57212a = 1;
+                    mVar.f57213a = 1;
                     mVar.f20111p = (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + org.telegram.messenger.g0.f22557m) - org.telegram.messenger.g0.L(1.0f);
                     ((v4.b0) w6Var.f36277k1.getLayoutManager()).w0(mVar);
                     return;

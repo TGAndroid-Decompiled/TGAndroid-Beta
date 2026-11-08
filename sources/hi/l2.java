@@ -41,7 +41,7 @@ public final class l2 implements View.OnLayoutChangeListener {
                     r1.h hVar = new r1.h(0.0f);
                     hVar.a(0.75f);
                     hVar.b(500.0f);
-                    gVar.f54267m = hVar;
+                    gVar.f54268m = hVar;
                     gVar.a(new ti.c(fVar, 2));
                     gVar.h();
                 } else {

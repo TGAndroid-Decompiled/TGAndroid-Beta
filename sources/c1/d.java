@@ -295,7 +295,7 @@ public final class d extends ResultReceiver {
                                 if (i16 >= 34) {
                                     a10 = h1.a.a(intent3);
                                 } else {
-                                    int i17 = w0.d.f57571a;
+                                    int i17 = w0.d.f57572a;
                                     Bundle bundleExtra2 = intent3.getBundleExtra("android.service.credentials.extra.CREATE_CREDENTIAL_EXCEPTION");
                                     if (bundleExtra2 == null) {
                                         a10 = null;
@@ -399,22 +399,22 @@ public final class d extends ResultReceiver {
             default:
                 q4.f fVar = (q4.f) ((WeakReference) this.f5253b).get();
                 if (fVar != null && resultData != null) {
-                    synchronized (fVar.f53769b) {
-                        p pVar = fVar.f53771e;
+                    synchronized (fVar.f53770b) {
+                        p pVar = fVar.f53772e;
                         IBinder binder = resultData.getBinder("android.support.v4.media.session.EXTRA_BINDER");
-                        int i20 = q4.k.f53783b;
+                        int i20 = q4.k.f53784b;
                         if (binder != null) {
                             IInterface queryLocalInterface = binder.queryLocalInterface("android.support.v4.media.session.IMediaSession");
                             if (queryLocalInterface != null && (queryLocalInterface instanceof q4.d)) {
                                 dVar2 = (q4.d) queryLocalInterface;
                             } else {
                                 ?? obj2 = new Object();
-                                obj2.f53765a = binder;
+                                obj2.f53766a = binder;
                                 dVar2 = obj2;
                             }
                         }
                         pVar.b(dVar2);
-                        fVar.f53771e.c(b5.a.c(resultData));
+                        fVar.f53772e.c(b5.a.c(resultData));
                         fVar.a();
                     }
                     return;

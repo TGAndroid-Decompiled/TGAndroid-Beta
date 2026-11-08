@@ -652,7 +652,7 @@ public class TextureRenderer {
             i0Var.c(h20Var.f22814b, h20Var.f22822l);
         }
         int i7 = h20Var.f22827q;
-        int i10 = i0Var.f55735f;
+        int i10 = i0Var.f55736f;
         i0Var.setMaxWidth(i7 + i10 + i10);
         i0Var.measure(View.MeasureSpec.makeMeasureSpec(h20Var.f22827q, 1073741824), View.MeasureSpec.makeMeasureSpec(h20Var.f22828r, 1073741824));
         i0Var.layout(0, 0, h20Var.f22827q, h20Var.f22828r);
@@ -683,8 +683,8 @@ public class TextureRenderer {
         }
         m0Var.setMaxWidth(h20Var.f22827q);
         if (h20Var.f22821k.size() == 1) {
-            m0Var.f55839y = true;
-            m0Var.f55831c = true;
+            m0Var.f55840y = true;
+            m0Var.f55832c = true;
             m0Var.requestLayout();
         }
         m0Var.measure(View.MeasureSpec.makeMeasureSpec(h20Var.f22827q, 1073741824), View.MeasureSpec.makeMeasureSpec(h20Var.f22828r, 1073741824));

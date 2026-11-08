@@ -126,8 +126,8 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
 
     @Override
     public final void Y(int i7, float f10, float f11, te.c cVar) {
-        this.f20598f.setAlpha(Math.round(this.f20595b.f55486e * 100.0f));
-        int round = Math.round(this.f20594a.f55486e * 220.0f);
+        this.f20598f.setAlpha(Math.round(this.f20595b.f55487e * 100.0f));
+        int round = Math.round(this.f20594a.f55487e * 220.0f);
         n nVar = this.h;
         nVar.f39370a.setAlpha(round);
         nVar.f39372c.setAlpha(round);
@@ -192,7 +192,7 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
             if (paint.getAlpha() > 0) {
                 canvas.drawPath((Path) this.f20603x.d, paint);
             }
-            if (this.f20594a.f55486e > 0.0f) {
+            if (this.f20594a.f55487e > 0.0f) {
                 RectF rectF = this.K;
                 rectF.set((RectF) this.f20603x.f10290c);
                 rectF.inset(g0.L(1.0f), g0.L(1.0f));

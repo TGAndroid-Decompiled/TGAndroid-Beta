@@ -962,8 +962,8 @@ public final class bd extends org.telegram.ui.ActionBar.f2 implements org.telegr
             return;
         }
         ug.i0 i0Var = new ug.i0(2, this.currentAccount, getParentActivity(), this, null);
-        i0Var.f56615n2 = true;
-        i0Var.f56627z2 = new sc(this, 1);
+        i0Var.f56616n2 = true;
+        i0Var.f56628z2 = new sc(this, 1);
         showDialog(i0Var);
     }
 

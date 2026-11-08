@@ -22,7 +22,7 @@ public final class bx extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57047f;
+        int i7 = d1Var.f57048f;
         if (i7 == 1 || i7 == 3) {
             return true;
         }
@@ -51,8 +51,8 @@ public final class bx extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        int i10 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i10 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         boolean z9 = true;
         ex exVar = this.f44502f;
         if (i10 != 0) {
@@ -158,10 +158,10 @@ public final class bx extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final void y(v4.d1 d1Var) {
-        int i7 = d1Var.f57047f;
+        int i7 = d1Var.f57048f;
         if (i7 != 3 && i7 != 1) {
             return;
         }
-        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27852d6, d1Var.f57043a, null);
+        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27852d6, d1Var.f57044a, null);
     }
 }

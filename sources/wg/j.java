@@ -12,28 +12,28 @@ import org.telegram.ui.Components.v61;
 public final class j extends v61 {
     public final Path V;
     public final Paint W;
-    public boolean f57761a0;
-    public boolean f57762b0;
-    public final boolean f57763c0;
-    public final w0 f57764d0;
-    public final f6 f57765e0;
-    public final a0 f57766f0;
-    public final l f57767g0;
+    public boolean f57762a0;
+    public boolean f57763b0;
+    public final boolean f57764c0;
+    public final w0 f57765d0;
+    public final f6 f57766e0;
+    public final a0 f57767f0;
+    public final l f57768g0;
 
     public j(l lVar, Context context, w0 w0Var, f6 f6Var, a0 a0Var) {
         super(context, null);
-        this.f57767g0 = lVar;
-        this.f57764d0 = w0Var;
-        this.f57765e0 = f6Var;
-        this.f57766f0 = a0Var;
+        this.f57768g0 = lVar;
+        this.f57765d0 = w0Var;
+        this.f57766e0 = f6Var;
+        this.f57767f0 = a0Var;
         this.V = new Path();
         this.W = new Paint(1);
-        this.f57763c0 = org.telegram.messenger.g0.Q1();
+        this.f57764c0 = org.telegram.messenger.g0.Q1();
     }
 
     @Override
     public final boolean b(MotionEvent motionEvent) {
-        if (this.f57767g0.f57771i1.getCurrentPosition() == 1) {
+        if (this.f57768g0.f57772i1.getCurrentPosition() == 1) {
             return true;
         }
         return false;
@@ -44,24 +44,24 @@ public final class j extends v61 {
         int i7;
         int i10;
         float f10;
-        l lVar = this.f57767g0;
-        j jVar = lVar.f57771i1;
-        int w02 = k6.w0(k6.f27925h5, this.f57765e0);
+        l lVar = this.f57768g0;
+        j jVar = lVar.f57772i1;
+        int w02 = k6.w0(k6.f27925h5, this.f57766e0);
         Paint paint = this.W;
         paint.setColor(w02);
-        if (this.f57761a0) {
+        if (this.f57762a0) {
             int i11 = -org.telegram.messenger.g0.L(16.0f);
-            a0 a0Var = this.f57766f0;
-            int i12 = a0Var.f57686k2;
+            a0 a0Var = this.f57767f0;
+            int i12 = a0Var.f57687k2;
             if (a0Var.l1.getVisibility() == 0) {
                 i7 = org.telegram.messenger.g0.L(16.0f) + org.telegram.messenger.g0.f22557m;
             } else {
                 i7 = 0;
             }
             int L = org.telegram.messenger.g0.L(10.0f) + Math.max(i11, i12 - i7);
-            w0 w0Var = this.f57764d0;
-            int i13 = w0Var.f57830l2;
-            if (w0Var.f57823e2.f39805c == 1.0f) {
+            w0 w0Var = this.f57765d0;
+            int i13 = w0Var.f57831l2;
+            if (w0Var.f57824e2.f39805c == 1.0f) {
                 i10 = org.telegram.messenger.g0.f22557m;
             } else {
                 i10 = 0;
@@ -97,7 +97,7 @@ public final class j extends v61 {
             canvas.restore();
             return;
         }
-        if (this.f57763c0 || lVar.f57773k1) {
+        if (this.f57764c0 || lVar.f57774k1) {
             canvas.clipRect(0, 0, getMeasuredWidth(), getMeasuredHeight());
         }
         super.dispatchDraw(canvas);
@@ -105,7 +105,7 @@ public final class j extends v61 {
 
     @Override
     public final float getAvailableTranslationX() {
-        if (!this.f57763c0 && !this.f57767g0.f57773k1) {
+        if (!this.f57764c0 && !this.f57768g0.f57774k1) {
             return super.getAvailableTranslationX();
         }
         return getMeasuredWidth();
@@ -114,36 +114,36 @@ public final class j extends v61 {
     @Override
     public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
         super.onLayout(z9, i7, i10, i11, i12);
-        boolean z10 = this.f57762b0;
-        boolean z11 = this.f57767g0.d;
+        boolean z10 = this.f57763b0;
+        boolean z11 = this.f57768g0.d;
         if (z10 != z11) {
-            this.f57762b0 = z11;
+            this.f57763b0 = z11;
             if (z11) {
-                this.f57764d0.j1(true);
+                this.f57765d0.j1(true);
             }
         }
     }
 
     @Override
     public final void u() {
-        this.f57761a0 = false;
-        this.f57767g0.f57771i1.invalidate();
+        this.f57762a0 = false;
+        this.f57768g0.f57772i1.invalidate();
     }
 
     @Override
     public final void w(boolean z9) {
-        l lVar = this.f57767g0;
-        j jVar = lVar.f57771i1;
+        l lVar = this.f57768g0;
+        j jVar = lVar.f57772i1;
         float positionAnimated = jVar.getPositionAnimated();
         if (positionAnimated > 0.0f && positionAnimated < 1.0f) {
-            if (!this.f57761a0) {
-                this.f57761a0 = true;
+            if (!this.f57762a0) {
+                this.f57762a0 = true;
                 if (lVar.d) {
-                    org.telegram.messenger.g0.v1(lVar.f57772j1.f28619b);
+                    org.telegram.messenger.g0.v1(lVar.f57773j1.f28619b);
                 }
             }
         } else {
-            this.f57761a0 = false;
+            this.f57762a0 = false;
         }
         jVar.invalidate();
     }

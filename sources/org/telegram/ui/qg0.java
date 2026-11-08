@@ -101,8 +101,8 @@ public final class qg0 extends org.telegram.ui.Components.na {
         viewGroup4.addView(aVar, c8.ha.f(-2.0f, -1, 87, i14, 0, i14, 0));
         xg.i iVar = this.f49226c2;
         org.telegram.ui.Components.pj0 pj0Var = this.f36277k1;
-        iVar.f58746n = arrayList;
-        iVar.f58745f = pj0Var;
+        iVar.f58747n = arrayList;
+        iVar.f58746f = pj0Var;
         int i15 = this.f28649t0;
         pj0Var.setPadding(i15, 0, i15, org.telegram.messenger.g0.L(60.0f));
         this.f36277k1.j(new g3(this, 21));
@@ -111,7 +111,7 @@ public final class qg0 extends org.telegram.ui.Components.na {
         kVar.n(350L);
         kVar.o(org.telegram.ui.Components.xq.h);
         kVar.C = false;
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         this.f36277k1.setItemAnimator(kVar);
         this.f36277k1.i(new fi.o1(this, 6));
         ng0Var.setText("");
@@ -141,7 +141,7 @@ public final class qg0 extends org.telegram.ui.Components.na {
     public final org.telegram.ui.Components.oj0 L0(org.telegram.ui.Components.pj0 pj0Var) {
         xg.i iVar = new xg.i(getContext(), this.I0, true);
         this.f49226c2 = iVar;
-        iVar.f58748s = true;
+        iVar.f58749s = true;
         return iVar;
     }
 
@@ -344,7 +344,7 @@ public final class qg0 extends org.telegram.ui.Components.na {
                         int L = org.telegram.messenger.g0.L(f15) + i10;
                         String upperCase = str.toUpperCase();
                         xg.h hVar = new xg.h(7, false);
-                        hVar.f58733g = upperCase;
+                        hVar.f58734g = upperCase;
                         arrayList2.add(hVar);
                         arrayList2.addAll(arrayList9);
                         i10 = L;
@@ -360,18 +360,18 @@ public final class qg0 extends org.telegram.ui.Components.na {
         }
         int max = Math.max(0, ((int) (org.telegram.messenger.g0.f22563q.y * 0.6f)) - i10);
         xg.h hVar2 = new xg.h(-1, false);
-        hVar2.f58737l = max;
+        hVar2.f58738l = max;
         arrayList2.add(hVar2);
         if (hashSet != null) {
             if (hashSet.size() > 0) {
                 xg.i iVar2 = this.f49226c2;
                 lg0 lg0Var = new lg0(this, 1);
-                org.telegram.ui.Cells.x3 x3Var = iVar2.f58749w;
+                org.telegram.ui.Cells.x3 x3Var = iVar2.f58750w;
                 if (x3Var != null) {
                     x3Var.a(org.telegram.messenger.id.M0(2131743633, null), lg0Var);
                 }
             } else {
-                org.telegram.ui.Cells.x3 x3Var2 = this.f49226c2.f58749w;
+                org.telegram.ui.Cells.x3 x3Var2 = this.f49226c2.f58750w;
                 if (x3Var2 != null) {
                     x3Var2.setRightText(null);
                 }
@@ -408,8 +408,8 @@ public final class qg0 extends org.telegram.ui.Components.na {
                     if (i12 < arrayList.size()) {
                         xg.h hVar = (xg.h) arrayList.get(i12);
                         ah.r rVar = (ah.r) childAt;
-                        rVar.c(hVar.f58736k, z9);
-                        TLRPC.Chat chat = hVar.f58731e;
+                        rVar.c(hVar.f58737k, z9);
+                        TLRPC.Chat chat = hVar.f58732e;
                         float f10 = 1.0f;
                         if (chat != null) {
                             if (this.f49226c2.F(chat) > 200) {

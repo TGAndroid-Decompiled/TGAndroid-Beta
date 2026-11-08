@@ -76,7 +76,7 @@ public final class zm extends org.telegram.ui.Cells.a6 {
             for (int i7 = bnVar.f32262t0; i7 < bnVar.f32262t0 + bnVar.M; i7++) {
                 v4.d1 K = bnVar.f32260s.K(i7);
                 if (K != null) {
-                    View view = K.f57043a;
+                    View view = K.f57044a;
                     if (view instanceof org.telegram.ui.Cells.a6) {
                         ((org.telegram.ui.Cells.a6) view).f28894r.a(false, true);
                     }

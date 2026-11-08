@@ -106,7 +106,7 @@ public final class b3 extends View {
                 super.dispatchDraw(canvas);
                 int L = org.telegram.messenger.g0.L(48.0f);
                 w40 w40Var = (w40) this.d;
-                int i10 = L + ((int) w40Var.f50869b.f55492f);
+                int i10 = L + ((int) w40Var.f50869b.f55493f);
                 Paint paint = (Paint) this.f8842c;
                 paint.setColor(w40Var.getThemedColor(org.telegram.ui.ActionBar.k6.f28132s8));
                 RectF rectF2 = (RectF) this.f8841b;
@@ -244,7 +244,7 @@ public final class b3 extends View {
                 return;
             case 6:
                 super.onDraw(canvas);
-                float f15 = ((te.a) this.f8841b).f55486e;
+                float f15 = ((te.a) this.f8841b).f55487e;
                 bg.s.b(canvas, (Drawable) this.f8842c, 1.0f - f15);
                 bg.s.b(canvas, (Drawable) this.d, f15);
                 return;

@@ -109,10 +109,10 @@ public class z {
 
     public void d(boolean z9) {
         t1.i iVar = (t1.i) ((m4.d0) ((org.telegram.ui.Components.n) this.f19317c).f36175a).f19612b;
-        if (iVar.f55369c != z9) {
-            if (iVar.f55368b != null) {
+        if (iVar.f55370c != z9) {
+            if (iVar.f55369b != null) {
                 androidx.emoji2.text.l a10 = androidx.emoji2.text.l.a();
-                t1.h hVar = iVar.f55368b;
+                t1.h hVar = iVar.f55369b;
                 a10.getClass();
                 pb.a(hVar, "initCallback cannot be null");
                 ReentrantReadWriteLock reentrantReadWriteLock = a10.f2310a;
@@ -123,9 +123,9 @@ public class z {
                     reentrantReadWriteLock.writeLock().unlock();
                 }
             }
-            iVar.f55369c = z9;
+            iVar.f55370c = z9;
             if (z9) {
-                t1.i.a(iVar.f55367a, androidx.emoji2.text.l.a().b());
+                t1.i.a(iVar.f55368a, androidx.emoji2.text.l.a().b());
             }
         }
     }

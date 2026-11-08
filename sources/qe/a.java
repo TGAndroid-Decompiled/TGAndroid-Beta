@@ -2,7 +2,7 @@ package qe;
 
 import xd.k;
 public abstract class a {
-    public static final int f54088a;
+    public static final int f54089a;
 
     static {
         Object b10;
@@ -23,6 +23,6 @@ public abstract class a {
         } else {
             i7 = 2097152;
         }
-        f54088a = i7;
+        f54089a = i7;
     }
 }

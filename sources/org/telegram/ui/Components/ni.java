@@ -188,9 +188,9 @@ public final class ni extends vh implements org.telegram.messenger.ls, te.b {
                                 tL_message.media.document.attributes.add(tL_documentAttributeFilename);
                                 obj.f26472e = new org.telegram.messenger.ij(niVar2.f39004b.D3, tL_message, false, true);
                                 rf.a a10 = rf.a.a(file);
-                                if (a10 != null && a10.f54526o != null) {
+                                if (a10 != null && a10.f54527o != null) {
                                     int L = org.telegram.messenger.g0.L(44.0f);
-                                    Bitmap bitmap = a10.f54526o;
+                                    Bitmap bitmap = a10.f54527o;
                                     if (bitmap.getWidth() <= L && bitmap.getHeight() <= L) {
                                         obj.f26472e.H1 = bitmap;
                                     }
@@ -323,9 +323,9 @@ public final class ni extends vh implements org.telegram.messenger.ls, te.b {
                                 tL_message.media.document.attributes.add(tL_documentAttributeFilename);
                                 obj.f26472e = new org.telegram.messenger.ij(niVar2.f39004b.D3, tL_message, false, true);
                                 rf.a a10 = rf.a.a(file);
-                                if (a10 != null && a10.f54526o != null) {
+                                if (a10 != null && a10.f54527o != null) {
                                     int L = org.telegram.messenger.g0.L(44.0f);
-                                    Bitmap bitmap = a10.f54526o;
+                                    Bitmap bitmap = a10.f54527o;
                                     if (bitmap.getWidth() <= L && bitmap.getHeight() <= L) {
                                         obj.f26472e.H1 = bitmap;
                                     }
@@ -458,9 +458,9 @@ public final class ni extends vh implements org.telegram.messenger.ls, te.b {
                                 tL_message.media.document.attributes.add(tL_documentAttributeFilename);
                                 obj.f26472e = new org.telegram.messenger.ij(niVar2.f39004b.D3, tL_message, false, true);
                                 rf.a a10 = rf.a.a(file);
-                                if (a10 != null && a10.f54526o != null) {
+                                if (a10 != null && a10.f54527o != null) {
                                     int L = org.telegram.messenger.g0.L(44.0f);
-                                    Bitmap bitmap = a10.f54526o;
+                                    Bitmap bitmap = a10.f54527o;
                                     if (bitmap.getWidth() <= L && bitmap.getHeight() <= L) {
                                         obj.f26472e.H1 = bitmap;
                                     }
@@ -598,9 +598,9 @@ public final class ni extends vh implements org.telegram.messenger.ls, te.b {
                                 tL_message.media.document.attributes.add(tL_documentAttributeFilename);
                                 obj.f26472e = new org.telegram.messenger.ij(niVar2.f39004b.D3, tL_message, false, true);
                                 rf.a a10 = rf.a.a(file);
-                                if (a10 != null && a10.f54526o != null) {
+                                if (a10 != null && a10.f54527o != null) {
                                     int L = org.telegram.messenger.g0.L(44.0f);
-                                    Bitmap bitmap = a10.f54526o;
+                                    Bitmap bitmap = a10.f54527o;
                                     if (bitmap.getWidth() <= L && bitmap.getHeight() <= L) {
                                         obj.f26472e.H1 = bitmap;
                                     }
@@ -749,9 +749,9 @@ public final class ni extends vh implements org.telegram.messenger.ls, te.b {
                                 tL_message.media.document.attributes.add(tL_documentAttributeFilename);
                                 obj.f26472e = new org.telegram.messenger.ij(niVar2.f39004b.D3, tL_message, false, true);
                                 rf.a a10 = rf.a.a(file);
-                                if (a10 != null && a10.f54526o != null) {
+                                if (a10 != null && a10.f54527o != null) {
                                     int L = org.telegram.messenger.g0.L(44.0f);
-                                    Bitmap bitmap = a10.f54526o;
+                                    Bitmap bitmap = a10.f54527o;
                                     if (bitmap.getWidth() <= L && bitmap.getHeight() <= L) {
                                         obj.f26472e.H1 = bitmap;
                                     }

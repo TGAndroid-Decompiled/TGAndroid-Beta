@@ -2,23 +2,23 @@ package wi;
 
 import org.telegram.ui.Components.rt;
 public final class c {
-    public final int f57923a;
-    public final rt f57924b;
+    public final int f57924a;
+    public final rt f57925b;
 
     public c(rt rtVar, int i7) {
-        this.f57923a = i7;
-        this.f57924b = rtVar;
+        this.f57924a = i7;
+        this.f57925b = rtVar;
     }
 
     public void a(Exception exc) {
-        switch (this.f57923a) {
+        switch (this.f57924a) {
             case 0:
-                rt rtVar = this.f57924b;
-                ((t0) rtVar.f37758b).f58199i.post(new j0(rtVar, exc, 1));
+                rt rtVar = this.f57925b;
+                ((t0) rtVar.f37758b).f58200i.post(new j0(rtVar, exc, 1));
                 return;
             default:
-                rt rtVar2 = this.f57924b;
-                ((t0) rtVar2.f37758b).f58199i.post(new j0(rtVar2, exc, 0));
+                rt rtVar2 = this.f57925b;
+                ((t0) rtVar2.f37758b).f58200i.post(new j0(rtVar2, exc, 0));
                 return;
         }
     }

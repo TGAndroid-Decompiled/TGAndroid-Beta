@@ -4,14 +4,14 @@ import android.os.Handler;
 import h2.m0;
 import org.telegram.ui.ActionBar.m5;
 public final class d implements l {
-    public final j f53716a;
-    public g f53717b;
-    public boolean f53718c;
+    public final j f53717a;
+    public g f53718b;
+    public boolean f53719c;
     public final e d;
 
     public d(e eVar, j jVar) {
         this.d = eVar;
-        this.f53716a = jVar;
+        this.f53717a = jVar;
     }
 
     @Override

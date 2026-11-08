@@ -592,7 +592,7 @@ public final class e5 extends FrameLayout {
                 super.onLayout(z9, i7, i10, i11, i12);
                 ch.o oVar = (ch.o) this.f3761b;
                 if (oVar.O && z9) {
-                    oVar.j0(oVar.Q.f55486e);
+                    oVar.j0(oVar.Q.f55487e);
                     return;
                 }
                 return;

@@ -59,7 +59,7 @@ public final class k5 extends FrameLayout {
                 int height = (childAt.getHeight() - childAt.getPaddingTop()) - childAt.getPaddingBottom();
                 float x10 = (width / 2.0f) + childAt.getX() + childAt.getPaddingLeft();
                 float y10 = (height / 2.0f) + childAt.getY() + childAt.getPaddingTop();
-                int i7 = j1Var.f55108a;
+                int i7 = j1Var.f55109a;
                 int i10 = x9Var.I0;
                 View view = childAt;
                 if (i10 != -1) {
@@ -86,7 +86,7 @@ public final class k5 extends FrameLayout {
                     View childAt3 = w4Var.getChildAt(0);
                     x10 = org.telegram.messenger.g0.T1(x10, (childAt3.getWidth() / 2.0f) + childAt3.getX() + (w4Var.getX() - barView.getLeft()), x9Var.f12535m1);
                     y10 = org.telegram.messenger.g0.T1(y10, (childAt3.getHeight() / 2.0f) + childAt3.getY() + (w4Var.getY() - barView.getTop()), x9Var.f12535m1);
-                    i7 = i0.a.f(x9Var.f12535m1, j1Var.f55108a, this.f12272c.b(0));
+                    i7 = i0.a.f(x9Var.f12535m1, j1Var.f55109a, this.f12272c.b(0));
                 }
                 float f10 = x10;
                 float f11 = y10;

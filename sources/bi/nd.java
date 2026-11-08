@@ -245,8 +245,8 @@ public final class nd extends View implements te.b {
             case 2:
                 float width = getWidth() / 2.0f;
                 float height = getHeight() / 2.0f;
-                float f11 = ((te.a) this.f4440e).f55486e;
-                float f12 = ((te.c) this.f4441f).f55492f;
+                float f11 = ((te.a) this.f4440e).f55487e;
+                float f12 = ((te.c) this.f4441f).f55493f;
                 Drawable drawable = (Drawable) this.d;
                 if (drawable != null && f12 < 0.5f) {
                     float C = com.google.android.recaptcha.internal.a.C(f12, 2.0f, 1.0f, 1.0f - f11);

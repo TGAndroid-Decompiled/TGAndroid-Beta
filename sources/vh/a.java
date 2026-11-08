@@ -5,23 +5,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.ui.Components.bn;
 public final class a implements View.OnClickListener {
-    public final int f57499a;
-    public final g f57500b;
+    public final int f57500a;
+    public final g f57501b;
 
     public a(g gVar, int i7) {
-        this.f57499a = i7;
-        this.f57500b = gVar;
+        this.f57500a = i7;
+        this.f57501b = gVar;
     }
 
     @Override
     public final void onClick(View view) {
-        int i7 = this.f57499a;
-        g gVar = this.f57500b;
+        int i7 = this.f57500a;
+        g gVar = this.f57501b;
         switch (i7) {
             case 0:
-                gf.g gVar2 = gVar.f57514c2;
+                gf.g gVar2 = gVar.f57515c2;
                 if (gVar2 != null) {
-                    ArrayList arrayList = new ArrayList(gVar.f57513b2.keySet());
+                    ArrayList arrayList = new ArrayList(gVar.f57514b2.keySet());
                     bn bnVar = (bn) gVar2.f13889b;
                     ArrayList arrayList2 = bnVar.P0;
                     arrayList2.clear();
@@ -34,9 +34,9 @@ public final class a implements View.OnClickListener {
                 gVar.dismiss();
                 return;
             case 1:
-                gf.g gVar3 = gVar.f57514c2;
+                gf.g gVar3 = gVar.f57515c2;
                 if (gVar3 != null) {
-                    ArrayList arrayList3 = new ArrayList(gVar.f57513b2.keySet());
+                    ArrayList arrayList3 = new ArrayList(gVar.f57514b2.keySet());
                     bn bnVar2 = (bn) gVar3.f13889b;
                     ArrayList arrayList4 = bnVar2.P0;
                     arrayList4.clear();
@@ -49,7 +49,7 @@ public final class a implements View.OnClickListener {
                 gVar.dismiss();
                 return;
             case 2:
-                HashMap hashMap = gVar.f57513b2;
+                HashMap hashMap = gVar.f57514b2;
                 hashMap.clear();
                 gVar.Z1.b();
                 gVar.V1.O(true);
@@ -59,7 +59,7 @@ public final class a implements View.OnClickListener {
                 gVar.g1(view);
                 return;
             default:
-                int i12 = g.f57511j2;
+                int i12 = g.f57512j2;
                 gVar.g1(view);
                 return;
         }

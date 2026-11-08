@@ -49,8 +49,8 @@ public final class p1 {
         }
         uh.b bVar = this.f29731x;
         if (bVar != null) {
-            bVar.f56898b.a();
-            bVar.f56899c.P();
+            bVar.f56899b.a();
+            bVar.f56900c.P();
             bVar.E.e();
         }
     }
@@ -62,8 +62,8 @@ public final class p1 {
         }
         uh.b bVar = this.f29731x;
         if (bVar != null) {
-            bVar.f56898b.b();
-            bVar.f56899c.R();
+            bVar.f56899b.b();
+            bVar.f56900c.R();
             bVar.E.f();
         }
     }

@@ -45,7 +45,7 @@ public final class aw extends AnimatorListenerAdapter {
                     } else {
                         wwVar.fragmentView.requestLayout();
                         lw lwVar = wwVar.X;
-                        if (lwVar != null && wwVar.f51539b.f55487f) {
+                        if (lwVar != null && wwVar.f51539b.f55488f) {
                             lwVar.f37824r.requestFocus();
                             org.telegram.messenger.g0.K3(wwVar.X.f37824r);
                             return;

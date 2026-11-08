@@ -17,14 +17,14 @@ public final class b50 extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final void A(v4.d1 d1Var) {
-        if (d1Var.f57047f == 2) {
-            ((org.telegram.ui.Cells.h4) d1Var.f57043a).f29262a.getImageReceiver().c();
+        if (d1Var.f57048f == 2) {
+            ((org.telegram.ui.Cells.h4) d1Var.f57044a).f29262a.getImageReceiver().c();
         }
     }
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57047f;
+        int i7 = d1Var.f57048f;
         if (i7 != 3 && i7 != 4) {
             if (i7 != 6 || !this.f44201f.Q) {
                 return false;
@@ -41,7 +41,7 @@ public final class b50 extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final int d(int i7) {
-        return ((a50) this.f44200e.get(i7)).f54531a;
+        return ((a50) this.f44200e.get(i7)).f54532a;
     }
 
     @Override
@@ -77,8 +77,8 @@ public final class b50 extends org.telegram.ui.Components.oj0 {
     public final void t(v4.d1 d1Var, int i7) {
         String c02;
         boolean z9;
-        int i10 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i10 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         ArrayList arrayList = this.f44200e;
         boolean z10 = false;
         d50 d50Var = this.f44201f;

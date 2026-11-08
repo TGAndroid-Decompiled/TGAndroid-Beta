@@ -59,7 +59,7 @@ public final class w implements Thread.UncaughtExceptionHandler {
                 }
                 atomicBoolean.set(false);
             } catch (Exception e10) {
-                x9.b bVar = x9.b.f58665a;
+                x9.b bVar = x9.b.f58666a;
                 if (bVar.a(6)) {
                     Log.e("FirebaseCrashlytics", "An error occurred in the uncaught exception handler", e10);
                 }

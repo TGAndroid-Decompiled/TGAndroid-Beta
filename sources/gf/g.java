@@ -563,7 +563,7 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
                     ThemeActivity themeActivity = b61Var.f44207f.f45466e;
                     xi0 xi0Var = (xi0) themeActivity.f42013b.K(themeActivity.f42021f0);
                     if (xi0Var != null) {
-                        ((z8) xi0Var.f57043a).setText(id.a0("AutoNightBrightnessInfo", null, 2131753794, Integer.valueOf((int) (k6.f28085q * 100.0f))));
+                        ((z8) xi0Var.f57044a).setText(id.a0("AutoNightBrightnessInfo", null, 2131753794, Integer.valueOf((int) (k6.f28085q * 100.0f))));
                     }
                     k6.F(true);
                     return;

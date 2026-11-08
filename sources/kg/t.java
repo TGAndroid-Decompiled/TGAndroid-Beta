@@ -76,7 +76,7 @@ public final class t extends FrameLayout {
         lVar.setEllipsize(TextUtils.TruncateAt.END);
         r6.V(lVar, i12, f6Var);
         lVar.setGravity(id.f23157a0 ? 5 : 3);
-        lVar.f58842r = false;
+        lVar.f58843r = false;
         lVar.setUseAlphaForEmoji(false);
         qs.i(lVar);
         addView(lVar, ha.i(-1.0f, 20.0f, 87, 64.0f, 0.0f, 14.0f, 6.0f));

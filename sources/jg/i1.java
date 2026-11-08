@@ -874,8 +874,8 @@ public final class i1 extends oj0 implements ls {
         } else {
             i10 = i7;
         }
-        int i11 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i11 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         if (i11 == 4) {
             x7 x7Var = (x7) view;
             if (i10 >= 0 && i10 < this.A0.size()) {

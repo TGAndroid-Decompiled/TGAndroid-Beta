@@ -233,7 +233,7 @@ public final class f0 {
         obj.f8508b = str;
         obj.f8507a = j3;
         obj.f8512g = (byte) (obj.f8512g | 1);
-        j2 b11 = x9.c.f58666a.b(context);
+        j2 b11 = x9.c.f58667a.b(context);
         int i10 = ((e1) b11).f8339c;
         if (i10 > 0) {
             if (i10 != 100) {
@@ -387,9 +387,9 @@ public final class f0 {
                     try {
                         TaskCompletionSource taskCompletionSource2 = new TaskCompletionSource();
                         if (z9) {
-                            ((AtomicInteger) cVar.f14438i.f53803b).getAndIncrement();
+                            ((AtomicInteger) cVar.f14438i.f53804b).getAndIncrement();
                             if (cVar.f14436f.size() < cVar.f14435e) {
-                                x9.b bVar3 = x9.b.f58665a;
+                                x9.b bVar3 = x9.b.f58666a;
                                 bVar3.b("Enqueueing report: " + bVar.f776b);
                                 bVar3.b("Queue size: " + cVar.f14436f.size());
                                 taskCompletionSource = taskCompletionSource2;
@@ -403,7 +403,7 @@ public final class f0 {
                                 if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                                     Log.d("FirebaseCrashlytics", str4, null);
                                 }
-                                ((AtomicInteger) cVar.f14438i.f53804c).getAndIncrement();
+                                ((AtomicInteger) cVar.f14438i.f53805c).getAndIncrement();
                                 taskCompletionSource.trySetResult(bVar);
                             }
                         } else {

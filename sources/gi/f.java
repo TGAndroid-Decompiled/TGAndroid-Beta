@@ -297,11 +297,11 @@ public final class f extends o00 implements ls {
         if (aVar == null) {
             f10 = 0.0f;
         } else {
-            f10 = aVar.f55486e;
+            f10 = aVar.f55487e;
         }
         te.a aVar2 = this.Y;
         if (aVar2 != null) {
-            f11 = aVar2.f55486e;
+            f11 = aVar2.f55487e;
         }
         view.setTranslationY(((-(1.0f - f10)) * k.getCurrentActionBarHeight()) - ((1.0f - f11) * g0.L(44.0f)));
     }
@@ -386,7 +386,7 @@ public final class f extends o00 implements ls {
         j0(id.M0(2131749513, null), g0.H2(g0.U2(id.M0(2131749514, null), new pa(context, 7)), true), this.R, null);
         this.f48193c.setOverScrollMode(2);
         v4.k kVar = new v4.k();
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         kVar.C = false;
         kVar.o(xqVar);
         kVar.n(350L);
@@ -733,7 +733,7 @@ public final class f extends o00 implements ls {
     @Override
     public final void s0(boolean z9) {
         te.a aVar = this.Z;
-        if (aVar != null && aVar.f55487f != z9) {
+        if (aVar != null && aVar.f55488f != z9) {
             aVar.a(z9, true);
         }
     }

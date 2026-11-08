@@ -66,12 +66,12 @@ public class h8 extends NestedScrollView implements j60 {
         setFadingEdgeLength(org.telegram.messenger.g0.L(12.0f));
         setVerticalFadingEdgeEnabled(true);
         setWillNotDraw(false);
-        r1.g gVar = new r1.g((Object) g8Var, (r1.e) r1.g.f54251p, 0.0f);
+        r1.g gVar = new r1.g((Object) g8Var, (r1.e) r1.g.f54252p, 0.0f);
         this.f9094a0 = gVar;
-        gVar.f54267m.b(100.0f);
+        gVar.f54268m.b(100.0f);
         gVar.f(1.0f);
         gVar.b(new a8(0, this));
-        gVar.f54267m.a(1.0f);
+        gVar.f54268m.a(1.0f);
         try {
             NestedScrollView.class.getDeclaredMethod("a", null).setAccessible(true);
         } catch (Exception e10) {
@@ -144,8 +144,8 @@ public class h8 extends NestedScrollView implements j60 {
 
     public final void K(float f10) {
         r1.g gVar = this.f9094a0;
-        if (!gVar.f54261f) {
-            gVar.f54257a = f10;
+        if (!gVar.f54262f) {
+            gVar.f54258a = f10;
             gVar.h();
         }
         if (getScrollY() < org.telegram.messenger.g0.L(2.0f)) {
@@ -223,7 +223,7 @@ public class h8 extends NestedScrollView implements j60 {
                 boolean z9 = this.f9096c0;
                 g8 g8Var = this.f9095b0;
                 if (!z9) {
-                    if (!this.f9094a0.f54261f) {
+                    if (!this.f9094a0.f54262f) {
                         OverScroller overScroller = this.f9104k0;
                         if (overScroller != null) {
                             f10 = overScroller.getCurrVelocity();

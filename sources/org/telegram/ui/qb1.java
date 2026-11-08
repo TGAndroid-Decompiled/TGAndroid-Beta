@@ -38,7 +38,7 @@ public final class qb1 implements org.telegram.ui.ActionBar.r1, org.telegram.ui.
         if (zb1Var != null) {
             zb1Var.setBottomPadding(fc1Var.f45571q0.getSystemWindowInsetBottom());
         }
-        return r0.k1.f54200b;
+        return r0.k1.f54201b;
     }
 
     @Override

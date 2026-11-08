@@ -13,7 +13,7 @@ public final class q91 extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57047f;
+        int i7 = d1Var.f57048f;
         if (i7 != 3 && i7 != 2) {
             return false;
         }
@@ -49,7 +49,7 @@ public final class q91 extends org.telegram.ui.Components.oj0 {
         boolean z9;
         int i10;
         boolean z10;
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         s91 s91Var = this.f49174c;
         w91 w91Var = s91Var.f49702v0;
         if (d(i7) == 1) {

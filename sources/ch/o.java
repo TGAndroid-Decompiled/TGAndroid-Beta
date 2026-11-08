@@ -444,7 +444,7 @@ public final class o extends f2 implements ls {
         if (this.f6349w != null && this.f6348s != null) {
             te.a aVar = this.Q;
             if (aVar != null) {
-                f10 = aVar.f55486e;
+                f10 = aVar.f55487e;
             } else {
                 f10 = 0.0f;
             }
@@ -473,7 +473,7 @@ public final class o extends f2 implements ls {
         }
         te.a aVar = this.Q;
         if (aVar != null) {
-            f10 = aVar.f55486e;
+            f10 = aVar.f55487e;
         } else {
             f10 = 0.0f;
         }

@@ -39,7 +39,7 @@ public final class nr extends View implements org.telegram.ui.ActionBar.a6 {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        float f10 = this.f36418a.f55486e;
+        float f10 = this.f36418a.f55487e;
         RectF rectF = this.d;
         RectF rectF2 = this.f36420c;
         RectF rectF3 = this.f36421e;

@@ -44,13 +44,13 @@ public abstract class iq0 extends NestedScrollView {
         setFadingEdgeLength(org.telegram.messenger.g0.L(12.0f));
         setVerticalFadingEdgeEnabled(true);
         setWillNotDraw(false);
-        r1.g gVar = new r1.g((Object) lq0Var, (r1.e) r1.g.f54251p, 0.0f);
+        r1.g gVar = new r1.g((Object) lq0Var, (r1.e) r1.g.f54252p, 0.0f);
         this.f46718a0 = gVar;
-        gVar.f54267m.b(100.0f);
+        gVar.f54268m.b(100.0f);
         gVar.f(1.0f);
         gVar.b(new ab0(this, 2));
         gVar.a(new l9(this, 2));
-        gVar.f54267m.a(1.0f);
+        gVar.f54268m.a(1.0f);
         try {
             Method declaredMethod = NestedScrollView.class.getDeclaredMethod("a", null);
             this.f46723f0 = declaredMethod;
@@ -88,8 +88,8 @@ public abstract class iq0 extends NestedScrollView {
             if (this.f46720c0 != 0.0f && (overScroller = this.f46724g0) != null && overScroller.isFinished()) {
                 float f10 = this.f46722e0;
                 r1.g gVar = this.f46718a0;
-                if (!gVar.f54261f) {
-                    gVar.f54257a = f10;
+                if (!gVar.f54262f) {
+                    gVar.f54258a = f10;
                     gVar.h();
                 }
             }
@@ -111,8 +111,8 @@ public abstract class iq0 extends NestedScrollView {
         super.computeScroll();
         if (!this.f46719b0 && this.f46720c0 != 0.0f && (overScroller = this.f46724g0) != null && overScroller.isFinished()) {
             r1.g gVar = this.f46718a0;
-            if (!gVar.f54261f) {
-                gVar.f54257a = 0.0f;
+            if (!gVar.f54262f) {
+                gVar.f54258a = 0.0f;
                 gVar.h();
             }
         }
@@ -183,7 +183,7 @@ public abstract class iq0 extends NestedScrollView {
                 lq0 lq0Var = this.f46730n0;
                 if (!z9) {
                     r1.g gVar = this.f46718a0;
-                    if (!gVar.f54261f) {
+                    if (!gVar.f54262f) {
                         OverScroller overScroller = this.f46724g0;
                         if (overScroller != null) {
                             f10 = overScroller.getCurrVelocity();
@@ -208,8 +208,8 @@ public abstract class iq0 extends NestedScrollView {
                             this.f46720c0 = f13;
                             lq0Var.setTranslationY(f13);
                         }
-                        if (!gVar.f54261f) {
-                            gVar.f54257a = f11;
+                        if (!gVar.f54262f) {
+                            gVar.f54258a = f11;
                             gVar.h();
                         }
                     }

@@ -510,7 +510,7 @@ public class UserInfoActivity extends org.telegram.ui.Components.n41 implements 
     public final void h0(boolean z9) {
         long j3;
         int i7;
-        if (!this.f42072x.f27358y.f55487f) {
+        if (!this.f42072x.f27358y.f55488f) {
             if (z9 && TextUtils.isEmpty(this.f42066e.getText())) {
                 org.telegram.messenger.p2.APP_ERROR.a();
                 db1 db1Var = this.f42066e;

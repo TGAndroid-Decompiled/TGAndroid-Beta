@@ -21,7 +21,7 @@ public final class wn extends org.telegram.ui.ActionBar.j {
             goVar.finishFragment();
         } else if (i7 == 1) {
             org.telegram.ui.ActionBar.b5 b5Var = goVar.f46069r;
-            if (b5Var == null || !b5Var.f27358y.f55487f) {
+            if (b5Var == null || !b5Var.f27358y.f55488f) {
                 String K = org.telegram.messenger.t3.K(goVar.X, false);
                 if (goVar.V && !TextUtils.isEmpty(K)) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, this.f51467a, goVar.getResourceProvider());

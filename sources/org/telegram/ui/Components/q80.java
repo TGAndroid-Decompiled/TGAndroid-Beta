@@ -22,7 +22,7 @@ public final class q80 implements Runnable {
             default:
                 Activity parentActivity = u80Var.getParentActivity();
                 Activity parentActivity2 = u80Var.getParentActivity();
-                org.telegram.messenger.q5 q5Var = sg.d1.f55030m;
+                org.telegram.messenger.q5 q5Var = sg.d1.f55031m;
                 boolean z9 = parentActivity2.getSharedPreferences("shapedetector_conf", 0).getBoolean("learning", false);
                 SharedPreferences.Editor edit = parentActivity.getSharedPreferences("shapedetector_conf", 0).edit();
                 if (z9) {

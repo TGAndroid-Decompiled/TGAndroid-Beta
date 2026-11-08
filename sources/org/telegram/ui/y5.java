@@ -51,7 +51,7 @@ public final class y5 implements te.b, b60, org.telegram.ui.ActionBar.r1, org.te
         if (y6Var.getParentActivity() != null && i7 >= 0 && i7 < arrayList.size()) {
             u6 u6Var = (u6) arrayList.get(i7);
             int i10 = 0;
-            if (u6Var.f54531a == 11 && (view instanceof org.telegram.ui.Cells.c2)) {
+            if (u6Var.f54532a == 11 && (view instanceof org.telegram.ui.Cells.c2)) {
                 int i11 = u6Var.f50235f;
                 if (i11 < 0) {
                     y6Var.L = !y6Var.L;

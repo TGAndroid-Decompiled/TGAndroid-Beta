@@ -124,10 +124,10 @@ public final class l implements Runnable {
                 b4 b4Var = o8Var.f42981b;
                 float f10 = o8Var.f42982c;
                 float f11 = o8Var.d;
-                b4Var.f57495r = f10;
-                b4Var.f57496s = f11;
-                b4Var.f57497w = z10;
-                b4Var.f57498x = z10;
+                b4Var.f57496r = f10;
+                b4Var.f57497s = f11;
+                b4Var.f57498w = z10;
+                b4Var.f57499x = z10;
                 return;
             case 12:
                 u8 u8Var = (u8) this.f42723b;

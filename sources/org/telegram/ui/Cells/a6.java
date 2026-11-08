@@ -303,7 +303,7 @@ public class a6 extends FrameLayout implements mw0, te.b {
             wo woVar = this.f28894r;
             if (woVar != null) {
                 CheckBoxBase checkBoxBase = woVar.getCheckBoxBase();
-                float f12 = this.f28888a.f55486e;
+                float f12 = this.f28888a.f55487e;
                 if (checkBoxBase.f31268w != f12) {
                     checkBoxBase.f31268w = f12;
                     checkBoxBase.b();
@@ -311,7 +311,7 @@ public class a6 extends FrameLayout implements mw0, te.b {
                 woVar.invalidate();
             }
         } else if (i7 == 1 && (jgVar = this.D) != null) {
-            float f13 = this.f28889b.f55486e;
+            float f13 = this.f28889b.f55487e;
             float f14 = 0.85f * f13;
             jgVar.setScaleX(f14);
             jgVar.setScaleY(f14);

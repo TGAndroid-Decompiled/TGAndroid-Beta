@@ -27,7 +27,7 @@ public final class ln0 implements org.telegram.ui.Components.t4, org.telegram.ui
         Rect rect = photoViewer.f41509s2;
         Rect rect2 = new Rect(rect);
         i0.b I0 = org.telegram.messenger.g0.I0(k1Var, false);
-        int i7 = k1Var.f54201a.f(647).d;
+        int i7 = k1Var.f54202a.f(647).d;
         int i10 = I0.f15120a;
         int i11 = I0.f15121b;
         int i12 = I0.f15122c;
@@ -60,7 +60,7 @@ public final class ln0 implements org.telegram.ui.Components.t4, org.telegram.ui
                 org.telegram.messenger.g0.i3(cn0Var, 200L);
             }
         }
-        return r0.k1.f54200b;
+        return r0.k1.f54201b;
     }
 
     @Override

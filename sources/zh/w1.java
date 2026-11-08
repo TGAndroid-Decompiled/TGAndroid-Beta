@@ -11,15 +11,15 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 public final class w1 extends v4.v {
     public final up0 d;
-    public final z1 f60573e;
+    public final z1 f60574e;
 
     public w1(z1 z1Var, up0 up0Var) {
-        this.f60573e = z1Var;
+        this.f60574e = z1Var;
         this.d = up0Var;
     }
 
     public static TL_stars.SavedStarGift s(v4.d1 d1Var) {
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         if (view instanceof y0) {
             return ((y0) view).getSavedGift();
         }
@@ -29,7 +29,7 @@ public final class w1 extends v4.v {
     @Override
     public final void a(RecyclerView recyclerView, v4.d1 d1Var) {
         super.a(recyclerView, d1Var);
-        d1Var.f57043a.setPressed(false);
+        d1Var.f57044a.setPressed(false);
     }
 
     @Override
@@ -42,32 +42,32 @@ public final class w1 extends v4.v {
 
     @Override
     public final boolean j() {
-        return this.f60573e.h;
+        return this.f60574e.h;
     }
 
     @Override
     public final boolean k() {
-        return this.f60573e.h;
+        return this.f60574e.h;
     }
 
     @Override
     public final boolean n(RecyclerView recyclerView, v4.d1 d1Var, v4.d1 d1Var2) {
         bi.g1 g1Var;
-        z1 z1Var = this.f60573e;
-        fi.w3 w3Var = z1Var.f60625f;
-        if (z1Var.f60624e != null && z1Var.h && r(s(d1Var)) && r(s(d1Var2))) {
+        z1 z1Var = this.f60574e;
+        fi.w3 w3Var = z1Var.f60626f;
+        if (z1Var.f60625e != null && z1Var.h && r(s(d1Var)) && r(s(d1Var2))) {
             int b10 = d1Var.b();
             int b11 = d1Var2.b();
-            int indexOf = z1Var.f60624e.f4915l.indexOf(s(d1Var));
-            int indexOf2 = z1Var.f60624e.f4915l.indexOf(s(d1Var2));
+            int indexOf = z1Var.f60625e.f4915l.indexOf(s(d1Var));
+            int indexOf2 = z1Var.f60625e.f4915l.indexOf(s(d1Var2));
             if (indexOf >= 0 && indexOf2 >= 0) {
                 boolean z9 = z1Var.d;
                 up0 up0Var = this.d;
                 if (z9) {
-                    z1Var.f60624e.m(indexOf, indexOf2);
-                    up0Var.f60285e.n(z1Var.f60624e.d);
+                    z1Var.f60625e.m(indexOf, indexOf2);
+                    up0Var.f60286e.n(z1Var.f60625e.d);
                 } else {
-                    v9 v9Var = z1Var.f60624e;
+                    v9 v9Var = z1Var.f60625e;
                     if (v9Var.f4920q == null) {
                         v9Var.f4920q = v9Var.i();
                     }
@@ -92,9 +92,9 @@ public final class w1 extends v4.v {
 
     @Override
     public final void p(v4.d1 d1Var, int i7) {
-        z1 z1Var = this.f60573e;
+        z1 z1Var = this.f60574e;
         if (i7 == 0) {
-            v9 v9Var = z1Var.f60624e;
+            v9 v9Var = z1Var.f60625e;
             if (v9Var != null) {
                 ArrayList arrayList = v9Var.f4920q;
                 if (arrayList != null) {
@@ -114,19 +114,19 @@ public final class w1 extends v4.v {
             }
             return;
         }
-        fi.w3 w3Var = z1Var.f60625f;
+        fi.w3 w3Var = z1Var.f60626f;
         if (w3Var != null) {
             w3Var.I0(false);
         }
         if (d1Var != null) {
-            d1Var.f57043a.setPressed(true);
+            d1Var.f57044a.setPressed(true);
         }
     }
 
     public final boolean r(TL_stars.SavedStarGift savedStarGift) {
-        z1 z1Var = this.f60573e;
+        z1 z1Var = this.f60574e;
         if (z1Var.h) {
-            if (z1Var.f60624e == this.d.d) {
+            if (z1Var.f60625e == this.d.d) {
                 if (savedStarGift == null || !savedStarGift.pinned_to_top) {
                     return false;
                 }

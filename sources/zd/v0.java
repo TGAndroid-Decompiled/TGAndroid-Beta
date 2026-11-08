@@ -10,10 +10,10 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import org.telegram.ui.fx;
 public final class v0 extends u0 implements g0 {
-    public final Executor f60121c;
+    public final Executor f60122c;
 
     public v0(Executor executor) {
-        this.f60121c = executor;
+        this.f60122c = executor;
         if (executor instanceof ScheduledThreadPoolExecutor) {
             ((ScheduledThreadPoolExecutor) executor).setRemoveOnCancelPolicy(true);
         }
@@ -22,7 +22,7 @@ public final class v0 extends u0 implements g0 {
     @Override
     public final l0 a(long j3, y1 y1Var, id.h hVar) {
         ScheduledExecutorService scheduledExecutorService;
-        Executor executor = this.f60121c;
+        Executor executor = this.f60122c;
         ScheduledFuture<?> scheduledFuture = null;
         if (executor instanceof ScheduledExecutorService) {
             scheduledExecutorService = (ScheduledExecutorService) executor;
@@ -35,7 +35,7 @@ public final class v0 extends u0 implements g0 {
             } catch (RejectedExecutionException e10) {
                 CancellationException cancellationException = new CancellationException("The task was rejected");
                 cancellationException.initCause(e10);
-                a1 a1Var = (a1) hVar.get(y.f60131b);
+                a1 a1Var = (a1) hVar.get(y.f60132b);
                 if (a1Var != null) {
                     a1Var.cancel(cancellationException);
                 }
@@ -44,13 +44,13 @@ public final class v0 extends u0 implements g0 {
         if (scheduledFuture != null) {
             return new k0(scheduledFuture);
         }
-        return c0.f60056s.a(j3, y1Var, hVar);
+        return c0.f60057s.a(j3, y1Var, hVar);
     }
 
     @Override
     public final void b(long j3, m mVar) {
         ScheduledExecutorService scheduledExecutorService;
-        Executor executor = this.f60121c;
+        Executor executor = this.f60122c;
         ScheduledFuture<?> scheduledFuture = null;
         if (executor instanceof ScheduledExecutorService) {
             scheduledExecutorService = (ScheduledExecutorService) executor;
@@ -59,13 +59,13 @@ public final class v0 extends u0 implements g0 {
         }
         if (scheduledExecutorService != null) {
             fx fxVar = new fx(this, mVar, false, 12);
-            id.h hVar = mVar.f60093e;
+            id.h hVar = mVar.f60094e;
             try {
                 scheduledFuture = scheduledExecutorService.schedule(fxVar, j3, TimeUnit.MILLISECONDS);
             } catch (RejectedExecutionException e10) {
                 CancellationException cancellationException = new CancellationException("The task was rejected");
                 cancellationException.initCause(e10);
-                a1 a1Var = (a1) hVar.get(y.f60131b);
+                a1 a1Var = (a1) hVar.get(y.f60132b);
                 if (a1Var != null) {
                     a1Var.cancel(cancellationException);
                 }
@@ -74,22 +74,22 @@ public final class v0 extends u0 implements g0 {
         if (scheduledFuture != null) {
             mVar.v(new j(scheduledFuture, 0));
         } else {
-            c0.f60056s.b(j3, mVar);
+            c0.f60057s.b(j3, mVar);
         }
     }
 
     @Override
     public final void c(id.h hVar, Runnable runnable) {
         try {
-            this.f60121c.execute(runnable);
+            this.f60122c.execute(runnable);
         } catch (RejectedExecutionException e10) {
             CancellationException cancellationException = new CancellationException("The task was rejected");
             cancellationException.initCause(e10);
-            a1 a1Var = (a1) hVar.get(y.f60131b);
+            a1 a1Var = (a1) hVar.get(y.f60132b);
             if (a1Var != null) {
                 a1Var.cancel(cancellationException);
             }
-            ge.e eVar = j0.f60083a;
+            ge.e eVar = j0.f60084a;
             ge.d.f13851c.c(hVar, runnable);
         }
     }
@@ -97,7 +97,7 @@ public final class v0 extends u0 implements g0 {
     @Override
     public final void close() {
         ExecutorService executorService;
-        Executor executor = this.f60121c;
+        Executor executor = this.f60122c;
         if (executor instanceof ExecutorService) {
             executorService = (ExecutorService) executor;
         } else {
@@ -109,18 +109,18 @@ public final class v0 extends u0 implements g0 {
     }
 
     public final boolean equals(Object obj) {
-        if ((obj instanceof v0) && ((v0) obj).f60121c == this.f60121c) {
+        if ((obj instanceof v0) && ((v0) obj).f60122c == this.f60122c) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return System.identityHashCode(this.f60121c);
+        return System.identityHashCode(this.f60122c);
     }
 
     @Override
     public final String toString() {
-        return this.f60121c.toString();
+        return this.f60122c.toString();
     }
 }

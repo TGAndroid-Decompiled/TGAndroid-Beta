@@ -76,20 +76,20 @@ public final class eb implements DialogInterface.OnDismissListener {
             case 13:
                 ug.i0 i0Var = (ug.i0) this.f3831b;
                 i0Var.X1 = false;
-                i0Var.f56617p2.f31455d0 = true;
-                i0Var.f56624w2.invalidate();
-                i0Var.f56617p2.invalidate();
+                i0Var.f56618p2.f31455d0 = true;
+                i0Var.f56625w2.invalidate();
+                i0Var.f56618p2.invalidate();
                 return;
             case 14:
                 ug.f1 f1Var = (ug.f1) this.f3831b;
-                qd qdVar = f1Var.f56570j2;
+                qd qdVar = f1Var.f56571j2;
                 if (qdVar != null) {
                     qdVar.setDialogVisible(false);
                 }
-                f1Var.f56569i2.setPaused(false);
+                f1Var.f56570i2.setPaused(false);
                 return;
             default:
-                ((yh.m) this.f3831b).f59558s = null;
+                ((yh.m) this.f3831b).f59559s = null;
                 return;
         }
     }

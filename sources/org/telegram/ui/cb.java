@@ -24,7 +24,7 @@ public final class cb extends kb {
         ri.a c10 = lVar.c(drawable);
         org.telegram.messenger.g0.B(lVar.a(c10));
         mb mbVar = this.f44739h0;
-        mbVar.f47739a.f54577a = c10;
+        mbVar.f47739a.f54578a = c10;
         lh.f fVar = mbVar.W;
         if (fVar != null) {
             fVar.invalidate();
@@ -72,7 +72,7 @@ public final class cb extends kb {
         int size = View.MeasureSpec.getSize(i7);
         int size2 = View.MeasureSpec.getSize(i10);
         mb mbVar = this.f44739h0;
-        ri.a aVar = mbVar.f47739a.f54577a;
+        ri.a aVar = mbVar.f47739a.f54578a;
         if (aVar instanceof ri.b) {
             ((ri.b) aVar).b(size, size2);
         }

@@ -33,7 +33,7 @@ public final class kw implements ViewTreeObserver.OnPreDrawListener {
                 wh.h hVar = (wh.h) this.f47327c;
                 org.telegram.ui.Components.kb kbVar = hVar.W;
                 if (kbVar != null) {
-                    int[] iArr = wh.h.f57894d0;
+                    int[] iArr = wh.h.f57895d0;
                     kbVar.getLocationInWindow(iArr);
                     float f11 = iArr[0];
                     float translationY = iArr[1] - hVar.W.getTranslationY();
@@ -43,7 +43,7 @@ public final class kw implements ViewTreeObserver.OnPreDrawListener {
                     } else {
                         f10 = -kbVar2.getBottomOffset();
                     }
-                    hVar.f57897a.getLocationInWindow(iArr);
+                    hVar.f57898a.getLocationInWindow(iArr);
                     hVar.X = (hVar.W.f35268a.getMeasuredWidth() / 2.0f) + (f11 - iArr[0]) + hVar.W.f35268a.getLeft();
                     hVar.Y = (hVar.W.f35268a.getMeasuredHeight() / 2.0f) + ((translationY + f10) - iArr[1]) + hVar.W.f35268a.getTop();
                 }

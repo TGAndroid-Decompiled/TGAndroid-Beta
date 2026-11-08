@@ -20,7 +20,7 @@ public final class ko0 extends oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f57047f != 1) {
+        if (d1Var.f57048f != 1) {
             return true;
         }
         return false;
@@ -63,8 +63,8 @@ public final class ko0 extends oj0 {
         boolean z9;
         long j3;
         int L;
-        if (d1Var.f57047f == 0) {
-            org.telegram.ui.Cells.e7 e7Var = (org.telegram.ui.Cells.e7) d1Var.f57043a;
+        if (d1Var.f57048f == 0) {
+            org.telegram.ui.Cells.e7 e7Var = (org.telegram.ui.Cells.e7) d1Var.f57044a;
             if (i7 == 1 && this.d) {
                 e7Var.setAsNewBotForumTopic(this.f35404e);
             } else if (this.f35405f != null) {

@@ -97,9 +97,9 @@ public final class g2 implements Runnable {
                 return;
             case 7:
                 up0 up0Var = (up0) obj;
-                sg.j1 j1Var = up0Var.f55692t1;
+                sg.j1 j1Var = up0Var.f55693t1;
                 up0Var.s0(j1Var, null);
-                sg.l0.e(i11).j(j1Var.f55110c);
+                sg.l0.e(i11).j(j1Var.f55111c);
                 return;
             case 8:
                 qs.f(i11).k(215, Boolean.FALSE);
@@ -118,7 +118,7 @@ public final class g2 implements Runnable {
                 }
                 return;
             case 10:
-                w70 w70Var = ((wg.p0) obj).f57796e;
+                w70 w70Var = ((wg.p0) obj).f57797e;
                 try {
                     if (w70Var.getLayout().getLineForOffset(i11) == 0) {
                         w70Var.getEditableText().insert(i11, "\n");
@@ -131,8 +131,8 @@ public final class g2 implements Runnable {
                 }
             default:
                 wi.d0 d0Var = ((wi.t) obj).N;
-                if (d0Var != null && d0Var.f57949s != (i7 = ((i11 % 360) + 360) % 360)) {
-                    d0Var.f57949s = i7;
+                if (d0Var != null && d0Var.f57950s != (i7 = ((i11 % 360) + 360) % 360)) {
+                    d0Var.f57950s = i7;
                     d0Var.v();
                     return;
                 }

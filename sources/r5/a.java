@@ -4,10 +4,10 @@ import j$.util.DesugarCollections;
 import java.util.ArrayList;
 import java.util.List;
 public final class a {
-    public static final int f54401e = 0;
-    public final g f54402a;
-    public final List f54403b;
-    public final b f54404c;
+    public static final int f54402e = 0;
+    public final g f54403a;
+    public final List f54404b;
+    public final b f54405c;
     public final String d;
 
     static {
@@ -15,9 +15,9 @@ public final class a {
     }
 
     public a(g gVar, List list, b bVar, String str) {
-        this.f54402a = gVar;
-        this.f54403b = list;
-        this.f54404c = bVar;
+        this.f54403a = gVar;
+        this.f54404b = list;
+        this.f54405c = bVar;
         this.d = str;
     }
 }

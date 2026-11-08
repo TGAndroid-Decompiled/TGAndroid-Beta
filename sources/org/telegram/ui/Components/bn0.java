@@ -185,18 +185,18 @@ public abstract class bn0 extends org.telegram.ui.ActionBar.g1 {
         e5Var.setScaleY(1.0f);
         vm0Var.setAlpha(1.0f);
         ArrayList arrayList3 = new ArrayList();
-        r1.g gVar = new r1.g(e5Var, r1.g.f54252q);
-        gVar.f54267m = org.telegram.ui.Cells.f1.o(0.25f, 750.0f, 1.0f);
+        r1.g gVar = new r1.g(e5Var, r1.g.f54253q);
+        gVar.f54268m = org.telegram.ui.Cells.f1.o(0.25f, 750.0f, 1.0f);
         gVar.b(new sm0(this, 0));
-        r1.g gVar2 = new r1.g(e5Var, r1.g.f54253r);
-        gVar2.f54267m = org.telegram.ui.Cells.f1.o(0.25f, 750.0f, 1.0f);
+        r1.g gVar2 = new r1.g(e5Var, r1.g.f54254r);
+        gVar2.f54268m = org.telegram.ui.Cells.f1.o(0.25f, 750.0f, 1.0f);
         boolean z9 = true;
         gVar2.b(new sm0(this, 1));
         r1.b bVar = r1.g.v;
         r1.g gVar3 = new r1.g(e5Var, bVar);
-        gVar3.f54267m = org.telegram.ui.Cells.f1.o(0.0f, 750.0f, 1.0f);
+        gVar3.f54268m = org.telegram.ui.Cells.f1.o(0.0f, 750.0f, 1.0f);
         r1.g gVar4 = new r1.g(vm0Var, bVar);
-        gVar4.f54267m = org.telegram.ui.Cells.f1.o(0.25f, 750.0f, 1.0f);
+        gVar4.f54268m = org.telegram.ui.Cells.f1.o(0.25f, 750.0f, 1.0f);
         arrayList3.addAll(Arrays.asList(gVar, gVar2, gVar3, gVar4));
         for (r1.g gVar5 : gVarArr) {
             if (gVar5 != null) {

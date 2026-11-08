@@ -50,8 +50,8 @@ public final class wz extends org.telegram.ui.Components.oj0 {
         yz yzVar = this.d;
         rz rzVar = yzVar.S;
         ArrayList arrayList = yzVar.f52367f;
-        int i10 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i10 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         boolean z11 = true;
         if (i10 == 0) {
             org.telegram.ui.Cells.p7 p7Var = (org.telegram.ui.Cells.p7) view;

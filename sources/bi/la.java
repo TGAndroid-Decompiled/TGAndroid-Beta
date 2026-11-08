@@ -405,8 +405,8 @@ public final class la implements View.OnClickListener {
             case 22:
                 tg.h1 h1Var = (tg.h1) obj2;
                 h1Var.a(i14);
-                h1Var.f55714b.x().i(i14 - 1, true);
-                h1Var.f55714b.w((sg.h) obj);
+                h1Var.f55715b.x().i(i14 - 1, true);
+                h1Var.f55715b.w((sg.h) obj);
                 return;
             case 23:
                 v9 v9Var = (v9) obj2;
@@ -453,7 +453,7 @@ public final class la implements View.OnClickListener {
                     up0Var.H = -1;
                 }
                 TL_stars.toggleChatStarGiftNotifications togglechatstargiftnotifications = new TL_stars.toggleChatStarGiftNotifications();
-                togglechatstargiftnotifications.peer = qp.s1(i14).j1(up0Var.f60284c);
+                togglechatstargiftnotifications.peer = qp.s1(i14).j1(up0Var.f60285c);
                 togglechatstargiftnotifications.enabled = z16;
                 ConnectionsManager.getInstance(i14).sendRequest(togglechatstargiftnotifications, new n41(10, up0Var, f2Var3));
                 return;

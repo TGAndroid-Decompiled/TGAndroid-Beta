@@ -315,7 +315,7 @@ public final class g0 extends AnimatorListenerAdapter {
                 return;
             default:
                 i2 i2Var = (i2) this.d;
-                bi.t tVar = i2Var.f55757c;
+                bi.t tVar = i2Var.f55758c;
                 if (this.f1199b) {
                     f17 = 1.0f;
                 } else {
@@ -325,7 +325,7 @@ public final class g0 extends AnimatorListenerAdapter {
                 tVar.setAlpha(f17);
                 tVar.setScaleX(org.telegram.messenger.g0.T1(0.9f, 1.0f, i2Var.D));
                 tVar.setScaleY(org.telegram.messenger.g0.T1(0.9f, 1.0f, i2Var.D));
-                i2Var.f55756b.invalidate();
+                i2Var.f55757b.invalidate();
                 Runnable runnable6 = (Runnable) this.f1200c;
                 if (runnable6 != null) {
                     org.telegram.messenger.g0.h3(runnable6);

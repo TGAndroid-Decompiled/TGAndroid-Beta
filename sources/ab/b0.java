@@ -205,7 +205,7 @@ public final class b0 implements ib.b, ms, jy0, q5.b {
         ArrayList arrayList = new ArrayList();
         for (int i7 = 0; i7 < list.size(); i7++) {
             p2.b bVar = (p2.b) list.get(i7);
-            if (!hashMap.containsKey(bVar.f53095b) && !hashMap2.containsKey(Integer.valueOf(bVar.f53096c))) {
+            if (!hashMap.containsKey(bVar.f53096b) && !hashMap2.containsKey(Integer.valueOf(bVar.f53097c))) {
                 arrayList.add(bVar);
             }
         }
@@ -403,19 +403,19 @@ public final class b0 implements ib.b, ms, jy0, q5.b {
         Collections.sort(h, new jg.x(10));
         ArrayList arrayList = new ArrayList();
         int i7 = 0;
-        int i10 = ((p2.b) h.get(0)).f53096c;
+        int i10 = ((p2.b) h.get(0)).f53097c;
         int i11 = 0;
         while (true) {
             if (i11 >= h.size()) {
                 break;
             }
             p2.b bVar2 = (p2.b) h.get(i11);
-            if (i10 != bVar2.f53096c) {
+            if (i10 != bVar2.f53097c) {
                 if (arrayList.size() == 1) {
                     return (p2.b) h.get(0);
                 }
             } else {
-                arrayList.add(new Pair(bVar2.f53095b, Integer.valueOf(bVar2.d)));
+                arrayList.add(new Pair(bVar2.f53096b, Integer.valueOf(bVar2.d)));
                 i11++;
             }
         }
@@ -506,7 +506,7 @@ public final class b0 implements ib.b, ms, jy0, q5.b {
         this.f908c = lVar;
         this.d = h7.a(Integer.MAX_VALUE, null, 6);
         this.f909e = new g6.d0(17);
-        a1 a1Var = (a1) zVar.c().get(zd.y.f60131b);
+        a1 a1Var = (a1) zVar.c().get(zd.y.f60132b);
         if (a1Var != null) {
             a1Var.invokeOnCompletion(new u0(1, yVar, this));
         }
@@ -541,7 +541,7 @@ public final class b0 implements ib.b, ms, jy0, q5.b {
         this.d = new androidx.emoji2.text.s(1024);
         int a10 = bVar.a(6);
         if (a10 != 0) {
-            int i13 = a10 + bVar.f54236a;
+            int i13 = a10 + bVar.f54237a;
             i7 = ((ByteBuffer) bVar.d).getInt(((ByteBuffer) bVar.d).getInt(i13) + i13);
         } else {
             i7 = 0;
@@ -549,7 +549,7 @@ public final class b0 implements ib.b, ms, jy0, q5.b {
         this.f908c = new char[i7 * 2];
         int a11 = bVar.a(6);
         if (a11 != 0) {
-            int i14 = a11 + bVar.f54236a;
+            int i14 = a11 + bVar.f54237a;
             i10 = ((ByteBuffer) bVar.d).getInt(((ByteBuffer) bVar.d).getInt(i14) + i14);
         } else {
             i10 = 0;
@@ -558,11 +558,11 @@ public final class b0 implements ib.b, ms, jy0, q5.b {
             androidx.emoji2.text.o oVar = new androidx.emoji2.text.o(this, i15);
             s1.a b10 = oVar.b();
             int a12 = b10.a(4);
-            Character.toChars(a12 != 0 ? ((ByteBuffer) b10.d).getInt(a12 + b10.f54236a) : 0, (char[]) this.f908c, i15 * 2);
+            Character.toChars(a12 != 0 ? ((ByteBuffer) b10.d).getInt(a12 + b10.f54237a) : 0, (char[]) this.f908c, i15 * 2);
             s1.a b11 = oVar.b();
             int a13 = b11.a(16);
             if (a13 != 0) {
-                int i16 = a13 + b11.f54236a;
+                int i16 = a13 + b11.f54237a;
                 i11 = ((ByteBuffer) b11.d).getInt(((ByteBuffer) b11.d).getInt(i16) + i16);
             } else {
                 i11 = 0;
@@ -572,7 +572,7 @@ public final class b0 implements ib.b, ms, jy0, q5.b {
                 s1.a b12 = oVar.b();
                 int a14 = b12.a(16);
                 if (a14 != 0) {
-                    int i17 = a14 + b12.f54236a;
+                    int i17 = a14 + b12.f54237a;
                     i12 = ((ByteBuffer) b12.d).getInt(((ByteBuffer) b12.d).getInt(i17) + i17);
                 } else {
                     i12 = 0;

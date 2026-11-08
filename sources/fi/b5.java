@@ -62,8 +62,8 @@ public final class b5 extends AnimatorListenerAdapter {
                 animator.removeAllListeners();
                 mi.l lVar = (mi.l) this.f11680e;
                 v4.d1 d1Var = (v4.d1) this.d;
-                lVar.X(d1Var.f57043a);
-                View view2 = d1Var.f57043a;
+                lVar.X(d1Var.f57044a);
+                View view2 = d1Var.f57044a;
                 if (view2 instanceof org.telegram.ui.Cells.q1) {
                     org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) view2;
                     if (q1Var.f29944nb) {
@@ -81,7 +81,7 @@ public final class b5 extends AnimatorListenerAdapter {
                         cjVar.f21867j = false;
                     }
                 }
-                if (lVar.f57109z.remove(d1Var)) {
+                if (lVar.f57110z.remove(d1Var)) {
                     lVar.v(d1Var);
                     lVar.G();
                     return;

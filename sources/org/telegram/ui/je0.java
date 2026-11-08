@@ -49,14 +49,14 @@ public final class je0 extends ob1 implements org.telegram.messenger.ls, te.b {
         if (Build.VERSION.SDK_INT >= 31) {
             ri.f fVar = new ri.f(null);
             ca.i iVar = new ca.i(this, false);
-            if (fVar.f54570c == null) {
-                fVar.f54570c = new dh.i(fVar.f54569b, iVar);
+            if (fVar.f54571c == null) {
+                fVar.f54571c = new dh.i(fVar.f54570b, iVar);
             }
             this.S = fVar;
             ri.f fVar2 = new ri.f(null);
             ca.i iVar2 = new ca.i(this, true);
-            if (fVar2.f54570c == null) {
-                fVar2.f54570c = new dh.i(fVar2.f54569b, iVar2);
+            if (fVar2.f54571c == null) {
+                fVar2.f54571c = new dh.i(fVar2.f54570b, iVar2);
             }
             this.T = fVar2;
         } else {
@@ -329,27 +329,27 @@ public final class je0 extends ob1 implements org.telegram.messenger.ls, te.b {
         this.F.setMaxWidth(org.telegram.messenger.g0.L(344.0f));
         qh.b[] bVarArr = new qh.b[5];
         this.K = bVarArr;
-        bVarArr[0] = qh.b.c(context, this.resourceProvider, qh.a.f54127n, 2131748708);
-        this.K[1] = qh.b.c(context, this.resourceProvider, qh.a.f54126f, 2131748707);
-        this.K[2] = qh.b.c(context, this.resourceProvider, qh.a.f54128r, 2131745498);
+        bVarArr[0] = qh.b.c(context, this.resourceProvider, qh.a.f54128n, 2131748708);
+        this.K[1] = qh.b.c(context, this.resourceProvider, qh.a.f54127f, 2131748707);
+        this.K[2] = qh.b.c(context, this.resourceProvider, qh.a.f54129r, 2131745498);
         this.K[3] = qh.b.c(context, this.resourceProvider, qh.a.h, 2131748709);
         qh.b[] bVarArr2 = this.K;
         org.telegram.ui.ActionBar.f6 f6Var = this.resourceProvider;
         int i10 = this.currentAccount;
         qh.b bVar = new qh.b(context);
         org.telegram.ui.Components.y41 y41Var = null;
-        bVar.f54137a.setText(org.telegram.messenger.id.M0(2131748706, null));
-        bVar.f54138b.setVisibility(8);
+        bVar.f54138a.setText(org.telegram.messenger.id.M0(2131748706, null));
+        bVar.f54139b.setVisibility(8);
         TLRPC.User a22 = org.telegram.messenger.qp.s1(i10).a2(Long.valueOf(org.telegram.messenger.p10.i(i10).e()));
         org.telegram.ui.Components.w8 w8Var = new org.telegram.ui.Components.w8(0, a22);
         org.telegram.ui.Components.l9 l9Var = new org.telegram.ui.Components.l9(context);
         l9Var.e(a22, w8Var);
         l9Var.setRoundRadius(org.telegram.messenger.g0.L(11.0f));
-        bVar.f54139c = l9Var;
+        bVar.f54140c = l9Var;
         bVar.addView(l9Var, c8.ha.d(22, 22.0f, 49, 0.0f, 5.0f, 0.0f, 0.0f));
-        bVar.f54146x = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Ql, f6Var);
-        bVar.f54144s = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Ol, f6Var);
-        bVar.f54145w = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Pl, f6Var);
+        bVar.f54147x = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Ql, f6Var);
+        bVar.f54145s = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Ol, f6Var);
+        bVar.f54146w = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Pl, f6Var);
         bVar.a();
         bVarArr2[4] = bVar;
         this.K[0].setOnLongClickListener(new View.OnLongClickListener(this) {
@@ -726,7 +726,7 @@ public final class je0 extends ob1 implements org.telegram.messenger.ls, te.b {
                 if (bVarArr != null && (bVar = bVarArr[4]) != null) {
                     int i13 = this.currentAccount;
                     TLRPC.User a22 = org.telegram.messenger.qp.s1(i13).a2(Long.valueOf(org.telegram.messenger.p10.i(i13).e()));
-                    bVar.f54139c.e(a22, new org.telegram.ui.Components.w8(0, a22));
+                    bVar.f54140c.e(a22, new org.telegram.ui.Components.w8(0, a22));
                     return;
                 }
                 return;
@@ -774,7 +774,7 @@ public final class je0 extends ob1 implements org.telegram.messenger.ls, te.b {
             }
             if (fVar != null) {
                 fVar.n(measuredWidth, measuredHeight);
-                fVar.f54570c.a();
+                fVar.f54571c.a();
             }
         }
     }
@@ -871,7 +871,7 @@ public final class je0 extends ob1 implements org.telegram.messenger.ls, te.b {
         nb1 nb1Var = this.f48363c;
         if (nb1Var != null && this.H != null) {
             float a10 = 1.0f - c8.j9.a(Math.abs(3.0f - nb1Var.getPositionAnimated()), 0.0f, 1.0f);
-            float T1 = (1.0f - ((1.0f - org.telegram.messenger.g0.T1(0.0f, 1.0f, org.telegram.messenger.g0.R0(this.L))) * a10)) * this.f46941w.f55486e;
+            float T1 = (1.0f - ((1.0f - org.telegram.messenger.g0.T1(0.0f, 1.0f, org.telegram.messenger.g0.R0(this.L))) * a10)) * this.f46941w.f55487e;
             this.H.setAlpha(T1);
             this.H.setTranslationY(a10 * org.telegram.messenger.g0.L(48.0f));
             View view = this.H;
@@ -894,7 +894,7 @@ public final class je0 extends ob1 implements org.telegram.messenger.ls, te.b {
             i7 = 0;
         }
         int i11 = -i7;
-        float f10 = this.f46941w.f55486e;
+        float f10 = this.f46941w.f55487e;
         this.E.setTranslationY(org.telegram.messenger.g0.W1(f10, org.telegram.messenger.g0.L(40.0f) + i11, i11));
         le0 le0Var = this.F;
         int i12 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));

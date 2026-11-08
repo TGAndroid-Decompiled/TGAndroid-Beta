@@ -156,7 +156,7 @@ public final class h4 extends FrameLayout implements org.telegram.ui.ActionBar.a
                     this.S = new ug.y0(org.telegram.ui.ActionBar.k6.zk, org.telegram.ui.ActionBar.k6.Ak, -1, -1, this.M);
                 }
                 this.S.d((int) (width - org.telegram.messenger.g0.L(10.0f)), 0.0f, (int) (height - org.telegram.messenger.g0.L(10.0f)), (int) (org.telegram.messenger.g0.L(10.0f) + width), 0.0f, (int) (org.telegram.messenger.g0.L(10.0f) + height));
-                paint = this.S.f56868f;
+                paint = this.S.f56869f;
             } else {
                 if (this.U == null) {
                     this.U = new Paint();

@@ -108,11 +108,11 @@ public final class tz extends org.telegram.ui.Components.kj0 {
         boolean z10;
         yz yzVar = this.f50174w;
         ArrayList arrayList = yzVar.f52375n;
-        int i11 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i11 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         if (i11 != 2) {
             ArrayList arrayList2 = (ArrayList) yzVar.f52380r.get((String) arrayList.get(i7));
-            int i12 = d1Var.f57047f;
+            int i12 = d1Var.f57048f;
             boolean z11 = false;
             if (i12 != 0) {
                 boolean z12 = true;

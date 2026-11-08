@@ -60,7 +60,7 @@ public class n implements t4, sj0, uy, org.telegram.ui.lm0, org.telegram.messeng
 
     public void A(long j3, int i7, long j10) {
         x3.f fVar = (x3.f) this.f36175a;
-        fVar.f58600j0.getClass();
+        fVar.f58601j0.getClass();
         if (i7 != 160) {
             if (i7 != 174) {
                 if (i7 != 183) {
@@ -70,50 +70,50 @@ public class n implements t4, sj0, uy, org.telegram.ui.lm0, org.telegram.messeng
                                 if (i7 != 21968) {
                                     if (i7 != 408125543) {
                                         if (i7 != 475249515) {
-                                            if (i7 == 524531317 && !fVar.f58615z) {
+                                            if (i7 == 524531317 && !fVar.f58616z) {
                                                 if (fVar.d && fVar.K != -1) {
                                                     fVar.J = true;
                                                     return;
                                                 }
-                                                fVar.f58600j0.f(new f3.t(fVar.v));
-                                                fVar.f58615z = true;
+                                                fVar.f58601j0.f(new f3.t(fVar.v));
+                                                fVar.f58616z = true;
                                                 return;
                                             }
                                             return;
-                                        } else if (!fVar.f58615z) {
+                                        } else if (!fVar.f58616z) {
                                             fVar.D = true;
                                             return;
                                         } else {
                                             return;
                                         }
                                     }
-                                    long j11 = fVar.f58609s;
+                                    long j11 = fVar.f58610s;
                                     if (j11 != -1 && j11 != j3) {
                                         throw e2.t0.a(null, "Multiple Segment elements not supported");
                                     }
-                                    fVar.f58609s = j3;
-                                    fVar.f58608r = j10;
+                                    fVar.f58610s = j3;
+                                    fVar.f58609r = j10;
                                     return;
                                 }
                                 fVar.h(i7);
-                                fVar.f58614y.f58577z = true;
+                                fVar.f58615y.f58578z = true;
                                 return;
                             }
                             fVar.h(i7);
-                            fVar.f58614y.f58561i = true;
+                            fVar.f58615y.f58562i = true;
                             return;
                         }
                         fVar.A = -1;
                         fVar.B = -1L;
                         return;
-                    } else if (!fVar.f58615z) {
+                    } else if (!fVar.f58616z) {
                         fVar.g(i7);
                         fVar.E = -9223372036854775807L;
                         return;
                     } else {
                         return;
                     }
-                } else if (!fVar.f58615z) {
+                } else if (!fVar.f58616z) {
                     fVar.g(i7);
                     fVar.F = -1;
                     fVar.G = -1L;
@@ -124,19 +124,19 @@ public class n implements t4, sj0, uy, org.telegram.ui.lm0, org.telegram.messeng
                 }
             }
             ?? obj = new Object();
-            obj.f58566n = -1;
-            obj.f58567o = -1;
-            obj.f58568p = -1;
-            obj.f58569q = -1;
-            obj.f58570r = -1;
-            obj.f58571s = 0;
-            obj.f58572t = -1;
-            obj.f58573u = 0.0f;
+            obj.f58567n = -1;
+            obj.f58568o = -1;
+            obj.f58569p = -1;
+            obj.f58570q = -1;
+            obj.f58571r = -1;
+            obj.f58572s = 0;
+            obj.f58573t = -1;
+            obj.f58574u = 0.0f;
             obj.v = 0.0f;
-            obj.f58574w = 0.0f;
-            obj.f58575x = null;
-            obj.f58576y = -1;
-            obj.f58577z = false;
+            obj.f58575w = 0.0f;
+            obj.f58576x = null;
+            obj.f58577y = -1;
+            obj.f58578z = false;
             obj.A = -1;
             obj.B = -1;
             obj.C = -1;
@@ -160,8 +160,8 @@ public class n implements t4, sj0, uy, org.telegram.ui.lm0, org.telegram.messeng
             obj.W = false;
             obj.Y = true;
             obj.Z = "eng";
-            fVar.f58614y = obj;
-            obj.f58552a = fVar.f58612w;
+            fVar.f58615y = obj;
+            obj.f58553a = fVar.f58613w;
             return;
         }
         fVar.Y = false;
@@ -177,21 +177,21 @@ public class n implements t4, sj0, uy, org.telegram.ui.lm0, org.telegram.messeng
                         return;
                     }
                     fVar.h(i7);
-                    fVar.f58614y.Z = str;
+                    fVar.f58615y.Z = str;
                     return;
                 }
                 fVar.h(i7);
-                fVar.f58614y.f58554b = str;
+                fVar.f58615y.f58555b = str;
                 return;
             } else if (!"webm".equals(str) && !"matroska".equals(str)) {
                 throw e2.t0.a(null, "DocType " + str + " not supported");
             } else {
-                fVar.f58612w = str.equals("webm");
+                fVar.f58613w = str.equals("webm");
                 return;
             }
         }
         fVar.h(i7);
-        fVar.f58614y.f58556c = str;
+        fVar.f58615y.f58557c = str;
     }
 
     @Override
@@ -531,10 +531,10 @@ public class n implements t4, sj0, uy, org.telegram.ui.lm0, org.telegram.messeng
         byte[] bArr;
         int i20;
         x3.f fVar = (x3.f) this.f36175a;
-        x3.g gVar = fVar.f58585b;
-        SparseArray sparseArray = fVar.f58587c;
-        h2.x xVar = fVar.f58601k;
-        h2.x xVar2 = fVar.f58597i;
+        x3.g gVar = fVar.f58586b;
+        SparseArray sparseArray = fVar.f58588c;
+        h2.x xVar = fVar.f58602k;
+        h2.x xVar2 = fVar.f58598i;
         int i21 = 2;
         int i22 = 0;
         int i23 = 1;
@@ -548,7 +548,7 @@ public class n implements t4, sj0, uy, org.telegram.ui.lm0, org.telegram.messeng
                                     if (i7 == 30322) {
                                         fVar.h(i7);
                                         byte[] bArr2 = new byte[i10];
-                                        fVar.f58614y.f58575x = bArr2;
+                                        fVar.f58615y.f58576x = bArr2;
                                         pVar.readFully(bArr2, 0, i10);
                                         return;
                                     }
@@ -556,7 +556,7 @@ public class n implements t4, sj0, uy, org.telegram.ui.lm0, org.telegram.messeng
                                 }
                                 fVar.h(i7);
                                 byte[] bArr3 = new byte[i10];
-                                fVar.f58614y.f58564l = bArr3;
+                                fVar.f58615y.f58565l = bArr3;
                                 pVar.readFully(bArr3, 0, i10);
                                 return;
                             }
@@ -569,17 +569,17 @@ public class n implements t4, sj0, uy, org.telegram.ui.lm0, org.telegram.messeng
                         byte[] bArr4 = new byte[i10];
                         pVar.readFully(bArr4, 0, i10);
                         fVar.h(i7);
-                        fVar.f58614y.f58563k = new f3.i0(1, 0, 0, bArr4);
+                        fVar.f58615y.f58564k = new f3.i0(1, 0, 0, bArr4);
                         return;
                     }
                     fVar.h(i7);
                     byte[] bArr5 = new byte[i10];
-                    fVar.f58614y.f58562j = bArr5;
+                    fVar.f58615y.f58563j = bArr5;
                     pVar.readFully(bArr5, 0, i10);
                     return;
                 }
                 fVar.h(i7);
-                x3.e eVar = fVar.f58614y;
+                x3.e eVar = fVar.f58615y;
                 int i24 = eVar.h;
                 if (i24 != 1685485123 && i24 != 1685480259) {
                     pVar.s(i10);
@@ -592,8 +592,8 @@ public class n implements t4, sj0, uy, org.telegram.ui.lm0, org.telegram.messeng
             } else if (fVar.O == 2) {
                 x3.e eVar2 = (x3.e) sparseArray.get(fVar.U);
                 int i25 = fVar.X;
-                h2.x xVar3 = fVar.f58606p;
-                if (i25 == 4 && "V_VP9".equals(eVar2.f58556c)) {
+                h2.x xVar3 = fVar.f58607p;
+                if (i25 == 4 && "V_VP9".equals(eVar2.f58557c)) {
                     xVar3.K(i10);
                     pVar.readFully(xVar3.f14162a, 0, i10);
                     return;
@@ -606,7 +606,7 @@ public class n implements t4, sj0, uy, org.telegram.ui.lm0, org.telegram.messeng
         }
         if (fVar.O == 0) {
             fVar.U = (int) gVar.b(pVar, false, true, 8);
-            fVar.V = gVar.f58618c;
+            fVar.V = gVar.f58619c;
             fVar.Q = -9223372036854775807L;
             fVar.O = 1;
             xVar2.K(0);
@@ -617,7 +617,7 @@ public class n implements t4, sj0, uy, org.telegram.ui.lm0, org.telegram.messeng
             fVar.O = 0;
             return;
         }
-        eVar3.f58553a0.getClass();
+        eVar3.f58554a0.getClass();
         if (fVar.O == 1) {
             fVar.l(pVar, 3);
             int i26 = (xVar2.f14162a[2] & 6) >> 1;
@@ -754,7 +754,7 @@ public class n implements t4, sj0, uy, org.telegram.ui.lm0, org.telegram.messeng
             i13 = 1;
             int i42 = xVar2.f14162a[i13] & 255;
             fVar.P = fVar.n(i42 | (bArr[i12] << 8)) + fVar.M;
-            if (eVar3.f58558e != i13 && (i7 != 163 || (xVar2.f14162a[i11] & 128) != 128)) {
+            if (eVar3.f58559e != i13 && (i7 != 163 || (xVar2.f14162a[i11] & 128) != 128)) {
                 i20 = i12;
             } else {
                 i20 = 1;
@@ -767,7 +767,7 @@ public class n implements t4, sj0, uy, org.telegram.ui.lm0, org.telegram.messeng
             while (true) {
                 int i43 = fVar.R;
                 if (i43 < fVar.S) {
-                    fVar.i(eVar3, ((fVar.R * eVar3.f58559f) / 1000) + fVar.P, fVar.W, fVar.o(pVar, eVar3, fVar.T[i43], false), 0);
+                    fVar.i(eVar3, ((fVar.R * eVar3.f58560f) / 1000) + fVar.P, fVar.W, fVar.o(pVar, eVar3, fVar.T[i43], false), 0);
                     fVar.R++;
                 } else {
                     fVar.O = 0;
@@ -832,10 +832,10 @@ public class n implements t4, sj0, uy, org.telegram.ui.lm0, org.telegram.messeng
         StringWriter stringWriter = new StringWriter();
         try {
             pa.d dVar = (pa.d) this.f36175a;
-            pa.e eVar = new pa.e(stringWriter, dVar.f53512a, dVar.f53513b, dVar.f53514c, dVar.d);
+            pa.e eVar = new pa.e(stringWriter, dVar.f53513a, dVar.f53514b, dVar.f53515c, dVar.d);
             eVar.h(obj);
             eVar.j();
-            eVar.f53516b.flush();
+            eVar.f53517b.flush();
         } catch (IOException unused) {
         }
         return stringWriter.toString();
@@ -865,27 +865,27 @@ public class n implements t4, sj0, uy, org.telegram.ui.lm0, org.telegram.messeng
                                         if (i10 != 17) {
                                             if (i10 != 33) {
                                                 fVar.h(i7);
-                                                fVar.f58614y.f58558e = -1;
+                                                fVar.f58615y.f58559e = -1;
                                                 return;
                                             }
                                             fVar.h(i7);
-                                            fVar.f58614y.f58558e = 5;
+                                            fVar.f58615y.f58559e = 5;
                                             return;
                                         }
                                         fVar.h(i7);
-                                        fVar.f58614y.f58558e = 3;
+                                        fVar.f58615y.f58559e = 3;
                                         return;
                                     }
                                     fVar.h(i7);
-                                    fVar.f58614y.f58558e = 1;
+                                    fVar.f58615y.f58559e = 1;
                                     return;
                                 }
                                 fVar.h(i7);
-                                fVar.f58614y.f58558e = 2;
+                                fVar.f58615y.f58559e = 2;
                                 return;
                             case 136:
                                 fVar.h(i7);
-                                x3.e eVar = fVar.f58614y;
+                                x3.e eVar = fVar.f58615y;
                                 if (j3 == 1) {
                                     z9 = true;
                                 }
@@ -896,14 +896,14 @@ public class n implements t4, sj0, uy, org.telegram.ui.lm0, org.telegram.messeng
                                 return;
                             case 159:
                                 fVar.h(i7);
-                                fVar.f58614y.Q = (int) j3;
+                                fVar.f58615y.Q = (int) j3;
                                 return;
                             case 176:
                                 fVar.h(i7);
-                                fVar.f58614y.f58566n = (int) j3;
+                                fVar.f58615y.f58567n = (int) j3;
                                 return;
                             case 179:
-                                if (!fVar.f58615z) {
+                                if (!fVar.f58616z) {
                                     fVar.g(i7);
                                     fVar.E = fVar.n(j3);
                                     return;
@@ -911,11 +911,11 @@ public class n implements t4, sj0, uy, org.telegram.ui.lm0, org.telegram.messeng
                                 return;
                             case 186:
                                 fVar.h(i7);
-                                fVar.f58614y.f58567o = (int) j3;
+                                fVar.f58615y.f58568o = (int) j3;
                                 return;
                             case 215:
                                 fVar.h(i7);
-                                fVar.f58614y.d = (int) j3;
+                                fVar.f58615y.d = (int) j3;
                                 return;
                             case 231:
                                 fVar.M = fVar.n(j3);
@@ -924,7 +924,7 @@ public class n implements t4, sj0, uy, org.telegram.ui.lm0, org.telegram.messeng
                                 fVar.X = (int) j3;
                                 return;
                             case 247:
-                                if (!fVar.f58615z) {
+                                if (!fVar.f58616z) {
                                     fVar.g(i7);
                                     fVar.F = (int) j3;
                                     return;
@@ -935,7 +935,7 @@ public class n implements t4, sj0, uy, org.telegram.ui.lm0, org.telegram.messeng
                                 return;
                             case 16871:
                                 fVar.h(i7);
-                                fVar.f58614y.h = (int) j3;
+                                fVar.f58615y.h = (int) j3;
                                 return;
                             case 16980:
                                 if (j3 != 3) {
@@ -963,7 +963,7 @@ public class n implements t4, sj0, uy, org.telegram.ui.lm0, org.telegram.messeng
                                 }
                                 return;
                             case 21420:
-                                fVar.B = j3 + fVar.f58609s;
+                                fVar.B = j3 + fVar.f58610s;
                                 return;
                             case 21432:
                                 int i11 = (int) j3;
@@ -972,34 +972,34 @@ public class n implements t4, sj0, uy, org.telegram.ui.lm0, org.telegram.messeng
                                     if (i11 != 1) {
                                         if (i11 != 3) {
                                             if (i11 == 15) {
-                                                fVar.f58614y.f58576y = 3;
+                                                fVar.f58615y.f58577y = 3;
                                                 return;
                                             }
                                             return;
                                         }
-                                        fVar.f58614y.f58576y = 1;
+                                        fVar.f58615y.f58577y = 1;
                                         return;
                                     }
-                                    fVar.f58614y.f58576y = 2;
+                                    fVar.f58615y.f58577y = 2;
                                     return;
                                 }
-                                fVar.f58614y.f58576y = 0;
+                                fVar.f58615y.f58577y = 0;
                                 return;
                             case 21680:
                                 fVar.h(i7);
-                                fVar.f58614y.f58569q = (int) j3;
+                                fVar.f58615y.f58570q = (int) j3;
                                 return;
                             case 21682:
                                 fVar.h(i7);
-                                fVar.f58614y.f58571s = (int) j3;
+                                fVar.f58615y.f58572s = (int) j3;
                                 return;
                             case 21690:
                                 fVar.h(i7);
-                                fVar.f58614y.f58570r = (int) j3;
+                                fVar.f58615y.f58571r = (int) j3;
                                 return;
                             case 21930:
                                 fVar.h(i7);
-                                x3.e eVar2 = fVar.f58614y;
+                                x3.e eVar2 = fVar.f58615y;
                                 if (j3 == 1) {
                                     z9 = true;
                                 }
@@ -1007,25 +1007,25 @@ public class n implements t4, sj0, uy, org.telegram.ui.lm0, org.telegram.messeng
                                 return;
                             case 21938:
                                 fVar.h(i7);
-                                x3.e eVar3 = fVar.f58614y;
-                                eVar3.f58577z = true;
-                                eVar3.f58568p = (int) j3;
+                                x3.e eVar3 = fVar.f58615y;
+                                eVar3.f58578z = true;
+                                eVar3.f58569p = (int) j3;
                                 return;
                             case 21998:
                                 fVar.h(i7);
-                                fVar.f58614y.f58560g = (int) j3;
+                                fVar.f58615y.f58561g = (int) j3;
                                 return;
                             case 22186:
                                 fVar.h(i7);
-                                fVar.f58614y.T = j3;
+                                fVar.f58615y.T = j3;
                                 return;
                             case 22203:
                                 fVar.h(i7);
-                                fVar.f58614y.U = j3;
+                                fVar.f58615y.U = j3;
                                 return;
                             case 25188:
                                 fVar.h(i7);
-                                fVar.f58614y.R = (int) j3;
+                                fVar.f58615y.R = (int) j3;
                                 return;
                             case 30114:
                                 fVar.Z = j3;
@@ -1037,25 +1037,25 @@ public class n implements t4, sj0, uy, org.telegram.ui.lm0, org.telegram.messeng
                                     if (i12 != 1) {
                                         if (i12 != 2) {
                                             if (i12 == 3) {
-                                                fVar.f58614y.f58572t = 3;
+                                                fVar.f58615y.f58573t = 3;
                                                 return;
                                             }
                                             return;
                                         }
-                                        fVar.f58614y.f58572t = 2;
+                                        fVar.f58615y.f58573t = 2;
                                         return;
                                     }
-                                    fVar.f58614y.f58572t = 1;
+                                    fVar.f58615y.f58573t = 1;
                                     return;
                                 }
-                                fVar.f58614y.f58572t = 0;
+                                fVar.f58615y.f58573t = 0;
                                 return;
                             case 2352003:
                                 fVar.h(i7);
-                                fVar.f58614y.f58559f = (int) j3;
+                                fVar.f58615y.f58560f = (int) j3;
                                 return;
                             case 2807729:
-                                fVar.f58610t = j3;
+                                fVar.f58611t = j3;
                                 return;
                             default:
                                 switch (i7) {
@@ -1064,37 +1064,37 @@ public class n implements t4, sj0, uy, org.telegram.ui.lm0, org.telegram.messeng
                                         int i13 = (int) j3;
                                         if (i13 != 1) {
                                             if (i13 == 2) {
-                                                fVar.f58614y.C = 1;
+                                                fVar.f58615y.C = 1;
                                                 return;
                                             }
                                             return;
                                         }
-                                        fVar.f58614y.C = 2;
+                                        fVar.f58615y.C = 2;
                                         return;
                                     case 21946:
                                         fVar.h(i7);
                                         int g10 = e2.m.g((int) j3);
                                         if (g10 != -1) {
-                                            fVar.f58614y.B = g10;
+                                            fVar.f58615y.B = g10;
                                             return;
                                         }
                                         return;
                                     case 21947:
                                         fVar.h(i7);
-                                        fVar.f58614y.f58577z = true;
+                                        fVar.f58615y.f58578z = true;
                                         int f10 = e2.m.f((int) j3);
                                         if (f10 != -1) {
-                                            fVar.f58614y.A = f10;
+                                            fVar.f58615y.A = f10;
                                             return;
                                         }
                                         return;
                                     case 21948:
                                         fVar.h(i7);
-                                        fVar.f58614y.D = (int) j3;
+                                        fVar.f58615y.D = (int) j3;
                                         return;
                                     case 21949:
                                         fVar.h(i7);
-                                        fVar.f58614y.E = (int) j3;
+                                        fVar.f58615y.E = (int) j3;
                                         return;
                                     default:
                                         return;
@@ -1106,13 +1106,13 @@ public class n implements t4, sj0, uy, org.telegram.ui.lm0, org.telegram.messeng
                 } else if (j3 != 0) {
                     throw e2.t0.a(null, "ContentEncodingOrder " + j3 + " not supported");
                 }
-            } else if (!fVar.f58615z) {
+            } else if (!fVar.f58616z) {
                 fVar.g(i7);
                 if (fVar.G == -1) {
                     fVar.G = j3;
                 }
             }
-        } else if (!fVar.f58615z) {
+        } else if (!fVar.f58616z) {
             fVar.g(i7);
             if (fVar.H == -1) {
                 fVar.H = j3;
@@ -1202,22 +1202,22 @@ public class n implements t4, sj0, uy, org.telegram.ui.lm0, org.telegram.messeng
         t1.i iVar = new t1.i(editText);
         obj.f19612b = iVar;
         editText.addTextChangedListener(iVar);
-        if (t1.a.f55352b == null) {
-            synchronized (t1.a.f55351a) {
+        if (t1.a.f55353b == null) {
+            synchronized (t1.a.f55352a) {
                 try {
-                    if (t1.a.f55352b == null) {
+                    if (t1.a.f55353b == null) {
                         ?? factory = new Editable.Factory();
                         try {
-                            t1.a.f55353c = Class.forName("android.text.DynamicLayout$ChangeWatcher", false, t1.a.class.getClassLoader());
+                            t1.a.f55354c = Class.forName("android.text.DynamicLayout$ChangeWatcher", false, t1.a.class.getClassLoader());
                         } catch (Throwable unused) {
                         }
-                        t1.a.f55352b = factory;
+                        t1.a.f55353b = factory;
                     }
                 } finally {
                 }
             }
         }
-        editText.setEditableFactory(t1.a.f55352b);
+        editText.setEditableFactory(t1.a.f55353b);
         this.f36175a = obj;
     }
 

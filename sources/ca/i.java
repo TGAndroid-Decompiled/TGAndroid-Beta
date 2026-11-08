@@ -160,7 +160,7 @@ public class i implements l, d0, q51, a0 {
             boolean z9 = true;
             for (int i10 = 0; i10 < i7 && z9; i10++) {
                 byte directionality = Character.getDirectionality(charSequence.charAt(i10));
-                i iVar = p0.f.f53081a;
+                i iVar = p0.f.f53082a;
                 if (directionality != 0) {
                     if (directionality != 1 && directionality != 2) {
                         switch (directionality) {
@@ -304,7 +304,7 @@ public class i implements l, d0, q51, a0 {
         ti.p pVar = photoViewer.P8;
         if (pVar != null) {
             photoViewer.P8 = null;
-            pVar.f56128a = surfaceTexture;
+            pVar.f56129a = surfaceTexture;
             if (pVar.getSurfaceTexture() != surfaceTexture) {
                 pVar.setSurfaceTexture(surfaceTexture);
             }

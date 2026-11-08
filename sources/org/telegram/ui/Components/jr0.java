@@ -77,8 +77,8 @@ public final class jr0 extends oj0 {
     @Override
     public final void t(v4.d1 d1Var, int i7) {
         org.telegram.ui.Cells.g6 g6Var;
-        int i10 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i10 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         if (i10 == 17) {
             if (view instanceof org.telegram.ui.Cells.g6) {
                 g6Var = (org.telegram.ui.Cells.g6) view;

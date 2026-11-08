@@ -42,7 +42,7 @@ public final class va implements View.OnLayoutChangeListener {
                 ccVar.f32551p = new org.telegram.ui.ActionBar.z1(1, f2Var);
             }
             r1.g gVar = ccVar.d;
-            if (gVar == null || !gVar.f54261f) {
+            if (gVar == null || !gVar.f54262f) {
                 ab abVar2 = ccVar.f32551p;
                 if (abVar2 != null) {
                     i17 = abVar2.f(ccVar.f32538a);

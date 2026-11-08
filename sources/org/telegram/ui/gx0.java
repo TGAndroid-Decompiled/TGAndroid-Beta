@@ -200,8 +200,8 @@ public final class gx0 extends org.telegram.ui.ActionBar.f2 implements org.teleg
                     ArrayList arrayList = new ArrayList();
                     for (int i11 = 0; i11 < childCount; i11++) {
                         org.telegram.ui.Components.xi0 xi0Var = (org.telegram.ui.Components.xi0) gx0Var.f46132b.T(gx0Var.f46132b.getChildAt(i11));
-                        int i12 = xi0Var.f57047f;
-                        View view2 = xi0Var.f57043a;
+                        int i12 = xi0Var.f57048f;
+                        View view2 = xi0Var.f57044a;
                         int b10 = xi0Var.b();
                         if (b10 != gx0Var.E && b10 != gx0Var.X) {
                             if (i12 != 0) {

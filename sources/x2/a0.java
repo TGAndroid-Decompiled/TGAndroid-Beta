@@ -1,9 +1,9 @@
 package x2;
 public final class a0 extends e2.l1 {
-    public final e2.l0 f58270e;
+    public final e2.l0 f58271e;
 
     public a0(e2.l0 l0Var) {
-        this.f58270e = l0Var;
+        this.f58271e = l0Var;
     }
 
     @Override
@@ -42,7 +42,7 @@ public final class a0 extends e2.l1 {
 
     @Override
     public final e2.k1 m(int i7, e2.k1 k1Var, long j3) {
-        k1Var.b(e2.k1.f10315q, this.f58270e, null, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, false, true, null, 0L, -9223372036854775807L, 0, 0, 0L);
+        k1Var.b(e2.k1.f10315q, this.f58271e, null, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, false, true, null, 0L, -9223372036854775807L, 0, 0, 0L);
         k1Var.f10332k = true;
         return k1Var;
     }

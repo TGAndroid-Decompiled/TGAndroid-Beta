@@ -327,9 +327,9 @@ public final class aa {
                 r1.h hVar = new r1.h(0.0f);
                 hVar.a(0.65f);
                 hVar.b(200.0f);
-                gVar.f54267m = hVar;
+                gVar.f54268m = hVar;
                 v3Var2.H.f(0.001f);
-                v3Var2.H.f54257a = Math.max(20.0f, Math.min(36.0f, centerY * 0.04f));
+                v3Var2.H.f54258a = Math.max(20.0f, Math.min(36.0f, centerY * 0.04f));
                 v3Var2.H.b(new p3(v3Var2, 0));
                 v3Var2.H.h();
             }

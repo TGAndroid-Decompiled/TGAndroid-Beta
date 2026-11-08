@@ -16,7 +16,7 @@ public final class n extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f57047f == 0) {
+        if (d1Var.f57048f == 0) {
             return true;
         }
         return false;
@@ -47,7 +47,7 @@ public final class n extends org.telegram.ui.Components.oj0 {
         int i10;
         boolean z9;
         boolean z10;
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         o oVar = this.d;
         a0.h hVar = oVar.f48180a;
         ArrayList arrayList = oVar.h;

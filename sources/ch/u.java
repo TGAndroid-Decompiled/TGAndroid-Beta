@@ -196,11 +196,11 @@ public final class u implements ValueAnimator.AnimatorUpdateListener {
             default:
                 tg.f0 f0Var = (tg.f0) this.f6402c;
                 float floatValue6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                f0Var.f55654e = floatValue6;
+                f0Var.f55655e = floatValue6;
                 if (!this.f6401b) {
-                    f0Var.f55653c.setAlpha(1.0f - floatValue6);
+                    f0Var.f55654c.setAlpha(1.0f - floatValue6);
                 }
-                f0Var.f55652b.invalidate();
+                f0Var.f55653b.invalidate();
                 return;
         }
     }

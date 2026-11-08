@@ -141,21 +141,21 @@ public class s0 extends f2 {
             return;
         }
         zh.g1 g1Var = new zh.g1(s0Var.getParentActivity(), s0Var.currentAccount, s0Var.getUserConfig().e(), null, null);
-        if (!g1Var.f60334l2) {
-            g1Var.f60334l2 = true;
-            gc gcVar = g1Var.f60336n2;
+        if (!g1Var.f60335l2) {
+            g1Var.f60335l2 = true;
+            gc gcVar = g1Var.f60337n2;
             if (gcVar != null && (gcVar.getParent() instanceof ViewGroup)) {
-                ViewGroup viewGroup = (ViewGroup) g1Var.f60336n2.getParent();
-                int indexOfChild = viewGroup.indexOfChild(g1Var.f60336n2);
-                viewGroup.removeView(g1Var.f60336n2);
+                ViewGroup viewGroup = (ViewGroup) g1Var.f60337n2.getParent();
+                int indexOfChild = viewGroup.indexOfChild(g1Var.f60337n2);
+                viewGroup.removeView(g1Var.f60337n2);
                 gc gcVar2 = new gc(g1Var.getContext(), 250, 2, 0);
-                g1Var.f60336n2 = gcVar2;
+                g1Var.f60337n2 = gcVar2;
                 viewGroup.addView(gcVar2, indexOfChild, ha.c(-1.0f, -1));
             }
-            w70 w70Var = g1Var.f60337o2;
+            w70 w70Var = g1Var.f60338o2;
             if (w70Var != null) {
                 String M0 = id.M0(2131750289, null);
-                jb jbVar = g1Var.f60326c2;
+                jb jbVar = g1Var.f60327c2;
                 jbVar.setText(M0);
                 jbVar.setBreakStrategy(2);
                 w70Var.setVisibility(8);

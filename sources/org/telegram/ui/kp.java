@@ -1155,7 +1155,7 @@ public class kp extends org.telegram.ui.ActionBar.f2 implements org.telegram.mes
         if (i10 == 2) {
             this.f47227b.setResetSelectorOnChanged(false);
         }
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         kVar.C = false;
         kVar.o(org.telegram.ui.Components.xq.h);
         kVar.n(350L);

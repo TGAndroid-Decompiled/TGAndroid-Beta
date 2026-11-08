@@ -26,7 +26,7 @@ public final class pr implements Runnable {
                 }
                 cVar.c(f10);
                 sr srVar = contactsActivity.f41181b;
-                float f11 = cVar.f55492f;
+                float f11 = cVar.f55493f;
                 ArrayList arrayList = srVar.N;
                 srVar.L = f11;
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
@@ -44,7 +44,7 @@ public final class pr implements Runnable {
                 contactsActivity.f41187e0 = withEndAction;
                 withEndAction.start();
                 if (contactsActivity.f41198r) {
-                    cVar.f55491e = 80L;
+                    cVar.f55492e = 80L;
                     cVar.a(1.0f);
                     return;
                 }

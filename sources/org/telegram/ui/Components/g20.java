@@ -25,7 +25,7 @@ public final class g20 extends oj0 {
 
     @Override
     public final void A(v4.d1 d1Var) {
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         if (view instanceof org.telegram.ui.Cells.a5) {
             ((org.telegram.ui.Cells.a5) view).a();
         }
@@ -33,8 +33,8 @@ public final class g20 extends oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        View view = d1Var.f57043a;
-        if ((!(view instanceof org.telegram.ui.Cells.a5) || !this.f33801x.W1.contains(Long.valueOf(((org.telegram.ui.Cells.a5) view).getUserId()))) && d1Var.f57047f == 0) {
+        View view = d1Var.f57044a;
+        if ((!(view instanceof org.telegram.ui.Cells.a5) || !this.f33801x.W1.contains(Long.valueOf(((org.telegram.ui.Cells.a5) view).getUserId()))) && d1Var.f57048f == 0) {
             return true;
         }
         return false;

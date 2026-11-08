@@ -91,9 +91,9 @@ public final class ma implements TextWatcher {
                 return;
             case 2:
                 sh.b bVar = (sh.b) this.f42845b;
-                int length = bVar.f55282a.getText().length();
+                int length = bVar.f55283a.getText().length();
                 te.a aVar = bVar.H;
-                int i10 = bVar.f55292y;
+                int i10 = bVar.f55293y;
                 if (length > (i10 * 7) / 10) {
                     z10 = true;
                 } else {
@@ -107,7 +107,7 @@ public final class ma implements TextWatcher {
                     z11 = false;
                 }
                 aVar2.a(z11, true);
-                bVar.f55286f.l(Integer.toString(i10 - length), false);
+                bVar.f55287f.l(Integer.toString(i10 - length), false);
                 return;
             case 3:
                 vh.g gVar = (vh.g) this.f42845b;
@@ -116,11 +116,11 @@ public final class ma implements TextWatcher {
                 gVar.V1.O(true);
                 return;
             default:
-                yg.k kVar = ((yg.l) this.f42845b).f59464c;
+                yg.k kVar = ((yg.l) this.f42845b).f59465c;
                 if (kVar != null) {
                     String trim = editable.toString().trim();
-                    wg.a0 a0Var = ((wg.u) kVar).f57812a;
-                    a0Var.f57689n2 = trim;
+                    wg.a0 a0Var = ((wg.u) kVar).f57813a;
+                    a0Var.f57690n2 = trim;
                     a0Var.k1(false, false);
                     a0Var.k1(true, true);
                     return;

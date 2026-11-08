@@ -84,7 +84,7 @@ public final class g1 implements ti.m, ls {
                 g1Var.f39218a = l2.i.d().k(g1Var);
             }
             ti.o oVar2 = g1Var.f39218a;
-            if (oVar2.f56124c != 0 || (g10 = oVar2.g(activity, null, true)) == null) {
+            if (oVar2.f56125c != 0 || (g10 = oVar2.g(activity, null, true)) == null) {
                 return;
             }
             q0 q0Var = new q0(g10);

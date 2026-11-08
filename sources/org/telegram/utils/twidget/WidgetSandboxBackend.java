@@ -30,8 +30,8 @@ public final class WidgetSandboxBackend implements y0, g {
     private long layerParseNanos;
     private int nextFont;
     private int nextRecord;
-    private final h1 owner;
-    private m1 text;
+    private final i1 owner;
+    private n1 text;
     private final long[] recordTimes = new long[240];
     private final ConcurrentHashMap<Integer, Paint> fonts = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<Integer, Paint> deviceFonts = new ConcurrentHashMap<>();
@@ -41,8 +41,8 @@ public final class WidgetSandboxBackend implements y0, g {
     private HashMap<Long, s0> layerContents = new HashMap<>();
     private final z0 painter = new z0();
 
-    public WidgetSandboxBackend(h1 h1Var) {
-        this.owner = h1Var;
+    public WidgetSandboxBackend(i1 i1Var) {
+        this.owner = i1Var;
     }
 
     private static void assertWorker() {
@@ -60,11 +60,11 @@ public final class WidgetSandboxBackend implements y0, g {
             for (Map.Entry<Integer, h> entry : this.canvases.entrySet()) {
                 if (entry.getKey().intValue() != i7) {
                     h value = entry.getValue();
-                    Bitmap bitmap = value.f52813o;
+                    Bitmap bitmap = value.f52808o;
                     if (bitmap == null) {
                         width = 0;
                     } else {
-                        width = bitmap.getWidth() * value.f52813o.getHeight() * 8;
+                        width = bitmap.getWidth() * value.f52808o.getHeight() * 8;
                     }
                     j10 += width;
                 }
@@ -108,7 +108,7 @@ public final class WidgetSandboxBackend implements y0, g {
         return sb2.toString();
     }
 
-    private g1[] layers(JSONObject jSONObject, float f10) {
+    private h1[] layers(JSONObject jSONObject, float f10) {
         int length;
         int i7;
         JSONArray jSONArray;
@@ -129,7 +129,7 @@ public final class WidgetSandboxBackend implements y0, g {
             length = optJSONArray.length();
         }
         HashMap<Long, s0> hashMap = new HashMap<>();
-        g1[] g1VarArr = new g1[length];
+        h1[] h1VarArr = new h1[length];
         int i14 = 0;
         int i15 = 0;
         while (i14 < length) {
@@ -179,7 +179,7 @@ public final class WidgetSandboxBackend implements y0, g {
                         i10 = i14;
                         j3 = optLong;
                         if (s0Var != null) {
-                            if (s0Var.f52963b != ((int) optLong2)) {
+                            if (s0Var.f52964b != ((int) optLong2)) {
                             }
                         }
                         i14 = i10 + 1;
@@ -213,7 +213,7 @@ public final class WidgetSandboxBackend implements y0, g {
                     float[] fArr5 = new float[length2];
                     z0.c(optJSONArray5, fArr5, length2, new float[0]);
                     int i16 = i15 + 1;
-                    c0 c0Var = s0Var.f52962a;
+                    c0 c0Var = s0Var.f52963a;
                     double optDouble2 = optJSONObject.optDouble("ts");
                     double optDouble3 = optJSONObject.optDouble("td");
                     if (optJSONObject.optInt("tr") != 0) {
@@ -221,7 +221,7 @@ public final class WidgetSandboxBackend implements y0, g {
                     } else {
                         z9 = false;
                     }
-                    g1VarArr[i15] = new g1(c0Var, fArr, fArr2, optDouble2, optDouble3, z9, fArr5);
+                    h1VarArr[i15] = new h1(c0Var, fArr, fArr2, optDouble2, optDouble3, z9, fArr5);
                     i15 = i16;
                     i14 = i10 + 1;
                     length = i7;
@@ -240,11 +240,11 @@ public final class WidgetSandboxBackend implements y0, g {
         int i17 = length;
         this.layerContents = hashMap;
         if (i15 == i17) {
-            return g1VarArr;
+            return h1VarArr;
         }
-        g1[] g1VarArr2 = new g1[i15];
-        System.arraycopy(g1VarArr, 0, g1VarArr2, 0, i15);
-        return g1VarArr2;
+        h1[] h1VarArr2 = new h1[i15];
+        System.arraycopy(h1VarArr, 0, h1VarArr2, 0, i15);
+        return h1VarArr2;
     }
 
     public static float[] metrics(int i7, Paint paint, float f10, Rect rect) {
@@ -297,18 +297,18 @@ public final class WidgetSandboxBackend implements y0, g {
         }
         synchronized (hVar) {
             try {
-                Bitmap bitmap = hVar.f52813o;
+                Bitmap bitmap = hVar.f52808o;
                 if (bitmap == null) {
                     return null;
                 }
-                if (hVar.f52817s == hVar.f52816r) {
-                    if (hVar.f52814p == null) {
+                if (hVar.f52812s == hVar.f52811r) {
+                    if (hVar.f52809p == null) {
                     }
-                    return hVar.f52814p;
+                    return hVar.f52809p;
                 }
-                hVar.f52814p = bitmap.copy(Bitmap.Config.ARGB_8888, false);
-                hVar.f52817s = hVar.f52816r;
-                return hVar.f52814p;
+                hVar.f52809p = bitmap.copy(Bitmap.Config.ARGB_8888, false);
+                hVar.f52812s = hVar.f52811r;
+                return hVar.f52809p;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -321,7 +321,7 @@ public final class WidgetSandboxBackend implements y0, g {
         if (hVar == null) {
             return null;
         }
-        return hVar.f52813o;
+        return hVar.f52808o;
     }
 
     public byte[] canvasRead(int i7, int i10, int i11, int i12, int i13) {
@@ -333,16 +333,16 @@ public final class WidgetSandboxBackend implements y0, g {
                 return new byte[i12 * i13 * 4];
             }
             byte[] bArr = new byte[Math.max(i13, 0) * Math.max(i12, 0) * 4];
-            if (hVar.f52813o != null) {
+            if (hVar.f52808o != null) {
                 int max = Math.max(0, i14);
                 int max2 = Math.max(0, i11);
-                int min = Math.min(hVar.f52813o.getWidth(), i14 + i12);
-                int min2 = Math.min(hVar.f52813o.getHeight(), i13 + i11);
+                int min = Math.min(hVar.f52808o.getWidth(), i14 + i12);
+                int min2 = Math.min(hVar.f52808o.getHeight(), i13 + i11);
                 if (min > max && min2 > max2) {
                     int i15 = min - max;
                     int i16 = min2 - max2;
                     int[] iArr = new int[i15 * i16];
-                    hVar.f52813o.getPixels(iArr, 0, i15, max, max2, i15, i16);
+                    hVar.f52808o.getPixels(iArr, 0, i15, max, max2, i15, i16);
                     int i17 = max2;
                     while (i17 < min2) {
                         int i18 = max;
@@ -372,13 +372,13 @@ public final class WidgetSandboxBackend implements y0, g {
         if (remove != null) {
             synchronized (remove) {
                 try {
-                    Bitmap bitmap = remove.f52813o;
+                    Bitmap bitmap = remove.f52808o;
                     if (bitmap != null) {
                         bitmap.recycle();
                     }
-                    remove.f52813o = null;
-                    remove.f52815q = null;
-                    remove.f52814p = null;
+                    remove.f52808o = null;
+                    remove.f52810q = null;
+                    remove.f52809p = null;
                 } catch (Throwable th2) {
                     throw th2;
                 }
@@ -401,10 +401,10 @@ public final class WidgetSandboxBackend implements y0, g {
         if (this.fonts.size() >= 4096 && !this.fonts.containsKey(Integer.valueOf(i7))) {
             throw new IllegalArgumentException("Too many fonts");
         }
-        Paint[] paints = paints(text(bArr), f10, i10, z9, text(bArr2), this.owner.f52834l);
+        Paint[] paints = paints(text(bArr), f10, i10, z9, text(bArr2), this.owner.f52844l);
         this.fonts.put(Integer.valueOf(i7), paints[0]);
         this.deviceFonts.put(Integer.valueOf(i7), paints[1]);
-        return metrics(i7, paints[1], this.owner.f52834l, new Rect());
+        return metrics(i7, paints[1], this.owner.f52844l, new Rect());
     }
 
     public void defineImage(int i7, Bitmap bitmap) {
@@ -487,11 +487,11 @@ public final class WidgetSandboxBackend implements y0, g {
                         a10.scale(f10, f10);
                         this.painter.e(a10, b10, this, f10);
                         c0Var.d();
-                        g1[] layers = layers(jSONObject, f10);
-                        h1 h1Var = this.owner;
+                        h1[] layers = layers(jSONObject, f10);
+                        i1 i1Var = this.owner;
                         System.nanoTime();
-                        h1Var.getClass();
-                        this.owner.b(c0Var, layers, d2, i13, i14, f11, ((float) (System.nanoTime() - nanoTime)) / 1000000.0f, i11, i12, b10.f52849b, this.text);
+                        i1Var.getClass();
+                        this.owner.b(c0Var, layers, d2, i13, i14, f11, ((float) (System.nanoTime() - nanoTime)) / 1000000.0f, i11, i12, b10.f52827b, this.text);
                         return;
                     } catch (Throwable th2) {
                         c0Var.d();
@@ -528,13 +528,13 @@ public final class WidgetSandboxBackend implements y0, g {
             String text = text(bArr);
             ConcurrentHashMap<Integer, Paint> concurrentHashMap = this.deviceFonts;
             Objects.requireNonNull(concurrentHashMap);
-            this.text = m1.a(text, new o(concurrentHashMap), this.owner.f52834l);
+            this.text = n1.a(text, new o(concurrentHashMap), this.owner.f52844l);
         } catch (Exception unused) {
             this.text = null;
         }
     }
 
-    public h1 session() {
+    public i1 session() {
         return this.owner;
     }
 
@@ -547,6 +547,6 @@ public final class WidgetSandboxBackend implements y0, g {
         if (paint == null) {
             return 0.0f;
         }
-        return paint.measureText(text(bArr)) / this.owner.f52834l;
+        return paint.measureText(text(bArr)) / this.owner.f52844l;
     }
 }

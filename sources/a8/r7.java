@@ -199,7 +199,7 @@ public final class r7 implements hi0, ib.b, c4.d, te.b, org.telegram.messenger.z
                             if (!task.isSuccessful()) {
                                 return Tasks.forException(r7.q(task));
                             }
-                            return ((va.c) ((va.d) r7Var.d)).e().continueWithTask(executorService, new t(r7Var, ((va.a) task.getResult()).f57282a));
+                            return ((va.c) ((va.d) r7Var.d)).e().continueWithTask(executorService, new t(r7Var, ((va.a) task.getResult()).f57283a));
                     }
                 }
             }).continueWithTask(newSingleThreadExecutor, new Continuation(this) {
@@ -238,7 +238,7 @@ public final class r7 implements hi0, ib.b, c4.d, te.b, org.telegram.messenger.z
                             if (!task.isSuccessful()) {
                                 return Tasks.forException(r7.q(task));
                             }
-                            return ((va.c) ((va.d) r7Var.d)).e().continueWithTask(executorService, new t(r7Var, ((va.a) task.getResult()).f57282a));
+                            return ((va.c) ((va.d) r7Var.d)).e().continueWithTask(executorService, new t(r7Var, ((va.a) task.getResult()).f57283a));
                     }
                 }
             });
@@ -263,7 +263,7 @@ public final class r7 implements hi0, ib.b, c4.d, te.b, org.telegram.messenger.z
                     i7 = i10.f19920a;
                     i10.f19920a = i7 + 1;
                 }
-                forException = i10.k(new m6.m(i7, 1, bundle, 1)).continueWith(dVar, qb.a.f54059b);
+                forException = i10.k(new m6.m(i7, 1, bundle, 1)).continueWith(dVar, qb.a.f54060b);
             }
         } catch (InterruptedException | ExecutionException e10) {
             forException = Tasks.forException(e10);
@@ -1046,7 +1046,7 @@ public final class r7 implements hi0, ib.b, c4.d, te.b, org.telegram.messenger.z
 
     @Override
     public void Y(int i7, float f10, float f11, te.c cVar) {
-        ((TextView) this.f615c).setAlpha(org.telegram.messenger.g0.T1(0.5f, 1.0f, ((te.a) this.f616e).f55486e));
+        ((TextView) this.f615c).setAlpha(org.telegram.messenger.g0.T1(0.5f, 1.0f, ((te.a) this.f616e).f55487e));
         ((lh.c) this.f617f).b(this);
     }
 
@@ -1513,13 +1513,13 @@ public final class r7 implements hi0, ib.b, c4.d, te.b, org.telegram.messenger.z
         HashSet hashSet3 = new HashSet();
         HashSet hashSet4 = new HashSet();
         HashSet hashSet5 = new HashSet();
-        Set<u9.j> set = aVar.f56453c;
-        Set set2 = aVar.f56456g;
+        Set<u9.j> set = aVar.f56454c;
+        Set set2 = aVar.f56457g;
         for (u9.j jVar : set) {
-            int i7 = jVar.f56475c;
-            int i10 = jVar.f56474b;
+            int i7 = jVar.f56476c;
+            int i10 = jVar.f56475b;
             boolean z9 = i7 == 0;
-            u9.r rVar = jVar.f56473a;
+            u9.r rVar = jVar.f56474a;
             if (z9) {
                 if (i10 == 2) {
                     hashSet4.add(rVar);

@@ -148,7 +148,7 @@ public final class c extends f2 implements ls {
     }
 
     public final void c0() {
-        if (!this.f17318a.f27358y.f55487f) {
+        if (!this.f17318a.f27358y.f55488f) {
             if (!b0()) {
                 finishFragment();
                 return;

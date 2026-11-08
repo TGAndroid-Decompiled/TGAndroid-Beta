@@ -316,7 +316,7 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
     @Override
     public void Y() {
         x9 x9Var = (x9) this.f8209b;
-        x9Var.m0.f55146a.f();
+        x9Var.m0.f55147a.f();
         x9Var.M0.setViewHidden(false);
     }
 
@@ -717,7 +717,7 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
             return;
         }
         x9Var.T0.b(1);
-        x9Var.w((sg.h) sg.h.f55059a.get(0));
+        x9Var.w((sg.h) sg.h.f55060a.get(0));
     }
 
     public synchronized void p0() {
@@ -797,8 +797,8 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
             Log.w("FirebaseCrashlytics", "Received null app settings at app startup. Cannot send cached reports", null);
             return Tasks.forResult(null);
         }
-        aa.q qVar2 = (aa.q) qVar.f53804c;
-        aa.q.b((aa.q) qVar.f53804c);
+        aa.q qVar2 = (aa.q) qVar.f53805c;
+        aa.q.b((aa.q) qVar.f53805c);
         qVar2.f844m.h(null, qVar2.f837e.f3135a);
         qVar2.f848q.trySetResult(null);
         return Tasks.forResult(null);

@@ -7,11 +7,11 @@ import java.io.EOFException;
 import java.io.IOException;
 import kf.p;
 public final class b extends p {
-    public final int f55007g;
+    public final int f55008g;
 
     public b(d dVar, p pVar, String str, int i7) {
         super(dVar, pVar, str);
-        this.f55007g = i7;
+        this.f55008g = i7;
     }
 
     public static void h(StringBuffer stringBuffer, p pVar) {
@@ -80,7 +80,7 @@ public final class b extends p {
 
     @Override
     public final String toString() {
-        switch (this.f55007g) {
+        switch (this.f55008g) {
             case 0:
                 StringBuffer stringBuffer = new StringBuffer();
                 h(stringBuffer, this);

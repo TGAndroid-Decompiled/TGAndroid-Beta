@@ -36,20 +36,20 @@ import wg.a1;
 import wg.z0;
 public final class i extends rg.b {
     public final f6 d;
-    public final Context f58744e;
-    public pj0 f58745f;
-    public ArrayList f58746n;
-    public boolean f58748s;
-    public x3 f58749w;
-    public final boolean f58750x;
-    public boolean f58751y;
-    public final HashMap f58747r = new HashMap();
+    public final Context f58745e;
+    public pj0 f58746f;
+    public ArrayList f58747n;
+    public boolean f58749s;
+    public x3 f58750w;
+    public final boolean f58751x;
+    public boolean f58752y;
+    public final HashMap f58748r = new HashMap();
     public boolean D = true;
     public final boolean h = true;
 
     public i(Context context, f6 f6Var, boolean z9) {
-        this.f58744e = context;
-        this.f58750x = z9;
+        this.f58745e = context;
+        this.f58751x = z9;
         this.d = f6Var;
         a aVar = new a(this, 2);
         yr a02 = yr.a0(p10.f24470s0);
@@ -58,7 +58,7 @@ public final class i extends rg.b {
 
     @Override
     public final boolean D(d1 d1Var) {
-        int i7 = d1Var.f57047f;
+        int i7 = d1Var.f57048f;
         if (i7 != 3 && i7 != 6 && i7 != 9) {
             return false;
         }
@@ -72,7 +72,7 @@ public final class i extends rg.b {
         if (N0 != null && (i7 = N0.participants_count) > 0) {
             return i7;
         }
-        HashMap hashMap = this.f58747r;
+        HashMap hashMap = this.f58748r;
         if (!hashMap.isEmpty() && (num = (Integer) hashMap.get(Long.valueOf(chat.f26956id))) != null) {
             return num.intValue();
         }
@@ -80,15 +80,15 @@ public final class i extends rg.b {
     }
 
     public final void G() {
-        ArrayList arrayList = this.f58746n;
+        ArrayList arrayList = this.f58747n;
         if (arrayList != null && !arrayList.isEmpty()) {
-            g(this.f58746n.size() - 1);
+            g(this.f58747n.size() - 1);
         }
     }
 
     @Override
     public final int b() {
-        ArrayList arrayList = this.f58746n;
+        ArrayList arrayList = this.f58747n;
         if (arrayList == null) {
             return 0;
         }
@@ -97,9 +97,9 @@ public final class i extends rg.b {
 
     @Override
     public final int d(int i7) {
-        ArrayList arrayList = this.f58746n;
+        ArrayList arrayList = this.f58747n;
         if (arrayList != null && i7 >= 0) {
-            return ((h) arrayList.get(i7)).f54531a;
+            return ((h) arrayList.get(i7)).f54532a;
         }
         return -1;
     }
@@ -111,23 +111,23 @@ public final class i extends rg.b {
         boolean z10;
         int i11;
         int i12;
-        ArrayList arrayList = this.f58746n;
+        ArrayList arrayList = this.f58747n;
         if (arrayList != null && i7 >= 0) {
             h hVar = (h) arrayList.get(i7);
-            int i13 = d1Var.f57047f;
-            View view = d1Var.f57043a;
+            int i13 = d1Var.f57048f;
+            View view = d1Var.f57044a;
             int i14 = 8;
             boolean z11 = true;
             if (i13 == 3) {
                 r rVar = (r) view;
-                Drawable drawable = hVar.f58743r;
+                Drawable drawable = hVar.f58744r;
                 if (drawable != null) {
-                    CharSequence charSequence = hVar.f58733g;
+                    CharSequence charSequence = hVar.f58734g;
                     CharSequence charSequence2 = hVar.h;
                     rVar.f1112x.setVisibility(8);
                     rVar.H = null;
                     rVar.I = null;
-                    l9 l9Var = rVar.f59433c;
+                    l9 l9Var = rVar.f59434c;
                     l9Var.setRoundRadius(g0.L(20.0f));
                     l9Var.setImageDrawable(drawable);
                     d4 d4Var = rVar.d;
@@ -135,29 +135,29 @@ public final class i extends rg.b {
                     boolean[] zArr = rVar.f1110s;
                     zArr[0] = false;
                     rVar.setSubtitle(charSequence2);
-                    k5 k5Var = rVar.f59434e;
+                    k5 k5Var = rVar.f59435e;
                     if (zArr[0]) {
                         i12 = k6.f28033n5;
                     } else {
                         i12 = k6.f28110r5;
                     }
-                    r6.Y(k5Var, i12, rVar.f59431a);
+                    r6.Y(k5Var, i12, rVar.f59432a);
                     wo woVar = rVar.f1111w;
                     if (woVar != null) {
                         woVar.setAlpha(1.0f);
                     }
                     d4Var.i(null);
                 } else {
-                    TLRPC.User user = hVar.f58730c;
+                    TLRPC.User user = hVar.f58731c;
                     if (user != null) {
                         rVar.setUser(user);
                         CharSequence charSequence3 = hVar.h;
                         if (charSequence3 != null) {
                             rVar.setSubtitle(charSequence3);
-                            r6.Y(rVar.f59434e, k6.f28110r5, this.d);
+                            r6.Y(rVar.f59435e, k6.f28110r5, this.d);
                         }
                     } else {
-                        TLRPC.Chat chat = hVar.f58731e;
+                        TLRPC.Chat chat = hVar.f58732e;
                         if (chat != null) {
                             rVar.h(F(chat), chat);
                         } else {
@@ -178,21 +178,21 @@ public final class i extends rg.b {
                         }
                     }
                 }
-                rVar.c(hVar.f58736k, false);
+                rVar.c(hVar.f58737k, false);
                 rVar.i(false, 1.0f);
                 int i15 = i7 + 1;
-                if (i15 < this.f58746n.size() && ((h) this.f58746n.get(i15)).f54531a != i13) {
+                if (i15 < this.f58747n.size() && ((h) this.f58747n.get(i15)).f54532a != i13) {
                     z9 = false;
                 } else {
                     z9 = true;
                 }
                 rVar.setDivider(z9);
-                if (i15 < this.f58746n.size() && ((h) this.f58746n.get(i15)).f54531a == 7) {
+                if (i15 < this.f58747n.size() && ((h) this.f58747n.get(i15)).f54532a == 7) {
                     rVar.setDivider(false);
                 }
-                rVar.setOptions(hVar.f58739n);
-                a1 a1Var = hVar.f58740o;
-                a1 a1Var2 = hVar.f58741p;
+                rVar.setOptions(hVar.f58740n);
+                a1 a1Var = hVar.f58741o;
+                a1 a1Var2 = hVar.f58742p;
                 ImageView imageView = rVar.F;
                 ImageView imageView2 = rVar.D;
                 if (a1Var != null) {
@@ -220,21 +220,21 @@ public final class i extends rg.b {
                 rVar.g(this.D, false);
             } else if (i13 == 6) {
                 ah.c cVar = (ah.c) view;
-                if (i7 >= this.f58746n.size() - 1 || (i10 = i7 + 1) >= this.f58746n.size() - 1 || ((h) this.f58746n.get(i10)).f54531a == 7) {
+                if (i7 >= this.f58747n.size() - 1 || (i10 = i7 + 1) >= this.f58747n.size() - 1 || ((h) this.f58747n.get(i10)).f54532a == 7) {
                     z11 = false;
                 }
-                cVar.f1062w = hVar.f58732f;
+                cVar.f1062w = hVar.f58733f;
                 cVar.f();
                 cVar.setDivider(z11);
-                cVar.c(hVar.f58736k, false);
+                cVar.c(hVar.f58737k, false);
             } else if (i13 == -1) {
-                int i16 = hVar.f58737l;
+                int i16 = hVar.f58738l;
                 if (i16 < 0) {
                     i16 = (int) (g0.f22563q.y * 0.3f);
                 }
                 view.setLayoutParams(new o0(-1, i16));
             } else if (i13 == 7) {
-                ((ah.f) view).setLetter(hVar.f58733g);
+                ((ah.f) view).setLetter(hVar.f58734g);
             } else if (i13 == 5) {
                 try {
                     ((av0) view).f31925b.getImageReceiver().P0(false);
@@ -242,33 +242,33 @@ public final class i extends rg.b {
                 }
             } else if (i13 == 8) {
                 x3 x3Var = (x3) view;
-                if (TextUtils.equals(x3Var.getText(), hVar.f58733g)) {
+                if (TextUtils.equals(x3Var.getText(), hVar.f58734g)) {
                     CharSequence charSequence4 = hVar.h;
                     if (charSequence4 == null) {
                         charSequence4 = "";
                     }
-                    x3Var.a(charSequence4, hVar.f58738m);
+                    x3Var.a(charSequence4, hVar.f58739m);
                 } else {
-                    x3Var.setText(i6.p(hVar.f58733g, x3Var.getTextView(), null));
+                    x3Var.setText(i6.p(hVar.f58734g, x3Var.getTextView(), null));
                     if (!TextUtils.isEmpty(hVar.h)) {
                         CharSequence charSequence5 = hVar.h;
-                        z0 z0Var = hVar.f58738m;
+                        z0 z0Var = hVar.f58739m;
                         w3 w3Var = x3Var.f30877b;
                         w3Var.c(charSequence5, false, true);
                         w3Var.setOnClickListener(z0Var);
                         w3Var.setVisibility(0);
                     }
                 }
-                this.f58749w = x3Var;
+                this.f58750w = x3Var;
             } else if (i13 == 9) {
                 m8 m8Var = (m8) view;
                 m8Var.g(k6.f28187v6, k6.f28168u6);
-                m8Var.o(hVar.f58735j, hVar.f58733g, false);
+                m8Var.o(hVar.f58736j, hVar.f58734g, false);
             } else if (i13 == 10) {
                 FrameLayout frameLayout = (FrameLayout) view;
-                if (frameLayout.getChildCount() != 1 || frameLayout.getChildAt(0) != hVar.f58742q) {
-                    g0.E2(hVar.f58742q);
-                    frameLayout.addView(hVar.f58742q, ha.c(-2.0f, -1));
+                if (frameLayout.getChildCount() != 1 || frameLayout.getChildAt(0) != hVar.f58743q) {
+                    g0.E2(hVar.f58743q);
+                    frameLayout.addView(hVar.f58743q, ha.c(-2.0f, -1));
                 }
             }
         }
@@ -277,13 +277,13 @@ public final class i extends rg.b {
     @Override
     public final d1 x(ViewGroup viewGroup, int i7) {
         r rVar;
-        Context context = this.f58744e;
+        Context context = this.f58745e;
         if (i7 == -1) {
             View view = new View(context);
             view.setTag(-33024);
             rVar = view;
         } else if (i7 == 3) {
-            rVar = new r(this.f58744e, this.f58750x, this.f58751y, this.d, this.f58748s);
+            rVar = new r(this.f58745e, this.f58751x, this.f58752y, this.d, this.f58749s);
         } else {
             f6 f6Var = this.d;
             if (i7 == 5) {
@@ -335,7 +335,7 @@ public final class i extends rg.b {
 
     @Override
     public final void y(d1 d1Var) {
-        View view = d1Var.f57043a;
+        View view = d1Var.f57044a;
         if (view instanceof r) {
             ((r) view).g(this.D, false);
         }

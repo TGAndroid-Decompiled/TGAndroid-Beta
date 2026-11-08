@@ -64,7 +64,7 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
         }
         marginLayoutParams.topMargin = i7;
         if (p9Var.f9535c) {
-            a10 = k1Var.f54201a.f(2).d;
+            a10 = k1Var.f54202a.f(2).d;
         } else {
             a10 = k1Var.a();
         }
@@ -79,7 +79,7 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
         if (e9Var != null) {
             e9Var.requestLayout();
         }
-        return r0.k1.f54200b;
+        return r0.k1.f54201b;
     }
 
     @Override
@@ -316,7 +316,7 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                     f2Var.f17572c = new ai.f1(25, c1Var, view4);
                     c1Var.presentFragment((org.telegram.ui.ActionBar.f2) f2Var);
                     return;
-                } else if (x31Var2.f54531a == 5 && i12 >= 0 && i12 < c1Var.f17333f.length) {
+                } else if (x31Var2.f54532a == 5 && i12 >= 0 && i12 < c1Var.f17333f.length) {
                     if (!id.f23157a0 ? floatValue >= view4.getMeasuredWidth() - org.telegram.messenger.g0.L(76.0f) : floatValue <= org.telegram.messenger.g0.L(76.0f)) {
                         if (c1Var.f17333f[x31Var2.d].isEmpty()) {
                             ((org.telegram.ui.Cells.h5) view4).setChecked(true);
@@ -416,7 +416,7 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                     }
                     e1Var2.f17363n.f37190f3.O(true);
                     return;
-                } else if (x31Var3.f54531a == 3 && (i7 = i24 / 3) >= 0 && i7 < arrayList3.size()) {
+                } else if (x31Var3.f54532a == 3 && (i7 = i24 / 3) >= 0 && i7 < arrayList3.size()) {
                     int i26 = i7 - 1;
                     if (i26 >= 0) {
                         b1Var = (kg.b1) arrayList3.get(i26);
@@ -591,7 +591,7 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
         g8 g8Var;
         f8 f8Var = (f8) this.f9634b;
         if (!f8Var.v.f9061y) {
-            fVar.f58803q = new e8(f8Var, 2);
+            fVar.f58804q = new e8(f8Var, 2);
             float sqrt = (float) Math.sqrt(Math.pow(g8Var.getHeight(), 2.0d) + Math.pow(g8Var.getWidth(), 2.0d));
             ArrayList arrayList = f8Var.f9009i;
             int size = arrayList.size();

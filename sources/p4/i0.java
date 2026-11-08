@@ -1,29 +1,29 @@
 package p4;
 public final class i0 implements l0 {
-    public final int f53301a;
-    public final m0 f53302b;
-    public final int f53303c;
+    public final int f53302a;
+    public final m0 f53303b;
+    public final int f53304c;
 
     public i0(m0 m0Var, int i7, int i10) {
-        this.f53301a = i10;
-        this.f53302b = m0Var;
-        this.f53303c = i7;
+        this.f53302a = i10;
+        this.f53303b = m0Var;
+        this.f53304c = i7;
     }
 
     @Override
     public final void f(v vVar) {
-        int i7 = this.f53301a;
+        int i7 = this.f53302a;
         int i10 = 0;
         r0 = false;
         boolean z9 = false;
         i10 = 0;
         i10 = 0;
-        int i11 = this.f53303c;
-        m0 m0Var = this.f53302b;
+        int i11 = this.f53304c;
+        m0 m0Var = this.f53303b;
         switch (i7) {
             case 0:
-                g1 g1Var = m0Var.h.f53217t;
-                int i12 = n.f53386a;
+                g1 g1Var = m0Var.h.f53218t;
+                int i12 = n.f53387a;
                 if (i11 != -1 && i11 != 0) {
                     if (i11 != 1) {
                         if (i11 != 2 && i11 != 3) {
@@ -38,8 +38,8 @@ public final class i0 implements l0 {
                 g1Var.k(i10);
                 return;
             default:
-                g1 g1Var2 = m0Var.h.f53217t;
-                int i13 = n.f53386a;
+                g1 g1Var2 = m0Var.h.f53218t;
+                int i13 = n.f53387a;
                 if (i11 != -1 && i11 != 0) {
                     if (i11 != 1 && i11 != 2) {
                         throw new IllegalArgumentException(jg.g.j(i11, "Unrecognized ShuffleMode: "));

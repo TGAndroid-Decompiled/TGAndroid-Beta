@@ -85,7 +85,7 @@ public final class o0 implements DialogInterface.OnDismissListener {
                 return;
             default:
                 org.telegram.messenger.g0.v1((zh.n1) this.f14837b);
-                org.telegram.messenger.g0.a3((Activity) this.d, ((zh.d2) this.f14838c).f60282a.getClassGuid());
+                org.telegram.messenger.g0.a3((Activity) this.d, ((zh.d2) this.f14838c).f60283a.getClassGuid());
                 return;
         }
     }

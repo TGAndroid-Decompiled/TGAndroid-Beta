@@ -64,23 +64,23 @@ public class a4 extends na implements ls, v9 {
     public final String X1;
     public final Runnable Y1;
     public final u3 Z1;
-    public final LinearLayout f60207a2;
-    public final long f60208b2;
-    public final org.telegram.ui.Cells.t0 f60209c2;
+    public final LinearLayout f60208a2;
+    public final long f60209b2;
+    public final org.telegram.ui.Cells.t0 f60210c2;
     public final TLRPC.MessageAction d2;
-    public final ij f60210e2;
-    public final LinearLayout f60211f2;
-    public final fi.d f60212g2;
-    public final FrameLayout f60213h2;
-    public boolean f60214i2;
-    public boolean f60215j2;
-    public boolean f60216k2;
-    public final v3 f60217l2;
-    public l41 f60218m2;
-    public int f60219n2;
-    public final wp[] f60220o2;
-    public boolean f60221p2;
-    public final ri.c f60222q2;
+    public final ij f60211e2;
+    public final LinearLayout f60212f2;
+    public final fi.d f60213g2;
+    public final FrameLayout f60214h2;
+    public boolean f60215i2;
+    public boolean f60216j2;
+    public boolean f60217k2;
+    public final v3 f60218l2;
+    public l41 f60219m2;
+    public int f60220n2;
+    public final wp[] f60221o2;
+    public boolean f60222p2;
+    public final ri.c f60223q2;
 
     public a4(Context context, int i7, final TL_stars.StarGift starGift, final ug.j jVar, long j3, Runnable runnable, final boolean z9, final boolean z10) {
         super(context, null, true, false, 2, null);
@@ -92,11 +92,11 @@ public class a4 extends na implements ls, v9 {
         int i10;
         boolean z11;
         int i11;
-        this.f60215j2 = false;
-        this.f60216k2 = false;
-        this.f60219n2 = -2;
-        this.f60220o2 = new wp[1];
-        this.f60221p2 = false;
+        this.f60216j2 = false;
+        this.f60217k2 = false;
+        this.f60220n2 = -2;
+        this.f60221o2 = new wp[1];
+        this.f60222p2 = false;
         boolean z12 = j3 == p10.i(i7).e();
         this.P1 = z12;
         this.M0 = 4;
@@ -104,7 +104,7 @@ public class a4 extends na implements ls, v9 {
         this.f36290z1 = org.telegram.messenger.g0.L(4.0f);
         this.A1 = org.telegram.messenger.g0.L(-10.0f);
         if (z12) {
-            this.f60214i2 = true;
+            this.f60215i2 = true;
         }
         this.Q1 = i7;
         this.R1 = j3;
@@ -120,9 +120,9 @@ public class a4 extends na implements ls, v9 {
         this.S1 = z9;
         this.T1 = z10;
         if (z9) {
-            this.f60215j2 = true;
+            this.f60216j2 = true;
         } else if (z10) {
-            this.f60215j2 = false;
+            this.f60216j2 = false;
         }
         this.f36282r1 = 0.2f;
         if (j3 >= 0) {
@@ -134,7 +134,7 @@ public class a4 extends na implements ls, v9 {
             this.X1 = M0 == null ? "" : M0.title;
         }
         org.telegram.ui.Cells.t0 t0Var = new org.telegram.ui.Cells.t0(context, this.I0, false);
-        this.f60209c2 = t0Var;
+        this.f60210c2 = t0Var;
         t0Var.setDelegate(new Object());
         u3 u3Var = new u3(this, context);
         this.Z1 = u3Var;
@@ -165,7 +165,7 @@ public class a4 extends na implements ls, v9 {
             w02 = k6.w0(k6.f27925h5, this.I0);
         }
         cVar.a(w02);
-        this.f60222q2 = num2 == null ? cVar : null;
+        this.f60223q2 = num2 == null ? cVar : null;
         fh.g gVar = new fh.g(cVar, cVar, cVar);
         f6 f6Var = this.I0;
         int i12 = k6.f27925h5;
@@ -173,7 +173,7 @@ public class a4 extends na implements ls, v9 {
         gVar.r(org.telegram.messenger.g0.L(20.0f));
         gVar.q(org.telegram.messenger.g0.L(f10));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f60207a2 = linearLayout;
+        this.f60208a2 = linearLayout;
         linearLayout.setOrientation(1);
         if (starGift != null) {
             i10 = 6;
@@ -189,7 +189,7 @@ public class a4 extends na implements ls, v9 {
         } else {
             boolean z13 = z12;
             i10 = 6;
-            if (jVar != null && jVar.f56638b != null) {
+            if (jVar != null && jVar.f56639b != null) {
                 TLRPC.TL_messageActionGiftCode tL_messageActionGiftCode = new TLRPC.TL_messageActionGiftCode();
                 tL_messageActionGiftCode.unclaimed = true;
                 tL_messageActionGiftCode.via_giveaway = false;
@@ -211,7 +211,7 @@ public class a4 extends na implements ls, v9 {
             } else {
                 z11 = z13;
                 i11 = i12;
-                if (jVar != null && jVar.f56637a != null) {
+                if (jVar != null && jVar.f56638a != null) {
                     TLRPC.TL_messageActionGiftPremium tL_messageActionGiftPremium = new TLRPC.TL_messageActionGiftPremium();
                     tL_messageActionGiftPremium.months = jVar.d();
                     tL_messageActionGiftPremium.currency = jVar.a();
@@ -231,7 +231,7 @@ public class a4 extends na implements ls, v9 {
         TLRPC.MessageAction messageAction = this.d2;
         if (messageAction instanceof TLRPC.TL_messageActionStarGift) {
             TLRPC.TL_messageActionStarGift tL_messageActionStarGift2 = (TLRPC.TL_messageActionStarGift) messageAction;
-            boolean z14 = this.f60215j2;
+            boolean z14 = this.f60216j2;
             tL_messageActionStarGift2.can_upgrade = z14 || (z11 && starGift != null && starGift.can_upgrade);
             tL_messageActionStarGift2.upgrade_stars = (!z11 && z14) ? starGift.upgrade_stars : j10;
             tL_messageActionStarGift2.convert_stars = z14 ? j10 : starGift.convert_stars;
@@ -243,14 +243,14 @@ public class a4 extends na implements ls, v9 {
         tL_messageService.peer_id = qp.s1(i7).z1(j3);
         tL_messageService.action = this.d2;
         long N1 = starGift != null ? qp.s1(i7).N1(j3) : j10;
-        this.f60208b2 = N1;
+        this.f60209b2 = N1;
         ij ijVar = new ij(i7, tL_messageService, false, false);
-        this.f60210e2 = ijVar;
+        this.f60211e2 = ijVar;
         t0Var.g0(ijVar, true);
         linearLayout.addView(t0Var, ha.t(-1, -1, 119, 0, N1 > j10 ? 0 : 8, 0, 8));
         u3Var.addView(linearLayout, ha.e(-1, -1, 119));
         v3 v3Var = new v3(this, context, (rt0) this.f28619b, id.M0(starGift != null ? 2131750121 : 2131750120, null), qp.s1(i7).D6, this.I0, gVar, i7);
-        this.f60217l2 = v3Var;
+        this.f60218l2 = v3Var;
         org.telegram.ui.Cells.f3 f3Var = v3Var.f29252b;
         f3Var.getEditText().addTextChangedListener(new org.telegram.ui.Cells.j3());
         f3Var.Q = true;
@@ -265,14 +265,14 @@ public class a4 extends na implements ls, v9 {
         v3Var.setPadding(i13, 0, i13, 0);
         v4.k kVar = new v4.k();
         kVar.C = false;
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         kVar.n(350L);
         kVar.o(xq.h);
         kVar.D = 40L;
         this.f36277k1.setItemAnimator(kVar);
-        this.f60218m2.O(false);
+        this.f60219m2.O(false);
         LinearLayout linearLayout2 = new LinearLayout(context);
-        this.f60211f2 = linearLayout2;
+        this.f60212f2 = linearLayout2;
         linearLayout2.setOrientation(1);
         ColorDrawable colorDrawable = new ColorDrawable(k6.w0(i11, this.I0));
         int i14 = this.f28649t0;
@@ -297,13 +297,13 @@ public class a4 extends na implements ls, v9 {
         r6.k(frameLayout, d02, N, null, f6Var2);
         if (starGift != null && starGift.auction) {
             FrameLayout frameLayout2 = new FrameLayout(context);
-            this.f60213h2 = frameLayout2;
+            this.f60214h2 = frameLayout2;
             frameLayout2.addView(frameLayout, ha.k(10.0f, 14.0f, 10.0f, 14.0f, -1, 30));
             r6.i(i15, frameLayout2, this.I0);
         } else {
             frameLayout.setVisibility((starGift == null || !starGift.limited) ? 8 : 0);
             linearLayout2.addView(frameLayout, ha.k(10.0f, 10.0f, 10.0f, 0.0f, -1, 30));
-            this.f60213h2 = null;
+            this.f60214h2 = null;
         }
         TextView textView = new TextView(context);
         textView.setTextSize(1, 13.0f);
@@ -354,7 +354,7 @@ public class a4 extends na implements ls, v9 {
         }
         y3Var.addView(textView3, ha.d(-1, -1.0f, 5, 11.0f, 0.0f, 11.0f, 0.0f));
         fi.d dVar = new fi.d(context, this.I0, true);
-        this.f60212g2 = dVar;
+        this.f60213g2 = dVar;
         dVar.f();
         g1(false);
         linearLayout2.addView(dVar, ha.t(-1, 48, 119, 10, 10, 10, 10));
@@ -362,11 +362,11 @@ public class a4 extends na implements ls, v9 {
         jg.b0 b0Var = this.f36276j1;
         this.G1 = true;
         b0Var.k1(true);
-        this.f60218m2.O(false);
-        this.f36276j1.h1(this.f60218m2.D.size(), org.telegram.messenger.g0.L(200.0f));
+        this.f60219m2.O(false);
+        this.f36276j1.h1(this.f60219m2.D.size(), org.telegram.messenger.g0.L(200.0f));
         pj0 pj0Var = this.f36277k1;
         int i22 = this.f28649t0;
-        pj0Var.setPadding(i22, 0, i22, org.telegram.messenger.g0.L(68 + ((starGift != null && starGift.limited && this.f60213h2 == null) ? 40 : 0)));
+        pj0Var.setPadding(i22, 0, i22, org.telegram.messenger.g0.L(68 + ((starGift != null && starGift.limited && this.f60214h2 == null) ? 40 : 0)));
         this.f36277k1.i(new z3(this));
         this.f36277k1.setOnItemClickListener(new bj0() {
             @Override
@@ -377,10 +377,10 @@ public class a4 extends na implements ls, v9 {
                 a4 a4Var = a4.this;
                 TL_stars.StarGift starGift3 = a4Var.U1;
                 boolean z16 = a4Var.P1;
-                org.telegram.ui.Cells.t0 t0Var2 = a4Var.f60209c2;
+                org.telegram.ui.Cells.t0 t0Var2 = a4Var.f60210c2;
                 TLRPC.MessageAction messageAction2 = a4Var.d2;
-                ij ijVar2 = a4Var.f60210e2;
-                l41 l41Var = a4Var.f60218m2;
+                ij ijVar2 = a4Var.f60211e2;
+                l41 l41Var = a4Var.f60219m2;
                 if (!a4Var.G1) {
                     i23--;
                 }
@@ -388,18 +388,18 @@ public class a4 extends na implements ls, v9 {
                 if (G != null) {
                     int i24 = G.d;
                     if (i24 == 1) {
-                        boolean z17 = !a4Var.f60214i2;
-                        a4Var.f60214i2 = z17;
+                        boolean z17 = !a4Var.f60215i2;
+                        a4Var.f60215i2 = z17;
                         if (messageAction2 instanceof TLRPC.TL_messageActionStarGift) {
                             ((TLRPC.TL_messageActionStarGift) messageAction2).name_hidden = z17;
                         }
                         ijVar2.b6();
                         t0Var2.g0(ijVar2, true);
-                        a4Var.f60218m2.O(true);
+                        a4Var.f60219m2.O(true);
                     } else if (i24 == 2) {
                         if (!z9 && !z10) {
-                            boolean z18 = a4Var.f60215j2;
-                            a4Var.f60215j2 = !z18;
+                            boolean z18 = a4Var.f60216j2;
+                            a4Var.f60216j2 = !z18;
                             if (messageAction2 instanceof TLRPC.TL_messageActionStarGift) {
                                 TLRPC.TL_messageActionStarGift tL_messageActionStarGift3 = (TLRPC.TL_messageActionStarGift) messageAction2;
                                 if (z18 && (!z16 || (starGift2 = starGift) == null || !starGift2.can_upgrade)) {
@@ -422,16 +422,16 @@ public class a4 extends na implements ls, v9 {
                             }
                             ijVar2.b6();
                             t0Var2.g0(ijVar2, true);
-                            a4Var.f60218m2.O(true);
+                            a4Var.f60219m2.O(true);
                             a4Var.g1(true);
                             return;
                         }
-                        int i25 = -a4Var.f60219n2;
-                        a4Var.f60219n2 = i25;
+                        int i25 = -a4Var.f60220n2;
+                        a4Var.f60220n2 = i25;
                         org.telegram.messenger.g0.G3(i25, view2, null);
                     } else if (i24 == 3) {
-                        boolean z19 = a4Var.f60216k2;
-                        a4Var.f60216k2 = !z19;
+                        boolean z19 = a4Var.f60217k2;
+                        a4Var.f60217k2 = !z19;
                         boolean z20 = messageAction2 instanceof TLRPC.TL_messageActionGiftPremium;
                         ug.j jVar2 = jVar;
                         if (z20) {
@@ -463,7 +463,7 @@ public class a4 extends na implements ls, v9 {
                         }
                         ijVar2.b6();
                         t0Var2.g0(ijVar2, true);
-                        a4Var.f60218m2.O(true);
+                        a4Var.f60219m2.O(true);
                         a4Var.g1(true);
                     }
                 }
@@ -475,7 +475,7 @@ public class a4 extends na implements ls, v9 {
     @Override
     public final oj0 L0(pj0 pj0Var) {
         l41 l41Var = new l41(this.f36277k1, getContext(), this.Q1, 0, true, new o3(this, 0), this.I0);
-        this.f60218m2 = l41Var;
+        this.f60219m2 = l41Var;
         l41Var.f35528r = false;
         return l41Var;
     }
@@ -517,7 +517,7 @@ public class a4 extends na implements ls, v9 {
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         if (i7 == qs.f25114y3) {
             g1(true);
-            l41 l41Var = this.f60218m2;
+            l41 l41Var = this.f60219m2;
             if (l41Var != null && this.W1 != null) {
                 l41Var.O(true);
             }
@@ -526,7 +526,7 @@ public class a4 extends na implements ls, v9 {
 
     @Override
     public final void dismiss() {
-        v3 v3Var = this.f60217l2;
+        v3 v3Var = this.f60218l2;
         org.telegram.ui.Cells.f3 f3Var = v3Var.f29252b;
         org.telegram.ui.Cells.f3 f3Var2 = v3Var.f29252b;
         if (f3Var.getEmojiPadding() > 0) {
@@ -538,7 +538,7 @@ public class a4 extends na implements ls, v9 {
             if (this.V1 != null) {
                 w9.c(this.Q1).n(this.V1.f25435b, this);
             }
-            this.f60221p2 = true;
+            this.f60222p2 = true;
             super.dismiss();
         }
     }
@@ -600,7 +600,7 @@ public class a4 extends na implements ls, v9 {
         String str;
         s9 s9Var = this.V1;
         int i7 = this.Q1;
-        fi.d dVar = this.f60212g2;
+        fi.d dVar = this.f60213g2;
         if (s9Var != null) {
             int currentTime = ConnectionsManager.getInstance(i7).getCurrentTime();
             if (this.V1.g(currentTime)) {
@@ -621,19 +621,19 @@ public class a4 extends na implements ls, v9 {
             return;
         }
         TL_stars.StarGift starGift = this.U1;
-        wp[] wpVarArr = this.f60220o2;
+        wp[] wpVarArr = this.f60221o2;
         if (starGift != null) {
             long j10 = ea.y(i7, false).p().amount;
             long j11 = starGift.stars;
             long j12 = 0;
-            if (this.f60215j2) {
+            if (this.f60216j2) {
                 j3 = starGift.upgrade_stars;
             } else {
                 j3 = 0;
             }
             long j13 = j11 + j3;
-            if (!TextUtils.isEmpty(this.f60217l2.getText())) {
-                j12 = this.f60208b2;
+            if (!TextUtils.isEmpty(this.f60218l2.getText())) {
+                j12 = this.f60209b2;
             }
             long j14 = j13 + j12;
             if (this.P1) {
@@ -652,7 +652,7 @@ public class a4 extends na implements ls, v9 {
         }
         ug.j jVar = this.W1;
         if (jVar != null) {
-            if (this.f60216k2) {
+            if (this.f60217k2) {
                 dVar.i(dd.U0(id.a0(null, null, 2131749995, id.E(jVar.g(), ',')), 1.0f, wpVarArr), z9, true);
                 wpVarArr[0].G = 0.85f;
                 charSequence = null;
@@ -672,7 +672,7 @@ public class a4 extends na implements ls, v9 {
 
     @Override
     public final void onBackPressed() {
-        v3 v3Var = this.f60217l2;
+        v3 v3Var = this.f60218l2;
         org.telegram.ui.Cells.f3 f3Var = v3Var.f29252b;
         org.telegram.ui.Cells.f3 f3Var2 = v3Var.f29252b;
         if (f3Var.getEmojiPadding() > 0) {
@@ -694,7 +694,7 @@ public class a4 extends na implements ls, v9 {
     public final void s0() {
         try {
             super.s0();
-            LinearLayout linearLayout = this.f60211f2;
+            LinearLayout linearLayout = this.f60212f2;
             if (linearLayout != null) {
                 int w02 = k6.w0(k6.f27925h5, this.I0);
                 Drawable background = linearLayout.getBackground();
@@ -710,7 +710,7 @@ public class a4 extends na implements ls, v9 {
                     linearLayout.setBackground(new InsetDrawable((Drawable) colorDrawable2, i7, 0, i7, 0));
                 }
             }
-            ri.c cVar = this.f60222q2;
+            ri.c cVar = this.f60223q2;
             if (cVar != null) {
                 cVar.a(k6.w0(k6.f27925h5, this.I0));
                 ViewGroup viewGroup = this.f28619b;
@@ -725,7 +725,7 @@ public class a4 extends na implements ls, v9 {
 
     @Override
     public final void show() {
-        v3 v3Var = this.f60217l2;
+        v3 v3Var = this.f60218l2;
         if (v3Var != null) {
             v3Var.f29252b.s();
         }

@@ -444,7 +444,7 @@ public final class f1 implements g9.k, com.google.android.gms.common.api.interna
         try {
             l8.b bVar = (l8.b) f1Var.f14323b;
             Parcel p12 = bVar.p1();
-            int i7 = v7.b.f57246a;
+            int i7 = v7.b.f57247a;
             p12.writeInt(0);
             bVar.t1(p12, 2);
         } catch (RemoteException e10) {
@@ -481,7 +481,7 @@ public final class f1 implements g9.k, com.google.android.gms.common.api.interna
         try {
             l8.b bVar = (l8.b) f1Var.f14323b;
             Parcel p12 = bVar.p1();
-            int i7 = v7.b.f57246a;
+            int i7 = v7.b.f57247a;
             p12.writeInt(0);
             bVar.t1(p12, 3);
         } catch (RemoteException e10) {
@@ -539,7 +539,7 @@ public final class f1 implements g9.k, com.google.android.gms.common.api.interna
                 gVar.f6538c = false;
                 Parcel obtain = Parcel.obtain();
                 obtain.writeInterfaceToken("com.google.android.gms.identitycredentials.internal.IIdentityCredentialService");
-                int i10 = t7.a.f55449a;
+                int i10 = t7.a.f55450a;
                 obtain.writeStrongBinder(fVar);
                 t7.a.b(obtain, (j7.g) this.f14323b);
                 t7.a.b(obtain, gVar);
@@ -648,7 +648,7 @@ public final class f1 implements g9.k, com.google.android.gms.common.api.interna
         try {
             l8.b bVar = (l8.b) f1Var.f14323b;
             Parcel p12 = bVar.p1();
-            int i7 = v7.b.f57246a;
+            int i7 = v7.b.f57247a;
             p12.writeInt(0);
             bVar.t1(p12, 1);
         } catch (RemoteException e10) {
@@ -904,15 +904,15 @@ public final class f1 implements g9.k, com.google.android.gms.common.api.interna
         if (cVar2 == null) {
             size = 0;
         } else {
-            size = cVar2.f53107m.size();
+            size = cVar2.f53108m.size();
         }
-        long j13 = cVar.b(0).f53126b;
+        long j13 = cVar.b(0).f53127b;
         int i7 = 0;
-        while (i7 < size && hVar.G.b(i7).f53126b < j13) {
+        while (i7 < size && hVar.G.b(i7).f53127b < j13) {
             i7++;
         }
         if (cVar.d) {
-            if (size - i7 > cVar.f53107m.size()) {
+            if (size - i7 > cVar.f53108m.size()) {
                 h2.a.l("DashMediaSource", "Loaded out of sync manifest");
             } else {
                 long j14 = hVar.M;
@@ -941,7 +941,7 @@ public final class f1 implements g9.k, com.google.android.gms.common.api.interna
         synchronized (hVar.f20751t) {
             try {
                 if (rVar.f2966b.f16449a.equals(hVar.E)) {
-                    Uri uri = hVar.G.f53105k;
+                    Uri uri = hVar.G.f53106k;
                     if (uri == null) {
                         uri = f7.a(rVar.d.f16417c);
                     }
@@ -953,7 +953,7 @@ public final class f1 implements g9.k, com.google.android.gms.common.api.interna
         }
         p2.c cVar3 = hVar.G;
         if (cVar3.d && hVar.K == j11) {
-            m6 m6Var = cVar3.f53103i;
+            m6 m6Var = cVar3.f53104i;
             if (m6Var != null) {
                 String str = m6Var.f23989b;
                 if (!Objects.equals(str, "urn:mpeg:dash:utc:direct:2014") && !Objects.equals(str, "urn:mpeg:dash:utc:direct:2012")) {

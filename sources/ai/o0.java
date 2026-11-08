@@ -260,8 +260,8 @@ public final class o0 extends v4.s0 {
             case 9:
                 sh.n nVar = (sh.n) this.f1594c;
                 sh.m mVar = (sh.m) this.f1593b;
-                if (!mVar.h && !mVar.f55329i) {
-                    if ((nVar.f55333c.f37190f3.D.size() - 1) - nVar.f55333c.f37189e3.M0() < 5) {
+                if (!mVar.h && !mVar.f55330i) {
+                    if ((nVar.f55334c.f37190f3.D.size() - 1) - nVar.f55334c.f37189e3.M0() < 5) {
                         mVar.a();
                         return;
                     }
@@ -274,7 +274,7 @@ public final class o0 extends v4.s0 {
                 return;
             default:
                 z1 z1Var = (z1) this.f1594c;
-                w3 w3Var = z1Var.f60625f;
+                w3 w3Var = z1Var.f60626f;
                 if (z1Var.isAttachedToWindow()) {
                     if (w3Var.canScrollVertically(1)) {
                         for (int i18 = 0; i18 < w3Var.getChildCount(); i18++) {
@@ -282,7 +282,7 @@ public final class o0 extends v4.s0 {
                             }
                         }
                     }
-                    z1Var.f60624e.a();
+                    z1Var.f60625e.a();
                 }
                 ((up0) this.f1593b).p();
                 return;

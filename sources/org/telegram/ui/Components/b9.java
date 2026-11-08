@@ -73,12 +73,12 @@ public final class b9 extends Drawable {
             float f10 = bounds.left;
             float f11 = bounds.top;
             te.h hVar = this.f32133c;
-            canvas.saveLayer(f10, f11, f10 + hVar.d.f55504f.f55512a, f11 + this.f32134e, null);
-            for (int size = hVar.f55507b.size() - 1; size >= 0; size--) {
+            canvas.saveLayer(f10, f11, f10 + hVar.d.f55505f.f55513a, f11 + this.f32134e, null);
+            for (int size = hVar.f55508b.size() - 1; size >= 0; size--) {
                 te.e i7 = hVar.i(size);
                 RectF b10 = i7.b();
-                Object obj = i7.f55495a;
-                float f12 = i7.f55499f.f55512a;
+                Object obj = i7.f55496a;
+                float f12 = i7.f55500f.f55513a;
                 float c10 = i7.c();
                 float width = b10.width() - f12;
                 float f13 = f10 + b10.left + f12;

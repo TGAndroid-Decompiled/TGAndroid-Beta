@@ -19,7 +19,7 @@ import org.telegram.ui.Components.w70;
 import org.telegram.ui.Components.x31;
 import org.telegram.ui.c61;
 public final class e1 extends w31 {
-    public static final int f60303b = 0;
+    public static final int f60304b = 0;
 
     static {
         w31.h(new w31());
@@ -33,14 +33,14 @@ public final class e1 extends w31 {
         ArrayList arrayList = (ArrayList) x31Var.G;
         int i10 = x31Var.f40193z;
         c20 c20Var = (c20) x31Var.H;
-        c61 c61Var = f1Var.f60311a;
+        c61 c61Var = f1Var.f60312a;
         ArrayList arrayList2 = f1Var.d;
-        if (f1Var.f60317r == i7) {
+        if (f1Var.f60318r == i7) {
             z10 = true;
         } else {
             z10 = false;
         }
-        f1Var.f60317r = i7;
+        f1Var.f60318r = i7;
         if (arrayList2.size() != arrayList.size()) {
             int i11 = 0;
             int i12 = 0;
@@ -78,9 +78,9 @@ public final class e1 extends w31 {
                 i12++;
             }
         }
-        f1Var.f60312b = i10;
+        f1Var.f60313b = i10;
         if (!z10) {
-            f1Var.f60313c.e(true, i10);
+            f1Var.f60314c.e(true, i10);
         }
         c61Var.invalidate();
         for (int i13 = 0; i13 < arrayList2.size(); i13++) {

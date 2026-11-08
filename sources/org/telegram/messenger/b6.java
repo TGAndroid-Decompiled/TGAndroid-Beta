@@ -83,7 +83,7 @@ public abstract class b6 {
         if (z9) {
             try {
                 Context context = t0.f25566b;
-                synchronized (pb.g.f53529b) {
+                synchronized (pb.g.f53530b) {
                     pb.g.d(context, TaskExecutors.MAIN_THREAD);
                 }
             } catch (IllegalStateException e10) {

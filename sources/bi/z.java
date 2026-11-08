@@ -1112,7 +1112,7 @@ public final class z extends org.telegram.ui.ActionBar.f2 implements ls {
         if (aVar == null) {
             f10 = 0.0f;
         } else {
-            f10 = aVar.f55486e;
+            f10 = aVar.f55487e;
         }
         if (this.f5117f != null) {
             f11 = org.telegram.messenger.g0.L(44.0f) * (-(1.0f - f10));

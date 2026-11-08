@@ -97,9 +97,9 @@ public final class o0 implements Runnable {
                 TLRPC.TL_chatInviteImporter tL_chatInviteImporter = (TLRPC.TL_chatInviteImporter) obj2;
                 TLRPC.User user = (TLRPC.User) tLObject;
                 TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest = (TLRPC.TL_messages_hideChatJoinRequest) obj;
-                int i11 = mVar2.f59550k;
-                ArrayList arrayList3 = mVar2.f59545e;
-                f2 f2Var2 = mVar2.f59547g;
+                int i11 = mVar2.f59551k;
+                ArrayList arrayList3 = mVar2.f59546e;
+                f2 f2Var2 = mVar2.f59548g;
                 if (f2Var2 != null && f2Var2.getParentActivity() != null) {
                     if (tL_error == null) {
                         TLRPC.TL_updates tL_updates = (TLRPC.TL_updates) tLObject2;
@@ -121,11 +121,11 @@ public final class o0 implements Runnable {
                                 z9 = z10;
                             }
                         }
-                        yh.h hVar = mVar2.f59546f;
-                        yh.m mVar3 = hVar.f59524c;
+                        yh.h hVar = mVar2.f59547f;
+                        yh.m mVar3 = hVar.f59525c;
                         int i13 = 0;
                         while (true) {
-                            arrayList = mVar3.f59544c;
+                            arrayList = mVar3.f59545c;
                             if (i13 < arrayList.size()) {
                                 r82 = z11;
                                 mVar = mVar2;
@@ -142,13 +142,13 @@ public final class o0 implements Runnable {
                         }
                         if (i13 >= 0) {
                             arrayList.remove(i13);
-                            hVar.s(((hVar.f59524c.B ? 1 : 0) ^ r82) + i13);
+                            hVar.s(((hVar.f59525c.B ? 1 : 0) ^ r82) + i13);
                             if (arrayList.isEmpty()) {
                                 hVar.s(r82);
                             }
                         }
                         yh.m mVar4 = mVar;
-                        mVar4.f(mVar4.f59559t, false, r82);
+                        mVar4.f(mVar4.f59560t, false, r82);
                         if (z9) {
                             ob obVar = new ob(f2Var2.getParentActivity(), f2Var2.getResourceProvider());
                             int L = org.telegram.messenger.g0.L(15.0f);
@@ -156,7 +156,7 @@ public final class o0 implements Runnable {
                             l9Var.setRoundRadius(L);
                             l9Var.e(user, new w8(0, user));
                             String j3 = t10.j(user, true);
-                            if (mVar4.f59542a) {
+                            if (mVar4.f59543a) {
                                 a02 = id.a0("HasBeenAddedToChannel", null, 2131749365, j3);
                             } else {
                                 a02 = id.a0("HasBeenAddedToGroup", null, 2131749364, j3);
@@ -172,7 +172,7 @@ public final class o0 implements Runnable {
                             }
                         }
                         org.telegram.ui.ActionBar.y q10 = f2Var2.getActionBar().q();
-                        if (TextUtils.isEmpty(mVar4.f59559t) && mVar4.f59551l) {
+                        if (TextUtils.isEmpty(mVar4.f59560t) && mVar4.f59552l) {
                             org.telegram.ui.ActionBar.r0 j10 = q10.j(0);
                             if (arrayList3.isEmpty()) {
                                 i10 = 8;

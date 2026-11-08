@@ -290,7 +290,7 @@ public final class v50 extends AnimatorListenerAdapter {
                 return;
             case 19:
                 r0.v0 v0Var = (r0.v0) obj;
-                v0Var.f54230a.d(1.0f);
+                v0Var.f54231a.d(1.0f);
                 r0.q0.e((View) obj2, v0Var);
                 return;
             case 20:
@@ -298,24 +298,24 @@ public final class v50 extends AnimatorListenerAdapter {
                 boolean[] zArr = (boolean[]) obj;
                 if (!zArr[0]) {
                     zArr[0] = true;
-                    q1Var.f55908r0.b(q1Var.f55915y0, false);
+                    q1Var.f55909r0.b(q1Var.f55916y0, false);
                 }
                 q1Var.setRotationY(0.0f);
-                q1Var.f55916z0 = 1.0f;
+                q1Var.f55917z0 = 1.0f;
                 return;
             case 21:
                 ((ti.i) obj2).f((sg.t0) obj);
                 return;
             case 22:
-                ((ug.w0) obj2).f56851s1 = false;
+                ((ug.w0) obj2).f56852s1 = false;
                 ((ug.n0) obj).setOffset(0.0f);
                 super.onAnimationEnd(animator);
                 return;
             default:
                 ug.f1 f1Var = (ug.f1) obj2;
-                f1Var.f56586z2 = false;
-                f1Var.f56585y2 = 1.0f;
-                f1Var.f56571k2.invalidate();
+                f1Var.f56587z2 = false;
+                f1Var.f56586y2 = 1.0f;
+                f1Var.f56572k2.invalidate();
                 Drawable drawable = (Drawable) obj;
                 if (drawable != null) {
                     ValueAnimator ofInt = ValueAnimator.ofInt(0, 255);

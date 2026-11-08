@@ -35,7 +35,7 @@ public final class yy0 implements org.telegram.ui.Components.cj0, org.telegram.u
             c03.f25346b = !c03.f25346b;
             saveToGallerySettingsActivity.d0();
             saveToGallerySettingsActivity.e0();
-        } else if (((az0) arrayList.get(i7)).f54531a == 1) {
+        } else if (((az0) arrayList.get(i7)).f54532a == 1) {
             Bundle bundle = new Bundle();
             bundle.putBoolean("onlySelect", true);
             bundle.putBoolean("checkCanWrite", false);
@@ -51,12 +51,12 @@ public final class yy0 implements org.telegram.ui.Components.cj0, org.telegram.u
             ww wwVar = new ww(bundle);
             wwVar.C2 = new yy0(saveToGallerySettingsActivity);
             saveToGallerySettingsActivity.presentFragment(wwVar);
-        } else if (((az0) arrayList.get(i7)).f54531a == 2) {
+        } else if (((az0) arrayList.get(i7)).f54532a == 2) {
             Bundle bundle2 = new Bundle();
             bundle2.putLong("dialog_id", ((az0) arrayList.get(i7)).f44139c.d);
             bundle2.putInt("type", saveToGallerySettingsActivity.f41887a);
             saveToGallerySettingsActivity.presentFragment(new SaveToGallerySettingsActivity(bundle2));
-        } else if (((az0) arrayList.get(i7)).f54531a == 4) {
+        } else if (((az0) arrayList.get(i7)).f54532a == 4) {
             org.telegram.ui.ActionBar.u1 u1Var = org.telegram.ui.Components.v4.L(saveToGallerySettingsActivity.getParentActivity(), org.telegram.messenger.id.M0(2131747914, null), org.telegram.messenger.id.M0(2131747915, null), org.telegram.messenger.id.M0(2131751599, null), new ru0(saveToGallerySettingsActivity, 11), null).f27296a;
             u1Var.show();
             u1Var.i();
@@ -90,7 +90,7 @@ public final class yy0 implements org.telegram.ui.Components.cj0, org.telegram.u
     public boolean mo19f(float f10, float f11, int i7, View view) {
         SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.f52356a;
         ArrayList arrayList = saveToGallerySettingsActivity.f41894s;
-        if (((az0) arrayList.get(i7)).f54531a == 2) {
+        if (((az0) arrayList.get(i7)).f54532a == 2) {
             org.telegram.messenger.qv qvVar = ((az0) arrayList.get(i7)).f44139c;
             ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(saveToGallerySettingsActivity.getParentActivity(), null);
             org.telegram.ui.ActionBar.z0 c10 = org.telegram.ui.ActionBar.r0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, 2131232106, org.telegram.messenger.id.M0(2131751281, null), false, null);

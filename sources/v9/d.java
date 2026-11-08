@@ -3,24 +3,24 @@ package v9;
 import java.util.concurrent.ExecutorService;
 import org.telegram.ui.Components.rt;
 public final class d implements Runnable {
-    public final int f57265a;
-    public final f f57266b;
-    public final Runnable f57267c;
+    public final int f57266a;
+    public final f f57267b;
+    public final Runnable f57268c;
     public final rt d;
 
     public d(f fVar, Runnable runnable, rt rtVar, int i7) {
-        this.f57265a = i7;
-        this.f57266b = fVar;
-        this.f57267c = runnable;
+        this.f57266a = i7;
+        this.f57267b = fVar;
+        this.f57268c = runnable;
         this.d = rtVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f57265a) {
+        switch (this.f57266a) {
             case 0:
-                ExecutorService executorService = this.f57266b.f57271a;
-                final Runnable runnable = this.f57267c;
+                ExecutorService executorService = this.f57267b.f57272a;
+                final Runnable runnable = this.f57268c;
                 final rt rtVar = this.d;
                 executorService.execute(new Runnable() {
                     @Override
@@ -58,8 +58,8 @@ public final class d implements Runnable {
                 });
                 return;
             case 1:
-                ExecutorService executorService2 = this.f57266b.f57271a;
-                final Runnable runnable2 = this.f57267c;
+                ExecutorService executorService2 = this.f57267b.f57272a;
+                final Runnable runnable2 = this.f57268c;
                 final rt rtVar2 = this.d;
                 executorService2.execute(new Runnable() {
                     @Override
@@ -97,8 +97,8 @@ public final class d implements Runnable {
                 });
                 return;
             default:
-                ExecutorService executorService3 = this.f57266b.f57271a;
-                final Runnable runnable3 = this.f57267c;
+                ExecutorService executorService3 = this.f57267b.f57272a;
+                final Runnable runnable3 = this.f57268c;
                 final rt rtVar3 = this.d;
                 executorService3.execute(new Runnable() {
                     @Override

@@ -301,7 +301,7 @@ public final class a3 extends Dialog implements ls, org.telegram.ui.ActionBar.h3
     public static WindowInsets h(a3 a3Var, View view, WindowInsets windowInsets) {
         int i7;
         WindowInsets windowInsets2;
-        r0.h1 h1Var = r0.k1.h(view, windowInsets).f54201a;
+        r0.h1 h1Var = r0.k1.h(view, windowInsets).f54202a;
         i0.b f10 = h1Var.f(2);
         a3Var.h.set(f10.f15120a, f10.f15121b, f10.f15122c, f10.d);
         i0.b f11 = h1Var.f(647);
@@ -1200,7 +1200,7 @@ public final class a3 extends Dialog implements ls, org.telegram.ui.ActionBar.h3
         if (z9) {
             r1.g gVar = this.d;
             if (gVar != null) {
-                gVar.f54267m.f54275i = 0.0f;
+                gVar.f54268m.f54276i = 0.0f;
                 gVar.h();
             }
             LaunchActivity.G1.f41295w0.b(this);
@@ -1237,7 +1237,7 @@ public final class a3 extends Dialog implements ls, org.telegram.ui.ActionBar.h3
             r1.h hVar = new r1.h();
             hVar.b(1200.0f);
             hVar.a(1.0f);
-            gVar.f54267m = hVar;
+            gVar.f54268m = hVar;
             this.d = gVar;
         }
     }

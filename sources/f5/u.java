@@ -274,7 +274,7 @@ public final class u implements r9, q51, h2.d, u2.u, g0 {
                     if (i10 >= 0) {
                         String scheme = create.getScheme();
                         String userInfo = create.getUserInfo();
-                        SecureRandom secureRandom = rc.k.f54459a;
+                        SecureRandom secureRandom = rc.k.f54460a;
                         String host = create.getHost();
                         if (host == null) {
                             String rawAuthority = create.getRawAuthority();
@@ -325,8 +325,8 @@ public final class u implements r9, q51, h2.d, u2.u, g0 {
                                             }
                                             rc.s sVar = new rc.s(socketFactory, new rc.a(str2, i7), i10, null, null);
                                             sVar.d = 1;
-                                            sVar.f54476e = 250;
-                                            sVar.f54477f = true;
+                                            sVar.f54477e = 250;
+                                            sVar.f54478f = true;
                                             if (port >= 0) {
                                                 str2 = str2 + ":" + port;
                                             }
@@ -433,7 +433,7 @@ public final class u implements r9, q51, h2.d, u2.u, g0 {
         int i10 = i7 + 4;
         org.telegram.utils.twidget.i iVar = (org.telegram.utils.twidget.i) this.f11191c;
         if (i10 <= iVar.d) {
-            int i11 = iVar.f52848a.getInt(i7);
+            int i11 = iVar.f52826a.getInt(i7);
             this.f11190b += 4;
             return i11;
         }

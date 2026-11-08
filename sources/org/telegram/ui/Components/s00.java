@@ -47,7 +47,7 @@ public class s00 extends FrameLayout implements te.b, org.telegram.ui.ActionBar.
         xq xqVar = xq.h;
         this.f37818a = new te.a(0, this, xqVar, 380L, false);
         this.f37819b = new te.a(1, this, xqVar, 380L, true);
-        this.f37820c = new te.c(2, this, se.a.f55004a, 280L);
+        this.f37820c = new te.c(2, this, se.a.f55005a, 280L);
         this.E = new h2.f((int[]) null);
         this.F = new ArrayList();
         this.d = f6Var;
@@ -143,7 +143,7 @@ public class s00 extends FrameLayout implements te.b, org.telegram.ui.ActionBar.
 
     public final void b() {
         int i7;
-        int max = Math.max(org.telegram.messenger.g0.L(6.0f) + ((int) this.f37820c.f55492f), org.telegram.messenger.g0.L(48.0f));
+        int max = Math.max(org.telegram.messenger.g0.L(6.0f) + ((int) this.f37820c.f55493f), org.telegram.messenger.g0.L(48.0f));
         int measuredWidth = this.h.getMeasuredWidth() + org.telegram.messenger.g0.L(48.0f);
         boolean z9 = org.telegram.messenger.id.f23157a0;
         if (z9) {

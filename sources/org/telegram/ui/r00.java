@@ -18,7 +18,7 @@ public final class r00 implements org.telegram.ui.Components.dj0, r0.m, NativeIn
     @Override
     public r0.k1 S0(View view, r0.k1 k1Var) {
         int keyboardHeight;
-        r0.h1 h1Var = k1Var.f54201a;
+        r0.h1 h1Var = k1Var.f54202a;
         i0.b f10 = h1Var.f(647);
         i0.b f11 = h1Var.f(8);
         c40 c40Var = this.f49346b;
@@ -69,7 +69,7 @@ public final class r00 implements org.telegram.ui.Components.dj0, r0.m, NativeIn
         }
         h20Var.K(f11.d, false);
         c40Var.f44631t3.j(k1Var);
-        return r0.k1.f54200b;
+        return r0.k1.f54201b;
     }
 
     @Override
@@ -135,7 +135,7 @@ public final class r00 implements org.telegram.ui.Components.dj0, r0.m, NativeIn
                     }
                     int indexOf = arrayList.indexOf(groupCallParticipant);
                     if (indexOf >= 0 && (K = c40Var.H1.K(indexOf + c40Var.G1.d)) != null) {
-                        View view = K.f57043a;
+                        View view = K.f57044a;
                         if (view instanceof org.telegram.ui.Cells.f4) {
                             ((org.telegram.ui.Cells.f4) view).setAmplitude(fArr[i7] * 15.0f);
                             if (view == c40Var.O4 && !c40Var.f44558c4) {

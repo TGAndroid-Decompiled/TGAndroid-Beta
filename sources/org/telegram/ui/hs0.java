@@ -117,7 +117,7 @@ public final class hs0 extends org.telegram.ui.ActionBar.f2 {
     public final void d0() {
         long j3;
         long j10;
-        if (!this.f46485e.f27358y.f55487f) {
+        if (!this.f46485e.f27358y.f55488f) {
             if (!c0()) {
                 finishFragment();
                 return;

@@ -18,23 +18,23 @@ import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.w8;
 import v4.d1;
 public final class h extends oj0 {
-    public final m f59524c;
+    public final m f59525c;
 
     public h(m mVar) {
-        this.f59524c = mVar;
+        this.f59525c = mVar;
     }
 
     @Override
     public final boolean D(d1 d1Var) {
-        if (d1Var.f57047f == 0) {
+        if (d1Var.f57048f == 0) {
             return true;
         }
         return false;
     }
 
     public final void E(List list) {
-        m mVar = this.f59524c;
-        ArrayList arrayList = mVar.f59544c;
+        m mVar = this.f59525c;
+        ArrayList arrayList = mVar.f59545c;
         boolean isEmpty = arrayList.isEmpty();
         int i7 = 0;
         while (i7 < list.size()) {
@@ -64,18 +64,18 @@ public final class h extends oj0 {
 
     @Override
     public final int b() {
-        m mVar = this.f59524c;
+        m mVar = this.f59525c;
         int i7 = 1;
-        return ((mVar.f59544c.isEmpty() || !mVar.f59562x) ? 0 : 0) + mVar.f59544c.size() + (!mVar.B ? 1 : 0);
+        return ((mVar.f59545c.isEmpty() || !mVar.f59563x) ? 0 : 0) + mVar.f59545c.size() + (!mVar.B ? 1 : 0);
     }
 
     @Override
     public final int d(int i7) {
-        m mVar = this.f59524c;
+        m mVar = this.f59525c;
         if (i7 == 0 && !mVar.B) {
             return 2;
         }
-        if (i7 == b() - 1 && !mVar.f59544c.isEmpty() && mVar.f59562x) {
+        if (i7 == b() - 1 && !mVar.f59545c.isEmpty() && mVar.f59563x) {
             return 4;
         }
         return 0;
@@ -84,16 +84,16 @@ public final class h extends oj0 {
     @Override
     public final void t(d1 d1Var, int i7) {
         boolean z9;
-        m mVar = this.f59524c;
-        ArrayList arrayList = mVar.f59544c;
-        int i10 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        m mVar = this.f59525c;
+        ArrayList arrayList = mVar.f59545c;
+        int i10 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         if (i10 == 0) {
             e5 e5Var = (e5) view;
             int i11 = i7 - (!mVar.B ? 1 : 0);
             LongSparseArray longSparseArray = mVar.d;
             TLRPC.TL_chatInviteImporter tL_chatInviteImporter = (TLRPC.TL_chatInviteImporter) arrayList.get(i11);
-            if (i11 == arrayList.size() - 1 && !mVar.f59562x) {
+            if (i11 == arrayList.size() - 1 && !mVar.f59563x) {
                 z9 = false;
             } else {
                 z9 = true;
@@ -131,15 +131,15 @@ public final class h extends oj0 {
     @Override
     public final d1 x(ViewGroup viewGroup, int i7) {
         e5 e5Var;
-        m mVar = this.f59524c;
-        boolean z9 = mVar.f59542a;
+        m mVar = this.f59525c;
+        boolean z9 = mVar.f59543a;
         if (i7 != 1) {
             if (i7 != 2) {
                 if (i7 != 3) {
                     if (i7 != 4) {
                         e5Var = new e5(viewGroup.getContext(), mVar, z9);
                     } else {
-                        f2 f2Var = mVar.f59547g;
+                        f2 f2Var = mVar.f59548g;
                         s2 s2Var = new s2(2, f2Var.getParentActivity(), f2Var.getResourceProvider());
                         if (mVar.B) {
                             r6.i(k6.f27852d6, s2Var, f2Var.getResourceProvider());

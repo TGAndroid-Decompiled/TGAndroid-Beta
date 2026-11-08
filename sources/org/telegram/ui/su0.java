@@ -28,14 +28,14 @@ public final class su0 extends v4.k {
 
     @Override
     public final void m() {
-        boolean isEmpty = this.f57100p.isEmpty();
-        boolean isEmpty2 = this.f57102r.isEmpty();
-        boolean isEmpty3 = this.f57103s.isEmpty();
-        boolean isEmpty4 = this.f57101q.isEmpty();
+        boolean isEmpty = this.f57101p.isEmpty();
+        boolean isEmpty2 = this.f57103r.isEmpty();
+        boolean isEmpty3 = this.f57104s.isEmpty();
+        boolean isEmpty4 = this.f57102q.isEmpty();
         if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             ofFloat.addUpdateListener(new a3(this, 24));
-            ofFloat.setDuration(this.f57116e);
+            ofFloat.setDuration(this.f57117e);
             ofFloat.start();
             this.F = this.G.getNotificationCenter().q(null, this.F, true);
         }

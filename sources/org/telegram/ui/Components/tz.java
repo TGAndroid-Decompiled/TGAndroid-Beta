@@ -44,7 +44,7 @@ public final class tz extends FrameLayout {
         }
         j6Var2.setGravity(i11);
         addView(j6Var2, c8.ha.d(-2, 20.0f, (org.telegram.messenger.id.f23157a0 ? 3 : 5) | 80, 21.0f, 15.0f, 21.0f, 2.0f));
-        WeakHashMap weakHashMap = r0.i0.f54190a;
+        WeakHashMap weakHashMap = r0.i0.f54191a;
         new r0.v(2131296684, Boolean.class, 0, 28, 2).d(this, Boolean.TRUE);
     }
 

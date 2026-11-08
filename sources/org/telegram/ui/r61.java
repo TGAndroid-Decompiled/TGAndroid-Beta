@@ -25,7 +25,7 @@ public final class r61 extends org.telegram.ui.Components.pj0 {
         } else {
             T = r61Var.T(F);
         }
-        if (T != null && T.f57047f == 2) {
+        if (T != null && T.f57048f == 2) {
             return false;
         }
         return true;
@@ -64,7 +64,7 @@ public final class r61 extends org.telegram.ui.Components.pj0 {
                         if (T2 == null) {
                             break;
                         }
-                        View view2 = T2.f57043a;
+                        View view2 = T2.f57044a;
                         int top2 = view2.getTop();
                         if (layoutHeight - org.telegram.messenger.g0.L(48.0f) < view2.getBottom()) {
                             translationX = Math.min(view2.getTranslationX(), translationX);

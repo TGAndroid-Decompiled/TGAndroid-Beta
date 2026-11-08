@@ -35,7 +35,7 @@ public final class fc implements d20 {
             case 4:
                 tg.g0 g0Var = (tg.g0) callback;
                 if (((Integer) obj).intValue() == 2) {
-                    di diVar = new di(g0Var.getContext(), new tg.w(g0Var), false, false, false, g0Var.f55704z1);
+                    di diVar = new di(g0Var.getContext(), new tg.w(g0Var), false, false, false, g0Var.f55705z1);
                     diVar.f28640n = true;
                     diVar.A1(org.telegram.messenger.id.M0(2131754428, null));
                     diVar.T3 = new m4.d0(g0Var, diVar, false);

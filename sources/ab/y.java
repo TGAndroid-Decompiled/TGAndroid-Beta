@@ -197,13 +197,13 @@ public final class y implements OnSuccessListener, g7, ib1, r1, bg.p, bp, a1, h2
                 if (z9) {
                     o02 = -1;
                 } else {
-                    o02 = d0Var.f53217t.o0();
+                    o02 = d0Var.f53218t.o0();
                 }
                 int i10 = o02;
                 if (z9) {
                     l10 = -9223372036854775807L;
                 } else {
-                    l10 = d0Var.f53217t.l();
+                    l10 = d0Var.f53218t.l();
                 }
                 return d0Var.q(vVar, u10, i10, l10);
             default:
@@ -212,13 +212,13 @@ public final class y implements OnSuccessListener, g7, ib1, r1, bg.p, bp, a1, h2
                 if (z10) {
                     o03 = -1;
                 } else {
-                    o03 = d0Var.f53217t.o0();
+                    o03 = d0Var.f53218t.o0();
                 }
                 int i11 = o03;
                 if (z10) {
                     l11 = -9223372036854775807L;
                 } else {
-                    l11 = d0Var.f53217t.l();
+                    l11 = d0Var.f53218t.l();
                 }
                 return d0Var.q(vVar, list, i11, l11);
         }
@@ -227,7 +227,7 @@ public final class y implements OnSuccessListener, g7, ib1, r1, bg.p, bp, a1, h2
     @Override
     public void m(xh.f fVar, float f10, float f11) {
         xh.l lVar = (xh.l) this.f1009c;
-        if (!lVar.d && !lVar.f58839e && !lVar.f58840f && this.f1008b) {
+        if (!lVar.d && !lVar.f58840e && !lVar.f58841f && this.f1008b) {
             lVar.c(f10, f11);
         }
     }

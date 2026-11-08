@@ -36,7 +36,7 @@ public final class b4 extends vg.r {
             case 1:
                 ImageView imageView = ((o8) this.E).f42980a;
                 super.onSurfaceTextureUpdated(surfaceTexture);
-                if (this.f57494n && imageView.getVisibility() == 0) {
+                if (this.f57495n && imageView.getVisibility() == 0) {
                     imageView.setVisibility(4);
                     return;
                 }

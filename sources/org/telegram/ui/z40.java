@@ -224,9 +224,9 @@ public final class z40 extends AnimatorListenerAdapter {
                 return;
             case 14:
                 tg.o1 o1Var = (tg.o1) obj;
-                ((sg.i) o1Var).D.f55185o1.c();
+                ((sg.i) o1Var).D.f55186o1.c();
                 if (z9) {
-                    o1Var.f55891x.accept(Integer.valueOf(o1Var.f55889s));
+                    o1Var.f55892x.accept(Integer.valueOf(o1Var.f55890s));
                 }
                 if (o1Var.getParent() != null) {
                     ((ViewGroup) o1Var.getParent()).removeView(o1Var);
@@ -251,7 +251,7 @@ public final class z40 extends AnimatorListenerAdapter {
                     f10 = 1.0f;
                 }
                 p0Var.O = f10;
-                p0Var.f56756f.invalidate();
+                p0Var.f56757f.invalidate();
                 ug.o0 o0Var = p0Var.h;
                 if (o0Var != null) {
                     o0Var.invalidate();

@@ -33,7 +33,7 @@ public final class z2 extends ImageReceiver {
                 iArr2[2] = L;
                 org.telegram.ui.Cells.w1 w1Var = q1Var.f30051w2;
                 if (w1Var != null && (eVar = w1Var.f30710m) != null) {
-                    eVar.f55297b.L0(iArr2);
+                    eVar.f55298b.L0(iArr2);
                     return;
                 }
                 return;

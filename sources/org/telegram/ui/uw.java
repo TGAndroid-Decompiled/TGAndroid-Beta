@@ -37,7 +37,7 @@ public final class uw extends v4.v {
             return 200L;
         }
         if (i7 == 8 && (t2Var = (wwVar = this.h).X0) != null) {
-            org.telegram.messenger.g0.i3(new tg(1, t2Var), this.f50433g.f50792y.f57116e);
+            org.telegram.messenger.g0.i3(new tg(1, t2Var), this.f50433g.f50792y.f57117e);
             wwVar.X0 = null;
         }
         return super.d(recyclerView, i7, f10, f11);
@@ -69,7 +69,7 @@ public final class uw extends v4.v {
         int i7;
         ww wwVar = this.h;
         ArrayList arrayList = wwVar.f51535a1;
-        View view = d1Var2.f57043a;
+        View view = d1Var2.f57044a;
         char c11 = 0;
         if (view instanceof org.telegram.ui.Cells.t2) {
             long dialogId = ((org.telegram.ui.Cells.t2) view).getDialogId();
@@ -140,7 +140,7 @@ public final class uw extends v4.v {
         }
         this.d = d1Var;
         if (d1Var != null) {
-            View view = d1Var.f57043a;
+            View view = d1Var.f57044a;
             if (view instanceof org.telegram.ui.Cells.t2) {
                 ((org.telegram.ui.Cells.t2) view).f30504x = false;
             }
@@ -152,7 +152,7 @@ public final class uw extends v4.v {
         int i7;
         ww wwVar = this.h;
         if (d1Var != null) {
-            org.telegram.ui.Cells.t2 t2Var = (org.telegram.ui.Cells.t2) d1Var.f57043a;
+            org.telegram.ui.Cells.t2 t2Var = (org.telegram.ui.Cells.t2) d1Var.f57044a;
             long dialogId = t2Var.getDialogId();
             boolean D = org.telegram.messenger.m5.D(dialogId);
             int i10 = 0;

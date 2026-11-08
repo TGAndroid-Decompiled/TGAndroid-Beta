@@ -27,13 +27,13 @@ public final class yh0 extends rg.b {
                 return false;
             case 1:
                 org.telegram.ui.ct ctVar = (org.telegram.ui.ct) ((org.telegram.ui.gt) this.f40673e).j3.get(d1Var.b());
-                int i7 = ctVar.f54531a;
+                int i7 = ctVar.f54532a;
                 if (i7 != 5 && (i7 != 2 || ctVar.h == -1)) {
                     return false;
                 }
                 return true;
             default:
-                int i10 = d1Var.f57047f;
+                int i10 = d1Var.f57048f;
                 if (i10 != 4 && i10 != 3 && i10 != 5) {
                     return false;
                 }
@@ -57,13 +57,13 @@ public final class yh0 extends rg.b {
     public final int d(int i7) {
         switch (this.d) {
             case 0:
-                return ((zh0) ((ii0) this.f40673e).d.get(i7)).f54531a;
+                return ((zh0) ((ii0) this.f40673e).d.get(i7)).f54532a;
             case 1:
-                return ((org.telegram.ui.ct) ((org.telegram.ui.gt) this.f40673e).j3.get(i7)).f54531a;
+                return ((org.telegram.ui.ct) ((org.telegram.ui.gt) this.f40673e).j3.get(i7)).f54532a;
             default:
                 org.telegram.ui.w90 w90Var = (org.telegram.ui.w90) this.f40673e;
                 if (i7 >= 0 && i7 < w90Var.f50990s.size()) {
-                    return ((org.telegram.ui.r90) w90Var.f50990s.get(i7)).f54531a;
+                    return ((org.telegram.ui.r90) w90Var.f50990s.get(i7)).f54532a;
                 }
                 return 2;
         }
@@ -268,9 +268,9 @@ public final class yh0 extends rg.b {
         switch (this.d) {
             case 0:
                 ArrayList arrayList = ((ii0) this.f40673e).d;
-                int i7 = d1Var.f57047f;
+                int i7 = d1Var.f57048f;
                 if ((i7 == 0 || i7 == 3) && (b10 = d1Var.b()) >= 0 && b10 < arrayList.size()) {
-                    ((gi0) d1Var.f57043a).f(((zh0) arrayList.get(b10)).f41024c, false);
+                    ((gi0) d1Var.f57044a).f(((zh0) arrayList.get(b10)).f41024c, false);
                     return;
                 }
                 return;

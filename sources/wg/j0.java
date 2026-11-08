@@ -39,7 +39,7 @@ public final class j0 extends ug.f1 {
         int i10 = this.f28649t0;
         pj0Var.setPadding(i10, 0, i10, org.telegram.messenger.g0.L(64.0f));
         Context context = getContext();
-        int i11 = i0.f57756f;
+        int i11 = i0.f57757f;
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setClipChildren(false);
         FrameLayout frameLayout2 = new FrameLayout(context);
@@ -49,9 +49,9 @@ public final class j0 extends ug.f1 {
             i0 i0Var = new i0(context, 47.0f);
             i0Var.d = false;
             TLRPC.User user = (TLRPC.User) arrayList2.get(0);
-            w8 w8Var = i0Var.f57760e;
+            w8 w8Var = i0Var.f57761e;
             w8Var.r(user);
-            i0Var.f57757a.e(user, w8Var);
+            i0Var.f57758a.e(user, w8Var);
             frameLayout2.addView(i0Var, 0, ha.e(94, 94, 17));
         } else {
             frameLayout.addView(frameLayout2, ha.d(-1, 83.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
@@ -59,15 +59,15 @@ public final class j0 extends ug.f1 {
             for (int i13 = 0; i13 < arrayList2.size(); i13++) {
                 TLRPC.User user2 = (TLRPC.User) arrayList2.get(i13);
                 i0 i0Var2 = new i0(context, 41.5f);
-                w8 w8Var2 = i0Var2.f57760e;
+                w8 w8Var2 = i0Var2.f57761e;
                 w8Var2.r(user2);
-                i0Var2.f57757a.e(user2, w8Var2);
+                i0Var2.f57758a.e(user2, w8Var2);
                 frameLayout2.addView(i0Var2, 0, ha.e(83, 83, 17));
                 i0Var2.setTranslationX(org.telegram.messenger.g0.L(29.0f) * (-i13));
                 if (i13 == 0 && arrayList2.size() > 3) {
-                    h0 h0Var = i0Var2.f57758b;
+                    h0 h0Var = i0Var2.f57759b;
                     h0Var.setAlpha(1.0f);
-                    h0Var.f57753b = arrayList2.size() - 3;
+                    h0Var.f57754b = arrayList2.size() - 3;
                 }
                 i12++;
                 if (i13 == 2) {
@@ -76,7 +76,7 @@ public final class j0 extends ug.f1 {
             }
             frameLayout.setTranslationX((i12 - 1) * org.telegram.messenger.g0.L(14.5f));
         }
-        this.f56580t2 = frameLayout;
+        this.f56581t2 = frameLayout;
         N();
     }
 
@@ -106,7 +106,7 @@ public final class j0 extends ug.f1 {
         int i7;
         float f10;
         float f11;
-        View view = this.f56580t2;
+        View view = this.f56581t2;
         ArrayList arrayList = this.I2;
         if (arrayList.size() == 1) {
             i7 = 94;
@@ -167,11 +167,11 @@ public final class j0 extends ug.f1 {
     public final void k1() {
         this.X1 = 1;
         this.Y1 = 0;
-        this.f56563b2 = 1;
+        this.f56564b2 = 1;
         int size = this.P1.size();
         int i7 = 1 + size;
-        this.f56564c2 = i7;
+        this.f56565c2 = i7;
         this.X1 = size + 2;
-        this.f56566f2 = i7;
+        this.f56567f2 = i7;
     }
 }

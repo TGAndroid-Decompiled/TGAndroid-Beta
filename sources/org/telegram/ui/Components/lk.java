@@ -78,7 +78,7 @@ public final class lk implements View.OnClickListener {
                 if (anVar.getParentActivity() != null) {
                     TLRPC.Chat chat = anVar.f43777e;
                     if (chat != null && !org.telegram.messenger.t3.y(13, chat)) {
-                        if (knVar.f35360a.f55487f && anVar.getParentActivity() != null && anVar.fragmentView != null && anVar.f43922p8 != null) {
+                        if (knVar.f35360a.f55488f && anVar.getParentActivity() != null && anVar.fragmentView != null && anVar.f43922p8 != null) {
                             if (anVar.C2 == null) {
                                 i10 = 0;
                                 fi.m3 D6 = anVar.D6(310.0f, 1, -1, false);
@@ -336,7 +336,7 @@ public final class lk implements View.OnClickListener {
                     s00Var.e();
                     return;
                 } else if (q0Var.getFilter().h) {
-                    if (!q0Var.f28387a.f55487f) {
+                    if (!q0Var.f28387a.f55488f) {
                         q0Var.setSelectedForDelete(true);
                         return;
                     }

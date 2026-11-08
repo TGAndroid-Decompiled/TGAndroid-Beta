@@ -14,7 +14,7 @@ public final class pu0 extends oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f57047f == 1) {
+        if (d1Var.f57048f == 1) {
             return true;
         }
         return false;
@@ -54,10 +54,10 @@ public final class pu0 extends oj0 {
         yu0 yu0Var;
         uu0[] uu0VarArr;
         boolean z9 = true;
-        if (d1Var.f57047f == 1 && (uu0VarArr = (yu0Var = this.d).f40755f3) != null) {
+        if (d1Var.f57048f == 1 && (uu0VarArr = (yu0Var = this.d).f40755f3) != null) {
             int i10 = i7 - 1;
             uu0 uu0Var = uu0VarArr[i10];
-            final tu0 tu0Var = (tu0) d1Var.f57043a;
+            final tu0 tu0Var = (tu0) d1Var.f57044a;
             if (yu0Var.f40768t3 != i10) {
                 z9 = false;
             }
@@ -114,8 +114,8 @@ public final class pu0 extends oj0 {
     @Override
     public final void y(v4.d1 d1Var) {
         boolean z9 = true;
-        if (d1Var.f57047f == 1) {
-            tu0 tu0Var = (tu0) d1Var.f57043a;
+        if (d1Var.f57048f == 1) {
+            tu0 tu0Var = (tu0) d1Var.f57044a;
             if (this.d.f40768t3 != d1Var.b() - 1) {
                 z9 = false;
             }

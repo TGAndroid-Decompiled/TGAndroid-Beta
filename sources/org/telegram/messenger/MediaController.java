@@ -1030,9 +1030,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     public static native boolean joinOpusFiles(String str, String str2, String str3);
 
     public static boolean s0(int i7) {
-        xi.a aVar = xi.e.f58857b;
+        xi.a aVar = xi.e.f58858b;
         aVar.a();
-        if (aVar.f58849c) {
+        if (aVar.f58850c) {
             aVar.a();
             return aVar.d;
         } else if (!((h0) qp.s1(i7).f24942x7.f24439f0.f13889b).f22780c) {
@@ -1387,29 +1387,29 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     hVar2.getClass();
                     vi.h.q();
                     if (hVar2.G == 5) {
-                        hVar2.h.b("resume requested: trim=" + hVar2.f57555r + ".." + hVar2.f57556s + ", sourceDurationMs=" + hVar2.j());
+                        hVar2.h.b("resume requested: trim=" + hVar2.f57556r + ".." + hVar2.f57557s + ", sourceDurationMs=" + hVar2.j());
                         hVar2.p();
                         hVar2.s(6);
-                        vi.g gVar3 = hVar2.f57562z;
+                        vi.g gVar3 = hVar2.f57563z;
                         if (gVar3 == null) {
                             hVar2.g(new IllegalStateException("Output generation is missing"));
                             return;
                         }
-                        long j3 = hVar2.f57555r;
-                        long j10 = hVar2.f57556s;
-                        if (j10 >= vi.h.r(hVar2.f57553p)) {
+                        long j3 = hVar2.f57556r;
+                        long j10 = hVar2.f57557s;
+                        if (j10 >= vi.h.r(hVar2.f57554p)) {
                             z10 = true;
                         } else {
                             z10 = false;
                         }
                         hVar2.k(1);
                         long j11 = ((j10 - j3) * 48000) / 1000;
-                        hVar2.f57553p = j11;
-                        hVar2.f57555r = 0L;
-                        hVar2.f57556s = vi.h.r(j11);
+                        hVar2.f57554p = j11;
+                        hVar2.f57556r = 0L;
+                        hVar2.f57557s = vi.h.r(j11);
                         hVar2.d();
-                        hVar2.h.b("resume prefix selected: source=" + gVar3.f57537b.getName() + ", trim=" + j3 + ".." + j10);
-                        File file = gVar3.f57537b;
+                        hVar2.h.b("resume prefix selected: source=" + gVar3.f57538b.getName() + ", trim=" + j3 + ".." + j10);
+                        File file = gVar3.f57538b;
                         if (z10) {
                             j10 = -1;
                         }

@@ -33,7 +33,7 @@ public final class tk extends v4.s0 {
                     di diVar = wkVar.f39004b;
                     int i10 = diVar.f28648s0;
                     if (((diVar.V3[0] - i10) - L) + i10 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (xi0Var = (xi0) q1Var.K(0)) != null) {
-                        View view = xi0Var.f57043a;
+                        View view = xi0Var.f57044a;
                         if (view.getTop() > 0) {
                             q1Var.w0(0, view.getTop(), null);
                             return;

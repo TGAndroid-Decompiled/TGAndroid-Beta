@@ -184,7 +184,7 @@ public final class cf0 extends org.telegram.ui.ActionBar.f2 implements org.teleg
         kVar.n(420L);
         kVar.o(org.telegram.ui.Components.xq.h);
         kVar.C = false;
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         this.f44799b.setItemAnimator(kVar);
         org.telegram.ui.Components.pj0 pj0Var3 = this.f44799b;
         if (org.telegram.messenger.id.f23157a0) {

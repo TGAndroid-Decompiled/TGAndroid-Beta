@@ -62,14 +62,14 @@ public final class us implements ys, h2.j, cj0 {
         p4.c1 c1Var = (p4.c1) this.f38729c;
         Surface surface = (Surface) this.d;
         p4.g1 g1Var = (p4.g1) obj;
-        ((p4.d0) c1Var.f53182a.get()).getClass();
+        ((p4.d0) c1Var.f53183a.get()).getClass();
         if (surface == null) {
             g1Var.S(null);
-            c1Var.f53187i = null;
+            c1Var.f53188i = null;
             return;
         }
         p4.b1 b1Var = new p4.b1(surface, this.f38727a, this.f38728b);
-        c1Var.f53187i = b1Var;
+        c1Var.f53188i = b1Var;
         g1Var.S(b1Var);
     }
 
@@ -91,7 +91,7 @@ public final class us implements ys, h2.j, cj0 {
         xg.h hVar = null;
         if (z11) {
             if (i10 == 4) {
-                org.telegram.ui.s00 s00Var = f1Var.f57744s2;
+                org.telegram.ui.s00 s00Var = f1Var.f57745s2;
                 if (s00Var != null) {
                     s00Var.run();
                     f1Var.dismiss();
@@ -110,9 +110,9 @@ public final class us implements ys, h2.j, cj0 {
                 if (i11 >= 0 && i11 < arrayList.size()) {
                     hVar = (xg.h) arrayList.get(i11);
                 }
-                org.telegram.messenger.c20 c20Var = f1Var.f57745t2;
+                org.telegram.messenger.c20 c20Var = f1Var.f57746t2;
                 if (c20Var != null && hVar != null) {
-                    int i12 = hVar.f58734i;
+                    int i12 = hVar.f58735i;
                     if (i12 == 4) {
                         c20Var.a(-98L);
                     } else if (i12 == 5) {
@@ -128,7 +128,7 @@ public final class us implements ys, h2.j, cj0 {
                     j3 = -chat.f26956id;
                 }
                 if (i10 == 3) {
-                    org.telegram.messenger.c20 c20Var2 = f1Var.f57745t2;
+                    org.telegram.messenger.c20 c20Var2 = f1Var.f57746t2;
                     if (c20Var2 != null) {
                         c20Var2.a(Long.valueOf(j3));
                     }
@@ -146,14 +146,14 @@ public final class us implements ys, h2.j, cj0 {
                     if (i10 == 4) {
                         if (hashSet.isEmpty()) {
                             hashSet.add(Long.valueOf(j3));
-                            org.telegram.messenger.v10 v10Var = f1Var.f57747v2;
+                            org.telegram.messenger.v10 v10Var = f1Var.f57748v2;
                             if (v10Var != null) {
                                 wo woVar = f1Var.U1;
                                 if (woVar == null || !woVar.f40008a.f31263q) {
                                     z12 = false;
                                 }
                                 v10Var.a(Boolean.valueOf(z12), hashSet);
-                                f1Var.f57747v2 = null;
+                                f1Var.f57748v2 = null;
                             }
                             f1Var.dismiss();
                             return;
@@ -169,7 +169,7 @@ public final class us implements ys, h2.j, cj0 {
                         hashSet.remove(Long.valueOf(j3));
                     } else {
                         hashSet.add(Long.valueOf(j3));
-                        f1Var.f57731f2.put(Long.valueOf(j3), user);
+                        f1Var.f57732f2.put(Long.valueOf(j3), user);
                     }
                     if (hashSet.size() == f1Var.h1() + 1) {
                         hashSet.remove(Long.valueOf(j3));
@@ -201,11 +201,11 @@ public final class us implements ys, h2.j, cj0 {
                             x0Var = null;
                         }
                         duration.withEndAction(x0Var).start();
-                        xg.i iVar = f1Var.f57733h2;
+                        xg.i iVar = f1Var.f57734h2;
                         boolean z13 = !z10;
                         if (iVar.D != z13) {
                             iVar.D = z13;
-                            org.telegram.messenger.g0.d0(iVar.f58745f, new xg.g(z13));
+                            org.telegram.messenger.g0.d0(iVar.f58746f, new xg.g(z13));
                         }
                     }
                     f1Var.e1();
@@ -215,8 +215,8 @@ public final class us implements ys, h2.j, cj0 {
                 } else if (org.telegram.messenger.t10.b(org.telegram.messenger.qp.s1(org.telegram.messenger.p10.f24470s0).b2(j3))) {
                     org.telegram.messenger.camera.q.s(org.telegram.messenger.id.a0(null, null, 2131743745, org.telegram.messenger.m5.t(j3)), new hc(f1Var.f28622c, f6Var), 2131624011, 36);
                 } else {
-                    zh.g1 g1Var = new zh.g1(f1Var.getContext(), this.f38728b, j3, wg.s.c(wg.s.b(1, f1Var.f57735j2)), new wg.y0(f1Var, 1));
-                    org.telegram.messenger.t1 t1Var = f1Var.f57739n2;
+                    zh.g1 g1Var = new zh.g1(f1Var.getContext(), this.f38728b, j3, wg.s.c(wg.s.b(1, f1Var.f57736j2)), new wg.y0(f1Var, 1));
+                    org.telegram.messenger.t1 t1Var = f1Var.f57740n2;
                     if (t1Var == null || !t1Var.a(j3)) {
                         z12 = false;
                     }

@@ -421,7 +421,7 @@ public final class q5 extends FrameLayout {
         super.onAttachedToWindow();
         xh.e eVar = this.N;
         if (eVar != null) {
-            if (eVar.f58784i) {
+            if (eVar.f58785i) {
                 this.N = xh.e.e(this);
             } else {
                 eVar.a(this);

@@ -139,7 +139,7 @@ public final class ab implements Runnable {
             case 17:
                 di.i1 i1Var = (di.i1) this.f3465b;
                 di.p9 p9Var = i1Var.f9123c;
-                if (p9Var != null && i1Var.E() && (oVar = i1Var.f9121a) != null && oVar.f56124c == 0 && (launchActivity = LaunchActivity.G1) != null && c8.kc.a(launchActivity)) {
+                if (p9Var != null && i1Var.E() && (oVar = i1Var.f9121a) != null && oVar.f56125c == 0 && (launchActivity = LaunchActivity.G1) != null && c8.kc.a(launchActivity)) {
                     p9Var.T();
                     return;
                 }

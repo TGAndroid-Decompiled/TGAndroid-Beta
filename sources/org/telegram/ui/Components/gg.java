@@ -35,7 +35,7 @@ public final class gg extends HashMap {
             case 1:
                 String str = (String) obj;
                 String str2 = (String) obj2;
-                HashMap hashMap = ((yc.g) this.f33937b).f59383f;
+                HashMap hashMap = ((yc.g) this.f33937b).f59384f;
                 if (str == null) {
                     lowerCase = str;
                 } else {

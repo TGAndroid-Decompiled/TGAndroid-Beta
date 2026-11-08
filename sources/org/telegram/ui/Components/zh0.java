@@ -13,8 +13,8 @@ public final class zh0 extends rg.a {
         }
         if (obj != null && zh0.class == obj.getClass()) {
             zh0 zh0Var = (zh0) obj;
-            int i7 = this.f54531a;
-            int i10 = zh0Var.f54531a;
+            int i7 = this.f54532a;
+            int i10 = zh0Var.f54532a;
             if (i7 == i10 && (i7 == 0 || i7 == 3)) {
                 ch.o0 o0Var = this.f41024c;
                 if (o0Var != null && o0Var.equals(zh0Var.f41024c)) {

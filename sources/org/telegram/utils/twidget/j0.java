@@ -1,5 +1,6 @@
 package org.telegram.utils.twidget;
 
+import android.content.Context;
 import android.os.Process;
 import android.text.TextUtils;
 import bi.ra;
@@ -11,31 +12,31 @@ import org.telegram.messenger.yr;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class j0 implements Runnable {
-    public final int f52860a;
-    public final Object f52861b;
+    public final int f52858a;
+    public final Object f52859b;
 
     public j0(Object obj, int i7) {
-        this.f52860a = i7;
-        this.f52861b = obj;
+        this.f52858a = i7;
+        this.f52859b = obj;
     }
 
     @Override
     public final void run() {
         k0 k0Var;
-        switch (this.f52860a) {
+        switch (this.f52858a) {
             case 0:
-                k0 k0Var2 = (k0) this.f52861b;
+                k0 k0Var2 = (k0) this.f52859b;
                 k0Var2.getClass();
                 n0.a(k0Var2);
                 return;
             case 1:
-                final m0 m0Var = (m0) this.f52861b;
+                final m0 m0Var = (m0) this.f52859b;
                 int i7 = m0Var.f52906a;
-                Iterator it = n0.f52916a.values().iterator();
+                Iterator it = n0.f52915a.values().iterator();
                 while (true) {
                     if (it.hasNext()) {
                         k0Var = (k0) it.next();
-                        if (k0Var.f52868b != i7 || k0Var.f52876l != m0Var.f52907b || k0Var.f52875k || k0Var.f52887x <= 0 || k0Var.d <= 0) {
+                        if (k0Var.f52865b != i7 || k0Var.f52873l != m0Var.f52907b || k0Var.f52872k || k0Var.f52884x <= 0 || k0Var.d <= 0) {
                         }
                     } else {
                         k0Var = null;
@@ -46,7 +47,7 @@ public final class j0 implements Runnable {
                     return;
                 }
                 TLRPC.TL_messages_getWidgetPublicData tL_messages_getWidgetPublicData = new TLRPC.TL_messages_getWidgetPublicData();
-                tL_messages_getWidgetPublicData.peer = qp.s1(k0Var.f52868b).j1(k0Var.f52869c);
+                tL_messages_getWidgetPublicData.peer = qp.s1(k0Var.f52865b).j1(k0Var.f52866c);
                 tL_messages_getWidgetPublicData.msg_id = k0Var.d;
                 tL_messages_getWidgetPublicData.hash = m0Var.f52908c;
                 m0Var.f52909e = ConnectionsManager.getInstance(i7).sendRequestTyped(tL_messages_getWidgetPublicData, new d3.b(1), new v10() {
@@ -58,7 +59,7 @@ public final class j0 implements Runnable {
                         TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                         m0 m0Var2 = m0.this;
                         m0Var2.f52909e = 0;
-                        HashMap hashMap = n0.f52925l;
+                        HashMap hashMap = n0.f52924l;
                         StringBuilder sb2 = new StringBuilder();
                         int i10 = m0Var2.f52906a;
                         sb2.append(i10);
@@ -82,16 +83,16 @@ public final class j0 implements Runnable {
                                 m0Var2.f52908c = j10;
                                 String str2 = tL_messages_widgetPublicData.data;
                                 String C = n0.C(str2);
-                                for (k0 k0Var3 : n0.f52916a.values()) {
-                                    if (k0Var3.f52868b == i10 && k0Var3.f52876l == j3 && !k0Var3.f52875k && (!TextUtils.equals(k0Var3.f52880p, C) || k0Var3.f52881q != j10)) {
-                                        k0Var3.f52881q = j10;
-                                        n0.c(k0Var3, k0Var3.f52879o, C);
-                                        TLRPC.TL_messageMediaWidget tL_messageMediaWidget = k0Var3.f52882r;
+                                for (k0 k0Var3 : n0.f52915a.values()) {
+                                    if (k0Var3.f52865b == i10 && k0Var3.f52873l == j3 && !k0Var3.f52872k && (!TextUtils.equals(k0Var3.f52877p, C) || k0Var3.f52878q != j10)) {
+                                        k0Var3.f52878q = j10;
+                                        n0.c(k0Var3, k0Var3.f52876o, C);
+                                        TLRPC.TL_messageMediaWidget tL_messageMediaWidget = k0Var3.f52879r;
                                         if (tL_messageMediaWidget != null) {
                                             tL_messageMediaWidget.public_data_hash = j10;
                                         }
                                         yr a02 = yr.a0(i10);
-                                        long j11 = k0Var3.f52869c;
+                                        long j11 = k0Var3.f52866c;
                                         int i12 = k0Var3.d;
                                         if (str2 == null) {
                                             str = "";
@@ -109,17 +110,17 @@ public final class j0 implements Runnable {
                 });
                 return;
             case 2:
-                q0 q0Var = (q0) this.f52861b;
-                r0 r0Var = q0Var.f52946f;
-                synchronized (r0Var.f52955b) {
+                q0 q0Var = (q0) this.f52859b;
+                r0 r0Var = q0Var.h;
+                synchronized (r0Var.f52956b) {
                     try {
-                        if (q0Var.f52944c <= 0 && q0Var.d) {
+                        if (q0Var.f52945c <= 0 && q0Var.d) {
                             q0Var.d = false;
-                            q0Var.f52942a = null;
+                            q0Var.f52943a = null;
                             if (r0Var.d == q0Var) {
                                 r0Var.d = null;
                             }
-                            r0Var.f52959g.unbindService(q0Var);
+                            r0Var.f52960g.unbindService(q0Var);
                             return;
                         }
                         return;
@@ -127,16 +128,19 @@ public final class j0 implements Runnable {
                     }
                 }
             case 3:
-                v0 v0Var = (v0) this.f52861b;
-                h1 h1Var = v0Var.f52980f;
-                if (h1Var != null) {
-                    h1Var.d(v0Var.f52996x);
+                v0 v0Var = (v0) this.f52859b;
+                i1 i1Var = v0Var.f52981f;
+                if (i1Var != null) {
+                    i1Var.e(v0Var.f52997x);
                     return;
                 }
                 return;
-            default:
+            case 4:
                 Process.setThreadPriority(10);
-                ((Runnable) this.f52861b).run();
+                ((Runnable) this.f52859b).run();
+                return;
+            default:
+                i1.c((Context) this.f52859b);
                 return;
         }
     }

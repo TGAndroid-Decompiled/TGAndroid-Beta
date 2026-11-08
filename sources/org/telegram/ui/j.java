@@ -13,7 +13,7 @@ public final class j extends rg.b {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57047f;
+        int i7 = d1Var.f57048f;
         if (i7 != 2 && i7 != 0) {
             return true;
         }
@@ -30,7 +30,7 @@ public final class j extends rg.b {
         if (i7 >= 0) {
             k kVar = this.d;
             if (i7 < kVar.h.size()) {
-                return ((i) kVar.h.get(i7)).f54531a;
+                return ((i) kVar.h.get(i7)).f54532a;
             }
             return 0;
         }
@@ -47,13 +47,13 @@ public final class j extends rg.b {
             i iVar = (i) arrayList.get(i7);
             int i10 = i7 + 1;
             int i11 = 0;
-            if (i10 < arrayList.size() && ((i) arrayList.get(i10)).f54531a == iVar.f54531a) {
+            if (i10 < arrayList.size() && ((i) arrayList.get(i10)).f54532a == iVar.f54532a) {
                 z9 = true;
             } else {
                 z9 = false;
             }
-            int i12 = d1Var.f57047f;
-            View view = d1Var.f57043a;
+            int i12 = d1Var.f57048f;
+            View view = d1Var.f57044a;
             if (i12 == 0) {
                 ((org.telegram.ui.Cells.n4) view).setText(iVar.f46533c);
             } else if (i12 == 2) {

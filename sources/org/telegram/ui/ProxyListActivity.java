@@ -72,7 +72,7 @@ public class ProxyListActivity extends org.telegram.ui.ActionBar.f2 implements o
             for (int i11 = proxyListActivity.f41881n; i11 < proxyListActivity.f41882r; i11++) {
                 org.telegram.ui.Components.xi0 xi0Var = (org.telegram.ui.Components.xi0) proxyListActivity.f41877b.K(i11);
                 if (xi0Var != null) {
-                    ((nx0) xi0Var.f57043a).b();
+                    ((nx0) xi0Var.f57044a).b();
                 }
             }
         } else if (i7 == proxyListActivity.f41884w) {
@@ -96,7 +96,7 @@ public class ProxyListActivity extends org.telegram.ui.ActionBar.f2 implements o
             for (int i12 = proxyListActivity.f41881n; i12 < proxyListActivity.f41882r; i12++) {
                 org.telegram.ui.Components.xi0 xi0Var2 = (org.telegram.ui.Components.xi0) proxyListActivity.f41877b.K(i12);
                 if (xi0Var2 != null) {
-                    nx0 nx0Var = (nx0) xi0Var2.f57043a;
+                    nx0 nx0Var = (nx0) xi0Var2.f57044a;
                     if (nx0Var.d == hzVar) {
                         z9 = true;
                     } else {
@@ -109,7 +109,7 @@ public class ProxyListActivity extends org.telegram.ui.ActionBar.f2 implements o
             proxyListActivity.h0(false);
             org.telegram.ui.Components.xi0 xi0Var3 = (org.telegram.ui.Components.xi0) proxyListActivity.f41877b.K(proxyListActivity.useProxyRow);
             if (xi0Var3 != null) {
-                ((org.telegram.ui.Cells.r8) xi0Var3.f57043a).setChecked(true);
+                ((org.telegram.ui.Cells.r8) xi0Var3.f57044a).setChecked(true);
             }
             ConnectionsManager.setProxySettings(proxyListActivity.d, org.telegram.messenger.iz.B1.f22994a);
         } else if (i7 == proxyListActivity.proxyAddRow) {
@@ -189,7 +189,7 @@ public class ProxyListActivity extends org.telegram.ui.ActionBar.f2 implements o
         this.f41877b = pj0Var;
         pj0Var.r1();
         ((v4.k) this.f41877b.getItemAnimator()).C = false;
-        ((v4.k) this.f41877b.getItemAnimator()).f57099o = org.telegram.ui.Components.xq.f40366f;
+        ((v4.k) this.f41877b.getItemAnimator()).f57100o = org.telegram.ui.Components.xq.f40366f;
         this.f41877b.setSectionsDrawBackground(true);
         this.f41877b.setVerticalScrollBarEnabled(false);
         this.f41877b.setLayoutManager(new v4.b0(1, false));

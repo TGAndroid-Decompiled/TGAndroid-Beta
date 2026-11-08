@@ -26,7 +26,7 @@ public final class br0 extends org.telegram.ui.Components.pj0 {
         ar0 ar0Var = new ar0(this);
         setItemAnimator(ar0Var);
         ar0Var.C = false;
-        ar0Var.f57070m = false;
+        ar0Var.f57071m = false;
         setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(6.0f));
         paint.setColor(2130706432);
         this.f44482g3 = context.getResources().getDrawable(2131232529).mutate();

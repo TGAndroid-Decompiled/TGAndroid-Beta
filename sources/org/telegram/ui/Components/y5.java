@@ -43,14 +43,14 @@ public abstract class y5 extends LinearLayout {
     }
 
     public final void b() {
-        ArrayList arrayList = this.f40575c.f55507b;
+        ArrayList arrayList = this.f40575c.f55508b;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
             Object obj = arrayList.get(i7);
             i7++;
             te.e eVar = (te.e) obj;
-            View view = ((x5) eVar.f55495a).f40208a;
+            View view = ((x5) eVar.f55496a).f40208a;
             RectF b10 = eVar.b();
             if (getOrientation() == 1) {
                 view.setTranslationY((getPaddingTop() + b10.top) - view.getTop());
@@ -59,7 +59,7 @@ public abstract class y5 extends LinearLayout {
             }
             f(view, eVar.c());
         }
-        float f10 = getMetadata().f55505g.f55512a;
+        float f10 = getMetadata().f55506g.f55513a;
         if (this.f40578n != f10) {
             this.f40578n = f10;
             Runnable runnable = this.h;
@@ -70,7 +70,7 @@ public abstract class y5 extends LinearLayout {
     }
 
     public final float c(float f10) {
-        return (f10 * getMetadata().f55502c.f55512a) + getMetadata().f55505g.f55512a;
+        return (f10 * getMetadata().f55503c.f55513a) + getMetadata().f55506g.f55513a;
     }
 
     public final boolean d(View view) {
@@ -99,7 +99,7 @@ public abstract class y5 extends LinearLayout {
     }
 
     public int getEntriesCount() {
-        return this.f40575c.f55507b.size();
+        return this.f40575c.f55508b.size();
     }
 
     public te.g getMetadata() {

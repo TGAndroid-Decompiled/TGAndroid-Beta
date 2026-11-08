@@ -41,7 +41,7 @@ public abstract class b0 extends FrameLayout {
         a0Var.n(350L);
         a0Var.o(xq.h);
         a0Var.C = false;
-        a0Var.f57070m = false;
+        a0Var.f57071m = false;
         this.d.setItemAnimator(a0Var);
     }
 

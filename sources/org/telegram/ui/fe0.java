@@ -20,8 +20,8 @@ public final class fe0 implements Runnable {
         switch (i7) {
             case 0:
                 if (Build.VERSION.SDK_INT >= 31 && (fVar = je0Var.S) != null) {
-                    fVar.f54570c.d = 0L;
-                    je0Var.T.f54570c.d = 0L;
+                    fVar.f54571c.d = 0L;
+                    je0Var.T.f54571c.d = 0L;
                     je0Var.i0();
                     return;
                 }

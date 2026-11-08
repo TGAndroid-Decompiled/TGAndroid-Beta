@@ -88,7 +88,7 @@ public final class i10 extends oj0 {
     public final void t(v4.d1 d1Var, int i7) {
         TLRPC.GroupCallParticipant groupCallParticipant;
         org.telegram.messenger.s3 s3Var;
-        h10 h10Var = (h10) d1Var.f57043a;
+        h10 h10Var = (h10) d1Var.f57044a;
         org.telegram.messenger.s3 s3Var2 = h10Var.f34074f;
         ArrayList arrayList = this.f34499e;
         if (i7 < arrayList.size()) {

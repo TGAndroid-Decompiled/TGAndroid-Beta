@@ -1356,7 +1356,7 @@ public abstract class xs0 extends FrameLayout implements org.telegram.ui.ActionB
                 if (sr0Var.E == 14 && (up0Var = this.f40391a0) != null && up0Var.getParent() == sr0Var) {
                     for (View view : up0Var.h.getViewPages()) {
                         if ((view instanceof zh.z1) && view.getVisibility() == 0) {
-                            fi.w3 w3Var = ((zh.z1) view).f60625f;
+                            fi.w3 w3Var = ((zh.z1) view).f60626f;
                             ih.d.a(w3Var, canvas, rectF, w3Var, viewGroup);
                         }
                     }

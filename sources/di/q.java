@@ -165,7 +165,7 @@ public abstract class q extends FrameLayout implements ls, te.b {
         this.R = kVar;
         kVar.C = false;
         kVar.n(150L);
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         iVar.setItemAnimator(kVar);
         v4.b0 b0Var = new v4.b0(0, false);
         this.S = b0Var;
@@ -222,7 +222,7 @@ public abstract class q extends FrameLayout implements ls, te.b {
         ?? kVar2 = new v4.k();
         this.d = kVar2;
         kVar2.C = false;
-        kVar2.f57070m = false;
+        kVar2.f57071m = false;
         iVar2.setItemAnimator(kVar2);
         iVar2.setAdapter(mVar2);
         iVar2.setClipChildren(false);
@@ -346,7 +346,7 @@ public abstract class q extends FrameLayout implements ls, te.b {
         int i10;
         int i11;
         float a10 = c8.j9.a(Math.min(this.N, this.f9591d0), 0.0f, 1.0f);
-        float f10 = this.f9585a.f55486e;
+        float f10 = this.f9585a.f55487e;
         float f11 = 1.0f - f10;
         float f12 = f10 * a10;
         float f13 = f11 * a10;

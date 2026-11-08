@@ -333,12 +333,12 @@ public class w40 extends org.telegram.ui.ActionBar.f2 implements org.telegram.me
             o0();
             org.telegram.ui.Components.s00 s00Var = this.f50876f;
             te.c cVar2 = this.f50869b;
-            s00Var.setTranslationY(cVar2.f55492f);
+            s00Var.setTranslationY(cVar2.f55493f);
             n0();
-            this.f50874e.setTranslationY(org.telegram.messenger.g0.L(48.0f) + cVar2.f55492f);
+            this.f50874e.setTranslationY(org.telegram.messenger.g0.L(48.0f) + cVar2.f55493f);
             this.d.invalidate();
             int paddingTop2 = this.f50884n.getPaddingTop();
-            if (paddingTop2 != paddingTop && !((te.a) this.f50874e.f12598c).f55487f) {
+            if (paddingTop2 != paddingTop && !((te.a) this.f50874e.f12598c).f55488f) {
                 this.f50884n.scrollBy(0, paddingTop - paddingTop2);
             }
         } else if (i7 == 4) {
@@ -575,7 +575,7 @@ public class w40 extends org.telegram.ui.ActionBar.f2 implements org.telegram.me
         }
         View view2 = this.fragmentView;
         k40 k40Var = new k40(this, 3);
-        WeakHashMap weakHashMap = r0.i0.f54190a;
+        WeakHashMap weakHashMap = r0.i0.f54191a;
         r0.a0.i(view2, k40Var);
         return this.fragmentView;
     }
@@ -654,7 +654,7 @@ public class w40 extends org.telegram.ui.ActionBar.f2 implements org.telegram.me
                 rectF2.set(0.0f, this.fragmentView.getMeasuredHeight() - this.F.getMeasuredHeight(), this.fragmentView.getMeasuredWidth(), this.fragmentView.getMeasuredHeight());
                 rectF2.inset(0.0f, f10);
             }
-            if (this.F != null && this.f50871c.f55486e > 0.0f) {
+            if (this.F != null && this.f50871c.f55487e > 0.0f) {
                 i7 = 2;
             } else {
                 i7 = 1;
@@ -674,7 +674,7 @@ public class w40 extends org.telegram.ui.ActionBar.f2 implements org.telegram.me
         if (s1Var == null) {
             return;
         }
-        float f10 = this.f50871c.f55486e;
+        float f10 = this.f50871c.f55487e;
         s1Var.setTranslationY((1.0f - f10) * org.telegram.messenger.g0.L(12.0f));
         this.F.setAlpha(f10);
         bi.s1 s1Var2 = this.F;
@@ -688,7 +688,7 @@ public class w40 extends org.telegram.ui.ActionBar.f2 implements org.telegram.me
 
     @Override
     public final void m(r0.k1 k1Var) {
-        this.f50885n0 = k1Var.f54201a.f(8).d;
+        this.f50885n0 = k1Var.f54202a.f(8).d;
         m0();
     }
 
@@ -706,9 +706,9 @@ public class w40 extends org.telegram.ui.ActionBar.f2 implements org.telegram.me
         }
         int i7 = this.m0;
         int i10 = this.f50867a;
-        int measuredHeight = this.actionBar.getMeasuredHeight() + org.telegram.messenger.g0.L(i10 + 48) + ((int) this.f50869b.f55492f);
+        int measuredHeight = this.actionBar.getMeasuredHeight() + org.telegram.messenger.g0.L(i10 + 48) + ((int) this.f50869b.f55493f);
         int measuredWidth = this.f50884n.getMeasuredWidth();
-        int z9 = org.telegram.messenger.k5.z(i10, this.f50884n.getMeasuredHeight(), (int) ((org.telegram.messenger.g0.L(76.0f) + i7) * this.f50871c.f55486e));
+        int z9 = org.telegram.messenger.k5.z(i10, this.f50884n.getMeasuredHeight(), (int) ((org.telegram.messenger.g0.L(76.0f) + i7) * this.f50871c.f55487e));
         Rect rect = this.f50886o0;
         rect.set(0, measuredHeight, measuredWidth, z9);
         this.f50884n.setClipBounds(rect);
@@ -722,7 +722,7 @@ public class w40 extends org.telegram.ui.ActionBar.f2 implements org.telegram.me
         } else {
             i7 = 0;
         }
-        this.f50884n.setPadding(0, this.actionBar.getMeasuredHeight() + org.telegram.messenger.g0.L(i10 + 48) + ((int) this.f50869b.f55492f), 0, org.telegram.messenger.g0.L(this.f50867a) + this.m0 + i7);
+        this.f50884n.setPadding(0, this.actionBar.getMeasuredHeight() + org.telegram.messenger.g0.L(i10 + 48) + ((int) this.f50869b.f55493f), 0, org.telegram.messenger.g0.L(this.f50867a) + this.m0 + i7);
         this.f50891s.setPadding(0, 0, 0, this.m0);
     }
 

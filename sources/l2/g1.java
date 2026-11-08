@@ -70,7 +70,7 @@ public final class g1 implements x2.k0, q2.k {
             while (true) {
                 if (i10 < i1Var.f17895c.size()) {
                     if (((x2.g0) i1Var.f17895c.get(i10)).d == g0Var.d) {
-                        Object obj = g0Var.f58329a;
+                        Object obj = g0Var.f58330a;
                         Object obj2 = i1Var.f17894b;
                         int i11 = a.f17737g;
                         g0Var2 = g0Var.a(Pair.create(obj2, obj));

@@ -108,7 +108,7 @@ public final class t5 extends o00 implements org.telegram.messenger.ls {
         if (view instanceof bh.c) {
             wg.l.I0(t5Var, t5Var.resourceProvider, j3, ((bh.c) view).getPrepaidGiveaway());
         }
-        if (((s5) t5Var.f49917c0.get(i7)).f54531a == 9) {
+        if (((s5) t5Var.f49917c0.get(i7)).f54532a == 9) {
             if (t5Var.f49918d0 == 1) {
                 z9 = true;
             }
@@ -326,7 +326,7 @@ public final class t5 extends o00 implements org.telegram.messenger.ls {
         View createView = super.createView(context);
         I0(false);
         v4.k kVar = new v4.k();
-        kVar.f57070m = false;
+        kVar.f57071m = false;
         kVar.C = false;
         this.f48193c.setItemAnimator(kVar);
         this.f48193c.setOnItemClickListener(new di.p4(3, this, context));

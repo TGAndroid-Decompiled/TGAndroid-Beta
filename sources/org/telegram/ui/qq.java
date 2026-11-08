@@ -107,7 +107,7 @@ public final class qq extends org.telegram.ui.Components.n41 {
             boolean z9 = org.telegram.messenger.r2.f25212a;
             presentFragment(new g(0));
             e12.edit().putBoolean("channel_intro", true).apply();
-        } else if (x31Var.f54531a == 12) {
+        } else if (x31Var.f54532a == 12) {
             finishFragment();
             cb1Var.a(getMessagesController().M0(Long.valueOf(-x31Var.f40191x)));
         }

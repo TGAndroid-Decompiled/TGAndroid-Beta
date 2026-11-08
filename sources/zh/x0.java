@@ -23,7 +23,7 @@ import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.wp;
 import org.telegram.ui.Components.x31;
 public final class x0 extends w31 {
-    public static final int f60575b = 0;
+    public static final int f60576b = 0;
 
     static {
         w31.h(new w31());
@@ -60,12 +60,12 @@ public final class x0 extends w31 {
             v41 v41Var = y0Var.J;
             TextView textView = y0Var.I;
             TextView textView2 = y0Var.H;
-            v0 v0Var = y0Var.f60590e;
+            v0 v0Var = y0Var.f60591e;
             l9 l9Var = y0Var.D;
             TextView textView3 = y0Var.L;
             TextView textView4 = y0Var.M;
             int d = jVar.d();
-            if (y0Var.f60597j0 != jVar) {
+            if (y0Var.f60598j0 != jVar) {
                 pb f12 = dd.f1(l9Var, l9Var.getImageReceiver(), d);
                 y0Var.N = f12;
                 f12.run();
@@ -79,9 +79,9 @@ public final class x0 extends w31 {
             textView2.setVisibility(0);
             textView.setVisibility(0);
             l9Var.setTranslationY(-org.telegram.messenger.g0.L(8.0f));
-            y0Var.f60600n.setVisibility(8);
+            y0Var.f60601n.setVisibility(8);
             y0Var.F.setVisibility(8);
-            if (jVar.f56639c == null && jVar.d == null) {
+            if (jVar.f56640c == null && jVar.d == null) {
                 textView4.setVisibility(8);
             } else {
                 if (k6.I.q()) {
@@ -103,20 +103,20 @@ public final class x0 extends w31 {
             textView3.setPadding(org.telegram.messenger.g0.L(10.0f), 0, org.telegram.messenger.g0.L(10.0f), 0);
             textView3.setTextSize(1, 12.0f);
             textView3.setText(jVar.c());
-            y0Var.f60608s0 = 0;
+            y0Var.f60609s0 = 0;
             y0Var.K.setBackground(k6.d0(org.telegram.messenger.g0.L(13.0f), 422810068));
             textView3.setTextColor(-13397548);
             ((ViewGroup.MarginLayoutParams) v41Var.getLayoutParams()).topMargin = org.telegram.messenger.g0.L(130.0f);
             ((FrameLayout.LayoutParams) v41Var.getLayoutParams()).gravity = 49;
-            y0Var.f60597j0 = jVar;
-            y0Var.f60598k0 = null;
-            y0Var.f60584a0 = jVar;
-            y0Var.f60586b0 = null;
-            y0Var.f60589d0 = false;
-            y0Var.f60591e0 = null;
-            y0Var.f60593f0 = false;
-            y0Var.f60594g0 = false;
-            y0Var.f60595h0 = false;
+            y0Var.f60598j0 = jVar;
+            y0Var.f60599k0 = null;
+            y0Var.f60585a0 = jVar;
+            y0Var.f60587b0 = null;
+            y0Var.f60590d0 = false;
+            y0Var.f60592e0 = null;
+            y0Var.f60594f0 = false;
+            y0Var.f60595g0 = false;
+            y0Var.f60596h0 = false;
             y0Var.Q = null;
             y0Var.R = null;
             y0Var.d(false, false);
@@ -146,7 +146,7 @@ public final class x0 extends w31 {
             f10 = 0.65f;
         }
         frameLayout.setAlpha(f10);
-        z0 z0Var = y0Var.f60592f;
+        z0 z0Var = y0Var.f60593f;
         if (!x31Var.f40176g) {
             f11 = 0.5f;
         }

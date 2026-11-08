@@ -3,21 +3,21 @@ package zh;
 import org.telegram.messenger.w10;
 import org.telegram.ui.Components.up0;
 public final class i1 implements te.b, w10 {
-    public final up0 f60389a;
+    public final up0 f60390a;
 
     public i1(up0 up0Var) {
-        this.f60389a = up0Var;
+        this.f60390a = up0Var;
     }
 
     @Override
     public void Y(int i7, float f10, float f11, te.c cVar) {
-        this.f60389a.l();
+        this.f60390a.l();
     }
 
     @Override
     public Object d(Number number, Object obj) {
         Integer num = (Integer) obj;
-        up0 up0Var = this.f60389a;
+        up0 up0Var = this.f60390a;
         up0Var.i();
         if (((Integer) number).intValue() == -1) {
             up0Var.h(null, new j1(up0Var, 1));

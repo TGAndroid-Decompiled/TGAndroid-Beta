@@ -41,10 +41,10 @@ public final class h0 implements ValueAnimator.AnimatorUpdateListener {
                 vg.m mVar = (vg.m) this.f39241e;
                 mVar.getClass();
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                vg.f fVar = mVar.f57411b;
+                vg.f fVar = mVar.f57412b;
                 fVar.d = this.f39239b * floatValue3;
-                fVar.f57376e = this.f39240c * floatValue3;
-                fVar.f57379i = floatValue3 * this.d;
+                fVar.f57377e = this.f39240c * floatValue3;
+                fVar.f57380i = floatValue3 * this.d;
                 return;
         }
     }

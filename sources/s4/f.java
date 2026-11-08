@@ -3,13 +3,13 @@ package s4;
 import android.media.MediaRouter2;
 import android.media.MediaRouter2$ControllerCallback;
 public final class f extends MediaRouter2$ControllerCallback {
-    public final k f54812a;
+    public final k f54813a;
 
     public f(k kVar) {
-        this.f54812a = kVar;
+        this.f54813a = kVar;
     }
 
     public final void onControllerUpdated(MediaRouter2.RoutingController routingController) {
-        this.f54812a.r(routingController);
+        this.f54813a.r(routingController);
     }
 }

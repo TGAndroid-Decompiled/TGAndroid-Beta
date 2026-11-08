@@ -89,8 +89,8 @@ public final class y1 extends v4.g0 {
         TLRPC.StickerSet stickerSet;
         z1 z1Var = this.N;
         k2 k2Var = z1Var.f13241s;
-        int i10 = d1Var.f57047f;
-        View view = d1Var.f57043a;
+        int i10 = d1Var.f57048f;
+        View view = d1Var.f57044a;
         if (i10 == 0) {
             view.setTag(34);
             view.setLayoutParams(new v4.o0(-1, (int) k2Var.f12256o1));

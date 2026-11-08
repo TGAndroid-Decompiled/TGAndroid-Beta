@@ -118,12 +118,12 @@ public class PremiumPreviewFragment extends org.telegram.ui.ActionBar.f2 impleme
         this.f41624o0 = i0.b.f15119e;
         ug.y0 y0Var = new ug.y0(org.telegram.ui.ActionBar.k6.zk, org.telegram.ui.ActionBar.k6.Ak, -1, -1, null);
         this.f41623n0 = y0Var;
-        y0Var.f56874m = true;
-        y0Var.f56876o = 0.0f;
-        y0Var.f56877p = 0.0f;
-        y0Var.f56878q = 1.0f;
-        y0Var.f56865b = 0.0f;
-        y0Var.f56866c = 0.0f;
+        y0Var.f56875m = true;
+        y0Var.f56877o = 0.0f;
+        y0Var.f56878p = 0.0f;
+        y0Var.f56879q = 1.0f;
+        y0Var.f56866b = 0.0f;
+        y0Var.f56867c = 0.0f;
         ArrayList arrayList = new ArrayList();
         this.A0 = arrayList;
         RectF rectF = new RectF();
@@ -143,8 +143,8 @@ public class PremiumPreviewFragment extends org.telegram.ui.ActionBar.f2 impleme
             this.f41635w0 = gVar;
             ri.f fVar = new ri.f(null);
             fVar.d = gVar;
-            fVar.f54571e = -3;
-            fVar.f54572f = obj;
+            fVar.f54572e = -3;
+            fVar.f54573f = obj;
             this.f41637x0 = new dh.c(fVar, fVar, fVar);
         } else {
             this.f41635w0 = null;
@@ -697,7 +697,7 @@ public class PremiumPreviewFragment extends org.telegram.ui.ActionBar.f2 impleme
     public final boolean canBeginSlide() {
         bi.qd qdVar;
         us0 us0Var = this.U;
-        if (us0Var != null && (qdVar = us0Var.d) != null && qdVar.f57409a) {
+        if (us0Var != null && (qdVar = us0Var.d) != null && qdVar.f57410a) {
             return false;
         }
         return true;
@@ -785,27 +785,27 @@ public class PremiumPreviewFragment extends org.telegram.ui.ActionBar.f2 impleme
         q1Var.c();
         if (i10 == 1) {
             if (this.f41617h0) {
-                ug.p1 p1Var = this.V.f56793a;
-                p1Var.f56777q = true;
+                ug.p1 p1Var = this.V.f56794a;
+                p1Var.f56778q = true;
                 p1Var.K = false;
                 p1Var.H = true;
                 p1Var.J = true;
-                p1Var.f56771k = org.telegram.messenger.g0.L(-14.0f);
-                ug.p1 p1Var2 = this.V.f56793a;
-                p1Var2.f56783x = 2000L;
-                p1Var2.f56784y = 3000;
-                p1Var2.f56778r = 16;
+                p1Var.f56772k = org.telegram.messenger.g0.L(-14.0f);
+                ug.p1 p1Var2 = this.V.f56794a;
+                p1Var2.f56784x = 2000L;
+                p1Var2.f56785y = 3000;
+                p1Var2.f56779r = 16;
                 p1Var2.G = false;
                 p1Var2.O = 28;
                 p1Var2.Q = i7;
             } else {
-                ug.p1 p1Var3 = this.V.f56793a;
+                ug.p1 p1Var3 = this.V.f56794a;
                 p1Var3.J = true;
-                p1Var3.f56771k = org.telegram.messenger.g0.L(28.0f);
-                ug.p1 p1Var4 = this.V.f56793a;
-                p1Var4.f56783x = 2000L;
-                p1Var4.f56784y = 3000;
-                p1Var4.f56778r = 16;
+                p1Var3.f56772k = org.telegram.messenger.g0.L(28.0f);
+                ug.p1 p1Var4 = this.V.f56794a;
+                p1Var4.f56784x = 2000L;
+                p1Var4.f56785y = 3000;
+                p1Var4.f56779r = 16;
                 p1Var4.G = false;
                 p1Var4.O = 28;
             }
@@ -820,7 +820,7 @@ public class PremiumPreviewFragment extends org.telegram.ui.ActionBar.f2 impleme
         this.f41613e0 = p0Var;
         p0Var.K = true;
         p0Var.setClickable(false);
-        p0Var.f56760w.setClickable(false);
+        p0Var.f56761w.setClickable(false);
         p0Var.setStateListAnimator(null);
         y0(false);
         this.J = new FrameLayout(context);
@@ -864,7 +864,7 @@ public class PremiumPreviewFragment extends org.telegram.ui.ActionBar.f2 impleme
         w0(this.f41618i0);
         View view2 = this.fragmentView;
         li0 li0Var = new li0(this, 7);
-        WeakHashMap weakHashMap = r0.i0.f54190a;
+        WeakHashMap weakHashMap = r0.i0.f54191a;
         r0.a0.i(view2, li0Var);
         return this.fragmentView;
     }
@@ -1008,7 +1008,7 @@ public class PremiumPreviewFragment extends org.telegram.ui.ActionBar.f2 impleme
         }
         try {
             ug.q1 q1Var = this.V;
-            if (q1Var != null && q1Var.f56793a != null && this.f41611d0 != null) {
+            if (q1Var != null && q1Var.f56794a != null && this.f41611d0 != null) {
                 z0();
             }
         } catch (Exception e10) {
@@ -1053,7 +1053,7 @@ public class PremiumPreviewFragment extends org.telegram.ui.ActionBar.f2 impleme
             Canvas canvas = this.f41621l0;
             canvas.save();
             canvas.scale(100.0f / this.f41611d0.getMeasuredWidth(), 100.0f / this.f41611d0.getMeasuredHeight());
-            canvas.drawRect(0.0f, 0.0f, this.f41611d0.getMeasuredWidth(), this.f41611d0.getMeasuredHeight(), y0Var.f56868f);
+            canvas.drawRect(0.0f, 0.0f, this.f41611d0.getMeasuredWidth(), this.f41611d0.getMeasuredHeight(), y0Var.f56869f);
             canvas.restore();
             this.U.d.setBackgroundBitmap(this.f41620k0);
         }
@@ -1103,7 +1103,7 @@ public class PremiumPreviewFragment extends org.telegram.ui.ActionBar.f2 impleme
             if (kVar.f27683p0 != o4) {
                 kVar.C(o4, false);
             }
-            this.V.f56793a.g();
+            this.V.f56794a.g();
             us0 us0Var = this.U;
             if (us0Var != null) {
                 TextView textView = us0Var.f50410a;
@@ -1119,9 +1119,9 @@ public class PremiumPreviewFragment extends org.telegram.ui.ActionBar.f2 impleme
                 }
                 textView2.setTextColor(org.telegram.ui.ActionBar.k6.x0(null, i11, false));
                 bi.qd qdVar = this.U.d;
-                if (qdVar != null && (fVar = qdVar.f57411b) != null) {
+                if (qdVar != null && (fVar = qdVar.f57412b) != null) {
                     if (z9) {
-                        fVar.f57395z = org.telegram.ui.ActionBar.k6.Lk;
+                        fVar.f57396z = org.telegram.ui.ActionBar.k6.Lk;
                         fVar.A = org.telegram.ui.ActionBar.k6.Mk;
                     }
                     fVar.b();

@@ -23,7 +23,7 @@ public final class f0 implements org.telegram.messenger.u10 {
         g4 g4Var = this.f45410a;
         vf.b bVar = this.d;
         if (bVar != null) {
-            bVar.f57324c = new org.telegram.ui.ActionBar.p(6, g4Var, bVar);
+            bVar.f57325c = new org.telegram.ui.ActionBar.p(6, g4Var, bVar);
         } else {
             t3 t3Var = g4Var.K;
             if (t3Var != null) {

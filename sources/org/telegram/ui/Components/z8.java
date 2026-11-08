@@ -46,7 +46,7 @@ public class z8 extends View {
             rectF.set(getWidth() - org.telegram.messenger.g0.L(22.0f), getHeight() - org.telegram.messenger.g0.L(22.0f), getWidth() - org.telegram.messenger.g0.L(0.0f), getHeight() - org.telegram.messenger.g0.L(0.0f));
             this.f40926b.e(rectF);
             canvas.drawCircle(rectF.centerX(), rectF.centerY(), (rectF.width() / 2.0f) + org.telegram.messenger.g0.L(1.33f), this.d);
-            canvas.drawCircle(rectF.centerX(), rectF.centerY(), rectF.width() / 2.0f, this.f40926b.f56868f);
+            canvas.drawCircle(rectF.centerX(), rectF.centerY(), rectF.width() / 2.0f, this.f40926b.f56869f);
             this.f40927c.c(rectF.centerX() - (this.f40927c.f36147c / 2.0f), rectF.centerY(), 1.0f, -1, canvas);
         }
     }

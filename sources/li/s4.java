@@ -135,7 +135,7 @@ public final class s4 extends y implements org.telegram.ui.ActionBar.a6, h9, k0 
             return null;
         }
         xh.e eVar = this.M;
-        if (eVar != null && eVar.f58784i) {
+        if (eVar != null && eVar.f58785i) {
             this.M = null;
         }
         if (this.M == null) {
@@ -650,7 +650,7 @@ public final class s4 extends y implements org.telegram.ui.ActionBar.a6, h9, k0 
             int width = getWidth();
             int height = getHeight();
             if (width > 0 && height > 0) {
-                if (canvas.isHardwareAccelerated() && !fVar.f54574r) {
+                if (canvas.isHardwareAccelerated() && !fVar.f54575r) {
                     try {
                         j(fVar.i(width, height));
                     } finally {
