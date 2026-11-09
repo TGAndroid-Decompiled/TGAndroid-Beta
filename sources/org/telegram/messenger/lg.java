@@ -47,16 +47,16 @@ public final class lg implements Runnable {
         NativeByteBuffer byteBufferValue;
         yr yrVar = (yr) this.f23891b;
         ArrayList arrayList = (ArrayList) this.f23892c;
-        org.telegram.ui.wg wgVar = (org.telegram.ui.wg) this.d;
+        org.telegram.ui.yg ygVar = (org.telegram.ui.yg) this.d;
         long e10 = yrVar.getUserConfig().e();
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
             int i10 = i7 + 1;
             ij ijVar = (ij) arrayList.get(i7);
-            if (!ijVar.f23281p1 && !ij.c4(ijVar.f23262k)) {
+            if (!ijVar.f23281p1 && !ij.b4(ijVar.f23262k)) {
                 try {
-                    sQLiteCursor = yrVar.f26721b.queryFinalized("SELECT data FROM messages_v2 WHERE uid = ? AND mid = ?", Long.valueOf(ij.B0(ijVar.f23262k)), Integer.valueOf(ijVar.f1()));
+                    sQLiteCursor = yrVar.f26721b.queryFinalized("SELECT data FROM messages_v2 WHERE uid = ? AND mid = ?", Long.valueOf(ij.B0(ijVar.f23262k)), Integer.valueOf(ijVar.e1()));
                     try {
                         try {
                             if (sQLiteCursor.next() && (byteBufferValue = sQLiteCursor.byteBufferValue(0)) != null) {
@@ -93,7 +93,7 @@ public final class lg implements Runnable {
             }
             i7 = i10;
         }
-        g0.h3(wgVar);
+        g0.h3(ygVar);
     }
 
     private final void c() {

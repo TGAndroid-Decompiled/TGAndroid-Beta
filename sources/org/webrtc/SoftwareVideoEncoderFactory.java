@@ -34,12 +34,12 @@ public class SoftwareVideoEncoderFactory implements VideoEncoderFactory {
 
     @Override
     public final VideoEncoderFactory.VideoEncoderSelector getEncoderSelector() {
-        return y.a(this);
+        return x.a(this);
     }
 
     @Override
     public final VideoCodecInfo[] getImplementations() {
-        return y.b(this);
+        return x.b(this);
     }
 
     @Override

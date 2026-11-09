@@ -1,6 +1,6 @@
 package ii;
 
-import org.telegram.ui.an;
+import org.telegram.ui.cn;
 public final class h implements Runnable {
     public final int f15541a;
     public final p f15542b;
@@ -21,7 +21,7 @@ public final class h implements Runnable {
             default:
                 p pVar = this.f15542b;
                 pVar.getClass();
-                pVar.presentFragment(an.ra(this.f15543c));
+                pVar.presentFragment(cn.ta(this.f15543c));
                 return;
         }
     }

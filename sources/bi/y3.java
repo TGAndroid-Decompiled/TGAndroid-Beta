@@ -5,20 +5,20 @@ import org.telegram.messenger.ij;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class y3 implements c20 {
-    public final int f5069a;
-    public final k7 f5070b;
+    public final int f5067a;
+    public final k7 f5068b;
 
     public y3(k7 k7Var, int i7) {
-        this.f5069a = i7;
-        this.f5070b = k7Var;
+        this.f5067a = i7;
+        this.f5068b = k7Var;
     }
 
     @Override
     public final void a(Object obj) {
         TLRPC.Message message;
-        switch (this.f5069a) {
+        switch (this.f5067a) {
             case 0:
-                k7 k7Var = this.f5070b;
+                k7 k7Var = this.f5068b;
                 k7Var.getClass();
                 if (((Boolean) obj).booleanValue()) {
                     k7Var.N0 = true;
@@ -27,23 +27,23 @@ public final class y3 implements c20 {
                 return;
             case 1:
                 ((Boolean) obj).booleanValue();
-                this.f5070b.dismiss();
+                this.f5068b.dismiss();
                 return;
             case 2:
                 TL_stars.starGiftUpgradePreview stargiftupgradepreview = (TL_stars.starGiftUpgradePreview) obj;
-                k7 k7Var2 = this.f5070b;
+                k7 k7Var2 = this.f5068b;
                 k7Var2.getClass();
                 if (stargiftupgradepreview != null) {
                     k7Var2.f4176g3 = stargiftupgradepreview.sample_attributes;
                     k7Var2.f4178h3 = stargiftupgradepreview.prices;
                     k7Var2.f4180i3 = stargiftupgradepreview.next_prices;
-                    k7Var2.a2();
+                    k7Var2.Z1();
                     return;
                 }
                 return;
             default:
                 TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
-                k7 k7Var3 = this.f5070b;
+                k7 k7Var3 = this.f5068b;
                 k7Var3.F2 = false;
                 k7Var3.G2 = true;
                 if (savedStarGift != null) {
@@ -70,7 +70,7 @@ public final class y3 implements c20 {
                                 return;
                             }
                         }
-                        k7Var3.i2(ijVar, null);
+                        k7Var3.h2(ijVar, null);
                         return;
                     }
                     return;

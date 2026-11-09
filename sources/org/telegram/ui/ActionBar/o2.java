@@ -19,20 +19,20 @@ public final class o2 extends FrameLayout {
     public boolean f28337e;
     public boolean f28338f;
 
-    public o2(int i7, Context context, f6 f6Var) {
+    public o2(int i7, Context context, g6 g6Var) {
         super(context);
         int i10;
         int i11;
         this.f28338f = false;
         this.d = i7;
         if (i7 != 4) {
-            setBackgroundDrawable(k6.M0(f6Var, false));
+            setBackgroundDrawable(l6.M0(g6Var, false));
         }
         ImageView imageView = new ImageView(context);
         this.f28335b = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
-        r6.t(imageView, k6.J5, f6Var, PorterDuff.Mode.MULTIPLY);
+        s6.s(imageView, l6.J5, g6Var, PorterDuff.Mode.MULTIPLY);
         if (id.f23157a0) {
             i10 = 5;
         } else {
@@ -42,7 +42,7 @@ public final class o2 extends FrameLayout {
         ImageView imageView2 = new ImageView(context);
         this.f28336c = imageView2;
         imageView2.setScaleType(scaleType);
-        r6.t(imageView2, k6.h7, f6Var, PorterDuff.Mode.SRC_IN);
+        s6.s(imageView2, l6.h7, g6Var, PorterDuff.Mode.SRC_IN);
         if (id.f23157a0) {
             i11 = 3;
         } else {
@@ -58,24 +58,24 @@ public final class o2 extends FrameLayout {
         if (i7 != 0 && i7 != 4) {
             if (i7 == 1) {
                 q5Var.setGravity(17);
-                r6.V(q5Var, k6.f27960j5, f6Var);
+                s6.U(q5Var, l6.f27973j5, g6Var);
                 q5Var.setTextSize(1, 14.0f);
                 q5Var.setTypeface(org.telegram.messenger.g0.o());
                 addView(q5Var, ha.c(-1.0f, -1));
                 return;
             } else if (i7 == 2) {
                 q5Var.setGravity(17);
-                r6.V(q5Var, k6.Gi, f6Var);
+                s6.U(q5Var, l6.Gi, g6Var);
                 q5Var.setTextSize(1, 14.0f);
                 q5Var.setTypeface(org.telegram.messenger.g0.o());
-                q5Var.setBackground(z5.e(k6.w0(k6.Ci, f6Var), 6.0f));
+                q5Var.setBackground(a6.e(l6.w0(l6.Ci, g6Var), 6.0f));
                 addView(q5Var, ha.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
                 return;
             } else {
                 return;
             }
         }
-        r6.V(q5Var, k6.f27960j5, f6Var);
+        s6.U(q5Var, l6.f27973j5, g6Var);
         q5Var.setTextSize(1, 16.0f);
         addView(q5Var, ha.e(-2, -2, (id.f23157a0 ? 5 : 3) | 16));
     }

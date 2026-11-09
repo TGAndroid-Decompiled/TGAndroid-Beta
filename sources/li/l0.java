@@ -46,7 +46,7 @@ public final class l0 {
             d.add(new l0(2131231576, id.M0(2131754048, null), "1."));
             d.add(new l0(2131231597, id.M0(2131754004, null), "[]", "/todo", "/checklist"));
             d.add(new l0(2131231552, id.M0(2131754046, null), ">", "/toggle", "/details"));
-            d.add(new l0(2131231548, id.M0(2131746014, null), "/button"));
+            d.add(new l0(2131231548, id.M0(2131746011, null), "/button"));
             d.add(new l0(2131231584, id.M0(2131754047, null), "/table"));
             d.add(new l0(2131231569, id.M0(2131754049, null), "/math", "/latex", "/expression"));
             d.add(new l0(2131231553, id.M0(2131754053, null), "---"));

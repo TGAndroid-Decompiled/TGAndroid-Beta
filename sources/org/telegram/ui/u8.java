@@ -3,23 +3,23 @@ package org.telegram.ui;
 import android.view.View;
 import java.io.Serializable;
 public final class u8 implements org.telegram.messenger.a20, org.telegram.messenger.b20, r0.m {
-    public final i9 f50257a;
+    public final i9 f50317a;
 
     public u8(i9 i9Var) {
-        this.f50257a = i9Var;
+        this.f50317a = i9Var;
     }
 
     @Override
     public r0.k1 S0(View view, r0.k1 k1Var) {
-        return this.f50257a.onInsetsInternal(view, k1Var);
+        return this.f50317a.onInsetsInternal(view, k1Var);
     }
 
     @Override
-    public Boolean a(org.telegram.ui.Components.x31 x31Var, View view, Integer num, Float f10, Float f11) {
+    public Boolean a(org.telegram.ui.Components.y31 y31Var, View view, Integer num, Float f10, Float f11) {
         boolean z9;
-        Object obj = x31Var.G;
+        Object obj = y31Var.G;
         if (obj instanceof f9) {
-            this.f50257a.f0(((f9) obj).f45517c, (e9) view);
+            this.f50317a.f0(((f9) obj).f45666c, (e9) view);
             z9 = true;
         } else {
             z9 = false;
@@ -32,6 +32,6 @@ public final class u8 implements org.telegram.messenger.a20, org.telegram.messen
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
-        i9.a0(this.f50257a, (org.telegram.ui.Components.x31) obj, (View) obj2);
+        i9.a0(this.f50317a, (org.telegram.ui.Components.y31) obj, (View) obj2);
     }
 }

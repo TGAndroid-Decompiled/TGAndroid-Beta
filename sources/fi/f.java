@@ -2,8 +2,8 @@ package fi;
 public final class f extends gh.b {
     public final int f11946s;
 
-    public f(int i7, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(i7, f6Var);
+    public f(int i7, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(i7, g6Var);
         this.f11946s = 2;
     }
 
@@ -58,8 +58,8 @@ public final class f extends gh.b {
         }
     }
 
-    public f(org.telegram.ui.ActionBar.f6 f6Var, int i7, float f10, int i10) {
-        super(f6Var, i7, f10);
+    public f(org.telegram.ui.ActionBar.g6 g6Var, int i7, float f10, int i10) {
+        super(g6Var, i7, f10);
         this.f11946s = i10;
     }
 }

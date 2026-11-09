@@ -61,7 +61,7 @@ public final class vz extends android.support.v4.media.session.s {
     @Override
     public final void S() {
         ij ijVar = MediaController.B().f21295u0;
-        if (ijVar != null && ijVar.J3()) {
+        if (ijVar != null && ijVar.I3()) {
             MediaController.B().U(false);
         }
     }
@@ -69,7 +69,7 @@ public final class vz extends android.support.v4.media.session.s {
     @Override
     public final void V() {
         ij ijVar = MediaController.B().f21295u0;
-        if (ijVar != null && ijVar.J3()) {
+        if (ijVar != null && ijVar.I3()) {
             MediaController.B().V();
         }
     }

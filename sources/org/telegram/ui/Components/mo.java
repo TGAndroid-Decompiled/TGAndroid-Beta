@@ -9,23 +9,23 @@ import java.util.HashMap;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.qc1;
+import org.telegram.ui.tc1;
 public final class mo implements bi {
-    public final di f36031a;
-    public final TL_stories.TL_premium_boostsStatus f36032b;
-    public final org.telegram.ui.ActionBar.f6 f36033c;
+    public final di f36119a;
+    public final TL_stories.TL_premium_boostsStatus f36120b;
+    public final org.telegram.ui.ActionBar.g6 f36121c;
     public final org.telegram.ui.f d;
-    public final long f36034e;
-    public final org.telegram.ui.wb f36035f;
+    public final long f36122e;
+    public final org.telegram.ui.wb f36123f;
     public final org.telegram.ui.rc h;
 
-    public mo(di diVar, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, org.telegram.ui.ActionBar.f6 f6Var, org.telegram.ui.f fVar, long j3, org.telegram.ui.wb wbVar, org.telegram.ui.rc rcVar) {
-        this.f36031a = diVar;
-        this.f36032b = tL_premium_boostsStatus;
-        this.f36033c = f6Var;
+    public mo(di diVar, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, org.telegram.ui.ActionBar.g6 g6Var, org.telegram.ui.f fVar, long j3, org.telegram.ui.wb wbVar, org.telegram.ui.rc rcVar) {
+        this.f36119a = diVar;
+        this.f36120b = tL_premium_boostsStatus;
+        this.f36121c = g6Var;
         this.d = fVar;
-        this.f36034e = j3;
-        this.f36035f = wbVar;
+        this.f36122e = j3;
+        this.f36123f = wbVar;
         this.h = rcVar;
     }
 
@@ -38,14 +38,14 @@ public final class mo implements bi {
     @Override
     public final void M0(Object obj) {
         lo loVar = new lo(obj, null, true, 1);
-        loVar.W1 = this.f36032b;
-        loVar.f50520a.f50944a = this.f36033c;
-        loVar.f50566q1 = this.d;
-        loVar.h1(this.f36034e);
-        loVar.J1 = new ko(this.f36031a, this.f36035f, 1);
+        loVar.W1 = this.f36120b;
+        loVar.f50902a.f51567a = this.f36121c;
+        loVar.f50948q1 = this.d;
+        loVar.h1(this.f36122e);
+        loVar.J1 = new ko(this.f36119a, this.f36123f, 1);
         ?? obj2 = new Object();
-        obj2.f27424a = true;
-        obj2.f27427e = true;
+        obj2.f27408a = true;
+        obj2.f27411e = true;
         this.h.showAsSheet(loVar, obj2);
     }
 
@@ -61,9 +61,9 @@ public final class mo implements bi {
 
     @Override
     public final void o1(int i7, boolean z9, boolean z10, int i10, int i11, long j3, boolean z11, boolean z12, long j10) {
-        di diVar = this.f36031a;
+        di diVar = this.f36119a;
         try {
-            HashMap<Object, Object> selectedPhotos = diVar.f32932a2.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = diVar.f32987a2.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 org.telegram.messenger.gf gfVar = (org.telegram.messenger.gf) selectedPhotos.values().iterator().next();
                 String str = gfVar.h;
@@ -76,18 +76,18 @@ public final class mo implements bi {
                     Point c12 = org.telegram.messenger.g0.c1();
                     Bitmap K = org.telegram.messenger.gc.K(str, null, (float) c12.x, (float) c12.y, true);
                     K.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
-                    lo loVar = new lo(new qc1(file, file, ""), K, false, 0);
-                    loVar.W1 = this.f36032b;
-                    loVar.f50520a.f50944a = this.f36033c;
-                    loVar.f50566q1 = this.d;
+                    lo loVar = new lo(new tc1(file, file, ""), K, false, 0);
+                    loVar.W1 = this.f36120b;
+                    loVar.f50902a.f51567a = this.f36121c;
+                    loVar.f50948q1 = this.d;
                     loVar.G1 = false;
                     loVar.F1 = false;
-                    loVar.f50562o1 = 0.2f;
-                    loVar.h1(this.f36034e);
-                    loVar.J1 = new ko(diVar, this.f36035f, 0);
+                    loVar.f50944o1 = 0.2f;
+                    loVar.h1(this.f36122e);
+                    loVar.J1 = new ko(diVar, this.f36123f, 0);
                     ?? obj = new Object();
-                    obj.f27424a = true;
-                    obj.f27427e = true;
+                    obj.f27408a = true;
+                    obj.f27411e = true;
                     this.h.showAsSheet(loVar, obj);
                     diVar.dismiss();
                 }

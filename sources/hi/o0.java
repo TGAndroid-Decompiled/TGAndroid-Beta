@@ -2,7 +2,7 @@ package hi;
 
 import android.app.Activity;
 import android.content.DialogInterface;
-import di.o7;
+import di.p7;
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.json.JSONObject;
@@ -66,13 +66,13 @@ public final class o0 implements DialogInterface.OnDismissListener {
                 return;
             case 4:
                 org.telegram.ui.web.x0 x0Var = (org.telegram.ui.web.x0) this.f14838c;
-                o7 o7Var = (o7) this.d;
+                p7 p7Var = (p7) this.d;
                 x0Var.getClass();
                 if (!((AtomicBoolean) this.f14837b).get()) {
-                    x0Var.x(o7Var, "popup_closed", new JSONObject());
+                    x0Var.x(p7Var, "popup_closed", new JSONObject());
                 }
-                x0Var.f51365c0 = null;
-                x0Var.f51368e0 = System.currentTimeMillis();
+                x0Var.f51346c0 = null;
+                x0Var.f51349e0 = System.currentTimeMillis();
                 return;
             case 5:
                 org.telegram.ui.ActionBar.f2 f2Var2 = (org.telegram.ui.ActionBar.f2) this.f14837b;
@@ -85,7 +85,7 @@ public final class o0 implements DialogInterface.OnDismissListener {
                 return;
             default:
                 org.telegram.messenger.g0.v1((zh.n1) this.f14837b);
-                org.telegram.messenger.g0.a3((Activity) this.d, ((zh.d2) this.f14838c).f60283a.getClassGuid());
+                org.telegram.messenger.g0.a3((Activity) this.d, ((zh.d2) this.f14838c).f60292a.getClassGuid());
                 return;
         }
     }

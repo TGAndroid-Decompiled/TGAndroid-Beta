@@ -9,51 +9,51 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.ui.Components.xq;
 public final class l5 extends LinearLayout {
-    public final TextView f12319a;
-    public final bi.x5 f12320b;
-    public ImageView f12321c;
+    public final TextView f12320a;
+    public final bi.x5 f12321b;
+    public ImageView f12322c;
     public ImageView d;
-    public float f12322e;
-    public boolean f12323f;
+    public float f12323e;
+    public boolean f12324f;
     public ValueAnimator h;
-    public final ImageView f12324n;
-    public final o5 f12325r;
+    public final ImageView f12325n;
+    public final o5 f12326r;
 
     public l5(o5 o5Var, Context context) {
         super(context);
-        this.f12325r = o5Var;
+        this.f12326r = o5Var;
         setOrientation(0);
-        int i7 = org.telegram.ui.ActionBar.k6.f27944i6;
-        g5 g5Var = o5Var.f12540p1;
-        setBackground(org.telegram.ui.ActionBar.k6.h0(org.telegram.ui.ActionBar.k6.w0(i7, g5Var), 2, -1));
+        int i7 = org.telegram.ui.ActionBar.l6.f27957i6;
+        g5 g5Var = o5Var.f12538p1;
+        setBackground(org.telegram.ui.ActionBar.l6.h0(org.telegram.ui.ActionBar.l6.w0(i7, g5Var), 2, -1));
         bi.x5 x5Var = new bi.x5(this, context);
-        this.f12320b = x5Var;
+        this.f12321b = x5Var;
         addView(x5Var, c8.ha.t(-2, -2, 19, 16, 0, 16, 0));
         ImageView imageView = new ImageView(context);
-        this.f12321c = imageView;
+        this.f12322c = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
-        ImageView imageView2 = this.f12321c;
-        int i10 = org.telegram.ui.ActionBar.k6.E8;
+        ImageView imageView2 = this.f12322c;
+        int i10 = org.telegram.ui.ActionBar.l6.E8;
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_ATOP;
-        org.telegram.ui.ActionBar.r6.t(imageView2, i10, g5Var, mode);
-        x5Var.addView(this.f12321c, c8.ha.e(-2, -2, 17));
+        org.telegram.ui.ActionBar.s6.s(imageView2, i10, g5Var, mode);
+        x5Var.addView(this.f12322c, c8.ha.e(-2, -2, 17));
         ImageView imageView3 = new ImageView(context);
         this.d = imageView3;
         imageView3.setScaleType(scaleType);
-        org.telegram.ui.ActionBar.r6.t(this.d, i10, g5Var, mode);
+        org.telegram.ui.ActionBar.s6.s(this.d, i10, g5Var, mode);
         this.d.setVisibility(8);
         x5Var.addView(this.d, c8.ha.e(-2, -2, 17));
         TextView textView = new TextView(context);
-        this.f12319a = textView;
-        org.telegram.ui.ActionBar.r6.V(textView, i10, g5Var);
+        this.f12320a = textView;
+        org.telegram.ui.ActionBar.s6.U(textView, i10, g5Var);
         textView.setTextSize(1, 16.0f);
         addView(textView, c8.ha.t(-2, -2, 19, 0, 0, 16, 0));
         ImageView imageView4 = new ImageView(context);
-        this.f12324n = imageView4;
+        this.f12325n = imageView4;
         imageView4.setImageResource(2131232398);
         imageView4.setScaleType(scaleType);
-        org.telegram.ui.ActionBar.r6.t(imageView4, org.telegram.ui.ActionBar.k6.h7, g5Var, PorterDuff.Mode.MULTIPLY);
+        org.telegram.ui.ActionBar.s6.s(imageView4, org.telegram.ui.ActionBar.l6.h7, g5Var, PorterDuff.Mode.MULTIPLY);
         imageView4.setVisibility(8);
         addView(imageView4, c8.ha.o(50, -1));
     }
@@ -67,7 +67,7 @@ public final class l5 extends LinearLayout {
                 a(i7, false, false);
                 return;
             }
-            this.f12323f = z9;
+            this.f12324f = z9;
             this.d.setImageResource(i7);
             this.d.setVisibility(0);
             this.d.setAlpha(1.0f);
@@ -80,7 +80,7 @@ public final class l5 extends LinearLayout {
             this.h.start();
             return;
         }
-        this.f12321c.setImageResource(i7);
+        this.f12322c.setImageResource(i7);
     }
 
     @Override
@@ -90,10 +90,10 @@ public final class l5 extends LinearLayout {
 
     @Override
     public final boolean performClick() {
-        o5 o5Var = this.f12325r;
-        org.telegram.ui.ActionBar.g1 g1Var = o5Var.f12542q1;
+        o5 o5Var = this.f12326r;
+        org.telegram.ui.ActionBar.g1 g1Var = o5Var.f12540q1;
         if (g1Var != null && g1Var.isShowing()) {
-            o5Var.f12542q1.d(true);
+            o5Var.f12540q1.d(true);
         }
         return super.performClick();
     }
@@ -110,10 +110,10 @@ public final class l5 extends LinearLayout {
         } else {
             i7 = 8;
         }
-        this.f12324n.setVisibility(i7);
+        this.f12325n.setVisibility(i7);
     }
 
     public void setText(CharSequence charSequence) {
-        this.f12319a.setText(charSequence);
+        this.f12320a.setText(charSequence);
     }
 }

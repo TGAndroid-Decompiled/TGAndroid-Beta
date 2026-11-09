@@ -40,7 +40,7 @@ public final class b3 extends FrameLayout {
     public y2 M;
     public y2 N;
     public String O;
-    public final di.s7 P;
+    public final di.f8 P;
     public org.telegram.messenger.q5 Q;
     public String R;
     public Object S;
@@ -67,7 +67,7 @@ public final class b3 extends FrameLayout {
     public static final HashMap f11651e0 = new HashMap();
     public static final fh.i f11652f0 = new fh.i(45, 1);
 
-    public b3(Context context, org.telegram.ui.ActionBar.f6 f6Var, float f10, boolean z9) {
+    public b3(Context context, org.telegram.ui.ActionBar.g6 g6Var, float f10, boolean z9) {
         super(context);
         this.f11655b = new Paint(3);
         Paint paint = new Paint(1);
@@ -81,7 +81,7 @@ public final class b3 extends FrameLayout {
         this.f11661r = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
         this.f11662s = textPaint2;
-        this.P = new di.s7(this, 23);
+        this.P = new di.f8(this, 22);
         this.W = new Path();
         this.f11654a0 = new float[8];
         this.f11656b0 = new Paint(1);
@@ -95,18 +95,18 @@ public final class b3 extends FrameLayout {
         textPaint2.setTextSize(org.telegram.messenger.g0.L(11.33f));
         textPaint2.setColor(-1);
         this.f11663w = context.getResources().getDrawable(2131232549).mutate();
-        a3 a3Var = new a3(this, context, f6Var);
+        a3 a3Var = new a3(this, context, g6Var);
         this.J = a3Var;
         if (!z9) {
             a3Var.setDrawBackgroundAsArc(6);
         } else {
             a3Var.setDrawBackgroundAsArc(7);
         }
-        a3Var.b(org.telegram.ui.ActionBar.k6.W9, org.telegram.ui.ActionBar.k6.X9, org.telegram.ui.ActionBar.k6.V9);
+        a3Var.b(org.telegram.ui.ActionBar.l6.W9, org.telegram.ui.ActionBar.l6.X9, org.telegram.ui.ActionBar.l6.V9);
         CheckBoxBase checkBoxBase = a3Var.getCheckBoxBase();
-        int i7 = org.telegram.ui.ActionBar.k6.G6;
-        if (checkBoxBase.f31267u != i7) {
-            checkBoxBase.f31267u = i7;
+        int i7 = org.telegram.ui.ActionBar.l6.G6;
+        if (checkBoxBase.f31272u != i7) {
+            checkBoxBase.f31272u = i7;
             checkBoxBase.b();
         }
         FrameLayout frameLayout = new FrameLayout(context);
@@ -331,9 +331,9 @@ public final class b3 extends FrameLayout {
             g(str);
             if (e7Var != null && e7Var.K) {
                 float f12 = e7Var.f11877a0 - e7Var.Z;
-                this.O = id.M0(2131744685, null) + ", " + id.z((int) Math.max(0.0f, (f12 * ((float) e7Var.f11894h0)) / 1000.0f));
+                this.O = id.M0(2131744682, null) + ", " + id.z((int) Math.max(0.0f, (f12 * ((float) e7Var.f11894h0)) / 1000.0f));
             } else {
-                this.O = id.M0(2131744685, null);
+                this.O = id.M0(2131744682, null);
             }
         }
         b(e7Var);
@@ -462,7 +462,7 @@ public final class b3 extends FrameLayout {
             accessibilityNodeInfo.setClassName("android.widget.CheckBox");
             accessibilityNodeInfo.setCheckable(true);
             a3 a3Var = this.J;
-            if (a3Var != null && a3Var.f40008a.f31263q) {
+            if (a3Var != null && a3Var.f40108a.f31268q) {
                 z9 = true;
             } else {
                 z9 = false;

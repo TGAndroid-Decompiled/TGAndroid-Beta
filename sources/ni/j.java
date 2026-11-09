@@ -5,7 +5,7 @@ import android.text.TextPaint;
 import android.text.style.CharacterStyle;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.iz;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.l6;
 public final class j extends CharacterStyle {
     public final String f20627a;
     public final float f20628b;
@@ -37,7 +37,7 @@ public final class j extends CharacterStyle {
         if (this.f20629c) {
             textPaint.setTextSize(g0.L(iz.W0 - this.f20628b));
         }
-        textPaint.setColor(k6.x0(null, k6.Sc, false));
+        textPaint.setColor(l6.x0(null, l6.Sc, false));
         textPaint.setTypeface(Typeface.MONOSPACE);
         textPaint.setUnderlineText(false);
     }

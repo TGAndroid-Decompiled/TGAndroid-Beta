@@ -17,7 +17,7 @@ public final class uv {
 
     public static uv a(int i7, TLRPC.Message message) {
         ?? obj = new Object();
-        obj.f25896a = ij.R1(p10.i(i7).e(), message);
+        obj.f25896a = ij.Q1(p10.i(i7).e(), message);
         obj.f25897b = false;
         obj.f25898c = message.f26977id;
         obj.d = new ij(i7, message, null, null, null, null, null, false, false, 0L, false, false, true, 0);

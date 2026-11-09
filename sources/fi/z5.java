@@ -7,7 +7,7 @@ import android.text.TextUtils;
 import android.util.SparseArray;
 import android.view.TextureView;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.hy0;
+import org.telegram.ui.ky0;
 public final class z5 implements Runnable {
     public final int f13246a;
     public final c6 f13247b;
@@ -47,21 +47,21 @@ public final class z5 implements Runnable {
                         Bitmap bitmap2 = c6Var.f11736g;
                         String str = c6Var.f11734e;
                         a6 a6Var = null;
-                        if (bitmap2 != null && (nVar = (u8.n) c6Var.f11731a.get()) != null && nVar.f56450b.k()) {
+                        if (bitmap2 != null && (nVar = (u8.n) c6Var.f11731a.get()) != null && nVar.f56462b.k()) {
                             int width2 = bitmap2.getWidth();
                             int height2 = bitmap2.getHeight();
-                            hy0 hy0Var = new hy0(17);
+                            ky0 ky0Var = new ky0(17);
                             int width3 = bitmap2.getWidth();
                             int height3 = bitmap2.getHeight();
-                            hy0Var.d = bitmap2;
-                            b7.d dVar = (b7.d) hy0Var.f46526b;
+                            ky0Var.d = bitmap2;
+                            b7.d dVar = (b7.d) ky0Var.f47422b;
                             dVar.f2991a = width3;
                             dVar.f2992b = height3;
-                            SparseArray e12 = nVar.e1(hy0Var);
+                            SparseArray e12 = nVar.e1(ky0Var);
                             for (int i7 = 0; i7 < e12.size(); i7++) {
                                 u8.m mVar = (u8.m) e12.valueAt(i7);
-                                String str2 = mVar.f56440b;
-                                Point[] pointArr = mVar.f56442e;
+                                String str2 = mVar.f56452b;
+                                Point[] pointArr = mVar.f56454e;
                                 if (str2 != null) {
                                     String trim = str2.trim();
                                     if (!trim.startsWith(str)) {

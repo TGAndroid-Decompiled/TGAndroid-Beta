@@ -2,7 +2,7 @@ package fi;
 
 import android.text.TextUtils;
 import org.telegram.messenger.id;
-import org.telegram.ui.Components.av0;
+import org.telegram.ui.Components.cv0;
 public final class x2 extends e3 {
     public final f3 f13075y;
 
@@ -23,14 +23,14 @@ public final class x2 extends e3 {
 
     @Override
     public final void f() {
-        av0 av0Var = this.f13075y.f11972s;
+        cv0 cv0Var = this.f13075y.f11972s;
         super.f();
         if (TextUtils.isEmpty(this.f11867f)) {
-            av0Var.setStickerType(11);
-            av0Var.d.setText(id.M0(2131745763, null));
+            cv0Var.setStickerType(11);
+            cv0Var.d.setText(id.M0(2131745760, null));
             return;
         }
-        av0Var.setStickerType(1);
-        av0Var.d.setText(id.a0(null, null, 2131748167, this.f11867f));
+        cv0Var.setStickerType(1);
+        cv0Var.d.setText(id.a0(null, null, 2131748166, this.f11867f));
     }
 }

@@ -3,5 +3,5 @@ package xi;
 import android.content.SharedPreferences;
 import org.telegram.messenger.t0;
 public abstract class d {
-    public static final SharedPreferences f58856a = t0.f25566b.getSharedPreferences("mainconfig", 0);
+    public static final SharedPreferences f58865a = t0.f25566b.getSharedPreferences("mainconfig", 0);
 }

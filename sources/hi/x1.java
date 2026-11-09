@@ -14,8 +14,8 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.hc;
 import org.telegram.ui.Components.xa;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.an;
-import org.telegram.ui.oy0;
+import org.telegram.ui.cn;
+import org.telegram.ui.ry0;
 public final class x1 implements Runnable {
     public final int f15033a;
     public final a3 f15034b;
@@ -97,9 +97,9 @@ public final class x1 implements Runnable {
                     }
                     float f10 = i10 * 100.0f;
                     r1.g gVar = a3Var.d;
-                    r1.h hVar = gVar.f54268m;
-                    if (((float) hVar.f54276i) != f10) {
-                        hVar.f54276i = f10;
+                    r1.h hVar = gVar.f54280m;
+                    if (((float) hVar.f54288i) != f10) {
+                        hVar.f54288i = f10;
                         gVar.h();
                     }
                 }
@@ -116,7 +116,7 @@ public final class x1 implements Runnable {
             case 9:
                 Activity activity = a3Var.f14526l0;
                 if (activity instanceof LaunchActivity) {
-                    ((LaunchActivity) activity).t0(an.ra(a3Var.I));
+                    ((LaunchActivity) activity).t0(cn.ta(a3Var.I));
                 }
                 a3Var.o(true);
                 return;
@@ -137,8 +137,8 @@ public final class x1 implements Runnable {
                 Context context = a3Var.getContext();
                 hc hcVar = new hc(xa.a(a3Var.getContext()), a3Var.F);
                 long j3 = a3Var.I;
-                int i14 = oy0.f48560s1;
-                oy0.J0(i13, context, j3, false, false, new ArrayList(), hcVar, null, new byte[0], null, null);
+                int i14 = ry0.f49634s1;
+                ry0.J0(i13, context, j3, false, false, new ArrayList(), hcVar, null, new byte[0], null, null);
                 return;
             case 14:
                 a3.n(a3Var.H, a3Var.I, new x1(a3Var, 15));

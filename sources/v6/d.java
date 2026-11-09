@@ -6,20 +6,20 @@ import android.os.Parcel;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.TaskCompletionSource;
 public final class d extends q implements b {
-    public final int f57242b;
-    public final TaskCompletionSource f57243c;
+    public final int f57254b;
+    public final TaskCompletionSource f57255c;
 
     public d(f fVar, TaskCompletionSource taskCompletionSource, int i7) {
         super("com.google.android.gms.common.moduleinstall.internal.IModuleInstallCallbacks", 8);
-        this.f57242b = i7;
-        this.f57243c = taskCompletionSource;
+        this.f57254b = i7;
+        this.f57255c = taskCompletionSource;
     }
 
     @Override
     public void C0(Status status, u6.a aVar) {
-        switch (this.f57242b) {
+        switch (this.f57254b) {
             case 0:
-                k8.b(status, aVar, this.f57243c);
+                k8.b(status, aVar, this.f57255c);
                 return;
             default:
                 throw new UnsupportedOperationException();
@@ -28,9 +28,9 @@ public final class d extends q implements b {
 
     @Override
     public void K(Status status, u6.c cVar) {
-        switch (this.f57242b) {
+        switch (this.f57254b) {
             case 1:
-                k8.b(status, cVar, this.f57243c);
+                k8.b(status, cVar, this.f57255c);
                 return;
             default:
                 throw new UnsupportedOperationException();

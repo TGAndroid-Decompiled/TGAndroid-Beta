@@ -20,7 +20,7 @@ import android.view.ViewParent;
 import ch.o0;
 import e2.j0;
 import fi.ka;
-import l2.w;
+import l2.a0;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.camera.q;
 import org.telegram.messenger.g0;
@@ -36,18 +36,18 @@ import org.telegram.messenger.ui;
 import org.telegram.messenger.voip.GroupCallMessage;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Cells.l9;
 import org.telegram.ui.Components.i5;
-import org.telegram.ui.Components.u31;
+import org.telegram.ui.Components.v31;
 import org.telegram.ui.Components.voip.n;
 import org.telegram.ui.Components.w8;
 import org.telegram.ui.Components.xq;
-import org.telegram.ui.g20;
+import org.telegram.ui.i20;
 import xh.l;
 public final class c extends ViewGroup implements ue.a, ls, te.b {
     public static final Rect L = new Rect();
-    public final w D;
+    public final a0 D;
     public RenderNode E;
     public float F;
     public View G;
@@ -81,7 +81,7 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
         this.f20598f = paint2;
         n nVar = new n();
         this.h = nVar;
-        this.D = new w(this, 14);
+        this.D = new a0(this, 13);
         this.J = new ka(this, 1);
         this.K = new RectF();
         l lVar = new l(context);
@@ -98,7 +98,7 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.d = imageReceiver;
         imageReceiver.J0(g0.L(11.0f));
-        nVar.f39372c.setStrokeWidth(g0.L(1.0f));
+        nVar.f39461c.setStrokeWidth(g0.L(1.0f));
         this.f20599n = new ImageReceiver(this);
         setWillNotDraw(false);
     }
@@ -112,7 +112,7 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
         a aVar;
         GroupCallMessage groupCallMessage;
         if (a(f10, f11) == 1 && (aVar = this.I) != null && (groupCallMessage = this.H) != null) {
-            ((g20) aVar).a(groupCallMessage);
+            ((i20) aVar).a(groupCallMessage);
         }
     }
 
@@ -126,11 +126,11 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
 
     @Override
     public final void Y(int i7, float f10, float f11, te.c cVar) {
-        this.f20598f.setAlpha(Math.round(this.f20595b.f55487e * 100.0f));
-        int round = Math.round(this.f20594a.f55487e * 220.0f);
+        this.f20598f.setAlpha(Math.round(this.f20595b.f55499e * 100.0f));
+        int round = Math.round(this.f20594a.f55499e * 220.0f);
         n nVar = this.h;
-        nVar.f39370a.setAlpha(round);
-        nVar.f39372c.setAlpha(round);
+        nVar.f39459a.setAlpha(round);
+        nVar.f39461c.setAlpha(round);
         invalidate();
     }
 
@@ -192,7 +192,7 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
             if (paint.getAlpha() > 0) {
                 canvas.drawPath((Path) this.f20603x.d, paint);
             }
-            if (this.f20594a.f55487e > 0.0f) {
+            if (this.f20594a.f55499e > 0.0f) {
                 RectF rectF = this.K;
                 rectF.set((RectF) this.f20603x.f10290c);
                 rectF.inset(g0.L(1.0f), g0.L(1.0f));
@@ -359,7 +359,7 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
             }
         }
         setMeasuredDimension(size, this.f20603x.f10289b);
-        this.h.f39374f = Math.round(((RectF) this.f20603x.f10290c).width() + g0.L(48.0f));
+        this.h.f39463f = Math.round(((RectF) this.f20603x.f10290c).width() + g0.L(48.0f));
     }
 
     @Override
@@ -372,13 +372,13 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
         GroupCallMessage groupCallMessage2;
         GroupCallMessage groupCallMessage3;
         boolean isAttachedToWindow = isAttachedToWindow();
-        w wVar = this.D;
+        a0 a0Var = this.D;
         if (isAttachedToWindow && (groupCallMessage3 = this.H) != null) {
-            groupCallMessage3.unsubscribeFromStateUpdates(wVar);
+            groupCallMessage3.unsubscribeFromStateUpdates(a0Var);
         }
         this.H = groupCallMessage;
         if (isAttachedToWindow() && (groupCallMessage2 = this.H) != null) {
-            groupCallMessage2.subscribeToStateUpdates(wVar);
+            groupCallMessage2.subscribeToStateUpdates(a0Var);
         }
         GroupCallMessage groupCallMessage4 = this.H;
         if (groupCallMessage4 != null) {
@@ -387,7 +387,7 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
         }
         TLObject e22 = qp.s1(p10.f24470s0).e2(groupCallMessage.fromId);
         String m10 = m5.m(e22);
-        w8 w8Var = new w8((f6) null);
+        w8 w8Var = new w8((g6) null);
         w8Var.p(e22);
         this.d.i0(e22, w8Var, null);
         ImageReceiver imageReceiver = this.f20599n;
@@ -397,7 +397,7 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
         }
         this.f20600r = null;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(m10);
-        spannableStringBuilder.setSpan(new u31(g0.o()), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new v31(g0.o()), 0, spannableStringBuilder.length(), 33);
         spannableStringBuilder.setSpan(this.J, 0, spannableStringBuilder.length(), 33);
         o0 o0Var = groupCallMessage.visibleReaction;
         l lVar = this.f20602w;
@@ -421,13 +421,13 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
             spannableStringBuilder2.append((CharSequence) "  ");
             spannableStringBuilder2.append(j02);
             spannableStringBuilder = spannableStringBuilder2;
-        } else if (o0Var.f6356f != null) {
-            TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) ui.b0(groupCallMessage.currentAccount).f25836r.get(groupCallMessage.visibleReaction.f6356f);
+        } else if (o0Var.f6354f != null) {
+            TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) ui.b0(groupCallMessage.currentAccount).f25836r.get(groupCallMessage.visibleReaction.f6354f);
             if (tL_availableReaction != null) {
                 imageReceiver.q0(hc.b(tL_availableReaction.select_animation), "28_28", null, null, null, 0);
             }
-        } else if (o0Var.f6357g != 0) {
-            i5 i5Var = new i5(0, groupCallMessage.currentAccount, groupCallMessage.visibleReaction.f6357g);
+        } else if (o0Var.f6355g != 0) {
+            i5 i5Var = new i5(0, groupCallMessage.currentAccount, groupCallMessage.visibleReaction.f6355g);
             this.f20600r = i5Var;
             i5Var.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
             if (isAttachedToWindow()) {

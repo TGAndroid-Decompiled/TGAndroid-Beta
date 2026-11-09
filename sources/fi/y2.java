@@ -1,10 +1,10 @@
 package fi;
 
 import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.Components.bj0;
 import org.telegram.ui.Components.cj0;
 import org.telegram.ui.Components.dj0;
 import org.telegram.ui.Components.ej0;
+import org.telegram.ui.Components.fj0;
 public final class y2 implements Runnable {
     public final int f13153a;
     public final z2 f13154b;
@@ -25,14 +25,14 @@ public final class y2 implements Runnable {
                 b3 b3Var = this.f13155c;
                 int R = RecyclerView.R(b3Var);
                 if (R != -1) {
-                    bj0 bj0Var = q1Var.T0;
-                    if (bj0Var != null) {
-                        bj0Var.c(R, b3Var);
+                    cj0 cj0Var = q1Var.T0;
+                    if (cj0Var != null) {
+                        cj0Var.c(R, b3Var);
                         return;
                     }
-                    cj0 cj0Var = q1Var.U0;
-                    if (cj0Var != null) {
-                        cj0Var.f(0.0f, 0.0f, R, b3Var);
+                    dj0 dj0Var = q1Var.U0;
+                    if (dj0Var != null) {
+                        dj0Var.f(0.0f, 0.0f, R, b3Var);
                         return;
                     }
                     return;
@@ -44,14 +44,14 @@ public final class y2 implements Runnable {
                 b3 b3Var2 = this.f13155c;
                 int R2 = RecyclerView.R(b3Var2);
                 if (R2 != -1) {
-                    dj0 dj0Var = q1Var2.V0;
-                    if (dj0Var != null) {
-                        dj0Var.c(R2, b3Var2);
+                    ej0 ej0Var = q1Var2.V0;
+                    if (ej0Var != null) {
+                        ej0Var.c(R2, b3Var2);
                         return;
                     }
-                    ej0 ej0Var = q1Var2.W0;
-                    if (ej0Var != null) {
-                        ej0Var.mo19f(0.0f, 0.0f, R2, b3Var2);
+                    fj0 fj0Var = q1Var2.W0;
+                    if (fj0Var != null) {
+                        fj0Var.mo19f(0.0f, 0.0f, R2, b3Var2);
                         return;
                     }
                     return;

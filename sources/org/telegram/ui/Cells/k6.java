@@ -2,9 +2,9 @@ package org.telegram.ui.Cells;
 
 import android.view.View;
 import org.telegram.ui.Components.gn;
-import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.qj0;
 import org.telegram.ui.LaunchActivity;
-public final class k6 extends di.n7 {
+public final class k6 extends di.o7 {
     public final int S = 0;
     public final View T;
 
@@ -24,7 +24,7 @@ public final class k6 extends di.n7 {
                 org.telegram.ui.ActionBar.f2 Q = LaunchActivity.Q();
                 if (Q != null) {
                     Q.getOrCreateStoryViewer().getClass();
-                    Q.getOrCreateStoryViewer().J(paVar.getContext(), j3, di.h7.a((pj0) paVar.getParent()));
+                    Q.getOrCreateStoryViewer().J(paVar.getContext(), j3, di.i7.a((qj0) paVar.getParent()));
                     return;
                 }
                 return;
@@ -35,8 +35,8 @@ public final class k6 extends di.n7 {
         }
     }
 
-    public k6(m6 m6Var, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(f6Var, false);
+    public k6(m6 m6Var, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(g6Var, false);
         this.T = m6Var;
     }
 

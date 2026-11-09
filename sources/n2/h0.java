@@ -153,7 +153,7 @@ public final class h0 implements o {
         f();
         e eVar2 = this.f20191i;
         if (eVar2 == null && (context = this.f20185a) != null) {
-            e eVar3 = new e(context, new l2.y(this, 20), eVar, audioDeviceInfo);
+            e eVar3 = new e(context, new l2.x(this, 20), eVar, audioDeviceInfo);
             this.f20191i = eVar3;
             if (eVar3.f20153k) {
                 b10 = eVar3.h;
@@ -170,7 +170,7 @@ public final class h0 implements o {
                 Handler handler = eVar3.f20147c;
                 d.registerAudioDeviceCallback(cVar, handler);
                 if (Build.VERSION.SDK_INT >= 32 && eVar3.f20150g == null) {
-                    eVar3.f20150g = new c3.d(context2, new l2.w(eVar3, 11), Boolean.valueOf(h2.m0.P(context2)));
+                    eVar3.f20150g = new c3.d(context2, new l2.a0(eVar3, 10), Boolean.valueOf(h2.m0.P(context2)));
                 }
                 b10 = b.b(context2, context2.registerReceiver(eVar3.f20148e, new IntentFilter("android.media.action.HDMI_AUDIO_PLUG"), null, handler), eVar3.f20152j, eVar3.f20151i, eVar3.a());
                 eVar3.h = b10;

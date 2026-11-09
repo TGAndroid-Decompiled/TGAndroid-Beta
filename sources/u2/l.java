@@ -15,15 +15,15 @@ public interface l {
 
     void c(int i7);
 
-    void d(org.telegram.ui.web.w wVar);
+    void d();
 
-    void e();
+    void e(int i7, long j3);
 
-    void f(int i7, long j3);
+    int f();
 
     void flush();
 
-    int g();
+    int g(MediaCodec.BufferInfo bufferInfo);
 
     ByteBuffer getInputBuffer(int i7);
 
@@ -31,11 +31,11 @@ public interface l {
 
     MediaFormat getOutputFormat();
 
-    int h(MediaCodec.BufferInfo bufferInfo);
+    void h(d3.k kVar, Handler handler);
 
-    void i(d3.k kVar, Handler handler);
+    void i(int i7);
 
-    void j(int i7);
+    void j(org.telegram.ui.web.s sVar);
 
     void k(Surface surface);
 

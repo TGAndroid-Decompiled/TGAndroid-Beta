@@ -23,9 +23,9 @@ import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.camera.CameraView;
 import org.telegram.messenger.ch;
-import org.telegram.ui.Components.j60;
+import org.telegram.ui.Components.k60;
 import org.telegram.ui.Components.xq;
-public abstract class e0 extends FrameLayout implements j60 {
+public abstract class e0 extends FrameLayout implements k60 {
     public static final int f11821x0 = 0;
     public final int D;
     public final LinearGradient E;
@@ -113,7 +113,7 @@ public abstract class e0 extends FrameLayout implements j60 {
         this.f11824b = bVar;
         setBackgroundColor(-14737633);
         d0 d0Var = new d0(this);
-        d0Var.b((s) this.f11831f.f12828e.get(0), false);
+        d0Var.b((s) this.f11831f.f12827e.get(0), false);
         d0Var.f11778m = true;
         if (this.f11837k0) {
             d0Var.f11770c.P();
@@ -198,7 +198,7 @@ public abstract class e0 extends FrameLayout implements j60 {
         drawable.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
         drawable.draw(canvas);
         if (f10 > 0.0f) {
-            canvas.drawColor(org.telegram.ui.ActionBar.k6.r1(drawable.getAlpha() * f10, -16777216));
+            canvas.drawColor(org.telegram.ui.ActionBar.l6.r1(drawable.getAlpha() * f10, -16777216));
         }
         canvas.restore();
     }
@@ -264,11 +264,11 @@ public abstract class e0 extends FrameLayout implements j60 {
         org.telegram.ui.Components.w5[] w5VarArr = this.J;
         float f19 = 0.0f;
         if (!j3 && !this.f11832f0 && !this.f11830e0) {
-            float f20 = w5Var.f39805c;
+            float f20 = w5Var.f39910c;
             t tVar = this.f11831f;
-            if (f20 == tVar.f12827c && w5VarArr[0].f39805c == tVar.d[0]) {
+            if (f20 == tVar.f12826c && w5VarArr[0].f39910c == tVar.d[0]) {
                 b6 b6Var = this.f11826c;
-                if (!b6Var.f11682b && b6Var.d.f39805c <= 0.0f) {
+                if (!b6Var.f11682b && b6Var.d.f39910c <= 0.0f) {
                     setCameraNeedsBlur(false);
                     i(canvas);
                     return;
@@ -280,7 +280,7 @@ public abstract class e0 extends FrameLayout implements j60 {
         }
         recordingCanvas.drawColor(-14737633);
         float d2 = this.K.d(this.f11830e0);
-        float e11 = w5Var.e(false, this.f11831f.f12827c);
+        float e11 = w5Var.e(false, this.f11831f.f12826c);
         int i10 = 0;
         while (true) {
             d = e11;
@@ -294,7 +294,7 @@ public abstract class e0 extends FrameLayout implements j60 {
             fArr[i10] = 0.0f;
             i10++;
         }
-        int i12 = this.f11831f.f12827c;
+        int i12 = this.f11831f.f12826c;
         while (true) {
             f10 = 1.0f;
             if (i12 >= w5VarArr.length) {
@@ -317,12 +317,12 @@ public abstract class e0 extends FrameLayout implements j60 {
             }
             d0 d0Var2 = (d0) arrayList.get(i13);
             s sVar = d0Var2.h;
-            int i14 = sVar.f12765c;
+            int i14 = sVar.f12764c;
             float f22 = d2;
-            int i15 = sVar.f12764b;
+            int i15 = sVar.f12763b;
             float f23 = e11;
             org.telegram.ui.Components.w5[] w5VarArr2 = w5VarArr;
-            float e12 = w5VarArr[i14].e(false, sVar.f12763a.d[i14]);
+            float e12 = w5VarArr[i14].e(false, sVar.f12762a.d[i14]);
             if (this.f11832f0 || this.f11830e0) {
                 i7 = i14;
                 org.telegram.messenger.g0.Z1(d0Var2.f11775j, d0Var2.f11776k, d0Var2.f11777l, rectF);
@@ -357,8 +357,8 @@ public abstract class e0 extends FrameLayout implements j60 {
             }
             d0 d0Var3 = (d0) arrayList2.get(i16);
             s sVar2 = d0Var3.h;
-            int i17 = sVar2.f12765c;
-            int i18 = sVar2.f12764b;
+            int i17 = sVar2.f12764c;
+            int i18 = sVar2.f12763b;
             org.telegram.ui.Components.w5 w5Var2 = w5VarArr3[i17];
             int[] iArr = this.f11831f.d;
             int i19 = i16;
@@ -404,8 +404,8 @@ public abstract class e0 extends FrameLayout implements j60 {
         }
         if (f24 > f13 && (d0Var = this.f11834h0) != null) {
             s sVar3 = d0Var.h;
-            int i21 = sVar3.f12765c;
-            int i22 = sVar3.f12764b;
+            int i21 = sVar3.f12764c;
+            int i22 = sVar3.f12763b;
             float e14 = w5VarArr3[i21].e(false, this.f11831f.d[i21]);
             if (this.f11830e0) {
                 org.telegram.messenger.g0.Z1(d0Var.f11775j, d0Var.f11776k, d0Var.f11777l, rectF);
@@ -422,10 +422,10 @@ public abstract class e0 extends FrameLayout implements j60 {
             s sVar4 = d0Var4.h;
             float e15 = d0Var4.f11769b.e(false, 0.0f);
             if (e15 > 0.0f) {
-                int i24 = sVar4.f12765c;
-                int i25 = sVar4.f12765c;
-                int i26 = sVar4.f12764b;
-                float e16 = w5VarArr3[i24].e(false, sVar4.f12763a.d[i24]);
+                int i24 = sVar4.f12764c;
+                int i25 = sVar4.f12764c;
+                int i26 = sVar4.f12763b;
+                float e16 = w5VarArr3[i24].e(false, sVar4.f12762a.d[i24]);
                 if (!this.f11832f0 && !this.f11830e0) {
                     rectF.set((getMeasuredWidth() / e16) * i26, (getMeasuredHeight() / f25) * i25, (getMeasuredWidth() / e16) * (i26 + 1), (getMeasuredHeight() / f25) * (i25 + 1));
                 } else {
@@ -447,7 +447,7 @@ public abstract class e0 extends FrameLayout implements j60 {
                 Path path = this.f11853x;
                 path.rewind();
                 s sVar5 = d0Var4.h;
-                if (sVar5.f12764b == 0 && sVar5.f12765c == 0) {
+                if (sVar5.f12763b == 0 && sVar5.f12764c == 0) {
                     f14 = org.telegram.messenger.g0.L(8.0f);
                 } else {
                     f14 = 0.0f;
@@ -456,7 +456,7 @@ public abstract class e0 extends FrameLayout implements j60 {
                 fArr3[1] = f14;
                 fArr3[0] = f14;
                 s sVar6 = d0Var4.h;
-                if (sVar6.f12764b == sVar6.f12763a.f12826b - 1 && sVar6.f12765c == 0) {
+                if (sVar6.f12763b == sVar6.f12762a.f12825b - 1 && sVar6.f12764c == 0) {
                     f15 = org.telegram.messenger.g0.L(8.0f);
                 } else {
                     f15 = 0.0f;
@@ -464,9 +464,9 @@ public abstract class e0 extends FrameLayout implements j60 {
                 fArr3[2] = f15;
                 fArr3[1] = f15;
                 s sVar7 = d0Var4.h;
-                int i29 = sVar7.f12764b;
-                t tVar2 = sVar7.f12763a;
-                if (i29 == tVar2.f12826b - 1 && sVar7.f12765c == tVar2.f12827c - 1) {
+                int i29 = sVar7.f12763b;
+                t tVar2 = sVar7.f12762a;
+                if (i29 == tVar2.f12825b - 1 && sVar7.f12764c == tVar2.f12826c - 1) {
                     f16 = org.telegram.messenger.g0.L(8.0f);
                 } else {
                     f16 = 0.0f;
@@ -474,7 +474,7 @@ public abstract class e0 extends FrameLayout implements j60 {
                 fArr3[4] = f16;
                 fArr3[3] = f16;
                 s sVar8 = d0Var4.h;
-                if (sVar8.f12764b == 0 && sVar8.f12765c == sVar8.f12763a.f12827c - 1) {
+                if (sVar8.f12763b == 0 && sVar8.f12764c == sVar8.f12762a.f12826c - 1) {
                     f17 = org.telegram.messenger.g0.L(8.0f);
                 } else {
                     f17 = 0.0f;
@@ -536,7 +536,7 @@ public abstract class e0 extends FrameLayout implements j60 {
                 view.draw(canvas);
             }
             if (f10 > 0.0f) {
-                canvas.drawColor(org.telegram.ui.ActionBar.k6.r1(view.getAlpha() * f10, -16777216));
+                canvas.drawColor(org.telegram.ui.ActionBar.l6.r1(view.getAlpha() * f10, -16777216));
             }
             canvas.restore();
             if (view == this.d && (b6Var = this.f11826c) != null) {
@@ -610,10 +610,10 @@ public abstract class e0 extends FrameLayout implements j60 {
         d0 d0Var = this.f11836j0;
         if (d0Var != null) {
             s sVar = d0Var.h;
-            t tVar = sVar.f12763a;
-            int i7 = sVar.f12764b;
-            int i10 = sVar.f12765c;
-            float f10 = tVar.f12827c;
+            t tVar = sVar.f12762a;
+            int i7 = sVar.f12763b;
+            int i10 = sVar.f12764c;
+            float f10 = tVar.f12826c;
             float e10 = this.J[i10].e(false, tVar.d[i10]);
             rectF.set((getMeasuredWidth() / e10) * i7, (getMeasuredHeight() / f10) * i10, (getMeasuredWidth() / e10) * (i7 + 1), (getMeasuredHeight() / f10) * (i10 + 1));
             return;
@@ -768,10 +768,10 @@ public abstract class e0 extends FrameLayout implements j60 {
         d0 d0Var = this.f11836j0;
         if (d0Var != null) {
             s sVar = d0Var.h;
-            t tVar = sVar.f12763a;
-            int i7 = sVar.f12764b;
-            int i10 = sVar.f12765c;
-            float f11 = tVar.f12827c;
+            t tVar = sVar.f12762a;
+            int i7 = sVar.f12763b;
+            int i10 = sVar.f12764c;
+            float f11 = tVar.f12826c;
             float e10 = this.J[i10].e(false, tVar.d[i10]);
             float measuredWidth = (getMeasuredWidth() / e10) * i7;
             float measuredHeight = (getMeasuredHeight() / f11) * i10;
@@ -799,7 +799,7 @@ public abstract class e0 extends FrameLayout implements j60 {
     }
 
     public final boolean j() {
-        if (this.f11831f.f12828e.size() > 1) {
+        if (this.f11831f.f12827e.size() > 1) {
             return true;
         }
         return false;
@@ -815,13 +815,13 @@ public abstract class e0 extends FrameLayout implements j60 {
             measuredWidth = i7;
         }
         float f10 = measuredWidth;
-        t tVar = sVar.f12763a;
+        t tVar = sVar.f12762a;
         int[] iArr = tVar.d;
-        int i10 = sVar.f12765c;
+        int i10 = sVar.f12764c;
         int i11 = iArr[i10];
-        int i12 = sVar.f12764b;
+        int i12 = sVar.f12763b;
         float f11 = measuredHeight;
-        int i13 = tVar.f12827c;
+        int i13 = tVar.f12826c;
         rectF.set((f10 / i11) * i12, (f11 / i13) * i10, (f10 / i11) * (i12 + 1), (f11 / i13) * (i10 + 1));
     }
 
@@ -895,7 +895,7 @@ public abstract class e0 extends FrameLayout implements j60 {
         if (tVar == null) {
             tVar = new t(".");
         }
-        ArrayList arrayList = tVar.f12828e;
+        ArrayList arrayList = tVar.f12827e;
         this.f11831f = tVar;
         a0 a0Var = this.H;
         org.telegram.messenger.g0.r(a0Var);

@@ -12,28 +12,28 @@ import org.telegram.messenger.kf;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.wo;
 public final class w5 extends FrameLayout {
-    public org.telegram.ui.Components.l9 f30728a;
-    public FrameLayout f30729b;
-    public wo f30730c;
+    public org.telegram.ui.Components.l9 f30732a;
+    public FrameLayout f30733b;
+    public wo f30734c;
     public TextView d;
-    public bi.m5 f30731e;
-    public int f30732f;
+    public bi.m5 f30735e;
+    public int f30736f;
     public int h;
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f30730c.b(org.telegram.ui.ActionBar.k6.W9, org.telegram.ui.ActionBar.k6.X9, org.telegram.ui.ActionBar.k6.V9);
+        this.f30734c.b(org.telegram.ui.ActionBar.l6.W9, org.telegram.ui.ActionBar.l6.X9, org.telegram.ui.ActionBar.l6.V9);
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f30732f + this.h, 1073741824), View.MeasureSpec.makeMeasureSpec(this.f30732f, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f30736f + this.h, 1073741824), View.MeasureSpec.makeMeasureSpec(this.f30736f, 1073741824));
     }
 
     public void setImage(gf gfVar) {
-        bi.m5 m5Var = this.f30731e;
-        org.telegram.ui.Components.l9 l9Var = this.f30728a;
+        bi.m5 m5Var = this.f30735e;
+        org.telegram.ui.Components.l9 l9Var = this.f30732a;
         Drawable drawable = getResources().getDrawable(2131232450);
         String str = gfVar.f26846c;
         int i7 = gfVar.C;
@@ -67,11 +67,11 @@ public final class w5 extends FrameLayout {
     }
 
     public void setNum(int i7) {
-        this.f30730c.setNum(i7);
+        this.f30734c.setNum(i7);
     }
 
     public void setImage(kf kfVar) {
-        org.telegram.ui.Components.l9 l9Var = this.f30728a;
+        org.telegram.ui.Components.l9 l9Var = this.f30732a;
         Drawable drawable = getResources().getDrawable(2131232450);
         TLRPC.PhotoSize photoSize = kfVar.M;
         if (photoSize != null) {
@@ -91,7 +91,7 @@ public final class w5 extends FrameLayout {
         String str2 = kfVar.D;
         if (str2 != null && str2.length() > 0) {
             l9Var.h(kfVar.D, null, drawable);
-        } else if (ij.X2(kfVar.J)) {
+        } else if (ij.W2(kfVar.J)) {
             l9Var.j(hc.c(org.telegram.messenger.w7.w(kfVar.J.thumbs, 320, false, null, false), kfVar.J), null, drawable, kfVar);
         } else {
             l9Var.setImageDrawable(drawable);

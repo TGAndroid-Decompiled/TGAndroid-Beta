@@ -13,10 +13,10 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.messenger.c20;
-import org.telegram.ui.Components.my0;
+import org.telegram.ui.Components.ny0;
 import org.telegram.ui.Components.wp;
 import org.telegram.ui.Components.xq;
-public final class be extends View implements org.telegram.ui.ActionBar.a6 {
+public final class be extends View implements org.telegram.ui.ActionBar.b6 {
     public PorterDuffColorFilter f3535a;
     public int f3536b;
     public final boolean f3537c;
@@ -40,7 +40,7 @@ public final class be extends View implements org.telegram.ui.ActionBar.a6 {
         this.f3537c = z9;
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
         paint.setStrokeWidth(org.telegram.messenger.g0.L(3.0f));
-        paint.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27925h5, ceVar.f3614i1));
+        paint.setColor(org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.f27938h5, ceVar.f3614i1));
     }
 
     @Override
@@ -177,8 +177,8 @@ public final class be extends View implements org.telegram.ui.ActionBar.a6 {
             ae aeVar2 = (ae) arrayList2.get(i7);
             for (int i10 = 0; i10 < arrayList3.size(); i10++) {
                 vd vdVar2 = arrayList3.get(i10);
-                boolean z9 = vdVar2.f4929b;
-                if ((z9 && aeVar2.f3479i) || (!aeVar2.f3479i && !z9 && vdVar2.f4930c == aeVar2.f3480j)) {
+                boolean z9 = vdVar2.f4927b;
+                if ((z9 && aeVar2.f3479i) || (!aeVar2.f3479i && !z9 && vdVar2.f4928c == aeVar2.f3480j)) {
                     vdVar = arrayList3.get(i10);
                     break;
                 }
@@ -198,7 +198,7 @@ public final class be extends View implements org.telegram.ui.ActionBar.a6 {
             for (int i12 = 0; i12 < arrayList2.size(); i12++) {
                 ae aeVar3 = (ae) arrayList2.get(i12);
                 boolean z10 = aeVar3.f3479i;
-                if ((z10 && vdVar3.f4929b) || (!z10 && !vdVar3.f4929b && aeVar3.f3480j == vdVar3.f4930c)) {
+                if ((z10 && vdVar3.f4927b) || (!z10 && !vdVar3.f4927b && aeVar3.f3480j == vdVar3.f4928c)) {
                     aeVar = (ae) arrayList2.get(i12);
                     break;
                 }
@@ -208,7 +208,7 @@ public final class be extends View implements org.telegram.ui.ActionBar.a6 {
                 for (int i13 = 0; i13 < r72.size(); i13++) {
                     ae aeVar4 = (ae) r72.get(i13);
                     boolean z11 = aeVar4.f3479i;
-                    if ((z11 && vdVar3.f4929b) || (!z11 && !vdVar3.f4929b && aeVar4.f3480j == vdVar3.f4930c)) {
+                    if ((z11 && vdVar3.f4927b) || (!z11 && !vdVar3.f4927b && aeVar4.f3480j == vdVar3.f4928c)) {
                         aeVar = (ae) r72.get(i13);
                         break;
                     }
@@ -220,7 +220,7 @@ public final class be extends View implements org.telegram.ui.ActionBar.a6 {
                 }
             }
             if (aeVar == null) {
-                aeVar = new ae(this, vdVar3.f4929b, vdVar3.f4930c);
+                aeVar = new ae(this, vdVar3.f4927b, vdVar3.f4928c);
                 aeVar.d.e(r82, 0.0f);
                 arrayList2.add(aeVar);
                 aeVar.f3475c.e(r82, (arrayList3.size() - r82) - i11);
@@ -230,7 +230,7 @@ public final class be extends View implements org.telegram.ui.ActionBar.a6 {
             aeVar.f3473a = (arrayList3.size() - r82) - i11;
             long j3 = vdVar3.d;
             Paint paint = aeVar.h;
-            aeVar.f3485o = new my0(dd.U0(jg.g.m(j3, ',', new StringBuilder("⭐️")), 0.85f, wpVarArr), 12.0f, org.telegram.messenger.g0.o1("fonts/num.otf"));
+            aeVar.f3485o = new ny0(dd.U0(jg.g.m(j3, ',', new StringBuilder("⭐️")), 0.85f, wpVarArr), 12.0f, org.telegram.messenger.g0.o1("fonts/num.otf"));
             boolean z12 = beVar.f3537c;
             int i14 = ceVar.f3615j1;
             if (z12) {
@@ -250,7 +250,7 @@ public final class be extends View implements org.telegram.ui.ActionBar.a6 {
             if (this.f3537c) {
                 int i16 = i11 + 1;
                 aeVar.v = i16;
-                aeVar.f3491u = new my0(jg.g.j(i16, ""), 10.0f, org.telegram.messenger.g0.o1("fonts/num.otf"));
+                aeVar.f3491u = new ny0(jg.g.j(i16, ""), 10.0f, org.telegram.messenger.g0.o1("fonts/num.otf"));
                 if (i16 > 0 && aeVar.f3489s == null) {
                     Drawable mutate = beVar.getContext().getResources().getDrawable(2131231174).mutate();
                     aeVar.f3489s = mutate;
@@ -259,23 +259,23 @@ public final class be extends View implements org.telegram.ui.ActionBar.a6 {
                     mutate.setColorFilter(new PorterDuffColorFilter(i17, mode));
                     Drawable mutate2 = beVar.getContext().getResources().getDrawable(2131231175).mutate();
                     aeVar.f3490t = mutate2;
-                    mutate2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27925h5, ceVar.f3614i1), mode));
+                    mutate2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.f27938h5, ceVar.f3614i1), mode));
                 }
             }
-            if (vdVar3.f4929b) {
+            if (vdVar3.f4927b) {
                 aeVar.b(this.f3543w.f3625v1);
             } else {
-                boolean z13 = vdVar3.f4928a;
+                boolean z13 = vdVar3.f4926a;
                 if (!aeVar.f3479i && aeVar.f3486p != z13) {
                     aeVar.f3486p = z13;
                     if (z13) {
                         r22 = null;
-                        t6 = org.telegram.messenger.id.M0(2131745051, null);
+                        t6 = org.telegram.messenger.id.M0(2131745048, null);
                     } else {
                         r22 = null;
                         t6 = org.telegram.messenger.m5.t(aeVar.f3480j);
                     }
-                    aeVar.f3484n = new my0(t6, 12.0f, r22);
+                    aeVar.f3484n = new ny0(t6, 12.0f, r22);
                     beVar.invalidate();
                     i11++;
                     arrayList3 = arrayList;

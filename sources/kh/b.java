@@ -5,18 +5,18 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import c8.ha;
 import org.telegram.messenger.g0;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Components.cp;
 import org.telegram.ui.Components.cq;
 public final class b extends FrameLayout {
-    public final f6 f17598a;
+    public final g6 f17598a;
     public a f17599b;
     public cq f17600c;
     public boolean d;
 
-    public b(Context context, f6 f6Var) {
+    public b(Context context, g6 g6Var) {
         super(context);
-        this.f17598a = f6Var;
+        this.f17598a = g6Var;
     }
 
     public final void a(int i7, boolean z9) {
@@ -26,7 +26,7 @@ public final class b extends FrameLayout {
             cqVar.setReverse(this.d);
             addView(this.f17600c, ha.e(-1, 28, 48));
         }
-        this.f17600c.f32663a.c(i7, z9);
+        this.f17600c.f32743a.c(i7, z9);
     }
 
     public final void b(boolean z9, boolean z10) {
@@ -42,7 +42,7 @@ public final class b extends FrameLayout {
             }
             cp cpVar = new cp(g0.L(18.0f), g0.L(1.7f), -9079435);
             aVar.f17594e = cpVar;
-            cpVar.f32657f = 90.0f;
+            cpVar.f32738f = 90.0f;
             ImageView imageView = new ImageView(aVar.getContext());
             aVar.d = imageView;
             imageView.setBackground(aVar.f17594e);
@@ -50,8 +50,8 @@ public final class b extends FrameLayout {
             aVar.addView(aVar.d, ha.e(46, 46, 17));
         }
         te.a aVar2 = aVar.f17591a;
-        if (!aVar2.f55488f && aVar2.f55487e == 0.0f) {
-            aVar.f17594e.f32655c = -1L;
+        if (!aVar2.f55500f && aVar2.f55499e == 0.0f) {
+            aVar.f17594e.f32736c = -1L;
         }
         aVar2.a(z9, z10);
     }

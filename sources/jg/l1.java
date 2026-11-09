@@ -17,36 +17,36 @@ import java.util.ArrayList;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.id;
 import org.telegram.messenger.ij;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.s6;
 import org.telegram.ui.Components.y8;
 import org.telegram.ui.Components.yz;
 public final class l1 extends FrameLayout {
-    public final f6 f16831a;
+    public final g6 f16831a;
     public final y8 f16832b;
     public final TextView[] f16833c;
     public final TextView[] d;
     public float f16834e;
     public ValueAnimator f16835f;
 
-    public l1(Context context, f6 f6Var) {
+    public l1(Context context, g6 g6Var) {
         super(context);
         int i7;
         this.f16833c = new TextView[2];
         this.d = new TextView[2];
-        this.f16831a = f6Var;
+        this.f16831a = g6Var;
         setWillNotDraw(false);
         y8 y8Var = new y8(this, false);
         this.f16832b = y8Var;
-        y8Var.f40611l = true;
-        y8Var.f40615p = org.telegram.messenger.g0.L(75.0f);
-        y8Var.f40614o = org.telegram.messenger.g0.L(48.0f);
-        y8Var.f40622x = true;
-        y8Var.f40618s = org.telegram.messenger.g0.L(22.0f);
+        y8Var.f40653l = true;
+        y8Var.f40657p = org.telegram.messenger.g0.L(75.0f);
+        y8Var.f40656o = org.telegram.messenger.g0.L(48.0f);
+        y8Var.f40664x = true;
+        y8Var.f40660s = org.telegram.messenger.g0.L(22.0f);
         for (int i10 = 0; i10 < 2; i10++) {
             this.f16833c[i10] = new TextView(context);
-            r6.V(this.f16833c[i10], k6.G6, f6Var);
+            s6.U(this.f16833c[i10], l6.G6, g6Var);
             this.f16833c[i10].setTypeface(org.telegram.messenger.g0.o());
             this.f16833c[i10].setTextSize(1, 14.0f);
             TextView textView = this.f16833c[i10];
@@ -59,7 +59,7 @@ public final class l1 extends FrameLayout {
             textView.setVisibility(i7);
             addView(this.f16833c[i10], ha.d(-1, -2.0f, 48, 76.0f, 7.0f, 40.0f, 0.0f));
             this.d[i10] = new TextView(context);
-            r6.V(this.d[i10], k6.f28262z6, f6Var);
+            s6.U(this.d[i10], l6.f28275z6, g6Var);
             this.d[i10].setTextSize(1, 12.0f);
             TextView textView2 = this.d[i10];
             if (i10 == 0) {
@@ -69,27 +69,27 @@ public final class l1 extends FrameLayout {
             addView(this.d[i10], ha.d(-1, -2.0f, 48, 76.0f, 26.33f, 40.0f, 0.0f));
         }
         ImageView e10 = org.telegram.messenger.camera.q.e(context, 2131232059);
-        r6.t(e10, k6.P5, f6Var, PorterDuff.Mode.SRC_IN);
+        s6.s(e10, l6.P5, g6Var, PorterDuff.Mode.SRC_IN);
         addView(e10, ha.d(24, 24.0f, 21, 0.0f, 0.0f, 8.66f, 0.0f));
     }
 
-    public final boolean a(di.k6 k6Var) {
+    public final boolean a(di.l6 l6Var) {
         String str;
         y8 y8Var;
         int i7 = 0;
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = k6Var.f9643i;
-            str = k6Var.D;
+            ArrayList arrayList = l6Var.f9694i;
+            str = l6Var.D;
             int size = arrayList.size();
             y8Var = this.f16832b;
             if (i7 >= size || i10 >= 3) {
                 break;
             }
-            ij ijVar = (ij) k6Var.f9643i.get(i7);
+            ij ijVar = (ij) l6Var.f9694i.get(i7);
             long j3 = ijVar.f23266l.dialogId;
             TextUtils.isEmpty(str);
-            y8Var.j(i10, k6Var.f9639c, ijVar.f23266l);
+            y8Var.j(i10, l6Var.f9690c, ijVar.f23266l);
             i10++;
             i7++;
         }
@@ -98,11 +98,11 @@ public final class l1 extends FrameLayout {
         boolean isEmpty = TextUtils.isEmpty(str);
         TextView[] textViewArr = this.f16833c;
         if (!isEmpty) {
-            textViewArr[0].setText(c(id.K("HashtagStoriesFoundChannel", k6Var.J, ' ', rf.b.i("@", str))));
+            textViewArr[0].setText(c(id.K("HashtagStoriesFoundChannel", l6Var.J, ' ', rf.b.i("@", str))));
         } else {
-            textViewArr[0].setText(id.H(' ', "HashtagStoriesFound", k6Var.J));
+            textViewArr[0].setText(id.H(' ', "HashtagStoriesFound", l6Var.J));
         }
-        this.d[0].setText(id.a0(null, null, 2131749349, k6Var.C));
+        this.d[0].setText(id.a0(null, null, 2131749348, l6Var.C));
         if (i10 <= 0) {
             return false;
         }
@@ -117,20 +117,20 @@ public final class l1 extends FrameLayout {
         } else {
             textViewArr[1].setText(id.H(' ', "HashtagMessagesFound", i7));
         }
-        this.d[1].setText(id.a0(null, null, 2131749358, str));
+        this.d[1].setText(id.a0(null, null, 2131749357, str));
     }
 
     public final SpannableStringBuilder c(String str) {
-        int i7 = k6.Ci;
-        f6 f6Var = this.f16831a;
-        SpannableStringBuilder Q2 = org.telegram.messenger.g0.Q2(str, i7, f6Var, null, false);
+        int i7 = l6.Ci;
+        g6 g6Var = this.f16831a;
+        SpannableStringBuilder Q2 = org.telegram.messenger.g0.Q2(str, i7, g6Var, null, false);
         try {
             CharacterStyle[] characterStyleArr = (CharacterStyle[]) Q2.getSpans(0, Q2.length(), CharacterStyle.class);
             for (int i10 = 0; i10 < characterStyleArr.length; i10++) {
                 int spanStart = Q2.getSpanStart(characterStyleArr[i10]);
                 int spanEnd = Q2.getSpanEnd(characterStyleArr[i10]);
                 Q2.removeSpan(characterStyleArr[i10]);
-                Q2.setSpan(new yz(k6.Ci, f6Var), spanStart, spanEnd, 0);
+                Q2.setSpan(new yz(l6.Ci, g6Var), spanStart, spanEnd, 0);
             }
             return Q2;
         } catch (Exception e10) {
@@ -150,9 +150,9 @@ public final class l1 extends FrameLayout {
         this.f16832b.g(canvas);
         canvas.restore();
         super.onDraw(canvas);
-        Paint W0 = k6.W0("paintDivider", this.f16831a);
+        Paint W0 = l6.W0("paintDivider", this.f16831a);
         if (W0 == null) {
-            W0 = k6.f27975k0;
+            W0 = l6.f27988k0;
         }
         canvas.drawRect(0.0f, getHeight() - 1, getWidth(), getHeight(), W0);
     }

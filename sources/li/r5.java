@@ -8,9 +8,9 @@ import java.util.Set;
 import org.telegram.messenger.fj;
 import org.telegram.messenger.id;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.l6;
 import org.telegram.ui.Components.CheckBoxBase;
-import org.telegram.ui.Components.k60;
+import org.telegram.ui.Components.l60;
 public final class r5 implements View.OnClickListener {
     public final int f18812a;
     public final a6 f18813b;
@@ -58,8 +58,8 @@ public final class r5 implements View.OnClickListener {
                         ArrayList arrayList = new ArrayList(set);
                         Collections.sort(arrayList);
                         TL_iv.pageBlockPreformatted pageblockpreformatted = (TL_iv.pageBlockPreformatted) aVar3.f18392b;
-                        k60 J = t3Var2.f18890o3.J(view);
-                        J.W(k6.d0(org.telegram.messenger.g0.L(3.0f), k6.w0(k6.f27852d6, t3Var2.f18888n3)));
+                        l60 J = t3Var2.f18890o3.J(view);
+                        J.W(l6.d0(org.telegram.messenger.g0.L(3.0f), l6.w0(l6.f27865d6, t3Var2.f18888n3)));
                         J.Z = true;
                         J.X = org.telegram.messenger.g0.L(350.0f);
                         J.i(new m2(t3Var2, aVar3, 25), id.M0(2131753999, null), TextUtils.isEmpty(pageblockpreformatted.language));

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.pp0;
-import org.telegram.ui.Components.ur0;
+import org.telegram.ui.Components.qp0;
+import org.telegram.ui.Components.wr0;
 import org.telegram.ui.StickersActivity;
 public final class qf implements RequestDelegate {
     public final int f24691a;
@@ -42,7 +42,7 @@ public final class qf implements RequestDelegate {
                 }
                 return;
             default:
-                ur0 ur0Var = (ur0) this.d;
+                wr0 wr0Var = (wr0) this.d;
                 String str = (String) this.f24694e;
                 ArrayList arrayList = new ArrayList();
                 if (tL_error == null) {
@@ -51,11 +51,11 @@ public final class qf implements RequestDelegate {
                         TLRPC.Message message = messages_messages.messages.get(i7);
                         int i10 = this.f24692b;
                         if (i10 == 0 || message.f26977id <= i10) {
-                            arrayList.add(new ij(ur0Var.f38726w.f40461x1.getCurrentAccount(), message, false, true));
+                            arrayList.add(new ij(wr0Var.f40140w.f41127x1.getCurrentAccount(), message, false, true));
                         }
                     }
                 }
-                g0.h3(new pp0(ur0Var, this.f24693c, arrayList, str, 1));
+                g0.h3(new qp0(wr0Var, this.f24693c, arrayList, str, 1));
                 return;
         }
     }

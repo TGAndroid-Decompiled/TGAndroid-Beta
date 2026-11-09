@@ -1,40 +1,53 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.widget.TextView;
-public final class t90 extends AnimatorListenerAdapter {
-    public final int f49981a;
-    public final float f49982b;
-    public final u90 f49983c;
+import android.text.TextUtils;
+public final class t90 extends rg.a {
+    public final CharSequence f50129c;
+    public final int d;
+    public final int f50130e;
+    public final int f50131f;
 
-    public t90(u90 u90Var, float f10, int i7) {
-        this.f49981a = i7;
-        this.f49983c = u90Var;
-        this.f49982b = f10;
+    public t90(int i7, int i10, CharSequence charSequence, int i11, int i12) {
+        super(i7, false);
+        this.f50129c = charSequence;
+        this.d = i10;
+        this.f50130e = i11;
+        this.f50131f = i12;
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f49981a) {
-            case 0:
-                u90 u90Var = this.f49983c;
-                TextView textView = u90Var.f50265f;
-                int x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28244y6, false);
-                int x03 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28034n6, false);
-                float f10 = this.f49982b;
-                u90Var.f50268s = f10;
-                textView.setTextColor(i0.a.f(f10, x02, x03));
-                return;
-            default:
-                u90 u90Var2 = this.f49983c;
-                TextView textView2 = u90Var2.d;
-                int x04 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28244y6, false);
-                int x05 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28034n6, false);
-                float f11 = this.f49982b;
-                u90Var2.f50270x = f11;
-                textView2.setTextColor(i0.a.f(f11, x04, x05));
-                return;
+    public static t90 b(int i7, String str) {
+        return new t90(4, 0, str, i7, 0);
+    }
+
+    public static t90 c(int i7, int i10, String str) {
+        return new t90(3, i7, str, i10, 0);
+    }
+
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj instanceof t90) {
+                t90 t90Var = (t90) obj;
+                int i7 = t90Var.f54544a;
+                int i10 = this.f54544a;
+                if (i7 == i10) {
+                    if (i10 != 3 || t90Var.d == this.d) {
+                        if (i10 != 5 || t90Var.f50131f == this.f50131f) {
+                            if ((i10 != 3 && i10 != 4) || t90Var.f50130e == this.f50130e) {
+                                if ((i10 == 0 || i10 == 2 || i10 == 3 || i10 == 4 || i10 == 5) && !TextUtils.equals(t90Var.f50129c, this.f50129c)) {
+                                    return false;
+                                }
+                                return true;
+                            }
+                            return false;
+                        }
+                        return false;
+                    }
+                    return false;
+                }
+                return false;
+            }
+            return false;
         }
+        return true;
     }
 }

@@ -1,14 +1,12 @@
 package org.telegram.ui.ActionBar;
-public final class n6 {
-    public final int f28327a;
-    public final int f28328b;
-    public final int f28329c;
-    public final float d;
 
-    public n6(int i7, int i10, float f10, int i11) {
-        this.f28327a = i7;
-        this.f28328b = i10;
-        this.f28329c = i11;
-        this.d = f10;
-    }
+import android.graphics.drawable.Drawable;
+import java.util.ArrayList;
+public final class n6 {
+    public final m6[] f28325a = new m6[6];
+    public ArrayList f28326b;
+    public ArrayList f28327c;
+    public Drawable d;
+    public m6 f28328e;
+    public m6 f28329f;
 }

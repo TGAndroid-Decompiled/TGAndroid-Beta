@@ -12,21 +12,21 @@ import java.util.ArrayList;
 import org.telegram.messenger.id;
 public final class t8 extends FrameLayout {
     public static Paint d;
-    public static final int[] f30539e = {-1031100, -29183, -12769, -8792480, -12521994, -12140801, -2984711, -45162, -4473925};
-    public static final int[] f30540f = {-65536, -29183, -256, -16711936, -16711681, -16776961, -2984711, -65281, -1};
-    public final TextView f30541a;
-    public boolean f30542b;
-    public int f30543c;
+    public static final int[] f30543e = {-1031100, -29183, -12769, -8792480, -12521994, -12140801, -2984711, -45162, -4473925};
+    public static final int[] f30544f = {-65536, -29183, -256, -16711936, -16711681, -16776961, -2984711, -65281, -1};
+    public final TextView f30545a;
+    public boolean f30546b;
+    public int f30547c;
 
-    public t8(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+    public t8(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context);
         int i7;
         if (d == null) {
             d = new Paint(1);
         }
         TextView textView = new TextView(context);
-        this.f30541a = textView;
-        org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.G6, f6Var);
+        this.f30545a = textView;
+        org.telegram.ui.ActionBar.s6.U(textView, org.telegram.ui.ActionBar.l6.G6, g6Var);
         org.telegram.messenger.camera.q.n(textView, 1, 16.0f, 1, 1);
         textView.setSingleLine(true);
         if (id.f23157a0) {
@@ -42,7 +42,7 @@ public final class t8 extends FrameLayout {
         float f10;
         float f11;
         setEnabled(z9);
-        TextView textView = this.f30541a;
+        TextView textView = this.f30545a;
         float f12 = 0.5f;
         if (arrayList != null) {
             if (z9) {
@@ -73,9 +73,9 @@ public final class t8 extends FrameLayout {
 
     public final void b(int i7, String str, boolean z9) {
         boolean z10;
-        this.f30541a.setText(str);
-        this.f30542b = z9;
-        this.f30543c = i7;
+        this.f30545a.setText(str);
+        this.f30546b = z9;
+        this.f30547c = i7;
         if (!z9 && i7 == 0) {
             z10 = true;
         } else {
@@ -91,7 +91,7 @@ public final class t8 extends FrameLayout {
         int measuredWidth;
         float L;
         int i7;
-        if (this.f30542b) {
+        if (this.f30546b) {
             if (id.f23157a0) {
                 L = 0.0f;
             } else {
@@ -106,11 +106,11 @@ public final class t8 extends FrameLayout {
                 i7 = 0;
             }
             canvas2 = canvas;
-            canvas2.drawLine(f10, measuredHeight, measuredWidth2 - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f27975k0);
+            canvas2.drawLine(f10, measuredHeight, measuredWidth2 - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.l6.f27988k0);
         } else {
             canvas2 = canvas;
         }
-        int i10 = this.f30543c;
+        int i10 = this.f30547c;
         if (i10 != 0) {
             d.setColor(i10);
             if (id.f23157a0) {
@@ -124,6 +124,6 @@ public final class t8 extends FrameLayout {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(50.0f) + (this.f30542b ? 1 : 0), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(50.0f) + (this.f30546b ? 1 : 0), 1073741824));
     }
 }

@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.we;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.xy0;
+import org.telegram.ui.az0;
 public final class s extends org.telegram.ui.ActionBar.j {
     public final int f4655a;
     public final Object f4656b;
@@ -86,17 +86,17 @@ public final class s extends org.telegram.ui.ActionBar.j {
                         d0Var.dismiss();
                         return;
                     }
-                    d0Var.f15510r1.d.f37190f3.O(false);
+                    d0Var.f15510r1.d.f37556f3.O(false);
                     d0Var.f15505k1.E(0);
                     return;
                 } else if (i7 == 3) {
                     d0Var.f15504j1.a(true, true);
                     d0Var.u0(false);
                     d0Var.J1 = null;
-                    d0Var.f15516x1.f37190f3.O(true);
-                    d0Var.f15514v1.f37824r.getText().clear();
-                    d0Var.f15514v1.f37824r.requestFocus();
-                    org.telegram.messenger.g0.K3(d0Var.f15514v1.f37824r);
+                    d0Var.f15516x1.f37556f3.O(true);
+                    d0Var.f15514v1.f37857r.getText().clear();
+                    d0Var.f15514v1.f37857r.requestFocus();
+                    org.telegram.messenger.g0.K3(d0Var.f15514v1.f37857r);
                     return;
                 } else {
                     return;
@@ -115,9 +115,9 @@ public final class s extends org.telegram.ui.ActionBar.j {
                     TextUtils.isEmpty(d0Var2.I1);
                     d0Var2.I1 = null;
                     d0Var2.f15515w1.h(0L, d0Var2.l1, 0L, 0L, null, false, null, true);
-                    d0Var2.f15513u1.f37824r.getText().clear();
-                    d0Var2.f15513u1.f37824r.requestFocus();
-                    org.telegram.messenger.g0.K3(d0Var2.f15513u1.f37824r);
+                    d0Var2.f15513u1.f37857r.getText().clear();
+                    d0Var2.f15513u1.f37857r.requestFocus();
+                    org.telegram.messenger.g0.K3(d0Var2.f15513u1.f37857r);
                     return;
                 } else {
                     return;
@@ -125,7 +125,7 @@ public final class s extends org.telegram.ui.ActionBar.j {
             case 10:
                 ii.d0 d0Var3 = ((ii.y) obj).f15617n;
                 if (i7 == -1) {
-                    d0Var3.f15510r1.d.f37190f3.O(false);
+                    d0Var3.f15510r1.d.f37556f3.O(false);
                     d0Var3.f15505k1.E(0);
                     return;
                 }
@@ -248,7 +248,7 @@ public final class s extends org.telegram.ui.ActionBar.j {
                     org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
                     u1Var.R = G;
                     u1Var.T = org.telegram.messenger.id.G(arrayList.size(), "BusinessRepliesDeleteMessage", new Object[0]);
-                    alertDialog$Builder.k(org.telegram.messenger.id.M0(2131746322, null), new di.q4(this, 26));
+                    alertDialog$Builder.k(org.telegram.messenger.id.M0(2131746321, null), new di.r4(this, 26));
                     alertDialog$Builder.h(org.telegram.messenger.id.M0(2131752589, null), null);
                     q1Var.showDialog(u1Var);
                     return;
@@ -281,7 +281,7 @@ public final class s extends org.telegram.ui.ActionBar.j {
                 return;
             case 23:
                 if (i7 == -1) {
-                    ((xy0) obj).finishFragment();
+                    ((az0) obj).finishFragment();
                     return;
                 }
                 return;
@@ -300,8 +300,8 @@ public final class s extends org.telegram.ui.ActionBar.j {
             case 26:
                 org.telegram.ui.y6 y6Var = (org.telegram.ui.y6) obj;
                 if (i7 == -1) {
-                    if (org.telegram.ui.y6.e0(y6Var).s()) {
-                        ci.c cVar2 = y6Var.f52103d0;
+                    if (org.telegram.ui.y6.e0(y6Var).t()) {
+                        ci.c cVar2 = y6Var.f51927d0;
                         if (cVar2 != null) {
                             cVar2.d();
                         }
@@ -346,7 +346,7 @@ public final class s extends org.telegram.ui.ActionBar.j {
                 org.telegram.ui.i9 i9Var = (org.telegram.ui.i9) obj;
                 if (i7 == -1) {
                     y4Var = ((org.telegram.ui.ActionBar.f2) i9Var).simpleActionBar;
-                    if (y4Var.s()) {
+                    if (y4Var.t()) {
                         i9Var.j0(true);
                         return;
                     } else {

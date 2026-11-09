@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.util.concurrent.CountDownLatch;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.s31;
 import org.webrtc.EglBase;
 import org.webrtc.VideoFrame;
 public class VideoFileRenderer implements VideoSink {
@@ -122,20 +122,20 @@ public class VideoFileRenderer implements VideoSink {
         videoFrame.release();
         VideoFrame.I420Buffer i420 = cropAndScale.toI420();
         cropAndScale.release();
-        this.fileThreadHandler.post(new r31(this, i420, videoFrame, 12));
+        this.fileThreadHandler.post(new s31(this, i420, videoFrame, 12));
     }
 
     @Override
     public void onFrame(VideoFrame videoFrame) {
         videoFrame.retain();
-        this.renderThreadHandler.post(new s(4, this, videoFrame));
+        this.renderThreadHandler.post(new r(4, this, videoFrame));
     }
 
     public void release() {
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        this.renderThreadHandler.post(new s(5, this, countDownLatch));
+        this.renderThreadHandler.post(new r(5, this, countDownLatch));
         ThreadUtils.awaitUninterruptibly(countDownLatch);
-        this.fileThreadHandler.post(new h(this, 3));
+        this.fileThreadHandler.post(new h(this, 4));
         try {
             this.fileThread.join();
         } catch (InterruptedException e10) {
@@ -146,6 +146,6 @@ public class VideoFileRenderer implements VideoSink {
 
     @Override
     public final void setParentSink(VideoSink videoSink) {
-        e0.a(this, videoSink);
+        d0.a(this, videoSink);
     }
 }

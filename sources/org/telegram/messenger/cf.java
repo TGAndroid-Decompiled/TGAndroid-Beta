@@ -33,18 +33,18 @@ public final class cf implements ls {
     }
 
     public final boolean b(ij ijVar) {
-        TLRPC.MessageMedia o12;
+        TLRPC.MessageMedia n1;
         TLRPC.Photo photo;
         TLRPC.PhotoSize w10;
         ?? r22;
         ?? r62;
         boolean z9 = false;
-        if (!ijVar.E3() || (o12 = ij.o1(ijVar.f23262k)) == null || (photo = o12.photo) == null || o12.document == null || (w10 = w7.w(photo.sizes, g0.Z0(true), false, null, true)) == null) {
+        if (!ijVar.D3() || (n1 = ij.n1(ijVar.f23262k)) == null || (photo = n1.photo) == null || n1.document == null || (w10 = w7.w(photo.sizes, g0.Z0(true), false, null, true)) == null) {
             return false;
         }
         w7.G(this.f21842a.f21765a);
         File J = w7.J(w10, null, false, true);
-        File J2 = w7.J(o12.document, null, false, true);
+        File J2 = w7.J(n1.document, null, false, true);
         if (J != null && J.exists()) {
             r22 = 0;
         } else {
@@ -58,7 +58,7 @@ public final class cf implements ls {
         int i7 = r22 + r62;
         if (i7 > 0) {
             this.f21848r = new CountDownLatch(i7);
-            g0.h3(new mh(this, (boolean) r22, w10, ijVar, o12.photo, (boolean) r62, o12.document));
+            g0.h3(new mh(this, (boolean) r22, w10, ijVar, n1.photo, (boolean) r62, n1.document));
             this.f21848r.await();
         }
         if (!this.f21846f) {
@@ -66,7 +66,7 @@ public final class cf implements ls {
                 J = w7.J(w10, null, true, true);
             }
             if (J2 == null || !J2.exists()) {
-                J2 = w7.J(o12.document, null, true, true);
+                J2 = w7.J(n1.document, null, true, true);
             }
             if (J != null && J.exists() && J2 != null && J2.exists()) {
                 String D = w7.D(J);

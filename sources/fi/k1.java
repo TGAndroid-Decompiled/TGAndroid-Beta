@@ -24,12 +24,12 @@ public final class k1 extends is {
         if (i5Var != null) {
             i5Var.setAlpha((int) (f10 * 255.0f));
             i5Var.draw(canvas);
-        } else if (l1Var.f12306f != null) {
+        } else if (l1Var.f12307f != null) {
             canvas.save();
-            ImageReceiver imageReceiver = l1Var.f12306f;
-            canvas.clipRect(imageReceiver.K0, imageReceiver.L0, imageReceiver.y(), l1Var.f12306f.A());
-            l1Var.f12306f.setAlpha(f10);
-            l1Var.f12306f.h(canvas, null);
+            ImageReceiver imageReceiver = l1Var.f12307f;
+            canvas.clipRect(imageReceiver.K0, imageReceiver.L0, imageReceiver.y(), l1Var.f12307f.A());
+            l1Var.f12307f.setAlpha(f10);
+            l1Var.f12307f.h(canvas, null);
             canvas.restore();
         }
     }
@@ -73,9 +73,9 @@ public final class k1 extends is {
                 l1Var.getClass();
                 org.telegram.ui.Components.i5 i5Var = l1Var.d;
                 if (i5Var != null) {
-                    i5Var.setColorFilter(this.R.f12412o3);
+                    i5Var.setColorFilter(this.R.f12413o3);
                 }
-                l1Var.f12308r.h(canvas, l1Var.f12307n[this.K]);
+                l1Var.f12309r.h(canvas, l1Var.f12308n[this.K]);
                 i7++;
             } else {
                 return;
@@ -100,11 +100,11 @@ public final class k1 extends is {
                 if (i5Var2 != null) {
                     i5Var2.setBounds(rect);
                 }
-                ImageReceiver imageReceiver = l1Var.f12306f;
+                ImageReceiver imageReceiver = l1Var.f12307f;
                 if (imageReceiver != null) {
                     imageReceiver.z0(rect);
                 }
-                PorterDuffColorFilter porterDuffColorFilter = this.R.f12412o3;
+                PorterDuffColorFilter porterDuffColorFilter = this.R.f12413o3;
                 if (porterDuffColorFilter != null && (i5Var = l1Var.d) != null) {
                     i5Var.setColorFilter(porterDuffColorFilter);
                 }
@@ -127,7 +127,7 @@ public final class k1 extends is {
         while (true) {
             ArrayList arrayList = this.P;
             if (i7 < arrayList.size()) {
-                ic icVar = ((l1) arrayList.get(i7)).f12307n[this.K];
+                ic icVar = ((l1) arrayList.get(i7)).f12308n[this.K];
                 if (icVar != null) {
                     icVar.a();
                 }

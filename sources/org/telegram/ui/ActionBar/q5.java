@@ -1,79 +1,68 @@
 package org.telegram.ui.ActionBar;
 
-import android.util.SparseIntArray;
-import org.telegram.ui.v71;
-public final class q5 extends t4 {
-    public final int U;
-    public final Object V;
-
-    public q5(boolean z9, SparseIntArray sparseIntArray, int i7) {
-        super(2, z9, false, null);
-        this.U = i7;
-        this.V = sparseIntArray;
-    }
-
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.os.SystemClock;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.ij;
+public final class q5 implements SensorEventListener {
     @Override
-    public int g(int i7) {
-        switch (this.U) {
-            case 0:
-                SparseIntArray sparseIntArray = (SparseIntArray) this.V;
-                int indexOfKey = sparseIntArray.indexOfKey(i7);
-                if (indexOfKey > 0) {
-                    return sparseIntArray.valueAt(indexOfKey);
+    public final void onSensorChanged(SensorEvent sensorEvent) {
+        float f10 = sensorEvent.values[0];
+        if (f10 <= 0.0f) {
+            f10 = 0.1f;
+        }
+        if (!org.telegram.messenger.t0.f25574x && org.telegram.messenger.t0.f25573w) {
+            if (f10 > 500.0f) {
+                l6.h = 1.0f;
+            } else {
+                l6.h = ((float) Math.ceil((Math.log(f10) * 9.932299613952637d) + 27.05900001525879d)) / 100.0f;
+            }
+            long j3 = 1800;
+            if (l6.h <= l6.f28098q) {
+                MediaController B = MediaController.B();
+                if (B.I) {
+                    if (!B.J()) {
+                        ij ijVar = B.f21295u0;
+                        if (ijVar != null && (ij.R4(ijVar.f23262k) || B.f21295u0.h4())) {
+                            return;
+                        }
+                    } else {
+                        return;
+                    }
                 }
-                return k6.em[i7];
-            case 1:
-                return ((SparseIntArray) this.V).get(i7);
-            default:
-                return super.g(i7);
-        }
-    }
-
-    @Override
-    public int i(int i7) {
-        switch (this.U) {
-            case 0:
-                return ((SparseIntArray) this.V).get(i7);
-            case 1:
-                return ((SparseIntArray) this.V).get(i7);
-            default:
-                return super.i(i7);
-        }
-    }
-
-    @Override
-    public void o(int i7, int i10, int i11) {
-        switch (this.U) {
-            case 2:
-                if (!((v71) this.V).f50537e2) {
-                    super.o(i7, i10, i11);
+                if (l6.f27968j) {
+                    l6.f27968j = false;
+                    org.telegram.messenger.g0.r(l6.f28006l);
+                }
+                if (!l6.f27987k) {
+                    l6.f27987k = true;
+                    androidx.emoji2.text.n nVar = l6.f28024m;
+                    if (Math.abs(l6.f27950i - SystemClock.elapsedRealtime()) < 12000) {
+                        j3 = 12000;
+                    }
+                    org.telegram.messenger.g0.i3(nVar, j3);
                     return;
                 }
                 return;
-            default:
-                super.o(i7, i10, i11);
-                return;
+            }
+            if (l6.f27987k) {
+                l6.f27987k = false;
+                org.telegram.messenger.g0.r(l6.f28024m);
+            }
+            if (!l6.f27968j) {
+                l6.f27968j = true;
+                androidx.emoji2.text.n nVar2 = l6.f28006l;
+                if (Math.abs(l6.f27950i - SystemClock.elapsedRealtime()) < 12000) {
+                    j3 = 12000;
+                }
+                org.telegram.messenger.g0.i3(nVar2, j3);
+            }
         }
     }
 
     @Override
-    public void p(int i7, int i10, int i11, int i12, int i13, int i14, boolean z9, boolean z10) {
-        switch (this.U) {
-            case 2:
-                if (!((v71) this.V).f50537e2) {
-                    super.p(i7, i10, i11, i12, i13, i14, z9, z10);
-                    return;
-                }
-                return;
-            default:
-                super.p(i7, i10, i11, i12, i13, i14, z9, z10);
-                return;
-        }
-    }
-
-    public q5(v71 v71Var, int i7, boolean z9) {
-        super(i7, true, z9, null);
-        this.U = 2;
-        this.V = v71Var;
+    public final void onAccuracyChanged(Sensor sensor, int i7) {
     }
 }

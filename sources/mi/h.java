@@ -4,7 +4,7 @@ import android.animation.ValueAnimator;
 import android.view.View;
 import org.telegram.ui.Cells.f0;
 import org.telegram.ui.Cells.ra;
-import org.telegram.ui.an;
+import org.telegram.ui.cn;
 public final class h implements ValueAnimator.AnimatorUpdateListener {
     public final int f20078a;
     public final float f20079b;
@@ -26,9 +26,9 @@ public final class h implements ValueAnimator.AnimatorUpdateListener {
             case 0:
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 l lVar = this.f20080c;
-                an anVar = lVar.F;
+                cn cnVar = lVar.F;
                 f0 f0Var = (f0) this.d;
-                float measuredHeight = ((((lVar.G.getMeasuredHeight() - anVar.L9) - anVar.Ua) / 2.0f) - (f0Var.getMeasuredHeight() / 2.0f)) + lVar.F.L9;
+                float measuredHeight = ((((lVar.G.getMeasuredHeight() - cnVar.N9) - cnVar.Wa) / 2.0f) - (f0Var.getMeasuredHeight() / 2.0f)) + lVar.F.N9;
                 if (f0Var.getTop() > measuredHeight) {
                     f10 = measuredHeight - f0Var.getTop();
                 } else {
@@ -39,9 +39,9 @@ public final class h implements ValueAnimator.AnimatorUpdateListener {
             default:
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 l lVar2 = this.f20080c;
-                an anVar2 = lVar2.F;
+                cn cnVar2 = lVar2.F;
                 ra raVar = (ra) this.d;
-                float measuredHeight2 = ((((lVar2.G.getMeasuredHeight() - anVar2.L9) - anVar2.Ua) / 2.0f) - (raVar.getMeasuredHeight() / 2.0f)) + lVar2.F.L9;
+                float measuredHeight2 = ((((lVar2.G.getMeasuredHeight() - cnVar2.N9) - cnVar2.Wa) / 2.0f) - (raVar.getMeasuredHeight() / 2.0f)) + lVar2.F.N9;
                 if (raVar.getTop() > measuredHeight2) {
                     f11 = measuredHeight2 - raVar.getTop();
                 } else {

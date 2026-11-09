@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 import c8.ha;
-import di.q4;
+import di.r4;
 import j$.time.DayOfWeek;
 import j$.time.format.TextStyle;
 import java.util.ArrayList;
@@ -22,12 +22,12 @@ import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.Cells.h5;
 import org.telegram.ui.Cells.m8;
 import org.telegram.ui.Components.hc;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.q41;
-import org.telegram.ui.Components.x31;
+import org.telegram.ui.Components.m41;
+import org.telegram.ui.Components.qj0;
+import org.telegram.ui.Components.r41;
+import org.telegram.ui.Components.y31;
 public final class c1 extends f2 implements ls {
-    public q41 f17329a;
+    public r41 f17329a;
     public b5 f17330b;
     public boolean f17331c;
     public boolean d;
@@ -49,7 +49,7 @@ public final class c1 extends f2 implements ls {
         } else if (tLObject instanceof TLRPC.TL_boolFalse) {
             if (c1Var.getParentActivity() != null) {
                 c1Var.f17330b.b(false);
-                k5.p(null, 2131743882, hc.a0(c1Var), null);
+                k5.p(null, 2131743879, hc.a0(c1Var), null);
             }
         } else if (!c1Var.isFinished && !c1Var.finishing) {
             c1Var.finishFragment();
@@ -59,17 +59,17 @@ public final class c1 extends f2 implements ls {
     public static void a0(c1 c1Var, ArrayList arrayList) {
         String M0 = id.M0(2131752764, null);
         String M02 = id.M0(2131752749, null);
-        x31 x31Var = new x31(2);
-        x31Var.f40180l = M0;
-        x31Var.f40183o = M02;
-        x31Var.f40179k = 2131623939;
-        arrayList.add(x31Var);
-        x31 i7 = x31.i(-1, id.M0(2131752729, null));
+        y31 y31Var = new y31(2);
+        y31Var.f40568l = M0;
+        y31Var.f40571o = M02;
+        y31Var.f40567k = 2131623939;
+        arrayList.add(y31Var);
+        y31 i7 = y31.i(-1, id.M0(2131752729, null));
         i7.L(c1Var.d);
         arrayList.add(i7);
-        arrayList.add(x31.B(-100, null));
+        arrayList.add(y31.B(-100, null));
         if (c1Var.d) {
-            arrayList.add(x31.u(id.M0(2131752764, null)));
+            arrayList.add(y31.u(id.M0(2131752764, null)));
             int i10 = 0;
             while (true) {
                 ArrayList[] arrayListArr = c1Var.f17333f;
@@ -79,17 +79,17 @@ public final class c1 extends f2 implements ls {
                     }
                     String displayName = DayOfWeek.values()[i10].getDisplayName(TextStyle.FULL, id.E0().f23185y);
                     String f02 = f0(c1Var.f17333f[i10]);
-                    x31 x31Var2 = new x31(5);
-                    x31Var2.d = i10;
-                    x31Var2.f40180l = displayName.substring(0, 1).toUpperCase() + displayName.substring(1);
-                    x31Var2.f40181m = f02;
-                    x31Var2.L(!c1Var.f17333f[i10].isEmpty());
-                    arrayList.add(x31Var2);
+                    y31 y31Var2 = new y31(5);
+                    y31Var2.d = i10;
+                    y31Var2.f40568l = displayName.substring(0, 1).toUpperCase() + displayName.substring(1);
+                    y31Var2.f40569m = f02;
+                    y31Var2.L(!c1Var.f17333f[i10].isEmpty());
+                    arrayList.add(y31Var2);
                     i10++;
                 } else {
-                    arrayList.add(x31.B(-101, null));
-                    arrayList.add(x31.f(id.M0(2131752728, null), x1.b(c1Var.currentAccount).d(c1Var.f17334n, false), -2));
-                    arrayList.add(x31.B(-102, null));
+                    arrayList.add(y31.B(-101, null));
+                    arrayList.add(y31.f(id.M0(2131752728, null), x1.b(c1Var.currentAccount).d(c1Var.f17334n, false), -2));
+                    arrayList.add(y31.B(-102, null));
                     return;
                 }
             }
@@ -265,7 +265,7 @@ public final class c1 extends f2 implements ls {
                 if (B1 instanceof h5) {
                     ((h5) B1).setValue(f0(this.f17333f[i10]));
                 } else {
-                    this.f17329a.f37190f3.O(true);
+                    this.f17329a.f37556f3.O(true);
                 }
             }
         }
@@ -277,15 +277,15 @@ public final class c1 extends f2 implements ls {
         this.simpleActionBar.setBackButtonImage(2131231240);
         this.simpleActionBar.setTitle(id.M0(2131752764, null));
         this.simpleActionBar.setActionBarMenuOnItemClick(new bi.s(this, 16));
-        this.f17330b = this.simpleActionBar.n(id.M0(2131745949, null));
+        this.f17330b = this.simpleActionBar.o(id.M0(2131745946, null));
         d0(false);
         FrameLayout frameLayout = new FrameLayout(context);
-        q41 q41Var = new q41(this, new hi.u1(this, 11), new q4(this, 24), null);
-        this.f17329a = q41Var;
-        q41Var.r1();
-        q41 q41Var2 = this.f17329a;
-        q41Var2.f37190f3.f35528r = false;
-        q41Var2.setSectionsDrawBackground(true);
+        r41 r41Var = new r41(this, new hi.u1(this, 11), new r4(this, 24), null);
+        this.f17329a = r41Var;
+        r41Var.r1();
+        r41 r41Var2 = this.f17329a;
+        r41Var2.f37556f3.f35945r = false;
+        r41Var2.setSectionsDrawBackground(true);
         frameLayout.addView(this.f17329a, ha.c(-1.0f, -1));
         j0();
         this.fragmentView = frameLayout;
@@ -301,16 +301,16 @@ public final class c1 extends f2 implements ls {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        l41 l41Var;
+        m41 m41Var;
         if (i7 == qs.E0) {
             j0();
         } else if (i7 == qs.f25067r3) {
             if (this.f17332e == null) {
                 this.f17334n = x1.b(this.currentAccount).c();
             }
-            q41 q41Var = this.f17329a;
-            if (q41Var != null && (l41Var = q41Var.f37190f3) != null) {
-                l41Var.O(true);
+            r41 r41Var = this.f17329a;
+            if (r41Var != null && (m41Var = r41Var.f37556f3) != null) {
+                m41Var.O(true);
             }
         }
     }
@@ -320,12 +320,12 @@ public final class c1 extends f2 implements ls {
     }
 
     @Override
-    public final pj0 getListViewForSimpleGlass() {
+    public final qj0 getListViewForSimpleGlass() {
         return this.f17329a;
     }
 
     public final void i0() {
-        if (this.f17330b.f27358y.f55488f) {
+        if (this.f17330b.f27360y.f55500f) {
             return;
         }
         if (!g0()) {
@@ -376,7 +376,7 @@ public final class c1 extends f2 implements ls {
 
     public final void j0() {
         boolean z9;
-        l41 l41Var;
+        m41 m41Var;
         if (this.f17331c) {
             return;
         }
@@ -417,9 +417,9 @@ public final class c1 extends f2 implements ls {
                 i7++;
             }
         }
-        q41 q41Var = this.f17329a;
-        if (q41Var != null && (l41Var = q41Var.f37190f3) != null) {
-            l41Var.O(true);
+        r41 r41Var = this.f17329a;
+        if (r41Var != null && (m41Var = r41Var.f37556f3) != null) {
+            m41Var.O(true);
         }
         d0(false);
         this.f17331c = true;

@@ -40,7 +40,7 @@ public class MusicPlayerService extends Service implements ls {
     public static float d(ij ijVar, boolean z9) {
         if (z9) {
             if (ijVar != null) {
-                if (ij.S4(ijVar.f23262k) || ijVar.i4()) {
+                if (ij.R4(ijVar.f23262k) || ijVar.h4()) {
                     return MediaController.B().f21283p0;
                 }
                 return 1.0f;
@@ -117,13 +117,13 @@ public class MusicPlayerService extends Service implements ls {
         if (z9) {
             return null;
         }
-        org.telegram.ui.ActionBar.k6.T(this);
+        org.telegram.ui.ActionBar.l6.T(this);
         if (tLObject instanceof TLRPC.User) {
             w8Var = new org.telegram.ui.Components.w8(0, (TLRPC.User) tLObject);
         } else {
             w8Var = new org.telegram.ui.Components.w8((TLRPC.Chat) tLObject);
         }
-        w8Var.f39872r = 1;
+        w8Var.f39984r = 1;
         float f12 = i10;
         Bitmap createBitmap = Bitmap.createBitmap(g0.L(f12), g0.L(f12), Bitmap.Config.ARGB_8888);
         w8Var.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
@@ -220,14 +220,14 @@ public class MusicPlayerService extends Service implements ls {
             d0Var.f1769e = 0L;
         } else {
             ij ijVar = MediaController.B().f21295u0;
-            if (ijVar != null && ijVar.J3()) {
+            if (ijVar != null && ijVar.I3()) {
                 if (iz.N0) {
                     i11 = 2131232557;
                 } else {
                     i11 = 2131232558;
                 }
                 android.support.v4.media.session.d0 d0Var2 = this.d;
-                String M0 = id.M0(2131745325, null);
+                String M0 = id.M0(2131745322, null);
                 if (!TextUtils.isEmpty("org.telegram.android.musicplayer.shuffle")) {
                     if (!TextUtils.isEmpty(M0)) {
                         d0Var2.a(new PlaybackStateCompat.CustomAction("org.telegram.android.musicplayer.shuffle", M0, i11, null));
@@ -249,7 +249,7 @@ public class MusicPlayerService extends Service implements ls {
             }
             d0Var3.c(i7, j3, d(ijVar, z9));
             d0Var3.f1769e = j10;
-            if (ijVar != null && ijVar.J3()) {
+            if (ijVar != null && ijVar.I3()) {
                 int i12 = iz.S0;
                 if (i12 != 1) {
                     if (i12 != 2) {
@@ -261,7 +261,7 @@ public class MusicPlayerService extends Service implements ls {
                     i10 = 2131232555;
                 }
                 android.support.v4.media.session.d0 d0Var4 = this.d;
-                String M02 = id.M0(2131746274, null);
+                String M02 = id.M0(2131746273, null);
                 if (!TextUtils.isEmpty("org.telegram.android.musicplayer.repeat")) {
                     if (!TextUtils.isEmpty(M02)) {
                         d0Var4.a(new PlaybackStateCompat.CustomAction("org.telegram.android.musicplayer.repeat", M02, i10, null));

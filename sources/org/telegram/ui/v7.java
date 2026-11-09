@@ -4,20 +4,20 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.ImageReceiver;
-public final class v7 implements di.l9, org.telegram.messenger.qr {
-    public final h8 f50509a;
+public final class v7 implements di.m9, org.telegram.messenger.qr {
+    public final h8 f50593a;
 
     public v7(h8 h8Var) {
-        this.f50509a = h8Var;
+        this.f50593a = h8Var;
     }
 
     @Override
     public void e(long j3, int i7, di.l3 l3Var) {
-        h8 h8Var = this.f50509a;
-        if (h8Var.f46262b == null) {
+        h8 h8Var = this.f50593a;
+        if (h8Var.f46191b == null) {
             l3Var.run();
         }
-        h8Var.f46262b.post(l3Var);
+        h8Var.f46191b.post(l3Var);
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class v7 implements di.l9, org.telegram.messenger.qr {
         org.telegram.ui.ActionBar.q4 q4Var2;
         org.telegram.ui.ActionBar.q4 q4Var3;
         org.telegram.ui.ActionBar.q4 q4Var4;
-        h8 h8Var = this.f50509a;
+        h8 h8Var = this.f50593a;
         h8Var.finishFragment();
         q4Var = ((org.telegram.ui.ActionBar.f2) h8Var).parentLayout;
         if (q4Var != null) {
@@ -36,51 +36,51 @@ public final class v7 implements di.l9, org.telegram.messenger.qr {
                 List fragmentStack = q4Var3.getFragmentStack();
                 q4Var4 = ((org.telegram.ui.ActionBar.f2) h8Var).parentLayout;
                 org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) fragmentStack.get(q4Var4.getFragmentStack().size() - 2);
-                if (f2Var instanceof an) {
-                    ((an) f2Var).h8(h8Var.P, h8Var.Q + 86400, z9);
+                if (f2Var instanceof cn) {
+                    ((cn) f2Var).i8(h8Var.P, h8Var.Q + 86400, z9);
                     return;
                 }
                 return;
             }
         }
-        an anVar = h8Var.N;
-        if (anVar != null) {
-            anVar.h8(h8Var.P, h8Var.Q + 86400, z9);
+        cn cnVar = h8Var.N;
+        if (cnVar != null) {
+            cnVar.i8(h8Var.P, h8Var.Q + 86400, z9);
         }
     }
 
     @Override
-    public boolean o(long j3, int i7, int i10, int i11, di.m9 m9Var) {
-        h8 h8Var = this.f50509a;
-        if (h8Var.f46262b != null) {
+    public boolean o(long j3, int i7, int i10, int i11, di.n9 n9Var) {
+        h8 h8Var = this.f50593a;
+        if (h8Var.f46191b != null) {
             int i12 = 0;
             while (true) {
-                if (i12 >= h8Var.f46262b.getChildCount()) {
+                if (i12 >= h8Var.f46191b.getChildCount()) {
                     break;
                 }
-                View childAt = h8Var.f46262b.getChildAt(i12);
+                View childAt = h8Var.f46191b.getChildAt(i12);
                 if (childAt instanceof e8) {
                     e8 e8Var = (e8) childAt;
-                    if (e8Var.f45226n == null) {
+                    if (e8Var.f45322n == null) {
                         continue;
                     } else {
-                        for (int i13 = 0; i13 < e8Var.f45226n.size(); i13++) {
-                            ArrayList arrayList = ((f8) e8Var.f45226n.valueAt(i13)).f45475b;
+                        for (int i13 = 0; i13 < e8Var.f45322n.size(); i13++) {
+                            ArrayList arrayList = ((f8) e8Var.f45322n.valueAt(i13)).f45644b;
                             if (arrayList != null && arrayList.contains(Integer.valueOf(i10))) {
-                                int keyAt = e8Var.f45226n.keyAt(i13);
-                                h8Var.f46272h0 = keyAt;
-                                ImageReceiver imageReceiver = (ImageReceiver) e8Var.f45227r.get(keyAt);
+                                int keyAt = e8Var.f45322n.keyAt(i13);
+                                h8Var.f46201h0 = keyAt;
+                                ImageReceiver imageReceiver = (ImageReceiver) e8Var.f45323r.get(keyAt);
                                 if (imageReceiver != null) {
-                                    m9Var.f9364c = imageReceiver;
-                                    if (h8Var.f46273i0 == null) {
-                                        h8Var.f46273i0 = new w0(this, 11);
+                                    n9Var.f9405c = imageReceiver;
+                                    if (h8Var.f46202i0 == null) {
+                                        h8Var.f46202i0 = new w0(this, 11);
                                     }
-                                    m9Var.f9365e = h8Var.f46273i0;
-                                    m9Var.f9362a = e8Var;
-                                    m9Var.f9367g = h8Var.fragmentView;
-                                    m9Var.h = org.telegram.messenger.g0.L(36.0f);
-                                    m9Var.f9368i = h8Var.fragmentView.getBottom();
-                                    m9Var.f9363b = null;
+                                    n9Var.f9406e = h8Var.f46202i0;
+                                    n9Var.f9403a = e8Var;
+                                    n9Var.f9408g = h8Var.fragmentView;
+                                    n9Var.h = org.telegram.messenger.g0.L(36.0f);
+                                    n9Var.f9409i = h8Var.fragmentView.getBottom();
+                                    n9Var.f9404b = null;
                                     return true;
                                 }
                             }

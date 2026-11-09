@@ -4,14 +4,14 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 public final class cd extends a8.h0 {
-    public final Map f5407b;
-    public final jg f5408c;
+    public final Map f5405b;
+    public final jg f5406c;
 
     public cd(jg jgVar, Map map) {
         super(1);
-        this.f5408c = jgVar;
+        this.f5406c = jgVar;
         map.getClass();
-        this.f5407b = map;
+        this.f5405b = map;
     }
 
     @Override
@@ -30,17 +30,17 @@ public final class cd extends a8.h0 {
 
     @Override
     public final boolean contains(Object obj) {
-        return this.f5407b.containsKey(obj);
+        return this.f5405b.containsKey(obj);
     }
 
     @Override
     public final boolean containsAll(Collection collection) {
-        return this.f5407b.keySet().containsAll(collection);
+        return this.f5405b.keySet().containsAll(collection);
     }
 
     @Override
     public final boolean equals(Object obj) {
-        if (this != obj && !this.f5407b.keySet().equals(obj)) {
+        if (this != obj && !this.f5405b.keySet().equals(obj)) {
             return false;
         }
         return true;
@@ -48,26 +48,26 @@ public final class cd extends a8.h0 {
 
     @Override
     public final int hashCode() {
-        return this.f5407b.keySet().hashCode();
+        return this.f5405b.keySet().hashCode();
     }
 
     @Override
     public final boolean isEmpty() {
-        return this.f5407b.isEmpty();
+        return this.f5405b.isEmpty();
     }
 
     @Override
     public final Iterator iterator() {
-        return new a8.d(this, this.f5407b.entrySet().iterator(), 4);
+        return new a8.d(this, this.f5405b.entrySet().iterator(), 4);
     }
 
     @Override
     public final boolean remove(Object obj) {
-        Collection collection = (Collection) this.f5407b.remove(obj);
+        Collection collection = (Collection) this.f5405b.remove(obj);
         if (collection != null) {
             int size = collection.size();
             collection.clear();
-            this.f5408c.getClass();
+            this.f5406c.getClass();
             if (size > 0) {
                 return true;
             }
@@ -78,6 +78,6 @@ public final class cd extends a8.h0 {
 
     @Override
     public final int size() {
-        return this.f5407b.size();
+        return this.f5405b.size();
     }
 }

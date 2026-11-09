@@ -15,7 +15,7 @@ public final class z {
         this.f19036b = j3;
     }
 
-    public void a(a aVar, l2.y yVar) {
+    public void a(a aVar, l2.x xVar) {
         long j3;
         boolean z9;
         int i7;
@@ -38,14 +38,14 @@ public final class z {
         }
         if (z9 && (i7 = this.f19035a) != b10) {
             ValueAnimator ofInt = ValueAnimator.ofInt(i7, b10);
-            ofInt.addUpdateListener(new de(8, this, yVar));
-            ofInt.setInterpolator(xq.f40366f);
+            ofInt.addUpdateListener(new de(8, this, xVar));
+            ofInt.setInterpolator(xq.f40458f);
             ofInt.setDuration(200L);
             this.f19037c = ofInt;
             ofInt.start();
             return;
         }
         this.f19035a = b10;
-        yVar.d(b10);
+        xVar.d(b10);
     }
 }

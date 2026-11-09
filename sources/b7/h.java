@@ -10,7 +10,7 @@ public abstract class h {
     public static int a(String str) {
         Integer num;
         try {
-            Map map = ResourceProvider.f6520a;
+            Map map = ResourceProvider.f6518a;
             num = (Integer) ResourceProvider.class.getMethod("findResourceByName", String.class).invoke(null, str);
         } catch (ClassNotFoundException | IllegalAccessException | NoSuchMethodException | InvocationTargetException unused) {
         }

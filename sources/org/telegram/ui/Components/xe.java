@@ -12,29 +12,29 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class xe extends vf {
-    public boolean f40297a2;
-    public float f40298b2;
-    public float f40299c2;
+    public boolean f40366a2;
+    public float f40367b2;
+    public float f40368c2;
     public boolean d2;
-    public final ChatActivityEnterView f40300e2;
+    public final ChatActivityEnterView f40369e2;
 
-    public xe(ChatActivityEnterView chatActivityEnterView, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(chatActivityEnterView, context, f6Var);
-        this.f40300e2 = chatActivityEnterView;
-        this.f40297a2 = true;
+    public xe(ChatActivityEnterView chatActivityEnterView, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(chatActivityEnterView, context, g6Var);
+        this.f40369e2 = chatActivityEnterView;
+        this.f40366a2 = true;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ChatActivityEnterView chatActivityEnterView = this.f40300e2;
+        ChatActivityEnterView chatActivityEnterView = this.f40369e2;
         View view = chatActivityEnterView.J4;
         if (view != null) {
             setWindowView(view);
             return;
         }
-        org.telegram.ui.an anVar = chatActivityEnterView.P2;
-        if (anVar != null && anVar.getParentLayout() != null && ((ActionBarLayout) chatActivityEnterView.P2.getParentLayout()).f27233b) {
+        org.telegram.ui.cn cnVar = chatActivityEnterView.P2;
+        if (cnVar != null && cnVar.getParentLayout() != null && ((ActionBarLayout) chatActivityEnterView.P2.getParentLayout()).f27233b) {
             setWindowView(chatActivityEnterView.P2.getParentLayout().getWindow().getDecorView());
         } else {
             setWindowView(chatActivityEnterView.O2.getWindow().getDecorView());
@@ -44,9 +44,9 @@ public final class xe extends vf {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (getLayout() != null && this.f40297a2) {
-            this.f40297a2 = false;
-            this.f40300e2.E(true);
+        if (getLayout() != null && this.f40366a2) {
+            this.f40366a2 = false;
+            this.f40369e2.E(true);
         }
     }
 
@@ -54,7 +54,7 @@ public final class xe extends vf {
     public final void onMeasure(int i7, int i10) {
         boolean z9;
         super.onMeasure(i7, i10);
-        ChatActivityEnterView chatActivityEnterView = this.f40300e2;
+        ChatActivityEnterView chatActivityEnterView = this.f40369e2;
         if (chatActivityEnterView.T != chatActivityEnterView.E0.getLineCount()) {
             boolean z10 = false;
             if (chatActivityEnterView.E0.getLineCount() > 2 && chatActivityEnterView.E0.getText() != null && !TextUtils.isEmpty(chatActivityEnterView.E0.getText().toString().trim())) {
@@ -74,7 +74,7 @@ public final class xe extends vf {
     public final boolean onTextContextMenuItem(int i7) {
         ClipData primaryClip;
         if (i7 == 16908322) {
-            ChatActivityEnterView chatActivityEnterView = this.f40300e2;
+            ChatActivityEnterView chatActivityEnterView = this.f40369e2;
             if (chatActivityEnterView.E0 != null) {
                 try {
                     ClipboardManager clipboardManager = (ClipboardManager) chatActivityEnterView.getContext().getSystemService("clipboard");
@@ -107,15 +107,15 @@ public final class xe extends vf {
                                 }
                                 int max2 = Math.max(0, chatActivityEnterView.E0.getSelectionStart());
                                 int min2 = Math.min(chatActivityEnterView.E0.getText().length(), chatActivityEnterView.E0.getSelectionEnd());
-                                tg0[] tg0VarArr = (tg0[]) chatActivityEnterView.E0.getText().getSpans(max2, min2, tg0.class);
-                                if (tg0VarArr != null && tg0VarArr.length > 0) {
-                                    tg0[] tg0VarArr2 = (tg0[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), tg0.class);
-                                    for (int i10 = 0; i10 < tg0VarArr2.length; i10++) {
-                                        spannableStringBuilder.removeSpan(tg0VarArr2[i10]);
-                                        spannableStringBuilder.removeSpan(tg0VarArr2[i10].f38350a);
+                                ug0[] ug0VarArr = (ug0[]) chatActivityEnterView.E0.getText().getSpans(max2, min2, ug0.class);
+                                if (ug0VarArr != null && ug0VarArr.length > 0) {
+                                    ug0[] ug0VarArr2 = (ug0[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), ug0.class);
+                                    for (int i10 = 0; i10 < ug0VarArr2.length; i10++) {
+                                        spannableStringBuilder.removeSpan(ug0VarArr2[i10]);
+                                        spannableStringBuilder.removeSpan(ug0VarArr2[i10].f38719a);
                                     }
                                 } else {
-                                    ug0.a(spannableStringBuilder);
+                                    vg0.a(spannableStringBuilder);
                                 }
                                 xe xeVar = chatActivityEnterView.E0;
                                 xeVar.setText(xeVar.getText().replace(max2, min2, spannableStringBuilder));
@@ -134,19 +134,19 @@ public final class xe extends vf {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        ChatActivityEnterView chatActivityEnterView = this.f40300e2;
+        ChatActivityEnterView chatActivityEnterView = this.f40369e2;
         if (chatActivityEnterView.s()) {
             if (motionEvent.getAction() == 0) {
-                this.f40298b2 = motionEvent.getX();
-                this.f40299c2 = motionEvent.getY();
+                this.f40367b2 = motionEvent.getX();
+                this.f40368c2 = motionEvent.getY();
                 this.d2 = true;
             } else if (this.d2 && motionEvent.getAction() == 2) {
-                if (Math.abs(motionEvent.getX() - this.f40298b2) > org.telegram.messenger.g0.f22542e || Math.abs(motionEvent.getY() - this.f40299c2) > org.telegram.messenger.g0.f22542e) {
+                if (Math.abs(motionEvent.getX() - this.f40367b2) > org.telegram.messenger.g0.f22542e || Math.abs(motionEvent.getY() - this.f40368c2) > org.telegram.messenger.g0.f22542e) {
                     this.d2 = false;
                 }
             } else if (this.d2) {
                 if (chatActivityEnterView.Z2 != null) {
-                    org.telegram.ui.ActionBar.r6.m(this, 36, org.telegram.ui.ActionBar.k6.f27971jg, chatActivityEnterView.W3);
+                    org.telegram.ui.ActionBar.s6.l(this, 36, org.telegram.ui.ActionBar.l6.f27984jg, chatActivityEnterView.W3);
                     chatActivityEnterView.Z2.f1();
                 }
                 xe xeVar = chatActivityEnterView.E0;
@@ -158,7 +158,7 @@ public final class xe extends vf {
             return this.d2;
         }
         if (motionEvent.getAction() == 0 && chatActivityEnterView.Z2 != null) {
-            org.telegram.ui.ActionBar.r6.m(this, 36, org.telegram.ui.ActionBar.k6.f27971jg, chatActivityEnterView.W3);
+            org.telegram.ui.ActionBar.s6.l(this, 36, org.telegram.ui.ActionBar.l6.f27984jg, chatActivityEnterView.W3);
             chatActivityEnterView.Z2.f1();
         }
         return super.onTouchEvent(motionEvent);
@@ -167,6 +167,6 @@ public final class xe extends vf {
     @Override
     public final void setOffsetY(float f10) {
         super.setOffsetY(f10);
-        this.f40300e2.f31157y1.invalidate();
+        this.f40369e2.f31162y1.invalidate();
     }
 }

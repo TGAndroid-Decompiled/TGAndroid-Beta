@@ -16,13 +16,13 @@ import bi.t0;
 import bi.uc;
 import bi.v;
 import bi.w4;
+import di.a4;
 import di.c1;
-import di.i4;
-import di.k5;
-import di.p9;
-import di.u4;
+import di.j4;
+import di.l5;
+import di.q9;
+import di.v4;
 import di.z1;
-import di.z3;
 import fi.b3;
 import fi.f3;
 import fi.la;
@@ -53,10 +53,10 @@ import org.telegram.tgnet.tl.TL_aicompose;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.i1;
-import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.l2;
+import org.telegram.ui.ActionBar.l6;
 import org.telegram.ui.ActionBar.u1;
 import org.telegram.ui.ActionBar.v2;
 import org.telegram.ui.ActionBar.z0;
@@ -65,36 +65,35 @@ import org.telegram.ui.Cells.x8;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
 import org.telegram.ui.Components.a8;
 import org.telegram.ui.Components.bx;
-import org.telegram.ui.Components.ca0;
+import org.telegram.ui.Components.da0;
 import org.telegram.ui.Components.di;
 import org.telegram.ui.Components.e10;
 import org.telegram.ui.Components.fq;
 import org.telegram.ui.Components.ft;
 import org.telegram.ui.Components.gp;
 import org.telegram.ui.Components.gt;
-import org.telegram.ui.Components.h90;
-import org.telegram.ui.Components.ha0;
 import org.telegram.ui.Components.hc;
+import org.telegram.ui.Components.i90;
 import org.telegram.ui.Components.ia0;
-import org.telegram.ui.Components.k60;
+import org.telegram.ui.Components.ja0;
+import org.telegram.ui.Components.l60;
 import org.telegram.ui.Components.lh;
 import org.telegram.ui.Components.lt;
-import org.telegram.ui.Components.mc0;
-import org.telegram.ui.Components.q70;
+import org.telegram.ui.Components.nc0;
 import org.telegram.ui.Components.r2;
 import org.telegram.ui.Components.r4;
-import org.telegram.ui.Components.rt0;
+import org.telegram.ui.Components.r70;
 import org.telegram.ui.Components.ru;
 import org.telegram.ui.Components.s;
 import org.telegram.ui.Components.sq;
 import org.telegram.ui.Components.t4;
 import org.telegram.ui.Components.tq;
+import org.telegram.ui.Components.tt0;
 import org.telegram.ui.Components.ue;
-import org.telegram.ui.Components.v4;
 import org.telegram.ui.Components.vh;
 import org.telegram.ui.Components.zs;
-import org.telegram.ui.an;
-import org.telegram.ui.w40;
+import org.telegram.ui.cn;
+import org.telegram.ui.y40;
 import sg.l0;
 public final class g implements View.OnClickListener {
     public final int f1074a;
@@ -116,7 +115,7 @@ public final class g implements View.OnClickListener {
         m0 m0Var;
         long j3;
         boolean u12;
-        ha0 ha0Var;
+        ia0 ia0Var;
         l2 l2Var;
         CharSequence charSequence = null;
         boolean z9 = false;
@@ -127,16 +126,16 @@ public final class g implements View.OnClickListener {
                 return;
             case 1:
                 Context context = (Context) this.f1076c;
-                f6 f6Var = (f6) this.d;
-                if (((a1) this.f1075b).f3425f2.f6160a == cg.b.f6162a) {
-                    new uc(context, f6Var).show();
+                g6 g6Var = (g6) this.d;
+                if (((a1) this.f1075b).f3425f2.f6158a == cg.b.f6160a) {
+                    new uc(context, g6Var).show();
                     return;
                 }
                 return;
             case 2:
                 final v2 v2Var = (v2) this.f1076c;
                 final fi.d dVar = (fi.d) this.d;
-                v2Var.f28620b0 = false;
+                v2Var.f28625b0 = false;
                 dVar.setLoading(true);
                 ((n9) this.f1075b).a(new c20() {
                     @Override
@@ -156,11 +155,11 @@ public final class g implements View.OnClickListener {
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
-                                                v2Var2.f28620b0 = false;
+                                                v2Var2.f28625b0 = false;
                                                 dVar2.setLoading(false);
                                                 return;
                                             default:
-                                                v2Var2.f28620b0 = false;
+                                                v2Var2.f28625b0 = false;
                                                 dVar2.setLoading(false);
                                                 return;
                                         }
@@ -180,11 +179,11 @@ public final class g implements View.OnClickListener {
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
-                                                v2Var3.f28620b0 = false;
+                                                v2Var3.f28625b0 = false;
                                                 dVar3.setLoading(false);
                                                 return;
                                             default:
-                                                v2Var3.f28620b0 = false;
+                                                v2Var3.f28625b0 = false;
                                                 dVar3.setLoading(false);
                                                 return;
                                         }
@@ -198,7 +197,7 @@ public final class g implements View.OnClickListener {
             case 3:
                 final v2 v2Var2 = (v2) this.f1076c;
                 final fi.d dVar2 = (fi.d) this.d;
-                v2Var2.f28620b0 = false;
+                v2Var2.f28625b0 = false;
                 dVar2.setLoading(true);
                 ((k9) this.f1075b).a(new c20() {
                     @Override
@@ -218,11 +217,11 @@ public final class g implements View.OnClickListener {
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
-                                                v2Var22.f28620b0 = false;
+                                                v2Var22.f28625b0 = false;
                                                 dVar22.setLoading(false);
                                                 return;
                                             default:
-                                                v2Var22.f28620b0 = false;
+                                                v2Var22.f28625b0 = false;
                                                 dVar22.setLoading(false);
                                                 return;
                                         }
@@ -242,11 +241,11 @@ public final class g implements View.OnClickListener {
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
-                                                v2Var3.f28620b0 = false;
+                                                v2Var3.f28625b0 = false;
                                                 dVar3.setLoading(false);
                                                 return;
                                             default:
-                                                v2Var3.f28620b0 = false;
+                                                v2Var3.f28625b0 = false;
                                                 dVar3.setLoading(false);
                                                 return;
                                         }
@@ -262,37 +261,37 @@ public final class g implements View.OnClickListener {
                 ((v2) this.d).dismiss();
                 return;
             case 5:
-                i4 i4Var = ((z3) this.f1075b).f10013x;
-                i4Var.D0((q8) this.f1076c, (TL_stories.StoryItem) this.d);
-                z3 z3Var = i4Var.f9136c1;
-                if (z3Var != null) {
-                    z3Var.a();
+                j4 j4Var = ((a4) this.f1075b).f8808x;
+                j4Var.D0((q8) this.f1076c, (TL_stories.StoryItem) this.d);
+                a4 a4Var = j4Var.f9168c1;
+                if (a4Var != null) {
+                    a4Var.a();
                     return;
                 }
                 return;
             case 6:
-                z3 z3Var2 = (z3) this.f1075b;
-                p9 p9Var = (p9) this.d;
+                a4 a4Var2 = (a4) this.f1075b;
+                q9 q9Var = (q9) this.d;
                 ((z0) this.f1076c).performHapticFeedback(3);
                 hc X = hc.X();
                 if (X != null) {
-                    X.Q(2131624055, 36, g0.U2(id.M0(2131745936, null), new di.z0(4, z3Var2, p9Var))).j();
+                    X.Q(2131624055, 36, g0.U2(id.M0(2131745933, null), new di.z0(4, a4Var2, q9Var))).j();
                     return;
                 }
                 return;
             case 7:
-                u4 u4Var = (u4) this.f1075b;
-                w4 w4Var = new w4(u4Var, 2);
-                k5 k5Var = u4Var.f9835b;
-                new ru(w4Var, k5Var.getContext(), k5Var.f9306s, (ArrayList) this.f1076c).show();
-                ((k60) this.d).u();
+                v4 v4Var = (v4) this.f1075b;
+                w4 w4Var = new w4(v4Var, 2);
+                l5 l5Var = v4Var.f9863b;
+                new ru(w4Var, l5Var.getContext(), l5Var.f9330s, (ArrayList) this.f1076c).show();
+                ((l60) this.d).u();
                 return;
             case 8:
                 la laVar = (la) this.f1075b;
                 FrameLayout frameLayout = (FrameLayout) this.f1076c;
                 di.b bVar = (di.b) this.d;
-                k60 k60Var = laVar.U0;
-                if (k60Var == null || !k60Var.D()) {
+                l60 l60Var = laVar.U0;
+                if (l60Var == null || !l60Var.D()) {
                     fi.o oVar2 = new fi.o(laVar, 0);
                     boolean q10 = p10.i(laVar.U).q();
                     if (q10) {
@@ -300,7 +299,7 @@ public final class g implements View.OnClickListener {
                     } else {
                         oVar = new fi.o(laVar, 1);
                     }
-                    k60 F = k60.F(frameLayout, bVar, laVar.S0);
+                    l60 F = l60.F(frameLayout, bVar, laVar.S0);
                     laVar.U0 = F;
                     F.p(13, g0.L(200.0f), id.N0("StoryPeriodHint"));
                     laVar.U0.k();
@@ -309,29 +308,29 @@ public final class g implements View.OnClickListener {
                         int[] iArr = fi.r.P1;
                         if (i7 < 4) {
                             int i10 = iArr[i7];
-                            k60 k60Var2 = laVar.U0;
+                            l60 l60Var2 = laVar.U0;
                             if (i10 == Integer.MAX_VALUE) {
                                 G = id.N0("StoryPeriodKeep");
                             } else {
                                 G = id.G(i10 / 3600, "Hours", new Object[0]);
                             }
                             String str = G;
-                            int i11 = k6.E8;
-                            k60Var2.b(0, null, str, i11, i11, new m0(oVar2, i10, 5));
+                            int i11 = l6.E8;
+                            l60Var2.b(0, null, str, i11, i11, new m0(oVar2, i10, 5));
                             if (!q10 && i10 != 86400 && i10 != Integer.MAX_VALUE) {
                                 m0Var = new m0(oVar, i10, 6);
                             } else {
                                 m0Var = null;
                             }
-                            k60Var2.M(m0Var);
+                            l60Var2.M(m0Var);
                             if (laVar.W0 == i7) {
                                 laVar.U0.L();
                             }
                             i7++;
                         } else {
-                            k60 k60Var3 = laVar.U0;
-                            k60Var3.f35231s = 0;
-                            k60Var3.Z();
+                            l60 l60Var3 = laVar.U0;
+                            l60Var3.f35617s = 0;
+                            l60Var3.Z();
                             return;
                         }
                     }
@@ -362,16 +361,16 @@ public final class g implements View.OnClickListener {
                 x9 x9Var = (x9) this.f1075b;
                 Context context2 = (Context) this.f1076c;
                 l0 l0Var = (l0) this.d;
-                if (x9Var.f12533k1) {
-                    sg.q qVar = new sg.q(context2, x9Var.f12540p1);
+                if (x9Var.f12531k1) {
+                    sg.q qVar = new sg.q(context2, x9Var.f12538p1);
                     x9Var.C1 = qVar;
-                    qVar.I0(x9Var.f12531j1.f55109a, 2);
-                    qVar.f55186o1 = new androidx.activity.n(x9Var, l0Var, 1);
+                    qVar.I0(x9Var.f12529j1.f55094a, 2);
+                    qVar.f55196o1 = new androidx.activity.n(x9Var, l0Var, 1);
                     qVar.n1 = new h8(2, x9Var, l0Var);
                     qVar.show();
                     return;
                 }
-                Runnable runnable = x9Var.f12548t1;
+                Runnable runnable = x9Var.f12546t1;
                 if (runnable != null) {
                     runnable.run();
                     return;
@@ -379,14 +378,14 @@ public final class g implements View.OnClickListener {
                 return;
             case 11:
                 kg.e eVar = (kg.e) this.f1075b;
-                k60 F2 = k60.F(((an) this.f1076c).getLayoutContainer(), (f6) this.d, eVar.f17349n);
+                l60 F2 = l60.F(((cn) this.f1076c).getLayoutContainer(), (g6) this.d, eVar.f17349n);
                 F2.c(2131232087, id.M0(2131753702, null), new kg.d(eVar, 1), true);
                 F2.E();
                 if (eVar.f17354y != null) {
                     F2.c(2131232360, id.M0(2131753703, null), new kg.d(eVar, 2), false);
                 }
                 F2.a0(g0.L(10.0f), g0.L(7.0f));
-                F2.f35231s = 0;
+                F2.f35617s = 0;
                 F2.Z();
                 return;
             case 12:
@@ -398,9 +397,9 @@ public final class g implements View.OnClickListener {
                     dVar3.setLoading(true);
                     TL_account.updateConnectedBot updateconnectedbot = new TL_account.updateConnectedBot();
                     updateconnectedbot.deleted = true;
-                    updateconnectedbot.bot = qp.s1(i0Var.f28616a).o1(tL_connectedBot.bot_id);
+                    updateconnectedbot.bot = qp.s1(i0Var.f28621a).o1(tL_connectedBot.bot_id);
                     updateconnectedbot.recipients = new TL_account.TL_inputBusinessBotRecipients();
-                    ConnectionsManager.getInstance(i0Var.f28616a).sendRequest(updateconnectedbot, new bi.j(20, i0Var, r2Var));
+                    ConnectionsManager.getInstance(i0Var.f28621a).sendRequest(updateconnectedbot, new bi.j(20, i0Var, r2Var));
                     return;
                 }
                 return;
@@ -421,7 +420,7 @@ public final class g implements View.OnClickListener {
             case 15:
                 s sVar = (s) this.f1075b;
                 TL_aicompose.AiComposeTone aiComposeTone = (TL_aicompose.AiComposeTone) this.f1076c;
-                f6 f6Var2 = (f6) this.d;
+                g6 g6Var2 = (g6) this.d;
                 fi.d dVar4 = sVar.X1;
                 if (dVar4.f11752c0 && !dVar4.Q) {
                     if (sVar.d1()) {
@@ -431,14 +430,14 @@ public final class g implements View.OnClickListener {
                     dVar4.setLoading(true);
                     TL_aicompose.saveTone savetone = new TL_aicompose.saveTone();
                     savetone.tone = TL_aicompose.InputAiComposeTone.from(aiComposeTone);
-                    ConnectionsManager.getInstance(sVar.f28616a).sendRequestTyped(savetone, new d3.b(1), new t0(sVar, f6Var2, aiComposeTone, 4));
+                    ConnectionsManager.getInstance(sVar.f28621a).sendRequestTyped(savetone, new d3.b(1), new t0(sVar, g6Var2, aiComposeTone, 4));
                     return;
                 }
                 return;
             case 16:
                 ((boolean[]) this.f1075b)[0] = false;
                 ((t4) this.f1076c).L(-1, 0, true);
-                ((v2) ((f1) this.d).f14323b).f28655x0.run();
+                ((v2) ((f1) this.d).f14323b).f28660x0.run();
                 return;
             case 17:
                 Runnable runnable2 = (Runnable) this.d;
@@ -459,12 +458,12 @@ public final class g implements View.OnClickListener {
                 ((AlertDialog$Builder) this.f1076c).f27296a.L0.run();
                 return;
             case 19:
-                ((a8) this.f1075b).f31730n.X0((w) this.f1076c, (ij) this.d);
+                ((a8) this.f1075b).f31750n.X0((w) this.f1076c, (ij) this.d);
                 return;
             case 20:
                 di diVar = (di) this.f1075b;
                 f2 f2Var = (f2) this.f1076c;
-                f6 f6Var3 = (f6) this.d;
+                g6 g6Var3 = (g6) this.d;
                 f2 f2Var2 = diVar.W1;
                 int i13 = diVar.D3;
                 lh lhVar = diVar.C2;
@@ -477,10 +476,10 @@ public final class g implements View.OnClickListener {
                 long j10 = j3;
                 diVar.H2 = j10;
                 lhVar.setEffect(j10);
-                diVar.f28624c1 = true;
+                diVar.f28629c1 = true;
                 if (diVar.B1 - diVar.C1 < 0) {
-                    g0.F3(diVar.f32983q1);
-                    g0.F3(diVar.f32987r1);
+                    g0.F3(diVar.f33038q1);
+                    g0.F3(diVar.f33042r1);
                     try {
                         lhVar.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
@@ -496,18 +495,18 @@ public final class g implements View.OnClickListener {
                     }
                     return;
                 }
-                if (diVar.B3 == null && (f2Var2 instanceof an)) {
-                    an anVar = (an) f2Var2;
-                    if (anVar.c()) {
-                        v4.J(diVar.getContext(), anVar.a(), new c1(diVar, j10, 3), f6Var3);
+                if (diVar.B3 == null && (f2Var2 instanceof cn)) {
+                    cn cnVar = (cn) f2Var2;
+                    if (cnVar.c()) {
+                        org.telegram.ui.Components.v4.J(diVar.getContext(), cnVar.a(), new c1(diVar, j10, 3), g6Var3);
                         diVar.v1(false, false);
                         return;
                     }
                 }
-                vh vhVar = diVar.f32992s2;
-                if (vhVar != diVar.f32932a2 && vhVar != diVar.f32952h2) {
+                vh vhVar = diVar.f33047s2;
+                if (vhVar != diVar.f32987a2 && vhVar != diVar.f33007h2) {
                     if (!vhVar.L(true, 0, 0, j10, diVar.f1())) {
-                        diVar.f33014x4 = true;
+                        diVar.f33069x4 = true;
                         diVar.dismiss();
                     }
                     u12 = false;
@@ -528,11 +527,11 @@ public final class g implements View.OnClickListener {
                 TLRPC.Message message = ijVar.f23262k;
                 boolean z12 = diVar2.T1;
                 message.invert_media = z12;
-                ((ha0) this.d).a(!z12, true);
+                ((ia0) this.d).a(!z12, true);
                 diVar2.Y1.e(ijVar);
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = diVar2.f32932a2;
-                if (chatAttachAlertPhotoLayout != null && (ha0Var = chatAttachAlertPhotoLayout.f31200d1) != null) {
-                    ha0Var.a(!diVar2.T1, true);
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = diVar2.f32987a2;
+                if (chatAttachAlertPhotoLayout != null && (ia0Var = chatAttachAlertPhotoLayout.f31205d1) != null) {
+                    ia0Var.a(!diVar2.T1, true);
                 }
                 diVar2.Y1.m(!diVar2.T1);
                 return;
@@ -543,9 +542,9 @@ public final class g implements View.OnClickListener {
             case 23:
                 Context context3 = (Context) this.f1076c;
                 ((sq) this.f1075b).getClass();
-                g0.g(((x8) this.d).f30904a.getText().toString());
+                g0.g(((x8) this.d).f30909a.getText().toString());
                 if (g0.I3()) {
-                    Toast.makeText(context3, id.M0(2131744197, null), 0).show();
+                    Toast.makeText(context3, id.M0(2131744194, null), 0).show();
                     return;
                 }
                 return;
@@ -566,22 +565,22 @@ public final class g implements View.OnClickListener {
                 return;
             case 25:
                 lt ltVar = (lt) this.f1075b;
-                rt0 rt0Var = (rt0) this.f1076c;
-                f6 f6Var4 = (f6) this.d;
-                ft ftVar = ltVar.f35777a;
-                kg.k kVar = ltVar.f35778b;
+                tt0 tt0Var = (tt0) this.f1076c;
+                g6 g6Var4 = (g6) this.d;
+                ft ftVar = ltVar.f35841a;
+                kg.k kVar = ltVar.f35842b;
                 if (kVar.isEnabled() && kVar.getAlpha() >= 0.5f) {
                     i1 i1Var = ltVar.K;
-                    if (i1Var == null || !i1Var.f27549f) {
-                        if (ltVar.f35782n) {
+                    if (i1Var == null || !i1Var.f27524f) {
+                        if (ltVar.f35846n) {
                             ftVar.m();
-                            k60 k60Var4 = new k60(rt0Var, f6Var4, kVar, false, false, true);
-                            k60Var4.X = g0.L(280.0f);
-                            ftVar.o(null, new h90(k60Var4, ftVar));
-                            k60Var4.U = true;
-                            k60Var4.Z();
+                            l60 l60Var4 = new l60(tt0Var, g6Var4, kVar, false, false, true);
+                            l60Var4.X = g0.L(280.0f);
+                            ftVar.o(null, new i90(l60Var4, ftVar));
+                            l60Var4.U = true;
+                            l60Var4.Z();
                             return;
-                        } else if (!ltVar.f35780e) {
+                        } else if (!ltVar.f35844e) {
                             ltVar.x(1);
                             boolean isFocused = ftVar.isFocused();
                             gt gtVar = ltVar.d;
@@ -596,9 +595,9 @@ public final class g implements View.OnClickListener {
                             }
                             return;
                         } else {
-                            if (ltVar.f35787y) {
+                            if (ltVar.f35851y) {
                                 ltVar.k(true);
-                                ltVar.f35787y = false;
+                                ltVar.f35851y = false;
                                 ltVar.p();
                             }
                             ltVar.v();
@@ -612,20 +611,20 @@ public final class g implements View.OnClickListener {
                 e10 e10Var = (e10) this.f1075b;
                 e10Var.dismiss();
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder((Context) this.f1076c);
-                alertDialog$Builder.f27296a.R = id.M0(2131749562, null);
-                alertDialog$Builder.f27296a.T = g0.X2(id.M0(2131749563, null));
-                alertDialog$Builder.k(id.M0(2131749564, null), new bx(e10Var, 4));
+                alertDialog$Builder.f27296a.R = id.M0(2131749561, null);
+                alertDialog$Builder.f27296a.T = g0.X2(id.M0(2131749562, null));
+                alertDialog$Builder.k(id.M0(2131749563, null), new bx(e10Var, 4));
                 alertDialog$Builder.h(id.M0(2131752589, null), null);
                 ((f2) this.d).showDialog(alertDialog$Builder.f27296a);
                 return;
             case 27:
-                q70 q70Var = (q70) this.f1075b;
+                r70 r70Var = (r70) this.f1075b;
                 v2 v2Var3 = (v2) this.f1076c;
                 f2 f2Var3 = (f2) this.d;
                 try {
-                    if (q70Var.f37209b != null) {
-                        ((ClipboardManager) org.telegram.messenger.t0.f25566b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", q70Var.f37209b));
-                        if (v2Var3 != null && (l2Var = v2Var3.f28622c) != null) {
+                    if (r70Var.f37565b != null) {
+                        ((ClipboardManager) org.telegram.messenger.t0.f25566b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", r70Var.f37565b));
+                        if (v2Var3 != null && (l2Var = v2Var3.f28627c) != null) {
                             new hc(l2Var, null).k(false).j();
                         } else {
                             hc.j(f2Var3).j();
@@ -637,32 +636,32 @@ public final class g implements View.OnClickListener {
                     return;
                 }
             case 28:
-                ca0 ca0Var = (ca0) this.f1075b;
-                ha0 ha0Var2 = (ha0) this.f1076c;
-                ha0 ha0Var3 = (ha0) this.d;
-                ia0 ia0Var = ca0Var.f32525c0;
-                mj mjVar = ia0Var.d;
+                da0 da0Var = (da0) this.f1075b;
+                ia0 ia0Var2 = (ia0) this.f1076c;
+                ia0 ia0Var3 = (ia0) this.d;
+                ja0 ja0Var = da0Var.f32920c0;
+                mj mjVar = ja0Var.d;
                 boolean z13 = mjVar.f24039l;
                 boolean z14 = !z13;
                 mjVar.f24039l = z14;
                 if (!z13) {
                     if (!mjVar.f24038k) {
                         mjVar.f24038k = true;
-                        ia0Var.f34622y = true;
+                        ja0Var.f34980y = true;
                     }
                 } else {
-                    if (ia0Var.f34622y) {
+                    if (ja0Var.f34980y) {
                         mjVar.f24038k = false;
                     }
-                    ia0Var.f34622y = false;
+                    ja0Var.f34980y = false;
                 }
-                ha0Var2.a(z14, true);
-                ha0Var3.a(mjVar.f24038k, true);
-                ca0Var.i();
-                ca0Var.l(true);
+                ia0Var2.a(z14, true);
+                ia0Var3.a(mjVar.f24038k, true);
+                da0Var.i();
+                da0Var.l(true);
                 return;
             default:
-                mc0.J0((mc0) this.f1075b, (TLRPC.ChatFull) this.f1076c, (w40) this.d);
+                nc0.J0((nc0) this.f1075b, (TLRPC.ChatFull) this.f1076c, (y40) this.d);
                 return;
         }
     }

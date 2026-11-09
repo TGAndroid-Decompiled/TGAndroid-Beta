@@ -41,8 +41,8 @@ public final class c10 extends TLObject {
         boolean z10;
         boolean z11;
         boolean z12;
-        TLRPC.MessageMedia n1 = ij.n1(ijVar);
-        if (!(n1 instanceof TLRPC.TL_messageMediaPoll) || (poll = (tL_messageMediaPoll = (TLRPC.TL_messageMediaPoll) n1).poll) == null) {
+        TLRPC.MessageMedia m12 = ij.m1(ijVar);
+        if (!(m12 instanceof TLRPC.TL_messageMediaPoll) || (poll = (tL_messageMediaPoll = (TLRPC.TL_messageMediaPoll) m12).poll) == null) {
             return true;
         }
         if (poll.question != null) {

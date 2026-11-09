@@ -1,57 +1,103 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.drawable.ShapeDrawable;
-import android.text.TextPaint;
-import android.view.animation.OvershootInterpolator;
-public final class tk extends org.telegram.ui.Components.ty0 {
-    public final an K;
+import android.content.SharedPreferences;
+import java.util.ArrayList;
+public final class tk implements ml {
+    public final cn f50193a;
+    public final cn f50194b;
 
-    public tk(Activity activity, org.telegram.ui.ActionBar.f6 f6Var, an anVar) {
-        super(activity);
-        this.K = anVar;
-        TextPaint textPaint = new TextPaint(1);
-        this.f38456b = textPaint;
-        Paint paint = new Paint(1);
-        this.f38457c = paint;
-        this.d = org.telegram.messenger.g0.L(24.0f);
-        this.f38458e = new OvershootInterpolator();
-        this.H = new org.telegram.ui.Components.ir0(this, 12);
-        this.J = new Path();
-        int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.vj, f6Var);
-        int alpha = Color.alpha(w02);
-        textPaint.setTextSize(org.telegram.messenger.g0.L(15.0f));
-        textPaint.setColor(w02);
-        paint.setColor(w02);
-        paint.setAlpha((int) (alpha * 0.14d));
-        int L = org.telegram.messenger.g0.L(6.0f);
-        int i7 = org.telegram.ui.ActionBar.k6.tj;
-        ShapeDrawable d02 = org.telegram.ui.ActionBar.k6.d0(L, org.telegram.ui.ActionBar.k6.w0(i7, f6Var));
-        org.telegram.ui.ActionBar.n6 N = org.telegram.ui.ActionBar.r6.N(i7);
-        setBackground(d02);
-        org.telegram.ui.ActionBar.r6.k(this, d02, N, null, f6Var);
-    }
-
-    public final void d() {
-        int i7 = -(org.telegram.messenger.g0.L(16.0f) + getMeasuredHeight());
-        an anVar = this.K;
-        int top = anVar.Z.getTop() - anVar.l1.getMeasuredHeight();
-        setTranslationY(top - ((1.0f - getPrepareProgress()) * (top + i7)));
+    public tk(cn cnVar, cn cnVar2) {
+        this.f50194b = cnVar;
+        this.f50193a = cnVar2;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        d();
+    public final void T0(int i7) {
+        this.f50194b.l(i7, 0, true, 0, true, 0);
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, i10);
-        d();
+    public final void Y(boolean z9, boolean z10) {
+        int b92;
+        ArrayList arrayList;
+        org.telegram.ui.Components.kb kbVar;
+        int i7;
+        cn cnVar = this.f50194b;
+        if (z9) {
+            ArrayList arrayList2 = new ArrayList(cnVar.T4);
+            ArrayList arrayList3 = new ArrayList(cnVar.V4.values());
+            org.telegram.ui.Components.cc ccVar = null;
+            if (z10) {
+                i7 = ((org.telegram.ui.ActionBar.f2) cnVar).currentAccount;
+                SharedPreferences sharedPreferences = org.telegram.messenger.qp.s1(i7).f24764d7;
+                if (cnVar.T4.isEmpty()) {
+                    SharedPreferences.Editor edit = sharedPreferences.edit();
+                    edit.remove("pin_" + cnVar.f44504j6).commit();
+                } else {
+                    SharedPreferences.Editor edit2 = sharedPreferences.edit();
+                    edit2.putInt("pin_" + cnVar.f44504j6, ((Integer) cnVar.T4.get(0)).intValue()).commit();
+                }
+                cnVar.fd(0, true);
+            } else {
+                cnVar.getNotificationCenter().k(org.telegram.messenger.qs.f25077t0, Long.valueOf(cnVar.f44504j6), arrayList2, Boolean.FALSE, 0, 0, 0, 0, Boolean.TRUE);
+            }
+            org.telegram.ui.Components.cc ccVar2 = cnVar.O3;
+            if (ccVar2 != null) {
+                ccVar2.b();
+            }
+            cnVar.P3 = true;
+            int i10 = cnVar.Q3 + 1;
+            cnVar.Q3 = i10;
+            boolean z11 = cnVar.f44652v4;
+            cn cnVar2 = this.f50193a;
+            if (z11) {
+                b92 = cnVar2.b9();
+            } else {
+                b92 = cnVar.b9();
+            }
+            int i11 = b92;
+            if (cnVar.f44652v4) {
+                arrayList = cnVar2.T4;
+            } else {
+                arrayList = cnVar.T4;
+            }
+            ArrayList arrayList4 = new ArrayList(arrayList);
+            sk skVar = new sk(this, z10, arrayList2, arrayList3, i11, i10);
+            org.telegram.messenger.voip.k0 k0Var = new org.telegram.messenger.voip.k0(this, z10, arrayList4, i10);
+            an anVar = cnVar.f44709za;
+            if (cnVar.getParentActivity() == null) {
+                k0Var.run();
+            } else {
+                if (z10) {
+                    org.telegram.ui.Components.zb zbVar = new org.telegram.ui.Components.zb(cnVar.getParentActivity(), anVar);
+                    zbVar.c(2131624060, 28, 28, "Pin", "Line");
+                    zbVar.f40949b.setText(org.telegram.messenger.id.M0(2131747224, null));
+                    zbVar.f40950c.setText(org.telegram.messenger.id.M0(2131747223, null));
+                    kbVar = zbVar;
+                } else {
+                    org.telegram.ui.Components.kb kbVar2 = new org.telegram.ui.Components.kb(cnVar.getParentActivity(), anVar);
+                    kbVar2.c(2131624060, 28, 28, "Pin", "Line");
+                    kbVar2.f35292b.setText(org.telegram.messenger.id.G(i11, "MessagesUnpinned", new Object[0]));
+                    kbVar = kbVar2;
+                }
+                org.telegram.ui.Components.ac acVar = new org.telegram.ui.Components.ac(cnVar.getParentActivity(), anVar, true);
+                acVar.f31766b = skVar;
+                acVar.f31767c = k0Var;
+                kbVar.setButton(acVar);
+                ccVar = org.telegram.ui.Components.cc.g(cnVar, kbVar, 5000);
+            }
+            cnVar.O3 = ccVar;
+            return;
+        }
+        org.telegram.messenger.ij ijVar = (org.telegram.messenger.ij) cnVar.V4.get(Integer.valueOf(cnVar.X4));
+        if (ijVar == null) {
+            ijVar = (org.telegram.messenger.ij) cnVar.E6[0].get(cnVar.X4);
+        }
+        cnVar.Jc(ijVar);
+    }
+
+    @Override
+    public final void w0(String str) {
+        this.f50194b.Fa(str, false);
     }
 }

@@ -1,66 +1,72 @@
 package org.telegram.ui;
 
-import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class ri0 implements View.OnTouchListener {
-    public final int f49500a;
-    public final bk0 f49501b;
+import android.view.ViewGroup;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class ri0 implements Runnable {
+    public final int f49490a;
+    public final dk0 f49491b;
 
-    public ri0(bk0 bk0Var, int i7) {
-        this.f49500a = i7;
-        this.f49501b = bk0Var;
+    public ri0(dk0 dk0Var, int i7) {
+        this.f49490a = i7;
+        this.f49491b = dk0Var;
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        int i7 = this.f49500a;
-        bk0 bk0Var = this.f49501b;
-        switch (i7) {
+    public final void run() {
+        ViewGroup viewGroup;
+        switch (this.f49490a) {
             case 0:
-                if (bk0Var.getParentActivity() == null) {
-                    return false;
+                dk0 dk0Var = this.f49491b;
+                ViewGroup[] viewGroupArr = dk0Var.Z;
+                if (viewGroupArr != null && (viewGroup = viewGroupArr[0]) != null && viewGroup.getVisibility() == 0) {
+                    dk0Var.Y[0].requestFocus();
+                    org.telegram.messenger.g0.K3(dk0Var.Y[0]);
+                    return;
                 }
-                if (motionEvent.getAction() == 1) {
-                    qs qsVar = new qs(null, false);
-                    qsVar.f49309r = new pu(28, bk0Var, view);
-                    bk0Var.presentFragment(qsVar);
-                }
-                return true;
+                return;
             case 1:
-                if (bk0Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(bk0Var.getParentActivity());
-                    String M0 = org.telegram.messenger.id.M0(2131747467, null);
-                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
-                    u1Var.R = M0;
-                    alertDialog$Builder.f(new CharSequence[]{org.telegram.messenger.id.M0(2131747509, null), org.telegram.messenger.id.M0(2131747570, null)}, new k4(bk0Var, 3));
-                    alertDialog$Builder.k(org.telegram.messenger.id.M0(2131752589, null), null);
-                    bk0Var.showDialog(u1Var);
-                }
-                return true;
+                dk0 dk0Var2 = this.f49491b;
+                dk0Var2.presentFragment(dk0Var2.f45011h1, true);
+                dk0Var2.f45011h1 = null;
+                return;
             case 2:
-                if (bk0Var.getParentActivity() == null) {
-                    return false;
+                dk0 dk0Var3 = this.f49491b;
+                EditTextBoldCursor[] editTextBoldCursorArr = dk0Var3.f44992a0;
+                if (editTextBoldCursorArr != null) {
+                    dk0Var3.M1(editTextBoldCursorArr[0]);
+                    return;
                 }
-                if (motionEvent.getAction() == 1) {
-                    qs qsVar2 = new qs(null, false);
-                    qsVar2.f49309r = new si0(bk0Var, 2);
-                    bk0Var.presentFragment(qsVar2);
+                return;
+            case 3:
+                org.telegram.messenger.g0.K3(this.f49491b.Y[2]);
+                return;
+            case 4:
+                this.f49491b.B1();
+                return;
+            case 5:
+                int i7 = 0;
+                while (true) {
+                    dk0 dk0Var4 = this.f49491b;
+                    if (i7 < dk0Var4.f44998c0.getChildCount()) {
+                        View childAt = dk0Var4.f44998c0.getChildAt(i7);
+                        if (childAt instanceof ck0) {
+                            dk0Var4.f44998c0.removeView(childAt);
+                            i7--;
+                        }
+                        i7++;
+                    } else {
+                        dk0Var4.B1();
+                        dk0Var4.f45027q1.clear();
+                        dk0Var4.f45025p1.clear();
+                        dk0Var4.D.values.clear();
+                        dk0Var4.V1();
+                        return;
+                    }
                 }
-                return true;
             default:
-                if (bk0Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    qs qsVar3 = new qs(null, false);
-                    qsVar3.f49309r = new si0(bk0Var, 3);
-                    bk0Var.presentFragment(qsVar3);
-                }
-                return true;
+                this.f49491b.finishFragment();
+                return;
         }
     }
 }

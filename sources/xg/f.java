@@ -7,24 +7,24 @@ import org.telegram.messenger.g0;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.l2;
-import org.telegram.ui.Components.oj0;
+import org.telegram.ui.Components.pj0;
 import v4.d1;
 import yg.c0;
 import yg.d0;
 import yg.r;
 import yg.t;
-public abstract class f extends oj0 {
-    public final f6 f58726c;
+public abstract class f extends pj0 {
+    public final g6 f58735c;
     public boolean d;
-    public f2 f58727e;
-    public TLRPC.TL_payments_checkedGiftCode f58728f;
+    public f2 f58736e;
+    public TLRPC.TL_payments_checkedGiftCode f58737f;
     public String h;
-    public l2 f58729n;
+    public l2 f58738n;
 
-    public f(f6 f6Var) {
-        this.f58726c = f6Var;
+    public f(g6 g6Var) {
+        this.f58735c = g6Var;
     }
 
     @Override
@@ -71,28 +71,28 @@ public abstract class f extends oj0 {
     public final d1 x(ViewGroup viewGroup, int i7) {
         View tVar;
         Context context = viewGroup.getContext();
-        f6 f6Var = this.f58726c;
+        g6 g6Var = this.f58735c;
         if (i7 != 1) {
             if (i7 != 2) {
                 if (i7 != 3) {
                     if (i7 != 4) {
                         if (i7 != 5) {
-                            tVar = new r(context, f6Var);
+                            tVar = new r(context, g6Var);
                         } else {
                             tVar = new View(context);
                         }
                     } else {
-                        tVar = new yg.a(context, f6Var);
+                        tVar = new yg.a(context, g6Var);
                         tVar.setPadding(0, 0, 0, g0.L(14.0f));
                     }
                 } else {
-                    tVar = new d0(context, f6Var);
+                    tVar = new d0(context, g6Var);
                 }
             } else {
-                tVar = new c0(context, f6Var);
+                tVar = new c0(context, g6Var);
             }
         } else {
-            tVar = new t(context, f6Var);
+            tVar = new t(context, g6Var);
         }
         return jg.g.r(tVar, tVar, -1, -2);
     }

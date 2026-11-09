@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import jg.g;
 import l2.c0;
 import l2.i0;
-import l2.y;
+import l2.x;
 import x2.g0;
 public final class b extends l2.b implements Handler.Callback {
     public final a I;
@@ -41,7 +41,7 @@ public final class b extends l2.b implements Handler.Callback {
             handler = new Handler(looper, this);
         }
         this.K = handler;
-        this.I = a.f56981a;
+        this.I = a.f56993a;
         this.L = new o3.a();
         this.R = -9223372036854775807L;
     }
@@ -110,9 +110,9 @@ public final class b extends l2.b implements Handler.Callback {
 
     public final void H(q0 q0Var) {
         c0 c0Var = this.J;
-        i0 i0Var = c0Var.f17774a;
-        o0 o0Var = i0Var.f17877o0;
-        r rVar = i0Var.f17873m;
+        i0 i0Var = c0Var.f17772a;
+        o0 o0Var = i0Var.f17875o0;
+        r rVar = i0Var.f17871m;
         n0 a10 = o0Var.a();
         int i7 = 0;
         while (true) {
@@ -123,13 +123,13 @@ public final class b extends l2.b implements Handler.Callback {
             p0VarArr[i7].b(a10);
             i7++;
         }
-        i0Var.f17877o0 = new o0(a10);
+        i0Var.f17875o0 = new o0(a10);
         o0 f12 = i0Var.f1();
         if (!f12.equals(i0Var.Q)) {
             i0Var.Q = f12;
-            rVar.c(14, new y(c0Var, 1));
+            rVar.c(14, new x(c0Var, 1));
         }
-        rVar.c(28, new y(q0Var, 2));
+        rVar.c(28, new x(q0Var, 2));
         rVar.b();
     }
 
@@ -193,13 +193,13 @@ public final class b extends l2.b implements Handler.Callback {
             if (!this.N && this.Q == null) {
                 o3.a aVar = this.L;
                 aVar.clear();
-                wf.b bVar = this.f17761c;
+                wf.b bVar = this.f17759c;
                 bVar.A();
                 int w10 = w(bVar, aVar, 0);
                 if (w10 == -4) {
                     if (aVar.isEndOfStream()) {
                         this.N = true;
-                    } else if (aVar.f17176e >= this.f17768x) {
+                    } else if (aVar.f17176e >= this.f17766x) {
                         aVar.f20793r = this.P;
                         aVar.c();
                         ca caVar = this.M;
@@ -214,7 +214,7 @@ public final class b extends l2.b implements Handler.Callback {
                         }
                     }
                 } else if (w10 == -5) {
-                    u uVar = (u) bVar.f57656c;
+                    u uVar = (u) bVar.f57668c;
                     uVar.getClass();
                     this.P = uVar.f10619x;
                 }

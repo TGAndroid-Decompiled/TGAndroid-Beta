@@ -20,33 +20,33 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.id;
 import org.telegram.ui.Components.xq;
 public final class r5 extends View {
-    public final Paint f12732a;
-    public final Paint f12733b;
-    public final StaticLayout f12734c;
+    public final Paint f12733a;
+    public final Paint f12734b;
+    public final StaticLayout f12735c;
     public final float d;
-    public final float f12735e;
-    public final int f12736f;
+    public final float f12736e;
+    public final int f12737f;
     public final int h;
-    public final boolean f12737n;
-    public final org.telegram.ui.Components.w5 f12738r;
-    public boolean f12739s;
-    public float f12740w;
-    public ValueAnimator f12741x;
-    public final s5 f12742y;
+    public final boolean f12738n;
+    public final org.telegram.ui.Components.w5 f12739r;
+    public boolean f12740s;
+    public float f12741w;
+    public ValueAnimator f12742x;
+    public final s5 f12743y;
 
     public r5(s5 s5Var, Context context, String str, boolean z9) {
         super(context);
         CharSequence upperCase;
         float f10;
-        this.f12742y = s5Var;
+        this.f12743y = s5Var;
         TextPaint textPaint = new TextPaint(1);
         Paint paint = new Paint(1);
-        this.f12732a = paint;
+        this.f12733a = paint;
         Paint paint2 = new Paint(1);
-        this.f12733b = paint2;
-        this.f12738r = new org.telegram.ui.Components.w5(this, 0L, 220L, xq.h);
-        this.f12739s = true;
-        this.f12737n = z9;
+        this.f12734b = paint2;
+        this.f12739r = new org.telegram.ui.Components.w5(this, 0L, 220L, xq.h);
+        this.f12740s = true;
+        this.f12738n = z9;
         paint.setColor(-15098625);
         paint2.setColor(1610612736);
         textPaint.setTextSize(org.telegram.messenger.g0.L(13.0f));
@@ -67,7 +67,7 @@ public final class r5 extends View {
             upperCase = str.toUpperCase();
         }
         StaticLayout staticLayout = new StaticLayout(upperCase, textPaint, org.telegram.messenger.g0.L(180.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        this.f12734c = staticLayout;
+        this.f12735c = staticLayout;
         if (staticLayout.getLineCount() > 0) {
             f10 = staticLayout.getLineLeft(0);
         } else {
@@ -75,11 +75,11 @@ public final class r5 extends View {
         }
         this.d = f10;
         float lineWidth = staticLayout.getLineCount() > 0 ? staticLayout.getLineWidth(0) : 0.0f;
-        this.f12735e = lineWidth;
+        this.f12736e = lineWidth;
         int L = org.telegram.messenger.g0.L(48.0f) + ((int) lineWidth);
-        this.f12736f = L;
+        this.f12737f = L;
         if (!z9) {
-            this.f12736f = Math.max(org.telegram.messenger.g0.L(80.0f), L);
+            this.f12737f = Math.max(org.telegram.messenger.g0.L(80.0f), L);
         }
         this.h = org.telegram.messenger.g0.L(40.0f);
         setOnClickListener(new ah.d(this, 24));
@@ -90,40 +90,40 @@ public final class r5 extends View {
         float f10;
         float f11 = 0.0f;
         if (isPressed()) {
-            float f12 = this.f12740w;
+            float f12 = this.f12741w;
             if (f12 != 1.0f) {
                 float min = (Math.min(40.0f, 1000.0f / org.telegram.messenger.g0.f22564r) / 80.0f) + f12;
-                this.f12740w = min;
-                this.f12740w = Utilities.i(min, 1.0f, 0.0f);
+                this.f12741w = min;
+                this.f12741w = Utilities.i(min, 1.0f, 0.0f);
                 invalidate();
             }
         }
-        if (this.f12739s) {
+        if (this.f12740s) {
             f10 = 1.0f;
         } else {
             f10 = 0.5f;
         }
-        float e10 = this.f12738r.e(false, f10);
+        float e10 = this.f12739r.e(false, f10);
         int saveCount = canvas.getSaveCount();
         if (e10 < 1.0f) {
             canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (e10 * 255.0f), 31);
         }
-        float f13 = ((1.0f - this.f12740w) * 0.1f) + 0.9f;
+        float f13 = ((1.0f - this.f12741w) * 0.1f) + 0.9f;
         canvas.save();
         canvas.scale(f13, f13, getWidth() / 2.0f, getHeight() / 2.0f);
-        canvas.drawRect(org.telegram.messenger.g0.L(25.0f), org.telegram.messenger.g0.L(4.0f), getWidth() - org.telegram.messenger.g0.L(25.0f), getHeight() - org.telegram.messenger.g0.L(4.0f), this.f12733b);
+        canvas.drawRect(org.telegram.messenger.g0.L(25.0f), org.telegram.messenger.g0.L(4.0f), getWidth() - org.telegram.messenger.g0.L(25.0f), getHeight() - org.telegram.messenger.g0.L(4.0f), this.f12734b);
         canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
         RectF rectF = org.telegram.messenger.g0.P;
         rectF.set(org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(4.0f), getWidth() - org.telegram.messenger.g0.L(10.0f), getHeight() - org.telegram.messenger.g0.L(4.0f));
-        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(20.0f), org.telegram.messenger.g0.L(20.0f), this.f12732a);
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(20.0f), org.telegram.messenger.g0.L(20.0f), this.f12733a);
         canvas.save();
-        float f14 = (this.f12736f - this.f12735e) / 2.0f;
-        if (this.f12737n) {
+        float f14 = (this.f12737f - this.f12736e) / 2.0f;
+        if (this.f12738n) {
             f11 = 3.0f;
         }
         float L = (f14 + org.telegram.messenger.g0.L(f11)) - this.d;
         int height = getHeight();
-        StaticLayout staticLayout = this.f12734c;
+        StaticLayout staticLayout = this.f12735c;
         canvas.translate(L, (height - staticLayout.getHeight()) / 2.0f);
         staticLayout.draw(canvas);
         canvas.restore();
@@ -138,7 +138,7 @@ public final class r5 extends View {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f12736f, 1073741824), View.MeasureSpec.makeMeasureSpec(this.h, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f12737f, 1073741824), View.MeasureSpec.makeMeasureSpec(this.h, 1073741824));
     }
 
     @Override
@@ -147,20 +147,20 @@ public final class r5 extends View {
         if (isPressed() != z9) {
             super.setPressed(z9);
             invalidate();
-            if (z9 && (valueAnimator = this.f12741x) != null) {
+            if (z9 && (valueAnimator = this.f12742x) != null) {
                 valueAnimator.removeAllListeners();
-                this.f12741x.cancel();
+                this.f12742x.cancel();
             }
             if (!z9) {
-                float f10 = this.f12740w;
+                float f10 = this.f12741w;
                 if (f10 != 0.0f) {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, 0.0f);
-                    this.f12741x = ofFloat;
+                    this.f12742x = ofFloat;
                     ofFloat.addUpdateListener(new v3(this, 2));
-                    this.f12741x.addListener(new bi.t5(this, 22));
-                    org.telegram.messenger.camera.q.i(1.5f, this.f12741x);
-                    this.f12741x.setDuration(350L);
-                    this.f12741x.start();
+                    this.f12742x.addListener(new bi.t5(this, 22));
+                    org.telegram.messenger.camera.q.i(1.5f, this.f12742x);
+                    this.f12742x.setDuration(350L);
+                    this.f12742x.start();
                 }
             }
         }

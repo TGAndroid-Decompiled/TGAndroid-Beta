@@ -19,7 +19,7 @@ public final class h4 extends ListView {
     public final Matrix f27512e;
 
     public h4(i4 i4Var) {
-        super(i4Var.f27567a);
+        super(i4Var.f27542a);
         int[] iArr = new int[8];
         PathInterpolator pathInterpolator = bg.c0.f3259i;
         bg.c0.a(pathInterpolator, -16777216, iArr);

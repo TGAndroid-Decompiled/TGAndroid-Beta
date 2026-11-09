@@ -25,12 +25,12 @@ public final class h6 {
         } else {
             j3 = 0;
         }
-        cg.b bVar2 = cg.b.f6162a;
+        cg.b bVar2 = cg.b.f6160a;
         if (bVar == bVar2) {
             this.f3999c = cg.a.g(j3, bVar2);
             return;
         }
-        cg.b bVar3 = cg.b.f6163b;
+        cg.b bVar3 = cg.b.f6161b;
         if (bVar == bVar3) {
             this.f3999c = cg.a.i(j3, bVar3);
         } else {

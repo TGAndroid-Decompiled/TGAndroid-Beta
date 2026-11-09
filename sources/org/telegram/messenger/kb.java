@@ -3,7 +3,7 @@ package org.telegram.messenger;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import java.util.ArrayList;
-import org.telegram.ui.Components.zg0;
+import org.telegram.ui.Components.ah0;
 public final class kb extends h2.j0 {
     public final int f23678e;
     public final gc f23679f;
@@ -73,8 +73,8 @@ public final class kb extends h2.j0 {
                     if (z9) {
                         ((org.telegram.ui.Components.v5) bitmapDrawable5).u();
                     }
-                    if (bitmapDrawable5 instanceof zg0) {
-                        ((zg0) bitmapDrawable5).C(false);
+                    if (bitmapDrawable5 instanceof ah0) {
+                        ((ah0) bitmapDrawable5).C(false);
                         return;
                     }
                     return;

@@ -17,7 +17,7 @@ public final class h2 implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 v2 v2Var = this.f27508b;
                 v2Var.C0 = floatValue;
-                l2 l2Var = v2Var.f28622c;
+                l2 l2Var = v2Var.f28627c;
                 if (l2Var != null) {
                     l2Var.invalidate();
                     return;
@@ -39,14 +39,14 @@ public final class h2 implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 v2 v2Var3 = this.f27508b;
                 v2Var3.S0 = floatValue2;
-                v2Var3.f28622c.requestLayout();
-                v2Var3.f28619b.requestLayout();
+                v2Var3.f28627c.requestLayout();
+                v2Var3.f28624b.requestLayout();
                 return;
             case 5:
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 v2 v2Var4 = this.f27508b;
                 v2Var4.C0 = floatValue3;
-                l2 l2Var2 = v2Var4.f28622c;
+                l2 l2Var2 = v2Var4.f28627c;
                 if (l2Var2 != null) {
                     l2Var2.invalidate();
                     return;

@@ -1,15 +1,15 @@
 package wi;
 public final class m0 {
-    public static final m0 f58084a;
-    public static final m0 f58085b;
-    public static final m0[] f58086c;
+    public static final m0 f58093a;
+    public static final m0 f58094b;
+    public static final m0[] f58095c;
 
     static {
         ?? r02 = new Enum("FRONT", 0);
-        f58084a = r02;
+        f58093a = r02;
         ?? r12 = new Enum("BACK", 1);
-        f58085b = r12;
-        f58086c = new m0[]{r02, r12};
+        f58094b = r12;
+        f58095c = new m0[]{r02, r12};
     }
 
     public static m0 valueOf(String str) {
@@ -17,6 +17,6 @@ public final class m0 {
     }
 
     public static m0[] values() {
-        return (m0[]) f58086c.clone();
+        return (m0[]) f58095c.clone();
     }
 }

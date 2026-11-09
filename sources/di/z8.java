@@ -1,185 +1,151 @@
 package di;
 
-import a8.ra;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.cc;
-public final class z8 implements GestureDetector.OnGestureListener {
-    public final p9 f10025a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.SurfaceView;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.iz;
+import org.telegram.ui.Components.eh0;
+public final class z8 extends AnimatorListenerAdapter {
+    public final int f10018a;
+    public final q9 f10019b;
 
-    public z8(p9 p9Var) {
-        this.f10025a = p9Var;
+    public z8(q9 q9Var, int i7) {
+        this.f10018a = i7;
+        this.f10019b = q9Var;
     }
 
     @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        p9 p9Var = this.f10025a;
-        p9Var.f9545f1 = false;
-        if (p9.c(p9Var, p9Var.f9569s, motionEvent.getX(), motionEvent.getY(), false)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
-        boolean z9;
-        p9 p9Var = this.f10025a;
-        if (p9Var.Z != 0.0f && p9Var.f9573t1 == null && f11 < -1000.0f && !p9Var.f9530a0) {
-            p9Var.f9530a0 = true;
-            try {
-                p9Var.f9569s.performHapticFeedback(3);
-            } catch (Exception unused) {
-            }
-            p9.g(p9Var);
-        }
-        if (p9Var.f9541e0 != 0.0f) {
-            if (f11 < -1000.0f) {
-                p9Var.o(true);
-            } else if (f11 > 1000.0f) {
-                p9Var.o(false);
-            } else {
-                if (p9Var.f9580x.f9759f > 0.5f) {
-                    z9 = true;
-                } else {
-                    z9 = false;
+    public final void onAnimationEnd(Animator animator) {
+        j4 z9;
+        eh0 eh0Var;
+        switch (this.f10018a) {
+            case 0:
+                super.onAnimationEnd(animator);
+                q9 q9Var = this.f10019b;
+                n9 n9Var = q9Var.f9635s0;
+                f9 f9Var = q9Var.f9643w;
+                if (f9Var != null) {
+                    f9Var.a(true);
                 }
-                p9Var.o(z9);
-            }
-        }
-        p9Var.f9545f1 = true;
-        return false;
-    }
-
-    @Override
-    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
-        float f12;
-        cc ccVar;
-        p9 p9Var = this.f10025a;
-        if (!p9Var.f9552j0) {
-            return false;
-        }
-        if (p9Var.f9556l0) {
-            p9Var.Z += f11;
-            float L = org.telegram.messenger.g0.L(200.0f);
-            if (p9Var.Z > L && !p9Var.f9530a0) {
-                p9Var.f9530a0 = true;
-                p9.g(p9Var);
+                q9Var.q();
+                q9Var.I0.e();
+                d7 d7Var = q9Var.f9638t1;
+                if (d7Var != null) {
+                    d7Var.b();
+                    org.telegram.messenger.g0.E2(q9Var.f9638t1);
+                    q9Var.f9638t1 = null;
+                }
+                ImageReceiver imageReceiver = n9Var.f9404b;
+                if (imageReceiver != null) {
+                    imageReceiver.O0(true, true);
+                    n9Var.f9404b = null;
+                }
+                ImageReceiver imageReceiver2 = n9Var.f9405c;
+                if (imageReceiver2 != null) {
+                    imageReceiver2.setAlpha(1.0f);
+                    n9Var.f9405c.O0(true, true);
+                }
+                if (n9Var.d != null && (z9 = q9Var.z()) != null && (eh0Var = z9.X0.d) != null) {
+                    eh0 eh0Var2 = n9Var.d;
+                    eh0Var2.getClass();
+                    eh0Var2.f33391c = eh0Var.f33391c;
+                    eh0Var2.f33393f = eh0Var.f33393f;
+                    eh0Var2.f33390b = eh0Var.f33390b;
+                    eh0Var2.f33389a = System.currentTimeMillis();
+                    eh0Var2.c();
+                }
+                i4 i4Var = q9Var.F0;
+                if (i4Var != null) {
+                    i4Var.b();
+                }
+                SurfaceView surfaceView = q9Var.C0;
+                if (surfaceView != null) {
+                    surfaceView.setVisibility(4);
+                }
+                q9Var.O();
                 try {
-                    p9Var.f9569s.performHapticFeedback(3);
+                    org.telegram.messenger.g0.h3(new f8(this, 4));
                 } catch (Exception unused) {
                 }
-            }
-            p9Var.f9538d0 = Utilities.i(p9Var.Z / L, 1.0f, 0.0f);
-            if (p9Var.f9559n0.getCurrentPeerView() != null) {
-                p9Var.f9559n0.getCurrentPeerView().invalidate();
-            }
-            if (p9Var.Z < 0.0f) {
-                p9Var.Z = 0.0f;
-                p9Var.f9556l0 = false;
-            }
-            return true;
-        }
-        if (p9Var.f9536c0) {
-            float f13 = p9Var.f9541e0;
-            if (f13 > p9Var.f9580x.f9757c && f11 > 0.0f) {
-                p9Var.f9541e0 = (0.05f * f11) + f13;
-            } else {
-                p9Var.f9541e0 = f13 + f11;
-            }
-            d9 d9Var = p9Var.f9569s;
-            cc ccVar2 = cc.f32537w;
-            if (ccVar2 != null && ccVar2.h == d9Var) {
-                ccVar2.b();
-            }
-            if (p9Var.f9559n0.getCurrentPeerView() != null) {
-                p9Var.f9559n0.getCurrentPeerView().invalidate();
-            }
-            p9Var.f9578w.invalidate();
-            if (p9Var.f9541e0 < 0.0f) {
-                p9Var.f9541e0 = 0.0f;
-                p9Var.f9536c0 = false;
-            }
-            return true;
-        }
-        if (p9Var.V > 0.8f) {
-            float f14 = -f11;
-            if ((f14 > 0.0f && p9Var.W > 0.0f) || (f14 < 0.0f && p9Var.W < 0.0f)) {
-                f12 = 0.3f;
-                p9Var.W -= f11 * f12;
-                d9 d9Var2 = p9Var.f9569s;
-                ccVar = cc.f32537w;
-                if (ccVar != null && ccVar.h == d9Var2) {
-                    ccVar.b();
+                q9Var.m0 = false;
+                q9Var.d = false;
+                l3 l3Var = q9Var.n1;
+                if (l3Var != null) {
+                    l3Var.run();
+                    q9Var.n1 = null;
+                    return;
                 }
-                p9.i(p9Var);
-                return true;
-            }
-        }
-        f12 = 0.6f;
-        p9Var.W -= f11 * f12;
-        d9 d9Var22 = p9Var.f9569s;
-        ccVar = cc.f32537w;
-        if (ccVar != null) {
-            ccVar.b();
-        }
-        p9.i(p9Var);
-        return true;
-    }
-
-    @Override
-    public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        i4 currentPeerView;
-        boolean z9;
-        p9 p9Var = this.f10025a;
-        if (p9Var.f9541e0 == 0.0f && p9Var.f9544f0) {
-            if (!p9Var.f9582y && !p9Var.K0 && !p9Var.l1 && !p9Var.f9549h1 && !p9Var.f9551i1) {
-                i4 z10 = p9Var.z();
-                if (z10 == null || !z10.f9213x1.f9042f) {
-                    if (motionEvent.getX() > p9Var.f9578w.getMeasuredWidth() * 0.33f) {
-                        z9 = true;
-                    } else {
-                        z9 = false;
+                return;
+            case 1:
+                q9 q9Var2 = this.f10019b;
+                j4 j4Var = null;
+                q9Var2.H = null;
+                q9Var2.Z = 0.0f;
+                q9Var2.f9603d0 = 0.0f;
+                g9 g9Var = q9Var2.f9624n0;
+                if (g9Var != null) {
+                    j4Var = g9Var.getCurrentPeerView();
+                }
+                if (j4Var != null) {
+                    j4Var.invalidate();
+                    return;
+                }
+                return;
+            default:
+                q9 q9Var3 = this.f10019b;
+                n9 n9Var2 = q9Var3.f9635s0;
+                q9Var3.U = 1.0f;
+                q9Var3.q();
+                q9.f9590w1 = false;
+                f9 f9Var2 = q9Var3.f9643w;
+                if (f9Var2 != null) {
+                    f9Var2.a(true);
+                }
+                e9 e9Var = q9Var3.f9634s;
+                if (e9Var != null) {
+                    e9Var.invalidate();
+                }
+                ImageReceiver imageReceiver3 = n9Var2.f9404b;
+                if (imageReceiver3 != null && !q9Var3.d) {
+                    imageReceiver3.O0(true, true);
+                    n9Var2.f9404b = null;
+                }
+                ImageReceiver imageReceiver4 = n9Var2.f9405c;
+                if (imageReceiver4 != null && !q9Var3.d) {
+                    imageReceiver4.setAlpha(1.0f);
+                    n9Var2.f9405c.O0(true, true);
+                    n9Var2.f9405c = null;
+                }
+                j4 z10 = q9Var3.z();
+                if (z10 != null) {
+                    z10.d1(false);
+                }
+                g1 g1Var = q9Var3.A0;
+                if (g1Var != null) {
+                    g1Var.v((1.0f - q9Var3.V) * q9Var3.U);
+                }
+                if (q9Var3.f9642v1) {
+                    q9Var3.f9642v1 = false;
+                    q9Var3.r();
+                    org.telegram.messenger.g0.i3(new l3(q9Var3, 1), 30L);
+                } else if (!iz.U) {
+                    if (q9Var3.f9638t1 == null && q9Var3.f9643w != null) {
+                        d7 d7Var2 = new d7(q9Var3.f9643w.getContext(), q9Var3.f9634s);
+                        q9Var3.f9638t1 = d7Var2;
+                        d7Var2.setAlpha(0.0f);
+                        q9Var3.f9643w.addView(q9Var3.f9638t1);
                     }
-                    i4 currentPeerView2 = p9Var.f9559n0.getCurrentPeerView();
-                    if (currentPeerView2 != null && !currentPeerView2.b1(z9)) {
-                        if (!p9Var.f9559n0.E(z9)) {
-                            if (z9) {
-                                p9Var.u(true);
-                                return false;
-                            }
-                            o9 o9Var = p9Var.f9584z0;
-                            if (o9Var != null) {
-                                o9Var.loopBack();
-                                return false;
-                            }
-                        } else {
-                            f9 f9Var = p9Var.f9559n0;
-                            f9Var.L0 = true;
-                            f9Var.onTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
-                            ra raVar = f9Var.M0;
-                            org.telegram.messenger.g0.r(raVar);
-                            org.telegram.messenger.g0.i3(raVar, 150L);
-                            return false;
-                        }
+                    d7 d7Var3 = q9Var3.f9638t1;
+                    if (d7Var3 != null) {
+                        d7Var3.setOnClickListener(new ah.d(this, 18));
+                        q9Var3.f9638t1.animate().alpha(1.0f).setDuration(150L).setListener(new j9(this, 1)).start();
                     }
+                    iz.G(true);
                 }
-            } else {
-                f9 f9Var2 = p9Var.f9559n0;
-                if (f9Var2 != null && (currentPeerView = f9Var2.getCurrentPeerView()) != null) {
-                    currentPeerView.q0();
-                }
-            }
+                q9Var3.V();
+                q9Var3.I0.e();
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public final void onLongPress(MotionEvent motionEvent) {
-    }
-
-    @Override
-    public final void onShowPress(MotionEvent motionEvent) {
     }
 }

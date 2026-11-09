@@ -1,89 +1,96 @@
 package org.telegram.ui.Wallet;
 
 import org.telegram.messenger.c20;
-import org.telegram.messenger.v10;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.LaunchActivity;
-public final class p implements Runnable {
-    public final int f42995a;
-    public final m0 f42996b;
-    public final String f42997c;
-    public final c20 d;
-    public final TL_wallet.nftItem f42998e;
-    public final String f42999f;
-    public final String h;
-    public final byte[] f43000n;
-    public final long f43001r;
-    public final d2 f43002s;
-    public final TLRPC.User f43003w;
-    public final String f43004x;
-    public final c20 f43005y;
+public final class p implements c20 {
+    public final int f42961a = 3;
+    public final Object f42962b;
+    public final l0 f42963c;
+    public final Object d;
+    public final Object f42964e;
 
-    public p(m0 m0Var, String str, c20 c20Var, TL_wallet.nftItem nftitem, String str2, String str3, byte[] bArr, long j3, d2 d2Var, TLRPC.User user, String str4, c20 c20Var2, int i7) {
-        this.f42995a = i7;
-        this.f42996b = m0Var;
-        this.f42997c = str;
-        this.d = c20Var;
-        this.f42998e = nftitem;
-        this.f42999f = str2;
-        this.h = str3;
-        this.f43000n = bArr;
-        this.f43001r = j3;
-        this.f43002s = d2Var;
-        this.f43003w = user;
-        this.f43004x = str4;
-        this.f43005y = c20Var2;
+    public p(c20 c20Var, l0 l0Var, p0 p0Var, m8 m8Var) {
+        this.d = m8Var;
+        this.f42962b = c20Var;
+        this.f42964e = p0Var;
+        this.f42963c = l0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f42995a) {
+    public final void a(Object obj) {
+        String o4;
+        switch (this.f42961a) {
             case 0:
-                m0 m0Var = this.f42996b;
-                String str = this.f42997c;
-                c20 c20Var = this.d;
-                p pVar = new p(m0Var, str, c20Var, this.f42998e, this.f42999f, this.h, this.f43000n, this.f43001r, this.f43002s, this.f43003w, this.f43004x, this.f43005y, 1);
-                if (m0Var.K() && !m0Var.J()) {
-                    m0.H("send " + str + ": asking passcode");
-                    org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
-                    if (T != 0) {
-                        ?? obj = new Object();
-                        obj.f27424a = true;
-                        boolean[] zArr = {false};
-                        z zVar = new z(zArr, c20Var);
-                        zVar.V = new n(2, zArr, pVar);
-                        T.showAsSheet(zVar, obj);
-                        return;
-                    }
-                    return;
+                c0 c0Var = (c0) this.d;
+                Runnable runnable = (Runnable) this.f42964e;
+                l0 l0Var = this.f42963c;
+                l0Var.getClass();
+                c0Var.f42294c = (byte[]) obj;
+                if (l0Var.N.get((String) this.f42962b) == c0Var) {
+                    l0Var.k0(c0Var);
+                    l0Var.L();
                 }
-                pVar.run();
+                runnable.run();
+                return;
+            case 1:
+                d8.Z((d8) this.d, (String) this.f42962b, this.f42963c, (org.telegram.ui.ActionBar.f2) this.f42964e, (String) obj);
+                return;
+            case 2:
+                p0 p0Var = (p0) this.f42964e;
+                l0 l0Var2 = this.f42963c;
+                l0Var2.u((String) this.f42962b, new p((c20) obj, l0Var2, p0Var, (m8) this.d));
                 return;
             default:
-                StringBuilder sb2 = new StringBuilder("send ");
-                final String str2 = this.f42997c;
-                sb2.append(str2);
-                sb2.append(": ready, get secret phrase");
-                m0.H(sb2.toString());
-                final m0 m0Var2 = this.f42996b;
-                final c20 c20Var2 = this.d;
-                final TL_wallet.nftItem nftitem = this.f42998e;
-                final String str3 = this.f42999f;
-                final String str4 = this.h;
-                final byte[] bArr = this.f43000n;
-                final long j3 = this.f43001r;
-                final d2 d2Var = this.f43002s;
-                final TLRPC.User user = this.f43003w;
-                final String str5 = this.f43004x;
-                final c20 c20Var3 = this.f43005y;
-                m0Var2.z(new v10() {
-                    @Override
-                    public final void a(java.lang.Object r29, java.lang.Object r30) {
-                        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.s.a(java.lang.Object, java.lang.Object):void");
+                m8 m8Var = (m8) this.d;
+                c20 c20Var = (c20) this.f42962b;
+                p0 p0Var2 = (p0) this.f42964e;
+                c0 c0Var2 = (c0) obj;
+                if (c0Var2 == null) {
+                    c20Var.a("ADDRESS_NO_INFO");
+                    return;
+                }
+                byte[] bArr = c0Var2.f42294c;
+                if (bArr == null) {
+                    byte[][] m10 = p0Var2.m();
+                    if (m10.length <= 0) {
+                        c20Var.a("STORAGE_NO_PUBLIC_KEY");
+                        return;
                     }
-                }, false, true);
+                    bArr = m10[0];
+                }
+                if (!p0Var2.f(bArr)) {
+                    c20Var.a("STORAGE_OLD_PUBLIC_KEY");
+                    return;
+                }
+                m mVar = new m(c20Var, this.f42963c, p0Var2, m8Var);
+                if (bArr == null) {
+                    o4 = "";
+                } else {
+                    o4 = p0.o(bArr);
+                }
+                String str = o4;
+                p0.h.execute(new org.telegram.ui.Components.j2(p0Var2, p0Var2.l(), str, false, (c20) mVar));
                 return;
         }
+    }
+
+    public p(l0 l0Var, c0 c0Var, String str, Runnable runnable) {
+        this.f42963c = l0Var;
+        this.d = c0Var;
+        this.f42962b = str;
+        this.f42964e = runnable;
+    }
+
+    public p(d8 d8Var, String str, l0 l0Var, org.telegram.ui.ActionBar.f2 f2Var) {
+        this.d = d8Var;
+        this.f42962b = str;
+        this.f42963c = l0Var;
+        this.f42964e = f2Var;
+    }
+
+    public p(m8 m8Var, l0 l0Var, String str, p0 p0Var) {
+        this.d = m8Var;
+        this.f42963c = l0Var;
+        this.f42962b = str;
+        this.f42964e = p0Var;
     }
 }

@@ -1,77 +1,47 @@
 package sh;
 
-import ai.o0;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.text.TextUtils;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import c8.ha;
+import java.util.ArrayList;
 import org.telegram.messenger.c20;
-import org.telegram.messenger.g0;
-import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.b9;
-import org.telegram.ui.Components.q41;
-import sg.t0;
-public final class n extends FrameLayout {
-    public final b9 f55332a;
-    public final TextView f55333b;
-    public i f55334c;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class n {
+    public final int f55336a;
+    public final TLRPC.InputPeer f55337b;
+    public final int f55338c;
+    public final byte[] d;
+    public final b f55339e;
+    public final c20 f55340f;
+    public String f55341g;
+    public boolean h;
+    public boolean f55342i;
+    public final ArrayList f55343j = new ArrayList();
 
-    public n(int i7, Context context, f6 f6Var) {
-        super(context);
-        this.f55332a = new b9(i7, this, g0.L(24.0f), g0.L(10.0f), g0.N(1.0f));
-        TextView textView = new TextView(context);
-        this.f55333b = textView;
-        r6.V(textView, k6.E8, f6Var);
-        textView.setLines(1);
-        textView.setSingleLine(true);
-        textView.setGravity(19);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setTextSize(1, 16.0f);
-        setPadding(g0.L(16.0f), 0, g0.L(68.0f), 0);
-        addView(textView, ha.g());
+    public n(int i7, TLRPC.InputPeer inputPeer, int i10, byte[] bArr, b bVar, c20 c20Var) {
+        this.f55336a = i7;
+        this.f55337b = inputPeer;
+        this.f55338c = i10;
+        this.d = bArr;
+        this.f55339e = bVar;
+        this.f55340f = c20Var;
     }
 
-    public final q41 a(f2 f2Var, long j3, int i7, byte[] bArr, int i10, c20 c20Var) {
-        i iVar = this.f55334c;
-        if (iVar != null) {
-            return iVar;
+    public final void a() {
+        int i7;
+        if (!this.h && !this.f55342i) {
+            this.f55342i = true;
+            TLRPC.TL_messages_getPollVotes tL_messages_getPollVotes = new TLRPC.TL_messages_getPollVotes();
+            String str = this.f55341g;
+            if (str != null) {
+                i7 = 10;
+            } else {
+                i7 = 15;
+            }
+            tL_messages_getPollVotes.limit = i7;
+            tL_messages_getPollVotes.peer = this.f55337b;
+            tL_messages_getPollVotes.f27055id = this.f55338c;
+            tL_messages_getPollVotes.option = this.d;
+            tL_messages_getPollVotes.offset = str;
+            ConnectionsManager.getInstance(this.f55336a).sendRequestTyped(tL_messages_getPollVotes, new d3.b(1), new i(this, 1));
         }
-        m mVar = new m(f2Var.getCurrentAccount(), f2Var.getMessagesController().j1(j3), i7, bArr, new t0(this, 4), c20Var);
-        g0.i3(new t0(mVar, 5), 1000L);
-        i iVar2 = new i(f2Var, new h(mVar, 0), i10);
-        this.f55334c = iVar2;
-        iVar2.f37190f3.f35528r = false;
-        iVar2.j(new o0(9, this, mVar));
-        return this.f55334c;
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        int width = getWidth() - g0.L(11.0f);
-        b9 b9Var = this.f55332a;
-        b9Var.setBounds(width - ((int) b9Var.f32133c.d.f55505f.f55513a), g0.L(12.0f), getWidth() - g0.L(11.0f), g0.L(24.0f) + g0.L(12.0f));
-        b9Var.c(canvas);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f55332a.a();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f55332a.b();
-    }
-
-    public void setText(String str) {
-        this.f55333b.setText(str);
     }
 }

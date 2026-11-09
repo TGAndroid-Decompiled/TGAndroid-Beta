@@ -1,40 +1,36 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-public final class nu implements Runnable {
-    public final int f48135a = 1;
-    public final ww f48136b;
-    public final int f48137c;
-    public final ArrayList d;
-    public final boolean f48138e;
-    public final HashSet f48139f;
+import android.content.DialogInterface;
+public final class nu implements DialogInterface.OnDismissListener {
+    public final int f48235a;
+    public final yw f48236b;
 
-    public nu(ww wwVar, int i7, ArrayList arrayList, boolean z9, HashSet hashSet) {
-        this.f48136b = wwVar;
-        this.f48137c = i7;
-        this.d = arrayList;
-        this.f48138e = z9;
-        this.f48139f = hashSet;
+    public nu(yw ywVar, int i7) {
+        this.f48235a = i7;
+        this.f48236b = ywVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f48135a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f48235a) {
             case 0:
-                this.f48136b.D4(this.d, this.f48137c, false, this.f48138e, this.f48139f);
+                yw ywVar = this.f48236b;
+                if (ywVar.S3 != null) {
+                    ywVar.getMessagesController().k4(0L, ywVar.S3);
+                    ywVar.S3 = null;
+                    ywVar.X4();
+                    return;
+                }
+                return;
+            case 1:
+                this.f48236b.n4(true);
+                return;
+            case 2:
+                this.f48236b.n4(true);
                 return;
             default:
-                ww.r0(this.f48136b, this.f48137c, this.d, this.f48138e, this.f48139f);
+                yw.l0(this.f48236b);
                 return;
         }
-    }
-
-    public nu(ww wwVar, ArrayList arrayList, int i7, boolean z9, HashSet hashSet) {
-        this.f48136b = wwVar;
-        this.d = arrayList;
-        this.f48137c = i7;
-        this.f48138e = z9;
-        this.f48139f = hashSet;
     }
 }

@@ -18,11 +18,11 @@ public final class q {
         switch (this.f14271a) {
             case 0:
                 Status a10 = nVar.a();
-                int i7 = a10.f6529a;
+                int i7 = a10.f6527a;
                 c cVar = this.f14272b;
                 if (i7 != 0) {
                     j6.b bVar = cVar.f14221a;
-                    String str = a10.f6530b;
+                    String str = a10.f6528b;
                     Log.w(bVar.f16508a, bVar.d("Error fetching queue item ids, statusCode=" + i7 + ", statusMessage=" + str, new Object[0]));
                 }
                 cVar.f14230l = null;
@@ -36,11 +36,11 @@ public final class q {
                 return;
             default:
                 Status a11 = nVar.a();
-                int i10 = a11.f6529a;
+                int i10 = a11.f6527a;
                 c cVar2 = this.f14272b;
                 if (i10 != 0) {
                     j6.b bVar2 = cVar2.f14221a;
-                    String str2 = a11.f6530b;
+                    String str2 = a11.f6528b;
                     Log.w(bVar2.f16508a, bVar2.d("Error fetching queue items, statusCode=" + i10 + ", statusMessage=" + str2, new Object[0]));
                 }
                 cVar2.f14229k = null;

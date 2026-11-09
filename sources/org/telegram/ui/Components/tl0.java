@@ -1,28 +1,51 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import java.util.ArrayList;
-public final class tl0 extends vr {
-    public final org.telegram.ui.fw f38387k0;
+public final class tl0 extends cv0 {
+    public final int K;
+    public final org.telegram.ui.hw L;
 
-    public tl0(org.telegram.ui.fw fwVar, pj0 pj0Var, Context context, int i7, int i10) {
-        super(pj0Var, context, i7, i10, false, null);
-        this.f38387k0 = fwVar;
+    public tl0(org.telegram.ui.hw hwVar, Context context, mz mzVar, int i7) {
+        super(context, mzVar, 1, null);
+        this.K = i7;
+        this.L = hwVar;
     }
 
     @Override
-    public final void O(boolean z9) {
-        boolean z10;
-        ArrayList arrayList;
-        super.O(z9);
-        sl0 sl0Var = this.f38387k0.f33607n0;
-        if (!this.f39706b0 && !this.f39707c0 && (arrayList = this.V) != null && arrayList.isEmpty()) {
-            z10 = false;
-        } else {
-            z10 = true;
+    public final void setVisibility(int i7) {
+        switch (this.K) {
+            case 0:
+                if (this.L.O0.getTag() != null) {
+                    super.setVisibility(8);
+                    return;
+                } else {
+                    super.setVisibility(i7);
+                    return;
+                }
+            case 1:
+                if (this.L.O0.getTag() != null) {
+                    super.setVisibility(8);
+                    return;
+                } else {
+                    super.setVisibility(i7);
+                    return;
+                }
+            case 2:
+                if (this.L.O0.getTag() != null) {
+                    super.setVisibility(8);
+                    return;
+                } else {
+                    super.setVisibility(i7);
+                    return;
+                }
+            default:
+                if (this.L.O0.getTag() != null) {
+                    super.setVisibility(8);
+                    return;
+                } else {
+                    super.setVisibility(i7);
+                    return;
+                }
         }
-        sl0Var.e(z10, z9);
-        sl0Var.d.setText(org.telegram.messenger.id.M0(2131748168, null));
-        sl0Var.f31927e.setVisibility(8);
     }
 }

@@ -1,80 +1,77 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
 import org.telegram.tgnet.TLRPC;
-public final class cp implements Runnable {
-    public final int f44872a;
-    public final kp f44873b;
+public final class cp implements org.telegram.ui.ActionBar.r1, org.telegram.messenger.bp, org.telegram.messenger.tr {
+    public final int f44731a;
+    public final mp f44732b;
 
-    public cp(kp kpVar, int i7) {
-        this.f44872a = i7;
-        this.f44873b = kpVar;
+    public cp(mp mpVar, int i7) {
+        this.f44731a = i7;
+        this.f44732b = mpVar;
     }
 
     @Override
-    public final void run() {
-        TLRPC.TL_chatAdminRights tL_chatAdminRights;
-        int i7 = this.f44872a;
-        kp kpVar = this.f44873b;
-        int i10 = 1;
-        switch (i7) {
+    public boolean a(TLRPC.TL_error tL_error) {
+        switch (this.f44731a) {
+            case 2:
+                this.f44732b.y0(false);
+                return true;
+            case 3:
+                this.f44732b.y0(false);
+                return true;
+            default:
+                return mp.b0(this.f44732b, tL_error);
+        }
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        TLRPC.TL_chatAdminRights t02;
+        switch (this.f44731a) {
             case 0:
-                TLRPC.User user = kpVar.f47255w;
-                hp hpVar = kpVar.X0;
-                if (hpVar != null) {
-                    if (kpVar.K) {
-                        tL_chatAdminRights = kpVar.M;
-                    } else {
-                        tL_chatAdminRights = null;
-                    }
-                    hpVar.b(0, tL_chatAdminRights, null, kpVar.S);
-                }
-                Bundle k10 = a8.p0.k("scrollToTopOnResume", true);
-                k10.putLong("chat_id", kpVar.f47257x.f26956id);
-                if (!kpVar.getMessagesController().E(k10, kpVar, null, null)) {
-                    kpVar.y0(false);
-                    return;
-                }
-                an anVar = new an(k10);
-                kpVar.presentFragment(anVar, true);
-                if (org.telegram.ui.Components.hc.a(anVar)) {
-                    boolean z9 = kpVar.Z0;
-                    if (z9 && kpVar.K) {
-                        String str = user.first_name;
-                        org.telegram.ui.Components.kb kbVar = new org.telegram.ui.Components.kb(anVar.getParentActivity(), anVar.f44028xa);
-                        kbVar.d(2131624048, "Shield");
-                        org.telegram.messenger.k5.r("UserAddedAsAdminHint", null, 2131743771, new Object[]{str}, kbVar.f35269b);
-                        org.telegram.ui.Components.cc.g(anVar, kbVar, 1500).j();
-                        return;
-                    } else if (!z9 && !kpVar.L && kpVar.K) {
-                        org.telegram.ui.Components.hc.C(user.first_name, anVar).j();
-                        return;
-                    } else {
-                        return;
-                    }
-                }
+                this.f44732b.w0(true);
                 return;
             case 1:
-                kpVar.w0(false);
-                return;
-            default:
-                if (kpVar.f47248r) {
-                    long j3 = kpVar.f47243n;
-                    org.telegram.ui.ActionBar.u1[] u1VarArr = {new org.telegram.ui.ActionBar.u1(3, kpVar.getParentActivity(), null)};
-                    kpVar.getMessagesController().c5(kpVar.f47250s, j3, true, false, true, new cg(u1VarArr, 2), new cg(u1VarArr, 3));
-                    u1VarArr[0].r(300L);
-                }
-                hp hpVar2 = kpVar.X0;
-                if (hpVar2 != null) {
-                    TLRPC.TL_chatAdminRights tL_chatAdminRights2 = kpVar.M;
-                    if (!tL_chatAdminRights2.change_info && !tL_chatAdminRights2.post_messages && !tL_chatAdminRights2.manage_direct_messages && !tL_chatAdminRights2.manage_welcome_messages && !tL_chatAdminRights2.edit_messages && !tL_chatAdminRights2.delete_messages && !tL_chatAdminRights2.ban_users && !tL_chatAdminRights2.invite_users && ((!kpVar.G || !tL_chatAdminRights2.manage_topics) && !tL_chatAdminRights2.pin_messages && !tL_chatAdminRights2.manage_ranks && !tL_chatAdminRights2.add_admins && !tL_chatAdminRights2.anonymous && !tL_chatAdminRights2.manage_call && ((!kpVar.E || (!tL_chatAdminRights2.post_stories && !tL_chatAdminRights2.edit_stories && !tL_chatAdminRights2.delete_stories)) && !tL_chatAdminRights2.other))) {
-                        i10 = 0;
-                    }
-                    hpVar2.b(i10, tL_chatAdminRights2, kpVar.O, kpVar.S);
-                    kpVar.finishFragment();
+                mp mpVar = this.f44732b;
+                mpVar.y0(true);
+                ep epVar = new ep(mpVar, 0);
+                if (!mpVar.K && !mpVar.L) {
+                    mpVar.getMessagesController().m(mpVar.f47941x.f26956id, mpVar.f47939w, 0, mpVar.Y0, mpVar, true, epVar, new cp(mpVar, 3), null);
                     return;
                 }
+                org.telegram.messenger.qp messagesController = mpVar.getMessagesController();
+                long j3 = mpVar.f47941x.f26956id;
+                TLRPC.User user = mpVar.f47939w;
+                if (mpVar.K) {
+                    t02 = mpVar.M;
+                } else {
+                    t02 = mp.t0(false);
+                }
+                messagesController.P4(j3, user, t02, mpVar.S, false, mpVar, mpVar.Z0, mpVar.K, mpVar.Y0, epVar, new cp(mpVar, 2));
+                return;
+            case 2:
+            case 3:
+            default:
+                mp mpVar2 = this.f44732b;
+                mpVar2.getClass();
+                mpVar2.presentFragment(new bb1(6, null));
+                return;
+            case 4:
+                this.f44732b.finishFragment();
+                return;
+            case 5:
+                TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
+                mp mpVar3 = this.f44732b;
+                ni.c cVar = new ni.c(21, mpVar3, twoStepVerificationActivity);
+                twoStepVerificationActivity.Z = 0;
+                twoStepVerificationActivity.f42062b0 = cVar;
+                mpVar3.presentFragment(twoStepVerificationActivity);
                 return;
         }
+    }
+
+    @Override
+    public void run(long j3) {
+        mp.Z(this.f44732b, j3);
     }
 }

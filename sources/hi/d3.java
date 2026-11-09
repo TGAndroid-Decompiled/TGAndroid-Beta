@@ -4,22 +4,22 @@ import android.content.Context;
 import org.telegram.messenger.c20;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g6;
 public final class d3 implements c20 {
     public final int f14613a;
     public final Object f14614b;
     public final Context f14615c;
     public final int d;
     public final long f14616e;
-    public final f6 f14617f;
+    public final g6 f14617f;
 
-    public d3(Object obj, Context context, int i7, long j3, f6 f6Var, int i10) {
+    public d3(Object obj, Context context, int i7, long j3, g6 g6Var, int i10) {
         this.f14613a = i10;
         this.f14614b = obj;
         this.f14615c = context;
         this.d = i7;
         this.f14616e = j3;
-        this.f14617f = f6Var;
+        this.f14617f = g6Var;
     }
 
     @Override
@@ -31,7 +31,7 @@ public final class d3 implements c20 {
                 final Context context = this.f14615c;
                 final int i7 = this.d;
                 final long j3 = this.f14616e;
-                final f6 f6Var = this.f14617f;
+                final g6 g6Var = this.f14617f;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -40,7 +40,7 @@ public final class d3 implements c20 {
                                 TLRPC.UserFull userFull2 = userFull;
                                 if (userFull2 != null && userFull2.starref_program != null) {
                                     v2Var.dismiss();
-                                    q3.J0(context, i7, userFull2.starref_program, j3, f6Var, true);
+                                    q3.J0(context, i7, userFull2.starref_program, j3, g6Var, true);
                                     return;
                                 }
                                 return;
@@ -48,7 +48,7 @@ public final class d3 implements c20 {
                                 TLRPC.UserFull userFull3 = userFull;
                                 if (userFull3 != null && userFull3.starref_program != null) {
                                     v2Var.dismiss();
-                                    q3.J0(context, i7, userFull3.starref_program, j3, f6Var, true);
+                                    q3.J0(context, i7, userFull3.starref_program, j3, g6Var, true);
                                     return;
                                 }
                                 return;
@@ -62,7 +62,7 @@ public final class d3 implements c20 {
                 final Context context2 = this.f14615c;
                 final int i10 = this.d;
                 final long j10 = this.f14616e;
-                final f6 f6Var2 = this.f14617f;
+                final g6 g6Var2 = this.f14617f;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -71,7 +71,7 @@ public final class d3 implements c20 {
                                 TLRPC.UserFull userFull22 = userFull2;
                                 if (userFull22 != null && userFull22.starref_program != null) {
                                     v2Var2.dismiss();
-                                    q3.J0(context2, i10, userFull22.starref_program, j10, f6Var2, true);
+                                    q3.J0(context2, i10, userFull22.starref_program, j10, g6Var2, true);
                                     return;
                                 }
                                 return;
@@ -79,7 +79,7 @@ public final class d3 implements c20 {
                                 TLRPC.UserFull userFull3 = userFull2;
                                 if (userFull3 != null && userFull3.starref_program != null) {
                                     v2Var2.dismiss();
-                                    q3.J0(context2, i10, userFull3.starref_program, j10, f6Var2, true);
+                                    q3.J0(context2, i10, userFull3.starref_program, j10, g6Var2, true);
                                     return;
                                 }
                                 return;

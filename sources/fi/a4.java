@@ -21,11 +21,11 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.ic;
 import org.telegram.ui.Components.xq;
-public final class a4 extends View implements org.telegram.ui.ActionBar.a6 {
+public final class a4 extends View implements org.telegram.ui.ActionBar.b6 {
     public float D;
     public final org.telegram.ui.Components.w5 E;
     public final org.telegram.ui.Components.w5 F;
-    public final org.telegram.ui.ActionBar.f6 f11592a;
+    public final org.telegram.ui.ActionBar.g6 f11592a;
     public final ImageReceiver f11593b;
     public final Paint f11594c;
     public final Paint d;
@@ -39,7 +39,7 @@ public final class a4 extends View implements org.telegram.ui.ActionBar.a6 {
     public float f11601x;
     public float f11602y;
 
-    public a4(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+    public a4(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context);
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.f11593b = imageReceiver;
@@ -56,7 +56,7 @@ public final class a4 extends View implements org.telegram.ui.ActionBar.a6 {
         this.F = new org.telegram.ui.Components.w5(this, 0L, 320L, xqVar);
         i6Var.setCallback(this);
         i6Var.u(-1);
-        i6Var.f34552b = 17;
+        i6Var.f34587b = 17;
         i6Var.w(org.telegram.messenger.g0.L(16.0f));
         i6Var.x(org.telegram.messenger.g0.o1("fonts/num.otf"));
         i6Var.M = org.telegram.messenger.g0.f22563q.x;
@@ -64,8 +64,8 @@ public final class a4 extends View implements org.telegram.ui.ActionBar.a6 {
         i6Var.A = 0.35f;
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(-1);
-        this.f11592a = f6Var;
-        paint2.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Ci, f6Var));
+        this.f11592a = g6Var;
+        paint2.setColor(org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.Ci, g6Var));
         imageReceiver.J0(org.telegram.messenger.g0.L(6.0f));
         c8.ka.a(this);
     }
@@ -338,14 +338,14 @@ public final class a4 extends View implements org.telegram.ui.ActionBar.a6 {
         if (action == 0) {
             icVar.c(z9);
         } else if (motionEvent.getAction() == 1) {
-            if (icVar.f34629i && z9 && (onClickListener = this.f11597n) != null) {
+            if (icVar.f34702i && z9 && (onClickListener = this.f11597n) != null) {
                 onClickListener.onClick(this);
             }
             icVar.c(false);
         } else if (motionEvent.getAction() == 3) {
             icVar.c(false);
         }
-        if (icVar.f34629i || super.onTouchEvent(motionEvent)) {
+        if (icVar.f34702i || super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;
@@ -368,7 +368,7 @@ public final class a4 extends View implements org.telegram.ui.ActionBar.a6 {
     @Override
     public final void updateColors() {
         try {
-            this.d.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Ci, this.f11592a));
+            this.d.setColor(org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.Ci, this.f11592a));
             invalidate();
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

@@ -87,7 +87,7 @@ public abstract class b1 implements e2.c1 {
     public void L0() {
         l2.i0 i0Var = (l2.i0) this;
         i0Var.F1();
-        a1(11, -i0Var.f17872l0);
+        a1(11, -i0Var.f17870l0);
     }
 
     @Override
@@ -188,7 +188,7 @@ public abstract class b1 implements e2.c1 {
             if (T0) {
                 long l10 = i0Var.l();
                 i0Var.F1();
-                if (l10 <= i0Var.f17875n0) {
+                if (l10 <= i0Var.f17873n0) {
                     b1(7);
                     return;
                 }

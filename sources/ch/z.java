@@ -3,30 +3,30 @@ package ch;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.ii0;
+import org.telegram.ui.Components.ji0;
 public final class z extends AnimatorListenerAdapter {
-    public final int f6414a;
-    public final b0 f6415b;
+    public final int f6412a;
+    public final b0 f6413b;
 
     public z(b0 b0Var, int i7) {
-        this.f6414a = i7;
-        this.f6415b = b0Var;
+        this.f6412a = i7;
+        this.f6413b = b0Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f6414a) {
+        switch (this.f6412a) {
             case 0:
-                this.f6415b.f();
+                this.f6413b.f();
                 return;
             default:
-                b0 b0Var = this.f6415b;
+                b0 b0Var = this.f6413b;
                 b0.a(b0Var, false);
-                b0Var.f6190j = 0.0f;
-                ii0 ii0Var = b0Var.f6194n;
-                ii0Var.setCustomEmojiEnterProgress(Utilities.i(0.0f, 1.0f, 0.0f));
-                ii0Var.setSkipDraw(false);
-                b0Var.f6185c.setVisibility(8);
+                b0Var.f6188j = 0.0f;
+                ji0 ji0Var = b0Var.f6192n;
+                ji0Var.setCustomEmojiEnterProgress(Utilities.i(0.0f, 1.0f, 0.0f));
+                ji0Var.setSkipDraw(false);
+                b0Var.f6183c.setVisibility(8);
                 b0Var.f();
                 return;
         }

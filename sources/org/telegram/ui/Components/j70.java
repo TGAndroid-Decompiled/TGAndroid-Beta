@@ -1,91 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.TextView;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class j70 implements View.OnClickListener {
-    public final int f34928a;
-    public final q70 f34929b;
+import android.view.KeyEvent;
+public final class j70 implements org.telegram.ui.ActionBar.r1, org.telegram.ui.ActionBar.e1 {
+    public final int f34954a;
+    public final r70 f34955b;
 
-    public j70(q70 q70Var, int i7) {
-        this.f34928a = i7;
-        this.f34929b = q70Var;
+    public j70(r70 r70Var, int i7) {
+        this.f34954a = i7;
+        this.f34955b = r70Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        boolean z9;
-        int i7;
-        int i10 = this.f34928a;
-        q70 q70Var = this.f34929b;
-        switch (i10) {
+    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        switch (this.f34954a) {
             case 0:
-                q70Var.f37214r.f();
-                return;
-            case 1:
-                org.telegram.ui.ActionBar.g1 g1Var = q70Var.f37215s;
-                if (g1Var != null) {
-                    g1Var.d(true);
-                }
-                q70Var.f37214r.d();
-                return;
-            case 2:
-                q70 q70Var2 = this.f34929b;
-                String str = q70Var2.f37209b;
-                if (str != null && str.endsWith("?direct")) {
-                    z9 = true;
-                } else {
-                    z9 = false;
-                }
-                Context context = q70Var2.getContext();
-                String M0 = org.telegram.messenger.id.M0(2131749171, null);
-                String str2 = q70Var2.f37209b;
-                String str3 = q70Var2.J;
-                if (str3 == null) {
-                    if (q70Var2.H) {
-                        if (z9) {
-                            i7 = 2131746508;
-                        } else {
-                            i7 = 2131746509;
-                        }
-                    } else {
-                        i7 = 2131746506;
-                    }
-                    str3 = org.telegram.messenger.id.M0(i7, null);
-                }
-                n70 n70Var = new n70(q70Var2, context, M0, str2, str3);
-                q70Var2.E = n70Var;
-                n70Var.I0();
-                q70Var2.E.show();
-                org.telegram.ui.ActionBar.g1 g1Var2 = q70Var2.f37215s;
-                if (g1Var2 != null) {
-                    g1Var2.d(true);
+                q70 q70Var = this.f34955b.f37570r;
+                if (q70Var != null) {
+                    q70Var.k();
                     return;
                 }
                 return;
             default:
-                org.telegram.ui.ActionBar.g1 g1Var3 = q70Var.f37215s;
-                if (g1Var3 != null) {
-                    g1Var3.d(true);
-                }
-                org.telegram.ui.ActionBar.f2 f2Var = q70Var.f37210c;
-                if (f2Var.getParentActivity() != null) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(f2Var.getParentActivity());
-                    String M02 = org.telegram.messenger.id.M0(2131746026, null);
-                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
-                    u1Var.R = M02;
-                    u1Var.T = org.telegram.messenger.id.M0(2131746029, null);
-                    alertDialog$Builder.k(org.telegram.messenger.id.M0(2131746027, null), new i70(q70Var, 1));
-                    alertDialog$Builder.h(org.telegram.messenger.id.M0(2131752589, null), null);
-                    TextView textView = (TextView) u1Var.d(-1);
-                    if (textView != null) {
-                        org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28093q7, null);
-                    }
-                    alertDialog$Builder.p();
+                q70 q70Var2 = this.f34955b.f37570r;
+                if (q70Var2 != null) {
+                    q70Var2.e();
                     return;
                 }
                 return;
+        }
+    }
+
+    @Override
+    public void j(KeyEvent keyEvent) {
+        r70 r70Var = this.f34955b;
+        r70Var.getClass();
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && r70Var.f37571s.isShowing()) {
+            r70Var.f37571s.d(true);
         }
     }
 }

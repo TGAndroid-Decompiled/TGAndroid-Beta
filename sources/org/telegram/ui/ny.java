@@ -1,25 +1,21 @@
 package org.telegram.ui;
+public final class ny implements Runnable {
+    public final int f48248a;
+    public final iz f48249b;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class ny implements RequestDelegate {
-    public final int f48166a;
-    public final gz f48167b;
-
-    public ny(gz gzVar, int i7) {
-        this.f48166a = i7;
-        this.f48167b = gzVar;
+    public ny(iz izVar, int i7) {
+        this.f48248a = i7;
+        this.f48249b = izVar;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f48166a) {
+    public final void run() {
+        switch (this.f48248a) {
             case 0:
-                org.telegram.messenger.g0.h3(new org.telegram.ui.Components.l51(23, this.f48167b, tLObject));
+                iz.a0(this.f48249b);
                 return;
             default:
-                org.telegram.messenger.g0.h3(new rp(this.f48167b, tL_error, tLObject, 6));
+                iz.b0(this.f48249b);
                 return;
         }
     }

@@ -15,19 +15,19 @@ public final class v6 extends View {
     public final Camera F;
     public final h6.m G;
     public final RectF H;
-    public q6 f4883a;
-    public q6 f4884b;
-    public q6 f4885c;
+    public q6 f4881a;
+    public q6 f4882b;
+    public q6 f4883c;
     public float d;
-    public float f4886e;
-    public float f4887f;
+    public float f4884e;
+    public float f4885f;
     public boolean h;
-    public boolean f4888n;
-    public boolean f4889r;
-    public p6 f4890s;
-    public p6 f4891w;
-    public p6 f4892x;
-    public float f4893y;
+    public boolean f4886n;
+    public boolean f4887r;
+    public p6 f4888s;
+    public p6 f4889w;
+    public p6 f4890x;
+    public float f4891y;
 
     public v6(Context context) {
         super(context);
@@ -74,7 +74,7 @@ public final class v6 extends View {
                     } else {
                         f15 = 0.0f;
                     }
-                    iArr[i7] = org.telegram.ui.ActionBar.k6.w(iArr[i7], org.telegram.ui.ActionBar.k6.r1(l10 * f15, p6Var.f4517g));
+                    iArr[i7] = org.telegram.ui.ActionBar.l6.w(iArr[i7], org.telegram.ui.ActionBar.l6.r1(l10 * f15, p6Var.f4517g));
                 }
                 for (int i10 = 0; i10 < iArr2.length; i10++) {
                     float width2 = (getWidth() / (iArr2.length - 1)) * i10;
@@ -83,7 +83,7 @@ public final class v6 extends View {
                     } else {
                         f14 = 0.0f;
                     }
-                    iArr2[i10] = org.telegram.ui.ActionBar.k6.w(iArr2[i10], org.telegram.ui.ActionBar.k6.r1(l10 * f14, p6Var.f4516f));
+                    iArr2[i10] = org.telegram.ui.ActionBar.l6.w(iArr2[i10], org.telegram.ui.ActionBar.l6.r1(l10 * f14, p6Var.f4516f));
                 }
                 for (int i11 = 0; i11 < iArr3.length; i11++) {
                     float width3 = (getWidth() / (iArr2.length - 1)) * i11;
@@ -92,7 +92,7 @@ public final class v6 extends View {
                     } else {
                         f13 = 0.0f;
                     }
-                    iArr3[i11] = org.telegram.ui.ActionBar.k6.w(iArr3[i11], org.telegram.ui.ActionBar.k6.r1(l10 * f13, p6Var.h));
+                    iArr3[i11] = org.telegram.ui.ActionBar.l6.w(iArr3[i11], org.telegram.ui.ActionBar.l6.r1(l10 * f13, p6Var.h));
                 }
             }
         }
@@ -139,26 +139,26 @@ public final class v6 extends View {
 
     public final void c() {
         boolean z9;
-        if (this.f4883a == null && this.f4884b == null && this.f4885c == null && this.f4890s == null && this.f4891w == null && this.f4892x == null) {
+        if (this.f4881a == null && this.f4882b == null && this.f4883c == null && this.f4888s == null && this.f4889w == null && this.f4890x == null) {
             z9 = false;
         } else {
             z9 = true;
         }
-        this.f4885c = null;
-        this.f4884b = null;
-        this.f4883a = null;
-        this.f4887f = 0.0f;
-        this.f4886e = 0.0f;
+        this.f4883c = null;
+        this.f4882b = null;
+        this.f4881a = null;
+        this.f4885f = 0.0f;
+        this.f4884e = 0.0f;
         this.d = 0.0f;
-        this.f4889r = false;
-        this.f4888n = false;
+        this.f4887r = false;
+        this.f4886n = false;
         this.h = false;
-        this.f4892x = null;
-        this.f4891w = null;
-        this.f4890s = null;
+        this.f4890x = null;
+        this.f4889w = null;
+        this.f4888s = null;
         this.E = 0.0f;
         this.D = 0.0f;
-        this.f4893y = 0.0f;
+        this.f4891y = 0.0f;
         if (z9) {
             invalidate();
         }
@@ -166,8 +166,8 @@ public final class v6 extends View {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        b(canvas, this.f4883a, this.d, this.h);
-        b(canvas, this.f4884b, this.f4886e, this.f4888n);
-        b(canvas, this.f4885c, this.f4887f, this.f4889r);
+        b(canvas, this.f4881a, this.d, this.h);
+        b(canvas, this.f4882b, this.f4884e, this.f4886n);
+        b(canvas, this.f4883c, this.f4885f, this.f4887r);
     }
 }

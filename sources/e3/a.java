@@ -74,12 +74,12 @@ public final class a extends b {
         while (!k() && this.L < 100000 + j3) {
             h hVar = this.I;
             hVar.clear();
-            wf.b bVar = this.f17761c;
+            wf.b bVar = this.f17759c;
             bVar.A();
             if (w(bVar, hVar, 0) == -4 && !hVar.isEndOfStream()) {
                 long j11 = hVar.f17176e;
                 this.L = j11;
-                if (j11 < this.f17768x) {
+                if (j11 < this.f17766x) {
                     z9 = true;
                 } else {
                     z9 = false;

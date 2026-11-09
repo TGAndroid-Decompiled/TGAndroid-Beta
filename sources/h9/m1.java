@@ -1,6 +1,6 @@
 package h9;
 
-import di.q4;
+import di.r4;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -23,7 +23,7 @@ public final class m1 extends l implements a1 {
 
     @Override
     public final Map d() {
-        return new i1(this.f14350e.b(), new q4(this, 18));
+        return new i1(this.f14350e.b(), new r4(this, 18));
     }
 
     @Override

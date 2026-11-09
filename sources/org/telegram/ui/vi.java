@@ -1,14 +1,88 @@
 package org.telegram.ui;
-public final class vi extends rh.h {
-    public final an H;
 
-    public vi(an anVar, af afVar) {
-        super(afVar);
-        this.H = anVar;
+import android.content.Context;
+import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageView;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class vi implements View.OnTouchListener {
+    public View f50698a;
+    public org.telegram.ui.ActionBar.g1 f50699b;
+    public final Rect f50700c = new Rect();
+    public boolean d;
+    public boolean f50701e;
+    public final org.telegram.ui.Components.a10 f50702f;
+    public final int[] h;
+    public View f50703n;
+    public float f50704r;
+    public float f50705s;
+    public final View f50706w;
+    public final cn f50707x;
+
+    public vi(cn cnVar, ImageView imageView) {
+        this.f50707x = cnVar;
+        this.f50706w = imageView;
+        org.telegram.ui.Components.a10 a10Var = new org.telegram.ui.Components.a10((Context) null, new f(this, 22));
+        this.f50702f = a10Var;
+        this.h = new int[2];
+        a10Var.v = true;
     }
 
     @Override
-    public final r0.k1 b(r0.k1 k1Var) {
-        return this.H.N8(k1Var);
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        View view2;
+        this.f50698a = view;
+        if (motionEvent.getAction() == 0) {
+            this.f50704r = motionEvent.getX();
+            this.f50705s = motionEvent.getY();
+            this.f50701e = false;
+        }
+        this.f50702f.a(motionEvent);
+        if (this.f50699b != null && !this.d && motionEvent.getAction() == 2) {
+            View view3 = this.f50698a;
+            int[] iArr = this.h;
+            view3.getLocationOnScreen(iArr);
+            float x10 = motionEvent.getX() + iArr[0];
+            float y10 = motionEvent.getY() + iArr[1];
+            this.f50699b.getContentView().getLocationOnScreen(iArr);
+            float f10 = x10 - iArr[0];
+            float f11 = y10 - iArr[1];
+            this.f50703n = null;
+            ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f50699b.getContentView();
+            for (int i7 = 0; i7 < actionBarPopupWindow$ActionBarPopupWindowLayout.getItemsCount(); i7++) {
+                View childAt = actionBarPopupWindow$ActionBarPopupWindowLayout.L.getChildAt(i7);
+                Rect rect = this.f50700c;
+                childAt.getHitRect(rect);
+                childAt.getTag();
+                if (childAt.getVisibility() == 0 && childAt.isClickable()) {
+                    if (!rect.contains((int) f10, (int) f11)) {
+                        childAt.setPressed(false);
+                        childAt.setSelected(false);
+                    } else {
+                        childAt.setPressed(true);
+                        childAt.setSelected(true);
+                        childAt.drawableHotspotChanged(f10, f11 - childAt.getTop());
+                        this.f50703n = childAt;
+                    }
+                }
+            }
+        }
+        if ((motionEvent.getAction() == 2 && Math.abs(motionEvent.getX() - this.f50704r) > org.telegram.messenger.g0.f22542e * 2.0f) || Math.abs(motionEvent.getY() - this.f50705s) > org.telegram.messenger.g0.f22542e * 2.0f) {
+            this.f50701e = true;
+            this.f50698a.setPressed(false);
+            this.f50698a.setSelected(false);
+        }
+        if (motionEvent.getAction() == 1 && !this.d && !this.f50701e) {
+            View view4 = this.f50703n;
+            if (view4 != null) {
+                view4.callOnClick();
+                this.d = true;
+                return true;
+            } else if (this.f50699b == null && (view2 = this.f50698a) != null) {
+                view2.callOnClick();
+            }
+        }
+        return true;
     }
 }

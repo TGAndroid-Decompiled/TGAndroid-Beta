@@ -36,7 +36,7 @@ public final class ql implements Runnable {
                                     if (messageAction instanceof TLRPC.TL_messageActionConferenceCall) {
                                         TLRPC.TL_messageActionConferenceCall tL_messageActionConferenceCall = (TLRPC.TL_messageActionConferenceCall) messageAction;
                                         if (tL_messageActionConferenceCall.active || tL_messageActionConferenceCall.missed) {
-                                            VoIPGroupNotification.hide(t0.f25566b, notificationsController.currentAccount, ijVar.f1());
+                                            VoIPGroupNotification.hide(t0.f25566b, notificationsController.currentAccount, ijVar.e1());
                                         }
                                     }
                                 }
@@ -52,7 +52,7 @@ public final class ql implements Runnable {
                 for (int i11 = 0; i11 < hVar.m(); i11++) {
                     ArrayList arrayList2 = (ArrayList) hVar.n(i11);
                     for (int i12 = 0; i12 < arrayList2.size(); i12++) {
-                        TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) k00Var.f23643e.f(k00.p(((ij) arrayList2.get(i12)).f1(), -ij.B0(((ij) arrayList2.get(i12)).f23262k)));
+                        TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) k00Var.f23643e.f(k00.p(((ij) arrayList2.get(i12)).e1(), -ij.B0(((ij) arrayList2.get(i12)).f23262k)));
                         if (tL_forumTopic != null) {
                             tL_forumTopic.topMessage = ((ij) arrayList2.get(i12)).f23262k;
                             hashSet.add(Long.valueOf(-ij.B0(((ij) arrayList2.get(i12)).f23262k)));

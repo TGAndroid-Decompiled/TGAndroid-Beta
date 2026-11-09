@@ -9,7 +9,7 @@ import java.util.Map;
 import org.telegram.messenger.iz;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.Components.vy0;
+import org.telegram.ui.Components.wy0;
 public abstract class b4 {
     public static void A(java.util.ArrayList r31, java.util.ArrayList r32, java.util.Map r33) {
         throw new UnsupportedOperationException("Method not decompiled: li.b4.A(java.util.ArrayList, java.util.ArrayList, java.util.Map):void");
@@ -1033,8 +1033,8 @@ public abstract class b4 {
             }
             if (i7 != 0) {
                 ?? obj = new Object();
-                obj.f38779a = i7 & 114975;
-                spannableStringBuilder.setSpan(new vy0(obj, org.telegram.messenger.g0.L(iz.W0)), length, length2, 33);
+                obj.f39836a = i7 & 114975;
+                spannableStringBuilder.setSpan(new wy0(obj, org.telegram.messenger.g0.L(iz.W0)), length, length2, 33);
             }
             if (str2 != null) {
                 spannableStringBuilder.setSpan(c6.k(str2), length, length2, 33);

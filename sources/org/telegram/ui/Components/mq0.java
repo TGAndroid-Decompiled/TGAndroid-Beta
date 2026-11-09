@@ -1,11 +1,17 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Outline;
-import android.view.View;
-import android.view.ViewOutlineProvider;
-public final class mq0 extends ViewOutlineProvider {
+import android.content.Context;
+public final class mq0 extends ClippingImageView {
+    public final qj0 R;
+
+    public mq0(Context context, tr0 tr0Var) {
+        super(context);
+        this.R = tr0Var;
+    }
+
     @Override
-    public final void getOutline(View view, Outline outline) {
-        outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), org.telegram.messenger.g0.L(16.0f));
+    public final void invalidate() {
+        super.invalidate();
+        this.R.invalidate();
     }
 }

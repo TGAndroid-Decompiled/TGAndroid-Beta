@@ -4,13 +4,13 @@ import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
-public final class fr implements org.telegram.messenger.f20, cj0, org.telegram.messenger.tr {
-    public final int f33637a;
-    public final lr f33638b;
+public final class fr implements org.telegram.messenger.f20, dj0, org.telegram.messenger.tr {
+    public final int f33728a;
+    public final lr f33729b;
 
     public fr(lr lrVar, int i7) {
-        this.f33637a = i7;
-        this.f33638b = lrVar;
+        this.f33728a = i7;
+        this.f33729b = lrVar;
     }
 
     @Override
@@ -22,22 +22,22 @@ public final class fr implements org.telegram.messenger.f20, cj0, org.telegram.m
     public void f(float f10, float f11, int i7, View view) {
         boolean z9;
         boolean[] zArr;
-        lr lrVar = this.f33638b;
-        x31 G = lrVar.P1.G(i7 - 1);
+        lr lrVar = this.f33729b;
+        y31 G = lrVar.P1.G(i7 - 1);
         if (G != null) {
-            kr krVar = lrVar.f35747c2;
-            kr krVar2 = lrVar.f35746b2;
-            kr krVar3 = lrVar.f35745a2;
+            kr krVar = lrVar.f35805c2;
+            kr krVar2 = lrVar.f35804b2;
+            kr krVar3 = lrVar.f35803a2;
             kr krVar4 = lrVar.d2;
-            TLRPC.TL_chatBannedRights tL_chatBannedRights = lrVar.f35758o2;
+            TLRPC.TL_chatBannedRights tL_chatBannedRights = lrVar.f35816o2;
             int i10 = G.d;
             if (i10 == 103) {
-                boolean z10 = !lrVar.f35751h2;
-                lrVar.f35751h2 = z10;
+                boolean z10 = !lrVar.f35809h2;
+                lrVar.f35809h2 = z10;
                 ((org.telegram.ui.Cells.q8) view).setChecked(z10);
                 return;
             }
-            int i11 = G.f54532a;
+            int i11 = G.f54544a;
             if (i11 == 37) {
                 int i12 = i10 >>> 24;
                 int i13 = 16777215 & i10;
@@ -54,13 +54,13 @@ public final class fr implements org.telegram.messenger.f20, cj0, org.telegram.m
                 }
             } else if (i11 != 36 && i11 != 35) {
                 if (i11 == 39) {
-                    if (G.f40188t) {
+                    if (G.f40576t) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(lrVar.getContext());
-                        String M0 = org.telegram.messenger.id.M0(2131743722, null);
+                        String M0 = org.telegram.messenger.id.M0(2131743719, null);
                         org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
                         u1Var.R = M0;
-                        u1Var.T = org.telegram.messenger.id.M0(2131743721, null);
-                        alertDialog$Builder.k(org.telegram.messenger.id.M0(2131747832, null), null);
+                        u1Var.T = org.telegram.messenger.id.M0(2131743718, null);
+                        alertDialog$Builder.k(org.telegram.messenger.id.M0(2131747831, null), null);
                         u1Var.show();
                         return;
                     }
@@ -82,15 +82,15 @@ public final class fr implements org.telegram.messenger.f20, cj0, org.telegram.m
                     }
                     lrVar.P1.O(true);
                 } else if (i11 == 40) {
-                    lrVar.f35760q2 = !lrVar.f35760q2;
+                    lrVar.f35818q2 = !lrVar.f35818q2;
                     lrVar.X0();
                     lrVar.P1.O(true);
                     lrVar.I0();
                 } else if (i10 == 100) {
-                    lrVar.f35763t2 = false;
-                    boolean z11 = !lrVar.f35764u2;
-                    lrVar.f35764u2 = z11;
-                    lrVar.f35765v2 = z11;
+                    lrVar.f35821t2 = false;
+                    boolean z11 = !lrVar.f35822u2;
+                    lrVar.f35822u2 = z11;
+                    lrVar.f35823v2 = z11;
                     lrVar.X0();
                     lrVar.P1.O(true);
                     lrVar.I0();
@@ -99,12 +99,12 @@ public final class fr implements org.telegram.messenger.f20, cj0, org.telegram.m
                     boolean z12 = lrVar.Y1;
                     lrVar.Y1 = !z12;
                     if (!z12) {
-                        zArr = lrVar.f35749f2;
+                        zArr = lrVar.f35807f2;
                     } else {
-                        zArr = lrVar.f35748e2;
+                        zArr = lrVar.f35806e2;
                     }
-                    if (krVar4.f35420g != 0) {
-                        krVar4.f35418e = zArr;
+                    if (krVar4.f35461g != 0) {
+                        krVar4.f35459e = zArr;
                         krVar4.h();
                         krVar4.i();
                     }
@@ -122,13 +122,13 @@ public final class fr implements org.telegram.messenger.f20, cj0, org.telegram.m
             } else if (i10 == 2) {
                 krVar4.f();
             } else if (i11 == 35) {
-                if (G.f40188t) {
+                if (G.f40576t) {
                     AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(lrVar.getContext());
-                    String M02 = org.telegram.messenger.id.M0(2131743722, null);
+                    String M02 = org.telegram.messenger.id.M0(2131743719, null);
                     org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder2.f27296a;
                     u1Var2.R = M02;
-                    u1Var2.T = org.telegram.messenger.id.M0(2131743721, null);
-                    alertDialog$Builder2.k(org.telegram.messenger.id.M0(2131747832, null), null);
+                    u1Var2.T = org.telegram.messenger.id.M0(2131743718, null);
+                    alertDialog$Builder2.k(org.telegram.messenger.id.M0(2131747831, null), null);
                     u1Var2.show();
                     return;
                 }
@@ -165,7 +165,7 @@ public final class fr implements org.telegram.messenger.f20, cj0, org.telegram.m
                             tL_chatBannedRights.send_stickers = z13;
                             lrVar.h1();
                         } else if (i10 == 14) {
-                            if (!tL_chatBannedRights.send_plain && !lrVar.f35757n2.send_plain) {
+                            if (!tL_chatBannedRights.send_plain && !lrVar.f35815n2.send_plain) {
                                 tL_chatBannedRights.embed_links = !tL_chatBannedRights.embed_links;
                                 lrVar.h1();
                             } else {
@@ -174,13 +174,13 @@ public final class fr implements org.telegram.messenger.f20, cj0, org.telegram.m
                                     if (i14 >= lrVar.P1.D.size()) {
                                         break;
                                     }
-                                    x31 G2 = lrVar.P1.G(i14);
-                                    if (G2.f54532a == 39 && G2.d == 0) {
-                                        v4.d1 K = lrVar.f36277k1.K(i14 + 1);
+                                    y31 G2 = lrVar.P1.G(i14);
+                                    if (G2.f54544a == 39 && G2.d == 0) {
+                                        v4.d1 K = lrVar.f36303k1.K(i14 + 1);
                                         if (K != null) {
-                                            View view2 = K.f57044a;
-                                            float f12 = -lrVar.f35767x2;
-                                            lrVar.f35767x2 = f12;
+                                            View view2 = K.f57056a;
+                                            float f12 = -lrVar.f35825x2;
+                                            lrVar.f35825x2 = f12;
                                             org.telegram.messenger.g0.G3(f12, view2, null);
                                         }
                                     } else {
@@ -197,10 +197,10 @@ public final class fr implements org.telegram.messenger.f20, cj0, org.telegram.m
                         } else {
                             z9 = true;
                             if (i10 == 101) {
-                                lrVar.f35764u2 = !lrVar.f35764u2;
+                                lrVar.f35822u2 = !lrVar.f35822u2;
                                 lrVar.g1();
                             } else if (i10 == 102) {
-                                lrVar.f35765v2 = !lrVar.f35765v2;
+                                lrVar.f35823v2 = !lrVar.f35823v2;
                                 lrVar.c1();
                             }
                         }
@@ -219,22 +219,22 @@ public final class fr implements org.telegram.messenger.f20, cj0, org.telegram.m
 
     @Override
     public void run(long j3) {
-        switch (this.f33637a) {
+        switch (this.f33728a) {
             case 5:
-                lr lrVar = this.f33638b;
+                lr lrVar = this.f33729b;
                 lrVar.getClass();
                 org.telegram.ui.ActionBar.f2 Q = LaunchActivity.Q();
                 if (Q != null) {
-                    Q.presentFragment(org.telegram.ui.an.ra(j3));
+                    Q.presentFragment(org.telegram.ui.cn.ta(j3));
                 }
                 lrVar.dismiss();
                 return;
             default:
-                lr lrVar2 = this.f33638b;
+                lr lrVar2 = this.f33729b;
                 lrVar2.getClass();
                 org.telegram.ui.ActionBar.f2 Q2 = LaunchActivity.Q();
                 if (Q2 != null) {
-                    Q2.presentFragment(org.telegram.ui.an.ra(j3));
+                    Q2.presentFragment(org.telegram.ui.cn.ta(j3));
                 }
                 lrVar2.dismiss();
                 return;

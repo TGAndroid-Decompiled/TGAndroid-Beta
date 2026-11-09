@@ -1,263 +1,84 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.tgnet.TLRPC;
-public class nq0 implements uq0 {
-    @Override
-    public boolean A() {
-        return false;
+import android.content.Context;
+import android.widget.FrameLayout;
+import androidx.core.widget.NestedScrollView;
+public final class nq0 extends org.telegram.ui.Components.xy0 {
+    public boolean f48224a;
+    public float f48225b;
+    public NestedScrollView f48226c;
+    public FrameLayout d;
+
+    public nq0(Context context) {
+        super(context);
+        this.f48224a = false;
+        this.f48225b = 1.0f;
+    }
+
+    public final void b(int i7, boolean z9) {
+        super.setVisibility(i7);
+        if (this.f48224a && z9) {
+            this.f48226c.setVisibility(i7);
+        }
     }
 
     @Override
-    public CharSequence C(int i7) {
-        return null;
+    public float getAlpha() {
+        if (this.f48224a) {
+            return this.f48225b;
+        }
+        return super.getAlpha();
     }
 
     @Override
-    public wq0 E(org.telegram.messenger.ij ijVar, TLRPC.FileLocation fileLocation, int i7, boolean z9, boolean z10) {
-        return null;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (this.d != null && getParent() == this.d) {
+            this.f48224a = true;
+            this.f48226c.setVisibility(getVisibility());
+            this.f48226c.setAlpha(this.f48225b);
+            super.setAlpha(1.0f);
+        }
     }
 
     @Override
-    public int H() {
-        return 0;
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (this.f48224a) {
+            this.f48224a = false;
+            this.f48226c.setVisibility(8);
+            super.setAlpha(this.f48225b);
+        }
     }
 
     @Override
-    public boolean I() {
-        return true;
+    public void setAlpha(float f10) {
+        this.f48225b = f10;
+        if (this.f48224a) {
+            this.f48226c.setAlpha(f10);
+        } else {
+            super.setAlpha(f10);
+        }
+    }
+
+    public void setContainer(FrameLayout frameLayout) {
+        this.d = frameLayout;
+    }
+
+    public void setScrollView(NestedScrollView nestedScrollView) {
+        this.f48226c = nestedScrollView;
     }
 
     @Override
-    public boolean K() {
-        return false;
+    public void setTranslationY(float f10) {
+        super.setTranslationY(f10);
+        if (this.f48224a) {
+            this.f48226c.invalidate();
+        }
     }
 
     @Override
-    public boolean L() {
-        return false;
-    }
-
-    @Override
-    public boolean N() {
-        return true;
-    }
-
-    @Override
-    public boolean O() {
-        return false;
-    }
-
-    @Override
-    public boolean P() {
-        return false;
-    }
-
-    @Override
-    public boolean Q() {
-        return false;
-    }
-
-    @Override
-    public int R(Object obj) {
-        return -1;
-    }
-
-    @Override
-    public int S(int i7) {
-        return -1;
-    }
-
-    @Override
-    public boolean T() {
-        return !(this instanceof vk);
-    }
-
-    @Override
-    public boolean U() {
-        return !(this instanceof xk);
-    }
-
-    @Override
-    public org.telegram.messenger.ij V() {
-        return null;
-    }
-
-    @Override
-    public boolean Z() {
-        return false;
-    }
-
-    @Override
-    public long a() {
-        return 0L;
-    }
-
-    @Override
-    public boolean b() {
-        return false;
-    }
-
-    @Override
-    public String b0() {
-        return null;
-    }
-
-    @Override
-    public ArrayList c() {
-        return null;
-    }
-
-    @Override
-    public CharSequence c0(int i7) {
-        return null;
-    }
-
-    @Override
-    public boolean g() {
-        return !(this instanceof vk);
-    }
-
-    @Override
-    public boolean h() {
-        return false;
-    }
-
-    @Override
-    public org.telegram.messenger.jc j(int i7) {
-        return null;
-    }
-
-    @Override
-    public int k(int i7, org.telegram.messenger.j20 j20Var) {
-        return -1;
-    }
-
-    @Override
-    public boolean l() {
-        return false;
-    }
-
-    @Override
-    public boolean p() {
-        return false;
-    }
-
-    @Override
-    public boolean q() {
-        return false;
-    }
-
-    @Override
-    public boolean r() {
-        return false;
-    }
-
-    @Override
-    public boolean t() {
-        return true;
-    }
-
-    @Override
-    public boolean u() {
-        return !(this instanceof org.telegram.ui.Components.ml);
-    }
-
-    @Override
-    public HashMap v() {
-        return null;
-    }
-
-    @Override
-    public boolean w() {
-        return false;
-    }
-
-    @Override
-    public boolean x(int i7) {
-        return false;
-    }
-
-    @Override
-    public int y() {
-        return -1;
-    }
-
-    @Override
-    public boolean z() {
-        return !(this instanceof org.telegram.ui.Components.uh);
-    }
-
-    @Override
-    public void B(int i7) {
-    }
-
-    @Override
-    public void F(boolean z9) {
-    }
-
-    @Override
-    public void M(org.telegram.messenger.j20 j20Var) {
-    }
-
-    @Override
-    public void X(int i7) {
-    }
-
-    @Override
-    public void Y(int i7) {
-    }
-
-    @Override
-    public void a0(int i7) {
-    }
-
-    @Override
-    public void e(CharSequence charSequence) {
-    }
-
-    @Override
-    public void D() {
-    }
-
-    @Override
-    public void G() {
-    }
-
-    @Override
-    public void J() {
-    }
-
-    @Override
-    public void W() {
-    }
-
-    @Override
-    public void d() {
-    }
-
-    @Override
-    public void i() {
-    }
-
-    @Override
-    public void m() {
-    }
-
-    @Override
-    public void n() {
-    }
-
-    @Override
-    public void s() {
-    }
-
-    @Override
-    public void f(String str, String str2, boolean z9) {
-    }
-
-    @Override
-    public void o(int i7, org.telegram.messenger.j20 j20Var, boolean z9, int i10, int i11, boolean z10) {
+    public void setVisibility(int i7) {
+        b(i7, true);
     }
 }

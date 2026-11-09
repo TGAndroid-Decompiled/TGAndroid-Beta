@@ -21,23 +21,23 @@ public class CheckBox extends View {
     public int E;
     public int F;
     public String G;
-    public final Drawable f31238a;
-    public final TextPaint f31239b;
-    public Bitmap f31240c;
+    public final Drawable f31243a;
+    public final TextPaint f31244b;
+    public Bitmap f31245c;
     public Bitmap d;
-    public Canvas f31241e;
-    public Canvas f31242f;
+    public Canvas f31246e;
+    public Canvas f31247f;
     public boolean h;
-    public boolean f31243n;
-    public float f31244r;
-    public ObjectAnimator f31245s;
-    public boolean f31246w;
-    public boolean f31247x;
-    public boolean f31248y;
+    public boolean f31248n;
+    public float f31249r;
+    public ObjectAnimator f31250s;
+    public boolean f31251w;
+    public boolean f31252x;
+    public boolean f31253y;
 
     public CheckBox(Context context, int i7) {
         super(context);
-        this.f31246w = true;
+        this.f31251w = true;
         this.D = 22;
         if (H == null) {
             H = new Paint(1);
@@ -62,10 +62,10 @@ public class CheckBox extends View {
         J.setStrokeWidth(org.telegram.messenger.g0.L(28.0f));
         K.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
         TextPaint textPaint = new TextPaint(1);
-        this.f31239b = textPaint;
+        this.f31244b = textPaint;
         textPaint.setTextSize(org.telegram.messenger.g0.L(18.0f));
         textPaint.setTypeface(org.telegram.messenger.g0.o());
-        this.f31238a = context.getResources().getDrawable(i7).mutate();
+        this.f31243a = context.getResources().getDrawable(i7).mutate();
     }
 
     public final void a(boolean z9) {
@@ -73,27 +73,27 @@ public class CheckBox extends View {
     }
 
     public final void b(boolean z9, boolean z10) {
-        if (z9 == this.f31248y) {
+        if (z9 == this.f31253y) {
             return;
         }
-        this.f31248y = z9;
+        this.f31253y = z9;
         float f10 = 0.0f;
-        if (this.f31247x && z10) {
-            this.f31246w = z9;
+        if (this.f31252x && z10) {
+            this.f31251w = z9;
             if (z9) {
                 f10 = 1.0f;
             }
             ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", f10);
-            this.f31245s = ofFloat;
+            this.f31250s = ofFloat;
             ofFloat.addListener(new z5(this, 18));
-            this.f31245s.setDuration(300L);
-            this.f31245s.start();
+            this.f31250s.setDuration(300L);
+            this.f31250s.start();
             return;
         }
-        ObjectAnimator objectAnimator = this.f31245s;
+        ObjectAnimator objectAnimator = this.f31250s;
         if (objectAnimator != null) {
             objectAnimator.cancel();
-            this.f31245s = null;
+            this.f31250s = null;
         }
         if (z9) {
             f10 = 1.0f;
@@ -103,25 +103,25 @@ public class CheckBox extends View {
 
     public final void c(int i7, int i10) {
         this.F = i7;
-        this.f31238a.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY));
-        this.f31239b.setColor(i10);
+        this.f31243a.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY));
+        this.f31244b.setColor(i10);
         invalidate();
     }
 
     public float getProgress() {
-        return this.f31244r;
+        return this.f31249r;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f31247x = true;
+        this.f31252x = true;
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f31247x = false;
+        this.f31252x = false;
     }
 
     @Override
@@ -134,7 +134,7 @@ public class CheckBox extends View {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.CheckBox");
         accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.f31248y);
+        accessibilityNodeInfo.setChecked(this.f31253y);
     }
 
     @Override
@@ -149,8 +149,8 @@ public class CheckBox extends View {
     }
 
     public void setCheckColor(int i7) {
-        this.f31238a.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.MULTIPLY));
-        this.f31239b.setColor(i7);
+        this.f31243a.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.MULTIPLY));
+        this.f31244b.setColor(i7);
         invalidate();
     }
 
@@ -163,30 +163,30 @@ public class CheckBox extends View {
     }
 
     public void setHasBorder(boolean z9) {
-        this.f31243n = z9;
+        this.f31248n = z9;
     }
 
     public void setNum(int i7) {
         if (i7 >= 0) {
             this.G = "" + (i7 + 1);
-        } else if (this.f31245s == null) {
+        } else if (this.f31250s == null) {
             this.G = null;
         }
         invalidate();
     }
 
     public void setProgress(float f10) {
-        if (this.f31244r == f10) {
+        if (this.f31249r == f10) {
             return;
         }
-        this.f31244r = f10;
+        this.f31249r = f10;
         invalidate();
     }
 
     public void setSize(int i7) {
         this.D = i7;
         if (i7 == 40) {
-            this.f31239b.setTextSize(org.telegram.messenger.g0.L(24.0f));
+            this.f31244b.setTextSize(org.telegram.messenger.g0.L(24.0f));
         }
     }
 
@@ -197,15 +197,15 @@ public class CheckBox extends View {
     @Override
     public void setVisibility(int i7) {
         super.setVisibility(i7);
-        if (i7 == 0 && this.f31240c == null) {
+        if (i7 == 0 && this.f31245c == null) {
             try {
                 int L = org.telegram.messenger.g0.L(this.D);
                 int L2 = org.telegram.messenger.g0.L(this.D);
                 Bitmap.Config config = Bitmap.Config.ARGB_4444;
-                this.f31240c = Bitmap.createBitmap(L, L2, config);
-                this.f31241e = new Canvas(this.f31240c);
+                this.f31245c = Bitmap.createBitmap(L, L2, config);
+                this.f31246e = new Canvas(this.f31245c);
                 this.d = Bitmap.createBitmap(org.telegram.messenger.g0.L(this.D), org.telegram.messenger.g0.L(this.D), config);
-                this.f31242f = new Canvas(this.d);
+                this.f31247f = new Canvas(this.d);
             } catch (Throwable unused) {
             }
         }

@@ -1,135 +1,41 @@
 package org.telegram.ui;
-public final class kp0 extends org.telegram.ui.Components.t51 {
-    public final int m0;
-    public final org.telegram.messenger.ls f47262n0;
+public final class kp0 extends org.telegram.ui.Components.nz {
+    public final to0 f47326e;
+    public final PhotoViewer f47327f;
 
-    public kp0(org.telegram.messenger.ls lsVar, int i7) {
-        this.m0 = i7;
-        this.f47262n0 = lsVar;
+    public kp0(PhotoViewer photoViewer, to0 to0Var) {
+        super(false);
+        this.f47327f = photoViewer;
+        this.f47326e = to0Var;
     }
 
     @Override
-    public final void g0() {
-        switch (this.m0) {
-            case 0:
-                super.g0();
-                PhotoViewer photoViewer = (PhotoViewer) this.f47262n0;
-                if (photoViewer.f41519t4 == 0) {
-                    PhotoViewer.Q(photoViewer, false);
-                }
-                if (!photoViewer.N8) {
-                    d1.f.D(S());
-                    d1.f.x(false);
-                    return;
-                }
-                return;
-            default:
-                super.g0();
-                ((SecretMediaViewer) this.f47262n0).U.a(false, true);
-                return;
-        }
+    public final CharSequence d() {
+        StringBuilder sb2 = new StringBuilder();
+        PhotoViewer photoViewer = this.f47327f;
+        int[] iArr = photoViewer.f41454l3;
+        sb2.append(org.telegram.messenger.id.G(iArr[0], "Minutes", new Object[0]));
+        sb2.append(' ');
+        sb2.append(org.telegram.messenger.id.G(iArr[1], "Seconds", new Object[0]));
+        String sb3 = sb2.toString();
+        StringBuilder sb4 = new StringBuilder();
+        int[] iArr2 = photoViewer.f41462m3;
+        sb4.append(org.telegram.messenger.id.G(iArr2[0], "Minutes", new Object[0]));
+        sb4.append(' ');
+        sb4.append(org.telegram.messenger.id.G(iArr2[1], "Seconds", new Object[0]));
+        return org.telegram.messenger.id.a0("AccDescrPlayerDuration", null, 2131754806, sb3, sb4.toString());
     }
 
     @Override
-    public final void h0() {
-        switch (this.m0) {
-            case 0:
-                super.h0();
-                PhotoViewer photoViewer = (PhotoViewer) this.f47262n0;
-                PhotoViewer.Q(photoViewer, true);
-                if (!photoViewer.N8) {
-                    d1.f.D(S());
-                    d1.f.x(true);
-                    return;
-                }
-                return;
-            default:
-                super.h0();
-                ((SecretMediaViewer) this.f47262n0).U.a(true, true);
-                return;
-        }
+    public final float k() {
+        return this.f47327f.f41488p3.c();
     }
 
     @Override
-    public void onRenderedFirstFrame() {
-        e2.w0 j3;
-        switch (this.m0) {
-            case 0:
-                super.onRenderedFirstFrame();
-                PhotoViewer photoViewer = (PhotoViewer) this.f47262n0;
-                boolean z9 = true;
-                photoViewer.R = true;
-                if (photoViewer.D2) {
-                    photoViewer.f41384e0.invalidate();
-                }
-                photoViewer.x3();
-                if (!d1.f.u() && !photoViewer.f41496r) {
-                    z9 = false;
-                }
-                t0(z9);
-                if (!photoViewer.N8) {
-                    d1.f.D(S());
-                    l2.i0 i0Var = this.d;
-                    float f10 = 1.0f;
-                    if (i0Var != null && (j3 = i0Var.j()) != null) {
-                        f10 = j3.f10638a;
-                    }
-                    d1.f.z(f10);
-                    return;
-                }
-                return;
-            default:
-                super.onRenderedFirstFrame();
-                return;
-        }
-    }
-
-    @Override
-    public void p0(long j3) {
-        switch (this.m0) {
-            case 0:
-                q0(j3, false);
-                PhotoViewer photoViewer = (PhotoViewer) this.f47262n0;
-                if (photoViewer.f41498r1) {
-                    PhotoViewer.R(photoViewer, j3);
-                }
-                if (!photoViewer.N8) {
-                    d1.f.D(j3);
-                    return;
-                }
-                return;
-            default:
-                super.p0(j3);
-                return;
-        }
-    }
-
-    @Override
-    public void u0(boolean z9) {
-        switch (this.m0) {
-            case 1:
-                super.u0(z9);
-                ((SecretMediaViewer) this.f47262n0).U.a(z9, true);
-                return;
-            default:
-                super.u0(z9);
-                return;
-        }
-    }
-
-    @Override
-    public void v0(float f10) {
-        switch (this.m0) {
-            case 0:
-                super.v0(f10);
-                if (!((PhotoViewer) this.f47262n0).N8) {
-                    d1.f.z(f10);
-                    return;
-                }
-                return;
-            default:
-                super.v0(f10);
-                return;
-        }
+    public final void l(float f10) {
+        this.f47326e.a(f10);
+        PhotoViewer photoViewer = this.f47327f;
+        photoViewer.f41488p3.h(false, f10);
+        photoViewer.f41497q3.invalidate();
     }
 }

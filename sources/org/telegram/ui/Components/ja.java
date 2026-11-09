@@ -3,13 +3,13 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.view.MotionEvent;
 public final class ja extends org.telegram.ui.ActionBar.k {
-    public final rt0 F1;
+    public final tt0 F1;
     public final na G1;
 
-    public ja(na naVar, Context context, rt0 rt0Var) {
+    public ja(na naVar, Context context, tt0 tt0Var) {
         super(context, null);
         this.G1 = naVar;
-        this.F1 = rt0Var;
+        this.F1 = tt0Var;
     }
 
     @Override

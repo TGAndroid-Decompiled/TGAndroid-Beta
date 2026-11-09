@@ -10,14 +10,14 @@ import e5.m;
 import java.util.Set;
 import java.util.WeakHashMap;
 public abstract class b {
-    public static final boolean f8184a;
-    public static final WeakHashMap f8185b;
+    public static final boolean f8182a;
+    public static final WeakHashMap f8183b;
 
     static {
         Uri.parse("*");
         Uri.parse("");
-        f8184a = true;
-        f8185b = new WeakHashMap();
+        f8182a = true;
+        f8183b = new WeakHashMap();
     }
 
     public static void a(WebView webView, String str, Set set, a aVar) {
@@ -33,8 +33,8 @@ public abstract class b {
     }
 
     public static m c(WebView webView) {
-        if (k.f10713e.b() && f8184a) {
-            WeakHashMap weakHashMap = f8185b;
+        if (k.f10713e.b() && f8182a) {
+            WeakHashMap weakHashMap = f8183b;
             m mVar = (m) weakHashMap.get(webView);
             if (mVar == null) {
                 m mVar2 = new m(l.f10714a.createWebView(webView));

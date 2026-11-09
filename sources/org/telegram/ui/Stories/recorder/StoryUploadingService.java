@@ -14,9 +14,9 @@ import org.telegram.messenger.qs;
 import org.telegram.messenger.r2;
 import org.telegram.messenger.t0;
 public class StoryUploadingService extends Service implements ls {
-    public q f42008a;
-    public String f42009b;
-    public float f42010c;
+    public q f42015a;
+    public String f42016b;
+    public float f42017c;
     public int d = -1;
 
     public StoryUploadingService() {
@@ -28,25 +28,25 @@ public class StoryUploadingService extends Service implements ls {
         String str;
         boolean z9 = false;
         if (i7 == qs.A5) {
-            String str2 = this.f42009b;
+            String str2 = this.f42016b;
             if (str2 != null && str2.equals((String) objArr[0])) {
                 float floatValue = ((Float) objArr[1]).floatValue();
-                this.f42010c = floatValue;
-                q qVar = this.f42008a;
+                this.f42017c = floatValue;
+                q qVar = this.f42015a;
                 int round = Math.round(floatValue * 100.0f);
-                if (this.f42010c <= 0.0f) {
+                if (this.f42017c <= 0.0f) {
                     z9 = true;
                 }
                 qVar.f10105n = 100;
                 qVar.f10106o = round;
                 qVar.f10107p = z9;
                 try {
-                    new i0(t0.f25566b).e(null, 33, this.f42008a.b());
+                    new i0(t0.f25566b).e(null, 33, this.f42015a.b());
                 } catch (Throwable th2) {
                     a8.g(th2, true);
                 }
             }
-        } else if (i7 == qs.B5 && (str = this.f42009b) != null && str.equals((String) objArr[0])) {
+        } else if (i7 == qs.B5 && (str = this.f42016b) != null && str.equals((String) objArr[0])) {
             stopSelf();
         }
     }
@@ -74,7 +74,7 @@ public class StoryUploadingService extends Service implements ls {
     @Override
     public final int onStartCommand(Intent intent, int i7, int i10) {
         int i11 = qs.A5;
-        this.f42009b = intent.getStringExtra("path");
+        this.f42016b = intent.getStringExtra("path");
         int i12 = this.d;
         int intExtra = intent.getIntExtra("currentAccount", p10.f24470s0);
         this.d = intExtra;
@@ -91,38 +91,38 @@ public class StoryUploadingService extends Service implements ls {
                 qs.f(i13).b(this, i11);
             }
         }
-        if (this.f42009b == null) {
+        if (this.f42016b == null) {
             stopSelf();
             return 2;
         }
         if (r2.f25212a) {
             a8.b("start upload story");
         }
-        if (this.f42008a == null) {
+        if (this.f42015a == null) {
             dt.i();
             q qVar = new q(t0.f25566b, null);
-            this.f42008a = qVar;
+            this.f42015a = qVar;
             qVar.F.icon = 17301640;
             qVar.F.when = System.currentTimeMillis();
-            q qVar2 = this.f42008a;
+            q qVar2 = this.f42015a;
             qVar2.f10115y = dt.f22075j0;
             qVar2.g(id.M0(2131689472, null));
-            this.f42008a.p(id.M0(2131744454, null));
-            this.f42008a.f(id.M0(2131744454, null));
+            this.f42015a.p(id.M0(2131744451, null));
+            this.f42015a.f(id.M0(2131744451, null));
         }
-        this.f42010c = 0.0f;
-        q qVar3 = this.f42008a;
+        this.f42017c = 0.0f;
+        q qVar3 = this.f42015a;
         int round = Math.round(0.0f);
         qVar3.f10105n = 100;
         qVar3.f10106o = round;
         qVar3.f10107p = false;
         try {
-            startForeground(33, this.f42008a.b());
+            startForeground(33, this.f42015a.b());
         } catch (Throwable th2) {
             a8.g(th2, true);
         }
         try {
-            new i0(t0.f25566b).e(null, 33, this.f42008a.b());
+            new i0(t0.f25566b).e(null, 33, this.f42015a.b());
         } catch (Throwable th3) {
             a8.g(th3, true);
         }

@@ -7,48 +7,48 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 public final class e implements q {
-    public int f6054a;
-    public int f6055b;
-    public int f6056c;
+    public int f6052a;
+    public int f6053b;
+    public int f6054c;
     public final Serializable d;
-    public Serializable f6057e;
-    public Object f6058f;
-    public Serializable f6059g;
+    public Serializable f6055e;
+    public Object f6056f;
+    public Serializable f6057g;
     public Object h;
 
     public e(byte[] bArr, String str, ArrayList arrayList, String str2, int i7, int i10, int i11) {
         this.d = str;
-        this.f6058f = arrayList;
-        this.f6057e = str2;
-        this.f6054a = i10;
-        this.f6055b = i7;
-        this.f6056c = i11;
+        this.f6056f = arrayList;
+        this.f6055e = str2;
+        this.f6052a = i10;
+        this.f6053b = i7;
+        this.f6054c = i11;
     }
 
     @Override
     public void a(int i7, ByteBuffer byteBuffer) {
         r rVar = (r) this.h;
-        byteBuffer.asShortBuffer().get((short[]) this.f6057e, rVar.f10941j * rVar.f10935b, i7 / 2);
+        byteBuffer.asShortBuffer().get((short[]) this.f6055e, rVar.f10941j * rVar.f10935b, i7 / 2);
         byteBuffer.position(byteBuffer.position() + i7);
     }
 
     @Override
     public void b(int i7, ByteBuffer byteBuffer) {
         r rVar = (r) this.h;
-        byteBuffer.asShortBuffer().put((short[]) this.f6058f, 0, rVar.f10935b * i7);
+        byteBuffer.asShortBuffer().put((short[]) this.f6056f, 0, rVar.f10935b * i7);
         byteBuffer.position((i7 * 2 * rVar.f10935b) + byteBuffer.position());
     }
 
     @Override
     public void c(int i7, int i10) {
         for (int i11 = 0; i11 < ((r) this.h).f10935b * i10; i11++) {
-            ((short[]) this.f6057e)[i7 + i11] = 0;
+            ((short[]) this.f6055e)[i7 + i11] = 0;
         }
     }
 
     @Override
     public void d(int i7, int i10) {
-        short[] sArr = (short[]) this.f6057e;
+        short[] sArr = (short[]) this.f6055e;
         r rVar = (r) this.h;
         int i11 = rVar.h / i10;
         int i12 = rVar.f10935b;
@@ -65,40 +65,40 @@ public final class e implements q {
 
     @Override
     public int e(int i7, int i10, int i11) {
-        return s((short[]) this.f6057e, i7, i10, i11);
+        return s((short[]) this.f6055e, i7, i10, i11);
     }
 
     @Override
     public void f() {
-        this.f6056c = this.f6054a;
+        this.f6054c = this.f6052a;
     }
 
     @Override
     public void flush() {
-        this.f6056c = 0;
-        this.f6054a = 0;
-        this.f6055b = 0;
+        this.f6054c = 0;
+        this.f6052a = 0;
+        this.f6053b = 0;
     }
 
     @Override
     public Object g() {
-        return (short[]) this.f6057e;
+        return (short[]) this.f6055e;
     }
 
     @Override
     public Object h() {
-        return (short[]) this.f6058f;
+        return (short[]) this.f6056f;
     }
 
     @Override
     public void i(int i7) {
-        this.f6058f = r((short[]) this.f6058f, ((r) this.h).f10942k, i7);
+        this.f6056f = r((short[]) this.f6056f, ((r) this.h).f10942k, i7);
     }
 
     @Override
     public boolean j() {
-        int i7 = this.f6054a;
-        if (i7 == 0 || ((r) this.h).f10947p == 0 || this.f6055b > i7 * 3 || i7 * 2 <= this.f6056c * 3) {
+        int i7 = this.f6052a;
+        if (i7 == 0 || ((r) this.h).f10947p == 0 || this.f6053b > i7 * 3 || i7 * 2 <= this.f6054c * 3) {
             return false;
         }
         return true;
@@ -111,7 +111,7 @@ public final class e implements q {
             r rVar = (r) this.h;
             int i11 = rVar.f10935b;
             if (i10 < i11) {
-                short[] sArr = (short[]) this.f6059g;
+                short[] sArr = (short[]) this.f6057g;
                 int i12 = (i7 * i11) + i10;
                 short s5 = sArr[i12];
                 short s9 = sArr[i12 + i11];
@@ -119,7 +119,7 @@ public final class e implements q {
                 long j11 = (i13 + 1) * j10;
                 long j12 = j11 - (rVar.f10945n * j3);
                 long j13 = j11 - (i13 * j10);
-                ((short[]) this.f6058f)[(rVar.f10942k * i11) + i10] = (short) ((((j13 - j12) * s9) + (s5 * j12)) / j13);
+                ((short[]) this.f6056f)[(rVar.f10942k * i11) + i10] = (short) ((((j13 - j12) * s9) + (s5 * j12)) / j13);
                 i10++;
             } else {
                 return;
@@ -129,13 +129,13 @@ public final class e implements q {
 
     @Override
     public Object l() {
-        return (short[]) this.f6059g;
+        return (short[]) this.f6057g;
     }
 
     @Override
     public void m(int i7, int i10, int i11, int i12, int i13) {
-        short[] sArr = (short[]) this.f6058f;
-        short[] sArr2 = (short[]) this.f6057e;
+        short[] sArr = (short[]) this.f6056f;
+        short[] sArr2 = (short[]) this.f6055e;
         for (int i14 = 0; i14 < i10; i14++) {
             int i15 = (i11 * i10) + i14;
             int i16 = (i13 * i10) + i14;
@@ -151,7 +151,7 @@ public final class e implements q {
 
     @Override
     public void n(int i7) {
-        this.f6059g = r((short[]) this.f6059g, ((r) this.h).f10943l, i7);
+        this.f6057g = r((short[]) this.f6057g, ((r) this.h).f10943l, i7);
     }
 
     @Override
@@ -161,7 +161,7 @@ public final class e implements q {
 
     @Override
     public void p(int i7) {
-        this.f6057e = r((short[]) this.f6057e, ((r) this.h).f10941j, i7);
+        this.f6055e = r((short[]) this.f6055e, ((r) this.h).f10941j, i7);
     }
 
     @Override
@@ -200,8 +200,8 @@ public final class e implements q {
             }
             i10++;
         }
-        this.f6054a = i14 / i15;
-        this.f6055b = i16 / i13;
+        this.f6052a = i14 / i15;
+        this.f6053b = i16 / i13;
         return i15;
     }
 
@@ -210,8 +210,8 @@ public final class e implements q {
         int i7 = rVar.h;
         this.d = new short[i7];
         int i10 = i7 * rVar.f10935b;
-        this.f6057e = new short[i10];
-        this.f6058f = new short[i10];
-        this.f6059g = new short[i10];
+        this.f6055e = new short[i10];
+        this.f6056f = new short[i10];
+        this.f6057g = new short[i10];
     }
 }

@@ -1,14 +1,35 @@
 package zh;
 
-import org.telegram.ui.Components.i5;
-public final class x2 extends i5 {
-    @Override
-    public final int getIntrinsicHeight() {
-        return org.telegram.messenger.g0.L(24.0f);
+import android.content.Context;
+import android.view.View;
+import bi.m6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+public final class x2 extends org.telegram.ui.ActionBar.z0 {
+    public final int V;
+    public long W;
+    public v2 f60595a0;
+
+    public x2(int i7, Context context, g6 g6Var) {
+        super(0, context, g6Var, false, false);
+        this.V = i7;
+        setPadding(org.telegram.messenger.g0.L(18.0f), 0, org.telegram.messenger.g0.L(18.0f), 0);
+        c(l6.E8, l6.F8);
+        setIconColor(-1);
+        this.f28819c.setTranslationX(org.telegram.messenger.g0.L(2.0f));
+        this.f28819c.setScaleX(1.2f);
+        this.f28819c.setScaleY(1.2f);
+        a(2);
+        setBackground(null);
+        this.f28819c.addOnAttachStateChangeListener(new m6(this, 14));
     }
 
     @Override
-    public final int getIntrinsicWidth() {
-        return org.telegram.messenger.g0.L(24.0f);
+    public final void onMeasure(int i7, int i10) {
+        int size = View.MeasureSpec.getSize(i7);
+        if (View.MeasureSpec.getMode(i7) == Integer.MIN_VALUE) {
+            size = org.telegram.messenger.g0.L(250.0f);
+        }
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i10);
     }
 }

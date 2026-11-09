@@ -52,7 +52,7 @@ public final class wz {
         ij ijVar = MediaController.B().f21295u0;
         if (ijVar != null) {
             r3 = MediaController.B().H() ? 2477828L : 2477830L;
-            if (ijVar.J3()) {
+            if (ijVar.I3()) {
                 r3 |= 48;
             }
         }

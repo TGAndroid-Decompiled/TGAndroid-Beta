@@ -30,11 +30,11 @@ public final class mu extends fu {
         float f10;
         kv kvVar = this.f22469a;
         if (kvVar.E()) {
-            i7 = org.telegram.ui.ActionBar.k6.ul;
+            i7 = org.telegram.ui.ActionBar.l6.ul;
         } else {
-            i7 = org.telegram.ui.ActionBar.k6.tl;
+            i7 = org.telegram.ui.ActionBar.l6.tl;
         }
-        int w02 = org.telegram.ui.ActionBar.k6.w0(i7, kvVar.D);
+        int w02 = org.telegram.ui.ActionBar.l6.w0(i7, kvVar.D);
         Paint paint = this.W;
         paint.setColor(w02);
         float f11 = -kvVar.S;

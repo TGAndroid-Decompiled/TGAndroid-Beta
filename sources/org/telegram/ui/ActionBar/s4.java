@@ -3,13 +3,15 @@ package org.telegram.ui.ActionBar;
 import android.graphics.RectF;
 import android.view.View;
 public interface s4 {
-    boolean a(r0 r0Var, RectF rectF);
+    boolean a();
 
-    boolean b();
+    boolean b(r0 r0Var, RectF rectF);
 
-    fh.g c(i5 i5Var);
+    boolean d();
 
-    void d(i5 i5Var, r0 r0Var);
+    fh.g e(j5 j5Var);
+
+    void f(j5 j5Var, r0 r0Var);
 
     int getButtonsGlassBackgroundColor();
 
@@ -19,13 +21,13 @@ public interface s4 {
 
     View getMenuHostView();
 
-    f6 getMenuResourcesProvider();
+    g6 getMenuResourcesProvider();
 
     int getMenuRise();
 
     View getMenuView();
 
-    i5 getOpenMenuOverlay();
+    j5 getOpenMenuOverlay();
 
     void setMenuGlassFrostedProgress(float f10);
 }

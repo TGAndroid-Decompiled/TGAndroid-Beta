@@ -24,13 +24,13 @@ public final class a {
     }
 
     public void b() {
-        b bVar = b.f54090c;
+        b bVar = b.f54102c;
         char[] array = this.f20004b;
         bVar.getClass();
         j.e(array, "array");
         synchronized (bVar) {
             int i7 = bVar.f2209a;
-            if (array.length + i7 < qe.a.f54089a) {
+            if (array.length + i7 < qe.a.f54101a) {
                 bVar.f2209a = i7 + array.length;
                 ((d) bVar.f2210b).addLast(array);
             }

@@ -70,7 +70,7 @@ public final class fi implements Runnable {
                                         ijVar2.f23262k.reply_to = new TLRPC.TL_messageReplyHeader();
                                         TLRPC.MessageReplyHeader messageReplyHeader = ijVar2.f23262k.reply_to;
                                         messageReplyHeader.flags |= 16;
-                                        messageReplyHeader.reply_to_msg_id = ijVar.M1();
+                                        messageReplyHeader.reply_to_msg_id = ijVar.L1();
                                     }
                                 }
                             }

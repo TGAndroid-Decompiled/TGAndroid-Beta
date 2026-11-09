@@ -19,7 +19,7 @@ public final class zo extends fi.m3 {
         this.X0 = paint;
         this.Y0 = i1Var;
         i1Var.a(this);
-        paint.setPathEffect(new CornerPathEffect(this.f12444w));
+        paint.setPathEffect(new CornerPathEffect(this.f12445w));
         if (z9) {
             k(true);
         }
@@ -35,7 +35,7 @@ public final class zo extends fi.m3 {
                 canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) (Math.min(this.F.getAlpha(), i1Var.b().getAlpha()) * f10), 31);
                 Path path = this.E0;
                 canvas.drawPath(path, paint);
-                if (i1Var.f39258e) {
+                if (i1Var.f39347e) {
                     paint.setShader(((Paint) i1Var.d.f335a).getShader());
                     canvas.drawPath(path, paint);
                 }
@@ -64,8 +64,8 @@ public final class zo extends fi.m3 {
     public boolean verifyDrawable(Drawable drawable) {
         switch (this.W0) {
             case 0:
-                zg0[] zg0VarArr = (zg0[]) this.X0;
-                if ((zg0VarArr != null && (drawable == zg0VarArr[0] || drawable == zg0VarArr[1])) || super.verifyDrawable(drawable)) {
+                ah0[] ah0VarArr = (ah0[]) this.X0;
+                if ((ah0VarArr != null && (drawable == ah0VarArr[0] || drawable == ah0VarArr[1])) || super.verifyDrawable(drawable)) {
                     return true;
                 }
                 return false;
@@ -77,26 +77,26 @@ public final class zo extends fi.m3 {
     public zo(Activity activity) {
         super(activity, 3);
         int i7 = 0;
-        this.X0 = new zg0[2];
+        this.X0 = new ah0[2];
         this.Y0 = new int[2];
         r(true);
         this.K = Layout.Alignment.ALIGN_NORMAL;
         this.d = 3200L;
         this.T = true;
-        this.f12422e = true;
+        this.f12423e = true;
         n(8.0f, 6.0f, 10.0f, 6.0f);
-        this.f12442u0 = 0.0f;
+        this.f12443u0 = 0.0f;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         while (i7 < 2) {
-            ((zg0[]) this.X0)[i7] = new zg0(i7 == 0 ? 2131624290 : 2131624289, org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f));
-            ((zg0[]) this.X0)[i7].setCallback(this);
+            ((ah0[]) this.X0)[i7] = new ah0(i7 == 0 ? 2131624290 : 2131624289, org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f));
+            ((ah0[]) this.X0)[i7].setCallback(this);
             if (i7 > 0) {
                 spannableStringBuilder.append((CharSequence) "\n");
             }
             int length = spannableStringBuilder.length();
             spannableStringBuilder.append((CharSequence) "x");
-            spannableStringBuilder.setSpan(new yo(((zg0[]) this.X0)[i7]), length, spannableStringBuilder.length(), 33);
-            spannableStringBuilder.append((CharSequence) org.telegram.messenger.id.M0(i7 == 0 ? 2131749299 : 2131749300, null));
+            spannableStringBuilder.setSpan(new yo(((ah0[]) this.X0)[i7]), length, spannableStringBuilder.length(), 33);
+            spannableStringBuilder.append((CharSequence) org.telegram.messenger.id.M0(i7 == 0 ? 2131749298 : 2131749299, null));
             i7++;
         }
         u(spannableStringBuilder);

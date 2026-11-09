@@ -1,4 +1,4 @@
 package c8;
 public abstract class ec {
-    public static String[] f5452a;
+    public static String[] f5450a;
 }

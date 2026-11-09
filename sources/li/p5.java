@@ -6,14 +6,14 @@ import android.widget.FrameLayout;
 import c8.ha;
 import org.telegram.messenger.iz;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g6;
 public final class p5 extends FrameLayout {
     public final g1 f18778a;
     public TL_iv.pageTableCell f18779b;
 
-    public p5(Context context, f6 f6Var) {
+    public p5(Context context, g6 g6Var) {
         super(context);
-        g1 g1Var = new g1(context, f6Var);
+        g1 g1Var = new g1(context, g6Var);
         this.f18778a = g1Var;
         g1Var.setTextSize(1, Math.max(8, iz.W0 - 2));
         g1Var.setAllowNewlines(true);

@@ -10,54 +10,54 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.Utilities;
 public final class d0 extends LinearLayout {
-    public final int f32745a = 0;
-    public final RectF f32746b;
-    public final RectF f32747c;
+    public final int f32809a = 0;
+    public final RectF f32810b;
+    public final RectF f32811c;
     public final RectF d;
-    public final Paint f32748e;
-    public final org.telegram.ui.ActionBar.f6 f32749f;
+    public final Paint f32812e;
+    public final org.telegram.ui.ActionBar.g6 f32813f;
     public final FrameLayout h;
 
-    public d0(f0 f0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+    public d0(f0 f0Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context);
         this.h = f0Var;
-        this.f32749f = f6Var;
-        this.f32746b = new RectF();
-        this.f32747c = new RectF();
+        this.f32813f = g6Var;
+        this.f32810b = new RectF();
+        this.f32811c = new RectF();
         this.d = new RectF();
-        this.f32748e = new Paint(1);
+        this.f32812e = new Paint(1);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         f0 f0Var;
         float e10;
-        switch (this.f32745a) {
+        switch (this.f32809a) {
             case 0:
                 w5 w5Var = ((f0) this.h).h;
                 if (w5Var == null) {
                     e10 = 0.0f;
                 } else {
-                    e10 = w5Var.e(false, f0Var.f33422f);
+                    e10 = w5Var.e(false, f0Var.f33536f);
                 }
                 double d = e10;
                 int floor = (int) Math.floor(d);
                 int ceil = (int) Math.ceil(d);
                 float f10 = e10 - floor;
-                RectF rectF = this.f32746b;
+                RectF rectF = this.f32810b;
                 if (floor >= 0 && floor < getChildCount()) {
                     View childAt = getChildAt(floor);
                     rectF.set(childAt.getLeft(), childAt.getTop(), childAt.getRight(), childAt.getBottom());
                 }
-                RectF rectF2 = this.f32747c;
+                RectF rectF2 = this.f32811c;
                 if (ceil >= 0 && ceil < getChildCount()) {
                     View childAt2 = getChildAt(ceil);
                     rectF2.set(childAt2.getLeft(), childAt2.getTop(), childAt2.getRight(), childAt2.getBottom());
                 }
                 RectF rectF3 = this.d;
                 org.telegram.messenger.g0.Z1(rectF, rectF2, f10, rectF3);
-                int r12 = org.telegram.ui.ActionBar.k6.r1(0.1f, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Ci, this.f32749f));
-                Paint paint = this.f32748e;
+                int r12 = org.telegram.ui.ActionBar.l6.r1(0.1f, org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.Ci, this.f32813f));
+                Paint paint = this.f32812e;
                 paint.setColor(r12);
                 canvas.drawRoundRect(rectF3, org.telegram.messenger.g0.L(f0Var.d), org.telegram.messenger.g0.L(f0Var.d), paint);
                 for (int i7 = 0; i7 < getChildCount(); i7++) {
@@ -69,26 +69,26 @@ public final class d0 extends LinearLayout {
                 super.dispatchDraw(canvas);
                 return;
             default:
-                org.telegram.ui.Wallet.s5 s5Var = (org.telegram.ui.Wallet.s5) this.h;
-                float e11 = s5Var.f43135f.e(false, s5Var.d);
+                org.telegram.ui.Wallet.r5 r5Var = (org.telegram.ui.Wallet.r5) this.h;
+                float e11 = r5Var.f43053f.e(false, r5Var.d);
                 double d2 = e11;
-                TextView[] textViewArr = s5Var.f43133c;
+                TextView[] textViewArr = r5Var.f43051c;
                 int j3 = Utilities.j((int) Math.floor(d2), textViewArr.length, 0);
                 int j10 = Utilities.j((int) Math.ceil(d2), textViewArr.length, 0);
-                RectF rectF4 = this.f32746b;
+                RectF rectF4 = this.f32810b;
                 if (j3 >= 0 && j3 < textViewArr.length) {
                     TextView textView = textViewArr[j3];
                     rectF4.set(textView.getX(), textView.getY(), textView.getX() + textView.getWidth(), textView.getY() + textView.getHeight());
                 }
-                RectF rectF5 = this.f32747c;
+                RectF rectF5 = this.f32811c;
                 if (j10 >= 0 && j10 < textViewArr.length) {
                     TextView textView2 = textViewArr[j10];
                     rectF5.set(textView2.getX(), textView2.getY(), textView2.getX() + textView2.getWidth(), textView2.getY() + textView2.getHeight());
                 }
                 RectF rectF6 = this.d;
                 org.telegram.messenger.g0.Z1(rectF4, rectF5, e11 - j3, rectF6);
-                int r13 = org.telegram.ui.ActionBar.k6.r1(0.1f, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Ci, this.f32749f));
-                Paint paint2 = this.f32748e;
+                int r13 = org.telegram.ui.ActionBar.l6.r1(0.1f, org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.Ci, this.f32813f));
+                Paint paint2 = this.f32812e;
                 paint2.setColor(r13);
                 canvas.drawRoundRect(rectF6, org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(14.0f), paint2);
                 super.dispatchDraw(canvas);
@@ -103,7 +103,7 @@ public final class d0 extends LinearLayout {
         int i11;
         int i12;
         int measuredHeight;
-        switch (this.f32745a) {
+        switch (this.f32809a) {
             case 0:
                 boolean z10 = true;
                 if (getOrientation() == 0) {
@@ -169,13 +169,13 @@ public final class d0 extends LinearLayout {
         }
     }
 
-    public d0(org.telegram.ui.Wallet.s5 s5Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+    public d0(org.telegram.ui.Wallet.r5 r5Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context);
-        this.h = s5Var;
-        this.f32749f = f6Var;
-        this.f32746b = new RectF();
-        this.f32747c = new RectF();
+        this.h = r5Var;
+        this.f32813f = g6Var;
+        this.f32810b = new RectF();
+        this.f32811c = new RectF();
         this.d = new RectF();
-        this.f32748e = new Paint(1);
+        this.f32812e = new Paint(1);
     }
 }

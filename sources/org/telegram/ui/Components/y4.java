@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Picture;
 import android.text.TextUtils;
-public abstract class y4 extends s70 implements te.b {
+public abstract class y4 extends t70 implements te.b {
     public final te.c P0;
     public Picture Q0;
     public float R0;
@@ -80,7 +80,7 @@ public abstract class y4 extends s70 implements te.b {
             super.onDraw(canvas);
             return;
         }
-        float f10 = this.P0.f55493f;
+        float f10 = this.P0.f55505f;
         int L = org.telegram.messenger.g0.L(6.0f);
         canvas.save();
         canvas.translate(this.R0 - getTranslationX(), (-L) * f10);

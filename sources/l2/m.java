@@ -1,25 +1,25 @@
 package l2;
 public final class m implements g9.u {
-    public final int f17937a;
-    public final Object f17938b;
+    public final int f17935a;
+    public final Object f17936b;
 
     public m(Object obj, int i7) {
-        this.f17937a = i7;
-        this.f17938b = obj;
+        this.f17935a = i7;
+        this.f17936b = obj;
     }
 
     @Override
     public final Object get() {
-        switch (this.f17937a) {
+        switch (this.f17935a) {
             case 0:
-                return (h) this.f17938b;
+                return (h) this.f17936b;
             case 1:
-                return (a3.x) this.f17938b;
+                return (a3.x) this.f17936b;
             case 2:
-                return (j) this.f17938b;
+                return (j) this.f17936b;
             default:
                 try {
-                    return (x2.f0) ((Class) this.f17938b).getConstructor(null).newInstance(null);
+                    return (x2.f0) ((Class) this.f17936b).getConstructor(null).newInstance(null);
                 } catch (Exception e10) {
                     throw new IllegalStateException(e10);
                 }

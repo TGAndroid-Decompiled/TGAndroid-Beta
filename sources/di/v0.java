@@ -11,29 +11,29 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 public final class v0 implements NativeInstance.PayloadCallback, RequestDelegateTimestamp, NativeInstance.VideoSourcesCallback, NativeInstance.RequestBroadcastPartCallback, NativeInstance.RequestCurrentTimeCallback {
-    public final int f9860a;
-    public final g1 f9861b;
+    public final int f9853a;
+    public final g1 f9854b;
 
     public v0(g1 g1Var, int i7) {
-        this.f9860a = i7;
-        this.f9861b = g1Var;
+        this.f9853a = i7;
+        this.f9854b = g1Var;
     }
 
     @Override
     public void run(int i7, String str) {
-        g1 g1Var = this.f9861b;
+        g1 g1Var = this.f9854b;
         g1Var.K = i7;
         TL_phone.joinGroupCall joingroupcall = new TL_phone.joinGroupCall();
-        boolean z9 = !g1Var.f9027n;
+        boolean z9 = !g1Var.f9002n;
         joingroupcall.muted = z9;
         joingroupcall.video_stopped = z9;
-        joingroupcall.call = g1Var.f9026f;
+        joingroupcall.call = g1Var.f9001f;
         TLRPC.TL_dataJSON tL_dataJSON = new TLRPC.TL_dataJSON();
         joingroupcall.params = tL_dataJSON;
         tL_dataJSON.data = str;
         TLRPC.TL_inputPeerUser tL_inputPeerUser = new TLRPC.TL_inputPeerUser();
         joingroupcall.join_as = tL_inputPeerUser;
-        int i10 = g1Var.f9025e;
+        int i10 = g1Var.f9000e;
         tL_inputPeerUser.user_id = p10.i(org.telegram.messenger.c.a(i10).f21765a).e();
         ConnectionsManager.getInstance(i10).sendRequest(joingroupcall, new bi.j2(g1Var, i7, 2));
     }
@@ -41,8 +41,8 @@ public final class v0 implements NativeInstance.PayloadCallback, RequestDelegate
     @Override
     public void run(TLObject tLObject, TLRPC.TL_error tL_error, long j3) {
         if (tL_error == null) {
-            g1 g1Var = this.f9861b;
-            if (g1Var.E == null || g1Var.f9031x) {
+            g1 g1Var = this.f9854b;
+            if (g1Var.E == null || g1Var.f9006x) {
                 return;
             }
             TL_phone.groupCallStreamChannels groupcallstreamchannels = (TL_phone.groupCallStreamChannels) tLObject;
@@ -56,7 +56,7 @@ public final class v0 implements NativeInstance.PayloadCallback, RequestDelegate
             if (g1Var.G == null) {
                 TLRPC.TL_groupCallParticipant tL_groupCallParticipant = new TLRPC.TL_groupCallParticipant();
                 g1Var.G = tL_groupCallParticipant;
-                tL_groupCallParticipant.peer = qp.s1(g1Var.f9025e).z1(g1Var.f9023b);
+                tL_groupCallParticipant.peer = qp.s1(g1Var.f9000e).z1(g1Var.f8998b);
                 g1Var.G.video = new TLRPC.TL_groupCallParticipantVideo();
                 TLRPC.TL_groupCallParticipantVideoSourceGroup tL_groupCallParticipantVideoSourceGroup = new TLRPC.TL_groupCallParticipantVideoSourceGroup();
                 tL_groupCallParticipantVideoSourceGroup.semantics = "SIM";
@@ -82,27 +82,27 @@ public final class v0 implements NativeInstance.PayloadCallback, RequestDelegate
 
     @Override
     public void run(long j3, int[] iArr) {
-        g1 g1Var = this.f9861b;
+        g1 g1Var = this.f9854b;
         if (g1Var.E == null) {
             return;
         }
         TL_phone.getGroupParticipants getgroupparticipants = new TL_phone.getGroupParticipants();
-        getgroupparticipants.call = g1Var.f9026f;
+        getgroupparticipants.call = g1Var.f9001f;
         getgroupparticipants.offset = "";
         int i7 = 0;
         while (i7 < iArr.length) {
             i7 = com.google.android.recaptcha.internal.a.f(iArr[i7], i7, 1, getgroupparticipants.sources);
         }
-        ConnectionsManager.getInstance(g1Var.f9025e).sendRequest(getgroupparticipants, new bi.h3(g1Var, iArr, j3, 3));
+        ConnectionsManager.getInstance(g1Var.f9000e).sendRequest(getgroupparticipants, new bi.h3(g1Var, iArr, j3, 3));
     }
 
     @Override
     public void run(final long j3, final long j10, final int i7, final int i10) {
         String str;
-        switch (this.f9860a) {
+        switch (this.f9853a) {
             case 3:
-                final g1 g1Var = this.f9861b;
-                if (g1Var.f9030w == null) {
+                final g1 g1Var = this.f9854b;
+                if (g1Var.f9005w == null) {
                     return;
                 }
                 StringBuilder sb2 = new StringBuilder("[LivePlayer] sending getFile time_ms=");
@@ -118,7 +118,7 @@ public final class v0 implements NativeInstance.PayloadCallback, RequestDelegate
                 TLRPC.TL_upload_getFile tL_upload_getFile = new TLRPC.TL_upload_getFile();
                 tL_upload_getFile.limit = 131072;
                 TLRPC.TL_inputGroupCallStream tL_inputGroupCallStream = new TLRPC.TL_inputGroupCallStream();
-                tL_inputGroupCallStream.call = g1Var.f9026f;
+                tL_inputGroupCallStream.call = g1Var.f9001f;
                 tL_inputGroupCallStream.time_ms = j3;
                 if (i11 == 0) {
                     tL_inputGroupCallStream.scale = 1;
@@ -135,13 +135,13 @@ public final class v0 implements NativeInstance.PayloadCallback, RequestDelegate
                     str = i7 + "_" + j3 + "_" + i10;
                 }
                 final String str2 = str;
-                org.telegram.messenger.g0.h3(new ai.e0(g1Var, str2, ConnectionsManager.getInstance(org.telegram.messenger.c.a(g1Var.f9025e).f21765a).sendRequest(tL_upload_getFile, new RequestDelegateTimestamp() {
+                org.telegram.messenger.g0.h3(new ai.e0(g1Var, str2, ConnectionsManager.getInstance(org.telegram.messenger.c.a(g1Var.f9000e).f21765a).sendRequest(tL_upload_getFile, new RequestDelegateTimestamp() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error, long j11) {
                         int i12;
                         String str3;
                         g1 g1Var2 = g1.this;
-                        if (!g1Var2.f9031x && g1Var2.E != null) {
+                        if (!g1Var2.f9006x && g1Var2.E != null) {
                             org.telegram.messenger.g0.h3(new z0(1, g1Var2, str2));
                             long j12 = currentTimeMillis;
                             long j13 = j3;
@@ -229,20 +229,20 @@ public final class v0 implements NativeInstance.PayloadCallback, RequestDelegate
                 sb3.append(j10 == 500 ? ", scale = 1" : "");
                 sb3.append(i7 != 0 ? a8.p0.m(i7, i10, ", video_channel = ", ", video_quality = ") : "");
                 org.telegram.messenger.a8.b(sb3.toString());
-                org.telegram.messenger.g0.h3(new d1(i7, i10, 0, j3, this.f9861b));
+                org.telegram.messenger.g0.h3(new d1(i7, i10, 0, j3, this.f9854b));
                 return;
         }
     }
 
     @Override
     public void run(long j3) {
-        g1 g1Var = this.f9861b;
-        int i7 = g1Var.f9025e;
-        TLRPC.GroupCall groupCall = g1Var.f9030w;
+        g1 g1Var = this.f9854b;
+        int i7 = g1Var.f9000e;
+        TLRPC.GroupCall groupCall = g1Var.f9005w;
         if (groupCall != null && groupCall.rtmp_stream) {
             TL_phone.getGroupCallStreamChannels getgroupcallstreamchannels = new TL_phone.getGroupCallStreamChannels();
-            getgroupcallstreamchannels.call = g1Var.f9026f;
-            if (g1Var.f9030w == null || g1Var.E == null) {
+            getgroupcallstreamchannels.call = g1Var.f9001f;
+            if (g1Var.f9005w == null || g1Var.E == null) {
                 return;
             }
             ConnectionsManager.getInstance(i7).sendRequest(getgroupcallstreamchannels, new c1(g1Var, j3, 0), 65536, 2, g1Var.h());

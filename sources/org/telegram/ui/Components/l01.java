@@ -1,44 +1,46 @@
 package org.telegram.ui.Components;
 
-import android.widget.EditText;
-import androidx.recyclerview.widget.RecyclerView;
-public final class l01 extends v4.s0 {
-    public final int f35474a;
-    public final long f35475b;
-    public final s01 f35476c;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+public final class l01 extends Drawable {
+    public final Paint f35543a = new Paint(1);
+    public final RectF f35544b = new RectF();
+    public final int f35545c;
+    public final t01 d;
 
-    public l01(s01 s01Var, int i7, long j3) {
-        this.f35476c = s01Var;
-        this.f35474a = i7;
-        this.f35475b = j3;
+    public l01(t01 t01Var, int i7) {
+        this.d = t01Var;
+        this.f35545c = i7;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i7) {
-        EditText editText = this.f35476c.f37849w;
-        if (i7 == 1 && editText.hasFocus()) {
-            org.telegram.messenger.g0.v1(editText);
-            editText.clearFocus();
-        }
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        RectF rectF = this.f35544b;
+        rectF.set(bounds);
+        int i7 = this.f35545c;
+        rectF.inset(i7, i7);
+        float height = rectF.height() / 2.0f;
+        int w02 = org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.O5, this.d.f38214e);
+        Paint paint = this.f35543a;
+        paint.setColor(w02);
+        canvas.drawRoundRect(rectF, height, height, paint);
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i7, int i10) {
-        s01 s01Var = this.f35476c;
-        s01Var.i();
-        v4.b0 b0Var = (v4.b0) recyclerView.getLayoutManager();
-        if (b0Var != null && b0Var.N0() >= s01Var.f37848s.f36177c.size() - 3) {
-            boolean z9 = s01Var.d;
-            int i11 = this.f35474a;
-            if (z9) {
-                org.telegram.messenger.qp.s1(i11).G1().g(false);
-                return;
-            }
-            org.telegram.messenger.k00 k00Var = org.telegram.messenger.qp.s1(i11).f24877q7;
-            long j3 = -this.f35475b;
-            if (!k00Var.e(j3)) {
-                k00Var.o(j3);
-            }
-        }
+    public final int getOpacity() {
+        return -3;
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

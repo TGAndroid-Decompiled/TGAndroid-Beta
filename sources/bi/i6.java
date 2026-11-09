@@ -17,19 +17,19 @@ import org.telegram.messenger.ri;
 import org.telegram.messenger.v10;
 import org.telegram.messenger.w10;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.fb0;
-import org.telegram.ui.Components.hb0;
-import org.telegram.ui.Components.k60;
-import org.telegram.ui.Components.ow0;
-import org.telegram.ui.Components.pp0;
-import org.telegram.ui.Components.up0;
-import org.telegram.ui.Components.wp0;
+import org.telegram.ui.Components.gb0;
+import org.telegram.ui.Components.ib0;
+import org.telegram.ui.Components.l60;
+import org.telegram.ui.Components.pw0;
+import org.telegram.ui.Components.qp0;
+import org.telegram.ui.Components.vp0;
+import org.telegram.ui.Components.xp0;
 import org.telegram.ui.bk0;
-import org.telegram.ui.d10;
-import org.telegram.ui.jn0;
-import org.telegram.ui.ld0;
-import org.telegram.ui.zj0;
-public final class i6 implements org.telegram.ui.ActionBar.r1, fb0, ri, org.telegram.messenger.q1, OnFailureListener, w10 {
+import org.telegram.ui.dk0;
+import org.telegram.ui.f10;
+import org.telegram.ui.ln0;
+import org.telegram.ui.nd0;
+public final class i6 implements org.telegram.ui.ActionBar.r1, gb0, ri, org.telegram.messenger.q1, OnFailureListener, w10 {
     public final int f4044a;
     public final int f4045b;
     public final Object f4046c;
@@ -37,10 +37,10 @@ public final class i6 implements org.telegram.ui.ActionBar.r1, fb0, ri, org.tele
     public final Object f4047e;
     public final Object f4048f;
 
-    public i6(int i7, hb0 hb0Var, org.telegram.ui.Components.z3 z3Var, org.telegram.ui.Components.a4 a4Var, TextView textView) {
+    public i6(int i7, ib0 ib0Var, org.telegram.ui.Components.z3 z3Var, org.telegram.ui.Components.a4 a4Var, TextView textView) {
         this.f4044a = 1;
         this.f4045b = i7;
-        this.f4046c = hb0Var;
+        this.f4046c = ib0Var;
         this.d = z3Var;
         this.f4047e = a4Var;
         this.f4048f = textView;
@@ -48,21 +48,21 @@ public final class i6 implements org.telegram.ui.ActionBar.r1, fb0, ri, org.tele
 
     @Override
     public void a(f5.f fVar, List list) {
-        org.telegram.messenger.g0.h3(new jg.c1((ld0) this.f4046c, (String) this.d, fVar, list, (String) this.f4047e, (String) this.f4048f, this.f4045b));
+        org.telegram.messenger.g0.h3(new jg.c1((nd0) this.f4046c, (String) this.d, fVar, list, (String) this.f4047e, (String) this.f4048f, this.f4045b));
     }
 
     @Override
     public Object d(Number number, Object obj) {
         int i7;
         TL_stars.TL_starGiftCollection tL_starGiftCollection;
-        up0 up0Var = (up0) this.f4046c;
+        vp0 vp0Var = (vp0) this.f4046c;
         org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) this.f4048f;
         Context context = (Context) this.d;
-        org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f4047e;
+        org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) this.f4047e;
         Integer num = (Integer) number;
         View view = (View) obj;
-        t9 t9Var = up0Var.f60286e;
-        if (num.intValue() != -1 && num.intValue() != -2 && num.intValue() != 0 && !up0Var.O) {
+        t9 t9Var = vp0Var.f60295e;
+        if (num.intValue() != -1 && num.intValue() != -2 && num.intValue() != 0 && !vp0Var.O) {
             int i10 = 0;
             while (true) {
                 if (i10 < t9Var.d().size()) {
@@ -79,19 +79,19 @@ public final class i6 implements org.telegram.ui.ActionBar.r1, fb0, ri, org.tele
                 }
             }
             int i11 = this.f4045b;
-            String r10 = org.telegram.messenger.m5.r(qp.s1(i11).e2(up0Var.f60285c));
+            String r10 = org.telegram.messenger.m5.r(qp.s1(i11).e2(vp0Var.f60294c));
             boolean h = t9Var.h();
             if (TextUtils.isEmpty(r10) && !h) {
                 return Boolean.FALSE;
             }
-            k60 H = k60.H(f2Var, view);
-            H.W(new wp0(up0Var));
-            H.l(2131231828, org.telegram.messenger.id.M0(2131750239, null), new zh.h1(up0Var, 2), h);
-            H.l(2131232363, org.telegram.messenger.id.M0(2131750235, null), new jg.c1(up0Var, i11, r10, tL_starGiftCollection, context, f6Var, f2Var, 18), !TextUtils.isEmpty(r10));
-            H.l(2131232116, org.telegram.messenger.id.M0(2131750237, null), new yf.b(8, up0Var, tL_starGiftCollection), h);
-            H.l(2131232773, org.telegram.messenger.id.M0(2131750236, null), new zh.h1(up0Var, 1), h);
-            H.m(2131232108, new d10(up0Var, i7, tL_starGiftCollection, 25), org.telegram.messenger.id.M0(2131750238, null), h, true);
-            up0Var.I = H;
+            l60 H = l60.H(f2Var, view);
+            H.W(new xp0(vp0Var));
+            H.l(2131231828, org.telegram.messenger.id.M0(2131750238, null), new zh.h1(vp0Var, 2), h);
+            H.l(2131232363, org.telegram.messenger.id.M0(2131750234, null), new jg.c1(vp0Var, i11, r10, tL_starGiftCollection, context, g6Var, f2Var, 18), !TextUtils.isEmpty(r10));
+            H.l(2131232116, org.telegram.messenger.id.M0(2131750236, null), new yf.b(9, vp0Var, tL_starGiftCollection), h);
+            H.l(2131232773, org.telegram.messenger.id.M0(2131750235, null), new zh.h1(vp0Var, 1), h);
+            H.m(2131232108, new f10(vp0Var, i7, tL_starGiftCollection, 25), org.telegram.messenger.id.M0(2131750237, null), h, true);
+            vp0Var.I = H;
             H.Z();
             return Boolean.TRUE;
         }
@@ -100,13 +100,13 @@ public final class i6 implements org.telegram.ui.ActionBar.r1, fb0, ri, org.tele
 
     @Override
     public void e(String str, ArrayList arrayList) {
-        ow0 ow0Var = (ow0) this.f4046c;
+        pw0 pw0Var = (pw0) this.f4046c;
         String str2 = (String) this.d;
         HashSet hashSet = (HashSet) this.f4047e;
         ArrayList arrayList2 = (ArrayList) this.f4048f;
-        if (this.f4045b == ow0Var.K) {
-            ow0Var.I = 1;
-            ow0Var.J = str2;
+        if (this.f4045b == pw0Var.K) {
+            pw0Var.I = 1;
+            pw0Var.J = str2;
             if (arrayList != null) {
                 int size = arrayList.size();
                 int i7 = 0;
@@ -121,31 +121,31 @@ public final class i6 implements org.telegram.ui.ActionBar.r1, fb0, ri, org.tele
                 }
             }
             if (!arrayList2.isEmpty()) {
-                ow0Var.f36721y = false;
-                ow0Var.f36719w = false;
-                ow0Var.c();
-                e5 e5Var = ow0Var.d;
+                pw0Var.f37118y = false;
+                pw0Var.f37116w = false;
+                pw0Var.c();
+                e5 e5Var = pw0Var.d;
                 if (e5Var != null) {
                     e5Var.setVisibility(0);
                 }
-                ow0Var.W = org.telegram.messenger.g0.L(10.0f);
-                ow0Var.f36720x = arrayList;
-                ow0Var.f36706a0 = 0;
-                ow0Var.f36708b0 = Integer.valueOf(str2.length());
-                e5 e5Var2 = ow0Var.d;
+                pw0Var.W = org.telegram.messenger.g0.L(10.0f);
+                pw0Var.f37117x = arrayList;
+                pw0Var.f37103a0 = 0;
+                pw0Var.f37105b0 = Integer.valueOf(str2.length());
+                e5 e5Var2 = pw0Var.d;
                 if (e5Var2 != null) {
                     e5Var2.invalidate();
                 }
-                org.telegram.ui.l4 l4Var = ow0Var.f36714f;
+                org.telegram.ui.l4 l4Var = pw0Var.f37111f;
                 if (l4Var != null) {
                     l4Var.f();
                     return;
                 }
                 return;
             }
-            ow0Var.f36720x = null;
-            ow0Var.f36721y = true;
-            ow0Var.f();
+            pw0Var.f37117x = null;
+            pw0Var.f37118y = true;
+            pw0Var.f();
         }
     }
 
@@ -156,7 +156,7 @@ public final class i6 implements org.telegram.ui.ActionBar.r1, fb0, ri, org.tele
             case 0:
                 k6 k6Var = (k6) this.f4046c;
                 Context context = (Context) this.d;
-                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f4047e;
+                org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) this.f4047e;
                 v10 v10Var = (v10) this.f4048f;
                 h6 h6Var = (h6) k6Var.f4159o.get(k6Var.f4161q);
                 if (h6Var != null) {
@@ -167,13 +167,13 @@ public final class i6 implements org.telegram.ui.ActionBar.r1, fb0, ri, org.tele
                     } else {
                         aVar = null;
                     }
-                    if (aVar != null && aVar2.f6161b > aVar.f6161b) {
+                    if (aVar != null && aVar2.f6159b > aVar.f6159b) {
                         cg.b bVar = k6Var.f4161q;
-                        if (bVar == cg.b.f6162a) {
-                            new tc(context, f6Var, aVar2.a(), 14, null, null, 0L).show();
+                        if (bVar == cg.b.f6160a) {
+                            new tc(context, g6Var, aVar2.a(), 14, null, null, 0L).show();
                             return;
-                        } else if (bVar == cg.b.f6163b) {
-                            new gi.e(context, f6Var, h6Var.f3999c, true, null).show();
+                        } else if (bVar == cg.b.f6161b) {
+                            new gi.e(context, g6Var, h6Var.f3999c, true, null).show();
                             return;
                         } else {
                             return;
@@ -190,19 +190,19 @@ public final class i6 implements org.telegram.ui.ActionBar.r1, fb0, ri, org.tele
                 return;
             default:
                 ew ewVar = (ew) this.d;
-                zj0 zj0Var = (zj0) this.f4047e;
-                bk0.e0(this.f4045b, (String) this.f4048f, ewVar, zj0Var, (bk0) this.f4046c);
+                bk0 bk0Var = (bk0) this.f4047e;
+                dk0.e0(this.f4045b, (String) this.f4048f, ewVar, bk0Var, (dk0) this.f4046c);
                 return;
         }
     }
 
     @Override
-    public void n(hb0 hb0Var, int i7) {
-        hb0 hb0Var2 = (hb0) this.f4046c;
+    public void n(ib0 ib0Var, int i7) {
+        ib0 ib0Var2 = (ib0) this.f4046c;
         org.telegram.ui.Components.z3 z3Var = (org.telegram.ui.Components.z3) this.d;
         org.telegram.ui.Components.a4 a4Var = (org.telegram.ui.Components.a4) this.f4047e;
-        org.telegram.ui.Components.v4.g(null, null, 0L, this.f4045b, 3, hb0Var2, z3Var, a4Var);
-        org.telegram.ui.Components.v4.e((TextView) this.f4048f, hb0Var2, z3Var, a4Var);
+        org.telegram.ui.Components.v4.g(null, null, 0L, this.f4045b, 3, ib0Var2, z3Var, a4Var);
+        org.telegram.ui.Components.v4.e((TextView) this.f4048f, ib0Var2, z3Var, a4Var);
     }
 
     @Override
@@ -210,12 +210,12 @@ public final class i6 implements org.telegram.ui.ActionBar.r1, fb0, ri, org.tele
         tg.c2 c2Var = (tg.c2) this.f4046c;
         Bitmap bitmap = (Bitmap) this.d;
         int i7 = this.f4045b;
-        jn0 jn0Var = (jn0) this.f4047e;
+        ln0 ln0Var = (ln0) this.f4047e;
         hi.d4 d4Var = (hi.d4) this.f4048f;
-        c2Var.f55615y = false;
+        c2Var.f55627y = false;
         org.telegram.messenger.a8.g(exc, true);
         if ((exc instanceof lb.a) && exc.getMessage() != null && exc.getMessage().contains("segmentation optional module to be downloaded") && c2Var.isAttachedToWindow()) {
-            org.telegram.messenger.g0.i3(new pp0(c2Var, bitmap, i7, jn0Var, 23), 2000L);
+            org.telegram.messenger.g0.i3(new qp0(c2Var, bitmap, i7, ln0Var, 23), 2000L);
         } else {
             d4Var.a(new ArrayList());
         }
@@ -239,18 +239,18 @@ public final class i6 implements org.telegram.ui.ActionBar.r1, fb0, ri, org.tele
         this.f4048f = obj3;
     }
 
-    public i6(up0 up0Var, int i7, org.telegram.ui.ActionBar.f2 f2Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+    public i6(vp0 vp0Var, int i7, org.telegram.ui.ActionBar.f2 f2Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
         this.f4044a = 6;
-        this.f4046c = up0Var;
+        this.f4046c = vp0Var;
         this.f4045b = i7;
         this.f4048f = f2Var;
         this.d = context;
-        this.f4047e = f6Var;
+        this.f4047e = g6Var;
     }
 
-    public i6(ld0 ld0Var, String str, String str2, String str3, int i7) {
+    public i6(nd0 nd0Var, String str, String str2, String str3, int i7) {
         this.f4044a = 3;
-        this.f4046c = ld0Var;
+        this.f4046c = nd0Var;
         this.d = str;
         this.f4047e = str2;
         this.f4048f = str3;

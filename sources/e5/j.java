@@ -16,7 +16,7 @@ public final class j extends b {
                 if (!super.b() || !n9.a("MULTI_PROCESS")) {
                     return false;
                 }
-                boolean z9 = d5.b.f8184a;
+                boolean z9 = d5.b.f8182a;
                 if (k.f10711b.b()) {
                     return l.f10714a.getStatics().isMultiProcessEnabled();
                 }

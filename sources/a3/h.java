@@ -29,9 +29,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.messaging.FirebaseMessaging;
-import di.i4;
-import di.k9;
-import di.z3;
+import di.a4;
+import di.j4;
+import di.l9;
 import fi.m1;
 import fi.q8;
 import fi.s8;
@@ -59,7 +59,6 @@ import li.t3;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.c20;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.g6;
 import org.telegram.messenger.gz;
 import org.telegram.messenger.i6;
 import org.telegram.messenger.ij;
@@ -78,7 +77,7 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.m0;
 import org.telegram.ui.ActionBar.r1;
 import org.telegram.ui.ActionBar.u1;
@@ -91,23 +90,23 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.bn;
 import org.telegram.ui.Components.d4;
 import org.telegram.ui.Components.di;
-import org.telegram.ui.Components.fb0;
-import org.telegram.ui.Components.hb0;
+import org.telegram.ui.Components.gb0;
+import org.telegram.ui.Components.ib0;
 import org.telegram.ui.Components.ik;
-import org.telegram.ui.Components.mb0;
+import org.telegram.ui.Components.nb0;
 import org.telegram.ui.Components.t4;
 import org.telegram.ui.Components.u3;
-import org.telegram.ui.Components.ui0;
 import org.telegram.ui.Components.v4;
+import org.telegram.ui.Components.vi0;
 import org.telegram.ui.Components.vk;
 import org.telegram.ui.Components.wk;
-import org.telegram.ui.an;
-import org.telegram.ui.gl0;
+import org.telegram.ui.cn;
+import org.telegram.ui.il0;
 import org.telegram.ui.ld;
-import org.telegram.ui.qw;
-import org.telegram.ui.w91;
-import org.telegram.ui.ww;
-public final class h implements p, SuccessContinuation, androidx.car.app.utils.b, Continuation, qw, wr, k9, ri, r1, OnFailureListener, gl0, vk, m0, fb0, t4 {
+import org.telegram.ui.sw;
+import org.telegram.ui.y91;
+import org.telegram.ui.yw;
+public final class h implements p, SuccessContinuation, androidx.car.app.utils.b, Continuation, sw, wr, l9, ri, r1, OnFailureListener, il0, vk, m0, gb0, t4 {
     public final int f87a;
     public final Object f88b;
     public final Object f89c;
@@ -135,19 +134,19 @@ public final class h implements p, SuccessContinuation, androidx.car.app.utils.b
         switch (this.f87a) {
             case 27:
                 wk wkVar = (wk) this.f89c;
-                wkVar.f39958n0.d((TLRPC.TL_messageMediaGeo) this.f88b, wkVar.f39959o0, z9, i7, ((Long) this.d).longValue());
-                wkVar.f39004b.a(true);
+                wkVar.f40078n0.d((TLRPC.TL_messageMediaGeo) this.f88b, wkVar.f40079o0, z9, i7, ((Long) this.d).longValue());
+                wkVar.f39071b.a(true);
                 return;
             default:
                 bn bnVar = (bn) this.f89c;
-                bnVar.f32244j0.b((TLRPC.TL_messageMediaToDo) this.f88b, null, null, null, z9, i7, ((Long) this.d).longValue());
-                bnVar.f39004b.a(true);
+                bnVar.f32303j0.b((TLRPC.TL_messageMediaToDo) this.f88b, null, null, null, z9, i7, ((Long) this.d).longValue());
+                bnVar.f39071b.a(true);
                 return;
         }
     }
 
     @Override
-    public boolean N(ww wwVar) {
+    public boolean N(yw ywVar) {
         switch (this.f87a) {
             case 5:
                 return false;
@@ -158,9 +157,9 @@ public final class h implements p, SuccessContinuation, androidx.car.app.utils.b
 
     @Override
     public void a(String str) {
-        z3 z3Var = (z3) this.f89c;
-        i4 i4Var = z3Var.f10013x;
-        i4Var.getStoriesController().r(i4Var.f9164k1, str, new v3(z3Var, (TL_stories.StoryItem) this.f88b, (f6) this.d, 3));
+        a4 a4Var = (a4) this.f89c;
+        j4 j4Var = a4Var.f8808x;
+        j4Var.getStoriesController().r(j4Var.f9196k1, str, new v3(a4Var, (TL_stories.StoryItem) this.f88b, (g6) this.d, 3));
     }
 
     @Override
@@ -168,19 +167,19 @@ public final class h implements p, SuccessContinuation, androidx.car.app.utils.b
         switch (this.f87a) {
             case 12:
                 v2 v2Var = (v2) this.f89c;
-                mb0 mb0Var = (mb0) this.d;
+                nb0 nb0Var = (nb0) this.d;
                 String str = (String) this.f88b;
                 if (i7 != 3) {
-                    mb0Var.dismiss();
+                    nb0Var.dismiss();
                 }
                 v2Var.d.D.G(str, f1.A(i7).toLowerCase(Locale.ROOT), false);
                 return;
             default:
-                mb0 mb0Var2 = (mb0) this.f89c;
+                nb0 nb0Var2 = (nb0) this.f89c;
                 c4 c4Var = (c4) this.d;
                 String str2 = (String) this.f88b;
                 if (i7 != 3) {
-                    mb0Var2.dismiss();
+                    nb0Var2.dismiss();
                 }
                 c4Var.getWebViewContainer().G(str2, f1.A(i7).toLowerCase(Locale.ROOT), false);
                 return;
@@ -306,7 +305,7 @@ public final class h implements p, SuccessContinuation, androidx.car.app.utils.b
         for (int i13 = 0; i13 < j3.size(); i13++) {
             try {
                 ?? obj = new Object();
-                obj.f24701a = ((g6) j3.get(i13)).f22625c.toString();
+                obj.f24701a = ((org.telegram.messenger.g6) j3.get(i13)).f22625c.toString();
                 arrayList5.add(obj);
             } catch (Exception unused) {
             }
@@ -320,7 +319,7 @@ public final class h implements p, SuccessContinuation, androidx.car.app.utils.b
         y1Var.f13152y++;
         arrayList9.add(null);
         arrayList8.add(0L);
-        if (z1Var.f12881a == 0) {
+        if (z1Var.f12882a == 0) {
             hashSet.clear();
             for (int i15 = 0; i15 < arrayList5.size(); i15++) {
                 qi qiVar = (qi) arrayList5.get(i15);
@@ -494,7 +493,7 @@ public final class h implements p, SuccessContinuation, androidx.car.app.utils.b
                 Activity activity2 = chatActivityEnterView.O2;
                 if (activity2.checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION") != 0) {
                     activity2.requestPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, 2);
-                    chatActivityEnterView.f31068i3 = ijVar;
+                    chatActivityEnterView.f31073i3 = ijVar;
                     chatActivityEnterView.j3 = keyboardButtonProto;
                     return;
                 }
@@ -521,8 +520,8 @@ public final class h implements p, SuccessContinuation, androidx.car.app.utils.b
                 TextView textView = ikVar.U;
                 String str = null;
                 if (x0Var.getText().toString().getBytes(StandardCharsets.UTF_8).length > 960) {
-                    int i12 = -ikVar.f34753v0;
-                    ikVar.f34753v0 = i12;
+                    int i12 = -ikVar.f34791v0;
+                    ikVar.f34791v0 = i12;
                     g0.G3(i12, x0Var, null);
                     return;
                 }
@@ -530,12 +529,12 @@ public final class h implements p, SuccessContinuation, androidx.car.app.utils.b
                 if (!TextUtils.isEmpty(trim3)) {
                     str = trim3;
                 }
-                ikVar.f34750s0 = str;
-                ikVar.f34751t0 = !c2Var.b();
-                if (TextUtils.isEmpty(ikVar.f34750s0)) {
+                ikVar.f34788s0 = str;
+                ikVar.f34789t0 = !c2Var.b();
+                if (TextUtils.isEmpty(ikVar.f34788s0)) {
                     textView.setVisibility(8);
                 } else {
-                    textView.setText(ikVar.f34750s0);
+                    textView.setText(ikVar.f34788s0);
                     textView.setVisibility(0);
                 }
                 ikVar.k0();
@@ -571,18 +570,18 @@ public final class h implements p, SuccessContinuation, androidx.car.app.utils.b
         h9.f1 f1Var = (h9.f1) this.d;
         if (i7 == 1) {
             t4Var.L(2147483646, 0, zArr[0]);
-            ((org.telegram.ui.ActionBar.v2) f1Var.f14323b).f28655x0.run();
+            ((org.telegram.ui.ActionBar.v2) f1Var.f14323b).f28660x0.run();
         }
     }
 
     @Override
-    public void n(hb0 hb0Var, int i7) {
+    public void n(ib0 ib0Var, int i7) {
         switch (this.f87a) {
             case 19:
-                v4.g(null, null, 0L, 0L, 0, (hb0) this.f89c, (org.telegram.ui.Components.c4) this.f88b, (d4) this.d);
+                v4.g(null, null, 0L, 0L, 0, (ib0) this.f89c, (org.telegram.ui.Components.c4) this.f88b, (d4) this.d);
                 return;
             default:
-                v4.g(null, null, 0L, 0L, 0, (hb0) this.f89c, (u3) this.f88b, (org.telegram.ui.Components.v3) this.d);
+                v4.g(null, null, 0L, 0L, 0, (ib0) this.f89c, (u3) this.f88b, (org.telegram.ui.Components.v3) this.d);
                 return;
         }
     }
@@ -590,7 +589,7 @@ public final class h implements p, SuccessContinuation, androidx.car.app.utils.b
     @Override
     public void o(Canvas canvas, RectF rectF, float f10) {
         o7 o7Var = (o7) this.f89c;
-        ui0 ui0Var = (ui0) this.f88b;
+        vi0 vi0Var = (vi0) this.f88b;
         int[] iArr = (int[]) this.d;
         o7Var.c(canvas, rectF, f10);
         o7Var.f(canvas, rectF, f10);
@@ -599,10 +598,10 @@ public final class h implements p, SuccessContinuation, androidx.car.app.utils.b
         } else {
             o7Var.e(canvas, rectF, f10);
         }
-        if (ui0Var != null && ui0Var.f38653a0 && ui0Var.getVisibility() == 0) {
+        if (vi0Var != null && vi0Var.f39080a0 && vi0Var.getVisibility() == 0) {
             canvas.saveLayerAlpha(0.0f, 0.0f, canvas.getWidth(), canvas.getHeight(), (int) (f10 * 255.0f), 31);
             canvas.translate(iArr[0], iArr[1]);
-            ui0Var.draw(canvas);
+            vi0Var.draw(canvas);
             canvas.restore();
         }
     }
@@ -649,35 +648,35 @@ public final class h implements p, SuccessContinuation, androidx.car.app.utils.b
     }
 
     @Override
-    public boolean y(ww wwVar, ArrayList arrayList, CharSequence charSequence, boolean z9, boolean z10, int i7, int i10, w91 w91Var) {
+    public boolean y(yw ywVar, ArrayList arrayList, CharSequence charSequence, boolean z9, boolean z10, int i7, int i10, y91 y91Var) {
         long j3;
         TLRPC.User a22;
         switch (this.f87a) {
             case 5:
                 k7 k7Var = (k7) this.f89c;
                 TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) this.f88b;
-                ww wwVar2 = (ww) this.d;
+                yw ywVar2 = (yw) this.d;
                 if (arrayList.isEmpty()) {
                     return false;
                 }
                 long j10 = ((xr) arrayList.get(0)).f26520a;
-                Long l10 = (Long) org.telegram.messenger.d4.f(k7Var.f28616a).f21985r.get(tL_starGiftUnique.slug);
+                Long l10 = (Long) org.telegram.messenger.d4.f(k7Var.f28621a).f21985r.get(tL_starGiftUnique.slug);
                 if (l10 != null) {
                     j3 = l10.longValue();
                 } else {
                     j3 = 0;
                 }
                 if (j3 != 0 && j3 != j10) {
-                    v4.k0(k7Var.getContext(), k7Var.I0, k7Var.f28616a, tL_starGiftUnique, j3, new w2(k7Var, j10, tL_starGiftUnique, wwVar2, 1));
+                    v4.k0(k7Var.getContext(), k7Var.I0, k7Var.f28621a, tL_starGiftUnique, j3, new w2(k7Var, j10, tL_starGiftUnique, ywVar2, 1));
                 } else {
-                    org.telegram.messenger.d4.f(k7Var.f28616a).s(j10, new ig.b(null, tL_starGiftUnique.slug), null, true);
-                    wwVar2.presentFragment(an.ra(j10), true);
+                    org.telegram.messenger.d4.f(k7Var.f28621a).s(j10, new ig.b(null, tL_starGiftUnique.slug), null, true);
+                    ywVar2.presentFragment(cn.ta(j10), true);
                 }
                 return true;
             default:
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f89c;
                 TL_keyboard.TL_inlineButtonTypeSwitchInline tL_inlineButtonTypeSwitchInline = (TL_keyboard.TL_inlineButtonTypeSwitchInline) this.d;
-                an anVar = chatActivityEnterView.P2;
+                cn cnVar = chatActivityEnterView.P2;
                 TLRPC.Message message = ((ij) this.f88b).f23262k;
                 long j11 = message.from_id.user_id;
                 long j12 = message.via_bot_id;
@@ -685,7 +684,7 @@ public final class h implements p, SuccessContinuation, androidx.car.app.utils.b
                     j11 = j12;
                 }
                 if (qp.s1(chatActivityEnterView.R.f21765a).a2(Long.valueOf(j11)) == null) {
-                    wwVar.finishFragment();
+                    ywVar.finishFragment();
                 } else {
                     long j13 = ((xr) arrayList.get(0)).f26520a;
                     ui.b0(chatActivityEnterView.Q).Q1(j13, 0, "@" + t10.n(a22) + " " + tL_inlineButtonTypeSwitchInline.query, null, null, null, null, 0L, true, false, null);
@@ -697,20 +696,20 @@ public final class h implements p, SuccessContinuation, androidx.car.app.utils.b
                             } else {
                                 bundle.putLong("chat_id", -j13);
                             }
-                            if (qp.s1(chatActivityEnterView.R.f21765a).E(bundle, wwVar, null, null)) {
-                                if (anVar.presentFragment(new an(bundle), true)) {
+                            if (qp.s1(chatActivityEnterView.R.f21765a).E(bundle, ywVar, null, null)) {
+                                if (cnVar.presentFragment(new cn(bundle), true)) {
                                     if (!g0.Q1()) {
-                                        anVar.removeSelfFromStack();
+                                        cnVar.removeSelfFromStack();
                                     }
                                 } else {
-                                    wwVar.finishFragment();
+                                    ywVar.finishFragment();
                                 }
                             }
                         } else {
-                            wwVar.finishFragment();
+                            ywVar.finishFragment();
                         }
                     } else {
-                        wwVar.finishFragment();
+                        ywVar.finishFragment();
                     }
                 }
                 return true;
@@ -738,15 +737,15 @@ public final class h implements p, SuccessContinuation, androidx.car.app.utils.b
         String str = (String) this.f88b;
         c0 c0Var = (c0) this.d;
         String str2 = (String) obj;
-        d0 c10 = FirebaseMessaging.c(firebaseMessaging.f7890b);
-        o9.g gVar = firebaseMessaging.f7889a;
+        d0 c10 = FirebaseMessaging.c(firebaseMessaging.f7888b);
+        o9.g gVar = firebaseMessaging.f7887a;
         gVar.a();
         if ("[DEFAULT]".equals(gVar.f20876b)) {
             d = "";
         } else {
             d = gVar.d();
         }
-        String a10 = firebaseMessaging.f7895i.a();
+        String a10 = firebaseMessaging.f7893i.a();
         synchronized (c10) {
             String a11 = c0.a(System.currentTimeMillis(), str2, a10);
             if (a11 != null) {
@@ -756,7 +755,7 @@ public final class h implements p, SuccessContinuation, androidx.car.app.utils.b
             }
         }
         if (firebaseMessaging.d.r() || c0Var == null || !str2.equals(c0Var.f911a)) {
-            o9.g gVar2 = firebaseMessaging.f7889a;
+            o9.g gVar2 = firebaseMessaging.f7887a;
             gVar2.a();
             String str3 = gVar2.f20876b;
             if ("[DEFAULT]".equals(str3)) {
@@ -774,7 +773,7 @@ public final class h implements p, SuccessContinuation, androidx.car.app.utils.b
                 } else {
                     intent.setAction("com.google.firebase.messaging.NEW_TOKEN");
                 }
-                new ab.k(firebaseMessaging.f7890b).b(intent);
+                new ab.k(firebaseMessaging.f7888b).b(intent);
             }
         }
         return Tasks.forResult(str2);

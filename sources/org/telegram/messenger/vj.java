@@ -119,16 +119,16 @@ public final class vj implements Runnable {
                 Iterator it2 = hashSet2.iterator();
                 while (it2.hasNext()) {
                     Pair pair = (Pair) it2.next();
-                    Pair pair2 = (Pair) hVar.f(((bi.x9) pair.first).f5042a);
+                    Pair pair2 = (Pair) hVar.f(((bi.x9) pair.first).f5040a);
                     if (pair2 == null) {
-                        long j3 = ((bi.x9) pair.first).f5042a;
+                        long j3 = ((bi.x9) pair.first).f5040a;
                         pair2 = new Pair(new HashSet(), (AtomicBoolean) pair.second);
                         hVar.k(pair2, j3);
                     }
                     if (!((AtomicBoolean) pair.second).get()) {
                         ((AtomicBoolean) pair2.second).set(false);
                     }
-                    ((HashSet) pair2.first).add(Integer.valueOf(((bi.x9) pair.first).f5043b));
+                    ((HashSet) pair2.first).add(Integer.valueOf(((bi.x9) pair.first).f5041b));
                 }
                 hashSet2.clear();
                 for (int i7 = 0; i7 < hVar.m(); i7++) {

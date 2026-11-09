@@ -1,36 +1,30 @@
 package org.telegram.ui;
 
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class zg implements Runnable {
-    public final int f52581a = 1;
-    public final an f52582b;
-    public final TLRPC.TL_attachMenuBot f52583c;
-    public final TLRPC.TL_error d;
-    public final TLRPC.User f52584e;
+public final class zg implements RequestDelegate {
+    public final int f52553a;
+    public final cn f52554b;
+    public final TLRPC.TL_attachMenuBot f52555c;
+    public final TLRPC.User d;
 
-    public zg(an anVar, TLRPC.TL_attachMenuBot tL_attachMenuBot, TLRPC.TL_error tL_error, TLRPC.User user) {
-        this.f52582b = anVar;
-        this.f52583c = tL_attachMenuBot;
-        this.d = tL_error;
-        this.f52584e = user;
+    public zg(cn cnVar, TLRPC.TL_attachMenuBot tL_attachMenuBot, TLRPC.User user, int i7) {
+        this.f52553a = i7;
+        this.f52554b = cnVar;
+        this.f52555c = tL_attachMenuBot;
+        this.d = user;
     }
 
     @Override
-    public final void run() {
-        switch (this.f52581a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f52553a) {
             case 0:
-                an.i0(this.f52582b, this.f52583c, this.d, this.f52584e);
+                org.telegram.messenger.g0.h3(new ch(this.f52554b, this.f52555c, tL_error, this.d));
                 return;
             default:
-                an.t0(this.f52582b, this.f52583c, this.d, this.f52584e);
+                org.telegram.messenger.g0.h3(new ch(this.f52554b, tL_error, this.f52555c, this.d));
                 return;
         }
-    }
-
-    public zg(an anVar, TLRPC.TL_error tL_error, TLRPC.TL_attachMenuBot tL_attachMenuBot, TLRPC.User user) {
-        this.f52582b = anVar;
-        this.d = tL_error;
-        this.f52583c = tL_attachMenuBot;
-        this.f52584e = user;
     }
 }

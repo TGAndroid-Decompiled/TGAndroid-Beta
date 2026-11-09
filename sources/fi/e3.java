@@ -9,8 +9,8 @@ import org.telegram.messenger.qp;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.oj0;
-public abstract class e3 extends oj0 {
+import org.telegram.ui.Components.pj0;
+public abstract class e3 extends pj0 {
     public boolean d;
     public String f11867f;
     public String h;
@@ -20,7 +20,7 @@ public abstract class e3 extends oj0 {
     public final ArrayList f11865c = new ArrayList();
     public int f11866e = -1;
     public final ColorDrawable f11870s = new ColorDrawable(285212671);
-    public final di.s7 f11871w = new di.s7(this, 24);
+    public final di.f8 f11871w = new di.f8(this, 23);
 
     public e3(f3 f3Var) {
         this.f11872x = f3Var;
@@ -79,7 +79,7 @@ public abstract class e3 extends oj0 {
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        org.telegram.ui.Components.l9 l9Var = (org.telegram.ui.Components.l9) d1Var.f57044a;
+        org.telegram.ui.Components.l9 l9Var = (org.telegram.ui.Components.l9) d1Var.f57056a;
         TLObject tLObject = (TLObject) this.f11865c.get(i7);
         boolean z9 = tLObject instanceof TLRPC.Document;
         ColorDrawable colorDrawable = this.f11870s;

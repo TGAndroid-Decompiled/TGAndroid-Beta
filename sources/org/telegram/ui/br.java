@@ -1,211 +1,205 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.content.ClipData;
-import android.content.ClipDescription;
-import android.content.ClipboardManager;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.view.MotionEvent;
-import android.view.ViewGroup;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public abstract class br extends EditTextBoldCursor {
-    public static final org.telegram.ui.Components.lt0 X1;
-    public static final org.telegram.ui.Components.lt0 Y1;
-    public static final org.telegram.ui.Components.lt0 Z1;
-    public static final org.telegram.ui.Components.lt0 f44479a2;
-    public float G1;
-    public float H1;
-    public float I1;
-    public float J1;
-    public r1.g K1;
-    public r1.g L1;
-    public r1.g M1;
-    public r1.g N1;
-    public boolean O1;
-    public float P1;
-    public float Q1;
-    public boolean R1;
-    public Bitmap S1;
-    public Canvas T1;
-    public ValueAnimator U1;
-    public ValueAnimator V1;
-    public boolean W1;
+import android.view.View;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.regex.Pattern;
+public final class br implements org.telegram.ui.Components.mt0, org.telegram.ui.Components.lt0, org.telegram.messenger.oc, org.telegram.ui.ActionBar.r1, org.telegram.ui.Components.gb0, org.telegram.ui.Components.eb0 {
+    public final int f44107a;
 
-    static {
-        org.telegram.ui.Components.lt0 lt0Var = new org.telegram.ui.Components.lt0(new org.telegram.messenger.ch(25), new org.telegram.messenger.ch(26));
-        lt0Var.f35790c = 100.0f;
-        X1 = lt0Var;
-        org.telegram.ui.Components.lt0 lt0Var2 = new org.telegram.ui.Components.lt0(new org.telegram.messenger.ch(27), new org.telegram.messenger.ch(28));
-        lt0Var2.f35790c = 100.0f;
-        Y1 = lt0Var2;
-        org.telegram.ui.Components.lt0 lt0Var3 = new org.telegram.ui.Components.lt0(new org.telegram.messenger.ch(29), new zq(0));
-        lt0Var3.f35790c = 100.0f;
-        Z1 = lt0Var3;
-        org.telegram.ui.Components.lt0 lt0Var4 = new org.telegram.ui.Components.lt0(new zq(1), new zq(2));
-        lt0Var4.f35790c = 100.0f;
-        f44479a2 = lt0Var4;
+    public br(int i7) {
+        this.f44107a = i7;
     }
 
-    public static void B(r1.g gVar, float f10) {
-        r1.h hVar = gVar.f54268m;
-        if (hVar != null && f10 == ((float) hVar.f54276i)) {
-            return;
-        }
-        gVar.d();
-        r1.h hVar2 = new r1.h(f10);
-        hVar2.b(400.0f);
-        hVar2.a(1.0f);
-        hVar2.f54276i = f10;
-        gVar.f54268m = hVar2;
-        gVar.h();
-    }
-
-    public final void A(float f10) {
-        B(this.K1, f10 * 100.0f);
-    }
-
-    public final void C(float f10) {
-        B(this.M1, f10 * 100.0f);
-        r1.g gVar = this.N1;
-        gVar.d();
-        if (f10 != 0.0f) {
-            r1.h o4 = org.telegram.ui.Cells.f1.o(1.0f, 500.0f, 0.75f);
-            o4.f54276i = 100.0f;
-            gVar.f54268m = o4;
-            gVar.f54259b = 100.0f;
-            gVar.f54260c = true;
-            gVar.f54258a = 4000.0f;
-            gVar.h();
-            return;
-        }
-        this.J1 = 1.0f;
-    }
-
-    public final void D() {
-        if (getMeasuredHeight() != 0 && getMeasuredWidth() != 0 && getLayout() != null) {
-            Bitmap bitmap = this.S1;
-            if (bitmap == null || bitmap.getHeight() != getMeasuredHeight() || this.S1.getWidth() != getMeasuredWidth()) {
-                Bitmap bitmap2 = this.S1;
-                if (bitmap2 != null) {
-                    bitmap2.recycle();
+    @Override
+    public void f(Object obj, float f10) {
+        dr drVar = (dr) obj;
+        switch (this.f44107a) {
+            case 0:
+                drVar.I1 = f10;
+                if (drVar.getParent() != null) {
+                    ((View) drVar.getParent()).invalidate();
+                    return;
                 }
-                this.S1 = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-                this.T1 = new Canvas(this.S1);
-            }
-            this.S1.eraseColor(0);
-            CharSequence transformation = getTransformationMethod().getTransformation(getText(), this);
-            StaticLayout staticLayout = new StaticLayout(transformation, getLayout().getPaint(), (int) Math.ceil(getLayout().getPaint().measureText(transformation, 0, transformation.length())), Layout.Alignment.ALIGN_NORMAL, getLineSpacingMultiplier(), getLineSpacingExtra(), getIncludeFontPadding());
-            this.T1.save();
-            this.T1.translate((getMeasuredWidth() - staticLayout.getWidth()) / 2.0f, (getMeasuredHeight() - staticLayout.getHeight()) / 2.0f);
-            staticLayout.draw(this.T1);
-            this.T1.restore();
-            this.Q1 = 0.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.V1 = ofFloat;
-            ofFloat.addUpdateListener(new a3(this, 7));
-            this.V1.setDuration(220L);
-            this.V1.start();
-        }
-    }
-
-    public float getErrorProgress() {
-        return this.H1;
-    }
-
-    public float getFocusedProgress() {
-        return this.G1;
-    }
-
-    public float getSuccessProgress() {
-        return this.I1;
-    }
-
-    public float getSuccessScaleProgress() {
-        return this.J1;
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.K1.d();
-        this.L1.d();
-    }
-
-    @Override
-    public final void onFocusChanged(boolean z9, int i7, Rect rect) {
-        super.onFocusChanged(z9, i7, rect);
-        if (!isFocused()) {
-            m();
+                return;
+            default:
+                drVar.J1 = f10;
+                if (drVar.getParent() != null) {
+                    ((View) drVar.getParent()).invalidate();
+                    return;
+                }
+                return;
         }
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        yq yqVar;
-        ClipDescription primaryClipDescription;
-        String str;
-        int i7;
-        if (motionEvent.getAction() == 0) {
-            this.W1 = true;
-            motionEvent.getX();
-            motionEvent.getY();
+    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        switch (this.f44107a) {
+            case 5:
+                u1Var.dismiss();
+                return;
+            case 19:
+                u1Var.dismiss();
+                return;
+            default:
+                u1Var.dismiss();
+                return;
         }
-        if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            if (getParent() instanceof yq) {
-                yqVar = (yq) getParent();
-            } else {
-                yqVar = null;
-            }
-            if (motionEvent.getAction() == 1 && this.W1) {
-                if (isFocused() && yqVar != null) {
-                    ClipboardManager clipboardManager = (ClipboardManager) getContext().getSystemService(ClipboardManager.class);
-                    if (clipboardManager == null || clipboardManager.getPrimaryClipDescription() == null || (primaryClipDescription = clipboardManager.getPrimaryClipDescription()) == null) {
-                        return false;
-                    }
-                    primaryClipDescription.hasMimeType("text/plain");
-                    ClipData.Item itemAt = clipboardManager.getPrimaryClip().getItemAt(0);
-                    if (itemAt != null && itemAt.getText() != null) {
-                        str = itemAt.getText().toString();
-                    } else {
-                        str = "";
-                    }
-                    try {
-                        i7 = Integer.parseInt(str);
-                    } catch (Exception unused) {
-                        i7 = -1;
-                    }
-                    if (i7 > 0) {
-                        startActionMode(new ar(this));
-                    }
+    }
+
+    @Override
+    public float get(Object obj) {
+        return ((dr) obj).J1;
+    }
+
+    @Override
+    public String h(int i7) {
+        int i10;
+        switch (this.f44107a) {
+            case 7:
+                if (i7 == 0) {
+                    return org.telegram.messenger.id.M0(2131748531, null);
+                }
+                Calendar calendar = Calendar.getInstance();
+                int i11 = calendar.get(1);
+                calendar.add(6, i7);
+                long timeInMillis = calendar.getTimeInMillis();
+                if (calendar.get(1) == i11) {
+                    return org.telegram.messenger.id.E0().A0().format(timeInMillis) + ", " + org.telegram.messenger.id.E0().w0().format(timeInMillis);
+                }
+                return org.telegram.messenger.id.E0().y0().format(timeInMillis);
+            case 8:
+                if (i7 == 0) {
+                    return org.telegram.messenger.id.M0(2131748531, null);
+                }
+                Calendar calendar2 = Calendar.getInstance();
+                int i12 = calendar2.get(1);
+                calendar2.add(6, i7);
+                long timeInMillis2 = calendar2.getTimeInMillis();
+                int i13 = calendar2.get(1);
+                if (i13 == i12 && i7 < 7) {
+                    return org.telegram.messenger.id.E0().A0().format(timeInMillis2) + ", " + org.telegram.messenger.id.E0().w0().format(timeInMillis2);
+                } else if (i13 == i12) {
+                    return org.telegram.messenger.id.E0().w0().format(timeInMillis2);
                 } else {
-                    requestFocus();
+                    return org.telegram.messenger.id.E0().y0().format(timeInMillis2);
                 }
-                setSelection(0);
-                if (this.O1) {
-                    org.telegram.messenger.g0.K3(this);
+            case 9:
+                return String.format("%02d", Integer.valueOf(i7));
+            case 10:
+                return String.format("%02d", Integer.valueOf(i7));
+            case 11:
+                return String.format("%02d", Integer.valueOf(i7));
+            case 12:
+                return String.format("%02d", Integer.valueOf(i7));
+            case 13:
+                Calendar calendar3 = Calendar.getInstance();
+                calendar3.set(5, 1);
+                calendar3.set(2, i7);
+                return calendar3.getDisplayName(2, 1, Locale.getDefault());
+            case 14:
+                return String.format("%02d", Integer.valueOf(i7));
+            case 15:
+                return String.format("%02d", Integer.valueOf(i7));
+            case 16:
+                if (i7 == 0) {
+                    return org.telegram.messenger.id.M0(2131748531, null);
                 }
-            }
-            this.W1 = false;
+                Calendar calendar4 = Calendar.getInstance();
+                int i14 = calendar4.get(1);
+                calendar4.add(6, i7);
+                long timeInMillis3 = calendar4.getTimeInMillis();
+                if (calendar4.get(1) == i14) {
+                    return org.telegram.messenger.id.E0().w0().format(timeInMillis3);
+                }
+                return org.telegram.messenger.id.E0().y0().format(timeInMillis3);
+            case 17:
+                return String.format("%02d", Integer.valueOf(i7));
+            case 18:
+                return String.format("%02d", Integer.valueOf(i7));
+            case 19:
+            case 26:
+            default:
+                if (i7 == 0) {
+                    return org.telegram.messenger.id.M0(2131745361, null);
+                }
+                if (i7 >= 1 && i7 < 16) {
+                    return org.telegram.messenger.id.c0(i7);
+                }
+                if (i7 == 16) {
+                    return org.telegram.messenger.id.c0(30);
+                }
+                if (i7 == 17) {
+                    return org.telegram.messenger.id.c0(60);
+                }
+                if (i7 == 18) {
+                    return org.telegram.messenger.id.c0(3600);
+                }
+                if (i7 == 19) {
+                    return org.telegram.messenger.id.c0(86400);
+                }
+                if (i7 == 20) {
+                    return org.telegram.messenger.id.c0(604800);
+                }
+                return "";
+            case 20:
+                return org.telegram.messenger.id.G(i7 + 1, "Times", new Object[0]);
+            case 21:
+                return org.telegram.messenger.id.G(i7 + 1, "Minutes", new Object[0]);
+            case 22:
+                return org.telegram.messenger.id.M0(2131747908, null);
+            case 23:
+                if (i7 == 0) {
+                    return org.telegram.messenger.id.M0(2131748531, null);
+                }
+                Calendar calendar5 = Calendar.getInstance();
+                int i15 = calendar5.get(1);
+                calendar5.add(6, i7);
+                long timeInMillis4 = calendar5.getTimeInMillis();
+                if (calendar5.get(1) == i15) {
+                    return org.telegram.messenger.id.E0().A0().format(timeInMillis4) + ", " + org.telegram.messenger.id.E0().w0().format(timeInMillis4);
+                }
+                return org.telegram.messenger.id.E0().y0().format(timeInMillis4);
+            case 24:
+                return String.format("%02d", Integer.valueOf(i7));
+            case 25:
+                return String.format("%02d", Integer.valueOf(i7));
+            case 27:
+                boolean z9 = org.telegram.messenger.id.f23159c0;
+                int i16 = 12;
+                if (z9) {
+                    i10 = 24;
+                } else {
+                    i10 = 12;
+                }
+                int i17 = i7 % i10;
+                if (i7 % 12 != 0 || z9) {
+                    i16 = i17;
+                }
+                String format = String.format("%02d", Integer.valueOf(i16));
+                if (i7 >= 24) {
+                    return org.telegram.messenger.id.a0(null, null, 2131752747, format);
+                }
+                return format;
+            case 28:
+                return String.format("%02d", Integer.valueOf(i7));
         }
-        return this.W1;
     }
 
     @Override
-    public final boolean requestFocus(int i7, Rect rect) {
-        ((ViewGroup) getParent()).invalidate();
-        return super.requestFocus(i7, rect);
+    public void n(org.telegram.ui.Components.ib0 ib0Var, int i7) {
+        Pattern pattern = org.telegram.ui.Components.v4.f38913a;
     }
 
-    public void setShowSoftInputOnFocusCompat(boolean z9) {
-        this.O1 = z9;
-        setShowSoftInputOnFocus(z9);
-    }
-
-    public final void z(float f10) {
-        B(this.L1, f10 * 100.0f);
+    @Override
+    public void r(Exception exc) {
+        switch (this.f44107a) {
+            case 3:
+                org.telegram.messenger.a8.g(exc, true);
+                return;
+            default:
+                org.telegram.messenger.a8.g(exc, true);
+                return;
+        }
     }
 }

@@ -35,7 +35,7 @@ public final class c9 extends org.telegram.ui.ActionBar.v2 {
 
     public void I0() {
         boolean z9;
-        Activity parentActivity = ((org.telegram.ui.ww) this.f21791j1).getParentActivity();
+        Activity parentActivity = ((org.telegram.ui.yw) this.f21791j1).getParentActivity();
         boolean z10 = false;
         if (parentActivity.checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") == 0) {
             z9 = true;
@@ -94,9 +94,9 @@ public final class c9 extends org.telegram.ui.ActionBar.v2 {
                 super.dismiss();
                 org.telegram.ui.Components.t8 t8Var = (org.telegram.ui.Components.t8) this.f21791j1;
                 t8Var.J.z1(t8Var.Y);
-                t8Var.f38298f = true;
+                t8Var.f38320f = true;
                 t8Var.fragmentView.invalidate();
-                t8Var.f38297e.animate().setListener(new org.telegram.ui.Components.z5(this, 4)).alpha(0.0f).setDuration(200L).start();
+                t8Var.f38319e.animate().setListener(new org.telegram.ui.Components.z5(this, 4)).alpha(0.0f).setDuration(200L).start();
                 return;
         }
     }

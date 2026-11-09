@@ -1,25 +1,9 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class cl0 implements View.OnClickListener {
-    public final bi.k5 f32629a;
-
-    public cl0(bi.k5 k5Var) {
-        this.f32629a = k5Var;
-    }
-
+import org.telegram.messenger.MediaController;
+public final class cl0 extends org.telegram.ui.Cells.g7 {
     @Override
-    public final void onClick(View view) {
-        dl0 dl0Var = (dl0) this.f32629a.d;
-        for (int i7 = 0; i7 < dl0Var.f33038e.size(); i7++) {
-            org.telegram.messenger.ij ijVar = (org.telegram.messenger.ij) dl0Var.f33038e.get(i7);
-            if (dl0Var.H) {
-                org.telegram.messenger.w7.G(org.telegram.messenger.c.a(org.telegram.messenger.p10.f24470s0).f21765a).f(ijVar.F0());
-            } else {
-                org.telegram.messenger.w7.G(org.telegram.messenger.c.a(org.telegram.messenger.p10.f24470s0).f21765a).W(ijVar.F0(), ijVar, 0, 0);
-                org.telegram.messenger.z5.q(dl0Var.d).y();
-            }
-        }
-        dl0Var.d(true);
+    public final boolean d(org.telegram.messenger.ij ijVar) {
+        return MediaController.B().S(ijVar);
     }
 }

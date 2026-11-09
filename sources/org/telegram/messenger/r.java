@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.telegram.ui.Components.d41;
+import org.telegram.ui.Components.e41;
 public final class r implements u10 {
     public final SpannableStringBuilder f25183a;
     public final int f25184b;
@@ -50,7 +50,7 @@ public final class r implements u10 {
                         break;
                     }
                     URLSpan uRLSpan = uRLSpanArr[length];
-                    if (!(uRLSpan instanceof d41) || z9) {
+                    if (!(uRLSpan instanceof e41) || z9) {
                         spannableStringBuilder2.removeSpan(uRLSpan);
                     }
                     length--;
@@ -155,7 +155,7 @@ public final class r implements u10 {
                             for (int i24 = i7; i24 < uRLSpanArr2.length; i24++) {
                                 URLSpan uRLSpan2 = uRLSpanArr2[i24];
                                 spannableStringBuilder2.removeSpan(uRLSpan2);
-                                if (!(uRLSpan2 instanceof d41) || z9) {
+                                if (!(uRLSpan2 instanceof e41) || z9) {
                                     spannableStringBuilder2.removeSpan(uRLSpan2);
                                 }
                             }

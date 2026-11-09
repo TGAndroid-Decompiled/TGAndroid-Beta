@@ -23,7 +23,7 @@ public final class d6 implements Runnable {
                 g6Var.J.c(false);
                 g6Var.K.c(false);
                 g6Var.L.c(false);
-                ((s9) g6Var.f12071a).e(true);
+                ((r9) g6Var.f12071a).e(true);
                 return;
             case 1:
                 long currentTimeMillis = System.currentTimeMillis();
@@ -31,12 +31,12 @@ public final class d6 implements Runnable {
                 g6Var2.Q = currentTimeMillis;
                 g6Var2.R = 0L;
                 g6Var2.f12094r0 = true;
-                ((s9) g6Var2.f12071a).f12819a.J0.a(0L, true);
+                ((r9) g6Var2.f12071a).f12758a.J0.a(0L, true);
                 return;
             case 2:
                 g6 g6Var3 = this.f11791b;
                 if (!g6Var3.f12094r0 && !g6Var3.b()) {
-                    if (!va.c(((s9) g6Var3.f12071a).f12819a)) {
+                    if (!va.c(((r9) g6Var3.f12071a).f12758a)) {
                         g6Var3.f12101w0 = false;
                         g6Var3.J.c(false);
                         g6Var3.K.c(false);
@@ -45,14 +45,14 @@ public final class d6 implements Runnable {
                     }
                     g6Var3.f12106z0 = true;
                     g6Var3.A0 = true;
-                    ((s9) g6Var3.f12071a).f(new d6(g6Var3, 4), true);
+                    ((r9) g6Var3.f12071a).f(new d6(g6Var3, 4), true);
                     return;
                 }
                 return;
             case 3:
                 g6 g6Var4 = this.f11791b;
                 if (!g6Var4.f12094r0 && !g6Var4.b()) {
-                    y9 y9Var = ((s9) g6Var4.f12071a).f12819a.B0;
+                    y9 y9Var = ((r9) g6Var4.f12071a).f12758a.B0;
                     if (y9Var != null) {
                         y9Var.toggleDual();
                     }
@@ -71,7 +71,7 @@ public final class d6 implements Runnable {
                 g6Var5.f12094r0 = true;
                 e6 e6Var = g6Var5.f12071a;
                 g6Var5.R = 0L;
-                ((s9) e6Var).f12819a.J0.a(0L, true);
+                ((r9) e6Var).f12758a.J0.a(0L, true);
                 return;
         }
     }

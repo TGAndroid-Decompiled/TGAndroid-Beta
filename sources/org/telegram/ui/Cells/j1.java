@@ -2,32 +2,32 @@ package org.telegram.ui.Cells;
 
 import android.view.MotionEvent;
 import org.telegram.messenger.video.OldVideoPlayerRewinder;
-import org.telegram.ui.Components.j51;
+import org.telegram.ui.Components.k51;
 import org.telegram.ui.PhotoViewer;
 public final class j1 extends OldVideoPlayerRewinder {
-    public final int f29348a;
-    public final Object f29349b;
+    public final int f29352a;
+    public final Object f29353b;
 
     public j1(Object obj, int i7) {
-        this.f29348a = i7;
-        this.f29349b = obj;
+        this.f29352a = i7;
+        this.f29353b = obj;
     }
 
     @Override
     public final void onRewindCanceled() {
         ti.i iVar;
-        switch (this.f29348a) {
+        switch (this.f29352a) {
             case 0:
-                q1 q1Var = (q1) this.f29349b;
+                q1 q1Var = (q1) this.f29353b;
                 q1Var.onTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
                 q1Var.Nb.f(false);
                 return;
             default:
-                PhotoViewer photoViewer = (PhotoViewer) this.f29349b;
+                PhotoViewer photoViewer = (PhotoViewer) this.f29353b;
                 PhotoViewer.c(photoViewer, MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
-                photoViewer.f41572z1.f(false);
+                photoViewer.f41579z1.f(false);
                 ti.o oVar = photoViewer.O8;
-                if (oVar != null && (iVar = oVar.f56126e) != null) {
+                if (oVar != null && (iVar = oVar.f56138e) != null) {
                     iVar.F.f(false);
                     return;
                 }
@@ -38,34 +38,34 @@ public final class j1 extends OldVideoPlayerRewinder {
     @Override
     public final void onRewindStart(boolean z9) {
         ti.i iVar;
-        switch (this.f29348a) {
+        switch (this.f29352a) {
             case 0:
-                q1 q1Var = (q1) this.f29349b;
-                j51 j51Var = q1Var.Nb;
-                j51Var.f34913n = new h9.f1(this, 26);
-                j51Var.e(false);
+                q1 q1Var = (q1) this.f29353b;
+                k51 k51Var = q1Var.Nb;
+                k51Var.f35255n = new h9.f1(this, 26);
+                k51Var.e(false);
                 q1Var.Nb.d(!z9);
                 q1Var.Nb.f(true);
                 q1Var.invalidate();
                 return;
             default:
-                PhotoViewer photoViewer = (PhotoViewer) this.f29349b;
-                photoViewer.f41572z1.e(false);
+                PhotoViewer photoViewer = (PhotoViewer) this.f29353b;
+                photoViewer.f41579z1.e(false);
                 boolean z10 = !z9;
-                photoViewer.f41572z1.d(z10);
-                photoViewer.f41572z1.f(true);
-                photoViewer.f41384e0.invalidate();
+                photoViewer.f41579z1.d(z10);
+                photoViewer.f41579z1.f(true);
+                photoViewer.f41391e0.invalidate();
                 ti.o oVar = photoViewer.O8;
-                if (oVar != null && (iVar = oVar.f56126e) != null) {
-                    j51 j51Var2 = iVar.F;
-                    j51Var2.e(false);
-                    j51Var2.d(z10);
-                    j51Var2.f(true);
-                    di.b3 b3Var = iVar.f56094o;
+                if (oVar != null && (iVar = oVar.f56138e) != null) {
+                    k51 k51Var2 = iVar.F;
+                    k51Var2.e(false);
+                    k51Var2.d(z10);
+                    k51Var2.f(true);
+                    di.b3 b3Var = iVar.f56106o;
                     if (b3Var != null) {
                         b3Var.invalidate();
                     }
-                    ti.e eVar = iVar.f56092m;
+                    ti.e eVar = iVar.f56104m;
                     if (eVar != null) {
                         eVar.invalidate();
                         return;
@@ -79,9 +79,9 @@ public final class j1 extends OldVideoPlayerRewinder {
     @Override
     public final void updateRewindProgressUi(long j3, float f10, boolean z9) {
         ti.i iVar;
-        switch (this.f29348a) {
+        switch (this.f29352a) {
             case 0:
-                q1 q1Var = (q1) this.f29349b;
+                q1 q1Var = (q1) this.f29353b;
                 q1Var.Nb.g(Math.abs(j3));
                 if (z9) {
                     q1Var.P5.f23222b0 = f10;
@@ -90,22 +90,22 @@ public final class j1 extends OldVideoPlayerRewinder {
                 }
                 return;
             default:
-                PhotoViewer photoViewer = (PhotoViewer) this.f29349b;
-                photoViewer.f41572z1.g(Math.abs(j3));
+                PhotoViewer photoViewer = (PhotoViewer) this.f29353b;
+                photoViewer.f41579z1.g(Math.abs(j3));
                 if (z9) {
-                    photoViewer.f41481p3.h(false, f10);
-                    photoViewer.f41490q3.invalidate();
+                    photoViewer.f41488p3.h(false, f10);
+                    photoViewer.f41497q3.invalidate();
                 }
                 ti.o oVar = photoViewer.O8;
-                if (oVar != null && (iVar = oVar.f56126e) != null) {
+                if (oVar != null && (iVar = oVar.f56138e) != null) {
                     iVar.F.g(0L);
                     if (z9) {
                         iVar.I = f10;
-                        di.b3 b3Var = iVar.f56094o;
+                        di.b3 b3Var = iVar.f56106o;
                         if (b3Var != null) {
                             b3Var.invalidate();
                         }
-                        ti.e eVar = iVar.f56092m;
+                        ti.e eVar = iVar.f56104m;
                         if (eVar != null) {
                             eVar.invalidate();
                             return;

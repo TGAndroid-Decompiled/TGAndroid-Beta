@@ -63,9 +63,9 @@ public final class f0 {
     public static t0 a(t0 t0Var, ca.f fVar, q3 q3Var, Map map) {
         Map unmodifiableMap;
         s0 a10 = t0Var.a();
-        String m10 = ((ca.d) fVar.f6011b).m();
+        String m10 = ((ca.d) fVar.f6009b).m();
         if (m10 != null) {
-            a10.f8510e = new h1(m10);
+            a10.f8508e = new h1(m10);
         } else if (Log.isLoggable("FirebaseCrashlytics", 2)) {
             Log.v("FirebaseCrashlytics", "No log data to include with this event.", null);
         }
@@ -91,10 +91,10 @@ public final class f0 {
         List f10 = f(unmodifiableMap);
         List f11 = f(((ca.e) ((AtomicMarkableReference) ((ab.q) q3Var.f19231e).f990b).getReference()).a());
         if (!f10.isEmpty() || !f11.isEmpty()) {
-            u0 a11 = t0Var.f8520c.a();
-            a11.f8530b = f10;
-            a11.f8531c = f11;
-            a10.f8509c = a11.a();
+            u0 a11 = t0Var.f8518c.a();
+            a11.f8528b = f10;
+            a11.f8529c = f11;
+            a10.f8507c = a11.a();
         }
         return a10.a();
     }
@@ -107,19 +107,19 @@ public final class f0 {
             pVar.getClass();
             ?? obj = new Object();
             ca.b bVar = (ca.b) pVar;
-            String str = bVar.f6001e;
+            String str = bVar.f5999e;
             if (str != null) {
-                String str2 = bVar.f5999b;
+                String str2 = bVar.f5997b;
                 if (str2 != null) {
-                    obj.f8379a = new k1(str2, str);
-                    String str3 = bVar.f6000c;
+                    obj.f8377a = new k1(str2, str);
+                    String str3 = bVar.f5998c;
                     if (str3 != null) {
-                        obj.f8380b = str3;
+                        obj.f8378b = str3;
                         String str4 = bVar.d;
                         if (str4 != null) {
-                            obj.f8381c = str4;
-                            obj.d = bVar.f6002f;
-                            obj.f8382e = (byte) (obj.f8382e | 1);
+                            obj.f8379c = str4;
+                            obj.d = bVar.f6000f;
+                            obj.f8380e = (byte) (obj.f8380e | 1);
                             arrayList.add(obj.a());
                         } else {
                             throw new NullPointerException("Null parameterValue");
@@ -138,7 +138,7 @@ public final class f0 {
             return t0Var;
         }
         s0 a10 = t0Var.a();
-        a10.f8511f = new l1(arrayList);
+        a10.f8509f = new l1(arrayList);
         return a10.a();
     }
 
@@ -213,7 +213,7 @@ public final class f0 {
         byte b10;
         boolean z10;
         boolean equals = str.equals("crash");
-        long j3 = cVar.f6004b;
+        long j3 = cVar.f6002b;
         v vVar = this.f804a;
         Context context = vVar.f871a;
         int i7 = context.getResources().getConfiguration().orientation;
@@ -230,11 +230,11 @@ public final class f0 {
         }
         ab.b0 b0Var2 = b0Var;
         ?? obj = new Object();
-        obj.f8508b = str;
-        obj.f8507a = j3;
-        obj.f8512g = (byte) (obj.f8512g | 1);
-        j2 b11 = x9.c.f58667a.b(context);
-        int i10 = ((e1) b11).f8339c;
+        obj.f8506b = str;
+        obj.f8505a = j3;
+        obj.f8510g = (byte) (obj.f8510g | 1);
+        j2 b11 = x9.c.f58676a.b(context);
+        int i10 = ((e1) b11).f8337c;
         if (i10 > 0) {
             if (i10 != 100) {
                 z10 = true;
@@ -299,10 +299,10 @@ public final class f0 {
                     if (a11 != null) {
                         w0 w0Var = new w0(unmodifiableList, c10, null, null, e10, a11);
                         if (b12 == 1) {
-                            obj.f8509c = new v0(w0Var, null, null, bool2, b11, a10, i7);
+                            obj.f8507c = new v0(w0Var, null, null, bool2, b11, a10, i7);
                             obj.d = vVar.b(i7);
                             t0 a12 = obj.a();
-                            Map map = cVar.f6005c;
+                            Map map = cVar.f6003c;
                             ca.f fVar = this.d;
                             q3 q3Var = this.f807e;
                             q2 b15 = b(a(a12, fVar, q3Var, map), q3Var);
@@ -310,7 +310,7 @@ public final class f0 {
                                 this.f809g.f3136b.a(new d0(this, b15, cVar, equals, 0));
                                 return;
                             } else {
-                                this.f805b.e(b15, cVar.f6003a, equals);
+                                this.f805b.e(b15, cVar.f6001a, equals);
                                 return;
                             }
                         }
@@ -365,18 +365,18 @@ public final class f0 {
                 ha.a aVar2 = this.f806c;
                 da.d0 d0Var = bVar2.f775a;
                 boolean z9 = true;
-                if (d0Var.f8315f != null && d0Var.f8316g != null) {
+                if (d0Var.f8313f != null && d0Var.f8314g != null) {
                     bVar = bVar2;
                 } else {
                     a0 b10 = this.f808f.b(true);
                     da.d0 d0Var2 = bVar2.f775a;
                     String str2 = b10.f773a;
                     da.c0 a10 = d0Var2.a();
-                    a10.f8289e = str2;
+                    a10.f8287e = str2;
                     da.d0 a11 = a10.a();
                     String str3 = b10.f774b;
                     da.c0 a12 = a11.a();
-                    a12.f8290f = str3;
+                    a12.f8288f = str3;
                     bVar = new b(a12.a(), bVar2.f776b, bVar2.f777c);
                 }
                 if (str == null) {
@@ -387,9 +387,9 @@ public final class f0 {
                     try {
                         TaskCompletionSource taskCompletionSource2 = new TaskCompletionSource();
                         if (z9) {
-                            ((AtomicInteger) cVar.f14438i.f53804b).getAndIncrement();
+                            ((AtomicInteger) cVar.f14438i.f53816b).getAndIncrement();
                             if (cVar.f14436f.size() < cVar.f14435e) {
-                                x9.b bVar3 = x9.b.f58666a;
+                                x9.b bVar3 = x9.b.f58675a;
                                 bVar3.b("Enqueueing report: " + bVar.f776b);
                                 bVar3.b("Queue size: " + cVar.f14436f.size());
                                 taskCompletionSource = taskCompletionSource2;
@@ -403,7 +403,7 @@ public final class f0 {
                                 if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                                     Log.d("FirebaseCrashlytics", str4, null);
                                 }
-                                ((AtomicInteger) cVar.f14438i.f53805c).getAndIncrement();
+                                ((AtomicInteger) cVar.f14438i.f53817c).getAndIncrement();
                                 taskCompletionSource.trySetResult(bVar);
                             }
                         } else {

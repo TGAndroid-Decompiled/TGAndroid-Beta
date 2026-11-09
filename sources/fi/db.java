@@ -35,7 +35,7 @@ public final class db {
 
     public final void b() {
         this.f11813i = true;
-        Utilities.f21339i.a(new h9(this, 7));
+        Utilities.f21339i.a(new v9(this, 6));
         ArrayList arrayList = this.d;
         int size = arrayList.size();
         int i7 = 0;
@@ -63,8 +63,8 @@ public final class db {
         if (!this.f11815k && this.f11810e != null && this.d.size() < this.f11809c) {
             this.f11815k = true;
             this.f11814j += this.f11808b;
-            Utilities.f21339i.a(new h9(this, 7));
-            Utilities.f21339i.c(new h9(this, 7));
+            Utilities.f21339i.a(new v9(this, 6));
+            Utilities.f21339i.c(new v9(this, 6));
         }
     }
 }

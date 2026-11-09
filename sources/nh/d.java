@@ -46,7 +46,7 @@ public abstract class d extends g0 implements GroupCallMessagesController.CallMe
         b bVar = (b) d1Var;
         List list = this.f20605c;
         if (list != null && list.size() > i7) {
-            ((c) bVar.f57044a).set((GroupCallMessage) this.f20605c.get(i7));
+            ((c) bVar.f57056a).set((GroupCallMessage) this.f20605c.get(i7));
         }
     }
 }

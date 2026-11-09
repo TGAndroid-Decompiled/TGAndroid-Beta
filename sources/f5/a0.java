@@ -79,12 +79,12 @@ public final class a0 extends BroadcastReceiver {
             if (bundle.getByteArray("FAILURE_LOGGING_PAYLOAD") != null) {
                 y yVar = (y) this.f11116c.d;
                 byte[] byteArray = bundle.getByteArray("FAILURE_LOGGING_PAYLOAD");
-                int i10 = o1.f7424a;
+                int i10 = o1.f7422a;
                 synchronized (o1.class) {
-                    int i11 = o1.f7424a;
-                    q2 q2Var = q2.f7441c;
+                    int i11 = o1.f7422a;
+                    q2 q2Var = q2.f7439c;
                     a10 = s1.a();
-                    int i12 = o1.f7424a;
+                    int i12 = o1.f7422a;
                 }
                 ((q4.q) yVar).j(g3.n(byteArray, a10), j3, z9);
                 return;

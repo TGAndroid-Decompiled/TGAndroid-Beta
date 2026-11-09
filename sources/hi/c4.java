@@ -17,14 +17,14 @@ import org.telegram.messenger.ui;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.s6;
 import org.telegram.ui.Components.di;
 import org.telegram.ui.Components.hc;
 import org.telegram.ui.Components.vh;
 import org.telegram.ui.Components.xa;
-import org.telegram.ui.an;
-import org.telegram.ui.oy0;
+import org.telegram.ui.cn;
+import org.telegram.ui.ry0;
 public final class c4 extends vh implements ls {
     public int D;
     public long E;
@@ -68,7 +68,7 @@ public final class c4 extends vh implements ls {
             p10 = i6.m(p10, textPaint.getFontMetricsInt(), false, null, 0);
         } catch (Exception unused) {
         }
-        di diVar = this.f39004b;
+        di diVar = this.f39071b;
         diVar.R2.setTitle(p10);
         this.J.setSwipeOffsetY(0.0f);
         if (s2Var.getWebView() != null) {
@@ -120,17 +120,17 @@ public final class c4 extends vh implements ls {
             alertDialog$Builder.k(id.M0(2131752916, null), new u3(this));
             alertDialog$Builder.h(id.M0(2131752589, null), null);
             u1Var.show();
-            r6.V((TextView) u1Var.d(-1), k6.f28093q7, this.f39003a);
+            s6.U((TextView) u1Var.d(-1), l6.f28106q7, this.f39070a);
             return false;
         }
-        this.f39004b.dismiss();
+        this.f39071b.dismiss();
         return true;
     }
 
     public final void P() {
-        di diVar = this.f39004b;
+        di diVar = this.f39071b;
         org.telegram.ui.ActionBar.f2 f2Var = diVar.W1;
-        if ((f2Var instanceof an) && ((an) f2Var).l1.Q() > org.telegram.messenger.g0.L(20.0f)) {
+        if ((f2Var instanceof cn) && ((cn) f2Var).l1.Q() > org.telegram.messenger.g0.L(20.0f)) {
             org.telegram.messenger.g0.v1(diVar.W1.getFragmentView());
             org.telegram.messenger.g0.i3(new s3(this, 1), 250L);
             return;
@@ -147,10 +147,10 @@ public final class c4 extends vh implements ls {
             if (this.f14597y == ((Long) objArr[0]).longValue()) {
                 s2Var.h();
                 this.H = true;
-                this.f39004b.dismiss();
+                this.f39071b.dismiss();
             }
         } else if (i7 == qs.f25044n4) {
-            s2Var.f51377n.b(k6.w0(k6.f27925h5, this.f39003a), 153);
+            s2Var.f51358n.b(l6.w0(l6.f27938h5, this.f39070a), 153);
         }
     }
 
@@ -230,13 +230,13 @@ public final class c4 extends vh implements ls {
     public final void p() {
         qs.f(this.F).n(this, qs.f25119z1);
         qs.e().n(this, qs.f25044n4);
-        org.telegram.ui.ActionBar.y q10 = this.f39004b.R2.q();
+        org.telegram.ui.ActionBar.y r10 = this.f39071b.R2.r();
         org.telegram.ui.ActionBar.r0 r0Var = this.K;
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = r0Var.f28424b;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = r0Var.f28425b;
         if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
             actionBarPopupWindow$ActionBarPopupWindowLayout.d();
         }
-        q10.removeView(r0Var);
+        r10.removeView(r0Var);
         this.f14592n.h();
         this.T = true;
         org.telegram.messenger.g0.r(this.U);
@@ -286,12 +286,12 @@ public final class c4 extends vh implements ls {
     @Override
     public void setTranslationY(float f10) {
         super.setTranslationY(f10);
-        this.f39004b.f28619b.invalidate();
+        this.f39071b.f28624b.invalidate();
     }
 
     @Override
     public final void t() {
-        di diVar = this.f39004b;
+        di diVar = this.f39071b;
         diVar.A0(false);
         diVar.getWindow().setSoftInputMode(48);
     }
@@ -302,7 +302,7 @@ public final class c4 extends vh implements ls {
         this.P = false;
         s2 s2Var = this.f14592n;
         boolean z9 = s2Var.R;
-        di diVar = this.f39004b;
+        di diVar = this.f39071b;
         if (!z9) {
             org.telegram.messenger.g0.R3(diVar.R2.getBackButton(), 2131231240);
         }
@@ -324,11 +324,11 @@ public final class c4 extends vh implements ls {
             }
             return;
         }
-        di diVar = this.f39004b;
+        di diVar = this.f39071b;
         if (i7 == 2131296500) {
             Bundle bundle = new Bundle();
             bundle.putLong("user_id", this.f14595w);
-            diVar.W1.presentFragment(new an(bundle));
+            diVar.W1.presentFragment(new cn(bundle));
             diVar.dismiss();
             return;
         }
@@ -367,10 +367,10 @@ public final class c4 extends vh implements ls {
         } else if (i7 == 2131296505) {
             int i11 = this.F;
             Context context = getContext();
-            hc hcVar = new hc(xa.a(getContext()), this.f39003a);
+            hc hcVar = new hc(xa.a(getContext()), this.f39070a);
             long j3 = this.f14595w;
-            int i12 = oy0.f48560s1;
-            oy0.J0(i11, context, j3, false, false, new ArrayList(), hcVar, null, new byte[0], null, null);
+            int i12 = ry0.f49634s1;
+            ry0.J0(i11, context, j3, false, false, new ArrayList(), hcVar, null, new byte[0], null, null);
         }
     }
 
@@ -396,7 +396,7 @@ public final class c4 extends vh implements ls {
             } else {
                 z10 = false;
             }
-            int Q = this.f39004b.f32967l3.Q() + i7;
+            int Q = this.f39071b.f33022l3.Q() + i7;
             setMeasuredDimension(getMeasuredWidth(), i7);
             this.O = true;
             r2Var.setSwipeOffsetAnimationDisallowed(true);

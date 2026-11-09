@@ -11,10 +11,10 @@ import android.view.TextureView;
 import android.view.View;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.hy;
-import org.telegram.ui.Components.ii0;
+import org.telegram.ui.Components.ji0;
 import org.telegram.ui.Components.rt;
-import org.telegram.ui.Components.rt0;
-public final class ua extends rt0 {
+import org.telegram.ui.Components.tt0;
+public final class ua extends tt0 {
     public final rt f12901f0;
     public final ScaleGestureDetector f12902g0;
     public boolean f12903h0;
@@ -195,7 +195,7 @@ public final class ua extends rt0 {
             i13 = vaVar.T;
         }
         vaVar.f12987r.layout(b10, i14, i16, i13 + i14 + measuredHeight2);
-        vaVar.f12991s.f12575b.layout(0, 0, measuredWidth, measuredHeight);
+        vaVar.f12991s.f12573b.layout(0, 0, measuredWidth, measuredHeight);
         da daVar = vaVar.C2;
         if (daVar != null) {
             daVar.layout(0, 0, measuredWidth, measuredHeight);
@@ -205,7 +205,7 @@ public final class ua extends rt0 {
             i3Var.layout((measuredWidth - i3Var.getMeasuredWidth()) / 2, 0, (vaVar.M0.getMeasuredWidth() + measuredWidth) / 2, measuredHeight);
         }
         la laVar = vaVar.f12944c1;
-        if (laVar != null && (emojiView = laVar.f12365f.getEmojiView()) != null) {
+        if (laVar != null && (emojiView = laVar.f12366f.getEmojiView()) != null) {
             emojiView.layout(vaVar.Y, (measuredHeight - vaVar.f12939b0) - emojiView.getMeasuredHeight(), measuredWidth - vaVar.f12935a0, measuredHeight - vaVar.f12939b0);
         }
         x9 x9Var = vaVar.f13002v1;
@@ -214,12 +214,12 @@ public final class ua extends rt0 {
             if (hyVar != null) {
                 hyVar.layout(vaVar.Y, (measuredHeight - vaVar.f12939b0) - hyVar.getMeasuredHeight(), measuredWidth - vaVar.f12935a0, measuredHeight - vaVar.f12939b0);
             }
-            ii0 ii0Var = vaVar.f13002v1.I1;
-            if (ii0Var != null) {
+            ji0 ji0Var = vaVar.f13002v1.I1;
+            if (ji0Var != null) {
                 int i20 = vaVar.Y;
-                ii0Var.layout(i20, vaVar.Z, ii0Var.getMeasuredWidth() + i20, vaVar.f13002v1.I1.getMeasuredHeight() + vaVar.Z);
+                ji0Var.layout(i20, vaVar.Z, ji0Var.getMeasuredWidth() + i20, vaVar.f13002v1.I1.getMeasuredHeight() + vaVar.Z);
                 if (vaVar.f13002v1.I1.getReactionsWindow() != null) {
-                    x5Var = vaVar.f13002v1.I1.getReactionsWindow().f6185c;
+                    x5Var = vaVar.f13002v1.I1.getReactionsWindow().f6183c;
                 } else {
                     x5Var = null;
                 }
@@ -237,9 +237,9 @@ public final class ua extends rt0 {
         }
         ga gaVar = vaVar.f12993s1;
         if (gaVar != null) {
-            gaVar.f12396f.setPadding(0, vaVar.Z, 0, vaVar.f12939b0);
+            gaVar.f12397f.setPadding(0, vaVar.Z, 0, vaVar.f12939b0);
             vaVar.f12993s1.layout(0, 0, measuredWidth, measuredHeight);
-            vaVar.f12993s1.f12395e.layout(0, 0, measuredWidth, measuredHeight);
+            vaVar.f12993s1.f12396e.layout(0, 0, measuredWidth, measuredHeight);
         }
         for (int i22 = 0; i22 < getChildCount(); i22++) {
             View childAt = getChildAt(i22);
@@ -298,7 +298,7 @@ public final class ua extends rt0 {
         }
         setSystemUiVisibility(i13);
         vaVar.f12987r.measure(View.MeasureSpec.makeMeasureSpec(vaVar.S, 1073741824), View.MeasureSpec.makeMeasureSpec(vaVar.T + vaVar.U, 1073741824));
-        vaVar.f12991s.f12575b.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        vaVar.f12991s.f12573b.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
         da daVar = vaVar.C2;
         if (daVar != null) {
             daVar.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
@@ -309,7 +309,7 @@ public final class ua extends rt0 {
         }
         la laVar = vaVar.f12944c1;
         if (laVar != null) {
-            hy emojiView = laVar.f12365f.getEmojiView();
+            hy emojiView = laVar.f12366f.getEmojiView();
             Q();
             org.telegram.messenger.g0.L(20.0f);
             if (emojiView != null) {
@@ -322,11 +322,11 @@ public final class ua extends rt0 {
             if (hyVar != null) {
                 hyVar.measure(View.MeasureSpec.makeMeasureSpec(i15, 1073741824), View.MeasureSpec.makeMeasureSpec(vaVar.f13002v1.Y1.getLayoutParams().height, 1073741824));
             }
-            ii0 ii0Var = vaVar.f13002v1.I1;
-            if (ii0Var != null) {
-                measureChild(ii0Var, i7, i10);
+            ji0 ji0Var = vaVar.f13002v1.I1;
+            if (ji0Var != null) {
+                measureChild(ji0Var, i7, i10);
                 if (vaVar.f13002v1.I1.getReactionsWindow() != null) {
-                    measureChild(vaVar.f13002v1.I1.getReactionsWindow().f6185c, i7, i10);
+                    measureChild(vaVar.f13002v1.I1.getReactionsWindow().f6183c, i7, i10);
                 }
             }
         }
@@ -353,7 +353,7 @@ public final class ua extends rt0 {
         ga gaVar = vaVar.f12993s1;
         if (gaVar != null) {
             gaVar.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-            vaVar.f12993s1.f12395e.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+            vaVar.f12993s1.f12396e.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
         }
         setMeasuredDimension(size, size2);
     }

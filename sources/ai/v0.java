@@ -23,12 +23,12 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.s6;
 import org.telegram.ui.Components.hc;
 import org.telegram.ui.Components.xa;
-import org.telegram.ui.Wallet.e2;
+import org.telegram.ui.Wallet.d2;
 public final class v0 implements v10 {
     public final int f1655a = 1;
     public final int f1656b;
@@ -81,7 +81,7 @@ public final class v0 implements v10 {
                     if (!y0Var.E) {
                         l1 l1Var = y0Var.f1690b;
                         l1Var.getClass();
-                        l1Var.d1(2131232436, id.M0(2131751106, null), null);
+                        l1Var.d1(2131232436, id.M0(2131751105, null), null);
                         return;
                     }
                     return;
@@ -118,7 +118,7 @@ public final class v0 implements v10 {
                 new hc(xa.a(context), bVar).E(bVar).j();
                 return;
             case 2:
-                e2 e2Var = (e2) obj5;
+                d2 d2Var = (d2) obj5;
                 c20 c20Var = (c20) obj4;
                 JSONObject jSONObject = (JSONObject) obj3;
                 TLRPC.Bool bool2 = (TLRPC.Bool) obj;
@@ -130,17 +130,17 @@ public final class v0 implements v10 {
                     if (optBoolean) {
                         TL_wallet.tonConnectCloseSession tonconnectclosesession = new TL_wallet.tonConnectCloseSession();
                         tonconnectclosesession.session_id = j10;
-                        e2Var.f42431f.sendRequestTyped(tonconnectclosesession, new d3.b(1), new org.telegram.ui.Wallet.o1(e2Var, c20Var, j10, i16, 1));
+                        d2Var.f42349f.sendRequestTyped(tonconnectclosesession, new d3.b(1), new org.telegram.ui.Wallet.n1(d2Var, c20Var, j10, i16, 1));
                         return;
                     }
-                    e2Var.e(i16, j10, c20Var);
+                    d2Var.e(i16, j10, c20Var);
                     return;
                 }
-                c20Var.a(e2.z(tL_error2, "submitResponse"));
+                c20Var.a(d2.z(tL_error2, "submitResponse"));
                 return;
             default:
                 Context context2 = (Context) obj5;
-                f6 f6Var = (f6) obj4;
+                g6 g6Var = (g6) obj4;
                 Runnable runnable = (Runnable) obj3;
                 s9 s9Var = (s9) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
@@ -167,9 +167,9 @@ public final class v0 implements v10 {
                         f10.addView(new h7(context2, M0, M02), ha.t(-1, -2, 48, 0, -4, 0, 0));
                         TextView textView = new TextView(context2);
                         qs.i(textView);
-                        textView.setText(id.M0(2131750306, null));
-                        int i18 = k6.f27960j5;
-                        k5.n(textView, i18, f6Var, 1, 20.0f);
+                        textView.setText(id.M0(2131750305, null));
+                        int i18 = l6.f27973j5;
+                        k5.n(textView, i18, g6Var, 1, 20.0f);
                         if (id.f23157a0) {
                             i12 = 5;
                         } else {
@@ -183,28 +183,28 @@ public final class v0 implements v10 {
                         }
                         f10.addView(textView, ha.d(-2, -2.0f, i13 | 48, 24.0f, 19.0f, 24.0f, 2.0f));
                         TextView textView2 = new TextView(context2);
-                        r6.V(textView2, i18, f6Var);
+                        s6.U(textView2, i18, g6Var);
                         textView2.setTextSize(1, 16.0f);
                         String t6 = m5.t(o4);
                         String t10 = m5.t(j11);
                         Object[] objArr = new Object[2];
                         objArr[i11] = t6;
                         objArr[1] = t10;
-                        k5.r(null, null, 2131750305, objArr, textView2);
+                        k5.r(null, null, 2131750304, objArr, textView2);
                         f10.addView(textView2, ha.t(-1, -2, 48, 24, 4, 24, 4));
-                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(i11, context2, f6Var);
+                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(i11, context2, g6Var);
                         alertDialog$Builder.o(f10);
                         alertDialog$Builder.k(id.M0(2131751771, null), new u5.e(d0Var, 13));
                         alertDialog$Builder.h(id.M0(2131752589, null), null);
                         alertDialog$Builder.f27296a.show();
                         return;
                     } else if (s9Var.f25437e.bid_date > 0 && !s9Var.f()) {
-                        zh.l lVar = new zh.l(context2, f6Var, null, s9Var);
-                        lVar.f60425f2 = runnable;
+                        zh.l lVar = new zh.l(context2, g6Var, null, s9Var);
+                        lVar.f60435f2 = runnable;
                         lVar.show();
                         return;
                     } else {
-                        new zh.u(context2, f6Var, j11, s9Var.d, runnable).show();
+                        new zh.u(context2, g6Var, j11, s9Var.d, runnable).show();
                         return;
                     }
                 }
@@ -220,16 +220,16 @@ public final class v0 implements v10 {
         this.f1657c = j3;
     }
 
-    public v0(Context context, f6 f6Var, int i7, long j3, Runnable runnable) {
+    public v0(Context context, g6 g6Var, int i7, long j3, Runnable runnable) {
         this.d = context;
-        this.f1658e = f6Var;
+        this.f1658e = g6Var;
         this.f1656b = i7;
         this.f1657c = j3;
         this.f1659f = runnable;
     }
 
-    public v0(e2 e2Var, c20 c20Var, JSONObject jSONObject, long j3, int i7) {
-        this.d = e2Var;
+    public v0(d2 d2Var, c20 c20Var, JSONObject jSONObject, long j3, int i7) {
+        this.d = d2Var;
         this.f1658e = c20Var;
         this.f1659f = jSONObject;
         this.f1657c = j3;

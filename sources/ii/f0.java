@@ -7,7 +7,7 @@ import org.telegram.messenger.tr;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.ActionBar.u1;
-import org.telegram.ui.ww;
+import org.telegram.ui.yw;
 public final class f0 implements tr, qr {
     public final int f15532a;
     public final long f15533b;
@@ -25,10 +25,10 @@ public final class f0 implements tr, qr {
 
     @Override
     public void k(boolean z9) {
-        ww wwVar = (ww) this.d;
+        yw ywVar = (yw) this.d;
         long j3 = this.f15533b;
         boolean z10 = this.f15534c;
-        ww.x0(this.f15532a, j3, (TLRPC.Chat) this.f15535e, wwVar, z10, z9);
+        yw.x0(this.f15532a, j3, (TLRPC.Chat) this.f15535e, ywVar, z10, z9);
     }
 
     @Override
@@ -41,8 +41,8 @@ public final class f0 implements tr, qr {
         qp.s1(this.f15532a).Q2(-j3, this.f15533b, false, this.f15534c, new g0(f2Var, j3, 0));
     }
 
-    public f0(ww wwVar, int i7, TLRPC.Chat chat, long j3, boolean z9) {
-        this.d = wwVar;
+    public f0(yw ywVar, int i7, TLRPC.Chat chat, long j3, boolean z9) {
+        this.d = ywVar;
         this.f15532a = i7;
         this.f15535e = chat;
         this.f15533b = j3;

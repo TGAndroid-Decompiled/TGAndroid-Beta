@@ -51,7 +51,7 @@ public final class d implements ToIntFunction {
             case 12:
                 return Integer.parseInt((String) obj);
             case 13:
-                return ((ij) obj).f1();
+                return ((ij) obj).e1();
             case 14:
                 return -((TLRPC.TL_forumTopic) obj).top_message;
             case 15:
@@ -61,7 +61,7 @@ public final class d implements ToIntFunction {
             case 17:
                 return ((x5) obj).d;
             case 18:
-                return ((x5) obj).f40211e;
+                return ((x5) obj).f40299e;
             case 19:
                 ad.c cVar = (ad.c) obj;
                 return cVar.d - cVar.f1036b;

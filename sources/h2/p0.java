@@ -32,8 +32,28 @@ public final class p0 implements yb.a {
         this.f14134e = aVar;
     }
 
+    public void a(boolean z9, boolean z10) {
+        i0 i0Var = (i0) this.f14134e;
+        if (z9 && z10) {
+            i0Var.d(new n0(this, z9, z10, 0));
+            return;
+        }
+        AtomicBoolean atomicBoolean = new AtomicBoolean(true);
+        ((i0) this.f14135f).f14096a.postDelayed(new f2.h(28, this, atomicBoolean), 1000L);
+        i0Var.d(new o0(this, atomicBoolean, z9, z10, 0));
+    }
+
+    public void b(boolean z9) {
+        if (this.f14133c != z9) {
+            this.f14133c = z9;
+            if (this.f14132b) {
+                a(true, z9);
+            }
+        }
+    }
+
     @Override
-    public ArrayList a(ub.a aVar) {
+    public ArrayList c(ub.a aVar) {
         a7.b bVar;
         if (((cb) this.f14135f) == null) {
             zzb();
@@ -48,17 +68,17 @@ public final class p0 implements yb.a {
                 throw new lb.a("Failed to init thin image labeler.", e10);
             }
         }
-        int i7 = aVar.f56493e;
-        int i10 = aVar.f56491b;
-        int i11 = aVar.f56492c;
+        int i7 = aVar.f56505e;
+        int i10 = aVar.f56503b;
+        int i11 = aVar.f56504c;
         int a10 = xc.a(aVar.d);
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        int i12 = aVar.f56493e;
+        int i12 = aVar.f56505e;
         if (i12 != -1) {
             if (i12 != 17) {
                 if (i12 != 35) {
                     if (i12 != 842094169) {
-                        throw new lb.a(jg.g.j(aVar.f56493e, "Unsupported image format: "), 3);
+                        throw new lb.a(jg.g.j(aVar.f56505e, "Unsupported image format: "), 3);
                     }
                 } else {
                     bVar = new a7.b(null);
@@ -67,7 +87,7 @@ public final class p0 implements yb.a {
             q6.m.g(null);
             throw null;
         }
-        Bitmap bitmap = aVar.f56490a;
+        Bitmap bitmap = aVar.f56502a;
         q6.m.g(bitmap);
         bVar = new a7.b(bitmap);
         try {
@@ -105,26 +125,6 @@ public final class p0 implements yb.a {
         }
     }
 
-    public void b(boolean z9, boolean z10) {
-        i0 i0Var = (i0) this.f14134e;
-        if (z9 && z10) {
-            i0Var.d(new n0(this, z9, z10, 0));
-            return;
-        }
-        AtomicBoolean atomicBoolean = new AtomicBoolean(true);
-        ((i0) this.f14135f).f14096a.postDelayed(new f2.h(28, this, atomicBoolean), 1000L);
-        i0Var.d(new o0(this, atomicBoolean, z9, z10, 0));
-    }
-
-    public void c(boolean z9) {
-        if (this.f14133c != z9) {
-            this.f14133c = z9;
-            if (this.f14132b) {
-                b(true, z9);
-            }
-        }
-    }
-
     public String toString() {
         switch (this.f14131a) {
             case 1:
@@ -154,7 +154,7 @@ public final class p0 implements yb.a {
                     aVar = new a8.a(b10, "com.google.mlkit.vision.label.aidls.IImageLabelerCreator", 0);
                 }
             }
-            this.f14135f = ((db) aVar).x1(new a7.b(context), new hb(((xb.a) this.f14134e).f57641a, -1));
+            this.f14135f = ((db) aVar).x1(new a7.b(context), new hb(((xb.a) this.f14134e).f57653a, -1));
         } catch (RemoteException e10) {
             throw new lb.a("Failed to create thin image labeler.", e10);
         } catch (b7.b unused) {
@@ -181,7 +181,7 @@ public final class p0 implements yb.a {
     }
 
     public p0() {
-        pe.a aVar = pe.a.f53575a;
+        pe.a aVar = pe.a.f53587a;
         this.f14132b = true;
         this.d = "    ";
         this.f14134e = "type";

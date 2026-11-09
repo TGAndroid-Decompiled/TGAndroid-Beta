@@ -3,23 +3,23 @@ package org.telegram.ui.Components;
 import android.view.MotionEvent;
 import android.view.View;
 public final class kk implements org.telegram.ui.ActionBar.m0, org.telegram.messenger.bb, org.telegram.messenger.db, org.telegram.ui.ActionBar.r1, jg.b {
-    public final wk f35349a;
+    public final wk f35359a;
 
     public kk(wk wkVar) {
-        this.f35349a = wkVar;
+        this.f35359a = wkVar;
     }
 
     @Override
     public void a() {
-        wk wkVar = this.f35349a;
-        wkVar.f39949e0 = false;
+        wk wkVar = this.f35359a;
+        wkVar.f40069e0 = false;
         wkVar.j0();
     }
 
     @Override
     public boolean b(MotionEvent motionEvent, org.telegram.messenger.ia iaVar) {
         MotionEvent motionEvent2;
-        wk wkVar = this.f35349a;
+        wk wkVar = this.f35359a;
         if (wkVar.G != 0.0f) {
             motionEvent = MotionEvent.obtain(motionEvent);
             motionEvent.offsetLocation(0.0f, (-wkVar.G) / 2.0f);
@@ -39,7 +39,7 @@ public final class kk implements org.telegram.ui.ActionBar.m0, org.telegram.mess
         View childAt;
         v4.d1 T;
         int L;
-        wk wkVar = this.f35349a;
+        wk wkVar = this.f35359a;
         bi.q1 q1Var = wkVar.L;
         if (i7 == 1 && !wkVar.H && q1Var.getChildCount() > 0 && (childAt = q1Var.getChildAt(0)) != null) {
             View F = q1Var.F(childAt);
@@ -49,7 +49,7 @@ public final class kk implements org.telegram.ui.ActionBar.m0, org.telegram.mess
                 T = q1Var.T(F);
             }
             if (T != null && T.b() == 0) {
-                if (wkVar.f39959o0 == 0) {
+                if (wkVar.f40079o0 == 0) {
                     L = 0;
                 } else {
                     L = org.telegram.messenger.g0.L(66.0f);
@@ -66,12 +66,12 @@ public final class kk implements org.telegram.ui.ActionBar.m0, org.telegram.mess
 
     @Override
     public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        wk.Q(this.f35349a);
+        wk.Q(this.f35359a);
     }
 
     @Override
     public void i(int i7) {
-        org.telegram.messenger.fa faVar = this.f35349a.D;
+        org.telegram.messenger.fa faVar = this.f35359a.D;
         if (faVar != null) {
             if (i7 == 2) {
                 faVar.j(0);

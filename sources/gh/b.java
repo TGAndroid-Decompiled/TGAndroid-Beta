@@ -3,11 +3,11 @@ package gh;
 import android.graphics.Color;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.sc;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.s6;
 public class b implements a {
-    public final f6 f13958a;
+    public final g6 f13958a;
     public final int f13959b;
     public final float f13960c;
     public int d;
@@ -17,14 +17,14 @@ public class b implements a {
     public int f13963n;
     public int f13964r;
 
-    public b(int i7, f6 f6Var) {
-        this(f6Var, i7, sc.e(262144) ? 0.85f : 0.76f);
+    public b(int i7, g6 g6Var) {
+        this(g6Var, i7, sc.e(262144) ? 0.85f : 0.76f);
     }
 
     @Override
     public int A() {
         a();
-        if (b() && Color.alpha(k6.w0(this.f13963n, this.f13958a)) != 0) {
+        if (b() && Color.alpha(l6.w0(this.f13963n, this.f13958a)) != 0) {
             return 0;
         }
         return this.f13962f;
@@ -33,7 +33,7 @@ public class b implements a {
     @Override
     public final int C0() {
         if (b()) {
-            return k6.w0(k6.ya, this.f13958a);
+            return l6.w0(l6.ya, this.f13958a);
         }
         return 0;
     }
@@ -41,7 +41,7 @@ public class b implements a {
     @Override
     public final int M() {
         if (b()) {
-            return k6.w0(this.f13963n, this.f13958a);
+            return l6.w0(this.f13963n, this.f13958a);
         }
         return 0;
     }
@@ -49,7 +49,7 @@ public class b implements a {
     @Override
     public int O() {
         a();
-        if (b() && Color.alpha(k6.w0(this.f13963n, this.f13958a)) != 0) {
+        if (b() && Color.alpha(l6.w0(this.f13963n, this.f13958a)) != 0) {
             return 0;
         }
         return this.h;
@@ -59,34 +59,34 @@ public class b implements a {
     public int R0() {
         a();
         if (b()) {
-            return k6.w0(k6.f28229xa, this.f13958a);
+            return l6.w0(l6.f28242xa, this.f13958a);
         }
         return this.f13961e;
     }
 
     public final void a() {
-        if (this.f13964r != r6.f28479b) {
+        if (this.f13964r != s6.f28501b) {
             d();
         }
     }
 
     public final boolean b() {
-        if (this.f13963n >= 0 && k6.i1(this.f13958a)) {
+        if (this.f13963n >= 0 && l6.i1(this.f13958a)) {
             return true;
         }
         return false;
     }
 
     public boolean c() {
-        if (g0.B(k6.w0(this.f13959b, this.f13958a)) < 0.721f) {
+        if (g0.B(l6.w0(this.f13959b, this.f13958a)) < 0.721f) {
             return true;
         }
         return false;
     }
 
     public final void d() {
-        this.f13964r = r6.f28479b;
-        this.d = k6.r1(this.f13960c, k6.w0(this.f13959b, this.f13958a));
+        this.f13964r = s6.f28501b;
+        this.d = l6.r1(this.f13960c, l6.w0(this.f13959b, this.f13958a));
         if (c()) {
             this.f13962f = 687865855;
             this.h = 352321535;
@@ -125,10 +125,10 @@ public class b implements a {
         return g0.N(0.6f);
     }
 
-    public b(f6 f6Var, int i7, float f10) {
+    public b(g6 g6Var, int i7, float f10) {
         this.f13963n = -1;
-        this.f13964r = r6.f28479b;
-        this.f13958a = f6Var;
+        this.f13964r = s6.f28501b;
+        this.f13958a = g6Var;
         this.f13959b = i7;
         this.f13960c = f10;
         d();

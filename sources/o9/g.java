@@ -48,13 +48,13 @@ public final class g {
         m.e(str);
         this.f20876b = str;
         this.f20877c = iVar;
-        a aVar = FirebaseInitProvider.f7899a;
+        a aVar = FirebaseInitProvider.f7897a;
         Trace.beginSection("Firebase");
         Trace.beginSection("ComponentDiscovery");
         ArrayList b10 = new i0(4, context, new rt(ComponentDiscoveryService.class, 20)).b();
         Trace.endSection();
         Trace.beginSection("Runtime");
-        j jVar = j.f57280a;
+        j jVar = j.f57292a;
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
         arrayList.addAll(b10);
@@ -69,7 +69,7 @@ public final class g {
         } else {
             z9 = true;
         }
-        if (z9 && FirebaseInitProvider.f7900b.get()) {
+        if (z9 && FirebaseInitProvider.f7898b.get()) {
             arrayList2.add(u9.a.c(aVar, a.class, new Class[0]));
         }
         u9.g gVar = new u9.g(jVar, arrayList, arrayList2, aVar2);
@@ -80,7 +80,7 @@ public final class g {
         d dVar = new d(this);
         a();
         if (atomicBoolean.get()) {
-            com.google.android.gms.common.api.internal.c.f6576e.f6577a.get();
+            com.google.android.gms.common.api.internal.c.f6574e.f6575a.get();
         }
         copyOnWriteArrayList.add(dVar);
         Trace.endSection();
@@ -132,7 +132,7 @@ public final class g {
                 while (true) {
                     if (atomicReference2.compareAndSet(null, obj)) {
                         com.google.android.gms.common.api.internal.c.b(application);
-                        com.google.android.gms.common.api.internal.c.f6576e.a(obj);
+                        com.google.android.gms.common.api.internal.c.f6574e.a(obj);
                         break;
                     } else if (atomicReference2.get() != null) {
                         break;
@@ -224,7 +224,7 @@ public final class g {
         a();
         za.a aVar = (za.a) this.f20880g.get();
         synchronized (aVar) {
-            z9 = aVar.f60023a;
+            z9 = aVar.f60032a;
         }
         return z9;
     }

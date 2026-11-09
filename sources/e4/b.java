@@ -4,7 +4,7 @@ import a8.ga;
 import a8.ia;
 import android.opengl.GLES20;
 import android.text.TextUtils;
-import org.telegram.ui.Components.p30;
+import org.telegram.ui.Components.q30;
 public class b {
     public final int f10666a;
     public final int f10667b;
@@ -105,9 +105,9 @@ public class b {
     }
 
     public b(int i7) {
-        int a10 = p30.a(35633, 2131624184);
+        int a10 = q30.a(35633, 2131624184);
         this.f10667b = a10;
-        int a11 = p30.a(35632, i7);
+        int a11 = q30.a(35632, i7);
         this.f10668c = a11;
         int glCreateProgram = GLES20.glCreateProgram();
         GLES20.glAttachShader(glCreateProgram, a10);

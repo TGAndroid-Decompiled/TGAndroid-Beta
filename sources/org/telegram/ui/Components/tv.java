@@ -13,7 +13,7 @@ public final class tv extends ux {
     public final void setTranslationY(float f10) {
         if (f10 != getTranslationY()) {
             super.setTranslationY(f10);
-            this.H.f34465x0.invalidate();
+            this.H.f34480x0.invalidate();
         }
     }
 }

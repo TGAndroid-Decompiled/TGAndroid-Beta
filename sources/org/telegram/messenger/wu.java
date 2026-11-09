@@ -103,7 +103,7 @@ public final class wu extends fu {
             return null;
         }
         int max = Math.max(0, Math.min(this.f26377a0, arrayList.size() - 1));
-        return TextUtils.concat(((yt) arrayList.get(max)).f(), ", ", id.a0(null, null, 2131747830, Integer.valueOf(max + 1), Integer.valueOf(arrayList.size())));
+        return TextUtils.concat(((yt) arrayList.get(max)).f(), ", ", id.a0(null, null, 2131747829, Integer.valueOf(max + 1), Integer.valueOf(arrayList.size())));
     }
 
     @Override

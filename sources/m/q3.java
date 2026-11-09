@@ -22,8 +22,8 @@ import java.util.LinkedList;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicMarkableReference;
 import org.telegram.messenger.ha;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
 public final class q3 {
     public Object f19228a;
     public Object f19229b;
@@ -40,7 +40,7 @@ public final class q3 {
         this.f19230c = fVar2;
         this.d = str;
         this.f19231e = str2;
-        this.f19232f = aVar == null ? q8.a.f54046a : aVar;
+        this.f19232f = aVar == null ? q8.a.f54058a : aVar;
         HashSet hashSet = new HashSet(unmodifiableSet);
         Iterator it = fVar2.values().iterator();
         if (!it.hasNext()) {
@@ -123,7 +123,7 @@ public final class q3 {
         this.f19229b = eVar;
     }
 
-    public q3(Context context, f6 f6Var) {
+    public q3(Context context, g6 g6Var) {
         TextPaint textPaint = new TextPaint(1);
         this.f19228a = textPaint;
         Paint paint = new Paint();
@@ -140,6 +140,6 @@ public final class q3 {
         Drawable mutate2 = context.getDrawable(2131231185).mutate();
         this.d = mutate2;
         mutate2.setBounds(0, 0, (int) (mutate2.getIntrinsicWidth() * 0.7f), (int) (mutate2.getIntrinsicHeight() * 0.7f));
-        paint.setColor(k6.w0(k6.zi, f6Var));
+        paint.setColor(l6.w0(l6.zi, g6Var));
     }
 }

@@ -28,9 +28,9 @@ public final class r9 implements RequestDelegate {
                         t9 t9Var2 = t9Var;
                         switch (i7) {
                             case 0:
-                                long j3 = t9Var2.f4758b;
-                                int i10 = t9Var2.f4757a;
-                                ArrayList arrayList = t9Var2.f4760e;
+                                long j3 = t9Var2.f4756b;
+                                int i10 = t9Var2.f4755a;
+                                ArrayList arrayList = t9Var2.f4758e;
                                 if (tLObject2 instanceof TL_stars.TL_starGiftCollections) {
                                     arrayList.clear();
                                     arrayList.addAll(((TL_stars.TL_starGiftCollections) tLObject2).collections);
@@ -44,19 +44,19 @@ public final class r9 implements RequestDelegate {
                                         if (t9Var2.e(tL_starGiftCollection.collection_id) == null) {
                                             v9 v9Var = new v9(i10, j3, false);
                                             int i12 = tL_starGiftCollection.collection_id;
-                                            v9Var.f4908c = true;
+                                            v9Var.f4906c = true;
                                             v9Var.d = i12;
                                             t9Var2.h.put(Integer.valueOf(i12), v9Var);
                                         }
                                     }
                                     t9Var2.d = true;
-                                    t9Var2.f4759c = false;
+                                    t9Var2.f4757c = false;
                                     qs.f(i10).k(231, Long.valueOf(j3), t9Var2);
                                     return;
                                 } else if (tLObject2 instanceof TL_stars.TL_starGiftCollectionsNotModified) {
                                     t9Var2.j();
                                     t9Var2.d = true;
-                                    t9Var2.f4759c = false;
+                                    t9Var2.f4757c = false;
                                     qs.f(i10).k(231, Long.valueOf(j3), t9Var2);
                                     return;
                                 } else {
@@ -68,7 +68,7 @@ public final class r9 implements RequestDelegate {
                                     TL_stars.TL_starGiftCollection tL_starGiftCollection2 = (TL_stars.TL_starGiftCollection) tLObject2;
                                     int f10 = t9Var2.f(tL_starGiftCollection2.collection_id);
                                     if (f10 >= 0) {
-                                        t9Var2.f4760e.set(f10, tL_starGiftCollection2);
+                                        t9Var2.f4758e.set(f10, tL_starGiftCollection2);
                                         return;
                                     }
                                     return;
@@ -80,7 +80,7 @@ public final class r9 implements RequestDelegate {
                                     TL_stars.TL_starGiftCollection tL_starGiftCollection3 = (TL_stars.TL_starGiftCollection) tLObject2;
                                     int f11 = t9Var2.f(tL_starGiftCollection3.collection_id);
                                     if (f11 >= 0) {
-                                        t9Var2.f4760e.set(f11, tL_starGiftCollection3);
+                                        t9Var2.f4758e.set(f11, tL_starGiftCollection3);
                                         return;
                                     }
                                     return;
@@ -100,9 +100,9 @@ public final class r9 implements RequestDelegate {
                         t9 t9Var22 = t9Var2;
                         switch (i7) {
                             case 0:
-                                long j3 = t9Var22.f4758b;
-                                int i10 = t9Var22.f4757a;
-                                ArrayList arrayList = t9Var22.f4760e;
+                                long j3 = t9Var22.f4756b;
+                                int i10 = t9Var22.f4755a;
+                                ArrayList arrayList = t9Var22.f4758e;
                                 if (tLObject2 instanceof TL_stars.TL_starGiftCollections) {
                                     arrayList.clear();
                                     arrayList.addAll(((TL_stars.TL_starGiftCollections) tLObject2).collections);
@@ -116,19 +116,19 @@ public final class r9 implements RequestDelegate {
                                         if (t9Var22.e(tL_starGiftCollection.collection_id) == null) {
                                             v9 v9Var = new v9(i10, j3, false);
                                             int i12 = tL_starGiftCollection.collection_id;
-                                            v9Var.f4908c = true;
+                                            v9Var.f4906c = true;
                                             v9Var.d = i12;
                                             t9Var22.h.put(Integer.valueOf(i12), v9Var);
                                         }
                                     }
                                     t9Var22.d = true;
-                                    t9Var22.f4759c = false;
+                                    t9Var22.f4757c = false;
                                     qs.f(i10).k(231, Long.valueOf(j3), t9Var22);
                                     return;
                                 } else if (tLObject2 instanceof TL_stars.TL_starGiftCollectionsNotModified) {
                                     t9Var22.j();
                                     t9Var22.d = true;
-                                    t9Var22.f4759c = false;
+                                    t9Var22.f4757c = false;
                                     qs.f(i10).k(231, Long.valueOf(j3), t9Var22);
                                     return;
                                 } else {
@@ -140,7 +140,7 @@ public final class r9 implements RequestDelegate {
                                     TL_stars.TL_starGiftCollection tL_starGiftCollection2 = (TL_stars.TL_starGiftCollection) tLObject2;
                                     int f10 = t9Var22.f(tL_starGiftCollection2.collection_id);
                                     if (f10 >= 0) {
-                                        t9Var22.f4760e.set(f10, tL_starGiftCollection2);
+                                        t9Var22.f4758e.set(f10, tL_starGiftCollection2);
                                         return;
                                     }
                                     return;
@@ -152,7 +152,7 @@ public final class r9 implements RequestDelegate {
                                     TL_stars.TL_starGiftCollection tL_starGiftCollection3 = (TL_stars.TL_starGiftCollection) tLObject2;
                                     int f11 = t9Var22.f(tL_starGiftCollection3.collection_id);
                                     if (f11 >= 0) {
-                                        t9Var22.f4760e.set(f11, tL_starGiftCollection3);
+                                        t9Var22.f4758e.set(f11, tL_starGiftCollection3);
                                         return;
                                     }
                                     return;
@@ -173,9 +173,9 @@ public final class r9 implements RequestDelegate {
                         t9 t9Var22 = t9Var3;
                         switch (i7) {
                             case 0:
-                                long j3 = t9Var22.f4758b;
-                                int i10 = t9Var22.f4757a;
-                                ArrayList arrayList = t9Var22.f4760e;
+                                long j3 = t9Var22.f4756b;
+                                int i10 = t9Var22.f4755a;
+                                ArrayList arrayList = t9Var22.f4758e;
                                 if (tLObject2 instanceof TL_stars.TL_starGiftCollections) {
                                     arrayList.clear();
                                     arrayList.addAll(((TL_stars.TL_starGiftCollections) tLObject2).collections);
@@ -189,19 +189,19 @@ public final class r9 implements RequestDelegate {
                                         if (t9Var22.e(tL_starGiftCollection.collection_id) == null) {
                                             v9 v9Var = new v9(i10, j3, false);
                                             int i12 = tL_starGiftCollection.collection_id;
-                                            v9Var.f4908c = true;
+                                            v9Var.f4906c = true;
                                             v9Var.d = i12;
                                             t9Var22.h.put(Integer.valueOf(i12), v9Var);
                                         }
                                     }
                                     t9Var22.d = true;
-                                    t9Var22.f4759c = false;
+                                    t9Var22.f4757c = false;
                                     qs.f(i10).k(231, Long.valueOf(j3), t9Var22);
                                     return;
                                 } else if (tLObject2 instanceof TL_stars.TL_starGiftCollectionsNotModified) {
                                     t9Var22.j();
                                     t9Var22.d = true;
-                                    t9Var22.f4759c = false;
+                                    t9Var22.f4757c = false;
                                     qs.f(i10).k(231, Long.valueOf(j3), t9Var22);
                                     return;
                                 } else {
@@ -213,7 +213,7 @@ public final class r9 implements RequestDelegate {
                                     TL_stars.TL_starGiftCollection tL_starGiftCollection2 = (TL_stars.TL_starGiftCollection) tLObject2;
                                     int f10 = t9Var22.f(tL_starGiftCollection2.collection_id);
                                     if (f10 >= 0) {
-                                        t9Var22.f4760e.set(f10, tL_starGiftCollection2);
+                                        t9Var22.f4758e.set(f10, tL_starGiftCollection2);
                                         return;
                                     }
                                     return;
@@ -225,7 +225,7 @@ public final class r9 implements RequestDelegate {
                                     TL_stars.TL_starGiftCollection tL_starGiftCollection3 = (TL_stars.TL_starGiftCollection) tLObject2;
                                     int f11 = t9Var22.f(tL_starGiftCollection3.collection_id);
                                     if (f11 >= 0) {
-                                        t9Var22.f4760e.set(f11, tL_starGiftCollection3);
+                                        t9Var22.f4758e.set(f11, tL_starGiftCollection3);
                                         return;
                                     }
                                     return;

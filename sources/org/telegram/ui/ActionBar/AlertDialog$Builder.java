@@ -18,12 +18,12 @@ public class AlertDialog$Builder {
         return this.f27296a;
     }
 
-    public u1 b(int i7, Context context, f6 f6Var) {
-        return new u1(i7, context, f6Var);
+    public u1 b(int i7, Context context, g6 g6Var) {
+        return new u1(i7, context, g6Var);
     }
 
     public final void c() {
-        int i7 = u1.f28550j1;
+        int i7 = u1.f28541j1;
         this.f27296a.getClass();
     }
 
@@ -53,14 +53,14 @@ public class AlertDialog$Builder {
 
     public final void h(String str, r1 r1Var) {
         u1 u1Var = this.f27296a;
-        u1Var.f28578n0 = str;
-        u1Var.f28579o0 = r1Var;
+        u1Var.f28569n0 = str;
+        u1Var.f28570o0 = r1Var;
     }
 
     public final void i(String str, r1 r1Var) {
         u1 u1Var = this.f27296a;
-        u1Var.f28583r0 = str;
-        u1Var.f28585s0 = r1Var;
+        u1Var.f28574r0 = str;
+        u1Var.f28576s0 = r1Var;
     }
 
     public final void j(DialogInterface.OnDismissListener onDismissListener) {
@@ -69,7 +69,7 @@ public class AlertDialog$Builder {
 
     public final void k(CharSequence charSequence, r1 r1Var) {
         u1 u1Var = this.f27296a;
-        u1Var.f28576l0 = charSequence;
+        u1Var.f28567l0 = charSequence;
         u1Var.m0 = r1Var;
     }
 
@@ -82,22 +82,22 @@ public class AlertDialog$Builder {
         u1Var.X = i7;
         u1Var.Y = i10;
         u1Var.S0 = false;
-        u1Var.f28558c0 = i11;
-        u1Var.f28560d0 = -1;
+        u1Var.f28549c0 = i11;
+        u1Var.f28551d0 = -1;
         u1Var.Z = hashMap;
     }
 
-    public final void n(int i7, f6 f6Var) {
+    public final void n(int i7, g6 g6Var) {
         u1 u1Var = this.f27296a;
-        u1Var.f28560d0 = i7;
-        u1Var.f28563e0 = f6Var;
-        u1Var.f28558c0 = k6.w0(i7, f6Var);
+        u1Var.f28551d0 = i7;
+        u1Var.f28554e0 = g6Var;
+        u1Var.f28549c0 = l6.w0(i7, g6Var);
     }
 
     public final void o(View view) {
         u1 u1Var = this.f27296a;
-        u1Var.f28554b = view;
-        u1Var.f28562e = -2;
+        u1Var.f28545b = view;
+        u1Var.f28553e = -2;
     }
 
     public final u1 p() {
@@ -109,7 +109,7 @@ public class AlertDialog$Builder {
             boolean[] zArr = this.f27297b;
             if (i7 < zArr.length) {
                 if (zArr[i7] && (textView = (TextView) u1Var.d(-(i7 + 1))) != null) {
-                    r6.V(textView, k6.f28093q7, u1Var.f28573i1);
+                    s6.U(textView, l6.f28106q7, u1Var.f28564i1);
                 }
                 i7++;
             } else {
@@ -121,20 +121,20 @@ public class AlertDialog$Builder {
     public AlertDialog$Builder setTopImage(int i7, int i10) {
         u1 u1Var = this.f27296a;
         u1Var.U = i7;
-        u1Var.f28558c0 = i10;
-        u1Var.f28560d0 = -1;
+        u1Var.f28549c0 = i10;
+        u1Var.f28551d0 = -1;
         return this;
     }
 
-    public AlertDialog$Builder(Context context, f6 f6Var) {
-        this(0, context, f6Var);
+    public AlertDialog$Builder(Context context, g6 g6Var) {
+        this(0, context, g6Var);
     }
 
-    public AlertDialog$Builder(int i7, Context context, f6 f6Var) {
+    public AlertDialog$Builder(int i7, Context context, g6 g6Var) {
         this.f27297b = new boolean[3];
         if (context == null && (context = org.telegram.messenger.g0.W(LaunchActivity.G1)) == null) {
             context = org.telegram.messenger.t0.f25566b;
         }
-        this.f27296a = b(i7, context, f6Var);
+        this.f27296a = b(i7, context, g6Var);
     }
 }

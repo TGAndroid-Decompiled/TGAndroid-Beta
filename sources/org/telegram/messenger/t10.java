@@ -166,7 +166,7 @@ public abstract class t10 {
             if (!TextUtils.isEmpty(str)) {
                 return str;
             }
-            return id.M0(2131749329, null);
+            return id.M0(2131749328, null);
         }
         return "DELETED";
     }
@@ -178,7 +178,7 @@ public abstract class t10 {
                 str = user.last_name;
             }
             if (str == null) {
-                return id.M0(2131749329, null);
+                return id.M0(2131749328, null);
             }
             int indexOf = str.indexOf(" ", 2);
             if (indexOf >= 0) {
@@ -186,7 +186,7 @@ public abstract class t10 {
             }
             return str;
         }
-        return id.M0(2131749329, null);
+        return id.M0(2131749328, null);
     }
 
     public static int l(TLRPC.User user) {
@@ -253,7 +253,7 @@ public abstract class t10 {
             }
             return F2;
         }
-        return id.M0(2131749329, null);
+        return id.M0(2131749328, null);
     }
 
     public static boolean q(TLRPC.UserFull userFull) {

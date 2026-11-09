@@ -1,47 +1,42 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-public final class i20 implements TextWatcher {
-    public final c40 f46553a;
+import android.os.Bundle;
+import org.telegram.messenger.voip.GroupCallMessage;
+public final class i20 implements nh.a {
+    public final e40 f46446a;
 
-    public i20(c40 c40Var) {
-        this.f46553a = c40Var;
+    public i20(e40 e40Var) {
+        this.f46446a = e40Var;
     }
 
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        String str;
-        int i7;
-        c40 c40Var = this.f46553a;
-        c40Var.f44624r5.a(TextUtils.isEmpty(editable), true);
-        int codePointCount = Character.codePointCount(editable, 0, editable.length());
-        int i10 = c40Var.U1;
-        if (codePointCount + 25 > i10) {
-            str = "" + (i10 - codePointCount);
+    public final void a(GroupCallMessage groupCallMessage) {
+        org.telegram.ui.ActionBar.f2 Q = LaunchActivity.Q();
+        if (Q == null) {
+            return;
+        }
+        boolean z9 = Q instanceof ProfileActivity;
+        e40 e40Var = this.f46446a;
+        if (z9 && ((ProfileActivity) Q).a() == groupCallMessage.fromId) {
+            e40Var.dismiss();
+            return;
+        }
+        int R0 = e40Var.R0();
+        Bundle bundle = new Bundle();
+        long j3 = groupCallMessage.fromId;
+        if (j3 > 0) {
+            bundle.putLong("user_id", j3);
         } else {
-            str = null;
+            bundle.putLong("chat_id", -j3);
         }
-        c40Var.D1.a();
-        c40Var.D1.setText(str);
-        org.telegram.ui.Components.j6 j6Var = c40Var.D1;
-        if (codePointCount >= i10) {
-            i7 = -1280137;
-        } else {
-            i7 = -1;
+        boolean z10 = true;
+        if (groupCallMessage.fromId == org.telegram.messenger.p10.i(e40Var.f45228k1.f21765a).e()) {
+            bundle.putBoolean("my_profile", true);
         }
-        j6Var.setTextColor(i7);
-        if (codePointCount > i10) {
-            org.telegram.messenger.p2.APP_ERROR.a();
+        ProfileActivity profileActivity = new ProfileActivity(bundle, null);
+        if (R0 > 0 && R0 != Integer.MAX_VALUE) {
+            z10 = false;
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+        Q.presentFragment(profileActivity, false, z10);
+        e40Var.dismiss();
     }
 }

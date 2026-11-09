@@ -13,8 +13,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.c20;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
 import org.telegram.ui.Components.cp;
 import org.telegram.ui.Components.i6;
 import org.telegram.ui.Components.r5;
@@ -32,7 +32,7 @@ public abstract class t extends FrameLayout {
     public c20 f14953n;
     public Runnable f14954r;
 
-    public t(Context context, f6 f6Var) {
+    public t(Context context, g6 g6Var) {
         super(context);
         Paint paint = new Paint(1);
         this.f14948a = paint;
@@ -47,9 +47,9 @@ public abstract class t extends FrameLayout {
         this.f14951e = waVar;
         this.f14952f = r2;
         setWillNotDraw(false);
-        paint2.setColor(k6.r1(0.1f, -16777216));
+        paint2.setColor(l6.r1(0.1f, -16777216));
         wa waVar2 = this.f14951e;
-        int w02 = k6.w0(k6.f27852d6, f6Var);
+        int w02 = l6.w0(l6.f27865d6, g6Var);
         waVar2.f700b = w02;
         paint.setColor(w02);
         r[] rVarArr = {new r(this), new r(this)};
@@ -61,7 +61,7 @@ public abstract class t extends FrameLayout {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append((CharSequence) "* ");
             spannableStringBuilder.append((CharSequence) sVar.f14939e);
-            spannableStringBuilder.setSpan(new r5(sVar.f14940f, 1.4f, i6Var.f34550a.getFontMetricsInt()), 0, 1, 33);
+            spannableStringBuilder.setSpan(new r5(sVar.f14940f, 1.4f, i6Var.f34585a.getFontMetricsInt()), 0, 1, 33);
             i6Var.t(spannableStringBuilder, z9, true);
             return;
         }
@@ -120,7 +120,7 @@ public abstract class t extends FrameLayout {
         String str2 = ((s) this.f14951e.d).f14942i;
         r[] rVarArr = this.f14952f;
         int i13 = 1;
-        if (rVarArr[1].f14906b.f39805c < rVarArr[0].f14906b.f39805c) {
+        if (rVarArr[1].f14906b.f39910c < rVarArr[0].f14906b.f39910c) {
             i7 = 1;
         } else {
             i7 = 0;
@@ -159,7 +159,7 @@ public abstract class t extends FrameLayout {
             RectF rectF = rVar.f14905a;
             float d = w5Var.d(sVar.f14936a);
             if (!sVar.f14936a) {
-                e10 = w5Var4.f39805c;
+                e10 = w5Var4.f39910c;
                 i6Var = i6Var2;
             } else {
                 wa waVar2 = this.f14951e;
@@ -177,7 +177,7 @@ public abstract class t extends FrameLayout {
                 e10 = w5Var4.e(false, f10);
             }
             if (!sVar.f14936a) {
-                e11 = w5Var3.f39805c;
+                e11 = w5Var3.f39910c;
             } else {
                 wa waVar3 = this.f14951e;
                 if (((s) waVar3.d).f14936a && ((s) waVar3.f701c).f14936a) {
@@ -193,7 +193,7 @@ public abstract class t extends FrameLayout {
                 e11 = w5Var3.e(false, f11);
             }
             if (!sVar.f14936a) {
-                e12 = w5Var2.f39805c;
+                e12 = w5Var2.f39910c;
             } else {
                 wa waVar4 = this.f14951e;
                 if (((s) waVar4.d).f14936a && ((s) waVar4.f701c).f14936a && ("left".equalsIgnoreCase(str2) || "right".equalsIgnoreCase(str2))) {
@@ -213,7 +213,7 @@ public abstract class t extends FrameLayout {
             canvas.save();
             float T13 = org.telegram.messenger.g0.T1(0.7f, 1.0f, d) * rVar.f14912j.a(0.02f);
             canvas.scale(T13, T13, T12, W1);
-            paint2.setColor(k6.r1(d, rVar.f14909f.a(sVar.f14941g, false)));
+            paint2.setColor(l6.r1(d, rVar.f14909f.a(sVar.f14941g, false)));
             canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(9.0f), org.telegram.messenger.g0.L(9.0f), paint2);
             if (d2 < 1.0f) {
                 canvas.save();
@@ -222,16 +222,16 @@ public abstract class t extends FrameLayout {
                 canvas.scale(T14, T14, T12, W1);
                 canvas.translate(0.0f, org.telegram.messenger.g0.L(-10.0f) * d2);
                 float f17 = f16 * d;
-                int r12 = k6.r1(f17, z4Var.a(sVar.h, false));
+                int r12 = l6.r1(f17, z4Var.a(sVar.h, false));
                 i6 i6Var3 = i6Var;
                 if (i6Var3.Z != r12) {
                     i6Var3.Z = r12;
                     str = str2;
-                    i6Var3.f34551a0 = new PorterDuffColorFilter(r12, PorterDuff.Mode.SRC_IN);
+                    i6Var3.f34586a0 = new PorterDuffColorFilter(r12, PorterDuff.Mode.SRC_IN);
                 } else {
                     str = str2;
                 }
-                i6Var3.u(k6.r1(f17, z4Var.a(sVar.h, false)));
+                i6Var3.u(l6.r1(f17, z4Var.a(sVar.h, false)));
                 i6Var3.p(rectF);
                 i6Var3.draw(canvas);
                 canvas.restore();
@@ -244,7 +244,7 @@ public abstract class t extends FrameLayout {
                 float T15 = org.telegram.messenger.g0.T1(0.75f, 1.0f, d2);
                 canvas.scale(T15, T15, T12, W1);
                 canvas.translate(0.0f, (1.0f - d2) * org.telegram.messenger.g0.L(10.0f));
-                cpVar.b(k6.r1(d2 * d, z4Var.a(sVar.h, false)));
+                cpVar.b(l6.r1(d2 * d, z4Var.a(sVar.h, false)));
                 cpVar.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
                 cpVar.draw(canvas);
                 canvas.restore();
@@ -255,17 +255,17 @@ public abstract class t extends FrameLayout {
             }
             if (d10 > f13) {
                 z9 = false;
-                nVar.b(k6.r1(d * d10, z4Var.a(sVar.h, false)), 64);
+                nVar.b(l6.r1(d * d10, z4Var.a(sVar.h, false)), 64);
                 nVar.a(org.telegram.messenger.g0.L(8.0f), canvas, rectF, this);
             } else {
                 z9 = false;
             }
-            if (rVar.f14915m != k6.r1(0.15f, sVar.h)) {
-                int r13 = k6.r1(0.15f, sVar.h);
+            if (rVar.f14915m != l6.r1(0.15f, sVar.h)) {
+                int r13 = l6.r1(0.15f, sVar.h);
                 rVar.f14915m = r13;
                 yVar = yVar2;
                 i13 = 1;
-                k6.H1(yVar, r13, true);
+                l6.H1(yVar, r13, true);
             } else {
                 yVar = yVar2;
                 i13 = 1;
@@ -287,7 +287,7 @@ public abstract class t extends FrameLayout {
     }
 
     public float getAnimatedTotalHeight() {
-        return this.f14950c.f39805c;
+        return this.f14950c.f39910c;
     }
 
     public int getTotalHeight() {

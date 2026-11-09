@@ -27,22 +27,22 @@ public final class c5 extends k2 {
                     i7++;
                 }
             }
-            int i11 = qp.s1(this.f28616a).f24857o5;
-            org.telegram.ui.ActionBar.l2 l2Var = this.f28622c;
-            if (i7 >= i11 && !p10.i(this.f28616a).q()) {
-                String G = id.G(qp.s1(this.f28616a).f24866p5, "StoryPremiumWidgets2", new Object[0]);
+            int i11 = qp.s1(this.f28621a).f24857o5;
+            org.telegram.ui.ActionBar.l2 l2Var = this.f28627c;
+            if (i7 >= i11 && !p10.i(this.f28621a).q()) {
+                String G = id.G(qp.s1(this.f28621a).f24866p5, "StoryPremiumWidgets2", new Object[0]);
                 try {
                     l2Var.performHapticFeedback(3);
                 } catch (Exception unused) {
                 }
-                new hc(l2Var, this.I0).I(2131624216, id.M0(2131749200, null), org.telegram.messenger.g0.S2(G, org.telegram.ui.ActionBar.k6.Uc, 0, new di.s7(this, 17), this.I0)).k(true);
+                new hc(l2Var, this.I0).I(2131624216, id.M0(2131749199, null), org.telegram.messenger.g0.S2(G, org.telegram.ui.ActionBar.l6.Uc, 0, new di.f8(this, 16), this.I0)).k(true);
                 return false;
-            } else if (i7 >= qp.s1(this.f28616a).f24866p5) {
+            } else if (i7 >= qp.s1(this.f28621a).f24866p5) {
                 try {
                     l2Var.performHapticFeedback(3);
                 } catch (Exception unused2) {
                 }
-                new hc(l2Var, this.I0).I(2131623981, id.M0(2131748979, "LimitReached"), id.G(qp.s1(this.f28616a).f24866p5, "StoryReactionsWidgetLimit2", new Object[0])).k(true);
+                new hc(l2Var, this.I0).I(2131623981, id.M0(2131748978, "LimitReached"), id.G(qp.s1(this.f28621a).f24866p5, "StoryReactionsWidgetLimit2", new Object[0])).k(true);
                 return false;
             }
         }

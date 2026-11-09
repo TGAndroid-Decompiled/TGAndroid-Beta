@@ -1,6 +1,6 @@
 package m4;
 
-import di.s6;
+import di.t6;
 import f3.j0;
 public final class v implements i {
     public String f19823e;
@@ -16,7 +16,7 @@ public final class v implements i {
     public final h2.x f19820a = new h2.x(new byte[15], 2);
     public final d4.f f19821b = new d4.f();
     public final h2.x f19822c = new h2.x();
-    public final s6 f19833p = new s6();
+    public final t6 f19833p = new t6();
     public int f19834q = -2147483647;
     public int f19835r = -1;
     public long f19837t = -1;

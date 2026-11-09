@@ -7,22 +7,22 @@ import android.view.Surface;
 import e2.x1;
 import h2.m0;
 public final class k implements Handler.Callback {
-    public final Handler f8030a;
-    public final l f8031b;
+    public final Handler f8028a;
+    public final l f8029b;
 
     public k(l lVar, u2.l lVar2) {
-        this.f8031b = lVar;
+        this.f8029b = lVar;
         Handler q10 = m0.q(this);
-        this.f8030a = q10;
-        lVar2.i(this, q10);
+        this.f8028a = q10;
+        lVar2.h(this, q10);
     }
 
     public final void a(long j3) {
         boolean z9;
         Surface surface;
-        l lVar = this.f8031b;
-        wf.b bVar = lVar.f8033b1;
-        if (this == lVar.M1 && lVar.f56282d0 != null) {
+        l lVar = this.f8029b;
+        wf.b bVar = lVar.f8031b1;
+        if (this == lVar.M1 && lVar.f56294d0 != null) {
             if (j3 == Long.MAX_VALUE) {
                 lVar.M0 = true;
                 return;
@@ -34,19 +34,19 @@ public final class k implements Handler.Callback {
                     lVar.I1 = x1Var;
                     bVar.m0(x1Var);
                 }
-                lVar.O0.f17779e++;
-                y yVar = lVar.f8036e1;
-                if (yVar.f8098e != 3) {
+                lVar.O0.f17777e++;
+                y yVar = lVar.f8034e1;
+                if (yVar.f8096e != 3) {
                     z9 = true;
                 } else {
                     z9 = false;
                 }
-                yVar.f8098e = 3;
-                yVar.f8104l.getClass();
-                yVar.f8100g = m0.S(SystemClock.elapsedRealtime());
-                if (z9 && (surface = lVar.f8047r1) != null) {
+                yVar.f8096e = 3;
+                yVar.f8102l.getClass();
+                yVar.f8098g = m0.S(SystemClock.elapsedRealtime());
+                if (z9 && (surface = lVar.f8045r1) != null) {
                     bVar.g0(surface);
-                    lVar.f8050u1 = true;
+                    lVar.f8048u1 = true;
                 }
                 lVar.h0(j3);
             } catch (l2.l e10) {

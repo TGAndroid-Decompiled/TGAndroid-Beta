@@ -8,41 +8,41 @@ public final class wm extends org.telegram.ui.Cells.a6 {
     public final int F;
     public final org.telegram.ui.l4 G;
 
-    public wm(org.telegram.ui.l4 l4Var, Context context, int i7, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
-        super(context, i7, null, f6Var);
+    public wm(org.telegram.ui.l4 l4Var, Context context, int i7, org.telegram.ui.ActionBar.g6 g6Var, int i10) {
+        super(context, i7, null, g6Var);
         this.G = l4Var;
         this.F = i10;
     }
 
     @Override
     public final void g(org.telegram.ui.Cells.z5 z5Var, ActionMode actionMode) {
-        bn bnVar = (bn) this.G.f47410e;
-        if (!bnVar.f32250n && this.F == 11 && z5Var.isFocused() && z5Var.hasSelection()) {
+        bn bnVar = (bn) this.G.f47458e;
+        if (!bnVar.f32309n && this.F == 11 && z5Var.isFocused() && z5Var.hasSelection()) {
             Menu menu = actionMode.getMenu();
             if (menu.findItem(16908321) != null) {
-                org.telegram.ui.an.A8(menu, ((org.telegram.ui.an) bnVar.f39004b.W1).h, false, true, true, true);
+                org.telegram.ui.cn.B8(menu, ((org.telegram.ui.cn) bnVar.f39071b.W1).h, false, true, true, true);
             }
         }
     }
 
     @Override
     public final void i(boolean z9) {
-        bn.Q((bn) this.G.f47410e, this, z9);
+        bn.Q((bn) this.G.f47458e, this, z9);
     }
 
     @Override
     public final void j(org.telegram.ui.Cells.a6 a6Var) {
-        bn.R((bn) this.G.f47410e, a6Var);
+        bn.R((bn) this.G.f47458e, a6Var);
     }
 
     @Override
     public final void k(org.telegram.ui.Cells.z5 z5Var) {
-        ((bn) this.G.f47410e).f39004b.h1(z5Var, true);
+        ((bn) this.G.f47458e).f39071b.h1(z5Var, true);
     }
 
     @Override
     public final boolean l(ArrayList arrayList) {
-        bn bnVar = (bn) this.G.f47410e;
+        bn bnVar = (bn) this.G.f47458e;
         if (arrayList.isEmpty()) {
             return false;
         }
@@ -59,9 +59,9 @@ public final class wm extends org.telegram.ui.Cells.a6 {
             i7++;
         }
         bnVar.n0();
-        bnVar.f32246k0 = (bnVar.f32262t0 + i7) - 1;
-        bnVar.f32260s.setItemAnimator(bnVar.f32265w);
-        bnVar.f32258r.f();
+        bnVar.f32305k0 = (bnVar.f32321t0 + i7) - 1;
+        bnVar.f32319s.setItemAnimator(bnVar.f32324w);
+        bnVar.f32317r.f();
         return true;
     }
 }

@@ -7,7 +7,7 @@ import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.zg0;
+import org.telegram.ui.Components.ah0;
 public final class ic {
     public Paint A;
     public Path B;
@@ -17,7 +17,7 @@ public final class ic {
     public int d;
     public BitmapShader f23137e;
     public org.telegram.ui.Components.v5 f23138f;
-    public zg0 f23139g;
+    public ah0 f23139g;
     public int[] h;
     public BitmapShader f23140i;
     public Drawable f23141j;

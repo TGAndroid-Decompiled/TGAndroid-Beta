@@ -461,7 +461,7 @@ public final class h implements m {
                                     gVar.d.clear();
                                     gVar.f10689e.clear();
                                     break;
-                                } else if (cVar != null && cVar.f6048b != j12) {
+                                } else if (cVar != null && cVar.f6046b != j12) {
                                     gVar.f10692i = cVar2;
                                     break;
                                 }
@@ -505,7 +505,7 @@ public final class h implements m {
                                     sparseArray3.put(j23, new f(j25, j26));
                                 }
                                 e eVar3 = new e(j15, i22, j16, j17, j18, j19, j20, j21, j22, sparseArray3);
-                                if (cVar3.f6049c == 0 && (eVar2 = (e) sparseArray2.get(j15)) != null) {
+                                if (cVar3.f6047c == 0 && (eVar2 = (e) sparseArray2.get(j15)) != null) {
                                     SparseArray sparseArray4 = eVar2.f10683j;
                                     for (int i25 = 0; i25 < sparseArray4.size(); i25++) {
                                         eVar3.f10683j.put(sparseArray4.keyAt(i25), (f) sparseArray4.valueAt(i25));

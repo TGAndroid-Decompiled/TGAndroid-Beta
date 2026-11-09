@@ -1,62 +1,68 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.concurrent.CountDownLatch;
-public final class tz0 implements Runnable {
-    public final int f50175a;
-    public final q11 f50176b;
+import android.graphics.SurfaceTexture;
+public final class tz0 implements org.telegram.ui.Components.r51, org.telegram.ui.Components.n51 {
+    public final uz0 f50269a;
 
-    public tz0(q11 q11Var, int i7) {
-        this.f50175a = i7;
-        this.f50176b = q11Var;
+    public tz0(uz0 uz0Var) {
+        this.f50269a = uz0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f50175a) {
-            case 0:
-                q11 q11Var = this.f50176b;
-                q11Var.getClass();
-                HashSet hashSet = ch.e0.f6231a;
-                com.google.android.gms.internal.cast.b0 b0Var = org.telegram.messenger.gc.D().f22648p;
-                if (((CountDownLatch) b0Var.f6815c) == null) {
-                    b0Var.f6815c = new CountDownLatch(1);
-                }
-                ch.e0.f6232b = true;
-                ch.e0.f6234e = false;
-                ch.e0.f6236g = false;
-                org.telegram.messenger.g0.i3(new tz0(q11Var, 2), 0L);
-                return;
-            case 1:
-                q11 q11Var2 = this.f50176b;
-                ArrayList arrayList = q11Var2.B1;
-                if (arrayList != null) {
-                    arrayList.clear();
-                }
-                ArrayList arrayList2 = q11Var2.C1;
-                if (arrayList2 != null) {
-                    arrayList2.clear();
-                }
-                ArrayList arrayList3 = q11Var2.E1;
-                if (arrayList3 != null) {
-                    arrayList3.clear();
-                }
-                q11Var2.f49053q0.E(true);
-                return;
-            case 2:
-                this.f50176b.V1.start();
-                return;
-            case 3:
-                this.f50176b.B(true, true, true);
-                return;
-            default:
-                q11 q11Var3 = this.f50176b;
-                org.telegram.messenger.qs e10 = org.telegram.messenger.qs.e();
-                tz0 tz0Var = q11Var3.S1;
-                e10.f25127e.remove(tz0Var);
-                org.telegram.messenger.qs.e().d(tz0Var);
-                return;
+    public void F(boolean z9, float[] fArr) {
+        this.f50269a.V.e(z9, fArr);
+    }
+
+    @Override
+    public void onRenderedFirstFrame(m2.a aVar) {
+    }
+
+    @Override
+    public void onStateChanged(boolean z9, int i7) {
+        uz0 uz0Var = this.f50269a;
+        if (i7 == 4) {
+            uz0Var.dismiss();
+            return;
         }
+        org.telegram.messenger.g0.r(uz0Var.Z);
+        org.telegram.messenger.g0.i3(uz0Var.Z, 16L);
+    }
+
+    @Override
+    public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
+        return false;
+    }
+
+    @Override
+    public boolean s() {
+        if (this.f50269a.V.f32573i != null) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void onRenderedFirstFrame() {
+        org.telegram.messenger.g0.h3(new tu0(this, 14));
+    }
+
+    @Override
+    public void onSeekFinished(m2.a aVar) {
+    }
+
+    @Override
+    public void onSeekStarted(m2.a aVar) {
+    }
+
+    @Override
+    public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+    }
+
+    @Override
+    public void onError(org.telegram.ui.Components.u51 u51Var, Exception exc) {
+    }
+
+    @Override
+    public void onVideoSizeChanged(int i7, int i10, int i11, float f10) {
     }
 }

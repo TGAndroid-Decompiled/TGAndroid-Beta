@@ -24,7 +24,7 @@ import org.telegram.messenger.PushListenerController;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.w80;
+import org.telegram.ui.y80;
 import org.telegram.utils.twidget.WidgetEngineService;
 public abstract class t0 extends Application {
     public static volatile boolean D = true;
@@ -57,7 +57,7 @@ public abstract class t0 extends Application {
                     Log.w("FirebaseCrashlytics", "A null value was passed to recordException. Ignoring.", null);
                     return;
                 }
-                aa.u uVar = bVar.f57621a;
+                aa.u uVar = bVar.f57633a;
                 Map map = Collections.EMPTY_MAP;
                 uVar.f868n.f3135a.a(new a1.e(uVar, th2));
                 return;
@@ -418,7 +418,7 @@ public abstract class t0 extends Application {
             }
             d = new Handler(f25566b.getMainLooper());
             g0.h3(new ai.m0(21));
-            w80[] values = w80.values();
+            y80[] values = y80.values();
             int length = values.length;
             int i11 = 0;
             while (true) {
@@ -428,7 +428,7 @@ public abstract class t0 extends Application {
                     }
                     i11++;
                 } else {
-                    c8.ua.b(w80.DEFAULT);
+                    c8.ua.b(y80.DEFAULT);
                     break;
                 }
             }

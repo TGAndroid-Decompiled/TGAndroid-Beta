@@ -98,11 +98,11 @@ public final class qu extends fu {
         }
         kv kvVar = this.f22469a;
         if (kvVar.E()) {
-            i7 = org.telegram.ui.ActionBar.k6.Tc;
+            i7 = org.telegram.ui.ActionBar.l6.Tc;
         } else {
-            i7 = org.telegram.ui.ActionBar.k6.Sc;
+            i7 = org.telegram.ui.ActionBar.l6.Sc;
         }
-        int w02 = org.telegram.ui.ActionBar.k6.w0(i7, kvVar.D);
+        int w02 = org.telegram.ui.ActionBar.l6.w0(i7, kvVar.D);
         Paint paint = this.f25150i0;
         paint.setColor(w02);
         int D = k5.D(8.0f, 2, this.Z);

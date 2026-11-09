@@ -52,7 +52,7 @@ public class MusicBrowserService extends MediaBrowserService {
         wz a10 = wz.a(this);
         a10.getClass();
         if (wz.b()) {
-            Toast.makeText(getApplicationContext(), id.M0(2131751111, null), 1).show();
+            Toast.makeText(getApplicationContext(), id.M0(2131751110, null), 1).show();
             stopSelf();
             result.detach();
             return;

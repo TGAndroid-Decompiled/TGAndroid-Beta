@@ -1,114 +1,203 @@
 package org.telegram.ui.Components;
 
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
-import android.os.Build;
-import android.view.View;
-import java.util.Iterator;
-public final class if0 {
-    public static final float[] f34645m = new ColorMatrix().getArray();
-    public static final float[] f34646n;
-    public static final nb.a f34647o;
-    public final oi.d f34648a;
-    public final oi.c f34649b;
-    public final dh.c f34650c;
-    public final dh.c d;
-    public final dh.c f34651e;
-    public final ri.d f34652f;
-    public final xe.b f34653g;
-    public final xe.b h;
-    public int f34654i;
-    public boolean f34655j;
-    public float f34656k;
-    public float f34657l;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RadialGradient;
+import android.graphics.RectF;
+import android.graphics.Shader;
+public final class if0 implements ri.a, dh.b, pi.a {
+    public final ri.a f34727a;
+    public final Paint f34728b = new Paint(1);
+    public final Paint f34729c = new Paint();
+    public RadialGradient d;
+    public int f34730e;
+    public float f34731f;
+    public final jf0 h;
 
-    static {
-        ColorMatrix colorMatrix = new ColorMatrix();
-        org.telegram.messenger.g0.i(colorMatrix, 0.65f);
-        org.telegram.messenger.g0.n2(colorMatrix, 0.5f);
-        f34646n = colorMatrix.getArray();
-        f34647o = new nb.a(18);
+    public if0(jf0 jf0Var, hf0 hf0Var) {
+        this.h = jf0Var;
+        this.f34727a = hf0Var;
     }
 
-    public if0(oi.q qVar, oi.a aVar) {
-        oi.c cVar;
-        xe.b bVar = new xe.b();
-        this.f34653g = bVar;
-        xe.b bVar2 = new xe.b();
-        this.h = bVar2;
-        if (Build.VERSION.SDK_INT >= 31) {
-            aVar.f21028l = true;
-            oi.d dVar = aVar.f21024g;
-            this.f34648a = dVar;
-            if (dVar != null) {
-                cVar = dVar.d(4);
-            } else {
+    @Override
+    public final int a() {
+        return j().a();
+    }
+
+    @Override
+    public final fh.g b() {
+        return new fh.g(this, this, this);
+    }
+
+    @Override
+    public final void d(float f10, float f11, int i7, Canvas canvas, RectF rectF) {
+        float f12;
+        float f13;
+        int i10;
+        Canvas canvas2;
+        RectF rectF2;
+        jf0 jf0Var = this.h;
+        ri.a aVar = this.f34727a;
+        if (aVar != null) {
+            f12 = jf0Var.f35005l;
+        } else {
+            f12 = 0.0f;
+        }
+        int i11 = (f12 > 1.0f ? 1 : (f12 == 1.0f ? 0 : -1));
+        pi.a aVar2 = null;
+        if (i11 < 0) {
+            oi.c cVar = jf0Var.f34997b;
+            if (cVar == null) {
                 cVar = null;
             }
-            this.f34649b = cVar;
+            cVar.d(f10, f11, i7, canvas, rectF);
+            i10 = i7;
+            canvas2 = canvas;
+            rectF2 = rectF;
+            float f14 = 1.0f - jf0Var.f35004k;
+            if (f14 > 0.0f) {
+                canvas2.save();
+                float f15 = 1.0f / i10;
+                canvas2.scale(f15, f15);
+                f13 = f10;
+                canvas2.translate(-f13, -f11);
+                i(canvas2, rectF2.left, rectF2.top, rectF2.right, rectF2.bottom, f14, i10 * 2);
+                canvas2.restore();
+            } else {
+                f13 = f10;
+            }
         } else {
-            this.f34648a = null;
-            this.f34649b = null;
+            f13 = f10;
+            i10 = i7;
+            canvas2 = canvas;
+            rectF2 = rectF;
         }
-        hf0 hf0Var = new hf0(this, null);
-        hf0 hf0Var2 = new hf0(this, new gf0(aVar.f21021c));
-        dh.c cVar2 = new dh.c(hf0Var, hf0Var, hf0Var);
-        cVar2.f8709j = qVar;
-        cVar2.f8707g = bVar;
-        cVar2.f8706f = bVar2;
-        this.f34650c = cVar2;
-        dh.c cVar3 = new dh.c(hf0Var2, hf0Var2, hf0Var2);
-        cVar3.f8709j = qVar;
-        cVar3.f8707g = bVar;
-        cVar3.f8706f = bVar2;
-        this.d = cVar3;
-        cVar3.f8710k = true;
-        ri.d dVar2 = new ri.d(hf0Var2, new gf0(aVar.f21023f));
-        this.f34652f = dVar2;
-        dh.c cVar4 = new dh.c(dVar2, dVar2, dVar2);
-        cVar4.f8709j = qVar;
-        cVar4.f8707g = bVar;
-        cVar4.f8706f = bVar2;
-        this.f34651e = cVar4;
-        cVar4.f8710k = true;
-    }
-
-    public final void a() {
-        Iterator it = this.h.iterator();
-        while (it.hasNext()) {
-            ((fh.g) it.next()).updateColors();
-        }
-        Iterator it2 = this.f34653g.iterator();
-        while (it2.hasNext()) {
-            ((View) it2.next()).invalidate();
+        if (f12 > 0.0f) {
+            if (i11 < 0) {
+                canvas2.saveLayerAlpha(null, (int) (f12 * 255.0f));
+            }
+            if (aVar instanceof pi.a) {
+                aVar2 = (pi.a) aVar;
+            }
+            aVar2.d(f13, f11, i10, canvas2, rectF2);
+            if (i11 < 0) {
+                canvas.restore();
+            }
         }
     }
 
-    public final void b(float f10) {
-        oi.d dVar;
-        ColorMatrixColorFilter colorMatrixColorFilter;
-        if (this.f34656k != f10) {
-            this.f34656k = f10;
-            if (Build.VERSION.SDK_INT >= 31 && (dVar = this.f34648a) != null) {
-                if (f10 > 0.0f) {
-                    float[] fArr = f34645m;
-                    int length = fArr.length;
-                    float[] fArr2 = new float[length];
-                    for (int i7 = 0; i7 < length; i7++) {
-                        fArr2[i7] = org.telegram.messenger.g0.T1(fArr[i7], f34646n[i7], f10);
-                    }
-                    colorMatrixColorFilter = new ColorMatrixColorFilter(fArr2);
-                } else {
-                    colorMatrixColorFilter = null;
-                }
-                if (dVar.f21063k != colorMatrixColorFilter) {
-                    dVar.f21063k = colorMatrixColorFilter;
-                    for (int i10 = 0; i10 < dVar.f21056b; i10++) {
-                        ((oi.b) dVar.f21055a.get(i10)).c(colorMatrixColorFilter);
-                    }
+    @Override
+    public final void e(Canvas canvas, float f10, float f11, float f12, float f13) {
+        float f14;
+        ri.a aVar = this.f34727a;
+        jf0 jf0Var = this.h;
+        if (aVar != null) {
+            f14 = jf0Var.f35005l;
+        } else {
+            f14 = 0.0f;
+        }
+        int i7 = (f14 > 1.0f ? 1 : (f14 == 1.0f ? 0 : -1));
+        if (i7 < 0) {
+            if (jf0Var.f34997b != null && canvas.isHardwareAccelerated()) {
+                jf0Var.f34997b.e(canvas, f10, f11, f12, f13);
+            } else {
+                float f15 = jf0Var.f35004k;
+                if (f15 > 0.0f) {
+                    int r12 = org.telegram.ui.ActionBar.l6.r1(f15 * 0.5f, -16777216);
+                    Paint paint = this.f34729c;
+                    paint.setColor(r12);
+                    canvas.drawRect(f10, f11, f12, f13, paint);
                 }
             }
-            a();
+            float f16 = 1.0f - jf0Var.f35004k;
+            if (f16 > 0.0f) {
+                i(canvas, f10, f11, f12, f13, f16, 0.0f);
+            }
         }
+        if (f14 > 0.0f) {
+            if (i7 < 0) {
+                canvas.saveLayerAlpha(f10, f11, f12, f13, (int) (f14 * 255.0f));
+            }
+            this.f34727a.e(canvas, f10, f11, f12, f13);
+            if (i7 < 0) {
+                canvas.restore();
+            }
+        }
+    }
+
+    @Override
+    public final int f() {
+        return j().f();
+    }
+
+    @Override
+    public final int g() {
+        return j().g();
+    }
+
+    @Override
+    public final boolean h() {
+        oi.c cVar = this.h.f34997b;
+        pi.a aVar = null;
+        if (cVar == null) {
+            cVar = null;
+        }
+        ri.a aVar2 = this.f34727a;
+        if (aVar2 instanceof pi.a) {
+            aVar = (pi.a) aVar2;
+        }
+        if (cVar != null && cVar.f() > 1) {
+            if (aVar2 == null || (aVar != null && aVar.h())) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final void i(Canvas canvas, float f10, float f11, float f12, float f13, float f14, float f15) {
+        jf0 jf0Var = this.h;
+        boolean z9 = jf0Var.f35003j;
+        Paint paint = this.f34728b;
+        if (z9) {
+            float f16 = f12 - f10;
+            float max = Math.max(1.0f, 0.65f * f16);
+            if (this.d == null || this.f34730e != jf0Var.f35002i || this.f34731f != max) {
+                this.f34730e = jf0Var.f35002i;
+                this.f34731f = max;
+                this.d = new RadialGradient(0.0f, 0.0f, max, org.telegram.ui.ActionBar.l6.r1(0.8f, jf0Var.f35002i), jf0Var.f35002i, Shader.TileMode.CLAMP);
+            }
+            canvas.save();
+            canvas.translate((f10 + f12) / 2.0f, (f11 + f13) / 2.0f);
+            paint.setShader(this.d);
+            paint.setColor(-16777216);
+            paint.setAlpha((int) (f14 * 255.0f));
+            canvas.drawRect(((f10 - f12) / 2.0f) - f15, ((f11 - f13) / 2.0f) - f15, (f16 / 2.0f) + f15, com.google.android.recaptcha.internal.a.A(f13, f11, 2.0f, f15), paint);
+            canvas.restore();
+            return;
+        }
+        paint.setShader(null);
+        paint.setColor(org.telegram.ui.ActionBar.l6.r1(f14, jf0Var.f35002i));
+        canvas.drawRect(f10 - f15, f11 - f15, f12 + f15, f13 + f15, paint);
+    }
+
+    public final pi.a j() {
+        oi.c cVar = this.h.f34997b;
+        pi.a aVar = null;
+        if (cVar == null) {
+            cVar = null;
+        }
+        ri.a aVar2 = this.f34727a;
+        if (aVar2 instanceof pi.a) {
+            aVar = (pi.a) aVar2;
+        }
+        if (aVar != null && cVar.f() >= aVar.f()) {
+            return aVar;
+        }
+        return cVar;
+    }
+
+    @Override
+    public final void c(fh.g gVar) {
     }
 }

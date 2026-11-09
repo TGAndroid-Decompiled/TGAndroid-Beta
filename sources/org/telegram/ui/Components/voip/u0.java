@@ -2,25 +2,25 @@ package org.telegram.ui.Components.voip;
 
 import android.animation.ValueAnimator;
 public final class u0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f39561a;
-    public final z0 f39562b;
+    public final int f39650a;
+    public final z0 f39651b;
 
     public u0(z0 z0Var, int i7) {
-        this.f39561a = i7;
-        this.f39562b = z0Var;
+        this.f39650a = i7;
+        this.f39651b = z0Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f39561a) {
+        switch (this.f39650a) {
             case 0:
-                z0 z0Var = this.f39562b;
+                z0 z0Var = this.f39651b;
                 z0Var.getClass();
                 z0Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 z0Var.invalidate();
                 return;
             case 1:
-                z0 z0Var2 = this.f39562b;
+                z0 z0Var2 = this.f39651b;
                 z0Var2.getClass();
                 z0Var2.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 float L = z0Var2.I + org.telegram.messenger.g0.L(28.0f);
@@ -32,17 +32,17 @@ public final class u0 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 2:
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                z0 z0Var3 = this.f39562b;
+                z0 z0Var3 = this.f39651b;
                 z0Var3.E = floatValue;
                 int L3 = (org.telegram.messenger.g0.f22563q.x - org.telegram.messenger.g0.L(36.0f)) - org.telegram.messenger.g0.L(52.0f);
-                x0 x0Var = z0Var3.f39668c;
+                x0 x0Var = z0Var3.f39757c;
                 x0Var.getLayoutParams().width = org.telegram.messenger.g0.L(52.0f) + ((int) (L3 * z0Var3.E));
                 x0Var.requestLayout();
                 return;
             default:
-                z0 z0Var4 = this.f39562b;
+                z0 z0Var4 = this.f39651b;
                 z0Var4.getClass();
-                z0Var4.f39673s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                z0Var4.f39762s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 z0Var4.e();
                 return;
         }

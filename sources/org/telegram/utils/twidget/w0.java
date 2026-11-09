@@ -32,7 +32,7 @@ public abstract class w0 {
             renderNode.setRenderEffect(c10);
             Canvas canvas = (Canvas) kVar.f192c;
             canvas.save();
-            Path path = z0Var.f53014f;
+            Path path = z0Var.f53028f;
             path.rewind();
             if (fArr == null) {
                 path.addRect(rectF, Path.Direction.CW);
@@ -58,12 +58,12 @@ public abstract class w0 {
         RenderNode renderNode = new RenderNode("widget-filter");
         x0Var.d = ((int) Math.floor(rectF.left * f10)) - 1;
         int floor = ((int) Math.floor(rectF.top * f10)) - 1;
-        x0Var.f53003e = floor;
+        x0Var.f53017e = floor;
         renderNode.setPosition(x0Var.d, floor, ((int) Math.ceil(rectF.right * f10)) + 1, ((int) Math.ceil(rectF.bottom * f10)) + 1);
         renderNode.setRenderEffect(c10);
-        x0Var.f53002c = renderNode;
+        x0Var.f53016c = renderNode;
         RecordingCanvas beginRecording = renderNode.beginRecording();
-        beginRecording.translate(-x0Var.d, -x0Var.f53003e);
+        beginRecording.translate(-x0Var.d, -x0Var.f53017e);
         beginRecording.scale(f10, f10);
         return beginRecording;
     }
@@ -132,12 +132,12 @@ public abstract class w0 {
     }
 
     public static void d(x0 x0Var, float f10) {
-        RenderNode e10 = ni.a.e(x0Var.f53002c);
+        RenderNode e10 = ni.a.e(x0Var.f53016c);
         e10.endRecording();
-        x0Var.f53000a.save();
+        x0Var.f53014a.save();
         float f11 = 1.0f / f10;
-        x0Var.f53000a.scale(f11, f11);
-        x0Var.f53000a.drawRenderNode(e10);
-        x0Var.f53000a.restore();
+        x0Var.f53014a.scale(f11, f11);
+        x0Var.f53014a.drawRenderNode(e10);
+        x0Var.f53014a.restore();
     }
 }

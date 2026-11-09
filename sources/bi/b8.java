@@ -1,11 +1,11 @@
 package bi;
 public final class b8 implements Runnable {
     public final int f3517a;
-    public final org.telegram.ui.Wallet.u1 f3518b;
+    public final org.telegram.ui.Wallet.t1 f3518b;
 
-    public b8(org.telegram.ui.Wallet.u1 u1Var, int i7) {
+    public b8(org.telegram.ui.Wallet.t1 t1Var, int i7) {
         this.f3517a = i7;
-        this.f3518b = u1Var;
+        this.f3518b = t1Var;
     }
 
     @Override

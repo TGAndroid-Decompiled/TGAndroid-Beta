@@ -6,7 +6,7 @@ import c8.xb;
 import java.util.Arrays;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.telegram.ui.hy0;
+import org.telegram.ui.ky0;
 public final class i extends l {
     public static final Parcelable.Creator<i> CREATOR = new t0(4);
     public final q7.s0 f11386a;
@@ -77,16 +77,16 @@ public final class i extends l {
 
     public final String toString() {
         byte[] p10;
-        hy0 hy0Var = new hy0(getClass().getSimpleName(), 9);
+        ky0 ky0Var = new ky0(getClass().getSimpleName(), 9);
         q7.k0 k0Var = q7.m0.d;
         byte[] p11 = this.f11386a.p();
-        hy0Var.N(k0Var.c(p11.length, p11), "keyHandle");
+        ky0Var.N(k0Var.c(p11.length, p11), "keyHandle");
         byte[] p12 = this.f11387b.p();
-        hy0Var.N(k0Var.c(p12.length, p12), "clientDataJSON");
+        ky0Var.N(k0Var.c(p12.length, p12), "clientDataJSON");
         byte[] p13 = this.f11388c.p();
-        hy0Var.N(k0Var.c(p13.length, p13), "authenticatorData");
+        ky0Var.N(k0Var.c(p13.length, p13), "authenticatorData");
         byte[] p14 = this.d.p();
-        hy0Var.N(k0Var.c(p14.length, p14), "signature");
+        ky0Var.N(k0Var.c(p14.length, p14), "signature");
         q7.s0 s0Var = this.f11389e;
         if (s0Var == null) {
             p10 = null;
@@ -94,9 +94,9 @@ public final class i extends l {
             p10 = s0Var.p();
         }
         if (p10 != null) {
-            hy0Var.N(k0Var.c(p10.length, p10), "userHandle");
+            ky0Var.N(k0Var.c(p10.length, p10), "userHandle");
         }
-        return hy0Var.toString();
+        return ky0Var.toString();
     }
 
     @Override

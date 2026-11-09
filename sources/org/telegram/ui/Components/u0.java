@@ -2,29 +2,29 @@ package org.telegram.ui.Components;
 
 import android.content.DialogInterface;
 public final class u0 implements DialogInterface.OnShowListener {
-    public final int f38470a;
-    public final u4 f38471b;
+    public final int f38540a;
+    public final u4 f38541b;
 
     public u0(int i7, u4 u4Var) {
-        this.f38470a = i7;
-        this.f38471b = u4Var;
+        this.f38540a = i7;
+        this.f38541b = u4Var;
     }
 
     @Override
     public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f38470a) {
+        switch (this.f38540a) {
             case 0:
-                u4 u4Var = this.f38471b;
+                u4 u4Var = this.f38541b;
                 u4Var.requestFocus();
                 org.telegram.messenger.g0.K3(u4Var);
                 return;
             case 1:
-                u4 u4Var2 = this.f38471b;
+                u4 u4Var2 = this.f38541b;
                 u4Var2.requestFocus();
                 org.telegram.messenger.g0.K3(u4Var2);
                 return;
             default:
-                org.telegram.messenger.g0.h3(new xf(this.f38471b, 2));
+                org.telegram.messenger.g0.h3(new xf(this.f38541b, 2));
                 return;
         }
     }

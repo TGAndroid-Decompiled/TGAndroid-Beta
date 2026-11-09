@@ -1,46 +1,64 @@
 package org.telegram.ui;
 
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.Typeface;
-import android.text.TextPaint;
-import android.view.View;
-public final class k41 {
-    public final org.telegram.ui.Components.lz f47101a;
-    public ng.f f47102b;
-    public final int f47103c;
-    public final l41 d;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.Window;
+public final class k41 extends AnimatorListenerAdapter {
+    public final int f47193a;
+    public final m41 f47194b;
 
-    public k41(l41 l41Var, int i7) {
-        this.d = l41Var;
-        this.f47103c = i7;
-        ?? view = new View(l41Var.getContext());
-        view.f35821c = true;
-        TextPaint textPaint = new TextPaint(1);
-        view.f35822e = textPaint;
-        view.f35823f = new Paint(1);
-        Paint paint = new Paint(1);
-        view.h = paint;
-        Paint paint2 = new Paint(1);
-        view.f35824n = paint2;
-        view.f35828x = org.telegram.messenger.g0.L(35.0f);
-        view.f35829y = org.telegram.messenger.g0.L(22.0f);
-        view.D = org.telegram.messenger.g0.L(8.0f);
-        view.E = org.telegram.messenger.g0.L(3.5f);
-        view.F = new RectF();
-        view.G = 0.0f;
-        textPaint.setTextSize(org.telegram.messenger.g0.L(14.0f));
-        textPaint.setTextAlign(Paint.Align.CENTER);
-        textPaint.setTypeface(Typeface.create("sans-serif-medium", 0));
-        paint.setStrokeWidth(org.telegram.messenger.g0.N(1.5f));
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint2.setStyle(style);
-        paint2.setStrokeCap(Paint.Cap.ROUND);
-        paint2.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
-        this.f47101a = view;
-        view.setPadding(org.telegram.messenger.g0.L(16.0f), 0, org.telegram.messenger.g0.L(16.0f), 0);
-        l41Var.h.addView(view);
-        l41Var.f47418n.add(this);
+    public k41(m41 m41Var, int i7) {
+        this.f47193a = i7;
+        this.f47194b = m41Var;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f47193a) {
+            case 0:
+                m41 m41Var = this.f47194b;
+                m41Var.f47744b.setVisibility(4);
+                lg.g gVar = m41Var.f47744b;
+                gVar.J = false;
+                lg.g gVar2 = m41Var.f47745c;
+                gVar2.J = true;
+                gVar.f18330y0 = 0;
+                gVar2.f18330y0 = 0;
+                Window window = m41Var.f47743a;
+                if (window != null) {
+                    window.clearFlags(16);
+                    return;
+                }
+                return;
+            case 1:
+                m41 m41Var2 = this.f47194b;
+                lg.g gVar3 = m41Var2.f47745c;
+                gVar3.setVisibility(4);
+                lg.g gVar4 = m41Var2.f47744b;
+                gVar4.f18330y0 = 0;
+                gVar3.f18330y0 = 0;
+                gVar4.J = true;
+                gVar3.J = false;
+                if (!(gVar4 instanceof lg.q)) {
+                    gVar4.f18323u0 = true;
+                    gVar4.x((gVar4.G0 * gVar4.f18303g0.f18346k) - lg.g.f18272k1);
+                    gVar4.c(true);
+                    gVar4.invalidate();
+                } else {
+                    gVar4.f18323u0 = false;
+                    gVar4.d();
+                }
+                Window window2 = m41Var2.f47743a;
+                if (window2 != null) {
+                    window2.clearFlags(16);
+                    return;
+                }
+                return;
+            default:
+                m41 m41Var3 = this.f47194b;
+                m41Var3.f47744b.f18330y0 = 0;
+                m41Var3.f47746e.setVisibility(8);
+                return;
+        }
     }
 }

@@ -23,8 +23,8 @@ import m4.g0;
 import m4.h0;
 import m6.n;
 import org.telegram.ui.Cells.f1;
-import org.telegram.ui.Components.ax0;
-import org.telegram.ui.Components.cx0;
+import org.telegram.ui.Components.bx0;
+import org.telegram.ui.Components.dx0;
 public class k implements a0 {
     public final int f190a;
     public int f191b;
@@ -117,11 +117,11 @@ public class k implements a0 {
                 xVar.O(1);
                 int H = xVar.H();
                 xVar.O(3);
-                xVar.k(0, 2, (byte[]) fVar2.f8164b);
+                xVar.k(0, 2, (byte[]) fVar2.f8162b);
                 fVar2.J(0);
                 fVar2.L(3);
                 e0Var.f19651t = fVar2.j(13);
-                xVar.k(0, 2, (byte[]) fVar2.f8164b);
+                xVar.k(0, 2, (byte[]) fVar2.f8162b);
                 fVar2.J(0);
                 fVar2.L(4);
                 xVar.O(fVar2.j(12));
@@ -136,7 +136,7 @@ public class k implements a0 {
                 sparseIntArray.clear();
                 int a12 = xVar.a();
                 while (a12 > 0) {
-                    xVar.k(0, 5, (byte[]) fVar2.f8164b);
+                    xVar.k(0, 5, (byte[]) fVar2.f8162b);
                     fVar2.J(0);
                     int j3 = fVar2.j(8);
                     fVar2.L(3);
@@ -407,7 +407,7 @@ public class k implements a0 {
                                     i12 = a(i12, str);
                                 } else {
                                     if (charAt2 < 'u') {
-                                        c10 = qe.c.f54091a[charAt2];
+                                        c10 = qe.c.f54103a[charAt2];
                                     } else {
                                         c10 = 0;
                                     }
@@ -734,17 +734,17 @@ public class k implements a0 {
     }
 
     public void x(int i7) {
-        ax0[] ax0VarArr;
+        bx0[] bx0VarArr;
         int[] iArr = (int[]) this.f193e;
         if (iArr[i7] != 0) {
             return;
         }
         iArr[i7] = 1;
-        for (ax0 ax0Var : ((ax0[][]) this.d)[i7]) {
-            x(ax0Var.f31938a.f34035b);
+        for (bx0 bx0Var : ((bx0[][]) this.d)[i7]) {
+            x(bx0Var.f32443a.f34404b);
             int i10 = this.f191b;
             this.f191b = i10 - 1;
-            ((ax0[]) this.f192c)[i10] = ax0Var;
+            ((bx0[]) this.f192c)[i10] = bx0Var;
         }
         iArr[i7] = 2;
     }
@@ -822,31 +822,31 @@ public class k implements a0 {
         this.f191b = i7;
     }
 
-    public k(cx0 cx0Var, ax0[] ax0VarArr) {
+    public k(dx0 dx0Var, bx0[] bx0VarArr) {
         this.f190a = 5;
-        this.f194f = cx0Var;
-        int length = ax0VarArr.length;
-        this.f192c = new ax0[length];
+        this.f194f = dx0Var;
+        int length = bx0VarArr.length;
+        this.f192c = new bx0[length];
         this.f191b = length - 1;
-        int e10 = cx0Var.e() + 1;
-        ax0[][] ax0VarArr2 = new ax0[e10];
+        int e10 = dx0Var.e() + 1;
+        bx0[][] bx0VarArr2 = new bx0[e10];
         int[] iArr = new int[e10];
-        for (ax0 ax0Var : ax0VarArr) {
-            int i7 = ax0Var.f31938a.f34034a;
+        for (bx0 bx0Var : bx0VarArr) {
+            int i7 = bx0Var.f32443a.f34403a;
             iArr[i7] = iArr[i7] + 1;
         }
         for (int i10 = 0; i10 < e10; i10++) {
-            ax0VarArr2[i10] = new ax0[iArr[i10]];
+            bx0VarArr2[i10] = new bx0[iArr[i10]];
         }
         Arrays.fill(iArr, 0);
-        for (ax0 ax0Var2 : ax0VarArr) {
-            int i11 = ax0Var2.f31938a.f34034a;
-            ax0[] ax0VarArr3 = ax0VarArr2[i11];
+        for (bx0 bx0Var2 : bx0VarArr) {
+            int i11 = bx0Var2.f32443a.f34403a;
+            bx0[] bx0VarArr3 = bx0VarArr2[i11];
             int i12 = iArr[i11];
             iArr[i11] = i12 + 1;
-            ax0VarArr3[i12] = ax0Var2;
+            bx0VarArr3[i12] = bx0Var2;
         }
-        this.d = ax0VarArr2;
-        this.f193e = new int[((cx0) this.f194f).e() + 1];
+        this.d = bx0VarArr2;
+        this.f193e = new int[((dx0) this.f194f).e() + 1];
     }
 }

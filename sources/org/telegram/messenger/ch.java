@@ -15,13 +15,13 @@ import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_ephemeral;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.aj0;
-import org.telegram.ui.Components.ft0;
-import org.telegram.ui.Components.jt0;
-import org.telegram.ui.Components.kt0;
-import org.telegram.ui.Components.ut0;
-import org.telegram.ui.Components.x31;
-public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, org.telegram.ui.ActionBar.r1, ut0, w10, ft0, b20, jh.i, aj0, jt0, kt0 {
+import org.telegram.ui.Components.bj0;
+import org.telegram.ui.Components.ht0;
+import org.telegram.ui.Components.lt0;
+import org.telegram.ui.Components.mt0;
+import org.telegram.ui.Components.wt0;
+import org.telegram.ui.Components.y31;
+public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, org.telegram.ui.ActionBar.r1, wt0, w10, ht0, b20, jh.i, bj0, lt0, mt0 {
     public final int f21854a;
 
     public ch(int i7) {
@@ -33,7 +33,7 @@ public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, 
     }
 
     @Override
-    public Boolean a(x31 x31Var, View view, Integer num, Float f10, Float f11) {
+    public Boolean a(y31 y31Var, View view, Integer num, Float f10, Float f11) {
         return Boolean.FALSE;
     }
 
@@ -83,19 +83,19 @@ public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, 
 
     @Override
     public void f(Object obj, float f10) {
-        org.telegram.ui.br brVar = (org.telegram.ui.br) obj;
+        org.telegram.ui.dr drVar = (org.telegram.ui.dr) obj;
         switch (this.f21854a) {
             case 26:
-                brVar.G1 = f10;
-                if (brVar.getParent() != null) {
-                    ((View) brVar.getParent()).invalidate();
+                drVar.G1 = f10;
+                if (drVar.getParent() != null) {
+                    ((View) drVar.getParent()).invalidate();
                     return;
                 }
                 return;
             default:
-                brVar.H1 = f10;
-                if (brVar.getParent() != null) {
-                    ((View) brVar.getParent()).invalidate();
+                drVar.H1 = f10;
+                if (drVar.getParent() != null) {
+                    ((View) drVar.getParent()).invalidate();
                     return;
                 }
                 return;
@@ -122,15 +122,15 @@ public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, 
 
     @Override
     public float get(Object obj) {
-        org.telegram.ui.br brVar = (org.telegram.ui.br) obj;
+        org.telegram.ui.dr drVar = (org.telegram.ui.dr) obj;
         switch (this.f21854a) {
             case 25:
-                return brVar.G1;
+                return drVar.G1;
             case 26:
             default:
-                return brVar.I1;
+                return drVar.I1;
             case 27:
-                return brVar.H1;
+                return drVar.H1;
         }
     }
 
@@ -152,7 +152,7 @@ public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, 
 
     @Override
     public RecyclerView l(View view) {
-        return ((org.telegram.ui.td) view).f50027a;
+        return ((org.telegram.ui.td) view).f50162a;
     }
 
     @Override

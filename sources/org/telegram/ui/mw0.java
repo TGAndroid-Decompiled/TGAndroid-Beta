@@ -1,146 +1,122 @@
 package org.telegram.ui;
 
 import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.Typeface;
-import android.text.TextPaint;
+import android.graphics.drawable.GradientDrawable;
 import android.view.View;
-public final class mw0 extends View {
-    public final RectF f47887a;
-    public final TextPaint f47888b;
-    public final Paint f47889c;
-    public final ValueAnimator d;
-    public final float[] f47890e;
-    public final c5.a f47891f;
-    public boolean h;
-    public final ProfileActivity f47892n;
+import java.util.Arrays;
+public final class mw0 extends View implements org.telegram.ui.Components.pf0 {
+    public final float[] D;
+    public boolean E;
+    public float F;
+    public float G;
+    public float[] H;
+    public long I;
+    public float J;
+    public int K;
+    public float L;
+    public int M;
+    public float N;
+    public int O;
+    public final ProfileActivity P;
+    public final int f48012a;
+    public final Rect f48013b;
+    public final Rect f48014c;
+    public final RectF d;
+    public final GradientDrawable f48015e;
+    public final GradientDrawable f48016f;
+    public final ValueAnimator h;
+    public final float[] f48017n;
+    public final Paint f48018r;
+    public final Paint f48019s;
+    public final Paint f48020w;
+    public final GradientDrawable[] f48021x;
+    public final boolean[] f48022y;
 
-    public mw0(ProfileActivity profileActivity, Context context) {
-        super(context);
-        this.f47892n = profileActivity;
-        this.f47887a = new RectF();
-        this.f47890e = new float[]{0.0f, 1.0f};
-        c5.a adapter = profileActivity.f41784n0.getAdapter();
-        this.f47891f = adapter;
-        setVisibility(8);
-        TextPaint textPaint = new TextPaint(1);
-        this.f47888b = textPaint;
-        textPaint.setColor(-1);
-        textPaint.setTypeface(Typeface.SANS_SERIF);
-        textPaint.setTextAlign(Paint.Align.CENTER);
-        textPaint.setTextSize(org.telegram.messenger.g0.N(15.0f));
-        Paint paint = new Paint(1);
-        this.f47889c = paint;
-        paint.setColor(637534208);
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.d = ofFloat;
-        ofFloat.setInterpolator(org.telegram.ui.Components.xq.f40369j);
-        ofFloat.addUpdateListener(new a3(this, 27));
-        ofFloat.addListener(new z40(5, this, profileActivity.f41777m1));
-        profileActivity.f41784n0.b(new lw0(this));
-        adapter.f5303a.registerObserver(new c5.h(this, 3));
+    public mw0(org.telegram.ui.ProfileActivity r7, android.content.Context r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.mw0.<init>(org.telegram.ui.ProfileActivity, android.content.Context):void");
     }
 
-    public final void a(boolean z9) {
-        org.telegram.ui.ActionBar.k kVar;
-        int i7;
-        org.telegram.ui.ActionBar.k kVar2;
-        ProfileActivity profileActivity = this.f47892n;
-        if (z9) {
-            kw0 kw0Var = profileActivity.M;
-            kw0Var.J = kw0Var.L;
-            kw0Var.K = kw0Var.M;
-            kw0Var.N = 0.0f;
-            kw0Var.O = 1;
-        }
-        profileActivity.M.invalidate();
-        float measureText = this.f47888b.measureText(((String) this.f47891f.d(profileActivity.f41784n0.getCurrentItem())).toString());
-        float measuredWidth = getMeasuredWidth() - org.telegram.messenger.g0.L(54.0f);
-        RectF rectF = this.f47887a;
-        rectF.right = measuredWidth;
-        rectF.left = measuredWidth - (org.telegram.messenger.g0.N(16.0f) + measureText);
-        kVar = ((org.telegram.ui.ActionBar.f2) profileActivity).actionBar;
-        if (kVar != null) {
-            kVar2 = ((org.telegram.ui.ActionBar.f2) profileActivity).actionBar;
-            if (kVar2.getOccupyStatusBar()) {
-                i7 = org.telegram.messenger.g0.f22557m;
-                float L = org.telegram.messenger.g0.L(15.0f) + i7;
-                rectF.top = L;
-                rectF.bottom = L + org.telegram.messenger.g0.L(26.0f);
-                setPivotX(rectF.centerX());
-                setPivotY(rectF.centerY());
-                invalidate();
-            }
-        }
-        i7 = 0;
-        float L2 = org.telegram.messenger.g0.L(15.0f) + i7;
-        rectF.top = L2;
-        rectF.bottom = L2 + org.telegram.messenger.g0.L(26.0f);
-        setPivotX(rectF.centerX());
-        setPivotY(rectF.centerY());
+    @Override
+    public final void a() {
+        Arrays.fill(this.f48022y, false);
+        postInvalidateOnAnimation();
+    }
+
+    @Override
+    public final void b(boolean z9) {
+        this.f48022y[!z9 ? 1 : 0] = true;
+        postInvalidateOnAnimation();
+    }
+
+    @Override
+    public final void c() {
+        RectF rectF = ProfileActivity.V6;
+        this.P.L5(false);
+    }
+
+    @Override
+    public final void d() {
         invalidate();
     }
 
-    public final void b(float f10) {
-        boolean z9;
-        ProfileActivity profileActivity = this.f47892n;
-        if (profileActivity.f41792o2 && profileActivity.f41784n0.getRealCount() > 20) {
-            z9 = true;
-        } else {
-            z9 = false;
+    public final void e(boolean z9, float f10) {
+        int i7 = (int) (255.0f * f10);
+        this.f48015e.setAlpha(i7);
+        this.f48016f.setAlpha(i7);
+        this.f48018r.setAlpha((int) (66.0f * f10));
+        this.f48019s.setAlpha((int) (85.0f * f10));
+        this.f48020w.setAlpha(i7);
+        this.G = f10;
+        if (!z9) {
+            this.F = f10;
         }
-        if (z9 != this.h) {
-            this.h = z9;
-            ValueAnimator valueAnimator = this.d;
+        invalidate();
+    }
+
+    public final void f(boolean z9, float f10) {
+        if (z9 != this.E) {
+            this.E = z9;
+            ValueAnimator valueAnimator = this.h;
             valueAnimator.cancel();
-            float animatedFraction = valueAnimator.getAnimatedFraction();
-            float[] fArr = this.f47890e;
-            float U1 = org.telegram.messenger.g0.U1(animatedFraction, fArr);
-            float f11 = 0.0f;
-            if (f10 <= 0.0f) {
-                valueAnimator.setDuration(0L);
-            } else if (z9) {
+            float f11 = this.F;
+            float[] fArr = this.f48017n;
+            float U1 = org.telegram.messenger.g0.U1(f11, fArr);
+            float f12 = 1.0f;
+            if (z9) {
                 valueAnimator.setDuration(((1.0f - U1) * 250.0f) / f10);
             } else {
                 valueAnimator.setDuration((250.0f * U1) / f10);
             }
             fArr[0] = U1;
-            if (z9) {
-                f11 = 1.0f;
+            if (!z9) {
+                f12 = 0.0f;
             }
-            fArr[1] = f11;
+            fArr[1] = f12;
             valueAnimator.start();
         }
     }
 
-    public final void c() {
-        av0 av0Var;
-        ProfileActivity profileActivity = this.f47892n;
-        if (profileActivity.S0 != null && (av0Var = profileActivity.f41784n0) != null && profileActivity.f41792o2) {
-            if (av0Var.getRealPosition() == 0) {
-                profileActivity.S0.t(33);
-                profileActivity.S0.S(36);
-                return;
-            }
-            profileActivity.S0.S(33);
-            profileActivity.S0.t(36);
-        }
-    }
-
     @Override
-    public final void onDraw(Canvas canvas) {
-        float N = org.telegram.messenger.g0.N(12.0f);
-        Paint paint = this.f47889c;
-        RectF rectF = this.f47887a;
-        canvas.drawRoundRect(rectF, N, N, paint);
-        canvas.drawText(((String) this.f47891f.d(this.f47892n.f41784n0.getCurrentItem())).toString(), rectF.centerX(), org.telegram.messenger.g0.N(18.5f) + rectF.top, this.f47888b);
+    public final void onDraw(android.graphics.Canvas r32) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.mw0.onDraw(android.graphics.Canvas):void");
     }
 
     @Override
     public final void onSizeChanged(int i7, int i10, int i11, int i12) {
-        a(false);
+        int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + this.f48012a;
+        Rect rect = this.f48013b;
+        rect.set(0, 0, i7, (int) (currentActionBarHeight * 0.5f));
+        Rect rect2 = this.f48014c;
+        rect2.set(0, (int) (i10 - (org.telegram.messenger.g0.L(72.0f) * 0.5f)), i7, i10);
+        this.f48015e.setBounds(0, rect.bottom, i7, org.telegram.messenger.g0.L(16.0f) + currentActionBarHeight);
+        RectF rectF = ProfileActivity.V6;
+        this.f48016f.setBounds(0, ((i10 - this.P.e4()) - org.telegram.messenger.g0.L(72.0f)) - org.telegram.messenger.g0.L(24.0f), i7, rect2.top);
+        GradientDrawable[] gradientDrawableArr = this.f48021x;
+        int i13 = i7 / 5;
+        gradientDrawableArr[0].setBounds(0, 0, i13, i10);
+        gradientDrawableArr[1].setBounds(i7 - i13, 0, i7, i10);
     }
 }

@@ -8,20 +8,20 @@ import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
 import java.util.HashSet;
-public class pr extends y5 implements org.telegram.ui.ActionBar.a6 {
+public class pr extends y5 implements org.telegram.ui.ActionBar.b6 {
     public FragmentContextView D;
     public boolean E;
     public boolean F;
-    public fh.g f37076s;
-    public final Path f37077w;
-    public final RectF f37078x;
-    public int f37079y;
+    public fh.g f37068s;
+    public final Path f37069w;
+    public final RectF f37070x;
+    public int f37071y;
 
     public pr(Context context) {
         super(context);
-        this.f37077w = new Path();
-        this.f37078x = new RectF();
-        this.f37079y = 24;
+        this.f37069w = new Path();
+        this.f37070x = new RectF();
+        this.f37071y = 24;
         setOrientation(1);
         updateColors();
     }
@@ -32,20 +32,20 @@ public class pr extends y5 implements org.telegram.ui.ActionBar.a6 {
         int currentStyle;
         FragmentContextView fragmentContextView;
         Canvas canvas2 = canvas;
-        if (getMetadata().f55503c.f55513a != 0.0f) {
-            fh.g gVar = this.f37076s;
+        if (getMetadata().f55515c.f55525a != 0.0f) {
+            fh.g gVar = this.f37068s;
             if (gVar != null) {
                 gVar.draw(canvas2);
             }
             FragmentContextView fragmentContextView2 = this.D;
-            te.h hVar = this.f40575c;
+            te.h hVar = this.f40596c;
             View view = null;
             if (fragmentContextView2 != null && ((currentStyle = fragmentContextView2.getCurrentStyle()) == 3 || currentStyle == 1)) {
                 int entriesCount = getEntriesCount();
                 for (int i7 = 0; i7 < entriesCount; i7++) {
                     te.e i10 = hVar.i(i7);
                     float paddingTop = getPaddingTop() + i10.b().top;
-                    View view2 = ((x5) i10.f55496a).f40208a;
+                    View view2 = ((x5) i10.f55508a).f40296a;
                     float c10 = i10.c();
                     if (c10 > 0.0f && (fragmentContextView = this.D) != null && (fragmentContextView == view2 || fragmentContextView.getParent() == view2)) {
                         sc capsuleBlobDrawable = this.D.getCapsuleBlobDrawable();
@@ -63,20 +63,20 @@ public class pr extends y5 implements org.telegram.ui.ActionBar.a6 {
             }
             View view3 = view;
             canvas2.save();
-            canvas2.clipPath(this.f37077w);
+            canvas2.clipPath(this.f37069w);
             int entriesCount2 = getEntriesCount();
             int i12 = 0;
             while (i12 < entriesCount2) {
                 te.e i13 = hVar.i(i12);
                 float paddingTop2 = getPaddingTop() + i13.b().top;
-                View view4 = ((x5) i13.f55496a).f40208a;
-                float min = Math.min(1.0f, i13.f55498c.f55513a) * i13.c();
+                View view4 = ((x5) i13.f55508a).f40296a;
+                float min = Math.min(1.0f, i13.f55510c.f55525a) * i13.c();
                 if (min > 0.0f && view3 != view4) {
-                    int alpha = org.telegram.ui.ActionBar.k6.f27975k0.getAlpha();
-                    org.telegram.ui.ActionBar.k6.f27975k0.setAlpha((int) (alpha * min));
+                    int alpha = org.telegram.ui.ActionBar.l6.f27988k0.getAlpha();
+                    org.telegram.ui.ActionBar.l6.f27988k0.setAlpha((int) (alpha * min));
                     float f10 = 1.0f - min;
-                    canvas2.drawLine(getPaddingLeft() + (org.telegram.messenger.g0.L(16.0f) * f10), paddingTop2, getWidth() - ((org.telegram.messenger.g0.L(16.0f) * f10) + getPaddingRight()), paddingTop2, org.telegram.ui.ActionBar.k6.f27975k0);
-                    org.telegram.ui.ActionBar.k6.f27975k0.setAlpha(alpha);
+                    canvas2.drawLine(getPaddingLeft() + (org.telegram.messenger.g0.L(16.0f) * f10), paddingTop2, getWidth() - ((org.telegram.messenger.g0.L(16.0f) * f10) + getPaddingRight()), paddingTop2, org.telegram.ui.ActionBar.l6.f27988k0);
+                    org.telegram.ui.ActionBar.l6.f27988k0.setAlpha(alpha);
                 }
                 i12++;
                 canvas2 = canvas;
@@ -102,7 +102,7 @@ public class pr extends y5 implements org.telegram.ui.ActionBar.a6 {
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         fh.g gVar;
         if (!super.dispatchTouchEvent(motionEvent)) {
-            if (motionEvent.getAction() != 0 || (gVar = this.f37076s) == null || !gVar.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+            if (motionEvent.getAction() != 0 || (gVar = this.f37068s) == null || !gVar.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
                 return false;
             }
             return true;
@@ -132,19 +132,19 @@ public class pr extends y5 implements org.telegram.ui.ActionBar.a6 {
     }
 
     public final void j() {
-        float f10 = getMetadata().f55506g.f55513a;
-        float f11 = getMetadata().f55503c.f55513a;
-        RectF rectF = this.f37078x;
+        float f10 = getMetadata().f55518g.f55525a;
+        float f11 = getMetadata().f55515c.f55525a;
+        RectF rectF = this.f37070x;
         rectF.set(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getPaddingTop() + f10);
-        float min = Math.min(org.telegram.messenger.g0.L(this.f37079y), Math.min(rectF.width(), rectF.height()) / 2.0f);
-        Path path = this.f37077w;
+        float min = Math.min(org.telegram.messenger.g0.L(this.f37071y), Math.min(rectF.width(), rectF.height()) / 2.0f);
+        Path path = this.f37069w;
         path.rewind();
         path.addRoundRect(rectF, min, min, Path.Direction.CW);
-        fh.g gVar = this.f37076s;
+        fh.g gVar = this.f37068s;
         if (gVar != null) {
             gVar.setAlpha((int) (f11 * 255.0f));
-            this.f37076s.setBounds(org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(14.0f), getMeasuredWidth() - org.telegram.messenger.g0.L(4.0f), ((getPaddingBottom() + getPaddingTop()) + ((int) f10)) - org.telegram.messenger.g0.L(14.0f));
-            this.f37076s.r(Math.min(org.telegram.messenger.g0.L(this.f37079y), f10 / 2.0f));
+            this.f37068s.setBounds(org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(14.0f), getMeasuredWidth() - org.telegram.messenger.g0.L(4.0f), ((getPaddingBottom() + getPaddingTop()) + ((int) f10)) - org.telegram.messenger.g0.L(14.0f));
+            this.f37068s.r(Math.min(org.telegram.messenger.g0.L(this.f37071y), f10 / 2.0f));
         }
     }
 
@@ -155,7 +155,7 @@ public class pr extends y5 implements org.telegram.ui.ActionBar.a6 {
     }
 
     public void setBlurredBackground(fh.g gVar) {
-        this.f37076s = gVar;
+        this.f37068s = gVar;
     }
 
     public void setCallFragmentContextView(FragmentContextView fragmentContextView) {
@@ -164,12 +164,12 @@ public class pr extends y5 implements org.telegram.ui.ActionBar.a6 {
     }
 
     public void setDefaultRadiusDp(int i7) {
-        this.f37079y = i7;
+        this.f37071y = i7;
     }
 
     @Override
     public final void updateColors() {
-        fh.g gVar = this.f37076s;
+        fh.g gVar = this.f37068s;
         if (gVar != null) {
             gVar.updateColors();
         }

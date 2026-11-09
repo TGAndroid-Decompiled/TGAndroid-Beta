@@ -1,43 +1,31 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class tr extends v4.s0 {
-    public boolean f50123a;
-    public boolean f50124b;
-    public final ContactsActivity f50125c;
+import android.content.Context;
+import java.util.ArrayList;
+public final class tr extends jg.s1 {
+    public final ContactsActivity K;
 
-    public tr(ContactsActivity contactsActivity) {
-        this.f50125c = contactsActivity;
+    public tr(ContactsActivity contactsActivity, Context context, a0.h hVar, boolean z9, boolean z10, boolean z11) {
+        this.K = contactsActivity;
+        this.d = new ArrayList();
+        this.f16917e = new ArrayList();
+        this.H = new ArrayList();
+        this.f16916c = context;
+        this.h = hVar;
+        this.f16920r = z9;
+        this.f16921s = z10;
+        this.f16924y = 0;
+        this.f16922w = z11;
+        this.f16923x = true;
+        jg.z1 z1Var = new jg.z1(true);
+        this.f16918f = z1Var;
+        z1Var.f16992a = new jg.p1(this);
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i7) {
-        if (i7 == 1) {
-            ContactsActivity contactsActivity = this.f50125c;
-            if (contactsActivity.D && contactsActivity.f41202y) {
-                org.telegram.messenger.g0.v1(contactsActivity.getParentActivity().getCurrentFocus());
-            }
-            this.f50124b = true;
-            return;
-        }
-        this.f50124b = false;
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i7, int i10) {
-        boolean z9;
-        ContactsActivity contactsActivity = this.f50125c;
-        if (contactsActivity.f41199s != null && !contactsActivity.D) {
-            if (i10 > 0) {
-                z9 = true;
-            } else {
-                z9 = false;
-            }
-            if (i10 != 0 && this.f50123a && (z9 || this.f50124b)) {
-                contactsActivity.f41200w = !z9;
-                ContactsActivity.g0(contactsActivity);
-            }
-            this.f50123a = true;
+    public final void F() {
+        if (!this.D && !this.f16918f.e() && b() == 0) {
+            this.K.f41190c.e(false, true);
         }
     }
 }

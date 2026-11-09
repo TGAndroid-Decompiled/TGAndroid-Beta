@@ -42,8 +42,8 @@ public final class a1 implements Comparator {
     public final int compare(Object obj, Object obj2) {
         h1 h1Var = (h1) obj;
         h1 h1Var2 = (h1) obj2;
-        boolean L2 = ij.L2(h1Var.f16771a, true);
-        if (L2 == ij.L2(h1Var2.f16771a, true)) {
+        boolean K2 = ij.K2(h1Var.f16771a, true);
+        if (K2 == ij.K2(h1Var2.f16771a, true)) {
             int a10 = a(h1Var);
             int a11 = a(h1Var2);
             if (a10 <= a11) {
@@ -53,7 +53,7 @@ public final class a1 implements Comparator {
             } else {
                 return -1;
             }
-        } else if (L2) {
+        } else if (K2) {
             return -1;
         }
         return 1;

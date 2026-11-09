@@ -1,7 +1,7 @@
 package org.telegram.ui.Stories.recorder;
 
 import ai.e0;
-import di.s7;
+import di.f8;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.v10;
@@ -29,6 +29,6 @@ public class FfmpegAudioWaveformLoader {
     }
 
     public void destroy() {
-        Utilities.h.c(new s7(this, 22));
+        Utilities.h.c(new f8(this, 21));
     }
 }

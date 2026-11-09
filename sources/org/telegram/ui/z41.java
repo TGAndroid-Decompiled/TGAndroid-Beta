@@ -1,51 +1,19 @@
 package org.telegram.ui;
-
-import org.telegram.tgnet.tl.TL_stats;
 public final class z41 {
-    public TL_stats.PostInteractionCounters f52451a;
-    public org.telegram.messenger.ij f52452b;
-
-    public final int a() {
-        TL_stats.PostInteractionCounters postInteractionCounters = this.f52451a;
-        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
-            return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).forwards;
-        }
-        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersStory) {
-            return ((TL_stats.TL_postInteractionCountersStory) postInteractionCounters).forwards;
-        }
-        return 0;
-    }
-
-    public final int b() {
-        TL_stats.PostInteractionCounters postInteractionCounters = this.f52451a;
-        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
-            return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).msg_id;
-        }
-        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersStory) {
-            return ((TL_stats.TL_postInteractionCountersStory) postInteractionCounters).story_id;
-        }
-        return 0;
-    }
-
-    public final int c() {
-        TL_stats.PostInteractionCounters postInteractionCounters = this.f52451a;
-        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
-            return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).reactions;
-        }
-        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersStory) {
-            return ((TL_stats.TL_postInteractionCountersStory) postInteractionCounters).reactions;
-        }
-        return 0;
-    }
-
-    public final int d() {
-        TL_stats.PostInteractionCounters postInteractionCounters = this.f52451a;
-        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
-            return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).views;
-        }
-        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersStory) {
-            return ((TL_stats.TL_postInteractionCountersStory) postInteractionCounters).views;
-        }
-        return 0;
-    }
+    public String f52422a;
+    public String f52423b;
+    public String f52424c;
+    public boolean d;
+    public String f52425e;
+    public String f52426f;
+    public String f52427g;
+    public boolean h;
+    public String f52428i;
+    public String f52429j;
+    public String f52430k;
+    public boolean f52431l;
+    public String f52432m;
+    public String f52433n;
+    public String f52434o;
+    public boolean f52435p;
 }

@@ -13,28 +13,28 @@ import org.telegram.messenger.yr;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class d1 implements Runnable {
-    public final int f8909a;
-    public final int f8910b;
-    public final long f8911c;
+    public final int f8913a;
+    public final int f8914b;
+    public final long f8915c;
     public final int d;
-    public final Object f8912e;
+    public final Object f8916e;
 
     public d1(int i7, int i10, int i11, long j3, Object obj) {
-        this.f8909a = i11;
-        this.f8912e = obj;
-        this.f8910b = i7;
-        this.f8911c = j3;
+        this.f8913a = i11;
+        this.f8916e = obj;
+        this.f8914b = i7;
+        this.f8915c = j3;
         this.d = i10;
     }
 
     @Override
     public final void run() {
         String str;
-        switch (this.f8909a) {
+        switch (this.f8913a) {
             case 0:
-                g1 g1Var = (g1) this.f8912e;
-                int i7 = this.f8910b;
-                long j3 = this.f8911c;
+                g1 g1Var = (g1) this.f8916e;
+                int i7 = this.f8914b;
+                long j3 = this.f8915c;
                 int i10 = this.d;
                 HashMap hashMap = g1Var.F;
                 if (i7 == 0) {
@@ -44,15 +44,15 @@ public final class d1 implements Runnable {
                 }
                 Integer num = (Integer) hashMap.get(str);
                 if (num != null) {
-                    ConnectionsManager.getInstance(org.telegram.messenger.c.a(g1Var.f9025e).f21765a).cancelRequest(num.intValue(), true);
+                    ConnectionsManager.getInstance(org.telegram.messenger.c.a(g1Var.f9000e).f21765a).cancelRequest(num.intValue(), true);
                     hashMap.remove(str);
                     return;
                 }
                 return;
             case 1:
-                MediaController mediaController = (MediaController) this.f8912e;
-                int i11 = this.f8910b;
-                long j10 = this.f8911c;
+                MediaController mediaController = (MediaController) this.f8916e;
+                int i11 = this.f8914b;
+                long j10 = this.f8915c;
                 int i12 = this.d;
                 mediaController.G1 = null;
                 if (mediaController.H1) {
@@ -85,9 +85,9 @@ public final class d1 implements Runnable {
                 }
                 return;
             case 2:
-                yr yrVar = (yr) this.f8912e;
-                int i13 = this.f8910b;
-                long j11 = this.f8911c;
+                yr yrVar = (yr) this.f8916e;
+                int i13 = this.f8914b;
+                long j11 = this.f8915c;
                 int i14 = this.d;
                 yrVar.getClass();
                 try {
@@ -101,7 +101,7 @@ public final class d1 implements Runnable {
                     return;
                 }
             default:
-                ((VoIPService) this.f8912e).lambda$createGroupInstance$76(this.f8910b, this.f8911c, this.d);
+                ((VoIPService) this.f8916e).lambda$createGroupInstance$76(this.f8914b, this.f8915c, this.d);
                 return;
         }
     }

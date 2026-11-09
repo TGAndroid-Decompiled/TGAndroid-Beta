@@ -2,24 +2,24 @@ package c8;
 
 import android.content.Context;
 import android.widget.TextView;
-import org.telegram.ui.Components.w70;
+import org.telegram.ui.Components.x70;
 public abstract class qa {
-    public static w70 a(Context context, float f10, int i7, boolean z9, org.telegram.ui.ActionBar.f6 f6Var) {
-        int i10 = org.telegram.ui.ActionBar.k6.Uc;
-        w70 w70Var = new w70(context, null);
-        w70Var.setTextSize(1, f10);
-        org.telegram.ui.ActionBar.r6.V(w70Var, i7, f6Var);
-        org.telegram.ui.ActionBar.r6.H(w70Var, i10, f6Var);
+    public static x70 a(Context context, float f10, int i7, boolean z9, org.telegram.ui.ActionBar.g6 g6Var) {
+        int i10 = org.telegram.ui.ActionBar.l6.Uc;
+        x70 x70Var = new x70(context, null);
+        x70Var.setTextSize(1, f10);
+        org.telegram.ui.ActionBar.s6.U(x70Var, i7, g6Var);
+        org.telegram.ui.ActionBar.s6.G(x70Var, i10, g6Var);
         if (z9) {
-            w70Var.setTypeface(org.telegram.messenger.g0.o());
+            x70Var.setTypeface(org.telegram.messenger.g0.o());
         }
-        return w70Var;
+        return x70Var;
     }
 
-    public static TextView b(Context context, float f10, int i7, boolean z9, org.telegram.ui.ActionBar.f6 f6Var) {
+    public static TextView b(Context context, float f10, int i7, boolean z9, org.telegram.ui.ActionBar.g6 g6Var) {
         TextView textView = new TextView(context);
         textView.setTextSize(1, f10);
-        org.telegram.ui.ActionBar.r6.V(textView, i7, f6Var);
+        org.telegram.ui.ActionBar.s6.U(textView, i7, g6Var);
         if (z9) {
             textView.setTypeface(org.telegram.messenger.g0.o());
         }

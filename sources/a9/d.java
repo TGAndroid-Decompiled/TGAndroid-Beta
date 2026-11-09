@@ -38,7 +38,7 @@ public final class d extends q {
                         Runnable uVar = new u(this, dataHolder, false, 2);
                         try {
                             String valueOf = String.valueOf(dataHolder);
-                            int i10 = dataHolder.f6734n;
+                            int i10 = dataHolder.f6732n;
                             StringBuilder sb2 = new StringBuilder();
                             sb2.append(valueOf);
                             sb2.append(", rows=");

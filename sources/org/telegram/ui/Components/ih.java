@@ -8,8 +8,8 @@ import android.view.MotionEvent;
 public final class ih extends lt {
     public final di V;
 
-    public ih(di diVar, Context context, qh qhVar, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, qhVar, null, 1, true, f6Var);
+    public ih(di diVar, Context context, qh qhVar, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, qhVar, null, 1, true, g6Var);
         this.V = diVar;
     }
 
@@ -18,8 +18,8 @@ public final class ih extends lt {
         super.f();
         hy emojiView = getEmojiView();
         if (emojiView != null) {
-            emojiView.f34461w0 = false;
-            emojiView.f34467x2 = false;
+            emojiView.f34476w0 = false;
+            emojiView.f34482x2 = false;
             emojiView.setShouldDrawBackground(false);
             emojiView.setBottomInset(org.telegram.messenger.g0.f22558n);
         }
@@ -28,8 +28,8 @@ public final class ih extends lt {
     @Override
     public final void i(ActionMode actionMode, Menu menu) {
         org.telegram.ui.ActionBar.f2 f2Var = this.V.W1;
-        if (f2Var instanceof org.telegram.ui.an) {
-            org.telegram.ui.an.A8(menu, ((org.telegram.ui.an) f2Var).h, true, true, true, true);
+        if (f2Var instanceof org.telegram.ui.cn) {
+            org.telegram.ui.cn.B8(menu, ((org.telegram.ui.cn) f2Var).h, true, true, true, true);
         }
     }
 
@@ -37,7 +37,7 @@ public final class ih extends lt {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         di diVar = this.V;
         ih ihVar = diVar.J2;
-        if (!diVar.f32978o3) {
+        if (!diVar.f33033o3) {
             if (motionEvent.getX() > ihVar.getEditText().getLeft() && motionEvent.getX() < ihVar.getEditText().getRight() && motionEvent.getY() > ihVar.getEditText().getTop() && motionEvent.getY() < ihVar.getEditText().getBottom()) {
                 diVar.h1(ihVar.getEditText(), true);
             } else {

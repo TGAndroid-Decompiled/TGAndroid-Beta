@@ -9,31 +9,31 @@ import org.telegram.ui.Components.cc;
 import org.telegram.ui.Components.xq;
 public final class j3 extends v {
     public final org.telegram.ui.Components.w5 d;
-    public final org.telegram.ui.Components.w5 f9245e;
-    public final org.telegram.ui.Components.voip.n f9246f;
+    public final org.telegram.ui.Components.w5 f9154e;
+    public final org.telegram.ui.Components.voip.n f9155f;
     public final org.telegram.ui.Components.w5 h;
-    public final org.telegram.ui.Components.w5 f9247n;
-    public boolean f9248r;
-    public boolean f9249s;
-    public final f4 f9250w;
-    public final p9 f9251x;
-    public final i4 f9252y;
+    public final org.telegram.ui.Components.w5 f9156n;
+    public boolean f9157r;
+    public boolean f9158s;
+    public final g4 f9159w;
+    public final q9 f9160x;
+    public final j4 f9161y;
 
-    public j3(i4 i4Var, Context context, f4 f4Var, p9 p9Var) {
+    public j3(j4 j4Var, Context context, g4 g4Var, q9 q9Var) {
         super(context);
-        this.f9252y = i4Var;
-        this.f9250w = f4Var;
-        this.f9251x = p9Var;
-        xq xqVar = xq.f40366f;
+        this.f9161y = j4Var;
+        this.f9159w = g4Var;
+        this.f9160x = q9Var;
+        xq xqVar = xq.f40458f;
         this.d = new org.telegram.ui.Components.w5(this, 150L, xqVar);
-        this.f9245e = new org.telegram.ui.Components.w5(this, 150L, xqVar);
-        this.f9246f = new org.telegram.ui.Components.voip.n(32, 102, 240);
+        this.f9154e = new org.telegram.ui.Components.w5(this, 150L, xqVar);
+        this.f9155f = new org.telegram.ui.Components.voip.n(32, 102, 240);
         org.telegram.ui.Components.w5 w5Var = new org.telegram.ui.Components.w5(this);
         this.h = w5Var;
         org.telegram.ui.Components.w5 w5Var2 = new org.telegram.ui.Components.w5(this);
-        this.f9247n = w5Var2;
-        w5Var.f39808g = 500L;
-        w5Var2.f39808g = 100L;
+        this.f9156n = w5Var2;
+        w5Var.f39913g = 500L;
+        w5Var2.f39913g = 100L;
     }
 
     public final void b(android.graphics.Canvas r34) {
@@ -48,9 +48,9 @@ public final class j3 extends v {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         g1 g1Var;
-        i4 i4Var = this.f9252y;
-        h4 h4Var = i4Var.f9206v2;
-        if (i4Var.f9197t1 && !i4Var.L2 && ((org.telegram.ui.j4) h4Var.f9077e) != null && (g1Var = (g1) h4Var.f9075b) != null && g1Var.n() && ((org.telegram.ui.j4) h4Var.f9077e).dispatchTouchEvent(motionEvent)) {
+        j4 j4Var = this.f9161y;
+        i4 i4Var = j4Var.f9238v2;
+        if (j4Var.f9229t1 && !j4Var.L2 && ((org.telegram.ui.j4) i4Var.f9107e) != null && (g1Var = (g1) i4Var.f9105b) != null && g1Var.n() && ((org.telegram.ui.j4) i4Var.f9107e).dispatchTouchEvent(motionEvent)) {
             return true;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -58,11 +58,11 @@ public final class j3 extends v {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view != this.f9252y.S0) {
-            if (this.f9248r) {
-                cc ccVar = cc.f32537w;
-                if (ccVar != null && view == ccVar.f32541e) {
-                    if (this.f9249s) {
+        if (view != this.f9161y.S0) {
+            if (this.f9157r) {
+                cc ccVar = cc.f32619w;
+                if (ccVar != null && view == ccVar.f32623e) {
+                    if (this.f9158s) {
                         return super.drawChild(canvas, view, j3);
                     }
                     return true;
@@ -77,27 +77,27 @@ public final class j3 extends v {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f9252y.T0.i();
+        this.f9161y.T0.i();
         setTag(2131296351, new ch.v(this, 1));
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        i4 i4Var = this.f9252y;
-        i4Var.T0.j();
+        j4 j4Var = this.f9161y;
+        j4Var.T0.j();
         setTag(2131296351, null);
-        b4 b4Var = i4Var.f9221z1;
-        if (b4Var != null) {
-            p9 p9Var = ((g9) b4Var).d;
-            p9Var.X0 = false;
-            p9Var.V();
+        c4 c4Var = j4Var.f9253z1;
+        if (c4Var != null) {
+            q9 q9Var = ((h9) c4Var).d;
+            q9Var.X0 = false;
+            q9Var.V();
         }
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f9252y.f9152h0.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f9161y.f9184h0.getLayoutParams();
         layoutParams.rightMargin = org.telegram.messenger.g0.L(42.0f);
         layoutParams.topMargin = org.telegram.messenger.g0.L(15.0f);
         super.onMeasure(i7, i10);

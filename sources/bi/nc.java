@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.ui.Components.vp;
-import org.telegram.ui.Components.w70;
+import org.telegram.ui.Components.x70;
 public final class nc extends LinearLayout {
     public final int f4434a;
     public Object f4435b;
@@ -54,7 +54,7 @@ public final class nc extends LinearLayout {
         switch (this.f4434a) {
             case 1:
                 Path path = (Path) this.f4436c;
-                if (((di.n0) this.d).f9376a) {
+                if (((di.n0) this.d).f9367a) {
                     path.rewind();
                     RectF rectF = org.telegram.messenger.g0.P;
                     rectF.set(0.0f, 0.0f, getWidth(), getHeight());
@@ -88,7 +88,7 @@ public final class nc extends LinearLayout {
                 RectF rectF = (RectF) this.f4435b;
                 Paint paint = (Paint) this.f4436c;
                 vp vpVar = (vp) this.d;
-                paint.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27943i5, vpVar.f39689d0));
+                paint.setColor(org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.f27956i5, vpVar.f39778d0));
                 int left = vpVar.E[0].getLeft() - org.telegram.messenger.g0.L(13.0f);
                 float L = org.telegram.messenger.g0.L(91.0f);
                 org.telegram.ui.ActionBar.f0 f0Var = vpVar.F;
@@ -129,25 +129,25 @@ public final class nc extends LinearLayout {
     public nc(org.telegram.ui.Cells.c2 c2Var, Context context, int i7) {
         super(context);
         this.f4434a = 4;
-        int i10 = org.telegram.ui.ActionBar.k6.G6;
-        org.telegram.ui.ActionBar.f6 f6Var = c2Var.f28975b;
-        org.telegram.ui.ActionBar.k6.w0(i10, f6Var);
+        int i10 = org.telegram.ui.ActionBar.l6.G6;
+        org.telegram.ui.ActionBar.g6 g6Var = c2Var.f28979b;
+        org.telegram.ui.ActionBar.l6.w0(i10, g6Var);
         if (i7 != 0) {
             ImageView imageView = new ImageView(context);
             this.f4435b = imageView;
-            org.telegram.ui.ActionBar.r6.t(imageView, i10, f6Var, PorterDuff.Mode.MULTIPLY);
+            org.telegram.ui.ActionBar.s6.s(imageView, i10, g6Var, PorterDuff.Mode.MULTIPLY);
             imageView.setImageResource(i7);
         }
         org.telegram.ui.Components.j6 j6Var = new org.telegram.ui.Components.j6(context, false, true, false);
         this.f4436c = j6Var;
         j6Var.setTextSize(org.telegram.messenger.g0.L(13.0f));
-        org.telegram.ui.ActionBar.r6.Z(j6Var, i10, f6Var);
+        org.telegram.ui.ActionBar.s6.Y(j6Var, i10, g6Var);
         j6Var.setIncludeFontPadding(false);
         j6Var.setTypeface(org.telegram.messenger.g0.o());
         View view = new View(context);
         this.d = view;
         Drawable mutate = getContext().getResources().getDrawable(2131230871).mutate();
-        org.telegram.ui.ActionBar.r6.y(this, mutate, i10, f6Var, PorterDuff.Mode.MULTIPLY);
+        org.telegram.ui.ActionBar.s6.x(this, mutate, i10, g6Var, PorterDuff.Mode.MULTIPLY);
         view.setBackground(mutate);
         if (org.telegram.messenger.id.f23157a0) {
             addView(view, c8.ha.t(16, 16, 16, 11, 0, 3, 0));
@@ -164,11 +164,11 @@ public final class nc extends LinearLayout {
             addView(j6Var, c8.ha.t(-2, 16, 16, ((ImageView) this.f4435b) == null ? 11 : 0, 0, 3, 0));
             addView(view, c8.ha.t(16, 16, 16, 0, 0, 11, 0));
         }
-        int i11 = org.telegram.ui.ActionBar.k6.f27944i6;
-        Drawable a02 = org.telegram.ui.ActionBar.k6.a0(org.telegram.ui.ActionBar.k6.w0(i11, f6Var), 16, 16);
-        org.telegram.ui.ActionBar.n6 N = org.telegram.ui.ActionBar.r6.N(i11);
+        int i11 = org.telegram.ui.ActionBar.l6.f27957i6;
+        Drawable a02 = org.telegram.ui.ActionBar.l6.a0(org.telegram.ui.ActionBar.l6.w0(i11, g6Var), 16, 16);
+        org.telegram.ui.ActionBar.o6 M = org.telegram.ui.ActionBar.s6.M(i11);
         setBackground(a02);
-        org.telegram.ui.ActionBar.r6.k(this, a02, null, N, f6Var);
+        org.telegram.ui.ActionBar.s6.j(this, a02, null, M, g6Var);
         setClickable(true);
     }
 
@@ -179,7 +179,7 @@ public final class nc extends LinearLayout {
         this.f4436c = new Path();
     }
 
-    public nc(int i7, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+    public nc(int i7, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context);
         this.f4434a = i7;
         switch (i7) {
@@ -191,23 +191,23 @@ public final class nc extends LinearLayout {
                 frameLayout.setClipToPadding(false);
                 gc gcVar = new gc(context, 70, 0, 1);
                 frameLayout.addView(gcVar, c8.ha.c(-1.0f, -1));
-                org.telegram.ui.Wallet.v6 v6Var = new org.telegram.ui.Wallet.v6(170, context, false);
-                this.f4435b = v6Var;
-                v6Var.setStarParticlesView(gcVar);
-                frameLayout.addView(v6Var, c8.ha.d(170, 170.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
-                v6Var.setPaused(false);
+                org.telegram.ui.Wallet.u6 u6Var = new org.telegram.ui.Wallet.u6(170, context, false);
+                this.f4435b = u6Var;
+                u6Var.setStarParticlesView(gcVar);
+                frameLayout.addView(u6Var, c8.ha.d(170, 170.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
+                u6Var.setPaused(false);
                 addView(frameLayout, c8.ha.c(180.0f, -1));
                 TextView textView = new TextView(context);
                 this.f4436c = textView;
                 com.google.android.recaptcha.internal.a.q(textView, 1, 20.0f);
-                int i10 = org.telegram.ui.ActionBar.k6.f27960j5;
-                org.telegram.ui.ActionBar.r6.V(textView, i10, f6Var);
+                int i10 = org.telegram.ui.ActionBar.l6.f27973j5;
+                org.telegram.ui.ActionBar.s6.U(textView, i10, g6Var);
                 textView.setGravity(17);
                 addView(textView, c8.ha.t(-2, -2, 1, 0, 2, 0, 0));
                 TextView textView2 = new TextView(context);
                 this.d = textView2;
                 textView2.setTextSize(1, 14.0f);
-                org.telegram.ui.ActionBar.r6.V(textView2, i10, f6Var);
+                org.telegram.ui.ActionBar.s6.U(textView2, i10, g6Var);
                 textView2.setGravity(17);
                 addView(textView2, c8.ha.t(-2, -2, 1, 0, 9, 0, 18));
                 return;
@@ -225,17 +225,17 @@ public final class nc extends LinearLayout {
                 TextView textView3 = new TextView(context);
                 this.f4436c = textView3;
                 com.google.android.recaptcha.internal.a.q(textView3, 1, 20.0f);
-                int i11 = org.telegram.ui.ActionBar.k6.f27960j5;
-                org.telegram.ui.ActionBar.r6.V(textView3, i11, f6Var);
+                int i11 = org.telegram.ui.ActionBar.l6.f27973j5;
+                org.telegram.ui.ActionBar.s6.U(textView3, i11, g6Var);
                 textView3.setGravity(17);
                 addView(textView3, c8.ha.t(-2, -2, 1, 0, 2, 0, 0));
-                w70 w70Var = new w70(context, f6Var);
-                this.d = w70Var;
-                org.telegram.ui.ActionBar.r6.H(w70Var, org.telegram.ui.ActionBar.k6.Uc, f6Var);
-                w70Var.setTextSize(1, 14.0f);
-                org.telegram.ui.ActionBar.r6.V(w70Var, i11, f6Var);
-                w70Var.setGravity(17);
-                addView(w70Var, c8.ha.t(-2, -2, 1, 0, 9, 0, 18));
+                x70 x70Var = new x70(context, g6Var);
+                this.d = x70Var;
+                org.telegram.ui.ActionBar.s6.G(x70Var, org.telegram.ui.ActionBar.l6.Uc, g6Var);
+                x70Var.setTextSize(1, 14.0f);
+                org.telegram.ui.ActionBar.s6.U(x70Var, i11, g6Var);
+                x70Var.setGravity(17);
+                addView(x70Var, c8.ha.t(-2, -2, 1, 0, 9, 0, 18));
                 return;
         }
     }

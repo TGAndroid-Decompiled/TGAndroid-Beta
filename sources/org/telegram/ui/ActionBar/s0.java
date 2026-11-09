@@ -1,22 +1,22 @@
 package org.telegram.ui.ActionBar;
 public final class s0 extends org.telegram.ui.Components.i6 {
-    public final int f28482d0;
-    public final w0 f28483e0;
+    public final int f28484d0;
+    public final w0 f28485e0;
 
     public s0(w0 w0Var, int i7) {
         super(false, true, true);
-        this.f28482d0 = i7;
-        this.f28483e0 = w0Var;
+        this.f28484d0 = i7;
+        this.f28485e0 = w0Var;
     }
 
     @Override
     public final void invalidateSelf() {
-        switch (this.f28482d0) {
+        switch (this.f28484d0) {
             case 0:
-                this.f28483e0.invalidate();
+                this.f28485e0.invalidate();
                 return;
             default:
-                this.f28483e0.invalidate();
+                this.f28485e0.invalidate();
                 return;
         }
     }

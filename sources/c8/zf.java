@@ -3,16 +3,16 @@ package c8;
 import java.util.List;
 import java.util.ListIterator;
 public final class zf extends a8.d implements ListIterator {
-    public final a8.f f5993e;
+    public final a8.f f5991e;
 
     public zf(a8.f fVar) {
         super(fVar, (byte) 0);
-        this.f5993e = fVar;
+        this.f5991e = fVar;
     }
 
     @Override
     public final void add(Object obj) {
-        a8.f fVar = this.f5993e;
+        a8.f fVar = this.f5991e;
         boolean isEmpty = fVar.isEmpty();
         b();
         ((ListIterator) this.f358b).add(obj);
@@ -53,6 +53,6 @@ public final class zf extends a8.d implements ListIterator {
 
     public zf(a8.f fVar, int i7) {
         super(fVar, ((List) fVar.f388c).listIterator(i7), (byte) 0);
-        this.f5993e = fVar;
+        this.f5991e = fVar;
     }
 }

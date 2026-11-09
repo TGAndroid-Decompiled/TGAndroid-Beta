@@ -34,7 +34,7 @@ public interface ix {
 
     void n();
 
-    void o(t31 t31Var);
+    void o(u31 u31Var);
 
     float p();
 

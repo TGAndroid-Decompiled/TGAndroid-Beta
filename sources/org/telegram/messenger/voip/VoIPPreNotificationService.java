@@ -22,7 +22,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.VoIPPermissionActivity;
-import org.telegram.ui.fc1;
+import org.telegram.ui.ic1;
 public class VoIPPreNotificationService {
     public static State currentState;
     public static TL_phone.PhoneCall pendingCall;
@@ -56,9 +56,9 @@ public class VoIPPreNotificationService {
         public void destroy() {
             if (!this.destroyed) {
                 this.destroyed = true;
-                fc1 fc1Var = fc1.l1;
-                if (fc1Var != null) {
-                    fc1Var.onStateChanged(getCallState());
+                ic1 ic1Var = ic1.l1;
+                if (ic1Var != null) {
+                    ic1Var.onStateChanged(getCallState());
                 }
             }
         }
@@ -294,11 +294,11 @@ public class VoIPPreNotificationService {
 
     public static void lambda$dismiss$5() {
         LaunchActivity launchActivity = LaunchActivity.G1;
-        if (launchActivity != null && launchActivity.f41267g1 && VoIPService.getSharedInstance() == null) {
-            launchActivity.f41267g1 = false;
-            fc1 fc1Var = fc1.l1;
-            if (fc1Var != null) {
-                fc1Var.e();
+        if (launchActivity != null && launchActivity.f41274g1 && VoIPService.getSharedInstance() == null) {
+            launchActivity.f41274g1 = false;
+            ic1 ic1Var = ic1.l1;
+            if (ic1Var != null) {
+                ic1Var.e();
             }
             launchActivity.moveTaskToBack(true);
         }

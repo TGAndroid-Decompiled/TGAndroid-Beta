@@ -6,7 +6,7 @@ import android.graphics.Paint;
 import android.view.View;
 import java.util.HashSet;
 import org.telegram.messenger.a8;
-public final class x2 extends View implements a6 {
+public final class x2 extends View implements b6 {
     public final z2 f28747a;
 
     public x2(z2 z2Var, Context context) {
@@ -30,10 +30,10 @@ public final class x2 extends View implements a6 {
         z2 z2Var = this.f28747a;
         Paint paint = z2Var.d;
         try {
-            h3 h3Var = z2Var.f28827a;
+            h3 h3Var = z2Var.f28830a;
             if (h3Var != null) {
                 boolean z9 = false;
-                int e10 = h3Var.e(k6.x0(null, k6.f27796a7, false));
+                int e10 = h3Var.e(l6.x0(null, l6.f27809a7, false));
                 if (paint.getColor() != e10) {
                     paint.setColor(e10);
                     invalidate();

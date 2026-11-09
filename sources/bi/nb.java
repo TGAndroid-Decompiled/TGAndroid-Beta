@@ -24,12 +24,12 @@ import org.telegram.messenger.yr;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_ephemeral;
-import org.telegram.ui.Components.l41;
+import org.telegram.ui.Components.ah0;
+import org.telegram.ui.Components.m41;
 import org.telegram.ui.Components.vr;
 import org.telegram.ui.Components.xr;
-import org.telegram.ui.Components.zg0;
-import org.telegram.ui.rt;
 import org.telegram.ui.tt;
+import org.telegram.ui.vt;
 public final class nb implements Runnable {
     public final int f4429a;
     public final boolean f4430b;
@@ -111,7 +111,7 @@ public final class nb implements Runnable {
                 if (document != null) {
                     imageReceiver.f21222u0 = true;
                     imageReceiver.f21195g1 = new aa.n(zArr, 7);
-                    rz f11 = org.telegram.messenger.t5.f(document, org.telegram.ui.ActionBar.k6.f27796a7, 0.3f, null);
+                    rz f11 = org.telegram.messenger.t5.f(document, org.telegram.ui.ActionBar.l6.f27809a7, 0.3f, null);
                     TLRPC.PhotoSize w10 = org.telegram.messenger.w7.w(document.thumbs, 160, true, null, true);
                     imageReceiver.W(0);
                     imageReceiver.r0(org.telegram.messenger.hc.b(document), "160_160_nr", org.telegram.messenger.hc.c(w10, document), "160_160", f11, document.size, "tgs", p02, 1);
@@ -248,8 +248,8 @@ public final class nb implements Runnable {
                 TLObject tLObject3 = (TLObject) obj;
                 ArrayList arrayList3 = vrVar.V;
                 int i13 = vrVar.P;
-                if (i10 == vrVar.f39710f0 && TextUtils.equals(tL_messages_searchGlobal.f27069q, vrVar.f39711g0)) {
-                    vrVar.f39706b0 = false;
+                if (i10 == vrVar.f39796f0 && TextUtils.equals(tL_messages_searchGlobal.f27069q, vrVar.f39797g0)) {
+                    vrVar.f39792b0 = false;
                     if (!z10) {
                         arrayList3.clear();
                     }
@@ -265,12 +265,12 @@ public final class nb implements Runnable {
                             TLRPC.Message message = arrayList4.get(i14);
                             i14++;
                             ij ijVar = new ij(i13, message, false, true);
-                            ijVar.L5(vrVar.f39711g0, true);
+                            ijVar.K5(vrVar.f39797g0, true);
                             arrayList3.add(ijVar);
                         }
-                        vrVar.f39708d0 = messages_messages instanceof TLRPC.TL_messages_messagesSlice;
+                        vrVar.f39794d0 = messages_messages instanceof TLRPC.TL_messages_messagesSlice;
                         Math.max(arrayList3.size(), messages_messages.count);
-                        vrVar.f39709e0 = messages_messages.next_rate;
+                        vrVar.f39795e0 = messages_messages.next_rate;
                     }
                     vrVar.O(true);
                     return;
@@ -282,7 +282,7 @@ public final class nb implements Runnable {
                 TLObject tLObject4 = (TLObject) obj;
                 ArrayList arrayList5 = xrVar.R;
                 int i15 = xrVar.P;
-                if (i10 == xrVar.f40380c0 && TextUtils.equals(tL_messages_searchGlobal2.f27069q, xrVar.f40381d0)) {
+                if (i10 == xrVar.f40471c0 && TextUtils.equals(tL_messages_searchGlobal2.f27069q, xrVar.f40472d0)) {
                     xrVar.Y = false;
                     if (!z10) {
                         arrayList5.clear();
@@ -299,12 +299,12 @@ public final class nb implements Runnable {
                             TLRPC.Message message2 = arrayList6.get(i16);
                             i16++;
                             ij ijVar2 = new ij(i15, message2, false, true);
-                            ijVar2.L5(xrVar.f40381d0, true);
+                            ijVar2.K5(xrVar.f40472d0, true);
                             arrayList5.add(ijVar2);
                         }
-                        xrVar.f40378a0 = messages_messages2 instanceof TLRPC.TL_messages_messagesSlice;
+                        xrVar.f40469a0 = messages_messages2 instanceof TLRPC.TL_messages_messagesSlice;
                         Math.max(arrayList5.size(), messages_messages2.count);
-                        xrVar.f40379b0 = messages_messages2.next_rate;
+                        xrVar.f40470b0 = messages_messages2.next_rate;
                     }
                     xrVar.O(true);
                     return;
@@ -314,14 +314,14 @@ public final class nb implements Runnable {
                 org.telegram.ui.Components.xd xdVar = (org.telegram.ui.Components.xd) obj3;
                 Context context = (Context) obj2;
                 org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) obj;
-                tt ttVar = (tt) xdVar.d;
-                ttVar.a();
-                org.telegram.ui.Cells.m8 m8Var = ttVar.f50132e;
-                ttVar.c();
-                int x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28092q6, false);
-                zg0 zg0Var = ttVar.d;
-                zg0Var.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
-                int x03 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27796a7, false);
+                vt vtVar = (vt) xdVar.d;
+                vtVar.a();
+                org.telegram.ui.Cells.m8 m8Var = vtVar.f50765e;
+                vtVar.c();
+                int x02 = org.telegram.ui.ActionBar.l6.x0(null, org.telegram.ui.ActionBar.l6.f28105q6, false);
+                ah0 ah0Var = vtVar.d;
+                ah0Var.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
+                int x03 = org.telegram.ui.ActionBar.l6.x0(null, org.telegram.ui.ActionBar.l6.f27809a7, false);
                 if (context instanceof Activity) {
                     activity = (Activity) context;
                 } else {
@@ -333,35 +333,35 @@ public final class nb implements Runnable {
                     window = null;
                 }
                 if (window != null) {
-                    ValueAnimator valueAnimator = ttVar.h;
+                    ValueAnimator valueAnimator = vtVar.h;
                     if (valueAnimator != null && valueAnimator.isRunning()) {
-                        ttVar.h.cancel();
+                        vtVar.h.cancel();
                     }
-                    ValueAnimator valueAnimator2 = ttVar.h;
+                    ValueAnimator valueAnimator2 = vtVar.h;
                     if (valueAnimator2 != null && valueAnimator2.isRunning()) {
-                        i10 = ttVar.f50134n;
+                        i10 = vtVar.f50767n;
                     }
                     int i17 = i10;
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    ttVar.h = ofFloat;
+                    vtVar.h = ofFloat;
                     if (z10) {
                         f10 = 50.0f;
                     } else {
                         f10 = 200.0f;
                     }
-                    ofFloat.addUpdateListener(new rt(xdVar, f10, i17, x03, activity));
-                    ttVar.h.addListener(new org.telegram.ui.r0(activity, x03, 1));
-                    ttVar.h.setDuration(350L);
-                    ttVar.h.start();
+                    ofFloat.addUpdateListener(new tt(xdVar, f10, i17, x03, activity));
+                    vtVar.h.addListener(new org.telegram.ui.r0(activity, x03, 1));
+                    vtVar.h.setDuration(350L);
+                    vtVar.h.start();
                 }
-                if (org.telegram.ui.ActionBar.k6.k1()) {
-                    m8Var.p(org.telegram.messenger.id.M0(2131745469, null), zg0Var, true);
-                    m8Var.f29576x += 2;
+                if (org.telegram.ui.ActionBar.l6.k1()) {
+                    m8Var.p(org.telegram.messenger.id.M0(2131745466, null), ah0Var, true);
+                    m8Var.f29580x += 2;
                 } else {
-                    m8Var.p(org.telegram.messenger.id.M0(2131745470, null), zg0Var, true);
-                    m8Var.f29576x += 2;
+                    m8Var.p(org.telegram.messenger.id.M0(2131745467, null), ah0Var, true);
+                    m8Var.f29580x += 2;
                 }
-                org.telegram.ui.ActionBar.k6.M1(f2Var);
+                org.telegram.ui.ActionBar.l6.M1(f2Var);
                 return;
             case 6:
                 p4.m0 m0Var = (p4.m0) obj3;
@@ -369,21 +369,21 @@ public final class nb implements Runnable {
                 p4.l0 l0Var = (p4.l0) obj;
                 p4.d0 d0Var = m0Var.h;
                 if (!d0Var.j()) {
-                    if (!((q4.l) m0Var.f53370n.f53804b).f53786a.isActive()) {
+                    if (!((q4.l) m0Var.f53382n.f53816b).f53798a.isActive()) {
                         StringBuilder n10 = jg.g.n(i10, "Ignore incoming player command before initialization. command=", ", pid=");
-                        n10.append(rVar.f53806a.f53808b);
+                        n10.append(rVar.f53818a.f53820b);
                         h2.a.l("MediaSessionLegacyStub", n10.toString());
                         return;
                     }
                     p4.v m0 = m0Var.m0(rVar);
-                    if (!m0Var.f53364g.G(m0, i10)) {
-                        if (i10 == 1 && !d0Var.f53218t.u()) {
+                    if (!m0Var.f53376g.G(m0, i10)) {
+                        if (i10 == 1 && !d0Var.f53230t.u()) {
                             h2.a.l("MediaSessionLegacyStub", "Calling play() omitted due to COMMAND_PLAY_PAUSE not being available. If this play command has started the service for instance for playback resumption, this may prevent the service from being started into the foreground.");
                             return;
                         }
                         return;
                     }
-                    pb.b bVar = d0Var.f53204e;
+                    pb.b bVar = d0Var.f53216e;
                     d0Var.s(m0);
                     bVar.getClass();
                     try {
@@ -438,9 +438,9 @@ public final class nb implements Runnable {
         this.f4431c = i7;
     }
 
-    public nb(l41 l41Var, int i7, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z9, TLObject tLObject, int i10) {
+    public nb(m41 m41Var, int i7, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z9, TLObject tLObject, int i10) {
         this.f4429a = i10;
-        this.d = l41Var;
+        this.d = m41Var;
         this.f4431c = i7;
         this.f4432e = tL_messages_searchGlobal;
         this.f4430b = z9;

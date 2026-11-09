@@ -8,43 +8,43 @@ import h9.t0;
 import java.util.HashMap;
 import org.telegram.ui.Cells.f1;
 public final class a implements u {
-    public final d f54603a;
+    public final d f54615a;
 
     public a(d dVar) {
-        this.f54603a = dVar;
+        this.f54615a = dVar;
     }
 
     @Override
     public final void a() {
-        this.f54603a.f54621e.remove(this);
+        this.f54615a.f54633e.remove(this);
     }
 
     @Override
     public final boolean d(Uri uri, f5.u uVar, boolean z9) {
         c cVar;
-        d dVar = this.f54603a;
+        d dVar = this.f54615a;
         HashMap hashMap = dVar.d;
         if (dVar.G == null) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
             c cVar2 = (c) hashMap.get(uri);
             cVar2.getClass();
-            w wVar = cVar2.f54615a;
-            int size = wVar.f54767b.size();
-            h2 it = t0.q(wVar.f54767b.values()).iterator();
+            w wVar = cVar2.f54627a;
+            int size = wVar.f54779b.size();
+            h2 it = t0.q(wVar.f54779b.values()).iterator();
             int i7 = 0;
             while (it.hasNext()) {
                 Uri uri2 = (Uri) it.next();
                 c cVar3 = (c) hashMap.get(uri2);
                 if (cVar3 != null) {
-                    b bVar = (b) f1.l(cVar3.f54616b, uri2, uri2);
+                    b bVar = (b) f1.l(cVar3.f54628b, uri2, uri2);
                     bVar.getClass();
-                    if (elapsedRealtime <= bVar.f54610r) {
+                    if (elapsedRealtime <= bVar.f54622r) {
                         i7++;
                     }
                 }
             }
-            int size2 = dVar.f54627x.size();
-            g0 listIterator = dVar.f54627x.listIterator(0);
+            int size2 = dVar.f54639x.size();
+            g0 listIterator = dVar.f54639x.listIterator(0);
             int i10 = 0;
             while (listIterator.hasNext()) {
                 if (dVar.e((w) listIterator.next(), elapsedRealtime)) {
@@ -52,7 +52,7 @@ public final class a implements u {
                 }
             }
             b3.h hVar = new b3.h(size, i7, size2, i10);
-            dVar.f54620c.getClass();
+            dVar.f54632c.getClass();
             b3.i V0 = pb.b.V0(hVar, uVar);
             if (V0 != null && (cVar = (c) hashMap.get(uri)) != null) {
                 return c.c(cVar, uri, V0.f2951b);

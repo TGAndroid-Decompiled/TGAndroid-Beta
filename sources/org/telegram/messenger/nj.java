@@ -11,7 +11,7 @@ public final class nj {
     }
 
     public static nj a() {
-        return new nj(cg.a.g(0L, cg.b.f6162a), 0L);
+        return new nj(cg.a.g(0L, cg.b.f6160a), 0L);
     }
 
     public static nj b(TLRPC.SuggestedPost suggestedPost) {

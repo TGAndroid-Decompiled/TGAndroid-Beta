@@ -271,8 +271,8 @@ public class MediaCodecVideoConvertor {
                 MixedSoundInfo mixedSoundInfo = arrayList.get(i7);
                 try {
                     dg.c cVar = new dg.c(mixedSoundInfo.audioFile);
-                    AudioDecoder audioDecoder = cVar.f8693b;
-                    cVar.f8690a = Math.max(0.0f, Math.min(mixedSoundInfo.volume, 1.0f));
+                    AudioDecoder audioDecoder = cVar.f8691b;
+                    cVar.f8688a = Math.max(0.0f, Math.min(mixedSoundInfo.volume, 1.0f));
                     long j3 = mixedSoundInfo.startTime;
                     int i10 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
                     if (i10 > 0) {

@@ -3,21 +3,21 @@ package fi;
 import android.animation.ValueAnimator;
 import android.view.MotionEvent;
 import org.telegram.ui.Components.c10;
-import org.telegram.ui.Components.r71;
+import org.telegram.ui.Components.s71;
 public final class sa extends c10 {
-    public final ua f12820a;
+    public final ua f12819a;
 
     public sa(ua uaVar) {
-        this.f12820a = uaVar;
+        this.f12819a = uaVar;
     }
 
     @Override
     public final boolean a() {
         y9 y9Var;
-        va vaVar = this.f12820a.f12908n0;
+        va vaVar = this.f12819a.f12908n0;
         if (vaVar.f12953f0 == 0 && (y9Var = vaVar.B0) != null && !vaVar.S1 && y9Var.isInited() && !vaVar.P1 && !vaVar.O0.f12103x0) {
             q6 q6Var = vaVar.D0;
-            if ((q6Var == null || (!q6Var.f12674y.f34629i && !q6Var.L)) && !vaVar.I() && vaVar.f12983p2 == null) {
+            if ((q6Var == null || (!q6Var.f12674y.f34702i && !q6Var.L)) && !vaVar.I() && vaVar.f12983p2 == null) {
                 return true;
             }
             return false;
@@ -27,7 +27,7 @@ public final class sa extends c10 {
 
     @Override
     public final boolean onDoubleTap(MotionEvent motionEvent) {
-        va vaVar = this.f12820a.f12908n0;
+        va vaVar = this.f12819a.f12908n0;
         y9 y9Var = vaVar.B0;
         if (y9Var != null && !vaVar.S1 && !vaVar.P1 && y9Var.isInited() && vaVar.f12953f0 == 0 && vaVar.O1 != -1) {
             vaVar.B0.switchCamera();
@@ -45,7 +45,7 @@ public final class sa extends c10 {
 
     @Override
     public final boolean onDoubleTapEvent(MotionEvent motionEvent) {
-        y9 y9Var = this.f12820a.f12908n0.B0;
+        y9 y9Var = this.f12819a.f12908n0.B0;
         if (y9Var != null) {
             y9Var.N = null;
             y9Var.K = -1L;
@@ -56,7 +56,7 @@ public final class sa extends c10 {
 
     @Override
     public final boolean onDown(MotionEvent motionEvent) {
-        ua uaVar = this.f12820a;
+        ua uaVar = this.f12819a;
         uaVar.f12907l0 = 0.0f;
         uaVar.m0 = 0.0f;
         return false;
@@ -66,20 +66,20 @@ public final class sa extends c10 {
     public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
         q6 q6Var;
         y9 y9Var;
-        r71 r71Var;
+        s71 s71Var;
         ia iaVar;
         boolean z9;
         boolean z10;
-        ua uaVar = this.f12820a;
+        ua uaVar = this.f12819a;
         va vaVar = uaVar.f12908n0;
         ValueAnimator valueAnimator = vaVar.E;
-        if ((valueAnimator != null && valueAnimator.isRunning()) || (((q6Var = vaVar.D0) != null && (q6Var.f12674y.f34629i || q6Var.L)) || vaVar.O0.f12103x0 || (((y9Var = vaVar.B0) != null && y9Var.f11643s) || uaVar.f12905j0 || (((r71Var = vaVar.V0) != null && (r71Var.F || r71Var.G)) || vaVar.H())))) {
+        if ((valueAnimator != null && valueAnimator.isRunning()) || (((q6Var = vaVar.D0) != null && (q6Var.f12674y.f34702i || q6Var.L)) || vaVar.O0.f12103x0 || (((y9Var = vaVar.B0) != null && y9Var.f11643s) || uaVar.f12905j0 || (((s71Var = vaVar.V0) != null && (s71Var.F || s71Var.G)) || vaVar.H())))) {
             return false;
         }
         boolean z11 = true;
         uaVar.f12903h0 = true;
         if (vaVar.W) {
-            if (Math.abs(vaVar.f12987r.f12498a) >= org.telegram.messenger.g0.L(1.0f)) {
+            if (Math.abs(vaVar.f12987r.f12496a) >= org.telegram.messenger.g0.L(1.0f)) {
                 if ((f11 > 0.0f && Math.abs(f11) > 2000.0f && Math.abs(f11) > Math.abs(f10)) || vaVar.K > 0.4f) {
                     vaVar.p(true);
                 } else {
@@ -127,7 +127,7 @@ public final class sa extends c10 {
 
     @Override
     public final boolean onSingleTapConfirmed(MotionEvent motionEvent) {
-        y9 y9Var = this.f12820a.f12908n0.B0;
+        y9 y9Var = this.f12819a.f12908n0.B0;
         if (y9Var != null) {
             a1 a1Var = y9Var.N;
             if (a1Var != null) {
@@ -142,7 +142,7 @@ public final class sa extends c10 {
 
     @Override
     public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        va vaVar = this.f12820a.f12908n0;
+        va vaVar = this.f12819a.f12908n0;
         vaVar.W = false;
         vaVar.X = false;
         if (!a() && onSingleTapConfirmed(motionEvent)) {

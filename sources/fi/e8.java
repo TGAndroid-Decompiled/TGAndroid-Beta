@@ -20,15 +20,15 @@ public final class e8 implements c20 {
         switch (i7) {
             case 0:
                 s8 s8Var = n8Var.W;
-                s8Var.f12804j1 = (TLRPC.InputPeer) obj;
-                HashSet hashSet = s8Var.f12810r1;
+                s8Var.f12803j1 = (TLRPC.InputPeer) obj;
+                HashSet hashSet = s8Var.f12809r1;
                 hashSet.clear();
-                if (s8Var.B1 && s8Var.f12816x1) {
-                    s8Var.f12816x1 = false;
+                if (s8Var.B1 && s8Var.f12815x1) {
+                    s8Var.f12815x1 = false;
                 }
                 c20 c20Var = s8Var.N1;
                 if (c20Var != null) {
-                    c20Var.a(s8Var.f12804j1);
+                    c20Var.a(s8Var.f12803j1);
                 }
                 v8 v8Var = s8Var.O1;
                 if (v8Var != null) {
@@ -39,12 +39,12 @@ public final class e8 implements c20 {
             case 1:
                 s8 s8Var2 = n8Var.W;
                 int i10 = s8.U1;
-                s8Var2.N0(new q8(5, s8Var2.f28616a, (ArrayList) obj), new di.w3(s8Var2, 1), false);
+                s8Var2.N0(new q8(5, s8Var2.f28621a, (ArrayList) obj), new di.x3(s8Var2, 1), false);
                 return;
             case 2:
                 s8 s8Var3 = n8Var.W;
-                HashSet hashSet2 = s8Var3.f12810r1;
-                hashSet2.add(Integer.valueOf(((di.r6) obj).f9701a));
+                HashSet hashSet2 = s8Var3.f12809r1;
+                hashSet2.add(Integer.valueOf(((di.s6) obj).f9732a));
                 n8Var.h(true);
                 v8 v8Var2 = s8Var3.O1;
                 if (v8Var2 != null) {

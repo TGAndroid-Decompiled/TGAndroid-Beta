@@ -4,9 +4,9 @@ import c8.zc;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Iterator;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.pj0;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.s6;
+import org.telegram.ui.Components.qj0;
 public final class h {
     public final q f21080a;
 
@@ -28,14 +28,14 @@ public final class h {
         } else {
             i7 = 0;
         }
-        long j11 = k6.Am + r6.f28479b;
+        long j11 = l6.Am + s6.f28501b;
         if (qVar.f21115s != j11) {
             qVar.f21115s = j11;
             i7 |= 16;
         }
         Iterator it = qVar.f21110n.iterator();
         while (it.hasNext()) {
-            if (((pj0) it.next()).b0()) {
+            if (((qj0) it.next()).b0()) {
                 qVar.f21105i++;
             }
         }

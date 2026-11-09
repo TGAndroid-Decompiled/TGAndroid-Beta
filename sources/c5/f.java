@@ -8,10 +8,10 @@ import v4.e1;
 import v4.v0;
 public final class f extends r0.b {
     public final int d = 0;
-    public final Object f5317e;
+    public final Object f5315e;
 
     public f(e1 e1Var) {
-        this.f5317e = e1Var;
+        this.f5315e = e1Var;
     }
 
     @Override
@@ -24,11 +24,11 @@ public final class f extends r0.b {
         boolean z9;
         switch (this.d) {
             case 0:
-                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f54601a;
-                this.f54162a.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
+                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f54613a;
+                this.f54174a.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
                 dVar.i(k.class.getName());
-                k kVar = (k) this.f5317e;
-                a aVar = kVar.f5334e;
+                k kVar = (k) this.f5315e;
+                a aVar = kVar.f5332e;
                 if (aVar != null && aVar.b() > 1) {
                     z9 = true;
                 } else {
@@ -44,8 +44,8 @@ public final class f extends r0.b {
                 }
                 return;
             default:
-                this.f54162a.onInitializeAccessibilityNodeInfo(view, dVar.f54601a);
-                e1 e1Var = (e1) this.f5317e;
+                this.f54174a.onInitializeAccessibilityNodeInfo(view, dVar.f54613a);
+                e1 e1Var = (e1) this.f5315e;
                 boolean e10 = e1Var.e();
                 RecyclerView recyclerView = e1Var.d;
                 if (!e10 && recyclerView.getLayoutManager() != null) {
@@ -60,35 +60,35 @@ public final class f extends r0.b {
     public final boolean d(View view, int i7, Bundle bundle) {
         switch (this.d) {
             case 0:
-                k kVar = (k) this.f5317e;
+                k kVar = (k) this.f5315e;
                 if (super.d(view, i7, bundle)) {
                     return true;
                 }
                 if (i7 != 4096) {
                     if (i7 == 8192 && kVar.canScrollHorizontally(-1)) {
-                        kVar.setCurrentItem(kVar.f5336f - 1);
+                        kVar.setCurrentItem(kVar.f5334f - 1);
                         return true;
                     }
                 } else if (kVar.canScrollHorizontally(1)) {
-                    kVar.setCurrentItem(kVar.f5336f + 1);
+                    kVar.setCurrentItem(kVar.f5334f + 1);
                     return true;
                 }
                 return false;
             default:
-                e1 e1Var = (e1) this.f5317e;
+                e1 e1Var = (e1) this.f5315e;
                 if (super.d(view, i7, bundle)) {
                     return true;
                 }
                 boolean e10 = e1Var.e();
                 RecyclerView recyclerView = e1Var.d;
                 if (!e10 && recyclerView.getLayoutManager() != null) {
-                    v0 v0Var = recyclerView.getLayoutManager().f57132b.f2842b;
+                    v0 v0Var = recyclerView.getLayoutManager().f57144b.f2842b;
                 }
                 return false;
         }
     }
 
     public f(k kVar) {
-        this.f5317e = kVar;
+        this.f5315e = kVar;
     }
 }

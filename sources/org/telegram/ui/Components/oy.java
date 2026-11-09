@@ -2,25 +2,25 @@ package org.telegram.ui.Components;
 
 import android.graphics.Point;
 public final class oy implements Runnable {
-    public final int f36731a;
-    public final sy f36732b;
-    public final int f36733c;
+    public final int f36827a;
+    public final sy f36828b;
+    public final int f36829c;
     public final int d;
 
     public oy(sy syVar, int i7, int i10, int i11) {
-        this.f36731a = i11;
-        this.f36732b = syVar;
-        this.f36733c = i7;
+        this.f36827a = i11;
+        this.f36828b = syVar;
+        this.f36829c = i7;
         this.d = i10;
     }
 
     @Override
     public final void run() {
         int i7;
-        switch (this.f36731a) {
+        switch (this.f36827a) {
             case 0:
-                sy syVar = this.f36732b;
-                int i10 = this.f36733c;
+                sy syVar = this.f36828b;
+                int i10 = this.f36829c;
                 int i11 = this.d;
                 if (syVar.W != i10 || syVar.X != i11) {
                     syVar.W = i10;
@@ -52,24 +52,24 @@ public final class oy implements Runnable {
                     }
                     syVar.Z = false;
                     syVar.f();
-                    syVar.f38165d0.run();
+                    syVar.f38178d0.run();
                     return;
                 }
                 return;
             case 1:
-                sy syVar2 = this.f36732b;
-                int i15 = this.f36733c;
+                sy syVar2 = this.f36828b;
+                int i15 = this.f36829c;
                 int i16 = this.d;
-                syVar2.f38168n = i15;
-                syVar2.f38169r = i16;
+                syVar2.f38181n = i15;
+                syVar2.f38182r = i16;
                 return;
             default:
-                sy syVar3 = this.f36732b;
-                int i17 = this.f36733c;
+                sy syVar3 = this.f36828b;
+                int i17 = this.f36829c;
                 int i18 = this.d;
                 da daVar = syVar3.I;
-                daVar.f32846l = i17;
-                daVar.f32847m = i18;
+                daVar.f32905l = i17;
+                daVar.f32906m = i18;
                 return;
         }
     }

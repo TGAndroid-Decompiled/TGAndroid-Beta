@@ -18,8 +18,8 @@ import org.telegram.messenger.qp;
 import org.telegram.messenger.r2;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.aj;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.cj;
 public final class e extends View implements ViewTreeObserver.OnPreDrawListener, ViewTreeObserver.OnScrollChangedListener, ViewTreeObserver.OnGlobalLayoutListener {
     public static final RectF H = new RectF();
     public final c D;
@@ -67,11 +67,11 @@ public final class e extends View implements ViewTreeObserver.OnPreDrawListener,
         }
     }
 
-    public final void b(int i7, long j3, ViewGroup viewGroup, aj ajVar) {
+    public final void b(int i7, long j3, ViewGroup viewGroup, cj cjVar) {
         this.d = j3;
         this.f17030e = i7;
         this.f17031f = viewGroup;
-        this.h = ajVar;
+        this.h = cjVar;
     }
 
     public final void c() {
@@ -121,7 +121,7 @@ public final class e extends View implements ViewTreeObserver.OnPreDrawListener,
                 this.G.setTextSize(g0.L(10.0f));
             }
             super.onDraw(canvas);
-            Paint paint = k6.Fm;
+            Paint paint = l6.Fm;
             RectF rectF = this.f17029c;
             canvas.drawRect(rectF, paint);
             LongSparseArray longSparseArray = this.f17036x;
@@ -129,10 +129,10 @@ public final class e extends View implements ViewTreeObserver.OnPreDrawListener,
             for (int i7 = 0; i7 < size; i7++) {
                 d dVar = (d) longSparseArray.valueAt(i7);
                 RectF rectF2 = dVar.f17018c;
-                canvas.drawRect(rectF2, k6.Gm);
+                canvas.drawRect(rectF2, l6.Gm);
                 canvas.save();
                 canvas.translate(rectF2.left, j9.a(j9.a(rectF2.centerY() - g0.L(20.0f), rectF.top - g0.L(40.0f), rectF.bottom), rectF2.top, rectF2.bottom - g0.L(40.0f)));
-                canvas.drawRect(0.0f, 0.0f, rectF2.width(), g0.L(40.0f), k6.Em);
+                canvas.drawRect(0.0f, 0.0f, rectF2.width(), g0.L(40.0f), l6.Em);
                 canvas.translate(g0.L(10.0f), g0.L(16.0f));
                 canvas.save();
                 canvas.drawText("time_in_view_ms: " + dVar.f17021g, 0.0f, 0.0f, this.G);

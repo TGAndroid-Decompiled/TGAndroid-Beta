@@ -1,44 +1,36 @@
 package org.telegram.ui;
 
 import java.util.ArrayList;
-public final class d01 extends g.p {
-    public final int f44932c;
-    public final q11 d;
+import java.util.LinkedHashSet;
+import org.telegram.tgnet.TLRPC;
+public final class d01 implements org.telegram.messenger.c20 {
+    public final int f44789a;
+    public final LinkedHashSet f44790b;
+    public final Runnable f44791c;
 
-    public d01(q11 q11Var, int i7) {
-        this.f44932c = i7;
-        this.d = q11Var;
+    public d01(LinkedHashSet linkedHashSet, Runnable runnable, int i7) {
+        this.f44789a = i7;
+        this.f44790b = linkedHashSet;
+        this.f44791c = runnable;
     }
 
     @Override
-    public final int i(int i7) {
-        int i10;
-        ArrayList arrayList;
-        int i11;
-        switch (this.f44932c) {
+    public final void a(Object obj) {
+        switch (this.f44789a) {
             case 0:
-                q11 q11Var = this.d;
-                if (q11Var.f49068w0.indexOfKey(i7) < 0 && q11Var.f49076z0.indexOfKey(i7) < 0 && i7 != q11Var.f49032f && i7 != q11Var.D && i7 != q11Var.f49047n && i7 != q11Var.h && i7 != q11Var.f49067w && i7 != q11Var.f49018a && i7 != q11Var.f49073y) {
-                    if ((i7 >= q11Var.E && i7 < q11Var.F) || q11Var.Q) {
-                        return 8;
-                    }
-                    return 5;
+                ArrayList arrayList = (ArrayList) obj;
+                if (arrayList != null) {
+                    this.f44790b.addAll(arrayList);
                 }
-                return q11Var.f49056r0.J;
+                this.f44791c.run();
+                return;
             default:
-                q11 q11Var2 = this.d;
-                b11 b11Var = q11Var2.f49053q0;
-                int d = b11Var.d(i7);
-                if (d == 6) {
-                    return q11Var2.f49056r0.J;
+                TLRPC.TL_emojiList tL_emojiList = (TLRPC.TL_emojiList) obj;
+                if (tL_emojiList != null) {
+                    this.f44790b.addAll(tL_emojiList.document_id);
                 }
-                if (d != 5) {
-                    q11 q11Var3 = b11Var.f44162s;
-                    if (q11Var3.W != 14 ? i7 <= (i10 = b11Var.f44157c) || (i7 - i10) - 1 >= q11Var3.D1.size() : (arrayList = q11Var3.C1) == null || i7 < (i11 = b11Var.f44157c) || i7 - i11 >= arrayList.size()) {
-                        return 5;
-                    }
-                }
-                return 8;
+                this.f44791c.run();
+                return;
         }
     }
 }

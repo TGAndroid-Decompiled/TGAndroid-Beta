@@ -195,7 +195,7 @@ public class HevcDecoderConfigurationRecord {
                     byteBuffer.position(2);
                     ByteBuffer slice = byteBuffer.slice();
                     ?? obj = new Object();
-                    obj.f53563a = slice;
+                    obj.f53575a = slice;
                     sequenceParameterSetRbsp = new SequenceParameterSetRbsp(new jc.a(Channels.newInputStream((ReadableByteChannel) obj)));
                     break;
                 case 34:

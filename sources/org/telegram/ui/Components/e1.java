@@ -4,33 +4,33 @@ import android.app.Activity;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 public final class e1 implements Runnable {
-    public final int f33160a;
-    public final int f33161b;
-    public final long f33162c;
+    public final int f33251a;
+    public final int f33252b;
+    public final long f33253c;
     public final long d;
-    public final org.telegram.messenger.c20 f33163e;
-    public final long f33164f;
+    public final org.telegram.messenger.c20 f33254e;
+    public final long f33255f;
 
     public e1(int i7, long j3, long j10, org.telegram.messenger.c20 c20Var, long j11, int i10) {
-        this.f33160a = i10;
-        this.f33161b = i7;
-        this.f33162c = j3;
+        this.f33251a = i10;
+        this.f33252b = i7;
+        this.f33253c = j3;
         this.d = j10;
-        this.f33163e = c20Var;
-        this.f33164f = j11;
+        this.f33254e = c20Var;
+        this.f33255f = j11;
     }
 
     @Override
     public final void run() {
-        org.telegram.ui.ActionBar.f6 bVar;
-        switch (this.f33160a) {
+        org.telegram.ui.ActionBar.g6 bVar;
+        switch (this.f33251a) {
             case 0:
-                int i7 = this.f33161b;
+                int i7 = this.f33252b;
                 long j3 = bi.ea.y(i7, false).p().amount;
-                long j10 = this.f33162c;
+                long j10 = this.f33253c;
                 int i10 = (j3 > j10 ? 1 : (j3 == j10 ? 0 : -1));
-                org.telegram.messenger.c20 c20Var = this.f33163e;
-                long j11 = this.f33164f;
+                org.telegram.messenger.c20 c20Var = this.f33254e;
+                long j11 = this.f33255f;
                 if (i10 < 0) {
                     Activity u02 = org.telegram.messenger.g0.u0();
                     org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
@@ -43,10 +43,10 @@ public final class e1 implements Runnable {
                     } else {
                         bVar = new di.b();
                     }
-                    org.telegram.ui.ActionBar.f6 f6Var = bVar;
+                    org.telegram.ui.ActionBar.g6 g6Var = bVar;
                     if (u02 != null) {
                         long j12 = this.d;
-                        new bi.tc(u02, f6Var, j10, 13, org.telegram.messenger.m5.s(i7, j12), new org.telegram.ui.a6(1, j11, c20Var), j12).show();
+                        new bi.tc(u02, g6Var, j10, 13, org.telegram.messenger.m5.s(i7, j12), new org.telegram.ui.a6(1, j11, c20Var), j12).show();
                         return;
                     }
                     return;
@@ -54,8 +54,8 @@ public final class e1 implements Runnable {
                 c20Var.a(Long.valueOf(j11));
                 return;
             default:
-                int i11 = this.f33161b;
-                e1 e1Var = new e1(i11, this.f33162c, this.d, this.f33163e, this.f33164f, 0);
+                int i11 = this.f33252b;
+                e1 e1Var = new e1(i11, this.f33253c, this.d, this.f33254e, this.f33255f, 0);
                 if (!bi.ea.y(i11, false).f3810e) {
                     bi.ea y10 = bi.ea.y(i11, false);
                     y10.f3810e = false;

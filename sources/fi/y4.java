@@ -15,12 +15,12 @@ public final class y4 implements tg.l1 {
         switch (this.f13159a) {
             case 0:
                 tg.k2 k2Var = (tg.k2) this.f13160b;
-                k2Var.f55817z0 = true;
+                k2Var.f55829z0 = true;
                 k2Var.setBaseFontSize((int) (this.f13161c * f10));
                 return;
             default:
                 tg.k2 k2Var2 = (tg.k2) this.f13160b;
-                k2Var2.f55817z0 = true;
+                k2Var2.f55829z0 = true;
                 k2Var2.setBaseFontSize((int) (this.f13161c * f10));
                 return;
         }

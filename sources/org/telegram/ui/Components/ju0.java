@@ -1,39 +1,32 @@
 package org.telegram.ui.Components;
-public final class ju0 {
-    public org.telegram.messenger.fp f35103a;
-    public org.telegram.ui.ActionBar.f6 f35104b;
-    public int f35105c;
-    public int d;
-    public float f35106e;
 
-    public final void a(org.telegram.messenger.fp fpVar) {
-        int b10;
-        int i7;
-        this.f35103a = fpVar;
-        if (fpVar == null) {
-            this.f35105c = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.A8, this.f35104b);
-            this.d = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28132s8, this.f35104b);
-            this.f35105c = i0.a.f(this.f35106e, this.f35105c, 603979776);
-            this.d = i0.a.f(this.f35106e, this.d, -1);
-            return;
-        }
-        int c10 = fpVar.c(org.telegram.ui.ActionBar.k6.I.q());
-        int d = fpVar.d(org.telegram.ui.ActionBar.k6.I.q());
-        org.telegram.ui.ActionBar.f6 f6Var = this.f35104b;
-        int f10 = i0.a.f(0.75f, d, c10);
-        if (org.telegram.messenger.g0.B(f10) > 0.721f) {
-            b10 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28187v6, f6Var);
-        } else {
-            b10 = org.telegram.ui.ActionBar.k6.b(0.08f, -0.08f, f10);
-        }
-        this.f35105c = b10;
-        if (org.telegram.messenger.g0.B(b10) > 0.721f) {
-            i7 = -16777216;
-        } else {
-            i7 = -1;
-        }
-        this.d = i7;
-        this.f35105c = i0.a.f(this.f35106e, this.f35105c, 603979776);
-        this.d = i0.a.f(this.f35106e, this.d, -1);
+import android.content.Context;
+public final class ju0 extends na {
+    public vr P1;
+
+    public ju0(Context context) {
+        super(context, null, true, false, null);
+        N();
+        this.f36312v1 = true;
+        this.f36311u1 = true;
+        Y0();
+        qj0 qj0Var = this.f36303k1;
+        int i7 = this.f28654t0;
+        qj0Var.setPadding(i7, 0, i7, 0);
+        this.f36303k1.j(new ui(this, 17));
+        this.f36303k1.setOnItemClickListener(new k(this, 14));
+    }
+
+    @Override
+    public final pj0 L0(qj0 qj0Var) {
+        vr vrVar = new vr(qj0Var, getContext(), this.f28621a, 0, true, this.I0);
+        this.P1 = vrVar;
+        vrVar.f35945r = false;
+        return vrVar;
+    }
+
+    @Override
+    public final CharSequence O0() {
+        return org.telegram.messenger.id.M0(2131745821, null);
     }
 }

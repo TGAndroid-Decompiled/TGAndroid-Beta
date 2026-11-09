@@ -8,23 +8,23 @@ import e2.x1;
 import h2.m0;
 import java.util.NoSuchElementException;
 public final class e0 {
-    public final q4.q f7993a;
-    public final y f7994b;
-    public final x f7995c = new x();
+    public final q4.q f7991a;
+    public final y f7992b;
+    public final x f7993c = new x();
     public final h2.j0 d = new h2.j0();
-    public final h2.j0 f7996e = new h2.j0();
-    public final h2.s f7997f;
-    public final z f7998g;
+    public final h2.j0 f7994e = new h2.j0();
+    public final h2.s f7995f;
+    public final z f7996g;
     public long h;
-    public long f7999i;
-    public long f8000j;
-    public x1 f8001k;
-    public long f8002l;
+    public long f7997i;
+    public long f7998j;
+    public x1 f7999k;
+    public long f8000l;
 
     public e0(q4.q qVar, y yVar, z zVar) {
-        this.f7993a = qVar;
-        this.f7994b = yVar;
-        this.f7998g = zVar;
+        this.f7991a = qVar;
+        this.f7992b = yVar;
+        this.f7996g = zVar;
         ?? obj = new Object();
         int highestOneBit = Integer.bitCount(16) != 1 ? Integer.highestOneBit(15) << 1 : 16;
         obj.f14146a = 0;
@@ -32,39 +32,39 @@ public final class e0 {
         obj.f14148c = 0;
         obj.f14149e = new long[highestOneBit];
         obj.d = highestOneBit - 1;
-        this.f7997f = obj;
+        this.f7995f = obj;
         this.h = -9223372036854775807L;
-        this.f8001k = x1.d;
-        this.f7999i = -9223372036854775807L;
-        this.f8000j = -9223372036854775807L;
+        this.f7999k = x1.d;
+        this.f7997i = -9223372036854775807L;
+        this.f7998j = -9223372036854775807L;
     }
 
     public final void a(long j3, long j10) {
         boolean z9;
         long j11;
         e2.u uVar;
-        final q4.q qVar = this.f7993a;
-        e eVar = (e) qVar.f53805c;
+        final q4.q qVar = this.f7991a;
+        e eVar = (e) qVar.f53817c;
         while (true) {
-            h2.s sVar = this.f7997f;
+            h2.s sVar = this.f7995f;
             int i7 = sVar.f14148c;
             if (i7 == 0) {
                 return;
             }
             if (i7 != 0) {
                 long j12 = ((long[]) sVar.f14149e)[sVar.f14146a];
-                Long l10 = (Long) this.f7996e.j(j12);
-                y yVar = this.f7994b;
-                if (l10 != null && l10.longValue() != this.f8002l) {
-                    this.f8002l = l10.longValue();
+                Long l10 = (Long) this.f7994e.j(j12);
+                y yVar = this.f7992b;
+                if (l10 != null && l10.longValue() != this.f8000l) {
+                    this.f8000l = l10.longValue();
                     yVar.e(2);
                 }
-                long j13 = this.f8002l;
-                y yVar2 = this.f7994b;
-                x xVar = this.f7995c;
+                long j13 = this.f8000l;
+                y yVar2 = this.f7992b;
+                x xVar = this.f7993c;
                 int a10 = yVar2.a(j12, j3, j10, j13, false, false, xVar);
                 if (a10 != 5 && a10 != 4) {
-                    this.f7998g.a(j12, xVar.f8093a);
+                    this.f7996g.a(j12, xVar.f8091a);
                 }
                 boolean z10 = false;
                 if (a10 != 0 && a10 != 1) {
@@ -75,34 +75,34 @@ public final class e0 {
                             }
                             throw new IllegalStateException(String.valueOf(a10));
                         }
-                        this.f7999i = j12;
+                        this.f7997i = j12;
                     } else {
-                        this.f7999i = j12;
+                        this.f7997i = j12;
                         sVar.d();
-                        eVar.f7991i.execute(new Runnable() {
+                        eVar.f7989i.execute(new Runnable() {
                             @Override
                             public final void run() {
                                 switch (r2) {
                                     case 0:
-                                        ((e) qVar.f53805c).h.onFirstFrameRendered();
+                                        ((e) qVar.f53817c).h.onFirstFrameRendered();
                                         return;
                                     default:
-                                        ((e) qVar.f53805c).h.m();
+                                        ((e) qVar.f53817c).h.m();
                                         return;
                                 }
                             }
                         });
                         i iVar = (i) eVar.d.remove();
-                        l lVar = iVar.f8021c;
-                        u2.l lVar2 = iVar.f8019a;
-                        int i10 = iVar.f8020b;
+                        l lVar = iVar.f8019c;
+                        u2.l lVar2 = iVar.f8017a;
+                        int i10 = iVar.f8018b;
                         Trace.beginSection("dropVideoBuffer");
                         lVar2.c(i10);
                         Trace.endSection();
                         lVar.R0(0, 1);
                     }
                 } else {
-                    this.f7999i = j12;
+                    this.f7997i = j12;
                     if (a10 == 0) {
                         z9 = true;
                     } else {
@@ -110,51 +110,51 @@ public final class e0 {
                     }
                     long d = sVar.d();
                     x1 x1Var = (x1) this.d.j(d);
-                    if (x1Var != null && !x1Var.equals(x1.d) && !x1Var.equals(this.f8001k)) {
-                        this.f8001k = x1Var;
+                    if (x1Var != null && !x1Var.equals(x1.d) && !x1Var.equals(this.f7999k)) {
+                        this.f7999k = x1Var;
                         e2.t tVar = new e2.t();
                         tVar.f10569y = x1Var.f10649a;
                         tVar.f10570z = x1Var.f10650b;
                         tVar.f10563r = s0.n("video/raw");
-                        qVar.f53804b = new e2.u(tVar);
-                        eVar.f7991i.execute(new a4(22, qVar, x1Var));
+                        qVar.f53816b = new e2.u(tVar);
+                        eVar.f7989i.execute(new a4(22, qVar, x1Var));
                     }
                     if (z9) {
                         j11 = System.nanoTime();
                     } else {
-                        j11 = xVar.f8094b;
+                        j11 = xVar.f8092b;
                     }
                     long j14 = j11;
-                    if (yVar.f8098e != 3) {
+                    if (yVar.f8096e != 3) {
                         z10 = true;
                     }
-                    yVar.f8098e = 3;
-                    yVar.f8104l.getClass();
-                    yVar.f8100g = m0.S(SystemClock.elapsedRealtime());
-                    if (z10 && eVar.f7988e != null) {
-                        eVar.f7991i.execute(new Runnable() {
+                    yVar.f8096e = 3;
+                    yVar.f8102l.getClass();
+                    yVar.f8098g = m0.S(SystemClock.elapsedRealtime());
+                    if (z10 && eVar.f7986e != null) {
+                        eVar.f7989i.execute(new Runnable() {
                             @Override
                             public final void run() {
                                 switch (r2) {
                                     case 0:
-                                        ((e) qVar.f53805c).h.onFirstFrameRendered();
+                                        ((e) qVar.f53817c).h.onFirstFrameRendered();
                                         return;
                                     default:
-                                        ((e) qVar.f53805c).h.m();
+                                        ((e) qVar.f53817c).h.m();
                                         return;
                                 }
                             }
                         });
                     }
-                    e2.u uVar2 = (e2.u) qVar.f53804b;
+                    e2.u uVar2 = (e2.u) qVar.f53816b;
                     if (uVar2 == null) {
                         uVar = new e2.u(new e2.t());
                     } else {
                         uVar = uVar2;
                     }
-                    eVar.f7992j.b(d, j14, uVar, null);
+                    eVar.f7990j.b(d, j14, uVar, null);
                     i iVar2 = (i) eVar.d.remove();
-                    iVar2.f8021c.M0(iVar2.f8019a, iVar2.f8020b, j14);
+                    iVar2.f8019c.M0(iVar2.f8017a, iVar2.f8018b, j14);
                 }
             } else {
                 throw new NoSuchElementException();

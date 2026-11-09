@@ -11,37 +11,37 @@ import org.telegram.messenger.video.MP4Builder;
 import org.telegram.messenger.video.Mp4Movie;
 import org.telegram.ui.Cells.f1;
 public final class x {
-    public final File f58239a;
-    public final int f58240b;
-    public final boolean f58241c;
+    public final File f58248a;
+    public final int f58249b;
+    public final boolean f58250c;
     public final o d;
-    public final org.telegram.ui.web.a0 f58242e;
-    public MP4Builder f58245i;
-    public MediaFormat f58246j;
-    public MediaFormat f58247k;
-    public long f58250n;
-    public long f58251o;
-    public long f58252p;
-    public long f58254r;
-    public int f58255s;
-    public ByteBuffer f58256t;
+    public final org.telegram.ui.web.a0 f58251e;
+    public MP4Builder f58254i;
+    public MediaFormat f58255j;
+    public MediaFormat f58256k;
+    public long f58259n;
+    public long f58260o;
+    public long f58261p;
+    public long f58263r;
+    public int f58264s;
+    public ByteBuffer f58265t;
     public boolean v;
-    public boolean f58258w;
-    public boolean f58259x;
-    public final ArrayList f58243f = new ArrayList();
-    public final w f58244g = new w(33333);
+    public boolean f58267w;
+    public boolean f58268x;
+    public final ArrayList f58252f = new ArrayList();
+    public final w f58253g = new w(33333);
     public final w h = new w(21333);
-    public int f58248l = -1;
-    public int f58249m = -1;
-    public long f58253q = Long.MIN_VALUE;
-    public final MediaCodec.BufferInfo f58257u = new MediaCodec.BufferInfo();
+    public int f58257l = -1;
+    public int f58258m = -1;
+    public long f58262q = Long.MIN_VALUE;
+    public final MediaCodec.BufferInfo f58266u = new MediaCodec.BufferInfo();
 
     public x(File file, int i7, boolean z9, o oVar, org.telegram.ui.web.a0 a0Var) {
-        this.f58239a = file;
-        this.f58240b = i7;
-        this.f58241c = z9;
+        this.f58248a = file;
+        this.f58249b = i7;
+        this.f58250c = z9;
         this.d = oVar;
-        this.f58242e = a0Var;
+        this.f58251e = a0Var;
     }
 
     public static int a(ByteBuffer byteBuffer) {
@@ -168,7 +168,7 @@ public final class x {
         w wVar;
         long max;
         w wVar2 = this.h;
-        w wVar3 = this.f58244g;
+        w wVar3 = this.f58253g;
         if (z9) {
             wVar = wVar3;
         } else {
@@ -177,39 +177,39 @@ public final class x {
         if (j3 < 0) {
             max = Math.max(0L, j3 + bufferInfo.presentationTimeUs);
         } else {
-            if (this.f58253q != j3) {
-                this.f58253q = j3;
-                this.f58254r = Math.max(j3, Math.max(wVar3.a(), wVar2.a()));
-                wVar3.f58236a = Long.MIN_VALUE;
-                wVar3.f58237b = Long.MIN_VALUE;
-                wVar2.f58236a = Long.MIN_VALUE;
-                wVar2.f58237b = Long.MIN_VALUE;
+            if (this.f58262q != j3) {
+                this.f58262q = j3;
+                this.f58263r = Math.max(j3, Math.max(wVar3.a(), wVar2.a()));
+                wVar3.f58245a = Long.MIN_VALUE;
+                wVar3.f58246b = Long.MIN_VALUE;
+                wVar2.f58245a = Long.MIN_VALUE;
+                wVar2.f58246b = Long.MIN_VALUE;
             }
-            if (wVar.f58236a == Long.MIN_VALUE) {
-                wVar.f58236a = bufferInfo.presentationTimeUs;
+            if (wVar.f58245a == Long.MIN_VALUE) {
+                wVar.f58245a = bufferInfo.presentationTimeUs;
             }
-            max = this.f58254r + Math.max(0L, bufferInfo.presentationTimeUs - wVar.f58236a);
+            max = this.f58263r + Math.max(0L, bufferInfo.presentationTimeUs - wVar.f58245a);
         }
         long j10 = bufferInfo.presentationTimeUs;
-        long j11 = wVar.f58237b;
+        long j11 = wVar.f58246b;
         if (j11 != Long.MIN_VALUE) {
             long j12 = j10 - j11;
             if (j12 > 0 && j12 < 1000000) {
                 wVar.d = j12;
             }
         }
-        wVar.f58237b = j10;
-        wVar.f58238c = Math.max(wVar.f58238c, max);
+        wVar.f58246b = j10;
+        wVar.f58247c = Math.max(wVar.f58247c, max);
         MediaCodec.BufferInfo bufferInfo2 = new MediaCodec.BufferInfo();
         bufferInfo2.set(bufferInfo.offset, bufferInfo.size, max, bufferInfo.flags);
         return bufferInfo2;
     }
 
     public final synchronized void c(File file) {
-        if (this.f58245i != null) {
+        if (this.f58254i != null) {
             long nanoTime = System.nanoTime();
             try {
-                this.f58245i.finishMovie(file);
+                this.f58254i.finishMovie(file);
                 o oVar = this.d;
                 oVar.b("MP4 preview written: file=" + file.getName() + ", size=" + file.length() + ", elapsedMs=" + ((System.nanoTime() - nanoTime) / 1000000));
             } catch (Exception e10) {
@@ -221,17 +221,17 @@ public final class x {
     }
 
     public final synchronized void g() {
-        if (this.f58259x) {
+        if (this.f58268x) {
             return;
         }
-        if (this.f58245i != null) {
+        if (this.f58254i != null) {
             long nanoTime = System.nanoTime();
             try {
-                this.f58245i.finishMovie();
-                this.f58259x = true;
-                l(this.f58239a.length());
+                this.f58254i.finishMovie();
+                this.f58268x = true;
+                l(this.f58248a.length());
                 o oVar = this.d;
-                oVar.b("MP4 finalized: file=" + this.f58239a.getName() + ", size=" + this.f58239a.length() + ", videoSamples=" + this.f58251o + ", audioSamples=" + this.f58252p + ", elapsedMs=" + ((System.nanoTime() - nanoTime) / 1000000));
+                oVar.b("MP4 finalized: file=" + this.f58248a.getName() + ", size=" + this.f58248a.length() + ", videoSamples=" + this.f58260o + ", audioSamples=" + this.f58261p + ", elapsedMs=" + ((System.nanoTime() - nanoTime) / 1000000));
                 return;
             } catch (Exception e10) {
                 throw new IOException("Unable to finish MP4", e10);
@@ -243,8 +243,8 @@ public final class x {
     public final synchronized long h() {
         long a10;
         try {
-            a10 = this.f58244g.a();
-            if (this.f58241c) {
+            a10 = this.f58253g.a();
+            if (this.f58250c) {
                 a10 = Math.max(a10, this.h.a());
             }
         } catch (Throwable th2) {
@@ -254,31 +254,31 @@ public final class x {
     }
 
     public final synchronized int i() {
-        return this.f58255s;
+        return this.f58264s;
     }
 
     public final void j() {
-        ArrayList arrayList = this.f58243f;
-        if (this.f58246j != null) {
-            boolean z9 = this.f58241c;
-            if (!z9 || this.f58247k != null) {
+        ArrayList arrayList = this.f58252f;
+        if (this.f58255j != null) {
+            boolean z9 = this.f58250c;
+            if (!z9 || this.f58256k != null) {
                 Mp4Movie mp4Movie = new Mp4Movie();
-                File file = this.f58239a;
+                File file = this.f58248a;
                 mp4Movie.setCacheFile(file);
-                int i7 = this.f58240b;
+                int i7 = this.f58249b;
                 mp4Movie.setSize(i7, i7);
                 try {
                     MP4Builder createMovie = new MP4Builder().createMovie(mp4Movie, true, false);
-                    this.f58245i = createMovie;
-                    this.f58248l = createMovie.addTrack(this.f58246j, false);
+                    this.f58254i = createMovie;
+                    this.f58257l = createMovie.addTrack(this.f58255j, false);
                     if (z9) {
-                        this.f58249m = this.f58245i.addTrack(this.f58247k, true);
+                        this.f58258m = this.f58254i.addTrack(this.f58256k, true);
                     }
                     o oVar = this.d;
                     oVar.b("MP4 initialized: file=" + file.getName() + ", output=" + i7 + "x" + i7 + ", includeAudio=" + z9 + ", pendingSamples=" + arrayList.size());
                     for (int i10 = 0; i10 < arrayList.size(); i10++) {
                         v vVar = (v) arrayList.get(i10);
-                        r(vVar.f58221a, vVar.f58222b, vVar.f58223c);
+                        r(vVar.f58230a, vVar.f58231b, vVar.f58232c);
                     }
                     arrayList.clear();
                 } catch (Exception e10) {
@@ -299,21 +299,21 @@ public final class x {
         int f10 = f(byteBuffer, i11, i12);
         if (f10 != bufferInfo.offset) {
             int i13 = bufferInfo.size;
-            ByteBuffer byteBuffer2 = this.f58256t;
+            ByteBuffer byteBuffer2 = this.f58265t;
             if (byteBuffer2 == null || byteBuffer2.capacity() < i13) {
-                this.f58256t = ByteBuffer.allocateDirect(i13);
+                this.f58265t = ByteBuffer.allocateDirect(i13);
             }
-            this.f58256t.clear();
+            this.f58265t.clear();
             position = byteBuffer.position();
             limit = byteBuffer.limit();
             try {
                 byteBuffer.position(bufferInfo.offset);
                 byteBuffer.limit(bufferInfo.offset + bufferInfo.size);
-                this.f58256t.put(byteBuffer);
+                this.f58265t.put(byteBuffer);
                 byteBuffer.limit(limit);
                 byteBuffer.position(position);
-                this.f58256t.flip();
-                this.f58257u.set(0, bufferInfo.size, bufferInfo.presentationTimeUs, bufferInfo.flags);
+                this.f58265t.flip();
+                this.f58266u.set(0, bufferInfo.size, bufferInfo.presentationTimeUs, bufferInfo.flags);
                 return;
             } finally {
             }
@@ -335,11 +335,11 @@ public final class x {
             }
         }
         if (i14 != 0) {
-            ByteBuffer byteBuffer3 = this.f58256t;
+            ByteBuffer byteBuffer3 = this.f58265t;
             if (byteBuffer3 == null || byteBuffer3.capacity() < i16) {
-                this.f58256t = ByteBuffer.allocateDirect(i16);
+                this.f58265t = ByteBuffer.allocateDirect(i16);
             }
-            this.f58256t.clear();
+            this.f58265t.clear();
             position = byteBuffer.position();
             limit = byteBuffer.limit();
             while (f10 >= 0) {
@@ -352,10 +352,10 @@ public final class x {
                         i7 = f11;
                     }
                     if (i7 > o10) {
-                        this.f58256t.putInt(i7 - o10);
+                        this.f58265t.putInt(i7 - o10);
                         byteBuffer.position(o10);
                         byteBuffer.limit(i7);
-                        this.f58256t.put(byteBuffer);
+                        this.f58265t.put(byteBuffer);
                     }
                     f10 = f11;
                 } finally {
@@ -363,29 +363,29 @@ public final class x {
             }
             byteBuffer.limit(limit);
             byteBuffer.position(position);
-            this.f58256t.flip();
-            this.f58257u.set(0, this.f58256t.remaining(), bufferInfo.presentationTimeUs, bufferInfo.flags);
+            this.f58265t.flip();
+            this.f58266u.set(0, this.f58265t.remaining(), bufferInfo.presentationTimeUs, bufferInfo.flags);
             return;
         }
         throw new IOException("Annex-B video sample contains no NAL units");
     }
 
     public final void l(long j3) {
-        if (j3 > this.f58250n) {
-            this.f58250n = j3;
-            if (this.f58258w) {
+        if (j3 > this.f58259n) {
+            this.f58259n = j3;
+            if (this.f58267w) {
                 return;
             }
-            org.telegram.ui.web.a0 a0Var = this.f58242e;
-            t0 t0Var = (t0) a0Var.f51086b;
-            p0 p0Var = (p0) a0Var.f51087c;
-            synchronized (t0Var.f58199g) {
+            org.telegram.ui.web.a0 a0Var = this.f58251e;
+            t0 t0Var = (t0) a0Var.f51067b;
+            p0 p0Var = (p0) a0Var.f51068c;
+            synchronized (t0Var.f58208g) {
                 try {
-                    long j10 = p0Var.f58127c;
+                    long j10 = p0Var.f58136c;
                     long j11 = j3 - j10;
                     if (j11 > 0 && !p0Var.d) {
-                        p0Var.f58127c = j3;
-                        t0Var.f58202k.execute(new h4(t0Var, p0Var, j10, j11, 8));
+                        p0Var.f58136c = j3;
+                        t0Var.f58211k.execute(new h4(t0Var, p0Var, j10, j11, 8));
                     }
                 } finally {
                 }
@@ -397,16 +397,16 @@ public final class x {
         MediaFormat mediaFormat2;
         String str;
         try {
-            if (this.f58259x) {
+            if (this.f58268x) {
                 return;
             }
-            if (this.f58245i != null) {
+            if (this.f58254i != null) {
                 if (z9) {
-                    mediaFormat2 = this.f58246j;
+                    mediaFormat2 = this.f58255j;
                 } else {
-                    mediaFormat2 = this.f58247k;
+                    mediaFormat2 = this.f58256k;
                 }
-                if ((z9 && !m(mediaFormat2, mediaFormat, "csd-0", "csd-1")) || (!z9 && this.f58241c && !m(mediaFormat2, mediaFormat, "csd-0"))) {
+                if ((z9 && !m(mediaFormat2, mediaFormat, "csd-0", "csd-1")) || (!z9 && this.f58250c && !m(mediaFormat2, mediaFormat, "csd-0"))) {
                     StringBuilder sb2 = new StringBuilder();
                     if (z9) {
                         str = "Video";
@@ -420,9 +420,9 @@ public final class x {
                 return;
             }
             if (z9) {
-                this.f58246j = mediaFormat;
-            } else if (this.f58241c) {
-                this.f58247k = mediaFormat;
+                this.f58255j = mediaFormat;
+            } else if (this.f58250c) {
+                this.f58256k = mediaFormat;
             }
             j();
         } finally {
@@ -431,20 +431,20 @@ public final class x {
 
     public final synchronized void q(boolean z9, ByteBuffer byteBuffer, MediaCodec.BufferInfo bufferInfo, long j3) {
         try {
-            if (!this.f58259x) {
+            if (!this.f58268x) {
                 if (!z9) {
-                    if (this.f58241c) {
+                    if (this.f58250c) {
                     }
                 }
                 if (bufferInfo.size > 0) {
                     MediaCodec.BufferInfo b10 = b(z9, bufferInfo, j3);
-                    if (this.f58245i == null) {
+                    if (this.f58254i == null) {
                         ByteBuffer allocateDirect = ByteBuffer.allocateDirect(bufferInfo.size);
                         byteBuffer.position(bufferInfo.offset);
                         byteBuffer.limit(bufferInfo.offset + bufferInfo.size);
                         allocateDirect.put(byteBuffer).flip();
                         b10.offset = 0;
-                        this.f58243f.add(new v(z9, allocateDirect, b10));
+                        this.f58252f.add(new v(z9, allocateDirect, b10));
                         return;
                     }
                     r(z9, byteBuffer, b10);
@@ -468,8 +468,8 @@ public final class x {
                     str2 = e(byteBuffer, bufferInfo);
                 }
                 k(byteBuffer, bufferInfo);
-                byteBuffer2 = this.f58256t;
-                bufferInfo2 = this.f58257u;
+                byteBuffer2 = this.f58265t;
+                bufferInfo2 = this.f58266u;
                 if (!this.v) {
                     this.v = true;
                     oVar.b("first video sample prepared: " + str2 + ", outputSize=" + bufferInfo2.size);
@@ -505,17 +505,17 @@ public final class x {
             byteBuffer2 = byteBuffer;
             bufferInfo2 = bufferInfo;
         }
-        MP4Builder mP4Builder = this.f58245i;
+        MP4Builder mP4Builder = this.f58254i;
         if (z9) {
-            i7 = this.f58248l;
+            i7 = this.f58257l;
         } else {
-            i7 = this.f58249m;
+            i7 = this.f58258m;
         }
         long writeSampleData = mP4Builder.writeSampleData(i7, byteBuffer2, bufferInfo2, false);
         if (z9) {
-            this.f58251o++;
+            this.f58260o++;
         } else {
-            this.f58252p++;
+            this.f58261p++;
         }
         if (writeSampleData > 0) {
             l(writeSampleData);

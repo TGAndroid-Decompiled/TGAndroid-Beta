@@ -101,7 +101,7 @@ public final class b {
     }
 
     public final q2 a(String str, final t0 t0Var) {
-        String str2 = t0Var.f8519b;
+        String str2 = t0Var.f8517b;
         if (Build.VERSION.SDK_INT >= 37) {
             if (!str2.equals("crash") && !str2.equals("ndk-crash")) {
                 return t0Var;
@@ -116,14 +116,14 @@ public final class b {
                     z1 z1Var = (z1) obj;
                     t0 t0Var2 = t0.this;
                     s0 a10 = t0Var2.a();
-                    k2 k2Var = t0Var2.f8520c;
+                    k2 k2Var = t0Var2.f8518c;
                     u0 a11 = k2Var.a();
-                    w0 w0Var = (w0) ((v0) k2Var).f8542a;
-                    List list = w0Var.f8550a;
-                    e2 e2Var = w0Var.f8551b;
-                    u1 u1Var = w0Var.f8552c;
-                    z0 z0Var = w0Var.f8553e;
-                    List list2 = w0Var.f8554f;
+                    w0 w0Var = (w0) ((v0) k2Var).f8540a;
+                    List list = w0Var.f8548a;
+                    e2 e2Var = w0Var.f8549b;
+                    u1 u1Var = w0Var.f8550c;
+                    z0 z0Var = w0Var.f8551e;
+                    List list2 = w0Var.f8552f;
                     if (list2 == null) {
                         StringBuilder sb2 = new StringBuilder();
                         if (list2 == null) {
@@ -131,8 +131,8 @@ public final class b {
                         }
                         throw new IllegalStateException(p0.q("Missing required properties:", sb2));
                     }
-                    a11.f8529a = new w0(list, e2Var, u1Var, z1Var, z0Var, list2);
-                    a10.f8509c = a11.a();
+                    a11.f8527a = new w0(list, e2Var, u1Var, z1Var, z0Var, list2);
+                    a10.f8507c = a11.a();
                     return a10.a();
                 }
 

@@ -10,8 +10,8 @@ import org.telegram.messenger.id;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.hg;
 import org.telegram.ui.Components.hy;
-import org.telegram.ui.Components.k60;
-import org.telegram.ui.bg0;
+import org.telegram.ui.Components.l60;
+import org.telegram.ui.dg0;
 public final class i1 implements View.OnClickListener {
     public final int f18635a;
     public final b2 f18636b;
@@ -81,7 +81,7 @@ public final class i1 implements View.OnClickListener {
                     b2Var2.A0 = hyVar;
                     hyVar.setVisibility(8);
                     hy hyVar2 = b2Var2.A0;
-                    hyVar2.f34467x2 = false;
+                    hyVar2.f34482x2 = false;
                     hyVar2.setDelegate(new s1(b2Var2));
                     int indexOfChild = b2Var2.O.indexOfChild(b2Var2.f18442a0);
                     if (indexOfChild < 0) {
@@ -111,12 +111,12 @@ public final class i1 implements View.OnClickListener {
                 b2Var2.f18444b0.j(hg.d, true);
                 return;
             case 6:
-                k60 k60Var = b2Var.f18473x0;
-                if (k60Var != null) {
-                    k60Var.u();
+                l60 l60Var = b2Var.f18473x0;
+                if (l60Var != null) {
+                    l60Var.u();
                     b2Var.f18473x0 = null;
                 }
-                final k60 H = k60.H(b2Var, view);
+                final l60 H = l60.H(b2Var, view);
                 H.Q = true;
                 a T2 = b2Var.P.T2();
                 if (T2 != null && T2.b()) {
@@ -196,9 +196,9 @@ public final class i1 implements View.OnClickListener {
                 b2Var.f18473x0 = H;
                 return;
             case 7:
-                k60 k60Var2 = b2Var.f18473x0;
-                if (k60Var2 != null) {
-                    k60Var2.u();
+                l60 l60Var2 = b2Var.f18473x0;
+                if (l60Var2 != null) {
+                    l60Var2.u();
                     b2Var.f18473x0 = null;
                 }
                 t3 t3Var2 = b2Var.P;
@@ -225,9 +225,9 @@ public final class i1 implements View.OnClickListener {
                     return;
                 }
             case 8:
-                k60 k60Var3 = b2Var.f18473x0;
-                if (k60Var3 != null) {
-                    k60Var3.u();
+                l60 l60Var3 = b2Var.f18473x0;
+                if (l60Var3 != null) {
+                    l60Var3.u();
                     b2Var.f18473x0 = null;
                 }
                 a T22 = b2Var.P.T2();
@@ -251,9 +251,9 @@ public final class i1 implements View.OnClickListener {
                 return;
             case 10:
                 b2Var.w0();
-                bg0 bg0Var = b2Var.O0;
-                if (bg0Var != null) {
-                    bg0Var.g(true);
+                dg0 dg0Var = b2Var.O0;
+                if (dg0Var != null) {
+                    dg0Var.g(true);
                     b2Var.O0 = null;
                     return;
                 }

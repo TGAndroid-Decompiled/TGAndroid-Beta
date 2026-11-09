@@ -1,11 +1,11 @@
 package dd;
 public abstract class k {
-    public final int f8649a;
-    public final int f8650b;
+    public final int f8647a;
+    public final int f8648b;
 
     public k(int i7, int i10) {
-        this.f8649a = i10;
-        this.f8650b = i7;
+        this.f8647a = i10;
+        this.f8648b = i7;
     }
 
     public static String a(int i7) {
@@ -21,9 +21,9 @@ public abstract class k {
     public abstract k b();
 
     public String toString() {
-        switch (this.f8649a) {
+        switch (this.f8647a) {
             case 1:
-                return a(this.f8650b);
+                return a(this.f8648b);
             default:
                 return super.toString();
         }

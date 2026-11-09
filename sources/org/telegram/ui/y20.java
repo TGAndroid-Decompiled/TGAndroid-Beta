@@ -1,26 +1,32 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-public final class y20 extends org.telegram.ui.Components.mo0 {
-    public final c40 R2;
+import android.view.ViewTreeObserver;
+public final class y20 implements ViewTreeObserver.OnPreDrawListener {
+    public final int f51826a;
+    public final e40 f51827b;
 
-    public y20(c40 c40Var, Context context, String str, String str2, String str3, String str4) {
-        super(context, null, str, str2, false, str3, str4, true);
-        this.R2 = c40Var;
+    public y20(e40 e40Var, int i7) {
+        this.f51826a = i7;
+        this.f51827b = e40Var;
     }
 
     @Override
-    public final void R0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z9) {
-        if (!z9) {
-            return;
-        }
-        int m10 = hVar.m();
-        c40 c40Var = this.R2;
-        if (m10 == 1) {
-            c40Var.n1().m(((TLRPC.Dialog) hVar.n(0)).f26960id, Integer.valueOf(i7), 41);
-        } else {
-            c40Var.n1().k(0L, 41, Integer.valueOf(i7), Integer.valueOf(hVar.m()), null, null);
+    public final boolean onPreDraw() {
+        switch (this.f51826a) {
+            case 0:
+                e40 e40Var = this.f51827b;
+                e40Var.H1.getViewTreeObserver().removeOnPreDrawListener(this);
+                e40Var.R3.j(null);
+                org.telegram.messenger.g0.b4(e40Var.f45201d4);
+                e40Var.f28624b.requestLayout();
+                return false;
+            default:
+                e40 e40Var2 = this.f51827b;
+                e40Var2.H1.getViewTreeObserver().removeOnPreDrawListener(this);
+                e40Var2.R3.j(null);
+                org.telegram.messenger.g0.b4(e40Var2.f45201d4);
+                e40Var2.f28624b.requestLayout();
+                return false;
         }
     }
 }

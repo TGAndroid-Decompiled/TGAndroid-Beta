@@ -34,7 +34,7 @@ public final class kd implements Runnable {
                 ceVar.f3625v1 = j3;
                 if (z9) {
                     di.s0 s0Var = ceVar.f3627x1;
-                    s0Var.f9738c = j3;
+                    s0Var.f9716c = j3;
                     ceVar.f3628y1.set(s0Var);
                 }
                 ceVar.M0();
@@ -50,11 +50,11 @@ public final class kd implements Runnable {
                 fi.s8 s8Var = n8Var.W;
                 if (z9) {
                     int i10 = fi.s8.U1;
-                    qp.s1(s8Var.f28616a).T2(Long.valueOf(j3), new fi.f8(n8Var, j3, 0), 200);
+                    qp.s1(s8Var.f28621a).T2(Long.valueOf(j3), new fi.f8(n8Var, j3, 0), 200);
                     return;
                 }
                 int i11 = fi.s8.U1;
-                qp.s1(s8Var.f28616a).V2(0, j3, true);
+                qp.s1(s8Var.f28621a).V2(0, j3, true);
                 return;
             case 2:
                 ii.l0 l0Var = (ii.l0) obj;

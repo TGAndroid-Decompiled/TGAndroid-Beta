@@ -8,7 +8,7 @@ import android.view.View;
 import java.util.HashSet;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLObject;
-public final class h7 extends View implements org.telegram.ui.ActionBar.a6 {
+public final class h7 extends View implements org.telegram.ui.ActionBar.b6 {
     public final ImageReceiver f4000a;
     public final ImageReceiver f4001b;
     public final Path f4002c;
@@ -20,20 +20,20 @@ public final class h7 extends View implements org.telegram.ui.ActionBar.a6 {
         this.f4002c = path;
         Paint paint = new Paint(1);
         this.d = paint;
-        org.telegram.ui.ActionBar.q6 q6Var = org.telegram.ui.ActionBar.r6.f28478a;
-        org.telegram.ui.Components.w8 w8Var = new org.telegram.ui.Components.w8((org.telegram.ui.ActionBar.f6) null);
+        org.telegram.ui.ActionBar.r6 r6Var = org.telegram.ui.ActionBar.s6.f28500a;
+        org.telegram.ui.Components.w8 w8Var = new org.telegram.ui.Components.w8((org.telegram.ui.ActionBar.g6) null);
         w8Var.l(tLObject);
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.f4000a = imageReceiver;
         imageReceiver.J0(org.telegram.messenger.g0.L(30.0f));
         imageReceiver.i0(tLObject, w8Var, null);
-        org.telegram.ui.Components.w8 w8Var2 = new org.telegram.ui.Components.w8((org.telegram.ui.ActionBar.f6) null);
+        org.telegram.ui.Components.w8 w8Var2 = new org.telegram.ui.Components.w8((org.telegram.ui.ActionBar.g6) null);
         w8Var2.l(tLObject2);
         ImageReceiver imageReceiver2 = new ImageReceiver(this);
         this.f4001b = imageReceiver2;
         imageReceiver2.J0(org.telegram.messenger.g0.L(30.0f));
         imageReceiver2.i0(tLObject2, w8Var2, null);
-        paint.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.E6, false));
+        paint.setColor(org.telegram.ui.ActionBar.l6.x0(null, org.telegram.ui.ActionBar.l6.E6, false));
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
@@ -82,7 +82,7 @@ public final class h7 extends View implements org.telegram.ui.ActionBar.a6 {
     @Override
     public final void updateColors() {
         try {
-            this.d.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.E6, false));
+            this.d.setColor(org.telegram.ui.ActionBar.l6.x0(null, org.telegram.ui.ActionBar.l6.E6, false));
             invalidate();
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

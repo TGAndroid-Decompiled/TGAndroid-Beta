@@ -19,8 +19,8 @@ import org.telegram.messenger.p10;
 import org.telegram.messenger.qp;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.s6;
 import org.telegram.ui.Cells.e3;
 import org.telegram.ui.Cells.m8;
 import org.telegram.ui.Cells.n4;
@@ -29,11 +29,11 @@ import org.telegram.ui.Cells.q4;
 import org.telegram.ui.Cells.s4;
 import org.telegram.ui.Cells.x3;
 import org.telegram.ui.Cells.y6;
-import org.telegram.ui.Components.kj0;
-import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.lj0;
+import org.telegram.ui.Components.qj0;
 import org.telegram.ui.Components.tm;
 import org.telegram.ui.Components.yp;
-public abstract class e extends kj0 {
+public abstract class e extends lj0 {
     public ArrayList D;
     public final boolean E;
     public int F;
@@ -97,7 +97,7 @@ public abstract class e extends kj0 {
     }
 
     @Override
-    public final void G(pj0 pj0Var, float f10, int[] iArr) {
+    public final void G(qj0 qj0Var, float f10, int[] iArr) {
         iArr[0] = (int) (b() * f10);
         iArr[1] = 0;
     }
@@ -195,9 +195,9 @@ public abstract class e extends kj0 {
             ?? frameLayout = new FrameLayout(this.f16709s);
             frameLayout.setLayoutParams(new ViewGroup.LayoutParams(org.telegram.messenger.g0.L(76.0f), org.telegram.messenger.g0.L(64.0f)));
             TextView textView = new TextView(frameLayout.getContext());
-            frameLayout.f30263a = textView;
+            frameLayout.f30267a = textView;
             com.google.android.recaptcha.internal.a.q(textView, 1, 22.0f);
-            r6.V(textView, k6.B6, null);
+            s6.U(textView, l6.B6, null);
             textView.setGravity(17);
             frameLayout.addView(textView, ha.d(-1, -1.0f, 119, 12.0f, 0.0f, 0.0f, 0.0f));
             this.N.add(frameLayout);
@@ -299,8 +299,8 @@ public abstract class e extends kj0 {
         int i11;
         ArrayList arrayList2;
         float f10;
-        int i12 = d1Var.f57048f;
-        View view = d1Var.f57044a;
+        int i12 = d1Var.f57060f;
+        View view = d1Var.f57056a;
         int i13 = 7;
         boolean z9 = this.E;
         int i14 = this.f16708r;
@@ -323,13 +323,13 @@ public abstract class e extends kj0 {
                         }
                         n4 n4Var = (n4) view;
                         if (this.K && i10 == 1 && i7 == 1) {
-                            n4Var.setText(id.M0(2131749152, null));
+                            n4Var.setText(id.M0(2131749151, null));
                             return;
                         } else if (this.F == 1) {
-                            n4Var.setText(id.M0(2131745287, null));
+                            n4Var.setText(id.M0(2131745284, null));
                             return;
                         } else {
-                            n4Var.setText(id.M0(2131745288, null));
+                            n4Var.setText(id.M0(2131745285, null));
                             return;
                         }
                     }
@@ -347,29 +347,29 @@ public abstract class e extends kj0 {
                     x3Var.setText(id.M0(2131751780, null));
                     return;
                 } else if (i16 == 1) {
-                    x3Var.setText(id.M0(2131745287, null));
+                    x3Var.setText(id.M0(2131745284, null));
                     return;
                 } else {
-                    x3Var.setText(id.M0(2131745288, null));
+                    x3Var.setText(id.M0(2131745285, null));
                     return;
                 }
             }
             m8 m8Var = (m8) view;
             boolean z11 = this.f16711x;
             if (!z11 && z9) {
-                int i17 = k6.Wl;
+                int i17 = l6.Wl;
                 m8Var.g(i17, i17);
             } else {
-                int i18 = k6.G6;
+                int i18 = l6.G6;
                 m8Var.g(i18, i18);
             }
             if (i7 == 0) {
                 if (z11) {
                     if (i10 == 0) {
-                        m8Var.r(id.M0(2131749152, null), "", false, 2131232711, -14899731, -15431455, false);
+                        m8Var.r(id.M0(2131749151, null), "", false, 2131232711, -14899731, -15431455, false);
                         return;
                     } else if (i10 == 1) {
-                        m8Var.r(id.M0(2131746370, null), "", false, 2131232700, -11154873, -14175180, false);
+                        m8Var.r(id.M0(2131746369, null), "", false, 2131232700, -11154873, -14175180, false);
                         return;
                     } else {
                         return;
@@ -379,14 +379,14 @@ public abstract class e extends kj0 {
                         m8Var.o(2131232204, id.M0(2131752402, null), false);
                         return;
                     } else {
-                        m8Var.o(2131232204, id.M0(2131749111, null), false);
+                        m8Var.o(2131232204, id.M0(2131749110, null), false);
                         return;
                     }
                 } else if (i10 == 0) {
-                    m8Var.r(id.M0(2131748274, null), "", false, 2131232710, -14899731, -15431455, false);
+                    m8Var.r(id.M0(2131748273, null), "", false, 2131232710, -14899731, -15431455, false);
                     return;
                 } else if (i10 == 1) {
-                    m8Var.r(id.M0(2131748287, null), "", false, 2131232701, -11154873, -14175180, false);
+                    m8Var.r(id.M0(2131748286, null), "", false, 2131232701, -11154873, -14175180, false);
                     return;
                 } else {
                     return;
@@ -406,7 +406,7 @@ public abstract class e extends kj0 {
             }
         }
         pa paVar = (pa) view;
-        paVar.T.f9408a = false;
+        paVar.T.f9441a = false;
         if (this.F != 2 && !this.H) {
             i13 = 58;
         }
@@ -506,7 +506,7 @@ public abstract class e extends kj0 {
                                     view = new q4(context, false);
                                 }
                             } else {
-                                view = new n4(this.f16709s, k6.L6, 21, 14, 5, false, false, null);
+                                view = new n4(this.f16709s, l6.L6, 21, 14, 5, false, false, null);
                             }
                         } else {
                             FrameLayout x5Var = new x5(this, context, viewGroup, 5);

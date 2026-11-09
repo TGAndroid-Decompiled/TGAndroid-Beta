@@ -1,6 +1,6 @@
 package org.telegram.ui.web;
 
-import di.o7;
+import di.p7;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -9,23 +9,23 @@ import org.telegram.messenger.xr;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.pg0;
-import org.telegram.ui.qw;
-import org.telegram.ui.w91;
-import org.telegram.ui.ww;
-public final class y implements pg0, qw {
-    public final x0 f51398a;
-    public final boolean[] f51399b;
-    public final String f51400c;
+import org.telegram.ui.rg0;
+import org.telegram.ui.sw;
+import org.telegram.ui.y91;
+import org.telegram.ui.yw;
+public final class y implements rg0, sw {
+    public final x0 f51379a;
+    public final boolean[] f51380b;
+    public final String f51381c;
     public final TL_keyboard.TL_buttonTypeRequestPeer d;
-    public final o7 f51401e;
+    public final p7 f51382e;
 
-    public y(x0 x0Var, boolean[] zArr, String str, TL_keyboard.TL_buttonTypeRequestPeer tL_buttonTypeRequestPeer, o7 o7Var) {
-        this.f51398a = x0Var;
-        this.f51399b = zArr;
-        this.f51400c = str;
+    public y(x0 x0Var, boolean[] zArr, String str, TL_keyboard.TL_buttonTypeRequestPeer tL_buttonTypeRequestPeer, p7 p7Var) {
+        this.f51379a = x0Var;
+        this.f51380b = zArr;
+        this.f51381c = str;
         this.d = tL_buttonTypeRequestPeer;
-        this.f51401e = o7Var;
+        this.f51382e = p7Var;
     }
 
     @Override
@@ -34,7 +34,7 @@ public final class y implements pg0, qw {
     }
 
     @Override
-    public boolean N(ww wwVar) {
+    public boolean N(yw ywVar) {
         return false;
     }
 
@@ -42,12 +42,12 @@ public final class y implements pg0, qw {
     public void a(ArrayList arrayList) {
         if (!arrayList.isEmpty()) {
             int i7 = 0;
-            this.f51399b[0] = true;
+            this.f51380b[0] = true;
             TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
-            x0 x0Var = this.f51398a;
+            x0 x0Var = this.f51379a;
             qp.s1(x0Var.M);
             tL_messages_sendBotRequestedPeer.peer = qp.n1(x0Var.U);
-            String str = this.f51400c;
+            String str = this.f51381c;
             tL_messages_sendBotRequestedPeer.webapp_req_id = str;
             tL_messages_sendBotRequestedPeer.button_id = this.d.button_id;
             int size = arrayList.size();
@@ -56,20 +56,20 @@ public final class y implements pg0, qw {
                 i7++;
                 tL_messages_sendBotRequestedPeer.requested_peers.add(qp.s1(x0Var.M).j1(((Long) obj).longValue()));
             }
-            ConnectionsManager.getInstance(x0Var.M).sendRequestTyped(tL_messages_sendBotRequestedPeer, new d3.b(1), new r(x0Var, this.f51401e, str, 2));
+            ConnectionsManager.getInstance(x0Var.M).sendRequestTyped(tL_messages_sendBotRequestedPeer, new d3.b(1), new r(x0Var, this.f51382e, str, 2));
         }
     }
 
     @Override
-    public boolean y(ww wwVar, ArrayList arrayList, CharSequence charSequence, boolean z9, boolean z10, int i7, int i10, w91 w91Var) {
+    public boolean y(yw ywVar, ArrayList arrayList, CharSequence charSequence, boolean z9, boolean z10, int i7, int i10, y91 y91Var) {
         if (!arrayList.isEmpty()) {
             int i11 = 0;
-            this.f51399b[0] = true;
+            this.f51380b[0] = true;
             TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
-            x0 x0Var = this.f51398a;
+            x0 x0Var = this.f51379a;
             qp.s1(x0Var.M);
             tL_messages_sendBotRequestedPeer.peer = qp.n1(x0Var.U);
-            String str = this.f51400c;
+            String str = this.f51381c;
             tL_messages_sendBotRequestedPeer.webapp_req_id = str;
             tL_messages_sendBotRequestedPeer.button_id = this.d.button_id;
             HashSet hashSet = new HashSet();
@@ -83,9 +83,9 @@ public final class y implements pg0, qw {
             while (it.hasNext()) {
                 tL_messages_sendBotRequestedPeer.requested_peers.add(qp.s1(x0Var.M).j1(((Long) it.next()).longValue()));
             }
-            ConnectionsManager.getInstance(x0Var.M).sendRequestTyped(tL_messages_sendBotRequestedPeer, new d3.b(1), new r(x0Var, this.f51401e, str, 1));
+            ConnectionsManager.getInstance(x0Var.M).sendRequestTyped(tL_messages_sendBotRequestedPeer, new d3.b(1), new r(x0Var, this.f51382e, str, 1));
         }
-        wwVar.finishFragment();
+        ywVar.finishFragment();
         return true;
     }
 }

@@ -25,7 +25,7 @@ public final class jr implements Runnable {
                 ((yr) this.f23598f).B1(this.f23595b, this.f23596c, this.d, this.f23597e);
                 return;
             case 1:
-                org.telegram.ui.an.f0((org.telegram.ui.an) this.f23598f, this.f23595b, this.f23596c, this.d, this.f23597e);
+                org.telegram.ui.cn.g0((org.telegram.ui.cn) this.f23598f, this.f23595b, this.f23596c, this.d, this.f23597e);
                 return;
             default:
                 TextureViewRenderer.a((TextureViewRenderer) this.f23598f, this.f23595b, this.f23596c, this.d, this.f23597e);

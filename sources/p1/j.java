@@ -2,5 +2,5 @@ package p1;
 
 import java.util.LinkedHashSet;
 public abstract class j {
-    public static final LinkedHashSet f53089a = new LinkedHashSet();
+    public static final LinkedHashSet f53101a = new LinkedHashSet();
 }

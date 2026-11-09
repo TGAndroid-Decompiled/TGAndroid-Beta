@@ -2,7 +2,7 @@ package bi;
 
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.an;
+import org.telegram.ui.cn;
 public final class qa implements Runnable {
     public final int f4584a;
     public final org.telegram.ui.ActionBar.v2[] f4585b;
@@ -21,7 +21,7 @@ public final class qa implements Runnable {
                 this.f4585b[0].dismiss();
                 org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
                 if (T != null) {
-                    T.presentFragment(an.ra(this.f4586c));
+                    T.presentFragment(cn.ta(this.f4586c));
                     return;
                 }
                 return;
@@ -37,7 +37,7 @@ public final class qa implements Runnable {
                 this.f4585b[0].dismiss();
                 org.telegram.ui.ActionBar.f2 T3 = LaunchActivity.T();
                 if (T3 != null) {
-                    T3.presentFragment(ProfileActivity.A4(this.f4586c));
+                    T3.presentFragment(ProfileActivity.D4(this.f4586c));
                     return;
                 }
                 return;
@@ -45,7 +45,7 @@ public final class qa implements Runnable {
                 this.f4585b[0].dismiss();
                 org.telegram.ui.ActionBar.f2 T4 = LaunchActivity.T();
                 if (T4 != null) {
-                    T4.presentFragment(ProfileActivity.A4(this.f4586c));
+                    T4.presentFragment(ProfileActivity.D4(this.f4586c));
                     return;
                 }
                 return;
@@ -53,7 +53,7 @@ public final class qa implements Runnable {
                 this.f4585b[0].dismiss();
                 org.telegram.ui.ActionBar.f2 T5 = LaunchActivity.T();
                 if (T5 != null) {
-                    T5.presentFragment(ProfileActivity.A4(this.f4586c));
+                    T5.presentFragment(ProfileActivity.D4(this.f4586c));
                     return;
                 }
                 return;
@@ -61,7 +61,7 @@ public final class qa implements Runnable {
                 this.f4585b[0].dismiss();
                 org.telegram.ui.ActionBar.f2 T6 = LaunchActivity.T();
                 if (T6 != null) {
-                    T6.presentFragment(an.ra(this.f4586c));
+                    T6.presentFragment(cn.ta(this.f4586c));
                     return;
                 }
                 return;
@@ -72,7 +72,7 @@ public final class qa implements Runnable {
                 }
                 org.telegram.ui.ActionBar.f2 T7 = LaunchActivity.T();
                 if (T7 != null) {
-                    T7.presentFragment(an.ra(this.f4586c));
+                    T7.presentFragment(cn.ta(this.f4586c));
                     return;
                 }
                 return;

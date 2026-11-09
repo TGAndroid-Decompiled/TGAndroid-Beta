@@ -4,28 +4,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 public final class c implements Runnable {
-    public final int f58765a;
-    public final e f58766b;
+    public final int f58774a;
+    public final e f58775b;
 
     public c(e eVar, int i7) {
-        this.f58765a = i7;
-        this.f58766b = eVar;
+        this.f58774a = i7;
+        this.f58775b = eVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f58765a) {
+        switch (this.f58774a) {
             case 0:
-                e eVar = this.f58766b;
-                if (eVar.f58786j.isEmpty()) {
-                    eVar.f58785i = true;
-                    e.f58778n = null;
-                    d dVar = eVar.f58783f;
+                e eVar = this.f58775b;
+                if (eVar.f58795j.isEmpty()) {
+                    eVar.f58794i = true;
+                    e.f58787n = null;
+                    d dVar = eVar.f58792f;
                     if (dVar != null) {
-                        dVar.f58767a = false;
-                        eVar.f58783f = null;
+                        dVar.f58776a = false;
+                        eVar.f58792f = null;
                     }
-                    eVar.d.removeView(eVar.f58782e);
+                    eVar.d.removeView(eVar.f58791e);
                     if (eVar.d.getParent() instanceof ViewGroup) {
                         ((ViewGroup) eVar.d.getParent()).removeView(eVar.d);
                         return;
@@ -34,7 +34,7 @@ public final class c implements Runnable {
                 }
                 return;
             default:
-                ArrayList arrayList = this.f58766b.f58786j;
+                ArrayList arrayList = this.f58775b.f58795j;
                 for (int i7 = 0; i7 < arrayList.size(); i7++) {
                     ((View) arrayList.get(i7)).invalidate();
                 }

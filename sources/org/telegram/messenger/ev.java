@@ -21,10 +21,10 @@ public final class ev extends ru {
         this.f22278q0 = pageblockvideo;
         TLRPC.Document s5 = kvVar.s(pageblockvideo.video_id);
         this.f22279r0 = s5;
-        boolean L4 = ij.L4(s5);
-        this.f22283v0 = L4;
+        boolean K4 = ij.K4(s5);
+        this.f22283v0 = K4;
         int i12 = 0;
-        if (!L4 && !ij.t3(s5, false)) {
+        if (!K4 && !ij.s3(s5, false)) {
             z10 = false;
         } else {
             z10 = true;

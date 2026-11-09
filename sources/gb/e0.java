@@ -15,9 +15,9 @@ public final class e0 implements ib.b {
     public final Object mo24get() {
         switch (this.f13662a) {
             case 0:
-                return new d0((Context) this.f13664c.f8253a, (k1) this.f13663b.mo24get());
+                return new d0((Context) this.f13664c.f8251a, (k1) this.f13663b.mo24get());
             default:
-                return new jb.f((b) this.f13663b.mo24get(), (id.h) this.f13664c.f8253a);
+                return new jb.f((b) this.f13663b.mo24get(), (id.h) this.f13664c.f8251a);
         }
     }
 

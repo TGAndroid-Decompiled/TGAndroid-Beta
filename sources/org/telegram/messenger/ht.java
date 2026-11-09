@@ -55,7 +55,7 @@ public final class ht implements v10 {
                     } else {
                         TL_account.registerPasskey registerpasskey = new TL_account.registerPasskey();
                         try {
-                            JSONObject jSONObject = new JSONObject(cVar.f56966a.getString("androidx.credentials.BUNDLE_KEY_REGISTRATION_RESPONSE_JSON"));
+                            JSONObject jSONObject = new JSONObject(cVar.f56978a.getString("androidx.credentials.BUNDLE_KEY_REGISTRATION_RESPONSE_JSON"));
                             TL_account.inputPasskeyCredentialPublicKey inputpasskeycredentialpublickey = new TL_account.inputPasskeyCredentialPublicKey();
                             registerpasskey.credential = inputpasskeycredentialpublickey;
                             inputpasskeycredentialpublickey.f27167id = jSONObject.getString("id");
@@ -112,8 +112,8 @@ public final class ht implements v10 {
                     return;
                 } else if (tL_error != null) {
                     if ("SUMMARY_FLOOD_PREMIUM".equalsIgnoreCase(tL_error.text) && (T = LaunchActivity.T()) != null) {
-                        org.telegram.ui.Components.cc K = org.telegram.ui.Components.hc.a0(T).K(2131624216, id.M0(2131744334, null), id.M0(2131744333, null), new rn(3, T));
-                        K.f32545j = 5000;
+                        org.telegram.ui.Components.cc K = org.telegram.ui.Components.hc.a0(T).K(2131624216, id.M0(2131744331, null), id.M0(2131744330, null), new rn(3, T));
+                        K.f32627j = 5000;
                         K.k(true);
                     }
                     hashSet.remove(Integer.valueOf(i11));

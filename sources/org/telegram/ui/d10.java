@@ -1,33 +1,36 @@
 package org.telegram.ui;
-public final class d10 implements Runnable {
-    public final int f44934a;
-    public final int f44935b;
-    public final Object f44936c;
-    public final Object d;
 
-    public d10(int i7, org.telegram.messenger.c20 c20Var, org.telegram.ui.Wallet.m0 m0Var) {
-        this.f44934a = 14;
-        this.f44935b = i7;
-        this.f44936c = c20Var;
-        this.d = m0Var;
+import org.telegram.tgnet.TLRPC;
+public final class d10 implements org.telegram.messenger.v10 {
+    public final int f44793a;
+    public final e40 f44794b;
+
+    public d10(e40 e40Var, int i7) {
+        this.f44793a = i7;
+        this.f44794b = e40Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.d10.run():void");
-    }
-
-    public d10(Object obj, int i7, Object obj2, int i10) {
-        this.f44934a = i10;
-        this.f44936c = obj;
-        this.f44935b = i7;
-        this.d = obj2;
-    }
-
-    public d10(Object obj, Object obj2, int i7, int i10) {
-        this.f44934a = i10;
-        this.f44936c = obj;
-        this.d = obj2;
-        this.f44935b = i7;
+    public final void a(Object obj, Object obj2) {
+        TLRPC.Updates updates = (TLRPC.Updates) obj;
+        TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+        switch (this.f44793a) {
+            case 0:
+                e40 e40Var = this.f44794b;
+                if (updates != null) {
+                    org.telegram.messenger.qp.s1(e40Var.f45228k1.f21765a).O3(updates, false);
+                }
+                org.telegram.messenger.g0.h3(new u00(e40Var, 9));
+                return;
+            default:
+                e40 e40Var2 = this.f44794b;
+                if (updates != null) {
+                    org.telegram.messenger.qp.s1(e40Var2.f45228k1.f21765a).O3(updates, false);
+                    return;
+                } else {
+                    e40Var2.getClass();
+                    return;
+                }
+        }
     }
 }

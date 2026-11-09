@@ -5,28 +5,28 @@ import android.content.Context;
 import org.telegram.messenger.camera.CameraController;
 import org.telegram.messenger.camera.CameraView;
 public final class j9 implements Runnable {
-    public final int f46905a;
-    public final s9 f46906b;
+    public final int f46884a;
+    public final s9 f46885b;
 
     public j9(s9 s9Var, int i7) {
-        this.f46905a = i7;
-        this.f46906b = s9Var;
+        this.f46884a = i7;
+        this.f46885b = s9Var;
     }
 
     @Override
     public final void run() {
         float f10;
         float f11 = 0.0f;
-        switch (this.f46905a) {
+        switch (this.f46884a) {
             case 0:
-                this.f46906b.d0();
+                this.f46885b.d0();
                 return;
             case 1:
-                s9 s9Var = this.f46906b;
+                s9 s9Var = this.f46885b;
                 if (!s9Var.isFinishing()) {
                     s9Var.R = null;
                     s9Var.N = false;
-                    s9Var.f49669d0.run();
+                    s9Var.f49836d0.run();
                     if (!s9Var.N) {
                         org.telegram.messenger.g0.i3(new j9(s9Var, 8), 500L);
                         return;
@@ -35,7 +35,7 @@ public final class j9 implements Runnable {
                 }
                 return;
             case 2:
-                s9 s9Var2 = this.f46906b;
+                s9 s9Var2 = this.f46885b;
                 CameraView cameraView = s9Var2.d;
                 if (cameraView != null) {
                     s9Var2.h0(cameraView.getTextureView().getBitmap());
@@ -43,10 +43,10 @@ public final class j9 implements Runnable {
                 }
                 return;
             case 3:
-                this.f46906b.finishFragment();
+                this.f46885b.finishFragment();
                 return;
             case 4:
-                s9 s9Var3 = this.f46906b;
+                s9 s9Var3 = this.f46885b;
                 r9 r9Var = s9Var3.M;
                 if (r9Var != null) {
                     r9Var.M(s9Var3.R);
@@ -54,23 +54,23 @@ public final class j9 implements Runnable {
                 s9Var3.finishFragment();
                 return;
             case 5:
-                s9 s9Var4 = this.f46906b;
+                s9 s9Var4 = this.f46885b;
                 s9Var4.U = new aa.n(20);
                 Context context = org.telegram.messenger.t0.f25566b;
                 ?? obj = new Object();
-                obj.f7660a = 256;
+                obj.f7658a = 256;
                 s9Var4.V = new u8.n(new com.google.android.gms.internal.vision.t2(context, (com.google.android.gms.internal.vision.x1) obj));
                 return;
             case 6:
-                s9 s9Var5 = this.f46906b;
+                s9 s9Var5 = this.f46885b;
                 if (s9Var5.h.getTag() != null) {
                     s9Var5.h.setTag(null);
-                    s9Var5.h.animate().setDuration(200L).alpha(0.0f).setInterpolator(org.telegram.ui.Components.xq.f40366f).start();
+                    s9Var5.h.animate().setDuration(200L).alpha(0.0f).setInterpolator(org.telegram.ui.Components.xq.f40458f).start();
                     return;
                 }
                 return;
             case 7:
-                s9 s9Var6 = this.f46906b;
+                s9 s9Var6 = this.f46885b;
                 CameraView cameraView2 = s9Var6.d;
                 if (cameraView2 != null && cameraView2.getCameraSession() != null) {
                     CameraController.getInstance().stopPreview(s9Var6.d.getCameraSession());
@@ -78,7 +78,7 @@ public final class j9 implements Runnable {
                 org.telegram.messenger.g0.h3(new j9(s9Var6, 4));
                 return;
             default:
-                s9 s9Var7 = this.f46906b;
+                s9 s9Var7 = this.f46885b;
                 float f12 = s9Var7.Y;
                 if (s9Var7.N) {
                     f11 = 1.0f;
@@ -93,24 +93,24 @@ public final class j9 implements Runnable {
                     s9Var7.X = ofFloat;
                     ofFloat.addUpdateListener(new m9(s9Var7, 0));
                     s9Var7.X.setDuration(Math.abs(s9Var7.Y - s9Var7.Z) * 300.0f);
-                    s9Var7.X.setInterpolator(org.telegram.ui.Components.xq.f40366f);
+                    s9Var7.X.setInterpolator(org.telegram.ui.Components.xq.f40458f);
                     s9Var7.X.start();
-                    r1.g gVar = s9Var7.f49664a0;
+                    r1.g gVar = s9Var7.f49831a0;
                     if (gVar != null) {
                         gVar.d();
                     }
                     if (s9Var7.N) {
-                        f10 = s9Var7.f49666b0;
+                        f10 = s9Var7.f49833b0;
                     } else {
-                        f10 = 1.0f - s9Var7.f49666b0;
+                        f10 = 1.0f - s9Var7.f49833b0;
                     }
                     r1.g gVar2 = new r1.g(new r1.f(f10 * 500.0f));
-                    s9Var7.f49664a0 = gVar2;
+                    s9Var7.f49831a0 = gVar2;
                     gVar2.b(new k9(s9Var7, 1));
-                    s9Var7.f49664a0.f54268m = new r1.h(500.0f);
-                    s9Var7.f49664a0.f54268m.a(1.0f);
-                    s9Var7.f49664a0.f54268m.b(500.0f);
-                    s9Var7.f49664a0.h();
+                    s9Var7.f49831a0.f54280m = new r1.h(500.0f);
+                    s9Var7.f49831a0.f54280m.a(1.0f);
+                    s9Var7.f49831a0.f54280m.b(500.0f);
+                    s9Var7.f49831a0.h();
                     return;
                 }
                 return;

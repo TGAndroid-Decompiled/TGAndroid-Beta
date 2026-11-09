@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public abstract class xr extends l41 {
+public abstract class xr extends m41 {
     public final int P;
     public final int Q;
     public final ArrayList R;
@@ -15,22 +15,22 @@ public abstract class xr extends l41 {
     public final ArrayList X;
     public boolean Y;
     public boolean Z;
-    public boolean f40378a0;
-    public int f40379b0;
-    public int f40380c0;
-    public String f40381d0;
-    public final gp f40382e0;
+    public boolean f40469a0;
+    public int f40470b0;
+    public int f40471c0;
+    public String f40472d0;
+    public final gp f40473e0;
 
-    public xr(pj0 pj0Var, Context context, int i7, int i10) {
-        super(pj0Var, context, i7, 0, false, null, null);
+    public xr(qj0 qj0Var, Context context, int i7, int i10) {
+        super(qj0Var, context, i7, 0, false, null, null);
         this.R = new ArrayList();
         this.S = new ArrayList();
         this.T = new ArrayList();
         this.U = new ArrayList();
         this.X = new ArrayList();
-        am0 am0Var = (am0) this;
-        this.f40382e0 = new gp(am0Var, 6);
-        this.f35530w = new d(am0Var, 9);
+        bm0 bm0Var = (bm0) this;
+        this.f40473e0 = new gp(bm0Var, 6);
+        this.f35947w = new d(bm0Var, 9);
         this.P = i7;
         this.Q = i10;
         O(false);

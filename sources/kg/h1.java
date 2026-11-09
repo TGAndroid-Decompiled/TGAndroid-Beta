@@ -4,17 +4,17 @@ import android.view.View;
 import java.io.Serializable;
 import org.telegram.messenger.a20;
 import org.telegram.messenger.b20;
-import org.telegram.ui.Components.x31;
+import org.telegram.ui.Components.y31;
 public final class h1 implements a20, b20 {
     public final q1 f17399a;
 
     @Override
-    public Boolean a(x31 x31Var, View view, Integer num, Float f10, Float f11) {
+    public Boolean a(y31 y31Var, View view, Integer num, Float f10, Float f11) {
         boolean z9;
-        if (x31Var.f54532a == 16) {
-            Object obj = x31Var.G;
+        if (y31Var.f54544a == 16) {
+            Object obj = y31Var.G;
             if (!(obj instanceof s1) || !((s1) obj).f17537g) {
-                this.f17399a.j0(x31Var, view);
+                this.f17399a.j0(y31Var, view);
                 z9 = true;
                 return Boolean.valueOf(z9);
             }
@@ -28,6 +28,6 @@ public final class h1 implements a20, b20 {
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
-        q1.b0(this.f17399a, (x31) obj, (View) obj2);
+        q1.b0(this.f17399a, (y31) obj, (View) obj2);
     }
 }

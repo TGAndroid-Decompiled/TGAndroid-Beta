@@ -79,7 +79,7 @@ public final class a4 implements Runnable {
             int size = arrayList.size();
             for (int i7 = 0; i7 < size; i7++) {
                 TLRPC.Message message = (TLRPC.Message) arrayList.get(i7);
-                ij.r5(message);
+                ij.q5(message);
                 NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(message.getObjectSize());
                 message.serializeToStream(nativeByteBuffer);
                 executeFast.requery();

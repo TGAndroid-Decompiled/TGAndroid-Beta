@@ -19,13 +19,14 @@ import fi.m3;
 import java.util.HashSet;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.id;
-import org.telegram.ui.ActionBar.a6;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Components.a30;
 import org.telegram.ui.Components.xq;
-import org.telegram.ui.Components.z20;
-import org.telegram.ui.an;
+import org.telegram.ui.cn;
 import org.telegram.ui.fe;
-public class e extends FrameLayout implements te.b, a6 {
+import org.telegram.ui.fh;
+public class e extends FrameLayout implements te.b, b6 {
     public static final int[] H = {2131232354, 2131231503, 2131231505, 2131232182, 2131232182};
     public static final int[] I = {0};
     public static final int[] J = {1, 2, 3, 4};
@@ -40,7 +41,7 @@ public class e extends FrameLayout implements te.b, a6 {
     public d d;
     public final FrameLayout f18360e;
     public final HashSet f18361f;
-    public final f6 h;
+    public final g6 h;
     public final dh.c f18362n;
     public final gh.a f18363r;
     public fh.g f18364s;
@@ -48,7 +49,7 @@ public class e extends FrameLayout implements te.b, a6 {
     public final te.a f18366x;
     public float f18367y;
 
-    public e(Context context, dh.c cVar, gh.a aVar, f6 f6Var) {
+    public e(Context context, dh.c cVar, gh.a aVar, g6 g6Var) {
         super(context);
         this.f18357a = new n[5];
         this.f18358b = new View.OnClickListener[5];
@@ -61,7 +62,7 @@ public class e extends FrameLayout implements te.b, a6 {
         this.G = 0;
         this.f18362n = cVar;
         this.f18363r = aVar;
-        this.h = f6Var;
+        this.h = g6Var;
         FrameLayout frameLayout = new FrameLayout(context);
         this.f18360e = frameLayout;
         frameLayout.setClipToOutline(true);
@@ -81,64 +82,64 @@ public class e extends FrameLayout implements te.b, a6 {
         int i11 = i7 & 65535;
         if (i10 >= 0) {
             n[] nVarArr = this.f18357a;
-            if (i10 < nVarArr.length && (nVar = nVarArr[i10]) != null && i11 == 1 && ((te.a) nVar.d).f55488f) {
+            if (i10 < nVarArr.length && (nVar = nVarArr[i10]) != null && i11 == 1 && ((te.a) nVar.d).f55500f) {
                 fe feVar = this.f18359c[i10];
                 if (feVar != null) {
                     final kh.a aVar = (kh.a) nVar.f1847c;
                     boolean z9 = nVar.f1846b;
-                    int i12 = feVar.f45590a;
-                    final an anVar = feVar.f45591b;
+                    int i12 = feVar.f45691a;
+                    final cn cnVar = feVar.f45692b;
                     switch (i12) {
-                        case 27:
-                            if (anVar.X0 == null && !z9 && (((m3Var = anVar.Z0) == null || !m3Var.V) && z20.h.c())) {
+                        case 28:
+                            if (cnVar.X0 == null && !z9 && (((m3Var = cnVar.Z0) == null || !m3Var.V) && a30.h.c())) {
                                 g0.i3(new Runnable() {
                                     @Override
                                     public final void run() {
                                         int i13 = r3;
                                         kh.a aVar2 = aVar;
-                                        an anVar2 = anVar;
+                                        cn cnVar2 = cnVar;
                                         switch (i13) {
                                             case 0:
-                                                if (anVar2.getParentActivity() != null) {
-                                                    float f11 = anVar2.f44004w.f(2).d / org.telegram.messenger.g0.f22562p;
-                                                    float width = ((aVar2.getWidth() / 2.0f) + (anVar2.l1.getWidth() - (aVar2.getX() + aVar2.getWidth()))) / org.telegram.messenger.g0.f22562p;
-                                                    fi.m3 m3Var2 = new fi.m3(anVar2.getParentActivity(), 3);
-                                                    anVar2.Z0 = m3Var2;
+                                                if (cnVar2.getParentActivity() != null) {
+                                                    float f11 = cnVar2.f44661w.f(2).d / org.telegram.messenger.g0.f22562p;
+                                                    float width = ((aVar2.getWidth() / 2.0f) + (cnVar2.l1.getWidth() - (aVar2.getX() + aVar2.getWidth()))) / org.telegram.messenger.g0.f22562p;
+                                                    fi.m3 m3Var2 = new fi.m3(cnVar2.getParentActivity(), 3);
+                                                    cnVar2.Z0 = m3Var2;
                                                     m3Var2.setPadding(org.telegram.messenger.g0.L(7.33f), 0, org.telegram.messenger.g0.L(7.33f), 0);
-                                                    anVar2.Z0.l(anVar2.K);
-                                                    anVar2.Z0.r(false);
-                                                    fi.m3 m3Var3 = anVar2.Z0;
-                                                    String M0 = org.telegram.messenger.id.M0(2131744427, null);
+                                                    cnVar2.Z0.l(cnVar2.K);
+                                                    cnVar2.Z0.r(false);
+                                                    fi.m3 m3Var3 = cnVar2.Z0;
+                                                    String M0 = org.telegram.messenger.id.M0(2131744424, null);
                                                     if (m3Var3.getMeasuredWidth() < 0) {
                                                         m3Var3.G = M0;
                                                     } else {
                                                         m3Var3.H.t(M0, !org.telegram.messenger.id.f23157a0, true);
                                                     }
-                                                    anVar2.Z0.o(1.0f, (-width) + 7.33f);
-                                                    anVar2.l1.addView(anVar2.Z0, c8.ha.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, f11 + 50.0f));
-                                                    fi.m3 m3Var4 = anVar2.Z0;
-                                                    m3Var4.f12436q0 = new xf(anVar2, 14);
+                                                    cnVar2.Z0.o(1.0f, (-width) + 7.33f);
+                                                    cnVar2.l1.addView(cnVar2.Z0, c8.ha.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, f11 + 50.0f));
+                                                    fi.m3 m3Var4 = cnVar2.Z0;
+                                                    m3Var4.f12437q0 = new xf(cnVar2, 14);
                                                     m3Var4.w();
-                                                    org.telegram.ui.Components.z20.f40864f.b();
+                                                    org.telegram.ui.Components.a30.f31691f.b();
                                                     return;
                                                 }
                                                 return;
                                             default:
-                                                if (anVar2.getParentActivity() != null) {
-                                                    float f12 = anVar2.f44004w.f(2).d / org.telegram.messenger.g0.f22562p;
-                                                    float width2 = ((aVar2.getWidth() / 2.0f) + (anVar2.l1.getWidth() - (aVar2.getX() + aVar2.getWidth()))) / org.telegram.messenger.g0.f22562p;
-                                                    fi.m3 m3Var5 = new fi.m3(anVar2.getParentActivity(), 3);
-                                                    anVar2.X0 = m3Var5;
+                                                if (cnVar2.getParentActivity() != null) {
+                                                    float f12 = cnVar2.f44661w.f(2).d / org.telegram.messenger.g0.f22562p;
+                                                    float width2 = ((aVar2.getWidth() / 2.0f) + (cnVar2.l1.getWidth() - (aVar2.getX() + aVar2.getWidth()))) / org.telegram.messenger.g0.f22562p;
+                                                    fi.m3 m3Var5 = new fi.m3(cnVar2.getParentActivity(), 3);
+                                                    cnVar2.X0 = m3Var5;
                                                     m3Var5.setPadding(org.telegram.messenger.g0.L(7.33f), 0, org.telegram.messenger.g0.L(7.33f), 0);
-                                                    anVar2.X0.l(anVar2.K);
-                                                    anVar2.X0.r(false);
-                                                    anVar2.X0.u(org.telegram.messenger.id.M0(2131750252, null));
-                                                    anVar2.X0.o(1.0f, (-width2) + 7.33f);
-                                                    anVar2.l1.addView(anVar2.X0, c8.ha.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, f12 + 50.0f));
-                                                    fi.m3 m3Var6 = anVar2.X0;
-                                                    m3Var6.f12436q0 = new af(anVar2, 20);
+                                                    cnVar2.X0.l(cnVar2.K);
+                                                    cnVar2.X0.r(false);
+                                                    cnVar2.X0.u(org.telegram.messenger.id.M0(2131750251, null));
+                                                    cnVar2.X0.o(1.0f, (-width2) + 7.33f);
+                                                    cnVar2.l1.addView(cnVar2.X0, c8.ha.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, f12 + 50.0f));
+                                                    fi.m3 m3Var6 = cnVar2.X0;
+                                                    m3Var6.f12437q0 = new af(cnVar2, 19);
                                                     m3Var6.w();
-                                                    org.telegram.ui.Components.z20.h.b();
+                                                    org.telegram.ui.Components.a30.h.b();
                                                     return;
                                                 }
                                                 return;
@@ -149,55 +150,55 @@ public class e extends FrameLayout implements te.b, a6 {
                             }
                             break;
                         default:
-                            if (anVar.Z0 == null && !z9 && z20.f40864f.c()) {
+                            if (cnVar.Z0 == null && !z9 && a30.f31691f.c()) {
                                 g0.i3(new Runnable() {
                                     @Override
                                     public final void run() {
                                         int i13 = r3;
                                         kh.a aVar2 = aVar;
-                                        an anVar2 = anVar;
+                                        cn cnVar2 = cnVar;
                                         switch (i13) {
                                             case 0:
-                                                if (anVar2.getParentActivity() != null) {
-                                                    float f11 = anVar2.f44004w.f(2).d / org.telegram.messenger.g0.f22562p;
-                                                    float width = ((aVar2.getWidth() / 2.0f) + (anVar2.l1.getWidth() - (aVar2.getX() + aVar2.getWidth()))) / org.telegram.messenger.g0.f22562p;
-                                                    fi.m3 m3Var2 = new fi.m3(anVar2.getParentActivity(), 3);
-                                                    anVar2.Z0 = m3Var2;
+                                                if (cnVar2.getParentActivity() != null) {
+                                                    float f11 = cnVar2.f44661w.f(2).d / org.telegram.messenger.g0.f22562p;
+                                                    float width = ((aVar2.getWidth() / 2.0f) + (cnVar2.l1.getWidth() - (aVar2.getX() + aVar2.getWidth()))) / org.telegram.messenger.g0.f22562p;
+                                                    fi.m3 m3Var2 = new fi.m3(cnVar2.getParentActivity(), 3);
+                                                    cnVar2.Z0 = m3Var2;
                                                     m3Var2.setPadding(org.telegram.messenger.g0.L(7.33f), 0, org.telegram.messenger.g0.L(7.33f), 0);
-                                                    anVar2.Z0.l(anVar2.K);
-                                                    anVar2.Z0.r(false);
-                                                    fi.m3 m3Var3 = anVar2.Z0;
-                                                    String M0 = org.telegram.messenger.id.M0(2131744427, null);
+                                                    cnVar2.Z0.l(cnVar2.K);
+                                                    cnVar2.Z0.r(false);
+                                                    fi.m3 m3Var3 = cnVar2.Z0;
+                                                    String M0 = org.telegram.messenger.id.M0(2131744424, null);
                                                     if (m3Var3.getMeasuredWidth() < 0) {
                                                         m3Var3.G = M0;
                                                     } else {
                                                         m3Var3.H.t(M0, !org.telegram.messenger.id.f23157a0, true);
                                                     }
-                                                    anVar2.Z0.o(1.0f, (-width) + 7.33f);
-                                                    anVar2.l1.addView(anVar2.Z0, c8.ha.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, f11 + 50.0f));
-                                                    fi.m3 m3Var4 = anVar2.Z0;
-                                                    m3Var4.f12436q0 = new xf(anVar2, 14);
+                                                    cnVar2.Z0.o(1.0f, (-width) + 7.33f);
+                                                    cnVar2.l1.addView(cnVar2.Z0, c8.ha.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, f11 + 50.0f));
+                                                    fi.m3 m3Var4 = cnVar2.Z0;
+                                                    m3Var4.f12437q0 = new xf(cnVar2, 14);
                                                     m3Var4.w();
-                                                    org.telegram.ui.Components.z20.f40864f.b();
+                                                    org.telegram.ui.Components.a30.f31691f.b();
                                                     return;
                                                 }
                                                 return;
                                             default:
-                                                if (anVar2.getParentActivity() != null) {
-                                                    float f12 = anVar2.f44004w.f(2).d / org.telegram.messenger.g0.f22562p;
-                                                    float width2 = ((aVar2.getWidth() / 2.0f) + (anVar2.l1.getWidth() - (aVar2.getX() + aVar2.getWidth()))) / org.telegram.messenger.g0.f22562p;
-                                                    fi.m3 m3Var5 = new fi.m3(anVar2.getParentActivity(), 3);
-                                                    anVar2.X0 = m3Var5;
+                                                if (cnVar2.getParentActivity() != null) {
+                                                    float f12 = cnVar2.f44661w.f(2).d / org.telegram.messenger.g0.f22562p;
+                                                    float width2 = ((aVar2.getWidth() / 2.0f) + (cnVar2.l1.getWidth() - (aVar2.getX() + aVar2.getWidth()))) / org.telegram.messenger.g0.f22562p;
+                                                    fi.m3 m3Var5 = new fi.m3(cnVar2.getParentActivity(), 3);
+                                                    cnVar2.X0 = m3Var5;
                                                     m3Var5.setPadding(org.telegram.messenger.g0.L(7.33f), 0, org.telegram.messenger.g0.L(7.33f), 0);
-                                                    anVar2.X0.l(anVar2.K);
-                                                    anVar2.X0.r(false);
-                                                    anVar2.X0.u(org.telegram.messenger.id.M0(2131750252, null));
-                                                    anVar2.X0.o(1.0f, (-width2) + 7.33f);
-                                                    anVar2.l1.addView(anVar2.X0, c8.ha.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, f12 + 50.0f));
-                                                    fi.m3 m3Var6 = anVar2.X0;
-                                                    m3Var6.f12436q0 = new af(anVar2, 20);
+                                                    cnVar2.X0.l(cnVar2.K);
+                                                    cnVar2.X0.r(false);
+                                                    cnVar2.X0.u(org.telegram.messenger.id.M0(2131750251, null));
+                                                    cnVar2.X0.o(1.0f, (-width2) + 7.33f);
+                                                    cnVar2.l1.addView(cnVar2.X0, c8.ha.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, f12 + 50.0f));
+                                                    fi.m3 m3Var6 = cnVar2.X0;
+                                                    m3Var6.f12437q0 = new af(cnVar2, 19);
                                                     m3Var6.w();
-                                                    org.telegram.ui.Components.z20.h.b();
+                                                    org.telegram.ui.Components.a30.h.b();
                                                     return;
                                                 }
                                                 return;
@@ -247,7 +248,7 @@ public class e extends FrameLayout implements te.b, a6 {
         for (n nVar : nVarArr) {
             if (nVar != null) {
                 kh.a aVar = (kh.a) nVar.f1847c;
-                float f11 = ((te.a) nVar.d).f55487e * this.f18367y;
+                float f11 = ((te.a) nVar.d).f55499e * this.f18367y;
                 if (f11 > 0.0f) {
                     i7 = 0;
                 } else {
@@ -262,7 +263,7 @@ public class e extends FrameLayout implements te.b, a6 {
         int[] iArr2 = I;
         n nVar2 = nVarArr[iArr2[0]];
         if (nVar2 != null) {
-            float L = ((te.a) nVar2.d).f55487e * g0.L(54.0f);
+            float L = ((te.a) nVar2.d).f55499e * g0.L(54.0f);
             ((kh.a) nVar2.f1847c).setTranslationX(g0.L(1.0f) + this.D);
             this.D += L;
         }
@@ -275,7 +276,7 @@ public class e extends FrameLayout implements te.b, a6 {
             n nVar3 = nVarArr[iArr[i10]];
             if (nVar3 != null) {
                 kh.a aVar2 = (kh.a) nVar3.f1847c;
-                float L2 = ((te.a) nVar3.d).f55487e * g0.L(54.0f);
+                float L2 = ((te.a) nVar3.d).f55499e * g0.L(54.0f);
                 aVar2.setTranslationX(((getMeasuredWidth() - aVar2.getMeasuredWidth()) - g0.L(1.0f)) - this.E);
                 this.E += L2;
             }
@@ -299,7 +300,7 @@ public class e extends FrameLayout implements te.b, a6 {
             this.D = f12 * f13;
             this.E *= f13;
         }
-        float f14 = this.f18366x.f55487e;
+        float f14 = this.f18366x.f55499e;
         if (f14 > 0.0f && getMeasuredWidth() > 0) {
             float measuredWidth = getMeasuredWidth();
             for (int i12 = 0; i12 < getContainer().getChildCount(); i12++) {
@@ -319,7 +320,7 @@ public class e extends FrameLayout implements te.b, a6 {
         if (dVar != null) {
             float f15 = this.D;
             float f16 = this.E;
-            jh.f fVar = ((fe) dVar).f45591b.T;
+            jh.f fVar = ((fh) dVar).f45717a.T;
             fVar.f17048y = f15;
             fVar.D = f16;
             fVar.invalidate();
@@ -335,7 +336,7 @@ public class e extends FrameLayout implements te.b, a6 {
         n[] nVarArr = this.f18357a;
         n nVar = nVarArr[i11];
         if (nVar != null) {
-            if (((te.a) nVar.d).f55488f) {
+            if (((te.a) nVar.d).f55500f) {
                 i10 = g0.L(54.0f);
             } else {
                 i10 = 0;
@@ -345,7 +346,7 @@ public class e extends FrameLayout implements te.b, a6 {
         for (int i12 = 0; i12 < 4; i12++) {
             n nVar2 = nVarArr[J[i12]];
             if (nVar2 != null) {
-                if (((te.a) nVar2.d).f55488f) {
+                if (((te.a) nVar2.d).f55500f) {
                     i7 = g0.L(54.0f);
                 } else {
                     i7 = 0;
@@ -373,11 +374,11 @@ public class e extends FrameLayout implements te.b, a6 {
                     te.a aVar = new te.a((i7 << 16) | 1, this, xq.h, 300L, false);
                     kh.a d = kh.a.d(getContext(), this.f18362n, this.f18363r, this.h, H[i7], 48);
                     if (i7 == 1) {
-                        d.setContentDescription(id.M0(2131746736, null));
+                        d.setContentDescription(id.M0(2131746735, null));
                     } else if (i7 == 2) {
                         d.setContentDescription(id.M0(2131752337, null));
                     } else if (i7 == 0) {
-                        d.setContentDescription(id.M0(2131745839, null));
+                        d.setContentDescription(id.M0(2131745836, null));
                     } else if (i7 == 3) {
                         d.setContentDescription(id.M0(2131752880, null));
                     }
@@ -411,7 +412,7 @@ public class e extends FrameLayout implements te.b, a6 {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        int i7 = (int) (this.f18367y * 255.0f * this.f18365w.f55487e);
+        int i7 = (int) (this.f18367y * 255.0f * this.f18365w.f55499e);
         if (i7 > 0) {
             float measuredWidth = (getMeasuredWidth() - g0.L(10.0f)) - this.E;
             float measuredHeight = getMeasuredHeight() - g0.L(9.0f);

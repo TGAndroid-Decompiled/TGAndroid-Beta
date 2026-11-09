@@ -1,7 +1,7 @@
 package h2;
 
 import java.util.concurrent.ThreadFactory;
-import org.telegram.ui.Components.zg0;
+import org.telegram.ui.Components.ah0;
 import org.telegram.ui.Wallet.WalletEngine2;
 import org.telegram.utils.twidget.WidgetEngineService;
 public final class l0 implements ThreadFactory {
@@ -22,16 +22,16 @@ public final class l0 implements ThreadFactory {
                 thread.setDaemon(true);
                 return thread;
             case 2:
-                return new Thread(runnable, "Lottie-" + zg0.P0.getAndIncrement());
+                return new Thread(runnable, "Lottie-" + ah0.P0.getAndIncrement());
             case 3:
-                return new Thread(runnable, "LottieLow-" + zg0.Q0.getAndIncrement());
+                return new Thread(runnable, "LottieLow-" + ah0.Q0.getAndIncrement());
             case 4:
                 return new Thread(runnable, "GramWalletStorage");
             case 5:
                 lambda$new$0 = WalletEngine2.lambda$new$0(runnable);
                 return lambda$new$0;
             case 6:
-                String str = WidgetEngineService.f52746b;
+                String str = WidgetEngineService.f52760b;
                 Thread thread2 = new Thread(runnable, "widget-engine-destroy");
                 thread2.setDaemon(true);
                 return thread2;

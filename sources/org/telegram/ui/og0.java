@@ -1,47 +1,27 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class og0 extends fi.d {
-    public final int f48392k0;
-    public final org.telegram.ui.Components.na f48393l0;
+public final class og0 extends ah.e {
+    public final int f48447n;
 
-    public og0(org.telegram.ui.Components.na naVar, Context context, org.telegram.ui.ActionBar.f6 f6Var, int i7) {
-        super(context, f6Var, true);
-        this.f48392k0 = i7;
-        this.f48393l0 = naVar;
+    public og0(int i7, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, g6Var);
+        this.f48447n = i7;
     }
 
     @Override
-    public final float b(float f10, float f11) {
-        boolean z9;
-        boolean z10;
-        switch (this.f48392k0) {
+    public final int getHeaderHeight() {
+        switch (this.f48447n) {
             case 0:
-                qg0 qg0Var = (qg0) this.f48393l0;
-                if (qg0Var.f49228f2 == 0.0f) {
-                    z9 = true;
-                } else {
-                    z9 = false;
+                if (getResources().getConfiguration().orientation == 2) {
+                    return org.telegram.messenger.g0.L(48.0f);
                 }
-                qg0Var.f49228f2 = f10;
-                if (z9) {
-                    qg0Var.f49229g2 = new org.telegram.ui.Components.yo(qg0Var, 2);
-                    qg0Var.e1(false);
-                }
-                return f10;
+                return org.telegram.messenger.g0.L(54.0f);
             default:
-                wg.f1 f1Var = (wg.f1) this.f48393l0;
-                if (f1Var.f57738l2 == 0.0f) {
-                    z10 = true;
-                } else {
-                    z10 = false;
+                if (getResources().getConfiguration().orientation == 2) {
+                    return org.telegram.messenger.g0.L(48.0f);
                 }
-                f1Var.f57738l2 = f10;
-                if (z10) {
-                    f1Var.f57739m2 = new org.telegram.ui.Components.yo(f1Var, 3);
-                    f1Var.n1(false);
-                }
-                return f10;
+                return org.telegram.messenger.g0.L(54.0f);
         }
     }
 }

@@ -3,7 +3,7 @@ package ni;
 import android.text.TextPaint;
 import android.text.style.CharacterStyle;
 import java.util.HashMap;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.l6;
 public final class f extends CharacterStyle {
     public final int f20622a;
 
@@ -46,32 +46,32 @@ public final class f extends CharacterStyle {
         }
         switch (i10) {
             case 1:
-                i7 = k6.wl;
+                i7 = l6.wl;
                 break;
             case 2:
-                i7 = k6.xl;
+                i7 = l6.xl;
                 break;
             case 3:
-                i7 = k6.yl;
+                i7 = l6.yl;
                 break;
             case 4:
-                i7 = k6.zl;
+                i7 = l6.zl;
                 break;
             case 5:
-                i7 = k6.Al;
+                i7 = l6.Al;
                 break;
             case 6:
-                i7 = k6.Bl;
+                i7 = l6.Bl;
                 break;
             case 7:
-                i7 = k6.Cl;
+                i7 = l6.Cl;
                 break;
             default:
                 i7 = -1;
                 break;
         }
         if (i7 >= 0) {
-            textPaint.setColor(k6.x0(null, i7, false));
+            textPaint.setColor(l6.x0(null, i7, false));
         }
     }
 }

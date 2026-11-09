@@ -15,19 +15,19 @@ import org.telegram.messenger.x10;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.hb0;
+import org.telegram.ui.Components.ib0;
 import org.telegram.ui.Components.v4;
-import org.telegram.ui.Wallet.b5;
-import org.telegram.ui.Wallet.z2;
+import org.telegram.ui.Wallet.a5;
+import org.telegram.ui.Wallet.y2;
 import org.telegram.ui.a3;
-import org.telegram.ui.c40;
-import org.telegram.ui.m20;
-import org.telegram.ui.n20;
+import org.telegram.ui.e40;
+import org.telegram.ui.o20;
 import org.telegram.ui.p20;
-import org.telegram.ui.r10;
+import org.telegram.ui.r20;
+import org.telegram.ui.t10;
 import org.telegram.ui.z9;
 public final class f implements View.OnClickListener {
     public final int f26011a;
@@ -39,15 +39,15 @@ public final class f implements View.OnClickListener {
     public final Object h;
     public final Object f26016n;
 
-    public f(fi.d dVar, b5 b5Var, x10 x10Var, String[] strArr, boolean[] zArr, z2[] z2VarArr, f6 f6Var) {
+    public f(fi.d dVar, a5 a5Var, x10 x10Var, String[] strArr, boolean[] zArr, y2[] y2VarArr, g6 g6Var) {
         this.f26011a = 2;
         this.f26012b = dVar;
-        this.f26013c = b5Var;
+        this.f26013c = a5Var;
         this.d = x10Var;
         this.f26014e = strArr;
         this.h = zArr;
-        this.f26016n = z2VarArr;
-        this.f26015f = f6Var;
+        this.f26016n = y2VarArr;
+        this.f26015f = g6Var;
     }
 
     @Override
@@ -62,44 +62,44 @@ public final class f implements View.OnClickListener {
         Object obj7 = this.f26012b;
         switch (i7) {
             case 0:
-                ((VideoAds) obj7).lambda$show$17((cc) obj6, (TLRPC.TL_sponsoredMessage) obj5, (Context) obj4, (f6) obj, (VideoAds.AdLayout) obj3, (e) obj2, view);
+                ((VideoAds) obj7).lambda$show$17((cc) obj6, (TLRPC.TL_sponsoredMessage) obj5, (Context) obj4, (g6) obj, (VideoAds.AdLayout) obj3, (e) obj2, view);
                 return;
             case 1:
-                c40 c40Var = (c40) obj7;
-                hb0 hb0Var = (hb0) obj6;
-                m20 m20Var = (m20) obj5;
-                n20 n20Var = (n20) obj4;
+                e40 e40Var = (e40) obj7;
+                ib0 ib0Var = (ib0) obj6;
+                o20 o20Var = (o20) obj5;
+                p20 p20Var = (p20) obj4;
                 TLRPC.Chat chat = (TLRPC.Chat) obj;
                 org.telegram.messenger.c cVar = (org.telegram.messenger.c) obj3;
                 TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) obj2;
-                r10 r10Var = c40Var.V2;
+                t10 t10Var = e40Var.V2;
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                c40Var.O2 = ofFloat;
+                e40Var.O2 = ofFloat;
                 ofFloat.setDuration(600L);
-                c40Var.O2.addUpdateListener(new a3(c40Var, 12));
-                c40Var.O2.addListener(new p20(c40Var));
-                c40Var.O2.start();
-                if (t3.W(c40Var.Q2)) {
-                    r10Var.b(id.M0(2131743450, null), true);
+                e40Var.O2.addUpdateListener(new a3(e40Var, 12));
+                e40Var.O2.addListener(new r20(e40Var));
+                e40Var.O2.start();
+                if (t3.W(e40Var.Q2)) {
+                    t10Var.b(id.M0(2131743447, null), true);
                 } else {
-                    r10Var.b(id.M0(2131743309, null), true);
+                    t10Var.b(id.M0(2131743306, null), true);
                 }
                 Calendar calendar = Calendar.getInstance();
-                boolean g10 = v4.g(null, null, 0L, 604800L, 3, hb0Var, m20Var, n20Var);
-                calendar.setTimeInMillis((hb0Var.getValue() * 86400000) + System.currentTimeMillis());
-                calendar.set(11, m20Var.getValue());
-                calendar.set(12, n20Var.getValue());
+                boolean g10 = v4.g(null, null, 0L, 604800L, 3, ib0Var, o20Var, p20Var);
+                calendar.setTimeInMillis((ib0Var.getValue() * 86400000) + System.currentTimeMillis());
+                calendar.set(11, o20Var.getValue());
+                calendar.set(12, p20Var.getValue());
                 if (g10) {
                     calendar.set(13, 0);
                 }
-                c40Var.f44554b4 = (int) (calendar.getTimeInMillis() / 1000);
-                c40Var.R1(false);
+                e40Var.f45194b4 = (int) (calendar.getTimeInMillis() / 1000);
+                e40Var.R1(false);
                 TL_phone.createGroupCall creategroupcall = new TL_phone.createGroupCall();
                 creategroupcall.peer = qp.l1(chat);
                 creategroupcall.random_id = Utilities.f21334b.nextInt();
-                creategroupcall.schedule_date = c40Var.f44554b4;
+                creategroupcall.schedule_date = e40Var.f45194b4;
                 creategroupcall.flags |= 2;
-                ConnectionsManager.getInstance(cVar.f21765a).sendRequest(creategroupcall, new z9(c40Var, chat, inputPeer, 11), 2);
+                ConnectionsManager.getInstance(cVar.f21765a).sendRequest(creategroupcall, new z9(e40Var, chat, inputPeer, 11), 2);
                 return;
             default:
                 fi.d dVar = (fi.d) obj7;
@@ -107,15 +107,15 @@ public final class f implements View.OnClickListener {
                 x10 x10Var = (x10) obj5;
                 String[] strArr = (String[]) obj4;
                 boolean[] zArr = (boolean[]) obj3;
-                z2[] z2VarArr = (z2[]) obj2;
-                f6 f6Var = (f6) obj;
+                y2[] y2VarArr = (y2[]) obj2;
+                g6 g6Var = (g6) obj;
                 if (!dVar.Q) {
                     if (editTextBoldCursor != null && editTextBoldCursor.getText().toString().getBytes(StandardCharsets.UTF_8).length > 960) {
                         g0.H3(editTextBoldCursor);
                         return;
                     }
                     dVar.setLoading(true);
-                    x10Var.a(strArr[0], Boolean.valueOf(zArr[0]), new org.telegram.ui.Wallet.m(dVar, z2VarArr, f6Var, 5));
+                    x10Var.a(strArr[0], Boolean.valueOf(zArr[0]), new org.telegram.ui.Wallet.m(dVar, y2VarArr, g6Var, 5));
                     return;
                 }
                 return;

@@ -7,8 +7,8 @@ public final class a3 extends wo {
     public final int d;
     public final ViewGroup f11591e;
 
-    public a3(ViewGroup viewGroup, Context context, org.telegram.ui.ActionBar.f6 f6Var, int i7) {
-        super(21, context, f6Var);
+    public a3(ViewGroup viewGroup, Context context, org.telegram.ui.ActionBar.g6 g6Var, int i7) {
+        super(21, context, g6Var);
         this.d = i7;
         this.f11591e = viewGroup;
     }
@@ -31,8 +31,8 @@ public final class a3 extends wo {
         }
     }
 
-    public a3(b3 b3Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(24, context, f6Var);
+    public a3(b3 b3Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(24, context, g6Var);
         this.d = 0;
         this.f11591e = b3Var;
     }

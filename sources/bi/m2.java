@@ -8,7 +8,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.an;
+import org.telegram.ui.cn;
 public final class m2 implements Runnable {
     public final int f4306a = 0;
     public final boolean f4307b;
@@ -56,49 +56,49 @@ public final class m2 implements Runnable {
                     k3 k3Var = null;
                     if (tLObject instanceof TLRPC.TL_boolTrue) {
                         k7Var.dismiss();
-                        long x12 = k7Var.x1();
+                        long w12 = k7Var.w1();
                         if (!z10) {
-                            ea.y(k7Var.f28616a, false).P(x12);
+                            ea.y(k7Var.f28621a, false).P(w12);
                         }
-                        if (x12 >= 0) {
+                        if (w12 >= 0) {
                             org.telegram.ui.Components.hc a02 = org.telegram.ui.Components.hc.a0(T);
                             if (z9) {
-                                i11 = 2131750124;
+                                i11 = 2131750123;
                             } else {
-                                i11 = 2131750122;
+                                i11 = 2131750121;
                             }
                             String M0 = org.telegram.messenger.id.M0(i11, null);
                             if (z9) {
-                                i12 = 2131750125;
+                                i12 = 2131750124;
                             } else {
-                                i12 = 2131750123;
+                                i12 = 2131750122;
                             }
                             String M02 = org.telegram.messenger.id.M0(i12, null);
                             if (!(T instanceof ProfileActivity)) {
-                                k3Var = new k3(x12, T);
+                                k3Var = new k3(w12, T);
                             }
                             a02.s(document, M0, org.telegram.messenger.g0.U2(M02, k3Var)).k(true);
                             return;
                         }
                         org.telegram.ui.Components.hc a03 = org.telegram.ui.Components.hc.a0(T);
                         if (z9) {
-                            i7 = 2131750261;
+                            i7 = 2131750260;
                         } else {
-                            i7 = 2131750259;
+                            i7 = 2131750258;
                         }
                         String M03 = org.telegram.messenger.id.M0(i7, null);
                         if (z9) {
-                            i10 = 2131750262;
+                            i10 = 2131750261;
                         } else {
-                            i10 = 2131750260;
+                            i10 = 2131750259;
                         }
                         a03.s(document, M03, org.telegram.messenger.id.M0(i10, null)).j();
                         return;
                     } else if (tL_error != null) {
-                        if (z10 && k7Var.f4203x2 != null && (F = ea.y(k7Var.f28616a, false).F(k7Var.P1, false)) != null) {
+                        if (z10 && k7Var.f4203x2 != null && (F = ea.y(k7Var.f28621a, false).F(k7Var.P1, false)) != null) {
                             F.m(k7Var.f4203x2, !savestargift.unsave);
                         }
-                        k7Var.k().t(org.telegram.messenger.id.a0(null, null, 2131743881, tL_error.text), null).k(false);
+                        k7Var.k().t(org.telegram.messenger.id.a0(null, null, 2131743878, tL_error.text), null).k(false);
                         return;
                     } else {
                         return;
@@ -106,21 +106,21 @@ public final class m2 implements Runnable {
                 }
                 return;
             case 1:
-                an anVar = (an) obj5;
+                cn cnVar = (cn) obj5;
                 String str = (String) obj;
                 CharacterStyle characterStyle = (CharacterStyle) obj4;
                 ij ijVar = (ij) obj2;
                 org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) obj3;
                 if (str.startsWith("video?")) {
-                    anVar.j8(characterStyle, false, ijVar, q1Var);
+                    cnVar.k8(characterStyle, false, ijVar, q1Var);
                     return;
                 } else if (z10 && !z9) {
-                    anVar.getParentActivity();
+                    cnVar.getParentActivity();
                     vf.c.o(str);
                     return;
                 } else {
-                    anVar.ja(ijVar, false, false);
-                    anVar.za(characterStyle, str, false, q1Var, ijVar);
+                    cnVar.la(ijVar, false, false);
+                    cnVar.Ba(characterStyle, str, false, q1Var, ijVar);
                     return;
                 }
             default:
@@ -129,14 +129,14 @@ public final class m2 implements Runnable {
                 String str2 = (String) obj3;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 TLObject tLObject2 = (TLObject) obj;
-                mVar.f59562w = false;
-                mVar.f59565z = true;
+                mVar.f59571w = false;
+                mVar.f59574z = true;
                 if (z10) {
                     org.telegram.messenger.g0.r(runnable);
                 }
-                yh.m.k(mVar.f59557q, false, false);
-                if (TextUtils.equals(str2, mVar.f59560t) && tL_error2 == null) {
-                    mVar.f59565z = true;
+                yh.m.k(mVar.f59566q, false, false);
+                if (TextUtils.equals(str2, mVar.f59569t) && tL_error2 == null) {
+                    mVar.f59574z = true;
                     mVar.g((TLRPC.TL_messages_chatInviteImporters) tLObject2, str2, z9, false);
                     return;
                 }
@@ -144,8 +144,8 @@ public final class m2 implements Runnable {
         }
     }
 
-    public m2(an anVar, String str, CharacterStyle characterStyle, ij ijVar, org.telegram.ui.Cells.q1 q1Var, boolean z9, boolean z10) {
-        this.d = anVar;
+    public m2(cn cnVar, String str, CharacterStyle characterStyle, ij ijVar, org.telegram.ui.Cells.q1 q1Var, boolean z9, boolean z10) {
+        this.d = cnVar;
         this.f4309e = str;
         this.f4310f = characterStyle;
         this.h = ijVar;

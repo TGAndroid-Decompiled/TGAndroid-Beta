@@ -1,26 +1,42 @@
 package org.telegram.ui;
-public final class fi implements org.telegram.messenger.ls {
-    public final int f45611a;
-    public final ai.a1 f45612b;
-    public final an f45613c;
-    public final an d;
+public final class fi implements Runnable {
+    public final boolean f45721a;
+    public final boolean f45722b;
+    public final int f45723c;
+    public final boolean d;
+    public final org.telegram.ui.Components.ji0 f45724e;
+    public final float f45725f;
+    public final float h;
+    public final ch.o0 f45726n;
+    public final org.telegram.messenger.ij f45727r;
+    public final cn f45728s;
 
-    public fi(an anVar, int i7, ai.a1 a1Var, an anVar2) {
-        this.d = anVar;
-        this.f45611a = i7;
-        this.f45612b = a1Var;
-        this.f45613c = anVar2;
+    public fi(cn cnVar, boolean z9, boolean z10, int i7, boolean z11, org.telegram.ui.Components.ji0 ji0Var, float f10, float f11, ch.o0 o0Var, org.telegram.messenger.ij ijVar) {
+        this.f45728s = cnVar;
+        this.f45721a = z9;
+        this.f45722b = z10;
+        this.f45723c = i7;
+        this.d = z11;
+        this.f45724e = ji0Var;
+        this.f45725f = f10;
+        this.h = f11;
+        this.f45726n = o0Var;
+        this.f45727r = ijVar;
     }
 
     @Override
-    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        int i11;
-        int i12 = org.telegram.messenger.qs.D;
-        if (i7 == i12 && ((Integer) objArr[10]).intValue() == this.f45611a) {
-            this.f45612b.run();
-            org.telegram.messenger.g0.i3(new l2.a0(this.f45613c, i7, i10, objArr, 10), 50L);
-            i11 = ((org.telegram.ui.ActionBar.f2) this.d).currentAccount;
-            org.telegram.messenger.qs.f(i11).n(this, i12);
+    public final void run() {
+        if (!this.f45721a) {
+            cn cnVar = this.f45728s;
+            if (cnVar.Hc != null) {
+                cnVar.Hc = null;
+                if (this.f45722b) {
+                    cnVar.x8(new ei(this, this.f45723c, this.d, this.f45724e, this.f45725f, this.h, this.f45726n, 0));
+                } else {
+                    cnVar.x8(new rf(15, this, this.f45727r));
+                }
+                cnVar.P7(true);
+            }
         }
     }
 }

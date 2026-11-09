@@ -6,26 +6,26 @@ import android.graphics.Paint;
 import android.view.View;
 import java.util.HashSet;
 import org.telegram.messenger.a8;
-import org.telegram.ui.ActionBar.a6;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.lt0;
-public class v3 extends View implements a6 {
-    public final lt0 f15006a;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.Components.nt0;
+public class v3 extends View implements b6 {
+    public final nt0 f15006a;
     public final Paint f15007b;
     public float f15008c;
     public r1.g d;
-    public final f6 f15009e;
+    public final g6 f15009e;
 
-    public v3(Context context, f6 f6Var) {
+    public v3(Context context, g6 g6Var) {
         super(context);
-        lt0 lt0Var = new lt0(new g2.c(27), new g2.c(28));
-        lt0Var.f35790c = 100.0f;
-        this.f15006a = lt0Var;
+        nt0 nt0Var = new nt0(new g2.c(27), new g2.c(28));
+        nt0Var.f36500c = 100.0f;
+        this.f15006a = nt0Var;
         Paint paint = new Paint(1);
         this.f15007b = paint;
-        this.f15009e = f6Var;
-        paint.setColor(k6.w0(k6.Ci, f6Var));
+        this.f15009e = g6Var;
+        paint.setColor(l6.w0(l6.Ci, g6Var));
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
         paint.setStrokeCap(Paint.Cap.ROUND);
@@ -48,7 +48,7 @@ public class v3 extends View implements a6 {
         r1.h hVar = new r1.h();
         hVar.b(400.0f);
         hVar.a(1.0f);
-        gVar.f54268m = hVar;
+        gVar.f54280m = hVar;
         this.d = gVar;
     }
 
@@ -70,14 +70,14 @@ public class v3 extends View implements a6 {
             setLoadProgress(f10);
             return;
         }
-        gVar.f54268m.f54276i = f10 * 100.0f;
+        gVar.f54280m.f54288i = f10 * 100.0f;
         gVar.h();
     }
 
     @Override
     public final void updateColors() {
         try {
-            this.f15007b.setColor(k6.w0(k6.Ci, this.f15009e));
+            this.f15007b.setColor(l6.w0(l6.Ci, this.f15009e));
             invalidate();
         } catch (Exception e10) {
             a8.g(e10, true);

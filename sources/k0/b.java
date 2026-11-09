@@ -65,14 +65,14 @@ public final class b implements k {
         if (iVar != null) {
             synchronized (iVar) {
                 try {
-                    if (((CancellationSignal) iVar.f6016c) == null) {
+                    if (((CancellationSignal) iVar.f6014c) == null) {
                         CancellationSignal cancellationSignal3 = new CancellationSignal();
-                        iVar.f6016c = cancellationSignal3;
-                        if (iVar.f6015b) {
+                        iVar.f6014c = cancellationSignal3;
+                        if (iVar.f6013b) {
                             cancellationSignal3.cancel();
                         }
                     }
-                    cancellationSignal2 = (CancellationSignal) iVar.f6016c;
+                    cancellationSignal2 = (CancellationSignal) iVar.f6014c;
                 } finally {
                 }
             }

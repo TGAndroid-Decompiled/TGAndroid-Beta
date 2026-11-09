@@ -17,12 +17,12 @@ import java.nio.charset.Charset;
 import kotlin.jvm.internal.j;
 import org.telegram.messenger.b20;
 import org.telegram.messenger.sc;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.jt0;
-import org.telegram.ui.Components.kt0;
-import org.telegram.ui.Components.x31;
-public final class c implements k, l5.e, u9.d, gh.d, b20, jt0, kt0 {
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.Components.lt0;
+import org.telegram.ui.Components.mt0;
+import org.telegram.ui.Components.y31;
+public final class c implements k, l5.e, u9.d, gh.d, b20, lt0, mt0 {
     public final int f13452a;
 
     public c(int i7) {
@@ -30,7 +30,7 @@ public final class c implements k, l5.e, u9.d, gh.d, b20, jt0, kt0 {
     }
 
     @Override
-    public Boolean a(x31 x31Var, View view, Integer num, Float f10, Float f11) {
+    public Boolean a(y31 y31Var, View view, Integer num, Float f10, Float f11) {
         return Boolean.FALSE;
     }
 
@@ -46,7 +46,7 @@ public final class c implements k, l5.e, u9.d, gh.d, b20, jt0, kt0 {
                 p0Var.getClass();
                 n nVar = n.f13731b;
                 Log.d("FirebaseSessions", "Session Event Type: SESSION_START");
-                byte[] bytes = u10.getBytes(xd.a.f58684a);
+                byte[] bytes = u10.getBytes(xd.a.f58693a);
                 j.d(bytes, "getBytes(...)");
                 return bytes;
             default:
@@ -96,7 +96,7 @@ public final class c implements k, l5.e, u9.d, gh.d, b20, jt0, kt0 {
     }
 
     @Override
-    public int k(f6 f6Var, boolean z9) {
+    public int k(g6 g6Var, boolean z9) {
         float f10;
         float f11;
         float f12;
@@ -115,92 +115,92 @@ public final class c implements k, l5.e, u9.d, gh.d, b20, jt0, kt0 {
                 } else {
                     f10 = 0.76f;
                 }
-                int w02 = k6.w0(k6.f27852d6, f6Var);
+                int w02 = l6.w0(l6.f27865d6, g6Var);
                 if (z9) {
-                    return k6.r1(0.9f, -15658735);
+                    return l6.r1(0.9f, -15658735);
                 }
-                return g0.n(f10, w02, -14145496);
+                return g0.m(f10, w02, -14145496);
             case 7:
                 if (!sc.e(256)) {
-                    return k6.x0(null, k6.G8, false);
+                    return l6.x0(null, l6.G8, false);
                 }
-                int x02 = k6.x0(null, k6.G8, false);
+                int x02 = l6.x0(null, l6.G8, false);
                 if (z9) {
                     f11 = 0.85f;
                 } else {
                     f11 = 0.825f;
                 }
-                return k6.r1(f11, x02);
+                return l6.r1(f11, x02);
             case 8:
                 if (sc.e(262144)) {
                     f12 = 0.85f;
                 } else {
                     f12 = 0.76f;
                 }
-                return g0.n(f12, k6.w0(k6.f27852d6, f6Var), k6.w0(k6.Nl, f6Var));
+                return g0.m(f12, l6.w0(l6.f27865d6, g6Var), l6.w0(l6.Nl, g6Var));
             case 9:
                 if (sc.e(262144)) {
                     f13 = 0.85f;
                 } else {
                     f13 = 0.76f;
                 }
-                return k6.r1(f13, k6.w0(k6.tj, f6Var));
+                return l6.r1(f13, l6.w0(l6.tj, g6Var));
             case 10:
                 if (sc.e(262144)) {
                     f14 = 0.85f;
                 } else {
                     f14 = 0.76f;
                 }
-                return g0.n(f14, k6.w0(k6.f27852d6, f6Var), k6.w0(k6.Ge, f6Var));
+                return g0.m(f14, l6.w0(l6.f27865d6, g6Var), l6.w0(l6.Ge, g6Var));
             case 11:
                 if (sc.e(262144)) {
                     f15 = 0.85f;
                 } else {
                     f15 = 0.8f;
                 }
-                return g0.n(f15, k6.w0(k6.f27796a7, f6Var), k6.w0(k6.f27852d6, f6Var));
+                return g0.m(f15, l6.w0(l6.f27809a7, g6Var), l6.w0(l6.f27865d6, g6Var));
             case 12:
                 return 855638016;
             case 13:
                 return 1073741824;
             case 14:
-                int w03 = k6.w0(k6.f27925h5, f6Var);
+                int w03 = l6.w0(l6.f27938h5, g6Var);
                 if (z9) {
                     f16 = 0.82f;
                 } else {
                     f16 = 0.78f;
                 }
-                return k6.r1(f16, w03);
+                return l6.r1(f16, w03);
             case 15:
-                return k6.r1(0.075f, -16777216);
+                return l6.r1(0.075f, -16777216);
             case 16:
-                int w04 = k6.w0(k6.G8, f6Var);
+                int w04 = l6.w0(l6.G8, g6Var);
                 if (z9) {
                     f17 = 0.85f;
                 } else {
                     f17 = 0.825f;
                 }
-                return k6.r1(f17, w04);
+                return l6.r1(f17, w04);
             case 17:
-                return k6.r1(0.88f, k6.w0(k6.f27852d6, f6Var));
+                return l6.r1(0.88f, l6.w0(l6.f27865d6, g6Var));
             case 18:
                 if (sc.e(262144)) {
                     f18 = 0.85f;
                 } else {
                     f18 = 0.76f;
                 }
-                return g0.n(f18, k6.w0(k6.f27852d6, f6Var), k6.w0(k6.Ml, f6Var));
+                return g0.m(f18, l6.w0(l6.f27865d6, g6Var), l6.w0(l6.Ml, g6Var));
             case 19:
                 if (sc.e(262144)) {
                     f19 = 0.85f;
                 } else {
                     f19 = 0.76f;
                 }
-                return k6.r1(f19, k6.w0(k6.f27852d6, f6Var));
+                return l6.r1(f19, l6.w0(l6.f27865d6, g6Var));
             case 20:
-                return k6.r1(0.78f, k6.w0(k6.f27925h5, f6Var));
+                return l6.r1(0.78f, l6.w0(l6.f27938h5, g6Var));
             case 21:
-                return k6.r1(0.7f, k6.w0(k6.f27852d6, f6Var));
+                return l6.r1(0.7f, l6.w0(l6.f27865d6, g6Var));
             case 22:
                 sc.e(262144);
                 return 0;
@@ -210,7 +210,7 @@ public final class c implements k, l5.e, u9.d, gh.d, b20, jt0, kt0 {
                 } else {
                     f20 = 0.76f;
                 }
-                return k6.r1(f20, k6.w0(k6.f27852d6, f6Var));
+                return l6.r1(f20, l6.w0(l6.f27865d6, g6Var));
         }
     }
 

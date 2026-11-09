@@ -8,10 +8,10 @@ import org.telegram.messenger.qp;
 import org.telegram.messenger.v10;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.an;
-import org.telegram.ui.fj0;
-import org.telegram.ui.gj0;
-import org.telegram.ui.qj0;
+import org.telegram.ui.cn;
+import org.telegram.ui.hj0;
+import org.telegram.ui.ij0;
+import org.telegram.ui.sj0;
 public final class r7 implements Runnable {
     public final int f4623a;
     public final Object f4624b;
@@ -60,12 +60,12 @@ public final class r7 implements Runnable {
         this.f4628n = obj7;
     }
 
-    public r7(JSONObject jSONObject, String str, org.telegram.ui.Wallet.t2 t2Var, org.telegram.ui.Wallet.m0 m0Var, String str2, byte[] bArr, byte[] bArr2) {
+    public r7(JSONObject jSONObject, String str, org.telegram.ui.Wallet.s2 s2Var, org.telegram.ui.Wallet.l0 l0Var, String str2, byte[] bArr, byte[] bArr2) {
         this.f4623a = 14;
         this.f4624b = jSONObject;
         this.f4626e = str;
-        this.f4625c = t2Var;
-        this.d = m0Var;
+        this.f4625c = s2Var;
+        this.d = l0Var;
         this.f4627f = str2;
         this.h = bArr;
         this.f4628n = bArr2;
@@ -93,9 +93,9 @@ public final class r7 implements Runnable {
         this.h = c20Var2;
     }
 
-    public r7(an anVar, TLRPC.TL_error tL_error, TLObject tLObject, TLObject tLObject2, t3 t3Var, String str, vf.b bVar) {
+    public r7(cn cnVar, TLRPC.TL_error tL_error, TLObject tLObject, TLObject tLObject2, t3 t3Var, String str, vf.b bVar) {
         this.f4623a = 5;
-        this.f4624b = anVar;
+        this.f4624b = cnVar;
         this.f4625c = tL_error;
         this.d = tLObject;
         this.f4627f = tLObject2;
@@ -104,14 +104,14 @@ public final class r7 implements Runnable {
         this.f4628n = bVar;
     }
 
-    public r7(fj0 fj0Var, TLObject tLObject, String str, TLRPC.TL_secureRequiredType tL_secureRequiredType, gj0 gj0Var, TLRPC.TL_error tL_error, qj0 qj0Var) {
+    public r7(hj0 hj0Var, TLObject tLObject, String str, TLRPC.TL_secureRequiredType tL_secureRequiredType, ij0 ij0Var, TLRPC.TL_error tL_error, sj0 sj0Var) {
         this.f4623a = 10;
-        this.f4624b = fj0Var;
+        this.f4624b = hj0Var;
         this.f4625c = tLObject;
         this.f4626e = str;
         this.d = tL_secureRequiredType;
-        this.f4627f = gj0Var;
+        this.f4627f = ij0Var;
         this.h = tL_error;
-        this.f4628n = qj0Var;
+        this.f4628n = sj0Var;
     }
 }

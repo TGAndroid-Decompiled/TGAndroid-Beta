@@ -1,65 +1,35 @@
 package org.telegram.ui;
+public final class mk implements Runnable {
+    public final int f47890a;
+    public final nk f47891b;
 
-import android.app.Activity;
-import android.content.Context;
-import android.text.style.CharacterStyle;
-import org.telegram.ui.Components.UndoView;
-public final class mk extends UndoView {
-    public final int f47818j0 = 0;
-    public final Object f47819k0;
-
-    public mk(z10 z10Var, Context context) {
-        super(context);
-        this.f47819k0 = z10Var;
+    public mk(nk nkVar, int i7) {
+        this.f47890a = i7;
+        this.f47891b = nkVar;
     }
 
     @Override
-    public void b(CharacterStyle characterStyle) {
-        switch (this.f47818j0) {
+    public final void run() {
+        switch (this.f47890a) {
             case 0:
-                ((an) this.f47819k0).j8(characterStyle, false, null, null);
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public void invalidate() {
-        switch (this.f47818j0) {
-            case 1:
-                super.invalidate();
-                ((z10) this.f47819k0).invalidate();
-                return;
-            default:
-                super.invalidate();
-                return;
-        }
-    }
-
-    @Override
-    public void k(long j3, int i7, Object obj, Object obj2, Runnable runnable, Runnable runnable2) {
-        float f10;
-        int i10;
-        switch (this.f47818j0) {
-            case 0:
-                lj ljVar = ((an) this.f47819k0).f43868l2;
-                if (ljVar != null && (((i10 = ljVar.U) == 1 || i10 == 3) && ljVar.T)) {
-                    f10 = org.telegram.messenger.g0.L(ljVar.getStyleHeight());
-                } else {
-                    f10 = 0.0f;
+                sj sjVar = this.f47891b.H.Z;
+                if (sjVar != null) {
+                    sjVar.H0();
+                    return;
                 }
-                setAdditionalTranslationY(f10);
-                super.k(j3, i7, obj, obj2, runnable, runnable2);
                 return;
             default:
-                super.k(j3, i7, obj, obj2, runnable, runnable2);
+                sj sjVar2 = this.f47891b.H.Z;
+                if (sjVar2 != null) {
+                    sjVar2.T0 = false;
+                    org.telegram.ui.Components.mf mfVar = sjVar2.U0;
+                    if (mfVar != null) {
+                        mfVar.u(false);
+                        return;
+                    }
+                    return;
+                }
                 return;
         }
-    }
-
-    public mk(an anVar, Activity activity, an anVar2, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(activity, anVar2, true, f6Var);
-        this.f47819k0 = anVar;
     }
 }

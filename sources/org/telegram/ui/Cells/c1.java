@@ -5,26 +5,26 @@ import org.telegram.messenger.fj;
 import org.telegram.messenger.gj;
 import org.telegram.messenger.ij;
 public final class c1 implements Runnable {
-    public final int f28972a;
-    public final q1 f28973b;
+    public final int f28976a;
+    public final q1 f28977b;
 
     public c1(q1 q1Var, int i7) {
-        this.f28972a = i7;
-        this.f28973b = q1Var;
+        this.f28976a = i7;
+        this.f28977b = q1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f28972a) {
+        switch (this.f28976a) {
             case 0:
-                this.f28973b.p2();
+                this.f28977b.p2();
                 return;
             case 1:
-                this.f28973b.q2();
+                this.f28977b.q2();
                 return;
             case 2:
-                q1 q1Var = this.f28973b;
-                ob.c cVar = q1Var.f30061x;
+                q1 q1Var = this.f28977b;
+                ob.c cVar = q1Var.f30065x;
                 cVar.a(q1Var.Xb);
                 cVar.a(q1Var.Yb);
                 q1Var.h3();
@@ -45,29 +45,29 @@ public final class c1 implements Runnable {
                 }
                 return;
             case 3:
-                q1 q1Var2 = this.f28973b;
-                if (q1Var2.f29817d8 && !q1Var2.f29830e8 && q1Var2.f29844f8) {
-                    q1Var2.f29830e8 = true;
+                q1 q1Var2 = this.f28977b;
+                if (q1Var2.f29821d8 && !q1Var2.f29834e8 && q1Var2.f29848f8) {
+                    q1Var2.f29834e8 = true;
                     q1Var2.Ja.setState(new int[]{16842919, 16842910});
                     return;
                 }
                 return;
             case 4:
-                q1 q1Var3 = this.f28973b;
+                q1 q1Var3 = this.f28977b;
                 q1Var3.Ja.setState(new int[0]);
                 q1Var3.invalidate();
                 return;
             case 5:
-                q1 q1Var4 = this.f28973b;
+                q1 q1Var4 = this.f28977b;
                 q1Var4.Ja.setState(new int[0]);
                 q1Var4.invalidate();
                 return;
             case 6:
-                q1 q1Var5 = this.f28973b;
+                q1 q1Var5 = this.f28977b;
                 int i7 = 0;
                 q1Var5.O5 = false;
                 q1Var5.getMessageObject().L0 = true;
-                gj gjVar = q1Var5.f29961p3;
+                gj gjVar = q1Var5.f29965p3;
                 if (gjVar != null) {
                     ArrayList arrayList = gjVar.f22680e;
                     int size = arrayList.size();
@@ -78,7 +78,7 @@ public final class c1 implements Runnable {
                         ((fj) obj).f22431y.clear();
                     }
                 }
-                gj gjVar2 = q1Var5.f29913l3;
+                gj gjVar2 = q1Var5.f29917l3;
                 if (gjVar2 != null) {
                     ArrayList arrayList2 = gjVar2.f22680e;
                     int size2 = arrayList2.size();
@@ -101,17 +101,17 @@ public final class c1 implements Runnable {
                 q1Var5.invalidate();
                 return;
             case 7:
-                q1 q1Var6 = this.f28973b;
+                q1 q1Var6 = this.f28977b;
                 q1Var6.getMessageObject().C.L0 = true;
                 q1Var6.Sb.clear();
                 q1Var6.invalidate();
                 return;
             case 8:
-                q1 q1Var7 = this.f28973b;
+                q1 q1Var7 = this.f28977b;
                 q1Var7.post(new c1(q1Var7, 6));
                 return;
             case 9:
-                q1 q1Var8 = this.f28973b;
+                q1 q1Var8 = this.f28977b;
                 l1 l1Var2 = q1Var8.Ra;
                 if (l1Var2 != null) {
                     l1Var2.r(q1Var8);
@@ -119,7 +119,7 @@ public final class c1 implements Runnable {
                 }
                 return;
             default:
-                this.f28973b.h3();
+                this.f28977b.h3();
                 return;
         }
     }

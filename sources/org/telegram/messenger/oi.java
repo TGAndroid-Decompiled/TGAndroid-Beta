@@ -212,10 +212,10 @@ public final class oi implements Runnable {
                         queryFinalized5.dispose();
                     }
                     if (o0Var != null) {
-                        if (!TextUtils.isEmpty(o0Var.f6356f)) {
-                            j15 = o0Var.f6356f.hashCode();
+                        if (!TextUtils.isEmpty(o0Var.f6354f)) {
+                            j15 = o0Var.f6354f.hashCode();
                         } else {
-                            j15 = o0Var.f6357g;
+                            j15 = o0Var.f6355g;
                         }
                         str3 = "INNER JOIN tag_message_id t ON m.mid = t.mid";
                         str4 = "t.tag = " + j15 + " AND";

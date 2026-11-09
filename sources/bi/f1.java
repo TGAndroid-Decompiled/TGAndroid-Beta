@@ -41,6 +41,6 @@ public final class f1 {
         float L = org.telegram.messenger.g0.L(36.0f);
         float f10 = (-L) / 2.0f;
         float f11 = L / 2.0f;
-        this.f3849f.f4845c.set(f10, f10, f11, f11);
+        this.f3849f.f4843c.set(f10, f10, f11, f11);
     }
 }

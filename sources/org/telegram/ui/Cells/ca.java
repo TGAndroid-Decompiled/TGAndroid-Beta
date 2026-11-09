@@ -9,39 +9,39 @@ import org.telegram.messenger.lc;
 import org.telegram.messenger.w10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.CheckBoxBase;
-import org.telegram.ui.Components.dj0;
+import org.telegram.ui.Components.ah0;
+import org.telegram.ui.Components.ej0;
 import org.telegram.ui.Components.xo;
-import org.telegram.ui.Components.zg0;
 import org.telegram.ui.LaunchActivity;
-public final class ca implements dj0, bg.p, lc, org.telegram.messenger.j9, xo, w10 {
-    public final int f29005a;
-    public final Object f29006b;
+public final class ca implements ej0, bg.p, lc, org.telegram.messenger.j9, xo, w10 {
+    public final int f29009a;
+    public final Object f29010b;
 
     public ca(Object obj, int i7) {
-        this.f29005a = i7;
-        this.f29006b = obj;
+        this.f29009a = i7;
+        this.f29010b = obj;
     }
 
     @Override
     public void O(ImageReceiver imageReceiver) {
-        int i7 = this.f29005a;
+        int i7 = this.f29009a;
     }
 
     @Override
     public void a() {
-        switch (this.f29005a) {
+        switch (this.f29009a) {
             case 4:
-                o4 o4Var = (o4) this.f29006b;
-                float progress = 1.0f - (o4Var.f29654w.getProgress() * 0.143f);
-                org.telegram.ui.Components.l9 l9Var = o4Var.f29646a;
+                o4 o4Var = (o4) this.f29010b;
+                float progress = 1.0f - (o4Var.f29658w.getProgress() * 0.143f);
+                org.telegram.ui.Components.l9 l9Var = o4Var.f29650a;
                 l9Var.setScaleX(progress);
                 l9Var.setScaleY(progress);
                 o4Var.invalidate();
                 return;
             default:
-                d7 d7Var = (d7) this.f29006b;
+                d7 d7Var = (d7) this.f29010b;
                 float progress2 = 1.0f - (d7Var.d.getProgress() * 0.143f);
-                org.telegram.ui.Components.l9 l9Var2 = d7Var.f29023a;
+                org.telegram.ui.Components.l9 l9Var2 = d7Var.f29027a;
                 l9Var2.setScaleX(progress2);
                 l9Var2.setScaleY(progress2);
                 d7Var.invalidate();
@@ -51,27 +51,27 @@ public final class ca implements dj0, bg.p, lc, org.telegram.messenger.j9, xo, w
 
     @Override
     public boolean c(int i7, View view) {
-        ga gaVar = (ga) this.f29006b;
+        ga gaVar = (ga) this.f29010b;
         gaVar.getClass();
-        gaVar.C1(((ThemesHorizontalListCell$InnerThemeView) view).f28854b);
+        gaVar.C1(((ThemesHorizontalListCell$InnerThemeView) view).f28858b);
         return true;
     }
 
     @Override
     public Object d(Number number, Object obj) {
         Integer num = (Integer) number;
-        return (CharSequence) ((ai.c0) this.f29006b).a((Integer) obj);
+        return (CharSequence) ((ai.c0) this.f29010b).a((Integer) obj);
     }
 
     @Override
     public void f0(ImageReceiver imageReceiver, boolean z9, boolean z10, boolean z11) {
-        zg0 B;
+        ah0 B;
         q0 q0Var;
         int w10;
         ij ijVar;
-        switch (this.f29005a) {
+        switch (this.f29009a) {
             case 2:
-                t0 t0Var = (t0) this.f29006b;
+                t0 t0Var = (t0) this.f29010b;
                 if (z9 && (B = t0Var.I.B()) != null) {
                     ij ijVar2 = t0Var.P0;
                     if (ijVar2 != null && !ijVar2.f23270m1) {
@@ -86,19 +86,19 @@ public final class ca implements dj0, bg.p, lc, org.telegram.messenger.j9, xo, w
                             } catch (Exception unused) {
                             }
                             if (t0Var.getContext() instanceof LaunchActivity) {
-                                ((LaunchActivity) t0Var.getContext()).f41293v0.c(false);
+                                ((LaunchActivity) t0Var.getContext()).f41300v0.c(false);
                             }
                             TLRPC.VideoSize videoSize = t0Var.I1;
-                            if (videoSize != null && (q0Var = t0Var.f30312f1) != null) {
+                            if (videoSize != null && (q0Var = t0Var.f30316f1) != null) {
                                 q0Var.D(t0Var, t0Var.H1, videoSize);
                                 return;
                             }
                             return;
                         }
                         return;
-                    } else if (B.f40989a0 < 1) {
+                    } else if (B.f31820a0 < 1) {
                         B.stop();
-                        B.N(B.f40995e[0] - 1, false, false);
+                        B.N(B.f31826e[0] - 1, false, false);
                         return;
                     } else {
                         return;
@@ -106,21 +106,21 @@ public final class ca implements dj0, bg.p, lc, org.telegram.messenger.j9, xo, w
                 }
                 return;
             default:
-                o7 o7Var = (o7) this.f29006b;
+                o7 o7Var = (o7) this.f29010b;
                 ImageReceiver imageReceiver2 = o7Var.d;
-                ImageReceiver imageReceiver3 = o7Var.f29664c;
-                if (z9 && !z10 && (ijVar = o7Var.f29677n) != null && ijVar.u2() && imageReceiver3.n() != null) {
+                ImageReceiver imageReceiver3 = o7Var.f29668c;
+                if (z9 && !z10 && (ijVar = o7Var.f29681n) != null && ijVar.t2() && imageReceiver3.n() != null) {
                     if (imageReceiver2.n() != null) {
                         imageReceiver2.n().recycle();
                     }
                     imageReceiver2.v0(Utilities.D(imageReceiver3.n(), false));
                 }
-                if (z9 && !z10 && o7Var.f29690w0 && imageReceiver3.n() != null) {
+                if (z9 && !z10 && o7Var.f29694w0 && imageReceiver3.n() != null) {
                     int J0 = org.telegram.messenger.g0.J0(imageReceiver3.n());
-                    o7Var.f29660a = J0;
+                    o7Var.f29664a = J0;
                     CheckBoxBase checkBoxBase = o7Var.P;
-                    if (checkBoxBase != null && checkBoxBase.f31269x != (w10 = org.telegram.ui.ActionBar.k6.w(J0, org.telegram.ui.ActionBar.k6.r1(0.25f, -1)))) {
-                        checkBoxBase.f31269x = w10;
+                    if (checkBoxBase != null && checkBoxBase.f31274x != (w10 = org.telegram.ui.ActionBar.l6.w(J0, org.telegram.ui.ActionBar.l6.r1(0.25f, -1)))) {
+                        checkBoxBase.f31274x = w10;
                         checkBoxBase.b();
                         return;
                     }
@@ -132,18 +132,18 @@ public final class ca implements dj0, bg.p, lc, org.telegram.messenger.j9, xo, w
 
     @Override
     public void j(long j3) {
-        ((l) this.f29006b).b(j3);
+        ((l) this.f29010b).b(j3);
     }
 
     @Override
     public boolean run() {
         TLRPC.Message message;
         l4 l4Var;
-        q1 q1Var = (q1) this.f29006b;
+        q1 q1Var = (q1) this.f29010b;
         ij ijVar = q1Var.P5;
         if (ijVar != null && (message = ijVar.f23262k) != null) {
-            if (ijVar.D != 29 || ((l4Var = q1Var.W5) != null && l4Var.f29497i)) {
-                if ((message.noforwards && !ij.d3(message)) || q1Var.P5.T4() || q1Var.P5.z2()) {
+            if (ijVar.D != 29 || ((l4Var = q1Var.W5) != null && l4Var.f29501i)) {
+                if ((message.noforwards && !ij.c3(message)) || q1Var.P5.S4() || q1Var.P5.y2()) {
                     return true;
                 }
                 return false;
@@ -155,7 +155,7 @@ public final class ca implements dj0, bg.p, lc, org.telegram.messenger.j9, xo, w
 
     @Override
     public void t0(int i7, Drawable drawable) {
-        int i10 = this.f29005a;
+        int i10 = this.f29009a;
     }
 
     private final void f(ImageReceiver imageReceiver) {

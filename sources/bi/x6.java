@@ -7,24 +7,24 @@ import android.graphics.RectF;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class x6 extends FrameLayout {
-    public final h2 f5028a;
-    public final w6 f5029b;
-    public final w6 f5030c;
+    public final h2 f5026a;
+    public final w6 f5027b;
+    public final w6 f5028c;
     public final w6 d;
-    public boolean f5031e;
-    public final h6.m f5032f;
+    public boolean f5029e;
+    public final h6.m f5030f;
     public final RectF h;
 
-    public x6(Context context, org.telegram.ui.ActionBar.f6 f6Var, h2 h2Var) {
+    public x6(Context context, org.telegram.ui.ActionBar.g6 g6Var, h2 h2Var) {
         super(context);
-        this.f5032f = new h6.m(28);
+        this.f5030f = new h6.m(28);
         this.h = new RectF();
-        this.f5028a = h2Var;
-        w6 w6Var = new w6(context, f6Var);
-        this.f5029b = w6Var;
-        w6 w6Var2 = new w6(context, f6Var);
-        this.f5030c = w6Var2;
-        w6 w6Var3 = new w6(context, f6Var);
+        this.f5026a = h2Var;
+        w6 w6Var = new w6(context, g6Var);
+        this.f5027b = w6Var;
+        w6 w6Var2 = new w6(context, g6Var);
+        this.f5028c = w6Var2;
+        w6 w6Var3 = new w6(context, g6Var);
         this.d = w6Var3;
         addView(w6Var, c8.ha.d(-2, -2.0f, 51, 12.66f, 5.33f, 12.66f, 5.33f));
         addView(w6Var2, c8.ha.d(-2, -2.0f, 51, 12.66f, 5.33f, 12.66f, 5.33f));
@@ -32,8 +32,8 @@ public final class x6 extends FrameLayout {
     }
 
     public final void a(n6 n6Var, float f10, boolean z9, n6 n6Var2, float f11, boolean z10, n6 n6Var3, float f12, boolean z11) {
-        h2 h2Var = this.f5028a;
-        w6 w6Var = this.f5029b;
+        h2 h2Var = this.f5026a;
+        w6 w6Var = this.f5027b;
         if (n6Var != null) {
             if (z9) {
                 f10 = Math.max(0.5f, f10);
@@ -44,7 +44,7 @@ public final class x6 extends FrameLayout {
         } else {
             w6Var.setVisibility(4);
         }
-        w6 w6Var2 = this.f5030c;
+        w6 w6Var2 = this.f5028c;
         if (n6Var2 != null) {
             float f13 = f11;
             if (z10) {
@@ -54,8 +54,8 @@ public final class x6 extends FrameLayout {
             w6Var2.setVisibility(0);
             w6Var2.f(n6Var2.f4408a, n6Var2.f4409b, h2Var);
             w6Var2.setTranslationY(org.telegram.messenger.g0.L(36.0f) * f14);
-            if (z10 && f14 <= 0.0f && !this.f5031e) {
-                this.f5031e = true;
+            if (z10 && f14 <= 0.0f && !this.f5029e) {
+                this.f5029e = true;
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 ofFloat.addUpdateListener(new ah.h(w6Var2, 6));
                 ofFloat.setDuration(180L);
@@ -85,7 +85,7 @@ public final class x6 extends FrameLayout {
         canvas.save();
         RectF rectF = this.h;
         rectF.set(0.0f, 0.0f, getWidth(), org.telegram.messenger.g0.L(8.0f));
-        h6.m mVar = this.f5032f;
+        h6.m mVar = this.f5030f;
         mVar.m(canvas, rectF, 1, 1.0f);
         rectF.set(0.0f, getHeight() - org.telegram.messenger.g0.L(8.0f), getWidth(), getHeight());
         mVar.m(canvas, rectF, 3, 1.0f);

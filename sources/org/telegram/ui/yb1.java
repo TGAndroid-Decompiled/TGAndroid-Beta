@@ -1,101 +1,85 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.os.Build;
-import android.view.KeyEvent;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.messenger.voip.VoIPServiceState;
-import org.webrtc.OrientationHelper;
-public final class yb1 extends org.telegram.ui.Components.voip.o2 {
-    public final Path f52189s;
-    public final RectF f52190w;
-    public sn0 f52191x;
-    public final fc1 f52192y;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class yb1 extends AnimatorListenerAdapter {
+    public final int f52075a;
+    public final ic1 f52076b;
 
-    public yb1(Activity activity, boolean z9, fc1 fc1Var) {
-        super(activity);
-        this.f52192y = fc1Var;
-        this.f39441c = new h2.f((int[]) null);
-        this.f39439a = activity;
-        setSystemUiVisibility(1792);
-        org.telegram.messenger.g0.g2(activity);
-        OrientationHelper.cameraRotationDisabled = true;
-        if (!z9) {
-            this.f39442e = true;
-        }
-        this.f52189s = new Path();
-        this.f52190w = new RectF();
+    public yb1(ic1 ic1Var, int i7) {
+        this.f52075a = i7;
+        this.f52076b = ic1Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        fc1 fc1Var = this.f52192y;
-        if (fc1Var.D0 && getAlpha() != 0.0f) {
-            float scaleX = fc1Var.f45546c0.getScaleX() * fc1Var.f45546c0.getWidth();
-            float scaleY = fc1Var.f45546c0.getScaleY() * fc1Var.f45546c0.getHeight();
-            float x10 = fc1Var.f45546c0.getX() + ((fc1Var.f45546c0.getWidth() - scaleX) / 2.0f);
-            float y10 = fc1Var.f45546c0.getY() + ((fc1Var.f45546c0.getHeight() - scaleY) / 2.0f);
-            canvas.save();
-            Path path = this.f52189s;
-            path.rewind();
-            RectF rectF = this.f52190w;
-            rectF.set(x10, y10, scaleX + x10, scaleY + y10);
-            float L = org.telegram.messenger.g0.L(4.0f);
-            path.addRoundRect(rectF, L, L, Path.Direction.CW);
-            path.close();
-            canvas.clipPath(path);
-            super.dispatchDraw(canvas);
-            canvas.restore();
-            return;
+    public final void onAnimationEnd(Animator animator) {
+        di.z2 z2Var;
+        di.z2 z2Var2;
+        int i7 = this.f52075a;
+        ic1 ic1Var = this.f52076b;
+        switch (i7) {
+            case 0:
+                ic1Var.f46591h1 = null;
+                ic1Var.f46584e1 = 1.0f;
+                ic1Var.X0 = 0.0f;
+                ic1Var.Y0 = 0.0f;
+                ic1Var.f46606s.invalidate();
+                return;
+            case 1:
+                org.telegram.ui.Components.voip.e2.d().f39260a.setAlpha(1.0f);
+                org.telegram.messenger.g0.i3(new tu0(this, 26), 200L);
+                return;
+            case 2:
+                ic1Var.K0.e();
+                ic1Var.Y.setCornerRadius(-1.0f);
+                ic1Var.D0 = false;
+                ic1Var.Y.f39487b0 = false;
+                ic1Var.f46602p0 = ic1Var.f46601o0;
+                ic1Var.y();
+                return;
+            case 3:
+                for (org.telegram.ui.Components.l9 l9Var : ic1Var.V) {
+                    org.telegram.ui.Components.i5 i5Var = l9Var.f35650e;
+                    if (i5Var != null && (z2Var = i5Var.f34568k) != null) {
+                        z2Var.f21220t0 = true;
+                        z2Var.P0(false);
+                    }
+                }
+                return;
+            case 4:
+                ic1Var.s();
+                for (org.telegram.ui.Components.l9 l9Var2 : ic1Var.V) {
+                    org.telegram.ui.Components.i5 i5Var2 = l9Var2.f35650e;
+                    if (i5Var2 != null && (z2Var2 = i5Var2.f34568k) != null) {
+                        z2Var2.f21220t0 = false;
+                        z2Var2.Q0();
+                    }
+                }
+                ic1Var.R.setVisibility(8);
+                return;
+            case 5:
+                ic1Var.E.setText(org.telegram.messenger.id.M0(2131743490, null));
+                ic1Var.E.animate().alpha(1.0f).setDuration(70L).setListener(null).start();
+                return;
+            case 6:
+                if (ic1Var.Z.getTag() == null) {
+                    ic1Var.Z.setVisibility(8);
+                    return;
+                }
+                return;
+            case 7:
+                ic1Var.Y.setTranslationX(0.0f);
+                ic1Var.Y.setTranslationY(0.0f);
+                ic1Var.Y.setScaleY(1.0f);
+                ic1Var.Y.setScaleX(1.0f);
+                ic1Var.Y.setVisibility(8);
+                return;
+            case 8:
+                ic1Var.D.setVisibility(8);
+                return;
+            default:
+                ic1Var.f46583e0.setVisibility(8);
+                return;
         }
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        VoIPServiceState sharedState;
-        fc1 fc1Var = this.f52192y;
-        if (!fc1Var.F0 && !fc1Var.D0) {
-            int keyCode = keyEvent.getKeyCode();
-            if (keyCode == 4 && keyEvent.getAction() == 1) {
-                fc1Var.g();
-                return true;
-            } else if ((keyCode == 25 || keyCode == 24) && fc1Var.f45569o0 == 15 && (sharedState = VoIPService.getSharedState()) != null) {
-                sharedState.stopRinging();
-                return true;
-            } else {
-                return super.dispatchKeyEvent(keyEvent);
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        if (this.f52192y.f45565k1) {
-            return;
-        }
-        super.draw(canvas);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        if (Build.VERSION.SDK_INT >= 33 && this.f52191x == null) {
-            this.f52191x = g0.a.h(this, new rb1(this.f52192y, 14));
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        sn0 sn0Var;
-        if (Build.VERSION.SDK_INT >= 33 && (sn0Var = this.f52191x) != null) {
-            g0.a.j(this, sn0Var);
-            this.f52191x = null;
-        }
-        super.onDetachedFromWindow();
     }
 }

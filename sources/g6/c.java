@@ -33,13 +33,13 @@ public final class c extends f {
         this.h = hVar;
         a7.a f10 = f();
         j jVar = new j(this);
-        j6.b bVar2 = com.google.android.gms.internal.cast.d.f6837a;
+        j6.b bVar2 = com.google.android.gms.internal.cast.d.f6835a;
         q qVar = null;
         if (f10 != null) {
             try {
                 qVar = com.google.android.gms.internal.cast.d.b(context).x1(bVar, f10, jVar);
             } catch (RemoteException | d e10) {
-                com.google.android.gms.internal.cast.d.f6837a.a(e10, "Unable to call %s on %s.", "newCastSessionImpl", com.google.android.gms.internal.cast.f.class.getSimpleName());
+                com.google.android.gms.internal.cast.d.f6835a.a(e10, "Unable to call %s on %s.", "newCastSessionImpl", com.google.android.gms.internal.cast.f.class.getSimpleName());
             }
         }
         this.f13545e = qVar;
@@ -90,11 +90,11 @@ public final class c extends f {
         f6.e0 e0Var = cVar.f13548i;
         if (e0Var != null) {
             com.google.android.gms.common.api.internal.s b10 = com.google.android.gms.common.api.internal.t.b();
-            b10.f6682c = f6.z.f11349b;
-            b10.f6680a = 8403;
+            b10.f6680c = f6.z.f11349b;
+            b10.f6678a = 8403;
             e0Var.e(1, b10.a());
             e0Var.h();
-            com.google.android.gms.common.api.internal.m mVar = cb.c.o(e0Var.f6720g, e0Var.f11250l, "castDeviceControllerListenerKey").f6671b;
+            com.google.android.gms.common.api.internal.m mVar = cb.c.o(e0Var.f6718g, e0Var.f11250l, "castDeviceControllerListenerKey").f6669b;
             q6.m.h(mVar, "Key must not be null");
             e0Var.c(mVar, 8415);
             cVar.f13548i = null;
@@ -144,7 +144,7 @@ public final class c extends f {
                     return;
                 }
                 bVar.b("%s() -> failure result", str);
-                int i7 = status.f6529a;
+                int i7 = status.f6527a;
                 o oVar2 = (o) qVar;
                 Parcel p13 = oVar2.p1();
                 p13.writeInt(i7);

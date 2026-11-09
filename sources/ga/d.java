@@ -20,16 +20,16 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import jb.l;
 import kg.u1;
-import l2.w;
+import l2.a0;
 import li.a6;
 import li.l0;
 import li.m0;
 import org.telegram.messenger.g0;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
 import org.telegram.ui.Cells.f1;
-import org.telegram.ui.Components.k60;
-import org.telegram.ui.hy0;
+import org.telegram.ui.Components.l60;
+import org.telegram.ui.ky0;
 import w7.s;
 public final class d implements ib.b, q5.b {
     public final int f13615a;
@@ -109,9 +109,9 @@ public final class d implements ib.b, q5.b {
 
     public void c() {
         j(null);
-        k60 k60Var = (k60) this.d;
-        if (k60Var != null) {
-            k60Var.u();
+        l60 l60Var = (l60) this.d;
+        if (l60Var != null) {
+            l60Var.u();
             this.d = null;
         }
         this.f13618e = null;
@@ -120,7 +120,7 @@ public final class d implements ib.b, q5.b {
     }
 
     public void d(a6 a6Var, ArrayList arrayList) {
-        f6 f6Var = (f6) this.f13617c;
+        g6 g6Var = (g6) this.f13617c;
         LinearLayout linearLayout = (LinearLayout) this.f13618e;
         if (linearLayout != null) {
             linearLayout.removeAllViews();
@@ -130,9 +130,9 @@ public final class d implements ib.b, q5.b {
                 Object obj = arrayList.get(i7);
                 i7++;
                 l0 l0Var = (l0) obj;
-                u1 u1Var = new u1(a6Var.getContext(), l0Var, f6Var);
+                u1 u1Var = new u1(a6Var.getContext(), l0Var, g6Var);
                 u1Var.setPadding(g0.L(8.0f), 0, g0.L(12.0f), 0);
-                u1Var.setBackground(k6.a0(k6.w0(k6.f27944i6, f6Var), 0, 0));
+                u1Var.setBackground(l6.a0(l6.w0(l6.f27957i6, g6Var), 0, 0));
                 u1Var.setOnClickListener(new g(this, a6Var, l0Var, 14));
                 ((LinearLayout) this.f13618e).addView(u1Var, ha.o(-1, 48));
             }
@@ -200,7 +200,7 @@ public final class d implements ib.b, q5.b {
                 obj.f15418a = (Context) ((fd.a) this.f13616b).mo24get();
                 obj.f15419b = (p5.d) ((fd.a) this.f13617c).mo24get();
                 obj.f15420c = (v5.d) ((fd.a) this.d).mo24get();
-                obj.d = (hy0) ((hy0) this.f13618e).mo24get();
+                obj.d = (ky0) ((ky0) this.f13618e).mo24get();
                 obj.f15421e = (Executor) ((fd.a) this.f13619f).mo24get();
                 obj.f15422f = (w5.c) ((fd.a) this.h).mo24get();
                 obj.f15423g = aVar;
@@ -224,8 +224,8 @@ public final class d implements ib.b, q5.b {
     }
 
     public void k(a6 a6Var, String str) {
-        k60 k60Var;
-        k60 k60Var2;
+        l60 l60Var;
+        l60 l60Var2;
         if (str == null) {
             c();
             return;
@@ -236,13 +236,13 @@ public final class d implements ib.b, q5.b {
             return;
         }
         j(a6Var);
-        if (((a6) this.h) == a6Var && a10.equals((ArrayList) this.f13619f) && (k60Var2 = (k60) this.d) != null && k60Var2.D()) {
+        if (((a6) this.h) == a6Var && a10.equals((ArrayList) this.f13619f) && (l60Var2 = (l60) this.d) != null && l60Var2.D()) {
             return;
         }
-        if (((a6) this.h) == a6Var && (k60Var = (k60) this.d) != null && k60Var.D() && ((LinearLayout) this.f13618e) != null) {
+        if (((a6) this.h) == a6Var && (l60Var = (l60) this.d) != null && l60Var.D() && ((LinearLayout) this.f13618e) != null) {
             this.f13619f = a10;
             d(a6Var, a10);
-            ((k60) this.d).O();
+            ((l60) this.d).O();
             return;
         }
         c();
@@ -253,16 +253,16 @@ public final class d implements ib.b, q5.b {
         this.f13618e = linearLayout;
         linearLayout.setOrientation(1);
         d(a6Var, a10);
-        k60 a11 = ((m0) this.f13616b).a(a6Var.getEditText());
+        l60 a11 = ((m0) this.f13616b).a(a6Var.getEditText());
         a11.Q = true;
-        a11.f35231s = 0;
-        a11.f35232t = false;
+        a11.f35617s = 0;
+        a11.f35618t = false;
         a11.r((LinearLayout) this.f13618e, ha.o(220, -2));
         a11.X = g0.L(240.0f);
-        a11.f35213i = 3;
+        a11.f35599i = 3;
         a11.a0(-g0.L(12.0f), 0.0f);
-        a11.f35226p = new w(this, 6);
-        a11.f35205d0 = true;
+        a11.f35612p = new a0(this, 5);
+        a11.f35591d0 = true;
         if (a11.D()) {
             a11.C();
         }
@@ -287,17 +287,17 @@ public final class d implements ib.b, q5.b {
         }
     }
 
-    public d(m0 m0Var, f6 f6Var) {
+    public d(m0 m0Var, g6 g6Var) {
         this.f13615a = 3;
         this.f13616b = m0Var;
-        this.f13617c = f6Var;
+        this.f13617c = g6Var;
     }
 
     public d(Context context) {
         String str;
         String replaceAll;
         this.f13615a = 0;
-        String str2 = ((e1) x9.c.f58667a.b(context)).f8337a;
+        String str2 = ((e1) x9.c.f58676a.b(context)).f8335a;
         this.f13616b = str2;
         File filesDir = context.getFilesDir();
         this.f13617c = filesDir;

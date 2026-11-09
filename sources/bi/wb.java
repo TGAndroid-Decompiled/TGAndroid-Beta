@@ -4,39 +4,39 @@ import android.widget.LinearLayout;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.ij;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.nq0;
-import org.telegram.ui.wq0;
-public final class wb extends nq0 {
-    public final org.telegram.ui.Components.l9 f4988a;
-    public final LinearLayout f4989b;
-    public final long f4990c;
+import org.telegram.ui.pq0;
+import org.telegram.ui.yq0;
+public final class wb extends pq0 {
+    public final org.telegram.ui.Components.l9 f4986a;
+    public final LinearLayout f4987b;
+    public final long f4988c;
 
     public wb(org.telegram.ui.Components.l9 l9Var, LinearLayout linearLayout, long j3) {
-        this.f4988a = l9Var;
-        this.f4989b = linearLayout;
-        this.f4990c = j3;
+        this.f4986a = l9Var;
+        this.f4987b = linearLayout;
+        this.f4988c = j3;
     }
 
     @Override
-    public final wq0 E(ij ijVar, TLRPC.FileLocation fileLocation, int i7, boolean z9, boolean z10) {
-        org.telegram.ui.Components.l9 l9Var = this.f4988a;
+    public final yq0 E(ij ijVar, TLRPC.FileLocation fileLocation, int i7, boolean z9, boolean z10) {
+        org.telegram.ui.Components.l9 l9Var = this.f4986a;
         ImageReceiver imageReceiver = l9Var.getImageReceiver();
         int[] iArr = new int[2];
         l9Var.getLocationInWindow(iArr);
-        wq0 wq0Var = new wq0();
-        wq0Var.f51484b = iArr[0];
-        wq0Var.f51485c = iArr[1];
-        wq0Var.d = this.f4989b;
-        wq0Var.f51493m = null;
-        wq0Var.f51483a = imageReceiver;
+        yq0 yq0Var = new yq0();
+        yq0Var.f52160b = iArr[0];
+        yq0Var.f52161c = iArr[1];
+        yq0Var.d = this.f4987b;
+        yq0Var.f52169m = null;
+        yq0Var.f52159a = imageReceiver;
         if (z9) {
-            wq0Var.f51486e = imageReceiver.p();
+            yq0Var.f52162e = imageReceiver.p();
         }
-        wq0Var.h = imageReceiver.E();
-        wq0Var.f51487f = this.f4990c;
-        wq0Var.f51490j = 0;
-        wq0Var.f51489i = 0;
-        return wq0Var;
+        yq0Var.h = imageReceiver.E();
+        yq0Var.f52163f = this.f4988c;
+        yq0Var.f52166j = 0;
+        yq0Var.f52165i = 0;
+        return yq0Var;
     }
 
     @Override

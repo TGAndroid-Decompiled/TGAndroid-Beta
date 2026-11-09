@@ -14,7 +14,7 @@ public class ChatsWidgetService extends RemoteViewsService {
         obj.f22187g = new a0.h();
         obj.h = new a0.h();
         obj.f22183b = applicationContext;
-        org.telegram.ui.ActionBar.k6.T(applicationContext);
+        org.telegram.ui.ActionBar.l6.T(applicationContext);
         boolean z9 = false;
         int intExtra = intent.getIntExtra("appWidgetId", 0);
         obj.f22184c = intExtra;

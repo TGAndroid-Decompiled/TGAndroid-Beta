@@ -1,110 +1,94 @@
 package org.telegram.ui;
 
-import j$.time.LocalDate;
-import j$.time.Period;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class xw0 {
-    public final int f51993a;
-    public boolean f51994b;
-    public zw0 f51995c;
-    public final boolean[] f51998g;
-    public boolean f51999i;
-    public final ArrayList d = new ArrayList();
-    public final ArrayList f51996e = new ArrayList();
-    public final ArrayList f51997f = new ArrayList();
-    public final ArrayList h = new ArrayList();
-    public final ArrayList f52000j = new ArrayList();
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+public final class xw0 extends Drawable implements org.telegram.ui.ActionBar.k5 {
+    public final org.telegram.ui.Components.i6 f51783a;
+    public final Paint f51784b;
+    public int f51785c;
+    public float d;
+    public float f51786e;
+    public final org.telegram.ui.Cells.j0 f51787f;
+    public org.telegram.ui.Cells.t0 h;
 
-    public xw0(int i7, int i10) {
-        boolean[] zArr = new boolean[2];
-        this.f51998g = zArr;
-        this.f51993a = i10;
-        if (i10 <= 0) {
-            zArr[0] = true;
-        } else {
-            ArrayList arrayList = new ArrayList();
-            HashSet hashSet = new HashSet();
-            String j3 = jg.g.j(i10, "");
-            for (int i11 = 0; i11 < j3.length(); i11++) {
-                int charAt = j3.charAt(i11) - '0';
-                if (charAt >= 0 && charAt <= 9) {
-                    arrayList.add(Integer.valueOf(charAt));
-                    hashSet.add(Integer.valueOf(charAt));
-                }
-            }
-            TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
-            String[] strArr = ax0.f44112s;
-            tL_inputStickerSetShortName.short_name = "FestiveFontEmoji";
-            org.telegram.messenger.ui.b0(i7).l0(tL_inputStickerSetShortName, 0, false, false, new y(this, hashSet, arrayList, 11));
-        }
-        String str = ax0.f44112s[Utilities.f21334b.nextInt(3)];
-        TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName2 = new TLRPC.TL_inputStickerSetShortName();
-        tL_inputStickerSetShortName2.short_name = "EmojiAnimations";
-        org.telegram.messenger.ui.b0(i7).l0(tL_inputStickerSetShortName2, 0, false, false, new org.telegram.ui.Components.fx(22, this, str));
+    public xw0(String str) {
+        Paint paint = new Paint(1);
+        this.f51784b = paint;
+        this.d = 1.0f;
+        this.f51786e = 1.0f;
+        this.f51787f = new org.telegram.ui.Cells.j0(this);
+        org.telegram.ui.Components.i6 i6Var = new org.telegram.ui.Components.i6(false, false, false);
+        this.f51783a = i6Var;
+        i6Var.setCallback(new vq(1, this));
+        i6Var.t(str, true, true);
+        i6Var.w(org.telegram.messenger.g0.L(11.0f));
+        i6Var.f34587b = 17;
+        paint.setColor(520093696);
     }
 
-    public static xw0 c(int i7, TLRPC.UserFull userFull, xw0 xw0Var) {
-        int i10;
-        TL_account.TL_birthday tL_birthday;
-        if (org.telegram.messenger.sc.e(2) && org.telegram.messenger.v1.d(userFull)) {
-            if (userFull != null && (tL_birthday = userFull.birthday) != null && (tL_birthday.flags & 1) != 0) {
-                i10 = Period.between(LocalDate.of(tL_birthday.year, tL_birthday.month, tL_birthday.day), LocalDate.now()).getYears();
-            } else {
-                i10 = 0;
-            }
-            if (xw0Var != null) {
-                if (xw0Var.f51993a == i10) {
-                    return xw0Var;
-                }
-                xw0Var.b(false);
-            }
-            return new xw0(i7, i10);
-        } else if (xw0Var != null) {
-            xw0Var.b(false);
-            return null;
-        } else {
-            return null;
+    public final void a(int i7) {
+        Paint paint = this.f51784b;
+        if (paint.getColor() != i7) {
+            paint.setColor(i7);
+            invalidateSelf();
         }
     }
 
-    public final void a() {
-        if (!this.f51994b && this.f51997f.size() >= this.f51996e.size()) {
-            boolean[] zArr = this.f51998g;
-            int i7 = 0;
-            if (zArr[0] && zArr[1]) {
-                this.f51994b = true;
-                ArrayList arrayList = this.h;
-                int size = arrayList.size();
-                while (i7 < size) {
-                    Object obj = arrayList.get(i7);
-                    i7++;
-                    ((Runnable) obj).run();
-                }
-                arrayList.clear();
-            }
-        }
-    }
-
-    public final void b(boolean z9) {
-        if (!z9 && !this.f52000j.isEmpty()) {
-            this.f51999i = true;
+    @Override
+    public final void draw(Canvas canvas) {
+        float f10 = this.d * this.f51786e;
+        if (f10 <= 0.0f) {
             return;
         }
-        this.h.clear();
-        int i7 = 0;
-        while (true) {
-            ArrayList arrayList = this.f51996e;
-            if (i7 < arrayList.size()) {
-                ((zw0) arrayList.get(i7)).R();
-                i7++;
-            } else {
-                arrayList.clear();
-                return;
-            }
-        }
+        RectF rectF = org.telegram.messenger.g0.P;
+        rectF.set(getBounds());
+        canvas.save();
+        float a10 = this.f51787f.a(0.1f);
+        canvas.scale(a10, a10, rectF.centerX(), rectF.centerY());
+        Paint paint = this.f51784b;
+        int alpha = paint.getAlpha();
+        paint.setAlpha((int) (alpha * f10));
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(20.0f), org.telegram.messenger.g0.L(20.0f), paint);
+        paint.setAlpha(alpha);
+        int i7 = this.f51785c;
+        org.telegram.ui.Components.i6 i6Var = this.f51783a;
+        i6Var.u(i7);
+        i6Var.B = (int) (f10 * 255.0f);
+        i6Var.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+        i6Var.draw(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final int getAlpha() {
+        return (int) (this.d * 255.0f);
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return org.telegram.messenger.g0.L(17.33f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return (int) (this.f51783a.d + org.telegram.messenger.g0.L(11.0f));
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+        this.d = i7 / 255.0f;
+        invalidateSelf();
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

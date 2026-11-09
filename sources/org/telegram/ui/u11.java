@@ -1,10 +1,14 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.widget.FrameLayout;
-public final class u11 extends FrameLayout {
+import android.view.MotionEvent;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class u11 extends EditTextBoldCursor {
     @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(240.0f), 1073741824));
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0 && !org.telegram.messenger.g0.K3(this)) {
+            clearFocus();
+            requestFocus();
+        }
+        return super.onTouchEvent(motionEvent);
     }
 }

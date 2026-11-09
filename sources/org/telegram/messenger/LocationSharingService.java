@@ -61,18 +61,18 @@ public class LocationSharingService extends Service implements ls {
                     intent.addCategory("android.intent.category.LAUNCHER");
                     PendingIntent activity = PendingIntent.getActivity(context, 0, intent, 167772160);
                     Intent intent2 = new Intent(context, StopLiveLocationReceiver.class);
-                    String M0 = id.M0(2131748840, null);
+                    String M0 = id.M0(2131748839, null);
                     dt.i();
                     e0.q qVar = new e0.q(context, dt.f22075j0);
                     qVar.F.icon = 2131231632;
-                    qVar.g(id.M0(2131748839, null));
+                    qVar.g(id.M0(2131748838, null));
                     qVar.f(M0);
                     e0.l lVar = new e0.l(false);
                     lVar.f10087f = e0.q.d(M0);
                     qVar.n(lVar);
                     qVar.f10099g = activity;
                     qVar.h(16, true);
-                    qVar.a(0, PendingIntent.getBroadcast(context, 2, intent2, 167772160), id.M0(2131744841, null));
+                    qVar.a(0, PendingIntent.getBroadcast(context, 2, intent2, 167772160), id.M0(2131744838, null));
                     if (!z10) {
                         qVar.B = j3;
                     }
@@ -176,7 +176,7 @@ public class LocationSharingService extends Service implements ls {
                 qVar3.f10115y = dt.f22075j0;
                 qVar3.g(id.M0(2131689472, null));
                 Intent intent3 = new Intent(t0.f25566b, StopLiveLocationReceiver.class);
-                this.f21241a.a(0, PendingIntent.getBroadcast(t0.f25566b, 2, intent3, 167772160), id.M0(2131744841, null));
+                this.f21241a.a(0, PendingIntent.getBroadcast(t0.f25566b, 2, intent3, 167772160), id.M0(2131744838, null));
             }
             c(false);
             Notification b10 = this.f21241a.b();

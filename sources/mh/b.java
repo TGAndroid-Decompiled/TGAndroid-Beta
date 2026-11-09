@@ -5,7 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import l2.w;
+import l2.a0;
 import org.telegram.messenger.camera.q;
 import org.telegram.messenger.g0;
 import org.telegram.ui.Components.voip.n2;
@@ -22,7 +22,7 @@ public abstract class b extends ViewGroup {
 
     public final void a(n2 n2Var) {
         addView(n2Var);
-        this.f20045c.put(n2Var, new a(n2Var, new w(this, 10)));
+        this.f20045c.put(n2Var, new a(n2Var, new a0(this, 9)));
     }
 
     public final void b(boolean z9, boolean z10) {
@@ -76,12 +76,12 @@ public abstract class b extends ViewGroup {
                         measuredWidth = ((measuredWidth2 - n2Var.getMeasuredWidth()) / 2) + (getMeasuredWidth() - measuredWidth2);
                         i10 = (min * i12) + i7;
                     }
-                    if (!z10 && ((z9 || cVar3.h) && aVar3.f55488f)) {
+                    if (!z10 && ((z9 || cVar3.h) && aVar3.f55500f)) {
                         cVar3.a(measuredWidth);
                     } else {
                         cVar3.c(measuredWidth);
                     }
-                    if (!z10 && ((z9 || cVar2.h) && aVar3.f55488f)) {
+                    if (!z10 && ((z9 || cVar2.h) && aVar3.f55500f)) {
                         cVar2.a(i10);
                     } else {
                         cVar2.c(i10);

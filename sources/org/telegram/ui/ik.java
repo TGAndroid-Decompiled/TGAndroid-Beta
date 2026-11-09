@@ -1,39 +1,35 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-public final class ik implements org.telegram.ui.Components.hi0 {
-    public final an f46683a;
+import android.animation.LayoutTransition;
+import android.view.View;
+import android.view.ViewGroup;
+public final class ik implements LayoutTransition.TransitionListener {
+    public hk f46681a;
+    public int f46682b;
+    public final org.telegram.ui.ActionBar.y f46683c;
+    public final cn d;
 
-    public ik(an anVar) {
-        this.f46683a = anVar;
+    public ik(cn cnVar, org.telegram.ui.ActionBar.y yVar) {
+        this.d = cnVar;
+        this.f46683c = yVar;
     }
 
     @Override
-    public final boolean E() {
-        return false;
+    public final void endTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i7) {
+        int i10 = this.f46682b - 1;
+        this.f46682b = i10;
+        if (i10 == 0 && this.f46681a != null) {
+            this.f46683c.getViewTreeObserver().removeOnPreDrawListener(this.f46681a);
+            this.f46681a = null;
+        }
     }
 
     @Override
-    public final boolean U() {
-        return false;
-    }
-
-    @Override
-    public final void i(android.view.View r24, ch.o0 r25, boolean r26, boolean r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ik.i(android.view.View, ch.o0, boolean, boolean):void");
-    }
-
-    @Override
-    public final boolean v() {
-        return true;
-    }
-
-    @Override
-    public final void M() {
-    }
-
-    @Override
-    public final void L(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i7, boolean z9) {
+    public final void startTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i7) {
+        if (this.f46682b == 0 && this.f46681a == null) {
+            this.f46681a = new hk(this, 0);
+            this.f46683c.getViewTreeObserver().addOnPreDrawListener(this.f46681a);
+        }
+        this.f46682b++;
     }
 }

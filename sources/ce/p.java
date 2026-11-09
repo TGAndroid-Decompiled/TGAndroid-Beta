@@ -1,19 +1,19 @@
 package ce;
 public final class p extends kd.c {
-    public Object f6133a;
-    public int f6134b;
-    public final wf.b f6135c;
+    public Object f6131a;
+    public int f6132b;
+    public final wf.b f6133c;
     public m d;
 
     public p(wf.b bVar, kd.c cVar) {
         super(cVar);
-        this.f6135c = bVar;
+        this.f6133c = bVar;
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        this.f6133a = obj;
-        this.f6134b |= Integer.MIN_VALUE;
-        return this.f6135c.B(null, this);
+        this.f6131a = obj;
+        this.f6132b |= Integer.MIN_VALUE;
+        return this.f6133c.B(null, this);
     }
 }

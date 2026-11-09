@@ -62,14 +62,14 @@ public final class bf implements Runnable {
                                     }
                                     if (TextUtils.isEmpty(str2)) {
                                         w7.G(cVar.f21765a);
-                                        TLRPC.MessageMedia n1 = ij.n1(ijVar);
+                                        TLRPC.MessageMedia m12 = ij.m1(ijVar);
                                         TLRPC.Document document2 = ijVar.f23233d3;
                                         if (document2 != null) {
                                             file2 = w7.J(document2, null, false, true);
                                         } else {
                                             File M = w7.M(ijVar.f23262k, false, true);
-                                            if (n1 instanceof TLRPC.TL_messageMediaDocument) {
-                                                TLRPC.TL_messageMediaDocument tL_messageMediaDocument = (TLRPC.TL_messageMediaDocument) n1;
+                                            if (m12 instanceof TLRPC.TL_messageMediaDocument) {
+                                                TLRPC.TL_messageMediaDocument tL_messageMediaDocument = (TLRPC.TL_messageMediaDocument) m12;
                                                 if (!tL_messageMediaDocument.alt_documents.isEmpty()) {
                                                     file2 = w7.J(tL_messageMediaDocument.alt_documents.get(0), null, false, true);
                                                 }
@@ -169,7 +169,7 @@ public final class bf implements Runnable {
                                         cfVar3.f21848r.await();
                                     }
                                     if (file.exists()) {
-                                        cfVar3.a(file, file4, ijVar2.u1());
+                                        cfVar3.a(file, file4, ijVar2.t1());
                                         cfVar3.f21847n++;
                                     }
                                 }

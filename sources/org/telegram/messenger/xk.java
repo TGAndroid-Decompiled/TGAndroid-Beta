@@ -1,7 +1,7 @@
 package org.telegram.messenger;
 
 import java.util.HashMap;
-import org.telegram.ui.Components.l41;
+import org.telegram.ui.Components.m41;
 public final class xk implements Runnable {
     public final int f26492a;
     public final long f26493b;
@@ -17,7 +17,7 @@ public final class xk implements Runnable {
 
     @Override
     public final void run() {
-        l41 l41Var;
+        m41 m41Var;
         switch (this.f26492a) {
             case 0:
                 qp qpVar = (qp) this.d;
@@ -45,17 +45,17 @@ public final class xk implements Runnable {
                 }
                 return;
             case 1:
-                org.telegram.ui.pn.b0((org.telegram.ui.pn) this.d, this.f26493b, this.f26494c);
+                org.telegram.ui.rn.b0((org.telegram.ui.rn) this.d, this.f26493b, this.f26494c);
                 return;
             case 2:
                 org.telegram.ui.web.o1 o1Var = (org.telegram.ui.web.o1) this.d;
                 long j11 = this.f26493b;
                 long j12 = this.f26494c;
                 o1Var.h = j11;
-                o1Var.f51262n = j12;
-                fi.w3 w3Var = o1Var.f36243a;
-                if (w3Var != null && (l41Var = w3Var.f37190f3) != null && w3Var.G) {
-                    l41Var.O(true);
+                o1Var.f51243n = j12;
+                fi.w3 w3Var = o1Var.f36649a;
+                if (w3Var != null && (m41Var = w3Var.f37556f3) != null && w3Var.G) {
+                    m41Var.O(true);
                     return;
                 }
                 return;
@@ -65,9 +65,9 @@ public final class xk implements Runnable {
                 long j14 = this.f26494c;
                 if (hVar2.G == 7) {
                     long j15 = ((j13 - j14) * 48000) / 1000;
-                    hVar2.f57554p = j15;
-                    hVar2.f57556r = 0L;
-                    hVar2.f57557s = vi.h.r(j15);
+                    hVar2.f57566p = j15;
+                    hVar2.f57568r = 0L;
+                    hVar2.f57569s = vi.h.r(j15);
                     hVar2.i();
                     return;
                 }
@@ -76,11 +76,11 @@ public final class xk implements Runnable {
                 long j16 = this.f26493b;
                 long j17 = this.f26494c;
                 vi.h hVar3 = (vi.h) ((ac.e) this.d).f1025c;
-                if (j16 == hVar3.f57553o) {
-                    hVar3.f57552n = null;
-                    hVar3.f57554p += j17;
-                    hVar3.f57555q = 0L;
-                    hVar3.f57547i.removeCallbacks(hVar3.D);
+                if (j16 == hVar3.f57565o) {
+                    hVar3.f57564n = null;
+                    hVar3.f57566p += j17;
+                    hVar3.f57567q = 0L;
+                    hVar3.f57559i.removeCallbacks(hVar3.D);
                     int i7 = hVar3.G;
                     if (i7 == 10) {
                         hVar3.c();
@@ -96,15 +96,15 @@ public final class xk implements Runnable {
                         hVar3.i();
                         return;
                     } else if (i7 == 4) {
-                        vi.g gVar = hVar3.f57563z;
+                        vi.g gVar = hVar3.f57575z;
                         if (gVar == null) {
                             hVar3.g(new IllegalStateException("Output generation is missing"));
                             return;
                         }
                         long j18 = hVar3.j();
-                        hVar3.f57556r = 0L;
-                        hVar3.f57557s = j18;
-                        hVar3.f57548j.execute(new org.telegram.utils.recorder.audio.c(1, hVar3, gVar));
+                        hVar3.f57568r = 0L;
+                        hVar3.f57569s = j18;
+                        hVar3.f57560j.execute(new org.telegram.utils.recorder.audio.c(1, hVar3, gVar));
                         return;
                     } else {
                         return;

@@ -8,8 +8,8 @@ import org.telegram.messenger.qr;
 import org.telegram.messenger.voip.ConferenceCall;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.an;
-import org.telegram.ui.oq;
+import org.telegram.ui.cn;
+import org.telegram.ui.qq;
 public final class i0 implements Runnable {
     public final int f4021a;
     public final Object f4022b;
@@ -50,13 +50,13 @@ public final class i0 implements Runnable {
         this.f4025f = runnable;
     }
 
-    public i0(ce ceVar, long j3, ea eaVar, ij ijVar, an anVar) {
+    public i0(ce ceVar, long j3, ea eaVar, ij ijVar, cn cnVar) {
         this.f4021a = 7;
         this.d = ceVar;
         this.f4023c = j3;
         this.f4024e = eaVar;
         this.f4022b = ijVar;
-        this.f4025f = anVar;
+        this.f4025f = cnVar;
     }
 
     public i0(Object obj, Object obj2, long j3, Object obj3, Object obj4, int i7) {
@@ -95,9 +95,9 @@ public final class i0 implements Runnable {
         this.f4025f = qrVar;
     }
 
-    public i0(oq oqVar, long j3, TLObject tLObject, String str, TLObject tLObject2, int i7) {
+    public i0(qq qqVar, long j3, TLObject tLObject, String str, TLObject tLObject2, int i7) {
         this.f4021a = i7;
-        this.d = oqVar;
+        this.d = qqVar;
         this.f4023c = j3;
         this.f4024e = tLObject;
         this.f4025f = str;

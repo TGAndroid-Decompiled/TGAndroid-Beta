@@ -6,19 +6,19 @@ import org.telegram.messenger.p10;
 import org.telegram.messenger.v10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.an;
-public final class d5 extends an {
-    public final v10 f11788rd;
-    public final o5 f11789sd;
+import org.telegram.ui.cn;
+public final class d5 extends cn {
+    public final v10 f11788td;
+    public final o5 f11789ud;
 
     public d5(o5 o5Var, v10 v10Var) {
         super(null);
-        this.f11789sd = o5Var;
-        this.f11788rd = v10Var;
+        this.f11789ud = o5Var;
+        this.f11788td = v10Var;
     }
 
     @Override
-    public final boolean T9() {
+    public final boolean U9() {
         return false;
     }
 
@@ -57,17 +57,17 @@ public final class d5 extends an {
         } else {
             return;
         }
-        this.f11788rd.a(messageMedia, tL_mediaAreaGeoPoint2);
+        this.f11788td.a(messageMedia, tL_mediaAreaGeoPoint2);
     }
 
     @Override
     public final Activity getParentActivity() {
-        return org.telegram.messenger.g0.W(this.f11789sd.getContext());
+        return org.telegram.messenger.g0.W(this.f11789ud.getContext());
     }
 
     @Override
-    public final org.telegram.ui.ActionBar.f6 getResourceProvider() {
-        return this.f11789sd.f12540p1;
+    public final org.telegram.ui.ActionBar.g6 getResourceProvider() {
+        return this.f11789ud.f12538p1;
     }
 
     @Override

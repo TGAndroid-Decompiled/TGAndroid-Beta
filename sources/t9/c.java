@@ -9,11 +9,11 @@ import com.google.android.gms.common.api.q;
 import com.google.android.gms.tasks.TaskCompletionSource;
 public final class c extends t implements e {
     public TaskCompletionSource d;
-    public final b[] f55467e;
+    public final b[] f55479e;
 
     public c(b[] bVarArr) {
         super(null, false, 9004);
-        this.f55467e = bVarArr;
+        this.f55479e = bVarArr;
     }
 
     @Override
@@ -25,9 +25,9 @@ public final class c extends t implements e {
             return;
         }
         TaskCompletionSource taskCompletionSource = this.d;
-        String str = status.f6530b;
+        String str = status.f6528b;
         str = (str == null || str.isEmpty()) ? "User Action indexing error, please try again." : "User Action indexing error, please try again.";
-        switch (status.f6529a) {
+        switch (status.f6527a) {
             case 17510:
                 a0Var = new a0(str);
                 break;
@@ -55,12 +55,12 @@ public final class c extends t implements e {
         e7.b bVar = new e7.b(this);
         Parcel obtain = Parcel.obtain();
         obtain.writeInterfaceToken("com.google.android.gms.appdatasearch.internal.ILightweightAppDataSearch");
-        int i7 = s7.c.f54935a;
+        int i7 = s7.c.f54947a;
         obtain.writeStrongBinder(bVar);
-        obtain.writeTypedArray(this.f55467e, 0);
+        obtain.writeTypedArray(this.f55479e, 0);
         Parcel obtain2 = Parcel.obtain();
         try {
-            aVar.f54934a.transact(7, obtain, obtain2, 0);
+            aVar.f54946a.transact(7, obtain, obtain2, 0);
             obtain2.readException();
         } finally {
             obtain.recycle();

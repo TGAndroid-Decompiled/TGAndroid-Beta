@@ -12,8 +12,8 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 public class ShareActivity extends Activity {
-    public static final int f41966b = 0;
-    public org.telegram.ui.Components.mo0 f41967a;
+    public static final int f41973b = 0;
+    public org.telegram.ui.Components.no0 f41974a;
 
     @Override
     public final void onCreate(Bundle bundle) {
@@ -49,11 +49,11 @@ public class ShareActivity extends Activity {
                 org.telegram.messenger.ij ijVar = new org.telegram.messenger.ij(org.telegram.messenger.p10.f24470s0, TLdeserialize, false, true);
                 ijVar.f23262k.with_my_score = true;
                 try {
-                    org.telegram.ui.Components.mo0 N0 = org.telegram.ui.Components.mo0.N0(this, ijVar, null, false, string2);
-                    this.f41967a = N0;
+                    org.telegram.ui.Components.no0 N0 = org.telegram.ui.Components.no0.N0(this, ijVar, null, false, string2);
+                    this.f41974a = N0;
                     N0.setCanceledOnTouchOutside(true);
-                    this.f41967a.setOnDismissListener(new q5(this, 15));
-                    this.f41967a.show();
+                    this.f41974a.setOnDismissListener(new q5(this, 15));
+                    this.f41974a.show();
                     return;
                 } catch (Exception e10) {
                     org.telegram.messenger.a8.g(e10, true);
@@ -71,10 +71,10 @@ public class ShareActivity extends Activity {
     public final void onPause() {
         super.onPause();
         try {
-            org.telegram.ui.Components.mo0 mo0Var = this.f41967a;
-            if (mo0Var != null && mo0Var.isShowing()) {
-                this.f41967a.dismiss();
-                this.f41967a = null;
+            org.telegram.ui.Components.no0 no0Var = this.f41974a;
+            if (no0Var != null && no0Var.isShowing()) {
+                this.f41974a.dismiss();
+                this.f41974a = null;
             }
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

@@ -3,7 +3,7 @@ package f2;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import di.s7;
+import di.f8;
 import h2.i0;
 import l2.c0;
 public final class a extends BroadcastReceiver {
@@ -20,7 +20,7 @@ public final class a extends BroadcastReceiver {
     @Override
     public final void onReceive(Context context, Intent intent) {
         if ("android.media.AUDIO_BECOMING_NOISY".equals(intent.getAction())) {
-            this.f10888b.d(new s7(this, 11));
+            this.f10888b.d(new f8(this, 10));
         }
     }
 }

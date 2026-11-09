@@ -4,31 +4,31 @@ import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import java.util.ArrayList;
 public final class q5 implements DialogInterface.OnDismissListener {
-    public final int f49109a;
-    public final Object f49110b;
+    public final int f48915a;
+    public final Object f48916b;
 
     public q5(Object obj, int i7) {
-        this.f49109a = i7;
-        this.f49110b = obj;
+        this.f48915a = i7;
+        this.f48916b = obj;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        org.telegram.ui.Components.zg0 zg0Var;
-        int i7 = this.f49109a;
-        Object obj = this.f49110b;
+        org.telegram.ui.Components.ah0 ah0Var;
+        int i7 = this.f48915a;
+        Object obj = this.f48916b;
         switch (i7) {
             case 0:
-                ((r5) obj).f49381a.y0(false);
+                ((r5) obj).f49277a.y0(false);
                 return;
             case 1:
-                ((o9) obj).f48330i1.onFragmentDestroy();
+                ((o9) obj).f48410i1.onFragmentDestroy();
                 return;
             case 2:
                 bd bdVar = (bd) obj;
-                if (!bdVar.f44284x.g()) {
+                if (!bdVar.f44010x.g()) {
                     bdVar.K.P(86);
-                    bdVar.f44270n.d();
+                    bdVar.f43996n.d();
                     return;
                 }
                 bdVar.K.N(0, false, false);
@@ -48,43 +48,43 @@ public final class q5 implements DialogInterface.OnDismissListener {
                 }
                 return;
             case 5:
-                pn pnVar = (pn) obj;
-                if (!pnVar.f48883s.g()) {
-                    pnVar.R0.P(86);
-                    pnVar.f48862b0.f29570e.d();
+                rn rnVar = (rn) obj;
+                if (!rnVar.f49533s.g()) {
+                    rnVar.R0.P(86);
+                    rnVar.f49512b0.f29574e.d();
                     return;
                 }
-                pnVar.R0.N(0, false, false);
+                rnVar.R0.N(0, false, false);
                 return;
             case 6:
                 ExternalActionActivity externalActionActivity = (ExternalActionActivity) obj;
-                ArrayList arrayList = ExternalActionActivity.f41225y;
+                ArrayList arrayList = ExternalActionActivity.f41232y;
                 externalActionActivity.setResult(0);
                 externalActionActivity.finish();
                 return;
             case 7:
-                d50 d50Var = (d50) obj;
-                if (!d50Var.N.g()) {
-                    d50Var.R.P(86);
-                    d50Var.f44955f.d();
+                f50 f50Var = (f50) obj;
+                if (!f50Var.N.g()) {
+                    f50Var.R.P(86);
+                    f50Var.f45588f.d();
                     return;
                 }
-                d50Var.R.N(0, false, false);
+                f50Var.R.N(0, false, false);
                 return;
             case 8:
-                pc0 pc0Var = (pc0) obj;
-                org.telegram.ui.Components.zg0 zg0Var2 = pc0Var.J;
-                yc ycVar = pc0Var.f48787n;
-                if (!pc0Var.M.g()) {
-                    ycVar.setAnimation(zg0Var2);
-                    zg0Var2.P(86);
-                    ycVar.setOnAnimationEndListener(new bb0(pc0Var, 2));
+                rc0 rc0Var = (rc0) obj;
+                org.telegram.ui.Components.ah0 ah0Var2 = rc0Var.J;
+                yc ycVar = rc0Var.f49446n;
+                if (!rc0Var.M.g()) {
+                    ycVar.setAnimation(ah0Var2);
+                    ah0Var2.P(86);
+                    ycVar.setOnAnimationEndListener(new db0(rc0Var, 2));
                     ycVar.d();
                     return;
                 }
-                ycVar.setAnimation(zg0Var2);
-                zg0Var2.N(0, false, false);
-                pc0Var.L = true;
+                ycVar.setAnimation(ah0Var2);
+                ah0Var2.N(0, false, false);
+                rc0Var.L = true;
                 return;
             case 9:
                 ((org.telegram.ui.ActionBar.v2) obj).dismiss();
@@ -98,26 +98,26 @@ public final class q5 implements DialogInterface.OnDismissListener {
                 return;
             case 12:
                 PrivacyControlActivity privacyControlActivity = (PrivacyControlActivity) obj;
-                if (!privacyControlActivity.f41667t0.g()) {
-                    privacyControlActivity.f41668u0.P(86);
-                    privacyControlActivity.f41669v0.f29570e.d();
+                if (!privacyControlActivity.f41674t0.g()) {
+                    privacyControlActivity.f41675u0.P(86);
+                    privacyControlActivity.f41676v0.f29574e.d();
                     return;
                 }
-                privacyControlActivity.f41668u0.N(0, false, false);
+                privacyControlActivity.f41675u0.N(0, false, false);
                 return;
             case 13:
                 ProfileActivity profileActivity = (ProfileActivity) obj;
-                if (!profileActivity.f41803q0.g()) {
+                if (!profileActivity.f41810q0.g()) {
                     profileActivity.U.P(86);
                     profileActivity.V.P(86);
-                    org.telegram.ui.Components.ef0 ef0Var = profileActivity.Z;
-                    if (ef0Var != null) {
-                        org.telegram.ui.Components.bf0 i10 = org.telegram.ui.Components.ef0.i(14, ef0Var.f33267a);
-                        if (i10 != null && (zg0Var = i10.f32178k) != null) {
-                            zg0Var.start();
+                    org.telegram.ui.Components.ff0 ff0Var = profileActivity.Z;
+                    if (ff0Var != null) {
+                        org.telegram.ui.Components.cf0 i10 = org.telegram.ui.Components.ff0.i(14, ff0Var.f33648a);
+                        if (i10 != null && (ah0Var = i10.f32661k) != null) {
+                            ah0Var.start();
                         }
                     } else {
-                        profileActivity.f41818s.d();
+                        profileActivity.f41825s.d();
                     }
                     org.telegram.ui.Cells.m8 m8Var = profileActivity.L2;
                     if (m8Var != null) {
@@ -130,21 +130,21 @@ public final class q5 implements DialogInterface.OnDismissListener {
                 profileActivity.V.N(0, false, false);
                 return;
             case 14:
-                ((q11) obj).w(0.0f);
+                ((s11) obj).w(0.0f);
                 return;
             case 15:
                 ShareActivity shareActivity = (ShareActivity) obj;
-                int i11 = ShareActivity.f41966b;
+                int i11 = ShareActivity.f41973b;
                 if (!shareActivity.isFinishing()) {
                     shareActivity.finish();
                 }
-                shareActivity.f41967a = null;
+                shareActivity.f41974a = null;
                 return;
             case 16:
                 ThemeActivity themeActivity = (ThemeActivity) obj;
-                themeActivity.f42033r = null;
+                themeActivity.f42040r = null;
                 themeActivity.h = null;
-                themeActivity.f42028n = null;
+                themeActivity.f42035n = null;
                 return;
             case 17:
                 TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) obj;
@@ -152,7 +152,7 @@ public final class q5 implements DialogInterface.OnDismissListener {
                 twoStepVerificationActivity.finishFragment();
                 return;
             default:
-                ((fc1) obj).f45576t0.b();
+                ((ic1) obj).f46608t0.b();
                 return;
         }
     }

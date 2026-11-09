@@ -14,7 +14,7 @@ import bi.q1;
 import bi.u7;
 import bi.v;
 import bi.z;
-import di.s7;
+import di.f8;
 import fi.d2;
 import fi.e2;
 import fi.p8;
@@ -43,35 +43,35 @@ import org.telegram.messenger.v10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.r0;
 import org.telegram.ui.ActionBar.y4;
-import org.telegram.ui.Components.a51;
 import org.telegram.ui.Components.aj;
 import org.telegram.ui.Components.b51;
 import org.telegram.ui.Components.bj;
-import org.telegram.ui.Components.ec0;
+import org.telegram.ui.Components.c51;
 import org.telegram.ui.Components.ei;
-import org.telegram.ui.Components.el0;
-import org.telegram.ui.Components.ey0;
+import org.telegram.ui.Components.fc0;
 import org.telegram.ui.Components.fj;
+import org.telegram.ui.Components.fl0;
+import org.telegram.ui.Components.fy0;
 import org.telegram.ui.Components.j6;
 import org.telegram.ui.Components.jy;
-import org.telegram.ui.Components.mw0;
 import org.telegram.ui.Components.ni;
-import org.telegram.ui.Components.oj0;
-import org.telegram.ui.Components.ow0;
-import org.telegram.ui.Components.qa0;
+import org.telegram.ui.Components.nw0;
+import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.pw0;
+import org.telegram.ui.Components.ra0;
 import org.telegram.ui.Components.rp;
 import org.telegram.ui.Components.s00;
-import org.telegram.ui.Components.s01;
+import org.telegram.ui.Components.t01;
 import org.telegram.ui.Components.tx;
 import org.telegram.ui.Components.uc;
 import org.telegram.ui.Components.ux;
-import org.telegram.ui.Components.v80;
+import org.telegram.ui.Components.w80;
 import org.telegram.ui.Components.xq;
 import org.telegram.ui.Components.zs;
 import org.telegram.ui.Wallet.WalletEngine2;
-import org.telegram.ui.Wallet.l4;
-import org.telegram.ui.Wallet.m9;
-import org.telegram.ui.Wallet.w9;
+import org.telegram.ui.Wallet.k4;
+import org.telegram.ui.Wallet.l9;
+import org.telegram.ui.Wallet.v9;
 public final class j implements TextWatcher {
     public final int f1079a;
     public final Object f1080b;
@@ -127,8 +127,8 @@ public final class j implements TextWatcher {
             case 1:
                 long j11 = 0;
                 z zVar = (z) this.f1080b;
-                bi.d dVar = zVar.f5133s0;
-                TLRPC.TL_payments_starsRevenueStats h = n0.g(z.r0(zVar)).h(zVar.f5110b, false);
+                bi.d dVar = zVar.f5131s0;
+                TLRPC.TL_payments_starsRevenueStats h = n0.g(z.r0(zVar)).h(zVar.f5108b, false);
                 if (h == null) {
                     j3 = 0;
                 } else {
@@ -168,9 +168,9 @@ public final class j implements TextWatcher {
                     editable.delete(indexOf + 3, obj.length());
                 }
                 if (objArr == null) {
-                    i7 = cg.a.h(editable.toString(), e1Var.f3748y1.f6160a);
+                    i7 = cg.a.h(editable.toString(), e1Var.f3748y1.f6158a);
                 } else {
-                    i7 = cg.a.i(0L, e1Var.f3748y1.f6160a);
+                    i7 = cg.a.i(0L, e1Var.f3748y1.f6158a);
                 }
                 e1Var.M0(i7, false, false, true);
                 e1Var.f3737m1.c(e1Var.n1.isFocused(), !TextUtils.isEmpty(e1Var.n1.getText()));
@@ -186,9 +186,9 @@ public final class j implements TextWatcher {
                     editable.delete(indexOf2 + 3, obj2.length());
                 }
                 if (objArr2 == null) {
-                    i10 = cg.a.h(editable.toString(), h1Var.f3984v1.f6160a);
+                    i10 = cg.a.h(editable.toString(), h1Var.f3984v1.f6158a);
                 } else {
-                    i10 = cg.a.i(0L, h1Var.f3984v1.f6160a);
+                    i10 = cg.a.i(0L, h1Var.f3984v1.f6158a);
                 }
                 h1Var.J0(i10, false, false, true);
                 h1Var.f3973i1.c(h1Var.f3974j1.isFocused(), !TextUtils.isEmpty(h1Var.f3974j1.getText()));
@@ -242,7 +242,7 @@ public final class j implements TextWatcher {
                             } else {
                                 f11 = 0.0f;
                             }
-                            ViewPropertyAnimator duration = scaleY.alpha(f11).withEndAction(new s7(this, 20)).setInterpolator(xqVar).setDuration(320L);
+                            ViewPropertyAnimator duration = scaleY.alpha(f11).withEndAction(new f8(this, 19)).setInterpolator(xqVar).setDuration(320L);
                             if (e2Var.f11860n) {
                                 j10 = 240;
                             } else {
@@ -283,7 +283,7 @@ public final class j implements TextWatcher {
                     if (!TextUtils.equals(str7, str3)) {
                         w6Var.e1();
                         String str9 = w6Var.f13041j2;
-                        if (str9 != null && str9.length() > 3 && !TextUtils.isEmpty(((org.telegram.messenger.n0) qp.s1(w6Var.f28616a).f24942x7.F.f13555b).f24118c)) {
+                        if (str9 != null && str9.length() > 3 && !TextUtils.isEmpty(((org.telegram.messenger.n0) qp.s1(w6Var.f28621a).f24942x7.F.f13555b).f24118c)) {
                             z15 = true;
                         }
                         w6Var.f13052u2 = z15;
@@ -299,7 +299,7 @@ public final class j implements TextWatcher {
                 return;
             case 6:
                 p8 p8Var = (p8) this.f1080b;
-                if (!p8Var.f12616n && (c20Var2 = p8Var.f12617r) != null && editable != null) {
+                if (!p8Var.f12614n && (c20Var2 = p8Var.f12615r) != null && editable != null) {
                     c20Var2.a(editable.toString());
                     return;
                 }
@@ -315,7 +315,7 @@ public final class j implements TextWatcher {
                 String obj5 = editable.toString();
                 if (!obj5.isEmpty()) {
                     if (jyVar != null) {
-                        jyVar.setText(id.M0(2131748168, null));
+                        jyVar.setText(id.M0(2131748167, null));
                     }
                 } else if (q1Var2.getAdapter() != d0Var) {
                     int O = kg.g0.O(g0Var);
@@ -368,7 +368,7 @@ public final class j implements TextWatcher {
                     q0Var.f17510y = true;
                     g0.i3(k0Var, 800L);
                 }
-                q0Var.f17502c.f37190f3.O(true);
+                q0Var.f17502c.f37556f3.O(true);
                 q0Var.g0();
                 return;
             case 10:
@@ -386,14 +386,14 @@ public final class j implements TextWatcher {
                 return;
             case 14:
                 uc ucVar = (uc) this.f1080b;
-                ucVar.F((ucVar.f12365f.getEditText().getLineCount() <= 2 || editable == null || TextUtils.isEmpty(editable.toString().trim())) ? false : false);
+                ucVar.F((ucVar.f12366f.getEditText().getLineCount() <= 2 || editable == null || TextUtils.isEmpty(editable.toString().trim())) ? false : false);
                 return;
             case 15:
                 ni niVar = (ni) this.f1080b;
-                ei eiVar = niVar.f36355f0;
+                ei eiVar = niVar.f36369f0;
                 TextUtils.isEmpty(niVar.D);
                 niVar.D = editable.toString().trim();
-                ei eiVar2 = niVar.f36350a0;
+                ei eiVar2 = niVar.f36364a0;
                 g0.r(eiVar2);
                 if (!TextUtils.isEmpty(niVar.D)) {
                     String str10 = niVar.D;
@@ -405,18 +405,18 @@ public final class j implements TextWatcher {
                     niVar.W = z10;
                     if (!TextUtils.equals(niVar.V, niVar.D)) {
                         niVar.L.clear();
-                        niVar.f36351b0 = 0;
-                        niVar.f36352c0 = false;
+                        niVar.f36365b0 = 0;
+                        niVar.f36366c0 = false;
                     }
                     g0.i3(eiVar2, 1500L);
                 }
                 g0.r(eiVar);
                 if (!TextUtils.isEmpty(niVar.D)) {
                     String str11 = niVar.D;
-                    niVar.m0 = (str11 == null || str11.length() < 3 || TextUtils.isEmpty(((org.telegram.messenger.n0) qp.s1(niVar.f39004b.D3).f24942x7.F.f13555b).f24118c)) ? false : false;
-                    if (!TextUtils.equals(niVar.f36354e0, niVar.D)) {
+                    niVar.m0 = (str11 == null || str11.length() < 3 || TextUtils.isEmpty(((org.telegram.messenger.n0) qp.s1(niVar.f39071b.D3).f24942x7.F.f13555b).f24118c)) ? false : false;
+                    if (!TextUtils.equals(niVar.f36368e0, niVar.D)) {
                         niVar.M.clear();
-                        niVar.f36356g0 = false;
+                        niVar.f36370g0 = false;
                     }
                     g0.i3(eiVar, 1500L);
                 }
@@ -427,34 +427,34 @@ public final class j implements TextWatcher {
                 if (!obj6.isEmpty()) {
                     jy jyVar2 = ((fj) this.f1080b).G;
                     if (jyVar2 != null) {
-                        jyVar2.setText(id.M0(2131748168, null));
+                        jyVar2.setText(id.M0(2131748167, null));
                     }
                 } else {
-                    v4.g0 adapter2 = ((fj) this.f1080b).f33561s.getAdapter();
+                    v4.g0 adapter2 = ((fj) this.f1080b).f33684s.getAdapter();
                     fj fjVar = (fj) this.f1080b;
                     if (adapter2 != fjVar.E) {
                         int O2 = fj.O(fjVar);
-                        ((fj) this.f1080b).G.setText(id.M0(2131748224, null));
+                        ((fj) this.f1080b).G.setText(id.M0(2131748223, null));
                         ((fj) this.f1080b).G.c();
                         fj fjVar2 = (fj) this.f1080b;
-                        fjVar2.f33561s.setAdapter(fjVar2.E);
+                        fjVar2.f33684s.setAdapter(fjVar2.E);
                         ((fj) this.f1080b).E.f();
                         if (O2 > 0) {
-                            ((fj) this.f1080b).f33562w.h1(0, -O2);
+                            ((fj) this.f1080b).f33685w.h1(0, -O2);
                         }
                     }
                 }
                 bj bjVar = ((fj) this.f1080b).F;
                 if (bjVar != null) {
-                    if (bjVar.f32210f != null) {
-                        Utilities.f21338g.a(bjVar.f32210f);
-                        bjVar.f32210f = null;
+                    if (bjVar.f32266f != null) {
+                        Utilities.f21338g.a(bjVar.f32266f);
+                        bjVar.f32266f = null;
                     }
                     int i12 = bjVar.h + 1;
                     bjVar.h = i12;
                     p5 p5Var = Utilities.f21338g;
                     aj ajVar = new aj(bjVar, obj6, i12, 0);
-                    bjVar.f32210f = ajVar;
+                    bjVar.f32266f = ajVar;
                     p5Var.d(ajVar, 300L);
                     return;
                 }
@@ -478,7 +478,7 @@ public final class j implements TextWatcher {
                 rp rpVar = uxVar.d;
                 String obj7 = rpVar.getText().toString();
                 uxVar.c(obj7, true);
-                tx txVar = uxVar.f38771r;
+                tx txVar = uxVar.f38824r;
                 if (txVar != null) {
                     txVar.I1(null);
                     txVar.J1(TextUtils.isEmpty(obj7), true);
@@ -496,19 +496,19 @@ public final class j implements TextWatcher {
                     s00Var.I = -1;
                     s00Var.e();
                 }
-                s00Var.f37818a.a((s00Var.f37823n || s00Var.f37824r.length() > 0) ? true : true, true);
+                s00Var.f37851a.a((s00Var.f37856n || s00Var.f37857r.length() > 0) ? true : true, true);
                 return;
             case 21:
-                ec0 ec0Var = (ec0) this.f1080b;
-                if (ec0Var.f33258r.length() == 4 && iz.f23431r == 0) {
-                    ec0Var.n(false);
+                fc0 fc0Var = (fc0) this.f1080b;
+                if (fc0Var.f33632r.length() == 4 && iz.f23431r == 0) {
+                    fc0Var.n(false);
                     return;
                 }
                 return;
             case 22:
-                el0 el0Var = (el0) this.f1080b;
-                ImageView imageView2 = el0Var.f33328b;
-                i iVar2 = el0Var.d;
+                fl0 fl0Var = (fl0) this.f1080b;
+                ImageView imageView2 = fl0Var.f33705b;
+                i iVar2 = fl0Var.d;
                 if (iVar2.length() > 0) {
                     z11 = true;
                 } else {
@@ -536,20 +536,20 @@ public final class j implements TextWatcher {
                     }
                     scaleX2.scaleY(f13).start();
                 }
-                el0Var.a(iVar2.getText().toString());
+                fl0Var.a(iVar2.getText().toString());
                 return;
             case 23:
-                ow0 ow0Var = (ow0) this.f1080b;
-                mw0 mw0Var = ow0Var.f36709c;
-                if (mw0Var != null && mw0Var.getVisibility() == 0) {
-                    ow0Var.e();
+                pw0 pw0Var = (pw0) this.f1080b;
+                nw0 nw0Var = pw0Var.f37106c;
+                if (nw0Var != null && nw0Var.getVisibility() == 0) {
+                    pw0Var.e();
                     return;
                 }
                 return;
             case 24:
-                ey0 ey0Var = (ey0) this.f1080b;
-                j6 j6Var = ey0Var.f33403n;
-                if (!ey0Var.f33408y) {
+                fy0 fy0Var = (fy0) this.f1080b;
+                j6 j6Var = fy0Var.f33759n;
+                if (!fy0Var.f33764y) {
                     String trim = editable.toString().trim();
                     if (trim.length() > 16) {
                         j6Var.setText("-" + (trim.length() - 16));
@@ -557,161 +557,161 @@ public final class j implements TextWatcher {
                     } else {
                         j6Var.setText("");
                     }
-                    c20 c20Var3 = ey0Var.f33407x;
+                    c20 c20Var3 = fy0Var.f33763x;
                     if (c20Var3 != null) {
                         c20Var3.a(trim);
                     }
-                    ij ijVar = ey0Var.f33404r;
+                    ij ijVar = fy0Var.f33760r;
                     if (ijVar != null) {
                         ijVar.K1 = true;
-                        ey0Var.d.w3(ijVar, null, false, false, false, false);
+                        fy0Var.d.w3(ijVar, null, false, false, false, false);
                         return;
                     }
                     return;
                 }
                 return;
             case 25:
-                s01 s01Var = (s01) this.f1080b;
+                t01 t01Var = (t01) this.f1080b;
                 String lowerCase = editable.toString().trim().toLowerCase();
-                s01Var.L = lowerCase;
+                t01Var.L = lowerCase;
                 if (lowerCase.startsWith("@")) {
-                    s01Var.L = s01Var.L.substring(1);
+                    t01Var.L = t01Var.L.substring(1);
                 }
-                s01Var.c();
-                s01Var.M.clear();
-                if (!s01Var.d && !s01Var.f37833c && !TextUtils.isEmpty(s01Var.L)) {
-                    v80 v80Var = new v80(21, s01Var, s01Var.L);
-                    s01Var.O = v80Var;
-                    g0.i3(v80Var, 350L);
+                t01Var.c();
+                t01Var.M.clear();
+                if (!t01Var.d && !t01Var.f38211c && !TextUtils.isEmpty(t01Var.L)) {
+                    w80 w80Var = new w80(21, t01Var, t01Var.L);
+                    t01Var.O = w80Var;
+                    g0.i3(w80Var, 350L);
                 }
-                s01Var.h();
+                t01Var.h();
                 return;
             case 26:
-                a51 a51Var = (a51) this.f1080b;
-                String obj8 = a51Var.J.getText().toString();
-                b51 b51Var = a51Var.K;
-                if (b51Var.f32043k1.getAdapter() == null) {
+                b51 b51Var = (b51) this.f1080b;
+                String obj8 = b51Var.J.getText().toString();
+                c51 c51Var = b51Var.K;
+                if (c51Var.f32530k1.getAdapter() == null) {
                     b10 = 0;
                 } else {
-                    b10 = b51Var.f32043k1.getAdapter().b();
+                    b10 = c51Var.f32530k1.getAdapter().b();
                 }
-                b51Var.L0(obj8);
-                if (TextUtils.isEmpty(obj8) && (q1Var = b51Var.f32043k1) != null) {
+                c51Var.L0(obj8);
+                if (TextUtils.isEmpty(obj8) && (q1Var = c51Var.f32530k1) != null) {
                     v4.g0 adapter3 = q1Var.getAdapter();
-                    oj0 oj0Var = b51Var.f32044m1;
-                    if (adapter3 != oj0Var) {
-                        q1 q1Var4 = b51Var.f32043k1;
+                    pj0 pj0Var = c51Var.f32531m1;
+                    if (adapter3 != pj0Var) {
+                        q1 q1Var4 = c51Var.f32530k1;
                         q1Var4.W1 = false;
                         q1Var4.X1 = 0;
-                        q1Var4.setAdapter(oj0Var);
-                        q1 q1Var5 = b51Var.f32043k1;
+                        q1Var4.setAdapter(pj0Var);
+                        q1 q1Var5 = c51Var.f32530k1;
                         q1Var5.W1 = true;
                         q1Var5.X1 = 0;
                         if (b10 == 0) {
-                            b51Var.O0(0);
+                            c51Var.O0(0);
                         }
                     }
                 }
-                b51Var.f32048r1.setVisibility(0);
+                c51Var.f32535r1.setVisibility(0);
                 return;
             case 27:
                 return;
             case 28:
-                ((m9) this.f1080b).C0();
+                ((l9) this.f1080b).C0();
                 return;
             default:
-                final w9 w9Var = (w9) this.f1080b;
-                ArrayList arrayList3 = w9Var.f43314w;
+                final v9 v9Var = (v9) this.f1080b;
+                ArrayList arrayList3 = v9Var.f43232w;
                 arrayList3.clear();
                 final String trim2 = editable.toString().trim();
-                Runnable runnable = w9Var.K;
+                Runnable runnable = v9Var.K;
                 if (runnable != null) {
                     g0.r(runnable);
-                    w9Var.K = null;
+                    v9Var.K = null;
                 }
-                if (w9Var.E != 0) {
-                    w9Var.getConnectionsManager().cancelRequest(w9Var.E, true);
-                    w9Var.E = 0;
+                if (v9Var.E != 0) {
+                    v9Var.getConnectionsManager().cancelRequest(v9Var.E, true);
+                    v9Var.E = 0;
                 }
                 if (WalletEngine2.isValidRecipientAddress(trim2)) {
                     str2 = trim2;
                 } else {
                     str2 = null;
                 }
-                w9Var.f43316y = str2;
+                v9Var.f43234y = str2;
                 if (str2 == null && trim2 != null && trim2.length() <= 126) {
                     String lowerCase2 = trim2.toLowerCase(Locale.ROOT);
                     if (lowerCase2.matches("[a-z0-9_-]+(?:\\.[a-z0-9_-]+)*\\.ton")) {
                         str4 = lowerCase2;
                     }
                 }
-                w9Var.D = str4;
-                final int i13 = w9Var.J + 1;
-                w9Var.J = i13;
-                if (!TextUtils.isEmpty(trim2) && w9Var.f43316y == null) {
+                v9Var.D = str4;
+                final int i13 = v9Var.J + 1;
+                v9Var.J = i13;
+                if (!TextUtils.isEmpty(trim2) && v9Var.f43234y == null) {
                     z12 = true;
                 } else {
                     z12 = false;
                 }
-                w9Var.L = z12;
-                w9Var.f43315x.g(null, true, false, false, false, 0L, false, 0, i13);
-                fi.d dVar2 = w9Var.Z;
+                v9Var.L = z12;
+                v9Var.f43233x.g(null, true, false, false, false, 0L, false, 0, i13);
+                fi.d dVar2 = v9Var.Z;
                 if (dVar2 != null) {
-                    if (w9Var.f43316y != null) {
+                    if (v9Var.f43234y != null) {
                         z13 = true;
                     } else {
                         z13 = false;
                     }
                     dVar2.setEnabled(z13);
                 }
-                if (!TextUtils.isEmpty(trim2) && w9Var.f43316y == null && w9Var.D == null) {
-                    w9Var.j0(trim2);
+                if (!TextUtils.isEmpty(trim2) && v9Var.f43234y == null && v9Var.D == null) {
+                    v9Var.j0(trim2);
                     Runnable runnable2 = new Runnable() {
                         @Override
                         public final void run() {
                             switch (r4) {
                                 case 0:
-                                    w9.f0(w9Var, trim2, i13);
+                                    v9.f0(v9Var, trim2, i13);
                                     return;
                                 default:
-                                    w9 w9Var2 = w9Var;
-                                    w9Var2.K = null;
-                                    jg.z1 z1Var = w9Var2.f43315x;
+                                    v9 v9Var2 = v9Var;
+                                    v9Var2.K = null;
+                                    jg.z1 z1Var = v9Var2.f43233x;
                                     int i14 = i13;
-                                    z1Var.h(trim2, true, false, false, false, false, 0L, false, 0, i14, 0L, new g2(w9Var2, i14, 4));
+                                    z1Var.h(trim2, true, false, false, false, false, 0L, false, 0, i14, 0L, new f2(v9Var2, i14, 4));
                                     return;
                             }
                         }
                     };
-                    w9Var.K = runnable2;
+                    v9Var.K = runnable2;
                     g0.i3(runnable2, 300L);
                 } else {
                     arrayList3.clear();
-                    w9Var.f36243a.f37190f3.O(true);
-                    final String str12 = w9Var.D;
+                    v9Var.f36649a.f37556f3.O(true);
+                    final String str12 = v9Var.D;
                     if (str12 != null) {
                         Runnable runnable3 = new Runnable() {
                             @Override
                             public final void run() {
                                 switch (r4) {
                                     case 0:
-                                        w9.f0(w9Var, str12, i13);
+                                        v9.f0(v9Var, str12, i13);
                                         return;
                                     default:
-                                        w9 w9Var2 = w9Var;
-                                        w9Var2.K = null;
-                                        jg.z1 z1Var = w9Var2.f43315x;
+                                        v9 v9Var2 = v9Var;
+                                        v9Var2.K = null;
+                                        jg.z1 z1Var = v9Var2.f43233x;
                                         int i14 = i13;
-                                        z1Var.h(str12, true, false, false, false, false, 0L, false, 0, i14, 0L, new g2(w9Var2, i14, 4));
+                                        z1Var.h(str12, true, false, false, false, false, 0L, false, 0, i14, 0L, new f2(v9Var2, i14, 4));
                                         return;
                                 }
                             }
                         };
-                        w9Var.K = runnable3;
+                        v9Var.K = runnable3;
                         g0.i3(runnable3, 300L);
                     }
                 }
-                w9Var.p0(true);
+                v9Var.p0(true);
                 return;
         }
     }
@@ -743,22 +743,22 @@ public final class j implements TextWatcher {
             case 20:
                 return;
             case 21:
-                ec0 ec0Var = (ec0) this.f1080b;
-                LinkedList linkedList = ec0Var.V;
-                LinkedList linkedList2 = ec0Var.U;
-                Drawable drawable = ec0Var.f33244a;
-                if (drawable instanceof qa0) {
-                    qa0 qa0Var = (qa0) drawable;
-                    qa0Var.D = null;
-                    qa0Var.y();
-                    float f10 = qa0Var.h;
+                fc0 fc0Var = (fc0) this.f1080b;
+                LinkedList linkedList = fc0Var.V;
+                LinkedList linkedList2 = fc0Var.U;
+                Drawable drawable = fc0Var.f33618a;
+                if (drawable instanceof ra0) {
+                    ra0 ra0Var = (ra0) drawable;
+                    ra0Var.D = null;
+                    ra0Var.y();
+                    float f10 = ra0Var.h;
                     int i12 = 0;
                     boolean z10 = true;
                     if (i10 == 0 && i11 == 1) {
-                        qa0Var.w(true);
+                        ra0Var.w(true);
                         z9 = true;
                     } else if (i10 == 1 && i11 == 0) {
-                        qa0Var.x();
+                        ra0Var.x();
                         z9 = false;
                     } else {
                         z9 = false;
@@ -766,10 +766,10 @@ public final class j implements TextWatcher {
                     }
                     if (z10) {
                         if (f10 >= 1.0f) {
-                            ec0Var.b(qa0Var);
+                            fc0Var.b(ra0Var);
                             return;
                         }
-                        linkedList2.offer(new u7(this, z9, qa0Var, 23));
+                        linkedList2.offer(new u7(this, z9, ra0Var, 23));
                         linkedList.offer(Boolean.valueOf(z9));
                         ArrayList arrayList = new ArrayList();
                         ArrayList arrayList2 = new ArrayList();
@@ -848,21 +848,21 @@ public final class j implements TextWatcher {
                 r0 r0Var = (r0) this.f1080b;
                 org.telegram.ui.ActionBar.n0 n0Var = r0Var.H;
                 if (n0Var != null) {
-                    n0Var.l(r0Var.f28429e);
+                    n0Var.l(r0Var.f28430e);
                 }
                 r0Var.j();
-                if (!r0Var.f28433g0.isEmpty() && !TextUtils.isEmpty(r0Var.f28429e.getText()) && r0Var.f28434h0 >= 0) {
-                    r0Var.f28434h0 = -1;
+                if (!r0Var.f28434g0.isEmpty() && !TextUtils.isEmpty(r0Var.f28430e.getText()) && r0Var.f28435h0 >= 0) {
+                    r0Var.f28435h0 = -1;
                     r0Var.D();
                     return;
                 }
                 return;
             case 13:
                 y4 y4Var = (y4) this.f1080b;
-                y4Var.h();
-                org.telegram.ui.ActionBar.n0 f10 = y4.f(y4Var);
-                if (f10 != null) {
-                    f10.l(y4Var.f28805s);
+                y4Var.i();
+                org.telegram.ui.ActionBar.n0 g10 = y4.g(y4Var);
+                if (g10 != null) {
+                    g10.l(y4Var.f28805s);
                     return;
                 }
                 return;
@@ -881,7 +881,7 @@ public final class j implements TextWatcher {
             case 26:
                 return;
             case 27:
-                ((l4) this.f1080b).a(charSequence.toString());
+                ((k4) this.f1080b).a(charSequence.toString());
                 return;
             case 28:
             default:

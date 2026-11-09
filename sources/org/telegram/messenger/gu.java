@@ -12,7 +12,7 @@ import android.text.StaticLayout;
 import android.view.animation.OvershootInterpolator;
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.Components.a80;
+import org.telegram.ui.Components.b80;
 public final class gu {
     public static final Paint C;
     public final int B;
@@ -38,7 +38,7 @@ public final class gu {
     public boolean f22740u;
     public float v;
     public ValueAnimator f22741w;
-    public a80 f22742x;
+    public b80 f22742x;
     public boolean f22743y;
     public final Paint f22727g = new Paint(1);
     public final RectF f22744z = new RectF();
@@ -229,35 +229,35 @@ public final class gu {
         if (z10 != z9) {
             this.f22743y = z9;
             if (z9) {
-                a80 a80Var = this.f22742x;
-                if (a80Var == null) {
-                    a80 a80Var2 = new a80();
-                    this.f22742x = a80Var2;
-                    a80Var2.D = true;
-                    a80Var2.f31751x.setStrokeWidth(g0.N(1.25f));
+                b80 b80Var = this.f22742x;
+                if (b80Var == null) {
+                    b80 b80Var2 = new b80();
+                    this.f22742x = b80Var2;
+                    b80Var2.D = true;
+                    b80Var2.f32186x.setStrokeWidth(g0.N(1.25f));
                 } else {
-                    a80Var.f31732b = -1L;
-                    a80Var.f31733c = -1L;
+                    b80Var.f32167b = -1L;
+                    b80Var.f32168c = -1L;
                 }
             } else {
-                a80 a80Var3 = this.f22742x;
-                if (a80Var3 != null) {
-                    a80Var3.a();
+                b80 b80Var3 = this.f22742x;
+                if (b80Var3 != null) {
+                    b80Var3.a();
                 }
             }
             runnable.run();
         }
-        a80 a80Var4 = this.f22742x;
-        if (a80Var4 != null) {
-            if (z9 || a80Var4.d()) {
-                float strokeWidth = this.f22742x.f31751x.getStrokeWidth();
+        b80 b80Var4 = this.f22742x;
+        if (b80Var4 != null) {
+            if (z9 || b80Var4.d()) {
+                float strokeWidth = this.f22742x.f32186x.getStrokeWidth();
                 RectF rectF = this.f22744z;
                 rectF.set(0.0f, 0.0f, this.f22725e, c());
                 float f10 = strokeWidth / 2.0f;
                 rectF.inset(f10, f10);
                 this.f22742x.i((c() / 2.0f) - f10);
                 this.f22742x.e(rectF);
-                this.f22742x.g(org.telegram.ui.ActionBar.k6.r1(0.07f, this.f22731l), org.telegram.ui.ActionBar.k6.r1(0.175f, this.f22731l), org.telegram.ui.ActionBar.k6.r1(0.175f, this.f22731l), org.telegram.ui.ActionBar.k6.r1(0.42f, this.f22731l));
+                this.f22742x.g(org.telegram.ui.ActionBar.l6.r1(0.07f, this.f22731l), org.telegram.ui.ActionBar.l6.r1(0.175f, this.f22731l), org.telegram.ui.ActionBar.l6.r1(0.175f, this.f22731l), org.telegram.ui.ActionBar.l6.r1(0.42f, this.f22731l));
                 this.f22742x.setAlpha(255);
                 this.f22742x.draw(canvas);
                 runnable.run();

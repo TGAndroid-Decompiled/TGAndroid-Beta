@@ -5,16 +5,16 @@ import android.view.View;
 import android.widget.PopupWindow;
 import org.telegram.messenger.g0;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.g1;
+import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Components.u;
 import org.telegram.ui.Components.zj;
 public abstract class a {
     public boolean f17105a;
     public Object f17106b;
 
-    public a(Context context, f6 f6Var, boolean z9) {
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(2131232565, z9 ? 1 : 0, context, f6Var);
+    public a(Context context, g6 g6Var, boolean z9) {
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(2131232565, z9 ? 1 : 0, context, g6Var);
         actionBarPopupWindow$ActionBarPopupWindowLayout.setAnimationEnabled(false);
         actionBarPopupWindow$ActionBarPopupWindowLayout.setOnTouchListener(new zj(this, 1));
         actionBarPopupWindow$ActionBarPopupWindowLayout.setDispatchKeyEventListener(new u(this, 27));
@@ -22,7 +22,7 @@ public abstract class a {
         j(actionBarPopupWindow$ActionBarPopupWindowLayout);
         g1 g1Var = new g1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
         this.f17106b = g1Var;
-        g1Var.f27483b = false;
+        g1Var.f27485b = false;
         g1Var.setAnimationStyle(2131755193);
         g1Var.setOutsideTouchable(true);
         g1Var.setClippingEnabled(true);

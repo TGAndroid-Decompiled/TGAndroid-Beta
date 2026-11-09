@@ -8,28 +8,28 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 public abstract class x7 extends c5.k {
     public ArrayList A0;
-    public b4 B0;
+    public c4 B0;
     public boolean C0;
     public boolean D0;
     public int E0;
     public int F0;
     public Runnable G0;
-    public final f4 H0;
+    public final g4 H0;
     public int I0;
     public int J0;
     public float K0;
     public boolean L0;
     public final ra M0;
-    public final p9 N0;
+    public final q9 N0;
     public int O0;
     public final ArrayList P0;
     public float Q0;
-    public long f9939w0;
-    public ArrayList f9940x0;
-    public int f9941y0;
-    public final u7 f9942z0;
+    public long f9935w0;
+    public ArrayList f9936x0;
+    public int f9937y0;
+    public final u7 f9938z0;
 
-    public x7(int i7, Context context, p9 p9Var, org.telegram.ui.ActionBar.f6 f6Var) {
+    public x7(int i7, Context context, q9 q9Var, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context);
         boolean z9;
         this.A0 = new ArrayList();
@@ -38,27 +38,27 @@ public abstract class x7 extends c5.k {
         this.M0 = new ra(wVar, 21);
         this.O0 = -1;
         this.P0 = new ArrayList();
-        this.f9941y0 = i7;
-        this.H0 = new f4(context);
-        this.N0 = p9Var;
-        u7 u7Var = new u7(wVar, context, p9Var, f6Var);
-        this.f9942z0 = u7Var;
+        this.f9937y0 = i7;
+        this.H0 = new g4(context);
+        this.N0 = q9Var;
+        u7 u7Var = new u7(wVar, context, q9Var, g6Var);
+        this.f9938z0 = u7Var;
         setAdapter(u7Var);
-        q4 q4Var = new q4(wVar, 2);
+        r4 r4Var = new r4(wVar, 2);
         if (this.m0 != null) {
             z9 = false;
         } else {
             z9 = true;
         }
-        this.m0 = q4Var;
+        this.m0 = r4Var;
         setChildrenDrawingOrderEnabled(true);
-        this.f5346o0 = 1;
-        this.f5345n0 = 2;
+        this.f5344o0 = 1;
+        this.f5343n0 = 2;
         if (z9) {
             s();
         }
         setOffscreenPageLimit(0);
-        b(new v7(wVar, p9Var, 0));
+        b(new v7(wVar, q9Var, 0));
         setOverScrollMode(2);
     }
 
@@ -83,7 +83,7 @@ public abstract class x7 extends c5.k {
         while (true) {
             if (i7 < getChildCount()) {
                 w7 w7Var = (w7) getChildAt(i7);
-                if (w7Var.d && !w7Var.f9910a.f9213x1.d()) {
+                if (w7Var.d && !w7Var.f9901a.f9245x1.d()) {
                     break;
                 }
                 i7++;
@@ -103,15 +103,15 @@ public abstract class x7 extends c5.k {
                     if (!w7Var.d) {
                         this.O0 = -1;
                         w7Var.a(true);
-                        if (this.f9940x0 != null) {
-                            i4 i4Var = w7Var.f9910a;
-                            long j3 = w7Var.f9911b;
-                            ArrayList arrayList = w7Var.f9912c;
-                            i4Var.f9164k1 = j3;
-                            i4Var.f9157i1 = arrayList;
-                            i4Var.m0(0);
+                        if (this.f9936x0 != null) {
+                            j4 j4Var = w7Var.f9901a;
+                            long j3 = w7Var.f9902b;
+                            ArrayList arrayList = w7Var.f9903c;
+                            j4Var.f9196k1 = j3;
+                            j4Var.f9189i1 = arrayList;
+                            j4Var.m0(0);
                         } else {
-                            w7Var.f9910a.S0(0, w7Var.f9911b);
+                            w7Var.f9901a.S0(0, w7Var.f9902b);
                         }
                     }
                 }
@@ -124,17 +124,17 @@ public abstract class x7 extends c5.k {
     }
 
     public final boolean E(boolean z9) {
-        p9 p9Var = this.N0;
+        q9 q9Var = this.N0;
         boolean z10 = false;
         if (z9) {
             int currentItem = getCurrentItem();
-            ArrayList arrayList = this.f9940x0;
+            ArrayList arrayList = this.f9936x0;
             if (arrayList == null) {
                 arrayList = this.A0;
             }
             if (currentItem < arrayList.size() - 1) {
                 int currentItem2 = getCurrentItem() + 1;
-                if (p9Var.f9529a && Build.VERSION.SDK_INT < 33) {
+                if (q9Var.f9594a && Build.VERSION.SDK_INT < 33) {
                     z10 = true;
                 }
                 x(currentItem2, !z10);
@@ -145,7 +145,7 @@ public abstract class x7 extends c5.k {
             return false;
         }
         int currentItem3 = getCurrentItem() - 1;
-        if (p9Var.f9529a && Build.VERSION.SDK_INT < 33) {
+        if (q9Var.f9594a && Build.VERSION.SDK_INT < 33) {
             z10 = true;
         }
         x(currentItem3, !z10);
@@ -155,19 +155,19 @@ public abstract class x7 extends c5.k {
     public final void F() {
         boolean z9;
         for (int i7 = 0; i7 < getChildCount(); i7++) {
-            i4 i4Var = (i4) ((FrameLayout) getChildAt(i7)).getChildAt(0);
-            if (((Integer) getChildAt(i7).getTag()).intValue() == getCurrentItem() && !i4Var.D3) {
+            j4 j4Var = (j4) ((FrameLayout) getChildAt(i7)).getChildAt(0);
+            if (((Integer) getChildAt(i7).getTag()).intValue() == getCurrentItem() && !j4Var.D3) {
                 z9 = true;
             } else {
                 z9 = false;
             }
-            i4Var.setActive(z9);
+            j4Var.setActive(z9);
         }
     }
 
     public long getCurrentDialogId() {
-        if (this.f9940x0 != null) {
-            return this.f9939w0;
+        if (this.f9936x0 != null) {
+            return this.f9935w0;
         }
         if (getCurrentItem() < this.A0.size()) {
             return ((Long) this.A0.get(getCurrentItem())).longValue();
@@ -175,10 +175,10 @@ public abstract class x7 extends c5.k {
         return 0L;
     }
 
-    public i4 getCurrentPeerView() {
+    public j4 getCurrentPeerView() {
         for (int i7 = 0; i7 < getChildCount(); i7++) {
             if (((Integer) getChildAt(i7).getTag()).intValue() == getCurrentItem()) {
-                return (i4) ((FrameLayout) getChildAt(i7)).getChildAt(0);
+                return (j4) ((FrameLayout) getChildAt(i7)).getChildAt(0);
             }
         }
         return null;
@@ -205,11 +205,11 @@ public abstract class x7 extends c5.k {
         super.onLayout(z9, i7, i10, i11, i12);
         if (this.C0) {
             this.C0 = false;
-            i4 currentPeerView = getCurrentPeerView();
+            j4 currentPeerView = getCurrentPeerView();
             if (currentPeerView != null) {
-                b4 b4Var = this.B0;
-                g9 g9Var = (g9) b4Var;
-                g9Var.a(currentPeerView.getSelectedPosition(), currentPeerView.getCurrentPeer());
+                c4 c4Var = this.B0;
+                h9 h9Var = (h9) c4Var;
+                h9Var.a(currentPeerView.getSelectedPosition(), currentPeerView.getCurrentPeer());
             }
         }
         B();
@@ -230,8 +230,8 @@ public abstract class x7 extends c5.k {
         return false;
     }
 
-    public void setDelegate(b4 b4Var) {
-        this.B0 = b4Var;
+    public void setDelegate(c4 c4Var) {
+        this.B0 = c4Var;
     }
 
     public void setHorizontalProgressToDismiss(float f10) {
@@ -251,7 +251,7 @@ public abstract class x7 extends c5.k {
     public void setKeyboardHeight(int i7) {
         if (this.E0 != i7) {
             this.E0 = i7;
-            i4 currentPeerView = getCurrentPeerView();
+            j4 currentPeerView = getCurrentPeerView();
             if (currentPeerView != null) {
                 currentPeerView.requestLayout();
             }
@@ -260,7 +260,7 @@ public abstract class x7 extends c5.k {
 
     public void setPaused(boolean z9) {
         for (int i7 = 0; i7 < getChildCount(); i7++) {
-            ((i4) ((FrameLayout) getChildAt(i7)).getChildAt(0)).setPaused(z9);
+            ((j4) ((FrameLayout) getChildAt(i7)).getChildAt(0)).setPaused(z9);
         }
     }
 }

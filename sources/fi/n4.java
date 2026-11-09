@@ -21,10 +21,10 @@ public final class n4 implements View.OnTouchListener {
             case 0:
                 o5 o5Var = (o5) this.f12478b;
                 o5Var.getClass();
-                if (motionEvent.getActionMasked() == 0 && (g1Var = o5Var.f12542q1) != null && g1Var.isShowing()) {
-                    view.getHitRect(o5Var.f12546s1);
-                    if (!o5Var.f12546s1.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        o5Var.f12542q1.d(true);
+                if (motionEvent.getActionMasked() == 0 && (g1Var = o5Var.f12540q1) != null && g1Var.isShowing()) {
+                    view.getHitRect(o5Var.f12544s1);
+                    if (!o5Var.f12544s1.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        o5Var.f12540q1.d(true);
                         return false;
                     }
                     return false;

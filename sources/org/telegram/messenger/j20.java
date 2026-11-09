@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.qd0;
+import org.telegram.ui.Components.rd0;
 public final class j20 {
     public hf A;
     public String B;
@@ -136,12 +136,12 @@ public final class j20 {
                     } else {
                         obj = this.A.f22902p.f14060e;
                     }
-                    qd0 qd0Var = (qd0) obj;
-                    serializedData.writeFloat(qd0Var.f37291a);
-                    serializedData.writeFloat(qd0Var.f37292b);
-                    serializedData.writeFloat(qd0Var.f37293c);
-                    serializedData.writeFloat(qd0Var.d);
-                    serializedData.writeFloat(qd0Var.f37294e);
+                    rd0 rd0Var = (rd0) obj;
+                    serializedData.writeFloat(rd0Var.f37677a);
+                    serializedData.writeFloat(rd0Var.f37678b);
+                    serializedData.writeFloat(rd0Var.f37679c);
+                    serializedData.writeFloat(rd0Var.d);
+                    serializedData.writeFloat(rd0Var.f37680e);
                 }
             } else {
                 serializedData.writeByte(0);
@@ -191,9 +191,9 @@ public final class j20 {
             serializedData.writeFloat(this.f23491u);
             serializedData.writeBool(this.N);
             fi.t tVar = this.L;
-            if (tVar != null && this.M != null && tVar.f12828e.size() > 1 && !this.M.isEmpty()) {
+            if (tVar != null && this.M != null && tVar.f12827e.size() > 1 && !this.M.isEmpty()) {
                 serializedData.writeInt32(-559038737);
-                serializedData.writeString(this.L.f12825a);
+                serializedData.writeString(this.L.f12824a);
                 for (int i12 = 0; i12 < this.M.size(); i12++) {
                     ((i20) this.M.get(i12)).serializeToStream(serializedData);
                 }

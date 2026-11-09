@@ -7,10 +7,10 @@ import android.view.View;
 import android.widget.FrameLayout;
 import c8.ha;
 import java.util.HashSet;
-import org.telegram.ui.ActionBar.a6;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.l6;
 import org.telegram.ui.Components.l9;
-public final class o extends FrameLayout implements a6 {
+public final class o extends FrameLayout implements b6 {
     public final l9 f15582a;
 
     public o(Context context) {
@@ -24,7 +24,7 @@ public final class o extends FrameLayout implements a6 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        Drawable drawable = k6.S0;
+        Drawable drawable = l6.S0;
         l9 l9Var = this.f15582a;
         bg.s.a(canvas, drawable, (l9Var.getWidth() / 2.0f) + l9Var.getLeft(), (l9Var.getHeight() / 2.0f) + l9Var.getTop(), l9Var.getHeight());
     }

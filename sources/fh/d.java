@@ -8,7 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.NinePatchDrawable;
 import c8.n0;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.l6;
 public final class d extends aa {
     public NinePatchDrawable d;
     public long f11493e;
@@ -28,7 +28,7 @@ public final class d extends aa {
         ri.a v = g.v(aVar);
         g gVar = this.f11495g;
         if (Color.alpha(gVar.f11541y) != 255 && (v instanceof ri.c)) {
-            i7 = ((ri.c) v).f54564b;
+            i7 = ((ri.c) v).f54576b;
         } else {
             i7 = 0;
         }
@@ -45,10 +45,10 @@ public final class d extends aa {
         }
         if (fVar.e()) {
             float f10 = gVar.f21076c / 255.0f;
-            int r12 = k6.r1(f10, i7);
+            int r12 = l6.r1(f10, i7);
             Paint paint = this.f11491b;
             paint.setColor(r12);
-            int r13 = k6.r1(f10 * gVar.V, gVar.f11540x);
+            int r13 = l6.r1(f10 * gVar.V, gVar.f11540x);
             if (Color.alpha(r13) != 0) {
                 paint.setShadowLayer(gVar.T, 0.0f, gVar.U, r13);
             } else {
@@ -58,8 +58,8 @@ public final class d extends aa {
             return;
         }
         dh.a aVar = this.f11490a;
-        aVar.f8701b = 0L;
-        aVar.f8700a = false;
+        aVar.f8699b = 0L;
+        aVar.f8698a = false;
         aVar.a(i7);
         aVar.a(gVar.f11540x);
         for (float f11 : fVar.f11506b) {
@@ -68,10 +68,10 @@ public final class d extends aa {
         aVar.c(gVar.T);
         aVar.c(0.0f);
         aVar.c(gVar.U);
-        if (aVar.f8700a) {
+        if (aVar.f8698a) {
             j3 = -1;
         } else {
-            j3 = aVar.f8701b;
+            j3 = aVar.f8699b;
         }
         NinePatchDrawable ninePatchDrawable = this.d;
         Rect rect = this.f11492c;

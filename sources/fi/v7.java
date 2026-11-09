@@ -2,8 +2,8 @@ package fi;
 
 import android.view.View;
 import android.view.ViewGroup;
-import org.telegram.ui.Components.oj0;
-public final class v7 extends oj0 {
+import org.telegram.ui.Components.pj0;
+public final class v7 extends pj0 {
     public final w7 f12929c;
 
     public v7(w7 w7Var) {
@@ -12,7 +12,7 @@ public final class v7 extends oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f57048f == 2) {
+        if (d1Var.f57060f == 2) {
             return true;
         }
         return false;

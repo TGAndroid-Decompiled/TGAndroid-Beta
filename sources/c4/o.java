@@ -10,30 +10,30 @@ import h2.x;
 import java.io.EOFException;
 import org.telegram.ui.Cells.f1;
 public final class o implements j0 {
-    public final j0 f5296a;
-    public final k f5297b;
-    public m f5301g;
+    public final j0 f5294a;
+    public final k f5295b;
+    public m f5299g;
     public u h;
-    public boolean f5302i;
+    public boolean f5300i;
     public int d = 0;
-    public int f5299e = 0;
-    public byte[] f5300f = m0.f14113b;
-    public final x f5298c = new x();
+    public int f5297e = 0;
+    public byte[] f5298f = m0.f14113b;
+    public final x f5296c = new x();
 
     public o(j0 j0Var, k kVar) {
-        this.f5296a = j0Var;
-        this.f5297b = kVar;
+        this.f5294a = j0Var;
+        this.f5295b = kVar;
     }
 
     @Override
     public final void a(x xVar, int i7, int i10) {
-        if (this.f5301g == null) {
-            this.f5296a.a(xVar, i7, i10);
+        if (this.f5299g == null) {
+            this.f5294a.a(xVar, i7, i10);
             return;
         }
         h(i7);
-        xVar.k(this.f5299e, i7, this.f5300f);
-        this.f5299e += i7;
+        xVar.k(this.f5297e, i7, this.f5298f);
+        this.f5297e += i7;
     }
 
     @Override
@@ -53,18 +53,18 @@ public final class o implements j0 {
 
     @Override
     public final int f(e2.n nVar, int i7, boolean z9) {
-        if (this.f5301g == null) {
-            return this.f5296a.f(nVar, i7, z9);
+        if (this.f5299g == null) {
+            return this.f5294a.f(nVar, i7, z9);
         }
         h(i7);
-        int read = nVar.read(this.f5300f, this.f5299e, i7);
+        int read = nVar.read(this.f5298f, this.f5297e, i7);
         if (read == -1) {
             if (z9) {
                 return -1;
             }
             throw new EOFException();
         }
-        this.f5299e += read;
+        this.f5297e += read;
         return read;
     }
 
@@ -81,7 +81,7 @@ public final class o implements j0 {
         }
         ia.f(z9);
         boolean equals = uVar.equals(this.h);
-        k kVar = this.f5297b;
+        k kVar = this.f5295b;
         if (!equals) {
             this.h = uVar;
             if (kVar.w(uVar)) {
@@ -89,10 +89,10 @@ public final class o implements j0 {
             } else {
                 mVar = null;
             }
-            this.f5301g = mVar;
+            this.f5299g = mVar;
         }
-        m mVar2 = this.f5301g;
-        j0 j0Var = this.f5296a;
+        m mVar2 = this.f5299g;
+        j0 j0Var = this.f5294a;
         if (mVar2 == null) {
             j0Var.g(uVar);
             return;
@@ -107,14 +107,14 @@ public final class o implements j0 {
 
     public final void h(int i7) {
         byte[] bArr;
-        int length = this.f5300f.length;
-        int i10 = this.f5299e;
+        int length = this.f5298f.length;
+        int i10 = this.f5297e;
         if (length - i10 >= i7) {
             return;
         }
         int i11 = i10 - this.d;
         int max = Math.max(i11 * 2, i7 + i11);
-        byte[] bArr2 = this.f5300f;
+        byte[] bArr2 = this.f5298f;
         if (max <= bArr2.length) {
             bArr = bArr2;
         } else {
@@ -122,8 +122,8 @@ public final class o implements j0 {
         }
         System.arraycopy(bArr2, this.d, bArr, 0, i11);
         this.d = 0;
-        this.f5299e = i11;
-        this.f5300f = bArr;
+        this.f5297e = i11;
+        this.f5298f = bArr;
     }
 
     @Override

@@ -15,8 +15,8 @@ import c8.na;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
 import org.telegram.ui.Components.xq;
 public final class o5 extends ViewGroup {
     public final RectF D;
@@ -33,7 +33,7 @@ public final class o5 extends ViewGroup {
     public int O;
     public int P;
     public e6 f18748a;
-    public final f6 f18749b;
+    public final g6 f18749b;
     public int[] f18750c;
     public int[] d;
     public int[] f18751e;
@@ -46,7 +46,7 @@ public final class o5 extends ViewGroup {
     public final Paint f18757x;
     public final Paint f18758y;
 
-    public o5(Context context, f6 f6Var) {
+    public o5(Context context, g6 g6Var) {
         super(context);
         this.f18750c = new int[0];
         this.d = new int[0];
@@ -63,7 +63,7 @@ public final class o5 extends ViewGroup {
         this.D = new RectF();
         this.E = new RectF();
         this.F = new Path();
-        this.f18749b = f6Var;
+        this.f18749b = g6Var;
         setClipChildren(false);
         setClipToPadding(false);
         setWillNotDraw(false);
@@ -113,7 +113,7 @@ public final class o5 extends ViewGroup {
                 Object obj = arrayList.get(i10);
                 i10++;
                 TL_iv.pageTableCell pagetablecell3 = (TL_iv.pageTableCell) obj;
-                if (((LinkedHashSet) ((l2.y) this.h).f18089b).contains(pagetablecell3)) {
+                if (((LinkedHashSet) ((l2.x) this.h).f18071b).contains(pagetablecell3)) {
                     int b10 = this.f18748a.b(pagetablecell3);
                     int a10 = this.f18748a.a(pagetablecell3);
                     if (b10 < i7 || (b10 == i7 && a10 < i11)) {
@@ -128,27 +128,27 @@ public final class o5 extends ViewGroup {
     }
 
     public final void b() {
-        int i7 = k6.f27882ei;
-        f6 f6Var = this.f18749b;
-        this.f18753n.setColor(k6.w0(i7, f6Var));
-        int w02 = k6.w0(k6.M6, f6Var);
+        int i7 = l6.f27895ei;
+        g6 g6Var = this.f18749b;
+        this.f18753n.setColor(l6.w0(i7, g6Var));
+        int w02 = l6.w0(l6.M6, g6Var);
         int red = Color.red(w02);
         int green = Color.green(w02);
         int blue = Color.blue(w02);
-        this.f18754r.setColor(k6.w0(k6.f27863di, f6Var));
+        this.f18754r.setColor(l6.w0(l6.f27876di, g6Var));
         this.f18755s.setColor(Color.argb(20, red, green, blue));
         this.H = 255;
-        int i10 = k6.Ci;
-        this.f18756w.setColor(k6.w0(i10, f6Var));
+        int i10 = l6.Ci;
+        this.f18756w.setColor(l6.w0(i10, g6Var));
         Paint.Style style = Paint.Style.FILL;
         Paint paint = this.f18757x;
         paint.setStyle(style);
-        this.O = k6.w0(k6.E6, f6Var);
-        this.P = k6.w0(k6.Gi, f6Var);
+        this.O = l6.w0(l6.E6, g6Var);
+        this.P = l6.w0(l6.Gi, g6Var);
         paint.setColor(this.O);
         Paint paint2 = this.f18758y;
         paint2.setStyle(style);
-        paint2.setColor(k6.w0(i10, f6Var));
+        paint2.setColor(l6.w0(i10, g6Var));
         invalidate();
     }
 
@@ -356,7 +356,7 @@ public final class o5 extends ViewGroup {
             while (i7 < size) {
                 Object obj = arrayList.get(i7);
                 i7++;
-                if (((LinkedHashSet) ((l2.y) this.h).f18089b).contains((TL_iv.pageTableCell) obj)) {
+                if (((LinkedHashSet) ((l2.x) this.h).f18071b).contains((TL_iv.pageTableCell) obj)) {
                     return true;
                 }
             }
@@ -636,7 +636,7 @@ public final class o5 extends ViewGroup {
         if (e6Var == null || (n5Var = this.h) == null || i7 < 0 || i7 >= e6Var.f18544b || i10 < 0 || i10 >= e6Var.f18545c) {
             return false;
         }
-        return ((LinkedHashSet) ((l2.y) n5Var).f18089b).contains(e6Var.d[i7][i10]);
+        return ((LinkedHashSet) ((l2.x) n5Var).f18071b).contains(e6Var.d[i7][i10]);
     }
 
     public final int q() {

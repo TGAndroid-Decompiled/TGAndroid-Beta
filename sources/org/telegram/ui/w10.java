@@ -1,17 +1,19 @@
 package org.telegram.ui;
-public final class w10 extends v4.k {
-    public final c40 F;
 
-    public w10(c40 c40Var) {
-        this.F = c40Var;
+import org.telegram.ui.Components.UndoView;
+public final class w10 extends UndoView {
+    public final e40 f50832j0;
+
+    public w10(e40 e40Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.f50832j0 = e40Var;
     }
 
     @Override
-    public final void P(v4.d1 d1Var) {
-        c40 c40Var = this.F;
-        c40Var.H1.invalidate();
-        c40Var.R3.invalidate();
-        c40Var.f28619b.invalidate();
-        c40.P0(c40Var);
+    public final void k(long j3, int i7, Object obj, Object obj2, Runnable runnable, Runnable runnable2) {
+        if (this.f50832j0.f45256q2 != null) {
+            return;
+        }
+        super.k(j3, i7, obj, obj2, runnable, runnable2);
     }
 }

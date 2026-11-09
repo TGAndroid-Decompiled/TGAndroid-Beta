@@ -31,9 +31,9 @@ public final class p4 implements v10 {
                 TL_stars.StarsAmount o4 = aVar.o();
                 TL_stars.updateStarGiftPrice updatestargiftprice = new TL_stars.updateStarGiftPrice();
                 final k7 k7Var = this.f4509b;
-                updatestargiftprice.stargift = k7Var.B1();
+                updatestargiftprice.stargift = k7Var.A1();
                 updatestargiftprice.resell_amount = o4;
-                ConnectionsManager connectionsManager = ConnectionsManager.getInstance(k7Var.f28616a);
+                ConnectionsManager connectionsManager = ConnectionsManager.getInstance(k7Var.f28621a);
                 final TL_stars.TL_starGiftUnique tL_starGiftUnique = this.f4510c;
                 connectionsManager.sendRequest(updatestargiftprice, new RequestDelegate() {
                     @Override
@@ -44,7 +44,7 @@ public final class p4 implements v10 {
                                 final k7 k7Var2 = k7Var;
                                 final Runnable runnable2 = runnable;
                                 if (z9) {
-                                    qp.s1(k7Var2.f28616a).O3((TLRPC.Updates) tLObject, false);
+                                    qp.s1(k7Var2.f28621a).O3((TLRPC.Updates) tLObject, false);
                                     final TL_stars.TL_starGiftUnique tL_starGiftUnique2 = tL_starGiftUnique;
                                     final cg.a aVar2 = aVar;
                                     org.telegram.messenger.g0.h3(new Runnable() {
@@ -52,8 +52,8 @@ public final class p4 implements v10 {
                                         public final void run() {
                                             boolean z10;
                                             int i7 = r5;
-                                            cg.b bVar = cg.b.f6162a;
-                                            cg.b bVar2 = cg.b.f6163b;
+                                            cg.b bVar = cg.b.f6160a;
+                                            cg.b bVar2 = cg.b.f6161b;
                                             Runnable runnable3 = runnable2;
                                             cg.a aVar3 = aVar2;
                                             TL_stars.TL_starGiftUnique tL_starGiftUnique3 = tL_starGiftUnique2;
@@ -62,7 +62,7 @@ public final class p4 implements v10 {
                                             switch (i7) {
                                                 case 0:
                                                     tL_starGiftUnique3.flags |= 16;
-                                                    if (aVar3.f6160a == bVar2) {
+                                                    if (aVar3.f6158a == bVar2) {
                                                         z11 = true;
                                                     }
                                                     tL_starGiftUnique3.resale_ton_only = z11;
@@ -82,7 +82,7 @@ public final class p4 implements v10 {
                                                     return;
                                                 default:
                                                     tL_starGiftUnique3.flags |= 16;
-                                                    if (aVar3.f6160a == bVar2) {
+                                                    if (aVar3.f6158a == bVar2) {
                                                         z10 = true;
                                                     } else {
                                                         z10 = false;
@@ -100,7 +100,7 @@ public final class p4 implements v10 {
                                                     if (runnable3 != null) {
                                                         runnable3.run();
                                                     }
-                                                    k7Var3.k().Q(2131623989, 36, org.telegram.messenger.id.a0(null, null, 2131750029, k7Var3.z1())).j();
+                                                    k7Var3.k().Q(2131623989, 36, org.telegram.messenger.id.a0(null, null, 2131750028, k7Var3.y1())).j();
                                                     return;
                                             }
                                         }
@@ -142,7 +142,7 @@ public final class p4 implements v10 {
                                 final k7 k7Var3 = k7Var;
                                 final Runnable runnable3 = runnable;
                                 if (z10) {
-                                    qp.s1(k7Var3.f28616a).O3((TLRPC.Updates) tLObject, false);
+                                    qp.s1(k7Var3.f28621a).O3((TLRPC.Updates) tLObject, false);
                                     final TL_stars.TL_starGiftUnique tL_starGiftUnique3 = tL_starGiftUnique;
                                     final cg.a aVar3 = aVar;
                                     org.telegram.messenger.g0.h3(new Runnable() {
@@ -150,8 +150,8 @@ public final class p4 implements v10 {
                                         public final void run() {
                                             boolean z102;
                                             int i7 = r5;
-                                            cg.b bVar = cg.b.f6162a;
-                                            cg.b bVar2 = cg.b.f6163b;
+                                            cg.b bVar = cg.b.f6160a;
+                                            cg.b bVar2 = cg.b.f6161b;
                                             Runnable runnable32 = runnable3;
                                             cg.a aVar32 = aVar3;
                                             TL_stars.TL_starGiftUnique tL_starGiftUnique32 = tL_starGiftUnique3;
@@ -160,7 +160,7 @@ public final class p4 implements v10 {
                                             switch (i7) {
                                                 case 0:
                                                     tL_starGiftUnique32.flags |= 16;
-                                                    if (aVar32.f6160a == bVar2) {
+                                                    if (aVar32.f6158a == bVar2) {
                                                         z11 = true;
                                                     }
                                                     tL_starGiftUnique32.resale_ton_only = z11;
@@ -180,7 +180,7 @@ public final class p4 implements v10 {
                                                     return;
                                                 default:
                                                     tL_starGiftUnique32.flags |= 16;
-                                                    if (aVar32.f6160a == bVar2) {
+                                                    if (aVar32.f6158a == bVar2) {
                                                         z102 = true;
                                                     } else {
                                                         z102 = false;
@@ -198,7 +198,7 @@ public final class p4 implements v10 {
                                                     if (runnable32 != null) {
                                                         runnable32.run();
                                                     }
-                                                    k7Var32.k().Q(2131623989, 36, org.telegram.messenger.id.a0(null, null, 2131750029, k7Var32.z1())).j();
+                                                    k7Var32.k().Q(2131623989, 36, org.telegram.messenger.id.a0(null, null, 2131750028, k7Var32.y1())).j();
                                                     return;
                                             }
                                         }
@@ -240,12 +240,12 @@ public final class p4 implements v10 {
                 c20 c20Var = (c20) obj;
                 Boolean bool = (Boolean) obj2;
                 k7 k7Var2 = this.f4509b;
-                zh.j3 j3Var = k7Var2.O2;
+                zh.k3 k3Var = k7Var2.O2;
                 TL_stars.TL_starGiftUnique tL_starGiftUnique2 = this.f4510c;
-                if (j3Var == null) {
-                    zh.j3 j3Var2 = new zh.j3(k7Var2.f28616a, tL_starGiftUnique2.gift_id);
-                    k7Var2.O2 = j3Var2;
-                    j3Var2.a();
+                if (k3Var == null) {
+                    zh.k3 k3Var2 = new zh.k3(k7Var2.f28621a, tL_starGiftUnique2.gift_id);
+                    k7Var2.O2 = k3Var2;
+                    k3Var2.a();
                 }
                 HashSet hashSet = new HashSet();
                 int i7 = 0;
@@ -266,13 +266,13 @@ public final class p4 implements v10 {
                         }
                         i7++;
                     } else {
-                        zh.k3 k3Var = new zh.k3(k7Var2.getContext(), tL_starGiftUnique2.title, k7Var2.O2);
-                        k3Var.Y1.addAll(hashSet);
-                        k3Var.f60418a2.O(true);
-                        k3Var.Z1 = bool.booleanValue();
-                        k3Var.W1.set(org.telegram.messenger.g0.X2(org.telegram.messenger.id.G(4 - hashSet.size(), "GiftCraftSelect", new Object[0])));
-                        k3Var.X1 = new n2(c20Var, 0);
-                        k3Var.show();
+                        zh.l3 l3Var = new zh.l3(k7Var2.getContext(), tL_starGiftUnique2.title, k7Var2.O2);
+                        l3Var.Y1.addAll(hashSet);
+                        l3Var.f60457a2.O(true);
+                        l3Var.Z1 = bool.booleanValue();
+                        l3Var.W1.set(org.telegram.messenger.g0.X2(org.telegram.messenger.id.G(4 - hashSet.size(), "GiftCraftSelect", new Object[0])));
+                        l3Var.X1 = new n2(c20Var, 0);
+                        l3Var.show();
                         return;
                     }
                 }
@@ -282,9 +282,9 @@ public final class p4 implements v10 {
                 TL_stars.StarsAmount o10 = aVar2.o();
                 TL_stars.updateStarGiftPrice updatestargiftprice2 = new TL_stars.updateStarGiftPrice();
                 final k7 k7Var3 = this.f4509b;
-                updatestargiftprice2.stargift = k7Var3.B1();
+                updatestargiftprice2.stargift = k7Var3.A1();
                 updatestargiftprice2.resell_amount = o10;
-                ConnectionsManager connectionsManager2 = ConnectionsManager.getInstance(k7Var3.f28616a);
+                ConnectionsManager connectionsManager2 = ConnectionsManager.getInstance(k7Var3.f28621a);
                 final TL_stars.TL_starGiftUnique tL_starGiftUnique3 = this.f4510c;
                 connectionsManager2.sendRequest(updatestargiftprice2, new RequestDelegate() {
                     @Override
@@ -295,7 +295,7 @@ public final class p4 implements v10 {
                                 final k7 k7Var22 = k7Var3;
                                 final Runnable runnable22 = runnable2;
                                 if (z9) {
-                                    qp.s1(k7Var22.f28616a).O3((TLRPC.Updates) tLObject, false);
+                                    qp.s1(k7Var22.f28621a).O3((TLRPC.Updates) tLObject, false);
                                     final TL_stars.TL_starGiftUnique tL_starGiftUnique22 = tL_starGiftUnique3;
                                     final cg.a aVar22 = aVar2;
                                     org.telegram.messenger.g0.h3(new Runnable() {
@@ -303,8 +303,8 @@ public final class p4 implements v10 {
                                         public final void run() {
                                             boolean z102;
                                             int i72 = r5;
-                                            cg.b bVar = cg.b.f6162a;
-                                            cg.b bVar2 = cg.b.f6163b;
+                                            cg.b bVar = cg.b.f6160a;
+                                            cg.b bVar2 = cg.b.f6161b;
                                             Runnable runnable32 = runnable22;
                                             cg.a aVar32 = aVar22;
                                             TL_stars.TL_starGiftUnique tL_starGiftUnique32 = tL_starGiftUnique22;
@@ -313,7 +313,7 @@ public final class p4 implements v10 {
                                             switch (i72) {
                                                 case 0:
                                                     tL_starGiftUnique32.flags |= 16;
-                                                    if (aVar32.f6160a == bVar2) {
+                                                    if (aVar32.f6158a == bVar2) {
                                                         z11 = true;
                                                     }
                                                     tL_starGiftUnique32.resale_ton_only = z11;
@@ -333,7 +333,7 @@ public final class p4 implements v10 {
                                                     return;
                                                 default:
                                                     tL_starGiftUnique32.flags |= 16;
-                                                    if (aVar32.f6160a == bVar2) {
+                                                    if (aVar32.f6158a == bVar2) {
                                                         z102 = true;
                                                     } else {
                                                         z102 = false;
@@ -351,7 +351,7 @@ public final class p4 implements v10 {
                                                     if (runnable32 != null) {
                                                         runnable32.run();
                                                     }
-                                                    k7Var32.k().Q(2131623989, 36, org.telegram.messenger.id.a0(null, null, 2131750029, k7Var32.z1())).j();
+                                                    k7Var32.k().Q(2131623989, 36, org.telegram.messenger.id.a0(null, null, 2131750028, k7Var32.y1())).j();
                                                     return;
                                             }
                                         }
@@ -393,7 +393,7 @@ public final class p4 implements v10 {
                                 final k7 k7Var32 = k7Var3;
                                 final Runnable runnable3 = runnable2;
                                 if (z10) {
-                                    qp.s1(k7Var32.f28616a).O3((TLRPC.Updates) tLObject, false);
+                                    qp.s1(k7Var32.f28621a).O3((TLRPC.Updates) tLObject, false);
                                     final TL_stars.TL_starGiftUnique tL_starGiftUnique32 = tL_starGiftUnique3;
                                     final cg.a aVar3 = aVar2;
                                     org.telegram.messenger.g0.h3(new Runnable() {
@@ -401,8 +401,8 @@ public final class p4 implements v10 {
                                         public final void run() {
                                             boolean z102;
                                             int i72 = r5;
-                                            cg.b bVar = cg.b.f6162a;
-                                            cg.b bVar2 = cg.b.f6163b;
+                                            cg.b bVar = cg.b.f6160a;
+                                            cg.b bVar2 = cg.b.f6161b;
                                             Runnable runnable32 = runnable3;
                                             cg.a aVar32 = aVar3;
                                             TL_stars.TL_starGiftUnique tL_starGiftUnique322 = tL_starGiftUnique32;
@@ -411,7 +411,7 @@ public final class p4 implements v10 {
                                             switch (i72) {
                                                 case 0:
                                                     tL_starGiftUnique322.flags |= 16;
-                                                    if (aVar32.f6160a == bVar2) {
+                                                    if (aVar32.f6158a == bVar2) {
                                                         z11 = true;
                                                     }
                                                     tL_starGiftUnique322.resale_ton_only = z11;
@@ -431,7 +431,7 @@ public final class p4 implements v10 {
                                                     return;
                                                 default:
                                                     tL_starGiftUnique322.flags |= 16;
-                                                    if (aVar32.f6160a == bVar2) {
+                                                    if (aVar32.f6158a == bVar2) {
                                                         z102 = true;
                                                     } else {
                                                         z102 = false;
@@ -449,7 +449,7 @@ public final class p4 implements v10 {
                                                     if (runnable32 != null) {
                                                         runnable32.run();
                                                     }
-                                                    k7Var322.k().Q(2131623989, 36, org.telegram.messenger.id.a0(null, null, 2131750029, k7Var322.z1())).j();
+                                                    k7Var322.k().Q(2131623989, 36, org.telegram.messenger.id.a0(null, null, 2131750028, k7Var322.y1())).j();
                                                     return;
                                             }
                                         }

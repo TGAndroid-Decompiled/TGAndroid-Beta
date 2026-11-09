@@ -1,563 +1,188 @@
 package sh;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.view.ViewGroup;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.camera.q;
-import org.telegram.messenger.g0;
-import org.telegram.messenger.gc;
-import org.telegram.messenger.ij;
-import org.telegram.messenger.rz;
-import org.telegram.messenger.w7;
-import org.telegram.messenger.x5;
-import org.telegram.messenger.z5;
+import android.net.Uri;
+import android.util.Base64;
+import android.util.SparseArray;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.RadialProgress2;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.jm0;
-import org.telegram.ui.Components.my0;
-import org.telegram.ui.Components.np;
-import org.telegram.ui.Components.xq;
-public final class e extends Drawable implements x5, im0 {
-    public final boolean D;
-    public String E;
-    public String F;
-    public boolean G;
-    public ij H;
-    public double I;
-    public int J;
-    public final jm0 K;
-    public float L;
-    public float M;
-    public rz N;
-    public np O;
-    public Drawable P;
-    public a Q;
-    public boolean R;
-    public boolean S;
-    public TLRPC.MessageMedia T;
-    public int U;
-    public int V;
-    public boolean W;
-    public boolean X;
-    public boolean Y;
-    public final te.a f55296a;
-    public int f55297a0;
-    public final ImageReceiver f55298b;
-    public int f55299b0;
-    public final int f55300c;
-    public final ViewGroup d;
-    public final int f55302d0;
-    public String f55303e;
-    public int f55304e0;
-    public String f55305f;
-    public int f55306f0;
-    public int f55307g0;
-    public String h;
-    public my0 f55308n;
-    public my0 f55309r;
-    public my0 f55310s;
-    public my0 f55311w;
-    public final RadialProgress2 f55313y;
-    public final Paint f55312x = new Paint(1);
-    public int Z = 0;
-    public int f55301c0 = 255;
+public final class e {
+    public final SparseArray f55307a = new SparseArray();
 
-    public e(int i7, ViewGroup viewGroup, f6 f6Var, boolean z9) {
-        ImageReceiver imageReceiver = new ImageReceiver(viewGroup);
-        this.f55298b = imageReceiver;
-        imageReceiver.J0(g0.L(6.0f));
-        this.f55300c = i7;
-        this.D = z9;
-        this.f55313y = new RadialProgress2(viewGroup, f6Var);
-        this.d = viewGroup;
-        jm0 jm0Var = new jm0(viewGroup);
-        this.K = jm0Var;
-        jm0Var.h = this;
-        this.f55296a = new te.a(viewGroup, se.a.f55005a, 180L);
-        this.f55302d0 = z5.q(i7).k();
-    }
-
-    @Override
-    public final void C(boolean z9) {
-        e();
-    }
-
-    @Override
-    public final void M(String str) {
-        e();
-    }
-
-    @Override
-    public final void a(float f10) {
-        if (j()) {
-            MediaController.B().i0(MediaController.B().f21295u0, f10);
-            p(true);
+    public static int a(TLRPC.TL_inputMediaPoll tL_inputMediaPoll, TLRPC.InputMedia inputMedia) {
+        if (tL_inputMediaPoll.attached_media == inputMedia) {
+            return -2;
         }
-    }
-
-    public final void b() {
-        this.f55298b.P();
-        this.f55313y.e();
-    }
-
-    public final void c(boolean z9) {
-        int i7;
-        int i10;
-        my0 my0Var = this.f55308n;
-        if (my0Var != null) {
-            if (z9) {
-                i10 = k6.f28154tc;
-            } else {
-                i10 = k6.f28119re;
+        if (tL_inputMediaPoll.solution_media == inputMedia) {
+            return -3;
+        }
+        int size = tL_inputMediaPoll.poll.answers.size();
+        for (int i7 = 0; i7 < size; i7++) {
+            if (tL_inputMediaPoll.poll.answers.get(i7).input_media == inputMedia) {
+                return i7;
             }
-            my0Var.n(k6.x0(null, i10, false));
         }
-        this.f55312x.setColor(1711276032);
-        my0 my0Var2 = this.f55311w;
-        if (my0Var2 != null) {
-            my0Var2.n(-1);
+        return -1;
+    }
+
+    public static String c(int i7, TLRPC.Message message) {
+        SparseArray<String> sparseArray;
+        if (message != null && (sparseArray = message.pollMediaAttachPaths) != null) {
+            return sparseArray.get(i7);
         }
-        rz rzVar = this.N;
-        if (rzVar != null) {
-            if (z9) {
-                i7 = k6.Dc;
-            } else {
-                i7 = k6.f27879ef;
+        return null;
+    }
+
+    public static TLRPC.InputMedia d(TLRPC.TL_inputMediaPoll tL_inputMediaPoll) {
+        TLRPC.InputMedia inputMedia = tL_inputMediaPoll.attached_media;
+        if (inputMedia != null) {
+            return inputMedia;
+        }
+        TLRPC.InputMedia inputMedia2 = tL_inputMediaPoll.solution_media;
+        if (inputMedia2 != null) {
+            return inputMedia2;
+        }
+        int size = tL_inputMediaPoll.poll.answers.size();
+        for (int i7 = 0; i7 < size; i7++) {
+            TLRPC.InputMedia inputMedia3 = tL_inputMediaPoll.poll.answers.get(i7).input_media;
+            if (inputMedia3 != null) {
+                return inputMedia3;
             }
-            rzVar.f25389m = i7;
         }
-        boolean z10 = this.X;
-        RadialProgress2 radialProgress2 = this.f55313y;
-        if (!z10 && !this.W) {
-            radialProgress2.g(k6.Ze, k6.f27804af, k6.f27823bf, k6.f27843cf);
+        return null;
+    }
+
+    public static TLRPC.InputMedia e(TLRPC.TL_inputMediaPoll tL_inputMediaPoll, int i7) {
+        TLRPC.PollAnswer pollAnswer;
+        if (i7 == -2) {
+            return tL_inputMediaPoll.attached_media;
+        }
+        if (i7 == -3) {
+            return tL_inputMediaPoll.solution_media;
+        }
+        if (i7 < 0 || i7 >= tL_inputMediaPoll.poll.answers.size() || (pollAnswer = tL_inputMediaPoll.poll.answers.get(i7)) == null) {
+            return null;
+        }
+        return pollAnswer.input_media;
+    }
+
+    public static TLRPC.MessageMedia f(TLRPC.TL_messageMediaPoll tL_messageMediaPoll, int i7) {
+        TLRPC.PollAnswer pollAnswer;
+        if (i7 == -2) {
+            return tL_messageMediaPoll.attached_media;
+        }
+        if (i7 == -3) {
+            return tL_messageMediaPoll.results.solution_media;
+        }
+        if (i7 < 0 || i7 >= tL_messageMediaPoll.poll.answers.size() || (pollAnswer = tL_messageMediaPoll.poll.answers.get(i7)) == null) {
+            return null;
+        }
+        return pollAnswer.media;
+    }
+
+    public static byte[] g(Uri uri) {
+        try {
+            String queryParameter = uri.getQueryParameter("option");
+            if (queryParameter != null) {
+                return Base64.decode(queryParameter, 9);
+            }
+            return null;
+        } catch (Throwable unused) {
+            return null;
+        }
+    }
+
+    public static void i(TLRPC.TL_inputMediaPoll tL_inputMediaPoll, int i7) {
+        TLRPC.PollAnswer pollAnswer;
+        if (i7 == -2) {
+            tL_inputMediaPoll.attached_media = null;
+        } else if (i7 == -3) {
+            tL_inputMediaPoll.solution_media = null;
+        } else if (i7 >= 0 && i7 < tL_inputMediaPoll.poll.answers.size() && (pollAnswer = tL_inputMediaPoll.poll.answers.get(i7)) != null) {
+            pollAnswer.input_media = null;
+        }
+    }
+
+    public static void j(TLRPC.Message message, String str, int i7) {
+        if (message == null) {
             return;
         }
-        jm0 jm0Var = this.K;
-        if (z9) {
-            int x02 = k6.x0(null, k6.f27986kc, false);
-            int x03 = k6.x0(null, k6.f28005lc, false);
-            int i11 = k6.f28040nc;
-            jm0Var.g(x02, x03, k6.x0(null, i11, false), k6.x0(null, i11, false), k6.x0(null, k6.f28021mc, false));
-            radialProgress2.g(k6.Bc, k6.Cc, k6.Db, k6.Eb);
-            return;
+        if (message.pollMediaAttachPaths == null) {
+            message.pollMediaAttachPaths = new SparseArray<>();
         }
-        radialProgress2.g(k6.We, k6.Xe, k6.f27950id, k6.f27968jd);
-        int x04 = k6.x0(null, k6.f27951ie, false);
-        int x05 = k6.x0(null, k6.f27969je, false);
-        int i12 = k6.le;
-        jm0Var.g(x04, x05, k6.x0(null, i12, false), k6.x0(null, i12, false), k6.x0(null, k6.f27988ke, false));
+        message.pollMediaAttachPaths.put(i7, str);
     }
 
-    @Override
-    public final void d(float f10) {
-        if (j()) {
-            ij ijVar = MediaController.B().f21295u0;
-            ijVar.f23222b0 = f10;
-            ijVar.f23245g0 = (int) (ijVar.L0() * f10);
-            p(true);
-        }
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        int L;
-        int L2;
-        int i7;
-        Drawable drawable;
-        Rect bounds = getBounds();
-        if (this.f55301c0 != 0 && !bounds.isEmpty()) {
-            int i10 = 0;
-            f(false);
-            boolean z9 = this.W;
-            int i11 = 2;
-            RadialProgress2 radialProgress2 = this.f55313y;
-            if (!z9 && !this.X) {
-                ImageReceiver imageReceiver = this.f55298b;
-                imageReceiver.setAlpha(this.f55301c0 / 255.0f);
-                imageReceiver.z0(bounds);
-                imageReceiver.h(canvas, null);
-                if (this.Y && (drawable = this.P) != null) {
-                    int intrinsicWidth = (int) (drawable.getIntrinsicWidth() * 0.8f);
-                    int intrinsicHeight = (int) (this.P.getIntrinsicHeight() * 0.8f);
-                    int A = (int) com.google.android.recaptcha.internal.a.A(imageReceiver.M0, intrinsicWidth, 2.0f, imageReceiver.K0);
-                    int interpolation = (int) ((((imageReceiver.N0 / 2.0f) - intrinsicHeight) + imageReceiver.L0) - ((1.0f - xq.f40370k.getInterpolation(imageReceiver.f21197h1)) * g0.L(16.0f)));
-                    this.P.setAlpha((int) (imageReceiver.getAlpha() * Math.min(1.0f, imageReceiver.f21197h1 * 5.0f) * 255.0f));
-                    this.P.setBounds(A, interpolation, intrinsicWidth + A, intrinsicHeight + interpolation);
-                    this.P.draw(canvas);
-                }
-                radialProgress2.r(bounds.centerX() - g0.L(22.0f), bounds.centerY() - g0.L(22.0f), g0.L(22.0f) + bounds.centerX(), g0.L(22.0f) + bounds.centerY());
-                if (this.G && this.f55311w != null) {
-                    canvas.drawRoundRect(g0.L(6.0f) + bounds.left, g0.L(6.0f) + bounds.top, bounds.left + this.f55311w.f36147c + g0.L(18.0f), g0.L(23.0f) + bounds.top, g0.L(8.5f), g0.L(8.5f), this.f55312x);
-                    this.f55311w.e(canvas, g0.L(12.0f) + bounds.left, g0.L(15.0f) + bounds.top);
-                }
-            } else {
-                int i12 = bounds.left;
-                boolean z10 = this.D;
-                if (z10) {
-                    L = 0;
-                } else {
-                    L = g0.L(8.0f);
-                }
-                int i13 = i12 + L;
-                int i14 = bounds.top;
-                if (z10) {
-                    L2 = 0;
-                } else {
-                    L2 = g0.L(3.0f);
-                }
-                int i15 = i14 + L2;
-                if (!this.X) {
-                    i10 = g0.L(3.0f);
-                }
-                my0 my0Var = this.f55308n;
-                if (my0Var != null) {
-                    my0Var.e(canvas, g0.L(56.0f) + i13, g0.L(15.0f) + i15 + i10);
-                }
-                if (this.X) {
-                    float f10 = this.f55296a.f55487e;
-                    if (this.f55309r != null && f10 < 1.0f) {
-                        canvas.save();
-                        float f11 = 1.0f - f10;
-                        int i16 = i15 + i10;
-                        canvas.scale(f11, f11, g0.L(56.0f) + i13, g0.L(35.0f) + i16);
-                        this.f55309r.f36145a.setAlpha((int) (f11 * 255.0f));
-                        this.f55309r.e(canvas, g0.L(56.0f) + i13, g0.L(35.0f) + i16);
-                        canvas.restore();
-                    }
-                    if (f10 > 0.0f) {
-                        jm0 jm0Var = this.K;
-                        jm0Var.f35037t = f10;
-                        jm0Var.i(q.w(56.0f, i13, bounds.right), g0.L(30.0f));
-                        canvas.save();
-                        float L3 = g0.L(45.0f) + i13;
-                        this.L = L3;
-                        float L4 = g0.L(21.0f) + i15 + i10;
-                        this.M = L4;
-                        canvas.translate(L3, L4);
-                        jm0Var.b(canvas);
-                        canvas.restore();
-                    }
-                }
-                my0 my0Var2 = this.f55310s;
-                if (my0Var2 != null) {
-                    float L5 = g0.L(56.0f) + i13;
-                    int i17 = i10 + i15;
-                    if (this.X) {
-                        i7 = 20;
-                    } else {
-                        i7 = 2;
-                    }
-                    my0Var2.e(canvas, L5, g0.L(i7 + 34) + i17);
-                }
-                int L6 = g0.L(2.0f) + i13;
-                this.f55297a0 = L6;
-                int L7 = g0.L(5.0f) + i15;
-                this.f55299b0 = L7;
-                radialProgress2.r(L6, L7, g0.L(44.0f) + g0.L(2.0f) + i13, g0.L(44.0f) + g0.L(5.0f) + i15);
+    public static void k(TLRPC.TL_inputMediaPoll tL_inputMediaPoll, int i7, TLRPC.InputMedia inputMedia) {
+        if (i7 == -2) {
+            tL_inputMediaPoll.attached_media = inputMedia;
+        } else if (i7 == -3) {
+            tL_inputMediaPoll.solution_media = inputMedia;
+        } else if (i7 >= 0 && i7 < tL_inputMediaPoll.poll.answers.size()) {
+            TLRPC.PollAnswer pollAnswer = tL_inputMediaPoll.poll.answers.get(i7);
+            if (pollAnswer instanceof TLRPC.TL_inputPollAnswer) {
+                pollAnswer.input_media = inputMedia;
+                return;
             }
-            if (!this.Y) {
-                ij ijVar = this.H;
-                if (ijVar != null && ijVar.p4()) {
-                    if (gc.D().x(this.F) == null) {
-                        radialProgress2.p(true, 1.0f);
-                        if (this.X) {
-                            m(6, true);
-                        } else {
-                            l(6);
+            TLRPC.TL_inputPollAnswer tL_inputPollAnswer = new TLRPC.TL_inputPollAnswer();
+            tL_inputPollAnswer.input_media = inputMedia;
+            tL_inputPollAnswer.text = pollAnswer.text;
+            tL_inputPollAnswer.media = pollAnswer.media;
+            tL_inputPollAnswer.option = pollAnswer.option;
+            tL_inputMediaPoll.poll.answers.set(i7, tL_inputPollAnswer);
+        }
+    }
+
+    public static void l(TLRPC.TL_messageMediaPoll tL_messageMediaPoll, int i7, TLRPC.MessageMedia messageMedia) {
+        if (i7 == -2) {
+            tL_messageMediaPoll.attached_media = messageMedia;
+        } else if (i7 == -3) {
+            tL_messageMediaPoll.results.solution_media = messageMedia;
+        } else if (i7 >= 0 && i7 < tL_messageMediaPoll.poll.answers.size()) {
+            TLRPC.PollAnswer pollAnswer = tL_messageMediaPoll.poll.answers.get(i7);
+            if (pollAnswer instanceof TLRPC.TL_inputPollAnswer) {
+                TLRPC.TL_pollAnswer tL_pollAnswer = new TLRPC.TL_pollAnswer();
+                tL_pollAnswer.text = pollAnswer.text;
+                tL_pollAnswer.option = r0;
+                byte[] bArr = {(byte) (i7 + 48)};
+                tL_pollAnswer.media = messageMedia;
+                tL_messageMediaPoll.poll.answers.set(i7, tL_pollAnswer);
+                return;
+            }
+            pollAnswer.media = messageMedia;
+            TLRPC.TL_inputPollAnswer tL_inputPollAnswer = new TLRPC.TL_inputPollAnswer();
+            tL_inputPollAnswer.text = pollAnswer.text;
+            tL_inputPollAnswer.media = pollAnswer.media;
+            tL_inputPollAnswer.option = pollAnswer.option;
+        }
+    }
+
+    public final d b(int i7) {
+        return (d) this.f55307a.get(i7);
+    }
+
+    public final void h(int i7) {
+        SparseArray sparseArray = this.f55307a;
+        int size = sparseArray.size();
+        for (int i10 = 0; i10 < size; i10++) {
+            if (sparseArray.keyAt(i10) > i7) {
+                if (i7 >= 0) {
+                    SparseArray clone = sparseArray.clone();
+                    sparseArray.clear();
+                    int size2 = clone.size();
+                    for (int i11 = 0; i11 < size2; i11++) {
+                        int keyAt = clone.keyAt(i11);
+                        d dVar = (d) clone.valueAt(i11);
+                        if (keyAt < i7) {
+                            sparseArray.put(keyAt, dVar);
+                        }
+                        if (keyAt > i7) {
+                            sparseArray.put(keyAt - 1, dVar);
                         }
                     }
-                } else {
-                    a aVar = this.Q;
-                    if (aVar != null && aVar.f55282g) {
-                        if (this.X) {
-                            m(3, true);
-                        } else {
-                            l(3);
-                        }
-                    } else if (this.X) {
-                        if (aVar != null && aVar.f55281f) {
-                            i11 = 4;
-                        }
-                        m(i11, true);
-                    } else {
-                        l(g());
-                    }
+                    return;
                 }
-                if (this.X) {
-                    l(g());
-                }
-                radialProgress2.draw(canvas);
+                return;
             }
         }
-    }
-
-    public final void e() {
-        a aVar = this.Q;
-        if (aVar != null) {
-            aVar.a();
-        }
-        this.d.invalidate();
-    }
-
-    public final void f(boolean z9) {
-        float f10;
-        int width = getBounds().width();
-        if (this.D) {
-            f10 = 64.0f;
-        } else {
-            f10 = 72.0f;
-        }
-        int L = width - g0.L(f10);
-        if (this.Z != L || z9) {
-            this.Z = L;
-            String str = this.f55303e;
-            if (str != null) {
-                if (this.f55308n == null) {
-                    this.f55308n = new my0(str, 15.0f, g0.o());
-                }
-                my0 my0Var = this.f55308n;
-                my0Var.q(TextUtils.ellipsize(this.f55303e, my0Var.f36145a, L, TextUtils.TruncateAt.MIDDLE));
-            }
-            String str2 = this.f55305f;
-            if (str2 != null) {
-                if (this.f55309r == null) {
-                    this.f55309r = new my0(str2, 14.0f, null);
-                }
-                my0 my0Var2 = this.f55309r;
-                my0Var2.q(TextUtils.ellipsize(this.f55305f, my0Var2.f36145a, L, TextUtils.TruncateAt.END));
-            }
-            String str3 = this.h;
-            if (str3 != null) {
-                if (this.f55310s == null) {
-                    this.f55310s = new my0(str3, 12.0f, null);
-                }
-                my0 my0Var3 = this.f55310s;
-                my0Var3.q(TextUtils.ellipsize(this.h, my0Var3.f36145a, L, TextUtils.TruncateAt.END));
-            }
-            if (this.G && this.f55311w == null) {
-                this.f55311w = new my0(g0.g0(this.J, true, false), 12.0f, null);
-            }
-        }
-    }
-
-    public final int g() {
-        boolean z9 = this.X;
-        if (z9 && this.f55296a.f55488f) {
-            return !MediaController.B().H();
-        }
-        if (!this.G && !z9) {
-            if (this.W) {
-                a aVar = this.Q;
-                if (aVar != null && aVar.f55281f) {
-                    return 5;
-                }
-                return 2;
-            }
-            return 4;
-        }
-        return 0;
-    }
-
-    @Override
-    public final int getAlpha() {
-        return this.f55301c0;
-    }
-
-    @Override
-    public final int getObserverTag() {
-        return this.f55302d0;
-    }
-
-    @Override
-    public final int getOpacity() {
-        return 0;
-    }
-
-    public final int h(int i7) {
-        int i10;
-        if (this.X) {
-            return g0.L(63.0f);
-        }
-        if (this.W) {
-            return g0.L(56.0f);
-        }
-        int i11 = this.U;
-        if (i11 == 0) {
-            return g0.L(100.0f);
-        }
-        int round = Math.round((i7 / i11) * this.V);
-        if (this.D) {
-            i10 = (i7 * 4) / 5;
-        } else {
-            i10 = (i7 * 5) / 4;
-        }
-        return Math.min(round, i10);
-    }
-
-    @Override
-    public final void i(long j3, long j10) {
-        float min;
-        if (j10 == 0) {
-            min = 0.0f;
-        } else {
-            min = Math.min(1.0f, ((float) j3) / ((float) j10));
-        }
-        this.f55313y.p(true, min);
-        a aVar = this.Q;
-        if (aVar != null) {
-            aVar.a();
-        }
-        int i7 = 3;
-        if (this.X) {
-            if (min >= 1.0f) {
-                i7 = 4;
-            }
-            m(i7, true);
-        } else {
-            if (min >= 1.0f) {
-                i7 = g();
-            }
-            l(i7);
-        }
-        this.d.invalidate();
-    }
-
-    public final boolean j() {
-        if (this.X && MediaController.B().I(this.H) && MediaController.B().f21295u0 != null && MediaController.B().f21295u0.f23263k0 == this.D) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean k(float f10, float f11, int i7) {
-        if (!this.X || this.f55306f0 == 4) {
-            return false;
-        }
-        if (i7 == 0) {
-            int L = g0.L(36.0f);
-            int L2 = g0.L(27.0f);
-            int i10 = this.f55297a0 + L2;
-            if (f10 >= i10 && f10 <= i10 + L) {
-                int i11 = this.f55299b0 + L2;
-                if (f11 >= i11 && f11 <= i11 + L) {
-                    this.R = true;
-                    return true;
-                }
-            }
-        }
-        boolean z9 = this.R;
-        if (z9) {
-            if (i7 == 1) {
-                a aVar = this.Q;
-                if (aVar != null) {
-                    TLRPC.Document document = aVar.f55278b;
-                    int i12 = aVar.f55277a;
-                    if (aVar.f55282g) {
-                        w7.G(i12).f(document);
-                        aVar.a();
-                    } else if (!aVar.f55281f) {
-                        w7.G(i12).W(document, aVar.d, 2, 0);
-                        aVar.a();
-                    }
-                    e();
-                }
-                this.R = false;
-                return true;
-            } else if (i7 == 3) {
-                this.R = false;
-                return true;
-            }
-        }
-        return z9;
-    }
-
-    public final void l(int i7) {
-        if (this.f55304e0 != i7) {
-            this.f55304e0 = i7;
-            this.f55313y.setIcon(i7, true, true);
-        }
-    }
-
-    public final void m(int i7, boolean z9) {
-        if (this.f55306f0 != i7) {
-            this.f55306f0 = i7;
-            this.f55313y.k(i7, true, z9);
-        }
-    }
-
-    public final void n(org.telegram.messenger.ij r26, org.telegram.tgnet.TLRPC.MessageMedia r27, org.telegram.messenger.ij r28, int r29, java.lang.String r30, boolean r31) {
-        throw new UnsupportedOperationException("Method not decompiled: sh.e.n(org.telegram.messenger.ij, org.telegram.tgnet.TLRPC$MessageMedia, org.telegram.messenger.ij, int, java.lang.String, boolean):void");
-    }
-
-    @Override
-    public final void o(long j3, long j10) {
-        float min;
-        if (j10 == 0) {
-            min = 0.0f;
-        } else {
-            min = Math.min(1.0f, ((float) j3) / ((float) j10));
-        }
-        this.f55313y.p(true, min);
-        a aVar = this.Q;
-        if (aVar != null) {
-            aVar.a();
-        }
-        int i7 = 3;
-        if (this.X) {
-            if (min >= 1.0f) {
-                i7 = 4;
-            }
-            m(i7, true);
-        } else {
-            if (min >= 1.0f) {
-                i7 = g();
-            }
-            l(i7);
-        }
-        this.d.invalidate();
-    }
-
-    public final void p(boolean z9) {
-        int i7;
-        if (this.X && this.H != null) {
-            ij ijVar = MediaController.B().f21295u0;
-            boolean j3 = j();
-            this.f55296a.a(j3, z9);
-            if (ijVar != null && j3) {
-                i7 = ijVar.f23245g0;
-                jm0 jm0Var = this.K;
-                if (!jm0Var.f35023e) {
-                    jm0Var.h(ijVar.f23222b0);
-                    jm0Var.f35034q = ijVar.f23235e0;
-                }
-                jm0Var.j(ijVar);
-            } else {
-                i7 = 0;
-            }
-            if (this.f55307g0 != i7) {
-                this.f55307g0 = i7;
-                this.h = g0.k0(i7, (int) this.I);
-                f(true);
-                this.d.invalidate();
-            }
-        }
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
-        this.f55301c0 = i7;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+        sparseArray.remove(i7);
     }
 }

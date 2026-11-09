@@ -52,7 +52,7 @@ public final class fk implements Runnable {
                         while (true) {
                             if (i13 >= size2) {
                                 break;
-                            } else if (ijVar2.f1() == ((Integer) arrayList.get(i13)).intValue()) {
+                            } else if (ijVar2.e1() == ((Integer) arrayList.get(i13)).intValue()) {
                                 ijVar2.Z = true;
                             } else {
                                 i13++;

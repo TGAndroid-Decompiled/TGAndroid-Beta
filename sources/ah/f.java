@@ -7,22 +7,22 @@ import android.widget.TextView;
 import c8.ha;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.id;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.s6;
 public final class f extends FrameLayout {
-    public final f6 f1072a;
+    public final g6 f1072a;
     public final TextView f1073b;
 
-    public f(Context context, f6 f6Var) {
+    public f(Context context, g6 g6Var) {
         super(context);
         int i7;
-        this.f1072a = f6Var;
-        r6.i(k6.f27872e7, this, f6Var);
+        this.f1072a = g6Var;
+        s6.h(l6.f27885e7, this, g6Var);
         TextView textView = new TextView(getContext());
         this.f1073b = textView;
         com.google.android.recaptcha.internal.a.q(textView, 1, 14.0f);
-        r6.V(textView, k6.f27891f7, f6Var);
+        s6.U(textView, l6.f27904f7, g6Var);
         if (id.f23157a0) {
             i7 = 5;
         } else {
@@ -42,6 +42,6 @@ public final class f extends FrameLayout {
     }
 
     public void setTextColor(int i7) {
-        r6.V(this.f1073b, i7, this.f1072a);
+        s6.U(this.f1073b, i7, this.f1072a);
     }
 }

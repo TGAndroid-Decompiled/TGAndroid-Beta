@@ -89,13 +89,13 @@ public final class ub {
                 if (i7 == 1) {
                     this.A.f22649q.a(vbVar);
                 } else {
-                    ((of.a) this.A.f22648p.f6814b).remove(vbVar);
+                    ((of.a) this.A.f22648p.f6812b).remove(vbVar);
                     com.google.android.gms.internal.cast.b0 b0Var = this.A.f22648p;
                     Runnable runnable = this.f25748b;
                     if (runnable == null) {
                         b0Var.getClass();
                     } else {
-                        ((of.a) b0Var.f6814b).remove(runnable);
+                        ((of.a) b0Var.f6812b).remove(runnable);
                     }
                 }
                 vb vbVar2 = this.f25765u;

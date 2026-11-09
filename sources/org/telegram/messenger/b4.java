@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.lt0;
+import org.telegram.ui.nt0;
 public final class b4 implements Runnable {
     public final int f21609a;
     public final Object f21610b;
@@ -37,7 +37,7 @@ public final class b4 implements Runnable {
     private final void b() {
         Account[] accountArr;
         g5 g5Var = (g5) this.f21610b;
-        lt0 lt0Var = (lt0) this.f21611c;
+        nt0 nt0Var = (nt0) this.f21611c;
         AccountManager accountManager = AccountManager.get(t0.f25566b);
         try {
             Account[] accountsByType = accountManager.getAccountsByType("org.telegram.messenger");
@@ -97,7 +97,7 @@ public final class b4 implements Runnable {
         g5Var.f22616l0.clear();
         g5Var.getNotificationCenter().k(qs.O, new Object[0]);
         g5Var.A(0L, false);
-        lt0Var.run();
+        nt0Var.run();
     }
 
     @Override

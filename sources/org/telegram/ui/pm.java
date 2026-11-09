@@ -1,63 +1,96 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
+import android.content.Context;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.TextView;
-import java.util.HashSet;
-public final class pm extends TextView implements org.telegram.ui.ActionBar.a6 {
-    public final org.telegram.ui.Cells.y f48851a;
-    public int f48852b;
-    public boolean f48853c;
-    public final an d;
+import java.util.ArrayList;
+import java.util.Collections;
+public final class pm extends View {
+    public final ArrayList f48748a;
+    public final ArrayList f48749b;
+    public final cn f48750c;
 
-    public pm(an anVar, Activity activity) {
-        super(activity);
-        this.d = anVar;
-        setSingleLine(true);
-        setLines(1);
-        setMaxLines(1);
-        setEllipsize(TextUtils.TruncateAt.END);
-        org.telegram.ui.ActionBar.r6.V(this, org.telegram.ui.ActionBar.k6.Gi, anVar.getResourceProvider());
-        int themedColor = anVar.getThemedColor(org.telegram.ui.ActionBar.k6.Ci);
-        this.f48852b = themedColor;
-        org.telegram.ui.Cells.y e10 = org.telegram.ui.ActionBar.z5.e(themedColor, 16.0f);
-        this.f48851a = e10;
-        setBackground(e10);
-        setTextSize(1, 14.0f);
-        setTypeface(org.telegram.messenger.g0.o());
-        setGravity(17);
-        setPadding(org.telegram.messenger.g0.L(14.0f), 0, org.telegram.messenger.g0.L(14.0f), 0);
+    public pm(cn cnVar, Context context) {
+        super(context);
+        this.f48750c = cnVar;
+        this.f48748a = new ArrayList();
+        this.f48749b = new ArrayList();
+    }
+
+    public final void a() {
+        ArrayList arrayList = this.f48748a;
+        arrayList.clear();
+        cn cnVar = this.f48750c;
+        arrayList.add(cnVar.Y1);
+        arrayList.add(cnVar.f44700z0);
+        arrayList.add(cnVar.Y);
+        arrayList.add(cnVar.Y3);
+        arrayList.add(cnVar.W1);
+        arrayList.add(cnVar.f44526l3);
+        arrayList.add(cnVar.Z);
+        arrayList.add(cnVar.f44676x1);
+        arrayList.add(cnVar.T);
+        arrayList.add(cnVar.f44449f2);
+        arrayList.removeAll(Collections.singleton(null));
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i7), (int) (org.telegram.messenger.g0.f22563q.x * 0.45f)), Integer.MIN_VALUE), i10);
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        return false;
     }
 
     @Override
-    public final void updateColors() {
-        try {
-            int themedColor = this.d.getThemedColor(org.telegram.ui.ActionBar.k6.Ci);
-            if (themedColor == this.f48852b && this.f48853c == org.telegram.ui.ActionBar.k6.I.q()) {
-                return;
-            }
-            Drawable background = getBackground();
-            org.telegram.ui.Cells.y yVar = this.f48851a;
-            if (background == yVar) {
-                this.f48853c = org.telegram.ui.ActionBar.k6.I.q();
-                org.telegram.ui.ActionBar.k6.H1(yVar, themedColor, false);
-                org.telegram.ui.ActionBar.k6.H1(yVar, org.telegram.ui.ActionBar.z5.b(themedColor), true);
-                this.f48852b = themedColor;
-                invalidate();
-            }
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        cn cnVar = this.f48750c;
+        cnVar.Xc = true;
+        ArrayList arrayList = this.f48749b;
+        int size = arrayList.size();
+        int i7 = 0;
+        while (i7 < size) {
+            Object obj = arrayList.get(i7);
+            i7++;
+            ((View) obj).setVisibility(0);
         }
+        arrayList.clear();
+        cnVar.Xc = false;
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        a();
+        cn cnVar = this.f48750c;
+        cnVar.Xc = true;
+        ArrayList arrayList = this.f48748a;
+        int size = arrayList.size();
+        int i7 = 0;
+        while (i7 < size) {
+            Object obj = arrayList.get(i7);
+            i7++;
+            View view = (View) obj;
+            if (view.getVisibility() == 0) {
+                view.setVisibility(8);
+                this.f48749b.add(view);
+            }
+        }
+        cnVar.Xc = false;
+    }
+
+    @Override
+    public void setTranslationX(float f10) {
+        super.setTranslationX(f10);
+        a();
+        ArrayList arrayList = this.f48748a;
+        int size = arrayList.size();
+        int i7 = 0;
+        while (i7 < size) {
+            Object obj = arrayList.get(i7);
+            i7++;
+            View view = (View) obj;
+            if (view != null) {
+                view.setTranslationX(f10);
+            }
+        }
     }
 }

@@ -9,7 +9,7 @@ public final class ow implements Runnable {
     public final boolean G;
     public final long H;
     public final Runnable I;
-    public final sh.f f24402a;
+    public final sh.g f24402a;
     public final ArrayList f24403b;
     public final long f24404c;
     public final c d;
@@ -23,8 +23,8 @@ public final class ow implements Runnable {
     public final int f24411x;
     public final int f24412y;
 
-    public ow(sh.f fVar, ArrayList arrayList, long j3, c cVar, CharSequence charSequence, boolean z9, ArrayList arrayList2, ij ijVar, ij ijVar2, ij ijVar3, boolean z10, int i7, int i10, TL_stories.StoryItem storyItem, hw hwVar, long j10, boolean z11, long j11, Runnable runnable) {
-        this.f24402a = fVar;
+    public ow(sh.g gVar, ArrayList arrayList, long j3, c cVar, CharSequence charSequence, boolean z9, ArrayList arrayList2, ij ijVar, ij ijVar2, ij ijVar3, boolean z10, int i7, int i10, TL_stories.StoryItem storyItem, hw hwVar, long j10, boolean z11, long j11, Runnable runnable) {
+        this.f24402a = gVar;
         this.f24403b = arrayList;
         this.f24404c = j3;
         this.d = cVar;

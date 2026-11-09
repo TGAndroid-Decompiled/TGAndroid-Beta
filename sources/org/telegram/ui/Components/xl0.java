@@ -1,24 +1,20 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class xl0 extends v4.s0 {
-    public final int f40338a;
-    public final org.telegram.ui.fw f40339b;
+import android.content.Context;
+public final class xl0 extends v20 {
+    public final org.telegram.ui.hw f40431e0;
 
-    public xl0(org.telegram.ui.fw fwVar, int i7) {
-        this.f40338a = i7;
-        this.f40339b = fwVar;
+    public xl0(org.telegram.ui.hw hwVar, qj0 qj0Var, Context context, int i7) {
+        super(qj0Var, context, i7);
+        this.f40431e0 = hwVar;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i7, int i10) {
-        switch (this.f40338a) {
-            case 0:
-                this.f40339b.T();
-                return;
-            default:
-                this.f40339b.T();
-                return;
-        }
+    public final void O(boolean z9) {
+        super.O(z9);
+        tl0 tl0Var = this.f40431e0.f34011u0;
+        tl0Var.e(false, z9);
+        tl0Var.d.setText(org.telegram.messenger.id.M0(2131748167, null));
+        tl0Var.f32768e.setVisibility(8);
     }
 }

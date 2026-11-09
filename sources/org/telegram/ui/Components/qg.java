@@ -3,12 +3,12 @@ package org.telegram.ui.Components;
 import android.text.TextUtils;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class qg implements Runnable {
-    public final int f37318a;
-    public final di f37319b;
+    public final int f37310a;
+    public final di f37311b;
 
     public qg(di diVar, int i7) {
-        this.f37318a = i7;
-        this.f37319b = diVar;
+        this.f37310a = i7;
+        this.f37311b = diVar;
     }
 
     @Override
@@ -19,13 +19,13 @@ public final class qg implements Runnable {
         boolean u12;
         vh vhVar;
         bm bmVar;
-        switch (this.f37318a) {
+        switch (this.f37310a) {
             case 0:
-                di diVar = this.f37319b;
+                di diVar = this.f37311b;
                 if (diVar.T1) {
                     ltVar = diVar.J2;
                 } else {
-                    ltVar = diVar.f33016y2;
+                    ltVar = diVar.f33071y2;
                 }
                 if (ltVar.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(ltVar.getText().toString().trim())) {
                     z9 = true;
@@ -35,13 +35,13 @@ public final class qg implements Runnable {
                 diVar.B1(z9);
                 return;
             case 1:
-                di diVar2 = this.f37319b;
-                diVar2.f28658z0 = null;
+                di diVar2 = this.f37311b;
+                diVar2.f28663z0 = null;
                 diVar2.A0 = 0;
                 diVar2.K();
                 return;
             case 2:
-                di diVar3 = this.f37319b;
+                di diVar3 = this.f37311b;
                 ue ueVar = diVar3.Y1;
                 if (ueVar != null) {
                     j3 = ueVar.j();
@@ -52,8 +52,8 @@ public final class qg implements Runnable {
                 lh lhVar = diVar3.C2;
                 diVar3.H2 = j10;
                 lhVar.setEffect(j10);
-                vh vhVar2 = diVar3.f32992s2;
-                if (vhVar2 != diVar3.f32932a2 && vhVar2 != diVar3.f32952h2) {
+                vh vhVar2 = diVar3.f33047s2;
+                if (vhVar2 != diVar3.f32987a2 && vhVar2 != diVar3.f33007h2) {
                     if (!vhVar2.L(false, 0, 0, j10, diVar3.f1())) {
                         diVar3.dismiss();
                     }
@@ -69,7 +69,7 @@ public final class qg implements Runnable {
                 }
                 return;
             case 3:
-                di diVar4 = this.f37319b;
+                di diVar4 = this.f37311b;
                 diVar4.a(true);
                 org.telegram.ui.ActionBar.f2 f2Var = diVar4.W1;
                 if (f2Var != null) {
@@ -78,20 +78,20 @@ public final class qg implements Runnable {
                 }
                 return;
             case 4:
-                this.f37319b.t1();
+                this.f37311b.t1();
                 return;
             default:
-                di diVar5 = this.f37319b;
-                diVar5.f32974n3 = null;
-                vh vhVar3 = diVar5.f32992s2;
-                if (vhVar3 != diVar5.f32932a2 && (vhVar = diVar5.f32996t2) != (bmVar = diVar5.f32952h2) && vhVar3 != vhVar && vhVar3 != bmVar) {
-                    diVar5.f28619b.removeView(vhVar3);
+                di diVar5 = this.f37311b;
+                diVar5.f33029n3 = null;
+                vh vhVar3 = diVar5.f33047s2;
+                if (vhVar3 != diVar5.f32987a2 && (vhVar = diVar5.f33051t2) != (bmVar = diVar5.f33007h2) && vhVar3 != vhVar && vhVar3 != bmVar) {
+                    diVar5.f28624b.removeView(vhVar3);
                 }
-                diVar5.f32992s2.setVisibility(8);
-                diVar5.f32992s2.t();
-                diVar5.f32996t2.I();
-                diVar5.f32992s2 = diVar5.f32996t2;
-                diVar5.f32996t2 = null;
+                diVar5.f33047s2.setVisibility(8);
+                diVar5.f33047s2.t();
+                diVar5.f33051t2.I();
+                diVar5.f33047s2 = diVar5.f33051t2;
+                diVar5.f33051t2 = null;
                 int[] iArr = diVar5.V3;
                 iArr[0] = iArr[1];
                 diVar5.v1(diVar5.T1, false);

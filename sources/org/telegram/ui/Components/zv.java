@@ -1,18 +1,18 @@
 package org.telegram.ui.Components;
 public final class zv implements c5.g {
-    public final boolean f41153a;
-    public final hy f41154b;
+    public final boolean f41141a;
+    public final hy f41142b;
 
     public zv(hy hyVar, boolean z9) {
-        this.f41154b = hyVar;
-        this.f41153a = z9;
+        this.f41142b = hyVar;
+        this.f41141a = z9;
     }
 
     @Override
     public final void a(int i7) {
         boolean z9;
         int i10;
-        hy hyVar = this.f41154b;
+        hy hyVar = this.f41142b;
         wv wvVar = hyVar.h;
         boolean z10 = false;
         if (wvVar != null) {
@@ -35,18 +35,18 @@ public final class zv implements c5.g {
             z9 = false;
         }
         hyVar.L(z9, true);
-        if (i7 == 2 && (this.f41153a || hyVar.f34457v0)) {
+        if (i7 == 2 && (this.f41141a || hyVar.f34472v0)) {
             z10 = true;
         }
         hyVar.Q(z10, true);
-        if (hyVar.f34452t1.z()) {
+        if (hyVar.f34467t1.z()) {
             if (i7 == 0) {
                 iv ivVar = hyVar.V;
                 if (ivVar != null) {
                     ivVar.d.requestFocus();
                 }
             } else if (i7 == 1) {
-                nv nvVar = hyVar.f34434o0;
+                nv nvVar = hyVar.f34449o0;
                 if (nvVar != null) {
                     nvVar.d.requestFocus();
                 }
@@ -67,18 +67,18 @@ public final class zv implements c5.g {
         int i11;
         int i12;
         int i13;
-        hy hyVar = this.f41154b;
+        hy hyVar = this.f41142b;
         ux uxVar3 = hyVar.G0;
-        ux uxVar4 = hyVar.f34434o0;
+        ux uxVar4 = hyVar.f34449o0;
         ux uxVar5 = hyVar.V;
         vv vvVar = hyVar.C0;
         qv qvVar = hyVar.D0;
-        ow owVar = hyVar.f34437p0;
-        lv lvVar = hyVar.f34415h0;
+        ow owVar = hyVar.f34452p0;
+        lv lvVar = hyVar.f34430h0;
         tw twVar = hyVar.P;
         int i14 = 2;
         boolean z9 = true;
-        if (hyVar.f34465x0 == null || hyVar.f34412g0 == null) {
+        if (hyVar.f34480x0 == null || hyVar.f34427g0 == null) {
             f11 = 0.0f;
         } else {
             int i15 = 8;
@@ -135,7 +135,7 @@ public final class zv implements c5.g {
         hyVar.getMeasuredWidth();
         hyVar.getPaddingLeft();
         hyVar.getPaddingRight();
-        ix ixVar = hyVar.f34452t1;
+        ix ixVar = hyVar.f34467t1;
         if (ixVar != null) {
             if (i7 == 1) {
                 if (i10 == 0) {

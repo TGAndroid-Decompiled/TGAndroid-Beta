@@ -32,7 +32,7 @@ public final class wd implements Runnable {
 
     @Override
     public final void run() {
-        long c22;
+        long b22;
         String absolutePath;
         int i7 = this.f26288a;
         Object obj = this.f26296w;
@@ -77,11 +77,11 @@ public final class wd implements Runnable {
                     mediaController.f21284p1 = njVar;
                     ij ijVar2 = this.f26293n;
                     if (ijVar2 == null) {
-                        c22 = 0;
+                        b22 = 0;
                     } else {
-                        c22 = ij.c2(mediaController.f21270h1, ijVar2.f23262k, false, false);
+                        b22 = ij.b2(mediaController.f21270h1, ijVar2.f23262k, false, false);
                     }
-                    mediaController.n1 = c22;
+                    mediaController.n1 = b22;
                     mediaController.f21270h1 = i10;
                     mediaController.f21286q1 = ijVar;
                     mediaController.f21289r1 = ijVar2;

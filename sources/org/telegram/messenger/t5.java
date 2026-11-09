@@ -70,7 +70,7 @@ public abstract class t5 {
         return f(document, i7, f10, null);
     }
 
-    public static rz f(TLRPC.Document document, int i7, float f10, org.telegram.ui.ActionBar.f6 f6Var) {
+    public static rz f(TLRPC.Document document, int i7, float f10, org.telegram.ui.ActionBar.g6 g6Var) {
         int i10;
         int i11;
         if (document != null) {
@@ -92,7 +92,7 @@ public abstract class t5 {
                     if (i10 != 0 && i11 != 0) {
                         rz j3 = sz.j((int) (i10 * 1.0f), (int) (i11 * 1.0f), ((TLRPC.TL_photoPathSize) photoSize).svgPath);
                         if (j3 != null) {
-                            j3.f(i7, f6Var, f10, false);
+                            j3.f(i7, g6Var, f10, false);
                         }
                         return j3;
                     }

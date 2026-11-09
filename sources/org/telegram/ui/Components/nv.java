@@ -13,7 +13,7 @@ public final class nv extends ux {
     public final void setTranslationY(float f10) {
         if (getTranslationY() != f10) {
             super.setTranslationY(f10);
-            this.H.f34412g0.invalidate();
+            this.H.f34427g0.invalidate();
         }
     }
 }

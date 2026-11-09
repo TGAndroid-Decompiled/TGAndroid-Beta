@@ -34,7 +34,7 @@ public final class t2 implements Runnable {
                 org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
                 if (T != null && T.getParentLayout() != null) {
                     org.telegram.ui.ActionBar.q4 parentLayout = T.getParentLayout();
-                    T.presentFragment(ProfileActivity.A4(a3Var3.I));
+                    T.presentFragment(ProfileActivity.D4(a3Var3.I));
                     org.telegram.messenger.g0.k3(parentLayout, "botPermissionLocation");
                     a3Var3.o(true);
                     return;

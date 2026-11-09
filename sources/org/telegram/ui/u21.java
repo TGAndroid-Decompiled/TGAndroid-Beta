@@ -1,28 +1,33 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.UndoView;
-public final class u21 extends UndoView {
-    public final SessionsActivity f50199j0;
+import android.content.Intent;
+import android.net.Uri;
+public final class u21 implements org.telegram.ui.ActionBar.r1 {
+    public final int f50282a;
+    public final SessionsActivity f50283b;
 
-    public u21(SessionsActivity sessionsActivity, Context context) {
-        super(context);
-        this.f50199j0 = sessionsActivity;
+    public u21(SessionsActivity sessionsActivity, int i7) {
+        this.f50282a = i7;
+        this.f50283b = sessionsActivity;
     }
 
     @Override
-    public final void d(int i7, boolean z9) {
-        int i10;
-        if (!z9 && getCurrentInfoObject() != null) {
-            TLRPC.TL_authorization tL_authorization = (TLRPC.TL_authorization) getCurrentInfoObject();
-            TL_account.resetAuthorization resetauthorization = new TL_account.resetAuthorization();
-            resetauthorization.hash = tL_authorization.hash;
-            i10 = ((org.telegram.ui.ActionBar.f2) this.f50199j0).currentAccount;
-            ConnectionsManager.getInstance(i10).sendRequest(resetauthorization, new h50(25, this, tL_authorization));
+    public final void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        switch (this.f50282a) {
+            case 0:
+                SessionsActivity sessionsActivity = this.f50283b;
+                try {
+                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f25566b.getPackageName()));
+                    sessionsActivity.getParentActivity().startActivity(intent);
+                    return;
+                } catch (Exception e10) {
+                    org.telegram.messenger.a8.g(e10, true);
+                    return;
+                }
+            default:
+                SessionsActivity.b0(this.f50283b);
+                return;
         }
-        super.d(i7, z9);
     }
 }

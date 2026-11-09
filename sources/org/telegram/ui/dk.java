@@ -1,8 +1,11 @@
 package org.telegram.ui;
-public final class dk {
-    public final an f45080a;
 
-    public dk(an anVar) {
-        this.f45080a = anVar;
+import android.app.Activity;
+public final class dk extends org.telegram.ui.Components.b31 {
+    public final cn D;
+
+    public dk(cn cnVar, Activity activity, cn cnVar2, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(activity, g6Var, cnVar2);
+        this.D = cnVar;
     }
 }

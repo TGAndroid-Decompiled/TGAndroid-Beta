@@ -59,8 +59,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Pattern;
 import javax.net.ssl.SSLException;
-import l2.a0;
-import l2.y;
+import l2.x;
+import l2.z;
 import l2.z0;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -99,10 +99,10 @@ import org.telegram.messenger.y8;
 import org.telegram.messenger.z2;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.l6;
 import org.telegram.ui.Cells.f1;
-import org.telegram.ui.ce0;
-import org.telegram.ui.jo0;
+import org.telegram.ui.ee0;
+import org.telegram.ui.lo0;
 public class ConnectionsManager extends c1 {
     private static final int CORE_POOL_SIZE;
     public static final int CPU_COUNT;
@@ -775,7 +775,7 @@ public class ConnectionsManager extends c1 {
     }
 
     public void checkWebProxyInternal(ui.a aVar, int i7, RequestTimeDelegate requestTimeDelegate) {
-        native_checkProxy(this.currentAccount, "127.0.0.1", i7, "", "", aVar.f56920f, requestTimeDelegate);
+        native_checkProxy(this.currentAccount, "127.0.0.1", i7, "", "", aVar.f56932f, requestTimeDelegate);
     }
 
     public static int generateClassGuid() {
@@ -1011,7 +1011,7 @@ public class ConnectionsManager extends c1 {
         n10.append(System.currentTimeMillis() - j3);
         n10.append("ms");
         a8.e(n10.toString(), exc);
-        native_receivedIntegrityCheckClassic(i7, i10, str, "PLAYINTEGRITY_FAILED_EXCEPTION_" + ce0.x1(exc));
+        native_receivedIntegrityCheckClassic(i7, i10, str, "PLAYINTEGRITY_FAILED_EXCEPTION_" + ee0.x1(exc));
     }
 
     public static void lambda$onIntegrityCheckClassic$27(int i7, String str, String str2, int i10) {
@@ -1384,7 +1384,7 @@ public class ConnectionsManager extends c1 {
                 g0.h3(new vj(s12, 19));
             }
         }
-        if (k6.f28046o == i11 && Math.abs(j10 - qp.A8) >= 60) {
+        if (l6.f28059o == i11 && Math.abs(j10 - qp.A8) >= 60) {
             g0.h3(s12.H2);
             qp.A8 = j10;
         }
@@ -1568,7 +1568,7 @@ public class ConnectionsManager extends c1 {
     }
 
     public static void onIntegrityCheckClassic(int i7, int i10, String str, String str2) {
-        g0.h3(new a0(i7, i10, str, str2));
+        g0.h3(new z(i7, i10, str, str2));
     }
 
     public static void onInternalPushReceived(int i7) {
@@ -1740,12 +1740,12 @@ public class ConnectionsManager extends c1 {
         int i10;
         String str5 = "";
         if (z9 && aVar != null && aVar.g()) {
-            String str6 = aVar.f56917b;
-            int i11 = aVar.f56918c;
+            String str6 = aVar.f56929b;
+            int i11 = aVar.f56930c;
             String str7 = aVar.d;
-            String str8 = aVar.f56919e;
-            String str9 = aVar.f56920f;
-            if (aVar.f56916a == 3) {
+            String str8 = aVar.f56931e;
+            String str9 = aVar.f56932f;
+            if (aVar.f56928a == 3) {
                 i7 = ui.i.o(str6, str9);
                 if (i7 == 0) {
                     i7 = 9;
@@ -1755,12 +1755,12 @@ public class ConnectionsManager extends c1 {
                 str5 = "127.0.0.1";
                 str = str2;
             } else {
-                synchronized (ui.i.f56940y) {
+                synchronized (ui.i.f56952y) {
                     try {
-                        ui.i iVar = ui.i.f56941z;
+                        ui.i iVar = ui.i.f56953z;
                         if (iVar != null) {
                             iVar.q();
-                            ui.i.f56941z = null;
+                            ui.i.f56953z = null;
                         }
                     } finally {
                     }
@@ -1864,31 +1864,31 @@ public class ConnectionsManager extends c1 {
 
     public long checkProxy(ui.a aVar, RequestTimeDelegate requestTimeDelegate) {
         if (aVar != null && aVar.g()) {
-            if (aVar.f56916a == 3) {
-                ui.e eVar = ui.e.f56929f;
+            if (aVar.f56928a == 3) {
+                ui.e eVar = ui.e.f56941f;
                 if (eVar == null) {
                     synchronized (ui.e.class) {
                         try {
-                            eVar = ui.e.f56929f;
+                            eVar = ui.e.f56941f;
                             if (eVar == null) {
                                 eVar = new ui.e(0);
-                                ui.e.f56929f = eVar;
+                                ui.e.f56941f = eVar;
                             }
                         } finally {
                         }
                     }
                 }
                 ui.e eVar2 = eVar;
-                y yVar = new y(this, 22);
-                if (aVar.f56916a == 3 && aVar.g() && requestTimeDelegate != null) {
-                    g0.h3(new jo0(eVar2, yVar, aVar, requestTimeDelegate, 29));
+                x xVar = new x(this, 22);
+                if (aVar.f56928a == 3 && aVar.g() && requestTimeDelegate != null) {
+                    g0.h3(new lo0(eVar2, xVar, aVar, requestTimeDelegate, 29));
                     return 0L;
                 } else if (requestTimeDelegate != null) {
                     requestTimeDelegate.run(-1L);
                     return 0L;
                 }
             } else {
-                return native_checkProxy(this.currentAccount, aVar.f56917b, aVar.f56918c, aVar.d, aVar.f56919e, aVar.f56920f, requestTimeDelegate);
+                return native_checkProxy(this.currentAccount, aVar.f56929b, aVar.f56930c, aVar.d, aVar.f56931e, aVar.f56932f, requestTimeDelegate);
             }
         }
         return 0L;
@@ -2012,15 +2012,15 @@ public class ConnectionsManager extends c1 {
         SharedPreferences sharedPreferences = t0.f25566b.getSharedPreferences("mainconfig", 0);
         ui.a c10 = ui.a.c(sharedPreferences);
         if (sharedPreferences.getBoolean("proxy_enabled", false) && c10.g()) {
-            if (c10.f56916a == 3) {
-                int o4 = ui.i.o(c10.f56917b, c10.f56920f);
+            if (c10.f56928a == 3) {
+                int o4 = ui.i.o(c10.f56929b, c10.f56932f);
                 int i13 = this.currentAccount;
                 if (o4 == 0) {
                     o4 = 9;
                 }
-                native_setProxySettings(i13, "127.0.0.1", o4, "", "", c10.f56920f);
+                native_setProxySettings(i13, "127.0.0.1", o4, "", "", c10.f56932f);
             } else {
-                native_setProxySettings(this.currentAccount, c10.f56917b, c10.f56918c, c10.d, c10.f56919e, c10.f56920f);
+                native_setProxySettings(this.currentAccount, c10.f56929b, c10.f56930c, c10.d, c10.f56931e, c10.f56932f);
             }
         }
         try {

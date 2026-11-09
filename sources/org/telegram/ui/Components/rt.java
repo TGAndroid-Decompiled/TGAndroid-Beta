@@ -22,23 +22,23 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
-public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.google.android.gms.common.api.internal.p, tg.l1, sg.v0, v4.i1, androidx.lifecycle.s0 {
-    public final int f37757a;
-    public Object f37758b;
+public final class rt implements ti.m, r0.m, yr0, ue.a, jg.y1, q5.b, x2.d1, com.google.android.gms.common.api.internal.p, tg.l1, sg.u0, v4.i1, androidx.lifecycle.s0 {
+    public final int f37804a;
+    public Object f37805b;
 
     public rt(Object obj, int i7) {
-        this.f37757a = i7;
-        this.f37758b = obj;
+        this.f37804a = i7;
+        this.f37805b = obj;
     }
 
     @Override
     public int A() {
-        return ((v4.n0) this.f37758b).G();
+        return ((v4.n0) this.f37805b).G();
     }
 
     @Override
     public View D() {
-        return ((wt) this.f37758b).K1;
+        return ((wt) this.f37805b).K1;
     }
 
     @Override
@@ -48,23 +48,23 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
 
     @Override
     public void G() {
-        ((xs0) this.f37758b).I.a(-1);
+        ((zs0) this.f37805b).I.a(-1);
     }
 
     @Override
     public org.telegram.ui.ActionBar.z0 H(String str) {
-        org.telegram.ui.ActionBar.f5 f5Var = ((xs0) this.f37758b).I;
+        org.telegram.ui.ActionBar.f5 f5Var = ((zs0) this.f37805b).I;
         return f5Var.d(0, 0, null, str, true, true, f5Var.m0);
     }
 
     @Override
     public void H0() {
-        ((s41) this.f37758b).h.c(false);
+        ((t41) this.f37805b).h.c(false);
     }
 
     @Override
     public int I() {
-        return ((wt) this.f37758b).L1;
+        return ((wt) this.f37805b).L1;
     }
 
     @Override
@@ -84,13 +84,13 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
 
     @Override
     public int N() {
-        v4.n0 n0Var = (v4.n0) this.f37758b;
-        return n0Var.f57142n - n0Var.C();
+        v4.n0 n0Var = (v4.n0) this.f37805b;
+        return n0Var.f57154n - n0Var.C();
     }
 
     @Override
     public void O(float f10, float f11) {
-        Runnable runnable = ((s41) this.f37758b).f37906j;
+        Runnable runnable = ((t41) this.f37805b).f38279j;
         if (runnable != null) {
             runnable.run();
         }
@@ -103,39 +103,39 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
 
     @Override
     public void Q() {
-        wt wtVar = (wt) this.f37758b;
+        wt wtVar = (wt) this.f37805b;
         wtVar.J1 = null;
         wtVar.K0();
     }
 
     @Override
-    public boolean R(boolean z9, float f10, qm0 qm0Var) {
+    public boolean R(boolean z9, float f10, rm0 rm0Var) {
         return false;
     }
 
     @Override
     public r0.k1 S0(View view, r0.k1 k1Var) {
         i0.b I0 = org.telegram.messenger.g0.I0(k1Var, false);
-        jk0 jk0Var = (jk0) this.f37758b;
-        jk0Var.f35012w.setPadding(I0.f15120a, I0.f15121b, I0.f15122c, I0.d);
-        jk0Var.f35011s.requestLayout();
-        return r0.k1.f54201b;
+        kk0 kk0Var = (kk0) this.f37805b;
+        kk0Var.f35368w.setPadding(I0.f15120a, I0.f15121b, I0.f15122c, I0.d);
+        kk0Var.f35367s.requestLayout();
+        return r0.k1.f54213b;
     }
 
     @Override
     public void T() {
-        ((wt) this.f37758b).L0();
+        ((wt) this.f37805b).L0();
     }
 
     @Override
     public int U() {
-        return ((wt) this.f37758b).M1;
+        return ((wt) this.f37805b).M1;
     }
 
     @Override
     public boolean U0(float f10, float f11) {
         int L = org.telegram.messenger.g0.L(9.0f);
-        RectF rectF = ((s41) this.f37758b).f37904g;
+        RectF rectF = ((t41) this.f37805b).f38277g;
         float f12 = -L;
         rectF.inset(f12, f12);
         boolean contains = rectF.contains(f10, f11);
@@ -151,16 +151,16 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
 
     @Override
     public View W(int i7) {
-        return ((v4.n0) this.f37758b).q(i7);
+        return ((v4.n0) this.f37805b).q(i7);
     }
 
     @Override
     public void X(float f10) {
-        org.telegram.ui.up0 up0Var = (org.telegram.ui.up0) this.f37758b;
-        sg.l0.e(up0Var.f55703y1).k(String.valueOf(sg.h.f55060a.indexOf(up0Var.F0.getCurrentBrush())), f10);
-        sg.j1 j1Var = up0Var.f55693t1;
-        j1Var.f55111c = f10;
-        up0Var.s0(j1Var, null);
+        org.telegram.ui.wp0 wp0Var = (org.telegram.ui.wp0) this.f37805b;
+        sg.l0.e(wp0Var.f55715y1).k(String.valueOf(sg.h.f55074a.indexOf(wp0Var.F0.getCurrentBrush())), f10);
+        sg.i1 i1Var = wp0Var.f55705t1;
+        i1Var.f55096c = f10;
+        wp0Var.s0(i1Var, null);
     }
 
     @Override
@@ -170,10 +170,10 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
 
     @Override
     public void Y() {
-        tg.o0 o0Var = (tg.o0) this.f37758b;
-        o0Var.f55873b.f55147a.f();
-        o0Var.f55881x.setViewHidden(false);
-        PhotoViewer photoViewer = ((org.telegram.ui.tp0) o0Var).K;
+        tg.o0 o0Var = (tg.o0) this.f37805b;
+        o0Var.f55885b.f55147a.f();
+        o0Var.f55893x.setViewHidden(false);
+        PhotoViewer photoViewer = ((org.telegram.ui.vp0) o0Var).K;
         Drawable[] drawableArr = PhotoViewer.Y8;
         photoViewer.U2(true, true);
     }
@@ -185,12 +185,12 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
 
     @Override
     public void accept(Object obj, Object obj2) {
-        switch (this.f37757a) {
+        switch (this.f37804a) {
             case 14:
                 TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
                 s6.c cVar = (s6.c) ((s6.e) obj).n();
                 Parcel j12 = cVar.j1();
-                n7.a.b(j12, (q6.p) this.f37758b);
+                n7.a.b(j12, (q6.p) this.f37805b);
                 try {
                     cVar.f306b.transact(1, j12, null, 1);
                     j12.recycle();
@@ -204,9 +204,9 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
                 u7.x xVar = (u7.x) ((u7.k) obj).n();
                 u7.f fVar = new u7.f(1, (TaskCompletionSource) obj2);
                 Parcel p12 = xVar.p1();
-                int i7 = u7.d.f56363a;
+                int i7 = u7.d.f56375a;
                 p12.writeInt(1);
-                ((j8.c) this.f37758b).writeToParcel(p12, 0);
+                ((j8.c) this.f37805b).writeToParcel(p12, 0);
                 u7.d.c(p12, fVar);
                 p12.writeString(null);
                 xVar.t1(p12, 63);
@@ -216,23 +216,23 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
 
     @Override
     public void b() {
-        l71 l71Var = ((wt) this.f37758b).f40042j1;
-        if (l71Var != null && l71Var.f35590x) {
-            l71Var.f35570a.g0();
-            l71Var.n();
-            l71Var.f35580f0.d(true, true);
+        m71 m71Var = ((wt) this.f37805b).f40150j1;
+        if (m71Var != null && m71Var.f36016x) {
+            m71Var.f35996a.g0();
+            m71Var.n();
+            m71Var.f36006f0.d(true, true);
         }
     }
 
     @Override
     public org.telegram.ui.ActionBar.z0 b0(int i7, Runnable runnable, String str, boolean z9, boolean z10) {
-        xs0 xs0Var = (xs0) this.f37758b;
-        org.telegram.ui.ActionBar.z0 e10 = xs0Var.I.e(0, i7, str);
+        zs0 zs0Var = (zs0) this.f37805b;
+        org.telegram.ui.ActionBar.z0 e10 = zs0Var.I.e(0, i7, str);
         if (z9) {
-            int i10 = org.telegram.ui.ActionBar.k6.f28073p7;
-            e10.d(xs0Var.s0(i10), xs0Var.s0(i10));
+            int i10 = org.telegram.ui.ActionBar.l6.f28086p7;
+            e10.d(zs0Var.s0(i10), zs0Var.s0(i10));
         }
-        e10.setOnClickListener(new ka0(this, z10, runnable));
+        e10.setOnClickListener(new la0(this, z10, runnable));
         return e10;
     }
 
@@ -244,13 +244,13 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
     @Override
     public void d(x2.e1 e1Var) {
         r2.p pVar = (r2.p) e1Var;
-        r2.j jVar = (r2.j) this.f37758b;
+        r2.j jVar = (r2.j) this.f37805b;
         jVar.G.d(jVar);
     }
 
     @Override
     public void d0() {
-        ((tg.o0) this.f37758b).f55881x.setViewHidden(true);
+        ((tg.o0) this.f37805b).f55893x.setViewHidden(true);
     }
 
     @Override
@@ -259,29 +259,29 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
     }
 
     public void g0(v4.a aVar) {
-        RecyclerView recyclerView = (RecyclerView) this.f37758b;
-        int i7 = aVar.f56992a;
+        RecyclerView recyclerView = (RecyclerView) this.f37805b;
+        int i7 = aVar.f57004a;
         if (i7 != 1) {
             if (i7 != 2) {
                 if (i7 != 4) {
                     if (i7 != 8) {
                         return;
                     }
-                    recyclerView.f2873y.X(recyclerView, aVar.f56993b, aVar.d);
+                    recyclerView.f2873y.X(recyclerView, aVar.f57005b, aVar.d);
                     return;
                 }
-                recyclerView.f2873y.a0(recyclerView, aVar.f56993b, aVar.d, aVar.f56994c);
+                recyclerView.f2873y.a0(recyclerView, aVar.f57005b, aVar.d, aVar.f57006c);
                 return;
             }
-            recyclerView.f2873y.Y(recyclerView, aVar.f56993b, aVar.d);
+            recyclerView.f2873y.Y(recyclerView, aVar.f57005b, aVar.d);
             return;
         }
-        recyclerView.f2873y.V(recyclerView, aVar.f56993b, aVar.d);
+        recyclerView.f2873y.V(recyclerView, aVar.f57005b, aVar.d);
     }
 
     @Override
     public Object mo24get() {
-        return new org.telegram.ui.hy0((Context) ((e.a) this.f37758b).f10026a, new nb.a(28), new w7.s(27, false), 4);
+        return new org.telegram.ui.ky0((Context) ((e.a) this.f37805b).f10026a, new nb.a(28), new w7.s(27, false), 4);
     }
 
     @Override
@@ -300,7 +300,7 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
     }
 
     public ClipDescription h0() {
-        return ((t0.h) this.f37758b).getDescription();
+        return ((t0.h) this.f37805b).getDescription();
     }
 
     @Override
@@ -311,32 +311,32 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
     public void i0(int i7, int i10, Object obj) {
         int i11;
         int i12;
-        RecyclerView recyclerView = (RecyclerView) this.f37758b;
+        RecyclerView recyclerView = (RecyclerView) this.f37805b;
         int B = recyclerView.f2847e.B();
         int i13 = i10 + i7;
         for (int i14 = 0; i14 < B; i14++) {
             View A = recyclerView.f2847e.A(i14);
             v4.d1 U = RecyclerView.U(A);
-            if (U != null && !U.r() && (i12 = U.f57046c) >= i7 && i12 < i13) {
+            if (U != null && !U.r() && (i12 = U.f57058c) >= i7 && i12 < i13) {
                 U.a(2);
                 if (obj == null) {
                     U.a(1024);
-                } else if ((1024 & U.f57053l) == 0) {
-                    if (U.f57054m == null) {
+                } else if ((1024 & U.f57065l) == 0) {
+                    if (U.f57066m == null) {
                         ArrayList arrayList = new ArrayList();
-                        U.f57054m = arrayList;
-                        U.f57055n = DesugarCollections.unmodifiableList(arrayList);
+                        U.f57066m = arrayList;
+                        U.f57067n = DesugarCollections.unmodifiableList(arrayList);
                     }
-                    U.f57054m.add(obj);
+                    U.f57066m.add(obj);
                 }
-                ((v4.o0) A.getLayoutParams()).f57146c = true;
+                ((v4.o0) A.getLayoutParams()).f57158c = true;
             }
         }
         v4.v0 v0Var = recyclerView.f2842b;
-        ArrayList arrayList2 = (ArrayList) v0Var.f57180e;
+        ArrayList arrayList2 = (ArrayList) v0Var.f57192e;
         for (int size = arrayList2.size() - 1; size >= 0; size--) {
             v4.d1 d1Var = (v4.d1) arrayList2.get(size);
-            if (d1Var != null && (i11 = d1Var.f57046c) >= i7 && i11 < i13) {
+            if (d1Var != null && (i11 = d1Var.f57058c) >= i7 && i11 < i13) {
                 d1Var.a(2);
                 v0Var.f(size);
             }
@@ -360,20 +360,20 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
     }
 
     public void k0(int i7, int i10) {
-        RecyclerView recyclerView = (RecyclerView) this.f37758b;
+        RecyclerView recyclerView = (RecyclerView) this.f37805b;
         int B = recyclerView.f2847e.B();
         for (int i11 = 0; i11 < B; i11++) {
             v4.d1 U = RecyclerView.U(recyclerView.f2847e.A(i11));
-            if (U != null && !U.r() && U.f57046c >= i7) {
+            if (U != null && !U.r() && U.f57058c >= i7) {
                 U.n(i10, false);
-                recyclerView.f2867u0.f57002f = true;
+                recyclerView.f2867u0.f57014f = true;
             }
         }
-        ArrayList arrayList = (ArrayList) recyclerView.f2842b.f57180e;
+        ArrayList arrayList = (ArrayList) recyclerView.f2842b.f57192e;
         int size = arrayList.size();
         for (int i12 = 0; i12 < size; i12++) {
             v4.d1 d1Var = (v4.d1) arrayList.get(i12);
-            if (d1Var != null && d1Var.f57046c >= i7) {
+            if (d1Var != null && d1Var.f57058c >= i7) {
                 d1Var.n(i10, true);
             }
         }
@@ -399,7 +399,7 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
         int i15;
         int i16;
         int i17;
-        RecyclerView recyclerView = (RecyclerView) this.f37758b;
+        RecyclerView recyclerView = (RecyclerView) this.f37805b;
         int B = recyclerView.f2847e.B();
         int i18 = -1;
         if (i7 < i10) {
@@ -413,16 +413,16 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
         }
         for (int i19 = 0; i19 < B; i19++) {
             v4.d1 U = RecyclerView.U(recyclerView.f2847e.A(i19));
-            if (U != null && (i17 = U.f57046c) >= i12 && i17 <= i11) {
+            if (U != null && (i17 = U.f57058c) >= i12 && i17 <= i11) {
                 if (i17 == i7) {
                     U.n(i10 - i7, false);
                 } else {
                     U.n(i13, false);
                 }
-                recyclerView.f2867u0.f57002f = true;
+                recyclerView.f2867u0.f57014f = true;
             }
         }
-        ArrayList arrayList = (ArrayList) recyclerView.f2842b.f57180e;
+        ArrayList arrayList = (ArrayList) recyclerView.f2842b.f57192e;
         if (i7 < i10) {
             i15 = i7;
             i14 = i10;
@@ -434,7 +434,7 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
         int size = arrayList.size();
         for (int i20 = 0; i20 < size; i20++) {
             v4.d1 d1Var = (v4.d1) arrayList.get(i20);
-            if (d1Var != null && (i16 = d1Var.f57046c) >= i15 && i16 <= i14) {
+            if (d1Var != null && (i16 = d1Var.f57058c) >= i15 && i16 <= i14) {
                 if (i16 == i7) {
                     d1Var.n(i10 - i7, false);
                 } else {
@@ -449,7 +449,7 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
     public void m0() {
         r2.p[] pVarArr;
         r2.p[] pVarArr2;
-        r2.j jVar = (r2.j) this.f37758b;
+        r2.j jVar = (r2.j) this.f37805b;
         int i7 = jVar.H - 1;
         jVar.H = i7;
         if (i7 > 0) {
@@ -458,13 +458,13 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
         int i10 = 0;
         for (r2.p pVar : jVar.J) {
             pVar.l();
-            i10 += pVar.Y.f58449a;
+            i10 += pVar.Y.f58458a;
         }
         e2.m1[] m1VarArr = new e2.m1[i10];
         int i11 = 0;
         for (r2.p pVar2 : jVar.J) {
             pVar2.l();
-            int i12 = pVar2.Y.f58449a;
+            int i12 = pVar2.Y.f58458a;
             int i13 = 0;
             while (i13 < i12) {
                 pVar2.l();
@@ -479,8 +479,8 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
 
     @Override
     public void n() {
-        tg.o0 o0Var = (tg.o0) this.f37758b;
-        o0Var.f55875e.animate().alpha(1.0f).setDuration(320L).setUpdateListener(new fi.v3(o0Var, 24)).setInterpolator(xq.h);
+        tg.o0 o0Var = (tg.o0) this.f37805b;
+        o0Var.f55887e.animate().alpha(1.0f).setDuration(320L).setUpdateListener(new fi.v3(o0Var, 24)).setInterpolator(xq.h);
     }
 
     public boolean n0(android.view.MotionEvent r22) {
@@ -488,7 +488,7 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
     }
 
     public void o0() {
-        ArrayDeque arrayDeque = (ArrayDeque) this.f37758b;
+        ArrayDeque arrayDeque = (ArrayDeque) this.f37805b;
         if (arrayDeque.isEmpty()) {
             return;
         }
@@ -520,14 +520,14 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
 
     @Override
     public void q(int i7) {
-        org.telegram.ui.Wallet.w9 w9Var = (org.telegram.ui.Wallet.w9) this.f37758b;
-        if (!w9Var.f43312r && i7 == w9Var.J) {
-            w9Var.j0(w9Var.N.getText().toString().trim());
+        org.telegram.ui.Wallet.v9 v9Var = (org.telegram.ui.Wallet.v9) this.f37805b;
+        if (!v9Var.f43230r && i7 == v9Var.J) {
+            v9Var.j0(v9Var.N.getText().toString().trim());
         }
     }
 
     public long q0() {
-        ArrayDeque arrayDeque = (ArrayDeque) this.f37758b;
+        ArrayDeque arrayDeque = (ArrayDeque) this.f37805b;
         if (arrayDeque.isEmpty()) {
             return 0L;
         }
@@ -536,8 +536,8 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
 
     @Override
     public boolean r() {
-        wt wtVar = (wt) this.f37758b;
-        if (wtVar.K1 == wtVar.f40041i1 && wtVar.f40051u1 && "inapp".equals(org.telegram.messenger.qp.s1(wtVar.f28616a).A3)) {
+        wt wtVar = (wt) this.f37805b;
+        if (wtVar.K1 == wtVar.f40149i1 && wtVar.f40159u1 && "inapp".equals(org.telegram.messenger.qp.s1(wtVar.f28621a).A3)) {
             return false;
         }
         return true;
@@ -546,8 +546,8 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
     @Override
     public androidx.lifecycle.p0 t(Class cls, y1.b bVar) {
         androidx.lifecycle.m0 m0Var = null;
-        for (y1.c cVar : (y1.c[]) this.f37758b) {
-            if (cVar.f58872a.equals(cls)) {
+        for (y1.c cVar : (y1.c[]) this.f37805b) {
+            if (cVar.f58881a.equals(cls)) {
                 m0Var = new androidx.lifecycle.m0();
             }
         }
@@ -559,7 +559,7 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
 
     @Override
     public void t0() {
-        ((s41) this.f37758b).h.c(true);
+        ((t41) this.f37805b).h.c(true);
     }
 
     @Override
@@ -588,53 +588,53 @@ public final class rt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
     }
 
     public rt(boolean z9) {
-        this.f37757a = 8;
-        this.f37758b = new AtomicBoolean(z9);
+        this.f37804a = 8;
+        this.f37805b = new AtomicBoolean(z9);
     }
 
     public rt(int i7) {
-        this.f37757a = i7;
+        this.f37804a = i7;
         switch (i7) {
             case 10:
-                this.f37758b = new ArrayDeque(16);
+                this.f37805b = new ArrayDeque(16);
                 return;
             case 27:
                 return;
             default:
-                this.f37758b = h9.i0.p();
+                this.f37805b = h9.i0.p();
                 return;
         }
     }
 
     public rt(y1.c[] initializers) {
-        this.f37757a = 26;
+        this.f37804a = 26;
         kotlin.jvm.internal.j.e(initializers, "initializers");
-        this.f37758b = initializers;
+        this.f37805b = initializers;
     }
 
     @Override
     public float get() {
-        org.telegram.ui.up0 up0Var = (org.telegram.ui.up0) this.f37758b;
-        int i7 = up0Var.f55703y1;
-        sg.h currentBrush = up0Var.F0.getCurrentBrush();
+        org.telegram.ui.wp0 wp0Var = (org.telegram.ui.wp0) this.f37805b;
+        int i7 = wp0Var.f55715y1;
+        sg.h currentBrush = wp0Var.F0.getCurrentBrush();
         if (currentBrush == null) {
-            return sg.l0.e(i7).f55133i;
+            return sg.l0.e(i7).f55143i;
         }
-        return sg.l0.e(i7).f(String.valueOf(sg.h.f55060a.indexOf(currentBrush)), currentBrush.d());
+        return sg.l0.e(i7).f(String.valueOf(sg.h.f55074a.indexOf(currentBrush)), currentBrush.d());
     }
 
     public rt(Uri uri, ClipDescription clipDescription, Uri uri2) {
-        this.f37757a = 15;
+        this.f37804a = 15;
         if (Build.VERSION.SDK_INT >= 25) {
-            this.f37758b = new t0.g(uri, clipDescription, uri2);
+            this.f37805b = new t0.g(uri, clipDescription, uri2);
         } else {
-            this.f37758b = new org.telegram.ui.hy0(uri, clipDescription, uri2, 15);
+            this.f37805b = new org.telegram.ui.ky0(uri, clipDescription, uri2, 15);
         }
     }
 
     public rt(Context context, c10 c10Var) {
-        this.f37757a = 1;
-        this.f37758b = new b10(context, c10Var);
+        this.f37804a = 1;
+        this.f37805b = new b10(context, c10Var);
     }
 
     @Override

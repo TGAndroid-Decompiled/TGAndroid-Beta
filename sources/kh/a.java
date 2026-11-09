@@ -15,21 +15,21 @@ import dh.c;
 import fh.g;
 import java.util.HashSet;
 import org.telegram.messenger.g0;
-import org.telegram.ui.ActionBar.a6;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.n6;
-import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.o6;
+import org.telegram.ui.ActionBar.s6;
 import org.telegram.ui.Cells.y;
 import org.telegram.ui.Components.cp;
 import org.telegram.ui.Components.xq;
-public final class a extends FrameLayout implements te.b, a6 {
+public final class a extends FrameLayout implements te.b, b6 {
     public final te.a f17591a;
     public final te.a f17592b;
     public ImageView f17593c;
     public ImageView d;
     public cp f17594e;
-    public f6 f17595f;
+    public g6 f17595f;
     public float h;
     public int f17596n;
     public g f17597r;
@@ -42,38 +42,38 @@ public final class a extends FrameLayout implements te.b, a6 {
         this.h = 1.0f;
     }
 
-    public static a c(Context context, c cVar, gh.a aVar, f6 f6Var) {
-        int i7 = k6.Kl;
-        int w02 = k6.w0(i7, f6Var);
+    public static a c(Context context, c cVar, gh.a aVar, g6 g6Var) {
+        int i7 = l6.Kl;
+        int w02 = l6.w0(i7, g6Var);
         a aVar2 = new a(context);
-        aVar2.f17595f = f6Var;
+        aVar2.f17595f = g6Var;
         aVar2.setBlurredBackgroundDrawable(cVar.c(aVar2, aVar, false));
         aVar2.setIconColor(w02);
         int L = g0.L(22.0f);
-        int r12 = k6.r1(0.15f, w02);
+        int r12 = l6.r1(0.15f, w02);
         int L2 = g0.L(6.0f);
-        y Y = k6.Y(L, r12, L2, L2, L2, L2);
-        n6 L3 = r6.L(0.15f, i7);
+        y Y = l6.Y(L, r12, L2, L2, L2, L2);
+        o6 K = s6.K(0.15f, i7);
         aVar2.setBackground(Y);
-        r6.k(aVar2, Y, null, L3, f6Var);
+        s6.j(aVar2, Y, null, K, g6Var);
         return aVar2;
     }
 
-    public static a d(Context context, c cVar, gh.a aVar, f6 f6Var, int i7, int i10) {
-        int i11 = k6.Kl;
-        int w02 = k6.w0(i11, f6Var);
+    public static a d(Context context, c cVar, gh.a aVar, g6 g6Var, int i7, int i10) {
+        int i11 = l6.Kl;
+        int w02 = l6.w0(i11, g6Var);
         a aVar2 = new a(context);
-        aVar2.f17595f = f6Var;
+        aVar2.f17595f = g6Var;
         aVar2.setBlurredBackgroundDrawable(cVar.c(aVar2, aVar, false));
         aVar2.f(i7, i10);
         aVar2.setIconColor(w02);
         int L = g0.L(22.0f);
-        int r12 = k6.r1(0.15f, w02);
+        int r12 = l6.r1(0.15f, w02);
         int L2 = g0.L(6.0f);
-        y Y = k6.Y(L, r12, L2, L2, L2, L2);
-        n6 L3 = r6.L(0.15f, i11);
+        y Y = l6.Y(L, r12, L2, L2, L2, L2);
+        o6 K = s6.K(0.15f, i11);
         aVar2.setBackground(Y);
-        r6.k(aVar2, Y, null, L3, f6Var);
+        s6.j(aVar2, Y, null, K, g6Var);
         return aVar2;
     }
 
@@ -91,8 +91,8 @@ public final class a extends FrameLayout implements te.b, a6 {
 
     public final void a() {
         int i7;
-        float f10 = 1.0f - this.f17591a.f55487e;
-        float T1 = g0.T1(f10 / 2.0f, f10, this.f17592b.f55487e);
+        float f10 = 1.0f - this.f17591a.f55499e;
+        float T1 = g0.T1(f10 / 2.0f, f10, this.f17592b.f55499e);
         ImageView imageView = this.f17593c;
         if (imageView != null) {
             imageView.setAlpha(T1);
@@ -110,8 +110,8 @@ public final class a extends FrameLayout implements te.b, a6 {
 
     public final void b() {
         int i7;
-        float f10 = this.f17591a.f55487e;
-        float T1 = g0.T1(f10 / 2.0f, f10, this.f17592b.f55487e);
+        float f10 = this.f17591a.f55499e;
+        float T1 = g0.T1(f10 / 2.0f, f10, this.f17592b.f55499e);
         ImageView imageView = this.d;
         if (imageView != null) {
             imageView.setAlpha(T1);
@@ -124,7 +124,7 @@ public final class a extends FrameLayout implements te.b, a6 {
             }
             if (this.d.getVisibility() != i7) {
                 this.d.setVisibility(i7);
-                this.f17594e.f32655c = -1L;
+                this.f17594e.f32736c = -1L;
             }
         }
     }
@@ -209,18 +209,18 @@ public final class a extends FrameLayout implements te.b, a6 {
             gVar.updateColors();
             invalidate();
         }
-        int w02 = k6.w0(k6.Kl, this.f17595f);
+        int w02 = l6.w0(l6.Kl, this.f17595f);
         if (this.f17593c != null && w02 != this.f17596n) {
             setIconColor(w02);
         }
         int L = g0.L(22.0f);
-        int r12 = k6.r1(0.15f, w02);
+        int r12 = l6.r1(0.15f, w02);
         if (getBackground() instanceof RippleDrawable) {
-            k6.H1(getBackground(), r12, true);
+            l6.H1(getBackground(), r12, true);
             return;
         }
         int L2 = g0.L(6.0f);
-        setBackground(k6.Y(L, r12, L2, L2, L2, L2));
+        setBackground(l6.Y(L, r12, L2, L2, L2, L2));
     }
 
     @Override

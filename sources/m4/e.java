@@ -96,7 +96,7 @@ public final class e implements i {
                                 i7 = 5;
                             }
                             int min2 = Math.min(xVar.a(), i7 - this.f19622k);
-                            xVar.k(this.f19622k, min2, (byte[]) fVar.f8164b);
+                            xVar.k(this.f19622k, min2, (byte[]) fVar.f8162b);
                             int i21 = this.f19622k + min2;
                             this.f19622k = i21;
                             if (i21 == i7) {
@@ -162,7 +162,7 @@ public final class e implements i {
                         }
                     }
                 } else if (xVar.a() != 0) {
-                    ((byte[]) fVar.f8164b)[0] = xVar.f14162a[xVar.f14163b];
+                    ((byte[]) fVar.f8162b)[0] = xVar.f14162a[xVar.f14163b];
                     fVar.J(2);
                     int j13 = fVar.j(4);
                     int i25 = this.f19627p;
@@ -197,7 +197,7 @@ public final class e implements i {
                             }
                             int i29 = i26 - 1;
                             xVar.N(i26);
-                            byte[] bArr4 = (byte[]) fVar.f8164b;
+                            byte[] bArr4 = (byte[]) fVar.f8162b;
                             if (xVar.a() >= i19) {
                                 xVar.k(i17, i19, bArr4);
                                 fVar.J(i18);
@@ -207,7 +207,7 @@ public final class e implements i {
                                     c10 = 65535;
                                 } else {
                                     if (this.f19627p != -1) {
-                                        byte[] bArr5 = (byte[]) fVar.f8164b;
+                                        byte[] bArr5 = (byte[]) fVar.f8162b;
                                         if (xVar.a() < i19) {
                                             break;
                                         }
@@ -220,7 +220,7 @@ public final class e implements i {
                                     } else {
                                         i14 = 4;
                                     }
-                                    byte[] bArr6 = (byte[]) fVar.f8164b;
+                                    byte[] bArr6 = (byte[]) fVar.f8162b;
                                     if (xVar.a() >= i14) {
                                         xVar.k(i17, i14, bArr6);
                                         fVar.J(14);

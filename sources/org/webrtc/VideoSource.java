@@ -66,7 +66,7 @@ public class VideoSource extends MediaSource {
                             VideoSource.this.videoProcessor.onFrameCaptured(videoFrame, adaptFrame);
                             return;
                         }
-                        VideoFrame b10 = d0.b(videoFrame, adaptFrame);
+                        VideoFrame b10 = c0.b(videoFrame, adaptFrame);
                         if (b10 != null) {
                             VideoSource.this.nativeAndroidVideoTrackSource.onFrameCaptured(b10);
                             b10.release();
@@ -85,7 +85,7 @@ public class VideoSource extends MediaSource {
     }
 
     public void lambda$setVideoProcessor$1(VideoFrame videoFrame) {
-        runWithReference(new s(6, this, videoFrame));
+        runWithReference(new r(6, this, videoFrame));
     }
 
     public void adaptOutputFormat(int i7, int i10, int i11) {

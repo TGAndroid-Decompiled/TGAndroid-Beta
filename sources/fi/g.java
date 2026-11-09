@@ -17,21 +17,21 @@ import android.widget.FrameLayout;
 import org.telegram.ui.Components.gt;
 import org.telegram.ui.Components.hy;
 import org.telegram.ui.Components.lt;
-import org.telegram.ui.Components.rt0;
+import org.telegram.ui.Components.tt0;
 import org.telegram.ui.Components.uc;
 import org.telegram.ui.Components.xq;
 import org.telegram.ui.Components.zs;
 public final class g extends lt {
     public org.telegram.ui.Components.ca V;
     public fh.g W;
-    public final org.telegram.ui.ActionBar.f6 f12053a0;
+    public final org.telegram.ui.ActionBar.g6 f12053a0;
     public final org.telegram.ui.Components.y9 f12054b0;
     public final m f12055c0;
 
-    public g(m mVar, Context context, rt0 rt0Var, int i7, di.b bVar, org.telegram.ui.ActionBar.f6 f6Var, org.telegram.ui.Components.y9 y9Var) {
-        super(context, rt0Var, null, i7, true, bVar);
+    public g(m mVar, Context context, tt0 tt0Var, int i7, di.b bVar, org.telegram.ui.ActionBar.g6 g6Var, org.telegram.ui.Components.y9 y9Var) {
+        super(context, tt0Var, null, i7, true, bVar);
         this.f12055c0 = mVar;
-        this.f12053a0 = f6Var;
+        this.f12053a0 = g6Var;
         this.f12054b0 = y9Var;
     }
 
@@ -56,12 +56,12 @@ public final class g extends lt {
         if (emojiView != null) {
             m mVar = this.f12055c0;
             if (mVar.getEditTextStyle() == 2 || mVar.getEditTextStyle() == 3) {
-                emojiView.f34461w0 = false;
-                emojiView.f34467x2 = false;
+                emojiView.f34476w0 = false;
+                emojiView.f34482x2 = false;
                 emojiView.setShouldDrawBackground(false);
                 if (mVar instanceof uc) {
                     emojiView.setPadding(0, 0, 0, org.telegram.messenger.g0.f22558n);
-                    emojiView.f34398c = 3;
+                    emojiView.f34413c = 3;
                 }
                 emojiView.updateColors();
             }
@@ -84,10 +84,10 @@ public final class g extends lt {
         gt gtVar2 = gtVar;
         m mVar = this.f12055c0;
         dh.j jVar = mVar.d;
-        RectF rectF = mVar.f12390y0;
+        RectF rectF = mVar.f12391y0;
         rectF.set(0.0f, 0.0f, gtVar2.getWidth(), org.telegram.messenger.g0.L(29.0f) + gtVar2.getHeight());
         int i11 = 0;
-        if (mVar.f12367g0 != null) {
+        if (mVar.f12368g0 != null) {
             if (this.W == null) {
                 if (Build.VERSION.SDK_INT >= 31 && (rootWindowInsets = getRootWindowInsets()) != null) {
                     RoundedCorner roundedCorner = rootWindowInsets.getRoundedCorner(3);
@@ -106,7 +106,7 @@ public final class g extends lt {
                     i7 = 0;
                     i10 = 0;
                 }
-                fh.g c10 = mVar.f12367g0.c(gtVar2, null, false);
+                fh.g c10 = mVar.f12368g0.c(gtVar2, null, false);
                 c10.p(c8.g0.i(this.f12053a0));
                 this.W = c10;
                 c10.t(org.telegram.messenger.g0.L(29.0f), org.telegram.messenger.g0.L(29.0f), i7, i10, true);
@@ -125,16 +125,16 @@ public final class g extends lt {
             if (this.V == null) {
                 this.V = new org.telegram.ui.Components.ca(this.f12054b0, gtVar2, 7, false);
             }
-            mVar.h(this.V, canvas, mVar.f12390y0, org.telegram.messenger.g0.L(29.0f), false, 0.0f, -gtVar2.getY(), false);
-            jVar.f8783m = org.telegram.messenger.g0.L(29.0f);
+            mVar.h(this.V, canvas, mVar.f12391y0, org.telegram.messenger.g0.L(29.0f), false, 0.0f, -gtVar2.getY(), false);
+            jVar.f8781m = org.telegram.messenger.g0.L(29.0f);
             jVar.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, org.telegram.messenger.g0.L(29.0f) + ((int) rectF.bottom));
             jVar.draw(canvas);
         } else {
-            Paint paint = mVar.f12363e;
+            Paint paint = mVar.f12364e;
             FrameLayout frameLayout = mVar.J;
-            if (mVar.f12374n0 > 0.0f && mVar.f12382t0 != null && mVar.f12379r0 != null && (bitmap = mVar.f12377q0) != null && !bitmap.isRecycled()) {
-                mVar.f12381s0.reset();
-                mVar.f12381s0.postScale(frameLayout.getWidth() / mVar.f12377q0.getWidth(), frameLayout.getHeight() / mVar.f12377q0.getHeight());
+            if (mVar.f12375n0 > 0.0f && mVar.f12383t0 != null && mVar.f12380r0 != null && (bitmap = mVar.f12378q0) != null && !bitmap.isRecycled()) {
+                mVar.f12382s0.reset();
+                mVar.f12382s0.postScale(frameLayout.getWidth() / mVar.f12378q0.getWidth(), frameLayout.getHeight() / mVar.f12378q0.getHeight());
                 float f10 = 0.0f;
                 float f11 = 0.0f;
                 gt gtVar3 = gtVar2;
@@ -150,15 +150,15 @@ public final class g extends lt {
                     i11++;
                     gtVar3 = r12;
                 }
-                mVar.f12381s0.postTranslate(-f10, -f11);
-                mVar.f12379r0.setLocalMatrix(mVar.f12381s0);
-                mVar.f12382t0.setAlpha((int) (mVar.f12374n0 * 255.0f * 0.95f));
-                canvas.drawRoundRect(rectF, 0.0f, 0.0f, mVar.f12382t0);
+                mVar.f12382s0.postTranslate(-f10, -f11);
+                mVar.f12380r0.setLocalMatrix(mVar.f12382s0);
+                mVar.f12383t0.setAlpha((int) (mVar.f12375n0 * 255.0f * 0.95f));
+                canvas.drawRoundRect(rectF, 0.0f, 0.0f, mVar.f12383t0);
             }
-            if (mVar.f12382t0 == null) {
+            if (mVar.f12383t0 == null) {
                 W1 = 128.0f;
             } else {
-                W1 = org.telegram.messenger.g0.W1(mVar.f12374n0, 128, 153) * 0.95f;
+                W1 = org.telegram.messenger.g0.W1(mVar.f12375n0, 128, 153) * 0.95f;
             }
             paint.setAlpha((int) W1);
             canvas.drawRoundRect(rectF, 0.0f, 0.0f, paint);
@@ -178,31 +178,31 @@ public final class g extends lt {
     @Override
     public final boolean t(int i7) {
         m mVar = this.f12055c0;
-        g gVar = mVar.f12365f;
-        ObjectAnimator objectAnimator = mVar.f12366f0;
-        if (objectAnimator != null && objectAnimator.isRunning() && i7 == mVar.f12359b0) {
+        g gVar = mVar.f12366f;
+        ObjectAnimator objectAnimator = mVar.f12367f0;
+        if (objectAnimator != null && objectAnimator.isRunning() && i7 == mVar.f12360b0) {
             return false;
         }
         mVar.invalidate();
         if (mVar.W) {
             mVar.W = false;
-            if (mVar.f12357a0 != i7) {
-                ObjectAnimator objectAnimator2 = mVar.f12366f0;
-                if (objectAnimator2 == null || !objectAnimator2.isRunning() || i7 != mVar.f12359b0) {
-                    ObjectAnimator objectAnimator3 = mVar.f12366f0;
+            if (mVar.f12358a0 != i7) {
+                ObjectAnimator objectAnimator2 = mVar.f12367f0;
+                if (objectAnimator2 == null || !objectAnimator2.isRunning() || i7 != mVar.f12360b0) {
+                    ObjectAnimator objectAnimator3 = mVar.f12367f0;
                     if (objectAnimator3 != null) {
                         objectAnimator3.cancel();
                     }
-                    gVar.getEditText().setScrollY(mVar.f12357a0);
+                    gVar.getEditText().setScrollY(mVar.f12358a0);
                     zs editText = gVar.getEditText();
-                    int i10 = mVar.f12357a0;
-                    mVar.f12359b0 = i7;
+                    int i10 = mVar.f12358a0;
+                    mVar.f12360b0 = i7;
                     ObjectAnimator ofInt = ObjectAnimator.ofInt(editText, "scrollY", i10, i7);
-                    mVar.f12366f0 = ofInt;
+                    mVar.f12367f0 = ofInt;
                     ofInt.setDuration(240L);
-                    mVar.f12366f0.setInterpolator(xq.h);
-                    mVar.f12366f0.addListener(new bi.t5(this, 16));
-                    mVar.f12366f0.start();
+                    mVar.f12367f0.setInterpolator(xq.h);
+                    mVar.f12367f0.addListener(new bi.t5(this, 16));
+                    mVar.f12367f0.start();
                     return false;
                 }
                 return true;

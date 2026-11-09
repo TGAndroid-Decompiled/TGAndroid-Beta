@@ -12,7 +12,7 @@ public abstract class WrappedNativeVideoEncoder implements VideoEncoder {
 
     @Override
     public final VideoEncoder.EncoderInfo getEncoderInfo() {
-        return x.b(this);
+        return w.b(this);
     }
 
     @Override
@@ -22,7 +22,7 @@ public abstract class WrappedNativeVideoEncoder implements VideoEncoder {
 
     @Override
     public final VideoEncoder.ResolutionBitrateLimits[] getResolutionBitrateLimits() {
-        return x.c(this);
+        return w.c(this);
     }
 
     @Override
@@ -50,6 +50,6 @@ public abstract class WrappedNativeVideoEncoder implements VideoEncoder {
 
     @Override
     public final VideoCodecStatus setRates(VideoEncoder.RateControlParameters rateControlParameters) {
-        return x.e(this, rateControlParameters);
+        return w.e(this, rateControlParameters);
     }
 }

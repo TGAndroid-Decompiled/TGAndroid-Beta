@@ -32,7 +32,7 @@ public final class iu extends is {
         if (!z9) {
             for (int i11 = 0; i11 < this.N.size(); i11++) {
                 ku kuVar = (ku) this.N.get(i11);
-                if (kuVar.f35436e != 0.0f || kuVar.d != null || kuVar.getTranslationX() != 0.0f || kuVar.getTranslationY() != 0.0f || kuVar.getAlpha() != 1.0f) {
+                if (kuVar.f35487e != 0.0f || kuVar.d != null || kuVar.getTranslationX() != 0.0f || kuVar.getTranslationY() != 0.0f || kuVar.getAlpha() != 1.0f) {
                     break;
                 }
             }
@@ -54,7 +54,7 @@ public final class iu extends is {
             ArrayList arrayList = this.O;
             if (i7 < arrayList.size()) {
                 ku kuVar = (ku) arrayList.get(i7);
-                kuVar.f35434b.h(canvas, kuVar.f35433a[this.K]);
+                kuVar.f35485b.h(canvas, kuVar.f35484a[this.K]);
                 i7++;
             } else {
                 return;
@@ -68,14 +68,14 @@ public final class iu extends is {
         if (this.N != null) {
             for (int i7 = 0; i7 < this.N.size(); i7++) {
                 ku kuVar = (ku) this.N.get(i7);
-                r5 r5Var = kuVar.f35435c;
-                if (r5Var != null && (i5Var = (i5) this.P.D.f37775i1.get(r5Var.getDocumentId())) != null && i5Var.f34541k != null && kuVar.f35434b != null) {
+                r5 r5Var = kuVar.f35486c;
+                if (r5Var != null && (i5Var = (i5) this.P.D.f37806i1.get(r5Var.getDocumentId())) != null && i5Var.f34568k != null && kuVar.f35485b != null) {
                     i5Var.setAlpha((int) (kuVar.getAlpha() * 255.0f * f10));
                     float width = ((kuVar.getWidth() - kuVar.getPaddingLeft()) - kuVar.getPaddingRight()) / 2.0f;
                     float height = ((kuVar.getHeight() - kuVar.getPaddingTop()) - kuVar.getPaddingBottom()) / 2.0f;
                     float right = (kuVar.getRight() + kuVar.getLeft()) / 2.0f;
                     float paddingTop = kuVar.getPaddingTop() + height;
-                    float f11 = kuVar.f35436e;
+                    float f11 = kuVar.f35487e;
                     float f12 = 1.0f;
                     if (f11 != 0.0f) {
                         f12 = 1.0f * (((1.0f - f11) * 0.2f) + 0.8f);
@@ -93,12 +93,12 @@ public final class iu extends is {
         while (true) {
             ArrayList arrayList = this.O;
             if (i7 < arrayList.size()) {
-                ((ku) arrayList.get(i7)).f35433a[this.K].a();
+                ((ku) arrayList.get(i7)).f35484a[this.K].a();
                 i7++;
             } else {
                 ru ruVar = this.P.D;
                 Pattern pattern = ru.M1;
-                ruVar.f28619b.invalidate();
+                ruVar.f28624b.invalidate();
                 return;
             }
         }
@@ -112,11 +112,11 @@ public final class iu extends is {
         arrayList.clear();
         for (int i7 = 0; i7 < this.N.size(); i7++) {
             ku kuVar = (ku) this.N.get(i7);
-            r5 r5Var = kuVar.f35435c;
-            org.telegram.messenger.ic[] icVarArr = kuVar.f35433a;
-            if (r5Var != null && (i5Var = (i5) ruVar.f37775i1.get(r5Var.getDocumentId())) != null && i5Var.f34541k != null) {
+            r5 r5Var = kuVar.f35486c;
+            org.telegram.messenger.ic[] icVarArr = kuVar.f35484a;
+            if (r5Var != null && (i5Var = (i5) ruVar.f37806i1.get(r5Var.getDocumentId())) != null && i5Var.f34568k != null) {
                 i5Var.s(j3);
-                di.z2 z2Var = i5Var.f34541k;
+                di.z2 z2Var = i5Var.f34568k;
                 int i10 = this.K;
                 org.telegram.messenger.ic e02 = z2Var.e0(icVarArr[i10], i10);
                 icVarArr[i10] = e02;
@@ -125,13 +125,13 @@ public final class iu extends is {
                 Rect rect = org.telegram.messenger.g0.Q;
                 rect.set(kuVar.getPaddingLeft() + kuVar.getLeft(), kuVar.getPaddingTop(), kuVar.getRight() - kuVar.getPaddingRight(), kuVar.getMeasuredHeight() - kuVar.getPaddingBottom());
                 icVarArr[i10].b(rect);
-                int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.G6, ruVar.I0);
+                int w02 = org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.G6, ruVar.I0);
                 if (w02 != ruVar.L1 || ruVar.K1 == null) {
                     ruVar.L1 = w02;
                     ruVar.K1 = new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN);
                 }
                 i5Var.setColorFilter(ruVar.K1);
-                kuVar.f35434b = i5Var.f34541k;
+                kuVar.f35485b = i5Var.f34568k;
                 arrayList.add(kuVar);
             }
         }

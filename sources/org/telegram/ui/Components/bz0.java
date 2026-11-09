@@ -1,599 +1,161 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Matrix;
-import android.graphics.SurfaceTexture;
 import android.opengl.GLES20;
-import android.opengl.GLES30;
-import android.opengl.GLUtils;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-import android.view.View;
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicBoolean;
-import javax.microedition.khronos.egl.EGL10;
-import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.egl.EGLContext;
-import javax.microedition.khronos.egl.EGLDisplay;
-import javax.microedition.khronos.egl.EGLSurface;
-import org.telegram.messenger.Utilities;
-public final class bz0 extends org.telegram.messenger.q5 {
-    public int D;
-    public int E;
-    public int F;
-    public int G;
-    public int H;
-    public int I;
-    public int J;
-    public int K;
-    public int L;
-    public int M;
-    public int N;
-    public int O;
-    public int P;
-    public int Q;
-    public int R;
-    public volatile boolean S;
-    public final ArrayList T;
-    public final ArrayList U;
-    public boolean V;
-    public final ArrayList W;
-    public boolean f32380a;
-    public final AtomicBoolean f32381b;
-    public final SurfaceTexture f32382c;
-    public yy0 d;
-    public int f32383e;
-    public int f32384f;
-    public EGL10 h;
-    public EGLDisplay f32385n;
-    public EGLConfig f32386r;
-    public EGLSurface f32387s;
-    public EGLContext f32388w;
-    public int f32389x;
-    public int f32390y;
+public final class bz0 {
+    public final int[] A;
+    public final int[] B;
+    public Bitmap C;
+    public final boolean D;
+    public final cz0 E;
+    public final ArrayList f32446a;
+    public long f32447b;
+    public float f32448c;
+    public boolean d;
+    public final Runnable f32449e;
+    public Runnable f32450f;
+    public float f32451g;
+    public float h;
+    public final float f32452i;
+    public final float f32453j;
+    public final float f32454k;
+    public final float f32455l;
+    public final float f32456m;
+    public boolean f32457n;
+    public final boolean f32458o;
+    public final float[] f32459p;
+    public final float[] f32460q;
+    public final Matrix f32461r;
+    public int f32462s;
+    public final int f32463t;
+    public final int f32464u;
+    public int v;
+    public int f32465w;
+    public float f32466x;
+    public final float f32467y;
+    public int f32468z;
 
-    public bz0(SurfaceTexture surfaceTexture, yy0 yy0Var, yy0 yy0Var2, int i7, int i10) {
-        super("ThanosEffect.DrawingThread", false);
-        this.f32381b = new AtomicBoolean(true);
-        this.T = new ArrayList();
-        this.U = new ArrayList();
-        this.V = false;
-        this.W = new ArrayList();
-        this.f32382c = surfaceTexture;
-        this.d = yy0Var2;
-        this.f32383e = i7;
-        this.f32384f = i10;
-        start();
+    public bz0(cz0 cz0Var, Matrix matrix, Bitmap bitmap, Runnable runnable, Runnable runnable2) {
+        this.E = cz0Var;
+        this.f32446a = new ArrayList();
+        this.f32447b = -1L;
+        this.f32448c = 0.0f;
+        this.d = true;
+        this.f32451g = 0.0f;
+        this.h = 0.0f;
+        this.f32452i = 0.0f;
+        this.f32453j = 0.0f;
+        this.f32454k = org.telegram.messenger.g0.f22562p;
+        this.f32455l = 1.5f;
+        this.f32456m = 1.15f;
+        this.f32457n = true;
+        this.f32458o = false;
+        this.f32459p = new float[9];
+        this.f32460q = new float[9];
+        Matrix matrix2 = new Matrix();
+        this.f32461r = matrix2;
+        this.f32467y = (float) (Math.random() * 2.0d);
+        this.A = new int[1];
+        this.B = new int[2];
+        this.D = true;
+        float[] fArr = {0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f};
+        matrix.mapPoints(fArr);
+        this.f32452i = fArr[0];
+        this.f32453j = fArr[1];
+        this.f32463t = (int) a8.r9.a(fArr[2], fArr[3], fArr[6], fArr[7]);
+        this.f32464u = (int) a8.r9.a(fArr[4], fArr[5], fArr[6], fArr[7]);
+        this.f32458o = true;
+        matrix2.set(matrix);
+        c();
+        this.f32449e = runnable;
+        this.f32450f = runnable2;
+        this.f32455l = 4.0f;
+        this.f32448c = -0.1f;
+        this.C = bitmap;
     }
 
-    public final void a(az0 az0Var) {
-        int i7 = 0;
-        GLES20.glGenTextures(1, az0Var.A, 0);
-        GLES20.glBindTexture(3553, az0Var.A[0]);
-        GLES20.glTexParameteri(3553, 10241, 9729);
-        GLES20.glTexParameteri(3553, 10240, 9729);
-        GLES20.glTexParameteri(3553, 10242, 33071);
-        GLES20.glTexParameteri(3553, 10243, 33071);
-        GLUtils.texImage2D(3553, 0, az0Var.C, 0);
-        GLES20.glBindTexture(3553, 0);
-        az0Var.C.recycle();
-        az0Var.C = null;
-        if (az0Var.D) {
-            ArrayList arrayList = this.T;
-            int size = arrayList.size();
-            while (i7 < size) {
-                Object obj = arrayList.get(i7);
-                i7++;
-                ((az0) obj).a();
-            }
-            this.T.clear();
-        }
-        this.T.add(az0Var);
-        this.S = true;
-    }
-
-    public final void b(float f10, View view, Runnable runnable) {
-        if (!this.f32381b.get()) {
-            if (view != null) {
-                view.setVisibility(8);
-            }
-            if (runnable != null) {
-                org.telegram.messenger.g0.h3(runnable);
-            }
-            yy0 yy0Var = this.d;
-            if (yy0Var != null) {
-                org.telegram.messenger.g0.h3(yy0Var);
-                this.d = null;
-                return;
-            }
-            return;
-        }
-        az0 az0Var = new az0(this, view, f10, runnable);
-        getHandler();
-        this.S = true;
-        postRunnable(new zy0(this, az0Var, 2));
-    }
-
-    public final void c(Matrix matrix, Bitmap bitmap, Runnable runnable, Runnable runnable2) {
-        if (!this.f32381b.get()) {
-            org.telegram.messenger.g0.h3(new bi.pb(runnable, runnable2, 1));
-            dz0.b(this.d);
-            this.d = null;
-            return;
-        }
-        az0 az0Var = new az0(this, matrix, bitmap, runnable, runnable2);
-        getHandler();
-        this.S = true;
-        postRunnable(new zy0(this, az0Var, 1));
-    }
-
-    public final void d(ArrayList arrayList, Runnable runnable) {
-        if (!this.f32381b.get()) {
-            for (int i7 = 0; i7 < arrayList.size(); i7++) {
-                ((View) arrayList.get(i7)).setVisibility(8);
-            }
-            if (runnable != null) {
-                org.telegram.messenger.g0.h3(runnable);
-            }
-            yy0 yy0Var = this.d;
-            if (yy0Var != null) {
-                org.telegram.messenger.g0.h3(yy0Var);
-                this.d = null;
-                return;
-            }
-            return;
-        }
-        az0 az0Var = new az0(this, arrayList, runnable);
-        this.S = true;
-        postRunnable(new zy0(this, az0Var, 0));
-    }
-
-    public final void f() {
-        long j3;
-        double d;
-        float f10;
-        float f11;
+    public static void b(Canvas canvas, org.telegram.ui.Cells.q1 q1Var, int i7, float f10, float f11) {
         float f12;
-        float f13;
-        int i7;
-        int i10;
-        int i11;
-        int j10;
-        int i12;
-        int i13;
-        int i14;
-        if (this.f32381b.get()) {
-            GLES20.glClear(16384);
-            int i15 = 0;
-            int i16 = 0;
-            while (i16 < this.T.size()) {
-                az0 az0Var = (az0) this.T.get(i16);
-                if (az0Var.d) {
-                    ArrayList arrayList = this.T;
-                    int i17 = 0;
-                    for (int i18 = 0; i18 < arrayList.size(); i18++) {
-                        i17 += ((az0) arrayList.get(i18)).f31970u;
-                    }
-                    float f14 = az0Var.f31970u;
-                    float f15 = f14 / i17;
-                    int[] iArr = az0Var.B;
-                    int i19 = az0Var.f31969t;
-                    int o4 = org.telegram.messenger.iz.o();
-                    int i20 = 120000;
-                    if (o4 != 1) {
-                        if (o4 != 2) {
-                            i11 = 30000;
-                        } else {
-                            i11 = 120000;
-                        }
-                    } else {
-                        i11 = 60000;
-                    }
-                    if (!az0Var.E.f32380a) {
-                        i20 = i11;
-                    }
-                    if (az0Var.D) {
-                        i20 /= 2;
-                    }
-                    float max = Math.max(org.telegram.messenger.g0.N(0.4f), 1.0f);
-                    az0Var.f31968s = Utilities.j((int) ((i10 * i19) / (max * max)), (int) (i20 * f15), 10);
-                    float f16 = i19;
-                    float f17 = f16 / f14;
-                    int round = (int) Math.round(Math.sqrt(j10 / f17));
-                    az0Var.f31971w = round;
-                    az0Var.v = Math.round(az0Var.f31968s / round);
-                    while (true) {
-                        i12 = az0Var.v;
-                        i13 = az0Var.f31971w;
-                        i14 = i12 * i13;
-                        if (i14 >= az0Var.f31968s) {
-                            break;
-                        } else if (i12 / i13 < f17) {
-                            az0Var.v = i12 + 1;
-                        } else {
-                            az0Var.f31971w = i13 + 1;
-                        }
-                    }
-                    az0Var.f31968s = i14;
-                    az0Var.f31972x = Math.max(f16 / i12, f14 / i13);
-                    GLES20.glGenBuffers(2, iArr, 0);
-                    for (int i21 = 0; i21 < 2; i21++) {
-                        GLES20.glBindBuffer(34962, iArr[i21]);
-                        GLES20.glBufferData(34962, az0Var.f31968s * 28, null, 35048);
-                    }
-                    if (az0Var.f31955e != null) {
-                        this.U.add(az0Var);
-                    }
-                }
-                this.V = true;
-                int[] iArr2 = az0Var.B;
-                boolean z9 = az0Var.D;
-                float f18 = az0Var.f31962m;
-                int i22 = az0Var.f31970u;
-                int i23 = az0Var.f31969t;
-                Matrix matrix = az0Var.f31967r;
-                bz0 bz0Var = az0Var.E;
-                long nanoTime = System.nanoTime();
-                if (az0Var.f31953b < 0) {
-                    d = 0.0d;
-                } else {
-                    d = (nanoTime - j3) / 1.0E9d;
-                }
-                az0Var.f31953b = nanoTime;
-                if (az0Var.f31963n && !az0Var.f31964o) {
-                    matrix.reset();
-                    matrix.postScale(i23, i22);
-                    matrix.postTranslate(az0Var.f31958i, az0Var.f31959j);
-                    az0Var.c();
-                }
-                az0Var.f31954c = (float) ((f18 * d) + az0Var.f31954c);
-                GLES20.glUniformMatrix3fv(bz0Var.f32390y, 1, false, az0Var.f31965p, 0);
-                int i24 = bz0Var.D;
-                if (az0Var.d) {
-                    f10 = 1.0f;
-                } else {
-                    f10 = 0.0f;
-                }
-                GLES20.glUniform1f(i24, f10);
-                GLES20.glUniform1f(bz0Var.E, az0Var.f31954c);
-                GLES20.glUniform1f(bz0Var.F, ((float) d) * f18);
-                GLES20.glUniform1f(bz0Var.G, az0Var.f31968s);
-                GLES20.glUniform3f(bz0Var.I, az0Var.v, az0Var.f31971w, az0Var.f31972x);
-                GLES20.glUniform2f(bz0Var.P, az0Var.f31957g, az0Var.h);
-                int i25 = bz0Var.Q;
-                if (z9) {
-                    f11 = 0.8f;
-                } else {
-                    f11 = 1.0f;
-                }
-                GLES20.glUniform1f(i25, f11);
-                int i26 = bz0Var.R;
-                if (z9) {
-                    f12 = 1.0f;
-                } else {
-                    f12 = 0.6f;
-                }
-                GLES20.glUniform1f(i26, f12);
-                GLES20.glUniform2f(bz0Var.J, i23, i22);
-                GLES20.glUniform1f(bz0Var.K, az0Var.f31973y);
-                GLES20.glUniform2f(bz0Var.L, 0.0f, 0.0f);
-                GLES20.glUniform1f(bz0Var.N, az0Var.f31960k);
-                GLES20.glUniform1f(bz0Var.O, az0Var.f31961l);
-                GLES20.glActiveTexture(33984);
-                GLES20.glBindTexture(3553, az0Var.A[0]);
-                GLES20.glUniform1i(bz0Var.M, 0);
-                GLES20.glBindBuffer(34962, iArr2[az0Var.f31974z]);
-                GLES20.glVertexAttribPointer(0, 2, 5126, false, 28, 0);
-                GLES20.glEnableVertexAttribArray(0);
-                GLES20.glVertexAttribPointer(1, 2, 5126, false, 28, 8);
-                GLES20.glEnableVertexAttribArray(1);
-                GLES20.glVertexAttribPointer(2, 2, 5126, false, 28, 16);
-                GLES20.glEnableVertexAttribArray(2);
-                GLES20.glVertexAttribPointer(3, 1, 5126, false, 28, 24);
-                GLES20.glEnableVertexAttribArray(3);
-                GLES30.glBindBufferBase(35982, 0, iArr2[1 - az0Var.f31974z]);
-                GLES20.glVertexAttribPointer(0, 2, 5126, false, 28, 0);
-                GLES20.glEnableVertexAttribArray(0);
-                GLES20.glVertexAttribPointer(1, 2, 5126, false, 28, 8);
-                GLES20.glEnableVertexAttribArray(1);
-                GLES20.glVertexAttribPointer(2, 2, 5126, false, 28, 16);
-                GLES20.glEnableVertexAttribArray(2);
-                GLES20.glVertexAttribPointer(3, 1, 5126, false, 28, 24);
-                GLES20.glEnableVertexAttribArray(3);
-                GLES30.glBeginTransformFeedback(0);
-                GLES20.glDrawArrays(0, 0, az0Var.f31968s);
-                GLES30.glEndTransformFeedback();
-                GLES20.glBindBuffer(34962, 0);
-                GLES20.glBindBuffer(35982, 0);
-                az0Var.d = false;
-                az0Var.f31974z = 1 - az0Var.f31974z;
-                float f19 = az0Var.f31954c;
-                float f20 = az0Var.f31961l;
-                if (az0Var.D) {
-                    f13 = 2.0f;
-                } else {
-                    f13 = 0.9f;
-                }
-                if (f19 > f20 + f13) {
-                    az0Var.a();
-                    this.T.remove(i16);
-                    i7 = 1;
-                    this.S = !this.T.isEmpty();
-                    i16--;
-                } else {
-                    i7 = 1;
-                }
-                i16 += i7;
-            }
-            while (true) {
-                int glGetError = GLES20.glGetError();
-                if (glGetError != 0) {
-                    org.telegram.messenger.a8.d("thanos gles error " + glGetError);
-                } else {
-                    try {
-                        break;
-                    } catch (Exception e10) {
-                        org.telegram.messenger.a8.g(e10, true);
-                        for (int i27 = 0; i27 < this.U.size(); i27++) {
-                            org.telegram.messenger.g0.h3(((az0) this.U.get(i27)).f31955e);
-                        }
-                        this.U.clear();
-                        while (i15 < this.T.size()) {
-                            ((az0) this.T.get(i15)).a();
-                            i15++;
-                        }
-                        this.T.clear();
-                        org.telegram.messenger.g0.h3(new vs(8));
-                        i();
-                        return;
-                    }
-                }
-            }
-            this.h.eglSwapBuffers(this.f32385n, this.f32387s);
-            while (i15 < this.U.size()) {
-                org.telegram.messenger.g0.h3(((az0) this.U.get(i15)).f31955e);
-                i15++;
-            }
-            this.U.clear();
-            if (this.T.isEmpty() && this.V) {
-                i();
-            }
-        }
-    }
-
-    public final void g() {
-        EGL10 egl10 = (EGL10) EGLContext.getEGL();
-        this.h = egl10;
-        EGLDisplay eglGetDisplay = egl10.eglGetDisplay(0);
-        this.f32385n = eglGetDisplay;
-        EGL10 egl102 = this.h;
-        if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
-            org.telegram.messenger.a8.d("ThanosEffect: eglDisplay == egl.EGL_NO_DISPLAY");
-            i();
-        } else if (!egl102.eglInitialize(eglGetDisplay, new int[2])) {
-            org.telegram.messenger.a8.d("ThanosEffect: failed eglInitialize");
-            i();
+        canvas.save();
+        if (q1Var.b()) {
+            f12 = q1Var.getAlpha();
         } else {
-            EGLConfig[] eGLConfigArr = new EGLConfig[1];
-            if (!this.h.eglChooseConfig(this.f32385n, new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12352, 64, 12344}, eGLConfigArr, 1, new int[1])) {
-                org.telegram.messenger.a8.d("ThanosEffect: failed eglChooseConfig");
-                h();
-                return;
-            }
-            EGLConfig eGLConfig = eGLConfigArr[0];
-            this.f32386r = eGLConfig;
-            EGLContext eglCreateContext = this.h.eglCreateContext(this.f32385n, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 3, 12344});
-            this.f32388w = eglCreateContext;
-            if (eglCreateContext == null) {
-                org.telegram.messenger.a8.d("ThanosEffect: eglContext == null");
-                i();
-                return;
-            }
-            EGLSurface eglCreateWindowSurface = this.h.eglCreateWindowSurface(this.f32385n, this.f32386r, this.f32382c, null);
-            this.f32387s = eglCreateWindowSurface;
-            if (eglCreateWindowSurface == null) {
-                org.telegram.messenger.a8.d("ThanosEffect: eglSurface == null");
-                i();
-            } else if (!this.h.eglMakeCurrent(this.f32385n, eglCreateWindowSurface, eglCreateWindowSurface, this.f32388w)) {
-                org.telegram.messenger.a8.d("ThanosEffect: failed eglMakeCurrent");
-                i();
-            } else {
-                int glCreateShader = GLES20.glCreateShader(35633);
-                int glCreateShader2 = GLES20.glCreateShader(35632);
-                if (glCreateShader != 0 && glCreateShader2 != 0) {
-                    GLES20.glShaderSource(glCreateShader, org.telegram.messenger.g0.y2(null, 2131624288));
-                    GLES20.glCompileShader(glCreateShader);
-                    int[] iArr = new int[1];
-                    GLES20.glGetShaderiv(glCreateShader, 35713, iArr, 0);
-                    if (iArr[0] != 1) {
-                        org.telegram.messenger.a8.d("ThanosEffect, compile vertex shader error: " + GLES20.glGetShaderInfoLog(glCreateShader));
-                        GLES20.glDeleteShader(glCreateShader);
-                        i();
-                        return;
-                    }
-                    GLES20.glShaderSource(glCreateShader2, org.telegram.messenger.g0.y2(null, 2131624287));
-                    GLES20.glCompileShader(glCreateShader2);
-                    GLES20.glGetShaderiv(glCreateShader2, 35713, iArr, 0);
-                    if (iArr[0] != 1) {
-                        org.telegram.messenger.a8.d("ThanosEffect, compile fragment shader error: " + GLES20.glGetShaderInfoLog(glCreateShader2));
-                        GLES20.glDeleteShader(glCreateShader2);
-                        i();
-                        return;
-                    }
-                    int glCreateProgram = GLES20.glCreateProgram();
-                    this.f32389x = glCreateProgram;
-                    if (glCreateProgram == 0) {
-                        org.telegram.messenger.a8.d("ThanosEffect: drawProgram == 0");
-                        i();
-                        return;
-                    }
-                    GLES20.glAttachShader(glCreateProgram, glCreateShader);
-                    GLES20.glAttachShader(this.f32389x, glCreateShader2);
-                    GLES30.glTransformFeedbackVaryings(this.f32389x, new String[]{"outUV", "outPosition", "outVelocity", "outTime"}, 35980);
-                    GLES20.glLinkProgram(this.f32389x);
-                    GLES20.glGetProgramiv(this.f32389x, 35714, iArr, 0);
-                    if (iArr[0] != 1) {
-                        org.telegram.messenger.a8.d("ThanosEffect, link program error: " + GLES20.glGetProgramInfoLog(this.f32389x));
-                        i();
-                        return;
-                    }
-                    this.f32390y = GLES20.glGetUniformLocation(this.f32389x, "matrix");
-                    this.J = GLES20.glGetUniformLocation(this.f32389x, "rectSize");
-                    this.L = GLES20.glGetUniformLocation(this.f32389x, "rectPos");
-                    this.D = GLES20.glGetUniformLocation(this.f32389x, "reset");
-                    this.E = GLES20.glGetUniformLocation(this.f32389x, "time");
-                    this.F = GLES20.glGetUniformLocation(this.f32389x, "deltaTime");
-                    this.G = GLES20.glGetUniformLocation(this.f32389x, "particlesCount");
-                    this.H = GLES20.glGetUniformLocation(this.f32389x, "size");
-                    this.I = GLES20.glGetUniformLocation(this.f32389x, "gridSize");
-                    this.M = GLES20.glGetUniformLocation(this.f32389x, "tex");
-                    this.K = GLES20.glGetUniformLocation(this.f32389x, "seed");
-                    this.N = GLES20.glGetUniformLocation(this.f32389x, "dp");
-                    this.O = GLES20.glGetUniformLocation(this.f32389x, "longevity");
-                    this.P = GLES20.glGetUniformLocation(this.f32389x, "offset");
-                    this.Q = GLES20.glGetUniformLocation(this.f32389x, "scale");
-                    this.R = GLES20.glGetUniformLocation(this.f32389x, "uvOffset");
-                    GLES20.glViewport(0, 0, this.f32383e, this.f32384f);
-                    GLES20.glDisable(3042);
-                    GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-                    GLES20.glUseProgram(this.f32389x);
-                    GLES20.glUniform2f(this.H, this.f32383e, this.f32384f);
-                    return;
-                }
-                org.telegram.messenger.a8.d("ThanosEffect: vertexShader == 0 || fragmentShader == 0");
-                i();
-            }
+            f12 = 1.0f;
         }
+        canvas.translate(f10, f11);
+        boolean z9 = true;
+        q1Var.setInvalidatesParent(true);
+        if (i7 == 0) {
+            q1Var.x1(f12, canvas, true);
+        } else if (i7 == 1) {
+            q1Var.h1(canvas, f12);
+        } else if (i7 == 2) {
+            if (q1Var.getCurrentPosition() == null || (q1Var.getCurrentPosition().f21450l & 1) != 0) {
+                z9 = false;
+            }
+            q1Var.Q0(f12, canvas, z9);
+        } else if (q1Var.getCurrentPosition() == null || (q1Var.getCurrentPosition().f21450l & 1) != 0) {
+            q1Var.o1(canvas, f12, null);
+            q1Var.V0(canvas, f12);
+        }
+        q1Var.setInvalidatesParent(false);
+        canvas.restore();
     }
 
-    public final void h() {
-        if (!this.f32381b.get()) {
-            org.telegram.messenger.a8.b("ThanosEffect: kill failed, already dead");
-            return;
-        }
-        org.telegram.messenger.a8.b("ThanosEffect: kill");
+    public final void a() {
         try {
-            Handler handler = getHandler();
-            if (handler != null) {
-                handler.sendMessage(handler.obtainMessage(2));
-            }
-        } catch (Exception unused) {
-        }
-    }
-
-    @Override
-    public final void handleMessage(Message message) {
-        int i7 = message.what;
-        if (i7 != 0) {
-            int i10 = 0;
-            if (i7 != 1) {
-                if (i7 != 2) {
-                    if (i7 != 3) {
-                        ArrayList arrayList = this.T;
-                        if (i7 != 4) {
-                            if (i7 == 5) {
-                                View view = (View) message.obj;
-                                while (i10 < arrayList.size()) {
-                                    az0 az0Var = (az0) arrayList.get(i10);
-                                    if (az0Var.f31952a.contains(view)) {
-                                        az0Var.a();
-                                        arrayList.remove(i10);
-                                        i10--;
-                                    }
-                                    i10++;
-                                }
-                                return;
-                            }
-                            return;
-                        }
-                        while (i10 < arrayList.size()) {
-                            az0 az0Var2 = (az0) arrayList.get(i10);
-                            az0Var2.f31957g += message.arg1;
-                            az0Var2.h += message.arg2;
-                            i10++;
-                        }
-                        return;
-                    }
-                    a((az0) message.obj);
-                    return;
-                }
-                i();
-                return;
-            }
-            int i11 = message.arg1;
-            int i12 = message.arg2;
-            if (this.f32381b.get()) {
-                this.f32383e = i11;
-                this.f32384f = i12;
-                GLES20.glViewport(0, 0, i11, i12);
-                GLES20.glUniform2f(this.H, i11, i12);
-            }
-            f();
-            return;
-        }
-        f();
-    }
-
-    public final void i() {
-        ArrayList arrayList;
-        AtomicBoolean atomicBoolean = this.f32381b;
-        if (!atomicBoolean.get()) {
-            org.telegram.messenger.a8.b("ThanosEffect: killInternal failed, already dead");
-            return;
-        }
-        org.telegram.messenger.a8.b("ThanosEffect: killInternal");
-        int i7 = 0;
-        atomicBoolean.set(false);
-        while (true) {
-            arrayList = this.T;
-            if (i7 >= arrayList.size()) {
-                break;
-            }
-            ((az0) arrayList.get(i7)).a();
-            i7++;
-        }
-        arrayList.clear();
-        SurfaceTexture surfaceTexture = this.f32382c;
-        if (surfaceTexture != null) {
-            surfaceTexture.release();
-        }
-        dz0.b(this.d);
-        this.d = null;
-        Looper myLooper = Looper.myLooper();
-        if (myLooper != null) {
-            myLooper.quit();
-        }
-    }
-
-    @Override
-    public final void run() {
-        ArrayList arrayList = this.W;
-        int i7 = 0;
-        try {
-            g();
-            if (!arrayList.isEmpty()) {
-                while (i7 < arrayList.size()) {
-                    a((az0) arrayList.get(i7));
-                    i7++;
-                }
-                arrayList.clear();
-            }
-            super.run();
+            GLES20.glDeleteBuffers(2, this.B, 0);
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
-            while (i7 < arrayList.size()) {
-                az0 az0Var = (az0) arrayList.get(i7);
-                Runnable runnable = az0Var.f31955e;
-                if (runnable != null) {
-                    org.telegram.messenger.g0.h3(runnable);
-                }
-                az0Var.a();
-                i7++;
-            }
-            arrayList.clear();
-            org.telegram.messenger.g0.h3(new vs(7));
-            i();
         }
+        cz0 cz0Var = this.E;
+        int i7 = cz0Var.f32805x;
+        if (i7 != 0) {
+            try {
+                GLES20.glDeleteProgram(i7);
+            } catch (Exception e11) {
+                org.telegram.messenger.a8.g(e11, true);
+            }
+            cz0Var.f32805x = 0;
+        }
+        try {
+            GLES20.glDeleteTextures(1, this.A, 0);
+        } catch (Exception e12) {
+            org.telegram.messenger.a8.g(e12, true);
+        }
+        Runnable runnable = this.f32450f;
+        if (runnable != null) {
+            ez0.b(runnable);
+            this.f32450f = null;
+        }
+    }
+
+    public final void c() {
+        Matrix matrix = this.f32461r;
+        float[] fArr = this.f32460q;
+        matrix.getValues(fArr);
+        float f10 = fArr[0];
+        float[] fArr2 = this.f32459p;
+        fArr2[0] = f10;
+        fArr2[1] = fArr[3];
+        fArr2[2] = fArr[6];
+        fArr2[3] = fArr[1];
+        fArr2[4] = fArr[4];
+        fArr2[5] = fArr[7];
+        fArr2[6] = fArr[2];
+        fArr2[7] = fArr[5];
+        fArr2[8] = fArr[8];
+        this.f32457n = false;
+    }
+
+    public bz0(org.telegram.ui.Components.cz0 r32, java.util.ArrayList r33, java.lang.Runnable r34) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.bz0.<init>(org.telegram.ui.Components.cz0, java.util.ArrayList, java.lang.Runnable):void");
+    }
+
+    public bz0(org.telegram.ui.Components.cz0 r10, android.view.View r11, float r12, java.lang.Runnable r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.bz0.<init>(org.telegram.ui.Components.cz0, android.view.View, float, java.lang.Runnable):void");
     }
 }

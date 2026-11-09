@@ -12,23 +12,23 @@ import org.telegram.messenger.aj;
 import org.telegram.messenger.dj;
 import org.telegram.messenger.ij;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.ca0;
+import org.telegram.ui.Components.da0;
 import org.telegram.ui.Components.hy;
 import org.telegram.ui.Components.ky;
-import org.telegram.ui.Components.l41;
+import org.telegram.ui.Components.m41;
 import org.telegram.ui.Components.mx;
 import org.telegram.ui.Components.nx;
 import org.telegram.ui.Components.qi;
-import org.telegram.ui.Components.x31;
-import org.telegram.ui.Components.yv0;
-import org.telegram.ui.an;
-import org.telegram.ui.bg0;
-import org.telegram.ui.bm0;
-import org.telegram.ui.c21;
-import org.telegram.ui.jl;
-import org.telegram.ui.xm0;
-import zh.k3;
-import zh.n3;
+import org.telegram.ui.Components.y31;
+import org.telegram.ui.Components.zv0;
+import org.telegram.ui.cn;
+import org.telegram.ui.dg0;
+import org.telegram.ui.dm0;
+import org.telegram.ui.e21;
+import org.telegram.ui.ll;
+import org.telegram.ui.zm0;
+import zh.l3;
+import zh.o3;
 public final class l extends g.p {
     public final int f1314c;
     public final Object d;
@@ -43,7 +43,7 @@ public final class l extends g.p {
         int i10;
         int i11;
         ij ijVar;
-        dj s9;
+        dj t92;
         int i12;
         int i13;
         ij ijVar2;
@@ -66,10 +66,10 @@ public final class l extends g.p {
             case 1:
                 w1 w1Var = (w1) this.d;
                 ky kyVar = w1Var.Z1;
-                p1 p1Var = w1Var.f4937c2;
+                p1 p1Var = w1Var.f4935c2;
                 if (p1Var != null && i7 != 0) {
-                    x31 G = p1Var.G(i7 - 1);
-                    if (G == null || (i10 = G.f40189u) == -1) {
+                    y31 G = p1Var.G(i7 - 1);
+                    if (G == null || (i10 = G.f40577u) == -1) {
                         return kyVar.J;
                     }
                     return i10;
@@ -77,7 +77,7 @@ public final class l extends g.p {
                 return kyVar.J;
             case 2:
                 s1 s1Var = (s1) this.d;
-                if (s1Var.Y.f12841c.F(i7) == null) {
+                if (s1Var.Y.f12840c.F(i7) == null) {
                     return s1Var.J;
                 }
                 s1Var.B1();
@@ -94,17 +94,17 @@ public final class l extends g.p {
                 }
                 return 3;
             case 5:
-                an anVar = (an) this.d;
-                jl jlVar = anVar.C0;
-                int i19 = jlVar.J;
-                if (i7 >= i19 && i7 < jlVar.K && (i11 = i7 - i19) >= 0 && i11 < jlVar.L().size() && (s9 = anVar.s9((ijVar = (ij) anVar.C0.L().get(i11)))) != null) {
-                    return s9.d(ijVar).f21447i;
+                cn cnVar = (cn) this.d;
+                ll llVar = cnVar.C0;
+                int i19 = llVar.J;
+                if (i7 >= i19 && i7 < llVar.K && (i11 = i7 - i19) >= 0 && i11 < llVar.L().size() && (t92 = cnVar.t9((ijVar = (ij) cnVar.C0.L().get(i11)))) != null) {
+                    return t92.d(ijVar).f21447i;
                 }
                 return 1000;
             case 6:
                 qi qiVar = (qi) this.d;
-                int i20 = qiVar.f37333r;
-                int i21 = qiVar.f37336x;
+                int i20 = qiVar.f37338r;
+                int i21 = qiVar.f37341x;
                 if (i7 % i21 != i21 - 1) {
                     i12 = org.telegram.messenger.g0.L(5.0f);
                 } else {
@@ -113,7 +113,7 @@ public final class l extends g.p {
                 return i20 + i12;
             case 7:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.d;
-                if (i7 != chatAttachAlertPhotoLayout.G.f38383n - 1 && ((!chatAttachAlertPhotoLayout.P0 && !chatAttachAlertPhotoLayout.O0) || i7 != 0)) {
+                if (i7 != chatAttachAlertPhotoLayout.G.f38447n - 1 && ((!chatAttachAlertPhotoLayout.P0 && !chatAttachAlertPhotoLayout.O0) || i7 != 0)) {
                     if (chatAttachAlertPhotoLayout.O0) {
                         i7--;
                     }
@@ -131,50 +131,50 @@ public final class l extends g.p {
                 nx nxVar = (nx) this.d;
                 hy hyVar = nxVar.Y;
                 if (i7 == 0) {
-                    hyVar.f34432n0.getClass();
+                    hyVar.f34447n0.getClass();
                 }
-                v4.g0 adapter = hyVar.f34415h0.getAdapter();
-                mx mxVar = hyVar.f34421j0;
-                if (adapter == mxVar && mxVar.f36133y.isEmpty()) {
+                v4.g0 adapter = hyVar.f34430h0.getAdapter();
+                mx mxVar = hyVar.f34436j0;
+                if (adapter == mxVar && mxVar.f36167y.isEmpty()) {
                     return nxVar.J;
                 }
-                hyVar.f34432n0.getClass();
+                hyVar.f34447n0.getClass();
                 nxVar.B1();
                 return nxVar.R.get(i7);
             case 9:
-                ca0 ca0Var = (ca0) this.d;
-                if (i7 >= 0 && i7 < ca0Var.f32529r.f23701f.size() && (a10 = ca0.a(ca0Var, (ijVar2 = (ij) ca0Var.f32529r.f23701f.get(i7)))) != null) {
+                da0 da0Var = (da0) this.d;
+                if (i7 >= 0 && i7 < da0Var.f32924r.f23701f.size() && (a10 = da0.a(da0Var, (ijVar2 = (ij) da0Var.f32924r.f23701f.get(i7)))) != null) {
                     return a10.d(ijVar2).f21447i;
                 }
                 return 1000;
             case 10:
-                yv0 yv0Var = (yv0) this.d;
-                if ((yv0Var.N1 != null && (yv0Var.f40787k1.f38742e.get(i7) instanceof Integer)) || i7 == yv0Var.f40787k1.h) {
-                    return yv0Var.f40787k1.d;
+                zv0 zv0Var = (zv0) this.d;
+                if ((zv0Var.N1 != null && (zv0Var.f41155k1.f39813e.get(i7) instanceof Integer)) || i7 == zv0Var.f41155k1.h) {
+                    return zv0Var.f41155k1.d;
                 }
                 return 1;
             case 11:
-                bg0 bg0Var = (bg0) this.d;
-                ij ijVar3 = (ij) bg0Var.M.get((arrayList.size() - 1) - i7);
-                dj k10 = bg0Var.k(ijVar3);
+                dg0 dg0Var = (dg0) this.d;
+                ij ijVar3 = (ij) dg0Var.M.get((arrayList.size() - 1) - i7);
+                dj k10 = dg0Var.k(ijVar3);
                 if (k10 != null) {
                     return k10.d(ijVar3).f21447i;
                 }
                 return 1000;
             case 12:
-                bm0 bm0Var = (bm0) this.d;
-                if (i7 >= bm0Var.f44432b0 && i7 < bm0Var.f44434c0) {
+                dm0 dm0Var = (dm0) this.d;
+                if (i7 >= dm0Var.f45061b0 && i7 < dm0Var.f45063c0) {
                     return 1;
                 }
-                if (i7 >= bm0Var.f44435d0 && i7 < bm0Var.f44437e0) {
+                if (i7 >= dm0Var.f45064d0 && i7 < dm0Var.f45066e0) {
                     return 1;
                 }
                 return 3;
             case 13:
-                xm0 xm0Var = (xm0) this.d;
-                if (xm0Var.L.d(i7) != 1 && !xm0Var.Y && (xm0Var.J != null || !TextUtils.isEmpty(xm0Var.f51932w))) {
-                    int i24 = xm0Var.R;
-                    int i25 = xm0Var.f51914g0;
+                zm0 zm0Var = (zm0) this.d;
+                if (zm0Var.L.d(i7) != 1 && !zm0Var.Y && (zm0Var.J != null || !TextUtils.isEmpty(zm0Var.f52627w))) {
+                    int i24 = zm0Var.R;
+                    int i25 = zm0Var.f52609g0;
                     if (i7 % i25 != i25 - 1) {
                         i14 = org.telegram.messenger.g0.L(2.0f);
                     } else {
@@ -182,53 +182,53 @@ public final class l extends g.p {
                     }
                     return i24 + i14;
                 }
-                return xm0Var.M.J;
+                return zm0Var.M.J;
             case 14:
-                c21 c21Var = (c21) this.d;
-                ky kyVar2 = c21Var.P1;
-                l41 l41Var = c21Var.V1;
-                if (l41Var == null) {
+                e21 e21Var = (e21) this.d;
+                ky kyVar2 = e21Var.P1;
+                m41 m41Var = e21Var.V1;
+                if (m41Var == null) {
                     return kyVar2.J;
                 }
-                x31 G2 = l41Var.G(i7 - 1);
-                if (G2 == null || (i15 = G2.f40189u) == -1) {
+                y31 G2 = m41Var.G(i7 - 1);
+                if (G2 == null || (i15 = G2.f40577u) == -1) {
                     return kyVar2.J;
                 }
                 return i15;
             case 15:
-                int size = (e5Var.f55964s0.size() - 1) - i7;
-                dj djVar = ((e5) this.d).f55965t0;
+                int size = (e5Var.f55976s0.size() - 1) - i7;
+                dj djVar = ((e5) this.d).f55977t0;
                 if (djVar != null && size >= 0 && size < djVar.d.size() && (d = djVar.d((ij) djVar.d.get(size))) != null) {
                     return d.f21447i;
                 }
                 return 1000;
             case 16:
                 zh.g1 g1Var = (zh.g1) this.d;
-                ky kyVar3 = g1Var.f60325a2;
-                l41 l41Var2 = g1Var.Q1;
-                if (l41Var2 != null && i7 != 0) {
-                    x31 G3 = l41Var2.G(i7 - 1);
-                    if (G3 == null || (i16 = G3.f40189u) == -1) {
+                ky kyVar3 = g1Var.f60334a2;
+                m41 m41Var2 = g1Var.Q1;
+                if (m41Var2 != null && i7 != 0) {
+                    y31 G3 = m41Var2.G(i7 - 1);
+                    if (G3 == null || (i16 = G3.f40577u) == -1) {
                         return kyVar3.J;
                     }
                     return i16;
                 }
                 return kyVar3.J;
             case 17:
-                x31 G4 = ((k3) this.d).f60418a2.G(i7 - 1);
-                if (G4 == null || (i17 = G4.f40189u) == -1) {
+                y31 G4 = ((l3) this.d).f60457a2.G(i7 - 1);
+                if (G4 == null || (i17 = G4.f40577u) == -1) {
                     return 3;
                 }
                 return i17;
             default:
-                n3 n3Var = (n3) this.d;
-                ky kyVar4 = n3Var.S1;
-                l41 l41Var3 = n3Var.Y1;
-                if (l41Var3 == null) {
+                o3 o3Var = (o3) this.d;
+                ky kyVar4 = o3Var.S1;
+                m41 m41Var3 = o3Var.Y1;
+                if (m41Var3 == null) {
                     return kyVar4.J;
                 }
-                x31 G5 = l41Var3.G(i7 - 1);
-                if (G5 == null || (i18 = G5.f40189u) == -1) {
+                y31 G5 = m41Var3.G(i7 - 1);
+                if (G5 == null || (i18 = G5.f40577u) == -1) {
                     return kyVar4.J;
                 }
                 return i18;

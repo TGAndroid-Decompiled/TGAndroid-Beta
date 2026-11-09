@@ -10,15 +10,15 @@ import android.widget.EditText;
 import androidx.emoji2.text.l;
 import java.nio.ByteBuffer;
 public final class b extends InputConnectionWrapper {
-    public final EditText f55355a;
-    public final pb.b f55356b;
+    public final EditText f55367a;
+    public final pb.b f55368b;
 
     public b(EditText editText, InputConnection inputConnection, EditorInfo editorInfo) {
         super(inputConnection, false);
         int i7;
         pb.b bVar = new pb.b(24);
-        this.f55355a = editText;
-        this.f55356b = bVar;
+        this.f55367a = editText;
+        this.f55368b = bVar;
         if (l.f2309j != null) {
             l a10 = l.a();
             if (a10.b() != 1 || editorInfo == null) {
@@ -33,7 +33,7 @@ public final class b extends InputConnectionWrapper {
             s1.b bVar2 = (s1.b) ((b0) fVar.f2301c).f907b;
             int a11 = bVar2.a(4);
             if (a11 != 0) {
-                i7 = ((ByteBuffer) bVar2.d).getInt(a11 + bVar2.f54237a);
+                i7 = ((ByteBuffer) bVar2.d).getInt(a11 + bVar2.f54249a);
             } else {
                 i7 = 0;
             }
@@ -44,8 +44,8 @@ public final class b extends InputConnectionWrapper {
 
     @Override
     public final boolean deleteSurroundingText(int i7, int i10) {
-        Editable editableText = this.f55355a.getEditableText();
-        this.f55356b.getClass();
+        Editable editableText = this.f55367a.getEditableText();
+        this.f55368b.getClass();
         if (!pb.b.c1(this, editableText, i7, i10, false) && !super.deleteSurroundingText(i7, i10)) {
             return false;
         }
@@ -54,8 +54,8 @@ public final class b extends InputConnectionWrapper {
 
     @Override
     public final boolean deleteSurroundingTextInCodePoints(int i7, int i10) {
-        Editable editableText = this.f55355a.getEditableText();
-        this.f55356b.getClass();
+        Editable editableText = this.f55367a.getEditableText();
+        this.f55368b.getClass();
         if (pb.b.c1(this, editableText, i7, i10, true) || super.deleteSurroundingTextInCodePoints(i7, i10)) {
             return true;
         }

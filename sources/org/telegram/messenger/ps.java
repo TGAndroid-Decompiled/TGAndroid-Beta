@@ -35,7 +35,7 @@ public final class ps implements ms, ls {
                 if (i7 == 274) {
                     ((org.telegram.ui.ActionBar.u1) this.f24620b).dismiss();
                     qs.e().n(this, i7);
-                    g0.i3(new org.telegram.ui.hz(this, 13), 100L);
+                    g0.i3(new org.telegram.ui.jz(this, 13), 100L);
                     return;
                 }
                 return;
@@ -49,12 +49,12 @@ public final class ps implements ms, ls {
                         if (iArr[0] == 0) {
                             Activity activity = x0Var.W;
                             if (activity != null) {
-                                x0Var.f51371g0 = org.telegram.ui.s9.j0(activity, 3, new org.telegram.ui.Components.n(x0Var));
+                                x0Var.f51352g0 = org.telegram.ui.s9.j0(activity, 3, new org.telegram.ui.Components.n(x0Var));
                                 return;
                             }
                             return;
                         }
-                        x0Var.x((di.o7) this.f24620b, "scan_qr_popup_closed", new JSONObject());
+                        x0Var.x((di.p7) this.f24620b, "scan_qr_popup_closed", new JSONObject());
                         return;
                     }
                     return;

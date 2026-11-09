@@ -65,13 +65,13 @@ public abstract class l implements Iterator {
                 throw new ConcurrentModificationException();
             case 1:
                 c8.d dVar = (c8.d) this.f519e;
-                if (dVar.f5417e == this.f517b) {
+                if (dVar.f5415e == this.f517b) {
                     if (hasNext()) {
                         int i11 = this.f518c;
                         this.d = i11;
                         Object b11 = b(i11);
                         int i12 = this.f518c + 1;
-                        if (i12 >= dVar.f5418f) {
+                        if (i12 >= dVar.f5416f) {
                             i12 = -1;
                         }
                         this.f518c = i12;
@@ -131,7 +131,7 @@ public abstract class l implements Iterator {
                 throw new ConcurrentModificationException();
             case 1:
                 c8.d dVar = (c8.d) this.f519e;
-                int i12 = dVar.f5417e;
+                int i12 = dVar.f5415e;
                 int i13 = this.f517b;
                 if (i12 == i13) {
                     int i14 = this.d;
@@ -142,7 +142,7 @@ public abstract class l implements Iterator {
                     }
                     if (z10) {
                         this.f517b = i13 + 32;
-                        Object[] objArr2 = dVar.f5416c;
+                        Object[] objArr2 = dVar.f5414c;
                         objArr2.getClass();
                         dVar.remove(objArr2[i14]);
                         this.f518c--;
@@ -173,7 +173,7 @@ public abstract class l implements Iterator {
 
     public l(c8.d dVar) {
         this.f519e = dVar;
-        this.f517b = dVar.f5417e;
+        this.f517b = dVar.f5415e;
         this.f518c = dVar.isEmpty() ? -1 : 0;
         this.d = -1;
     }

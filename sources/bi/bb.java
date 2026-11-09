@@ -3,9 +3,9 @@ package bi;
 import android.text.TextUtils;
 import android.view.View;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.lb0;
+import org.telegram.ui.Components.mb0;
 import org.telegram.ui.PasscodeActivity;
-import org.telegram.ui.br;
+import org.telegram.ui.dr;
 public final class bb implements View.OnFocusChangeListener {
     public final int f3525a;
     public final Object f3526b;
@@ -21,18 +21,18 @@ public final class bb implements View.OnFocusChangeListener {
     public final void onFocusChange(View view, boolean z9) {
         switch (this.f3525a) {
             case 0:
-                ((lb0) this.f3526b).c(z9, !TextUtils.isEmpty(this.f3527c.getText()));
+                ((mb0) this.f3526b).c(z9, !TextUtils.isEmpty(this.f3527c.getText()));
                 return;
             case 1:
-                ((lb0) this.f3526b).c(z9, !TextUtils.isEmpty(this.f3527c.getText()));
+                ((mb0) this.f3526b).c(z9, !TextUtils.isEmpty(this.f3527c.getText()));
                 return;
             case 2:
-                ((lb0) this.f3526b).c(z9, !TextUtils.isEmpty(this.f3527c.getText()));
+                ((mb0) this.f3526b).c(z9, !TextUtils.isEmpty(this.f3527c.getText()));
                 return;
             default:
                 PasscodeActivity passcodeActivity = (PasscodeActivity) this.f3526b;
-                passcodeActivity.f41333w.setEditText((br) this.f3527c);
-                passcodeActivity.f41333w.setDispatchBackWhenEmpty(true);
+                passcodeActivity.f41340w.setEditText((dr) this.f3527c);
+                passcodeActivity.f41340w.setDispatchBackWhenEmpty(true);
                 return;
         }
     }

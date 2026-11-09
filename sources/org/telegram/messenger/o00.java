@@ -28,7 +28,7 @@ public final class o00 implements Runnable {
                     for (int i10 = 0; i10 < arrayList.size(); i10++) {
                         ij ijVar = (ij) arrayList.get(i10);
                         if (ijVar != null && ijVar.f23262k != null) {
-                            arrayList2.add(f10Var.getMessagesStorage().e0(ijVar.f1(), ij.B0(ijVar.f23262k)));
+                            arrayList2.add(f10Var.getMessagesStorage().e0(ijVar.e1(), ij.B0(ijVar.f23262k)));
                         } else {
                             arrayList2.add(null);
                         }

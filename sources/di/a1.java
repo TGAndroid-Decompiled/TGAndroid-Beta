@@ -13,10 +13,10 @@ import org.telegram.messenger.voip.NativeInstance;
 import org.telegram.messenger.w10;
 import org.telegram.messenger.we;
 public final class a1 implements NativeInstance.AudioLevelsCallback, org.telegram.ui.ActionBar.r1, g9.k, u9.d, org.telegram.messenger.k9, w10, e20 {
-    public final int f8797a;
+    public final int f8795a;
 
     public a1(int i7) {
-        this.f8797a = i7;
+        this.f8795a = i7;
     }
 
     public static ShortcutManager b(Object obj) {
@@ -32,7 +32,7 @@ public final class a1 implements NativeInstance.AudioLevelsCallback, org.telegra
     }
 
     public Constructor a() {
-        switch (this.f8797a) {
+        switch (this.f8795a) {
             case 19:
                 if (!Boolean.TRUE.equals(Class.forName("androidx.media3.decoder.flac.FlacLibrary").getMethod("isAvailable", null).invoke(null, null))) {
                     return null;
@@ -48,7 +48,7 @@ public final class a1 implements NativeInstance.AudioLevelsCallback, org.telegra
         h9.t1 f10;
         h9.t1 b10;
         int i7 = 0;
-        switch (this.f8797a) {
+        switch (this.f8795a) {
             case 4:
                 e2.x xVar = (e2.x) obj;
                 return xVar.f10642a + ": " + xVar.f10643b;
@@ -258,7 +258,7 @@ public final class a1 implements NativeInstance.AudioLevelsCallback, org.telegra
         Integer num = (Integer) obj;
         if (((Integer) number).intValue() == 0) {
             if (num.intValue() == 0) {
-                return id.M0(2131748806, null);
+                return id.M0(2131748805, null);
             }
             return id.H(',', "Stars", num.intValue());
         }
@@ -274,7 +274,7 @@ public final class a1 implements NativeInstance.AudioLevelsCallback, org.telegra
 
     @Override
     public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f8797a) {
+        switch (this.f8795a) {
             case 1:
                 u1Var.dismiss();
                 return;

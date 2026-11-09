@@ -8,9 +8,9 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.DataSettingsActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.ve;
-import org.telegram.ui.ws;
-import org.telegram.ui.ww;
-import org.telegram.ui.xv;
+import org.telegram.ui.ys;
+import org.telegram.ui.yw;
+import org.telegram.ui.zv;
 public final class b2 implements c20 {
     public final int f3501a;
     public final long f3502b;
@@ -45,7 +45,7 @@ public final class b2 implements c20 {
             case 1:
                 DataSettingsActivity dataSettingsActivity = (DataSettingsActivity) this.f3503c;
                 Long l10 = (Long) obj;
-                org.telegram.messenger.g0.r((ws) this.d);
+                org.telegram.messenger.g0.r((ys) this.d);
                 if (!dataSettingsActivity.V && System.currentTimeMillis() - this.f3502b <= 120) {
                     z9 = false;
                 } else {
@@ -54,7 +54,7 @@ public final class b2 implements c20 {
                 dataSettingsActivity.V = z9;
                 dataSettingsActivity.X = l10.longValue();
                 dataSettingsActivity.W = false;
-                if (dataSettingsActivity.f41214a != null && (i7 = dataSettingsActivity.f41221s) >= 0) {
+                if (dataSettingsActivity.f41221a != null && (i7 = dataSettingsActivity.f41228s) >= 0) {
                     dataSettingsActivity.s0(i7);
                     return;
                 }
@@ -62,16 +62,16 @@ public final class b2 implements c20 {
             case 2:
                 Runnable runnable = (Runnable) obj;
                 ((org.telegram.ui.ActionBar.u1) this.d).r(150L);
-                ww wwVar = ((xv) this.f3503c).f51983b;
-                Boolean bool = wwVar.G.bot_participant;
+                yw ywVar = ((zv) this.f3503c).f52678b;
+                Boolean bool = ywVar.G.bot_participant;
                 if (bool != null && bool.booleanValue()) {
-                    wwVar.getMessagesController().m(this.f3502b, wwVar.getMessagesController().a2(Long.valueOf(wwVar.H)), 0, null, wwVar, false, runnable, new ve(6, runnable), null);
+                    ywVar.getMessagesController().m(this.f3502b, ywVar.getMessagesController().a2(Long.valueOf(ywVar.H)), 0, null, ywVar, false, runnable, new ve(6, runnable), null);
                     return;
                 }
                 runnable.run();
                 return;
             default:
-                ProfileActivity.i0((ProfileActivity) this.f3503c, (Context) this.d, this.f3502b, (TL_payments.connectedBotStarRef) obj);
+                ProfileActivity.g0((ProfileActivity) this.f3503c, (Context) this.d, this.f3502b, (TL_payments.connectedBotStarRef) obj);
                 return;
         }
     }

@@ -171,7 +171,7 @@ public final class w extends c1 {
                 if (z9) {
                     TLRPC.TL_inputReplyToMessage tL_inputReplyToMessage = (TLRPC.TL_inputReplyToMessage) inputReplyTo;
                     tL_inputReplyToEphemeralMessage = inputReplyTo;
-                    if (ij.g3(tL_inputReplyToMessage.reply_to_msg_id)) {
+                    if (ij.f3(tL_inputReplyToMessage.reply_to_msg_id)) {
                         TLRPC.TL_inputReplyToEphemeralMessage tL_inputReplyToEphemeralMessage2 = new TLRPC.TL_inputReplyToEphemeralMessage();
                         tL_inputReplyToEphemeralMessage2.f27022id = ij.S(tL_inputReplyToMessage.reply_to_msg_id);
                         tL_inputReplyToEphemeralMessage = tL_inputReplyToEphemeralMessage2;
@@ -216,7 +216,7 @@ public final class w extends c1 {
                 if (z10) {
                     TLRPC.TL_inputReplyToMessage tL_inputReplyToMessage2 = (TLRPC.TL_inputReplyToMessage) inputReplyTo2;
                     tL_inputReplyToEphemeralMessage3 = inputReplyTo2;
-                    if (ij.g3(tL_inputReplyToMessage2.reply_to_msg_id)) {
+                    if (ij.f3(tL_inputReplyToMessage2.reply_to_msg_id)) {
                         TLRPC.TL_inputReplyToEphemeralMessage tL_inputReplyToEphemeralMessage4 = new TLRPC.TL_inputReplyToEphemeralMessage();
                         tL_inputReplyToEphemeralMessage4.f27022id = ij.S(tL_inputReplyToMessage2.reply_to_msg_id);
                         tL_inputReplyToEphemeralMessage3 = tL_inputReplyToEphemeralMessage4;

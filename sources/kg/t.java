@@ -14,24 +14,24 @@ import c8.ha;
 import org.telegram.messenger.id;
 import org.telegram.messenger.qs;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k5;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.n6;
-import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l5;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.o6;
+import org.telegram.ui.ActionBar.s6;
 public final class t extends FrameLayout {
-    public final k5 f17538a;
+    public final l5 f17538a;
     public final xh.l f17539b;
-    public final k5 f17540c;
-    public final f6 d;
+    public final l5 f17540c;
+    public final g6 d;
     public boolean f17541e;
     public TL_account.TL_businessChatLink f17542f;
 
-    public t(Context context, f6 f6Var) {
+    public t(Context context, g6 g6Var) {
         super(context);
         int i7;
         int i10;
-        this.d = f6Var;
+        this.d = g6Var;
         setWillNotDraw(false);
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
@@ -39,44 +39,44 @@ public final class t extends FrameLayout {
         imageView.setPadding(org.telegram.messenger.g0.L(9.0f), org.telegram.messenger.g0.L(9.0f), org.telegram.messenger.g0.L(9.0f), org.telegram.messenger.g0.L(9.0f));
         imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         int L = org.telegram.messenger.g0.L(36.0f);
-        int i11 = k6.Ci;
-        ShapeDrawable L2 = k6.L(L, k6.x0(null, i11, false));
-        n6 N = r6.N(i11);
+        int i11 = l6.Ci;
+        ShapeDrawable L2 = l6.L(L, l6.x0(null, i11, false));
+        o6 M = s6.M(i11);
         imageView.setBackground(L2);
-        r6.k(imageView, L2, N, null, null);
+        s6.j(imageView, L2, M, null, null);
         imageView.setOnClickListener(new ii.g(this, 8));
         addView(imageView, ha.i(36.0f, 36.0f, 8388627, 14.0f, 0.0f, 14.0f, 0.0f));
-        k5 k5Var = new k5(context);
-        this.f17538a = k5Var;
-        k5Var.setTextSize(15);
-        r6.Y(k5Var, k6.G6, null);
+        l5 l5Var = new l5(context);
+        this.f17538a = l5Var;
+        l5Var.setTextSize(15);
+        s6.X(l5Var, l6.G6, null);
         if (id.f23157a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
-        k5Var.setGravity(i7);
-        addView(k5Var, ha.i(-1.0f, 20.0f, 55, 64.0f, 10.0f, 14.0f, 0.0f));
-        k5 k5Var2 = new k5(context);
-        this.f17540c = k5Var2;
-        k5Var2.setTextSize(14);
-        int i12 = k6.f28262z6;
-        r6.Y(k5Var2, i12, null);
+        l5Var.setGravity(i7);
+        addView(l5Var, ha.i(-1.0f, 20.0f, 55, 64.0f, 10.0f, 14.0f, 0.0f));
+        l5 l5Var2 = new l5(context);
+        this.f17540c = l5Var2;
+        l5Var2.setTextSize(14);
+        int i12 = l6.f28275z6;
+        s6.X(l5Var2, i12, null);
         if (id.f23157a0) {
             i10 = 3;
         } else {
             i10 = 5;
         }
-        k5Var2.setGravity(i10);
-        addView(k5Var2, ha.i(-1.0f, 18.0f, 55, 64.0f, 10.66f, 14.0f, 0.0f));
+        l5Var2.setGravity(i10);
+        addView(l5Var2, ha.i(-1.0f, 18.0f, 55, 64.0f, 10.66f, 14.0f, 0.0f));
         xh.l lVar = new xh.l(context);
         this.f17539b = lVar;
         lVar.setTextSize(1, 13.0f);
         lVar.setMaxLines(1);
         lVar.setEllipsize(TextUtils.TruncateAt.END);
-        r6.V(lVar, i12, f6Var);
+        s6.U(lVar, i12, g6Var);
         lVar.setGravity(id.f23157a0 ? 5 : 3);
-        lVar.f58843r = false;
+        lVar.f58852r = false;
         lVar.setUseAlphaForEmoji(false);
         qs.i(lVar);
         addView(lVar, ha.i(-1.0f, 20.0f, 87, 64.0f, 0.0f, 14.0f, 6.0f));
@@ -87,9 +87,9 @@ public final class t extends FrameLayout {
         float f10;
         super.onDraw(canvas);
         if (this.f17541e) {
-            Paint W0 = k6.W0("paintDivider", this.d);
+            Paint W0 = l6.W0("paintDivider", this.d);
             if (W0 == null) {
-                W0 = k6.f27975k0;
+                W0 = l6.f27988k0;
             }
             Paint paint = W0;
             float f11 = 64.0f;
@@ -112,12 +112,12 @@ public final class t extends FrameLayout {
     public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
         super.onLayout(z9, i7, i10, i11, i12);
         boolean z10 = id.f23157a0;
-        k5 k5Var = this.f17540c;
-        k5 k5Var2 = this.f17538a;
+        l5 l5Var = this.f17540c;
+        l5 l5Var2 = this.f17538a;
         if (z10) {
-            k5Var2.setPadding(k5Var.getTextWidth(), 0, 0, 0);
+            l5Var2.setPadding(l5Var.getTextWidth(), 0, 0, 0);
         } else {
-            k5Var2.setPadding(0, 0, k5Var.getTextWidth(), 0);
+            l5Var2.setPadding(0, 0, l5Var.getTextWidth(), 0);
         }
     }
 

@@ -7,15 +7,15 @@ import bi.u7;
 import hi.u1;
 import org.telegram.messenger.c20;
 import org.telegram.messenger.id;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Cells.h6;
-import org.telegram.ui.Components.l41;
+import org.telegram.ui.Components.m41;
 import org.telegram.ui.Components.na;
-import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.qj0;
 import org.telegram.ui.Components.v4;
 public final class a extends na {
-    public l41 P1;
+    public m41 P1;
     public boolean Q1;
     public final FrameLayout R1;
     public final boolean S1;
@@ -27,11 +27,11 @@ public final class a extends na {
     }
 
     @Override
-    public final oj0 L0(pj0 pj0Var) {
-        l41 l41Var = new l41(this.f36277k1, getContext(), this.f28616a, 0, false, new u1(this, 14), this.I0);
-        this.P1 = l41Var;
-        l41Var.f35528r = false;
-        return l41Var;
+    public final pj0 L0(qj0 qj0Var) {
+        m41 m41Var = new m41(this.f36303k1, getContext(), this.f28621a, 0, false, new u1(this, 14), this.I0);
+        this.P1 = m41Var;
+        m41Var.f35945r = false;
+        return m41Var;
     }
 
     @Override
@@ -49,14 +49,14 @@ public final class a extends na {
         int i7;
         if (z10 && !z9 && !this.T1) {
             Context context = getContext();
-            f6 f6Var = this.I0;
+            g6 g6Var = this.I0;
             String M0 = id.M0(2131751970, null);
             if (this.S1) {
                 i7 = 2131751973;
             } else {
                 i7 = 2131751972;
             }
-            v4.M(context, f6Var, M0, id.M0(i7, null), id.M0(2131754486, null), new u7(this, c20Var, z9, 6)).show();
+            v4.M(context, g6Var, M0, id.M0(i7, null), id.M0(2131754486, null), new u7(this, c20Var, z9, 6)).show();
             return;
         }
         c20Var.a(Boolean.valueOf(z9));
@@ -67,15 +67,15 @@ public final class a extends na {
         boolean z10;
         if (this.Q1 != z9) {
             this.Q1 = z9;
-            pj0 pj0Var = this.f36277k1;
-            View T0 = pj0Var.T0(this.U1 + 1);
+            qj0 qj0Var = this.f36303k1;
+            View T0 = qj0Var.T0(this.U1 + 1);
             if (T0 instanceof h6) {
                 ((h6) T0).a(!z9);
                 z10 = false;
             } else {
                 z10 = true;
             }
-            View T02 = pj0Var.T0(this.U1 + 2);
+            View T02 = qj0Var.T0(this.U1 + 2);
             if (T02 instanceof h6) {
                 ((h6) T02).a(z9);
             } else {

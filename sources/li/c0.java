@@ -10,7 +10,7 @@ import org.telegram.messenger.gu;
 import org.telegram.messenger.kv;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g6;
 public final class c0 extends View {
     public final gu f18494a;
     public final int f18495b;
@@ -25,12 +25,12 @@ public final class c0 extends View {
         this.f18495b = i7;
         int i10 = f0Var.f18552n;
         int e10 = jg.g.e(32.0f, org.telegram.messenger.g0.f22563q.x, org.telegram.messenger.g0.L(240.0f));
-        f6 f6Var = f0Var.f18553r;
-        l2.w wVar = new l2.w(this, 5);
-        kv kvVar = new kv(i10, e10, f6Var);
+        g6 g6Var = f0Var.f18553r;
+        l2.a0 a0Var = new l2.a0(this, 4);
+        kv kvVar = new kv(i10, e10, g6Var);
         SpannableStringBuilder l10 = kvVar.l(pageButton.text, kv.R(16, 13));
         TL_keyboard.InlineButtonType inlineButtonType = pageButton.type;
-        gu guVar = new gu(kvVar, e10, l10, pageButton, inlineButtonType, pageButton.style, inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeDisabled, false, false, false, false, Boolean.FALSE, wVar);
+        gu guVar = new gu(kvVar, e10, l10, pageButton, inlineButtonType, pageButton.style, inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeDisabled, false, false, false, false, Boolean.FALSE, a0Var);
         this.f18494a = guVar;
         this.f18497e = new bg.m0(this, i7, 14);
         guVar.f22725e = guVar.h();
@@ -155,7 +155,7 @@ public final class c0 extends View {
                                 richButtonStyle.link = false;
                                 pageButton.style = richButtonStyle;
                             }
-                            t3Var.f37190f3.O(false);
+                            t3Var.f37556f3.O(false);
                             f2 f2Var2 = t3Var.Q3;
                             if (f2Var2 != null) {
                                 f2Var2.h();

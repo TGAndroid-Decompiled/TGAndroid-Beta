@@ -1,100 +1,111 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-public final class bg implements Runnable {
-    public final int f44315a;
-    public final an f44316b;
-    public final org.telegram.ui.ActionBar.u1[] f44317c;
-    public final int d;
+import android.os.Bundle;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class bg implements qr0, sw {
+    public final boolean f44035a;
+    public final int f44036b;
+    public final Object f44037c;
+    public final Object d;
 
-    public bg(an anVar, org.telegram.ui.ActionBar.u1[] u1VarArr, int i7, int i10) {
-        this.f44315a = i10;
-        this.f44316b = anVar;
-        this.f44317c = u1VarArr;
-        this.d = i7;
+    public bg(cn cnVar, boolean z9, org.telegram.messenger.ij ijVar, int i7) {
+        this.f44037c = cnVar;
+        this.f44035a = z9;
+        this.d = ijVar;
+        this.f44036b = i7;
     }
 
     @Override
-    public final void run() {
-        switch (this.f44315a) {
-            case 0:
-                org.telegram.ui.ActionBar.u1[] u1VarArr = this.f44317c;
-                org.telegram.ui.ActionBar.u1 u1Var = u1VarArr[0];
-                if (u1Var != null) {
-                    final an anVar = this.f44316b;
-                    final int i7 = this.d;
-                    u1Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                        @Override
-                        public final void onCancel(DialogInterface dialogInterface) {
-                            switch (r3) {
-                                case 0:
-                                    anVar.getConnectionsManager().cancelRequest(i7, true);
-                                    return;
-                                case 1:
-                                    anVar.getConnectionsManager().cancelRequest(i7, true);
-                                    return;
-                                default:
-                                    anVar.getConnectionsManager().cancelRequest(i7, true);
-                                    return;
-                            }
-                        }
-                    });
-                    anVar.showDialog(u1VarArr[0]);
-                    return;
+    public boolean G() {
+        return false;
+    }
+
+    @Override
+    public boolean N(yw ywVar) {
+        return false;
+    }
+
+    @Override
+    public void a(TLRPC.MessageMedia messageMedia) {
+        int i7;
+        cn cnVar = (cn) this.f44037c;
+        org.telegram.messenger.ij ijVar = (org.telegram.messenger.ij) this.d;
+        if (this.f44035a) {
+            TLRPC.TL_messages_appendTodoList tL_messages_appendTodoList = new TLRPC.TL_messages_appendTodoList();
+            tL_messages_appendTodoList.peer = cnVar.getMessagesController().j1(org.telegram.messenger.ij.B0(ijVar.f23262k));
+            tL_messages_appendTodoList.msg_id = ijVar.e1();
+            if (messageMedia instanceof TLRPC.TL_messageMediaToDo) {
+                TLRPC.TL_messageMediaToDo tL_messageMediaToDo = (TLRPC.TL_messageMediaToDo) messageMedia;
+                int i10 = 0;
+                int i11 = 0;
+                while (true) {
+                    i7 = this.f44036b;
+                    if (i10 >= i7) {
+                        break;
+                    }
+                    i11 = Math.max(i11, tL_messageMediaToDo.todo.list.get(i10).f27103id);
+                    i10++;
                 }
-                return;
-            case 1:
-                org.telegram.ui.ActionBar.u1[] u1VarArr2 = this.f44317c;
-                org.telegram.ui.ActionBar.u1 u1Var2 = u1VarArr2[0];
-                if (u1Var2 != null) {
-                    final an anVar2 = this.f44316b;
-                    final int i10 = this.d;
-                    u1Var2.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                        @Override
-                        public final void onCancel(DialogInterface dialogInterface) {
-                            switch (r3) {
-                                case 0:
-                                    anVar2.getConnectionsManager().cancelRequest(i10, true);
-                                    return;
-                                case 1:
-                                    anVar2.getConnectionsManager().cancelRequest(i10, true);
-                                    return;
-                                default:
-                                    anVar2.getConnectionsManager().cancelRequest(i10, true);
-                                    return;
-                            }
-                        }
-                    });
-                    anVar2.showDialog(u1VarArr2[0]);
-                    return;
+                while (i7 < tL_messageMediaToDo.todo.list.size()) {
+                    TLRPC.TodoItem todoItem = tL_messageMediaToDo.todo.list.get(i7);
+                    if (todoItem.f27103id <= i11) {
+                        todoItem.f27103id = i11 + 1;
+                    }
+                    tL_messages_appendTodoList.list.add(todoItem);
+                    i11 = Math.max(i11, todoItem.f27103id);
+                    i7++;
                 }
-                return;
-            default:
-                org.telegram.ui.ActionBar.u1[] u1VarArr3 = this.f44317c;
-                org.telegram.ui.ActionBar.u1 u1Var3 = u1VarArr3[0];
-                if (u1Var3 != null) {
-                    final an anVar3 = this.f44316b;
-                    final int i11 = this.d;
-                    u1Var3.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                        @Override
-                        public final void onCancel(DialogInterface dialogInterface) {
-                            switch (r3) {
-                                case 0:
-                                    anVar3.getConnectionsManager().cancelRequest(i11, true);
-                                    return;
-                                case 1:
-                                    anVar3.getConnectionsManager().cancelRequest(i11, true);
-                                    return;
-                                default:
-                                    anVar3.getConnectionsManager().cancelRequest(i11, true);
-                                    return;
-                            }
-                        }
-                    });
-                    anVar3.showDialog(u1VarArr3[0]);
-                    return;
+                TLRPC.MessageMedia messageMedia2 = ijVar.f23262k.media;
+                if (messageMedia2 instanceof TLRPC.TL_messageMediaToDo) {
+                    tL_messageMediaToDo.completions = ((TLRPC.TL_messageMediaToDo) messageMedia2).completions;
                 }
-                return;
+            }
+            ijVar.f23262k.media = messageMedia;
+            cnVar.getConnectionsManager().sendRequest(tL_messages_appendTodoList, null);
+            return;
         }
+        if (messageMedia instanceof TLRPC.TL_messageMediaToDo) {
+            TLRPC.MessageMedia messageMedia3 = ijVar.f23262k.media;
+            if (messageMedia3 instanceof TLRPC.TL_messageMediaToDo) {
+                ((TLRPC.TL_messageMediaToDo) messageMedia).completions = ((TLRPC.TL_messageMediaToDo) messageMedia3).completions;
+            }
+        }
+        ijVar.f23262k.media = messageMedia;
+        cnVar.getSendMessagesHelper().t(ijVar, null, null, null, null, null, null, null, false, false, null);
+    }
+
+    @Override
+    public boolean y(yw ywVar, ArrayList arrayList, CharSequence charSequence, boolean z9, boolean z10, int i7, int i10, y91 y91Var) {
+        LaunchActivity launchActivity = (LaunchActivity) this.f44037c;
+        String str = (String) this.d;
+        String str2 = LaunchActivity.B1;
+        long j3 = ((org.telegram.messenger.xr) arrayList.get(0)).f26520a;
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("scrollToTopOnResume", true);
+        bundle.putBoolean("hasUrl", this.f44035a);
+        if (org.telegram.messenger.m5.C(j3)) {
+            bundle.putInt("enc_id", (int) (4294967295L & j3));
+        } else if (org.telegram.messenger.m5.E(j3)) {
+            bundle.putLong("user_id", j3);
+        } else {
+            bundle.putLong("chat_id", -j3);
+        }
+        int i11 = this.f44036b;
+        if (!org.telegram.messenger.qp.s1(i11).E(bundle, ywVar, null, null)) {
+            return true;
+        }
+        org.telegram.messenger.qs.f(i11).k(org.telegram.messenger.qs.f25076t, new Object[0]);
+        org.telegram.messenger.ui.b0(i11).Q1(j3, 0, str, null, null, null, null, 0L, false, false, null);
+        ((ActionBarLayout) launchActivity.M()).V(new cn(bundle), true, false);
+        return true;
+    }
+
+    public bg(LaunchActivity launchActivity, boolean z9, int i7, String str) {
+        this.f44037c = launchActivity;
+        this.f44035a = z9;
+        this.f44036b = i7;
+        this.d = str;
     }
 }

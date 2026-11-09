@@ -1,122 +1,49 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class q60 implements Runnable {
-    public final int f49124a = 1;
-    public final LaunchActivity f49125b;
-    public final TLObject f49126c;
-    public final int d;
-    public final String f49127e;
-    public final TLRPC.TL_error f49128f;
-    public final q10 h;
+import java.util.HashMap;
+import org.telegram.messenger.Utilities;
+public final class q60 implements org.telegram.ui.ActionBar.r1 {
+    public final int f48935a;
+    public final int f48936b;
+    public final HashMap f48937c;
+    public final boolean d;
+    public final boolean f48938e;
 
-    public q60(LaunchActivity launchActivity, TLObject tLObject, int i7, String str, TLRPC.TL_error tL_error, q10 q10Var) {
-        this.f49125b = launchActivity;
-        this.f49126c = tLObject;
-        this.d = i7;
-        this.f49127e = str;
-        this.f49128f = tL_error;
-        this.h = q10Var;
+    public q60(int i7, HashMap hashMap, boolean z9, boolean z10, int i10) {
+        this.f48935a = i10;
+        this.f48936b = i7;
+        this.f48937c = hashMap;
+        this.d = z9;
+        this.f48938e = z10;
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.Components.hc a02;
-        int i7;
-        int i10;
-        String str;
-        int i11 = this.f49124a;
-        q10 q10Var = this.h;
-        TLRPC.TL_error tL_error = this.f49128f;
-        String str2 = this.f49127e;
-        TLObject tLObject = this.f49126c;
-        switch (i11) {
+    public final void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        switch (this.f48935a) {
             case 0:
-                String str3 = LaunchActivity.B1;
-                if (tL_error != null) {
-                    org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
-                    if (T != null) {
-                        if ("STARGIFT_ALREADY_BURNED".equalsIgnoreCase(tL_error.text)) {
-                            a02 = org.telegram.ui.Components.hc.a0(T);
-                            i7 = 2131624020;
-                            i10 = 2131743883;
-                        } else {
-                            a02 = org.telegram.ui.Components.hc.a0(T);
-                            i7 = 2131624011;
-                            i10 = 2131743884;
-                        }
-                        org.telegram.messenger.k5.o(null, i10, a02, i7, 36);
-                    } else {
-                        return;
-                    }
-                } else if (tLObject instanceof TL_stars.TL_payments_uniqueStarGift) {
-                    TL_stars.TL_payments_uniqueStarGift tL_payments_uniqueStarGift = (TL_stars.TL_payments_uniqueStarGift) tLObject;
-                    LaunchActivity launchActivity = this.f49125b;
-                    org.telegram.messenger.qp.s1(launchActivity.O).Y3(tL_payments_uniqueStarGift.users, false);
-                    org.telegram.messenger.qp.s1(launchActivity.O).S3(tL_payments_uniqueStarGift.chats, false);
-                    org.telegram.ui.ActionBar.f2 T2 = LaunchActivity.T();
-                    TL_stars.StarGift starGift = tL_payments_uniqueStarGift.gift;
-                    if (starGift instanceof TL_stars.TL_starGiftUnique) {
-                        bi.k7 k7Var = new bi.k7(launchActivity, this.d, 0L, null, null);
-                        k7Var.h2(str2, (TL_stars.TL_starGiftUnique) starGift, null);
-                        if (T2 != null) {
-                            if (T2.getLastStoryViewer() != null && T2.getLastStoryViewer().J0) {
-                                T2.getLastStoryViewer().t(k7Var);
-                            } else {
-                                T2.showDialog(k7Var);
-                            }
-                        } else {
-                            k7Var.show();
-                        }
-                    }
-                }
-                try {
-                    q10Var.run();
-                    return;
-                } catch (Exception e10) {
-                    org.telegram.messenger.a8.g(e10, true);
-                    return;
-                }
+                int i10 = this.f48936b;
+                HashMap hashMap = this.f48937c;
+                boolean z9 = this.d;
+                boolean z10 = this.f48938e;
+                String str = LaunchActivity.B1;
+                Utilities.f21336e.c(new org.telegram.messenger.i4(org.telegram.messenger.g5.r(i10), hashMap, z9, z10, true));
+                return;
+            case 1:
+                int i11 = this.f48936b;
+                HashMap hashMap2 = this.f48937c;
+                boolean z11 = this.d;
+                boolean z12 = this.f48938e;
+                String str2 = LaunchActivity.B1;
+                Utilities.f21336e.c(new org.telegram.messenger.i4(org.telegram.messenger.g5.r(i11), hashMap2, z11, z12, false));
+                return;
             default:
-                String str4 = LaunchActivity.B1;
-                boolean z9 = tLObject instanceof TLRPC.User;
-                LaunchActivity launchActivity2 = this.f49125b;
-                if (z9) {
-                    TLRPC.User user = (TLRPC.User) tLObject;
-                    org.telegram.messenger.qp.s1(this.d).X3(user, false, false);
-                    Bundle bundle = new Bundle();
-                    bundle.putLong("user_id", user.f27105id);
-                    launchActivity2.t0(new an(bundle));
-                } else {
-                    StringBuilder u10 = a8.p0.u("cant import contact token. token=", str2, " err=");
-                    if (tL_error == null) {
-                        str = null;
-                    } else {
-                        str = tL_error.text;
-                    }
-                    u10.append(str);
-                    org.telegram.messenger.a8.d(u10.toString());
-                    org.telegram.messenger.k5.p(null, 2131748135, org.telegram.ui.Components.hc.a0((org.telegram.ui.ActionBar.f2) jg.g.i(1, launchActivity2.f41260d0)), null);
-                }
-                try {
-                    q10Var.run();
-                    return;
-                } catch (Exception e11) {
-                    org.telegram.messenger.a8.g(e11, true);
-                    return;
-                }
+                int i12 = this.f48936b;
+                HashMap hashMap3 = this.f48937c;
+                boolean z13 = this.d;
+                boolean z14 = this.f48938e;
+                String str3 = LaunchActivity.B1;
+                Utilities.f21336e.c(new org.telegram.messenger.i4(org.telegram.messenger.g5.r(i12), hashMap3, z13, z14, true));
+                return;
         }
-    }
-
-    public q60(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, int i7, String str, q10 q10Var) {
-        this.f49125b = launchActivity;
-        this.f49128f = tL_error;
-        this.f49126c = tLObject;
-        this.d = i7;
-        this.f49127e = str;
-        this.h = q10Var;
     }
 }

@@ -8,22 +8,22 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 public final class z extends s {
     public static final z h;
-    public final transient m f54043f;
+    public final transient m f54055f;
 
     static {
-        i iVar = m.f54001b;
-        h = new z(x.f54035e, v.f54030b);
+        i iVar = m.f54013b;
+        h = new z(x.f54047e, v.f54042b);
     }
 
     public z(m mVar, Comparator comparator) {
         super(comparator);
-        this.f54043f = mVar;
+        this.f54055f = mVar;
     }
 
     @Override
     public final Object ceiling(Object obj) {
         int u10 = u(obj, true);
-        m mVar = this.f54043f;
+        m mVar = this.f54055f;
         if (u10 == mVar.size()) {
             return null;
         }
@@ -34,7 +34,7 @@ public final class z extends s {
     public final boolean contains(Object obj) {
         if (obj != null) {
             try {
-                if (Collections.binarySearch(this.f54043f, obj, this.d) >= 0) {
+                if (Collections.binarySearch(this.f54055f, obj, this.d) >= 0) {
                     return true;
                 }
             } catch (ClassCastException unused) {
@@ -50,7 +50,7 @@ public final class z extends s {
         }
         Comparator comparator = this.d;
         if (a.i(comparator, collection) && collection.size() > 1) {
-            i listIterator = this.f54043f.listIterator(0);
+            i listIterator = this.f54055f.listIterator(0);
             Iterator it = collection.iterator();
             if (listIterator.hasNext()) {
                 Object next = it.next();
@@ -81,7 +81,7 @@ public final class z extends s {
 
     @Override
     public final Iterator descendingIterator() {
-        return this.f54043f.m().listIterator(0);
+        return this.f54055f.m().listIterator(0);
     }
 
     @Override
@@ -89,7 +89,7 @@ public final class z extends s {
         if (obj != this) {
             if (obj instanceof Set) {
                 Set set = (Set) obj;
-                m mVar = this.f54043f;
+                m mVar = this.f54055f;
                 if (mVar.size() == set.size()) {
                     if (!isEmpty()) {
                         Comparator comparator = this.d;
@@ -123,13 +123,13 @@ public final class z extends s {
 
     @Override
     public final int f(Object[] objArr) {
-        return this.f54043f.f(objArr);
+        return this.f54055f.f(objArr);
     }
 
     @Override
     public final Object first() {
         if (!isEmpty()) {
-            return this.f54043f.get(0);
+            return this.f54055f.get(0);
         }
         throw new NoSuchElementException();
     }
@@ -140,13 +140,13 @@ public final class z extends s {
         if (t6 == -1) {
             return null;
         }
-        return this.f54043f.get(t6);
+        return this.f54055f.get(t6);
     }
 
     @Override
     public final Object higher(Object obj) {
         int u10 = u(obj, false);
-        m mVar = this.f54043f;
+        m mVar = this.f54055f;
         if (u10 == mVar.size()) {
             return null;
         }
@@ -155,33 +155,33 @@ public final class z extends s {
 
     @Override
     public final int i() {
-        return this.f54043f.i();
+        return this.f54055f.i();
     }
 
     @Override
     public final Iterator iterator() {
-        return this.f54043f.listIterator(0);
+        return this.f54055f.listIterator(0);
     }
 
     @Override
     public final int j() {
-        return this.f54043f.j();
+        return this.f54055f.j();
     }
 
     @Override
     public final d0 k() {
-        return this.f54043f.listIterator(0);
+        return this.f54055f.listIterator(0);
     }
 
     @Override
     public final Object[] l() {
-        return this.f54043f.l();
+        return this.f54055f.l();
     }
 
     @Override
     public final Object last() {
         if (!isEmpty()) {
-            m mVar = this.f54043f;
+            m mVar = this.f54055f;
             return mVar.get(mVar.size() - 1);
         }
         throw new NoSuchElementException();
@@ -193,22 +193,22 @@ public final class z extends s {
         if (t6 == -1) {
             return null;
         }
-        return this.f54043f.get(t6);
+        return this.f54055f.get(t6);
     }
 
     @Override
     public final m o() {
-        return this.f54043f;
+        return this.f54055f;
     }
 
     @Override
     public final int size() {
-        return this.f54043f.size();
+        return this.f54055f.size();
     }
 
     public final int t(Object obj, boolean z9) {
         obj.getClass();
-        int binarySearch = Collections.binarySearch(this.f54043f, obj, this.d);
+        int binarySearch = Collections.binarySearch(this.f54055f, obj, this.d);
         if (binarySearch >= 0) {
             if (z9) {
                 return binarySearch + 1;
@@ -220,7 +220,7 @@ public final class z extends s {
 
     public final int u(Object obj, boolean z9) {
         obj.getClass();
-        int binarySearch = Collections.binarySearch(this.f54043f, obj, this.d);
+        int binarySearch = Collections.binarySearch(this.f54055f, obj, this.d);
         if (binarySearch >= 0) {
             if (z9) {
                 return binarySearch;
@@ -231,7 +231,7 @@ public final class z extends s {
     }
 
     public final z v(int i7, int i10) {
-        m mVar = this.f54043f;
+        m mVar = this.f54055f;
         if (i7 == 0) {
             if (i10 != mVar.size()) {
                 i7 = 0;

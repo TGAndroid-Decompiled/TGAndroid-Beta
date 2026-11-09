@@ -2,13 +2,13 @@ package di;
 
 import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.ui.pv;
+import org.telegram.ui.rv;
 public final class m extends rg.b {
     public final boolean d;
-    public final pv f9341e;
+    public final rv f9352e;
 
-    public m(pv pvVar, boolean z9) {
-        this.f9341e = pvVar;
+    public m(rv rvVar, boolean z9) {
+        this.f9352e = rvVar;
         this.d = z9;
     }
 
@@ -21,31 +21,31 @@ public final class m extends rg.b {
     public final int b() {
         ArrayList arrayList;
         boolean z9 = this.d;
-        pv pvVar = this.f9341e;
+        rv rvVar = this.f9352e;
         if (z9) {
-            arrayList = pvVar.D;
+            arrayList = rvVar.D;
         } else {
-            arrayList = pvVar.f9618y;
+            arrayList = rvVar.f9559y;
         }
         return arrayList.size();
     }
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        p pVar = (p) d1Var.f57044a;
-        pVar.f9484b = i7;
+        p pVar = (p) d1Var.f57056a;
+        pVar.f9473b = i7;
         boolean z9 = this.d;
-        pv pvVar = this.f9341e;
+        rv rvVar = this.f9352e;
         if (z9) {
-            pVar.setDialogId(((n) pvVar.D.get(i7)).f9375c);
+            pVar.setDialogId(((n) rvVar.D.get(i7)).f9366c);
         } else {
-            pVar.setDialogId(((n) pvVar.f9618y.get(i7)).f9375c);
+            pVar.setDialogId(((n) rvVar.f9559y.get(i7)).f9366c);
         }
     }
 
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
-        p pVar = new p(this.f9341e, viewGroup.getContext());
+        p pVar = new p(this.f9352e, viewGroup.getContext());
         boolean z9 = this.d;
         pVar.N = z9;
         if (z9) {

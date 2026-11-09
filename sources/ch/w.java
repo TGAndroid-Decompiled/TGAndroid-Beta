@@ -9,42 +9,42 @@ import org.telegram.messenger.p10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Components.hc;
 import org.telegram.ui.Components.i5;
-import org.telegram.ui.Components.ii0;
-import org.telegram.ui.a11;
-import org.telegram.ui.an;
-import org.telegram.ui.q11;
-public final class w extends q11 {
-    public final ii0 f6405e2;
-    public final f2 f6406f2;
-    public final b0 f6407g2;
+import org.telegram.ui.Components.ji0;
+import org.telegram.ui.c11;
+import org.telegram.ui.cn;
+import org.telegram.ui.s11;
+public final class w extends s11 {
+    public final ji0 f6403e2;
+    public final f2 f6404f2;
+    public final b0 f6405g2;
 
-    public w(b0 b0Var, f2 f2Var, Context context, int i7, boolean z9, f6 f6Var, ii0 ii0Var, f2 f2Var2) {
-        super(f2Var, context, false, null, i7, z9, f6Var, 16);
-        this.f6407g2 = b0Var;
-        this.f6405e2 = ii0Var;
-        this.f6406f2 = f2Var2;
+    public w(b0 b0Var, f2 f2Var, Context context, int i7, boolean z9, g6 g6Var, ji0 ji0Var, f2 f2Var2) {
+        super(f2Var, context, false, null, i7, z9, g6Var, 16);
+        this.f6405g2 = b0Var;
+        this.f6403e2 = ji0Var;
+        this.f6404f2 = f2Var2;
     }
 
     @Override
     public final void m() {
-        this.f6407g2.f6183a.invalidate();
+        this.f6405g2.f6181a.invalidate();
     }
 
     @Override
     public final void p(View view, Long l10, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
         long longValue;
-        x5 x5Var = this.f6407g2.f6185c;
-        ii0 ii0Var = this.f6405e2;
-        f2 f2Var = this.f6406f2;
-        if (f2Var != null && !ii0Var.A0 && ii0Var.getWindowType() != 13 && !p10.i(f2Var.getCurrentAccount()).q()) {
+        x5 x5Var = this.f6405g2.f6183c;
+        ji0 ji0Var = this.f6403e2;
+        f2 f2Var = this.f6404f2;
+        if (f2Var != null && !ji0Var.A0 && ji0Var.getWindowType() != 13 && !p10.i(f2Var.getCurrentAccount()).q()) {
             try {
                 x5Var.performHapticFeedback(3);
             } catch (Exception unused) {
             }
-            new hc(x5Var, null).r(document, org.telegram.messenger.g0.X2(id.M0(2131743864, null)), id.M0(2131747034, null), new ab(this, 10)).j();
+            new hc(x5Var, null).r(document, org.telegram.messenger.g0.X2(id.M0(2131743861, null)), id.M0(2131747033, null), new ab(this, 10)).j();
         } else if (l10 == null && document == null) {
         } else {
             if (document != null) {
@@ -56,43 +56,43 @@ public final class w extends q11 {
                 longValue = l10.longValue();
             }
             ?? obj = new Object();
-            obj.f6357g = longValue;
+            obj.f6355g = longValue;
             obj.h = longValue;
-            ii0Var.l(view, obj, false);
+            ji0Var.l(view, obj, false);
             org.telegram.messenger.g0.v1(x5Var);
         }
     }
 
     @Override
     public final void q() {
-        b0 b0Var = this.f6407g2;
+        b0 b0Var = this.f6405g2;
         if (!b0Var.v) {
             b0Var.v = true;
             if (!b0Var.d) {
-                b0Var.f6184b.updateViewLayout(b0Var.f6185c, b0Var.b(true));
+                b0Var.f6182b.updateViewLayout(b0Var.f6183c, b0Var.b(true));
             }
-            f2 f2Var = this.f6406f2;
-            if (f2Var instanceof an) {
-                ((an) f2Var).pa();
+            f2 f2Var = this.f6404f2;
+            if (f2Var instanceof cn) {
+                ((cn) f2Var).ra();
             }
-            ii0 ii0Var = this.f6405e2;
-            if (ii0Var.getDelegate() != null) {
-                ii0Var.getDelegate().E();
+            ji0 ji0Var = this.f6403e2;
+            if (ji0Var.getDelegate() != null) {
+                ji0Var.getDelegate().E();
             }
         }
     }
 
     @Override
-    public final void r(a11 a11Var, o0 o0Var) {
-        this.f6405e2.l(a11Var, o0Var, false);
-        org.telegram.messenger.g0.v1(this.f6407g2.f6185c);
+    public final void r(c11 c11Var, o0 o0Var) {
+        this.f6403e2.l(c11Var, o0Var, false);
+        org.telegram.messenger.g0.v1(this.f6405g2.f6183c);
     }
 
     @Override
     public final boolean u() {
-        ii0 ii0Var = this.f6405e2;
-        if (ii0Var.getDelegate() != null) {
-            return ii0Var.getDelegate().E();
+        ji0 ji0Var = this.f6403e2;
+        if (ji0Var.getDelegate() != null) {
+            return ji0Var.getDelegate().E();
         }
         return false;
     }

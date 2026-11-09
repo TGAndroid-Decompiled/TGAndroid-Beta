@@ -1,8 +1,8 @@
 package org.telegram.messenger;
 
-import org.telegram.ui.Components.f40;
 import org.telegram.ui.Components.g40;
-import org.telegram.ui.Components.o40;
+import org.telegram.ui.Components.h40;
+import org.telegram.ui.Components.p40;
 public final class te implements Runnable {
     public final int f25611a;
     public final double f25612b;
@@ -25,8 +25,8 @@ public final class te implements Runnable {
                 qs.f(mediaController.f21270h1).k(154, Integer.valueOf(mediaController.f21268g1), Double.valueOf(d));
                 return;
             default:
-                o40 o40Var = ((g40) ((f40) runnable).f33458b).H0;
-                qs.f(o40Var.f36542e).k(154, Integer.valueOf(o40Var.U), Double.valueOf(d));
+                p40 p40Var = ((h40) ((g40) runnable).f33859b).H0;
+                qs.f(p40Var.f36891e).k(154, Integer.valueOf(p40Var.U), Double.valueOf(d));
                 return;
         }
     }

@@ -2,36 +2,36 @@ package org.telegram.ui.Cells;
 
 import android.util.Property;
 import android.view.View;
-import org.telegram.ui.Components.ii0;
-import org.telegram.ui.Components.xz0;
-import org.telegram.ui.cr0;
+import org.telegram.ui.Components.ji0;
+import org.telegram.ui.Components.yz0;
+import org.telegram.ui.er0;
 public final class g1 extends Property {
-    public final int f29140a;
+    public final int f29144a;
 
     public g1(Class cls, String str, int i7) {
         super(cls, str);
-        this.f29140a = i7;
+        this.f29144a = i7;
     }
 
     @Override
     public final Object get(Object obj) {
-        switch (this.f29140a) {
+        switch (this.f29144a) {
             case 0:
                 return Float.valueOf(((q1) obj).Wc);
             case 1:
                 return Integer.valueOf(Math.round(((View) obj).getTranslationY()));
             case 2:
-                return Float.valueOf(((ii0) obj).f34719w);
+                return Float.valueOf(((ji0) obj).f35065w);
             case 3:
-                return Float.valueOf(((xz0) obj).h);
+                return Float.valueOf(((yz0) obj).h);
             default:
-                return Float.valueOf(((cr0) obj).f44882a);
+                return Float.valueOf(((er0) obj).f45492a);
         }
     }
 
     @Override
     public final void set(Object obj, Object obj2) {
-        switch (this.f29140a) {
+        switch (this.f29144a) {
             case 0:
                 ((q1) obj).setAnimationOffsetX(((Float) obj2).floatValue());
                 return;
@@ -39,15 +39,15 @@ public final class g1 extends Property {
                 ((View) obj).setTranslationY(((Integer) obj2).intValue());
                 return;
             case 2:
-                ((ii0) obj).setTransitionProgress(((Float) obj2).floatValue());
+                ((ji0) obj).setTransitionProgress(((Float) obj2).floatValue());
                 return;
             case 3:
-                xz0 xz0Var = (xz0) obj;
-                xz0Var.h = ((Float) obj2).floatValue();
-                xz0Var.invalidate();
+                yz0 yz0Var = (yz0) obj;
+                yz0Var.h = ((Float) obj2).floatValue();
+                yz0Var.invalidate();
                 return;
             default:
-                ((cr0) obj).b(((Float) obj2).floatValue());
+                ((er0) obj).b(((Float) obj2).floatValue());
                 return;
         }
     }

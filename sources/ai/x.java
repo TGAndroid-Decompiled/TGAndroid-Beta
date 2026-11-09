@@ -23,8 +23,8 @@ import org.telegram.messenger.ui;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.f5;
 import org.telegram.ui.Components.i5;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.ri0;
+import org.telegram.ui.Components.qj0;
+import org.telegram.ui.Components.si0;
 public abstract class x extends FrameLayout implements ls {
     public static final long[] K = {5449505950283078474L, 5420315771991497307L, 5373141891321699086L, 5373026167722876724L, 5435957248314579621L, 5440354006335495210L, 5436040291507247633L, 5445284980978621387L, 5442983582882601962L, 5409008750893734809L, 5371017798065592581L, 5472030678633684592L, 5467583879948803288L, 5471952986970267163L, 5415696465945173620L, 5397915559037785261L, 5283020991981693429L, 5283051451889756068L, 5282816560128336499L, 5465449362807070392L, 5470012829983580233L};
     public static final PorterDuffColorFilter L = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
@@ -40,7 +40,7 @@ public abstract class x extends FrameLayout implements ls {
     public final r f1673c;
     public final v4.s d;
     public final p f1674e;
-    public final ri0 f1675f;
+    public final si0 f1675f;
     public final w h;
     public final ArrayList f1676n;
     public int f1677r;
@@ -62,24 +62,24 @@ public abstract class x extends FrameLayout implements ls {
         this.f1671a = i7;
         this.f1672b = p0Var;
         this.f1680x = p10.i(i7).q();
-        ?? pj0Var = new pj0(context, null);
-        this.f1673c = pj0Var;
+        ?? qj0Var = new qj0(context, null);
+        this.f1673c = qj0Var;
         v4.s sVar = new v4.s(this.f1677r);
         this.d = sVar;
         sVar.O = new l(q0Var, 0);
-        pj0Var.setLayoutManager(sVar);
-        ri0 ri0Var = new ri0(pj0Var, sVar);
-        this.f1675f = ri0Var;
-        ri0Var.f37678i = new m(q0Var, 0);
-        pj0Var.setAdapter(pVar);
-        pj0Var.setSelectorDrawableColor(0);
-        pj0Var.setOnItemClickListener(new k(p0Var, 0));
-        pj0Var.setItemAnimator(null);
-        pj0Var.setOverScrollMode(2);
-        pj0Var.setVerticalScrollBarEnabled(false);
-        pj0Var.setClipToPadding(false);
-        pj0Var.j(new b(q0Var, 1));
-        addView((View) pj0Var, ha.c(-1.0f, -1));
+        qj0Var.setLayoutManager(sVar);
+        si0 si0Var = new si0(qj0Var, sVar);
+        this.f1675f = si0Var;
+        si0Var.f38085i = new m(q0Var, 0);
+        qj0Var.setAdapter(pVar);
+        qj0Var.setSelectorDrawableColor(0);
+        qj0Var.setOnItemClickListener(new k(p0Var, 0));
+        qj0Var.setItemAnimator(null);
+        qj0Var.setOverScrollMode(2);
+        qj0Var.setVerticalScrollBarEnabled(false);
+        qj0Var.setClipToPadding(false);
+        qj0Var.j(new b(q0Var, 1));
+        addView((View) qj0Var, ha.c(-1.0f, -1));
         w wVar = new w(q0Var, context);
         this.h = wVar;
         addView(wVar, ha.e(-1, 36, 48));
@@ -98,7 +98,7 @@ public abstract class x extends FrameLayout implements ls {
     }
 
     public static boolean d(Drawable drawable) {
-        if ((drawable instanceof i5) && ij.D4(((i5) drawable).f34536e)) {
+        if ((drawable instanceof i5) && ij.C4(((i5) drawable).f34563e)) {
             return true;
         }
         return false;
@@ -280,7 +280,7 @@ public abstract class x extends FrameLayout implements ls {
             }
         }
         if (!arrayList10.isEmpty()) {
-            arrayList6.add(new t(0, id.M0(2131746498, null), arrayList10));
+            arrayList6.add(new t(0, id.M0(2131746497, null), arrayList10));
         }
         ArrayList arrayList11 = new ArrayList();
         HashSet hashSet2 = new HashSet();
@@ -344,7 +344,7 @@ public abstract class x extends FrameLayout implements ls {
         }
         if (!arrayList11.isEmpty()) {
             i7 = 1;
-            arrayList6.add(new t(1, id.M0(2131746362, null), arrayList11));
+            arrayList6.add(new t(1, id.M0(2131746361, null), arrayList11));
         } else {
             i7 = 1;
         }

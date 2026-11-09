@@ -72,8 +72,8 @@ public abstract class t extends s {
     @Override
     public final void w1(int i7, View view, boolean z9) {
         r rVar = (r) view.getLayoutParams();
-        Rect rect = rVar.f57145b;
+        Rect rect = rVar.f57157b;
         int i10 = rect.top + rect.bottom + ((ViewGroup.MarginLayoutParams) rVar).topMargin + ((ViewGroup.MarginLayoutParams) rVar).bottomMargin;
-        x1(n0.s(false, this.K[rVar.f57157f], i7, rect.left + rect.right + ((ViewGroup.MarginLayoutParams) rVar).leftMargin + ((ViewGroup.MarginLayoutParams) rVar).rightMargin, ((ViewGroup.MarginLayoutParams) rVar).width), n0.s(true, this.f57015q.k(), this.f57140l, i10, ((ViewGroup.MarginLayoutParams) rVar).height), view, z9);
+        x1(n0.s(false, this.K[rVar.f57169f], i7, rect.left + rect.right + ((ViewGroup.MarginLayoutParams) rVar).leftMargin + ((ViewGroup.MarginLayoutParams) rVar).rightMargin, ((ViewGroup.MarginLayoutParams) rVar).width), n0.s(true, this.f57027q.k(), this.f57152l, i10, ((ViewGroup.MarginLayoutParams) rVar).height), view, z9);
     }
 }

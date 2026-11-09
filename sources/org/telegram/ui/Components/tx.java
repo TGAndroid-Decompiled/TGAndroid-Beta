@@ -1,12 +1,12 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class tx extends yu0 {
+public final class tx extends av0 {
     public final int G3;
     public final ux H3;
 
-    public tx(ux uxVar, Context context, int i7, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
-        super(i7, context, f6Var);
+    public tx(ux uxVar, Context context, int i7, org.telegram.ui.ActionBar.g6 g6Var, int i10) {
+        super(i7, context, g6Var);
         this.H3 = uxVar;
         this.G3 = i10;
     }
@@ -24,7 +24,7 @@ public final class tx extends yu0 {
         super.H1(i7);
         ux uxVar = this.H3;
         hy hyVar = uxVar.G;
-        tx txVar = uxVar.f38771r;
+        tx txVar = uxVar.f38824r;
         boolean z10 = true;
         if (txVar.getSelectedCategory() == null) {
             z9 = true;
@@ -43,7 +43,7 @@ public final class tx extends yu0 {
             if (txVar.getSelectedCategory() != null) {
                 z10 = false;
             }
-            uvVar.f37712o0 = z10;
+            uvVar.f38113o0 = z10;
             uvVar.invalidate();
         }
         uxVar.g(false);

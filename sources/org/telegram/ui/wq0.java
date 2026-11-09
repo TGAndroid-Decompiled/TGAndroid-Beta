@@ -1,26 +1,116 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.ui.Components.ClippingImageView;
-public final class wq0 {
-    public ImageReceiver f51483a;
-    public int f51484b;
-    public int f51485c;
-    public View d;
-    public org.telegram.messenger.jc f51486e;
-    public long f51487f;
-    public long f51488g;
-    public int[] h;
-    public int f51489i;
-    public int f51490j;
-    public boolean f51492l;
-    public ClippingImageView f51493m;
-    public int f51494n;
-    public boolean f51496p;
-    public int f51497q;
-    public boolean f51498r;
-    public boolean f51499s;
-    public float f51491k = 1.0f;
-    public boolean f51495o = true;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.tgnet.TLRPC;
+public interface wq0 {
+    boolean A();
+
+    void B(int i7);
+
+    CharSequence C(int i7);
+
+    void D();
+
+    yq0 E(org.telegram.messenger.ij ijVar, TLRPC.FileLocation fileLocation, int i7, boolean z9, boolean z10);
+
+    void F(boolean z9);
+
+    void G();
+
+    int H();
+
+    boolean I();
+
+    void J();
+
+    boolean K();
+
+    boolean L();
+
+    void M(org.telegram.messenger.j20 j20Var);
+
+    boolean N();
+
+    boolean O();
+
+    boolean P();
+
+    boolean Q();
+
+    int R(Object obj);
+
+    int S(int i7);
+
+    boolean T();
+
+    boolean U();
+
+    org.telegram.messenger.ij V();
+
+    void W();
+
+    void X(int i7);
+
+    void Y(int i7);
+
+    boolean Z();
+
+    long a();
+
+    void a0(int i7);
+
+    boolean b();
+
+    String b0();
+
+    ArrayList c();
+
+    CharSequence c0(int i7);
+
+    void d();
+
+    void e(CharSequence charSequence);
+
+    void f(String str, String str2, boolean z9);
+
+    boolean g();
+
+    boolean h();
+
+    void i();
+
+    org.telegram.messenger.jc j(int i7);
+
+    int k(int i7, org.telegram.messenger.j20 j20Var);
+
+    boolean l();
+
+    void m();
+
+    void n();
+
+    void o(int i7, org.telegram.messenger.j20 j20Var, boolean z9, int i10, int i11, boolean z10);
+
+    boolean p();
+
+    boolean q();
+
+    boolean r();
+
+    void s();
+
+    boolean t();
+
+    boolean u();
+
+    HashMap v();
+
+    boolean w();
+
+    boolean x(int i7);
+
+    int y();
+
+    boolean z();
 }

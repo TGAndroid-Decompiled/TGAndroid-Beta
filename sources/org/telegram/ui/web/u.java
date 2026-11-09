@@ -1,59 +1,57 @@
 package org.telegram.ui.web;
 
-import bi.a3;
-import di.o7;
-import java.io.File;
-import org.telegram.messenger.c20;
-public final class u implements c20 {
-    public final int f51310a = 0;
-    public final x0 f51311b;
-    public final String f51312c;
-    public final String d;
-    public final Object f51313e;
-    public final Object f51314f;
+import di.p7;
+import org.json.JSONObject;
+import org.telegram.messenger.a8;
+public final class u implements Runnable {
+    public final int f51290a;
+    public final String[] f51291b;
+    public final int f51292c;
+    public final u0 d;
+    public final p7 f51293e;
 
-    public u(x0 x0Var, o7 o7Var, String str, hi.m1 m1Var, String str2) {
-        this.f51311b = x0Var;
-        this.f51313e = o7Var;
-        this.f51312c = str;
-        this.f51314f = m1Var;
-        this.d = str2;
+    public u(String[] strArr, int i7, u0 u0Var, p7 p7Var, int i10) {
+        this.f51290a = i10;
+        this.f51291b = strArr;
+        this.f51292c = i7;
+        this.d = u0Var;
+        this.f51293e = p7Var;
     }
 
     @Override
-    public final void a(Object obj) {
-        switch (this.f51310a) {
+    public final void run() {
+        switch (this.f51290a) {
             case 0:
-                o7 o7Var = (o7) this.f51313e;
-                hi.m1 m1Var = (hi.m1) this.f51314f;
-                String str = this.d;
-                String str2 = (String) obj;
-                x0 x0Var = this.f51311b;
-                String str3 = this.f51312c;
-                if (str2 == null) {
-                    x0Var.x(o7Var, "secure_storage_failed", x0.B("req_id", str3, "error", "RESTORE_CANCELLED"));
-                    return;
+                int i7 = this.f51292c;
+                u0 u0Var = this.d;
+                p7 p7Var = this.f51293e;
+                String[] strArr = this.f51291b;
+                if (strArr[0] != null) {
+                    try {
+                        JSONObject jSONObject = new JSONObject();
+                        jSONObject.put("status", strArr[0]);
+                        x0.w(i7, u0Var, p7Var, "phone_requested", jSONObject);
+                        return;
+                    } catch (Exception e10) {
+                        a8.g(e10, true);
+                        return;
+                    }
                 }
-                try {
-                    m1Var.j(str2);
-                    x0Var.x(o7Var, "secure_storage_key_restored", x0.B("req_id", str3, "value", (String) m1Var.f(str).first));
-                    return;
-                } catch (Exception e10) {
-                    x0Var.x(o7Var, "secure_storage_failed", x0.B("req_id", str3, "error", e10.getMessage()));
-                    return;
-                }
-            default:
-                x0 x0Var2 = this.f51311b;
-                org.telegram.messenger.g0.h3(new a3(x0Var2, (File) obj, (org.telegram.ui.ActionBar.u1) this.f51313e, this.f51312c, this.d, (String) this.f51314f, 26));
                 return;
+            default:
+                String[] strArr2 = this.f51291b;
+                int i10 = this.f51292c;
+                u0 u0Var2 = this.d;
+                p7 p7Var2 = this.f51293e;
+                try {
+                    JSONObject jSONObject2 = new JSONObject();
+                    jSONObject2.put("status", strArr2[0]);
+                    x0.w(i10, u0Var2, p7Var2, "write_access_requested", jSONObject2);
+                    return;
+                } catch (Exception e11) {
+                    a8.g(e11, true);
+                    return;
+                }
         }
-    }
-
-    public u(x0 x0Var, org.telegram.ui.ActionBar.u1 u1Var, String str, String str2, String str3) {
-        this.f51311b = x0Var;
-        this.f51313e = u1Var;
-        this.f51312c = str;
-        this.d = str2;
-        this.f51314f = str3;
     }
 }

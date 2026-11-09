@@ -9,13 +9,13 @@ import c8.ka;
 import h6.m;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.id;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Components.cq;
 import org.telegram.ui.Components.xq;
 public final class h extends FrameLayout implements te.b {
     public static final int[] f18382s = {2131232186, 2131232508, 2131231760, 2131232672, 2131231848, 2131232508, 2131232508};
     public final String[] f18383a;
-    public final f6 f18384b;
+    public final g6 f18384b;
     public final gh.a f18385c;
     public final dh.c d;
     public final m[] f18386e;
@@ -24,7 +24,7 @@ public final class h extends FrameLayout implements te.b {
     public b f18388n;
     public int f18389r;
 
-    public h(Context context, f6 f6Var, gh.b bVar, dh.c cVar) {
+    public h(Context context, g6 g6Var, gh.b bVar, dh.c cVar) {
         super(context);
         this.f18383a = new String[]{id.M0(2131753953, null), id.M0(2131754815, null), id.M0(2131754842, null), id.M0(2131754790, null), id.M0(2131754804, null), id.M0(2131754778, null), id.M0(2131754779, null)};
         this.f18386e = new m[7];
@@ -32,7 +32,7 @@ public final class h extends FrameLayout implements te.b {
         this.f18389r = 83;
         this.d = cVar;
         this.f18385c = bVar;
-        this.f18384b = f6Var;
+        this.f18384b = g6Var;
     }
 
     @Override
@@ -59,8 +59,8 @@ public final class h extends FrameLayout implements te.b {
                 m mVar = mVarArr[i10];
                 if (mVar != null) {
                     kh.b bVar = (kh.b) mVar.f14264b;
-                    float f11 = ((te.a) mVar.f14265c).f55487e;
-                    float f12 = ((te.a) mVar.d).f55487e;
+                    float f11 = ((te.a) mVar.f14265c).f55499e;
+                    float f12 = ((te.a) mVar.d).f55499e;
                     if (f11 > 0.0f) {
                         i7 = 0;
                     } else {
@@ -136,7 +136,7 @@ public final class h extends FrameLayout implements te.b {
             if (i7 == 0) {
                 interpolator = xq.h;
             } else {
-                interpolator = se.a.f55005a;
+                interpolator = se.a.f55017a;
             }
             if (i7 == 0) {
                 j3 = 300;
@@ -148,7 +148,7 @@ public final class h extends FrameLayout implements te.b {
             if (i7 == 0) {
                 interpolator2 = xq.h;
             } else {
-                interpolator2 = se.a.f55005a;
+                interpolator2 = se.a.f55017a;
             }
             Interpolator interpolator3 = interpolator2;
             if (i7 == 0) {
@@ -167,9 +167,9 @@ public final class h extends FrameLayout implements te.b {
             int i15 = i11;
             Context context = getContext();
             int i16 = f18382s[i7];
-            f6 f6Var = this.f18384b;
-            kh.b bVar = new kh.b(context, f6Var);
-            kh.a d = kh.a.d(context, this.d, this.f18385c, f6Var, i16, i15);
+            g6 g6Var = this.f18384b;
+            kh.b bVar = new kh.b(context, g6Var);
+            kh.a d = kh.a.d(context, this.d, this.f18385c, g6Var, i16, i15);
             bVar.f17599b = d;
             bVar.addView(d, ha.e(i10, i10, 80));
             d.setIconPadding(g0.L(2.0f));

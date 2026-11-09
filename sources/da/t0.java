@@ -1,30 +1,30 @@
 package da;
 public final class t0 extends q2 {
-    public final long f8518a;
-    public final String f8519b;
-    public final k2 f8520c;
+    public final long f8516a;
+    public final String f8517b;
+    public final k2 f8518c;
     public final l2 d;
-    public final m2 f8521e;
-    public final p2 f8522f;
+    public final m2 f8519e;
+    public final p2 f8520f;
 
     public t0(long j3, String str, k2 k2Var, l2 l2Var, m2 m2Var, p2 p2Var) {
-        this.f8518a = j3;
-        this.f8519b = str;
-        this.f8520c = k2Var;
+        this.f8516a = j3;
+        this.f8517b = str;
+        this.f8518c = k2Var;
         this.d = l2Var;
-        this.f8521e = m2Var;
-        this.f8522f = p2Var;
+        this.f8519e = m2Var;
+        this.f8520f = p2Var;
     }
 
     public final s0 a() {
         ?? obj = new Object();
-        obj.f8507a = this.f8518a;
-        obj.f8508b = this.f8519b;
-        obj.f8509c = this.f8520c;
+        obj.f8505a = this.f8516a;
+        obj.f8506b = this.f8517b;
+        obj.f8507c = this.f8518c;
         obj.d = this.d;
-        obj.f8510e = this.f8521e;
-        obj.f8511f = this.f8522f;
-        obj.f8512g = (byte) 1;
+        obj.f8508e = this.f8519e;
+        obj.f8509f = this.f8520f;
+        obj.f8510g = (byte) 1;
         return obj;
     }
 
@@ -36,9 +36,9 @@ public final class t0 extends q2 {
         }
         if (obj instanceof q2) {
             t0 t0Var = (t0) ((q2) obj);
-            p2 p2Var2 = t0Var.f8522f;
-            m2 m2Var2 = t0Var.f8521e;
-            if (this.f8518a == t0Var.f8518a && this.f8519b.equals(t0Var.f8519b) && this.f8520c.equals(t0Var.f8520c) && this.d.equals(t0Var.d) && ((m2Var = this.f8521e) != null ? m2Var.equals(m2Var2) : m2Var2 == null) && ((p2Var = this.f8522f) != null ? p2Var.equals(p2Var2) : p2Var2 == null)) {
+            p2 p2Var2 = t0Var.f8520f;
+            m2 m2Var2 = t0Var.f8519e;
+            if (this.f8516a == t0Var.f8516a && this.f8517b.equals(t0Var.f8517b) && this.f8518c.equals(t0Var.f8518c) && this.d.equals(t0Var.d) && ((m2Var = this.f8519e) != null ? m2Var.equals(m2Var2) : m2Var2 == null) && ((p2Var = this.f8520f) != null ? p2Var.equals(p2Var2) : p2Var2 == null)) {
                 return true;
             }
         }
@@ -47,17 +47,17 @@ public final class t0 extends q2 {
 
     public final int hashCode() {
         int hashCode;
-        long j3 = this.f8518a;
-        int hashCode2 = (((((((((int) (j3 ^ (j3 >>> 32))) ^ 1000003) * 1000003) ^ this.f8519b.hashCode()) * 1000003) ^ this.f8520c.hashCode()) * 1000003) ^ this.d.hashCode()) * 1000003;
+        long j3 = this.f8516a;
+        int hashCode2 = (((((((((int) (j3 ^ (j3 >>> 32))) ^ 1000003) * 1000003) ^ this.f8517b.hashCode()) * 1000003) ^ this.f8518c.hashCode()) * 1000003) ^ this.d.hashCode()) * 1000003;
         int i7 = 0;
-        m2 m2Var = this.f8521e;
+        m2 m2Var = this.f8519e;
         if (m2Var == null) {
             hashCode = 0;
         } else {
             hashCode = m2Var.hashCode();
         }
         int i10 = (hashCode2 ^ hashCode) * 1000003;
-        p2 p2Var = this.f8522f;
+        p2 p2Var = this.f8520f;
         if (p2Var != null) {
             i7 = p2Var.hashCode();
         }
@@ -65,6 +65,6 @@ public final class t0 extends q2 {
     }
 
     public final String toString() {
-        return "Event{timestamp=" + this.f8518a + ", type=" + this.f8519b + ", app=" + this.f8520c + ", device=" + this.d + ", log=" + this.f8521e + ", rollouts=" + this.f8522f + "}";
+        return "Event{timestamp=" + this.f8516a + ", type=" + this.f8517b + ", app=" + this.f8518c + ", device=" + this.d + ", log=" + this.f8519e + ", rollouts=" + this.f8520f + "}";
     }
 }

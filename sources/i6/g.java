@@ -122,7 +122,7 @@ public final class g extends s {
                 return;
             default:
                 ij ijVar = MediaController.B().f21295u0;
-                if (ijVar != null && ijVar.J3()) {
+                if (ijVar != null && ijVar.I3()) {
                     MediaController.B().U(false);
                     return;
                 }
@@ -149,7 +149,7 @@ public final class g extends s {
                 return;
             default:
                 ij ijVar = MediaController.B().f21295u0;
-                if (ijVar != null && ijVar.J3()) {
+                if (ijVar != null && ijVar.I3()) {
                     MediaController.B().V();
                     return;
                 }

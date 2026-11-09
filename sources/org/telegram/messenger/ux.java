@@ -60,7 +60,7 @@ public final class ux implements Runnable {
         ArrayList<TLRPC.Update> arrayList4;
         ArrayList arrayList5;
         int i15;
-        String K1;
+        String J1;
         Integer valueOf;
         TLRPC.MessageReplyHeader messageReplyHeader;
         a0.h hVar3;
@@ -192,17 +192,17 @@ public final class ux implements Runnable {
                                             kg.t1 f10 = kg.t1.f(gzVar.currentAccount);
                                             if (arrayList6.isEmpty()) {
                                                 i15 = 0;
-                                                K1 = null;
+                                                J1 = null;
                                             } else {
                                                 i15 = 0;
-                                                K1 = ij.K1(((ij) arrayList6.get(0)).f23262k);
+                                                J1 = ij.J1(((ij) arrayList6.get(0)).f23262k);
                                             }
                                             if (arrayList6.isEmpty()) {
                                                 valueOf = null;
                                             } else {
-                                                valueOf = Integer.valueOf(ij.J1(((ij) arrayList6.get(i15)).f23262k));
+                                                valueOf = Integer.valueOf(ij.I1(((ij) arrayList6.get(i15)).f23262k));
                                             }
-                                            f10.j(update, K1, valueOf.intValue());
+                                            f10.j(update, J1, valueOf.intValue());
                                             TLRPC.Message message7 = ((TL_update.TL_updateQuickReplyMessage) update).message;
                                             sparseArray2.put(message7.f26977id, message7);
                                             arrayList4.remove(i17);
@@ -320,7 +320,7 @@ public final class ux implements Runnable {
                                 i13 = i22;
                                 gzVar.z0(ijVar, message2, message2.f26977id, Collections.singletonList(str2), false, -1, message2.params);
                             }
-                            final int p12 = ijVar.p1();
+                            final int o12 = ijVar.o1();
                             message3.f26977id = message2.f26977id;
                             int i24 = message2.quick_reply_shortcut_id;
                             message3.quick_reply_shortcut_id = i24;
@@ -364,7 +364,7 @@ public final class ux implements Runnable {
                             Integer valueOf3 = Integer.valueOf(message3.f26977id);
                             Long valueOf4 = Long.valueOf(message3.dialog_id);
                             Long valueOf5 = Long.valueOf(j3);
-                            Integer valueOf6 = Integer.valueOf(p12);
+                            Integer valueOf6 = Integer.valueOf(o12);
                             Boolean valueOf7 = Boolean.valueOf(z14);
                             ArrayList arrayList15 = arrayList2;
                             Object[] objArr2 = new Object[7];
@@ -381,7 +381,7 @@ public final class ux implements Runnable {
                             Integer valueOf9 = Integer.valueOf(message3.f26977id);
                             Long valueOf10 = Long.valueOf(message3.dialog_id);
                             Long valueOf11 = Long.valueOf(j3);
-                            Integer valueOf12 = Integer.valueOf(p12);
+                            Integer valueOf12 = Integer.valueOf(o12);
                             Boolean valueOf13 = Boolean.valueOf(z14);
                             Object[] objArr3 = new Object[7];
                             objArr3[0] = valueOf8;

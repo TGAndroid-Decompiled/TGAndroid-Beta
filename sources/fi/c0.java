@@ -2,7 +2,7 @@ package fi;
 
 import android.view.TextureView;
 import org.telegram.messenger.video.VideoPlayerHolderBase;
-import org.telegram.ui.s81;
+import org.telegram.ui.t81;
 public final class c0 extends VideoPlayerHolderBase {
     public final int f11720a;
     public final Object f11721b;
@@ -35,7 +35,7 @@ public final class c0 extends VideoPlayerHolderBase {
                 TextureView textureView = t1Var.J;
                 if (textureView != null && !t1Var.F) {
                     textureView.setAlpha(0.0f);
-                    textureView.animate().alpha(1.0f).setListener(new s81(this, 19)).setDuration(200L);
+                    textureView.animate().alpha(1.0f).setListener(new t81(this, 19)).setDuration(200L);
                     return;
                 }
                 return;

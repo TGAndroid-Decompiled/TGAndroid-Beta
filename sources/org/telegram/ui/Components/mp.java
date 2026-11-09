@@ -7,31 +7,31 @@ import android.graphics.drawable.Drawable;
 import android.util.StateSet;
 import android.view.MotionEvent;
 public final class mp extends j6 {
-    public final Rect f36077s;
-    public Drawable f36078w;
-    public boolean f36079x;
+    public final Rect f36126s;
+    public Drawable f36127w;
+    public boolean f36128x;
 
     public mp(Context context) {
         super(context, false, false, false);
-        this.f36077s = new Rect();
+        this.f36126s = new Rect();
     }
 
     public Rect getClickBounds() {
-        return this.f36077s;
+        return this.f36126s;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (this.f36078w != null) {
+        if (this.f36127w != null) {
             Rect bounds = getDrawable().getBounds();
-            Rect rect = this.f36077s;
+            Rect rect = this.f36126s;
             rect.set(bounds);
             int ceil = (int) Math.ceil(getDrawable().c());
-            if (getDrawable().f34552b == 3) {
+            if (getDrawable().f34587b == 3) {
                 rect.right = rect.left + ceil;
-            } else if (getDrawable().f34552b == 5) {
+            } else if (getDrawable().f34587b == 5) {
                 rect.left = rect.right - ceil;
-            } else if (getDrawable().f34552b == 17) {
+            } else if (getDrawable().f34587b == 17) {
                 int i7 = (rect.left + rect.right) / 2;
                 int i10 = ceil / 2;
                 rect.left = i7 - i10;
@@ -41,8 +41,8 @@ public final class mp extends j6 {
             rect.top -= getPaddingTop();
             rect.right = getPaddingRight() + rect.right;
             rect.bottom = getPaddingBottom() + rect.bottom;
-            this.f36078w.setBounds(rect);
-            this.f36078w.draw(canvas);
+            this.f36127w.setBounds(rect);
+            this.f36127w.draw(canvas);
         }
         super.onDraw(canvas);
     }
@@ -51,28 +51,28 @@ public final class mp extends j6 {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         boolean contains = getClickBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY());
         if (motionEvent.getAction() == 0 && contains) {
-            this.f36079x = true;
-            Drawable drawable = this.f36078w;
+            this.f36128x = true;
+            Drawable drawable = this.f36127w;
             if (drawable != null) {
                 drawable.setHotspot(motionEvent.getX(), motionEvent.getY());
-                this.f36078w.setState(new int[]{16842919, 16842910});
+                this.f36127w.setState(new int[]{16842919, 16842910});
             }
             invalidate();
             return contains;
         }
         if (motionEvent.getAction() == 1) {
-            if (this.f36079x && contains) {
+            if (this.f36128x && contains) {
                 callOnClick();
             }
-            this.f36079x = false;
-            Drawable drawable2 = this.f36078w;
+            this.f36128x = false;
+            Drawable drawable2 = this.f36127w;
             if (drawable2 != null) {
                 drawable2.setState(StateSet.NOTHING);
                 return contains;
             }
         } else if (motionEvent.getAction() == 3) {
-            this.f36079x = false;
-            Drawable drawable3 = this.f36078w;
+            this.f36128x = false;
+            Drawable drawable3 = this.f36127w;
             if (drawable3 != null) {
                 drawable3.setState(StateSet.NOTHING);
             }
@@ -82,11 +82,11 @@ public final class mp extends j6 {
 
     @Override
     public void setBackground(Drawable drawable) {
-        Drawable drawable2 = this.f36078w;
+        Drawable drawable2 = this.f36127w;
         if (drawable2 != null) {
             drawable2.setCallback(null);
         }
-        this.f36078w = drawable;
+        this.f36127w = drawable;
         if (drawable != null) {
             drawable.setCallback(this);
         }
@@ -95,11 +95,11 @@ public final class mp extends j6 {
 
     @Override
     public void setBackgroundDrawable(Drawable drawable) {
-        Drawable drawable2 = this.f36078w;
+        Drawable drawable2 = this.f36127w;
         if (drawable2 != null) {
             drawable2.setCallback(null);
         }
-        this.f36078w = drawable;
+        this.f36127w = drawable;
         if (drawable != null) {
             drawable.setCallback(this);
         }
@@ -108,7 +108,7 @@ public final class mp extends j6 {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f36078w && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f36127w && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

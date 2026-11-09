@@ -9,11 +9,11 @@ import org.telegram.messenger.qp;
 import org.telegram.messenger.t10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Components.hc;
 import org.telegram.ui.Components.v4;
-import org.telegram.ui.i91;
-import org.telegram.ui.w91;
+import org.telegram.ui.j91;
+import org.telegram.ui.y91;
 public final class f3 implements c20 {
     public final int f14652a = 0;
     public final int f14653b;
@@ -23,13 +23,13 @@ public final class f3 implements c20 {
     public final Object f14656f;
     public final Object f14657g;
 
-    public f3(int i7, long j3, Context context, TL_payments.connectedBotStarRef connectedbotstarref, org.telegram.ui.ActionBar.v2 v2Var, f6 f6Var) {
+    public f3(int i7, long j3, Context context, TL_payments.connectedBotStarRef connectedbotstarref, org.telegram.ui.ActionBar.v2 v2Var, g6 g6Var) {
         this.f14653b = i7;
         this.d = connectedbotstarref;
         this.f14655e = v2Var;
         this.f14656f = context;
         this.f14654c = j3;
-        this.f14657g = f6Var;
+        this.f14657g = g6Var;
     }
 
     @Override
@@ -46,27 +46,27 @@ public final class f3 implements c20 {
                 TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) obj5;
                 org.telegram.ui.ActionBar.v2 v2Var = (org.telegram.ui.ActionBar.v2) obj4;
                 Context context = (Context) obj3;
-                f6 f6Var = (f6) obj2;
+                g6 g6Var = (g6) obj2;
                 TL_payments.connectedBotStarRef connectedbotstarref2 = (TL_payments.connectedBotStarRef) obj;
                 int i11 = this.f14653b;
                 long j3 = this.f14654c;
                 if (connectedbotstarref2 == null) {
                     TLRPC.User a22 = qp.s1(i11).a2(Long.valueOf(connectedbotstarref.bot_id));
                     if (a22 != null) {
-                        qp.s1(i11).W2(a22, 0, true, new d3(v2Var, context, i11, j3, f6Var, 1));
+                        qp.s1(i11).W2(a22, 0, true, new d3(v2Var, context, i11, j3, g6Var, 1));
                         return;
                     }
                     return;
                 }
                 v2Var.dismiss();
-                q3.K0(context, i11, connectedbotstarref2, j3, f6Var);
+                q3.K0(context, i11, connectedbotstarref2, j3, g6Var);
                 return;
             default:
                 TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers = (TLRPC.TL_messages_invitedUsers) obj4;
                 int[] iArr = (int[]) obj3;
                 ArrayList arrayList = (ArrayList) obj2;
                 TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers2 = (TLRPC.TL_messages_invitedUsers) obj;
-                w91 w91Var = ((i91) obj5).f46613b;
+                y91 y91Var = ((j91) obj5).f46898b;
                 if (tL_messages_invitedUsers2 != null) {
                     tL_messages_invitedUsers.missing_invitees.addAll(tL_messages_invitedUsers2.missing_invitees);
                 }
@@ -76,16 +76,16 @@ public final class f3 implements c20 {
                     boolean isEmpty = tL_messages_invitedUsers.missing_invitees.isEmpty();
                     long j10 = this.f14654c;
                     if (isEmpty) {
-                        hc a02 = hc.a0(w91Var);
-                        TLRPC.Chat M0 = w91Var.getMessagesController().M0(Long.valueOf(j10));
+                        hc a02 = hc.a0(y91Var);
+                        TLRPC.Chat M0 = y91Var.getMessagesController().M0(Long.valueOf(j10));
                         a02.getClass();
                         if (arrayList.size() == 0) {
                             X2 = null;
                         } else if (arrayList.size() == 1) {
                             if (org.telegram.messenger.t3.V(M0)) {
-                                X2 = org.telegram.messenger.g0.X2(id.a0("HasBeenAddedToChannel", null, 2131749365, "**" + t10.j((TLRPC.User) arrayList.get(0), true) + "**"));
+                                X2 = org.telegram.messenger.g0.X2(id.a0("HasBeenAddedToChannel", null, 2131749364, "**" + t10.j((TLRPC.User) arrayList.get(0), true) + "**"));
                             } else {
-                                X2 = org.telegram.messenger.g0.X2(id.a0("HasBeenAddedToGroup", null, 2131749364, "**" + t10.j((TLRPC.User) arrayList.get(0), true) + "**"));
+                                X2 = org.telegram.messenger.g0.X2(id.a0("HasBeenAddedToGroup", null, 2131749363, "**" + t10.j((TLRPC.User) arrayList.get(0), true) + "**"));
                             }
                         } else if (org.telegram.messenger.t3.V(M0)) {
                             X2 = org.telegram.messenger.g0.X2(id.G(arrayList.size(), "AddedMembersToChannel", new Object[0]));
@@ -95,8 +95,8 @@ public final class f3 implements c20 {
                         a02.V(arrayList, X2, null, null).j();
                         return;
                     }
-                    TLRPC.Chat M02 = w91Var.getMessagesController().M0(Long.valueOf(j10));
-                    i7 = ((org.telegram.ui.ActionBar.f2) w91Var).currentAccount;
+                    TLRPC.Chat M02 = y91Var.getMessagesController().M0(Long.valueOf(j10));
+                    i7 = ((org.telegram.ui.ActionBar.f2) y91Var).currentAccount;
                     v4.f(i7, M02, tL_messages_invitedUsers);
                     return;
                 }
@@ -104,8 +104,8 @@ public final class f3 implements c20 {
         }
     }
 
-    public f3(i91 i91Var, TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers, int[] iArr, int i7, ArrayList arrayList, long j3) {
-        this.d = i91Var;
+    public f3(j91 j91Var, TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers, int[] iArr, int i7, ArrayList arrayList, long j3) {
+        this.d = j91Var;
         this.f14655e = tL_messages_invitedUsers;
         this.f14656f = iArr;
         this.f14653b = i7;

@@ -9,8 +9,8 @@ import org.telegram.messenger.g0;
 import org.telegram.messenger.i6;
 import org.telegram.messenger.id;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
 import org.telegram.ui.Components.wo;
 public final class c extends yg.c {
     public final wo f1061s;
@@ -18,18 +18,18 @@ public final class c extends yg.c {
     public final TextPaint f1063x;
     public final a3.f f1064y;
 
-    public c(Context context, f6 f6Var) {
-        super(context, f6Var);
+    public c(Context context, g6 g6Var) {
+        super(context, g6Var);
         int i7;
         TextPaint textPaint = new TextPaint();
         this.f1063x = textPaint;
         this.f1064y = new a3.f(this, 3);
         textPaint.setTextSize(g0.L(20.0f));
-        this.f59436f.setVisibility(8);
-        this.f59434c.setVisibility(8);
-        wo woVar = new wo(21, context, f6Var);
+        this.f59445f.setVisibility(8);
+        this.f59443c.setVisibility(8);
+        wo woVar = new wo(21, context, g6Var);
         this.f1061s = woVar;
-        woVar.b(k6.B5, k6.f27962j7, k6.C5);
+        woVar.b(l6.B5, l6.f27975j7, l6.C5);
         woVar.setDrawUnchecked(true);
         woVar.setDrawBackgroundAsArc(10);
         addView(woVar);
@@ -106,7 +106,7 @@ public final class c extends yg.c {
         } else {
             f13 = 20.0f;
         }
-        this.f59435e.setLayoutParams(ha.d(-1, -2.0f, i13, f12, 0.0f, f13, 0.0f));
+        this.f59444e.setLayoutParams(ha.d(-1, -2.0f, i13, f12, 0.0f, f13, 0.0f));
         boolean z11 = id.f23157a0;
         if (z11) {
             i11 = 5;
@@ -122,7 +122,7 @@ public final class c extends yg.c {
         } else {
             f15 = 15.0f;
         }
-        this.f59436f.setLayoutParams(ha.d(22, 22.0f, i14, f14, 0.0f, f15, 0.0f));
+        this.f59445f.setLayoutParams(ha.d(22, 22.0f, i14, f14, 0.0f, f15, 0.0f));
     }
 
     public final void f() {
@@ -136,7 +136,7 @@ public final class c extends yg.c {
             spannableStringBuilder.append((CharSequence) " ");
             spannableStringBuilder.setSpan(new b(34), 0, 1, 0);
         }
-        String i02 = id.i0(2131750522, tL_help_country.iso2);
+        String i02 = id.i0(2131750521, tL_help_country.iso2);
         if (TextUtils.isEmpty(i02)) {
             i02 = tL_help_country.default_name;
         }

@@ -92,11 +92,11 @@ public final class q6 implements RequestDelegate {
                 return;
             case 3:
                 qp qpVar2 = (qp) obj4;
-                org.telegram.ui.ActionBar.c6 c6Var = (org.telegram.ui.ActionBar.c6) obj3;
+                org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) obj3;
                 TLRPC.TL_wallPaperSettings tL_wallPaperSettings = (TLRPC.TL_wallPaperSettings) obj2;
                 String str = (String) obj;
                 TLRPC.WallPaper wallPaper = (TLRPC.WallPaper) tLObject;
-                File file = new File(t0.h(), c6Var.f27403b);
+                File file = new File(t0.h(), d6Var.f27429b);
                 if (wallPaper != null) {
                     try {
                         w7 fileLoader = qpVar2.getFileLoader();
@@ -106,7 +106,7 @@ public final class q6 implements RequestDelegate {
                     } catch (Exception unused) {
                     }
                 }
-                g0.h3(new yj(qpVar2, wallPaper, tL_wallPaperSettings, c6Var, file, str, 0));
+                g0.h3(new yj(qpVar2, wallPaper, tL_wallPaperSettings, d6Var, file, str, 0));
                 return;
             case 4:
                 dw dwVar = (dw) obj4;
@@ -144,7 +144,7 @@ public final class q6 implements RequestDelegate {
                         int i16 = messagesStorage7.D;
                         yr messagesStorage8 = dwVar.getMessagesStorage();
                         messagesStorage8.H();
-                        messagesStorage5.f26719a.c(new l2.a0(messagesStorage5, i15, i16, messagesStorage8.f26733y, 7));
+                        messagesStorage5.f26719a.c(new l2.z(messagesStorage5, i15, i16, messagesStorage8.f26733y, 7));
                     }
                     byte[] bArr3 = new byte[256];
                     for (int i17 = 0; i17 < 256; i17++) {
@@ -178,9 +178,9 @@ public final class q6 implements RequestDelegate {
                 Runnable runnable = (Runnable) obj;
                 a0.h hVar = gzVar.f22773x;
                 if (tL_error == null) {
-                    hVar.k(0L, ijVar.E1());
+                    hVar.k(0L, ijVar.D1());
                     gzVar.getMessagesController().O3((TLRPC.Updates) tLObject, false);
-                    hVar.k(Long.valueOf(SystemClock.elapsedRealtime()), ijVar.E1());
+                    hVar.k(Long.valueOf(SystemClock.elapsedRealtime()), ijVar.D1());
                 }
                 g0.h3(new lg(gzVar, str2, runnable, 26));
                 return;

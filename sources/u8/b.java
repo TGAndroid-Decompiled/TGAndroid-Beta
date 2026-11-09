@@ -5,40 +5,40 @@ import android.os.Parcelable;
 import c8.xb;
 public final class b extends r6.a {
     public static final Parcelable.Creator<b> CREATOR = new o(2);
-    public int f56393a;
-    public int f56394b;
-    public int f56395c;
+    public int f56405a;
+    public int f56406b;
+    public int f56407c;
     public int d;
-    public int f56396e;
-    public int f56397f;
+    public int f56408e;
+    public int f56409f;
     public boolean h;
-    public String f56398n;
+    public String f56410n;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = xb.r(parcel, 20293);
-        int i10 = this.f56393a;
+        int i10 = this.f56405a;
         xb.q(parcel, 2, 4);
         parcel.writeInt(i10);
-        int i11 = this.f56394b;
+        int i11 = this.f56406b;
         xb.q(parcel, 3, 4);
         parcel.writeInt(i11);
-        int i12 = this.f56395c;
+        int i12 = this.f56407c;
         xb.q(parcel, 4, 4);
         parcel.writeInt(i12);
         int i13 = this.d;
         xb.q(parcel, 5, 4);
         parcel.writeInt(i13);
-        int i14 = this.f56396e;
+        int i14 = this.f56408e;
         xb.q(parcel, 6, 4);
         parcel.writeInt(i14);
-        int i15 = this.f56397f;
+        int i15 = this.f56409f;
         xb.q(parcel, 7, 4);
         parcel.writeInt(i15);
         boolean z9 = this.h;
         xb.q(parcel, 8, 4);
         parcel.writeInt(z9 ? 1 : 0);
-        xb.l(parcel, 9, this.f56398n);
+        xb.l(parcel, 9, this.f56410n);
         xb.s(parcel, r10);
     }
 }

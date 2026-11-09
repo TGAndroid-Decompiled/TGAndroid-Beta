@@ -5,24 +5,24 @@ import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.c20;
 public final class t0 implements c20 {
-    public final int f57811a;
-    public final w0 f57812b;
+    public final int f57808a;
+    public final w0 f57809b;
 
     public t0(w0 w0Var, int i7) {
-        this.f57811a = i7;
-        this.f57812b = w0Var;
+        this.f57808a = i7;
+        this.f57809b = w0Var;
     }
 
     @Override
     public final void a(Object obj) {
-        switch (this.f57811a) {
+        switch (this.f57808a) {
             case 0:
                 String str = (String) obj;
-                w0 w0Var = this.f57812b;
+                w0 w0Var = this.f57809b;
                 ArrayList arrayList = w0Var.Y1;
-                tg.y yVar = w0Var.f57833n2;
-                w0Var.f57825f2 = str;
-                int i7 = w0Var.f57829j2;
+                tg.y yVar = w0Var.f57831n2;
+                w0Var.f57823f2 = str;
+                int i7 = w0Var.f57827j2;
                 if (i7 != 1) {
                     if (i7 != 2) {
                         if (i7 == 3) {
@@ -34,7 +34,7 @@ public final class t0 implements c20 {
                     } else if (TextUtils.isEmpty(str)) {
                         org.telegram.messenger.g0.r(yVar);
                         arrayList.clear();
-                        arrayList.addAll(s.e(w0Var.f57828i2.f26956id));
+                        arrayList.addAll(r.e(w0Var.f57826i2.f26956id));
                         w0Var.m1(false, true);
                         w0Var.j1(true);
                         return;
@@ -49,9 +49,9 @@ public final class t0 implements c20 {
                 return;
             default:
                 List list = (List) obj;
-                w0 w0Var2 = this.f57812b;
+                w0 w0Var2 = this.f57809b;
                 ArrayList arrayList2 = w0Var2.Y1;
-                if (!TextUtils.isEmpty(w0Var2.f57825f2)) {
+                if (!TextUtils.isEmpty(w0Var2.f57823f2)) {
                     arrayList2.clear();
                     arrayList2.addAll(list);
                     w0Var2.n1(true, true);

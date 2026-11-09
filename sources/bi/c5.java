@@ -14,7 +14,7 @@ public final class c5 extends ClickableSpan {
 
     @Override
     public final void onClick(View view) {
-        this.f3568b.U1(this.f3567a);
+        this.f3568b.T1(this.f3567a);
     }
 
     @Override

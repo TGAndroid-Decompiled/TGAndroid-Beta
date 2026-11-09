@@ -12,27 +12,27 @@ import java.util.HashSet;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.id;
-import org.telegram.ui.ActionBar.a6;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.s6;
 import org.telegram.ui.ActionBar.y1;
-public class e extends FrameLayout implements a6 {
+public class e extends FrameLayout implements b6 {
     public int f1067a;
-    public final f6 f1068b;
+    public final g6 f1068b;
     public final ImageView f1069c;
     public final TextView d;
     public Runnable f1070e;
     public final y1 f1071f;
     public final Paint h;
 
-    public e(Context context, f6 f6Var) {
+    public e(Context context, g6 g6Var) {
         super(context);
         int i7;
         float f10;
         float f11;
         this.h = new Paint(1);
-        this.f1068b = f6Var;
+        this.f1068b = g6Var;
         TextView textView = new TextView(context);
         this.d = textView;
         org.telegram.messenger.camera.q.m(textView, 1, 20.0f);
@@ -42,8 +42,8 @@ public class e extends FrameLayout implements a6 {
             i7 = 3;
         }
         textView.setGravity(i7);
-        int i10 = k6.f27960j5;
-        r6.V(textView, i10, f6Var);
+        int i10 = l6.f27973j5;
+        s6.U(textView, i10, g6Var);
         boolean z9 = id.f23157a0;
         if (z9) {
             f10 = 16.0f;
@@ -61,10 +61,10 @@ public class e extends FrameLayout implements a6 {
         y1 y1Var = new y1(false);
         this.f1071f = y1Var;
         imageView.setImageDrawable(y1Var);
-        int w02 = k6.w0(i10, f6Var);
+        int w02 = l6.w0(i10, g6Var);
         this.f1067a = w02;
         y1Var.a(w02);
-        y1Var.b(k6.w0(i10, f6Var));
+        y1Var.b(l6.w0(i10, g6Var));
         y1Var.f28775k = 220.0f;
         addView(imageView, ha.d(24, 24.0f, (id.f23157a0 ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
         imageView.setOnClickListener(new d(this, 0));
@@ -73,7 +73,7 @@ public class e extends FrameLayout implements a6 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        int w02 = k6.w0(k6.f27853d7, this.f1068b);
+        int w02 = l6.w0(l6.f27866d7, this.f1068b);
         Paint paint = this.h;
         paint.setColor(w02);
         canvas.drawRect(0.0f, getHeight() - g0.f1(), getWidth(), getHeight(), paint);
@@ -129,7 +129,7 @@ public class e extends FrameLayout implements a6 {
         y1 y1Var = this.f1071f;
         if (y1Var != null) {
             try {
-                int w02 = k6.w0(k6.f27960j5, this.f1068b);
+                int w02 = l6.w0(l6.f27973j5, this.f1068b);
                 if (w02 != this.f1067a) {
                     this.f1067a = w02;
                     y1Var.a(w02);

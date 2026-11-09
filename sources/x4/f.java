@@ -1,12 +1,12 @@
 package x4;
 public final class f {
-    public final String f58631a;
-    public final String f58632b;
-    public final g0.c f58633c;
+    public final String f58640a;
+    public final String f58641b;
+    public final g0.c f58642c;
 
     public f(g0.c cVar, String str, String str2) {
-        this.f58633c = cVar;
-        this.f58631a = str;
-        this.f58632b = str2;
+        this.f58642c = cVar;
+        this.f58640a = str;
+        this.f58641b = str2;
     }
 }

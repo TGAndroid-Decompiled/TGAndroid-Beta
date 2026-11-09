@@ -14,7 +14,7 @@ public final class au extends View implements org.telegram.ui.Cells.h9 {
     public boolean D;
     public ds E;
     public final int f21532a;
-    public org.telegram.ui.ActionBar.f6 f21533b;
+    public org.telegram.ui.ActionBar.g6 f21533b;
     public ij f21534c;
     public TL_iv.RichMessage d;
     public kv f21535e;
@@ -27,13 +27,13 @@ public final class au extends View implements org.telegram.ui.Cells.h9 {
     public int f21541x;
     public int f21542y;
 
-    public au(int i7, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+    public au(int i7, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context);
         this.f21541x = -1;
         this.f21542y = -1;
         this.D = true;
         this.f21532a = i7;
-        this.f21533b = f6Var;
+        this.f21533b = g6Var;
         qs.i(this);
     }
 
@@ -88,11 +88,11 @@ public final class au extends View implements org.telegram.ui.Cells.h9 {
             kvVar.S(this.f21536f, Math.max(0, (getWidth() - this.f21535e.C) - this.f21536f));
             TextPaint textPaint = kvVar.f23782w;
             if (kvVar.E()) {
-                i7 = org.telegram.ui.ActionBar.k6.Vc;
+                i7 = org.telegram.ui.ActionBar.l6.Vc;
             } else {
-                i7 = org.telegram.ui.ActionBar.k6.Uc;
+                i7 = org.telegram.ui.ActionBar.l6.Uc;
             }
-            textPaint.linkColor = org.telegram.ui.ActionBar.k6.w0(i7, kvVar.D);
+            textPaint.linkColor = org.telegram.ui.ActionBar.l6.w0(i7, kvVar.D);
             if (height > 0.0f) {
                 z10 = true;
             } else {
@@ -255,11 +255,11 @@ public final class au extends View implements org.telegram.ui.Cells.h9 {
         invalidate();
     }
 
-    public void setResourcesProvider(org.telegram.ui.ActionBar.f6 f6Var) {
-        this.f21533b = f6Var;
+    public void setResourcesProvider(org.telegram.ui.ActionBar.g6 g6Var) {
+        this.f21533b = g6Var;
         kv kvVar = this.f21535e;
         if (kvVar != null) {
-            kvVar.D = f6Var;
+            kvVar.D = g6Var;
         }
     }
 

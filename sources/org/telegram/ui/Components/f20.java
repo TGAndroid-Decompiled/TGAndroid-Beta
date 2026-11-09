@@ -1,49 +1,58 @@
 package org.telegram.ui.Components;
 
 import java.util.ArrayList;
-public final class f20 implements jg.y1 {
-    public final g20 f33447a;
+import org.telegram.messenger.Utilities;
+public final class f20 implements Runnable {
+    public final int f33563a;
+    public final h20 f33564b;
+    public final String f33565c;
+    public final int d;
 
-    public f20(g20 g20Var) {
-        this.f33447a = g20Var;
+    public f20(h20 h20Var, String str, int i7, int i10) {
+        this.f33563a = i10;
+        this.f33564b = h20Var;
+        this.f33565c = str;
+        this.d = i7;
     }
 
     @Override
-    public final a0.h X0() {
-        return null;
-    }
-
-    @Override
-    public final boolean k1(int i7) {
-        return true;
-    }
-
-    @Override
-    public final void q(int i7) {
-        g20 g20Var = this.f33447a;
-        h20 h20Var = g20Var.f33801x;
-        if (i7 >= 0 && i7 == g20Var.f33797n && !g20Var.h) {
-            boolean z9 = true;
-            int i10 = g20Var.f33796f - 1;
-            if (h20Var.f32047q1.getVisibility() != 0) {
-                z9 = false;
-            }
-            g20Var.f();
-            if (g20Var.f33796f > i10) {
-                h20Var.O0(i10);
-            }
-            if (!g20Var.d.e() && h20Var.f32043k1.R0()) {
-                h20Var.f32047q1.e(false, z9);
-            }
+    public final void run() {
+        long j3;
+        switch (this.f33563a) {
+            case 0:
+                h20 h20Var = this.f33564b;
+                String str = this.f33565c;
+                int i7 = this.d;
+                if (h20Var.f34154e != null) {
+                    h20Var.f34154e = null;
+                    org.telegram.messenger.g0.h3(new f20(h20Var, str, i7, 1));
+                    return;
+                }
+                return;
+            default:
+                h20 h20Var2 = this.f33564b;
+                String str2 = this.f33565c;
+                int i10 = this.d;
+                ArrayList arrayList = null;
+                h20Var2.f34154e = null;
+                if (!org.telegram.messenger.t3.T(h20Var2.f34160x.M1) && h20Var2.f34160x.N1 != null) {
+                    arrayList = new ArrayList(h20Var2.f34160x.N1.participants.participants);
+                }
+                ArrayList arrayList2 = arrayList;
+                if (arrayList2 != null) {
+                    Utilities.f21338g.c(new ai.a1(h20Var2, str2, i10, arrayList2, 24));
+                } else {
+                    h20Var2.h = false;
+                }
+                jg.z1 z1Var = h20Var2.d;
+                boolean w10 = org.telegram.messenger.t3.w(3, h20Var2.f34160x.M1);
+                if (org.telegram.messenger.t3.T(h20Var2.f34160x.M1)) {
+                    j3 = h20Var2.f34160x.M1.f26956id;
+                } else {
+                    j3 = 0;
+                }
+                z1Var.g(str2, w10, false, true, false, j3, false, 2, i10);
+                return;
         }
-    }
-
-    @Override
-    public final a0.h v0() {
-        return this.f33447a.f33801x.V1;
-    }
-
-    @Override
-    public final void m1(ArrayList arrayList) {
     }
 }

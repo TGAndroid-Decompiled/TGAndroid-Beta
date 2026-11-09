@@ -1,0 +1,89 @@
+package org.telegram.ui;
+
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import java.util.ArrayList;
+public final class er extends Drawable {
+    public final Drawable f45486a;
+    public final Drawable f45487b;
+    public int d;
+    public int f45489e;
+    public final ArrayList f45488c = new ArrayList();
+    public boolean f45490f = false;
+    public final org.telegram.ui.Components.w5 f45491g = new org.telegram.ui.Components.w5(new dh(this, 14), 420, org.telegram.ui.Components.xq.h);
+    public int h = 255;
+
+    public er(Drawable drawable, Drawable drawable2) {
+        this.f45486a = drawable;
+        this.f45487b = drawable2;
+    }
+
+    public final void a(int i7, int i10) {
+        this.d = i7;
+        this.f45489e = i10;
+    }
+
+    public final void b(boolean z9) {
+        if (this.f45490f == z9) {
+            return;
+        }
+        this.f45490f = z9;
+        ArrayList arrayList = this.f45488c;
+        int size = arrayList.size();
+        int i7 = 0;
+        while (i7 < size) {
+            Object obj = arrayList.get(i7);
+            i7++;
+            ((View) obj).invalidate();
+        }
+        invalidateSelf();
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        float d = this.f45491g.d(this.f45490f);
+        int i7 = this.h;
+        Drawable drawable = this.f45486a;
+        drawable.setAlpha(i7);
+        drawable.setBounds(getBounds());
+        drawable.draw(canvas);
+        if (d > 0.0f) {
+            Drawable drawable2 = this.f45487b;
+            drawable2.setAlpha((int) (this.h * d));
+            drawable2.setBounds(getBounds().left + this.d, getBounds().top + this.f45489e, drawable2.getIntrinsicWidth() + getBounds().left + this.d, drawable2.getIntrinsicHeight() + getBounds().top + this.f45489e);
+            float T1 = org.telegram.messenger.g0.T1(0.5f, 1.0f, d);
+            canvas.save();
+            canvas.scale(T1, T1, drawable2.getBounds().centerX(), drawable2.getBounds().centerY());
+            drawable2.draw(canvas);
+            canvas.restore();
+        }
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.f45486a.getIntrinsicHeight();
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.f45486a.getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+        this.h = i7;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f45486a.setColorFilter(colorFilter);
+        this.f45487b.setColorFilter(colorFilter);
+    }
+}

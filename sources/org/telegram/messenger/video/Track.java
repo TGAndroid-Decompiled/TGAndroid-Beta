@@ -92,19 +92,19 @@ public class Track {
                 cVar.f16500n = this.height;
                 ?? aVar2 = new com.googlecode.mp4parser.a("avcC");
                 ?? obj = new Object();
-                obj.f54078f = new ArrayList();
-                obj.f54079g = new ArrayList();
+                obj.f54090f = new ArrayList();
+                obj.f54091g = new ArrayList();
                 obj.h = true;
-                obj.f54080i = 1;
-                obj.f54081j = 0;
-                obj.f54082k = 0;
-                obj.f54083l = new ArrayList();
-                obj.f54084m = 63;
-                obj.f54085n = 7;
-                obj.f54086o = 31;
-                obj.f54087p = 31;
-                obj.f54088q = 31;
-                aVar2.f54073a = obj;
+                obj.f54092i = 1;
+                obj.f54093j = 0;
+                obj.f54094k = 0;
+                obj.f54095l = new ArrayList();
+                obj.f54096m = 63;
+                obj.f54097n = 7;
+                obj.f54098o = 31;
+                obj.f54099p = 31;
+                obj.f54100q = 31;
+                aVar2.f54085a = obj;
                 if (mediaFormat.getByteBuffer("csd-0") != null) {
                     ArrayList arrayList = new ArrayList();
                     ByteBuffer byteBuffer = mediaFormat.getByteBuffer("csd-0");
@@ -119,9 +119,9 @@ public class Track {
                     byteBuffer2.get(bArr2);
                     arrayList2.add(bArr2);
                     com.google.android.recaptcha.internal.a.t(ze.a.c(qc.a.h, aVar2, aVar2, arrayList));
-                    aVar2.f54073a.f54078f = arrayList;
-                    com.google.android.recaptcha.internal.a.t(ze.a.c(qc.a.f54067n, aVar2, aVar2, arrayList2));
-                    aVar2.f54073a.f54079g = arrayList2;
+                    aVar2.f54085a.f54090f = arrayList;
+                    com.google.android.recaptcha.internal.a.t(ze.a.c(qc.a.f54079n, aVar2, aVar2, arrayList2));
+                    aVar2.f54085a.f54091g = arrayList2;
                 }
                 if (mediaFormat.containsKey("level")) {
                     int integer = mediaFormat.getInteger("level");
@@ -183,18 +183,18 @@ public class Track {
                 } else {
                     aVar2.e(100);
                 }
-                com.google.android.recaptcha.internal.a.t(ze.a.c(qc.a.f54069s, aVar2, aVar2, new Integer(-1)));
-                aVar2.f54073a.f54081j = -1;
-                com.google.android.recaptcha.internal.a.t(ze.a.c(qc.a.f54070w, aVar2, aVar2, new Integer(-1)));
-                aVar2.f54073a.f54082k = -1;
-                com.google.android.recaptcha.internal.a.t(ze.a.c(qc.a.f54068r, aVar2, aVar2, new Integer(-1)));
-                aVar2.f54073a.f54080i = -1;
-                com.google.android.recaptcha.internal.a.t(ze.a.c(qc.a.f54063b, aVar2, aVar2, new Integer(1)));
-                aVar2.f54073a.f54074a = 1;
-                com.google.android.recaptcha.internal.a.t(ze.a.c(qc.a.f54066f, aVar2, aVar2, new Integer(3)));
-                aVar2.f54073a.f54077e = 3;
+                com.google.android.recaptcha.internal.a.t(ze.a.c(qc.a.f54081s, aVar2, aVar2, new Integer(-1)));
+                aVar2.f54085a.f54093j = -1;
+                com.google.android.recaptcha.internal.a.t(ze.a.c(qc.a.f54082w, aVar2, aVar2, new Integer(-1)));
+                aVar2.f54085a.f54094k = -1;
+                com.google.android.recaptcha.internal.a.t(ze.a.c(qc.a.f54080r, aVar2, aVar2, new Integer(-1)));
+                aVar2.f54085a.f54092i = -1;
+                com.google.android.recaptcha.internal.a.t(ze.a.c(qc.a.f54075b, aVar2, aVar2, new Integer(1)));
+                aVar2.f54085a.f54086a = 1;
+                com.google.android.recaptcha.internal.a.t(ze.a.c(qc.a.f54078f, aVar2, aVar2, new Integer(3)));
+                aVar2.f54085a.f54089e = 3;
                 com.google.android.recaptcha.internal.a.t(ze.a.c(qc.a.d, aVar2, aVar2, new Integer(0)));
-                aVar2.f54073a.f54076c = 0;
+                aVar2.f54085a.f54088c = 0;
                 cVar.a(aVar2);
                 this.sampleDescriptionBox.a(cVar);
                 return;

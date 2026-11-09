@@ -5,16 +5,16 @@ import android.os.Trace;
 import android.view.ViewGroup;
 import java.util.List;
 public abstract class g0 {
-    public final h0 f57077a = new Observable();
-    public boolean f57078b = false;
+    public final h0 f57089a = new Observable();
+    public boolean f57090b = false;
 
     public void B(i0 i0Var) {
-        this.f57077a.registerObserver(i0Var);
+        this.f57089a.registerObserver(i0Var);
     }
 
     public final void C(boolean z9) {
-        if (!this.f57077a.a()) {
-            this.f57078b = z9;
+        if (!this.f57089a.a()) {
+            this.f57090b = z9;
             return;
         }
         throw new IllegalStateException("Cannot change whether this adapter has stable IDs while the adapter has registered observers.");
@@ -25,8 +25,8 @@ public abstract class g0 {
             int i10 = n0.g.f20125a;
             Trace.beginSection("RV CreateView");
             d1 x10 = x(viewGroup, i7);
-            if (x10.f57044a.getParent() == null) {
-                x10.f57048f = i7;
+            if (x10.f57056a.getParent() == null) {
+                x10.f57060f = i7;
                 Trace.endSection();
                 return x10;
             }
@@ -53,43 +53,43 @@ public abstract class g0 {
     }
 
     public void f() {
-        this.f57077a.b();
+        this.f57089a.b();
     }
 
     public void g(int i7) {
-        this.f57077a.d(i7, 1, null);
+        this.f57089a.d(i7, 1, null);
     }
 
     public final void h(int i7, Object obj) {
-        this.f57077a.d(i7, 1, obj);
+        this.f57089a.d(i7, 1, obj);
     }
 
     public void i(int i7) {
-        this.f57077a.e(i7, 1);
+        this.f57089a.e(i7, 1);
     }
 
     public void j(int i7, int i10) {
-        this.f57077a.c(i7, i10);
+        this.f57089a.c(i7, i10);
     }
 
     public void k(int i7, int i10) {
-        this.f57077a.d(i7, i10, null);
+        this.f57089a.d(i7, i10, null);
     }
 
     public void n(int i7, int i10, Object obj) {
-        this.f57077a.d(i7, i10, obj);
+        this.f57089a.d(i7, i10, obj);
     }
 
     public void o(int i7, int i10) {
-        this.f57077a.e(i7, i10);
+        this.f57089a.e(i7, i10);
     }
 
     public void p(int i7, int i10) {
-        this.f57077a.f(i7, i10);
+        this.f57089a.f(i7, i10);
     }
 
     public void s(int i7) {
-        this.f57077a.f(i7, 1);
+        this.f57089a.f(i7, 1);
     }
 
     public abstract void t(d1 d1Var, int i7);

@@ -1,18 +1,52 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.ScrollView;
-public final class q2 extends ScrollView {
-    public final int f43059a;
+import org.telegram.tgnet.TLRPC;
+public final class q2 implements r2 {
+    public final boolean[] f43008a;
+    public final org.telegram.utils.twidget.i0 f43009b;
 
-    public q2(Context context, int i7) {
-        super(context);
-        this.f43059a = i7;
+    public q2(boolean[] zArr, org.telegram.utils.twidget.i0 i0Var) {
+        this.f43008a = zArr;
+        this.f43009b = i0Var;
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), org.telegram.messenger.g0.L(this.f43059a)), Integer.MIN_VALUE));
+    public final void a() {
+        boolean[] zArr = this.f43008a;
+        if (zArr[0]) {
+            return;
+        }
+        zArr[0] = true;
+        this.f43009b.a();
+    }
+
+    @Override
+    public final void b() {
+        boolean[] zArr = this.f43008a;
+        if (zArr[0]) {
+            return;
+        }
+        zArr[0] = true;
+        this.f43009b.b();
+    }
+
+    public final void c() {
+        boolean[] zArr = this.f43008a;
+        if (zArr[0]) {
+            return;
+        }
+        zArr[0] = true;
+        org.telegram.utils.twidget.i0 i0Var = this.f43009b;
+        i0Var.f52847b.b(4, null, i0Var.f52848c);
+    }
+
+    public final void d(TLRPC.WidgetQueryType widgetQueryType) {
+        boolean[] zArr = this.f43008a;
+        if (zArr[0]) {
+            return;
+        }
+        zArr[0] = true;
+        org.telegram.utils.twidget.i0 i0Var = this.f43009b;
+        org.telegram.utils.twidget.n0.w(i0Var.f52846a, i0Var.f52847b, i0Var.f52848c, widgetQueryType, i0Var.d);
     }
 }

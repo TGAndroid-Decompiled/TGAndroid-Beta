@@ -34,8 +34,8 @@ import java.util.List;
 import l2.b0;
 import l2.l;
 import l2.q;
+import l2.x;
 import l2.y;
-import l2.z;
 import q2.k;
 import x2.c0;
 import x2.k0;
@@ -78,7 +78,7 @@ public final class e implements a1, k0, k {
     @Override
     public final void B(List list) {
         a Q = Q();
-        V(Q, 27, new z(Q, list));
+        V(Q, 27, new y(Q, list));
     }
 
     @Override
@@ -185,7 +185,7 @@ public final class e implements a1, k0, k {
         }
         long j3 = 0;
         if (g0Var2 != null && g0Var2.b()) {
-            if (z9 && this.h.n0() == g0Var2.f58331b && this.h.O() == g0Var2.f58332c) {
+            if (z9 && this.h.n0() == g0Var2.f58340b && this.h.O() == g0Var2.f58341c) {
                 j3 = this.h.l();
             }
         } else if (z9) {
@@ -205,7 +205,7 @@ public final class e implements a1, k0, k {
             l1Var = (l1) ((y1) this.d.f337c).get(g0Var);
         }
         if (g0Var != null && l1Var != null) {
-            return R(l1Var, l1Var.g(g0Var.f58330a, this.f19529b).f10282c, g0Var);
+            return R(l1Var, l1Var.g(g0Var.f58339a, this.f19529b).f10282c, g0Var);
         }
         int o02 = this.h.o0();
         l1 y02 = this.h.y0();
@@ -361,7 +361,7 @@ public final class e implements a1, k0, k {
     @Override
     public final void r(int i7, x2.g0 g0Var, u uVar, c0 c0Var, IOException iOException, boolean z9) {
         a T = T(i7, g0Var);
-        V(T, 1003, new y(T, uVar, c0Var, iOException, z9));
+        V(T, 1003, new x(T, uVar, c0Var, iOException, z9));
     }
 
     @Override
@@ -416,7 +416,7 @@ public final class e implements a1, k0, k {
         } else {
             Q = Q();
         }
-        V(Q, 10, new y(Q, v0Var, 13));
+        V(Q, 10, new x(Q, v0Var, 13));
     }
 
     @Override

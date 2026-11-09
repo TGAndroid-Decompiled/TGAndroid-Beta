@@ -11,10 +11,10 @@ import android.view.ViewConfiguration;
 import android.widget.TextView;
 public final class mt extends xh.l {
     public final n2.n0 U;
-    public x70 V;
+    public y70 V;
     public boolean W;
-    public boolean f36112a0;
-    public boolean f36113b0;
+    public boolean f36146a0;
+    public boolean f36147b0;
 
     public mt(Context context) {
         super(context, null, true);
@@ -48,12 +48,12 @@ public final class mt extends xh.l {
         canvas.save();
         if (!this.W) {
             float f10 = 0.0f;
-            if (this.f36112a0) {
+            if (this.f36146a0) {
                 paddingLeft = 0.0f;
             } else {
                 paddingLeft = getPaddingLeft();
             }
-            if (!this.f36113b0) {
+            if (!this.f36147b0) {
                 f10 = getPaddingTop();
             }
             canvas.translate(paddingLeft, f10);
@@ -73,22 +73,22 @@ public final class mt extends xh.l {
             Layout layout = getLayout();
             ClickableSpan a10 = a((int) motionEvent.getX(), (int) motionEvent.getY());
             if (a10 != null && motionEvent.getAction() == 0) {
-                x70 x70Var = new x70(a10, null, motionEvent.getX(), motionEvent.getY(), 0);
-                this.V = x70Var;
-                n0Var.b(x70Var, null);
+                y70 y70Var = new y70(a10, null, motionEvent.getX(), motionEvent.getY(), 0);
+                this.V = y70Var;
+                n0Var.b(y70Var, null);
                 SpannableString spannableString = new SpannableString(layout.getText());
-                int spanStart = spannableString.getSpanStart(this.V.f40246i);
-                int spanEnd = spannableString.getSpanEnd(this.V.f40246i);
-                r70 b10 = this.V.b();
+                int spanStart = spannableString.getSpanStart(this.V.f40634i);
+                int spanEnd = spannableString.getSpanEnd(this.V.f40634i);
+                s70 b10 = this.V.b();
                 b10.d(layout, spanStart, getPaddingTop());
                 layout.getSelectionPath(spanStart, spanEnd, b10);
-                org.telegram.messenger.g0.i3(new gp(this, x70Var, a10), ViewConfiguration.getLongPressTimeout());
+                org.telegram.messenger.g0.i3(new gp(this, y70Var, a10), ViewConfiguration.getLongPressTimeout());
                 return true;
             }
             if (motionEvent.getAction() == 1) {
                 n0Var.f(true);
-                x70 x70Var2 = this.V;
-                if (x70Var2 != null && (characterStyle = x70Var2.f40246i) == a10) {
+                y70 y70Var2 = this.V;
+                if (y70Var2 != null && (characterStyle = y70Var2.f40634i) == a10) {
                     if (characterStyle != null) {
                         ((ClickableSpan) characterStyle).onClick(this);
                     }
@@ -115,12 +115,12 @@ public final class mt extends xh.l {
 
     @Override
     public void setDisablePaddingsOffsetX(boolean z9) {
-        this.f36112a0 = z9;
+        this.f36146a0 = z9;
     }
 
     @Override
     public void setDisablePaddingsOffsetY(boolean z9) {
-        this.f36113b0 = z9;
+        this.f36147b0 = z9;
     }
 
     @Override

@@ -5,15 +5,15 @@ import android.os.Parcelable;
 import c8.xb;
 public final class c extends r6.a {
     public static final Parcelable.Creator<c> CREATOR = new k(1);
-    public final int f8574a;
-    public final String f8575b;
-    public final int f8576c;
+    public final int f8572a;
+    public final String f8573b;
+    public final int f8574c;
 
     public c(int i7, int i10, String carrierId) {
         kotlin.jvm.internal.j.e(carrierId, "carrierId");
-        this.f8574a = i7;
-        this.f8575b = carrierId;
-        this.f8576c = i10;
+        this.f8572a = i7;
+        this.f8573b = carrierId;
+        this.f8574c = i10;
     }
 
     public final boolean equals(Object obj) {
@@ -24,14 +24,14 @@ public final class c extends r6.a {
             return false;
         }
         c cVar = (c) obj;
-        if (this.f8574a == cVar.f8574a && kotlin.jvm.internal.j.a(this.f8575b, cVar.f8575b) && this.f8576c == cVar.f8576c) {
+        if (this.f8572a == cVar.f8572a && kotlin.jvm.internal.j.a(this.f8573b, cVar.f8573b) && this.f8574c == cVar.f8574c) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return com.google.android.recaptcha.internal.a.h(this.f8574a * 31, 31, this.f8575b) + this.f8576c;
+        return com.google.android.recaptcha.internal.a.h(this.f8572a * 31, 31, this.f8573b) + this.f8574c;
     }
 
     @Override
@@ -39,10 +39,10 @@ public final class c extends r6.a {
         kotlin.jvm.internal.j.e(dest, "dest");
         int r10 = xb.r(dest, 20293);
         xb.q(dest, 1, 4);
-        dest.writeInt(this.f8574a);
-        xb.l(dest, 2, this.f8575b);
+        dest.writeInt(this.f8572a);
+        xb.l(dest, 2, this.f8573b);
         xb.q(dest, 3, 4);
-        dest.writeInt(this.f8576c);
+        dest.writeInt(this.f8574c);
         xb.s(dest, r10);
     }
 }

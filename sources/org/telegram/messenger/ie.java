@@ -1,6 +1,6 @@
 package org.telegram.messenger;
 
-import org.telegram.ui.Components.k60;
+import org.telegram.ui.Components.l60;
 public final class ie implements Runnable {
     public final int f23187a;
     public final float f23188b;
@@ -30,10 +30,10 @@ public final class ie implements Runnable {
                 return;
             default:
                 org.telegram.ui.g4 g4Var = (org.telegram.ui.g4) this.f23189c;
-                k60 k60Var = (k60) this.d;
-                g4Var.f45807h0.M.c(true, 0.0f);
-                k60Var.f35226p = new org.telegram.ui.b0(g4Var, this.f23188b, 0);
-                k60Var.Z();
+                l60 l60Var = (l60) this.d;
+                g4Var.f45890h0.M.c(true, 0.0f);
+                l60Var.f35612p = new org.telegram.ui.b0(g4Var, this.f23188b, 0);
+                l60Var.Z();
                 return;
         }
     }

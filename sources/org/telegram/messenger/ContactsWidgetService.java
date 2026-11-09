@@ -13,7 +13,7 @@ public class ContactsWidgetService extends RemoteViewsService {
         obj.f23046a = new ArrayList();
         obj.f23051g = new a0.h();
         obj.f23047b = applicationContext;
-        org.telegram.ui.ActionBar.k6.T(applicationContext);
+        org.telegram.ui.ActionBar.l6.T(applicationContext);
         boolean z9 = false;
         int intExtra = intent.getIntExtra("appWidgetId", 0);
         obj.f23048c = intExtra;

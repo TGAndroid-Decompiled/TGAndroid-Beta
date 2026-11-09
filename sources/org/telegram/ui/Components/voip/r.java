@@ -4,26 +4,26 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.s3;
-import org.telegram.ui.c40;
-import org.telegram.ui.f40;
+import org.telegram.ui.e40;
+import org.telegram.ui.h40;
 public abstract class r extends FrameLayout {
-    public int f39490a;
-    public f40 f39491b;
-    public y f39492c;
+    public int f39579a;
+    public h40 f39580b;
+    public y f39581c;
     public s3 d;
-    public boolean f39493e;
-    public final boolean f39494f;
+    public boolean f39582e;
+    public final boolean f39583f;
 
     public r(Context context, boolean z9) {
         super(context);
-        this.f39494f = z9;
+        this.f39583f = z9;
     }
 
     public float getItemHeight() {
         int measuredHeight;
-        f40 f40Var = this.f39491b;
-        if (f40Var != null) {
-            measuredHeight = f40Var.F();
+        h40 h40Var = this.f39580b;
+        if (h40Var != null) {
+            measuredHeight = h40Var.F();
         } else {
             measuredHeight = getMeasuredHeight();
         }
@@ -35,19 +35,19 @@ public abstract class r extends FrameLayout {
     }
 
     public y getRenderer() {
-        return this.f39492c;
+        return this.f39581c;
     }
 
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f39493e = true;
+        this.f39582e = true;
     }
 
     @Override
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f39493e = false;
+        this.f39582e = false;
     }
 
     @Override
@@ -55,24 +55,24 @@ public abstract class r extends FrameLayout {
         float f10;
         int i11;
         float f11;
-        if (this.f39494f) {
+        if (this.f39583f) {
             ((View) getParent()).getMeasuredWidth();
-            super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(this.f39491b.F(), 1073741824));
+            super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(this.f39580b.F(), 1073741824));
             return;
         }
-        if (c40.f44544w5) {
+        if (e40.f45184w5) {
             f10 = 3.0f;
         } else {
             f10 = 2.0f;
         }
         int A = org.telegram.messenger.camera.q.A(14.0f, 2, org.telegram.messenger.g0.f22563q.x);
-        if (c40.f44544w5) {
+        if (e40.f45184w5) {
             i11 = -org.telegram.messenger.g0.L(90.0f);
         } else {
             i11 = 0;
         }
         float f12 = A + i11;
-        if (c40.f44545x5) {
+        if (e40.f45185x5) {
             f11 = f12 / 2.0f;
         } else {
             f11 = f12 / f10;
@@ -81,6 +81,6 @@ public abstract class r extends FrameLayout {
     }
 
     public void setRenderer(y yVar) {
-        this.f39492c = yVar;
+        this.f39581c = yVar;
     }
 }

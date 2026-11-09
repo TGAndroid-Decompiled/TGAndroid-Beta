@@ -27,8 +27,8 @@ public class k2 extends org.telegram.ui.ActionBar.v2 implements ls {
     public kg.g f12264w1;
     public d20 f12265x1;
 
-    public k2(Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z9, boolean z10) {
-        super(1, context, f6Var, true);
+    public k2(Context context, org.telegram.ui.ActionBar.g6 g6Var, boolean z9, boolean z10) {
+        super(1, context, g6Var, true);
         int i7;
         this.f12252i1 = null;
         this.f12253j1 = -1;
@@ -38,11 +38,11 @@ public class k2 extends org.telegram.ui.ActionBar.v2 implements ls {
         this.f12257p1 = z9;
         this.f12258q1 = z10;
         this.F = true;
-        O(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27925h5, f6Var));
+        O(org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.f27938h5, g6Var));
         this.f12260s1 = this.G0;
-        this.f28654x = true;
+        this.f28659x = true;
         G0(false);
-        this.f28619b = new i1(this, context);
+        this.f28624b = new i1(this, context);
         g1 g1Var = new g1(0, context, this);
         this.f12255m1 = g1Var;
         if (z9) {
@@ -50,30 +50,30 @@ public class k2 extends org.telegram.ui.ActionBar.v2 implements ls {
         } else {
             i7 = f12251y1;
         }
-        g1Var.f38923b = i7;
+        g1Var.f39948b = i7;
         g1Var.setAdapter(new h1(this, z9, context));
-        this.f28619b.addView(g1Var, c8.ha.e(-1, -1, 87));
-        new q3(this.f28619b, false, new c1(this, 0));
+        this.f28624b.addView(g1Var, c8.ha.e(-1, -1, 87));
+        new q3(this.f28624b, false, new c1(this, 0));
         if (!z9) {
             j2 j2Var = new j2(context);
             this.n1 = j2Var;
             j2Var.G = new c1(this, 1);
-            j2Var.F = g1Var.f38923b;
+            j2Var.F = g1Var.f39948b;
             j2Var.invalidate();
-            this.f28619b.addView(j2Var, c8.ha.e(-1, -2, 87));
+            this.f28624b.addView(j2Var, c8.ha.e(-1, -2, 87));
         }
-        qs.f(this.f28616a).c(this, qs.f25104x0);
-        qs.f(this.f28616a).c(this, qs.B0);
+        qs.f(this.f28621a).c(this, qs.f25104x0);
+        qs.f(this.f28621a).c(this, qs.B0);
         boolean z11 = org.telegram.messenger.a8.f21395j;
         if (!z9) {
-            ui.b0(this.f28616a).B(5);
-            ui.b0(this.f28616a).w();
-            ui.b0(this.f28616a).V0(0, true, true, false);
+            ui.b0(this.f28621a).B(5);
+            ui.b0(this.f28621a).w();
+            ui.b0(this.f28621a).V0(0, true, true, false);
         }
-        ui.b0(this.f28616a).B(0);
-        ui.b0(this.f28616a).V0(0, false, true, false);
-        ui.b0(this.f28616a).V0(2, false, true, false);
-        ui.b0(this.f28616a).V0(7, false, true, false);
+        ui.b0(this.f28621a).B(0);
+        ui.b0(this.f28621a).V0(0, false, true, false);
+        ui.b0(this.f28621a).V0(2, false, true, false);
+        ui.b0(this.f28621a).V0(7, false, true, false);
     }
 
     @Override
@@ -100,7 +100,7 @@ public class k2 extends org.telegram.ui.ActionBar.v2 implements ls {
         View[] viewPages;
         e2 e2Var;
         this.d = false;
-        this.f28622c.animate().translationY(0.0f).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.i1.f27544w).start();
+        this.f28627c.animate().translationY(0.0f).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.i1.f27519w).start();
         for (View view : this.f12255m1.getViewPages()) {
             if (view instanceof z1) {
                 e2 e2Var2 = ((z1) view).f13238f;
@@ -136,10 +136,10 @@ public class k2 extends org.telegram.ui.ActionBar.v2 implements ls {
 
     @Override
     public final int R() {
-        if (this.f28619b.getMeasuredHeight() <= 0) {
+        if (this.f28624b.getMeasuredHeight() <= 0) {
             return org.telegram.messenger.g0.f22563q.y;
         }
-        return (int) (this.f28619b.getMeasuredHeight() - this.f12255m1.getY());
+        return (int) (this.f28624b.getMeasuredHeight() - this.f12255m1.getY());
     }
 
     @Override
@@ -151,7 +151,7 @@ public class k2 extends org.telegram.ui.ActionBar.v2 implements ls {
             for (View view : this.f12255m1.getViewPages()) {
                 if (view instanceof z1) {
                     z1 z1Var = (z1) view;
-                    if (i7 == i12 || ((z1Var.f12881a == 0 && ((Integer) objArr[0]).intValue() == 5) || (z1Var.f12881a == 1 && ((Integer) objArr[0]).intValue() == 0))) {
+                    if (i7 == i12 || ((z1Var.f12882a == 0 && ((Integer) objArr[0]).intValue() == 5) || (z1Var.f12882a == 1 && ((Integer) objArr[0]).intValue() == 0))) {
                         y1 y1Var = z1Var.f13236c;
                         if (y1Var.H == null) {
                             y1Var.D(null);
@@ -164,8 +164,8 @@ public class k2 extends org.telegram.ui.ActionBar.v2 implements ls {
 
     @Override
     public final void dismiss() {
-        qs.f(this.f28616a).n(this, qs.f25104x0);
-        qs.f(this.f28616a).n(this, qs.B0);
+        qs.f(this.f28621a).n(this, qs.f25104x0);
+        qs.f(this.f28621a).n(this, qs.B0);
         L0();
         super.dismiss();
         boolean z9 = org.telegram.messenger.a8.f21395j;
@@ -176,7 +176,7 @@ public class k2 extends org.telegram.ui.ActionBar.v2 implements ls {
         int w02;
         super.s0();
         try {
-            if (this.F0 < 0 && this.G0 == this.f12260s1 && (w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27925h5, this.I0)) != this.G0) {
+            if (this.F0 < 0 && this.G0 == this.f12260s1 && (w02 = org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.f27938h5, this.I0)) != this.G0) {
                 this.G0 = w02;
                 this.f12260s1 = w02;
                 E0(w02);

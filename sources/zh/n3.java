@@ -1,117 +1,85 @@
 package zh;
 
-import android.widget.FrameLayout;
 import bi.v9;
-import java.util.HashSet;
-import org.telegram.messenger.a8;
 import org.telegram.messenger.id;
-import org.telegram.messenger.ls;
-import org.telegram.messenger.qs;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.k60;
-import org.telegram.ui.Components.ky;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.mz;
-import org.telegram.ui.Components.na;
-import org.telegram.ui.Components.oj0;
-import org.telegram.ui.Components.pj0;
-public final class n3 extends na implements ls {
-    public final int P1;
-    public final v9 Q1;
-    public final HashSet R1;
-    public final ky S1;
-    public final FrameLayout T1;
-    public final fi.d U1;
-    public k60 V1;
-    public final ri.c W1;
-    public final ri.c X1;
-    public l41 Y1;
-    public i0.b Z1;
-    public boolean f60480a2;
-    public int f60481b2;
+import org.telegram.messenger.p10;
+import org.telegram.messenger.qp;
+import org.telegram.ui.Components.hp0;
+import org.telegram.ui.Components.l60;
+public final class n3 extends org.telegram.ui.ActionBar.j {
+    public final org.telegram.ui.ActionBar.r0 f60488a;
+    public final long f60489b;
+    public final o3 f60490c;
 
-    public n3(org.telegram.ui.ActionBar.f2 r20, long r21, int r23, hi.d4 r24) {
-        throw new UnsupportedOperationException("Method not decompiled: zh.n3.<init>(org.telegram.ui.ActionBar.f2, long, int, hi.d4):void");
+    public n3(o3 o3Var, org.telegram.ui.ActionBar.r0 r0Var, long j3) {
+        this.f60490c = o3Var;
+        this.f60488a = r0Var;
+        this.f60489b = j3;
     }
 
     @Override
-    public final oj0 L0(pj0 pj0Var) {
-        l41 l41Var = new l41(pj0Var, getContext(), this.f28616a, 0, false, new p0(this, 4), this.I0);
-        this.Y1 = l41Var;
-        l41Var.f35528r = false;
-        return l41Var;
-    }
-
-    @Override
-    public final CharSequence O0() {
-        return id.M0(2131750250, null);
-    }
-
-    @Override
-    public final r0.k1 b0(r0.k1 k1Var) {
-        this.Z1 = org.telegram.messenger.g0.I0(k1Var, false);
-        d1();
-        return r0.k1.f54201b;
-    }
-
-    public final void d1() {
-        this.f36277k1.setPadding(org.telegram.messenger.g0.L(9.0f) + this.Z1.f15120a + this.f28649t0, 0, org.telegram.messenger.g0.L(9.0f) + this.Z1.f15122c + this.f28649t0, this.Z1.d);
-        i0.b bVar = this.Z1;
-        int i7 = bVar.f15120a;
-        int i10 = this.f28649t0;
-        this.T1.setPadding(i7 + i10, 0, bVar.f15122c + i10, bVar.d);
-    }
-
-    @Override
-    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        l41 l41Var;
-        if (i7 == qs.G3 && (l41Var = this.Y1) != null) {
-            l41Var.O(true);
-            if (e1()) {
-                this.Q1.a();
+    public final void b(int i7) {
+        boolean w10;
+        org.telegram.ui.ActionBar.z0 z0Var;
+        org.telegram.ui.ActionBar.z0 z0Var2;
+        o3 o3Var = this.f60490c;
+        v9 v9Var = o3Var.Q1;
+        if (i7 == 1) {
+            l60 l60Var = o3Var.V1;
+            if (l60Var != null) {
+                l60Var.u();
             }
-        }
-    }
-
-    @Override
-    public final void dismiss() {
-        qs.f(this.f28616a).n(this, qs.G3);
-        super.dismiss();
-    }
-
-    public final boolean e1() {
-        pj0 pj0Var = this.f36277k1;
-        if (pj0Var != null && pj0Var.G) {
-            for (int i7 = 0; i7 < pj0Var.getChildCount(); i7++) {
-                if (pj0Var.getChildAt(i7) instanceof mz) {
-                    return true;
-                }
+            l60 F = l60.F(o3Var.f28627c, o3Var.I0, this.f60488a);
+            o3Var.V1 = F;
+            long e10 = p10.i(o3Var.f28621a).e();
+            long j3 = this.f60489b;
+            if (j3 == e10) {
+                w10 = true;
+            } else if (j3 >= 0) {
+                w10 = false;
+            } else {
+                w10 = org.telegram.messenger.t3.w(5, qp.s1(o3Var.f28621a).M0(Long.valueOf(-j3)));
             }
-        }
-        return false;
-    }
-
-    @Override
-    public final void s0() {
-        super.s0();
-        try {
-            ri.c cVar = this.W1;
-            if (cVar != null) {
-                cVar.a(k6.w0(k6.f27852d6, this.I0));
+            org.telegram.ui.ActionBar.z0 z0Var3 = new org.telegram.ui.ActionBar.z0(0, F.f35592e, F.d, false, false);
+            F.d(z0Var3);
+            F.k();
+            org.telegram.ui.ActionBar.z0 h = F.h();
+            h.setText(id.M0(2131750195, null));
+            org.telegram.ui.ActionBar.z0 h7 = F.h();
+            h7.setText(id.M0(2131750199, null));
+            org.telegram.ui.ActionBar.z0 h10 = F.h();
+            h10.setText(id.M0(2131750194, null));
+            org.telegram.ui.ActionBar.z0 h11 = F.h();
+            h11.setText(id.M0(2131750196, null));
+            if (w10) {
+                F.k();
+                org.telegram.ui.ActionBar.z0 h12 = F.h();
+                h12.setText(id.M0(2131750201, null));
+                org.telegram.ui.ActionBar.z0 h13 = F.h();
+                h13.setText(id.M0(2131750200, null));
+                z0Var2 = h13;
+                z0Var = h12;
+            } else {
+                z0Var = null;
+                z0Var2 = null;
             }
-            ri.c cVar2 = this.X1;
-            if (cVar2 != null) {
-                cVar2.a(k6.w0(k6.f27796a7, this.I0));
+            hp0 hp0Var = new hp0(this, z0Var3, h, h7, h10, h11, w10, z0Var, z0Var2);
+            hp0Var.run();
+            z0Var3.setOnClickListener(new wg.z0(10, this, hp0Var));
+            d2.j(h, v9Var, hp0Var, 1);
+            d2.j(h7, v9Var, hp0Var, 2);
+            d2.j(h10, v9Var, hp0Var, 4);
+            d2.j(h11, v9Var, hp0Var, 8);
+            if (w10) {
+                d2.j(z0Var, v9Var, hp0Var, 256);
+                d2.j(z0Var2, v9Var, hp0Var, 512);
             }
-            int w02 = k6.w0(k6.f27796a7, this.I0);
-            if (this.f60480a2 && w02 == this.f60481b2) {
-                return;
-            }
-            this.f60480a2 = true;
-            this.f60481b2 = w02;
-            v0(w02);
-        } catch (Exception e10) {
-            a8.g(e10, true);
+            F.Y = true;
+            F.J = false;
+            F.f35617s = 0;
+            F.Z();
+        } else if (i7 == -1) {
+            o3Var.dismiss();
         }
     }
 }

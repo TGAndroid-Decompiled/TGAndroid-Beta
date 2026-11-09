@@ -129,7 +129,7 @@ public final class n0 {
         getconnectedstarrefbot.peer = qp.s1(i10).j1(j3);
         getconnectedstarrefbot.bot = qp.s1(i10).o1(j10);
         int sendRequest = ConnectionsManager.getInstance(i10).sendRequest(getconnectedstarrefbot, new f0(this, u1Var, j10, c20Var, 0));
-        u1Var.f28572i0 = true;
+        u1Var.f28563i0 = true;
         u1Var.setOnCancelListener(new g0(this, sendRequest, 0));
         u1Var.r(200L);
     }
@@ -141,7 +141,7 @@ public final class n0 {
             return tL_payments_starsRevenueStats;
         }
         TLRPC.TL_payments_getStarsRevenueStats tL_payments_getStarsRevenueStats = new TLRPC.TL_payments_getStarsRevenueStats();
-        tL_payments_getStarsRevenueStats.dark = org.telegram.ui.ActionBar.k6.I.q();
+        tL_payments_getStarsRevenueStats.dark = org.telegram.ui.ActionBar.l6.I.q();
         int i7 = this.f4384a;
         tL_payments_getStarsRevenueStats.peer = qp.s1(i7).j1(j3);
         ConnectionsManager.getInstance(i7).sendRequest(tL_payments_getStarsRevenueStats, new a0(this, j3, 0));
@@ -167,7 +167,7 @@ public final class n0 {
         }
         TLRPC.TL_payments_getStarsRevenueStats tL_payments_getStarsRevenueStats = new TLRPC.TL_payments_getStarsRevenueStats();
         tL_payments_getStarsRevenueStats.ton = true;
-        tL_payments_getStarsRevenueStats.dark = org.telegram.ui.ActionBar.k6.I.q();
+        tL_payments_getStarsRevenueStats.dark = org.telegram.ui.ActionBar.l6.I.q();
         int i10 = this.f4384a;
         tL_payments_getStarsRevenueStats.peer = qp.s1(i10).j1(j3);
         TLRPC.ChatFull N0 = qp.s1(i10).N0(-j3);
@@ -260,12 +260,12 @@ public final class n0 {
     public final void q(TL_update.TL_updateStarsRevenueStatus tL_updateStarsRevenueStatus) {
         long o4 = org.telegram.messenger.m5.o(tL_updateStarsRevenueStatus.peer);
         if (o4 < 0) {
-            org.telegram.ui.zd zdVar = org.telegram.ui.zd.f52531t1;
-            if (zdVar != null && zdVar.f52548p0 == org.telegram.messenger.m5.o(tL_updateStarsRevenueStatus.peer)) {
-                org.telegram.ui.zd zdVar2 = org.telegram.ui.zd.f52531t1;
+            org.telegram.ui.zd zdVar = org.telegram.ui.zd.f52502t1;
+            if (zdVar != null && zdVar.f52519p0 == org.telegram.messenger.m5.o(tL_updateStarsRevenueStatus.peer)) {
+                org.telegram.ui.zd zdVar2 = org.telegram.ui.zd.f52502t1;
                 TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus = tL_updateStarsRevenueStatus.status;
                 zdVar2.L(tL_starsRevenueStatus.current_balance instanceof TL_stars.TL_starsTonAmount, tL_starsRevenueStatus);
-                org.telegram.ui.zd.f52531t1.J();
+                org.telegram.ui.zd.f52502t1.J();
                 return;
             }
             return;

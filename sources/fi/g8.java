@@ -5,8 +5,8 @@ import android.widget.FrameLayout;
 public final class g8 extends p8 {
     public final n8 M;
 
-    public g8(n8 n8Var, Context context, org.telegram.ui.ActionBar.f6 f6Var, d8 d8Var) {
-        super(context, f6Var, d8Var);
+    public g8(n8 n8Var, Context context, org.telegram.ui.ActionBar.g6 g6Var, d8 d8Var) {
+        super(context, g6Var, d8Var);
         this.M = n8Var;
     }
 

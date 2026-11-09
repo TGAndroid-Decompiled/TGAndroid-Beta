@@ -1,21 +1,68 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-public final class gq extends org.telegram.ui.Components.e10 {
-    public final oq f46081j1;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
+public final class gq implements q0.a {
+    public final int f46052a;
 
-    public gq(oq oqVar, Activity activity, oq oqVar2) {
-        super(activity, oqVar2);
-        this.f46081j1 = oqVar;
+    public gq(int i7) {
+        this.f46052a = i7;
     }
 
     @Override
-    public final void J0() {
-        oq oqVar = this.f46081j1;
-        oqVar.getMessagesController().S(oqVar.getParentActivity(), oqVar.f48491n, oqVar, new w0(this, 27));
-    }
-
-    @Override
-    public final void I0() {
+    public final void accept(Object obj) {
+        boolean z9;
+        boolean z10;
+        long j3;
+        boolean z11 = true;
+        switch (this.f46052a) {
+            case 0:
+                TLRPC.User user = (TLRPC.User) obj;
+                return;
+            case 1:
+                View view = (View) obj;
+                boolean z12 = ChatAttachAlertPhotoLayout.f31193q1;
+                if (view instanceof org.telegram.ui.Cells.q5) {
+                    org.telegram.ui.Cells.q5 q5Var = (org.telegram.ui.Cells.q5) view;
+                    if (q5Var.getPhotoEntry() != null && q5Var.getPhotoEntry().M) {
+                        z9 = true;
+                    } else {
+                        z9 = false;
+                    }
+                    q5Var.c(z9, Float.valueOf(250.0f));
+                    if (q5Var.getPhotoEntry() != null && q5Var.getPhotoEntry().c()) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    q5Var.setHighQuality(z10);
+                    if (q5Var.getPhotoEntry() != null) {
+                        j3 = q5Var.getPhotoEntry().N;
+                    } else {
+                        j3 = 0;
+                    }
+                    if (ChatAttachAlertPhotoLayout.f31195s1.size() <= 1) {
+                        z11 = false;
+                    }
+                    q5Var.f(j3, z11);
+                    return;
+                }
+                return;
+            case 2:
+                View view2 = (View) obj;
+                if (view2 instanceof org.telegram.ui.Components.ql0) {
+                    ((org.telegram.ui.Components.ql0) view2).a(false, true);
+                    return;
+                }
+                return;
+            default:
+                View view3 = (View) obj;
+                if (view3 instanceof org.telegram.ui.Components.ql0) {
+                    ((org.telegram.ui.Components.ql0) view3).a(false, true);
+                    return;
+                }
+                return;
+        }
     }
 }

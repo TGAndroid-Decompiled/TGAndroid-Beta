@@ -3,10 +3,10 @@ package ei;
 import android.content.Context;
 import android.graphics.Canvas;
 import org.telegram.messenger.g0;
-import org.telegram.ui.Components.ns0;
-import org.telegram.ui.Components.rr0;
-import org.telegram.ui.Components.vi0;
-public final class f extends ns0 {
+import org.telegram.ui.Components.ps0;
+import org.telegram.ui.Components.tr0;
+import org.telegram.ui.Components.wi0;
+public final class f extends ps0 {
     public final n f10815u3;
 
     public f(n nVar, Context context) {
@@ -39,10 +39,10 @@ public final class f extends ns0 {
         n nVar = this.f10815u3;
         ah.a aVar = nVar.J;
         if (nVar.f10830b) {
-            rr0 rr0Var = nVar.f10835r;
+            tr0 tr0Var = nVar.f10835r;
             int i12 = 0;
-            for (int i13 = 0; i13 < rr0Var.getChildCount(); i13++) {
-                int bottom2 = rr0Var.getChildAt(i13).getBottom() - rr0Var.getPaddingTop();
+            for (int i13 = 0; i13 < tr0Var.getChildCount(); i13++) {
+                int bottom2 = tr0Var.getChildAt(i13).getBottom() - tr0Var.getPaddingTop();
                 if (bottom2 > i12) {
                     i12 = bottom2;
                 }
@@ -72,7 +72,7 @@ public final class f extends ns0 {
     }
 
     @Override
-    public final vi0 getMovingAdapter() {
+    public final wi0 getMovingAdapter() {
         n nVar = this.f10815u3;
         if (nVar.G.D == 0 && !nVar.W.G.E1) {
             return nVar.f10837w;
@@ -81,12 +81,12 @@ public final class f extends ns0 {
     }
 
     @Override
-    public final vi0 getSupportingAdapter() {
+    public final wi0 getSupportingAdapter() {
         return this.f10815u3.f10838x;
     }
 
     @Override
-    public final rr0 getSupportingListView() {
+    public final tr0 getSupportingListView() {
         return this.f10815u3.f10835r;
     }
 }

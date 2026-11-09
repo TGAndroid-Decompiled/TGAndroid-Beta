@@ -4,35 +4,35 @@ import java.util.HashMap;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.r2;
 public final class b2 {
-    public static b2 f51106e;
-    public HashMap f51107a;
-    public boolean f51108b;
-    public boolean f51109c;
+    public static b2 f51087e;
+    public HashMap f51088a;
+    public boolean f51089b;
+    public boolean f51090c;
     public boolean d;
 
     public static b2 b() {
-        if (f51106e == null) {
-            f51106e = new Object();
+        if (f51087e == null) {
+            f51087e = new Object();
         }
-        return f51106e;
+        return f51087e;
     }
 
     public final a2 a(String str) {
         c();
-        a2 a2Var = (a2) this.f51107a.get(str);
+        a2 a2Var = (a2) this.f51088a.get(str);
         if (a2Var == null) {
             return null;
         }
-        a2Var.f51091a = Math.max(a2Var.f51091a, System.currentTimeMillis());
+        a2Var.f51072a = Math.max(a2Var.f51072a, System.currentTimeMillis());
         d();
         return a2Var;
     }
 
     public final void c() {
-        if (!this.f51108b && !this.f51109c) {
-            this.f51109c = true;
-            if (this.f51107a == null) {
-                this.f51107a = new HashMap();
+        if (!this.f51089b && !this.f51090c) {
+            this.f51090c = true;
+            if (this.f51088a == null) {
+                this.f51088a = new HashMap();
             }
             Utilities.f21336e.c(new x1(this, 1));
         }

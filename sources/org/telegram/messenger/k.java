@@ -59,7 +59,7 @@ public final class k implements Runnable {
                         r5Var.f25256g++;
                         r5Var.f25253c.add(q5Var);
                         r5Var.f25252b.put(q5Var.index, r5Var.f25252b.get(q5Var.index, 0) + 1);
-                        if (ch.e0.f6232b) {
+                        if (ch.e0.f6230b) {
                             q5Var.setPriority(1);
                         } else if (q5Var.getPriority() != 10) {
                             q5Var.setPriority(10);

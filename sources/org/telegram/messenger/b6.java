@@ -83,7 +83,7 @@ public abstract class b6 {
         if (z9) {
             try {
                 Context context = t0.f25566b;
-                synchronized (pb.g.f53530b) {
+                synchronized (pb.g.f53542b) {
                     pb.g.d(context, TaskExecutors.MAIN_THREAD);
                 }
             } catch (IllegalStateException e10) {
@@ -227,14 +227,14 @@ public abstract class b6 {
         }
         svVar.getClass();
         qv qvVar = (qv) p10.i(i10).m(svVar.d).get(e8Var.f22196a);
-        if (ijVar == null || (!ijVar.Q3() && !ijVar.m4())) {
-            if ((ijVar != null && ij.M4(ijVar.f23262k)) || e8Var.f22198c == 3) {
+        if (ijVar == null || (!ijVar.P3() && !ijVar.l4())) {
+            if ((ijVar != null && ij.L4(ijVar.f23262k)) || e8Var.f22198c == 3) {
                 z9 = true;
             } else {
                 z9 = false;
             }
             if (ijVar != null) {
-                j3 = ijVar.T1();
+                j3 = ijVar.S1();
             } else {
                 j3 = e8Var.d;
             }

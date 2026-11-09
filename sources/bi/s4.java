@@ -29,14 +29,14 @@ public final class s4 implements RequestDelegate {
                                 TLObject tLObject2 = tLObject;
                                 if (tLObject2 instanceof TLRPC.PaymentForm) {
                                     TLRPC.PaymentForm paymentForm = (TLRPC.PaymentForm) tLObject2;
-                                    qp.s1(k7Var2.f28616a).Y3(paymentForm.users, false);
+                                    qp.s1(k7Var2.f28621a).Y3(paymentForm.users, false);
                                     k7Var2.f4183k3 = paymentForm;
                                     org.telegram.messenger.g0.r(z1Var);
                                     org.telegram.messenger.g0.h3(z1Var);
                                     return;
                                 }
                                 org.telegram.ui.Components.cc Y = k7Var2.k().Y(tL_error);
-                                Y.f32555t = true;
+                                Y.f32637t = true;
                                 Y.j();
                                 return;
                             default:
@@ -45,13 +45,13 @@ public final class s4 implements RequestDelegate {
                                 TLObject tLObject3 = tLObject;
                                 if (tLObject3 instanceof TLRPC.PaymentForm) {
                                     TLRPC.PaymentForm paymentForm2 = (TLRPC.PaymentForm) tLObject3;
-                                    qp.s1(k7Var3.f28616a).Y3(paymentForm2.users, false);
+                                    qp.s1(k7Var3.f28621a).Y3(paymentForm2.users, false);
                                     k7Var3.f4183k3 = paymentForm2;
-                                    k7Var3.a2();
+                                    k7Var3.Z1();
                                     return;
                                 }
                                 org.telegram.ui.Components.cc Y2 = k7Var3.k().Y(tL_error);
-                                Y2.f32555t = true;
+                                Y2.f32637t = true;
                                 Y2.j();
                                 return;
                         }
@@ -71,14 +71,14 @@ public final class s4 implements RequestDelegate {
                                 TLObject tLObject2 = tLObject;
                                 if (tLObject2 instanceof TLRPC.PaymentForm) {
                                     TLRPC.PaymentForm paymentForm = (TLRPC.PaymentForm) tLObject2;
-                                    qp.s1(k7Var22.f28616a).Y3(paymentForm.users, false);
+                                    qp.s1(k7Var22.f28621a).Y3(paymentForm.users, false);
                                     k7Var22.f4183k3 = paymentForm;
                                     org.telegram.messenger.g0.r(z1Var);
                                     org.telegram.messenger.g0.h3(z1Var);
                                     return;
                                 }
                                 org.telegram.ui.Components.cc Y = k7Var22.k().Y(tL_error);
-                                Y.f32555t = true;
+                                Y.f32637t = true;
                                 Y.j();
                                 return;
                             default:
@@ -87,13 +87,13 @@ public final class s4 implements RequestDelegate {
                                 TLObject tLObject3 = tLObject;
                                 if (tLObject3 instanceof TLRPC.PaymentForm) {
                                     TLRPC.PaymentForm paymentForm2 = (TLRPC.PaymentForm) tLObject3;
-                                    qp.s1(k7Var3.f28616a).Y3(paymentForm2.users, false);
+                                    qp.s1(k7Var3.f28621a).Y3(paymentForm2.users, false);
                                     k7Var3.f4183k3 = paymentForm2;
-                                    k7Var3.a2();
+                                    k7Var3.Z1();
                                     return;
                                 }
                                 org.telegram.ui.Components.cc Y2 = k7Var3.k().Y(tL_error);
-                                Y2.f32555t = true;
+                                Y2.f32637t = true;
                                 Y2.j();
                                 return;
                         }

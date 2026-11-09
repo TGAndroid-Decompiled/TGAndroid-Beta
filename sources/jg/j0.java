@@ -8,12 +8,12 @@ import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import org.telegram.ui.ActionBar.m5;
+import org.telegram.ui.ActionBar.o5;
 import org.telegram.ui.Components.cs;
 import org.telegram.ui.Components.es;
-import org.telegram.ui.Components.sr0;
+import org.telegram.ui.Components.ur0;
 import org.telegram.ui.Components.voip.h2;
-import org.telegram.ui.Components.xs0;
+import org.telegram.ui.Components.zs0;
 import org.telegram.ui.ProfileActivity;
 public final class j0 extends AnimatorListenerAdapter {
     public final int f16810a;
@@ -37,7 +37,7 @@ public final class j0 extends AnimatorListenerAdapter {
                 View view = (View) this.f16812c;
                 view.setTranslationY(0.0f);
                 if (view instanceof org.telegram.ui.Cells.q1) {
-                    ((org.telegram.ui.Cells.q1) view).getTransitionParams().f30802i = false;
+                    ((org.telegram.ui.Cells.q1) view).getTransitionParams().f30806i = false;
                     return;
                 }
                 return;
@@ -69,39 +69,39 @@ public final class j0 extends AnimatorListenerAdapter {
                 mi.l lVar = (mi.l) this.f16813e;
                 View view2 = (View) this.f16812c;
                 if (view2 instanceof org.telegram.ui.Cells.q1) {
-                    ((org.telegram.ui.Cells.q1) view2).getTransitionParams().f30802i = false;
+                    ((org.telegram.ui.Cells.q1) view2).getTransitionParams().f30806i = false;
                 }
                 ((ViewPropertyAnimator) this.d).setListener(null);
-                if (lVar.f57109y.remove(d1Var2)) {
+                if (lVar.f57121y.remove(d1Var2)) {
                     lVar.u(d1Var2);
                     lVar.G();
                     return;
                 }
                 return;
             case 2:
-                ((v4.d1) this.f16811b).f57044a.setAlpha(1.0f);
+                ((v4.d1) this.f16811b).f57056a.setAlpha(1.0f);
                 ((AnimatorSet) this.f16812c).removeAllListeners();
                 es esVar = (es) this.f16813e;
                 cs csVar = (cs) this.d;
-                esVar.d(csVar.f32671a);
-                esVar.f33375y.remove(csVar.f32671a);
+                esVar.d(csVar.f32747a);
+                esVar.f33490y.remove(csVar.f32747a);
                 esVar.A();
-                esVar.d(csVar.f32672b);
-                esVar.f33375y.remove(csVar.f32672b);
+                esVar.d(csVar.f32748b);
+                esVar.f33490y.remove(csVar.f32748b);
                 esVar.A();
                 return;
             case 3:
-                ((xs0) this.f16813e).K1 = false;
+                ((zs0) this.f16813e).K1 = false;
                 View view3 = (View) this.f16812c;
                 if (view3.getParent() != null) {
-                    ((sr0) this.f16811b).removeView(view3);
+                    ((ur0) this.f16811b).removeView(view3);
                     ((Bitmap) this.d).recycle();
                     return;
                 }
                 return;
             case 4:
                 h2 h2Var = (h2) this.f16813e;
-                TextView[] textViewArr = h2Var.f39244a;
+                TextView[] textViewArr = h2Var.f39333a;
                 View view4 = (View) this.f16812c;
                 view4.setVisibility(8);
                 view4.setAlpha(1.0f);
@@ -118,16 +118,16 @@ public final class j0 extends AnimatorListenerAdapter {
                 if (runnable != null) {
                     runnable.run();
                 }
-                h2Var.f39248f = false;
-                CharSequence charSequence = h2Var.f39247e;
+                h2Var.f39337f = false;
+                CharSequence charSequence = h2Var.f39336e;
                 if (charSequence != null) {
                     if (charSequence.equals("timer")) {
                         h2Var.e(true);
                     } else {
-                        textViewArr[1].setText(h2Var.f39247e);
-                        h2Var.a(textViewArr[0], textViewArr[1], new m5(this, 8));
+                        textViewArr[1].setText(h2Var.f39336e);
+                        h2Var.a(textViewArr[0], textViewArr[1], new o5(this, 6));
                     }
-                    h2Var.f39247e = null;
+                    h2Var.f39336e = null;
                     return;
                 }
                 return;
@@ -146,20 +146,22 @@ public final class j0 extends AnimatorListenerAdapter {
                     runnable2.run();
                     return;
                 }
-                profileActivity.f41722e0.setProgressToExpand(0.0f);
-                profileActivity.f41691a.setLayerType(0, null);
+                profileActivity.f41729e0.setProgressToExpand(0.0f);
+                profileActivity.f41698a.setLayerType(0, null);
                 runnable2.run();
                 if (profileActivity.I1 == 2) {
                     profileActivity.I1 = 1;
-                    profileActivity.f41722e0.setForegroundAlpha(1.0f);
+                    profileActivity.f41729e0.setForegroundAlpha(1.0f);
                     profileActivity.X.setVisibility(8);
-                    profileActivity.f41784n0.setAlpha(1.0f);
-                    profileActivity.f41784n0.L();
-                    profileActivity.f41784n0.setVisibility(0);
+                    profileActivity.f41791n0.setAlpha(1.0f);
+                    profileActivity.f41791n0.L();
+                    profileActivity.f41791n0.setVisibility(0);
                 }
                 profileActivity.W4 = null;
+                profileActivity.X4 = 0.0f;
                 profileActivity.Y.invalidate();
-                profileActivity.f41742g5 = null;
+                profileActivity.f41763i5 = null;
+                profileActivity.f41756h5 = null;
                 profileActivity.fragmentView.invalidate();
                 return;
         }
@@ -176,9 +178,9 @@ public final class j0 extends AnimatorListenerAdapter {
             case 2:
                 es esVar = (es) this.f16813e;
                 cs csVar = (cs) this.d;
-                v4.d1 d1Var = csVar.f32671a;
+                v4.d1 d1Var = csVar.f32747a;
                 esVar.getClass();
-                v4.d1 d1Var2 = csVar.f32672b;
+                v4.d1 d1Var2 = csVar.f32748b;
                 esVar.getClass();
                 return;
             default:

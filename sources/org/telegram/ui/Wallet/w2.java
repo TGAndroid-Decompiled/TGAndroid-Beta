@@ -1,3 +1,20 @@
 package org.telegram.ui.Wallet;
-public interface w2 {
+
+import android.content.Context;
+import android.widget.FrameLayout;
+public final class w2 extends FrameLayout implements v2 {
+    public final FrameLayout f43243a;
+
+    public w2(Context context) {
+        super(context);
+        setClipChildren(false);
+        setClipToPadding(false);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.f43243a = frameLayout;
+        addView(frameLayout, c8.ha.e(-1, -2, 80));
+    }
+
+    public FrameLayout getContent() {
+        return this.f43243a;
+    }
 }

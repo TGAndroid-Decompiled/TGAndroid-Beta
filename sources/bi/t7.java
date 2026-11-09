@@ -3,15 +3,15 @@ package bi;
 import org.telegram.messenger.c20;
 import org.telegram.messenger.v10;
 public final class t7 implements v10 {
-    public final int f4751a = 0;
-    public final boolean[] f4752b;
-    public final v10 f4753c;
+    public final int f4749a = 0;
+    public final boolean[] f4750b;
+    public final v10 f4751c;
     public final c20 d;
 
     public t7(c20 c20Var, boolean[] zArr, v10 v10Var) {
         this.d = c20Var;
-        this.f4752b = zArr;
-        this.f4753c = v10Var;
+        this.f4750b = zArr;
+        this.f4751c = v10Var;
     }
 
     @Override
@@ -20,14 +20,14 @@ public final class t7 implements v10 {
         String str2;
         Long l10 = (Long) obj;
         Boolean bool = (Boolean) obj2;
-        switch (this.f4751a) {
+        switch (this.f4749a) {
             case 0:
                 c20 c20Var = this.d;
                 if (c20Var != null) {
                     c20Var.a(Boolean.TRUE);
                 }
-                this.f4752b[0] = true;
-                v10 v10Var = this.f4753c;
+                this.f4750b[0] = true;
+                v10 v10Var = this.f4751c;
                 if (v10Var != null) {
                     if (bool.booleanValue()) {
                         str = "paid";
@@ -39,8 +39,8 @@ public final class t7 implements v10 {
                 }
                 return;
             default:
-                this.f4752b[0] = true;
-                v10 v10Var2 = this.f4753c;
+                this.f4750b[0] = true;
+                v10 v10Var2 = this.f4751c;
                 if (v10Var2 != null) {
                     if (bool.booleanValue()) {
                         str2 = "paid";
@@ -59,8 +59,8 @@ public final class t7 implements v10 {
     }
 
     public t7(boolean[] zArr, v10 v10Var, c20 c20Var) {
-        this.f4752b = zArr;
-        this.f4753c = v10Var;
+        this.f4750b = zArr;
+        this.f4751c = v10Var;
         this.d = c20Var;
     }
 }

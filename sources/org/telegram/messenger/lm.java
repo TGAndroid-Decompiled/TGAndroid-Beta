@@ -41,10 +41,10 @@ public final class lm implements Runnable {
             }
         } else if (tL_error != null && "TO_LANG_INVALID".equals(tL_error.text)) {
             f10Var.K(j3, false);
-            qs.e().k(qs.P4, 1, id.M0(2131743949, null));
+            qs.e().k(qs.P4, 1, id.M0(2131743946, null));
         } else {
             if (tL_error != null && "QUOTA_EXCEEDED".equals(tL_error.text)) {
-                qs.e().k(qs.P4, 1, id.M0(2131743950, null));
+                qs.e().k(qs.P4, 1, id.M0(2131743947, null));
             }
             for (int i10 = 0; i10 < arrayList2.size(); i10++) {
                 ((x10) arrayList2.get(i10)).a((Integer) arrayList.get(i10), null, a10Var.d);

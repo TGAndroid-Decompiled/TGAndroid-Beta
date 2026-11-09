@@ -2,22 +2,22 @@ package rc;
 
 import java.util.ArrayList;
 import org.telegram.messenger.g0;
-import org.telegram.ui.Components.pp0;
+import org.telegram.ui.Components.qp0;
+import org.telegram.ui.Wallet.x0;
 import org.telegram.ui.Wallet.y0;
-import org.telegram.ui.Wallet.z0;
 public final class b extends z {
-    public final int f54442b;
+    public final int f54454b;
 
     public b(String str, u uVar, int i7, int i10) {
         super(str, uVar, i7);
-        this.f54442b = i10;
+        this.f54454b = i10;
     }
 
     @Override
     public final void a() {
-        switch (this.f54442b) {
+        switch (this.f54454b) {
             case 0:
-                u uVar = this.f54513a;
+                u uVar = this.f54525a;
                 try {
                     uVar.b();
                     return;
@@ -30,23 +30,23 @@ public final class b extends z {
                     while (i7 < size) {
                         Object obj = arrayList.get(i7);
                         i7++;
-                        y0 y0Var = (y0) obj;
+                        x0 x0Var = (x0) obj;
                         try {
                             try {
                                 u uVar2 = (u) qVar.f990b;
-                                z0 z0Var = y0Var.f43381c;
-                                int i10 = y0Var.f43379a;
-                                g0.h3(new pp0(z0Var, uVar2, i10, "connect error: " + z0.a(e10), 18));
+                                y0 y0Var = x0Var.f43299c;
+                                int i10 = x0Var.f43297a;
+                                g0.h3(new qp0(y0Var, uVar2, i10, "connect error: " + y0.a(e10), 18));
                             } catch (Throwable unused) {
                             }
                         } catch (Throwable unused2) {
-                            y0Var.getClass();
+                            x0Var.getClass();
                         }
                     }
                     return;
                 }
             default:
-                this.f54513a.d();
+                this.f54525a.d();
                 return;
         }
     }

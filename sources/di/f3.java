@@ -2,23 +2,23 @@ package di;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-public final class f3 extends t8 {
-    public final p9 H;
-    public final i4 I;
+public final class f3 extends u8 {
+    public final q9 H;
+    public final j4 I;
 
-    public f3(i4 i4Var, Context context, j3 j3Var, org.telegram.ui.ActionBar.f6 f6Var, p9 p9Var) {
-        super(context, j3Var, f6Var);
-        this.I = i4Var;
-        this.H = p9Var;
+    public f3(j4 j4Var, Context context, j3 j3Var, org.telegram.ui.ActionBar.g6 g6Var, q9 q9Var) {
+        super(context, j3Var, g6Var);
+        this.I = j4Var;
+        this.H = q9Var;
     }
 
     @Override
     public final void b(boolean z9) {
-        b4 b4Var = this.I.f9221z1;
-        if (b4Var != null) {
-            p9 p9Var = ((g9) b4Var).d;
-            p9Var.f9549h1 = z9;
-            p9Var.V();
+        c4 c4Var = this.I.f9253z1;
+        if (c4Var != null) {
+            q9 q9Var = ((h9) c4Var).d;
+            q9Var.f9614h1 = z9;
+            q9Var.V();
         }
     }
 

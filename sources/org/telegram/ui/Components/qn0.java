@@ -1,48 +1,32 @@
 package org.telegram.ui.Components;
+public final class qn0 extends g.p {
+    public final int f37446c;
+    public final no0 d;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class qn0 extends v4.s0 {
-    public final int f37394a;
-    public final mo0 f37395b;
-
-    public qn0(mo0 mo0Var, int i7) {
-        this.f37394a = i7;
-        this.f37395b = mo0Var;
+    public qn0(no0 no0Var, int i7) {
+        this.f37446c = i7;
+        this.d = no0Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i7, int i10) {
-        gb gbVar;
-        switch (this.f37394a) {
+    public final int i(int i7) {
+        switch (this.f37446c) {
             case 0:
-                mo0 mo0Var = this.f37395b;
-                if (i10 != 0) {
-                    mo0.I0(mo0Var);
-                    mo0Var.f36044i2 = mo0Var.f36042h2;
+                if (i7 == 0) {
+                    return this.d.f36469z1.J;
                 }
-                cc ccVar = cc.f32537w;
-                if (ccVar != null && (gbVar = ccVar.f32541e) != null && (gbVar.getParent() instanceof View) && ((View) cc.f32537w.f32541e.getParent()).getParent() == mo0Var.f36063t1) {
-                    cc.e();
-                    return;
-                }
-                return;
+                return 1;
             case 1:
-                if (i10 != 0) {
-                    mo0 mo0Var2 = this.f37395b;
-                    mo0.I0(mo0Var2);
-                    mo0Var2.f36044i2 = mo0Var2.f36042h2;
-                    return;
+                ko0 ko0Var = this.d.E1;
+                if (i7 != ko0Var.f35447x && i7 != ko0Var.f35448y && i7 != ko0Var.D && i7 != ko0Var.F && ko0Var.d(i7) != 0) {
+                    return 1;
                 }
-                return;
+                return 4;
             default:
-                if (i10 != 0) {
-                    mo0 mo0Var3 = this.f37395b;
-                    mo0.I0(mo0Var3);
-                    mo0Var3.f36044i2 = mo0Var3.f36042h2;
-                    return;
+                if (i7 == 0) {
+                    return this.d.A1.J;
                 }
-                return;
+                return 1;
         }
     }
 }

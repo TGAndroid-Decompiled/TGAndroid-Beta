@@ -1,68 +1,173 @@
 package org.telegram.ui;
 
-import android.text.TextWatcher;
-import java.util.regex.Pattern;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.text.StaticLayout;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import org.telegram.ui.Components.EditTextBoldCursor;
-public final class aj0 implements TextWatcher {
-    public final int f43694a;
-    public final Object f43695b;
-    public String f43696c;
-    public final Object d;
+public final class aj0 extends FrameLayout {
+    public final int f43711a;
+    public Object f43712b;
+    public float f43713c;
+    public final KeyEvent.Callback d;
 
-    public aj0(bk0 bk0Var, EditTextBoldCursor editTextBoldCursor, String str, int i7) {
-        this.f43694a = i7;
-        this.d = bk0Var;
-        this.f43695b = editTextBoldCursor;
-        this.f43696c = str;
+    public aj0(Context context, EditTextBoldCursor editTextBoldCursor, int i7) {
+        super(context);
+        this.f43711a = i7;
+        this.d = editTextBoldCursor;
     }
 
     @Override
-    public final void afterTextChanged(android.text.Editable r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.aj0.afterTextChanged(android.text.Editable):void");
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        switch (this.f43694a) {
+    public void onDraw(Canvas canvas) {
+        switch (this.f43711a) {
             case 0:
+                if (((StaticLayout) this.f43712b) != null) {
+                    canvas.save();
+                    canvas.translate(org.telegram.messenger.g0.L(21.0f) + this.f43713c, ((EditTextBoldCursor) this.d).getLineY() + org.telegram.messenger.g0.L(3.0f));
+                    ((StaticLayout) this.f43712b).draw(canvas);
+                    canvas.restore();
+                    return;
+                }
+                return;
             case 1:
+                if (((StaticLayout) this.f43712b) != null) {
+                    canvas.save();
+                    canvas.translate(org.telegram.messenger.g0.L(21.0f) + this.f43713c, ((EditTextBoldCursor) this.d).getLineY() + org.telegram.messenger.g0.L(3.0f));
+                    ((StaticLayout) this.f43712b).draw(canvas);
+                    canvas.restore();
+                    return;
+                }
+                return;
             case 2:
+                if (((StaticLayout) this.f43712b) != null) {
+                    canvas.save();
+                    canvas.translate(org.telegram.messenger.g0.L(21.0f) + this.f43713c, ((EditTextBoldCursor) this.d).getLineY() + org.telegram.messenger.g0.L(3.0f));
+                    ((StaticLayout) this.f43712b).draw(canvas);
+                    canvas.restore();
+                    return;
+                }
                 return;
             default:
-                this.f43696c = charSequence.toString();
+                super.onDraw(canvas);
                 return;
         }
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f43694a;
+    public final void onMeasure(int i7, int i10) {
+        org.telegram.ui.Components.mg0 mg0Var;
+        switch (this.f43711a) {
+            case 0:
+                int size = View.MeasureSpec.getSize(i7) - org.telegram.messenger.g0.L(34.0f);
+                StaticLayout p10 = ((EditTextBoldCursor) this.d).p(size);
+                this.f43712b = p10;
+                if (p10 != null) {
+                    int lineCount = p10.getLineCount();
+                    int i11 = 0;
+                    if (lineCount > 1) {
+                        i10 = View.MeasureSpec.makeMeasureSpec((((StaticLayout) this.f43712b).getLineBottom(lineCount - 1) - ((StaticLayout) this.f43712b).getLineBottom(0)) + org.telegram.messenger.g0.L(64.0f), 1073741824);
+                    }
+                    if (org.telegram.messenger.id.f23157a0) {
+                        float f10 = 0.0f;
+                        while (true) {
+                            if (i11 < lineCount) {
+                                if (((StaticLayout) this.f43712b).getLineLeft(i11) != 0.0f) {
+                                    this.f43713c = 0.0f;
+                                } else {
+                                    f10 = Math.max(f10, ((StaticLayout) this.f43712b).getLineWidth(i11));
+                                    if (i11 == lineCount - 1) {
+                                        this.f43713c = size - f10;
+                                    }
+                                    i11++;
+                                }
+                            }
+                        }
+                    }
+                }
+                super.onMeasure(i7, i10);
+                return;
+            case 1:
+                int size2 = View.MeasureSpec.getSize(i7) - org.telegram.messenger.g0.L(34.0f);
+                StaticLayout p11 = ((EditTextBoldCursor) this.d).p(size2);
+                this.f43712b = p11;
+                if (p11 != null) {
+                    int lineCount2 = p11.getLineCount();
+                    int i12 = 0;
+                    if (lineCount2 > 1) {
+                        i10 = View.MeasureSpec.makeMeasureSpec((((StaticLayout) this.f43712b).getLineBottom(lineCount2 - 1) - ((StaticLayout) this.f43712b).getLineBottom(0)) + org.telegram.messenger.g0.L(64.0f), 1073741824);
+                    }
+                    if (org.telegram.messenger.id.f23157a0) {
+                        float f11 = 0.0f;
+                        while (true) {
+                            if (i12 < lineCount2) {
+                                if (((StaticLayout) this.f43712b).getLineLeft(i12) != 0.0f) {
+                                    this.f43713c = 0.0f;
+                                } else {
+                                    f11 = Math.max(f11, ((StaticLayout) this.f43712b).getLineWidth(i12));
+                                    if (i12 == lineCount2 - 1) {
+                                        this.f43713c = size2 - f11;
+                                    }
+                                    i12++;
+                                }
+                            }
+                        }
+                    }
+                }
+                super.onMeasure(i7, i10);
+                return;
+            case 2:
+                int size3 = View.MeasureSpec.getSize(i7) - org.telegram.messenger.g0.L(34.0f);
+                StaticLayout p12 = ((EditTextBoldCursor) this.d).p(size3);
+                this.f43712b = p12;
+                if (p12 != null) {
+                    int lineCount3 = p12.getLineCount();
+                    int i13 = 0;
+                    if (lineCount3 > 1) {
+                        i10 = View.MeasureSpec.makeMeasureSpec((((StaticLayout) this.f43712b).getLineBottom(lineCount3 - 1) - ((StaticLayout) this.f43712b).getLineBottom(0)) + org.telegram.messenger.g0.L(64.0f), 1073741824);
+                    }
+                    if (org.telegram.messenger.id.f23157a0) {
+                        float f12 = 0.0f;
+                        while (true) {
+                            if (i13 < lineCount3) {
+                                if (((StaticLayout) this.f43712b).getLineLeft(i13) != 0.0f) {
+                                    this.f43713c = 0.0f;
+                                } else {
+                                    f12 = Math.max(f12, ((StaticLayout) this.f43712b).getLineWidth(i13));
+                                    if (i13 == lineCount3 - 1) {
+                                        this.f43713c = size3 - f12;
+                                    }
+                                    i13++;
+                                }
+                            }
+                        }
+                    }
+                }
+                super.onMeasure(i7, i10);
+                return;
+            default:
+                super.onMeasure(i7, i10);
+                org.telegram.ui.Components.dh0 dh0Var = ((org.telegram.ui.Components.mg0) this.d).n1;
+                float measuredHeight = (mg0Var.f36088m1 / 768.0f) * ((kg.k) this.f43712b).getMeasuredHeight();
+                if (this.f43713c != measuredHeight) {
+                    this.f43713c = measuredHeight;
+                    ViewGroup.LayoutParams layoutParams = dh0Var.getLayoutParams();
+                    int i14 = (int) measuredHeight;
+                    dh0Var.getLayoutParams().width = i14;
+                    layoutParams.height = i14;
+                    super.onMeasure(i7, i10);
+                    return;
+                }
+                return;
+        }
     }
 
-    public aj0(sg.p pVar) {
-        this.f43694a = 3;
-        this.d = pVar;
-        this.f43695b = Pattern.compile("^[0-9a-fA-F]*$");
-    }
-
-    private final void a(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void b(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void c(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void d(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void e(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void f(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void g(int i7, int i10, int i11, CharSequence charSequence) {
+    public aj0(org.telegram.ui.Components.mg0 mg0Var, Context context, kg.k kVar) {
+        super(context);
+        this.f43711a = 3;
+        this.d = mg0Var;
+        this.f43712b = kVar;
     }
 }

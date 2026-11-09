@@ -1,92 +1,41 @@
 package org.telegram.ui;
+public final class ei implements Runnable {
+    public final int f45448a;
+    public final fi f45449b;
+    public final int f45450c;
+    public final boolean d;
+    public final org.telegram.ui.Components.ji0 f45451e;
+    public final float f45452f;
+    public final float h;
+    public final ch.o0 f45453n;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class ei extends AnimatorListenerAdapter {
-    public final int f45310a;
-    public final an f45311b;
-
-    public ei(an anVar, int i7) {
-        this.f45310a = i7;
-        this.f45311b = anVar;
+    public ei(fi fiVar, int i7, boolean z9, org.telegram.ui.Components.ji0 ji0Var, float f10, float f11, ch.o0 o0Var, int i10) {
+        this.f45448a = i10;
+        this.f45449b = fiVar;
+        this.f45450c = i7;
+        this.d = z9;
+        this.f45451e = ji0Var;
+        this.f45452f = f10;
+        this.h = f11;
+        this.f45453n = o0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        aj ajVar;
-        switch (this.f45310a) {
+    public final void run() {
+        int i7;
+        switch (this.f45448a) {
             case 0:
-                an anVar = this.f45311b;
-                org.telegram.ui.Components.t40 t40Var = anVar.f43917p3;
-                if (t40Var != null) {
-                    t40Var.setIsMessageTransition(false);
-                    anVar.f43917p3.d(true);
-                    anVar.f43917p3.setVisibility(4);
-                    return;
-                }
-                return;
-            case 1:
-                an anVar2 = this.f45311b;
-                anVar2.T9 = org.telegram.messenger.g0.L(30.0f);
-                anVar2.K9();
-                return;
-            case 2:
-                an anVar3 = this.f45311b;
-                if (anVar3.fragmentView != null && (ajVar = anVar3.f44043z0) != null) {
-                    ajVar.invalidate();
-                    anVar3.fragmentView.invalidate();
-                    return;
-                }
-                return;
-            case 3:
-                this.f45311b.Q.setVisibility(4);
-                return;
-            case 4:
-                an anVar4 = this.f45311b;
-                if (animator.equals(anVar4.f43981u3)) {
-                    anVar4.f43981u3 = null;
-                    return;
-                }
-                return;
-            case 5:
-                an anVar5 = this.f45311b;
-                if (animator.equals(anVar5.f43981u3)) {
-                    anVar5.f43981u3 = null;
-                    return;
-                }
-                return;
-            case 6:
-                an anVar6 = this.f45311b;
-                if (animator.equals(anVar6.f43994v3)) {
-                    anVar6.f44008w3 = 1.0f;
-                    anVar6.Pc();
-                    anVar6.f43994v3 = null;
-                    return;
-                }
-                return;
-            case 7:
-                an anVar7 = this.f45311b;
-                if (animator.equals(anVar7.f43994v3)) {
-                    anVar7.f44008w3 = 0.0f;
-                    anVar7.Pc();
-                    anVar7.f43994v3 = null;
-                    return;
-                }
-                return;
-            case 8:
-                this.f45311b.f43797f5 = null;
-                return;
-            case 9:
-                an anVar8 = this.f45311b;
-                anVar8.Xa = 1.0f;
-                anVar8.Z.setVisibility(4);
-                anVar8.f43752c1.setVisibility(4);
-                anVar8.K9();
+                org.telegram.messenger.g0.i3(new ei(this.f45449b, this.f45450c, this.d, this.f45451e, this.f45452f, this.h, this.f45453n, 1), 50L);
                 return;
             default:
-                an anVar9 = this.f45311b;
-                anVar9.Xa = 0.0f;
-                anVar9.K9();
+                cn cnVar = this.f45449b.f45728s;
+                org.telegram.ui.Cells.z I8 = cnVar.I8(this.f45450c, true);
+                if (this.d) {
+                    i7 = ((org.telegram.ui.ActionBar.f2) cnVar).currentAccount;
+                    ch.k0.d(cnVar, this.f45451e, I8, null, this.f45452f, this.h, this.f45453n, i7, 1);
+                    ch.k0.f();
+                    return;
+                }
                 return;
         }
     }

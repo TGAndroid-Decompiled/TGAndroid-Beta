@@ -134,7 +134,7 @@ public final class e7 {
     public final Matrix f11905n0 = new Matrix();
     public float f11917t0 = 1.0f;
     public float f11919u0 = 1.0f;
-    public boolean f11926y0 = org.telegram.ui.ActionBar.k6.I.q();
+    public boolean f11926y0 = org.telegram.ui.ActionBar.l6.I.q();
     public long f11928z0 = Long.MIN_VALUE;
     public boolean D0 = true;
     public final ArrayList F0 = new ArrayList();
@@ -409,9 +409,9 @@ public final class e7 {
         arrayList.addAll(arrayList3);
         e7Var.I0 = storyItem.expire_date - storyItem.date;
         try {
-            CharSequence m10 = org.telegram.messenger.i6.m(new SpannableString(storyItem.caption), org.telegram.ui.ActionBar.k6.f28049o2.getFontMetricsInt(), true, null, 0);
+            CharSequence m10 = org.telegram.messenger.i6.m(new SpannableString(storyItem.caption), org.telegram.ui.ActionBar.l6.f28062o2.getFontMetricsInt(), true, null, 0);
             ij.b(m10, storyItem.entities, true, false, true, false, 0);
-            e7Var.C0 = ij.C5(m10, storyItem.entities, org.telegram.ui.ActionBar.k6.f28049o2.getFontMetricsInt(), false);
+            e7Var.C0 = ij.B5(m10, storyItem.entities, org.telegram.ui.ActionBar.l6.f28062o2.getFontMetricsInt(), false);
         } catch (Exception unused) {
         }
         e7Var.A();
@@ -500,10 +500,10 @@ public final class e7 {
         long j3;
         if (document != null) {
             if (!"video/webm".equals(document.mime_type) && !"video/mp4".equals(document.mime_type)) {
-                if (ij.L2(document, true)) {
+                if (ij.K2(document, true)) {
                     RLottieNative a10 = RLottieNative.a(str, null, null, null, 0, null);
                     if (a10 != null) {
-                        int i7 = a10.f31473a[0];
+                        int i7 = a10.f31478a[0];
                         a10.d();
                         j3 = i7;
                     } else {
@@ -722,7 +722,7 @@ public final class e7 {
                 }
             } else {
                 TLRPC.Document document = messageMedia.document;
-                if (document != null && ij.W2(document)) {
+                if (document != null && ij.V2(document)) {
                     TLRPC.TL_inputStickeredMediaDocument tL_inputStickeredMediaDocument = new TLRPC.TL_inputStickeredMediaDocument();
                     TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
                     tL_inputStickeredMediaDocument.f27025id = tL_inputDocument;

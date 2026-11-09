@@ -8,7 +8,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.ExternalActionActivity;
-import org.telegram.ui.ws0;
+import org.telegram.ui.ys0;
 public final class ee implements Runnable {
     public final int f22209a = 0;
     public final Object f22210b;
@@ -36,11 +36,11 @@ public final class ee implements Runnable {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ee.run():void");
     }
 
-    public ee(TLObject tLObject, org.telegram.ui.ActionBar.f2 f2Var, TLRPC.TL_inputStorePaymentPremiumSubscription tL_inputStorePaymentPremiumSubscription, ws0 ws0Var, com.google.android.gms.internal.clearcut.z0 z0Var, int i7, TLRPC.TL_error tL_error, TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore) {
+    public ee(TLObject tLObject, org.telegram.ui.ActionBar.f2 f2Var, TLRPC.TL_inputStorePaymentPremiumSubscription tL_inputStorePaymentPremiumSubscription, ys0 ys0Var, com.google.android.gms.internal.clearcut.z0 z0Var, int i7, TLRPC.TL_error tL_error, TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore) {
         this.f22213f = tLObject;
         this.d = f2Var;
         this.f22212e = tL_inputStorePaymentPremiumSubscription;
-        this.f22210b = ws0Var;
+        this.f22210b = ys0Var;
         this.h = z0Var;
         this.f22211c = i7;
         this.f22214n = tL_error;
@@ -58,22 +58,22 @@ public final class ee implements Runnable {
         this.f22212e = str2;
     }
 
-    public ee(org.telegram.ui.Wallet.j0 j0Var, String str, byte[] bArr, JSONObject jSONObject, String str2, int i7, org.telegram.ui.Wallet.t2 t2Var, org.telegram.ui.Wallet.m0 m0Var) {
-        this.f22213f = j0Var;
+    public ee(org.telegram.ui.Wallet.i0 i0Var, String str, byte[] bArr, JSONObject jSONObject, String str2, int i7, org.telegram.ui.Wallet.s2 s2Var, org.telegram.ui.Wallet.l0 l0Var) {
+        this.f22213f = i0Var;
         this.d = str;
         this.f22210b = bArr;
         this.h = jSONObject;
         this.f22212e = str2;
         this.f22211c = i7;
-        this.f22214n = t2Var;
-        this.f22215r = m0Var;
+        this.f22214n = s2Var;
+        this.f22215r = l0Var;
     }
 
-    public ee(Runnable[] runnableArr, TextView[] textViewArr, int i7, org.telegram.ui.ActionBar.f6 f6Var, TL_wallet.walletTransaction wallettransaction, String[] strArr, boolean[] zArr, byte[] bArr) {
+    public ee(Runnable[] runnableArr, TextView[] textViewArr, int i7, org.telegram.ui.ActionBar.g6 g6Var, TL_wallet.walletTransaction wallettransaction, String[] strArr, boolean[] zArr, byte[] bArr) {
         this.f22213f = runnableArr;
         this.d = textViewArr;
         this.f22211c = i7;
-        this.f22212e = f6Var;
+        this.f22212e = g6Var;
         this.f22210b = wallettransaction;
         this.f22214n = strArr;
         this.h = zArr;

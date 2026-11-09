@@ -1,52 +1,33 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import java.util.HashSet;
-public final class q30 extends v4.k {
-    public float F;
-    public ValueAnimator G;
-    public final HashSet H = new HashSet();
-    public final HashSet I = new HashSet();
-    public float J;
-    public float K;
-    public final c40 L;
+import android.view.View;
+import java.util.Iterator;
+public final class q30 implements org.telegram.ui.Components.o5 {
+    public final int f48877a;
+    public final Object f48878b;
 
-    public q30(c40 c40Var) {
-        this.L = c40Var;
+    public q30(Object obj, int i7) {
+        this.f48877a = i7;
+        this.f48878b = obj;
     }
 
     @Override
-    public final void g() {
-        super.g();
-        this.I.clear();
-        this.H.clear();
-        this.K = Float.MAX_VALUE;
-        this.L.H1.invalidate();
-    }
-
-    @Override
-    public final void m() {
-        boolean isEmpty = this.f57101p.isEmpty();
-        boolean isEmpty2 = this.f57103r.isEmpty();
-        boolean isEmpty3 = this.f57102q.isEmpty();
-        ValueAnimator valueAnimator = this.G;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.G = null;
+    public final void invalidate() {
+        switch (this.f48877a) {
+            case 0:
+                Iterator it = ((r30) this.f48878b).f49262i.iterator();
+                while (it.hasNext()) {
+                    ((View) it.next()).invalidate();
+                }
+                return;
+            default:
+                c11 c11Var = (c11) this.f48878b;
+                c11Var.getClass();
+                if (!ch.e0.f6230b && c11Var.getParent() != null) {
+                    ((View) c11Var.getParent()).invalidate();
+                    return;
+                }
+                return;
         }
-        if (!isEmpty || !isEmpty2 || !isEmpty3) {
-            this.F = 0.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.G = ofFloat;
-            ofFloat.addUpdateListener(new a3(this, 14));
-            this.G.addListener(new d30(this, 1));
-            this.G.setDuration(350L);
-            this.G.setInterpolator(org.telegram.ui.Components.xq.f40366f);
-            this.G.start();
-            c40 c40Var = this.L;
-            c40Var.H1.invalidate();
-            c40Var.R3.invalidate();
-        }
-        super.m();
     }
 }

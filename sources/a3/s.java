@@ -118,7 +118,7 @@ public final class s extends x {
     }
 
     public static void g(q1 q1Var, e2.q1 q1Var2, HashMap hashMap) {
-        for (int i7 = 0; i7 < q1Var.f58449a; i7++) {
+        for (int i7 = 0; i7 < q1Var.f58458a; i7++) {
             n1 n1Var = (n1) q1Var2.H.get(q1Var.a(i7));
             if (n1Var != null) {
                 m1 m1Var = n1Var.f10401a;
@@ -202,7 +202,7 @@ public final class s extends x {
             int i7 = 0;
             m1 m1Var = null;
             k kVar = null;
-            for (int i10 = 0; i10 < q1Var.f58449a; i10++) {
+            for (int i10 = 0; i10 < q1Var.f58458a; i10++) {
                 m1 a10 = q1Var.a(i10);
                 int[] iArr2 = iArr[i10];
                 for (int i11 = 0; i11 < a10.f10373a; i11++) {
@@ -235,7 +235,7 @@ public final class s extends x {
         while (i12 < i11) {
             if (i7 == wVar2.f136b[i12]) {
                 q1 q1Var = wVar2.f137c[i12];
-                for (int i13 = 0; i13 < q1Var.f58449a; i13++) {
+                for (int i13 = 0; i13 < q1Var.f58458a; i13++) {
                     m1 a10 = q1Var.a(i13);
                     t1 h = pVar.h(i12, a10, iArr[i12][i13]);
                     int i14 = a10.f10373a;
@@ -340,7 +340,7 @@ public final class s extends x {
         c3.d dVar;
         synchronized (this.d) {
             try {
-                if (this.f129g.A0 && Build.VERSION.SDK_INT >= 32 && (dVar = this.f130i) != null && dVar.f5267b) {
+                if (this.f129g.A0 && Build.VERSION.SDK_INT >= 32 && (dVar = this.f130i) != null && dVar.f5265b) {
                     z9 = true;
                 } else {
                     z9 = false;
@@ -350,7 +350,7 @@ public final class s extends x {
             }
         }
         if (z9 && (r0Var = this.f140a) != null) {
-            r0Var.f18021n.f(10);
+            r0Var.f18019n.f(10);
         }
     }
 
@@ -373,7 +373,7 @@ public final class s extends x {
             }
             r0 r0Var = this.f140a;
             if (r0Var != null) {
-                r0Var.f18021n.f(10);
+                r0Var.f18019n.f(10);
             }
         }
     }

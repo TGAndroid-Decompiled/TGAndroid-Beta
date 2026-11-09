@@ -39,7 +39,7 @@ import com.google.android.gms.tasks.SuccessContinuation;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.android.gms.tasks.Tasks;
-import di.i4;
+import di.j4;
 import e5.n;
 import f6.d0;
 import fi.e7;
@@ -52,6 +52,7 @@ import fi.x9;
 import fi.y5;
 import fi.za;
 import gb.l0;
+import gb.v0;
 import j6.w;
 import java.io.File;
 import java.util.ArrayList;
@@ -67,21 +68,21 @@ import org.chromium.support_lib_boundary.WebViewProviderBoundaryInterface;
 import org.chromium.support_lib_boundary.WebViewProviderFactoryBoundaryInterface;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.telegram.ui.Components.co0;
-import org.telegram.ui.Components.et0;
-import org.telegram.ui.Components.hi0;
-import org.telegram.ui.Components.t51;
-import org.telegram.ui.n00;
+import org.telegram.ui.Components.do0;
+import org.telegram.ui.Components.gt0;
+import org.telegram.ui.Components.ii0;
+import org.telegram.ui.Components.u51;
+import org.telegram.ui.p00;
 import q4.q;
-import sg.v0;
+import sg.u0;
 import tg.r1;
-public final class i implements SuccessContinuation, h0, a0, androidx.activity.result.b, et0, ce.c, hi0, e0, c4.d, p, co0, n, og.n, v0, za, OnSuccessListener, ib.b {
-    public static i f8207c;
-    public final int f8208a;
-    public Object f8209b;
+public final class i implements SuccessContinuation, h0, a0, androidx.activity.result.b, gt0, ce.c, ii0, e0, c4.d, p, do0, n, og.n, u0, za, OnSuccessListener, ib.b {
+    public static i f8205c;
+    public final int f8206a;
+    public Object f8207b;
 
     public i(int i7, boolean z9) {
-        this.f8208a = i7;
+        this.f8206a = i7;
     }
 
     public static boolean l0(Bundle bundle) {
@@ -108,12 +109,12 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
 
     public static synchronized i q0(Context context) {
         synchronized (i.class) {
-            i iVar = f8207c;
+            i iVar = f8205c;
             if (iVar != null) {
                 return iVar;
             }
             i iVar2 = new i(context);
-            f8207c = iVar2;
+            f8205c = iVar2;
             return iVar2;
         }
     }
@@ -126,7 +127,7 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
     @Override
     public void C(float f10, int i7) {
         ArrayList arrayList;
-        y5 y5Var = (y5) this.f8209b;
+        y5 y5Var = (y5) this.f8207b;
         e7 e7Var = y5Var.d;
         if (e7Var != null && (arrayList = e7Var.T) != null && i7 >= 0 && i7 < arrayList.size()) {
             ((e7) y5Var.d.T.get(i7)).P = f10;
@@ -135,12 +136,12 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
 
     @Override
     public void C0() {
-        i4.h0((i4) this.f8209b);
+        j4.h0((j4) this.f8207b);
     }
 
     @Override
     public String[] D() {
-        return ((WebViewProviderFactoryBoundaryInterface) this.f8209b).getSupportedFeatures();
+        return ((WebViewProviderFactoryBoundaryInterface) this.f8207b).getSupportedFeatures();
     }
 
     @Override
@@ -150,20 +151,20 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
 
     @Override
     public void F(boolean z9) {
-        dd ddVar = (dd) this.f8209b;
+        dd ddVar = (dd) this.f8207b;
         te.a aVar = ddVar.Y;
         if (aVar != null) {
             aVar.a(z9, true);
         }
-        n00 n00Var = ddVar.f48198s;
-        if (n00Var != null) {
-            n00Var.invalidate();
+        p00 p00Var = ddVar.f48847s;
+        if (p00Var != null) {
+            p00Var.invalidate();
         }
     }
 
     @Override
     public void G(float f10) {
-        y5 y5Var = (y5) this.f8209b;
+        y5 y5Var = (y5) this.f8207b;
         e7 e7Var = y5Var.d;
         if (e7Var == null) {
             return;
@@ -179,7 +180,7 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
 
     @Override
     public void J(long j3) {
-        y5 y5Var = (y5) this.f8209b;
+        y5 y5Var = (y5) this.f8207b;
         e7 e7Var = y5Var.d;
         if (e7Var == null) {
             return;
@@ -192,7 +193,7 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
     @Override
     public void K(boolean z9) {
         r1 r1Var;
-        va vaVar = ((ja) ((y5) this.f8209b)).C0;
+        va vaVar = ((ja) ((y5) this.f8207b)).C0;
         x9 x9Var = vaVar.f13002v1;
         if (x9Var != null) {
             r1 r1Var2 = null;
@@ -238,7 +239,7 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
     @Override
     public void N(float f10, int i7) {
         ArrayList arrayList;
-        y5 y5Var = (y5) this.f8209b;
+        y5 y5Var = (y5) this.f8207b;
         e7 e7Var = y5Var.d;
         if (e7Var != null && (arrayList = e7Var.T) != null && i7 >= 0 && i7 < arrayList.size()) {
             ((e7) y5Var.d.T.get(i7)).V = f10;
@@ -247,7 +248,7 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
 
     @Override
     public void O(float f10) {
-        y5 y5Var = (y5) this.f8209b;
+        y5 y5Var = (y5) this.f8207b;
         e7 e7Var = y5Var.d;
         if (e7Var == null) {
             return;
@@ -259,7 +260,7 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
 
     @Override
     public void Q(float f10) {
-        y5 y5Var = (y5) this.f8209b;
+        y5 y5Var = (y5) this.f8207b;
         e7 e7Var = y5Var.d;
         if (e7Var == null) {
             return;
@@ -271,17 +272,17 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
 
     @Override
     public void R() {
-        g0 g0Var = (g0) this.f8209b;
-        for (com.google.android.gms.common.api.c cVar : g0Var.f6627f.values()) {
+        g0 g0Var = (g0) this.f8207b;
+        for (com.google.android.gms.common.api.c cVar : g0Var.f6625f.values()) {
             cVar.a();
         }
-        g0Var.f6634o.F = Collections.EMPTY_SET;
+        g0Var.f6632o.F = Collections.EMPTY_SET;
     }
 
     @Override
     public void S(float f10, int i7) {
         ArrayList arrayList;
-        y5 y5Var = (y5) this.f8209b;
+        y5 y5Var = (y5) this.f8207b;
         e7 e7Var = y5Var.d;
         if (e7Var != null && (arrayList = e7Var.T) != null && i7 >= 0 && i7 < arrayList.size()) {
             ((e7) y5Var.d.T.get(i7)).W = f10;
@@ -290,7 +291,7 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
 
     @Override
     public void T(float f10) {
-        e7 e7Var = ((y5) this.f8209b).d;
+        e7 e7Var = ((y5) this.f8207b).d;
         if (e7Var == null) {
             return;
         }
@@ -305,7 +306,7 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
 
     @Override
     public void V() {
-        ((y5) this.f8209b).q(null);
+        ((y5) this.f8207b).q(null);
     }
 
     @Override
@@ -315,33 +316,33 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
 
     @Override
     public void Y() {
-        x9 x9Var = (x9) this.f8209b;
+        x9 x9Var = (x9) this.f8207b;
         x9Var.m0.f55147a.f();
         x9Var.M0.setViewHidden(false);
     }
 
     @Override
     public float Y0() {
-        return jg.g.e(9.66f, oi.a.d(((dd) this.f8209b).f3709b0), 0);
+        return jg.g.e(9.66f, oi.a.d(((dd) this.f8207b).f3709b0), 0);
     }
 
     @Override
     public void a() {
-        g0 g0Var = (g0) this.f8209b;
-        Lock lock = g0Var.f6623a;
+        g0 g0Var = (g0) this.f8207b;
+        Lock lock = g0Var.f6621a;
         lock.lock();
         try {
-            g0Var.f6632m = new b0(g0Var, g0Var.f6629j, g0Var.f6630k, g0Var.d, g0Var.f6631l, lock, g0Var.f6625c);
-            g0Var.f6632m.R();
-            g0Var.f6624b.signalAll();
+            g0Var.f6630m = new b0(g0Var, g0Var.f6627j, g0Var.f6628k, g0Var.d, g0Var.f6629l, lock, g0Var.f6623c);
+            g0Var.f6630m.R();
+            g0Var.f6622b.signalAll();
         } finally {
-            g0Var.f6623a.unlock();
+            g0Var.f6621a.unlock();
         }
     }
 
     @Override
     public void a0(float f10) {
-        y5 y5Var = (y5) this.f8209b;
+        y5 y5Var = (y5) this.f8207b;
         e7 e7Var = y5Var.d;
         if (e7Var == null) {
             return;
@@ -353,21 +354,21 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
 
     @Override
     public void accept(Object obj, Object obj2) {
-        switch (this.f8208a) {
+        switch (this.f8206a) {
             case 17:
                 d8.d dVar = new d8.d(1, (TaskCompletionSource) obj2);
                 Parcel obtain = Parcel.obtain();
                 obtain.writeInterfaceToken("com.google.android.gms.recaptchabase.internal.IRecaptchaBaseService");
-                int i7 = d8.a.f8212a;
+                int i7 = d8.a.f8210a;
                 obtain.writeStrongBinder(dVar);
                 obtain.writeInt(1);
-                ((o8.c) this.f8209b).writeToParcel(obtain, 0);
+                ((o8.c) this.f8207b).writeToParcel(obtain, 0);
                 ((d8.c) ((d8.f) obj).n()).h1(obtain, 1);
                 return;
             default:
                 w wVar = (w) obj;
                 j6.f fVar = (j6.f) wVar.n();
-                d0 d0Var = ((f6.e0) this.f8209b).f11250l;
+                d0 d0Var = ((f6.e0) this.f8207b).f11250l;
                 Parcel p12 = fVar.p1();
                 t.d(p12, d0Var);
                 fVar.u1(p12, 18);
@@ -386,7 +387,7 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
     @Override
     public void b0(int i7, long j3) {
         ArrayList arrayList;
-        y5 y5Var = (y5) this.f8209b;
+        y5 y5Var = (y5) this.f8207b;
         e7 e7Var = y5Var.d;
         if (e7Var != null && (arrayList = e7Var.T) != null && i7 >= 0 && i7 < arrayList.size()) {
             ((e7) y5Var.d.T.get(i7)).X = j3;
@@ -395,7 +396,7 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
 
     @Override
     public WebViewProviderBoundaryInterface createWebView(WebView webView) {
-        return (WebViewProviderBoundaryInterface) af.b.a(WebViewProviderBoundaryInterface.class, ((WebViewProviderFactoryBoundaryInterface) this.f8209b).createWebView(webView));
+        return (WebViewProviderBoundaryInterface) af.b.a(WebViewProviderBoundaryInterface.class, ((WebViewProviderFactoryBoundaryInterface) this.f8207b).createWebView(webView));
     }
 
     @Override
@@ -408,8 +409,8 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
 
     @Override
     public void d0() {
-        x9 x9Var = (x9) this.f8209b;
-        if (x9Var.f12545s0 != null) {
+        x9 x9Var = (x9) this.f8207b;
+        if (x9Var.f12543s0 != null) {
             x9Var.A0(null, true);
         }
         x9Var.M0.setViewHidden(true);
@@ -417,7 +418,7 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
 
     @Override
     public void e(int i7) {
-        fi.e0 e0Var = ((y5) this.f8209b).E;
+        fi.e0 e0Var = ((y5) this.f8207b).E;
         if (e0Var != null) {
             ArrayList arrayList = e0Var.h;
             int size = arrayList.size();
@@ -437,7 +438,7 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
 
     @Override
     public void e0(long j3) {
-        y5 y5Var = (y5) this.f8209b;
+        y5 y5Var = (y5) this.f8207b;
         e7 e7Var = y5Var.d;
         if (e7Var == null) {
             return;
@@ -449,16 +450,16 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
 
     @Override
     public int e1() {
-        return ((dd) this.f8209b).f3710c0;
+        return ((dd) this.f8207b).f3710c0;
     }
 
     @Override
     public void f(Object obj) {
         Bundle extras;
-        switch (this.f8208a) {
+        switch (this.f8206a) {
             case 8:
                 androidx.activity.result.a aVar = (androidx.activity.result.a) obj;
-                i0 i0Var = (i0) this.f8209b;
+                i0 i0Var = (i0) this.f8207b;
                 androidx.fragment.app.e0 e0Var = (androidx.fragment.app.e0) i0Var.F.pollLast();
                 if (e0Var == null) {
                     Log.w("FragmentManager", "No Activities were started for result for " + this);
@@ -474,7 +475,7 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
                 o4.x(i7, aVar.f1858a, aVar.f1859b);
                 return;
             default:
-                ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f8209b;
+                ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f8207b;
                 androidx.activity.result.a aVar2 = (androidx.activity.result.a) obj;
                 proxyBillingActivityV2.getClass();
                 Intent intent = aVar2.f1859b;
@@ -498,12 +499,12 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
     }
 
     public SparseIntArray f0(long j3) {
-        return (SparseIntArray) ((a0.h) this.f8209b).f(j3);
+        return (SparseIntArray) ((a0.h) this.f8207b).f(j3);
     }
 
     @Override
     public void g(float f10) {
-        y5 y5Var = (y5) this.f8209b;
+        y5 y5Var = (y5) this.f8207b;
         e7 e7Var = y5Var.d;
         if (e7Var == null) {
             return;
@@ -523,17 +524,17 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
 
     @Override
     public Object mo24get() {
-        return new l0((gb.v0) ((ib.c) this.f8209b).mo24get());
+        return new l0((v0) ((ib.c) this.f8207b).mo24get());
     }
 
     @Override
     public StaticsBoundaryInterface getStatics() {
-        return (StaticsBoundaryInterface) af.b.a(StaticsBoundaryInterface.class, ((WebViewProviderFactoryBoundaryInterface) this.f8209b).getStatics());
+        return (StaticsBoundaryInterface) af.b.a(StaticsBoundaryInterface.class, ((WebViewProviderFactoryBoundaryInterface) this.f8207b).getStatics());
     }
 
     @Override
     public void h(float f10) {
-        y5 y5Var = (y5) this.f8209b;
+        y5 y5Var = (y5) this.f8207b;
         e7 e7Var = y5Var.d;
         if (e7Var == null) {
             return;
@@ -558,8 +559,8 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
 
     @Override
     public void i(View view, o0 o0Var, boolean z9, boolean z10) {
-        ch.r rVar = (ch.r) this.f8209b;
-        rVar.f6384a.Ab(null, rVar.f6387e, rVar.f6385b, view, 0.0f, 0.0f, o0Var, false, z9, z10, false);
+        ch.r rVar = (ch.r) this.f8207b;
+        rVar.f6382a.Db(null, rVar.f6385e, rVar.f6383b, view, 0.0f, 0.0f, o0Var, false, z9, z10, false);
         org.telegram.messenger.g0.h3(new ab(this, 8));
     }
 
@@ -578,20 +579,20 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
 
     @Override
     public void j(long j3, boolean z9) {
-        y5 y5Var = (y5) this.f8209b;
+        y5 y5Var = (y5) this.f8207b;
         if (!z9) {
             y5Var.m(j3);
             return;
         }
-        t51 t51Var = y5Var.f13169e;
-        if (t51Var != null) {
-            t51Var.q0(j3, true);
+        u51 u51Var = y5Var.f13169e;
+        if (u51Var != null) {
+            u51Var.q0(j3, true);
         } else if (y5Var.j()) {
             y5Var.E.m(j3, true);
         } else {
-            t51 t51Var2 = y5Var.D;
-            if (t51Var2 != null) {
-                t51Var2.q0(j3, false);
+            u51 u51Var2 = y5Var.D;
+            if (u51Var2 != null) {
+                u51Var2.q0(j3, false);
             }
         }
     }
@@ -646,7 +647,7 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
 
     public String k0(String str) {
         String replace;
-        Bundle bundle = (Bundle) this.f8209b;
+        Bundle bundle = (Bundle) this.f8207b;
         if (!bundle.containsKey(str) && str.startsWith("gcm.n.")) {
             if (!str.startsWith("gcm.n.")) {
                 replace = str;
@@ -662,7 +663,7 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
 
     @Override
     public void l(ai.i0 i0Var) {
-        s0 s0Var = (s0) this.f8209b;
+        s0 s0Var = (s0) this.f8207b;
         FrameLayout frameLayout = s0Var.f1622f;
         if (frameLayout != null) {
             frameLayout.removeView(i0Var);
@@ -678,14 +679,14 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
 
     @Override
     public void m(String str) {
-        s0 s0Var = (s0) this.f8209b;
+        s0 s0Var = (s0) this.f8207b;
         if (s0Var.getParentActivity() != null) {
             vf.c.t(s0Var.getParentActivity(), str);
         }
     }
 
     public Bundle m0() {
-        Bundle bundle = (Bundle) this.f8209b;
+        Bundle bundle = (Bundle) this.f8207b;
         Bundle bundle2 = new Bundle(bundle);
         for (String str : bundle.keySet()) {
             if (!str.startsWith("google.c.a.") && !str.equals("from")) {
@@ -697,7 +698,7 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
 
     @Override
     public void o() {
-        ec ecVar = ((x9) this.f8209b).f12557y0;
+        ec ecVar = ((x9) this.f8207b).f12555y0;
         if (ecVar != null) {
             ecVar.invalidate();
         }
@@ -705,34 +706,34 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
 
     @Override
     public void onSuccess(Object obj) {
-        ((g6.a) this.f8209b).getClass();
+        ((g6.a) this.f8207b).getClass();
         l8.a("com.google.android.gms.cast.MAP_CAST_STATUS_CODES_TO_CAST_REASON_CODES", (Bundle) obj);
     }
 
     @Override
     public void p() {
-        x9 x9Var = (x9) this.f8209b;
+        x9 x9Var = (x9) this.f8207b;
         if (x9Var.L0) {
             x9Var.L0 = false;
             return;
         }
         x9Var.T0.b(1);
-        x9Var.w((sg.h) sg.h.f55060a.get(0));
+        x9Var.w((sg.h) sg.h.f55074a.get(0));
     }
 
     public synchronized void p0() {
         synchronized (this) {
-            b bVar = (b) this.f8209b;
-            ReentrantLock reentrantLock = bVar.f8190a;
+            b bVar = (b) this.f8207b;
+            ReentrantLock reentrantLock = bVar.f8188a;
             reentrantLock.lock();
-            bVar.f8191b.edit().clear().apply();
+            bVar.f8189b.edit().clear().apply();
             reentrantLock.unlock();
         }
     }
 
     @Override
     public void r() {
-        y5 y5Var = (y5) this.f8209b;
+        y5 y5Var = (y5) this.f8207b;
         y5Var.s(null, null, true);
         va vaVar = ((ja) y5Var).C0;
         ja jaVar = vaVar.X0;
@@ -770,20 +771,20 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
     @Override
     public List s(long j3) {
         if (j3 >= 0) {
-            return (List) this.f8209b;
+            return (List) this.f8207b;
         }
         return Collections.EMPTY_LIST;
     }
 
     @Override
     public void t(boolean z9, float f10) {
-        y5 y5Var = (y5) this.f8209b;
+        y5 y5Var = (y5) this.f8207b;
         e7 e7Var = y5Var.d;
         if (e7Var != null) {
             e7Var.Z = f10;
             e7Var.f11897j = true;
-            t51 t51Var = y5Var.f13169e;
-            if (t51Var != null && t51Var.U() != -9223372036854775807L) {
+            u51 u51Var = y5Var.f13169e;
+            if (u51Var != null && u51Var.U() != -9223372036854775807L) {
                 y5Var.m(f10 * ((float) y5Var.f13169e.U()));
             }
         }
@@ -792,13 +793,13 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
     @Override
     public Task then(Object obj) {
         ia.b bVar = (ia.b) obj;
-        q qVar = (q) this.f8209b;
+        q qVar = (q) this.f8207b;
         if (bVar == null) {
             Log.w("FirebaseCrashlytics", "Received null app settings at app startup. Cannot send cached reports", null);
             return Tasks.forResult(null);
         }
-        aa.q qVar2 = (aa.q) qVar.f53805c;
-        aa.q.b((aa.q) qVar.f53805c);
+        aa.q qVar2 = (aa.q) qVar.f53817c;
+        aa.q.b((aa.q) qVar.f53817c);
         qVar2.f844m.h(null, qVar2.f837e.f3135a);
         qVar2.f848q.trySetResult(null);
         return Tasks.forResult(null);
@@ -806,7 +807,7 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
 
     @Override
     public void u(float f10) {
-        y5 y5Var = (y5) this.f8209b;
+        y5 y5Var = (y5) this.f8207b;
         e7 e7Var = y5Var.d;
         if (e7Var == null) {
             return;
@@ -823,12 +824,12 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
 
     @Override
     public void w() {
-        ((j0) this.f8209b).d.invalidate();
+        ((j0) this.f8207b).d.invalidate();
     }
 
     @Override
     public void x(boolean z9) {
-        y5 y5Var = (y5) this.f8209b;
+        y5 y5Var = (y5) this.f8207b;
         if (y5Var.j()) {
             y5Var.E.getClass();
         }
@@ -843,8 +844,8 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
     @Override
     public boolean z() {
         boolean z9;
-        x9 x9Var = (x9) this.f8209b;
-        if (x9Var.f12545s0 == null) {
+        x9 x9Var = (x9) this.f8207b;
+        if (x9Var.f12543s0 == null) {
             z9 = true;
         } else {
             z9 = false;
@@ -856,15 +857,15 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
     }
 
     public i(Object obj, int i7) {
-        this.f8208a = i7;
-        this.f8209b = obj;
+        this.f8206a = i7;
+        this.f8207b = obj;
     }
 
     public i(Context context) {
         String e10;
-        this.f8208a = 0;
+        this.f8206a = 0;
         b a10 = b.a(context);
-        this.f8209b = a10;
+        this.f8207b = a10;
         a10.b();
         String e11 = a10.e("defaultGoogleSignInAccount");
         if (TextUtils.isEmpty(e11) || (e10 = a10.e(b.f("googleSignInOptions", e11))) == null) {
@@ -877,25 +878,25 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
     }
 
     public i(int i7) {
-        this.f8208a = i7;
+        this.f8206a = i7;
         switch (i7) {
             case 10:
-                this.f8209b = new a0.h();
+                this.f8207b = new a0.h();
                 return;
             default:
-                this.f8209b = new LinkedHashMap(0, 0.75f, true);
+                this.f8207b = new LinkedHashMap(0, 0.75f, true);
                 return;
         }
     }
 
     public i(Bundle bundle) {
-        this.f8208a = 3;
-        this.f8209b = new Bundle(bundle);
+        this.f8206a = 3;
+        this.f8207b = new Bundle(bundle);
     }
 
     public i(rd.p pVar) {
-        this.f8208a = 12;
-        this.f8209b = (kd.j) pVar;
+        this.f8206a = 12;
+        this.f8207b = (kd.j) pVar;
     }
 
     @Override

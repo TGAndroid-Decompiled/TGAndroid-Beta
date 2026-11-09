@@ -21,20 +21,20 @@ import org.telegram.messenger.a8;
 import org.telegram.messenger.camera.q;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.id;
-import org.telegram.ui.ActionBar.a6;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.n6;
-import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.o6;
+import org.telegram.ui.ActionBar.s6;
 import org.telegram.ui.Components.l9;
 import org.telegram.ui.Components.wp;
-public final class h extends FrameLayout implements a6 {
+public final class h extends FrameLayout implements b6 {
     public static final int H = 0;
     public int D;
     public e E;
     public long F;
     public long G;
-    public final f6 f17087a;
+    public final g6 f17087a;
     public final int f17088b;
     public final l9 f17089c;
     public final TextView d;
@@ -48,17 +48,17 @@ public final class h extends FrameLayout implements a6 {
     public final fh.g f17096x;
     public boolean f17097y;
 
-    public h(int i7, Context context, f6 f6Var) {
+    public h(int i7, Context context, g6 g6Var) {
         super(context);
         dh.c cVar;
-        this.D = r6.f28479b;
-        this.f17087a = f6Var;
+        this.D = s6.f28501b;
+        this.f17087a = g6Var;
         this.f17088b = i7;
         if (Build.VERSION.SDK_INT >= 31) {
             ri.f fVar = new ri.f(null);
             this.f17095w = fVar;
             fVar.m(g0.L(7.0f), o0.a());
-            fVar.f54574n = true;
+            fVar.f54586n = true;
             cVar = new dh.c(fVar, fVar, fVar);
         } else {
             this.f17095w = null;
@@ -73,7 +73,7 @@ public final class h extends FrameLayout implements a6 {
         addView(l9Var, ha.d(52, 52.0f, 51, 11.0f, 9.0f, 0.0f, 0.0f));
         wp wpVar = new wp(2131231978, 0);
         this.f17094s = wpVar;
-        wpVar.f40020r = g0.L(2.0f);
+        wpVar.f40120r = g0.L(2.0f);
         TextView textView = new TextView(context);
         this.d = textView;
         textView.setTypeface(g0.o());
@@ -85,7 +85,7 @@ public final class h extends FrameLayout implements a6 {
         frameLayout.addView(textView, ha.e(-2, -1, 81));
         addView(frameLayout, ha.n(14.33f, 52, 48, 11, 48, 0, 0));
         fh.g c10 = cVar.c(textView, null, false);
-        gh.e eVar = new gh.e(f6Var);
+        gh.e eVar = new gh.e(g6Var);
         eVar.f13971e = new g2.c(15);
         eVar.f(1627389951, 1358954495);
         eVar.e(603979776, 603979776);
@@ -234,11 +234,11 @@ public final class h extends FrameLayout implements a6 {
         this.f17092n = f10;
         f10.setTextSize(1, 13.0f);
         int L = g0.L(12.0f);
-        int i10 = k6.D6;
-        ShapeDrawable d02 = k6.d0(L, k6.r1(0.14f, k6.w0(i10, f6Var)));
-        n6 L2 = r6.L(0.14f, i10);
+        int i10 = l6.D6;
+        ShapeDrawable d02 = l6.d0(L, l6.r1(0.14f, l6.w0(i10, g6Var)));
+        o6 K = s6.K(0.14f, i10);
         f10.setBackground(d02);
-        r6.k(f10, d02, L2, null, f6Var);
+        s6.j(f10, d02, K, null, g6Var);
         f10.setPadding(g0.L(4.0f), g0.L(1.0f), g0.L(8.0f), g0.L(1.66f));
         f10.setSingleLine(true);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
@@ -251,22 +251,22 @@ public final class h extends FrameLayout implements a6 {
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(0);
         linearLayout2.setClipChildren(false);
-        fi.d dVar = new fi.d(context, f6Var, true);
+        fi.d dVar = new fi.d(context, g6Var, true);
         this.f17093r = dVar;
         dVar.setUseWrapContent(true);
         dVar.setPadding(g0.L(15.0f), 0, g0.L(15.0f), 0);
         dVar.f();
         dVar.e();
-        int i11 = k6.f28262z6;
-        dVar.setColor(k6.r1(0.14f, k6.w0(i11, f6Var)));
-        dVar.setTextColor(k6.x0(null, k6.G6, false));
+        int i11 = l6.f28275z6;
+        dVar.setColor(l6.r1(0.14f, l6.w0(i11, g6Var)));
+        dVar.setTextColor(l6.x0(null, l6.G6, false));
         if (dVar.getBackground() != null) {
             Drawable background = dVar.getBackground();
-            n6 L3 = r6.L(0.14f, i11);
+            o6 K2 = s6.K(0.14f, i11);
             dVar.setBackground(background);
-            r6.k(dVar, background, L3, null, f6Var);
+            s6.j(dVar, background, K2, null, g6Var);
         }
-        dVar.i(id.M0(2131751605, null), false, true);
+        dVar.i(id.M0(2131751604, null), false, true);
         dVar.setOnClickListener(new View.OnClickListener(this) {
             public final h f17082b;
 
@@ -323,7 +323,7 @@ public final class h extends FrameLayout implements a6 {
             }
         });
         linearLayout2.addView(dVar, ha.q(-2, 30, 0.0f, 16, 0, 0, 4, 0));
-        fi.d dVar2 = new fi.d(context, f6Var, true);
+        fi.d dVar2 = new fi.d(context, g6Var, true);
         dVar2.setUseWrapContent(true);
         dVar2.setPadding(g0.L(15.0f), 0, g0.L(15.0f), 0);
         dVar2.f();
@@ -391,20 +391,20 @@ public final class h extends FrameLayout implements a6 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(k6.G6));
+        hashSet.add(Integer.valueOf(l6.G6));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
         int i7 = this.D;
-        int i10 = r6.f28479b;
+        int i10 = s6.f28501b;
         if (i7 != i10) {
             this.D = i10;
             try {
                 fi.d dVar = this.f17093r;
                 if (dVar != null) {
-                    dVar.setTextColor(k6.x0(null, k6.G6, false));
+                    dVar.setTextColor(l6.x0(null, l6.G6, false));
                 }
             } catch (Exception e10) {
                 a8.g(e10, true);
@@ -412,7 +412,7 @@ public final class h extends FrameLayout implements a6 {
         }
         if (this.f17097y) {
             canvas2 = canvas;
-            canvas2.drawLine(g0.L(76.0f), getHeight() - 1, getMeasuredWidth(), getHeight() - 1, k6.f27975k0);
+            canvas2.drawLine(g0.L(76.0f), getHeight() - 1, getMeasuredWidth(), getHeight() - 1, l6.f27988k0);
         } else {
             canvas2 = canvas;
         }
@@ -430,7 +430,7 @@ public final class h extends FrameLayout implements a6 {
             int L2 = (L * 2) + g0.L(52.0f);
             RecordingCanvas i7 = fVar.i(L2, L2);
             i7.translate(-left, -top);
-            i7.drawColor(k6.w0(k6.f27852d6, this.f17087a));
+            i7.drawColor(l6.w0(l6.f27865d6, this.f17087a));
             i7.save();
             float f10 = L2 / 2.0f;
             i7.scale(1.125f, 1.125f, f10, f10);
@@ -451,11 +451,11 @@ public final class h extends FrameLayout implements a6 {
 
     @Override
     public final void updateColors() {
-        int i7 = k6.G6;
-        f6 f6Var = this.f17087a;
-        this.f17091f.setTextColor(k6.w0(i7, f6Var));
-        int i10 = k6.f28262z6;
-        this.h.setTextColor(k6.w0(i10, f6Var));
-        this.f17092n.setTextColor(k6.w0(i10, f6Var));
+        int i7 = l6.G6;
+        g6 g6Var = this.f17087a;
+        this.f17091f.setTextColor(l6.w0(i7, g6Var));
+        int i10 = l6.f28275z6;
+        this.h.setTextColor(l6.w0(i10, g6Var));
+        this.f17092n.setTextColor(l6.w0(i10, g6Var));
     }
 }

@@ -3,37 +3,37 @@ package org.telegram.ui.Components;
 import android.view.View;
 import android.widget.FrameLayout;
 public abstract class yc extends FrameLayout {
-    public bi.e5 f40645a;
-    public wc f40646b;
-    public boolean f40647c;
+    public bi.e5 f40697a;
+    public wc f40698b;
+    public boolean f40699c;
 
     public final void a(wc wcVar, FrameLayout.LayoutParams layoutParams) {
-        if (this.f40646b == null) {
-            this.f40646b = wcVar;
+        if (this.f40698b == null) {
+            this.f40698b = wcVar;
             wcVar.setVisibility(8);
             addView(wcVar, layoutParams);
         }
     }
 
     public final void b(bi.e5 e5Var, FrameLayout.LayoutParams layoutParams) {
-        if (this.f40645a == null) {
-            this.f40645a = e5Var;
+        if (this.f40697a == null) {
+            this.f40697a = e5Var;
             addView(e5Var, layoutParams);
         }
     }
 
     public wc getEditView() {
-        return this.f40646b;
+        return this.f40698b;
     }
 
     public View getReplyView() {
-        return this.f40645a;
+        return this.f40697a;
     }
 
     public void setEditMode(boolean z9) {
         int i7;
-        this.f40647c = z9;
-        bi.e5 e5Var = this.f40645a;
+        this.f40699c = z9;
+        bi.e5 e5Var = this.f40697a;
         int i10 = 0;
         if (z9) {
             i7 = 8;
@@ -41,7 +41,7 @@ public abstract class yc extends FrameLayout {
             i7 = 0;
         }
         e5Var.setVisibility(i7);
-        wc wcVar = this.f40646b;
+        wc wcVar = this.f40698b;
         if (!z9) {
             i10 = 8;
         }
@@ -51,9 +51,9 @@ public abstract class yc extends FrameLayout {
     public void setEditSuggestionMode(boolean z9) {
         setEditMode(z9);
         if (z9) {
-            this.f40645a.setVisibility(0);
+            this.f40697a.setVisibility(0);
         }
-        this.f40646b.f39909a[0].setOnlyIconMode(z9);
-        this.f40646b.f39909a[1].setOnlyIconMode(z9);
+        this.f40698b.f40033a[0].setOnlyIconMode(z9);
+        this.f40698b.f40033a[1].setOnlyIconMode(z9);
     }
 }

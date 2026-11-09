@@ -2,12 +2,12 @@ package org.telegram.ui;
 
 import android.content.DialogInterface;
 public final class k4 implements DialogInterface.OnClickListener {
-    public final int f47097a;
-    public final Object f47098b;
+    public final int f47191a;
+    public final Object f47192b;
 
     public k4(Object obj, int i7) {
-        this.f47097a = i7;
-        this.f47098b = obj;
+        this.f47191a = i7;
+        this.f47192b = obj;
     }
 
     @Override
@@ -15,37 +15,37 @@ public final class k4 implements DialogInterface.OnClickListener {
         vi.f fVar;
         String str;
         int i10 = 0;
-        switch (this.f47097a) {
+        switch (this.f47191a) {
             case 0:
-                xy0 xy0Var = (xy0) this.f47098b;
-                xy0Var.getClass();
-                xi.b bVar = xi.e.f58859c;
+                az0 az0Var = (az0) this.f47192b;
+                az0Var.getClass();
+                xi.b bVar = xi.e.f58868c;
                 if (i7 == 0) {
-                    fVar = vi.f.f57534a;
+                    fVar = vi.f.f57546a;
                 } else {
-                    fVar = vi.f.f57535b;
+                    fVar = vi.f.f57547b;
                 }
                 bVar.b(fVar);
-                ((l4) xy0Var.f52010c).g(2);
+                ((l4) az0Var.f43839c).g(2);
                 return;
             case 1:
-                ww wwVar = (ww) this.f47098b;
+                yw ywVar = (yw) this.f47192b;
                 if (i7 == 0) {
-                    org.telegram.messenger.yr messagesStorage = wwVar.getMessagesStorage();
+                    org.telegram.messenger.yr messagesStorage = ywVar.getMessagesStorage();
                     messagesStorage.f26719a.c(new org.telegram.messenger.tp(messagesStorage, 1, 3));
                     return;
-                } else if (i7 != 1 || wwVar.f51556e0 == null) {
+                } else if (i7 != 1 || ywVar.f52231e0 == null) {
                     return;
                 } else {
                     while (true) {
-                        vw[] vwVarArr = wwVar.f51556e0;
-                        if (i10 < vwVarArr.length) {
-                            vw vwVar = vwVarArr[i10];
-                            if (vwVar.f50789s == 0 && vwVar.getVisibility() == 0) {
-                                org.telegram.ui.Cells.t2 c42 = ww.c4(wwVar.f51556e0[i10]);
-                                sw swVar = wwVar.f51556e0[i10].f50782a;
-                                int i11 = sw.B3;
-                                swVar.C1(true, c42);
+                        xw[] xwVarArr = ywVar.f52231e0;
+                        if (i10 < xwVarArr.length) {
+                            xw xwVar = xwVarArr[i10];
+                            if (xwVar.f51779s == 0 && xwVar.getVisibility() == 0) {
+                                org.telegram.ui.Cells.t2 c42 = yw.c4(ywVar.f52231e0[i10]);
+                                uw uwVar = ywVar.f52231e0[i10].f51772a;
+                                int i11 = uw.B3;
+                                uwVar.C1(true, c42);
                             }
                             i10++;
                         } else {
@@ -55,11 +55,11 @@ public final class k4 implements DialogInterface.OnClickListener {
                 }
                 break;
             case 2:
-                be0 be0Var = (be0) this.f47098b;
+                de0 de0Var = (de0) this.f47192b;
                 if (i7 == 0) {
                     org.telegram.messenger.r2.f25212a = !org.telegram.messenger.r2.f25212a;
                     org.telegram.messenger.t0.f25566b.getSharedPreferences("systemConfig", 0).edit().putBoolean("logsEnabled", org.telegram.messenger.r2.f25212a).commit();
-                    org.telegram.ui.Components.hc a02 = org.telegram.ui.Components.hc.a0(be0Var.f44304g0);
+                    org.telegram.ui.Components.hc a02 = org.telegram.ui.Components.hc.a0(de0Var.f44935g0);
                     if (org.telegram.messenger.r2.f25212a) {
                         str = "Logs enabled.";
                     } else {
@@ -78,20 +78,20 @@ public final class k4 implements DialogInterface.OnClickListener {
                     }
                     return;
                 }
-                ProfileActivity.V4(be0Var.f44304g0.getParentActivity(), false);
+                ProfileActivity.Y4(de0Var.f44935g0.getParentActivity(), false);
                 return;
             default:
-                bk0 bk0Var = (bk0) this.f47098b;
+                dk0 dk0Var = (dk0) this.f47192b;
                 if (i7 == 0) {
-                    bk0Var.f44414x = "male";
-                    bk0Var.Y[4].setText(org.telegram.messenger.id.M0(2131747509, null));
+                    dk0Var.f45043x = "male";
+                    dk0Var.Y[4].setText(org.telegram.messenger.id.M0(2131747508, null));
                     return;
                 } else if (i7 == 1) {
-                    bk0Var.f44414x = "female";
-                    bk0Var.Y[4].setText(org.telegram.messenger.id.M0(2131747570, null));
+                    dk0Var.f45043x = "female";
+                    dk0Var.Y[4].setText(org.telegram.messenger.id.M0(2131747569, null));
                     return;
                 } else {
-                    bk0Var.getClass();
+                    dk0Var.getClass();
                     return;
                 }
         }

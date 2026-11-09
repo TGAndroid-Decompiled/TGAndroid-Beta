@@ -74,7 +74,7 @@ public final class q extends View {
             float width2 = getWidth() / 2.0f;
             float height = getHeight() / 2.0f;
             i5 i5Var = this.f1600b;
-            if (i5Var == null || (z2Var = i5Var.f34541k) == null || !z2Var.I()) {
+            if (i5Var == null || (z2Var = i5Var.f34568k) == null || !z2Var.I()) {
                 canvas.drawCircle(width2, height, 0.42f * width, this.f1601c);
             }
             i5 i5Var2 = this.f1600b;

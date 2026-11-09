@@ -13,11 +13,11 @@ import android.graphics.SweepGradient;
 import android.os.Build;
 import android.text.StaticLayout;
 import org.telegram.messenger.iz;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.l6;
 import org.telegram.ui.Cells.q1;
-import org.telegram.ui.Components.a80;
+import org.telegram.ui.Components.b80;
 import org.telegram.ui.Components.ic;
-import org.telegram.ui.Components.ua0;
+import org.telegram.ui.Components.va0;
 public final class n1 {
     public static float f1584i;
     public static float f1585j;
@@ -197,31 +197,31 @@ public final class n1 {
             ((org.telegram.ui.Cells.y) this.f1589e).draw(canvas);
         }
         if (z9) {
-            a80 a80Var = (a80) this.h;
-            if (a80Var == null) {
-                a80 a80Var2 = new a80();
-                this.h = a80Var2;
-                a80Var2.D = true;
-            } else if (a80Var.c() || ((a80) this.h).d()) {
-                a80 a80Var3 = (a80) this.h;
-                a80Var3.f31732b = -1L;
-                a80Var3.f31733c = -1L;
+            b80 b80Var = (b80) this.h;
+            if (b80Var == null) {
+                b80 b80Var2 = new b80();
+                this.h = b80Var2;
+                b80Var2.D = true;
+            } else if (b80Var.c() || ((b80) this.h).d()) {
+                b80 b80Var3 = (b80) this.h;
+                b80Var3.f32167b = -1L;
+                b80Var3.f32168c = -1L;
             }
         } else {
-            a80 a80Var4 = (a80) this.h;
-            if (a80Var4 != null && !a80Var4.d() && !((a80) this.h).c()) {
-                ((a80) this.h).a();
+            b80 b80Var4 = (b80) this.h;
+            if (b80Var4 != null && !b80Var4.d() && !((b80) this.h).c()) {
+                ((b80) this.h).a();
             }
         }
         canvas.restore();
-        a80 a80Var5 = (a80) this.h;
-        if (a80Var5 != null && !a80Var5.c()) {
-            a80 a80Var6 = (a80) this.h;
-            a80Var6.f31752y = path;
-            a80Var6.g(k6.r1(0.7f, this.f1586a), k6.r1(1.3f, this.f1586a), k6.r1(1.5f, this.f1586a), k6.r1(2.0f, this.f1586a));
-            ((a80) this.h).setBounds(rect);
+        b80 b80Var5 = (b80) this.h;
+        if (b80Var5 != null && !b80Var5.c()) {
+            b80 b80Var6 = (b80) this.h;
+            b80Var6.f32187y = path;
+            b80Var6.g(l6.r1(0.7f, this.f1586a), l6.r1(1.3f, this.f1586a), l6.r1(1.5f, this.f1586a), l6.r1(2.0f, this.f1586a));
+            ((b80) this.h).setBounds(rect);
             canvas.save();
-            ((a80) this.h).draw(canvas);
+            ((b80) this.h).draw(canvas);
             canvas.restore();
             ((q1) this.f1587b).invalidate();
         }
@@ -232,7 +232,7 @@ public final class n1 {
         float f10;
         float L;
         RectF rectF = (RectF) this.f1591g;
-        int textSize = (((int) k6.X2.getTextSize()) * 2) + org.telegram.messenger.g0.L(4.0f);
+        int textSize = (((int) l6.X2.getTextSize()) * 2) + org.telegram.messenger.g0.L(4.0f);
         float max = Math.max(0, Math.min(6, iz.Y0) - 1);
         float min = Math.min(9, iz.Y0);
         float min2 = Math.min(3, iz.Y0);
@@ -301,9 +301,9 @@ public final class n1 {
         if (this.f1586a != i7) {
             org.telegram.ui.Cells.y yVar = (org.telegram.ui.Cells.y) this.f1589e;
             if (yVar == null) {
-                this.f1589e = k6.h0(i7, 2, -1);
+                this.f1589e = l6.h0(i7, 2, -1);
             } else {
-                k6.H1(yVar, i7, true);
+                l6.H1(yVar, i7, true);
             }
             ((org.telegram.ui.Cells.y) this.f1589e).setCallback((q1) this.f1587b);
             this.f1586a = i7;
@@ -332,9 +332,9 @@ public final class n1 {
                 Paint paint = new Paint();
                 this.f1587b = paint;
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                this.f1588c = new ua0(tileMode);
-                this.d = new ua0(tileMode);
-                this.f1589e = new ua0(Shader.TileMode.REPEAT);
+                this.f1588c = new va0(tileMode);
+                this.d = new va0(tileMode);
+                this.f1589e = new va0(Shader.TileMode.REPEAT);
                 this.f1590f = new Object();
                 this.f1591g = new Object();
                 this.h = new float[4];

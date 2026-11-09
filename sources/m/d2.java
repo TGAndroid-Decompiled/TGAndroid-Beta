@@ -38,25 +38,25 @@ public final class d2 implements View.OnTouchListener {
             case 1:
                 hx hxVar = (hx) this.f19080b;
                 if (motionEvent.getAction() == 0) {
-                    hxVar.F.f34408f = true;
+                    hxVar.F.f34423f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    hxVar.F.f34408f = false;
+                    hxVar.F.f34423f = false;
                 }
                 return false;
             case 2:
                 ux uxVar = (ux) this.f19080b;
                 if (motionEvent.getAction() == 0) {
-                    uxVar.G.f34408f = true;
+                    uxVar.G.f34423f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    uxVar.G.f34408f = false;
+                    uxVar.G.f34423f = false;
                 }
                 return false;
             default:
                 cy cyVar = (cy) this.f19080b;
                 if (motionEvent.getAction() == 0) {
-                    cyVar.Q.f34408f = true;
+                    cyVar.Q.f34423f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    cyVar.Q.f34408f = false;
+                    cyVar.Q.f34423f = false;
                 }
                 return false;
         }

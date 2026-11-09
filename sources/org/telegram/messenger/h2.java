@@ -16,7 +16,7 @@ import android.os.Build;
 import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebView;
-import org.telegram.ui.Components.my0;
+import org.telegram.ui.Components.ny0;
 public final class h2 extends View {
     public final RectF D;
     public final RectF E;
@@ -31,10 +31,10 @@ public final class h2 extends View {
     public final org.telegram.ui.Components.w5 N;
     public boolean O;
     public final org.telegram.ui.Components.w5 P;
-    public final my0 Q;
-    public final my0 R;
+    public final ny0 Q;
+    public final ny0 R;
     public final h6.m S;
-    public my0 T;
+    public ny0 T;
     public Drawable U;
     public Drawable V;
     public RenderNode W;
@@ -95,8 +95,8 @@ public final class h2 extends View {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
-        this.Q = new my0(id.M0(2131753063, null), 13.0f, g0.o());
-        this.R = new my0(id.M0(2131753062, null), 13.0f, g0.o());
+        this.Q = new ny0(id.M0(2131753063, null), 13.0f, g0.o());
+        this.R = new ny0(id.M0(2131753062, null), 13.0f, g0.o());
         paint2.setPathEffect(new CornerPathEffect(g0.L(1.0f)));
         path.rewind();
         path.moveTo(-g0.N(1.33f), g0.N(0.16f));
@@ -178,12 +178,12 @@ public final class h2 extends View {
         float d = this.L.d(this.K);
         float d2 = this.N.d(this.M);
         float L4 = (rectF2.left - g0.L(18.0f)) - (rectF.left + g0.L(38.0f));
-        my0 my0Var = this.T;
-        if (my0Var == null) {
+        ny0 ny0Var = this.T;
+        if (ny0Var == null) {
             f10 = 18.0f;
             L = 0.0f;
         } else {
-            float f21 = my0Var.f36147c;
+            float f21 = ny0Var.f36541c;
             f10 = 18.0f;
             if (this.U != null) {
                 f11 = 30.0f;
@@ -193,7 +193,7 @@ public final class h2 extends View {
             L = f21 + g0.L(f11);
         }
         float min = Math.min(L4, L);
-        float T1 = g0.T1(g0.T1(this.R.f36147c, this.Q.f36147c, d) + g0.L(12.0f), min, d2);
+        float T1 = g0.T1(g0.T1(this.R.f36541c, this.Q.f36541c, d) + g0.L(12.0f), min, d2);
         RectF rectF5 = this.f22807n;
         rectF5.set(rectF.left + g0.L(8.0f), rectF.top + g0.L(8.0f), rectF.left + g0.L(38.0f) + T1, rectF.top + g0.L(38.0f));
         float f22 = rectF5.left;
@@ -225,11 +225,11 @@ public final class h2 extends View {
             canvas.translate(g0.L(8.0f), 0.0f);
             canvas.drawRenderNode(this.W);
             canvas.restore();
-            paint3.setColor(org.telegram.ui.ActionBar.k6.r1(0.22f, -16777216));
+            paint3.setColor(org.telegram.ui.ActionBar.l6.r1(0.22f, -16777216));
             canvas.drawPaint(paint3);
             canvas.restore();
         } else {
-            paint3.setColor(org.telegram.ui.ActionBar.k6.r1(0.35f, -16777216));
+            paint3.setColor(org.telegram.ui.ActionBar.l6.r1(0.35f, -16777216));
             canvas.drawPath(path, paint3);
         }
         canvas.save();
@@ -252,16 +252,16 @@ public final class h2 extends View {
         if (d2 > 0.0f && this.T != null) {
             canvas2.save();
             canvas2.translate(com.google.android.recaptcha.internal.a.v(1.0f, d2, min, rectF5.left + g0.L(30.0f)), rectF5.centerY());
-            my0 my0Var2 = this.T;
+            ny0 ny0Var2 = this.T;
             float f25 = rectF5.right;
             if (this.U != null) {
                 f14 = 30.0f;
             } else {
                 f14 = 12.0f;
             }
-            my0Var2.f36158p = ((f25 - g0.L(f14)) - (rectF5.left + g0.L(30.0f))) + 2.0f;
+            ny0Var2.f36552p = ((f25 - g0.L(f14)) - (rectF5.left + g0.L(30.0f))) + 2.0f;
             f13 = 1.0f;
-            my0Var2.c(0.0f, 0.0f, d2, -1, canvas);
+            ny0Var2.c(0.0f, 0.0f, d2, -1, canvas);
             f12 = d2;
             canvas2 = canvas;
             canvas2.translate(this.T.k() + g0.L(5.0f), 0.0f);
@@ -325,7 +325,7 @@ public final class h2 extends View {
             canvas.translate(-g0.N(8.166f), g0.N(3.5f));
             float f28 = (d10 * 0.5f) + 0.5f;
             canvas.scale(f28, f28);
-            int r12 = org.telegram.ui.ActionBar.k6.r1(0.4f, -1);
+            int r12 = org.telegram.ui.ActionBar.l6.r1(0.4f, -1);
             Paint paint4 = this.f22802e;
             paint4.setColor(r12);
             Path path2 = this.f22804f;
@@ -334,13 +334,13 @@ public final class h2 extends View {
             float f29 = 0.5f + currentTimeMillis;
             canvas.save();
             canvas.clipRect(-g0.L(5.0f), g0.T1(-g0.N(3.5f), g0.N(3.5f), currentTimeMillis), g0.L(5.0f), g0.T1(-g0.N(3.5f), g0.N(3.5f), f29));
-            paint4.setColor(org.telegram.ui.ActionBar.k6.r1(f13, -1));
+            paint4.setColor(org.telegram.ui.ActionBar.l6.r1(f13, -1));
             canvas.drawPath(path2, paint4);
             canvas.restore();
             if (f29 > f13) {
                 canvas.save();
                 canvas.clipRect(-g0.L(5.0f), g0.T1(-g0.N(3.5f), g0.N(3.5f), 0.0f), g0.L(5.0f), g0.T1(-g0.N(3.5f), g0.N(3.5f), f29 - f13));
-                paint4.setColor(org.telegram.ui.ActionBar.k6.r1(f13, -1));
+                paint4.setColor(org.telegram.ui.ActionBar.l6.r1(f13, -1));
                 canvas.drawPath(path2, paint4);
                 canvas.restore();
             }

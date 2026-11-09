@@ -15,14 +15,14 @@ import org.telegram.messenger.camera.q;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.id;
 import org.telegram.messenger.k5;
-import org.telegram.ui.ActionBar.a6;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.da0;
-public final class j extends LinearLayout implements a6 {
-    public final f6 f17099a;
-    public final da0 f17100b;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.s6;
+import org.telegram.ui.Components.ea0;
+public final class j extends LinearLayout implements b6 {
+    public final g6 f17099a;
+    public final ea0 f17100b;
     public final FrameLayout f17101c;
     public final ImageView d;
     public final TextView f17102e;
@@ -30,20 +30,20 @@ public final class j extends LinearLayout implements a6 {
     public final boolean h;
     public boolean f17104n;
 
-    public j(Context context, f6 f6Var, boolean z9) {
+    public j(Context context, g6 g6Var, boolean z9) {
         super(context);
         int i7;
         int i10;
         int i11;
         int i12;
-        this.f17099a = f6Var;
+        this.f17099a = g6Var;
         this.h = z9;
         setOrientation(0);
         FrameLayout frameLayout = new FrameLayout(context);
         this.f17101c = frameLayout;
-        da0 da0Var = new da0(1);
-        this.f17100b = da0Var;
-        frameLayout.setBackground(da0Var);
+        ea0 ea0Var = new ea0(1);
+        this.f17100b = ea0Var;
+        frameLayout.setBackground(ea0Var);
         ImageView imageView = new ImageView(context);
         this.d = imageView;
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
@@ -115,8 +115,8 @@ public final class j extends LinearLayout implements a6 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(k6.G6));
-        hashSet.add(Integer.valueOf(k6.U8));
+        hashSet.add(Integer.valueOf(l6.G6));
+        hashSet.add(Integer.valueOf(l6.U8));
     }
 
     @Override
@@ -156,14 +156,14 @@ public final class j extends LinearLayout implements a6 {
             }
             textView.setTypeface(typeface);
             if (z9) {
-                i7 = k6.W8;
+                i7 = l6.W8;
             } else {
-                i7 = k6.f28034n6;
+                i7 = l6.f28047n6;
             }
-            f6 f6Var = this.f17099a;
-            r6.V(textView, i7, f6Var);
+            g6 g6Var = this.f17099a;
+            s6.U(textView, i7, g6Var);
             if (z9) {
-                shapeDrawable = k6.d0(g0.L(10.33f), k6.w0(k6.U8, f6Var));
+                shapeDrawable = l6.d0(g0.L(10.33f), l6.w0(l6.U8, g6Var));
             }
             textView.setBackground(shapeDrawable);
         }
@@ -186,28 +186,28 @@ public final class j extends LinearLayout implements a6 {
         int i7;
         ShapeDrawable shapeDrawable;
         boolean q10;
-        int i10 = k6.G6;
-        f6 f6Var = this.f17099a;
-        this.f17102e.setTextColor(k6.w0(i10, f6Var));
+        int i10 = l6.G6;
+        g6 g6Var = this.f17099a;
+        this.f17102e.setTextColor(l6.w0(i10, g6Var));
         if (this.f17104n) {
-            i7 = k6.W8;
+            i7 = l6.W8;
         } else {
-            i7 = k6.f28034n6;
+            i7 = l6.f28047n6;
         }
-        int w02 = k6.w0(i7, f6Var);
+        int w02 = l6.w0(i7, g6Var);
         TextView textView = this.f17103f;
         textView.setTextColor(w02);
         if (this.f17104n) {
-            shapeDrawable = k6.d0(g0.L(10.33f), k6.w0(k6.U8, f6Var));
+            shapeDrawable = l6.d0(g0.L(10.33f), l6.w0(l6.U8, g6Var));
         } else {
             shapeDrawable = null;
         }
         textView.setBackground(shapeDrawable);
-        if (f6Var != null) {
-            q10 = f6Var.a();
+        if (g6Var != null) {
+            q10 = g6Var.a();
         } else {
-            q10 = k6.I.q();
+            q10 = l6.I.q();
         }
-        this.f17100b.f32857b = q10;
+        this.f17100b.f33353b = q10;
     }
 }

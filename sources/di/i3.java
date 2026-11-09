@@ -3,17 +3,17 @@ package di;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.view.View;
-import org.telegram.ui.Components.hi0;
-public final class i3 implements hi0 {
-    public final i4 f9129a;
+import org.telegram.ui.Components.ii0;
+public final class i3 implements ii0 {
+    public final j4 f9103a;
 
-    public i3(i4 i4Var) {
-        this.f9129a = i4Var;
+    public i3(j4 j4Var) {
+        this.f9103a = j4Var;
     }
 
     @Override
     public final boolean E() {
-        ((g9) this.f9129a.f9221z1).b(false);
+        ((h9) this.f9103a.f9253z1).b(false);
         return false;
     }
 
@@ -26,7 +26,7 @@ public final class i3 implements hi0 {
     public final void i(View view, ch.o0 o0Var, boolean z9, boolean z10) {
         aa.s sVar = new aa.s(this, o0Var, view, 22);
         if (!z9) {
-            this.f9129a.l0(sVar);
+            this.f9103a.l0(sVar);
         } else {
             sVar.run();
         }

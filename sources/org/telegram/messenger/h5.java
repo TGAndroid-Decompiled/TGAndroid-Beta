@@ -12,9 +12,9 @@ public final class h5 implements ls {
     public final void didReceivedNotification(int i7, int i10, Object[] objArr) {
         switch (this.f22842a) {
             case 0:
-                di.h4 h4Var = (di.h4) this.f22843b;
+                di.i4 i4Var = (di.i4) this.f22843b;
                 if (i7 == 25) {
-                    h4Var.d(false);
+                    i4Var.d(false);
                     return;
                 }
                 return;

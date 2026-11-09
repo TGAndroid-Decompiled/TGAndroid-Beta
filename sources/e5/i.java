@@ -27,7 +27,7 @@ public final class i extends c {
         PackageInfo packageInfo;
         boolean b10 = super.b();
         if (b10 && (i7 = Build.VERSION.SDK_INT) < 29) {
-            boolean z9 = d5.b.f8184a;
+            boolean z9 = d5.b.f8182a;
             if (i7 >= 26) {
                 packageInfo = z6.a.b();
             } else {

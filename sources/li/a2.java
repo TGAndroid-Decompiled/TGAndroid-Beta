@@ -7,7 +7,7 @@ import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.l6;
 public final class a2 extends Drawable implements Drawable.Callback {
     public final Drawable f18413a;
     public final Paint f18414b;
@@ -29,7 +29,7 @@ public final class a2 extends Drawable implements Drawable.Callback {
         drawable.setCallback(this);
         paint.setColor(0);
         this.h = true;
-        a(k6.I.q());
+        a(l6.I.q());
     }
 
     public final void a(boolean z9) {
@@ -42,7 +42,7 @@ public final class a2 extends Drawable implements Drawable.Callback {
         } else {
             f10 = 0.1f;
         }
-        this.f18414b.setShadowLayer(L, 0.0f, L2, k6.r1(f10, -16777216));
+        this.f18414b.setShadowLayer(L, 0.0f, L2, l6.r1(f10, -16777216));
     }
 
     @Override

@@ -5,7 +5,7 @@ import java.util.Arrays;
 import org.telegram.messenger.c20;
 import org.telegram.messenger.v10;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.bi0;
+import org.telegram.ui.di0;
 public final class s7 implements DialogInterface.OnDismissListener {
     public final int f4692a;
     public final Object f4693b;
@@ -67,7 +67,7 @@ public final class s7 implements DialogInterface.OnDismissListener {
                     v2Var.dismiss();
                     v2VarArr[0] = null;
                 }
-                bi0.f44358a = null;
+                di0.f44987a = null;
                 org.telegram.ui.ActionBar.v2 v2Var2 = v2VarArr2[0];
                 if (v2Var2 != null) {
                     v2Var2.dismiss();
@@ -77,24 +77,24 @@ public final class s7 implements DialogInterface.OnDismissListener {
                 return;
             default:
                 org.telegram.ui.web.x0 x0Var = (org.telegram.ui.web.x0) this.f4693b;
-                di.o7 o7Var = (di.o7) this.d;
+                di.p7 p7Var = (di.p7) this.d;
                 String str = (String) this.f4695e;
                 x0Var.getClass();
                 boolean[] zArr3 = this.f4694c;
                 if (!zArr3[0]) {
                     zArr3[0] = true;
-                    x0Var.x(o7Var, "requested_chat_failed", org.telegram.ui.web.x0.A(str, "req_id"));
+                    x0Var.x(p7Var, "requested_chat_failed", org.telegram.ui.web.x0.A(str, "req_id"));
                     return;
                 }
                 return;
         }
     }
 
-    public s7(org.telegram.ui.web.x0 x0Var, boolean[] zArr, di.o7 o7Var, String str) {
+    public s7(org.telegram.ui.web.x0 x0Var, boolean[] zArr, di.p7 p7Var, String str) {
         this.f4692a = 3;
         this.f4693b = x0Var;
         this.f4694c = zArr;
-        this.d = o7Var;
+        this.d = p7Var;
         this.f4695e = str;
     }
 

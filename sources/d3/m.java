@@ -15,11 +15,11 @@ import h2.m0;
 import java.util.Arrays;
 import java.util.Locale;
 public final class m extends HandlerThread implements Handler.Callback {
-    public h2.l f8056a;
-    public Handler f8057b;
-    public Error f8058c;
+    public h2.l f8054a;
+    public Handler f8055b;
+    public Error f8056c;
     public RuntimeException d;
-    public n f8059e;
+    public n f8057e;
 
     public final void a(int i7) {
         boolean z9;
@@ -27,8 +27,8 @@ public final class m extends HandlerThread implements Handler.Callback {
         boolean z11;
         EGLSurface eglCreatePbufferSurface;
         boolean z12;
-        this.f8056a.getClass();
-        h2.l lVar = this.f8056a;
+        this.f8054a.getClass();
+        h2.l lVar = this.f8054a;
         int[] iArr = lVar.f14107b;
         boolean z13 = false;
         EGLDisplay eglGetDisplay = EGL14.eglGetDisplay(0);
@@ -109,20 +109,20 @@ public final class m extends HandlerThread implements Handler.Callback {
             SurfaceTexture surfaceTexture = new SurfaceTexture(iArr[0]);
             lVar.f14110f = surfaceTexture;
             surfaceTexture.setOnFrameAvailableListener(lVar);
-            SurfaceTexture surfaceTexture2 = this.f8056a.f14110f;
+            SurfaceTexture surfaceTexture2 = this.f8054a.f14110f;
             surfaceTexture2.getClass();
             if (i7 != 0) {
                 z13 = true;
             }
-            this.f8059e = new n(this, surfaceTexture2, z13);
+            this.f8057e = new n(this, surfaceTexture2, z13);
             return;
         }
         throw new h2.m(sb2.toString(), h9.i0.o(i10, objArr2));
     }
 
     public final void b() {
-        this.f8056a.getClass();
-        h2.l lVar = this.f8056a;
+        this.f8054a.getClass();
+        h2.l lVar = this.f8054a;
         lVar.f14106a.removeCallbacks(lVar);
         try {
             SurfaceTexture surfaceTexture = lVar.f14110f;
@@ -190,7 +190,7 @@ public final class m extends HandlerThread implements Handler.Callback {
                     }
                 } catch (Error e11) {
                     h2.a.d("PlaceholderSurface", "Failed to initialize placeholder surface", e11);
-                    this.f8058c = e11;
+                    this.f8056c = e11;
                     synchronized (this) {
                         notify();
                     }

@@ -1,49 +1,36 @@
 package org.telegram.ui;
+public final class zw implements org.telegram.messenger.x5 {
+    public long f52685a;
+    public long f52686b;
+    public final String f52687c;
+    public final ax d;
 
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
-public final class zw implements DialogInterface.OnClickListener {
-    public final int f52690a;
-    public final int f52691b;
-    public final Object f52692c;
-
-    public zw(Object obj, int i7, int i10) {
-        this.f52690a = i10;
-        this.f52692c = obj;
-        this.f52691b = i7;
+    public zw(ax axVar, String str) {
+        this.d = axVar;
+        this.f52687c = str;
     }
 
     @Override
-    public final void onClick(DialogInterface dialogInterface, int i7) {
-        switch (this.f52690a) {
-            case 0:
-                ex exVar = (ex) ((j2.n) this.f52692c).f16457c;
-                if (i7 == 0) {
-                    exVar.f45384e.remove(this.f52691b - exVar.f45386n);
-                    exVar.e0();
-                    dx dxVar = exVar.f45385f;
-                    if (dxVar != null) {
-                        dxVar.a();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 1:
-                NotificationsSettingsActivity.c0((NotificationsSettingsActivity) this.f52692c, this.f52691b, i7);
-                return;
-            default:
-                ThemeActivity themeActivity = (ThemeActivity) this.f52692c;
-                themeActivity.getClass();
-                SharedPreferences.Editor edit = org.telegram.messenger.qp.e1().edit();
-                edit.putInt("sortContactsBy", i7);
-                edit.commit();
-                f61 f61Var = themeActivity.f42011a;
-                if (f61Var != null) {
-                    f61Var.g(this.f52691b);
-                    return;
-                }
-                return;
-        }
+    public final int getObserverTag() {
+        return 0;
+    }
+
+    @Override
+    public final void i(long j3, long j10) {
+        this.f52686b = j3;
+        this.f52685a = j10;
+        this.d.b();
+    }
+
+    @Override
+    public final void C(boolean z9) {
+    }
+
+    @Override
+    public final void M(String str) {
+    }
+
+    @Override
+    public final void o(long j3, long j10) {
     }
 }

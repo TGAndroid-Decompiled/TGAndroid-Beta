@@ -1,56 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.LinearLayout;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class n60 extends LinearLayout {
-    public boolean f36254a;
-    public final t60 f36255b;
+import android.content.DialogInterface;
+import org.telegram.tgnet.ConnectionsManager;
+public final class n60 implements DialogInterface.OnCancelListener {
+    public final int f36273a;
+    public final org.telegram.messenger.c f36274b;
+    public final int f36275c;
 
-    public n60(t60 t60Var, Context context) {
-        super(context);
-        this.f36255b = t60Var;
+    public n60(org.telegram.messenger.c cVar, int i7, int i10) {
+        this.f36273a = i10;
+        this.f36274b = cVar;
+        this.f36275c = i7;
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        int size;
-        t60 t60Var = this.f36255b;
-        ArrayList arrayList = t60Var.f38277p1;
-        if (t60Var.f38280s1 == 0) {
-            int size2 = View.MeasureSpec.getSize(i7);
-            int L = org.telegram.messenger.g0.L(95.0f) * arrayList.size();
-            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) t60Var.f38275m1.getLayoutParams();
-            if (L > size2) {
-                layoutParams.width = -1;
-                layoutParams.gravity = 51;
-                if (!this.f36254a) {
-                    TLRPC.Peer peer = t60Var.f38281t1;
-                    if (peer != null) {
-                        arrayList.remove(peer);
-                        arrayList.add(0, t60Var.f38281t1);
-                    }
-                    this.f36254a = true;
-                }
-            } else {
-                layoutParams.width = -2;
-                layoutParams.gravity = 49;
-                if (!this.f36254a) {
-                    if (t60Var.f38281t1 != null) {
-                        if (arrayList.size() % 2 == 0) {
-                            size = Math.max(0, (arrayList.size() / 2) - 1);
-                        } else {
-                            size = arrayList.size() / 2;
-                        }
-                        arrayList.remove(t60Var.f38281t1);
-                        arrayList.add(size, t60Var.f38281t1);
-                    }
-                    this.f36254a = true;
-                }
-            }
+    public final void onCancel(DialogInterface dialogInterface) {
+        switch (this.f36273a) {
+            case 0:
+                ConnectionsManager.getInstance(this.f36274b.f21765a).cancelRequest(this.f36275c, true);
+                return;
+            default:
+                ConnectionsManager.getInstance(this.f36274b.f21765a).cancelRequest(this.f36275c, true);
+                return;
         }
-        super.onMeasure(i7, i10);
     }
 }

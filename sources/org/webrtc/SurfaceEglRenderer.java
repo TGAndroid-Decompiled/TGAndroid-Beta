@@ -2,7 +2,6 @@ package org.webrtc;
 
 import android.view.SurfaceHolder;
 import java.util.concurrent.CountDownLatch;
-import org.telegram.ui.ActionBar.m5;
 import org.webrtc.EglBase;
 import org.webrtc.RendererCommon;
 public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Callback {
@@ -118,7 +117,7 @@ public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Cal
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
         ThreadUtils.checkIsOnMainThread();
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        releaseEglSurface(new m5(countDownLatch, 1), false);
+        releaseEglSurface(new l2.a0(countDownLatch, 29), false);
         ThreadUtils.awaitUninterruptibly(countDownLatch);
     }
 

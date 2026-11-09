@@ -1,60 +1,36 @@
 package org.telegram.ui;
+public final class dq extends v4.k {
+    public final h2.f F = new h2.f((int[]) null);
+    public final qq G;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class dq implements hq {
-    public final oq f45122a;
-
-    public dq(oq oqVar) {
-        this.f45122a = oqVar;
+    public dq(qq qqVar) {
+        this.G = qqVar;
     }
 
     @Override
-    public final void a(TLRPC.User user) {
-        oq.h0(this.f45122a, user);
+    public final void N() {
+        this.F.e();
     }
 
     @Override
-    public final void b(long j3) {
-        oq oqVar = this.f45122a;
-        ArrayList arrayList = oqVar.E;
-        a0.h hVar = oqVar.J;
-        TLRPC.User a22 = oqVar.getMessagesController().a2(Long.valueOf(j3));
-        if (a22 != null) {
-            org.telegram.messenger.g0.i3(new qf(29, this, a22), 200L);
+    public final void O() {
+        this.G.f49121c.invalidate();
+    }
+
+    @Override
+    public final void P(v4.d1 d1Var) {
+        this.G.f49121c.invalidate();
+    }
+
+    @Override
+    public final void m() {
+        boolean isEmpty = this.f57113p.isEmpty();
+        boolean isEmpty2 = this.f57115r.isEmpty();
+        boolean isEmpty3 = this.f57116s.isEmpty();
+        boolean isEmpty4 = this.f57114q.isEmpty();
+        if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
+            this.F.d();
         }
-        if (hVar.f(j3) == null) {
-            iq B0 = oqVar.B0();
-            TLRPC.TL_channelParticipantAdmin tL_channelParticipantAdmin = new TLRPC.TL_channelParticipantAdmin();
-            TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
-            tL_channelParticipantAdmin.peer = tL_peerUser;
-            tL_peerUser.user_id = a22.f27105id;
-            tL_channelParticipantAdmin.date = oqVar.getConnectionsManager().getCurrentTime();
-            tL_channelParticipantAdmin.promoted_by = org.telegram.messenger.p10.i(oqVar.getAccountInstance().f21765a).f24489n;
-            arrayList.add(tL_channelParticipantAdmin);
-            hVar.k(tL_channelParticipantAdmin, a22.f27105id);
-            Collections.sort(arrayList, new oe(4));
-            oqVar.F0(B0);
-        }
-    }
-
-    @Override
-    public final void c(long j3, TLObject tLObject) {
-        oq oqVar = this.f45122a;
-        ArrayList arrayList = oqVar.E;
-        a0.h hVar = oqVar.J;
-        if (tLObject != null && hVar.f(j3) == null) {
-            iq B0 = oqVar.B0();
-            arrayList.add(tLObject);
-            hVar.k(tLObject, j3);
-            Collections.sort(arrayList, new oe(4));
-            oqVar.F0(B0);
-        }
-    }
-
-    @Override
-    public final void d(long j3) {
+        super.m();
     }
 }

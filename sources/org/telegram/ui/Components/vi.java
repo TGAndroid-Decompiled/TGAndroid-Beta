@@ -3,12 +3,12 @@ package org.telegram.ui.Components;
 import j$.util.Objects;
 import org.telegram.tgnet.TLRPC;
 public final class vi {
-    public final int f39010a;
-    public final long f39011b;
+    public final int f39077a;
+    public final long f39078b;
 
     public vi(int i7, long j3) {
-        this.f39010a = i7;
-        this.f39011b = j3;
+        this.f39077a = i7;
+        this.f39078b = j3;
     }
 
     public static vi a(Object obj) {
@@ -25,7 +25,7 @@ public final class vi {
         if (this != obj) {
             if (obj != null && vi.class == obj.getClass()) {
                 vi viVar = (vi) obj;
-                if (this.f39011b == viVar.f39011b && this.f39010a == viVar.f39010a) {
+                if (this.f39078b == viVar.f39078b && this.f39077a == viVar.f39077a) {
                     return true;
                 }
                 return false;
@@ -36,6 +36,6 @@ public final class vi {
     }
 
     public final int hashCode() {
-        return Objects.hash(p1.g.a(this.f39010a), Long.valueOf(this.f39011b));
+        return Objects.hash(p1.g.a(this.f39077a), Long.valueOf(this.f39078b));
     }
 }

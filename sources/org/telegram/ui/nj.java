@@ -1,30 +1,53 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class nj extends org.telegram.ui.Components.co {
-    public final an f48056f;
+import android.widget.FrameLayout;
+import org.telegram.ui.Components.FragmentContextView;
+public final class nj extends FragmentContextView {
+    public final int X0;
+    public final cn Y0;
 
-    public nj(an anVar, Context context) {
-        super(context);
-        this.f48056f = anVar;
+    public nj(cn cnVar, Context context, cn cnVar2, org.telegram.ui.ActionBar.g6 g6Var, int i7) {
+        super(context, cnVar2, null, true, g6Var);
+        this.X0 = i7;
+        switch (i7) {
+            case 1:
+                this.Y0 = cnVar;
+                super(context, cnVar2, null, false, g6Var);
+                return;
+            default:
+                this.Y0 = cnVar;
+                return;
+        }
     }
 
     @Override
-    public final void a(boolean z9) {
-        an anVar = this.f48056f;
-        anVar.H7();
-        anVar.F7();
-        anVar.I7();
-        anVar.J7();
-        hk hkVar = anVar.f44029xb;
-        if (hkVar != null) {
-            hkVar.setTranslationY(anVar.P9 + getCurrentHeight());
+    public final void setVisibility(int i7) {
+        boolean z9;
+        boolean z10;
+        switch (this.X0) {
+            case 0:
+                cn cnVar = this.Y0;
+                org.telegram.ui.Components.lg lgVar = cnVar.f44378a1;
+                FrameLayout frameLayout = cnVar.f44561o2;
+                if (i7 == 0) {
+                    z9 = true;
+                } else {
+                    z9 = false;
+                }
+                lgVar.i(frameLayout, z9, true);
+                return;
+            default:
+                cn cnVar2 = this.Y0;
+                org.telegram.ui.Components.lg lgVar2 = cnVar2.f44378a1;
+                FrameLayout frameLayout2 = cnVar2.f44537m2;
+                if (i7 == 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                lgVar2.i(frameLayout2, z10, true);
+                return;
         }
-        if (z9) {
-            anVar.W9 = true;
-            anVar.Nc();
-            return;
-        }
-        anVar.K9();
     }
 }

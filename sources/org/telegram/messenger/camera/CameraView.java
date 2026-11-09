@@ -76,8 +76,8 @@ import org.telegram.messenger.video.MP4Builder;
 import org.telegram.messenger.video.Mp4Movie;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.Components.w5;
-import org.telegram.ui.Components.x30;
 import org.telegram.ui.Components.xq;
+import org.telegram.ui.Components.y30;
 public class CameraView extends FrameLayout implements TextureView.SurfaceTextureListener, CameraController.ICameraView, CameraController.ErrorCallback {
     private static final int MSG_AUDIOFRAME_AVAILABLE = 3;
     private static final int MSG_START_RECORDING = 0;
@@ -1347,7 +1347,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                             videoRecorder.handleVideoFrameAvailable((message.arg1 << 32) | (message.arg2 & 4294967295L), (Integer) message.obj);
                             return;
                         } else if (i7 == 3) {
-                            videoRecorder.handleAudioFrameAvailable((x30) message.obj);
+                            videoRecorder.handleAudioFrameAvailable((y30) message.obj);
                             return;
                         } else {
                             return;
@@ -1388,8 +1388,8 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         private int audioTrackIndex;
         private boolean blendEnabled;
         private int blurHandle;
-        private ArrayBlockingQueue<x30> buffers;
-        private ArrayList<x30> buffersToWrite;
+        private ArrayBlockingQueue<y30> buffers;
+        private ArrayList<y30> buffersToWrite;
         private int cameraMatrixHandle;
         private int crossfadeHandle;
         private long currentTimestamp;
@@ -1479,8 +1479,8 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             this.recorderRunnable = new AnonymousClass1();
         }
 
-        public void handleAudioFrameAvailable(org.telegram.ui.Components.x30 r21) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.camera.CameraView.VideoRecorder.handleAudioFrameAvailable(org.telegram.ui.Components.x30):void");
+        public void handleAudioFrameAvailable(org.telegram.ui.Components.y30 r21) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.camera.CameraView.VideoRecorder.handleAudioFrameAvailable(org.telegram.ui.Components.y30):void");
         }
 
         public void handleStopRecording(int i7) {
@@ -1765,7 +1765,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                 }
                 int i10 = i7;
                 for (int i11 = 0; i11 < 3; i11++) {
-                    this.buffers.add(new x30());
+                    this.buffers.add(new y30());
                 }
                 AudioRecord audioRecord = new AudioRecord(0, 44100, 16, 2, i10);
                 this.audioRecorder = audioRecord;
@@ -3107,7 +3107,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             }
         });
         this.flipAnimator.setDuration(500L);
-        this.flipAnimator.setInterpolator(xq.f40366f);
+        this.flipAnimator.setInterpolator(xq.f40458f);
         this.flipAnimator.start();
         invalidate();
     }

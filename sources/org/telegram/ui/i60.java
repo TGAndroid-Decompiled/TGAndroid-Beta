@@ -1,62 +1,35 @@
 package org.telegram.ui;
 
-import android.telephony.PhoneNumberUtils;
-import j$.util.function.Predicate$CC;
-import java.util.function.Predicate;
-import org.telegram.tgnet.TLRPC;
-public final class i60 implements Predicate {
-    public final int f46575a;
-    public final Object f46576b;
+import android.app.Activity;
+public final class i60 implements Runnable {
+    public final int f46473a;
+    public final boolean f46474b;
+    public final Object f46475c;
+    public final Object d;
 
-    public i60(Object obj, int i7) {
-        this.f46575a = i7;
-        this.f46576b = obj;
-    }
-
-    public Predicate and(Predicate predicate) {
-        int i7 = this.f46575a;
-        return Predicate$CC.$default$and(this, predicate);
-    }
-
-    public Predicate negate() {
-        switch (this.f46575a) {
-            case 0:
-                return Predicate$CC.$default$negate(this);
-            case 1:
-                return Predicate$CC.$default$negate(this);
-            case 2:
-                return Predicate$CC.$default$negate(this);
-            default:
-                return Predicate$CC.$default$negate(this);
-        }
-    }
-
-    public Predicate or(Predicate predicate) {
-        int i7 = this.f46575a;
-        return Predicate$CC.$default$or(this, predicate);
+    public i60(Object obj, Object obj2, boolean z9, int i7) {
+        this.f46473a = i7;
+        this.f46475c = obj;
+        this.d = obj2;
+        this.f46474b = z9;
     }
 
     @Override
-    public final boolean test(Object obj) {
-        switch (this.f46575a) {
-            case 0:
-                String str = (String) this.f46576b;
-                String str2 = (String) obj;
-                if (str2 != null && str2.equals(str)) {
-                    return true;
-                }
-                return false;
-            case 1:
-                return PhoneNumberUtils.compare((String) this.f46576b, (String) obj);
-            case 2:
-                String str3 = (String) this.f46576b;
-                String str4 = (String) obj;
-                if (str4 != null && str4.equals(str3)) {
-                    return true;
-                }
-                return false;
-            default:
-                return an.A1((an) this.f46576b, (TLRPC.MessageEntity) obj);
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.i60.run():void");
+    }
+
+    public i60(Object obj, boolean z9, Object obj2, int i7) {
+        this.f46473a = i7;
+        this.f46475c = obj;
+        this.f46474b = z9;
+        this.d = obj2;
+    }
+
+    public i60(org.telegram.ui.ActionBar.u1 u1Var, boolean z9, Activity activity) {
+        this.f46473a = 9;
+        this.d = u1Var;
+        this.f46474b = z9;
+        this.f46475c = activity;
     }
 }

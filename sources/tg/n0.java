@@ -6,22 +6,22 @@ import android.view.ViewGroup;
 import c8.ha;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.ki0;
+import org.telegram.ui.Components.li0;
 public final class n0 extends j {
-    public final m0 f55854q0;
-    public boolean f55855r0;
-    public int f55856s0;
-    public int f55857t0;
-    public TLRPC.MessageMedia f55858u0;
-    public TL_stories.MediaArea f55859v0;
+    public final m0 f55866q0;
+    public boolean f55867r0;
+    public int f55868s0;
+    public int f55869t0;
+    public TLRPC.MessageMedia f55870u0;
+    public TL_stories.MediaArea f55871v0;
 
     public n0(Context context, PointF pointF, int i7, TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea, float f10, int i10) {
         super(context, pointF);
         m0 m0Var = new m0(context, f10);
-        this.f55854q0 = m0Var;
+        this.f55866q0 = m0Var;
         m0Var.setMaxWidth(i10);
         r(i7, messageMedia, mediaArea);
-        m0Var.e(0, this.f55856s0);
+        m0Var.e(0, this.f55868s0);
         addView(m0Var, ha.e(-2, -2, 51));
         setClipChildren(false);
         setClipToPadding(false);
@@ -72,7 +72,7 @@ public final class n0 extends j {
     }
 
     public int getColor() {
-        return this.f55856s0;
+        return this.f55868s0;
     }
 
     @Override
@@ -81,7 +81,7 @@ public final class n0 extends j {
     }
 
     @Override
-    public ki0 getSelectionBounds() {
+    public li0 getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
             return new Object();
@@ -92,35 +92,35 @@ public final class n0 extends j {
         float scale2 = getScale();
         float L2 = (org.telegram.messenger.g0.L(64.0f) / scaleX) + (scale2 * getMeasuredHeight());
         float x10 = org.telegram.messenger.camera.q.x(L, 2.0f, getPositionX(), scaleX);
-        return new ki0(x10, org.telegram.messenger.camera.q.x(L2, 2.0f, getPositionY(), scaleX), ((L * scaleX) + x10) - x10, L2 * scaleX);
+        return new li0(x10, org.telegram.messenger.camera.q.x(L2, 2.0f, getPositionY(), scaleX), ((L * scaleX) + x10) - x10, L2 * scaleX);
     }
 
     @Override
     public float getStickyPaddingBottom() {
-        return this.f55854q0.J;
+        return this.f55866q0.J;
     }
 
     @Override
     public float getStickyPaddingLeft() {
-        return this.f55854q0.I;
+        return this.f55866q0.I;
     }
 
     @Override
     public float getStickyPaddingRight() {
-        return this.f55854q0.I;
+        return this.f55866q0.I;
     }
 
     @Override
     public float getStickyPaddingTop() {
-        return this.f55854q0.J;
+        return this.f55866q0.J;
     }
 
     public int getType() {
-        return this.f55857t0;
+        return this.f55869t0;
     }
 
     public int getTypesCount() {
-        return this.f55854q0.getTypesCount() - (!this.f55855r0 ? 1 : 0);
+        return this.f55866q0.getTypesCount() - (!this.f55867r0 ? 1 : 0);
     }
 
     @Override
@@ -139,8 +139,8 @@ public final class n0 extends j {
         String str;
         String str2;
         String str3;
-        this.f55858u0 = messageMedia;
-        this.f55859v0 = mediaArea;
+        this.f55870u0 = messageMedia;
+        this.f55871v0 = mediaArea;
         String str4 = null;
         if (messageMedia instanceof TLRPC.TL_messageMediaGeo) {
             TLRPC.GeoPoint geoPoint = messageMedia.geo;
@@ -170,23 +170,23 @@ public final class n0 extends j {
         } else {
             str = "";
         }
-        m0 m0Var = this.f55854q0;
+        m0 m0Var = this.f55866q0;
         m0Var.d(i7, str4);
         m0Var.setText(str);
         m();
     }
 
     public void setColor(int i7) {
-        this.f55855r0 = true;
-        this.f55856s0 = i7;
+        this.f55867r0 = true;
+        this.f55868s0 = i7;
     }
 
     public void setMaxWidth(int i7) {
-        this.f55854q0.setMaxWidth(i7);
+        this.f55866q0.setMaxWidth(i7);
     }
 
     public void setType(int i7) {
-        this.f55857t0 = i7;
-        this.f55854q0.e(i7, this.f55856s0);
+        this.f55869t0 = i7;
+        this.f55866q0.e(i7, this.f55868s0);
     }
 }

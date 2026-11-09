@@ -1,28 +1,28 @@
 package qg;
 
-import org.telegram.ui.an;
-import org.telegram.ui.w91;
+import org.telegram.ui.cn;
+import org.telegram.ui.y91;
 public final class b implements Runnable {
-    public final int f54121a;
-    public final an f54122b;
+    public final int f54133a;
+    public final cn f54134b;
 
-    public b(an anVar, int i7) {
-        this.f54121a = i7;
-        this.f54122b = anVar;
+    public b(cn cnVar, int i7) {
+        this.f54133a = i7;
+        this.f54134b = cnVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f54121a) {
+        switch (this.f54133a) {
             case 0:
-                an anVar = this.f54122b;
-                if (anVar.getParentLayout() != null) {
-                    w91.M0(anVar);
+                cn cnVar = this.f54134b;
+                if (cnVar.getParentLayout() != null) {
+                    y91.M0(cnVar);
                     return;
                 }
                 return;
             default:
-                this.f54122b.Bc();
+                this.f54134b.Ec();
                 return;
         }
     }

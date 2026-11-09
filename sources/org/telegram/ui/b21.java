@@ -1,147 +1,82 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class b21 extends v4.s0 {
-    public final int f44165a;
-    public final Object f44166b;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class b21 implements org.telegram.messenger.ls {
+    public final int f43854a;
+    public final TLRPC.Chat f43855b;
+    public TLRPC.ChannelParticipantsFilter f43856c;
+    public boolean f43858f;
+    public boolean h;
+    public boolean f43860r;
+    public boolean f43861s;
+    public final ArrayList d = new ArrayList();
+    public final ArrayList f43857e = new ArrayList();
+    public int f43859n = -1;
 
-    public b21(Object obj, int i7) {
-        this.f44165a = i7;
-        this.f44166b = obj;
+    public b21(int i7, long j3, TLRPC.ChannelParticipantsFilter channelParticipantsFilter) {
+        this.f43854a = i7;
+        this.f43855b = org.telegram.messenger.qp.s1(i7).M0(Long.valueOf(j3));
+        TLRPC.ChatFull N0 = org.telegram.messenger.qp.s1(i7).N0(j3);
+        this.f43856c = channelParticipantsFilter;
+        if (N0 == null) {
+            if (!this.f43861s) {
+                this.f43861s = true;
+                org.telegram.messenger.qs.f(i7).c(this, org.telegram.messenger.qs.T);
+            }
+            org.telegram.messenger.qp.s1(i7).V2(0, j3, false);
+        }
     }
 
-    @Override
-    public void a(RecyclerView recyclerView, int i7) {
-        switch (this.f44165a) {
-            case 1:
-                if (i7 == 0) {
-                    m31 m31Var = (m31) this.f44166b;
-                    if (m31Var.E != null) {
-                        org.telegram.ui.ActionBar.f5 f5Var = m31Var.d;
-                        if (f5Var == null || !f5Var.w()) {
-                            float f10 = m31Var.X;
-                            if (f10 > 0.0f && f10 < 1.0f) {
-                                if (f10 >= 0.5f) {
-                                    m31Var.f47642c.w0(0, (int) (-(m31Var.Z - m31Var.Y)), org.telegram.ui.Components.xq.h);
-                                    return;
-                                } else {
-                                    m31Var.f47642c.w0(0, (int) Math.ceil(m31Var.Y - m31Var.f47639a0), org.telegram.ui.Components.xq.h);
-                                    return;
-                                }
-                            }
-                            return;
-                        }
-                        return;
+    public final void a() {
+        if (!this.f43861s) {
+            return;
+        }
+        this.f43861s = false;
+        int i7 = this.f43854a;
+        org.telegram.messenger.qs.f(i7).n(this, org.telegram.messenger.qs.T);
+        if (this.f43859n >= 0) {
+            ConnectionsManager.getInstance(i7).cancelRequest(this.f43859n, true);
+            this.f43859n = -1;
+        }
+        this.f43858f = false;
+    }
+
+    public final void b() {
+        int size;
+        if (!this.f43858f && !this.h) {
+            TLRPC.ChannelParticipantsFilter channelParticipantsFilter = this.f43856c;
+            if (!(channelParticipantsFilter instanceof TLRPC.TL_channelParticipantsSearch) || !TextUtils.isEmpty(channelParticipantsFilter.f26955q)) {
+                this.f43858f = true;
+                TLRPC.Chat chat = this.f43855b;
+                if (org.telegram.messenger.t3.T(chat)) {
+                    TLRPC.TL_channels_getParticipants tL_channels_getParticipants = new TLRPC.TL_channels_getParticipants();
+                    tL_channels_getParticipants.channel = org.telegram.messenger.qp.i1(chat);
+                    tL_channels_getParticipants.filter = this.f43856c;
+                    tL_channels_getParticipants.limit = 30;
+                    if (this.f43860r) {
+                        size = 0;
+                    } else {
+                        size = this.d.size();
                     }
-                    return;
+                    tL_channels_getParticipants.offset = size;
+                    ConnectionsManager.getInstance(this.f43854a).sendRequestTyped(tL_channels_getParticipants, new d3.b(1), new a5(this, 25));
                 }
-                return;
-            case 2:
-            case 5:
-            default:
-                return;
-            case 3:
-                if (i7 == 0) {
-                    ((v71) this.f44166b).f50571s0 = false;
-                    return;
-                }
-                return;
-            case 4:
-                if (i7 == 1) {
-                    org.telegram.messenger.g0.v1(((n81) this.f44166b).getParentActivity().getCurrentFocus());
-                    return;
-                }
-                return;
-            case 6:
-                if (i7 == 1) {
-                    org.telegram.messenger.g0.v1(((UsersSelectActivity) this.f44166b).f42076c);
-                    return;
-                }
-                return;
-            case 7:
-                WallpapersListActivity wallpapersListActivity = (WallpapersListActivity) this.f44166b;
-                boolean z9 = true;
-                if (i7 == 1) {
-                    org.telegram.messenger.g0.v1(wallpapersListActivity.getParentActivity().getCurrentFocus());
-                }
-                if (i7 == 0) {
-                    z9 = false;
-                }
-                wallpapersListActivity.f43494f0 = z9;
-                return;
+            }
         }
     }
 
     @Override
-    public void b(RecyclerView recyclerView, int i7, int i10) {
-        int abs;
-        switch (this.f44165a) {
-            case 0:
-                ((c21) this.f44166b).d1();
-                return;
-            case 1:
-                m31 m31Var = (m31) this.f44166b;
-                m31Var.o0(false, true);
-                m31Var.p0();
-                if (m31Var.f47642c.I1) {
-                    org.telegram.messenger.g0.v1(m31Var.fragmentView);
-                    return;
-                }
-                return;
-            case 2:
-                c51 c51Var = (c51) this.f44166b;
-                if (c51Var.f44693u0.size() != c51Var.f44694v0.size() && !c51Var.f44701z0 && c51Var.T.N0() > c51Var.W.f45830c0 - 20) {
-                    c51Var.k0();
-                    return;
-                }
-                return;
-            case 3:
-                v71 v71Var = (v71) this.f44166b;
-                v71Var.f50577v0.g1();
-                v71Var.f50571s0 = true;
-                return;
-            case 4:
-            case 6:
-            default:
-                return;
-            case 5:
-                s91 s91Var = (s91) this.f44166b;
-                if (s91Var.f49695o0 && s91Var.f49682a0.N0() + 5 >= s91Var.m0) {
-                    s91Var.L(s91Var.f49685d0);
-                }
-                w91 w91Var = s91Var.f49702v0;
-                if (w91Var.f51031s0) {
-                    if (i7 != 0 || i10 != 0) {
-                        org.telegram.messenger.g0.v1(w91Var.f51025p0.getSearchField());
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 7:
-                WallpapersListActivity wallpapersListActivity = (WallpapersListActivity) this.f44166b;
-                if (wallpapersListActivity.F.getAdapter() == wallpapersListActivity.H) {
-                    int L0 = wallpapersListActivity.I.L0();
-                    if (L0 == -1) {
-                        abs = 0;
-                    } else {
-                        abs = Math.abs(wallpapersListActivity.I.N0() - L0) + 1;
-                    }
-                    if (abs > 0) {
-                        int B = wallpapersListActivity.I.B();
-                        if (abs != 0 && L0 + abs > B - 2) {
-                            sc1 sc1Var = wallpapersListActivity.H;
-                            if (!sc1Var.f49733f && sc1Var.f49736s == 0) {
-                                sc1Var.F(sc1Var.h, sc1Var.f49735r, true);
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        if (i7 == org.telegram.messenger.qs.T) {
+            long j3 = ((TLRPC.ChatFull) objArr[0]).f26957id;
+            TLRPC.Chat chat = this.f43855b;
+            if (j3 == chat.f26956id && !org.telegram.messenger.t3.T(chat) && this.f43858f) {
+                this.f43858f = false;
+                b();
+            }
         }
     }
 }

@@ -54,7 +54,7 @@ public final class vi extends c1 {
     }
 
     public final void c(TL_update.TL_updatePendingJoinRequests tL_updatePendingJoinRequests) {
-        long j3 = -ij.C1(tL_updatePendingJoinRequests.peer);
+        long j3 = -ij.B1(tL_updatePendingJoinRequests.peer);
         this.f25991a.put(j3, null);
         TLRPC.ChatFull N0 = getMessagesController().N0(j3);
         if (N0 != null) {

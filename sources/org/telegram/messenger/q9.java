@@ -2,7 +2,7 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
-import org.telegram.ui.td0;
+import org.telegram.ui.vd0;
 public final class q9 implements v10 {
     public final int f24683a;
     public final long f24684b;
@@ -44,16 +44,16 @@ public final class q9 implements v10 {
                 j0Var2.a(bool2, tL_error2);
                 return;
             default:
-                td0 td0Var = (td0) this.d;
+                vd0 vd0Var = (vd0) this.d;
                 TLRPC.auth_Authorization auth_authorization = (TLRPC.auth_Authorization) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
                 ((org.telegram.ui.ActionBar.u1) this.f24685c).dismiss();
                 long j3 = this.f24684b;
                 if (tL_error3 != null) {
-                    td0Var.a(Long.valueOf(j3), null, tL_error3.text);
+                    vd0Var.a(Long.valueOf(j3), null, tL_error3.text);
                     return;
                 } else {
-                    td0Var.a(Long.valueOf(j3), auth_authorization, null);
+                    vd0Var.a(Long.valueOf(j3), auth_authorization, null);
                     return;
                 }
         }

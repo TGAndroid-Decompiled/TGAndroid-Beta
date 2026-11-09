@@ -1,49 +1,63 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
+import android.app.Activity;
+import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.view.View;
-public final class rm implements ValueAnimator.AnimatorUpdateListener {
-    public final int f49511a;
-    public final sm f49512b;
+import android.widget.TextView;
+import java.util.HashSet;
+public final class rm extends TextView implements org.telegram.ui.ActionBar.b6 {
+    public final org.telegram.ui.Cells.y f49501a;
+    public int f49502b;
+    public boolean f49503c;
+    public final cn d;
 
-    public rm(sm smVar, int i7) {
-        this.f49511a = i7;
-        this.f49512b = smVar;
+    public rm(cn cnVar, Activity activity) {
+        super(activity);
+        this.d = cnVar;
+        setSingleLine(true);
+        setLines(1);
+        setMaxLines(1);
+        setEllipsize(TextUtils.TruncateAt.END);
+        org.telegram.ui.ActionBar.s6.U(this, org.telegram.ui.ActionBar.l6.Gi, cnVar.getResourceProvider());
+        int themedColor = cnVar.getThemedColor(org.telegram.ui.ActionBar.l6.Ci);
+        this.f49502b = themedColor;
+        org.telegram.ui.Cells.y e10 = org.telegram.ui.ActionBar.a6.e(themedColor, 16.0f);
+        this.f49501a = e10;
+        setBackground(e10);
+        setTextSize(1, 14.0f);
+        setTypeface(org.telegram.messenger.g0.o());
+        setGravity(17);
+        setPadding(org.telegram.messenger.g0.L(14.0f), 0, org.telegram.messenger.g0.L(14.0f), 0);
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f49511a) {
-            case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                sm smVar = this.f49512b;
-                smVar.f49780a = floatValue;
-                View view = smVar.f49781b.fragmentView;
-                if (view != null) {
-                    view.invalidate();
-                    return;
-                }
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i7), (int) (org.telegram.messenger.g0.f22563q.x * 0.45f)), Integer.MIN_VALUE), i10);
+    }
+
+    @Override
+    public final void updateColors() {
+        try {
+            int themedColor = this.d.getThemedColor(org.telegram.ui.ActionBar.l6.Ci);
+            if (themedColor == this.f49502b && this.f49503c == org.telegram.ui.ActionBar.l6.I.q()) {
                 return;
-            case 1:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                sm smVar2 = this.f49512b;
-                smVar2.f49780a = floatValue2;
-                View view2 = smVar2.f49781b.fragmentView;
-                if (view2 != null) {
-                    view2.invalidate();
-                    return;
-                }
-                return;
-            default:
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                sm smVar3 = this.f49512b;
-                smVar3.f49780a = floatValue3;
-                View view3 = smVar3.f49781b.fragmentView;
-                if (view3 != null) {
-                    view3.invalidate();
-                    return;
-                }
-                return;
+            }
+            Drawable background = getBackground();
+            org.telegram.ui.Cells.y yVar = this.f49501a;
+            if (background == yVar) {
+                this.f49503c = org.telegram.ui.ActionBar.l6.I.q();
+                org.telegram.ui.ActionBar.l6.H1(yVar, themedColor, false);
+                org.telegram.ui.ActionBar.l6.H1(yVar, org.telegram.ui.ActionBar.a6.b(themedColor), true);
+                this.f49502b = themedColor;
+                invalidate();
+            }
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
         }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

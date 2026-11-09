@@ -131,7 +131,7 @@ public class WebmEncoder {
                     canvas.drawBitmap(h20Var.G, h20Var.H, this.bitmapPaint);
                     float f10 = h20Var.E + h20Var.F;
                     h20Var.E = f10;
-                    if (f10 >= h20Var.D.f31473a[0]) {
+                    if (f10 >= h20Var.D.f31478a[0]) {
                         h20Var.E = 0.0f;
                     }
                 }
@@ -143,9 +143,9 @@ public class WebmEncoder {
                 for (int i12 = (int) f12; i11 != i12; i12--) {
                     h20Var.J.r(true);
                 }
-                s5 s5Var = h20Var.J.f38886w;
+                s5 s5Var = h20Var.J.f38947w;
                 if (s5Var != null) {
-                    bitmap = s5Var.f37922b;
+                    bitmap = s5Var.f37918b;
                 } else {
                     bitmap = null;
                 }
@@ -198,7 +198,7 @@ public class WebmEncoder {
                     RLottieNative a10 = RLottieNative.a(h20Var.f22820j, null, null, null, 0, null);
                     h20Var.D = a10;
                     if (a10 != null) {
-                        f10 = a10.f31473a[1] / this.fps;
+                        f10 = a10.f31478a[1] / this.fps;
                     } else {
                         f10 = 0.0f;
                     }
@@ -404,8 +404,8 @@ public class WebmEncoder {
             h20Var.H = matrix;
             Bitmap bitmap = h20Var.G;
             if (bitmap == null && (v5Var = h20Var.J) != null) {
-                s5 s5Var = v5Var.f38886w;
-                bitmap = s5Var != null ? s5Var.f37922b : null;
+                s5 s5Var = v5Var.f38947w;
+                bitmap = s5Var != null ? s5Var.f37918b : null;
             }
             if (bitmap != null) {
                 matrix.postScale(1.0f / bitmap.getWidth(), 1.0f / bitmap.getHeight());

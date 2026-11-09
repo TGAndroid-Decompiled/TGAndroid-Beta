@@ -37,7 +37,7 @@ public final class wl implements Runnable {
         switch (this.f26333a) {
             case 0:
                 qp qpVar = (qp) this.f26336e;
-                org.telegram.ui.jx jxVar = (org.telegram.ui.ActionBar.f2) this.f26337f;
+                org.telegram.ui.lx lxVar = (org.telegram.ui.ActionBar.f2) this.f26337f;
                 vf.b bVar = (vf.b) this.h;
                 boolean[] zArr = (boolean[]) this.f26338n;
                 TLRPC.User user = (TLRPC.User) this.f26339r;
@@ -45,37 +45,37 @@ public final class wl implements Runnable {
                 boolean z9 = this.f26334b;
                 boolean z10 = this.d;
                 TL_bots.BotInfo[] botInfoArr = (TL_bots.BotInfo[]) this.f26340s;
-                if (jxVar == null) {
-                    jxVar = LaunchActivity.T();
+                if (lxVar == null) {
+                    lxVar = LaunchActivity.T();
                 }
-                if (jxVar != null) {
+                if (lxVar != null) {
                     if (bVar != null) {
                         bVar.b();
                     }
                     if (!zArr[0]) {
                         String F1 = qpVar.F1(user.restriction_reason);
                         if (!TextUtils.isEmpty(F1)) {
-                            qp.R4(F1, jxVar);
+                            qp.R4(F1, lxVar);
                             return;
                         } else if (user.bot_has_main_app) {
                             long j3 = user.f27105id;
-                            if (jxVar instanceof org.telegram.ui.an) {
-                                j3 = ((org.telegram.ui.an) jxVar).a();
-                            } else if (jxVar instanceof ProfileActivity) {
-                                j3 = ((ProfileActivity) jxVar).a();
+                            if (lxVar instanceof org.telegram.ui.cn) {
+                                j3 = ((org.telegram.ui.cn) lxVar).a();
+                            } else if (lxVar instanceof ProfileActivity) {
+                                j3 = ((ProfileActivity) lxVar).a();
                             }
-                            if (jxVar.getParentLayout() instanceof ActionBarLayout) {
-                                jxVar = ((ActionBarLayout) jxVar.getParentLayout()).getSheetFragment();
+                            if (lxVar.getParentLayout() instanceof ActionBarLayout) {
+                                lxVar = ((ActionBarLayout) lxVar.getParentLayout()).getSheetFragment();
                             }
-                            g0.v1(jxVar.getFragmentView());
+                            g0.v1(lxVar.getFragmentView());
                             hi.q4 b10 = hi.q4.b(qpVar.currentAccount, j3, user.f27105id, null, null, 4, 0, 0L, null, false, str, user, 0, z9, z10);
                             LaunchActivity launchActivity = LaunchActivity.G1;
                             if (launchActivity == null || launchActivity.O() == null || LaunchActivity.G1.O().k(b10) == null) {
-                                hi.a3 a3Var = new hi.a3(jxVar.getContext(), jxVar.getResourceProvider());
+                                hi.a3 a3Var = new hi.a3(lxVar.getContext(), lxVar.getResourceProvider());
                                 a3Var.B(true);
                                 a3Var.B0 = false;
-                                a3Var.f14526l0 = jxVar.getParentActivity();
-                                a3Var.x(jxVar, b10);
+                                a3Var.f14526l0 = lxVar.getParentActivity();
+                                a3Var.x(lxVar, b10);
                                 a3Var.show();
                                 return;
                             }
@@ -83,27 +83,27 @@ public final class wl implements Runnable {
                         } else {
                             TL_bots.BotInfo botInfo = botInfoArr[0];
                             if (botInfo != null && (botInfo.menu_button instanceof TL_bots.TL_botMenuButton)) {
-                                if (jxVar.getParentLayout() instanceof ActionBarLayout) {
-                                    jxVar = ((ActionBarLayout) jxVar.getParentLayout()).getSheetFragment();
+                                if (lxVar.getParentLayout() instanceof ActionBarLayout) {
+                                    lxVar = ((ActionBarLayout) lxVar.getParentLayout()).getSheetFragment();
                                 }
                                 TL_bots.TL_botMenuButton tL_botMenuButton = (TL_bots.TL_botMenuButton) botInfoArr[0].menu_button;
-                                g0.v1(jxVar.getFragmentView());
+                                g0.v1(lxVar.getFragmentView());
                                 int i7 = qpVar.currentAccount;
                                 long j10 = user.f27105id;
                                 hi.q4 b11 = hi.q4.b(i7, j10, j10, tL_botMenuButton.text, tL_botMenuButton.url, 2, 0, 0L, null, false, str, user, 0, z9, z10);
                                 LaunchActivity launchActivity2 = LaunchActivity.G1;
                                 if (launchActivity2 == null || launchActivity2.O() == null || LaunchActivity.G1.O().k(b11) == null) {
-                                    hi.a3 a3Var2 = new hi.a3(jxVar.getContext(), jxVar.getResourceProvider());
+                                    hi.a3 a3Var2 = new hi.a3(lxVar.getContext(), lxVar.getResourceProvider());
                                     a3Var2.B(false);
                                     a3Var2.B0 = true;
-                                    a3Var2.f14526l0 = jxVar.getParentActivity();
-                                    a3Var2.x(jxVar, b11);
+                                    a3Var2.f14526l0 = lxVar.getParentActivity();
+                                    a3Var2.x(lxVar, b11);
                                     a3Var2.show();
                                     return;
                                 }
                                 return;
                             }
-                            jxVar.presentFragment(org.telegram.ui.an.ra(user.f27105id));
+                            lxVar.presentFragment(org.telegram.ui.cn.ta(user.f27105id));
                             return;
                         }
                     }

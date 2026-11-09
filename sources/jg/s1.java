@@ -8,15 +8,15 @@ import java.util.ArrayList;
 import java.util.Timer;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.d5;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.s6;
 import org.telegram.ui.Cells.g6;
 import org.telegram.ui.Cells.m8;
 import org.telegram.ui.Cells.x3;
 import org.telegram.ui.Components.mz;
-import org.telegram.ui.Components.oj0;
+import org.telegram.ui.Components.pj0;
 import org.telegram.ui.Components.tm;
-public abstract class s1 extends oj0 {
+public abstract class s1 extends pj0 {
     public boolean D;
     public int E;
     public int F;
@@ -38,7 +38,7 @@ public abstract class s1 extends oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57048f;
+        int i7 = d1Var.f57060f;
         if (i7 != 0 && i7 != 2 && i7 != 3) {
             return false;
         }
@@ -156,7 +156,7 @@ public abstract class s1 extends oj0 {
                             mz mzVar = new mz(context, null);
                             mzVar.setIsSingleCell(true);
                             mzVar.setViewType(29);
-                            r6.i(k6.f27852d6, mzVar, null);
+                            s6.h(l6.f27865d6, mzVar, null);
                             x3Var = mzVar;
                         }
                     } else {

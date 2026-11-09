@@ -36,11 +36,11 @@ public final class z1 extends u1 {
         m1Var.setOnItemClickListener(new ai.k(this, 9));
         m1Var.setOnScrollListener(new ai.b(this, 11));
         v4.k kVar = new v4.k();
-        kVar.f57116c = 220L;
-        kVar.f57117e = 220L;
-        kVar.f57118f = 160L;
-        kVar.f57119g = 160L;
-        kVar.f57120i = xq.f40367g;
+        kVar.f57128c = 220L;
+        kVar.f57129e = 220L;
+        kVar.f57130f = 160L;
+        kVar.f57131g = 160L;
+        kVar.f57132i = xq.f40459g;
         m1Var.setItemAnimator(kVar);
         addView(m1Var, c8.ha.c(-1.0f, -1));
         int i7 = k2.f12251y1;
@@ -57,14 +57,14 @@ public final class z1 extends u1 {
     public final void a(int i7) {
         boolean z9;
         int i10;
-        this.f12881a = i7;
+        this.f12882a = i7;
         int i11 = 0;
         if (i7 == 0) {
             z9 = true;
         } else {
             z9 = false;
         }
-        this.f13235b.f12404f3 = z9;
+        this.f13235b.f12405f3 = z9;
         if (i7 == 0) {
             i10 = 8;
         } else {
@@ -89,10 +89,10 @@ public final class z1 extends u1 {
                 d2Var.H1(k2Var.f12253j1);
                 e2Var.h.F1();
                 if (e2Var.h.getSelectedCategory() != null) {
-                    y1Var.H = e2Var.h.getSelectedCategory().f38738a;
-                    di.s7 s7Var = y1Var.M;
-                    org.telegram.messenger.g0.r(s7Var);
-                    org.telegram.messenger.g0.h3(s7Var);
+                    y1Var.H = e2Var.h.getSelectedCategory().f40165a;
+                    di.f8 f8Var = y1Var.M;
+                    org.telegram.messenger.g0.r(f8Var);
+                    org.telegram.messenger.g0.h3(f8Var);
                 }
             }
         } else if (!TextUtils.isEmpty(k2Var.f12252i1)) {
@@ -108,7 +108,7 @@ public final class z1 extends u1 {
             e2Var.b();
         }
         e2Var.a(i7, k2Var.f12258q1);
-        ui b02 = ui.b0(k2Var.f28616a);
+        ui b02 = ui.b0(k2Var.f28621a);
         if (i7 == 0) {
             i11 = 5;
         }
@@ -142,8 +142,8 @@ public final class z1 extends u1 {
         this.f13237e.setTranslationY(org.telegram.messenger.g0.L(16.0f) + max);
         this.f13238f.setTranslationY(org.telegram.messenger.g0.L(52.0f) + max);
         m1 m1Var = this.f13235b;
-        m1Var.f12405g3 = max + m1Var.getPaddingTop();
-        m1Var.f12406h3 = m1Var.getHeight() - m1Var.getPaddingBottom();
+        m1Var.f12406g3 = max + m1Var.getPaddingTop();
+        m1Var.f12407h3 = m1Var.getHeight() - m1Var.getPaddingBottom();
     }
 
     @Override
@@ -151,7 +151,7 @@ public final class z1 extends u1 {
         float f10;
         int i11 = k2.f12251y1;
         k2 k2Var = this.f13241s;
-        int i12 = k2Var.f28649t0;
+        int i12 = k2Var.f28654t0;
         setPadding(i12, 0, i12, 0);
         this.f13237e.setTranslationY(org.telegram.messenger.g0.L(16.0f));
         this.f13238f.setTranslationY(org.telegram.messenger.g0.L(52.0f));

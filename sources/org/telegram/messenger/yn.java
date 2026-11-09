@@ -67,7 +67,7 @@ public final class yn implements RequestDelegate {
                                         TL_stories.StoryItem storyItem2 = storyItem;
                                         storyItem2.translatedLng = str;
                                         storyItem2.translatedText = null;
-                                        f10Var2.getMessagesController().P1().f9971k.h(storyItem2.dialogId, storyItem2);
+                                        f10Var2.getMessagesController().P1().f10000k.h(storyItem2.dialogId, storyItem2);
                                         f10Var2.J.remove(d10Var);
                                         r3Var.run();
                                         return;
@@ -77,7 +77,7 @@ public final class yn implements RequestDelegate {
                                         TL_stories.StoryItem storyItem3 = storyItem;
                                         storyItem3.translatedLng = str;
                                         storyItem3.translatedText = null;
-                                        f10Var3.getMessagesController().P1().f9971k.h(storyItem3.dialogId, storyItem3);
+                                        f10Var3.getMessagesController().P1().f10000k.h(storyItem3.dialogId, storyItem3);
                                         f10Var3.J.remove(d10Var);
                                         r3Var.run();
                                         return;
@@ -100,7 +100,7 @@ public final class yn implements RequestDelegate {
                                 TL_stories.StoryItem storyItem2 = storyItem;
                                 storyItem2.translatedLng = str;
                                 storyItem2.translatedText = null;
-                                f10Var2.getMessagesController().P1().f9971k.h(storyItem2.dialogId, storyItem2);
+                                f10Var2.getMessagesController().P1().f10000k.h(storyItem2.dialogId, storyItem2);
                                 f10Var2.J.remove(d10Var);
                                 r3Var.run();
                                 return;
@@ -110,7 +110,7 @@ public final class yn implements RequestDelegate {
                                 TL_stories.StoryItem storyItem3 = storyItem;
                                 storyItem3.translatedLng = str;
                                 storyItem3.translatedText = null;
-                                f10Var3.getMessagesController().P1().f9971k.h(storyItem3.dialogId, storyItem3);
+                                f10Var3.getMessagesController().P1().f10000k.h(storyItem3.dialogId, storyItem3);
                                 f10Var3.J.remove(d10Var);
                                 r3Var.run();
                                 return;

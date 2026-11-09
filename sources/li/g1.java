@@ -19,14 +19,14 @@ import java.util.HashSet;
 import org.telegram.messenger.iu;
 import org.telegram.messenger.p10;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.d41;
-import org.telegram.ui.Components.r70;
-import org.telegram.ui.Components.vy0;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.Components.e41;
+import org.telegram.ui.Components.s70;
+import org.telegram.ui.Components.wy0;
 import org.telegram.ui.Components.xs;
 import org.telegram.ui.Components.zs;
-public final class g1 extends zs implements org.telegram.ui.ActionBar.a6 {
+public final class g1 extends zs implements org.telegram.ui.ActionBar.b6 {
     public final d1 A2;
     public float B2;
     public float C2;
@@ -37,7 +37,7 @@ public final class g1 extends zs implements org.telegram.ui.ActionBar.a6 {
     public final z0 H2;
     public f1 Y1;
     public e1 Z1;
-    public final f6 f18584a2;
+    public final g6 f18584a2;
     public int f18585b2;
     public boolean f18586c2;
     public boolean d2;
@@ -48,7 +48,7 @@ public final class g1 extends zs implements org.telegram.ui.ActionBar.a6 {
     public boolean f18591i2;
     public boolean f18592j2;
     public boolean f18593k2;
-    public r70 f18594l2;
+    public s70 f18594l2;
     public Paint f18595m2;
     public Layout f18596n2;
     public int f18597o2;
@@ -64,8 +64,8 @@ public final class g1 extends zs implements org.telegram.ui.ActionBar.a6 {
     public boolean f18607y2;
     public int f18608z2;
 
-    public g1(Context context, f6 f6Var) {
-        super(context, f6Var);
+    public g1(Context context, g6 g6Var) {
+        super(context, g6Var);
         boolean z9;
         this.f18585b2 = p10.f24470s0;
         this.f18597o2 = -1;
@@ -86,10 +86,10 @@ public final class g1 extends zs implements org.telegram.ui.ActionBar.a6 {
         };
         this.f18602t2 = -1;
         this.f18603u2 = new d1(this, 0);
-        this.f18604v2 = k6.G6;
+        this.f18604v2 = l6.G6;
         this.A2 = new d1(this, 1);
         this.H2 = new z0(this, 0);
-        this.f18584a2 = f6Var;
+        this.f18584a2 = g6Var;
         this.W1 = true;
         setBackground(null);
         setCursorWidth(1.5f);
@@ -115,7 +115,7 @@ public final class g1 extends zs implements org.telegram.ui.ActionBar.a6 {
     }
 
     @Override
-    public final d41 A(String str) {
+    public final e41 A(String str) {
         return c6.k(str);
     }
 
@@ -297,7 +297,7 @@ public final class g1 extends zs implements org.telegram.ui.ActionBar.a6 {
     }
 
     @Override
-    public f6 getResourcesProvider() {
+    public g6 getResourcesProvider() {
         return this.f18584a2;
     }
 
@@ -318,8 +318,7 @@ public final class g1 extends zs implements org.telegram.ui.ActionBar.a6 {
             for (i4 i4Var : (i4[]) text.getSpans(0, text.length(), i4.class)) {
                 iu iuVar = i4Var.f18642b;
                 if (iuVar != null && i4Var.f18643c == this) {
-                    iuVar.h = null;
-                    iuVar.f23365a.f22722a.f(this);
+                    iuVar.b(this);
                     i4Var.f18643c = null;
                 }
             }
@@ -329,12 +328,12 @@ public final class g1 extends zs implements org.telegram.ui.ActionBar.a6 {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        vy0[] vy0VarArr;
+        wy0[] wy0VarArr;
         int i7;
         int i10;
         float f10;
         Layout layout = getLayout();
-        r70 r70Var = null;
+        s70 s70Var = null;
         if (layout == null) {
             this.f18594l2 = null;
             this.f18596n2 = null;
@@ -348,17 +347,17 @@ public final class g1 extends zs implements org.telegram.ui.ActionBar.a6 {
                 this.f18594l2 = null;
                 if (text instanceof Spanned) {
                     Spanned spanned = (Spanned) text;
-                    for (vy0 vy0Var : (vy0[]) spanned.getSpans(0, spanned.length(), vy0.class)) {
-                        int i11 = vy0Var.f39749b.f38779a;
+                    for (wy0 wy0Var : (wy0[]) spanned.getSpans(0, spanned.length(), wy0.class)) {
+                        int i11 = wy0Var.f40238b.f39836a;
                         if ((65536 & i11) != 0) {
-                            int spanStart = spanned.getSpanStart(vy0Var);
-                            int spanEnd = spanned.getSpanEnd(vy0Var);
+                            int spanStart = spanned.getSpanStart(wy0Var);
+                            int spanEnd = spanned.getSpanEnd(wy0Var);
                             if (spanStart >= 0 && spanEnd > spanStart) {
-                                if (r70Var == null) {
-                                    r70Var = new r70(0);
-                                    r70Var.f37542n = false;
+                                if (s70Var == null) {
+                                    s70Var = new s70(0);
+                                    s70Var.f37952n = false;
                                 }
-                                r70Var.d(layout, spanStart, 0.0f);
+                                s70Var.d(layout, spanStart, 0.0f);
                                 if ((32768 & i11) != 0) {
                                     i7 = -org.telegram.messenger.g0.L(6.0f);
                                 } else if ((i11 & 16384) != 0) {
@@ -376,15 +375,15 @@ public final class g1 extends zs implements org.telegram.ui.ActionBar.a6 {
                                 } else {
                                     i10 = 0;
                                 }
-                                r70Var.f37543o = i10;
-                                layout.getSelectionPath(spanStart, spanEnd, r70Var);
+                                s70Var.f37953o = i10;
+                                layout.getSelectionPath(spanStart, spanEnd, s70Var);
                             }
                         }
                     }
-                    if (r70Var != null) {
-                        r70Var.f37542n = true;
+                    if (s70Var != null) {
+                        s70Var.f37952n = true;
                     }
-                    this.f18594l2 = r70Var;
+                    this.f18594l2 = s70Var;
                 }
             }
         }
@@ -392,9 +391,9 @@ public final class g1 extends zs implements org.telegram.ui.ActionBar.a6 {
             if (this.f18595m2 == null) {
                 Paint paint = new Paint(1);
                 this.f18595m2 = paint;
-                paint.setPathEffect(r70.c());
+                paint.setPathEffect(s70.c());
             }
-            this.f18595m2.setColor(k6.w0(k6.K6, this.f18584a2) & 872415231);
+            this.f18595m2.setColor(l6.w0(l6.K6, this.f18584a2) & 872415231);
             canvas.save();
             canvas.translate(getPaddingLeft(), this.O);
             canvas.drawPath(this.f18594l2, this.f18595m2);
@@ -692,16 +691,16 @@ public final class g1 extends zs implements org.telegram.ui.ActionBar.a6 {
         this.f18607y2 = true;
         try {
             boolean z9 = this.f18605w2;
-            f6 f6Var = this.f18584a2;
-            if (!z9 && getCurrentTextColor() != (w03 = k6.w0(this.f18604v2, f6Var))) {
+            g6 g6Var = this.f18584a2;
+            if (!z9 && getCurrentTextColor() != (w03 = l6.w0(this.f18604v2, g6Var))) {
                 setTextColor(w03);
             }
             if (this.f18606x2 || getCurrentHintTextColor() == this.f18608z2) {
                 this.f18606x2 = false;
                 if (this.f18588f2) {
-                    w02 = k6.r1(0.5f, k6.w0(k6.Ci, f6Var));
+                    w02 = l6.r1(0.5f, l6.w0(l6.Ci, g6Var));
                 } else {
-                    w02 = k6.w0(k6.H6, f6Var);
+                    w02 = l6.w0(l6.H6, g6Var);
                 }
                 this.f18608z2 = w02;
                 int currentHintTextColor = getCurrentHintTextColor();
@@ -711,13 +710,13 @@ public final class g1 extends zs implements org.telegram.ui.ActionBar.a6 {
                 }
             }
             this.f18607y2 = false;
-            int w04 = k6.w0(k6.Uc, f6Var);
+            int w04 = l6.w0(l6.Uc, g6Var);
             if (getLinkTextColors() == null || getLinkTextColors().getDefaultColor() != w04) {
                 setLinkTextColor(w04);
             }
-            setCursorColor(k6.w0(k6.G6, f6Var));
-            setHandlesColor(k6.w0(k6.f27999l6, f6Var));
-            boolean h12 = k6.h1();
+            setCursorColor(l6.w0(l6.G6, g6Var));
+            setHandlesColor(l6.w0(l6.f28012l6, g6Var));
+            boolean h12 = l6.h1();
             d1 d1Var = this.A2;
             if (!h12) {
                 removeCallbacks(d1Var);

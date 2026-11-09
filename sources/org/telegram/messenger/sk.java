@@ -1,7 +1,7 @@
 package org.telegram.messenger;
 
 import java.util.function.ToLongFunction;
-import org.telegram.ui.z41;
+import org.telegram.ui.a51;
 public final class sk implements ToLongFunction {
     public final int f25486a;
 
@@ -21,15 +21,15 @@ public final class sk implements ToLongFunction {
             case 3:
                 return ((ij) obj).Z0();
             case 4:
-                ij ijVar = ((z41) obj).f52452b;
+                ij ijVar = ((a51) obj).f43589b;
                 if (ijVar == null) {
                     return 0L;
                 }
                 return ijVar.f23262k.date;
             case 5:
-                return ((org.telegram.ui.Wallet.a8) obj).I;
+                return ((org.telegram.ui.Wallet.z7) obj).I;
             default:
-                return ((org.telegram.ui.Wallet.a8) obj).J;
+                return ((org.telegram.ui.Wallet.z7) obj).J;
         }
     }
 }

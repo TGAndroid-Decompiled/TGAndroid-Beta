@@ -3,7 +3,7 @@ package gh;
 import e2.a1;
 import h2.j;
 import h2.o;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g6;
 import p4.c0;
 import p4.g1;
 import p4.u;
@@ -48,7 +48,7 @@ public final class c implements d, o, c0, j {
     }
 
     @Override
-    public int k(f6 f6Var, boolean z9) {
+    public int k(g6 g6Var, boolean z9) {
         if (z9) {
             return this.f13966b;
         }

@@ -5,7 +5,7 @@ import android.graphics.PorterDuff;
 import android.view.View;
 import android.widget.ImageView;
 import c8.ha;
-import di.d4;
+import di.e4;
 import java.util.HashSet;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.g0;
@@ -13,37 +13,37 @@ import org.telegram.messenger.i6;
 import org.telegram.messenger.id;
 import org.telegram.messenger.t3;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.a6;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.s6;
 import org.telegram.ui.Components.l9;
 import org.telegram.ui.Components.w8;
 import wg.z0;
-public final class g extends c implements a6 {
+public final class g extends c implements b6 {
     public int D;
-    public final ImageView f59454s;
-    public f f59455w;
-    public TLRPC.Chat f59456x;
-    public boolean f59457y;
+    public final ImageView f59463s;
+    public f f59464w;
+    public TLRPC.Chat f59465x;
+    public boolean f59466y;
 
-    public g(Context context, f6 f6Var) {
-        super(context, f6Var);
+    public g(Context context, g6 g6Var) {
+        super(context, g6Var);
         int i7;
         float f10;
         float f11;
         float f12;
         this.d.setTypeface(g0.o());
         ImageView imageView = new ImageView(context);
-        this.f59454s = imageView;
+        this.f59463s = imageView;
         imageView.setFocusable(false);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        int x02 = k6.x0(null, k6.Ji, false);
+        int x02 = l6.x0(null, l6.Ji, false);
         this.D = x02;
-        imageView.setBackground(k6.h0(x02, 1, -1));
+        imageView.setBackground(l6.h0(x02, 1, -1));
         imageView.setImageResource(2131232561);
-        r6.t(imageView, k6.f28017m6, null, PorterDuff.Mode.MULTIPLY);
-        imageView.setContentDescription(id.M0(2131751599, null));
+        s6.s(imageView, l6.f28030m6, null, PorterDuff.Mode.MULTIPLY);
+        imageView.setContentDescription(id.M0(2131751598, null));
         boolean z9 = id.f23157a0;
         if (z9) {
             i7 = 3;
@@ -62,13 +62,13 @@ public final class g extends c implements a6 {
             f11 = 3.0f;
         }
         addView(imageView, ha.d(48, 50.0f, i10, f10, 0.0f, f11, 0.0f));
-        d4 d4Var = this.d;
+        e4 e4Var = this.d;
         if (id.f23157a0) {
             f12 = 24.0f;
         } else {
             f12 = 0.0f;
         }
-        d4Var.setPadding(g0.L(f12), 0, g0.L(id.f23157a0 ? 0.0f : 24.0f), 0);
+        e4Var.setPadding(g0.L(f12), 0, g0.L(id.f23157a0 ? 0.0f : 24.0f), 0);
     }
 
     @Override
@@ -81,17 +81,17 @@ public final class g extends c implements a6 {
         int i11;
         String M0;
         String str2;
-        this.f59457y = z9;
-        this.f59456x = chat;
-        w8 w8Var = this.f59433b;
+        this.f59466y = z9;
+        this.f59465x = chat;
+        w8 w8Var = this.f59442b;
         w8Var.q(chat);
         int L = g0.L(20.0f);
-        l9 l9Var = this.f59434c;
+        l9 l9Var = this.f59443c;
         l9Var.setRoundRadius(L);
         l9Var.e(chat, w8Var);
         String str3 = chat.title;
-        d4 d4Var = this.d;
-        d4Var.k(i6.m(str3, d4Var.getPaint().getFontMetricsInt(), false, null, 0));
+        e4 e4Var = this.d;
+        e4Var.k(i6.m(str3, e4Var.getPaint().getFontMetricsInt(), false, null, 0));
         boolean V = t3.V(chat);
         if (z9) {
             if (i10 >= 1) {
@@ -103,7 +103,7 @@ public final class g extends c implements a6 {
                 M0 = id.G(i10, str2, new Object[0]);
             } else {
                 if (V) {
-                    i11 = 2131751391;
+                    i11 = 2131751390;
                 } else {
                     i11 = 2131754876;
                 }
@@ -118,9 +118,9 @@ public final class g extends c implements a6 {
             }
             setSubtitle(id.G(i7, str, new Object[0]));
         }
-        r6.Y(this.f59435e, k6.f28110r5, this.f59432a);
+        s6.X(this.f59444e, l6.f28123r5, this.f59441a);
         setDivider(true);
-        ImageView imageView = this.f59454s;
+        ImageView imageView = this.f59463s;
         if (z9) {
             imageView.setVisibility(0);
         } else {
@@ -130,27 +130,27 @@ public final class g extends c implements a6 {
     }
 
     public TLRPC.Chat getChat() {
-        return this.f59456x;
+        return this.f59465x;
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
-        this.f59454s.measure(View.MeasureSpec.makeMeasureSpec(g0.L(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(g0.L(48.0f), 1073741824));
+        this.f59463s.measure(View.MeasureSpec.makeMeasureSpec(g0.L(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(g0.L(48.0f), 1073741824));
     }
 
     public void setChatDeleteListener(f fVar) {
-        this.f59455w = fVar;
+        this.f59464w = fVar;
     }
 
     @Override
     public final void updateColors() {
         try {
-            int x02 = k6.x0(null, k6.Ji, false);
-            ImageView imageView = this.f59454s;
+            int x02 = l6.x0(null, l6.Ji, false);
+            ImageView imageView = this.f59463s;
             if (imageView != null && x02 != this.D) {
                 this.D = x02;
-                k6.H1(imageView.getBackground(), x02, true);
+                l6.H1(imageView.getBackground(), x02, true);
                 imageView.invalidate();
             }
         } catch (Exception e10) {

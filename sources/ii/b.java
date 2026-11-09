@@ -5,7 +5,7 @@ import android.view.View;
 import java.io.Serializable;
 import org.telegram.messenger.a20;
 import org.telegram.messenger.wr;
-import org.telegram.ui.Components.x31;
+import org.telegram.ui.Components.y31;
 public final class b implements a20, wr {
     public final f f15489a;
 
@@ -22,6 +22,6 @@ public final class b implements a20, wr {
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
-        f.Z(this.f15489a, (x31) obj);
+        f.Z(this.f15489a, (y31) obj);
     }
 }

@@ -23,11 +23,12 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.Components.ca0;
+import org.telegram.ui.Components.da0;
 import org.telegram.ui.Components.qn;
-import org.telegram.ui.Components.t51;
+import org.telegram.ui.Components.u51;
 import org.telegram.ui.Components.xn;
-import org.telegram.ui.an;
+import org.telegram.ui.cn;
+import org.webrtc.ScreenCapturerAndroid;
 import org.webrtc.SurfaceTextureHelper;
 import org.webrtc.SurfaceViewRenderer;
 import org.webrtc.TextureViewRenderer;
@@ -46,7 +47,7 @@ public final class r implements Runnable {
 
     @Override
     public final void run() {
-        t51 t51Var;
+        u51 u51Var;
         switch (this.f16899a) {
             case 0:
                 int i7 = this.f16900b;
@@ -147,20 +148,20 @@ public final class r implements Runnable {
                 }
             case 1:
                 l2.i0 i0Var = (l2.i0) this.d;
-                h2.r rVar = i0Var.f17873m;
+                h2.r rVar = i0Var.f17871m;
                 int i15 = this.f16900b;
                 int i16 = this.f16901c;
                 rVar.e(24, new gh.c(i15, i16, 2));
                 i0Var.t1(2, 14, new h2.y(i15, i16));
                 return;
             case 2:
-                ((l2.c0) this.d).f17774a.q1(this.f16900b, this.f16901c);
+                ((l2.c0) this.d).f17772a.q1(this.f16900b, this.f16901c);
                 return;
             case 3:
                 MediaController mediaController = (MediaController) ((f5.u) this.d).f11191c;
-                if (this.f16900b == mediaController.f21275k0 && this.f16901c == 4 && (t51Var = mediaController.f21273j0) != null) {
+                if (this.f16900b == mediaController.f21275k0 && this.f16901c == 4 && (u51Var = mediaController.f21273j0) != null) {
                     try {
-                        t51Var.m0();
+                        u51Var.m0();
                         mediaController.f21273j0 = null;
                         return;
                     } catch (Exception e11) {
@@ -194,7 +195,7 @@ public final class r implements Runnable {
                 Bundle bundle = new Bundle();
                 bundle.putLong("user_id", p10.i(this.f16900b).e());
                 bundle.putInt("message_id", this.f16901c);
-                ((f2) this.d).presentFragment(new an(bundle));
+                ((f2) this.d).presentFragment(new cn(bundle));
                 return;
             case 11:
                 xn xnVar = (xn) this.d;
@@ -215,9 +216,9 @@ public final class r implements Runnable {
                 qnVar.a(Integer.valueOf(i19));
                 return;
             case 13:
-                ca0 ca0Var = (ca0) ((bi.q1) this.d).f4554f3;
-                View d = ca0Var.d();
-                bi.q1 q1Var = ca0Var.f32527f;
+                da0 da0Var = (da0) ((bi.q1) this.d).f4554f3;
+                View d = da0Var.d();
+                bi.q1 q1Var = da0Var.f32922f;
                 if (d != null) {
                     int top = d.getTop() + this.f16900b;
                     int top2 = d.getTop() + this.f16901c;
@@ -237,9 +238,12 @@ public final class r implements Runnable {
                 }
                 return;
             case 14:
-                ((SurfaceTextureHelper) this.d).lambda$setTextureSize$2(this.f16900b, this.f16901c);
+                ((ScreenCapturerAndroid) this.d).lambda$changeCaptureFormat$1(this.f16900b, this.f16901c);
                 return;
             case 15:
+                ((SurfaceTextureHelper) this.d).lambda$setTextureSize$2(this.f16900b, this.f16901c);
+                return;
+            case 16:
                 SurfaceViewRenderer.a((SurfaceViewRenderer) this.d, this.f16900b, this.f16901c);
                 return;
             default:

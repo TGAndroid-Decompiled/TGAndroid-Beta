@@ -1,46 +1,57 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.widget.FrameLayout;
-public final class ll0 implements r0.m, org.telegram.ui.ActionBar.r1 {
-    public final int f47555a;
-    public final hm0 f47556b;
+import android.content.Context;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class ll0 implements org.telegram.messenger.c20 {
+    public final int f47639a = 0;
+    public final cg.b f47640b;
+    public final TL_stars.TL_starGiftUnique f47641c;
+    public final long d;
+    public final Object f47642e;
+    public final Object f47643f;
 
-    public ll0(hm0 hm0Var, int i7) {
-        this.f47555a = i7;
-        this.f47556b = hm0Var;
+    public ll0(jm0 jm0Var, cg.b bVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, kl0 kl0Var) {
+        this.f47642e = jm0Var;
+        this.f47640b = bVar;
+        this.f47641c = tL_starGiftUnique;
+        this.d = j3;
+        this.f47643f = kl0Var;
     }
 
     @Override
-    public r0.k1 S0(View view, r0.k1 k1Var) {
-        i0.b I0 = org.telegram.messenger.g0.I0(k1Var, false);
-        hm0 hm0Var = this.f47556b;
-        hm0Var.f46451b0 = I0;
-        sl0 sl0Var = hm0Var.h.f44431b;
-        int i7 = I0.f15120a;
-        int paddingTop = sl0Var.getPaddingTop();
-        i0.b bVar = hm0Var.f46451b0;
-        sl0Var.setPadding(i7, paddingTop, bVar.f15122c, org.telegram.messenger.g0.L(72.0f) + bVar.d);
-        sl0 sl0Var2 = hm0Var.f46457n.f44431b;
-        int i10 = hm0Var.f46451b0.f15120a;
-        int paddingTop2 = sl0Var2.getPaddingTop();
-        i0.b bVar2 = hm0Var.f46451b0;
-        sl0Var2.setPadding(i10, paddingTop2, bVar2.f15122c, org.telegram.messenger.g0.L(72.0f) + bVar2.d);
-        FrameLayout frameLayout = hm0Var.P;
-        i0.b bVar3 = hm0Var.f46451b0;
-        frameLayout.setPadding(bVar3.f15120a, 0, bVar3.f15122c, bVar3.d);
-        return r0.k1.f54201b;
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f47555a) {
-            case 1:
-                this.f47556b.finishFragment();
+    public final void a(Object obj) {
+        switch (this.f47639a) {
+            case 0:
+                jm0.a0((jm0) this.f47642e, this.f47640b, this.f47641c, this.d, (kl0) this.f47643f, (TLRPC.TL_payments_paymentFormStarGift) obj);
                 return;
             default:
-                this.f47556b.D0();
+                zh.l3 l3Var = (zh.l3) this.f47642e;
+                TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift = (TLRPC.TL_payments_paymentFormStarGift) obj;
+                ((org.telegram.ui.ActionBar.u1) this.f47643f).dismiss();
+                if (tL_payments_paymentFormStarGift != null) {
+                    bi.h6 h6Var = new bi.h6(this.f47640b, tL_payments_paymentFormStarGift);
+                    Context context = l3Var.getContext();
+                    org.telegram.ui.ActionBar.g6 g6Var = l3Var.I0;
+                    int i7 = l3Var.f28621a;
+                    StringBuilder sb2 = new StringBuilder();
+                    TL_stars.TL_starGiftUnique tL_starGiftUnique = this.f47641c;
+                    sb2.append(tL_starGiftUnique.title);
+                    sb2.append(" #");
+                    String m10 = jg.g.m(tL_starGiftUnique.num, ',', sb2);
+                    long j3 = this.d;
+                    new bi.k6(context, g6Var, tL_starGiftUnique, h6Var, i7, j3, m10, true, new bi.mc(l3Var, tL_starGiftUnique, j3, 2)).b();
+                    return;
+                }
                 return;
         }
+    }
+
+    public ll0(zh.l3 l3Var, org.telegram.ui.ActionBar.u1 u1Var, cg.b bVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3) {
+        this.f47642e = l3Var;
+        this.f47643f = u1Var;
+        this.f47640b = bVar;
+        this.f47641c = tL_starGiftUnique;
+        this.d = j3;
     }
 }

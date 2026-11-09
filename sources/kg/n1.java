@@ -13,13 +13,13 @@ import java.util.HashSet;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.id;
-import org.telegram.ui.ActionBar.a6;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.s6;
 import org.telegram.ui.Components.w8;
 import org.telegram.ui.Components.wo;
-public final class n1 extends FrameLayout implements a6 {
+public final class n1 extends FrameLayout implements b6 {
     public final w8 f17449a;
     public final ImageReceiver f17450b;
     public final TextView f17451c;
@@ -27,29 +27,29 @@ public final class n1 extends FrameLayout implements a6 {
     public final wo f17452e;
     public final Path f17453f;
     public final Paint h;
-    public final f6 f17454n;
+    public final g6 f17454n;
     public final int[] f17455r;
     public boolean f17456s;
 
-    public n1(Context context, f6 f6Var) {
+    public n1(Context context, g6 g6Var) {
         super(context);
         float f10;
         float f11;
         float f12;
         float f13;
-        this.f17449a = new w8((f6) null);
+        this.f17449a = new w8((g6) null);
         this.f17450b = new ImageReceiver(this);
         this.f17453f = new Path();
         this.h = new Paint(1);
         this.f17455r = new int[1];
-        this.f17454n = f6Var;
+        this.f17454n = g6Var;
         setWillNotDraw(false);
         TextView textView = new TextView(context);
         this.f17451c = textView;
         textView.setSingleLine();
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
-        r6.V(textView, k6.G6, f6Var);
+        s6.U(textView, l6.G6, g6Var);
         textView.setTypeface(org.telegram.messenger.g0.o());
         textView.setTextSize(1, 16.0f);
         boolean z9 = id.f23157a0;
@@ -68,7 +68,7 @@ public final class n1 extends FrameLayout implements a6 {
         this.d = textView2;
         textView2.setLines(2);
         textView2.setEllipsize(truncateAt);
-        r6.V(textView2, k6.f28262z6, f6Var);
+        s6.U(textView2, l6.f28275z6, g6Var);
         textView2.setTextSize(1, 15.0f);
         boolean z10 = id.f23157a0;
         if (z10) {
@@ -82,9 +82,9 @@ public final class n1 extends FrameLayout implements a6 {
             f13 = 40.0f;
         }
         addView(textView2, ha.d(-1, -2.0f, 7, f12, 32.0f, f13, 0.0f));
-        wo woVar = new wo(21, getContext(), f6Var);
+        wo woVar = new wo(21, getContext(), g6Var);
         this.f17452e = woVar;
-        woVar.b(-1, k6.f27852d6, k6.f27982k7);
+        woVar.b(-1, l6.f27865d6, l6.f27995k7);
         woVar.setDrawUnchecked(false);
         woVar.setDrawBackgroundAsArc(3);
         addView(woVar, ha.i(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
@@ -106,9 +106,9 @@ public final class n1 extends FrameLayout implements a6 {
         super.onDraw(canvas);
         canvas.drawPath(this.f17453f, this.h);
         if (this.f17456s) {
-            Paint W0 = k6.W0("paintDivider", this.f17454n);
+            Paint W0 = l6.W0("paintDivider", this.f17454n);
             if (W0 == null) {
-                W0 = k6.f27975k0;
+                W0 = l6.f27988k0;
             }
             Paint paint = W0;
             float f12 = 78.0f;
@@ -138,7 +138,7 @@ public final class n1 extends FrameLayout implements a6 {
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeWidth(org.telegram.messenger.g0.N(1.66f));
-        paint.setColor(k6.r1(0.85f, k6.w0(k6.f28262z6, this.f17454n)));
+        paint.setColor(l6.r1(0.85f, l6.w0(l6.f28275z6, this.f17454n)));
         Path path = this.f17453f;
         path.rewind();
         float measuredHeight = getMeasuredHeight() / 2.0f;
@@ -160,7 +160,7 @@ public final class n1 extends FrameLayout implements a6 {
     @Override
     public final void updateColors() {
         try {
-            this.h.setColor(k6.r1(0.85f, k6.w0(k6.f28262z6, this.f17454n)));
+            this.h.setColor(l6.r1(0.85f, l6.w0(l6.f28275z6, this.f17454n)));
             invalidate();
         } catch (Exception e10) {
             a8.g(e10, true);

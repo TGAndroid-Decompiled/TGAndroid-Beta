@@ -34,7 +34,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.zip.GZIPInputStream;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.zg0;
+import org.telegram.ui.Components.ah0;
 public final class gc {
     public static Bitmap M;
     public final ConcurrentHashMap A;
@@ -82,7 +82,7 @@ public final class gc {
         int i7;
         com.google.android.gms.internal.cast.b0 b0Var = new com.google.android.gms.internal.cast.b0(2);
         TimeUnit timeUnit = TimeUnit.SECONDS;
-        b0Var.f6814b = new of.a(b0Var, new PriorityBlockingQueue(10, new c5.b(4)));
+        b0Var.f6812b = new of.a(b0Var, new PriorityBlockingQueue(10, new c5.b(4)));
         this.f22648p = b0Var;
         this.f22649q = new p5("cacheThumbOutQueue");
         p5 p5Var = new p5("thumbGeneratingQueue");
@@ -332,11 +332,11 @@ public final class gc {
     public static int d(gc gcVar, BitmapDrawable bitmapDrawable) {
         if (bitmapDrawable instanceof org.telegram.ui.Components.v5) {
             org.telegram.ui.Components.v5 v5Var = (org.telegram.ui.Components.v5) bitmapDrawable;
-            return Math.max(v5Var.getIntrinsicHeight() * v5Var.getIntrinsicWidth(), v5Var.f38871j0 * v5Var.f38870i0) * 12;
-        } else if (bitmapDrawable instanceof zg0) {
-            zg0 zg0Var = (zg0) bitmapDrawable;
-            int i7 = zg0Var.f40990b * zg0Var.f40992c;
-            if (zg0Var.G) {
+            return Math.max(v5Var.getIntrinsicHeight() * v5Var.getIntrinsicWidth(), v5Var.f38932j0 * v5Var.f38931i0) * 12;
+        } else if (bitmapDrawable instanceof ah0) {
+            ah0 ah0Var = (ah0) bitmapDrawable;
+            int i7 = ah0Var.f31821b * ah0Var.f31823c;
+            if (ah0Var.G) {
                 return i7 * 2;
             }
             return i7 * 8;
@@ -381,7 +381,7 @@ public final class gc {
 
     public static boolean e0(hc hcVar, String str) {
         if (!str.endsWith("_firstframe") && !str.endsWith("_lastframe")) {
-            if ((hcVar != null && (ij.L2(hcVar.f22871i, true) || hcVar.f22878p == 1 || ij.O4(hcVar.f22871i))) || I(str)) {
+            if ((hcVar != null && (ij.K2(hcVar.f22871i, true) || hcVar.f22878p == 1 || ij.N4(hcVar.f22871i))) || I(str)) {
                 return true;
             }
             return false;
@@ -963,7 +963,7 @@ public final class gc {
 
     public final void h(ImageReceiver imageReceiver, boolean z9) {
         ArrayList arrayList = imageReceiver.f21228w1;
-        HashMap hashMap = org.telegram.ui.web.w1.f51351f;
+        HashMap hashMap = org.telegram.ui.web.w1.f51332f;
         if (hashMap != null) {
             Iterator it = hashMap.entrySet().iterator();
             while (true) {
@@ -985,7 +985,7 @@ public final class gc {
                     }
                 }
                 if (arrayList2.isEmpty()) {
-                    org.telegram.ui.web.w1.f51351f.remove(str);
+                    org.telegram.ui.web.w1.f51332f.remove(str);
                     break;
                 }
             }
@@ -1003,7 +1003,7 @@ public final class gc {
     }
 
     public final void i(Runnable runnable) {
-        ((of.a) this.f22648p.f6814b).execute(new x4(15, this, runnable));
+        ((of.a) this.f22648p.f6812b).execute(new x4(15, this, runnable));
     }
 
     public final void j() {
@@ -1108,7 +1108,7 @@ public final class gc {
         BitmapDrawable bitmapDrawable = (BitmapDrawable) this.f22638e.f(str);
         if (bitmapDrawable instanceof org.telegram.ui.Components.v5) {
             org.telegram.ui.Components.v5 v5Var = (org.telegram.ui.Components.v5) bitmapDrawable;
-            if (!v5Var.f38862c0 && v5Var.G0 < 15) {
+            if (!v5Var.f38923c0 && v5Var.G0 < 15) {
                 return bitmapDrawable;
             }
             this.f22638e.n(str);

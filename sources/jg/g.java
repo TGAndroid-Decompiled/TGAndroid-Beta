@@ -12,7 +12,7 @@ import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.id;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.xi0;
+import org.telegram.ui.Components.yi0;
 public abstract class g {
     public static boolean A(String str, String str2, String str3) {
         return str3.contains(str + str2);
@@ -140,7 +140,7 @@ public abstract class g {
         return DesugarCollections.unmodifiableMap(new HashMap(hashMap));
     }
 
-    public static xi0 r(View view, View view2, int i7, int i10) {
+    public static yi0 r(View view, View view2, int i7, int i10) {
         view.setLayoutParams(new v4.o0(i7, i10));
         return new v4.d1(view2);
     }

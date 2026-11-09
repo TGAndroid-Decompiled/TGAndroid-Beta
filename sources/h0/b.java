@@ -1,11 +1,9 @@
 package h0;
 
 import a8.wa;
-import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.content.res.XmlResourceParser;
-import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.util.Base64;
 import android.util.Log;
@@ -29,7 +27,7 @@ public abstract class b {
             typedArray.getValue(i7, typedValue);
             int i10 = typedValue.type;
             if (i10 >= 28 && i10 <= 31) {
-                return new wa((Shader) null, (ColorStateList) null, typedValue.data);
+                return new wa((Object) null, (Object) null, typedValue.data, 9);
             }
             try {
                 waVar = wa.g(typedArray.getResources(), typedArray.getResourceId(i7, 0), theme);
@@ -41,7 +39,7 @@ public abstract class b {
                 return waVar;
             }
         }
-        return new wa((Shader) null, (ColorStateList) null, 0);
+        return new wa((Object) null, (Object) null, 0, 9);
     }
 
     public static String b(TypedArray typedArray, XmlPullParser xmlPullParser, String str, int i7) {
@@ -126,7 +124,7 @@ public abstract class b {
         if (next == 2) {
             xmlResourceParser.require(2, null, "font-family");
             if (xmlResourceParser.getName().equals("font-family")) {
-                TypedArray obtainAttributes = resources.obtainAttributes(Xml.asAttributeSet(xmlResourceParser), d0.a.f7926b);
+                TypedArray obtainAttributes = resources.obtainAttributes(Xml.asAttributeSet(xmlResourceParser), d0.a.f7924b);
                 String string = obtainAttributes.getString(0);
                 String string2 = obtainAttributes.getString(5);
                 String string3 = obtainAttributes.getString(6);
@@ -152,7 +150,7 @@ public abstract class b {
                 while (xmlResourceParser.next() != 3) {
                     if (xmlResourceParser.getEventType() == 2) {
                         if (xmlResourceParser.getName().equals("font")) {
-                            TypedArray obtainAttributes2 = resources.obtainAttributes(Xml.asAttributeSet(xmlResourceParser), d0.a.f7927c);
+                            TypedArray obtainAttributes2 = resources.obtainAttributes(Xml.asAttributeSet(xmlResourceParser), d0.a.f7925c);
                             int i12 = 8;
                             if (!obtainAttributes2.hasValue(8)) {
                                 i12 = 1;

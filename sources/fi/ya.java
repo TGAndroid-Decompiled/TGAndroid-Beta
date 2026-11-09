@@ -66,7 +66,7 @@ public final class ya {
         this.d = new short[min];
         if (this.h > 0 && this.f13224g != null) {
             if (!"audio/mpeg".equals(str2) && !"audio/mp3".equals(str2) && !"audio/mp4a".equals(str2) && !"audio/mp4a-latm".equals(str2)) {
-                Utilities.h.c(new h9(this, 5));
+                Utilities.h.c(new v9(this, 4));
             } else {
                 this.f13227k = new FfmpegAudioWaveformLoader(str, min, new ai.e(this, 23));
             }
@@ -78,7 +78,7 @@ public final class ya {
         if (ffmpegAudioWaveformLoader != null) {
             ffmpegAudioWaveformLoader.destroy();
         }
-        Utilities.h.a(new h9(this, 5));
+        Utilities.h.a(new v9(this, 4));
         synchronized (this.f13225i) {
             this.f13226j = true;
         }

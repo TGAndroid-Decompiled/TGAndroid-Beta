@@ -50,13 +50,13 @@ public final class c implements ua.b {
                     } catch (PackageManager.NameNotFoundException unused) {
                     }
                 }
-                obj.f60023a = z9;
+                obj.f60032a = z9;
                 return obj;
             case 1:
                 return new sa.h((Context) this.f20867b, (String) this.f20868c);
             default:
                 u9.a aVar2 = (u9.a) this.f20867b;
-                return aVar2.f56456f.e(new r7(aVar2, (u9.g) this.f20868c));
+                return aVar2.f56468f.e(new r7(aVar2, (u9.g) this.f20868c));
         }
     }
 

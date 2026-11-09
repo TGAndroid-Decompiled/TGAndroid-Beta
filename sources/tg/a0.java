@@ -15,12 +15,12 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.m3;
 import org.telegram.ui.Components.ix;
 import org.telegram.ui.Components.r5;
-import org.telegram.ui.Components.t31;
+import org.telegram.ui.Components.u31;
 public final class a0 implements ix {
-    public final g0 f55555a;
+    public final g0 f55567a;
 
     public a0(g0 g0Var) {
-        this.f55555a = g0Var;
+        this.f55567a = g0Var;
     }
 
     @Override
@@ -60,7 +60,7 @@ public final class a0 implements ix {
 
     @Override
     public final boolean k() {
-        b editText = ((k2) this.f55555a.B0).getEditText();
+        b editText = ((k2) this.f55567a.B0).getEditText();
         if (editText == null || editText.length() == 0) {
             return false;
         }
@@ -73,7 +73,7 @@ public final class a0 implements ix {
         k2 k2Var;
         b editText;
         f6[] f6VarArr;
-        j jVar = this.f55555a.B0;
+        j jVar = this.f55567a.B0;
         if (!(jVar instanceof k2) || (editText = (k2Var = (k2) jVar).getEditText()) == null) {
             return;
         }
@@ -100,8 +100,8 @@ public final class a0 implements ix {
 
     @Override
     public final void n() {
-        g0 g0Var = this.f55555a;
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, g0Var.getContext(), g0Var.f55705z1);
+        g0 g0Var = this.f55567a;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, g0Var.getContext(), g0Var.f55717z1);
         String M0 = id.M0(2131752068, null);
         org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
         u1Var.R = M0;
@@ -119,7 +119,7 @@ public final class a0 implements ix {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z9) {
         r5 r5Var;
-        b editText = ((k2) this.f55555a.B0).getEditText();
+        b editText = ((k2) this.f55567a.B0).getEditText();
         if (editText == null) {
             return;
         }
@@ -159,7 +159,7 @@ public final class a0 implements ix {
     }
 
     @Override
-    public final void o(t31 t31Var) {
+    public final void o(u31 u31Var) {
     }
 
     @Override

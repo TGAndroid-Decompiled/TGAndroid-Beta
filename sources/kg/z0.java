@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Components.w8;
 public final class z0 extends View {
     public final Drawable f17589a;
@@ -14,7 +14,7 @@ public final class z0 extends View {
     public z0(a1 a1Var, Context context) {
         super(context);
         this.f17589a = getContext().getResources().getDrawable(2131231651).mutate();
-        w8 w8Var = new w8((f6) null);
+        w8 w8Var = new w8((g6) null);
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.f17590b = imageReceiver;
         w8Var.r(a1Var.getUserConfig().f());

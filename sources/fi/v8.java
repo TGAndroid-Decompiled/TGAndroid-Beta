@@ -36,7 +36,7 @@ public final class v8 implements c20 {
         boolean z11;
         boolean z12;
         int i7;
-        o9 o9Var;
+        n9 n9Var;
         int contentHeight;
         float L;
         int i10 = this.f12930a;
@@ -48,7 +48,7 @@ public final class v8 implements c20 {
         switch (i10) {
             case 0:
                 p2 p2Var = vaVar.f12991s;
-                p2Var.f12587p = ((Float) obj).floatValue();
+                p2Var.f12585p = ((Float) obj).floatValue();
                 p2Var.i();
                 return;
             case 1:
@@ -69,25 +69,25 @@ public final class v8 implements c20 {
                 e7 e7Var2 = (e7) obj;
                 vaVar.V(e7Var2, false);
                 int i12 = vaVar.f12942c;
-                di.y6 P1 = qp.s1(i12).P1();
-                a0.h hVar = P1.f9966e;
-                int i13 = P1.f9963a;
+                di.z6 P1 = qp.s1(i12).P1();
+                a0.h hVar = P1.f9995e;
+                int i13 = P1.f9992a;
                 ArrayList arrayList = P1.h;
-                ArrayList arrayList2 = P1.f9968g;
-                di.x6 x6Var = new di.x6(P1, e7Var2);
+                ArrayList arrayList2 = P1.f9997g;
+                di.y6 y6Var = new di.y6(P1, e7Var2);
                 boolean z13 = e7Var2.f11892g;
-                long j3 = x6Var.J;
+                long j3 = y6Var.J;
                 if (z13) {
                     HashMap hashMap = (HashMap) hVar.f(j3);
                     if (hashMap == null) {
                         hashMap = new HashMap();
                         hVar.k(hashMap, j3);
                     }
-                    hashMap.put(Integer.valueOf(e7Var2.f11890f), x6Var);
+                    hashMap.put(Integer.valueOf(e7Var2.f11890f), y6Var);
                 } else {
-                    P1.d(j3, x6Var, P1.f9964b, false);
+                    P1.d(j3, y6Var, P1.f9993b, false);
                 }
-                P1.d(j3, x6Var, P1.f9965c, true);
+                P1.d(j3, y6Var, P1.f9994c, true);
                 if (j3 != p10.i(i13).f24489n) {
                     int i14 = 0;
                     while (true) {
@@ -123,10 +123,10 @@ public final class v8 implements c20 {
                         P1.R(j3);
                     }
                 }
-                x6Var.d();
+                y6Var.d();
                 qs.f(i13).k(324, new Object[0]);
                 if (e7Var2.f11882c && !e7Var2.f11892g) {
-                    qp.s1(i12).P1().f9982w.b(e7Var2);
+                    qp.s1(i12).P1().f10011w.b(e7Var2);
                 }
                 if (e7Var2.f11889e1 != 0) {
                     ConnectionsManager.getInstance(e7Var2.f11876a).cancelRequest(e7Var2.f11889e1, true);
@@ -167,17 +167,17 @@ public final class v8 implements c20 {
             case 5:
                 di.b bVar = vaVar.f12934a;
                 int intValue = ((Integer) obj).intValue() / 3600;
-                org.telegram.ui.Components.wa waVar = new org.telegram.ui.Components.xa(vaVar.f12938b, new r7(1)).f40275a;
+                org.telegram.ui.Components.wa waVar = new org.telegram.ui.Components.xa(vaVar.f12938b, new r7(1)).f40350a;
                 WindowManager.LayoutParams layout = waVar.getLayout();
                 if (layout != null) {
                     layout.height = -2;
                     layout.width = vaVar.f12987r.getWidth();
                     layout.y = (int) (vaVar.f12987r.getY() + org.telegram.messenger.g0.L(56.0f));
-                    org.telegram.ui.Components.xa xaVar = waVar.f39903a;
-                    xaVar.getWindow().setAttributes(xaVar.f40276b);
+                    org.telegram.ui.Components.xa xaVar = waVar.f40017a;
+                    xaVar.getWindow().setAttributes(xaVar.f40351b);
                 }
                 waVar.setTouchable(true);
-                new hc(waVar, bVar).G(2131624020, 3, org.telegram.messenger.g0.S2(id.G(intValue, "StoryPeriodPremium", new Object[0]), org.telegram.ui.ActionBar.k6.Uc, 0, new u8(vaVar, 27), bVar)).k(true);
+                new hc(waVar, bVar).G(2131624020, 3, org.telegram.messenger.g0.S2(id.G(intValue, "StoryPeriodPremium", new Object[0]), org.telegram.ui.ActionBar.l6.Uc, 0, new u8(vaVar, 27), bVar)).k(true);
                 return;
             case 6:
                 Boolean bool = (Boolean) obj;
@@ -198,8 +198,8 @@ public final class v8 implements c20 {
                     f10 = 0.0f;
                 }
                 org.telegram.messenger.camera.q.k(animate, f10, 120L);
-                cc ccVar = cc.f32537w;
-                if (ccVar != null && ccVar.f32538a == 2) {
+                cc ccVar = cc.f32619w;
+                if (ccVar != null && ccVar.f32620a == 2) {
                     ccVar.l();
                     return;
                 }
@@ -236,20 +236,20 @@ public final class v8 implements c20 {
             case 9:
                 vaVar.O = true;
                 vaVar.p(true);
-                org.telegram.messenger.g0.i3(new k9((c20) obj, 0), 210L);
+                org.telegram.messenger.g0.i3(new j9((c20) obj, 0), 210L);
                 return;
             case 10:
                 Integer num2 = (Integer) obj;
                 if (!vaVar.P1 && !vaVar.Q1) {
                     int intValue2 = num2.intValue();
                     vaVar.O1 = intValue2;
-                    x6 x6Var2 = vaVar.f12978o0;
+                    x6 x6Var = vaVar.f12978o0;
                     if (intValue2 == -1) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    x6Var2.a(z10, true);
+                    x6Var.a(z10, true);
                     if (vaVar.O1 == 1 && !vaVar.I0.f13108e) {
                         z11 = true;
                     } else {
@@ -337,7 +337,7 @@ public final class v8 implements c20 {
                             vaVar.k0(0, false, true);
                             x9 x9Var = vaVar.f13002v1;
                             if (x9Var != null) {
-                                x9Var.f12551v0 = false;
+                                x9Var.f12549v0 = false;
                                 x9Var.O0(0);
                                 x9Var.A0(null, true);
                                 return;
@@ -350,7 +350,7 @@ public final class v8 implements c20 {
                                 x9Var2.O0(2);
                                 x9Var2.U1 = true;
                                 x9Var2.l0(true);
-                                vaVar.f13002v1.f12551v0 = true;
+                                vaVar.f13002v1.f12549v0 = true;
                                 return;
                             }
                             return;
@@ -388,8 +388,8 @@ public final class v8 implements c20 {
                     }
                     frameLayout.setTranslationY(L);
                 }
-                o9 o9Var2 = vaVar.f12947d1;
-                if (o9Var2 != null) {
+                n9 n9Var2 = vaVar.f12947d1;
+                if (n9Var2 != null) {
                     int i17 = -(org.telegram.messenger.g0.L(24.0f) + vaVar.f12944c1.getEditTextHeight());
                     fb fbVar2 = vaVar.Z0;
                     if (fbVar2 == null) {
@@ -397,14 +397,14 @@ public final class v8 implements c20 {
                     } else {
                         contentHeight = fbVar2.getContentHeight() - org.telegram.messenger.g0.L(5.0f);
                     }
-                    o9Var2.setTranslationY(i17 - contentHeight);
+                    n9Var2.setTranslationY(i17 - contentHeight);
                 }
-                cc ccVar2 = cc.f32537w;
-                if (ccVar2 != null && ccVar2.f32538a == 2) {
+                cc ccVar2 = cc.f32619w;
+                if (ccVar2 != null && ccVar2.f32620a == 2) {
                     ccVar2.l();
                 }
-                if (vaVar.f12944c1.f12375o0 && (o9Var = vaVar.f12947d1) != null) {
-                    o9Var.c(false, true);
+                if (vaVar.f12944c1.f12376o0 && (n9Var = vaVar.f12947d1) != null) {
+                    n9Var.c(false, true);
                     return;
                 }
                 return;
@@ -486,21 +486,21 @@ public final class v8 implements c20 {
                 return;
             case 19:
                 TLRPC.InputPeer inputPeer2 = (TLRPC.InputPeer) obj;
-                x6 x6Var3 = vaVar.f12978o0;
+                x6 x6Var2 = vaVar.f12978o0;
                 vaVar.f13009x0 = inputPeer2;
-                x6Var3.set(inputPeer2);
+                x6Var2.set(inputPeer2);
                 return;
             case 20:
                 TLRPC.InputPeer inputPeer3 = (TLRPC.InputPeer) obj;
-                x6 x6Var4 = vaVar.f12978o0;
+                x6 x6Var3 = vaVar.f12978o0;
                 vaVar.f13009x0 = inputPeer3;
-                x6Var4.set(inputPeer3);
+                x6Var3.set(inputPeer3);
                 return;
             default:
                 p2 p2Var2 = vaVar.f12991s;
                 float floatValue = ((Float) obj).floatValue();
-                p2Var2.f12586o = floatValue;
-                p2Var2.f12585n = p2.f(floatValue);
+                p2Var2.f12584o = floatValue;
+                p2Var2.f12583n = p2.f(floatValue);
                 p2Var2.g();
                 return;
         }

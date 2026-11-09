@@ -39,18 +39,18 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.b41;
+import org.telegram.ui.Components.a41;
 import org.telegram.ui.Components.c41;
 import org.telegram.ui.Components.d41;
-import org.telegram.ui.Components.l71;
-import org.telegram.ui.Components.p51;
-import org.telegram.ui.Components.r51;
-import org.telegram.ui.Components.s11;
-import org.telegram.ui.Components.t51;
-import org.telegram.ui.Components.tg0;
-import org.telegram.ui.Components.uy0;
+import org.telegram.ui.Components.e41;
+import org.telegram.ui.Components.m71;
+import org.telegram.ui.Components.q51;
+import org.telegram.ui.Components.s51;
+import org.telegram.ui.Components.t11;
+import org.telegram.ui.Components.u51;
+import org.telegram.ui.Components.ug0;
 import org.telegram.ui.Components.vy0;
-import org.telegram.ui.Components.z31;
+import org.telegram.ui.Components.wy0;
 import org.telegram.ui.LaunchActivity;
 public class ij {
     public static Pattern f23208k3;
@@ -189,17 +189,17 @@ public class ij {
     public float f23235e0;
     public TLRPC.TL_peerColorCollectible f23236e1;
     public boolean f23237e2;
-    public r51 f23238e3;
+    public s51 f23238e3;
     public final boolean f23239f;
     public float f23240f0;
     public boolean f23241f1;
     public TLRPC.Peer f23242f2;
-    public r51 f23243f3;
+    public s51 f23243f3;
     public final boolean f23244g;
     public int f23245g0;
     public boolean f23246g1;
     public final Drawable[] f23247g2;
-    public r51 f23248g3;
+    public s51 f23248g3;
     public Boolean h;
     public int f23249h0;
     public TLRPC.TL_forumTopic f23250h1;
@@ -210,7 +210,7 @@ public class ij {
     public boolean f23255i1;
     public final boolean f23256i2;
     public Integer f23257i3;
-    public di.j6 f23258j;
+    public di.k6 f23258j;
     public boolean f23259j0;
     public boolean f23260j1;
     public boolean f23261j2;
@@ -223,7 +223,7 @@ public class ij {
     public TLObject f23267l0;
     public boolean l1;
     public boolean f23268l2;
-    public di.x6 f23269m;
+    public di.y6 f23269m;
     public TLRPC.Photo m0;
     public boolean f23270m1;
     public boolean f23271m2;
@@ -315,7 +315,7 @@ public class ij {
             TLRPC.Poll poll = tL_messageMediaPoll.poll;
             if (poll.public_voters) {
                 if (!poll.closed && !poll.creator) {
-                    if (X4(tL_messageMediaPoll) && !tL_messageMediaPoll.poll.hide_results_until_close) {
+                    if (W4(tL_messageMediaPoll) && !tL_messageMediaPoll.poll.hide_results_until_close) {
                         return true;
                     }
                     return false;
@@ -325,10 +325,6 @@ public class ij {
             return false;
         }
         return false;
-    }
-
-    public static Spannable A5(Paint.FontMetricsInt fontMetricsInt, CharSequence charSequence, ArrayList arrayList) {
-        return C5(charSequence, arrayList, fontMetricsInt, false);
     }
 
     public static long B0(TLRPC.Message message) {
@@ -354,7 +350,7 @@ public class ij {
         return message.dialog_id;
     }
 
-    public static long C1(TLRPC.Peer peer) {
+    public static long B1(TLRPC.Peer peer) {
         long j3;
         if (peer == null) {
             return 0L;
@@ -369,7 +365,7 @@ public class ij {
         return -j3;
     }
 
-    public static boolean C4(ij ijVar) {
+    public static boolean B4(ij ijVar) {
         if (ijVar != null) {
             TLRPC.Message message = ijVar.f23262k;
             if ((message instanceof TLRPC.TL_messageService) && (((TLRPC.TL_messageService) message).action instanceof TLRPC.TL_messageActionContactSignUp)) {
@@ -380,42 +376,29 @@ public class ij {
         return false;
     }
 
-    public static Spannable C5(CharSequence charSequence, ArrayList arrayList, Paint.FontMetricsInt fontMetricsInt, boolean z9) {
-        return D5(charSequence, arrayList, fontMetricsInt, z9, 1.2f, 0);
+    public static Spannable B5(CharSequence charSequence, ArrayList arrayList, Paint.FontMetricsInt fontMetricsInt, boolean z9) {
+        return C5(charSequence, arrayList, fontMetricsInt, z9, 1.2f, 0);
     }
 
-    public static boolean D(TLRPC.TL_messageMediaPoll tL_messageMediaPoll) {
-        TLRPC.PollResults pollResults = tL_messageMediaPoll.results;
-        if (pollResults != null && !pollResults.results.isEmpty() && !tL_messageMediaPoll.poll.revoting_disabled) {
-            int size = tL_messageMediaPoll.results.results.size();
-            for (int i7 = 0; i7 < size; i7++) {
-                if (tL_messageMediaPoll.results.results.get(i7).chosen) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    public static TLRPC.Photo D1(TLRPC.Message message) {
+    public static TLRPC.Photo C1(TLRPC.Message message) {
         TL_iv.RichMessage richMessage;
         if (message != null && (richMessage = message.rich_message) != null) {
             return W(richMessage.blocks, richMessage);
         }
-        if (o1(message) instanceof TLRPC.TL_messageMediaWebPage) {
-            return o1(message).webpage.photo;
+        if (n1(message) instanceof TLRPC.TL_messageMediaWebPage) {
+            return n1(message).webpage.photo;
         }
-        if (o1(message) != null) {
-            return o1(message).photo;
+        if (n1(message) != null) {
+            return n1(message).photo;
         }
         return null;
     }
 
-    public static boolean D4(TLRPC.Document document) {
+    public static boolean C4(TLRPC.Document document) {
         if (document == null) {
             return false;
         }
-        j1(document);
+        i1(document);
         int size = document.attributes.size();
         for (int i7 = 0; i7 < size; i7++) {
             TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i7);
@@ -430,7 +413,7 @@ public class ij {
         return false;
     }
 
-    public static Spannable D5(CharSequence charSequence, ArrayList arrayList, Paint.FontMetricsInt fontMetricsInt, boolean z9, float f10, int i7) {
+    public static Spannable C5(CharSequence charSequence, ArrayList arrayList, Paint.FontMetricsInt fontMetricsInt, boolean z9, float f10, int i7) {
         Spannable spannableString;
         int i10;
         f6 f6Var;
@@ -507,18 +490,20 @@ public class ij {
         return spannableString;
     }
 
-    public static CharSequence F() {
-        if (f23215r3 == null) {
-            f23215r3 = new SpannableStringBuilder("c");
-            org.telegram.ui.Components.wp wpVar = new org.telegram.ui.Components.wp(2131232159, 0);
-            wpVar.H = 0.7f;
-            wpVar.I = 0.7f;
-            f23215r3.setSpan(wpVar, 0, 1, 33);
+    public static boolean D(TLRPC.TL_messageMediaPoll tL_messageMediaPoll) {
+        TLRPC.PollResults pollResults = tL_messageMediaPoll.results;
+        if (pollResults != null && !pollResults.results.isEmpty() && !tL_messageMediaPoll.poll.revoting_disabled) {
+            int size = tL_messageMediaPoll.results.results.size();
+            for (int i7 = 0; i7 < size; i7++) {
+                if (tL_messageMediaPoll.results.results.get(i7).chosen) {
+                    return true;
+                }
+            }
         }
-        return f23215r3;
+        return false;
     }
 
-    public static TLRPC.PollAnswerVoters F1(TLRPC.TL_messageMediaPoll tL_messageMediaPoll, byte[] bArr) {
+    public static TLRPC.PollAnswerVoters E1(TLRPC.TL_messageMediaPoll tL_messageMediaPoll, byte[] bArr) {
         TLRPC.PollResults pollResults = tL_messageMediaPoll.results;
         if (pollResults != null && !pollResults.results.isEmpty()) {
             int size = tL_messageMediaPoll.results.results.size();
@@ -533,7 +518,7 @@ public class ij {
         return null;
     }
 
-    public static boolean F3(TLRPC.Document document) {
+    public static boolean E3(TLRPC.Document document) {
         if (document != null) {
             for (int i7 = 0; i7 < document.attributes.size(); i7++) {
                 TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i7);
@@ -545,7 +530,7 @@ public class ij {
         return false;
     }
 
-    public static boolean F4(ij ijVar) {
+    public static boolean E4(ij ijVar) {
         TLRPC.Message message;
         if (ijVar == null || (message = ijVar.f23262k) == null) {
             return false;
@@ -557,7 +542,7 @@ public class ij {
         return true;
     }
 
-    public static CharSequence F5(CharSequence charSequence, String str, TLObject tLObject) {
+    public static CharSequence E5(CharSequence charSequence, String str, TLObject tLObject) {
         String str2;
         CharSequence charSequence2;
         String str3;
@@ -595,12 +580,34 @@ public class ij {
                 str2 = str4;
             }
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(TextUtils.replace(charSequence, new String[]{str}, new CharSequence[]{charSequence2}));
-            c41 c41Var = new c41(rf.b.i("", str2));
-            c41Var.f32035c = tLObject2;
-            spannableStringBuilder.setSpan(c41Var, indexOf, charSequence2.length() + indexOf, 33);
+            d41 d41Var = new d41(rf.b.i("", str2));
+            d41Var.f32522c = tLObject2;
+            spannableStringBuilder.setSpan(d41Var, indexOf, charSequence2.length() + indexOf, 33);
             return spannableStringBuilder;
         }
         return charSequence;
+    }
+
+    public static CharSequence F() {
+        if (f23215r3 == null) {
+            f23215r3 = new SpannableStringBuilder("c");
+            org.telegram.ui.Components.wp wpVar = new org.telegram.ui.Components.wp(2131232159, 0);
+            wpVar.H = 0.7f;
+            wpVar.I = 0.7f;
+            f23215r3.setSpan(wpVar, 0, 1, 33);
+        }
+        return f23215r3;
+    }
+
+    public static TLRPC.VideoSize F1(TLRPC.Document document) {
+        if (document != null && document.thumbs != null) {
+            for (int i7 = 0; i7 < document.video_thumbs.size(); i7++) {
+                if ("f".equals(document.video_thumbs.get(i7).type)) {
+                    return document.video_thumbs.get(i7);
+                }
+            }
+        }
+        return null;
     }
 
     public static TLRPC.Document G0(TLRPC.Message message) {
@@ -610,38 +617,37 @@ public class ij {
         if (message != null && (richMessage = message.rich_message) != null) {
             return a0(richMessage.blocks, richMessage);
         }
-        if (o1(message) instanceof TLRPC.TL_messageMediaWebPage) {
-            return o1(message).webpage.document;
+        if (n1(message) instanceof TLRPC.TL_messageMediaWebPage) {
+            return n1(message).webpage.document;
         }
-        if (o1(message) instanceof TLRPC.TL_messageMediaGame) {
-            return o1(message).game.document;
+        if (n1(message) instanceof TLRPC.TL_messageMediaGame) {
+            return n1(message).game.document;
         }
-        if (o1(message) instanceof TLRPC.TL_messageMediaStory) {
-            TL_stories.StoryItem storyItem = ((TLRPC.TL_messageMediaStory) o1(message)).storyItem;
+        if (n1(message) instanceof TLRPC.TL_messageMediaStory) {
+            TL_stories.StoryItem storyItem = ((TLRPC.TL_messageMediaStory) n1(message)).storyItem;
             if (storyItem != null && (messageMedia = storyItem.media) != null && (document = messageMedia.document) != null) {
                 return document;
             }
-        } else if (o1(message) instanceof TLRPC.TL_messageMediaPaidMedia) {
-            TLRPC.TL_messageMediaPaidMedia tL_messageMediaPaidMedia = (TLRPC.TL_messageMediaPaidMedia) o1(message);
+        } else if (n1(message) instanceof TLRPC.TL_messageMediaPaidMedia) {
+            TLRPC.TL_messageMediaPaidMedia tL_messageMediaPaidMedia = (TLRPC.TL_messageMediaPaidMedia) n1(message);
             if (tL_messageMediaPaidMedia.extended_media.size() == 1 && (tL_messageMediaPaidMedia.extended_media.get(0) instanceof TLRPC.TL_messageExtendedMedia)) {
                 return ((TLRPC.TL_messageExtendedMedia) tL_messageMediaPaidMedia.extended_media.get(0)).media.document;
             }
         }
-        if (o1(message) != null) {
-            return o1(message).document;
+        if (n1(message) != null) {
+            return n1(message).document;
         }
         return null;
     }
 
-    public static TLRPC.VideoSize G1(TLRPC.Document document) {
-        if (document != null && document.thumbs != null) {
-            for (int i7 = 0; i7 < document.video_thumbs.size(); i7++) {
-                if ("f".equals(document.video_thumbs.get(i7).type)) {
-                    return document.video_thumbs.get(i7);
-                }
+    public static boolean G3(TLRPC.Message message, boolean z9) {
+        if (message != null && n1(message) != null && !(n1(message) instanceof TLRPC.TL_messageMediaEmpty)) {
+            if (!z9 || !(n1(message) instanceof TLRPC.TL_messageMediaWebPage)) {
+                return false;
             }
+            return true;
         }
-        return null;
+        return true;
     }
 
     public static double H0(TLRPC.Document document) {
@@ -661,17 +667,7 @@ public class ij {
         return 0.0d;
     }
 
-    public static boolean H3(TLRPC.Message message, boolean z9) {
-        if (message != null && o1(message) != null && !(o1(message) instanceof TLRPC.TL_messageMediaEmpty)) {
-            if (!z9 || !(o1(message) instanceof TLRPC.TL_messageMediaWebPage)) {
-                return false;
-            }
-            return true;
-        }
-        return true;
-    }
-
-    public static int I1(int i7, TLRPC.Message message) {
+    public static int H1(int i7, TLRPC.Message message) {
         kg.s1 d;
         if (message == null) {
             return 0;
@@ -683,14 +679,14 @@ public class ij {
         if (inputQuickReplyShortcut instanceof TLRPC.TL_inputQuickReplyShortcutId) {
             return ((TLRPC.TL_inputQuickReplyShortcutId) inputQuickReplyShortcut).shortcut_id;
         }
-        String K1 = K1(message);
-        if (K1 == null || (d = kg.t1.f(i7).d(K1)) == null) {
+        String J1 = J1(message);
+        if (J1 == null || (d = kg.t1.f(i7).d(J1)) == null) {
             return 0;
         }
         return d.f17532a;
     }
 
-    public static boolean I2(TLRPC.Document document) {
+    public static boolean H2(TLRPC.Document document) {
         if (document == null) {
             return false;
         }
@@ -703,14 +699,7 @@ public class ij {
         return false;
     }
 
-    public static TLRPC.VideoSize J0(TLRPC.Document document) {
-        if (document != null && !document.video_thumbs.isEmpty()) {
-            return document.video_thumbs.get(0);
-        }
-        return null;
-    }
-
-    public static int J1(TLRPC.Message message) {
+    public static int I1(TLRPC.Message message) {
         if (message == null) {
             return 0;
         }
@@ -722,6 +711,42 @@ public class ij {
             return 0;
         }
         return ((TLRPC.TL_inputQuickReplyShortcutId) inputQuickReplyShortcut).shortcut_id;
+    }
+
+    public static TLRPC.VideoSize J0(TLRPC.Document document) {
+        if (document != null && !document.video_thumbs.isEmpty()) {
+            return document.video_thumbs.get(0);
+        }
+        return null;
+    }
+
+    public static String J1(TLRPC.Message message) {
+        if (message == null) {
+            return null;
+        }
+        TLRPC.InputQuickReplyShortcut inputQuickReplyShortcut = message.quick_reply_shortcut;
+        if (!(inputQuickReplyShortcut instanceof TLRPC.TL_inputQuickReplyShortcut)) {
+            return null;
+        }
+        return ((TLRPC.TL_inputQuickReplyShortcut) inputQuickReplyShortcut).shortcut;
+    }
+
+    public static boolean J3(TLRPC.Document document) {
+        TLRPC.DocumentAttribute documentAttribute;
+        if (document != null) {
+            for (int i7 = 0; i7 < document.attributes.size(); i7++) {
+                if (document.attributes.get(i7) instanceof TLRPC.TL_documentAttributeAudio) {
+                    return !documentAttribute.voice;
+                }
+            }
+            if (!TextUtils.isEmpty(document.mime_type)) {
+                String lowerCase = document.mime_type.toLowerCase();
+                if (lowerCase.equals("audio/flac") || lowerCase.equals("audio/ogg") || lowerCase.equals("audio/opus") || lowerCase.equals("audio/x-opus+ogg") || (lowerCase.equals("application/octet-stream") && w7.B(document).endsWith(".opus"))) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public static TLRPC.Document K0(TLRPC.WebPage webPage, long j3) {
@@ -741,52 +766,7 @@ public class ij {
         return null;
     }
 
-    public static String K1(TLRPC.Message message) {
-        if (message == null) {
-            return null;
-        }
-        TLRPC.InputQuickReplyShortcut inputQuickReplyShortcut = message.quick_reply_shortcut;
-        if (!(inputQuickReplyShortcut instanceof TLRPC.TL_inputQuickReplyShortcut)) {
-            return null;
-        }
-        return ((TLRPC.TL_inputQuickReplyShortcut) inputQuickReplyShortcut).shortcut;
-    }
-
-    public static boolean K3(TLRPC.Document document) {
-        TLRPC.DocumentAttribute documentAttribute;
-        if (document != null) {
-            for (int i7 = 0; i7 < document.attributes.size(); i7++) {
-                if (document.attributes.get(i7) instanceof TLRPC.TL_documentAttributeAudio) {
-                    return !documentAttribute.voice;
-                }
-            }
-            if (!TextUtils.isEmpty(document.mime_type)) {
-                String lowerCase = document.mime_type.toLowerCase();
-                if (lowerCase.equals("audio/flac") || lowerCase.equals("audio/ogg") || lowerCase.equals("audio/opus") || lowerCase.equals("audio/x-opus+ogg") || (lowerCase.equals("application/octet-stream") && w7.B(document).endsWith(".opus"))) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    public static SpannableStringBuilder L(boolean z9) {
-        String str;
-        int i7;
-        if (z9) {
-            str = "✅";
-        } else {
-            str = "☑️";
-        }
-        if (z9) {
-            i7 = 2131231550;
-        } else {
-            i7 = 2131231549;
-        }
-        return U5(i7, str);
-    }
-
-    public static boolean L2(TLRPC.Document document, boolean z9) {
+    public static boolean K2(TLRPC.Document document, boolean z9) {
         if (document != null && (("application/x-tgsticker".equals(document.mime_type) && !document.thumbs.isEmpty()) || "application/x-tgsdice".equals(document.mime_type))) {
             if (z9) {
                 return true;
@@ -805,17 +785,17 @@ public class ij {
         return false;
     }
 
-    public static boolean L3(TLRPC.Message message) {
-        if (o1(message) instanceof TLRPC.TL_messageMediaWebPage) {
-            return K3(o1(message).webpage.document);
+    public static boolean K3(TLRPC.Message message) {
+        if (n1(message) instanceof TLRPC.TL_messageMediaWebPage) {
+            return J3(n1(message).webpage.document);
         }
-        if (o1(message) != null && K3(o1(message).document)) {
+        if (n1(message) != null && J3(n1(message).document)) {
             return true;
         }
         return false;
     }
 
-    public static boolean L4(TLRPC.Document document) {
+    public static boolean K4(TLRPC.Document document) {
         int lastIndexOf;
         if (document != null) {
             String str = null;
@@ -1018,6 +998,56 @@ public class ij {
         return false;
     }
 
+    public static SpannableStringBuilder L(boolean z9) {
+        String str;
+        int i7;
+        if (z9) {
+            str = "✅";
+        } else {
+            str = "☑️";
+        }
+        if (z9) {
+            i7 = 2131231550;
+        } else {
+            i7 = 2131231549;
+        }
+        return T5(i7, str);
+    }
+
+    public static boolean L2(TLRPC.Message message) {
+        boolean z9;
+        boolean C = m5.C(message.dialog_id);
+        if ((!C || message.stickerVerified == 1) && n1(message) != null) {
+            TLRPC.Document document = n1(message).document;
+            if (C && !message.out) {
+                z9 = false;
+            } else {
+                z9 = true;
+            }
+            if (K2(document, z9)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean L4(TLRPC.Message message) {
+        TL_iv.RichMessage richMessage;
+        if (message != null && (richMessage = message.rich_message) != null) {
+            return K4(a0(richMessage.blocks, richMessage));
+        }
+        if (n1(message) == null || !N4(n1(message).document)) {
+            if (n1(message) instanceof TLRPC.TL_messageMediaWebPage) {
+                return K4(n1(message).webpage.document);
+            }
+            if (n1(message) != null && K4(n1(message).document)) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
     public static boolean M(CharSequence charSequence) {
         if (charSequence != null && charSequence.length() >= 2 && charSequence.length() <= 20480) {
             int length = charSequence.length();
@@ -1078,41 +1108,7 @@ public class ij {
         return false;
     }
 
-    public static boolean M2(TLRPC.Message message) {
-        boolean z9;
-        boolean C = m5.C(message.dialog_id);
-        if ((!C || message.stickerVerified == 1) && o1(message) != null) {
-            TLRPC.Document document = o1(message).document;
-            if (C && !message.out) {
-                z9 = false;
-            } else {
-                z9 = true;
-            }
-            if (L2(document, z9)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static boolean M4(TLRPC.Message message) {
-        TL_iv.RichMessage richMessage;
-        if (message != null && (richMessage = message.rich_message) != null) {
-            return L4(a0(richMessage.blocks, richMessage));
-        }
-        if (o1(message) == null || !O4(o1(message).document)) {
-            if (o1(message) instanceof TLRPC.TL_messageMediaWebPage) {
-                return L4(o1(message).webpage.document);
-            }
-            if (o1(message) != null && L4(o1(message).document)) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public static boolean N3(TLRPC.Document document) {
+    public static boolean M3(TLRPC.Document document) {
         if (document != null && "video/mp4".equals(document.mime_type)) {
             boolean z9 = false;
             int i7 = 0;
@@ -1133,7 +1129,7 @@ public class ij {
         return false;
     }
 
-    public static void N5(int i7, TLRPC.Message message) {
+    public static void M5(int i7, TLRPC.Message message) {
         boolean z9;
         boolean z10 = false;
         if ((i7 & 1) == 0) {
@@ -1148,7 +1144,7 @@ public class ij {
         message.media_unread = z10;
     }
 
-    public static boolean O2(TLRPC.Document document) {
+    public static boolean N2(TLRPC.Document document) {
         if (document == null) {
             return false;
         }
@@ -1162,30 +1158,83 @@ public class ij {
         return false;
     }
 
-    public static boolean O4(TLRPC.Document document) {
-        if (document != null && P4(document)) {
+    public static boolean N4(TLRPC.Document document) {
+        if (document != null && O4(document)) {
             return true;
         }
         return false;
     }
 
-    public static boolean P2(TL_iv.PageBlock pageBlock) {
+    public static boolean O2(TL_iv.PageBlock pageBlock) {
         if (!(pageBlock instanceof TL_iv.pageBlockTable) && !(pageBlock instanceof TL_iv.pageBlockMath) && !(pageBlock instanceof TL_iv.pageBlockAudio) && !(pageBlock instanceof TL_iv.pageBlockDocument) && !(pageBlock instanceof TL_iv.pageBlockMap) && !(pageBlock instanceof TL_iv.pageBlockPhoto) && !(pageBlock instanceof TL_iv.pageBlockVideo) && !(pageBlock instanceof TL_iv.pageBlockCollage) && !(pageBlock instanceof TL_iv.pageBlockSlideshow)) {
             return false;
         }
         return true;
     }
 
-    public static boolean P3(TLRPC.Message message) {
+    public static boolean O3(TLRPC.Message message) {
         return message.out;
     }
 
-    public static boolean P4(TLRPC.Document document) {
+    public static boolean O4(TLRPC.Document document) {
         if (document != null) {
             for (int i7 = 0; i7 < document.attributes.size(); i7++) {
                 TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i7);
                 if ((documentAttribute instanceof TLRPC.TL_documentAttributeSticker) || (documentAttribute instanceof TLRPC.TL_documentAttributeCustomEmoji)) {
                     return "video/webm".equals(document.mime_type);
+                }
+            }
+        }
+        return false;
+    }
+
+    public static long Q1(long j3, TLRPC.Message message) {
+        TLRPC.Peer peer;
+        TLRPC.Peer peer2 = message.saved_peer_id;
+        if (peer2 != null) {
+            long j10 = peer2.chat_id;
+            if (j10 != 0) {
+                return -j10;
+            }
+            long j11 = peer2.channel_id;
+            if (j11 != 0) {
+                return -j11;
+            }
+            return peer2.user_id;
+        } else if (message.from_id.user_id != j3) {
+            return 0L;
+        } else {
+            TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
+            if (messageFwdHeader != null && (peer = messageFwdHeader.saved_from_peer) != null) {
+                return m5.o(peer);
+            }
+            if ((messageFwdHeader == null || messageFwdHeader.from_id == null) && messageFwdHeader != null) {
+                return 2666000L;
+            }
+            return j3;
+        }
+    }
+
+    public static boolean Q2(int i7, ij ijVar) {
+        TLRPC.TL_messageMediaToDo tL_messageMediaToDo;
+        TLRPC.TodoList todoList;
+        TLRPC.MessageMedia m12 = m1(ijVar);
+        if ((m12 instanceof TLRPC.TL_messageMediaToDo) && (todoList = (tL_messageMediaToDo = (TLRPC.TL_messageMediaToDo) m12).todo) != null && todoList.list != null) {
+            for (int i10 = 0; i10 < tL_messageMediaToDo.completions.size(); i10++) {
+                if (tL_messageMediaToDo.completions.get(i10).f27102id == i7) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static boolean Q4(TLRPC.Document document) {
+        if (document != null) {
+            for (int i7 = 0; i7 < document.attributes.size(); i7++) {
+                TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i7);
+                if (documentAttribute instanceof TLRPC.TL_documentAttributeAudio) {
+                    return documentAttribute.voice;
                 }
             }
         }
@@ -1205,16 +1254,16 @@ public class ij {
         int i13;
         TreeSet treeSet = new TreeSet();
         HashMap hashMap = new HashMap();
-        Object[] objArr = (tg0[]) spanned.getSpans(0, spanned.length(), tg0.class);
+        Object[] objArr = (ug0[]) spanned.getSpans(0, spanned.length(), ug0.class);
         int i14 = 0;
         while (true) {
             int i15 = 1;
             if (i14 >= objArr.length) {
                 break;
             }
-            tg0 tg0Var = objArr[i14];
-            tg0Var.f38350a.f38636b = false;
-            int spanStart = spanned.getSpanStart(tg0Var);
+            ug0 ug0Var = objArr[i14];
+            ug0Var.f38719a.f39060b = false;
+            int spanStart = spanned.getSpanStart(ug0Var);
             int spanEnd = spanned.getSpanEnd(objArr[i14]);
             treeSet.add(Integer.valueOf(spanStart));
             Integer valueOf = Integer.valueOf(spanStart);
@@ -1223,7 +1272,7 @@ public class ij {
             } else {
                 i12 = 0;
             }
-            if (objArr[i14].f38350a.f38638e) {
+            if (objArr[i14].f38719a.f39062e) {
                 i15 = 16;
             }
             hashMap.put(valueOf, Integer.valueOf(i12 | i15));
@@ -1345,85 +1394,25 @@ public class ij {
         }
     }
 
-    public static long R1(long j3, TLRPC.Message message) {
-        TLRPC.Peer peer;
-        TLRPC.Peer peer2 = message.saved_peer_id;
-        if (peer2 != null) {
-            long j10 = peer2.chat_id;
-            if (j10 != 0) {
-                return -j10;
-            }
-            long j11 = peer2.channel_id;
-            if (j11 != 0) {
-                return -j11;
-            }
-            return peer2.user_id;
-        } else if (message.from_id.user_id != j3) {
-            return 0L;
-        } else {
-            TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
-            if (messageFwdHeader != null && (peer = messageFwdHeader.saved_from_peer) != null) {
-                return m5.o(peer);
-            }
-            if ((messageFwdHeader == null || messageFwdHeader.from_id == null) && messageFwdHeader != null) {
-                return 2666000L;
-            }
-            return j3;
+    public static boolean R4(TLRPC.Message message) {
+        if (n1(message) instanceof TLRPC.TL_messageMediaWebPage) {
+            return Q4(n1(message).webpage.document);
         }
-    }
-
-    public static boolean R2(int i7, ij ijVar) {
-        TLRPC.TL_messageMediaToDo tL_messageMediaToDo;
-        TLRPC.TodoList todoList;
-        TLRPC.MessageMedia n1 = n1(ijVar);
-        if ((n1 instanceof TLRPC.TL_messageMediaToDo) && (todoList = (tL_messageMediaToDo = (TLRPC.TL_messageMediaToDo) n1).todo) != null && todoList.list != null) {
-            for (int i10 = 0; i10 < tL_messageMediaToDo.completions.size(); i10++) {
-                if (tL_messageMediaToDo.completions.get(i10).f27102id == i7) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    public static boolean R4(TLRPC.Document document) {
-        if (document != null) {
-            for (int i7 = 0; i7 < document.attributes.size(); i7++) {
-                TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i7);
-                if (documentAttribute instanceof TLRPC.TL_documentAttributeAudio) {
-                    return documentAttribute.voice;
-                }
-            }
-        }
-        return false;
-    }
-
-    public static int S(int i7) {
-        if (g3(i7)) {
-            return i7 & (-1879048193);
-        }
-        return i7;
-    }
-
-    public static boolean S4(TLRPC.Message message) {
-        if (o1(message) instanceof TLRPC.TL_messageMediaWebPage) {
-            return R4(o1(message).webpage.document);
-        }
-        if (o1(message) != null && R4(o1(message).document)) {
+        if (n1(message) != null && Q4(n1(message).document)) {
             return true;
         }
         return false;
     }
 
-    public static boolean S5(TLRPC.Message message) {
+    public static boolean R5(TLRPC.Message message) {
         int i7;
-        if ((message == null || message.media == null || ((!R4(G0(message)) && !k4(message)) || message.media.ttl_seconds != Integer.MAX_VALUE)) && !(o1(message) instanceof TLRPC.TL_messageMediaPaidMedia)) {
+        if ((message == null || message.media == null || ((!Q4(G0(message)) && !j4(message)) || message.media.ttl_seconds != Integer.MAX_VALUE)) && !(n1(message) instanceof TLRPC.TL_messageMediaPaidMedia)) {
             if (message instanceof TLRPC.TL_message_secret) {
-                if (((o1(message) instanceof TLRPC.TL_messageMediaPhoto) || M4(message)) && (i7 = message.ttl) > 0 && i7 <= 60) {
+                if (((n1(message) instanceof TLRPC.TL_messageMediaPhoto) || L4(message)) && (i7 = message.ttl) > 0 && i7 <= 60) {
                     return true;
                 }
                 return false;
-            } else if (((o1(message) instanceof TLRPC.TL_messageMediaPhoto) || (o1(message) instanceof TLRPC.TL_messageMediaDocument)) && o1(message).ttl_seconds != 0) {
+            } else if (((n1(message) instanceof TLRPC.TL_messageMediaPhoto) || (n1(message) instanceof TLRPC.TL_messageMediaDocument)) && n1(message).ttl_seconds != 0) {
                 return true;
             } else {
                 return false;
@@ -1432,25 +1421,14 @@ public class ij {
         return true;
     }
 
-    public static String T0(TLRPC.Message message) {
-        TLRPC.PhotoSize w10;
-        if (o1(message) instanceof TLRPC.TL_messageMediaDocument) {
-            return w7.r(null, G0(message));
+    public static int S(int i7) {
+        if (f3(i7)) {
+            return i7 & (-1879048193);
         }
-        if (o1(message) instanceof TLRPC.TL_messageMediaPhoto) {
-            ArrayList<TLRPC.PhotoSize> arrayList = o1(message).photo.sizes;
-            if (arrayList.size() > 0 && (w10 = w7.w(arrayList, g0.Z0(false), false, null, false)) != null) {
-                return w7.r(null, w10);
-            }
-            return "";
-        } else if ((o1(message) instanceof TLRPC.TL_messageMediaWebPage) && o1(message).webpage != null) {
-            return w7.r(null, o1(message).webpage.document);
-        } else {
-            return "";
-        }
+        return i7;
     }
 
-    public static boolean T3(TLRPC.Message message) {
+    public static boolean S3(TLRPC.Message message) {
         TLRPC.Photo photo;
         TL_iv.RichMessage richMessage;
         if (message != null && (richMessage = message.rich_message) != null) {
@@ -1458,8 +1436,8 @@ public class ij {
                 return true;
             }
             return false;
-        } else if (o1(message) instanceof TLRPC.TL_messageMediaWebPage) {
-            if ((o1(message).webpage.photo instanceof TLRPC.TL_photo) && !(o1(message).webpage.document instanceof TLRPC.TL_document)) {
+        } else if (n1(message) instanceof TLRPC.TL_messageMediaWebPage) {
+            if ((n1(message).webpage.photo instanceof TLRPC.TL_photo) && !(n1(message).webpage.document instanceof TLRPC.TL_document)) {
                 return true;
             }
             return false;
@@ -1468,8 +1446,32 @@ public class ij {
             if (messageAction != null && (photo = messageAction.photo) != null) {
                 return photo instanceof TLRPC.TL_photo;
             }
-            return o1(message) instanceof TLRPC.TL_messageMediaPhoto;
+            return n1(message) instanceof TLRPC.TL_messageMediaPhoto;
         }
+    }
+
+    public static String T0(TLRPC.Message message) {
+        TLRPC.PhotoSize w10;
+        if (n1(message) instanceof TLRPC.TL_messageMediaDocument) {
+            return w7.r(null, G0(message));
+        }
+        if (n1(message) instanceof TLRPC.TL_messageMediaPhoto) {
+            ArrayList<TLRPC.PhotoSize> arrayList = n1(message).photo.sizes;
+            if (arrayList.size() > 0 && (w10 = w7.w(arrayList, g0.Z0(false), false, null, false)) != null) {
+                return w7.r(null, w10);
+            }
+            return "";
+        } else if ((n1(message) instanceof TLRPC.TL_messageMediaWebPage) && n1(message).webpage != null) {
+            return w7.r(null, n1(message).webpage.document);
+        } else {
+            return "";
+        }
+    }
+
+    public static SpannableStringBuilder T5(int i7, String str) {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
+        spannableStringBuilder.setSpan(new org.telegram.ui.Components.wp(i7, 0), 0, spannableStringBuilder.length(), 33);
+        return spannableStringBuilder;
     }
 
     public static String U(TLRPC.Document document) {
@@ -1495,10 +1497,38 @@ public class ij {
         }
     }
 
-    public static SpannableStringBuilder U5(int i7, String str) {
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
-        spannableStringBuilder.setSpan(new org.telegram.ui.Components.wp(i7, 0), 0, spannableStringBuilder.length(), 33);
-        return spannableStringBuilder;
+    public static boolean U3(TLRPC.StickerSetCovered stickerSetCovered) {
+        ArrayList<TLRPC.Document> arrayList;
+        TLRPC.StickerSet stickerSet;
+        if (stickerSetCovered != null && (stickerSet = stickerSetCovered.set) != null && !stickerSet.emojis) {
+            return false;
+        }
+        if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
+            arrayList = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
+        } else {
+            arrayList = stickerSetCovered.covers;
+        }
+        if (stickerSetCovered != null && arrayList != null) {
+            for (int i7 = 0; i7 < arrayList.size(); i7++) {
+                if (!m3(arrayList.get(i7))) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static boolean U4(TLRPC.TL_messageMediaPoll tL_messageMediaPoll) {
+        TLRPC.PollResults pollResults;
+        if (tL_messageMediaPoll != null && (pollResults = tL_messageMediaPoll.results) != null && !pollResults.results.isEmpty()) {
+            int size = tL_messageMediaPoll.results.results.size();
+            for (int i7 = 0; i7 < size; i7++) {
+                if (tL_messageMediaPoll.results.results.get(i7).voters > 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public static String V(TLRPC.Document document, String str, Integer num) {
@@ -1529,20 +1559,10 @@ public class ij {
         return str;
     }
 
-    public static boolean V3(TLRPC.StickerSetCovered stickerSetCovered) {
-        ArrayList<TLRPC.Document> arrayList;
-        TLRPC.StickerSet stickerSet;
-        if (stickerSetCovered != null && (stickerSet = stickerSetCovered.set) != null && !stickerSet.emojis) {
-            return false;
-        }
-        if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
-            arrayList = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
-        } else {
-            arrayList = stickerSetCovered.covers;
-        }
-        if (stickerSetCovered != null && arrayList != null) {
-            for (int i7 = 0; i7 < arrayList.size(); i7++) {
-                if (!n3(arrayList.get(i7))) {
+    public static boolean V2(TLRPC.Document document) {
+        if (document != null) {
+            for (int i7 = 0; i7 < document.attributes.size(); i7++) {
+                if (document.attributes.get(i7) instanceof TLRPC.TL_documentAttributeHasStickers) {
                     return true;
                 }
             }
@@ -1550,12 +1570,11 @@ public class ij {
         return false;
     }
 
-    public static boolean V4(TLRPC.TL_messageMediaPoll tL_messageMediaPoll) {
-        TLRPC.PollResults pollResults;
-        if (tL_messageMediaPoll != null && (pollResults = tL_messageMediaPoll.results) != null && !pollResults.results.isEmpty()) {
-            int size = tL_messageMediaPoll.results.results.size();
-            for (int i7 = 0; i7 < size; i7++) {
-                if (tL_messageMediaPoll.results.results.get(i7).voters > 0) {
+    public static boolean V3(TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+        TLRPC.StickerSet stickerSet;
+        if ((tL_messages_stickerSet == null || (stickerSet = tL_messages_stickerSet.set) == null || stickerSet.emojis) && tL_messages_stickerSet != null && tL_messages_stickerSet.documents != null) {
+            for (int i7 = 0; i7 < tL_messages_stickerSet.documents.size(); i7++) {
+                if (!m3(tL_messages_stickerSet.documents.get(i7))) {
                     return true;
                 }
             }
@@ -1597,44 +1616,6 @@ public class ij {
     }
 
     public static boolean W2(TLRPC.Document document) {
-        if (document != null) {
-            for (int i7 = 0; i7 < document.attributes.size(); i7++) {
-                if (document.attributes.get(i7) instanceof TLRPC.TL_documentAttributeHasStickers) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    public static boolean W3(TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
-        TLRPC.StickerSet stickerSet;
-        if ((tL_messages_stickerSet == null || (stickerSet = tL_messages_stickerSet.set) == null || stickerSet.emojis) && tL_messages_stickerSet != null && tL_messages_stickerSet.documents != null) {
-            for (int i7 = 0; i7 < tL_messages_stickerSet.documents.size(); i7++) {
-                if (!n3(tL_messages_stickerSet.documents.get(i7))) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    public static TLRPC.PollAnswer X(ij ijVar, byte[] bArr) {
-        TLRPC.TL_messageMediaPoll tL_messageMediaPoll;
-        TLRPC.Poll poll;
-        TLRPC.MessageMedia n1 = n1(ijVar);
-        if ((n1 instanceof TLRPC.TL_messageMediaPoll) && (poll = (tL_messageMediaPoll = (TLRPC.TL_messageMediaPoll) n1).poll) != null && poll.answers != null) {
-            for (int i7 = 0; i7 < tL_messageMediaPoll.poll.answers.size(); i7++) {
-                TLRPC.PollAnswer pollAnswer = tL_messageMediaPoll.poll.answers.get(i7);
-                if (Arrays.equals(pollAnswer.option, bArr)) {
-                    return pollAnswer;
-                }
-            }
-        }
-        return null;
-    }
-
-    public static boolean X2(TLRPC.Document document) {
         if (document != null && !document.thumbs.isEmpty()) {
             int size = document.thumbs.size();
             for (int i7 = 0; i7 < size; i7++) {
@@ -1647,7 +1628,7 @@ public class ij {
         return false;
     }
 
-    public static boolean X4(TLRPC.TL_messageMediaPoll tL_messageMediaPoll) {
+    public static boolean W4(TLRPC.TL_messageMediaPoll tL_messageMediaPoll) {
         TLRPC.PollResults pollResults;
         if (tL_messageMediaPoll != null && (pollResults = tL_messageMediaPoll.results) != null && !pollResults.results.isEmpty()) {
             int size = tL_messageMediaPoll.results.results.size();
@@ -1660,25 +1641,22 @@ public class ij {
         return false;
     }
 
-    public static int Y(int i7, String str, String str2) {
-        if (str == null || str2 == null) {
-            return -1;
+    public static TLRPC.PollAnswer X(ij ijVar, byte[] bArr) {
+        TLRPC.TL_messageMediaPoll tL_messageMediaPoll;
+        TLRPC.Poll poll;
+        TLRPC.MessageMedia m12 = m1(ijVar);
+        if ((m12 instanceof TLRPC.TL_messageMediaPoll) && (poll = (tL_messageMediaPoll = (TLRPC.TL_messageMediaPoll) m12).poll) != null && poll.answers != null) {
+            for (int i7 = 0; i7 < tL_messageMediaPoll.poll.answers.size(); i7++) {
+                TLRPC.PollAnswer pollAnswer = tL_messageMediaPoll.poll.answers.get(i7);
+                if (Arrays.equals(pollAnswer.option, bArr)) {
+                    return pollAnswer;
+                }
+            }
         }
-        if (i7 == -1) {
-            return str.indexOf(str2);
-        }
-        if (str2.length() + i7 < str.length() && str.startsWith(str2, i7)) {
-            return i7;
-        }
-        int indexOf = str.indexOf(str2, i7);
-        int lastIndexOf = str.lastIndexOf(str2, i7);
-        if (indexOf != -1 && (lastIndexOf == -1 || indexOf - i7 < i7 - lastIndexOf)) {
-            return indexOf;
-        }
-        return lastIndexOf;
+        return null;
     }
 
-    public static CharSequence Y1(TLRPC.ChatReactions chatReactions) {
+    public static CharSequence X1(TLRPC.ChatReactions chatReactions) {
         String str;
         if (chatReactions instanceof TLRPC.TL_chatReactionsAll) {
             return id.M0(2131754291, null);
@@ -1704,10 +1682,10 @@ public class ij {
             }
             return spannableStringBuilder;
         }
-        return id.M0(2131748176, null);
+        return id.M0(2131748175, null);
     }
 
-    public static boolean Y3(TLRPC.Document document) {
+    public static boolean X3(TLRPC.Document document) {
         if (document != null && document.thumbs != null) {
             for (int i7 = 0; i7 < document.video_thumbs.size(); i7++) {
                 if ("f".equals(document.video_thumbs.get(i7).type)) {
@@ -1718,11 +1696,29 @@ public class ij {
         return false;
     }
 
+    public static int Y(int i7, String str, String str2) {
+        if (str == null || str2 == null) {
+            return -1;
+        }
+        if (i7 == -1) {
+            return str.indexOf(str2);
+        }
+        if (str2.length() + i7 < str.length() && str.startsWith(str2, i7)) {
+            return i7;
+        }
+        int indexOf = str.indexOf(str2, i7);
+        int lastIndexOf = str.lastIndexOf(str2, i7);
+        if (indexOf != -1 && (lastIndexOf == -1 || indexOf - i7 < i7 - lastIndexOf)) {
+            return indexOf;
+        }
+        return lastIndexOf;
+    }
+
     public static TLRPC.TodoItem Z(int i7, ij ijVar) {
         TLRPC.TL_messageMediaToDo tL_messageMediaToDo;
         TLRPC.TodoList todoList;
-        TLRPC.MessageMedia n1 = n1(ijVar);
-        if ((n1 instanceof TLRPC.TL_messageMediaToDo) && (todoList = (tL_messageMediaToDo = (TLRPC.TL_messageMediaToDo) n1).todo) != null && todoList.list != null) {
+        TLRPC.MessageMedia m12 = m1(ijVar);
+        if ((m12 instanceof TLRPC.TL_messageMediaToDo) && (todoList = (tL_messageMediaToDo = (TLRPC.TL_messageMediaToDo) m12).todo) != null && todoList.list != null) {
             for (int i10 = 0; i10 < tL_messageMediaToDo.todo.list.size(); i10++) {
                 TLRPC.TodoItem todoItem = tL_messageMediaToDo.todo.list.get(i10);
                 if (todoItem.f27103id == i7) {
@@ -1731,6 +1727,36 @@ public class ij {
             }
         }
         return null;
+    }
+
+    public static long Z1(int i7, TLRPC.Message message, int i10) {
+        long b22 = b2(i7, message, c8.zc.a(i10, 1), c8.zc.a(i10, 4));
+        if (b22 == 0 && c8.zc.a(i10, 8)) {
+            return -1L;
+        }
+        return b22;
+    }
+
+    public static void Z5(int i7, long j3, TLRPC.TL_messageMediaToDo tL_messageMediaToDo, int i10, boolean z9, int i11) {
+        int i12 = 0;
+        while (i12 < tL_messageMediaToDo.completions.size()) {
+            if (tL_messageMediaToDo.completions.get(i12).f27102id == i10) {
+                tL_messageMediaToDo.completions.remove(i12);
+                if (tL_messageMediaToDo.completions.isEmpty()) {
+                    tL_messageMediaToDo.flags &= -2;
+                }
+                i12--;
+            }
+            i12++;
+        }
+        if (z9) {
+            TLRPC.TL_todoCompletion tL_todoCompletion = new TLRPC.TL_todoCompletion();
+            tL_todoCompletion.f27102id = i10;
+            tL_todoCompletion.completed_by = qp.s1(i7).z1(j3);
+            tL_todoCompletion.date = i11;
+            tL_messageMediaToDo.flags |= 1;
+            tL_messageMediaToDo.completions.add(tL_todoCompletion);
+        }
     }
 
     public static void a(Spannable spannable, ArrayList arrayList, boolean z9, boolean z10, boolean z11) {
@@ -1760,37 +1786,11 @@ public class ij {
     }
 
     public static long a1(TLRPC.Message message) {
-        return C1(message.from_id);
+        return B1(message.from_id);
     }
 
-    public static long a2(int i7, TLRPC.Message message, int i10) {
-        long c22 = c2(i7, message, c8.zc.a(i10, 1), c8.zc.a(i10, 4));
-        if (c22 == 0 && c8.zc.a(i10, 8)) {
-            return -1L;
-        }
-        return c22;
-    }
-
-    public static void a6(int i7, long j3, TLRPC.TL_messageMediaToDo tL_messageMediaToDo, int i10, boolean z9, int i11) {
-        int i12 = 0;
-        while (i12 < tL_messageMediaToDo.completions.size()) {
-            if (tL_messageMediaToDo.completions.get(i12).f27102id == i10) {
-                tL_messageMediaToDo.completions.remove(i12);
-                if (tL_messageMediaToDo.completions.isEmpty()) {
-                    tL_messageMediaToDo.flags &= -2;
-                }
-                i12--;
-            }
-            i12++;
-        }
-        if (z9) {
-            TLRPC.TL_todoCompletion tL_todoCompletion = new TLRPC.TL_todoCompletion();
-            tL_todoCompletion.f27102id = i10;
-            tL_todoCompletion.completed_by = qp.s1(i7).z1(j3);
-            tL_todoCompletion.date = i11;
-            tL_messageMediaToDo.flags |= 1;
-            tL_messageMediaToDo.completions.add(tL_todoCompletion);
-        }
+    public static long a2(int i7, TLRPC.Message message, boolean z9) {
+        return b2(i7, message, z9, false);
     }
 
     public static boolean b(java.lang.CharSequence r21, java.util.ArrayList r22, boolean r23, boolean r24, boolean r25, boolean r26, int r27) {
@@ -1810,8 +1810,53 @@ public class ij {
         }
     }
 
-    public static long b2(int i7, TLRPC.Message message, boolean z9) {
-        return c2(i7, message, z9, false);
+    public static long b2(int i7, TLRPC.Message message, boolean z9, boolean z10) {
+        int i10;
+        long e10 = p10.i(i7).e();
+        if (z10) {
+            return u1(message);
+        }
+        if ((message.flags & 1073741824) != 0 && m5.o(message.peer_id) == e10) {
+            i10 = message.quick_reply_shortcut_id;
+        } else if (!z9 && i7 >= 0 && m5.o(message.peer_id) == e10) {
+            return Q1(e10, message);
+        } else {
+            TLRPC.MessageAction messageAction = message.action;
+            if (messageAction instanceof TLRPC.TL_messageActionTopicCreate) {
+                i10 = message.f26977id;
+            } else {
+                TLRPC.MessageReplyHeader messageReplyHeader = message.reply_to;
+                if (messageReplyHeader != null && messageReplyHeader.forum_topic) {
+                    if ((message instanceof TLRPC.TL_messageService) && !(messageAction instanceof TLRPC.TL_messageActionPinMessage)) {
+                        int i11 = messageReplyHeader.reply_to_msg_id;
+                        if (i11 == 0) {
+                            i11 = messageReplyHeader.reply_to_top_id;
+                        }
+                        return i11;
+                    }
+                    int i12 = messageReplyHeader.reply_to_top_id;
+                    if (i12 == 0) {
+                        i12 = messageReplyHeader.reply_to_msg_id;
+                    }
+                    return i12;
+                } else if (z9) {
+                    return 1L;
+                } else {
+                    return 0L;
+                }
+            }
+        }
+        return i10;
+    }
+
+    public static boolean b4(TLRPC.Message message) {
+        if (message != null) {
+            if ((message.flags & 1073741824) != 0 || message.quick_reply_shortcut != null) {
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 
     public static void c0(TL_iv.PageBlock pageBlock, int i7, SpannableStringBuilder spannableStringBuilder, TL_iv.RichMessage richMessage) {
@@ -1842,10 +1887,10 @@ public class ij {
                 } else {
                     TLRPC.Document document = null;
                     if (pageBlock instanceof TL_iv.pageBlockMath) {
-                        spannableStringBuilder.append((CharSequence) U5(2131231555, "fx")).append(" ").append((CharSequence) id.M0(2131754864, null));
+                        spannableStringBuilder.append((CharSequence) T5(2131231555, "fx")).append(" ").append((CharSequence) id.M0(2131754864, null));
                         return;
                     } else if (pageBlock instanceof TL_iv.pageBlockMap) {
-                        spannableStringBuilder.append((CharSequence) id.M0(2131748691, null));
+                        spannableStringBuilder.append((CharSequence) id.M0(2131748690, null));
                         TL_iv.PageCaption pageCaption = pageBlock.caption;
                         if (pageCaption != null && !(pageCaption.text instanceof TL_iv.textEmpty)) {
                             spannableStringBuilder.append("  ");
@@ -1939,7 +1984,7 @@ public class ij {
                         }
                         return;
                     } else if (pageBlock instanceof TL_iv.pageBlockTable) {
-                        spannableStringBuilder.append((CharSequence) U5(2131231577, "⊞")).append(" ");
+                        spannableStringBuilder.append((CharSequence) T5(2131231577, "⊞")).append(" ");
                         TL_iv.RichText richText = ((TL_iv.pageBlockTable) pageBlock).title;
                         if (richText != null && !(richText instanceof TL_iv.textEmpty)) {
                             f0(richText, i7, spannableStringBuilder, 0);
@@ -1965,19 +2010,19 @@ public class ij {
                             TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = (TLRPC.TL_documentAttributeFilename) g0.V(TLRPC.TL_documentAttributeFilename.class, document.attributes);
                             if (tL_documentAttributeAudio != null) {
                                 if (!TextUtils.isEmpty(tL_documentAttributeAudio.title) && !TextUtils.isEmpty(tL_documentAttributeAudio.performer)) {
-                                    spannableStringBuilder.append((CharSequence) U5(2131231547, "🎵")).append(" ").append((CharSequence) tL_documentAttributeAudio.performer).append(" – ").append((CharSequence) tL_documentAttributeAudio.title);
+                                    spannableStringBuilder.append((CharSequence) T5(2131231547, "🎵")).append(" ").append((CharSequence) tL_documentAttributeAudio.performer).append(" – ").append((CharSequence) tL_documentAttributeAudio.title);
                                     return;
                                 } else if (!TextUtils.isEmpty(tL_documentAttributeAudio.title)) {
-                                    spannableStringBuilder.append((CharSequence) U5(2131231547, "🎵")).append(" ").append((CharSequence) tL_documentAttributeAudio.title);
+                                    spannableStringBuilder.append((CharSequence) T5(2131231547, "🎵")).append(" ").append((CharSequence) tL_documentAttributeAudio.title);
                                     return;
                                 } else if (tL_documentAttributeFilename != null && tL_documentAttributeFilename.file_name != null) {
-                                    spannableStringBuilder.append((CharSequence) U5(2131231547, "🎵")).append(" ").append((CharSequence) tL_documentAttributeFilename.file_name);
+                                    spannableStringBuilder.append((CharSequence) T5(2131231547, "🎵")).append(" ").append((CharSequence) tL_documentAttributeFilename.file_name);
                                     return;
                                 } else {
                                     return;
                                 }
                             } else if (tL_documentAttributeFilename != null && tL_documentAttributeFilename.file_name != null) {
-                                spannableStringBuilder.append((CharSequence) U5(2131231547, "🎵")).append(" ").append((CharSequence) tL_documentAttributeFilename.file_name);
+                                spannableStringBuilder.append((CharSequence) T5(2131231547, "🎵")).append(" ").append((CharSequence) tL_documentAttributeFilename.file_name);
                                 return;
                             } else {
                                 return;
@@ -1988,7 +2033,7 @@ public class ij {
                         TLRPC.Document Z = g0.Z(((TL_iv.pageBlockDocument) pageBlock).document_id, richMessage.documents);
                         if (Z != null) {
                             String B = w7.B(Z);
-                            SpannableStringBuilder append = spannableStringBuilder.append((CharSequence) U5(2131232135, "📎")).append(" ");
+                            SpannableStringBuilder append = spannableStringBuilder.append((CharSequence) T5(2131232135, "📎")).append(" ");
                             if (TextUtils.isEmpty(B)) {
                                 B = id.M0(2131753975, null);
                             }
@@ -2012,7 +2057,7 @@ public class ij {
                         spannableStringBuilder.append((CharSequence) id.M0(2131754856, null));
                         return;
                     } else if (pageBlock instanceof TL_iv.pageBlockUnsupported) {
-                        spannableStringBuilder.append((CharSequence) id.M0(2131743836, null));
+                        spannableStringBuilder.append((CharSequence) id.M0(2131743833, null));
                         return;
                     } else if (pageBlock instanceof TL_iv.pageBlockButtonRow) {
                         TL_iv.pageBlockButtonRow pageblockbuttonrow = (TL_iv.pageBlockButtonRow) pageBlock;
@@ -2034,64 +2079,7 @@ public class ij {
         f0(pageBlock.text, i7, spannableStringBuilder, 1);
     }
 
-    public static long c2(int i7, TLRPC.Message message, boolean z9, boolean z10) {
-        int i10;
-        long e10 = p10.i(i7).e();
-        if (z10) {
-            return v1(message);
-        }
-        if ((message.flags & 1073741824) != 0 && m5.o(message.peer_id) == e10) {
-            i10 = message.quick_reply_shortcut_id;
-        } else if (!z9 && i7 >= 0 && m5.o(message.peer_id) == e10) {
-            return R1(e10, message);
-        } else {
-            TLRPC.MessageAction messageAction = message.action;
-            if (messageAction instanceof TLRPC.TL_messageActionTopicCreate) {
-                i10 = message.f26977id;
-            } else {
-                TLRPC.MessageReplyHeader messageReplyHeader = message.reply_to;
-                if (messageReplyHeader != null && messageReplyHeader.forum_topic) {
-                    if ((message instanceof TLRPC.TL_messageService) && !(messageAction instanceof TLRPC.TL_messageActionPinMessage)) {
-                        int i11 = messageReplyHeader.reply_to_msg_id;
-                        if (i11 == 0) {
-                            i11 = messageReplyHeader.reply_to_top_id;
-                        }
-                        return i11;
-                    }
-                    int i12 = messageReplyHeader.reply_to_top_id;
-                    if (i12 == 0) {
-                        i12 = messageReplyHeader.reply_to_msg_id;
-                    }
-                    return i12;
-                } else if (z9) {
-                    return 1L;
-                } else {
-                    return 0L;
-                }
-            }
-        }
-        return i10;
-    }
-
-    public static boolean c4(TLRPC.Message message) {
-        if (message != null) {
-            if ((message.flags & 1073741824) != 0 || message.quick_reply_shortcut != null) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public static void d(CharSequence charSequence, boolean z9) {
-        e(z9, charSequence, true, false, false);
-    }
-
-    public static SpannableStringBuilder d0(TL_iv.RichMessage richMessage) {
-        return e0(richMessage, 1024);
-    }
-
-    public static int d2(TLRPC.Message message) {
+    public static int c2(TLRPC.Message message) {
         int i7 = !message.unread ? 1 : 0;
         if (!message.media_unread) {
             return i7 | 2;
@@ -2099,9 +2087,9 @@ public class ij {
         return i7;
     }
 
-    public static boolean d3(TLRPC.Message message) {
+    public static boolean c3(TLRPC.Message message) {
         if (message != null) {
-            if (g3(message.f26977id) || message.ephemeralReceiverBotId != 0) {
+            if (f3(message.f26977id) || message.ephemeralReceiverBotId != 0) {
                 return true;
             }
             return false;
@@ -2109,7 +2097,7 @@ public class ij {
         return false;
     }
 
-    public static void d6(ArrayList arrayList, List list) {
+    public static void c6(ArrayList arrayList, List list) {
         int size = arrayList.size();
         for (int i7 = 0; i7 < size; i7++) {
             TLRPC.PhotoSize photoSize = (TLRPC.PhotoSize) arrayList.get(i7);
@@ -2130,38 +2118,16 @@ public class ij {
         }
     }
 
-    public static void e(boolean z9, CharSequence charSequence, boolean z10, boolean z11, boolean z12) {
-        if ((charSequence instanceof Spannable) && M(charSequence)) {
-            try {
-                g0.c((Spannable) charSequence, 1, z12, false);
-            } catch (Exception e10) {
-                a8.g(e10, true);
-            }
-            h(z9, charSequence, z10, 0, 0, z11);
-        }
+    public static void d(CharSequence charSequence, boolean z9) {
+        e(z9, charSequence, true, false, false);
     }
 
-    public static SpannableStringBuilder e0(TL_iv.RichMessage richMessage, int i7) {
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        if (richMessage != null) {
-            for (int i10 = 0; i10 < richMessage.blocks.size(); i10++) {
-                TL_iv.PageBlock pageBlock = richMessage.blocks.get(i10);
-                if (i10 > 0) {
-                    spannableStringBuilder.append((CharSequence) "  ");
-                }
-                c0(pageBlock, i7, spannableStringBuilder, richMessage);
-                if (spannableStringBuilder.length() >= i7) {
-                    spannableStringBuilder.delete(i7, spannableStringBuilder.length());
-                    spannableStringBuilder.append((CharSequence) "…");
-                    return spannableStringBuilder;
-                }
-            }
-        }
-        return spannableStringBuilder;
+    public static SpannableStringBuilder d0(TL_iv.RichMessage richMessage) {
+        return e0(richMessage, 1024);
     }
 
-    public static boolean e5(TLRPC.Message message) {
-        if (d3(message)) {
+    public static boolean d5(TLRPC.Message message) {
+        if (c3(message)) {
             if (message.ephemeralReceiverBotId == -1 || message.ephemeralAnchorMsgId != 0) {
                 return true;
             }
@@ -2170,7 +2136,7 @@ public class ij {
         return false;
     }
 
-    public static void e6(TLRPC.TL_messageMediaPoll tL_messageMediaPoll, TLRPC.PollResults pollResults) {
+    public static void d6(TLRPC.TL_messageMediaPoll tL_messageMediaPoll, TLRPC.PollResults pollResults) {
         TLRPC.Poll poll;
         ArrayList<TLRPC.PollAnswerVoters> arrayList;
         ArrayList arrayList2;
@@ -2263,77 +2229,37 @@ public class ij {
         }
     }
 
-    public static void f0(TL_iv.RichText richText, int i7, SpannableStringBuilder spannableStringBuilder, int i10) {
-        if (richText != null) {
-            int length = spannableStringBuilder.length();
-            if (richText instanceof TL_iv.textPlain) {
-                spannableStringBuilder.append((CharSequence) ((TL_iv.textPlain) richText).text);
-            } else if (richText instanceof TL_iv.textButton) {
-                f0(richText.text, i7, spannableStringBuilder, i10);
-            } else if (richText instanceof TL_iv.textBold) {
-                f0(richText.text, i7, spannableStringBuilder, i10 | 1);
-            } else if (richText instanceof TL_iv.textItalic) {
-                f0(richText.text, i7, spannableStringBuilder, i10 | 2);
-            } else if (richText instanceof TL_iv.textUnderline) {
-                f0(richText.text, i7, spannableStringBuilder, i10 | 16);
-            } else if (richText instanceof TL_iv.textStrike) {
-                f0(richText.text, i7, spannableStringBuilder, i10 | 8);
-            } else if (richText instanceof TL_iv.textFixed) {
-                f0(richText.text, i7, spannableStringBuilder, i10 | 4);
-            } else if (richText instanceof TL_iv.textSpoiler) {
-                f0(richText.text, i7, spannableStringBuilder, i10 | 256);
-            } else if (richText instanceof TL_iv.textUrl) {
-                f0(richText.text, i7, spannableStringBuilder, i10);
-                if (spannableStringBuilder.length() > length) {
-                    ?? obj = new Object();
-                    obj.f38779a = i10;
-                    spannableStringBuilder.setSpan(new z31(richText.url, obj), length, spannableStringBuilder.length(), 33);
-                }
-            } else if (richText instanceof TL_iv.textEmail) {
-                f0(richText.text, i7, spannableStringBuilder, i10);
-                if (spannableStringBuilder.length() > length) {
-                    ?? obj2 = new Object();
-                    obj2.f38779a = i10;
-                    spannableStringBuilder.setSpan(new d41("mailto:" + richText.email, obj2), length, spannableStringBuilder.length(), 33);
-                }
-            } else if (richText instanceof TL_iv.textMath) {
-                spannableStringBuilder.append((CharSequence) U5(2131231555, "fx")).append(" ").append((CharSequence) id.M0(2131754864, null));
-            } else if (richText instanceof TL_iv.textPhone) {
-                f0(richText.text, i7, spannableStringBuilder, i10);
-                if (spannableStringBuilder.length() > length) {
-                    TL_iv.textPhone textphone = (TL_iv.textPhone) richText;
-                    String d = pf.b.d(textphone.phone, false);
-                    if (textphone.phone.startsWith("+")) {
-                        d = rf.b.i("+", d);
-                    }
-                    ?? obj3 = new Object();
-                    obj3.f38779a = i10;
-                    spannableStringBuilder.setSpan(new b41(rf.b.i("tel:", d), (uy0) obj3), length, spannableStringBuilder.length(), 33);
-                }
-            } else if (richText instanceof TL_iv.textConcat) {
-                ArrayList<TL_iv.RichText> arrayList = ((TL_iv.textConcat) richText).texts;
-                int size = arrayList.size();
-                int i11 = 0;
-                while (i11 < size) {
-                    TL_iv.RichText richText2 = arrayList.get(i11);
-                    i11++;
-                    f0(richText2, i7, spannableStringBuilder, i10);
-                    if (spannableStringBuilder.length() >= i7) {
-                        spannableStringBuilder.delete(i7, spannableStringBuilder.length());
-                        spannableStringBuilder.append("…");
-                        return;
-                    }
-                }
+    public static void e(boolean z9, CharSequence charSequence, boolean z10, boolean z11, boolean z12) {
+        if ((charSequence instanceof Spannable) && M(charSequence)) {
+            try {
+                g0.c((Spannable) charSequence, 1, z12, false);
+            } catch (Exception e10) {
+                a8.g(e10, true);
             }
-            if (spannableStringBuilder.length() > length && i10 != 0) {
-                ?? obj4 = new Object();
-                obj4.f38779a = i10;
-                spannableStringBuilder.setSpan(new vy0(obj4, 0), length, spannableStringBuilder.length(), 33);
-            }
+            h(z9, charSequence, z10, 0, 0, z11);
         }
     }
 
-    public static String f2(TLObject tLObject, ArrayList arrayList, int i7) {
+    public static SpannableStringBuilder e0(TL_iv.RichMessage richMessage, int i7) {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        if (richMessage != null) {
+            for (int i10 = 0; i10 < richMessage.blocks.size(); i10++) {
+                TL_iv.PageBlock pageBlock = richMessage.blocks.get(i10);
+                if (i10 > 0) {
+                    spannableStringBuilder.append((CharSequence) "  ");
+                }
+                c0(pageBlock, i7, spannableStringBuilder, richMessage);
+                if (spannableStringBuilder.length() >= i7) {
+                    spannableStringBuilder.delete(i7, spannableStringBuilder.length());
+                    spannableStringBuilder.append((CharSequence) "…");
+                    return spannableStringBuilder;
+                }
+            }
+        }
+        return spannableStringBuilder;
+    }
+
+    public static String e2(TLObject tLObject, ArrayList arrayList, int i7) {
         String str;
         String K;
         long j3;
@@ -2347,7 +2273,7 @@ public class ij {
             if (tLObject instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) tLObject;
                 if (user.deleted) {
-                    str = id.M0(2131749329, null);
+                    str = id.M0(2131749328, null);
                 } else {
                     str = g5.m(0, user.first_name, user.last_name);
                 }
@@ -2383,11 +2309,140 @@ public class ij {
         return str2;
     }
 
-    public static boolean f3(TLRPC.Message message) {
-        if (d3(message) && !e5(message)) {
+    public static boolean e3(TLRPC.Message message) {
+        if (c3(message) && !d5(message)) {
             return true;
         }
         return false;
+    }
+
+    public static void f0(TL_iv.RichText richText, int i7, SpannableStringBuilder spannableStringBuilder, int i10) {
+        if (richText != null) {
+            int length = spannableStringBuilder.length();
+            if (richText instanceof TL_iv.textPlain) {
+                spannableStringBuilder.append((CharSequence) ((TL_iv.textPlain) richText).text);
+            } else if (richText instanceof TL_iv.textButton) {
+                f0(richText.text, i7, spannableStringBuilder, i10);
+            } else if (richText instanceof TL_iv.textBold) {
+                f0(richText.text, i7, spannableStringBuilder, i10 | 1);
+            } else if (richText instanceof TL_iv.textItalic) {
+                f0(richText.text, i7, spannableStringBuilder, i10 | 2);
+            } else if (richText instanceof TL_iv.textUnderline) {
+                f0(richText.text, i7, spannableStringBuilder, i10 | 16);
+            } else if (richText instanceof TL_iv.textStrike) {
+                f0(richText.text, i7, spannableStringBuilder, i10 | 8);
+            } else if (richText instanceof TL_iv.textFixed) {
+                f0(richText.text, i7, spannableStringBuilder, i10 | 4);
+            } else if (richText instanceof TL_iv.textSpoiler) {
+                f0(richText.text, i7, spannableStringBuilder, i10 | 256);
+            } else if (richText instanceof TL_iv.textUrl) {
+                f0(richText.text, i7, spannableStringBuilder, i10);
+                if (spannableStringBuilder.length() > length) {
+                    ?? obj = new Object();
+                    obj.f39836a = i10;
+                    spannableStringBuilder.setSpan(new a41(richText.url, obj), length, spannableStringBuilder.length(), 33);
+                }
+            } else if (richText instanceof TL_iv.textEmail) {
+                f0(richText.text, i7, spannableStringBuilder, i10);
+                if (spannableStringBuilder.length() > length) {
+                    ?? obj2 = new Object();
+                    obj2.f39836a = i10;
+                    spannableStringBuilder.setSpan(new e41("mailto:" + richText.email, obj2), length, spannableStringBuilder.length(), 33);
+                }
+            } else if (richText instanceof TL_iv.textMath) {
+                spannableStringBuilder.append((CharSequence) T5(2131231555, "fx")).append(" ").append((CharSequence) id.M0(2131754864, null));
+            } else if (richText instanceof TL_iv.textPhone) {
+                f0(richText.text, i7, spannableStringBuilder, i10);
+                if (spannableStringBuilder.length() > length) {
+                    TL_iv.textPhone textphone = (TL_iv.textPhone) richText;
+                    String d = pf.b.d(textphone.phone, false);
+                    if (textphone.phone.startsWith("+")) {
+                        d = rf.b.i("+", d);
+                    }
+                    ?? obj3 = new Object();
+                    obj3.f39836a = i10;
+                    spannableStringBuilder.setSpan(new c41(rf.b.i("tel:", d), (vy0) obj3), length, spannableStringBuilder.length(), 33);
+                }
+            } else if (richText instanceof TL_iv.textConcat) {
+                ArrayList<TL_iv.RichText> arrayList = ((TL_iv.textConcat) richText).texts;
+                int size = arrayList.size();
+                int i11 = 0;
+                while (i11 < size) {
+                    TL_iv.RichText richText2 = arrayList.get(i11);
+                    i11++;
+                    f0(richText2, i7, spannableStringBuilder, i10);
+                    if (spannableStringBuilder.length() >= i7) {
+                        spannableStringBuilder.delete(i7, spannableStringBuilder.length());
+                        spannableStringBuilder.append("…");
+                        return;
+                    }
+                }
+            }
+            if (spannableStringBuilder.length() > length && i10 != 0) {
+                ?? obj4 = new Object();
+                obj4.f39836a = i10;
+                spannableStringBuilder.setSpan(new wy0(obj4, 0), length, spannableStringBuilder.length(), 33);
+            }
+        }
+    }
+
+    public static int f1(TLRPC.BotInlineResult botInlineResult) {
+        int j22 = (int) j2(botInlineResult.content);
+        if (j22 == 0) {
+            return (int) j2(botInlineResult.thumb);
+        }
+        return j22;
+    }
+
+    public static String f2(ArrayList arrayList) {
+        if (arrayList != null && arrayList.size() != 0) {
+            StringBuilder sb2 = new StringBuilder();
+            for (int i7 = 0; i7 < arrayList.size(); i7++) {
+                sb2.append("@");
+                sb2.append((String) arrayList.get(i7));
+                if (i7 < arrayList.size() - 1) {
+                    sb2.append(", ");
+                }
+            }
+            return sb2.toString();
+        }
+        return id.M0(2131743661, null).toLowerCase();
+    }
+
+    public static boolean f3(int i7) {
+        if ((i7 & 1879048192) == 1610612736) {
+            return true;
+        }
+        return false;
+    }
+
+    public static void f6(TLRPC.Message message, TLRPC.TL_messageReactions tL_messageReactions) {
+        if (message != null && tL_messageReactions != null) {
+            TLRPC.TL_messageReactions tL_messageReactions2 = message.reactions;
+            if (tL_messageReactions2 != null) {
+                int size = tL_messageReactions2.results.size();
+                boolean z9 = false;
+                for (int i7 = 0; i7 < size; i7++) {
+                    TLRPC.ReactionCount reactionCount = message.reactions.results.get(i7);
+                    int size2 = tL_messageReactions.results.size();
+                    for (int i10 = 0; i10 < size2; i10++) {
+                        TLRPC.ReactionCount reactionCount2 = tL_messageReactions.results.get(i10);
+                        if (ch.p0.g(reactionCount.reaction, reactionCount2.reaction)) {
+                            if (!z9 && tL_messageReactions.min && reactionCount.chosen) {
+                                reactionCount2.chosen = true;
+                                z9 = true;
+                            }
+                            reactionCount2.lastDrawnPosition = reactionCount.lastDrawnPosition;
+                        }
+                    }
+                    if (reactionCount.chosen) {
+                        z9 = true;
+                    }
+                }
+            }
+            message.reactions = tL_messageReactions;
+            message.flags |= 1048576;
+        }
     }
 
     public static void g(int i7, TLRPC.MessageReactions messageReactions, int i10, long j3, boolean z9) {
@@ -2446,90 +2501,16 @@ public class ij {
         }
     }
 
-    public static int g1(TLRPC.BotInlineResult botInlineResult) {
-        int k22 = (int) k2(botInlineResult.content);
-        if (k22 == 0) {
-            return (int) k2(botInlineResult.thumb);
+    public static int[] g1(TLRPC.BotInlineResult botInlineResult) {
+        int[] k22 = k2(botInlineResult.content);
+        if (k22 == null) {
+            int[] k23 = k2(botInlineResult.thumb);
+            return k23 == null ? new int[]{0, 0} : k23;
         }
         return k22;
     }
 
-    public static String g2(ArrayList arrayList) {
-        if (arrayList != null && arrayList.size() != 0) {
-            StringBuilder sb2 = new StringBuilder();
-            for (int i7 = 0; i7 < arrayList.size(); i7++) {
-                sb2.append("@");
-                sb2.append((String) arrayList.get(i7));
-                if (i7 < arrayList.size() - 1) {
-                    sb2.append(", ");
-                }
-            }
-            return sb2.toString();
-        }
-        return id.M0(2131743664, null).toLowerCase();
-    }
-
-    public static boolean g3(int i7) {
-        if ((i7 & 1879048192) == 1610612736) {
-            return true;
-        }
-        return false;
-    }
-
-    public static void g6(TLRPC.Message message, TLRPC.TL_messageReactions tL_messageReactions) {
-        if (message != null && tL_messageReactions != null) {
-            TLRPC.TL_messageReactions tL_messageReactions2 = message.reactions;
-            if (tL_messageReactions2 != null) {
-                int size = tL_messageReactions2.results.size();
-                boolean z9 = false;
-                for (int i7 = 0; i7 < size; i7++) {
-                    TLRPC.ReactionCount reactionCount = message.reactions.results.get(i7);
-                    int size2 = tL_messageReactions.results.size();
-                    for (int i10 = 0; i10 < size2; i10++) {
-                        TLRPC.ReactionCount reactionCount2 = tL_messageReactions.results.get(i10);
-                        if (ch.p0.g(reactionCount.reaction, reactionCount2.reaction)) {
-                            if (!z9 && tL_messageReactions.min && reactionCount.chosen) {
-                                reactionCount2.chosen = true;
-                                z9 = true;
-                            }
-                            reactionCount2.lastDrawnPosition = reactionCount.lastDrawnPosition;
-                        }
-                    }
-                    if (reactionCount.chosen) {
-                        z9 = true;
-                    }
-                }
-            }
-            message.reactions = tL_messageReactions;
-            message.flags |= 1048576;
-        }
-    }
-
-    public static void h(boolean r18, java.lang.CharSequence r19, boolean r20, int r21, int r22, boolean r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.h(boolean, java.lang.CharSequence, boolean, int, int, boolean):void");
-    }
-
-    public static CharSequence h0(TLRPC.TL_textWithEntities tL_textWithEntities, boolean z9) {
-        org.telegram.ui.ActionBar.k6.P();
-        TextPaint textPaint = org.telegram.ui.ActionBar.k6.f28127s2;
-        if (textPaint == null) {
-            textPaint = new TextPaint(1);
-            textPaint.setTypeface(g0.o());
-            textPaint.setTextSize(g0.L(Math.max(16, iz.W0) - 2));
-        }
-        return j0(tL_textWithEntities, z9, false, textPaint);
-    }
-
-    public static int[] h1(TLRPC.BotInlineResult botInlineResult) {
-        int[] l22 = l2(botInlineResult.content);
-        if (l22 == null) {
-            int[] l23 = l2(botInlineResult.thumb);
-            return l23 == null ? new int[]{0, 0} : l23;
-        }
-        return l22;
-    }
-
-    public static StaticLayout h5(CharSequence charSequence, TextPaint textPaint, int i7, float f10, float f11, boolean z9, Layout.Alignment alignment) {
+    public static StaticLayout g5(CharSequence charSequence, TextPaint textPaint, int i7, float f10, float f11, boolean z9, Layout.Alignment alignment) {
         int i10;
         if (i7 <= 0) {
             i10 = 1;
@@ -2563,11 +2544,22 @@ public class ij {
         return new StaticLayout(charSequence, textPaint, i10, alignment, f10, f11, false);
     }
 
-    public static CharSequence i0(TLRPC.TL_textWithEntities tL_textWithEntities, boolean z9, TextPaint textPaint) {
+    public static void h(boolean r18, java.lang.CharSequence r19, boolean r20, int r21, int r22, boolean r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.h(boolean, java.lang.CharSequence, boolean, int, int, boolean):void");
+    }
+
+    public static CharSequence h0(TLRPC.TL_textWithEntities tL_textWithEntities, boolean z9) {
+        org.telegram.ui.ActionBar.l6.P();
+        TextPaint textPaint = org.telegram.ui.ActionBar.l6.f28140s2;
+        if (textPaint == null) {
+            textPaint = new TextPaint(1);
+            textPaint.setTypeface(g0.o());
+            textPaint.setTextSize(g0.L(Math.max(16, iz.W0) - 2));
+        }
         return j0(tL_textWithEntities, z9, false, textPaint);
     }
 
-    public static int i2(TLRPC.TL_document tL_document) {
+    public static int h2(TLRPC.TL_document tL_document) {
         if (tL_document != null) {
             int size = tL_document.attributes.size();
             for (int i7 = 0; i7 < size; i7++) {
@@ -2580,7 +2572,7 @@ public class ij {
         return 0;
     }
 
-    public static CharSequence i6() {
+    public static CharSequence h6() {
         if (f23213p3 == null) {
             f23213p3 = new CharSequence[2];
         }
@@ -2589,23 +2581,18 @@ public class ij {
             charSequenceArr[0] = new SpannableStringBuilder("u");
             org.telegram.ui.Components.wp wpVar = new org.telegram.ui.Components.wp(2131231970, 0);
             wpVar.G = 0.9f;
-            wpVar.f40020r = 0.0f;
-            wpVar.f40021s = g0.L(1.0f);
+            wpVar.f40120r = 0.0f;
+            wpVar.f40121s = g0.L(1.0f);
             ((SpannableStringBuilder) f23213p3[0]).setSpan(wpVar, 0, 1, 33);
         }
         return f23213p3[0];
     }
 
-    public static CharSequence j0(TLRPC.TL_textWithEntities tL_textWithEntities, boolean z9, boolean z10, TextPaint textPaint) {
-        if (tL_textWithEntities != null && tL_textWithEntities.text != null) {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tL_textWithEntities.text);
-            b(spannableStringBuilder, tL_textWithEntities.entities, z9, false, z10, false, 0);
-            return C5(i6.m(spannableStringBuilder, textPaint.getFontMetricsInt(), false, null, 0), tL_textWithEntities.entities, textPaint.getFontMetricsInt(), false);
-        }
-        return "";
+    public static CharSequence i0(TLRPC.TL_textWithEntities tL_textWithEntities, boolean z9, TextPaint textPaint) {
+        return j0(tL_textWithEntities, z9, false, textPaint);
     }
 
-    public static TLRPC.InputStickerSet j1(TLRPC.Document document) {
+    public static TLRPC.InputStickerSet i1(TLRPC.Document document) {
         if (document == null) {
             return null;
         }
@@ -2623,7 +2610,7 @@ public class ij {
         return null;
     }
 
-    public static boolean j4(TLRPC.Document document) {
+    public static boolean i4(TLRPC.Document document) {
         if (document != null && "video/mp4".equals(document.mime_type)) {
             boolean z9 = false;
             int i7 = 0;
@@ -2643,15 +2630,24 @@ public class ij {
         return false;
     }
 
-    public static TLRPC.InputStickerSet k1(TLRPC.Message message) {
+    public static CharSequence j0(TLRPC.TL_textWithEntities tL_textWithEntities, boolean z9, boolean z10, TextPaint textPaint) {
+        if (tL_textWithEntities != null && tL_textWithEntities.text != null) {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tL_textWithEntities.text);
+            b(spannableStringBuilder, tL_textWithEntities.entities, z9, false, z10, false, 0);
+            return B5(i6.m(spannableStringBuilder, textPaint.getFontMetricsInt(), false, null, 0), tL_textWithEntities.entities, textPaint.getFontMetricsInt(), false);
+        }
+        return "";
+    }
+
+    public static TLRPC.InputStickerSet j1(TLRPC.Message message) {
         TLRPC.Document G0 = G0(message);
         if (G0 != null) {
-            return j1(G0);
+            return i1(G0);
         }
         return null;
     }
 
-    public static double k2(TLRPC.WebDocument webDocument) {
+    public static double j2(TLRPC.WebDocument webDocument) {
         if (webDocument == null) {
             return 0.0d;
         }
@@ -2668,17 +2664,17 @@ public class ij {
         return 0.0d;
     }
 
-    public static boolean k4(TLRPC.Message message) {
-        if ((o1(message) instanceof TLRPC.TL_messageMediaWebPage) && o1(message).webpage != null) {
-            return j4(o1(message).webpage.document);
+    public static boolean j4(TLRPC.Message message) {
+        if ((n1(message) instanceof TLRPC.TL_messageMediaWebPage) && n1(message).webpage != null) {
+            return i4(n1(message).webpage.document);
         }
-        if (o1(message) != null && j4(o1(message).document)) {
+        if (n1(message) != null && i4(n1(message).document)) {
             return true;
         }
         return false;
     }
 
-    public static int[] l2(TLRPC.WebDocument webDocument) {
+    public static int[] k2(TLRPC.WebDocument webDocument) {
         if (webDocument == null) {
             return null;
         }
@@ -2695,26 +2691,26 @@ public class ij {
         return null;
     }
 
-    public static boolean m3(TLRPC.Message message) {
+    public static boolean l3(TLRPC.Message message) {
         if ((message.flags & 4) != 0 && message.fwd_from != null) {
             return true;
         }
         return false;
     }
 
-    public static TLRPC.MessageMedia n1(ij ijVar) {
+    public static TLRPC.MessageMedia m1(ij ijVar) {
         TLRPC.Message message;
         if (ijVar != null && (message = ijVar.f23262k) != null) {
             TLRPC.MessageMedia messageMedia = ijVar.Y0;
             if (messageMedia != null) {
                 return messageMedia;
             }
-            return o1(message);
+            return n1(message);
         }
         return null;
     }
 
-    public static CharSequence n2() {
+    public static CharSequence m2() {
         if (f23214q3 == null) {
             f23214q3 = new SpannableStringBuilder("g");
             org.telegram.ui.Components.wp wpVar = new org.telegram.ui.Components.wp(2131232160, 0);
@@ -2725,7 +2721,7 @@ public class ij {
         return f23214q3;
     }
 
-    public static boolean n3(TLRPC.Document document) {
+    public static boolean m3(TLRPC.Document document) {
         if (document == null) {
             return false;
         }
@@ -2739,14 +2735,14 @@ public class ij {
         return false;
     }
 
-    public static boolean n4(TLRPC.Message message) {
+    public static boolean m4(TLRPC.Message message) {
         if (message instanceof TLRPC.TL_message_secret) {
-            if (((o1(message) instanceof TLRPC.TL_messageMediaPhoto) || k4(message) || M4(message)) && o1(message).ttl_seconds != 0) {
+            if (((n1(message) instanceof TLRPC.TL_messageMediaPhoto) || j4(message) || L4(message)) && n1(message).ttl_seconds != 0) {
                 return true;
             }
             return false;
         } else if (message instanceof TLRPC.TL_message) {
-            if (((o1(message) instanceof TLRPC.TL_messageMediaPhoto) || (o1(message) instanceof TLRPC.TL_messageMediaDocument)) && o1(message).ttl_seconds != 0) {
+            if (((n1(message) instanceof TLRPC.TL_messageMediaPhoto) || (n1(message) instanceof TLRPC.TL_messageMediaDocument)) && n1(message).ttl_seconds != 0) {
                 return true;
             }
             return false;
@@ -2755,7 +2751,7 @@ public class ij {
         }
     }
 
-    public static TLRPC.MessageMedia o1(TLRPC.Message message) {
+    public static TLRPC.MessageMedia n1(TLRPC.Message message) {
         TLRPC.MessageMedia messageMedia = message.media;
         if (messageMedia != null && !(messageMedia instanceof TLRPC.TL_messageMediaPaidMedia) && !messageMedia.extended_media.isEmpty() && (message.media.extended_media.get(0) instanceof TLRPC.TL_messageExtendedMedia)) {
             return ((TLRPC.TL_messageExtendedMedia) message.media.extended_media.get(0)).media;
@@ -2764,13 +2760,13 @@ public class ij {
     }
 
     public static boolean p(TLRPC.Document document) {
-        if ((L2(document, true) || P4(document)) && sc.e(1)) {
+        if ((K2(document, true) || O4(document)) && sc.e(1)) {
             return true;
         }
         return false;
     }
 
-    public static long q1(TLRPC.MessageMedia messageMedia) {
+    public static long p1(TLRPC.MessageMedia messageMedia) {
         TLRPC.Document document;
         TLRPC.WebPage webPage;
         if ((messageMedia instanceof TLRPC.TL_messageMediaWebPage) && (webPage = messageMedia.webpage) != null) {
@@ -2786,6 +2782,31 @@ public class ij {
             return document.size;
         }
         return 0L;
+    }
+
+    public static void q5(TLRPC.Message message) {
+        TLRPC.Peer peer = message.from_id;
+        if (peer == null) {
+            message.flags &= -257;
+        }
+        if (peer == null) {
+            message.flags &= -5;
+        }
+        if (message.reply_to == null) {
+            message.flags &= -9;
+        }
+        if (message.media == null) {
+            message.flags &= -513;
+        }
+        if (message.reply_markup == null) {
+            message.flags &= -65;
+        }
+        if (message.replies == null) {
+            message.flags &= -8388609;
+        }
+        if (message.reactions == null) {
+            message.flags &= -1048577;
+        }
     }
 
     public static boolean r(int i7, boolean z9, TLRPC.Message message, TLRPC.Chat chat) {
@@ -2836,32 +2857,7 @@ public class ij {
         return false;
     }
 
-    public static void r5(TLRPC.Message message) {
-        TLRPC.Peer peer = message.from_id;
-        if (peer == null) {
-            message.flags &= -257;
-        }
-        if (peer == null) {
-            message.flags &= -5;
-        }
-        if (message.reply_to == null) {
-            message.flags &= -9;
-        }
-        if (message.media == null) {
-            message.flags &= -513;
-        }
-        if (message.reply_markup == null) {
-            message.flags &= -65;
-        }
-        if (message.replies == null) {
-            message.flags &= -8388609;
-        }
-        if (message.reactions == null) {
-            message.flags &= -1048577;
-        }
-    }
-
-    public static boolean s3(m20 m20Var) {
+    public static boolean r3(m20 m20Var) {
         if (m20Var != null) {
             if (!m20Var.f23979e.equals("image/gif")) {
                 if ("video/mp4".equals(m20Var.f23979e)) {
@@ -2883,6 +2879,38 @@ public class ij {
             }
         }
         return false;
+    }
+
+    public static boolean s3(TLRPC.Document document, boolean z9) {
+        String str;
+        if (document != null && (str = document.mime_type) != null) {
+            if ((str.equals("image/gif") && !z9) || M3(document)) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public static CharSequence s5(int i7, long j3) {
+        CharSequence m22;
+        if (j3 >= 0) {
+            TLRPC.User a22 = qp.s1(i7).a2(Long.valueOf(j3));
+            if (a22 != null) {
+                return g0.D2(t10.p(a22));
+            }
+            return "";
+        }
+        TLRPC.Chat M0 = qp.s1(i7).M0(Long.valueOf(-j3));
+        if (M0 != null) {
+            if (t3.V(M0)) {
+                m22 = F();
+            } else {
+                m22 = m2();
+            }
+            return new SpannableStringBuilder(m22).append((CharSequence) " ").append((CharSequence) g0.D2(M0.title));
+        }
+        return "";
     }
 
     public static String t0(TLRPC.Document document, boolean z9) {
@@ -2929,66 +2957,34 @@ public class ij {
         return null;
     }
 
-    public static boolean t3(TLRPC.Document document, boolean z9) {
-        String str;
-        if (document != null && (str = document.mime_type) != null) {
-            if ((str.equals("image/gif") && !z9) || N3(document)) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public static CharSequence t5(int i7, long j3) {
-        CharSequence n22;
-        if (j3 >= 0) {
-            TLRPC.User a22 = qp.s1(i7).a2(Long.valueOf(j3));
-            if (a22 != null) {
-                return g0.D2(t10.p(a22));
-            }
-            return "";
-        }
-        TLRPC.Chat M0 = qp.s1(i7).M0(Long.valueOf(-j3));
-        if (M0 != null) {
-            if (t3.V(M0)) {
-                n22 = F();
-            } else {
-                n22 = n2();
-            }
-            return new SpannableStringBuilder(n22).append((CharSequence) " ").append((CharSequence) g0.D2(M0.title));
-        }
-        return "";
-    }
-
-    public static boolean u3(TLRPC.Message message) {
+    public static boolean t3(TLRPC.Message message) {
         boolean z9;
-        if (o1(message) instanceof TLRPC.TL_messageMediaWebPage) {
-            return t3(o1(message).webpage.document, false);
+        if (n1(message) instanceof TLRPC.TL_messageMediaWebPage) {
+            return s3(n1(message).webpage.document, false);
         }
-        if (o1(message) != null) {
-            TLRPC.Document document = o1(message).document;
+        if (n1(message) != null) {
+            TLRPC.Document document = n1(message).document;
             if (message.grouped_id != 0) {
                 z9 = true;
             } else {
                 z9 = false;
             }
-            if (t3(document, z9)) {
+            if (s3(document, z9)) {
                 return true;
             }
         }
         return false;
     }
 
-    public static CharSequence u5(int i7, TLRPC.Peer peer, boolean z9) {
+    public static CharSequence t5(int i7, TLRPC.Peer peer, boolean z9) {
         TLRPC.Chat M0;
-        CharSequence n22;
-        CharSequence n23;
+        CharSequence m22;
+        CharSequence m23;
         if (peer instanceof TLRPC.TL_peerUser) {
             TLRPC.User a22 = qp.s1(i7).a2(Long.valueOf(peer.user_id));
             if (a22 != null) {
                 if (z9) {
-                    return new SpannableStringBuilder(i6()).append((CharSequence) " ").append((CharSequence) t10.p(a22));
+                    return new SpannableStringBuilder(h6()).append((CharSequence) " ").append((CharSequence) t10.p(a22));
                 }
                 return t10.p(a22);
             }
@@ -2998,11 +2994,11 @@ public class ij {
             if (M02 != null) {
                 if (z9) {
                     if (t3.V(M02)) {
-                        n23 = F();
+                        m23 = F();
                     } else {
-                        n23 = n2();
+                        m23 = m2();
                     }
-                    return new SpannableStringBuilder(n23).append((CharSequence) " ").append((CharSequence) M02.title);
+                    return new SpannableStringBuilder(m23).append((CharSequence) " ").append((CharSequence) M02.title);
                 }
                 return M02.title;
             }
@@ -3010,11 +3006,11 @@ public class ij {
         } else if ((peer instanceof TLRPC.TL_peerChannel) && (M0 = qp.s1(i7).M0(Long.valueOf(peer.channel_id))) != null) {
             if (z9) {
                 if (t3.V(M0)) {
-                    n22 = F();
+                    m22 = F();
                 } else {
-                    n22 = n2();
+                    m22 = m2();
                 }
-                return new SpannableStringBuilder(n22).append((CharSequence) " ").append((CharSequence) M0.title);
+                return new SpannableStringBuilder(m22).append((CharSequence) " ").append((CharSequence) M0.title);
             }
             return M0.title;
         } else {
@@ -3022,15 +3018,7 @@ public class ij {
         }
     }
 
-    public static long v0(TLRPC.Message message) {
-        TLRPC.Peer peer = message.peer_id;
-        if (peer != null) {
-            return peer.channel_id;
-        }
-        return 0L;
-    }
-
-    public static long v1(TLRPC.Message message) {
+    public static long u1(TLRPC.Message message) {
         TLRPC.Peer peer;
         if (message == null || (peer = message.saved_peer_id) == null) {
             return 0L;
@@ -3046,7 +3034,7 @@ public class ij {
         return peer.user_id;
     }
 
-    public static boolean v4(TLRPC.Document document) {
+    public static boolean u4(TLRPC.Document document) {
         if (document != null) {
             for (int i7 = 0; i7 < document.attributes.size(); i7++) {
                 if (document.attributes.get(i7) instanceof TLRPC.TL_documentAttributeSticker) {
@@ -3060,7 +3048,7 @@ public class ij {
         return false;
     }
 
-    public static boolean v5(TLRPC.InputPeer inputPeer, TLRPC.InputPeer inputPeer2) {
+    public static boolean u5(TLRPC.InputPeer inputPeer, TLRPC.InputPeer inputPeer2) {
         if (inputPeer == null && inputPeer2 == null) {
             return true;
         }
@@ -3087,7 +3075,15 @@ public class ij {
         return false;
     }
 
-    public static String w1(TLRPC.Document document) {
+    public static long v0(TLRPC.Message message) {
+        TLRPC.Peer peer = message.peer_id;
+        if (peer != null) {
+            return peer.channel_id;
+        }
+        return 0L;
+    }
+
+    public static String v1(TLRPC.Document document) {
         if (document != null) {
             for (int i7 = 0; i7 < document.attributes.size(); i7++) {
                 TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i7);
@@ -3103,7 +3099,7 @@ public class ij {
         return id.M0(2131753900, null);
     }
 
-    public static boolean w4(TLRPC.Document document) {
+    public static boolean v4(TLRPC.Document document) {
         TLRPC.InputStickerSet inputStickerSet;
         if (document != null) {
             for (int i7 = 0; i7 < document.attributes.size(); i7++) {
@@ -3116,7 +3112,7 @@ public class ij {
         return false;
     }
 
-    public static boolean w5(TLRPC.Peer peer, TLRPC.Peer peer2) {
+    public static boolean v5(TLRPC.Peer peer, TLRPC.Peer peer2) {
         if (peer == null && peer2 == null) {
             return true;
         }
@@ -3138,35 +3134,14 @@ public class ij {
         return false;
     }
 
-    public static boolean x4(TLRPC.Message message) {
-        if (o1(message) != null && v4(o1(message).document)) {
+    public static boolean w4(TLRPC.Message message) {
+        if (n1(message) != null && u4(n1(message).document)) {
             return true;
         }
         return false;
     }
 
-    public static boolean y(TLRPC.Document document) {
-        String str;
-        if (document != null && (str = document.mime_type) != null) {
-            if ((X2(document) && (str.equalsIgnoreCase("image/png") || str.equalsIgnoreCase("image/jpg") || str.equalsIgnoreCase("image/jpeg"))) || (Build.VERSION.SDK_INT >= 26 && str.equalsIgnoreCase("image/heic"))) {
-                for (int i7 = 0; i7 < document.attributes.size(); i7++) {
-                    TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i7);
-                    if (documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) {
-                        TLRPC.TL_documentAttributeImageSize tL_documentAttributeImageSize = (TLRPC.TL_documentAttributeImageSize) documentAttribute;
-                        if (tL_documentAttributeImageSize.f26963w >= 6000 || tL_documentAttributeImageSize.h >= 6000) {
-                            return false;
-                        }
-                        return true;
-                    }
-                }
-            } else {
-                boolean z9 = r2.f25212a;
-            }
-        }
-        return false;
-    }
-
-    public static String y1(TLRPC.Document document) {
+    public static String x1(TLRPC.Document document) {
         if (document == null) {
             return id.M0(2131753899, null);
         }
@@ -3191,7 +3166,7 @@ public class ij {
         return id.M0(2131753899, null);
     }
 
-    public static TLRPC.TL_textWithEntities y5(TLRPC.TL_textWithEntities tL_textWithEntities) {
+    public static TLRPC.TL_textWithEntities x5(TLRPC.TL_textWithEntities tL_textWithEntities) {
         if (tL_textWithEntities == null) {
             return null;
         }
@@ -3204,6 +3179,39 @@ public class ij {
             }
         }
         return tL_textWithEntities2;
+    }
+
+    public static boolean y(TLRPC.Document document) {
+        String str;
+        if (document != null && (str = document.mime_type) != null) {
+            if ((W2(document) && (str.equalsIgnoreCase("image/png") || str.equalsIgnoreCase("image/jpg") || str.equalsIgnoreCase("image/jpeg"))) || (Build.VERSION.SDK_INT >= 26 && str.equalsIgnoreCase("image/heic"))) {
+                for (int i7 = 0; i7 < document.attributes.size(); i7++) {
+                    TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i7);
+                    if (documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) {
+                        TLRPC.TL_documentAttributeImageSize tL_documentAttributeImageSize = (TLRPC.TL_documentAttributeImageSize) documentAttribute;
+                        if (tL_documentAttributeImageSize.f26963w >= 6000 || tL_documentAttributeImageSize.h >= 6000) {
+                            return false;
+                        }
+                        return true;
+                    }
+                }
+            } else {
+                boolean z9 = r2.f25212a;
+            }
+        }
+        return false;
+    }
+
+    public static void y5(CharSequence charSequence) {
+        URLSpan[] uRLSpanArr;
+        if (charSequence instanceof Spannable) {
+            Spannable spannable = (Spannable) charSequence;
+            for (URLSpan uRLSpan : (URLSpan[]) spannable.getSpans(0, spannable.length(), URLSpan.class)) {
+                if (!(uRLSpan instanceof org.telegram.ui.Components.a00)) {
+                    spannable.removeSpan(uRLSpan);
+                }
+            }
+        }
     }
 
     public static int z0(TLRPC.TL_messageMediaToDo tL_messageMediaToDo) {
@@ -3229,94 +3237,15 @@ public class ij {
         return i7;
     }
 
-    public static void z5(CharSequence charSequence) {
-        URLSpan[] uRLSpanArr;
-        if (charSequence instanceof Spannable) {
-            Spannable spannable = (Spannable) charSequence;
-            for (URLSpan uRLSpan : (URLSpan[]) spannable.getSpans(0, spannable.length(), URLSpan.class)) {
-                if (!(uRLSpan instanceof org.telegram.ui.Components.a00)) {
-                    spannable.removeSpan(uRLSpan);
-                }
-            }
-        }
+    public static Spannable z5(Paint.FontMetricsInt fontMetricsInt, CharSequence charSequence, ArrayList arrayList) {
+        return B5(charSequence, arrayList, fontMetricsInt, false);
     }
 
     public final long A0() {
         return B0(this.f23262k);
     }
 
-    public final Long A1() {
-        TLRPC.TL_messageReactions tL_messageReactions;
-        ArrayList<TLRPC.MessageReactor> arrayList;
-        TLRPC.Message message = this.f23262k;
-        if (message == null || (tL_messageReactions = message.reactions) == null || (arrayList = tL_messageReactions.top_reactors) == null) {
-            return null;
-        }
-        int size = arrayList.size();
-        int i7 = 0;
-        while (i7 < size) {
-            TLRPC.MessageReactor messageReactor = arrayList.get(i7);
-            i7++;
-            TLRPC.MessageReactor messageReactor2 = messageReactor;
-            if (messageReactor2 != null && messageReactor2.my) {
-                if (messageReactor2.anonymous) {
-                    return 2666000L;
-                }
-                TLRPC.Peer peer = messageReactor2.peer_id;
-                if (peer != null) {
-                    return Long.valueOf(m5.o(peer));
-                }
-            }
-        }
-        return null;
-    }
-
-    public final boolean A2() {
-        int i7;
-        if (d1() != 0) {
-            ArrayList arrayList = this.f23273n0;
-            if ((arrayList != null && !arrayList.isEmpty()) || (i7 = this.D) == 3 || i7 == 1 || J3() || V2()) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public final boolean A3() {
-        return o1(this.f23262k) instanceof TLRPC.TL_messageMediaInvoice;
-    }
-
-    public final boolean A4() {
-        if (this.D == 24 && !h3()) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean B() {
-        if (E2(true)) {
-            return true;
-        }
-        TLRPC.Document F0 = F0();
-        if (F0 != null && !(F0 instanceof TLRPC.TL_documentEncrypted)) {
-            if (iz.C0) {
-                return true;
-            }
-            for (int i7 = 0; i7 < F0.attributes.size(); i7++) {
-                TLRPC.DocumentAttribute documentAttribute = F0.attributes.get(i7);
-                if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
-                    return documentAttribute.supports_streaming;
-                }
-            }
-            if (iz.D0 && "video/x-matroska".equals(F0.mime_type)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int B1() {
+    public final int A1() {
         int i7;
         int L;
         int i10;
@@ -3351,9 +3280,9 @@ public class ij {
         return i7 - L;
     }
 
-    public final boolean B2() {
+    public final boolean A2() {
         int i7;
-        if (d1() != 0) {
+        if (c1() != 0) {
             ArrayList arrayList = this.f23273n0;
             if ((arrayList != null && !arrayList.isEmpty()) || (i7 = this.D) == 3 || i7 == 1 || i7 == 14 || i7 == 9) {
                 return true;
@@ -3363,11 +3292,11 @@ public class ij {
         return false;
     }
 
-    public final boolean B3() {
+    public final boolean A3() {
         TLRPC.WebPage webPage;
         String str = null;
-        if (!this.E0 && !this.L2 && (o1(this.f23262k) instanceof TLRPC.TL_messageMediaWebPage) && (o1(this.f23262k).webpage instanceof TLRPC.TL_webPage)) {
-            webPage = o1(this.f23262k).webpage;
+        if (!this.E0 && !this.L2 && (n1(this.f23262k) instanceof TLRPC.TL_messageMediaWebPage) && (n1(this.f23262k).webpage instanceof TLRPC.TL_webPage)) {
+            webPage = n1(this.f23262k).webpage;
         } else {
             webPage = null;
         }
@@ -3383,7 +3312,7 @@ public class ij {
         return false;
     }
 
-    public final boolean B4() {
+    public final boolean A4() {
         if (this.f23244g) {
             return true;
         }
@@ -3408,33 +3337,33 @@ public class ij {
         return false;
     }
 
-    public final Spannable B5(CharSequence charSequence, Paint.FontMetricsInt fontMetricsInt) {
-        return C5(charSequence, O0(), fontMetricsInt, false);
+    public final Spannable A5(CharSequence charSequence, Paint.FontMetricsInt fontMetricsInt) {
+        return B5(charSequence, O0(), fontMetricsInt, false);
     }
 
-    public final boolean C() {
-        if (this.D != 17) {
-            return false;
+    public final boolean B() {
+        if (D2(true)) {
+            return true;
         }
-        TLRPC.MessageMedia o12 = o1(this.f23262k);
-        if (!(o12 instanceof TLRPC.TL_messageMediaPoll)) {
-            return false;
+        TLRPC.Document F0 = F0();
+        if (F0 != null && !(F0 instanceof TLRPC.TL_documentEncrypted)) {
+            if (iz.C0) {
+                return true;
+            }
+            for (int i7 = 0; i7 < F0.attributes.size(); i7++) {
+                TLRPC.DocumentAttribute documentAttribute = F0.attributes.get(i7);
+                if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
+                    return documentAttribute.supports_streaming;
+                }
+            }
+            if (iz.D0 && "video/x-matroska".equals(F0.mime_type)) {
+                return true;
+            }
         }
-        return D((TLRPC.TL_messageMediaPoll) o12);
+        return false;
     }
 
-    public final String C0() {
-        if (!U2()) {
-            return null;
-        }
-        TLRPC.TL_messageMediaDice tL_messageMediaDice = (TLRPC.TL_messageMediaDice) o1(this.f23262k);
-        if (TextUtils.isEmpty(tL_messageMediaDice.emoticon)) {
-            return "🎲";
-        }
-        return tL_messageMediaDice.emoticon.replace("️", "");
-    }
-
-    public final boolean C2() {
+    public final boolean B2() {
         ij ijVar;
         TLRPC.MessageReplyHeader messageReplyHeader;
         TLRPC.Message message = this.f23262k;
@@ -3450,7 +3379,7 @@ public class ij {
         return false;
     }
 
-    public final boolean C3(long j3) {
+    public final boolean B3(long j3) {
         TLRPC.MessageReplies messageReplies = this.f23262k.replies;
         if (messageReplies != null) {
             if (j3 == 0 || messageReplies.channel_id == j3) {
@@ -3461,62 +3390,55 @@ public class ij {
         return false;
     }
 
+    public final boolean C() {
+        if (this.D != 17) {
+            return false;
+        }
+        TLRPC.MessageMedia n1 = n1(this.f23262k);
+        if (!(n1 instanceof TLRPC.TL_messageMediaPoll)) {
+            return false;
+        }
+        return D((TLRPC.TL_messageMediaPoll) n1);
+    }
+
+    public final String C0() {
+        if (!T2()) {
+            return null;
+        }
+        TLRPC.TL_messageMediaDice tL_messageMediaDice = (TLRPC.TL_messageMediaDice) n1(this.f23262k);
+        if (TextUtils.isEmpty(tL_messageMediaDice.emoticon)) {
+            return "🎲";
+        }
+        return tL_messageMediaDice.emoticon.replace("️", "");
+    }
+
+    public final boolean C2() {
+        return D2(true);
+    }
+
+    public final boolean C3() {
+        return n1(this.f23262k) instanceof TLRPC.TL_messageMediaGeoLive;
+    }
+
     public final int D0() {
-        if (o1(this.f23262k) instanceof TLRPC.TL_messageMediaDice) {
-            return ((TLRPC.TL_messageMediaDice) o1(this.f23262k)).value;
+        if (n1(this.f23262k) instanceof TLRPC.TL_messageMediaDice) {
+            return ((TLRPC.TL_messageMediaDice) n1(this.f23262k)).value;
         }
         return -1;
     }
 
-    public final boolean D2() {
-        return E2(true);
-    }
-
-    public final boolean D3() {
-        return o1(this.f23262k) instanceof TLRPC.TL_messageMediaGeoLive;
-    }
-
-    public final boolean E() {
-        int i7;
-        if (this.f23262k.action == null) {
-            if (!y2()) {
-                ij ijVar = this.C;
-                if (ijVar == null || ijVar.f23262k.replies == null) {
-                    TLRPC.MessageReplyHeader messageReplyHeader = this.f23262k.reply_to;
-                    if (messageReplyHeader != null) {
-                        i7 = messageReplyHeader.reply_to_top_id;
-                    } else {
-                        i7 = 0;
-                    }
-                    if (i7 != 0) {
-                        return true;
-                    }
-                } else {
-                    return true;
-                }
-            } else {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public org.telegram.tgnet.tl.TL_iv.RichMessage E0() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.E0():org.telegram.tgnet.tl.TL_iv$RichMessage");
-    }
-
-    public final long E1() {
+    public final long D1() {
         if (this.D != 17) {
             return 0L;
         }
-        TLRPC.MessageMedia o12 = o1(this.f23262k);
-        if (!(o12 instanceof TLRPC.TL_messageMediaPoll)) {
+        TLRPC.MessageMedia n1 = n1(this.f23262k);
+        if (!(n1 instanceof TLRPC.TL_messageMediaPoll)) {
             return 0L;
         }
-        return ((TLRPC.TL_messageMediaPoll) o12).poll.f26982id;
+        return ((TLRPC.TL_messageMediaPoll) n1).poll.f26982id;
     }
 
-    public final boolean E2(boolean z9) {
+    public final boolean D2(boolean z9) {
         TLRPC.MessageMedia messageMedia;
         TLRPC.MessageMedia messageMedia2;
         ArrayList X;
@@ -3532,20 +3454,20 @@ public class ij {
                     } else {
                         messageMedia2 = null;
                     }
-                    int i10 = t51.f38246j0;
+                    int i10 = u51.f38600j0;
                     if (!(messageMedia2 instanceof TLRPC.TL_messageMediaDocument)) {
                         X = new ArrayList();
                     } else {
-                        X = t51.X(i7, messageMedia2.document, messageMedia2.alt_documents, 0, z9);
+                        X = u51.X(i7, messageMedia2.document, messageMedia2.alt_documents, 0, z9);
                     }
                     this.f23230c3 = X;
                     if (X.size() > 1) {
                         z10 = true;
                     }
                     this.f23225b3 = Boolean.valueOf(z10);
-                    this.f23238e3 = t51.a0(this.f23230c3);
-                    this.f23243f3 = t51.b0(this.f23230c3);
-                    this.f23248g3 = t51.N(this.f23230c3);
+                    this.f23238e3 = u51.a0(this.f23230c3);
+                    this.f23243f3 = u51.b0(this.f23230c3);
+                    this.f23248g3 = u51.N(this.f23230c3);
                 }
                 this.f23225b3 = Boolean.FALSE;
                 return false;
@@ -3557,22 +3479,22 @@ public class ij {
         return this.f23225b3.booleanValue();
     }
 
-    public final boolean E3() {
-        TLRPC.MessageMedia n1 = n1(this);
-        if (n1 != null && n1.live_photo) {
+    public final boolean D3() {
+        TLRPC.MessageMedia m12 = m1(this);
+        if (m12 != null && m12.live_photo) {
             return true;
         }
         return false;
     }
 
-    public final boolean E4() {
-        if (this.D == 17 && (o1(this.f23262k) instanceof TLRPC.TL_messageMediaToDo)) {
+    public final boolean D4() {
+        if (this.D == 17 && (n1(this.f23262k) instanceof TLRPC.TL_messageMediaToDo)) {
             return true;
         }
         return false;
     }
 
-    public final void E5(Spannable spannable, int[] iArr) {
+    public final void D5(Spannable spannable, int[] iArr) {
         int length;
         boolean z9;
         CharSequence charSequence;
@@ -3612,27 +3534,113 @@ public class ij {
         }
     }
 
+    public final boolean E() {
+        int i7;
+        if (this.f23262k.action == null) {
+            if (!x2()) {
+                ij ijVar = this.C;
+                if (ijVar == null || ijVar.f23262k.replies == null) {
+                    TLRPC.MessageReplyHeader messageReplyHeader = this.f23262k.reply_to;
+                    if (messageReplyHeader != null) {
+                        i7 = messageReplyHeader.reply_to_top_id;
+                    } else {
+                        i7 = 0;
+                    }
+                    if (i7 != 0) {
+                        return true;
+                    }
+                } else {
+                    return true;
+                }
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public org.telegram.tgnet.tl.TL_iv.RichMessage E0() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.E0():org.telegram.tgnet.tl.TL_iv$RichMessage");
+    }
+
+    public final boolean E2() {
+        if (this.D != 17) {
+            return false;
+        }
+        TLRPC.MessageMedia n1 = n1(this.f23262k);
+        if (!(n1 instanceof TLRPC.TL_messageMediaPoll)) {
+            return false;
+        }
+        return U4((TLRPC.TL_messageMediaPoll) n1);
+    }
+
     public final TLRPC.Document F0() {
-        r51 r51Var;
+        s51 s51Var;
         TLRPC.Document document = this.f23272n;
         if (document != null) {
             return document;
         }
-        if (E2(true) && (r51Var = this.f23238e3) != null) {
-            return r51Var.f37526g;
+        if (D2(true) && (s51Var = this.f23238e3) != null) {
+            return s51Var.f37930g;
         }
         return G0(this.f23262k);
     }
 
     public final boolean F2() {
-        if (this.D != 17) {
-            return false;
+        if (G2() && H2(F0())) {
+            return true;
         }
-        TLRPC.MessageMedia o12 = o1(this.f23262k);
-        if (!(o12 instanceof TLRPC.TL_messageMediaPoll)) {
-            return false;
+        return false;
+    }
+
+    public final boolean F3() {
+        return G3(this.f23262k, true);
+    }
+
+    public final boolean F4() {
+        TLRPC.Message message = this.f23262k;
+        if (message != null && message.unread) {
+            return true;
         }
-        return V4((TLRPC.TL_messageMediaPoll) o12);
+        return false;
+    }
+
+    public final CharSequence F5(String str, ArrayList arrayList, AbstractMap abstractMap, a0.h hVar) {
+        TLRPC.User user;
+        int i7;
+        if (TextUtils.indexOf(str, "un2") < 0) {
+            return str;
+        }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("");
+        int i10 = 0;
+        while (i10 < arrayList.size()) {
+            if (abstractMap != null) {
+                user = (TLRPC.User) abstractMap.get(arrayList.get(i10));
+            } else if (hVar != null) {
+                user = (TLRPC.User) hVar.f(((Long) arrayList.get(i10)).longValue());
+            } else {
+                user = null;
+            }
+            if (user == null) {
+                user = qp.s1(this.I1).a2((Long) arrayList.get(i10));
+            }
+            if (user != null) {
+                String p10 = t10.p(user);
+                int length = spannableStringBuilder.length();
+                if (spannableStringBuilder.length() != 0) {
+                    spannableStringBuilder.append((CharSequence) ", ");
+                }
+                spannableStringBuilder.append((CharSequence) p10);
+                StringBuilder sb2 = new StringBuilder("");
+                i7 = i10;
+                sb2.append(user.f27105id);
+                spannableStringBuilder.setSpan(new d41(sb2.toString()), length, p10.length() + length, 33);
+            } else {
+                i7 = i10;
+            }
+            i10 = i7 + 1;
+        }
+        return TextUtils.replace(str, new String[]{"un2"}, new CharSequence[]{spannableStringBuilder});
     }
 
     public final void G() {
@@ -3640,7 +3648,7 @@ public class ij {
         int i7;
         this.f23272n = null;
         this.f23275o = null;
-        if (this.N1 == 1 && !(o1(this.f23262k) instanceof TLRPC.TL_messageMediaWebPage) && !(o1(this.f23262k) instanceof TLRPC.TL_messageMediaInvoice) && ((o1(this.f23262k) instanceof TLRPC.TL_messageMediaEmpty) || o1(this.f23262k) == null)) {
+        if (this.N1 == 1 && !(n1(this.f23262k) instanceof TLRPC.TL_messageMediaWebPage) && !(n1(this.f23262k) instanceof TLRPC.TL_messageMediaInvoice) && ((n1(this.f23262k) instanceof TLRPC.TL_messageMediaEmpty) || n1(this.f23262k) == null)) {
             TLRPC.Message message = this.f23262k;
             if (message.grouped_id == 0) {
                 boolean isEmpty = message.entities.isEmpty();
@@ -3707,70 +3715,34 @@ public class ij {
         }
         if (this.f23272n == null && this.f23275o == null) {
             n0(null);
-        } else if (u4()) {
+        } else if (t4()) {
             this.D = 13;
-        } else if (K2()) {
+        } else if (J2()) {
             this.D = 15;
         } else {
             this.D = 1000;
         }
     }
 
-    public final boolean G2() {
-        if (H2() && I2(F0())) {
-            return true;
-        }
-        return false;
+    public float G1() {
+        return 0.0f;
     }
 
-    public final boolean G3() {
-        return H3(this.f23262k, true);
+    public final boolean G2() {
+        if (this.f23272n == null && this.f23275o == null) {
+            return false;
+        }
+        return true;
     }
 
     public final boolean G4() {
-        TLRPC.Message message = this.f23262k;
-        if (message != null && message.unread) {
-            return true;
-        }
-        return false;
+        return n1(this.f23262k) instanceof TLRPC.TL_messageMediaUnsupported;
     }
 
-    public final CharSequence G5(String str, ArrayList arrayList, AbstractMap abstractMap, a0.h hVar) {
-        TLRPC.User user;
-        int i7;
-        if (TextUtils.indexOf(str, "un2") < 0) {
-            return str;
-        }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("");
-        int i10 = 0;
-        while (i10 < arrayList.size()) {
-            if (abstractMap != null) {
-                user = (TLRPC.User) abstractMap.get(arrayList.get(i10));
-            } else if (hVar != null) {
-                user = (TLRPC.User) hVar.f(((Long) arrayList.get(i10)).longValue());
-            } else {
-                user = null;
-            }
-            if (user == null) {
-                user = qp.s1(this.I1).a2((Long) arrayList.get(i10));
-            }
-            if (user != null) {
-                String p10 = t10.p(user);
-                int length = spannableStringBuilder.length();
-                if (spannableStringBuilder.length() != 0) {
-                    spannableStringBuilder.append((CharSequence) ", ");
-                }
-                spannableStringBuilder.append((CharSequence) p10);
-                StringBuilder sb2 = new StringBuilder("");
-                i7 = i10;
-                sb2.append(user.f27105id);
-                spannableStringBuilder.setSpan(new c41(sb2.toString()), length, p10.length() + length, 33);
-            } else {
-                i7 = i10;
-            }
-            i10 = i7 + 1;
-        }
-        return TextUtils.replace(str, new String[]{"un2"}, new CharSequence[]{spannableStringBuilder});
+    public final void G5() {
+        this.f23222b0 = 0.0f;
+        this.f23245g0 = 0;
+        this.f23235e0 = 0.0f;
     }
 
     public final void H(int[] iArr) {
@@ -3789,7 +3761,7 @@ public class ij {
             valueOf = Integer.valueOf(iArr[0]);
         }
         int i7 = -1;
-        if (valueOf != null && valueOf.intValue() >= 1 && this.f23262k != null && !v2()) {
+        if (valueOf != null && valueOf.intValue() >= 1 && this.f23262k != null && !u2()) {
             CharSequence charSequence = this.v;
             f6[] f6VarArr = (f6[]) ((Spannable) charSequence).getSpans(0, charSequence.length(), f6.class);
             CharSequence charSequence2 = this.v;
@@ -3850,7 +3822,7 @@ public class ij {
                     case 0:
                     case 1:
                     case 2:
-                        TextPaint[] textPaintArr = org.telegram.ui.ActionBar.k6.f28240y2;
+                        TextPaint[] textPaintArr = org.telegram.ui.ActionBar.l6.f28253y2;
                         if (z10) {
                             textPaint = textPaintArr[0];
                         } else {
@@ -3859,7 +3831,7 @@ public class ij {
                         i13 = 1;
                         break;
                     case 3:
-                        TextPaint[] textPaintArr2 = org.telegram.ui.ActionBar.k6.f28240y2;
+                        TextPaint[] textPaintArr2 = org.telegram.ui.ActionBar.l6.f28253y2;
                         if (z10) {
                             textPaint = textPaintArr2[1];
                         } else {
@@ -3868,7 +3840,7 @@ public class ij {
                         i13 = 1;
                         break;
                     case 4:
-                        TextPaint[] textPaintArr3 = org.telegram.ui.ActionBar.k6.f28240y2;
+                        TextPaint[] textPaintArr3 = org.telegram.ui.ActionBar.l6.f28253y2;
                         if (z10) {
                             textPaint = textPaintArr3[2];
                         } else {
@@ -3877,7 +3849,7 @@ public class ij {
                         i13 = 1;
                         break;
                     case 5:
-                        TextPaint[] textPaintArr4 = org.telegram.ui.ActionBar.k6.f28240y2;
+                        TextPaint[] textPaintArr4 = org.telegram.ui.ActionBar.l6.f28253y2;
                         if (z10) {
                             textPaint = textPaintArr4[3];
                             break;
@@ -3886,7 +3858,7 @@ public class ij {
                             break;
                         }
                     case 6:
-                        TextPaint[] textPaintArr5 = org.telegram.ui.ActionBar.k6.f28240y2;
+                        TextPaint[] textPaintArr5 = org.telegram.ui.ActionBar.l6.f28253y2;
                         if (z10) {
                             textPaint = textPaintArr5[4];
                             break;
@@ -3898,7 +3870,7 @@ public class ij {
                         if (this.N1 > 9) {
                             i7 = 0;
                         }
-                        textPaint = org.telegram.ui.ActionBar.k6.f28240y2[5];
+                        textPaint = org.telegram.ui.ActionBar.l6.f28253y2[5];
                         i13 = i7;
                         break;
                 }
@@ -3919,7 +3891,7 @@ public class ij {
                 return;
             } else if (r5VarArr != null && r5VarArr.length > 0) {
                 for (int i15 = 0; i15 < r5VarArr.length; i15++) {
-                    r5VarArr[i15].replaceFontMetrics(org.telegram.ui.ActionBar.k6.f28049o2.getFontMetricsInt(), (int) (org.telegram.ui.ActionBar.k6.f28049o2.getTextSize() + g0.L(4.0f)), -1);
+                    r5VarArr[i15].replaceFontMetrics(org.telegram.ui.ActionBar.l6.f28062o2.getFontMetricsInt(), (int) (org.telegram.ui.ActionBar.l6.f28062o2.getTextSize() + g0.L(4.0f)), -1);
                     r5VarArr[i15].full = false;
                 }
                 return;
@@ -3932,7 +3904,7 @@ public class ij {
         if (r5VarArr2 != null && r5VarArr2.length > 0) {
             this.P1 = r5VarArr2.length;
             for (int i16 = 0; i16 < r5VarArr2.length; i16++) {
-                r5VarArr2[i16].replaceFontMetrics(org.telegram.ui.ActionBar.k6.f28049o2.getFontMetricsInt(), (int) (org.telegram.ui.ActionBar.k6.f28049o2.getTextSize() + g0.L(4.0f)), -1);
+                r5VarArr2[i16].replaceFontMetrics(org.telegram.ui.ActionBar.l6.f28062o2.getFontMetricsInt(), (int) (org.telegram.ui.ActionBar.l6.f28062o2.getTextSize() + g0.L(4.0f)), -1);
                 r5VarArr2[i16].full = false;
             }
             return;
@@ -3940,113 +3912,19 @@ public class ij {
         this.P1 = 0;
     }
 
-    public float H1() {
-        return 0.0f;
-    }
-
-    public final boolean H2() {
-        if (this.f23272n == null && this.f23275o == null) {
+    public final boolean H3() {
+        TLRPC.Message message = this.f23262k;
+        if (message != null && n1(message) != null && !(n1(message) instanceof TLRPC.TL_messageMediaEmpty)) {
             return false;
         }
         return true;
     }
 
     public final boolean H4() {
-        return o1(this.f23262k) instanceof TLRPC.TL_messageMediaUnsupported;
+        return L4(this.f23262k);
     }
 
-    public final void H5() {
-        this.f23222b0 = 0.0f;
-        this.f23245g0 = 0;
-        this.f23235e0 = 0.0f;
-    }
-
-    public final boolean I() {
-        CharSequence charSequence;
-        TLRPC.User user;
-        TextPaint textPaint;
-        int[] iArr;
-        int B1;
-        float f10;
-        int L;
-        int i7 = this.D;
-        if ((i7 == 0 || i7 == 19 || i7 == 36) && this.f23262k.peer_id != null && (charSequence = this.v) != null && (charSequence.length() != 0 || this.W1)) {
-            if (this.Q1) {
-                if (g0.Q1() && this.T != 0) {
-                    B1 = g0.L(530.0f);
-                } else {
-                    B1 = B1();
-                }
-                TextPaint textPaint2 = org.telegram.ui.ActionBar.k6.f28049o2;
-                if (textPaint2 != null) {
-                    f10 = textPaint2.getTextSize();
-                } else {
-                    f10 = 0.0f;
-                }
-                if (this.D == 36) {
-                    L = 0;
-                } else {
-                    L = g0.L(52.0f);
-                }
-                if (Math.abs(this.R1 - B1) > L || this.S1 != g0.f22562p || this.U1 != f10 || this.T1 != Q2()) {
-                    this.Q1 = false;
-                }
-            }
-            if (!this.Q1) {
-                this.Q1 = true;
-                if (q3()) {
-                    user = qp.s1(this.I1).a2(Long.valueOf(this.f23262k.from_id.user_id));
-                } else {
-                    user = null;
-                }
-                if (o1(this.f23262k) instanceof TLRPC.TL_messageMediaGame) {
-                    textPaint = org.telegram.ui.ActionBar.k6.f28221x2;
-                } else {
-                    textPaint = org.telegram.ui.ActionBar.k6.f28049o2;
-                }
-                if (i()) {
-                    iArr = new int[1];
-                } else {
-                    iArr = null;
-                }
-                CharSequence m10 = i6.m(this.v, textPaint.getFontMetricsInt(), false, iArr, 0);
-                this.v = m10;
-                Spannable B5 = B5(m10, textPaint.getFontMetricsInt());
-                this.v = B5;
-                if (iArr != null && iArr[0] > 1) {
-                    E5(B5, iArr);
-                }
-                H(iArr);
-                G();
-                M5();
-                n0(user);
-                if (this.f23318z != null) {
-                    this.f23318z = null;
-                    k0();
-                }
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final String I0() {
-        return w7.B(F0());
-    }
-
-    public final boolean I3() {
-        TLRPC.Message message = this.f23262k;
-        if (message != null && o1(message) != null && !(o1(message) instanceof TLRPC.TL_messageMediaEmpty)) {
-            return false;
-        }
-        return true;
-    }
-
-    public final boolean I4() {
-        return M4(this.f23262k);
-    }
-
-    public final boolean I5(ch.o0 o0Var, boolean z9) {
+    public final boolean H5(ch.o0 o0Var, boolean z9) {
         int i7;
         TLRPC.Peer tL_peerUser;
         TLRPC.Peer tL_peerUser2;
@@ -4068,7 +3946,7 @@ public class ij {
             }
             tL_messageReactions3.reactions_as_tags = z10;
             TLRPC.TL_messageReactions tL_messageReactions4 = this.f23262k.reactions;
-            if (!p3() && !q3()) {
+            if (!o3() && !p3()) {
                 z11 = false;
             } else {
                 z11 = true;
@@ -4089,7 +3967,7 @@ public class ij {
             }
             TLRPC.Reaction reaction = this.f23262k.reactions.results.get(i13).reaction;
             if (reaction instanceof TLRPC.TL_reactionEmoji) {
-                String str = o0Var.f6356f;
+                String str = o0Var.f6354f;
                 if (str != null) {
                     if (((TLRPC.TL_reactionEmoji) reaction).emoticon.equals(str)) {
                         reactionCount = this.f23262k.reactions.results.get(i13);
@@ -4097,7 +3975,7 @@ public class ij {
                 }
             }
             if (reaction instanceof TLRPC.TL_reactionCustomEmoji) {
-                long j3 = o0Var.f6357g;
+                long j3 = o0Var.f6355g;
                 if (j3 != 0 && ((TLRPC.TL_reactionCustomEmoji) reaction).document_id == j3) {
                     reactionCount = this.f23262k.reactions.results.get(i13);
                 }
@@ -4124,7 +4002,7 @@ public class ij {
             if (this.f23262k.reactions.can_see_list) {
                 int i16 = 0;
                 while (i16 < this.f23262k.reactions.recent_reactions.size()) {
-                    if (C1(this.f23262k.reactions.recent_reactions.get(i16).peer_id) == p10.i(i11).e() && ch.q0.c(this.f23262k.reactions.recent_reactions.get(i16).reaction, o0Var)) {
+                    if (B1(this.f23262k.reactions.recent_reactions.get(i16).peer_id) == p10.i(i11).e() && ch.q0.c(this.f23262k.reactions.recent_reactions.get(i16).reaction, o0Var)) {
                         this.f23262k.reactions.recent_reactions.remove(i16);
                         i16--;
                     }
@@ -4152,7 +4030,7 @@ public class ij {
             if (this.f23262k.reactions.can_see_list) {
                 int i20 = 0;
                 while (i20 < this.f23262k.reactions.recent_reactions.size()) {
-                    if (C1(this.f23262k.reactions.recent_reactions.get(i20).peer_id) == p10.i(i11).e() && ch.q0.c(this.f23262k.reactions.recent_reactions.get(i20).reaction, o0Var)) {
+                    if (B1(this.f23262k.reactions.recent_reactions.get(i20).peer_id) == p10.i(i11).e() && ch.q0.c(this.f23262k.reactions.recent_reactions.get(i20).reaction, o0Var)) {
                         this.f23262k.reactions.recent_reactions.remove(i20);
                         i20--;
                     }
@@ -4210,39 +4088,108 @@ public class ij {
                 tL_messagePeerReaction.peer_id = tL_peerUser;
             }
             this.f23262k.reactions.recent_reactions.add(0, tL_messagePeerReaction);
-            if (o0Var.f6356f != null) {
+            if (o0Var.f6354f != null) {
                 TLRPC.TL_reactionEmoji tL_reactionEmoji = new TLRPC.TL_reactionEmoji();
                 tL_messagePeerReaction.reaction = tL_reactionEmoji;
-                tL_reactionEmoji.emoticon = o0Var.f6356f;
+                tL_reactionEmoji.emoticon = o0Var.f6354f;
             } else {
                 TLRPC.TL_reactionCustomEmoji tL_reactionCustomEmoji = new TLRPC.TL_reactionCustomEmoji();
                 tL_messagePeerReaction.reaction = tL_reactionCustomEmoji;
-                tL_reactionCustomEmoji.document_id = o0Var.f6357g;
+                tL_reactionCustomEmoji.document_id = o0Var.f6355g;
             }
         }
         this.H = true;
         return true;
     }
 
-    public final void J() {
-        K(true);
+    public final boolean I() {
+        CharSequence charSequence;
+        TLRPC.User user;
+        TextPaint textPaint;
+        int[] iArr;
+        int A1;
+        float f10;
+        int L;
+        int i7 = this.D;
+        if ((i7 == 0 || i7 == 19 || i7 == 36) && this.f23262k.peer_id != null && (charSequence = this.v) != null && (charSequence.length() != 0 || this.W1)) {
+            if (this.Q1) {
+                if (g0.Q1() && this.T != 0) {
+                    A1 = g0.L(530.0f);
+                } else {
+                    A1 = A1();
+                }
+                TextPaint textPaint2 = org.telegram.ui.ActionBar.l6.f28062o2;
+                if (textPaint2 != null) {
+                    f10 = textPaint2.getTextSize();
+                } else {
+                    f10 = 0.0f;
+                }
+                if (this.D == 36) {
+                    L = 0;
+                } else {
+                    L = g0.L(52.0f);
+                }
+                if (Math.abs(this.R1 - A1) > L || this.S1 != g0.f22562p || this.U1 != f10 || this.T1 != P2()) {
+                    this.Q1 = false;
+                }
+            }
+            if (!this.Q1) {
+                this.Q1 = true;
+                if (p3()) {
+                    user = qp.s1(this.I1).a2(Long.valueOf(this.f23262k.from_id.user_id));
+                } else {
+                    user = null;
+                }
+                if (n1(this.f23262k) instanceof TLRPC.TL_messageMediaGame) {
+                    textPaint = org.telegram.ui.ActionBar.l6.f28234x2;
+                } else {
+                    textPaint = org.telegram.ui.ActionBar.l6.f28062o2;
+                }
+                if (i()) {
+                    iArr = new int[1];
+                } else {
+                    iArr = null;
+                }
+                CharSequence m10 = i6.m(this.v, textPaint.getFontMetricsInt(), false, iArr, 0);
+                this.v = m10;
+                Spannable A5 = A5(m10, textPaint.getFontMetricsInt());
+                this.v = A5;
+                if (iArr != null && iArr[0] > 1) {
+                    D5(A5, iArr);
+                }
+                H(iArr);
+                G();
+                L5();
+                n0(user);
+                if (this.f23318z != null) {
+                    this.f23318z = null;
+                    k0();
+                }
+                return true;
+            }
+        }
+        return false;
     }
 
-    public final boolean J2() {
+    public final String I0() {
+        return w7.B(F0());
+    }
+
+    public final boolean I2() {
         if (this.D == 19) {
             return true;
         }
         return false;
     }
 
-    public final boolean J3() {
-        if (L3(this.f23262k) && !M4(this.f23262k) && !i4()) {
+    public final boolean I3() {
+        if (K3(this.f23262k) && !L4(this.f23262k) && !h4()) {
             return true;
         }
         return false;
     }
 
-    public final boolean J4() {
+    public final boolean I4() {
         TLRPC.Photo photo;
         TLRPC.MessageAction messageAction = this.f23262k.action;
         if (messageAction != null && (photo = messageAction.photo) != null && !photo.video_sizes.isEmpty()) {
@@ -4251,98 +4198,15 @@ public class ij {
         return false;
     }
 
-    public final void J5() {
+    public final void I5() {
         this.f23262k.unread = false;
     }
 
-    public final void K(boolean z9) {
-        int i7;
-        File M;
-        boolean z10;
-        this.f23307w0 = false;
-        this.f23311x0 = false;
-        int i10 = this.D;
-        int i11 = this.I1;
-        if (i10 == 20) {
-            TLRPC.TL_messageExtendedMediaPreview tL_messageExtendedMediaPreview = (TLRPC.TL_messageExtendedMediaPreview) this.f23262k.media.extended_media.get(0);
-            if (tL_messageExtendedMediaPreview.thumb != null) {
-                w7.G(i11);
-                File J = w7.J(tL_messageExtendedMediaPreview.thumb, null, z9, true);
-                if (!this.f23311x0) {
-                    if (!J.exists() && !(tL_messageExtendedMediaPreview.thumb instanceof TLRPC.TL_photoStrippedSize)) {
-                        z10 = false;
-                    } else {
-                        z10 = true;
-                    }
-                    this.f23311x0 = z10;
-                }
-            }
-        } else if (i10 == 1 && w7.w(this.f23273n0, g0.Z0(true), false, null, false) != null) {
-            w7.G(i11);
-            File M2 = w7.M(this.f23262k, false, z9);
-            if (n5()) {
-                this.f23311x0 = new File(M2.getAbsolutePath() + ".enc").exists();
-            }
-            if (!this.f23311x0) {
-                this.f23311x0 = M2.exists();
-            }
-        }
-        if ((!this.f23311x0 && this.D == 8) || (i7 = this.D) == 3 || i7 == 9 || i7 == 2 || i7 == 14 || i7 == 5) {
-            String str = this.f23262k.attachPath;
-            if (str != null && str.length() > 0) {
-                this.f23307w0 = new File(this.f23262k.attachPath).exists();
-            }
-            if (!this.f23307w0) {
-                if (this.D == 3 && n5() && E3() && F0() != null) {
-                    w7.G(i11);
-                    M = w7.J(F0(), null, true, z9);
-                } else {
-                    w7.G(i11);
-                    M = w7.M(this.f23262k, false, z9);
-                }
-                if ((this.D == 3 && n5()) || T4() || h4()) {
-                    this.f23311x0 = new File(M.getAbsolutePath() + ".enc").exists();
-                }
-                if (!this.f23311x0) {
-                    this.f23311x0 = M.exists();
-                }
-            }
-        }
-        if (!this.f23311x0) {
-            TLRPC.Document F0 = F0();
-            if (F0 != null) {
-                if ((o1(this.f23262k) instanceof TLRPC.TL_messageMediaWebPage) && o1(this.f23262k).webpage != null && "telegram_background".equals(o1(this.f23262k).webpage.type)) {
-                    w7.G(i11);
-                    this.f23311x0 = w7.J(F0, null, true, z9).exists();
-                } else {
-                    w7.G(i11);
-                    this.f23311x0 = w7.J(F0, null, false, z9).exists();
-                }
-            } else {
-                int i12 = this.D;
-                if (i12 == 0) {
-                    TLRPC.PhotoSize w10 = w7.w(this.f23273n0, g0.Z0(false), false, null, false);
-                    if (w10 != null) {
-                        w7.G(i11);
-                        this.f23311x0 = w7.J(w10, null, true, z9).exists();
-                    } else {
-                        return;
-                    }
-                } else if (i12 == 11) {
-                    TLRPC.Photo photo = this.f23262k.action.photo;
-                    if (photo != null && !photo.video_sizes.isEmpty()) {
-                        w7.G(i11);
-                        this.f23311x0 = w7.J(photo.video_sizes.get(0), null, true, z9).exists();
-                    } else {
-                        return;
-                    }
-                }
-            }
-        }
-        f6(z9);
+    public final void J() {
+        K(true);
     }
 
-    public final boolean K2() {
+    public final boolean J2() {
         int i7 = this.D;
         boolean z9 = false;
         if (i7 != 1000) {
@@ -4359,13 +4223,13 @@ public class ij {
             return true;
         }
         TLRPC.Document F0 = F0();
-        if (this.f23272n != null || !C || O3()) {
+        if (this.f23272n != null || !C || N3()) {
             z9 = true;
         }
-        return L2(F0, z9);
+        return K2(F0, z9);
     }
 
-    public final boolean K4() {
+    public final boolean J4() {
         TLRPC.MessageAction messageAction = this.f23262k.action;
         if (!(messageAction instanceof TLRPC.TL_messageActionPhoneCall) || !messageAction.video) {
             if ((messageAction instanceof TLRPC.TL_messageActionConferenceCall) && messageAction.video) {
@@ -4376,7 +4240,7 @@ public class ij {
         return true;
     }
 
-    public final void K5(long j3) {
+    public final void J5(long j3) {
         TLRPC.TL_messageReactions tL_messageReactions;
         ArrayList<TLRPC.MessageReactor> arrayList;
         boolean z9;
@@ -4407,40 +4271,94 @@ public class ij {
         }
     }
 
-    public final double L0() {
-        TL_stories.StoryItem storyItem;
-        TLRPC.MessageMedia messageMedia;
-        double d = this.f23254i0;
-        if (d > 0.0d) {
-            return d;
-        }
-        TLRPC.Document F0 = F0();
-        if (F0 == null && this.D == 23 && (storyItem = o1(this.f23262k).storyItem) != null && (messageMedia = storyItem.media) != null) {
-            F0 = messageMedia.document;
-        }
-        if (F0 == null) {
-            return 0.0d;
-        }
-        int i7 = this.f23249h0;
-        if (i7 > 0) {
-            return i7;
-        }
-        for (int i10 = 0; i10 < F0.attributes.size(); i10++) {
-            TLRPC.DocumentAttribute documentAttribute = F0.attributes.get(i10);
-            if (documentAttribute instanceof TLRPC.TL_documentAttributeAudio) {
-                double d2 = documentAttribute.duration;
-                this.f23254i0 = d2;
-                return d2;
-            } else if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
-                double d10 = documentAttribute.duration;
-                this.f23254i0 = d10;
-                return d10;
+    public final void K(boolean z9) {
+        int i7;
+        File M;
+        boolean z10;
+        this.f23307w0 = false;
+        this.f23311x0 = false;
+        int i10 = this.D;
+        int i11 = this.I1;
+        if (i10 == 20) {
+            TLRPC.TL_messageExtendedMediaPreview tL_messageExtendedMediaPreview = (TLRPC.TL_messageExtendedMediaPreview) this.f23262k.media.extended_media.get(0);
+            if (tL_messageExtendedMediaPreview.thumb != null) {
+                w7.G(i11);
+                File J = w7.J(tL_messageExtendedMediaPreview.thumb, null, z9, true);
+                if (!this.f23311x0) {
+                    if (!J.exists() && !(tL_messageExtendedMediaPreview.thumb instanceof TLRPC.TL_photoStrippedSize)) {
+                        z10 = false;
+                    } else {
+                        z10 = true;
+                    }
+                    this.f23311x0 = z10;
+                }
+            }
+        } else if (i10 == 1 && w7.w(this.f23273n0, g0.Z0(true), false, null, false) != null) {
+            w7.G(i11);
+            File M2 = w7.M(this.f23262k, false, z9);
+            if (m5()) {
+                this.f23311x0 = new File(M2.getAbsolutePath() + ".enc").exists();
+            }
+            if (!this.f23311x0) {
+                this.f23311x0 = M2.exists();
             }
         }
-        return this.f23249h0;
+        if ((!this.f23311x0 && this.D == 8) || (i7 = this.D) == 3 || i7 == 9 || i7 == 2 || i7 == 14 || i7 == 5) {
+            String str = this.f23262k.attachPath;
+            if (str != null && str.length() > 0) {
+                this.f23307w0 = new File(this.f23262k.attachPath).exists();
+            }
+            if (!this.f23307w0) {
+                if (this.D == 3 && m5() && D3() && F0() != null) {
+                    w7.G(i11);
+                    M = w7.J(F0(), null, true, z9);
+                } else {
+                    w7.G(i11);
+                    M = w7.M(this.f23262k, false, z9);
+                }
+                if ((this.D == 3 && m5()) || S4() || g4()) {
+                    this.f23311x0 = new File(M.getAbsolutePath() + ".enc").exists();
+                }
+                if (!this.f23311x0) {
+                    this.f23311x0 = M.exists();
+                }
+            }
+        }
+        if (!this.f23311x0) {
+            TLRPC.Document F0 = F0();
+            if (F0 != null) {
+                if ((n1(this.f23262k) instanceof TLRPC.TL_messageMediaWebPage) && n1(this.f23262k).webpage != null && "telegram_background".equals(n1(this.f23262k).webpage.type)) {
+                    w7.G(i11);
+                    this.f23311x0 = w7.J(F0, null, true, z9).exists();
+                } else {
+                    w7.G(i11);
+                    this.f23311x0 = w7.J(F0, null, false, z9).exists();
+                }
+            } else {
+                int i12 = this.D;
+                if (i12 == 0) {
+                    TLRPC.PhotoSize w10 = w7.w(this.f23273n0, g0.Z0(false), false, null, false);
+                    if (w10 != null) {
+                        w7.G(i11);
+                        this.f23311x0 = w7.J(w10, null, true, z9).exists();
+                    } else {
+                        return;
+                    }
+                } else if (i12 == 11) {
+                    TLRPC.Photo photo = this.f23262k.action.photo;
+                    if (photo != null && !photo.video_sizes.isEmpty()) {
+                        w7.G(i11);
+                        this.f23311x0 = w7.J(photo.video_sizes.get(0), null, true, z9).exists();
+                    } else {
+                        return;
+                    }
+                }
+            }
+        }
+        e6(z9);
     }
 
-    public final TLRPC.MessagePeerReaction L1() {
+    public final TLRPC.MessagePeerReaction K1() {
         ArrayList<TLRPC.MessagePeerReaction> arrayList;
         TLRPC.TL_messageReactions tL_messageReactions = this.f23262k.reactions;
         if (tL_messageReactions != null && (arrayList = tL_messageReactions.recent_reactions) != null && !arrayList.isEmpty()) {
@@ -4449,7 +4367,7 @@ public class ij {
         return null;
     }
 
-    public final void L5(String str, boolean z9) {
+    public final void K5(String str, boolean z9) {
         String str2;
         int indexOf;
         if (TextUtils.isEmpty(str)) {
@@ -4467,7 +4385,7 @@ public class ij {
             String lowerCase2 = this.f23262k.reply_to.quote_text.trim().toLowerCase();
             if (lowerCase2.contains(lowerCase) && !arrayList.contains(lowerCase)) {
                 arrayList.add(lowerCase);
-                o2(arrayList, split, true, z9);
+                n2(arrayList, split, true, z9);
                 return;
             }
             arrayList2.addAll(Arrays.asList(lowerCase2.split("[^\\p{L}#$]+")));
@@ -4476,7 +4394,7 @@ public class ij {
             String lowerCase3 = this.f23262k.message.trim().toLowerCase();
             if (lowerCase3.contains(lowerCase) && !arrayList.contains(lowerCase)) {
                 arrayList.add(lowerCase);
-                o2(arrayList, split, false, z9);
+                n2(arrayList, split, false, z9);
                 return;
             }
             arrayList2.addAll(Arrays.asList(lowerCase3.split("[^\\p{L}#$]+")));
@@ -4488,8 +4406,8 @@ public class ij {
             }
             arrayList2.addAll(Arrays.asList(lowerCase4.split("[^\\p{L}#$]+")));
         }
-        if ((o1(this.f23262k) instanceof TLRPC.TL_messageMediaWebPage) && (o1(this.f23262k).webpage instanceof TLRPC.TL_webPage)) {
-            TLRPC.WebPage webPage = o1(this.f23262k).webpage;
+        if ((n1(this.f23262k) instanceof TLRPC.TL_messageMediaWebPage) && (n1(this.f23262k).webpage instanceof TLRPC.TL_webPage)) {
+            TLRPC.WebPage webPage = n1(this.f23262k).webpage;
             String str3 = webPage.title;
             if (str3 == null) {
                 str3 = webPage.site_name;
@@ -4502,9 +4420,9 @@ public class ij {
                 arrayList2.addAll(Arrays.asList(lowerCase5.split("[^\\p{L}#$]+")));
             }
         }
-        String x12 = x1(true);
-        if (x12 != null) {
-            String lowerCase6 = x12.toLowerCase();
+        String w12 = w1(true);
+        if (w12 != null) {
+            String lowerCase6 = w12.toLowerCase();
             if (lowerCase6.contains(lowerCase) && !arrayList.contains(lowerCase)) {
                 arrayList.add(lowerCase);
             }
@@ -4530,18 +4448,43 @@ public class ij {
                 }
             }
         }
-        o2(arrayList, split, false, z9);
+        n2(arrayList, split, false, z9);
     }
 
-    public final TLRPC.TL_availableEffect M0() {
-        TLRPC.Message message = this.f23262k;
-        if (message != null && (message.flags2 & 4) != 0) {
-            return qp.s1(this.I1).Z0(this.f23262k.effect);
+    public final double L0() {
+        TL_stories.StoryItem storyItem;
+        TLRPC.MessageMedia messageMedia;
+        double d = this.f23254i0;
+        if (d > 0.0d) {
+            return d;
         }
-        return null;
+        TLRPC.Document F0 = F0();
+        if (F0 == null && this.D == 23 && (storyItem = n1(this.f23262k).storyItem) != null && (messageMedia = storyItem.media) != null) {
+            F0 = messageMedia.document;
+        }
+        if (F0 == null) {
+            return 0.0d;
+        }
+        int i7 = this.f23249h0;
+        if (i7 > 0) {
+            return i7;
+        }
+        for (int i10 = 0; i10 < F0.attributes.size(); i10++) {
+            TLRPC.DocumentAttribute documentAttribute = F0.attributes.get(i10);
+            if (documentAttribute instanceof TLRPC.TL_documentAttributeAudio) {
+                double d2 = documentAttribute.duration;
+                this.f23254i0 = d2;
+                return d2;
+            } else if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
+                double d10 = documentAttribute.duration;
+                this.f23254i0 = d10;
+                return d10;
+            }
+        }
+        return this.f23249h0;
     }
 
-    public final int M1() {
+    public final int L1() {
         TLRPC.Message message = this.f23262k;
         int i7 = message.realId;
         if (i7 != 0) {
@@ -4550,22 +4493,22 @@ public class ij {
         return message.f26977id;
     }
 
-    public final boolean M3() {
-        if (o1(this.f23262k) != null && N3(F0())) {
+    public final boolean L3() {
+        if (n1(this.f23262k) != null && M3(F0())) {
             return true;
         }
         return false;
     }
 
-    public final void M5() {
+    public final void L5() {
         int i7;
         int i10;
         int i11 = this.D;
         this.D = 1000;
         this.S = 0;
-        boolean s42 = s4();
+        boolean r42 = r4();
         int i12 = this.I1;
-        if (s42) {
+        if (r42) {
             this.D = 0;
         } else {
             int i13 = 1;
@@ -4687,74 +4630,74 @@ public class ij {
                             this.D = 10;
                         }
                     }
-                } else if (o1(message) instanceof TLRPC.TL_messageMediaUnsupported) {
+                } else if (n1(message) instanceof TLRPC.TL_messageMediaUnsupported) {
                     this.U = 10;
                     this.D = 38;
                 } else if (this.E0) {
                     this.D = 0;
                 } else {
                     TLRPC.Message message2 = this.f23262k;
-                    if (message2.rich_message == null && !(o1(message2) instanceof TLRPC.TL_messageMediaWidget)) {
+                    if (message2.rich_message == null && !(n1(message2) instanceof TLRPC.TL_messageMediaWidget)) {
                         if (this.f23272n == null && this.f23275o == null) {
                             TLRPC.Message message3 = this.f23262k;
                             if (message3.media instanceof TLRPC.TL_messageMediaPaidMedia) {
                                 this.D = 29;
-                            } else if (H3(message3, false) && !U2() && !s4() && this.N1 >= 1 && !this.M1 && this.f23262k != null && !v2()) {
+                            } else if (G3(message3, false) && !T2() && !r4() && this.N1 >= 1 && !this.M1 && this.f23262k != null && !u2()) {
                                 this.D = 19;
-                            } else if (G3()) {
+                            } else if (F3()) {
                                 this.D = 0;
                                 if (TextUtils.isEmpty(this.v) && this.T == 0) {
                                     this.v = "";
                                 }
-                            } else if (r2()) {
+                            } else if (q2()) {
                                 this.D = 20;
-                            } else if (o1(this.f23262k).ttl_seconds != 0 && ((o1(this.f23262k).photo instanceof TLRPC.TL_photoEmpty) || (F0() instanceof TLRPC.TL_documentEmpty) || (((o1(this.f23262k) instanceof TLRPC.TL_messageMediaDocument) && F0() == null) || this.G0))) {
+                            } else if (n1(this.f23262k).ttl_seconds != 0 && ((n1(this.f23262k).photo instanceof TLRPC.TL_photoEmpty) || (F0() instanceof TLRPC.TL_documentEmpty) || (((n1(this.f23262k) instanceof TLRPC.TL_messageMediaDocument) && F0() == null) || this.G0))) {
                                 this.U = 1;
                                 this.D = 10;
-                            } else if (o1(this.f23262k) instanceof TLRPC.TL_messageMediaGiveaway) {
+                            } else if (n1(this.f23262k) instanceof TLRPC.TL_messageMediaGiveaway) {
                                 this.D = 26;
-                            } else if (o1(this.f23262k) instanceof TLRPC.TL_messageMediaGiveawayResults) {
+                            } else if (n1(this.f23262k) instanceof TLRPC.TL_messageMediaGiveawayResults) {
                                 this.D = 28;
-                            } else if (o1(this.f23262k) instanceof TLRPC.TL_messageMediaDice) {
+                            } else if (n1(this.f23262k) instanceof TLRPC.TL_messageMediaDice) {
                                 this.D = 15;
-                                if (o1(this.f23262k).document == null) {
-                                    o1(this.f23262k).document = new TLRPC.TL_document();
-                                    o1(this.f23262k).document.file_reference = new byte[0];
-                                    o1(this.f23262k).document.mime_type = "application/x-tgsdice";
-                                    o1(this.f23262k).document.dc_id = Integer.MIN_VALUE;
-                                    o1(this.f23262k).document.f26962id = -2147483648L;
+                                if (n1(this.f23262k).document == null) {
+                                    n1(this.f23262k).document = new TLRPC.TL_document();
+                                    n1(this.f23262k).document.file_reference = new byte[0];
+                                    n1(this.f23262k).document.mime_type = "application/x-tgsdice";
+                                    n1(this.f23262k).document.dc_id = Integer.MIN_VALUE;
+                                    n1(this.f23262k).document.f26962id = -2147483648L;
                                     TLRPC.TL_documentAttributeImageSize tL_documentAttributeImageSize = new TLRPC.TL_documentAttributeImageSize();
                                     tL_documentAttributeImageSize.f26963w = 512;
                                     tL_documentAttributeImageSize.h = 512;
-                                    o1(this.f23262k).document.attributes.add(tL_documentAttributeImageSize);
+                                    n1(this.f23262k).document.attributes.add(tL_documentAttributeImageSize);
                                 }
-                            } else if (o1(this.f23262k) instanceof TLRPC.TL_messageMediaPhoto) {
-                                if (M4(this.f23262k)) {
+                            } else if (n1(this.f23262k) instanceof TLRPC.TL_messageMediaPhoto) {
+                                if (L4(this.f23262k)) {
                                     i13 = 3;
                                 }
                                 this.D = i13;
-                            } else if (!(o1(this.f23262k) instanceof TLRPC.TL_messageMediaGeo) && !(o1(this.f23262k) instanceof TLRPC.TL_messageMediaVenue) && !(o1(this.f23262k) instanceof TLRPC.TL_messageMediaGeoLive)) {
-                                if (i4()) {
+                            } else if (!(n1(this.f23262k) instanceof TLRPC.TL_messageMediaGeo) && !(n1(this.f23262k) instanceof TLRPC.TL_messageMediaVenue) && !(n1(this.f23262k) instanceof TLRPC.TL_messageMediaGeoLive)) {
+                                if (h4()) {
                                     this.D = 5;
-                                } else if (M4(this.f23262k)) {
+                                } else if (L4(this.f23262k)) {
                                     this.D = 3;
-                                } else if (S4(this.f23262k)) {
+                                } else if (R4(this.f23262k)) {
                                     this.D = 2;
-                                } else if (J3()) {
+                                } else if (I3()) {
                                     this.D = 14;
-                                } else if (o1(this.f23262k) instanceof TLRPC.TL_messageMediaContact) {
+                                } else if (n1(this.f23262k) instanceof TLRPC.TL_messageMediaContact) {
                                     this.D = 12;
-                                } else if (!(o1(this.f23262k) instanceof TLRPC.TL_messageMediaPoll) && !(o1(this.f23262k) instanceof TLRPC.TL_messageMediaToDo)) {
-                                    if (o1(this.f23262k) instanceof TLRPC.TL_messageMediaUnsupported) {
+                                } else if (!(n1(this.f23262k) instanceof TLRPC.TL_messageMediaPoll) && !(n1(this.f23262k) instanceof TLRPC.TL_messageMediaToDo)) {
+                                    if (n1(this.f23262k) instanceof TLRPC.TL_messageMediaUnsupported) {
                                         this.D = 0;
-                                    } else if (o1(this.f23262k) instanceof TLRPC.TL_messageMediaDocument) {
+                                    } else if (n1(this.f23262k) instanceof TLRPC.TL_messageMediaDocument) {
                                         TLRPC.Document F0 = F0();
                                         if (F0 != null && F0.mime_type != null) {
-                                            if (t3(F0, A2())) {
+                                            if (s3(F0, z2())) {
                                                 this.D = 8;
-                                            } else if (u4()) {
+                                            } else if (t4()) {
                                                 this.D = 13;
-                                            } else if (K2()) {
+                                            } else if (J2()) {
                                                 this.D = 15;
                                             } else {
                                                 this.D = 9;
@@ -4762,12 +4705,12 @@ public class ij {
                                         } else {
                                             this.D = 9;
                                         }
-                                    } else if (o1(this.f23262k) instanceof TLRPC.TL_messageMediaGame) {
+                                    } else if (n1(this.f23262k) instanceof TLRPC.TL_messageMediaGame) {
                                         this.D = 0;
-                                    } else if (o1(this.f23262k) instanceof TLRPC.TL_messageMediaInvoice) {
+                                    } else if (n1(this.f23262k) instanceof TLRPC.TL_messageMediaInvoice) {
                                         this.D = 0;
-                                    } else if (o1(this.f23262k) instanceof TLRPC.TL_messageMediaStory) {
-                                        if (o1(this.f23262k).via_mention) {
+                                    } else if (n1(this.f23262k) instanceof TLRPC.TL_messageMediaStory) {
+                                        if (n1(this.f23262k).via_mention) {
                                             i7 = 24;
                                         } else {
                                             i7 = 23;
@@ -4784,7 +4727,7 @@ public class ij {
                             } else {
                                 this.D = 4;
                             }
-                        } else if (u4()) {
+                        } else if (t4()) {
                             this.D = 13;
                         } else {
                             this.D = 15;
@@ -4796,9 +4739,40 @@ public class ij {
             }
         }
         if (i11 != 1000 && i11 != (i10 = this.D) && i10 != 19) {
-            c6(qp.s1(i12).d, qp.s1(i12).f24738b, null, null);
+            b6(qp.s1(i12).d, qp.s1(i12).f24738b, null, null);
             r0(false);
         }
+    }
+
+    public final TLRPC.TL_availableEffect M0() {
+        TLRPC.Message message = this.f23262k;
+        if (message != null && (message.flags2 & 4) != 0) {
+            return qp.s1(this.I1).Z0(this.f23262k.effect);
+        }
+        return null;
+    }
+
+    public final int M1() {
+        TLRPC.MessageReplies messageReplies = this.f23262k.replies;
+        if (messageReplies != null) {
+            return messageReplies.replies;
+        }
+        return 0;
+    }
+
+    public final boolean M2() {
+        int i7 = this.D;
+        if (i7 != 13 && i7 != 15 && i7 != 19) {
+            return false;
+        }
+        return true;
+    }
+
+    public final boolean M4() {
+        if (F0() != null && O4(F0())) {
+            return true;
+        }
+        return false;
     }
 
     public final void N(ij ijVar) {
@@ -4852,23 +4826,28 @@ public class ij {
     }
 
     public final int N1() {
-        TLRPC.MessageReplies messageReplies = this.f23262k.replies;
-        if (messageReplies != null) {
-            return messageReplies.replies;
+        TLRPC.MessageReplyHeader messageReplyHeader = this.f23262k.reply_to;
+        if (messageReplyHeader != null) {
+            return messageReplyHeader.reply_to_msg_id;
         }
         return 0;
     }
 
-    public final boolean N2() {
-        int i7 = this.D;
-        if (i7 != 13 && i7 != 15 && i7 != 19) {
-            return false;
-        }
-        return true;
+    public boolean N3() {
+        return this.f23262k.out;
     }
 
-    public final boolean N4() {
-        if (F0() != null && P4(F0())) {
+    public final boolean N5() {
+        if (this.V1) {
+            if (this.D != 5 && !R4(this.f23262k)) {
+                if (!M2() || this.L1 == null) {
+                    if (this.v != null && this.L1 != null) {
+                        return true;
+                    }
+                    return false;
+                }
+                return true;
+            }
             return true;
         }
         return false;
@@ -4927,50 +4906,11 @@ public class ij {
         return null;
     }
 
-    public final int O1() {
-        TLRPC.MessageReplyHeader messageReplyHeader = this.f23262k.reply_to;
-        if (messageReplyHeader != null) {
-            return messageReplyHeader.reply_to_msg_id;
-        }
-        return 0;
-    }
-
-    public boolean O3() {
-        return this.f23262k.out;
-    }
-
-    public final boolean O5() {
-        if (this.V1) {
-            if (this.D != 5 && !S4(this.f23262k)) {
-                if (!N2() || this.L1 == null) {
-                    if (this.v != null && this.L1 != null) {
-                        return true;
-                    }
-                    return false;
-                }
-                return true;
-            }
-            return true;
-        }
-        return false;
-    }
-
-    public final void P(boolean r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.P(boolean):void");
-    }
-
-    public final int P0() {
-        if (d3(this.f23262k)) {
-            return S(this.f23262k.f26977id);
-        }
-        return 0;
-    }
-
-    public final CharSequence P1() {
+    public final CharSequence O1() {
         CharSequence charSequence;
         CharSequence charSequence2;
         boolean z9;
-        CharSequence u52;
+        CharSequence t52;
         TLRPC.Message message = this.f23262k;
         if (message == null) {
             return "";
@@ -4979,11 +4919,11 @@ public class ij {
         int i7 = this.I1;
         if (messageReplyHeader == null) {
             if (m5.z(B0(message))) {
-                u52 = t5(i7, B0(this.f23262k));
-                charSequence2 = u52;
+                t52 = s5(i7, B0(this.f23262k));
+                charSequence2 = t52;
                 charSequence = null;
             } else {
-                charSequence = t5(i7, B0(this.f23262k));
+                charSequence = s5(i7, B0(this.f23262k));
                 charSequence2 = null;
             }
         } else {
@@ -4998,26 +4938,26 @@ public class ij {
                 TLRPC.Peer peer2 = messageFwdHeader.from_id;
                 if (peer2 != null) {
                     if (peer2 instanceof TLRPC.TL_peerUser) {
-                        charSequence = u5(i7, peer2, z9);
+                        charSequence = t5(i7, peer2, z9);
                         charSequence2 = null;
                     } else {
-                        u52 = u5(i7, peer2, z9);
-                        charSequence2 = u52;
+                        t52 = t5(i7, peer2, z9);
+                        charSequence2 = t52;
                         charSequence = null;
                     }
                 } else {
                     TLRPC.Peer peer3 = messageFwdHeader.saved_from_peer;
                     if (peer3 != null) {
                         if (peer3 instanceof TLRPC.TL_peerUser) {
-                            charSequence = u5(i7, peer3, z9);
+                            charSequence = t5(i7, peer3, z9);
                         } else {
-                            u52 = u5(i7, peer3, z9);
-                            charSequence2 = u52;
+                            t52 = t5(i7, peer3, z9);
+                            charSequence2 = t52;
                             charSequence = null;
                         }
                     } else if (!TextUtils.isEmpty(messageFwdHeader.from_name)) {
                         if (z9) {
-                            charSequence = new SpannableStringBuilder(i6()).append((CharSequence) " ").append((CharSequence) this.f23262k.reply_to.reply_from.from_name);
+                            charSequence = new SpannableStringBuilder(h6()).append((CharSequence) " ").append((CharSequence) this.f23262k.reply_to.reply_from.from_name);
                         } else {
                             charSequence = new SpannableStringBuilder(this.f23262k.reply_to.reply_from.from_name);
                         }
@@ -5033,19 +4973,19 @@ public class ij {
             TLRPC.Peer peer5 = this.f23262k.reply_to.reply_to_peer_id;
             boolean z10 = peer5 instanceof TLRPC.TL_peerUser;
             if (z10) {
-                charSequence = u5(i7, peer5, true);
+                charSequence = t5(i7, peer5, true);
             } else {
-                charSequence2 = u5(i7, peer5, !z10);
+                charSequence2 = t5(i7, peer5, !z10);
             }
         }
         ij ijVar = this.C;
         if (ijVar != null) {
-            if (m5.z(ijVar.S1())) {
+            if (m5.z(ijVar.R1())) {
                 if (charSequence2 == null) {
-                    charSequence2 = t5(i7, this.C.S1());
+                    charSequence2 = s5(i7, this.C.R1());
                 }
             } else if (charSequence == null) {
-                charSequence = t5(i7, this.C.S1());
+                charSequence = s5(i7, this.C.R1());
             }
         }
         if (charSequence2 != null && charSequence != null) {
@@ -5057,62 +4997,32 @@ public class ij {
         if (charSequence != null) {
             return charSequence;
         }
-        return id.M0(2131748780, null);
+        return id.M0(2131748779, null);
     }
 
-    public final boolean P5() {
+    public final boolean O5() {
         if (this.f23251h2) {
             return false;
         }
         return true;
     }
 
-    public final void Q() {
-        if (this.f23273n0 != null) {
-            if ((iz.o() == 2 || r2()) && this.G1 == null) {
-                try {
-                    String str = "b";
-                    if (i4()) {
-                        str = "br";
-                    }
-                    int size = this.f23273n0.size();
-                    for (int i7 = 0; i7 < size; i7++) {
-                        TLRPC.PhotoSize photoSize = (TLRPC.PhotoSize) this.f23273n0.get(i7);
-                        if (photoSize instanceof TLRPC.TL_photoStrippedSize) {
-                            this.G1 = new BitmapDrawable(t0.f25566b.getResources(), gc.F(str, photoSize.bytes));
-                            return;
-                        }
-                    }
-                } catch (Throwable th2) {
-                    a8.g(th2, true);
-                }
-            }
-        }
+    public final void P(boolean r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.P(boolean):void");
     }
 
-    public final String Q0() {
-        String str;
-        String S0 = S0();
-        int lastIndexOf = S0.lastIndexOf(46);
-        if (lastIndexOf != -1) {
-            str = S0.substring(lastIndexOf + 1);
-        } else {
-            str = null;
+    public final int P0() {
+        if (c3(this.f23262k)) {
+            return S(this.f23262k.f26977id);
         }
-        if (str == null || str.length() == 0) {
-            str = F0().mime_type;
-        }
-        if (str == null) {
-            str = "";
-        }
-        return str.toUpperCase();
+        return 0;
     }
 
-    public final long Q1() {
-        return R1(p10.i(this.I1).e(), this.f23262k);
+    public final long P1() {
+        return Q1(p10.i(this.I1).e(), this.f23262k);
     }
 
-    public final boolean Q2() {
+    public final boolean P2() {
         TLRPC.Message message;
         long B0;
         int i7;
@@ -5133,7 +5043,7 @@ public class ij {
         return true;
     }
 
-    public boolean Q3() {
+    public boolean P3() {
         boolean z9 = true;
         if (this.f23293s1) {
             return true;
@@ -5142,7 +5052,7 @@ public class ij {
         if (bool != null) {
             return bool.booleanValue();
         }
-        if (e5(this.f23262k) && !c5()) {
+        if (d5(this.f23262k) && !b5()) {
             this.U2 = Boolean.FALSE;
             return false;
         }
@@ -5192,19 +5102,80 @@ public class ij {
         return true;
     }
 
-    public final boolean Q4() {
-        return S4(this.f23262k);
+    public final boolean P4() {
+        return R4(this.f23262k);
     }
 
-    public final boolean Q5() {
-        if (!s4()) {
+    public final boolean P5() {
+        if (!r4()) {
             int i7 = this.D;
-            if (i7 == 13 || i7 == 15 || i7 == 5 || i7 == 19 || h3()) {
+            if (i7 == 13 || i7 == 15 || i7 == 5 || i7 == 19 || g3()) {
                 return true;
             }
             return false;
         }
         return false;
+    }
+
+    public final void Q() {
+        if (this.f23273n0 != null) {
+            if ((iz.o() == 2 || q2()) && this.G1 == null) {
+                try {
+                    String str = "b";
+                    if (h4()) {
+                        str = "br";
+                    }
+                    int size = this.f23273n0.size();
+                    for (int i7 = 0; i7 < size; i7++) {
+                        TLRPC.PhotoSize photoSize = (TLRPC.PhotoSize) this.f23273n0.get(i7);
+                        if (photoSize instanceof TLRPC.TL_photoStrippedSize) {
+                            this.G1 = new BitmapDrawable(t0.f25566b.getResources(), gc.F(str, photoSize.bytes));
+                            return;
+                        }
+                    }
+                } catch (Throwable th2) {
+                    a8.g(th2, true);
+                }
+            }
+        }
+    }
+
+    public final String Q0() {
+        String str;
+        String S0 = S0();
+        int lastIndexOf = S0.lastIndexOf(46);
+        if (lastIndexOf != -1) {
+            str = S0.substring(lastIndexOf + 1);
+        } else {
+            str = null;
+        }
+        if (str == null || str.length() == 0) {
+            str = F0().mime_type;
+        }
+        if (str == null) {
+            str = "";
+        }
+        return str.toUpperCase();
+    }
+
+    public final boolean Q3() {
+        TLRPC.Message message = this.f23262k;
+        if (message != null) {
+            if (message.paid_suggested_post_stars || message.paid_suggested_post_ton) {
+                int i7 = this.I1;
+                int currentTime = ConnectionsManager.getInstance(i7).getCurrentTime();
+                if (currentTime - this.f23262k.date < qp.s1(i7).f24942x7.f24443i.M1(TimeUnit.SECONDS)) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final boolean Q5() {
+        return R5(this.f23262k);
     }
 
     public final TLRPC.TL_factCheck R0() {
@@ -5233,10 +5204,10 @@ public class ij {
                 return this.f23262k.factcheck;
             }
             long B0 = B0(message);
-            int f12 = f1();
+            int e12 = e1();
             long j3 = this.f23262k.factcheck.hash;
-            w6 w6Var = new w6(B0, f12, j3);
-            if (f12 < 0) {
+            w6 w6Var = new w6(B0, e12, j3);
+            if (e12 < 0) {
                 return null;
             }
             TLRPC.TL_factCheck tL_factCheck4 = (TLRPC.TL_factCheck) longSparseArray2.get(j3);
@@ -5263,34 +5234,7 @@ public class ij {
         return null;
     }
 
-    public final boolean R3() {
-        TLRPC.Message message = this.f23262k;
-        if (message != null) {
-            if (message.paid_suggested_post_stars || message.paid_suggested_post_ton) {
-                int i7 = this.I1;
-                int currentTime = ConnectionsManager.getInstance(i7).getCurrentTime();
-                if (currentTime - this.f23262k.date < qp.s1(i7).f24942x7.f24443i.M1(TimeUnit.SECONDS)) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public final boolean R5() {
-        return S5(this.f23262k);
-    }
-
-    public final String S0() {
-        if (F0() != null) {
-            return w7.r(null, F0());
-        }
-        return T0(this.f23262k);
-    }
-
-    public final long S1() {
+    public final long R1() {
         TLRPC.Peer peer;
         TLRPC.Message message = this.f23262k;
         TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
@@ -5303,7 +5247,7 @@ public class ij {
                 }
                 return j3;
             } else if (peer.channel_id != 0) {
-                if (l4()) {
+                if (k4()) {
                     TLRPC.Peer peer3 = this.f23262k.fwd_from.from_id;
                     if (peer3 instanceof TLRPC.TL_peerUser) {
                         return peer3.user_id;
@@ -5352,69 +5296,76 @@ public class ij {
         return 0L;
     }
 
-    public final boolean S2() {
+    public final boolean R2() {
         return this.f23262k.media_unread;
     }
 
-    public final boolean S3() {
-        return T3(this.f23262k);
+    public final boolean R3() {
+        return S3(this.f23262k);
+    }
+
+    public final String S0() {
+        if (F0() != null) {
+            return w7.r(null, F0());
+        }
+        return T0(this.f23262k);
+    }
+
+    public final long S1() {
+        s51 s51Var = this.f23238e3;
+        if (s51Var != null) {
+            return s51Var.f37930g.size;
+        }
+        s51 s51Var2 = this.f23243f3;
+        if (s51Var2 != null) {
+            return s51Var2.f37930g.size;
+        }
+        s51 s51Var3 = this.f23248g3;
+        if (s51Var3 != null) {
+            return s51Var3.f37930g.size;
+        }
+        return p1(n1(this.f23262k));
+    }
+
+    public final boolean S2() {
+        TLRPC.Message message;
+        TLRPC.MessageAction messageAction;
+        TLRPC.UserFull b22;
+        TLRPC.WallPaper wallPaper;
+        if (!X4() || (message = this.f23262k) == null || (messageAction = message.action) == null || messageAction.wallpaper == null || (b22 = qp.s1(this.I1).b2(B0(this.f23262k))) == null || (wallPaper = b22.wallpaper) == null || !b22.wallpaper_overridden || this.f23262k.action.wallpaper.f27110id != wallPaper.f27110id) {
+            return false;
+        }
+        return true;
+    }
+
+    public final boolean S4() {
+        TLRPC.Message message;
+        TLRPC.MessageMedia messageMedia;
+        if (R4(this.f23262k) && (message = this.f23262k) != null && (messageMedia = message.media) != null && messageMedia.ttl_seconds == Integer.MAX_VALUE) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean S5() {
+        TLRPC.Message message = this.f23262k;
+        if (message != null && message.peer_id != null && !N3() && !r4() && qp.s1(this.I1).I2(B0(this.f23262k))) {
+            return true;
+        }
+        return false;
     }
 
     public final boolean T(ij ijVar) {
-        if (ijVar == null || f1() != ijVar.f1() || B0(this.f23262k) != B0(ijVar.f23262k)) {
+        if (ijVar == null || e1() != ijVar.e1() || B0(this.f23262k) != B0(ijVar.f23262k)) {
             return false;
         }
         return true;
     }
 
     public final long T1() {
-        r51 r51Var = this.f23238e3;
-        if (r51Var != null) {
-            return r51Var.f37526g.size;
-        }
-        r51 r51Var2 = this.f23243f3;
-        if (r51Var2 != null) {
-            return r51Var2.f37526g.size;
-        }
-        r51 r51Var3 = this.f23248g3;
-        if (r51Var3 != null) {
-            return r51Var3.f37526g.size;
-        }
-        return q1(o1(this.f23262k));
-    }
-
-    public final boolean T2() {
-        TLRPC.Message message;
-        TLRPC.MessageAction messageAction;
-        TLRPC.UserFull b22;
-        TLRPC.WallPaper wallPaper;
-        if (!Y4() || (message = this.f23262k) == null || (messageAction = message.action) == null || messageAction.wallpaper == null || (b22 = qp.s1(this.I1).b2(B0(this.f23262k))) == null || (wallPaper = b22.wallpaper) == null || !b22.wallpaper_overridden || this.f23262k.action.wallpaper.f27110id != wallPaper.f27110id) {
-            return false;
-        }
-        return true;
-    }
-
-    public final boolean T4() {
-        TLRPC.Message message;
-        TLRPC.MessageMedia messageMedia;
-        if (S4(this.f23262k) && (message = this.f23262k) != null && (messageMedia = message.media) != null && messageMedia.ttl_seconds == Integer.MAX_VALUE) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean T5() {
-        TLRPC.Message message = this.f23262k;
-        if (message != null && message.peer_id != null && !O3() && !s4() && qp.s1(this.I1).I2(B0(this.f23262k))) {
-            return true;
-        }
-        return false;
-    }
-
-    public final long U1() {
         TLRPC.TL_messages_emojiGameOutcome tL_messages_emojiGameOutcome;
-        TLRPC.MessageMedia o12 = o1(this.f23262k);
-        if (!(o12 instanceof TLRPC.TL_messageMediaDice) || (tL_messages_emojiGameOutcome = ((TLRPC.TL_messageMediaDice) o12).game_outcome) == null) {
+        TLRPC.MessageMedia n1 = n1(this.f23262k);
+        if (!(n1 instanceof TLRPC.TL_messageMediaDice) || (tL_messages_emojiGameOutcome = ((TLRPC.TL_messageMediaDice) n1).game_outcome) == null) {
             return 0L;
         }
         long j3 = tL_messages_emojiGameOutcome.ton_amount;
@@ -5424,24 +5375,24 @@ public class ij {
         return -tL_messages_emojiGameOutcome.stake_ton_amount;
     }
 
-    public final boolean U2() {
-        return o1(this.f23262k) instanceof TLRPC.TL_messageMediaDice;
+    public final boolean T2() {
+        return n1(this.f23262k) instanceof TLRPC.TL_messageMediaDice;
     }
 
-    public final boolean U3() {
-        if (this.D == 17 && (o1(this.f23262k) instanceof TLRPC.TL_messageMediaPoll)) {
+    public final boolean T3() {
+        if (this.D == 17 && (n1(this.f23262k) instanceof TLRPC.TL_messageMediaPoll)) {
             return true;
         }
         return false;
     }
 
-    public final boolean U4() {
+    public final boolean T4() {
         TLRPC.Message message = this.f23262k;
         if (message != null) {
-            if (S4(message) || (i4() && s11.k(this))) {
+            if (R4(message) || (h4() && t11.k(this))) {
                 TLRPC.Message message2 = this.f23262k;
                 if (message2.voiceTranscriptionOpen && message2.voiceTranscription != null) {
-                    if (message2.voiceTranscriptionFinal || s11.j(this)) {
+                    if (message2.voiceTranscriptionFinal || t11.j(this)) {
                         return true;
                     }
                     return false;
@@ -5453,22 +5404,7 @@ public class ij {
         return false;
     }
 
-    public final String V0() {
-        TLRPC.Document document = this.f23272n;
-        if (document == null) {
-            document = G0(this.f23262k);
-        }
-        if (document != null) {
-            TLRPC.Document document2 = this.f23272n;
-            if (document2 == null) {
-                document2 = G0(this.f23262k);
-            }
-            return w7.r(null, document2);
-        }
-        return T0(this.f23262k);
-    }
-
-    public final String V1() {
+    public final String U1() {
         TLRPC.Document F0 = F0();
         if (F0 != null) {
             ArrayList<TLRPC.DocumentAttribute> arrayList = F0.attributes;
@@ -5487,14 +5423,14 @@ public class ij {
         return null;
     }
 
-    public final boolean V2() {
-        if (F0() != null && !M4(this.f23262k) && !J3() && !S4(this.f23262k) && !N2()) {
+    public final boolean U2() {
+        if (F0() != null && !L4(this.f23262k) && !I3() && !R4(this.f23262k) && !M2()) {
             return true;
         }
         return false;
     }
 
-    public final void V5() {
+    public final void U5() {
         TLRPC.Message message;
         if (!this.I2 && this.v != null && (message = this.f23262k) != null && message.entities != null) {
             TLRPC.Peer peer = message.from_id;
@@ -5521,17 +5457,22 @@ public class ij {
         }
     }
 
-    public final Long W0() {
-        TLRPC.MessageFwdHeader messageFwdHeader;
-        TLRPC.Peer peer;
-        TLRPC.Message message = this.f23262k;
-        if (message == null || (messageFwdHeader = message.fwd_from) == null || (peer = messageFwdHeader.from_id) == null) {
-            return null;
+    public final String V0() {
+        TLRPC.Document document = this.f23272n;
+        if (document == null) {
+            document = G0(this.f23262k);
         }
-        return Long.valueOf(m5.o(peer));
+        if (document != null) {
+            TLRPC.Document document2 = this.f23272n;
+            if (document2 == null) {
+                document2 = G0(this.f23262k);
+            }
+            return w7.r(null, document2);
+        }
+        return T0(this.f23262k);
     }
 
-    public final String W1() {
+    public final String V1() {
         TLRPC.Document F0 = F0();
         if (F0 == null) {
             return null;
@@ -5549,18 +5490,18 @@ public class ij {
         return null;
     }
 
-    public final boolean W4() {
+    public final boolean V4() {
         if (this.D != 17) {
             return false;
         }
-        TLRPC.MessageMedia o12 = o1(this.f23262k);
-        if (!(o12 instanceof TLRPC.TL_messageMediaPoll)) {
+        TLRPC.MessageMedia n1 = n1(this.f23262k);
+        if (!(n1 instanceof TLRPC.TL_messageMediaPoll)) {
             return false;
         }
-        return X4((TLRPC.TL_messageMediaPoll) o12);
+        return W4((TLRPC.TL_messageMediaPoll) n1);
     }
 
-    public final int W5() {
+    public final int V5() {
         int i7;
         kv kvVar = this.f23309w2;
         if (kvVar != null) {
@@ -5583,16 +5524,18 @@ public class ij {
         return i10;
     }
 
-    public final TLObject X0() {
-        Long W0 = W0();
-        if (W0 == null) {
+    public final Long W0() {
+        TLRPC.MessageFwdHeader messageFwdHeader;
+        TLRPC.Peer peer;
+        TLRPC.Message message = this.f23262k;
+        if (message == null || (messageFwdHeader = message.fwd_from) == null || (peer = messageFwdHeader.from_id) == null) {
             return null;
         }
-        return qp.s1(this.I1).e2(W0.longValue());
+        return Long.valueOf(m5.o(peer));
     }
 
-    public final TLRPC.WebPage X1() {
-        if (!A4()) {
+    public final TLRPC.WebPage W1() {
+        if (!z4()) {
             return null;
         }
         TLRPC.TL_webPage tL_webPage = this.Z2;
@@ -5614,14 +5557,14 @@ public class ij {
         return tL_webPage2;
     }
 
-    public final boolean X3() {
-        if (o1(this.f23262k) != null && o1(this.f23262k).nopremium) {
+    public final boolean W3() {
+        if (n1(this.f23262k) != null && n1(this.f23262k).nopremium) {
             return false;
         }
-        return Y3(F0());
+        return X3(F0());
     }
 
-    public final int X5(org.telegram.ui.Cells.x1 x1Var) {
+    public final int W5(org.telegram.ui.Cells.x1 x1Var) {
         if (this.f23321z2 == null) {
             return 0;
         }
@@ -5630,6 +5573,62 @@ public class ij {
             i7 += ((fj) this.f23321z2.get(i10)).j(x1Var) + ((fj) this.f23321z2.get(i10)).f22425f + ((fj) this.f23321z2.get(i10)).h;
         }
         return i7;
+    }
+
+    public final TLObject X0() {
+        Long W0 = W0();
+        if (W0 == null) {
+            return null;
+        }
+        return qp.s1(this.I1).e2(W0.longValue());
+    }
+
+    public final boolean X2() {
+        TLRPC.Message message = this.f23262k;
+        if (message != null && (message.flags & 32768) != 0 && message.edit_date != 0 && !message.edit_hide) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean X4() {
+        if (this.D != 22) {
+            TLRPC.Message message = this.f23262k;
+            if (message == null || !(message.action instanceof TLRPC.TL_messageActionSetSameChatWallPaper)) {
+                return false;
+            }
+            return true;
+        }
+        return true;
+    }
+
+    public final int X5() {
+        int i7;
+        kv kvVar = this.f23309w2;
+        if (kvVar != null) {
+            return kvVar.t();
+        }
+        Integer num = this.T2;
+        if (num != null) {
+            return num.intValue();
+        }
+        if (this.f23321z2 == null) {
+            this.T2 = 0;
+            return 0;
+        }
+        int i10 = 0;
+        for (int i11 = 0; i11 < this.f23321z2.size(); i11++) {
+            int i12 = ((fj) this.f23321z2.get(i11)).f22425f;
+            fj fjVar = (fj) this.f23321z2.get(i11);
+            if (fjVar.J) {
+                i7 = fjVar.F;
+            } else {
+                i7 = fjVar.f22429w;
+            }
+            i10 += i12 + i7 + ((fj) this.f23321z2.get(i11)).h;
+        }
+        this.T2 = Integer.valueOf(i10);
+        return i10;
     }
 
     public final String Y0() {
@@ -5667,65 +5666,13 @@ public class ij {
         return null;
     }
 
-    public final boolean Y2() {
-        TLRPC.Message message = this.f23262k;
-        if (message != null && (message.flags & 32768) != 0 && message.edit_date != 0 && !message.edit_hide) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean Y4() {
-        if (this.D != 22) {
-            TLRPC.Message message = this.f23262k;
-            if (message == null || !(message.action instanceof TLRPC.TL_messageActionSetSameChatWallPaper)) {
-                return false;
-            }
-            return true;
-        }
-        return true;
-    }
-
-    public final int Y5() {
-        int i7;
-        kv kvVar = this.f23309w2;
-        if (kvVar != null) {
-            return kvVar.t();
-        }
-        Integer num = this.T2;
-        if (num != null) {
-            return num.intValue();
-        }
-        if (this.f23321z2 == null) {
-            this.T2 = 0;
-            return 0;
-        }
-        int i10 = 0;
-        for (int i11 = 0; i11 < this.f23321z2.size(); i11++) {
-            int i12 = ((fj) this.f23321z2.get(i11)).f22425f;
-            fj fjVar = (fj) this.f23321z2.get(i11);
-            if (fjVar.J) {
-                i7 = fjVar.F;
-            } else {
-                i7 = fjVar.f22429w;
-            }
-            i10 += i12 + i7 + ((fj) this.f23321z2.get(i11)).h;
-        }
-        this.T2 = Integer.valueOf(i10);
-        return i10;
-    }
-
-    public final long Z0() {
-        return C1(this.f23262k.from_id);
-    }
-
-    public final long Z1() {
+    public final long Y1() {
         int i7 = this.I1;
         TLRPC.Chat M0 = qp.s1(i7).M0(Long.valueOf(-B0(this.f23262k)));
-        return a2(i7, this.f23262k, c8.zc.b(c8.zc.b(c8.zc.b(0, 1, t3.c0(M0)), 4, t3.p0(M0)), 8, t10.u(qp.s1(i7).a2(Long.valueOf(B0(this.f23262k))))));
+        return Z1(i7, this.f23262k, c8.zc.b(c8.zc.b(c8.zc.b(0, 1, t3.c0(M0)), 4, t3.p0(M0)), 8, t10.u(qp.s1(i7).a2(Long.valueOf(B0(this.f23262k))))));
     }
 
-    public final boolean Z2() {
+    public final boolean Y2() {
         TLRPC.Message message = this.f23262k;
         if (message.send_state == 3 && message.f26977id > 0) {
             return true;
@@ -5733,7 +5680,7 @@ public class ij {
         return false;
     }
 
-    public final boolean Z3() {
+    public final boolean Y3() {
         TLRPC.MessageFwdHeader messageFwdHeader = this.f23262k.fwd_from;
         if (messageFwdHeader != null && !TextUtils.isEmpty(messageFwdHeader.from_name)) {
             return true;
@@ -5741,9 +5688,9 @@ public class ij {
         return false;
     }
 
-    public final boolean Z4() {
+    public final boolean Y4() {
         TLRPC.Message message;
-        if (Y4() && (message = this.f23262k) != null) {
+        if (X4() && (message = this.f23262k) != null) {
             TLRPC.MessageAction messageAction = message.action;
             if ((messageAction instanceof TLRPC.TL_messageActionSetChatWallPaper) && ((TLRPC.TL_messageActionSetChatWallPaper) messageAction).for_both) {
                 return true;
@@ -5753,49 +5700,45 @@ public class ij {
         return false;
     }
 
-    public final void Z5() {
+    public final void Y5() {
         boolean z9 = !this.f23246g1;
         this.f23246g1 = z9;
         qp.s1(this.I1).f24774e7.edit().putBoolean("c" + B0(this.f23262k) + "_rec", z9).apply();
     }
 
-    public final boolean a3() {
-        if (o1(this.f23262k) instanceof TLRPC.TL_messageMediaPhoto) {
-            if (o1(this.f23262k).photo.f26980id == 0) {
+    public final long Z0() {
+        return B1(this.f23262k.from_id);
+    }
+
+    public final boolean Z2() {
+        if (n1(this.f23262k) instanceof TLRPC.TL_messageMediaPhoto) {
+            if (n1(this.f23262k).photo.f26980id == 0) {
                 return true;
             }
             return false;
-        } else if ((o1(this.f23262k) instanceof TLRPC.TL_messageMediaDocument) && o1(this.f23262k).document.dc_id == 0) {
+        } else if ((n1(this.f23262k) instanceof TLRPC.TL_messageMediaDocument) && n1(this.f23262k).document.dc_id == 0) {
             return true;
         } else {
             return false;
         }
     }
 
-    public final boolean a4() {
+    public final boolean Z3() {
         if (this.D != 17) {
             return false;
         }
-        TLRPC.MessageMedia o12 = o1(this.f23262k);
-        if (!(o12 instanceof TLRPC.TL_messageMediaPoll)) {
+        TLRPC.MessageMedia n1 = n1(this.f23262k);
+        if (!(n1 instanceof TLRPC.TL_messageMediaPoll)) {
             return false;
         }
-        return ((TLRPC.TL_messageMediaPoll) o12).poll.public_voters;
+        return ((TLRPC.TL_messageMediaPoll) n1).poll.public_voters;
     }
 
-    public final boolean a5() {
-        return o1(this.f23262k) instanceof TLRPC.TL_messageMediaWebPage;
+    public final boolean Z4() {
+        return n1(this.f23262k) instanceof TLRPC.TL_messageMediaWebPage;
     }
 
-    public final TLRPC.Peer b1() {
-        TLRPC.Message message = this.f23262k;
-        if (message != null) {
-            return message.from_id;
-        }
-        return null;
-    }
-
-    public final boolean b3() {
+    public final boolean a3() {
         TLRPC.MessageMedia messageMedia;
         TLRPC.WebPage webPage;
         TLRPC.MessageMedia messageMedia2;
@@ -5809,45 +5752,30 @@ public class ij {
             return true;
         }
         TLRPC.Message message2 = this.f23262k;
-        if (message2 != null && (messageMedia = message2.media) != null && (webPage = messageMedia.webpage) != null && !TextUtils.isEmpty(l71.e(webPage.url))) {
+        if (message2 != null && (messageMedia = message2.media) != null && (webPage = messageMedia.webpage) != null && !TextUtils.isEmpty(m71.e(webPage.url))) {
             z9 = true;
         }
         this.R2 = Boolean.valueOf(z9);
         return z9;
     }
 
-    public final boolean b4() {
-        return c4(this.f23262k);
+    public final boolean a4() {
+        return b4(this.f23262k);
     }
 
-    public final boolean b5() {
-        if (!(o1(this.f23262k) instanceof TLRPC.TL_messageMediaWebPage) || o1(this.f23262k).webpage.document == null || t3(o1(this.f23262k).webpage.document, false)) {
+    public final boolean a5() {
+        if (!(n1(this.f23262k) instanceof TLRPC.TL_messageMediaWebPage) || n1(this.f23262k).webpage.document == null || s3(n1(this.f23262k).webpage.document, false)) {
             return false;
         }
         return true;
     }
 
-    public final void b6() {
+    public final void a6() {
         int i7 = this.I1;
-        c6(qp.s1(i7).d, qp.s1(i7).f24738b, null, null);
+        b6(qp.s1(i7).d, qp.s1(i7).f24738b, null, null);
     }
 
-    public final boolean c(CharSequence charSequence, boolean z9, boolean z10) {
-        if (charSequence == null) {
-            return false;
-        }
-        if (!this.E0 && !(o1(this.f23262k) instanceof TLRPC.TL_messageMediaUnsupported)) {
-            return b(charSequence, O0(), Q3(), true, z9, z10, 0);
-        }
-        ArrayList arrayList = new ArrayList();
-        TLRPC.TL_messageEntityItalic tL_messageEntityItalic = new TLRPC.TL_messageEntityItalic();
-        tL_messageEntityItalic.offset = 0;
-        tL_messageEntityItalic.length = charSequence.length();
-        arrayList.add(tL_messageEntityItalic);
-        return b(charSequence, arrayList, Q3(), true, z9, z10, 0);
-    }
-
-    public final TLObject c1() {
+    public final TLObject b1() {
         TLRPC.Message message = this.f23262k;
         if (message != null) {
             TLRPC.Peer peer = message.from_id;
@@ -5867,46 +5795,61 @@ public class ij {
         return null;
     }
 
-    public final boolean c3() {
-        return d3(this.f23262k);
+    public final boolean b3() {
+        return c3(this.f23262k);
     }
 
-    public final boolean c5() {
+    public final boolean b5() {
         TLRPC.Message message = this.f23262k;
-        if (d3(message) && message.ephemeralAnchorMsgId != 0) {
+        if (c3(message) && message.ephemeralAnchorMsgId != 0) {
             return true;
         }
         return false;
     }
 
-    public final void c6(java.util.AbstractMap r35, java.util.AbstractMap r36, a0.h r37, a0.h r38) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.c6(java.util.AbstractMap, java.util.AbstractMap, a0.h, a0.h):void");
+    public final void b6(java.util.AbstractMap r35, java.util.AbstractMap r36, a0.h r37, a0.h r38) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.b6(java.util.AbstractMap, java.util.AbstractMap, a0.h, a0.h):void");
     }
 
-    public final long d1() {
+    public final boolean c(CharSequence charSequence, boolean z9, boolean z10) {
+        if (charSequence == null) {
+            return false;
+        }
+        if (!this.E0 && !(n1(this.f23262k) instanceof TLRPC.TL_messageMediaUnsupported)) {
+            return b(charSequence, O0(), P3(), true, z9, z10, 0);
+        }
+        ArrayList arrayList = new ArrayList();
+        TLRPC.TL_messageEntityItalic tL_messageEntityItalic = new TLRPC.TL_messageEntityItalic();
+        tL_messageEntityItalic.offset = 0;
+        tL_messageEntityItalic.length = charSequence.length();
+        arrayList.add(tL_messageEntityItalic);
+        return b(charSequence, arrayList, P3(), true, z9, z10, 0);
+    }
+
+    public final long c1() {
         long j3 = this.d;
         if (j3 != 0) {
             return j3;
         }
-        return e1();
+        return d1();
     }
 
-    public final boolean d4() {
+    public final boolean c4() {
         if (this.D != 17) {
             return false;
         }
-        TLRPC.MessageMedia o12 = o1(this.f23262k);
-        if (!(o12 instanceof TLRPC.TL_messageMediaPoll)) {
+        TLRPC.MessageMedia n1 = n1(this.f23262k);
+        if (!(n1 instanceof TLRPC.TL_messageMediaPoll)) {
             return false;
         }
-        return ((TLRPC.TL_messageMediaPoll) o12).poll.quiz;
+        return ((TLRPC.TL_messageMediaPoll) n1).poll.quiz;
     }
 
-    public final boolean d5() {
-        return e5(this.f23262k);
+    public final boolean c5() {
+        return d5(this.f23262k);
     }
 
-    public final long e1() {
+    public final long d1() {
         long j3 = this.f23234e;
         if (j3 != 0) {
             return j3;
@@ -5914,7 +5857,7 @@ public class ij {
         return this.f23262k.grouped_id;
     }
 
-    public final TLRPC.User e2(AbstractMap abstractMap, a0.h hVar, long j3) {
+    public final TLRPC.User d2(AbstractMap abstractMap, a0.h hVar, long j3) {
         TLRPC.User user;
         if (abstractMap != null) {
             user = (TLRPC.User) abstractMap.get(Long.valueOf(j3));
@@ -5929,15 +5872,70 @@ public class ij {
         return user;
     }
 
-    public final boolean e3() {
-        return f3(this.f23262k);
+    public final boolean d3() {
+        return e3(this.f23262k);
     }
 
-    public final boolean e4() {
-        if (!Z2() && !s4() && r4() && !d3(this.f23262k) && !h3() && z()) {
+    public final boolean d4() {
+        if (!Y2() && !r4() && q4() && !c3(this.f23262k) && !g3() && z()) {
             return true;
         }
         return false;
+    }
+
+    public final int e1() {
+        TLRPC.Message message = this.f23262k;
+        int i7 = message.ephemeralAnchorMsgId;
+        if (i7 != 0) {
+            return i7;
+        }
+        return message.f26977id;
+    }
+
+    public final boolean e4() {
+        TLRPC.Message message;
+        TLRPC.MessageReplyHeader messageReplyHeader;
+        ij ijVar = this.C;
+        if ((ijVar == null || !(ijVar.f23262k instanceof TLRPC.TL_messageEmpty)) && (messageReplyHeader = (message = this.f23262k).reply_to) != null) {
+            if ((messageReplyHeader.reply_to_msg_id != 0 || messageReplyHeader.reply_to_random_id != 0) && (message.flags & 8) != 0) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final boolean e5() {
+        if ((n1(this.f23262k) instanceof TLRPC.TL_messageMediaWebPage) && n1(this.f23262k).webpage != null && !TextUtils.isEmpty(n1(this.f23262k).webpage.embed_url) && "YouTube".equals(n1(this.f23262k).webpage.site_name)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void e6(boolean z9) {
+        ArrayList arrayList = this.f23230c3;
+        if (arrayList == null) {
+            this.f23248g3 = null;
+            D2(z9);
+            return;
+        }
+        int size = arrayList.size();
+        int i7 = 0;
+        while (i7 < size) {
+            Object obj = arrayList.get(i7);
+            i7++;
+            ArrayList arrayList2 = ((q51) obj).d;
+            int size2 = arrayList2.size();
+            int i10 = 0;
+            while (i10 < size2) {
+                Object obj2 = arrayList2.get(i10);
+                i10++;
+                ((s51) obj2).e(z9);
+            }
+        }
+        this.f23238e3 = u51.a0(this.f23230c3);
+        this.f23243f3 = u51.b0(this.f23230c3);
+        this.f23248g3 = u51.N(this.f23230c3);
     }
 
     public final void f(int i7, long j3, boolean z9) {
@@ -5955,7 +5953,7 @@ public class ij {
             }
             tL_messageReactions.reactions_as_tags = z10;
             TLRPC.TL_messageReactions tL_messageReactions2 = this.f23262k.reactions;
-            if (p3() || q3()) {
+            if (o3() || p3()) {
                 z11 = true;
             }
             tL_messageReactions2.can_see_list = z11;
@@ -5963,72 +5961,7 @@ public class ij {
         g(this.I1, this.f23262k.reactions, i7, j3, z9);
     }
 
-    public final int f1() {
-        TLRPC.Message message = this.f23262k;
-        int i7 = message.ephemeralAnchorMsgId;
-        if (i7 != 0) {
-            return i7;
-        }
-        return message.f26977id;
-    }
-
     public final boolean f4() {
-        TLRPC.Message message;
-        TLRPC.MessageReplyHeader messageReplyHeader;
-        ij ijVar = this.C;
-        if ((ijVar == null || !(ijVar.f23262k instanceof TLRPC.TL_messageEmpty)) && (messageReplyHeader = (message = this.f23262k).reply_to) != null) {
-            if ((messageReplyHeader.reply_to_msg_id != 0 || messageReplyHeader.reply_to_random_id != 0) && (message.flags & 8) != 0) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public final boolean f5() {
-        if ((o1(this.f23262k) instanceof TLRPC.TL_messageMediaWebPage) && o1(this.f23262k).webpage != null && !TextUtils.isEmpty(o1(this.f23262k).webpage.embed_url) && "YouTube".equals(o1(this.f23262k).webpage.site_name)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void f6(boolean z9) {
-        ArrayList arrayList = this.f23230c3;
-        if (arrayList == null) {
-            this.f23248g3 = null;
-            E2(z9);
-            return;
-        }
-        int size = arrayList.size();
-        int i7 = 0;
-        while (i7 < size) {
-            Object obj = arrayList.get(i7);
-            i7++;
-            ArrayList arrayList2 = ((p51) obj).d;
-            int size2 = arrayList2.size();
-            int i10 = 0;
-            while (i10 < size2) {
-                Object obj2 = arrayList2.get(i10);
-                i10++;
-                ((r51) obj2).e(z9);
-            }
-        }
-        this.f23238e3 = t51.a0(this.f23230c3);
-        this.f23243f3 = t51.b0(this.f23230c3);
-        this.f23248g3 = t51.N(this.f23230c3);
-    }
-
-    public final Spannable g0(TLRPC.TodoItem todoItem) {
-        CharSequence h02 = h0(todoItem.title, Q3());
-        if (!(h02 instanceof Spannable)) {
-            h02 = new SpannableStringBuilder(h02);
-        }
-        Spannable spannable = (Spannable) h02;
-        spannable.setSpan(new b41("task?" + todoItem.f27103id, 0), 0, h02.length(), 33);
-        return spannable;
-    }
-
-    public final boolean g4() {
         TLRPC.Message message;
         TLRPC.MessageReplyHeader messageReplyHeader;
         ij ijVar = this.C;
@@ -6038,7 +5971,7 @@ public class ij {
         return false;
     }
 
-    public final void g5() {
+    public final void f5() {
         if (this.f23272n == null && this.f23275o != null && !this.f23295t) {
             this.f23295t = true;
             org.telegram.ui.Components.i5.g(this.I1).b(this.f23275o.longValue(), new org.telegram.ui.Components.f5() {
@@ -6050,22 +5983,32 @@ public class ij {
         }
     }
 
-    public final int h2() {
+    public final Spannable g0(TLRPC.TodoItem todoItem) {
+        CharSequence h02 = h0(todoItem.title, P3());
+        if (!(h02 instanceof Spannable)) {
+            h02 = new SpannableStringBuilder(h02);
+        }
+        Spannable spannable = (Spannable) h02;
+        spannable.setSpan(new c41("task?" + todoItem.f27103id, 0), 0, h02.length(), 33);
+        return spannable;
+    }
+
+    public final int g2() {
         String str;
         Integer num = this.f23257i3;
         if (num != null) {
             return num.intValue();
         }
-        if (!M4(this.f23262k)) {
+        if (!L4(this.f23262k)) {
             this.f23257i3 = -1;
             return -1;
         }
-        TLRPC.MessageMedia n1 = n1(this);
-        int i7 = n1.video_timestamp;
+        TLRPC.MessageMedia m12 = m1(this);
+        int i7 = m12.video_timestamp;
         if (i7 != 0) {
             return i7;
         }
-        TLRPC.WebPage webPage = n1.webpage;
+        TLRPC.WebPage webPage = m12.webpage;
         if (webPage != null && (str = webPage.url) != null) {
             try {
                 int V = LaunchActivity.V(Uri.parse(str));
@@ -6078,7 +6021,7 @@ public class ij {
         return -1;
     }
 
-    public final boolean h3() {
+    public final boolean g3() {
         int i7 = this.D;
         if ((i7 == 23 || i7 == 24) && (this.f23262k.media.storyItem instanceof TL_stories.TL_storyItemDeleted)) {
             return true;
@@ -6086,17 +6029,67 @@ public class ij {
         return false;
     }
 
-    public final boolean h4() {
+    public final boolean g4() {
         TLRPC.Message message;
         TLRPC.MessageMedia messageMedia;
-        if (i4() && (message = this.f23262k) != null && (messageMedia = message.media) != null && messageMedia.ttl_seconds == Integer.MAX_VALUE) {
+        if (h4() && (message = this.f23262k) != null && (messageMedia = message.media) != null && messageMedia.ttl_seconds == Integer.MAX_VALUE) {
             return true;
         }
         return false;
     }
 
-    public final boolean h6(boolean r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.h6(boolean):boolean");
+    public final boolean g6(boolean r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.g6(boolean):boolean");
+    }
+
+    public final TLRPC.InputStickerSet h1() {
+        return j1(this.f23262k);
+    }
+
+    public final boolean h3() {
+        if (e1() >= 0 && !r4()) {
+            int i7 = this.D;
+            if (i7 == 0 || i7 == 2 || i7 == 1 || i7 == 3 || i7 == 8 || i7 == 9) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final boolean h4() {
+        int i7;
+        if (this.S == 0) {
+            if (this.D != 5 && !j4(this.f23262k)) {
+                i7 = 2;
+            } else {
+                i7 = 1;
+            }
+            this.S = i7;
+        }
+        if (this.S == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void h5() {
+        TLRPC.TL_messageReactions tL_messageReactions = this.f23262k.reactions;
+        if (tL_messageReactions != null && tL_messageReactions.recent_reactions != null) {
+            boolean z9 = false;
+            for (int i7 = 0; i7 < this.f23262k.reactions.recent_reactions.size(); i7++) {
+                if (this.f23262k.reactions.recent_reactions.get(i7).unread) {
+                    this.f23262k.reactions.recent_reactions.get(i7).unread = false;
+                    z9 = true;
+                }
+            }
+            if (z9) {
+                int i10 = this.I1;
+                yr a02 = yr.a0(i10);
+                TLRPC.Message message = this.f23262k;
+                a02.I(new yq(a02, message.dialog_id, b2(i10, message, false, false), this.f23262k.f26977id, 6));
+            }
+        }
     }
 
     public final boolean i() {
@@ -6120,61 +6113,7 @@ public class ij {
         return true;
     }
 
-    public final TLRPC.InputStickerSet i1() {
-        return k1(this.f23262k);
-    }
-
-    public final boolean i3() {
-        if (f1() >= 0 && !s4()) {
-            int i7 = this.D;
-            if (i7 == 0 || i7 == 2 || i7 == 1 || i7 == 3 || i7 == 8 || i7 == 9) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public final boolean i4() {
-        int i7;
-        if (this.S == 0) {
-            if (this.D != 5 && !k4(this.f23262k)) {
-                i7 = 2;
-            } else {
-                i7 = 1;
-            }
-            this.S = i7;
-        }
-        if (this.S == 1) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void i5() {
-        TLRPC.TL_messageReactions tL_messageReactions = this.f23262k.reactions;
-        if (tL_messageReactions != null && tL_messageReactions.recent_reactions != null) {
-            boolean z9 = false;
-            for (int i7 = 0; i7 < this.f23262k.reactions.recent_reactions.size(); i7++) {
-                if (this.f23262k.reactions.recent_reactions.get(i7).unread) {
-                    this.f23262k.reactions.recent_reactions.get(i7).unread = false;
-                    z9 = true;
-                }
-            }
-            if (z9) {
-                int i10 = this.I1;
-                yr a02 = yr.a0(i10);
-                TLRPC.Message message = this.f23262k;
-                a02.I(new yq(a02, message.dialog_id, c2(i10, message, false, false), this.f23262k.f26977id, 6));
-            }
-        }
-    }
-
-    public final void j() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.j():void");
-    }
-
-    public final CharSequence j2() {
+    public final CharSequence i2() {
         String str;
         String str2;
         TLRPC.TL_textWithEntities tL_textWithEntities;
@@ -6183,8 +6122,8 @@ public class ij {
             return null;
         }
         if (TextUtils.isEmpty(str)) {
-            SpannableString spannableString = new SpannableString(id.M0(2131748129, null));
-            spannableString.setSpan(new fi.t9(1), 0, spannableString.length(), 33);
+            SpannableString spannableString = new SpannableString(id.M0(2131748128, null));
+            spannableString.setSpan(new fi.s9(1), 0, spannableString.length(), 33);
             return spannableString;
         }
         if (this.J2 && (tL_textWithEntities = this.f23262k.translatedVoiceTranscription) != null) {
@@ -6193,19 +6132,19 @@ public class ij {
             str2 = this.f23262k.voiceTranscription;
         }
         if (!TextUtils.isEmpty(str2)) {
-            return i6.m(str2, org.telegram.ui.ActionBar.k6.f28049o2.getFontMetricsInt(), false, null, 0);
+            return i6.m(str2, org.telegram.ui.ActionBar.l6.f28062o2.getFontMetricsInt(), false, null, 0);
         }
         return str2;
     }
 
-    public final boolean j3() {
+    public final boolean i3() {
         if (this.f23216a != 0) {
             return true;
         }
         return false;
     }
 
-    public final void j5() {
+    public final void i5() {
         boolean z9;
         int i7;
         TLRPC.TL_messageReactions tL_messageReactions;
@@ -6218,9 +6157,9 @@ public class ij {
             this.f23303v0 = 0;
             this.f23278o2 = null;
             ArrayList arrayList = new ArrayList();
-            boolean T5 = T5();
-            this.L2 = T5;
-            if (!T5 && (message = this.f23262k) != null) {
+            boolean S5 = S5();
+            this.L2 = S5;
+            if (!S5 && (message = this.f23262k) != null) {
                 TLRPC.ReplyMarkup replyMarkup = message.reply_markup;
                 if (replyMarkup instanceof TLRPC.TL_replyInlineMarkup) {
                     TLRPC.TL_replyInlineMarkup tL_replyInlineMarkup = (TLRPC.TL_replyInlineMarkup) replyMarkup;
@@ -6237,7 +6176,7 @@ public class ij {
                 }
             }
             TLRPC.Message message2 = this.f23262k;
-            if (message2 != null && (suggestedPost = message2.suggested_post) != null && !suggestedPost.rejected && !suggestedPost.accepted && !o4() && !p4()) {
+            if (message2 != null && (suggestedPost = message2.suggested_post) != null && !suggestedPost.rejected && !suggestedPost.accepted && !n4() && !o4()) {
                 z9 = true;
             } else {
                 z9 = false;
@@ -6266,8 +6205,8 @@ public class ij {
                 } else {
                     i7 = 0;
                 }
-                arrayList.add(new m2[]{new o2(1, 2131747089, 2131231085), new o2(2, 2131747090, 2131231084)});
-                arrayList.add(new m2[]{new o2(3, 2131747088, 2131231086)});
+                arrayList.add(new m2[]{new o2(1, 2131747088, 2131231085), new o2(2, 2131747089, 2131231084)});
+                arrayList.add(new m2[]{new o2(3, 2131747087, 2131231086)});
             } else {
                 i7 = 0;
             }
@@ -6275,8 +6214,8 @@ public class ij {
                 this.f23278o2 = new f5.u((m2[][]) arrayList.toArray(new m2[arrayList.size()]), i7, 9);
             }
             f5.u uVar = this.f23278o2;
-            if ((uVar != null && !q2()) || ((tL_messageReactions = this.f23262k.reactions) != null && !tL_messageReactions.results.isEmpty())) {
-                org.telegram.ui.ActionBar.k6.Q();
+            if ((uVar != null && !p2()) || ((tL_messageReactions = this.f23262k.reactions) != null && !tL_messageReactions.results.isEmpty())) {
+                org.telegram.ui.ActionBar.l6.Q();
                 StringBuilder sb2 = this.D0;
                 if (sb2 == null) {
                     this.D0 = new StringBuilder();
@@ -6286,7 +6225,7 @@ public class ij {
             }
             if (uVar != null) {
                 m2[][] m2VarArr = (m2[][]) uVar.f11191c;
-                if (!q2()) {
+                if (!p2()) {
                     for (int i12 = 0; i12 < m2VarArr.length; i12++) {
                         int length = m2VarArr[i12].length;
                         int i13 = 0;
@@ -6295,16 +6234,16 @@ public class ij {
                             StringBuilder sb3 = this.D0;
                             sb3.append(i12);
                             sb3.append(i14);
-                            if ((m2Var instanceof n2) && cg.c.c(((n2) m2Var).f24126a, TL_keyboard.TL_inlineButtonTypeBuy.class) && (o1(this.f23262k).flags & 4) != 0) {
-                                m10 = id.M0(2131747383, null);
+                            if ((m2Var instanceof n2) && cg.c.c(((n2) m2Var).f24126a, TL_keyboard.TL_inlineButtonTypeBuy.class) && (n1(this.f23262k).flags & 4) != 0) {
+                                m10 = id.M0(2131747382, null);
                             } else {
                                 String d = m2Var.d();
                                 if (d == null) {
                                     d = "";
                                 }
-                                m10 = i6.m(d, org.telegram.ui.ActionBar.k6.f28202w2.getFontMetricsInt(), false, null, 0);
+                                m10 = i6.m(d, org.telegram.ui.ActionBar.l6.f28215w2.getFontMetricsInt(), false, null, 0);
                             }
-                            StaticLayout staticLayout = new StaticLayout(m10, org.telegram.ui.ActionBar.k6.f28202w2, g0.L(2000.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                            StaticLayout staticLayout = new StaticLayout(m10, org.telegram.ui.ActionBar.l6.f28215w2, g0.L(2000.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                             if (staticLayout.getLineCount() > 0) {
                                 float lineWidth = staticLayout.getLineWidth(0);
                                 float lineLeft = staticLayout.getLineLeft(0);
@@ -6327,6 +6266,22 @@ public class ij {
         }
     }
 
+    public final void j() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.j():void");
+    }
+
+    public final boolean j3() {
+        return l3(this.f23262k);
+    }
+
+    public final boolean j5() {
+        s51 s51Var;
+        if (D2(true) && (s51Var = this.f23238e3) != null) {
+            return s51Var.b();
+        }
+        return this.f23311x0;
+    }
+
     public final void k(CharSequence charSequence) {
         TLRPC.User user;
         TextPaint textPaint;
@@ -6334,31 +6289,31 @@ public class ij {
             return;
         }
         int[] iArr = null;
-        if (q3()) {
+        if (p3()) {
             user = qp.s1(this.I1).a2(Long.valueOf(this.f23262k.from_id.user_id));
         } else {
             user = null;
         }
         this.v = charSequence;
         ArrayList O0 = O0();
-        if (o1(this.f23262k) instanceof TLRPC.TL_messageMediaGame) {
-            textPaint = org.telegram.ui.ActionBar.k6.f28221x2;
+        if (n1(this.f23262k) instanceof TLRPC.TL_messageMediaGame) {
+            textPaint = org.telegram.ui.ActionBar.l6.f28234x2;
         } else {
-            textPaint = org.telegram.ui.ActionBar.k6.f28049o2;
+            textPaint = org.telegram.ui.ActionBar.l6.f28062o2;
         }
         if (i()) {
             iArr = new int[1];
         }
         CharSequence m10 = i6.m(this.v, textPaint.getFontMetricsInt(), false, iArr, 0);
         this.v = m10;
-        Spannable C5 = C5(m10, O0, textPaint.getFontMetricsInt(), false);
-        this.v = C5;
+        Spannable B5 = B5(m10, O0, textPaint.getFontMetricsInt(), false);
+        this.v = B5;
         if (iArr != null && iArr[0] > 1) {
-            E5(C5, iArr);
+            D5(B5, iArr);
         }
         H(iArr);
         n0(user);
-        M5();
+        L5();
     }
 
     public final void k0() {
@@ -6370,14 +6325,14 @@ public class ij {
         boolean z11;
         TL_stories.StoryItem storyItem;
         boolean z12;
-        if (!i4()) {
-            boolean T5 = T5();
+        if (!h4()) {
+            boolean S5 = S5();
             if (this.f23318z != null) {
                 if (this.J2) {
                     TLRPC.Message message = this.f23262k;
                     if (message.translatedText != null || (this.K2 && message.translatedSummaryText != null)) {
                         z12 = true;
-                        if (z12 == this.N2 && this.K2 == this.P2 && T5 == this.O2) {
+                        if (z12 == this.N2 && this.K2 == this.P2 && S5 == this.O2) {
                             return;
                         }
                     }
@@ -6387,7 +6342,7 @@ public class ij {
                     return;
                 }
             }
-            this.O2 = T5;
+            this.O2 = S5;
             TLRPC.Message message2 = this.f23262k;
             String str = message2.message;
             ArrayList<TLRPC.MessageEntity> arrayList = message2.entities;
@@ -6424,16 +6379,16 @@ public class ij {
                             }
                         }
                     }
-                    if (G3() && !(o1(this.f23262k) instanceof TLRPC.TL_messageMediaGame) && !TextUtils.isEmpty(str)) {
-                        CharSequence m10 = i6.m(str, org.telegram.ui.ActionBar.k6.f28049o2.getFontMetricsInt(), false, null, 0);
+                    if (F3() && !(n1(this.f23262k) instanceof TLRPC.TL_messageMediaGame) && !TextUtils.isEmpty(str)) {
+                        CharSequence m10 = i6.m(str, org.telegram.ui.ActionBar.l6.f28062o2.getFontMetricsInt(), false, null, 0);
                         this.f23318z = m10;
-                        this.f23318z = C5(m10, arrayList, org.telegram.ui.ActionBar.k6.f28049o2.getFontMetricsInt(), false);
+                        this.f23318z = B5(m10, arrayList, org.telegram.ui.ActionBar.l6.f28062o2.getFontMetricsInt(), false);
                         if (this.f23262k.send_state != 0) {
                             z10 = false;
                         } else {
                             z10 = !arrayList.isEmpty();
                         }
-                        if (!z9 && (z10 || (this.T == 0 && !(o1(this.f23262k) instanceof TLRPC.TL_messageMediaPhoto_old) && !(o1(this.f23262k) instanceof TLRPC.TL_messageMediaPhoto_layer68) && !(o1(this.f23262k) instanceof TLRPC.TL_messageMediaPhoto_layer74) && !(o1(this.f23262k) instanceof TLRPC.TL_messageMediaDocument_old) && !(o1(this.f23262k) instanceof TLRPC.TL_messageMediaDocument_layer68) && !(o1(this.f23262k) instanceof TLRPC.TL_messageMediaDocument_layer74) && ((!O3() || this.f23262k.send_state == 0) && this.f23262k.f26977id >= 0)))) {
+                        if (!z9 && (z10 || (this.T == 0 && !(n1(this.f23262k) instanceof TLRPC.TL_messageMediaPhoto_old) && !(n1(this.f23262k) instanceof TLRPC.TL_messageMediaPhoto_layer68) && !(n1(this.f23262k) instanceof TLRPC.TL_messageMediaPhoto_layer74) && !(n1(this.f23262k) instanceof TLRPC.TL_messageMediaDocument_old) && !(n1(this.f23262k) instanceof TLRPC.TL_messageMediaDocument_layer68) && !(n1(this.f23262k) instanceof TLRPC.TL_messageMediaDocument_layer74) && ((!N3() || this.f23262k.send_state == 0) && this.f23262k.f26977id >= 0)))) {
                             z11 = false;
                         } else {
                             z11 = true;
@@ -6446,18 +6401,18 @@ public class ij {
                                     a8.g(e10, true);
                                 }
                             }
-                            h(Q3(), this.f23318z, true, 0, 0, true);
+                            h(P3(), this.f23318z, true, 0, 0, true);
                         }
                         c(this.f23318z, false, z11);
                         this.f23318z = org.telegram.ui.Components.a00.a(this.f23318z, true);
-                        if (M4(this.f23262k)) {
-                            h(Q3(), this.f23318z, true, 3, (int) L0(), false);
-                        } else if (J3() || S4(this.f23262k)) {
-                            h(Q3(), this.f23318z, true, 4, (int) L0(), false);
+                        if (L4(this.f23262k)) {
+                            h(P3(), this.f23318z, true, 3, (int) L0(), false);
+                        } else if (I3() || R4(this.f23262k)) {
+                            h(P3(), this.f23318z, true, 4, (int) L0(), false);
                         }
                         n(this.f23318z);
                         if (this.O2) {
-                            z5(this.f23318z);
+                            y5(this.f23318z);
                             return;
                         }
                         return;
@@ -6466,7 +6421,7 @@ public class ij {
                 }
                 arrayList = new ArrayList<>();
                 str = "";
-            } else if (q2()) {
+            } else if (p2()) {
                 TLRPC.Message message4 = this.f23262k;
                 str = message4.media.description;
                 message4.message = str;
@@ -6484,21 +6439,64 @@ public class ij {
             }
             this.P2 = false;
             this.N2 = false;
-            if (G3()) {
+            if (F3()) {
             }
         }
     }
 
-    public final boolean k3() {
-        return m3(this.f23262k);
+    public final int k1() {
+        kv kvVar = this.f23309w2;
+        if (kvVar != null) {
+            ArrayList arrayList = kvVar.h;
+            ArrayList arrayList2 = kvVar.f23768g;
+            if (!arrayList2.isEmpty() && !kvVar.d && !kvVar.I()) {
+                if (!arrayList.isEmpty()) {
+                    int size = arrayList.size();
+                    int i7 = 0;
+                    while (i7 < size) {
+                        Object obj = arrayList.get(i7);
+                        i7++;
+                        if (((bu) obj).f21733b >= arrayList2.size() - 1) {
+                            return kvVar.C;
+                        }
+                    }
+                }
+                fu fuVar = (fu) jg.g.i(1, arrayList2);
+                if (fuVar.v()) {
+                    return kvVar.C;
+                }
+                return fuVar.J();
+            }
+            return kvVar.C;
+        }
+        return this.f23294s2;
     }
 
-    public final boolean k5() {
-        r51 r51Var;
-        if (E2(true) && (r51Var = this.f23238e3) != null) {
-            return r51Var.b();
+    public final boolean k3() {
+        TLRPC.MessageFwdHeader messageFwdHeader;
+        TLRPC.Message message = this.f23262k;
+        TLRPC.Peer peer = message.from_id;
+        if ((peer instanceof TLRPC.TL_peerChannel) && (messageFwdHeader = message.fwd_from) != null && messageFwdHeader.channel_post != 0) {
+            TLRPC.Peer peer2 = messageFwdHeader.saved_from_peer;
+            if ((peer2 instanceof TLRPC.TL_peerChannel) && peer.channel_id == peer2.channel_id) {
+                return true;
+            }
+            return false;
         }
-        return this.f23311x0;
+        return false;
+    }
+
+    public final boolean k4() {
+        TLRPC.Peer peer;
+        TLRPC.MessageFwdHeader messageFwdHeader = this.f23262k.fwd_from;
+        if (messageFwdHeader != null && (peer = messageFwdHeader.saved_from_peer) != null && peer.channel_id != 0) {
+            return t3.n0(qp.s1(this.I1).M0(Long.valueOf(this.f23262k.fwd_from.saved_from_peer.channel_id)));
+        }
+        return false;
+    }
+
+    public boolean k5() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.k5():boolean");
     }
 
     public final void l(int i7, String str) {
@@ -6530,8 +6528,8 @@ public class ij {
         if (this.D != 17) {
             return;
         }
-        TLRPC.MessageMedia o12 = o1(this.f23262k);
-        if ((o12 instanceof TLRPC.TL_messageMediaPoll) && (pollResults = ((TLRPC.TL_messageMediaPoll) o12).results) != null) {
+        TLRPC.MessageMedia n1 = n1(this.f23262k);
+        if ((n1 instanceof TLRPC.TL_messageMediaPoll) && (pollResults = ((TLRPC.TL_messageMediaPoll) n1).results) != null) {
             str = pollResults.solution;
             arrayList = pollResults.solution_entities;
         } else {
@@ -6539,68 +6537,60 @@ public class ij {
             arrayList = null;
         }
         if (str != null) {
-            CharSequence m10 = i6.m(str, org.telegram.ui.ActionBar.k6.f27812b3.getFontMetricsInt(), false, null, 0);
+            CharSequence m10 = i6.m(str, org.telegram.ui.ActionBar.l6.f27825b3.getFontMetricsInt(), false, null, 0);
             this.A = m10;
-            Spannable C5 = C5(m10, arrayList, org.telegram.ui.ActionBar.k6.f27812b3.getFontMetricsInt(), false);
-            this.A = C5;
-            b(C5, arrayList, Q3(), true, false, false, 0);
+            Spannable B5 = B5(m10, arrayList, org.telegram.ui.ActionBar.l6.f27825b3.getFontMetricsInt(), false);
+            this.A = B5;
+            b(B5, arrayList, P3(), true, false, false, 0);
             return;
         }
         this.A = null;
     }
 
     public final int l1() {
-        kv kvVar = this.f23309w2;
-        if (kvVar != null) {
-            ArrayList arrayList = kvVar.h;
-            ArrayList arrayList2 = kvVar.f23768g;
-            if (!arrayList2.isEmpty() && !kvVar.d && !kvVar.I()) {
-                if (!arrayList.isEmpty()) {
-                    int size = arrayList.size();
-                    int i7 = 0;
-                    while (i7 < size) {
-                        Object obj = arrayList.get(i7);
-                        i7++;
-                        if (((bu) obj).f21733b >= arrayList2.size() - 1) {
-                            return kvVar.C;
-                        }
-                    }
-                }
-                fu fuVar = (fu) jg.g.i(1, arrayList2);
-                if (fuVar.v()) {
-                    return kvVar.C;
-                }
-                return fuVar.J();
-            }
-            return kvVar.C;
-        }
-        return this.f23294s2;
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.l1():int");
     }
 
-    public final boolean l3() {
-        TLRPC.MessageFwdHeader messageFwdHeader;
-        TLRPC.Message message = this.f23262k;
-        TLRPC.Peer peer = message.from_id;
-        if ((peer instanceof TLRPC.TL_peerChannel) && (messageFwdHeader = message.fwd_from) != null && messageFwdHeader.channel_post != 0) {
-            TLRPC.Peer peer2 = messageFwdHeader.saved_from_peer;
-            if ((peer2 instanceof TLRPC.TL_peerChannel) && peer.channel_id == peer2.channel_id) {
-                return true;
+    public final ArrayList l2() {
+        TLRPC.WebPage webPage;
+        TL_iv.Page page;
+        ArrayList arrayList = new ArrayList();
+        if (n1(this.f23262k) != null && n1(this.f23262k).webpage != null && (page = (webPage = n1(this.f23262k).webpage).cached_page) != null) {
+            ArrayList<TL_iv.PageBlock> arrayList2 = page.blocks;
+            for (int i7 = 0; i7 < arrayList2.size(); i7++) {
+                TL_iv.PageBlock pageBlock = arrayList2.get(i7);
+                if (pageBlock instanceof TL_iv.pageBlockSlideshow) {
+                    TL_iv.pageBlockSlideshow pageblockslideshow = (TL_iv.pageBlockSlideshow) pageBlock;
+                    for (int i10 = 0; i10 < pageblockslideshow.items.size(); i10++) {
+                        arrayList.add(r1(webPage, pageblockslideshow.items.get(i10)));
+                    }
+                } else if (pageBlock instanceof TL_iv.pageBlockCollage) {
+                    TL_iv.pageBlockCollage pageblockcollage = (TL_iv.pageBlockCollage) pageBlock;
+                    for (int i11 = 0; i11 < pageblockcollage.items.size(); i11++) {
+                        arrayList.add(r1(webPage, pageblockcollage.items.get(i11)));
+                    }
+                }
             }
-            return false;
         }
-        return false;
+        return arrayList;
     }
 
     public final boolean l4() {
-        TLRPC.Peer peer;
-        TLRPC.MessageFwdHeader messageFwdHeader = this.f23262k.fwd_from;
-        if (messageFwdHeader != null && (peer = messageFwdHeader.saved_from_peer) != null && peer.channel_id != 0) {
-            return t3.n0(qp.s1(this.I1).M0(Long.valueOf(this.f23262k.fwd_from.saved_from_peer.channel_id)));
+        int i7;
+        TLRPC.Message message = this.f23262k;
+        if (message instanceof TLRPC.TL_message_secret) {
+            if ((((n1(message) instanceof TLRPC.TL_messageMediaPhoto) || t3(this.f23262k)) && (i7 = this.f23262k.ttl) > 0 && i7 <= 60) || R4(this.f23262k) || h4() || L4(this.f23262k)) {
+                return true;
+            }
+            return false;
+        } else if ((message instanceof TLRPC.TL_message) && n1(message) != null && n1(this.f23262k).ttl_seconds != 0 && ((n1(this.f23262k) instanceof TLRPC.TL_messageMediaPhoto) || (n1(this.f23262k) instanceof TLRPC.TL_messageMediaDocument))) {
+            return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
-    public boolean l5() {
+    public final boolean l5() {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.l5():boolean");
     }
 
@@ -6611,12 +6601,12 @@ public class ij {
     public final void m0(TLRPC.User user) {
         TLRPC.TL_game tL_game;
         int i7 = this.I1;
-        if (user == null && q3()) {
+        if (user == null && p3()) {
             user = qp.s1(i7).a2(Long.valueOf(this.f23262k.from_id.user_id));
         }
         ij ijVar = this.C;
-        if (ijVar != null && n1(ijVar) != null && n1(this.C).game != null) {
-            tL_game = n1(this.C).game;
+        if (ijVar != null && m1(ijVar) != null && m1(this.C).game != null) {
+            tL_game = m1(this.C).game;
         } else {
             tL_game = null;
         }
@@ -6625,106 +6615,33 @@ public class ij {
                 this.v = id.a0("ActionYouScored", null, 2131754492, id.G(this.f23262k.action.score, "Points", new Object[0]));
                 return;
             } else {
-                this.v = F5(id.a0("ActionUserScored", null, 2131754506, id.G(this.f23262k.action.score, "Points", new Object[0])), "un1", user);
+                this.v = E5(id.a0("ActionUserScored", null, 2131754506, id.G(this.f23262k.action.score, "Points", new Object[0])), "un1", user);
                 return;
             }
         }
         if (user != null && user.f27105id == p10.i(i7).e()) {
             this.v = id.a0("ActionYouScoredInGame", null, 2131754491, id.G(this.f23262k.action.score, "Points", new Object[0]));
         } else {
-            this.v = F5(id.a0("ActionUserScoredInGame", null, 2131754505, id.G(this.f23262k.action.score, "Points", new Object[0])), "un1", user);
+            this.v = E5(id.a0("ActionUserScoredInGame", null, 2131754505, id.G(this.f23262k.action.score, "Points", new Object[0])), "un1", user);
         }
-        this.v = F5(this.v, "un2", tL_game);
-    }
-
-    public final int m1() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.m1():int");
-    }
-
-    public final ArrayList m2() {
-        TLRPC.WebPage webPage;
-        TL_iv.Page page;
-        ArrayList arrayList = new ArrayList();
-        if (o1(this.f23262k) != null && o1(this.f23262k).webpage != null && (page = (webPage = o1(this.f23262k).webpage).cached_page) != null) {
-            ArrayList<TL_iv.PageBlock> arrayList2 = page.blocks;
-            for (int i7 = 0; i7 < arrayList2.size(); i7++) {
-                TL_iv.PageBlock pageBlock = arrayList2.get(i7);
-                if (pageBlock instanceof TL_iv.pageBlockSlideshow) {
-                    TL_iv.pageBlockSlideshow pageblockslideshow = (TL_iv.pageBlockSlideshow) pageBlock;
-                    for (int i10 = 0; i10 < pageblockslideshow.items.size(); i10++) {
-                        arrayList.add(s1(webPage, pageblockslideshow.items.get(i10)));
-                    }
-                } else if (pageBlock instanceof TL_iv.pageBlockCollage) {
-                    TL_iv.pageBlockCollage pageblockcollage = (TL_iv.pageBlockCollage) pageBlock;
-                    for (int i11 = 0; i11 < pageblockcollage.items.size(); i11++) {
-                        arrayList.add(s1(webPage, pageblockcollage.items.get(i11)));
-                    }
-                }
-            }
-        }
-        return arrayList;
-    }
-
-    public final boolean m4() {
-        int i7;
-        TLRPC.Message message = this.f23262k;
-        if (message instanceof TLRPC.TL_message_secret) {
-            if ((((o1(message) instanceof TLRPC.TL_messageMediaPhoto) || u3(this.f23262k)) && (i7 = this.f23262k.ttl) > 0 && i7 <= 60) || S4(this.f23262k) || i4() || M4(this.f23262k)) {
-                return true;
-            }
-            return false;
-        } else if ((message instanceof TLRPC.TL_message) && o1(message) != null && o1(this.f23262k).ttl_seconds != 0 && ((o1(this.f23262k) instanceof TLRPC.TL_messageMediaPhoto) || (o1(this.f23262k) instanceof TLRPC.TL_messageMediaDocument))) {
-            return true;
-        } else {
-            return false;
-        }
+        this.v = E5(this.v, "un2", tL_game);
     }
 
     public final boolean m5() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.m5():boolean");
-    }
-
-    public final void n(CharSequence charSequence) {
-        TLRPC.Message message;
-        ij ijVar = this.C;
-        if (ijVar != null) {
-            if (ijVar.f5()) {
-                h(Q3(), charSequence, false, 3, Integer.MAX_VALUE, false);
-            } else if (M4(ijVar.f23262k)) {
-                h(Q3(), charSequence, false, 3, (int) ijVar.L0(), false);
-            } else {
-                if (ijVar.J3() || S4(ijVar.f23262k)) {
-                    h(Q3(), charSequence, false, 4, (int) ijVar.L0(), false);
-                }
-                if (charSequence == this.v && (message = this.f23262k) != null) {
-                    TLRPC.MessageAction messageAction = message.action;
-                    if ((messageAction instanceof TLRPC.TL_messageActionTodoCompletions) || (messageAction instanceof TLRPC.TL_messageActionTodoAppendTasks)) {
-                        b6();
-                    }
-                }
-            }
-        }
-    }
-
-    public void n0(org.telegram.tgnet.TLRPC.User r35) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.n0(org.telegram.tgnet.TLRPC$User):void");
-    }
-
-    public final boolean n5() {
         if (!this.f23251h2) {
-            if (!r2()) {
+            if (!q2()) {
                 TLRPC.Message message = this.f23262k;
                 if (message instanceof TLRPC.TL_message_secret) {
-                    int max = Math.max(message.ttl, o1(message).ttl_seconds);
+                    int max = Math.max(message.ttl, n1(message).ttl_seconds);
                     if (max > 0) {
-                        if ((((o1(this.f23262k) instanceof TLRPC.TL_messageMediaPhoto) || M4(this.f23262k) || u3(this.f23262k)) && max <= 60) || i4()) {
+                        if ((((n1(this.f23262k) instanceof TLRPC.TL_messageMediaPhoto) || L4(this.f23262k) || t3(this.f23262k)) && max <= 60) || h4()) {
                             return true;
                         }
                         return false;
                     }
                     return false;
-                } else if ((message instanceof TLRPC.TL_message) && o1(message) != null && o1(this.f23262k).ttl_seconds != 0) {
-                    if ((o1(this.f23262k) instanceof TLRPC.TL_messageMediaPhoto) || (o1(this.f23262k) instanceof TLRPC.TL_messageMediaDocument)) {
+                } else if ((message instanceof TLRPC.TL_message) && n1(message) != null && n1(this.f23262k).ttl_seconds != 0) {
+                    if ((n1(this.f23262k) instanceof TLRPC.TL_messageMediaPhoto) || (n1(this.f23262k) instanceof TLRPC.TL_messageMediaDocument)) {
                         return true;
                     }
                     return false;
@@ -6737,30 +6654,33 @@ public class ij {
         return false;
     }
 
-    public final boolean o() {
-        TLRPC.MessageMedia o12 = o1(this.f23262k);
-        if (!(o12 instanceof TLRPC.TL_messageMediaToDo) || m3(this.f23262k)) {
-            return false;
-        }
-        TLRPC.TL_messageMediaToDo tL_messageMediaToDo = (TLRPC.TL_messageMediaToDo) o12;
-        if (tL_messageMediaToDo.todo.list.size() >= qp.s1(this.I1).R6) {
-            return false;
-        }
-        if (!Q3()) {
-            TLRPC.TodoList todoList = tL_messageMediaToDo.todo;
-            if (!todoList.others_can_complete || !todoList.others_can_append) {
-                return false;
+    public final void n(CharSequence charSequence) {
+        TLRPC.Message message;
+        ij ijVar = this.C;
+        if (ijVar != null) {
+            if (ijVar.e5()) {
+                h(P3(), charSequence, false, 3, Integer.MAX_VALUE, false);
+            } else if (L4(ijVar.f23262k)) {
+                h(P3(), charSequence, false, 3, (int) ijVar.L0(), false);
+            } else {
+                if (ijVar.I3() || R4(ijVar.f23262k)) {
+                    h(P3(), charSequence, false, 4, (int) ijVar.L0(), false);
+                }
+                if (charSequence == this.v && (message = this.f23262k) != null) {
+                    TLRPC.MessageAction messageAction = message.action;
+                    if ((messageAction instanceof TLRPC.TL_messageActionTodoCompletions) || (messageAction instanceof TLRPC.TL_messageActionTodoAppendTasks)) {
+                        a6();
+                    }
+                }
             }
-            return true;
         }
-        return true;
     }
 
-    public final void o0() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.o0():void");
+    public void n0(org.telegram.tgnet.TLRPC.User r35) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.n0(org.telegram.tgnet.TLRPC$User):void");
     }
 
-    public final void o2(ArrayList arrayList, String[] strArr, boolean z9, boolean z10) {
+    public final void n2(ArrayList arrayList, String[] strArr, boolean z9, boolean z10) {
         CharSequence charSequence;
         TLRPC.Message message;
         TLRPC.MessageReplyHeader messageReplyHeader;
@@ -6822,10 +6742,10 @@ public class ij {
                 CharSequence M2 = g0.M2(charSequence, " ", "\n");
                 if (z9 && (message = this.f23262k) != null && (messageReplyHeader = message.reply_to) != null && messageReplyHeader.quote_text != null) {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.f23262k.reply_to.quote_text);
-                    b(spannableStringBuilder, this.f23262k.reply_to.quote_entities, Q3(), false, false, false, 0);
+                    b(spannableStringBuilder, this.f23262k.reply_to.quote_entities, P3(), false, false, false, 0);
                     SpannableString spannableString = new SpannableString("q ");
                     org.telegram.ui.Components.wp wpVar = new org.telegram.ui.Components.wp(2131231966, 0);
-                    wpVar.f40024y = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28092q6, false);
+                    wpVar.f40124y = org.telegram.ui.ActionBar.l6.x0(null, org.telegram.ui.ActionBar.l6.f28105q6, false);
                     spannableString.setSpan(wpVar, 0, 1, 33);
                     M2 = new SpannableStringBuilder(spannableString).append((CharSequence) spannableStringBuilder).append('\n').append(M2);
                 }
@@ -6846,11 +6766,11 @@ public class ij {
         }
     }
 
-    public final boolean o3() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.o3():boolean");
+    public final boolean n3() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.n3():boolean");
     }
 
-    public final boolean o4() {
+    public final boolean n4() {
         int i7;
         TLRPC.Message message = this.f23262k;
         if (message.send_state != 2 || message.f26977id >= 0) {
@@ -6872,66 +6792,34 @@ public class ij {
         return true;
     }
 
-    public boolean o5() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.o5():boolean");
+    public boolean n5() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.n5():boolean");
     }
 
-    public final void p0(TLRPC.User user, boolean z9) {
-        String str;
-        String str2;
-        if (user == null) {
-            user = qp.s1(this.I1).a2(Long.valueOf(B0(this.f23262k)));
+    public final boolean o() {
+        TLRPC.MessageMedia n1 = n1(this.f23262k);
+        if (!(n1 instanceof TLRPC.TL_messageMediaToDo) || l3(this.f23262k)) {
+            return false;
         }
-        if (user != null) {
-            str = t10.j(user, true);
-        } else {
-            str = "";
+        TLRPC.TL_messageMediaToDo tL_messageMediaToDo = (TLRPC.TL_messageMediaToDo) n1;
+        if (tL_messageMediaToDo.todo.list.size() >= qp.s1(this.I1).R6) {
+            return false;
         }
-        try {
-            if ("XTR".equals(this.f23262k.action.currency)) {
-                str2 = "XTR " + this.f23262k.action.total_amount;
-            } else {
-                id E0 = id.E0();
-                TLRPC.MessageAction messageAction = this.f23262k.action;
-                str2 = E0.p(messageAction.total_amount, messageAction.currency);
+        if (!P3()) {
+            TLRPC.TodoList todoList = tL_messageMediaToDo.todo;
+            if (!todoList.others_can_complete || !todoList.others_can_append) {
+                return false;
             }
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            str2 = "<error>";
+            return true;
         }
-        ij ijVar = this.C;
-        if (ijVar != null && (n1(ijVar) instanceof TLRPC.TL_messageMediaInvoice)) {
-            TLRPC.MessageAction messageAction2 = this.f23262k.action;
-            if (messageAction2.subscription_until_date != 0) {
-                if (z9) {
-                    this.v = id.a0(null, null, 2131747365, str, str2, n1(this.C).title, id.x(this.f23262k.action.subscription_until_date, false));
-                } else {
-                    this.v = id.a0(null, null, 2131747361, str2, str, n1(this.C).title, id.x(this.f23262k.action.subscription_until_date, false));
-                }
-            } else if (messageAction2.recurring_init && !z9) {
-                this.v = id.a0(null, null, 2131747362, str2, str, n1(this.C).title);
-            } else {
-                this.v = id.a0(null, null, 2131747367, str2, str, n1(this.C).title);
-            }
-        } else {
-            TLRPC.MessageAction messageAction3 = this.f23262k.action;
-            int i7 = messageAction3.subscription_until_date;
-            if (i7 != 0) {
-                if (z9) {
-                    this.v = id.a0(null, null, 2131747366, str, str2, id.x(i7, false));
-                } else {
-                    this.v = id.a0(null, null, 2131747360, str2, str, id.x(i7, false));
-                }
-            } else if (messageAction3.recurring_init && !z9) {
-                this.v = id.a0(null, null, 2131747363, str2, str);
-            } else {
-                this.v = id.a0(null, null, 2131747364, str2, str);
-            }
-        }
-        this.v = bi.dd.T0(this.v);
+        return true;
     }
 
-    public final int p1() {
+    public final void o0() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.o0():void");
+    }
+
+    public final int o1() {
         boolean z9 = this.f23307w0;
         if (this.f23311x0) {
             return (z9 ? 1 : 0) | 2;
@@ -6939,20 +6827,20 @@ public class ij {
         return z9 ? 1 : 0;
     }
 
-    public final boolean p2() {
-        if (o1(this.f23262k) instanceof TLRPC.TL_messageMediaPhoto) {
-            if (o1(this.f23262k).photo == null || !o1(this.f23262k).photo.has_stickers) {
+    public final boolean o2() {
+        if (n1(this.f23262k) instanceof TLRPC.TL_messageMediaPhoto) {
+            if (n1(this.f23262k).photo == null || !n1(this.f23262k).photo.has_stickers) {
                 return false;
             }
             return true;
-        } else if (!(o1(this.f23262k) instanceof TLRPC.TL_messageMediaDocument)) {
+        } else if (!(n1(this.f23262k) instanceof TLRPC.TL_messageMediaDocument)) {
             return false;
         } else {
-            return W2(o1(this.f23262k).document);
+            return V2(n1(this.f23262k).document);
         }
     }
 
-    public final boolean p3() {
+    public final boolean o3() {
         TLRPC.Message message = this.f23262k;
         if (message == null) {
             return false;
@@ -6971,7 +6859,7 @@ public class ij {
         return true;
     }
 
-    public final boolean p4() {
+    public final boolean o4() {
         TLRPC.Message message = this.f23262k;
         if (message.send_state == 1 && message.f26977id < 0) {
             return true;
@@ -6979,7 +6867,7 @@ public class ij {
         return false;
     }
 
-    public boolean p5() {
+    public boolean o5() {
         TLRPC.Message message;
         TLRPC.MessageFwdHeader messageFwdHeader;
         if (!this.f23251h2 && !this.S2 && B0(this.f23262k) != 489000) {
@@ -6987,19 +6875,19 @@ public class ij {
             int i7 = this.I1;
             if (z9) {
                 long j3 = p10.i(i7).f24489n;
-                long R1 = R1(j3, this.f23262k);
-                if (R1 != j3 && R1 != 2666000 && (message = this.f23262k) != null && (messageFwdHeader = message.fwd_from) != null) {
+                long Q1 = Q1(j3, this.f23262k);
+                if (Q1 != j3 && Q1 != 2666000 && (message = this.f23262k) != null && (messageFwdHeader = message.fwd_from) != null) {
                     if (messageFwdHeader.from_id != null || messageFwdHeader.saved_from_id != null) {
                         return true;
                     }
                     return false;
                 }
                 return false;
-            } else if (this.D != 27 && !s4() && !this.A2 && !this.f23289r1 && !this.f23281p1 && this.T == 0) {
+            } else if (this.D != 27 && !r4() && !this.A2 && !this.f23289r1 && !this.f23281p1 && this.T == 0) {
                 if (this.f23274n2 != 2) {
                     TLRPC.Message message2 = this.f23262k;
                     if (!message2.noforwards) {
-                        if (message2.fwd_from != null && !Q3()) {
+                        if (message2.fwd_from != null && !P3()) {
                             TLRPC.Message message3 = this.f23262k;
                             if (message3.fwd_from.saved_from_peer != null && B0(message3) == p10.i(i7).e()) {
                                 return true;
@@ -7008,16 +6896,16 @@ public class ij {
                         int i10 = this.D;
                         if (i10 != 13 && i10 != 15 && i10 != 19) {
                             TLRPC.MessageFwdHeader messageFwdHeader2 = this.f23262k.fwd_from;
-                            if (messageFwdHeader2 == null || !(messageFwdHeader2.from_id instanceof TLRPC.TL_peerChannel) || Q3()) {
-                                if (q3()) {
+                            if (messageFwdHeader2 == null || !(messageFwdHeader2.from_id instanceof TLRPC.TL_peerChannel) || P3()) {
+                                if (p3()) {
                                     TLRPC.User a22 = qp.s1(i7).a2(Long.valueOf(this.f23262k.from_id.user_id));
                                     if (a22 == null || !a22.bot || (!"reviews_bot".equals(t10.n(a22)) && !"ReviewInsightsBot".equals(t10.n(a22)))) {
-                                        if (!(o1(this.f23262k) instanceof TLRPC.TL_messageMediaEmpty) && o1(this.f23262k) != null) {
-                                            if (!(o1(this.f23262k) instanceof TLRPC.TL_messageMediaWebPage) || (o1(this.f23262k).webpage instanceof TLRPC.TL_webPage)) {
-                                                if (a22 == null || !a22.bot || q2()) {
-                                                    if (!O3()) {
-                                                        if (!(o1(this.f23262k) instanceof TLRPC.TL_messageMediaGame)) {
-                                                            if ((!(o1(this.f23262k) instanceof TLRPC.TL_messageMediaInvoice) || q2()) && !(o1(this.f23262k) instanceof TLRPC.TL_messageMediaWebPage)) {
+                                        if (!(n1(this.f23262k) instanceof TLRPC.TL_messageMediaEmpty) && n1(this.f23262k) != null) {
+                                            if (!(n1(this.f23262k) instanceof TLRPC.TL_messageMediaWebPage) || (n1(this.f23262k).webpage instanceof TLRPC.TL_webPage)) {
+                                                if (a22 == null || !a22.bot || p2()) {
+                                                    if (!N3()) {
+                                                        if (!(n1(this.f23262k) instanceof TLRPC.TL_messageMediaGame)) {
+                                                            if ((!(n1(this.f23262k) instanceof TLRPC.TL_messageMediaInvoice) || p2()) && !(n1(this.f23262k) instanceof TLRPC.TL_messageMediaWebPage)) {
                                                                 TLRPC.Peer peer = this.f23262k.peer_id;
                                                                 TLRPC.Chat chat = null;
                                                                 if (peer != null) {
@@ -7026,7 +6914,7 @@ public class ij {
                                                                         chat = w0(null, null, j10);
                                                                     }
                                                                 }
-                                                                if (t3.T(chat) && chat.megagroup && t3.t0(chat) && !(o1(this.f23262k) instanceof TLRPC.TL_messageMediaContact) && !(o1(this.f23262k) instanceof TLRPC.TL_messageMediaGeo)) {
+                                                                if (t3.T(chat) && chat.megagroup && t3.t0(chat) && !(n1(this.f23262k) instanceof TLRPC.TL_messageMediaContact) && !(n1(this.f23262k) instanceof TLRPC.TL_messageMediaGeo)) {
                                                                     return true;
                                                                 }
                                                                 return false;
@@ -7047,8 +6935,8 @@ public class ij {
                                 }
                                 TLRPC.Message message4 = this.f23262k;
                                 if ((message4.from_id instanceof TLRPC.TL_peerChannel) || message4.post) {
-                                    if (!(o1(message4) instanceof TLRPC.TL_messageMediaWebPage) || Q3()) {
-                                        if (!B4()) {
+                                    if (!(n1(message4) instanceof TLRPC.TL_messageMediaWebPage) || P3()) {
+                                        if (!A4()) {
                                             TLRPC.Message message5 = this.f23262k;
                                             if (message5.peer_id.channel_id != 0) {
                                                 if (message5.via_bot_id != 0 || message5.reply_to != null) {
@@ -7082,197 +6970,62 @@ public class ij {
         return false;
     }
 
-    public final boolean q() {
-        TLRPC.MessageMedia o12 = o1(this.f23262k);
-        if (!(o12 instanceof TLRPC.TL_messageMediaToDo) || m3(this.f23262k)) {
-            return false;
+    public final void p0(TLRPC.User user, boolean z9) {
+        String str;
+        String str2;
+        if (user == null) {
+            user = qp.s1(this.I1).a2(Long.valueOf(B0(this.f23262k)));
         }
-        TLRPC.TL_messageMediaToDo tL_messageMediaToDo = (TLRPC.TL_messageMediaToDo) o12;
-        if (!Q3() && !tL_messageMediaToDo.todo.others_can_complete) {
-            return false;
+        if (user != null) {
+            str = t10.j(user, true);
+        } else {
+            str = "";
         }
-        return true;
-    }
-
-    public final void q0(TLRPC.Chat chat, TLRPC.User user) {
-        boolean z9;
-        String p10;
-        if (user == null && chat == null) {
-            boolean q32 = q3();
-            int i7 = this.I1;
-            if (q32) {
-                user = qp.s1(i7).a2(Long.valueOf(this.f23262k.from_id.user_id));
+        try {
+            if ("XTR".equals(this.f23262k.action.currency)) {
+                str2 = "XTR " + this.f23262k.action.total_amount;
+            } else {
+                id E0 = id.E0();
+                TLRPC.MessageAction messageAction = this.f23262k.action;
+                str2 = E0.p(messageAction.total_amount, messageAction.currency);
             }
-            if (user == null) {
-                TLRPC.Peer peer = this.f23262k.peer_id;
-                if (peer instanceof TLRPC.TL_peerChannel) {
-                    chat = qp.s1(i7).M0(Long.valueOf(this.f23262k.peer_id.channel_id));
-                } else if (peer instanceof TLRPC.TL_peerChat) {
-                    chat = qp.s1(i7).M0(Long.valueOf(this.f23262k.peer_id.chat_id));
-                }
-            }
+        } catch (Exception e10) {
+            a8.g(e10, true);
+            str2 = "<error>";
         }
         ij ijVar = this.C;
-        if (ijVar != null) {
-            TLRPC.Message message = ijVar.f23262k;
-            if (!(message instanceof TLRPC.TL_messageEmpty) && !(message.action instanceof TLRPC.TL_messageActionHistoryClear)) {
-                if (ijVar.J3()) {
-                    String M0 = id.M0(2131754594, null);
-                    if (user != 0) {
-                        chat = user;
-                    }
-                    this.v = F5(M0, "un1", chat);
-                    return;
-                } else if (M4(this.C.f23262k)) {
-                    String M02 = id.M0(2131754586, null);
-                    if (user != 0) {
-                        chat = user;
-                    }
-                    this.v = F5(M02, "un1", chat);
-                    return;
-                } else if (u3(this.C.f23262k)) {
-                    String M03 = id.M0(2131754595, null);
-                    if (user != 0) {
-                        chat = user;
-                    }
-                    this.v = F5(M03, "un1", chat);
-                    return;
-                } else if (S4(this.C.f23262k)) {
-                    String M04 = id.M0(2131754585, null);
-                    if (user != 0) {
-                        chat = user;
-                    }
-                    this.v = F5(M04, "un1", chat);
-                    return;
-                } else if (this.C.i4()) {
-                    String M05 = id.M0(2131754589, null);
-                    if (user != 0) {
-                        chat = user;
-                    }
-                    this.v = F5(M05, "un1", chat);
-                    return;
-                } else if ((this.C.u4() || this.C.K2()) && !this.C.H2()) {
-                    String M06 = id.M0(2131754588, null);
-                    if (user != 0) {
-                        chat = user;
-                    }
-                    this.v = F5(M06, "un1", chat);
-                    return;
-                } else if (n1(this.C) instanceof TLRPC.TL_messageMediaDocument) {
-                    String M07 = id.M0(2131754599, null);
-                    if (user != 0) {
-                        chat = user;
-                    }
-                    this.v = F5(M07, "un1", chat);
-                    return;
-                } else if (n1(this.C) instanceof TLRPC.TL_messageMediaGeo) {
-                    String M08 = id.M0(2131754597, null);
-                    if (user != 0) {
-                        chat = user;
-                    }
-                    this.v = F5(M08, "un1", chat);
-                    return;
-                } else if (n1(this.C) instanceof TLRPC.TL_messageMediaGeoLive) {
-                    String M09 = id.M0(2131754596, null);
-                    if (user != 0) {
-                        chat = user;
-                    }
-                    this.v = F5(M09, "un1", chat);
-                    return;
-                } else if (n1(this.C) instanceof TLRPC.TL_messageMediaContact) {
-                    String M010 = id.M0(2131754600, null);
-                    if (user != 0) {
-                        chat = user;
-                    }
-                    this.v = F5(M010, "un1", chat);
-                    return;
-                } else if (n1(this.C) instanceof TLRPC.TL_messageMediaPoll) {
-                    if (((TLRPC.TL_messageMediaPoll) n1(this.C)).poll.quiz) {
-                        String M011 = id.M0(2131754590, null);
-                        if (user != 0) {
-                            chat = user;
-                        }
-                        this.v = F5(M011, "un1", chat);
-                        return;
-                    }
-                    String M012 = id.M0(2131754591, null);
-                    if (user != 0) {
-                        chat = user;
-                    }
-                    this.v = F5(M012, "un1", chat);
-                    return;
-                } else if (n1(this.C) instanceof TLRPC.TL_messageMediaPhoto) {
-                    String M013 = id.M0(2131754592, null);
-                    if (user != 0) {
-                        chat = user;
-                    }
-                    this.v = F5(M013, "un1", chat);
-                    return;
-                } else if (n1(this.C) instanceof TLRPC.TL_messageMediaPaidMedia) {
-                    TLRPC.TL_messageMediaPaidMedia tL_messageMediaPaidMedia = (TLRPC.TL_messageMediaPaidMedia) n1(this.C);
-                    if (chat != null) {
-                        p10 = chat.title;
-                    } else {
-                        p10 = t10.p(user);
-                    }
-                    this.v = id.G((int) tL_messageMediaPaidMedia.stars_amount, "NotificationPinnedPaidMedia", p10);
-                    return;
-                } else if (n1(this.C) instanceof TLRPC.TL_messageMediaGame) {
-                    String a02 = id.a0("ActionPinnedGame", null, 2131754598, "🎮 " + n1(this.C).game.title);
-                    if (user != 0) {
-                        chat = user;
-                    }
-                    CharSequence F5 = F5(a02, "un1", chat);
-                    this.v = F5;
-                    this.v = i6.m(F5, org.telegram.ui.ActionBar.k6.f28049o2.getFontMetricsInt(), false, null, 0);
-                    return;
+        if (ijVar != null && (m1(ijVar) instanceof TLRPC.TL_messageMediaInvoice)) {
+            TLRPC.MessageAction messageAction2 = this.f23262k.action;
+            if (messageAction2.subscription_until_date != 0) {
+                if (z9) {
+                    this.v = id.a0(null, null, 2131747364, str, str2, m1(this.C).title, id.x(this.f23262k.action.subscription_until_date, false));
                 } else {
-                    CharSequence charSequence = this.C.v;
-                    if (charSequence != null && charSequence.length() > 0) {
-                        CharSequence cloneSpans = org.telegram.ui.Components.r5.cloneSpans(this.C.v);
-                        if (cloneSpans.length() > 20) {
-                            cloneSpans = cloneSpans.subSequence(0, 20);
-                            z9 = true;
-                        } else {
-                            z9 = false;
-                        }
-                        SpannableStringBuilder m10 = i6.m(cloneSpans, org.telegram.ui.ActionBar.k6.f28049o2.getFontMetricsInt(), true, null, 0);
-                        ij ijVar2 = this.C;
-                        if (ijVar2 != null && ijVar2.f23262k != null) {
-                            m10 = ijVar2.B5(m10, org.telegram.ui.ActionBar.k6.f28049o2.getFontMetricsInt());
-                        }
-                        ui.h(this.C, (Spannable) m10);
-                        if (z9) {
-                            if (m10 instanceof SpannableStringBuilder) {
-                                ((SpannableStringBuilder) m10).append((CharSequence) "...");
-                            } else if (m10 != null) {
-                                m10 = new SpannableStringBuilder(m10).append((CharSequence) "...");
-                            }
-                        }
-                        SpannableStringBuilder m0 = g0.m0(id.M0(2131754587, null), m10);
-                        if (user != 0) {
-                            chat = user;
-                        }
-                        this.v = F5(m0, "un1", chat);
-                        return;
-                    }
-                    String M014 = id.M0(2131754593, null);
-                    if (user != 0) {
-                        chat = user;
-                    }
-                    this.v = F5(M014, "un1", chat);
-                    return;
+                    this.v = id.a0(null, null, 2131747360, str2, str, m1(this.C).title, id.x(this.f23262k.action.subscription_until_date, false));
                 }
+            } else if (messageAction2.recurring_init && !z9) {
+                this.v = id.a0(null, null, 2131747361, str2, str, m1(this.C).title);
+            } else {
+                this.v = id.a0(null, null, 2131747366, str2, str, m1(this.C).title);
+            }
+        } else {
+            TLRPC.MessageAction messageAction3 = this.f23262k.action;
+            int i7 = messageAction3.subscription_until_date;
+            if (i7 != 0) {
+                if (z9) {
+                    this.v = id.a0(null, null, 2131747365, str, str2, id.x(i7, false));
+                } else {
+                    this.v = id.a0(null, null, 2131747359, str2, str, id.x(i7, false));
+                }
+            } else if (messageAction3.recurring_init && !z9) {
+                this.v = id.a0(null, null, 2131747362, str2, str);
+            } else {
+                this.v = id.a0(null, null, 2131747363, str2, str);
             }
         }
-        String M015 = id.M0(2131754593, null);
-        if (user != null) {
-            chat = user;
-        }
-        this.v = F5(M015, "un1", chat);
+        this.v = bi.dd.T0(this.v);
     }
 
-    public final boolean q2() {
+    public final boolean p2() {
         TLRPC.MessageMedia messageMedia = this.f23262k.media;
         if (messageMedia != null && !(messageMedia instanceof TLRPC.TL_messageMediaPaidMedia) && !messageMedia.extended_media.isEmpty()) {
             return true;
@@ -7280,7 +7033,7 @@ public class ij {
         return false;
     }
 
-    public final boolean q3() {
+    public final boolean p3() {
         TLRPC.Message message = this.f23262k;
         if ((message.from_id instanceof TLRPC.TL_peerUser) && !message.post) {
             return true;
@@ -7288,14 +7041,14 @@ public class ij {
         return false;
     }
 
-    public final boolean q4() {
+    public final boolean p4() {
         int i7;
         TLRPC.Chat M0;
         Boolean bool = this.f23290r2;
         if (bool != null) {
             return bool.booleanValue();
         }
-        if (this.f23262k != null && (((i7 = this.D) == 1 || i7 == 3 || i7 == 9 || i7 == 8 || i7 == 5) && !this.f23319z0 && !this.f23251h2 && !Q3())) {
+        if (this.f23262k != null && (((i7 = this.D) == 1 || i7 == 3 || i7 == 9 || i7 == 8 || i7 == 5) && !this.f23319z0 && !this.f23251h2 && !P3())) {
             TLRPC.Message message = this.f23262k;
             if (message.send_state == 0) {
                 if (!message.restriction_reason.isEmpty()) {
@@ -7340,13 +7093,227 @@ public class ij {
         return false;
     }
 
-    public final boolean q5() {
+    public final boolean p5() {
         long B0 = B0(this.f23262k);
         int i7 = this.I1;
-        if (t3.o0(i7, B0) && Z0() != p10.i(i7).e() && !Q3()) {
+        if (t3.o0(i7, B0) && Z0() != p10.i(i7).e() && !P3()) {
             return true;
         }
         return false;
+    }
+
+    public final boolean q() {
+        TLRPC.MessageMedia n1 = n1(this.f23262k);
+        if (!(n1 instanceof TLRPC.TL_messageMediaToDo) || l3(this.f23262k)) {
+            return false;
+        }
+        TLRPC.TL_messageMediaToDo tL_messageMediaToDo = (TLRPC.TL_messageMediaToDo) n1;
+        if (!P3() && !tL_messageMediaToDo.todo.others_can_complete) {
+            return false;
+        }
+        return true;
+    }
+
+    public final void q0(TLRPC.Chat chat, TLRPC.User user) {
+        boolean z9;
+        String p10;
+        if (user == null && chat == null) {
+            boolean p32 = p3();
+            int i7 = this.I1;
+            if (p32) {
+                user = qp.s1(i7).a2(Long.valueOf(this.f23262k.from_id.user_id));
+            }
+            if (user == null) {
+                TLRPC.Peer peer = this.f23262k.peer_id;
+                if (peer instanceof TLRPC.TL_peerChannel) {
+                    chat = qp.s1(i7).M0(Long.valueOf(this.f23262k.peer_id.channel_id));
+                } else if (peer instanceof TLRPC.TL_peerChat) {
+                    chat = qp.s1(i7).M0(Long.valueOf(this.f23262k.peer_id.chat_id));
+                }
+            }
+        }
+        ij ijVar = this.C;
+        if (ijVar != null) {
+            TLRPC.Message message = ijVar.f23262k;
+            if (!(message instanceof TLRPC.TL_messageEmpty) && !(message.action instanceof TLRPC.TL_messageActionHistoryClear)) {
+                if (ijVar.I3()) {
+                    String M0 = id.M0(2131754594, null);
+                    if (user != 0) {
+                        chat = user;
+                    }
+                    this.v = E5(M0, "un1", chat);
+                    return;
+                } else if (L4(this.C.f23262k)) {
+                    String M02 = id.M0(2131754586, null);
+                    if (user != 0) {
+                        chat = user;
+                    }
+                    this.v = E5(M02, "un1", chat);
+                    return;
+                } else if (t3(this.C.f23262k)) {
+                    String M03 = id.M0(2131754595, null);
+                    if (user != 0) {
+                        chat = user;
+                    }
+                    this.v = E5(M03, "un1", chat);
+                    return;
+                } else if (R4(this.C.f23262k)) {
+                    String M04 = id.M0(2131754585, null);
+                    if (user != 0) {
+                        chat = user;
+                    }
+                    this.v = E5(M04, "un1", chat);
+                    return;
+                } else if (this.C.h4()) {
+                    String M05 = id.M0(2131754589, null);
+                    if (user != 0) {
+                        chat = user;
+                    }
+                    this.v = E5(M05, "un1", chat);
+                    return;
+                } else if ((this.C.t4() || this.C.J2()) && !this.C.G2()) {
+                    String M06 = id.M0(2131754588, null);
+                    if (user != 0) {
+                        chat = user;
+                    }
+                    this.v = E5(M06, "un1", chat);
+                    return;
+                } else if (m1(this.C) instanceof TLRPC.TL_messageMediaDocument) {
+                    String M07 = id.M0(2131754599, null);
+                    if (user != 0) {
+                        chat = user;
+                    }
+                    this.v = E5(M07, "un1", chat);
+                    return;
+                } else if (m1(this.C) instanceof TLRPC.TL_messageMediaGeo) {
+                    String M08 = id.M0(2131754597, null);
+                    if (user != 0) {
+                        chat = user;
+                    }
+                    this.v = E5(M08, "un1", chat);
+                    return;
+                } else if (m1(this.C) instanceof TLRPC.TL_messageMediaGeoLive) {
+                    String M09 = id.M0(2131754596, null);
+                    if (user != 0) {
+                        chat = user;
+                    }
+                    this.v = E5(M09, "un1", chat);
+                    return;
+                } else if (m1(this.C) instanceof TLRPC.TL_messageMediaContact) {
+                    String M010 = id.M0(2131754600, null);
+                    if (user != 0) {
+                        chat = user;
+                    }
+                    this.v = E5(M010, "un1", chat);
+                    return;
+                } else if (m1(this.C) instanceof TLRPC.TL_messageMediaPoll) {
+                    if (((TLRPC.TL_messageMediaPoll) m1(this.C)).poll.quiz) {
+                        String M011 = id.M0(2131754590, null);
+                        if (user != 0) {
+                            chat = user;
+                        }
+                        this.v = E5(M011, "un1", chat);
+                        return;
+                    }
+                    String M012 = id.M0(2131754591, null);
+                    if (user != 0) {
+                        chat = user;
+                    }
+                    this.v = E5(M012, "un1", chat);
+                    return;
+                } else if (m1(this.C) instanceof TLRPC.TL_messageMediaPhoto) {
+                    String M013 = id.M0(2131754592, null);
+                    if (user != 0) {
+                        chat = user;
+                    }
+                    this.v = E5(M013, "un1", chat);
+                    return;
+                } else if (m1(this.C) instanceof TLRPC.TL_messageMediaPaidMedia) {
+                    TLRPC.TL_messageMediaPaidMedia tL_messageMediaPaidMedia = (TLRPC.TL_messageMediaPaidMedia) m1(this.C);
+                    if (chat != null) {
+                        p10 = chat.title;
+                    } else {
+                        p10 = t10.p(user);
+                    }
+                    this.v = id.G((int) tL_messageMediaPaidMedia.stars_amount, "NotificationPinnedPaidMedia", p10);
+                    return;
+                } else if (m1(this.C) instanceof TLRPC.TL_messageMediaGame) {
+                    String a02 = id.a0("ActionPinnedGame", null, 2131754598, "🎮 " + m1(this.C).game.title);
+                    if (user != 0) {
+                        chat = user;
+                    }
+                    CharSequence E5 = E5(a02, "un1", chat);
+                    this.v = E5;
+                    this.v = i6.m(E5, org.telegram.ui.ActionBar.l6.f28062o2.getFontMetricsInt(), false, null, 0);
+                    return;
+                } else {
+                    CharSequence charSequence = this.C.v;
+                    if (charSequence != null && charSequence.length() > 0) {
+                        CharSequence cloneSpans = org.telegram.ui.Components.r5.cloneSpans(this.C.v);
+                        if (cloneSpans.length() > 20) {
+                            cloneSpans = cloneSpans.subSequence(0, 20);
+                            z9 = true;
+                        } else {
+                            z9 = false;
+                        }
+                        SpannableStringBuilder m10 = i6.m(cloneSpans, org.telegram.ui.ActionBar.l6.f28062o2.getFontMetricsInt(), true, null, 0);
+                        ij ijVar2 = this.C;
+                        if (ijVar2 != null && ijVar2.f23262k != null) {
+                            m10 = ijVar2.A5(m10, org.telegram.ui.ActionBar.l6.f28062o2.getFontMetricsInt());
+                        }
+                        ui.h(this.C, (Spannable) m10);
+                        if (z9) {
+                            if (m10 instanceof SpannableStringBuilder) {
+                                ((SpannableStringBuilder) m10).append((CharSequence) "...");
+                            } else if (m10 != null) {
+                                m10 = new SpannableStringBuilder(m10).append((CharSequence) "...");
+                            }
+                        }
+                        SpannableStringBuilder m0 = g0.m0(id.M0(2131754587, null), m10);
+                        if (user != 0) {
+                            chat = user;
+                        }
+                        this.v = E5(m0, "un1", chat);
+                        return;
+                    }
+                    String M014 = id.M0(2131754593, null);
+                    if (user != 0) {
+                        chat = user;
+                    }
+                    this.v = E5(M014, "un1", chat);
+                    return;
+                }
+            }
+        }
+        String M015 = id.M0(2131754593, null);
+        if (user != null) {
+            chat = user;
+        }
+        this.v = E5(M015, "un1", chat);
+    }
+
+    public final java.lang.CharSequence q1(org.telegram.tgnet.TLRPC.MessageMedia r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.q1(org.telegram.tgnet.TLRPC$MessageMedia):java.lang.CharSequence");
+    }
+
+    public final boolean q2() {
+        TLRPC.MessageMedia messageMedia = this.f23262k.media;
+        if (messageMedia == null || (messageMedia instanceof TLRPC.TL_messageMediaPaidMedia) || messageMedia.extended_media.isEmpty() || !(this.f23262k.media.extended_media.get(0) instanceof TLRPC.TL_messageExtendedMediaPreview)) {
+            return false;
+        }
+        return true;
+    }
+
+    public final boolean q3() {
+        return t3(this.f23262k);
+    }
+
+    public final boolean q4() {
+        TLRPC.Message message = this.f23262k;
+        if (message.send_state != 0 && message.f26977id <= 0) {
+            return false;
+        }
+        return true;
     }
 
     public final void r0(boolean z9) {
@@ -7362,12 +7329,12 @@ public class ij {
         ArrayList arrayList9;
         ArrayList arrayList10;
         ArrayList arrayList11;
-        if (r2()) {
+        if (q2()) {
             TLRPC.TL_messageExtendedMediaPreview tL_messageExtendedMediaPreview = (TLRPC.TL_messageExtendedMediaPreview) this.f23262k.media.extended_media.get(0);
             if (!z9) {
                 this.f23273n0 = new ArrayList(Collections.singletonList(tL_messageExtendedMediaPreview.thumb));
             } else {
-                d6(this.f23273n0, Collections.singletonList(tL_messageExtendedMediaPreview.thumb));
+                c6(this.f23273n0, Collections.singletonList(tL_messageExtendedMediaPreview.thumb));
             }
             this.f23267l0 = this.f23262k;
             if (this.G1 == null) {
@@ -7416,9 +7383,9 @@ public class ij {
             }
         } else if (this.f23272n == null && this.f23275o == null) {
             TLRPC.Photo photo2 = null;
-            if (o1(message) != null && !(o1(this.f23262k) instanceof TLRPC.TL_messageMediaEmpty)) {
-                if (o1(this.f23262k) instanceof TLRPC.TL_messageMediaPhoto) {
-                    TLRPC.Photo photo3 = o1(this.f23262k).photo;
+            if (n1(message) != null && !(n1(this.f23262k) instanceof TLRPC.TL_messageMediaEmpty)) {
+                if (n1(this.f23262k) instanceof TLRPC.TL_messageMediaPhoto) {
+                    TLRPC.Photo photo3 = n1(this.f23262k).photo;
                     if (z9 && ((arrayList10 = this.f23273n0) == null || arrayList10.size() == photo3.sizes.size())) {
                         ArrayList arrayList13 = this.f23273n0;
                         if (arrayList13 != null && !arrayList13.isEmpty()) {
@@ -7448,10 +7415,10 @@ public class ij {
                     } else {
                         this.f23273n0 = new ArrayList(photo3.sizes);
                     }
-                    this.f23267l0 = o1(this.f23262k).photo;
+                    this.f23267l0 = n1(this.f23262k).photo;
                     return;
-                } else if (o1(this.f23262k) instanceof TLRPC.TL_messageMediaDocument) {
-                    TLRPC.Photo photo4 = ((TLRPC.TL_messageMediaDocument) o1(this.f23262k)).video_cover;
+                } else if (n1(this.f23262k) instanceof TLRPC.TL_messageMediaDocument) {
+                    TLRPC.Photo photo4 = ((TLRPC.TL_messageMediaDocument) n1(this.f23262k)).video_cover;
                     if (photo4 != null) {
                         if (z9 && ((arrayList9 = this.f23273n0) == null || arrayList9.size() == photo4.sizes.size())) {
                             ArrayList arrayList14 = this.f23273n0;
@@ -7486,10 +7453,10 @@ public class ij {
                         return;
                     }
                     TLRPC.Document F0 = F0();
-                    if (X2(F0)) {
+                    if (W2(F0)) {
                         if (z9 && (arrayList8 = this.f23273n0) != null) {
                             if (!arrayList8.isEmpty()) {
-                                d6(this.f23273n0, F0.thumbs);
+                                c6(this.f23273n0, F0.thumbs);
                             }
                         } else {
                             ArrayList arrayList15 = new ArrayList();
@@ -7500,9 +7467,9 @@ public class ij {
                         return;
                     }
                     return;
-                } else if (o1(this.f23262k) instanceof TLRPC.TL_messageMediaGame) {
-                    TLRPC.Document document = o1(this.f23262k).game.document;
-                    if (document != null && X2(document)) {
+                } else if (n1(this.f23262k) instanceof TLRPC.TL_messageMediaGame) {
+                    TLRPC.Document document = n1(this.f23262k).game.document;
+                    if (document != null && W2(document)) {
                         if (!z9) {
                             ArrayList arrayList16 = new ArrayList();
                             this.f23273n0 = arrayList16;
@@ -7510,16 +7477,16 @@ public class ij {
                         } else {
                             ArrayList arrayList17 = this.f23273n0;
                             if (arrayList17 != null && !arrayList17.isEmpty()) {
-                                d6(this.f23273n0, document.thumbs);
+                                c6(this.f23273n0, document.thumbs);
                             }
                         }
                         this.f23267l0 = document;
                     }
-                    TLRPC.Photo photo5 = o1(this.f23262k).game.photo;
+                    TLRPC.Photo photo5 = n1(this.f23262k).game.photo;
                     if (photo5 != null) {
                         if (z9 && (arrayList7 = this.f23276o0) != null) {
                             if (!arrayList7.isEmpty()) {
-                                d6(this.f23276o0, photo5.sizes);
+                                c6(this.f23276o0, photo5.sizes);
                             }
                         } else {
                             this.f23276o0 = new ArrayList(photo5.sizes);
@@ -7534,20 +7501,20 @@ public class ij {
                         return;
                     }
                     return;
-                } else if (o1(this.f23262k) instanceof TLRPC.TL_messageMediaWebPage) {
-                    TLRPC.Photo photo6 = o1(this.f23262k).webpage.photo;
-                    TLRPC.Document document2 = o1(this.f23262k).webpage.document;
+                } else if (n1(this.f23262k) instanceof TLRPC.TL_messageMediaWebPage) {
+                    TLRPC.Photo photo6 = n1(this.f23262k).webpage.photo;
+                    TLRPC.Document document2 = n1(this.f23262k).webpage.document;
                     if (photo6 != null) {
                         if (z9 && (arrayList5 = this.f23273n0) != null) {
                             if (!arrayList5.isEmpty()) {
-                                d6(this.f23273n0, photo6.sizes);
+                                c6(this.f23273n0, photo6.sizes);
                             }
                         } else {
                             this.f23273n0 = new ArrayList(photo6.sizes);
                         }
                         this.f23267l0 = photo6;
                         return;
-                    } else if (document2 != null && X2(document2)) {
+                    } else if (document2 != null && W2(document2)) {
                         if (!z9) {
                             ArrayList arrayList18 = new ArrayList();
                             this.f23273n0 = arrayList18;
@@ -7555,7 +7522,7 @@ public class ij {
                         } else {
                             ArrayList arrayList19 = this.f23273n0;
                             if (arrayList19 != null && !arrayList19.isEmpty()) {
-                                d6(this.f23273n0, document2.thumbs);
+                                c6(this.f23273n0, document2.thumbs);
                             }
                         }
                         this.f23267l0 = document2;
@@ -7575,7 +7542,7 @@ public class ij {
                     photo2 = W(richMessage2.blocks, richMessage2);
                 }
                 if (a02 != null) {
-                    if (X2(a02)) {
+                    if (W2(a02)) {
                         if (!z9) {
                             ArrayList arrayList20 = new ArrayList();
                             this.f23273n0 = arrayList20;
@@ -7583,7 +7550,7 @@ public class ij {
                         } else {
                             ArrayList arrayList21 = this.f23273n0;
                             if (arrayList21 != null && !arrayList21.isEmpty()) {
-                                d6(this.f23273n0, a02.thumbs);
+                                c6(this.f23273n0, a02.thumbs);
                             }
                         }
                         this.f23267l0 = a02;
@@ -7593,7 +7560,7 @@ public class ij {
                 } else if (photo2 != null) {
                     if (z9 && (arrayList4 = this.f23273n0) != null) {
                         if (!arrayList4.isEmpty()) {
-                            d6(this.f23273n0, photo2.sizes);
+                            c6(this.f23273n0, photo2.sizes);
                         }
                     } else {
                         this.f23273n0 = new ArrayList(photo2.sizes);
@@ -7615,13 +7582,13 @@ public class ij {
                 if (photo7 != null) {
                     if (z9 && (arrayList3 = this.f23273n0) != null) {
                         if (!arrayList3.isEmpty()) {
-                            d6(this.f23273n0, photo7.sizes);
+                            c6(this.f23273n0, photo7.sizes);
                         }
                     } else {
                         this.f23273n0 = new ArrayList(photo7.sizes);
                     }
                     this.f23267l0 = photo7;
-                } else if (document3 != null && X2(document3)) {
+                } else if (document3 != null && W2(document3)) {
                     if (!z9) {
                         ArrayList arrayList22 = new ArrayList();
                         this.f23273n0 = arrayList22;
@@ -7629,7 +7596,7 @@ public class ij {
                     } else {
                         ArrayList arrayList23 = this.f23273n0;
                         if (arrayList23 != null && !arrayList23.isEmpty()) {
-                            d6(this.f23273n0, document3.thumbs);
+                            c6(this.f23273n0, document3.thumbs);
                         }
                     }
                     this.f23267l0 = document3;
@@ -7637,7 +7604,7 @@ public class ij {
             } else if (this.T0 != null) {
                 if (z9 && (arrayList2 = this.f23273n0) != null) {
                     if (!arrayList2.isEmpty()) {
-                        d6(this.f23273n0, this.T0.sizes);
+                        c6(this.f23273n0, this.T0.sizes);
                     }
                 } else {
                     this.f23273n0 = new ArrayList(this.T0.sizes);
@@ -7647,10 +7614,10 @@ public class ij {
                     Q();
                 }
             }
-        } else if (TextUtils.isEmpty(this.f23299u) && X2(this.f23272n)) {
+        } else if (TextUtils.isEmpty(this.f23299u) && W2(this.f23272n)) {
             if (z9 && (arrayList = this.f23273n0) != null) {
                 if (!arrayList.isEmpty()) {
-                    d6(this.f23273n0, this.f23272n.thumbs);
+                    c6(this.f23273n0, this.f23272n.thumbs);
                 }
             } else {
                 ArrayList arrayList24 = new ArrayList();
@@ -7661,48 +7628,7 @@ public class ij {
         }
     }
 
-    public final java.lang.CharSequence r1(org.telegram.tgnet.TLRPC.MessageMedia r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.r1(org.telegram.tgnet.TLRPC$MessageMedia):java.lang.CharSequence");
-    }
-
-    public final boolean r2() {
-        TLRPC.MessageMedia messageMedia = this.f23262k.media;
-        if (messageMedia == null || (messageMedia instanceof TLRPC.TL_messageMediaPaidMedia) || messageMedia.extended_media.isEmpty() || !(this.f23262k.media.extended_media.get(0) instanceof TLRPC.TL_messageExtendedMediaPreview)) {
-            return false;
-        }
-        return true;
-    }
-
-    public final boolean r3() {
-        return u3(this.f23262k);
-    }
-
-    public final boolean r4() {
-        TLRPC.Message message = this.f23262k;
-        if (message.send_state != 0 && message.f26977id <= 0) {
-            return false;
-        }
-        return true;
-    }
-
-    public boolean s(TLRPC.Chat chat, boolean z9) {
-        TLRPC.Message message;
-        boolean y42 = y4();
-        int i7 = this.I1;
-        if (!y42 || (message = this.f23262k) == null || message.dialog_id != p10.i(i7).e()) {
-            if ((this.T == 0 && this.P0 == null && r(i7, z9, this.f23262k, chat)) || d3(this.f23262k)) {
-                return true;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public final android.text.SpannableStringBuilder s0(java.lang.String r19, java.lang.String r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.s0(java.lang.String, java.lang.String):android.text.SpannableStringBuilder");
-    }
-
-    public final ij s1(TLRPC.WebPage webPage, TL_iv.PageBlock pageBlock) {
+    public final ij r1(TLRPC.WebPage webPage, TL_iv.PageBlock pageBlock) {
         TLRPC.TL_message tL_message = null;
         r2 = null;
         TLRPC.Photo photo = null;
@@ -7734,7 +7660,7 @@ public class ij {
                 tL_messageMediaPhoto.photo = photo;
                 tL_message = tL_message2;
                 tL_message.message = "";
-                tL_message.realId = f1();
+                tL_message.realId = e1();
                 tL_message.f26977id = Utilities.f21334b.nextInt();
                 TLRPC.Message message = this.f23262k;
                 tL_message.date = message.date;
@@ -7756,7 +7682,7 @@ public class ij {
             return this;
         }
         tL_message.message = "";
-        tL_message.realId = f1();
+        tL_message.realId = e1();
         tL_message.f26977id = Utilities.f21334b.nextInt();
         TLRPC.Message message2 = this.f23262k;
         tL_message.date = message2.date;
@@ -7766,7 +7692,7 @@ public class ij {
         return new ij(this.I1, tL_message, false, true);
     }
 
-    public final boolean s2() {
+    public final boolean r2() {
         ArrayList arrayList = this.Y1;
         if (arrayList != null && !arrayList.isEmpty()) {
             return true;
@@ -7774,14 +7700,14 @@ public class ij {
         return false;
     }
 
-    public final boolean s4() {
+    public final boolean r4() {
         if (this.P0 != null) {
             return true;
         }
         return false;
     }
 
-    public final nj s5() {
+    public final nj r5() {
         TLRPC.Message message;
         ij ijVar = this.C;
         if (ijVar != null && (message = ijVar.f23262k) != null) {
@@ -7798,24 +7724,24 @@ public class ij {
         return null;
     }
 
-    public final boolean t() {
-        if (!m4() && !f3(this.f23262k)) {
-            if (o1(this.f23262k) instanceof TLRPC.TL_messageMediaPhoto) {
+    public boolean s(TLRPC.Chat chat, boolean z9) {
+        TLRPC.Message message;
+        boolean x42 = x4();
+        int i7 = this.I1;
+        if (!x42 || (message = this.f23262k) == null || message.dialog_id != p10.i(i7).e()) {
+            if ((this.T == 0 && this.P0 == null && r(i7, z9, this.f23262k, chat)) || c3(this.f23262k)) {
                 return true;
             }
-            if (o1(this.f23262k) instanceof TLRPC.TL_messageMediaDocument) {
-                if (S4(this.f23262k) || u4() || K2() || i4()) {
-                    return false;
-                }
-                return true;
-            } else if (G3()) {
-                return true;
-            }
+            return false;
         }
-        return false;
+        return true;
     }
 
-    public final CharSequence t1(dj djVar, int[] iArr) {
+    public final android.text.SpannableStringBuilder s0(java.lang.String r19, java.lang.String r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.s0(java.lang.String, java.lang.String):android.text.SpannableStringBuilder");
+    }
+
+    public final CharSequence s1(dj djVar, int[] iArr) {
         String str;
         if (this.J2 || this.E0) {
             return null;
@@ -7827,8 +7753,8 @@ public class ij {
         if (i7 == 19 || i7 == 15 || i7 == 13) {
             return null;
         }
-        CharSequence V8 = org.telegram.ui.an.V8(this, djVar, iArr);
-        if (V8 == null && U3()) {
+        CharSequence W8 = org.telegram.ui.cn.W8(this, djVar, iArr);
+        if (W8 == null && T3()) {
             try {
                 TLRPC.Poll poll = ((TLRPC.TL_messageMediaPoll) this.f23262k.media).poll;
                 StringBuilder sb2 = new StringBuilder(poll.question.text);
@@ -7848,20 +7774,20 @@ public class ij {
                     }
                     sb2.append(str);
                 }
-                V8 = sb2.toString();
+                W8 = sb2.toString();
             } catch (Exception unused) {
             }
         }
-        if (V8 == null && H3(this.f23262k, true)) {
-            V8 = org.telegram.ui.an.X8(0L, this, false);
+        if (W8 == null && G3(this.f23262k, true)) {
+            W8 = org.telegram.ui.cn.Y8(0L, this, false);
         }
-        if (V8 != null && i6.d(V8)) {
+        if (W8 != null && i6.d(W8)) {
             return null;
         }
-        return V8;
+        return W8;
     }
 
-    public final boolean t2() {
+    public final boolean s2() {
         TLRPC.Message message;
         if (!this.E0 && !this.f23251h2 && (message = this.f23262k) != null) {
             if (!this.L2) {
@@ -7878,7 +7804,7 @@ public class ij {
         return false;
     }
 
-    public final boolean t4() {
+    public final boolean s4() {
         TLRPC.Message message = this.f23262k;
         if (message != null) {
             TLRPC.MessageAction messageAction = message.action;
@@ -7890,6 +7816,66 @@ public class ij {
         return false;
     }
 
+    public final boolean t() {
+        if (!l4() && !e3(this.f23262k)) {
+            if (n1(this.f23262k) instanceof TLRPC.TL_messageMediaPhoto) {
+                return true;
+            }
+            if (n1(this.f23262k) instanceof TLRPC.TL_messageMediaDocument) {
+                if (R4(this.f23262k) || t4() || J2() || h4()) {
+                    return false;
+                }
+                return true;
+            } else if (F3()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final String t1() {
+        TLRPC.Document F0 = F0();
+        if (F0 != null) {
+            return F0.mime_type;
+        }
+        if (n1(this.f23262k) instanceof TLRPC.TL_messageMediaInvoice) {
+            TLRPC.WebDocument webDocument = ((TLRPC.TL_messageMediaInvoice) n1(this.f23262k)).webPhoto;
+            if (webDocument != null) {
+                return webDocument.mime_type;
+            }
+            return "";
+        } else if (n1(this.f23262k) instanceof TLRPC.TL_messageMediaPhoto) {
+            return "image/jpeg";
+        } else {
+            if ((n1(this.f23262k) instanceof TLRPC.TL_messageMediaWebPage) && n1(this.f23262k).webpage.photo != null) {
+                return "image/jpeg";
+            }
+            return "";
+        }
+    }
+
+    public final boolean t2() {
+        TLRPC.MessageMedia messageMedia;
+        if ((!this.f23251h2 && (((messageMedia = this.f23262k.media) != null && messageMedia.spoiler) || m5())) || x3()) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean t4() {
+        int i7 = this.D;
+        if (i7 != 1000) {
+            if (i7 != 13) {
+                return false;
+            }
+            return true;
+        } else if (!u4(F0()) && !N4(F0())) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     public final boolean u(org.telegram.tgnet.TLRPC.Chat r12) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.u(org.telegram.tgnet.TLRPC$Chat):boolean");
     }
@@ -7898,47 +7884,23 @@ public class ij {
         return t0(F0(), z9);
     }
 
-    public final String u1() {
-        TLRPC.Document F0 = F0();
-        if (F0 != null) {
-            return F0.mime_type;
-        }
-        if (o1(this.f23262k) instanceof TLRPC.TL_messageMediaInvoice) {
-            TLRPC.WebDocument webDocument = ((TLRPC.TL_messageMediaInvoice) o1(this.f23262k)).webPhoto;
-            if (webDocument != null) {
-                return webDocument.mime_type;
-            }
-            return "";
-        } else if (o1(this.f23262k) instanceof TLRPC.TL_messageMediaPhoto) {
-            return "image/jpeg";
-        } else {
-            if ((o1(this.f23262k) instanceof TLRPC.TL_messageMediaWebPage) && o1(this.f23262k).webpage.photo != null) {
-                return "image/jpeg";
-            }
-            return "";
-        }
-    }
-
     public final boolean u2() {
-        TLRPC.MessageMedia messageMedia;
-        if ((!this.f23251h2 && (((messageMedia = this.f23262k.media) != null && messageMedia.spoiler) || n5())) || y3()) {
-            return true;
+        TLRPC.Message message = this.f23262k;
+        if (message != null && message.entities != null) {
+            for (int i7 = 0; i7 < this.f23262k.entities.size(); i7++) {
+                if (!(this.f23262k.entities.get(i7) instanceof TLRPC.TL_messageEntityCustomEmoji)) {
+                    return true;
+                }
+            }
         }
         return false;
     }
 
-    public final boolean u4() {
-        int i7 = this.D;
-        if (i7 != 1000) {
-            if (i7 != 13) {
-                return false;
-            }
-            return true;
-        } else if (!v4(F0()) && !O4(F0())) {
-            return false;
-        } else {
+    public final boolean u3() {
+        if (this.D == 26) {
             return true;
         }
+        return false;
     }
 
     public final boolean v(TLRPC.Chat chat) {
@@ -7962,11 +7924,10 @@ public class ij {
         return false;
     }
 
-    public final boolean v2() {
-        TLRPC.Message message = this.f23262k;
-        if (message != null && message.entities != null) {
-            for (int i7 = 0; i7 < this.f23262k.entities.size(); i7++) {
-                if (!(this.f23262k.entities.get(i7) instanceof TLRPC.TL_messageEntityCustomEmoji)) {
+    public final boolean v2(ch.o0 o0Var) {
+        if (w2() && o0Var != null) {
+            for (int i7 = 0; i7 < this.f23262k.reactions.results.size(); i7++) {
+                if (o0Var.f(this.f23262k.reactions.results.get(i7).reaction)) {
                     return true;
                 }
             }
@@ -7975,15 +7936,15 @@ public class ij {
     }
 
     public final boolean v3() {
-        if (this.D == 26) {
-            return true;
+        if (!u3() && !w3()) {
+            return false;
         }
-        return false;
+        return true;
     }
 
     public final boolean w() {
         int i7;
-        if (c4(this.f23262k) || (i7 = this.D) == 30 || i7 == 31 || i7 == 32 || i7 == 33 || i7 == 35 || i7 == 37 || (this.f23262k instanceof TLRPC.TL_message_secret) || n5() || D3() || this.D == 16 || s4() || this.f23262k.noforwards) {
+        if (b4(this.f23262k) || (i7 = this.D) == 30 || i7 == 31 || i7 == 32 || i7 == 33 || i7 == 35 || i7 == 37 || (this.f23262k instanceof TLRPC.TL_message_secret) || m5() || C3() || this.D == 16 || r4() || this.f23262k.noforwards) {
             return false;
         }
         return true;
@@ -8004,22 +7965,35 @@ public class ij {
         return chat;
     }
 
-    public final boolean w2(ch.o0 o0Var) {
-        if (x2() && o0Var != null) {
-            for (int i7 = 0; i7 < this.f23262k.reactions.results.size(); i7++) {
-                if (o0Var.f(this.f23262k.reactions.results.get(i7).reaction)) {
-                    return true;
-                }
-            }
+    public final java.lang.String w1(boolean r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.w1(boolean):java.lang.String");
+    }
+
+    public final boolean w2() {
+        TLRPC.TL_messageReactions tL_messageReactions = this.f23262k.reactions;
+        if (tL_messageReactions != null && !tL_messageReactions.results.isEmpty()) {
+            return true;
         }
         return false;
     }
 
     public final boolean w3() {
-        if (!v3() && !x3()) {
-            return false;
+        if (this.D == 28) {
+            return true;
         }
-        return true;
+        return false;
+    }
+
+    public final boolean w5() {
+        if (!S4() && F0() != null && yf.d.f59421i.contains(F0().mime_type) && F0().size < qp.s1(this.I1).f24831l4 * 2) {
+            for (int i7 = 0; i7 < F0().attributes.size(); i7++) {
+                TLRPC.DocumentAttribute documentAttribute = F0().attributes.get(i7);
+                if ((documentAttribute instanceof TLRPC.TL_documentAttributeAudio) && documentAttribute.duration < 5.0d) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public final boolean x() {
@@ -8037,33 +8011,24 @@ public class ij {
         return 0L;
     }
 
-    public final java.lang.String x1(boolean r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ij.x1(boolean):java.lang.String");
-    }
-
     public final boolean x2() {
-        TLRPC.TL_messageReactions tL_messageReactions = this.f23262k.reactions;
-        if (tL_messageReactions != null && !tL_messageReactions.results.isEmpty()) {
+        TLRPC.MessageReplies messageReplies = this.f23262k.replies;
+        if (messageReplies != null && messageReplies.replies > 0) {
             return true;
         }
         return false;
     }
 
     public final boolean x3() {
-        if (this.D == 28) {
+        if (p4() && !qp.s1(this.I1).S4()) {
             return true;
         }
         return false;
     }
 
-    public final boolean x5() {
-        if (!T4() && F0() != null && yf.d.f59412i.contains(F0().mime_type) && F0().size < qp.s1(this.I1).f24831l4 * 2) {
-            for (int i7 = 0; i7 < F0().attributes.size(); i7++) {
-                TLRPC.DocumentAttribute documentAttribute = F0().attributes.get(i7);
-                if ((documentAttribute instanceof TLRPC.TL_documentAttributeAudio) && documentAttribute.duration < 5.0d) {
-                    return true;
-                }
-            }
+    public final boolean x4() {
+        if (this.f23266l != null) {
+            return true;
         }
         return false;
     }
@@ -8080,40 +8045,7 @@ public class ij {
         return arrayList;
     }
 
-    public final boolean y2() {
-        TLRPC.MessageReplies messageReplies = this.f23262k.replies;
-        if (messageReplies != null && messageReplies.replies > 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean y3() {
-        if (q4() && !qp.s1(this.I1).S4()) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean y4() {
-        if (this.f23266l != null) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean z() {
-        if (d3(this.f23262k)) {
-            return false;
-        }
-        TLRPC.Message message = this.f23262k;
-        if (message instanceof TLRPC.TL_messageService) {
-            return message.reactions_are_possible;
-        }
-        return true;
-    }
-
-    public final String z1(boolean z9) {
+    public final String y1(boolean z9) {
         TLRPC.Document F0 = F0();
         if (F0 != null) {
             for (int i7 = 0; i7 < F0.attributes.size(); i7++) {
@@ -8135,18 +8067,18 @@ public class ij {
                     }
                     return B;
                 } else if ((documentAttribute instanceof TLRPC.TL_documentAttributeVideo) && documentAttribute.round_message) {
-                    if (c4(this.f23262k)) {
+                    if (b4(this.f23262k)) {
                         StringBuilder sb2 = new StringBuilder("/");
-                        String K1 = K1(this.f23262k);
-                        if (K1 == null) {
-                            kg.s1 c10 = kg.t1.f(this.I1).c(J1(this.f23262k));
+                        String J1 = J1(this.f23262k);
+                        if (J1 == null) {
+                            kg.s1 c10 = kg.t1.f(this.I1).c(I1(this.f23262k));
                             if (c10 != null) {
-                                K1 = c10.f17533b;
+                                J1 = c10.f17533b;
                             } else {
-                                K1 = "";
+                                J1 = "";
                             }
                         }
-                        sb2.append(K1);
+                        sb2.append(J1);
                         return id.a0(null, null, 2131752726, sb2.toString());
                     }
                     return id.s(this.f23262k.date, true);
@@ -8160,7 +8092,7 @@ public class ij {
         return id.M0(2131753899, null);
     }
 
-    public final boolean z2() {
+    public final boolean y2() {
         TLRPC.MessageMedia messageMedia = this.f23262k.media;
         if (messageMedia == null || (messageMedia instanceof TLRPC.TL_messageMediaPaidMedia) || messageMedia.extended_media.isEmpty() || !(this.f23262k.media.extended_media.get(0) instanceof TLRPC.TL_messageExtendedMedia)) {
             return false;
@@ -8168,7 +8100,7 @@ public class ij {
         return true;
     }
 
-    public final boolean z3() {
+    public final boolean y3() {
         TLRPC.MessageFwdHeader messageFwdHeader = this.f23262k.fwd_from;
         if (messageFwdHeader != null && messageFwdHeader.imported) {
             return true;
@@ -8176,9 +8108,69 @@ public class ij {
         return false;
     }
 
-    public final boolean z4() {
+    public final boolean y4() {
         TLRPC.Message message = this.f23262k;
         if (message != null && (message.media instanceof TLRPC.TL_messageMediaStory)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean z() {
+        if (c3(this.f23262k)) {
+            return false;
+        }
+        TLRPC.Message message = this.f23262k;
+        if (message instanceof TLRPC.TL_messageService) {
+            return message.reactions_are_possible;
+        }
+        return true;
+    }
+
+    public final Long z1() {
+        TLRPC.TL_messageReactions tL_messageReactions;
+        ArrayList<TLRPC.MessageReactor> arrayList;
+        TLRPC.Message message = this.f23262k;
+        if (message == null || (tL_messageReactions = message.reactions) == null || (arrayList = tL_messageReactions.top_reactors) == null) {
+            return null;
+        }
+        int size = arrayList.size();
+        int i7 = 0;
+        while (i7 < size) {
+            TLRPC.MessageReactor messageReactor = arrayList.get(i7);
+            i7++;
+            TLRPC.MessageReactor messageReactor2 = messageReactor;
+            if (messageReactor2 != null && messageReactor2.my) {
+                if (messageReactor2.anonymous) {
+                    return 2666000L;
+                }
+                TLRPC.Peer peer = messageReactor2.peer_id;
+                if (peer != null) {
+                    return Long.valueOf(m5.o(peer));
+                }
+            }
+        }
+        return null;
+    }
+
+    public final boolean z2() {
+        int i7;
+        if (c1() != 0) {
+            ArrayList arrayList = this.f23273n0;
+            if ((arrayList != null && !arrayList.isEmpty()) || (i7 = this.D) == 3 || i7 == 1 || I3() || U2()) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final boolean z3() {
+        return n1(this.f23262k) instanceof TLRPC.TL_messageMediaInvoice;
+    }
+
+    public final boolean z4() {
+        if (this.D == 24 && !g3()) {
             return true;
         }
         return false;
@@ -8245,7 +8237,7 @@ public class ij {
         this.I2 = false;
         this.J2 = false;
         this.K2 = false;
-        org.telegram.ui.ActionBar.k6.Q();
+        org.telegram.ui.ActionBar.l6.Q();
         this.f23251h2 = z11;
         this.f23256i2 = z12;
         this.f23268l2 = z13 || B0(message) == p10.i(i7).e();
@@ -8268,14 +8260,14 @@ public class ij {
         }
         TLRPC.Peer peer = message.from_id;
         if (peer instanceof TLRPC.TL_peerUser) {
-            e2(abstractMap3, hVar3, peer.user_id);
+            d2(abstractMap3, hVar3, peer.user_id);
         }
-        c6(abstractMap3, abstractMap2, hVar3, hVar2);
-        M5();
+        b6(abstractMap3, abstractMap2, hVar3, hVar2);
+        L5();
         if (z9) {
-            h6(r15);
+            g6(r15);
         }
-        j5();
+        i5();
         GregorianCalendar gregorianCalendar = new GregorianCalendar();
         gregorianCalendar.setTimeInMillis(this.f23262k.date * 1000);
         int i11 = gregorianCalendar.get(6);
@@ -8299,25 +8291,25 @@ public class ij {
         P(r15);
         k0();
         if (z9) {
-            if (o1(this.f23262k) instanceof TLRPC.TL_messageMediaGame) {
-                textPaint = org.telegram.ui.ActionBar.k6.f28221x2;
+            if (n1(this.f23262k) instanceof TLRPC.TL_messageMediaGame) {
+                textPaint = org.telegram.ui.ActionBar.l6.f28234x2;
             } else {
-                textPaint = org.telegram.ui.ActionBar.k6.f28049o2;
+                textPaint = org.telegram.ui.ActionBar.l6.f28062o2;
             }
             int[] iArr = i() ? new int[1] : null;
             CharSequence m10 = i6.m(this.v, textPaint.getFontMetricsInt(), r15, iArr, r15);
             this.v = m10;
-            Spannable B5 = B5(m10, textPaint.getFontMetricsInt());
-            this.v = B5;
+            Spannable A5 = A5(m10, textPaint.getFontMetricsInt());
+            this.v = A5;
             if (iArr != null && iArr[r15] > 1) {
-                E5(B5, iArr);
+                D5(A5, iArr);
             }
             H(iArr);
             G();
-            M5();
+            L5();
             TLRPC.Document F0 = F0();
             if (F0 != null) {
-                this.F1 = t5.f(F0, org.telegram.ui.ActionBar.k6.Zc, 1.0f, null);
+                this.F1 = t5.f(F0, org.telegram.ui.ActionBar.l6.Zc, 1.0f, null);
             }
         }
         this.Q1 = z9;

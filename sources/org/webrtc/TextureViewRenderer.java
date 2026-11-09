@@ -11,7 +11,6 @@ import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.sc;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.ui.ActionBar.m5;
 import org.webrtc.EglBase;
 import org.webrtc.EglRenderer;
 import org.webrtc.GlGenericDrawer;
@@ -212,7 +211,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
                         if (runnable != null) {
                             g0.r(runnable);
                         }
-                        jg.r rVar = new jg.r(this, i11, i13, 16);
+                        jg.r rVar = new jg.r(this, i11, i13, 17);
                         this.updateScreenRunnable = rVar;
                         postOrRun(rVar);
                     } catch (Throwable th2) {
@@ -596,7 +595,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
 
         @Override
         public void onFirstFrameRendered() {
-            g0.h3(new h(this, 2));
+            g0.h3(new h(this, 3));
         }
 
         @Override
@@ -615,7 +614,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
             ThreadUtils.checkIsOnMainThread();
             CountDownLatch countDownLatch = new CountDownLatch(1);
-            releaseEglSurface(new m5(countDownLatch, 1), false);
+            releaseEglSurface(new l2.a0(countDownLatch, 29), false);
             ThreadUtils.awaitUninterruptibly(countDownLatch);
             return true;
         }

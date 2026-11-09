@@ -1,8 +1,8 @@
 package ei;
 
 import android.view.View;
-import di.j6;
-import org.telegram.ui.Components.sp0;
+import di.k6;
+import org.telegram.ui.Components.tp0;
 public final class c implements View.OnClickListener {
     public final int f10811a;
     public final n f10812b;
@@ -18,14 +18,14 @@ public final class c implements View.OnClickListener {
         switch (this.f10811a) {
             case 0:
                 n nVar = this.f10812b;
-                sp0 sp0Var = nVar.W;
-                j6 j6Var = nVar.f10829a;
-                if (j6Var == null) {
+                tp0 tp0Var = nVar.W;
+                k6 k6Var = nVar.f10829a;
+                if (k6Var == null) {
                     str = "";
                 } else {
-                    str = j6Var.E;
+                    str = k6Var.E;
                 }
-                sp0Var.a(str);
+                tp0Var.a(str);
                 return;
             default:
                 n nVar2 = this.f10812b;

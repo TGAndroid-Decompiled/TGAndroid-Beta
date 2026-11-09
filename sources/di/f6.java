@@ -1,40 +1,31 @@
 package di;
+public final class f6 implements Runnable {
+    public final int f8993a;
+    public final z6 f8994b;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.TwoStepVerificationActivity;
-public final class f6 implements RequestDelegate {
-    public final int f8999a = 0;
-    public final boolean f9000b;
-    public final boolean f9001c;
-    public final Object d;
-    public final Object f9002e;
-
-    public f6(y6 y6Var, boolean z9, TL_stories.TL_stories_getAllStories tL_stories_getAllStories, boolean z10) {
-        this.d = y6Var;
-        this.f9000b = z9;
-        this.f9002e = tL_stories_getAllStories;
-        this.f9001c = z10;
+    public f6(z6 z6Var, int i7) {
+        this.f8993a = i7;
+        this.f8994b = z6Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f8999a) {
+    public final void run() {
+        switch (this.f8993a) {
             case 0:
-                org.telegram.messenger.g0.h3(new z5((y6) this.d, this.f9000b, (TL_stories.TL_stories_getAllStories) this.f9002e, tLObject, this.f9001c));
+                z6 z6Var = this.f8994b;
+                z6Var.R = false;
+                z6Var.S = null;
+                return;
+            case 1:
+                z6 z6Var2 = this.f8994b;
+                z6Var2.f10008s = true;
+                z6Var2.f10001l.edit().putBoolean("read_loaded", true).apply();
                 return;
             default:
-                org.telegram.messenger.g0.h3(new org.telegram.ui.ActionBar.q((TwoStepVerificationActivity) this.d, tL_error, tLObject, this.f9000b, this.f9001c, (Runnable) this.f9002e));
+                z6 z6Var3 = this.f8994b;
+                z6Var3.R = false;
+                z6Var3.S = null;
                 return;
         }
-    }
-
-    public f6(TwoStepVerificationActivity twoStepVerificationActivity, boolean z9, boolean z10, Runnable runnable) {
-        this.d = twoStepVerificationActivity;
-        this.f9000b = z9;
-        this.f9001c = z10;
-        this.f9002e = runnable;
     }
 }

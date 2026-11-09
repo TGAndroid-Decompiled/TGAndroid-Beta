@@ -12,28 +12,28 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import java.util.HashSet;
 import org.telegram.tgnet.TLRPC;
-public final class u9 extends FrameLayout implements org.telegram.messenger.ls, org.telegram.ui.ActionBar.a6 {
+public final class u9 extends FrameLayout implements org.telegram.messenger.ls, org.telegram.ui.ActionBar.b6 {
     public boolean D;
     public int E;
     public int F;
-    public TextView f38565a;
-    public TextView f38566b;
-    public bi.e5 f38567c;
+    public TextView f38646a;
+    public TextView f38647b;
+    public bi.e5 f38648c;
     public bi.e5 d;
-    public dh0 f38568e;
-    public ScrollView f38569f;
+    public eh0 f38649e;
+    public ScrollView f38650f;
     public AnimatorSet h;
-    public TLRPC.TL_help_appUpdate f38570n;
-    public String f38571r;
-    public int f38572s;
-    public int f38573w;
-    public GradientDrawable f38574x;
-    public GradientDrawable f38575y;
+    public TLRPC.TL_help_appUpdate f38651n;
+    public String f38652r;
+    public int f38653s;
+    public int f38654w;
+    public GradientDrawable f38655x;
+    public GradientDrawable f38656y;
 
     public final void a(boolean z9) {
         bi.e5 e5Var = this.d;
-        TextView textView = this.f38566b;
-        bi.e5 e5Var2 = this.f38567c;
+        TextView textView = this.f38647b;
+        bi.e5 e5Var2 = this.f38648c;
         AnimatorSet animatorSet = this.h;
         if (animatorSet != null) {
             animatorSet.cancel();
@@ -60,22 +60,22 @@ public final class u9 extends FrameLayout implements org.telegram.messenger.ls, 
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         if (i7 == org.telegram.messenger.qs.Y1) {
             String str = (String) objArr[0];
-            String str2 = this.f38571r;
+            String str2 = this.f38652r;
             if (str2 != null && str2.equals(str)) {
                 a(false);
-                org.telegram.messenger.t0.f25565a.v((Activity) getContext(), this.f38570n.document);
+                org.telegram.messenger.t0.f25565a.v((Activity) getContext(), this.f38651n.document);
             }
         } else if (i7 == org.telegram.messenger.qs.Z1) {
             String str3 = (String) objArr[0];
-            String str4 = this.f38571r;
+            String str4 = this.f38652r;
             if (str4 != null && str4.equals(str3)) {
                 a(false);
             }
         } else if (i7 == org.telegram.messenger.qs.X1) {
             String str5 = (String) objArr[0];
-            String str6 = this.f38571r;
+            String str6 = this.f38652r;
             if (str6 != null && str6.equals(str5)) {
-                this.f38568e.e(true, Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue())));
+                this.f38649e.e(true, Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue())));
             }
         }
     }
@@ -83,11 +83,11 @@ public final class u9 extends FrameLayout implements org.telegram.messenger.ls, 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        GradientDrawable gradientDrawable = this.f38574x;
-        ScrollView scrollView = this.f38569f;
+        GradientDrawable gradientDrawable = this.f38655x;
+        ScrollView scrollView = this.f38650f;
         gradientDrawable.setBounds(scrollView.getLeft(), scrollView.getTop(), scrollView.getRight(), org.telegram.messenger.g0.L(16.0f) + scrollView.getTop());
         gradientDrawable.draw(canvas);
-        GradientDrawable gradientDrawable2 = this.f38575y;
+        GradientDrawable gradientDrawable2 = this.f38656y;
         gradientDrawable2.setBounds(scrollView.getLeft(), scrollView.getBottom() - org.telegram.messenger.g0.L(18.0f), scrollView.getRight(), scrollView.getBottom());
         gradientDrawable2.draw(canvas);
     }
@@ -96,9 +96,9 @@ public final class u9 extends FrameLayout implements org.telegram.messenger.ls, 
     public void setVisibility(int i7) {
         super.setVisibility(i7);
         if (i7 == 8) {
-            org.telegram.messenger.qs.f(this.f38572s).n(this, org.telegram.messenger.qs.Y1);
-            org.telegram.messenger.qs.f(this.f38572s).n(this, org.telegram.messenger.qs.Z1);
-            org.telegram.messenger.qs.f(this.f38572s).n(this, org.telegram.messenger.qs.X1);
+            org.telegram.messenger.qs.f(this.f38653s).n(this, org.telegram.messenger.qs.Y1);
+            org.telegram.messenger.qs.f(this.f38653s).n(this, org.telegram.messenger.qs.Z1);
+            org.telegram.messenger.qs.f(this.f38653s).n(this, org.telegram.messenger.qs.X1);
         }
     }
 
@@ -108,15 +108,15 @@ public final class u9 extends FrameLayout implements org.telegram.messenger.ls, 
         boolean z10;
         int x02;
         ScrollView scrollView;
-        GradientDrawable gradientDrawable = this.f38575y;
-        GradientDrawable gradientDrawable2 = this.f38574x;
+        GradientDrawable gradientDrawable = this.f38656y;
+        GradientDrawable gradientDrawable2 = this.f38655x;
         try {
-            int x03 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27852d6, false);
+            int x03 = org.telegram.ui.ActionBar.l6.x0(null, org.telegram.ui.ActionBar.l6.f27865d6, false);
             if (this.D) {
                 if (x03 != this.E) {
                 }
-                x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28132s8, false);
-                scrollView = this.f38569f;
+                x02 = org.telegram.ui.ActionBar.l6.x0(null, org.telegram.ui.ActionBar.l6.f28145s8, false);
+                scrollView = this.f38650f;
                 if (scrollView != null && (!this.D || x02 != this.F)) {
                     this.F = x02;
                     org.telegram.messenger.g0.z3(scrollView, x02);
@@ -141,8 +141,8 @@ public final class u9 extends FrameLayout implements org.telegram.messenger.ls, 
             if (z10) {
                 gradientDrawable.setColors(new int[]{x03, 0});
             }
-            x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28132s8, false);
-            scrollView = this.f38569f;
+            x02 = org.telegram.ui.ActionBar.l6.x0(null, org.telegram.ui.ActionBar.l6.f28145s8, false);
+            scrollView = this.f38650f;
             if (scrollView != null) {
                 this.F = x02;
                 org.telegram.messenger.g0.z3(scrollView, x02);

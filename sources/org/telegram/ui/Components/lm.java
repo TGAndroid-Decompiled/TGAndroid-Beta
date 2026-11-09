@@ -5,9 +5,9 @@ import android.graphics.Shader;
 import android.view.View;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class lm implements org.telegram.ui.is {
-    public int f35718a;
-    public Object f35719b;
+public final class lm implements org.telegram.ui.ks {
+    public int f35765a;
+    public Object f35766b;
 
     @Override
     public org.telegram.messenger.ij A() {
@@ -60,11 +60,11 @@ public final class lm implements org.telegram.ui.is {
     }
 
     public boolean R(int i7) {
-        if (((bg.l) this.f35719b) != null && this.f35718a == i7) {
+        if (((bg.l) this.f35766b) != null && this.f35765a == i7) {
             return false;
         }
-        this.f35718a = i7;
-        this.f35719b = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, new int[]{i7, i7}, (float[]) null, Shader.TileMode.CLAMP);
+        this.f35765a = i7;
+        this.f35766b = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, new int[]{i7, i7}, (float[]) null, Shader.TileMode.CLAMP);
         return true;
     }
 
@@ -119,46 +119,46 @@ public final class lm implements org.telegram.ui.is {
     }
 
     @Override
-    public k60 m(bi.x5 x5Var) {
-        k60 F = k60.F(x5Var, null, new View(((bn) this.f35719b).getContext()));
-        F.f35231s = 0;
-        F.f35232t = false;
-        String M0 = org.telegram.messenger.id.M0(2131746272, null);
-        final int i7 = this.f35718a;
+    public l60 m(bi.x5 x5Var) {
+        l60 F = l60.F(x5Var, null, new View(((bn) this.f35766b).getContext()));
+        F.f35617s = 0;
+        F.f35618t = false;
+        String M0 = org.telegram.messenger.id.M0(2131746271, null);
+        final int i7 = this.f35765a;
         F.c(2131232331, M0, new Runnable(this) {
-            public final lm f35355b;
+            public final lm f35374b;
 
             {
-                this.f35355b = this;
+                this.f35374b = this;
             }
 
             @Override
             public final void run() {
                 switch (r3) {
                     case 0:
-                        ((bn) this.f35355b.f35719b).g0(i7);
+                        ((bn) this.f35374b.f35766b).g0(i7);
                         return;
                     default:
-                        ((bn) this.f35355b.f35719b).j0(i7, null);
+                        ((bn) this.f35374b.f35766b).j0(i7, null);
                         return;
                 }
             }
         }, false);
-        F.c(2131232108, org.telegram.messenger.id.M0(2131751599, null), new Runnable(this) {
-            public final lm f35355b;
+        F.c(2131232108, org.telegram.messenger.id.M0(2131751598, null), new Runnable(this) {
+            public final lm f35374b;
 
             {
-                this.f35355b = this;
+                this.f35374b = this;
             }
 
             @Override
             public final void run() {
                 switch (r3) {
                     case 0:
-                        ((bn) this.f35355b.f35719b).g0(i7);
+                        ((bn) this.f35374b.f35766b).g0(i7);
                         return;
                     default:
-                        ((bn) this.f35355b.f35719b).j0(i7, null);
+                        ((bn) this.f35374b.f35766b).j0(i7, null);
                         return;
                 }
             }

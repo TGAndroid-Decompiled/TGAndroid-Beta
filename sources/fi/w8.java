@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.id;
 import org.telegram.messenger.qp;
-import org.telegram.ui.Components.he0;
+import org.telegram.ui.Components.ie0;
 import org.telegram.ui.Components.xq;
 public final class w8 implements View.OnClickListener {
     public final int f13062a;
@@ -54,7 +54,7 @@ public final class w8 implements View.OnClickListener {
                         }
                         x9 x9Var = vaVar2.f13002v1;
                         if (x9Var != null) {
-                            x9Var.f12543r0 = true;
+                            x9Var.f12541r0 = true;
                         }
                         vaVar2.f12975n.draw(canvas);
                         ja jaVar2 = vaVar2.X0;
@@ -63,7 +63,7 @@ public final class w8 implements View.OnClickListener {
                         }
                         x9 x9Var2 = vaVar2.f13002v1;
                         if (x9Var2 != null) {
-                            x9Var2.f12543r0 = false;
+                            x9Var2.f12541r0 = false;
                         }
                         vaVar2.f12963i1.setAlpha(1.0f);
                         Paint paint = new Paint(1);
@@ -84,7 +84,7 @@ public final class w8 implements View.OnClickListener {
                         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                         vaVar2.E2 = ofFloat;
                         ofFloat.addUpdateListener(new ea(vaVar2, 0));
-                        vaVar2.E2.addListener(new v9(vaVar2, 2));
+                        vaVar2.E2.addListener(new u9(vaVar2, 2));
                         vaVar2.E2.setStartDelay(80L);
                         ValueAnimator valueAnimator2 = vaVar2.E2;
                         if (z11) {
@@ -95,7 +95,7 @@ public final class w8 implements View.OnClickListener {
                         valueAnimator2.setDuration(j3);
                         ValueAnimator valueAnimator3 = vaVar2.E2;
                         if (z11) {
-                            xqVar = xq.f40368i;
+                            xqVar = xq.f40460i;
                         } else {
                             xqVar = xq.h;
                         }
@@ -139,16 +139,16 @@ public final class w8 implements View.OnClickListener {
                         m3 m3Var = vaVar.f12969k1;
                         if (e7Var2.Y) {
                             if (isEmpty && !z9) {
-                                i10 = 2131744463;
+                                i10 = 2131744460;
                             } else {
-                                i10 = 2131744595;
+                                i10 = 2131744592;
                             }
                             M0 = id.M0(i10, null);
                         } else {
                             if (isEmpty && !z9) {
-                                i7 = 2131744462;
+                                i7 = 2131744459;
                             } else {
-                                i7 = 2131744594;
+                                i7 = 2131744591;
                             }
                             M0 = id.M0(i7, null);
                         }
@@ -172,7 +172,7 @@ public final class w8 implements View.OnClickListener {
             case 3:
                 boolean k10 = vaVar.X0.k();
                 vaVar.X0.x(-9982, k10);
-                ((he0) vaVar.f12966j1.f12598c).a(!k10, true);
+                ((ie0) vaVar.f12966j1.f12596c).a(!k10, true);
                 return;
             case 4:
                 if (vaVar.B0 != null && !vaVar.S1) {

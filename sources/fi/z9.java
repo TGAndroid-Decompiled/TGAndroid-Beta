@@ -32,7 +32,7 @@ public final class z9 extends org.telegram.ui.ActionBar.f2 {
     }
 
     @Override
-    public final org.telegram.ui.ActionBar.f6 getResourceProvider() {
+    public final org.telegram.ui.ActionBar.g6 getResourceProvider() {
         switch (this.f13256a) {
             case 0:
                 return new di.m2(7, this.f13257b.f12934a);

@@ -58,7 +58,7 @@ public final class h implements Runnable {
                             a aVar = new a(intent2);
                             CountDownLatch countDownLatch = new CountDownLatch(1);
                             synchronized (FirebaseInstanceIdReceiver.class) {
-                                SoftReference softReference = FirebaseInstanceIdReceiver.f7884b;
+                                SoftReference softReference = FirebaseInstanceIdReceiver.f7882b;
                                 if (softReference != null) {
                                     executor = (Executor) softReference.get();
                                 }
@@ -66,7 +66,7 @@ public final class h implements Runnable {
                                     ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(1, 1, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue(), new r("pscm-ack-executor"));
                                     threadPoolExecutor.allowCoreThreadTimeOut(true);
                                     executor = Executors.unconfigurableExecutorService(threadPoolExecutor);
-                                    FirebaseInstanceIdReceiver.f7884b = new SoftReference(executor);
+                                    FirebaseInstanceIdReceiver.f7882b = new SoftReference(executor);
                                 }
                             }
                             executor.execute(new a9.h(context, aVar, countDownLatch, 7));

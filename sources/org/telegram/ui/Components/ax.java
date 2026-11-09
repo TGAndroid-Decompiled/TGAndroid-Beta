@@ -3,10 +3,10 @@ package org.telegram.ui.Components;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class ax extends c5.a {
-    public final hy f31937c;
+    public final hy f32007c;
 
     public ax(hy hyVar) {
-        this.f31937c = hyVar;
+        this.f32007c = hyVar;
     }
 
     @Override
@@ -16,7 +16,7 @@ public final class ax extends c5.a {
 
     @Override
     public final int b() {
-        return this.f31937c.f34404e.size();
+        return this.f32007c.f34419e.size();
     }
 
     @Override
@@ -30,12 +30,12 @@ public final class ax extends c5.a {
             }
             return org.telegram.messenger.id.M0(2131754879, null);
         }
-        return org.telegram.messenger.id.M0(2131751197, null);
+        return org.telegram.messenger.id.M0(2131751196, null);
     }
 
     @Override
     public final Object e(c5.k kVar, int i7) {
-        FrameLayout frameLayout = ((dy) this.f31937c.f34404e.get(i7)).f33111b;
+        FrameLayout frameLayout = ((dy) this.f32007c.f34419e.get(i7)).f33203b;
         kVar.addView(frameLayout);
         return frameLayout;
     }

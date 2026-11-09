@@ -2,12 +2,12 @@ package x1;
 
 import android.view.animation.Interpolator;
 public abstract class b implements Interpolator {
-    public final float[] f58263a;
-    public final float f58264b;
+    public final float[] f58272a;
+    public final float f58273b;
 
     public b(float[] fArr) {
-        this.f58263a = fArr;
-        this.f58264b = 1.0f / (fArr.length - 1);
+        this.f58272a = fArr;
+        this.f58273b = 1.0f / (fArr.length - 1);
     }
 
     @Override
@@ -18,9 +18,9 @@ public abstract class b implements Interpolator {
         if (f10 <= 0.0f) {
             return 0.0f;
         }
-        float[] fArr = this.f58263a;
+        float[] fArr = this.f58272a;
         int min = Math.min((int) ((fArr.length - 1) * f10), fArr.length - 2);
-        float f11 = this.f58264b;
+        float f11 = this.f58273b;
         float w10 = com.google.android.recaptcha.internal.a.w(min, f11, f10, f11);
         float f12 = fArr[min];
         return com.google.android.recaptcha.internal.a.z(fArr[min + 1], f12, w10, f12);

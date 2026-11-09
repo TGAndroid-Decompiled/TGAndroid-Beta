@@ -1,35 +1,42 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-public final class z20 extends org.telegram.ui.ActionBar.k {
-    public final org.telegram.ui.Components.ap F1;
-    public final c40 G1;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.graphics.Paint;
+public final class z20 extends AnimatorListenerAdapter {
+    public final int f52401a;
+    public final e40 f52402b;
 
-    public z20(c40 c40Var, LaunchActivity launchActivity, org.telegram.ui.Components.ap apVar) {
-        super(launchActivity, null);
-        this.G1 = c40Var;
-        this.F1 = apVar;
+    public z20(e40 e40Var, int i7) {
+        this.f52401a = i7;
+        this.f52402b = e40Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        if (getAdditionalSubtitleTextView().getVisibility() == 0) {
-            canvas.save();
-            canvas.translate(getSubtitleTextView().getLeft(), getSubtitleTextView().getY() - org.telegram.messenger.g0.L(1.0f));
-            org.telegram.ui.Components.ap apVar = this.F1;
-            apVar.f31881f = (int) (getAdditionalSubtitleTextView().getAlpha() * 255.0f);
-            apVar.draw(canvas);
-            canvas.restore();
-            invalidate();
-        }
-    }
-
-    @Override
-    public final void setAlpha(float f10) {
-        if (getAlpha() != f10) {
-            super.setAlpha(f10);
-            this.G1.f28619b.invalidate();
+    public final void onAnimationEnd(Animator animator) {
+        int i7;
+        switch (this.f52401a) {
+            case 0:
+                e40 e40Var = this.f52402b;
+                e40Var.M1.setVisibility(4);
+                e40Var.N1.setVisibility(4);
+                e40Var.L1.setVisibility(4);
+                return;
+            case 1:
+                this.f52402b.Y1 = null;
+                return;
+            default:
+                e40 e40Var2 = this.f52402b;
+                e40Var2.Y2 = null;
+                Paint paint = e40Var2.X2;
+                if (e40Var2.K3 == 3) {
+                    i7 = -1163700;
+                } else {
+                    i7 = -12761513;
+                }
+                paint.setColor(i7);
+                e40Var2.W2.invalidate();
+                return;
         }
     }
 }

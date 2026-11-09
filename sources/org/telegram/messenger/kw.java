@@ -48,9 +48,9 @@ public final class kw implements Runnable {
                 org.telegram.ui.ca caVar = (org.telegram.ui.ca) obj3;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
                 TLRPC.TL_username tL_username = (TLRPC.TL_username) tLObject;
-                org.telegram.ui.la laVar = caVar.f44730a;
-                ArrayList arrayList = laVar.f47486x;
-                ArrayList arrayList2 = laVar.f47485w;
+                org.telegram.ui.la laVar = caVar.f44257a;
+                ArrayList arrayList = laVar.f47547x;
+                ArrayList arrayList2 = laVar.f47546w;
                 arrayList.remove((String) serializable);
                 boolean z10 = ((TLObject) obj2) instanceof TLRPC.TL_boolTrue;
                 int i11 = this.f23787b;
@@ -64,11 +64,11 @@ public final class kw implements Runnable {
                         tL_username.active = z11;
                         laVar.n0(i11, z11, false);
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, laVar.getParentActivity(), laVar.getResourceProvider());
-                        String M0 = id.M0(2131743675, null);
+                        String M0 = id.M0(2131743672, null);
                         org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
                         u1Var.R = M0;
-                        u1Var.T = id.M0(2131743676, null);
-                        alertDialog$Builder.k(id.M0(2131747832, null), new ab.j(caVar, tL_username, z12, 4));
+                        u1Var.T = id.M0(2131743673, null);
+                        alertDialog$Builder.k(id.M0(2131747831, null), new ab.j(caVar, tL_username, z12, 4));
                         alertDialog$Builder.p();
                     } else {
                         laVar.o0(tL_username, z12, true);
@@ -77,7 +77,7 @@ public final class kw implements Runnable {
                 i7 = ((org.telegram.ui.ActionBar.f2) laVar).currentAccount;
                 TLRPC.User a22 = qp.s1(i7).a2(Long.valueOf(laVar.l0()));
                 laVar.getMessagesController().t5(a22, tL_username.username, tL_username.active);
-                if (laVar.f47487y != 0 && arrayList2 != null) {
+                if (laVar.f47548y != 0 && arrayList2 != null) {
                     int size = arrayList2.size();
                     int i12 = 0;
                     while (i12 < size) {

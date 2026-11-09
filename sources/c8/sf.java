@@ -3,18 +3,18 @@ package c8;
 import android.content.Context;
 import java.util.ArrayList;
 public final class sf implements rf {
-    public final ArrayList f5842a;
+    public final ArrayList f5840a;
 
     public sf(Context context, qf qfVar) {
         ArrayList arrayList = new ArrayList();
-        this.f5842a = arrayList;
+        this.f5840a = arrayList;
         qfVar.getClass();
         arrayList.add(new vf(context, qfVar));
     }
 
     @Override
     public final void a(a8.wa waVar) {
-        ArrayList arrayList = this.f5842a;
+        ArrayList arrayList = this.f5840a;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {

@@ -1,28 +1,22 @@
 package org.telegram.ui.Components;
+public final class tw0 implements eb0, gb0 {
+    public final vw0 f38524a;
 
-import android.content.Context;
-import android.graphics.Canvas;
-public final class tw0 extends hb0 {
-    public final uw0 f38441y0;
-
-    public tw0(uw0 uw0Var, Context context) {
-        super(13, context, null);
-        this.f38441y0 = uw0Var;
+    @Override
+    public String h(int i7) {
+        return this.f38524a.f39825n[i7];
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27960j5, false);
-        uw0 uw0Var = this.f38441y0;
-        if (x02 != uw0Var.f38754a) {
-            uw0Var.f38754a = x02;
-            setTextColor(x02);
+    public void n(ib0 ib0Var, int i7) {
+        vw0 vw0Var = this.f38524a;
+        vw0Var.b();
+        org.telegram.messenger.iz.f23433r1 = i7;
+        org.telegram.messenger.t0.f25566b.getSharedPreferences("mainconfig", 0).edit().putInt("ChatSwipeAction", org.telegram.messenger.iz.f23433r1).apply();
+        vw0Var.invalidate();
+        try {
+            ib0Var.performHapticFeedback(3, 2);
+        } catch (Exception unused) {
         }
-        super.onDraw(canvas);
-        float L = org.telegram.messenger.g0.L(31.0f);
-        uw0Var.f38757e.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.h7, false));
-        canvas.drawLine(org.telegram.messenger.g0.L(2.0f), L, getMeasuredWidth() - org.telegram.messenger.g0.L(2.0f), L, uw0Var.f38757e);
-        float measuredHeight = getMeasuredHeight() - org.telegram.messenger.g0.L(31.0f);
-        canvas.drawLine(org.telegram.messenger.g0.L(2.0f), measuredHeight, getMeasuredWidth() - org.telegram.messenger.g0.L(2.0f), measuredHeight, uw0Var.f38757e);
     }
 }

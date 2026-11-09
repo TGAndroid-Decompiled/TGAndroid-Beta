@@ -8,26 +8,26 @@ import java.util.LinkedHashSet;
 import org.telegram.messenger.i6;
 import org.telegram.messenger.id;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.q41;
-import org.telegram.ui.Components.w31;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.Components.m41;
+import org.telegram.ui.Components.qj0;
+import org.telegram.ui.Components.r41;
 import org.telegram.ui.Components.x31;
-public final class k5 extends w31 {
+import org.telegram.ui.Components.y31;
+public final class k5 extends x31 {
     public static final int f18677b = 0;
 
     static {
-        w31.h(new w31());
+        x31.h(new x31());
     }
 
     @Override
-    public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
+    public final void b(View view, y31 y31Var, boolean z9, m41 m41Var, r41 r41Var) {
         boolean z10;
         m5 m5Var = (m5) view;
-        a aVar = (a) x31Var.G;
-        a3 a3Var = (a3) x31Var.H;
+        a aVar = (a) y31Var.G;
+        a3 a3Var = (a3) y31Var.H;
         o5 o5Var = m5Var.f18711w;
         boolean z11 = true;
         if (m5Var.f18989a != aVar) {
@@ -48,7 +48,7 @@ public final class k5 extends w31 {
         o5Var.setModel(e6Var);
         LinkedHashSet linkedHashSet = m5Var.H;
         Objects.requireNonNull(linkedHashSet);
-        o5Var.setSelectionProvider(new l2.y(linkedHashSet, 12));
+        o5Var.setSelectionProvider(new l2.x(linkedHashSet, 12));
         m5Var.A();
         g1 g1Var = m5Var.f18709r;
         a aVar2 = m5Var.f18989a;
@@ -81,9 +81,9 @@ public final class k5 extends w31 {
     }
 
     @Override
-    public final View d(Context context, pj0 pj0Var, int i7, f6 f6Var) {
-        m5 m5Var = new m5(context, f6Var);
-        m5Var.setBackground(new y1(k6.w0(k6.f27852d6, f6Var)));
+    public final View d(Context context, qj0 qj0Var, int i7, g6 g6Var) {
+        m5 m5Var = new m5(context, g6Var);
+        m5Var.setBackground(new y1(l6.w0(l6.f27865d6, g6Var)));
         return m5Var;
     }
 

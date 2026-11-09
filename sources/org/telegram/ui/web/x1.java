@@ -9,25 +9,25 @@ import org.telegram.messenger.a8;
 import org.telegram.messenger.w7;
 import org.telegram.tgnet.SerializedData;
 public final class x1 implements Runnable {
-    public final int f51396a;
-    public final b2 f51397b;
+    public final int f51377a;
+    public final b2 f51378b;
 
     public x1(b2 b2Var, int i7) {
-        this.f51396a = i7;
-        this.f51397b = b2Var;
+        this.f51377a = i7;
+        this.f51378b = b2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f51396a) {
+        switch (this.f51377a) {
             case 0:
-                final b2 b2Var = this.f51397b;
+                final b2 b2Var = this.f51378b;
                 if (!b2Var.d) {
                     b2Var.d = true;
                     long currentTimeMillis = System.currentTimeMillis();
                     final ArrayList arrayList = new ArrayList();
-                    for (a2 a2Var : b2Var.f51107a.values()) {
-                        if (!TextUtils.isEmpty(a2Var.f51092b) && currentTimeMillis - a2Var.f51091a <= 604800000) {
+                    for (a2 a2Var : b2Var.f51088a.values()) {
+                        if (!TextUtils.isEmpty(a2Var.f51073b) && currentTimeMillis - a2Var.f51072a <= 604800000) {
                             arrayList.add(0, a2Var);
                             if (arrayList.size() >= 100) {
                                 Utilities.f21336e.c(new Runnable() {
@@ -42,11 +42,11 @@ public final class x1 implements Runnable {
                                                     ArrayList arrayList2 = arrayList;
                                                     if (i7 < arrayList2.size()) {
                                                         a2 a2Var2 = (a2) arrayList2.get(i7);
-                                                        b2Var2.f51107a.put(a2Var2.f51092b, a2Var2);
+                                                        b2Var2.f51088a.put(a2Var2.f51073b, a2Var2);
                                                         i7++;
                                                     } else {
-                                                        b2Var2.f51108b = true;
-                                                        b2Var2.f51109c = false;
+                                                        b2Var2.f51089b = true;
+                                                        b2Var2.f51090c = false;
                                                         return;
                                                     }
                                                 }
@@ -64,7 +64,7 @@ public final class x1 implements Runnable {
                                                     }
                                                 }
                                                 z1 z1Var = new z1();
-                                                z1Var.f51419a.addAll(arrayList);
+                                                z1Var.f51400a.addAll(arrayList);
                                                 SerializedData serializedData = new SerializedData(z1Var.getObjectSize());
                                                 z1Var.serializeToStream(serializedData);
                                                 try {
@@ -95,11 +95,11 @@ public final class x1 implements Runnable {
                                         ArrayList arrayList2 = arrayList;
                                         if (i7 < arrayList2.size()) {
                                             a2 a2Var2 = (a2) arrayList2.get(i7);
-                                            b2Var2.f51107a.put(a2Var2.f51092b, a2Var2);
+                                            b2Var2.f51088a.put(a2Var2.f51073b, a2Var2);
                                             i7++;
                                         } else {
-                                            b2Var2.f51108b = true;
-                                            b2Var2.f51109c = false;
+                                            b2Var2.f51089b = true;
+                                            b2Var2.f51090c = false;
                                             return;
                                         }
                                     }
@@ -117,7 +117,7 @@ public final class x1 implements Runnable {
                                         }
                                     }
                                     z1 z1Var = new z1();
-                                    z1Var.f51419a.addAll(arrayList);
+                                    z1Var.f51400a.addAll(arrayList);
                                     SerializedData serializedData = new SerializedData(z1Var.getObjectSize());
                                     z1Var.serializeToStream(serializedData);
                                     try {
@@ -136,10 +136,10 @@ public final class x1 implements Runnable {
                 }
                 return;
             case 1:
-                final b2 b2Var2 = this.f51397b;
+                final b2 b2Var2 = this.f51378b;
                 File file = new File(w7.z(4), "webmetacache.dat");
                 if (!file.exists()) {
-                    b2Var2.f51108b = true;
+                    b2Var2.f51089b = true;
                     return;
                 }
                 final ArrayList arrayList2 = new ArrayList();
@@ -147,7 +147,7 @@ public final class x1 implements Runnable {
                     SerializedData serializedData = new SerializedData(file);
                     z1 z1Var = new z1();
                     z1Var.readParams(serializedData, true);
-                    arrayList2.addAll(z1Var.f51419a);
+                    arrayList2.addAll(z1Var.f51400a);
                 } catch (Exception e10) {
                     a8.g(e10, true);
                 }
@@ -163,11 +163,11 @@ public final class x1 implements Runnable {
                                     ArrayList arrayList22 = arrayList2;
                                     if (i7 < arrayList22.size()) {
                                         a2 a2Var2 = (a2) arrayList22.get(i7);
-                                        b2Var22.f51107a.put(a2Var2.f51092b, a2Var2);
+                                        b2Var22.f51088a.put(a2Var2.f51073b, a2Var2);
                                         i7++;
                                     } else {
-                                        b2Var22.f51108b = true;
-                                        b2Var22.f51109c = false;
+                                        b2Var22.f51089b = true;
+                                        b2Var22.f51090c = false;
                                         return;
                                     }
                                 }
@@ -185,7 +185,7 @@ public final class x1 implements Runnable {
                                     }
                                 }
                                 z1 z1Var2 = new z1();
-                                z1Var2.f51419a.addAll(arrayList2);
+                                z1Var2.f51400a.addAll(arrayList2);
                                 SerializedData serializedData2 = new SerializedData(z1Var2.getObjectSize());
                                 z1Var2.serializeToStream(serializedData2);
                                 try {
@@ -202,7 +202,7 @@ public final class x1 implements Runnable {
                 });
                 return;
             default:
-                this.f51397b.d = false;
+                this.f51378b.d = false;
                 return;
         }
     }

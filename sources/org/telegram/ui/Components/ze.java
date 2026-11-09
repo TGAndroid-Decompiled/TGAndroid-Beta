@@ -3,15 +3,15 @@ package org.telegram.ui.Components;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 public final class ze implements TextWatcher {
-    public boolean f40957a;
-    public boolean f40958b;
-    public String f40959c;
+    public boolean f40965a;
+    public boolean f40966b;
+    public String f40967c;
     public boolean d;
-    public boolean f40960e;
-    public final ChatActivityEnterView f40961f;
+    public boolean f40968e;
+    public final ChatActivityEnterView f40969f;
 
     public ze(ChatActivityEnterView chatActivityEnterView) {
-        this.f40961f = chatActivityEnterView;
+        this.f40969f = chatActivityEnterView;
     }
 
     @Override
@@ -21,8 +21,8 @@ public final class ze implements TextWatcher {
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        if (!this.d && this.f40961f.F2) {
-            this.f40959c = charSequence.toString();
+        if (!this.d && this.f40969f.F2) {
+            this.f40967c = charSequence.toString();
         }
     }
 
@@ -37,7 +37,7 @@ public final class ze implements TextWatcher {
         boolean z14;
         boolean z15;
         if (!this.d) {
-            ChatActivityEnterView chatActivityEnterView = this.f40961f;
+            ChatActivityEnterView chatActivityEnterView = this.f40969f;
             mf mfVar = chatActivityEnterView.U0;
             if (mfVar == null) {
                 currentPage = org.telegram.messenger.qp.d1().getInt("selected_page", 0);
@@ -50,7 +50,7 @@ public final class ze implements TextWatcher {
                 z9 = false;
             }
             if (((i10 == 0 && !TextUtils.isEmpty(charSequence)) || (i10 != 0 && TextUtils.isEmpty(charSequence))) && z9) {
-                chatActivityEnterView.c1(false, true);
+                chatActivityEnterView.d1(false, true);
             }
             if (chatActivityEnterView.T != chatActivityEnterView.E0.getLineCount()) {
                 if (chatActivityEnterView.E0.getLineCount() >= 4) {
@@ -68,7 +68,7 @@ public final class ze implements TextWatcher {
                 } else {
                     z13 = false;
                 }
-                this.f40960e = z13;
+                this.f40968e = z13;
                 if (!chatActivityEnterView.S && chatActivityEnterView.E0.getMeasuredWidth() > 0) {
                     chatActivityEnterView.C0(chatActivityEnterView.T, chatActivityEnterView.E0.getLineCount());
                 }
@@ -87,13 +87,13 @@ public final class ze implements TextWatcher {
                 }
                 chatActivityEnterView.v1(z15);
             } else {
-                this.f40960e = false;
+                this.f40968e = false;
             }
             if (chatActivityEnterView.S2 == 1) {
                 return;
             }
             if (chatActivityEnterView.B2 && !chatActivityEnterView.C0 && !chatActivityEnterView.D0 && !chatActivityEnterView.R2 && !chatActivityEnterView.X1 && chatActivityEnterView.Z1 == null && i11 > i10 && charSequence.length() > 0 && charSequence.length() == i7 + i11 && charSequence.charAt(charSequence.length() - 1) == '\n') {
-                this.f40958b = true;
+                this.f40966b = true;
             }
             chatActivityEnterView.X1 = false;
             chatActivityEnterView.E(true);
@@ -112,9 +112,9 @@ public final class ze implements TextWatcher {
                 wfVar.a1(charSequence, z10, false);
             }
             if (chatActivityEnterView.S2 != 2 && i11 - i10 > 1) {
-                this.f40957a = true;
+                this.f40965a = true;
             }
-            if (chatActivityEnterView.Z1 == null && !chatActivityEnterView.f31061h2 && n1.length() != 0 && chatActivityEnterView.C2 < System.currentTimeMillis() - 5000 && !chatActivityEnterView.R2) {
+            if (chatActivityEnterView.Z1 == null && !chatActivityEnterView.f31066h2 && n1.length() != 0 && chatActivityEnterView.C2 < System.currentTimeMillis() - 5000 && !chatActivityEnterView.R2) {
                 chatActivityEnterView.C2 = System.currentTimeMillis();
                 wf wfVar2 = chatActivityEnterView.Z2;
                 if (wfVar2 != null) {

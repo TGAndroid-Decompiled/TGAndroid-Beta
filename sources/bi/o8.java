@@ -11,18 +11,18 @@ public final class o8 implements RequestDelegate {
     public final ea f4477b;
     public final v10 f4478c;
     public final Context d;
-    public final org.telegram.ui.ActionBar.f6 f4479e;
+    public final org.telegram.ui.ActionBar.g6 f4479e;
     public final long f4480f;
     public final String f4481g;
     public final long h;
     public final TLObject f4482i;
     public final TLObject f4483j;
 
-    public o8(ea eaVar, v10 v10Var, Context context, org.telegram.ui.ActionBar.f6 f6Var, long j3, String str, long j10, TLObject tLObject, TLRPC.TL_textWithEntities tL_textWithEntities) {
+    public o8(ea eaVar, v10 v10Var, Context context, org.telegram.ui.ActionBar.g6 g6Var, long j3, String str, long j10, TLObject tLObject, TLRPC.TL_textWithEntities tL_textWithEntities) {
         this.f4477b = eaVar;
         this.f4478c = v10Var;
         this.d = context;
-        this.f4479e = f6Var;
+        this.f4479e = g6Var;
         this.f4480f = j3;
         this.f4481g = str;
         this.h = j10;
@@ -42,11 +42,11 @@ public final class o8 implements RequestDelegate {
         }
     }
 
-    public o8(ea eaVar, v10 v10Var, Context context, org.telegram.ui.ActionBar.f6 f6Var, long j3, String str, TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift, TL_stars.StarGift starGift, long j10) {
+    public o8(ea eaVar, v10 v10Var, Context context, org.telegram.ui.ActionBar.g6 g6Var, long j3, String str, TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift, TL_stars.StarGift starGift, long j10) {
         this.f4477b = eaVar;
         this.f4478c = v10Var;
         this.d = context;
-        this.f4479e = f6Var;
+        this.f4479e = g6Var;
         this.f4480f = j3;
         this.f4481g = str;
         this.f4482i = tL_payments_paymentFormStarGift;

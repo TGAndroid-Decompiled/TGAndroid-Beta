@@ -15,9 +15,9 @@ import bi.pc;
 import bi.q7;
 import bi.tc;
 import bi.uc;
-import di.h7;
-import di.j6;
-import di.p9;
+import di.i7;
+import di.k6;
+import di.q9;
 import fi.k2;
 import fi.t1;
 import fi.x9;
@@ -48,28 +48,28 @@ import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.Cells.h4;
 import org.telegram.ui.Cells.o4;
 import org.telegram.ui.Cells.o7;
-import org.telegram.ui.Components.bj0;
 import org.telegram.ui.Components.cc;
+import org.telegram.ui.Components.cj0;
 import org.telegram.ui.Components.di;
 import org.telegram.ui.Components.hc;
 import org.telegram.ui.Components.i5;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.sp0;
+import org.telegram.ui.Components.m41;
+import org.telegram.ui.Components.tp0;
 import org.telegram.ui.Components.v4;
-import org.telegram.ui.Components.w80;
-import org.telegram.ui.Components.x31;
+import org.telegram.ui.Components.x80;
 import org.telegram.ui.Components.xq;
+import org.telegram.ui.Components.y31;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.an;
-import org.telegram.ui.gv;
-import org.telegram.ui.hw;
-import org.telegram.ui.pv;
-import org.telegram.ui.up0;
-import org.telegram.ui.vw;
-import org.telegram.ui.ww;
-import zh.n3;
-public final class k implements bj0 {
+import org.telegram.ui.cn;
+import org.telegram.ui.iv;
+import org.telegram.ui.jw;
+import org.telegram.ui.rv;
+import org.telegram.ui.wp0;
+import org.telegram.ui.xw;
+import org.telegram.ui.yw;
+import zh.o3;
+public final class k implements cj0 {
     public final int f1305a;
     public final Object f1306b;
 
@@ -82,16 +82,16 @@ public final class k implements bj0 {
     public final void c(int i7, View view) {
         TLRPC.Document document;
         q0 q0Var;
-        x31 G;
-        x31 G2;
-        x31 G3;
+        y31 G;
+        y31 G2;
+        y31 G3;
         TLRPC.Document document2;
         long longValue;
         i5 i5Var;
         org.telegram.ui.ActionBar.k kVar;
         cc K;
         int i10;
-        x31 G4;
+        y31 G4;
         int i11 = this.f1305a;
         String str = "";
         TLRPC.BotInlineResult botInlineResult = null;
@@ -113,7 +113,7 @@ public final class k implements bj0 {
                             if (!s0Var.getUserConfig().q() && ((q0Var = s0Var.h) == null || !q0Var.H.contains(Long.valueOf(j3)))) {
                                 l1 l1Var = s0Var.d;
                                 l1Var.getClass();
-                                l1Var.d1(0, id.M0(2131746476, null), id.M0(2131746474, null));
+                                l1Var.d1(0, id.M0(2131746475, null), id.M0(2131746473, null));
                                 l1Var.i0();
                                 return;
                             }
@@ -172,13 +172,13 @@ public final class k implements bj0 {
                 return;
             case 2:
                 oc ocVar = (oc) obj;
-                l41 l41Var = ocVar.T1;
-                if (l41Var != null && (G = l41Var.G(i7 - 1)) != null) {
-                    l41 l41Var2 = ocVar.T1;
+                m41 m41Var = ocVar.T1;
+                if (m41Var != null && (G = m41Var.G(i7 - 1)) != null) {
+                    m41 m41Var2 = ocVar.T1;
                     if (G.d == -1) {
                         ocVar.U1 = !ocVar.U1;
-                        l41Var2.O(true);
-                        ocVar.f36277k1.w0(0, org.telegram.messenger.g0.L(200.0f), xq.f40367g);
+                        m41Var2.O(true);
+                        ocVar.f36303k1.w0(0, org.telegram.messenger.g0.L(200.0f), xq.f40459g);
                         return;
                     } else if (G.H(pc.class) && (G.G instanceof TL_stars.TL_starsGiftOption)) {
                         Context W = org.telegram.messenger.g0.W(ocVar.getContext());
@@ -187,7 +187,7 @@ public final class k implements bj0 {
                         }
                         if (W != null) {
                             long j10 = ocVar.R1.f27105id;
-                            ea y10 = ea.y(ocVar.f28616a, false);
+                            ea y10 = ea.y(ocVar.f28621a, false);
                             TL_stars.TL_starsGiftOption tL_starsGiftOption = (TL_stars.TL_starsGiftOption) G.G;
                             mc mcVar = new mc(ocVar, G, j10, 0);
                             int i15 = y10.f3807a;
@@ -240,12 +240,12 @@ public final class k implements bj0 {
                 return;
             case 3:
                 tc tcVar = (tc) obj;
-                l41 l41Var3 = tcVar.W1;
-                if (l41Var3 != null && (G2 = l41Var3.G(i7 - 1)) != null) {
-                    l41 l41Var4 = tcVar.W1;
+                m41 m41Var3 = tcVar.W1;
+                if (m41Var3 != null && (G2 = m41Var3.G(i7 - 1)) != null) {
+                    m41 m41Var4 = tcVar.W1;
                     if (G2.d == -1) {
                         tcVar.X1 = !tcVar.X1;
-                        l41Var4.O(true);
+                        m41Var4.O(true);
                         return;
                     } else if (G2.H(pc.class) && (G2.G instanceof TL_stars.TL_starsTopupOption)) {
                         Activity W2 = org.telegram.messenger.g0.W(tcVar.getContext());
@@ -253,7 +253,7 @@ public final class k implements bj0 {
                             W2 = LaunchActivity.G1;
                         }
                         if (W2 != null) {
-                            ea.y(tcVar.f28616a, false).f(W2, (TL_stars.TL_starsTopupOption) G2.G, new p5(2, tcVar, G2), tcVar.U1);
+                            ea.y(tcVar.f28621a, false).f(W2, (TL_stars.TL_starsTopupOption) G2.G, new p5(2, tcVar, G2), tcVar.U1);
                             return;
                         }
                         return;
@@ -264,13 +264,13 @@ public final class k implements bj0 {
                 return;
             case 4:
                 uc ucVar = (uc) obj;
-                l41 l41Var5 = ucVar.Q1;
-                if (l41Var5 != null && (G3 = l41Var5.G(i7 - 1)) != null) {
-                    l41 l41Var6 = ucVar.Q1;
+                m41 m41Var5 = ucVar.Q1;
+                if (m41Var5 != null && (G3 = m41Var5.G(i7 - 1)) != null) {
+                    m41 m41Var6 = ucVar.Q1;
                     if (G3.d == -1) {
                         ucVar.R1 = !ucVar.R1;
-                        l41Var6.O(true);
-                        ucVar.f36277k1.w0(0, org.telegram.messenger.g0.L(300.0f), null);
+                        m41Var6.O(true);
+                        ucVar.f36303k1.w0(0, org.telegram.messenger.g0.L(300.0f), null);
                         return;
                     } else if (G3.H(pc.class) && (G3.G instanceof TL_stars.TL_starsTopupOption)) {
                         Activity W3 = org.telegram.messenger.g0.W(ucVar.getContext());
@@ -278,7 +278,7 @@ public final class k implements bj0 {
                             W3 = LaunchActivity.G1;
                         }
                         if (W3 != null) {
-                            ea.y(ucVar.f28616a, false).f(W3, (TL_stars.TL_starsTopupOption) G3.G, new p5(3, ucVar, G3), null);
+                            ea.y(ucVar.f28621a, false).f(W3, (TL_stars.TL_starsTopupOption) G3.G, new p5(3, ucVar, G3), null);
                             return;
                         }
                         return;
@@ -288,33 +288,33 @@ public final class k implements bj0 {
                 }
                 return;
             case 5:
-                ((pv) obj).i((di.p) view, false);
+                ((rv) obj).i((di.p) view, false);
                 return;
             case 6:
                 ei.n nVar = (ei.n) obj;
-                sp0 sp0Var = nVar.W;
-                f2 f2Var = sp0Var.f10844a;
+                tp0 tp0Var = nVar.W;
+                f2 f2Var = tp0Var.f10844a;
                 if (view instanceof o7) {
                     ij messageObject = ((o7) view).getMessageObject();
-                    if (sp0Var.G.E1) {
-                        if (sp0Var.c(messageObject)) {
-                            sp0Var.g(messageObject);
+                    if (tp0Var.G.E1) {
+                        if (tp0Var.c(messageObject)) {
+                            tp0Var.g(messageObject);
                             return;
                         } else {
-                            sp0Var.e(messageObject);
+                            tp0Var.e(messageObject);
                             return;
                         }
                     }
-                    p9 orCreateStoryViewer = f2Var.getOrCreateStoryViewer();
+                    q9 orCreateStoryViewer = f2Var.getOrCreateStoryViewer();
                     Context context = nVar.getContext();
-                    int f12 = messageObject.f1();
-                    j6 j6Var = nVar.f10829a;
-                    h7 a11 = h7.a(nVar.f10833f);
-                    if ((f2Var instanceof ProfileActivity) && ((ProfileActivity) f2Var).f41812r1) {
+                    int e12 = messageObject.e1();
+                    k6 k6Var = nVar.f10829a;
+                    i7 a11 = i7.a(nVar.f10833f);
+                    if ((f2Var instanceof ProfileActivity) && ((ProfileActivity) f2Var).f41819r1) {
                         i12 = org.telegram.messenger.g0.L(68.0f);
                     }
-                    a11.f9093s += i12;
-                    orCreateStoryViewer.I(context, f12, j6Var, a11);
+                    a11.f9123s += i12;
+                    orCreateStoryViewer.I(context, e12, k6Var, a11);
                     return;
                 }
                 return;
@@ -327,8 +327,8 @@ public final class k implements bj0 {
                 return;
             case 8:
                 t1 t1Var = (t1) obj;
-                k2 k2Var = t1Var.f12845r;
-                Object F = t1Var.f12841c.F(i7);
+                k2 k2Var = t1Var.f12844r;
+                Object F = t1Var.f12840c.F(i7);
                 if (F instanceof TLRPC.BotInlineResult) {
                     botInlineResult = (TLRPC.BotInlineResult) F;
                     document2 = botInlineResult.document;
@@ -339,7 +339,7 @@ public final class k implements bj0 {
                 }
                 y10 y10Var = k2Var.f12263v1;
                 if (y10Var != null) {
-                    y10Var.i(botInlineResult, document2, Boolean.TRUE);
+                    y10Var.k(botInlineResult, document2, Boolean.TRUE);
                 }
                 k2Var.dismiss();
                 return;
@@ -349,7 +349,7 @@ public final class k implements bj0 {
                 y1 y1Var = z1Var.f13236c;
                 if (i7 >= 0) {
                     z1Var.d.getClass();
-                    if (RecyclerView.U(view).f57048f != 4) {
+                    if (RecyclerView.U(view).f57060f != 4) {
                         ArrayList arrayList2 = y1Var.f13149s;
                         ArrayList arrayList3 = y1Var.f13150w;
                         if (i7 < arrayList2.size()) {
@@ -369,15 +369,15 @@ public final class k implements bj0 {
                             longValue = ((Long) arrayList3.get(i7)).longValue();
                         }
                         if (document3 == null && (view instanceof fi.l1) && (i5Var = ((fi.l1) view).d) != null) {
-                            document3 = i5Var.f34536e;
+                            document3 = i5Var.f34563e;
                         }
                         if (document3 == null && longValue != 0) {
-                            document3 = i5.e(k2Var2.f28616a, longValue);
+                            document3 = i5.e(k2Var2.f28621a, longValue);
                         }
                         if (document3 != null) {
                             y10 y10Var2 = k2Var2.f12263v1;
                             if (y10Var2 != null) {
-                                y10Var2.i(y1Var.f13146f.get(Long.valueOf(document3.f26962id)), document3, Boolean.FALSE);
+                                y10Var2.k(y1Var.f13146f.get(Long.valueOf(document3.f26962id)), document3, Boolean.FALSE);
                             }
                             k2Var2.dismiss();
                             return;
@@ -390,12 +390,12 @@ public final class k implements bj0 {
             case 10:
                 x9 x9Var = (x9) obj;
                 sg.b0 b0Var = (sg.b0) sg.b0.c().get(i7);
-                x9Var.U0.setTypeface(b0Var.f55018a);
-                sg.l0 e10 = sg.l0.e(x9Var.f12538o1);
-                String str2 = b0Var.f55018a;
-                e10.f55134j = str2;
-                e10.f55127a.edit().putString("typeface", str2).apply();
-                tg.j jVar = x9Var.f12545s0;
+                x9Var.U0.setTypeface(b0Var.f55030a);
+                sg.l0 e10 = sg.l0.e(x9Var.f12536o1);
+                String str2 = b0Var.f55030a;
+                e10.f55144j = str2;
+                e10.f55137a.edit().putString("typeface", str2).apply();
+                tg.j jVar = x9Var.f12543s0;
                 if (jVar instanceof tg.k2) {
                     ((tg.k2) jVar).setTypeface(b0Var);
                 }
@@ -405,9 +405,9 @@ public final class k implements bj0 {
                 gi.f.A0((gi.f) obj, i7);
                 return;
             case 12:
-                l41 l41Var7 = ((gi.e) obj).U1;
-                if (l41Var7 != null) {
-                    l41Var7.G(i7 - 1);
+                m41 m41Var7 = ((gi.e) obj).U1;
+                if (m41Var7 != null) {
+                    m41Var7.G(i7 - 1);
                     return;
                 }
                 return;
@@ -419,28 +419,28 @@ public final class k implements bj0 {
                 if (view instanceof o4) {
                     o4 o4Var = (o4) view;
                     if (o4Var.E) {
-                        hw hwVar = h0Var.U;
-                        if (hwVar != null) {
-                            hwVar.f46502a.Z4(o4Var.getDialogId(), view);
+                        jw jwVar = h0Var.U;
+                        if (jwVar != null) {
+                            jwVar.f47105a.Z4(o4Var.getDialogId(), view);
                             return;
                         }
                         return;
                     }
                 }
-                hw hwVar2 = h0Var.U;
-                if (hwVar2 != null) {
-                    ww wwVar = hwVar2.f46502a;
+                jw jwVar2 = h0Var.U;
+                if (jwVar2 != null) {
+                    yw ywVar = jwVar2.f47105a;
                     long longValue2 = ((Long) view.getTag()).longValue();
-                    if (wwVar.f51592l2) {
-                        if (wwVar.v5(longValue2)) {
-                            if (!wwVar.I2.isEmpty()) {
-                                wwVar.b4(longValue2, wwVar.s3(longValue2, null));
-                                wwVar.o5();
-                                kVar = ((f2) wwVar).actionBar;
-                                kVar.l(true);
+                    if (ywVar.f52271m2) {
+                        if (ywVar.v5(longValue2)) {
+                            if (!ywVar.J2.isEmpty()) {
+                                ywVar.b4(longValue2, ywVar.s3(longValue2, null));
+                                ywVar.o5();
+                                kVar = ((f2) ywVar).actionBar;
+                                kVar.m(true);
                                 return;
                             }
-                            wwVar.a4(longValue2, 0L, true, null);
+                            ywVar.a4(longValue2, 0L, true, null);
                             return;
                         }
                         return;
@@ -451,31 +451,31 @@ public final class k implements bj0 {
                     } else {
                         bundle.putLong("chat_id", -longValue2);
                     }
-                    wwVar.V3();
-                    if (org.telegram.messenger.g0.Q1() && wwVar.f51556e0 != null) {
+                    ywVar.V3();
+                    if (org.telegram.messenger.g0.Q1() && ywVar.f52231e0 != null) {
                         int i16 = 0;
                         while (true) {
-                            vw[] vwVarArr = wwVar.f51556e0;
-                            if (i16 < vwVarArr.length) {
-                                gv gvVar = vwVarArr[i16].d;
-                                wwVar.f51610p2.f26520a = longValue2;
-                                gvVar.f16856s = longValue2;
+                            xw[] xwVarArr = ywVar.f52231e0;
+                            if (i16 < xwVarArr.length) {
+                                iv ivVar = xwVarArr[i16].d;
+                                ywVar.f52290q2.f26520a = longValue2;
+                                ivVar.f16856s = longValue2;
                                 i16++;
                             } else {
                                 int i17 = qp.C8;
-                                wwVar.u5(512, true);
+                                ywVar.u5(512, true);
                             }
                         }
                     }
-                    if (wwVar.f51601n2 != null) {
-                        if (wwVar.getMessagesController().E(bundle, wwVar, null, null)) {
-                            wwVar.getNotificationCenter().k(4, new Object[0]);
-                            wwVar.presentFragment(new an(bundle));
+                    if (ywVar.f52281o2 != null) {
+                        if (ywVar.getMessagesController().E(bundle, ywVar, null, null)) {
+                            ywVar.getNotificationCenter().k(4, new Object[0]);
+                            ywVar.presentFragment(new cn(bundle));
                             return;
                         }
                         return;
-                    } else if (wwVar.getMessagesController().E(bundle, wwVar, null, null)) {
-                        wwVar.presentFragment(new an(bundle));
+                    } else if (ywVar.getMessagesController().E(bundle, ywVar, null, null)) {
+                        ywVar.presentFragment(new cn(bundle));
                         return;
                     } else {
                         return;
@@ -485,7 +485,7 @@ public final class k implements bj0 {
             case 15:
                 kg.g0 g0Var = (kg.g0) obj;
                 kg.d0 d0Var = g0Var.f17389y;
-                di diVar = g0Var.f39004b;
+                di diVar = g0Var.f39071b;
                 v4.g0 adapter = g0Var.f17386s.getAdapter();
                 kg.e0 e0Var = g0Var.D;
                 if (adapter == e0Var) {
@@ -518,7 +518,7 @@ public final class k implements bj0 {
                 return;
             case 16:
                 kg.i0 i0Var = (kg.i0) obj;
-                x31 G5 = i0Var.W1.G(i7 - 1);
+                y31 G5 = i0Var.W1.G(i7 - 1);
                 if (G5 != null) {
                     kg.a0 a0Var = i0Var.R1;
                     if (!a0Var.h(G5)) {
@@ -558,7 +558,7 @@ public final class k implements bj0 {
                 }
             case 18:
                 pg.j jVar2 = (pg.j) obj;
-                Runnable runnable = ((pg.a) jVar2.E.get(i7)).f53600c;
+                Runnable runnable = ((pg.a) jVar2.E.get(i7)).f53612c;
                 if (runnable != null) {
                     runnable.run();
                     jVar2.c(false);
@@ -566,29 +566,29 @@ public final class k implements bj0 {
                 }
                 return;
             case 19:
-                up0 up0Var = (up0) obj;
+                wp0 wp0Var = (wp0) obj;
                 sg.b0 b0Var2 = (sg.b0) sg.b0.c().get(i7);
-                up0Var.f55669d1.setTypeface(b0Var2.f55018a);
-                sg.l0 e11 = sg.l0.e(up0Var.f55703y1);
-                String str3 = b0Var2.f55018a;
-                e11.f55134j = str3;
-                e11.f55127a.edit().putString("typeface", str3).apply();
-                tg.j jVar3 = up0Var.B0;
+                wp0Var.f55681d1.setTypeface(b0Var2.f55030a);
+                sg.l0 e11 = sg.l0.e(wp0Var.f55715y1);
+                String str3 = b0Var2.f55030a;
+                e11.f55144j = str3;
+                e11.f55137a.edit().putString("typeface", str3).apply();
+                tg.j jVar3 = wp0Var.B0;
                 if (jVar3 instanceof tg.k2) {
                     ((tg.k2) jVar3).setTypeface(b0Var2);
                 }
-                up0Var.z0(false);
+                wp0Var.z0(false);
                 return;
             case 20:
                 tg.y0 y0Var = (tg.y0) obj;
-                y0Var.f56011i3.accept(Integer.valueOf(y0Var.f56010h3.b(i7)));
-                sg.l0 l0Var = y0Var.f56010h3;
-                l0Var.f55129c.put(Integer.valueOf(l0Var.f55131f), Integer.valueOf(l0Var.b(i7)));
-                l0Var.f55130e = true;
+                y0Var.f56023i3.accept(Integer.valueOf(y0Var.f56022h3.b(i7)));
+                sg.l0 l0Var = y0Var.f56022h3;
+                l0Var.f55139c.put(Integer.valueOf(l0Var.f55141f), Integer.valueOf(l0Var.b(i7)));
+                l0Var.f55140e = true;
                 return;
             case 21:
                 ug.i0 i0Var2 = (ug.i0) obj;
-                HashSet hashSet = i0Var2.f56619q2;
+                HashSet hashSet = i0Var2.f56631q2;
                 if (view instanceof org.telegram.ui.Cells.n) {
                     org.telegram.ui.Cells.n nVar2 = (org.telegram.ui.Cells.n) view;
                     TLRPC.Chat currentChannel = nVar2.getCurrentChannel();
@@ -597,7 +597,7 @@ public final class k implements bj0 {
                     } else {
                         hashSet.add(currentChannel);
                     }
-                    nVar2.f29591r.a(hashSet.contains(currentChannel), true);
+                    nVar2.f29595r.a(hashSet.contains(currentChannel), true);
                     i0Var2.E1();
                     return;
                 } else if (view instanceof h4) {
@@ -612,12 +612,12 @@ public final class k implements bj0 {
                                 org.telegram.messenger.g0.G3(i23, h4Var, null);
                                 p2.APP_ERROR.a();
                                 if (j11 >= 0) {
-                                    str = t10.k(qp.s1(i0Var2.f28616a).a2(Long.valueOf(j11)));
+                                    str = t10.k(qp.s1(i0Var2.f28621a).a2(Long.valueOf(j11)));
                                 }
-                                if (qp.s1(i0Var2.f28616a).D3()) {
-                                    K = new hc((FrameLayout) i0Var2.f28619b, i0Var2.I0).Q(2131624216, 36, org.telegram.messenger.g0.X2(id.a0(null, null, 2131743763, str)));
+                                if (qp.s1(i0Var2.f28621a).D3()) {
+                                    K = new hc((FrameLayout) i0Var2.f28624b, i0Var2.I0).Q(2131624216, 36, org.telegram.messenger.g0.X2(id.a0(null, null, 2131743760, str)));
                                 } else {
-                                    K = new hc((FrameLayout) i0Var2.f28619b, i0Var2.I0).K(2131624216, org.telegram.messenger.g0.X2(id.a0(null, null, 2131743763, str)), id.M0(2131743762, null), new ug.v(i0Var2, 0));
+                                    K = new hc((FrameLayout) i0Var2.f28624b, i0Var2.I0).K(2131624216, org.telegram.messenger.g0.X2(id.a0(null, null, 2131743760, str)), id.M0(2131743759, null), new ug.v(i0Var2, 0));
                                 }
                                 K.j();
                                 return;
@@ -641,23 +641,23 @@ public final class k implements bj0 {
                 ug.s0 s0Var2 = (ug.s0) obj;
                 if (view != null) {
                     s0Var2.z1(view, true);
-                    s0Var2.f56652k3 = false;
+                    s0Var2.f56664k3 = false;
                     s0Var2.w0(0, view.getTop() - ((s0Var2.getMeasuredHeight() - view.getMeasuredHeight()) / 2), org.telegram.messenger.g0.H);
                     return;
                 }
                 return;
             case 23:
-                ((w80) obj).h(view);
+                ((x80) obj).h(view);
                 return;
             case 24:
                 ((yh.m) obj).h(view);
                 return;
             default:
-                n3 n3Var = (n3) obj;
-                fi.d dVar = n3Var.U1;
-                HashSet hashSet2 = n3Var.R1;
-                l41 l41Var8 = n3Var.Y1;
-                if (l41Var8 != null && (G4 = l41Var8.G(i7 - 1)) != null) {
+                o3 o3Var = (o3) obj;
+                fi.d dVar = o3Var.U1;
+                HashSet hashSet2 = o3Var.R1;
+                m41 m41Var8 = o3Var.Y1;
+                if (m41Var8 != null && (G4 = m41Var8.G(i7 - 1)) != null) {
                     Object obj3 = G4.G;
                     if (obj3 instanceof TL_stars.SavedStarGift) {
                         TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj3;
@@ -666,11 +666,11 @@ public final class k implements bj0 {
                         if (hashSet2.contains(Long.valueOf(j12))) {
                             hashSet2.remove(Long.valueOf(j12));
                             ((zh.y0) view).c(false, true);
-                            G4.f40174e = false;
+                            G4.f40562e = false;
                         } else {
                             hashSet2.add(Long.valueOf(j12));
                             ((zh.y0) view).c(true, true);
-                            G4.f40174e = true;
+                            G4.f40562e = true;
                         }
                         if (hashSet2.size() > 0) {
                             z9 = true;

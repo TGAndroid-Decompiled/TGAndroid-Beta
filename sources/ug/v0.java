@@ -8,39 +8,39 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import c8.ha;
 import org.telegram.messenger.k5;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.w70;
-import org.telegram.ui.vs0;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.s6;
+import org.telegram.ui.Components.x70;
+import org.telegram.ui.xs0;
 public final class v0 extends LinearLayout {
-    public int f56836a;
-    public final TextView f56837b;
-    public final w70 f56838c;
+    public int f56848a;
+    public final TextView f56849b;
+    public final x70 f56850c;
     public LinearLayout d;
-    public final l0 f56839e;
-    public final ViewGroup f56840f;
+    public final l0 f56851e;
+    public final ViewGroup f56852f;
     public boolean h;
-    public final w0 f56841n;
+    public final w0 f56853n;
 
     public v0(w0 w0Var, Context context, int i7) {
         super(context);
         int i10;
         i iVar;
-        this.f56841n = w0Var;
+        this.f56853n = w0Var;
         setOrientation(1);
-        vs0 vs0Var = (vs0) w0Var.f56846k1.get(i7);
-        int i11 = vs0Var.f50766a;
+        xs0 xs0Var = (xs0) w0Var.f56858k1.get(i7);
+        int i11 = xs0Var.f51756a;
         if (i11 == 0) {
             ?? aVar = new a(context, w0Var.I0);
-            aVar.f56523b.setOnScrollListener(new r0(w0Var, 1));
+            aVar.f56535b.setOnScrollListener(new r0(w0Var, 1));
             iVar = aVar;
         } else if (i11 != 14 && i11 != 28) {
             if (i11 == 5) {
-                iVar = new j1(context, w0Var.f28616a);
+                iVar = new j1(context, w0Var.f28621a);
             } else if (i11 == 10) {
                 iVar = new n0(context, w0Var.I0);
             } else {
-                iVar = new t1(context, w0Var.f56853t1, w0Var.f28616a, vs0Var.f50766a, w0Var.I0);
+                iVar = new t1(context, w0Var.f56865t1, w0Var.f28621a, xs0Var.f51756a, w0Var.I0);
             }
         } else {
             if (i11 == 28) {
@@ -49,39 +49,39 @@ public final class v0 extends LinearLayout {
                 i10 = 0;
             }
             i iVar2 = new i(i10, context, w0Var.I0);
-            iVar2.f56523b.setOnScrollListener(new r0(w0Var, 0));
+            iVar2.f56535b.setOnScrollListener(new r0(w0Var, 0));
             iVar = iVar2;
         }
-        this.f56840f = iVar;
+        this.f56852f = iVar;
         addView(iVar);
-        this.f56839e = iVar;
+        this.f56851e = iVar;
         TextView textView = new TextView(context);
-        this.f56837b = textView;
+        this.f56849b = textView;
         textView.setGravity(1);
-        int i12 = k6.f27960j5;
+        int i12 = l6.f27973j5;
         k5.n(textView, i12, w0Var.I0, 1, 20.0f);
         addView(textView, ha.d(-1, -2.0f, 0, 21.0f, 20.0f, 21.0f, 0.0f));
-        w70 w70Var = new w70(context, null);
-        this.f56838c = w70Var;
-        w70Var.setGravity(1);
-        w70Var.setTextSize(1, 15.0f);
-        r6.V(w70Var, i12, w0Var.I0);
-        if (!w0Var.f56855v1) {
-            w70Var.setLines(2);
+        x70 x70Var = new x70(context, null);
+        this.f56850c = x70Var;
+        x70Var.setGravity(1);
+        x70Var.setTextSize(1, 15.0f);
+        s6.U(x70Var, i12, w0Var.I0);
+        if (!w0Var.f56867v1) {
+            x70Var.setLines(2);
         }
-        addView(w70Var, ha.t(-1, -2, 1, 21, 10, 21, 16));
+        addView(x70Var, ha.t(-1, -2, 1, 21, 10, 21, 16));
         setImportantForAccessibility(2);
         setClipChildren(false);
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.f56840f) {
+        if (view == this.f56852f) {
             boolean z9 = view instanceof a;
             if (z9) {
                 setTranslationY(0.0f);
             } else {
-                setTranslationY(this.f56841n.C1);
+                setTranslationY(this.f56853n.C1);
             }
             if (z9) {
                 return super.drawChild(canvas, view, j3);
@@ -97,24 +97,24 @@ public final class v0 extends LinearLayout {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        TextView textView = this.f56837b;
+        TextView textView = this.f56849b;
         textView.setVisibility(0);
-        ViewGroup viewGroup = this.f56840f;
+        ViewGroup viewGroup = this.f56852f;
         boolean z9 = viewGroup instanceof a;
-        w0 w0Var = this.f56841n;
+        w0 w0Var = this.f56853n;
         if (z9) {
             ((a) viewGroup).setTopOffset(w0Var.C1);
         }
-        viewGroup.getLayoutParams().height = w0Var.f56850q1;
-        w70 w70Var = this.f56838c;
-        w70Var.setVisibility(0);
+        viewGroup.getLayoutParams().height = w0Var.f56862q1;
+        x70 x70Var = this.f56850c;
+        x70Var.setVisibility(0);
         ((ViewGroup.MarginLayoutParams) viewGroup.getLayoutParams()).bottomMargin = 0;
         super.onMeasure(i7, i10);
         if (this.h) {
             viewGroup.getLayoutParams().height = getMeasuredHeight() - org.telegram.messenger.g0.L(16.0f);
             ((ViewGroup.MarginLayoutParams) viewGroup.getLayoutParams()).bottomMargin = org.telegram.messenger.g0.L(16.0f);
             textView.setVisibility(8);
-            w70Var.setVisibility(8);
+            x70Var.setVisibility(8);
             super.onMeasure(i7, i10);
         }
     }

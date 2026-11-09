@@ -37,11 +37,17 @@ public final class n implements OnSuccessListener, te.i {
     public Object f19922c;
     public Object d;
 
-    public n(Object obj, Object obj2, Object obj3, int i7) {
-        this.f19921b = obj;
-        this.f19922c = obj2;
-        this.d = obj3;
-        this.f19920a = i7;
+    public n(int i7, String str, int i10, ArrayList arrayList, byte[] bArr) {
+        List unmodifiableList;
+        this.f19921b = str;
+        this.f19920a = i10;
+        if (arrayList == null) {
+            unmodifiableList = Collections.EMPTY_LIST;
+        } else {
+            unmodifiableList = DesugarCollections.unmodifiableList(arrayList);
+        }
+        this.f19922c = unmodifiableList;
+        this.d = bArr;
     }
 
     public static synchronized n i(Context context) {
@@ -115,7 +121,13 @@ public final class n implements OnSuccessListener, te.i {
             if (!TextUtils.isEmpty((String) this.d) && z9) {
                 throw new IllegalArgumentException("Negative text must not be set if device credential authentication is allowed.");
             }
-            return new n((String) this.f19921b, (String) this.f19922c, (String) this.d, this.f19920a);
+            int i11 = this.f19920a;
+            ?? obj = new Object();
+            obj.f19921b = (String) this.f19921b;
+            obj.f19922c = (String) this.f19922c;
+            obj.d = (String) this.d;
+            obj.f19920a = i11;
+            return obj;
         }
         throw new IllegalArgumentException("Title must be set and non-empty.");
     }
@@ -163,7 +175,7 @@ public final class n implements OnSuccessListener, te.i {
         Iterator it = ((te.j) this.d).iterator();
         while (it.hasNext()) {
             te.e eVar = (te.e) it.next();
-            fArr[((Integer) eVar.f55496a).intValue()] = eVar.c();
+            fArr[((Integer) eVar.f55508a).intValue()] = eVar.c();
         }
         ((xf) this.f19922c).run();
     }
@@ -238,19 +250,6 @@ public final class n implements OnSuccessListener, te.i {
     @Override
     public void onSuccess(java.lang.Object r15) {
         throw new UnsupportedOperationException("Method not decompiled: m6.n.onSuccess(java.lang.Object):void");
-    }
-
-    public n(int i7, String str, int i10, ArrayList arrayList, byte[] bArr) {
-        List unmodifiableList;
-        this.f19921b = str;
-        this.f19920a = i10;
-        if (arrayList == null) {
-            unmodifiableList = Collections.EMPTY_LIST;
-        } else {
-            unmodifiableList = DesugarCollections.unmodifiableList(arrayList);
-        }
-        this.f19922c = unmodifiableList;
-        this.d = bArr;
     }
 
     public n(int i7) {

@@ -4,21 +4,21 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 public final class ke extends ImageView {
-    public final int f35284a;
-    public final ChatActivityEnterView f35285b;
+    public final int f35329a;
+    public final ChatActivityEnterView f35330b;
 
     public ke(ChatActivityEnterView chatActivityEnterView, Context context, int i7) {
         super(context);
-        this.f35284a = i7;
-        this.f35285b = chatActivityEnterView;
+        this.f35329a = i7;
+        this.f35330b = chatActivityEnterView;
     }
 
     @Override
     public void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        switch (this.f35284a) {
+        switch (this.f35329a) {
             case 0:
                 super.onLayout(z9, i7, i10, i11, i12);
-                post(new rd(this.f35285b, 5));
+                post(new rd(this.f35330b, 5));
                 return;
             default:
                 super.onLayout(z9, i7, i10, i11, i12);
@@ -28,7 +28,7 @@ public final class ke extends ImageView {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f35284a) {
+        switch (this.f35329a) {
             case 2:
                 if (getAlpha() <= 0.0f) {
                     return false;
@@ -41,26 +41,26 @@ public final class ke extends ImageView {
 
     @Override
     public final void setAlpha(float f10) {
-        switch (this.f35284a) {
+        switch (this.f35329a) {
             case 0:
                 super.setAlpha(f10);
-                ie ieVar = this.f35285b.J1;
+                ie ieVar = this.f35330b.J1;
                 if (ieVar != null) {
-                    ieVar.setTranslationX(ieVar.f34636a);
+                    ieVar.setTranslationX(ieVar.f34719a);
                     return;
                 }
                 return;
             case 1:
                 super.setAlpha(f10);
-                ie ieVar2 = this.f35285b.J1;
+                ie ieVar2 = this.f35330b.J1;
                 if (ieVar2 != null) {
-                    ieVar2.setTranslationX(ieVar2.f34636a);
+                    ieVar2.setTranslationX(ieVar2.f34719a);
                     return;
                 }
                 return;
             default:
                 super.setAlpha(f10);
-                de deVar = this.f35285b.Z0;
+                de deVar = this.f35330b.Z0;
                 if (deVar != null) {
                     deVar.invalidate();
                     return;
@@ -71,10 +71,10 @@ public final class ke extends ImageView {
 
     @Override
     public void setVisibility(int i7) {
-        switch (this.f35284a) {
+        switch (this.f35329a) {
             case 2:
                 super.setVisibility(i7);
-                de deVar = this.f35285b.Z0;
+                de deVar = this.f35330b.Z0;
                 if (deVar != null) {
                     deVar.invalidate();
                     return;

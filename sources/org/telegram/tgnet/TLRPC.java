@@ -11,7 +11,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import l2.y;
+import l2.x;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.c10;
 import org.telegram.messenger.ch;
@@ -65134,7 +65134,7 @@ public class TLRPC {
             this.title = inputSerializedData.readString(z9);
             this.short_name = inputSerializedData.readString(z9);
             if (TLObject.hasFlag(this.flags, 16)) {
-                this.thumbs = Vector.deserialize(inputSerializedData, new y(this, 23), z9);
+                this.thumbs = Vector.deserialize(inputSerializedData, new x(this, 23), z9);
             }
             if (TLObject.hasFlag(this.flags, 16)) {
                 this.thumb_dc_id = inputSerializedData.readInt32(z9);
@@ -65417,7 +65417,7 @@ public class TLRPC {
             this.title = inputSerializedData.readString(z9);
             this.short_name = inputSerializedData.readString(z9);
             if (TLObject.hasFlag(this.flags, 16)) {
-                this.thumbs = Vector.deserialize(inputSerializedData, new y(this, 24), z9);
+                this.thumbs = Vector.deserialize(inputSerializedData, new x(this, 24), z9);
             }
             if (TLObject.hasFlag(this.flags, 16)) {
                 this.thumb_dc_id = inputSerializedData.readInt32(z9);

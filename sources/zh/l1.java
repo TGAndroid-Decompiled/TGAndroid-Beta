@@ -10,26 +10,26 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.id;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.m61;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Components.n61;
 import org.telegram.ui.Components.r5;
-import org.telegram.ui.Components.up0;
-public final class l1 extends m61 {
-    public final int f60441a;
-    public final f6 f60442b;
-    public final up0 f60443c;
+import org.telegram.ui.Components.vp0;
+public final class l1 extends n61 {
+    public final int f60451a;
+    public final g6 f60452b;
+    public final vp0 f60453c;
 
-    public l1(up0 up0Var, int i7, f6 f6Var) {
-        this.f60443c = up0Var;
-        this.f60441a = i7;
-        this.f60442b = f6Var;
+    public l1(vp0 vp0Var, int i7, g6 g6Var) {
+        this.f60453c = vp0Var;
+        this.f60451a = i7;
+        this.f60452b = g6Var;
     }
 
     @Override
     public final void a(ArrayList arrayList) {
-        up0 up0Var = this.f60443c;
-        h1 h1Var = up0Var.Q;
-        t9 t9Var = up0Var.f60286e;
+        vp0 vp0Var = this.f60453c;
+        h1 h1Var = vp0Var.Q;
+        t9 t9Var = vp0Var.f60295e;
         ArrayList arrayList2 = new ArrayList();
         int size = arrayList.size();
         int i7 = 0;
@@ -45,7 +45,7 @@ public final class l1 extends m61 {
         }
         t9Var.getClass();
         HashMap hashMap = new HashMap();
-        ArrayList arrayList3 = t9Var.f4760e;
+        ArrayList arrayList3 = t9Var.f4758e;
         int size2 = arrayList3.size();
         int i11 = 0;
         while (i11 < size2) {
@@ -70,12 +70,12 @@ public final class l1 extends m61 {
         arrayList3.clear();
         arrayList3.addAll(arrayList4);
         t9Var.j();
-        z1 currentPage = up0Var.getCurrentPage();
+        z1 currentPage = vp0Var.getCurrentPage();
         if (currentPage != null) {
             if (currentPage.d) {
-                i7 = t9Var.f(currentPage.f60625e.d) + 1;
+                i7 = t9Var.f(currentPage.f60642e.d) + 1;
             }
-            up0Var.f60288n.e(0.0f, i7, i7);
+            vp0Var.f60297n.e(0.0f, i7, i7);
         }
         org.telegram.messenger.g0.r(h1Var);
         org.telegram.messenger.g0.i3(h1Var, 1000L);
@@ -85,12 +85,12 @@ public final class l1 extends m61 {
     public final void b(View view, int i7, int i10) {
         v9 v9Var;
         boolean z9;
-        up0 up0Var = this.f60443c;
-        t9 t9Var = up0Var.f60286e;
+        vp0 vp0Var = this.f60453c;
+        t9 t9Var = vp0Var.f60295e;
         z1 z1Var = (z1) view;
         int i11 = 0;
         if (i10 == 0) {
-            v9Var = up0Var.d;
+            v9Var = vp0Var.d;
             z9 = false;
         } else {
             int i12 = i7 - 1;
@@ -106,19 +106,19 @@ public final class l1 extends m61 {
             z9 = true;
         }
         z1Var.d = z9;
-        z1Var.f60625e = v9Var;
+        z1Var.f60642e = v9Var;
         if (v9Var != null) {
             v9Var.a();
         }
         z1Var.f(false);
         LinearLayout linearLayout = z1Var.D;
         if (linearLayout != null) {
-            if (!z1Var.f60622a.f60286e.h()) {
+            if (!z1Var.f60639a.f60295e.h()) {
                 i11 = 8;
             }
             linearLayout.setVisibility(i11);
         }
-        z1Var.setVisibleHeight(up0Var.T);
+        z1Var.setVisibleHeight(vp0Var.T);
         z1Var.setHasTabs(!t9Var.d().isEmpty());
     }
 
@@ -135,20 +135,20 @@ public final class l1 extends m61 {
         if (i7 == -1) {
             return null;
         }
-        int i10 = this.f60441a;
-        f6 f6Var = this.f60442b;
-        up0 up0Var = this.f60443c;
-        z1 z1Var = new z1(up0Var, i10, f6Var);
-        oi.q qVar = up0Var.N;
+        int i10 = this.f60451a;
+        g6 g6Var = this.f60452b;
+        vp0 vp0Var = this.f60453c;
+        z1 z1Var = new z1(vp0Var, i10, g6Var);
+        oi.q qVar = vp0Var.N;
         if (qVar != null) {
-            qVar.b(z1Var.f60626f);
+            qVar.b(z1Var.f60643f);
         }
         return z1Var;
     }
 
     @Override
     public final int e() {
-        return this.f60443c.f60286e.d().size() + 1;
+        return this.f60453c.f60295e.d().size() + 1;
     }
 
     @Override
@@ -156,15 +156,15 @@ public final class l1 extends m61 {
         if (i7 == 0) {
             return -2;
         }
-        return ((TL_stars.TL_starGiftCollection) this.f60443c.f60286e.d().get(i7 - 1)).collection_id;
+        return ((TL_stars.TL_starGiftCollection) this.f60453c.f60295e.d().get(i7 - 1)).collection_id;
     }
 
     @Override
     public final CharSequence g(int i7) {
         if (i7 == 0) {
-            return id.M0(2131750249, null);
+            return id.M0(2131750248, null);
         }
-        TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f60443c.f60286e.d().get(i7 - 1);
+        TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f60453c.f60295e.d().get(i7 - 1);
         if (tL_starGiftCollection == null) {
             return null;
         }

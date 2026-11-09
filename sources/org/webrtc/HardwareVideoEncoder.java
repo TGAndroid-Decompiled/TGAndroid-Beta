@@ -384,7 +384,7 @@ public class HardwareVideoEncoder implements VideoEncoder {
 
     @Override
     public final long createNativeVideoEncoder() {
-        return x.a(this);
+        return w.a(this);
     }
 
     public void deliverEncodedImage() {
@@ -539,7 +539,7 @@ public class HardwareVideoEncoder implements VideoEncoder {
 
     @Override
     public final VideoEncoder.ResolutionBitrateLimits[] getResolutionBitrateLimits() {
-        return x.c(this);
+        return w.c(this);
     }
 
     @Override
@@ -586,7 +586,7 @@ public class HardwareVideoEncoder implements VideoEncoder {
 
     @Override
     public final boolean isHardwareEncoder() {
-        return x.d(this);
+        return w.d(this);
     }
 
     public boolean isSemiPlanar(int i7) {

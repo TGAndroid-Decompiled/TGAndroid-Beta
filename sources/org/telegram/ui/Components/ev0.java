@@ -1,31 +1,6 @@
 package org.telegram.ui.Components;
-
-import android.animation.ValueAnimator;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class ev0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f33387a;
-    public final View f33388b;
-    public final FrameLayout f33389c;
-
-    public ev0(FrameLayout frameLayout, View view, int i7) {
-        this.f33387a = i7;
-        this.f33389c = frameLayout;
-        this.f33388b = view;
-    }
-
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f33387a) {
-            case 0:
-                fv0 fv0Var = (fv0) this.f33389c;
-                fv0Var.f33649b = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                fv0Var.invalidate();
-                ((rk0) this.f33388b).invalidate();
-                return;
-            default:
-                ((v61) this.f33389c).F(this.f33388b, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-        }
+public final class ev0 extends yb {
+    public ev0(android.content.Context r14, org.telegram.tgnet.TLObject r15, int r16, int r17, org.telegram.tgnet.TLRPC.Document r18, org.telegram.ui.ActionBar.g6 r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ev0.<init>(android.content.Context, org.telegram.tgnet.TLObject, int, int, org.telegram.tgnet.TLRPC$Document, org.telegram.ui.ActionBar.g6):void");
     }
 }

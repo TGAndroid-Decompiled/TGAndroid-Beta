@@ -5,13 +5,13 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 import org.telegram.messenger.qp;
 import org.telegram.messenger.t10;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g6;
 public final class s2 extends org.telegram.ui.web.x0 {
     public final int T0;
     public final Object U0;
 
-    public s2(Object obj, Context context, f6 f6Var, int i7, int i10) {
-        super(i7, context, f6Var, true);
+    public s2(Object obj, Context context, g6 g6Var, int i7, int i10) {
+        super(i7, context, g6Var, true);
         this.T0 = i10;
         this.U0 = obj;
     }

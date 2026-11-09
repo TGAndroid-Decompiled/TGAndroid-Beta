@@ -2,19 +2,19 @@ package org.telegram.ui.Components;
 
 import java.util.ArrayList;
 public final class ls implements ms {
-    public final int f35773a;
-    public final Object f35774b;
+    public final int f35830a;
+    public final Object f35831b;
 
     public ls(Object obj, int i7) {
-        this.f35773a = i7;
-        this.f35774b = obj;
+        this.f35830a = i7;
+        this.f35831b = obj;
     }
 
     @Override
     public final void a(int i7, boolean z9) {
-        switch (this.f35773a) {
+        switch (this.f35830a) {
             case 0:
-                ArrayList arrayList = ((os) this.f35774b).f36690b;
+                ArrayList arrayList = ((os) this.f35831b).f36777b;
                 int size = arrayList.size();
                 int i10 = 0;
                 while (i10 < size) {
@@ -24,7 +24,7 @@ public final class ls implements ms {
                 }
                 return;
             default:
-                ((Runnable) this.f35774b).run();
+                ((Runnable) this.f35831b).run();
                 return;
         }
     }

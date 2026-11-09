@@ -5,32 +5,32 @@ import android.graphics.RectF;
 import java.util.ArrayList;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class bg extends k1.b {
-    public final int[] f32192o;
-    public final ChatActivityEnterView.RecordCircle f32193p;
+    public final int[] f32251o;
+    public final ChatActivityEnterView.RecordCircle f32252p;
 
     public bg(ChatActivityEnterView.RecordCircle recordCircle, ChatActivityEnterView.RecordCircle recordCircle2) {
         super(recordCircle2);
-        this.f32193p = recordCircle;
-        this.f32192o = new int[2];
+        this.f32252p = recordCircle;
+        this.f32251o = new int[2];
     }
 
     @Override
     public final int g(float f10, float f11) {
         Rect rect;
         ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
-        if (chatActivityEnterView.f31127s4 && chatActivityEnterView.N1 != null) {
+        if (chatActivityEnterView.f31132s4 && chatActivityEnterView.N1 != null) {
             if (chatActivityEnterView.T3.contains((int) f10, (int) f11)) {
                 return 1;
             }
             if (chatActivityEnterView.S3.contains(f10, f11)) {
                 return 2;
             }
-            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f31077k1;
+            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f31082k1;
             if (slideTextView != null && (rect = slideTextView.K) != null) {
                 RectF rectF = org.telegram.messenger.g0.P;
                 rectF.set(rect);
-                ChatActivityEnterView.SlideTextView slideTextView2 = chatActivityEnterView.f31077k1;
-                int[] iArr = this.f32192o;
+                ChatActivityEnterView.SlideTextView slideTextView2 = chatActivityEnterView.f31082k1;
+                int[] iArr = this.f32251o;
                 slideTextView2.getLocationOnScreen(iArr);
                 rectF.offset(iArr[0], iArr[1]);
                 chatActivityEnterView.N1.getLocationOnScreen(iArr);
@@ -47,7 +47,7 @@ public final class bg extends k1.b {
 
     @Override
     public final void h(ArrayList arrayList) {
-        if (ChatActivityEnterView.this.f31127s4) {
+        if (ChatActivityEnterView.this.f31132s4) {
             arrayList.add(1);
             arrayList.add(3);
         }
@@ -64,20 +64,20 @@ public final class bg extends k1.b {
         ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
         if (i7 == 1) {
             dVar.h(chatActivityEnterView.T3);
-            dVar.o(org.telegram.messenger.id.M0(2131745643, "Send"));
+            dVar.o(org.telegram.messenger.id.M0(2131745640, "Send"));
         } else if (i7 == 2) {
             Rect rect2 = chatActivityEnterView.U3;
             RectF rectF = chatActivityEnterView.S3;
             rect2.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
             dVar.h(chatActivityEnterView.U3);
-            dVar.o(org.telegram.messenger.id.M0(2131744844, null));
+            dVar.o(org.telegram.messenger.id.M0(2131744841, null));
         } else if (i7 == 3 && chatActivityEnterView.N1 != null) {
-            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f31077k1;
+            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f31082k1;
             if (slideTextView != null && (rect = slideTextView.K) != null) {
                 Rect rect3 = org.telegram.messenger.g0.Q;
                 rect3.set(rect);
-                ChatActivityEnterView.SlideTextView slideTextView2 = chatActivityEnterView.f31077k1;
-                int[] iArr = this.f32192o;
+                ChatActivityEnterView.SlideTextView slideTextView2 = chatActivityEnterView.f31082k1;
+                int[] iArr = this.f32251o;
                 slideTextView2.getLocationOnScreen(iArr);
                 rect3.offset(iArr[0], iArr[1]);
                 chatActivityEnterView.N1.getLocationOnScreen(iArr);

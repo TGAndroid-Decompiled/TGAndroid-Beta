@@ -35,7 +35,7 @@ public final class d extends j {
             this.f161n = uVar2;
             t a10 = uVar2.c(Arrays.copyOfRange(bArr, 9, xVar.f14164c), null).a();
             a10.f10562q = s0.n("audio/ogg");
-            qVar.f53804b = new e2.u(a10);
+            qVar.f53816b = new e2.u(a10);
             return true;
         }
         byte b10 = bArr[0];
@@ -56,9 +56,9 @@ public final class d extends j {
             c cVar = this.f162o;
             if (cVar != null) {
                 cVar.f158a = j3;
-                qVar.f53805c = cVar;
+                qVar.f53817c = cVar;
             }
-            ((e2.u) qVar.f53804b).getClass();
+            ((e2.u) qVar.f53816b).getClass();
             return false;
         }
     }

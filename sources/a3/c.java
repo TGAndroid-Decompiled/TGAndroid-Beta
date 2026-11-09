@@ -6,7 +6,7 @@ import ch.o0;
 import ch.p0;
 import da.h0;
 import da.v1;
-import di.k4;
+import di.l4;
 import di.t0;
 import fi.ab;
 import h9.r1;
@@ -86,7 +86,7 @@ public final class c implements Comparator {
             case 8:
                 return Long.compare(((File) obj2).lastModified(), ((File) obj).lastModified());
             case 9:
-                return ((h0) ((v1) obj)).f8368a.compareTo(((h0) ((v1) obj2)).f8368a);
+                return ((h0) ((v1) obj)).f8366a.compareTo(((h0) ((v1) obj2)).f8366a);
             case 10:
                 return ((b3.s) obj).f2970a - ((b3.s) obj2).f2970a;
             case 11:
@@ -106,7 +106,7 @@ public final class c implements Comparator {
             case 16:
                 return (int) (p0.j((TLObject) obj) - p0.j((TLObject) obj2));
             case 17:
-                int i14 = (((ci.b) obj2).f6419c > ((ci.b) obj).f6419c ? 1 : (((ci.b) obj2).f6419c == ((ci.b) obj).f6419c ? 0 : -1));
+                int i14 = (((ci.b) obj2).f6417c > ((ci.b) obj).f6417c ? 1 : (((ci.b) obj2).f6417c == ((ci.b) obj).f6417c ? 0 : -1));
                 if (i14 > 0) {
                     return 1;
                 }
@@ -115,34 +115,34 @@ public final class c implements Comparator {
                 }
                 return 0;
             case 18:
-                return Integer.compare(((d4.d) obj2).f8139b, ((d4.d) obj).f8139b);
+                return Integer.compare(((d4.d) obj2).f8137b, ((d4.d) obj).f8137b);
             case 19:
-                i7 = ((di.p) obj2).f9484b;
-                i10 = ((di.p) obj).f9484b;
+                i7 = ((di.p) obj2).f9473b;
+                i10 = ((di.p) obj).f9473b;
                 break;
             case 20:
             case 22:
-                i7 = ((t0) obj2).f9775c;
-                i10 = ((t0) obj).f9775c;
+                i7 = ((t0) obj2).f9769c;
+                i10 = ((t0) obj).f9769c;
                 break;
             case 21:
                 return (int) (((TL_phone.groupCallDonor) obj2).stars - ((TL_phone.groupCallDonor) obj).stars);
             case 23:
                 return ((Integer) ((Pair) obj).first).intValue() - ((Integer) ((Pair) obj2).first).intValue();
             case 24:
-                int i15 = ProfileStoriesView.f41979s0;
-                return (int) (((k4) obj2).f9292i - ((k4) obj).f9292i);
+                int i15 = ProfileStoriesView.f41986s0;
+                return (int) (((l4) obj2).f9316i - ((l4) obj).f9316i);
             case 25:
                 return (int) (((Long) obj2).longValue() - ((Long) obj).longValue());
             case 26:
                 o0 o0Var = (o0) obj2;
-                String str = ((o0) obj).f6356f;
+                String str = ((o0) obj).f6354f;
                 if (str != null && str.equals("❤")) {
                     i11 = -1;
                 } else {
                     i11 = 0;
                 }
-                String str2 = o0Var.f6356f;
+                String str2 = o0Var.f6354f;
                 if (str2 == null || !str2.equals("❤")) {
                     i12 = 0;
                 }

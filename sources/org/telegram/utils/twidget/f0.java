@@ -2,14 +2,14 @@ package org.telegram.utils.twidget;
 
 import org.telegram.messenger.yr;
 public final class f0 implements Runnable {
-    public final int f52783a;
-    public final Object f52784b;
-    public final Object f52785c;
+    public final int f52797a;
+    public final Object f52798b;
+    public final Object f52799c;
 
     public f0(int i7, Object obj, Object obj2) {
-        this.f52783a = i7;
-        this.f52784b = obj;
-        this.f52785c = obj2;
+        this.f52797a = i7;
+        this.f52798b = obj;
+        this.f52799c = obj2;
     }
 
     @Override
@@ -18,8 +18,8 @@ public final class f0 implements Runnable {
     }
 
     public f0(yr yrVar, k0 k0Var) {
-        this.f52783a = 2;
-        this.f52785c = yrVar;
-        this.f52784b = k0Var;
+        this.f52797a = 2;
+        this.f52799c = yrVar;
+        this.f52798b = k0Var;
     }
 }

@@ -1,42 +1,19 @@
 package org.telegram.ui;
-public final class di implements Runnable {
-    public final boolean f45067a;
-    public final boolean f45068b;
-    public final int f45069c;
-    public final boolean d;
-    public final org.telegram.ui.Components.ii0 f45070e;
-    public final float f45071f;
-    public final float h;
-    public final ch.o0 f45072n;
-    public final org.telegram.messenger.ij f45073r;
-    public final an f45074s;
 
-    public di(an anVar, boolean z9, boolean z10, int i7, boolean z11, org.telegram.ui.Components.ii0 ii0Var, float f10, float f11, ch.o0 o0Var, org.telegram.messenger.ij ijVar) {
-        this.f45074s = anVar;
-        this.f45067a = z9;
-        this.f45068b = z10;
-        this.f45069c = i7;
-        this.d = z11;
-        this.f45070e = ii0Var;
-        this.f45071f = f10;
-        this.h = f11;
-        this.f45072n = o0Var;
-        this.f45073r = ijVar;
+import android.app.Activity;
+public final class di extends org.telegram.ui.Cells.t0 {
+    public final cn f44986t2;
+
+    public di(Activity activity, org.telegram.ui.ActionBar.g6 g6Var, cn cnVar) {
+        super(activity, g6Var, false);
+        this.f44986t2 = cnVar;
     }
 
     @Override
-    public final void run() {
-        if (!this.f45067a) {
-            an anVar = this.f45074s;
-            if (anVar.Fc != null) {
-                anVar.Fc = null;
-                if (this.f45068b) {
-                    anVar.w8(new ci(this, this.f45069c, this.d, this.f45070e, this.f45071f, this.h, this.f45072n, 0));
-                } else {
-                    anVar.w8(new qf(15, this, this.f45073r));
-                }
-                anVar.O7(true);
-            }
-        }
+    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
+        super.onLayout(z9, i7, i10, i11, i12);
+        float y10 = getY();
+        cn cnVar = this.f44986t2;
+        i0(cnVar.f44448f1.getY() + y10, cnVar.l1.getBackgroundSizeY());
     }
 }

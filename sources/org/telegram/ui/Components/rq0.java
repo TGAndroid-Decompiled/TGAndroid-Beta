@@ -1,60 +1,26 @@
 package org.telegram.ui.Components;
 
-import android.view.ViewGroup;
-public final class rq0 extends g.p {
-    public final int f37743c;
-    public final Object d;
-    public final ViewGroup f37744e;
+import android.content.Context;
+import android.widget.FrameLayout;
+public final class rq0 extends FragmentContextView {
+    public final zs0 X0;
 
-    public rq0(ViewGroup viewGroup, Object obj, int i7) {
-        this.f37743c = i7;
-        this.f37744e = viewGroup;
-        this.d = obj;
+    public rq0(zs0 zs0Var, Context context, org.telegram.ui.ActionBar.f2 f2Var, zs0 zs0Var2, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, f2Var, zs0Var2, false, g6Var);
+        this.X0 = zs0Var;
     }
 
     @Override
-    public final int i(int i7) {
-        int i10;
-        int i11;
-        switch (this.f37743c) {
-            case 0:
-                sr0 sr0Var = (sr0) this.d;
-                v4.g0 adapter = sr0Var.f38126n.getAdapter();
-                xs0 xs0Var = (xs0) this.f37744e;
-                rs0 rs0Var = xs0Var.K;
-                if (adapter == rs0Var) {
-                    if (rs0Var.d(i7) != 2) {
-                        return 1;
-                    }
-                    return sr0Var.f38127r.J;
-                } else if (xs0.y(xs0Var, adapter) == -1) {
-                    return 1;
-                } else {
-                    ((us0) adapter).getClass();
-                    return 1;
-                }
-            case 1:
-                o41 o41Var = (o41) this.d;
-                l41 l41Var = ((q41) this.f37744e).f37190f3;
-                if (l41Var == null) {
-                    return o41Var.J;
-                }
-                x31 G = l41Var.G(i7);
-                if (G == null || (i10 = G.f40189u) == -1) {
-                    return o41Var.J;
-                }
-                return i10;
-            default:
-                o41 o41Var2 = (o41) this.d;
-                l41 l41Var2 = ((q41) this.f37744e).f37190f3;
-                if (l41Var2 == null) {
-                    return o41Var2.J;
-                }
-                x31 G2 = l41Var2.G(i7);
-                if (G2 == null || (i11 = G2.f40189u) == -1) {
-                    return o41Var2.J;
-                }
-                return i11;
+    public final void setVisibility(int i7) {
+        boolean z9;
+        zs0 zs0Var = this.X0;
+        pr prVar = zs0Var.R0;
+        FrameLayout frameLayout = zs0Var.S0;
+        if (i7 == 0) {
+            z9 = true;
+        } else {
+            z9 = false;
         }
+        prVar.i(frameLayout, z9, true);
     }
 }

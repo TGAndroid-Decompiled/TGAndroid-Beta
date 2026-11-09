@@ -68,7 +68,7 @@ public final class s implements RequestDelegate {
                     for (int i15 = 0; i15 < messages_messages.messages.size(); i15++) {
                         ij ijVar = new ij(h0Var.f16760s0, messages_messages.messages.get(i15), hVar2, hVar, false, true);
                         arrayList.add(ijVar);
-                        ijVar.L5(str, true);
+                        ijVar.K5(str, true);
                     }
                 }
                 org.telegram.messenger.g0.h3(new u(h0Var, i11, i12, tL_error, str, tLObject, tL_messages_search, arrayList, 0));
@@ -102,7 +102,7 @@ public final class s implements RequestDelegate {
                         a0.h hVar5 = hVar3;
                         ij ijVar2 = new ij(h0Var3.f16760s0, messages_messages2.messages.get(i21), hVar4, hVar5, false, true);
                         arrayList2.add(ijVar2);
-                        ijVar2.L5(str2, true);
+                        ijVar2.K5(str2, true);
                         i21++;
                         hVar3 = hVar5;
                     }

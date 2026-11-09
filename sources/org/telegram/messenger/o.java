@@ -11,8 +11,8 @@ import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.tgnet.QuickAckDelegate;
 import org.telegram.tgnet.RequestTimeDelegate;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.sg0;
-public final class o implements org.telegram.ui.ActionBar.r1, RequestTimeDelegate, bp, sg0, QuickAckDelegate {
+import org.telegram.ui.ug0;
+public final class o implements org.telegram.ui.ActionBar.r1, RequestTimeDelegate, bp, ug0, QuickAckDelegate {
     public final int f24261a;
     public final Object f24262b;
     public final Object f24263c;

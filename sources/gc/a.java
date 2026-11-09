@@ -43,7 +43,7 @@ public abstract class a {
 
     public static void c(cc.c cVar, StringBuilder sb2, int i7) {
         int i10;
-        if (j.f6076c != null) {
+        if (j.f6074c != null) {
             if (i7 * 13 <= cVar.d()) {
                 byte[] bArr = new byte[i7 * 2];
                 int i11 = 0;
@@ -61,7 +61,7 @@ public abstract class a {
                     i11 += 2;
                     i7--;
                 }
-                sb2.append(new String(bArr, j.f6076c));
+                sb2.append(new String(bArr, j.f6074c));
                 return;
             }
             throw bc.c.a();
@@ -71,7 +71,7 @@ public abstract class a {
 
     public static void d(cc.c cVar, StringBuilder sb2, int i7) {
         int i10;
-        if (j.f6075b != null) {
+        if (j.f6073b != null) {
             if (i7 * 13 <= cVar.d()) {
                 byte[] bArr = new byte[i7 * 2];
                 int i11 = 0;
@@ -89,7 +89,7 @@ public abstract class a {
                     i11 += 2;
                     i7--;
                 }
-                sb2.append(new String(bArr, j.f6075b));
+                sb2.append(new String(bArr, j.f6073b));
                 return;
             }
             throw bc.c.a();

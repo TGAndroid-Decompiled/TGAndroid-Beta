@@ -61,17 +61,17 @@ public final class sd extends c1 implements ls, pa, qa {
         ba baVar = (ba) onCreateLocationRequest;
         baVar.getClass();
         LocationRequest locationRequest = baVar.f21633a;
-        locationRequest.f7680a = 100;
-        long j3 = locationRequest.f7682c;
-        long j10 = locationRequest.f7681b;
+        locationRequest.f7678a = 100;
+        long j3 = locationRequest.f7680c;
+        long j10 = locationRequest.f7679b;
         if (j3 == j10 / 6) {
-            locationRequest.f7682c = 166L;
+            locationRequest.f7680c = 166L;
         }
-        if (locationRequest.f7686r == j10) {
-            locationRequest.f7686r = 1000L;
+        if (locationRequest.f7684r == j10) {
+            locationRequest.f7684r = 1000L;
         }
-        locationRequest.f7681b = 1000L;
-        locationRequest.f7682c = 1000L;
+        locationRequest.f7679b = 1000L;
+        locationRequest.f7680c = 1000L;
         g0.h3(new jd(this, 5));
         getMessagesStorage().f26719a.c(new jd(this, 0));
     }
@@ -227,11 +227,11 @@ public final class sd extends c1 implements ls, pa, qa {
                     boolean z9 = false;
                     for (int i12 = 0; i12 < arrayList3.size(); i12++) {
                         ij ijVar = (ij) arrayList3.get(i12);
-                        if (ijVar.D3()) {
+                        if (ijVar.C3()) {
                             int i13 = 0;
                             while (true) {
                                 if (i13 < arrayList2.size()) {
-                                    if (ij.C1(((TLRPC.Message) arrayList2.get(i13)).from_id) == ijVar.Z0()) {
+                                    if (ij.B1(((TLRPC.Message) arrayList2.get(i13)).from_id) == ijVar.Z0()) {
                                         arrayList2.set(i13, ijVar.f23262k);
                                         break;
                                     }
@@ -298,8 +298,8 @@ public final class sd extends c1 implements ls, pa, qa {
                     while (true) {
                         if (i17 >= arrayList.size()) {
                             break;
-                        } else if (ij.C1(((TLRPC.Message) arrayList.get(i17)).from_id) == ijVar3.Z0()) {
-                            if (!ijVar3.D3()) {
+                        } else if (ij.B1(((TLRPC.Message) arrayList.get(i17)).from_id) == ijVar3.Z0()) {
+                            if (!ijVar3.C3()) {
                                 arrayList.remove(i17);
                             } else {
                                 arrayList.set(i17, ijVar3.f23262k);

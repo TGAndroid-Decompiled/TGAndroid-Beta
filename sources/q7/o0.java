@@ -2,17 +2,17 @@ package q7;
 
 import java.util.Comparator;
 public final class o0 implements Comparator {
-    public static final o0 f54012a;
-    public static final o0[] f54013b;
+    public static final o0 f54024a;
+    public static final o0[] f54025b;
 
     static {
         ?? r02 = new Enum("INSTANCE", 0);
-        f54012a = r02;
-        f54013b = new o0[]{r02};
+        f54024a = r02;
+        f54025b = new o0[]{r02};
     }
 
     public static o0[] values() {
-        return (o0[]) f54013b.clone();
+        return (o0[]) f54025b.clone();
     }
 
     @Override

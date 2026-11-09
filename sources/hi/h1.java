@@ -26,12 +26,12 @@ public final class h1 extends ij {
     }
 
     @Override
-    public final boolean O3() {
+    public final boolean N3() {
         return false;
     }
 
     @Override
-    public final boolean Q3() {
+    public final boolean P3() {
         return false;
     }
 }

@@ -24,7 +24,7 @@ import java.util.Locale;
 import org.telegram.messenger.time.FastDateFormat;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.u31;
+import org.telegram.ui.Components.v31;
 public final class id {
     public static boolean f23157a0 = false;
     public static int f23158b0 = 1;
@@ -99,7 +99,7 @@ public final class id {
         this.Q = false;
         this.S = new HashMap();
         this.T = new HashMap();
-        si.b bVar = si.b.f55340c;
+        si.b bVar = si.b.f55352c;
         this.W = bVar;
         this.Y = bVar;
         b(new String[]{"bem", "brx", "da", "de", "el", "en", "eo", "es", "et", "fi", "fo", "gl", "he", "iw", "it", "nb", "nl", "nn", "no", "sv", "af", "bg", "bn", "ca", "eu", "fur", "fy", "gu", "ha", "is", "ku", "lb", "ml", "mr", "nah", "ne", "om", "or", "pa", "pap", "ps", "so", "sq", "sw", "ta", "te", "tk", "ur", "zu", "mn", "gsw", "chr", "rm", "pt", "an", "ast"}, new gd(11));
@@ -405,7 +405,7 @@ public final class id {
             return str;
         }
         if (!isEmpty2 && !isEmpty3) {
-            str3 = a0(null, null, 2131742786, str2, str4);
+            str3 = a0(null, null, 2131742783, str2, str4);
         } else {
             if (isEmpty2) {
                 str2 = str4;
@@ -413,7 +413,7 @@ public final class id {
             str3 = str2;
         }
         if (!isEmpty) {
-            return a0(null, null, 2131746335, str, str3);
+            return a0(null, null, 2131746334, str, str3);
         }
         return str3;
     }
@@ -423,9 +423,9 @@ public final class id {
         long j10 = j3 * 1000;
         try {
             if (Math.abs(System.currentTimeMillis() - j10) < 31536000000L) {
-                a02 = a0(null, null, 2131742786, E0().q0().format(new Date(j10)), E0().p0().format(new Date(j10)));
+                a02 = a0(null, null, 2131742783, E0().q0().format(new Date(j10)), E0().p0().format(new Date(j10)));
             } else {
-                a02 = a0(null, null, 2131742786, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10)));
+                a02 = a0(null, null, 2131742783, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10)));
             }
             return a0(null, null, 2131752335, a02);
         } catch (Exception e10) {
@@ -472,19 +472,19 @@ public final class id {
             if (i11 == i7 && i10 == i12) {
                 int currentTime = ((int) (ConnectionsManager.getInstance(p10.f24470s0).getCurrentTime() - (j10 / 1000))) / 60;
                 if (currentTime < 1) {
-                    return M0(2131748746, null);
+                    return M0(2131748745, null);
                 }
                 if (currentTime < 60) {
                     return G(currentTime, "UpdatedMinutes", new Object[0]);
                 }
-                return a0(null, null, 2131748747, a0("TodayAtFormatted", null, 2131744114, E0().p0().format(new Date(j10))));
+                return a0(null, null, 2131748746, a0("TodayAtFormatted", null, 2131744111, E0().p0().format(new Date(j10))));
             } else if (i11 + 1 == i7 && i10 == i12) {
-                return a0(null, null, 2131748747, a0("YesterdayAtFormatted", null, 2131742846, E0().p0().format(new Date(j10))));
+                return a0(null, null, 2131748746, a0("YesterdayAtFormatted", null, 2131742843, E0().p0().format(new Date(j10))));
             } else {
                 if (Math.abs(System.currentTimeMillis() - j10) < 31536000000L) {
-                    return a0(null, null, 2131748747, a0(null, null, 2131742786, E0().q0().format(new Date(j10)), E0().p0().format(new Date(j10))));
+                    return a0(null, null, 2131748746, a0(null, null, 2131742783, E0().q0().format(new Date(j10)), E0().p0().format(new Date(j10))));
                 }
-                return a0(null, null, 2131748747, a0(null, null, 2131742786, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10))));
+                return a0(null, null, 2131748746, a0(null, null, 2131742783, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10))));
             }
         } catch (Exception e10) {
             a8.g(e10, true);
@@ -697,15 +697,15 @@ public final class id {
             int i11 = calendar.get(6);
             int i12 = calendar.get(1);
             if (i11 == i7 && i10 == i12) {
-                return a0(null, null, 2131747203, E0().p0().format(new Date(j10)));
-            }
-            if (i11 + 1 == i7 && i10 == i12) {
                 return a0(null, null, 2131747202, E0().p0().format(new Date(j10)));
             }
-            if (Math.abs(System.currentTimeMillis() - j10) < 31536000000L) {
-                return a0(null, null, 2131747204, E0().q0().format(new Date(j10)), E0().p0().format(new Date(j10)));
+            if (i11 + 1 == i7 && i10 == i12) {
+                return a0(null, null, 2131747201, E0().p0().format(new Date(j10)));
             }
-            return a0(null, null, 2131747204, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10)));
+            if (Math.abs(System.currentTimeMillis() - j10) < 31536000000L) {
+                return a0(null, null, 2131747203, E0().q0().format(new Date(j10)), E0().p0().format(new Date(j10)));
+            }
+            return a0(null, null, 2131747203, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10)));
         } catch (Exception e10) {
             a8.g(e10, true);
             return "LOC_ERR";
@@ -725,9 +725,9 @@ public final class id {
             G = G(i7 / 86400, "Days", new Object[0]);
         }
         if (z9) {
-            i10 = 2131747161;
+            i10 = 2131747160;
         } else {
-            i10 = 2131747173;
+            i10 = 2131747172;
         }
         return a0(null, null, i10, G);
     }
@@ -746,39 +746,39 @@ public final class id {
             int i7 = (j14 > 1L ? 1 : (j14 == 1L ? 0 : -1));
             if (i7 >= 0) {
                 if (i7 == 0) {
-                    return M0(2131742859, null);
+                    return M0(2131742856, null);
                 }
                 return H(',', "YearsAgo", (int) j14);
             }
             int i10 = (j13 > 1L ? 1 : (j13 == 1L ? 0 : -1));
             if (i10 >= 0) {
                 if (i10 == 0) {
-                    return M0(2131748346, null);
+                    return M0(2131748345, null);
                 }
                 return H(',', "MonthsAgo", (int) j13);
             }
             int i11 = (j12 > 1L ? 1 : (j12 == 1L ? 0 : -1));
             if (i11 >= 0) {
                 if (i11 == 0) {
-                    return M0(2131751669, null);
+                    return M0(2131751668, null);
                 }
                 return H(',', "DaysAgo", (int) j12);
             }
             int i12 = (j11 > 1L ? 1 : (j11 == 1L ? 0 : -1));
             if (i12 >= 0) {
                 if (i12 == 0) {
-                    return M0(2131749290, null);
+                    return M0(2131749289, null);
                 }
                 return H(',', "HoursAgo", (int) j11);
             }
             int i13 = (j10 > 1L ? 1 : (j10 == 1L ? 0 : -1));
             if (i13 >= 0) {
                 if (i13 == 0) {
-                    return M0(2131748427, null);
+                    return M0(2131748426, null);
                 }
                 return H(',', "MinutesAgo", (int) j10);
             }
-            return M0(2131748988, null);
+            return M0(2131748987, null);
         } catch (Exception e10) {
             a8.g(e10, true);
             return "LOC_ERR";
@@ -802,15 +802,15 @@ public final class id {
             int i11 = calendar.get(6);
             int i12 = calendar.get(1);
             if (i11 == i7 && i10 == i12) {
-                return a0(null, null, 2131744113, E0().p0().format(new Date(j10)));
+                return a0(null, null, 2131744110, E0().p0().format(new Date(j10)));
             }
             if (i11 + 1 == i7 && i10 == i12) {
-                return a0(null, null, 2131742846, E0().p0().format(new Date(j10)));
+                return a0(null, null, 2131742843, E0().p0().format(new Date(j10)));
             }
             if (Math.abs(System.currentTimeMillis() - j10) < 31536000000L) {
-                return a0(null, null, 2131742786, E0().q0().format(new Date(j10)), E0().p0().format(new Date(j10)));
+                return a0(null, null, 2131742783, E0().q0().format(new Date(j10)), E0().p0().format(new Date(j10)));
             }
-            return a0(null, null, 2131742786, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10)));
+            return a0(null, null, 2131742783, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10)));
         } catch (Exception e10) {
             a8.g(e10, true);
             return "LOC_ERR";
@@ -829,7 +829,7 @@ public final class id {
             int i12 = calendar.get(1);
             long j11 = timeInMillis - j10;
             if (j11 < 60000) {
-                return M0(2131745360, null);
+                return M0(2131745357, null);
             }
             if (j11 < 3600000) {
                 return G((int) (j11 / 60000), "ShortMinutesAgo", new Object[0]);
@@ -838,14 +838,14 @@ public final class id {
                 if (j11 < 43200000) {
                     return G((int) (j11 / 3600000), "ShortHoursAgo", new Object[0]);
                 }
-                return M0(2131745358, null);
+                return M0(2131745355, null);
             } else if (i11 + 1 == i7 && i10 == i12) {
-                return M0(2131745357, null);
+                return M0(2131745354, null);
             } else {
                 if (Math.abs(System.currentTimeMillis() - j10) < 31536000000L) {
                     return E0().q0().format(new Date(j10));
                 }
-                return a0(null, null, 2131742786, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10)));
+                return a0(null, null, 2131742783, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10)));
             }
         } catch (Exception e10) {
             a8.g(e10, true);
@@ -1103,21 +1103,21 @@ public final class id {
             int i12 = calendar.get(1);
             long j11 = timeInMillis - j10;
             if (j11 < 60000) {
-                return M0(2131746001, null);
+                return M0(2131745998, null);
             }
             if (j11 < 3600000) {
                 int i13 = (int) (j11 / 60000);
                 return G(i13, "MinutesAgo", Integer.valueOf(i13));
             } else if (i11 == i7 && i10 == i12) {
-                return a0(null, null, 2131744113, E0().p0().format(new Date(j10)));
+                return a0(null, null, 2131744110, E0().p0().format(new Date(j10)));
             } else {
                 if (i11 + 1 == i7 && i10 == i12) {
-                    return a0(null, null, 2131742846, E0().p0().format(new Date(j10)));
+                    return a0(null, null, 2131742843, E0().p0().format(new Date(j10)));
                 }
                 if (Math.abs(System.currentTimeMillis() - j10) < 31536000000L) {
-                    return a0(null, null, 2131742786, E0().q0().format(new Date(j10)), E0().p0().format(new Date(j10)));
+                    return a0(null, null, 2131742783, E0().q0().format(new Date(j10)), E0().p0().format(new Date(j10)));
                 }
-                return a0(null, null, 2131742786, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10)));
+                return a0(null, null, 2131742783, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10)));
             }
         } catch (Exception e10) {
             a8.g(e10, true);
@@ -1241,7 +1241,7 @@ public final class id {
             if (zArr != null) {
                 zArr[0] = true;
             }
-            return M0(2131747827, "Online");
+            return M0(2131747826, "Online");
         } else if (user != null && (userStatus = user.status) != null && userStatus.expires != 0 && !t10.x(user) && !(user instanceof TLRPC.TL_userEmpty)) {
             int currentTime = ConnectionsManager.getInstance(i7).getCurrentTime();
             int i13 = user.status.expires;
@@ -1249,20 +1249,20 @@ public final class id {
                 if (zArr != null) {
                     zArr[0] = true;
                 }
-                return M0(2131747827, "Online");
+                return M0(2131747826, "Online");
             } else if (i13 == -1) {
-                return M0(2131749179, "Invisible");
+                return M0(2131749178, "Invisible");
             } else {
                 if (i13 != -100 && i13 != -1000) {
                     if (i13 != -101 && i13 != -1001) {
                         if (i13 != -102 && i13 != -1002) {
                             return w(i13, zArr2);
                         }
-                        return M0(2131742866, "WithinAMonth");
+                        return M0(2131742863, "WithinAMonth");
                     }
-                    return M0(2131742865, "WithinAWeek");
+                    return M0(2131742862, "WithinAWeek");
                 }
-                return M0(2131749012, "Lately");
+                return M0(2131749011, "Lately");
             }
         } else {
             return M0(2131754951, "ALongTimeAgo");
@@ -1277,7 +1277,7 @@ public final class id {
             calendar.setTimeInMillis(j10);
             int i10 = calendar.get(1);
             int i11 = calendar.get(2);
-            String[] strArr = {M0(2131749087, null), M0(2131750830, null), M0(2131748684, null), M0(2131754173, null), M0(2131748663, null), M0(2131749065, null), M0(2131749067, null), M0(2131753895, null), M0(2131745568, null), M0(2131747831, null), M0(2131747836, null), M0(2131751606, null)};
+            String[] strArr = {M0(2131749086, null), M0(2131750829, null), M0(2131748683, null), M0(2131754173, null), M0(2131748662, null), M0(2131749064, null), M0(2131749066, null), M0(2131753895, null), M0(2131745565, null), M0(2131747830, null), M0(2131747835, null), M0(2131751605, null)};
             if (i7 == i10 && !z9) {
                 return strArr[i11];
             }
@@ -1320,7 +1320,7 @@ public final class id {
             int i7 = calendar.get(1);
             int i10 = calendar.get(2);
             int i11 = calendar.get(5);
-            return new String[]{M0(2131749087, null), M0(2131750830, null), M0(2131748684, null), M0(2131754173, null), M0(2131748663, null), M0(2131749065, null), M0(2131749067, null), M0(2131753895, null), M0(2131745568, null), M0(2131747831, null), M0(2131747836, null), M0(2131751606, null)}[i10] + " " + i11 + ", " + i7;
+            return new String[]{M0(2131749086, null), M0(2131750829, null), M0(2131748683, null), M0(2131754173, null), M0(2131748662, null), M0(2131749064, null), M0(2131749066, null), M0(2131753895, null), M0(2131745565, null), M0(2131747830, null), M0(2131747835, null), M0(2131751605, null)}[i10] + " " + i11 + ", " + i7;
         } catch (Exception e10) {
             a8.g(e10, true);
             return "LOC_ERR";
@@ -1348,11 +1348,11 @@ public final class id {
 
     public static Spannable g(String str) {
         if (str instanceof Spannable) {
-            ((Spannable) str).setSpan(new u31(g0.o()), 0, str.length(), 33);
+            ((Spannable) str).setSpan(new v31(g0.o()), 0, str.length(), 33);
             return (Spannable) str;
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
-        spannableStringBuilder.setSpan(new u31(g0.o()), 0, str.length(), 33);
+        spannableStringBuilder.setSpan(new v31(g0.o()), 0, str.length(), 33);
         return spannableStringBuilder;
     }
 
@@ -1402,7 +1402,7 @@ public final class id {
         if (fdVar != null && !TextUtils.isEmpty(fdVar.f22396a)) {
             return fdVar.f22396a;
         }
-        return M0(2131749050, "LanguageName");
+        return M0(2131749049, "LanguageName");
     }
 
     public static FastDateFormat k(Locale locale, String str, String str2) {
@@ -1524,11 +1524,11 @@ public final class id {
             int i12 = calendar.get(1);
             if (i11 == i7 && i10 == i12) {
                 if (z9) {
-                    return M0(2131745358, null);
+                    return M0(2131745355, null);
                 }
                 return E0().p0().format(new Date(j10));
             } else if (i11 + 1 == i7 && i10 == i12) {
-                return M0(2131742848, "Yesterday");
+                return M0(2131742845, "Yesterday");
             } else {
                 if (Math.abs(System.currentTimeMillis() - j10) < 31536000000L) {
                     return E0().q0().format(new Date(j10));
@@ -1552,16 +1552,16 @@ public final class id {
             int i12 = calendar.get(1);
             if (i11 == i7 && i10 == i12) {
                 if (z9) {
-                    return a0(null, null, 2131744114, E0().p0().format(new Date(j10)));
+                    return a0(null, null, 2131744111, E0().p0().format(new Date(j10)));
                 }
-                return a0(null, null, 2131744113, E0().p0().format(new Date(j10)));
+                return a0(null, null, 2131744110, E0().p0().format(new Date(j10)));
             } else if (i11 + 1 == i7 && i10 == i12) {
-                return a0(null, null, 2131742846, E0().p0().format(new Date(j10)));
+                return a0(null, null, 2131742843, E0().p0().format(new Date(j10)));
             } else {
                 if (Math.abs(System.currentTimeMillis() - j10) < 31536000000L) {
-                    return a0(null, null, 2131742786, E0().q0().format(new Date(j10)), E0().p0().format(new Date(j10)));
+                    return a0(null, null, 2131742783, E0().q0().format(new Date(j10)), E0().p0().format(new Date(j10)));
                 }
-                return a0(null, null, 2131742786, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10)));
+                return a0(null, null, 2131742783, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10)));
             }
         } catch (Exception e10) {
             a8.g(e10, true);
@@ -1582,7 +1582,7 @@ public final class id {
                 return E0().p0().format(new Date(j10));
             }
             if (i11 + 1 == i7 && i10 == i12) {
-                return a0(null, null, 2131742846, E0().p0().format(new Date(j10)));
+                return a0(null, null, 2131742843, E0().p0().format(new Date(j10)));
             }
             if (Math.abs(System.currentTimeMillis() - j10) < 31536000000L) {
                 id E0 = E0();
@@ -1593,13 +1593,13 @@ public final class id {
                             if (locale == null) {
                                 locale = Locale.getDefault();
                             }
-                            E0.f23174m = k(locale, E0.O0(2131742788, "chatDateShort", null), "d MMM");
+                            E0.f23174m = k(locale, E0.O0(2131742785, "chatDateShort", null), "d MMM");
                         }
                     }
                 }
-                return a0(null, null, 2131742786, E0.f23174m.format(new Date(j10)), E0().p0().format(new Date(j10)));
+                return a0(null, null, 2131742783, E0.f23174m.format(new Date(j10)), E0().p0().format(new Date(j10)));
             }
-            return a0(null, null, 2131742786, E0().h0().format(new Date(j10)), E0().p0().format(new Date(j10)));
+            return a0(null, null, 2131742783, E0().h0().format(new Date(j10)), E0().p0().format(new Date(j10)));
         } catch (Exception e10) {
             a8.g(e10, true);
             return "LOC_ERR";
@@ -1656,21 +1656,21 @@ public final class id {
             int i13 = calendar.get(1);
             int i14 = calendar.get(11);
             if (i12 == i7 && i10 == i13) {
-                return a0(null, null, 2131749018, a0("TodayAtFormatted", null, 2131744114, E0().p0().format(new Date(j10))));
+                return a0(null, null, 2131749017, a0("TodayAtFormatted", null, 2131744111, E0().p0().format(new Date(j10))));
             }
             if (i12 + 1 == i7 && i10 == i13) {
                 if (zArr != null) {
                     zArr[0] = true;
                     if (i11 <= 6 && i14 > 18 && f23159c0) {
-                        return a0(null, null, 2131749018, E0().p0().format(new Date(j10)));
+                        return a0(null, null, 2131749017, E0().p0().format(new Date(j10)));
                     }
-                    return a0(null, null, 2131742846, E0().p0().format(new Date(j10)));
+                    return a0(null, null, 2131742843, E0().p0().format(new Date(j10)));
                 }
-                return a0(null, null, 2131749018, a0("YesterdayAtFormatted", null, 2131742846, E0().p0().format(new Date(j10))));
+                return a0(null, null, 2131749017, a0("YesterdayAtFormatted", null, 2131742843, E0().p0().format(new Date(j10))));
             } else if (Math.abs(System.currentTimeMillis() - j10) < 31536000000L) {
-                return a0("LastSeenDateFormatted", null, 2131749021, a0("formatDateAtTime", null, 2131742786, E0().q0().format(new Date(j10)), E0().p0().format(new Date(j10))));
+                return a0("LastSeenDateFormatted", null, 2131749020, a0("formatDateAtTime", null, 2131742783, E0().q0().format(new Date(j10)), E0().p0().format(new Date(j10))));
             } else {
-                return a0("LastSeenDateFormatted", null, 2131749021, a0("formatDateAtTime", null, 2131742786, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10))));
+                return a0("LastSeenDateFormatted", null, 2131749020, a0("formatDateAtTime", null, 2131742783, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10))));
             }
         } catch (Exception e10) {
             a8.g(e10, true);
@@ -1688,15 +1688,15 @@ public final class id {
             int i11 = calendar.get(6);
             int i12 = calendar.get(1);
             if (i11 == i7 && i10 == i12 && z9) {
-                return a0(null, null, 2131744113, E0().p0().format(new Date(j10)));
+                return a0(null, null, 2131744110, E0().p0().format(new Date(j10)));
             }
             if (i11 + 1 == i7 && i10 == i12 && z9) {
-                return a0(null, null, 2131742846, E0().p0().format(new Date(j10)));
+                return a0(null, null, 2131742843, E0().p0().format(new Date(j10)));
             }
             if (Math.abs(System.currentTimeMillis() - j10) < 31536000000L) {
-                return a0(null, null, 2131742786, E0().g0().format(new Date(j10)), E0().p0().format(new Date(j10)));
+                return a0(null, null, 2131742783, E0().g0().format(new Date(j10)), E0().p0().format(new Date(j10)));
             }
-            return a0(null, null, 2131742786, E0().h0().format(new Date(j10)), E0().p0().format(new Date(j10)));
+            return a0(null, null, 2131742783, E0().h0().format(new Date(j10)), E0().p0().format(new Date(j10)));
         } catch (Exception e10) {
             a8.g(e10, true);
             return "LOC_ERR";
@@ -1712,11 +1712,11 @@ public final class id {
             if (f11 < 1000.0f) {
                 if (i7 != 0) {
                     if (i7 != 1) {
-                        return a0("FootsShort", null, 2131750602, String.format("%d", Integer.valueOf((int) Math.max(1.0f, f11))));
+                        return a0("FootsShort", null, 2131750601, String.format("%d", Integer.valueOf((int) Math.max(1.0f, f11))));
                     }
-                    return a0("FootsFromYou", null, 2131750603, String.format("%d", Integer.valueOf((int) Math.max(1.0f, f11))));
+                    return a0("FootsFromYou", null, 2131750602, String.format("%d", Integer.valueOf((int) Math.max(1.0f, f11))));
                 }
-                return a0("FootsAway", null, 2131750604, String.format("%d", Integer.valueOf((int) Math.max(1.0f, f11))));
+                return a0("FootsAway", null, 2131750603, String.format("%d", Integer.valueOf((int) Math.max(1.0f, f11))));
             }
             if (f11 % 5280.0f == 0.0f) {
                 format2 = String.format("%d", Integer.valueOf((int) (f11 / 5280.0f)));
@@ -1725,19 +1725,19 @@ public final class id {
             }
             if (i7 != 0) {
                 if (i7 != 1) {
-                    return a0("MilesShort", null, 2131748428, format2);
+                    return a0("MilesShort", null, 2131748427, format2);
                 }
-                return a0("MilesFromYou", null, 2131748429, format2);
+                return a0("MilesFromYou", null, 2131748428, format2);
             }
-            return a0("MilesAway", null, 2131748430, format2);
+            return a0("MilesAway", null, 2131748429, format2);
         } else if (f10 < 1000.0f) {
             if (i7 != 0) {
                 if (i7 != 1) {
-                    return a0("MetersShort", null, 2131748443, String.format("%d", Integer.valueOf((int) Math.max(1.0f, f10))));
+                    return a0("MetersShort", null, 2131748442, String.format("%d", Integer.valueOf((int) Math.max(1.0f, f10))));
                 }
-                return a0("MetersFromYou2", null, 2131748444, String.format("%d", Integer.valueOf((int) Math.max(1.0f, f10))));
+                return a0("MetersFromYou2", null, 2131748443, String.format("%d", Integer.valueOf((int) Math.max(1.0f, f10))));
             }
-            return a0("MetersAway2", null, 2131748445, String.format("%d", Integer.valueOf((int) Math.max(1.0f, f10))));
+            return a0("MetersAway2", null, 2131748444, String.format("%d", Integer.valueOf((int) Math.max(1.0f, f10))));
         } else {
             if (f10 % 1000.0f == 0.0f) {
                 format = String.format("%d", Integer.valueOf((int) (f10 / 1000.0f)));
@@ -1746,11 +1746,11 @@ public final class id {
             }
             if (i7 != 0) {
                 if (i7 != 1) {
-                    return a0("KMetersShort", null, 2131749062, format);
+                    return a0("KMetersShort", null, 2131749061, format);
                 }
-                return a0("KMetersFromYou2", null, 2131749063, format);
+                return a0("KMetersFromYou2", null, 2131749062, format);
             }
-            return a0("KMetersAway2", null, 2131749064, format);
+            return a0("KMetersAway2", null, 2131749063, format);
         }
     }
 
@@ -1789,7 +1789,7 @@ public final class id {
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.d = k(locale, O0(2131742764, "formatterWeek", null), "EEE");
+                        this.d = k(locale, O0(2131742761, "formatterWeek", null), "EEE");
                     }
                 } finally {
                 }
@@ -1807,7 +1807,7 @@ public final class id {
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f23167e = k(locale, O0(2131742763, "formatterWeekLong", null), "EEEE");
+                        this.f23167e = k(locale, O0(2131742760, "formatterWeekLong", null), "EEEE");
                     }
                 } finally {
                 }
@@ -1825,7 +1825,7 @@ public final class id {
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f23169g = k(locale, O0(2131742762, "formatterYear", null), "dd.MM.yy");
+                        this.f23169g = k(locale, O0(2131742759, "formatterYear", null), "dd.MM.yy");
                     }
                 } finally {
                 }
@@ -1843,7 +1843,7 @@ public final class id {
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.h = k(locale, O0(2131742761, "formatterYearMax", null), "dd.MM.yyyy");
+                        this.h = k(locale, O0(2131742758, "formatterYearMax", null), "dd.MM.yyyy");
                     }
                 } finally {
                 }
@@ -2770,8 +2770,8 @@ public final class id {
         }
     }
 
-    public final int c(org.telegram.messenger.fd r23, boolean r24, boolean r25, boolean r26, boolean r27, int r28, org.telegram.ui.g60 r29) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.id.c(org.telegram.messenger.fd, boolean, boolean, boolean, boolean, int, org.telegram.ui.g60):int");
+    public final int c(org.telegram.messenger.fd r23, boolean r24, boolean r25, boolean r26, boolean r27, int r28, org.telegram.ui.i60 r29) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.id.c(org.telegram.messenger.fd, boolean, boolean, boolean, boolean, int, org.telegram.ui.i60):int");
     }
 
     public final boolean c1(String str) {
@@ -2884,7 +2884,7 @@ public final class id {
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f23173l = k(locale, O0(2131742789, "chatDate", null), "d MMMM");
+                        this.f23173l = k(locale, O0(2131742786, "chatDate", null), "d MMMM");
                     }
                 } finally {
                 }
@@ -2902,7 +2902,7 @@ public final class id {
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f23175n = k(locale, O0(2131742787, "chatFullDate", null), "d MMMM yyyy");
+                        this.f23175n = k(locale, O0(2131742784, "chatFullDate", null), "d MMMM yyyy");
                     }
                 } finally {
                 }
@@ -2941,9 +2941,9 @@ public final class id {
                             locale = Locale.getDefault();
                         }
                         if (f23159c0) {
-                            O0 = O0(2131742782, "formatterBannedUntil24H", null);
+                            O0 = O0(2131742779, "formatterBannedUntil24H", null);
                         } else {
-                            O0 = O0(2131742783, "formatterBannedUntil12H", null);
+                            O0 = O0(2131742780, "formatterBannedUntil12H", null);
                         }
                         if (f23159c0) {
                             str = "MMM dd yyyy, HH:mm";
@@ -2971,9 +2971,9 @@ public final class id {
                             locale = Locale.getDefault();
                         }
                         if (f23159c0) {
-                            O0 = O0(2131742780, "formatterBannedUntilThisYear24H", null);
+                            O0 = O0(2131742777, "formatterBannedUntilThisYear24H", null);
                         } else {
-                            O0 = O0(2131742781, "formatterBannedUntilThisYear12H", null);
+                            O0 = O0(2131742778, "formatterBannedUntilThisYear12H", null);
                         }
                         if (f23159c0) {
                             str = "MMM dd, HH:mm";
@@ -2998,7 +2998,7 @@ public final class id {
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f23181t = k(locale, O0(2131742779, "formatterBoostExpired", null), "MMM dd, yyyy");
+                        this.f23181t = k(locale, O0(2131742776, "formatterBoostExpired", null), "MMM dd, yyyy");
                     }
                 } finally {
                 }
@@ -3031,9 +3031,9 @@ public final class id {
                             locale = Locale.US;
                         }
                         if (f23159c0) {
-                            O0 = O0(2131742777, "formatterDay24H", null);
+                            O0 = O0(2131742774, "formatterDay24H", null);
                         } else {
-                            O0 = O0(2131742778, "formatterDay12H", null);
+                            O0 = O0(2131742775, "formatterDay12H", null);
                         }
                         if (f23159c0) {
                             str = "HH:mm";
@@ -3352,7 +3352,7 @@ public final class id {
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f23168f = k(locale, O0(2131742771, "formatterMonth", null), "dd MMM");
+                        this.f23168f = k(locale, O0(2131742768, "formatterMonth", null), "dd MMM");
                     }
                 } finally {
                 }
@@ -3381,9 +3381,9 @@ public final class id {
                             locale = Locale.US;
                         }
                         if (f23159c0) {
-                            O0 = O0(2131742775, "formatterDayWithSeconds24H", null);
+                            O0 = O0(2131742772, "formatterDayWithSeconds24H", null);
                         } else {
-                            O0 = O0(2131742776, "formatterDayWithSeconds12H", null);
+                            O0 = O0(2131742773, "formatterDayWithSeconds12H", null);
                         }
                         if (f23159c0) {
                             str = "HH:mm:ss";
@@ -3408,7 +3408,7 @@ public final class id {
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f23180s = k(locale, O0(2131742774, "formatterGiveawayCard", null), "dd MMM yyyy");
+                        this.f23180s = k(locale, O0(2131742771, "formatterGiveawayCard", null), "dd MMM yyyy");
                     }
                 } finally {
                 }
@@ -3426,7 +3426,7 @@ public final class id {
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f23182u = k(locale, O0(2131742773, "formatterGiveawayMonthDay", null), "MMMM dd");
+                        this.f23182u = k(locale, O0(2131742770, "formatterGiveawayMonthDay", null), "MMMM dd");
                     }
                 } finally {
                 }
@@ -3444,7 +3444,7 @@ public final class id {
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.v = k(locale, O0(2131742772, "formatterGiveawayMonthDayYear", null), "MMMM dd, yyyy");
+                        this.v = k(locale, O0(2131742769, "formatterGiveawayMonthDayYear", null), "MMMM dd, yyyy");
                     }
                 } finally {
                 }
@@ -3462,7 +3462,7 @@ public final class id {
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f23178q = k(locale, O0(2131742768, "formatterMonthYear", null), "MMM yyyy");
+                        this.f23178q = k(locale, O0(2131742765, "formatterMonthYear", null), "MMM yyyy");
                     }
                 } finally {
                 }
@@ -3480,7 +3480,7 @@ public final class id {
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f23176o = k(locale, O0(2131742785, "formatDateSchedule", null), "MMM d");
+                        this.f23176o = k(locale, O0(2131742782, "formatDateSchedule", null), "MMM d");
                     }
                 } finally {
                 }
@@ -3500,58 +3500,58 @@ public final class id {
                     }
                     switch (i7) {
                         case 0:
-                            fastDateFormatArr[i7] = k(locale, O0(2131745590, "SendTodayAt", null), "'Send today at' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, O0(2131745587, "SendTodayAt", null), "'Send today at' HH:mm");
                             break;
                         case 1:
-                            fastDateFormatArr[i7] = k(locale, O0(2131745632, "SendDayAt", null), "'Send on' MMM d 'at' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, O0(2131745629, "SendDayAt", null), "'Send on' MMM d 'at' HH:mm");
                             break;
                         case 2:
-                            fastDateFormatArr[i7] = k(locale, O0(2131745631, "SendDayYearAt", null), "'Send on' MMM d yyyy 'at' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, O0(2131745628, "SendDayYearAt", null), "'Send on' MMM d yyyy 'at' HH:mm");
                             break;
                         case 3:
-                            fastDateFormatArr[i7] = k(locale, O0(2131746324, "RemindTodayAt", null), "'Remind today at' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, O0(2131746323, "RemindTodayAt", null), "'Remind today at' HH:mm");
                             break;
                         case 4:
-                            fastDateFormatArr[i7] = k(locale, O0(2131746326, "RemindDayAt", null), "'Remind on' MMM d 'at' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, O0(2131746325, "RemindDayAt", null), "'Remind on' MMM d 'at' HH:mm");
                             break;
                         case 5:
-                            fastDateFormatArr[i7] = k(locale, O0(2131746325, "RemindDayYearAt", null), "'Remind on' MMM d yyyy 'at' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, O0(2131746324, "RemindDayYearAt", null), "'Remind on' MMM d yyyy 'at' HH:mm");
                             break;
                         case 6:
-                            fastDateFormatArr[i7] = k(locale, O0(2131744908, "StartTodayAt", null), "'Start today at' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, O0(2131744905, "StartTodayAt", null), "'Start today at' HH:mm");
                             break;
                         case 7:
-                            fastDateFormatArr[i7] = k(locale, O0(2131744917, "StartDayAt", null), "'Start on' MMM d 'at' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, O0(2131744914, "StartDayAt", null), "'Start on' MMM d 'at' HH:mm");
                             break;
                         case 8:
-                            fastDateFormatArr[i7] = k(locale, O0(2131744916, "StartDayYearAt", null), "'Start on' MMM d yyyy 'at' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, O0(2131744913, "StartDayYearAt", null), "'Start on' MMM d yyyy 'at' HH:mm");
                             break;
                         case 9:
-                            fastDateFormatArr[i7] = k(locale, O0(2131744911, "StartShortTodayAt", null), "'Today,' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, O0(2131744908, "StartShortTodayAt", null), "'Today,' HH:mm");
                             break;
                         case 10:
-                            fastDateFormatArr[i7] = k(locale, O0(2131744913, "StartShortDayAt", null), "MMM d',' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, O0(2131744910, "StartShortDayAt", null), "MMM d',' HH:mm");
                             break;
                         case 11:
-                            fastDateFormatArr[i7] = k(locale, O0(2131744912, "StartShortDayYearAt", null), "MMM d yyyy, HH:mm");
+                            fastDateFormatArr[i7] = k(locale, O0(2131744909, "StartShortDayYearAt", null), "MMM d yyyy, HH:mm");
                             break;
                         case 12:
-                            fastDateFormatArr[i7] = k(locale, O0(2131744900, "StartsTodayAt", null), "'Starts today at' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, O0(2131744897, "StartsTodayAt", null), "'Starts today at' HH:mm");
                             break;
                         case 13:
-                            fastDateFormatArr[i7] = k(locale, O0(2131744902, "StartsDayAt", null), "'Starts on' MMM d 'at' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, O0(2131744899, "StartsDayAt", null), "'Starts on' MMM d 'at' HH:mm");
                             break;
                         case 14:
-                            fastDateFormatArr[i7] = k(locale, O0(2131744901, "StartsDayYearAt", null), "'Starts on' MMM d yyyy 'at' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, O0(2131744898, "StartsDayYearAt", null), "'Starts on' MMM d yyyy 'at' HH:mm");
                             break;
                         case 15:
-                            fastDateFormatArr[i7] = k(locale, O0(2131746578, "PublishTodayAt", null), "'Publish today at' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, O0(2131746577, "PublishTodayAt", null), "'Publish today at' HH:mm");
                             break;
                         case 16:
-                            fastDateFormatArr[i7] = k(locale, O0(2131746580, "PublishDayAt", null), "'Publish on' MMM d 'at' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, O0(2131746579, "PublishDayAt", null), "'Publish on' MMM d 'at' HH:mm");
                             break;
                         case 17:
-                            fastDateFormatArr[i7] = k(locale, O0(2131746579, "PublishDayYearAt", null), "'Publish on' MMM d yyyy 'at' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, O0(2131746578, "PublishDayYearAt", null), "'Publish on' MMM d yyyy 'at' HH:mm");
                             break;
                     }
                 }
@@ -3570,7 +3570,7 @@ public final class id {
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f23177p = k(locale, O0(2131742784, "formatDateScheduleYear", null), "MMM d yyyy");
+                        this.f23177p = k(locale, O0(2131742781, "formatDateScheduleYear", null), "MMM d yyyy");
                     }
                 } finally {
                 }
@@ -3591,9 +3591,9 @@ public final class id {
                             locale = Locale.getDefault();
                         }
                         if (f23159c0) {
-                            O0 = O0(2131742765, "formatterStats24H", null);
+                            O0 = O0(2131742762, "formatterStats24H", null);
                         } else {
-                            O0 = O0(2131742766, "formatterStats12H", null);
+                            O0 = O0(2131742763, "formatterStats12H", null);
                         }
                         if (f23159c0) {
                             str = "MMM dd yyyy, HH:mm";

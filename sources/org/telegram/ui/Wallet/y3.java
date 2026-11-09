@@ -1,28 +1,15 @@
 package org.telegram.ui.Wallet;
+public final class y3 extends zh.b1 {
+    public final org.telegram.ui.Cells.t0 D;
 
-import android.view.View;
-public final class y3 implements Runnable {
-    public final int f43389a;
-    public final c4 f43390b;
-
-    public y3(c4 c4Var, int i7) {
-        this.f43389a = i7;
-        this.f43390b = c4Var;
+    public y3(org.telegram.ui.Cells.t0 t0Var, org.telegram.ui.Cells.t0 t0Var2) {
+        super(t0Var);
+        this.D = t0Var2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f43389a) {
-            case 0:
-                org.telegram.ui.Cells.t0 t0Var = this.f43390b.f42308a;
-                if (t0Var.getParent() instanceof View) {
-                    ((View) t0Var.getParent()).invalidate();
-                    return;
-                }
-                return;
-            default:
-                this.f43390b.p();
-                return;
-        }
+    public final void invalidateSelf() {
+        super.invalidateSelf();
+        this.D.invalidate();
     }
 }

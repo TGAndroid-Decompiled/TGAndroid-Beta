@@ -399,20 +399,20 @@ public abstract class b {
                     int min = Math.min(8 - fVar.d, 14);
                     int i11 = fVar.d;
                     int i12 = (8 - i11) - min;
-                    byte[] bArr2 = (byte[]) fVar.f8164b;
-                    int i13 = fVar.f8165c;
+                    byte[] bArr2 = (byte[]) fVar.f8162b;
+                    int i13 = fVar.f8163c;
                     byte b13 = (byte) (((65280 >> i11) | ((1 << i12) - 1)) & bArr2[i13]);
                     bArr2[i13] = b13;
                     int i14 = 14 - min;
                     bArr2[i13] = (byte) (b13 | ((j3 >>> i14) << i12));
                     int i15 = i13 + 1;
                     while (i14 > 8) {
-                        ((byte[]) fVar.f8164b)[i15] = (byte) (j3 >>> (i14 - 8));
+                        ((byte[]) fVar.f8162b)[i15] = (byte) (j3 >>> (i14 - 8));
                         i14 -= 8;
                         i15++;
                     }
                     int i16 = 8 - i14;
-                    byte[] bArr3 = (byte[]) fVar.f8164b;
+                    byte[] bArr3 = (byte[]) fVar.f8162b;
                     byte b14 = (byte) (bArr3[i15] & ((1 << i16) - 1));
                     bArr3[i15] = b14;
                     bArr3[i15] = (byte) (((j3 & ((1 << i14) - 1)) << i16) | b14);

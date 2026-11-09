@@ -3,7 +3,7 @@ package sg;
 import java.util.Arrays;
 import java.util.List;
 public abstract class h {
-    public static final List f55060a = Arrays.asList(new Object(), new Object(), new Object(), new Object(), new Object(), new Object());
+    public static final List f55074a = Arrays.asList(new Object(), new Object(), new Object(), new Object(), new Object(), new Object());
 
     public float a() {
         return 0.85f;

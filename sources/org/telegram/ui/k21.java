@@ -1,35 +1,25 @@
 package org.telegram.ui;
 
 import android.view.View;
-import android.widget.TextView;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.Components.Switch;
 public final class k21 implements View.OnClickListener {
-    public final v21 f47081a;
-    public final TLRPC.TL_authorization f47082b;
-    public final SessionsActivity f47083c;
-    public final l21 d;
+    public final org.telegram.ui.Components.eg f47163a;
+    public final TLRPC.TL_authorization f47164b;
+    public final n21 f47165c;
 
-    public k21(l21 l21Var, v21 v21Var, TLRPC.TL_authorization tL_authorization, SessionsActivity sessionsActivity) {
-        this.d = l21Var;
-        this.f47081a = v21Var;
-        this.f47082b = tL_authorization;
-        this.f47083c = sessionsActivity;
+    public k21(n21 n21Var, org.telegram.ui.Components.eg egVar, TLRPC.TL_authorization tL_authorization) {
+        this.f47165c = n21Var;
+        this.f47163a = egVar;
+        this.f47164b = tL_authorization;
     }
 
     @Override
     public final void onClick(View view) {
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.d.f47396j1.getParentActivity());
-        String M0 = org.telegram.messenger.id.M0(2131744207, null);
-        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
-        u1Var.T = M0;
-        u1Var.R = org.telegram.messenger.id.M0(2131754073, null);
-        alertDialog$Builder.k(org.telegram.messenger.id.M0(2131744212, null), new a7(this, this.f47081a, this.f47082b, 21));
-        alertDialog$Builder.h(org.telegram.messenger.id.M0(2131752589, null), null);
-        this.f47083c.showDialog(u1Var);
-        TextView textView = (TextView) u1Var.d(-1);
-        if (textView != null) {
-            org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28093q7, null);
-        }
+        org.telegram.ui.Components.eg egVar = this.f47163a;
+        Switch r02 = (Switch) egVar.f33382f;
+        r02.c(!r02.h, true);
+        this.f47164b.encrypted_requests_disabled = !((Switch) egVar.f33382f).h;
+        n21.J0(this.f47165c);
     }
 }

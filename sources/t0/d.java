@@ -9,11 +9,11 @@ import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputConnectionWrapper;
 import org.telegram.ui.Components.rt;
 public final class d extends InputConnectionWrapper {
-    public final e f55350a;
+    public final e f55362a;
 
     public d(InputConnection inputConnection, e eVar) {
         super(inputConnection, false);
-        this.f55350a = eVar;
+        this.f55362a = eVar;
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class d extends InputConnectionWrapper {
         String str5;
         String str6;
         String str7;
-        e eVar = this.f55350a;
+        e eVar = this.f55362a;
         boolean z9 = false;
         z9 = false;
         z9 = false;

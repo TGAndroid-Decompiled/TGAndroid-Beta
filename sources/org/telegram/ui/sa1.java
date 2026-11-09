@@ -1,60 +1,77 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class sa1 implements RequestDelegate {
-    public final int f49707a;
-    public final za1 f49708b;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class sa1 implements Runnable {
+    public final int f49851a;
+    public final bb1 f49852b;
 
-    public sa1(za1 za1Var, int i7) {
-        this.f49707a = i7;
-        this.f49708b = za1Var;
+    public sa1(bb1 bb1Var, int i7) {
+        this.f49851a = i7;
+        this.f49852b = bb1Var;
     }
 
     @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f49707a) {
+    public final void run() {
+        switch (this.f49851a) {
             case 0:
-                final za1 za1Var = this.f49708b;
-                org.telegram.messenger.g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                za1.g0(za1Var, tL_error, tLObject);
-                                return;
-                            default:
-                                za1.m0(za1Var, tL_error, tLObject);
-                                return;
-                        }
+                int i7 = 0;
+                while (true) {
+                    dr[] drVarArr = this.f49852b.f43969x.f43768f;
+                    if (i7 < drVarArr.length) {
+                        drVarArr[i7].z(0.0f);
+                        i7++;
+                    } else {
+                        return;
                     }
-                });
-                return;
+                }
             case 1:
-                org.telegram.messenger.g0.h3(new va1(this.f49708b, tL_error, 0));
+                bb1 bb1Var = this.f49852b;
+                EditTextBoldCursor editTextBoldCursor = bb1Var.f43965n;
+                if (editTextBoldCursor != null) {
+                    if (editTextBoldCursor.length() != 0) {
+                        bb1Var.f43960f0[2].P(49);
+                        bb1Var.f43960f0[2].T(false, 0.0f);
+                        bb1Var.f43950a.d();
+                        return;
+                    }
+                    bb1Var.K0(true);
+                    return;
+                }
                 return;
             case 2:
-                org.telegram.messenger.g0.h3(new va1(this.f49708b, tL_error, 1));
+                bb1 bb1Var2 = this.f49852b;
+                EditTextBoldCursor editTextBoldCursor2 = bb1Var2.f43965n;
+                if (editTextBoldCursor2 != null && editTextBoldCursor2.getVisibility() == 0) {
+                    bb1Var2.f43965n.requestFocus();
+                    org.telegram.messenger.g0.K3(bb1Var2.f43965n);
+                    return;
+                }
                 return;
             case 3:
-                org.telegram.messenger.g0.h3(new va1(this.f49708b, tL_error, 2));
+                bb1 bb1Var3 = this.f49852b;
+                nb0 nb0Var = bb1Var3.f43969x;
+                if (nb0Var != null && nb0Var.getVisibility() == 0) {
+                    bb1Var3.f43969x.f43768f[0].requestFocus();
+                    return;
+                }
+                return;
+            case 4:
+                bb1 bb1Var4 = this.f49852b;
+                if (bb1Var4.f43961g0 != null) {
+                    bb1Var4.K0(false);
+                    return;
+                }
+                return;
+            case 5:
+                bb1.k0(this.f49852b);
+                return;
+            case 6:
+                org.telegram.messenger.g0.i3(new sa1(this.f49852b, 7), 150L);
                 return;
             default:
-                final za1 za1Var2 = this.f49708b;
-                org.telegram.messenger.g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                za1.g0(za1Var2, tL_error, tLObject);
-                                return;
-                            default:
-                                za1.m0(za1Var2, tL_error, tLObject);
-                                return;
-                        }
-                    }
-                });
+                for (dr drVar : this.f49852b.f43969x.f43768f) {
+                    drVar.z(0.0f);
+                }
                 return;
         }
     }

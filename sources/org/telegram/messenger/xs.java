@@ -50,17 +50,17 @@ public final class xs implements Runnable {
                 boolean z9 = false;
                 while (i11 < arrayList.size()) {
                     ij ijVar = (ij) arrayList.get(i11);
-                    if (ijVar.J && Math.abs(ijVar.f1()) == i10) {
+                    if (ijVar.J && Math.abs(ijVar.e1()) == i10) {
                         arrayList.remove(i11);
                         SparseArray sparseArray = (SparseArray) hVar.f(ij.B0(ijVar.f23262k));
                         if (sparseArray != null) {
-                            sparseArray.remove(ijVar.f1());
+                            sparseArray.remove(ijVar.e1());
                         }
                         if (sparseArray != null && sparseArray.size() <= 0) {
                             hVar.l(ij.B0(ijVar.f23262k));
                         }
                         ArrayList arrayList2 = new ArrayList();
-                        arrayList2.add(Integer.valueOf(ijVar.f1()));
+                        arrayList2.add(Integer.valueOf(ijVar.e1()));
                         dtVar.getMessagesStorage().E(arrayList2, ij.B0(ijVar.f23262k));
                         i11--;
                         z9 = true;

@@ -14,16 +14,16 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 public abstract class w {
-    public static final HashMap f56307a = new HashMap();
+    public static final HashMap f56319a = new HashMap();
 
     public static void a(String str, ArrayList arrayList) {
         if ("audio/raw".equals(str)) {
-            if (Build.VERSION.SDK_INT < 26 && Build.DEVICE.equals("R9") && arrayList.size() == 1 && ((o) arrayList.get(0)).f56260a.equals("OMX.MTK.AUDIO.DECODER.RAW")) {
+            if (Build.VERSION.SDK_INT < 26 && Build.DEVICE.equals("R9") && arrayList.size() == 1 && ((o) arrayList.get(0)).f56272a.equals("OMX.MTK.AUDIO.DECODER.RAW")) {
                 arrayList.add(o.i("OMX.google.raw.decoder", "audio/raw", "audio/raw", null, false, true, false, false));
             }
             Collections.sort(arrayList, new s5(new Object(), 6));
         }
-        if (Build.VERSION.SDK_INT < 32 && arrayList.size() > 1 && "OMX.qti.audio.decoder.flac".equals(((o) arrayList.get(0)).f56260a)) {
+        if (Build.VERSION.SDK_INT < 32 && arrayList.size() > 1 && "OMX.qti.audio.decoder.flac".equals(((o) arrayList.get(0)).f56272a)) {
             arrayList.add((o) arrayList.remove(0));
         }
     }
@@ -101,7 +101,7 @@ public abstract class w {
         synchronized (w.class) {
             try {
                 s sVar = new s(str, z9, z10);
-                HashMap hashMap = f56307a;
+                HashMap hashMap = f56319a;
                 List list = (List) hashMap.get(sVar);
                 if (list != null) {
                     return list;
@@ -110,7 +110,7 @@ public abstract class w {
                 if (z9 && f10.isEmpty() && Build.VERSION.SDK_INT == 23) {
                     f10 = f(sVar, new nb.a(25));
                     if (!f10.isEmpty()) {
-                        h2.a.l("MediaCodecUtil", "MediaCodecList API didn't list secure decoder for: " + str + ". Assuming: " + ((o) f10.get(0)).f56260a);
+                        h2.a.l("MediaCodecUtil", "MediaCodecList API didn't list secure decoder for: " + str + ". Assuming: " + ((o) f10.get(0)).f56272a);
                     }
                 }
                 a(str, f10);

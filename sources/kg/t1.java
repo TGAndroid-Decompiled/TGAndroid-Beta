@@ -2,7 +2,7 @@ package kg;
 
 import android.text.TextUtils;
 import bi.w2;
-import di.u5;
+import di.v5;
 import java.util.ArrayList;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.p10;
@@ -175,7 +175,7 @@ public final class t1 {
                                 c10.f17536f = tL_quickReply.count;
                                 c10.d = tL_quickReply.top_message;
                                 ij ijVar = c10.f17535e;
-                                if (ijVar != null && ijVar.f1() != tL_quickReply.top_message) {
+                                if (ijVar != null && ijVar.e1() != tL_quickReply.top_message) {
                                     c10.f17535e = null;
                                     long e10 = p10.i(i11).e();
                                     yr a02 = yr.a0(i11);
@@ -226,7 +226,7 @@ public final class t1 {
                                 ArrayList<Integer> arrayList2 = tL_updateDeleteQuickReplyMessages.messages;
                                 ij ijVar2 = c12.f17535e;
                                 if (ijVar2 != null) {
-                                    i10 = ijVar2.f1();
+                                    i10 = ijVar2.e1();
                                 } else {
                                     i10 = c12.d;
                                 }
@@ -271,7 +271,7 @@ public final class t1 {
                                 s1Var.f17534c = i16;
                                 s1Var.d = tL_quickReply2.top_message;
                                 ij ijVar3 = s1Var.f17535e;
-                                if (ijVar3 != null && ijVar3.f1() != tL_quickReply2.top_message) {
+                                if (ijVar3 != null && ijVar3.e1() != tL_quickReply2.top_message) {
                                     s1Var.f17535e = null;
                                 }
                                 arrayList4.add(s1Var);
@@ -308,7 +308,7 @@ public final class t1 {
                                 c10.f17536f = tL_quickReply.count;
                                 c10.d = tL_quickReply.top_message;
                                 ij ijVar = c10.f17535e;
-                                if (ijVar != null && ijVar.f1() != tL_quickReply.top_message) {
+                                if (ijVar != null && ijVar.e1() != tL_quickReply.top_message) {
                                     c10.f17535e = null;
                                     long e10 = p10.i(i11).e();
                                     yr a02 = yr.a0(i11);
@@ -359,7 +359,7 @@ public final class t1 {
                                 ArrayList<Integer> arrayList2 = tL_updateDeleteQuickReplyMessages.messages;
                                 ij ijVar2 = c12.f17535e;
                                 if (ijVar2 != null) {
-                                    i10 = ijVar2.f1();
+                                    i10 = ijVar2.e1();
                                 } else {
                                     i10 = c12.d;
                                 }
@@ -404,7 +404,7 @@ public final class t1 {
                                 s1Var.f17534c = i16;
                                 s1Var.d = tL_quickReply2.top_message;
                                 ij ijVar3 = s1Var.f17535e;
-                                if (ijVar3 != null && ijVar3.f1() != tL_quickReply2.top_message) {
+                                if (ijVar3 != null && ijVar3.e1() != tL_quickReply2.top_message) {
                                     s1Var.f17535e = null;
                                 }
                                 arrayList4.add(s1Var);
@@ -441,7 +441,7 @@ public final class t1 {
                                 c10.f17536f = tL_quickReply.count;
                                 c10.d = tL_quickReply.top_message;
                                 ij ijVar = c10.f17535e;
-                                if (ijVar != null && ijVar.f1() != tL_quickReply.top_message) {
+                                if (ijVar != null && ijVar.e1() != tL_quickReply.top_message) {
                                     c10.f17535e = null;
                                     long e10 = p10.i(i11).e();
                                     yr a02 = yr.a0(i11);
@@ -492,7 +492,7 @@ public final class t1 {
                                 ArrayList<Integer> arrayList2 = tL_updateDeleteQuickReplyMessages.messages;
                                 ij ijVar2 = c12.f17535e;
                                 if (ijVar2 != null) {
-                                    i10 = ijVar2.f1();
+                                    i10 = ijVar2.e1();
                                 } else {
                                     i10 = c12.d;
                                 }
@@ -537,7 +537,7 @@ public final class t1 {
                                 s1Var.f17534c = i16;
                                 s1Var.d = tL_quickReply2.top_message;
                                 ij ijVar3 = s1Var.f17535e;
-                                if (ijVar3 != null && ijVar3.f1() != tL_quickReply2.top_message) {
+                                if (ijVar3 != null && ijVar3.e1() != tL_quickReply2.top_message) {
                                     s1Var.f17535e = null;
                                 }
                                 arrayList4.add(s1Var);
@@ -574,7 +574,7 @@ public final class t1 {
                                 c10.f17536f = tL_quickReply.count;
                                 c10.d = tL_quickReply.top_message;
                                 ij ijVar = c10.f17535e;
-                                if (ijVar != null && ijVar.f1() != tL_quickReply.top_message) {
+                                if (ijVar != null && ijVar.e1() != tL_quickReply.top_message) {
                                     c10.f17535e = null;
                                     long e10 = p10.i(i11).e();
                                     yr a02 = yr.a0(i11);
@@ -625,7 +625,7 @@ public final class t1 {
                                 ArrayList<Integer> arrayList2 = tL_updateDeleteQuickReplyMessages.messages;
                                 ij ijVar2 = c12.f17535e;
                                 if (ijVar2 != null) {
-                                    i10 = ijVar2.f1();
+                                    i10 = ijVar2.e1();
                                 } else {
                                     i10 = c12.d;
                                 }
@@ -670,7 +670,7 @@ public final class t1 {
                                 s1Var.f17534c = i16;
                                 s1Var.d = tL_quickReply2.top_message;
                                 ij ijVar3 = s1Var.f17535e;
-                                if (ijVar3 != null && ijVar3.f1() != tL_quickReply2.top_message) {
+                                if (ijVar3 != null && ijVar3.e1() != tL_quickReply2.top_message) {
                                     s1Var.f17535e = null;
                                 }
                                 arrayList4.add(s1Var);
@@ -698,7 +698,7 @@ public final class t1 {
         tL_messages_editQuickReplyShortcut.shortcut_id = i7;
         tL_messages_editQuickReplyShortcut.shortcut = str;
         int i10 = this.f17547a;
-        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_editQuickReplyShortcut, new u5(7));
+        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_editQuickReplyShortcut, new v5(7));
         l();
         qs.f(i10).k(qs.F1, new Object[0]);
     }

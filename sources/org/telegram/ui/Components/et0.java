@@ -1,8 +1,22 @@
 package org.telegram.ui.Components;
-public interface et0 {
-    void F(boolean z9);
+public final class et0 {
+    public static final et0 f33494a;
+    public static final et0 f33495b;
+    public static final et0[] f33496c;
 
-    float Y0();
+    static {
+        ?? r02 = new Enum("DEFAULT", 0);
+        f33494a = r02;
+        ?? r12 = new Enum("RECORDING", 1);
+        f33495b = r12;
+        f33496c = new et0[]{r02, r12};
+    }
 
-    int e1();
+    public static et0 valueOf(String str) {
+        return (et0) Enum.valueOf(et0.class, str);
+    }
+
+    public static et0[] values() {
+        return (et0[]) f33496c.clone();
+    }
 }

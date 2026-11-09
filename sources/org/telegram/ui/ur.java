@@ -1,46 +1,40 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class ur implements TextWatcher {
-    public final EditTextBoldCursor f50395a;
+import android.content.Context;
+public final class ur extends jg.e {
+    public final ContactsActivity O;
 
-    public ur(EditTextBoldCursor editTextBoldCursor) {
-        this.f50395a = editTextBoldCursor;
+    public ur(ContactsActivity contactsActivity, Context context, int i7, boolean z9, a0.h hVar, int i10) {
+        super(context, i7, z9, hVar, i10);
+        this.O = contactsActivity;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        try {
-            String obj = editable.toString();
-            if (!obj.isEmpty()) {
-                int intValue = Utilities.z(obj).intValue();
-                EditTextBoldCursor editTextBoldCursor = this.f50395a;
-                if (intValue < 0) {
-                    editTextBoldCursor.setText("0");
-                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                } else if (intValue > 300) {
-                    editTextBoldCursor.setText("300");
-                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                } else {
-                    if (!obj.equals("" + intValue)) {
-                        editTextBoldCursor.setText("" + intValue);
-                        editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                    }
+    public final int R() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ur.R():int");
+    }
+
+    @Override
+    public final void f() {
+        boolean z9 = false;
+        X(false);
+        ContactsActivity contactsActivity = this.O;
+        org.telegram.ui.Components.qj0 qj0Var = contactsActivity.d;
+        if (qj0Var != null && qj0Var.getAdapter() == this) {
+            int b10 = b();
+            if (contactsActivity.F) {
+                org.telegram.ui.Components.qj0 qj0Var2 = contactsActivity.d;
+                if (b10 != 2) {
+                    z9 = true;
                 }
+                qj0Var2.setFastScrollVisible(z9);
+                return;
             }
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
+            org.telegram.ui.Components.qj0 qj0Var3 = contactsActivity.d;
+            if (b10 != 0) {
+                z9 = true;
+            }
+            qj0Var3.setFastScrollVisible(z9);
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
     }
 }

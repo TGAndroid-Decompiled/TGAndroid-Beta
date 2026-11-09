@@ -12,40 +12,40 @@ import org.telegram.ui.Components.vy;
 import org.telegram.ui.Components.w5;
 public final class m1 extends View {
     public final w5 D;
-    public sg.w0 E;
+    public sg.v0 E;
     public float F;
     public float G;
-    public sg.j1 H;
+    public sg.i1 H;
     public Runnable I;
     public boolean J;
     public l1 K;
-    public final Paint f55841a;
-    public final Paint f55842b;
-    public final Path f55843c;
+    public final Paint f55853a;
+    public final Paint f55854b;
+    public final Path f55855c;
     public final vy d;
-    public final RectF f55844e;
-    public boolean f55845f;
+    public final RectF f55856e;
+    public boolean f55857f;
     public boolean h;
-    public float f55846n;
-    public float f55847r;
-    public long f55848s;
-    public boolean f55849w;
-    public final w5 f55850x;
-    public final w5 f55851y;
+    public float f55858n;
+    public float f55859r;
+    public long f55860s;
+    public boolean f55861w;
+    public final w5 f55862x;
+    public final w5 f55863y;
 
     public m1(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f55841a = paint;
+        this.f55853a = paint;
         Paint paint2 = new Paint(1);
-        this.f55842b = paint2;
-        this.f55843c = new Path();
-        this.f55844e = new RectF();
-        this.f55849w = true;
-        this.f55850x = new w5(this);
-        this.f55851y = new w5(this);
+        this.f55854b = paint2;
+        this.f55855c = new Path();
+        this.f55856e = new RectF();
+        this.f55861w = true;
+        this.f55862x = new w5(this);
+        this.f55863y = new w5(this);
         this.D = new w5(this);
-        this.H = new sg.j1(1.0f, 0.016773745f, -1);
+        this.H = new sg.i1(1.0f, 0.016773745f, -1);
         this.J = true;
         this.d = new vy(context, new k1(this));
         paint2.setColor(-1);
@@ -58,9 +58,9 @@ public final class m1 extends View {
         if (z9) {
             RectF rectF = org.telegram.messenger.g0.P;
             rectF.set((f10 - f12) - org.telegram.messenger.g0.L(6.0f), (f11 - f12) - org.telegram.messenger.g0.L(6.0f), f10 + f12 + org.telegram.messenger.g0.L(6.0f), f11 + f12 + org.telegram.messenger.g0.L(6.0f));
-            canvas.saveLayerAlpha(rectF, (int) (this.f55847r * 255.0f), 31);
+            canvas.saveLayerAlpha(rectF, (int) (this.f55859r * 255.0f), 31);
         }
-        canvas.drawCircle(f10, f11, f12, this.f55842b);
+        canvas.drawCircle(f10, f11, f12, this.f55854b);
         if (z9) {
             canvas.restore();
         }
@@ -81,27 +81,27 @@ public final class m1 extends View {
     public final void onSizeChanged(int i7, int i10, int i11, int i12) {
         super.onSizeChanged(i7, i10, i11, i12);
         int height = (int) (getHeight() * 0.3f);
-        this.f55844e.set(0.0f, (getHeight() - height) / 2.0f, org.telegram.messenger.g0.L(32.0f), (getHeight() + height) / 2.0f);
+        this.f55856e.set(0.0f, (getHeight() - height) / 2.0f, org.telegram.messenger.g0.L(32.0f), (getHeight() + height) / 2.0f);
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean onTouchEvent = ((GestureDetector) this.d.f39747b).onTouchEvent(motionEvent);
+        boolean onTouchEvent = ((GestureDetector) this.d.f39835b).onTouchEvent(motionEvent);
         if (motionEvent.getActionMasked() != 1 && motionEvent.getActionMasked() != 3) {
             return onTouchEvent;
         }
-        this.f55845f = false;
+        this.f55857f = false;
         invalidate();
         return onTouchEvent;
     }
 
     public void setBrushWeight(float f10) {
-        this.H.f55111c = f10;
+        this.H.f55096c = f10;
         invalidate();
     }
 
-    public void setColorSwatch(sg.j1 j1Var) {
-        this.H = j1Var;
+    public void setColorSwatch(sg.i1 i1Var) {
+        this.H = i1Var;
         invalidate();
     }
 
@@ -114,12 +114,12 @@ public final class m1 extends View {
         this.I = runnable;
     }
 
-    public void setRenderView(sg.w0 w0Var) {
-        this.E = w0Var;
+    public void setRenderView(sg.v0 v0Var) {
+        this.E = v0Var;
     }
 
     public void setShowPreview(boolean z9) {
-        this.f55849w = z9;
+        this.f55861w = z9;
         invalidate();
     }
 

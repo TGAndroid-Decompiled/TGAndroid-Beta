@@ -222,12 +222,12 @@ public final class gf extends ze {
             xVar = null;
         }
         if (xVar != null) {
-            long j3 = xVar.f8093a;
+            long j3 = xVar.f8091a;
             if (j3 > 0) {
                 this.f26845b = true;
                 this.W = true;
                 this.f26854m = j3;
-                this.P = xVar.f8094b;
+                this.P = xVar.f8092b;
             }
         } else {
             try {

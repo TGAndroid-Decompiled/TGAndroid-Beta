@@ -298,19 +298,19 @@ public final class r8 extends c1 {
         TLRPC.Message message;
         TLRPC.MessageFwdHeader messageFwdHeader;
         TLRPC.Peer peer;
-        if (obj instanceof di.i6) {
-            di.i6 i6Var = (di.i6) obj;
-            if (i6Var.f9228a == null) {
+        if (obj instanceof di.j6) {
+            di.j6 j6Var = (di.j6) obj;
+            if (j6Var.f9260a == null) {
                 a8.b("failed request reference can't find list in botpreview");
                 return null;
             }
-            TLRPC.MessageMedia messageMedia = i6Var.media;
+            TLRPC.MessageMedia messageMedia = j6Var.media;
             if (messageMedia.document != null) {
-                return "botstory_doc_" + i6Var.media.document.f26962id;
+                return "botstory_doc_" + j6Var.media.document.f26962id;
             } else if (messageMedia.photo != null) {
-                return "botstory_photo_" + i6Var.media.photo.f26980id;
+                return "botstory_photo_" + j6Var.media.photo.f26980id;
             } else {
-                return "botstory_" + i6Var.f27195id;
+                return "botstory_" + j6Var.f27195id;
             }
         }
         long j3 = 0;
@@ -337,7 +337,7 @@ public final class r8 extends c1 {
                     if (ijVar.D == 29 && (message = ijVar.f23262k) != null && (messageFwdHeader = message.fwd_from) != null && (peer = messageFwdHeader.from_id) != null) {
                         v02 = m5.o(peer);
                     }
-                    return "message" + ijVar.M1() + "_" + v02 + "_" + ijVar.f23281p1 + "_" + ij.J1(ijVar.f23262k);
+                    return "message" + ijVar.L1() + "_" + v02 + "_" + ijVar.f23281p1 + "_" + ij.I1(ijVar.f23262k);
                 } else if (obj instanceof TLRPC.Message) {
                     TLRPC.Message message2 = (TLRPC.Message) obj;
                     TLRPC.Peer peer2 = message2.peer_id;
@@ -390,20 +390,20 @@ public final class r8 extends c1 {
         if (z10 && (((TL_ephemeral.TL_sendMessage) obj2).media instanceof TLRPC.TL_inputMediaPoll) && (obj instanceof ArrayList)) {
             return null;
         }
-        if (obj2 instanceof di.i6) {
-            di.i6 i6Var = (di.i6) obj2;
-            TLRPC.MessageMedia messageMedia = i6Var.media;
+        if (obj2 instanceof di.j6) {
+            di.j6 j6Var = (di.j6) obj2;
+            TLRPC.MessageMedia messageMedia = j6Var.media;
             if (messageMedia.document != null) {
                 TLRPC.TL_inputDocumentFileLocation tL_inputDocumentFileLocation = new TLRPC.TL_inputDocumentFileLocation();
-                tL_inputDocumentFileLocation.f26971id = i6Var.media.document.f26962id;
-                return new Pair(tL_inputDocumentFileLocation, "botstory_doc_" + i6Var.media.document.f26962id);
+                tL_inputDocumentFileLocation.f26971id = j6Var.media.document.f26962id;
+                return new Pair(tL_inputDocumentFileLocation, "botstory_doc_" + j6Var.media.document.f26962id);
             } else if (messageMedia.photo != null) {
                 TLRPC.TL_inputPhotoFileLocation tL_inputPhotoFileLocation = new TLRPC.TL_inputPhotoFileLocation();
-                tL_inputPhotoFileLocation.f26971id = i6Var.media.photo.f26980id;
-                return new Pair(tL_inputPhotoFileLocation, "botstory_photo_" + i6Var.media.photo.f26980id);
+                tL_inputPhotoFileLocation.f26971id = j6Var.media.photo.f26980id;
+                return new Pair(tL_inputPhotoFileLocation, "botstory_photo_" + j6Var.media.photo.f26980id);
             } else {
                 TLRPC.TL_inputDocumentFileLocation tL_inputDocumentFileLocation2 = new TLRPC.TL_inputDocumentFileLocation();
-                return new Pair(tL_inputDocumentFileLocation2, "botstory_" + i6Var.f27195id);
+                return new Pair(tL_inputDocumentFileLocation2, "botstory_" + j6Var.f27195id);
             }
         } else if (obj2 instanceof TL_stories.TL_storyItem) {
             TL_stories.TL_storyItem tL_storyItem = (TL_stories.TL_storyItem) obj2;

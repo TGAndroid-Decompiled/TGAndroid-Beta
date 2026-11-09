@@ -1,76 +1,230 @@
 package org.telegram.ui;
 
-import java.math.BigInteger;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.SecureRandom;
-import java.util.Arrays;
-import javax.crypto.Cipher;
-import javax.crypto.spec.GCMParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
-public abstract class vc1 {
-    public static final BigInteger f50639a = new BigInteger("FFFFFFFFFFFFFFFFC90FDAA22168C234C4C6628B80DC1CD129024E088A67CC74020BBEA63B139B22514A08798E3404DDEF9519B3CD3A431B302B0A6DF25F14374FE1356D6D51C245E485B576625E7EC6F44C42E9A637ED6B0BFF5CB6F406B7EDEE386BFB5A899FA5AE9F24117C4B1FE649286651ECE45B3DC2007CB8A163BF0598DA48361C55D39A69163FA8FD24CF5F83655D23DCA3AD961C62F356208552BB9ED529077096966D670C354E4ABC9804F1746C08CA18217C32905E462E36CE3BE39E772C180E86039B2783A2EC07A28FB5C55DF06F4C52C9DE2BCBF6955817183995497CEA956AE515D2261898FA051015728E5A8AACAA68FFFFFFFFFFFFFFFF", 16);
-    public static final BigInteger f50640b = BigInteger.valueOf(2);
-    public static org.telegram.ui.ActionBar.v2 f50641c;
-    public static a8.r7 d;
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class vc1 extends org.telegram.ui.Components.pj0 {
+    public wb1 D;
+    public final WallpapersListActivity E;
+    public final Context f50644c;
+    public final ArrayList d = new ArrayList();
+    public final HashMap f50645e = new HashMap();
+    public boolean f50646f = true;
+    public String h;
+    public String f50647n;
+    public String f50648r;
+    public int f50649s;
+    public int f50650w;
+    public boolean f50651x;
+    public String f50652y;
 
-    public static byte[] a(BigInteger bigInteger) {
-        byte[] byteArray = bigInteger.toByteArray();
-        if (byteArray.length == 256) {
-            return byteArray;
-        }
-        if (byteArray.length == 257 && byteArray[0] == 0) {
-            return Arrays.copyOfRange(byteArray, 1, byteArray.length);
-        }
-        if (byteArray.length < 256) {
-            byte[] bArr = new byte[256];
-            System.arraycopy(byteArray, 0, bArr, 256 - byteArray.length, byteArray.length);
-            return bArr;
-        }
-        throw new IllegalStateException("unexpected DH value size " + byteArray.length);
+    public vc1(WallpapersListActivity wallpapersListActivity, Context context) {
+        this.E = wallpapersListActivity;
+        this.f50644c = context;
     }
 
-    public static byte[] b(byte[][] bArr) {
-        try {
-            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-            for (byte[] bArr2 : bArr) {
-                messageDigest.update(bArr2);
+    @Override
+    public final boolean D(v4.d1 d1Var) {
+        if (d1Var.f57060f != 2) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void E(String str, boolean z9) {
+        int i7;
+        if (str != null && this.f50647n != null) {
+            str = org.telegram.ui.Cells.f1.n(this.f50647n, " ", str, new StringBuilder("#color"));
+        }
+        wb1 wb1Var = this.D;
+        if (wb1Var != null) {
+            org.telegram.messenger.g0.r(wb1Var);
+            this.D = null;
+        }
+        boolean isEmpty = TextUtils.isEmpty(str);
+        HashMap hashMap = this.f50645e;
+        ArrayList arrayList = this.d;
+        WallpapersListActivity wallpapersListActivity = this.E;
+        if (isEmpty) {
+            arrayList.clear();
+            hashMap.clear();
+            this.f50646f = true;
+            this.h = null;
+            if (this.f50649s != 0) {
+                i7 = ((org.telegram.ui.ActionBar.f2) wallpapersListActivity).currentAccount;
+                ConnectionsManager.getInstance(i7).cancelRequest(this.f50649s, true);
+                this.f50649s = 0;
             }
-            return messageDigest.digest();
-        } catch (Exception e10) {
-            throw new RuntimeException(e10);
+            wallpapersListActivity.K.c();
+        } else {
+            wallpapersListActivity.K.b();
+            if (z9) {
+                arrayList.clear();
+                hashMap.clear();
+                this.f50646f = true;
+                F(str, "", true);
+                this.h = str;
+                f();
+            } else {
+                wb1 wb1Var2 = new wb1(27, this, str);
+                this.D = wb1Var2;
+                org.telegram.messenger.g0.i3(wb1Var2, 500L);
+            }
+        }
+        f();
+    }
+
+    public final void F(String str, String str2, boolean z9) {
+        int i7;
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        int i17;
+        int i18 = this.f50649s;
+        WallpapersListActivity wallpapersListActivity = this.E;
+        if (i18 != 0) {
+            i17 = ((org.telegram.ui.ActionBar.f2) wallpapersListActivity).currentAccount;
+            ConnectionsManager.getInstance(i17).cancelRequest(this.f50649s, true);
+            this.f50649s = 0;
+        }
+        this.f50652y = str;
+        i7 = ((org.telegram.ui.ActionBar.f2) wallpapersListActivity).currentAccount;
+        org.telegram.messenger.qp s12 = org.telegram.messenger.qp.s1(i7);
+        i10 = ((org.telegram.ui.ActionBar.f2) wallpapersListActivity).currentAccount;
+        TLObject f22 = s12.f2(org.telegram.messenger.qp.s1(i10).L3);
+        if (!(f22 instanceof TLRPC.User)) {
+            if (z9 && !this.f50651x) {
+                this.f50651x = true;
+                TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
+                i15 = ((org.telegram.ui.ActionBar.f2) wallpapersListActivity).currentAccount;
+                tL_contacts_resolveUsername.username = org.telegram.messenger.qp.s1(i15).L3;
+                i16 = ((org.telegram.ui.ActionBar.f2) wallpapersListActivity).currentAccount;
+                ConnectionsManager.getInstance(i16).sendRequest(tL_contacts_resolveUsername, new l(this, 25));
+                return;
+            }
+            return;
+        }
+        TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
+        tL_messages_getInlineBotResults.query = rf.b.i("#wallpaper ", str);
+        i11 = ((org.telegram.ui.ActionBar.f2) wallpapersListActivity).currentAccount;
+        tL_messages_getInlineBotResults.bot = org.telegram.messenger.qp.s1(i11).q1((TLRPC.User) f22);
+        tL_messages_getInlineBotResults.offset = str2;
+        tL_messages_getInlineBotResults.peer = new TLRPC.TL_inputPeerEmpty();
+        int i19 = this.f50650w + 1;
+        this.f50650w = i19;
+        i12 = ((org.telegram.ui.ActionBar.f2) wallpapersListActivity).currentAccount;
+        this.f50649s = ConnectionsManager.getInstance(i12).sendRequest(tL_messages_getInlineBotResults, new bi.j2(this, i19, 10));
+        i13 = ((org.telegram.ui.ActionBar.f2) wallpapersListActivity).currentAccount;
+        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i13);
+        int i20 = this.f50649s;
+        i14 = ((org.telegram.ui.ActionBar.f2) wallpapersListActivity).classGuid;
+        connectionsManager.bindRequestToGuid(i20, i14);
+    }
+
+    @Override
+    public final int b() {
+        if (TextUtils.isEmpty(this.h)) {
+            return 2;
+        }
+        return (int) Math.ceil(this.d.size() / this.E.N);
+    }
+
+    @Override
+    public final int d(int i7) {
+        if (TextUtils.isEmpty(this.h)) {
+            if (i7 == 0) {
+                return 2;
+            }
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void t(v4.d1 d1Var, int i7) {
+        boolean z9;
+        Object obj;
+        int i10 = d1Var.f57060f;
+        View view = d1Var.f57056a;
+        if (i10 != 0) {
+            if (i10 == 2) {
+                ((org.telegram.ui.Cells.x3) view).setText(org.telegram.messenger.id.M0(2131745815, null));
+                return;
+            }
+            return;
+        }
+        org.telegram.ui.Cells.ua uaVar = (org.telegram.ui.Cells.ua) view;
+        WallpapersListActivity wallpapersListActivity = this.E;
+        int i11 = i7 * wallpapersListActivity.N;
+        ArrayList arrayList = this.d;
+        int ceil = (int) Math.ceil(arrayList.size() / wallpapersListActivity.N);
+        int i12 = wallpapersListActivity.N;
+        boolean z10 = true;
+        if (i11 == 0) {
+            z9 = true;
+        } else {
+            z9 = false;
+        }
+        if (i11 / i12 != ceil - 1) {
+            z10 = false;
+        }
+        uaVar.d(i12, z9, z10);
+        for (int i13 = 0; i13 < wallpapersListActivity.N; i13++) {
+            int i14 = i11 + i13;
+            if (i14 < arrayList.size()) {
+                obj = arrayList.get(i14);
+            } else {
+                obj = null;
+            }
+            uaVar.e(wallpapersListActivity.f43500r, obj, "", i13);
         }
     }
 
-    public static byte[] c(a8.r7 r7Var, String str, int i7, boolean z9) {
-        byte[] bytes = str.getBytes(StandardCharsets.UTF_8);
-        ByteBuffer allocate = ByteBuffer.allocate(bytes.length + 9);
-        allocate.order(ByteOrder.BIG_ENDIAN);
-        allocate.putInt(bytes.length);
-        allocate.put(bytes);
-        allocate.putInt(i7);
-        allocate.put(z9 ? (byte) 1 : (byte) 0);
-        byte[] array = allocate.array();
-        byte[] bArr = new byte[12];
-        new SecureRandom().nextBytes(bArr);
-        Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
-        cipher.init(1, new SecretKeySpec((byte[]) r7Var.f616e, "AES"), new GCMParameterSpec(128, bArr));
-        byte[] doFinal = cipher.doFinal(array);
-        byte[] bArr2 = new byte[doFinal.length + 28];
-        System.arraycopy((byte[]) r7Var.f614b, 0, bArr2, 0, 16);
-        System.arraycopy(bArr, 0, bArr2, 16, 12);
-        System.arraycopy(doFinal, 0, bArr2, 28, doFinal.length);
-        return bArr2;
-    }
-
-    public static String d(byte[] bArr) {
-        StringBuilder sb2 = new StringBuilder(bArr.length * 2);
-        int length = bArr.length;
-        for (int i7 = 0; i7 < length; i7++) {
-            sb2.append(String.format("%02x", Byte.valueOf(bArr[i7])));
+    @Override
+    public final v4.d1 x(ViewGroup viewGroup, int i7) {
+        FrameLayout piVar;
+        FrameLayout frameLayout;
+        Context context = this.f50644c;
+        if (i7 != 0) {
+            piVar = null;
+            if (i7 != 1) {
+                if (i7 == 2) {
+                    frameLayout = new org.telegram.ui.Cells.x3(context, null);
+                }
+            } else {
+                ?? f61Var = new f61(14, context, null);
+                f61Var.setItemAnimator(null);
+                f61Var.setLayoutAnimation(null);
+                jg.b0 b0Var = new jg.b0(20);
+                f61Var.setPadding(org.telegram.messenger.g0.L(7.0f), 0, org.telegram.messenger.g0.L(7.0f), 0);
+                f61Var.setClipToPadding(false);
+                b0Var.j1(0);
+                f61Var.setLayoutManager(b0Var);
+                f61Var.setAdapter(new bi.k5(this, 9));
+                f61Var.setOnItemClickListener(new zx0(this, 13));
+                frameLayout = f61Var;
+            }
+            piVar = frameLayout;
+        } else {
+            piVar = new org.telegram.ui.Components.pi(this, context, 2);
+            piVar.setTag(-33024);
         }
-        return sb2.toString();
+        if (i7 == 1) {
+            piVar.setLayoutParams(new v4.o0(-1, org.telegram.messenger.g0.L(60.0f)));
+        } else {
+            piVar.setLayoutParams(new v4.o0(-1, -2));
+        }
+        return new v4.d1(piVar);
     }
 }

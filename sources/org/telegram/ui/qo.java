@@ -1,33 +1,45 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-public final class qo implements Runnable {
-    public final int f49285a;
-    public final ro f49286b;
-    public final String f49287c;
+import android.content.Context;
+import org.telegram.tgnet.TLRPC;
+public final class qo extends org.telegram.ui.Components.g70 {
+    public final TLRPC.Chat f49108x;
+    public final ro f49109y;
 
-    public qo(ro roVar, String str, int i7) {
-        this.f49285a = i7;
-        this.f49286b = roVar;
-        this.f49287c = str;
+    public qo(ro roVar, Context context, TLRPC.Chat chat, TLRPC.Chat chat2) {
+        super(context, chat);
+        this.f49109y = roVar;
+        this.f49108x = chat2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f49285a) {
-            case 0:
-                ro roVar = this.f49286b;
-                String str = this.f49287c;
-                roVar.getClass();
-                org.telegram.messenger.g0.h3(new qo(roVar, str, 1));
-                return;
-            default:
-                ro roVar2 = this.f49286b;
-                String str2 = this.f49287c;
-                roVar2.f49520f = null;
-                Utilities.f21338g.c(new o1(roVar2, str2, new ArrayList(roVar2.h.f49795w), 28));
-                return;
+    public final boolean a(boolean z9, org.telegram.ui.Components.e70 e70Var) {
+        uo uoVar = this.f49109y.d;
+        if (uoVar.P) {
+            return false;
+        }
+        uoVar.P = true;
+        e(new rf(26, this, e70Var), new xn(this, this.f49108x, z9, e70Var, 2));
+        return true;
+    }
+
+    @Override
+    public final boolean b(boolean z9, org.telegram.ui.Components.f70 f70Var) {
+        uo uoVar = this.f49109y.d;
+        if (uoVar.O) {
+            return false;
+        }
+        uoVar.O = true;
+        e(new rf(26, this, f70Var), new xn(this, this.f49108x, z9, f70Var, 1));
+        return true;
+    }
+
+    public final void e(rf rfVar, Runnable runnable) {
+        uo uoVar = this.f49109y.d;
+        if (!org.telegram.messenger.t3.T(uoVar.f50435f)) {
+            uoVar.getMessagesController().T(uoVar.getParentActivity(), this.f49108x.f26956id, uoVar, new ni.c(20, this, runnable), rfVar);
+        } else {
+            runnable.run();
         }
     }
 }

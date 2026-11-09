@@ -46,7 +46,7 @@ public final class zg implements Runnable {
                 int i7 = 0;
                 for (int i10 = 0; i10 < size; i10++) {
                     TLRPC.Message message = (TLRPC.Message) arrayList.get(i10);
-                    if ((ij.o1(message) instanceof TLRPC.TL_messageMediaDocument) || (ij.o1(message) instanceof TLRPC.TL_messageMediaPhoto)) {
+                    if ((ij.n1(message) instanceof TLRPC.TL_messageMediaDocument) || (ij.n1(message) instanceof TLRPC.TL_messageMediaPhoto)) {
                         i7++;
                     }
                     int i11 = uiVar.currentAccount;
@@ -91,12 +91,12 @@ public final class zg implements Runnable {
                 boolean z12 = this.f26871b;
                 ij ijVar = (ij) this.h;
                 TL_keyboard.KeyboardButtonProto keyboardButtonProto = (TL_keyboard.KeyboardButtonProto) this.f26875n;
-                org.telegram.ui.an anVar = (org.telegram.ui.an) this.f26876r;
+                org.telegram.ui.cn cnVar = (org.telegram.ui.cn) this.f26876r;
                 if (tL_error == null) {
                     TL_account.Password password = (TL_account.Password) tLObject;
                     twoStepVerificationActivity.I = password;
                     TwoStepVerificationActivity.r0(password);
-                    gzVar.n0(z12, ijVar, keyboardButtonProto, twoStepVerificationActivity.q0(), twoStepVerificationActivity, anVar);
+                    gzVar.n0(z12, ijVar, keyboardButtonProto, twoStepVerificationActivity.q0(), twoStepVerificationActivity, cnVar);
                     return;
                 }
                 return;
@@ -114,7 +114,7 @@ public final class zg implements Runnable {
         this.f26876r = hVar2;
     }
 
-    public zg(gz gzVar, TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity, boolean z9, ij ijVar, TL_keyboard.KeyboardButtonProto keyboardButtonProto, org.telegram.ui.an anVar) {
+    public zg(gz gzVar, TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity, boolean z9, ij ijVar, TL_keyboard.KeyboardButtonProto keyboardButtonProto, org.telegram.ui.cn cnVar) {
         this.d = gzVar;
         this.f26872c = tL_error;
         this.f26873e = tLObject;
@@ -122,6 +122,6 @@ public final class zg implements Runnable {
         this.f26871b = z9;
         this.h = ijVar;
         this.f26875n = keyboardButtonProto;
-        this.f26876r = anVar;
+        this.f26876r = cnVar;
     }
 }

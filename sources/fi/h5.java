@@ -10,7 +10,7 @@ import org.telegram.messenger.id;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.ix;
-import org.telegram.ui.Components.t31;
+import org.telegram.ui.Components.u31;
 public final class h5 implements ix {
     public final o5 f12133a;
 
@@ -55,7 +55,7 @@ public final class h5 implements ix {
 
     @Override
     public final boolean k() {
-        tg.b editText = ((tg.k2) this.f12133a.f12545s0).getEditText();
+        tg.b editText = ((tg.k2) this.f12133a.f12543s0).getEditText();
         if (editText == null || editText.length() == 0) {
             return false;
         }
@@ -68,7 +68,7 @@ public final class h5 implements ix {
         tg.k2 k2Var;
         tg.b editText;
         org.telegram.messenger.f6[] f6VarArr;
-        tg.j jVar = this.f12133a.f12545s0;
+        tg.j jVar = this.f12133a.f12543s0;
         if (!(jVar instanceof tg.k2) || (editText = (k2Var = (tg.k2) jVar).getEditText()) == null) {
             return;
         }
@@ -96,12 +96,12 @@ public final class h5 implements ix {
     @Override
     public final void n() {
         o5 o5Var = this.f12133a;
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, o5Var.getContext(), o5Var.f12540p1);
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, o5Var.getContext(), o5Var.f12538p1);
         String M0 = id.M0(2131752068, null);
         org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
         u1Var.R = M0;
         u1Var.T = id.M0(2131752069, null);
-        alertDialog$Builder.k(id.M0(2131752099, null), new di.q4(this, 14));
+        alertDialog$Builder.k(id.M0(2131752099, null), new di.r4(this, 14));
         alertDialog$Builder.h(id.M0(2131752589, null), null);
         alertDialog$Builder.p();
     }
@@ -114,7 +114,7 @@ public final class h5 implements ix {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z9) {
         org.telegram.ui.Components.r5 r5Var;
-        tg.b editText = ((tg.k2) this.f12133a.f12545s0).getEditText();
+        tg.b editText = ((tg.k2) this.f12133a.f12543s0).getEditText();
         if (editText == null) {
             return;
         }
@@ -155,7 +155,7 @@ public final class h5 implements ix {
     }
 
     @Override
-    public final void o(t31 t31Var) {
+    public final void o(u31 u31Var) {
     }
 
     @Override

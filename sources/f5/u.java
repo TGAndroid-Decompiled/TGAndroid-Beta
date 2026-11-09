@@ -39,11 +39,11 @@ import org.telegram.messenger.qp;
 import org.telegram.messenger.zr;
 import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.ActionBar.m3;
-import org.telegram.ui.Components.q51;
-import org.telegram.ui.Components.t51;
+import org.telegram.ui.Components.r51;
+import org.telegram.ui.Components.u51;
 import org.telegram.ui.j9;
 import org.telegram.ui.r9;
-public final class u implements r9, q51, h2.d, u2.u, g0 {
+public final class u implements r9, r51, h2.d, u2.u, g0 {
     public final int f11189a;
     public int f11190b;
     public Object f11191c;
@@ -274,7 +274,7 @@ public final class u implements r9, q51, h2.d, u2.u, g0 {
                     if (i10 >= 0) {
                         String scheme = create.getScheme();
                         String userInfo = create.getUserInfo();
-                        SecureRandom secureRandom = rc.k.f54460a;
+                        SecureRandom secureRandom = rc.k.f54472a;
                         String host = create.getHost();
                         if (host == null) {
                             String rawAuthority = create.getRawAuthority();
@@ -325,8 +325,8 @@ public final class u implements r9, q51, h2.d, u2.u, g0 {
                                             }
                                             rc.s sVar = new rc.s(socketFactory, new rc.a(str2, i7), i10, null, null);
                                             sVar.d = 1;
-                                            sVar.f54477e = 250;
-                                            sVar.f54478f = true;
+                                            sVar.f54489e = 250;
+                                            sVar.f54490f = true;
                                             if (port >= 0) {
                                                 str2 = str2 + ":" + port;
                                             }
@@ -433,7 +433,7 @@ public final class u implements r9, q51, h2.d, u2.u, g0 {
         int i10 = i7 + 4;
         org.telegram.utils.twidget.i iVar = (org.telegram.utils.twidget.i) this.f11191c;
         if (i10 <= iVar.d) {
-            int i11 = iVar.f52826a.getInt(i7);
+            int i11 = iVar.f52840a.getInt(i7);
             this.f11190b += 4;
             return i11;
         }
@@ -581,7 +581,7 @@ public final class u implements r9, q51, h2.d, u2.u, g0 {
                 Parcel v12 = eVar.v1();
                 v12.writeString(packageName);
                 v12.writeString(str);
-                int i10 = com.google.android.gms.internal.play_billing.d.f7317a;
+                int i10 = com.google.android.gms.internal.play_billing.d.f7315a;
                 v12.writeStrongBinder(vVar);
                 eVar.f306b.transact(1, v12, null, 1);
                 v12.recycle();
@@ -705,7 +705,7 @@ public final class u implements r9, q51, h2.d, u2.u, g0 {
     }
 
     @Override
-    public void onError(t51 t51Var, Exception exc) {
+    public void onError(u51 u51Var, Exception exc) {
     }
 
     @Override

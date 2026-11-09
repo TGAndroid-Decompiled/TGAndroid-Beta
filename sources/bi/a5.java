@@ -10,16 +10,16 @@ public final class a5 extends ClickableSpan {
     public final boolean[] f3446a;
     public final int f3447b;
     public final Context f3448c;
-    public final org.telegram.ui.ActionBar.f6 d;
+    public final org.telegram.ui.ActionBar.g6 d;
     public final long f3449e;
     public final String f3450f;
     public final String h;
 
-    public a5(boolean[] zArr, int i7, Context context, org.telegram.ui.ActionBar.f6 f6Var, long j3, String str, String str2) {
+    public a5(boolean[] zArr, int i7, Context context, org.telegram.ui.ActionBar.g6 g6Var, long j3, String str, String str2) {
         this.f3446a = zArr;
         this.f3447b = i7;
         this.f3448c = context;
-        this.d = f6Var;
+        this.d = g6Var;
         this.f3449e = j3;
         this.f3450f = str;
         this.h = str2;

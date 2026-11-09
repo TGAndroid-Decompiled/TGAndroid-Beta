@@ -194,10 +194,10 @@ public final class w7 extends c1 {
         } else if (obj instanceof ij) {
             ij ijVar = (ij) obj;
             ?? obj3 = new Object();
-            obj3.f22197b = ijVar.f1();
+            obj3.f22197b = ijVar.e1();
             obj3.f22196a = ij.B0(ijVar.f23262k);
             obj3.f22198c = ijVar.D;
-            obj3.d = ijVar.T1();
+            obj3.d = ijVar.S1();
             return obj3;
         } else if (obj instanceof TL_stories.StoryItem) {
             ?? obj4 = new Object();
@@ -270,32 +270,32 @@ public final class w7 extends c1 {
                     return J(w12, null, z9, z10);
                 }
             }
-        } else if (ij.o1(message) instanceof TLRPC.TL_messageMediaDocument) {
-            TLRPC.Document document = ij.o1(message).document;
-            if (z9 || ij.o1(message).ttl_seconds != 0) {
+        } else if (ij.n1(message) instanceof TLRPC.TL_messageMediaDocument) {
+            TLRPC.Document document = ij.n1(message).document;
+            if (z9 || ij.n1(message).ttl_seconds != 0) {
                 z11 = true;
             }
             return J(document, null, z11, z10);
-        } else if (ij.o1(message) instanceof TLRPC.TL_messageMediaPhoto) {
-            ArrayList<TLRPC.PhotoSize> arrayList2 = ij.o1(message).photo.sizes;
+        } else if (ij.n1(message) instanceof TLRPC.TL_messageMediaPhoto) {
+            ArrayList<TLRPC.PhotoSize> arrayList2 = ij.n1(message).photo.sizes;
             if (arrayList2.size() > 0 && (w11 = w(arrayList2, g0.Z0(true), false, null, true)) != null) {
-                if (z9 || ij.o1(message).ttl_seconds != 0) {
+                if (z9 || ij.n1(message).ttl_seconds != 0) {
                     z11 = true;
                 }
                 return J(w11, null, z11, z10);
             }
-        } else if (ij.o1(message) instanceof TLRPC.TL_messageMediaWebPage) {
-            if (ij.o1(message).webpage.document != null) {
-                return J(ij.o1(message).webpage.document, null, z9, z10);
+        } else if (ij.n1(message) instanceof TLRPC.TL_messageMediaWebPage) {
+            if (ij.n1(message).webpage.document != null) {
+                return J(ij.n1(message).webpage.document, null, z9, z10);
             }
-            if (ij.o1(message).webpage.photo != null) {
-                ArrayList<TLRPC.PhotoSize> arrayList3 = ij.o1(message).webpage.photo.sizes;
+            if (ij.n1(message).webpage.photo != null) {
+                ArrayList<TLRPC.PhotoSize> arrayList3 = ij.n1(message).webpage.photo.sizes;
                 if (arrayList3.size() > 0 && (w10 = w(arrayList3, g0.Z0(false), false, null, false)) != null) {
                     return J(w10, null, z9, z10);
                 }
             }
-        } else if (ij.o1(message) instanceof TLRPC.TL_messageMediaInvoice) {
-            return J(((TLRPC.TL_messageMediaInvoice) ij.o1(message)).photo, null, true, z10);
+        } else if (ij.n1(message) instanceof TLRPC.TL_messageMediaInvoice) {
+            return J(((TLRPC.TL_messageMediaInvoice) ij.n1(message)).photo, null, true, z10);
         }
         return new File("");
     }
@@ -833,9 +833,9 @@ public final class w7 extends c1 {
         if (z9) {
             TLRPC.Document document = (TLRPC.Document) tLObject;
             if (document.key == null) {
-                if (ij.R4(document)) {
+                if (ij.Q4(document)) {
                     i7 = 1;
-                } else if (ij.L4(document)) {
+                } else if (ij.K4(document)) {
                     i7 = 2;
                 } else {
                     i7 = 3;
@@ -1056,7 +1056,7 @@ public final class w7 extends c1 {
     }
 
     public final void n(String str, boolean z9, long j3, long j10, Float f10) {
-        J.c(new di.d6(this, z9, str, j3, j10, f10));
+        J.c(new di.e6(this, z9, str, j3, j10, f10));
     }
 
     public final float t(String str, float f10) {

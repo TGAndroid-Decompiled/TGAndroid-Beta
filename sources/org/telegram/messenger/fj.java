@@ -13,9 +13,9 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.concurrent.atomic.AtomicReference;
-import org.telegram.ui.Components.my0;
-import org.telegram.ui.rg0;
-public final class fj implements rg0 {
+import org.telegram.ui.Components.ny0;
+import org.telegram.ui.tg0;
+public final class fj implements tg0 {
     public float D;
     public ij E;
     public int F;
@@ -24,12 +24,12 @@ public final class fj implements rg0 {
     public boolean I;
     public boolean J;
     public String K;
-    public my0 L;
+    public ny0 L;
     public int M;
     public boolean N;
     public int O;
     public Drawable P;
-    public my0 Q;
+    public ny0 Q;
     public int R;
     public org.telegram.ui.Cells.y S;
     public Paint T;
@@ -479,8 +479,8 @@ public final class fj implements rg0 {
     public final float d(org.telegram.ui.Cells.x1 x1Var) {
         boolean f10;
         float f11;
-        if (x1Var.f30792f3) {
-            HashSet hashSet = x1Var.f30787e3;
+        if (x1Var.f30796f3) {
+            HashSet hashSet = x1Var.f30791e3;
             f10 = true;
             if (hashSet != null && hashSet.contains(Integer.valueOf(this.f22423c))) {
                 f10 = false;
@@ -536,11 +536,11 @@ public final class fj implements rg0 {
         if (!this.N) {
             return;
         }
-        int r12 = org.telegram.ui.ActionBar.k6.r1(0.1f, i7);
+        int r12 = org.telegram.ui.ActionBar.l6.r1(0.1f, i7);
         if (this.R != r12) {
             org.telegram.ui.Cells.y yVar = this.S;
             this.R = r12;
-            org.telegram.ui.ActionBar.k6.H1(yVar, r12, true);
+            org.telegram.ui.ActionBar.l6.H1(yVar, r12, true);
         }
         this.S.setBounds(g0.L(3.0f) + ((int) rectF.left), (int) (rectF.bottom - g0.L(38.0f)), (int) rectF.right, (int) rectF.bottom);
         int i11 = (int) (255.0f * f10);
@@ -550,7 +550,7 @@ public final class fj implements rg0 {
         }
         this.T.setColor(i0.a.o(i10, 38));
         canvas.drawRect(rectF.left + g0.L(10.0f), (rectF.bottom - g0.L(38.0f)) - g0.f1(), rectF.right - g0.L(6.66f), rectF.bottom - g0.L(38.0f), this.T);
-        float min = Math.min(rectF.width() - g0.L(12.0f), (this.P.getIntrinsicWidth() * 0.8f) + g0.L(5.0f) + this.Q.f36147c);
+        float min = Math.min(rectF.width() - g0.L(12.0f), (this.P.getIntrinsicWidth() * 0.8f) + g0.L(5.0f) + this.Q.f36541c);
         float centerX = rectF.centerX() - (min / 2.0f);
         float L = rectF.bottom - (g0.L(38.0f) / 2.0f);
         if (this.O != i7) {
@@ -563,9 +563,9 @@ public final class fj implements rg0 {
         drawable2.setBounds((int) centerX, (int) (L - ((drawable2.getIntrinsicHeight() * 0.8f) / 2.0f)), (int) ((this.P.getIntrinsicWidth() * 0.8f) + centerX), (int) a8.p0.f(this.P.getIntrinsicHeight(), 0.8f, 2.0f, L));
         this.P.draw(canvas);
         float intrinsicWidth = (this.P.getIntrinsicWidth() * 0.8f) + g0.L(5.0f) + centerX;
-        my0 my0Var = this.Q;
-        my0Var.f36158p = g0.L(12.0f) + ((int) (min - ((this.P.getIntrinsicWidth() * 0.8f) + g0.L(5.0f))));
-        my0Var.c(intrinsicWidth, L, f10, i7, canvas);
+        ny0 ny0Var = this.Q;
+        ny0Var.f36552p = g0.L(12.0f) + ((int) (min - ((this.P.getIntrinsicWidth() * 0.8f) + g0.L(5.0f))));
+        ny0Var.c(intrinsicWidth, L, f10, i7, canvas);
     }
 
     public final int j(org.telegram.ui.Cells.x1 x1Var) {
@@ -603,11 +603,11 @@ public final class fj implements rg0 {
         this.N = z10;
         int i10 = 5;
         if (z10) {
-            this.Q = new my0(id.M0(2131751765, null).toUpperCase(), iz.W0 - 3, g0.o());
+            this.Q = new ny0(id.M0(2131751765, null).toUpperCase(), iz.W0 - 3, g0.o());
             Drawable h = jg.g.h(t0.f25566b, 2131232103);
             this.P = h;
             h.setColorFilter(new PorterDuffColorFilter(this.O, PorterDuff.Mode.SRC_IN));
-            this.S = org.telegram.ui.ActionBar.k6.c0(this.R, 0, 0, Math.min(5, iz.Y0), 0);
+            this.S = org.telegram.ui.ActionBar.l6.c0(this.R, 0, 0, Math.min(5, iz.Y0), 0);
             this.T = new Paint(1);
         }
         if (TextUtils.isEmpty(str)) {
@@ -626,9 +626,9 @@ public final class fj implements rg0 {
                 i10 = 2;
             }
         }
-        my0 my0Var = new my0(b10, i11 - (i10 / 2), g0.o());
-        this.L = my0Var;
-        this.M = g0.L(4.0f) + ((int) (my0Var.f36145a.getTextSize() * 1.714f));
+        ny0 ny0Var = new ny0(b10, i11 - (i10 / 2), g0.o());
+        this.L = ny0Var;
+        this.M = g0.L(4.0f) + ((int) (ny0Var.f36539a.getTextSize() * 1.714f));
     }
 
     public final void n(String str, boolean z9) {
@@ -638,17 +638,17 @@ public final class fj implements rg0 {
             Drawable h = jg.g.h(t0.f25566b, 2131232103);
             this.P = h;
             h.setColorFilter(new PorterDuffColorFilter(this.O, PorterDuff.Mode.SRC_IN));
-            this.S = org.telegram.ui.ActionBar.k6.c0(this.R, 0, 0, Math.min(5, iz.Y0), 0);
+            this.S = org.telegram.ui.ActionBar.l6.c0(this.R, 0, 0, Math.min(5, iz.Y0), 0);
         }
-        my0 my0Var = null;
+        ny0 ny0Var = null;
         if (TextUtils.isEmpty(str)) {
             str = null;
         }
         this.K = str;
         if (str != null) {
-            my0Var = new my0(str, Math.max(8, iz.W0 - 4), null);
+            ny0Var = new ny0(str, Math.max(8, iz.W0 - 4), null);
         }
-        this.L = my0Var;
+        this.L = ny0Var;
         this.M = 0;
     }
 

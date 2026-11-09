@@ -7,10 +7,10 @@ public final class zc extends RadialProgressView {
     public final int N;
     public final Object O;
 
-    public zc(org.telegram.ui.Components.i30 i30Var, Context context, int i7) {
+    public zc(org.telegram.ui.Components.j30 j30Var, Context context, int i7) {
         super(context, null);
         this.N = i7;
-        this.O = i30Var;
+        this.O = j30Var;
     }
 
     @Override
@@ -18,9 +18,9 @@ public final class zc extends RadialProgressView {
         switch (this.N) {
             case 3:
                 super.invalidate();
-                pq0 pq0Var = ((PhotoViewer) this.O).f41384e0;
-                if (pq0Var != null) {
-                    pq0Var.invalidate();
+                rq0 rq0Var = ((PhotoViewer) this.O).f41391e0;
+                if (rq0Var != null) {
+                    rq0Var.invalidate();
                     return;
                 }
                 return;
@@ -39,25 +39,25 @@ public final class zc extends RadialProgressView {
                 return;
             case 1:
                 super.setAlpha(f10);
-                ((d50) this.O).f44954e.invalidate();
+                ((f50) this.O).f45587e.invalidate();
                 return;
             case 2:
                 super.setAlpha(f10);
-                ((pc0) this.O).h.invalidate();
+                ((rc0) this.O).h.invalidate();
                 return;
             default:
                 super.setAlpha(f10);
-                pq0 pq0Var = ((PhotoViewer) this.O).f41384e0;
-                if (pq0Var != null) {
-                    pq0Var.invalidate();
+                rq0 rq0Var = ((PhotoViewer) this.O).f41391e0;
+                if (rq0Var != null) {
+                    rq0Var.invalidate();
                     return;
                 }
                 return;
         }
     }
 
-    public zc(PhotoViewer photoViewer, ContextThemeWrapper contextThemeWrapper, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(contextThemeWrapper, f6Var);
+    public zc(PhotoViewer photoViewer, ContextThemeWrapper contextThemeWrapper, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(contextThemeWrapper, g6Var);
         this.N = 3;
         this.O = photoViewer;
     }

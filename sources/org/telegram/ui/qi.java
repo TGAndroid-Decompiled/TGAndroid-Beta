@@ -1,46 +1,47 @@
 package org.telegram.ui;
+public final class qi extends gh.b {
+    public final int f49064s;
+    public final cn f49065w;
 
-import org.telegram.tgnet.TLRPC;
-public final class qi implements org.telegram.messenger.sr {
-    public final int f49241a;
-    public final boolean f49242b;
-    public final Object f49243c;
-
-    public qi(int i7, Object obj, boolean z9) {
-        this.f49241a = i7;
-        this.f49243c = obj;
-        this.f49242b = z9;
+    public qi(cn cnVar, org.telegram.ui.ActionBar.g6 g6Var, int i7, int i10) {
+        super(i7, g6Var);
+        this.f49064s = i10;
+        this.f49065w = cnVar;
     }
 
     @Override
-    public final void a(int i7) {
-        org.telegram.ui.Components.gc gcVar;
-        switch (this.f49241a) {
+    public final int e1() {
+        int i7;
+        int i10;
+        switch (this.f49064s) {
             case 0:
-                an anVar = ((si) this.f49243c).f49769b;
-                if (i7 > 0 && anVar.getParentActivity() != null) {
-                    org.telegram.ui.Components.hc a02 = org.telegram.ui.Components.hc.a0(anVar);
-                    if (this.f49242b) {
-                        gcVar = org.telegram.ui.Components.gc.G;
-                    } else {
-                        gcVar = org.telegram.ui.Components.gc.I;
-                    }
-                    a02.m(gcVar, i7, 0, 0, anVar.f44028xa).j();
-                    return;
+                cn cnVar = this.f49065w;
+                i7 = ((org.telegram.ui.ActionBar.f2) cnVar).currentAccount;
+                if (!c8.g0.c(i7, cnVar.f44709za)) {
+                    return i0.a.o(cnVar.getThemedColor(org.telegram.ui.ActionBar.l6.Ge), 255);
                 }
-                return;
+                an anVar = cnVar.f44709za;
+                if (anVar != null && !anVar.a()) {
+                    a();
+                    return i0.a.o(this.d, 216);
+                }
+                a();
+                return this.d;
+            case 1:
+                return this.f49065w.f44674x.e1();
             default:
-                ri riVar = (ri) this.f49243c;
-                an anVar2 = riVar.f49499b.f49769b;
-                if (i7 >= 50) {
-                    TLRPC.Chat chat = anVar2.f43777e;
-                    TLRPC.User user = anVar2.f43791f;
-                    boolean z9 = this.f49242b;
-                    org.telegram.ui.Components.v4.r(anVar2, true, chat, user, false, false, false, z9, new w0(riVar, z9));
-                    return;
+                cn cnVar2 = this.f49065w;
+                i10 = ((org.telegram.ui.ActionBar.f2) cnVar2).currentAccount;
+                if (!c8.g0.c(i10, cnVar2.f44709za)) {
+                    return i0.a.o(cnVar2.getThemedColor(org.telegram.ui.ActionBar.l6.f27865d6), 255);
                 }
-                anVar2.Qa(anVar2.f43945r4, true);
-                return;
+                an anVar2 = cnVar2.f44709za;
+                if (anVar2 != null && !anVar2.a()) {
+                    a();
+                    return i0.a.o(this.d, 216);
+                }
+                a();
+                return this.d;
         }
     }
 }

@@ -7,12 +7,12 @@ import org.json.JSONObject;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.td0;
+import org.telegram.ui.vd0;
 public abstract class pt {
-    public static void a(boolean[] zArr, td0 td0Var, boolean z9, k0.b bVar, Context context, int i7, Runnable[] runnableArr, TL_account.passkeyLoginOptions passkeyloginoptions, TLRPC.TL_error tL_error) {
+    public static void a(boolean[] zArr, vd0 vd0Var, boolean z9, k0.b bVar, Context context, int i7, Runnable[] runnableArr, TL_account.passkeyLoginOptions passkeyloginoptions, TLRPC.TL_error tL_error) {
         if (!zArr[0]) {
             if (tL_error != null) {
-                td0Var.a(0L, null, tL_error.text);
+                vd0Var.a(0L, null, tL_error.text);
                 return;
             }
             try {
@@ -22,14 +22,14 @@ public abstract class pt {
                 v0.n nVar = new v0.n(hd.f.l(arrayList), !z9);
                 try {
                     CancellationSignal cancellationSignal = new CancellationSignal();
-                    bVar.c(context, nVar, cancellationSignal, context.getMainExecutor(), new nt(td0Var, context, i7));
+                    bVar.c(context, nVar, cancellationSignal, context.getMainExecutor(), new nt(vd0Var, context, i7));
                     runnableArr[0] = new a(cancellationSignal, 11);
                 } catch (Exception e10) {
-                    td0Var.a(0L, null, e10.getMessage());
+                    vd0Var.a(0L, null, e10.getMessage());
                 }
             } catch (Exception e11) {
                 a8.g(e11, true);
-                td0Var.a(0L, null, e11.getMessage());
+                vd0Var.a(0L, null, e11.getMessage());
             }
         }
     }

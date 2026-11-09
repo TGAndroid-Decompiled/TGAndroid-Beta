@@ -1,14 +1,7 @@
 package org.telegram.ui;
-
-import android.text.Editable;
-public interface wm0 {
-    void A();
-
-    void B(Editable editable);
-
-    boolean e();
-
-    void f0();
-
-    void v0(int i7, boolean z9, boolean z10);
+public final class wm0 extends v4.s {
+    @Override
+    public final boolean y0() {
+        return false;
+    }
 }

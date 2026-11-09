@@ -8,46 +8,46 @@ import android.view.View;
 import android.widget.FrameLayout;
 import java.util.HashSet;
 import org.telegram.messenger.id;
-import org.telegram.ui.Components.rt0;
+import org.telegram.ui.Components.tt0;
 import org.telegram.ui.Components.xq;
 import org.telegram.ui.Components.zs;
-public abstract class h3 extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
+public abstract class h3 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
     public boolean D;
-    public boolean f29251a;
-    public final f3 f29252b;
-    public final org.telegram.ui.ActionBar.f6 f29253c;
+    public boolean f29255a;
+    public final f3 f29256b;
+    public final org.telegram.ui.ActionBar.g6 f29257c;
     public final int d;
-    public boolean f29254e;
-    public int f29255f;
+    public boolean f29258e;
+    public int f29259f;
     public boolean h;
-    public boolean f29256n;
-    public boolean f29257r;
-    public boolean f29258s;
-    public final org.telegram.ui.Components.z4 f29259w;
-    public int f29260x;
-    public final org.telegram.ui.Components.i6 f29261y;
+    public boolean f29260n;
+    public boolean f29261r;
+    public boolean f29262s;
+    public final org.telegram.ui.Components.z4 f29263w;
+    public int f29264x;
+    public final org.telegram.ui.Components.i6 f29265y;
 
-    public h3(Context context, rt0 rt0Var, String str, boolean z9, int i7, org.telegram.ui.ActionBar.f6 f6Var) {
+    public h3(Context context, tt0 tt0Var, String str, boolean z9, int i7, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context);
-        this.f29255f = -1;
-        this.f29257r = true;
+        this.f29259f = -1;
+        this.f29261r = true;
         org.telegram.ui.Components.i6 i6Var = new org.telegram.ui.Components.i6(false, true, true);
-        this.f29261y = i6Var;
+        this.f29265y = i6Var;
         i6Var.n(0.2f, 160L, xq.h);
         i6Var.w(org.telegram.messenger.g0.L(15.33f));
-        i6Var.f34552b = 5;
+        i6Var.f34587b = 5;
         this.d = i7;
-        f3 f3Var = new f3(this, context, rt0Var, f6Var, z9);
-        this.f29252b = f3Var;
+        f3 f3Var = new f3(this, context, tt0Var, g6Var, z9);
+        this.f29256b = f3Var;
         zs editText = f3Var.getEditText();
         editText.setDelegate(new m4.d0(this, editText, false));
         f3Var.setWillNotDraw(false);
-        this.f29259w = new org.telegram.ui.Components.z4(f3Var);
+        this.f29263w = new org.telegram.ui.Components.z4(f3Var);
         i6Var.setCallback(f3Var);
         editText.setTextSize(1, 17.0f);
-        org.telegram.ui.ActionBar.r6.E(editText, org.telegram.ui.ActionBar.k6.H6, f6Var);
-        int i10 = org.telegram.ui.ActionBar.k6.G6;
-        org.telegram.ui.ActionBar.r6.V(editText, i10, f6Var);
+        org.telegram.ui.ActionBar.s6.D(editText, org.telegram.ui.ActionBar.l6.H6, g6Var);
+        int i10 = org.telegram.ui.ActionBar.l6.G6;
+        org.telegram.ui.ActionBar.s6.U(editText, i10, g6Var);
         editText.setBackground(null);
         if (z9) {
             editText.setMaxLines(5);
@@ -61,8 +61,8 @@ public abstract class h3 extends FrameLayout implements org.telegram.ui.ActionBa
         editText.setInputType((z9 ? 131072 : 0) | 573441);
         editText.setRawInputType(573441);
         editText.setHint(str);
-        org.telegram.ui.ActionBar.r6.m(editText, 30, i10, f6Var);
-        this.f29253c = f6Var;
+        org.telegram.ui.ActionBar.s6.l(editText, 30, i10, g6Var);
+        this.f29257c = g6Var;
         editText.setCursorSize(org.telegram.messenger.g0.L(19.0f));
         editText.setCursorWidth(1.5f);
         editText.addTextChangedListener(new g3(this, i7, editText, z9));
@@ -77,19 +77,19 @@ public abstract class h3 extends FrameLayout implements org.telegram.ui.ActionBa
 
     public final void c() {
         int i7;
-        f3 f3Var = this.f29252b;
+        f3 f3Var = this.f29256b;
         if (f3Var != null && f3Var.getEditText() != null) {
-            this.f29260x = this.d - getText().length();
+            this.f29264x = this.d - getText().length();
             String str = "";
-            if ((!TextUtils.isEmpty(getText()) || this.f29254e) && ((!this.h || this.f29256n) && ((i7 = this.f29255f) == -1 || this.f29260x <= i7))) {
-                str = "" + this.f29260x;
+            if ((!TextUtils.isEmpty(getText()) || this.f29258e) && ((!this.h || this.f29260n) && ((i7 = this.f29259f) == -1 || this.f29264x <= i7))) {
+                str = "" + this.f29264x;
             }
-            this.f29261y.t(str, true, true);
+            this.f29265y.t(str, true, true);
         }
     }
 
     public CharSequence getText() {
-        return this.f29252b.getText();
+        return this.f29256b.getText();
     }
 
     @Override
@@ -111,7 +111,7 @@ public abstract class h3 extends FrameLayout implements org.telegram.ui.ActionBa
             } else {
                 i7 = 0;
             }
-            canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f27975k0);
+            canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.l6.f27988k0);
         }
     }
 
@@ -126,7 +126,7 @@ public abstract class h3 extends FrameLayout implements org.telegram.ui.ActionBa
     }
 
     public void setEmojiViewCacheType(int i7) {
-        this.f29252b.setEmojiViewCacheType(i7);
+        this.f29256b.setEmojiViewCacheType(i7);
     }
 
     public void setShowLimitOnFocus(boolean z9) {
@@ -134,32 +134,32 @@ public abstract class h3 extends FrameLayout implements org.telegram.ui.ActionBa
     }
 
     public void setShowLimitWhenEmpty(boolean z9) {
-        this.f29254e = z9;
+        this.f29258e = z9;
         if (z9) {
             c();
         }
     }
 
     public void setShowLimitWhenNear(int i7) {
-        this.f29255f = i7;
+        this.f29259f = i7;
         c();
     }
 
     public void setText(CharSequence charSequence) {
-        this.f29251a = true;
-        f3 f3Var = this.f29252b;
+        this.f29255a = true;
+        f3 f3Var = this.f29256b;
         f3Var.setText(charSequence);
         f3Var.setSelection(f3Var.getText().length());
-        this.f29251a = false;
+        this.f29255a = false;
     }
 
     @Override
     public final void updateColors() {
-        f3 f3Var = this.f29252b;
+        f3 f3Var = this.f29256b;
         if (f3Var != null) {
             try {
                 if (f3Var.getEditText() != null) {
-                    f3Var.getEditText().setCursorColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.G6, this.f29253c));
+                    f3Var.getEditText().setCursorColor(org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.G6, this.f29257c));
                 }
             } catch (Exception e10) {
                 org.telegram.messenger.a8.g(e10, true);

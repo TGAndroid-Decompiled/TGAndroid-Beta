@@ -1,41 +1,34 @@
 package org.telegram.ui;
 
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class fa1 implements Runnable {
-    public final int f45526a;
-    public final TwoStepVerificationActivity f45527b;
+import org.telegram.tgnet.tl.TL_account;
+public final class fa1 implements org.telegram.ui.ActionBar.r1 {
+    public final int f45676a;
+    public final TwoStepVerificationActivity f45677b;
 
     public fa1(TwoStepVerificationActivity twoStepVerificationActivity, int i7) {
-        this.f45526a = i7;
-        this.f45527b = twoStepVerificationActivity;
+        this.f45676a = i7;
+        this.f45677b = twoStepVerificationActivity;
     }
 
     @Override
-    public final void run() {
-        EditTextBoldCursor editTextBoldCursor;
-        switch (this.f45526a) {
+    public final void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        switch (this.f45676a) {
             case 0:
-                TwoStepVerificationActivity twoStepVerificationActivity = this.f45527b;
-                if (!twoStepVerificationActivity.isFinishing() && !twoStepVerificationActivity.H && (editTextBoldCursor = twoStepVerificationActivity.f42062s) != null) {
-                    editTextBoldCursor.requestFocus();
-                    org.telegram.messenger.g0.K3(twoStepVerificationActivity.f42062s);
-                    return;
-                }
+                this.f45677b.finishFragment();
                 return;
             case 1:
-                TwoStepVerificationActivity twoStepVerificationActivity2 = this.f45527b;
-                fa1 fa1Var = twoStepVerificationActivity2.V;
-                org.telegram.messenger.g0.r(fa1Var);
-                org.telegram.messenger.g0.i3(fa1Var, 1500L);
-                twoStepVerificationActivity2.U = true;
+                TL_account.declinePasswordReset declinepasswordreset = new TL_account.declinePasswordReset();
+                TwoStepVerificationActivity twoStepVerificationActivity = this.f45677b;
+                twoStepVerificationActivity.getConnectionsManager().sendRequest(declinepasswordreset, new ga1(twoStepVerificationActivity, 2));
                 return;
             case 2:
-                TwoStepVerificationActivity twoStepVerificationActivity3 = this.f45527b;
-                twoStepVerificationActivity3.U = false;
-                twoStepVerificationActivity3.f42063w.a(0.0f);
+                this.f45677b.p0();
+                return;
+            case 3:
+                this.f45677b.z0();
                 return;
             default:
-                this.f45527b.D0();
+                this.f45677b.z0();
                 return;
         }
     }

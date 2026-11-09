@@ -24,7 +24,7 @@ public final class j6 implements ValueAnimator.AnimatorUpdateListener {
             case 0:
                 p pVar = (p) this.f12237f;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                k6 k6Var = pVar.f12326a;
+                k6 k6Var = pVar.f12327a;
                 float f10 = this.f12234b;
                 float f11 = this.f12235c;
                 k6Var.setScaleX(org.telegram.messenger.g0.T1(f10, f11, floatValue));
@@ -33,7 +33,7 @@ public final class j6 implements ValueAnimator.AnimatorUpdateListener {
                 k6Var.setTranslationY(this.f12236e * floatValue);
                 float f12 = 1.0f - floatValue;
                 k6Var.setAlpha(f12);
-                pVar.f12333s = f12;
+                pVar.f12334s = f12;
                 pVar.invalidate();
                 return;
             case 1:
@@ -51,13 +51,13 @@ public final class j6 implements ValueAnimator.AnimatorUpdateListener {
                 org.telegram.ui.Cells.x9 x9Var = (org.telegram.ui.Cells.x9) this.f12237f;
                 x9Var.getClass();
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                vg.f fVar = ((vg.e) x9Var.f30911b).f57363a;
+                vg.f fVar = ((vg.e) x9Var.f30916b).f57375a;
                 float f17 = this.f12235c;
                 float f18 = this.f12234b;
                 fVar.d = com.google.android.recaptcha.internal.a.z(f17, f18, floatValue3, f18);
                 float f19 = this.f12236e;
                 float f20 = this.d;
-                fVar.f57380i = com.google.android.recaptcha.internal.a.z(f19, f20, floatValue3, f20);
+                fVar.f57392i = com.google.android.recaptcha.internal.a.z(f19, f20, floatValue3, f20);
                 return;
         }
     }

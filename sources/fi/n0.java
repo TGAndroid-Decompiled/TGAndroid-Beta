@@ -19,23 +19,23 @@ public final class n0 implements Runnable {
                 t0Var.b();
                 return;
             case 1:
-                t0Var.f12832e = false;
-                q0 q0Var = t0Var.f12836s;
+                t0Var.f12831e = false;
+                q0 q0Var = t0Var.f12835s;
                 if (q0Var != null) {
                     q0Var.a(true);
-                    t0Var.f12836s = null;
+                    t0Var.f12835s = null;
                 }
-                s0 s0Var = t0Var.f12834n;
+                s0 s0Var = t0Var.f12833n;
                 if (s0Var != null) {
                     s0Var.a();
                 }
-                t0Var.f12831c = false;
+                t0Var.f12830c = false;
                 t0Var.d();
                 return;
             default:
-                if (t0Var.f12831c && t0Var.f12835r != null) {
-                    t0Var.f12834n.b(2131624011, 3500, id.N0("VideoConvertFail"));
-                    t0Var.f12831c = false;
+                if (t0Var.f12830c && t0Var.f12834r != null) {
+                    t0Var.f12833n.b(2131624011, 3500, id.N0("VideoConvertFail"));
+                    t0Var.f12830c = false;
                     t0Var.d();
                     return;
                 }

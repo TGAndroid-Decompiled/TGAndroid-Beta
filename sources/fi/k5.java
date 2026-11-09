@@ -21,7 +21,7 @@ public final class k5 extends FrameLayout {
         this.f12272c = l0Var;
         new Path();
         setWillNotDraw(false);
-        Paint paint = x9Var.f12525g1;
+        Paint paint = x9Var.f12523g1;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
     }
@@ -34,18 +34,18 @@ public final class k5 extends FrameLayout {
         Canvas canvas2 = canvas;
         super.onDraw(canvas);
         x9 x9Var = this.d;
-        sg.j1 j1Var = x9Var.f12531j1;
-        Paint paint = x9Var.f12527h1;
-        Paint paint2 = x9Var.f12525g1;
-        Paint paint3 = x9Var.f12529i1;
+        sg.i1 i1Var = x9Var.f12529j1;
+        Paint paint = x9Var.f12525h1;
+        Paint paint2 = x9Var.f12523g1;
+        Paint paint3 = x9Var.f12527i1;
         barView = x9Var.getBarView();
         RectF rectF = org.telegram.messenger.g0.P;
         int left = barView.getLeft();
-        w4 w4Var = x9Var.f12523f1;
-        rectF.set(org.telegram.messenger.g0.W1(x9Var.f12535m1, left, w4Var.getLeft()), org.telegram.messenger.g0.W1(x9Var.f12535m1, barView.getTop(), w4Var.getTop()), org.telegram.messenger.g0.W1(x9Var.f12535m1, barView.getRight(), w4Var.getRight()), org.telegram.messenger.g0.W1(x9Var.f12535m1, barView.getBottom(), w4Var.getBottom()));
-        float W1 = org.telegram.messenger.g0.W1(x9Var.f12535m1, org.telegram.messenger.g0.L(32.0f), org.telegram.messenger.g0.L(24.0f));
+        w4 w4Var = x9Var.f12521f1;
+        rectF.set(org.telegram.messenger.g0.W1(x9Var.f12533m1, left, w4Var.getLeft()), org.telegram.messenger.g0.W1(x9Var.f12533m1, barView.getTop(), w4Var.getTop()), org.telegram.messenger.g0.W1(x9Var.f12533m1, barView.getRight(), w4Var.getRight()), org.telegram.messenger.g0.W1(x9Var.f12533m1, barView.getBottom(), w4Var.getBottom()));
+        float W1 = org.telegram.messenger.g0.W1(x9Var.f12533m1, org.telegram.messenger.g0.L(32.0f), org.telegram.messenger.g0.L(24.0f));
         canvas2.drawRoundRect(rectF, W1, W1, x9Var.n1);
-        if (barView.getChildCount() >= 1 && x9Var.f12535m1 != 1.0f) {
+        if (barView.getChildCount() >= 1 && x9Var.f12533m1 != 1.0f) {
             canvas2.save();
             canvas2.translate(barView.getLeft(), barView.getTop());
             View childAt = barView.getChildAt(0);
@@ -54,12 +54,12 @@ public final class k5 extends FrameLayout {
             }
             if (childAt.getAlpha() != 0.0f) {
                 canvas2.scale(childAt.getScaleX(), childAt.getScaleY(), childAt.getPivotX(), childAt.getPivotY());
-                paint2.setAlpha((int) (childAt.getAlpha() * (1.0f - x9Var.f12535m1) * 255.0f));
+                paint2.setAlpha((int) (childAt.getAlpha() * (1.0f - x9Var.f12533m1) * 255.0f));
                 int width = (childAt.getWidth() - childAt.getPaddingLeft()) - childAt.getPaddingRight();
                 int height = (childAt.getHeight() - childAt.getPaddingTop()) - childAt.getPaddingBottom();
                 float x10 = (width / 2.0f) + childAt.getX() + childAt.getPaddingLeft();
                 float y10 = (height / 2.0f) + childAt.getY() + childAt.getPaddingTop();
-                int i7 = j1Var.f55109a;
+                int i7 = i1Var.f55094a;
                 int i10 = x9Var.I0;
                 View view = childAt;
                 if (i10 != -1) {
@@ -84,9 +84,9 @@ public final class k5 extends FrameLayout {
                 }
                 if (w4Var != null && w4Var.getChildCount() > 0) {
                     View childAt3 = w4Var.getChildAt(0);
-                    x10 = org.telegram.messenger.g0.T1(x10, (childAt3.getWidth() / 2.0f) + childAt3.getX() + (w4Var.getX() - barView.getLeft()), x9Var.f12535m1);
-                    y10 = org.telegram.messenger.g0.T1(y10, (childAt3.getHeight() / 2.0f) + childAt3.getY() + (w4Var.getY() - barView.getTop()), x9Var.f12535m1);
-                    i7 = i0.a.f(x9Var.f12535m1, j1Var.f55109a, this.f12272c.b(0));
+                    x10 = org.telegram.messenger.g0.T1(x10, (childAt3.getWidth() / 2.0f) + childAt3.getX() + (w4Var.getX() - barView.getLeft()), x9Var.f12533m1);
+                    y10 = org.telegram.messenger.g0.T1(y10, (childAt3.getHeight() / 2.0f) + childAt3.getY() + (w4Var.getY() - barView.getTop()), x9Var.f12533m1);
+                    i7 = i0.a.f(x9Var.f12533m1, i1Var.f55094a, this.f12272c.b(0));
                 }
                 float f10 = x10;
                 float f11 = y10;
@@ -98,7 +98,7 @@ public final class k5 extends FrameLayout {
                 float min = (Math.min(width, height) / 2.0f) - org.telegram.messenger.g0.L(0.5f);
                 if (w4Var != null && w4Var.getChildCount() > 0) {
                     View childAt4 = w4Var.getChildAt(0);
-                    min = org.telegram.messenger.g0.T1(min, (Math.min((childAt4.getWidth() - childAt4.getPaddingLeft()) - childAt4.getPaddingRight(), (childAt4.getHeight() - childAt4.getPaddingTop()) - childAt4.getPaddingBottom()) / 2.0f) - org.telegram.messenger.g0.L(2.0f), x9Var.f12535m1);
+                    min = org.telegram.messenger.g0.T1(min, (Math.min((childAt4.getWidth() - childAt4.getPaddingLeft()) - childAt4.getPaddingRight(), (childAt4.getHeight() - childAt4.getPaddingTop()) - childAt4.getPaddingBottom()) / 2.0f) - org.telegram.messenger.g0.L(2.0f), x9Var.f12533m1);
                 }
                 float f12 = min;
                 rectF.set(f10 - f12, f11 - f12, f10 + f12, f11 + f12);
@@ -110,12 +110,12 @@ public final class k5 extends FrameLayout {
                 paint3.setAlpha((int) (view.getAlpha() * 255.0f));
                 float L = f12 - org.telegram.messenger.g0.L(3.0f);
                 if (w4Var != null && w4Var.getSelectedColorIndex() != 0) {
-                    L = org.telegram.messenger.g0.T1(f12 - org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(2.0f) + f12, x9Var.f12535m1);
+                    L = org.telegram.messenger.g0.T1(f12 - org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(2.0f) + f12, x9Var.f12533m1);
                 }
                 tg.y0.A1(f10, f11, L, paint.getColor(), canvas2);
                 if (w4Var != null && w4Var.getSelectedColorIndex() == 0) {
-                    paint3.setAlpha((int) (view.getAlpha() * paint3.getAlpha() * x9Var.f12535m1));
-                    canvas2.drawCircle(f10, f11, com.google.android.recaptcha.internal.a.v(1.0f, x9Var.f12535m1, paint3.getStrokeWidth() + org.telegram.messenger.g0.L(3.0f), f12), paint3);
+                    paint3.setAlpha((int) (view.getAlpha() * paint3.getAlpha() * x9Var.f12533m1));
+                    canvas2.drawCircle(f10, f11, com.google.android.recaptcha.internal.a.v(1.0f, x9Var.f12533m1, paint3.getStrokeWidth() + org.telegram.messenger.g0.L(3.0f), f12), paint3);
                 }
             }
             canvas2.restore();

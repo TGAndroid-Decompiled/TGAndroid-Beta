@@ -8,15 +8,15 @@ public abstract class ga extends na {
     public FrameLayout Q1;
     public fi.d R1;
 
-    public ga(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, null, false, false, f6Var);
+    public ga(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, null, false, false, g6Var);
         LinearLayout linearLayout = new LinearLayout(context);
         this.P1 = linearLayout;
         linearLayout.setOrientation(1);
     }
 
     @Override
-    public final oj0 L0(pj0 pj0Var) {
+    public final pj0 L0(qj0 qj0Var) {
         return new bi.k5(this, 2);
     }
 

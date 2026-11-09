@@ -1,17 +1,17 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class e4 extends hb0 {
-    public final int[] f33193y0;
+public final class e4 extends ib0 {
+    public final int[] f33285y0;
 
-    public e4(Context context, org.telegram.ui.ActionBar.f6 f6Var, int[] iArr) {
-        super(context, f6Var);
-        this.f33193y0 = iArr;
+    public e4(Context context, org.telegram.ui.ActionBar.g6 g6Var, int[] iArr) {
+        super(context, g6Var);
+        this.f33285y0 = iArr;
     }
 
     @Override
     public final CharSequence d(int i7) {
-        int i10 = this.f33193y0[i7];
+        int i10 = this.f33285y0[i7];
         if (i10 == 0) {
             return org.telegram.messenger.id.M0(2131753849, null);
         }

@@ -49,7 +49,7 @@ public final class i20 extends TLObject {
                 tLObject.f23028l = e7Var2.f11900k0;
                 tLObject.f23029m = e7Var2.f11902l0;
                 tLObject.f23030o = e7Var2.f11894h0;
-                tLObject.f23031r = (fi.s) e7Var.S.f12828e.get(i7);
+                tLObject.f23031r = (fi.s) e7Var.S.f12827e.get(i7);
                 arrayList.add(tLObject);
             }
             return arrayList;

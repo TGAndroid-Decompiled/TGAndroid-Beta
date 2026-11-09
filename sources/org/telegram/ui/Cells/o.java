@@ -13,21 +13,21 @@ import org.telegram.messenger.p10;
 import org.telegram.messenger.ui;
 import org.telegram.tgnet.TLRPC;
 public final class o extends View {
-    public final int f29626a;
-    public final int f29627b;
-    public final int f29628c;
+    public final int f29630a;
+    public final int f29631b;
+    public final int f29632c;
     public int d;
-    public final ArrayList f29629e;
-    public float f29630f;
+    public final ArrayList f29633e;
+    public float f29634f;
     public float h;
-    public Integer f29631n;
+    public Integer f29635n;
 
     public o(Context context) {
         super(context);
-        this.f29629e = new ArrayList();
-        this.f29626a = 20;
-        this.f29627b = 60;
-        this.f29628c = 60;
+        this.f29633e = new ArrayList();
+        this.f29630a = 20;
+        this.f29631b = 60;
+        this.f29632c = 60;
     }
 
     public final void a(ch.o0 o0Var) {
@@ -36,13 +36,13 @@ public final class o extends View {
         TLRPC.Document document;
         org.telegram.ui.Components.i5 l10;
         String V;
-        if (o0Var.f6356f != null) {
-            tL_availableReaction = (TLRPC.TL_availableReaction) ui.b0(p10.f24470s0).f25836r.get(o0Var.f6356f);
+        if (o0Var.f6354f != null) {
+            tL_availableReaction = (TLRPC.TL_availableReaction) ui.b0(p10.f24470s0).f25836r.get(o0Var.f6354f);
         } else {
             tL_availableReaction = null;
         }
         if (tL_availableReaction == null) {
-            document = org.telegram.ui.Components.i5.e(p10.f24470s0, o0Var.f6357g);
+            document = org.telegram.ui.Components.i5.e(p10.f24470s0, o0Var.f6355g);
             if (document != null && (V = ij.V(document, null, null)) != null) {
                 tL_availableReaction = (TLRPC.TL_availableReaction) ui.b0(p10.f24470s0).f25836r.get(V);
             }
@@ -51,7 +51,7 @@ public final class o extends View {
             tL_availableReaction2 = tL_availableReaction;
             document = null;
         }
-        ArrayList arrayList = this.f29629e;
+        ArrayList arrayList = this.f29633e;
         if (document == null && tL_availableReaction2 != null) {
             ImageReceiver imageReceiver = new ImageReceiver(null);
             imageReceiver.H0(this);
@@ -60,7 +60,7 @@ public final class o extends View {
             imageReceiver.f21225v1 = Integer.toString(i7);
             hc b10 = hc.b(tL_availableReaction2.around_animation);
             StringBuilder sb2 = new StringBuilder();
-            int i10 = this.f29627b;
+            int i10 = this.f29631b;
             sb2.append(i10);
             sb2.append("_");
             sb2.append(i10);
@@ -73,12 +73,12 @@ public final class o extends View {
             return;
         }
         if (document == null) {
-            l10 = org.telegram.ui.Components.i5.m(2, o0Var.f6357g, null, p10.f24470s0);
+            l10 = org.telegram.ui.Components.i5.m(2, o0Var.f6355g, null, p10.f24470s0);
         } else {
             l10 = org.telegram.ui.Components.i5.l(2, p10.f24470s0, document);
         }
-        if (this.f29631n != null) {
-            l10.setColorFilter(new PorterDuffColorFilter(this.f29631n.intValue(), PorterDuff.Mode.MULTIPLY));
+        if (this.f29635n != null) {
+            l10.setColorFilter(new PorterDuffColorFilter(this.f29635n.intValue(), PorterDuff.Mode.MULTIPLY));
         }
         ch.d a10 = ch.d.a(l10, false, !l10.c());
         a10.f(this);
@@ -89,17 +89,17 @@ public final class o extends View {
     public final void b(float f10, float f11) {
         setTranslationX(f10 - (getMeasuredWidth() / 2.0f));
         float measuredHeight = f11 - (getMeasuredHeight() / 2.0f);
-        this.f29630f = measuredHeight;
+        this.f29634f = measuredHeight;
         setTranslationY(measuredHeight + this.h);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        int L = org.telegram.messenger.g0.L(this.f29628c);
-        int L2 = org.telegram.messenger.g0.L(this.f29627b);
+        int L = org.telegram.messenger.g0.L(this.f29632c);
+        int L2 = org.telegram.messenger.g0.L(this.f29631b);
         int i7 = 0;
         while (true) {
-            ArrayList arrayList = this.f29629e;
+            ArrayList arrayList = this.f29633e;
             if (i7 < arrayList.size()) {
                 Object obj = arrayList.get(i7);
                 if (obj instanceof ImageReceiver) {
@@ -126,7 +126,7 @@ public final class o extends View {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ArrayList arrayList = this.f29629e;
+        ArrayList arrayList = this.f29633e;
         if (!arrayList.isEmpty()) {
             int size = arrayList.size();
             int i7 = 0;
@@ -145,26 +145,26 @@ public final class o extends View {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        int i11 = this.f29626a;
-        int i12 = this.f29627b;
+        int i11 = this.f29630a;
+        int i12 = this.f29631b;
         int max = Math.max(i11, i12);
-        int i13 = this.f29628c;
+        int i13 = this.f29632c;
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(Math.max(i13, max)), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(Math.max(i13, Math.max(i11, i12))), 1073741824));
     }
 
     public void setColor(int i7) {
-        this.f29631n = Integer.valueOf(i7);
+        this.f29635n = Integer.valueOf(i7);
         PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(i7, PorterDuff.Mode.MULTIPLY);
         PorterDuffColorFilter porterDuffColorFilter2 = new PorterDuffColorFilter(i7, PorterDuff.Mode.SRC_IN);
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f29629e;
+            ArrayList arrayList = this.f29633e;
             if (i10 < arrayList.size()) {
                 Object obj = arrayList.get(i10);
                 if (obj instanceof ImageReceiver) {
                     ((ImageReceiver) obj).f21209o1 = porterDuffColorFilter;
                 } else if (obj instanceof ch.d) {
-                    ((ch.d) obj).f6217a.setColorFilter(porterDuffColorFilter2);
+                    ((ch.d) obj).f6215a.setColorFilter(porterDuffColorFilter2);
                 }
                 i10++;
             } else {

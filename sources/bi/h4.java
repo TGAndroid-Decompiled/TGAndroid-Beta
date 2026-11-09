@@ -8,12 +8,12 @@ import org.telegram.messenger.voip.GroupCallMessagesController;
 import org.telegram.messenger.xr;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.Components.hy0;
+import org.telegram.ui.Components.iy0;
 import org.telegram.ui.Components.yn;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.an;
-import org.telegram.ui.w91;
-import org.telegram.ui.ww;
+import org.telegram.ui.cn;
+import org.telegram.ui.y91;
+import org.telegram.ui.yw;
 public final class h4 implements Runnable {
     public final int f3991a;
     public final long f3992b;
@@ -43,7 +43,7 @@ public final class h4 implements Runnable {
                 long j3 = this.f3992b;
                 long j10 = this.f3993c;
                 String str2 = h2.m0.f14112a;
-                m2.e eVar = ((l2.c0) ((d3.h0) ((wf.b) this.d).f57656c)).f17774a.f17884s;
+                m2.e eVar = ((l2.c0) ((d3.h0) ((wf.b) this.d).f57668c)).f17772a.f17882s;
                 m2.a U = eVar.U();
                 eVar.V(U, 1016, new m2.c(U, str, j10, j3, 13));
                 return;
@@ -55,7 +55,7 @@ public final class h4 implements Runnable {
                 long j11 = this.f3992b;
                 long j12 = this.f3993c;
                 String str4 = h2.m0.f14112a;
-                m2.e eVar2 = ((l2.c0) ((n2.s) ((j2.n) this.d).f16457c)).f17774a.f17884s;
+                m2.e eVar2 = ((l2.c0) ((n2.s) ((j2.n) this.d).f16457c)).f17772a.f17882s;
                 m2.a U2 = eVar2.U();
                 eVar2.V(U2, 1008, new m2.c(U2, str3, j12, j11, 1));
                 return;
@@ -66,27 +66,27 @@ public final class h4 implements Runnable {
                 ((yn) this.d).e(this.f3992b, this.f3993c, (HashSet) this.f3994e);
                 return;
             case 6:
-                ww wwVar = (ww) this.d;
+                yw ywVar = (yw) this.d;
                 long j13 = this.f3992b;
                 long j14 = this.f3993c;
-                w91 w91Var = (w91) this.f3994e;
-                if (wwVar.C2 != null) {
+                y91 y91Var = (y91) this.f3994e;
+                if (ywVar.D2 != null) {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(xr.a(j13, j14));
-                    wwVar.C2.y(wwVar, arrayList, null, false, wwVar.J2, wwVar.K2, wwVar.L2, w91Var);
-                    if (wwVar.f51579i2) {
-                        wwVar.C2 = null;
+                    ywVar.D2.y(ywVar, arrayList, null, false, ywVar.K2, ywVar.L2, ywVar.M2, y91Var);
+                    if (ywVar.f52259j2) {
+                        ywVar.D2 = null;
                         return;
                     }
                     return;
                 }
-                wwVar.finishFragment();
+                ywVar.finishFragment();
                 return;
             case 7:
                 LaunchActivity launchActivity = (LaunchActivity) this.d;
                 long j15 = this.f3992b;
                 long j16 = this.f3993c;
-                an anVar = (an) this.f3994e;
+                cn cnVar = (cn) this.f3994e;
                 String str5 = LaunchActivity.B1;
                 TLRPC.TL_forumTopic f10 = qp.s1(launchActivity.O).f24877q7.f(j15, j16);
                 StringBuilder t6 = a8.p0.t(j15, "LaunchActivity openForum after load ", " ");
@@ -94,9 +94,9 @@ public final class h4 implements Runnable {
                 t6.append(" TL_forumTopic ");
                 t6.append(f10);
                 org.telegram.messenger.a8.b(t6.toString());
-                if (launchActivity.f41279o0 != null) {
-                    qg.d.a(anVar, xr.a(-j15, j16));
-                    ((ActionBarLayout) launchActivity.M()).S(anVar);
+                if (launchActivity.f41286o0 != null) {
+                    qg.d.a(cnVar, xr.a(-j15, j16));
+                    ((ActionBarLayout) launchActivity.M()).S(cnVar);
                     return;
                 }
                 return;
@@ -105,9 +105,9 @@ public final class h4 implements Runnable {
                 wi.p0 p0Var = (wi.p0) this.f3994e;
                 long j17 = this.f3992b;
                 long j18 = this.f3993c;
-                synchronized (t0Var.f58199g) {
-                    if (!p0Var.d && !p0Var.f58128e) {
-                        ((hy0) t0Var.f58197e).a(p0Var.f58125a, p0Var.f58126b, j17, j18);
+                synchronized (t0Var.f58208g) {
+                    if (!p0Var.d && !p0Var.f58137e) {
+                        ((iy0) t0Var.f58206e).a(p0Var.f58134a, p0Var.f58135b, j17, j18);
                         return;
                     }
                     return;

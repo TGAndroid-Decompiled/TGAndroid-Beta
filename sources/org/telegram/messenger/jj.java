@@ -20,10 +20,10 @@ public final class jj extends ij {
     }
 
     @Override
-    public final boolean o5() {
+    public final boolean n5() {
         if (this.f23569t3.f24038k) {
             return false;
         }
-        return super.o5();
+        return super.n5();
     }
 }

@@ -9,7 +9,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Shader;
 import java.lang.ref.WeakReference;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.l6;
 public final class b extends aa {
     public final Paint f11482a;
     public final Paint f11483b;
@@ -52,7 +52,7 @@ public final class b extends aa {
             gVar.f11531c0.c(canvas, 0);
         }
         if (this.f11485e != null && bitmap != null && !bitmap.isRecycled() && i7 > 0) {
-            Matrix matrix = bVar.f54558b;
+            Matrix matrix = bVar.f54570b;
             Matrix matrix2 = this.f11484c;
             matrix2.set(matrix);
             matrix2.postTranslate(-gVar.d, -gVar.f21077e);
@@ -60,7 +60,7 @@ public final class b extends aa {
             paint.setAlpha(i7);
             gVar.Q.c(canvas, paint);
         }
-        int r12 = k6.r1(i7 / 255.0f, gVar.f11541y);
+        int r12 = l6.r1(i7 / 255.0f, gVar.f11541y);
         if (Color.alpha(r12) > 0) {
             Paint paint2 = this.f11483b;
             paint2.setColor(r12);

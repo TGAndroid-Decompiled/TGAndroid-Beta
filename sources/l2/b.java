@@ -6,29 +6,29 @@ public abstract class b implements m1 {
     public boolean E;
     public x2.g0 G;
     public a3.s H;
-    public final int f17760b;
+    public final int f17758b;
     public q1 d;
-    public int f17762e;
-    public m2.j f17763f;
+    public int f17760e;
+    public m2.j f17761f;
     public h2.g0 h;
-    public int f17764n;
-    public x2.c1 f17765r;
-    public e2.u[] f17766s;
-    public long f17767w;
-    public long f17768x;
-    public final Object f17759a = new Object();
-    public final wf.b f17761c = new wf.b(27, false);
-    public long f17769y = Long.MIN_VALUE;
+    public int f17762n;
+    public x2.c1 f17763r;
+    public e2.u[] f17764s;
+    public long f17765w;
+    public long f17766x;
+    public final Object f17757a = new Object();
+    public final wf.b f17759c = new wf.b(27, false);
+    public long f17767y = Long.MIN_VALUE;
     public e2.l1 F = e2.l1.f10354a;
 
     public b(int i7) {
-        this.f17760b = i7;
+        this.f17758b = i7;
     }
 
     public final int B(long j3) {
-        x2.c1 c1Var = this.f17765r;
+        x2.c1 c1Var = this.f17763r;
         c1Var.getClass();
-        return c1Var.l(j3 - this.f17767w);
+        return c1Var.l(j3 - this.f17765w);
     }
 
     public abstract int C(e2.u uVar);
@@ -46,7 +46,7 @@ public abstract class b implements m1 {
     }
 
     public long g(long j3, long j10) {
-        if (this.f17764n == 1) {
+        if (this.f17762n == 1) {
             if (m() || l()) {
                 return 1000000L;
             }
@@ -62,7 +62,7 @@ public abstract class b implements m1 {
     public abstract String i();
 
     public final boolean k() {
-        if (this.f17769y == Long.MIN_VALUE) {
+        if (this.f17767y == Long.MIN_VALUE) {
             return true;
         }
         return false;
@@ -77,30 +77,30 @@ public abstract class b implements m1 {
     public abstract void p(long j3, boolean z9, boolean z10);
 
     public final int w(wf.b bVar, k2.h hVar, int i7) {
-        x2.c1 c1Var = this.f17765r;
+        x2.c1 c1Var = this.f17763r;
         c1Var.getClass();
         int m10 = c1Var.m(bVar, hVar, i7);
         if (m10 == -4) {
             if (hVar.isEndOfStream()) {
-                this.f17769y = Long.MIN_VALUE;
+                this.f17767y = Long.MIN_VALUE;
                 if (this.D) {
                     return -4;
                 }
                 return -3;
             }
-            long j3 = hVar.f17176e + this.f17767w;
+            long j3 = hVar.f17176e + this.f17765w;
             hVar.f17176e = j3;
-            this.f17769y = Math.max(this.f17769y, j3);
+            this.f17767y = Math.max(this.f17767y, j3);
             return m10;
         }
         if (m10 == -5) {
-            e2.u uVar = (e2.u) bVar.f57656c;
+            e2.u uVar = (e2.u) bVar.f57668c;
             uVar.getClass();
             long j10 = uVar.f10619x;
             if (j10 != Long.MAX_VALUE) {
                 e2.t a10 = uVar.a();
-                a10.f10567w = j10 + this.f17767w;
-                bVar.f57656c = new e2.u(a10);
+                a10.f10567w = j10 + this.f17765w;
+                bVar.f57668c = new e2.u(a10);
             }
         }
         return m10;
@@ -110,20 +110,20 @@ public abstract class b implements m1 {
 
     public final void y(e2.u[] uVarArr, x2.c1 c1Var, long j3, long j10, x2.g0 g0Var) {
         ia.p(!this.D);
-        this.f17765r = c1Var;
+        this.f17763r = c1Var;
         this.G = g0Var;
-        if (this.f17769y == Long.MIN_VALUE) {
-            this.f17769y = j3;
+        if (this.f17767y == Long.MIN_VALUE) {
+            this.f17767y = j3;
         }
-        this.f17766s = uVarArr;
-        this.f17767w = j10;
+        this.f17764s = uVarArr;
+        this.f17765w = j10;
         u(uVarArr, j3, j10, g0Var);
     }
 
     public final void z(long j3, boolean z9, boolean z10) {
         this.D = false;
-        this.f17768x = j3;
-        this.f17769y = j3;
+        this.f17766x = j3;
+        this.f17767y = j3;
         if (!z10) {
             if (B(j3) != 0) {
                 z10 = true;

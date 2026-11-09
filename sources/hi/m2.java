@@ -10,14 +10,14 @@ import li.s4;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.qs;
 import org.telegram.messenger.wu;
+import org.telegram.ui.Components.ar0;
 import org.telegram.ui.Components.i6;
-import org.telegram.ui.Components.n40;
-import org.telegram.ui.Components.nf0;
-import org.telegram.ui.Components.si0;
+import org.telegram.ui.Components.o40;
+import org.telegram.ui.Components.of0;
+import org.telegram.ui.Components.ti0;
 import org.telegram.ui.Components.w7;
-import org.telegram.ui.Components.yq0;
 import org.telegram.ui.Components.yw;
-import org.telegram.ui.vp;
+import org.telegram.ui.xp;
 public final class m2 extends AnimatorListenerAdapter {
     public final int f14795a;
     public final int f14796b;
@@ -43,9 +43,9 @@ public final class m2 extends AnimatorListenerAdapter {
                 return;
             case 5:
                 org.telegram.ui.ActionBar.v2 v2Var = (org.telegram.ui.ActionBar.v2) this.f14797c;
-                AnimatorSet animatorSet2 = v2Var.f28658z0;
+                AnimatorSet animatorSet2 = v2Var.f28663z0;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    v2Var.f28658z0 = null;
+                    v2Var.f28663z0 = null;
                     v2Var.A0 = 0;
                     return;
                 }
@@ -119,15 +119,15 @@ public final class m2 extends AnimatorListenerAdapter {
                 return;
             case 5:
                 org.telegram.ui.ActionBar.v2 v2Var = (org.telegram.ui.ActionBar.v2) obj;
-                AnimatorSet animatorSet2 = v2Var.f28658z0;
+                AnimatorSet animatorSet2 = v2Var.f28663z0;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    v2Var.f28658z0 = null;
+                    v2Var.f28663z0 = null;
                     v2Var.A0 = 0;
                     DialogInterface.OnClickListener onClickListener = v2Var.K;
                     if (onClickListener != null) {
                         onClickListener.onClick(v2Var, i13);
                     }
-                    org.telegram.messenger.g0.h3(new l2.w(this, 22));
+                    org.telegram.messenger.g0.h3(new l2.a0(this, 21));
                 }
                 qs.e().k(99, 512);
                 return;
@@ -136,17 +136,17 @@ public final class m2 extends AnimatorListenerAdapter {
                 if (!f4Var.c()) {
                     f4Var.b(i13);
                 }
-                f4Var.f29107d0 = null;
+                f4Var.f29111d0 = null;
                 return;
             case 7:
                 ((i6) obj).u(i13);
                 return;
             case 8:
-                ((w7) obj).f39835a[i13].setVisibility(8);
+                ((w7) obj).f39958a[i13].setVisibility(8);
                 return;
             case 9:
                 yw ywVar = (yw) obj;
-                ug.p0 p0Var = ywVar.f40810r;
+                ug.p0 p0Var = ywVar.f40819r;
                 if (i13 == 1) {
                     i7 = 0;
                 } else {
@@ -160,45 +160,45 @@ public final class m2 extends AnimatorListenerAdapter {
                     i10 = 8;
                 }
                 textView.setVisibility(i10);
-                TextView textView2 = ywVar.f40809n;
+                TextView textView2 = ywVar.f40818n;
                 if (i13 == 3) {
                     i12 = 0;
                 }
                 textView2.setVisibility(i12);
                 return;
             case 10:
-                n40 n40Var = (n40) obj;
-                if (i13 == n40Var.f36233t0) {
-                    n40Var.f36238x.setRotationY(0.0f);
-                    n40Var.f36230r0 = true;
-                    n40Var.f36212c0 = null;
-                    a8.b("RoundVideo camera flip visual animation completed: elapsedMs=" + n40.m(n40Var));
-                    n40.n(n40Var);
+                o40 o40Var = (o40) obj;
+                if (i13 == o40Var.f36639t0) {
+                    o40Var.f36644x.setRotationY(0.0f);
+                    o40Var.f36636r0 = true;
+                    o40Var.f36618c0 = null;
+                    a8.b("RoundVideo camera flip visual animation completed: elapsedMs=" + o40.m(o40Var));
+                    o40.n(o40Var);
                     return;
                 }
                 return;
             case 11:
-                nf0 nf0Var = (nf0) obj;
-                nf0Var.H = null;
-                nf0Var.P.f38051d1.delete(i13);
+                of0 of0Var = (of0) obj;
+                of0Var.H = null;
+                of0Var.P.f38398d1.delete(i13);
                 return;
             case 12:
-                vp vpVar = (vp) obj;
-                ((si0) vpVar.d).f38088b.remove(i13);
-                si0 si0Var = (si0) vpVar.d;
-                si0Var.d = true;
-                si0Var.f38087a.invalidate();
+                xp xpVar = (xp) obj;
+                ((ti0) xpVar.d).f38431b.remove(i13);
+                ti0 ti0Var = (ti0) xpVar.d;
+                ti0Var.d = true;
+                ti0Var.f38430a.invalidate();
                 return;
             case 13:
-                yq0 yq0Var = (yq0) obj;
-                yq0Var.f40737e.R1.remove(i13);
-                yq0Var.f40734a.invalidate();
+                ar0 ar0Var = (ar0) obj;
+                ar0Var.f31960e.R1.remove(i13);
+                ar0Var.f31957a.invalidate();
                 return;
             default:
                 org.telegram.ui.Components.voip.z0 z0Var = (org.telegram.ui.Components.voip.z0) obj;
-                z0Var.f39676y = -1;
-                z0Var.f39674w = i13;
-                z0Var.f39673s = 0.0f;
+                z0Var.f39765y = -1;
+                z0Var.f39763w = i13;
+                z0Var.f39762s = 0.0f;
                 z0Var.U = null;
                 z0Var.e();
                 return;
@@ -210,9 +210,9 @@ public final class m2 extends AnimatorListenerAdapter {
         switch (this.f14795a) {
             case 9:
                 yw ywVar = (yw) this.f14797c;
-                ywVar.f40810r.setVisibility(0);
+                ywVar.f40819r.setVisibility(0);
                 ywVar.h.setVisibility(0);
-                ywVar.f40809n.setVisibility(0);
+                ywVar.f40818n.setVisibility(0);
                 return;
             default:
                 super.onAnimationStart(animator);

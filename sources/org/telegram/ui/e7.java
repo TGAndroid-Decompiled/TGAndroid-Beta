@@ -8,79 +8,79 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 public final class e7 implements ViewTreeObserver.OnPreDrawListener {
-    public final int f45211a;
-    public final Object f45212b;
+    public final int f45309a;
+    public final Object f45310b;
 
     public e7(Object obj, int i7) {
-        this.f45211a = i7;
-        this.f45212b = obj;
+        this.f45309a = i7;
+        this.f45310b = obj;
     }
 
     @Override
     public final boolean onPreDraw() {
-        switch (this.f45211a) {
+        switch (this.f45309a) {
             case 0:
-                t7 t7Var = (t7) this.f45212b;
-                FrameLayout frameLayout = t7Var.f49953c;
+                t7 t7Var = (t7) this.f45310b;
+                FrameLayout frameLayout = t7Var.f50100c;
                 if (!t7Var.D) {
-                    float max = Math.max(0.0f, t7Var.f49961y - t7Var.getY());
+                    float max = Math.max(0.0f, t7Var.f50108y - t7Var.getY());
                     if (frameLayout.getTranslationY() != max) {
                         frameLayout.setTranslationY(max);
                     }
                 }
                 return true;
             case 1:
-                ((fi.p5) this.f45212b).invalidate();
+                ((fi.p5) this.f45310b).invalidate();
                 return true;
             case 2:
-                View view = ((p50) this.f45212b).fragmentView;
+                View view = ((r50) this.f45310b).fragmentView;
                 if (view != null) {
                     view.getViewTreeObserver().removeOnPreDrawListener(this);
                     int rotation = ((WindowManager) org.telegram.messenger.t0.f25566b.getSystemService("window")).getDefaultDisplay().getRotation();
                     if (rotation != 3 && rotation != 1) {
-                        ((p50) this.f45212b).f48643f.setOrientation(1);
+                        ((r50) this.f45310b).f49282f.setOrientation(1);
                     } else {
-                        ((p50) this.f45212b).f48643f.setOrientation(0);
+                        ((r50) this.f45310b).f49282f.setOrientation(0);
                     }
-                    View view2 = ((p50) this.f45212b).fragmentView;
-                    view2.setPadding(view2.getPaddingLeft(), 0, ((p50) this.f45212b).fragmentView.getPaddingRight(), ((p50) this.f45212b).fragmentView.getPaddingBottom());
+                    View view2 = ((r50) this.f45310b).fragmentView;
+                    view2.setPadding(view2.getPaddingLeft(), 0, ((r50) this.f45310b).fragmentView.getPaddingRight(), ((r50) this.f45310b).fragmentView.getPaddingBottom());
                 }
                 return true;
             case 3:
-                mm0 mm0Var = (mm0) this.f45212b;
-                if (mm0Var.getParentActivity() != null) {
+                om0 om0Var = (om0) this.f45310b;
+                if (om0Var.getParentActivity() != null) {
                     int rotation2 = ((WindowManager) org.telegram.messenger.t0.f25566b.getSystemService("window")).getDefaultDisplay().getRotation();
-                    mm0Var.f47838f = 2;
+                    om0Var.f48479f = 2;
                     if (!org.telegram.messenger.g0.Q1() && (rotation2 == 3 || rotation2 == 1)) {
-                        mm0Var.f47838f = 4;
+                        om0Var.f48479f = 4;
                     }
-                    mm0Var.f47839n.f();
+                    om0Var.f48480n.f();
                 }
-                org.telegram.ui.Components.pj0 pj0Var = ((mm0) this.f45212b).h;
-                if (pj0Var != null) {
-                    pj0Var.getViewTreeObserver().removeOnPreDrawListener(this);
+                org.telegram.ui.Components.qj0 qj0Var = ((om0) this.f45310b).h;
+                if (qj0Var != null) {
+                    qj0Var.getViewTreeObserver().removeOnPreDrawListener(this);
                 }
                 return true;
             case 4:
-                PhotoViewer photoViewer = (PhotoViewer) this.f45212b;
-                photoViewer.f41535v3.getViewTreeObserver().removeOnPreDrawListener(this);
-                ImageView imageView = photoViewer.f41545w3;
+                PhotoViewer photoViewer = (PhotoViewer) this.f45310b;
+                photoViewer.f41542v3.getViewTreeObserver().removeOnPreDrawListener(this);
+                ImageView imageView = photoViewer.f41552w3;
                 if (imageView != null) {
                     if (photoViewer.I3) {
                         org.telegram.messenger.g0.i3(new Runnable(this) {
-                            public final e7 f45354b;
+                            public final e7 f46054b;
 
                             {
-                                this.f45354b = this;
+                                this.f46054b = this;
                             }
 
                             @Override
                             public final void run() {
                                 switch (r2) {
                                     case 0:
-                                        PhotoViewer photoViewer2 = (PhotoViewer) this.f45354b.f45212b;
-                                        photoViewer2.f41545w3.setVisibility(4);
-                                        photoViewer2.f41545w3.setImageDrawable(null);
+                                        PhotoViewer photoViewer2 = (PhotoViewer) this.f46054b.f45310b;
+                                        photoViewer2.f41552w3.setVisibility(4);
+                                        photoViewer2.f41552w3.setImageDrawable(null);
                                         Bitmap bitmap = photoViewer2.B3;
                                         if (bitmap != null) {
                                             bitmap.recycle();
@@ -89,7 +89,7 @@ public final class e7 implements ViewTreeObserver.OnPreDrawListener {
                                         }
                                         return;
                                     default:
-                                        PhotoViewer photoViewer3 = (PhotoViewer) this.f45354b.f45212b;
+                                        PhotoViewer photoViewer3 = (PhotoViewer) this.f46054b.f45310b;
                                         if (photoViewer3.I3) {
                                             photoViewer3.M0();
                                             return;
@@ -100,7 +100,7 @@ public final class e7 implements ViewTreeObserver.OnPreDrawListener {
                         }, 300L);
                     } else {
                         imageView.setVisibility(4);
-                        photoViewer.f41545w3.setImageDrawable(null);
+                        photoViewer.f41552w3.setImageDrawable(null);
                         Bitmap bitmap = photoViewer.B3;
                         if (bitmap != null) {
                             bitmap.recycle();
@@ -109,19 +109,19 @@ public final class e7 implements ViewTreeObserver.OnPreDrawListener {
                     }
                 }
                 org.telegram.messenger.g0.h3(new Runnable(this) {
-                    public final e7 f45354b;
+                    public final e7 f46054b;
 
                     {
-                        this.f45354b = this;
+                        this.f46054b = this;
                     }
 
                     @Override
                     public final void run() {
                         switch (r2) {
                             case 0:
-                                PhotoViewer photoViewer2 = (PhotoViewer) this.f45354b.f45212b;
-                                photoViewer2.f41545w3.setVisibility(4);
-                                photoViewer2.f41545w3.setImageDrawable(null);
+                                PhotoViewer photoViewer2 = (PhotoViewer) this.f46054b.f45310b;
+                                photoViewer2.f41552w3.setVisibility(4);
+                                photoViewer2.f41552w3.setImageDrawable(null);
                                 Bitmap bitmap2 = photoViewer2.B3;
                                 if (bitmap2 != null) {
                                     bitmap2.recycle();
@@ -130,7 +130,7 @@ public final class e7 implements ViewTreeObserver.OnPreDrawListener {
                                 }
                                 return;
                             default:
-                                PhotoViewer photoViewer3 = (PhotoViewer) this.f45354b.f45212b;
+                                PhotoViewer photoViewer3 = (PhotoViewer) this.f46054b.f45310b;
                                 if (photoViewer3.I3) {
                                     photoViewer3.M0();
                                     return;
@@ -142,16 +142,16 @@ public final class e7 implements ViewTreeObserver.OnPreDrawListener {
                 photoViewer.F3 = 0;
                 return true;
             case 5:
-                ProfileActivity profileActivity = (ProfileActivity) this.f45212b;
+                ProfileActivity profileActivity = (ProfileActivity) this.f45310b;
                 if (profileActivity.fragmentView != null) {
-                    RectF rectF = ProfileActivity.S6;
+                    RectF rectF = ProfileActivity.V6;
                     profileActivity.O3();
-                    profileActivity.y4(true);
+                    profileActivity.B4(true);
                     profileActivity.fragmentView.getViewTreeObserver().removeOnPreDrawListener(this);
                 }
                 return true;
             default:
-                WallpapersListActivity wallpapersListActivity = (WallpapersListActivity) this.f45212b;
+                WallpapersListActivity wallpapersListActivity = (WallpapersListActivity) this.f45310b;
                 if (wallpapersListActivity.getParentActivity() != null) {
                     int rotation3 = ((WindowManager) org.telegram.messenger.t0.f25566b.getSystemService("window")).getDefaultDisplay().getRotation();
                     if (org.telegram.messenger.g0.Q1()) {
@@ -163,9 +163,9 @@ public final class e7 implements ViewTreeObserver.OnPreDrawListener {
                     }
                     wallpapersListActivity.H0();
                 }
-                org.telegram.ui.Components.pj0 pj0Var2 = ((WallpapersListActivity) this.f45212b).F;
-                if (pj0Var2 != null) {
-                    pj0Var2.getViewTreeObserver().removeOnPreDrawListener(this);
+                org.telegram.ui.Components.qj0 qj0Var2 = ((WallpapersListActivity) this.f45310b).F;
+                if (qj0Var2 != null) {
+                    qj0Var2.getViewTreeObserver().removeOnPreDrawListener(this);
                 }
                 return true;
         }

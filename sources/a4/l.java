@@ -49,7 +49,7 @@ public final class l extends j {
         kVar.getClass();
         int i11 = kVar.f191b;
         a0 a0Var = (a0) kVar.f192c;
-        if (!((ci.a[]) kVar.f194f)[(b10 >> 1) & (255 >>> (8 - i11))].f6416a) {
+        if (!((ci.a[]) kVar.f194f)[(b10 >> 1) & (255 >>> (8 - i11))].f6414a) {
             i7 = a0Var.f10967e;
         } else {
             i7 = a0Var.f10968f;
@@ -85,7 +85,7 @@ public final class l extends j {
         int i10;
         long j10;
         if (this.f195n != null) {
-            ((u) qVar.f53804b).getClass();
+            ((u) qVar.f53816b).getClass();
             return false;
         }
         a0 a0Var = this.f198q;
@@ -188,7 +188,7 @@ public final class l extends j {
                                 throw t0.a(null, "lookup type greater than 2 not decodable: " + j13);
                             }
                         } else {
-                            throw t0.a(null, "expected code book to start with [0x56, 0x43, 0x42] at " + ((fVar.d * 8) + fVar.f8166e));
+                            throw t0.a(null, "expected code book to start with [0x56, 0x43, 0x42] at " + ((fVar.d * 8) + fVar.f8164e));
                         }
                     } else {
                         int i25 = i16;
@@ -369,7 +369,7 @@ public final class l extends j {
                                     fVar.j(16);
                                     fVar.j(8);
                                     ?? obj2 = new Object();
-                                    obj2.f6416a = i58;
+                                    obj2.f6414a = i58;
                                     aVarArr[i57] = obj2;
                                 }
                                 if (fVar.i()) {
@@ -407,7 +407,7 @@ public final class l extends j {
         tVar.K = a0Var2.f10965b;
         tVar.f10566u = arrayList;
         tVar.f10556k = r10;
-        qVar.f53804b = new u(tVar);
+        qVar.f53816b = new u(tVar);
         return true;
     }
 

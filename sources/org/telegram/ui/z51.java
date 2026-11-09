@@ -1,101 +1,53 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.text.TextUtils;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.view.View;
-import org.telegram.ui.ThemeActivity;
-public final class z51 implements org.telegram.ui.Components.bj0 {
-    public final int f52466a;
-    public final Object f52467b;
-    public final Object f52468c;
-    public final Object d;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.Button;
+public final class z51 extends View {
+    public static final int f52443c = 0;
+    public final Paint f52444a;
+    public int[] f52445b;
 
-    public z51(Object obj, Object obj2, Object obj3, int i7) {
-        this.f52466a = i7;
-        this.f52467b = obj;
-        this.f52468c = obj2;
-        this.d = obj3;
+    public z51(Context context) {
+        super(context);
+        this.f52444a = new Paint(1);
+        this.f52445b = new int[7];
     }
 
     @Override
-    public final void c(int i7, View view) {
-        org.telegram.ui.ActionBar.j6 D0;
-        boolean z9;
-        boolean z10;
-        boolean z11;
-        boolean z12;
-        switch (this.f52466a) {
-            case 0:
-                h61 h61Var = (h61) this.f52468c;
-                e61 e61Var = (e61) this.d;
-                ThemeActivity themeActivity = ((f61) this.f52467b).f45466e;
-                int i10 = themeActivity.f42020f;
-                if (i10 == 1) {
-                    D0 = org.telegram.ui.ActionBar.k6.J;
-                } else {
-                    D0 = org.telegram.ui.ActionBar.k6.D0();
-                }
-                org.telegram.ui.ActionBar.j6 j6Var = D0;
-                if (i7 == h61Var.b() - 1) {
-                    if (i10 == 1) {
-                        z12 = true;
-                    } else {
-                        z12 = false;
-                    }
-                    themeActivity.presentFragment(new v71(j6Var, false, 1, false, z12));
-                } else {
-                    org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) h61Var.f46229e.get(i7);
-                    if (!TextUtils.isEmpty(h6Var.f27531o) && h6Var.f27519a != org.telegram.ui.ActionBar.k6.f28028n) {
-                        org.telegram.ui.ActionBar.e6.a(false);
-                    }
-                    int i11 = j6Var.Y;
-                    int i12 = h6Var.f27519a;
-                    if (i11 != i12) {
-                        if (i10 == 1) {
-                            z11 = true;
-                        } else {
-                            z11 = false;
-                        }
-                        org.telegram.ui.ActionBar.k6.K1(j6Var, z11, i12, view);
-                        org.telegram.ui.ActionBar.r3.q(j6Var, h6Var.f27519a);
-                        org.telegram.ui.ActionBar.k6.M1(themeActivity);
-                    } else {
-                        if (i12 >= 100) {
-                            z9 = true;
-                        } else {
-                            z9 = false;
-                        }
-                        if (i10 == 1) {
-                            z10 = true;
-                        } else {
-                            z10 = false;
-                        }
-                        themeActivity.presentFragment(new v71(j6Var, false, 1, z9, z10));
-                    }
-                }
-                int left = view.getLeft();
-                int right = view.getRight();
-                int L = org.telegram.messenger.g0.L(52.0f);
-                int i13 = left - L;
-                if (i13 < 0) {
-                    e61Var.w0(i13, 0, null);
-                } else {
-                    int i14 = right + L;
-                    if (i14 > e61Var.getMeasuredWidth()) {
-                        e61Var.w0(i14 - e61Var.getMeasuredWidth(), 0, null);
-                    }
-                }
-                int childCount = e61Var.getChildCount();
-                for (int i15 = 0; i15 < childCount; i15++) {
-                    View childAt = e61Var.getChildAt(i15);
-                    if (childAt instanceof ThemeActivity.InnerAccentView) {
-                        ((ThemeActivity.InnerAccentView) childAt).a(true);
-                    }
-                }
-                return;
-            default:
-                gx0.a0((gx0) this.f52467b, (Context) this.f52468c, (String) this.d, view, i7);
-                return;
+    public final void onDraw(Canvas canvas) {
+        float measuredWidth = getMeasuredWidth() * 0.5f;
+        float measuredHeight = getMeasuredHeight() * 0.5f;
+        float L = org.telegram.messenger.g0.L(5.0f);
+        float L2 = org.telegram.messenger.g0.L(20.0f) - L;
+        Paint.Style style = Paint.Style.FILL;
+        Paint paint = this.f52444a;
+        paint.setStyle(style);
+        int i7 = 0;
+        paint.setColor(this.f52445b[0]);
+        canvas.drawCircle(measuredWidth, measuredHeight, L, paint);
+        double d = 0.0d;
+        while (i7 < 6) {
+            i7++;
+            paint.setColor(this.f52445b[i7]);
+            canvas.drawCircle((((float) Math.sin(d)) * L2) + measuredWidth, measuredHeight - (((float) Math.cos(d)) * L2), L, paint);
+            d += 1.0471975511965976d;
         }
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setText(org.telegram.messenger.id.M0(2131752015, "ColorPickerMainColor"));
+        accessibilityNodeInfo.setClassName(Button.class.getName());
+        accessibilityNodeInfo.setEnabled(true);
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(62.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(62.0f), 1073741824));
     }
 }

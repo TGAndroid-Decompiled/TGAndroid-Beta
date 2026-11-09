@@ -14,7 +14,7 @@ import java.util.Set;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.hv0;
+import org.telegram.ui.Components.jv0;
 public final class ds implements Runnable {
     public final int f22073a;
     public final Object f22074b;
@@ -72,7 +72,7 @@ public final class ds implements Runnable {
                 try {
                     iz.f23407i = SystemClock.elapsedRealtime();
                     o9.g.f(t0.f25566b);
-                    ab.d0 d0Var = FirebaseMessaging.f7886m;
+                    ab.d0 d0Var = FirebaseMessaging.f7884m;
                     synchronized (FirebaseMessaging.class) {
                         firebaseMessaging = FirebaseMessaging.getInstance(o9.g.c());
                     }
@@ -80,7 +80,7 @@ public final class ds implements Runnable {
                         task = Tasks.forException(new IllegalStateException("API disabled. Please use {@link #register()} instead or enable this API by removing {@code <meta-data android:name=\"firebase_messaging_installation_id_enabled\" android:value=\"true\" />} from your app's manifest."));
                     } else {
                         TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-                        firebaseMessaging.f7894g.execute(new a1.e(6, firebaseMessaging, taskCompletionSource));
+                        firebaseMessaging.f7892g.execute(new a1.e(6, firebaseMessaging, taskCompletionSource));
                         task = taskCompletionSource.getTask();
                     }
                     task.addOnCompleteListener(new ch(ttVar, 8));
@@ -169,7 +169,7 @@ public final class ds implements Runnable {
                 }
                 return;
             case 10:
-                ((hv0) this.f22074b).a(null);
+                ((jv0) this.f22074b).a(null);
                 return;
             case 11:
                 g0.h3((dx) this.f22074b);

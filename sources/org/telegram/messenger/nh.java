@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.b80;
+import org.telegram.ui.d80;
 public final class nh implements ri, tr {
     public final c1 f24193a;
     public final Object f24194b;
@@ -63,11 +63,11 @@ public final class nh implements ri, tr {
         gz gzVar = (gz) this.f24193a;
         Uri uri = (Uri) this.f24194b;
         ArrayList arrayList = (ArrayList) this.f24195c;
-        b80 b80Var = (b80) this.d;
+        d80 d80Var = (d80) this.d;
         if (j3 != 0) {
-            gzVar.Q(-j3, uri, arrayList, b80Var);
+            gzVar.Q(-j3, uri, arrayList, d80Var);
         } else {
-            b80Var.run(0L);
+            d80Var.run(0L);
         }
     }
 }

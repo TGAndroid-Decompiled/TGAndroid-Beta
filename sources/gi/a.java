@@ -1,7 +1,7 @@
 package gi;
 
-import org.telegram.ui.Components.dt0;
-public final class a implements te.b, dt0 {
+import org.telegram.ui.Components.ft0;
+public final class a implements te.b, ft0 {
     public final int f13975a;
     public final f f13976b;
 

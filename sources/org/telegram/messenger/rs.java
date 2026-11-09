@@ -30,7 +30,7 @@ public final class rs implements Runnable {
                     ij ijVar = (ij) arrayList.get(i7);
                     long B0 = ij.B0(ijVar.f23262k);
                     TLRPC.Message message = ijVar.f23262k;
-                    if ((!message.mentioned || !(message.action instanceof TLRPC.TL_messageActionPinMessage)) && !m5.C(B0) && (ijVar.f23262k.peer_id.channel_id == 0 || ijVar.B4())) {
+                    if ((!message.mentioned || !(message.action instanceof TLRPC.TL_messageActionPinMessage)) && !m5.C(B0) && (ijVar.f23262k.peer_id.channel_id == 0 || ijVar.A4())) {
                         arrayList2.add(0, ijVar);
                     }
                 }
@@ -138,7 +138,7 @@ public final class rs implements Runnable {
                         i13--;
                         SparseArray sparseArray = (SparseArray) hVar2.f(ij.B0(ijVar2.f23262k));
                         if (sparseArray != null) {
-                            sparseArray.remove(ijVar2.f1());
+                            sparseArray.remove(ijVar2.e1());
                         }
                         if (sparseArray != null && sparseArray.size() <= 0) {
                             hVar2.l(ij.B0(ijVar2.f23262k));

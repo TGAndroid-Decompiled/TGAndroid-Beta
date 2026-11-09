@@ -1,12 +1,12 @@
 package ug;
 
 import android.content.Context;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g6;
 public final class y extends p0 {
     public final i0 R;
 
-    public y(i0 i0Var, Context context, f6 f6Var) {
-        super(context, f6Var, true);
+    public y(i0 i0Var, Context context, g6 g6Var) {
+        super(context, g6Var, true);
         this.R = i0Var;
     }
 

@@ -1,32 +1,35 @@
 package org.telegram.ui;
 
-import android.view.ViewTreeObserver;
-public final class w20 implements ViewTreeObserver.OnPreDrawListener {
-    public final int f50836a;
-    public final c40 f50837b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class w20 extends AnimatorListenerAdapter {
+    public final int f50835a;
+    public final org.telegram.ui.Components.voip.y f50836b;
+    public final e40 f50837c;
 
-    public w20(c40 c40Var, int i7) {
-        this.f50836a = i7;
-        this.f50837b = c40Var;
+    public w20(e40 e40Var, org.telegram.ui.Components.voip.y yVar, int i7) {
+        this.f50835a = i7;
+        this.f50837c = e40Var;
+        this.f50836b = yVar;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        switch (this.f50836a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f50835a) {
             case 0:
-                c40 c40Var = this.f50837b;
-                c40Var.H1.getViewTreeObserver().removeOnPreDrawListener(this);
-                c40Var.R3.j(null);
-                org.telegram.messenger.g0.b4(c40Var.f44561d4);
-                c40Var.f28619b.requestLayout();
-                return false;
+                org.telegram.ui.Components.voip.y yVar = this.f50836b;
+                if (yVar.getParent() != null) {
+                    this.f50837c.f28624b.removeView(yVar);
+                    return;
+                }
+                return;
             default:
-                c40 c40Var2 = this.f50837b;
-                c40Var2.H1.getViewTreeObserver().removeOnPreDrawListener(this);
-                c40Var2.R3.j(null);
-                org.telegram.messenger.g0.b4(c40Var2.f44561d4);
-                c40Var2.f28619b.requestLayout();
-                return false;
+                org.telegram.ui.Components.voip.y yVar2 = this.f50836b;
+                if (yVar2.getParent() != null) {
+                    this.f50837c.f28624b.removeView(yVar2);
+                    return;
+                }
+                return;
         }
     }
 }

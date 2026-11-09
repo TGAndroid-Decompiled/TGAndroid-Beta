@@ -59,7 +59,7 @@ public final class t {
 
     public final int[] b(s0 s0Var) {
         int i7;
-        int[] iArr = (int[]) s0Var.f7455c;
+        int[] iArr = (int[]) s0Var.f7453c;
         int length = iArr.length / 5;
         if (length == 0) {
             return new int[0];

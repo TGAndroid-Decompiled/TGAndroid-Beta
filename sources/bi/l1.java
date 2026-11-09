@@ -12,7 +12,7 @@ import org.telegram.messenger.qs;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.Components.FragmentContextView;
 import org.telegram.ui.Components.br;
-import org.telegram.ui.Components.t51;
+import org.telegram.ui.Components.u51;
 import org.telegram.ui.Components.vp;
 import org.telegram.ui.ExternalActionActivity;
 import org.telegram.ui.LaunchActivity;
@@ -32,13 +32,13 @@ public final class l1 implements View.OnClickListener {
         org.telegram.ui.Cells.c2 c2Var;
         switch (this.f4252a) {
             case 0:
-                int i10 = w1.f4934s2;
+                int i10 = w1.f4932s2;
                 return;
             case 1:
-                int i11 = ch.f.f6237e;
+                int i11 = ch.f.f6235e;
                 return;
             case 2:
-                int i12 = fi.r3.f12726e;
+                int i12 = fi.r3.f12727e;
                 return;
             case 3:
                 PhotoViewer.p1().c0(1.0f, 0.0f, 0.0f, false);
@@ -73,17 +73,17 @@ public final class l1 implements View.OnClickListener {
                 }
                 return;
             case 10:
-                int i16 = vp.f39682f0;
+                int i16 = vp.f39771f0;
                 return;
             case 11:
-                int i17 = br.f32329x;
+                int i17 = br.f32385x;
                 return;
             case 12:
                 float[] fArr = FragmentContextView.W0;
                 MediaController B = MediaController.B();
-                t51 t51Var = B.E0;
-                if (t51Var != null) {
-                    t51Var.s0(false);
+                u51 u51Var = B.E0;
+                if (u51Var != null) {
+                    u51Var.s0(false);
                 }
                 B.n0();
                 B.m();
@@ -92,7 +92,7 @@ public final class l1 implements View.OnClickListener {
                     qs f10 = qs.f(ijVar.I1);
                     ij ijVar2 = B.f21295u0;
                     if (ijVar2 != null) {
-                        i7 = ijVar2.f1();
+                        i7 = ijVar2.e1();
                     } else {
                         i7 = 0;
                     }
@@ -116,7 +116,7 @@ public final class l1 implements View.OnClickListener {
                 wg.f1.l1(0, null);
                 return;
             case 16:
-                ArrayList arrayList = ExternalActionActivity.f41225y;
+                ArrayList arrayList = ExternalActionActivity.f41232y;
                 return;
             case 17:
                 return;
@@ -126,7 +126,7 @@ public final class l1 implements View.OnClickListener {
             case 19:
                 return;
             case 20:
-                RectF rectF = ProfileActivity.S6;
+                RectF rectF = ProfileActivity.V6;
                 try {
                     view.getContext().startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://fragment.com")));
                     return;
@@ -135,16 +135,16 @@ public final class l1 implements View.OnClickListener {
                     return;
                 }
             case 21:
-                int i18 = org.telegram.ui.Wallet.o3.W;
+                int i18 = org.telegram.ui.Wallet.n3.W;
                 return;
             case 22:
                 PhotoViewer.p1().c0(1.0f, 0.0f, 0.0f, false);
                 return;
             case 23:
-                int i19 = zh.l.f60420s2;
+                int i19 = zh.l.f60430s2;
                 return;
             case 24:
-                org.telegram.ui.Components.jc[] jcVarArr = zh.u.f60533h2;
+                org.telegram.ui.Components.jc[] jcVarArr = zh.u.f60549h2;
                 return;
             default:
                 int i20 = zh.b0.Y1;

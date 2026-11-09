@@ -49,7 +49,7 @@ public final class rc implements Runnable {
                     return;
                 }
             case 6:
-                org.telegram.ui.ActionBar.k6.F(false);
+                org.telegram.ui.ActionBar.l6.F(false);
                 return;
             case 7:
                 qs.e().k(254, new Object[0]);
@@ -93,9 +93,9 @@ public final class rc implements Runnable {
                     gc.D().i(new rc(11));
                     iz.f23388b = true;
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(Q.getParentActivity());
-                    alertDialog$Builder.f27296a.R = id.M0(2131745841, null);
-                    alertDialog$Builder.f27296a.S = id.M0(2131745840, null);
-                    alertDialog$Builder.k(id.M0(2131751356, null), new ch(11));
+                    alertDialog$Builder.f27296a.R = id.M0(2131745838, null);
+                    alertDialog$Builder.f27296a.S = id.M0(2131745837, null);
+                    alertDialog$Builder.k(id.M0(2131751355, null), new ch(11));
                     org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
                     u1Var.setCanceledOnTouchOutside(false);
                     u1Var.show();
@@ -109,10 +109,10 @@ public final class rc implements Runnable {
                 rz.f25377y = null;
                 return;
             case 13:
-                org.telegram.ui.ActionBar.k6.F(false);
+                org.telegram.ui.ActionBar.l6.F(false);
                 return;
             case 14:
-                int i12 = org.telegram.ui.an.f43712id;
+                int i12 = org.telegram.ui.cn.f44367kd;
                 return;
             case 15:
                 ch.k0.b(true);
@@ -126,23 +126,23 @@ public final class rc implements Runnable {
                 org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
                 if (T != 0) {
                     ?? obj = new Object();
-                    obj.f27424a = true;
+                    obj.f27408a = true;
                     T.showAsSheet(new PremiumPreviewFragment(0, "schedule_repeat"), obj);
                     return;
                 }
                 return;
             case 18:
-                Pattern pattern = org.telegram.ui.Components.v4.f38848a;
+                Pattern pattern = org.telegram.ui.Components.v4.f38913a;
                 return;
             case 19:
-                g0.r(org.telegram.ui.Components.i5.f34531w);
+                g0.r(org.telegram.ui.Components.i5.f34558w);
                 try {
-                    if (org.telegram.ui.Components.i5.f34527r != null) {
-                        for (int i13 = 0; i13 < org.telegram.ui.Components.i5.f34527r.size(); i13++) {
-                            LongSparseArray longSparseArray = (LongSparseArray) org.telegram.ui.Components.i5.f34527r.valueAt(i13);
+                    if (org.telegram.ui.Components.i5.f34554r != null) {
+                        for (int i13 = 0; i13 < org.telegram.ui.Components.i5.f34554r.size(); i13++) {
+                            LongSparseArray longSparseArray = (LongSparseArray) org.telegram.ui.Components.i5.f34554r.valueAt(i13);
                             int i14 = 0;
                             while (i14 < longSparseArray.size()) {
-                                if (!((org.telegram.ui.Components.i5) longSparseArray.valueAt(i14)).f34533a) {
+                                if (!((org.telegram.ui.Components.i5) longSparseArray.valueAt(i14)).f34560a) {
                                     longSparseArray.removeAt(i14);
                                     i14--;
                                 }
@@ -177,7 +177,7 @@ public final class rc implements Runnable {
                     Bundle bundle = new Bundle();
                     bundle.putLong("user_id", p10.i(Q2.getCurrentAccount()).e());
                     bundle.putInt("chatMode", 1);
-                    Q2.presentFragment(new org.telegram.ui.an(bundle));
+                    Q2.presentFragment(new org.telegram.ui.cn(bundle));
                     return;
                 }
                 return;
@@ -190,7 +190,7 @@ public final class rc implements Runnable {
             case 26:
                 return;
             case 27:
-                int i15 = org.telegram.ui.Components.bn.f32225r1;
+                int i15 = org.telegram.ui.Components.bn.f32284r1;
                 return;
             case 28:
                 PhotoViewer.p1().z0(false, false);

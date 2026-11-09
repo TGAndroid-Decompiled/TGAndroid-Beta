@@ -3,7 +3,7 @@ package ce;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public final class w extends de.b implements u, c, de.e {
-    public static final AtomicReferenceFieldUpdater f6154e = AtomicReferenceFieldUpdater.newUpdater(w.class, Object.class, "_state$volatile");
+    public static final AtomicReferenceFieldUpdater f6152e = AtomicReferenceFieldUpdater.newUpdater(w.class, Object.class, "_state$volatile");
     private volatile Object _state$volatile;
     public int d;
 
@@ -27,7 +27,7 @@ public final class w extends de.b implements u, c, de.e {
     @Override
     public final Object a(Object obj, id.c cVar) {
         if (obj == null) {
-            obj = de.g.f8679a;
+            obj = de.g.f8677a;
         }
         c(null, obj);
         return gd.k.f13829a;
@@ -38,7 +38,7 @@ public final class w extends de.b implements u, c, de.e {
         y[] yVarArr;
         com.google.android.gms.internal.clearcut.e eVar;
         synchronized (this) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f6154e;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f6152e;
             Object obj3 = atomicReferenceFieldUpdater.get(this);
             if (obj != null && !kotlin.jvm.internal.j.a(obj3, obj)) {
                 return false;
@@ -51,16 +51,16 @@ public final class w extends de.b implements u, c, de.e {
             if ((i10 & 1) == 0) {
                 int i11 = i10 + 1;
                 this.d = i11;
-                y[] yVarArr2 = this.f8669a;
+                y[] yVarArr2 = this.f8667a;
                 while (true) {
                     if (yVarArr2 != null) {
                         for (y yVar : yVarArr2) {
                             if (yVar != null) {
-                                AtomicReference atomicReference = yVar.f6157a;
+                                AtomicReference atomicReference = yVar.f6155a;
                                 while (true) {
                                     Object obj4 = atomicReference.get();
-                                    if (obj4 != null && obj4 != (eVar = x.f6156b)) {
-                                        com.google.android.gms.internal.clearcut.e eVar2 = x.f6155a;
+                                    if (obj4 != null && obj4 != (eVar = x.f6154b)) {
+                                        com.google.android.gms.internal.clearcut.e eVar2 = x.f6153a;
                                         if (obj4 == eVar2) {
                                             while (!atomicReference.compareAndSet(obj4, eVar)) {
                                                 if (atomicReference.get() != obj4) {
@@ -87,7 +87,7 @@ public final class w extends de.b implements u, c, de.e {
                             this.d = i11 + 1;
                             return true;
                         }
-                        yVarArr = this.f8669a;
+                        yVarArr = this.f8667a;
                     }
                     yVarArr2 = yVarArr;
                     i11 = i7;

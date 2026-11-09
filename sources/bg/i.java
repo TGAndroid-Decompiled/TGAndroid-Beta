@@ -19,7 +19,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.iz;
 import org.telegram.messenger.w7;
-import org.telegram.ui.Components.zg0;
+import org.telegram.ui.Components.ah0;
 public final class i {
     public static int A;
     public static wa B;
@@ -159,7 +159,7 @@ public final class i {
         A = i7;
         if (i7 <= 0) {
             A = 0;
-            zg0.T0.postRunnable(new ai.m0(1));
+            ah0.T0.postRunnable(new ai.m0(1));
         }
     }
 

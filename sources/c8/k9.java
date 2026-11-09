@@ -6,21 +6,21 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 public final class k9 extends a8.h0 {
-    public final a8.kb f5746b;
+    public final a8.kb f5744b;
 
     public k9(a8.kb kbVar) {
         super(1);
-        this.f5746b = kbVar;
+        this.f5744b = kbVar;
     }
 
     @Override
     public final void clear() {
-        this.f5746b.clear();
+        this.f5744b.clear();
     }
 
     @Override
     public final boolean contains(Object obj) {
-        Set entrySet = this.f5746b.f513b.entrySet();
+        Set entrySet = this.f5744b.f513b.entrySet();
         entrySet.getClass();
         try {
             return entrySet.contains(obj);
@@ -31,12 +31,12 @@ public final class k9 extends a8.h0 {
 
     @Override
     public final boolean isEmpty() {
-        return this.f5746b.isEmpty();
+        return this.f5744b.isEmpty();
     }
 
     @Override
     public final Iterator iterator() {
-        return new a8.d(this.f5746b, (byte) 0);
+        return new a8.d(this.f5744b, (byte) 0);
     }
 
     @Override
@@ -48,7 +48,7 @@ public final class k9 extends a8.h0 {
         Map.Entry entry = (Map.Entry) obj;
         entry.getClass();
         Object key = entry.getKey();
-        d dVar = ((jg) this.f5746b.f515e).f5738c;
+        d dVar = ((jg) this.f5744b.f515e).f5736c;
         dVar.getClass();
         try {
             obj2 = dVar.remove(key);
@@ -107,11 +107,11 @@ public final class k9 extends a8.h0 {
                     hashSet.add(((Map.Entry) obj).getKey());
                 }
             }
-            jg jgVar = (jg) this.f5746b.f515e;
-            cd cdVar = jgVar.f5723a;
+            jg jgVar = (jg) this.f5744b.f515e;
+            cd cdVar = jgVar.f5721a;
             if (cdVar == null) {
-                cdVar = new cd(jgVar, jgVar.f5738c);
-                jgVar.f5723a = cdVar;
+                cdVar = new cd(jgVar, jgVar.f5736c);
+                jgVar.f5721a = cdVar;
             }
             return cdVar.retainAll(hashSet);
         }
@@ -119,6 +119,6 @@ public final class k9 extends a8.h0 {
 
     @Override
     public final int size() {
-        return this.f5746b.f513b.size();
+        return this.f5744b.f513b.size();
     }
 }

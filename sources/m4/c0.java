@@ -17,14 +17,14 @@ public final class c0 {
             case 1:
                 this.f19599b = list;
                 this.f19600c = new j0[list.size()];
-                h2.c cVar = new h2.c(new l2.y(this, 18));
+                h2.c cVar = new h2.c(new l2.x(this, 18));
                 this.d = cVar;
                 cVar.C(3);
                 return;
             default:
                 this.f19599b = list;
                 this.f19600c = new j0[list.size()];
-                this.d = new h2.c(new l2.y(this, 17));
+                this.d = new h2.c(new l2.x(this, 17));
                 return;
         }
     }

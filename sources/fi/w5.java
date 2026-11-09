@@ -1,9 +1,9 @@
 package fi;
 
-import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.i51;
 import org.telegram.ui.Components.py;
 import org.telegram.ui.Components.sy;
-import org.telegram.ui.Components.t51;
+import org.telegram.ui.Components.u51;
 public final class w5 implements Runnable {
     public final int f13031a;
     public final y5 f13032b;
@@ -29,9 +29,9 @@ public final class w5 implements Runnable {
             case 3:
                 y5 y5Var = this.f13032b;
                 w5 w5Var = y5Var.K;
-                t51 t51Var = y5Var.f13169e;
-                if (t51Var != null && y5Var.F != null) {
-                    long S = t51Var.S();
+                u51 u51Var = y5Var.f13169e;
+                if (u51Var != null && y5Var.F != null) {
+                    long S = u51Var.S();
                     if (y5Var.getDuration() > 1) {
                         float duration = ((float) S) / ((float) y5Var.getDuration());
                         boolean z10 = false;
@@ -39,9 +39,9 @@ public final class w5 implements Runnable {
                             e7 e7Var = y5Var.d;
                             if ((duration < e7Var.Z || duration > e7Var.f11877a0) && System.currentTimeMillis() - y5Var.J > 500) {
                                 y5Var.J = System.currentTimeMillis();
-                                t51 t51Var2 = y5Var.f13169e;
+                                u51 u51Var2 = y5Var.f13169e;
                                 long duration2 = y5Var.d.Z * ((float) y5Var.getDuration());
-                                t51Var2.q0(duration2, false);
+                                u51Var2.q0(duration2, false);
                                 y5Var.w(true);
                                 y5Var.y(true);
                                 S = duration2;
@@ -82,10 +82,10 @@ public final class w5 implements Runnable {
                         float f12 = (float) e7Var2.C;
                         if ((f10 < f11 * f12 || f10 > e7Var2.F * f12) && System.currentTimeMillis() - y5Var2.J > 500) {
                             y5Var2.J = System.currentTimeMillis();
-                            t51 t51Var3 = y5Var2.D;
+                            u51 u51Var3 = y5Var2.D;
                             e7 e7Var3 = y5Var2.d;
                             long j3 = e7Var3.E * ((float) e7Var3.C);
-                            t51Var3.q0(j3, false);
+                            u51Var3.q0(j3, false);
                             S2 = j3;
                         }
                     }
@@ -110,10 +110,10 @@ public final class w5 implements Runnable {
                         float f15 = (float) e7Var4.f11911q0;
                         if ((f13 < f14 * f15 || f13 > e7Var4.f11917t0 * f15) && System.currentTimeMillis() - y5Var3.J > 500) {
                             y5Var3.J = System.currentTimeMillis();
-                            t51 t51Var4 = y5Var3.f13195y;
+                            u51 u51Var4 = y5Var3.f13195y;
                             e7 e7Var5 = y5Var3.d;
                             long j10 = e7Var5.f11915s0 * ((float) e7Var5.f11911q0);
-                            t51Var4.q0(j10, false);
+                            u51Var4.q0(j10, false);
                             y5Var3.w(true);
                             S3 = j10;
                         }
@@ -129,13 +129,13 @@ public final class w5 implements Runnable {
                 return;
             default:
                 y5 y5Var4 = this.f13032b;
-                h51 h51Var = y5Var4.f13179n;
-                if (h51Var != null) {
-                    sy syVar = h51Var.f34116b;
+                i51 i51Var = y5Var4.f13179n;
+                if (i51Var != null) {
+                    sy syVar = i51Var.f34577b;
                     if (syVar != null) {
                         syVar.postRunnable(new py(syVar, 0));
                     }
-                    h51Var.f34115a = null;
+                    i51Var.f34576a = null;
                     y5Var4.removeView(y5Var4.f13179n);
                     y5Var4.f13179n = null;
                     return;

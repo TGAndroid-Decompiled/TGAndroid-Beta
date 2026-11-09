@@ -3,10 +3,10 @@ package org.telegram.utils.twidget;
 import android.media.AudioRecordingConfiguration;
 import android.os.Bundle;
 public final class e implements p4.c0, p4.a1, h2.j {
-    public final int f52777a;
+    public final int f52791a;
 
     public e(int i7) {
-        this.f52777a = i7;
+        this.f52791a = i7;
     }
 
     public static AudioRecordingConfiguration a(Object obj) {
@@ -16,7 +16,7 @@ public final class e implements p4.c0, p4.a1, h2.j {
     @Override
     public void accept(Object obj) {
         p4.g1 g1Var = (p4.g1) obj;
-        switch (this.f52777a) {
+        switch (this.f52791a) {
             case 20:
                 g1Var.B0();
                 return;
@@ -47,7 +47,7 @@ public final class e implements p4.c0, p4.a1, h2.j {
 
     @Override
     public void b(p4.u uVar, int i7) {
-        switch (this.f52777a) {
+        switch (this.f52791a) {
             case 15:
                 uVar.getClass();
                 return;
@@ -62,7 +62,7 @@ public final class e implements p4.c0, p4.a1, h2.j {
 
     @Override
     public Object l(p4.d0 d0Var, p4.v vVar, int i7) {
-        switch (this.f52777a) {
+        switch (this.f52791a) {
             case 18:
                 d0Var.getClass();
                 throw new ClassCastException();
@@ -78,14 +78,14 @@ public final class e implements p4.c0, p4.a1, h2.j {
     }
 
     public e(Object obj, int i7) {
-        this.f52777a = i7;
+        this.f52791a = i7;
     }
 
     public e(String str, int i7, int i10, p4.q qVar) {
-        this.f52777a = 19;
+        this.f52791a = 19;
     }
 
     public e(boolean z9, p4.i1 i1Var, Bundle bundle) {
-        this.f52777a = 23;
+        this.f52791a = 23;
     }
 }

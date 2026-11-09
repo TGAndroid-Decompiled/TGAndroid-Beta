@@ -13,13 +13,13 @@ import k2.h;
 import k2.j;
 import k2.l;
 public final class b extends l {
-    public final Context f55374o;
-    public final int f55375p;
+    public final Context f55386o;
+    public final int f55387p;
 
     public b(Context context) {
         super(new h[1], new a[1]);
-        this.f55374o = context;
-        this.f55375p = -1;
+        this.f55386o = context;
+        this.f55387p = -1;
     }
 
     @Override
@@ -56,9 +56,9 @@ public final class b extends l {
         }
         ia.f(z10);
         try {
-            int i7 = this.f55375p;
+            int i7 = this.f55387p;
             if (i7 == -1) {
-                Context context = this.f55374o;
+                Context context = this.f55386o;
                 if (context != null) {
                     Point y10 = m0.y(context);
                     int i10 = y10.x;
@@ -79,7 +79,7 @@ public final class b extends l {
                     i7 = 4096;
                 }
             }
-            aVar.f55372a = o0.b(byteBuffer.remaining(), i7, byteBuffer.array());
+            aVar.f55384a = o0.b(byteBuffer.remaining(), i7, byteBuffer.array());
             aVar.timeUs = hVar.f17176e;
             return null;
         } catch (t0 e10) {

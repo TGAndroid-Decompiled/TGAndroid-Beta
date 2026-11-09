@@ -9,12 +9,12 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Cells.r8;
 import org.telegram.ui.Components.r5;
 public final class i implements c20 {
-    public final int f6267a;
-    public final o f6268b;
+    public final int f6265a;
+    public final o f6266b;
 
     public i(o oVar, int i7) {
-        this.f6267a = i7;
-        this.f6268b = oVar;
+        this.f6265a = i7;
+        this.f6266b = oVar;
     }
 
     @Override
@@ -22,9 +22,9 @@ public final class i implements c20 {
         r5[] r5VarArr;
         r8 r8Var;
         long j3;
-        switch (this.f6267a) {
+        switch (this.f6265a) {
             case 0:
-                o oVar = this.f6268b;
+                o oVar = this.f6266b;
                 oVar.W = (TL_stories.TL_premium_boostsStatus) obj;
                 if (!oVar.H.keySet().equals(oVar.J.keySet())) {
                     oVar.e0(false);
@@ -33,8 +33,8 @@ public final class i implements c20 {
                 return;
             case 1:
                 Boolean bool = (Boolean) obj;
-                o oVar2 = this.f6268b;
-                h hVar = oVar2.f6341a0;
+                o oVar2 = this.f6266b;
+                h hVar = oVar2.f6339a0;
                 if (!oVar2.g0()) {
                     int editTextSelectionEnd = oVar2.h.getEditTextSelectionEnd();
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(oVar2.h.getText());
@@ -42,8 +42,8 @@ public final class i implements c20 {
                         if (spannableStringBuilder.getSpanEnd(r5Var) == editTextSelectionEnd) {
                             oVar2.H.remove(Long.valueOf(r5Var.documentId));
                             oVar2.I.remove(Long.valueOf(r5Var.documentId));
-                            oVar2.f6342b.A(Long.valueOf(r5Var.documentId));
-                            if (r5Var.documentId == -1 && (r8Var = oVar2.f6347r) != null) {
+                            oVar2.f6340b.A(Long.valueOf(r5Var.documentId));
+                            if (r5Var.documentId == -1 && (r8Var = oVar2.f6345r) != null) {
                                 r8Var.setChecked(false);
                                 oVar2.h.setMaxLength(oVar2.N);
                             }
@@ -64,9 +64,9 @@ public final class i implements c20 {
                 return;
             case 2:
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
-                o oVar3 = this.f6268b;
+                o oVar3 = this.f6266b;
                 if (!oVar3.isFinishing()) {
-                    oVar3.f6348s.setLoading(false);
+                    oVar3.f6346s.setLoading(false);
                     if (tL_error.text.equals("CHAT_NOT_MODIFIED")) {
                         oVar3.finishFragment();
                         return;
@@ -82,7 +82,7 @@ public final class i implements c20 {
                 }
                 return;
             default:
-                o oVar4 = this.f6268b;
+                o oVar4 = this.f6266b;
                 oVar4.getClass();
                 oVar4.U = ((Integer) obj).intValue();
                 return;

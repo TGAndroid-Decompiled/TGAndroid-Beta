@@ -225,7 +225,7 @@ public abstract class sc {
             rz.A = e(32);
         }
         if (i12 > 0) {
-            org.telegram.ui.ActionBar.k6.u1(true);
+            org.telegram.ui.ActionBar.l6.u1(true);
         }
         if (!c8.zc.a(i11, 256) && !c8.zc.a(i11, 262144)) {
             return;

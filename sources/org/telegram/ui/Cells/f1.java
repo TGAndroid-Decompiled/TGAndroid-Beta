@@ -15,7 +15,7 @@ import org.telegram.messenger.id;
 import org.telegram.messenger.ij;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.hc;
-import org.telegram.ui.Components.ht0;
+import org.telegram.ui.Components.jt0;
 import org.telegram.ui.Components.mz;
 public abstract class f1 {
     public static String A(int i7) {
@@ -63,7 +63,7 @@ public abstract class f1 {
     }
 
     public static float c(RecyclerView recyclerView) {
-        int i7 = ht0.f34338l0;
+        int i7 = jt0.f35130l0;
         v4.n0 layoutManager = recyclerView.getLayoutManager();
         if (layoutManager == null || !recyclerView.canScrollVertically(-1)) {
             return 0.0f;
@@ -145,8 +145,8 @@ public abstract class f1 {
         arrayList2.add(num);
     }
 
-    public static void r(FrameLayout frameLayout, org.telegram.ui.ActionBar.f6 f6Var, TLRPC.TL_error tL_error, boolean z9) {
-        new hc(frameLayout, f6Var).f0(tL_error, z9);
+    public static void r(FrameLayout frameLayout, org.telegram.ui.ActionBar.g6 g6Var, TLRPC.TL_error tL_error, boolean z9) {
+        new hc(frameLayout, g6Var).f0(tL_error, z9);
     }
 
     public static void s(e2.t tVar, f3.j0 j0Var) {

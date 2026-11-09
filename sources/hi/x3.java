@@ -12,13 +12,13 @@ import java.util.Collection;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.b20;
 import org.telegram.messenger.k9;
-import org.telegram.ui.ActionBar.o6;
 import org.telegram.ui.ActionBar.p6;
-import org.telegram.ui.Components.kt0;
-import org.telegram.ui.Components.lt0;
-import org.telegram.ui.Components.x31;
+import org.telegram.ui.ActionBar.q6;
+import org.telegram.ui.Components.mt0;
+import org.telegram.ui.Components.nt0;
 import org.telegram.ui.Components.xp;
-public final class x3 implements kt0, k9, b20, o6, p6, ih.b, g9.k, org.telegram.ui.ActionBar.r1, h2.o, h2.p, u9.d {
+import org.telegram.ui.Components.y31;
+public final class x3 implements mt0, k9, b20, p6, q6, ih.b, g9.k, org.telegram.ui.ActionBar.r1, h2.o, h2.p, u9.d {
     public final int f15035a;
 
     public x3(int i7) {
@@ -26,7 +26,7 @@ public final class x3 implements kt0, k9, b20, o6, p6, ih.b, g9.k, org.telegram.
     }
 
     @Override
-    public Boolean a(x31 x31Var, View view, Integer num, Float f10, Float f11) {
+    public Boolean a(y31 y31Var, View view, Integer num, Float f10, Float f11) {
         switch (this.f15035a) {
             case 6:
                 return Boolean.FALSE;
@@ -165,7 +165,7 @@ public final class x3 implements kt0, k9, b20, o6, p6, ih.b, g9.k, org.telegram.
     public void c(int i7, View view) {
         Drawable background = view.getBackground();
         if (background instanceof xp) {
-            Drawable drawable = ((xp) background).f40352a;
+            Drawable drawable = ((xp) background).f40444a;
             if (drawable instanceof ColorDrawable) {
                 ((ColorDrawable) drawable).setColor(i7);
                 view.invalidate();
@@ -217,7 +217,7 @@ public final class x3 implements kt0, k9, b20, o6, p6, ih.b, g9.k, org.telegram.
     public int i(View view) {
         Drawable background = view.getBackground();
         if (background instanceof xp) {
-            Drawable drawable = ((xp) background).f40352a;
+            Drawable drawable = ((xp) background).f40444a;
             if (drawable instanceof ColorDrawable) {
                 return ((ColorDrawable) drawable).getColor();
             }
@@ -260,7 +260,7 @@ public final class x3 implements kt0, k9, b20, o6, p6, ih.b, g9.k, org.telegram.
     @Override
     public Object j(Object obj) {
         Void r12 = (Void) obj;
-        lt0 lt0Var = b4.f14559b0;
+        nt0 nt0Var = b4.f14559b0;
         return Boolean.FALSE;
     }
 

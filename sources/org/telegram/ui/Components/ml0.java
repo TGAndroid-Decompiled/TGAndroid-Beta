@@ -1,33 +1,48 @@
 package org.telegram.ui.Components;
-public final class ml0 extends v4.o {
-    public final ql0 f35998b;
 
-    public ml0(ql0 ql0Var) {
-        this.f35998b = ql0Var;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.TextView;
+import org.telegram.tgnet.TLRPC;
+public final class ml0 implements TextView.OnEditorActionListener {
+    public final ll0 f36107a;
+    public final int f36108b;
+    public final TLRPC.Reaction f36109c;
+    public final org.telegram.ui.ActionBar.u1[] d;
+    public final View f36110e;
+
+    public ml0(ll0 ll0Var, int i7, TLRPC.Reaction reaction, org.telegram.ui.ActionBar.u1[] u1VarArr, View view) {
+        this.f36107a = ll0Var;
+        this.f36108b = i7;
+        this.f36109c = reaction;
+        this.d = u1VarArr;
+        this.f36110e = view;
     }
 
     @Override
-    public final boolean a(int i7, int i10) {
-        ql0 ql0Var = this.f35998b;
-        return ((nl0) ql0Var.f37362n.get(i7)).equals(ql0Var.f37363r.get(i10));
-    }
-
-    @Override
-    public final boolean b(int i7, int i10) {
-        ql0 ql0Var = this.f35998b;
-        if (((nl0) ql0Var.f37362n.get(i7)).f36384a.h == ((nl0) ql0Var.f37363r.get(i10)).f36384a.h) {
+    public final boolean onEditorAction(TextView textView, int i7, KeyEvent keyEvent) {
+        if (i7 != 6) {
+            return false;
+        }
+        ll0 ll0Var = this.f36107a;
+        String obj = ll0Var.getText().toString();
+        if (obj.length() > 12) {
+            org.telegram.messenger.g0.F3(ll0Var);
             return true;
         }
-        return false;
-    }
-
-    @Override
-    public final int d() {
-        return this.f35998b.f37363r.size();
-    }
-
-    @Override
-    public final int e() {
-        return this.f35998b.f37362n.size();
+        org.telegram.messenger.qp.s1(this.f36108b).l4(ch.o0.d(this.f36109c), obj);
+        org.telegram.ui.ActionBar.u1[] u1VarArr = this.d;
+        org.telegram.ui.ActionBar.u1 u1Var = u1VarArr[0];
+        if (u1Var != null) {
+            u1Var.dismiss();
+        }
+        if (u1VarArr[0] == rl0.H) {
+            rl0.H = null;
+        }
+        View view = this.f36110e;
+        if (view != null) {
+            view.requestFocus();
+        }
+        return true;
     }
 }

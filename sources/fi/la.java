@@ -14,15 +14,15 @@ import org.telegram.messenger.id;
 import org.telegram.messenger.qp;
 import org.telegram.ui.Components.cc;
 import org.telegram.ui.Components.hc;
-import org.telegram.ui.Components.ki0;
-import org.telegram.ui.Components.rt0;
+import org.telegram.ui.Components.li0;
+import org.telegram.ui.Components.tt0;
 import org.telegram.ui.Components.yz;
 public final class la extends r {
     public final Path Q1;
     public final va R1;
 
-    public la(va vaVar, Activity activity, FrameLayout frameLayout, rt0 rt0Var, FrameLayout frameLayout2, di.b bVar, org.telegram.ui.Components.y9 y9Var) {
-        super(activity, frameLayout, rt0Var, frameLayout2, bVar, y9Var);
+    public la(va vaVar, Activity activity, FrameLayout frameLayout, tt0 tt0Var, FrameLayout frameLayout2, di.b bVar, org.telegram.ui.Components.y9 y9Var) {
+        super(activity, frameLayout, tt0Var, frameLayout2, bVar, y9Var);
         this.R1 = vaVar;
         this.Q1 = new Path();
     }
@@ -30,7 +30,7 @@ public final class la extends r {
     @Override
     public final boolean e() {
         cc ccVar;
-        if (qp.s1(this.U).D3() || ((ccVar = cc.f32537w) != null && ccVar.f32538a == 2)) {
+        if (qp.s1(this.U).D3() || ((ccVar = cc.f32619w) != null && ccVar.f32620a == 2)) {
             return false;
         }
         int i7 = qp.s1(this.U).W4;
@@ -41,13 +41,13 @@ public final class la extends r {
             int indexOf2 = X2.toString().indexOf("__");
             if (indexOf2 >= 0) {
                 X2.replace(indexOf2, indexOf2 + 2, (CharSequence) "");
-                X2.setSpan(new yz(org.telegram.ui.ActionBar.k6.Uc, this.f12356a), indexOf, indexOf2, 33);
+                X2.setSpan(new yz(org.telegram.ui.ActionBar.l6.Uc, this.f12357a), indexOf, indexOf2, 33);
                 X2.setSpan(new ka(this, 0), indexOf, indexOf2, 33);
             }
         }
-        cc I = new hc(this.R1.f12971l0, this.f12356a).I(2131623970, id.M0(2131752556, null), X2);
-        I.f32538a = 2;
-        I.f32545j = 5000;
+        cc I = new hc(this.R1.f12971l0, this.f12357a).I(2131623970, id.M0(2131752556, null), X2);
+        I.f32620a = 2;
+        I.f32627j = 5000;
         I.k(false);
         return true;
     }
@@ -94,7 +94,7 @@ public final class la extends r {
         x9 x9Var = vaVar.f13002v1;
         if (x9Var != null && x9Var.A0 != null) {
             la laVar = vaVar.f12944c1;
-            if (!laVar.f12375o0) {
+            if (!laVar.f12376o0) {
                 float x10 = laVar.getX() + f10;
                 float y10 = vaVar.f12944c1.getY() + f11;
                 float x11 = vaVar.f12971l0.getX() + x10;
@@ -104,11 +104,11 @@ public final class la extends r {
                 for (int i7 = 0; i7 < vaVar.f13002v1.A0.getChildCount(); i7++) {
                     View childAt = vaVar.f13002v1.A0.getChildAt(i7);
                     if (childAt instanceof tg.j) {
-                        ki0 selectionBounds = ((tg.j) childAt).getSelectionBounds();
+                        li0 selectionBounds = ((tg.j) childAt).getSelectionBounds();
                         RectF rectF = org.telegram.messenger.g0.P;
-                        float f12 = selectionBounds.f35339a;
-                        float f13 = selectionBounds.f35340b;
-                        rectF.set(f12, f13, selectionBounds.f35341c + f12, selectionBounds.d + f13);
+                        float f12 = selectionBounds.f35751a;
+                        float f13 = selectionBounds.f35752b;
+                        rectF.set(f12, f13, selectionBounds.f35753c + f12, selectionBounds.d + f13);
                         if (rectF.contains(x12, y12)) {
                             return true;
                         }
@@ -134,10 +134,10 @@ public final class la extends r {
         va vaVar = this.R1;
         s5 s5Var = vaVar.f12940b1;
         if (!vaVar.N1 && !z9) {
-            di.y6 P1 = qp.s1(this.U).P1();
+            di.z6 P1 = qp.s1(this.U).P1();
             int A = vaVar.A();
-            di.s6 o4 = P1.o();
-            if (o4 == null || !o4.a(P1.f9963a, A) || ((e7Var = vaVar.K1) != null && e7Var.f11892g)) {
+            di.t6 o4 = P1.o();
+            if (o4 == null || !o4.a(P1.f9992a, A) || ((e7Var = vaVar.K1) != null && e7Var.f11892g)) {
                 z10 = true;
                 s5Var.setShareEnabled(z10);
             }

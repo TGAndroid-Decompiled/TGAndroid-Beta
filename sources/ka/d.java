@@ -60,7 +60,7 @@ public final class d {
                         Context it = (Context) obj;
                         j.e(it, "it");
                         String sharedPreferencesName = this.f17244b.f17251a;
-                        LinkedHashSet keysToMigrate = p1.j.f53089a;
+                        LinkedHashSet keysToMigrate = p1.j.f53101a;
                         j.e(sharedPreferencesName, "sharedPreferencesName");
                         j.e(keysToMigrate, "keysToMigrate");
                         return d0.a(new o1.d(it, sharedPreferencesName, e.f20706a, new b(keysToMigrate, null, 2), new kd.j(3, null)));
@@ -87,14 +87,14 @@ public final class d {
                         Context it = (Context) obj;
                         j.e(it, "it");
                         String sharedPreferencesName = this.f17244b.f17251a;
-                        LinkedHashSet keysToMigrate = p1.j.f53089a;
+                        LinkedHashSet keysToMigrate = p1.j.f53101a;
                         j.e(sharedPreferencesName, "sharedPreferencesName");
                         j.e(keysToMigrate, "keysToMigrate");
                         return d0.a(new o1.d(it, sharedPreferencesName, e.f20706a, new b(keysToMigrate, null, 2), new kd.j(3, null)));
                 }
             }
         };
-        ge.e eVar = j0.f60084a;
+        ge.e eVar = j0.f60093a;
         ge.d dVar2 = ge.d.f13851c;
         c1 c1Var = new c1();
         dVar2.getClass();
@@ -102,17 +102,17 @@ public final class d {
         s0 s0Var = new s0(name, f1Var, lVar, b10);
         g property = d[0];
         j.e(property, "property");
-        q1.d dVar3 = (q1.d) s0Var.f7454b;
+        q1.d dVar3 = (q1.d) s0Var.f7452b;
         if (dVar3 == null) {
-            synchronized (s0Var.f7455c) {
+            synchronized (s0Var.f7453c) {
                 try {
-                    if (((q1.d) s0Var.f7454b) == null) {
+                    if (((q1.d) s0Var.f7452b) == null) {
                         Context applicationContext = context.getApplicationContext();
                         j.d(applicationContext, "applicationContext");
                         o1.a aVar = new o1.a(1, applicationContext, s0Var);
-                        s0Var.f7454b = new q1.d(new q1.d(new m1.b0(new f0(h.f53689a, e0.f19366b, new k0(aVar, 3)), d0.a(new be.l((List) lVar.invoke(applicationContext), (id.c) null, 8)), f1Var, b10)));
+                        s0Var.f7452b = new q1.d(new q1.d(new m1.b0(new f0(h.f53701a, e0.f19366b, new k0(aVar, 3)), d0.a(new be.l((List) lVar.invoke(applicationContext), (id.c) null, 8)), f1Var, b10)));
                     }
-                    dVar = (q1.d) s0Var.f7454b;
+                    dVar = (q1.d) s0Var.f7452b;
                     j.b(dVar);
                 } catch (Throwable th2) {
                     throw th2;

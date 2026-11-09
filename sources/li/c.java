@@ -11,27 +11,27 @@ import android.widget.TextView;
 import org.telegram.messenger.id;
 import org.telegram.messenger.v10;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.s6;
 import org.telegram.ui.Components.hc;
 public final class c implements v10 {
     public final int f18486a = 0;
     public final boolean[] f18487b;
     public final fi.d f18488c;
     public final boolean d;
-    public final f6 f18489e;
+    public final g6 f18489e;
     public final Object f18490f;
     public final Object f18491g;
     public final Object h;
     public final Object f18492i;
     public final KeyEvent.Callback f18493j;
 
-    public c(String str, String[] strArr, ImageView imageView, f6 f6Var, boolean z9, int[] iArr, fi.d dVar, HorizontalScrollView horizontalScrollView, boolean[] zArr) {
+    public c(String str, String[] strArr, ImageView imageView, g6 g6Var, boolean z9, int[] iArr, fi.d dVar, HorizontalScrollView horizontalScrollView, boolean[] zArr) {
         this.f18490f = str;
         this.f18491g = strArr;
         this.h = imageView;
-        this.f18489e = f6Var;
+        this.f18489e = g6Var;
         this.d = z9;
         this.f18492i = iArr;
         this.f18488c = dVar;
@@ -45,7 +45,7 @@ public final class c implements v10 {
         String M0;
         CharSequence V;
         int i10 = this.f18486a;
-        f6 f6Var = this.f18489e;
+        g6 g6Var = this.f18489e;
         KeyEvent.Callback callback = this.f18493j;
         Object obj3 = this.f18492i;
         Object obj4 = this.h;
@@ -63,14 +63,14 @@ public final class c implements v10 {
                 Boolean bool = (Boolean) obj2;
                 if (TextUtils.equals((String) obj6, ((String[]) obj5)[0])) {
                     if (bool.booleanValue()) {
-                        r6.t(imageView, k6.f28093q7, f6Var, PorterDuff.Mode.SRC_IN);
+                        s6.s(imageView, l6.f28106q7, g6Var, PorterDuff.Mode.SRC_IN);
                         if (!z9) {
                             int i11 = -iArr[0];
                             iArr[0] = i11;
                             org.telegram.messenger.g0.G3(i11, imageView, null);
                         }
                     } else {
-                        r6.t(imageView, k6.G6, f6Var, PorterDuff.Mode.SRC_IN);
+                        s6.s(imageView, l6.G6, g6Var, PorterDuff.Mode.SRC_IN);
                     }
                     if (bitmap != null) {
                         imageView.setImageBitmap(bitmap);
@@ -87,25 +87,25 @@ public final class c implements v10 {
                 }
                 return;
             default:
-                org.telegram.ui.Wallet.a2 a2Var = (org.telegram.ui.Wallet.a2) obj6;
+                org.telegram.ui.Wallet.z1 z1Var = (org.telegram.ui.Wallet.z1) obj6;
                 boolean[] zArr2 = (boolean[]) obj5;
-                org.telegram.ui.Wallet.m0 m0Var = (org.telegram.ui.Wallet.m0) obj4;
+                org.telegram.ui.Wallet.l0 l0Var = (org.telegram.ui.Wallet.l0) obj4;
                 TextView textView = (TextView) obj3;
-                org.telegram.ui.Wallet.y2 y2Var = (org.telegram.ui.Wallet.y2) callback;
+                org.telegram.ui.Wallet.x2 x2Var = (org.telegram.ui.Wallet.x2) callback;
                 TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
                 String str = (String) obj2;
-                if (!zArr[0] && !a2Var.f42103m && !a2Var.f42104n) {
-                    boolean z10 = a2Var.f42106p;
+                if (!zArr[0] && !z1Var.f43415m && !z1Var.f43416n) {
+                    boolean z10 = z1Var.f43418p;
                     zArr2[0] = z10;
                     dVar.setEnabled(z10);
                     boolean z11 = zArr2[0];
                     if (z11 && !z9) {
-                        SpannableStringBuilder n10 = org.telegram.ui.Wallet.m0.n(wallettransaction.fee, true);
-                        CharSequence m10 = m0Var.m(wallettransaction.fee, true);
+                        SpannableStringBuilder n10 = org.telegram.ui.Wallet.l0.n(wallettransaction.fee, true);
+                        CharSequence m10 = l0Var.m(wallettransaction.fee, true);
                         if (TextUtils.isEmpty(m10)) {
-                            V = id.V(null, null, 2131743123, n10);
+                            V = id.V(null, null, 2131743120, n10);
                         } else {
-                            V = id.V(null, null, 2131743122, n10, m10);
+                            V = id.V(null, null, 2131743119, n10, m10);
                         }
                         textView.setText(V);
                         return;
@@ -113,12 +113,12 @@ public final class c implements v10 {
                         if (str != null) {
                             M0 = str;
                         } else {
-                            M0 = id.M0(2131742989, null);
+                            M0 = id.M0(2131742986, null);
                         }
                         if (str == null) {
-                            org.telegram.ui.Wallet.e2.m("preview", M0);
+                            org.telegram.ui.Wallet.d2.m("preview", M0);
                         }
-                        hc.c0(M0, y2Var.E, f6Var);
+                        hc.c0(M0, x2Var.E, g6Var);
                         return;
                     } else {
                         return;
@@ -128,15 +128,15 @@ public final class c implements v10 {
         }
     }
 
-    public c(boolean[] zArr, org.telegram.ui.Wallet.a2 a2Var, boolean[] zArr2, fi.d dVar, boolean z9, org.telegram.ui.Wallet.m0 m0Var, TextView textView, org.telegram.ui.Wallet.y2 y2Var, f6 f6Var) {
+    public c(boolean[] zArr, org.telegram.ui.Wallet.z1 z1Var, boolean[] zArr2, fi.d dVar, boolean z9, org.telegram.ui.Wallet.l0 l0Var, TextView textView, org.telegram.ui.Wallet.x2 x2Var, g6 g6Var) {
         this.f18487b = zArr;
-        this.f18490f = a2Var;
+        this.f18490f = z1Var;
         this.f18491g = zArr2;
         this.f18488c = dVar;
         this.d = z9;
-        this.h = m0Var;
+        this.h = l0Var;
         this.f18492i = textView;
-        this.f18493j = y2Var;
-        this.f18489e = f6Var;
+        this.f18493j = x2Var;
+        this.f18489e = g6Var;
     }
 }

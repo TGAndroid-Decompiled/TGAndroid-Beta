@@ -1,22 +1,22 @@
 package org.telegram.ui.Components;
-public final class w0 implements db0 {
-    public final int f39760a;
-    public final int[] f39761b;
+public final class w0 implements eb0 {
+    public final int f39848a;
+    public final int[] f39849b;
 
     public w0(int[] iArr, int i7) {
-        this.f39760a = i7;
-        this.f39761b = iArr;
+        this.f39848a = i7;
+        this.f39849b = iArr;
     }
 
     @Override
     public final String h(int i7) {
-        int i10 = this.f39760a;
-        int[] iArr = this.f39761b;
+        int i10 = this.f39848a;
+        int[] iArr = this.f39849b;
         switch (i10) {
             case 0:
                 int i11 = iArr[i7];
                 if (i11 == 0) {
-                    return org.telegram.messenger.id.M0(2131748308, null);
+                    return org.telegram.messenger.id.M0(2131748307, null);
                 }
                 if (i11 < 60) {
                     return org.telegram.messenger.id.G(i11, "Minutes", new Object[0]);

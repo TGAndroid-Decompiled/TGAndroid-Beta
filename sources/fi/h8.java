@@ -8,8 +8,8 @@ import org.telegram.messenger.qp;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
 import org.telegram.ui.Components.di;
 import org.telegram.ui.Components.jl;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.xi0;
+import org.telegram.ui.Components.qj0;
+import org.telegram.ui.Components.yi0;
 public final class h8 extends v4.s0 {
     public final int f12139a;
     public boolean f12140b;
@@ -23,7 +23,7 @@ public final class h8 extends v4.s0 {
     @Override
     public final void a(RecyclerView recyclerView, int i7) {
         int i10;
-        xi0 xi0Var;
+        yi0 yi0Var;
         int topScrollOffset;
         int topScrollOffset2;
         int i11 = this.f12139a;
@@ -32,7 +32,7 @@ public final class h8 extends v4.s0 {
         switch (i11) {
             case 0:
                 n8 n8Var = (n8) obj;
-                pj0 pj0Var = n8Var.f12489f;
+                qj0 qj0Var = n8Var.f12489f;
                 if (i7 == 1) {
                     s8 s8Var = n8Var.W;
                     int i12 = s8.U1;
@@ -41,8 +41,8 @@ public final class h8 extends v4.s0 {
                     }
                 }
                 if (i7 == 0) {
-                    n8Var.S = !pj0Var.canScrollVertically(-1);
-                    pj0Var.canScrollVertically(1);
+                    n8Var.S = !qj0Var.canScrollVertically(-1);
+                    qj0Var.canScrollVertically(1);
                 }
                 if (i7 != 0) {
                     z9 = true;
@@ -52,7 +52,7 @@ public final class h8 extends v4.s0 {
             case 1:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) obj;
                 jl jlVar = chatAttachAlertPhotoLayout.E;
-                di diVar = chatAttachAlertPhotoLayout.f39004b;
+                di diVar = chatAttachAlertPhotoLayout.f39071b;
                 if (i7 == 0) {
                     int L = org.telegram.messenger.g0.L(13.0f);
                     org.telegram.ui.ActionBar.r0 r0Var = diVar.U2;
@@ -62,9 +62,9 @@ public final class h8 extends v4.s0 {
                         i10 = 0;
                     }
                     int i13 = L + i10;
-                    int i14 = diVar.f28648s0;
-                    if (((diVar.V3[0] - i14) - i13) + i14 < (diVar.I2.getAlpha() * diVar.I2.getMeasuredHeight()) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (xi0Var = (xi0) jlVar.K(0)) != null) {
-                        View view = xi0Var.f57044a;
+                    int i14 = diVar.f28653s0;
+                    if (((diVar.V3[0] - i14) - i13) + i14 < (diVar.I2.getAlpha() * diVar.I2.getMeasuredHeight()) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (yi0Var = (yi0) jlVar.K(0)) != null) {
+                        View view = yi0Var.f57056a;
                         int top = view.getTop();
                         topScrollOffset = chatAttachAlertPhotoLayout.getTopScrollOffset();
                         if (top > topScrollOffset) {
@@ -81,7 +81,7 @@ public final class h8 extends v4.s0 {
             default:
                 if (i7 == 0 && this.f12140b) {
                     this.f12140b = false;
-                    ((org.telegram.ui.Wallet.t5) obj).f();
+                    ((org.telegram.ui.Wallet.s5) obj).f();
                     return;
                 }
                 return;
@@ -96,23 +96,23 @@ public final class h8 extends v4.s0 {
             case 0:
                 n8 n8Var = (n8) obj;
                 s8 s8Var = n8Var.W;
-                pj0 pj0Var = n8Var.f12489f;
-                boolean canScrollVertically = pj0Var.canScrollVertically(1);
+                qj0 qj0Var = n8Var.f12489f;
+                boolean canScrollVertically = qj0Var.canScrollVertically(1);
                 if (canScrollVertically != this.f12140b) {
                     n8Var.f12491r.invalidate();
                     this.f12140b = canScrollVertically;
                 }
                 n8Var.f12488e.invalidate();
                 int i12 = s8.U1;
-                s8Var.f28619b.invalidate();
-                if (n8Var.f12485a == 6 && pj0Var.getChildCount() > 0 && RecyclerView.R(pj0Var.getChildAt(0)) >= qp.s1(s8Var.f28616a).P1().L.size()) {
-                    qp.s1(s8Var.f28616a).P1().S();
+                s8Var.f28624b.invalidate();
+                if (n8Var.f12485a == 6 && qj0Var.getChildCount() > 0 && RecyclerView.R(qj0Var.getChildAt(0)) >= qp.s1(s8Var.f28621a).P1().L.size()) {
+                    qp.s1(s8Var.f28621a).P1().S();
                     return;
                 }
                 return;
             case 1:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) obj;
-                di diVar = chatAttachAlertPhotoLayout.f39004b;
+                di diVar = chatAttachAlertPhotoLayout.f39071b;
                 jl jlVar = chatAttachAlertPhotoLayout.E;
                 if (jlVar.getChildCount() > 0) {
                     diVar.M1(chatAttachAlertPhotoLayout, i10);
@@ -147,9 +147,9 @@ public final class h8 extends v4.s0 {
         }
     }
 
-    public h8(org.telegram.ui.Wallet.t5 t5Var) {
+    public h8(org.telegram.ui.Wallet.s5 s5Var) {
         this.f12139a = 2;
-        this.f12141c = t5Var;
+        this.f12141c = s5Var;
         this.f12140b = false;
     }
 }

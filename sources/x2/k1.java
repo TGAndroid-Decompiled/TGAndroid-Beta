@@ -2,32 +2,32 @@ package x2;
 
 import java.util.Arrays;
 public final class k1 implements b3.l {
-    public final j2.m f58374a;
-    public final j2.c0 f58375b;
-    public byte[] f58376c;
+    public final j2.m f58383a;
+    public final j2.c0 f58384b;
+    public byte[] f58385c;
 
     public k1(j2.h hVar, j2.m mVar) {
-        u.f58476g.getAndIncrement();
-        this.f58374a = mVar;
-        this.f58375b = new j2.c0(hVar);
+        u.f58485g.getAndIncrement();
+        this.f58383a = mVar;
+        this.f58384b = new j2.c0(hVar);
     }
 
     @Override
     public final void a() {
-        j2.c0 c0Var = this.f58375b;
+        j2.c0 c0Var = this.f58384b;
         c0Var.f16416b = 0L;
         try {
-            c0Var.open(this.f58374a);
+            c0Var.open(this.f58383a);
             int i7 = 0;
             while (i7 != -1) {
                 int i10 = (int) c0Var.f16416b;
-                byte[] bArr = this.f58376c;
+                byte[] bArr = this.f58385c;
                 if (bArr == null) {
-                    this.f58376c = new byte[1024];
+                    this.f58385c = new byte[1024];
                 } else if (i10 == bArr.length) {
-                    this.f58376c = Arrays.copyOf(bArr, bArr.length * 2);
+                    this.f58385c = Arrays.copyOf(bArr, bArr.length * 2);
                 }
-                byte[] bArr2 = this.f58376c;
+                byte[] bArr2 = this.f58385c;
                 i7 = c0Var.read(bArr2, i10, bArr2.length - i10);
             }
             c8.p0.a(c0Var);

@@ -17,9 +17,9 @@ import oi.q;
 import oi.r;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.g0;
-import org.telegram.ui.ActionBar.a6;
-import org.telegram.ui.ActionBar.r6;
-public final class g extends oi.e implements a6 {
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.s6;
+public final class g extends oi.e implements b6 {
     public static Path f11528g0 = new Path();
     public int D;
     public int E;
@@ -56,7 +56,7 @@ public final class g extends oi.e implements a6 {
     public int f11541y;
     public boolean f11538s = true;
     public float I = -1.0f;
-    public int M = r6.f28479b;
+    public int M = s6.f28501b;
     public final l N = new l();
 
     public g(ri.a aVar, ri.a aVar2, ri.a aVar3) {
@@ -99,7 +99,7 @@ public final class g extends oi.e implements a6 {
 
     public static ri.a v(ri.a aVar) {
         while (aVar instanceof ri.g) {
-            aVar = ((ri.g) aVar).f54578a;
+            aVar = ((ri.g) aVar).f54590a;
         }
         return aVar;
     }
@@ -131,7 +131,7 @@ public final class g extends oi.e implements a6 {
     @Override
     public final void draw(Canvas canvas) {
         ri.a aVar;
-        int i7 = r6.f28479b;
+        int i7 = s6.f28501b;
         if (this.M != i7) {
             this.M = i7;
             try {
@@ -155,7 +155,7 @@ public final class g extends oi.e implements a6 {
             ri.a aVar2 = this.f11537r;
             if (o4 == this.f11535f0 && !canvas.isHardwareAccelerated()) {
                 ri.a v = v(v(this.f11537r));
-                if (Build.VERSION.SDK_INT >= 29 && (v instanceof ri.f) && (aVar = ((ri.f) v).f54569a) != null) {
+                if (Build.VERSION.SDK_INT >= 29 && (v instanceof ri.f) && (aVar = ((ri.f) v).f54581a) != null) {
                     v = v(aVar);
                 }
                 aVar2 = v;
@@ -484,7 +484,7 @@ public final class g extends oi.e implements a6 {
 
     @Override
     public final void updateColors() {
-        this.M = r6.f28479b;
+        this.M = s6.f28501b;
         gh.a aVar = this.f11539w;
         if (aVar != null) {
             if (aVar instanceof gh.b) {

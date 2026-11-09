@@ -5,46 +5,46 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.ls;
 import org.telegram.messenger.qs;
 import org.telegram.ui.Components.mz;
-import org.telegram.ui.Components.q41;
+import org.telegram.ui.Components.r41;
 public final class ad extends FrameLayout implements ls {
-    public final q41 f3468a;
-    public final org.telegram.ui.ActionBar.f6 f3469b;
+    public final r41 f3468a;
+    public final org.telegram.ui.ActionBar.g6 f3469b;
     public final int f3470c;
     public final int d;
     public final boolean f3471e;
     public final long f3472f;
     public final zc h;
 
-    public ad(Context context, boolean z9, long j3, int i7, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
+    public ad(Context context, boolean z9, long j3, int i7, int i10, int i11, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context);
         this.d = i7;
         this.f3471e = z9;
         this.f3470c = i10;
         this.f3472f = j3;
-        this.f3469b = f6Var;
+        this.f3469b = g6Var;
         this.h = new zc(i10, i7, j3, z9);
-        q41 q41Var = new q41(context, i10, i11, true, new ai.e(this, 12), new a1.c(this, 19), null, f6Var);
-        this.f3468a = q41Var;
-        addView(q41Var, c8.ha.c(-1.0f, -1));
-        q41Var.setOnScrollListener(new ai.b(this, 6));
+        r41 r41Var = new r41(context, i10, i11, true, new ai.e(this, 12), new a1.c(this, 19), null, g6Var);
+        this.f3468a = r41Var;
+        addView(r41Var, c8.ha.c(-1.0f, -1));
+        r41Var.setOnScrollListener(new ai.b(this, 6));
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         int i11 = qs.f25121z3;
-        q41 q41Var = this.f3468a;
+        r41 r41Var = this.f3468a;
         if (i7 == i11) {
-            q41Var.f37190f3.O(true);
-            if (q41Var.canScrollVertically(1)) {
-                for (int i12 = 0; i12 < q41Var.getChildCount(); i12++) {
-                    if (!(q41Var.getChildAt(i12) instanceof mz)) {
+            r41Var.f37556f3.O(true);
+            if (r41Var.canScrollVertically(1)) {
+                for (int i12 = 0; i12 < r41Var.getChildCount(); i12++) {
+                    if (!(r41Var.getChildAt(i12) instanceof mz)) {
                     }
                 }
                 return;
             }
             this.h.run();
         } else if (i7 == qs.D3 && ((Long) objArr[0]).longValue() == this.f3472f) {
-            q41Var.f37190f3.O(true);
+            r41Var.f37556f3.O(true);
         }
     }
 
@@ -58,7 +58,7 @@ public final class ad extends FrameLayout implements ls {
         } else {
             qs.f(i10).c(this, qs.f25121z3);
         }
-        this.f3468a.f37190f3.O(false);
+        this.f3468a.f37556f3.O(false);
     }
 
     @Override

@@ -6,11 +6,11 @@ import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.api.m;
 import com.google.android.gms.common.api.q;
 public final class g extends com.google.android.gms.common.api.internal.d {
-    public final int f8205q;
+    public final int f8203q;
 
     public g(m mVar, int i7) {
-        super(z5.a.f59707a, mVar);
-        this.f8205q = i7;
+        super(z5.a.f59716a, mVar);
+        this.f8203q = i7;
     }
 
     @Override
@@ -20,13 +20,13 @@ public final class g extends com.google.android.gms.common.api.internal.d {
 
     @Override
     public final q d(Status status) {
-        int i7 = this.f8205q;
+        int i7 = this.f8203q;
         return status;
     }
 
     @Override
     public final void n(com.google.android.gms.common.api.c cVar) {
-        switch (this.f8205q) {
+        switch (this.f8203q) {
             case 0:
                 e eVar = (e) cVar;
                 k kVar = (k) eVar.n();

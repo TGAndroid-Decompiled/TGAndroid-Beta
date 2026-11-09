@@ -27,7 +27,7 @@ public final class t extends CharacterStyle {
                 textPaint.setAlpha((int) ((this.f25564b / 255.0f) * textPaint.getAlpha()));
                 return;
             default:
-                textPaint.setColor(org.telegram.ui.ActionBar.k6.r1(textPaint.getAlpha() / 255.0f, this.f25564b));
+                textPaint.setColor(org.telegram.ui.ActionBar.l6.r1(textPaint.getAlpha() / 255.0f, this.f25564b));
                 return;
         }
     }

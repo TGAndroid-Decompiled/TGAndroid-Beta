@@ -5,16 +5,16 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.widget.FrameLayout;
 public final class d1 extends FrameLayout {
-    public final Drawable f27423a;
+    public final Drawable f27407a;
 
-    public d1(Context context, f6 f6Var) {
-        this(k6.H8, context, f6Var);
+    public d1(Context context, g6 g6Var) {
+        this(l6.H8, context, g6Var);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Drawable drawable = this.f27423a;
+        Drawable drawable = this.f27407a;
         if (drawable != null) {
             drawable.setBounds(0, 0, getWidth(), getHeight());
             drawable.draw(canvas);
@@ -25,11 +25,11 @@ public final class d1 extends FrameLayout {
         setBackgroundColor(i7);
     }
 
-    public d1(int i7, Context context, f6 f6Var) {
+    public d1(int i7, Context context, g6 g6Var) {
         super(context);
-        int w02 = k6.w0(i7, f6Var);
-        int w03 = k6.w0(k6.f27816b7, f6Var);
-        this.f27423a = k6.X0(getContext(), 2131231229, w03);
+        int w02 = l6.w0(i7, g6Var);
+        int w03 = l6.w0(l6.f27829b7, g6Var);
+        this.f27407a = l6.X0(getContext(), 2131231229, w03);
         setBackgroundColor(w02);
     }
 }

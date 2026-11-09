@@ -8,7 +8,7 @@ public final class cg extends a8.a implements eg {
         bg aVar;
         Parcel obtain = Parcel.obtain();
         obtain.writeInterfaceToken(this.f307c);
-        int i7 = t.f5843a;
+        int i7 = t.f5841a;
         obtain.writeStrongBinder(bVar);
         obtain.writeInt(1);
         hgVar.writeToParcel(obtain, 0);

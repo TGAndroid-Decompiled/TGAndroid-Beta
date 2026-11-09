@@ -1,34 +1,140 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
-import android.view.View;
-import org.telegram.messenger.Utilities;
-public final class en0 {
-    public final ot f33337a;
-    public final long f33338b;
-    public final float f33339c;
-    public final float d;
-    public final float f33340e;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+public final class en0 extends qu0 {
+    public boolean f33454a = false;
+    public long f33455b = 0;
+    public boolean f33456c = false;
+    public float d;
+    public final Paint f33457e;
 
-    public en0(View view) {
-        ot otVar = new ot(1, view);
-        this.f33338b = System.currentTimeMillis();
-        this.f33337a = otVar;
-        g5.a aVar = Utilities.f21335c;
-        this.f33339c = org.telegram.messenger.g0.T1(5.0f, 9.0f, Utilities.l(aVar.nextFloat()));
-        this.d = org.telegram.messenger.g0.T1(2.5f, 5.0f, Utilities.l(aVar.nextFloat()));
-        this.f33340e = org.telegram.messenger.g0.T1(2.5f, 5.2f, Utilities.l(aVar.nextFloat()));
+    public en0(boolean z9) {
+        if (z9) {
+            Paint paint = new Paint(1);
+            this.f33457e = paint;
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeCap(Paint.Cap.ROUND);
+            paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
+        }
     }
 
-    public final void a(Canvas canvas, float f10) {
-        ot otVar;
-        float currentTimeMillis = ((float) (System.currentTimeMillis() - this.f33338b)) / 1000.0f;
-        canvas.translate(0.0f, 0.0f);
-        canvas.rotate(((float) Math.sin(this.f33339c * currentTimeMillis * 3.141592653589793d)) * 1.0f * f10);
-        canvas.translate(((float) Math.cos(this.d * currentTimeMillis * 3.141592653589793d)) * org.telegram.messenger.g0.L(0.5f) * f10, ((float) Math.sin(currentTimeMillis * this.f33340e * 3.141592653589793d)) * org.telegram.messenger.g0.L(0.5f) * f10);
-        canvas.translate(-0.0f, -0.0f);
-        if (f10 > 0.0f && (otVar = this.f33337a) != null) {
-            otVar.run();
+    @Override
+    public final void b(int i7) {
+        Paint paint = this.f33457e;
+        if (paint != null) {
+            paint.setColor(i7);
         }
+    }
+
+    @Override
+    public final void c(boolean z9) {
+        this.f33454a = z9;
+    }
+
+    @Override
+    public final void d() {
+        this.f33455b = System.currentTimeMillis();
+        this.f33456c = true;
+        invalidateSelf();
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        float f10;
+        float f11;
+        float f12;
+        Paint paint = this.f33457e;
+        if (paint == null) {
+            paint = org.telegram.ui.ActionBar.l6.d2;
+        }
+        Paint paint2 = paint;
+        int i7 = 0;
+        while (i7 < 3) {
+            if (i7 == 0) {
+                paint2.setAlpha((int) (this.d * 255.0f));
+            } else if (i7 == 2) {
+                paint2.setAlpha((int) ((1.0f - this.d) * 255.0f));
+            } else {
+                paint2.setAlpha(255);
+            }
+            float L = (org.telegram.messenger.g0.L(5.0f) * i7) + (org.telegram.messenger.g0.L(5.0f) * this.d);
+            if (this.f33454a) {
+                f10 = 3.0f;
+            } else {
+                f10 = 4.0f;
+            }
+            float L2 = org.telegram.messenger.g0.L(f10);
+            float L3 = L + org.telegram.messenger.g0.L(4.0f);
+            float f13 = 8.0f;
+            if (this.f33454a) {
+                f11 = 7.0f;
+            } else {
+                f11 = 8.0f;
+            }
+            float L4 = org.telegram.messenger.g0.L(f11);
+            Canvas canvas2 = canvas;
+            canvas2.drawLine(L, L2, L3, L4, paint2);
+            if (this.f33454a) {
+                f12 = 11.0f;
+            } else {
+                f12 = 12.0f;
+            }
+            float L5 = org.telegram.messenger.g0.L(f12);
+            float L6 = L + org.telegram.messenger.g0.L(4.0f);
+            if (this.f33454a) {
+                f13 = 7.0f;
+            }
+            canvas2.drawLine(L, L5, L6, org.telegram.messenger.g0.L(f13), paint2);
+            i7++;
+            canvas = canvas2;
+        }
+        if (this.f33456c) {
+            long currentTimeMillis = System.currentTimeMillis();
+            long j3 = currentTimeMillis - this.f33455b;
+            this.f33455b = currentTimeMillis;
+            if (j3 > 50) {
+                j3 = 50;
+            }
+            this.d = (((float) j3) / 500.0f) + this.d;
+            while (true) {
+                float f14 = this.d;
+                if (f14 > 1.0f) {
+                    this.d = f14 - 1.0f;
+                } else {
+                    a();
+                    return;
+                }
+            }
+        }
+    }
+
+    @Override
+    public final void e() {
+        this.f33456c = false;
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return org.telegram.messenger.g0.L(14.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return org.telegram.messenger.g0.L(18.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

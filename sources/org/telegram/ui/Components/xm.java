@@ -4,40 +4,40 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.style.ImageSpan;
 public final class xm implements TextWatcher {
-    public final wm f40340a;
-    public final int f40341b;
-    public final org.telegram.ui.l4 f40342c;
+    public final wm f40432a;
+    public final int f40433b;
+    public final org.telegram.ui.l4 f40434c;
 
     public xm(org.telegram.ui.l4 l4Var, wm wmVar, int i7) {
-        this.f40342c = l4Var;
-        this.f40340a = wmVar;
-        this.f40341b = i7;
+        this.f40434c = l4Var;
+        this.f40432a = wmVar;
+        this.f40433b = i7;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         int i7;
-        bn bnVar = (bn) this.f40342c.f47410e;
-        wm wmVar = this.f40340a;
+        bn bnVar = (bn) this.f40434c.f47458e;
+        wm wmVar = this.f40432a;
         if (wmVar.getTag() != null) {
             return;
         }
-        int i10 = this.f40341b;
+        int i10 = this.f40433b;
         if (i10 == 11) {
-            i7 = bnVar.f32251n0;
+            i7 = bnVar.f32310n0;
         } else {
             i7 = bnVar.m0;
         }
-        v4.d1 K = bnVar.f32260s.K(i7);
-        if (K != null && bnVar.f32269y != null) {
+        v4.d1 K = bnVar.f32319s.K(i7);
+        if (K != null && bnVar.f32328y != null) {
             for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
                 editable.removeSpan(imageSpan);
             }
             org.telegram.messenger.i6.l(editable, wmVar.getEditField().getPaint().getFontMetricsInt(), false);
-            bnVar.f32269y.setDirection(1);
-            bnVar.f32269y.setDelegate(wmVar);
-            bnVar.f32269y.setTranslationY(K.f57044a.getY());
-            bnVar.f32269y.e();
+            bnVar.f32328y.setDirection(1);
+            bnVar.f32328y.setDelegate(wmVar);
+            bnVar.f32328y.setTranslationY(K.f57056a.getY());
+            bnVar.f32328y.e();
         }
         if (i10 == 11) {
             bnVar.O = editable;
@@ -45,7 +45,7 @@ public final class xm implements TextWatcher {
             bnVar.N = editable;
         }
         if (K != null) {
-            bn.P(bnVar, K.f57044a, i7);
+            bn.P(bnVar, K.f57056a, i7);
         }
         bnVar.X();
     }

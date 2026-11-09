@@ -1,30 +1,45 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import org.telegram.ui.Components.UndoView;
-public final class yk extends org.telegram.ui.Components.e10 {
-    public final an f52238j1;
+import java.util.ArrayList;
+public final class yk extends pq0 {
+    public final ArrayList f52134a;
+    public final boolean[] f52135b;
+    public final cn f52136c;
 
-    public yk(an anVar, Activity activity, org.telegram.ui.ActionBar.f2 f2Var) {
-        super(activity, f2Var);
-        this.f52238j1 = anVar;
+    public yk(cn cnVar, ArrayList arrayList, boolean[] zArr) {
+        this.f52136c = cnVar;
+        this.f52134a = arrayList;
+        this.f52135b = zArr;
     }
 
     @Override
-    public final void I0() {
-        an anVar = this.f52238j1;
-        anVar.f8();
-        UndoView undoView = anVar.M3;
-        if (undoView == null) {
-            return;
+    public final boolean T() {
+        return false;
+    }
+
+    @Override
+    public final org.telegram.messenger.jc j(int i7) {
+        return null;
+    }
+
+    @Override
+    public final void o(int i7, org.telegram.messenger.j20 j20Var, boolean z9, int i10, int i11, boolean z10) {
+        ArrayList arrayList = this.f52134a;
+        for (int size = arrayList.size() - 1; size >= 0; size--) {
+            if (!this.f52135b[size]) {
+                arrayList.remove(size);
+            }
         }
-        undoView.j(75, 0L, null);
-        anVar.getMessagesController().k4(anVar.f43848j6, "CONVERT_GIGAGROUP");
+        this.f52136c.Jb(i10, arrayList, z9, z10);
     }
 
     @Override
-    public final void J0() {
-        an anVar = this.f52238j1;
-        anVar.getMessagesController().S(anVar.getParentActivity(), anVar.f43777e, anVar, new w0(this, 21));
+    public final boolean x(int i7) {
+        return this.f52135b[i7];
+    }
+
+    @Override
+    public final int k(int i7, org.telegram.messenger.j20 j20Var) {
+        return i7;
     }
 }

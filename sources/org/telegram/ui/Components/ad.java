@@ -1,11 +1,11 @@
 package org.telegram.ui.Components;
 public final class ad implements Runnable {
-    public final int f31772a;
-    public final ChatActivityEnterView f31773b;
+    public final int f31773a;
+    public final ChatActivityEnterView f31774b;
 
     public ad(ChatActivityEnterView chatActivityEnterView, int i7) {
-        this.f31772a = i7;
-        this.f31773b = chatActivityEnterView;
+        this.f31773a = i7;
+        this.f31774b = chatActivityEnterView;
     }
 
     @Override

@@ -2,14 +2,14 @@ package fi;
 
 import android.content.Context;
 import org.telegram.messenger.sc;
-import org.telegram.ui.Components.uu0;
-import org.telegram.ui.Components.yu0;
-public final class d2 extends yu0 {
+import org.telegram.ui.Components.av0;
+import org.telegram.ui.Components.wu0;
+public final class d2 extends av0 {
     public final boolean G3;
     public final e2 H3;
 
-    public d2(e2 e2Var, Context context, int i7, org.telegram.ui.ActionBar.f6 f6Var, boolean z9) {
-        super(i7, context, f6Var);
+    public d2(e2 e2Var, Context context, int i7, org.telegram.ui.ActionBar.g6 g6Var, boolean z9) {
+        super(i7, context, g6Var);
         this.H3 = e2Var;
         this.G3 = z9;
     }
@@ -20,13 +20,13 @@ public final class d2 extends yu0 {
     }
 
     @Override
-    public final uu0[] E1(uu0[] uu0VarArr) {
-        if (uu0VarArr != null && this.G3) {
+    public final wu0[] E1(wu0[] wu0VarArr) {
+        if (wu0VarArr != null && this.G3) {
             int i7 = 0;
             while (true) {
-                if (i7 < uu0VarArr.length) {
-                    uu0 uu0Var = uu0VarArr[i7];
-                    if (uu0Var != null && uu0Var.f38739b) {
+                if (i7 < wu0VarArr.length) {
+                    wu0 wu0Var = wu0VarArr[i7];
+                    if (wu0Var != null && wu0Var.f40166b) {
                         break;
                     }
                     i7++;
@@ -36,16 +36,16 @@ public final class d2 extends yu0 {
                 }
             }
             if (i7 >= 0) {
-                int length = uu0VarArr.length;
-                uu0[] uu0VarArr2 = new uu0[length];
-                uu0VarArr2[0] = uu0VarArr[i7];
+                int length = wu0VarArr.length;
+                wu0[] wu0VarArr2 = new wu0[length];
+                wu0VarArr2[0] = wu0VarArr[i7];
                 for (int i10 = 1; i10 < length; i10++) {
-                    uu0VarArr2[i10] = uu0VarArr[i10 <= i7 ? i10 - 1 : i10];
+                    wu0VarArr2[i10] = wu0VarArr[i10 <= i7 ? i10 - 1 : i10];
                 }
-                return uu0VarArr2;
+                return wu0VarArr2;
             }
         }
-        return uu0VarArr;
+        return wu0VarArr;
     }
 
     @Override

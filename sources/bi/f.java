@@ -7,9 +7,9 @@ import android.os.Build;
 import android.view.View;
 import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.Components.gt0;
-import org.telegram.ui.Components.pj0;
-public final class f implements gt0, r0.m {
+import org.telegram.ui.Components.it0;
+import org.telegram.ui.Components.qj0;
+public final class f implements it0, r0.m {
     public final int f3839a;
     public final FrameLayout f3840b;
 
@@ -20,7 +20,7 @@ public final class f implements gt0, r0.m {
 
     @Override
     public r0.k1 S0(View view, r0.k1 k1Var) {
-        r0.h1 h1Var = k1Var.f54202a;
+        r0.h1 h1Var = k1Var.f54214a;
         Rect rect = new Rect();
         if (Build.VERSION.SDK_INT >= 30) {
             i0.b f10 = h1Var.f(527);
@@ -42,16 +42,16 @@ public final class f implements gt0, r0.m {
     public void a(Canvas canvas, RectF rectF, RecyclerView recyclerView) {
         switch (this.f3839a) {
             case 0:
-                pj0 pj0Var = (pj0) recyclerView;
-                ih.d.a(pj0Var, canvas, rectF, pj0Var, this.f3840b);
+                qj0 qj0Var = (qj0) recyclerView;
+                ih.d.a(qj0Var, canvas, rectF, qj0Var, this.f3840b);
                 return;
             case 1:
-                pj0 pj0Var2 = (pj0) recyclerView;
-                ih.d.a(pj0Var2, canvas, rectF, pj0Var2, this.f3840b);
+                qj0 qj0Var2 = (qj0) recyclerView;
+                ih.d.a(qj0Var2, canvas, rectF, qj0Var2, this.f3840b);
                 return;
             default:
-                pj0 pj0Var3 = (pj0) recyclerView;
-                ih.d.a(pj0Var3, canvas, rectF, pj0Var3, this.f3840b);
+                qj0 qj0Var3 = (qj0) recyclerView;
+                ih.d.a(qj0Var3, canvas, rectF, qj0Var3, this.f3840b);
                 return;
         }
     }

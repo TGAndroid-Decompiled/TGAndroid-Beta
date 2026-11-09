@@ -1,45 +1,10 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-public final class oo extends org.telegram.ui.Components.f70 {
-    public final TLRPC.Chat f48455x;
-    public final po f48456y;
-
-    public oo(po poVar, Context context, TLRPC.Chat chat, TLRPC.Chat chat2) {
-        super(context, chat);
-        this.f48456y = poVar;
-        this.f48455x = chat2;
-    }
-
+import android.view.View;
+import android.widget.FrameLayout;
+public final class oo extends FrameLayout {
     @Override
-    public final boolean a(boolean z9, org.telegram.ui.Components.d70 d70Var) {
-        so soVar = this.f48456y.d;
-        if (soVar.P) {
-            return false;
-        }
-        soVar.P = true;
-        e(new qf(26, this, d70Var), new vn(this, this.f48455x, z9, d70Var, 2));
-        return true;
-    }
-
-    @Override
-    public final boolean b(boolean z9, org.telegram.ui.Components.e70 e70Var) {
-        so soVar = this.f48456y.d;
-        if (soVar.O) {
-            return false;
-        }
-        soVar.O = true;
-        e(new qf(26, this, e70Var), new vn(this, this.f48455x, z9, e70Var, 1));
-        return true;
-    }
-
-    public final void e(qf qfVar, Runnable runnable) {
-        so soVar = this.f48456y.d;
-        if (!org.telegram.messenger.t3.T(soVar.f49791f)) {
-            soVar.getMessagesController().T(soVar.getParentActivity(), this.f48455x.f26956id, soVar, new ni.c(20, this, runnable), qfVar);
-        } else {
-            runnable.run();
-        }
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
     }
 }

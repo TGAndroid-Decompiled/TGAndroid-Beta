@@ -37,11 +37,11 @@ public final class nu extends fu {
         float f10 = (((i14 - i15) / 2.0f) - i11) + i13;
         float L = (g0.L(12.0f) - g0.L(1.0f)) / 2.0f;
         if (kvVar.E()) {
-            i7 = org.telegram.ui.ActionBar.k6.kl;
+            i7 = org.telegram.ui.ActionBar.l6.kl;
         } else {
-            i7 = org.telegram.ui.ActionBar.k6.jl;
+            i7 = org.telegram.ui.ActionBar.l6.jl;
         }
-        int w02 = org.telegram.ui.ActionBar.k6.w0(i7, kvVar.D);
+        int w02 = org.telegram.ui.ActionBar.l6.w0(i7, kvVar.D);
         Paint paint = this.W;
         paint.setColor(w02);
         RectF rectF = g0.P;

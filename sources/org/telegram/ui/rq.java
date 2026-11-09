@@ -1,23 +1,29 @@
 package org.telegram.ui;
+public final class rq implements Runnable {
+    public final int f49557a;
+    public final sq f49558b;
 
-import android.view.View;
-public final class rq implements View.OnClickListener {
-    public final int f49527a;
-    public final org.telegram.ui.Components.ve0 f49528b;
-
-    public rq(org.telegram.ui.Components.ve0 ve0Var, int i7) {
-        this.f49527a = i7;
-        this.f49528b = ve0Var;
+    public rq(sq sqVar, int i7) {
+        this.f49557a = i7;
+        this.f49558b = sqVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f49527a) {
+    public final void run() {
+        switch (this.f49557a) {
             case 0:
-                this.f49528b.b(true);
+                fi.w3 w3Var = this.f49558b.f36649a;
+                if (w3Var != null) {
+                    w3Var.f37556f3.O(true);
+                    return;
+                }
                 return;
             default:
-                this.f49528b.b(true);
+                fi.w3 w3Var2 = this.f49558b.f36649a;
+                if (w3Var2 != null) {
+                    w3Var2.f37556f3.O(true);
+                    return;
+                }
                 return;
         }
     }

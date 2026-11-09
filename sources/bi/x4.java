@@ -10,13 +10,13 @@ import org.telegram.messenger.z10;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.mo0;
+import org.telegram.ui.Components.no0;
 import org.telegram.ui.LaunchActivity;
-public final class x4 extends mo0 {
+public final class x4 extends no0 {
     public final k7 R2;
 
-    public x4(k7 k7Var, Context context, String str, String str2, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, null, null, str, null, false, str2, null, false, false, true, null, f6Var);
+    public x4(k7 k7Var, Context context, String str, String str2, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, null, null, str, null, false, str2, null, false, false, true, null, g6Var);
         this.R2 = k7Var;
         this.S1 = true;
     }
@@ -28,36 +28,36 @@ public final class x4 extends mo0 {
             org.telegram.ui.Components.hc k10 = k();
             if (hVar.m() == 1) {
                 long j3 = hVar.j(0);
-                if (j3 == p10.i(this.f28616a).f24489n) {
-                    org.telegram.ui.Components.cc G = k10.G(2131624190, 5000, org.telegram.messenger.g0.X2(org.telegram.messenger.id.a0(null, null, 2131748887, new Object[0])));
-                    G.f32553r = false;
-                    G.f32555t = true;
+                if (j3 == p10.i(this.f28621a).f24489n) {
+                    org.telegram.ui.Components.cc G = k10.G(2131624190, 5000, org.telegram.messenger.g0.X2(org.telegram.messenger.id.a0(null, null, 2131748886, new Object[0])));
+                    G.f32635r = false;
+                    G.f32637t = true;
                     G.j();
                 } else if (j3 < 0) {
-                    TLRPC.Chat M0 = qp.s1(this.f28616a).M0(Long.valueOf(-j3));
+                    TLRPC.Chat M0 = qp.s1(this.f28621a).M0(Long.valueOf(-j3));
                     if (tL_forumTopic != null) {
                         str = tL_forumTopic.title;
                     } else {
                         str = M0.title;
                     }
-                    org.telegram.ui.Components.cc G2 = k10.G(2131624028, 5000, org.telegram.messenger.g0.X2(org.telegram.messenger.id.a0(null, null, 2131748891, str)));
-                    G2.f32553r = false;
-                    G2.f32555t = true;
+                    org.telegram.ui.Components.cc G2 = k10.G(2131624028, 5000, org.telegram.messenger.g0.X2(org.telegram.messenger.id.a0(null, null, 2131748890, str)));
+                    G2.f32635r = false;
+                    G2.f32637t = true;
                     G2.j();
                 } else {
-                    org.telegram.ui.Components.cc G3 = k10.G(2131624028, 5000, org.telegram.messenger.g0.X2(org.telegram.messenger.id.a0(null, null, 2131748891, qp.s1(this.f28616a).a2(Long.valueOf(j3)).first_name)));
-                    G3.f32553r = false;
-                    G3.f32555t = true;
+                    org.telegram.ui.Components.cc G3 = k10.G(2131624028, 5000, org.telegram.messenger.g0.X2(org.telegram.messenger.id.a0(null, null, 2131748890, qp.s1(this.f28621a).a2(Long.valueOf(j3)).first_name)));
+                    G3.f32635r = false;
+                    G3.f32637t = true;
                     G3.j();
                 }
             } else {
                 org.telegram.ui.Components.cc Q = k10.Q(2131624028, 36, org.telegram.messenger.g0.X2(org.telegram.messenger.id.G(hVar.m(), "LinkSharedToManyChats", Integer.valueOf(hVar.m()))));
-                Q.f32553r = false;
-                Q.f32555t = true;
+                Q.f32635r = false;
+                Q.f32637t = true;
                 Q.j();
             }
             try {
-                this.f28622c.performHapticFeedback(3);
+                this.f28627c.performHapticFeedback(3);
             } catch (Exception unused) {
             }
         }
@@ -78,23 +78,23 @@ public final class x4 extends mo0 {
             ij ijVar = k7Var.f4205z2;
             if (ijVar != null) {
                 arrayList.add(ijVar);
-            } else if (k7Var.y1() instanceof TL_stars.TL_starGiftUnique) {
-                long e10 = p10.i(k7Var.f28616a).e();
+            } else if (k7Var.x1() instanceof TL_stars.TL_starGiftUnique) {
+                long e10 = p10.i(k7Var.f28621a).e();
                 TLRPC.TL_messageService tL_messageService = new TLRPC.TL_messageService();
-                tL_messageService.peer_id = qp.s1(k7Var.f28616a).z1(e10);
-                tL_messageService.from_id = qp.s1(k7Var.f28616a).z1(e10);
-                tL_messageService.date = ConnectionsManager.getInstance(k7Var.f28616a).getCurrentTime();
+                tL_messageService.peer_id = qp.s1(k7Var.f28621a).z1(e10);
+                tL_messageService.from_id = qp.s1(k7Var.f28621a).z1(e10);
+                tL_messageService.date = ConnectionsManager.getInstance(k7Var.f28621a).getCurrentTime();
                 TLRPC.TL_messageActionStarGiftUnique tL_messageActionStarGiftUnique = new TLRPC.TL_messageActionStarGiftUnique();
-                tL_messageActionStarGiftUnique.gift = (TL_stars.TL_starGiftUnique) k7Var.y1();
+                tL_messageActionStarGiftUnique.gift = (TL_stars.TL_starGiftUnique) k7Var.x1();
                 tL_messageActionStarGiftUnique.upgrade = true;
                 tL_messageService.action = tL_messageActionStarGiftUnique;
-                ij ijVar2 = new ij(k7Var.f28616a, tL_messageService, false, false);
-                ijVar2.M5();
+                ij ijVar2 = new ij(k7Var.f28621a, tL_messageService, false, false);
+                ijVar2.L5();
                 arrayList.add(ijVar2);
             } else {
                 return;
             }
-            final fi.va D = fi.va.D(launchActivity, k7Var.f28616a);
+            final fi.va D = fi.va.D(launchActivity, k7Var.f28621a);
             D.R = new z10() {
                 @Override
                 public final void a(Object obj, Object obj2, Object obj3, Object obj4) {

@@ -41,26 +41,26 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.l6;
 import org.telegram.ui.Cells.f1;
 import org.telegram.ui.Cells.j9;
 import org.telegram.ui.Cells.l1;
 import org.telegram.ui.Cells.q1;
 import org.telegram.ui.Components.bi;
-import org.telegram.ui.Components.m51;
+import org.telegram.ui.Components.n51;
 import org.telegram.ui.Components.qg;
 import org.telegram.ui.Components.r5;
-import org.telegram.ui.fr0;
-public final class b implements a4.h, b3.l, ca.d, eg.a, f3.q, bi, ia.d, SuccessContinuation, u9.d, m51, l1, q2.q, r0.q, u2.k, y2.m, s0 {
-    public static final b f53523b = new b(14);
-    public final int f53524a;
+import org.telegram.ui.hr0;
+public final class b implements a4.h, b3.l, ca.d, eg.a, f3.q, bi, ia.d, SuccessContinuation, u9.d, n51, l1, q2.q, r0.q, u2.k, y2.m, s0 {
+    public static final b f53535b = new b(14);
+    public final int f53536a;
 
     public b(int i7) {
-        this.f53524a = i7;
+        this.f53536a = i7;
     }
 
     public static MediaCodec C0(b8 b8Var) {
-        String str = ((u2.o) b8Var.f335a).f56260a;
+        String str = ((u2.o) b8Var.f335a).f56272a;
         Trace.beginSection("createCodec:" + str);
         MediaCodec createByCodecName = MediaCodec.createByCodecName(str);
         Trace.endSection();
@@ -163,17 +163,17 @@ public final class b implements a4.h, b3.l, ca.d, eg.a, f3.q, bi, ia.d, SuccessC
 
     @Override
     public void F(boolean z9, float[] fArr) {
-        k6.A0().e(z9, fArr);
+        l6.A0().e(z9, fArr);
     }
 
     @Override
     public void F0() {
-        int i7 = this.f53524a;
+        int i7 = this.f53536a;
     }
 
     @Override
     public boolean G1() {
-        switch (this.f53524a) {
+        switch (this.f53536a) {
             case 10:
                 return false;
             default:
@@ -211,16 +211,16 @@ public final class b implements a4.h, b3.l, ca.d, eg.a, f3.q, bi, ia.d, SuccessC
 
     @Override
     public void M0(Object obj) {
-        int i7 = this.f53524a;
+        int i7 = this.f53536a;
     }
 
     @Override
     public void M1(ArrayList arrayList, CharSequence charSequence, boolean z9, int i7, int i10, long j3, boolean z10, long j10) {
-        int i11 = this.f53524a;
+        int i11 = this.f53536a;
     }
 
     @Override
-    public fr0 N1() {
+    public hr0 N1() {
         return null;
     }
 
@@ -303,7 +303,7 @@ public final class b implements a4.h, b3.l, ca.d, eg.a, f3.q, bi, ia.d, SuccessC
 
     @Override
     public void Y0(TLRPC.User user) {
-        int i7 = this.f53524a;
+        int i7 = this.f53536a;
     }
 
     @Override
@@ -313,17 +313,17 @@ public final class b implements a4.h, b3.l, ca.d, eg.a, f3.q, bi, ia.d, SuccessC
 
     @Override
     public void a() {
-        synchronized (c3.b.f5262a) {
-            Object obj = c3.b.f5263b;
+        synchronized (c3.b.f5260a) {
+            Object obj = c3.b.f5261b;
             synchronized (obj) {
-                if (c3.b.f5264c) {
+                if (c3.b.f5262c) {
                     return;
                 }
                 long a10 = c3.b.a();
                 synchronized (obj) {
                     SystemClock.elapsedRealtime();
                     c3.b.d = a10;
-                    c3.b.f5264c = true;
+                    c3.b.f5262c = true;
                 }
             }
         }
@@ -372,7 +372,7 @@ public final class b implements a4.h, b3.l, ca.d, eg.a, f3.q, bi, ia.d, SuccessC
 
     @Override
     public void c0(qg qgVar) {
-        switch (this.f53524a) {
+        switch (this.f53536a) {
             case 10:
                 qgVar.run();
                 return;
@@ -389,7 +389,7 @@ public final class b implements a4.h, b3.l, ca.d, eg.a, f3.q, bi, ia.d, SuccessC
 
     @Override
     public Object e(r7 r7Var) {
-        switch (this.f53524a) {
+        switch (this.f53536a) {
             case 15:
                 return new ob.c(r7Var.H(ob.b.class));
             default:
@@ -409,7 +409,7 @@ public final class b implements a4.h, b3.l, ca.d, eg.a, f3.q, bi, ia.d, SuccessC
 
     @Override
     public boolean f0() {
-        switch (this.f53524a) {
+        switch (this.f53536a) {
             case 10:
                 return false;
             default:
@@ -489,7 +489,7 @@ public final class b implements a4.h, b3.l, ca.d, eg.a, f3.q, bi, ia.d, SuccessC
 
     @Override
     public void o1(int i7, boolean z9, boolean z10, int i10, int i11, long j3, boolean z11, boolean z12, long j10) {
-        int i12 = this.f53524a;
+        int i12 = this.f53536a;
     }
 
     @Override
@@ -509,7 +509,7 @@ public final class b implements a4.h, b3.l, ca.d, eg.a, f3.q, bi, ia.d, SuccessC
 
     @Override
     public boolean s() {
-        if (k6.A0().f32476i != null) {
+        if (l6.A0().f32573i != null) {
             return true;
         }
         return false;
@@ -522,7 +522,7 @@ public final class b implements a4.h, b3.l, ca.d, eg.a, f3.q, bi, ia.d, SuccessC
 
     @Override
     public void t0() {
-        int i7 = this.f53524a;
+        int i7 = this.f53536a;
     }
 
     @Override

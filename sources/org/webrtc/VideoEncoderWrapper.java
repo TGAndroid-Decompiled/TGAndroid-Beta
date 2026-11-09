@@ -7,7 +7,7 @@ public class VideoEncoderWrapper {
     }
 
     public static VideoEncoder.Callback createEncoderCallback(long j3) {
-        return new w(j3);
+        return new v(j3);
     }
 
     public static Integer getScalingSettingsHigh(VideoEncoder.ScalingSettings scalingSettings) {

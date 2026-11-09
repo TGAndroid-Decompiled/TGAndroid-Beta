@@ -6,8 +6,8 @@ public final class i5 extends k7 {
     public final int f4042t3 = 0;
     public final org.telegram.ui.Components.na f4043u3;
 
-    public i5(zh.g1 g1Var, Context context, int i7, long j3, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, i7, j3, f6Var, null);
+    public i5(zh.g1 g1Var, Context context, int i7, long j3, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, i7, j3, g6Var, null);
         this.f4043u3 = g1Var;
     }
 
@@ -26,14 +26,14 @@ public final class i5 extends k7 {
         switch (this.f4042t3) {
             case 1:
                 zh.g1 g1Var = (zh.g1) this.f4043u3;
-                return new org.telegram.ui.Components.hc(g1Var.f28622c, g1Var.I0);
+                return new org.telegram.ui.Components.hc(g1Var.f28627c, g1Var.I0);
             default:
                 return super.k();
         }
     }
 
-    public i5(k7 k7Var, Context context, int i7, long j3, org.telegram.ui.ActionBar.f6 f6Var, View view) {
-        super(context, i7, j3, f6Var, view);
+    public i5(k7 k7Var, Context context, int i7, long j3, org.telegram.ui.ActionBar.g6 g6Var, View view) {
+        super(context, i7, j3, g6Var, view);
         this.f4043u3 = k7Var;
     }
 }

@@ -20,15 +20,15 @@ import org.telegram.messenger.g5;
 import org.telegram.messenger.id;
 import org.telegram.messenger.p10;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.a6;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
 import org.telegram.ui.ActionBar.s6;
 import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.Components.pj0;
-public final class q0 extends pj0 implements a6 {
-    public static final o0[] j3 = {new o0(2131232688, 2131745410, new TLRPC.TL_inputMessagesFilterPhotoVideo(), 0), new o0(2131232687, 2131745413, new TLRPC.TL_inputMessagesFilterUrl(), 2), new o0(2131232686, 2131745417, new TLRPC.TL_inputMessagesFilterDocument(), 1), new o0(2131232689, 2131745408, new TLRPC.TL_inputMessagesFilterMusic(), 3), new o0(2131232691, 2131745405, new TLRPC.TL_inputMessagesFilterRoundVoice(), 5)};
+import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.Components.qj0;
+public final class q0 extends qj0 implements b6 {
+    public static final o0[] j3 = {new o0(2131232688, 2131745407, new TLRPC.TL_inputMessagesFilterPhotoVideo(), 0), new o0(2131232687, 2131745410, new TLRPC.TL_inputMessagesFilterUrl(), 2), new o0(2131232686, 2131745414, new TLRPC.TL_inputMessagesFilterDocument(), 1), new o0(2131232689, 2131745405, new TLRPC.TL_inputMessagesFilterMusic(), 3), new o0(2131232691, 2131745402, new TLRPC.TL_inputMessagesFilterRoundVoice(), 5)};
     public static final Pattern f16885k3 = Pattern.compile("20[0-9]{1,2}");
     public static final Pattern f16886l3 = Pattern.compile("(\\w{3,}) ([0-9]{0,4})");
     public static final Pattern f16887m3 = Pattern.compile("([0-9]{0,4}) (\\w{2,})");
@@ -41,8 +41,8 @@ public final class q0 extends pj0 implements a6 {
     public boolean f16894h3;
     public final l0 f16895i3;
 
-    public q0(Context context, f6 f6Var) {
-        super(context, f6Var);
+    public q0(Context context, g6 g6Var) {
+        super(context, g6Var);
         this.f16891e3 = new ArrayList();
         this.f16892f3 = new ArrayList();
         this.f16894h3 = true;
@@ -57,7 +57,7 @@ public final class q0 extends pj0 implements a6 {
         setWillNotDraw(false);
         setHideIfEmpty(false);
         setSelectorRadius(org.telegram.messenger.g0.L(28.0f));
-        r6.m(this, 20, k6.f27944i6, f6Var);
+        s6.l(this, 20, l6.f27957i6, g6Var);
     }
 
     public static void A1(int i7, int i10, ArrayList arrayList) {
@@ -79,8 +79,8 @@ public final class q0 extends pj0 implements a6 {
         if (str != null) {
             String trim = str.trim();
             if (trim.length() >= 3) {
-                if (!id.M0(2131745711, null).toLowerCase().startsWith(trim) && !"today".startsWith(trim)) {
-                    if (!id.M0(2131745710, null).toLowerCase().startsWith(trim) && !"yesterday".startsWith(trim)) {
+                if (!id.M0(2131745708, null).toLowerCase().startsWith(trim) && !"today".startsWith(trim)) {
+                    if (!id.M0(2131745707, null).toLowerCase().startsWith(trim) && !"yesterday".startsWith(trim)) {
                         Calendar calendar = Calendar.getInstance();
                         int i7 = -1;
                         if (trim.length() > 3) {
@@ -238,7 +238,7 @@ public final class q0 extends pj0 implements a6 {
                     int i21 = calendar7.get(5);
                     calendar7.set(i19, i20, i21, 0, 0, 0);
                     calendar7.set(i19, i20, i21 + 1, 0, 0, 0);
-                    arrayList.add(new m0(calendar7.getTimeInMillis() - 86400000, id.M0(2131745710, null), calendar7.getTimeInMillis() - 86400001));
+                    arrayList.add(new m0(calendar7.getTimeInMillis() - 86400000, id.M0(2131745707, null), calendar7.getTimeInMillis() - 86400001));
                     return;
                 }
                 Calendar calendar8 = Calendar.getInstance();
@@ -248,13 +248,13 @@ public final class q0 extends pj0 implements a6 {
                 calendar8.set(i22, i23, i24, 0, 0, 0);
                 long timeInMillis8 = calendar8.getTimeInMillis();
                 calendar8.set(i22, i23, i24 + 1, 0, 0, 0);
-                arrayList.add(new m0(timeInMillis8, id.M0(2131745711, null), calendar8.getTimeInMillis() - 1));
+                arrayList.add(new m0(timeInMillis8, id.M0(2131745708, null), calendar8.getTimeInMillis() - 1));
             }
         }
     }
 
     public static int C1(String str) {
-        String[] strArr = {id.M0(2131749087, null).toLowerCase(), id.M0(2131750830, null).toLowerCase(), id.M0(2131748684, null).toLowerCase(), id.M0(2131754173, null).toLowerCase(), id.M0(2131748663, null).toLowerCase(), id.M0(2131749065, null).toLowerCase(), id.M0(2131749067, null).toLowerCase(), id.M0(2131753895, null).toLowerCase(), id.M0(2131745568, null).toLowerCase(), id.M0(2131747831, null).toLowerCase(), id.M0(2131747836, null).toLowerCase(), id.M0(2131751606, null).toLowerCase()};
+        String[] strArr = {id.M0(2131749086, null).toLowerCase(), id.M0(2131750829, null).toLowerCase(), id.M0(2131748683, null).toLowerCase(), id.M0(2131754173, null).toLowerCase(), id.M0(2131748662, null).toLowerCase(), id.M0(2131749064, null).toLowerCase(), id.M0(2131749066, null).toLowerCase(), id.M0(2131753895, null).toLowerCase(), id.M0(2131745565, null).toLowerCase(), id.M0(2131747830, null).toLowerCase(), id.M0(2131747835, null).toLowerCase(), id.M0(2131751605, null).toLowerCase()};
         String[] strArr2 = new String[12];
         Calendar calendar = Calendar.getInstance();
         for (int i7 = 1; i7 <= 12; i7++) {
@@ -311,7 +311,7 @@ public final class q0 extends pj0 implements a6 {
                 if (obj instanceof TLRPC.User) {
                     TLRPC.User user = (TLRPC.User) obj;
                     if (p10.i(p10.f24470s0).f().f27105id == user.f27105id) {
-                        m10 = id.M0(2131745904, null);
+                        m10 = id.M0(2131745901, null);
                     } else {
                         m10 = g5.m(10, user.first_name, user.last_name);
                     }
@@ -344,16 +344,16 @@ public final class q0 extends pj0 implements a6 {
         if (getAdapter() != null) {
             ca.i iVar = new ca.i(3, getAdapter(), false);
             v4.o.c(this.f16895i3, true).b(iVar);
-            if (!arrayList4.isEmpty() && iVar.f6015b) {
+            if (!arrayList4.isEmpty() && iVar.f6013b) {
                 this.f16893g3.h1(0, 0);
             }
         }
     }
 
-    public ArrayList<t6> getThemeDescriptions() {
-        ArrayList<t6> arrayList = new ArrayList<>();
-        arrayList.add(new t6(this, 0, (Class[]) null, (Paint) null, (Drawable[]) null, (s6) null, k6.f27872e7));
-        arrayList.add(new t6(this, 0, (Class[]) null, (Paint) null, (Drawable[]) null, (s6) null, k6.f27891f7));
+    public ArrayList<u6> getThemeDescriptions() {
+        ArrayList<u6> arrayList = new ArrayList<>();
+        arrayList.add(new u6(this, 0, (Class[]) null, (Paint) null, (Drawable[]) null, (t6) null, l6.f27885e7));
+        arrayList.add(new u6(this, 0, (Class[]) null, (Paint) null, (Drawable[]) null, (t6) null, l6.f27904f7));
         return arrayList;
     }
 
@@ -361,7 +361,7 @@ public final class q0 extends pj0 implements a6 {
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (this.f16894h3) {
-            canvas.drawRect(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), k6.f27975k0);
+            canvas.drawRect(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), l6.f27988k0);
         }
     }
 

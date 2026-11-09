@@ -102,7 +102,7 @@ public abstract class d4 {
     public static boolean g(TLRPC.WebPage webPage, TL_iv.PageBlock pageBlock) {
         TLRPC.Document a10;
         if ((pageBlock instanceof TL_iv.pageBlockVideo) && (a10 = a(webPage, ((TL_iv.pageBlockVideo) pageBlock).video_id)) != null) {
-            return org.telegram.messenger.ij.L4(a10);
+            return org.telegram.messenger.ij.K4(a10);
         }
         return false;
     }

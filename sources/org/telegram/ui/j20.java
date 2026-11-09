@@ -1,59 +1,71 @@
 package org.telegram.ui;
 
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.os.Build;
-import android.widget.FrameLayout;
-public final class j20 extends FrameLayout {
-    public final RectF f46818a;
-    public final RectF f46819b;
-    public final RectF f46820c;
-    public final Paint d;
-    public final c40 f46821e;
+import android.view.View;
+public final class j20 extends org.telegram.ui.Components.lt {
+    public final e40 V;
 
-    public j20(c40 c40Var, LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.f46821e = c40Var;
-        this.f46818a = new RectF();
-        this.f46819b = new RectF();
-        this.f46820c = new RectF();
-        this.d = new Paint(1);
+    public j20(e40 e40Var, LaunchActivity launchActivity, k30 k30Var, org.telegram.ui.ActionBar.f2 f2Var, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(launchActivity, k30Var, f2Var, 5, true, g6Var);
+        this.V = e40Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        c40 c40Var = this.f46821e;
-        k20 k20Var = c40Var.f44642w1;
-        float y10 = k20Var.getY() + k20Var.getMeasuredHeight();
-        te.c cVar = c40Var.s5;
-        RectF rectF = this.f46818a;
-        rectF.set(0.0f, y10 - cVar.f55493f, getMeasuredWidth(), getMeasuredHeight());
-        RectF rectF2 = this.f46819b;
-        rectF2.set(0.0f, k20Var.getY() + k20Var.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
-        float y11 = k20Var.getY() + k20Var.getMeasuredHeight();
-        RectF rectF3 = this.f46820c;
-        rectF3.set(0.0f, (k20Var.getY() + k20Var.getMeasuredHeight()) - cVar.f55493f, getMeasuredWidth(), y11);
-        int i7 = Build.VERSION.SDK_INT;
-        Paint paint = this.d;
-        if (i7 >= 29 && c40Var.H4 != null && canvas.isHardwareAccelerated()) {
-            paint.setColor(-14933463);
-            canvas.drawRect(rectF, paint);
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        if (view == getEditText()) {
             canvas.save();
-            canvas.clipRect(rectF);
-            canvas.translate(-getX(), -getY());
-            float f10 = c40Var.I4;
-            canvas.scale(f10, f10);
-            canvas.drawRenderNode(c40Var.H4);
+            e40 e40Var = this.V;
+            e40Var.f45290y1.getEditText().setTranslationY(view.getMeasuredHeight() - e40Var.s5.f55505f);
+            boolean drawChild = super.drawChild(canvas, view, j3);
             canvas.restore();
-            paint.setColor(234881023);
-            canvas.drawRect(rectF2, paint);
-        } else {
-            paint.setColor(-14933463);
-            canvas.drawRect(rectF3, paint);
-            paint.setColor(i0.a.k(234881023, -14933463));
-            canvas.drawRect(rectF2, paint);
+            return drawChild;
         }
-        super.dispatchDraw(canvas);
+        return super.drawChild(canvas, view, j3);
+    }
+
+    @Override
+    public final void f() {
+        super.f();
+        org.telegram.ui.Components.hy emojiView = getEmojiView();
+        if (emojiView != null) {
+            emojiView.f34476w0 = false;
+            emojiView.f34482x2 = false;
+            emojiView.setShouldDrawBackground(false);
+            emojiView.setBottomInset(this.V.f28624b.getPaddingBottom());
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, i10);
+        te.c cVar = this.V.s5;
+        if (cVar.f55505f == 0.0f) {
+            cVar.c(getMeasuredHeight());
+        } else {
+            cVar.a(getMeasuredHeight());
+        }
+    }
+
+    @Override
+    public final void p() {
+        int i7;
+        rh.h hVar = this.V.f45271t3;
+        if (this.f35844e) {
+            i7 = Math.max(0, getEmojiPadding());
+        } else if (this.N) {
+            i7 = Math.max(0, getKeyboardHeight());
+        } else {
+            i7 = 0;
+        }
+        if (i7 > 0) {
+            hVar.g(i7);
+        } else {
+            hVar.i(false);
+        }
+    }
+
+    @Override
+    public final void y() {
+        this.V.f28624b.requestApplyInsets();
     }
 }

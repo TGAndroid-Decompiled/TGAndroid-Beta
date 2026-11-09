@@ -1,11 +1,97 @@
 package di;
 
 import android.content.Context;
-public final class f9 extends w {
-    public final p9 R0;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class f9 extends v {
+    public final q9 d;
 
-    public f9(p9 p9Var, int i7, Context context, p9 p9Var2, b bVar) {
-        super(i7, context, p9Var2, bVar);
-        this.R0 = p9Var;
+    public f9(Context context, q9 q9Var) {
+        super(context);
+        this.d = q9Var;
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        float f10;
+        q9 q9Var = this.d;
+        j4 currentPeerView = q9Var.f9624n0.getCurrentPeerView();
+        t5 t5Var = q9Var.f9645x;
+        if (t5Var != null && currentPeerView != null) {
+            j3 j3Var = currentPeerView.L0;
+            t5Var.setOffset(q9Var.f9606e0);
+            if (q9Var.f9645x.f9788f == 1.0f) {
+                q9Var.f9624n0.setVisibility(4);
+            } else {
+                q9Var.f9624n0.setVisibility(0);
+            }
+            q9Var.f9624n0.B();
+            float top = j3Var.getTop() + currentPeerView.getTop();
+            float f11 = q9Var.f9645x.f9788f;
+            getMeasuredHeight();
+            getMeasuredHeight();
+            if (j3Var.getMeasuredHeight() > 0) {
+                q9Var.f9628p1 = j3Var.getMeasuredHeight();
+            }
+            float T1 = org.telegram.messenger.g0.T1(1.0f, q9Var.f9645x.f9789n / q9Var.f9628p1, f11);
+            q9Var.f9624n0.setPivotY(top);
+            q9Var.f9624n0.setPivotX(getMeasuredWidth() / 2.0f);
+            q9Var.f9624n0.setScaleX(T1);
+            q9Var.f9624n0.setScaleY(T1);
+            currentPeerView.E2 = true;
+            if (q9Var.f9606e0 == 0.0f) {
+                currentPeerView.V0(0.0f, 0.0f, null);
+            } else {
+                currentPeerView.V0(f11, T1, q9Var.f9645x.getCrossfadeToImage());
+            }
+            currentPeerView.invalidate();
+            currentPeerView.f9185h1.f3369b = (int) org.telegram.messenger.g0.T1(10.0f, 6.0f / f10, q9Var.f9645x.f9788f);
+            j3Var.invalidateOutline();
+            q9Var.f9624n0.setTranslationY((q9Var.f9645x.f9785b - top) * f11);
+        }
+        if (currentPeerView != null) {
+            q9Var.f9602c1.setTranslationY(((currentPeerView.L0.getY() + currentPeerView.getY()) - q9Var.f9602c1.getTop()) - org.telegram.messenger.g0.L(4.0f));
+        }
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        int i11;
+        int size = View.MeasureSpec.getSize(i10);
+        q9 q9Var = this.d;
+        if (!q9Var.f9597b || q9Var.f9600c) {
+            View rootView = getRootView();
+            Rect rect = org.telegram.messenger.g0.Q;
+            getWindowVisibleDisplayFrame(rect);
+            int i12 = 0;
+            if (rect.bottom != 0 || rect.top != 0) {
+                int height = rootView.getHeight();
+                if (rect.top != 0) {
+                    i11 = org.telegram.messenger.g0.f22557m;
+                } else {
+                    i11 = 0;
+                }
+                i12 = Math.max(0, ((height - i11) - org.telegram.messenger.g0.q1(rootView)) - (rect.bottom - rect.top));
+            }
+            q9Var.h(i12);
+            size += q9Var.f9627p0;
+        }
+        int size2 = View.MeasureSpec.getSize(i7);
+        int i13 = (int) ((size2 * 16.0f) / 9.0f);
+        if (size > i13) {
+            q9Var.f9624n0.getLayoutParams().width = -1;
+            size = i13;
+        } else {
+            int i14 = (int) ((size / 16.0f) * 9.0f);
+            q9Var.f9624n0.getLayoutParams().width = i14;
+            size2 = i14;
+        }
+        q9Var.f9648y0.getLayoutParams().height = size + 1;
+        q9Var.f9648y0.getLayoutParams().width = size2;
+        ((FrameLayout.LayoutParams) q9Var.f9648y0.getLayoutParams()).topMargin = org.telegram.messenger.g0.f22557m;
+        super.onMeasure(i7, i10);
     }
 }

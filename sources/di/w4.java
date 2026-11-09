@@ -1,31 +1,36 @@
 package di;
 
+import android.content.Context;
 import android.text.TextUtils;
-import j$.util.Objects;
-public final class w4 {
-    public boolean f9901a = true;
-    public boolean f9902b;
-    public String f9903c;
+import org.telegram.ui.Components.fl0;
+public final class w4 extends fl0 {
+    public z0 f9896f;
+    public final l5 h;
 
-    public final boolean equals(Object obj) {
-        boolean z9;
-        if (this != obj) {
-            if (obj != null && w4.class == obj.getClass()) {
-                w4 w4Var = (w4) obj;
-                if ((TextUtils.isEmpty(this.f9903c) && TextUtils.isEmpty(w4Var.f9903c)) || Objects.equals(this.f9903c, w4Var.f9903c)) {
-                    z9 = true;
-                } else {
-                    z9 = false;
-                }
-                if (this.f9901a != w4Var.f9901a || this.f9902b != w4Var.f9902b || !z9) {
-                }
-            }
-            return false;
-        }
-        return true;
+    public w4(l5 l5Var, Context context, b bVar) {
+        super(context, 13.0f, bVar);
+        this.h = l5Var;
     }
 
-    public final int hashCode() {
-        return Objects.hash(Boolean.valueOf(this.f9901a), Boolean.valueOf(this.f9902b), this.f9903c);
+    @Override
+    public final void a(String str) {
+        z0 z0Var = this.f9896f;
+        if (z0Var != null) {
+            org.telegram.messenger.g0.r(z0Var);
+        }
+        this.f9896f = new z0(5, this, str);
+        if (!TextUtils.isEmpty(str)) {
+            org.telegram.messenger.g0.i3(this.f9896f, 300L);
+        } else {
+            this.f9896f.run();
+        }
+        if (this.f9896f != null) {
+            l5 l5Var = this.h;
+            if (!l5Var.Q) {
+                l5Var.Q = true;
+                l5Var.f9332x.E();
+                l5Var.f9333y.h1(0, -l5Var.f9329r.getPaddingTop());
+            }
+        }
     }
 }

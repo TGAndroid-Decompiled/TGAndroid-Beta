@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import kotlin.jvm.internal.j;
 public final class c {
-    public static final c f58667a = new Object();
+    public static final c f58676a = new Object();
 
     public static ArrayList a(Context context) {
         ActivityManager activityManager;
@@ -56,12 +56,12 @@ public final class c {
             ?? obj4 = new Object();
             String str2 = runningAppProcessInfo.processName;
             if (str2 != null) {
-                obj4.f8322a = str2;
-                obj4.f8323b = runningAppProcessInfo.pid;
-                obj4.f8324c = runningAppProcessInfo.importance;
-                obj4.f8325e = (byte) (((byte) (obj4.f8325e | 1)) | 2);
+                obj4.f8320a = str2;
+                obj4.f8321b = runningAppProcessInfo.pid;
+                obj4.f8322c = runningAppProcessInfo.importance;
+                obj4.f8323e = (byte) (((byte) (obj4.f8323e | 1)) | 2);
                 obj4.d = j.a(str2, str);
-                obj4.f8325e = (byte) (obj4.f8325e | 4);
+                obj4.f8323e = (byte) (obj4.f8323e | 4);
                 arrayList3.add(obj4.a());
             } else {
                 throw new NullPointerException("Null processName");
@@ -82,7 +82,7 @@ public final class c {
             if (i7 < size) {
                 obj = a10.get(i7);
                 i7++;
-                if (((e1) ((j2) obj)).f8338b == myPid) {
+                if (((e1) ((j2) obj)).f8336b == myPid) {
                     break;
                 }
             } else {
@@ -101,11 +101,11 @@ public final class c {
             }
             j.e(processName, "processName");
             ?? obj2 = new Object();
-            obj2.f8322a = processName;
-            obj2.f8323b = myPid;
-            obj2.f8324c = 0;
+            obj2.f8320a = processName;
+            obj2.f8321b = myPid;
+            obj2.f8322c = 0;
             obj2.d = false;
-            obj2.f8325e = (byte) (((byte) (((byte) (obj2.f8325e | 1)) | 2)) | 4);
+            obj2.f8323e = (byte) (((byte) (((byte) (obj2.f8323e | 1)) | 2)) | 4);
             return obj2.a();
         }
         return j2Var;

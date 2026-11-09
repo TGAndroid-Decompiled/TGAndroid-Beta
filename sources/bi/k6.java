@@ -16,8 +16,8 @@ import org.telegram.messenger.v10;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.b30;
-import org.telegram.ui.Components.tx0;
+import org.telegram.ui.Components.c30;
+import org.telegram.ui.Components.ux0;
 public final class k6 {
     public final TL_stars.TL_starGiftUnique f4147a;
     public final Context f4148b;
@@ -25,9 +25,9 @@ public final class k6 {
     public final long d;
     public final String f4150e;
     public final boolean f4151f;
-    public final org.telegram.ui.ActionBar.f6 f4152g;
+    public final org.telegram.ui.ActionBar.g6 f4152g;
     public final org.telegram.ui.ActionBar.u1 h;
-    public final b30 f4153i;
+    public final c30 f4153i;
     public final TextView f4154j;
     public c f4155k;
     public TextView f4156l;
@@ -38,7 +38,7 @@ public final class k6 {
     public cg.b f4161q;
     public fi.m3 f4162r;
 
-    public k6(Context context, org.telegram.ui.ActionBar.f6 f6Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, h6 h6Var, int i7, long j3, String str, boolean z9, v10 v10Var) {
+    public k6(Context context, org.telegram.ui.ActionBar.g6 g6Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, h6 h6Var, int i7, long j3, String str, boolean z9, v10 v10Var) {
         TLObject M0;
         HashMap hashMap = new HashMap();
         this.f4159o = hashMap;
@@ -50,7 +50,7 @@ public final class k6 {
         cg.b bVar = h6Var.f3997a;
         this.f4161q = bVar;
         hashMap.put(bVar, h6Var);
-        this.f4152g = f6Var;
+        this.f4152g = g6Var;
         this.f4150e = str;
         boolean z10 = tL_starGiftUnique.resale_ton_only;
         this.f4151f = !z10;
@@ -63,45 +63,45 @@ public final class k6 {
         j6 j6Var = new j6(this, context);
         j6Var.addView(f10, c8.ha.c(-2.0f, -1));
         if (!z10) {
-            b30 b30Var = new b30(context, f6Var);
-            this.f4153i = b30Var;
+            c30 c30Var = new c30(context, g6Var);
+            this.f4153i = c30Var;
             ArrayList arrayList = new ArrayList();
-            arrayList.add(org.telegram.messenger.id.M0(2131750280, null));
             arrayList.add(org.telegram.messenger.id.M0(2131750279, null));
-            b30Var.b(arrayList, new w0(this, 2));
-            f10.addView(b30Var, c8.ha.t(-2, -2, 1, 18, 0, 18, 12));
+            arrayList.add(org.telegram.messenger.id.M0(2131750278, null));
+            c30Var.b(arrayList, new w0(this, 2));
+            f10.addView(c30Var, c8.ha.t(-2, -2, 1, 18, 0, 18, 12));
         } else {
             this.f4153i = null;
             TextView textView = new TextView(context);
-            org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28244y6, f6Var);
-            jg.g.v(textView, 1, 14.0f, null, 2131750278);
+            org.telegram.ui.ActionBar.s6.U(textView, org.telegram.ui.ActionBar.l6.f28257y6, g6Var);
+            jg.g.v(textView, 1, 14.0f, null, 2131750277);
             textView.setGravity(17);
             f10.addView(textView, c8.ha.t(-2, -2, 17, 24, 4, 24, 4));
         }
         f10.addView(new f6(context, tL_starGiftUnique, M0), c8.ha.t(-1, -2, 48, 0, -4, 0, 0));
         TextView textView2 = new TextView(context);
         this.f4154j = textView2;
-        org.telegram.ui.ActionBar.r6.V(textView2, org.telegram.ui.ActionBar.k6.f27960j5, f6Var);
+        org.telegram.ui.ActionBar.s6.U(textView2, org.telegram.ui.ActionBar.l6.f27973j5, g6Var);
         textView2.setTextSize(1, 16.0f);
         f10.addView(textView2, c8.ha.t(-1, -2, 48, 24, 4, 24, 4));
         if (z9) {
-            tx0 tx0Var = new tx0(context, f6Var);
-            k7.k1(tx0Var, ea.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeModel.class));
-            k7.k1(tx0Var, ea.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeBackdrop.class));
-            k7.k1(tx0Var, ea.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributePattern.class));
+            ux0 ux0Var = new ux0(context, g6Var);
+            k7.j1(ux0Var, ea.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeModel.class));
+            k7.j1(ux0Var, ea.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeBackdrop.class));
+            k7.j1(ux0Var, ea.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributePattern.class));
             if (!TextUtils.isEmpty(tL_starGiftUnique.slug) && (tL_starGiftUnique.flags & 256) != 0) {
                 org.telegram.messenger.r1 i10 = org.telegram.messenger.r1.i();
                 long j10 = tL_starGiftUnique.value_amount;
                 String str2 = tL_starGiftUnique.value_currency;
                 int h = org.telegram.messenger.r1.i().h(tL_starGiftUnique.value_currency);
                 i10.getClass();
-                tx0Var.c(org.telegram.messenger.id.M0(2131749592, null), rf.b.i("~", org.telegram.messenger.r1.g(str2, h, j10, true)), null, null);
+                ux0Var.c(org.telegram.messenger.id.M0(2131749591, null), rf.b.i("~", org.telegram.messenger.r1.g(str2, h, j10, true)), null, null);
             }
-            f10.addView(tx0Var, c8.ha.t(-1, -2, 48, 23, 16, 23, 4));
+            f10.addView(ux0Var, c8.ha.t(-1, -2, 48, 23, 16, 23, 4));
         }
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, f6Var);
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, g6Var);
         alertDialog$Builder.o(j6Var);
-        alertDialog$Builder.k("_", new i6(this, i7, context, f6Var, v10Var, 0));
+        alertDialog$Builder.k("_", new i6(this, i7, context, g6Var, v10Var, 0));
         alertDialog$Builder.h(org.telegram.messenger.id.M0(2131752589, null), null);
         this.h = alertDialog$Builder.f27296a;
     }
@@ -144,21 +144,21 @@ public final class k6 {
             cVar.f3547e = bVar;
             cVar.a();
         }
-        cg.b bVar2 = cg.b.f6163b;
-        b30 b30Var = this.f4153i;
-        if (b30Var != null) {
+        cg.b bVar2 = cg.b.f6161b;
+        c30 c30Var = this.f4153i;
+        if (c30Var != null) {
             if (bVar == bVar2) {
                 i7 = 1;
             } else {
                 i7 = 0;
             }
-            b30Var.a(i7, z9);
+            c30Var.a(i7, z9);
         }
         if (bVar == bVar2 && (m3Var = this.f4162r) != null && m3Var.V) {
             m3Var.f(true);
         }
         c cVar2 = this.f4155k;
-        cg.b bVar3 = cg.b.f6162a;
+        cg.b bVar3 = cg.b.f6160a;
         if (cVar2 != null) {
             if (bVar == bVar3) {
                 cVar2.setOnClickListener(new ah.d(this, 9));
@@ -198,13 +198,13 @@ public final class k6 {
                 TextView textView3 = this.f4156l;
                 Object[] objArr = new Object[1];
                 objArr[c10] = aVar.d();
-                textView3.setText(dd.V0(org.telegram.messenger.id.a0(null, null, 2131750283, objArr), true));
+                textView3.setText(dd.V0(org.telegram.messenger.id.a0(null, null, 2131750282, objArr), true));
                 if (z12) {
                     String d = aVar.d();
                     Object[] objArr2 = new Object[2];
                     objArr2[c10] = d;
                     objArr2[1] = str;
-                    a02 = org.telegram.messenger.id.a0(null, null, 2131750275, objArr2);
+                    a02 = org.telegram.messenger.id.a0(null, null, 2131750274, objArr2);
                 } else {
                     String d2 = aVar.d();
                     String t6 = org.telegram.messenger.m5.t(j3);
@@ -212,7 +212,7 @@ public final class k6 {
                     objArr3[c10] = d2;
                     objArr3[1] = str;
                     objArr3[2] = t6;
-                    a02 = org.telegram.messenger.id.a0(null, null, 2131750271, objArr3);
+                    a02 = org.telegram.messenger.id.a0(null, null, 2131750270, objArr3);
                 }
                 textView.setText(org.telegram.messenger.g0.X2(a02));
                 return;
@@ -240,7 +240,7 @@ public final class k6 {
             m3Var.r(true);
             m3Var.K = Layout.Alignment.ALIGN_NORMAL;
             m3Var.d = 5000L;
-            m3Var.u(org.telegram.messenger.id.M0(2131750277, null));
+            m3Var.u(org.telegram.messenger.id.M0(2131750276, null));
             m3Var.w();
             this.f4162r = m3Var;
             m3Var.setPadding(org.telegram.messenger.g0.L(7.33f), 0, org.telegram.messenger.g0.L(7.33f), 0);

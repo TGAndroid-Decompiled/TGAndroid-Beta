@@ -22,9 +22,9 @@ public final class o4 implements org.telegram.ui.ActionBar.r1 {
                 h.d();
                 TL_stars.updateStarGiftPrice updatestargiftprice = new TL_stars.updateStarGiftPrice();
                 k7 k7Var = this.f4456b;
-                updatestargiftprice.stargift = k7Var.B1();
+                updatestargiftprice.stargift = k7Var.A1();
                 updatestargiftprice.resell_amount = TL_stars.StarsAmount.ofStars(0L);
-                ConnectionsManager.getInstance(k7Var.f28616a).sendRequest(updatestargiftprice, new f2(k7Var, h, this.f4457c, 1));
+                ConnectionsManager.getInstance(k7Var.f28621a).sendRequest(updatestargiftprice, new f2(k7Var, h, this.f4457c, 1));
                 return;
             default:
                 Context context = this.f4456b.getContext();

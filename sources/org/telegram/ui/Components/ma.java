@@ -1,25 +1,25 @@
 package org.telegram.ui.Components;
 public final class ma {
-    public boolean f35950a;
-    public int f35951b;
-    public boolean f35952c;
+    public boolean f36038a;
+    public int f36039b;
+    public boolean f36040c;
     public boolean d;
-    public boolean f35953e;
-    public int f35954f;
-    public org.telegram.ui.ActionBar.f6 f35955g;
+    public boolean f36041e;
+    public int f36042f;
+    public org.telegram.ui.ActionBar.g6 f36043g;
 
     public ma(ma maVar) {
-        this.f35950a = maVar.f35950a;
-        this.f35951b = maVar.f35951b;
-        this.f35952c = maVar.f35952c;
+        this.f36038a = maVar.f36038a;
+        this.f36039b = maVar.f36039b;
+        this.f36040c = maVar.f36040c;
         this.d = maVar.d;
-        this.f35953e = maVar.f35953e;
-        this.f35954f = maVar.f35954f;
-        this.f35955g = maVar.f35955g;
+        this.f36041e = maVar.f36041e;
+        this.f36042f = maVar.f36042f;
+        this.f36043g = maVar.f36043g;
     }
 
     public ma() {
-        this.f35951b = 1;
-        this.f35954f = 1;
+        this.f36039b = 1;
+        this.f36042f = 1;
     }
 }

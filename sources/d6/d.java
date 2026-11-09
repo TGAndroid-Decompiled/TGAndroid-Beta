@@ -6,56 +6,56 @@ import java.util.Set;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Semaphore;
 public final class d {
-    public z1.a f8195a;
-    public boolean f8196b = false;
-    public boolean f8197c = false;
+    public z1.a f8193a;
+    public boolean f8194b = false;
+    public boolean f8195c = false;
     public boolean d = true;
-    public boolean f8198e = false;
-    public Executor f8199f;
-    public volatile a2.a f8200g;
+    public boolean f8196e = false;
+    public Executor f8197f;
+    public volatile a2.a f8198g;
     public volatile a2.a h;
-    public final Semaphore f8201i;
-    public final Set f8202j;
+    public final Semaphore f8199i;
+    public final Set f8200j;
 
     public d(SignInHubActivity signInHubActivity, Set set) {
         signInHubActivity.getApplicationContext();
-        this.f8201i = new Semaphore(0);
-        this.f8202j = set;
+        this.f8199i = new Semaphore(0);
+        this.f8200j = set;
     }
 
     public final void a() {
-        if (this.f8200g != null) {
-            boolean z9 = this.f8196b;
+        if (this.f8198g != null) {
+            boolean z9 = this.f8194b;
             if (!z9) {
                 if (z9) {
                     c();
                 } else {
-                    this.f8198e = true;
+                    this.f8196e = true;
                 }
             }
             if (this.h != null) {
-                this.f8200g.getClass();
-                this.f8200g = null;
+                this.f8198g.getClass();
+                this.f8198g = null;
                 return;
             }
-            this.f8200g.getClass();
-            a2.a aVar = this.f8200g;
+            this.f8198g.getClass();
+            a2.a aVar = this.f8198g;
             aVar.f52c.set(true);
             if (aVar.f50a.cancel(false)) {
-                this.h = this.f8200g;
+                this.h = this.f8198g;
             }
-            this.f8200g = null;
+            this.f8198g = null;
         }
     }
 
     public final void b() {
-        if (this.h == null && this.f8200g != null) {
-            this.f8200g.getClass();
-            if (this.f8199f == null) {
-                this.f8199f = AsyncTask.THREAD_POOL_EXECUTOR;
+        if (this.h == null && this.f8198g != null) {
+            this.f8198g.getClass();
+            if (this.f8197f == null) {
+                this.f8197f = AsyncTask.THREAD_POOL_EXECUTOR;
             }
-            a2.a aVar = this.f8200g;
-            Executor executor = this.f8199f;
+            a2.a aVar = this.f8198g;
+            Executor executor = this.f8197f;
             if (aVar.f51b != 1) {
                 int c10 = p1.g.c(aVar.f51b);
                 if (c10 != 1) {
@@ -73,7 +73,7 @@ public final class d {
 
     public final void c() {
         a();
-        this.f8200g = new a2.a(this);
+        this.f8198g = new a2.a(this);
         b();
     }
 

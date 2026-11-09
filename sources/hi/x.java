@@ -12,11 +12,11 @@ import java.util.ArrayList;
 import org.telegram.messenger.qs;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.oj0;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.s6;
+import org.telegram.ui.Components.pj0;
 import org.telegram.ui.Components.wp;
-public final class x extends oj0 {
+public final class x extends pj0 {
     public ArrayList f15026c;
     public ArrayList d;
     public ArrayList f15027e;
@@ -54,12 +54,12 @@ public final class x extends oj0 {
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        w wVar = (w) d1Var.f57044a;
+        w wVar = (w) d1Var.f57056a;
         String str = (String) this.f15026c.get(i7);
         if (((Boolean) this.f15027e.get(i7)).booleanValue()) {
             wp wpVar = new wp(2131231942, 0);
-            wpVar.a(k6.A6);
-            wpVar.f40019n = 1;
+            wpVar.a(l6.A6);
+            wpVar.f40119n = 1;
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
             spannableStringBuilder.append((CharSequence) " *");
             spannableStringBuilder.setSpan(wpVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
@@ -81,8 +81,8 @@ public final class x extends oj0 {
         linearLayout.f15011b = mdVar;
         qs.i(mdVar);
         mdVar.setTextSize(1, 16.0f);
-        int i10 = k6.G6;
-        r6.V(mdVar, i10, null);
+        int i10 = l6.G6;
+        s6.U(mdVar, i10, null);
         mdVar.setTag(Integer.valueOf(i10));
         mdVar.setMaxLines(2);
         mdVar.setEllipsize(TextUtils.TruncateAt.END);
@@ -90,8 +90,8 @@ public final class x extends oj0 {
         TextView textView = new TextView(context);
         linearLayout.f15010a = textView;
         textView.setTextSize(1, 14.0f);
-        int i11 = k6.f28244y6;
-        r6.V(textView, i11, null);
+        int i11 = l6.f28257y6;
+        s6.U(textView, i11, null);
         textView.setTag(Integer.valueOf(i11));
         linearLayout.addView(textView, ha.p(-2, -2, 0.0f, 16));
         linearLayout.setLayoutParams(new v4.o0(-1, -2));

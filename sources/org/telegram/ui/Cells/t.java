@@ -6,12 +6,12 @@ import java.util.Arrays;
 import org.telegram.messenger.ls;
 import org.telegram.messenger.qp;
 import org.telegram.messenger.qs;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.w80;
-public final class t extends pj0 implements ls {
-    public ArrayList f30292e3;
-    public v4.b0 f30293f3;
-    public int f30294g3;
+import org.telegram.ui.Components.qj0;
+import org.telegram.ui.y80;
+public final class t extends qj0 implements ls {
+    public ArrayList f30296e3;
+    public v4.b0 f30297f3;
+    public int f30298g3;
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
@@ -44,13 +44,13 @@ public final class t extends pj0 implements ls {
     }
 
     public final void z1() {
-        ArrayList arrayList = this.f30292e3;
+        ArrayList arrayList = this.f30296e3;
         arrayList.clear();
-        arrayList.addAll(Arrays.asList(w80.values()));
-        if (qp.s1(this.f30294g3).D3()) {
+        arrayList.addAll(Arrays.asList(y80.values()));
+        if (qp.s1(this.f30298g3).D3()) {
             int i7 = 0;
             while (i7 < arrayList.size()) {
-                if (((w80) arrayList.get(i7)).f50977e) {
+                if (((y80) arrayList.get(i7)).f51997e) {
                     arrayList.remove(i7);
                     i7--;
                 }
@@ -60,8 +60,8 @@ public final class t extends pj0 implements ls {
         getAdapter().f();
         a0();
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            if (c8.ua.a((w80) arrayList.get(i10))) {
-                this.f30293f3.h1(i10, org.telegram.messenger.g0.L(16.0f));
+            if (c8.ua.a((y80) arrayList.get(i10))) {
+                this.f30297f3.h1(i10, org.telegram.messenger.g0.L(16.0f));
                 return;
             }
         }

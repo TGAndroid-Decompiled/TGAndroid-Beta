@@ -25,13 +25,13 @@ public final class eb implements DialogInterface.OnDismissListener {
                 ((l9) this.f3831b).run();
                 return;
             case 3:
-                ((di.s7) this.f3831b).run();
+                ((di.f8) this.f3831b).run();
                 return;
             case 4:
-                di.p9 p9Var = (di.p9) this.f3831b;
-                if (dialogInterface == p9Var.f9574u0) {
-                    p9Var.f9574u0 = null;
-                    p9Var.V();
+                di.q9 q9Var = (di.q9) this.f3831b;
+                if (dialogInterface == q9Var.f9639u0) {
+                    q9Var.f9639u0 = null;
+                    q9Var.V();
                     return;
                 }
                 return;
@@ -60,14 +60,14 @@ public final class eb implements DialogInterface.OnDismissListener {
                 }
                 return;
             case 11:
-                org.telegram.ui.web.x0 x0Var = ((org.telegram.ui.web.j0) this.f3831b).f51178e.Q;
-                if (x0Var != null && (d0Var = x0Var.f51364c) != null) {
+                org.telegram.ui.web.x0 x0Var = ((org.telegram.ui.web.j0) this.f3831b).f51159e.Q;
+                if (x0Var != null && (d0Var = x0Var.f51345c) != null) {
                     d0Var.z();
                     return;
                 }
                 return;
             case 12:
-                org.telegram.ui.web.d0 d0Var2 = ((org.telegram.ui.web.q0) this.f3831b).f51282b.f51293e.Q.f51364c;
+                org.telegram.ui.web.d0 d0Var2 = ((org.telegram.ui.web.q0) this.f3831b).f51263b.f51274e.Q.f51345c;
                 if (d0Var2 != null) {
                     d0Var2.z();
                     return;
@@ -76,20 +76,20 @@ public final class eb implements DialogInterface.OnDismissListener {
             case 13:
                 ug.i0 i0Var = (ug.i0) this.f3831b;
                 i0Var.X1 = false;
-                i0Var.f56618p2.f31455d0 = true;
-                i0Var.f56625w2.invalidate();
-                i0Var.f56618p2.invalidate();
+                i0Var.f56630p2.f31460d0 = true;
+                i0Var.f56637w2.invalidate();
+                i0Var.f56630p2.invalidate();
                 return;
             case 14:
                 ug.f1 f1Var = (ug.f1) this.f3831b;
-                qd qdVar = f1Var.f56571j2;
+                qd qdVar = f1Var.f56583j2;
                 if (qdVar != null) {
                     qdVar.setDialogVisible(false);
                 }
-                f1Var.f56570i2.setPaused(false);
+                f1Var.f56582i2.setPaused(false);
                 return;
             default:
-                ((yh.m) this.f3831b).f59559s = null;
+                ((yh.m) this.f3831b).f59568s = null;
                 return;
         }
     }

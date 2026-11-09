@@ -3,13 +3,13 @@ package p5;
 import a8.p0;
 import p1.g;
 public final class a {
-    public final int f53472a;
-    public final long f53473b;
+    public final int f53484a;
+    public final long f53485b;
 
     public a(int i7, long j3) {
         if (i7 != 0) {
-            this.f53472a = i7;
-            this.f53473b = j3;
+            this.f53484a = i7;
+            this.f53485b = j3;
             return;
         }
         throw new NullPointerException("Null status");
@@ -19,7 +19,7 @@ public final class a {
         if (obj != this) {
             if (obj instanceof a) {
                 a aVar = (a) obj;
-                if (g.b(this.f53472a, aVar.f53472a) && this.f53473b == aVar.f53473b) {
+                if (g.b(this.f53484a, aVar.f53484a) && this.f53485b == aVar.f53485b) {
                     return true;
                 }
                 return false;
@@ -30,14 +30,14 @@ public final class a {
     }
 
     public final int hashCode() {
-        long j3 = this.f53473b;
-        return ((g.c(this.f53472a) ^ 1000003) * 1000003) ^ ((int) (j3 ^ (j3 >>> 32)));
+        long j3 = this.f53485b;
+        return ((g.c(this.f53484a) ^ 1000003) * 1000003) ^ ((int) (j3 ^ (j3 >>> 32)));
     }
 
     public final String toString() {
         String str;
         StringBuilder sb2 = new StringBuilder("BackendResponse{status=");
-        int i7 = this.f53472a;
+        int i7 = this.f53484a;
         if (i7 != 1) {
             if (i7 != 2) {
                 if (i7 != 3) {
@@ -57,6 +57,6 @@ public final class a {
         }
         sb2.append(str);
         sb2.append(", nextRequestWaitMillis=");
-        return p0.r(sb2, this.f53473b, "}");
+        return p0.r(sb2, this.f53485b, "}");
     }
 }

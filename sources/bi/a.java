@@ -19,40 +19,40 @@ public final class a {
         this.f3414c = aVar.d;
         this.d = aVar.f18183f;
         ?? obj = new Object();
-        obj.f7255a = 0L;
-        obj.f7256b = 0L;
-        obj.f7257c = 0;
-        if (com.google.android.gms.internal.clearcut.x1.f7271a == null) {
-            synchronized (com.google.android.gms.internal.clearcut.o1.f7207a) {
+        obj.f7253a = 0L;
+        obj.f7254b = 0L;
+        obj.f7255c = 0;
+        if (com.google.android.gms.internal.clearcut.x1.f7269a == null) {
+            synchronized (com.google.android.gms.internal.clearcut.o1.f7205a) {
                 try {
-                    if (com.google.android.gms.internal.clearcut.x1.f7271a == null) {
-                        com.google.android.gms.internal.clearcut.x1.f7271a = new com.google.android.gms.internal.clearcut.x1[0];
+                    if (com.google.android.gms.internal.clearcut.x1.f7269a == null) {
+                        com.google.android.gms.internal.clearcut.x1.f7269a = new com.google.android.gms.internal.clearcut.x1[0];
                     }
                 } finally {
                 }
             }
         }
-        obj.d = com.google.android.gms.internal.clearcut.x1.f7271a;
+        obj.d = com.google.android.gms.internal.clearcut.x1.f7269a;
         byte[] bArr2 = com.google.android.gms.internal.clearcut.m1.d;
-        obj.f7258e = bArr2;
-        obj.f7259f = bArr2;
+        obj.f7256e = bArr2;
+        obj.f7257f = bArr2;
         obj.h = "";
-        obj.f7260n = "";
-        obj.f7261r = "";
-        obj.f7262s = 180000L;
-        obj.f7263w = bArr2;
-        obj.f7264x = "";
-        obj.f7265y = com.google.android.gms.internal.clearcut.m1.f7199c;
+        obj.f7258n = "";
+        obj.f7259r = "";
+        obj.f7260s = 180000L;
+        obj.f7261w = bArr2;
+        obj.f7262x = "";
+        obj.f7263y = com.google.android.gms.internal.clearcut.m1.f7197c;
         obj.D = false;
         this.f3415e = obj;
         this.f3412a = false;
         obj.D = com.google.android.gms.internal.clearcut.a.a(aVar.f18179a);
         aVar.h.getClass();
-        obj.f7255a = System.currentTimeMillis();
+        obj.f7253a = System.currentTimeMillis();
         aVar.h.getClass();
-        obj.f7256b = SystemClock.elapsedRealtime();
-        obj.f7262s = TimeZone.getDefault().getOffset(obj.f7255a) / 1000;
-        obj.f7259f = bArr;
+        obj.f7254b = SystemClock.elapsedRealtime();
+        obj.f7260s = TimeZone.getDefault().getOffset(obj.f7253a) / 1000;
+        obj.f7257f = bArr;
     }
 
     public com.google.android.gms.common.api.internal.y0 a() {
@@ -75,7 +75,7 @@ public final class a {
             z11 = true;
         }
         q6.m.a("Must set holder", z11);
-        com.google.android.gms.common.api.internal.m mVar = ((com.google.android.gms.common.api.internal.o) this.f3415e).f6671b;
+        com.google.android.gms.common.api.internal.m mVar = ((com.google.android.gms.common.api.internal.o) this.f3415e).f6669b;
         q6.m.h(mVar, "Key must not be null");
         return new com.google.android.gms.common.api.internal.y0(new h2.w(this, (com.google.android.gms.common.api.internal.o) this.f3415e, (n6.c[]) this.f3416f, this.f3412a, this.f3413b), new com.google.android.gms.common.api.internal.y0(this, mVar));
     }

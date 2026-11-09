@@ -20,8 +20,8 @@ import org.telegram.messenger.g0;
 import org.telegram.messenger.id;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.s6;
 import org.telegram.ui.ActionBar.v2;
 import org.telegram.ui.Components.hc;
 import org.telegram.ui.Components.xq;
@@ -81,8 +81,8 @@ public abstract class q {
         return byteBuffer.order(ByteOrder.nativeOrder()).asFloatBuffer();
     }
 
-    public static v2 h(Activity activity, boolean z9, int i7, f6 f6Var) {
-        v2 v2Var = new v2(i7, activity, f6Var, z9);
+    public static v2 h(Activity activity, boolean z9, int i7, g6 g6Var) {
+        v2 v2Var = new v2(i7, activity, g6Var, z9);
         v2Var.N();
         return v2Var;
     }
@@ -114,8 +114,8 @@ public abstract class q {
         textView.setMaxLines(i11);
     }
 
-    public static void o(TextView textView, int i7, f6 f6Var, String str, int i10) {
-        r6.V(textView, i7, f6Var);
+    public static void o(TextView textView, int i7, g6 g6Var, String str, int i10) {
+        s6.U(textView, i7, g6Var);
         textView.setText(id.M0(i10, str));
     }
 

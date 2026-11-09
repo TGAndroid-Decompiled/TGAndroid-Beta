@@ -44,22 +44,22 @@ public abstract class x {
                     break;
                 }
             }
-            if (i11 == 1 && oc.f5795a == null) {
+            if (i11 == 1 && oc.f5793a == null) {
                 int i13 = Build.VERSION.SDK_INT;
                 if (i13 < 37) {
                     int c10 = c(true);
                     if (i13 < 35) {
-                        oc.f5795a = Boolean.valueOf(z9);
+                        oc.f5793a = Boolean.valueOf(z9);
                         if (z9) {
                         }
                     } else {
-                        oc.f5795a = Boolean.valueOf(z9);
+                        oc.f5793a = Boolean.valueOf(z9);
                         if (z9) {
                         }
                     }
                 }
                 z9 = false;
-                oc.f5795a = Boolean.valueOf(z9);
+                oc.f5793a = Boolean.valueOf(z9);
                 if (z9) {
                 }
             }

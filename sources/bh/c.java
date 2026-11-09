@@ -5,10 +5,10 @@ import android.graphics.Canvas;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.id;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.l6;
 import org.telegram.ui.Cells.pa;
 import org.telegram.ui.Components.w8;
-import wg.s;
+import wg.r;
 public final class c extends pa {
     public final a f3410b0;
     public TL_stories.PrepaidGiveaway f3411c0;
@@ -40,7 +40,7 @@ public final class c extends pa {
             } else {
                 i7 = 0;
             }
-            canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, k6.f27975k0);
+            canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, l6.f27988k0);
         }
     }
 
@@ -65,12 +65,12 @@ public final class c extends pa {
             } else {
                 w8Var.i(-6631068, -11945404);
             }
-            String valueOf2 = String.valueOf(s.g() * prepaidGiveaway.quantity);
+            String valueOf2 = String.valueOf(r.g() * prepaidGiveaway.quantity);
             a aVar2 = this.f3410b0;
             aVar2.f3403f = valueOf2;
             aVar2.f3402e = aVar2.f3399a.measureText(valueOf2);
             aVar2.invalidateSelf();
         }
-        this.f29753b.i(this.f3410b0);
+        this.f29757b.i(this.f3410b0);
     }
 }

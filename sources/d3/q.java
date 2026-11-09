@@ -7,16 +7,16 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 public final class q implements g9.u {
-    public final int f8076a;
+    public final int f8074a;
 
     public q(int i7) {
-        this.f8076a = i7;
+        this.f8074a = i7;
     }
 
     @Override
     public final Object get() {
         Object a0Var;
-        switch (this.f8076a) {
+        switch (this.f8074a) {
             case 0:
                 try {
                     return Class.forName("androidx.media3.effect.DefaultVideoFrameProcessor$Factory$Builder");

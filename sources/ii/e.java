@@ -8,19 +8,19 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import c8.ha;
 import java.util.HashSet;
-import org.telegram.ui.ActionBar.a6;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
 import org.telegram.ui.Components.l9;
-public final class e extends FrameLayout implements a6 {
+public final class e extends FrameLayout implements b6 {
     public final l9 f15519a;
-    public final f6 f15520b;
+    public final g6 f15520b;
     public final TextView f15521c;
     public final TextView d;
 
-    public e(Context context, f6 f6Var) {
+    public e(Context context, g6 g6Var) {
         super(context);
-        this.f15520b = f6Var;
+        this.f15520b = g6Var;
         l9 l9Var = new l9(context);
         this.f15519a = l9Var;
         l9Var.setRoundRadius(org.telegram.messenger.g0.L(20.0f));
@@ -42,14 +42,14 @@ public final class e extends FrameLayout implements a6 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(k6.G6));
-        hashSet.add(Integer.valueOf(k6.f28262z6));
+        hashSet.add(Integer.valueOf(l6.G6));
+        hashSet.add(Integer.valueOf(l6.f28275z6));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        Drawable drawable = k6.S0;
+        Drawable drawable = l6.S0;
         l9 l9Var = this.f15519a;
         bg.s.a(canvas, drawable, (l9Var.getWidth() / 2.0f) + l9Var.getLeft(), (l9Var.getHeight() / 2.0f) + l9Var.getTop(), l9Var.getHeight());
     }
@@ -69,9 +69,9 @@ public final class e extends FrameLayout implements a6 {
 
     @Override
     public final void updateColors() {
-        int i7 = k6.G6;
-        f6 f6Var = this.f15520b;
-        this.f15521c.setTextColor(k6.w0(i7, f6Var));
-        this.d.setTextColor(k6.w0(k6.f28262z6, f6Var));
+        int i7 = l6.G6;
+        g6 g6Var = this.f15520b;
+        this.f15521c.setTextColor(l6.w0(i7, g6Var));
+        this.d.setTextColor(l6.w0(l6.f28275z6, g6Var));
     }
 }

@@ -19,7 +19,7 @@ import org.telegram.messenger.j1;
 import org.telegram.messenger.o;
 import org.telegram.messenger.y9;
 import org.telegram.ui.Components.jk;
-import org.telegram.ui.x90;
+import org.telegram.ui.z90;
 public final class c extends q {
     public final int f17233b = 1;
     public final Object f17234c;
@@ -124,7 +124,7 @@ public final class c extends q {
                 return false;
             case 5:
                 if (i7 == 1) {
-                    ((x90) ((j1) this.f17234c).f23465b).run();
+                    ((z90) ((j1) this.f17234c).f23465b).run();
                     parcel2.writeNoException();
                     return true;
                 }

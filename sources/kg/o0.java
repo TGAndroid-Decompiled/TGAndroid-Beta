@@ -15,13 +15,13 @@ import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.Components.cc;
 import org.telegram.ui.Components.l9;
 import org.telegram.ui.Components.ob;
-import org.telegram.ui.Components.u31;
+import org.telegram.ui.Components.v31;
 import org.telegram.ui.Components.v4;
 import org.telegram.ui.Components.w8;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.an;
-import org.telegram.ui.ks;
-import org.telegram.ui.za1;
+import org.telegram.ui.bb1;
+import org.telegram.ui.cn;
+import org.telegram.ui.ms;
 public final class o0 implements Runnable {
     public final int f17460a = 1;
     public final Object f17461b;
@@ -32,11 +32,11 @@ public final class o0 implements Runnable {
     public final Object h;
     public final TLObject f17465n;
 
-    public o0(File file, ArrayList arrayList, f2 f2Var, an anVar, TLRPC.Document document, boolean z9, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+    public o0(File file, ArrayList arrayList, f2 f2Var, cn cnVar, TLRPC.Document document, boolean z9, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
         this.d = file;
         this.f17461b = arrayList;
         this.f17463e = f2Var;
-        this.f17464f = anVar;
+        this.f17464f = cnVar;
         this.h = document;
         this.f17462c = z9;
         this.f17465n = tL_messages_stickerSet;
@@ -71,7 +71,7 @@ public final class o0 implements Runnable {
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject;
                 arrayList2.add(new gf(0, ((File) obj5).getAbsolutePath(), 0, false, 0, 0));
                 PhotoViewer.p1().H2(f2Var.getParentActivity(), null, f2Var.getResourceProvider());
-                PhotoViewer.p1().e2(arrayList2, 0, 11, false, new Object(), (an) obj3);
+                PhotoViewer.p1().e2(arrayList2, 0, 11, false, new Object(), (cn) obj3);
                 PhotoViewer p12 = PhotoViewer.p1();
                 if (z10) {
                     document = document2;
@@ -79,7 +79,7 @@ public final class o0 implements Runnable {
                     document = null;
                 }
                 p12.S0(document2, document, false, null);
-                ks p10 = ks.p();
+                ms p10 = ms.p();
                 if (z10) {
                     tL_messages_stickerSet = tL_messages_stickerSet2;
                 } else {
@@ -88,7 +88,7 @@ public final class o0 implements Runnable {
                 p10.T = tL_messages_stickerSet;
                 return;
             case 2:
-                za1.i0((za1) obj5, (TLRPC.TL_error) obj4, this.f17462c, (TLObject) obj3, (byte[]) obj2, (String) obj, (TL_account.passwordInputSettings) tLObject);
+                bb1.i0((bb1) obj5, (TLRPC.TL_error) obj4, this.f17462c, (TLObject) obj3, (byte[]) obj2, (String) obj, (TL_account.passwordInputSettings) tLObject);
                 return;
             default:
                 yh.m mVar2 = (yh.m) obj5;
@@ -97,9 +97,9 @@ public final class o0 implements Runnable {
                 TLRPC.TL_chatInviteImporter tL_chatInviteImporter = (TLRPC.TL_chatInviteImporter) obj2;
                 TLRPC.User user = (TLRPC.User) tLObject;
                 TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest = (TLRPC.TL_messages_hideChatJoinRequest) obj;
-                int i11 = mVar2.f59551k;
-                ArrayList arrayList3 = mVar2.f59546e;
-                f2 f2Var2 = mVar2.f59548g;
+                int i11 = mVar2.f59560k;
+                ArrayList arrayList3 = mVar2.f59555e;
+                f2 f2Var2 = mVar2.f59557g;
                 if (f2Var2 != null && f2Var2.getParentActivity() != null) {
                     if (tL_error == null) {
                         TLRPC.TL_updates tL_updates = (TLRPC.TL_updates) tLObject2;
@@ -121,11 +121,11 @@ public final class o0 implements Runnable {
                                 z9 = z10;
                             }
                         }
-                        yh.h hVar = mVar2.f59547f;
-                        yh.m mVar3 = hVar.f59525c;
+                        yh.h hVar = mVar2.f59556f;
+                        yh.m mVar3 = hVar.f59534c;
                         int i13 = 0;
                         while (true) {
-                            arrayList = mVar3.f59545c;
+                            arrayList = mVar3.f59554c;
                             if (i13 < arrayList.size()) {
                                 r82 = z11;
                                 mVar = mVar2;
@@ -142,38 +142,38 @@ public final class o0 implements Runnable {
                         }
                         if (i13 >= 0) {
                             arrayList.remove(i13);
-                            hVar.s(((hVar.f59525c.B ? 1 : 0) ^ r82) + i13);
+                            hVar.s(((hVar.f59534c.B ? 1 : 0) ^ r82) + i13);
                             if (arrayList.isEmpty()) {
                                 hVar.s(r82);
                             }
                         }
                         yh.m mVar4 = mVar;
-                        mVar4.f(mVar4.f59560t, false, r82);
+                        mVar4.f(mVar4.f59569t, false, r82);
                         if (z9) {
                             ob obVar = new ob(f2Var2.getParentActivity(), f2Var2.getResourceProvider());
                             int L = org.telegram.messenger.g0.L(15.0f);
-                            l9 l9Var = obVar.f36607a;
+                            l9 l9Var = obVar.f36685a;
                             l9Var.setRoundRadius(L);
                             l9Var.e(user, new w8(0, user));
                             String j3 = t10.j(user, true);
-                            if (mVar4.f59543a) {
-                                a02 = id.a0("HasBeenAddedToChannel", null, 2131749365, j3);
+                            if (mVar4.f59552a) {
+                                a02 = id.a0("HasBeenAddedToChannel", null, 2131749364, j3);
                             } else {
-                                a02 = id.a0("HasBeenAddedToGroup", null, 2131749364, j3);
+                                a02 = id.a0("HasBeenAddedToGroup", null, 2131749363, j3);
                             }
                             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(a02);
                             int indexOf = a02.indexOf(j3);
-                            spannableStringBuilder.setSpan(new u31(org.telegram.messenger.g0.o()), indexOf, j3.length() + indexOf, 18);
-                            obVar.f36608b.setText(spannableStringBuilder);
+                            spannableStringBuilder.setSpan(new v31(org.telegram.messenger.g0.o()), indexOf, j3.length() + indexOf, 18);
+                            obVar.f36686b.setText(spannableStringBuilder);
                             if (arrayList3.isEmpty()) {
                                 cc.g(f2Var2, obVar, 2750).j();
                             } else {
                                 cc.f(mVar4.h, obVar, 2750).j();
                             }
                         }
-                        org.telegram.ui.ActionBar.y q10 = f2Var2.getActionBar().q();
-                        if (TextUtils.isEmpty(mVar4.f59560t) && mVar4.f59552l) {
-                            org.telegram.ui.ActionBar.r0 j10 = q10.j(0);
+                        org.telegram.ui.ActionBar.y r10 = f2Var2.getActionBar().r();
+                        if (TextUtils.isEmpty(mVar4.f59569t) && mVar4.f59561l) {
+                            org.telegram.ui.ActionBar.r0 j10 = r10.j(0);
                             if (arrayList3.isEmpty()) {
                                 i10 = 8;
                             }
@@ -199,8 +199,8 @@ public final class o0 implements Runnable {
         this.f17465n = user;
     }
 
-    public o0(za1 za1Var, TLRPC.TL_error tL_error, boolean z9, TLObject tLObject, byte[] bArr, String str, TL_account.passwordInputSettings passwordinputsettings) {
-        this.d = za1Var;
+    public o0(bb1 bb1Var, TLRPC.TL_error tL_error, boolean z9, TLObject tLObject, byte[] bArr, String str, TL_account.passwordInputSettings passwordinputsettings) {
+        this.d = bb1Var;
         this.f17463e = tL_error;
         this.f17462c = z9;
         this.f17464f = tLObject;

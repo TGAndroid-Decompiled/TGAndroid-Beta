@@ -4,18 +4,18 @@ import org.telegram.tgnet.TLRPC;
 public final class s5 extends TLRPC.TL_document {
     public final TLRPC.ThemeSettings f25415a;
     public final TLRPC.Document f25416b;
-    public final org.telegram.ui.ActionBar.j6 f25417c;
-    public final org.telegram.ui.ActionBar.h6 d;
+    public final org.telegram.ui.ActionBar.k6 f25417c;
+    public final org.telegram.ui.ActionBar.i6 d;
 
     public s5(TLRPC.ThemeSettings themeSettings) {
         this.f25415a = themeSettings;
-        org.telegram.ui.ActionBar.j6 Q0 = org.telegram.ui.ActionBar.k6.Q0(org.telegram.ui.ActionBar.k6.r0(themeSettings));
+        org.telegram.ui.ActionBar.k6 Q0 = org.telegram.ui.ActionBar.l6.Q0(org.telegram.ui.ActionBar.l6.r0(themeSettings));
         this.f25417c = Q0;
         Q0.getClass();
-        org.telegram.ui.ActionBar.h6 h6Var = new org.telegram.ui.ActionBar.h6();
-        org.telegram.ui.ActionBar.j6.i(h6Var, themeSettings);
-        h6Var.f27520b = Q0;
-        this.d = h6Var;
+        org.telegram.ui.ActionBar.i6 i6Var = new org.telegram.ui.ActionBar.i6();
+        org.telegram.ui.ActionBar.k6.i(i6Var, themeSettings);
+        i6Var.f27572b = Q0;
+        this.d = i6Var;
         TLRPC.WallPaper wallPaper = themeSettings.wallpaper;
         if (wallPaper instanceof TLRPC.TL_wallPaper) {
             TLRPC.Document document = ((TLRPC.TL_wallPaper) wallPaper).document;

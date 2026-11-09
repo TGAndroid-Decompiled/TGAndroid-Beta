@@ -1,18 +1,18 @@
 package org.telegram.messenger;
 
 import android.content.SharedPreferences;
-import org.telegram.ui.f60;
+import org.telegram.ui.h60;
 public final class xc implements Runnable {
     public final int f26463a;
     public final id f26464b;
     public final String f26465c;
-    public final f60 d;
+    public final h60 d;
 
-    public xc(id idVar, String str, f60 f60Var, int i7) {
+    public xc(id idVar, String str, h60 h60Var, int i7) {
         this.f26463a = i7;
         this.f26464b = idVar;
         this.f26465c = str;
-        this.d = f60Var;
+        this.d = h60Var;
     }
 
     @Override

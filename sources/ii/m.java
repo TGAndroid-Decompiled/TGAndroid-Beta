@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import org.telegram.messenger.id;
 import org.telegram.messenger.ls;
 import org.telegram.messenger.qp;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.s6;
 import org.telegram.ui.ActionBar.u1;
 import org.telegram.ui.Components.v4;
-import org.telegram.ui.an;
+import org.telegram.ui.cn;
 public final class m implements Runnable {
     public final int f15577a;
     public final boolean f15578b;
@@ -46,23 +46,23 @@ public final class m implements Runnable {
                 } else if (z9) {
                     i10 = 2131751916;
                 }
-                v4.s0(pVar, M0, id.M0(i10, null), id.M0(2131746322, null), true, new h(pVar, j3, 0));
+                v4.s0(pVar, M0, id.M0(i10, null), id.M0(2131746321, null), true, new h(pVar, j3, 0));
                 return;
             case 1:
                 d0 d0Var = (d0) lsVar;
                 Context context = d0Var.getContext();
-                f6 f6Var = d0Var.I0;
+                g6 g6Var = d0Var.I0;
                 String M02 = id.M0(2131751915, null);
                 if (z10) {
                     i10 = 2131751917;
                 } else if (z9) {
                     i10 = 2131751916;
                 }
-                u1 M = v4.M(context, f6Var, M02, id.M0(i10, null), id.M0(2131746322, null), new r3(d0Var, j3, 10));
+                u1 M = v4.M(context, g6Var, M02, id.M0(i10, null), id.M0(2131746321, null), new r3(d0Var, j3, 10));
                 M.show();
                 TextView textView = (TextView) M.d(-1);
                 if (textView != null) {
-                    r6.V(textView, k6.f28093q7, null);
+                    s6.U(textView, l6.f28106q7, null);
                     return;
                 }
                 return;
@@ -83,14 +83,14 @@ public final class m implements Runnable {
                 arrayList.remove(Long.valueOf(j3));
                 return;
             default:
-                an.u1((an) lsVar, j3, z10, z9);
+                cn.y1((cn) lsVar, j3, z10, z9);
                 return;
         }
     }
 
-    public m(an anVar, long j3, boolean z9, boolean z10) {
+    public m(cn cnVar, long j3, boolean z9, boolean z10) {
         this.f15577a = 3;
-        this.f15580e = anVar;
+        this.f15580e = cnVar;
         this.d = j3;
         this.f15578b = z9;
         this.f15579c = z10;

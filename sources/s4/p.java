@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import org.telegram.ui.Components.vy;
 public abstract class p extends q {
-    public final Object f54865a = new Object();
-    public Executor f54866b;
-    public vy f54867c;
+    public final Object f54877a = new Object();
+    public Executor f54878b;
+    public vy f54879c;
     public m d;
-    public ArrayList f54868e;
+    public ArrayList f54880e;
 
     public String j() {
         return null;
@@ -22,15 +22,15 @@ public abstract class p extends q {
 
     public final void l(m mVar, ArrayList arrayList) {
         if (mVar != null) {
-            synchronized (this.f54865a) {
+            synchronized (this.f54877a) {
                 try {
                     try {
-                        Executor executor = this.f54866b;
+                        Executor executor = this.f54878b;
                         if (executor != null) {
-                            executor.execute(new pa(this, this.f54867c, mVar, arrayList, false, 6));
+                            executor.execute(new pa(this, this.f54879c, mVar, arrayList, false, 6));
                         } else {
                             this.d = mVar;
-                            this.f54868e = new ArrayList(arrayList);
+                            this.f54880e = new ArrayList(arrayList);
                         }
                         return;
                     } catch (Throwable th2) {

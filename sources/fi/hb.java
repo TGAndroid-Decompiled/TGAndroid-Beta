@@ -15,25 +15,25 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.ui.Components.xq;
 public final class hb extends View implements o2 {
-    public final Drawable f12147a;
-    public final int f12148b;
-    public Bitmap f12149c;
+    public final Drawable f12150a;
+    public final int f12151b;
+    public Bitmap f12152c;
     public final Paint d;
-    public final Paint f12150e;
-    public float f12151f;
+    public final Paint f12153e;
+    public float f12154f;
     public final org.telegram.ui.Components.w5 h;
-    public final Path f12152n;
+    public final Path f12155n;
 
     public hb(Activity activity) {
         super(activity);
         Paint paint = new Paint(1);
         this.d = paint;
         Paint paint2 = new Paint(3);
-        this.f12150e = paint2;
+        this.f12153e = paint2;
         this.h = new org.telegram.ui.Components.w5(this, 0L, 350L, xq.h);
-        this.f12152n = new Path();
-        this.f12147a = activity.getResources().getDrawable(2131231741).mutate();
-        this.f12148b = 2131231740;
+        this.f12155n = new Path();
+        this.f12150a = activity.getResources().getDrawable(2131231741).mutate();
+        this.f12151b = 2131231740;
         paint.setColor(-1);
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
     }
@@ -41,26 +41,26 @@ public final class hb extends View implements o2 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        if (this.f12149c == null) {
-            this.f12149c = BitmapFactory.decodeResource(getResources(), this.f12148b);
+        if (this.f12152c == null) {
+            this.f12152c = BitmapFactory.decodeResource(getResources(), this.f12151b);
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        Bitmap bitmap = this.f12149c;
+        Bitmap bitmap = this.f12152c;
         if (bitmap != null) {
             bitmap.recycle();
-            this.f12149c = null;
+            this.f12152c = null;
         }
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float e10 = this.h.e(false, this.f12151f);
-        Drawable drawable = this.f12147a;
+        float e10 = this.h.e(false, this.f12154f);
+        Drawable drawable = this.f12150a;
         int intrinsicWidth = drawable.getIntrinsicWidth();
         int intrinsicHeight = drawable.getIntrinsicHeight();
         Rect rect = org.telegram.messenger.g0.Q;
@@ -70,7 +70,7 @@ public final class hb extends View implements o2 {
             drawable.draw(canvas);
         } else if (e10 < 1.0f) {
             canvas.save();
-            Path path = this.f12152n;
+            Path path = this.f12155n;
             path.rewind();
             path.addCircle(getWidth() / 2.0f, getHeight() / 2.0f, org.telegram.messenger.g0.L(16.0f) * e10, Path.Direction.CW);
             canvas.clipPath(path, Region.Op.DIFFERENCE);
@@ -82,9 +82,9 @@ public final class hb extends View implements o2 {
             canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
             canvas.drawCircle(getWidth() / 2.0f, getHeight() / 2.0f, org.telegram.messenger.g0.L(16.0f) * e10, this.d);
             canvas.save();
-            Bitmap bitmap = this.f12149c;
+            Bitmap bitmap = this.f12152c;
             if (bitmap != null) {
-                canvas.drawBitmap(bitmap, (Rect) null, rect, this.f12150e);
+                canvas.drawBitmap(bitmap, (Rect) null, rect, this.f12153e);
             }
             canvas.restore();
             canvas.restore();
@@ -93,7 +93,7 @@ public final class hb extends View implements o2 {
 
     @Override
     public void setInvert(float f10) {
-        this.f12147a.setColorFilter(new PorterDuffColorFilter(i0.a.f(f10, -1, -16777216), PorterDuff.Mode.MULTIPLY));
+        this.f12150a.setColorFilter(new PorterDuffColorFilter(i0.a.f(f10, -1, -16777216), PorterDuff.Mode.MULTIPLY));
         this.d.setColor(i0.a.f(f10, -1, -16777216));
     }
 
@@ -104,7 +104,7 @@ public final class hb extends View implements o2 {
         } else {
             f10 = 0.0f;
         }
-        this.f12151f = f10;
+        this.f12154f = f10;
         invalidate();
     }
 }

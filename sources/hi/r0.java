@@ -24,9 +24,9 @@ import org.telegram.messenger.qp;
 import org.telegram.messenger.t10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.l6;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.qn0;
+import org.telegram.ui.sn0;
 public final class r0 {
     public static final HashMap f14919g = new HashMap();
     public final Context f14920a;
@@ -186,11 +186,11 @@ public final class r0 {
             org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
             u1Var.T = X2;
             q0 q0Var = new q0(this.f14920a, p10.i(i7).f(), a22);
-            int i10 = k6.L5;
-            int x02 = k6.x0(null, i10, false);
-            u1Var.f28555b0 = q0Var;
-            u1Var.f28558c0 = x02;
-            u1Var.f28560d0 = -1;
+            int i10 = l6.L5;
+            int x02 = l6.x0(null, i10, false);
+            u1Var.f28546b0 = q0Var;
+            u1Var.f28549c0 = x02;
+            u1Var.f28551d0 = -1;
             alertDialog$Builder.n(i10, null);
             if (!a() && (f10 = f()) != null && (!f10.shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION") || !f10.shouldShowRequestPermissionRationale("android.permission.ACCESS_FINE_LOCATION"))) {
                 alertDialog$Builder.k(id.M0(2131753053, null), new a3.h(f11, zArr, nVar, 11));
@@ -321,11 +321,11 @@ public final class r0 {
                 if (context != null) {
                     try {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context);
-                        int i7 = k6.L5;
-                        alertDialog$Builder.m(2131624119, 72, k6.x0(null, i7, false), null);
+                        int i7 = l6.L5;
+                        alertDialog$Builder.m(2131624119, 72, l6.x0(null, i7, false), null);
                         alertDialog$Builder.n(i7, null);
-                        alertDialog$Builder.f27296a.T = id.M0(2131749531, null);
-                        alertDialog$Builder.k(id.M0(2131751161, null), new qb(context, 1));
+                        alertDialog$Builder.f27296a.T = id.M0(2131749530, null);
+                        alertDialog$Builder.k(id.M0(2131751160, null), new qb(context, 1));
                         alertDialog$Builder.h(id.M0(2131752589, null), null);
                         alertDialog$Builder.p();
                     } catch (Exception e10) {
@@ -367,7 +367,7 @@ public final class r0 {
         edit.apply();
     }
 
-    public final void l(boolean z9, final qn0 qn0Var) {
+    public final void l(boolean z9, final sn0 sn0Var) {
         this.d = true;
         if (z9 && !a()) {
             Activity f10 = f();
@@ -381,11 +381,11 @@ public final class r0 {
             org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
             u1Var.T = X2;
             q0 q0Var = new q0(this.f14920a, p10.i(i7).f(), a22);
-            int i10 = k6.L5;
-            int x02 = k6.x0(null, i10, false);
-            u1Var.f28555b0 = q0Var;
-            u1Var.f28558c0 = x02;
-            u1Var.f28560d0 = -1;
+            int i10 = l6.L5;
+            int x02 = l6.x0(null, i10, false);
+            u1Var.f28546b0 = q0Var;
+            u1Var.f28549c0 = x02;
+            u1Var.f28551d0 = -1;
             alertDialog$Builder.n(i10, null);
             Activity f11 = f();
             if (f11 == null || (f11.shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION") && f11.shouldShowRequestPermissionRationale("android.permission.ACCESS_FINE_LOCATION"))) {
@@ -402,7 +402,7 @@ public final class r0 {
                             case 0:
                                 r0 r0Var = this.f14789b;
                                 if (!r0Var.a()) {
-                                    ia.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.f1(17, r0Var, qn0Var));
+                                    ia.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.f1(17, r0Var, sn0Var));
                                     return;
                                 }
                                 r0Var.d = true;
@@ -422,7 +422,7 @@ public final class r0 {
                                 while (it2.hasNext()) {
                                     ((Runnable) it2.next()).run();
                                 }
-                                Runnable runnable = qn0Var;
+                                Runnable runnable = sn0Var;
                                 if (runnable != null) {
                                     runnable.run();
                                     return;
@@ -447,7 +447,7 @@ public final class r0 {
                         case 0:
                             r0 r0Var = this.f14789b;
                             if (!r0Var.a()) {
-                                ia.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.f1(17, r0Var, qn0Var));
+                                ia.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.f1(17, r0Var, sn0Var));
                                 return;
                             }
                             r0Var.d = true;
@@ -467,7 +467,7 @@ public final class r0 {
                             while (it2.hasNext()) {
                                 ((Runnable) it2.next()).run();
                             }
-                            Runnable runnable = qn0Var;
+                            Runnable runnable = sn0Var;
                             if (runnable != null) {
                                 runnable.run();
                                 return;
@@ -483,8 +483,8 @@ public final class r0 {
             while (it.hasNext()) {
                 ((Runnable) it.next()).run();
             }
-            if (qn0Var != null) {
-                qn0Var.run();
+            if (sn0Var != null) {
+                sn0Var.run();
             }
         }
         k();

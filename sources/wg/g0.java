@@ -9,43 +9,43 @@ import fi.r7;
 import org.telegram.messenger.id;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.s6;
 import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.ww;
+import org.telegram.ui.Components.qj0;
+import org.telegram.ui.yw;
 public final class g0 extends ug.f1 {
     public static g0 K2;
     public final yg.a I2;
     public final String J2;
 
-    public g0(f2 f2Var, int i7, TLRPC.User user, ug.j jVar, String str, boolean z9, f6 f6Var) {
-        super(f2Var, i7, user, jVar, null, f6Var);
+    public g0(f2 f2Var, int i7, TLRPC.User user, ug.j jVar, String str, boolean z9, g6 g6Var) {
+        super(f2Var, i7, user, jVar, null, g6Var);
         this.J2 = str;
-        cc.a((FrameLayout) this.f28619b, new r7(15));
+        cc.a((FrameLayout) this.f28624b, new r7(15));
         if (!z9) {
-            pj0 pj0Var = this.f36277k1;
-            int i10 = this.f28649t0;
-            pj0Var.setPadding(i10, 0, i10, org.telegram.messenger.g0.L(68.0f));
+            qj0 qj0Var = this.f36303k1;
+            int i10 = this.f28654t0;
+            qj0Var.setPadding(i10, 0, i10, org.telegram.messenger.g0.L(68.0f));
             yg.a aVar = new yg.a(getContext(), this.I0);
             this.I2 = aVar;
             aVar.setOnClickListener(new ii.g(this, 27));
             yg.a aVar2 = this.I2;
-            aVar2.f59424e = true;
-            fi.d dVar = aVar2.f59421a;
+            aVar2.f59433e = true;
+            fi.d dVar = aVar2.f59430a;
             dVar.setEnabled(true);
-            dVar.i(id.M0(2131749676, null), false, true);
-            r6.i(k6.f27925h5, aVar2.f59422b, aVar2.f59423c);
-            this.f28619b.addView(this.I2, ha.d(-1, 68.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
+            dVar.i(id.M0(2131749675, null), false, true);
+            s6.h(l6.f27938h5, aVar2.f59431b, aVar2.f59432c);
+            this.f28624b.addView(this.I2, ha.d(-1, 68.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         }
         N();
     }
 
     public static void l1(g0 g0Var) {
-        ww wwVar = new ww(org.telegram.ui.Cells.f1.h(3, "onlySelect", "dialogsType", true));
-        wwVar.C2 = new org.telegram.ui.web.a0(21, g0Var, "https://t.me/giftcode/" + g0Var.J2);
-        g0Var.f36279o1.presentFragment(wwVar);
+        yw ywVar = new yw(org.telegram.ui.Cells.f1.h(3, "onlySelect", "dialogsType", true));
+        ywVar.D2 = new org.telegram.ui.web.a0(21, g0Var, "https://t.me/giftcode/" + g0Var.J2);
+        g0Var.f36305o1.presentFragment(ywVar);
         g0Var.dismiss();
     }
 
@@ -81,7 +81,7 @@ public final class g0 extends ug.f1 {
         this.H2.setLineSpacing(org.telegram.messenger.g0.L(2.0f), 1.0f);
         ((ViewGroup.MarginLayoutParams) this.H2.getLayoutParams()).bottomMargin = org.telegram.messenger.g0.L(14.0f);
         ((ViewGroup.MarginLayoutParams) this.H2.getLayoutParams()).topMargin = org.telegram.messenger.g0.L(12.0f);
-        this.H2.setText(org.telegram.messenger.g0.K2(org.telegram.messenger.g0.S2(id.M0(2131749680, "GiftPremiumAboutThisLink"), k6.Uc, 0, new e0(this, 0), null), org.telegram.messenger.g0.X2(id.M0(2131749679, "GiftPremiumAboutThisLinkEnd")), "%1$s"));
+        this.H2.setText(org.telegram.messenger.g0.K2(org.telegram.messenger.g0.S2(id.M0(2131749679, "GiftPremiumAboutThisLink"), l6.Uc, 0, new e0(this, 0), null), org.telegram.messenger.g0.X2(id.M0(2131749678, "GiftPremiumAboutThisLinkEnd")), "%1$s"));
     }
 
     @Override
@@ -91,10 +91,10 @@ public final class g0 extends ug.f1 {
         this.Z1 = i7 + 1;
         int i10 = i7 + 2;
         this.X1 = i10;
-        this.f56563a2 = i10;
-        this.f56564b2 = i10;
+        this.f56575a2 = i10;
+        this.f56576b2 = i10;
         int size = this.P1.size() + i10;
-        this.f56565c2 = size;
+        this.f56577c2 = size;
         this.X1 = size + 1;
         this.d2 = size;
     }

@@ -1,7 +1,7 @@
 package jg;
 
-import org.telegram.ui.fu;
-import org.telegram.ui.pz;
+import org.telegram.ui.hu;
+import org.telegram.ui.rz;
 public final class w implements Runnable {
     public final int f16968a;
     public final h0 f16969b;
@@ -16,9 +16,9 @@ public final class w implements Runnable {
         switch (this.f16968a) {
             case 0:
                 h0 h0Var = this.f16969b;
-                pz pzVar = h0Var.A0;
-                if (pzVar != null) {
-                    ((fu) pzVar).j(false, null, h0Var.f16769y0, h0Var.f16770z0);
+                rz rzVar = h0Var.A0;
+                if (rzVar != null) {
+                    ((hu) rzVar).j(false, null, h0Var.f16769y0, h0Var.f16770z0);
                     return;
                 }
                 return;

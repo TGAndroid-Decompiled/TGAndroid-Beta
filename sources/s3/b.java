@@ -6,12 +6,12 @@ import e2.p0;
 import e2.u;
 import j$.util.Objects;
 public final class b implements p0 {
-    public final int f54772a;
-    public final String f54773b;
-    public final String f54774c;
+    public final int f54784a;
+    public final String f54785b;
+    public final String f54786c;
     public final String d;
-    public final boolean f54775e;
-    public final int f54776f;
+    public final boolean f54787e;
+    public final int f54788f;
 
     public b(int i7, String str, String str2, String str3, boolean z9, int i10) {
         boolean z10;
@@ -21,12 +21,12 @@ public final class b implements p0 {
             z10 = true;
         }
         ia.f(z10);
-        this.f54772a = i7;
-        this.f54773b = str;
-        this.f54774c = str2;
+        this.f54784a = i7;
+        this.f54785b = str;
+        this.f54786c = str2;
         this.d = str3;
-        this.f54775e = z9;
-        this.f54776f = i10;
+        this.f54787e = z9;
+        this.f54788f = i10;
     }
 
     public static s3.b d(java.util.Map r14) {
@@ -40,11 +40,11 @@ public final class b implements p0 {
 
     @Override
     public final void b(n0 n0Var) {
-        String str = this.f54774c;
+        String str = this.f54786c;
         if (str != null) {
             n0Var.G = str;
         }
-        String str2 = this.f54773b;
+        String str2 = this.f54785b;
         if (str2 != null) {
             n0Var.E = str2;
         }
@@ -61,7 +61,7 @@ public final class b implements p0 {
         }
         if (obj != null && b.class == obj.getClass()) {
             b bVar = (b) obj;
-            if (this.f54772a == bVar.f54772a && Objects.equals(this.f54773b, bVar.f54773b) && Objects.equals(this.f54774c, bVar.f54774c) && Objects.equals(this.d, bVar.d) && this.f54775e == bVar.f54775e && this.f54776f == bVar.f54776f) {
+            if (this.f54784a == bVar.f54784a && Objects.equals(this.f54785b, bVar.f54785b) && Objects.equals(this.f54786c, bVar.f54786c) && Objects.equals(this.d, bVar.d) && this.f54787e == bVar.f54787e && this.f54788f == bVar.f54788f) {
                 return true;
             }
         }
@@ -71,16 +71,16 @@ public final class b implements p0 {
     public final int hashCode() {
         int i7;
         int i10;
-        int i11 = (527 + this.f54772a) * 31;
+        int i11 = (527 + this.f54784a) * 31;
         int i12 = 0;
-        String str = this.f54773b;
+        String str = this.f54785b;
         if (str != null) {
             i7 = str.hashCode();
         } else {
             i7 = 0;
         }
         int i13 = (i11 + i7) * 31;
-        String str2 = this.f54774c;
+        String str2 = this.f54786c;
         if (str2 != null) {
             i10 = str2.hashCode();
         } else {
@@ -91,10 +91,10 @@ public final class b implements p0 {
         if (str3 != null) {
             i12 = str3.hashCode();
         }
-        return ((((i14 + i12) * 31) + (this.f54775e ? 1 : 0)) * 31) + this.f54776f;
+        return ((((i14 + i12) * 31) + (this.f54787e ? 1 : 0)) * 31) + this.f54788f;
     }
 
     public final String toString() {
-        return "IcyHeaders: name=\"" + this.f54774c + "\", genre=\"" + this.f54773b + "\", bitrate=" + this.f54772a + ", metadataInterval=" + this.f54776f;
+        return "IcyHeaders: name=\"" + this.f54786c + "\", genre=\"" + this.f54785b + "\", bitrate=" + this.f54784a + ", metadataInterval=" + this.f54788f;
     }
 }

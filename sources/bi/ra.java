@@ -4,8 +4,8 @@ import android.content.Context;
 import org.telegram.messenger.qp;
 import org.telegram.messenger.yr;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.k60;
-import org.telegram.ui.an;
+import org.telegram.ui.Components.l60;
+import org.telegram.ui.cn;
 public final class ra implements Runnable {
     public final int f4636a = 0;
     public final int f4637b;
@@ -15,13 +15,13 @@ public final class ra implements Runnable {
     public final Object f4640f;
     public final Object h;
 
-    public ra(int i7, Context context, long j3, long j10, org.telegram.ui.ActionBar.v2[] v2VarArr, org.telegram.ui.ActionBar.f6 f6Var) {
+    public ra(int i7, Context context, long j3, long j10, org.telegram.ui.ActionBar.v2[] v2VarArr, org.telegram.ui.ActionBar.g6 g6Var) {
         this.f4637b = i7;
         this.f4639e = context;
         this.f4638c = j3;
         this.d = j10;
         this.f4640f = v2VarArr;
-        this.h = f6Var;
+        this.h = g6Var;
     }
 
     @Override
@@ -56,12 +56,12 @@ public final class ra implements Runnable {
         this.h = str2;
     }
 
-    public ra(k60 k60Var, int i7, long j3, long j10, an anVar, org.telegram.ui.ActionBar.f6 f6Var) {
-        this.f4639e = k60Var;
+    public ra(l60 l60Var, int i7, long j3, long j10, cn cnVar, org.telegram.ui.ActionBar.g6 g6Var) {
+        this.f4639e = l60Var;
         this.f4637b = i7;
         this.f4638c = j3;
         this.d = j10;
-        this.f4640f = anVar;
-        this.h = f6Var;
+        this.f4640f = cnVar;
+        this.h = g6Var;
     }
 }

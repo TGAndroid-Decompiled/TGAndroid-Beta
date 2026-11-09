@@ -50,8 +50,8 @@ public final class o extends p {
                 android.support.v4.media.session.a0 a0Var = (android.support.v4.media.session.a0) this.f13335e;
                 dh.a aVar = (dh.a) a0Var.d;
                 LocationManager locationManager = (LocationManager) a0Var.f1764c;
-                if (aVar.f8701b > System.currentTimeMillis()) {
-                    z9 = aVar.f8700a;
+                if (aVar.f8699b > System.currentTimeMillis()) {
+                    z9 = aVar.f8698a;
                 } else {
                     Context context = (Context) a0Var.f1763b;
                     Location location3 = null;
@@ -107,8 +107,8 @@ public final class o extends p {
                         } else {
                             j3 = currentTimeMillis + 43200000;
                         }
-                        aVar.f8700a = z9;
-                        aVar.f8701b = j3;
+                        aVar.f8698a = z9;
+                        aVar.f8699b = j3;
                     } else {
                         Log.i("TwilightManager", "Could not get last known location. This is probably because the app does not have any location permissions. Falling back to hardcoded sunrise/sunset values.");
                         int i7 = Calendar.getInstance().get(11);

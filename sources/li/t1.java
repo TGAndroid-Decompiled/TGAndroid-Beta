@@ -7,10 +7,10 @@ import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.view.KeyEvent;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.l6;
 import org.telegram.ui.Components.hc;
-import org.telegram.ui.Components.rt0;
-public final class t1 extends rt0 {
+import org.telegram.ui.Components.tt0;
+public final class t1 extends tt0 {
     public boolean f18866f0;
     public final Paint f18867g0;
     public final RectF f18868h0;
@@ -28,7 +28,7 @@ public final class t1 extends rt0 {
     public final void dispatchDraw(Canvas canvas) {
         b2 b2Var = this.f18869i0;
         Rect rect = b2Var.f18472x;
-        int r12 = k6.r1(b2Var.I, b2Var.getThemedColor(k6.f27852d6));
+        int r12 = l6.r1(b2Var.I, b2Var.getThemedColor(l6.f27865d6));
         Paint paint = this.f18867g0;
         paint.setColor(r12);
         if (b2Var.E && b2Var.f18474y != null) {
@@ -74,7 +74,7 @@ public final class t1 extends rt0 {
         b2 b2Var = this.f18869i0;
         if (action == 0 && keyEvent.getKeyCode() == 47 && keyEvent.isCtrlPressed()) {
             if (b2Var.v0()) {
-                org.telegram.messenger.k5.o(null, 2131746006, new hc(b2Var.X, b2Var.getResourceProvider()), 2131623989, 36);
+                org.telegram.messenger.k5.o(null, 2131746003, new hc(b2Var.X, b2Var.getResourceProvider()), 2131623989, 36);
                 return true;
             }
         } else if (!b2Var.P.k3(keyEvent)) {

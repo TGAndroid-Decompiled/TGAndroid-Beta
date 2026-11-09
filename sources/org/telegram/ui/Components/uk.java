@@ -6,8 +6,8 @@ public final class uk extends jg.s0 {
     public final int D = 0;
     public final org.telegram.messenger.ls E;
 
-    public uk(wk wkVar, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z9) {
-        super(context, f6Var, z9, false);
+    public uk(wk wkVar, Context context, org.telegram.ui.ActionBar.g6 g6Var, boolean z9) {
+        super(context, g6Var, z9, false);
         this.E = wkVar;
     }
 
@@ -19,33 +19,33 @@ public final class uk extends jg.s0 {
             case 0:
                 wk wkVar = (wk) lsVar;
                 uk ukVar = wkVar.N;
-                org.telegram.ui.ActionBar.r0 r0Var = wkVar.f39971x;
+                org.telegram.ui.ActionBar.r0 r0Var = wkVar.f40091x;
                 if (r0Var != null) {
                     r0Var.setShowSearchProgress(ukVar.f16678w);
                 }
-                TextView textView = wkVar.f39969w;
+                TextView textView = wkVar.f40089w;
                 if (textView != null) {
-                    textView.setText(org.telegram.messenger.id.a0(null, null, 2131748166, ukVar.h));
+                    textView.setText(org.telegram.messenger.id.a0(null, null, 2131748165, ukVar.h));
                 }
                 super.f();
                 return;
             default:
-                org.telegram.ui.pa0 pa0Var = (org.telegram.ui.pa0) lsVar;
-                org.telegram.ui.ActionBar.f5 f5Var = pa0Var.f48745r;
+                org.telegram.ui.ra0 ra0Var = (org.telegram.ui.ra0) lsVar;
+                org.telegram.ui.ActionBar.f5 f5Var = ra0Var.f49380r;
                 if (f5Var != null) {
-                    f5Var.setShowSearchProgress(pa0Var.S.f16678w);
+                    f5Var.setShowSearchProgress(ra0Var.S.f16678w);
                 }
-                TextView textView2 = pa0Var.f48740n;
+                TextView textView2 = ra0Var.f49375n;
                 if (textView2 != null) {
-                    textView2.setText(org.telegram.messenger.id.a0(null, null, 2131748166, pa0Var.S.h));
+                    textView2.setText(org.telegram.messenger.id.a0(null, null, 2131748165, ra0Var.S.h));
                 }
                 super.f();
                 return;
         }
     }
 
-    public uk(org.telegram.ui.pa0 pa0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z9) {
-        super(context, f6Var, false, z9);
-        this.E = pa0Var;
+    public uk(org.telegram.ui.ra0 ra0Var, Context context, org.telegram.ui.ActionBar.g6 g6Var, boolean z9) {
+        super(context, g6Var, false, z9);
+        this.E = ra0Var;
     }
 }

@@ -1,47 +1,30 @@
 package org.telegram.ui;
-public final class oi extends gh.b {
-    public final int f48411s;
-    public final an f48412w;
+public final class oi extends org.telegram.ui.ActionBar.g1 {
+    public final cn f48453o;
 
-    public oi(an anVar, org.telegram.ui.ActionBar.f6 f6Var, int i7, int i10) {
-        super(i7, f6Var);
-        this.f48411s = i10;
-        this.f48412w = anVar;
+    public oi(cn cnVar, mi miVar) {
+        super(miVar, -2, -2);
+        this.f48453o = cnVar;
     }
 
     @Override
-    public final int e1() {
-        int i7;
-        int i10;
-        switch (this.f48411s) {
-            case 0:
-                an anVar = this.f48412w;
-                i7 = ((org.telegram.ui.ActionBar.f2) anVar).currentAccount;
-                if (!c8.g0.c(i7, anVar.f44028xa)) {
-                    return i0.a.o(anVar.getThemedColor(org.telegram.ui.ActionBar.k6.Ge), 255);
-                }
-                ym ymVar = anVar.f44028xa;
-                if (ymVar != null && !ymVar.a()) {
-                    a();
-                    return i0.a.o(this.d, 216);
-                }
-                a();
-                return this.d;
-            case 1:
-                return this.f48412w.f44017x.e1();
-            default:
-                an anVar2 = this.f48412w;
-                i10 = ((org.telegram.ui.ActionBar.f2) anVar2).currentAccount;
-                if (!c8.g0.c(i10, anVar2.f44028xa)) {
-                    return i0.a.o(anVar2.getThemedColor(org.telegram.ui.ActionBar.k6.f27852d6), 255);
-                }
-                ym ymVar2 = anVar2.f44028xa;
-                if (ymVar2 != null && !ymVar2.a()) {
-                    a();
-                    return i0.a.o(this.d, 216);
-                }
-                a();
-                return this.d;
+    public final void dismiss() {
+        d(true);
+        cn cnVar = this.f48453o;
+        if (cnVar.f44442e9 == this) {
+            cnVar.f44442e9 = null;
+            cnVar.f44507j9 = null;
+            cnVar.f44494i9 = null;
+            cnVar.B0.R = true;
+            if (cnVar.f44456f9) {
+                cnVar.w8(false, true, 0.0f);
+            } else {
+                cnVar.f44456f9 = true;
+            }
+            sj sjVar = cnVar.Z;
+            if (sjVar != null && sjVar.getEditField() != null) {
+                cnVar.Z.getEditField().setAllowDrawCursor(true);
+            }
         }
     }
 }

@@ -11,20 +11,20 @@ import org.telegram.messenger.fu;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.kv;
 public final class z0 extends AccessibilityNodeProvider {
-    public final q1 f30947a;
-    public final Path f30948b = new Path();
-    public final RectF f30949c = new RectF();
+    public final q1 f30952a;
+    public final Path f30953b = new Path();
+    public final RectF f30954c = new RectF();
     public final Rect d = new Rect();
 
     public z0(q1 q1Var) {
-        this.f30947a = q1Var;
+        this.f30952a = q1Var;
     }
 
     public final ClickableSpan a(int i7, boolean z9) {
         if (i7 == 5000) {
             return null;
         }
-        q1 q1Var = this.f30947a;
+        q1 q1Var = this.f30952a;
         if (z9) {
             int i10 = i7 - 3000;
             CharSequence charSequence = q1Var.P5.f23318z;
@@ -54,7 +54,7 @@ public final class z0 extends AccessibilityNodeProvider {
     public final fu b(int[] iArr, int i7) {
         kv kvVar;
         int i10;
-        ij ijVar = this.f30947a.P5;
+        ij ijVar = this.f30952a.P5;
         if (ijVar != null && (kvVar = ijVar.f23309w2) != null) {
             ArrayList arrayList = kvVar.f23768g;
             int i11 = i7 - 6000;

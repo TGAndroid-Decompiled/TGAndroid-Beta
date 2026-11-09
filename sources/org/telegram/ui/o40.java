@@ -1,36 +1,33 @@
 package org.telegram.ui;
+public final class o40 implements Runnable {
+    public final int f48335a;
+    public final y40 f48336b;
 
-import android.content.Context;
-public final class o40 extends org.telegram.ui.Components.w00 {
-    public final w40 f48252r;
-
-    public o40(w40 w40Var, Context context, int i7) {
-        super(context, i7);
-        this.f48252r = w40Var;
+    public o40(y40 y40Var, int i7) {
+        this.f48335a = i7;
+        this.f48336b = y40Var;
     }
 
     @Override
-    public final void a(org.telegram.ui.Components.c20 c20Var) {
-        super.a(c20Var);
-        w40.e0(this.f48252r);
-    }
-
-    @Override
-    public final void b() {
-        super.b();
-        w40.e0(this.f48252r);
-    }
-
-    @Override
-    public final void c(org.telegram.ui.Components.c20 c20Var) {
-        w40 w40Var = this.f48252r;
-        if (c20Var == w40Var.X) {
-            w40Var.X = null;
+    public final void run() {
+        switch (this.f48335a) {
+            case 0:
+                this.f48336b.finishFragment();
+                return;
+            case 1:
+                y40 y40Var = this.f48336b;
+                y40Var.n0();
+                y40Var.j0();
+                return;
+            case 2:
+                y40 y40Var2 = this.f48336b;
+                y40Var2.getClass();
+                y40Var2.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
+                return;
+            default:
+                y40 y40Var3 = this.f48336b;
+                y40Var3.f51872n.postOnAnimation(new o40(y40Var3, 1));
+                return;
         }
-        if (c20Var == w40Var.Y) {
-            w40Var.Y = null;
-        }
-        super.c(c20Var);
-        w40.e0(w40Var);
     }
 }

@@ -1,54 +1,39 @@
 package org.telegram.ui;
+public final class y81 implements Runnable {
+    public final int f51999a;
+    public final y91 f52000b;
 
-import android.view.View;
-import android.widget.TextView;
-import org.telegram.tgnet.TLRPC;
-public final class y81 implements yh.c, org.telegram.messenger.bp, r0.m, org.telegram.ui.Components.ej0 {
-    public final w91 f52170a;
-
-    public y81(w91 w91Var) {
-        this.f52170a = w91Var;
+    public y81(y91 y91Var, int i7) {
+        this.f51999a = i7;
+        this.f52000b = y91Var;
     }
 
     @Override
-    public r0.k1 S0(View view, r0.k1 k1Var) {
-        int i7 = k1Var.f54202a.f(519).d;
-        w91 w91Var = this.f52170a;
-        w91Var.f51008f1 = i7;
-        s91 s91Var = w91Var.f51029r0;
-        if (s91Var != null) {
-            s91Var.setPadding(0, 0, 0, i7);
+    public final void run() {
+        switch (this.f51999a) {
+            case 0:
+                y91 y91Var = this.f52000b;
+                y91Var.B0();
+                y91Var.F0();
+                return;
+            case 1:
+                this.f52000b.B0();
+                return;
+            case 2:
+                this.f52000b.S0(true);
+                return;
+            case 3:
+                this.f52000b.finishPreviewFragment();
+                return;
+            case 4:
+                y91 y91Var2 = this.f52000b;
+                y91Var2.A0 = null;
+                y91Var2.Z0(true, false);
+                return;
+            default:
+                y91 y91Var3 = this.f52000b;
+                y91Var3.N.postOnAnimation(new y81(y91Var3, 1));
+                return;
         }
-        t81 t81Var = w91Var.f51021n;
-        if (t81Var != null) {
-            ((TextView) t81Var.d).setTranslationY((-w91Var.f51008f1) - w91Var.f51005e1);
-        }
-        w91Var.h.setTranslationY(((-w91Var.X0) - w91Var.f51008f1) - w91Var.f51005e1);
-        w91Var.F0();
-        return r0.k1.f54201b;
-    }
-
-    @Override
-    public boolean a(TLRPC.TL_error tL_error) {
-        return w91.Z(this.f52170a, tL_error);
-    }
-
-    @Override
-    public void d(boolean z9, boolean z10) {
-        w91 w91Var = this.f52170a;
-        w91Var.U0.i(w91Var.R0.b(), z9, z10);
-    }
-
-    @Override
-    public boolean mo19f(float f10, float f11, int i7, View view) {
-        return w91.b0(this.f52170a, view, f10);
-    }
-
-    @Override
-    public void q(float f10) {
-    }
-
-    @Override
-    public void i() {
     }
 }

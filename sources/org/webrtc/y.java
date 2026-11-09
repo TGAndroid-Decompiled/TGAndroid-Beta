@@ -2,11 +2,7 @@ package org.webrtc;
 
 import org.webrtc.VideoEncoderFactory;
 public abstract class y {
-    public static VideoEncoderFactory.VideoEncoderSelector a(VideoEncoderFactory videoEncoderFactory) {
+    public static VideoCodecInfo a(VideoEncoderFactory.VideoEncoderSelector videoEncoderSelector, int i7, int i10) {
         return null;
-    }
-
-    public static VideoCodecInfo[] b(VideoEncoderFactory videoEncoderFactory) {
-        return videoEncoderFactory.getSupportedCodecs();
     }
 }

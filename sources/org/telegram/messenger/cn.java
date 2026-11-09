@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.xm0;
+import org.telegram.ui.zm0;
 public final class cn implements RequestDelegate {
     public final int f21903a = 0;
     public final int f21904b;
@@ -44,13 +44,13 @@ public final class cn implements RequestDelegate {
                 }
                 return;
             default:
-                g0.h3(new li.p2((xm0) this.f21906e, (String) this.f21907f, this.f21904b, tLObject, this.f21905c, this.d));
+                g0.h3(new li.p2((zm0) this.f21906e, (String) this.f21907f, this.f21904b, tLObject, this.f21905c, this.d));
                 return;
         }
     }
 
-    public cn(xm0 xm0Var, String str, int i7, boolean z9, TLRPC.User user) {
-        this.f21906e = xm0Var;
+    public cn(zm0 zm0Var, String str, int i7, boolean z9, TLRPC.User user) {
+        this.f21906e = zm0Var;
         this.f21907f = str;
         this.f21904b = i7;
         this.f21905c = z9;

@@ -227,10 +227,10 @@ public final class oa {
                                     TLRPC.Message message = arrayList2.get(i14);
                                     i14++;
                                     ij ijVar = new ij(oaVar.f24312a, message, null, null, null, null, null, true, true, 0L, false, false, false, i10);
-                                    if (ijVar.A2()) {
+                                    if (ijVar.z2()) {
                                         ijVar.Q2 = true;
                                     }
-                                    ijVar.L5(str4, false);
+                                    ijVar.K5(str4, false);
                                     arrayList.add(ijVar);
                                 } else {
                                     g0.h3(new la(oaVar, r4, b10, messages_messages, arrayList, i7, i11));

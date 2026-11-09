@@ -6,7 +6,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.ij;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.RadialProgress2;
-import org.telegram.ui.Components.my0;
+import org.telegram.ui.Components.ny0;
 public final class k4 implements org.telegram.messenger.x5 {
     public boolean D;
     public TLRPC.MessageExtendedMedia E;
@@ -16,21 +16,21 @@ public final class k4 implements org.telegram.messenger.x5 {
     public final int I;
     public final int J;
     public int K;
-    public my0 L;
+    public ny0 L;
     public boolean M;
-    public int f29420a;
-    public int f29421b;
-    public int f29422c;
+    public int f29424a;
+    public int f29425b;
+    public int f29426c;
     public int d;
-    public final q1 f29423e;
-    public final ImageReceiver f29424f;
+    public final q1 f29427e;
+    public final ImageReceiver f29428f;
     public boolean h;
-    public final int f29425n;
-    public final int f29426r;
-    public final float[] f29427s = new float[8];
-    public String f29428w;
-    public final boolean f29429x;
-    public final boolean f29430y;
+    public final int f29429n;
+    public final int f29430r;
+    public final float[] f29431s = new float[8];
+    public String f29432w;
+    public final boolean f29433x;
+    public final boolean f29434y;
 
     public k4(q1 q1Var, ij ijVar, TLRPC.MessageExtendedMedia messageExtendedMedia, boolean z9, int i7, int i10) {
         boolean z10;
@@ -40,17 +40,17 @@ public final class k4 implements org.telegram.messenger.x5 {
         this.H = 4;
         this.J = 0;
         this.K = 0;
-        this.f29423e = q1Var;
-        this.f29429x = z9;
-        this.f29430y = false;
+        this.f29427e = q1Var;
+        this.f29433x = z9;
+        this.f29434y = false;
         if (messageExtendedMedia instanceof TLRPC.TL_messageExtendedMedia) {
             TLRPC.MessageMedia messageMedia = ((TLRPC.TL_messageExtendedMedia) messageExtendedMedia).media;
-            if ((messageMedia instanceof TLRPC.TL_messageMediaDocument) && ij.L4(messageMedia.document)) {
+            if ((messageMedia instanceof TLRPC.TL_messageMediaDocument) && ij.K4(messageMedia.document)) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            this.f29430y = z11;
+            this.f29434y = z11;
             this.J = (int) Math.max(1L, Math.round(ij.H0(messageMedia.document)));
         } else if (messageExtendedMedia instanceof TLRPC.TL_messageExtendedMediaPreview) {
             TLRPC.TL_messageExtendedMediaPreview tL_messageExtendedMediaPreview = (TLRPC.TL_messageExtendedMediaPreview) messageExtendedMedia;
@@ -59,19 +59,19 @@ public final class k4 implements org.telegram.messenger.x5 {
             } else {
                 z10 = false;
             }
-            this.f29430y = z10;
+            this.f29434y = z10;
             this.J = tL_messageExtendedMediaPreview.video_duration;
         }
-        if (this.f29430y) {
+        if (this.f29434y) {
             int i11 = this.J;
             this.K = i11;
-            this.L = new my0(org.telegram.messenger.g0.g0(i11, true, false), 12.0f, null);
+            this.L = new ny0(org.telegram.messenger.g0.g0(i11, true, false), 12.0f, null);
         }
         ImageReceiver imageReceiver = new ImageReceiver(q1Var);
-        this.f29424f = imageReceiver;
+        this.f29428f = imageReceiver;
         imageReceiver.f21209o1 = null;
-        this.f29425n = i7;
-        this.f29426r = i10;
+        this.f29429n = i7;
+        this.f29430r = i10;
         this.I = org.telegram.messenger.z5.q(q1Var.Z5).k();
         c(messageExtendedMedia, ijVar);
         RadialProgress2 radialProgress2 = new RadialProgress2(q1Var, q1Var.getResourcesProvider());
@@ -82,7 +82,7 @@ public final class k4 implements org.telegram.messenger.x5 {
     }
 
     public final int a() {
-        if (this.f29430y && !this.D) {
+        if (this.f29434y && !this.D) {
             return 0;
         }
         return 4;
@@ -121,7 +121,7 @@ public final class k4 implements org.telegram.messenger.x5 {
             a10 = a();
         }
         b(a10);
-        this.f29423e.invalidate();
+        this.f29427e.invalidate();
     }
 
     @Override
@@ -137,13 +137,13 @@ public final class k4 implements org.telegram.messenger.x5 {
         this.G.p(true, min);
         if (min < 1.0f) {
             a10 = 3;
-        } else if (this.f29429x) {
+        } else if (this.f29433x) {
             a10 = 6;
         } else {
             a10 = a();
         }
         b(a10);
-        this.f29423e.invalidate();
+        this.f29427e.invalidate();
     }
 
     @Override

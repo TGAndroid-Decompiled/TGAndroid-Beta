@@ -20,21 +20,22 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import org.telegram.messenger.a8;
+import org.telegram.messenger.c20;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.id;
 import org.telegram.messenger.k5;
 import org.telegram.messenger.p10;
 import org.telegram.messenger.qp;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.a6;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.s6;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.c20;
+import org.telegram.ui.Components.d20;
 import org.telegram.ui.Components.w5;
 import org.telegram.ui.Components.xq;
-public abstract class o extends ScrollView implements a6 {
+public abstract class o extends ScrollView implements b6 {
     public final w5 D;
     public final LinearGradient E;
     public final Paint F;
@@ -42,21 +43,21 @@ public abstract class o extends ScrollView implements a6 {
     public boolean H;
     public int I;
     public float J;
-    public final f6 f1096a;
+    public final g6 f1096a;
     public final i f1097b;
     public final int f1098c;
     public final n d;
     public final ArrayList f1099e;
-    public c20 f1100f;
+    public d20 f1100f;
     public boolean h;
-    public org.telegram.messenger.c20 f1101n;
+    public c20 f1101n;
     public int f1102r;
     public final w5 f1103s;
     public final LinearGradient f1104w;
     public final Paint f1105x;
     public final Matrix f1106y;
 
-    public o(Context context, f6 f6Var) {
+    public o(Context context, g6 g6Var) {
         super(context);
         int i7;
         this.f1099e = new ArrayList();
@@ -79,9 +80,9 @@ public abstract class o extends ScrollView implements a6 {
         paint.setXfermode(new PorterDuffXfermode(mode));
         paint2.setShader(linearGradient2);
         paint2.setXfermode(new PorterDuffXfermode(mode));
-        this.f1096a = f6Var;
+        this.f1096a = g6Var;
         setVerticalScrollBarEnabled(false);
-        int x02 = k6.x0(null, k6.f27852d6, false);
+        int x02 = l6.x0(null, l6.f27865d6, false);
         this.f1102r = x02;
         g0.z3(this, x02);
         n nVar = new n(this, context);
@@ -93,11 +94,11 @@ public abstract class o extends ScrollView implements a6 {
             iVar.setRevealOnFocusHint(false);
         }
         iVar.setTextSize(1, 16.0f);
-        r6.m(iVar, 34, k6.Li, f6Var);
-        r6.V(iVar, k6.G6, f6Var);
-        int i10 = k6.Mi;
-        r6.m(iVar, 30, i10, f6Var);
-        r6.m(iVar, 36, i10, f6Var);
+        s6.l(iVar, 34, l6.Li, g6Var);
+        s6.U(iVar, l6.G6, g6Var);
+        int i10 = l6.Mi;
+        s6.l(iVar, 30, i10, g6Var);
+        s6.l(iVar, 36, i10, g6Var);
         iVar.setCursorWidth(1.5f);
         iVar.setInputType(iVar.getInputType() | 176);
         iVar.setSingleLine(true);
@@ -114,8 +115,8 @@ public abstract class o extends ScrollView implements a6 {
         }
         iVar.setGravity(i7 | 16);
         nVar.addView(iVar);
-        iVar.setHintText(id.M0(2131745839, null));
-        this.f1098c = (int) iVar.getPaint().measureText(id.M0(2131745839, null));
+        iVar.setHintText(id.M0(2131745836, null));
+        this.f1098c = (int) iVar.getPaint().measureText(id.M0(2131745836, null));
         iVar.addTextChangedListener(new j(this, 0));
     }
 
@@ -123,43 +124,43 @@ public abstract class o extends ScrollView implements a6 {
         if (!this.f1099e.contains(view)) {
             return;
         }
-        c20 c20Var = (c20) view;
-        if (c20Var.D) {
+        d20 d20Var = (d20) view;
+        if (d20Var.D) {
             this.f1100f = null;
             n nVar = this.d;
             o oVar = (o) nVar.f1095n;
             oVar.H = true;
-            oVar.f1099e.remove(c20Var);
-            c20Var.setOnClickListener(null);
+            oVar.f1099e.remove(d20Var);
+            d20Var.setOnClickListener(null);
             nVar.c();
             nVar.f1092c = false;
             AnimatorSet animatorSet = new AnimatorSet();
             nVar.f1091b = animatorSet;
-            animatorSet.addListener(new l(0, nVar, c20Var));
+            animatorSet.addListener(new l(0, nVar, d20Var));
             ArrayList arrayList = nVar.h;
             arrayList.clear();
-            arrayList.add(c20Var);
+            arrayList.add(d20Var);
             ArrayList arrayList2 = nVar.d;
             arrayList2.clear();
             nVar.f1093e.clear();
-            arrayList2.add(c20Var);
+            arrayList2.add(d20Var);
             ArrayList arrayList3 = nVar.f1094f;
             arrayList3.clear();
-            arrayList3.add(ObjectAnimator.ofFloat(c20Var, View.SCALE_X, 1.0f, 0.01f));
-            arrayList3.add(ObjectAnimator.ofFloat(c20Var, View.SCALE_Y, 1.0f, 0.01f));
-            arrayList3.add(ObjectAnimator.ofFloat(c20Var, View.ALPHA, 1.0f, 0.0f));
+            arrayList3.add(ObjectAnimator.ofFloat(d20Var, View.SCALE_X, 1.0f, 0.01f));
+            arrayList3.add(ObjectAnimator.ofFloat(d20Var, View.SCALE_Y, 1.0f, 0.01f));
+            arrayList3.add(ObjectAnimator.ofFloat(d20Var, View.ALPHA, 1.0f, 0.0f));
             nVar.requestLayout();
-            hashSet.remove(Long.valueOf(c20Var.getUid()));
+            hashSet.remove(Long.valueOf(d20Var.getUid()));
             runnable.run();
             return;
         }
-        c20 c20Var2 = this.f1100f;
-        if (c20Var2 != null) {
-            c20Var2.a();
+        d20 d20Var2 = this.f1100f;
+        if (d20Var2 != null) {
+            d20Var2.a();
             this.f1100f = null;
         }
-        this.f1100f = c20Var;
-        c20Var.b();
+        this.f1100f = d20Var;
+        d20Var.b();
     }
 
     public final void b(boolean z9, HashSet hashSet, Runnable runnable, ArrayList arrayList) {
@@ -181,9 +182,9 @@ public abstract class o extends ScrollView implements a6 {
             if (i10 >= arrayList2.size()) {
                 break;
             }
-            c20 c20Var = (c20) arrayList2.get(i10);
-            if (!hashSet.contains(Long.valueOf(c20Var.getUid()))) {
-                arrayList4.add(c20Var);
+            d20 d20Var = (d20) arrayList2.get(i10);
+            if (!hashSet.contains(Long.valueOf(d20Var.getUid()))) {
+                arrayList4.add(d20Var);
             }
             i10++;
         }
@@ -194,7 +195,7 @@ public abstract class o extends ScrollView implements a6 {
             int i11 = 0;
             while (true) {
                 if (i11 < arrayList2.size()) {
-                    if (((c20) arrayList2.get(i11)).getUid() == longValue) {
+                    if (((d20) arrayList2.get(i11)).getUid() == longValue) {
                         qpVar = s12;
                         break;
                     }
@@ -225,9 +226,9 @@ public abstract class o extends ScrollView implements a6 {
                     qpVar = s12;
                     tL_help_country = M0;
                     if (tL_help_country != null) {
-                        c20 c20Var2 = new c20(getContext(), tL_help_country, null, true, this.f1096a);
-                        c20Var2.setOnClickListener(new g(this, hashSet, runnable, 0));
-                        arrayList5.add(c20Var2);
+                        d20 d20Var2 = new d20(getContext(), tL_help_country, null, true, this.f1096a);
+                        d20Var2.setOnClickListener(new g(this, hashSet, runnable, 0));
+                        arrayList5.add(d20Var2);
                     }
                 }
             }
@@ -248,7 +249,7 @@ public abstract class o extends ScrollView implements a6 {
             arrayList10.clear();
             arrayList10.addAll(arrayList4);
             for (int i13 = 0; i13 < arrayList4.size(); i13++) {
-                ((c20) arrayList4.get(i13)).setOnClickListener(null);
+                ((d20) arrayList4.get(i13)).setOnClickListener(null);
             }
             nVar.c();
             if (z9) {
@@ -268,19 +269,19 @@ public abstract class o extends ScrollView implements a6 {
                     if (i14 >= size2) {
                         break;
                     }
-                    c20 c20Var3 = (c20) arrayList4.get(i14);
-                    arrayList6.add(c20Var3);
-                    arrayList8.add(ObjectAnimator.ofFloat(c20Var3, property3, 1.0f, 0.01f));
-                    arrayList8.add(ObjectAnimator.ofFloat(c20Var3, property2, 1.0f, 0.01f));
-                    arrayList8.add(ObjectAnimator.ofFloat(c20Var3, property, 1.0f, 0.0f));
+                    d20 d20Var3 = (d20) arrayList4.get(i14);
+                    arrayList6.add(d20Var3);
+                    arrayList8.add(ObjectAnimator.ofFloat(d20Var3, property3, 1.0f, 0.01f));
+                    arrayList8.add(ObjectAnimator.ofFloat(d20Var3, property2, 1.0f, 0.01f));
+                    arrayList8.add(ObjectAnimator.ofFloat(d20Var3, property, 1.0f, 0.0f));
                     i14++;
                 }
                 for (int i15 = 0; i15 < arrayList5.size(); i15++) {
-                    c20 c20Var4 = (c20) arrayList5.get(i15);
-                    arrayList7.add(c20Var4);
-                    arrayList8.add(ObjectAnimator.ofFloat(c20Var4, property3, 0.01f, 1.0f));
-                    arrayList8.add(ObjectAnimator.ofFloat(c20Var4, property2, 0.01f, 1.0f));
-                    arrayList8.add(ObjectAnimator.ofFloat(c20Var4, property, 0.0f, 1.0f));
+                    d20 d20Var4 = (d20) arrayList5.get(i15);
+                    arrayList7.add(d20Var4);
+                    arrayList8.add(ObjectAnimator.ofFloat(d20Var4, property3, 0.01f, 1.0f));
+                    arrayList8.add(ObjectAnimator.ofFloat(d20Var4, property2, 0.01f, 1.0f));
+                    arrayList8.add(ObjectAnimator.ofFloat(d20Var4, property, 0.0f, 1.0f));
                 }
                 i7 = 0;
             } else {
@@ -357,7 +358,7 @@ public abstract class o extends ScrollView implements a6 {
         }
     }
 
-    public void setOnSearchTextChange(org.telegram.messenger.c20 c20Var) {
+    public void setOnSearchTextChange(c20 c20Var) {
         this.f1101n = c20Var;
     }
 
@@ -370,7 +371,7 @@ public abstract class o extends ScrollView implements a6 {
     @Override
     public final void updateColors() {
         try {
-            int x02 = k6.x0(null, k6.f27852d6, false);
+            int x02 = l6.x0(null, l6.f27865d6, false);
             int i7 = this.f1102r;
             if (i7 != 0 && x02 != i7) {
                 this.f1102r = x02;

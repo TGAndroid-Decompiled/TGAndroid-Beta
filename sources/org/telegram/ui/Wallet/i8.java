@@ -1,80 +1,87 @@
 package org.telegram.ui.Wallet;
 
 import android.text.TextUtils;
-import java.nio.charset.StandardCharsets;
-import org.telegram.ui.Components.n41;
-public final class i8 implements org.telegram.ui.ActionBar.r1 {
-    public final int f42640a;
-    public final n41 f42641b;
-    public final Object f42642c;
-    public final Object d;
+import java.util.ArrayList;
+import org.telegram.messenger.c20;
+import org.telegram.messenger.id;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.Components.cc;
+import org.telegram.ui.Components.hc;
+public final class i8 implements c20 {
+    public final int f42600a;
+    public final m8 f42601b;
+    public final vf.b f42602c;
 
-    public i8(n41 n41Var, Object obj, Object obj2, int i7) {
-        this.f42640a = i7;
-        this.f42641b = n41Var;
-        this.d = obj;
-        this.f42642c = obj2;
+    public i8(m8 m8Var, vf.b bVar, int i7) {
+        this.f42600a = i7;
+        this.f42601b = m8Var;
+        this.f42602c = bVar;
     }
 
     @Override
-    public final void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        org.telegram.ui.ActionBar.f2 f2Var;
-        switch (this.f42640a) {
+    public final void a(Object obj) {
+        int i7 = this.f42600a;
+        vf.b bVar = this.f42602c;
+        m8 m8Var = this.f42601b;
+        String str = (String) obj;
+        switch (i7) {
             case 0:
-                n8 n8Var = (n8) this.f42641b;
-                m0 m0Var = (m0) this.f42642c;
-                if (!((Boolean) this.d).booleanValue()) {
-                    m0Var.f42764c.B();
-                }
-                if (n8Var.getParentLayout() != null && n8Var.getParentLayout().getFragmentStack().size() > 1) {
-                    f2Var = (org.telegram.ui.ActionBar.f2) n8Var.getParentLayout().getFragmentStack().get(n8Var.getParentLayout().getFragmentStack().size() - 2);
-                } else {
-                    f2Var = null;
-                }
-                h3.a(m0Var.f42762a, new ai.c0(10), null, null, null, new di.b0(5, m0Var, new t(10, n8Var, f2Var)), false, true, new bg.v0((Object) null, 2));
-                return;
-            case 1:
-                m0 m0Var2 = (m0) this.f42642c;
-                vf.b h = u1Var.h(i7, true, true);
-                h.d();
-                j8 j8Var = new j8((n8) this.f42641b, h, 2);
-                m0.H("disable backup: getting phrase...");
-                m0Var2.z(new j((Object) m0Var2, (Object) j8Var, (Object) ((h0) this.d), 1), false, true);
-                return;
-            default:
-                m9 m9Var = (m9) this.f42641b;
-                kg.x0 x0Var = (kg.x0) this.d;
-                org.telegram.ui.Cells.c2 c2Var = (org.telegram.ui.Cells.c2) this.f42642c;
-                String str = null;
-                if (x0Var.getText().toString().getBytes(StandardCharsets.UTF_8).length > 960) {
-                    int i10 = -m9Var.f42830o0;
-                    m9Var.f42830o0 = i10;
-                    org.telegram.messenger.g0.G3(i10, x0Var, null);
+                m8Var.getClass();
+                bVar.b();
+                if (!TextUtils.isEmpty(str)) {
+                    hc.a0(m8Var).e0(str, false);
                     return;
                 }
-                String trim = x0Var.getText().toString().trim();
-                if (!TextUtils.isEmpty(trim)) {
-                    str = trim;
+                return;
+            case 1:
+                bVar.c(false);
+                org.telegram.ui.ActionBar.q4 parentLayout = m8Var.getParentLayout();
+                if (parentLayout != null) {
+                    ArrayList arrayList = new ArrayList(parentLayout.getFragmentStack());
+                    int size = arrayList.size();
+                    int i10 = 0;
+                    while (i10 < size) {
+                        Object obj2 = arrayList.get(i10);
+                        i10++;
+                        org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) obj2;
+                        if ((f2Var instanceof v9) || (f2Var instanceof t8) || (f2Var instanceof da)) {
+                            ((ActionBarLayout) parentLayout).d0(f2Var, false);
+                        }
+                    }
                 }
-                m9Var.f42822g0 = str;
-                m9Var.f42823h0 = !c2Var.b();
-                if (TextUtils.isEmpty(m9Var.f42822g0)) {
-                    m9Var.P.setVisibility(8);
-                } else {
-                    m9Var.P.setText(m9Var.f42822g0);
-                    m9Var.P.setVisibility(0);
+                if (str != null) {
+                    hc.a0(m8Var).e0(str, false);
+                    return;
                 }
-                m9Var.E0();
-                u1Var.dismiss();
-                m9Var.t0();
+                cc I = hc.a0(m8Var).I(2131623989, id.M0(2131743191, null), id.M0(2131743189, null));
+                I.f32627j = 5000;
+                I.j();
+                return;
+            default:
+                m8Var.getClass();
+                bVar.b();
+                if (str != null) {
+                    hc.a0(m8Var).e0(str, false);
+                    return;
+                }
+                org.telegram.ui.ActionBar.q4 parentLayout2 = m8Var.getParentLayout();
+                if (parentLayout2 == null) {
+                    m8Var.finishFragment();
+                    return;
+                }
+                ArrayList arrayList2 = new ArrayList(parentLayout2.getFragmentStack());
+                int size2 = arrayList2.size();
+                int i11 = 0;
+                while (i11 < size2) {
+                    Object obj3 = arrayList2.get(i11);
+                    i11++;
+                    org.telegram.ui.ActionBar.f2 f2Var2 = (org.telegram.ui.ActionBar.f2) obj3;
+                    if ((f2Var2 instanceof v9) || (f2Var2 instanceof t8) || (f2Var2 instanceof da) || (f2Var2 instanceof m8)) {
+                        ((ActionBarLayout) parentLayout2).d0(f2Var2, false);
+                    }
+                }
+                m8Var.finishFragment();
                 return;
         }
-    }
-
-    public i8(n8 n8Var, m0 m0Var, h0 h0Var) {
-        this.f42640a = 1;
-        this.f42641b = n8Var;
-        this.f42642c = m0Var;
-        this.d = h0Var;
     }
 }

@@ -5,21 +5,21 @@ import java.util.regex.Pattern;
 import va.j;
 public final class d {
     public static final long d = TimeUnit.HOURS.toMillis(24);
-    public static final long f58679e = TimeUnit.MINUTES.toMillis(30);
-    public final j f58680a;
-    public long f58681b;
-    public int f58682c;
+    public static final long f58688e = TimeUnit.MINUTES.toMillis(30);
+    public final j f58689a;
+    public long f58690b;
+    public int f58691c;
 
     public d() {
-        if (sa.d.f54992b == null) {
-            Pattern pattern = j.f57305c;
-            sa.d.f54992b = new sa.d(28);
+        if (sa.d.f55004b == null) {
+            Pattern pattern = j.f57317c;
+            sa.d.f55004b = new sa.d(28);
         }
-        sa.d dVar = sa.d.f54992b;
+        sa.d dVar = sa.d.f55004b;
         if (j.d == null) {
             j.d = new j(dVar);
         }
-        this.f58680a = j.d;
+        this.f58689a = j.d;
     }
 
     public final synchronized long a(int i7) {
@@ -32,16 +32,16 @@ public final class d {
         if (!z9) {
             return d;
         }
-        double pow = Math.pow(2.0d, this.f58682c);
-        this.f58680a.getClass();
-        return (long) Math.min(pow + ((long) (Math.random() * 1000.0d)), f58679e);
+        double pow = Math.pow(2.0d, this.f58691c);
+        this.f58689a.getClass();
+        return (long) Math.min(pow + ((long) (Math.random() * 1000.0d)), f58688e);
     }
 
     public final synchronized boolean b() {
         boolean z9;
-        if (this.f58682c != 0) {
-            this.f58680a.f57306a.getClass();
-            if (System.currentTimeMillis() <= this.f58681b) {
+        if (this.f58691c != 0) {
+            this.f58689a.f57318a.getClass();
+            if (System.currentTimeMillis() <= this.f58690b) {
                 z9 = false;
             }
         }
@@ -50,15 +50,15 @@ public final class d {
     }
 
     public final synchronized void c() {
-        this.f58682c = 0;
+        this.f58691c = 0;
     }
 
     public final synchronized void d(int i7) {
         if ((i7 < 200 || i7 >= 300) && i7 != 401 && i7 != 404) {
-            this.f58682c++;
+            this.f58691c++;
             long a10 = a(i7);
-            this.f58680a.f57306a.getClass();
-            this.f58681b = System.currentTimeMillis() + a10;
+            this.f58689a.f57318a.getClass();
+            this.f58690b = System.currentTimeMillis() + a10;
             return;
         }
         c();

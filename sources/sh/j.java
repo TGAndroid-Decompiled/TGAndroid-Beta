@@ -1,50 +1,22 @@
 package sh;
 
-import android.content.Context;
 import android.view.View;
-import org.telegram.tgnet.TLObject;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.q41;
-import org.telegram.ui.Components.w31;
-import org.telegram.ui.Components.x31;
-import org.telegram.ui.if0;
-public final class j extends w31 {
-    public static final int f55321b = 0;
+import c8.j9;
+import org.telegram.messenger.g0;
+import org.telegram.ui.ActionBar.f2;
+import org.telegram.ui.Components.r41;
+public final class j extends r41 {
+    public final int f55332m3;
 
-    static {
-        w31.h(new w31());
+    public j(f2 f2Var, i iVar, int i7) {
+        super(f2Var, iVar, null, null);
+        this.f55332m3 = i7;
     }
 
     @Override
-    public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
-        if0 if0Var = (if0) view;
-        if0Var.a((TLObject) x31Var.G, x31Var.f40193z, true);
-        if0Var.setOnClickListener(x31Var.D);
-    }
-
-    @Override
-    public final boolean c(x31 x31Var, x31 x31Var2) {
-        if (x31Var.B == x31Var2.B) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final View d(Context context, pj0 pj0Var, int i7, f6 f6Var) {
-        if0 if0Var = new if0(context);
-        if0Var.setBackground(k6.N0(false));
-        return if0Var;
-    }
-
-    @Override
-    public final boolean e(x31 x31Var, x31 x31Var2) {
-        if (x31Var.B == x31Var2.B) {
-            return true;
-        }
-        return false;
+    public final void onMeasure(int i7, int i10) {
+        int min = Math.min(g0.L(220.0f), View.MeasureSpec.getSize(i7));
+        View.MeasureSpec.getSize(i10);
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(min, 1073741824), View.MeasureSpec.makeMeasureSpec(g0.L(j9.b(this.f55332m3, 1, 5) * 48), 1073741824));
     }
 }

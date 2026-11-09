@@ -2,11 +2,11 @@ package dh;
 
 import org.telegram.messenger.ui;
 public final class a {
-    public boolean f8700a;
-    public long f8701b;
+    public boolean f8698a;
+    public long f8699b;
 
     public void a(long j3) {
-        this.f8701b = ui.p(this.f8701b, j3);
+        this.f8699b = ui.p(this.f8699b, j3);
     }
 
     public void b(boolean z9) {

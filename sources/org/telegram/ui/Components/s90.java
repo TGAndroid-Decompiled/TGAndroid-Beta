@@ -1,27 +1,31 @@
 package org.telegram.ui.Components;
-public final class s90 implements Runnable {
-    public final int f37960a;
-    public final ca0 f37961b;
 
-    public s90(ca0 ca0Var, int i7) {
-        this.f37960a = i7;
-        this.f37961b = ca0Var;
+import android.content.Context;
+public final class s90 implements Runnable {
+    public final int f37986a;
+    public final da0 f37987b;
+    public final Context f37988c;
+
+    public s90(da0 da0Var, Context context, int i7) {
+        this.f37986a = i7;
+        this.f37987b = da0Var;
+        this.f37988c = context;
     }
 
     @Override
     public final void run() {
-        switch (this.f37960a) {
+        switch (this.f37986a) {
             case 0:
-                ca0 ca0Var = this.f37961b;
-                bi.q1 q1Var = ca0Var.f32527f;
-                if (ca0Var.f32525c0.d.f24045r) {
-                    q1Var.x0(-q1Var.computeVerticalScrollOffset(), 250, mi.l.V);
-                    return;
-                }
-                q1Var.x0(q1Var.computeVerticalScrollRange() - (q1Var.computeVerticalScrollExtent() + q1Var.computeVerticalScrollOffset()), 250, mi.l.V);
+                da0 da0Var = this.f37987b;
+                da0Var.f32920c0.a(false);
+                org.telegram.messenger.g0.h3(new s90(da0Var, this.f37988c, 1));
                 return;
             default:
-                this.f37961b.h(true, false);
+                Context context = this.f37988c;
+                if (org.telegram.messenger.g0.E1(context)) {
+                    new ug.w0(43, context, this.f37987b.f32920c0.F).show();
+                    return;
+                }
                 return;
         }
     }

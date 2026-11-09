@@ -3,16 +3,16 @@ package org.telegram.ui.ActionBar;
 import c8.j9;
 import org.telegram.ui.Components.xq;
 public final class t implements Runnable {
-    public final boolean f28498a;
-    public final boolean f28499b;
-    public final boolean f28500c;
+    public final boolean f28503a;
+    public final boolean f28504b;
+    public final boolean f28505c;
     public final ActionBarLayout d;
 
     public t(ActionBarLayout actionBarLayout, boolean z9, boolean z10, boolean z11) {
         this.d = actionBarLayout;
-        this.f28498a = z9;
-        this.f28499b = z10;
-        this.f28500c = z11;
+        this.f28503a = z9;
+        this.f28504b = z10;
+        this.f28505c = z11;
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class t implements Runnable {
         }
         Integer num2 = null;
         actionBarLayout.J0 = null;
-        boolean z9 = this.f28498a;
+        boolean z9 = this.f28503a;
         if (z9) {
             actionBarLayout.B0 = System.currentTimeMillis();
         }
@@ -38,8 +38,8 @@ public final class t implements Runnable {
             j3 = 18;
         }
         actionBarLayout.L0 = nanoTime;
-        boolean z10 = this.f28500c;
-        boolean z11 = this.f28499b;
+        boolean z10 = this.f28505c;
+        boolean z11 = this.f28504b;
         if (z11 && z10) {
             f10 = 190.0f;
         } else {
@@ -114,7 +114,7 @@ public final class t implements Runnable {
                     actionBarLayout.J.setScaleY(f15);
                 }
                 actionBarLayout.f27267r.setAlpha((int) (46.0f * a10));
-                k6.f28125s0.setAlpha((int) (a10 * 255.0f));
+                l6.f28138s0.setAlpha((int) (a10 * 255.0f));
                 actionBarLayout.f27270s.invalidate();
                 actionBarLayout.invalidate();
             } else {
@@ -130,7 +130,7 @@ public final class t implements Runnable {
                 actionBarLayout.f27278w.setScaleY(f17);
                 actionBarLayout.f27267r.setAlpha((int) (46.0f * a11));
                 if (actionBarLayout.J == null) {
-                    k6.f28125s0.setAlpha((int) (a11 * 255.0f));
+                    l6.f28138s0.setAlpha((int) (a11 * 255.0f));
                 }
                 actionBarLayout.f27270s.invalidate();
                 actionBarLayout.invalidate();

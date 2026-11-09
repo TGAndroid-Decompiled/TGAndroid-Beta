@@ -170,9 +170,9 @@ public final class tp implements Runnable {
                                     TLRPC.Document document = TLdeserialize.document;
                                     if (document != null) {
                                         obj2.f21387a = document;
-                                        if (!ij.L4(document)) {
-                                            if (!ij.R4(TLdeserialize.document)) {
-                                                if (ij.j4(TLdeserialize.document)) {
+                                        if (!ij.K4(document)) {
+                                            if (!ij.Q4(TLdeserialize.document)) {
+                                                if (ij.i4(TLdeserialize.document)) {
                                                 }
                                                 z11 = false;
                                                 obj2.d = z11;

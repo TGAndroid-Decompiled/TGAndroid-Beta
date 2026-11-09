@@ -86,7 +86,7 @@ public final class xp implements Runnable {
                         int intValue = queryFinalized3.intValue(0);
                         if (!arrayList.contains(Integer.valueOf(intValue))) {
                             NativeByteBuffer byteBufferValue = queryFinalized3.byteBufferValue(1);
-                            if (ij.R1(e10, TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false)) == j3) {
+                            if (ij.Q1(e10, TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false)) == j3) {
                                 arrayList.add(Integer.valueOf(intValue));
                             }
                             byteBufferValue.reuse();

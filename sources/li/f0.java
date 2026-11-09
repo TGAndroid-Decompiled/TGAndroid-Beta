@@ -16,28 +16,28 @@ import org.telegram.messenger.a8;
 import org.telegram.messenger.gu;
 import org.telegram.messenger.id;
 import org.telegram.messenger.iz;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
-public final class f0 extends y implements org.telegram.ui.ActionBar.a6 {
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.s6;
+public final class f0 extends y implements org.telegram.ui.ActionBar.b6 {
     public final ArrayList D;
     public d0 E;
     public int F;
     public int G;
     public final ra H;
     public final int f18552n;
-    public final f6 f18553r;
+    public final g6 f18553r;
     public final HorizontalScrollView f18554s;
     public final LinearLayout f18555w;
     public final x1 f18556x;
     public final TextView f18557y;
 
-    public f0(int i7, Context context, f6 f6Var) {
+    public f0(int i7, Context context, g6 g6Var) {
         super(context);
         this.D = new ArrayList();
         this.H = new ra(this, 28);
         this.f18552n = i7;
-        this.f18553r = f6Var;
+        this.f18553r = g6Var;
         f(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(4.0f));
         HorizontalScrollView horizontalScrollView = new HorizontalScrollView(context);
         this.f18554s = horizontalScrollView;
@@ -47,7 +47,7 @@ public final class f0 extends y implements org.telegram.ui.ActionBar.a6 {
         linearLayout.setOrientation(0);
         horizontalScrollView.addView(linearLayout, new FrameLayout.LayoutParams(-2, -1));
         addView(horizontalScrollView, ha.e(-1, -1, 23));
-        x1 x1Var = new x1(2131232042, context, f6Var);
+        x1 x1Var = new x1(2131232042, context, g6Var);
         x1Var.f18979e = 19;
         x1Var.updateColors();
         this.f18556x = x1Var;
@@ -91,7 +91,7 @@ public final class f0 extends y implements org.telegram.ui.ActionBar.a6 {
         addView(x1Var, ha.e(38, 38, 21));
         TextView textView = new TextView(context);
         this.f18557y = textView;
-        textView.setText(id.M0(2131746015, null));
+        textView.setText(id.M0(2131746012, null));
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(org.telegram.messenger.g0.o());
         textView.setGravity(17);
@@ -133,13 +133,13 @@ public final class f0 extends y implements org.telegram.ui.ActionBar.a6 {
             }
         });
         addView(textView, ha.e(-2, 38, 17));
-        int i10 = k6.Ci;
-        int w02 = k6.w0(i10, f6Var);
-        int w10 = k6.w(k6.w0(k6.f27852d6, f6Var), k6.r1(0.1f, w02));
-        r6.V(textView, i10, f6Var);
-        textView.setBackground(k6.b0(w10, k6.r1(0.16f, w02), org.telegram.messenger.g0.L(19.0f), org.telegram.messenger.g0.L(19.0f)));
+        int i10 = l6.Ci;
+        int w02 = l6.w0(i10, g6Var);
+        int w10 = l6.w(l6.w0(l6.f27865d6, g6Var), l6.r1(0.1f, w02));
+        s6.U(textView, i10, g6Var);
+        textView.setBackground(l6.b0(w10, l6.r1(0.16f, w02), org.telegram.messenger.g0.L(19.0f), org.telegram.messenger.g0.L(19.0f)));
         Drawable mutate = getContext().getResources().getDrawable(2131232042).mutate();
-        r6.y(this, mutate, i10, f6Var, PorterDuff.Mode.SRC_IN);
+        s6.x(this, mutate, i10, g6Var, PorterDuff.Mode.SRC_IN);
         textView.setCompoundDrawablesRelativeWithIntrinsicBounds(mutate, (Drawable) null, (Drawable) null, (Drawable) null);
     }
 
@@ -161,7 +161,7 @@ public final class f0 extends y implements org.telegram.ui.ActionBar.a6 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(k6.f27852d6));
+        hashSet.add(Integer.valueOf(l6.f27865d6));
     }
 
     public final void h() {
@@ -311,25 +311,25 @@ public final class f0 extends y implements org.telegram.ui.ActionBar.a6 {
     @Override
     public final void updateColors() {
         this.f18556x.updateColors();
-        int i7 = k6.Ci;
-        f6 f6Var = this.f18553r;
-        int w02 = k6.w0(i7, f6Var);
-        int i10 = k6.f27852d6;
-        int w03 = k6.w0(i10, f6Var);
+        int i7 = l6.Ci;
+        g6 g6Var = this.f18553r;
+        int w02 = l6.w0(i7, g6Var);
+        int i10 = l6.f27865d6;
+        int w03 = l6.w0(i10, g6Var);
         if (w02 != this.F || w03 != this.G) {
             this.F = w02;
             this.G = w03;
             TextView textView = this.f18557y;
             Drawable background = textView.getBackground();
-            k6.H1(background, k6.w(w03, k6.r1(0.1f, w02)), false);
-            k6.H1(background, k6.r1(0.16f, w02), true);
+            l6.H1(background, l6.w(w03, l6.r1(0.1f, w02)), false);
+            l6.H1(background, l6.r1(0.16f, w02), true);
             textView.invalidate();
             ra raVar = this.H;
             removeCallbacks(raVar);
             postDelayed(raVar, 100L);
             try {
                 if (getBackground() instanceof y1) {
-                    ((y1) getBackground()).a(k6.w0(i10, f6Var));
+                    ((y1) getBackground()).a(l6.w0(i10, g6Var));
                 }
             } catch (Exception e10) {
                 a8.g(e10, true);

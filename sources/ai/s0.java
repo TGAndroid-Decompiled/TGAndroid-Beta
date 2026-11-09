@@ -36,10 +36,10 @@ import org.telegram.messenger.qs;
 import org.telegram.messenger.r2;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.l6;
 import org.telegram.ui.Components.jb;
-import org.telegram.ui.Components.w70;
-import org.telegram.ui.ci0;
+import org.telegram.ui.Components.x70;
+import org.telegram.ui.ei0;
 import org.telegram.ui.s9;
 public class s0 extends f2 {
     public boolean D;
@@ -141,24 +141,24 @@ public class s0 extends f2 {
             return;
         }
         zh.g1 g1Var = new zh.g1(s0Var.getParentActivity(), s0Var.currentAccount, s0Var.getUserConfig().e(), null, null);
-        if (!g1Var.f60335l2) {
-            g1Var.f60335l2 = true;
-            gc gcVar = g1Var.f60337n2;
+        if (!g1Var.f60344l2) {
+            g1Var.f60344l2 = true;
+            gc gcVar = g1Var.f60346n2;
             if (gcVar != null && (gcVar.getParent() instanceof ViewGroup)) {
-                ViewGroup viewGroup = (ViewGroup) g1Var.f60337n2.getParent();
-                int indexOfChild = viewGroup.indexOfChild(g1Var.f60337n2);
-                viewGroup.removeView(g1Var.f60337n2);
+                ViewGroup viewGroup = (ViewGroup) g1Var.f60346n2.getParent();
+                int indexOfChild = viewGroup.indexOfChild(g1Var.f60346n2);
+                viewGroup.removeView(g1Var.f60346n2);
                 gc gcVar2 = new gc(g1Var.getContext(), 250, 2, 0);
-                g1Var.f60337n2 = gcVar2;
+                g1Var.f60346n2 = gcVar2;
                 viewGroup.addView(gcVar2, indexOfChild, ha.c(-1.0f, -1));
             }
-            w70 w70Var = g1Var.f60338o2;
-            if (w70Var != null) {
-                String M0 = id.M0(2131750289, null);
-                jb jbVar = g1Var.f60327c2;
+            x70 x70Var = g1Var.f60347o2;
+            if (x70Var != null) {
+                String M0 = id.M0(2131750288, null);
+                jb jbVar = g1Var.f60336c2;
                 jbVar.setText(M0);
                 jbVar.setBreakStrategy(2);
-                w70Var.setVisibility(8);
+                x70Var.setVisibility(8);
             }
             g1Var.Q1.O(false);
         }
@@ -286,7 +286,7 @@ public class s0 extends f2 {
             this.d.setScanHidden(true);
             i0 i0Var = new i0(getParentActivity(), rectF, rectF2, new d6.i(this, 4));
             this.F = i0Var;
-            i0Var.setButtonLabel(id.M0(2131746471, null));
+            i0Var.setButtonLabel(id.M0(2131746470, null));
             i0 i0Var2 = this.F;
             i0Var2.setOnGallery(new a1.e(15, this, i0Var2));
             this.f1622f.addView(this.F, ha.c(-1.0f, -1));
@@ -433,7 +433,7 @@ public class s0 extends f2 {
                 return;
             }
             try {
-                getParentActivity().startActivity(Intent.createChooser(intent, id.M0(2131749171, null)));
+                getParentActivity().startActivity(Intent.createChooser(intent, id.M0(2131749170, null)));
             } catch (ActivityNotFoundException e10) {
                 a8.g(e10, true);
             }
@@ -644,9 +644,9 @@ public class s0 extends f2 {
         l0();
         org.telegram.ui.f fVar = this.f1617c;
         if (fVar != null) {
-            ci0 ci0Var = (ci0) fVar.f45409b;
-            if (ci0Var.f44846b.remove(fVar)) {
-                ci0Var.a();
+            ei0 ei0Var = (ei0) fVar.f45545b;
+            if (ei0Var.f45455b.remove(fVar)) {
+                ei0Var.a();
             }
             this.f1617c = null;
         }
@@ -716,11 +716,11 @@ public class s0 extends f2 {
                 return;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-            alertDialog$Builder.f27296a.T = org.telegram.messenger.g0.X2(id.M0(2131746504, null));
-            alertDialog$Builder.k(id.M0(2131747301, null), new j0(this));
+            alertDialog$Builder.f27296a.T = org.telegram.messenger.g0.X2(id.M0(2131746503, null));
+            alertDialog$Builder.k(id.M0(2131747300, null), new j0(this));
             alertDialog$Builder.h(id.M0(2131751772, null), null);
-            int i10 = k6.L5;
-            alertDialog$Builder.m(2131624116, 72, k6.x0(null, i10, false), null);
+            int i10 = l6.L5;
+            alertDialog$Builder.m(2131624116, 72, l6.x0(null, i10, false), null);
             alertDialog$Builder.n(i10, null);
             alertDialog$Builder.p();
         }

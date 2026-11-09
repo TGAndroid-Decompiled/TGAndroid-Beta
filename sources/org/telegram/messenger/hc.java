@@ -335,7 +335,7 @@ public final class hc {
                     sb2.append(this.f22871i.f26962id);
                     sb2.append("_");
                     TLRPC.ThemeSettings themeSettings = ((s5) document).f25415a;
-                    sb2.append(org.telegram.ui.ActionBar.k6.r0(themeSettings));
+                    sb2.append(org.telegram.ui.ActionBar.l6.r0(themeSettings));
                     sb2.append("_");
                     sb2.append(themeSettings.accent_color);
                     sb2.append("_");

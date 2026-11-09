@@ -8,18 +8,18 @@ public final class c implements ke.a {
     @Override
     public final void a(qe.h hVar, Object obj) {
         double doubleValue = ((Number) obj).doubleValue();
-        ca.i iVar = (ca.i) hVar.f54098b;
-        if (hVar.f54097a) {
+        ca.i iVar = (ca.i) hVar.f54110b;
+        if (hVar.f54109a) {
             hVar.j(String.valueOf(doubleValue));
         } else {
-            ((mc.a) iVar.f6016c).c(String.valueOf(doubleValue));
+            ((mc.a) iVar.f6014c).c(String.valueOf(doubleValue));
         }
-        ((p0) hVar.f54101f).getClass();
+        ((p0) hVar.f54113f).getClass();
         if (!Double.isInfinite(doubleValue) && !Double.isNaN(doubleValue)) {
             return;
         }
         Double valueOf = Double.valueOf(doubleValue);
-        String aVar = ((mc.a) iVar.f6016c).toString();
+        String aVar = ((mc.a) iVar.f6014c).toString();
         throw new qe.d("Unexpected special floating-point value " + valueOf + ". By default, non-finite floating point values are prohibited because they do not conform JSON specification. It is possible to deserialize them using 'JsonBuilder.allowSpecialFloatingPointValues = true'\nCurrent output: " + ((Object) qe.f.d(-1, aVar)));
     }
 
@@ -30,7 +30,7 @@ public final class c implements ke.a {
         String k10 = kVar.k();
         try {
             double parseDouble = Double.parseDouble(k10);
-            ((pe.b) decoder.f14058b).f53577a.getClass();
+            ((pe.b) decoder.f14058b).f53589a.getClass();
             if (!Double.isInfinite(parseDouble) && !Double.isNaN(parseDouble)) {
                 return Double.valueOf(parseDouble);
             }

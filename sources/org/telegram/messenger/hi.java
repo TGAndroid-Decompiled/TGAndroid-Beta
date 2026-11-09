@@ -201,14 +201,14 @@ public final class hi implements Runnable {
                 ij ijVar2 = (ij) obj;
                 qpVar11.getClass();
                 long B0 = ij.B0(ijVar2.f23262k);
-                int f12 = ijVar2.f1();
+                int e12 = ijVar2.e1();
                 a0.h hVar = qpVar11.J0;
                 ArrayList arrayList4 = (ArrayList) hVar.f(B0);
                 if (arrayList4 == null) {
                     arrayList4 = k5.j(hVar, B0);
                 }
-                if (!arrayList4.contains(Integer.valueOf(f12))) {
-                    arrayList4.add(Integer.valueOf(f12));
+                if (!arrayList4.contains(Integer.valueOf(e12))) {
+                    arrayList4.add(Integer.valueOf(e12));
                     return;
                 }
                 return;

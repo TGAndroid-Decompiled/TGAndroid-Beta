@@ -1,62 +1,46 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.widget.ImageView;
-public final class zp0 extends sr0 {
-    public final xs0 P;
+import android.graphics.Rect;
+public final class zp0 extends org.telegram.ui.ox0 {
+    public final zs0 f41040x;
 
-    public zp0(xs0 xs0Var, Context context) {
-        super(context);
-        this.P = xs0Var;
+    public zp0(zs0 zs0Var, Context context, di.n6 n6Var, yp0 yp0Var) {
+        super(context, n6Var, yp0Var);
+        this.f41040x = zs0Var;
     }
 
     @Override
-    public final void setTranslationX(float f10) {
-        sr0 sr0Var;
-        int i7;
-        float translationX = getTranslationX();
-        super.setTranslationX(f10);
-        xs0 xs0Var = this.P;
-        sr0[] sr0VarArr = xs0Var.m0;
-        if (sr0VarArr[0] == this) {
-            float f11 = translationX - f10;
-            oi.q qVar = xs0Var.f40414g2;
-            if (qVar != null) {
-                float f12 = xs0Var.f40417h2 + f11;
-                xs0Var.f40417h2 = f12;
-                int i10 = (int) f12;
-                if (i10 != 0) {
-                    xs0Var.f40417h2 = f12 - i10;
-                    qVar.h(i10, 0);
+    public final void b() {
+        dq0 dq0Var;
+        Rect rect = this.f48552s;
+        rect.set(0, 0, getMeasuredWidth(), (int) getVisualHeight());
+        setClipBounds(rect);
+        invalidate();
+        zs0 zs0Var = this.f41040x;
+        ur0[] ur0VarArr = zs0Var.m0;
+        if (ur0VarArr != null) {
+            for (ur0 ur0Var : ur0VarArr) {
+                if (ur0Var != null && (dq0Var = ur0Var.h) != null) {
+                    int paddingTop = dq0Var.getPaddingTop();
+                    dq0 dq0Var2 = ur0Var.h;
+                    int paddingLeft = dq0Var2.getPaddingLeft();
+                    int j02 = zs0Var.j0(ur0Var.E);
+                    int paddingRight = ur0Var.h.getPaddingRight();
+                    dq0 dq0Var3 = ur0Var.h;
+                    int i02 = zs0Var.i0(zs0Var.I0());
+                    dq0Var3.f38479h3 = i02;
+                    dq0Var2.setPadding(paddingLeft, j02, paddingRight, i02);
+                    int paddingTop2 = paddingTop - ur0Var.h.getPaddingTop();
+                    if (paddingTop2 != 0) {
+                        org.telegram.messenger.g0.J(ur0Var.h, new cp0(ur0Var, paddingTop2, 2));
+                    }
+                }
+                if (ur0Var != null && ur0Var.f38794s != null) {
+                    zs0Var.K1(ur0Var);
                 }
             }
         }
-        if (xs0Var.f40419i1 && (sr0Var = sr0VarArr[0]) == this) {
-            float abs = Math.abs(sr0Var.getTranslationX()) / sr0VarArr[0].getMeasuredWidth();
-            xs0Var.j1(abs, sr0VarArr[1].E);
-            if (xs0Var.I()) {
-                int i11 = xs0Var.f40465z0;
-                if (i11 == 2) {
-                    xs0Var.f40440q0 = 1.0f - abs;
-                } else if (i11 == 1) {
-                    xs0Var.f40440q0 = abs;
-                }
-                xs0Var.K1(abs);
-                float k02 = xs0Var.k0(abs);
-                xs0Var.f40444r0 = k02;
-                ImageView imageView = xs0Var.f40450t0;
-                if (k02 != 0.0f && xs0Var.I() && !xs0Var.A0()) {
-                    i7 = 0;
-                } else {
-                    i7 = 4;
-                }
-                imageView.setVisibility(i7);
-            } else {
-                xs0Var.f40440q0 = 0.0f;
-            }
-            xs0Var.G1(false);
-        }
-        xs0Var.S();
-        xs0Var.U();
+        zs0Var.U();
     }
 }

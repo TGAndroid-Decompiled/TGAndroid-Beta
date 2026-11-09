@@ -1,95 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.os.Handler;
-import android.os.Looper;
-import android.view.TextureView;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.view.View;
 import java.util.ArrayList;
-public final class dz0 extends TextureView {
-    public static Boolean f33138f;
-    public bz0 f33139a;
-    public final xy0 f33140b;
-    public final ArrayList f33141c;
+public final class dz0 {
+    public final View f33230a;
+    public final ArrayList f33231b;
+    public final Runnable f33232c;
     public Runnable d;
-    public boolean f33142e;
+    public final Bitmap f33233e;
+    public final Matrix f33234f;
+    public float f33235g;
 
-    public dz0(Context context, Runnable runnable) {
-        super(context);
-        this.f33140b = new xy0(this, 0);
-        this.f33141c = new ArrayList();
+    public dz0(View view, Runnable runnable) {
+        this.f33235g = 1.0f;
+        this.f33230a = view;
+        this.f33231b = null;
+        this.f33232c = null;
         this.d = runnable;
-        setOpaque(false);
-        setSurfaceTextureListener(new w30(this, 1));
+        this.f33233e = null;
+        this.f33234f = null;
     }
 
-    public static void b(Runnable runnable) {
-        if (runnable == null) {
-            return;
-        }
-        if (Thread.currentThread() != Looper.getMainLooper().getThread()) {
-            org.telegram.messenger.g0.h3(runnable);
-        } else {
-            runnable.run();
-        }
+    public dz0(ArrayList arrayList, l2.z0 z0Var) {
+        this.f33235g = 1.0f;
+        this.f33230a = null;
+        this.f33231b = arrayList;
+        this.f33232c = null;
+        this.d = z0Var;
+        this.f33233e = null;
+        this.f33234f = null;
     }
 
-    public static boolean c() {
-        if (f33138f == null) {
-            f33138f = Boolean.valueOf(org.telegram.messenger.qp.e1().getBoolean("nothanos", false));
-        }
-        Boolean bool = f33138f;
-        if (bool != null && bool.booleanValue()) {
-            return false;
-        }
-        return true;
-    }
-
-    public final void a(View view) {
-        int i7 = 0;
-        int i10 = 0;
-        boolean z9 = false;
-        while (true) {
-            ArrayList arrayList = this.f33141c;
-            if (i10 >= arrayList.size()) {
-                break;
-            }
-            cz0 cz0Var = (cz0) arrayList.get(i10);
-            if (cz0Var.f32737a == view) {
-                Runnable runnable = cz0Var.d;
-                if (runnable != null) {
-                    b(runnable);
-                    cz0Var.d = null;
-                }
-                arrayList.remove(i10);
-                i10--;
-                z9 = true;
-            }
-            i10++;
-        }
-        if (!z9) {
-            bz0 bz0Var = this.f33139a;
-            ArrayList arrayList2 = bz0Var.W;
-            if (bz0Var.f32381b.get()) {
-                Handler handler = bz0Var.getHandler();
-                if (handler == null) {
-                    while (i7 < arrayList2.size()) {
-                        az0 az0Var = (az0) arrayList2.get(i7);
-                        if (az0Var.f31952a.contains(view)) {
-                            Runnable runnable2 = az0Var.f31956f;
-                            if (runnable2 != null) {
-                                b(runnable2);
-                                az0Var.f31956f = null;
-                            }
-                            arrayList2.remove(i7);
-                            i7--;
-                        }
-                        i7++;
-                    }
-                    return;
-                }
-                handler.sendMessage(handler.obtainMessage(5, view));
-            }
-        }
+    public dz0(Matrix matrix, Bitmap bitmap, Runnable runnable, Runnable runnable2) {
+        this.f33235g = 1.0f;
+        this.f33230a = null;
+        this.f33231b = null;
+        this.f33232c = runnable;
+        this.d = runnable2;
+        this.f33234f = matrix;
+        this.f33233e = bitmap;
     }
 }

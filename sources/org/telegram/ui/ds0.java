@@ -1,39 +1,20 @@
 package org.telegram.ui;
 
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.RelativeLayout;
-public final class ds0 extends RelativeLayout {
-    public final PopupNotificationActivity f45129a;
-
-    public ds0(PopupNotificationActivity popupNotificationActivity, PopupNotificationActivity popupNotificationActivity2) {
-        super(popupNotificationActivity2);
-        this.f45129a = popupNotificationActivity;
-    }
+import java.util.HashSet;
+public final class ds0 implements View.OnTouchListener {
+    public final int f45112a;
 
     @Override
-    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        super.onLayout(z9, i7, i10, i11, i12);
-        for (int i13 = 0; i13 < getChildCount(); i13++) {
-            View childAt = getChildAt(i13);
-            if (childAt.getTag() instanceof String) {
-                int left = childAt.getLeft();
-                PopupNotificationActivity popupNotificationActivity = this.f45129a;
-                childAt.layout(left, org.telegram.messenger.g0.L(3.0f) + popupNotificationActivity.f41595b.getTop(), childAt.getRight(), popupNotificationActivity.f41595b.getBottom());
-            }
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, i10);
-        PopupNotificationActivity popupNotificationActivity = this.f45129a;
-        int measuredWidth = popupNotificationActivity.f41595b.getMeasuredWidth();
-        int measuredHeight = popupNotificationActivity.f41595b.getMeasuredHeight();
-        for (int i11 = 0; i11 < getChildCount(); i11++) {
-            View childAt = getChildAt(i11);
-            if (childAt.getTag() instanceof String) {
-                childAt.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(measuredHeight - org.telegram.messenger.g0.L(3.0f), 1073741824));
-            }
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        switch (this.f45112a) {
+            case 0:
+                int i7 = PopupNotificationActivity.f41599b0;
+                return true;
+            default:
+                HashSet hashSet = y91.f52012q1;
+                return true;
         }
     }
 }

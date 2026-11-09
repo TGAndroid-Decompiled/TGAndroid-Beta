@@ -1,34 +1,28 @@
 package org.telegram.ui;
-public final class w21 implements Runnable {
-    public final int f50838a;
-    public final x21 f50839b;
 
-    public w21(x21 x21Var, int i7) {
-        this.f50838a = i7;
-        this.f50839b = x21Var;
+import android.content.Context;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.Components.UndoView;
+public final class w21 extends UndoView {
+    public final SessionsActivity f50838j0;
+
+    public w21(SessionsActivity sessionsActivity, Context context) {
+        super(context);
+        this.f50838j0 = sessionsActivity;
     }
 
     @Override
-    public final void run() {
-        String sb2;
-        int i7 = this.f50838a;
-        x21 x21Var = this.f50839b;
-        switch (i7) {
-            case 0:
-                String str = x21Var.f51727b.text;
-                if (str != null && str.equals("AUTH_TOKEN_EXCEPTION")) {
-                    sb2 = org.telegram.messenger.id.M0(2131754709, null);
-                } else {
-                    StringBuilder sb3 = new StringBuilder();
-                    org.telegram.messenger.camera.q.q(null, 2131751106, sb3, "\n");
-                    sb3.append(x21Var.f51727b.text);
-                    sb2 = sb3.toString();
-                }
-                org.telegram.ui.Components.v4.r0(x21Var.f51728c, org.telegram.messenger.id.M0(2131753894, null), sb2, null);
-                return;
-            default:
-                org.telegram.ui.Components.v4.r0(x21Var.f51728c, org.telegram.messenger.id.M0(2131753894, null), org.telegram.messenger.id.M0(2131751106, null), null);
-                return;
+    public final void d(int i7, boolean z9) {
+        int i10;
+        if (!z9 && getCurrentInfoObject() != null) {
+            TLRPC.TL_authorization tL_authorization = (TLRPC.TL_authorization) getCurrentInfoObject();
+            TL_account.resetAuthorization resetauthorization = new TL_account.resetAuthorization();
+            resetauthorization.hash = tL_authorization.hash;
+            i10 = ((org.telegram.ui.ActionBar.f2) this.f50838j0).currentAccount;
+            ConnectionsManager.getInstance(i10).sendRequest(resetauthorization, new j50(25, this, tL_authorization));
         }
+        super.d(i7, z9);
     }
 }

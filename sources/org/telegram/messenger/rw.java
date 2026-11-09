@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ii0;
+import org.telegram.ui.Components.ji0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.NotificationsSettingsActivity;
 public final class rw implements Runnable {
@@ -45,18 +45,19 @@ public final class rw implements Runnable {
                 gzVar.i0(i12, z9);
                 return;
             case 1:
-                org.telegram.ui.an anVar = (org.telegram.ui.an) obj2;
-                ii0 ii0Var = (ii0) obj;
-                org.telegram.ui.ActionBar.g1 g1Var = anVar.f43787e9;
-                if (g1Var != null && anVar.fragmentView != null && !g1Var.isShowing()) {
-                    Activity parentActivity = anVar.getParentActivity();
+                org.telegram.ui.cn cnVar = (org.telegram.ui.cn) obj2;
+                ji0 ji0Var = (ji0) obj;
+                org.telegram.ui.ActionBar.g1 g1Var = cnVar.f44442e9;
+                if (g1Var != null && cnVar.fragmentView != null && !g1Var.isShowing()) {
+                    Activity parentActivity = cnVar.getParentActivity();
                     Typeface typeface = g0.f22535a;
                     if (parentActivity != null && !parentActivity.isDestroyed() && !parentActivity.isFinishing()) {
-                        anVar.f43787e9.showAtLocation(anVar.f44043z0, 51, i12, i11);
-                        if (z9 && ii0Var != null) {
-                            ii0Var.r(true);
+                        cnVar.f44442e9.showAtLocation(cnVar.f44700z0, 51, i12, i11);
+                        cnVar.ha(cnVar.f44442e9);
+                        if (z9 && ji0Var != null) {
+                            ji0Var.r(true);
                         }
-                        g0.i3(new org.telegram.ui.af(anVar, 27), 420L);
+                        g0.i3(new org.telegram.ui.xf(cnVar, 2), 420L);
                         return;
                     }
                     return;
@@ -66,9 +67,9 @@ public final class rw implements Runnable {
                 org.telegram.ui.Components.mb mbVar = (org.telegram.ui.Components.mb) obj2;
                 ch.o0 o0Var = (ch.o0) obj;
                 org.telegram.ui.ActionBar.f2 Q = LaunchActivity.Q();
-                long j3 = o0Var.f6357g;
+                long j3 = o0Var.f6355g;
                 if (j3 == 0) {
-                    TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) ui.b0(p10.f24470s0).f25836r.get(o0Var.f6356f);
+                    TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) ui.b0(p10.f24470s0).f25836r.get(o0Var.f6354f);
                     if (tL_availableReaction != null) {
                         e10 = tL_availableReaction.activate_animation;
                     } else {
@@ -79,7 +80,7 @@ public final class rw implements Runnable {
                 }
                 if (e10 != null && Q != null) {
                     org.telegram.ui.Components.hc a02 = org.telegram.ui.Components.hc.a0(Q);
-                    int i13 = mbVar.f35956a.h;
+                    int i13 = mbVar.f36046a.h;
                     if (z9) {
                         rVar = new jg.r(i12, i11, Q, 10);
                     } else {
@@ -122,18 +123,18 @@ public final class rw implements Runnable {
                     notificationsSettingsActivity.getNotificationsController().b0(i12);
                     notificationsSettingsActivity.getNotificationsController().m(i12);
                 }
-                h5Var.f29276e.b(0, !z9, true);
-                notificationsSettingsActivity.f41316c.g(i11);
+                h5Var.f29280e.b(0, !z9, true);
+                notificationsSettingsActivity.f41323c.g(i11);
                 return;
         }
     }
 
-    public rw(org.telegram.ui.an anVar, int i7, int i10, boolean z9, ii0 ii0Var) {
-        this.f25351e = anVar;
+    public rw(org.telegram.ui.cn cnVar, int i7, int i10, boolean z9, ji0 ji0Var) {
+        this.f25351e = cnVar;
         this.f25349b = i7;
         this.f25350c = i10;
         this.d = z9;
-        this.f25352f = ii0Var;
+        this.f25352f = ji0Var;
     }
 
     public rw(org.telegram.ui.Components.mb mbVar, ch.o0 o0Var, boolean z9, int i7, int i10) {

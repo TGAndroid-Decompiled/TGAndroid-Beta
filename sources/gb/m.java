@@ -14,9 +14,9 @@ public final class m implements ib.b {
     public final Object mo24get() {
         switch (this.f13728a) {
             case 0:
-                return new l((ua.b) this.f13729b.f8253a);
+                return new l((ua.b) this.f13729b.f8251a);
             default:
-                return new jb.a((Context) this.f13729b.f8253a);
+                return new jb.a((Context) this.f13729b.f8251a);
         }
     }
 }

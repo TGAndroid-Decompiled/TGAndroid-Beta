@@ -1,28 +1,15 @@
 package org.telegram.ui;
-public final class d20 implements c5.g {
-    public final c40 f44942a;
+public final class d20 extends org.telegram.ui.Components.tf0 {
+    public final e40 f44804s1;
 
-    public d20(c40 c40Var) {
-        this.f44942a = c40Var;
+    public d20(e40 e40Var, LaunchActivity launchActivity, b30 b30Var, m30 m30Var, c20 c20Var) {
+        super(launchActivity, b30Var, m30Var, c20Var);
+        this.f44804s1 = e40Var;
     }
 
     @Override
-    public final void a(int i7) {
-        c40 c40Var = this.f44942a;
-        c40Var.f44579i1.D0.k(i7);
-        a20 a20Var = c40Var.f44637u4;
-        a20Var.J = a20Var.L;
-        a20Var.K = a20Var.M;
-        a20Var.N = 0.0f;
-        a20Var.O = 1;
-        a20Var.invalidate();
-    }
-
-    @Override
-    public final void c(int i7) {
-    }
-
-    @Override
-    public final void b(float f10, int i7, int i10) {
+    public final void invalidate() {
+        super.invalidate();
+        this.f44804s1.f28624b.invalidate();
     }
 }

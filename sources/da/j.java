@@ -1,6 +1,6 @@
 package da;
 public final class j implements na.d {
-    public static final j f8383a = new Object();
+    public static final j f8381a = new Object();
 
     static {
         na.c.c("clsId");

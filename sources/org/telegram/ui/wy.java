@@ -1,83 +1,126 @@
 package org.telegram.ui;
 
-import android.view.ViewPropertyAnimator;
-import android.widget.TextView;
-public final class wy extends org.telegram.ui.Cells.n4 {
-    public final gz D;
-    public final TextView f51679r;
-    public final bi.rc f51680s;
-    public int f51681w;
-    public final org.telegram.ui.Components.z4 f51682x;
-    public boolean f51683y;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+public final class wy extends rg.b {
+    public final xy d;
 
-    public wy(org.telegram.ui.gz r13, android.content.Context r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.wy.<init>(org.telegram.ui.gz, android.content.Context):void");
+    public wy(xy xyVar) {
+        this.d = xyVar;
     }
 
-    public final void d(int i7, boolean z9) {
+    @Override
+    public final boolean D(v4.d1 d1Var) {
+        int i7 = d1Var.f57060f;
+        if (i7 != 8 && i7 != 7) {
+            return false;
+        }
+        return true;
+    }
+
+    public final v4.g0 F() {
+        return this.d.f36303k1.getAdapter();
+    }
+
+    @Override
+    public final int b() {
+        return this.d.W1.size();
+    }
+
+    @Override
+    public final int d(int i7) {
+        return ((az) this.d.W1.get(i7)).f54544a;
+    }
+
+    @Override
+    public final void f() {
+        F().f();
+    }
+
+    @Override
+    public final void g(int i7) {
+        F().g(i7 + 1);
+    }
+
+    @Override
+    public final void j(int i7, int i10) {
+        F().j(i7 + 1, i10);
+    }
+
+    @Override
+    public final void k(int i7, int i10) {
+        F().k(i7 + 1, i10);
+    }
+
+    @Override
+    public final void n(int i7, int i10, Object obj) {
+        F().n(i7 + 1, i10, obj);
+    }
+
+    @Override
+    public final void o(int i7, int i10) {
+        F().o(i7 + 1, i10);
+    }
+
+    @Override
+    public final void p(int i7, int i10) {
+        F().p(i7 + 1, i10);
+    }
+
+    @Override
+    public final void t(v4.d1 d1Var, int i7) {
+        boolean z9;
         int i10;
-        boolean z10;
-        float f10;
-        gz gzVar = this.D;
-        if (gzVar.getUserConfig().q()) {
-            i10 = 2131750621;
+        int i11 = d1Var.f57060f;
+        View view = d1Var.f57056a;
+        ArrayList arrayList = this.d.W1;
+        az azVar = (az) arrayList.get(i7);
+        int i12 = i7 + 1;
+        if (i12 < arrayList.size() && (i10 = ((az) arrayList.get(i12)).f54544a) != 3 && i10 != 6) {
+            z9 = true;
         } else {
-            i10 = 2131750620;
+            z9 = false;
         }
-        String M0 = org.telegram.messenger.id.M0(i10, null);
-        TextView textView = this.f51679r;
-        textView.setText(M0);
-        int i11 = 0;
-        if (i7 < 0) {
-            z10 = true;
+        if (i11 == 7) {
+            ((cz) view).e(azVar.f43836m, z9);
+        } else if (i11 != 6 && i11 != 3) {
+            if (i11 != 0 && i11 == 8) {
+                ty tyVar = (ty) view;
+                tyVar.f50255a.setText(org.telegram.messenger.id.M0(2131751714, null));
+                if (tyVar.f50257c != z9) {
+                    tyVar.f50257c = z9;
+                    tyVar.setWillNotDraw(!z9);
+                }
+            }
         } else {
-            z10 = false;
-        }
-        if (!z10) {
-            int[] iArr = org.telegram.ui.ActionBar.k6.f28113r8;
-            i11 = gzVar.getThemedColor(iArr[i7 % iArr.length]);
-        }
-        this.f51681w = i11;
-        bi.rc rcVar = this.f51680s;
-        if (!z10) {
-            rcVar.setEmojiColor(i11);
-        }
-        if (!z9) {
-            this.f51682x.a(this.f51681w, true);
-        }
-        if (z10 != this.f51683y) {
-            this.f51683y = z10;
-            ViewPropertyAnimator animate = textView.animate();
-            float f11 = 0.0f;
-            if (z10) {
-                f10 = 1.0f;
-            } else {
-                f10 = 0.0f;
+            org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) view;
+            if (i11 == 6) {
+                z8Var.setFixedSize(0);
+                z8Var.setText(azVar.d);
+                return;
             }
-            ViewPropertyAnimator duration = animate.alpha(f10).setDuration(320L);
-            org.telegram.ui.Components.xq xqVar = org.telegram.ui.Components.xq.h;
-            duration.setInterpolator(xqVar).start();
-            ViewPropertyAnimator animate2 = rcVar.animate();
-            if (!z10) {
-                f11 = 1.0f;
-            }
-            animate2.alpha(f11).setDuration(320L).setInterpolator(xqVar).start();
+            z8Var.setFixedSize(12);
+            z8Var.setText("");
         }
     }
 
-    public final void e(CharSequence charSequence, boolean z9) {
-        if (charSequence == null) {
-            charSequence = "";
+    @Override
+    public final v4.d1 x(ViewGroup viewGroup, int i7) {
+        View z8Var;
+        xy xyVar = this.d;
+        if (i7 == 8) {
+            z8Var = new ty(xyVar.getContext());
+            org.telegram.ui.ActionBar.s6.h(org.telegram.ui.ActionBar.l6.f27938h5, z8Var, null);
+        } else if (i7 == 7) {
+            z8Var = new vy(this, xyVar.getContext(), xyVar.f28621a, xyVar.Q1.f26070a);
+            org.telegram.ui.ActionBar.s6.h(org.telegram.ui.ActionBar.l6.f27938h5, z8Var, null);
+        } else if (i7 != 6 && i7 != 3) {
+            z8Var = new k0(xyVar, xyVar.getContext());
+        } else {
+            z8Var = new org.telegram.ui.Cells.z8(xyVar.getContext());
+            org.telegram.ui.ActionBar.s6.h(org.telegram.ui.ActionBar.l6.f27809a7, z8Var, null);
         }
-        boolean z10 = false;
-        if (charSequence.length() > 12) {
-            charSequence = charSequence.subSequence(0, 12);
-        }
-        bi.rc rcVar = this.f51680s;
-        CharSequence m10 = org.telegram.messenger.i6.m(charSequence, rcVar.getPaint().getFontMetricsInt(), false, null, 0);
-        if (z9 && !org.telegram.messenger.id.f23157a0) {
-            z10 = true;
-        }
-        rcVar.c(m10, z10, true);
+        return new v4.d1(z8Var);
     }
 }

@@ -15,7 +15,7 @@ import android.text.TextPaint;
 import android.text.style.CharacterStyle;
 import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.ui.tg0;
+import org.telegram.ui.vg0;
 public final class cv extends fu {
     public final jv W;
     public final jv[] X;
@@ -118,12 +118,12 @@ public final class cv extends fu {
         int color = textPaint.getColor();
         textPaint.setColor(-1);
         if (kvVar.E()) {
-            i10 = org.telegram.ui.ActionBar.k6.Vc;
+            i10 = org.telegram.ui.ActionBar.l6.Vc;
         } else {
-            i10 = org.telegram.ui.ActionBar.k6.Uc;
+            i10 = org.telegram.ui.ActionBar.l6.Uc;
         }
-        textPaint.linkColor = org.telegram.ui.ActionBar.k6.w0(i10, kvVar.D);
-        tg0.b(canvas, jvVar.f23605b, i7, f10, new o(5, this, this.V));
+        textPaint.linkColor = org.telegram.ui.ActionBar.l6.w0(i10, kvVar.D);
+        vg0.b(canvas, jvVar.f23605b, i7, f10, new o(5, this, this.V));
         canvas.restore();
         textPaint.setColor(color);
         j0();
@@ -182,16 +182,16 @@ public final class cv extends fu {
         int i7;
         kv kvVar = this.f22469a;
         if (kvVar.E()) {
-            i7 = org.telegram.ui.ActionBar.k6.Tc;
+            i7 = org.telegram.ui.ActionBar.l6.Tc;
         } else {
-            i7 = org.telegram.ui.ActionBar.k6.Sc;
+            i7 = org.telegram.ui.ActionBar.l6.Sc;
         }
-        int w02 = org.telegram.ui.ActionBar.k6.w0(i7, kvVar.D);
+        int w02 = org.telegram.ui.ActionBar.l6.w0(i7, kvVar.D);
         if (this.Z != null && this.Y == w02) {
             return;
         }
         this.Y = w02;
-        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, this.f22471c, 0.0f, new int[]{org.telegram.ui.ActionBar.k6.r1(0.7f, w02), org.telegram.ui.ActionBar.k6.r1(0.25f, w02), org.telegram.ui.ActionBar.k6.r1(0.7f, w02)}, new float[]{0.0f, 0.5f, 1.0f}, Shader.TileMode.REPEAT);
+        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, this.f22471c, 0.0f, new int[]{org.telegram.ui.ActionBar.l6.r1(0.7f, w02), org.telegram.ui.ActionBar.l6.r1(0.25f, w02), org.telegram.ui.ActionBar.l6.r1(0.7f, w02)}, new float[]{0.0f, 0.5f, 1.0f}, Shader.TileMode.REPEAT);
         this.Z = linearGradient;
         Paint paint = this.f21938b0;
         paint.setShader(linearGradient);

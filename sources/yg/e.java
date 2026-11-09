@@ -1,12 +1,12 @@
 package yg;
 
 import c8.ha;
-import di.d4;
+import di.e4;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.id;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.s6;
 import org.telegram.ui.Components.l9;
 import org.telegram.ui.Components.w8;
 public final class e extends d {
@@ -24,7 +24,7 @@ public final class e extends d {
         } else {
             i7 = 3;
         }
-        this.f59434c.setLayoutParams(ha.d(40, 40.0f, i7 | 16, 16.0f, 0.0f, 16.0f, 0.0f));
+        this.f59443c.setLayoutParams(ha.d(40, 40.0f, i7 | 16, 16.0f, 0.0f, 16.0f, 0.0f));
         boolean z9 = id.f23157a0;
         if (z9) {
             i10 = 5;
@@ -58,21 +58,21 @@ public final class e extends d {
         } else {
             f13 = 20.0f;
         }
-        this.f59435e.setLayoutParams(ha.d(-1, -2.0f, i13, f12, 0.0f, f13, 0.0f));
+        this.f59444e.setLayoutParams(ha.d(-1, -2.0f, i13, f12, 0.0f, f13, 0.0f));
     }
 
     public void setGiveaway(TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        r6.Y(this.f59435e, k6.f28110r5, this.f59432a);
+        s6.X(this.f59444e, l6.f28123r5, this.f59441a);
         boolean z9 = prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway;
-        d4 d4Var = this.d;
-        w8 w8Var = this.f59433b;
+        e4 e4Var = this.d;
+        w8 w8Var = this.f59442b;
         if (z9) {
             TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway = (TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway;
             w8Var.g(26);
-            d4Var.k(id.H(',', "BoostingStarsPreparedGiveawaySubscriptionsPlural", (int) tL_prepaidStarsGiveaway.stars));
+            e4Var.k(id.H(',', "BoostingStarsPreparedGiveawaySubscriptionsPlural", (int) tL_prepaidStarsGiveaway.stars));
             setSubtitle(id.G(tL_prepaidStarsGiveaway.quantity, "AmongWinners", new Object[0]));
         } else if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
-            d4Var.k(id.M0(2131753328, null));
+            e4Var.k(id.M0(2131753328, null));
             w8Var.g(16);
             TL_stories.TL_prepaidGiveaway tL_prepaidGiveaway = (TL_stories.TL_prepaidGiveaway) prepaidGiveaway;
             int i7 = tL_prepaidGiveaway.months;
@@ -85,7 +85,7 @@ public final class e extends d {
             }
             setSubtitle(id.G(prepaidGiveaway.quantity, "BoostingPreparedGiveawaySubscriptionsPlural", id.G(tL_prepaidGiveaway.months, "Months", new Object[0])));
         }
-        l9 l9Var = this.f59434c;
+        l9 l9Var = this.f59443c;
         l9Var.setImageDrawable(w8Var);
         l9Var.setRoundRadius(g0.L(20.0f));
     }

@@ -12,15 +12,15 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.bi;
 import org.telegram.ui.Components.qg;
 public final class v2 implements bi {
-    public final i4 f9864a;
+    public final j4 f9857a;
 
-    public v2(i4 i4Var) {
-        this.f9864a = i4Var;
+    public v2(j4 j4Var) {
+        this.f9857a = j4Var;
     }
 
     @Override
     public final void F0() {
-        this.f9864a.K1.L();
+        this.f9857a.K1.L();
     }
 
     @Override
@@ -33,16 +33,16 @@ public final class v2 implements bi {
         org.telegram.messenger.c accountInstance;
         CharSequence charSequence2;
         boolean z11;
-        i4 i4Var = this.f9864a;
-        TL_stories.StoryItem storyItem = i4Var.f9213x1.f9038a;
+        j4 j4Var = this.f9857a;
+        TL_stories.StoryItem storyItem = j4Var.f9245x1.f9064a;
         if (storyItem != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            accountInstance = i4Var.getAccountInstance();
+            accountInstance = j4Var.getAccountInstance();
             if (charSequence != null) {
                 charSequence2 = charSequence;
             } else {
                 charSequence2 = null;
             }
-            long j11 = i4Var.f9164k1;
+            long j11 = j4Var.f9196k1;
             org.telegram.messenger.p5 p5Var = gz.I;
             new Thread(new ow(null, arrayList, j11, accountInstance, charSequence2, false, null, null, null, null, z9, i7, i10, storyItem, null, j3, z10, j10, null)).start();
             if (j10 <= 0) {
@@ -50,18 +50,18 @@ public final class v2 implements bi {
             } else {
                 z11 = false;
             }
-            i4Var.i0(z11);
+            j4Var.i0(z11);
         }
     }
 
     @Override
     public final void c0(qg qgVar) {
-        qs.f(this.f9864a.f9168l2).d(qgVar);
+        qs.f(this.f9857a.f9200l2).d(qgVar);
     }
 
     @Override
     public final boolean f0() {
-        return this.f9864a.L0();
+        return this.f9857a.L0();
     }
 
     @Override
@@ -74,10 +74,10 @@ public final class v2 implements bi {
         boolean z16;
         String str;
         String str2;
-        i4 i4Var = this.f9864a;
-        if (i4Var.f9192s0.m0 && (storyItem = i4Var.f9213x1.f9038a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            if (i7 != 8 && i7 != 7 && (i7 != 4 || i4Var.f9190r2.f32932a2.getSelectedPhotos().isEmpty())) {
-                u2 u2Var = i4Var.f9190r2;
+        j4 j4Var = this.f9857a;
+        if (j4Var.f9224s0.m0 && (storyItem = j4Var.f9245x1.f9064a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
+            if (i7 != 8 && i7 != 7 && (i7 != 4 || j4Var.f9222r2.f32987a2.getSelectedPhotos().isEmpty())) {
+                u2 u2Var = j4Var.f9222r2;
                 if (u2Var != null) {
                     u2Var.L(i7);
                     return;
@@ -86,10 +86,10 @@ public final class v2 implements bi {
             }
             boolean z17 = true;
             if (i7 != 8) {
-                i4Var.f9190r2.a(true);
+                j4Var.f9222r2.a(true);
             }
-            HashMap<Object, Object> selectedPhotos = i4Var.f9190r2.f32932a2.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = i4Var.f9190r2.f32932a2.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = j4Var.f9222r2.f32987a2.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = j4Var.f9222r2.f32987a2.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 int i12 = 0;
                 int i13 = 0;
@@ -138,10 +138,10 @@ public final class v2 implements bi {
                         z14 = i12;
                     }
                     HashMap<Object, Object> hashMap = selectedPhotos;
-                    accountInstance = i4Var.getAccountInstance();
+                    accountInstance = j4Var.getAccountInstance();
                     ArrayList<Object> arrayList2 = selectedPhotosOrder;
                     int i17 = i12;
-                    long j11 = i4Var.f9164k1;
+                    long j11 = j4Var.f9196k1;
                     if (i7 != 4 && !z12) {
                         z15 = true;
                         z16 = i17;
@@ -149,7 +149,7 @@ public final class v2 implements bi {
                         z15 = true;
                         z16 = 1;
                     }
-                    gz.X(accountInstance, arrayList, j11, null, null, storyItem, null, z16, z9, null, null, z10, i10, i11, z14, null, null, 0L, false, 0L, i4Var.K1.getSendMonoForumPeerId(), i4Var.K1.getSendMessageSuggestionParams(), null, false);
+                    gz.X(accountInstance, arrayList, j11, null, null, storyItem, null, z16, z9, null, null, z10, i10, i11, z14, null, null, 0L, false, 0L, j4Var.K1.getSendMonoForumPeerId(), j4Var.K1.getSendMessageSuggestionParams(), null, false);
                     i13++;
                     z17 = true;
                     selectedPhotos = hashMap;
@@ -158,13 +158,13 @@ public final class v2 implements bi {
                 }
                 boolean z19 = z17;
                 int i18 = i12;
-                i4Var.K1.setFieldText("");
+                j4Var.K1.setFieldText("");
                 if (j10 <= 0) {
                     z13 = z19;
                 } else {
                     z13 = i18;
                 }
-                i4Var.i0(z13);
+                j4Var.i0(z13);
             }
         }
     }

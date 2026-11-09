@@ -1,6 +1,6 @@
 package de;
 public final class f implements id.c {
-    public static final f f8678a = new Object();
+    public static final f f8676a = new Object();
 
     @Override
     public final id.h getContext() {

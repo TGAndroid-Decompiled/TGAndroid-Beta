@@ -1,110 +1,47 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.Button;
-import android.widget.FrameLayout;
-public final class rn0 extends FrameLayout {
-    public final int f37733a;
-    public final mo0 f37734b;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class rn0 extends v4.s0 {
+    public final int f37771a;
+    public final no0 f37772b;
 
-    public rn0(mo0 mo0Var, Context context, int i7) {
-        super(context);
-        this.f37733a = i7;
-        this.f37734b = mo0Var;
+    public rn0(no0 no0Var, int i7) {
+        this.f37771a = i7;
+        this.f37772b = no0Var;
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        switch (this.f37733a) {
+    public final void b(RecyclerView recyclerView, int i7, int i10) {
+        gb gbVar;
+        switch (this.f37771a) {
             case 0:
-                mo0 mo0Var = this.f37734b;
-                mo0Var.O2.setBounds(0, (int) mo0Var.f36051m2, getMeasuredWidth(), getMeasuredHeight());
-                mo0Var.O2.draw(canvas);
-                canvas.save();
-                canvas.clipRect(0.0f, mo0Var.f36051m2, getMeasuredWidth(), getMeasuredHeight());
-                super.dispatchDraw(canvas);
-                canvas.restore();
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f37733a) {
-            case 0:
-                mo0 mo0Var = this.f37734b;
-                rn0 rn0Var = mo0Var.f36045j1;
-                float f10 = mo0Var.f36052n2;
-                if (f10 != 0.0f && f10 != rn0Var.getTop() + mo0Var.f36052n2) {
-                    ValueAnimator valueAnimator = mo0Var.f36054o2;
-                    if (valueAnimator != null) {
-                        valueAnimator.cancel();
-                    }
-                    float top = mo0Var.f36052n2 - (rn0Var.getTop() + mo0Var.f36051m2);
-                    mo0Var.f36051m2 = top;
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(top, 0.0f);
-                    mo0Var.f36054o2 = ofFloat;
-                    ofFloat.addUpdateListener(new c60(this, 16));
-                    mo0Var.f36054o2.setInterpolator(xq.f40366f);
-                    mo0Var.f36054o2.setDuration(200L);
-                    mo0Var.f36054o2.start();
-                    mo0Var.f36052n2 = 0.0f;
+                no0 no0Var = this.f37772b;
+                if (i10 != 0) {
+                    no0.I0(no0Var);
+                    no0Var.f36438i2 = no0Var.f36436h2;
                 }
-                mo0Var.K1[1].setTranslationY((-(rn0Var.getMeasuredHeight() - org.telegram.messenger.g0.L(48.0f))) + mo0Var.f36051m2 + mo0Var.f36049l2 + ((1.0f - getAlpha()) * (rn0Var.getMeasuredHeight() - org.telegram.messenger.g0.L(48.0f))));
+                cc ccVar = cc.f32619w;
+                if (ccVar != null && (gbVar = ccVar.f32623e) != null && (gbVar.getParent() instanceof View) && ((View) cc.f32619w.f32623e.getParent()).getParent() == no0Var.f36457t1) {
+                    cc.e();
+                    return;
+                }
                 return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f37733a) {
             case 1:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(org.telegram.messenger.id.G(this.f37734b.M1.m(), "AccDescrShareInChats", new Object[0]));
-                accessibilityNodeInfo.setClassName(Button.class.getName());
-                accessibilityNodeInfo.setLongClickable(true);
-                accessibilityNodeInfo.setClickable(true);
-                return;
-            default:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                return;
-        }
-    }
-
-    @Override
-    public void setAlpha(float f10) {
-        switch (this.f37733a) {
-            case 0:
-                super.setAlpha(f10);
-                invalidate();
-                return;
-            default:
-                super.setAlpha(f10);
-                return;
-        }
-    }
-
-    @Override
-    public void setVisibility(int i7) {
-        switch (this.f37733a) {
-            case 0:
-                super.setVisibility(i7);
-                if (i7 != 0) {
-                    this.f37734b.K1[1].setTranslationY(0.0f);
+                if (i10 != 0) {
+                    no0 no0Var2 = this.f37772b;
+                    no0.I0(no0Var2);
+                    no0Var2.f36438i2 = no0Var2.f36436h2;
                     return;
                 }
                 return;
             default:
-                super.setVisibility(i7);
+                if (i10 != 0) {
+                    no0 no0Var3 = this.f37772b;
+                    no0.I0(no0Var3);
+                    no0Var3.f36438i2 = no0Var3.f36436h2;
+                    return;
+                }
                 return;
         }
     }

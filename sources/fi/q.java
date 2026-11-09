@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.zg0;
+import org.telegram.ui.Components.ah0;
 public final class q extends Drawable {
     public final Paint f12629a;
     public float f12630b;
@@ -13,7 +13,7 @@ public final class q extends Drawable {
     public boolean f12632e;
     public boolean f12633f;
     public boolean f12634g;
-    public final zg0 h;
+    public final ah0 h;
     public final la f12635i;
     public final la f12636j;
 
@@ -23,22 +23,22 @@ public final class q extends Drawable {
         this.f12629a = paint;
         this.f12631c = 1.0f;
         this.f12635i = laVar2;
-        zg0 zg0Var = new zg0(2131623976, org.telegram.messenger.g0.L(28.0f), org.telegram.messenger.g0.L(28.0f), false, null);
-        this.h = zg0Var;
-        zg0Var.f41007o0 = true;
+        ah0 ah0Var = new ah0(2131623976, org.telegram.messenger.g0.L(28.0f), org.telegram.messenger.g0.L(28.0f), false, null);
+        this.h = ah0Var;
+        ah0Var.f31838o0 = true;
         paint.setColor(-2406842);
-        zg0Var.Z = true;
-        zg0Var.Q(-2406842, "Cup Red");
-        zg0Var.Q(-2406842, "Box");
-        zg0Var.o();
+        ah0Var.Z = true;
+        ah0Var.Q(-2406842, "Cup Red");
+        ah0Var.Q(-2406842, "Box");
+        ah0Var.o();
     }
 
     @Override
     public final void draw(Canvas canvas) {
         boolean z9 = this.f12634g;
-        zg0 zg0Var = this.h;
+        ah0 ah0Var = this.h;
         if (z9) {
-            zg0Var.setAlpha((int) (this.f12630b * 255.0f * this.f12631c));
+            ah0Var.setAlpha((int) (this.f12630b * 255.0f * this.f12631c));
         }
         Paint paint = this.f12629a;
         paint.setAlpha((int) (this.f12630b * 255.0f * this.f12631c));
@@ -59,11 +59,11 @@ public final class q extends Drawable {
             }
         }
         this.d = System.currentTimeMillis();
-        zg0Var.setBounds(getBounds());
+        ah0Var.setBounds(getBounds());
         if (this.f12634g) {
-            zg0Var.draw(canvas);
+            ah0Var.draw(canvas);
         }
-        if (!this.f12634g || !zg0Var.u()) {
+        if (!this.f12634g || !ah0Var.u()) {
             canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), org.telegram.messenger.g0.L(5.0f), paint);
         }
         this.f12636j.invalidate();

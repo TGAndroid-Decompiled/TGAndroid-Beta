@@ -5,7 +5,7 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.ui.Components.lj;
 import org.telegram.ui.Components.my;
-import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.qj0;
 import org.telegram.ui.Components.rm;
 import org.telegram.ui.Components.sk;
 import org.telegram.ui.Components.ti;
@@ -15,8 +15,8 @@ public final class c0 extends my {
     public final int U;
     public final vh V;
 
-    public c0(vh vhVar, int i7, pj0 pj0Var, int i10) {
-        super(i7, 0, pj0Var);
+    public c0(vh vhVar, int i7, qj0 qj0Var, int i10) {
+        super(i7, 0, qj0Var);
         this.U = i10;
         this.V = vhVar;
     }
@@ -25,7 +25,7 @@ public final class c0 extends my {
     public int[] t(View view, Rect rect) {
         switch (this.U) {
             case 4:
-                int C = this.f57142n - C();
+                int C = this.f57154n - C();
                 int top = (view.getTop() + rect.top) - view.getScrollY();
                 int min = Math.min(0, top);
                 int max = Math.max(0, (rect.height() + top) - C);
@@ -43,27 +43,27 @@ public final class c0 extends my {
         switch (this.U) {
             case 0:
                 b0 b0Var = new b0(this, recyclerView.getContext());
-                b0Var.f57213a = i7;
+                b0Var.f57225a = i7;
                 w0(b0Var);
                 return;
             case 1:
                 ti tiVar = new ti(this, recyclerView.getContext());
-                tiVar.f57213a = i7;
+                tiVar.f57225a = i7;
                 w0(tiVar);
                 return;
             case 2:
                 lj ljVar = new lj(this, recyclerView.getContext());
-                ljVar.f57213a = i7;
+                ljVar.f57225a = i7;
                 w0(ljVar);
                 return;
             case 3:
                 sk skVar = new sk(this, recyclerView.getContext());
-                skVar.f57213a = i7;
+                skVar.f57225a = i7;
                 w0(skVar);
                 return;
             default:
                 rm rmVar = new rm(this, recyclerView.getContext());
-                rmVar.f57213a = i7;
+                rmVar.f57225a = i7;
                 w0(rmVar);
                 return;
         }

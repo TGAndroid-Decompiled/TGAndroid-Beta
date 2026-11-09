@@ -4,9 +4,9 @@ import android.content.Context;
 import android.text.style.CharacterStyle;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Wallet.b6;
-import org.telegram.ui.Wallet.z5;
-import org.telegram.ui.an;
+import org.telegram.ui.Wallet.a6;
+import org.telegram.ui.Wallet.y5;
+import org.telegram.ui.cn;
 public final class j4 implements Runnable {
     public final int f14743a;
     public final int f14744b;
@@ -47,21 +47,21 @@ public final class j4 implements Runnable {
         this.f14745c = i10;
     }
 
-    public j4(an anVar, int i7, int i10, CharacterStyle characterStyle, org.telegram.ui.Cells.q1 q1Var) {
+    public j4(cn cnVar, int i7, int i10, CharacterStyle characterStyle, org.telegram.ui.Cells.q1 q1Var) {
         this.f14743a = 9;
-        this.d = anVar;
+        this.d = cnVar;
         this.f14744b = i7;
         this.f14745c = i10;
         this.f14746e = characterStyle;
         this.f14747f = q1Var;
     }
 
-    public j4(b6 b6Var, Context context, int i7, int i10, z5 z5Var) {
+    public j4(a6 a6Var, Context context, int i7, int i10, y5 y5Var) {
         this.f14743a = 10;
-        this.d = b6Var;
+        this.d = a6Var;
         this.f14746e = context;
         this.f14744b = i7;
         this.f14745c = i10;
-        this.f14747f = z5Var;
+        this.f14747f = y5Var;
     }
 }

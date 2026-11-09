@@ -14,8 +14,8 @@ import org.telegram.messenger.yr;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.r31;
-import org.telegram.ui.un0;
+import org.telegram.ui.Components.s31;
+import org.telegram.ui.wn0;
 public final class j0 implements RequestDelegate {
     public final int f4074a;
     public final Object f4075b;
@@ -27,9 +27,9 @@ public final class j0 implements RequestDelegate {
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        final Comparator un0Var;
+        final Comparator wn0Var;
         Locale locale;
-        final Comparator un0Var2;
+        final Comparator wn0Var2;
         Locale locale2;
         int i7 = this.f4074a;
         Object obj = this.f4075b;
@@ -56,13 +56,13 @@ public final class j0 implements RequestDelegate {
                     return;
                 }
             case 5:
-                org.telegram.messenger.g0.h3(new ab((fi.d8) obj, 26));
+                org.telegram.messenger.g0.h3(new ab((fi.d8) obj, 25));
                 return;
             case 6:
-                org.telegram.messenger.g0.h3(new di.z0(7, (di.k6) obj, tLObject));
+                org.telegram.messenger.g0.h3(new di.z0(7, (di.l6) obj, tLObject));
                 return;
             case 7:
-                org.telegram.messenger.g0.h3(new di.z0(9, (di.m6) obj, tLObject));
+                org.telegram.messenger.g0.h3(new di.z0(9, (di.n6) obj, tLObject));
                 return;
             case 8:
                 org.telegram.messenger.g0.h3(new f2.h(3, (fi.r1) obj, tLObject));
@@ -109,7 +109,7 @@ public final class j0 implements RequestDelegate {
                 org.telegram.messenger.g0.h3(new li.j3(1, (li.y4) obj, tLObject));
                 return;
             case 22:
-                org.telegram.messenger.g0.h3(new org.telegram.ui.web.w(6, (org.telegram.ui.web.u1) obj, tLObject));
+                org.telegram.messenger.g0.h3(new org.telegram.ui.web.s(7, (org.telegram.ui.web.u1) obj, tLObject));
                 return;
             case 23:
                 wg.u0 u0Var = (wg.u0) obj;
@@ -142,11 +142,11 @@ public final class j0 implements RequestDelegate {
                         }
                         Collator collator = Collator.getInstance(locale);
                         Objects.requireNonNull(collator);
-                        un0Var = new s5(collator, 8);
+                        wn0Var = new s5(collator, 8);
                     } else {
-                        un0Var = new un0(14);
+                        wn0Var = new wn0(14);
                     }
-                    Collections.sort(arrayList, un0Var);
+                    Collections.sort(arrayList, wn0Var);
                     for (List list2 : hashMap.values()) {
                         Collections.sort(list2, new Comparator() {
                             @Override
@@ -155,14 +155,14 @@ public final class j0 implements RequestDelegate {
                                 TLRPC.TL_help_country tL_help_country3 = (TLRPC.TL_help_country) obj3;
                                 switch (r2) {
                                     case 0:
-                                        return un0Var.compare(tL_help_country2.default_name, tL_help_country3.default_name);
+                                        return wn0Var.compare(tL_help_country2.default_name, tL_help_country3.default_name);
                                     default:
-                                        return un0Var.compare(tL_help_country2.default_name, tL_help_country3.default_name);
+                                        return wn0Var.compare(tL_help_country2.default_name, tL_help_country3.default_name);
                                 }
                             }
                         });
                     }
-                    org.telegram.messenger.g0.h3(new r31(u0Var, hashMap, arrayList, 20));
+                    org.telegram.messenger.g0.h3(new s31(u0Var, hashMap, arrayList, 20));
                     return;
                 }
                 return;
@@ -181,7 +181,7 @@ public final class j0 implements RequestDelegate {
                         }
                         if (!tL_help_country2.hidden || equalsIgnoreCase) {
                             if (equalsIgnoreCase) {
-                                String M0 = org.telegram.messenger.id.M0(2131750522, null);
+                                String M0 = org.telegram.messenger.id.M0(2131750521, null);
                                 tL_help_country2.default_name = M0;
                                 tL_help_country2.name = M0;
                             }
@@ -203,11 +203,11 @@ public final class j0 implements RequestDelegate {
                         }
                         Collator collator2 = Collator.getInstance(locale2);
                         Objects.requireNonNull(collator2);
-                        un0Var2 = new s5(collator2, 8);
+                        wn0Var2 = new s5(collator2, 8);
                     } else {
-                        un0Var2 = new un0(14);
+                        wn0Var2 = new wn0(14);
                     }
-                    Collections.sort(arrayList2, un0Var2);
+                    Collections.sort(arrayList2, wn0Var2);
                     for (List list4 : hashMap2.values()) {
                         Collections.sort(list4, new Comparator() {
                             @Override
@@ -216,25 +216,25 @@ public final class j0 implements RequestDelegate {
                                 TLRPC.TL_help_country tL_help_country3 = (TLRPC.TL_help_country) obj3;
                                 switch (r2) {
                                     case 0:
-                                        return un0Var2.compare(tL_help_country22.default_name, tL_help_country3.default_name);
+                                        return wn0Var2.compare(tL_help_country22.default_name, tL_help_country3.default_name);
                                     default:
-                                        return un0Var2.compare(tL_help_country22.default_name, tL_help_country3.default_name);
+                                        return wn0Var2.compare(tL_help_country22.default_name, tL_help_country3.default_name);
                                 }
                             }
                         });
                     }
-                    org.telegram.messenger.g0.h3(new r31(cVar, hashMap2, arrayList2, 23));
+                    org.telegram.messenger.g0.h3(new s31(cVar, hashMap2, arrayList2, 23));
                     return;
                 }
                 return;
             case 25:
-                org.telegram.messenger.g0.h3(new u9.f(21, (wg.f1) obj, tLObject));
+                org.telegram.messenger.g0.h3(new u9.f(22, (wg.f1) obj, tLObject));
                 return;
             case 26:
-                org.telegram.messenger.g0.h3(new u9.f(29, (yf.d) obj, tLObject));
+                org.telegram.messenger.g0.h3(new yf.b(0, (yf.d) obj, tLObject));
                 return;
             default:
-                org.telegram.messenger.g0.h3(new r31((yf.e) obj, tLObject, tL_error));
+                org.telegram.messenger.g0.h3(new s31((yf.e) obj, tLObject, tL_error));
                 return;
         }
     }

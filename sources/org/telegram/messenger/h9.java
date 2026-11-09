@@ -7,18 +7,18 @@ import java.util.concurrent.CancellationException;
 import org.json.JSONObject;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.zc0;
+import org.telegram.ui.bd0;
 public final class h9 implements v0.g {
     public final CancellationToken f22859a;
     public final TaskCompletionSource f22860b;
-    public final zc0 f22861c;
+    public final bd0 f22861c;
     public final int d;
     public final Runnable[] f22862e;
 
-    public h9(CancellationToken cancellationToken, TaskCompletionSource taskCompletionSource, zc0 zc0Var, int i7, Runnable[] runnableArr) {
+    public h9(CancellationToken cancellationToken, TaskCompletionSource taskCompletionSource, bd0 bd0Var, int i7, Runnable[] runnableArr) {
         this.f22859a = cancellationToken;
         this.f22860b = taskCompletionSource;
-        this.f22861c = zc0Var;
+        this.f22861c = bd0Var;
         this.d = i7;
         this.f22862e = runnableArr;
     }
@@ -47,7 +47,7 @@ public final class h9 implements v0.g {
         CancellationToken cancellationToken = this.f22859a;
         if (!cancellationToken.isCancellationRequested()) {
             try {
-                String string = new JSONObject(((Bundle) oVar.f56976a.f3500a).getString("androidx.credentials.BUNDLE_KEY_REQUEST_JSON")).getJSONObject("data").getJSONObject("vp_token").getJSONArray("firebase").getString(0);
+                String string = new JSONObject(((Bundle) oVar.f56988a.f3500a).getString("androidx.credentials.BUNDLE_KEY_REQUEST_JSON")).getJSONObject("data").getJSONObject("vp_token").getJSONArray("firebase").getString(0);
                 this.f22861c.run();
                 TLRPC.TL_auth_finishFirebasePnvLogin tL_auth_finishFirebasePnvLogin = new TLRPC.TL_auth_finishFirebasePnvLogin();
                 tL_auth_finishFirebasePnvLogin.google_token = string;

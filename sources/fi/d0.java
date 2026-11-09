@@ -28,7 +28,7 @@ public final class d0 {
 
     public d0(e0 e0Var) {
         this.f11781p = e0Var;
-        this.f11769b = new org.telegram.ui.Components.w5(e0Var, 0L, 1200L, xq.f40367g);
+        this.f11769b = new org.telegram.ui.Components.w5(e0Var, 0L, 1200L, xq.f40459g);
         this.f11770c = new ImageReceiver(e0Var);
     }
 
@@ -141,7 +141,7 @@ public final class d0 {
             this.f11777l = 0.0f;
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.f11780o = ofFloat;
-            ofFloat.addUpdateListener(new di.m4(this, 2));
+            ofFloat.addUpdateListener(new di.n4(this, 2));
             this.f11780o.addListener(new bi.t5(this, 17));
             this.f11780o.setInterpolator(xq.h);
             this.f11780o.setDuration(360L);

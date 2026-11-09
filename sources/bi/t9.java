@@ -10,21 +10,21 @@ import org.telegram.messenger.ui;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
 public final class t9 {
-    public final int f4757a;
-    public final long f4758b;
-    public boolean f4759c;
+    public final int f4755a;
+    public final long f4756b;
+    public boolean f4757c;
     public boolean d;
-    public v9 f4762g;
-    public boolean f4764j;
-    public boolean f4765k;
-    public final ArrayList f4760e = new ArrayList();
-    public final ArrayList f4761f = new ArrayList();
+    public v9 f4760g;
+    public boolean f4762j;
+    public boolean f4763k;
+    public final ArrayList f4758e = new ArrayList();
+    public final ArrayList f4759f = new ArrayList();
     public final HashMap h = new HashMap();
-    public int f4763i = -1;
+    public int f4761i = -1;
 
     public t9(int i7, long j3) {
-        this.f4757a = i7;
-        this.f4758b = j3;
+        this.f4755a = i7;
+        this.f4756b = j3;
         i();
     }
 
@@ -34,11 +34,11 @@ public final class t9 {
         }
         v9 e10 = e(i7);
         int i10 = 0;
-        long j3 = this.f4758b;
-        int i11 = this.f4757a;
+        long j3 = this.f4756b;
+        int i11 = this.f4755a;
         if (e10 != null) {
-            e10.f4915l.addAll(0, arrayList);
-            e10.f4917n = arrayList.size() + e10.f4917n;
+            e10.f4913l.addAll(0, arrayList);
+            e10.f4915n = arrayList.size() + e10.f4915n;
             qs.f(i11).k(qs.G3, Long.valueOf(j3), e10);
             n(i7);
         }
@@ -69,22 +69,22 @@ public final class t9 {
     }
 
     public final void b(String str, c20 c20Var) {
-        if (this.f4765k) {
+        if (this.f4763k) {
             return;
         }
-        this.f4765k = true;
+        this.f4763k = true;
         TL_stars.TL_starGiftCollection tL_starGiftCollection = new TL_stars.TL_starGiftCollection();
         tL_starGiftCollection.collection_id = -1;
         tL_starGiftCollection.title = str;
-        this.f4760e.add(tL_starGiftCollection);
+        this.f4758e.add(tL_starGiftCollection);
         j();
-        int i7 = this.f4757a;
-        long j3 = this.f4758b;
+        int i7 = this.f4755a;
+        long j3 = this.f4756b;
         v9 v9Var = new v9(i7, j3, false);
-        v9Var.f4908c = true;
+        v9Var.f4906c = true;
         v9Var.d = -1;
-        v9Var.f4917n = 0;
-        v9Var.f4913j = true;
+        v9Var.f4915n = 0;
+        v9Var.f4911j = true;
         this.h.put(-1, v9Var);
         TL_stars.createStarGiftCollection createstargiftcollection = new TL_stars.createStarGiftCollection();
         createstargiftcollection.peer = qp.s1(i7).j1(j3);
@@ -95,7 +95,7 @@ public final class t9 {
     public final TL_stars.TL_starGiftCollection c(int i7) {
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f4760e;
+            ArrayList arrayList = this.f4758e;
             if (i10 < arrayList.size()) {
                 TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) arrayList.get(i10);
                 if (i7 == tL_starGiftCollection.collection_id) {
@@ -110,9 +110,9 @@ public final class t9 {
 
     public final ArrayList d() {
         if (h()) {
-            return this.f4760e;
+            return this.f4758e;
         }
-        return this.f4761f;
+        return this.f4759f;
     }
 
     public final v9 e(int i7) {
@@ -122,7 +122,7 @@ public final class t9 {
     public final int f(int i7) {
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f4760e;
+            ArrayList arrayList = this.f4758e;
             if (i10 < arrayList.size()) {
                 if (i7 == ((TL_stars.TL_starGiftCollection) arrayList.get(i10)).collection_id) {
                     return i10;
@@ -135,21 +135,21 @@ public final class t9 {
     }
 
     public final void g() {
-        if (this.f4763i != -1) {
-            ConnectionsManager.getInstance(this.f4757a).cancelRequest(this.f4763i, true);
-            this.f4763i = -1;
+        if (this.f4761i != -1) {
+            ConnectionsManager.getInstance(this.f4755a).cancelRequest(this.f4761i, true);
+            this.f4761i = -1;
         }
-        this.f4759c = false;
+        this.f4757c = false;
         this.d = false;
-        if (this.f4764j) {
+        if (this.f4762j) {
             i();
         }
     }
 
     public final boolean h() {
-        long j3 = this.f4758b;
+        long j3 = this.f4756b;
         int i7 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
-        int i10 = this.f4757a;
+        int i10 = this.f4755a;
         if (i7 >= 0) {
             if (i7 != 0 && j3 != p10.i(i10).e()) {
                 return false;
@@ -160,12 +160,12 @@ public final class t9 {
     }
 
     public final void i() {
-        if (!this.f4759c && !this.d) {
-            this.f4759c = true;
+        if (!this.f4757c && !this.d) {
+            this.f4757c = true;
             TL_stars.getStarGiftCollections getstargiftcollections = new TL_stars.getStarGiftCollections();
-            int i7 = this.f4757a;
-            getstargiftcollections.peer = qp.s1(i7).j1(this.f4758b);
-            ArrayList arrayList = this.f4760e;
+            int i7 = this.f4755a;
+            getstargiftcollections.peer = qp.s1(i7).j1(this.f4756b);
+            ArrayList arrayList = this.f4758e;
             int size = arrayList.size();
             long j3 = 0;
             int i10 = 0;
@@ -175,16 +175,16 @@ public final class t9 {
                 j3 = ui.p(j3, ((TL_stars.TL_starGiftCollection) obj).hash);
             }
             getstargiftcollections.hash = j3;
-            this.f4763i = ConnectionsManager.getInstance(i7).sendRequest(getstargiftcollections, new r9(this, 0));
+            this.f4761i = ConnectionsManager.getInstance(i7).sendRequest(getstargiftcollections, new r9(this, 0));
         }
     }
 
     public final void j() {
-        ArrayList arrayList = this.f4761f;
+        ArrayList arrayList = this.f4759f;
         arrayList.clear();
         int i7 = 0;
         while (true) {
-            ArrayList arrayList2 = this.f4760e;
+            ArrayList arrayList2 = this.f4758e;
             if (i7 < arrayList2.size()) {
                 TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) arrayList2.get(i7);
                 if (tL_starGiftCollection.gifts_count > 0) {
@@ -209,7 +209,7 @@ public final class t9 {
         char c11 = 1;
         boolean z10 = false;
         if (e10 != null) {
-            ArrayList arrayList2 = e10.f4915l;
+            ArrayList arrayList2 = e10.f4913l;
             if (!arrayList2.isEmpty()) {
                 int i10 = 0;
                 while (i10 < arrayList2.size()) {
@@ -220,7 +220,7 @@ public final class t9 {
                             break;
                         } else if (ea.k(savedStarGift2, (TL_stars.SavedStarGift) arrayList.get(i11))) {
                             arrayList2.remove(i10);
-                            e10.f4917n = Math.max(0, e10.f4917n - 1);
+                            e10.f4915n = Math.max(0, e10.f4915n - 1);
                             i10--;
                             break;
                         } else {
@@ -233,9 +233,9 @@ public final class t9 {
         }
         n(i7);
         TL_stars.updateStarGiftCollection updatestargiftcollection = new TL_stars.updateStarGiftCollection();
-        int i12 = this.f4757a;
+        int i12 = this.f4755a;
         qp s12 = qp.s1(i12);
-        long j3 = this.f4758b;
+        long j3 = this.f4756b;
         updatestargiftcollection.peer = s12.j1(j3);
         updatestargiftcollection.collection_id = i7;
         updatestargiftcollection.flags |= 2;
@@ -281,7 +281,7 @@ public final class t9 {
         for (v9 v9Var : this.h.values()) {
             v9Var.p(savedStarGift, i7, z9);
         }
-        v9 v9Var2 = this.f4762g;
+        v9 v9Var2 = this.f4760g;
         if (v9Var2 != null) {
             v9Var2.p(savedStarGift, i7, z9);
         }
@@ -291,7 +291,7 @@ public final class t9 {
         for (v9 v9Var : this.h.values()) {
             v9Var.q(savedStarGift, z9);
         }
-        v9 v9Var2 = this.f4762g;
+        v9 v9Var2 = this.f4760g;
         if (v9Var2 != null) {
             v9Var2.q(savedStarGift, z9);
         }
@@ -302,7 +302,7 @@ public final class t9 {
         v9 e10 = e(i7);
         TL_stars.TL_starGiftCollection c10 = c(i7);
         if (e10 != null) {
-            ArrayList arrayList = e10.f4915l;
+            ArrayList arrayList = e10.f4913l;
             if (c10 != null) {
                 if (arrayList.isEmpty()) {
                     savedStarGift = null;
@@ -316,7 +316,7 @@ public final class t9 {
                     c10.flags |= 1;
                     c10.icon = savedStarGift.gift.getDocument();
                 }
-                qs.f(this.f4757a).k(qs.H3, Long.valueOf(this.f4758b), this);
+                qs.f(this.f4755a).k(qs.H3, Long.valueOf(this.f4756b), this);
             }
         }
     }

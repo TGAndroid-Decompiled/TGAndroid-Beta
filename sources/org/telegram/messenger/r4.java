@@ -7,7 +7,7 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
-import org.telegram.ui.lt0;
+import org.telegram.ui.nt0;
 public final class r4 implements RequestDelegate {
     public final int f25244a;
     public final Object f25245b;
@@ -25,7 +25,7 @@ public final class r4 implements RequestDelegate {
         switch (this.f25244a) {
             case 0:
                 g5 g5Var = (g5) this.f25245b;
-                lt0 lt0Var = (lt0) this.f25246c;
+                nt0 nt0Var = (nt0) this.f25246c;
                 if (tL_error == null) {
                     g5Var.Z.clear();
                     g5Var.Y.clear();
@@ -36,10 +36,10 @@ public final class r4 implements RequestDelegate {
                     g5Var.f22602b = false;
                     g5Var.f22618r = false;
                     g5Var.f22620w = "";
-                    g0.h3(new b4(28, g5Var, lt0Var));
+                    g0.h3(new b4(28, g5Var, nt0Var));
                     return;
                 }
-                g0.h3(lt0Var);
+                g0.h3(nt0Var);
                 return;
             case 1:
                 g5 g5Var2 = (g5) this.f25245b;

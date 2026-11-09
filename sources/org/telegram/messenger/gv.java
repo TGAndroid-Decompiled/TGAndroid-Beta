@@ -115,25 +115,25 @@ public final class gv extends MetricAffectingSpan {
                 kv kvVar = this.f22745a;
                 if (i13 == 11) {
                     if (kvVar.E()) {
-                        i11 = org.telegram.ui.ActionBar.k6.Qb;
+                        i11 = org.telegram.ui.ActionBar.l6.Qb;
                     } else {
-                        i11 = org.telegram.ui.ActionBar.k6.Kd;
+                        i11 = org.telegram.ui.ActionBar.l6.Kd;
                     }
-                    w02 = org.telegram.ui.ActionBar.k6.w0(i11, kvVar.D);
+                    w02 = org.telegram.ui.ActionBar.l6.w0(i11, kvVar.D);
                 } else if (i13 == 10) {
                     if (kvVar.E()) {
-                        i10 = org.telegram.ui.ActionBar.k6.Tc;
+                        i10 = org.telegram.ui.ActionBar.l6.Tc;
                     } else {
-                        i10 = org.telegram.ui.ActionBar.k6.Sc;
+                        i10 = org.telegram.ui.ActionBar.l6.Sc;
                     }
-                    w02 = org.telegram.ui.ActionBar.k6.r1(0.5f, org.telegram.ui.ActionBar.k6.w0(i10, kvVar.D));
+                    w02 = org.telegram.ui.ActionBar.l6.r1(0.5f, org.telegram.ui.ActionBar.l6.w0(i10, kvVar.D));
                 } else {
                     if (kvVar.E()) {
-                        i7 = org.telegram.ui.ActionBar.k6.Tc;
+                        i7 = org.telegram.ui.ActionBar.l6.Tc;
                     } else {
-                        i7 = org.telegram.ui.ActionBar.k6.Sc;
+                        i7 = org.telegram.ui.ActionBar.l6.Sc;
                     }
-                    w02 = org.telegram.ui.ActionBar.k6.w0(i7, kvVar.D);
+                    w02 = org.telegram.ui.ActionBar.l6.w0(i7, kvVar.D);
                 }
                 textPaint.setColor(w02);
             }

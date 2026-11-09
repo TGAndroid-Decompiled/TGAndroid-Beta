@@ -7,57 +7,57 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.ls;
 import org.telegram.messenger.qs;
-import org.telegram.ui.Components.ht0;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.rj0;
-import org.telegram.ui.Components.v61;
-import org.telegram.ui.Components.x31;
+import org.telegram.ui.Components.jt0;
+import org.telegram.ui.Components.qj0;
+import org.telegram.ui.Components.sj0;
+import org.telegram.ui.Components.w61;
+import org.telegram.ui.Components.y31;
 public final class cd extends LinearLayout implements ls {
     public final int f3609a;
-    public final v61 f3610b;
+    public final w61 f3610b;
     public final bd f3611c;
     public final FrameLayout d;
-    public final ht0 f3612e;
+    public final jt0 f3612e;
     public final long f3613f;
 
-    public cd(Context context, int i7, boolean z9, long j3, int i10, org.telegram.ui.ActionBar.f6 f6Var, ht0 ht0Var) {
+    public cd(Context context, int i7, boolean z9, long j3, int i10, org.telegram.ui.ActionBar.g6 g6Var, jt0 jt0Var) {
         super(context);
-        v61 rj0Var;
-        rj0 rj0Var2;
+        w61 sj0Var;
+        sj0 sj0Var2;
         int i11;
-        this.f3612e = ht0Var;
+        this.f3612e = jt0Var;
         this.f3609a = i7;
         this.f3613f = j3;
         setOrientation(1);
-        if (ht0Var == null) {
-            rj0Var = new v61(context, null);
+        if (jt0Var == null) {
+            sj0Var = new w61(context, null);
         } else {
-            rj0Var = new rj0(context, f6Var, ht0Var);
+            sj0Var = new sj0(context, g6Var, jt0Var);
         }
-        v61 v61Var = rj0Var;
-        this.f3610b = v61Var;
-        bd bdVar = new bd(context, i7, z9, j3, i10, f6Var);
+        w61 w61Var = sj0Var;
+        this.f3610b = w61Var;
+        bd bdVar = new bd(context, i7, z9, j3, i10, g6Var);
         this.f3611c = bdVar;
-        if (ht0Var == null) {
-            rj0Var2 = null;
+        if (jt0Var == null) {
+            sj0Var2 = null;
         } else {
-            rj0Var2 = (rj0) v61Var;
+            sj0Var2 = (sj0) w61Var;
         }
-        bdVar.f3533g = rj0Var2;
-        v61Var.setAdapter(bdVar);
-        if (ht0Var == null) {
+        bdVar.f3533g = sj0Var2;
+        w61Var.setAdapter(bdVar);
+        if (jt0Var == null) {
             i11 = 3;
         } else {
             i11 = -2;
         }
-        View n10 = v61Var.n(i11, true);
+        View n10 = w61Var.n(i11, true);
         View view = new View(context);
-        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27853d7, view, f6Var);
-        if (ht0Var == null) {
+        org.telegram.ui.ActionBar.s6.h(org.telegram.ui.ActionBar.l6.f27866d7, view, g6Var);
+        if (jt0Var == null) {
             this.d = null;
             addView(n10, c8.ha.o(-1, 48));
             addView(view, new LinearLayout.LayoutParams(c8.ha.z(-1.0f), c8.ha.z(1.0f / org.telegram.messenger.g0.f22562p)));
-            setBackgroundColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27925h5, f6Var));
+            setBackgroundColor(org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.f27938h5, g6Var));
         } else {
             setClipChildren(false);
             setClipToPadding(false);
@@ -66,26 +66,26 @@ public final class cd extends LinearLayout implements ls {
             frameLayout.setPadding(org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f));
             frameLayout.addView(n10, c8.ha.e(-1, 48, 48));
         }
-        addView(v61Var, c8.ha.o(-1, -1));
+        addView(w61Var, c8.ha.o(-1, -1));
     }
 
     public final void a(boolean z9) {
         int i7;
         bd bdVar = this.f3611c;
-        v61 v61Var = this.f3610b;
-        ht0 ht0Var = this.f3612e;
-        if (ht0Var == null) {
+        w61 w61Var = this.f3610b;
+        jt0 jt0Var = this.f3612e;
+        if (jt0Var == null) {
             bdVar.i();
-            v61Var.o(z9);
+            w61Var.o(z9);
             return;
         }
         ArrayList arrayList = bdVar.f3534i;
         ArrayList arrayList2 = bdVar.f3534i;
         int i10 = 0;
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
-            i10 |= 1 << ((x31) arrayList.get(i11)).f40193z;
+            i10 |= 1 << ((y31) arrayList.get(i11)).f40581z;
         }
-        View currentView = v61Var.getCurrentView();
+        View currentView = w61Var.getCurrentView();
         if (currentView instanceof ad) {
             i7 = ((ad) currentView).d;
         } else {
@@ -94,14 +94,14 @@ public final class cd extends LinearLayout implements ls {
         bdVar.i();
         int i12 = 0;
         for (int i13 = 0; i13 < arrayList2.size(); i13++) {
-            i12 |= 1 << ((x31) arrayList2.get(i13)).f40193z;
+            i12 |= 1 << ((y31) arrayList2.get(i13)).f40581z;
         }
         if (i10 != i12) {
-            v61Var.onTouchEvent(null);
+            w61Var.onTouchEvent(null);
             int i14 = 0;
             while (true) {
                 if (i14 < arrayList2.size()) {
-                    if (((x31) arrayList2.get(i14)).f40193z == i7) {
+                    if (((y31) arrayList2.get(i14)).f40581z == i7) {
                         break;
                     }
                     i14++;
@@ -110,12 +110,12 @@ public final class cd extends LinearLayout implements ls {
                     break;
                 }
             }
-            v61Var.setPosition(i14);
-            v61Var.J();
-            v61Var.o(false);
-            ht0Var.p();
+            w61Var.setPosition(i14);
+            w61Var.J();
+            w61Var.o(false);
+            jt0Var.p();
         } else if (!z9) {
-            v61Var.o(false);
+            w61Var.o(false);
         }
     }
 
@@ -128,7 +128,7 @@ public final class cd extends LinearLayout implements ls {
         }
     }
 
-    public pj0 getCurrentListView() {
+    public qj0 getCurrentListView() {
         View currentView = this.f3610b.getCurrentView();
         if (!(currentView instanceof ad)) {
             return null;
@@ -140,7 +140,7 @@ public final class cd extends LinearLayout implements ls {
         return this.d;
     }
 
-    public v61 getViewPager() {
+    public w61 getViewPager() {
         return this.f3610b;
     }
 
@@ -177,9 +177,9 @@ public final class cd extends LinearLayout implements ls {
             bd bdVar = this.f3611c;
             if (bdVar.h != qVar) {
                 bdVar.h = qVar;
-                v61 v61Var = this.f3610b;
-                qVar.c(v61Var);
-                for (View view : v61Var.getViewPages()) {
+                w61 w61Var = this.f3610b;
+                qVar.c(w61Var);
+                for (View view : w61Var.getViewPages()) {
                     if (view instanceof ad) {
                         qVar.b(((ad) view).f3468a);
                     }

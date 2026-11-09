@@ -1,30 +1,30 @@
 package org.telegram.ui.ActionBar;
 public final class v implements Runnable {
-    public final boolean f28607a;
-    public final f2 f28608b;
-    public final f2 f28609c;
+    public final boolean f28612a;
+    public final f2 f28613b;
+    public final f2 f28614c;
     public final boolean d;
-    public final ActionBarLayout f28610e;
+    public final ActionBarLayout f28615e;
 
     public v(ActionBarLayout actionBarLayout, boolean z9, f2 f2Var, f2 f2Var2, boolean z10) {
-        this.f28610e = actionBarLayout;
-        this.f28607a = z9;
-        this.f28608b = f2Var;
-        this.f28609c = f2Var2;
+        this.f28615e = actionBarLayout;
+        this.f28612a = z9;
+        this.f28613b = f2Var;
+        this.f28614c = f2Var2;
         this.d = z10;
     }
 
     @Override
     public final void run() {
-        ActionBarLayout actionBarLayout = this.f28610e;
+        ActionBarLayout actionBarLayout = this.f28615e;
         if (actionBarLayout.d == this) {
             actionBarLayout.d = null;
-            if (this.f28607a) {
-                f2 f2Var = this.f28608b;
+            if (this.f28612a) {
+                f2 f2Var = this.f28613b;
                 if (f2Var != null) {
                     f2Var.onTransitionAnimationStart(false, false);
                 }
-                this.f28609c.onTransitionAnimationStart(true, false);
+                this.f28614c.onTransitionAnimationStart(true, false);
                 actionBarLayout.h0(true, true, this.d);
                 return;
             }

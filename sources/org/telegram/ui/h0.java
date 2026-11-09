@@ -1,18 +1,18 @@
 package org.telegram.ui;
 public final class h0 extends org.telegram.ui.ActionBar.u4 {
-    public final int f46176r;
-    public final Object f46177s;
+    public final int f46109r;
+    public final Object f46110s;
 
     public h0(Object obj, int i7) {
-        this.f46176r = i7;
-        this.f46177s = obj;
+        this.f46109r = i7;
+        this.f46110s = obj;
     }
 
     @Override
     public void v() {
-        switch (this.f46176r) {
+        switch (this.f46109r) {
             case 1:
-                ((org.telegram.ui.Components.mo0) this.f46177s).Q1 = true;
+                ((org.telegram.ui.Components.no0) this.f46110s).Q1 = true;
                 return;
             default:
                 return;
@@ -22,9 +22,9 @@ public final class h0 extends org.telegram.ui.ActionBar.u4 {
     @Override
     public boolean x() {
         boolean z9;
-        switch (this.f46176r) {
+        switch (this.f46109r) {
             case 0:
-                g4 g4Var = (g4) this.f46177s;
+                g4 g4Var = (g4) this.f46110s;
                 org.telegram.ui.Cells.i9 i9Var = g4Var.Q0;
                 if (i9Var != null && i9Var.x()) {
                     g4Var.Q0.f(false);
@@ -35,10 +35,10 @@ public final class h0 extends org.telegram.ui.ActionBar.u4 {
             default:
                 return super.x();
             case 2:
-                z9 = ((org.telegram.ui.Wallet.a2) this.f46177s).f42103m;
+                z9 = ((org.telegram.ui.Wallet.z1) this.f46110s).f43415m;
                 break;
             case 3:
-                z9 = ((org.telegram.ui.Wallet.t2) this.f46177s).d;
+                z9 = ((org.telegram.ui.Wallet.s2) this.f46110s).d;
                 break;
         }
         return !z9;

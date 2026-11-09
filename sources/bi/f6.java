@@ -9,7 +9,7 @@ import java.util.HashSet;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_stars;
-public final class f6 extends View implements org.telegram.ui.ActionBar.a6 {
+public final class f6 extends View implements org.telegram.ui.ActionBar.b6 {
     public final u6 f3865a;
     public final ImageReceiver f3866b;
     public final Path f3867c;
@@ -21,17 +21,17 @@ public final class f6 extends View implements org.telegram.ui.ActionBar.a6 {
         this.f3867c = path;
         Paint paint = new Paint(1);
         this.d = paint;
-        org.telegram.ui.ActionBar.q6 q6Var = org.telegram.ui.ActionBar.r6.f28478a;
+        org.telegram.ui.ActionBar.r6 r6Var = org.telegram.ui.ActionBar.s6.f28500a;
         u6 u6Var = new u6(this, starGift, 60, 0.27f);
         this.f3865a = u6Var;
         u6Var.K = 3;
-        org.telegram.ui.Components.w8 w8Var = new org.telegram.ui.Components.w8((org.telegram.ui.ActionBar.f6) null);
+        org.telegram.ui.Components.w8 w8Var = new org.telegram.ui.Components.w8((org.telegram.ui.ActionBar.g6) null);
         w8Var.l(tLObject);
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.f3866b = imageReceiver;
         imageReceiver.J0(org.telegram.messenger.g0.L(30.0f));
         imageReceiver.i0(tLObject, w8Var, null);
-        paint.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.E6, false));
+        paint.setColor(org.telegram.ui.ActionBar.l6.x0(null, org.telegram.ui.ActionBar.l6.E6, false));
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
@@ -79,9 +79,9 @@ public final class f6 extends View implements org.telegram.ui.ActionBar.a6 {
     public final void updateColors() {
         Paint paint = this.d;
         try {
-            int i7 = org.telegram.ui.ActionBar.k6.E6;
-            paint.setColor(org.telegram.ui.ActionBar.k6.x0(null, i7, false));
-            paint.setColor(org.telegram.ui.ActionBar.k6.x0(null, i7, false));
+            int i7 = org.telegram.ui.ActionBar.l6.E6;
+            paint.setColor(org.telegram.ui.ActionBar.l6.x0(null, i7, false));
+            paint.setColor(org.telegram.ui.ActionBar.l6.x0(null, i7, false));
             invalidate();
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
@@ -94,7 +94,7 @@ public final class f6 extends View implements org.telegram.ui.ActionBar.a6 {
         this.f3867c = path;
         Paint paint = new Paint(1);
         this.d = paint;
-        org.telegram.ui.ActionBar.q6 q6Var = org.telegram.ui.ActionBar.r6.f28478a;
+        org.telegram.ui.ActionBar.r6 r6Var = org.telegram.ui.ActionBar.s6.f28500a;
         u6 u6Var = new u6(this, starGift, 60, 0.27f);
         this.f3865a = u6Var;
         u6Var.K = 3;
@@ -102,7 +102,7 @@ public final class f6 extends View implements org.telegram.ui.ActionBar.a6 {
         this.f3866b = imageReceiver;
         imageReceiver.J0(org.telegram.messenger.g0.L(30.0f));
         imageReceiver.w0(org.telegram.ui.Cells.s6.a(60, "fragment"));
-        paint.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.E6, false));
+        paint.setColor(org.telegram.ui.ActionBar.l6.x0(null, org.telegram.ui.ActionBar.l6.E6, false));
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);

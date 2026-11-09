@@ -1,222 +1,42 @@
 package org.telegram.ui.Components;
+public final class q41 extends v4.k {
+    public final r41 F;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-public class q41 extends pj0 {
-    public v4.b0 f37189e3;
-    public final l41 f37190f3;
-    public v4.y f37191g3;
-    public boolean f37192h3;
-    public boolean f37193i3;
-    public boolean j3;
-    public v4.d1 f37194k3;
-    public boolean f37195l3;
-
-    public q41(org.telegram.ui.ActionBar.f2 f2Var, org.telegram.messenger.v10 v10Var, org.telegram.messenger.a20 a20Var, org.telegram.messenger.b20 b20Var) {
-        this(f2Var.getContext(), f2Var.getCurrentAccount(), f2Var.getClassGuid(), false, v10Var, a20Var, b20Var, f2Var.getResourceProvider());
-    }
-
-    public final int A1(int i7) {
-        int i10 = 0;
-        while (true) {
-            l41 l41Var = this.f37190f3;
-            if (i10 < l41Var.D.size()) {
-                x31 G = l41Var.G(i10);
-                if (G != null && G.d == i7) {
-                    return i10;
-                }
-                i10++;
-            } else {
-                return -1;
-            }
-        }
-    }
-
-    public final View B1(int i7) {
-        int i10 = 0;
-        while (true) {
-            l41 l41Var = this.f37190f3;
-            if (i10 < l41Var.D.size()) {
-                x31 G = l41Var.G(i10);
-                if (G != null && G.d == i7) {
-                    break;
-                }
-                i10++;
-            } else {
-                i10 = -1;
-                break;
-            }
-        }
-        return T0(i10);
-    }
-
-    public final View C1(Object obj) {
-        int i7 = 0;
-        while (true) {
-            l41 l41Var = this.f37190f3;
-            if (i7 < l41Var.D.size()) {
-                x31 G = l41Var.G(i7);
-                if (G != null && G.G == obj) {
-                    break;
-                }
-                i7++;
-            } else {
-                i7 = -1;
-                break;
-            }
-        }
-        return T0(i7);
-    }
-
-    public boolean D1() {
-        return false;
-    }
-
-    public final void E1(org.telegram.messenger.v10 v10Var, boolean z9) {
-        this.f37193i3 = z9;
-        v4.y yVar = new v4.y(new ei.d(this, 7));
-        this.f37191g3 = yVar;
-        yVar.h(this);
-        this.f37190f3.M = v10Var;
+    public q41(r41 r41Var) {
+        this.F = r41Var;
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        int i7;
-        if (!b1()) {
-            l41 l41Var = this.f37190f3;
-            ArrayList arrayList = l41Var.G;
-            for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                i41 i41Var = (i41) arrayList.get(i10);
-                int i11 = i41Var.f34526b;
-                if (i11 >= 0) {
-                    int i12 = i41Var.f34525a;
-                    if (l41Var.f35527n) {
-                        i7 = org.telegram.ui.ActionBar.k6.f27925h5;
-                    } else {
-                        i7 = org.telegram.ui.ActionBar.k6.f27852d6;
-                    }
-                    int w02 = org.telegram.ui.ActionBar.k6.w0(i7, l41Var.f35531x);
-                    if (i11 >= i12 && i12 >= 0 && i11 >= 0) {
-                        int i13 = Integer.MAX_VALUE;
-                        int i14 = Integer.MIN_VALUE;
-                        for (int i15 = 0; i15 < getChildCount(); i15++) {
-                            View childAt = getChildAt(i15);
-                            if (childAt != null) {
-                                int R = RecyclerView.R(childAt);
-                                int top = childAt.getTop();
-                                if (R >= i12 && R <= i11) {
-                                    i13 = Math.min(top, i13);
-                                    i14 = Math.max((int) ((childAt.getAlpha() * childAt.getHeight()) + top), i14);
-                                }
-                            }
-                        }
-                        if (i13 < i14) {
-                            if (this.f36991s2 == null) {
-                                this.f36991s2 = new Paint(1);
-                            }
-                            this.f36991s2.setColor(w02);
-                            canvas.drawRect(0.0f, i13, getWidth(), i14, this.f36991s2);
-                        }
-                    }
-                }
-            }
+    public final void M() {
+        r41 r41Var = this.F;
+        if (r41Var.b1()) {
+            r41Var.invalidate();
         }
-        super.dispatchDraw(canvas);
-    }
-
-    public int getSpanCount() {
-        v4.b0 b0Var = this.f37189e3;
-        if (b0Var instanceof ky) {
-            return ((ky) b0Var).J;
-        }
-        return -1;
+        r41Var.F1();
     }
 
     @Override
-    public final void s1(int i7, float f10, boolean z9) {
-        t1(new fi(this, 3), new ai.c0(8), i7, f10, z9);
-    }
-
-    public void setReorderLongPressEnabled(boolean z9) {
-        this.f37195l3 = z9;
-    }
-
-    public void setSpanCount(int i7) {
-        v4.b0 b0Var = this.f37189e3;
-        if (b0Var instanceof ky) {
-            ((ky) b0Var).y1(i7);
-        } else if (b0Var != null && i7 != -1) {
-            getContext();
-            o41 o41Var = new o41(this, i7, 1);
-            o41Var.O = new rq0(this, o41Var, 2);
-            this.f37189e3 = o41Var;
-            setLayoutManager(o41Var);
+    public final void O() {
+        r41 r41Var = this.F;
+        if (r41Var.b1()) {
+            r41Var.invalidate();
         }
+        r41Var.F1();
     }
 
-    public final void z1(boolean z9) {
-        if (this.j3 == z9) {
-            return;
+    @Override
+    public final void P(v4.d1 d1Var) {
+        r41 r41Var = this.F;
+        r41Var.invalidate();
+        r41Var.F1();
+    }
+
+    @Override
+    public final void Q() {
+        r41 r41Var = this.F;
+        if (r41Var.b1()) {
+            r41Var.invalidate();
         }
-        this.j3 = z9;
-        this.f37190f3.N = z9;
-        org.telegram.messenger.g0.d0(this, new s2(this, 12));
-    }
-
-    public q41(Context context, int i7, int i10, boolean z9, org.telegram.messenger.v10 v10Var, org.telegram.messenger.a20 a20Var, org.telegram.messenger.b20 b20Var, org.telegram.ui.ActionBar.f6 f6Var) {
-        this(context, i7, i10, z9, v10Var, a20Var, b20Var, f6Var, -1, 1);
-    }
-
-    public q41(Context context, int i7, int i10, boolean z9, org.telegram.messenger.v10 v10Var, org.telegram.messenger.a20 a20Var, org.telegram.messenger.b20 b20Var, org.telegram.ui.ActionBar.f6 f6Var, int i11, int i12) {
-        super(context, f6Var);
-        this.f37195l3 = true;
-        if (i11 == -1) {
-            jg.i0 i0Var = new jg.i0(this, i12);
-            this.f37189e3 = i0Var;
-            setLayoutManager(i0Var);
-        } else {
-            o41 o41Var = new o41(this, i11, 0);
-            o41Var.O = new rq0(this, o41Var, 1);
-            this.f37189e3 = o41Var;
-            setLayoutManager(o41Var);
-        }
-        l41 l41Var = new l41(this, context, i7, i10, z9, v10Var, f6Var);
-        this.f37190f3 = l41Var;
-        setAdapter(l41Var);
-        if (a20Var != null) {
-            setOnItemClickListener(new f2(20, this, a20Var));
-        }
-        if (b20Var != null) {
-            setOnItemLongClickListener(new f2(21, this, b20Var));
-        }
-        p41 p41Var = new p41(this);
-        p41Var.f57071m = false;
-        p41Var.C = false;
-        p41Var.o(xq.h);
-        p41Var.n(350L);
-        setItemAnimator(p41Var);
-    }
-
-    public void H1(v4.d1 d1Var) {
-    }
-
-    public void I1(v4.d1 d1Var) {
-    }
-
-    public void J1(v4.d1 d1Var) {
-    }
-
-    public void F1() {
-    }
-
-    public void G1() {
-    }
-
-    public void K1() {
+        r41Var.F1();
     }
 }

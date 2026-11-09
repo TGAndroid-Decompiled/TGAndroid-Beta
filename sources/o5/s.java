@@ -6,7 +6,6 @@ import java.nio.charset.Charset;
 import java.util.Collections;
 import java.util.Set;
 import java.util.concurrent.Executor;
-import sg.t0;
 public final class s {
     public static volatile j f20849e;
     public final x5.a f20850a;
@@ -19,7 +18,7 @@ public final class s {
         this.f20851b = aVar2;
         this.f20852c = bVar;
         this.d = cVar;
-        ((Executor) eVar.f56931b).execute(new t0(eVar, 15));
+        ((Executor) eVar.f56943b).execute(new sh.b(eVar, 13));
     }
 
     public static s a() {

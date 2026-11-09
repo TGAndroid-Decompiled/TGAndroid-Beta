@@ -298,7 +298,7 @@ public final class yr extends c1 {
         } else {
             TLRPC.Peer peer = messageReplyHeader.reply_to_peer_id;
             if (peer != null) {
-                B0 = ij.C1(peer);
+                B0 = ij.B1(peer);
             } else {
                 B0 = ij.B0(message);
             }
@@ -325,7 +325,7 @@ public final class yr extends c1 {
 
     public static int d0(TLRPC.Message message) {
         if (message instanceof TLRPC.TL_message_secret) {
-            if ((message.media instanceof TLRPC.TL_messageMediaPhoto) || ij.u3(message) || ij.S4(message) || ij.M4(message) || ij.k4(message)) {
+            if ((message.media instanceof TLRPC.TL_messageMediaPhoto) || ij.t3(message) || ij.R4(message) || ij.L4(message) || ij.j4(message)) {
                 int i7 = message.ttl;
                 if (i7 > 0 && i7 <= 60) {
                     return 1;
@@ -340,7 +340,7 @@ public final class yr extends c1 {
                 return 1;
             }
         }
-        if (!(message.media instanceof TLRPC.TL_messageMediaPhoto) && !ij.M4(message)) {
+        if (!(message.media instanceof TLRPC.TL_messageMediaPhoto) && !ij.L4(message)) {
             return -1;
         }
         return 0;
@@ -359,13 +359,13 @@ public final class yr extends c1 {
         TL_stories.StoryItem storyItem;
         TLRPC.Peer peer6;
         TLRPC.Peer peer7;
-        long C1 = ij.C1(message.from_id);
-        if (m5.E(C1)) {
-            if (!arrayList.contains(Long.valueOf(C1))) {
-                arrayList.add(Long.valueOf(C1));
+        long B1 = ij.B1(message.from_id);
+        if (m5.E(B1)) {
+            if (!arrayList.contains(Long.valueOf(B1))) {
+                arrayList.add(Long.valueOf(B1));
             }
-        } else if (m5.z(C1)) {
-            long j3 = -C1;
+        } else if (m5.z(B1)) {
+            long j3 = -B1;
             if (!arrayList2.contains(Long.valueOf(j3))) {
                 arrayList2.add(Long.valueOf(j3));
             }
@@ -2155,7 +2155,7 @@ public final class yr extends c1 {
                 if ((reaction instanceof TLRPC.TL_reactionEmoji) || (reaction instanceof TLRPC.TL_reactionCustomEmoji)) {
                     sQLitePreparedStatement.requery();
                     sQLitePreparedStatement.bindLong(1, message.f26977id);
-                    sQLitePreparedStatement.bindLong(2, ij.R1(e10, message));
+                    sQLitePreparedStatement.bindLong(2, ij.Q1(e10, message));
                     TLRPC.Reaction reaction2 = reactionCount2.reaction;
                     if (reaction2 instanceof TLRPC.TL_reactionEmoji) {
                         j3 = ((TLRPC.TL_reactionEmoji) reaction2).emoticon.hashCode();
@@ -3539,7 +3539,7 @@ public final class yr extends c1 {
             g0.h3(new a4(this, j3, tL_forumTopic, 22));
         } else if (messageAction instanceof TLRPC.TL_messageActionTopicEdit) {
             TLRPC.TL_messageActionTopicEdit tL_messageActionTopicEdit = (TLRPC.TL_messageActionTopicEdit) messageAction;
-            tL_forumTopic.f27008id = (int) ij.c2(this.currentAccount, message, true, false);
+            tL_forumTopic.f27008id = (int) ij.b2(this.currentAccount, message, true, false);
             tL_forumTopic.icon_emoji_id = tL_messageActionTopicEdit.icon_emoji_id;
             tL_forumTopic.title = tL_messageActionTopicEdit.title;
             tL_forumTopic.closed = tL_messageActionTopicEdit.closed;

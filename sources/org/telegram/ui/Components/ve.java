@@ -3,12 +3,12 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.graphics.Paint;
 public final class ve extends hi.u {
-    public boolean f38985s;
-    public final ChatActivityEnterView f38986w;
+    public boolean f39046s;
+    public final ChatActivityEnterView f39047w;
 
     public ve(ChatActivityEnterView chatActivityEnterView, Context context) {
         super(context);
-        this.f38986w = chatActivityEnterView;
+        this.f39047w = chatActivityEnterView;
         this.f14965a = null;
         Paint paint = new Paint(1);
         this.d = paint;
@@ -21,22 +21,22 @@ public final class ve extends hi.u {
         q1Var.setClipToOutline(true);
         q1Var.j(new ai.b(this, 14));
         addView(q1Var);
-        paint.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.wj, false));
+        paint.setColor(org.telegram.ui.ActionBar.l6.x0(null, org.telegram.ui.ActionBar.l6.wj, false));
         fh.g gVar = this.f14971r;
         if (gVar != null) {
             gVar.updateColors();
         }
         invalidate();
         setClipChildren(false);
-        this.f38985s = false;
+        this.f39046s = false;
     }
 
     @Override
     public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
         super.onLayout(z9, i7, i10, i11, i12);
-        if (!this.f38985s) {
-            this.f38985s = true;
-            this.f38986w.E1();
+        if (!this.f39046s) {
+            this.f39046s = true;
+            this.f39047w.E1();
         }
     }
 }

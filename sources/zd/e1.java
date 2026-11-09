@@ -13,11 +13,11 @@ public abstract class e1 extends ee.j implements l0, x0 {
     public final void dispose() {
         n1 h = h();
         while (true) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = n1.f60100a;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = n1.f60109a;
             Object obj = atomicReferenceFieldUpdater.get(h);
             if (obj instanceof e1) {
                 if (obj == this) {
-                    n0 n0Var = b0.f60051j;
+                    n0 n0Var = b0.f60060j;
                     while (!atomicReferenceFieldUpdater.compareAndSet(h, obj, n0Var)) {
                         if (atomicReferenceFieldUpdater.get(h) != obj) {
                             break;

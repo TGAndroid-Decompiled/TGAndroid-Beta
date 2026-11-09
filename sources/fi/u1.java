@@ -2,7 +2,7 @@ package fi;
 
 import android.widget.FrameLayout;
 public abstract class u1 extends FrameLayout {
-    public int f12881a;
+    public int f12882a;
 
     public abstract void a(int i7);
 

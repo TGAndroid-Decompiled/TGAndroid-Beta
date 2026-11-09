@@ -20,7 +20,7 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.OverScroller;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.my0;
+import org.telegram.ui.Components.ny0;
 public final class tu extends fu {
     public final jv W;
     public final jv[] X;
@@ -35,7 +35,7 @@ public final class tu extends fu {
     public int f25669g0;
     public final Paint f25670h0;
     public final Path f25671i0;
-    public final my0 f25672j0;
+    public final ny0 f25672j0;
     public Drawable f25673k0;
     public int f25674l0;
     public boolean m0;
@@ -52,7 +52,7 @@ public final class tu extends fu {
     public tu(kv kvVar, Rect rect, int i7, TL_iv.pageBlockPreformatted pageblockpreformatted, tu tuVar) {
         super(kvVar, rect, i7);
         int i10;
-        my0 my0Var;
+        ny0 ny0Var;
         int i11;
         StaticLayout staticLayout;
         this.f25670h0 = new Paint(1);
@@ -123,11 +123,11 @@ public final class tu extends fu {
         this.W = jvVar;
         this.X = new jv[]{jvVar};
         if (!TextUtils.isEmpty(this.f25677p0)) {
-            this.f25672j0 = new my0(this.f25677p0, Math.max(8, iz.W0 - 4), null);
+            this.f25672j0 = new ny0(this.f25677p0, Math.max(8, iz.W0 - 4), null);
         }
         int L = g0.L(14.0f);
         if (this.f25672j0 != null) {
-            i11 = g0.L(12.0f) + ((int) Math.ceil(my0Var.f36147c));
+            i11 = g0.L(12.0f) + ((int) Math.ceil(ny0Var.f36541c));
         } else {
             i11 = 0;
         }
@@ -378,11 +378,11 @@ public final class tu extends fu {
         int i7;
         kv kvVar = this.f22469a;
         if (kvVar.E()) {
-            i7 = org.telegram.ui.ActionBar.k6.ml;
+            i7 = org.telegram.ui.ActionBar.l6.ml;
         } else {
-            i7 = org.telegram.ui.ActionBar.k6.ll;
+            i7 = org.telegram.ui.ActionBar.l6.ll;
         }
-        int w02 = org.telegram.ui.ActionBar.k6.w0(i7, kvVar.D);
+        int w02 = org.telegram.ui.ActionBar.l6.w0(i7, kvVar.D);
         Paint paint = this.f25670h0;
         paint.setColor(w02);
         RectF rectF = g0.P;
@@ -396,14 +396,14 @@ public final class tu extends fu {
         int i10;
         kv kvVar = this.f22469a;
         if (kvVar.E()) {
-            i7 = org.telegram.ui.ActionBar.k6.Tc;
+            i7 = org.telegram.ui.ActionBar.l6.Tc;
         } else {
-            i7 = org.telegram.ui.ActionBar.k6.Sc;
+            i7 = org.telegram.ui.ActionBar.l6.Sc;
         }
-        int r12 = org.telegram.ui.ActionBar.k6.r1(0.5f, org.telegram.ui.ActionBar.k6.w0(i7, kvVar.D));
-        my0 my0Var = this.f25672j0;
-        if (my0Var != null) {
-            my0Var.f36158p = m0() - g0.L(54.0f);
+        int r12 = org.telegram.ui.ActionBar.l6.r1(0.5f, org.telegram.ui.ActionBar.l6.w0(i7, kvVar.D));
+        ny0 ny0Var = this.f25672j0;
+        if (ny0Var != null) {
+            ny0Var.f36552p = m0() - g0.L(54.0f);
             canvas2 = canvas;
             this.f25672j0.c(g0.L(14.0f), g0.L(17.0f), 1.0f, r12, canvas2);
         } else {

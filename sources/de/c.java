@@ -6,48 +6,48 @@ import m1.b0;
 import rd.p;
 import zd.z;
 public final class c extends kd.j implements p {
-    public final int f8672a;
-    public int f8673b;
-    public Object f8674c;
+    public final int f8670a;
+    public int f8671b;
+    public Object f8672c;
     public Object d;
-    public final Object f8675e;
+    public final Object f8673e;
 
     public c(ce.d dVar, ce.b bVar, id.c cVar) {
         super(2, cVar);
-        this.f8672a = 0;
+        this.f8670a = 0;
         this.d = dVar;
-        this.f8675e = bVar;
+        this.f8673e = bVar;
     }
 
     @Override
     public final id.c create(Object obj, id.c cVar) {
-        switch (this.f8672a) {
+        switch (this.f8670a) {
             case 0:
-                c cVar2 = new c((ce.d) this.d, (ce.b) this.f8675e, cVar);
-                cVar2.f8674c = obj;
+                c cVar2 = new c((ce.d) this.d, (ce.b) this.f8673e, cVar);
+                cVar2.f8672c = obj;
                 return cVar2;
             case 1:
-                return new c((ka.d) this.d, (q1.e) this.f8675e, this.f8674c, cVar);
+                return new c((ka.d) this.d, (q1.e) this.f8673e, this.f8672c, cVar);
             case 2:
-                return new c((ka.d) this.f8674c, (q1.e) this.d, (Long) this.f8675e, cVar);
+                return new c((ka.d) this.f8672c, (q1.e) this.d, (Long) this.f8673e, cVar);
             case 3:
-                c cVar3 = new c((b0) this.f8675e, cVar, 3);
-                cVar3.f8674c = obj;
+                c cVar3 = new c((b0) this.f8673e, cVar, 3);
+                cVar3.f8672c = obj;
                 return cVar3;
             case 4:
-                c cVar4 = new c((b0) this.d, (p) ((kd.j) this.f8675e), cVar);
-                cVar4.f8674c = obj;
+                c cVar4 = new c((b0) this.d, (p) ((kd.j) this.f8673e), cVar);
+                cVar4.f8672c = obj;
                 return cVar4;
             default:
-                c cVar5 = new c((File) this.f8675e, cVar, 5);
-                cVar5.f8674c = obj;
+                c cVar5 = new c((File) this.f8673e, cVar, 5);
+                cVar5.f8672c = obj;
                 return cVar5;
         }
     }
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        switch (this.f8672a) {
+        switch (this.f8670a) {
             case 0:
                 return ((c) create((z) obj, (id.c) obj2)).invokeSuspend(gd.k.f13829a);
             case 1:
@@ -70,30 +70,30 @@ public final class c extends kd.j implements p {
 
     public c(Object obj, id.c cVar, int i7) {
         super(2, cVar);
-        this.f8672a = i7;
-        this.f8675e = obj;
+        this.f8670a = i7;
+        this.f8673e = obj;
     }
 
     public c(ka.d dVar, q1.e eVar, Long l10, id.c cVar) {
         super(2, cVar);
-        this.f8672a = 2;
-        this.f8674c = dVar;
+        this.f8670a = 2;
+        this.f8672c = dVar;
         this.d = eVar;
-        this.f8675e = l10;
+        this.f8673e = l10;
     }
 
     public c(ka.d dVar, q1.e eVar, Object obj, id.c cVar) {
         super(2, cVar);
-        this.f8672a = 1;
+        this.f8670a = 1;
         this.d = dVar;
-        this.f8675e = eVar;
-        this.f8674c = obj;
+        this.f8673e = eVar;
+        this.f8672c = obj;
     }
 
     public c(b0 b0Var, p pVar, id.c cVar) {
         super(2, cVar);
-        this.f8672a = 4;
+        this.f8670a = 4;
         this.d = b0Var;
-        this.f8675e = (kd.j) pVar;
+        this.f8673e = (kd.j) pVar;
     }
 }

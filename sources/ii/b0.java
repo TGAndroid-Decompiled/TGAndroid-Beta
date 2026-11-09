@@ -4,16 +4,16 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 import c8.ha;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.q41;
-import org.telegram.ui.Components.x31;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.Components.r41;
 import org.telegram.ui.Components.xq;
+import org.telegram.ui.Components.y31;
 import v4.d1;
 public abstract class b0 extends FrameLayout {
     public org.telegram.ui.ActionBar.k f15490a;
     public final lh.f f15491b;
     public final FrameLayout f15492c;
-    public q41 d;
+    public r41 d;
     public boolean f15493e;
     public final d0 f15494f;
 
@@ -27,7 +27,7 @@ public abstract class b0 extends FrameLayout {
         addView(frameLayout, ha.e(-1, -1, 119));
         lh.f fVar = new lh.f(getContext());
         this.f15491b = fVar;
-        fVar.setupColorKey(k6.f27796a7);
+        fVar.setupColorKey(l6.f27809a7);
         fVar.setFadeZoneBottom(org.telegram.messenger.g0.L(72.0f) + org.telegram.messenger.g0.f22558n);
         fVar.setFadeHeightBottom(org.telegram.messenger.g0.L(24.0f));
         fVar.setFadeZoneTop(org.telegram.messenger.g0.L(64.0f) + org.telegram.messenger.g0.f22557m);
@@ -41,7 +41,7 @@ public abstract class b0 extends FrameLayout {
         a0Var.n(350L);
         a0Var.o(xq.h);
         a0Var.C = false;
-        a0Var.f57071m = false;
+        a0Var.f57083m = false;
         this.d.setItemAnimator(a0Var);
     }
 
@@ -51,7 +51,7 @@ public abstract class b0 extends FrameLayout {
             View childAt = this.d.getChildAt(i7);
             d1 T = this.d.T(childAt);
             if (T != null) {
-                x31 G = this.d.f37190f3.G(T.b());
+                y31 G = this.d.f37556f3.G(T.b());
                 if (G != null && G.d != 99) {
                     f10 = Math.min(childAt.getY() + this.f15492c.getPaddingTop(), f10);
                 }

@@ -6,10 +6,10 @@ import org.telegram.messenger.camera.CameraController;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class rf implements Runnable {
-    public final ChatActivityEnterView f37647a;
+    public final ChatActivityEnterView f37701a;
 
     public rf(ChatActivityEnterView chatActivityEnterView) {
-        this.f37647a = chatActivityEnterView;
+        this.f37701a = chatActivityEnterView;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class rf implements Runnable {
         boolean z9;
         boolean z10;
         int i7;
-        ChatActivityEnterView chatActivityEnterView = this.f37647a;
+        ChatActivityEnterView chatActivityEnterView = this.f37701a;
         je jeVar = chatActivityEnterView.H3;
         Activity activity = chatActivityEnterView.O2;
         wf wfVar = chatActivityEnterView.Z2;
@@ -27,15 +27,15 @@ public final class rf implements Runnable {
             wfVar.D();
             chatActivityEnterView.J3 = true;
             chatActivityEnterView.I3 = false;
-            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f31077k1;
+            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f31082k1;
             if (slideTextView != null) {
                 slideTextView.setAlpha(1.0f);
-                chatActivityEnterView.f31077k1.setTranslationY(0.0f);
+                chatActivityEnterView.f31082k1.setTranslationY(0.0f);
             }
             org.telegram.messenger.hw hwVar = null;
-            chatActivityEnterView.f31031c3 = null;
-            chatActivityEnterView.f31024b3 = null;
-            if (chatActivityEnterView.f31029c1) {
+            chatActivityEnterView.f31036c3 = null;
+            chatActivityEnterView.f31029b3 = null;
+            if (chatActivityEnterView.f31034c1) {
                 if (activity.checkSelfPermission("android.permission.RECORD_AUDIO") == 0) {
                     z9 = true;
                 } else {
@@ -62,12 +62,12 @@ public final class rf implements Runnable {
                         }
                         fg fgVar = chatActivityEnterView.Y0;
                         if (fgVar != null) {
-                            fgVar.f33539a = false;
+                            fgVar.f33660a = false;
                             fgVar.d = 0L;
-                            fgVar.f33542e = 0L;
+                            fgVar.f33663e = 0L;
                             fgVar.h = 0L;
-                            fgVar.f33544n = 0L;
-                            fgVar.f33540b = false;
+                            fgVar.f33665n = 0L;
+                            fgVar.f33661b = false;
                             return;
                         }
                         return;
@@ -106,9 +106,9 @@ public final class rf implements Runnable {
                 org.telegram.messenger.ij ijVar = chatActivityEnterView.T2;
                 threadMessage = chatActivityEnterView.getThreadMessage();
                 int i11 = chatActivityEnterView.G2;
-                org.telegram.ui.an anVar = chatActivityEnterView.P2;
-                if (anVar != null) {
-                    hwVar = anVar.W8();
+                org.telegram.ui.cn cnVar = chatActivityEnterView.P2;
+                if (cnVar != null) {
+                    hwVar = cnVar.X8();
                 }
                 B.x0(i10, j3, ijVar, threadMessage, storyItem, i11, true, hwVar, chatActivityEnterView.getSendMonoForumPeerId(), chatActivityEnterView.getSendMessageSuggestionParams());
                 chatActivityEnterView.F2 = true;

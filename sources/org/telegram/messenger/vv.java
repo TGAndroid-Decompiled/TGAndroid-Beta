@@ -50,7 +50,7 @@ public final class vv {
         }
         Bundle bundle = new Bundle();
         bundle.putLong("user_id", p10.i(Q.getCurrentAccount()).e());
-        Q.presentFragment(new org.telegram.ui.an(bundle));
+        Q.presentFragment(new org.telegram.ui.cn(bundle));
     }
 
     public static boolean k(ArrayList arrayList, ArrayList arrayList2) {
@@ -478,19 +478,19 @@ public final class vv {
         long e10 = p10.i(i13).e();
         for (int i14 = 0; i14 < arrayList.size(); i14++) {
             TLRPC.Message message = (TLRPC.Message) arrayList.get(i14);
-            long R1 = ij.R1(e10, message);
-            if (R1 == e10 || (message.f26977id >= 0 && (message.send_state == 0 || message.fwd_from == null))) {
-                TLRPC.Message message2 = (TLRPC.Message) hVar2.f(R1);
+            long Q1 = ij.Q1(e10, message);
+            if (Q1 == e10 || (message.f26977id >= 0 && (message.send_state == 0 || message.fwd_from == null))) {
+                TLRPC.Message message2 = (TLRPC.Message) hVar2.f(Q1);
                 if (message2 == null || message2.f26977id < message.f26977id) {
-                    hVar2.k(message, R1);
+                    hVar2.k(message, Q1);
                 }
-                Integer num = (Integer) hVar3.f(R1);
+                Integer num = (Integer) hVar3.f(Q1);
                 if (num == null) {
                     intValue = 0;
                 } else {
                     intValue = num.intValue();
                 }
-                hVar3.k(Integer.valueOf(intValue + 1), R1);
+                hVar3.k(Integer.valueOf(intValue + 1), Q1);
             }
         }
         int i15 = 0;
@@ -520,7 +520,7 @@ public final class vv {
                             }
                             ij ijVar = new ij(i13, message3, false, false);
                             uvVar.d = ijVar;
-                            uvVar.f25898c = ijVar.f1();
+                            uvVar.f25898c = ijVar.e1();
                             z11 = true;
                         }
                         if (num2 != null) {
@@ -571,7 +571,7 @@ public final class vv {
                             i7 = 0;
                             ij ijVar2 = new ij(i13, message3, false, false);
                             uvVar2.d = ijVar2;
-                            uvVar2.f25898c = ijVar2.f1();
+                            uvVar2.f25898c = ijVar2.e1();
                             z11 = true;
                         }
                         if (num2 != null) {

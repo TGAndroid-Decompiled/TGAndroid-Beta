@@ -19,62 +19,62 @@ import di.b3;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.t0;
-import org.telegram.ui.Components.j51;
-import org.telegram.ui.Components.lt0;
-import org.telegram.ui.Components.qm0;
+import org.telegram.ui.Components.k51;
+import org.telegram.ui.Components.nt0;
+import org.telegram.ui.Components.rm0;
 import org.telegram.ui.Components.rt;
 import org.telegram.ui.Components.xq;
-import org.telegram.ui.s81;
+import org.telegram.ui.t81;
 public final class i {
-    public static final lt0 Q = new lt0(new s0.b(20), new s0.b(21));
-    public static final lt0 R = new lt0(new s0.b(22), new s0.b(23));
+    public static final nt0 Q = new nt0(new s0.b(20), new s0.b(21));
+    public static final nt0 R = new nt0(new s0.b(22), new s0.b(23));
     public float B;
     public float C;
     public r1.g D;
     public r1.g E;
-    public qm0 G;
+    public rm0 G;
     public boolean H;
     public float I;
     public float J;
     public boolean K;
     public boolean L;
-    public final o f56082a;
-    public final m f56083b;
-    public final Activity f56084c;
+    public final o f56094a;
+    public final m f56095b;
+    public final Activity f56096c;
     public WindowManager d;
-    public boolean f56086f;
-    public boolean f56087g;
+    public boolean f56098f;
+    public boolean f56099g;
     public org.telegram.ui.e h;
-    public e f56088i;
-    public p f56089j;
-    public View f56090k;
-    public ImageView f56091l;
-    public e f56092m;
-    public ImageView f56093n;
-    public b3 f56094o;
-    public ScaleGestureDetector f56095p;
-    public rt f56096q;
-    public boolean f56097r;
-    public boolean f56098s;
-    public View f56099t;
-    public boolean f56100u;
+    public e f56100i;
+    public p f56101j;
+    public View f56102k;
+    public ImageView f56103l;
+    public e f56104m;
+    public ImageView f56105n;
+    public b3 f56106o;
+    public ScaleGestureDetector f56107p;
+    public rt f56108q;
+    public boolean f56109r;
+    public boolean f56110s;
+    public View f56111t;
+    public boolean f56112u;
     public ValueAnimator v;
-    public boolean f56101w;
-    public int f56102x;
-    public int f56103y;
-    public final WindowManager.LayoutParams f56085e = new WindowManager.LayoutParams();
-    public float f56104z = 1.0f;
+    public boolean f56113w;
+    public int f56114x;
+    public int f56115y;
+    public final WindowManager.LayoutParams f56097e = new WindowManager.LayoutParams();
+    public float f56116z = 1.0f;
     public float A = 1.4f;
-    public final j51 F = new j51(false);
+    public final k51 F = new k51(false);
     public final float[] M = new float[2];
     public final b N = new b(this, 1);
     public final f O = new f(this, 0);
     public final f P = new f(this, 1);
 
     public i(o oVar, Activity activity) {
-        this.f56082a = oVar;
-        this.f56083b = oVar.f56123a;
-        this.f56084c = activity;
+        this.f56094a = oVar;
+        this.f56095b = oVar.f56135a;
+        this.f56096c = activity;
     }
 
     public static float e(float f10, float f11) {
@@ -140,27 +140,27 @@ public final class i {
         boolean z9;
         Context context;
         int i7;
-        if (this.f56087g) {
+        if (this.f56099g) {
             return;
         }
-        if (this.f56083b.r() && kc.a(this.f56084c)) {
+        if (this.f56095b.r() && kc.a(this.f56096c)) {
             z9 = true;
         } else {
             z9 = false;
         }
-        this.f56086f = z9;
+        this.f56098f = z9;
         if (z9) {
             context = t0.f25566b;
         } else {
-            context = this.f56084c;
+            context = this.f56096c;
         }
         WindowManager windowManager = (WindowManager) context.getSystemService("window");
         this.d = windowManager;
-        WindowManager.LayoutParams layoutParams = this.f56085e;
+        WindowManager.LayoutParams layoutParams = this.f56097e;
         layoutParams.token = null;
         layoutParams.gravity = 51;
         layoutParams.format = -3;
-        if (this.f56086f) {
+        if (this.f56098f) {
             if (Build.VERSION.SDK_INT >= 26) {
                 i7 = 2038;
             } else {
@@ -172,29 +172,29 @@ public final class i {
         }
         layoutParams.flags = 520;
         layoutParams.dimAmount = 0.0f;
-        layoutParams.width = this.f56102x;
-        layoutParams.height = this.f56103y;
+        layoutParams.width = this.f56114x;
+        layoutParams.height = this.f56115y;
         layoutParams.x = (int) this.B;
         layoutParams.y = (int) this.C;
         try {
             g0.y3(windowManager, this.h, layoutParams);
-            this.d.addView(this.h, this.f56085e);
-            this.f56087g = true;
-            l2.i.g("floating window added, overlay=" + this.f56086f);
+            this.d.addView(this.h, this.f56097e);
+            this.f56099g = true;
+            l2.i.g("floating window added, overlay=" + this.f56098f);
         } catch (Exception e10) {
             a8.g(e10, true);
         }
     }
 
     public final boolean b() {
-        if (!this.K && !this.H && !this.f56097r && !this.f56095p.isInProgress() && this.L) {
+        if (!this.K && !this.H && !this.f56109r && !this.f56107p.isInProgress() && this.L) {
             return true;
         }
         return false;
     }
 
     public final boolean c() {
-        m mVar = this.f56083b;
+        m mVar = this.f56095b;
         if (!mVar.e0()) {
             return false;
         }
@@ -211,34 +211,34 @@ public final class i {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        if (this.f56101w) {
+        if (this.f56113w) {
             g0.r(this.P);
-            this.f56101w = false;
+            this.f56113w = false;
         }
         g0.r(this.O);
         g0.r(this.N);
         this.L = false;
-        this.f56097r = false;
-        this.f56099t = null;
-        this.f56083b.F();
+        this.f56109r = false;
+        this.f56111t = null;
+        this.f56095b.F();
     }
 
-    public final void f(sg.t0 t0Var) {
+    public final void f(sh.b bVar) {
         l();
-        p pVar = this.f56089j;
-        this.f56089j = null;
+        p pVar = this.f56101j;
+        this.f56101j = null;
         if (pVar != null) {
             g0.E2(pVar);
         }
-        View view = this.f56090k;
+        View view = this.f56102k;
         if (view != null) {
             g0.E2(view);
-            this.f56090k = null;
+            this.f56102k = null;
         }
-        t0Var.run();
+        bVar.run();
         if (pVar != null) {
-            SurfaceTexture surfaceTexture = pVar.f56129a;
-            pVar.f56129a = null;
+            SurfaceTexture surfaceTexture = pVar.f56141a;
+            pVar.f56141a = null;
             if (surfaceTexture != null) {
                 surfaceTexture.release();
             }
@@ -252,17 +252,17 @@ public final class i {
             this.h.getLocationOnScreen(iArr);
             int i7 = iArr[0];
             int i10 = iArr[1];
-            rectF.set(i7, i10, i7 + this.f56102x, i10 + this.f56103y);
+            rectF.set(i7, i10, i7 + this.f56114x, i10 + this.f56115y);
             return;
         }
         float f10 = this.B;
         float f11 = this.C + g0.f22557m;
-        rectF.set(f10, f11, this.f56102x + f10, this.f56103y + f11);
+        rectF.set(f10, f11, this.f56114x + f10, this.f56115y + f11);
     }
 
     public final int h() {
         float f10;
-        m mVar = this.f56083b;
+        m mVar = this.f56095b;
         int I = mVar.I();
         int U = mVar.U();
         if (I > 0 && U > 0) {
@@ -274,7 +274,7 @@ public final class i {
     }
 
     public final void k() {
-        if (this.f56083b.h()) {
+        if (this.f56095b.h()) {
             this.H = false;
         }
         p();
@@ -282,10 +282,10 @@ public final class i {
     }
 
     public final void l() {
-        if (!this.f56087g) {
+        if (!this.f56099g) {
             return;
         }
-        this.f56087g = false;
+        this.f56099g = false;
         try {
             this.d.removeViewImmediate(this.h);
         } catch (Exception e10) {
@@ -295,7 +295,7 @@ public final class i {
 
     public final void o(boolean z9) {
         float f10;
-        if (this.f56092m == null) {
+        if (this.f56104m == null) {
             return;
         }
         float f11 = 1.0f;
@@ -309,44 +309,44 @@ public final class i {
         }
         ValueAnimator duration = ValueAnimator.ofFloat(f10, f11).setDuration(200L);
         this.v = duration;
-        duration.setInterpolator(xq.f40366f);
+        duration.setInterpolator(xq.f40458f);
         this.v.addUpdateListener(new d(this, 0));
-        this.v.addListener(new s81(this, 17));
+        this.v.addListener(new t81(this, 17));
         this.v.start();
     }
 
     public final void p() {
-        if (this.f56093n == null) {
+        if (this.f56105n == null) {
             return;
         }
         f fVar = this.O;
         g0.r(fVar);
-        if (this.f56083b.h()) {
-            this.f56093n.setImageResource(2131232544);
+        if (this.f56095b.h()) {
+            this.f56105n.setImageResource(2131232544);
             g0.i3(fVar, 500L);
         } else if (this.H) {
-            this.f56093n.setImageResource(2131232546);
+            this.f56105n.setImageResource(2131232546);
         } else {
-            this.f56093n.setImageResource(2131232545);
+            this.f56105n.setImageResource(2131232545);
         }
     }
 
     public final void q() {
-        if (this.f56094o != null && !this.H) {
-            m mVar = this.f56083b;
+        if (this.f56106o != null && !this.H) {
+            m mVar = this.f56095b;
             long duration = mVar.getDuration();
             if (duration > 0) {
                 this.I = ((float) mVar.l()) / ((float) duration);
             }
             this.J = Math.max(this.J, mVar.V());
-            this.f56094o.invalidate();
+            this.f56106o.invalidate();
         }
     }
 
     public final void r() {
-        if (this.f56087g) {
+        if (this.f56099g) {
             try {
-                this.d.updateViewLayout(this.h, this.f56085e);
+                this.d.updateViewLayout(this.h, this.f56097e);
             } catch (IllegalArgumentException unused) {
                 r1.g gVar = this.D;
                 if (gVar != null) {

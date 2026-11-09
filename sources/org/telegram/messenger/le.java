@@ -3,10 +3,10 @@ package org.telegram.messenger;
 import android.graphics.SurfaceTexture;
 import java.util.ArrayList;
 import org.telegram.ui.Components.PipRoundVideoView;
-import org.telegram.ui.Components.q51;
-import org.telegram.ui.Components.t51;
+import org.telegram.ui.Components.r51;
+import org.telegram.ui.Components.u51;
 import org.telegram.ui.PhotoViewer;
-public final class le implements q51 {
+public final class le implements r51 {
     public final int f23884a;
     public final int f23885b;
     public final ij f23886c;
@@ -20,7 +20,7 @@ public final class le implements q51 {
     }
 
     @Override
-    public final void onError(t51 t51Var, Exception exc) {
+    public final void onError(u51 u51Var, Exception exc) {
         switch (this.f23884a) {
             case 0:
                 return;
@@ -56,19 +56,19 @@ public final class le implements q51 {
                 if (i11 == mediaController.m0) {
                     ij ijVar = this.f23886c;
                     if (i7 != 4 && ((i7 != 1 && i7 != 2) || !z9 || ijVar.f23222b0 < 0.999f)) {
-                        t51 t51Var = mediaController.f21271i0;
-                        if (t51Var != null && mediaController.f21293t0 != 0.0f && (i7 == 3 || i7 == 1)) {
-                            mediaController.f21271i0.q0((int) (((float) t51Var.U()) * mediaController.f21293t0), false);
+                        u51 u51Var = mediaController.f21271i0;
+                        if (u51Var != null && mediaController.f21293t0 != 0.0f && (i7 == 3 || i7 == 1)) {
+                            mediaController.f21271i0.q0((int) (((float) u51Var.U()) * mediaController.f21293t0), false);
                             mediaController.f21293t0 = 0.0f;
                         }
                     } else {
                         ijVar.f23222b0 = 1.0f;
-                        qs.f(ijVar.I1).k(148, Integer.valueOf(ijVar.f1()), 0);
+                        qs.f(ijVar.I1).k(148, Integer.valueOf(ijVar.e1()), 0);
                         if (!mediaController.a0()) {
-                            if (!arrayList.isEmpty() && (arrayList.size() > 1 || !ij.S4(ijVar.f23262k))) {
+                            if (!arrayList.isEmpty() && (arrayList.size() > 1 || !ij.R4(ijVar.f23262k))) {
                                 mediaController.U(true);
                             } else {
-                                mediaController.q(true, mediaController.F(), ij.S4(ijVar.f23262k), false);
+                                mediaController.q(true, mediaController.F(), ij.R4(ijVar.f23262k), false);
                             }
                         }
                     }
@@ -128,10 +128,10 @@ public final class le implements q51 {
                         }
                         PipRoundVideoView pipRoundVideoView2 = mediaController.H0;
                         if (pipRoundVideoView2 != null) {
-                            if (pipRoundVideoView2.f31428c.getSurfaceTexture() != surfaceTexture) {
-                                mediaController.H0.f31428c.setSurfaceTexture(surfaceTexture);
+                            if (pipRoundVideoView2.f31433c.getSurfaceTexture() != surfaceTexture) {
+                                mediaController.H0.f31433c.setSurfaceTexture(surfaceTexture);
                             }
-                            mediaController.E0.A0(mediaController.H0.f31428c);
+                            mediaController.E0.A0(mediaController.H0.f31433c);
                         }
                     }
                     mediaController.I0 = 0;
@@ -217,7 +217,7 @@ public final class le implements q51 {
     private final void j(SurfaceTexture surfaceTexture) {
     }
 
-    private final void a(t51 t51Var, Exception exc) {
+    private final void a(u51 u51Var, Exception exc) {
     }
 
     private final void k(int i7, int i10, float f10, int i11) {

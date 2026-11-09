@@ -5,11 +5,11 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.dx;
 import org.telegram.ui.Components.hx;
-import org.telegram.ui.c40;
-import org.telegram.ui.lm;
-import org.telegram.ui.pa0;
-import org.telegram.ui.pn;
-import org.telegram.ui.y71;
+import org.telegram.ui.e40;
+import org.telegram.ui.nm;
+import org.telegram.ui.ra0;
+import org.telegram.ui.rn;
+import org.telegram.ui.z71;
 public final class g0 implements DialogInterface.OnCancelListener {
     public final int f3910a;
     public final int f3911b;
@@ -28,31 +28,31 @@ public final class g0 implements DialogInterface.OnCancelListener {
                 ConnectionsManager.getInstance(((n0) this.f3912c).f4384a).cancelRequest(this.f3911b, true);
                 return;
             case 1:
-                org.telegram.ui.la.a0((org.telegram.ui.la) this.f3912c, this.f3911b);
+                ConnectionsManager.getInstance(((org.telegram.ui.la) this.f3912c).currentAccount).cancelRequest(this.f3911b, true);
                 return;
             case 2:
-                ((lm) this.f3912c).f47557a.getConnectionsManager().cancelRequest(this.f3911b, true);
+                ((nm) this.f3912c).f48207a.getConnectionsManager().cancelRequest(this.f3911b, true);
                 return;
             case 3:
-                pn pnVar = (pn) this.f3912c;
-                pnVar.N0 = false;
-                pnVar.f48861b = null;
-                pnVar.getConnectionsManager().cancelRequest(this.f3911b, true);
+                rn rnVar = (rn) this.f3912c;
+                rnVar.N0 = false;
+                rnVar.f49511b = null;
+                rnVar.getConnectionsManager().cancelRequest(this.f3911b, true);
                 return;
             case 4:
                 ((ChatActivityEnterView) this.f3912c).P2.getConnectionsManager().cancelRequest(this.f3911b, true);
                 return;
             case 5:
-                ConnectionsManager.getInstance(((hx) ((dx) this.f3912c).f33106c.f2833b).F.f34400c1).cancelRequest(this.f3911b, true);
+                ConnectionsManager.getInstance(((hx) ((dx) this.f3912c).f33180c.f2833b).F.f34415c1).cancelRequest(this.f3911b, true);
                 return;
             case 6:
-                ConnectionsManager.getInstance(((c40) this.f3912c).f44588k1.f21765a).cancelRequest(this.f3911b, true);
+                ConnectionsManager.getInstance(((e40) this.f3912c).f45228k1.f21765a).cancelRequest(this.f3911b, true);
                 return;
             case 7:
-                ((pa0) this.f3912c).getConnectionsManager().cancelRequest(this.f3911b, true);
+                ((ra0) this.f3912c).getConnectionsManager().cancelRequest(this.f3911b, true);
                 return;
             default:
-                y71.Z((y71) this.f3912c, this.f3911b);
+                z71.Z((z71) this.f3912c, this.f3911b);
                 return;
         }
     }

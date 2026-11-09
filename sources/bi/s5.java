@@ -30,21 +30,21 @@ public final class s5 implements Comparator {
         float f10;
         switch (this.f4671a) {
             case 0:
-                float[] fArr = ((w5) this.f4672b).f4969r;
+                float[] fArr = ((w5) this.f4672b).f4967r;
                 return Float.compare(fArr[((Integer) obj).intValue()], fArr[((Integer) obj2).intValue()]);
             case 1:
-                di.y6 y6Var = (di.y6) this.f4672b;
-                int i11 = y6Var.f9963a;
+                di.z6 z6Var = (di.z6) this.f4672b;
+                int i11 = z6Var.f9992a;
                 TL_stories.PeerStories peerStories = (TL_stories.PeerStories) obj;
                 TL_stories.PeerStories peerStories2 = (TL_stories.PeerStories) obj2;
                 long o4 = org.telegram.messenger.m5.o(peerStories.peer);
                 long o10 = org.telegram.messenger.m5.o(peerStories2.peer);
-                boolean M = y6Var.M(o4);
-                boolean M2 = y6Var.M(o10);
-                boolean L = y6Var.L(o4);
-                boolean L2 = y6Var.L(o10);
-                boolean H = y6Var.H(o4);
-                boolean H2 = y6Var.H(o10);
+                boolean M = z6Var.M(o4);
+                boolean M2 = z6Var.M(o10);
+                boolean L = z6Var.L(o4);
+                boolean L2 = z6Var.L(o10);
+                boolean H = z6Var.H(o4);
+                boolean H2 = z6Var.H(o10);
                 if (H != H2) {
                     return (H2 ? 1 : 0) - (H ? 1 : 0);
                 }
@@ -145,7 +145,7 @@ public final class s5 implements Comparator {
                 return vVar.d(obj2) - vVar.d(obj);
             case 7:
                 SparseIntArray sparseIntArray = (SparseIntArray) this.f4672b;
-                return sparseIntArray.get(((ug.g) obj).f56591e, Integer.MAX_VALUE) - sparseIntArray.get(((ug.g) obj2).f56591e, Integer.MAX_VALUE);
+                return sparseIntArray.get(((ug.g) obj).f56603e, Integer.MAX_VALUE) - sparseIntArray.get(((ug.g) obj2).f56603e, Integer.MAX_VALUE);
             default:
                 return ((Collator) this.f4672b).compare((String) obj, (String) obj2);
         }

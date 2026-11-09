@@ -22,7 +22,7 @@ import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.function.Consumer;
-import org.telegram.ui.Components.bv0;
+import org.telegram.ui.Components.dv0;
 public class FilesMigrationService extends Service {
     public static boolean f21171c = false;
     public static boolean d = false;
@@ -31,7 +31,7 @@ public class FilesMigrationService extends Service {
     public int f21174a;
     public int f21175b;
 
-    public static void a(org.telegram.ui.ww wwVar) {
+    public static void a(org.telegram.ui.yw ywVar) {
         SharedPreferences sharedPreferences = t0.f25566b.getSharedPreferences("systemConfig", 0);
         if (Environment.isExternalStorageLegacy() && !sharedPreferences.getBoolean("migration_to_scoped_storage_finished", false) && sharedPreferences.getInt("migration_to_scoped_storage_count", 0) < 5 && !f21173f && f21172e == null && !d) {
             if (Build.VERSION.SDK_INT >= 30) {
@@ -55,35 +55,35 @@ public class FilesMigrationService extends Service {
                 f21171c = new File(externalStorageDirectory, "Telegram").exists();
             }
             if (f21171c) {
-                c9 c9Var = new c9((Context) wwVar.getParentActivity(), false);
-                c9Var.f21791j1 = wwVar;
+                c9 c9Var = new c9((Context) ywVar.getParentActivity(), false);
+                c9Var.f21791j1 = ywVar;
                 c9Var.setCanceledOnTouchOutside(false);
-                Activity parentActivity = wwVar.getParentActivity();
+                Activity parentActivity = ywVar.getParentActivity();
                 LinearLayout e10 = k5.e(parentActivity, 1);
-                bv0 bv0Var = new bv0(parentActivity, c9Var.f28616a);
-                bv0Var.setStickerNum(7);
-                bv0Var.getImageReceiver().W(1);
-                e10.addView(bv0Var, c8.ha.t(144, 144, 1, 0, 16, 0, 0));
+                dv0 dv0Var = new dv0(parentActivity, c9Var.f28621a);
+                dv0Var.setStickerNum(7);
+                dv0Var.getImageReceiver().W(1);
+                e10.addView(dv0Var, c8.ha.t(144, 144, 1, 0, 16, 0, 0));
                 TextView textView = new TextView(parentActivity);
                 textView.setGravity(8388611);
-                int i10 = org.telegram.ui.ActionBar.k6.f27960j5;
+                int i10 = org.telegram.ui.ActionBar.l6.f27973j5;
                 k5.n(textView, i10, null, 1, 20.0f);
-                textView.setText(id.M0(2131748432, null));
+                textView.setText(id.M0(2131748431, null));
                 e10.addView(textView, c8.ha.d(-1, -2.0f, 0, 21.0f, 30.0f, 21.0f, 0.0f));
                 TextView textView2 = new TextView(parentActivity);
                 textView2.setGravity(8388611);
                 textView2.setTextSize(1, 15.0f);
-                org.telegram.ui.ActionBar.r6.V(textView2, i10, null);
-                textView2.setText(g0.X2(id.M0(2131748433, null)));
+                org.telegram.ui.ActionBar.s6.U(textView2, i10, null);
+                textView2.setText(g0.X2(id.M0(2131748432, null)));
                 e10.addView(textView2, c8.ha.d(-1, -2.0f, 0, 21.0f, 15.0f, 21.0f, 16.0f));
                 TextView textView3 = new TextView(parentActivity);
                 textView3.setPadding(g0.L(34.0f), 0, g0.L(34.0f), 0);
                 textView3.setGravity(17);
                 textView3.setTextSize(1, 14.0f);
                 textView3.setTypeface(g0.o());
-                textView3.setText(id.M0(2131748434, null));
-                org.telegram.ui.ActionBar.r6.V(textView3, org.telegram.ui.ActionBar.k6.Gi, null);
-                textView3.setBackground(org.telegram.ui.ActionBar.z5.f(org.telegram.ui.ActionBar.k6.Ci, 6.0f));
+                textView3.setText(id.M0(2131748433, null));
+                org.telegram.ui.ActionBar.s6.U(textView3, org.telegram.ui.ActionBar.l6.Gi, null);
+                textView3.setBackground(org.telegram.ui.ActionBar.a6.f(org.telegram.ui.ActionBar.l6.Ci, 6.0f));
                 e10.addView(textView3, c8.ha.d(-1, 48.0f, 0, 16.0f, 15.0f, 16.0f, 16.0f));
                 textView3.setOnClickListener(new b9(c9Var, 0));
                 ScrollView scrollView = new ScrollView(parentActivity);
@@ -174,7 +174,7 @@ public class FilesMigrationService extends Service {
     @Override
     public final int onStartCommand(Intent intent, int i7, int i10) {
         dt.i();
-        Notification build = z8.b(this, dt.f22075j0).setContentTitle(id.M0(2131748431, null)).setAutoCancel(false).setSmallIcon(2131232452).build();
+        Notification build = z8.b(this, dt.f22075j0).setContentTitle(id.M0(2131748430, null)).setAutoCancel(false).setSmallIcon(2131232452).build();
         d = true;
         new k2.k(this).start();
         try {

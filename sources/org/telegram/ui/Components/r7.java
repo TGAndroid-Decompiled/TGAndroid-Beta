@@ -24,53 +24,53 @@ public final class r7 extends org.telegram.ui.ActionBar.k {
     }
 
     @Override
-    public void D(int i7, boolean z9) {
+    public void E(int i7, boolean z9) {
         ImageView imageView;
         ImageView imageView2;
         switch (this.F1) {
             case 5:
                 ProfileActivity profileActivity = (ProfileActivity) this.G1;
-                super.D(i7, z9);
+                super.E(i7, z9);
                 if (!z9) {
-                    profileActivity.C5 = i7;
-                    profileActivity.A5();
+                    profileActivity.E5 = i7;
+                    profileActivity.D5();
                 }
                 if (!z9 && (imageView2 = profileActivity.X0) != null) {
                     imageView2.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.MULTIPLY));
                 }
-                if (profileActivity.I0 && (imageView = this.f27661e) != null) {
+                if (profileActivity.I0 && (imageView = this.f27645e) != null) {
                     imageView.setColorFilter(i7, PorterDuff.Mode.SRC_IN);
                     return;
                 }
                 return;
             default:
-                super.D(i7, z9);
+                super.E(i7, z9);
                 return;
         }
     }
 
     @Override
-    public boolean N(View view) {
+    public boolean O(View view) {
         switch (this.F1) {
             case 3:
-                if (!super.N(view) && view != ((org.telegram.ui.ww) this.G1).m0) {
+                if (!super.O(view) && view != ((org.telegram.ui.yw) this.G1).m0) {
                     return false;
                 }
                 return true;
             default:
-                return super.N(view);
+                return super.O(view);
         }
     }
 
     @Override
-    public void O(View[] viewArr, boolean[] zArr) {
+    public void P(View[] viewArr, boolean[] zArr) {
         switch (this.F1) {
             case 3:
-                super.O(viewArr, zArr);
-                ((org.telegram.ui.ww) this.G1).h.a(true, true);
+                super.P(viewArr, zArr);
+                ((org.telegram.ui.yw) this.G1).h.a(true, true);
                 return;
             default:
-                super.O(viewArr, zArr);
+                super.P(viewArr, zArr);
                 return;
         }
     }
@@ -79,9 +79,9 @@ public final class r7 extends org.telegram.ui.ActionBar.k {
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
         switch (this.F1) {
             case 3:
-                org.telegram.ui.ww wwVar = (org.telegram.ui.ww) this.G1;
-                org.telegram.ui.lw lwVar = wwVar.X;
-                if (lwVar != null && lwVar.getAlpha() > 0.0f && wwVar.f51539b.f55488f) {
+                org.telegram.ui.yw ywVar = (org.telegram.ui.yw) this.G1;
+                org.telegram.ui.nw nwVar = ywVar.X;
+                if (nwVar != null && nwVar.getAlpha() > 0.0f && ywVar.f52214b.f55500f) {
                     return false;
                 }
                 return super.dispatchTouchEvent(motionEvent);
@@ -91,19 +91,19 @@ public final class r7 extends org.telegram.ui.ActionBar.k {
     }
 
     @Override
-    public void l(boolean z9) {
+    public void m(boolean z9) {
         switch (this.F1) {
             case 3:
-                org.telegram.ui.ww wwVar = (org.telegram.ui.ww) this.G1;
-                wwVar.X.f37824r.getText().clear();
-                if (z9 && wwVar.X.f37824r.isFocused()) {
-                    org.telegram.messenger.g0.v1(wwVar.X.f37824r);
+                org.telegram.ui.yw ywVar = (org.telegram.ui.yw) this.G1;
+                ywVar.X.f37857r.getText().clear();
+                if (z9 && ywVar.X.f37857r.isFocused()) {
+                    org.telegram.messenger.g0.v1(ywVar.X.f37857r);
                 }
-                wwVar.X.f37824r.clearFocus();
-                wwVar.Y.b(false);
+                ywVar.X.f37857r.clearFocus();
+                ywVar.Y.b(false);
                 return;
             default:
-                super.l(z9);
+                super.m(z9);
                 return;
         }
     }
@@ -113,8 +113,8 @@ public final class r7 extends org.telegram.ui.ActionBar.k {
         switch (this.F1) {
             case 5:
                 super.onLayout(z9, i7, i10, i11, i12);
-                RectF rectF = ProfileActivity.S6;
-                ((ProfileActivity) this.G1).L5(false);
+                RectF rectF = ProfileActivity.V6;
+                ((ProfileActivity) this.G1).O5(false);
                 return;
             default:
                 super.onLayout(z9, i7, i10, i11, i12);
@@ -145,13 +145,13 @@ public final class r7 extends org.telegram.ui.ActionBar.k {
         switch (this.F1) {
             case 0:
                 super.setAlpha(f10);
-                ((b8) this.G1).f28619b.invalidate();
+                ((b8) this.G1).f28624b.invalidate();
                 return;
             case 1:
                 di diVar = (di) this.G1;
-                dh dhVar = diVar.f33012x2;
-                TextView textView = diVar.f32941d3;
-                dh dhVar2 = diVar.f32989r3;
+                dh dhVar = diVar.f33067x2;
+                TextView textView = diVar.f32996d3;
+                dh dhVar2 = diVar.f33044r3;
                 float alpha = getAlpha();
                 super.setAlpha(f10);
                 if (alpha != f10) {
@@ -167,17 +167,17 @@ public final class r7 extends org.telegram.ui.ActionBar.k {
                         textView.setVisibility(i7);
                     }
                     di.I0(diVar);
-                    diVar.f28619b.invalidate();
+                    diVar.f28624b.invalidate();
                     if (dhVar != null && dhVar2 != null) {
                         if (dhVar.getTag() == null) {
-                            vh vhVar = diVar.f32992s2;
+                            vh vhVar = diVar.f33047s2;
                             if (vhVar == null || vhVar.M()) {
                                 dhVar2.setAlpha(1.0f - f10);
                                 dhVar2.setTranslationY(org.telegram.messenger.g0.L(44.0f) * f10);
                             }
                             dhVar.setTranslationY(org.telegram.messenger.g0.L(48.0f) * f10);
                             return;
-                        } else if (diVar.f32992s2 == null) {
+                        } else if (diVar.f33047s2 == null) {
                             if (f10 == 0.0f) {
                                 f11 = 1.0f;
                             }
@@ -195,7 +195,7 @@ public final class r7 extends org.telegram.ui.ActionBar.k {
                 return;
             case 2:
                 super.setAlpha(f10);
-                ((qe0) this.G1).f28619b.invalidate();
+                ((re0) this.G1).f28624b.invalidate();
                 return;
             case 3:
             case 5:
@@ -204,18 +204,18 @@ public final class r7 extends org.telegram.ui.ActionBar.k {
                 return;
             case 4:
                 super.setAlpha(f10);
-                ((PhotoViewer) this.G1).f41384e0.invalidate();
+                ((PhotoViewer) this.G1).f41391e0.invalidate();
                 return;
             case 6:
                 super.setAlpha(f10);
                 SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.G1;
-                secretMediaViewer.f41934r.setAlpha(f10);
-                secretMediaViewer.f41926n.setAlpha(f10);
+                secretMediaViewer.f41941r.setAlpha(f10);
+                secretMediaViewer.f41933n.setAlpha(f10);
                 return;
             case 7:
                 if (getAlpha() != f10) {
                     super.setAlpha(f10);
-                    ((ug.w0) this.G1).f28619b.invalidate();
+                    ((ug.w0) this.G1).f28624b.invalidate();
                     return;
                 }
                 return;
@@ -231,7 +231,7 @@ public final class r7 extends org.telegram.ui.ActionBar.k {
                 ug.w0 w0Var = (ug.w0) this.G1;
                 r7 r7Var = w0Var.E1;
                 if (r7Var != null && r7Var.getTag() != null) {
-                    if (i0.a.h(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27925h5, w0Var.I0)) > 0.699999988079071d) {
+                    if (i0.a.h(org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.f27938h5, w0Var.I0)) > 0.699999988079071d) {
                         z9 = true;
                     } else {
                         z9 = false;
@@ -239,7 +239,7 @@ public final class r7 extends org.telegram.ui.ActionBar.k {
                     org.telegram.messenger.g0.q3(w0Var, z9);
                     return;
                 }
-                org.telegram.ui.ActionBar.f2 f2Var = w0Var.f56844i1;
+                org.telegram.ui.ActionBar.f2 f2Var = w0Var.f56856i1;
                 if (f2Var != null) {
                     org.telegram.messenger.g0.q3(w0Var, f2Var.isLightStatusBar());
                     return;
@@ -256,7 +256,7 @@ public final class r7 extends org.telegram.ui.ActionBar.k {
         View view;
         switch (this.F1) {
             case 3:
-                if (f10 != getTranslationY() && (view = ((org.telegram.ui.ww) this.G1).fragmentView) != null) {
+                if (f10 != getTranslationY() && (view = ((org.telegram.ui.yw) this.G1).fragmentView) != null) {
                     view.invalidate();
                 }
                 super.setTranslationY(f10);
@@ -281,39 +281,39 @@ public final class r7 extends org.telegram.ui.ActionBar.k {
     }
 
     @Override
-    public void u() {
+    public void v() {
         switch (this.F1) {
             case 3:
-                super.u();
-                ((org.telegram.ui.ww) this.G1).h.a(false, true);
+                super.v();
+                ((org.telegram.ui.yw) this.G1).h.a(false, true);
                 return;
             default:
-                super.u();
+                super.v();
                 return;
         }
     }
 
     @Override
-    public boolean x() {
+    public boolean y() {
         switch (this.F1) {
             case 3:
-                org.telegram.ui.sv svVar = ((org.telegram.ui.ww) this.G1).F3;
-                if (svVar != null && svVar.c()) {
+                org.telegram.ui.uv uvVar = ((org.telegram.ui.yw) this.G1).G3;
+                if (uvVar != null && uvVar.c()) {
                     return true;
                 }
                 return false;
             default:
-                return super.x();
+                return super.y();
         }
     }
 
     @Override
-    public void y(boolean z9) {
+    public void z(boolean z9) {
         float f10;
         switch (this.F1) {
             case 3:
-                org.telegram.ui.sv svVar = ((org.telegram.ui.ww) this.G1).F3;
-                if (svVar != null && svVar.c() && getBackButton() != null) {
+                org.telegram.ui.uv uvVar = ((org.telegram.ui.yw) this.G1).G3;
+                if (uvVar != null && uvVar.c() && getBackButton() != null) {
                     ViewPropertyAnimator animate = getBackButton().animate();
                     if (z9) {
                         f10 = 1.0f;
@@ -322,16 +322,16 @@ public final class r7 extends org.telegram.ui.ActionBar.k {
                     }
                     animate.alpha(f10).start();
                 }
-                super.y(z9);
+                super.z(z9);
                 return;
             default:
-                super.y(z9);
+                super.z(z9);
                 return;
         }
     }
 
-    public r7(org.telegram.messenger.ls lsVar, Context context, org.telegram.ui.ActionBar.f6 f6Var, int i7) {
-        super(context, f6Var);
+    public r7(org.telegram.messenger.ls lsVar, Context context, org.telegram.ui.ActionBar.g6 g6Var, int i7) {
+        super(context, g6Var);
         this.F1 = i7;
         this.G1 = lsVar;
     }

@@ -11,10 +11,10 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Cells.a6;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.ey0;
+import org.telegram.ui.Components.fy0;
 import org.telegram.ui.LaunchActivity;
 public final class i3 implements View.OnClickListener {
     public final int f14718a = 1;
@@ -24,14 +24,14 @@ public final class i3 implements View.OnClickListener {
     public final int f14721e;
     public final org.telegram.ui.ActionBar.v2 f14722f;
     public final boolean h;
-    public final f6 f14723n;
+    public final g6 f14723n;
     public final Object f14724r;
     public final Object f14725s;
     public final Object f14726w;
 
-    public i3(fi.d dVar, ey0 ey0Var, qp qpVar, long j3, TLRPC.User user, String[] strArr, int i7, org.telegram.ui.ActionBar.v2 v2Var, boolean z9, f6 f6Var) {
+    public i3(fi.d dVar, fy0 fy0Var, qp qpVar, long j3, TLRPC.User user, String[] strArr, int i7, org.telegram.ui.ActionBar.v2 v2Var, boolean z9, g6 g6Var) {
         this.f14719b = dVar;
-        this.f14724r = ey0Var;
+        this.f14724r = fy0Var;
         this.f14725s = qpVar;
         this.f14720c = j3;
         this.d = user;
@@ -39,7 +39,7 @@ public final class i3 implements View.OnClickListener {
         this.f14721e = i7;
         this.f14722f = v2Var;
         this.h = z9;
-        this.f14723n = f6Var;
+        this.f14723n = g6Var;
     }
 
     @Override
@@ -61,20 +61,20 @@ public final class i3 implements View.OnClickListener {
                     final org.telegram.ui.ActionBar.v2 v2Var = this.f14722f;
                     final long j10 = this.f14720c;
                     final boolean z9 = this.h;
-                    final f6 f6Var = this.f14723n;
+                    final g6 g6Var = this.f14723n;
                     final TLRPC.User user = this.d;
                     connectionsManager.sendRequest(connectstarrefbot, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            org.telegram.messenger.g0.h3(new g3(fi.d.this, tLObject, i7, j3, v2Var, starrefprogram, j10, z9, context, f6Var, user, tL_error));
+                            org.telegram.messenger.g0.h3(new g3(fi.d.this, tLObject, i7, j3, v2Var, starrefprogram, j10, z9, context, g6Var, user, tL_error));
                         }
                     });
                     return;
                 }
                 return;
             default:
-                ey0 ey0Var = (ey0) this.f14724r;
-                a6 a6Var = ey0Var.h;
+                fy0 fy0Var = (fy0) this.f14724r;
+                a6 a6Var = fy0Var.h;
                 final qp qpVar = (qp) this.f14725s;
                 String[] strArr = (String[]) this.f14726w;
                 final fi.d dVar2 = this.f14719b;
@@ -93,7 +93,7 @@ public final class i3 implements View.OnClickListener {
                         d3.b bVar = new d3.b(1);
                         final org.telegram.ui.ActionBar.v2 v2Var2 = this.f14722f;
                         final boolean z10 = this.h;
-                        final f6 f6Var2 = this.f14723n;
+                        final g6 g6Var2 = this.f14723n;
                         connectionsManager2.sendRequestTyped(tL_messages_editChatParticipantRank, bVar, new v10() {
                             @Override
                             public final void a(Object obj, Object obj2) {
@@ -113,12 +113,12 @@ public final class i3 implements View.OnClickListener {
                                     if (!TextUtils.isEmpty(tL_messages_editChatParticipantRank2.rank) && T != null) {
                                         hc a02 = hc.a0(T);
                                         if (z10) {
-                                            i10 = 2131744291;
+                                            i10 = 2131744288;
                                         } else {
-                                            i10 = 2131744290;
+                                            i10 = 2131744287;
                                         }
                                         cc I = a02.I(2131623989, org.telegram.messenger.id.M0(i10, null), tL_messages_editChatParticipantRank2.rank);
-                                        gb gbVar = I.f32541e;
+                                        gb gbVar = I.f32623e;
                                         if (gbVar.getLayoutParams() instanceof FrameLayout.LayoutParams) {
                                             ((FrameLayout.LayoutParams) gbVar.getLayoutParams()).width = -2;
                                             ((FrameLayout.LayoutParams) gbVar.getLayoutParams()).gravity |= 1;
@@ -126,15 +126,15 @@ public final class i3 implements View.OnClickListener {
                                         I.j();
                                     }
                                 } else if (tL_error != null) {
-                                    org.telegram.ui.Cells.f1.r(v2Var3.E, f6Var2, tL_error, false);
+                                    org.telegram.ui.Cells.f1.r(v2Var3.E, g6Var2, tL_error, false);
                                     dVar2.setLoading(false);
                                 }
                             }
                         });
                         return;
                     }
-                    float f10 = -ey0Var.D;
-                    ey0Var.D = f10;
+                    float f10 = -fy0Var.D;
+                    fy0Var.D = f10;
                     org.telegram.messenger.g0.G3(f10, textView, null);
                     org.telegram.messenger.p2.APP_ERROR.a();
                     return;
@@ -143,7 +143,7 @@ public final class i3 implements View.OnClickListener {
         }
     }
 
-    public i3(fi.d dVar, long[] jArr, int i7, TL_payments.starRefProgram starrefprogram, org.telegram.ui.ActionBar.v2 v2Var, long j3, boolean z9, Context context, f6 f6Var, TLRPC.User user) {
+    public i3(fi.d dVar, long[] jArr, int i7, TL_payments.starRefProgram starrefprogram, org.telegram.ui.ActionBar.v2 v2Var, long j3, boolean z9, Context context, g6 g6Var, TLRPC.User user) {
         this.f14719b = dVar;
         this.f14724r = jArr;
         this.f14721e = i7;
@@ -152,7 +152,7 @@ public final class i3 implements View.OnClickListener {
         this.f14720c = j3;
         this.h = z9;
         this.f14726w = context;
-        this.f14723n = f6Var;
+        this.f14723n = g6Var;
         this.d = user;
     }
 }

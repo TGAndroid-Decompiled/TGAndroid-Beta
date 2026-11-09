@@ -1,19 +1,19 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class j4 extends hb0 {
-    public final int[] f34890y0;
+public final class j4 extends ib0 {
+    public final int[] f34924y0;
 
-    public j4(Context context, org.telegram.ui.ActionBar.f6 f6Var, int[] iArr) {
-        super(context, f6Var);
-        this.f34890y0 = iArr;
+    public j4(Context context, org.telegram.ui.ActionBar.g6 g6Var, int[] iArr) {
+        super(context, g6Var);
+        this.f34924y0 = iArr;
     }
 
     @Override
     public final CharSequence d(int i7) {
-        int i10 = this.f34890y0[i7];
+        int i10 = this.f34924y0[i7];
         if (i10 == 0) {
-            return org.telegram.messenger.id.M0(2131748308, null);
+            return org.telegram.messenger.id.M0(2131748307, null);
         }
         if (i10 < 60) {
             return org.telegram.messenger.id.G(i10, "Minutes", new Object[0]);

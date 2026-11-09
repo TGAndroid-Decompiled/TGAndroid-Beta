@@ -9,7 +9,7 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.i70;
+import org.telegram.ui.k70;
 public final class o4 implements RequestDelegate {
     public final int f24287a = 0;
     public final boolean f24288b;
@@ -126,7 +126,7 @@ public final class o4 implements RequestDelegate {
                 return;
             default:
                 LaunchActivity launchActivity = (LaunchActivity) this.d;
-                org.telegram.ui.q10 q10Var = (org.telegram.ui.q10) this.f24290e;
+                org.telegram.ui.s10 s10Var = (org.telegram.ui.s10) this.f24290e;
                 boolean z14 = this.f24288b;
                 Long l10 = (Long) this.f24291f;
                 vf.b bVar = (vf.b) this.f24292g;
@@ -138,14 +138,14 @@ public final class o4 implements RequestDelegate {
                 int i16 = this.f24289c;
                 Bundle bundle = (Bundle) this.f24297m;
                 String str = LaunchActivity.B1;
-                g0.h3(new i70(launchActivity, q10Var, tLObject, z14, l10, bVar, l11, num, num2, bArr, f2Var, i16, bundle));
+                g0.h3(new k70(launchActivity, s10Var, tLObject, z14, l10, bVar, l11, num, num2, bArr, f2Var, i16, bundle));
                 return;
         }
     }
 
-    public o4(LaunchActivity launchActivity, org.telegram.ui.q10 q10Var, boolean z9, Long l10, vf.b bVar, Long l11, Integer num, Integer num2, byte[] bArr, org.telegram.ui.ActionBar.f2 f2Var, int i7, Bundle bundle) {
+    public o4(LaunchActivity launchActivity, org.telegram.ui.s10 s10Var, boolean z9, Long l10, vf.b bVar, Long l11, Integer num, Integer num2, byte[] bArr, org.telegram.ui.ActionBar.f2 f2Var, int i7, Bundle bundle) {
         this.d = launchActivity;
-        this.f24290e = q10Var;
+        this.f24290e = s10Var;
         this.f24288b = z9;
         this.f24291f = l10;
         this.f24292g = bVar;

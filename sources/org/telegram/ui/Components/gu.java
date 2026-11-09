@@ -2,11 +2,11 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import org.telegram.tgnet.TLRPC;
-public final class gu extends mo0 {
+public final class gu extends no0 {
     public final ru R2;
 
-    public gu(ru ruVar, Context context, String str, String str2, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, null, str, false, str2, false, f6Var);
+    public gu(ru ruVar, Context context, String str, String str2, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, null, str, false, str2, false, g6Var);
         this.R2 = ruVar;
     }
 

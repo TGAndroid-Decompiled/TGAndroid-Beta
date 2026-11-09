@@ -353,7 +353,7 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
 
     @Override
     public final long createNative(long j3) {
-        return u.a(this, j3);
+        return t.a(this, j3);
     }
 
     public SurfaceTextureHelper createSurfaceTextureHelper() {
@@ -527,6 +527,6 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
 
     @Override
     public final void setParentSink(VideoSink videoSink) {
-        e0.a(this, videoSink);
+        d0.a(this, videoSink);
     }
 }

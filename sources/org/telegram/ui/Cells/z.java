@@ -4,19 +4,19 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import org.telegram.ui.Components.ot0;
-public abstract class z extends ViewGroup implements ot0 {
-    public boolean f30943a;
-    public androidx.emoji2.text.j f30944b;
-    public int f30945c;
+import org.telegram.ui.Components.qt0;
+public abstract class z extends ViewGroup implements qt0 {
+    public boolean f30948a;
+    public androidx.emoji2.text.j f30949b;
+    public int f30950c;
     public m.f3 d;
-    public Runnable f30946e;
+    public Runnable f30951e;
 
     public z(Context context) {
         super(context);
-        this.f30943a = false;
-        this.f30944b = null;
-        this.f30945c = 0;
+        this.f30948a = false;
+        this.f30949b = null;
+        this.f30950c = 0;
         this.d = null;
         setWillNotDraw(false);
         setFocusable(true);
@@ -43,7 +43,7 @@ public abstract class z extends ViewGroup implements ot0 {
 
     @Override
     public final void f(Runnable runnable) {
-        this.f30946e = runnable;
+        this.f30951e = runnable;
     }
 
     public int getBoundsLeft() {
@@ -61,7 +61,7 @@ public abstract class z extends ViewGroup implements ot0 {
 
     @Override
     public void invalidate() {
-        Runnable runnable = this.f30946e;
+        Runnable runnable = this.f30951e;
         if (runnable != null) {
             runnable.run();
         }
@@ -69,8 +69,8 @@ public abstract class z extends ViewGroup implements ot0 {
     }
 
     public final void n() {
-        this.f30943a = false;
-        androidx.emoji2.text.j jVar = this.f30944b;
+        this.f30948a = false;
+        androidx.emoji2.text.j jVar = this.f30949b;
         if (jVar != null) {
             removeCallbacks(jVar);
         }
@@ -89,10 +89,10 @@ public abstract class z extends ViewGroup implements ot0 {
     }
 
     public final void u() {
-        if (this.f30943a) {
+        if (this.f30948a) {
             return;
         }
-        this.f30943a = true;
+        this.f30948a = true;
         if (this.d == null) {
             this.d = new m.f3(this, 19);
         }

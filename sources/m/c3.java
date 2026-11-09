@@ -4,9 +4,9 @@ import android.graphics.Path;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.util.SparseArray;
-import di.z5;
+import di.a6;
 import org.telegram.messenger.ij;
-import org.telegram.ui.an;
+import org.telegram.ui.cn;
 public final class c3 implements m9.t {
     public boolean f19075a;
     public boolean f19076b;
@@ -16,15 +16,15 @@ public final class c3 implements m9.t {
     public boolean a(int i7) {
         SparseArray sparseArray = (SparseArray) this.f19077c;
         boolean z9 = this.f19076b;
-        an anVar = (an) this.d;
-        int i10 = i7 - anVar.C0.J;
-        if (i10 >= 0 && i10 < anVar.K6.size()) {
-            ij ijVar = (ij) anVar.K6.get(i10);
+        cn cnVar = (cn) this.d;
+        int i10 = i7 - cnVar.C0.J;
+        if (i10 >= 0 && i10 < cnVar.K6.size()) {
+            ij ijVar = (ij) cnVar.K6.get(i10);
             if (ijVar.U == 0) {
-                if (!z9 && sparseArray.get(ijVar.f1(), null) == null) {
+                if (!z9 && sparseArray.get(ijVar.e1(), null) == null) {
                     return true;
                 }
-                if (z9 && sparseArray.get(ijVar.f1(), null) != null) {
+                if (z9 && sparseArray.get(ijVar.e1(), null) != null) {
                     return true;
                 }
                 return false;
@@ -56,9 +56,9 @@ public final class c3 implements m9.t {
     public void onSuccess(Object obj) {
         p4.w wVar = (p4.w) obj;
         p4.d0 d0Var = ((p4.m0) this.d).h;
-        Handler handler = d0Var.f53210l;
+        Handler handler = d0Var.f53222l;
         p4.v vVar = (p4.v) this.f19077c;
-        h2.m0.W(handler, new org.telegram.ui.web.w(d0Var, vVar, new z5(this, wVar, this.f19075a, this.f19076b, vVar, 4)));
+        h2.m0.W(handler, new org.telegram.ui.web.s(d0Var, vVar, new a6(this, wVar, this.f19075a, this.f19076b, vVar, 4)));
     }
 
     @Override

@@ -3,9 +3,9 @@ package org.telegram.messenger.voip;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Cells.q1;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.zt0;
-import org.telegram.ui.rk;
+import org.telegram.ui.Components.bu0;
+import org.telegram.ui.Components.m41;
+import org.telegram.ui.tk;
 public final class k0 implements Runnable {
     public final int f26137a;
     public final int f26138b;
@@ -26,25 +26,25 @@ public final class k0 implements Runnable {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.k0.run():void");
     }
 
-    public k0(rk rkVar, boolean z9, ArrayList arrayList, int i7) {
+    public k0(tk tkVar, boolean z9, ArrayList arrayList, int i7) {
         this.f26137a = 2;
-        this.d = rkVar;
+        this.d = tkVar;
         this.f26139c = z9;
         this.f26140e = arrayList;
         this.f26138b = i7;
     }
 
-    public k0(zt0 zt0Var, boolean z9, int i7, q1 q1Var) {
+    public k0(bu0 bu0Var, boolean z9, int i7, q1 q1Var) {
         this.f26137a = 5;
-        this.d = zt0Var;
+        this.d = bu0Var;
         this.f26139c = z9;
         this.f26138b = i7;
         this.f26140e = q1Var;
     }
 
-    public k0(l41 l41Var, int i7, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z9, int i10) {
+    public k0(m41 m41Var, int i7, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z9, int i10) {
         this.f26137a = i10;
-        this.d = l41Var;
+        this.d = m41Var;
         this.f26138b = i7;
         this.f26140e = tL_messages_searchGlobal;
         this.f26139c = z9;

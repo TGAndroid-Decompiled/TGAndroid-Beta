@@ -4,35 +4,35 @@ import java.util.ArrayList;
 import org.telegram.messenger.iz;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.m5;
+import org.telegram.ui.ActionBar.o5;
 public final class u1 {
-    public final int f51326a;
-    public boolean f51327b;
-    public boolean f51328c;
+    public final int f51305a;
+    public boolean f51306b;
+    public boolean f51307c;
     public String d;
-    public float f51329e;
-    public boolean f51330f;
-    public boolean f51331g;
+    public float f51308e;
+    public boolean f51309f;
+    public boolean f51310g;
     public TLRPC.WebPage h;
-    public boolean f51332i;
-    public TLRPC.TL_webPage f51333j;
-    public int f51334k;
-    public m5 f51335l;
-    public final ArrayList f51336m = new ArrayList();
+    public boolean f51311i;
+    public TLRPC.TL_webPage f51312j;
+    public int f51313k;
+    public o5 f51314l;
+    public final ArrayList f51315m = new ArrayList();
 
     public u1(int i7) {
-        this.f51326a = i7;
+        this.f51305a = i7;
     }
 
     public final void a() {
-        m5 m5Var;
-        if (!this.f51328c) {
-            this.f51328c = true;
-            if (!this.f51331g) {
-                ConnectionsManager.getInstance(this.f51326a).cancelRequest(this.f51334k, true);
+        o5 o5Var;
+        if (!this.f51307c) {
+            this.f51307c = true;
+            if (!this.f51310g) {
+                ConnectionsManager.getInstance(this.f51305a).cancelRequest(this.f51313k, true);
             }
-            if (!this.f51332i && (m5Var = this.f51335l) != null) {
-                m5Var.run();
+            if (!this.f51311i && (o5Var = this.f51314l) != null) {
+                o5Var.run();
             }
         }
     }
@@ -42,7 +42,7 @@ public final class u1 {
         if (!iz.f23446w0 && (webPage = this.h) != null) {
             return webPage;
         }
-        TLRPC.TL_webPage tL_webPage = this.f51333j;
+        TLRPC.TL_webPage tL_webPage = this.f51312j;
         if (tL_webPage != null) {
             return tL_webPage;
         }
@@ -50,7 +50,7 @@ public final class u1 {
     }
 
     public final void c() {
-        ArrayList arrayList = this.f51336m;
+        ArrayList arrayList = this.f51315m;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
@@ -61,22 +61,22 @@ public final class u1 {
     }
 
     public final void d(u0 u0Var) {
-        if (this.f51328c) {
+        if (this.f51307c) {
             return;
         }
-        TLRPC.TL_webPage tL_webPage = this.f51333j;
+        TLRPC.TL_webPage tL_webPage = this.f51312j;
         if (tL_webPage != null) {
             w1.o(tL_webPage);
-            this.f51333j = null;
+            this.f51312j = null;
         }
-        this.f51332i = false;
+        this.f51311i = false;
         this.d = u0Var.getUrl();
-        this.f51329e = u0Var.getProgress();
-        this.f51330f = u0Var.f51316b;
-        m5 m5Var = this.f51335l;
-        if (m5Var != null) {
-            m5Var.run();
+        this.f51308e = u0Var.getProgress();
+        this.f51309f = u0Var.f51295b;
+        o5 o5Var = this.f51314l;
+        if (o5Var != null) {
+            o5Var.run();
         }
-        this.f51335l = w1.e(u0Var, new t1(this, 1));
+        this.f51314l = w1.e(u0Var, new t1(this, 1));
     }
 }

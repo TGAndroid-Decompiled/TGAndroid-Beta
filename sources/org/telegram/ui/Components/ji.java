@@ -6,8 +6,8 @@ public final class ji extends FragmentContextView {
     public final FrameLayout X0;
     public final ni Y0;
 
-    public ji(ni niVar, Context context, org.telegram.ui.ActionBar.f2 f2Var, FrameLayout frameLayout, org.telegram.ui.ActionBar.f6 f6Var, FrameLayout frameLayout2) {
-        super(context, f2Var, frameLayout, false, f6Var);
+    public ji(ni niVar, Context context, org.telegram.ui.ActionBar.f2 f2Var, FrameLayout frameLayout, org.telegram.ui.ActionBar.g6 g6Var, FrameLayout frameLayout2) {
+        super(context, f2Var, frameLayout, false, g6Var);
         this.Y0 = niVar;
         this.X0 = frameLayout2;
     }
@@ -15,7 +15,7 @@ public final class ji extends FragmentContextView {
     @Override
     public final void setVisibility(int i7) {
         boolean z9;
-        pr prVar = this.Y0.f36367y;
+        pr prVar = this.Y0.f36381y;
         if (i7 == 0) {
             z9 = true;
         } else {

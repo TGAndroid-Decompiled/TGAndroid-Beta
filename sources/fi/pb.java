@@ -66,12 +66,12 @@ public final class pb implements Runnable {
                                 try {
                                     float parseFloat = Float.parseFloat(botInlineResult.description);
                                     ?? tLObject3 = new TLObject();
-                                    tLObject3.f12821a = d10;
-                                    tLObject3.f12822b = d11;
-                                    tLObject3.f12823c = str3;
+                                    tLObject3.f12820a = d10;
+                                    tLObject3.f12821b = d11;
+                                    tLObject3.f12822c = str3;
                                     tLObject3.d = parseFloat;
-                                    tb.f12866a = str2;
-                                    tb.f12867b = tLObject3;
+                                    tb.f12867a = str2;
+                                    tb.f12868b = tLObject3;
                                     nbVar3.a(tLObject3);
                                     return;
                                 } catch (Exception unused) {

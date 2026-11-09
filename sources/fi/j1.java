@@ -3,8 +3,8 @@ package fi;
 import android.content.Context;
 import org.telegram.ui.Components.hw;
 import org.telegram.ui.Components.hy;
-import org.telegram.ui.f01;
-import org.telegram.ui.q11;
+import org.telegram.ui.h01;
+import org.telegram.ui.s11;
 public final class j1 extends mi.m {
     public final int f12208q;
     public final Object f12209r;
@@ -19,17 +19,17 @@ public final class j1 extends mi.m {
     public void e() {
         switch (this.f12208q) {
             case 0:
-                ((m1) this.f12209r).f12407i3 = true;
+                ((m1) this.f12209r).f12408i3 = true;
                 return;
             case 1:
-                ((hy) this.f12209r).f34409f0 = true;
+                ((hy) this.f12209r).f34424f0 = true;
                 return;
             case 2:
             case 3:
             default:
                 return;
             case 4:
-                ((q11) this.f12209r).f49072x1 = true;
+                ((s11) this.f12209r).f49715x1 = true;
                 return;
         }
     }
@@ -38,22 +38,22 @@ public final class j1 extends mi.m {
     public final void i() {
         switch (this.f12208q) {
             case 0:
-                ((m1) this.f12209r).f12407i3 = false;
+                ((m1) this.f12209r).f12408i3 = false;
                 return;
             case 1:
-                ((hy) this.f12209r).f34409f0 = false;
+                ((hy) this.f12209r).f34424f0 = false;
                 return;
             case 2:
-                ((hw) this.f12209r).Q.f34409f0 = false;
+                ((hw) this.f12209r).Q.f34424f0 = false;
                 return;
             case 3:
-                ((f01) this.f12209r).R.f49072x1 = false;
+                ((h01) this.f12209r).R.f49715x1 = false;
                 return;
             case 4:
-                ((q11) this.f12209r).f49072x1 = false;
+                ((s11) this.f12209r).f49715x1 = false;
                 return;
             default:
-                ((f01) this.f12209r).R.f49072x1 = false;
+                ((h01) this.f12209r).R.f49715x1 = false;
                 return;
         }
     }

@@ -21,18 +21,18 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.s6;
 import org.telegram.ui.Components.hc;
 import org.telegram.ui.Components.q6;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.an;
-import org.telegram.ui.tp;
-import org.telegram.ui.wc1;
+import org.telegram.ui.cn;
+import org.telegram.ui.vp;
 import org.telegram.ui.web.HttpGetFileTask;
-import org.telegram.ui.ww;
-import org.telegram.ui.x60;
+import org.telegram.ui.yw;
+import org.telegram.ui.z60;
+import org.telegram.ui.zc1;
 public final class y0 implements Runnable {
     public final int f15047a = 1;
     public final int f15048b;
@@ -58,7 +58,7 @@ public final class y0 implements Runnable {
     @Override
     public final void run() {
         String i7;
-        ww wwVar;
+        yw ywVar;
         ?? r22;
         hc a02;
         TLObject tLObject;
@@ -74,7 +74,7 @@ public final class y0 implements Runnable {
                 TLObject tLObject2 = (TLObject) obj5;
                 org.telegram.ui.ActionBar.u1 u1Var = (org.telegram.ui.ActionBar.u1) obj6;
                 Context context = (Context) obj4;
-                f6 f6Var = (f6) obj3;
+                g6 g6Var = (g6) obj3;
                 org.telegram.ui.web.p pVar = (org.telegram.ui.web.p) obj2;
                 bi.t0 t0Var = (bi.t0) obj;
                 if (tLObject2 instanceof TLRPC.TL_messages_preparedInlineMessage) {
@@ -87,7 +87,7 @@ public final class y0 implements Runnable {
                         TLRPC.TL_botInlineMessageMediaWebPage tL_botInlineMessageMediaWebPage = (TLRPC.TL_botInlineMessageMediaWebPage) botInlineMessage;
                         if (!TextUtils.isEmpty(tL_botInlineMessageMediaWebPage.url)) {
                             String str = tL_botInlineMessageMediaWebPage.url;
-                            z0 z0Var = new z0(u1Var, context, i11, j3, tL_messages_preparedInlineMessage, f6Var, pVar, t0Var);
+                            z0 z0Var = new z0(u1Var, context, i11, j3, tL_messages_preparedInlineMessage, g6Var, pVar, t0Var);
                             ls[] lsVarArr = new ls[1];
                             TL_account.getWebPagePreview getwebpagepreview = new TL_account.getWebPagePreview();
                             getwebpagepreview.message = str;
@@ -97,7 +97,7 @@ public final class y0 implements Runnable {
                         }
                     }
                     File[] fileArr = new File[1];
-                    a1 a1Var = new a1(u1Var, context, i11, j3, tL_messages_preparedInlineMessage, fileArr, f6Var, pVar, t0Var);
+                    a1 a1Var = new a1(u1Var, context, i11, j3, tL_messages_preparedInlineMessage, fileArr, g6Var, pVar, t0Var);
                     TLRPC.WebDocument webDocument = tL_messages_preparedInlineMessage.result.content;
                     if (webDocument != null && !TextUtils.isEmpty(webDocument.url)) {
                         TLRPC.BotInlineResult botInlineResult = tL_messages_preparedInlineMessage.result;
@@ -143,8 +143,8 @@ public final class y0 implements Runnable {
                 String str5 = (String) obj3;
                 TLRPC.User user = (TLRPC.User) obj2;
                 String str6 = (String) obj;
-                ArrayList arrayList = launchActivity.f41264f0;
-                ArrayList arrayList2 = launchActivity.f41260d0;
+                ArrayList arrayList = launchActivity.f41271f0;
+                ArrayList arrayList2 = launchActivity.f41267d0;
                 ArrayList arrayList3 = launchActivity.C0;
                 if (tLObject3 instanceof TLRPC.TL_attachMenuBotsBot) {
                     TLRPC.TL_attachMenuBotsBot tL_attachMenuBotsBot = (TLRPC.TL_attachMenuBotsBot) tLObject3;
@@ -156,7 +156,7 @@ public final class y0 implements Runnable {
                         return;
                     }
                     org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) jg.g.i(1, arrayList2);
-                    if (org.telegram.messenger.g0.Q1() && !(f2Var instanceof an) && !arrayList.isEmpty()) {
+                    if (org.telegram.messenger.g0.Q1() && !(f2Var instanceof cn) && !arrayList.isEmpty()) {
                         f2Var = (org.telegram.ui.ActionBar.f2) jg.g.i(1, arrayList);
                     }
                     ArrayList arrayList4 = new ArrayList();
@@ -203,13 +203,13 @@ public final class y0 implements Runnable {
                         bundle.putBoolean("allowUsers", arrayList4.contains("users"));
                         bundle.putBoolean("allowChannels", arrayList4.contains("channels"));
                         bundle.putBoolean("allowBots", arrayList4.contains("bots"));
-                        wwVar = new ww(bundle);
-                        wwVar.C2 = new x60(launchActivity, user, str6, i12);
+                        ywVar = new yw(bundle);
+                        ywVar.D2 = new z60(launchActivity, user, str6, i12);
                     } else {
-                        wwVar = null;
+                        ywVar = null;
                     }
                     if (!tL_attachMenuBot.inactive) {
-                        if (wwVar != null) {
+                        if (ywVar != null) {
                             if (f2Var != null) {
                                 f2Var.dismissCurrentDialog();
                             }
@@ -219,20 +219,20 @@ public final class y0 implements Runnable {
                                 }
                             }
                             arrayList3.clear();
-                            launchActivity.t0(wwVar);
+                            launchActivity.t0(ywVar);
                         } else {
-                            if (f2Var instanceof an) {
-                                an anVar = (an) f2Var;
-                                if (anVar.j() != null) {
-                                    tLObject = anVar.j();
+                            if (f2Var instanceof cn) {
+                                cn cnVar = (cn) f2Var;
+                                if (cnVar.j() != null) {
+                                    tLObject = cnVar.j();
                                 } else {
-                                    tLObject = anVar.f43777e;
+                                    tLObject = cnVar.f44432e;
                                 }
                                 if (!ui.t(tL_attachMenuBot, tLObject)) {
                                     a02 = hc.a0(f2Var);
                                     r22 = 0;
                                 } else {
-                                    anVar.wa(user.f27105id, str6, false);
+                                    cnVar.ya(user.f27105id, str6, false);
                                 }
                             } else {
                                 r22 = 0;
@@ -243,10 +243,10 @@ public final class y0 implements Runnable {
                         return;
                     }
                     q6 q6Var = new q6(launchActivity);
-                    q6Var.setColor(k6.x0(null, k6.f27947ia, false));
-                    r6.i(k6.L5, q6Var, null);
+                    q6Var.setColor(l6.x0(null, l6.f27960ia, false));
+                    s6.h(l6.L5, q6Var, null);
                     q6Var.setAttachBot(tL_attachMenuBot);
-                    wc1.a(launchActivity, new tp(launchActivity, i12, this.f15049c, wwVar, f2Var, user, str6), null);
+                    zc1.a(launchActivity, new vp(launchActivity, i12, this.f15049c, ywVar, f2Var, user, str6), null);
                     return;
                 }
                 k5.p(null, 2131753109, hc.a0((org.telegram.ui.ActionBar.f2) jg.g.i(1, arrayList2)), null);
@@ -254,13 +254,13 @@ public final class y0 implements Runnable {
         }
     }
 
-    public y0(TLObject tLObject, int i7, org.telegram.ui.ActionBar.u1 u1Var, Context context, long j3, f6 f6Var, org.telegram.ui.web.p pVar, bi.t0 t0Var) {
+    public y0(TLObject tLObject, int i7, org.telegram.ui.ActionBar.u1 u1Var, Context context, long j3, g6 g6Var, org.telegram.ui.web.p pVar, bi.t0 t0Var) {
         this.d = tLObject;
         this.f15048b = i7;
         this.f15050e = u1Var;
         this.f15051f = context;
         this.f15049c = j3;
-        this.h = f6Var;
+        this.h = g6Var;
         this.f15052n = pVar;
         this.f15053r = t0Var;
     }

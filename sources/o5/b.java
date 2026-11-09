@@ -5,6 +5,6 @@ public final class b implements na.d {
 
     @Override
     public final void a(Object obj, Object obj2) {
-        ((na.e) obj2).a(f20804b, ((r5.b) obj).f54406a);
+        ((na.e) obj2).a(f20804b, ((r5.b) obj).f54418a);
     }
 }

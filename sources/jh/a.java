@@ -2,7 +2,7 @@ package jh;
 
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.ij;
-import org.telegram.ui.aj;
+import org.telegram.ui.cj;
 public final class a {
     public RecyclerView f17009a;
     public int f17010b;
@@ -12,8 +12,8 @@ public final class a {
 
     public final boolean a(ij ijVar) {
         if (ijVar != null) {
-            if (ijVar.f1() != this.f17010b) {
-                if (this.f17011c != 0 && ijVar.d1() == this.f17011c) {
+            if (ijVar.e1() != this.f17010b) {
+                if (this.f17011c != 0 && ijVar.c1() == this.f17011c) {
                     return true;
                 }
                 return false;
@@ -44,7 +44,7 @@ public final class a {
         this.d = i7;
     }
 
-    public final void e(aj ajVar) {
-        this.f17009a = ajVar;
+    public final void e(cj cjVar) {
+        this.f17009a = cjVar;
     }
 }

@@ -4,7 +4,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import fi.h9;
+import fi.v9;
 import org.json.JSONObject;
 public final class t0 implements SensorEventListener {
     public long f14955a;
@@ -43,9 +43,9 @@ public final class t0 implements SensorEventListener {
     @Override
     public final void onSensorChanged(SensorEvent sensorEvent) {
         v0 v0Var = this.d;
-        h9 h9Var = v0Var.f14996q;
-        if (h9Var != null) {
-            org.telegram.messenger.g0.r(h9Var);
+        v9 v9Var = v0Var.f14996q;
+        if (v9Var != null) {
+            org.telegram.messenger.g0.r(v9Var);
             v0Var.f14996q = null;
         }
         if (!v0Var.f14991l && v0Var.f14990k != null) {
@@ -58,9 +58,9 @@ public final class t0 implements SensorEventListener {
             }
             long j3 = v0Var.h;
             if (currentTimeMillis < j3) {
-                h9 h9Var2 = new h9(this, 16);
-                v0Var.f14996q = h9Var2;
-                org.telegram.messenger.g0.i3(h9Var2, j3 - currentTimeMillis);
+                v9 v9Var2 = new v9(this, 15);
+                v0Var.f14996q = v9Var2;
+                org.telegram.messenger.g0.i3(v9Var2, j3 - currentTimeMillis);
                 return;
             }
             a();

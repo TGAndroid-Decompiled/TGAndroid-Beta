@@ -13,7 +13,7 @@ public final class x9 extends EditTextBoldCursor {
     }
 
     @Override
-    public final org.telegram.ui.ActionBar.f6 getResourcesProvider() {
+    public final org.telegram.ui.ActionBar.g6 getResourcesProvider() {
         switch (this.G1) {
             case 0:
                 return this.H1.d;

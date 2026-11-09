@@ -1,17 +1,15 @@
 package org.telegram.ui;
-public final class c91 extends v4.y {
-    public final w91 S;
+public final class c91 extends v4.s0 {
+    public int f44254a;
+    public int f44255b;
+    public final y91 f44256c;
 
-    public c91(w91 w91Var, v91 v91Var) {
-        super(v91Var);
-        this.S = w91Var;
+    public c91(y91 y91Var) {
+        this.f44256c = y91Var;
     }
 
     @Override
-    public final boolean s() {
-        if (this.S.f51039y > 0) {
-            return true;
-        }
-        return false;
+    public final void b(androidx.recyclerview.widget.RecyclerView r5, int r6, int r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.c91.b(androidx.recyclerview.widget.RecyclerView, int, int):void");
     }
 }

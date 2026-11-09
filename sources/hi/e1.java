@@ -12,7 +12,7 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.Cells.j9;
 import org.telegram.ui.Components.r5;
-import org.telegram.ui.fr0;
+import org.telegram.ui.hr0;
 public final class e1 implements org.telegram.ui.Cells.l1 {
     @Override
     public final void B1(org.telegram.ui.Cells.q1 q1Var, TLRPC.WebPage webPage, String str, boolean z9) {
@@ -40,7 +40,7 @@ public final class e1 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final fr0 N1() {
+    public final hr0 N1() {
         return null;
     }
 

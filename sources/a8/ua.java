@@ -16,7 +16,7 @@ import org.telegram.messenger.qp;
 import org.telegram.ui.Components.hc;
 import org.telegram.ui.Components.xn;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.gx0;
+import org.telegram.ui.kx0;
 public final class ua implements OnFailureListener, f3.p, f3.q, o2.i, xn, wi.w0 {
     public final int f678a;
     public long f679b;
@@ -157,13 +157,13 @@ public final class ua implements OnFailureListener, f3.p, f3.q, o2.i, xn, wi.w0 
         SharedPreferences sharedPreferences = qp.s1(ProfileActivity.k1(profileActivity)).f24764d7;
         StringBuilder sb2 = new StringBuilder("sound_enabled_");
         long j3 = this.f679b;
-        sb2.append(dt.v(j3, profileActivity.f41731f1, false));
+        sb2.append(dt.v(j3, profileActivity.f41738f1, false));
         boolean z9 = sharedPreferences.getBoolean(sb2.toString(), true);
         boolean z10 = !z9 ? 1 : 0;
         SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putBoolean("sound_enabled_" + dt.v(j3, profileActivity.f41731f1, false), z10).apply();
+        edit.putBoolean("sound_enabled_" + dt.v(j3, profileActivity.f41738f1, false), z10).apply();
         if (hc.a(profileActivity)) {
-            hc.S(z9 ? 1 : 0, profileActivity, profileActivity.f41869z0).j();
+            hc.S(z9 ? 1 : 0, profileActivity, profileActivity.f41876z0).j();
         }
     }
 
@@ -176,22 +176,22 @@ public final class ua implements OnFailureListener, f3.p, f3.q, o2.i, xn, wi.w0 
     public void R(int i7) {
         ProfileActivity profileActivity = (ProfileActivity) this.f680c;
         if (i7 == 0) {
-            if (profileActivity.getMessagesController().r2(this.f679b, profileActivity.f41731f1, null)) {
+            if (profileActivity.getMessagesController().r2(this.f679b, profileActivity.f41738f1, null)) {
                 p();
             }
             if (hc.a(profileActivity)) {
-                hc.z(profileActivity, 4, i7, profileActivity.f41869z0).j();
+                hc.z(profileActivity, 4, i7, profileActivity.f41876z0).j();
                 return;
             }
             return;
         }
-        RectF rectF = ProfileActivity.S6;
-        profileActivity.getNotificationsController().H(this.f679b, i7, profileActivity.f41731f1);
+        RectF rectF = ProfileActivity.V6;
+        profileActivity.getNotificationsController().H(this.f679b, i7, profileActivity.f41738f1);
         if (hc.a(profileActivity)) {
-            hc.z(profileActivity, 5, i7, profileActivity.f41869z0).j();
+            hc.z(profileActivity, 5, i7, profileActivity.f41876z0).j();
         }
-        profileActivity.v5();
-        profileActivity.F5(true);
+        profileActivity.y5();
+        profileActivity.I5(true);
     }
 
     @Override
@@ -282,9 +282,9 @@ public final class ua implements OnFailureListener, f3.p, f3.q, o2.i, xn, wi.w0 
         bundle.putLong("dialog_id", this.f679b);
         ?? f2Var = new org.telegram.ui.ActionBar.f2(bundle);
         f2Var.d = new ArrayList();
-        f2Var.f44737e = new HashSet();
+        f2Var.f45350e = new HashSet();
         ProfileActivity profileActivity = (ProfileActivity) this.f680c;
-        f2Var.f44737e = profileActivity.f41749h5;
+        f2Var.f45350e = profileActivity.f41769j5;
         profileActivity.presentFragment((org.telegram.ui.ActionBar.f2) f2Var);
     }
 
@@ -325,13 +325,13 @@ public final class ua implements OnFailureListener, f3.p, f3.q, o2.i, xn, wi.w0 
     @Override
     public void p() {
         ProfileActivity profileActivity = (ProfileActivity) this.f680c;
-        boolean z9 = !profileActivity.getMessagesController().r2(this.f679b, profileActivity.f41731f1, null);
-        profileActivity.getNotificationsController().G(this.f679b, profileActivity.f41731f1, z9);
+        boolean z9 = !profileActivity.getMessagesController().r2(this.f679b, profileActivity.f41738f1, null);
+        profileActivity.getNotificationsController().G(this.f679b, profileActivity.f41738f1, z9);
         if (profileActivity.fragmentView != null) {
             hc.A(profileActivity, z9, null).j();
         }
-        profileActivity.v5();
-        profileActivity.F5(true);
+        profileActivity.y5();
+        profileActivity.I5(true);
     }
 
     @Override
@@ -408,8 +408,8 @@ public final class ua implements OnFailureListener, f3.p, f3.q, o2.i, xn, wi.w0 
         if (j3 != 0) {
             Bundle bundle = new Bundle();
             bundle.putLong("dialog_id", j3);
-            bundle.putLong("topic_id", profileActivity.f41731f1);
-            profileActivity.presentFragment(new gx0(bundle, profileActivity.f41869z0));
+            bundle.putLong("topic_id", profileActivity.f41738f1);
+            profileActivity.presentFragment(new kx0(bundle, profileActivity.f41876z0));
         }
     }
 

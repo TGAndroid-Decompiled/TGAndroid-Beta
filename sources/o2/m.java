@@ -17,7 +17,7 @@ public final class m implements c1 {
     public m(p2.g gVar, u uVar, boolean z9) {
         this.f20774a = uVar;
         this.f20777e = gVar;
-        this.f20776c = gVar.f53124b;
+        this.f20776c = gVar.f53136b;
         b(gVar, z9);
     }
 
@@ -32,7 +32,7 @@ public final class m implements c1 {
         }
         this.d = z9;
         this.f20777e = gVar;
-        long[] jArr = gVar.f53124b;
+        long[] jArr = gVar.f53136b;
         this.f20776c = jArr;
         long j11 = this.f20779n;
         if (j11 != -9223372036854775807L) {
@@ -80,7 +80,7 @@ public final class m implements c1 {
                 this.h = i10 + 1;
             }
             if ((i7 & 4) == 0) {
-                byte[] B = this.f20775b.B(this.f20777e.f53123a[i10]);
+                byte[] B = this.f20775b.B(this.f20777e.f53135a[i10]);
                 hVar.b(B.length);
                 hVar.f17175c.put(B);
             }
@@ -88,7 +88,7 @@ public final class m implements c1 {
             hVar.setFlags(1);
             return -4;
         } else {
-            bVar.f57656c = this.f20774a;
+            bVar.f57668c = this.f20774a;
             this.f20778f = true;
             return -5;
         }

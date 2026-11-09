@@ -181,7 +181,7 @@ public final class p10 extends c1 {
                             qs.e().k(310, new Object[0]);
                             p10Var.getMediaDataController().R0(false);
                             p10Var.getMediaDataController().S0(false, null);
-                            di.y6 P1 = p10Var.getMessagesController().P1();
+                            di.z6 P1 = p10Var.getMessagesController().P1();
                             P1.R = false;
                             P1.S = null;
                             return;
@@ -212,7 +212,7 @@ public final class p10 extends c1 {
                             qs.e().k(310, new Object[0]);
                             p10Var.getMediaDataController().R0(false);
                             p10Var.getMediaDataController().S0(false, null);
-                            di.y6 P1 = p10Var.getMessagesController().P1();
+                            di.z6 P1 = p10Var.getMessagesController().P1();
                             P1.R = false;
                             P1.S = null;
                             return;

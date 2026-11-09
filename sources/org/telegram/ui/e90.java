@@ -1,12 +1,29 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-public final class e90 extends org.telegram.ui.Cells.r8 {
+import android.content.Context;
+import android.view.MotionEvent;
+import android.widget.EditText;
+public final class e90 extends EditText {
+    public final int f45341a;
+
+    public e90(Context context, int i7) {
+        super(context);
+        this.f45341a = i7;
+    }
+
     @Override
-    public final void onDraw(Canvas canvas) {
-        canvas.save();
-        canvas.clipRect(0, 0, getWidth(), getHeight());
-        super.onDraw(canvas);
-        canvas.restore();
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f45341a) {
+            case 0:
+                if (motionEvent.getAction() == 1) {
+                    setCursorVisible(true);
+                }
+                return super.onTouchEvent(motionEvent);
+            default:
+                if (motionEvent.getAction() == 1) {
+                    setCursorVisible(true);
+                }
+                return super.onTouchEvent(motionEvent);
+        }
     }
 }

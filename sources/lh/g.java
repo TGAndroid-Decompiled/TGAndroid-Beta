@@ -9,18 +9,18 @@ import jh.k;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.id;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.g1;
+import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.q4;
 import org.telegram.ui.ActionBar.z0;
 import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
-import org.telegram.ui.Components.uk0;
+import org.telegram.ui.Components.vk0;
 import org.telegram.ui.af;
-import org.telegram.ui.an;
+import org.telegram.ui.cn;
 import org.telegram.ui.e0;
 import org.telegram.ui.fe;
-import org.telegram.ui.lu0;
-import org.telegram.ui.ol;
+import org.telegram.ui.nu0;
+import org.telegram.ui.ql;
 public final class g implements View.OnLongClickListener {
     public final int f18379a;
     public final int f18380b;
@@ -37,7 +37,7 @@ public final class g implements View.OnLongClickListener {
         af afVar;
         boolean z9;
         String M0;
-        uk0 uk0Var;
+        vk0 vk0Var;
         int i7 = this.f18379a;
         int i10 = this.f18380b;
         FrameLayout frameLayout = this.f18381c;
@@ -45,38 +45,38 @@ public final class g implements View.OnLongClickListener {
             case 0:
                 b bVar = ((h) frameLayout).f18388n;
                 if (bVar != null) {
-                    an anVar = ((fe) bVar).f45591b;
+                    cn cnVar = ((fe) bVar).f45692b;
                     if (i10 == 2) {
-                        afVar = new af(anVar, 11);
+                        afVar = new af(cnVar, 10);
                         z9 = true;
                     } else if (i10 == 3) {
-                        afVar = new af(anVar, 12);
+                        afVar = new af(cnVar, 11);
                         z9 = false;
                     } else if (i10 == 4) {
-                        afVar = new af(anVar, 13);
+                        afVar = new af(cnVar, 12);
                         z9 = true;
                     }
-                    Activity parentActivity = anVar.getParentActivity();
-                    q4 parentLayout = anVar.getParentLayout();
-                    ol olVar = anVar.l1;
-                    f6 resourceProvider = anVar.getResourceProvider();
+                    Activity parentActivity = cnVar.getParentActivity();
+                    q4 parentLayout = cnVar.getParentLayout();
+                    ql qlVar = cnVar.l1;
+                    g6 resourceProvider = cnVar.getResourceProvider();
                     ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(parentActivity, null);
                     actionBarPopupWindow$ActionBarPopupWindowLayout.setMinimumWidth(g0.L(200.0f));
                     z0 z0Var = new z0(0, parentActivity, resourceProvider, true, true);
                     z0Var.setMinimumWidth(g0.L(200.0f));
                     if (!z9) {
-                        M0 = id.M0(2131746373, null);
+                        M0 = id.M0(2131746372, null);
                     } else if (z9) {
-                        M0 = id.M0(2131746375, null);
-                    } else {
                         M0 = id.M0(2131746374, null);
+                    } else {
+                        M0 = id.M0(2131746373, null);
                     }
                     z0Var.j(M0, 2131232356, null);
-                    z0Var.setOnClickListener(new lu0(1, afVar));
+                    z0Var.setOnClickListener(new nu0(1, afVar));
                     actionBarPopupWindow$ActionBarPopupWindowLayout.addView(z0Var);
                     g1 g1Var = new g1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-                    g1Var.f27485e = true;
-                    g1Var.f27484c = 220;
+                    g1Var.f27487e = true;
+                    g1Var.f27486c = 220;
                     g1Var.setOutsideTouchable(true);
                     g1Var.setClippingEnabled(true);
                     g1Var.setAnimationStyle(2131755192);
@@ -86,7 +86,7 @@ public final class g implements View.OnLongClickListener {
                     g1Var.setSoftInputMode(0);
                     g1Var.getContentView().setFocusableInTouchMode(true);
                     PointF pointF = new PointF();
-                    k.b(view, olVar, pointF);
+                    k.b(view, qlVar, pointF);
                     float width = ((pointF.x + view.getWidth()) - actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredWidth()) + g0.L(8.0f);
                     float measuredHeight = pointF.y - actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredHeight();
                     if (g0.Q1()) {
@@ -94,10 +94,10 @@ public final class g implements View.OnLongClickListener {
                         width += view2.getX() + view2.getPaddingLeft();
                         measuredHeight += view2.getY() + view2.getPaddingTop();
                     }
-                    g1Var.showAtLocation(olVar, 51, (int) width, (int) measuredHeight);
-                    anVar.f43787e9 = g1Var;
-                    anVar.u8(anVar.f44019x1, false);
-                    anVar.f43787e9.setOnDismissListener(new e0(anVar, 1));
+                    g1Var.showAtLocation(qlVar, 51, (int) width, (int) measuredHeight);
+                    cnVar.f44442e9 = g1Var;
+                    cnVar.v8(cnVar.f44676x1, false);
+                    cnVar.f44442e9.setOnDismissListener(new e0(cnVar, 1));
                     try {
                         view.performHapticFeedback(0, 2);
                     } catch (Exception unused) {
@@ -107,7 +107,7 @@ public final class g implements View.OnLongClickListener {
                 return false;
             default:
                 ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = (ScrollSlidingTextTabStrip) frameLayout;
-                if (!scrollSlidingTextTabStrip.f31539n0 && (uk0Var = scrollSlidingTextTabStrip.f31523b) != null && uk0Var.m1(i10, view)) {
+                if (!scrollSlidingTextTabStrip.f31544n0 && (vk0Var = scrollSlidingTextTabStrip.f31528b) != null && vk0Var.m1(i10, view)) {
                     return true;
                 }
                 return false;

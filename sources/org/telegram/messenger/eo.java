@@ -47,13 +47,13 @@ public final class eo implements RequestDelegate {
             case 0:
                 final qp qpVar = (qp) c1Var;
                 TLRPC.TL_theme tL_theme = (TLRPC.TL_theme) obj4;
-                final org.telegram.ui.ActionBar.j6 j6Var = (org.telegram.ui.ActionBar.j6) obj3;
+                final org.telegram.ui.ActionBar.k6 k6Var = (org.telegram.ui.ActionBar.k6) obj3;
                 TLRPC.TL_inputThemeSettings tL_inputThemeSettings = (TLRPC.TL_inputThemeSettings) obj2;
-                final org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) obj;
+                final org.telegram.ui.ActionBar.i6 i6Var = (org.telegram.ui.ActionBar.i6) obj;
                 if (tL_theme != null) {
                     n10 = tL_theme.title;
                 } else {
-                    n10 = j6Var.n();
+                    n10 = k6Var.n();
                 }
                 int lastIndexOf = n10.lastIndexOf(".attheme");
                 if (lastIndexOf > 0) {
@@ -87,39 +87,39 @@ public final class eo implements RequestDelegate {
                                 switch (r4) {
                                     case 0:
                                         final qp qpVar2 = qpVar;
-                                        final org.telegram.ui.ActionBar.j6 j6Var2 = j6Var;
-                                        final org.telegram.ui.ActionBar.h6 h6Var2 = h6Var;
+                                        final org.telegram.ui.ActionBar.k6 k6Var2 = k6Var;
+                                        final org.telegram.ui.ActionBar.i6 i6Var2 = i6Var;
                                         g0.h3(new Runnable() {
                                             @Override
                                             public final void run() {
                                                 boolean z9;
                                                 int i12 = r5;
-                                                org.telegram.ui.ActionBar.h6 h6Var3 = h6Var2;
-                                                org.telegram.ui.ActionBar.j6 j6Var3 = j6Var2;
+                                                org.telegram.ui.ActionBar.i6 i6Var3 = i6Var2;
+                                                org.telegram.ui.ActionBar.k6 k6Var3 = k6Var2;
                                                 TLObject tLObject3 = tLObject2;
                                                 qp qpVar3 = qpVar2;
                                                 switch (i12) {
                                                     case 0:
                                                         if (tLObject3 instanceof TLRPC.TL_theme) {
-                                                            org.telegram.ui.ActionBar.k6.I1(j6Var3, h6Var3, (TLRPC.TL_theme) tLObject3, qpVar3.currentAccount, false);
-                                                            qpVar3.getNotificationCenter().k(182, j6Var3, h6Var3);
+                                                            org.telegram.ui.ActionBar.l6.I1(k6Var3, i6Var3, (TLRPC.TL_theme) tLObject3, qpVar3.currentAccount, false);
+                                                            qpVar3.getNotificationCenter().k(182, k6Var3, i6Var3);
                                                             return;
                                                         }
-                                                        qpVar3.getNotificationCenter().k(183, j6Var3, h6Var3);
+                                                        qpVar3.getNotificationCenter().k(183, k6Var3, i6Var3);
                                                         return;
                                                     default:
                                                         if (tLObject3 instanceof TLRPC.TL_theme) {
-                                                            org.telegram.ui.ActionBar.k6.I1(j6Var3, h6Var3, (TLRPC.TL_theme) tLObject3, qpVar3.currentAccount, false);
-                                                            if (j6Var3 == org.telegram.ui.ActionBar.k6.J) {
+                                                            org.telegram.ui.ActionBar.l6.I1(k6Var3, i6Var3, (TLRPC.TL_theme) tLObject3, qpVar3.currentAccount, false);
+                                                            if (k6Var3 == org.telegram.ui.ActionBar.l6.J) {
                                                                 z9 = true;
                                                             } else {
                                                                 z9 = false;
                                                             }
-                                                            qpVar3.k2(j6Var3, h6Var3, z9);
-                                                            qpVar3.getNotificationCenter().k(182, j6Var3, h6Var3);
+                                                            qpVar3.k2(k6Var3, i6Var3, z9);
+                                                            qpVar3.getNotificationCenter().k(182, k6Var3, i6Var3);
                                                             return;
                                                         }
-                                                        qpVar3.getNotificationCenter().k(183, j6Var3, h6Var3);
+                                                        qpVar3.getNotificationCenter().k(183, k6Var3, i6Var3);
                                                         return;
                                                 }
                                             }
@@ -127,39 +127,39 @@ public final class eo implements RequestDelegate {
                                         return;
                                     default:
                                         final qp qpVar3 = qpVar;
-                                        final org.telegram.ui.ActionBar.j6 j6Var3 = j6Var;
-                                        final org.telegram.ui.ActionBar.h6 h6Var3 = h6Var;
+                                        final org.telegram.ui.ActionBar.k6 k6Var3 = k6Var;
+                                        final org.telegram.ui.ActionBar.i6 i6Var3 = i6Var;
                                         g0.h3(new Runnable() {
                                             @Override
                                             public final void run() {
                                                 boolean z9;
                                                 int i12 = r5;
-                                                org.telegram.ui.ActionBar.h6 h6Var32 = h6Var3;
-                                                org.telegram.ui.ActionBar.j6 j6Var32 = j6Var3;
+                                                org.telegram.ui.ActionBar.i6 i6Var32 = i6Var3;
+                                                org.telegram.ui.ActionBar.k6 k6Var32 = k6Var3;
                                                 TLObject tLObject3 = tLObject2;
                                                 qp qpVar32 = qpVar3;
                                                 switch (i12) {
                                                     case 0:
                                                         if (tLObject3 instanceof TLRPC.TL_theme) {
-                                                            org.telegram.ui.ActionBar.k6.I1(j6Var32, h6Var32, (TLRPC.TL_theme) tLObject3, qpVar32.currentAccount, false);
-                                                            qpVar32.getNotificationCenter().k(182, j6Var32, h6Var32);
+                                                            org.telegram.ui.ActionBar.l6.I1(k6Var32, i6Var32, (TLRPC.TL_theme) tLObject3, qpVar32.currentAccount, false);
+                                                            qpVar32.getNotificationCenter().k(182, k6Var32, i6Var32);
                                                             return;
                                                         }
-                                                        qpVar32.getNotificationCenter().k(183, j6Var32, h6Var32);
+                                                        qpVar32.getNotificationCenter().k(183, k6Var32, i6Var32);
                                                         return;
                                                     default:
                                                         if (tLObject3 instanceof TLRPC.TL_theme) {
-                                                            org.telegram.ui.ActionBar.k6.I1(j6Var32, h6Var32, (TLRPC.TL_theme) tLObject3, qpVar32.currentAccount, false);
-                                                            if (j6Var32 == org.telegram.ui.ActionBar.k6.J) {
+                                                            org.telegram.ui.ActionBar.l6.I1(k6Var32, i6Var32, (TLRPC.TL_theme) tLObject3, qpVar32.currentAccount, false);
+                                                            if (k6Var32 == org.telegram.ui.ActionBar.l6.J) {
                                                                 z9 = true;
                                                             } else {
                                                                 z9 = false;
                                                             }
-                                                            qpVar32.k2(j6Var32, h6Var32, z9);
-                                                            qpVar32.getNotificationCenter().k(182, j6Var32, h6Var32);
+                                                            qpVar32.k2(k6Var32, i6Var32, z9);
+                                                            qpVar32.getNotificationCenter().k(182, k6Var32, i6Var32);
                                                             return;
                                                         }
-                                                        qpVar32.getNotificationCenter().k(183, j6Var32, h6Var32);
+                                                        qpVar32.getNotificationCenter().k(183, k6Var32, i6Var32);
                                                         return;
                                                 }
                                             }
@@ -188,39 +188,39 @@ public final class eo implements RequestDelegate {
                             switch (r4) {
                                 case 0:
                                     final qp qpVar2 = qpVar;
-                                    final org.telegram.ui.ActionBar.j6 j6Var2 = j6Var;
-                                    final org.telegram.ui.ActionBar.h6 h6Var2 = h6Var;
+                                    final org.telegram.ui.ActionBar.k6 k6Var2 = k6Var;
+                                    final org.telegram.ui.ActionBar.i6 i6Var2 = i6Var;
                                     g0.h3(new Runnable() {
                                         @Override
                                         public final void run() {
                                             boolean z9;
                                             int i12 = r5;
-                                            org.telegram.ui.ActionBar.h6 h6Var32 = h6Var2;
-                                            org.telegram.ui.ActionBar.j6 j6Var32 = j6Var2;
+                                            org.telegram.ui.ActionBar.i6 i6Var32 = i6Var2;
+                                            org.telegram.ui.ActionBar.k6 k6Var32 = k6Var2;
                                             TLObject tLObject3 = tLObject2;
                                             qp qpVar32 = qpVar2;
                                             switch (i12) {
                                                 case 0:
                                                     if (tLObject3 instanceof TLRPC.TL_theme) {
-                                                        org.telegram.ui.ActionBar.k6.I1(j6Var32, h6Var32, (TLRPC.TL_theme) tLObject3, qpVar32.currentAccount, false);
-                                                        qpVar32.getNotificationCenter().k(182, j6Var32, h6Var32);
+                                                        org.telegram.ui.ActionBar.l6.I1(k6Var32, i6Var32, (TLRPC.TL_theme) tLObject3, qpVar32.currentAccount, false);
+                                                        qpVar32.getNotificationCenter().k(182, k6Var32, i6Var32);
                                                         return;
                                                     }
-                                                    qpVar32.getNotificationCenter().k(183, j6Var32, h6Var32);
+                                                    qpVar32.getNotificationCenter().k(183, k6Var32, i6Var32);
                                                     return;
                                                 default:
                                                     if (tLObject3 instanceof TLRPC.TL_theme) {
-                                                        org.telegram.ui.ActionBar.k6.I1(j6Var32, h6Var32, (TLRPC.TL_theme) tLObject3, qpVar32.currentAccount, false);
-                                                        if (j6Var32 == org.telegram.ui.ActionBar.k6.J) {
+                                                        org.telegram.ui.ActionBar.l6.I1(k6Var32, i6Var32, (TLRPC.TL_theme) tLObject3, qpVar32.currentAccount, false);
+                                                        if (k6Var32 == org.telegram.ui.ActionBar.l6.J) {
                                                             z9 = true;
                                                         } else {
                                                             z9 = false;
                                                         }
-                                                        qpVar32.k2(j6Var32, h6Var32, z9);
-                                                        qpVar32.getNotificationCenter().k(182, j6Var32, h6Var32);
+                                                        qpVar32.k2(k6Var32, i6Var32, z9);
+                                                        qpVar32.getNotificationCenter().k(182, k6Var32, i6Var32);
                                                         return;
                                                     }
-                                                    qpVar32.getNotificationCenter().k(183, j6Var32, h6Var32);
+                                                    qpVar32.getNotificationCenter().k(183, k6Var32, i6Var32);
                                                     return;
                                             }
                                         }
@@ -228,39 +228,39 @@ public final class eo implements RequestDelegate {
                                     return;
                                 default:
                                     final qp qpVar3 = qpVar;
-                                    final org.telegram.ui.ActionBar.j6 j6Var3 = j6Var;
-                                    final org.telegram.ui.ActionBar.h6 h6Var3 = h6Var;
+                                    final org.telegram.ui.ActionBar.k6 k6Var3 = k6Var;
+                                    final org.telegram.ui.ActionBar.i6 i6Var3 = i6Var;
                                     g0.h3(new Runnable() {
                                         @Override
                                         public final void run() {
                                             boolean z9;
                                             int i12 = r5;
-                                            org.telegram.ui.ActionBar.h6 h6Var32 = h6Var3;
-                                            org.telegram.ui.ActionBar.j6 j6Var32 = j6Var3;
+                                            org.telegram.ui.ActionBar.i6 i6Var32 = i6Var3;
+                                            org.telegram.ui.ActionBar.k6 k6Var32 = k6Var3;
                                             TLObject tLObject3 = tLObject2;
                                             qp qpVar32 = qpVar3;
                                             switch (i12) {
                                                 case 0:
                                                     if (tLObject3 instanceof TLRPC.TL_theme) {
-                                                        org.telegram.ui.ActionBar.k6.I1(j6Var32, h6Var32, (TLRPC.TL_theme) tLObject3, qpVar32.currentAccount, false);
-                                                        qpVar32.getNotificationCenter().k(182, j6Var32, h6Var32);
+                                                        org.telegram.ui.ActionBar.l6.I1(k6Var32, i6Var32, (TLRPC.TL_theme) tLObject3, qpVar32.currentAccount, false);
+                                                        qpVar32.getNotificationCenter().k(182, k6Var32, i6Var32);
                                                         return;
                                                     }
-                                                    qpVar32.getNotificationCenter().k(183, j6Var32, h6Var32);
+                                                    qpVar32.getNotificationCenter().k(183, k6Var32, i6Var32);
                                                     return;
                                                 default:
                                                     if (tLObject3 instanceof TLRPC.TL_theme) {
-                                                        org.telegram.ui.ActionBar.k6.I1(j6Var32, h6Var32, (TLRPC.TL_theme) tLObject3, qpVar32.currentAccount, false);
-                                                        if (j6Var32 == org.telegram.ui.ActionBar.k6.J) {
+                                                        org.telegram.ui.ActionBar.l6.I1(k6Var32, i6Var32, (TLRPC.TL_theme) tLObject3, qpVar32.currentAccount, false);
+                                                        if (k6Var32 == org.telegram.ui.ActionBar.l6.J) {
                                                             z9 = true;
                                                         } else {
                                                             z9 = false;
                                                         }
-                                                        qpVar32.k2(j6Var32, h6Var32, z9);
-                                                        qpVar32.getNotificationCenter().k(182, j6Var32, h6Var32);
+                                                        qpVar32.k2(k6Var32, i6Var32, z9);
+                                                        qpVar32.getNotificationCenter().k(182, k6Var32, i6Var32);
                                                         return;
                                                     }
-                                                    qpVar32.getNotificationCenter().k(183, j6Var32, h6Var32);
+                                                    qpVar32.getNotificationCenter().k(183, k6Var32, i6Var32);
                                                     return;
                                             }
                                         }
@@ -271,7 +271,7 @@ public final class eo implements RequestDelegate {
                     });
                     return;
                 }
-                g0.h3(new lg(qpVar, j6Var, h6Var, 6));
+                g0.h3(new lg(qpVar, k6Var, i6Var, 6));
                 return;
             case 1:
                 qp qpVar2 = (qp) c1Var;
@@ -410,7 +410,7 @@ public final class eo implements RequestDelegate {
                                     dwVar2.getMessagesStorage().j1(arrayList3, false, true, false, 0, false, 0, 0L);
                                 }
                             }
-                            i10 = ijVar.p1();
+                            i10 = ijVar.o1();
                         }
                     }
                     dwVar2.getMessagesStorage().f26719a.c(new dg(dwVar2, message, messages_sentencryptedmessage, i10, 17));

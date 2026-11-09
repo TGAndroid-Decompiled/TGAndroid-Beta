@@ -73,7 +73,7 @@ public final class i7 {
     public final int f23072b1;
     public boolean f23073c;
     public final long f23074c0;
-    public di.s6 f23075c1;
+    public di.t6 f23075c1;
     public long d;
     public long f23076d0;
     public long f23077d1;
@@ -743,7 +743,7 @@ public final class i7 {
         Object obj = this.f23105p0;
         if (obj instanceof ij) {
             ij ijVar = (ij) obj;
-            if (ijVar.f1() < 0 && (message = ijVar.f23262k) != null && (messageMedia = message.media) != null && (webPage = messageMedia.webpage) != null) {
+            if (ijVar.e1() < 0 && (message = ijVar.f23262k) != null && (messageMedia = message.media) != null && (webPage = messageMedia.webpage) != null) {
                 this.f23105p0 = webPage;
                 this.f23092j = false;
             }

@@ -8,11 +8,11 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.c61;
+import org.telegram.ui.d61;
 public final class w extends HorizontalScrollView {
     public ab.g f1660a;
     public j0 f1661b;
-    public final c61 f1662c;
+    public final d61 f1662c;
     public final Paint d;
     public int f1663e;
     public float f1664f;
@@ -29,24 +29,24 @@ public final class w extends HorizontalScrollView {
         setOverScrollMode(2);
         setFillViewport(true);
         setWillNotDraw(false);
-        c61 c61Var = new c61(1, context, this);
-        this.f1662c = c61Var;
-        c61Var.setOrientation(0);
-        c61Var.setGravity(16);
-        c61Var.setPadding(org.telegram.messenger.g0.L(3.0f), 0, org.telegram.messenger.g0.L(3.0f), 0);
-        addView(c61Var, new FrameLayout.LayoutParams(-2, -1));
+        d61 d61Var = new d61(1, context, this);
+        this.f1662c = d61Var;
+        d61Var.setOrientation(0);
+        d61Var.setGravity(16);
+        d61Var.setPadding(org.telegram.messenger.g0.L(3.0f), 0, org.telegram.messenger.g0.L(3.0f), 0);
+        addView(d61Var, new FrameLayout.LayoutParams(-2, -1));
         paint.setColor(1560281087);
     }
 
     public final void a(int i7, boolean z9) {
         if (i7 != this.f1663e && i7 >= 0) {
-            c61 c61Var = this.f1662c;
-            if (i7 < c61Var.getChildCount()) {
+            d61 d61Var = this.f1662c;
+            if (i7 < d61Var.getChildCount()) {
                 this.f1663e = i7;
                 if (!z9) {
                     this.f1664f = Float.NaN;
                 }
-                View childAt = c61Var.getChildAt(i7);
+                View childAt = d61Var.getChildAt(i7);
                 int left = childAt.getLeft() - org.telegram.messenger.g0.L(30.0f);
                 int L = org.telegram.messenger.g0.L(30.0f) + childAt.getRight();
                 if (left < getScrollX()) {
@@ -64,7 +64,7 @@ public final class w extends HorizontalScrollView {
                         }
                     }
                 }
-                c61Var.invalidate();
+                d61Var.invalidate();
             }
         }
     }
@@ -76,8 +76,8 @@ public final class w extends HorizontalScrollView {
 
     public void setSections(ArrayList<t> arrayList) {
         TLRPC.Document document;
-        c61 c61Var = this.f1662c;
-        c61Var.removeAllViews();
+        d61 d61Var = this.f1662c;
+        d61Var.removeAllViews();
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
             t tVar = arrayList.get(i7);
             Context context = getContext();
@@ -90,7 +90,7 @@ public final class w extends HorizontalScrollView {
             u uVar = new u(this.h, context, i10, document);
             uVar.setOnClickListener(new v(this, i7, 0));
             uVar.setContentDescription(tVar.f1642b);
-            c61Var.addView(uVar, new LinearLayout.LayoutParams(org.telegram.messenger.g0.L(34.0f), org.telegram.messenger.g0.L(30.0f)));
+            d61Var.addView(uVar, new LinearLayout.LayoutParams(org.telegram.messenger.g0.L(34.0f), org.telegram.messenger.g0.L(30.0f)));
         }
         this.f1663e = -1;
         this.f1664f = Float.NaN;

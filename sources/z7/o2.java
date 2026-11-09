@@ -1,6 +1,6 @@
 package z7;
 public final class o2 implements na.d {
-    public static final o2 f59911a = new Object();
+    public static final o2 f59920a = new Object();
 
     static {
         rf.b.q(rf.b.l(d.class, new a(1)));

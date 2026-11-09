@@ -36,7 +36,7 @@ public final class gi implements Runnable {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.gi.run():void");
     }
 
-    public gi(LaunchActivity launchActivity, String str, TLRPC.TL_chatAdminRights tL_chatAdminRights, boolean z9, String str2, int i7, TLRPC.Chat chat, org.telegram.ui.ww wwVar, TLRPC.User user, long j3, String str3) {
+    public gi(LaunchActivity launchActivity, String str, TLRPC.TL_chatAdminRights tL_chatAdminRights, boolean z9, String str2, int i7, TLRPC.Chat chat, org.telegram.ui.yw ywVar, TLRPC.User user, long j3, String str3) {
         this.f22670e = launchActivity;
         this.f22671f = str;
         this.h = tL_chatAdminRights;
@@ -44,7 +44,7 @@ public final class gi implements Runnable {
         this.f22672n = str2;
         this.f22669c = i7;
         this.f22673r = chat;
-        this.f22674s = wwVar;
+        this.f22674s = ywVar;
         this.f22675w = user;
         this.d = j3;
         this.f22676x = str3;

@@ -34,9 +34,9 @@ public final class h2 implements x10 {
                 ArrayList arrayList = (ArrayList) obj;
                 v10 v10Var = (v10) obj2;
                 Runnable runnable = (Runnable) obj3;
-                zh.j3 j3Var = k7Var.O2;
-                if (j3Var != null) {
-                    j3Var.b();
+                zh.k3 k3Var = k7Var.O2;
+                if (k3Var != null) {
+                    k3Var.b();
                     k7Var.O2 = null;
                 }
                 TL_stars.craftStarGift craftstargift = new TL_stars.craftStarGift();
@@ -49,7 +49,7 @@ public final class h2 implements x10 {
                     tL_inputSavedStarGiftSlug.slug = ((TL_stars.StarGift) obj4).slug;
                     craftstargift.stargift.add(tL_inputSavedStarGiftSlug);
                 }
-                ConnectionsManager.getInstance(k7Var.f28616a).sendRequestTyped(craftstargift, new d3.b(1), new q2(k7Var, v10Var, arrayList, runnable, 0));
+                ConnectionsManager.getInstance(k7Var.f28621a).sendRequestTyped(craftstargift, new d3.b(1), new q2(k7Var, v10Var, arrayList, runnable, 0));
                 return;
             default:
                 fi.va vaVar = (fi.va) this.f3987b;
@@ -71,7 +71,7 @@ public final class h2 implements x10 {
                                     Object obj5 = a10.get(i11);
                                     i11++;
                                     tVar = (fi.t) obj5;
-                                    if (tVar.f12828e.size() >= size2) {
+                                    if (tVar.f12827e.size() >= size2) {
                                     }
                                 } else {
                                     tVar = null;
@@ -166,15 +166,15 @@ public final class h2 implements x10 {
                         vaVar.l0(true);
                         vaVar.e(false);
                         vaVar.J(1, true);
-                        fi.o9 o9Var = vaVar.f12947d1;
-                        if (o9Var != null) {
-                            di.s7 s7Var = o9Var.h;
-                            if (!o9Var.I && !o9Var.M && (i7 = qp.e1().getInt("multistorieshint", 0)) < 3) {
+                        fi.n9 n9Var = vaVar.f12947d1;
+                        if (n9Var != null) {
+                            di.f8 f8Var = n9Var.h;
+                            if (!n9Var.I && !n9Var.M && (i7 = qp.e1().getInt("multistorieshint", 0)) < 3) {
                                 qp.e1().edit().putInt("multistorieshint", i7 + 1).apply();
-                                org.telegram.messenger.g0.r(s7Var);
-                                o9Var.I = true;
-                                o9Var.invalidate();
-                                org.telegram.messenger.g0.i3(s7Var, 5500L);
+                                org.telegram.messenger.g0.r(f8Var);
+                                n9Var.I = true;
+                                n9Var.invalidate();
+                                org.telegram.messenger.g0.i3(f8Var, 5500L);
                             }
                         }
                         fi.i3 i3Var = vaVar.M0;

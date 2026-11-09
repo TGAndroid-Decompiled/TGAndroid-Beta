@@ -10,7 +10,7 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ww;
+import org.telegram.ui.yw;
 public final class g4 implements RequestDelegate {
     public final int f3933a = 0;
     public final long f3934b;
@@ -52,7 +52,7 @@ public final class g4 implements RequestDelegate {
                 }
                 return;
             default:
-                org.telegram.messenger.g0.h3(new m4((ww) this.f3935c, (org.telegram.ui.ActionBar.u1) this.f3936e, tLObject, (TLRPC.User) this.d, (TLRPC.Chat) this.f3937f, this.f3934b, tL_error, (TLRPC.TL_messages_checkHistoryImportPeer) this.f3938g));
+                org.telegram.messenger.g0.h3(new m4((yw) this.f3935c, (org.telegram.ui.ActionBar.u1) this.f3936e, tLObject, (TLRPC.User) this.d, (TLRPC.Chat) this.f3937f, this.f3934b, tL_error, (TLRPC.TL_messages_checkHistoryImportPeer) this.f3938g));
                 return;
         }
     }
@@ -66,8 +66,8 @@ public final class g4 implements RequestDelegate {
         this.f3938g = bpVar;
     }
 
-    public g4(ww wwVar, org.telegram.ui.ActionBar.u1 u1Var, TLRPC.User user, TLRPC.Chat chat, long j3, TLRPC.TL_messages_checkHistoryImportPeer tL_messages_checkHistoryImportPeer) {
-        this.f3935c = wwVar;
+    public g4(yw ywVar, org.telegram.ui.ActionBar.u1 u1Var, TLRPC.User user, TLRPC.Chat chat, long j3, TLRPC.TL_messages_checkHistoryImportPeer tL_messages_checkHistoryImportPeer) {
+        this.f3935c = ywVar;
         this.f3936e = u1Var;
         this.d = user;
         this.f3937f = chat;

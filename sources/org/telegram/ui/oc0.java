@@ -1,25 +1,19 @@
 package org.telegram.ui;
+public final class oc0 implements Runnable {
+    public final int f48429a;
+    public final Object f48430b;
+    public final Object f48431c;
+    public final Object d;
 
-import android.view.View;
-public final class oc0 implements View.OnAttachStateChangeListener {
-    public boolean f48372b;
-    public final pc0 d;
-    public long f48371a = System.currentTimeMillis();
-    public final nc0 f48373c = new nc0(this, 0);
-
-    public oc0(pc0 pc0Var) {
-        this.d = pc0Var;
+    public oc0(Object obj, Object obj2, Object obj3, int i7) {
+        this.f48429a = i7;
+        this.f48430b = obj;
+        this.f48431c = obj2;
+        this.d = obj3;
     }
 
     @Override
-    public final void onViewAttachedToWindow(View view) {
-        this.f48372b = true;
-        view.post(this.f48373c);
-    }
-
-    @Override
-    public final void onViewDetachedFromWindow(View view) {
-        this.f48372b = false;
-        view.removeCallbacks(this.f48373c);
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.oc0.run():void");
     }
 }

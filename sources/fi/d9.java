@@ -19,11 +19,11 @@ import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.g51;
-import org.telegram.ui.Components.q71;
+import org.telegram.ui.Components.h51;
 import org.telegram.ui.Components.r71;
+import org.telegram.ui.Components.s71;
 import org.telegram.ui.Components.sy;
-public final class d9 implements CameraView.CameraViewDelegate, r0.m, org.telegram.ui.ActionBar.r1, q71, g51, y7, c7 {
+public final class d9 implements CameraView.CameraViewDelegate, r0.m, org.telegram.ui.ActionBar.r1, r71, h51, y7, c7 {
     public final int f11796a;
     public final va f11797b;
 
@@ -42,7 +42,7 @@ public final class d9 implements CameraView.CameraViewDelegate, r0.m, org.telegr
         vaVar.f12935a0 = I0.f15122c;
         vaVar.f12939b0 = I0.d;
         vaVar.f12975n.requestLayout();
-        return r0.k1.f54201b;
+        return r0.k1.f54213b;
     }
 
     @Override
@@ -144,7 +144,7 @@ public final class d9 implements CameraView.CameraViewDelegate, r0.m, org.telegr
                     e7Var2.C0 = vaVar5.f12944c1.getText();
                     vaVar5.K1 = null;
                     vaVar5.V(e7Var2, true);
-                    z0 z0Var = qp.s1(i10).P1().f9982w;
+                    z0 z0Var = qp.s1(i10).P1().f10011w;
                     if (e7Var2.f11882c) {
                         z0Var.d(e7Var2);
                     } else {
@@ -166,7 +166,7 @@ public final class d9 implements CameraView.CameraViewDelegate, r0.m, org.telegr
                 va vaVar6 = this.f11797b;
                 e7 e7Var3 = vaVar6.K1;
                 if (e7Var3 != null && !e7Var3.f11892g && ((!e7Var3.f11904n || e7Var3.f11918u) && e7Var3.f11882c)) {
-                    qp.s1(vaVar6.f12942c).P1().f9982w.b(vaVar6.K1);
+                    qp.s1(vaVar6.f12942c).P1().f10011w.b(vaVar6.K1);
                     vaVar6.K1 = null;
                 }
                 e7 e7Var4 = vaVar6.K1;
@@ -181,7 +181,7 @@ public final class d9 implements CameraView.CameraViewDelegate, r0.m, org.telegr
     }
 
     @Override
-    public void k(final q8 q8Var, final boolean z9, final boolean z10, boolean z11, final boolean z12, final TLRPC.InputPeer inputPeer, final int i7, f2.h hVar, final di.s7 s7Var) {
+    public void i(final q8 q8Var, final boolean z9, final boolean z10, boolean z11, final boolean z12, final TLRPC.InputPeer inputPeer, final int i7, f2.h hVar, final di.f8 f8Var) {
         switch (this.f11796a) {
             case 9:
                 ArrayList arrayList = q8Var.f12679b;
@@ -190,7 +190,7 @@ public final class d9 implements CameraView.CameraViewDelegate, r0.m, org.telegr
                     vaVar.X0.x(5, true);
                     vaVar.K1.E0 = q8Var;
                     int i10 = vaVar.f12942c;
-                    int i11 = t8.f12863a;
+                    int i11 = t8.f12862a;
                     SerializedData serializedData = new SerializedData(true);
                     t8.c(serializedData, q8Var);
                     SerializedData serializedData2 = new SerializedData(serializedData.length());
@@ -241,9 +241,9 @@ public final class d9 implements CameraView.CameraViewDelegate, r0.m, org.telegr
                         final va vaVar3 = va.this;
                         int i13 = vaVar3.f12942c;
                         boolean booleanValue = ((Boolean) obj2).booleanValue();
-                        final di.s7 s7Var2 = s7Var;
+                        final di.f8 f8Var2 = f8Var;
                         if (!booleanValue) {
-                            s7Var2.run();
+                            f8Var2.run();
                             return;
                         }
                         y9 y9Var = vaVar3.B0;
@@ -278,7 +278,7 @@ public final class d9 implements CameraView.CameraViewDelegate, r0.m, org.telegr
                         ConnectionsManager.getInstance(i13).sendRequest(tL_startLive, new RequestDelegate() {
                             @Override
                             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                org.telegram.messenger.g0.h3(new bi.v8(va.this, tLObject, tL_startLive, z15, j3, z14, tL_error, s7Var2));
+                                org.telegram.messenger.g0.h3(new bi.v8(va.this, tLObject, tL_startLive, z15, j3, z14, tL_error, f8Var2));
                             }
                         });
                     }
@@ -299,10 +299,10 @@ public final class d9 implements CameraView.CameraViewDelegate, r0.m, org.telegr
             str = B;
         }
         vaVar.d0(str);
-        r71 r71Var = vaVar.V0;
-        if (r71Var != null) {
+        s71 s71Var = vaVar.V0;
+        if (s71Var != null) {
             vaVar.T1 = 0.0f;
-            r71Var.b(false, 0.0f);
+            s71Var.b(false, 0.0f);
         }
         vaVar.l0(true);
     }

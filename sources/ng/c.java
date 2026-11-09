@@ -13,9 +13,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.id;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.s6;
 public class c extends FrameLayout {
     public final TextView f20544a;
     public final TextView f20545b;
@@ -25,13 +25,13 @@ public class c extends FrameLayout {
     public boolean f20548f;
     public final Drawable h;
     public final int f20549n;
-    public final f6 f20550r;
+    public final g6 f20550r;
 
-    public c(Context context, f6 f6Var) {
+    public c(Context context, g6 g6Var) {
         super(context);
         this.f20547e = true;
         new SimpleDateFormat("d MMM yyyy");
-        this.f20550r = f6Var;
+        this.f20550r = g6Var;
         TextPaint textPaint = new TextPaint();
         textPaint.setTextSize(14.0f);
         textPaint.setTypeface(g0.o());
@@ -61,27 +61,27 @@ public class c extends FrameLayout {
         addView(textView4, ha.d(-2, -2.0f, 8388629, 16.0f, 0.0f, 16.0f, 0.0f));
         textView4.setVisibility(8);
         textView2.setVisibility(8);
-        textView2.setText(id.M0(2131742790, null));
+        textView2.setText(id.M0(2131742787, null));
         Drawable drawable = getContext().getDrawable(2131232440);
         this.h = drawable;
         textView2.setCompoundDrawablesWithIntrinsicBounds(drawable, (Drawable) null, (Drawable) null, (Drawable) null);
         textView2.setCompoundDrawablePadding(g0.L(4.0f));
         textView2.setPadding(g0.L(8.0f), g0.L(4.0f), g0.L(8.0f), g0.L(4.0f));
-        textView2.setBackground(k6.J0(g0.L(3.0f), k6.w0(k6.Fi, f6Var)));
+        textView2.setBackground(l6.J0(g0.L(3.0f), l6.w0(l6.Fi, g6Var)));
         textView4.addOnLayoutChangeListener(new n3(this, 1));
         a();
     }
 
     public final void a() {
-        int i7 = k6.f27960j5;
+        int i7 = l6.f27973j5;
         TextView textView = this.f20544a;
-        f6 f6Var = this.f20550r;
-        r6.V(textView, i7, f6Var);
-        r6.V(this.f20545b, i7, f6Var);
-        r6.V(this.f20546c, i7, f6Var);
-        int i10 = k6.Tj;
-        r6.V(this.d, i10, f6Var);
-        r6.y(this, this.h, i10, f6Var, PorterDuff.Mode.SRC_IN);
+        g6 g6Var = this.f20550r;
+        s6.U(textView, i7, g6Var);
+        s6.U(this.f20545b, i7, g6Var);
+        s6.U(this.f20546c, i7, g6Var);
+        int i10 = l6.Tj;
+        s6.U(this.d, i10, g6Var);
+        s6.x(this, this.h, i10, g6Var, PorterDuff.Mode.SRC_IN);
     }
 
     public final void b(long j3, long j10) {

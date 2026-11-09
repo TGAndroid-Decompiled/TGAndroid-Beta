@@ -38,14 +38,14 @@ public final class f6 extends k1.b {
                 org.telegram.ui.ActionBar.k3 k3Var = (org.telegram.ui.ActionBar.k3) this.f11984q;
                 ArrayList arrayList = k3Var.R;
                 if (k3Var.V >= 0.5f) {
-                    org.telegram.ui.Cells.y yVar = k3Var.f27728i0;
+                    org.telegram.ui.Cells.y yVar = k3Var.f27712i0;
                     if (yVar != null && yVar.getBounds().contains((int) f10, (int) f11)) {
                         return 1;
                     }
                     for (int size = arrayList.size() - 1; size >= 0; size--) {
                         org.telegram.ui.ActionBar.j3 j3Var = (org.telegram.ui.ActionBar.j3) arrayList.get(size);
-                        float f12 = j3Var.f27619i;
-                        RectF rectF = j3Var.f27613a;
+                        float f12 = j3Var.f27606i;
+                        RectF rectF = j3Var.f27600a;
                         if (Math.abs(f12) < 0.4f && rectF.contains(f10, f11)) {
                             Rect bounds = j3Var.d.f27315l.getBounds();
                             if (!bounds.isEmpty() && bounds.contains((int) (f10 - rectF.left), (int) ((f11 - rectF.top) - org.telegram.messenger.g0.L(24.0f)))) {
@@ -77,13 +77,13 @@ public final class f6 extends k1.b {
                 org.telegram.ui.ActionBar.k3 k3Var = (org.telegram.ui.ActionBar.k3) this.f11984q;
                 ArrayList arrayList2 = k3Var.R;
                 if (k3Var.V >= 0.5f) {
-                    org.telegram.ui.Cells.y yVar = k3Var.f27728i0;
+                    org.telegram.ui.Cells.y yVar = k3Var.f27712i0;
                     if (yVar != null && !yVar.getBounds().isEmpty()) {
                         arrayList.add(1);
                     }
                     for (int i7 = 0; i7 < arrayList2.size(); i7++) {
                         org.telegram.ui.ActionBar.j3 j3Var = (org.telegram.ui.ActionBar.j3) arrayList2.get(i7);
-                        if (Math.abs(j3Var.f27619i) < 0.4f && !j3Var.f27613a.isEmpty()) {
+                        if (Math.abs(j3Var.f27606i) < 0.4f && !j3Var.f27600a.isEmpty()) {
                             arrayList.add(Integer.valueOf(i7 + 1000));
                             org.telegram.ui.ActionBar.a3 a3Var = j3Var.d;
                             if (a3Var != null && !a3Var.f27315l.getBounds().isEmpty()) {
@@ -115,25 +115,25 @@ public final class f6 extends k1.b {
                             return false;
                         }
                         g6Var.d(180.0f);
-                        ((s9) g6Var.f12071a).b();
+                        ((r9) g6Var.f12071a).b();
                     } else if (g6Var.b()) {
-                        ((s9) g6Var.f12071a).a();
+                        ((r9) g6Var.f12071a).a();
                     } else if (g6Var.f12094r0) {
                         g6Var.f12094r0 = false;
                         g6Var.f12106z0 = false;
                         g6Var.f12099v0 = SystemClock.elapsedRealtime();
                         g6Var.f12098u0 = true;
-                        ((s9) g6Var.f12071a).e(false);
+                        ((r9) g6Var.f12071a).e(false);
                         g6Var.invalidate();
                     } else if (g6Var.f12090o0) {
-                        if (va.c(((s9) g6Var.f12071a).f12819a)) {
+                        if (va.c(((r9) g6Var.f12071a).f12758a)) {
                             g6Var.R = 0L;
                             g6Var.Q = System.currentTimeMillis();
                             g6Var.A0 = false;
-                            ((s9) g6Var.f12071a).f(new di.s7(this, 26), false);
+                            ((r9) g6Var.f12071a).f(new di.f8(this, 25), false);
                         }
                     } else {
-                        ((s9) g6Var.f12071a).d();
+                        ((r9) g6Var.f12071a).d();
                     }
                 } else if (g6Var.b()) {
                     return false;
@@ -141,12 +141,12 @@ public final class f6 extends k1.b {
                     if (g6Var.f12094r0 && g6Var.A0) {
                         g6Var.f12106z0 = false;
                         g6Var.G0.e(true, 1.0f);
-                        k3 k3Var = ((s9) g6Var.f12071a).f12819a.T0;
-                        k3Var.f12266a.t(id.M0(2131744664, null), true, true);
+                        k3 k3Var = ((r9) g6Var.f12071a).f12758a.T0;
+                        k3Var.f12266a.t(id.M0(2131744661, null), true, true);
                         k3Var.invalidate();
                         g6Var.invalidate();
                     } else {
-                        ((s9) g6Var.f12071a).c();
+                        ((r9) g6Var.f12071a).c();
                     }
                 }
                 return true;
@@ -157,7 +157,7 @@ public final class f6 extends k1.b {
                     return false;
                 }
                 if (i7 == 1) {
-                    org.telegram.ui.ActionBar.d3 d3Var = k3Var2.f27715a;
+                    org.telegram.ui.ActionBar.d3 d3Var = k3Var2.f27699a;
                     if (d3Var != null) {
                         d3Var.f();
                     }
@@ -177,14 +177,14 @@ public final class f6 extends k1.b {
                     }
                     org.telegram.ui.ActionBar.j3 j3Var = (org.telegram.ui.ActionBar.j3) arrayList.get(i11);
                     if (z9) {
-                        org.telegram.ui.ActionBar.d3 d3Var2 = k3Var2.f27715a;
+                        org.telegram.ui.ActionBar.d3 d3Var2 = k3Var2.f27699a;
                         if (d3Var2 != null) {
-                            d3Var2.g(j3Var.f27615c, new org.telegram.messenger.voip.k(3, this, j3Var));
+                            d3Var2.g(j3Var.f27602c, new org.telegram.messenger.voip.k(3, this, j3Var));
                         }
-                    } else if (k3Var2.f27715a != null) {
+                    } else if (k3Var2.f27699a != null) {
                         k3Var2.a(false);
                         j3Var.getClass();
-                        k3Var2.f27715a.e(j3Var.f27615c);
+                        k3Var2.f27699a.e(j3Var.f27602c);
                     }
                 }
                 return true;
@@ -206,7 +206,7 @@ public final class f6 extends k1.b {
         View view = this.f11984q;
         switch (i11) {
             case 0:
-                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f54601a;
+                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f54613a;
                 g6 g6Var = (g6) view;
                 dVar.i("android.widget.Button");
                 if (i7 != 0) {
@@ -230,7 +230,7 @@ public final class f6 extends k1.b {
                         }
                         accessibilityNodeInfo.setEnabled(z10);
                         if (z10) {
-                            dVar.b(s0.c.f54594c);
+                            dVar.b(s0.c.f54606c);
                             return;
                         }
                         return;
@@ -242,7 +242,7 @@ public final class f6 extends k1.b {
                     rect.set((int) (f13 - f14), (int) (f15 - f14), (int) (f13 + f14), (int) (f15 + f14));
                     dVar.h(rect);
                     if (g6Var.b()) {
-                        M02 = id.M0(2131745643, null);
+                        M02 = id.M0(2131745640, null);
                     } else if (g6Var.f12094r0) {
                         M02 = id.M0(2131754754, null);
                     } else if (g6Var.f12090o0) {
@@ -253,7 +253,7 @@ public final class f6 extends k1.b {
                     dVar.j(M02);
                     accessibilityNodeInfo.setEnabled(!g6Var.f12098u0);
                     if (!g6Var.f12098u0) {
-                        dVar.b(s0.c.f54594c);
+                        dVar.b(s0.c.f54606c);
                         return;
                     }
                     return;
@@ -275,7 +275,7 @@ public final class f6 extends k1.b {
                 }
                 accessibilityNodeInfo.setEnabled(z10);
                 if (z10) {
-                    dVar.b(s0.c.f54594c);
+                    dVar.b(s0.c.f54606c);
                     return;
                 }
                 return;
@@ -283,9 +283,9 @@ public final class f6 extends k1.b {
                 org.telegram.ui.ActionBar.k3 k3Var = (org.telegram.ui.ActionBar.k3) view;
                 ArrayList arrayList = k3Var.R;
                 dVar.i("android.widget.Button");
-                dVar.b(s0.c.f54594c);
+                dVar.b(s0.c.f54606c);
                 if (i7 == 1) {
-                    org.telegram.ui.Cells.y yVar = k3Var.f27728i0;
+                    org.telegram.ui.Cells.y yVar = k3Var.f27712i0;
                     if (yVar != null) {
                         rect.set(yVar.getBounds());
                     } else {
@@ -310,10 +310,10 @@ public final class f6 extends k1.b {
                 }
                 if (i10 >= 0 && i10 < arrayList.size()) {
                     org.telegram.ui.ActionBar.j3 j3Var = (org.telegram.ui.ActionBar.j3) arrayList.get(i10);
-                    org.telegram.ui.ActionBar.c3 c3Var = j3Var.f27615c;
-                    RectF rectF = j3Var.f27613a;
+                    org.telegram.ui.ActionBar.c3 c3Var = j3Var.f27602c;
+                    RectF rectF = j3Var.f27600a;
                     if (c3Var != null && c3Var.b() != null) {
-                        str3 = j3Var.f27615c.b();
+                        str3 = j3Var.f27602c.b();
                     }
                     if (z9) {
                         Rect bounds = j3Var.d.f27315l.getBounds();
@@ -330,9 +330,9 @@ public final class f6 extends k1.b {
                     rect.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
                     dVar.h(rect);
                     if (TextUtils.isEmpty(str3)) {
-                        str = id.M0(2131747818, null);
+                        str = id.M0(2131747817, null);
                     } else {
-                        str = id.M0(2131747818, null) + ", " + str3;
+                        str = id.M0(2131747817, null) + ", " + str3;
                     }
                     dVar.j(str);
                     return;

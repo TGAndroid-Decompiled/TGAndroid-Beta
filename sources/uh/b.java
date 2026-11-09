@@ -24,7 +24,7 @@ import org.telegram.messenger.w7;
 import org.telegram.messenger.x5;
 import org.telegram.messenger.z5;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.l6;
 import org.telegram.ui.Components.RadialProgress2;
 import org.telegram.ui.Components.b9;
 import org.telegram.ui.Components.i6;
@@ -40,36 +40,36 @@ public final class b extends Drawable implements x5 {
     public boolean J;
     public int K;
     public int L;
-    public final i6 f56898a;
-    public final b9 f56899b;
-    public final ImageReceiver f56900c;
+    public final i6 f56910a;
+    public final b9 f56911b;
+    public final ImageReceiver f56912c;
     public final View d;
-    public final int f56901e;
-    public boolean f56902f;
+    public final int f56913e;
+    public boolean f56914f;
     public boolean h;
-    public boolean f56903n;
-    public boolean f56904r;
-    public Drawable f56905s;
-    public boolean f56906w;
-    public final Paint f56907x;
-    public final Paint f56908y;
+    public boolean f56915n;
+    public boolean f56916r;
+    public Drawable f56917s;
+    public boolean f56918w;
+    public final Paint f56919x;
+    public final Paint f56920y;
 
     public b(int i7, View view) {
         Paint paint = new Paint(1);
-        this.f56907x = paint;
-        this.f56908y = new Paint(1);
+        this.f56919x = paint;
+        this.f56920y = new Paint(1);
         this.G = new wa((char) 0, 18);
-        this.f56901e = i7;
+        this.f56913e = i7;
         this.d = view;
         this.D = new te.a(view, xq.h, 380L);
         i6 i6Var = new i6(false, false, false);
-        this.f56898a = i6Var;
-        i6Var.f34552b = 21;
+        this.f56910a = i6Var;
+        i6Var.f34587b = 21;
         i6Var.w(g0.L(11.0f));
         i6Var.setCallback(view);
-        this.f56899b = new b9(i7, view, g0.L(18.0f), g0.L(8.33f), g0.N(1.0f));
+        this.f56911b = new b9(i7, view, g0.L(18.0f), g0.L(8.33f), g0.N(1.0f));
         ImageReceiver imageReceiver = new ImageReceiver(view);
-        this.f56900c = imageReceiver;
+        this.f56912c = imageReceiver;
         imageReceiver.J0(g0.L(5.0f));
         paint.setColor(1073741824);
         RadialProgress2 radialProgress2 = new RadialProgress2(view, null);
@@ -90,17 +90,17 @@ public final class b extends Drawable implements x5 {
         } else {
             j3 = 0;
         }
-        this.f56900c.r0(f10, "36_36", f11, "36_36_b", null, j3, null, obj, 1);
+        this.f56912c.r0(f10, "36_36", f11, "36_36_b", null, j3, null, obj, 1);
     }
 
     public final void b(boolean z9) {
         int i7;
-        if (!this.F.p4() && !this.F.Z2()) {
-            if (!TextUtils.isEmpty(this.H) && w7.G(this.f56901e).S(this.H)) {
+        if (!this.F.o4() && !this.F.Y2()) {
+            if (!TextUtils.isEmpty(this.H) && w7.G(this.f56913e).S(this.H)) {
                 g(3, z9);
                 return;
             }
-            if (this.f56906w) {
+            if (this.f56918w) {
                 i7 = 0;
             } else {
                 i7 = 4;
@@ -115,28 +115,28 @@ public final class b extends Drawable implements x5 {
         int i10;
         int x02;
         Rect bounds = getBounds();
-        if (this.f56902f) {
+        if (this.f56914f) {
             f10 = 56.33f;
         } else {
             f10 = 19.0f;
         }
         int L = g0.L(f10);
-        if (this.D.f55487e > 0.0f) {
-            g gVar = this.f56899b.f32133c.d;
-            float f11 = gVar.f55503c.f55513a;
-            int i11 = (int) gVar.f55505f.f55513a;
+        if (this.D.f55499e > 0.0f) {
+            g gVar = this.f56911b.f32191c.d;
+            float f11 = gVar.f55515c.f55525a;
+            int i11 = (int) gVar.f55517f.f55525a;
             int W1 = (bounds.right - L) - g0.W1(f11, g0.L(2.0f), g0.L(4.0f) + i11);
             if (f11 > 0.0f) {
-                b9 b9Var = this.f56899b;
-                b9Var.f32137i = (int) (this.D.f55487e * 255.0f);
+                b9 b9Var = this.f56911b;
+                b9Var.f32195i = (int) (this.D.f55499e * 255.0f);
                 b9Var.setBounds((bounds.right - L) - i11, bounds.bottom - g0.L(31.33f), bounds.right - L, bounds.bottom);
-                this.f56899b.c(canvas);
+                this.f56911b.c(canvas);
             }
             int L2 = bounds.bottom - g0.L(21.33f);
-            i6 i6Var = this.f56898a;
-            i6Var.B = (int) (this.D.f55487e * 255.0f);
+            i6 i6Var = this.f56910a;
+            i6Var.B = (int) (this.D.f55499e * 255.0f);
             i6Var.setBounds(bounds.left, g0.L(15.0f) + L2, W1, L2 - g0.L(15.0f));
-            this.f56898a.draw(canvas);
+            this.f56910a.draw(canvas);
         }
         if (this.h) {
             int L3 = g0.L(36.0f);
@@ -145,40 +145,40 @@ public final class b extends Drawable implements x5 {
             RectF rectF = g0.P;
             rectF.set(rect);
             RadialProgress2 radialProgress2 = this.E;
-            radialProgress2.f31476a.set(rectF.left, rectF.top, rectF.right, rectF.bottom);
-            this.f56900c.z0(rect);
-            if (!this.f56903n || this.f56904r) {
-                this.f56900c.h(canvas, null);
+            radialProgress2.f31481a.set(rectF.left, rectF.top, rectF.right, rectF.bottom);
+            this.f56912c.z0(rect);
+            if (!this.f56915n || this.f56916r) {
+                this.f56912c.h(canvas, null);
             }
-            if (this.f56906w || this.f56903n) {
-                if (this.f56903n && !this.f56904r) {
-                    Paint paint = this.f56908y;
-                    if (this.F.Q3()) {
-                        i7 = k6.Tc;
+            if (this.f56918w || this.f56915n) {
+                if (this.f56915n && !this.f56916r) {
+                    Paint paint = this.f56920y;
+                    if (this.F.P3()) {
+                        i7 = l6.Tc;
                     } else {
-                        i7 = k6.Sc;
+                        i7 = l6.Sc;
                     }
-                    paint.setColor(i0.a.o(k6.x0(null, i7, false), 16));
-                    canvas.drawRoundRect(rectF, g0.L(5.0f), g0.L(5.0f), this.f56908y);
+                    paint.setColor(i0.a.o(l6.x0(null, i7, false), 16));
+                    canvas.drawRoundRect(rectF, g0.L(5.0f), g0.L(5.0f), this.f56920y);
                 } else {
-                    canvas.drawRoundRect(rectF, g0.L(5.0f), g0.L(5.0f), this.f56907x);
+                    canvas.drawRoundRect(rectF, g0.L(5.0f), g0.L(5.0f), this.f56919x);
                 }
             }
-            if (this.f56903n) {
-                if (this.f56905s == null) {
-                    this.f56905s = jg.g.h(t0.f25566b, 2131231745);
+            if (this.f56915n) {
+                if (this.f56917s == null) {
+                    this.f56917s = jg.g.h(t0.f25566b, 2131231745);
                 }
-                Drawable drawable = this.f56905s;
+                Drawable drawable = this.f56917s;
                 wa waVar = this.G;
-                if (this.f56904r) {
+                if (this.f56916r) {
                     x02 = -1;
                 } else {
-                    if (this.F.Q3()) {
-                        i10 = k6.f27913gc;
+                    if (this.F.P3()) {
+                        i10 = l6.f27926gc;
                     } else {
-                        i10 = k6.f27822be;
+                        i10 = l6.f27835be;
                     }
-                    x02 = k6.x0(null, i10, false);
+                    x02 = l6.x0(null, i10, false);
                 }
                 PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
                 waVar.getClass();
@@ -188,8 +188,8 @@ public final class b extends Drawable implements x5 {
                     waVar.d = mode;
                 }
                 drawable.setColorFilter((PorterDuffColorFilter) waVar.f701c);
-                s.e(this.f56905s, rectF.centerX(), rectF.centerY(), g0.L(24.0f), g0.L(24.0f), 17);
-                this.f56905s.draw(canvas);
+                s.e(this.f56917s, rectF.centerX(), rectF.centerY(), g0.L(24.0f), g0.L(24.0f), 17);
+                this.f56917s.draw(canvas);
             }
             b(true);
             if (this.J) {
@@ -199,10 +199,10 @@ public final class b extends Drawable implements x5 {
     }
 
     public final float d(float f10) {
-        b9 b9Var = this.f56899b;
-        float c10 = this.f56898a.c() + b9Var.f32133c.d.f55505f.f55513a;
-        float L = b9Var.f32133c.d.f55503c.f55513a * g0.L(4.0f);
-        float f11 = this.D.f55487e;
+        b9 b9Var = this.f56911b;
+        float c10 = this.f56910a.c() + b9Var.f32191c.d.f55517f.f55525a;
+        float L = b9Var.f32191c.d.f55515c.f55525a * g0.L(4.0f);
+        float f11 = this.D.f55499e;
         return (f10 * f11) + (L * f11) + c10;
     }
 
@@ -213,7 +213,7 @@ public final class b extends Drawable implements x5 {
 
     public final float e() {
         int i7;
-        float f10 = this.f56898a.d;
+        float f10 = this.f56910a.d;
         int i10 = this.K;
         if (i10 > 0) {
             i7 = g0.L((i10 * 9.34f) + 8.66f);
@@ -224,7 +224,7 @@ public final class b extends Drawable implements x5 {
     }
 
     public final void f(boolean z9) {
-        this.f56902f = z9;
+        this.f56914f = z9;
     }
 
     public final void g(int i7, boolean z9) {
@@ -260,7 +260,7 @@ public final class b extends Drawable implements x5 {
         this.E.p(true, min);
         if (min < 1.0f) {
             i7 = 3;
-        } else if (this.f56906w) {
+        } else if (this.f56918w) {
             i7 = 0;
         } else {
             i7 = 4;
@@ -277,7 +277,7 @@ public final class b extends Drawable implements x5 {
             i7 = 0;
         }
         this.K = i7;
-        this.f56899b.d(arrayList, z9);
+        this.f56911b.d(arrayList, z9);
     }
 
     public final void k(int i7, boolean z9) {
@@ -285,11 +285,11 @@ public final class b extends Drawable implements x5 {
         if (i7 > 0) {
             str = id.S(null, i7);
         }
-        this.f56898a.t(str, z9, true);
+        this.f56910a.t(str, z9, true);
     }
 
     public final void l(int i7) {
-        this.f56898a.u(i7);
+        this.f56910a.u(i7);
     }
 
     @Override
@@ -304,7 +304,7 @@ public final class b extends Drawable implements x5 {
         this.E.p(true, min);
         if (min < 1.0f) {
             i7 = 3;
-        } else if (this.f56906w) {
+        } else if (this.f56918w) {
             i7 = 0;
         } else {
             i7 = 4;

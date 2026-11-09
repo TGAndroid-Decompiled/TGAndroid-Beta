@@ -122,12 +122,12 @@ public final class b implements l {
                 e eVar = (e) this.d;
                 q1.b bVar = (q1.b) obj;
                 ((sa.h) this.f10132b).getClass();
-                e eVar2 = sa.h.f54996c;
+                e eVar2 = sa.h.f55008c;
                 e eVar3 = sa.h.d;
                 String str3 = "";
                 if (((String) a1.a(bVar, eVar3, "")).equals(str)) {
                     e d = sa.h.d(bVar, str);
-                    if (d != null && !d.f53687a.equals(str2)) {
+                    if (d != null && !d.f53699a.equals(str2)) {
                         sa.h.f(bVar, str);
                         HashSet hashSet = new HashSet((Collection) a1.a(bVar, eVar, new HashSet()));
                         hashSet.add(str);
@@ -147,7 +147,7 @@ public final class b implements l {
                             for (String str5 : set) {
                                 long j11 = j10;
                                 if (str4 == null || str4.compareTo(str5) > 0) {
-                                    str3 = ((e) entry.getKey()).f53687a;
+                                    str3 = ((e) entry.getKey()).f53699a;
                                     hashSet2 = set;
                                     str4 = str5;
                                 }

@@ -6,7 +6,7 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
-import org.telegram.ui.wn0;
+import org.telegram.ui.yn0;
 public final class mm implements RequestDelegate {
     public final int f24057a = 2;
     public final c1 f24058b;
@@ -147,7 +147,7 @@ public final class mm implements RequestDelegate {
                 final f10 f10Var = (f10) this.f24058b;
                 final ij ijVar = (ij) this.f24060e;
                 final f3.s sVar = (f3.s) this.f24061f;
-                final wn0 wn0Var = (wn0) this.f24062g;
+                final yn0 yn0Var = (yn0) this.f24062g;
                 TLRPC.TL_textWithEntities tL_textWithEntities = (TLRPC.TL_textWithEntities) this.h;
                 f10Var.getClass();
                 boolean z10 = tLObject instanceof TLRPC.TL_messages_translateResult;
@@ -171,7 +171,7 @@ public final class mm implements RequestDelegate {
                                         f3.s sVar2 = sVar;
                                         messagesStorage.X1(sVar2.f11070a, ijVar2.f23262k);
                                         f10Var2.L.remove(sVar2);
-                                        g0.i3(wn0Var, Math.max(0L, 400 - (System.currentTimeMillis() - j3)));
+                                        g0.i3(yn0Var, Math.max(0L, 400 - (System.currentTimeMillis() - j3)));
                                         return;
                                     default:
                                         f10 f10Var3 = f10Var;
@@ -184,14 +184,14 @@ public final class mm implements RequestDelegate {
                                         f3.s sVar3 = sVar;
                                         messagesStorage2.X1(sVar3.f11070a, ijVar3.f23262k);
                                         f10Var3.L.remove(sVar3);
-                                        g0.i3(wn0Var, Math.max(0L, 400 - (System.currentTimeMillis() - j3)));
+                                        g0.i3(yn0Var, Math.max(0L, 400 - (System.currentTimeMillis() - j3)));
                                         return;
                                 }
                             }
                         });
                         return;
                     } else {
-                        g0.h3(new bi.m4(f10Var, ijVar, str2, tL_textWithEntities, arrayList.get(0), sVar, wn0Var, j3));
+                        g0.h3(new bi.m4(f10Var, ijVar, str2, tL_textWithEntities, arrayList.get(0), sVar, yn0Var, j3));
                         return;
                     }
                 }
@@ -210,7 +210,7 @@ public final class mm implements RequestDelegate {
                                 f3.s sVar2 = sVar;
                                 messagesStorage.X1(sVar2.f11070a, ijVar2.f23262k);
                                 f10Var2.L.remove(sVar2);
-                                g0.i3(wn0Var, Math.max(0L, 400 - (System.currentTimeMillis() - j3)));
+                                g0.i3(yn0Var, Math.max(0L, 400 - (System.currentTimeMillis() - j3)));
                                 return;
                             default:
                                 f10 f10Var3 = f10Var;
@@ -223,7 +223,7 @@ public final class mm implements RequestDelegate {
                                 f3.s sVar3 = sVar;
                                 messagesStorage2.X1(sVar3.f11070a, ijVar3.f23262k);
                                 f10Var3.L.remove(sVar3);
-                                g0.i3(wn0Var, Math.max(0L, 400 - (System.currentTimeMillis() - j3)));
+                                g0.i3(yn0Var, Math.max(0L, 400 - (System.currentTimeMillis() - j3)));
                                 return;
                         }
                     }
@@ -242,12 +242,12 @@ public final class mm implements RequestDelegate {
         this.f24060e = runnable;
     }
 
-    public mm(f10 f10Var, ij ijVar, String str, f3.s sVar, wn0 wn0Var, long j3, TLRPC.TL_textWithEntities tL_textWithEntities) {
+    public mm(f10 f10Var, ij ijVar, String str, f3.s sVar, yn0 yn0Var, long j3, TLRPC.TL_textWithEntities tL_textWithEntities) {
         this.f24058b = f10Var;
         this.f24060e = ijVar;
         this.f24059c = str;
         this.f24061f = sVar;
-        this.f24062g = wn0Var;
+        this.f24062g = yn0Var;
         this.d = j3;
         this.h = tL_textWithEntities;
     }

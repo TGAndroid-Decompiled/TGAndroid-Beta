@@ -31,7 +31,7 @@ public final class yg implements Runnable {
                 if (arrayList != null) {
                     for (int i12 = 0; i12 < arrayList.size(); i12++) {
                         int i13 = uiVar.currentAccount;
-                        xr a10 = xr.a(j3, ij.c2(i13, (TLRPC.Message) arrayList.get(i12), t3.b0(i13, j3), false));
+                        xr a10 = xr.a(j3, ij.b2(i13, (TLRPC.Message) arrayList.get(i12), t3.b0(i13, j3), false));
                         uiVar.f25853x1.remove(a10);
                         uiVar.getNotificationCenter().k(69, null, a10);
                     }

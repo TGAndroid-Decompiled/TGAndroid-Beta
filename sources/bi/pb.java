@@ -1,6 +1,6 @@
 package bi;
 
-import org.telegram.ui.Components.dz0;
+import org.telegram.ui.Components.ez0;
 public final class pb implements Runnable {
     public final int f4542a;
     public final Runnable f4543b;
@@ -20,7 +20,7 @@ public final class pb implements Runnable {
                 this.f4544c.run();
                 return;
             default:
-                dz0.b(this.f4543b);
+                ez0.b(this.f4543b);
                 Runnable runnable = this.f4544c;
                 if (runnable != null) {
                     org.telegram.messenger.g0.h3(runnable);

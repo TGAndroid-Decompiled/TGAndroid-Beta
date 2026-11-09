@@ -16,18 +16,18 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
 public final class rq implements View.OnClickListener {
-    public final int f37739a;
-    public final long f37740b;
-    public final Object f37741c;
+    public final int f37782a;
+    public final long f37783b;
+    public final Object f37784c;
     public final Object d;
-    public final Object f37742e;
+    public final Object f37785e;
 
     public rq(Object obj, Object obj2, Object obj3, long j3, int i7) {
-        this.f37739a = i7;
-        this.f37741c = obj;
+        this.f37782a = i7;
+        this.f37784c = obj;
         this.d = obj2;
-        this.f37742e = obj3;
-        this.f37740b = j3;
+        this.f37785e = obj3;
+        this.f37783b = j3;
     }
 
     @Override
@@ -38,40 +38,40 @@ public final class rq implements View.OnClickListener {
         String str;
         TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway;
         long j3;
-        int i10 = this.f37739a;
-        Object obj = this.f37742e;
+        int i10 = this.f37782a;
+        Object obj = this.f37785e;
         Object obj2 = this.d;
-        Object obj3 = this.f37741c;
+        Object obj3 = this.f37784c;
         switch (i10) {
             case 0:
                 tq tqVar = (tq) obj3;
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, (Context) obj2, tqVar.I0);
-                String M0 = org.telegram.messenger.id.M0(2131748799, null);
+                String M0 = org.telegram.messenger.id.M0(2131748798, null);
                 org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
                 u1Var.R = M0;
-                u1Var.T = org.telegram.messenger.id.M0(2131748800, null);
-                alertDialog$Builder.k(org.telegram.messenger.id.M0(2131746027, null), new bi.i(tqVar, (fi.d) obj, this.f37740b, 5));
+                u1Var.T = org.telegram.messenger.id.M0(2131748799, null);
+                alertDialog$Builder.k(org.telegram.messenger.id.M0(2131746024, null), new bi.i(tqVar, (fi.d) obj, this.f37783b, 5));
                 alertDialog$Builder.h(org.telegram.messenger.id.M0(2131752589, null), null);
                 alertDialog$Builder.d(-1);
                 alertDialog$Builder.p();
                 return;
             case 1:
-                org.telegram.ui.ww wwVar = (org.telegram.ui.ww) obj3;
-                wwVar.finishPreviewFragment();
-                org.telegram.messenger.g0.i3(new bi.w2(wwVar, (org.telegram.messenger.vo) obj2, (TLRPC.Dialog) obj, this.f37740b, 19), 100L);
+                org.telegram.ui.yw ywVar = (org.telegram.ui.yw) obj3;
+                ywVar.finishPreviewFragment();
+                org.telegram.messenger.g0.i3(new bi.w2(ywVar, (org.telegram.messenger.vo) obj2, (TLRPC.Dialog) obj, this.f37783b, 19), 100L);
                 return;
             default:
-                wg.a0 a0Var = (wg.a0) obj3;
+                wg.z zVar = (wg.z) obj3;
                 TL_stories.PrepaidGiveaway prepaidGiveaway = (TL_stories.PrepaidGiveaway) obj2;
                 org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) obj;
-                ArrayList arrayList = a0Var.W1;
-                ArrayList arrayList2 = a0Var.U1;
-                TLRPC.Chat chat = a0Var.T1;
-                ArrayList arrayList3 = a0Var.V1;
-                ArrayList arrayList4 = a0Var.X1;
-                yg.a aVar = a0Var.f57685i2;
-                if (!aVar.f59421a.Q) {
-                    if (a0Var.i1()) {
+                ArrayList arrayList = zVar.W1;
+                ArrayList arrayList2 = zVar.U1;
+                TLRPC.Chat chat = zVar.T1;
+                ArrayList arrayList3 = zVar.V1;
+                ArrayList arrayList4 = zVar.X1;
+                yg.a aVar = zVar.f57847i2;
+                if (!aVar.f59430a.Q) {
+                    if (zVar.i1()) {
                         if (prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway) {
                             tL_prepaidStarsGiveaway = (TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway;
                         } else {
@@ -82,7 +82,7 @@ public final class rq implements View.OnClickListener {
                         } else {
                             j3 = 0;
                         }
-                        sn snVar = new sn(this.f37740b, j3, prepaidGiveaway, tL_prepaidStarsGiveaway, a0Var);
+                        sn snVar = new sn(this.f37783b, j3, prepaidGiveaway, tL_prepaidStarsGiveaway, zVar);
                         org.telegram.ui.ActionBar.f2 Q = LaunchActivity.Q();
                         if (Q != null) {
                             AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(0, Q.getContext(), Q.getResourceProvider());
@@ -90,7 +90,7 @@ public final class rq implements View.OnClickListener {
                             org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder2.f27296a;
                             u1Var2.R = M02;
                             u1Var2.T = org.telegram.messenger.g0.X2(org.telegram.messenger.id.M0(2131753192, null));
-                            alertDialog$Builder2.k(org.telegram.messenger.id.M0(2131744918, null), new u5.e(snVar, 6));
+                            alertDialog$Builder2.k(org.telegram.messenger.id.M0(2131744915, null), new u5.e(snVar, 6));
                             alertDialog$Builder2.h(org.telegram.messenger.id.M0(2131752589, null), new v0.j(18));
                             alertDialog$Builder2.p();
                             return;
@@ -98,31 +98,31 @@ public final class rq implements View.OnClickListener {
                         return;
                     }
                     boolean z11 = true;
-                    int i11 = a0Var.Z1;
-                    int i12 = yg.d.f59450w;
+                    int i11 = zVar.Z1;
+                    int i12 = yg.d.f59459w;
                     if (i11 == 3) {
-                        Activity W = org.telegram.messenger.g0.W(a0Var.getContext());
+                        Activity W = org.telegram.messenger.g0.W(zVar.getContext());
                         if (W == null) {
                             W = LaunchActivity.G1;
                         }
                         if (W != null && !W.isFinishing()) {
-                            TL_stars.TL_starsGiveawayOption g12 = a0Var.g1(a0Var.f57684h2);
-                            int e12 = a0Var.e1();
+                            TL_stars.TL_starsGiveawayOption g12 = zVar.g1(zVar.f57846h2);
+                            int e12 = zVar.e1();
                             if (g12 != null) {
-                                aVar.f59421a.setLoading(true);
-                                int i13 = a0Var.f57679b2;
-                                int i14 = yg.u.f59490w;
+                                aVar.f59430a.setLoading(true);
+                                int i13 = zVar.f57841b2;
+                                int i14 = yg.u.f59499w;
                                 if (i13 == 1) {
                                     z10 = true;
                                 } else {
                                     z10 = false;
                                 }
-                                bi.ea y10 = bi.ea.y(a0Var.f28616a, false);
-                                int l10 = wg.s.l(a0Var.f57681e2);
-                                boolean z12 = a0Var.f57692p2;
-                                boolean z13 = a0Var.f57691o2;
-                                String str2 = a0Var.f57690n2;
-                                org.telegram.ui.Wallet.u1 u1Var3 = new org.telegram.ui.Wallet.u1(5, a0Var, g12);
+                                bi.ea y10 = bi.ea.y(zVar.f28621a, false);
+                                int l10 = wg.r.l(zVar.f57843e2);
+                                boolean z12 = zVar.f57854p2;
+                                boolean z13 = zVar.f57853o2;
+                                String str2 = zVar.f57852n2;
+                                org.telegram.ui.Wallet.t1 t1Var = new org.telegram.ui.Wallet.t1(5, zVar, g12);
                                 int i15 = y10.f3807a;
                                 if (org.telegram.messenger.qp.s1(i15).f24817j7) {
                                     org.telegram.ui.ActionBar.f2 Q2 = LaunchActivity.Q();
@@ -177,7 +177,7 @@ public final class rq implements View.OnClickListener {
                                     ?? obj6 = new Object();
                                     obj6.f11113b = "inapp";
                                     obj6.f11112a = str;
-                                    org.telegram.messenger.r1.i().o(Arrays.asList(obj6.a()), new a1.d(y10, u1Var3, tL_inputStorePaymentStarsGiveaway, activity, 3));
+                                    org.telegram.messenger.r1.i().o(Arrays.asList(obj6.a()), new a1.d(y10, t1Var, tL_inputStorePaymentStarsGiveaway, activity, 3));
                                     return;
                                 }
                                 TLRPC.TL_inputInvoiceStars tL_inputInvoiceStars = new TLRPC.TL_inputInvoiceStars();
@@ -191,7 +191,7 @@ public final class rq implements View.OnClickListener {
                                     tL_payments_getPaymentForm.flags |= 1;
                                 }
                                 tL_payments_getPaymentForm.invoice = tL_inputInvoiceStars;
-                                ConnectionsManager.getInstance(i15).sendRequest(tL_payments_getPaymentForm, new bi.f2(y10, u1Var3, tL_inputInvoiceStars, 3));
+                                ConnectionsManager.getInstance(i15).sendRequest(tL_payments_getPaymentForm, new bi.f2(y10, t1Var, tL_inputInvoiceStars, 3));
                                 return;
                             }
                             return;
@@ -199,15 +199,15 @@ public final class rq implements View.OnClickListener {
                         return;
                     }
                     int i18 = 2;
-                    if (a0Var.f57678a2 == 1) {
-                        ArrayList b10 = wg.s.b(arrayList3.size(), arrayList4);
+                    if (zVar.f57840a2 == 1) {
+                        ArrayList b10 = wg.r.b(arrayList3.size(), arrayList4);
                         int i19 = 0;
                         while (i19 < b10.size()) {
                             TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = (TLRPC.TL_premiumGiftCodeOption) b10.get(i19);
-                            if (tL_premiumGiftCodeOption.months == a0Var.d2 && arrayList3.size() > 0) {
-                                if (wg.s.h()) {
-                                    Context context = a0Var.getContext();
-                                    org.telegram.ui.ActionBar.f6 f6Var = a0Var.I0;
+                            if (tL_premiumGiftCodeOption.months == zVar.d2 && arrayList3.size() > 0) {
+                                if (wg.r.h()) {
+                                    Context context = zVar.getContext();
+                                    org.telegram.ui.ActionBar.g6 g6Var = zVar.I0;
                                     if (tL_premiumGiftCodeOption.store_product == null) {
                                         ArrayList arrayList6 = new ArrayList();
                                         int size3 = arrayList4.size();
@@ -222,18 +222,18 @@ public final class rq implements View.OnClickListener {
                                         }
                                         String join = TextUtils.join(", ", arrayList6);
                                         int i21 = tL_premiumGiftCodeOption.users;
-                                        AlertDialog$Builder alertDialog$Builder3 = new AlertDialog$Builder(0, context, f6Var);
+                                        AlertDialog$Builder alertDialog$Builder3 = new AlertDialog$Builder(0, context, g6Var);
                                         String M03 = org.telegram.messenger.id.M0(2131753302, "BoostingReduceQuantity");
-                                        org.telegram.ui.ActionBar.u1 u1Var4 = alertDialog$Builder3.f27296a;
-                                        u1Var4.R = M03;
-                                        u1Var4.T = org.telegram.messenger.g0.X2(org.telegram.messenger.id.G(i21, "BoostingReduceUsersTextPlural", join));
-                                        alertDialog$Builder3.k(org.telegram.messenger.id.M0(2131747832, "OK"), new v0.j(15));
+                                        org.telegram.ui.ActionBar.u1 u1Var3 = alertDialog$Builder3.f27296a;
+                                        u1Var3.R = M03;
+                                        u1Var3.T = org.telegram.messenger.g0.X2(org.telegram.messenger.id.G(i21, "BoostingReduceUsersTextPlural", join));
+                                        alertDialog$Builder3.k(org.telegram.messenger.id.M0(2131747831, "OK"), new v0.j(15));
                                         alertDialog$Builder3.p();
                                         return;
                                     }
                                 }
                                 aVar.b(true);
-                                wg.s.k(arrayList3, tL_premiumGiftCodeOption, a0Var.T1, null, f2Var, new wg.v(a0Var, 0), new wg.v(a0Var, 1));
+                                wg.r.k(arrayList3, tL_premiumGiftCodeOption, zVar.T1, null, f2Var, new wg.u(zVar, 0), new wg.u(zVar, 1));
                                 return;
                             }
                             i19++;
@@ -241,16 +241,16 @@ public final class rq implements View.OnClickListener {
                         }
                         return;
                     }
-                    ArrayList b11 = wg.s.b(a0Var.e1(), arrayList4);
+                    ArrayList b11 = wg.r.b(zVar.e1(), arrayList4);
                     int i22 = 0;
                     while (i22 < b11.size()) {
                         TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption3 = (TLRPC.TL_premiumGiftCodeOption) b11.get(i22);
-                        if (tL_premiumGiftCodeOption3.months == a0Var.d2) {
-                            if (wg.s.h()) {
-                                List list = a0Var.Q1;
-                                Context context2 = a0Var.getContext();
-                                org.telegram.ui.ActionBar.f6 f6Var2 = a0Var.I0;
-                                wg.v vVar = new wg.v(a0Var, i18);
+                        if (tL_premiumGiftCodeOption3.months == zVar.d2) {
+                            if (wg.r.h()) {
+                                List list = zVar.Q1;
+                                Context context2 = zVar.getContext();
+                                org.telegram.ui.ActionBar.g6 g6Var2 = zVar.I0;
+                                wg.u uVar = new wg.u(zVar, i18);
                                 if (tL_premiumGiftCodeOption3.store_product == null) {
                                     ArrayList arrayList7 = new ArrayList();
                                     int size4 = arrayList4.size();
@@ -279,32 +279,32 @@ public final class rq implements View.OnClickListener {
                                     String G = org.telegram.messenger.id.G(tL_premiumGiftCodeOption5.months, "GiftMonths", new Object[0]);
                                     int i27 = tL_premiumGiftCodeOption3.users;
                                     int i28 = tL_premiumGiftCodeOption5.users;
-                                    AlertDialog$Builder alertDialog$Builder4 = new AlertDialog$Builder(0, context2, f6Var2);
+                                    AlertDialog$Builder alertDialog$Builder4 = new AlertDialog$Builder(0, context2, g6Var2);
                                     String M04 = org.telegram.messenger.id.M0(2131753302, "BoostingReduceQuantity");
-                                    org.telegram.ui.ActionBar.u1 u1Var5 = alertDialog$Builder4.f27296a;
-                                    u1Var5.R = M04;
-                                    u1Var5.T = org.telegram.messenger.g0.X2(org.telegram.messenger.id.G(i27, "BoostingReduceQuantityTextPlural", G, Integer.valueOf(i28)));
-                                    alertDialog$Builder4.k(org.telegram.messenger.id.M0(2131746342, "Reduce"), new org.telegram.ui.web.a0(18, vVar, tL_premiumGiftCodeOption5));
+                                    org.telegram.ui.ActionBar.u1 u1Var4 = alertDialog$Builder4.f27296a;
+                                    u1Var4.R = M04;
+                                    u1Var4.T = org.telegram.messenger.g0.X2(org.telegram.messenger.id.G(i27, "BoostingReduceQuantityTextPlural", G, Integer.valueOf(i28)));
+                                    alertDialog$Builder4.k(org.telegram.messenger.id.M0(2131746341, "Reduce"), new org.telegram.ui.web.a0(18, uVar, tL_premiumGiftCodeOption5));
                                     alertDialog$Builder4.h(org.telegram.messenger.id.M0(2131752589, "Cancel"), new v0.j(15));
                                     alertDialog$Builder4.p();
                                     return;
                                 }
                             }
-                            int i29 = a0Var.f57679b2;
-                            int i30 = yg.u.f59490w;
+                            int i29 = zVar.f57841b2;
+                            int i30 = yg.u.f59499w;
                             if (i29 == 1) {
                                 z9 = true;
                             } else {
                                 z9 = false;
                             }
-                            int l11 = wg.s.l(a0Var.f57681e2);
+                            int l11 = wg.r.l(zVar.f57843e2);
                             aVar.b(true);
-                            boolean z14 = a0Var.f57692p2;
-                            boolean z15 = a0Var.f57691o2;
-                            String str3 = a0Var.f57690n2;
-                            wg.v vVar2 = new wg.v(a0Var, 3);
-                            wg.v vVar3 = new wg.v(a0Var, 4);
-                            if (!wg.s.h()) {
+                            boolean z14 = zVar.f57854p2;
+                            boolean z15 = zVar.f57853o2;
+                            String str3 = zVar.f57852n2;
+                            wg.u uVar2 = new wg.u(zVar, 3);
+                            wg.u uVar3 = new wg.u(zVar, 4);
+                            if (!wg.r.h()) {
                                 org.telegram.messenger.qp s12 = org.telegram.messenger.qp.s1(org.telegram.messenger.p10.f24470s0);
                                 ConnectionsManager connectionsManager = ConnectionsManager.getInstance(org.telegram.messenger.p10.f24470s0);
                                 TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm2 = new TLRPC.TL_payments_getPaymentForm();
@@ -356,7 +356,7 @@ public final class rq implements View.OnClickListener {
                                     tL_payments_getPaymentForm2.flags |= 1;
                                 }
                                 tL_payments_getPaymentForm2.invoice = tL_inputInvoicePremiumGiftCode;
-                                connectionsManager.sendRequest(tL_payments_getPaymentForm2, new bi.r8(vVar3, s12, tL_inputInvoicePremiumGiftCode, f2Var, vVar2, 13));
+                                connectionsManager.sendRequest(tL_payments_getPaymentForm2, new bi.r8(uVar3, s12, tL_inputInvoicePremiumGiftCode, f2Var, uVar2, 13));
                                 return;
                             }
                             org.telegram.messenger.qp s13 = org.telegram.messenger.qp.s1(org.telegram.messenger.p10.f24470s0);
@@ -394,7 +394,7 @@ public final class rq implements View.OnClickListener {
                             ?? obj14 = new Object();
                             obj14.f11113b = "inapp";
                             obj14.f11112a = tL_premiumGiftCodeOption3.store_product;
-                            org.telegram.messenger.r1.i().o(Arrays.asList(obj14.a()), new s0(tL_inputStorePaymentPremiumGiveaway2, tL_premiumGiftCodeOption3, connectionsManager2, vVar3, vVar2, f2Var, 3));
+                            org.telegram.messenger.r1.i().o(Arrays.asList(obj14.a()), new s0(tL_inputStorePaymentPremiumGiveaway2, tL_premiumGiftCodeOption3, connectionsManager2, uVar3, uVar2, f2Var, 3));
                             return;
                         }
                         i22++;
@@ -407,11 +407,11 @@ public final class rq implements View.OnClickListener {
         }
     }
 
-    public rq(wg.a0 a0Var, TL_stories.PrepaidGiveaway prepaidGiveaway, long j3, org.telegram.ui.ActionBar.f2 f2Var) {
-        this.f37739a = 2;
-        this.f37741c = a0Var;
+    public rq(wg.z zVar, TL_stories.PrepaidGiveaway prepaidGiveaway, long j3, org.telegram.ui.ActionBar.f2 f2Var) {
+        this.f37782a = 2;
+        this.f37784c = zVar;
         this.d = prepaidGiveaway;
-        this.f37740b = j3;
-        this.f37742e = f2Var;
+        this.f37783b = j3;
+        this.f37785e = f2Var;
     }
 }

@@ -9,7 +9,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
-import di.h4;
+import di.i4;
 import h9.t1;
 import java.math.RoundingMode;
 import java.nio.ByteBuffer;
@@ -74,10 +74,10 @@ public final class q0 implements x {
     public boolean f20295y;
     public long f20296z;
 
-    public q0(h4 h4Var) {
+    public q0(i4 i4Var) {
         Context applicationContext;
         int deviceId;
-        Context context = (Context) h4Var.f9075b;
+        Context context = (Context) i4Var.f9105b;
         if (context == null) {
             applicationContext = null;
         } else {
@@ -85,9 +85,9 @@ public final class q0 implements x {
         }
         this.f20272a = applicationContext;
         this.f20292u = e2.e.f10215i;
-        this.f20274b = (h6.m) h4Var.d;
+        this.f20274b = (h6.m) i4Var.d;
         this.f20280i = 0;
-        this.f20289r = (h0) h4Var.f9078f;
+        this.f20289r = (h0) i4Var.f9108f;
         ?? oVar = new f2.o();
         this.f20276c = oVar;
         ?? oVar2 = new f2.o();
@@ -484,7 +484,7 @@ public final class q0 implements x {
                     this.f20275b0 = new Handler(Looper.myLooper());
                 }
                 this.f20275b0.removeCallbacksAndMessages(null);
-                this.f20275b0.postDelayed(new l2.w(this, 13), 100L);
+                this.f20275b0.postDelayed(new l2.a0(this, 12), 100L);
             }
             return Y;
         }

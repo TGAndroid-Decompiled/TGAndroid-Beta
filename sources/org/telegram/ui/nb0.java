@@ -1,24 +1,36 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.ViewSwitcher;
-public final class nb0 extends ViewSwitcher {
-    public final int f48019a;
+public final class nb0 extends ar {
+    public final int h;
+    public final Object f48151n;
 
-    public nb0(Context context, int i7) {
+    public nb0(int i7, Context context, Object obj) {
         super(context);
-        this.f48019a = i7;
+        this.h = i7;
+        this.f48151n = obj;
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        switch (this.f48019a) {
+    public final void a() {
+        switch (this.h) {
             case 0:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(100.0f), Integer.MIN_VALUE));
+                ((qb0) this.f48151n).h(null);
                 return;
+            case 1:
+                ((jc0) this.f48151n).h(null);
+                return;
+            case 2:
+                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f48151n;
+                if (passcodeActivity.E == 0) {
+                    postDelayed(new gf0(this, 3), 260L);
+                    return;
+                } else {
+                    passcodeActivity.u0();
+                    return;
+                }
             default:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(100.0f), Integer.MIN_VALUE));
+                ((bb1) this.f48151n).H0();
                 return;
         }
     }

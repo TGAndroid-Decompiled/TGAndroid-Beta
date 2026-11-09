@@ -42,7 +42,7 @@ public final class d3 implements c20 {
                 ((ij) this.d).f23262k.factcheck = tL_factCheck;
                 return;
             case 2:
-                Utilities.d.c(new em((r8) this.f21975b, (String) this.f21976c, (String) this.d, (di.i6) obj, 8));
+                Utilities.d.c(new em((r8) this.f21975b, (String) this.f21976c, (String) this.d, (di.j6) obj, 8));
                 return;
             case 3:
                 String str = (String) this.f21975b;
@@ -75,7 +75,7 @@ public final class d3 implements c20 {
                         i10++;
                     }
                     if (document != null) {
-                        l9Var.p(hc.b(document), str2, t5.f(document, org.telegram.ui.ActionBar.k6.f28017m6, 0.2f, null), document);
+                        l9Var.p(hc.b(document), str2, t5.f(document, org.telegram.ui.ActionBar.l6.f28030m6, 0.2f, null), document);
                         l9Var.invalidate();
                         return;
                     }

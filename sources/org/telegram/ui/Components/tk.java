@@ -3,21 +3,21 @@ package org.telegram.ui.Components;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 public final class tk extends v4.s0 {
-    public final int f38376a;
-    public final wk f38377b;
+    public final int f38440a;
+    public final wk f38441b;
 
     public tk(wk wkVar, int i7) {
-        this.f38376a = i7;
-        this.f38377b = wkVar;
+        this.f38440a = i7;
+        this.f38441b = wkVar;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, int i7) {
         boolean z9;
-        xi0 xi0Var;
-        switch (this.f38376a) {
+        yi0 yi0Var;
+        switch (this.f38440a) {
             case 0:
-                wk wkVar = this.f38377b;
+                wk wkVar = this.f38441b;
                 bi.q1 q1Var = wkVar.L;
                 if (i7 != 0) {
                     z9 = true;
@@ -30,10 +30,10 @@ public final class tk extends v4.s0 {
                 }
                 if (i7 == 0) {
                     int L = org.telegram.messenger.g0.L(13.0f);
-                    di diVar = wkVar.f39004b;
-                    int i10 = diVar.f28648s0;
-                    if (((diVar.V3[0] - i10) - L) + i10 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (xi0Var = (xi0) q1Var.K(0)) != null) {
-                        View view = xi0Var.f57044a;
+                    di diVar = wkVar.f39071b;
+                    int i10 = diVar.f28653s0;
+                    if (((diVar.V3[0] - i10) - L) + i10 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (yi0Var = (yi0) q1Var.K(0)) != null) {
+                        View view = yi0Var.f57056a;
                         if (view.getTop() > 0) {
                             q1Var.w0(0, view.getTop(), null);
                             return;
@@ -45,9 +45,9 @@ public final class tk extends v4.s0 {
                 return;
             default:
                 if (i7 == 1) {
-                    wk wkVar2 = this.f38377b;
-                    if (wkVar2.f39947c0 && wkVar2.f39948d0) {
-                        org.telegram.messenger.g0.v1(wkVar2.f39004b.getCurrentFocus());
+                    wk wkVar2 = this.f38441b;
+                    if (wkVar2.f40067c0 && wkVar2.f40068d0) {
+                        org.telegram.messenger.g0.v1(wkVar2.f39071b.getCurrentFocus());
                         return;
                     }
                     return;
@@ -58,14 +58,14 @@ public final class tk extends v4.s0 {
 
     @Override
     public void b(RecyclerView recyclerView, int i7, int i10) {
-        switch (this.f38376a) {
+        switch (this.f38440a) {
             case 0:
-                wk wkVar = this.f38377b;
+                wk wkVar = this.f38441b;
                 wkVar.i0();
                 if (wkVar.F != null) {
                     wkVar.G += i10;
                 }
-                wkVar.f39004b.M1(wkVar, i10);
+                wkVar.f39071b.M1(wkVar, i10);
                 return;
             default:
                 return;

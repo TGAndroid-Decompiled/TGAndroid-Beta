@@ -1,28 +1,33 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.text.Editable;
-import android.text.TextUtils;
-public final class ly0 extends org.telegram.ui.Cells.k3 {
-    public final ny0 E;
+public final class ly0 implements my0 {
+    public final org.telegram.messenger.video.a f47696a;
+    public final org.telegram.ui.Components.hc f47697b;
+    public final Context f47698c;
+    public final di.i0 d;
+    public final org.telegram.messenger.video.d f47699e;
 
-    public ly0(ny0 ny0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, "", true, false, 1024, f6Var);
-        this.E = ny0Var;
+    public ly0(org.telegram.messenger.video.a aVar, org.telegram.ui.Components.hc hcVar, Context context, di.i0 i0Var, org.telegram.messenger.video.d dVar) {
+        this.f47696a = aVar;
+        this.f47697b = hcVar;
+        this.f47698c = context;
+        this.d = i0Var;
+        this.f47699e = dVar;
     }
 
     @Override
-    public final void b(Editable editable) {
-        boolean z9;
-        ny0 ny0Var = this.E;
-        fi.d dVar = ny0Var.f48175s;
-        if (dVar != null) {
-            if (!ny0Var.d.optional && TextUtils.isEmpty(ny0Var.f48173n.getText())) {
-                z9 = false;
-            } else {
-                z9 = true;
-            }
-            dVar.setEnabled(z9);
-        }
+    public final void a() {
+        org.telegram.messenger.g0.i3(new iy0(this.f47696a, this.f47697b, this.f47698c, this.d, 2), 200L);
+    }
+
+    @Override
+    public final void d() {
+        org.telegram.messenger.g0.i3(new ax0(4, this.f47696a, this.f47697b), 200L);
+    }
+
+    @Override
+    public final void g() {
+        this.f47699e.run();
     }
 }

@@ -30,10 +30,10 @@ public final class u {
     }
 
     public final void b(boolean z9) {
-        ((gc) this.f19262b.f39747b).b(z9);
+        ((gc) this.f19262b.f39835b).b(z9);
     }
 
     public final void c(boolean z9) {
-        ((gc) this.f19262b.f39747b).c(z9);
+        ((gc) this.f19262b.f39835b).c(z9);
     }
 }

@@ -35,7 +35,7 @@ public final class d {
     public final void b(int i7) {
         r0 r0Var = this.f10895c;
         if (r0Var != null) {
-            i0 i0Var = r0Var.f18021n;
+            i0 i0Var = r0Var.f18019n;
             i0Var.getClass();
             h0 c10 = i0.c();
             c10.f14092a = i0Var.f14096a.obtainMessage(33, i7, 0);
@@ -56,7 +56,7 @@ public final class d {
                 this.f10898g = f10;
                 r0 r0Var = this.f10895c;
                 if (r0Var != null) {
-                    r0Var.f18021n.f(34);
+                    r0Var.f18019n.f(34);
                 }
             }
         }

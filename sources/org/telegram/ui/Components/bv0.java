@@ -1,51 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class bv0 extends l9 implements org.telegram.messenger.ls {
-    public final int G;
-    public int H;
-    public String I;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class bv0 extends AnimatorListenerAdapter {
+    public final int f32436a;
+    public final cv0 f32437b;
 
-    public bv0(Context context, int i7) {
-        super(context);
-        this.I = "tg_placeholders_android";
-        this.G = i7;
+    public bv0(cv0 cv0Var, int i7) {
+        this.f32436a = i7;
+        this.f32437b = cv0Var;
     }
 
     @Override
-    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.qs.f25111y0) {
-            if (this.I.equals((String) objArr[0])) {
-                v();
-            }
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f32436a) {
+            case 0:
+                this.f32437b.f32772s.setVisibility(8);
+                return;
+            case 1:
+                this.f32437b.f32772s.setVisibility(8);
+                return;
+            default:
+                this.f32437b.f32772s.setVisibility(8);
+                return;
         }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        v();
-        org.telegram.messenger.qs.f(this.G).c(this, org.telegram.messenger.qs.f25111y0);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        org.telegram.messenger.qs.f(this.G).n(this, org.telegram.messenger.qs.f25111y0);
-    }
-
-    public void setStickerNum(int i7) {
-        if (this.H != i7) {
-            this.H = i7;
-            v();
-        }
-    }
-
-    public void setStickerPackName(String str) {
-        this.I = str;
-    }
-
-    public final void v() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.bv0.v():void");
     }
 }

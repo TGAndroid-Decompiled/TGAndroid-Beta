@@ -17,21 +17,21 @@ import org.telegram.messenger.id;
 import org.telegram.messenger.m5;
 import org.telegram.messenger.qp;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.a6;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
 import org.telegram.ui.Components.l9;
 import org.telegram.ui.Components.w8;
-public final class c extends FrameLayout implements a6 {
-    public final f6 f17077a;
+public final class c extends FrameLayout implements b6 {
+    public final g6 f17077a;
     public final l9 f17078b;
     public final TextView f17079c;
     public final TextView d;
     public final ImageView f17080e;
 
-    public c(Context context, f6 f6Var) {
+    public c(Context context, g6 g6Var) {
         super(context);
-        this.f17077a = f6Var;
+        this.f17077a = g6Var;
         l9 l9Var = new l9(context);
         this.f17078b = l9Var;
         l9Var.setRoundRadius(g0.L(9.0f));
@@ -80,13 +80,13 @@ public final class c extends FrameLayout implements a6 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(k6.f28262z6));
-        hashSet.add(Integer.valueOf(k6.G6));
+        hashSet.add(Integer.valueOf(l6.f28275z6));
+        hashSet.add(Integer.valueOf(l6.G6));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        Drawable drawable = k6.S0;
+        Drawable drawable = l6.S0;
         l9 l9Var = this.f17078b;
         s.a(canvas, drawable, (l9Var.getWidth() / 2.0f) + l9Var.getLeft(), (l9Var.getHeight() / 2.0f) + l9Var.getTop(), l9Var.getHeight());
         super.dispatchDraw(canvas);
@@ -107,10 +107,10 @@ public final class c extends FrameLayout implements a6 {
 
     @Override
     public final void updateColors() {
-        int i7 = k6.f28262z6;
-        f6 f6Var = this.f17077a;
-        this.f17080e.setColorFilter(k6.w0(i7, f6Var));
-        this.f17079c.setTextColor(k6.w0(k6.G6, f6Var));
-        this.d.setTextColor(k6.w0(i7, f6Var));
+        int i7 = l6.f28275z6;
+        g6 g6Var = this.f17077a;
+        this.f17080e.setColorFilter(l6.w0(i7, g6Var));
+        this.f17079c.setTextColor(l6.w0(l6.G6, g6Var));
+        this.d.setTextColor(l6.w0(i7, g6Var));
     }
 }

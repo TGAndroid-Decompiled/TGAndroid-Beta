@@ -35,7 +35,7 @@ public final class j implements RequestDelegate {
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         ArrayList arrayList;
         ArrayList arrayList2;
-        org.telegram.ui.ActionBar.d6 d6Var;
+        org.telegram.ui.ActionBar.e6 e6Var;
         switch (this.f4071a) {
             case 0:
                 org.telegram.messenger.g0.h3(new aa.s((z) this.f4072b, tLObject, (Context) this.f4073c, 7));
@@ -48,8 +48,8 @@ public final class j implements RequestDelegate {
                 org.telegram.ui.ActionBar.u1 u1Var = (org.telegram.ui.ActionBar.u1) this.f4073c;
                 if (tLObject instanceof TL_stars.TL_payments_uniqueStarGift) {
                     TL_stars.TL_payments_uniqueStarGift tL_payments_uniqueStarGift = (TL_stars.TL_payments_uniqueStarGift) tLObject;
-                    qp.s1(k7Var.f28616a).Y3(tL_payments_uniqueStarGift.users, false);
-                    qp.s1(k7Var.f28616a).S3(tL_payments_uniqueStarGift.chats, false);
+                    qp.s1(k7Var.f28621a).Y3(tL_payments_uniqueStarGift.users, false);
+                    qp.s1(k7Var.f28621a).S3(tL_payments_uniqueStarGift.chats, false);
                     if (tL_payments_uniqueStarGift.gift instanceof TL_stars.TL_starGiftUnique) {
                         org.telegram.messenger.g0.h3(new a1.e(25, k7Var, tL_payments_uniqueStarGift));
                         return;
@@ -65,8 +65,8 @@ public final class j implements RequestDelegate {
                 TL_stars.InputSavedStarGift inputSavedStarGift = (TL_stars.InputSavedStarGift) this.f4073c;
                 if (tLObject instanceof TLRPC.Updates) {
                     TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-                    qp.s1(k7Var2.f28616a).Y3(updates.users, false);
-                    qp.s1(k7Var2.f28616a).S3(updates.chats, false);
+                    qp.s1(k7Var2.f28621a).Y3(updates.users, false);
+                    qp.s1(k7Var2.f28621a).S3(updates.chats, false);
                 }
                 org.telegram.messenger.g0.h3(new ai.d0(k7Var2, tL_error, tLObject, inputSavedStarGift, 8));
                 return;
@@ -80,21 +80,21 @@ public final class j implements RequestDelegate {
                 org.telegram.messenger.g0.h3(new aa.s((ea) this.f4072b, tLObject, (Runnable) this.f4073c, 18));
                 return;
             case 8:
-                di.z3 z3Var = (di.z3) this.f4072b;
+                di.a4 a4Var = (di.a4) this.f4072b;
                 fi.s8 s8Var = (fi.s8) this.f4073c;
                 if (tLObject instanceof TLRPC.Updates) {
-                    qp.s1(z3Var.f10013x.f9168l2).O3((TLRPC.Updates) tLObject, false);
+                    qp.s1(a4Var.f8808x.f9200l2).O3((TLRPC.Updates) tLObject, false);
                 }
-                org.telegram.messenger.g0.h3(new di.w3(s8Var, 0));
+                org.telegram.messenger.g0.h3(new di.x3(s8Var, 0));
                 return;
             case 9:
-                org.telegram.messenger.g0.h3(new aa.s((di.j6) this.f4072b, tLObject, (Runnable) this.f4073c, 27));
+                org.telegram.messenger.g0.h3(new aa.s((di.k6) this.f4072b, tLObject, (Runnable) this.f4073c, 27));
                 return;
             case 10:
-                org.telegram.messenger.g0.h3(new ai.d0((di.m6) this.f4072b, tLObject, (c20) this.f4073c, tL_error));
+                org.telegram.messenger.g0.h3(new ai.d0((di.n6) this.f4072b, tLObject, (c20) this.f4073c, tL_error));
                 return;
             case 11:
-                org.telegram.messenger.g0.h3(new aa.s((di.y9) this.f4072b, tLObject, (TL_stories.TL_stories_getStoriesViews) this.f4073c, 29));
+                org.telegram.messenger.g0.h3(new aa.s((di.z9) this.f4072b, tLObject, (TL_stories.TL_stories_getStoriesViews) this.f4073c, 29));
                 return;
             case 12:
                 org.telegram.messenger.g0.h3(new fi.x1((fi.y1) this.f4072b, (String) this.f4073c, tLObject, 0));
@@ -144,7 +144,7 @@ public final class j implements RequestDelegate {
                 ((VoIPService) this.f4072b).lambda$startConferenceGroupCall$32((org.telegram.messenger.c) this.f4073c, tLObject, tL_error);
                 return;
             case 26:
-                org.telegram.ui.ActionBar.e6 e6Var = (org.telegram.ui.ActionBar.e6) this.f4072b;
+                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f4072b;
                 ArrayList arrayList3 = (ArrayList) this.f4073c;
                 if (tLObject instanceof Vector) {
                     Vector vector = (Vector) tLObject;
@@ -165,36 +165,36 @@ public final class j implements RequestDelegate {
                                 int i10 = 0;
                                 Bitmap bitmap = str2;
                                 while (i10 < size2) {
-                                    org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) arrayList3.get(i10);
-                                    if (h6Var.f27531o.equals(tL_wallPaper.slug)) {
+                                    org.telegram.ui.ActionBar.i6 i6Var = (org.telegram.ui.ActionBar.i6) arrayList3.get(i10);
+                                    if (i6Var.f27583o.equals(tL_wallPaper.slug)) {
                                         if (bool == null) {
                                             bool = Boolean.valueOf(J.exists());
                                         }
                                         if (bitmap != 0 || bool.booleanValue()) {
                                             arrayList2 = arrayList3;
-                                            bitmap = org.telegram.ui.ActionBar.e6.b(bitmap, "application/x-tgwallpattern".equals(tL_wallPaper.document.mime_type), J, h6Var);
+                                            bitmap = org.telegram.ui.ActionBar.f6.b(bitmap, "application/x-tgwallpattern".equals(tL_wallPaper.document.mime_type), J, i6Var);
                                             if (arrayList4 == null) {
                                                 arrayList4 = new ArrayList();
                                             }
-                                            arrayList4.add(h6Var);
+                                            arrayList4.add(i6Var);
                                         } else {
                                             String r10 = org.telegram.messenger.w7.r(null, tL_wallPaper.document);
-                                            if (e6Var.f27460b == null) {
-                                                e6Var.f27460b = new HashMap();
+                                            if (f6Var.f27474b == null) {
+                                                f6Var.f27474b = new HashMap();
                                             }
-                                            org.telegram.ui.ActionBar.d6 d6Var2 = (org.telegram.ui.ActionBar.d6) e6Var.f27460b.get(r10);
-                                            if (d6Var2 == null) {
+                                            org.telegram.ui.ActionBar.e6 e6Var2 = (org.telegram.ui.ActionBar.e6) f6Var.f27474b.get(r10);
+                                            if (e6Var2 == null) {
                                                 ?? obj = new Object();
                                                 arrayList2 = arrayList3;
-                                                obj.f27445b = new ArrayList();
-                                                obj.f27444a = tL_wallPaper;
-                                                e6Var.f27460b.put(r10, obj);
-                                                d6Var = obj;
+                                                obj.f27459b = new ArrayList();
+                                                obj.f27458a = tL_wallPaper;
+                                                f6Var.f27474b.put(r10, obj);
+                                                e6Var = obj;
                                             } else {
                                                 arrayList2 = arrayList3;
-                                                d6Var = d6Var2;
+                                                e6Var = e6Var2;
                                             }
-                                            d6Var.f27445b.add(h6Var);
+                                            e6Var.f27459b.add(i6Var);
                                         }
                                     } else {
                                         arrayList2 = arrayList3;
@@ -217,18 +217,18 @@ public final class j implements RequestDelegate {
                         arrayList3 = arrayList;
                         str = null;
                     }
-                    org.telegram.messenger.g0.h3(new u7((Object) e6Var, (Object) arrayList4, true, 13));
+                    org.telegram.messenger.g0.h3(new u7((Object) f6Var, (Object) arrayList4, true, 13));
                     return;
                 }
                 return;
             case 27:
-                org.telegram.messenger.g0.h3(new l2.z0((org.telegram.ui.ActionBar.j6) this.f4072b, tLObject, (org.telegram.ui.ActionBar.j6) this.f4073c, 21));
+                org.telegram.messenger.g0.h3(new l2.z0((org.telegram.ui.ActionBar.k6) this.f4072b, tLObject, (org.telegram.ui.ActionBar.k6) this.f4073c, 21));
                 return;
             case 28:
                 org.telegram.messenger.g0.h3(new org.telegram.ui.m6((org.telegram.ui.h8) this.f4072b, tL_error, tLObject, (Calendar) this.f4073c, 2));
                 return;
             default:
-                org.telegram.messenger.g0.h3(new org.telegram.ui.o1((org.telegram.ui.pc) this.f4072b, tLObject, (org.telegram.ui.ActionBar.j6) this.f4073c, 10));
+                org.telegram.messenger.g0.h3(new org.telegram.ui.o1((org.telegram.ui.pc) this.f4072b, tLObject, (org.telegram.ui.ActionBar.k6) this.f4073c, 10));
                 return;
         }
     }

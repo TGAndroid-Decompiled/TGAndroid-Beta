@@ -1,53 +1,448 @@
 package org.telegram.ui.Wallet;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.telegram.ui.Components.pp0;
-import org.telegram.ui.d10;
+import android.os.SystemClock;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import org.telegram.messenger.v10;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_toncenter;
+import org.telegram.ui.Components.et;
 public final class y0 {
-    public final int f43379a;
-    public final long f43380b;
-    public final z0 f43381c;
+    public final int f43366a;
+    public final String f43367b;
+    public final l0 f43368c;
+    public boolean d;
+    public boolean f43369e;
+    public String f43370f;
+    public int f43371g;
+    public int h;
+    public int f43373j;
+    public rc.u f43374k;
+    public long f43375l;
+    public int f43372i = -1;
+    public final v0 f43376m = new Runnable(this) {
+        public final y0 f43204b;
 
-    public y0(z0 z0Var, int i7, long j3) {
-        this.f43381c = z0Var;
-        this.f43379a = i7;
-        this.f43380b = j3;
+        {
+            this.f43204b = this;
+        }
+
+        @Override
+        public final void run() {
+            switch (r2) {
+                case 0:
+                    this.f43204b.e();
+                    return;
+                case 1:
+                    y0 y0Var = this.f43204b;
+                    if (y0Var.d) {
+                        y0Var.d("URL expired; renewing connection");
+                        y0Var.b();
+                        y0Var.e();
+                        return;
+                    }
+                    return;
+                default:
+                    this.f43204b.f("connection or subscription timed out");
+                    return;
+            }
+        }
+    };
+    public final v0 f43377n = new Runnable(this) {
+        public final y0 f43204b;
+
+        {
+            this.f43204b = this;
+        }
+
+        @Override
+        public final void run() {
+            switch (r2) {
+                case 0:
+                    this.f43204b.e();
+                    return;
+                case 1:
+                    y0 y0Var = this.f43204b;
+                    if (y0Var.d) {
+                        y0Var.d("URL expired; renewing connection");
+                        y0Var.b();
+                        y0Var.e();
+                        return;
+                    }
+                    return;
+                default:
+                    this.f43204b.f("connection or subscription timed out");
+                    return;
+            }
+        }
+    };
+    public final v0 f43378o = new Runnable(this) {
+        public final y0 f43204b;
+
+        {
+            this.f43204b = this;
+        }
+
+        @Override
+        public final void run() {
+            switch (r2) {
+                case 0:
+                    this.f43204b.e();
+                    return;
+                case 1:
+                    y0 y0Var = this.f43204b;
+                    if (y0Var.d) {
+                        y0Var.d("URL expired; renewing connection");
+                        y0Var.b();
+                        y0Var.e();
+                        return;
+                    }
+                    return;
+                default:
+                    this.f43204b.f("connection or subscription timed out");
+                    return;
+            }
+        }
+    };
+    public final et f43379p = new et(this, 23);
+
+    public y0(int i7, String str, l0 l0Var) {
+        this.f43366a = i7;
+        this.f43367b = str;
+        this.f43368c = l0Var;
     }
 
-    public final void a(rc.u uVar, rc.x xVar, rc.x xVar2, boolean z9) {
-        Integer valueOf;
-        StringBuilder sb2 = new StringBuilder("websocket disconnected; closedByServer=");
-        sb2.append(z9);
-        sb2.append(", serverCloseCode=");
-        Object obj = "none";
-        if (xVar == null) {
-            valueOf = "none";
+    public static String a(rc.v vVar) {
+        String str;
+        com.google.android.gms.internal.clearcut.z0 z0Var;
+        switch (vVar.f54516a) {
+            case 1:
+                str = "NOT_IN_CREATED_STATE";
+                break;
+            case 2:
+                str = "SOCKET_INPUT_STREAM_FAILURE";
+                break;
+            case 3:
+                str = "SOCKET_OUTPUT_STREAM_FAILURE";
+                break;
+            case 4:
+                str = "OPENING_HAHDSHAKE_REQUEST_FAILURE";
+                break;
+            case 5:
+                str = "OPENING_HANDSHAKE_RESPONSE_FAILURE";
+                break;
+            case 6:
+                str = "STATUS_LINE_EMPTY";
+                break;
+            case 7:
+                str = "STATUS_LINE_BAD_FORMAT";
+                break;
+            case 8:
+                str = "NOT_SWITCHING_PROTOCOLS";
+                break;
+            case 9:
+                str = "HTTP_HEADER_FAILURE";
+                break;
+            case 10:
+                str = "NO_UPGRADE_HEADER";
+                break;
+            case 11:
+                str = "NO_WEBSOCKET_IN_UPGRADE_HEADER";
+                break;
+            case 12:
+                str = "NO_CONNECTION_HEADER";
+                break;
+            case 13:
+                str = "NO_UPGRADE_IN_CONNECTION_HEADER";
+                break;
+            case 14:
+                str = "NO_SEC_WEBSOCKET_ACCEPT_HEADER";
+                break;
+            case 15:
+                str = "UNEXPECTED_SEC_WEBSOCKET_ACCEPT_HEADER";
+                break;
+            case 16:
+                str = "EXTENSION_PARSE_ERROR";
+                break;
+            case 17:
+                str = "UNSUPPORTED_EXTENSION";
+                break;
+            case 18:
+                str = "EXTENSIONS_CONFLICT";
+                break;
+            case 19:
+                str = "UNSUPPORTED_PROTOCOL";
+                break;
+            case 20:
+                str = "INSUFFICENT_DATA";
+                break;
+            case 21:
+                str = "INVALID_PAYLOAD_LENGTH";
+                break;
+            case 22:
+                str = "TOO_LONG_PAYLOAD";
+                break;
+            case 23:
+                str = "INSUFFICIENT_MEMORY_FOR_PAYLOAD";
+                break;
+            case 24:
+                str = "INTERRUPTED_IN_READING";
+                break;
+            case 25:
+                str = "IO_ERROR_IN_READING";
+                break;
+            case 26:
+                str = "IO_ERROR_IN_WRITING";
+                break;
+            case 27:
+                str = "FLUSH_ERROR";
+                break;
+            case 28:
+                str = "NON_ZERO_RESERVED_BITS";
+                break;
+            case 29:
+                str = "UNEXPECTED_RESERVED_BIT";
+                break;
+            case 30:
+                str = "FRAME_MASKED";
+                break;
+            case 31:
+                str = "UNKNOWN_OPCODE";
+                break;
+            case 32:
+                str = "FRAGMENTED_CONTROL_FRAME";
+                break;
+            case 33:
+                str = "UNEXPECTED_CONTINUATION_FRAME";
+                break;
+            case 34:
+                str = "CONTINUATION_NOT_CLOSED";
+                break;
+            case 35:
+                str = "TOO_LONG_CONTROL_FRAME_PAYLOAD";
+                break;
+            case 36:
+                str = "MESSAGE_CONSTRUCTION_ERROR";
+                break;
+            case 37:
+                str = "TEXT_MESSAGE_CONSTRUCTION_ERROR";
+                break;
+            case 38:
+                str = "UNEXPECTED_ERROR_IN_READING_THREAD";
+                break;
+            case 39:
+                str = "UNEXPECTED_ERROR_IN_WRITING_THREAD";
+                break;
+            case 40:
+                str = "PERMESSAGE_DEFLATE_UNSUPPORTED_PARAMETER";
+                break;
+            case 41:
+                str = "PERMESSAGE_DEFLATE_INVALID_MAX_WINDOW_BITS";
+                break;
+            case 42:
+                str = "COMPRESSION_ERROR";
+                break;
+            case 43:
+                str = "DECOMPRESSION_ERROR";
+                break;
+            case 44:
+                str = "SOCKET_CONNECT_ERROR";
+                break;
+            case 45:
+                str = "PROXY_HANDSHAKE_ERROR";
+                break;
+            case 46:
+                str = "SOCKET_OVERLAY_ERROR";
+                break;
+            case 47:
+                str = "SSL_HANDSHAKE_ERROR";
+                break;
+            case 48:
+                str = "NO_MORE_FRAME";
+                break;
+            case 49:
+                str = "HOSTNAME_UNVERIFIED";
+                break;
+            default:
+                str = "null";
+                break;
+        }
+        if ((vVar instanceof rc.n) && (z0Var = ((rc.n) vVar).f54475b) != null) {
+            StringBuilder j3 = rf.b.j(str, ", HTTP ");
+            j3.append(z0Var.f7295b);
+            return j3.toString();
+        }
+        return str;
+    }
+
+    public final void b() {
+        boolean z9;
+        StringBuilder sb2 = new StringBuilder("disconnecting; socket=");
+        if (this.f43374k != null) {
+            z9 = true;
         } else {
-            valueOf = Integer.valueOf(xVar.b());
+            z9 = false;
         }
-        sb2.append(valueOf);
-        sb2.append(", clientCloseCode=");
-        if (xVar2 != null) {
-            obj = Integer.valueOf(xVar2.b());
+        sb2.append(z9);
+        sb2.append(", subscribed=");
+        sb2.append(this.f43369e);
+        sb2.append(", URL request=");
+        sb2.append(this.f43372i);
+        d(sb2.toString());
+        this.h++;
+        this.f43369e = false;
+        org.telegram.messenger.g0.r(this.f43376m);
+        org.telegram.messenger.g0.r(this.f43377n);
+        org.telegram.messenger.g0.r(this.f43378o);
+        org.telegram.messenger.g0.r(this.f43379p);
+        if (this.f43372i >= 0) {
+            ConnectionsManager.getInstance(this.f43366a).cancelRequest(this.f43372i, true);
+            this.f43372i = -1;
         }
-        sb2.append(obj);
-        org.telegram.messenger.g0.h3(new pp0(this.f43381c, uVar, this.f43379a, sb2.toString(), 18));
+        rc.u uVar = this.f43374k;
+        this.f43374k = null;
+        if (uVar != null) {
+            uVar.c();
+        }
     }
 
-    public final void b(rc.u uVar, String str) {
-        StringBuilder sb2 = new StringBuilder("[gram-wallet-streaming] account=");
-        sb2.append(this.f43381c.f43448a);
-        sb2.append(" generation=");
-        int i7 = this.f43379a;
-        sb2.append(i7);
-        sb2.append(" receive <- ");
-        sb2.append(str);
-        org.telegram.messenger.a8.b(sb2.toString());
-        try {
-            org.telegram.messenger.g0.h3(new pp0(this, uVar, i7, new JSONObject(str), 19));
-        } catch (JSONException unused) {
-            org.telegram.messenger.g0.h3(new d10(this, uVar, i7, 13));
+    public final boolean c(rc.u uVar, int i7) {
+        if (this.d && this.f43374k == uVar && this.h == i7) {
+            return true;
         }
+        return false;
+    }
+
+    public final void d(String str) {
+        org.telegram.messenger.a8.b("[gram-wallet-streaming] account=" + this.f43366a + " generation=" + this.h + " " + str);
+    }
+
+    public final void e() {
+        if (!this.d) {
+            return;
+        }
+        org.telegram.messenger.g0.r(this.f43376m);
+        final int i7 = this.h + 1;
+        this.h = i7;
+        final long elapsedRealtime = SystemClock.elapsedRealtime();
+        d("requesting streaming URL; retry=" + this.f43373j);
+        org.telegram.messenger.g0.i3(this.f43378o, 30000L);
+        this.f43372i = ConnectionsManager.getInstance(this.f43366a).sendRequestTyped(new TL_toncenter.getStreamingUrl(), new d3.b(1), new v10() {
+            @Override
+            public final void a(Object obj, Object obj2) {
+                Object valueOf;
+                y0 y0Var = y0.this;
+                int i10 = i7;
+                long j3 = elapsedRealtime;
+                TL_toncenter.streamingUrl streamingurl = (TL_toncenter.streamingUrl) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                if (y0Var.d && y0Var.h == i10) {
+                    StringBuilder sb2 = new StringBuilder("URL response after ");
+                    sb2.append(SystemClock.elapsedRealtime() - j3);
+                    sb2.append(" ms; errorCode=");
+                    if (tL_error == null) {
+                        valueOf = "none";
+                    } else {
+                        valueOf = Integer.valueOf(tL_error.code);
+                    }
+                    sb2.append(valueOf);
+                    y0Var.d(sb2.toString());
+                    y0Var.f43372i = -1;
+                    org.telegram.messenger.g0.r(y0Var.f43378o);
+                    if (streamingurl != null && !TextUtils.isEmpty(streamingurl.url)) {
+                        long currentTime = (streamingurl.expires - ConnectionsManager.getInstance(y0Var.f43366a).getCurrentTime()) * 1000;
+                        y0Var.d("URL expires=" + streamingurl.expires + ", remaining=" + currentTime + " ms");
+                        if (currentTime <= 0) {
+                            y0Var.f("received expired streaming URL");
+                            return;
+                        }
+                        org.telegram.messenger.g0.i3(y0Var.f43377n, currentTime);
+                        String str = streamingurl.url;
+                        long elapsedRealtime2 = SystemClock.elapsedRealtime();
+                        y0Var.d("opening websocket; attempt=" + i10);
+                        try {
+                            f5.u uVar = new f5.u(16, (short) 0);
+                            uVar.f11190b = 10000;
+                            rc.u h = uVar.h(str);
+                            y0Var.f43374k = h;
+                            x0 x0Var = new x0(y0Var, i10, elapsedRealtime2);
+                            ab.q qVar = h.d;
+                            synchronized (((ArrayList) qVar.f991c)) {
+                                ((ArrayList) qVar.f991c).add(x0Var);
+                                qVar.f989a = true;
+                            }
+                            org.telegram.messenger.g0.i3(y0Var.f43378o, 30000L);
+                            rc.u uVar2 = y0Var.f43374k;
+                            uVar2.getClass();
+                            rc.b bVar = new rc.b("ConnectThread", uVar2, 3, 0);
+                            ab.q qVar2 = uVar2.d;
+                            if (qVar2 != null) {
+                                ArrayList arrayList = (ArrayList) qVar2.p();
+                                int size = arrayList.size();
+                                int i11 = 0;
+                                while (i11 < size) {
+                                    Object obj3 = arrayList.get(i11);
+                                    i11++;
+                                    x0 x0Var2 = (x0) obj3;
+                                    try {
+                                        try {
+                                            x0Var2.getClass();
+                                        } catch (Throwable unused) {
+                                            x0Var2.getClass();
+                                        }
+                                    } catch (Throwable unused2) {
+                                    }
+                                }
+                            }
+                            bVar.start();
+                            return;
+                        } catch (Exception e10) {
+                            y0Var.f("could not open websocket: ".concat(e10.getClass().getSimpleName()));
+                            return;
+                        }
+                    }
+                    y0Var.f("could not obtain streaming URL");
+                    return;
+                }
+                y0Var.d("ignoring stale URL response; attempt=" + i10);
+            }
+        });
+    }
+
+    public final void f(String str) {
+        if (!this.d) {
+            return;
+        }
+        b();
+        int i7 = this.f43373j;
+        this.f43373j = i7 + 1;
+        long min = Math.min(30000L, 1000 << Math.min(i7, 5)) + ((long) (Math.random() * 500.0d));
+        d(str + "; retrying in " + min + " ms");
+        org.telegram.messenger.g0.i3(this.f43376m, min);
+    }
+
+    public final void g(String str) {
+        d("send -> " + str);
+        rc.u uVar = this.f43374k;
+        uVar.getClass();
+        ?? obj = new Object();
+        obj.f54519a = true;
+        obj.f54522e = 1;
+        if (str != null && str.length() != 0) {
+            obj.c(rc.k.a(str));
+        } else {
+            obj.f54524g = null;
+        }
+        uVar.g(obj);
+    }
+
+    public final void h() {
+        if (!this.d) {
+            return;
+        }
+        d("stopping");
+        this.d = false;
+        b();
     }
 }

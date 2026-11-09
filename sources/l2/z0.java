@@ -41,18 +41,19 @@ import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout
 import org.telegram.ui.ActionBar.a3;
 import org.telegram.ui.ActionBar.d3;
 import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Cells.ea;
 import org.telegram.ui.Cells.ga;
-import org.telegram.ui.Components.an0;
+import org.telegram.ui.Components.bn0;
 import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.it0;
-import org.telegram.ui.Components.k60;
+import org.telegram.ui.Components.kt0;
+import org.telegram.ui.Components.l60;
 import org.telegram.ui.Components.oe;
 import org.telegram.ui.Components.v4;
 import org.telegram.ui.Components.vf;
-import org.telegram.ui.an;
+import org.telegram.ui.Wallet.w5;
+import org.telegram.ui.cn;
 public final class z0 implements Runnable {
     public final int f18101a;
     public final Object f18102b;
@@ -73,7 +74,7 @@ public final class z0 implements Runnable {
         switch (this.f18101a) {
             case 0:
                 x2.g0 g0Var = (x2.g0) this.d;
-                m2.e eVar = ((a1) this.f18102b).f17746c;
+                m2.e eVar = ((a1) this.f18102b).f17744c;
                 h9.t1 f10 = ((h9.f0) this.f18103c).f();
                 b8 b8Var = eVar.d;
                 e2.c1 c1Var = eVar.h;
@@ -92,17 +93,17 @@ public final class z0 implements Runnable {
                 return;
             case 1:
                 Pair pair = (Pair) this.f18103c;
-                ((g1) this.f18102b).f17824b.h.b(((Integer) pair.first).intValue(), (x2.g0) pair.second, (qb.a) this.d);
+                ((g1) this.f18102b).f17822b.h.b(((Integer) pair.first).intValue(), (x2.g0) pair.second, (qb.a) this.d);
                 return;
             case 2:
                 Pair pair2 = (Pair) this.f18103c;
-                ((g1) this.f18102b).f17824b.h.K(((Integer) pair2.first).intValue(), (x2.g0) pair2.second, (Exception) this.d);
+                ((g1) this.f18102b).f17822b.h.K(((Integer) pair2.first).intValue(), (x2.g0) pair2.second, (Exception) this.d);
                 return;
             case 3:
                 t3 t3Var = (t3) this.f18102b;
-                k60 k60Var = (k60) this.f18103c;
+                l60 l60Var = (l60) this.f18103c;
                 m5 m5Var = (m5) this.d;
-                if (t3Var.f18894q4 == k60Var) {
+                if (t3Var.f18894q4 == l60Var) {
                     t3Var.f18894q4 = null;
                     if (t3Var.J3 && t3Var.f18892p4 == m5Var && !m5Var.H.isEmpty()) {
                         t3Var.P2();
@@ -180,7 +181,7 @@ public final class z0 implements Runnable {
                 return;
             case 9:
                 String str = h2.m0.f14112a;
-                m2.e eVar2 = ((c0) ((n2.s) ((j2.n) this.f18102b).f16457c)).f17774a.f17884s;
+                m2.e eVar2 = ((c0) ((n2.s) ((j2.n) this.f18102b).f16457c)).f17772a.f17882s;
                 m2.a U = eVar2.U();
                 eVar2.V(U, 1009, new m2.d(U, (e2.u) this.f18103c, (e) this.d));
                 return;
@@ -192,7 +193,7 @@ public final class z0 implements Runnable {
                     audioTrack.flush();
                     audioTrack.release();
                     if (handler.getLooper().getThread().isAlive()) {
-                        handler.post(new w(rVar, 12));
+                        handler.post(new a0(rVar, 11));
                     }
                     synchronized (n2.f0.f20160t) {
                         try {
@@ -210,7 +211,7 @@ public final class z0 implements Runnable {
                     return;
                 } catch (Throwable th2) {
                     if (handler.getLooper().getThread().isAlive()) {
-                        handler.post(new w(rVar, 12));
+                        handler.post(new a0(rVar, 11));
                     }
                     synchronized (n2.f0.f20160t) {
                         try {
@@ -276,8 +277,8 @@ public final class z0 implements Runnable {
                 f2Var2.onBecomeFullyVisible();
                 return;
             case 19:
-                ((f2) this.f18103c).presentFragment((an) this.d);
-                ((d3) this.f18102b).f27430c = false;
+                ((f2) this.f18103c).presentFragment((cn) this.d);
+                ((d3) this.f18102b).f27414c = false;
                 return;
             case 20:
                 d3 d3Var = (d3) this.f18102b;
@@ -294,35 +295,35 @@ public final class z0 implements Runnable {
                 d3Var.invalidate();
                 return;
             case 21:
-                j6 j6Var = (j6) this.f18102b;
+                k6 k6Var = (k6) this.f18102b;
                 TLObject tLObject = (TLObject) this.f18103c;
-                j6 j6Var2 = (j6) this.d;
+                k6 k6Var2 = (k6) this.d;
                 if (tLObject instanceof TLRPC.TL_wallPaper) {
                     TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) tLObject;
-                    j6Var.f27640g0 = w7.r(null, tL_wallPaper.document);
-                    qs.f(j6Var.E).b(j6Var, 142);
-                    qs.f(j6Var.E).b(j6Var, 143);
-                    w7.G(j6Var2.E).W(tL_wallPaper.document, tL_wallPaper, 1, 1);
+                    k6Var.f27747g0 = w7.r(null, tL_wallPaper.document);
+                    qs.f(k6Var.E).b(k6Var, 142);
+                    qs.f(k6Var.E).b(k6Var, 143);
+                    w7.G(k6Var2.E).W(tL_wallPaper.document, tL_wallPaper, 1, 1);
                     return;
                 }
-                j6Var.s();
+                k6Var.s();
                 return;
             case 22:
                 org.telegram.ui.Cells.t0 t0Var = (org.telegram.ui.Cells.t0) this.f18102b;
-                org.telegram.ui.Wallet.x5.G0(t0Var.getContext(), t0Var.H, (TL_wallet.walletTransaction) this.f18103c, null, null, null, (org.telegram.ui.Cells.m0) this.d, t0Var.f30315g1);
+                w5.G0(t0Var.getContext(), t0Var.H, (TL_wallet.walletTransaction) this.f18103c, null, null, null, (org.telegram.ui.Cells.m0) this.d, t0Var.f30319g1);
                 return;
             case 23:
                 org.telegram.ui.Cells.t0 t0Var2 = (org.telegram.ui.Cells.t0) this.f18102b;
-                t0Var2.f30312f1.W(t0Var2, (TLRPC.TL_premiumGiftOption) this.f18103c, (String) this.d);
+                t0Var2.f30316f1.W(t0Var2, (TLRPC.TL_premiumGiftOption) this.f18103c, (String) this.d);
                 return;
             case 24:
-                j6 j6Var3 = (j6) this.f18103c;
-                j6Var3.f27638f = true ^ j6Var3.d((File) this.d, j6Var3.f27633c);
-                org.telegram.messenger.g0.h3(new ea(8, (ga) this.f18102b, j6Var3));
+                k6 k6Var3 = (k6) this.f18103c;
+                k6Var3.f27745f = true ^ k6Var3.d((File) this.d, k6Var3.f27740c);
+                org.telegram.messenger.g0.h3(new ea(8, (ga) this.f18102b, k6Var3));
                 return;
             case 25:
                 org.telegram.ui.Components.g0 g0Var2 = (org.telegram.ui.Components.g0) this.f18102b;
-                v4.J((Context) this.f18103c, g0Var2.d2, new org.telegram.ui.Components.n(g0Var2), (f6) this.d);
+                v4.J((Context) this.f18103c, g0Var2.d2, new org.telegram.ui.Components.n(g0Var2), (g6) this.d);
                 return;
             case 26:
                 org.telegram.ui.Components.b8 b8Var2 = (org.telegram.ui.Components.b8) this.f18102b;
@@ -336,23 +337,23 @@ public final class z0 implements Runnable {
                     tL_inputDocument.f26968id = document.f26962id;
                     tL_inputDocument.access_hash = document.access_hash;
                     tL_inputDocument.file_reference = document.file_reference;
-                    kp kpVar = b8Var2.f32098m2;
+                    kp kpVar = b8Var2.f32140m2;
                     if (kpVar != null) {
                         kpVar.f23741c.add(0, kpVar.d(document));
                         kpVar.e();
                     }
-                    b8Var2.f32099n2.clear();
-                    b8Var2.f32099n2.addAll(b8Var2.f32098m2.f23741c);
-                    b8Var2.f32104q1.f();
-                    ConnectionsManager.getInstance(b8Var2.f28616a).sendRequest(tL_account_saveMusic, null);
+                    b8Var2.f32141n2.clear();
+                    b8Var2.f32141n2.addAll(b8Var2.f32140m2.f23741c);
+                    b8Var2.f32146q1.f();
+                    ConnectionsManager.getInstance(b8Var2.f28621a).sendRequest(tL_account_saveMusic, null);
                     return;
                 }
                 return;
             case 27:
                 oe oeVar = (oe) this.f18102b;
                 oeVar.getClass();
-                ((it0) this.f18103c).getViewTreeObserver().removeOnDrawListener(oeVar);
-                ((an0) this.d).f31865a.setHideAvatar(true);
+                ((kt0) this.f18103c).getViewTreeObserver().removeOnDrawListener(oeVar);
+                ((bn0) this.d).f32331a.setHideAvatar(true);
                 return;
             case 28:
                 vf vfVar = (vf) this.f18102b;

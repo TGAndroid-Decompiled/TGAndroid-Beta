@@ -1,36 +1,26 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-public final class lh0 implements Runnable {
-    public final int f47543a;
-    public final mh0 f47544b;
-    public final String f47545c;
+import android.widget.ImageView;
+public final class lh0 extends org.telegram.ui.Cells.m8 {
+    public ImageView W;
 
-    public lh0(mh0 mh0Var, String str, int i7) {
-        this.f47543a = i7;
-        this.f47544b = mh0Var;
-        this.f47545c = str;
+    @Override
+    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
+        int L;
+        super.onLayout(z9, i7, i10, i11, i12);
+        int i13 = i11 - i7;
+        if (org.telegram.messenger.id.f23157a0) {
+            L = org.telegram.messenger.g0.L(17.0f);
+        } else {
+            L = i13 - org.telegram.messenger.g0.L(41.0f);
+        }
+        int y10 = org.telegram.messenger.camera.q.y(24.0f, i12 - i10, 2);
+        this.W.layout(L, y10, org.telegram.messenger.g0.L(24.0f) + L, org.telegram.messenger.g0.L(24.0f) + y10);
     }
 
     @Override
-    public final void run() {
-        switch (this.f47543a) {
-            case 0:
-                mh0 mh0Var = this.f47544b;
-                String str = this.f47545c;
-                mh0Var.getClass();
-                org.telegram.messenger.g0.h3(new lh0(mh0Var, str, 1));
-                return;
-            default:
-                mh0 mh0Var2 = this.f47544b;
-                String str2 = this.f47545c;
-                jg.z1 z1Var = mh0Var2.h;
-                int i7 = mh0Var2.f47811n.f41310s;
-                boolean z9 = true;
-                z1Var.g(str2, true, (i7 == 1 || i7 == 3) ? false : false, true, false, 0L, false, 0, 0);
-                Utilities.f21338g.c(new mc0(mh0Var2, str2, new ArrayList(mh0Var2.f47811n.f41312x), 10));
-                return;
-        }
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, i10);
+        this.W.measure(i7, i10);
     }
 }

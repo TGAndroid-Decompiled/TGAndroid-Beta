@@ -2,7 +2,7 @@ package y7;
 
 import java.util.logging.Logger;
 public abstract class i7 {
-    public static final int f59053a = 0;
+    public static final int f59062a = 0;
 
     static {
         Logger.getLogger(i7.class.getName());

@@ -12,7 +12,7 @@ import org.telegram.messenger.yr;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 public abstract class t8 extends View {
-    public static final int f12863a = 0;
+    public static final int f12862a = 0;
 
     public static void a(int i7, e7 e7Var) {
         q8 q8Var;

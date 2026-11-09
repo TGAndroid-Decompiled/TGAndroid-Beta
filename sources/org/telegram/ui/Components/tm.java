@@ -5,11 +5,11 @@ import android.graphics.Canvas;
 import android.graphics.Point;
 import android.view.View;
 public final class tm extends View {
-    public final int f38388a;
+    public final int f38451a;
 
     public tm(Context context, int i7) {
         super(context);
-        this.f38388a = i7;
+        this.f38451a = i7;
     }
 
     @Override
@@ -24,10 +24,10 @@ public final class tm extends View {
         int i12;
         float L5;
         int i13;
-        switch (this.f38388a) {
+        switch (this.f38451a) {
             case 8:
                 super.onDraw(canvas);
-                canvas.drawLine(0.0f, org.telegram.messenger.g0.L(14.0f), 2.0f, getMeasuredHeight() - org.telegram.messenger.g0.L(14.0f), org.telegram.ui.ActionBar.k6.f27975k0);
+                canvas.drawLine(0.0f, org.telegram.messenger.g0.L(14.0f), 2.0f, getMeasuredHeight() - org.telegram.messenger.g0.L(14.0f), org.telegram.ui.ActionBar.l6.f27988k0);
                 return;
             case 15:
                 if (org.telegram.messenger.id.f23157a0) {
@@ -43,7 +43,7 @@ public final class tm extends View {
                 } else {
                     i7 = 0;
                 }
-                canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f27975k0);
+                canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.l6.f27988k0);
                 return;
             case 16:
                 if (org.telegram.messenger.id.f23157a0) {
@@ -59,7 +59,7 @@ public final class tm extends View {
                 } else {
                     i10 = 0;
                 }
-                canvas.drawLine(f11, measuredHeight2, measuredWidth2 - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f27975k0);
+                canvas.drawLine(f11, measuredHeight2, measuredWidth2 - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.l6.f27988k0);
                 return;
             case 17:
                 if (org.telegram.messenger.id.f23157a0) {
@@ -75,7 +75,7 @@ public final class tm extends View {
                 } else {
                     i11 = 0;
                 }
-                canvas.drawLine(f12, measuredHeight3, measuredWidth3 - i11, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f27975k0);
+                canvas.drawLine(f12, measuredHeight3, measuredWidth3 - i11, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.l6.f27988k0);
                 return;
             case 18:
                 if (org.telegram.messenger.id.f23157a0) {
@@ -91,7 +91,7 @@ public final class tm extends View {
                 } else {
                     i12 = 0;
                 }
-                canvas.drawLine(f13, measuredHeight4, measuredWidth4 - i12, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f27975k0);
+                canvas.drawLine(f13, measuredHeight4, measuredWidth4 - i12, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.l6.f27988k0);
                 return;
             case 26:
                 if (org.telegram.messenger.id.f23157a0) {
@@ -107,7 +107,7 @@ public final class tm extends View {
                 } else {
                     i13 = 0;
                 }
-                canvas.drawLine(f14, measuredHeight5, measuredWidth5 - i13, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f27975k0);
+                canvas.drawLine(f14, measuredHeight5, measuredWidth5 - i13, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.l6.f27988k0);
                 return;
             default:
                 super.onDraw(canvas);
@@ -120,7 +120,7 @@ public final class tm extends View {
         boolean z9;
         float f10;
         float f11;
-        switch (this.f38388a) {
+        switch (this.f38451a) {
             case 1:
                 super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(32.0f), 1073741824));
                 return;
@@ -181,7 +181,7 @@ public final class tm extends View {
                 super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(4.0f), 1073741824));
                 return;
             case 14:
-                if (org.telegram.ui.c40.f44544w5) {
+                if (org.telegram.ui.e40.f45184w5) {
                     f11 = 0.0f;
                 } else {
                     f11 = 8.0f;

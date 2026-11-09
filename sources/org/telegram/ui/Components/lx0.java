@@ -1,15 +1,88 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Paint;
+import android.graphics.Rect;
+import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_iv;
-public interface lx0 {
-    ex0 c(TL_iv.pageTableCell pagetablecell, int i7);
+public final class lx0 extends k1.b {
+    public final Rect f35869o;
+    public final nx0 f35870p;
 
-    void g(ex0 ex0Var, int i7);
+    public lx0(nx0 nx0Var, nx0 nx0Var2) {
+        super(nx0Var2);
+        this.f35870p = nx0Var;
+        this.f35869o = new Rect();
+    }
 
-    Paint getHeaderPaint();
+    @Override
+    public final int g(float f10, float f11) {
+        int i7;
+        nx0 nx0Var = this.f35870p;
+        int childCount = nx0Var.getChildCount();
+        for (int i10 = 0; i10 < childCount; i10++) {
+            gx0 d = nx0Var.d(i10);
+            int i11 = d.f34078k;
+            if (i11 > 0 && (i7 = d.f34079l) > 0) {
+                int i12 = d.f34083p;
+                if (f10 >= i12 && f10 < i12 + i11) {
+                    int i13 = d.f34084q;
+                    if (f11 >= i13 && f11 < i13 + i7) {
+                        return i10;
+                    }
+                }
+            }
+        }
+        return Integer.MIN_VALUE;
+    }
 
-    Paint getLinePaint();
+    @Override
+    public final void h(ArrayList arrayList) {
+        nx0 nx0Var = this.f35870p;
+        int childCount = nx0Var.getChildCount();
+        for (int i7 = 0; i7 < childCount; i7++) {
+            gx0 d = nx0Var.d(i7);
+            if (d.f34078k > 0 && d.f34079l > 0) {
+                arrayList.add(Integer.valueOf(i7));
+            }
+        }
+    }
 
-    Paint getStripPaint();
+    @Override
+    public final boolean k(int i7, int i10) {
+        return false;
+    }
+
+    @Override
+    public final void l(int i7, s0.d dVar) {
+        String str;
+        Rect rect = this.f35869o;
+        if (i7 >= 0) {
+            nx0 nx0Var = this.f35870p;
+            if (i7 < nx0Var.getChildCount()) {
+                gx0 d = nx0Var.d(i7);
+                int i10 = d.f34083p;
+                int i11 = d.f34084q;
+                rect.set(i10, i11, d.f34078k + i10, d.f34079l + i11);
+                dVar.h(rect);
+                dVar.i("android.widget.TextView");
+                dVar.f54613a.setEnabled(true);
+                fx0 fx0Var = d.f34071b;
+                if (fx0Var != null) {
+                    str = fx0Var.getText();
+                } else {
+                    str = null;
+                }
+                dVar.o((str == null || str.length() == 0) ? " " : " ");
+                TL_iv.pageTableCell pagetablecell = d.f34072c;
+                if (pagetablecell != null && pagetablecell.header) {
+                    dVar.k(true);
+                    return;
+                }
+                return;
+            }
+        }
+        rect.set(0, 0, 1, 1);
+        dVar.h(rect);
+        dVar.p(false);
+        dVar.j("");
+    }
 }

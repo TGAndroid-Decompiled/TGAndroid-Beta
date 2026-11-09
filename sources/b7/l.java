@@ -4,7 +4,7 @@ import android.content.Context;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.ij;
-import org.telegram.ui.Components.t51;
+import org.telegram.ui.Components.u51;
 import org.telegram.ui.PhotoViewer;
 public final class l implements c, g6.h {
     public int f3009a;
@@ -44,7 +44,7 @@ public final class l implements c, g6.h {
             if (hVar == 0) {
                 return;
             }
-            AtomicInteger atomicInteger = d1.f.f7945b;
+            AtomicInteger atomicInteger = d1.f.f7943b;
             if (atomicInteger != null) {
                 atomicInteger.set(0);
             }
@@ -58,9 +58,9 @@ public final class l implements c, g6.h {
             int i7 = this.f3009a;
             long j3 = -1;
             if (i7 == 0) {
-                t51 t51Var = PhotoViewer.p1().F2;
-                if (t51Var != null) {
-                    j3 = t51Var.S();
+                u51 u51Var = PhotoViewer.p1().F2;
+                if (u51Var != null) {
+                    j3 = u51Var.S();
                 }
             } else if (i7 == 1 && (ijVar = (B = MediaController.B()).f21295u0) != null) {
                 j3 = B.D(ijVar);

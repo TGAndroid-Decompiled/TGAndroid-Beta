@@ -1,126 +1,68 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.text.TextUtils;
-import android.view.ViewGroup;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class pu0 extends oj0 {
-    public int f37106c;
-    public final yu0 d;
+public final class pu0 {
+    public final g5 f37095a;
+    public Drawable f37096b;
 
-    public pu0(yu0 yu0Var) {
-        this.d = yu0Var;
+    public pu0(FrameLayout frameLayout) {
+        this(18, frameLayout);
     }
 
-    @Override
-    public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f57048f == 1) {
-            return true;
+    public final g5 a(TLObject tLObject, int i7, boolean z9) {
+        if (tLObject instanceof TLRPC.User) {
+            return b((TLRPC.User) tLObject, null, i7, z9);
         }
-        return false;
+        if (tLObject instanceof TLRPC.Chat) {
+            return b(null, (TLRPC.Chat) tLObject, i7, z9);
+        }
+        return b(null, null, i7, z9);
     }
 
-    @Override
-    public final int b() {
-        int length;
-        yu0 yu0Var = this.d;
-        uu0[] uu0VarArr = yu0Var.f40755f3;
-        if (uu0VarArr == null) {
-            length = 0;
+    public final g5 b(TLRPC.User user, TLRPC.Chat chat, int i7, boolean z9) {
+        g5 g5Var = this.f37095a;
+        if (chat != null && chat.verified) {
+            Drawable drawable = this.f37096b;
+            if (drawable == null) {
+                drawable = new xp(org.telegram.ui.ActionBar.l6.f27898f1, org.telegram.ui.ActionBar.l6.f27952i1);
+            }
+            this.f37096b = drawable;
+            g5Var.g(drawable, z9);
+            g5Var.k(null);
+            return g5Var;
+        } else if (chat != null && org.telegram.messenger.m5.f(chat.emoji_status) != 0) {
+            g5Var.j(org.telegram.messenger.m5.f(chat.emoji_status), z9);
+            g5Var.k(Integer.valueOf(i7));
+            return g5Var;
+        } else if (user != null && user.verified) {
+            Drawable drawable2 = this.f37096b;
+            if (drawable2 == null) {
+                drawable2 = new xp(org.telegram.ui.ActionBar.l6.f27898f1, org.telegram.ui.ActionBar.l6.f27952i1);
+            }
+            this.f37096b = drawable2;
+            g5Var.g(drawable2, z9);
+            g5Var.k(null);
+            return g5Var;
+        } else if (user != null && org.telegram.messenger.m5.f(user.emoji_status) != 0) {
+            g5Var.j(org.telegram.messenger.m5.f(user.emoji_status), z9);
+            g5Var.k(Integer.valueOf(i7));
+            return g5Var;
+        } else if (user != null && user.premium) {
+            g5Var.g((Drawable) ia.e.d().f15430f, z9);
+            g5Var.k(Integer.valueOf(i7));
+            return g5Var;
         } else {
-            length = uu0VarArr.length;
-        }
-        int i7 = length + 1;
-        if (i7 != this.f37106c) {
-            bi.ec ecVar = yu0Var.f40767s3;
-            if (ecVar != null) {
-                ecVar.requestLayout();
-            }
-            this.f37106c = i7;
-        }
-        return i7;
-    }
-
-    @Override
-    public final int d(int i7) {
-        if (i7 == 0) {
-            return 0;
-        }
-        return 1;
-    }
-
-    @Override
-    public final void t(v4.d1 d1Var, int i7) {
-        yu0 yu0Var;
-        uu0[] uu0VarArr;
-        boolean z9 = true;
-        if (d1Var.f57048f == 1 && (uu0VarArr = (yu0Var = this.d).f40755f3) != null) {
-            int i10 = i7 - 1;
-            uu0 uu0Var = uu0VarArr[i10];
-            final tu0 tu0Var = (tu0) d1Var.f57044a;
-            if (yu0Var.f40768t3 != i10) {
-                z9 = false;
-            }
-            tu0Var.getClass();
-            if (!TextUtils.isEmpty(uu0Var.d)) {
-                tu0Var.setContentDescription(uu0Var.d);
-            } else if (!TextUtils.isEmpty(uu0Var.f38738a)) {
-                tu0Var.setContentDescription(uu0Var.f38738a);
-            } else {
-                tu0Var.setContentDescription(null);
-            }
-            ValueAnimator valueAnimator = tu0Var.G;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                tu0Var.G = null;
-            }
-            tu0Var.setImageResource(0);
-            tu0Var.a();
-            final boolean D1 = tu0Var.H.D1();
-            tu0Var.f38431x = false;
-            tu0Var.D = 1.0f;
-            i5.g(org.telegram.messenger.p10.f24470s0).b(uu0Var.f38740c, new f5() {
-                @Override
-                public final void a(TLRPC.Document document) {
-                    tu0 tu0Var2 = tu0.this;
-                    tu0Var2.setOnlyLastFrame(!D1);
-                    tu0Var2.g(24, 24, document);
-                    tu0Var2.d();
-                }
-            });
-            org.telegram.messenger.g0.i3(new ir0(tu0Var, 7), 60L);
-            tu0Var.l(z9, false);
-            tu0Var.setAlpha(yu0Var.f40770v3);
-            tu0Var.setScaleX(yu0Var.f40770v3);
-            tu0Var.setScaleY(yu0Var.f40770v3);
-            tu0Var.j();
+            g5Var.g(null, z9);
+            g5Var.k(null);
+            return g5Var;
         }
     }
 
-    @Override
-    public final v4.d1 x(ViewGroup viewGroup, int i7) {
-        tu0 tu0Var;
-        yu0 yu0Var = this.d;
-        if (i7 == 0) {
-            bi.ec ecVar = new bi.ec(27, yu0Var.getContext(), this);
-            yu0Var.f40767s3 = ecVar;
-            tu0Var = ecVar;
-        } else {
-            tu0Var = new tu0(yu0Var, yu0Var.getContext());
-        }
-        return new v4.d1(tu0Var);
-    }
-
-    @Override
-    public final void y(v4.d1 d1Var) {
-        boolean z9 = true;
-        if (d1Var.f57048f == 1) {
-            tu0 tu0Var = (tu0) d1Var.f57044a;
-            if (this.d.f40768t3 != d1Var.b() - 1) {
-                z9 = false;
-            }
-            tu0Var.l(z9, false);
-            tu0Var.j();
-        }
+    public pu0(int i7, View view) {
+        this.f37095a = new g5(org.telegram.messenger.g0.L(i7), view);
     }
 }

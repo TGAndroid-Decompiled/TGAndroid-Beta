@@ -6,7 +6,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.widget.TextView;
-import fi.h9;
+import fi.v9;
 import java.lang.ref.WeakReference;
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class j0 {
     public Object d;
 
     public j0(int[] iArr) {
-        SecureRandom secureRandom = rc.k.f54460a;
+        SecureRandom secureRandom = rc.k.f54472a;
         int i7 = Integer.MAX_VALUE;
         for (int i10 : iArr) {
             if (i10 < i7) {
@@ -92,7 +92,7 @@ public class j0 {
     }
 
     public void b() {
-        new Handler(Looper.getMainLooper()).post(new h9(this, 9));
+        new Handler(Looper.getMainLooper()).post(new v9(this, 8));
     }
 
     public synchronized void c() {
@@ -165,7 +165,7 @@ public class j0 {
             x0Var.f19291l = typeface;
             TextView textView = (TextView) weakReference.get();
             if (textView != null) {
-                WeakHashMap weakHashMap = r0.i0.f54191a;
+                WeakHashMap weakHashMap = r0.i0.f54203a;
                 if (textView.isAttachedToWindow()) {
                     textView.post(new androidx.activity.g(textView, typeface, x0Var.f19289j, 4));
                 } else {

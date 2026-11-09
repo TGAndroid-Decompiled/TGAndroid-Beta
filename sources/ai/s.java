@@ -31,7 +31,7 @@ public final class s extends FrameLayout {
         textView2.setTypeface(org.telegram.messenger.g0.o());
         textView2.setGravity(17);
         textView2.setPadding(org.telegram.messenger.g0.L(10.0f), 0, org.telegram.messenger.g0.L(10.0f), 0);
-        textView2.setText(id.M0(2131743879, null));
+        textView2.setText(id.M0(2131743876, null));
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setColor(620756991);
         gradientDrawable.setCornerRadius(org.telegram.messenger.g0.L(13.0f));

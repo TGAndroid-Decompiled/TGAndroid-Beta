@@ -3,28 +3,28 @@ package org.telegram.ui.Components;
 import android.animation.ValueAnimator;
 import android.widget.FrameLayout;
 public final class hj implements ValueAnimator.AnimatorUpdateListener {
-    public final int f34278a;
-    public final int f34279b;
-    public final float f34280c;
+    public final int f34314a;
+    public final int f34315b;
+    public final float f34316c;
     public final FrameLayout d;
 
     public hj(FrameLayout frameLayout, int i7, float f10, int i10) {
-        this.f34278a = i10;
+        this.f34314a = i10;
         this.d = frameLayout;
-        this.f34279b = i7;
-        this.f34280c = f10;
+        this.f34315b = i7;
+        this.f34316c = f10;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f34278a) {
+        switch (this.f34314a) {
             case 0:
                 vj vjVar = (vj) this.d;
-                kj kjVar = vjVar.f39020r;
-                kj kjVar2 = vjVar.f39021s;
+                kj kjVar = vjVar.f39113r;
+                kj kjVar2 = vjVar.f39114s;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                int i7 = this.f34279b;
-                float f10 = this.f34280c;
+                int i7 = this.f34315b;
+                float f10 = this.f34316c;
                 if (i7 == 1) {
                     kjVar.setTranslationX(f10 * floatValue);
                     kjVar.setAlpha(1.0f - floatValue);
@@ -45,12 +45,12 @@ public final class hj implements ValueAnimator.AnimatorUpdateListener {
                 kjVar2.invalidate();
                 return;
             default:
-                ca0 ca0Var = (ca0) this.d;
+                da0 da0Var = (da0) this.d;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 float f13 = 1.0f - floatValue2;
-                int i10 = (int) ((ca0Var.R * floatValue2) + (this.f34279b * f13));
-                ca0Var.T = i10;
-                ca0Var.f((ca0Var.S * floatValue2) + (this.f34280c * f13), i10);
+                int i10 = (int) ((da0Var.R * floatValue2) + (this.f34315b * f13));
+                da0Var.T = i10;
+                da0Var.f((da0Var.S * floatValue2) + (this.f34316c * f13), i10);
                 return;
         }
     }

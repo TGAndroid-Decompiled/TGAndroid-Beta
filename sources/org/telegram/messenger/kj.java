@@ -33,7 +33,7 @@ public final class kj {
                             break;
                         }
                         ij ijVar2 = (ij) arrayList.get(i10);
-                        if (ijVar2 != null && ijVar.f1() == ijVar2.f1() && ij.B0(ijVar.f23262k) == ij.B0(ijVar2.f23262k)) {
+                        if (ijVar2 != null && ijVar.e1() == ijVar2.e1() && ij.B0(ijVar.f23262k) == ij.B0(ijVar2.f23262k)) {
                             arrayList2.set(i7, ijVar2);
                             z9 = true;
                             break;
@@ -57,7 +57,7 @@ public final class kj {
             ArrayList arrayList2 = this.f23700e;
             if (i7 < arrayList2.size()) {
                 ij ijVar = (ij) arrayList2.get(i7);
-                if (this.f23702g.get(ijVar.f1(), false)) {
+                if (this.f23702g.get(ijVar.e1(), false)) {
                     arrayList.add(ijVar);
                 }
                 i7++;

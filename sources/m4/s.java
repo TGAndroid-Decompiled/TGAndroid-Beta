@@ -52,13 +52,13 @@ public final class s implements i {
             o0Var3.e(i10);
             if (o0Var.d && o0Var2.d && o0Var3.d) {
                 String str = this.f19778b;
-                int i11 = o0Var.f17977e;
-                byte[] bArr = new byte[o0Var2.f17977e + i11 + o0Var3.f17977e];
-                System.arraycopy((byte[]) o0Var.f17978f, 0, bArr, 0, i11);
-                System.arraycopy((byte[]) o0Var2.f17978f, 0, bArr, o0Var.f17977e, o0Var2.f17977e);
-                System.arraycopy((byte[]) o0Var3.f17978f, 0, bArr, o0Var.f17977e + o0Var2.f17977e, o0Var3.f17977e);
+                int i11 = o0Var.f17975e;
+                byte[] bArr = new byte[o0Var2.f17975e + i11 + o0Var3.f17975e];
+                System.arraycopy((byte[]) o0Var.f17976f, 0, bArr, 0, i11);
+                System.arraycopy((byte[]) o0Var2.f17976f, 0, bArr, o0Var.f17975e, o0Var2.f17975e);
+                System.arraycopy((byte[]) o0Var3.f17976f, 0, bArr, o0Var.f17975e + o0Var2.f17975e, o0Var3.f17975e);
                 String str2 = null;
-                i2.k k10 = i2.o.k((byte[]) o0Var2.f17978f, 3, o0Var2.f17977e, null);
+                i2.k k10 = i2.o.k((byte[]) o0Var2.f17976f, 3, o0Var2.f17975e, null);
                 i2.h hVar = k10.f15173b;
                 if (hVar != null) {
                     str2 = h2.g.a(hVar.f15161a, hVar.f15163c, hVar.d, hVar.f15165f, hVar.f15162b, hVar.f15164e);
@@ -92,13 +92,13 @@ public final class s implements i {
         boolean e10 = o0Var4.e(i10);
         h2.x xVar = this.f19788n;
         if (e10) {
-            xVar.L(i2.o.p(o0Var4.f17977e, (byte[]) o0Var4.f17978f), (byte[]) o0Var4.f17978f);
+            xVar.L(i2.o.p(o0Var4.f17975e, (byte[]) o0Var4.f17976f), (byte[]) o0Var4.f17976f);
             xVar.O(5);
             cVar.a(j10, xVar);
         }
         o0 o0Var5 = this.f19785k;
         if (o0Var5.e(i10)) {
-            xVar.L(i2.o.p(o0Var5.f17977e, (byte[]) o0Var5.f17978f), (byte[]) o0Var5.f17978f);
+            xVar.L(i2.o.p(o0Var5.f17975e, (byte[]) o0Var5.f17976f), (byte[]) o0Var5.f17976f);
             xVar.O(5);
             cVar.a(j10, xVar);
         }

@@ -4,18 +4,18 @@ import android.os.Bundle;
 import android.util.SparseIntArray;
 import java.util.ArrayList;
 public final class cv implements Runnable {
-    public final int f32693a;
-    public final hy f32694b;
+    public final int f32763a;
+    public final hy f32764b;
 
     public cv(hy hyVar, int i7) {
-        this.f32693a = i7;
-        this.f32694b = hyVar;
+        this.f32763a = i7;
+        this.f32764b = hyVar;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f32693a;
-        hy hyVar = this.f32694b;
+        int i7 = this.f32763a;
+        hy hyVar = this.f32764b;
         switch (i7) {
             case 0:
                 hyVar.X(false);
@@ -29,14 +29,14 @@ public final class cv implements Runnable {
                 }
                 return;
             case 2:
-                ix ixVar = hyVar.f34452t1;
+                ix ixVar = hyVar.f34467t1;
                 if (ixVar != null) {
                     ixVar.t(hyVar.R.h);
                     return;
                 }
                 return;
             case 3:
-                ix ixVar2 = hyVar.f34452t1;
+                ix ixVar2 = hyVar.f34467t1;
                 if (ixVar2 != null) {
                     ixVar2.q();
                     return;
@@ -45,14 +45,14 @@ public final class cv implements Runnable {
             case 4:
                 hyVar.getClass();
                 Bundle bundle = new Bundle();
-                bundle.putLong("user_id", org.telegram.messenger.p10.i(hyVar.f34400c1).e());
-                hyVar.Y1.presentFragment(new org.telegram.ui.an(bundle));
+                bundle.putLong("user_id", org.telegram.messenger.p10.i(hyVar.f34415c1).e());
+                hyVar.Y1.presentFragment(new org.telegram.ui.cn(bundle));
                 return;
             default:
                 ArrayList<uw> emojipacks = hyVar.getEmojipacks();
                 for (int i10 = 0; i10 < emojipacks.size(); i10++) {
-                    if (emojipacks.get(i10).f38752i) {
-                        SparseIntArray sparseIntArray = hyVar.R.f37432s;
+                    if (emojipacks.get(i10).f38815i) {
+                        SparseIntArray sparseIntArray = hyVar.R.f37483s;
                         char[] cArr = org.telegram.messenger.j6.f23501a;
                         int i11 = sparseIntArray.get(i10 + 8);
                         hyVar.P.C0();

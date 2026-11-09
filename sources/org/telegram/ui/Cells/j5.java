@@ -12,9 +12,9 @@ import org.telegram.messenger.id;
 import org.telegram.messenger.m20;
 import org.telegram.tgnet.TLRPC;
 public final class j5 extends FrameLayout {
-    public final TextView f29362a;
-    public final TextView f29363b;
-    public final TextView f29364c;
+    public final TextView f29366a;
+    public final TextView f29367b;
+    public final TextView f29368c;
     public final org.telegram.ui.Components.l9 d;
 
     public j5(Context context) {
@@ -41,9 +41,9 @@ public final class j5 extends FrameLayout {
         }
         addView(l9Var, c8.ha.d(100, 100.0f, i7, 10.0f, 10.0f, 10.0f, 0.0f));
         TextView textView = new TextView(context);
-        this.f29362a = textView;
-        int i15 = org.telegram.ui.ActionBar.k6.G6;
-        org.telegram.ui.ActionBar.r6.V(textView, i15, null);
+        this.f29366a = textView;
+        int i15 = org.telegram.ui.ActionBar.l6.G6;
+        org.telegram.ui.ActionBar.s6.U(textView, i15, null);
         textView.setTextSize(1, 16.0f);
         textView.setLines(1);
         textView.setTypeface(org.telegram.messenger.g0.o());
@@ -76,8 +76,8 @@ public final class j5 extends FrameLayout {
         }
         addView(textView, c8.ha.d(-1, -2.0f, i16, f10, 9.0f, f11, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f29363b = textView2;
-        org.telegram.ui.ActionBar.r6.V(textView2, i15, null);
+        this.f29367b = textView2;
+        org.telegram.ui.ActionBar.s6.U(textView2, i15, null);
         textView2.setTextSize(1, 14.0f);
         textView2.setMaxLines(3);
         textView2.setEllipsize(truncateAt);
@@ -106,8 +106,8 @@ public final class j5 extends FrameLayout {
         }
         addView(textView2, c8.ha.d(-1, -2.0f, i17, f12, 33.0f, f13, 0.0f));
         TextView textView3 = new TextView(context);
-        this.f29364c = textView3;
-        org.telegram.ui.ActionBar.r6.V(textView3, org.telegram.ui.ActionBar.k6.f28262z6, null);
+        this.f29368c = textView3;
+        org.telegram.ui.ActionBar.s6.U(textView3, org.telegram.ui.ActionBar.l6.f28275z6, null);
         org.telegram.messenger.camera.q.n(textView3, 1, 14.0f, 1, 1);
         textView3.setSingleLine(true);
         textView3.setEllipsize(truncateAt);
@@ -144,11 +144,11 @@ public final class j5 extends FrameLayout {
         float f13;
         float f14;
         float f15;
-        TextView textView = this.f29362a;
+        TextView textView = this.f29366a;
         textView.setText(str);
-        TextView textView2 = this.f29363b;
+        TextView textView2 = this.f29367b;
         textView2.setText(str2);
-        TextView textView3 = this.f29364c;
+        TextView textView3 = this.f29368c;
         textView3.setText(str3);
         if (org.telegram.messenger.g0.Q1()) {
             min = org.telegram.messenger.g0.Q0();
@@ -256,10 +256,10 @@ public final class j5 extends FrameLayout {
             i11 = i7;
         } else {
             int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
-            TextView textView = this.f29363b;
+            TextView textView = this.f29367b;
             i11 = i7;
             measureChildWithMargins(textView, i11, 0, i10, 0);
-            ((FrameLayout.LayoutParams) this.f29364c.getLayoutParams()).topMargin = org.telegram.messenger.g0.L(3.0f) + textView.getMeasuredHeight() + org.telegram.messenger.g0.L(33.0f);
+            ((FrameLayout.LayoutParams) this.f29368c.getLayoutParams()).topMargin = org.telegram.messenger.g0.L(3.0f) + textView.getMeasuredHeight() + org.telegram.messenger.g0.L(33.0f);
             i12 = makeMeasureSpec;
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824), i12);

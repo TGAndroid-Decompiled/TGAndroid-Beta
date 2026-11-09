@@ -1,8 +1,8 @@
 package hi;
 
 import org.telegram.messenger.ls;
-import org.telegram.ui.Components.qt0;
-public final class z1 implements qt0 {
+import org.telegram.ui.Components.st0;
+public final class z1 implements st0 {
     public final int f15067a;
     public final ls f15068b;
 

@@ -8,7 +8,7 @@ import androidx.biometric.z;
 import d6.i;
 import java.lang.ref.WeakReference;
 import org.telegram.messenger.id;
-import org.telegram.ui.Wallet.v0;
+import org.telegram.ui.Wallet.u0;
 public final class a extends FingerprintManager.AuthenticationCallback {
     public final int f17150a;
     public final Object f17151b;
@@ -22,16 +22,16 @@ public final class a extends FingerprintManager.AuthenticationCallback {
     public final void onAuthenticationError(int i7, CharSequence charSequence) {
         switch (this.f17150a) {
             case 0:
-                ((x) ((a0) ((i) this.f17151b).f8209b).d).a(i7, charSequence);
+                ((x) ((a0) ((i) this.f17151b).f8207b).d).a(i7, charSequence);
                 return;
             default:
-                v0 v0Var = (v0) this.f17151b;
-                if (v0Var.f() && !v0Var.f43221f) {
+                u0 u0Var = (u0) this.f17151b;
+                if (u0Var.f() && !u0Var.f43139f) {
                     if (i7 == 5) {
-                        v0Var.c("AUTH_CANCELED");
+                        u0Var.c("AUTH_CANCELED");
                         return;
                     } else {
-                        v0Var.a();
+                        u0Var.a();
                         return;
                     }
                 }
@@ -46,7 +46,7 @@ public final class a extends FingerprintManager.AuthenticationCallback {
         Object obj = this.f17151b;
         switch (i7) {
             case 0:
-                WeakReference weakReference = ((x) ((a0) ((i) obj).f8209b).d).f2026a;
+                WeakReference weakReference = ((x) ((a0) ((i) obj).f8207b).d).f2026a;
                 if (weakReference.get() != null && ((z) weakReference.get()).f2037n) {
                     z zVar = (z) weakReference.get();
                     if (zVar.f2044u == null) {
@@ -57,9 +57,9 @@ public final class a extends FingerprintManager.AuthenticationCallback {
                 }
                 return;
             default:
-                v0 v0Var = (v0) obj;
-                if (v0Var.f() && (alertDialog = v0Var.f43223i) != null) {
-                    alertDialog.setMessage(id.M0(2131743120, null));
+                u0 u0Var = (u0) obj;
+                if (u0Var.f() && (alertDialog = u0Var.f43141i) != null) {
+                    alertDialog.setMessage(id.M0(2131743117, null));
                     return;
                 }
                 return;
@@ -71,7 +71,7 @@ public final class a extends FingerprintManager.AuthenticationCallback {
         AlertDialog alertDialog;
         switch (this.f17150a) {
             case 0:
-                WeakReference weakReference = ((x) ((a0) ((i) this.f17151b).f8209b).d).f2026a;
+                WeakReference weakReference = ((x) ((a0) ((i) this.f17151b).f8207b).d).f2026a;
                 if (weakReference.get() != null) {
                     z zVar = (z) weakReference.get();
                     if (zVar.f2043t == null) {
@@ -82,8 +82,8 @@ public final class a extends FingerprintManager.AuthenticationCallback {
                 }
                 return;
             default:
-                v0 v0Var = (v0) this.f17151b;
-                if (v0Var.f() && (alertDialog = v0Var.f43223i) != null) {
+                u0 u0Var = (u0) this.f17151b;
+                if (u0Var.f() && (alertDialog = u0Var.f43141i) != null) {
                     alertDialog.setMessage(charSequence);
                     return;
                 }

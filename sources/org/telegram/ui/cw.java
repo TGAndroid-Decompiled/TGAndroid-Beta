@@ -1,237 +1,87 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLRPC;
-public final class cw extends nq0 {
-    public final boolean[] f44909a;
-    public final ww f44910b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class cw extends AnimatorListenerAdapter {
+    public final int f44766a;
+    public final float f44767b;
+    public final yw f44768c;
 
-    public cw(ww wwVar, boolean[] zArr) {
-        this.f44910b = wwVar;
-        this.f44909a = zArr;
+    public cw(yw ywVar, float f10, int i7) {
+        this.f44766a = i7;
+        this.f44768c = ywVar;
+        this.f44767b = f10;
     }
 
     @Override
-    public final CharSequence C(int i7) {
-        ww wwVar = this.f44910b;
-        if (i7 >= 0 && i7 < wwVar.D2.size() && ((org.telegram.messenger.gf) wwVar.D2.get(i7)).f26845b) {
-            return null;
-        }
-        return ww.w2(wwVar);
-    }
-
-    @Override
-    public final void D() {
+    public final void onAnimationEnd(Animator animator) {
         int i7;
-        ww wwVar = this.f44910b;
-        org.telegram.ui.Components.po0 po0Var = wwVar.G2;
-        if (po0Var != null) {
-            i7 = ((org.telegram.ui.ActionBar.f2) wwVar).currentAccount;
-            po0Var.i(i7, wwVar.D2);
-        }
-    }
-
-    @Override
-    public final wq0 E(org.telegram.messenger.ij ijVar, TLRPC.FileLocation fileLocation, int i7, boolean z9, boolean z10) {
-        org.telegram.ui.Components.l9 l9Var;
-        ww wwVar = this.f44910b;
-        org.telegram.ui.Components.po0 po0Var = wwVar.G2;
-        if (po0Var != null) {
-            l9Var = po0Var.f(i7);
-        } else {
-            l9Var = null;
-        }
-        if (l9Var == null) {
-            return null;
-        }
-        int[] iArr = new int[2];
-        l9Var.getLocationInWindow(iArr);
-        wq0 wq0Var = new wq0();
-        wq0Var.f51484b = iArr[0];
-        wq0Var.f51485c = iArr[1];
-        wq0Var.d = wwVar.G2;
-        ImageReceiver imageReceiver = l9Var.getImageReceiver();
-        wq0Var.f51483a = imageReceiver;
-        wq0Var.f51486e = imageReceiver.p();
-        wq0Var.f51491k = l9Var.getScaleX();
-        wq0Var.h = new int[]{org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f)};
-        return wq0Var;
-    }
-
-    @Override
-    public final int H() {
-        ArrayList arrayList = this.f44910b.D2;
-        if (arrayList != null) {
-            return arrayList.size();
-        }
-        return 0;
-    }
-
-    @Override
-    public final boolean I() {
-        return this.f44910b.x3();
-    }
-
-    @Override
-    public final long a() {
-        ww wwVar = this.f44910b;
-        if (wwVar.I2.isEmpty()) {
-            return 0L;
-        }
-        return ((Long) wwVar.I2.get(0)).longValue();
-    }
-
-    @Override
-    public final boolean b() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.cw.b():boolean");
-    }
-
-    @Override
-    public final CharSequence c0(int i7) {
         int i10;
-        ww wwVar = this.f44910b;
-        ArrayList arrayList = wwVar.D2;
-        if (arrayList == null || arrayList.isEmpty()) {
-            return null;
+        switch (this.f44766a) {
+            case 0:
+                super.onAnimationEnd(animator);
+                yw ywVar = this.f44768c;
+                ywVar.f52324w3 = null;
+                int i11 = 0;
+                ywVar.O = false;
+                ywVar.Q = true;
+                ywVar.R = true;
+                ywVar.fragmentView.invalidate();
+                if (ywVar.K) {
+                    i7 = 81;
+                } else {
+                    i7 = 0;
+                }
+                ywVar.f52340z3 = -(org.telegram.messenger.g0.L(i7 + 48) - this.f44767b);
+                ywVar.f52231e0[0].setTranslationY(0.0f);
+                while (true) {
+                    xw[] xwVarArr = ywVar.f52231e0;
+                    if (i11 < xwVarArr.length) {
+                        xw xwVar = xwVarArr[i11];
+                        if (xwVar != null) {
+                            xwVar.f51772a.requestLayout();
+                        }
+                        i11++;
+                    } else {
+                        ywVar.fragmentView.requestLayout();
+                        nw nwVar = ywVar.X;
+                        if (nwVar != null && ywVar.f52214b.f55500f) {
+                            nwVar.f37857r.requestFocus();
+                            org.telegram.messenger.g0.K3(ywVar.X.f37857r);
+                            return;
+                        }
+                        return;
+                    }
+                }
+                break;
+            default:
+                super.onAnimationEnd(animator);
+                yw ywVar2 = this.f44768c;
+                ywVar2.f52324w3 = null;
+                ywVar2.P = 0;
+                ywVar2.O = true;
+                if (ywVar2.K) {
+                    i10 = 81;
+                } else {
+                    i10 = 0;
+                }
+                ywVar2.f52340z3 = org.telegram.messenger.g0.L(i10 + 48) - this.f44767b;
+                ywVar2.f52231e0[0].setTranslationY(0.0f);
+                int i12 = 0;
+                while (true) {
+                    xw[] xwVarArr2 = ywVar2.f52231e0;
+                    if (i12 < xwVarArr2.length) {
+                        xw xwVar2 = xwVarArr2[i12];
+                        if (xwVar2 != null) {
+                            xwVar2.f51772a.requestLayout();
+                        }
+                        i12++;
+                    } else {
+                        ywVar2.E0.l(false, 1.0f);
+                        ywVar2.fragmentView.requestLayout();
+                        return;
+                    }
+                }
         }
-        int size = wwVar.D2.size();
-        if (size == 1) {
-            if (((org.telegram.messenger.gf) wwVar.D2.get(0)).f26845b) {
-                i10 = 2131753933;
-            } else {
-                i10 = 2131753948;
-            }
-            return org.telegram.messenger.id.M0(i10, null);
-        }
-        ArrayList arrayList2 = wwVar.D2;
-        int size2 = arrayList2.size();
-        int i11 = 0;
-        int i12 = 0;
-        int i13 = 0;
-        while (i13 < size2) {
-            Object obj = arrayList2.get(i13);
-            i13++;
-            if (((org.telegram.messenger.gf) obj).f26845b) {
-                i11++;
-            } else {
-                i12++;
-            }
-        }
-        if (i11 == 0) {
-            return org.telegram.messenger.id.G(size, "ShareSendPhotos", new Object[0]);
-        }
-        if (i12 == 0) {
-            return org.telegram.messenger.id.G(size, "ShareSendVideos", new Object[0]);
-        }
-        return org.telegram.messenger.id.G(size, "ShareSendItems", new Object[0]);
-    }
-
-    @Override
-    public final void e(CharSequence charSequence) {
-        ww wwVar = this.f44910b;
-        jv jvVar = wwVar.B1;
-        if (jvVar != null) {
-            jvVar.setFieldText(charSequence);
-        }
-        ArrayList arrayList = wwVar.D2;
-        if (arrayList != null) {
-            int size = arrayList.size();
-            int i7 = 0;
-            while (i7 < size) {
-                Object obj = arrayList.get(i7);
-                i7++;
-                ((org.telegram.messenger.gf) obj).f26844a = charSequence;
-            }
-        }
-    }
-
-    @Override
-    public final boolean h() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.cw.h():boolean");
-    }
-
-    @Override
-    public final org.telegram.messenger.jc j(int i7) {
-        org.telegram.ui.Components.l9 l9Var;
-        org.telegram.ui.Components.po0 po0Var = this.f44910b.G2;
-        if (po0Var != null) {
-            l9Var = po0Var.f(i7);
-        } else {
-            l9Var = null;
-        }
-        if (l9Var == null) {
-            return null;
-        }
-        return l9Var.getImageReceiver().p();
-    }
-
-    @Override
-    public final void o(int i7, org.telegram.messenger.j20 j20Var, boolean z9, int i10, int i11, boolean z10) {
-        int i12;
-        ArrayList arrayList;
-        ww wwVar = this.f44910b;
-        ArrayList arrayList2 = wwVar.I2;
-        if (wwVar.B1 != null && (arrayList = wwVar.D2) != null && !arrayList.isEmpty()) {
-            jv jvVar = wwVar.B1;
-            CharSequence charSequence = ((org.telegram.messenger.gf) wwVar.D2.get(0)).f26844a;
-            if (charSequence == null) {
-                charSequence = "";
-            }
-            jvVar.setFieldText(charSequence);
-        }
-        org.telegram.ui.Components.po0 po0Var = wwVar.G2;
-        if (po0Var != null) {
-            i12 = ((org.telegram.ui.ActionBar.f2) wwVar).currentAccount;
-            po0Var.i(i12, wwVar.D2);
-        }
-        if ((!z9 || i10 != 0 || z10) && wwVar.C2 != null && !arrayList2.isEmpty()) {
-            wwVar.J2 = z9;
-            wwVar.K2 = i10;
-            wwVar.M2 = z10;
-            ArrayList arrayList3 = new ArrayList();
-            for (int i13 = 0; i13 < arrayList2.size(); i13++) {
-                arrayList3.add(org.telegram.messenger.xr.a(((Long) arrayList2.get(i13)).longValue(), 0L));
-            }
-            PhotoViewer.p1().z0(true, false);
-            wwVar.C2.y(wwVar, arrayList3, wwVar.B1.getFieldText(), false, z9, i10, i11, null);
-            return;
-        }
-        PhotoViewer.p1().z0(true, false);
-    }
-
-    @Override
-    public final void s() {
-        jv jvVar;
-        org.telegram.ui.Components.uc a12;
-        PhotoViewer p12 = PhotoViewer.p1();
-        CharSequence charSequence = null;
-        if (p12.P1() && (a12 = p12.a1()) != null) {
-            charSequence = a12.getText();
-        }
-        ww wwVar = this.f44910b;
-        if (charSequence != null && (jvVar = wwVar.B1) != null) {
-            jvVar.setFieldText(charSequence);
-        }
-        ArrayList arrayList = wwVar.D2;
-        if (arrayList != null) {
-            int size = arrayList.size();
-            int i7 = 0;
-            while (i7 < size) {
-                Object obj = arrayList.get(i7);
-                i7++;
-                ((org.telegram.messenger.gf) obj).f26844a = charSequence;
-            }
-        }
-    }
-
-    @Override
-    public final boolean x(int i7) {
-        return this.f44909a[i7];
-    }
-
-    @Override
-    public final int k(int i7, org.telegram.messenger.j20 j20Var) {
-        return i7;
     }
 }

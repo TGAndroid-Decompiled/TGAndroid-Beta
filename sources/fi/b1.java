@@ -156,7 +156,7 @@ public abstract class b1 extends CameraView {
                 }
                 tL_inputAppEvent.peer = (z9 ? 1 : 0) | i7;
                 tL_help_saveAppLog.events.add(tL_inputAppEvent);
-                ConnectionsManager.getInstance(p10.f24470s0).sendRequest(tL_help_saveAppLog, new di.u5(4));
+                ConnectionsManager.getInstance(p10.f24470s0).sendRequest(tL_help_saveAppLog, new di.v5(4));
             } catch (Exception unused) {
             }
         }
@@ -176,7 +176,7 @@ public abstract class b1 extends CameraView {
         if (this.H) {
             y9 y9Var = (y9) this;
             if (qp.e1().getInt("storysvddualhint", 0) < 2) {
-                org.telegram.messenger.g0.i3(new h9(y9Var, 3), 340L);
+                org.telegram.messenger.g0.i3(new v9(y9Var, 2), 340L);
             }
             va vaVar = y9Var.f13218b0;
             vaVar.F0.setValue(y9Var.isDual());
@@ -199,11 +199,11 @@ public abstract class b1 extends CameraView {
                 this.f11636a = false;
                 edit.putBoolean("dual_available", false).apply();
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext());
-                String M0 = id.M0(2131751341, null);
+                String M0 = id.M0(2131751340, null);
                 org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
                 u1Var.R = M0;
-                u1Var.T = id.M0(2131751342, null);
-                jg.g.C(null, 2131747832, alertDialog$Builder, null);
+                u1Var.T = id.M0(2131751341, null);
+                jg.g.C(null, 2131747831, alertDialog$Builder, null);
             }
             t(false);
             toggleDual();

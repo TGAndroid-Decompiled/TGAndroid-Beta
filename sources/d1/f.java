@@ -35,17 +35,17 @@ import org.telegram.messenger.a8;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.qs;
 import org.telegram.messenger.t0;
-import org.telegram.ui.Components.t51;
+import org.telegram.ui.Components.u51;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.t9;
 import q6.m;
 public abstract class f {
-    public static int f7944a;
-    public static AtomicInteger f7945b;
-    public static boolean f7946c;
+    public static int f7942a;
+    public static AtomicInteger f7943b;
+    public static boolean f7944c;
     public static int d;
-    public static f2 f7947e;
+    public static f2 f7945e;
 
     public static void A(float f10) {
         BasePendingResult basePendingResult;
@@ -53,10 +53,10 @@ public abstract class f {
         if (e10 == null) {
             return;
         }
-        if (f7945b == null) {
-            f7945b = new AtomicInteger(0);
+        if (f7943b == null) {
+            f7943b = new AtomicInteger(0);
         }
-        f7945b.incrementAndGet();
+        f7943b.incrementAndGet();
         double d2 = f10;
         m.d("Must be called from the main thread.");
         if (!e10.w()) {
@@ -79,14 +79,14 @@ public abstract class f {
         boolean m10;
         q e10;
         long j3;
-        int i7 = f7944a;
+        int i7 = f7942a;
         if (i7 == 0) {
             PhotoViewer.p1().f3();
         } else if (i7 == 1) {
             MediaController B = MediaController.B();
             if (B.f21295u0 != null) {
                 B.T1 = true;
-                if (u() && ((atomicInteger = f7945b) == null || atomicInteger.get() <= 0)) {
+                if (u() && ((atomicInteger = f7943b) == null || atomicInteger.get() <= 0)) {
                     h e11 = e();
                     if (e11 == null) {
                         a10 = -1;
@@ -98,9 +98,9 @@ public abstract class f {
                         ij ijVar = B.f21295u0;
                         if ((B.f21271i0 != null || B.E0 != null) && ijVar != null && B.L(ijVar)) {
                             try {
-                                t51 t51Var = B.f21271i0;
-                                if (t51Var != null) {
-                                    j3 = t51Var.U();
+                                u51 u51Var = B.f21271i0;
+                                if (u51Var != null) {
+                                    j3 = u51Var.U();
                                     if (j3 != -9223372036854775807L) {
                                         ijVar.f23222b0 = Utilities.l(((float) a10) / ((float) j3));
                                     }
@@ -109,9 +109,9 @@ public abstract class f {
                                         v(a10);
                                     }
                                 } else {
-                                    t51 t51Var2 = B.E0;
-                                    if (t51Var2 != null) {
-                                        j3 = t51Var2.U();
+                                    u51 u51Var2 = B.E0;
+                                    if (u51Var2 != null) {
+                                        j3 = u51Var2.U();
                                         B.E0.p0(a10);
                                         if (!B.T1) {
                                             v(a10);
@@ -121,7 +121,7 @@ public abstract class f {
                                     }
                                 }
                                 if (j3 != 0) {
-                                    qs.f(ijVar.I1).k(qs.f25016i2, Integer.valueOf(ijVar.f1()), Float.valueOf(Utilities.l(((float) a10) / ((float) j3))));
+                                    qs.f(ijVar.I1).k(qs.f25016i2, Integer.valueOf(ijVar.e1()), Float.valueOf(Utilities.l(((float) a10) / ((float) j3))));
                                 }
                             } catch (Exception e12) {
                                 a8.g(e12, true);
@@ -131,7 +131,7 @@ public abstract class f {
                     h e13 = e();
                     if (e13 == null) {
                         m10 = false;
-                    } else if (f7944a == 0) {
+                    } else if (f7942a == 0) {
                         m10 = !e13.l();
                     } else {
                         m10 = e13.m();
@@ -186,14 +186,14 @@ public abstract class f {
 
     public static void b(int i7) {
         g6.a c10;
-        f7944a = i7;
-        if (!f7946c) {
+        f7942a = i7;
+        if (!f7944c) {
             try {
                 if (f() == null || (c10 = g6.a.c(f())) == null) {
                     return;
                 }
                 c10.b().a(new b7.l(i7));
-                f7946c = true;
+                f7944c = true;
             } catch (Exception e10) {
                 a8.g(e10, true);
             }
@@ -208,7 +208,7 @@ public abstract class f {
         boolean z10;
         Context f10;
         AudioManager audioManager;
-        f2 f2Var = f7947e;
+        f2 f2Var = f7945e;
         if (f2Var != null) {
             z10 = true;
         } else {
@@ -222,14 +222,14 @@ public abstract class f {
                     ContentResolver contentResolver = f11.getContentResolver();
                     Uri uri = Settings.System.CONTENT_URI;
                     f2 f2Var2 = new f2(new Handler(), 3);
-                    f7947e = f2Var2;
+                    f7945e = f2Var2;
                     contentResolver.registerContentObserver(uri, true, f2Var2);
                     A(g());
                     audioManager.adjustStreamVolume(3, 0, 1);
                 }
             } else if (f2Var != null && (f10 = f()) != null) {
-                f10.getContentResolver().unregisterContentObserver(f7947e);
-                f7947e = null;
+                f10.getContentResolver().unregisterContentObserver(f7945e);
+                f7945e = null;
                 AudioManager audioManager2 = (AudioManager) f10.getSystemService("audio");
                 if (audioManager2 != null) {
                     audioManager2.setStreamVolume(3, d, 0);
@@ -358,10 +358,10 @@ public abstract class f {
         if (e10 == null) {
             return;
         }
-        if (f7945b == null) {
-            f7945b = new AtomicInteger(0);
+        if (f7943b == null) {
+            f7943b = new AtomicInteger(0);
         }
-        f7945b.incrementAndGet();
+        f7943b.incrementAndGet();
         e10.q(new p(j3)).b(new t9(3));
     }
 
@@ -374,10 +374,10 @@ public abstract class f {
         BasePendingResult basePendingResult2;
         h e10 = e();
         if (e10 != null && z9 != e10.m()) {
-            if (f7945b == null) {
-                f7945b = new AtomicInteger(0);
+            if (f7943b == null) {
+                f7943b = new AtomicInteger(0);
             }
-            f7945b.incrementAndGet();
+            f7943b.incrementAndGet();
             if (z9) {
                 m.d("Must be called from the main thread.");
                 if (!e10.w()) {
@@ -412,10 +412,10 @@ public abstract class f {
         if (e10 == null) {
             return;
         }
-        if (f7945b == null) {
-            f7945b = new AtomicInteger(0);
+        if (f7943b == null) {
+            f7943b = new AtomicInteger(0);
         }
-        f7945b.incrementAndGet();
+        f7943b.incrementAndGet();
         double d2 = f10;
         m.d("Must be called from the main thread.");
         if (!e10.w()) {

@@ -3,19 +3,19 @@ package kg;
 import android.content.Context;
 import android.text.Editable;
 import fi.w3;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Cells.k3;
 public final class l extends k3 {
     public final int E;
     public final m F;
 
-    public l(m mVar, Context context, String str, int i7, f6 f6Var, int i10) {
-        super(context, str, false, false, i7, f6Var);
+    public l(m mVar, Context context, String str, int i7, g6 g6Var, int i10) {
+        super(context, str, false, false, i7, g6Var);
         this.E = i10;
         switch (i10) {
             case 1:
                 this.F = mVar;
-                super(context, str, true, false, i7, f6Var);
+                super(context, str, true, false, i7, g6Var);
                 return;
             default:
                 this.F = mVar;
@@ -29,13 +29,13 @@ public final class l extends k3 {
         w3 w3Var2;
         switch (this.E) {
             case 0:
-                if (z9 && (w3Var = this.F.f36243a) != null) {
+                if (z9 && (w3Var = this.F.f36649a) != null) {
                     w3Var.y0(2);
                     return;
                 }
                 return;
             default:
-                if (z9 && (w3Var2 = this.F.f36243a) != null) {
+                if (z9 && (w3Var2 = this.F.f36649a) != null) {
                     w3Var2.y0(3);
                     return;
                 }

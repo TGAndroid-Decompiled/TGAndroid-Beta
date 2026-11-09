@@ -284,14 +284,14 @@ public final class z5 extends c1 implements ls {
         TLRPC.MessageMedia messageMedia;
         if (ijVar.D == 23) {
             int i7 = iz.f23385a;
-            if (sc.e(1024) && (storyItem = ((TLRPC.TL_messageMediaStory) ij.n1(ijVar)).storyItem) != null && (messageMedia = storyItem.media) != null && messageMedia.document != null && storyItem.isPublic) {
+            if (sc.e(1024) && (storyItem = ((TLRPC.TL_messageMediaStory) ij.m1(ijVar)).storyItem) != null && (messageMedia = storyItem.media) != null && messageMedia.document != null && storyItem.isPublic) {
                 return true;
             }
             return false;
         } else if (ijVar.Y0 != null) {
             return true;
         } else {
-            if (!ijVar.y3() && e(ijVar) == 1) {
+            if (!ijVar.x3() && e(ijVar) == 1) {
                 return true;
             }
             return false;
@@ -357,7 +357,7 @@ public final class z5 extends c1 implements ls {
                                         if (l14 != null && l14.longValue() + 4000 >= System.currentTimeMillis()) {
                                         }
                                         ij ijVar = (ij) syVar.E.get(str + "_i");
-                                        if (ijVar != null && ij.M4(ijVar.f23262k)) {
+                                        if (ijVar != null && ij.L4(ijVar.f23262k)) {
                                             getMessagesController().C4(5, 0, j3, 0, null);
                                         } else if (ijVar != null && ijVar.F0() != null) {
                                             getMessagesController().C4(3, 0, j3, 0, null);
@@ -368,11 +368,11 @@ public final class z5 extends c1 implements ls {
                                     } else {
                                         syVar.f25548m.F0();
                                         if (l14 == null || l14.longValue() + 4000 < System.currentTimeMillis()) {
-                                            if (syVar.f25548m.i4()) {
+                                            if (syVar.f25548m.h4()) {
                                                 getMessagesController().C4(8, 0, j3, 0, null);
-                                            } else if (ij.M4(syVar.f25548m.f23262k)) {
+                                            } else if (ij.L4(syVar.f25548m.f23262k)) {
                                                 getMessagesController().C4(5, 0, j3, 0, null);
-                                            } else if (ij.S4(syVar.f25548m.f23262k)) {
+                                            } else if (ij.R4(syVar.f25548m.f23262k)) {
                                                 getMessagesController().C4(9, 0, j3, 0, null);
                                             } else if (syVar.f25548m.F0() != null) {
                                                 getMessagesController().C4(3, 0, j3, 0, null);
@@ -635,7 +635,7 @@ public final class z5 extends c1 implements ls {
             while (true) {
                 ArrayList arrayList2 = this.H;
                 if (i10 < arrayList2.size()) {
-                    if (((ij) arrayList.get(i7)).f1() == ((ij) arrayList2.get(i10)).f1() && ij.B0(((ij) arrayList2.get(i10)).f23262k) == ij.B0(((ij) arrayList.get(i7)).f23262k)) {
+                    if (((ij) arrayList.get(i7)).e1() == ((ij) arrayList2.get(i10)).e1() && ij.B0(((ij) arrayList2.get(i10)).f23262k) == ij.B0(((ij) arrayList.get(i7)).f23262k)) {
                         arrayList2.remove(i10);
                         break;
                     }
@@ -647,7 +647,7 @@ public final class z5 extends c1 implements ls {
                         if (i11 >= arrayList3.size()) {
                             break;
                         }
-                        if (((ij) arrayList.get(i7)).f1() == ((ij) arrayList3.get(i11)).f1() && ij.B0(((ij) arrayList3.get(i11)).f23262k) == ij.B0(((ij) arrayList.get(i7)).f23262k)) {
+                        if (((ij) arrayList.get(i7)).e1() == ((ij) arrayList3.get(i11)).e1() && ij.B0(((ij) arrayList3.get(i11)).f23262k) == ij.B0(((ij) arrayList.get(i7)).f23262k)) {
                             arrayList3.remove(i11);
                             break;
                         }
@@ -927,7 +927,7 @@ public final class z5 extends c1 implements ls {
             j10 = jArr[2];
         }
         tL_autoDownloadSettings2.file_size_max = j10;
-        getConnectionsManager().sendRequest(saveautodownloadsettings, new di.u5(9));
+        getConnectionsManager().sendRequest(saveautodownloadsettings, new di.v5(9));
     }
 
     public final void y() {

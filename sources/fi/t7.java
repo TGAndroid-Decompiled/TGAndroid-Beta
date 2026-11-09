@@ -8,24 +8,24 @@ import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import org.telegram.ui.Components.xq;
 public final class t7 extends FrameLayout {
-    public final Paint f12860a;
-    public final org.telegram.ui.Components.w5 f12861b;
-    public final org.telegram.ui.ActionBar.f6 f12862c;
+    public final Paint f12859a;
+    public final org.telegram.ui.Components.w5 f12860b;
+    public final org.telegram.ui.ActionBar.g6 f12861c;
     public final w7 d;
 
-    public t7(w7 w7Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+    public t7(w7 w7Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context);
         this.d = w7Var;
-        this.f12862c = f6Var;
-        this.f12860a = new Paint(1);
-        this.f12861b = new org.telegram.ui.Components.w5(this, 0L, 350L, xq.h);
+        this.f12861c = g6Var;
+        this.f12859a = new Paint(1);
+        this.f12860b = new org.telegram.ui.Components.w5(this, 0L, 350L, xq.h);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         boolean z9;
-        int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27925h5, this.f12862c);
-        Paint paint = this.f12860a;
+        int w02 = org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.f27938h5, this.f12861c);
+        Paint paint = this.f12859a;
         paint.setColor(w02);
         w7 w7Var = this.d;
         float max = Math.max(0.0f, w7Var.I0());
@@ -34,15 +34,15 @@ public final class t7 extends FrameLayout {
         } else {
             z9 = false;
         }
-        org.telegram.ui.Components.w5 w5Var = this.f12861b;
+        org.telegram.ui.Components.w5 w5Var = this.f12860b;
         float T1 = org.telegram.messenger.g0.T1(max, 0.0f, w5Var.d(z9));
         RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set(w7Var.f28649t0, T1, getWidth() - w7Var.f28649t0, org.telegram.messenger.g0.L(14.0f) + getHeight());
-        float L = (1.0f - w5Var.f39805c) * org.telegram.messenger.g0.L(14.0f);
+        rectF.set(w7Var.f28654t0, T1, getWidth() - w7Var.f28654t0, org.telegram.messenger.g0.L(14.0f) + getHeight());
+        float L = (1.0f - w5Var.f39910c) * org.telegram.messenger.g0.L(14.0f);
         canvas.drawRoundRect(rectF, L, L, paint);
         w7Var.n1.setTranslationY(Math.max(org.telegram.messenger.g0.L(8.0f) + org.telegram.messenger.g0.f22557m, org.telegram.messenger.g0.L(14.0f) + T1));
         canvas.save();
-        canvas.clipRect(w7Var.f28649t0, org.telegram.messenger.g0.L(14.0f) + org.telegram.messenger.g0.f22557m, getWidth() - w7Var.f28649t0, getHeight());
+        canvas.clipRect(w7Var.f28654t0, org.telegram.messenger.g0.L(14.0f) + org.telegram.messenger.g0.f22557m, getWidth() - w7Var.f28654t0, getHeight());
         super.dispatchDraw(canvas);
         canvas.restore();
     }

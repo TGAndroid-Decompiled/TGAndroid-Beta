@@ -4,21 +4,21 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 import android.view.View;
-public final class ia extends rt0 {
-    public final boolean f34609f0;
-    public final boolean f34610g0;
-    public final na f34611h0;
+public final class ia extends tt0 {
+    public final boolean f34653f0;
+    public final boolean f34654g0;
+    public final na f34655h0;
 
     public ia(na naVar, Context context, boolean z9, boolean z10) {
         super(context, null);
-        this.f34611h0 = naVar;
-        this.f34609f0 = z9;
-        this.f34610g0 = z10;
+        this.f34655h0 = naVar;
+        this.f34653f0 = z9;
+        this.f34654g0 = z10;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        na naVar = this.f34611h0;
+        na naVar = this.f34655h0;
         naVar.W0(canvas, this);
         super.dispatchDraw(canvas);
         naVar.V0(canvas, this);
@@ -28,8 +28,8 @@ public final class ia extends rt0 {
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
             float y10 = motionEvent.getY();
-            na naVar = this.f34611h0;
-            if (y10 < naVar.f28646r0.getBounds().top) {
+            na naVar = this.f34655h0;
+            if (y10 < naVar.f28651r0.getBounds().top) {
                 naVar.dismiss();
             }
         }
@@ -38,8 +38,8 @@ public final class ia extends rt0 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (!this.f34610g0) {
-            this.f34611h0.getClass();
+        if (!this.f34654g0) {
+            this.f34655h0.getClass();
         }
         return super.drawChild(canvas, view, j3);
     }
@@ -56,10 +56,10 @@ public final class ia extends rt0 {
         int i12;
         lt ltVar;
         int size = View.MeasureSpec.getSize(i10);
-        na naVar = this.f34611h0;
+        na naVar = this.f34655h0;
         naVar.n1 = size;
         naVar.S0(i7, i10);
-        if (this.f34609f0) {
+        if (this.f34653f0) {
             i10 = View.MeasureSpec.makeMeasureSpec(naVar.n1, 1073741824);
         }
         if (naVar.H1 != null) {
@@ -69,7 +69,7 @@ public final class ia extends rt0 {
             lt ltVar2 = naVar.H1;
             if (ltVar2 != null && !ltVar2.N && org.telegram.messenger.g0.L(20.0f) >= 0) {
                 lt ltVar3 = naVar.H1;
-                if (!ltVar3.f35780e && !ltVar3.O) {
+                if (!ltVar3.f35844e && !ltVar3.O) {
                     ltVar3.j();
                 }
             }

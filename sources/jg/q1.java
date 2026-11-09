@@ -7,10 +7,10 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.x4;
-import org.telegram.ui.Components.l51;
+import org.telegram.ui.Components.m51;
 import org.telegram.ui.Components.oj;
-import org.telegram.ui.v50;
-import org.telegram.ui.w50;
+import org.telegram.ui.x50;
+import org.telegram.ui.y50;
 public final class q1 extends TimerTask {
     public final int f16896a;
     public final Object f16897b;
@@ -48,17 +48,17 @@ public final class q1 extends TimerTask {
                 } catch (Exception e11) {
                     a8.g(e11, true);
                 }
-                Utilities.f21338g.c(new l51(8, (oj) this.f16898c, (String) this.f16897b));
+                Utilities.f21338g.c(new m51(8, (oj) this.f16898c, (String) this.f16897b));
                 return;
             default:
-                w50 w50Var = (w50) this.f16898c;
+                y50 y50Var = (y50) this.f16898c;
                 try {
-                    w50Var.f50904f.cancel();
-                    w50Var.f50904f = null;
+                    y50Var.f51913f.cancel();
+                    y50Var.f51913f = null;
                 } catch (Exception e12) {
                     a8.g(e12, true);
                 }
-                org.telegram.messenger.g0.h3(new v50(this, (String) this.f16897b, 0));
+                org.telegram.messenger.g0.h3(new x50(this, (String) this.f16897b, 0));
                 return;
         }
     }

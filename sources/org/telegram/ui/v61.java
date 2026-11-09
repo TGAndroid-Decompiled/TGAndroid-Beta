@@ -1,114 +1,60 @@
 package org.telegram.ui;
 
-import android.graphics.drawable.Drawable;
-import android.view.View;
-public final class v61 implements View.OnClickListener {
-    public final int f50506a;
-    public int f50507b = 0;
-    public final v71 f50508c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.widget.FrameLayout;
+public final class v61 extends FrameLayout {
+    public final int f50590a;
+    public final RectF f50591b;
+    public final w71 f50592c;
 
-    public v61(v71 v71Var, int i7) {
-        this.f50506a = i7;
-        this.f50508c = v71Var;
+    public v61(w71 w71Var, Context context, int i7) {
+        super(context);
+        this.f50590a = i7;
+        switch (i7) {
+            case 1:
+                this.f50592c = w71Var;
+                super(context);
+                this.f50591b = new RectF();
+                return;
+            default:
+                this.f50592c = w71Var;
+                this.f50591b = new RectF();
+                return;
+        }
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f50506a) {
+    public final void onDraw(Canvas canvas) {
+        switch (this.f50590a) {
             case 0:
-                v71 v71Var = this.f50508c;
-                v71Var.G0.setRotation(this.f50507b);
-                this.f50507b -= 45;
-                v71Var.G0.animate().rotationBy(-45.0f).setDuration(300L).setInterpolator(org.telegram.ui.Components.xq.f40367g).start();
-                l71[] l71VarArr = v71Var.f50583x0;
-                l71 l71Var = l71VarArr[0];
-                if (l71Var != null) {
-                    Drawable background = l71Var.getBackground();
-                    if (background instanceof org.telegram.ui.Components.qa0) {
-                        ((org.telegram.ui.Components.qa0) background).w(false);
-                    } else {
-                        org.telegram.ui.ActionBar.h6 h6Var = v71Var.f50579w;
-                        if (v71Var.f50524b == 2) {
-                            v71Var.f50549i1 += 45;
-                            while (true) {
-                                int i7 = v71Var.f50549i1;
-                                if (i7 >= 360) {
-                                    v71Var.f50549i1 = i7 - 360;
-                                } else {
-                                    v71Var.f1(v71Var.f50522a1, 0, true);
-                                }
-                            }
-                        } else if (h6Var != null) {
-                            h6Var.f27530n += 45;
-                            while (true) {
-                                int i10 = h6Var.f27530n;
-                                if (i10 >= 360) {
-                                    h6Var.f27530n = i10 - 360;
-                                } else {
-                                    org.telegram.ui.ActionBar.k6.t1(false, false);
-                                }
-                            }
-                        }
-                    }
-                }
-                l71 l71Var2 = l71VarArr[1];
-                if (l71Var2 != null) {
-                    Drawable background2 = l71Var2.getBackground();
-                    if (background2 instanceof org.telegram.ui.Components.qa0) {
-                        ((org.telegram.ui.Components.qa0) background2).w(false);
-                        return;
-                    }
+                RectF rectF = this.f50591b;
+                rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                w71 w71Var = this.f50592c;
+                v61 v61Var = w71Var.E0;
+                m71 m71Var = w71Var.f50968y0;
+                x61 x61Var = w71Var.f50902a;
+                org.telegram.ui.ActionBar.l6.t(v61Var, m71Var, x61Var);
+                canvas.drawRoundRect(rectF, getMeasuredHeight() / 2, getMeasuredHeight() / 2, x61Var.d("paintChatActionBackground"));
+                if (org.telegram.ui.ActionBar.l6.d1()) {
+                    canvas.drawRoundRect(rectF, getMeasuredHeight() / 2, getMeasuredHeight() / 2, x61Var.d("paintChatActionBackgroundDarken"));
                     return;
                 }
                 return;
             default:
-                v71 v71Var2 = this.f50508c;
-                org.telegram.ui.ActionBar.q5 q5Var = v71Var2.S;
-                v71Var2.H0.setRotation(this.f50507b);
-                this.f50507b -= 45;
-                v71Var2.H0.animate().rotationBy(-45.0f).setDuration(300L).setInterpolator(org.telegram.ui.Components.xq.f40367g).start();
-                org.telegram.ui.ActionBar.h6 h6Var2 = v71Var2.f50579w;
-                if (h6Var2.f27525i) {
-                    if (q5Var.j() != null) {
-                        q5Var.j().w(false);
-                        return;
-                    }
+                RectF rectF2 = this.f50591b;
+                rectF2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                w71 w71Var2 = this.f50592c;
+                v61 v61Var2 = w71Var2.F0;
+                m71 m71Var2 = w71Var2.f50968y0;
+                x61 x61Var2 = w71Var2.f50902a;
+                org.telegram.ui.ActionBar.l6.t(v61Var2, m71Var2, x61Var2);
+                canvas.drawRoundRect(rectF2, getMeasuredHeight() / 2, getMeasuredHeight() / 2, x61Var2.d("paintChatActionBackground"));
+                if (org.telegram.ui.ActionBar.l6.d1()) {
+                    canvas.drawRoundRect(rectF2, getMeasuredHeight() / 2, getMeasuredHeight() / 2, x61Var2.d("paintChatActionBackgroundDarken"));
                     return;
                 }
-                int i11 = h6Var2.h;
-                if (i11 != 0) {
-                    int i12 = h6Var2.f27522e;
-                    if (i12 == 0) {
-                        i12 = h6Var2.f27521c;
-                    }
-                    h6Var2.f27522e = h6Var2.f27523f;
-                    h6Var2.f27523f = h6Var2.f27524g;
-                    h6Var2.f27524g = i11;
-                    h6Var2.h = i12;
-                } else {
-                    int i13 = h6Var2.f27522e;
-                    if (i13 == 0) {
-                        i13 = h6Var2.f27521c;
-                    }
-                    h6Var2.f27522e = h6Var2.f27523f;
-                    h6Var2.f27523f = h6Var2.f27524g;
-                    h6Var2.f27524g = i13;
-                }
-                v71Var2.W.e(h6Var2.h, 3);
-                v71Var2.W.e(h6Var2.f27524g, 2);
-                v71Var2.W.e(h6Var2.f27523f, 1);
-                org.telegram.ui.Components.vp vpVar = v71Var2.W;
-                int i14 = h6Var2.f27522e;
-                if (i14 == 0) {
-                    i14 = h6Var2.f27521c;
-                }
-                vpVar.e(i14, 0);
-                v71Var2.L0[1].b(0, h6Var2.f27522e);
-                v71Var2.L0[1].b(1, h6Var2.f27523f);
-                v71Var2.L0[1].b(2, h6Var2.f27524g);
-                v71Var2.L0[1].b(3, h6Var2.h);
-                org.telegram.ui.ActionBar.k6.t1(true, true);
-                v71Var2.f50577v0.g1();
                 return;
         }
     }

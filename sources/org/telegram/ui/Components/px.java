@@ -5,21 +5,21 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class px {
-    public final ArrayList f37114a = new ArrayList();
-    public final hy f37115b;
+    public final ArrayList f37119a = new ArrayList();
+    public final hy f37120b;
 
     public px(hy hyVar) {
-        this.f37115b = hyVar;
+        this.f37120b = hyVar;
     }
 
     public final void a(String str, boolean z9) {
-        hy hyVar = this.f37115b;
-        int i7 = hyVar.f34400c1;
+        hy hyVar = this.f37120b;
+        int i7 = hyVar.f34415c1;
         String p10 = a8.p0.p("gif_search_", str, "_");
-        if (!z9 || !hyVar.f34427l0.containsKey(p10)) {
+        if (!z9 || !hyVar.f34442l0.containsKey(p10)) {
             String str2 = str;
             bi.d4 d4Var = new bi.d4(this, str2, z9, p10, 6);
-            ArrayList arrayList = this.f37114a;
+            ArrayList arrayList = this.f37119a;
             if (z9) {
                 arrayList.add(p10);
                 org.telegram.messenger.yr.a0(i7).M(p10, d4Var);

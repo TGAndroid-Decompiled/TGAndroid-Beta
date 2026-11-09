@@ -1,53 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.graphics.PorterDuff;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import java.util.ArrayList;
-public final class t20 extends FrameLayout {
-    public final int f38217a;
-    public final org.telegram.ui.ActionBar.f6 f38218b;
-    public ArrayList f38219c;
-    public final FrameLayout d;
-    public final q41 f38220e;
-    public final l41 f38221f;
-    public org.telegram.messenger.c20 h;
+import android.view.View;
+import java.io.Serializable;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class t20 implements org.telegram.messenger.a20, org.telegram.messenger.b20 {
+    public final u20 f38260a;
 
-    public t20(int i7, Activity activity, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(activity);
-        this.f38217a = i7;
-        this.f38218b = f6Var;
-        q41 q41Var = new q41(activity, i7, 0, false, new d(this, 15), new s20(this), new s20(this), f6Var);
-        this.f38220e = q41Var;
-        q41Var.setClipToPadding(false);
-        l41 l41Var = (l41) q41Var.getAdapter();
-        this.f38221f = l41Var;
-        l41Var.f35528r = false;
-        addView(q41Var, -1, -1);
-        FrameLayout frameLayout = new FrameLayout(activity);
-        this.d = frameLayout;
-        ImageView imageView = new ImageView(activity);
-        int i10 = org.telegram.ui.ActionBar.k6.f28017m6;
-        org.telegram.ui.ActionBar.r6.t(imageView, i10, f6Var, PorterDuff.Mode.MULTIPLY);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setImageResource(2131231607);
-        frameLayout.addView(imageView, c8.ha.e(56, 56, 49));
-        TextView textView = new TextView(activity);
-        org.telegram.ui.ActionBar.r6.V(textView, i10, f6Var);
-        textView.setText(org.telegram.messenger.id.M0(2131749354, null));
-        textView.setGravity(17);
-        frameLayout.addView(textView, c8.ha.d(-2, -2.0f, 81, 0.0f, 56.0f, 0.0f, 0.0f));
-        addView(frameLayout, c8.ha.e(210, -2, 17));
-        q41Var.setEmptyView(frameLayout);
+    public t20(u20 u20Var) {
+        this.f38260a = u20Var;
     }
 
-    public void setOnHashtagClickListener(org.telegram.messenger.c20 c20Var) {
-        this.h = c20Var;
+    @Override
+    public Boolean a(y31 y31Var, View view, Integer num, Float f10, Float f11) {
+        int i7 = y31Var.d;
+        boolean z9 = false;
+        if (i7 != 0) {
+            u20 u20Var = this.f38260a;
+            String str = (String) u20Var.f38573c.get(i7 - 1);
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, u20Var.getContext(), u20Var.f38572b);
+            String M0 = org.telegram.messenger.id.M0(2131752054, null);
+            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
+            u1Var.R = M0;
+            u1Var.T = org.telegram.messenger.id.a0(null, null, 2131752052, str);
+            alertDialog$Builder.k(org.telegram.messenger.id.M0(2131752055, null), new f2(15, u20Var, str));
+            alertDialog$Builder.h(org.telegram.messenger.id.M0(2131752589, null), null);
+            u1Var.show();
+            z9 = true;
+        }
+        return Boolean.valueOf(z9);
     }
 
-    public void setOnScrollListener(v4.s0 s0Var) {
-        this.f38220e.j(s0Var);
+    @Override
+    public void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        View view = (View) obj2;
+        Integer num = (Integer) number;
+        Float f10 = (Float) serializable;
+        Float f11 = (Float) serializable2;
+        int i7 = ((y31) obj).d;
+        u20 u20Var = this.f38260a;
+        if (i7 == 0) {
+            org.telegram.messenger.oa a10 = org.telegram.messenger.oa.a(u20Var.f38571a);
+            a10.f24316f.clear();
+            a10.d();
+            u20Var.f38575f.O(true);
+            return;
+        }
+        org.telegram.messenger.c20 c20Var = u20Var.h;
+        if (c20Var != null) {
+            c20Var.a((String) u20Var.f38573c.get(i7 - 1));
+        }
     }
 }

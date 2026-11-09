@@ -3,14 +3,14 @@ package org.telegram.ui;
 import org.telegram.messenger.MediaController;
 import org.telegram.tgnet.TLRPC;
 public final class ie implements Runnable {
-    public final int f46658a;
-    public final an f46659b;
-    public final org.telegram.messenger.ij f46660c;
+    public final int f46653a;
+    public final cn f46654b;
+    public final org.telegram.messenger.ij f46655c;
 
-    public ie(an anVar, org.telegram.messenger.ij ijVar, int i7) {
-        this.f46658a = i7;
-        this.f46659b = anVar;
-        this.f46660c = ijVar;
+    public ie(cn cnVar, org.telegram.messenger.ij ijVar, int i7) {
+        this.f46653a = i7;
+        this.f46654b = cnVar;
+        this.f46655c = ijVar;
     }
 
     @Override
@@ -21,23 +21,23 @@ public final class ie implements Runnable {
         int i10;
         int i11;
         int i12;
-        int i13 = this.f46658a;
-        an anVar = this.f46659b;
-        org.telegram.messenger.ij ijVar = this.f46660c;
+        int i13 = this.f46653a;
+        cn cnVar = this.f46654b;
+        org.telegram.messenger.ij ijVar = this.f46655c;
         switch (i13) {
             case 0:
                 TLRPC.MessageMedia messageMedia = ijVar.f23262k.media;
                 if (messageMedia != null && (webPage = messageMedia.webpage) != null && webPage.cached_page != null) {
                     LaunchActivity launchActivity = LaunchActivity.G1;
                     if (launchActivity == null || launchActivity.O() == null || LaunchActivity.G1.O().l(ijVar) == null) {
-                        anVar.createArticleViewer(false).L(ijVar, null, null, null);
+                        cnVar.createArticleViewer(false).L(ijVar, null, null, null);
                         return;
                     }
                     return;
                 }
                 return;
             case 1:
-                anVar.getClass();
+                cnVar.getClass();
                 TLRPC.Message message = ijVar.f23262k;
                 int i14 = message.ttl;
                 if (i14 != Integer.MAX_VALUE) {
@@ -50,79 +50,79 @@ public final class ie implements Runnable {
                 } else {
                     i7 = i14;
                 }
-                message.destroyTime = anVar.getConnectionsManager().getCurrentTime() + i7;
-                ijVar.f23262k.destroyTimeMillis = anVar.getConnectionsManager().getCurrentTimeMillis() + (i7 * 1000);
-                if (anVar.h != null) {
-                    anVar.getMessagesController().p3(anVar.f43848j6, i7, ijVar.f23262k.random_id);
+                message.destroyTime = cnVar.getConnectionsManager().getCurrentTime() + i7;
+                ijVar.f23262k.destroyTimeMillis = cnVar.getConnectionsManager().getCurrentTimeMillis() + (i7 * 1000);
+                if (cnVar.h != null) {
+                    cnVar.getMessagesController().p3(cnVar.f44504j6, i7, ijVar.f23262k.random_id);
                     return;
                 } else {
-                    anVar.getMessagesController().q3(anVar.f43848j6, ijVar.f1(), null, i7, 0L, z9);
+                    cnVar.getMessagesController().q3(cnVar.f44504j6, ijVar.e1(), null, i7, 0L, z9);
                     return;
                 }
             case 2:
-                int f12 = ijVar.f1();
-                an anVar2 = this.f46659b;
-                anVar2.xb(f12, 0, true, 0, true, 0, null, null, new xf(anVar2, 13));
-                if (anVar2.f44024x6.isEmpty()) {
-                    anVar2.oc(false);
+                int e12 = ijVar.e1();
+                cn cnVar2 = this.f46654b;
+                cnVar2.Ab(e12, 0, true, 0, true, 0, null, null, new xf(cnVar2, 12));
+                if (cnVar2.f44681x6.isEmpty()) {
+                    cnVar2.rc(false);
                     return;
                 }
                 return;
             case 3:
-                an anVar3 = this.f46659b;
-                anVar3.getClass();
-                int O1 = ijVar.O1();
+                cn cnVar3 = this.f46654b;
+                cnVar3.getClass();
+                int N1 = ijVar.N1();
                 TLRPC.Message message2 = ijVar.f23262k;
                 int i15 = message2.f26977id;
-                if (org.telegram.messenger.ij.B0(message2) == anVar3.f43744b7) {
+                if (org.telegram.messenger.ij.B0(message2) == cnVar3.f44399b7) {
                     i10 = 1;
                 } else {
                     i10 = 0;
                 }
-                anVar3.xb(O1, i15, true, i10, false, 0, null, ((TLRPC.TL_messageActionPollAppendAnswer) ijVar.f23262k.action).answer.option, null);
+                cnVar3.Ab(N1, i15, true, i10, false, 0, null, ((TLRPC.TL_messageActionPollAppendAnswer) ijVar.f23262k.action).answer.option, null);
                 return;
             case 4:
-                an anVar4 = this.f46659b;
-                anVar4.getClass();
-                int O12 = ijVar.O1();
+                cn cnVar4 = this.f46654b;
+                cnVar4.getClass();
+                int N12 = ijVar.N1();
                 TLRPC.Message message3 = ijVar.f23262k;
                 int i16 = message3.f26977id;
-                if (org.telegram.messenger.ij.B0(message3) == anVar4.f43744b7) {
+                if (org.telegram.messenger.ij.B0(message3) == cnVar4.f44399b7) {
                     i11 = 1;
                 } else {
                     i11 = 0;
                 }
-                anVar4.xb(O12, i16, true, i11, false, 0, null, null, null);
+                cnVar4.Ab(N12, i16, true, i11, false, 0, null, null, null);
                 return;
             case 5:
-                an anVar5 = this.f46659b;
-                anVar5.getClass();
-                int O13 = ijVar.O1();
+                cn cnVar5 = this.f46654b;
+                cnVar5.getClass();
+                int N13 = ijVar.N1();
                 TLRPC.Message message4 = ijVar.f23262k;
                 int i17 = message4.f26977id;
-                if (org.telegram.messenger.ij.B0(message4) == anVar5.f43744b7) {
+                if (org.telegram.messenger.ij.B0(message4) == cnVar5.f44399b7) {
                     i12 = 1;
                 } else {
                     i12 = 0;
                 }
-                anVar5.l(O13, i17, true, i12, false, 0);
+                cnVar5.l(N13, i17, true, i12, false, 0);
                 return;
             case 6:
-                if (org.telegram.messenger.ij.M4(ijVar.f23262k)) {
-                    anVar.Ha(null, ijVar);
+                if (org.telegram.messenger.ij.L4(ijVar.f23262k)) {
+                    cnVar.Ja(null, ijVar);
                     return;
                 } else {
                     MediaController.B().S(ijVar);
                     return;
                 }
             case 7:
-                anVar.getMessagesController().C3(anVar.f43777e, anVar.f43791f, ijVar.f1(), true, false, false);
-                anVar.O3 = null;
+                cnVar.getMessagesController().C3(cnVar.f44432e, cnVar.f44446f, ijVar.e1(), true, false, false);
+                cnVar.O3 = null;
                 return;
             default:
-                org.telegram.ui.Components.hc.a0(anVar).c(org.telegram.messenger.id.M0(2131754488, null)).j();
-                anVar.eb(ijVar);
-                anVar.gb(ijVar);
+                org.telegram.ui.Components.hc.a0(cnVar).c(org.telegram.messenger.id.M0(2131754488, null)).j();
+                cnVar.hb(ijVar);
+                cnVar.jb(ijVar);
                 return;
         }
     }

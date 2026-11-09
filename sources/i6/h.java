@@ -264,7 +264,7 @@ public final class h {
         if (aVar == null) {
             return null;
         }
-        return aVar.f53481b;
+        return aVar.f53493b;
     }
 
     public final void e(int i7, Bitmap bitmap) {
@@ -281,7 +281,7 @@ public final class h {
         }
         a0 a0Var2 = this.f15391p;
         MediaMetadataCompat mediaMetadataCompat = null;
-        if (a0Var2 != null && (metadata = ((android.support.v4.media.session.h) ((wf.b) a0Var2.f1764c).f57655b).f1777a.getMetadata()) != null) {
+        if (a0Var2 != null && (metadata = ((android.support.v4.media.session.h) ((wf.b) a0Var2.f1764c).f57667b).f1777a.getMetadata()) != null) {
             a0.f fVar = MediaMetadataCompat.d;
             Parcel obtain = Parcel.obtain();
             metadata.writeToParcel(obtain, 0);
@@ -302,7 +302,7 @@ public final class h {
             str = "android.media.metadata.ALBUM_ART";
         }
         cVar.y(str, bitmap);
-        a0Var.t(new MediaMetadataCompat((Bundle) cVar.f6040b));
+        a0Var.t(new MediaMetadataCompat((Bundle) cVar.f6038b));
     }
 
     public final void f(android.support.v4.media.session.d0 r13, java.lang.String r14, h6.d r15) {
@@ -473,14 +473,14 @@ public final class h {
                     if (hVar3.j()) {
                         j3 = 0;
                     } else {
-                        j3 = mediaInfo.f6497e;
+                        j3 = mediaInfo.f6495e;
                     }
                     l.c(1, "com.google.android.gms.cast.metadata.TITLE");
                     String string = bundle2.getString("com.google.android.gms.cast.metadata.TITLE");
                     l.c(1, "com.google.android.gms.cast.metadata.SUBTITLE");
                     String string2 = bundle2.getString("com.google.android.gms.cast.metadata.SUBTITLE");
                     a0 a0Var3 = this.f15391p;
-                    if (a0Var3 == null || (metadata = ((android.support.v4.media.session.h) ((wf.b) a0Var3.f1764c).f57655b).f1777a.getMetadata()) == null) {
+                    if (a0Var3 == null || (metadata = ((android.support.v4.media.session.h) ((wf.b) a0Var3.f1764c).f57667b).f1777a.getMetadata()) == null) {
                         createFromParcel = null;
                     } else {
                         a0.f fVar2 = MediaMetadataCompat.d;
@@ -504,7 +504,7 @@ public final class h {
                     if (string2 != null) {
                         cVar.B("android.media.metadata.DISPLAY_SUBTITLE", string2);
                     }
-                    a0Var.t(new MediaMetadataCompat((Bundle) cVar.f6040b));
+                    a0Var.t(new MediaMetadataCompat((Bundle) cVar.f6038b));
                     Uri d = d(lVar);
                     if (d != null) {
                         this.h.I(d);

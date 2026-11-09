@@ -88,7 +88,7 @@ public final class w00 implements c20 {
                     qpVar.V7.add(Long.valueOf(j3));
                     qpVar.F4(true);
                     if (T != null) {
-                        org.telegram.ui.Components.hc.a0(T).P(2131623981, g0.H2(g0.x2(id.M0(2131745577, null), new rn(0, T)), true)).k(true);
+                        org.telegram.ui.Components.hc.a0(T).P(2131623981, g0.H2(g0.x2(id.M0(2131745574, null), new rn(0, T)), true)).k(true);
                     }
                     zArr[0] = true;
                     aeVar.run();

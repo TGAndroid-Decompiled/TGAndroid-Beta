@@ -3,21 +3,21 @@ package x2;
 import android.util.Pair;
 import java.util.HashMap;
 public final class x extends s1 {
-    public final int f58511l;
-    public final HashMap f58512m;
-    public final HashMap f58513n;
+    public final int f58520l;
+    public final HashMap f58521m;
+    public final HashMap f58522n;
 
     public x(a aVar) {
         super(new b0(aVar, false));
-        this.f58511l = Integer.MAX_VALUE;
-        this.f58512m = new HashMap();
-        this.f58513n = new HashMap();
+        this.f58520l = Integer.MAX_VALUE;
+        this.f58521m = new HashMap();
+        this.f58522n = new HashMap();
     }
 
     @Override
     public final void A(e2.l1 l1Var) {
         e2.l1 vVar;
-        int i7 = this.f58511l;
+        int i7 = this.f58520l;
         if (i7 != Integer.MAX_VALUE) {
             vVar = new w(l1Var, i7);
         } else {
@@ -28,28 +28,28 @@ public final class x extends s1 {
 
     @Override
     public final e0 c(g0 g0Var, h6.m mVar, long j3) {
-        int i7 = this.f58511l;
-        a aVar = this.f58460k;
+        int i7 = this.f58520l;
+        a aVar = this.f58469k;
         if (i7 == Integer.MAX_VALUE) {
             return aVar.c(g0Var, mVar, j3);
         }
-        Object obj = g0Var.f58330a;
+        Object obj = g0Var.f58339a;
         int i10 = l2.a.f17737g;
         g0 a10 = g0Var.a(((Pair) obj).second);
-        this.f58512m.put(a10, g0Var);
+        this.f58521m.put(a10, g0Var);
         e0 c10 = aVar.c(a10, mVar, j3);
-        this.f58513n.put(c10, a10);
+        this.f58522n.put(c10, a10);
         return c10;
     }
 
     @Override
     public final e2.l1 h() {
-        b0 b0Var = (b0) this.f58460k;
-        int i7 = this.f58511l;
+        b0 b0Var = (b0) this.f58469k;
+        int i7 = this.f58520l;
         if (i7 != Integer.MAX_VALUE) {
-            return new w(b0Var.f58275o, i7);
+            return new w(b0Var.f58284o, i7);
         }
-        return new v(b0Var.f58275o, 0);
+        return new v(b0Var.f58284o, 0);
     }
 
     @Override
@@ -59,17 +59,17 @@ public final class x extends s1 {
 
     @Override
     public final void o(e0 e0Var) {
-        this.f58460k.o(e0Var);
-        g0 g0Var = (g0) this.f58513n.remove(e0Var);
+        this.f58469k.o(e0Var);
+        g0 g0Var = (g0) this.f58522n.remove(e0Var);
         if (g0Var != null) {
-            this.f58512m.remove(g0Var);
+            this.f58521m.remove(g0Var);
         }
     }
 
     @Override
     public final g0 z(g0 g0Var) {
-        if (this.f58511l != Integer.MAX_VALUE) {
-            return (g0) this.f58512m.get(g0Var);
+        if (this.f58520l != Integer.MAX_VALUE) {
+            return (g0) this.f58521m.get(g0Var);
         }
         return g0Var;
     }

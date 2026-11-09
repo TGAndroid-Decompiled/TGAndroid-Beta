@@ -3,13 +3,13 @@ package ii;
 import android.view.View;
 import bi.nc;
 import org.telegram.messenger.id;
-import org.telegram.ui.Components.m61;
-import org.telegram.ui.Wallet.w2;
-import org.telegram.ui.Wallet.y2;
-import org.telegram.ui.gt;
-import org.telegram.ui.hm0;
-import org.telegram.ui.kt;
-public final class x extends m61 {
+import org.telegram.ui.Components.n61;
+import org.telegram.ui.Wallet.v2;
+import org.telegram.ui.Wallet.x2;
+import org.telegram.ui.jm0;
+import org.telegram.ui.jt;
+import org.telegram.ui.mt;
+public final class x extends n61 {
     public final int f15615a;
     public final Object f15616b;
 
@@ -26,24 +26,24 @@ public final class x extends m61 {
                 ((b0) view).getClass();
                 return;
             case 1:
-                gt gtVar = (gt) view;
-                gtVar.f46094f3 = i7;
-                gtVar.f46100m3.clear();
-                if (gtVar.z1(6) + gtVar.B1(6) <= 0) {
+                jt jtVar = (jt) view;
+                jtVar.f47081f3 = i7;
+                jtVar.f47087m3.clear();
+                if (jtVar.z1(6) + jtVar.B1(6) <= 0) {
                     z9 = true;
                 } else {
                     z9 = false;
                 }
-                gtVar.f46107t3 = z9;
-                gtVar.C1();
-                gtVar.D1(false);
-                gtVar.v0(0);
+                jtVar.f47094t3 = z9;
+                jtVar.C1();
+                jtVar.D1(false);
+                jtVar.v0(0);
                 return;
             case 2:
                 return;
             case 3:
-                if (view instanceof w2) {
-                    ((w2) view).getClass();
+                if (view instanceof v2) {
+                    ((v2) view).getClass();
                     return;
                 }
                 return;
@@ -65,21 +65,21 @@ public final class x extends m61 {
                 }
                 return d0Var.f15511s1;
             case 1:
-                kt ktVar = (kt) this.f15616b;
-                gt gtVar = new gt(ktVar, ktVar.getParentActivity());
-                ktVar.f47310e.add(gtVar);
-                return gtVar;
+                mt mtVar = (mt) this.f15616b;
+                jt jtVar = new jt(mtVar, mtVar.getParentActivity());
+                mtVar.f47994e.add(jtVar);
+                return jtVar;
             case 2:
-                hm0 hm0Var = (hm0) this.f15616b;
+                jm0 jm0Var = (jm0) this.f15616b;
                 if (i7 == 1) {
-                    return hm0Var.h;
+                    return jm0Var.h;
                 }
                 if (i7 == 0) {
-                    return hm0Var.f46457n;
+                    return jm0Var.f47045n;
                 }
                 return null;
             case 3:
-                return (View) ((y2) this.f15616b).f43386j1.get(i7);
+                return (View) ((x2) this.f15616b).f43304j1.get(i7);
             default:
                 nc ncVar = (nc) this.f15616b;
                 if (i7 != 1) {
@@ -105,7 +105,7 @@ public final class x extends m61 {
             case 2:
                 return 2;
             case 3:
-                return ((y2) this.f15616b).f43386j1.size();
+                return ((x2) this.f15616b).f43304j1.size();
             default:
                 return 3;
         }
@@ -121,21 +121,21 @@ public final class x extends m61 {
                             if (i7 != 3) {
                                 return "";
                             }
-                            return id.M0(2131748296, null);
+                            return id.M0(2131748295, null);
                         }
-                        return id.M0(2131748294, null);
+                        return id.M0(2131748293, null);
                     }
-                    return id.M0(2131748297, null);
+                    return id.M0(2131748296, null);
                 }
-                return id.M0(2131748298, null);
+                return id.M0(2131748297, null);
             case 4:
                 if (i7 != 1) {
                     if (i7 != 2) {
-                        return id.M0(2131747670, null).toUpperCase();
+                        return id.M0(2131747669, null).toUpperCase();
                     }
-                    return id.M0(2131747669, null).toUpperCase();
+                    return id.M0(2131747668, null).toUpperCase();
                 }
-                return id.M0(2131747664, null).toUpperCase();
+                return id.M0(2131747663, null).toUpperCase();
             default:
                 return super.g(i7);
         }

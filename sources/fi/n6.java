@@ -17,7 +17,7 @@ public final class n6 extends p6 {
 
     @Override
     public final String a() {
-        return id.M0(2131743549, null);
+        return id.M0(2131743546, null);
     }
 
     @Override
@@ -35,12 +35,12 @@ public final class n6 extends p6 {
             f2Var.presentFragment(new ProfileActivity(bundle, null));
             return;
         }
-        f2Var.presentFragment(ProfileActivity.A4(user.f27105id));
+        f2Var.presentFragment(ProfileActivity.D4(user.f27105id));
     }
 
     @Override
     public final void d(ImageReceiver imageReceiver) {
-        org.telegram.ui.Components.w8 w8Var = new org.telegram.ui.Components.w8((org.telegram.ui.ActionBar.f6) null);
+        org.telegram.ui.Components.w8 w8Var = new org.telegram.ui.Components.w8((org.telegram.ui.ActionBar.g6) null);
         TLRPC.User user = this.f12482b;
         w8Var.r(user);
         imageReceiver.i0(user, w8Var, null);

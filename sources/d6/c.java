@@ -9,27 +9,27 @@ import java.net.URL;
 import org.telegram.messenger.d1;
 import q6.m;
 public final class c implements Runnable {
-    public static final d1 f8192c = new d1("RevokeAccessOperation", new String[0]);
-    public final String f8193a;
-    public final r f8194b;
+    public static final d1 f8190c = new d1("RevokeAccessOperation", new String[0]);
+    public final String f8191a;
+    public final r f8192b;
 
     public c(String str) {
         m.e(str);
-        this.f8193a = str;
-        this.f8194b = new r(null, 0);
+        this.f8191a = str;
+        this.f8192b = new r(null, 0);
     }
 
     @Override
     public final void run() {
-        d1 d1Var = f8192c;
+        d1 d1Var = f8190c;
         Status status = Status.h;
         try {
-            String str = this.f8193a;
+            String str = this.f8191a;
             HttpURLConnection httpURLConnection = (HttpURLConnection) new URL("https://accounts.google.com/o/oauth2/revoke?token=" + str).openConnection();
             httpURLConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             int responseCode = httpURLConnection.getResponseCode();
             if (responseCode == 200) {
-                status = Status.f6525e;
+                status = Status.f6523e;
             } else {
                 Log.e(d1Var.f21970b, d1Var.b("Unable to revoke access!", new Object[0]));
             }
@@ -39,6 +39,6 @@ public final class c implements Runnable {
         } catch (Exception e11) {
             Log.e(d1Var.f21970b, d1Var.b("Exception when revoking access: ".concat(String.valueOf(e11.toString())), new Object[0]));
         }
-        this.f8194b.a(status);
+        this.f8192b.a(status);
     }
 }

@@ -48,7 +48,7 @@ public final class aw implements Runnable {
                     org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder.f27296a;
                     u1Var2.R = M0;
                     u1Var2.T = id.M0(2131751750, null);
-                    alertDialog$Builder.k(id.M0(2131747832, null), null);
+                    alertDialog$Builder.k(id.M0(2131747831, null), null);
                     alertDialog$Builder.p().setCanceledOnTouchOutside(true);
                     return;
                 }

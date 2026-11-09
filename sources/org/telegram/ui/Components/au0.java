@@ -1,57 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.PointF;
-import android.view.View;
-public class au0 extends v4.c0 {
-    public final xq f31918r;
-    public int f31919s;
-    public float f31920t;
+import org.telegram.tgnet.TLRPC;
+public final class au0 implements Runnable {
+    public final int f31977a;
+    public final TLRPC.Document f31978b;
+    public final int f31979c;
+    public final org.telegram.messenger.ij d;
+    public final org.telegram.ui.Cells.q1 f31980e;
+    public final TLRPC.TL_messages_stickerSet f31981f;
 
-    public au0(Context context) {
-        super(context);
-        this.f31918r = xq.f40366f;
-        this.f31920t = 1.0f;
+    public au0(TLRPC.Document document, int i7, org.telegram.messenger.ij ijVar, org.telegram.ui.Cells.q1 q1Var, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i10) {
+        this.f31977a = i10;
+        this.f31978b = document;
+        this.f31979c = i7;
+        this.d = ijVar;
+        this.f31980e = q1Var;
+        this.f31981f = tL_messages_stickerSet;
     }
 
     @Override
-    public final void g(View view, v4.y0 y0Var) {
-        int j3 = j(o(), view);
-        int k10 = k(p(), view);
-        int m10 = m((int) Math.sqrt((k10 * k10) + (j3 * j3)));
-        if (m10 > 0) {
-            y0Var.b(-j3, -k10, m10, this.f31918r);
+    public final void run() {
+        switch (this.f31977a) {
+            case 0:
+                TLRPC.Document document = this.f31978b;
+                String r10 = org.telegram.messenger.w7.r(null, document);
+                int i7 = this.f31979c;
+                org.telegram.messenger.z5.q(i7).a(r10, this.d, this.f31980e);
+                org.telegram.messenger.w7.G(i7).W(document, this.f31981f, 1, 1);
+                return;
+            default:
+                TLRPC.Document document2 = this.f31978b;
+                String r11 = org.telegram.messenger.w7.r(null, document2);
+                int i10 = this.f31979c;
+                org.telegram.messenger.z5.q(i10).a(r11, this.d, this.f31980e);
+                org.telegram.messenger.w7.G(i10).W(document2, this.f31981f, 1, 1);
+                return;
         }
-        org.telegram.messenger.g0.i3(new ir0(this, 5), Math.max(0, m10));
-    }
-
-    @Override
-    public final int k(int i7, View view) {
-        return super.k(i7, view) - this.f31919s;
-    }
-
-    @Override
-    public final int m(int i7) {
-        return Math.round(Math.min(super.m(i7), 500) * this.f31920t);
-    }
-
-    @Override
-    public final int n(int i7) {
-        return Math.round(Math.min(super.n(i7), 150) * this.f31920t);
-    }
-
-    @Override
-    public final void q(v4.y0 y0Var) {
-        PointF a10 = a(this.f57213a);
-        if (a10 != null && (a10.x != 0.0f || a10.y != 0.0f)) {
-            v4.z0.b(a10);
-            this.f57029k = a10;
-            this.f57033o = (int) (a10.x * 10000.0f);
-            this.f57034p = (int) (a10.y * 10000.0f);
-            y0Var.b((int) (this.f57033o * 1.2f), (int) (this.f57034p * 1.2f), (int) (n(10000) * 1.2f), this.f31918r);
-            return;
-        }
-        y0Var.d = this.f57213a;
-        h();
     }
 }

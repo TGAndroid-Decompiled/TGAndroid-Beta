@@ -60,11 +60,11 @@ public abstract class q0 {
     }
 
     public static boolean c(TLRPC.Reaction reaction, o0 o0Var) {
-        if ((reaction instanceof TLRPC.TL_reactionEmoji) && o0Var.f6357g == 0 && TextUtils.equals(((TLRPC.TL_reactionEmoji) reaction).emoticon, o0Var.f6356f)) {
+        if ((reaction instanceof TLRPC.TL_reactionEmoji) && o0Var.f6355g == 0 && TextUtils.equals(((TLRPC.TL_reactionEmoji) reaction).emoticon, o0Var.f6354f)) {
             return true;
         }
         if (reaction instanceof TLRPC.TL_reactionCustomEmoji) {
-            long j3 = o0Var.f6357g;
+            long j3 = o0Var.f6355g;
             if (j3 != 0 && ((TLRPC.TL_reactionCustomEmoji) reaction).document_id == j3) {
                 return true;
             }

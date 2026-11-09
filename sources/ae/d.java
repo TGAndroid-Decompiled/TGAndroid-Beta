@@ -42,12 +42,12 @@ public final class d implements l {
             case 2:
                 CancellationSignal cancellationSignal = (CancellationSignal) this.f1049b;
                 c1.e eVar = (c1.e) this.f1050c;
-                Context context = eVar.f5254e;
+                Context context = eVar.f5252e;
                 a6.f fVar = (a6.f) obj;
                 CredentialProviderPlayServicesImpl.Companion.getClass();
                 if (!a1.g.a(cancellationSignal)) {
                     Intent intent = new Intent(context, HiddenActivity.class);
-                    b1.d.a(eVar.f5257i, intent, "BEGIN_SIGN_IN");
+                    b1.d.a(eVar.f5255i, intent, "BEGIN_SIGN_IN");
                     intent.putExtra("EXTRA_FLOW_PENDING_INTENT", fVar.f291a);
                     try {
                         context.startActivity(intent);
@@ -62,20 +62,20 @@ public final class d implements l {
             case 3:
                 CancellationSignal cancellationSignal2 = (CancellationSignal) this.f1049b;
                 d1.e eVar2 = (d1.e) this.f1050c;
-                Context context2 = eVar2.f7940e;
+                Context context2 = eVar2.f7938e;
                 PendingIntent result = (PendingIntent) obj;
                 j.e(result, "result");
                 CredentialProviderPlayServicesImpl.Companion.getClass();
                 if (!a1.g.a(cancellationSignal2)) {
                     Intent intent2 = new Intent(context2, HiddenActivity.class);
-                    b1.d.a(eVar2.f7943i, intent2, "CREATE_PUBLIC_KEY_CREDENTIAL");
+                    b1.d.a(eVar2.f7941i, intent2, "CREATE_PUBLIC_KEY_CREDENTIAL");
                     intent2.putExtra("EXTRA_FLOW_PENDING_INTENT", result);
                     try {
                         context2.startActivity(intent2);
                     } catch (Exception unused2) {
                         CredentialProviderPlayServicesImpl.Companion.getClass();
                         if (!a1.g.a(cancellationSignal2)) {
-                            Executor executor = eVar2.f7942g;
+                            Executor executor = eVar2.f7940g;
                             if (executor != null) {
                                 executor.execute(new d1.d(eVar2, 0));
                             } else {

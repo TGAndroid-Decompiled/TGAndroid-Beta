@@ -3,9 +3,9 @@ package fi;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLObject;
 public final class sb extends TLObject {
-    public double f12821a;
-    public double f12822b;
-    public String f12823c;
+    public double f12820a;
+    public double f12821b;
+    public String f12822c;
     public float d;
 
     public final String a() {
@@ -17,9 +17,9 @@ public final class sb extends TLObject {
 
     @Override
     public final void serializeToStream(OutputSerializedData outputSerializedData) {
-        outputSerializedData.writeDouble(this.f12821a);
-        outputSerializedData.writeDouble(this.f12822b);
-        outputSerializedData.writeString(this.f12823c);
+        outputSerializedData.writeDouble(this.f12820a);
+        outputSerializedData.writeDouble(this.f12821b);
+        outputSerializedData.writeString(this.f12822c);
         outputSerializedData.writeFloat(this.d);
     }
 }

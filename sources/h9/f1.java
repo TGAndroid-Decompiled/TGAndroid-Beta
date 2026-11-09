@@ -58,22 +58,22 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.v2;
 import org.telegram.ui.Cells.h9;
 import org.telegram.ui.Cells.i9;
 import org.telegram.ui.Cells.j9;
 import org.telegram.ui.Cells.z9;
 import org.telegram.ui.Components.b9;
-import org.telegram.ui.Components.d90;
 import org.telegram.ui.Components.di;
-import org.telegram.ui.Components.i51;
+import org.telegram.ui.Components.e90;
+import org.telegram.ui.Components.j51;
 import org.telegram.ui.Components.r5;
 import org.telegram.ui.Components.t4;
-import org.telegram.ui.bg0;
+import org.telegram.ui.dg0;
 import org.telegram.ui.ee;
-import org.telegram.ui.fr0;
-public final class f1 implements g9.k, com.google.android.gms.common.api.internal.p, jg.y1, m.f2, li.i0, t4, li.f1, l.i, n2.v, o0.a, b3.j, va, lc, i51, org.telegram.ui.Cells.l1, te.d, d90 {
+import org.telegram.ui.hr0;
+public final class f1 implements g9.k, com.google.android.gms.common.api.internal.p, jg.y1, m.f2, li.i0, t4, li.f1, l.i, n2.v, o0.a, b3.j, va, lc, j51, org.telegram.ui.Cells.l1, te.d, e90 {
     public final int f14322a;
     public Object f14323b;
 
@@ -120,7 +120,7 @@ public final class f1 implements g9.k, com.google.android.gms.common.api.interna
         z9 z9Var = (z9) this.f14323b;
         org.telegram.ui.Cells.f fVar = z9Var.D;
         if (z9Var.a()) {
-            z9Var.f31002y = 2;
+            z9Var.f31007y = 2;
             org.telegram.messenger.g0.r(fVar);
             org.telegram.messenger.g0.i3(fVar, 5000L);
         }
@@ -166,7 +166,7 @@ public final class f1 implements g9.k, com.google.android.gms.common.api.interna
                     }
                     arrayList.add(i7 + 1, aVar2);
                     t3Var.v4();
-                    t3Var.f37190f3.O(false);
+                    t3Var.f37556f3.O(false);
                     li.f2 f2Var2 = t3Var.Q3;
                     if (f2Var2 != null) {
                         f2Var2.h();
@@ -183,7 +183,7 @@ public final class f1 implements g9.k, com.google.android.gms.common.api.interna
             case 12:
                 m.l lVar = ((ActionMenuView) this.f14323b).P;
                 if (lVar != null) {
-                    Iterator it = ((CopyOnWriteArrayList) ((Toolbar) ((gf.g) lVar).f13889b).W.f46527c).iterator();
+                    Iterator it = ((CopyOnWriteArrayList) ((Toolbar) ((gf.g) lVar).f13889b).W.f47423c).iterator();
                     while (it.hasNext()) {
                         if (((androidx.fragment.app.a0) it.next()).f2363a.p()) {
                             return true;
@@ -201,7 +201,7 @@ public final class f1 implements g9.k, com.google.android.gms.common.api.interna
     public void H0() {
         a3.s sVar;
         FfmpegAudioRenderer ffmpegAudioRenderer = (FfmpegAudioRenderer) this.f14323b;
-        synchronized (ffmpegAudioRenderer.f17759a) {
+        synchronized (ffmpegAudioRenderer.f17757a) {
             sVar = ffmpegAudioRenderer.H;
         }
         if (sVar != null) {
@@ -239,9 +239,9 @@ public final class f1 implements g9.k, com.google.android.gms.common.api.interna
     public void L(int i7, int i10, boolean z9) {
         li.b2 b2Var = (li.b2) this.f14323b;
         b2Var.x0(i7, i10, z9);
-        bg0 bg0Var = b2Var.O0;
-        if (bg0Var != null) {
-            bg0Var.h();
+        dg0 dg0Var = b2Var.O0;
+        if (dg0Var != null) {
+            dg0Var.h();
             b2Var.O0 = null;
         }
     }
@@ -278,7 +278,7 @@ public final class f1 implements g9.k, com.google.android.gms.common.api.interna
     }
 
     @Override
-    public fr0 N1() {
+    public hr0 N1() {
         return null;
     }
 
@@ -318,7 +318,7 @@ public final class f1 implements g9.k, com.google.android.gms.common.api.interna
 
     @Override
     public Paint.FontMetricsInt R0() {
-        return ((di) this.f14323b).f33016y2.getEditText().getPaint().getFontMetricsInt();
+        return ((di) this.f14323b).f33071y2.getEditText().getPaint().getFontMetricsInt();
     }
 
     @Override
@@ -326,7 +326,7 @@ public final class f1 implements g9.k, com.google.android.gms.common.api.interna
         z9 z9Var = (z9) this.f14323b;
         org.telegram.ui.Cells.f fVar = z9Var.D;
         if (z9Var.a()) {
-            z9Var.f31002y = 0;
+            z9Var.f31007y = 0;
             q1Var.invalidate();
             org.telegram.messenger.g0.r(fVar);
             org.telegram.messenger.g0.i3(fVar, 5000L);
@@ -356,8 +356,8 @@ public final class f1 implements g9.k, com.google.android.gms.common.api.interna
     public m1.e1 T1() {
         ce.w wVar = (ce.w) this.f14323b;
         wVar.getClass();
-        Object obj = ce.w.f6154e.get(wVar);
-        if (obj == de.g.f8679a) {
+        Object obj = ce.w.f6152e.get(wVar);
+        if (obj == de.g.f8677a) {
             obj = null;
         }
         return (m1.e1) obj;
@@ -444,7 +444,7 @@ public final class f1 implements g9.k, com.google.android.gms.common.api.interna
         try {
             l8.b bVar = (l8.b) f1Var.f14323b;
             Parcel p12 = bVar.p1();
-            int i7 = v7.b.f57247a;
+            int i7 = v7.b.f57259a;
             p12.writeInt(0);
             bVar.t1(p12, 2);
         } catch (RemoteException e10) {
@@ -463,11 +463,11 @@ public final class f1 implements g9.k, com.google.android.gms.common.api.interna
 
     @Override
     public void Y0() {
-        ((b9) this.f14323b).f32131a.invalidate();
+        ((b9) this.f14323b).f32189a.invalidate();
     }
 
     public void Y1() {
-        ((v2) this.f14323b).f28642o0 = false;
+        ((v2) this.f14323b).f28647o0 = false;
     }
 
     @Override
@@ -481,7 +481,7 @@ public final class f1 implements g9.k, com.google.android.gms.common.api.interna
         try {
             l8.b bVar = (l8.b) f1Var.f14323b;
             Parcel p12 = bVar.p1();
-            int i7 = v7.b.f57247a;
+            int i7 = v7.b.f57259a;
             p12.writeInt(0);
             bVar.t1(p12, 3);
         } catch (RemoteException e10) {
@@ -536,10 +536,10 @@ public final class f1 implements g9.k, com.google.android.gms.common.api.interna
             case 4:
                 k7.f fVar = new k7.f(0, (TaskCompletionSource) obj2);
                 com.google.android.gms.common.api.g gVar = new com.google.android.gms.common.api.g(new com.google.android.gms.common.api.h(-1, -1, 0, true), false);
-                gVar.f6538c = false;
+                gVar.f6536c = false;
                 Parcel obtain = Parcel.obtain();
                 obtain.writeInterfaceToken("com.google.android.gms.identitycredentials.internal.IIdentityCredentialService");
-                int i10 = t7.a.f55450a;
+                int i10 = t7.a.f55462a;
                 obtain.writeStrongBinder(fVar);
                 t7.a.b(obtain, (j7.g) this.f14323b);
                 t7.a.b(obtain, gVar);
@@ -648,7 +648,7 @@ public final class f1 implements g9.k, com.google.android.gms.common.api.interna
         try {
             l8.b bVar = (l8.b) f1Var.f14323b;
             Parcel p12 = bVar.p1();
-            int i7 = v7.b.f57247a;
+            int i7 = v7.b.f57259a;
             p12.writeInt(0);
             bVar.t1(p12, 1);
         } catch (RemoteException e10) {
@@ -696,7 +696,7 @@ public final class f1 implements g9.k, com.google.android.gms.common.api.interna
         z9 z9Var = (z9) this.f14323b;
         org.telegram.ui.Cells.f fVar = z9Var.D;
         if (z9Var.a()) {
-            z9Var.f31002y = 2;
+            z9Var.f31007y = 2;
             q1Var.invalidate();
             org.telegram.messenger.g0.r(fVar);
             org.telegram.messenger.g0.i3(fVar, 5000L);
@@ -778,7 +778,7 @@ public final class f1 implements g9.k, com.google.android.gms.common.api.interna
 
     @Override
     public void invalidate() {
-        ((org.telegram.ui.Cells.q1) ((org.telegram.ui.Cells.j1) this.f14323b).f29349b).invalidate();
+        ((org.telegram.ui.Cells.q1) ((org.telegram.ui.Cells.j1) this.f14323b).f29353b).invalidate();
     }
 
     @Override
@@ -795,7 +795,7 @@ public final class f1 implements g9.k, com.google.android.gms.common.api.interna
                 Toolbar toolbar = (Toolbar) this.f14323b;
                 m.i iVar = toolbar.f1973a.J;
                 if (iVar == null || !iVar.g()) {
-                    Iterator it = ((CopyOnWriteArrayList) toolbar.W.f46527c).iterator();
+                    Iterator it = ((CopyOnWriteArrayList) toolbar.W.f47423c).iterator();
                     while (it.hasNext()) {
                         ((androidx.fragment.app.a0) it.next()).f2363a.t();
                     }
@@ -904,15 +904,15 @@ public final class f1 implements g9.k, com.google.android.gms.common.api.interna
         if (cVar2 == null) {
             size = 0;
         } else {
-            size = cVar2.f53108m.size();
+            size = cVar2.f53120m.size();
         }
-        long j13 = cVar.b(0).f53127b;
+        long j13 = cVar.b(0).f53139b;
         int i7 = 0;
-        while (i7 < size && hVar.G.b(i7).f53127b < j13) {
+        while (i7 < size && hVar.G.b(i7).f53139b < j13) {
             i7++;
         }
         if (cVar.d) {
-            if (size - i7 > cVar.f53108m.size()) {
+            if (size - i7 > cVar.f53120m.size()) {
                 h2.a.l("DashMediaSource", "Loaded out of sync manifest");
             } else {
                 long j14 = hVar.M;
@@ -941,7 +941,7 @@ public final class f1 implements g9.k, com.google.android.gms.common.api.interna
         synchronized (hVar.f20751t) {
             try {
                 if (rVar.f2966b.f16449a.equals(hVar.E)) {
-                    Uri uri = hVar.G.f53106k;
+                    Uri uri = hVar.G.f53118k;
                     if (uri == null) {
                         uri = f7.a(rVar.d.f16417c);
                     }
@@ -953,7 +953,7 @@ public final class f1 implements g9.k, com.google.android.gms.common.api.interna
         }
         p2.c cVar3 = hVar.G;
         if (cVar3.d && hVar.K == j11) {
-            m6 m6Var = cVar3.f53104i;
+            m6 m6Var = cVar3.f53116i;
             if (m6Var != null) {
                 String str = m6Var.f23989b;
                 if (!Objects.equals(str, "urn:mpeg:dash:utc:direct:2014") && !Objects.equals(str, "urn:mpeg:dash:utc:direct:2012")) {
@@ -990,7 +990,7 @@ public final class f1 implements g9.k, com.google.android.gms.common.api.interna
 
     @Override
     public boolean p1(org.telegram.ui.Cells.q1 q1Var, int i7) {
-        if (i7 == ((z9) this.f14323b).f31002y) {
+        if (i7 == ((z9) this.f14323b).f31007y) {
             return true;
         }
         return false;
@@ -1114,9 +1114,9 @@ public final class f1 implements g9.k, com.google.android.gms.common.api.interna
         this.f14323b = new org.telegram.messenger.l0(str, j3);
     }
 
-    public f1(Context context, f6 f6Var) {
+    public f1(Context context, g6 g6Var) {
         this.f14322a = 25;
-        v2 v2Var = new v2(1, context, f6Var, false);
+        v2 v2Var = new v2(1, context, g6Var, false);
         this.f14323b = v2Var;
         v2Var.N();
     }

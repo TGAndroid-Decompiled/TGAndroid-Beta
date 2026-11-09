@@ -122,18 +122,18 @@ public final class fp {
         return h(z9);
     }
 
-    public final int e(int i7, org.telegram.ui.ActionBar.f6 f6Var) {
+    public final int e(int i7, org.telegram.ui.ActionBar.g6 g6Var) {
         boolean q10;
         int[] iArr;
         int i10;
         if (i7 >= 0 && i7 <= 5) {
             if (this.f22450b && (i10 = this.f22451c) >= 0 && i10 < 7) {
-                return org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28113r8[i10], f6Var);
+                return org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.f28126r8[i10], g6Var);
             }
-            if (f6Var != null) {
-                q10 = f6Var.a();
+            if (g6Var != null) {
+                q10 = g6Var.a();
             } else {
-                q10 = org.telegram.ui.ActionBar.k6.I.q();
+                q10 = org.telegram.ui.ActionBar.l6.I.q();
             }
             if (q10) {
                 iArr = this.h;
@@ -147,7 +147,7 @@ public final class fp {
 
     public final int f() {
         int[] iArr;
-        if (org.telegram.ui.ActionBar.k6.I.q()) {
+        if (org.telegram.ui.ActionBar.l6.I.q()) {
             iArr = this.h;
         } else {
             iArr = this.f22454g;
@@ -157,7 +157,7 @@ public final class fp {
 
     public final int g() {
         int[] iArr;
-        if (org.telegram.ui.ActionBar.k6.I.q()) {
+        if (org.telegram.ui.ActionBar.l6.I.q()) {
             iArr = this.h;
         } else {
             iArr = this.f22454g;
@@ -177,7 +177,7 @@ public final class fp {
 
     public final int i() {
         int[] iArr;
-        if (org.telegram.ui.ActionBar.k6.I.q()) {
+        if (org.telegram.ui.ActionBar.l6.I.q()) {
             iArr = this.h;
         } else {
             iArr = this.f22454g;
@@ -197,7 +197,7 @@ public final class fp {
 
     public final int k() {
         int[] iArr;
-        if (org.telegram.ui.ActionBar.k6.I.q()) {
+        if (org.telegram.ui.ActionBar.l6.I.q()) {
             iArr = this.h;
         } else {
             iArr = this.f22454g;

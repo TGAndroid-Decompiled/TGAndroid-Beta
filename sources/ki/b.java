@@ -14,29 +14,29 @@ import org.telegram.messenger.id;
 import org.telegram.messenger.m5;
 import org.telegram.messenger.t3;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.l41;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.s6;
 import org.telegram.ui.Components.l9;
+import org.telegram.ui.Components.m41;
 import org.telegram.ui.Components.na;
-import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.qj0;
 import org.telegram.ui.Components.w8;
 import org.telegram.ui.Components.wp;
 public final class b extends na {
     public final nc P1;
-    public l41 Q1;
+    public m41 Q1;
 
     public b(Context context, TLRPC.Chat chat, Runnable runnable) {
-        super(context, (f6) null, false);
+        super(context, (g6) null, false);
         int i7;
         int i10;
         this.B1 = g0.L(30.0f);
-        pj0 pj0Var = this.f36277k1;
-        int i11 = this.f28649t0;
-        pj0Var.setPadding(i11, 0, i11, g0.L(130.0f) + g0.f22558n);
-        this.f36277k1.setClipToPadding(false);
+        qj0 qj0Var = this.f36303k1;
+        int i11 = this.f28654t0;
+        qj0Var.setPadding(i11, 0, i11, g0.L(130.0f) + g0.f22558n);
+        this.f36303k1.setClipToPadding(false);
         d dVar = new d(context, this.I0, true);
         dVar.setText(id.M0(2131752589, null));
         dVar.e();
@@ -59,8 +59,8 @@ public final class b extends na {
         ncVar.setPadding(g0.L(20.0f), 0, g0.L(20.0f), g0.L(17.0f));
         ((l9) ncVar.f4435b).e(chat, new w8(chat));
         textView2.setText(m5.m(chat));
-        int i12 = k6.G6;
-        r6.V(textView2, i12, this.I0);
+        int i12 = l6.G6;
+        s6.U(textView2, i12, this.I0);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) "* ");
         spannableStringBuilder.setSpan(new wp(2131231942, 0), 0, 1, 33);
@@ -70,19 +70,19 @@ public final class b extends na {
             i10 = 2131751923;
         }
         spannableStringBuilder.append((CharSequence) id.M0(i10, null));
-        r6.V(textView, i12, this.I0);
+        s6.U(textView, i12, this.I0);
         textView.setText(spannableStringBuilder);
-        this.f28619b.addView(dVar2, ha.f(48.0f, -1, 80, g0.L(12.0f) + this.f28649t0, 0, g0.L(12.0f) + this.f28649t0, g0.L(70.0f) + g0.f22558n));
-        this.f28619b.addView(dVar, ha.f(48.0f, -1, 80, g0.L(12.0f) + this.f28649t0, 0, g0.L(12.0f) + this.f28649t0, g0.L(12.0f) + g0.f22558n));
+        this.f28624b.addView(dVar2, ha.f(48.0f, -1, 80, g0.L(12.0f) + this.f28654t0, 0, g0.L(12.0f) + this.f28654t0, g0.L(70.0f) + g0.f22558n));
+        this.f28624b.addView(dVar, ha.f(48.0f, -1, 80, g0.L(12.0f) + this.f28654t0, 0, g0.L(12.0f) + this.f28654t0, g0.L(12.0f) + g0.f22558n));
         this.Q1.O(false);
     }
 
     @Override
-    public final oj0 L0(pj0 pj0Var) {
-        l41 l41Var = new l41(this.f36277k1, getContext(), this.f28616a, 0, true, new u1(this, 15), this.I0);
-        this.Q1 = l41Var;
-        l41Var.f35528r = false;
-        return l41Var;
+    public final pj0 L0(qj0 qj0Var) {
+        m41 m41Var = new m41(this.f36303k1, getContext(), this.f28621a, 0, true, new u1(this, 15), this.I0);
+        this.Q1 = m41Var;
+        m41Var.f35945r = false;
+        return m41Var;
     }
 
     @Override

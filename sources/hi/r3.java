@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import java.util.HashSet;
 import org.telegram.messenger.a8;
-import org.telegram.ui.ActionBar.a6;
-import org.telegram.ui.ActionBar.k6;
-public final class r3 extends FrameLayout implements a6 {
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.l6;
+public final class r3 extends FrameLayout implements b6 {
     public Path f14930a;
     public float f14931b;
     public int f14932c;
@@ -21,8 +21,8 @@ public final class r3 extends FrameLayout implements a6 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(k6.Rf));
-        hashSet.add(Integer.valueOf(k6.Ci));
+        hashSet.add(Integer.valueOf(l6.Rf));
+        hashSet.add(Integer.valueOf(l6.Ci));
     }
 
     @Override
@@ -79,7 +79,7 @@ public final class r3 extends FrameLayout implements a6 {
 
     public void setProgress(float f10) {
         this.f14931b = f10;
-        this.f14933e = i0.a.f(f10, k6.x0(null, k6.Rf, false), this.f14932c);
+        this.f14933e = i0.a.f(f10, l6.x0(null, l6.Rf, false), this.f14932c);
         for (int i7 = 0; i7 < getChildCount(); i7++) {
             getChildAt(i7).setAlpha(f10);
         }
@@ -90,10 +90,10 @@ public final class r3 extends FrameLayout implements a6 {
     public final void updateColors() {
         try {
             if (this.d) {
-                this.f14932c = k6.x0(null, k6.Ci, false);
+                this.f14932c = l6.x0(null, l6.Ci, false);
             }
             if (this.f14933e != 0) {
-                this.f14933e = i0.a.f(this.f14931b, k6.x0(null, k6.Rf, false), this.f14932c);
+                this.f14933e = i0.a.f(this.f14931b, l6.x0(null, l6.Rf, false), this.f14932c);
                 invalidate();
             }
         } catch (Exception e10) {

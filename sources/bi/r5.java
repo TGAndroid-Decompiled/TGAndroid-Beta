@@ -87,7 +87,7 @@ public final class r5 extends Drawable {
                 udVar.g(rectF2);
                 udVar.h = 30.0f;
                 udVar.d();
-                udVar.a(canvas, org.telegram.ui.ActionBar.k6.r1(0.6f, -1));
+                udVar.a(canvas, org.telegram.ui.ActionBar.l6.r1(0.6f, -1));
                 invalidateSelf();
                 canvas.restore();
                 org.telegram.messenger.g0.P(canvas, rectF2, L);

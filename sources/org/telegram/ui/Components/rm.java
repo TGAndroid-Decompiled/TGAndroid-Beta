@@ -3,17 +3,17 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.view.View;
 public final class rm extends v4.c0 {
-    public final kg.c0 f37726r;
+    public final kg.c0 f37744r;
 
     public rm(kg.c0 c0Var, Context context) {
         super(context);
-        this.f37726r = c0Var;
+        this.f37744r = c0Var;
     }
 
     @Override
     public final int k(int i7, View view) {
         int i10;
-        bn bnVar = (bn) this.f37726r.V;
+        bn bnVar = (bn) this.f37744r.V;
         if (bnVar.V0) {
             i7 = -1;
         }

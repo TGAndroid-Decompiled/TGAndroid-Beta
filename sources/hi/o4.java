@@ -14,7 +14,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.l6;
 import org.telegram.ui.Components.f5;
 import org.telegram.ui.Components.i5;
 import org.telegram.ui.LaunchActivity;
@@ -44,12 +44,12 @@ public abstract class o4 {
         final boolean[] zArr2 = new boolean[1];
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, null);
         n4 n4Var = new n4(f10);
-        int i10 = k6.L5;
-        int x02 = k6.x0(null, i10, false);
+        int i10 = l6.L5;
+        int x02 = l6.x0(null, i10, false);
         org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
-        u1Var.f28555b0 = n4Var;
-        u1Var.f28558c0 = x02;
-        u1Var.f28560d0 = -1;
+        u1Var.f28546b0 = n4Var;
+        u1Var.f28549c0 = x02;
+        u1Var.f28551d0 = -1;
         alertDialog$Builder.n(i10, null);
         alertDialog$Builder.f27296a.T = org.telegram.messenger.g0.X2(id.a0(null, null, 2131753088, t10.p(user), t10.p(user)));
         alertDialog$Builder.k(id.M0(2131753090, null), new org.telegram.ui.ActionBar.r1() {
@@ -166,12 +166,12 @@ public abstract class o4 {
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, W, null);
         n4 n4Var = new n4(f10, document);
-        int i14 = k6.L5;
-        int x02 = k6.x0(null, i14, false);
+        int i14 = l6.L5;
+        int x02 = l6.x0(null, i14, false);
         org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
-        u1Var.f28555b0 = n4Var;
-        u1Var.f28558c0 = x02;
-        u1Var.f28560d0 = -1;
+        u1Var.f28546b0 = n4Var;
+        u1Var.f28549c0 = x02;
+        u1Var.f28551d0 = -1;
         alertDialog$Builder.n(i14, null);
         alertDialog$Builder.f27296a.T = X2;
         alertDialog$Builder.k(id.M0(2131753091, null), new g4(i7, zArr2, document, i10, zArr, c20Var));

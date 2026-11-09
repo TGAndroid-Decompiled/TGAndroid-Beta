@@ -1,83 +1,96 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.view.MotionEvent;
+import android.os.Bundle;
 import android.view.View;
-public final class z31 extends org.telegram.ui.Components.v61 {
-    public boolean V;
-    public final c51 W;
+public final class z31 implements org.telegram.ui.Components.ej0, te.b {
+    public final d51 f52416a;
 
-    public z31(c51 c51Var, Activity activity) {
-        super(activity, null);
-        this.W = c51Var;
+    public z31(d51 d51Var) {
+        this.f52416a = d51Var;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        boolean z9;
-        int actionMasked = motionEvent.getActionMasked();
-        if (actionMasked == 0) {
-            c51 c51Var = this.W;
-            if (c51Var.f44680j0 != null) {
-                View currentView = getCurrentView();
-                zd zdVar = c51Var.f44680j0;
-                if (currentView == zdVar) {
-                    boolean G = zdVar.G(motionEvent.getX() - c51Var.f44680j0.getX(), motionEvent.getY() - c51Var.f44680j0.getY());
-                    zdVar.Q0 = G;
-                    if (G && zdVar.f52533a1.f50644b.canScrollHorizontally(-1)) {
-                        z9 = true;
-                        this.V = z9;
+    public void Y(int i7, float f10, float f11, te.c cVar) {
+        this.f52416a.t0();
+    }
+
+    @Override
+    public boolean c(int i7, View view) {
+        final d51 d51Var = this.f52416a;
+        org.telegram.ui.ActionBar.u1[] u1VarArr = d51Var.f44836g0;
+        h41 h41Var = d51Var.W;
+        int i10 = h41Var.I;
+        if (i7 >= i10 && i7 <= h41Var.J) {
+            final org.telegram.messenger.ij ijVar = ((a51) d51Var.f44859y0.get(i7 - i10)).f43589b;
+            if (!ijVar.x4()) {
+                org.telegram.ui.Components.l60 H = org.telegram.ui.Components.l60.H(d51Var, view);
+                H.c(2131232378, org.telegram.messenger.id.M0(2131743549, null), new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                d51 d51Var2 = d51Var;
+                                d51Var2.getClass();
+                                d51Var2.presentFragment(new lg0(ijVar));
+                                return;
+                            default:
+                                d51 d51Var3 = d51Var;
+                                d51Var3.getClass();
+                                Bundle bundle = new Bundle();
+                                bundle.putLong("chat_id", d51Var3.f44827b);
+                                bundle.putInt("message_id", ijVar.e1());
+                                bundle.putBoolean("need_remove_previous_same_chat_activity", false);
+                                d51Var3.presentFragment(new cn(bundle), false);
+                                return;
+                        }
                     }
-                }
+                }, false);
+                H.c(2131232255, org.telegram.messenger.id.M0(2131743550, null), new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                d51 d51Var2 = d51Var;
+                                d51Var2.getClass();
+                                d51Var2.presentFragment(new lg0(ijVar));
+                                return;
+                            default:
+                                d51 d51Var3 = d51Var;
+                                d51Var3.getClass();
+                                Bundle bundle = new Bundle();
+                                bundle.putLong("chat_id", d51Var3.f44827b);
+                                bundle.putInt("message_id", ijVar.e1());
+                                bundle.putBoolean("need_remove_previous_same_chat_activity", false);
+                                d51Var3.presentFragment(new cn(bundle), false);
+                                return;
+                        }
+                    }
+                }, false);
+                H.W(d51Var.S.U0(view, false));
+                H.Z();
+                return true;
             }
-            z9 = false;
-            this.V = z9;
-        }
-        try {
-            boolean dispatchTouchEvent = super.dispatchTouchEvent(motionEvent);
-            if (actionMasked != 1 && actionMasked != 3) {
-                return dispatchTouchEvent;
+        } else {
+            int i11 = h41Var.U;
+            if (i7 >= i11 && i7 <= h41Var.V) {
+                ((w41) d51Var.Q.get(i7 - i11)).c(d51Var.f44825a, d51Var, u1VarArr, true);
+                return true;
             }
-            this.V = false;
-            return dispatchTouchEvent;
-        } catch (Throwable th2) {
-            if (actionMasked == 1 || actionMasked == 3) {
-                this.V = false;
+            int i12 = h41Var.R;
+            if (i7 >= i12 && i7 <= h41Var.S) {
+                ((w41) d51Var.O.get(i7 - i12)).c(d51Var.f44825a, d51Var, u1VarArr, true);
+                return true;
             }
-            throw th2;
-        }
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (!this.V && super.onInterceptTouchEvent(motionEvent)) {
-            return true;
+            int i13 = h41Var.X;
+            if (i7 >= i13 && i7 <= h41Var.Y) {
+                ((w41) d51Var.P.get(i7 - i13)).c(d51Var.f44825a, d51Var, u1VarArr, true);
+                return true;
+            }
         }
         return false;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.V && B(motionEvent)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void u() {
-        c51 c51Var = this.W;
-        c51Var.p0(c51Var.f44678h0.getCurrentPosition(), true);
-        c51Var.q0(false, 0.0f);
-    }
-
-    @Override
-    public final void w(boolean z9) {
-        c51 c51Var = this.W;
-        float positionAnimated = c51Var.f44678h0.getPositionAnimated();
-        c51Var.q0(!z9, positionAnimated);
-        if (!z9) {
-            c51Var.p0(Math.round(positionAnimated), true);
-        }
+    public void F(float f10, int i7) {
     }
 }

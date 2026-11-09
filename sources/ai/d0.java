@@ -1,7 +1,7 @@
 package ai;
 
 import android.graphics.Matrix;
-import di.m6;
+import di.n6;
 import fi.e7;
 import java.io.File;
 import java.util.ArrayList;
@@ -23,9 +23,9 @@ public final class d0 implements Runnable {
     public final Object d;
     public final Object f1158e;
 
-    public d0(m6 m6Var, TLObject tLObject, c20 c20Var, TLRPC.TL_error tL_error) {
+    public d0(n6 n6Var, TLObject tLObject, c20 c20Var, TLRPC.TL_error tL_error) {
         this.f1155a = 13;
-        this.d = m6Var;
+        this.d = n6Var;
         this.f1158e = tLObject;
         this.f1157c = c20Var;
         this.f1156b = tL_error;

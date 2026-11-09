@@ -1,30 +1,19 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class up implements hp {
-    public final TLObject f50382a;
-    public final oq f50383b;
+import java.util.Comparator;
+public final class up implements Comparator {
+    public final int f50443a;
+    public final int f50444b;
+    public final Object f50445c;
 
-    public up(oq oqVar, TLObject tLObject) {
-        this.f50383b = oqVar;
-        this.f50382a = tLObject;
+    public up(Object obj, int i7, int i10) {
+        this.f50443a = i10;
+        this.f50445c = obj;
+        this.f50444b = i7;
     }
 
     @Override
-    public final void a(TLRPC.User user) {
-        oq.h0(this.f50383b, user);
-    }
-
-    @Override
-    public final void b(int i7, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        TLObject tLObject = this.f50382a;
-        if (tLObject instanceof TLRPC.ChannelParticipant) {
-            TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) tLObject;
-            channelParticipant.admin_rights = tL_chatAdminRights;
-            channelParticipant.banned_rights = tL_chatBannedRights;
-            channelParticipant.rank = str;
-            oq.b0(this.f50383b, channelParticipant, tL_chatAdminRights, tL_chatBannedRights);
-        }
+    public final int compare(java.lang.Object r13, java.lang.Object r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.up.compare(java.lang.Object, java.lang.Object):int");
     }
 }

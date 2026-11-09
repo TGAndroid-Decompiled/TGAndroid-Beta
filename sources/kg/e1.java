@@ -4,25 +4,25 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 import c8.ha;
-import di.q4;
-import fi.h9;
+import di.r4;
+import fi.v9;
 import java.util.ArrayList;
 import org.telegram.messenger.a8;
 import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.s6;
 import org.telegram.ui.Cells.r8;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.q41;
+import org.telegram.ui.Components.qj0;
+import org.telegram.ui.Components.r41;
 public final class e1 extends f2 {
     public final CharSequence f17358a;
     public final ArrayList f17359b;
     public final int f17360c;
     public final int d;
     public final int f17361e;
-    public h9 f17362f;
+    public v9 f17362f;
     public ha.b h;
-    public q41 f17363n;
+    public r41 f17363n;
     public boolean f17364r;
 
     public e1(CharSequence charSequence, ArrayList arrayList, int i7, int i10, int i11) {
@@ -61,9 +61,9 @@ public final class e1 extends f2 {
         this.simpleActionBar.setTitle(this.f17358a);
         this.simpleActionBar.setActionBarMenuOnItemClick(new bi.s(this, 17));
         FrameLayout frameLayout = new FrameLayout(context);
-        q41 q41Var = new q41(this, new hi.u1(this, 12), new q4(this, 25), null);
-        this.f17363n = q41Var;
-        q41Var.r1();
+        r41 r41Var = new r41(this, new hi.u1(this, 12), new r4(this, 25), null);
+        this.f17363n = r41Var;
+        r41Var.r1();
         this.f17363n.setSectionsDrawBackground(true);
         frameLayout.addView(this.f17363n, ha.c(-1.0f, -1));
         this.fragmentView = frameLayout;
@@ -71,7 +71,7 @@ public final class e1 extends f2 {
     }
 
     @Override
-    public final pj0 getListViewForSimpleGlass() {
+    public final qj0 getListViewForSimpleGlass() {
         return this.f17363n;
     }
 
@@ -96,9 +96,9 @@ public final class e1 extends f2 {
             ArrayList arrayList = this.f17359b;
             if (!arrayList.isEmpty()) {
                 arrayList.clear();
-                h9 h9Var = this.f17362f;
-                if (h9Var != null) {
-                    h9Var.run();
+                v9 v9Var = this.f17362f;
+                if (v9Var != null) {
+                    v9Var.run();
                 }
             }
         }
@@ -112,13 +112,13 @@ public final class e1 extends f2 {
             if (this.f17363n != null) {
                 for (int i10 = 0; i10 < this.f17363n.getChildCount(); i10++) {
                     View childAt = this.f17363n.getChildAt(i10);
-                    if ((childAt instanceof r8) && ((r8) childAt).f30208b == -1) {
+                    if ((childAt instanceof r8) && ((r8) childAt).f30212b == -1) {
                         if (this.f17364r) {
-                            i7 = k6.f27890f6;
+                            i7 = l6.f27903f6;
                         } else {
-                            i7 = k6.f27871e6;
+                            i7 = l6.f27884e6;
                         }
-                        r6.i(i7, childAt, null);
+                        s6.h(i7, childAt, null);
                     }
                 }
             }

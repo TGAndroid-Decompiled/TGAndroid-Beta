@@ -10,7 +10,7 @@ import android.graphics.RectF;
 import android.graphics.RenderNode;
 import android.os.Build;
 import org.telegram.messenger.g0;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.l6;
 public final class e extends aa {
     public final float f11496a = g0.N(0.55f);
     public final Outline f11497b = new Outline();
@@ -53,14 +53,14 @@ public final class e extends aa {
         if (!this.d.hasDisplayList() || this.h) {
             e();
         }
-        int r12 = k6.r1(this.d.getAlpha() * gVar.V, gVar.f11540x);
+        int r12 = l6.r1(this.d.getAlpha() * gVar.V, gVar.f11540x);
         int alpha = Color.alpha(r12);
         Paint paint = this.f11500f;
         if (alpha != 0) {
             paint.setShadowLayer(gVar.T, 0.0f, gVar.U, r12);
             fVar.d(canvas, paint, gVar.S);
         }
-        int r13 = k6.r1(this.d.getAlpha() * gVar.V, gVar.F);
+        int r13 = l6.r1(this.d.getAlpha() * gVar.V, gVar.F);
         if (Color.alpha(r13) != 0) {
             paint.setShadowLayer(this.f11496a, 0.0f, 0.0f, r13);
             fVar.d(canvas, paint, gVar.S);

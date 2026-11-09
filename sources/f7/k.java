@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import c8.xb;
 import java.util.Arrays;
-import org.telegram.ui.hy0;
+import org.telegram.ui.ky0;
 public final class k extends l {
     public static final Parcelable.Creator<k> CREATOR = new t0(6);
     public final r f11396a;
@@ -37,18 +37,18 @@ public final class k extends l {
     }
 
     public final String toString() {
-        hy0 hy0Var = new hy0(getClass().getSimpleName(), 9);
+        ky0 ky0Var = new ky0(getClass().getSimpleName(), 9);
         String valueOf = String.valueOf(this.f11396a.f11427a);
-        hy0 hy0Var2 = new hy0(8, false);
-        ((hy0) hy0Var.d).d = hy0Var2;
-        hy0Var.d = hy0Var2;
-        hy0Var2.f46527c = valueOf;
-        hy0Var2.f46526b = "errorCode";
+        ky0 ky0Var2 = new ky0(8, false);
+        ((ky0) ky0Var.d).d = ky0Var2;
+        ky0Var.d = ky0Var2;
+        ky0Var2.f47423c = valueOf;
+        ky0Var2.f47422b = "errorCode";
         String str = this.f11397b;
         if (str != null) {
-            hy0Var.N(str, "errorMessage");
+            ky0Var.N(str, "errorMessage");
         }
-        return hy0Var.toString();
+        return ky0Var.toString();
     }
 
     @Override

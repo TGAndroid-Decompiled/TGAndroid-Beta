@@ -560,12 +560,12 @@ public final class qs {
             }
             if (!this.h.isEmpty()) {
                 for (int i10 = 0; i10 < this.h.size(); i10++) {
-                    org.telegram.ui.ek ekVar = (org.telegram.ui.ek) this.h.get(i10);
-                    ekVar.getClass();
+                    org.telegram.ui.gk gkVar = (org.telegram.ui.gk) this.h.get(i10);
+                    gkVar.getClass();
                     if (i7 == 1) {
                         long longValue = ((Long) objArr[0]).longValue();
-                        org.telegram.ui.an anVar = ekVar.f45328a;
-                        if (anVar.X6 && longValue == anVar.f43848j6) {
+                        org.telegram.ui.cn cnVar = gkVar.f46028a;
+                        if (cnVar.X6 && longValue == cnVar.f44504j6) {
                             this.d.add(new ks(i7, objArr));
                             return;
                         }

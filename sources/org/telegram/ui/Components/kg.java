@@ -2,7 +2,7 @@ package org.telegram.ui.Components;
 
 import org.telegram.tgnet.TLRPC;
 public interface kg {
-    rt0 D();
+    tt0 D();
 
     boolean J();
 

@@ -20,32 +20,32 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PasskeysActivity;
 import org.telegram.ui.PrivacySettingsActivity;
-import org.telegram.ui.gq0;
+import org.telegram.ui.iq0;
 public final class v0 implements v10 {
-    public final int f4856a;
-    public final int f4857b;
-    public final Object f4858c;
+    public final int f4854a;
+    public final int f4855b;
+    public final Object f4856c;
     public final Object d;
-    public final Object f4859e;
+    public final Object f4857e;
 
     public v0(int i7, org.telegram.ui.ActionBar.f2 f2Var, vf.b bVar, org.telegram.ui.ActionBar.u1 u1Var) {
-        this.f4856a = 0;
-        this.f4857b = i7;
-        this.f4858c = f2Var;
+        this.f4854a = 0;
+        this.f4855b = i7;
+        this.f4856c = f2Var;
         this.d = bVar;
-        this.f4859e = u1Var;
+        this.f4857e = u1Var;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         boolean z9;
-        int i7 = this.f4856a;
+        int i7 = this.f4854a;
         TLRPC.WebPage webPage = null;
-        int i10 = this.f4857b;
+        int i10 = this.f4855b;
         boolean z10 = false;
-        Object obj3 = this.f4859e;
+        Object obj3 = this.f4857e;
         Object obj4 = this.d;
-        Object obj5 = this.f4858c;
+        Object obj5 = this.f4856c;
         switch (i7) {
             case 0:
                 org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) obj5;
@@ -61,12 +61,12 @@ public final class v0 implements v10 {
             case 1:
                 boolean[] zArr = (boolean[]) obj5;
                 Context context = (Context) obj4;
-                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) obj3;
+                org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) obj3;
                 Long l10 = (Long) obj;
                 String str = (String) obj2;
                 if (l10 != null && l10.longValue() != 0) {
-                    int i11 = this.f4857b;
-                    org.telegram.messenger.w9.c(i11).j(l10.longValue(), new z4(zArr, context, f6Var, i11, str, 0));
+                    int i11 = this.f4855b;
+                    org.telegram.messenger.w9.c(i11).j(l10.longValue(), new z4(zArr, context, g6Var, i11, str, 0));
                     return;
                 }
                 zArr[0] = false;
@@ -83,7 +83,7 @@ public final class v0 implements v10 {
                         if (messageMedia instanceof TLRPC.TL_messageMediaWebPage) {
                             if (webPage2 instanceof TLRPC.TL_webPagePending) {
                                 long j3 = webPage2.f27111id;
-                                int i12 = this.f4857b;
+                                int i12 = this.f4855b;
                                 hi.b1 b1Var = new hi.b1(j3, lsVarArr, i12, z0Var);
                                 lsVarArr[0] = b1Var;
                                 qs.f(i12).b(b1Var, 59);
@@ -135,7 +135,7 @@ public final class v0 implements v10 {
                 TLRPC.Chat chat2 = (TLRPC.Chat) obj3;
                 TLRPC.ChatInviteJoinResult chatInviteJoinResult = (TLRPC.ChatInviteJoinResult) obj;
                 TLRPC.TL_error tL_error4 = (TLRPC.TL_error) obj2;
-                int i13 = this.f4857b;
+                int i13 = this.f4855b;
                 if (tL_error4 != null) {
                     org.telegram.messenger.g0.h3(new ai.a1(a1Var, i13, tL_error4, tL_channels_joinChannel, 13));
                     return;
@@ -164,7 +164,7 @@ public final class v0 implements v10 {
                 if (!z10) {
                     qp.s1(i13).B0(chat2.f26956id, true);
                 }
-                org.telegram.messenger.g0.h3(new gq0(a1Var, 5));
+                org.telegram.messenger.g0.h3(new iq0(a1Var, 5));
                 org.telegram.messenger.g0.i3(new bg.m0(i13, chat2, 17), 1000L);
                 yr a02 = yr.a0(i13);
                 long j10 = chat2.f26956id;
@@ -172,11 +172,11 @@ public final class v0 implements v10 {
                 return;
             case 5:
                 org.telegram.ui.Components.g0 g0Var = (org.telegram.ui.Components.g0) obj5;
-                org.telegram.ui.ActionBar.k5 k5Var = (org.telegram.ui.ActionBar.k5) obj4;
+                org.telegram.ui.ActionBar.l5 l5Var = (org.telegram.ui.ActionBar.l5) obj4;
                 TLRPC.TL_messages_composeMessageWithAI tL_messages_composeMessageWithAI = (TLRPC.TL_messages_composeMessageWithAI) obj3;
                 TLRPC.TL_composedMessageWithAI tL_composedMessageWithAI = (TLRPC.TL_composedMessageWithAI) obj;
                 TLRPC.TL_error tL_error5 = (TLRPC.TL_error) obj2;
-                FrameLayout frameLayout = g0Var.f33760y2;
+                FrameLayout frameLayout = g0Var.f33830y2;
                 g0Var.I2 = -1;
                 g0Var.J2 = false;
                 if (tL_error5 != null && ("SUMMARY_FLOOD_PREMIUM".equalsIgnoreCase(tL_error5.text) || "AICOMPOSE_FLOOD_PREMIUM".equalsIgnoreCase(tL_error5.text))) {
@@ -186,19 +186,19 @@ public final class v0 implements v10 {
                     return;
                 } else if (tL_error5 != null) {
                     org.telegram.ui.Cells.f1.r(frameLayout, g0Var.I0, tL_error5, false);
-                    k5Var.i(null);
+                    l5Var.i(null);
                     g0Var.B2 = true;
                     g0Var.C2 = false;
                     g0Var.u1(true);
                     return;
                 } else if (tL_composedMessageWithAI == null) {
-                    k5Var.i(null);
+                    l5Var.i(null);
                     g0Var.B2 = true;
                     g0Var.C2 = false;
                     g0Var.u1(true);
                     return;
                 } else {
-                    k5Var.i(null);
+                    l5Var.i(null);
                     g0Var.C2 = false;
                     g0Var.u1(true);
                     g0Var.K2[i10] = tL_messages_composeMessageWithAI;
@@ -213,10 +213,10 @@ public final class v0 implements v10 {
                         TLRPC.TL_textWithEntities tL_textWithEntities = tL_composedMessageWithAI.diff_text;
                         if (tL_textWithEntities != null) {
                             g0Var.Y1 = ij.h0(tL_textWithEntities, false);
-                            g0Var.f33737a2 = ij.h0(tL_composedMessageWithAI.result_text, false);
+                            g0Var.f33807a2 = ij.h0(tL_composedMessageWithAI.result_text, false);
                         } else {
                             CharSequence h02 = ij.h0(tL_composedMessageWithAI.result_text, false);
-                            g0Var.f33737a2 = h02;
+                            g0Var.f33807a2 = h02;
                             g0Var.Y1 = h02;
                         }
                     }
@@ -225,11 +225,11 @@ public final class v0 implements v10 {
                 }
             case 6:
                 org.telegram.ui.Components.g0 g0Var2 = (org.telegram.ui.Components.g0) obj5;
-                org.telegram.ui.ActionBar.k5 k5Var2 = (org.telegram.ui.ActionBar.k5) obj4;
+                org.telegram.ui.ActionBar.l5 l5Var2 = (org.telegram.ui.ActionBar.l5) obj4;
                 TLRPC.TL_messages_composeRichMessageWithAI tL_messages_composeRichMessageWithAI = (TLRPC.TL_messages_composeRichMessageWithAI) obj3;
                 TLRPC.TL_composedRichMessageWithAI tL_composedRichMessageWithAI = (TLRPC.TL_composedRichMessageWithAI) obj;
                 TLRPC.TL_error tL_error6 = (TLRPC.TL_error) obj2;
-                FrameLayout frameLayout2 = g0Var2.f33760y2;
+                FrameLayout frameLayout2 = g0Var2.f33830y2;
                 g0Var2.I2 = -1;
                 g0Var2.J2 = false;
                 if (tL_error6 != null && ("SUMMARY_FLOOD_PREMIUM".equalsIgnoreCase(tL_error6.text) || "AICOMPOSE_FLOOD_PREMIUM".equalsIgnoreCase(tL_error6.text))) {
@@ -239,19 +239,19 @@ public final class v0 implements v10 {
                     return;
                 } else if (tL_error6 != null) {
                     org.telegram.ui.Cells.f1.r(frameLayout2, g0Var2.I0, tL_error6, false);
-                    k5Var2.i(null);
+                    l5Var2.i(null);
                     g0Var2.B2 = true;
                     g0Var2.C2 = false;
                     g0Var2.u1(true);
                     return;
                 } else if (tL_composedRichMessageWithAI == null) {
-                    k5Var2.i(null);
+                    l5Var2.i(null);
                     g0Var2.B2 = true;
                     g0Var2.C2 = false;
                     g0Var2.u1(true);
                     return;
                 } else {
-                    k5Var2.i(null);
+                    l5Var2.i(null);
                     g0Var2.C2 = false;
                     g0Var2.u1(true);
                     g0Var2.L2[i10] = tL_messages_composeRichMessageWithAI;
@@ -300,11 +300,11 @@ public final class v0 implements v10 {
                 if (!"CANCELLED".equalsIgnoreCase(str3)) {
                     if ("EMPTY".equalsIgnoreCase(str3)) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context2);
-                        String M0 = org.telegram.messenger.id.M0(2131747633, null);
+                        String M0 = org.telegram.messenger.id.M0(2131747632, null);
                         org.telegram.ui.ActionBar.u1 u1Var3 = alertDialog$Builder.f27296a;
                         u1Var3.R = M0;
-                        u1Var3.T = org.telegram.messenger.id.M0(2131747634, null);
-                        alertDialog$Builder.k(org.telegram.messenger.id.M0(2131747832, null), null);
+                        u1Var3.T = org.telegram.messenger.id.M0(2131747633, null);
+                        alertDialog$Builder.k(org.telegram.messenger.id.M0(2131747831, null), null);
                         u1Var3.setOnDismissListener(new org.telegram.ui.q5(v2Var, 9));
                         alertDialog$Builder.p();
                         return;
@@ -323,7 +323,7 @@ public final class v0 implements v10 {
                             } else if (T instanceof PrivacySettingsActivity) {
                                 v2Var.dismiss();
                                 PrivacySettingsActivity privacySettingsActivity = (PrivacySettingsActivity) T;
-                                ArrayList arrayList3 = privacySettingsActivity.f41683e;
+                                ArrayList arrayList3 = privacySettingsActivity.f41690e;
                                 if (arrayList3 == null) {
                                     arrayList3 = new ArrayList();
                                 }
@@ -343,7 +343,7 @@ public final class v0 implements v10 {
                 }
                 return;
             default:
-                org.telegram.ui.ActionBar.f6 f6Var2 = (org.telegram.ui.ActionBar.f6) obj3;
+                org.telegram.ui.ActionBar.g6 g6Var2 = (org.telegram.ui.ActionBar.g6) obj3;
                 TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
                 String str4 = (String) obj2;
                 ((Runnable[]) obj5)[0] = null;
@@ -351,7 +351,7 @@ public final class v0 implements v10 {
                 if (textView != null && wallettransaction != null) {
                     long j11 = wallettransaction.fee;
                     if (j11 > 0) {
-                        textView.setText(org.telegram.ui.Wallet.x5.w0(i10, j11, f6Var2));
+                        textView.setText(org.telegram.ui.Wallet.w5.w0(i10, j11, g6Var2));
                         return;
                     }
                     return;
@@ -361,34 +361,34 @@ public final class v0 implements v10 {
     }
 
     public v0(Object obj, int i7, Object obj2, Object obj3, int i10) {
-        this.f4856a = i10;
-        this.f4858c = obj;
-        this.f4857b = i7;
+        this.f4854a = i10;
+        this.f4856c = obj;
+        this.f4855b = i7;
         this.d = obj2;
-        this.f4859e = obj3;
+        this.f4857e = obj3;
     }
 
     public v0(Object obj, Object obj2, int i7, Object obj3, int i10) {
-        this.f4856a = i10;
-        this.f4858c = obj;
+        this.f4854a = i10;
+        this.f4856c = obj;
         this.d = obj2;
-        this.f4857b = i7;
-        this.f4859e = obj3;
+        this.f4855b = i7;
+        this.f4857e = obj3;
     }
 
     public v0(Object obj, Object obj2, Object obj3, int i7, int i10) {
-        this.f4856a = i10;
-        this.f4858c = obj;
+        this.f4854a = i10;
+        this.f4856c = obj;
         this.d = obj2;
-        this.f4859e = obj3;
-        this.f4857b = i7;
+        this.f4857e = obj3;
+        this.f4855b = i7;
     }
 
     public v0(org.telegram.ui.ActionBar.u1[] u1VarArr, org.telegram.ui.ActionBar.f2 f2Var, int i7, TLRPC.Chat chat) {
-        this.f4856a = 3;
+        this.f4854a = 3;
         this.d = u1VarArr;
-        this.f4858c = f2Var;
-        this.f4857b = i7;
-        this.f4859e = chat;
+        this.f4856c = f2Var;
+        this.f4855b = i7;
+        this.f4857e = chat;
     }
 }

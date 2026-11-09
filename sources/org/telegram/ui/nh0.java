@@ -1,29 +1,36 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class nh0 implements org.telegram.ui.Components.cj0, org.telegram.ui.ActionBar.r1 {
-    public final NotificationsSettingsActivity f48045a;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+public final class nh0 implements Runnable {
+    public final int f48193a;
+    public final oh0 f48194b;
+    public final String f48195c;
 
-    public nh0(NotificationsSettingsActivity notificationsSettingsActivity) {
-        this.f48045a = notificationsSettingsActivity;
+    public nh0(oh0 oh0Var, String str, int i7) {
+        this.f48193a = i7;
+        this.f48194b = oh0Var;
+        this.f48195c = str;
     }
 
     @Override
-    public void f(float f10, float f11, int i7, View view) {
-        NotificationsSettingsActivity.d0(this.f48045a, view, i7, f10);
-    }
-
-    @Override
-    public boolean f1(View view) {
-        return false;
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        NotificationsSettingsActivity.e0(this.f48045a);
-    }
-
-    @Override
-    public void r0(View view, float f10, float f11) {
+    public final void run() {
+        switch (this.f48193a) {
+            case 0:
+                oh0 oh0Var = this.f48194b;
+                String str = this.f48195c;
+                oh0Var.getClass();
+                org.telegram.messenger.g0.h3(new nh0(oh0Var, str, 1));
+                return;
+            default:
+                oh0 oh0Var2 = this.f48194b;
+                String str2 = this.f48195c;
+                jg.z1 z1Var = oh0Var2.h;
+                int i7 = oh0Var2.f48452n.f41317s;
+                boolean z9 = true;
+                z1Var.g(str2, true, (i7 == 1 || i7 == 3) ? false : false, true, false, 0L, false, 0, 0);
+                Utilities.f21338g.c(new oc0(oh0Var2, str2, new ArrayList(oh0Var2.f48452n.f41319x), 10));
+                return;
+        }
     }
 }

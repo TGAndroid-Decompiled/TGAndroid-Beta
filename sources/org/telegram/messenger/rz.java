@@ -34,7 +34,7 @@ public final class rz extends Drawable {
     public ImageReceiver f25387k;
     public int f25389m;
     public Integer f25390n;
-    public org.telegram.ui.ActionBar.f6 f25391o;
+    public org.telegram.ui.ActionBar.g6 f25391o;
     public float f25392p;
     public static final int[] f25374u = new int[2];
     public static boolean A = sc.e(32);
@@ -248,21 +248,21 @@ public final class rz extends Drawable {
         c(canvas, false, 0, System.currentTimeMillis(), getBounds().left, getBounds().top, getBounds().width(), getBounds().height());
     }
 
-    public final void e(int i7, org.telegram.ui.ActionBar.f6 f6Var) {
+    public final void e(int i7, org.telegram.ui.ActionBar.g6 g6Var) {
         this.f25389m = i7;
-        this.f25391o = f6Var;
+        this.f25391o = g6Var;
     }
 
-    public final void f(int i7, org.telegram.ui.ActionBar.f6 f6Var, float f10, boolean z9) {
+    public final void f(int i7, org.telegram.ui.ActionBar.g6 g6Var, float f10, boolean z9) {
         int intValue;
         BitmapShader bitmapShader;
         Integer num = this.f25390n;
         if (num == null) {
-            intValue = org.telegram.ui.ActionBar.k6.w0(i7, f6Var);
+            intValue = org.telegram.ui.ActionBar.l6.w0(i7, g6Var);
         } else {
             intValue = num.intValue();
         }
-        this.f25391o = f6Var;
+        this.f25391o = g6Var;
         int[] iArr = this.f25388l;
         if (iArr[z9 ? 1 : 0] != intValue) {
             this.f25392p = f10;

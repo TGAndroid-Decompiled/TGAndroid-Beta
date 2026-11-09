@@ -14,19 +14,19 @@ public final class o1 extends FrameLayout {
     public final TextView f28332a;
     public final ImageView f28333b;
 
-    public o1(Context context, f6 f6Var) {
+    public o1(Context context, g6 g6Var) {
         super(context);
         int i7;
-        int i10 = k6.I5;
-        Drawable h02 = k6.h0(k6.w0(i10, f6Var), 2, -1);
-        n6 N = r6.N(i10);
+        int i10 = l6.I5;
+        Drawable h02 = l6.h0(l6.w0(i10, g6Var), 2, -1);
+        o6 M = s6.M(i10);
         setBackground(h02);
-        r6.k(this, h02, null, N, f6Var);
+        s6.j(this, h02, null, M, g6Var);
         setPadding(org.telegram.messenger.g0.L(23.0f), 0, org.telegram.messenger.g0.L(23.0f), 0);
         ImageView imageView = new ImageView(context);
         this.f28333b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        r6.t(imageView, k6.J5, f6Var, PorterDuff.Mode.MULTIPLY);
+        s6.s(imageView, l6.J5, g6Var, PorterDuff.Mode.MULTIPLY);
         if (id.f23157a0) {
             i7 = 5;
         } else {
@@ -39,7 +39,7 @@ public final class o1 extends FrameLayout {
         textView.setSingleLine(true);
         textView.setGravity(1);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        r6.V(textView, k6.f27960j5, f6Var);
+        s6.U(textView, l6.f27973j5, g6Var);
         textView.setTextSize(1, 16.0f);
         addView(textView, ha.e(-2, -2, (id.f23157a0 ? 5 : 3) | 16));
     }

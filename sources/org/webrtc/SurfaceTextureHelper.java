@@ -120,7 +120,7 @@ public class SurfaceTextureHelper {
     }
 
     public void returnTextureFrame() {
-        this.handler.post(new q(this, 2));
+        this.handler.post(new p(this, 2));
     }
 
     private static void setOnFrameAvailableListener(SurfaceTexture surfaceTexture, SurfaceTexture.OnFrameAvailableListener onFrameAvailableListener, Handler handler) {
@@ -170,11 +170,11 @@ public class SurfaceTextureHelper {
 
     public void dispose() {
         Logging.d("SurfaceTextureHelper", "dispose()");
-        ThreadUtils.invokeAtFrontUninterruptibly(this.handler, new q(this, 1));
+        ThreadUtils.invokeAtFrontUninterruptibly(this.handler, new p(this, 1));
     }
 
     public void forceFrame() {
-        this.handler.post(new q(this, 3));
+        this.handler.post(new p(this, 3));
     }
 
     public Handler getHandler() {
@@ -197,7 +197,7 @@ public class SurfaceTextureHelper {
         if (i7 > 0) {
             if (i10 > 0) {
                 this.surfaceTexture.setDefaultBufferSize(i7, i10);
-                this.handler.post(new jg.r(this, i7, i10, 14));
+                this.handler.post(new jg.r(this, i7, i10, 15));
                 return;
             }
             throw new IllegalArgumentException(jg.g.j(i10, "Texture height must be positive, but was "));
@@ -217,7 +217,7 @@ public class SurfaceTextureHelper {
     public void stopListening() {
         Logging.d("SurfaceTextureHelper", "stopListening()");
         this.handler.removeCallbacks(this.setListenerRunnable);
-        ThreadUtils.invokeAtFrontUninterruptibly(this.handler, new q(this, 0));
+        ThreadUtils.invokeAtFrontUninterruptibly(this.handler, new p(this, 0));
     }
 
     @Deprecated

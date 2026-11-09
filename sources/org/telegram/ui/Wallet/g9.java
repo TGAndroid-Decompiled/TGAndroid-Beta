@@ -1,82 +1,70 @@
 package org.telegram.ui.Wallet;
 
-import android.animation.ValueAnimator;
-import android.graphics.drawable.BitmapDrawable;
-import android.view.KeyEvent;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.graphics.drawable.GradientDrawable;
+import android.view.MotionEvent;
+import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.xq;
-public final class g9 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f42565a;
-    public final float f42566b;
-    public final float f42567c;
-    public final float d;
-    public final float f42568e;
-    public final int f42569f;
-    public final KeyEvent.Callback f42570g;
+public final class g9 extends EditTextBoldCursor {
+    public final org.telegram.ui.Components.w5 G1;
+    public final org.telegram.ui.Components.w5 H1;
+    public float I1;
+    public float J1;
+    public final k9 K1;
 
-    public g9(KeyEvent.Callback callback, float f10, float f11, float f12, float f13, int i7, int i10) {
-        this.f42565a = i10;
-        this.f42570g = callback;
-        this.f42566b = f10;
-        this.f42567c = f11;
-        this.d = f12;
-        this.f42568e = f13;
-        this.f42569f = i7;
+    public g9(k9 k9Var, Context context) {
+        super(context);
+        this.K1 = k9Var;
+        this.G1 = new org.telegram.ui.Components.w5(this, 180L, xq.h);
+        this.H1 = new org.telegram.ui.Components.w5(this, 320L, k9.S);
+        this.I1 = 1.0f;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f42565a) {
-            case 0:
-                l9 l9Var = (l9) this.f42570g;
-                l9Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                xq xqVar = xq.h;
-                float interpolation = xqVar.getInterpolation(floatValue);
-                float interpolation2 = xqVar.getInterpolation(Math.min(1.0f, (floatValue * 320.0f) / 120.0f));
-                v6 v6Var = l9Var.d;
-                float f10 = this.f42567c;
-                float f11 = this.f42566b;
-                v6Var.setAlpha(((f10 - f11) * interpolation2) + f11);
-                TextView textView = l9Var.f42751f;
-                float f12 = this.f42568e;
-                float f13 = this.d;
-                textView.setAlpha(((f12 - f13) * interpolation2) + f13);
-                FrameLayout frameLayout = l9Var.f42750e;
-                ViewGroup.LayoutParams layoutParams = frameLayout.getLayoutParams();
-                int i7 = this.f42569f;
-                layoutParams.width = Math.round(((l9Var.D - i7) * interpolation) + i7);
-                frameLayout.requestLayout();
-                return;
-            default:
-                yh.l lVar = (yh.l) this.f42570g;
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                lVar.f59542y = floatValue2;
-                float f14 = this.f42566b;
-                float z9 = com.google.android.recaptcha.internal.a.z(1.0f, f14, floatValue2, f14);
-                yh.k kVar = lVar.D;
-                kVar.setScaleX(z9);
-                kVar.setScaleY(z9);
-                kVar.setTranslationX((1.0f - lVar.f59542y) * this.f42567c);
-                kVar.setTranslationY((1.0f - lVar.f59542y) * this.d);
-                int i10 = (int) ((1.0f - lVar.f59542y) * this.f42568e);
-                lVar.h.N(i10, i10);
-                float a10 = c8.j9.a((lVar.f59542y * 2.0f) - 1.0f, 0.0f, 1.0f);
-                lVar.f59534c.setAlpha((int) (a10 * 255.0f));
-                lVar.d.setAlpha(a10);
-                lVar.f59535e.setAlpha(a10);
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = lVar.f59536f;
-                actionBarPopupWindow$ActionBarPopupWindowLayout.setTranslationY((1.0f - lVar.f59542y) * this.f42569f);
-                actionBarPopupWindow$ActionBarPopupWindowLayout.setAlpha(a10);
-                BitmapDrawable bitmapDrawable = lVar.f59541x;
-                if (bitmapDrawable != null) {
-                    bitmapDrawable.setAlpha((int) (lVar.f59542y * 255.0f));
-                }
-                lVar.f59537n.setAlpha(a10);
-                return;
+    public final void n(Canvas canvas, GradientDrawable gradientDrawable) {
+        gradientDrawable.setCornerRadius(org.telegram.messenger.g0.N(1.5f));
+        int lineBaseline = getLayout().getLineBaseline(0);
+        Rect bounds = gradientDrawable.getBounds();
+        float f10 = lineBaseline;
+        int round = Math.round(((bounds.top - lineBaseline) * this.I1) + f10);
+        int round2 = Math.round(((bounds.bottom - lineBaseline) * this.I1) + f10);
+        int i7 = bounds.left;
+        int width = bounds.width();
+        if (this.J1 > 0.0f) {
+            float f11 = i7;
+            i7 = Math.round((((((((getWidth() + getScrollX()) - getCompoundPaddingLeft()) - getCompoundPaddingRight()) - getPaint().measureText("0")) - width) - f11) * this.J1) + f11);
         }
+        gradientDrawable.setBounds(i7, round, width + i7, round2);
+        gradientDrawable.draw(canvas);
+    }
+
+    @Override
+    public final void onDraw(android.graphics.Canvas r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.g9.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final void onSelectionChanged(int i7, int i10) {
+        super.onSelectionChanged(i7, i10);
+        if (i7 != i10) {
+            this.K1.b();
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        boolean z9;
+        if (motionEvent.getActionMasked() == 0) {
+            this.K1.b();
+            if (length() == 0) {
+                z9 = true;
+            } else {
+                z9 = false;
+            }
+            this.H1.a(z9);
+        }
+        return super.onTouchEvent(motionEvent);
     }
 }

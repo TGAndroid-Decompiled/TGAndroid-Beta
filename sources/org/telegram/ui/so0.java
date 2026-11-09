@@ -1,18 +1,20 @@
 package org.telegram.ui;
-public final class so0 implements Runnable {
-    public final PhotoViewer f49798a;
+public final class so0 extends org.telegram.ui.ActionBar.j {
+    public final org.telegram.ui.ActionBar.g6 f49966a;
+    public final PhotoViewer f49967b;
 
-    public so0(PhotoViewer photoViewer) {
-        this.f49798a = photoViewer;
+    public so0(PhotoViewer photoViewer, org.telegram.ui.ActionBar.g6 g6Var) {
+        this.f49967b = photoViewer;
+        this.f49966a = g6Var;
     }
 
     @Override
-    public final void run() {
-        PhotoViewer photoViewer = this.f49798a;
-        org.telegram.messenger.ij ijVar = photoViewer.S4;
-        if (ijVar == null) {
-            return;
-        }
-        org.telegram.messenger.w7.G(ijVar.I1).b0(photoViewer.S4.F0(), true, false);
+    public final boolean a() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.so0.a():boolean");
+    }
+
+    @Override
+    public final void b(int r41) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.so0.b(int):void");
     }
 }

@@ -4,12 +4,12 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class om implements ix {
-    public final org.telegram.messenger.c20 f36663a;
-    public final di.u2 f36664b;
+    public final org.telegram.messenger.c20 f36745a;
+    public final di.u2 f36746b;
 
     public om(org.telegram.messenger.c20 c20Var, di.u2 u2Var) {
-        this.f36663a = c20Var;
-        this.f36664b = u2Var;
+        this.f36745a = c20Var;
+        this.f36746b = u2Var;
     }
 
     @Override
@@ -54,8 +54,8 @@ public final class om implements ix {
 
     @Override
     public final void m(View view, TLRPC.Document document, String str, Object obj, org.telegram.messenger.ej ejVar, boolean z9, int i7) {
-        this.f36663a.a(new th.h(obj, document));
-        this.f36664b.a(true);
+        this.f36745a.a(new th.h(obj, document));
+        this.f36746b.a(true);
     }
 
     @Override
@@ -65,8 +65,8 @@ public final class om implements ix {
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z9) {
-        this.f36663a.a(new th.h(null, document));
-        this.f36664b.a(true);
+        this.f36745a.a(new th.h(null, document));
+        this.f36746b.a(true);
     }
 
     @Override
@@ -87,7 +87,7 @@ public final class om implements ix {
     }
 
     @Override
-    public final void o(t31 t31Var) {
+    public final void o(u31 u31Var) {
     }
 
     @Override

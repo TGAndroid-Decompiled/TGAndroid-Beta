@@ -1,144 +1,61 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
 import android.view.View;
-public final class pl0 extends View {
-    public ol0 f37009a;
-    public final w5 f37010b;
-    public final fh.g f37011c;
-    public ch.o0 d;
-    public boolean f37012e;
-    public final Path f37013f;
-    public final RectF h;
-    public final RectF f37014n;
-    public boolean f37015r;
-    public final ql0 f37016s;
+import org.telegram.tgnet.TLRPC;
+public final class pl0 extends ch.m0 {
+    public final ql0 f37037g0;
 
-    public pl0(ql0 ql0Var, Context context) {
-        super(context);
-        this.f37016s = ql0Var;
-        this.f37010b = new w5(this, 0L, 260L, xq.h);
-        this.f37013f = new Path();
-        this.h = new RectF();
-        this.f37014n = new RectF();
-        c8.ka.a(this);
-        dh.c cVar = ql0Var.f37365w;
-        if (cVar != null) {
-            fh.g c10 = cVar.c(this, null, false);
-            c10.p(ql0Var.f37366x);
-            c10.u(org.telegram.messenger.g0.L(5.0f));
-            c10.f11538s = false;
-            fh.e eVar = c10.f11535f0;
-            if (eVar != null) {
-                eVar.g(false);
-            }
-            org.telegram.messenger.camera.q.p(c10, org.telegram.messenger.g0.L(6.0f), 4.0f);
-            this.f37011c = c10;
-        }
-    }
-
-    public final void a(boolean z9, boolean z10) {
-        if (this.f37012e == z9) {
-            return;
-        }
-        this.f37012e = z9;
-        ol0 ol0Var = this.f37009a;
-        if (ol0Var != null) {
-            ol0Var.f6327o = z9;
-            w5 w5Var = this.f37010b;
-            if (z10) {
-                ol0Var.h = ol0Var.M;
-                ol0Var.f6318f = ol0Var.N;
-                ol0Var.f6320g = ol0Var.O;
-                w5Var.e(true, 0.0f);
-            } else {
-                w5Var.e(true, 1.0f);
-            }
-            invalidate();
-        }
+    public pl0(ql0 ql0Var, int i7, View view, TLRPC.TL_reactionCount tL_reactionCount, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(null, i7, view, tL_reactionCount, true, g6Var);
+        this.f37037g0 = ql0Var;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        if (!this.f37015r) {
-            ol0 ol0Var = this.f37009a;
-            if (ol0Var != null) {
-                ol0Var.a();
-            }
-            this.f37015r = true;
+    public final boolean e() {
+        if (this.v <= 0 && !this.f6330t && this.E.f32371l == 1.0f) {
+            return false;
         }
+        return true;
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        if (this.f37015r) {
-            ol0 ol0Var = this.f37009a;
-            if (ol0Var != null) {
-                ol0Var.b();
-            }
-            this.f37015r = false;
-        }
+    public final boolean h() {
+        return !e();
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
+    public final int i() {
+        return 18;
+    }
+
+    @Override
+    public final void r(float f10) {
         int i7;
-        ql0 ql0Var = this.f37016s;
-        Paint paint = ql0Var.f37367y;
-        int width = (getWidth() - this.f37009a.f6337z) / 2;
-        int height = getHeight();
-        ol0 ol0Var = this.f37009a;
-        int i10 = ol0Var.A;
-        int i11 = (height - i10) / 2;
-        fh.g gVar = this.f37011c;
-        if (gVar != null) {
-            Rect rect = org.telegram.messenger.g0.Q;
-            rect.set(width, i11, ol0Var.f6337z + width, i10 + i11);
-            RectF rectF = this.f37014n;
-            rectF.set(rect);
-            RectF rectF2 = this.h;
-            boolean equals = rectF.equals(rectF2);
-            Path path = this.f37013f;
-            if (!equals) {
-                rectF2.set(rectF);
-                ch.p0.h(rectF2, rectF, path);
-            }
-            rect.inset(-org.telegram.messenger.g0.L(4.0f), -org.telegram.messenger.g0.L(4.0f));
-            rect.right = org.telegram.messenger.g0.L(1.0f) + rect.right;
-            gVar.setBounds(rect);
-            canvas.save();
-            canvas.clipPath(path);
-            gVar.draw(canvas);
-            org.telegram.ui.ActionBar.f6 f6Var = ql0Var.f37359c;
-            if (f6Var == null ? org.telegram.ui.ActionBar.k6.I.q() : f6Var.a()) {
-                i7 = 687865855;
-            } else {
-                i7 = -1;
-            }
-            paint.setColor(i7);
-            canvas.drawPath(path, paint);
-            canvas.restore();
-        }
-        this.f37009a.d(canvas, width, i11, this.f37010b.e(false, 1.0f), 1.0f, false, false, 0.0f);
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        int L;
-        int L2 = org.telegram.messenger.g0.L(8.67f);
-        ol0 ol0Var = this.f37009a;
-        if (ol0Var != null) {
-            L = ol0Var.f6337z;
+        int i10;
+        int w02;
+        int i11 = this.h;
+        ql0 ql0Var = this.f37037g0;
+        if (ql0Var.f37413e) {
+            i7 = org.telegram.ui.ActionBar.l6.tk;
         } else {
-            L = org.telegram.messenger.g0.L(44.33f);
+            i7 = org.telegram.ui.ActionBar.l6.f27979jb;
         }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(L2 + L, 1073741824), i10);
+        this.M = i0.a.f(f10, i11, org.telegram.ui.ActionBar.l6.w0(i7, ql0Var.f37417s.f37735c));
+        int i12 = this.f6316f;
+        if (ql0Var.f37413e) {
+            i10 = org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.qk, ql0Var.f37417s.f37735c);
+        } else {
+            i10 = 0;
+        }
+        int f11 = i0.a.f(f10, i12, i10);
+        this.N = f11;
+        this.M = org.telegram.ui.ActionBar.l6.w(f11, this.M);
+        int i13 = this.f6318g;
+        if (ql0Var.f37413e) {
+            w02 = 1526726655;
+        } else {
+            w02 = org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.kb, ql0Var.f37417s.f37735c);
+        }
+        this.O = i0.a.f(f10, i13, w02);
     }
 }

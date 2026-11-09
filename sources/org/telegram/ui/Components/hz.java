@@ -1,18 +1,18 @@
 package org.telegram.ui.Components;
 public final class hz {
-    public float f34478a;
-    public float f34479b;
-    public float f34480c;
+    public float f34494a;
+    public float f34495b;
+    public float f34496c;
     public float d;
-    public float f34481e;
-    public float f34482f;
-    public float f34483g;
+    public float f34497e;
+    public float f34498f;
+    public float f34499g;
     public float h;
-    public float f34484i;
-    public int f34485j;
-    public final iz f34486k;
+    public float f34500i;
+    public int f34501j;
+    public final iz f34502k;
 
     public hz(iz izVar) {
-        this.f34486k = izVar;
+        this.f34502k = izVar;
     }
 }

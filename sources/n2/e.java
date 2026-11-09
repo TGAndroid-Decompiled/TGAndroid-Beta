@@ -12,7 +12,7 @@ import h9.t1;
 import java.util.List;
 public final class e {
     public final Context f20145a;
-    public final l2.y f20146b;
+    public final l2.x f20146b;
     public final Handler f20147c;
     public final c d;
     public final androidx.mediarouter.app.f f20148e;
@@ -23,11 +23,11 @@ public final class e {
     public e2.e f20152j;
     public boolean f20153k;
 
-    public e(Context context, l2.y yVar, e2.e eVar, AudioDeviceInfo audioDeviceInfo) {
+    public e(Context context, l2.x xVar, e2.e eVar, AudioDeviceInfo audioDeviceInfo) {
         Uri uriFor;
         Context applicationContext = context.getApplicationContext();
         this.f20145a = applicationContext;
-        this.f20146b = yVar;
+        this.f20146b = xVar;
         this.f20152j = eVar;
         this.f20151i = audioDeviceInfo;
         String str = h2.m0.f14112a;
@@ -58,7 +58,7 @@ public final class e {
     public final void b(b bVar) {
         if (this.f20153k && !bVar.equals(this.h)) {
             this.h = bVar;
-            h0 h0Var = (h0) this.f20146b.f18089b;
+            h0 h0Var = (h0) this.f20146b.f18071b;
             h0Var.f();
             b bVar2 = h0Var.h;
             if (bVar2 != null && !bVar.equals(bVar2)) {

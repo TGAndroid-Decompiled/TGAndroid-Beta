@@ -6,8 +6,8 @@ import org.telegram.ui.Components.mz;
 public final class s2 extends mz {
     public final int U;
 
-    public s2(int i7, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, f6Var);
+    public s2(int i7, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, g6Var);
         this.U = i7;
     }
 

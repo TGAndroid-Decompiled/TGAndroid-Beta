@@ -7,19 +7,19 @@ import android.view.ViewConfiguration;
 import java.lang.reflect.Field;
 import org.telegram.messenger.a8;
 public final class u0 extends c5.k {
-    public long f56830w0;
-    public boolean f56831x0;
-    public final t0 f56832y0;
-    public final w0 f56833z0;
+    public long f56842w0;
+    public boolean f56843x0;
+    public final t0 f56844y0;
+    public final w0 f56845z0;
 
     public u0(w0 w0Var, Context context) {
         super(context);
-        this.f56833z0 = w0Var;
+        this.f56845z0 = w0Var;
         try {
             Field declaredField = c5.k.class.getDeclaredField("r");
             declaredField.setAccessible(true);
             t0 t0Var = new t0(this, getContext());
-            this.f56832y0 = t0Var;
+            this.f56844y0 = t0Var;
             declaredField.set(this, t0Var);
         } catch (Exception e10) {
             a8.g(e10, true);
@@ -29,29 +29,29 @@ public final class u0 extends c5.k {
     public final boolean A(MotionEvent motionEvent) {
         t0 t0Var;
         if (motionEvent.getAction() == 0) {
-            this.f56830w0 = System.currentTimeMillis();
+            this.f56842w0 = System.currentTimeMillis();
             return true;
         }
         if (motionEvent.getAction() == 1) {
-            if (System.currentTimeMillis() - this.f56830w0 <= ViewConfiguration.getTapTimeout() && (t0Var = this.f56832y0) != null && t0Var.isFinished()) {
-                this.f56831x0 = true;
+            if (System.currentTimeMillis() - this.f56842w0 <= ViewConfiguration.getTapTimeout() && (t0Var = this.f56844y0) != null && t0Var.isFinished()) {
+                this.f56843x0 = true;
                 int i7 = (motionEvent.getX() > (getWidth() * 0.45f) ? 1 : (motionEvent.getX() == (getWidth() * 0.45f) ? 0 : -1));
-                w0 w0Var = this.f56833z0;
+                w0 w0Var = this.f56845z0;
                 if (i7 > 0) {
-                    if (w0Var.f56857x1 + 1 < w0Var.f56846k1.size()) {
-                        x(w0Var.f56857x1 + 1, true);
+                    if (w0Var.f56869x1 + 1 < w0Var.f56858k1.size()) {
+                        x(w0Var.f56869x1 + 1, true);
                     }
                 } else {
-                    int i10 = w0Var.f56857x1 - 1;
+                    int i10 = w0Var.f56869x1 - 1;
                     if (i10 >= 0) {
                         x(i10, true);
                     }
                 }
-                this.f56831x0 = false;
+                this.f56843x0 = false;
                 return false;
             }
         } else if (motionEvent.getAction() == 3) {
-            this.f56830w0 = -1L;
+            this.f56842w0 = -1L;
         }
         return false;
     }
@@ -73,12 +73,12 @@ public final class u0 extends c5.k {
             getChildAt(0).measure(i7, View.MeasureSpec.makeMeasureSpec(0, 0));
             L = getChildAt(0).getMeasuredHeight();
         }
-        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(L + this.f56833z0.C1, 1073741824));
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(L + this.f56845z0.C1, 1073741824));
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f56833z0.f56852s1) {
+        if (!this.f56845z0.f56864s1) {
             boolean A = A(motionEvent);
             if (!super.onTouchEvent(motionEvent) && !A) {
                 return false;

@@ -18,11 +18,11 @@ import org.telegram.messenger.qp;
 import org.telegram.messenger.xr;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.an;
-import org.telegram.ui.ld0;
-import org.telegram.ui.qw;
-import org.telegram.ui.w91;
-import org.telegram.ui.ww;
+import org.telegram.ui.cn;
+import org.telegram.ui.nd0;
+import org.telegram.ui.sw;
+import org.telegram.ui.y91;
+import org.telegram.ui.yw;
 public final class d1 implements View.OnClickListener {
     public final int f3637a = 0;
     public final int f3638b;
@@ -32,11 +32,11 @@ public final class d1 implements View.OnClickListener {
     public final Object f3641f;
     public final Object h;
 
-    public d1(e1 e1Var, an anVar, int i7, Context context, org.telegram.ui.ActionBar.f6 f6Var, long j3, c20 c20Var) {
+    public d1(e1 e1Var, cn cnVar, int i7, Context context, org.telegram.ui.ActionBar.g6 g6Var, long j3, c20 c20Var) {
         this.d = e1Var;
         this.f3638b = i7;
         this.f3640e = context;
-        this.f3641f = f6Var;
+        this.f3641f = g6Var;
         this.f3639c = j3;
         this.h = c20Var;
     }
@@ -50,7 +50,7 @@ public final class d1 implements View.OnClickListener {
             case 0:
                 e1 e1Var = (e1) this.d;
                 Context context = (Context) this.f3640e;
-                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f3641f;
+                org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) this.f3641f;
                 c20 c20Var = (c20) this.h;
                 if (e1Var.f3740q1.f11752c0) {
                     int i7 = this.f3638b;
@@ -58,22 +58,22 @@ public final class d1 implements View.OnClickListener {
                         org.telegram.ui.b.b(i7);
                         return;
                     }
-                    ea x10 = ea.x(i7, e1Var.f3748y1.f6160a);
+                    ea x10 = ea.x(i7, e1Var.f3748y1.f6158a);
                     if (x10.f3810e) {
                         aVar = cg.a.l(x10.p());
                     } else {
                         aVar = null;
                     }
-                    if (!e1Var.f3735j1 && (aVar == null || aVar.f6161b < e1Var.f3748y1.f6161b)) {
+                    if (!e1Var.f3735j1 && (aVar == null || aVar.f6159b < e1Var.f3748y1.f6159b)) {
                         cg.a aVar2 = e1Var.f3748y1;
-                        cg.b bVar = aVar2.f6160a;
-                        if (bVar == cg.b.f6162a) {
+                        cg.b bVar = aVar2.f6158a;
+                        if (bVar == cg.b.f6160a) {
                             long a10 = aVar2.a();
                             long j3 = this.f3639c;
-                            new tc(context, f6Var, a10, 13, qg.d.h(i7, j3), null, j3).show();
+                            new tc(context, g6Var, a10, 13, qg.d.h(i7, j3), null, j3).show();
                             return;
-                        } else if (bVar == cg.b.f6163b) {
-                            new gi.e(context, f6Var, aVar2, true, null).show();
+                        } else if (bVar == cg.b.f6161b) {
+                            new gi.e(context, g6Var, aVar2, true, null).show();
                             return;
                         } else {
                             return;
@@ -137,19 +137,19 @@ public final class d1 implements View.OnClickListener {
                     hi.g1 g1Var = new hi.g1(i1Var, bundle, t0Var);
                     final int i11 = this.f3638b;
                     final long j10 = this.f3639c;
-                    g1Var.C2 = new qw() {
+                    g1Var.D2 = new sw() {
                         @Override
                         public final boolean G() {
                             return false;
                         }
 
                         @Override
-                        public final boolean N(ww wwVar) {
+                        public final boolean N(yw ywVar) {
                             return false;
                         }
 
                         @Override
-                        public final boolean y(ww wwVar, ArrayList arrayList2, CharSequence charSequence, boolean z10, boolean z11, int i12, int i13, w91 w91Var) {
+                        public final boolean y(yw ywVar, ArrayList arrayList2, CharSequence charSequence, boolean z10, boolean z11, int i12, int i13, y91 y91Var) {
                             String str;
                             TLRPC.TL_forumTopic f10;
                             TLRPC.Message message;
@@ -199,12 +199,12 @@ public final class d1 implements View.OnClickListener {
                                 }
                                 t0Var.a(str, arrayList3);
                             }
-                            if (w91Var != null) {
-                                w91Var.finishFragment();
-                                wwVar.removeSelfFromStack();
+                            if (y91Var != null) {
+                                y91Var.finishFragment();
+                                ywVar.removeSelfFromStack();
                                 return true;
                             }
-                            wwVar.finishFragment();
+                            ywVar.finishFragment();
                             return true;
                         }
                     };
@@ -215,11 +215,11 @@ public final class d1 implements View.OnClickListener {
                 }
                 return;
             default:
-                ld0 ld0Var = (ld0) this.d;
+                nd0 nd0Var = (nd0) this.d;
                 String str = (String) this.f3640e;
                 String str2 = (String) this.f3641f;
                 String str3 = (String) this.h;
-                fi.d dVar = ld0Var.f47515b;
+                fi.d dVar = nd0Var.f48166b;
                 if (!dVar.Q) {
                     dVar.setLoading(true);
                     TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode = new TLRPC.TL_inputStorePaymentAuthCode();
@@ -242,7 +242,7 @@ public final class d1 implements View.OnClickListener {
                         tL_dataJSON.data = u10.toString();
                         tL_payments_getPaymentForm.flags |= 1;
                     }
-                    ld0Var.f47522w.getConnectionsManager().sendRequest(tL_payments_getPaymentForm, new org.telegram.ui.z9(ld0Var, tL_inputInvoicePremiumAuthCode, tL_inputStorePaymentAuthCode, 23), 74);
+                    nd0Var.f48173w.getConnectionsManager().sendRequest(tL_payments_getPaymentForm, new org.telegram.ui.z9(nd0Var, tL_inputInvoicePremiumAuthCode, tL_inputStorePaymentAuthCode, 23), 74);
                     return;
                 }
                 return;
@@ -258,8 +258,8 @@ public final class d1 implements View.OnClickListener {
         this.h = pVar;
     }
 
-    public d1(ld0 ld0Var, String str, long j3, String str2, String str3, int i7) {
-        this.d = ld0Var;
+    public d1(nd0 nd0Var, String str, long j3, String str2, String str3, int i7) {
+        this.d = nd0Var;
         this.f3640e = str;
         this.f3639c = j3;
         this.f3641f = str2;

@@ -3,7 +3,7 @@ package ei;
 import org.telegram.messenger.ij;
 public final class l extends ij {
     @Override
-    public final float H1() {
+    public final float G1() {
         return this.f23269m.h;
     }
 }

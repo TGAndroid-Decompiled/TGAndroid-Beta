@@ -78,7 +78,7 @@ public final class e3 {
                 this.f22171a = true;
             } else if (arrayList3.size() >= 1) {
                 this.f22174e = true;
-                if (!wg.s.i()) {
+                if (!wg.r.i()) {
                     TL_stories.TL_myBoost tL_myBoost7 = (TL_stories.TL_myBoost) arrayList3.get(0);
                     this.f22173c = m5.o(tL_myBoost7.peer);
                     this.f22176g = tL_myBoost7.slot;

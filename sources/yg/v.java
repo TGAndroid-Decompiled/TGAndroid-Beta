@@ -4,28 +4,28 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 import c8.ha;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.ut0;
-import org.telegram.ui.Components.vt0;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.s6;
+import org.telegram.ui.Components.wt0;
+import org.telegram.ui.Components.xt0;
 public final class v extends FrameLayout {
-    public final vt0 f59492a;
-    public final View f59493b;
+    public final xt0 f59501a;
+    public final View f59502b;
 
-    public v(Context context, f6 f6Var) {
+    public v(Context context, g6 g6Var) {
         super(context);
         View view = new View(context);
-        this.f59493b = view;
+        this.f59502b = view;
         addView(view, ha.o(-1, -1));
-        r6.i(k6.f27925h5, view, f6Var);
-        vt0 vt0Var = new vt0(context, f6Var);
-        this.f59492a = vt0Var;
-        addView(vt0Var, ha.d(-1, -1.0f, 48, 0.0f, 0.0f, 0.0f, 0.0f));
-        r6.a0(this, getContext(), 2131231231, k6.f27816b7);
+        s6.h(l6.f27938h5, view, g6Var);
+        xt0 xt0Var = new xt0(context, g6Var);
+        this.f59501a = xt0Var;
+        addView(xt0Var, ha.d(-1, -1.0f, 48, 0.0f, 0.0f, 0.0f, 0.0f));
+        s6.Z(this, getContext(), 2131231231, l6.f27829b7);
     }
 
-    public void setCallBack(ut0 ut0Var) {
-        this.f59492a.setCallback(ut0Var);
+    public void setCallBack(wt0 wt0Var) {
+        this.f59501a.setCallback(wt0Var);
     }
 }

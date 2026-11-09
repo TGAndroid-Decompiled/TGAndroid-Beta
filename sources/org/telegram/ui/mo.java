@@ -1,10 +1,14 @@
 package org.telegram.ui;
+public final class mo implements e50 {
+    public final uo f47904a;
 
-import android.view.View;
-import android.widget.FrameLayout;
-public final class mo extends FrameLayout {
+    public mo(uo uoVar) {
+        this.f47904a = uoVar;
+    }
+
     @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
+    public final void e(f50 f50Var, long j3) {
+        uo uoVar = this.f47904a;
+        uoVar.d0(uoVar.getMessagesController().M0(Long.valueOf(j3)), f50Var);
     }
 }

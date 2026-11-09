@@ -17,7 +17,7 @@ import fi.s4;
 import org.telegram.messenger.camera.q;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.id;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.l6;
 public final class f extends FrameLayout {
     public final Paint f20955a;
     public final Paint f20956b;
@@ -50,7 +50,7 @@ public final class f extends FrameLayout {
         ImageView imageView = new ImageView(context);
         this.f20958e = imageView;
         imageView.setImageResource(2131232281);
-        imageView.setBackgroundDrawable(k6.h0(1090519039, 1, -1));
+        imageView.setBackgroundDrawable(l6.h0(1090519039, 1, -1));
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         imageView.setOnClickListener(new View.OnClickListener(this) {
@@ -95,7 +95,7 @@ public final class f extends FrameLayout {
         ImageView imageView2 = new ImageView(context);
         this.f20957c = imageView2;
         imageView2.setImageResource(2131232279);
-        imageView2.setBackgroundDrawable(k6.h0(1090519039, 1, -1));
+        imageView2.setBackgroundDrawable(l6.h0(1090519039, 1, -1));
         imageView2.setScaleType(scaleType);
         imageView2.setOnClickListener(new View.OnClickListener(this) {
             public final f f20954b;
@@ -139,7 +139,7 @@ public final class f extends FrameLayout {
         ImageView imageView3 = new ImageView(context);
         this.d = imageView3;
         imageView3.setImageResource(2131232282);
-        imageView3.setBackgroundDrawable(k6.h0(1090519039, 1, -1));
+        imageView3.setBackgroundDrawable(l6.h0(1090519039, 1, -1));
         imageView3.setScaleType(scaleType);
         imageView3.setOnClickListener(new View.OnClickListener(this) {
             public final f f20954b;
@@ -361,7 +361,7 @@ public final class f extends FrameLayout {
     public void setMirrored(boolean z9) {
         PorterDuffColorFilter porterDuffColorFilter = null;
         if (z9) {
-            porterDuffColorFilter = new PorterDuffColorFilter(k6.x0(null, k6.f28043ng, false), PorterDuff.Mode.MULTIPLY);
+            porterDuffColorFilter = new PorterDuffColorFilter(l6.x0(null, l6.f28056ng, false), PorterDuff.Mode.MULTIPLY);
         }
         this.f20958e.setColorFilter(porterDuffColorFilter);
     }
@@ -369,7 +369,7 @@ public final class f extends FrameLayout {
     public void setRotated(boolean z9) {
         PorterDuffColorFilter porterDuffColorFilter = null;
         if (z9) {
-            porterDuffColorFilter = new PorterDuffColorFilter(k6.x0(null, k6.f28043ng, false), PorterDuff.Mode.MULTIPLY);
+            porterDuffColorFilter = new PorterDuffColorFilter(l6.x0(null, l6.f28056ng, false), PorterDuff.Mode.MULTIPLY);
         }
         this.d.setColorFilter(porterDuffColorFilter);
     }

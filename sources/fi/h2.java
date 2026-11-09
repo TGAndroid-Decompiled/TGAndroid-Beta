@@ -5,9 +5,9 @@ import java.net.Socket;
 import java.util.ArrayDeque;
 import java.util.TimerTask;
 import org.telegram.ui.Components.gp;
-import org.telegram.ui.ec0;
-import org.telegram.ui.ef0;
-import org.telegram.ui.hz;
+import org.telegram.ui.gc0;
+import org.telegram.ui.gf0;
+import org.telegram.ui.jz;
 public final class h2 extends TimerTask {
     public final int f12126a;
     public final Object f12127b;
@@ -22,7 +22,7 @@ public final class h2 extends TimerTask {
         BasePendingResult basePendingResult;
         switch (this.f12126a) {
             case 0:
-                org.telegram.messenger.g0.h3(new di.s7(this, 21));
+                org.telegram.messenger.g0.h3(new di.f8(this, 20));
                 return;
             case 1:
                 h6.c cVar = (h6.c) this.f12127b;
@@ -49,17 +49,17 @@ public final class h2 extends TimerTask {
                 org.telegram.messenger.g0.h3(new gp(this, 22));
                 return;
             case 3:
-                if (((ec0) this.f12127b).N != null) {
-                    org.telegram.messenger.g0.h3(new hz(this, 25));
+                if (((gc0) this.f12127b).N != null) {
+                    org.telegram.messenger.g0.h3(new jz(this, 25));
                     return;
                 }
                 return;
             case 4:
-                org.telegram.messenger.g0.h3(new ef0(this, 8));
+                org.telegram.messenger.g0.h3(new gf0(this, 8));
                 return;
             default:
                 try {
-                    Socket socket = ((rc.q) this.f12127b).f54513a.f54485a.f54479g;
+                    Socket socket = ((rc.q) this.f12127b).f54525a.f54497a.f54491g;
                     if (socket != null) {
                         socket.close();
                         return;

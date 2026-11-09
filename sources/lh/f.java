@@ -9,10 +9,10 @@ import android.graphics.Shader;
 import android.view.View;
 import java.util.HashSet;
 import org.telegram.messenger.g0;
-import org.telegram.ui.ActionBar.a6;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-public final class f extends View implements a6 {
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+public final class f extends View implements b6 {
     public LinearGradient D;
     public int E;
     public int F;
@@ -29,7 +29,7 @@ public final class f extends View implements a6 {
     public final Paint f18373n;
     public LinearGradient f18374r;
     public LinearGradient f18375s;
-    public f6 f18376w;
+    public g6 f18376w;
     public final Paint f18377x;
     public LinearGradient f18378y;
 
@@ -78,9 +78,9 @@ public final class f extends View implements a6 {
     public final void onDraw(Canvas canvas) {
         Canvas canvas2;
         super.onDraw(canvas);
-        if (k6.i1(this.f18376w)) {
-            int x02 = k6.x0(null, k6.Ca, false);
-            int x03 = k6.x0(null, k6.Da, false);
+        if (l6.i1(this.f18376w)) {
+            int x02 = l6.x0(null, l6.Ca, false);
+            int x03 = l6.x0(null, l6.Da, false);
             int measuredHeight = getMeasuredHeight();
             if (this.f18378y == null || this.F != x02 || this.E != x03 || this.G != this.f18370c || this.H != this.d || this.I != measuredHeight) {
                 this.F = x02;
@@ -187,8 +187,8 @@ public final class f extends View implements a6 {
         }
     }
 
-    public void setResourcesProvider(f6 f6Var) {
-        this.f18376w = f6Var;
+    public void setResourcesProvider(g6 g6Var) {
+        this.f18376w = g6Var;
     }
 
     public void setup(dh.c cVar) {
@@ -200,7 +200,7 @@ public final class f extends View implements a6 {
         if (this.f18371e == null) {
             ri.c cVar = new ri.c();
             this.f18371e = cVar;
-            cVar.a(k6.x0(null, i7, false));
+            cVar.a(l6.x0(null, i7, false));
             ri.c cVar2 = this.f18371e;
             setup(new dh.c(cVar2, cVar2, cVar2));
         }
@@ -211,7 +211,7 @@ public final class f extends View implements a6 {
         int i7;
         ri.c cVar = this.f18371e;
         if (cVar != null && (i7 = this.f18372f) != -1) {
-            cVar.a(k6.x0(null, i7, false));
+            cVar.a(l6.x0(null, i7, false));
             invalidate();
         }
     }

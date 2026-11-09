@@ -301,7 +301,7 @@ public final class dt extends c1 implements ls {
                 TLRPC.User user = (TLRPC.User) obj;
                 c10 = 2;
                 try {
-                    paint2.setShader(new LinearGradient(size, size2, size, size2 + f12, new int[]{org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28074p8[org.telegram.ui.Components.w8.e(user.f27105id)], false), org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28094q8[org.telegram.ui.Components.w8.e(user.f27105id)], false)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+                    paint2.setShader(new LinearGradient(size, size2, size, size2 + f12, new int[]{org.telegram.ui.ActionBar.l6.x0(null, org.telegram.ui.ActionBar.l6.f28087p8[org.telegram.ui.Components.w8.e(user.f27105id)], false), org.telegram.ui.ActionBar.l6.x0(null, org.telegram.ui.ActionBar.l6.f28107q8[org.telegram.ui.Components.w8.e(user.f27105id)], false)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
                     canvas.drawCircle(f14, f15, f13, paint2);
                     if (textPaint == null) {
                         try {
@@ -383,7 +383,7 @@ public final class dt extends c1 implements ls {
                     if (!g0.p2(false) && !iz.C && dtVar.getAccountInstance().c().getBoolean("EnablePreviewAll", true)) {
                         z9 = false;
                         if (!TextUtils.isEmpty(str) && !z9) {
-                            M0 = id.a0(null, null, 2131747926, str);
+                            M0 = id.a0(null, null, 2131747925, str);
                             Intent intent = new Intent(t0.f25566b, LaunchActivity.class);
                             intent.setAction("android.intent.action.VIEW");
                             intent.setData(Uri.parse("tg://resolve?domain=sendgrams"));
@@ -404,7 +404,7 @@ public final class dt extends c1 implements ls {
                             qVar.f10099g = activity;
                             f22077l0.e("wallet_tonconnect", dtVar.currentAccount, qVar.b());
                         }
-                        M0 = id.M0(2131747927, null);
+                        M0 = id.M0(2131747926, null);
                         Intent intent2 = new Intent(t0.f25566b, LaunchActivity.class);
                         intent2.setAction("android.intent.action.VIEW");
                         intent2.setData(Uri.parse("tg://resolve?domain=sendgrams"));
@@ -427,7 +427,7 @@ public final class dt extends c1 implements ls {
                     }
                     z9 = true;
                     if (!TextUtils.isEmpty(str)) {
-                        M0 = id.a0(null, null, 2131747926, str);
+                        M0 = id.a0(null, null, 2131747925, str);
                         Intent intent22 = new Intent(t0.f25566b, LaunchActivity.class);
                         intent22.setAction("android.intent.action.VIEW");
                         intent22.setData(Uri.parse("tg://resolve?domain=sendgrams"));
@@ -448,7 +448,7 @@ public final class dt extends c1 implements ls {
                         qVar22.f10099g = activity22;
                         f22077l0.e("wallet_tonconnect", dtVar.currentAccount, qVar22.b());
                     }
-                    M0 = id.M0(2131747927, null);
+                    M0 = id.M0(2131747926, null);
                     Intent intent222 = new Intent(t0.f25566b, LaunchActivity.class);
                     intent222.setAction("android.intent.action.VIEW");
                     intent222.setData(Uri.parse("tg://resolve?domain=sendgrams"));
@@ -613,7 +613,7 @@ public final class dt extends c1 implements ls {
                             dtVar.J++;
                         }
                         long B0 = ij.B0(ijVar2.f23262k);
-                        long c22 = ij.c2(dtVar.currentAccount, ijVar2.f23262k, dtVar.getMessagesController().u2(ijVar2), false);
+                        long b22 = ij.b2(dtVar.currentAccount, ijVar2.f23262k, dtVar.getMessagesController().u2(ijVar2), false);
                         if (ijVar2.f23262k.mentioned) {
                             message = message3;
                             j14 = ijVar2.Z0();
@@ -624,14 +624,14 @@ public final class dt extends c1 implements ls {
                             j14 = B0;
                         }
                         int h = hVar2.h(j14);
-                        if (h >= 0 && c22 == 0) {
+                        if (h >= 0 && b22 == 0) {
                             z12 = ((Boolean) hVar2.n(h)).booleanValue();
                             message2 = message;
                             sparseArray = sparseArray3;
                             ijVar = ijVar2;
                             j15 = j13;
                         } else {
-                            int u10 = dtVar.u(j14, c22);
+                            int u10 = dtVar.u(j14, b22);
                             if (u10 == -1) {
                                 message2 = message;
                                 sparseArray = sparseArray3;
@@ -717,13 +717,13 @@ public final class dt extends c1 implements ls {
         }
         for (int i16 = 0; i16 < arrayList2.size(); i16++) {
             ij ijVar3 = (ij) arrayList2.get(i16);
-            int f12 = ijVar3.f1();
-            if (dtVar.f22087c.h(f12) < 0) {
+            int e12 = ijVar3.e1();
+            if (dtVar.f22087c.h(e12) < 0) {
                 if (E(ijVar3)) {
                     dtVar.J++;
                 }
                 long B02 = ij.B0(ijVar3.f23262k);
-                long c23 = ij.c2(dtVar.currentAccount, ijVar3.f23262k, dtVar.getMessagesController().u2(ijVar3), false);
+                long b23 = ij.b2(dtVar.currentAccount, ijVar3.f23262k, dtVar.getMessagesController().u2(ijVar3), false);
                 TLRPC.Message message4 = ijVar3.f23262k;
                 long j19 = message4.random_id;
                 if (message4.mentioned) {
@@ -732,12 +732,12 @@ public final class dt extends c1 implements ls {
                     j3 = B02;
                 }
                 int h10 = hVar2.h(j3);
-                if (h10 >= 0 && c23 == 0) {
+                if (h10 >= 0 && b23 == 0) {
                     long j20 = j3;
                     z9 = ((Boolean) hVar2.n(h10)).booleanValue();
                     j10 = j20;
                 } else {
-                    int u12 = dtVar.u(j3, c23);
+                    int u12 = dtVar.u(j3, b23);
                     if (u12 == -1) {
                         j10 = j3;
                         z9 = dtVar.D(j10, null, ijVar3.I, ijVar3.J);
@@ -752,7 +752,7 @@ public final class dt extends c1 implements ls {
                     hVar2.k(Boolean.valueOf(z9), j10);
                 }
                 if (z9 && (j10 != dtVar.F || !t0.f25573w)) {
-                    if (f12 != 0) {
+                    if (e12 != 0) {
                         if (ijVar3.J) {
                             j11 = ij.B0(ijVar3.f23262k);
                         } else {
@@ -768,7 +768,7 @@ public final class dt extends c1 implements ls {
                             sparseArray4 = new SparseArray();
                             dtVar.f22087c.k(sparseArray4, j11);
                         }
-                        sparseArray4.put(f12, ijVar3);
+                        sparseArray4.put(e12, ijVar3);
                     } else if (j19 != 0) {
                         dtVar.d.k(ijVar3, j19);
                     }
@@ -873,7 +873,7 @@ public final class dt extends c1 implements ls {
                 f22075j0 = "Other" + Utilities.f21334b.nextLong();
                 sharedPreferences.edit().putString("OtherKey", f22075j0).commit();
             }
-            String M0 = id.M0(2131749190, null);
+            String M0 = id.M0(2131749189, null);
             if (notificationChannel != null && !TextUtils.equals(notificationChannel.getName(), M0)) {
                 notificationChannel.setName(M0);
                 try {
@@ -937,16 +937,16 @@ public final class dt extends c1 implements ls {
         }
         if (A) {
             if (z9) {
-                i7 = 2131748036;
+                i7 = 2131748035;
             } else {
-                i7 = 2131748037;
+                i7 = 2131748036;
             }
         } else if (z9) {
-            i7 = 2131748038;
+            i7 = 2131748037;
         } else {
-            i7 = 2131748039;
+            i7 = 2131748038;
         }
-        return id.a0(null, null, i7, str, org.telegram.ui.Wallet.m0.s(tL_messageActionGramTransfer.amount, false), tL_messageActionGramTransfer.comment);
+        return id.a0(null, null, i7, str, org.telegram.ui.Wallet.l0.s(tL_messageActionGramTransfer.amount, false), tL_messageActionGramTransfer.comment);
     }
 
     public static TLRPC.NotificationSound s(SharedPreferences sharedPreferences, String str, String str2, String str3) {
@@ -1027,7 +1027,7 @@ public final class dt extends c1 implements ls {
             long B0 = ij.B0(ijVar.f23262k);
             if (!ijVar.I) {
                 TLRPC.Message message = ijVar.f23262k;
-                if ((!message.mentioned || !(message.action instanceof TLRPC.TL_messageActionPinMessage)) && !m5.C(B0) && ((ijVar.f23262k.peer_id.channel_id == 0 || ijVar.B4()) && B0 != 489000 && B0 != 489001)) {
+                if ((!message.mentioned || !(message.action instanceof TLRPC.TL_messageActionPinMessage)) && !m5.C(B0) && ((ijVar.f23262k.peer_id.channel_id == 0 || ijVar.A4()) && B0 != 489000 && B0 != 489001)) {
                     return true;
                 }
             }
@@ -1227,7 +1227,7 @@ public final class dt extends c1 implements ls {
             int i7 = 0;
             while (i7 < arrayList.size()) {
                 ij ijVar = (ij) arrayList.get(i7);
-                if (ijVar != null && ijVar.f23262k != null && !ijVar.Q3()) {
+                if (ijVar != null && ijVar.f23262k != null && !ijVar.P3()) {
                     TLRPC.MessageAction messageAction = ijVar.f23262k.action;
                     if (messageAction instanceof TLRPC.TL_messageActionConferenceCall) {
                         TLRPC.TL_messageActionConferenceCall tL_messageActionConferenceCall = (TLRPC.TL_messageActionConferenceCall) messageAction;
@@ -1251,11 +1251,11 @@ public final class dt extends c1 implements ls {
                                 }
                                 sb3.append(m5.s(this.currentAccount, longValue));
                             }
-                            VoIPGroupNotification.request(t0.f25566b, this.currentAccount, ij.B0(ijVar.f23262k), sb3.toString(), tL_messageActionConferenceCall.call_id, ijVar.f1(), tL_messageActionConferenceCall.video);
+                            VoIPGroupNotification.request(t0.f25566b, this.currentAccount, ij.B0(ijVar.f23262k), sb3.toString(), tL_messageActionConferenceCall.call_id, ijVar.e1(), tL_messageActionConferenceCall.video);
                             arrayList.remove(i7);
                             i7--;
                         } else {
-                            VoIPGroupNotification.hide(t0.f25566b, this.currentAccount, ijVar.f1());
+                            VoIPGroupNotification.hide(t0.f25566b, this.currentAccount, ijVar.e1());
                         }
                     }
                 }
@@ -1315,7 +1315,7 @@ public final class dt extends c1 implements ls {
         if (uri2 != null && uri != null && !TextUtils.equals(uri2.toString(), uri.toString())) {
             SharedPreferences.Editor edit = getAccountInstance().c().edit();
             String uri3 = uri2.toString();
-            String M0 = id.M0(2131751600, null);
+            String M0 = id.M0(2131751599, null);
             if (z9) {
                 if (i11 == 2) {
                     edit.putString("ChannelSound", M0);
@@ -1519,7 +1519,7 @@ public final class dt extends c1 implements ls {
                 tL_inputPeerNotifySettings7.flags |= 256;
                 tL_inputPeerNotifySettings7.stories_sound = s(c10, "StoriesSound", "StoriesSoundDocId", "StoriesSoundPath");
             }
-            getConnectionsManager().sendRequest(updatenotifysettings, new di.u5(14));
+            getConnectionsManager().sendRequest(updatenotifysettings, new di.v5(14));
             return;
         }
         TL_account.setReactionsNotifySettings setreactionsnotifysettings = new TL_account.setReactionsNotifySettings();
@@ -1542,7 +1542,7 @@ public final class dt extends c1 implements ls {
         }
         setreactionsnotifysettings.settings.show_previews = c10.getBoolean("EnableReactionsPreview", true);
         setreactionsnotifysettings.settings.sound = s(c10, "ReactionSound", "ReactionSoundDocId", "ReactionSoundPath");
-        getConnectionsManager().sendRequest(setreactionsnotifysettings, new di.u5(14));
+        getConnectionsManager().sendRequest(setreactionsnotifysettings, new di.v5(14));
     }
 
     public final void c0(long j3, long j10, boolean z9) {
@@ -1620,7 +1620,7 @@ public final class dt extends c1 implements ls {
                 updatenotifysettings.peer = tL_inputNotifyPeer;
             }
         }
-        getConnectionsManager().sendRequest(updatenotifysettings, new di.u5(14));
+        getConnectionsManager().sendRequest(updatenotifysettings, new di.v5(14));
     }
 
     public final void d0() {
@@ -1661,7 +1661,7 @@ public final class dt extends c1 implements ls {
         while (true) {
             ArrayList arrayList = this.f22083a;
             if (i7 < arrayList.size()) {
-                if (((ij) arrayList.get(i7)).f1() == ijVar.f1() && ij.B0(((ij) arrayList.get(i7)).f23262k) == ij.B0(ijVar.f23262k) && ((ij) arrayList.get(i7)).K == ijVar.K) {
+                if (((ij) arrayList.get(i7)).e1() == ijVar.e1() && ij.B0(((ij) arrayList.get(i7)).f23262k) == ij.B0(ijVar.f23262k) && ((ij) arrayList.get(i7)).K == ijVar.K) {
                     return;
                 }
                 i7++;

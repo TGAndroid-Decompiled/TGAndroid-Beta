@@ -43,7 +43,7 @@ public final class d {
                         i13 += 13;
                     }
                 } else {
-                    i13 += ((String) qVar.f990b).substring(i7, i11 + i7).getBytes(((f) qVar.f991c).f6061a[i10].charset()).length * 8;
+                    i13 += ((String) qVar.f990b).substring(i7, i11 + i7).getBytes(((f) qVar.f991c).f6059a[i10].charset()).length * 8;
                     if (z9) {
                         i13 += 12;
                     }

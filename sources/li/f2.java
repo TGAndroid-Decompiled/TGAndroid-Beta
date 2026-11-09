@@ -16,7 +16,7 @@ public final class f2 {
     public boolean f18562f;
     public final ArrayDeque f18559b = new ArrayDeque();
     public final ArrayDeque f18560c = new ArrayDeque();
-    public final l2.w f18563g = new l2.w(this, 8);
+    public final l2.a0 f18563g = new l2.a0(this, 7);
     public e2 d = b();
 
     public f2(gf.g gVar) {
@@ -321,9 +321,9 @@ public final class f2 {
             return;
         }
         this.f18561e = true;
-        l2.w wVar = this.f18563g;
-        org.telegram.messenger.g0.r(wVar);
-        org.telegram.messenger.g0.i3(wVar, 800L);
+        l2.a0 a0Var = this.f18563g;
+        org.telegram.messenger.g0.r(a0Var);
+        org.telegram.messenger.g0.i3(a0Var, 800L);
         ((t3) this.f18558a.f13889b).f18890o3.N();
     }
 

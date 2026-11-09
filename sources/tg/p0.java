@@ -3,23 +3,23 @@ package tg;
 import android.content.Context;
 import fi.e5;
 import java.util.ArrayList;
-import org.telegram.ui.Components.pj0;
-public final class p0 extends pj0 {
-    public final ArrayList f55897e3;
-    public final ArrayList f55898f3;
-    public final ArrayList f55899g3;
-    public final ArrayList f55900h3;
-    public final ArrayList f55901i3;
+import org.telegram.ui.Components.qj0;
+public final class p0 extends qj0 {
+    public final ArrayList f55909e3;
+    public final ArrayList f55910f3;
+    public final ArrayList f55911g3;
+    public final ArrayList f55912h3;
+    public final ArrayList f55913i3;
     public final e5 j3;
 
     public p0(e5 e5Var, Context context, t0 t0Var) {
         super(context, t0Var);
         this.j3 = e5Var;
-        this.f55897e3 = new ArrayList();
-        this.f55898f3 = new ArrayList();
-        this.f55899g3 = new ArrayList();
-        this.f55900h3 = new ArrayList();
-        this.f55901i3 = new ArrayList(10);
+        this.f55909e3 = new ArrayList();
+        this.f55910f3 = new ArrayList();
+        this.f55911g3 = new ArrayList();
+        this.f55912h3 = new ArrayList();
+        this.f55913i3 = new ArrayList(10);
     }
 
     @Override

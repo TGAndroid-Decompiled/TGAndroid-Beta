@@ -4,9 +4,9 @@ import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
 import org.telegram.messenger.id;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.k60;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.Components.l60;
 public final class k3 extends ClickableSpan {
     public final int f14767a = 1;
     public final int f14768b;
@@ -28,7 +28,7 @@ public final class k3 extends ClickableSpan {
         switch (i7) {
             case 0:
                 final bi.l0 l0Var = (bi.l0) this.f14769c;
-                k60 H = k60.H((q3) obj, view);
+                l60 H = l60.H((q3) obj, view);
                 boolean z11 = true;
                 int i10 = this.f14768b;
                 if (i10 == 3) {
@@ -192,8 +192,8 @@ public final class k3 extends ClickableSpan {
                     }
                 }, id.M0(2131752477, null), z11);
                 H.V(5);
-                H.f35232t = false;
-                H.f35231s = 0;
+                H.f35618t = false;
+                H.f35617s = 0;
                 H.a0(org.telegram.messenger.g0.L(24.0f), -org.telegram.messenger.g0.L(24.0f));
                 H.Z();
                 return;
@@ -217,14 +217,14 @@ public final class k3 extends ClickableSpan {
             default:
                 super.updateDrawState(textPaint);
                 textPaint.setUnderlineText(false);
-                textPaint.setColor(k6.w0(this.f14768b, (f6) this.f14769c));
+                textPaint.setColor(l6.w0(this.f14768b, (g6) this.f14769c));
                 return;
         }
     }
 
-    public k3(int i7, f6 f6Var, Runnable runnable) {
+    public k3(int i7, g6 g6Var, Runnable runnable) {
         this.f14768b = i7;
-        this.f14769c = f6Var;
+        this.f14769c = g6Var;
         this.d = runnable;
     }
 }

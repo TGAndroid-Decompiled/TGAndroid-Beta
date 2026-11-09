@@ -3,7 +3,7 @@ package bi;
 import android.os.Bundle;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.an;
+import org.telegram.ui.cn;
 public final class k4 implements Runnable {
     public final int f4144a;
     public final long f4145b;
@@ -30,21 +30,21 @@ public final class k4 implements Runnable {
             case 1:
                 org.telegram.ui.ActionBar.f2 T2 = LaunchActivity.T();
                 if (T2 != null) {
-                    T2.presentFragment(an.ra(this.f4145b));
+                    T2.presentFragment(cn.ta(this.f4145b));
                     return;
                 }
                 return;
             case 2:
                 org.telegram.ui.ActionBar.f2 T3 = LaunchActivity.T();
                 if (T3 != null) {
-                    T3.presentFragment(an.ra(this.f4145b));
+                    T3.presentFragment(cn.ta(this.f4145b));
                     return;
                 }
                 return;
             default:
                 org.telegram.ui.ActionBar.f2 T4 = LaunchActivity.T();
                 if (T4 != null) {
-                    T4.presentFragment(an.ra(this.f4145b));
+                    T4.presentFragment(cn.ta(this.f4145b));
                     return;
                 }
                 return;

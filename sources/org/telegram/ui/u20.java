@@ -1,35 +1,28 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class u20 extends AnimatorListenerAdapter {
-    public final int f50196a;
-    public final org.telegram.ui.Components.voip.y f50197b;
-    public final c40 f50198c;
+import android.view.TextureView;
+public final class u20 implements fr0 {
+    public final e40 f50281a;
 
-    public u20(c40 c40Var, org.telegram.ui.Components.voip.y yVar, int i7) {
-        this.f50196a = i7;
-        this.f50198c = c40Var;
-        this.f50197b = yVar;
+    public u20(e40 e40Var) {
+        this.f50281a = e40Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f50196a) {
-            case 0:
-                org.telegram.ui.Components.voip.y yVar = this.f50197b;
-                if (yVar.getParent() != null) {
-                    this.f50198c.f28619b.removeView(yVar);
-                    return;
-                }
-                return;
-            default:
-                org.telegram.ui.Components.voip.y yVar2 = this.f50197b;
-                if (yVar2.getParent() != null) {
-                    this.f50198c.f28619b.removeView(yVar2);
-                    return;
-                }
-                return;
-        }
+    public final void I(org.telegram.messenger.ij ijVar) {
+        this.f50281a.f28624b.invalidate();
+    }
+
+    @Override
+    public final void I0(org.telegram.messenger.ij ijVar) {
+        e40 e40Var = this.f50281a;
+        e40Var.H1.I0(true);
+        e40Var.T3.f46383f.K0(org.telegram.messenger.g0.L(13.0f), org.telegram.messenger.g0.L(13.0f), 0, 0);
+        e40Var.f28624b.invalidate();
+    }
+
+    @Override
+    public final TextureView l0() {
+        return null;
     }
 }

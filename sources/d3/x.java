@@ -3,12 +3,12 @@ package d3;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 public final class x {
-    public long f8093a;
-    public long f8094b;
+    public long f8091a;
+    public long f8092b;
 
     public x(long j3, long j10) {
-        this.f8093a = j3;
-        this.f8094b = j10;
+        this.f8091a = j3;
+        this.f8092b = j10;
     }
 
     public static boolean a(int i7) {
@@ -244,7 +244,7 @@ public final class x {
     }
 
     public x() {
-        this.f8093a = -9223372036854775807L;
-        this.f8094b = -9223372036854775807L;
+        this.f8091a = -9223372036854775807L;
+        this.f8092b = -9223372036854775807L;
     }
 }

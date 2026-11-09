@@ -4,16 +4,16 @@ import android.text.Editable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
-public final class sh implements org.telegram.ui.wm0 {
-    public boolean f38070a;
-    public final HashMap f38071b;
-    public final ArrayList f38072c;
+public final class sh implements org.telegram.ui.ym0 {
+    public boolean f38060a;
+    public final HashMap f38061b;
+    public final ArrayList f38062c;
     public final di d;
 
     public sh(di diVar, HashMap hashMap, ArrayList arrayList) {
         this.d = diVar;
-        this.f38071b = hashMap;
-        this.f38072c = arrayList;
+        this.f38061b = hashMap;
+        this.f38062c = arrayList;
     }
 
     @Override
@@ -25,13 +25,13 @@ public final class sh implements org.telegram.ui.wm0 {
     public final void v0(int i7, boolean z9, boolean z10) {
         String str;
         if (!z9) {
-            HashMap hashMap = this.f38071b;
-            if (!hashMap.isEmpty() && !this.f38070a) {
-                this.f38070a = true;
+            HashMap hashMap = this.f38061b;
+            if (!hashMap.isEmpty() && !this.f38060a) {
+                this.f38060a = true;
                 ArrayList arrayList = new ArrayList();
                 int i10 = 0;
                 while (true) {
-                    ArrayList arrayList2 = this.f38072c;
+                    ArrayList arrayList2 = this.f38062c;
                     if (i10 < arrayList2.size()) {
                         Object obj = hashMap.get(arrayList2.get(i10));
                         ?? obj2 = new Object();
@@ -63,7 +63,7 @@ public final class sh implements org.telegram.ui.wm0 {
                         System.currentTimeMillis();
                         i10++;
                     } else {
-                        ((org.telegram.ui.an) this.d.W1).s8(i7, arrayList, z10);
+                        ((org.telegram.ui.cn) this.d.W1).t8(i7, arrayList, z10);
                         return;
                     }
                 }

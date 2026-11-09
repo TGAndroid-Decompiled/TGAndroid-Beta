@@ -2,14 +2,14 @@ package di;
 
 import org.telegram.messenger.z10;
 public final class b2 implements z10 {
-    public final int f8837a;
-    public final Object f8838b;
-    public final Object f8839c;
+    public final int f8831a;
+    public final Object f8832b;
+    public final Object f8833c;
 
     public b2(int i7, Object obj, Object obj2) {
-        this.f8837a = i7;
-        this.f8838b = obj;
-        this.f8839c = obj2;
+        this.f8831a = i7;
+        this.f8832b = obj;
+        this.f8833c = obj2;
     }
 
     @Override

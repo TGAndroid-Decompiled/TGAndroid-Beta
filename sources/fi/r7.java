@@ -2,15 +2,15 @@ package fi;
 
 import org.telegram.ui.Components.cc;
 public final class r7 implements org.telegram.ui.Components.ab {
-    public final int f12745a;
+    public final int f12746a;
 
     public r7(int i7) {
-        this.f12745a = i7;
+        this.f12746a = i7;
     }
 
     @Override
     public final boolean a() {
-        switch (this.f12745a) {
+        switch (this.f12746a) {
             case 0:
                 return true;
             case 1:
@@ -50,22 +50,22 @@ public final class r7 implements org.telegram.ui.Components.ab {
 
     @Override
     public final void b(cc ccVar) {
-        int i7 = this.f12745a;
+        int i7 = this.f12746a;
     }
 
     @Override
     public final void c(float f10) {
-        int i7 = this.f12745a;
+        int i7 = this.f12746a;
     }
 
     @Override
     public final void d(cc ccVar) {
-        int i7 = this.f12745a;
+        int i7 = this.f12746a;
     }
 
     @Override
     public final boolean e() {
-        switch (this.f12745a) {
+        switch (this.f12746a) {
             case 0:
                 return true;
             case 1:
@@ -107,7 +107,7 @@ public final class r7 implements org.telegram.ui.Components.ab {
     public final int f(int i7) {
         int i10;
         int L;
-        switch (this.f12745a) {
+        switch (this.f12746a) {
             case 0:
                 return 0;
             case 1:
@@ -154,7 +154,7 @@ public final class r7 implements org.telegram.ui.Components.ab {
 
     @Override
     public final boolean g(int i7) {
-        switch (this.f12745a) {
+        switch (this.f12746a) {
             case 0:
                 return false;
             case 1:
@@ -194,7 +194,7 @@ public final class r7 implements org.telegram.ui.Components.ab {
 
     @Override
     public final int h(int i7) {
-        switch (this.f12745a) {
+        switch (this.f12746a) {
             case 0:
                 return org.telegram.messenger.g0.f22557m;
             case 1:

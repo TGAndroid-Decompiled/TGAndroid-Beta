@@ -1,6 +1,6 @@
 package li;
 
-import org.telegram.ui.bg0;
+import org.telegram.ui.dg0;
 public final class h1 implements Runnable {
     public final int f18620a;
     public final b2 f18621b;
@@ -43,9 +43,9 @@ public final class h1 implements Runnable {
             case 5:
                 b2 b2Var4 = this.f18621b;
                 b2Var4.x0(2147483646, 0, true);
-                bg0 bg0Var = b2Var4.O0;
-                if (bg0Var != null) {
-                    bg0Var.g(false);
+                dg0 dg0Var = b2Var4.O0;
+                if (dg0Var != null) {
+                    dg0Var.g(false);
                     b2Var4.O0 = null;
                     return;
                 }
@@ -53,9 +53,9 @@ public final class h1 implements Runnable {
             default:
                 b2 b2Var5 = this.f18621b;
                 b2Var5.x0(0, 0, false);
-                bg0 bg0Var2 = b2Var5.O0;
-                if (bg0Var2 != null) {
-                    bg0Var2.g(true);
+                dg0 dg0Var2 = b2Var5.O0;
+                if (dg0Var2 != null) {
+                    dg0Var2.g(true);
                     b2Var5.O0 = null;
                     return;
                 }

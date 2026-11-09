@@ -3,7 +3,7 @@ package org.telegram.messenger;
 import android.animation.ValueAnimator;
 import android.view.View;
 import android.view.Window;
-import org.telegram.ui.Components.t51;
+import org.telegram.ui.Components.u51;
 public final class q implements ValueAnimator.AnimatorUpdateListener {
     public final int f24658a;
     public final Object f24659b;
@@ -24,10 +24,10 @@ public final class q implements ValueAnimator.AnimatorUpdateListener {
                 Window window = (Window) this.f24660c;
                 int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
                 if (mgVar != null) {
-                    org.telegram.ui.Components.di diVar = mgVar.f35980b;
+                    org.telegram.ui.Components.di diVar = mgVar.f36084b;
                     diVar.F0 = -1;
                     diVar.G0 = intValue;
-                    diVar.f28619b.invalidate();
+                    diVar.f28624b.invalidate();
                 }
                 try {
                     window.setNavigationBarColor(intValue);
@@ -36,13 +36,13 @@ public final class q implements ValueAnimator.AnimatorUpdateListener {
                     return;
                 }
             case 1:
-                t51 t51Var = (t51) this.f24660c;
+                u51 u51Var = (u51) this.f24660c;
                 if (((MediaController) this.f24659b).X != 1) {
                     f10 = 1.0f;
                 } else {
                     f10 = 0.2f;
                 }
-                t51Var.B0(((Float) valueAnimator.getAnimatedValue()).floatValue() * f10);
+                u51Var.B0(((Float) valueAnimator.getAnimatedValue()).floatValue() * f10);
                 return;
             default:
                 fv fvVar = (fv) this.f24659b;

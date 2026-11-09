@@ -14,8 +14,8 @@ import org.telegram.messenger.g0;
 import org.telegram.messenger.i7;
 import org.telegram.messenger.p5;
 import org.telegram.messenger.x7;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
 import org.telegram.ui.Components.i6;
 import org.telegram.ui.Components.w5;
 import org.telegram.ui.Components.xq;
@@ -87,14 +87,14 @@ public final class f {
     public void c(Canvas canvas, float f10, float f11, float f12) {
         Drawable drawable = (Drawable) this.f18271g;
         l0 l0Var = (l0) this.h;
-        RectF rectF = l0Var.f51186a;
+        RectF rectF = l0Var.f51167a;
         rectF.set(0.0f, 0.0f, f10, f11);
         canvas.saveLayerAlpha(rectF, (int) (f12 * 255.0f), 31);
         i6 i6Var = (i6) this.d;
         float i7 = i6Var.i();
         i6 i6Var2 = (i6) this.f18269e;
         float i10 = i6Var2.i();
-        TextPaint textPaint = i6Var2.f34550a;
+        TextPaint textPaint = i6Var2.f34585a;
         float f13 = i10 * i7;
         canvas.save();
         float f14 = 0.82f * f11;
@@ -110,7 +110,7 @@ public final class f {
         canvas.translate(0.0f, com.google.android.recaptcha.internal.a.v(1.0f, f13, g0.L(4.0f), (g0.L(14.0f) * f13) + ((1.0f - l0Var.G) * f14 * f13) + (-g0.L(1.0f))));
         float T12 = g0.T1(1.15f, 0.9f, f13) * l0Var.G;
         canvas.scale(T12, T12, 0.0f, 0.0f);
-        i6Var2.u(i0.a.f(d, this.f18266a, k6.x0(null, k6.f28093q7, false)));
+        i6Var2.u(i0.a.f(d, this.f18266a, l6.x0(null, l6.f28106q7, false)));
         if (d > 0.0f) {
             if (this.f18267b != textPaint.getColor()) {
                 int color = textPaint.getColor();
@@ -125,7 +125,7 @@ public final class f {
         i6Var2.draw(canvas);
         canvas.restore();
         rectF.set(f10 - g0.L(12.0f), 0.0f, f10, f11);
-        l0Var.f51209r0.m(canvas, rectF, 2, 1.0f);
+        l0Var.f51190r0.m(canvas, rectF, 2, 1.0f);
         canvas.restore();
     }
 
@@ -133,7 +133,7 @@ public final class f {
         Canvas canvas;
         Paint paint = (Paint) this.f18271g;
         RectF rectF = (RectF) this.f18270f;
-        int w02 = k6.w0(k6.f27852d6, (f6) this.h);
+        int w02 = l6.w0(l6.f27865d6, (g6) this.h);
         int i11 = (i7 + i10) << 10;
         if (i11 == this.f18266a && !this.f18268c) {
             if (w02 != this.f18267b && (canvas = (Canvas) this.f18269e) != null && ((Bitmap) this.d) != null) {
@@ -177,7 +177,7 @@ public final class f {
         this.f18271g = l0Var.getContext().getResources().getDrawable(2131232847).mutate();
     }
 
-    public f(f6 f6Var) {
+    public f(g6 g6Var) {
         this.f18270f = new RectF();
         Paint paint = new Paint(1);
         this.f18271g = paint;
@@ -185,6 +185,6 @@ public final class f {
         this.f18268c = true;
         paint.setColor(0);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        this.h = f6Var;
+        this.h = g6Var;
     }
 }

@@ -1,194 +1,136 @@
 package org.telegram.ui;
 
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-public final class fv0 extends org.telegram.ui.Components.l6 {
-    public final int f45711b;
-    public final ProfileActivity f45712c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.graphics.RectF;
+import org.telegram.messenger.ImageReceiver;
+public final class fv0 extends AnimatorListenerAdapter {
+    public final int f45796a;
+    public final ProfileActivity f45797b;
 
     public fv0(ProfileActivity profileActivity, int i7) {
-        super("headerShadow", 0);
-        this.f45711b = i7;
-        switch (i7) {
+        this.f45796a = i7;
+        this.f45797b = profileActivity;
+    }
+
+    @Override
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f45796a) {
             case 1:
-                this.f45712c = profileActivity;
-                super("avatarAnimationProgress", 0);
+                this.f45797b.Q5 = null;
+                return;
+            case 4:
+                ProfileActivity profileActivity = this.f45797b;
+                profileActivity.N1 = false;
+                profileActivity.f41698a.O0 = true;
                 return;
             default:
-                this.f45712c = profileActivity;
+                super.onAnimationCancel(animator);
                 return;
         }
     }
 
     @Override
-    public final void c(Object obj, float f10) {
-        boolean z9;
-        boolean z10;
-        boolean z11;
+    public final void onAnimationEnd(Animator animator) {
         oi.q qVar;
-        int w02;
-        int w03;
         org.telegram.ui.ActionBar.k kVar;
-        int w04;
-        org.telegram.ui.ActionBar.k kVar2;
-        org.telegram.ui.ActionBar.f5 f5Var;
-        int w05;
-        int i7;
-        float f11;
-        int I3;
-        switch (this.f45711b) {
+        int w02;
+        int i7 = this.f45796a;
+        ProfileActivity profileActivity = this.f45797b;
+        switch (i7) {
             case 0:
-                ProfileActivity profileActivity = (ProfileActivity) obj;
-                this.f45712c.f41693a1 = f10;
-                return;
-            default:
-                org.telegram.ui.ActionBar.k kVar3 = (org.telegram.ui.ActionBar.k) obj;
-                ProfileActivity profileActivity2 = this.f45712c;
-                if (profileActivity2.Q5 > 0.0f) {
-                    z9 = true;
-                } else {
-                    z9 = false;
-                }
-                if (f10 > 0.0f) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (z9 != z10) {
-                    z11 = true;
-                } else {
-                    z11 = false;
-                }
-                profileActivity2.Q5 = f10;
-                qVar = ((org.telegram.ui.ActionBar.f2) profileActivity2).glassEngine;
+                qVar = ((org.telegram.ui.ActionBar.f2) profileActivity).glassEngine;
                 qVar.g();
-                if (z11) {
-                    profileActivity2.P3();
-                }
-                ProfileActivity.s1(profileActivity2);
-                profileActivity2.x5();
-                bv0 bv0Var = profileActivity2.f41810r;
-                if (bv0Var != null && !profileActivity2.f41792o2) {
-                    Object tag = bv0Var.getTag();
-                    if (tag instanceof Integer) {
-                        I3 = profileActivity2.I3(org.telegram.ui.ActionBar.k6.w0(((Integer) tag).intValue(), profileActivity2.f41869z0), Boolean.valueOf(profileActivity2.J0[0]));
-                    } else {
-                        I3 = profileActivity2.I3(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.B8, profileActivity2.f41869z0), Boolean.TRUE);
-                    }
-                    bv0Var.setTextColor(i0.a.f(f10, I3, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Dj, profileActivity2.f41869z0)));
-                }
-                profileActivity2.z5();
-                cv0 cv0Var = profileActivity2.f41831u0;
-                if (cv0Var != null) {
-                    cv0Var.setActionBarActionMode(f10);
-                }
-                bi.g1 g1Var = profileActivity2.f41838v0;
-                if (g1Var != null) {
-                    g1Var.setActionBarActionMode(f10);
-                }
-                profileActivity2.f41709c1.invalidate();
-                int i10 = -1;
-                if (profileActivity2.f41743g6 != null) {
-                    w02 = -1;
+                kVar = ((org.telegram.ui.ActionBar.f2) profileActivity).actionBar;
+                if (profileActivity.f41799o2) {
+                    w02 = 1090519039;
+                } else if (profileActivity.f41770j6 != null) {
+                    w02 = 553648127;
                 } else {
-                    w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27973ji, profileActivity2.f41869z0);
+                    w02 = org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.f27905f8, profileActivity.f41876z0);
                 }
-                int i11 = org.telegram.ui.ActionBar.k6.Cj;
-                int w06 = org.telegram.ui.ActionBar.k6.w0(i11, profileActivity2.f41869z0);
-                int S0 = org.telegram.messenger.g0.S0(f10, 1.0f, w02, w06);
-                profileActivity2.f41729f.setTextColor(S0);
-                Drawable drawable = profileActivity2.f41853x;
-                if (drawable != null) {
-                    if (profileActivity2.f41743g6 != null) {
-                        S0 = -1;
-                    }
-                    drawable.setColorFilter(S0, PorterDuff.Mode.MULTIPLY);
+                kVar.D(w02, false);
+                bv0 bv0Var = profileActivity.f41729e0;
+                ImageReceiver imageReceiver = bv0Var.U;
+                org.telegram.ui.Components.v5 m10 = imageReceiver.m();
+                if (m10 != null) {
+                    m10.w(bv0Var);
                 }
-                if (profileActivity2.K != null) {
-                    profileActivity2.K.b(org.telegram.messenger.g0.S0(f10, 1.0f, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27927h8, profileActivity2.f41869z0), w06));
+                imageReceiver.f();
+                org.telegram.messenger.jc jcVar = bv0Var.W;
+                if (jcVar != null) {
+                    jcVar.a();
+                    bv0Var.W = null;
                 }
-                if (profileActivity2.f41743g6 != null) {
-                    w03 = -1;
-                } else {
-                    w03 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28189v8, profileActivity2.f41869z0);
+                bv0Var.V = 0.0f;
+                bv0Var.invalidate();
+                profileActivity.H0 = false;
+                profileActivity.O5(false);
+                return;
+            case 1:
+                if (profileActivity.Q5 != null && !profileActivity.T5) {
+                    AnimatorSet animatorSet = new AnimatorSet();
+                    profileActivity.R5 = animatorSet;
+                    animatorSet.playTogether(ObjectAnimator.ofFloat(profileActivity, profileActivity.f41782l5, 1.0f));
+                    profileActivity.R5.setDuration(100L);
+                    profileActivity.R5.addListener(new f30(this, 21));
+                    profileActivity.R5.start();
                 }
-                int w07 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28246y8, profileActivity2.f41869z0);
-                kVar = ((org.telegram.ui.ActionBar.f2) profileActivity2).actionBar;
-                kVar.D(org.telegram.messenger.g0.S0(f10, 1.0f, w03, w07), false);
-                org.telegram.messenger.fp fpVar = profileActivity2.f41743g6;
-                if (fpVar != null) {
-                    w04 = 1090519039;
-                } else if (fpVar != null) {
-                    w04 = 553648127;
-                } else {
-                    w04 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27892f8, profileActivity2.f41869z0);
-                }
-                int w08 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28264z8, profileActivity2.f41869z0);
-                kVar2 = ((org.telegram.ui.ActionBar.f2) profileActivity2).actionBar;
-                kVar2.C(org.telegram.messenger.g0.S0(f10, 1.0f, w04, w08), false);
-                profileActivity2.f41709c1.invalidate();
-                if (profileActivity2.f41861y != null) {
-                    org.telegram.messenger.fp fpVar2 = profileActivity2.f41743g6;
-                    if (fpVar2 != null) {
-                        int g10 = fpVar2.g();
-                        if (profileActivity2.f41743g6.o(org.telegram.ui.ActionBar.k6.I.q())) {
-                            i7 = profileActivity2.f41743g6.k();
-                        } else {
-                            i7 = profileActivity2.f41743g6.i();
-                        }
-                        int f12 = i0.a.f(0.4f, g10, i7);
-                        if (org.telegram.ui.ActionBar.k6.I.q()) {
-                            f11 = -0.1f;
-                        } else {
-                            f11 = -0.08f;
-                        }
-                        w05 = org.telegram.ui.ActionBar.k6.b(0.1f, f11, f12);
-                    } else {
-                        w05 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28045ni, profileActivity2.f41869z0);
-                    }
-                    profileActivity2.f41861y.setColorFilter(org.telegram.messenger.g0.S0(f10, 1.0f, w05, org.telegram.ui.ActionBar.k6.w0(i11, profileActivity2.f41869z0)), PorterDuff.Mode.MULTIPLY);
-                }
-                if (profileActivity2.H != null) {
-                    if (profileActivity2.f41743g6 == null) {
-                        i10 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28064oi, profileActivity2.f41869z0);
-                    }
-                    profileActivity2.H.setColorFilter(org.telegram.messenger.g0.S0(f10, 1.0f, i10, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27852d6, profileActivity2.f41869z0)), PorterDuff.Mode.MULTIPLY);
-                }
-                if (profileActivity2.D != null) {
-                    profileActivity2.D.setColorFilter(org.telegram.messenger.g0.S0(f10, 1.0f, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28045ni, profileActivity2.f41869z0), org.telegram.ui.ActionBar.k6.w0(i11, profileActivity2.f41869z0)), PorterDuff.Mode.MULTIPLY);
-                }
-                profileActivity2.s5();
-                ProfileActivity profileActivity3 = profileActivity2.f41790o0.f47892n;
-                if (profileActivity3.L0) {
-                    f5Var = profileActivity3.P0;
-                } else if (profileActivity3.N0) {
-                    f5Var = profileActivity3.R0;
-                } else {
-                    f5Var = profileActivity3.T0;
-                    if (f5Var == null) {
-                        f5Var = null;
-                    }
-                }
-                if (f5Var != null) {
-                    if (profileActivity2.M0 || profileActivity2.N0 || profileActivity2.L0) {
-                        profileActivity2.z4(0, profileActivity2.L3(), true);
-                        return;
-                    }
+                profileActivity.O5(false);
+                profileActivity.Q5 = null;
+                return;
+            case 2:
+                super.onAnimationEnd(animator);
+                RectF rectF = ProfileActivity.V6;
+                profileActivity.B4(true);
+                return;
+            case 3:
+                AnimatorSet animatorSet2 = profileActivity.f41852w;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    profileActivity.f41852w = null;
                     return;
                 }
                 return;
+            case 4:
+                profileActivity.N1 = false;
+                profileActivity.f41698a.O0 = true;
+                profileActivity.f41760i2.removeListener(this);
+                profileActivity.f41716c1.setBackgroundColor(-16777216);
+                profileActivity.X.setVisibility(8);
+                profileActivity.f41791n0.setVisibility(0);
+                profileActivity.f41791n0.setAlpha(1.0f);
+                return;
+            case 5:
+                profileActivity.f41760i2.removeListener(this);
+                profileActivity.f41791n0.setVisibility(8);
+                profileActivity.f41791n0.setAlpha(1.0f);
+                return;
+            default:
+                profileActivity.f41853w0 = null;
+                profileActivity.fragmentView.invalidate();
+                return;
         }
     }
 
     @Override
-    public final Object get(Object obj) {
-        switch (this.f45711b) {
+    public void onAnimationStart(Animator animator) {
+        switch (this.f45796a) {
             case 0:
-                ProfileActivity profileActivity = (ProfileActivity) obj;
-                return Float.valueOf(this.f45712c.f41693a1);
+                return;
+            case 4:
+                ProfileActivity profileActivity = this.f45797b;
+                ProfileActivity.G3(profileActivity, false);
+                profileActivity.f41791n0.setAnimatedFileMaybe(profileActivity.f41729e0.getImageReceiver().m());
+                profileActivity.f41791n0.L();
+                return;
             default:
-                org.telegram.ui.ActionBar.k kVar = (org.telegram.ui.ActionBar.k) obj;
-                return Float.valueOf(this.f45712c.Q5);
+                super.onAnimationStart(animator);
+                return;
         }
+    }
+
+    private final void a(Animator animator) {
     }
 }

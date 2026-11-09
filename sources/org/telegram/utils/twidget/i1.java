@@ -14,7 +14,7 @@ import org.telegram.messenger.a8;
 import org.telegram.messenger.id;
 import org.telegram.messenger.p10;
 import org.telegram.messenger.qp;
-import org.telegram.ui.p31;
+import org.telegram.ui.q31;
 public final class i1 {
     public static boolean U;
     public volatile boolean A;
@@ -37,32 +37,32 @@ public final class i1 {
     public final c1 R;
     public long S;
     public final b1 T;
-    public final Context f52838e;
-    public final String f52839f;
-    public final int f52840g;
+    public final Context f52852e;
+    public final String f52853f;
+    public final int f52854g;
     public final String h;
-    public final String f52841i;
-    public volatile String f52843k;
-    public final float f52844l;
-    public volatile int f52852t;
-    public volatile boolean f52853u;
+    public final String f52855i;
+    public volatile String f52857k;
+    public final float f52858l;
+    public volatile int f52866t;
+    public volatile boolean f52867u;
     public volatile long v;
-    public volatile boolean f52854w;
-    public volatile boolean f52855x;
-    public volatile boolean f52856y;
-    public volatile boolean f52857z;
-    public final Handler f52835a = new Handler(Looper.getMainLooper());
-    public final WidgetSandboxBackend f52836b = new WidgetSandboxBackend(this);
-    public final r0 f52837c = r0.f52955i;
+    public volatile boolean f52868w;
+    public volatile boolean f52869x;
+    public volatile boolean f52870y;
+    public volatile boolean f52871z;
+    public final Handler f52849a = new Handler(Looper.getMainLooper());
+    public final WidgetSandboxBackend f52850b = new WidgetSandboxBackend(this);
+    public final r0 f52851c = r0.f52969i;
     public volatile d0 d = new d0(null);
-    public volatile String f52842j = "{}";
-    public final long f52845m = System.nanoTime();
-    public final AtomicBoolean f52846n = new AtomicBoolean();
-    public final AtomicBoolean f52847o = new AtomicBoolean();
-    public final AtomicBoolean f52848p = new AtomicBoolean();
-    public final AtomicBoolean f52849q = new AtomicBoolean();
-    public final AtomicBoolean f52850r = new AtomicBoolean();
-    public final Object f52851s = new Object();
+    public volatile String f52856j = "{}";
+    public final long f52859m = System.nanoTime();
+    public final AtomicBoolean f52860n = new AtomicBoolean();
+    public final AtomicBoolean f52861o = new AtomicBoolean();
+    public final AtomicBoolean f52862p = new AtomicBoolean();
+    public final AtomicBoolean f52863q = new AtomicBoolean();
+    public final AtomicBoolean f52864r = new AtomicBoolean();
+    public final Object f52865s = new Object();
 
     public i1(Context context, String str, String str2, int i7, String str3, String str4) {
         new JSONObject();
@@ -78,13 +78,13 @@ public final class i1 {
                 i1 i1Var = i1.this;
                 i1Var.D = false;
                 long j10 = i1Var.v;
-                if (!i1Var.f52854w && j10 != 0 && i1Var.f52847o.compareAndSet(false, true)) {
-                    if (i1Var.F && (i1Var.f52850r.getAndSet(false) | i1Var.f52849q.get())) {
+                if (!i1Var.f52868w && j10 != 0 && i1Var.f52861o.compareAndSet(false, true)) {
+                    if (i1Var.F && (i1Var.f52864r.getAndSet(false) | i1Var.f52863q.get())) {
                         z9 = true;
                     } else {
                         z9 = false;
                     }
-                    if (i1Var.F && i1Var.f52848p.getAndSet(false)) {
+                    if (i1Var.F && i1Var.f52862p.getAndSet(false)) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -92,10 +92,10 @@ public final class i1 {
                     if (z10) {
                         i1Var.S = j3;
                     }
-                    r0 r0Var = i1Var.f52837c;
-                    float f10 = ((float) (j3 - i1Var.f52845m)) / 1000000.0f;
-                    boolean andSet = i1Var.f52846n.getAndSet(false);
-                    o0 o0Var = (o0) r0Var.f52958e.get(Long.valueOf(j10));
+                    r0 r0Var = i1Var.f52851c;
+                    float f10 = ((float) (j3 - i1Var.f52859m)) / 1000000.0f;
+                    boolean andSet = i1Var.f52860n.getAndSet(false);
+                    o0 o0Var = (o0) r0Var.f52972e.get(Long.valueOf(j10));
                     if (o0Var == null) {
                         h12 = null;
                     } else {
@@ -113,14 +113,14 @@ public final class i1 {
         };
         this.T = new b1(this, 4);
         if (i7 >= 1 && i7 <= 4) {
-            this.f52838e = context.getApplicationContext();
-            this.f52839f = str;
+            this.f52852e = context.getApplicationContext();
+            this.f52853f = str;
             this.B = str2;
             str2.contains("\"dark\"");
-            this.f52840g = i7;
+            this.f52854g = i7;
             this.h = str3 == null ? "en-US" : str3;
-            this.f52841i = str4 == null ? "{}" : str4;
-            this.f52844l = context.getResources().getDisplayMetrics().density;
+            this.f52855i = str4 == null ? "{}" : str4;
+            this.f52858l = context.getResources().getDisplayMetrics().density;
             return;
         }
         throw new IllegalArgumentException("CPU multiplier must be 1..4");
@@ -140,10 +140,10 @@ public final class i1 {
         org.telegram.messenger.r0 r0Var;
         if (!a() && (activityManager = (ActivityManager) context.getSystemService("activity")) != null && !activityManager.isLowRamDevice()) {
             try {
-                r0 r0Var2 = r0.f52955i;
-                synchronized (r0Var2.f52956b) {
-                    if (r0Var2.f52960g == null) {
-                        r0Var2.f52960g = context.getApplicationContext();
+                r0 r0Var2 = r0.f52969i;
+                synchronized (r0Var2.f52970b) {
+                    if (r0Var2.f52974g == null) {
+                        r0Var2.f52974g = context.getApplicationContext();
                     }
                     r0Var2.h = true;
                     r0Var2.h(r0Var2.e());
@@ -160,27 +160,27 @@ public final class i1 {
 
     public final void b(c0 c0Var, h1[] h1VarArr, double d, int i7, int i10, float f10, float f11, int i11, int i12, int i13, n1 n1Var) {
         Object obj;
-        boolean z9 = this.f52856y;
-        Object obj2 = this.f52851s;
+        boolean z9 = this.f52870y;
+        Object obj2 = this.f52865s;
         synchronized (obj2) {
             try {
                 try {
-                    if (this.f52854w) {
+                    if (this.f52868w) {
                         c0Var.b();
                         return;
                     }
                     g1 g1Var = this.I;
                     if (g1Var != null) {
-                        g1Var.f52790a.b();
+                        g1Var.f52804a.b();
                     }
                     try {
                         this.I = new g1(c0Var, h1VarArr, d, i7, i10, f10, f11, i11, i12, i13, n1Var, z9, this.A);
                         if (!this.K) {
                             this.K = true;
-                            this.f52835a.post(this.O);
+                            this.f52849a.post(this.O);
                         }
-                        this.f52852t = i10;
-                        this.f52853u = true;
+                        this.f52866t = i10;
+                        this.f52867u = true;
                     } catch (Throwable th2) {
                         th = th2;
                         obj = obj2;
@@ -197,10 +197,10 @@ public final class i1 {
     }
 
     public final void d() {
-        if (!this.f52854w && this.v != 0 && !this.D && !this.f52847o.get()) {
-            if (!this.f52846n.get()) {
+        if (!this.f52868w && this.v != 0 && !this.D && !this.f52861o.get()) {
+            if (!this.f52860n.get()) {
                 if (this.F) {
-                    if (!this.f52848p.get() && !this.f52849q.get() && !this.f52850r.get()) {
+                    if (!this.f52862p.get() && !this.f52863q.get() && !this.f52864r.get()) {
                         return;
                     }
                 } else {
@@ -214,13 +214,13 @@ public final class i1 {
 
     public final void e(String str) {
         b h12;
-        if (!this.f52854w && str != null && !str.equals(this.f52843k)) {
-            this.f52843k = str;
+        if (!this.f52868w && str != null && !str.equals(this.f52857k)) {
+            this.f52857k = str;
             long j3 = this.v;
             if (j3 != 0) {
-                r0 r0Var = this.f52837c;
+                r0 r0Var = this.f52851c;
                 byte[] bytes = str.getBytes(StandardCharsets.UTF_8);
-                o0 o0Var = (o0) r0Var.f52958e.get(Long.valueOf(j3));
+                o0 o0Var = (o0) r0Var.f52972e.get(Long.valueOf(j3));
                 if (o0Var == null) {
                     h12 = null;
                 } else {
@@ -238,11 +238,11 @@ public final class i1 {
 
     public final void f(boolean z9) {
         b h12;
-        if (!this.f52854w && this.F != z9) {
+        if (!this.f52868w && this.F != z9) {
             this.F = z9;
             long j3 = this.v;
             if (j3 != 0) {
-                o0 o0Var = (o0) this.f52837c.f52958e.get(Long.valueOf(j3));
+                o0 o0Var = (o0) this.f52851c.f52972e.get(Long.valueOf(j3));
                 if (o0Var == null) {
                     h12 = null;
                 } else {
@@ -272,31 +272,31 @@ public final class i1 {
                     Trace.beginSection("WidgetSandbox:Create");
                     try {
                         try {
-                            if (this.f52854w) {
+                            if (this.f52868w) {
                                 Trace.endSection();
                                 return;
                             }
-                            String str = this.f52843k;
-                            String str2 = this.f52842j;
+                            String str = this.f52857k;
+                            String str2 = this.f52856j;
                             if (str != null) {
                                 str2 = new JSONObject(str2).put("contentSafeArea", new JSONObject(str)).toString();
                             }
                             String str3 = str2;
-                            r0 r0Var = this.f52837c;
-                            Context context = this.f52838e;
-                            String str4 = this.f52839f;
+                            r0 r0Var = this.f52851c;
+                            Context context = this.f52852e;
+                            String str4 = this.f52853f;
                             String str5 = this.B;
-                            float f10 = this.f52844l;
-                            j3 = r0Var.f(context, str4, str5, i7 / f10, f10, this.f52840g, this.h, this.f52841i, str3, id.M0(2131742870, null), this.F, this.f52836b);
+                            float f10 = this.f52858l;
+                            j3 = r0Var.f(context, str4, str5, i7 / f10, f10, this.f52854g, this.h, this.f52855i, str3, id.M0(2131742867, null), this.F, this.f52850b);
                             try {
-                                this.f52835a.post(new bi.d0(this, j3, i7, this.B, str));
+                                this.f52849a.post(new bi.d0(this, j3, i7, this.B, str));
                                 Trace.endSection();
                             } catch (Exception e10) {
                                 e = e10;
                                 if (j3 != 0) {
-                                    a1.f52753a.execute(new p31(this, j3, 2));
+                                    a1.f52767a.execute(new q31(this, j3, 2));
                                 }
-                                this.f52835a.post(new f0(5, this, e));
+                                this.f52849a.post(new f0(5, this, e));
                                 throw e;
                             }
                         } catch (Exception e11) {

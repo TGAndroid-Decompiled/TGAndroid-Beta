@@ -83,11 +83,11 @@ public final class b implements Callable {
             case 1:
                 ta taVar = (ta) this.f55b;
                 taVar.getClass();
-                return j.f53892c.a(taVar.f669g);
+                return j.f53904c.a(taVar.f669g);
             case 2:
                 uf ufVar = (uf) this.f55b;
                 ufVar.getClass();
-                return j.f53892c.a(ufVar.f5897g);
+                return j.f53904c.a(ufVar.f5895g);
             case 3:
                 s sVar = (s) this.f55b;
                 f5.b bVar = sVar.d;
@@ -294,30 +294,30 @@ public final class b implements Callable {
                                         if (z9) {
                                             h3 s5 = i3.s();
                                             s5.c();
-                                            i3.r((i3) s5.f7469b, 6);
+                                            i3.r((i3) s5.f7467b, 6);
                                             c4 r10 = d4.r();
                                             r10.d(false);
                                             r10.e();
                                             if (a10 != null) {
                                                 long longValue = a10.longValue();
                                                 r10.c();
-                                                d4.p((d4) r10.f7469b, longValue);
+                                                d4.p((d4) r10.f7467b, longValue);
                                             }
                                             f5.b bVar4 = sVar.d;
                                             s5.c();
-                                            i3.q((i3) s5.f7469b, (d4) r10.a());
+                                            i3.q((i3) s5.f7467b, (d4) r10.a());
                                             bVar4.i((i3) s5.a());
                                         } else {
                                             z3 p10 = a4.p();
                                             j3 s9 = k3.s();
                                             s9.c();
-                                            k3.r((k3) s9.f7469b, 0);
+                                            k3.r((k3) s9.f7467b, 0);
                                             p10.c();
-                                            a4.n((a4) p10.f7469b, (k3) s9.a());
+                                            a4.n((a4) p10.f7467b, (k3) s9.a());
                                             if (a10 != null) {
                                                 long longValue2 = a10.longValue();
                                                 p10.c();
-                                                a4.o((a4) p10.f7469b, longValue2);
+                                                a4.o((a4) p10.f7467b, longValue2);
                                             }
                                             sVar.d.h.m((a4) p10.a());
                                         }
@@ -337,14 +337,14 @@ public final class b implements Callable {
             case 5:
                 p pVar = (p) this.f55b;
                 pVar.getClass();
-                return j.f53892c.a(pVar.f57607a);
+                return j.f53904c.a(pVar.f57619a);
             case 6:
                 ArrayList arrayList = new ArrayList();
                 Iterator it = ((e) ((ShortcutInfoCompatSaverImpl) this.f55b).f2879b.values()).iterator();
                 while (true) {
                     a0.b bVar5 = (a0.b) it;
                     if (bVar5.hasNext()) {
-                        g0.c cVar2 = ((x4.f) bVar5.next()).f58633c;
+                        g0.c cVar2 = ((x4.f) bVar5.next()).f58642c;
                         ?? obj = new Object();
                         obj.f13396a = cVar2.f13396a;
                         obj.f13397b = cVar2.f13397b;
@@ -383,15 +383,15 @@ public final class b implements Callable {
                 }
                 throw new IllegalArgumentException("Shortcut must have an intent");
             case 7:
-                return BitmapFactory.decodeFile(((x4.f) this.f55b).f58632b);
+                return BitmapFactory.decodeFile(((x4.f) this.f55b).f58641b);
             case 8:
                 e9 e9Var = (e9) this.f55b;
                 e9Var.getClass();
-                return j.f53892c.a(e9Var.f59020g);
+                return j.f53904c.a(e9Var.f59029g);
             default:
                 ma maVar = (ma) this.f55b;
                 maVar.getClass();
-                return j.f53892c.a(maVar.f59899g);
+                return j.f53904c.a(maVar.f59908g);
         }
     }
 }

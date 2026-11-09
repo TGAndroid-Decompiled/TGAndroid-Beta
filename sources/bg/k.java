@@ -8,9 +8,9 @@ import android.view.View;
 import java.lang.reflect.Field;
 import java.util.Iterator;
 import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.ah0;
 import org.telegram.ui.Components.u5;
 import org.telegram.ui.Components.v5;
-import org.telegram.ui.Components.zg0;
 public final class k implements Choreographer.FrameCallback {
     public static final long[] f3333r;
     public static k f3334s;
@@ -175,8 +175,8 @@ public final class k implements Choreographer.FrameCallback {
                         Iterator it2 = jVar.f3328b.iterator();
                         while (it2.hasNext()) {
                             u5 u5Var = (u5) it2.next();
-                            int i10 = u5Var.f38516a;
-                            Object obj = u5Var.f38517b;
+                            int i10 = u5Var.f38595a;
+                            Object obj = u5Var.f38596b;
                             switch (i10) {
                                 case 0:
                                     v5 v5Var = (v5) obj;
@@ -194,11 +194,11 @@ public final class k implements Choreographer.FrameCallback {
                                         break;
                                     }
                                 case 1:
-                                    Field field = EditTextBoldCursor.f31328y1;
+                                    Field field = EditTextBoldCursor.f31333y1;
                                     ((EditTextBoldCursor) obj).invalidate();
                                     break;
                                 default:
-                                    zg0.g((zg0) obj);
+                                    ah0.g((ah0) obj);
                                     break;
                             }
                         }

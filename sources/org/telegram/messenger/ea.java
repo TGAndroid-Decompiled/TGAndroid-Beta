@@ -19,7 +19,7 @@ public final class ea {
             v7.i iVar = (v7.i) fVar.f19942a;
             Parcel o12 = iVar.o1(iVar.p1(), 4);
             Parcelable.Creator<LatLng> creator = LatLng.CREATOR;
-            int i7 = v7.b.f57247a;
+            int i7 = v7.b.f57259a;
             if (o12.readInt() == 0) {
                 createFromParcel = null;
             } else {
@@ -27,7 +27,7 @@ public final class ea {
             }
             LatLng latLng = createFromParcel;
             o12.recycle();
-            return new cb(latLng.f7696a, latLng.f7697b);
+            return new cb(latLng.f7694a, latLng.f7695b);
         } catch (RemoteException e10) {
             throw new RuntimeException(e10);
         }

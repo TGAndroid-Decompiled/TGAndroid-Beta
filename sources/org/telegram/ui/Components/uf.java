@@ -2,23 +2,23 @@ package org.telegram.ui.Components;
 
 import java.io.File;
 import java.util.ArrayList;
-public final class uf extends org.telegram.ui.nq0 {
-    public boolean f38621a;
-    public final org.telegram.messenger.gf f38622b;
-    public final File f38623c;
+public final class uf extends org.telegram.ui.pq0 {
+    public boolean f38707a;
+    public final org.telegram.messenger.gf f38708b;
+    public final File f38709c;
     public final vf d;
 
     public uf(vf vfVar, org.telegram.messenger.gf gfVar, File file) {
         this.d = vfVar;
-        this.f38622b = gfVar;
-        this.f38623c = file;
+        this.f38708b = gfVar;
+        this.f38709c = file;
     }
 
     @Override
     public final void G() {
-        if (!this.f38621a) {
+        if (!this.f38707a) {
             try {
-                this.f38623c.delete();
+                this.f38709c.delete();
             } catch (Throwable unused) {
             }
         }
@@ -35,16 +35,16 @@ public final class uf extends org.telegram.ui.nq0 {
         org.telegram.messenger.ij threadMessage;
         org.telegram.messenger.hw hwVar;
         String str2;
-        org.telegram.ui.an anVar;
+        org.telegram.ui.cn cnVar;
         ChatActivityEnterView chatActivityEnterView = this.d.Z1;
-        org.telegram.ui.qm qmVar = chatActivityEnterView.V2;
-        if (qmVar != null && (anVar = chatActivityEnterView.P2) != null && qmVar.f49269f) {
-            anVar.uc();
+        org.telegram.ui.sm smVar = chatActivityEnterView.V2;
+        if (smVar != null && (cnVar = chatActivityEnterView.P2) != null && smVar.f49947f) {
+            cnVar.xc();
             return;
         }
         ArrayList arrayList = new ArrayList();
         ?? obj = new Object();
-        org.telegram.messenger.gf gfVar = this.f38622b;
+        org.telegram.messenger.gf gfVar = this.f38708b;
         if (!gfVar.f26845b && (str2 = gfVar.h) != null) {
             obj.f22512c = str2;
         } else {
@@ -73,27 +73,27 @@ public final class uf extends org.telegram.ui.nq0 {
         obj.f22525r = true;
         arrayList.add(obj);
         gfVar.e();
-        this.f38621a = true;
+        this.f38707a = true;
         boolean h = org.telegram.messenger.gz.h(obj.d);
         org.telegram.messenger.c cVar = chatActivityEnterView.R;
         org.telegram.messenger.nj njVar = null;
         long j3 = chatActivityEnterView.Q2;
         org.telegram.messenger.ij ijVar = chatActivityEnterView.T2;
         threadMessage = chatActivityEnterView.getThreadMessage();
-        org.telegram.ui.qm qmVar2 = chatActivityEnterView.V2;
+        org.telegram.ui.sm smVar2 = chatActivityEnterView.V2;
         org.telegram.messenger.ij ijVar2 = chatActivityEnterView.Z1;
-        org.telegram.ui.an anVar2 = chatActivityEnterView.P2;
-        if (anVar2 != null) {
-            hwVar = anVar2.W8();
+        org.telegram.ui.cn cnVar2 = chatActivityEnterView.P2;
+        if (cnVar2 != null) {
+            hwVar = cnVar2.X8();
         } else {
             hwVar = null;
         }
         long sendMonoForumPeerId = chatActivityEnterView.getSendMonoForumPeerId();
-        org.telegram.ui.an anVar3 = chatActivityEnterView.P2;
-        if (anVar3 != null) {
-            njVar = anVar3.f44010w5;
+        org.telegram.ui.cn cnVar3 = chatActivityEnterView.P2;
+        if (cnVar3 != null) {
+            njVar = cnVar3.f44667w5;
         }
-        org.telegram.messenger.gz.X(cVar, arrayList, j3, ijVar, threadMessage, null, qmVar2, false, false, ijVar2, null, z9, i10, i11, h, null, hwVar, 0L, false, 0L, sendMonoForumPeerId, njVar, null, false);
+        org.telegram.messenger.gz.X(cVar, arrayList, j3, ijVar, threadMessage, null, smVar2, false, false, ijVar2, null, z9, i10, i11, h, null, hwVar, 0L, false, 0L, sendMonoForumPeerId, njVar, null, false);
         wf wfVar = chatActivityEnterView.Z2;
         if (wfVar != null) {
             wfVar.F(null, true, i10, i11, 0L);

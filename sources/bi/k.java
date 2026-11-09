@@ -29,16 +29,16 @@ public final class k implements RequestDelegate {
                 org.telegram.messenger.g0.h3(new l((z) this.d, tL_error, (TwoStepVerificationActivity) this.f4126e, (Activity) this.f4127f, this.f4124b, this.f4125c, tLObject));
                 return;
             default:
-                org.telegram.messenger.g0.h3(new o((di.y6) this.d, tL_error, this.f4124b, this.f4125c, (c20) this.f4126e, (org.telegram.ui.ActionBar.f6) this.f4127f));
+                org.telegram.messenger.g0.h3(new o((di.z6) this.d, tL_error, this.f4124b, this.f4125c, (c20) this.f4126e, (org.telegram.ui.ActionBar.g6) this.f4127f));
                 return;
         }
     }
 
-    public k(di.y6 y6Var, boolean z9, long j3, c20 c20Var, org.telegram.ui.ActionBar.f6 f6Var) {
-        this.d = y6Var;
+    public k(di.z6 z6Var, boolean z9, long j3, c20 c20Var, org.telegram.ui.ActionBar.g6 g6Var) {
+        this.d = z6Var;
         this.f4124b = z9;
         this.f4125c = j3;
         this.f4126e = c20Var;
-        this.f4127f = f6Var;
+        this.f4127f = g6Var;
     }
 }

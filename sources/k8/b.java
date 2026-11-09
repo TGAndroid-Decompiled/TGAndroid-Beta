@@ -29,11 +29,11 @@ public abstract class b {
                     try {
                         l8.a x12 = a10.x1();
                         m.g(x12);
-                        z0.f5984a = x12;
+                        z0.f5982a = x12;
                         e z12 = a10.z1();
-                        if (q9.f5820a == null) {
+                        if (q9.f5818a == null) {
                             m.h(z12, "delegate must not be null");
-                            q9.f5820a = z12;
+                            q9.f5818a = z12;
                         }
                         f17231a = true;
                         try {

@@ -1,7 +1,7 @@
 package li;
 
 import android.os.SystemClock;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.l6;
 public final class d1 implements Runnable {
     public final int f18510a;
     public final g1 f18511b;
@@ -29,7 +29,7 @@ public final class d1 implements Runnable {
                 }
                 return;
             default:
-                boolean h12 = k6.h1();
+                boolean h12 = l6.h1();
                 g1 g1Var2 = this.f18511b;
                 if (h12) {
                     g1Var2.postDelayed(this, 100L);

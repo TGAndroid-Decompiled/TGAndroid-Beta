@@ -6,33 +6,33 @@ import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.HashSet;
-public final class ac extends ya implements org.telegram.ui.ActionBar.a6 {
-    public final org.telegram.ui.ActionBar.f6 f31764a;
-    public Runnable f31765b;
-    public Runnable f31766c;
+public final class ac extends ya implements org.telegram.ui.ActionBar.b6 {
+    public final org.telegram.ui.ActionBar.g6 f31765a;
+    public Runnable f31766b;
+    public Runnable f31767c;
     public cc d;
-    public final TextView f31767e;
-    public boolean f31768f;
+    public final TextView f31768e;
+    public boolean f31769f;
     public final Drawable h;
-    public final Drawable f31769n;
+    public final Drawable f31770n;
 
-    public ac(Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z9, boolean z10) {
+    public ac(Context context, org.telegram.ui.ActionBar.g6 g6Var, boolean z9, boolean z10) {
         super(context);
         int x02;
-        this.f31764a = f6Var;
-        int i7 = org.telegram.ui.ActionBar.k6.uj;
-        if (f6Var != null) {
-            x02 = f6Var.h(i7);
+        this.f31765a = g6Var;
+        int i7 = org.telegram.ui.ActionBar.l6.uj;
+        if (g6Var != null) {
+            x02 = g6Var.h(i7);
         } else {
-            x02 = org.telegram.ui.ActionBar.k6.x0(null, i7, false);
+            x02 = org.telegram.ui.ActionBar.l6.x0(null, i7, false);
         }
         if (z9) {
             TextView textView = new TextView(context);
-            this.f31767e = textView;
-            textView.setBackground(org.telegram.ui.ActionBar.k6.h0((x02 & 16777215) | 419430400, 7, -1));
+            this.f31768e = textView;
+            textView.setBackground(org.telegram.ui.ActionBar.l6.h0((x02 & 16777215) | 419430400, 7, -1));
             this.h = textView.getBackground();
             com.google.android.recaptcha.internal.a.q(textView, 1, 14.0f);
-            org.telegram.messenger.camera.q.o(textView, i7, f6Var, null, 2131743888);
+            org.telegram.messenger.camera.q.o(textView, i7, g6Var, null, 2131743885);
             textView.setGravity(16);
             float f10 = z10 ? 34.0f : 12.0f;
             boolean z11 = org.telegram.messenger.id.f23157a0;
@@ -42,10 +42,10 @@ public final class ac extends ya implements org.telegram.ui.ActionBar.a6 {
         if (z10) {
             ImageView imageView = new ImageView(getContext());
             imageView.setImageResource(2131231001);
-            org.telegram.ui.ActionBar.r6.t(imageView, i7, f6Var, PorterDuff.Mode.MULTIPLY);
+            org.telegram.ui.ActionBar.s6.s(imageView, i7, g6Var, PorterDuff.Mode.MULTIPLY);
             if (!z9) {
-                imageView.setBackground(org.telegram.ui.ActionBar.k6.h0((x02 & 16777215) | 419430400, 1, -1));
-                this.f31769n = imageView.getBackground();
+                imageView.setBackground(org.telegram.ui.ActionBar.l6.h0((x02 & 16777215) | 419430400, 1, -1));
+                this.f31770n = imageView.getBackground();
             }
             c8.sa.a(imageView, 0.0f, 12.0f, 0.0f, 12.0f);
             addView(imageView, c8.ha.h(56.0f, 48.0f, 16));
@@ -61,14 +61,14 @@ public final class ac extends ya implements org.telegram.ui.ActionBar.a6 {
     @Override
     public final void d() {
         this.d = null;
-        Runnable runnable = this.f31766c;
-        if (runnable != null && !this.f31768f) {
+        Runnable runnable = this.f31767c;
+        if (runnable != null && !this.f31769f) {
             runnable.run();
         }
     }
 
     public final void e(CharSequence charSequence) {
-        TextView textView = this.f31767e;
+        TextView textView = this.f31768e;
         if (textView != null) {
             textView.setText(charSequence);
         }
@@ -76,8 +76,8 @@ public final class ac extends ya implements org.telegram.ui.ActionBar.a6 {
 
     public final void f() {
         if (this.d != null) {
-            this.f31768f = true;
-            Runnable runnable = this.f31765b;
+            this.f31769f = true;
+            Runnable runnable = this.f31766b;
             if (runnable != null) {
                 runnable.run();
             }
@@ -93,21 +93,21 @@ public final class ac extends ya implements org.telegram.ui.ActionBar.a6 {
         int x02;
         Drawable drawable;
         try {
-            int i7 = org.telegram.ui.ActionBar.k6.uj;
-            org.telegram.ui.ActionBar.f6 f6Var = this.f31764a;
-            if (f6Var != null) {
-                x02 = f6Var.h(i7);
+            int i7 = org.telegram.ui.ActionBar.l6.uj;
+            org.telegram.ui.ActionBar.g6 g6Var = this.f31765a;
+            if (g6Var != null) {
+                x02 = g6Var.h(i7);
             } else {
-                x02 = org.telegram.ui.ActionBar.k6.x0(null, i7, false);
+                x02 = org.telegram.ui.ActionBar.l6.x0(null, i7, false);
             }
             int i10 = (x02 & 16777215) | 419430400;
-            TextView textView = this.f31767e;
+            TextView textView = this.f31768e;
             if (textView != null && (drawable = this.h) != null && textView.getBackground() == drawable) {
-                org.telegram.ui.ActionBar.k6.H1(drawable, i10, true);
+                org.telegram.ui.ActionBar.l6.H1(drawable, i10, true);
             }
-            Drawable drawable2 = this.f31769n;
+            Drawable drawable2 = this.f31770n;
             if (drawable2 != null) {
-                org.telegram.ui.ActionBar.k6.H1(drawable2, i10, true);
+                org.telegram.ui.ActionBar.l6.H1(drawable2, i10, true);
             }
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
@@ -118,7 +118,7 @@ public final class ac extends ya implements org.telegram.ui.ActionBar.a6 {
     public final void addColorKeys(HashSet hashSet) {
     }
 
-    public ac(Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z9) {
-        this(context, f6Var, z9, !z9);
+    public ac(Context context, org.telegram.ui.ActionBar.g6 g6Var, boolean z9) {
+        this(context, g6Var, z9, !z9);
     }
 }

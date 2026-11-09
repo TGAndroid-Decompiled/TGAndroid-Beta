@@ -17,12 +17,12 @@ public final class h implements Runnable {
         switch (this.f3967a) {
             case 0:
                 z zVar = this.f3968b;
-                zVar.f5120h0.setLoading(false);
+                zVar.f5118h0.setLoading(false);
                 zVar.presentFragment(this.f3969c);
                 return;
             default:
                 z zVar2 = this.f3968b;
-                zVar2.f5109a0.setLoading(false);
+                zVar2.f5107a0.setLoading(false);
                 zVar2.presentFragment(this.f3969c);
                 return;
         }

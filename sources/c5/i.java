@@ -6,15 +6,15 @@ import m.k3;
 import m.w2;
 import v4.x0;
 public final class i implements Parcelable.ClassLoaderCreator {
-    public final int f5320a;
+    public final int f5318a;
 
     public i(int i7) {
-        this.f5320a = i7;
+        this.f5318a = i7;
     }
 
     @Override
     public final Object createFromParcel(Parcel parcel, ClassLoader classLoader) {
-        switch (this.f5320a) {
+        switch (this.f5318a) {
             case 0:
                 return new j(parcel, classLoader);
             case 1:
@@ -33,7 +33,7 @@ public final class i implements Parcelable.ClassLoaderCreator {
 
     @Override
     public final Object[] newArray(int i7) {
-        switch (this.f5320a) {
+        switch (this.f5318a) {
             case 0:
                 return new j[i7];
             case 1:
@@ -49,7 +49,7 @@ public final class i implements Parcelable.ClassLoaderCreator {
 
     @Override
     public final Object createFromParcel(Parcel parcel) {
-        switch (this.f5320a) {
+        switch (this.f5318a) {
             case 0:
                 return new j(parcel, null);
             case 1:

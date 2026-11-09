@@ -1,29 +1,43 @@
 package yb;
 
 import a8.ab;
+import a8.y6;
 import android.content.Context;
 import bi.b1;
 import h2.p0;
+import java.util.Locale;
 import pb.g;
 public final class d extends b1 {
-    public final g f59345b;
+    public final g f59354b;
 
     public d(g gVar) {
         super(4);
-        this.f59345b = gVar;
+        this.f59354b = gVar;
     }
 
     @Override
     public final Object Q0(Object obj) {
-        a bVar;
+        String str;
+        p0 p0Var;
         xb.a aVar = (xb.a) obj;
-        Context b10 = this.f59345b.b();
+        Context b10 = this.f59354b.b();
         n6.e.f20501b.getClass();
         if (n6.e.a(b10) >= 204700000) {
-            bVar = new p0(b10, aVar);
+            p0Var = new p0(b10, aVar);
         } else {
-            bVar = new b(b10, aVar);
+            ?? obj2 = new Object();
+            obj2.f59348b = b10;
+            Locale.getDefault().getLanguage().equals(Locale.ENGLISH.getLanguage());
+            obj2.f59349c = new y6(1, -1, aVar.f57653a, 1);
+            n6.e.f20501b.getClass();
+            if (n6.e.a(b10) >= 200400000) {
+                str = "com.google.android.gms.vision.ica";
+            } else {
+                str = "com.google.android.gms.vision.dynamite";
+            }
+            obj2.d = str;
+            p0Var = obj2;
         }
-        return new e(aVar, bVar, ab.d());
+        return new e(aVar, p0Var, ab.d());
     }
 }

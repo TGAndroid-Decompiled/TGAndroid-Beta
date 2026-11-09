@@ -272,13 +272,13 @@ public final class z implements f3.o {
                     xVar3.N(6);
                     i iVar2 = yVar.f19856a;
                     d4.f fVar = yVar.f19858c;
-                    xVar3.k(0, 3, (byte[]) fVar.f8164b);
+                    xVar3.k(0, 3, (byte[]) fVar.f8162b);
                     fVar.J(0);
                     fVar.L(8);
                     yVar.d = fVar.i();
                     yVar.f19859e = fVar.i();
                     fVar.L(6);
-                    xVar3.k(0, fVar.j(8), (byte[]) fVar.f8164b);
+                    xVar3.k(0, fVar.j(8), (byte[]) fVar.f8162b);
                     fVar.J(0);
                     k0 k0Var2 = yVar.f19857b;
                     yVar.f19861g = 0L;

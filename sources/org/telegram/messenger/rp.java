@@ -29,7 +29,7 @@ public final class rp implements Runnable {
             default:
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f25319f;
                 CharSequence charSequence = (CharSequence) this.h;
-                chatActivityEnterView.f31047f0 = null;
+                chatActivityEnterView.f31052f0 = null;
                 chatActivityEnterView.o0(true);
                 org.telegram.ui.Components.xe xeVar = chatActivityEnterView.E0;
                 if (xeVar != null) {

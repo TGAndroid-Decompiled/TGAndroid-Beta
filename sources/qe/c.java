@@ -1,7 +1,7 @@
 package qe;
 public final class c {
-    public static final char[] f54091a = new char[117];
-    public static final byte[] f54092b = new byte[126];
+    public static final char[] f54103a = new char[117];
+    public static final byte[] f54104b = new byte[126];
 
     static {
         for (int i7 = 0; i7 < 32; i7++) {
@@ -14,7 +14,7 @@ public final class c {
         a('/', 47);
         a('\"', 34);
         a('\\', 92);
-        byte[] bArr = f54092b;
+        byte[] bArr = f54104b;
         for (int i10 = 0; i10 < 33; i10++) {
             bArr[i10] = Byte.MAX_VALUE;
         }
@@ -34,7 +34,7 @@ public final class c {
 
     public static void a(char c10, int i7) {
         if (c10 != 'u') {
-            f54091a[c10] = (char) i7;
+            f54103a[c10] = (char) i7;
         }
     }
 }

@@ -4,8 +4,8 @@ import android.content.Context;
 public final class jf extends hi.k0 {
     public final ChatActivityEnterView D;
 
-    public jf(ChatActivityEnterView chatActivityEnterView, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, f6Var);
+    public jf(ChatActivityEnterView chatActivityEnterView, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, g6Var);
         this.D = chatActivityEnterView;
     }
 
@@ -13,7 +13,7 @@ public final class jf extends hi.k0 {
     public final void setTranslationY(float f10) {
         super.setTranslationY(f10);
         ChatActivityEnterView chatActivityEnterView = this.D;
-        if (chatActivityEnterView.V0 != null && chatActivityEnterView.f31101o3 == 1) {
+        if (chatActivityEnterView.V0 != null && chatActivityEnterView.f31106o3 == 1) {
             chatActivityEnterView.Z2.w(f10);
         }
     }

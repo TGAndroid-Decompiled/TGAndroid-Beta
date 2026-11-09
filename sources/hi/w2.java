@@ -3,12 +3,12 @@ package hi;
 import android.content.Context;
 import android.graphics.Point;
 import android.view.View;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g6;
 public final class w2 extends t {
     public final a3 f15021s;
 
-    public w2(a3 a3Var, Context context, f6 f6Var) {
-        super(context, f6Var);
+    public w2(a3 a3Var, Context context, g6 g6Var) {
+        super(context, g6Var);
         this.f15021s = a3Var;
     }
 

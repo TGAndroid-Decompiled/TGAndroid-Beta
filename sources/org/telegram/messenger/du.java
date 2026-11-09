@@ -15,13 +15,13 @@ import java.io.File;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.RadialProgress2;
-import org.telegram.ui.Components.jm0;
-import org.telegram.ui.Components.u31;
+import org.telegram.ui.Components.km0;
+import org.telegram.ui.Components.v31;
 public final class du extends fu implements x5, ls {
     public final ij W;
     public final TLRPC.Document X;
     public final RadialProgress2 Y;
-    public final jm0 Z;
+    public final km0 Z;
     public final TextPaint f22103a0;
     public StaticLayout f22104b0;
     public StaticLayout f22105c0;
@@ -65,9 +65,9 @@ public final class du extends fu implements x5, ls {
         this.Y = radialProgress2;
         radialProgress2.setCircleRadius(g0.L(24.0f));
         radialProgress2.r(L, L2, L + L3, L3 + L2);
-        jm0 jm0Var = new jm0(null);
-        this.Z = jm0Var;
-        jm0Var.h = new j1(this, 15);
+        km0 km0Var = new km0(null);
+        this.Z = km0Var;
+        km0Var.h = new j1(this, 15);
         k0();
         l0(false);
     }
@@ -96,7 +96,7 @@ public final class du extends fu implements x5, ls {
 
     @Override
     public final boolean Q() {
-        return this.Z.f35023e;
+        return this.Z.f35379e;
     }
 
     @Override
@@ -104,7 +104,7 @@ public final class du extends fu implements x5, ls {
         View view = this.V;
         if (view != null) {
             this.Y.n(view);
-            this.Z.f35036s = this.V;
+            this.Z.f35392s = this.V;
         }
         l0(false);
         kv kvVar = this.f22469a;
@@ -150,69 +150,69 @@ public final class du extends fu implements x5, ls {
             canvas.save();
             canvas.translate(-kvVar.S, 0.0f);
             if (kvVar.E()) {
-                i7 = org.telegram.ui.ActionBar.k6.Bc;
+                i7 = org.telegram.ui.ActionBar.l6.Bc;
             } else {
-                i7 = org.telegram.ui.ActionBar.k6.We;
+                i7 = org.telegram.ui.ActionBar.l6.We;
             }
             if (kvVar.E()) {
-                i10 = org.telegram.ui.ActionBar.k6.Cc;
+                i10 = org.telegram.ui.ActionBar.l6.Cc;
             } else {
-                i10 = org.telegram.ui.ActionBar.k6.Xe;
+                i10 = org.telegram.ui.ActionBar.l6.Xe;
             }
             if (kvVar.E()) {
-                i11 = org.telegram.ui.ActionBar.k6.Db;
+                i11 = org.telegram.ui.ActionBar.l6.Db;
             } else {
-                i11 = org.telegram.ui.ActionBar.k6.f27950id;
+                i11 = org.telegram.ui.ActionBar.l6.f27963id;
             }
             if (kvVar.E()) {
-                i12 = org.telegram.ui.ActionBar.k6.Eb;
+                i12 = org.telegram.ui.ActionBar.l6.Eb;
             } else {
-                i12 = org.telegram.ui.ActionBar.k6.f27968jd;
+                i12 = org.telegram.ui.ActionBar.l6.f27981jd;
             }
             RadialProgress2 radialProgress2 = this.Y;
             radialProgress2.g(i7, i10, i11, i12);
             if (kvVar.E()) {
-                i13 = org.telegram.ui.ActionBar.k6.f28117rc;
+                i13 = org.telegram.ui.ActionBar.l6.f28130rc;
             } else {
-                i13 = org.telegram.ui.ActionBar.k6.f28080pe;
+                i13 = org.telegram.ui.ActionBar.l6.f28093pe;
             }
-            radialProgress2.d = org.telegram.ui.ActionBar.k6.w0(i13, kvVar.D);
+            radialProgress2.d = org.telegram.ui.ActionBar.l6.w0(i13, kvVar.D);
             radialProgress2.draw(canvas);
             if (kvVar.E()) {
-                i14 = org.telegram.ui.ActionBar.k6.f27986kc;
+                i14 = org.telegram.ui.ActionBar.l6.f27999kc;
             } else {
-                i14 = org.telegram.ui.ActionBar.k6.f27951ie;
+                i14 = org.telegram.ui.ActionBar.l6.f27964ie;
             }
-            int w02 = org.telegram.ui.ActionBar.k6.w0(i14, kvVar.D);
+            int w02 = org.telegram.ui.ActionBar.l6.w0(i14, kvVar.D);
             if (kvVar.E()) {
-                i15 = org.telegram.ui.ActionBar.k6.f28005lc;
+                i15 = org.telegram.ui.ActionBar.l6.f28018lc;
             } else {
-                i15 = org.telegram.ui.ActionBar.k6.f27969je;
+                i15 = org.telegram.ui.ActionBar.l6.f27982je;
             }
-            int w03 = org.telegram.ui.ActionBar.k6.w0(i15, kvVar.D);
+            int w03 = org.telegram.ui.ActionBar.l6.w0(i15, kvVar.D);
             if (kvVar.E()) {
-                i16 = org.telegram.ui.ActionBar.k6.f28040nc;
+                i16 = org.telegram.ui.ActionBar.l6.f28053nc;
             } else {
-                i16 = org.telegram.ui.ActionBar.k6.le;
+                i16 = org.telegram.ui.ActionBar.l6.le;
             }
-            int w04 = org.telegram.ui.ActionBar.k6.w0(i16, kvVar.D);
+            int w04 = org.telegram.ui.ActionBar.l6.w0(i16, kvVar.D);
             if (kvVar.E()) {
-                i17 = org.telegram.ui.ActionBar.k6.f28040nc;
+                i17 = org.telegram.ui.ActionBar.l6.f28053nc;
             } else {
-                i17 = org.telegram.ui.ActionBar.k6.le;
+                i17 = org.telegram.ui.ActionBar.l6.le;
             }
-            int w05 = org.telegram.ui.ActionBar.k6.w0(i17, kvVar.D);
+            int w05 = org.telegram.ui.ActionBar.l6.w0(i17, kvVar.D);
             if (kvVar.E()) {
-                i18 = org.telegram.ui.ActionBar.k6.f28021mc;
+                i18 = org.telegram.ui.ActionBar.l6.f28034mc;
             } else {
-                i18 = org.telegram.ui.ActionBar.k6.f27988ke;
+                i18 = org.telegram.ui.ActionBar.l6.f28001ke;
             }
-            int w06 = org.telegram.ui.ActionBar.k6.w0(i18, kvVar.D);
-            jm0 jm0Var = this.Z;
-            jm0Var.g(w02, w03, w04, w05, w06);
+            int w06 = org.telegram.ui.ActionBar.l6.w0(i18, kvVar.D);
+            km0 km0Var = this.Z;
+            km0Var.g(w02, w03, w04, w05, w06);
             canvas.save();
             canvas.translate(this.f22110h0, this.f22111i0);
-            jm0Var.b(canvas);
+            km0Var.b(canvas);
             canvas.restore();
             StaticLayout staticLayout = this.f22105c0;
             int i21 = this.f22107e0;
@@ -232,17 +232,17 @@ public final class du extends fu implements x5, ls {
             RectF rectF = this.m0;
             if (z9) {
                 if (kvVar.E()) {
-                    org.telegram.ui.ActionBar.f6 f6Var = kvVar.D;
-                    if (f6Var != null) {
-                        drawable = f6Var.getDrawable("drawableMsgOutMenu");
+                    org.telegram.ui.ActionBar.g6 g6Var = kvVar.D;
+                    if (g6Var != null) {
+                        drawable = g6Var.getDrawable("drawableMsgOutMenu");
                     } else {
                         drawable = null;
                     }
                     if (drawable == null) {
-                        drawable = org.telegram.ui.ActionBar.k6.R0("drawableMsgOutMenu");
+                        drawable = org.telegram.ui.ActionBar.l6.R0("drawableMsgOutMenu");
                     }
                 } else {
-                    drawable = org.telegram.ui.ActionBar.k6.f27832c4;
+                    drawable = org.telegram.ui.ActionBar.l6.f27845c4;
                 }
                 int L = (this.f22113k0 + this.f22470b.right) - g0.L(32.0f);
                 int L2 = g0.L(7.0f);
@@ -389,7 +389,7 @@ public final class du extends fu implements x5, ls {
             if (i7 == qs.f25010h2) {
                 l0(true);
             } else if (i7 != qs.f24998f2 && i7 != qs.f25004g2) {
-                if (i7 == qs.f24992e2 && ijVar2.f1() == ((Integer) objArr[0]).intValue() && (ijVar = MediaController.B().f21295u0) != null) {
+                if (i7 == qs.f24992e2 && ijVar2.e1() == ((Integer) objArr[0]).intValue() && (ijVar = MediaController.B().f21295u0) != null) {
                     ijVar2.f23222b0 = ijVar.f23222b0;
                     ijVar2.f23245g0 = ijVar.f23245g0;
                     ijVar2.f23249h0 = ijVar.f23249h0;
@@ -465,12 +465,12 @@ public final class du extends fu implements x5, ls {
         this.f22112j0 = jg.g.e(f10, i11, 0);
         ij ijVar = this.W;
         if (ijVar != null) {
-            str = ijVar.x1(false);
+            str = ijVar.w1(false);
         } else {
             str = null;
         }
         if (ijVar != null) {
-            str2 = ijVar.z1(false);
+            str2 = ijVar.y1(false);
         } else {
             str2 = null;
         }
@@ -488,11 +488,11 @@ public final class du extends fu implements x5, ls {
                 spannableStringBuilder = new SpannableStringBuilder(str);
             }
             if (!TextUtils.isEmpty(str)) {
-                spannableStringBuilder.setSpan(new u31(g0.o()), 0, str.length(), 18);
+                spannableStringBuilder.setSpan(new v31(g0.o()), 0, str.length(), 18);
             }
             this.f22103a0.setTextSize(g0.L(16.0f));
             int L2 = g0.L(50.0f) + this.f22112j0;
-            this.f22104b0 = new StaticLayout(TextUtils.ellipsize(spannableStringBuilder, org.telegram.ui.ActionBar.k6.O2, L2, TextUtils.TruncateAt.END), this.f22103a0, L2, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.f22104b0 = new StaticLayout(TextUtils.ellipsize(spannableStringBuilder, org.telegram.ui.ActionBar.l6.O2, L2, TextUtils.TruncateAt.END), this.f22103a0, L2, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.f22111i0 = g0.L(11.0f) + ((i7 - g0.L(30.0f)) / 2) + i12;
         }
         this.Z.i(this.f22112j0, g0.L(30.0f));
@@ -533,7 +533,7 @@ public final class du extends fu implements x5, ls {
             radialProgress2.setIcon(j0(), false, z9);
         } else {
             z5.q(i7).a(r10, null, this);
-            if (iz.B0 && ijVar != null && ijVar.J3() && !ij.S5(ijVar.f23262k) && !m5.C(ij.B0(ijVar.f23262k))) {
+            if (iz.B0 && ijVar != null && ijVar.I3() && !ij.R5(ijVar.f23262k) && !m5.C(ij.B0(ijVar.f23262k))) {
                 if (!MediaController.B().I(ijVar) || MediaController.B().H()) {
                     i10 = 0;
                 }
@@ -565,9 +565,9 @@ public final class du extends fu implements x5, ls {
         int i10;
         TLRPC.Document document = this.X;
         if (document != null && (ijVar = this.W) != null) {
-            jm0 jm0Var = this.Z;
-            if (!jm0Var.f35023e) {
-                jm0Var.h(ijVar.f23222b0);
+            km0 km0Var = this.Z;
+            if (!km0Var.f35379e) {
+                km0Var.h(ijVar.f23222b0);
             }
             if (MediaController.B().I(ijVar)) {
                 i7 = ijVar.f23245g0;
@@ -597,11 +597,11 @@ public final class du extends fu implements x5, ls {
             }
             kv kvVar = this.f22469a;
             if (kvVar.E()) {
-                i10 = org.telegram.ui.ActionBar.k6.Tc;
+                i10 = org.telegram.ui.ActionBar.l6.Tc;
             } else {
-                i10 = org.telegram.ui.ActionBar.k6.Sc;
+                i10 = org.telegram.ui.ActionBar.l6.Sc;
             }
-            textPaint.setColor(org.telegram.ui.ActionBar.k6.w0(i10, kvVar.D));
+            textPaint.setColor(org.telegram.ui.ActionBar.l6.w0(i10, kvVar.D));
             View view = this.V;
             if (view != null) {
                 view.invalidate();

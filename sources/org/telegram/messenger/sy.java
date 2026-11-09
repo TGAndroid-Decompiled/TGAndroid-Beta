@@ -91,9 +91,9 @@ public final class sy {
                 message.send_state = 2;
                 message.errorAllowedPriceStars = 0L;
                 message.errorNewPriceStars = 0L;
-                gzVar.getNotificationCenter().k(i10, Integer.valueOf(ijVar.f1()));
-                gzVar.d0(ijVar.f1());
-                gzVar.j0(ijVar.f1(), this.H);
+                gzVar.getNotificationCenter().k(i10, Integer.valueOf(ijVar.e1()));
+                gzVar.d0(ijVar.e1());
+                gzVar.j0(ijVar.e1(), this.H);
             }
             gzVar.f22764a.remove("group_" + this.F);
         } else {
@@ -104,9 +104,9 @@ public final class sy {
             message2.send_state = 2;
             message2.errorAllowedPriceStars = 0L;
             message2.errorNewPriceStars = 0L;
-            gzVar.getNotificationCenter().k(i10, Integer.valueOf(this.f25548m.f1()));
-            gzVar.d0(this.f25548m.f1());
-            gzVar.j0(this.f25548m.f1(), this.H);
+            gzVar.getNotificationCenter().k(i10, Integer.valueOf(this.f25548m.e1()));
+            gzVar.d0(this.f25548m.e1());
+            gzVar.j0(this.f25548m.e1(), this.H);
         }
         d();
     }

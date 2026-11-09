@@ -15,19 +15,19 @@ import org.telegram.messenger.hc;
 import org.telegram.messenger.id;
 import org.telegram.messenger.m20;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.a6;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.a80;
-public final class g1 extends LinearLayout implements a6 {
-    public final f6 f17390a;
-    public final a80 f17391b;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.s6;
+import org.telegram.ui.Components.b80;
+public final class g1 extends LinearLayout implements b6 {
+    public final g6 f17390a;
+    public final b80 f17391b;
     public final ImageReceiver f17392c;
     public final TextView d;
     public boolean f17393e;
 
-    public g1(Context context, f6 f6Var) {
+    public g1(Context context, g6 g6Var) {
         super(context);
         int i7;
         int i10;
@@ -36,15 +36,15 @@ public final class g1 extends LinearLayout implements a6 {
         int i13;
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.f17392c = imageReceiver;
-        this.f17390a = f6Var;
+        this.f17390a = g6Var;
         setOrientation(1);
-        a80 a80Var = new a80();
-        this.f17391b = a80Var;
-        int i14 = k6.G6;
-        int w02 = k6.w0(i14, f6Var);
-        a80Var.g(k6.r1(0.05f, w02), k6.r1(0.15f, w02), k6.r1(0.1f, w02), k6.r1(0.3f, w02));
-        a80Var.k(4.0f);
-        a80Var.f31751x.setStrokeWidth(org.telegram.messenger.g0.L(1.0f));
+        b80 b80Var = new b80();
+        this.f17391b = b80Var;
+        int i14 = l6.G6;
+        int w02 = l6.w0(i14, g6Var);
+        b80Var.g(l6.r1(0.05f, w02), l6.r1(0.15f, w02), l6.r1(0.1f, w02), l6.r1(0.3f, w02));
+        b80Var.k(4.0f);
+        b80Var.f32186x.setStrokeWidth(org.telegram.messenger.g0.L(1.0f));
         imageReceiver.J0(org.telegram.messenger.g0.L(4.0f));
         TextView textView = new TextView(context);
         this.d = textView;
@@ -54,7 +54,7 @@ public final class g1 extends LinearLayout implements a6 {
             i7 = 3;
         }
         textView.setGravity(i7);
-        r6.V(textView, i14, f6Var);
+        s6.U(textView, i14, g6Var);
         textView.setTextSize(1, 16.0f);
         boolean z9 = id.f23157a0;
         if (z9) {
@@ -70,7 +70,7 @@ public final class g1 extends LinearLayout implements a6 {
         addView(textView, ha.t(-1, -2, 55, i10, 10, i11, 4));
         TextView textView2 = new TextView(context);
         textView2.setGravity(id.f23157a0 ? 5 : 3);
-        org.telegram.messenger.camera.q.o(textView2, k6.f28262z6, f6Var, null, 2131752689);
+        org.telegram.messenger.camera.q.o(textView2, l6.f28275z6, g6Var, null, 2131752689);
         textView2.setTextSize(1, 13.0f);
         boolean z10 = id.f23157a0;
         if (z10) {
@@ -116,9 +116,9 @@ public final class g1 extends LinearLayout implements a6 {
         imageReceiver.h(canvas, null);
         super.onDraw(canvas);
         if (this.f17393e) {
-            Paint W0 = k6.W0("paintDivider", this.f17390a);
+            Paint W0 = l6.W0("paintDivider", this.f17390a);
             if (W0 == null) {
-                W0 = k6.f27975k0;
+                W0 = l6.f27988k0;
             }
             Paint paint = W0;
             float f12 = 21.33f;
@@ -144,11 +144,11 @@ public final class g1 extends LinearLayout implements a6 {
 
     @Override
     public final void updateColors() {
-        a80 a80Var = this.f17391b;
-        if (a80Var != null) {
+        b80 b80Var = this.f17391b;
+        if (b80Var != null) {
             try {
-                int w02 = k6.w0(k6.G6, this.f17390a);
-                a80Var.g(k6.r1(0.05f, w02), k6.r1(0.15f, w02), k6.r1(0.1f, w02), k6.r1(0.3f, w02));
+                int w02 = l6.w0(l6.G6, this.f17390a);
+                b80Var.g(l6.r1(0.05f, w02), l6.r1(0.15f, w02), l6.r1(0.1f, w02), l6.r1(0.3f, w02));
                 invalidate();
             } catch (Exception e10) {
                 a8.g(e10, true);

@@ -6,37 +6,37 @@ import c8.xb;
 import com.google.android.gms.common.internal.BinderWrapper;
 import q6.h0;
 public final class x implements Parcelable.Creator {
-    public final int f53826a;
+    public final int f53838a;
 
     public x(int i7) {
-        this.f53826a = i7;
+        this.f53838a = i7;
     }
 
     public static void a(q6.g gVar, Parcel parcel, int i7) {
         int r10 = xb.r(parcel, 20293);
-        int i10 = gVar.f53873a;
+        int i10 = gVar.f53885a;
         xb.q(parcel, 1, 4);
         parcel.writeInt(i10);
-        int i11 = gVar.f53874b;
+        int i11 = gVar.f53886b;
         xb.q(parcel, 2, 4);
         parcel.writeInt(i11);
-        int i12 = gVar.f53875c;
+        int i12 = gVar.f53887c;
         xb.q(parcel, 3, 4);
         parcel.writeInt(i12);
         xb.l(parcel, 4, gVar.d);
-        xb.f(parcel, 5, gVar.f53876e);
-        xb.o(parcel, 6, gVar.f53877f, i7);
+        xb.f(parcel, 5, gVar.f53888e);
+        xb.o(parcel, 6, gVar.f53889f, i7);
         xb.b(parcel, 7, gVar.h);
-        xb.k(parcel, 8, gVar.f53878n, i7);
-        xb.o(parcel, 10, gVar.f53879r, i7);
-        xb.o(parcel, 11, gVar.f53880s, i7);
-        boolean z9 = gVar.f53881w;
+        xb.k(parcel, 8, gVar.f53890n, i7);
+        xb.o(parcel, 10, gVar.f53891r, i7);
+        xb.o(parcel, 11, gVar.f53892s, i7);
+        boolean z9 = gVar.f53893w;
         xb.q(parcel, 12, 4);
         parcel.writeInt(z9 ? 1 : 0);
-        int i13 = gVar.f53882x;
+        int i13 = gVar.f53894x;
         xb.q(parcel, 13, 4);
         parcel.writeInt(i13);
-        boolean z10 = gVar.f53883y;
+        boolean z10 = gVar.f53895y;
         xb.q(parcel, 14, 4);
         parcel.writeInt(z10 ? 1 : 0);
         xb.l(parcel, 15, gVar.D);
@@ -50,7 +50,7 @@ public final class x implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i7) {
-        switch (this.f53826a) {
+        switch (this.f53838a) {
             case 0:
                 return new y[i7];
             case 1:

@@ -1,35 +1,19 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class ow implements Runnable {
-    public final int f48548a;
-    public final pw f48549b;
+import android.view.MotionEvent;
+public final class ow extends org.telegram.ui.Components.fz {
+    public final yw B0;
 
-    public ow(pw pwVar, int i7) {
-        this.f48548a = i7;
-        this.f48549b = pwVar;
+    public ow(yw ywVar, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, g6Var);
+        this.B0 = ywVar;
     }
 
     @Override
-    public final void run() {
-        int i7;
-        switch (this.f48548a) {
-            case 0:
-                pw pwVar = this.f48549b;
-                ww wwVar = pwVar.f48966n0;
-                Context context = pwVar.getContext();
-                i7 = ((org.telegram.ui.ActionBar.f2) wwVar).currentAccount;
-                wwVar.showDialog(new ug.i0(3, i7, context, wwVar, null));
-                return;
-            default:
-                ww wwVar2 = this.f48549b.f48966n0;
-                uv uvVar = wwVar2.M0;
-                if (uvVar != null) {
-                    uvVar.dismiss();
-                    wwVar2.M0 = null;
-                    return;
-                }
-                return;
-        }
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        getParent().requestDisallowInterceptTouchEvent(true);
+        this.B0.f52282o3 = false;
+        return super.onInterceptTouchEvent(motionEvent);
     }
 }

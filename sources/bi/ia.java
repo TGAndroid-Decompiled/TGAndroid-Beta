@@ -16,9 +16,9 @@ import org.telegram.messenger.ui;
 import org.telegram.messenger.yr;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.xs0;
+import org.telegram.ui.Components.zs0;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.an;
+import org.telegram.ui.cn;
 public final class ia implements Runnable {
     public final int f4057a;
     public final long f4058b;
@@ -48,26 +48,26 @@ public final class ia implements Runnable {
                 Long l10 = (Long) obj;
                 org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
                 if (T != null) {
-                    an ra2 = an.ra(l10.longValue());
-                    T.presentFragment(ra2);
+                    cn ta2 = cn.ta(l10.longValue());
+                    T.presentFragment(ta2);
                     TLRPC.Chat M0 = qp.s1(i11).M0(Long.valueOf(-l10.longValue()));
                     if (M0 != null) {
-                        org.telegram.messenger.g0.i3(new ja(ra2, this.f4058b, M0, 0), 250L);
+                        org.telegram.messenger.g0.i3(new ja(ta2, this.f4058b, M0, 0), 250L);
                         return;
                     }
                     return;
                 }
                 return;
             case 1:
-                di.y6 y6Var = (di.y6) obj;
-                int max = Math.max(y6Var.f9967f.get(j3, 0), i11);
-                y6Var.f9967f.put(j3, max);
-                y6Var.f9971k.i(max, j3);
-                TL_stories.PeerStories y10 = y6Var.y(j3);
+                di.z6 z6Var = (di.z6) obj;
+                int max = Math.max(z6Var.f9996f.get(j3, 0), i11);
+                z6Var.f9996f.put(j3, max);
+                z6Var.f10000k.i(max, j3);
+                TL_stories.PeerStories y10 = z6Var.y(j3);
                 if (y10 != null && i11 > y10.max_read_id) {
                     y10.max_read_id = i11;
-                    Collections.sort(y6Var.f9968g, y6Var.J);
-                    qs.f(y6Var.f9963a).k(324, new Object[0]);
+                    Collections.sort(z6Var.f9997g, z6Var.J);
+                    qs.f(z6Var.f9992a).k(324, new Object[0]);
                     return;
                 }
                 return;
@@ -110,7 +110,7 @@ public final class ia implements Runnable {
                 if (arrayList != null && !arrayList.isEmpty()) {
                     sy syVar = (sy) arrayList.get(0);
                     ij ijVar = (ij) jg.g.i(1, syVar.f25558x);
-                    syVar.G = ijVar.f1();
+                    syVar.G = ijVar.e1();
                     ijVar.f23262k.params.put("final", "1");
                     TLRPC.TL_messages_messages tL_messages_messages = new TLRPC.TL_messages_messages();
                     tL_messages_messages.messages.add(ijVar.f23262k);
@@ -142,7 +142,7 @@ public final class ia implements Runnable {
                 }
                 return;
             default:
-                xs0.e((xs0) obj, j3, i11);
+                zs0.e((zs0) obj, j3, i11);
                 return;
         }
     }

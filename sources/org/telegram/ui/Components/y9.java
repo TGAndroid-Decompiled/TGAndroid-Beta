@@ -10,33 +10,33 @@ import android.view.View;
 import java.util.ArrayList;
 import javax.microedition.khronos.egl.EGLContext;
 public final class y9 {
-    public int f40625a;
-    public final View f40626b;
-    public final ArrayList f40627c;
+    public int f40671a;
+    public final View f40672b;
+    public final ArrayList f40673c;
     public final ArrayList d;
-    public final ArrayList f40628e;
-    public final Object f40629f;
-    public EGLContext f40630g;
+    public final ArrayList f40674e;
+    public final Object f40675f;
+    public EGLContext f40676g;
     public final Object h;
-    public int f40631i;
-    public fi.ha f40632j;
-    public Object f40633k;
-    public Object f40634l;
-    public da f40635m;
-    public final h2.c f40636n;
-    public Bitmap f40637o;
-    public int f40638p;
+    public int f40677i;
+    public fi.ha f40678j;
+    public Object f40679k;
+    public Object f40680l;
+    public da f40681m;
+    public final h2.c f40682n;
+    public Bitmap f40683o;
+    public int f40684p;
 
     public y9(View view) {
         ArrayList arrayList = new ArrayList();
-        this.f40627c = arrayList;
+        this.f40673c = arrayList;
         this.d = new ArrayList();
-        this.f40628e = new ArrayList();
-        this.f40629f = new Object();
+        this.f40674e = new ArrayList();
+        this.f40675f = new Object();
         this.h = new Object();
-        this.f40636n = new h2.c(0, new xf(this, 14));
-        this.f40638p = 0;
-        this.f40626b = view;
+        this.f40682n = new h2.c(0, new xf(this, 14));
+        this.f40684p = 0;
+        this.f40672b = view;
         if (view.isAttachedToWindow()) {
             arrayList.clear();
             for (View view2 = view; view2 != null; view2 = (View) view2.getParent()) {
@@ -50,10 +50,10 @@ public final class y9 {
     }
 
     public final void a(EGLContext eGLContext) {
-        synchronized (this.f40629f) {
+        synchronized (this.f40675f) {
             try {
-                if (this.f40630g == null) {
-                    this.f40630g = eGLContext;
+                if (this.f40676g == null) {
+                    this.f40676g = eGLContext;
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -63,28 +63,28 @@ public final class y9 {
 
     public final Bitmap b() {
         Bitmap bitmap;
-        da daVar = this.f40635m;
+        da daVar = this.f40681m;
         if (daVar == null) {
-            return this.f40637o;
+            return this.f40683o;
         }
-        synchronized (daVar.f32848n) {
+        synchronized (daVar.f32907n) {
             try {
-                if (!daVar.f32851q) {
+                if (!daVar.f32910q) {
                     bitmap = null;
                 } else {
-                    bitmap = daVar.f32850p;
+                    bitmap = daVar.f32909p;
                 }
             } finally {
             }
         }
         if (bitmap == null) {
-            return this.f40637o;
+            return this.f40683o;
         }
         return bitmap;
     }
 
     public final boolean c() {
-        if (this.f40634l != null) {
+        if (this.f40680l != null) {
             return true;
         }
         return false;
@@ -98,9 +98,9 @@ public final class y9 {
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
-            ((ca) obj).f32502b.invalidate();
+            ((ca) obj).f32599b.invalidate();
         }
-        ArrayList arrayList2 = this.f40628e;
+        ArrayList arrayList2 = this.f40674e;
         int size2 = arrayList2.size();
         while (i7 < size2) {
             Object obj2 = arrayList2.get(i7);
@@ -110,26 +110,26 @@ public final class y9 {
     }
 
     public final void e() {
-        da daVar = this.f40635m;
+        da daVar = this.f40681m;
         if (daVar != null) {
-            synchronized (daVar.f32848n) {
-                daVar.f32851q = false;
+            synchronized (daVar.f32907n) {
+                daVar.f32910q = false;
             }
         }
     }
 
     public final void f(Bitmap bitmap, boolean z9) {
         StringBuilder sb2 = new StringBuilder("");
-        int i7 = this.f40638p;
-        this.f40638p = i7 + 1;
+        int i7 = this.f40684p;
+        this.f40684p = i7 + 1;
         sb2.append(i7);
-        this.f40637o = this.f40636n.s(bitmap, sb2.toString(), 0, 0, z9);
+        this.f40683o = this.f40682n.s(bitmap, sb2.toString(), 0, 0, z9);
     }
 
     public final void g(fi.ha haVar, Object obj) {
-        this.f40632j = haVar;
-        this.f40633k = obj;
-        this.f40631i = -14737633;
+        this.f40678j = haVar;
+        this.f40679k = obj;
+        this.f40677i = -14737633;
         if (obj != null && Build.VERSION.SDK_INT >= 31) {
             RenderNode renderNode = (RenderNode) obj;
             RenderNode renderNode2 = new RenderNode("blurRenderNode");
@@ -139,9 +139,9 @@ public final class y9 {
             beginRecording.drawColor(-14737633);
             beginRecording.drawRenderNode(renderNode);
             renderNode2.endRecording();
-            this.f40634l = renderNode2;
+            this.f40680l = renderNode2;
             return;
         }
-        this.f40634l = null;
+        this.f40680l = null;
     }
 }

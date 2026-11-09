@@ -58,7 +58,7 @@ public abstract class m5 {
         if (tLObject instanceof TLRPC.User) {
             TLRPC.User user = (TLRPC.User) tLObject;
             if (t10.z(user)) {
-                String M0 = id.M0(2131746267, null);
+                String M0 = id.M0(2131746266, null);
                 if (w8Var != null) {
                     w8Var.g(12);
                 }
@@ -67,7 +67,7 @@ public abstract class m5 {
                 }
                 return M0;
             } else if (t10.B(user)) {
-                String M02 = id.M0(2131745904, null);
+                String M02 = id.M0(2131745901, null);
                 if (w8Var != null) {
                     w8Var.g(1);
                 }
@@ -402,7 +402,7 @@ public abstract class m5 {
                 }
                 return id.H(',', "Members", chat.participants_count);
             } else if (t3.V(chat)) {
-                return id.M0(2131751391, null);
+                return id.M0(2131751390, null);
             } else {
                 return id.M0(2131754876, null);
             }

@@ -13,7 +13,7 @@ public final class q5 extends ImageView {
         super(context);
         this.f12663b = s5Var;
         this.f12662a = i7;
-        setBackground(org.telegram.ui.ActionBar.k6.h0(1090519039, 1, -1));
+        setBackground(org.telegram.ui.ActionBar.l6.h0(1090519039, 1, -1));
         setScaleType(ImageView.ScaleType.CENTER);
         setImageResource(i10);
         setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));

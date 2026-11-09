@@ -8,8 +8,8 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.id;
 public final class a9 extends FrameLayout {
-    public final TextView f28902a;
-    public final TextView f28903b;
+    public final TextView f28906a;
+    public final TextView f28907b;
 
     public a9(Context context) {
         super(context);
@@ -18,7 +18,7 @@ public final class a9 extends FrameLayout {
         int i11;
         setWillNotDraw(false);
         TextView textView = new TextView(context);
-        this.f28902a = textView;
+        this.f28906a = textView;
         org.telegram.messenger.camera.q.n(textView, 1, 16.0f, 1, 1);
         textView.setSingleLine(true);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
@@ -36,7 +36,7 @@ public final class a9 extends FrameLayout {
         }
         addView(textView, c8.ha.d(-2, -1.0f, i10 | 48, 21.0f, 0.0f, 21.0f, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f28903b = textView2;
+        this.f28907b = textView2;
         textView2.setTextSize(1, 16.0f);
         textView2.setTypeface(org.telegram.messenger.g0.o());
         textView2.setLines(1);
@@ -53,9 +53,9 @@ public final class a9 extends FrameLayout {
     }
 
     public final void a(String str, String str2, boolean z9) {
-        TextView textView = this.f28902a;
+        TextView textView = this.f28906a;
         textView.setText(str);
-        TextView textView2 = this.f28903b;
+        TextView textView2 = this.f28907b;
         if (str2 != null) {
             textView2.setText(str2);
             textView2.setVisibility(0);
@@ -63,17 +63,17 @@ public final class a9 extends FrameLayout {
             textView2.setVisibility(4);
         }
         if (z9) {
-            int i7 = org.telegram.ui.ActionBar.k6.G6;
+            int i7 = org.telegram.ui.ActionBar.l6.G6;
             setTag(Integer.valueOf(i7));
-            org.telegram.ui.ActionBar.r6.V(textView, i7, null);
-            org.telegram.ui.ActionBar.r6.V(textView2, i7, null);
+            org.telegram.ui.ActionBar.s6.U(textView, i7, null);
+            org.telegram.ui.ActionBar.s6.U(textView2, i7, null);
             textView.setTypeface(org.telegram.messenger.g0.o());
             textView2.setTypeface(org.telegram.messenger.g0.o());
         } else {
-            int i10 = org.telegram.ui.ActionBar.k6.f28262z6;
+            int i10 = org.telegram.ui.ActionBar.l6.f28275z6;
             setTag(Integer.valueOf(i10));
-            org.telegram.ui.ActionBar.r6.V(textView, i10, null);
-            org.telegram.ui.ActionBar.r6.V(textView2, i10, null);
+            org.telegram.ui.ActionBar.s6.U(textView, i10, null);
+            org.telegram.ui.ActionBar.s6.U(textView2, i10, null);
             Typeface typeface = Typeface.DEFAULT;
             textView.setTypeface(typeface);
             textView2.setTypeface(typeface);
@@ -87,16 +87,16 @@ public final class a9 extends FrameLayout {
         int measuredWidth = ((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - org.telegram.messenger.g0.L(34.0f);
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(measuredWidth / 2, Integer.MIN_VALUE);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824);
-        TextView textView = this.f28903b;
+        TextView textView = this.f28907b;
         textView.measure(makeMeasureSpec, makeMeasureSpec2);
-        this.f28902a.measure(View.MeasureSpec.makeMeasureSpec((measuredWidth - textView.getMeasuredWidth()) - org.telegram.messenger.g0.L(8.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+        this.f28906a.measure(View.MeasureSpec.makeMeasureSpec((measuredWidth - textView.getMeasuredWidth()) - org.telegram.messenger.g0.L(8.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
     }
 
     public void setTextColor(int i7) {
-        this.f28902a.setTextColor(i7);
+        this.f28906a.setTextColor(i7);
     }
 
     public void setTextValueColor(int i7) {
-        this.f28903b.setTextColor(i7);
+        this.f28907b.setTextColor(i7);
     }
 }

@@ -5,29 +5,29 @@ import android.os.Parcel;
 import android.os.Parcelable;
 public final class j extends j1.b {
     public static final Parcelable.Creator<j> CREATOR = new i(0);
-    public int f5321c;
+    public int f5319c;
     public Parcelable d;
-    public final ClassLoader f5322e;
+    public final ClassLoader f5320e;
 
     public j(Parcel parcel, ClassLoader classLoader) {
         super(parcel, classLoader);
         classLoader = classLoader == null ? j.class.getClassLoader() : classLoader;
-        this.f5321c = parcel.readInt();
+        this.f5319c = parcel.readInt();
         this.d = parcel.readParcelable(classLoader);
-        this.f5322e = classLoader;
+        this.f5320e = classLoader;
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("FragmentPager.SavedState{");
         sb2.append(Integer.toHexString(System.identityHashCode(this)));
         sb2.append(" position=");
-        return p0.n(this.f5321c, "}", sb2);
+        return p0.n(this.f5319c, "}", sb2);
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         super.writeToParcel(parcel, i7);
-        parcel.writeInt(this.f5321c);
+        parcel.writeInt(this.f5319c);
         parcel.writeParcelable(this.d, i7);
     }
 }

@@ -6,8 +6,8 @@ import org.telegram.messenger.v10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_communities;
 import org.telegram.ui.Components.hc;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.x31;
+import org.telegram.ui.Components.m41;
+import org.telegram.ui.Components.y31;
 public final class a implements v10 {
     public final int f15487a;
     public final f f15488b;
@@ -26,15 +26,15 @@ public final class a implements v10 {
         switch (i10) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj;
-                l41 l41Var = (l41) obj2;
-                arrayList.add(x31.l(0, fVar.h));
-                x31 c10 = x31.c(1, 2131232176, id.M0(2131751939, null));
-                c10.f40185q = true;
+                m41 m41Var = (m41) obj2;
+                arrayList.add(y31.l(0, fVar.h));
+                y31 c10 = y31.c(1, 2131232176, id.M0(2131751939, null));
+                c10.f40573q = true;
                 arrayList.add(c10);
-                arrayList.add(x31.E(2, org.telegram.messenger.g0.L(14.0f)));
+                arrayList.add(y31.E(2, org.telegram.messenger.g0.L(14.0f)));
                 ArrayList arrayList2 = fVar.f15530n;
                 if (arrayList2 != null && !arrayList2.isEmpty()) {
-                    arrayList.add(x31.t(3, id.M0(2131751969, null)));
+                    arrayList.add(y31.t(3, id.M0(2131751969, null)));
                     ArrayList arrayList3 = fVar.f15530n;
                     int size = arrayList3.size();
                     int i11 = 0;
@@ -43,7 +43,7 @@ public final class a implements v10 {
                         i11++;
                         TLRPC.Chat chat = (TLRPC.Chat) obj3;
                         TLRPC.ChatFull N0 = fVar.getMessagesController().N0(chat.f26956id);
-                        x31 w10 = x31.w(chat);
+                        y31 w10 = y31.w(chat);
                         long j3 = chat.f26956id;
                         w10.d = (int) (j3 ^ (j3 >>> 32));
                         if (N0 != null) {
@@ -55,9 +55,9 @@ public final class a implements v10 {
                             }
                             M0 = id.G(i7, "Chats", new Object[0]);
                         } else {
-                            M0 = id.M0(2131748780, null);
+                            M0 = id.M0(2131748779, null);
                         }
-                        w10.f40181m = M0;
+                        w10.f40569m = M0;
                         arrayList.add(w10);
                     }
                     return;

@@ -21,7 +21,7 @@ import org.telegram.ui.Components.bj;
 import org.telegram.ui.Components.di;
 import org.telegram.ui.Components.ml;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.an;
+import org.telegram.ui.cn;
 public final class g0 implements Runnable {
     public final int f18579a = 0;
     public final int f18580b;
@@ -54,7 +54,7 @@ public final class g0 implements Runnable {
         char c10;
         String n10;
         int i12;
-        an anVar;
+        cn cnVar;
         boolean z9;
         int i13 = this.f18579a;
         final int i14 = this.f18581c;
@@ -266,32 +266,32 @@ public final class g0 implements Runnable {
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) obj4;
                 org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) obj3;
                 ArrayList arrayList6 = (ArrayList) obj2;
-                an anVar2 = (an) obj;
-                boolean z10 = ChatAttachAlertPhotoLayout.f31188q1;
-                di diVar = chatAttachAlertPhotoLayout.f39004b;
-                if (diVar.f33007w1 && !diVar.f33011x1) {
+                cn cnVar2 = (cn) obj;
+                boolean z10 = ChatAttachAlertPhotoLayout.f31193q1;
+                di diVar = chatAttachAlertPhotoLayout.f39071b;
+                if (diVar.f33062w1 && !diVar.f33066x1) {
                     PhotoViewer.p1().H2(null, f2Var, null);
                     PhotoViewer p12 = PhotoViewer.p1();
                     p12.h = 0;
-                    p12.f41461n = false;
+                    p12.f41468n = false;
                     i12 = 3;
                 } else {
                     i12 = i15;
                 }
-                if (diVar.f33015y1) {
+                if (diVar.f33070y1) {
                     i12 = 13;
                 }
                 int i22 = i12;
                 PhotoViewer p13 = PhotoViewer.p1();
-                ml mlVar = chatAttachAlertPhotoLayout.f31208h1;
-                if (diVar.f33015y1) {
-                    anVar = null;
+                ml mlVar = chatAttachAlertPhotoLayout.f31213h1;
+                if (diVar.f33070y1) {
+                    cnVar = null;
                 } else {
-                    anVar = anVar2;
+                    cnVar = cnVar2;
                 }
-                p13.e2(arrayList6, this.f18581c, i22, false, mlVar, anVar);
+                p13.e2(arrayList6, this.f18581c, i22, false, mlVar, cnVar);
                 PhotoViewer.p1().u2(diVar.H1);
-                if (diVar.f33007w1 && !diVar.f33011x1) {
+                if (diVar.f33062w1 && !diVar.f33066x1) {
                     PhotoViewer.p1().O = false;
                 } else if (diVar.K2 != 0) {
                     PhotoViewer.p1().O = true;
@@ -303,14 +303,14 @@ public final class g0 implements Runnable {
                     }
                     p14.P = z9;
                 }
-                if (diVar.f33011x1) {
+                if (diVar.f33066x1) {
                     PhotoViewer.p1().S0(null, null, false, diVar.A1);
                 }
                 if (ChatAttachAlertPhotoLayout.V()) {
                     PhotoViewer p15 = PhotoViewer.p1();
                     Editable text = diVar.a1().getText();
-                    p15.f41476o7 = true;
-                    p15.f41485p7 = text;
+                    p15.f41483o7 = true;
+                    p15.f41492p7 = text;
                     p15.x2(null, text, false, false);
                     p15.q3(null);
                     return;
@@ -320,12 +320,12 @@ public final class g0 implements Runnable {
                 final p4.v vVar = (p4.v) obj3;
                 final p4.d0 d0Var = (p4.d0) obj2;
                 final p4.a1 a1Var = (p4.a1) obj;
-                ui.e eVar = ((p4.c1) obj4).f53184b;
+                ui.e eVar = ((p4.c1) obj4).f53196b;
                 if (!eVar.G(vVar, i15)) {
                     p4.c1.r1(d0Var, vVar, i14, new p4.m1(-4));
                     return;
                 }
-                pb.b bVar = d0Var.f53204e;
+                pb.b bVar = d0Var.f53216e;
                 d0Var.s(vVar);
                 bVar.getClass();
                 if (i15 == 27) {
@@ -361,13 +361,13 @@ public final class g0 implements Runnable {
         this.f18581c = i10;
     }
 
-    public g0(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i7, org.telegram.ui.ActionBar.f2 f2Var, ArrayList arrayList, int i10, an anVar) {
+    public g0(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i7, org.telegram.ui.ActionBar.f2 f2Var, ArrayList arrayList, int i10, cn cnVar) {
         this.d = chatAttachAlertPhotoLayout;
         this.f18580b = i7;
         this.f18582e = f2Var;
         this.f18583f = arrayList;
         this.f18581c = i10;
-        this.h = anVar;
+        this.h = cnVar;
     }
 
     public g0(p4.c1 c1Var, p4.v vVar, int i7, p4.d0 d0Var, int i10, p4.a1 a1Var) {

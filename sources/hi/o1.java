@@ -9,17 +9,17 @@ import org.telegram.messenger.t10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.hc;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.w91;
-import org.telegram.ui.ww;
+import org.telegram.ui.y91;
+import org.telegram.ui.yw;
 public final class o1 implements c20 {
-    public final w91 f14839a;
-    public final ww f14840b;
+    public final y91 f14839a;
+    public final yw f14840b;
     public final long f14841c;
     public final int d;
 
-    public o1(w91 w91Var, ww wwVar, long j3, int i7) {
-        this.f14839a = w91Var;
-        this.f14840b = wwVar;
+    public o1(y91 y91Var, yw ywVar, long j3, int i7) {
+        this.f14839a = y91Var;
+        this.f14840b = ywVar;
         this.f14841c = j3;
         this.d = i7;
     }
@@ -30,13 +30,13 @@ public final class o1 implements c20 {
         TLRPC.User user;
         int i7;
         Boolean bool = (Boolean) obj;
-        w91 w91Var = this.f14839a;
-        ww wwVar = this.f14840b;
-        if (w91Var != null) {
-            w91Var.finishFragment();
-            wwVar.removeSelfFromStack();
+        y91 y91Var = this.f14839a;
+        yw ywVar = this.f14840b;
+        if (y91Var != null) {
+            y91Var.finishFragment();
+            ywVar.removeSelfFromStack();
         } else {
-            wwVar.finishFragment();
+            ywVar.finishFragment();
         }
         org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
         if (T == null) {

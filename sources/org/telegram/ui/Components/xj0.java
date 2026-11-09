@@ -1,193 +1,171 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.ValueAnimator;
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.view.View;
-import java.util.ArrayList;
-public final class xj0 extends Drawable implements Animator.AnimatorListener {
-    public final Context f40323a;
-    public ColorFilter f40324b;
-    public Drawable d;
-    public Drawable f40326e;
-    public ValueAnimator f40327f;
-    public boolean f40329r;
-    public int f40325c = 0;
-    public float h = 1.0f;
-    public final ArrayList f40328n = new ArrayList();
+public final class xj0 extends Drawable {
+    public final av f40400e;
+    public final av f40401f;
+    public float h;
+    public float f40403i;
+    public final Rect f40397a = new Rect();
+    public final xq f40398b = ks.f35467b;
+    public final int f40399c = org.telegram.messenger.g0.L(24.0f);
+    public final int d = org.telegram.messenger.g0.L(24.0f);
+    public long f40402g = -1;
 
-    public xj0(Context context) {
-        this.f40323a = context;
+    public xj0() {
+        av avVar = new av(1, (byte) 0);
+        this.f40400e = avVar;
+        avVar.f31984c.setColor(-2130706433);
+        av avVar2 = new av(1, (byte) 0);
+        this.f40401f = avVar2;
+        avVar2.f31984c.setColor(-2130706433);
     }
 
-    public final void a(int i7, boolean z9) {
-        if (this.f40325c == i7) {
-            return;
-        }
-        b(this.f40323a.getDrawable(i7).mutate(), z9);
-        this.f40325c = i7;
+    public final void a(Canvas canvas, float f10) {
+        Rect bounds = getBounds();
+        float interpolation = this.f40398b.getInterpolation(f10);
+        Rect rect = this.f40397a;
+        rect.left = (int) (org.telegram.messenger.g0.L(2.0f) * this.h);
+        int L = bounds.bottom - ((int) (org.telegram.messenger.g0.L(6.0f) * this.f40403i));
+        rect.bottom = L;
+        rect.right = bounds.right - rect.left;
+        rect.top = L - ((int) (org.telegram.messenger.g0.L(4.0f) * this.f40403i));
+        av avVar = this.f40401f;
+        avVar.setBounds(rect);
+        avVar.draw(canvas);
+        int L2 = org.telegram.messenger.g0.L(12.0f);
+        rect.right = L2;
+        rect.left = L2;
+        int L3 = org.telegram.messenger.g0.L(8.0f);
+        rect.bottom = L3;
+        rect.top = L3;
+        rect.inset(-org.telegram.messenger.g0.L(org.telegram.messenger.g0.W1(interpolation, 10, 11)), -org.telegram.messenger.g0.L(org.telegram.messenger.g0.W1(interpolation, 2, 3)));
+        av avVar2 = this.f40400e;
+        avVar2.setBounds(rect);
+        avVar2.setAlpha(org.telegram.messenger.g0.W1(interpolation, 128, 255));
+        avVar2.draw(canvas);
     }
 
-    public final void b(Drawable drawable, boolean z9) {
-        if (drawable == null) {
-            this.d = null;
-            this.f40326e = null;
-            invalidateSelf();
-            return;
-        }
-        if (getBounds() == null || getBounds().isEmpty()) {
-            z9 = false;
-        }
-        Drawable drawable2 = this.d;
-        if (drawable == drawable2) {
-            drawable2.setColorFilter(this.f40324b);
-            return;
-        }
-        this.f40325c = 0;
-        this.f40326e = drawable2;
-        this.d = drawable;
-        drawable.setColorFilter(this.f40324b);
-        c(this.d, getBounds());
-        c(this.f40326e, getBounds());
-        ValueAnimator valueAnimator = this.f40327f;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            this.f40327f.cancel();
-        }
-        if (!z9) {
-            this.h = 1.0f;
-            this.f40326e = null;
-            return;
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.f40327f = ofFloat;
-        ofFloat.addUpdateListener(new c60(this, 9));
-        this.f40327f.addListener(this);
-        this.f40327f.setDuration(150L);
-        this.f40327f.start();
+    public final void b(Canvas canvas, float f10) {
+        Rect bounds = getBounds();
+        float interpolation = this.f40398b.getInterpolation(f10);
+        Rect rect = this.f40397a;
+        rect.left = (int) (org.telegram.messenger.g0.L(2.0f) * this.h);
+        int L = bounds.bottom - ((int) (org.telegram.messenger.g0.L(6.0f) * this.f40403i));
+        rect.bottom = L;
+        rect.right = bounds.right - rect.left;
+        rect.top = L - ((int) (org.telegram.messenger.g0.L(4.0f) * this.f40403i));
+        rect.offset(0, org.telegram.messenger.g0.L(org.telegram.messenger.g0.W1(interpolation, 0, -8)));
+        av avVar = this.f40401f;
+        avVar.setBounds(rect);
+        avVar.draw(canvas);
+        rect.left = (int) (org.telegram.messenger.g0.N(org.telegram.messenger.g0.W1(interpolation, 1, 2)) * this.h);
+        int N = (int) (org.telegram.messenger.g0.N(org.telegram.messenger.g0.W1(interpolation, 5, 6)) * this.f40403i);
+        rect.top = N;
+        rect.right = bounds.right - rect.left;
+        rect.bottom = N + ((int) (org.telegram.messenger.g0.N(org.telegram.messenger.g0.W1(interpolation, 6, 4)) * this.f40403i));
+        rect.offset(0, org.telegram.messenger.g0.L(org.telegram.messenger.g0.W1(interpolation, 0, 8)));
+        av avVar2 = this.f40400e;
+        avVar2.setBounds(rect);
+        avVar2.setAlpha(255);
+        avVar2.draw(canvas);
     }
 
-    public final void c(Drawable drawable, Rect rect) {
-        int height;
-        int intrinsicHeight;
-        int width;
-        int intrinsicWidth;
-        if (drawable == null) {
-            return;
-        }
-        if (this.f40329r) {
-            drawable.setBounds(rect);
-            return;
-        }
-        if (drawable.getIntrinsicHeight() < 0) {
-            height = rect.top;
-            intrinsicHeight = rect.bottom;
-        } else {
-            height = ((rect.height() - drawable.getIntrinsicHeight()) / 2) + rect.top;
-            intrinsicHeight = drawable.getIntrinsicHeight() + height;
-        }
-        if (drawable.getIntrinsicWidth() < 0) {
-            width = rect.left;
-            intrinsicWidth = rect.right;
-        } else {
-            width = ((rect.width() - drawable.getIntrinsicWidth()) / 2) + rect.left;
-            intrinsicWidth = drawable.getIntrinsicWidth() + width;
-        }
-        drawable.setBounds(width, height, intrinsicWidth, intrinsicHeight);
+    public final void c(Canvas canvas, float f10) {
+        Rect bounds = getBounds();
+        float interpolation = this.f40398b.getInterpolation(f10);
+        Rect rect = this.f40397a;
+        rect.left = (int) (org.telegram.messenger.g0.L(2.0f) * this.h);
+        int L = bounds.bottom - ((int) (org.telegram.messenger.g0.L(6.0f) * this.f40403i));
+        rect.bottom = L;
+        rect.right = bounds.right - rect.left;
+        rect.top = L - ((int) (org.telegram.messenger.g0.L(4.0f) * this.f40403i));
+        rect.offset(0, org.telegram.messenger.g0.L(-8.0f));
+        av avVar = this.f40401f;
+        avVar.setBounds(rect);
+        avVar.draw(canvas);
+        rect.left = (int) (org.telegram.messenger.g0.N(2.0f) * this.h);
+        int N = (int) (org.telegram.messenger.g0.N(6.0f) * this.f40403i);
+        rect.top = N;
+        rect.right = bounds.right - rect.left;
+        rect.bottom = N + ((int) (org.telegram.messenger.g0.N(4.0f) * this.f40403i));
+        rect.offset(0, org.telegram.messenger.g0.L(8.0f));
+        av avVar2 = this.f40400e;
+        avVar2.setBounds(rect);
+        avVar2.setAlpha(org.telegram.messenger.g0.W1(interpolation, 255, 128));
+        avVar2.draw(canvas);
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        int centerX = getBounds().centerX();
-        int centerY = getBounds().centerY();
-        if (this.h != 1.0f && this.d != null) {
-            canvas.save();
-            float f10 = this.h;
-            canvas.scale(f10, f10, centerX, centerY);
-            this.d.setAlpha((int) (this.h * 255.0f));
-            this.d.draw(canvas);
-            canvas.restore();
-        } else {
-            Drawable drawable = this.d;
-            if (drawable != null) {
-                drawable.setAlpha(255);
-                this.d.draw(canvas);
+        if (this.f40402g > 0) {
+            int currentTimeMillis = (int) (System.currentTimeMillis() - this.f40402g);
+            int i7 = currentTimeMillis - 300;
+            if (i7 >= 0) {
+                if (i7 < 150) {
+                    a(canvas, i7 / 150.0f);
+                } else {
+                    int i10 = currentTimeMillis - 750;
+                    if (i10 >= 0) {
+                        if (i10 < 200) {
+                            b(canvas, i10 / 200.0f);
+                        } else {
+                            int i11 = currentTimeMillis - 1250;
+                            if (i11 >= 0) {
+                                if (i11 < 150) {
+                                    c(canvas, i11 / 150.0f);
+                                } else {
+                                    c(canvas, 1.0f);
+                                    if (currentTimeMillis - 1400 >= 100) {
+                                        this.f40402g = System.currentTimeMillis();
+                                    }
+                                }
+                            } else {
+                                b(canvas, 1.0f);
+                            }
+                        }
+                    } else {
+                        a(canvas, 1.0f);
+                    }
+                }
+            } else {
+                a(canvas, 0.0f);
             }
-        }
-        float f11 = this.h;
-        if (f11 != 1.0f && this.f40326e != null) {
-            float f12 = 1.0f - f11;
-            canvas.save();
-            canvas.scale(f12, f12, centerX, centerY);
-            this.f40326e.setAlpha((int) (f12 * 255.0f));
-            this.f40326e.draw(canvas);
-            canvas.restore();
+            invalidateSelf();
             return;
         }
-        Drawable drawable2 = this.f40326e;
-        if (drawable2 != null) {
-            drawable2.setAlpha(255);
-            this.f40326e.draw(canvas);
-        }
+        a(canvas, 0.0f);
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.d;
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.f40399c;
     }
 
     @Override
     public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void invalidateSelf() {
-        super.invalidateSelf();
-        ArrayList arrayList = this.f40328n;
-        if (arrayList != null) {
-            for (int i7 = 0; i7 < arrayList.size(); i7++) {
-                ((View) arrayList.get(i7)).invalidate();
-            }
-        }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        this.f40326e = null;
-        invalidateSelf();
+        return -3;
     }
 
     @Override
     public final void onBoundsChange(Rect rect) {
-        super.onBoundsChange(rect);
-        c(this.d, rect);
-        c(this.f40326e, rect);
+        this.h = rect.width() / this.f40399c;
+        this.f40403i = rect.height() / this.d;
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f40324b = colorFilter;
-        Drawable drawable = this.d;
-        if (drawable != null) {
-            drawable.setColorFilter(colorFilter);
-        }
-        Drawable drawable2 = this.f40326e;
-        if (drawable2 != null) {
-            drawable2.setColorFilter(colorFilter);
-        }
+        this.f40400e.setColorFilter(colorFilter);
+        this.f40401f.setColorFilter(colorFilter);
         invalidateSelf();
-    }
-
-    @Override
-    public final void onAnimationCancel(Animator animator) {
-    }
-
-    @Override
-    public final void onAnimationRepeat(Animator animator) {
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
     }
 
     @Override

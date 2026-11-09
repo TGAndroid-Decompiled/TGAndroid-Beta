@@ -1,83 +1,28 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MediaController;
-public final class lg implements Runnable {
-    public final int f47535a = 0;
-    public final an f47536b;
-    public final boolean f47537c;
-    public final long d;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+public final class lg implements View.OnClickListener {
+    public final int f47599a;
+    public final org.telegram.ui.Components.l60 f47600b;
 
-    public lg(an anVar, long j3, boolean z9) {
-        this.f47536b = anVar;
-        this.d = j3;
-        this.f47537c = z9;
+    public lg(org.telegram.ui.Components.l60 l60Var, int i7) {
+        this.f47599a = i7;
+        this.f47600b = l60Var;
     }
 
     @Override
-    public final void run() {
-        long j3;
-        long j10;
-        switch (this.f47535a) {
+    public final void onClick(View view) {
+        int i7 = this.f47599a;
+        org.telegram.ui.Components.l60 l60Var = this.f47600b;
+        switch (i7) {
             case 0:
-                an.X0(this.f47536b, this.d, this.f47537c);
+                l60Var.s();
                 return;
             default:
-                qj qjVar = this.f47536b.Z;
-                if (qjVar != null) {
-                    MediaController B = MediaController.B();
-                    if (!qjVar.Y1 && !qjVar.F2 && B.J() && !B.K() && B.f21268g1 == qjVar.G2) {
-                        qjVar.f31029c1 = false;
-                        org.telegram.ui.Components.ee eeVar = qjVar.f31022b1;
-                        if (eeVar != null) {
-                            eeVar.j(org.telegram.ui.Components.hg.f34248a, false);
-                        }
-                        qjVar.J3 = true;
-                        qjVar.F2 = true;
-                        org.telegram.ui.Components.wf wfVar = qjVar.Z2;
-                        if (wfVar != null) {
-                            wfVar.R0(1);
-                        }
-                        qjVar.N1(0, true);
-                        if (this.f47537c) {
-                            qjVar.O = true;
-                            org.telegram.ui.Components.ag agVar = qjVar.O1;
-                            if (agVar != null) {
-                                agVar.D.d(1, true, false);
-                            }
-                            org.telegram.messenger.ui b02 = org.telegram.messenger.ui.b0(qjVar.Q);
-                            long j11 = qjVar.Q2;
-                            an anVar = qjVar.P2;
-                            if (anVar != null && anVar.f43995v4) {
-                                j10 = anVar.b();
-                            } else {
-                                j10 = 0;
-                            }
-                            b02.e2(j11, j10, true);
-                        }
-                        long j12 = this.d;
-                        if (j12 > 0) {
-                            j3 = System.currentTimeMillis() - j12;
-                        } else {
-                            j3 = B.f21276k1;
-                        }
-                        qjVar.f31066i1 = j3;
-                        org.telegram.ui.Components.fg fgVar = qjVar.Y0;
-                        if (fgVar != null) {
-                            fgVar.a(j3);
-                        }
-                        qjVar.f31127s4 = true;
-                        qjVar.z1();
-                        return;
-                    }
-                    return;
-                }
+                Drawable[] drawableArr = PhotoViewer.Y8;
+                l60Var.s();
                 return;
         }
-    }
-
-    public lg(an anVar, boolean z9, long j3) {
-        this.f47536b = anVar;
-        this.f47537c = z9;
-        this.d = j3;
     }
 }

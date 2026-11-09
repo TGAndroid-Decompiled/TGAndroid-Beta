@@ -1,32 +1,20 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class gr0 extends us0 {
-    public final xs0 G;
+import android.os.Bundle;
+public final class gr0 extends org.telegram.ui.en {
+    public final zs0 f34044f;
 
-    public gr0(xs0 xs0Var, Context context) {
-        super(xs0Var, context, 0, false);
-        this.G = xs0Var;
+    public gr0(zs0 zs0Var, Context context, org.telegram.ui.ActionBar.q4 q4Var, Bundle bundle) {
+        super(context, q4Var, bundle);
+        this.f34044f = zs0Var;
     }
 
     @Override
-    public final void f() {
-        boolean z9;
-        super.f();
-        xs0 xs0Var = this.G;
-        sr0 g02 = xs0Var.g0(8);
-        if (g02 != null && g02.f38126n.getVisibility() == 0) {
-            xs0Var.f40409f0.f();
-        }
-        if (g02 != null) {
-            nq0 nq0Var = g02.f38129w;
-            di.q6 q6Var = this.f38732s;
-            if (q6Var != null && (q6Var.k() || (xs0Var.t0() && this.f38732s.g() > 0))) {
-                z9 = true;
-            } else {
-                z9 = false;
-            }
-            nq0Var.e(z9, true);
+    public final void b(boolean z9) {
+        org.telegram.ui.ActionBar.r0 r0Var = this.f34044f.f41103p0;
+        if (r0Var != null) {
+            r0Var.setShowSearchProgress(z9);
         }
     }
 }

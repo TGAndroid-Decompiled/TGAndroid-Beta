@@ -148,7 +148,7 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
         if (i11 == 0 || i11 == 180) {
             i7 = i10;
         }
-        postOrRun(new jg.r(this, i12, i7, 15));
+        postOrRun(new jg.r(this, i12, i7, 16));
     }
 
     @Override
@@ -194,7 +194,7 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
 
     @Override
     public final void setParentSink(VideoSink videoSink) {
-        e0.a(this, videoSink);
+        d0.a(this, videoSink);
     }
 
     public void setScalingType(RendererCommon.ScalingType scalingType) {

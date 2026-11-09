@@ -3,7 +3,7 @@ package org.telegram.messenger;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.zg0;
+import org.telegram.ui.Components.ah0;
 public final class jc {
     public String f23533a;
     public final boolean f23534b;
@@ -38,8 +38,8 @@ public final class jc {
             } else {
                 Drawable drawable = this.d;
                 if (drawable != null) {
-                    if (drawable instanceof zg0) {
-                        ((zg0) drawable).C(false);
+                    if (drawable instanceof ah0) {
+                        ((ah0) drawable).C(false);
                     } else if (drawable instanceof org.telegram.ui.Components.v5) {
                         ((org.telegram.ui.Components.v5) drawable).u();
                     } else if (drawable instanceof BitmapDrawable) {

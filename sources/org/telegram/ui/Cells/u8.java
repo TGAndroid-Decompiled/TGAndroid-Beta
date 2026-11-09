@@ -9,20 +9,20 @@ import android.widget.TextView;
 import org.telegram.messenger.id;
 public final class u8 extends FrameLayout {
     public static Paint d;
-    public final TextView f30583a;
-    public int f30584b;
-    public float f30585c;
+    public final TextView f30587a;
+    public int f30588b;
+    public float f30589c;
 
     public u8(Context context) {
         super(context);
         int i7;
         int i10;
-        this.f30585c = 1.0f;
+        this.f30589c = 1.0f;
         if (d == null) {
             d = new Paint(1);
         }
         TextView textView = new TextView(context);
-        this.f30583a = textView;
+        this.f30587a = textView;
         textView.setTextColor(-14606047);
         textView.setTextSize(1, 16.0f);
         textView.setLines(1);
@@ -47,16 +47,16 @@ public final class u8 extends FrameLayout {
 
     @Override
     public float getAlpha() {
-        return this.f30585c;
+        return this.f30589c;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int measuredWidth;
-        int i7 = this.f30584b;
+        int i7 = this.f30588b;
         if (i7 != 0) {
             d.setColor(i7);
-            d.setAlpha((int) (this.f30585c * 255.0f));
+            d.setAlpha((int) (this.f30589c * 255.0f));
             if (!id.f23157a0) {
                 measuredWidth = org.telegram.messenger.g0.L(28.0f);
             } else {
@@ -73,7 +73,7 @@ public final class u8 extends FrameLayout {
 
     @Override
     public void setAlpha(float f10) {
-        this.f30585c = f10;
+        this.f30589c = f10;
         invalidate();
     }
 }

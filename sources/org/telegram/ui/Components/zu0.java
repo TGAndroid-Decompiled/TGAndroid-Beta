@@ -1,28 +1,13 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class zu0 extends AnimatorListenerAdapter {
-    public final int f41151a;
-    public final av0 f41152b;
-
-    public zu0(av0 av0Var, int i7) {
-        this.f41151a = i7;
-        this.f41152b = av0Var;
-    }
-
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class zu0 extends org.telegram.messenger.x2 {
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f41151a) {
-            case 0:
-                this.f41152b.f31931s.setVisibility(8);
-                return;
-            case 1:
-                this.f41152b.f31931s.setVisibility(8);
-                return;
-            default:
-                this.f41152b.f31931s.setVisibility(8);
-                return;
-        }
+    public final void f(int i7, Object obj, long j3, org.telegram.messenger.w2 w2Var) {
+        TLRPC.TL_messages_searchCustomEmoji tL_messages_searchCustomEmoji = new TLRPC.TL_messages_searchCustomEmoji();
+        tL_messages_searchCustomEmoji.emoticon = (String) obj;
+        tL_messages_searchCustomEmoji.hash = j3;
+        ConnectionsManager.getInstance(i7).sendRequest(tL_messages_searchCustomEmoji, new xu0(w2Var, 1));
     }
 }

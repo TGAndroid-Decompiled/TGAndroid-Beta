@@ -18,7 +18,7 @@ public abstract class b {
     }
 
     public static boolean c(String str) {
-        byte[] bytes = str.getBytes(j.f6075b);
+        byte[] bytes = str.getBytes(j.f6073b);
         int length = bytes.length;
         if (length % 2 != 0) {
             return false;

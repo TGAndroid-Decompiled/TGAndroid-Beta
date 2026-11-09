@@ -5,13 +5,13 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class fy extends oj0 {
-    public final boolean f33690c;
+public final class fy extends pj0 {
+    public final boolean f33753c;
     public final hy d;
 
     public fy(hy hyVar, boolean z9) {
         this.d = hyVar;
-        this.f33690c = z9;
+        this.f33753c = z9;
     }
 
     @Override
@@ -22,12 +22,12 @@ public final class fy extends oj0 {
     @Override
     public final int b() {
         ArrayList arrayList;
-        boolean z9 = this.f33690c;
+        boolean z9 = this.f33753c;
         hy hyVar = this.d;
         if (z9) {
             arrayList = hyVar.n1;
         } else {
-            arrayList = hyVar.f34429m1;
+            arrayList = hyVar.f34444m1;
         }
         return arrayList.size();
     }
@@ -45,20 +45,20 @@ public final class fy extends oj0 {
         int i10;
         String str;
         ColorFilter colorFilter;
-        l9 l9Var = (l9) d1Var.f57044a;
+        l9 l9Var = (l9) d1Var.f57056a;
         hy hyVar = this.d;
-        boolean z9 = this.f33690c;
+        boolean z9 = this.f33753c;
         if (z9) {
             arrayList = hyVar.n1;
         } else {
-            arrayList = hyVar.f34429m1;
+            arrayList = hyVar.f34444m1;
         }
         TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i7);
         l9Var.setTag(stickerSetCovered);
         if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
             arrayList2 = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
         } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
-            TLRPC.TL_messages_stickerSet m0 = org.telegram.messenger.ui.b0(hyVar.f34400c1).m0(org.telegram.messenger.ui.Z(stickerSetCovered.set), false);
+            TLRPC.TL_messages_stickerSet m0 = org.telegram.messenger.ui.b0(hyVar.f34415c1).m0(org.telegram.messenger.ui.Z(stickerSetCovered.set), false);
             if (m0 == null) {
                 arrayList2 = null;
             } else {
@@ -88,20 +88,20 @@ public final class fy extends oj0 {
         }
         if (document != null) {
             if (z9) {
-                if (org.telegram.messenger.ij.D4(document)) {
-                    colorFilter = org.telegram.ui.ActionBar.k6.o0(hyVar.Z1);
+                if (org.telegram.messenger.ij.C4(document)) {
+                    colorFilter = org.telegram.ui.ActionBar.l6.o0(hyVar.Z1);
                 } else {
                     colorFilter = null;
                 }
                 l9Var.setColorFilter(colorFilter);
             }
             TLObject w10 = org.telegram.messenger.w7.w(stickerSetCovered.set.thumbs, 90, false, null, false);
-            org.telegram.messenger.rz d = org.telegram.messenger.t5.d(stickerSetCovered.set.thumbs, org.telegram.ui.ActionBar.k6.f27835c7, 0.2f, false);
+            org.telegram.messenger.rz d = org.telegram.messenger.t5.d(stickerSetCovered.set.thumbs, org.telegram.ui.ActionBar.l6.f27848c7, 0.2f, false);
             if (d != null) {
                 d.f25382e = 512;
                 d.f25383f = 512;
             }
-            if (w10 == null || org.telegram.messenger.ij.O4(document)) {
+            if (w10 == null || org.telegram.messenger.ij.N4(document)) {
                 w10 = document;
             }
             boolean z10 = w10 instanceof TLRPC.Document;
@@ -125,7 +125,7 @@ public final class fy extends oj0 {
                     str = "30_30";
                 }
                 String str2 = str;
-                if (z10 && (org.telegram.messenger.ij.L2(document, true) || org.telegram.messenger.ij.O4(document))) {
+                if (z10 && (org.telegram.messenger.ij.K2(document, true) || org.telegram.messenger.ij.N4(document))) {
                     if (d != null) {
                         l9Var.p(org.telegram.messenger.hc.b(document), str2, d, stickerSetCovered);
                     } else {

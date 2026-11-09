@@ -4,11 +4,11 @@ import android.animation.AnimatorSet;
 import bi.y4;
 import java.util.LinkedList;
 import org.telegram.ui.Components.di;
-import org.telegram.ui.Components.ec0;
+import org.telegram.ui.Components.fc0;
 import org.telegram.ui.Components.gb;
 import org.telegram.ui.Components.ng;
-import org.telegram.ui.Components.qa0;
 import org.telegram.ui.Components.qg;
+import org.telegram.ui.Components.ra0;
 import org.telegram.ui.Components.xf;
 public final class y3 implements r1.c {
     public final int f15055a;
@@ -58,7 +58,7 @@ public final class y3 implements r1.c {
                 return;
             case 2:
                 ng ngVar = (ng) this.f15057c;
-                AnimatorSet animatorSet = ((di) this.f15056b).f28658z0;
+                AnimatorSet animatorSet = ((di) this.f15056b).f28663z0;
                 if (animatorSet != null && !animatorSet.isRunning()) {
                     ngVar.run();
                     return;
@@ -66,26 +66,26 @@ public final class y3 implements r1.c {
                 return;
             case 3:
                 di diVar = (di) ((y4) this.f15056b).d;
-                diVar.f32996t2.setTranslationY(0.0f);
-                diVar.f32996t2.m(diVar.f32948f4);
+                diVar.f33051t2.setTranslationY(0.0f);
+                diVar.f33051t2.m(diVar.f33003f4);
                 diVar.X0.g();
-                diVar.f28619b.invalidate();
+                diVar.f28624b.invalidate();
                 ((qg) this.f15057c).run();
                 diVar.P1(0);
                 return;
             default:
-                ec0 ec0Var = (ec0) this.f15056b;
-                qa0 qa0Var = (qa0) this.f15057c;
-                LinkedList linkedList = ec0Var.U;
-                ec0Var.T = null;
-                qa0Var.D = null;
-                qa0Var.y();
+                fc0 fc0Var = (fc0) this.f15056b;
+                ra0 ra0Var = (ra0) this.f15057c;
+                LinkedList linkedList = fc0Var.U;
+                fc0Var.T = null;
+                ra0Var.D = null;
+                ra0Var.y();
                 if (!z9) {
-                    qa0Var.h = 1.0f;
-                    qa0Var.y();
+                    ra0Var.h = 1.0f;
+                    ra0Var.y();
                     if (!linkedList.isEmpty()) {
                         ((Runnable) linkedList.poll()).run();
-                        ec0Var.V.poll();
+                        fc0Var.V.poll();
                         return;
                     }
                     return;

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 import c8.ha;
-import fi.h9;
+import fi.v9;
 import java.util.ArrayList;
 import org.telegram.messenger.id;
 import org.telegram.messenger.ls;
@@ -15,13 +15,13 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.b5;
 import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.q41;
-import org.telegram.ui.Components.x31;
+import org.telegram.ui.Components.m41;
+import org.telegram.ui.Components.qj0;
+import org.telegram.ui.Components.r41;
+import org.telegram.ui.Components.y31;
 public final class s0 extends f2 implements ls {
     public b5 f17523a;
-    public q41 f17524b;
+    public r41 f17524b;
     public a0 f17525c;
     public final int[] d;
     public final String[] f17526e;
@@ -51,42 +51,42 @@ public final class s0 extends f2 implements ls {
         }
     }
 
-    public static void Z(s0 s0Var, ArrayList arrayList, l41 l41Var) {
+    public static void Z(s0 s0Var, ArrayList arrayList, m41 m41Var) {
         String M0 = id.M0(2131752775, null);
         String M02 = id.M0(2131752773, null);
-        x31 x31Var = new x31(2);
-        x31Var.f40180l = M0;
-        x31Var.f40183o = M02;
-        x31Var.f40181m = "RestrictedEmoji";
-        x31Var.f40182n = "👋";
-        arrayList.add(x31Var);
-        x31 i7 = x31.i(1, id.M0(2131752769, null));
+        y31 y31Var = new y31(2);
+        y31Var.f40568l = M0;
+        y31Var.f40571o = M02;
+        y31Var.f40569m = "RestrictedEmoji";
+        y31Var.f40570n = "👋";
+        arrayList.add(y31Var);
+        y31 i7 = y31.i(1, id.M0(2131752769, null));
         i7.L(s0Var.f17529r);
         arrayList.add(i7);
-        arrayList.add(x31.C(null));
+        arrayList.add(y31.C(null));
         if (s0Var.f17529r) {
             s1 d = t1.f(s0Var.currentAccount).d("hello");
             if (d != null) {
-                x31 x31Var2 = new x31(17);
-                x31Var2.G = d;
-                arrayList.add(x31Var2);
+                y31 y31Var2 = new y31(17);
+                y31Var2.G = d;
+                arrayList.add(y31Var2);
             } else {
-                x31 c10 = x31.c(2, 2131232022, id.M0(2131752774, null));
-                c10.f40185q = true;
+                y31 c10 = y31.c(2, 2131232022, id.M0(2131752774, null));
+                c10.f40573q = true;
                 arrayList.add(c10);
             }
-            arrayList.add(x31.C(null));
-            arrayList.add(x31.u(id.M0(2131752688, null)));
-            x31 x10 = x31.x(3, id.M0(2131752781, null));
+            arrayList.add(y31.C(null));
+            arrayList.add(y31.u(id.M0(2131752688, null)));
+            y31 x10 = y31.x(3, id.M0(2131752781, null));
             x10.L(s0Var.f17530s);
             arrayList.add(x10);
-            x31 x11 = x31.x(4, id.M0(2131752776, null));
+            y31 x11 = y31.x(4, id.M0(2131752776, null));
             x11.L(!s0Var.f17530s);
             arrayList.add(x11);
-            arrayList.add(x31.C(null));
-            s0Var.f17525c.a(arrayList, l41Var, true);
-            arrayList.add(x31.C(id.M0(2131752770, null)));
-            arrayList.add(x31.u(id.M0(2131752772, null)));
+            arrayList.add(y31.C(null));
+            s0Var.f17525c.a(arrayList, m41Var, true);
+            arrayList.add(y31.C(id.M0(2131752770, null)));
+            arrayList.add(y31.u(id.M0(2131752772, null)));
             int i10 = 0;
             while (true) {
                 int[] iArr = s0Var.d;
@@ -102,13 +102,13 @@ public final class s0 extends f2 implements ls {
             }
             String[] strArr = s0Var.f17526e;
             ii.c cVar = new ii.c(s0Var, 6);
-            x31 x31Var3 = new x31(14);
-            x31Var3.f40184p = strArr;
-            x31Var3.f40193z = i10;
-            x31Var3.C = cVar;
-            x31Var3.B = -1L;
-            arrayList.add(x31Var3);
-            arrayList.add(x31.C(id.M0(2131752771, null)));
+            y31 y31Var3 = new y31(14);
+            y31Var3.f40572p = strArr;
+            y31Var3.f40581z = i10;
+            y31Var3.C = cVar;
+            y31Var3.B = -1L;
+            arrayList.add(y31Var3);
+            arrayList.add(y31.C(id.M0(2131752771, null)));
         }
     }
 
@@ -138,7 +138,7 @@ public final class s0 extends f2 implements ls {
     }
 
     public final void c0() {
-        if (!this.f17523a.f27358y.f55488f) {
+        if (!this.f17523a.f27360y.f55500f) {
             if (!b0()) {
                 finishFragment();
                 return;
@@ -188,10 +188,10 @@ public final class s0 extends f2 implements ls {
         this.simpleActionBar.setBackButtonImage(2131231240);
         this.simpleActionBar.setTitle(id.M0(2131752775, null));
         this.simpleActionBar.setActionBarMenuOnItemClick(new bi.s(this, 14));
-        this.f17523a = this.simpleActionBar.n(id.M0(2131745949, null));
+        this.f17523a = this.simpleActionBar.o(id.M0(2131745946, null));
         a0(false);
         FrameLayout frameLayout = new FrameLayout(context);
-        a0 a0Var = new a0(this, new h9(this, 26));
+        a0 a0Var = new a0(this, new v9(this, 25));
         this.f17525c = a0Var;
         a0Var.f17300n = true;
         TL_account.TL_businessGreetingMessage tL_businessGreetingMessage = this.f17528n;
@@ -201,13 +201,13 @@ public final class s0 extends f2 implements ls {
             tL_businessRecipients = tL_businessGreetingMessage.recipients;
         }
         a0Var.j(tL_businessRecipients);
-        q41 q41Var = new q41(this, new hi.u1(this, 9), new r0(this, 2), null);
-        this.f17524b = q41Var;
-        q41Var.r1();
+        r41 r41Var = new r41(this, new hi.u1(this, 9), new r0(this, 2), null);
+        this.f17524b = r41Var;
+        r41Var.r1();
         this.f17524b.setSectionsDrawBackground(true);
-        q41 q41Var2 = this.f17524b;
-        q41Var2.f37190f3.f35528r = false;
-        frameLayout.addView(q41Var2, ha.c(-1.0f, -1));
+        r41 r41Var2 = this.f17524b;
+        r41Var2.f37556f3.f35945r = false;
+        frameLayout.addView(r41Var2, ha.c(-1.0f, -1));
         d0();
         this.fragmentView = frameLayout;
         return frameLayout;
@@ -217,7 +217,7 @@ public final class s0 extends f2 implements ls {
         boolean z9;
         int i7;
         boolean z10;
-        l41 l41Var;
+        m41 m41Var;
         TL_account.TL_businessRecipients tL_businessRecipients;
         if (this.f17527f) {
             return;
@@ -256,9 +256,9 @@ public final class s0 extends f2 implements ls {
             }
             a0Var.j(tL_businessRecipients);
         }
-        q41 q41Var = this.f17524b;
-        if (q41Var != null && (l41Var = q41Var.f37190f3) != null) {
-            l41Var.O(true);
+        r41 r41Var = this.f17524b;
+        if (r41Var != null && (m41Var = r41Var.f37556f3) != null) {
+            m41Var.O(true);
         }
         a0(true);
         this.f17527f = true;
@@ -266,11 +266,11 @@ public final class s0 extends f2 implements ls {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        l41 l41Var;
+        m41 m41Var;
         if (i7 == qs.F1) {
-            q41 q41Var = this.f17524b;
-            if (q41Var != null && (l41Var = q41Var.f37190f3) != null) {
-                l41Var.O(true);
+            r41 r41Var = this.f17524b;
+            if (r41Var != null && (m41Var = r41Var.f37556f3) != null) {
+                m41Var.O(true);
             }
             a0(true);
         } else if (i7 == qs.E0) {
@@ -279,7 +279,7 @@ public final class s0 extends f2 implements ls {
     }
 
     @Override
-    public final pj0 getListViewForSimpleGlass() {
+    public final qj0 getListViewForSimpleGlass() {
         return this.f17524b;
     }
 
@@ -297,12 +297,12 @@ public final class s0 extends f2 implements ls {
                     return false;
                 }
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-                String M0 = id.M0(2131743838, null);
+                String M0 = id.M0(2131743835, null);
                 org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
                 u1Var.R = M0;
                 u1Var.T = id.M0(2131752768, null);
                 alertDialog$Builder.k(id.M0(2131754216, null), new r0(this, 0));
-                alertDialog$Builder.h(id.M0(2131747581, null), new r0(this, 1));
+                alertDialog$Builder.h(id.M0(2131747580, null), new r0(this, 1));
                 showDialog(u1Var);
             }
             return false;

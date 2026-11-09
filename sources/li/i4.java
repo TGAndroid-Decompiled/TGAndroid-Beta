@@ -10,13 +10,13 @@ import org.telegram.messenger.kv;
 import org.telegram.messenger.p10;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g6;
 public final class i4 extends ReplacementSpan {
     public final TL_iv.textButton f18641a;
     public iu f18642b;
     public View f18643c;
     public int d = p10.f24470s0;
-    public f6 f18644e;
+    public g6 f18644e;
 
     public i4(TL_iv.textButton textbutton) {
         this.f18641a = textbutton;
@@ -29,16 +29,15 @@ public final class i4 extends ReplacementSpan {
         return true;
     }
 
-    public final void a(int i7, View view, f6 f6Var) {
+    public final void a(int i7, View view, g6 g6Var) {
         View view2;
         iu iuVar = this.f18642b;
         if (iuVar != null && (view2 = this.f18643c) != null) {
-            iuVar.h = null;
-            iuVar.f23365a.f22722a.f(view2);
+            iuVar.b(view2);
         }
         this.f18643c = view;
         this.d = i7;
-        this.f18644e = f6Var;
+        this.f18644e = g6Var;
         this.f18642b = null;
         b();
     }

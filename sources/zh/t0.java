@@ -1,26 +1,26 @@
 package zh;
 
 import android.view.ViewTreeObserver;
-import org.telegram.ui.ActionBar.f6;
-public final class t0 extends l3 {
-    public final ViewTreeObserver Q;
-    public final k0 R;
+import org.telegram.ui.ActionBar.g6;
+public final class t0 extends m3 {
+    public final ViewTreeObserver S;
+    public final k0 T;
 
-    public t0(long j3, String str, long j10, f6 f6Var, ViewTreeObserver viewTreeObserver, k0 k0Var) {
-        super(j3, str, j10, f6Var);
-        this.Q = viewTreeObserver;
-        this.R = k0Var;
+    public t0(long j3, String str, long j10, g6 g6Var, ViewTreeObserver viewTreeObserver, k0 k0Var) {
+        super(j3, str, j10, g6Var);
+        this.S = viewTreeObserver;
+        this.T = k0Var;
     }
 
     @Override
     public final void onPause() {
         super.onPause();
-        this.Q.removeOnPreDrawListener(this.R);
+        this.S.removeOnPreDrawListener(this.T);
     }
 
     @Override
     public final void onResume() {
         super.onResume();
-        this.Q.addOnPreDrawListener(this.R);
+        this.S.addOnPreDrawListener(this.T);
     }
 }

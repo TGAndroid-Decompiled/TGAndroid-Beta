@@ -2,7 +2,7 @@ package jg;
 
 import android.content.Context;
 import android.view.View;
-import di.o7;
+import di.p7;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,15 +15,15 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.g4;
-import org.telegram.ui.ld0;
-import org.telegram.ui.m40;
-import org.telegram.ui.q10;
-import org.telegram.ui.rp;
-import org.telegram.ui.ww;
+import org.telegram.ui.nd0;
+import org.telegram.ui.o40;
+import org.telegram.ui.s10;
+import org.telegram.ui.tp;
+import org.telegram.ui.yw;
 public final class c1 implements Runnable {
     public final int f16682a;
     public final int f16683b;
@@ -83,18 +83,18 @@ public final class c1 implements Runnable {
         this.f16687n = str;
     }
 
-    public c1(TLObject tLObject, org.telegram.ui.ActionBar.u1 u1Var, Context context, int i7, TL_phone.exportGroupCallInvite exportgroupcallinvite, f6 f6Var, m40 m40Var) {
+    public c1(TLObject tLObject, org.telegram.ui.ActionBar.u1 u1Var, Context context, int i7, TL_phone.exportGroupCallInvite exportgroupcallinvite, g6 g6Var, o40 o40Var) {
         this.f16682a = 5;
         this.h = tLObject;
         this.d = u1Var;
         this.f16684c = context;
         this.f16683b = i7;
         this.f16685e = exportgroupcallinvite;
-        this.f16686f = f6Var;
-        this.f16687n = m40Var;
+        this.f16686f = g6Var;
+        this.f16687n = o40Var;
     }
 
-    public c1(TLRPC.TL_error tL_error, TLObject tLObject, ArrayList arrayList, int i7, AtomicInteger atomicInteger, ArrayList arrayList2, rp rpVar) {
+    public c1(TLRPC.TL_error tL_error, TLObject tLObject, ArrayList arrayList, int i7, AtomicInteger atomicInteger, ArrayList arrayList2, tp tpVar) {
         this.f16682a = 6;
         this.f16686f = tL_error;
         this.h = tLObject;
@@ -102,7 +102,7 @@ public final class c1 implements Runnable {
         this.f16683b = i7;
         this.d = atomicInteger;
         this.f16685e = arrayList2;
-        this.f16687n = rpVar;
+        this.f16687n = tpVar;
     }
 
     public c1(org.telegram.ui.ActionBar.u1 u1Var, TLObject tLObject, int i7, TLRPC.Document document, TLRPC.TL_error tL_error, Object obj, TLRPC.TL_stickers_addStickerToSet tL_stickers_addStickerToSet) {
@@ -138,12 +138,12 @@ public final class c1 implements Runnable {
         this.f16687n = tL_messages_getWebPage;
     }
 
-    public c1(LaunchActivity launchActivity, TLObject tLObject, int i7, ww wwVar, f2 f2Var, TLRPC.User user, String str) {
+    public c1(LaunchActivity launchActivity, TLObject tLObject, int i7, yw ywVar, f2 f2Var, TLRPC.User user, String str) {
         this.f16682a = 11;
         this.d = launchActivity;
         this.h = tLObject;
         this.f16683b = i7;
-        this.f16684c = wwVar;
+        this.f16684c = ywVar;
         this.f16685e = f2Var;
         this.f16686f = user;
         this.f16687n = str;
@@ -160,31 +160,31 @@ public final class c1 implements Runnable {
         this.f16685e = str;
     }
 
-    public c1(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, int i7, org.telegram.ui.ActionBar.u1 u1Var, q10 q10Var, String str) {
+    public c1(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, int i7, org.telegram.ui.ActionBar.u1 u1Var, s10 s10Var, String str) {
         this.f16682a = 9;
         this.d = launchActivity;
         this.f16686f = tL_error;
         this.h = tLObject;
         this.f16683b = i7;
         this.f16684c = u1Var;
-        this.f16685e = q10Var;
+        this.f16685e = s10Var;
         this.f16687n = str;
     }
 
-    public c1(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, q10 q10Var, int i7, String str) {
+    public c1(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, s10 s10Var, int i7, String str) {
         this.f16682a = 12;
         this.d = launchActivity;
         this.f16686f = tL_error;
         this.h = tLObject;
         this.f16684c = tL_inputInvoiceSlug;
-        this.f16685e = q10Var;
+        this.f16685e = s10Var;
         this.f16683b = i7;
         this.f16687n = str;
     }
 
-    public c1(ld0 ld0Var, String str, f5.f fVar, List list, String str2, String str3, int i7) {
+    public c1(nd0 nd0Var, String str, f5.f fVar, List list, String str2, String str3, int i7) {
         this.f16682a = 13;
-        this.d = ld0Var;
+        this.d = nd0Var;
         this.f16684c = str;
         this.f16685e = fVar;
         this.f16686f = list;
@@ -204,7 +204,7 @@ public final class c1 implements Runnable {
         this.f16687n = str2;
     }
 
-    public c1(org.telegram.ui.web.x0 x0Var, String str, TLObject tLObject, TLRPC.TL_error tL_error, int i7, org.telegram.ui.web.u0 u0Var, o7 o7Var) {
+    public c1(org.telegram.ui.web.x0 x0Var, String str, TLObject tLObject, TLRPC.TL_error tL_error, int i7, org.telegram.ui.web.u0 u0Var, p7 p7Var) {
         this.f16682a = 17;
         this.d = x0Var;
         this.f16684c = str;
@@ -212,6 +212,6 @@ public final class c1 implements Runnable {
         this.f16686f = tL_error;
         this.f16683b = i7;
         this.f16685e = u0Var;
-        this.f16687n = o7Var;
+        this.f16687n = p7Var;
     }
 }

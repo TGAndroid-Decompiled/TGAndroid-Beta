@@ -12,28 +12,28 @@ import org.telegram.messenger.a8;
 import org.telegram.messenger.id;
 import org.telegram.messenger.t3;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.a6;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.n6;
-import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.o6;
+import org.telegram.ui.ActionBar.s6;
 import org.telegram.ui.Components.l9;
 import org.telegram.ui.Components.w8;
 import org.telegram.ui.Components.xp;
-import org.telegram.ui.ez;
-public final class g1 extends LinearLayout implements a6 {
+import org.telegram.ui.gz;
+public final class g1 extends LinearLayout implements b6 {
     public ShapeDrawable f16730a;
-    public final f6 f16731b;
+    public final g6 f16731b;
     public final l9 f16732c;
     public final w8 d;
     public final TextView f16733e;
     public final TextView f16734f;
 
-    public g1(Context context, f6 f6Var, boolean z9) {
+    public g1(Context context, g6 g6Var, boolean z9) {
         super(context);
-        n6 N;
-        this.d = new w8((f6) null);
-        this.f16731b = f6Var;
+        o6 M;
+        this.d = new w8((g6) null);
+        this.f16731b = g6Var;
         setOrientation(0);
         l9 l9Var = new l9(context);
         this.f16732c = l9Var;
@@ -45,18 +45,18 @@ public final class g1 extends LinearLayout implements a6 {
         TextView textView = new TextView(context);
         this.f16733e = textView;
         textView.setTextSize(1, 15.0f);
-        int i7 = k6.G6;
-        r6.V(textView, i7, f6Var);
+        int i7 = l6.G6;
+        s6.U(textView, i7, g6Var);
         linearLayout.addView(textView, ha.o(-1, -2));
         TextView textView2 = new TextView(context);
         this.f16734f = textView2;
         textView2.setTextSize(1, 13.0f);
         if (z9) {
-            N = r6.L(0.5f, i7);
+            M = s6.K(0.5f, i7);
         } else {
-            N = r6.N(k6.f28262z6);
+            M = s6.M(l6.f28275z6);
         }
-        r6.W(textView2, N, f6Var);
+        s6.V(textView2, M, g6Var);
         linearLayout.addView(textView2, ha.o(-1, -2));
     }
 
@@ -68,31 +68,31 @@ public final class g1 extends LinearLayout implements a6 {
         TextView textView2 = this.f16733e;
         l9 l9Var = this.f16732c;
         if (i7 == 0) {
-            ShapeDrawable d02 = k6.d0(org.telegram.messenger.g0.L(28.0f), k6.w0(k6.Ci, this.f16731b));
+            ShapeDrawable d02 = l6.d0(org.telegram.messenger.g0.L(28.0f), l6.w0(l6.Ci, this.f16731b));
             this.f16730a = d02;
             xp xpVar = new xp(d02, getContext().getResources().getDrawable(2131231830).mutate());
-            xpVar.f40359s = org.telegram.messenger.g0.L(-0.66f);
-            xpVar.f40360w = 0;
+            xpVar.f40451s = org.telegram.messenger.g0.L(-0.66f);
+            xpVar.f40452w = 0;
             int L = org.telegram.messenger.g0.L(20.0f);
             int L2 = org.telegram.messenger.g0.L(20.0f);
-            xpVar.f40355e = L;
-            xpVar.f40356f = L2;
+            xpVar.f40447e = L;
+            xpVar.f40448f = L2;
             l9Var.setImageDrawable(xpVar);
-            textView2.setText(id.a0(null, null, 2131749345, str));
-            textView.setText(id.M0(2131749346, null));
+            textView2.setText(id.a0(null, null, 2131749344, str));
+            textView.setText(id.M0(2131749345, null));
             return;
         }
         w8 w8Var = this.d;
         w8Var.q(chat);
         l9Var.e(chat, w8Var);
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(id.a0(null, null, 2131749343, str + "@" + t3.K(chat, false)));
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(id.a0(null, null, 2131749342, str + "@" + t3.K(chat, false)));
         spannableStringBuilder.append((CharSequence) "  d");
-        ez ezVar = new ez(8);
-        ezVar.f45401f = k6.x0(null, k6.zk, false);
-        ezVar.f45402n = false;
-        spannableStringBuilder.setSpan(ezVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
+        gz gzVar = new gz(8);
+        gzVar.f46100f = l6.x0(null, l6.zk, false);
+        gzVar.f46101n = false;
+        spannableStringBuilder.setSpan(gzVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
         textView2.setText(spannableStringBuilder);
-        textView.setText(id.M0(2131749344, null));
+        textView.setText(id.M0(2131749343, null));
     }
 
     @Override
@@ -105,7 +105,7 @@ public final class g1 extends LinearLayout implements a6 {
         try {
             ShapeDrawable shapeDrawable = this.f16730a;
             if (shapeDrawable != null) {
-                k6.C1(k6.w0(k6.Ci, this.f16731b), shapeDrawable);
+                l6.C1(l6.w0(l6.Ci, this.f16731b), shapeDrawable);
                 l9 l9Var = this.f16732c;
                 if (l9Var != null) {
                     l9Var.invalidate();

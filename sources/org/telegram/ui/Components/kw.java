@@ -13,7 +13,7 @@ public final class kw extends gy {
     @Override
     public final void a(RecyclerView recyclerView, int i7) {
         if (i7 == 0) {
-            this.d.f34409f0 = false;
+            this.d.f34424f0 = false;
         }
         super.a(recyclerView, i7);
     }
@@ -26,10 +26,10 @@ public final class kw extends gy {
         super.b(recyclerView, i7, i10);
         hx hxVar = hyVar.S;
         if (hxVar != null && hyVar.P.getAdapter() == hxVar) {
-            hx hxVar2 = hxVar.f34387y.f34033a;
+            hx hxVar2 = hxVar.f34402y.f34069a;
             if (!hxVar2.F.V.F && !hxVar2.E) {
                 if (hwVar.N0() + 20 > hxVar.b()) {
-                    gx gxVar = hxVar.f34387y;
+                    gx gxVar = hxVar.f34402y;
                     Objects.requireNonNull(gxVar);
                     org.telegram.messenger.g0.h3(new pv(gxVar, 1));
                 }

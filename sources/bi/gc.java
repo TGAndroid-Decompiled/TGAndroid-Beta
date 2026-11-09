@@ -38,7 +38,7 @@ public final class gc extends ug.q1 {
         switch (this.f3960r) {
             case 0:
                 ug.p1 p1Var = new ug.p1(this.f3962w);
-                this.f56794a = p1Var;
+                this.f56806a = p1Var;
                 p1Var.O = 105;
                 int i12 = 0;
                 p1Var.M = false;
@@ -46,11 +46,11 @@ public final class gc extends ug.q1 {
                 p1Var.K = true;
                 p1Var.H = true;
                 p1Var.J = false;
-                p1Var.f56774m = true;
+                p1Var.f56786m = true;
                 p1Var.h = true;
                 int i13 = this.f3963x;
                 if (i13 == 1) {
-                    p1Var.f56772k = org.telegram.messenger.g0.L(24.0f);
+                    p1Var.f56784k = org.telegram.messenger.g0.L(24.0f);
                 }
                 if (i13 == 2) {
                     i7 = 40;
@@ -81,29 +81,29 @@ public final class gc extends ug.q1 {
                         this.f3961s[i12].setColorFilter(new PorterDuffColorFilter(f10, PorterDuff.Mode.SRC_IN));
                         i12++;
                     } else {
-                        ug.p1 p1Var2 = this.f56794a;
-                        p1Var2.f56773l = new fc(this, 0);
-                        p1Var2.f56779r = 17;
-                        p1Var2.f56780s = 18;
-                        p1Var2.f56781t = 19;
+                        ug.p1 p1Var2 = this.f56806a;
+                        p1Var2.f56785l = new fc(this, 0);
+                        p1Var2.f56791r = 17;
+                        p1Var2.f56792s = 18;
+                        p1Var2.f56793t = 19;
                         if (i13 == 2) {
                             p1Var2.N = true;
-                            p1Var2.f56779r = 9;
-                            p1Var2.f56780s = 11;
-                            p1Var2.f56781t = 13;
-                            p1Var2.f56776o = 1.6f;
-                            p1Var2.f56784x = 1400L;
-                            p1Var2.f56785y = 1600;
+                            p1Var2.f56791r = 9;
+                            p1Var2.f56792s = 11;
+                            p1Var2.f56793t = 13;
+                            p1Var2.f56788o = 1.6f;
+                            p1Var2.f56796x = 1400L;
+                            p1Var2.f56797y = 1600;
                             p1Var2.L = true;
                         }
-                        p1Var2.Q = org.telegram.ui.ActionBar.k6.G6;
+                        p1Var2.Q = org.telegram.ui.ActionBar.l6.G6;
                         p1Var2.c();
                         return;
                     }
                 }
             default:
                 ug.p1 p1Var3 = new ug.p1(this.f3962w);
-                this.f56794a = p1Var3;
+                this.f56806a = p1Var3;
                 p1Var3.O = 106;
                 int i14 = 0;
                 p1Var3.M = false;
@@ -111,10 +111,10 @@ public final class gc extends ug.q1 {
                 p1Var3.K = true;
                 p1Var3.H = true;
                 p1Var3.J = false;
-                p1Var3.f56774m = true;
+                p1Var3.f56786m = true;
                 p1Var3.h = true;
                 if (this.f3963x == 1) {
-                    p1Var3.f56772k = org.telegram.messenger.g0.L(24.0f);
+                    p1Var3.f56784k = org.telegram.messenger.g0.L(24.0f);
                 }
                 this.f3961s = new Paint[20];
                 while (true) {
@@ -124,12 +124,12 @@ public final class gc extends ug.q1 {
                         this.f3961s[i14].setColorFilter(new PorterDuffColorFilter(i0.a.f(i14 / (this.f3961s.length - 1), -13729319, -14238726), PorterDuff.Mode.SRC_IN));
                         i14++;
                     } else {
-                        ug.p1 p1Var4 = this.f56794a;
-                        p1Var4.f56773l = new fc(this, 2);
-                        p1Var4.f56779r = 17;
-                        p1Var4.f56780s = 18;
-                        p1Var4.f56781t = 19;
-                        p1Var4.Q = org.telegram.ui.ActionBar.k6.G6;
+                        ug.p1 p1Var4 = this.f56806a;
+                        p1Var4.f56785l = new fc(this, 2);
+                        p1Var4.f56791r = 17;
+                        p1Var4.f56792s = 18;
+                        p1Var4.f56793t = 19;
+                        p1Var4.Q = org.telegram.ui.ActionBar.l6.G6;
                         p1Var4.c();
                         return;
                     }

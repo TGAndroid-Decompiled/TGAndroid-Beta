@@ -1,37 +1,36 @@
 package org.telegram.ui;
+public final class db1 implements Runnable {
+    public final int f44906a;
+    public final UserInfoActivity f44907b;
 
-import android.content.Context;
-import android.text.Editable;
-public final class db1 extends org.telegram.ui.Cells.k3 {
-    public final int E;
-    public final UserInfoActivity F;
-
-    public db1(UserInfoActivity userInfoActivity, Context context, String str, org.telegram.ui.ActionBar.f6 f6Var, int i7) {
-        super(context, str, false, false, -1, f6Var);
-        this.E = i7;
-        this.F = userInfoActivity;
+    public db1(UserInfoActivity userInfoActivity, int i7) {
+        this.f44906a = i7;
+        this.f44907b = userInfoActivity;
     }
 
     @Override
-    public final void b(Editable editable) {
-        switch (this.E) {
+    public final void run() {
+        switch (this.f44906a) {
             case 0:
-                this.F.g0(true);
+                this.f44907b.presentFragment(new PrivacyControlActivity(9, true));
                 return;
             case 1:
-                this.F.g0(true);
+                fi.w3 w3Var = this.f44907b.f42080y;
+                if (w3Var != null) {
+                    w3Var.f37556f3.O(true);
+                    return;
+                }
+                return;
+            case 2:
+                UserInfoActivity userInfoActivity = this.f44907b;
+                userInfoActivity.getClass();
+                userInfoActivity.presentFragment(new PrivacyControlActivity(11, false));
                 return;
             default:
-                UserInfoActivity userInfoActivity = this.F;
-                userInfoActivity.g0(true);
-                userInfoActivity.j0();
+                UserInfoActivity userInfoActivity2 = this.f44907b;
+                userInfoActivity2.getClass();
+                userInfoActivity2.presentFragment(new PremiumPreviewFragment(0, "add_account"));
                 return;
         }
-    }
-
-    public db1(UserInfoActivity userInfoActivity, Context context, String str, int i7, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, str, true, false, i7, f6Var);
-        this.E = 2;
-        this.F = userInfoActivity;
     }
 }

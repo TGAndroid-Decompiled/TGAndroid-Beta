@@ -3,21 +3,21 @@ package hh;
 import android.graphics.Color;
 import gh.e;
 import org.telegram.messenger.g0;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
 public final class b extends e {
-    public final f6 f14491s;
+    public final g6 f14491s;
 
-    public b(f6 f6Var, f6 f6Var2) {
-        super(f6Var);
-        this.f14491s = f6Var2;
+    public b(g6 g6Var, g6 g6Var2) {
+        super(g6Var);
+        this.f14491s = g6Var2;
     }
 
     @Override
     public final int A() {
         int a10 = a(this.f13970c);
-        f6 f6Var = this.f14491s;
-        if (k6.i1(f6Var) && Color.alpha(k6.w0(k6.f28210wa, f6Var)) != 0) {
+        g6 g6Var = this.f14491s;
+        if (l6.i1(g6Var) && Color.alpha(l6.w0(l6.f28223wa, g6Var)) != 0) {
             return 0;
         }
         return a10;
@@ -25,18 +25,18 @@ public final class b extends e {
 
     @Override
     public final int C0() {
-        f6 f6Var = this.f14491s;
-        if (k6.i1(f6Var)) {
-            return k6.w0(k6.ya, f6Var);
+        g6 g6Var = this.f14491s;
+        if (l6.i1(g6Var)) {
+            return l6.w0(l6.ya, g6Var);
         }
         return 0;
     }
 
     @Override
     public final int M() {
-        f6 f6Var = this.f14491s;
-        if (k6.i1(f6Var)) {
-            return k6.w0(k6.f28210wa, f6Var);
+        g6 g6Var = this.f14491s;
+        if (l6.i1(g6Var)) {
+            return l6.w0(l6.f28223wa, g6Var);
         }
         return 0;
     }
@@ -44,8 +44,8 @@ public final class b extends e {
     @Override
     public final int O() {
         int a10 = a(this.d);
-        f6 f6Var = this.f14491s;
-        if (k6.i1(f6Var) && Color.alpha(k6.w0(k6.f28210wa, f6Var)) != 0) {
+        g6 g6Var = this.f14491s;
+        if (l6.i1(g6Var) && Color.alpha(l6.w0(l6.f28223wa, g6Var)) != 0) {
             return 0;
         }
         return a10;
@@ -53,16 +53,16 @@ public final class b extends e {
 
     @Override
     public final int R0() {
-        f6 f6Var = this.f14491s;
-        if (k6.i1(f6Var)) {
-            return k6.w0(k6.f28229xa, f6Var);
+        g6 g6Var = this.f14491s;
+        if (l6.i1(g6Var)) {
+            return l6.w0(l6.f28242xa, g6Var);
         }
         return a(this.f13969b);
     }
 
     @Override
     public final float b() {
-        if (k6.i1(this.f14491s)) {
+        if (l6.i1(this.f14491s)) {
             return g0.N(1.0f);
         }
         return this.f13974r;
@@ -70,7 +70,7 @@ public final class b extends e {
 
     @Override
     public final float c() {
-        if (k6.i1(this.f14491s)) {
+        if (l6.i1(this.f14491s)) {
             return g0.N(2.25f);
         }
         return this.f13973n;

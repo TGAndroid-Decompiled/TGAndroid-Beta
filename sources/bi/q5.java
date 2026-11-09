@@ -26,8 +26,8 @@ public final class q5 extends FrameLayout {
         addView(l9Var, c8.ha.d(26, 26.0f, 49, 0.0f, 11.33f, 0.0f, 0.0f));
         y5 y5Var = new y5(context);
         this.f4570b = y5Var;
-        y5Var.f5077e = org.telegram.messenger.g0.L(18.0f);
-        y5Var.f5074a.setStrokeWidth(org.telegram.messenger.g0.L(3.0f));
+        y5Var.f5075e = org.telegram.messenger.g0.L(18.0f);
+        y5Var.f5072a.setStrokeWidth(org.telegram.messenger.g0.L(3.0f));
         addView(y5Var, c8.ha.d(48, 48.0f, 49, 0.0f, 0.66f, 0.0f, 0.0f));
         org.telegram.ui.Components.j6 j6Var = new org.telegram.ui.Components.j6(context, false, false, false);
         this.f4571c = j6Var;
@@ -58,7 +58,7 @@ public final class q5 extends FrameLayout {
             return;
         }
         l9Var.setAlpha(1.0f);
-        l9Var.setImageDrawable(org.telegram.ui.ActionBar.k6.L(org.telegram.messenger.g0.L(26.0f), org.telegram.ui.ActionBar.k6.r1(0.25f, -1)));
+        l9Var.setImageDrawable(org.telegram.ui.ActionBar.l6.L(org.telegram.messenger.g0.L(26.0f), org.telegram.ui.ActionBar.l6.r1(0.25f, -1)));
     }
 
     public final void b(TL_stars.starGiftAttributePattern stargiftattributepattern) {
@@ -88,7 +88,7 @@ public final class q5 extends FrameLayout {
         y5 y5Var = this.f4570b;
         y5Var.d = f10;
         if (!z9) {
-            y5Var.f5075b.e(true, f10);
+            y5Var.f5073b.e(true, f10);
         }
         y5Var.invalidate();
         this.f4571c.c(Math.round(f10 * 100.0f) + "%", z9, true);

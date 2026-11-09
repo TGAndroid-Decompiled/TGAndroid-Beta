@@ -83,7 +83,7 @@ public final class oj implements RequestDelegate {
                             ijVar.Z0 = tL_sponsoredMessage.can_report;
                             ijVar.X0 = tL_sponsoredMessage.color;
                             ijVar.Y0 = tL_sponsoredMessage.media;
-                            ijVar.M5();
+                            ijVar.L5();
                             ijVar.f23321z2 = new ArrayList();
                             ijVar.r0(true);
                             arrayList.add(ijVar);

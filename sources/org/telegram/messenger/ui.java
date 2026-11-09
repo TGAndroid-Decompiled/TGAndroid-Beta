@@ -48,16 +48,15 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.cv0;
-import org.telegram.ui.Components.d41;
+import org.telegram.ui.Components.aw0;
 import org.telegram.ui.Components.e41;
-import org.telegram.ui.Components.il0;
-import org.telegram.ui.Components.jv0;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.ug0;
-import org.telegram.ui.Components.uy0;
+import org.telegram.ui.Components.ev0;
+import org.telegram.ui.Components.f41;
+import org.telegram.ui.Components.jl0;
+import org.telegram.ui.Components.qj0;
+import org.telegram.ui.Components.vg0;
 import org.telegram.ui.Components.vy0;
-import org.telegram.ui.Components.zv0;
+import org.telegram.ui.Components.wy0;
 import org.telegram.ui.Wallet.WalletEngine2;
 public final class ui extends c1 {
     public static final Pattern R1 = Pattern.compile("\\*\\*(.+?)\\*\\*");
@@ -370,7 +369,7 @@ public final class ui extends c1 {
             SerializedData serializedData2 = new SerializedData(Utilities.v(sharedPreferences.getString("theme_" + i12, "")));
             try {
                 org.telegram.ui.ActionBar.r3 c10 = org.telegram.ui.ActionBar.r3.c(this.currentAccount, TLRPC.Theme.TLdeserialize(serializedData2, serializedData2.readInt32(true), true));
-                if (c10.f28463f.size() >= 4) {
+                if (c10.f28464f.size() >= 4) {
                     arrayList2.add(new org.telegram.ui.Components.uo(c10));
                 }
                 d4.f21977s.c(new m9.u(this, arrayList2, false, 27));
@@ -385,21 +384,21 @@ public final class ui extends c1 {
         this.f25810e = getMessagesController().f24774e7.getInt("menuBotsUpdateDate", 0);
     }
 
-    public static CharacterStyle J(CharacterStyle characterStyle, uy0 uy0Var, uy0 uy0Var2, boolean z9) {
-        uy0 uy0Var3 = new uy0(uy0Var);
-        if (uy0Var2 != null) {
+    public static CharacterStyle J(CharacterStyle characterStyle, vy0 vy0Var, vy0 vy0Var2, boolean z9) {
+        vy0 vy0Var3 = new vy0(vy0Var);
+        if (vy0Var2 != null) {
             if (z9) {
-                uy0Var3.b(uy0Var2);
+                vy0Var3.b(vy0Var2);
             } else {
-                uy0Var3.f38779a = uy0Var2.f38779a;
-                uy0Var3.d = uy0Var2.d;
+                vy0Var3.f39836a = vy0Var2.f39836a;
+                vy0Var3.d = vy0Var2.d;
             }
         }
-        if (characterStyle instanceof vy0) {
-            return new vy0(uy0Var3, 0);
+        if (characterStyle instanceof wy0) {
+            return new wy0(vy0Var3, 0);
         }
-        if (characterStyle instanceof d41) {
-            return new d41(((d41) characterStyle).getURL(), uy0Var3);
+        if (characterStyle instanceof e41) {
+            return new e41(((e41) characterStyle).getURL(), vy0Var3);
         }
         return null;
     }
@@ -580,23 +579,23 @@ public final class ui extends c1 {
         }
     }
 
-    public static void f(org.telegram.ui.Components.vy0 r16, int r17, int r18, android.text.Spannable r19, boolean r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ui.f(org.telegram.ui.Components.vy0, int, int, android.text.Spannable, boolean):void");
+    public static void f(org.telegram.ui.Components.wy0 r16, int r17, int r18, android.text.Spannable r19, boolean r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ui.f(org.telegram.ui.Components.wy0, int, int, android.text.Spannable, boolean):void");
     }
 
     public static int f0(TLRPC.Message message) {
         if (message == null) {
             return -1;
         }
-        TLRPC.MessageMedia o12 = ij.o1(message);
-        if (o12 instanceof TLRPC.TL_messageMediaPoll) {
+        TLRPC.MessageMedia n1 = ij.n1(message);
+        if (n1 instanceof TLRPC.TL_messageMediaPoll) {
             return 8;
         }
-        if (o12 instanceof TLRPC.TL_messageMediaPhoto) {
+        if (n1 instanceof TLRPC.TL_messageMediaPhoto) {
             return 0;
         }
-        if (o12 instanceof TLRPC.TL_messageMediaDocument) {
-            TLRPC.Document document = o12.document;
+        if (n1 instanceof TLRPC.TL_messageMediaDocument) {
+            TLRPC.Document document = n1.document;
             if (document == null) {
                 return -1;
             }
@@ -656,8 +655,8 @@ public final class ui extends c1 {
         int i11;
         int i12;
         int i13;
-        for (vy0 vy0Var : (vy0[]) spannable.getSpans(0, spannable.length(), vy0.class)) {
-            spannable.removeSpan(vy0Var);
+        for (wy0 wy0Var : (wy0[]) spannable.getSpans(0, spannable.length(), wy0.class)) {
+            spannable.removeSpan(wy0Var);
         }
         int i14 = 1;
         int i15 = 100;
@@ -691,36 +690,36 @@ public final class ui extends c1 {
                         } else {
                             ?? obj = new Object();
                             int i19 = messageEntity2.offset;
-                            obj.f38780b = i19;
-                            obj.f38781c = Math.min(messageEntity2.length, charSequence.length() - obj.f38780b) + i19;
+                            obj.f39837b = i19;
+                            obj.f39838c = Math.min(messageEntity2.length, charSequence.length() - obj.f39837b) + i19;
                             if (messageEntity2 instanceof TLRPC.TL_messageEntitySpoiler) {
-                                obj.f38779a = 256;
+                                obj.f39836a = 256;
                             } else if (messageEntity2 instanceof TLRPC.TL_messageEntityStrike) {
-                                obj.f38779a = 8;
+                                obj.f39836a = 8;
                             } else if (messageEntity2 instanceof TLRPC.TL_messageEntityUnderline) {
-                                obj.f38779a = 16;
+                                obj.f39836a = 16;
                             } else if (messageEntity2 instanceof TLRPC.TL_messageEntityBold) {
-                                obj.f38779a = i14;
+                                obj.f39836a = i14;
                             } else if (messageEntity2 instanceof TLRPC.TL_messageEntityItalic) {
-                                obj.f38779a = 2;
+                                obj.f39836a = 2;
                             } else if (!(messageEntity2 instanceof TLRPC.TL_messageEntityCode) && !(messageEntity2 instanceof TLRPC.TL_messageEntityPre)) {
                                 if (messageEntity2 instanceof TLRPC.TL_messageEntityMentionName) {
-                                    obj.f38779a = 64;
+                                    obj.f39836a = 64;
                                     obj.d = messageEntity2;
                                 } else if (messageEntity2 instanceof TLRPC.TL_inputMessageEntityMentionName) {
-                                    obj.f38779a = 64;
+                                    obj.f39836a = 64;
                                     obj.d = messageEntity2;
                                 } else {
-                                    obj.f38779a = 128;
+                                    obj.f39836a = 128;
                                     obj.d = messageEntity2;
                                 }
                             } else {
-                                obj.f38779a = 4;
+                                obj.f39836a = 4;
                             }
                             if (messageEntity2 instanceof TLRPC.TL_messageEntityTextUrl) {
-                                obj.f38779a |= 1024;
+                                obj.f39836a |= 1024;
                             }
-                            obj.f38779a &= i7;
+                            obj.f39836a &= i7;
                             int size3 = arrayList4.size();
                             int i20 = 0;
                             while (true) {
@@ -730,73 +729,73 @@ public final class ui extends c1 {
                                         i10 = i14;
                                         break loop3;
                                     }
-                                    uy0 uy0Var = (uy0) arrayList4.get(i20);
-                                    int i21 = obj.f38780b;
+                                    vy0 vy0Var = (vy0) arrayList4.get(i20);
+                                    int i21 = obj.f39837b;
                                     i10 = i14;
-                                    int i22 = uy0Var.f38780b;
+                                    int i22 = vy0Var.f39837b;
                                     if (i21 > i22) {
-                                        int i23 = uy0Var.f38781c;
+                                        int i23 = vy0Var.f39838c;
                                         if (i21 >= i23) {
                                             continue;
-                                        } else if (obj.f38781c < i23) {
+                                        } else if (obj.f39838c < i23) {
                                             if (arrayList4.size() > 98) {
                                                 break loop3;
                                             }
-                                            uy0 uy0Var2 = new uy0(obj);
-                                            uy0Var2.b(uy0Var);
-                                            arrayList4.add(i20 + 1, uy0Var2);
-                                            uy0 uy0Var3 = new uy0(uy0Var);
-                                            uy0Var3.f38780b = obj.f38781c;
+                                            vy0 vy0Var2 = new vy0(obj);
+                                            vy0Var2.b(vy0Var);
+                                            arrayList4.add(i20 + 1, vy0Var2);
+                                            vy0 vy0Var3 = new vy0(vy0Var);
+                                            vy0Var3.f39837b = obj.f39838c;
                                             i20 += 2;
-                                            arrayList4.add(i20, uy0Var3);
+                                            arrayList4.add(i20, vy0Var3);
                                             size3 += 2;
-                                            int i24 = obj.f38780b;
-                                            obj.f38780b = uy0Var.f38781c;
-                                            uy0Var.f38781c = i24;
+                                            int i24 = obj.f39837b;
+                                            obj.f39837b = vy0Var.f39838c;
+                                            vy0Var.f39838c = i24;
                                         } else if (arrayList4.size() >= i15) {
                                             break loop3;
                                         } else {
-                                            uy0 uy0Var4 = new uy0(obj);
-                                            uy0Var4.b(uy0Var);
-                                            uy0Var4.f38781c = uy0Var.f38781c;
+                                            vy0 vy0Var4 = new vy0(obj);
+                                            vy0Var4.b(vy0Var);
+                                            vy0Var4.f39838c = vy0Var.f39838c;
                                             i20++;
-                                            arrayList4.add(i20, uy0Var4);
+                                            arrayList4.add(i20, vy0Var4);
                                             size3++;
-                                            int i242 = obj.f38780b;
-                                            obj.f38780b = uy0Var.f38781c;
-                                            uy0Var.f38781c = i242;
+                                            int i242 = obj.f39837b;
+                                            obj.f39837b = vy0Var.f39838c;
+                                            vy0Var.f39838c = i242;
                                         }
                                         i20++;
                                         i14 = i10;
                                         i15 = 100;
                                     } else {
-                                        int i25 = obj.f38781c;
+                                        int i25 = obj.f39838c;
                                         if (i22 < i25) {
-                                            int i26 = uy0Var.f38781c;
+                                            int i26 = vy0Var.f39838c;
                                             if (i25 == i26) {
-                                                uy0Var.b(obj);
+                                                vy0Var.b(obj);
                                             } else if (i25 < i26) {
                                                 if (arrayList4.size() >= 100) {
                                                     break loop3;
                                                 }
-                                                uy0 uy0Var5 = new uy0(uy0Var);
-                                                uy0Var5.b(obj);
-                                                uy0Var5.f38781c = obj.f38781c;
+                                                vy0 vy0Var5 = new vy0(vy0Var);
+                                                vy0Var5.b(obj);
+                                                vy0Var5.f39838c = obj.f39838c;
                                                 i20++;
-                                                arrayList4.add(i20, uy0Var5);
+                                                arrayList4.add(i20, vy0Var5);
                                                 size3++;
-                                                uy0Var.f38780b = obj.f38781c;
+                                                vy0Var.f39837b = obj.f39838c;
                                             } else if (arrayList4.size() >= 100) {
                                                 break loop3;
                                             } else {
-                                                uy0 uy0Var6 = new uy0(obj);
-                                                uy0Var6.f38780b = uy0Var.f38781c;
+                                                vy0 vy0Var6 = new vy0(obj);
+                                                vy0Var6.f39837b = vy0Var.f39838c;
                                                 i20++;
-                                                arrayList4.add(i20, uy0Var6);
+                                                arrayList4.add(i20, vy0Var6);
                                                 size3++;
-                                                uy0Var.b(obj);
+                                                vy0Var.b(obj);
                                             }
-                                            obj.f38781c = i22;
+                                            obj.f39838c = i22;
                                         } else {
                                             continue;
                                         }
@@ -806,7 +805,7 @@ public final class ui extends c1 {
                                     }
                                 } else {
                                     i10 = i14;
-                                    if (obj.f38780b < obj.f38781c) {
+                                    if (obj.f39837b < obj.f39838c) {
                                         i12 = 100;
                                         if (arrayList4.size() >= 100) {
                                             break;
@@ -825,9 +824,9 @@ public final class ui extends c1 {
                         i10 = i14;
                         int size4 = arrayList4.size();
                         for (int i27 = 0; i27 < size4; i27++) {
-                            uy0 uy0Var7 = (uy0) arrayList4.get(i27);
-                            int i28 = uy0Var7.f38780b;
-                            if (i28 >= 0 && i28 < (i11 = uy0Var7.f38781c) && i11 <= charSequence.length()) {
+                            vy0 vy0Var7 = (vy0) arrayList4.get(i27);
+                            int i28 = vy0Var7.f39837b;
+                            if (i28 >= 0 && i28 < (i11 = vy0Var7.f39838c) && i11 <= charSequence.length()) {
                             }
                         }
                         arrayList2 = arrayList4;
@@ -842,8 +841,8 @@ public final class ui extends c1 {
             }
         }
         for (int i29 = 0; i29 < Math.min(1000, t02.size()); i29++) {
-            uy0 uy0Var8 = (uy0) t02.get(i29);
-            f(new vy0(uy0Var8, 0), uy0Var8.f38780b, uy0Var8.f38781c, spannable, i10);
+            vy0 vy0Var8 = (vy0) t02.get(i29);
+            f(new wy0(vy0Var8, 0), vy0Var8.f39837b, vy0Var8.f39838c, spannable, i10);
         }
     }
 
@@ -1012,10 +1011,10 @@ public final class ui extends c1 {
 
     public static boolean r(TLRPC.Message message) {
         boolean z9 = message instanceof TLRPC.TL_message_secret;
-        if (z9 && (((ij.o1(message) instanceof TLRPC.TL_messageMediaPhoto) || ij.M4(message) || ij.u3(message)) && ij.o1(message).ttl_seconds != 0 && ij.o1(message).ttl_seconds <= 60)) {
+        if (z9 && (((ij.n1(message) instanceof TLRPC.TL_messageMediaPhoto) || ij.L4(message) || ij.t3(message)) && ij.n1(message).ttl_seconds != 0 && ij.n1(message).ttl_seconds <= 60)) {
             return false;
         }
-        if ((!z9 && (message instanceof TLRPC.TL_message) && (((ij.o1(message) instanceof TLRPC.TL_messageMediaPhoto) || (ij.o1(message) instanceof TLRPC.TL_messageMediaDocument)) && ij.o1(message).ttl_seconds != 0)) || f0(message) == -1) {
+        if ((!z9 && (message instanceof TLRPC.TL_message) && (((ij.n1(message) instanceof TLRPC.TL_messageMediaPhoto) || (ij.n1(message) instanceof TLRPC.TL_messageMediaDocument)) && ij.n1(message).ttl_seconds != 0)) || f0(message) == -1) {
             return false;
         }
         return true;
@@ -1087,36 +1086,36 @@ public final class ui extends c1 {
                     int min = Math.min(messageEntity2.length, charSequence.length() - i15) + i15;
                     if (!(messageEntity2 instanceof TLRPC.TL_messageEntityCustomEmoji)) {
                         ?? obj = new Object();
-                        obj.f38780b = i15;
-                        obj.f38781c = min;
+                        obj.f39837b = i15;
+                        obj.f39838c = min;
                         if (messageEntity2 instanceof TLRPC.TL_messageEntitySpoiler) {
-                            obj.f38779a = 256;
+                            obj.f39836a = 256;
                         } else if (messageEntity2 instanceof TLRPC.TL_messageEntityStrike) {
-                            obj.f38779a = 8;
+                            obj.f39836a = 8;
                         } else if (messageEntity2 instanceof TLRPC.TL_messageEntityUnderline) {
-                            obj.f38779a = 16;
+                            obj.f39836a = 16;
                         } else if (messageEntity2 instanceof TLRPC.TL_messageEntityBold) {
-                            obj.f38779a = 1;
+                            obj.f39836a = 1;
                         } else if (messageEntity2 instanceof TLRPC.TL_messageEntityItalic) {
-                            obj.f38779a = 2;
+                            obj.f39836a = 2;
                         } else if (!(messageEntity2 instanceof TLRPC.TL_messageEntityCode) && !(messageEntity2 instanceof TLRPC.TL_messageEntityPre)) {
                             if (messageEntity2 instanceof TLRPC.TL_messageEntityMentionName) {
-                                obj.f38779a = 64;
+                                obj.f39836a = 64;
                                 obj.d = messageEntity2;
                             } else if (messageEntity2 instanceof TLRPC.TL_inputMessageEntityMentionName) {
-                                obj.f38779a = 64;
+                                obj.f39836a = 64;
                                 obj.d = messageEntity2;
                             } else {
-                                obj.f38779a = 128;
+                                obj.f39836a = 128;
                                 obj.d = messageEntity2;
                             }
                         } else {
-                            obj.f38779a = 4;
+                            obj.f39836a = 4;
                         }
                         if (messageEntity2 instanceof TLRPC.TL_messageEntityTextUrl) {
-                            obj.f38779a |= 1024;
+                            obj.f39836a |= 1024;
                         }
-                        obj.f38779a &= i7;
+                        obj.f39836a &= i7;
                         arrayList4.add(obj);
                         int i16 = i13 + 1;
                         iArr[i13] = i15;
@@ -1138,43 +1137,43 @@ public final class ui extends c1 {
                     }
                     int i19 = iArr[i17];
                     int size3 = arrayList4.size();
-                    uy0 uy0Var = null;
+                    vy0 vy0Var = null;
                     int i20 = Integer.MIN_VALUE;
                     int i21 = i11;
                     while (i21 < size3) {
-                        uy0 uy0Var2 = (uy0) arrayList4.get(i21);
-                        if (uy0Var2.f38780b <= i18) {
-                            uy0Var = uy0Var;
-                            if (uy0Var2.f38781c >= i19) {
-                                if (uy0Var == null) {
+                        vy0 vy0Var2 = (vy0) arrayList4.get(i21);
+                        if (vy0Var2.f39837b <= i18) {
+                            vy0Var = vy0Var;
+                            if (vy0Var2.f39838c >= i19) {
+                                if (vy0Var == null) {
                                     ?? obj2 = new Object();
-                                    obj2.f38780b = i18;
-                                    obj2.f38781c = i19;
-                                    uy0Var = obj2;
+                                    obj2.f39837b = i18;
+                                    obj2.f39838c = i19;
+                                    vy0Var = obj2;
                                 }
-                                uy0Var.f38779a = uy0Var2.f38779a | uy0Var.f38779a;
-                                TLRPC.MessageEntity messageEntity3 = uy0Var2.d;
-                                if (messageEntity3 != null && (uy0Var.d == null || uy0Var2.f38780b > i20)) {
-                                    uy0Var.d = messageEntity3;
-                                    i20 = uy0Var2.f38780b;
+                                vy0Var.f39836a = vy0Var2.f39836a | vy0Var.f39836a;
+                                TLRPC.MessageEntity messageEntity3 = vy0Var2.d;
+                                if (messageEntity3 != null && (vy0Var.d == null || vy0Var2.f39837b > i20)) {
+                                    vy0Var.d = messageEntity3;
+                                    i20 = vy0Var2.f39837b;
                                 }
                             }
                         }
                         i21++;
-                        uy0Var = uy0Var;
+                        vy0Var = vy0Var;
                     }
-                    if (uy0Var != null) {
+                    if (vy0Var != null) {
                         if (!arrayList2.isEmpty()) {
-                            uy0 uy0Var3 = (uy0) jg.g.i(1, arrayList2);
-                            if (uy0Var3.f38781c == uy0Var.f38780b && uy0Var3.f38779a == uy0Var.f38779a && uy0Var3.d == uy0Var.d) {
-                                uy0Var3.f38781c = uy0Var.f38781c;
+                            vy0 vy0Var3 = (vy0) jg.g.i(1, arrayList2);
+                            if (vy0Var3.f39838c == vy0Var.f39837b && vy0Var3.f39836a == vy0Var.f39836a && vy0Var3.d == vy0Var.d) {
+                                vy0Var3.f39838c = vy0Var.f39838c;
                             }
                         }
                         if (arrayList2.size() >= 1000) {
                             arrayList2.clear();
                             return arrayList2;
                         }
-                        arrayList2.add(uy0Var);
+                        arrayList2.add(vy0Var);
                     }
                     i11 = 0;
                 }
@@ -1293,13 +1292,13 @@ public final class ui extends c1 {
                 alertDialog$Builder.d = 0;
                 u1Var.R = id.M0(2131754126, null);
             }
-            alertDialog$Builder.f31935c = new ArrayList(arrayList);
-            alertDialog$Builder.f31936e = f2Var2;
+            alertDialog$Builder.f32439c = new ArrayList(arrayList);
+            alertDialog$Builder.f32440e = f2Var2;
             LinearLayout linearLayout = new LinearLayout(parentActivity);
             linearLayout.setOrientation(1);
             alertDialog$Builder.o(linearLayout);
             TextView textView = new TextView(parentActivity);
-            org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.G6, null);
+            org.telegram.ui.ActionBar.s6.U(textView, org.telegram.ui.ActionBar.l6.G6, null);
             textView.setGravity(c8.ha.y());
             textView.setTextSize(1, 16.0f);
             textView.setPadding(g0.L(23.0f), g0.L(10.0f), g0.L(23.0f), 0);
@@ -1309,17 +1308,17 @@ public final class ui extends c1 {
                 textView.setText(id.M0(2131754127, null));
             }
             linearLayout.addView(textView, c8.ha.o(-2, -2));
-            pj0 pj0Var = new pj0(parentActivity, null);
+            qj0 qj0Var = new qj0(parentActivity, null);
             u1Var.getContext();
-            pj0Var.setLayoutManager(new v4.b0(1, false));
-            pj0Var.setAdapter(new zv0(alertDialog$Builder, parentActivity));
-            pj0Var.setVerticalScrollBarEnabled(false);
-            pj0Var.setPadding(g0.L(10.0f), 0, g0.L(10.0f), 0);
-            pj0Var.setGlowColor(-657673);
-            linearLayout.addView(pj0Var, c8.ha.k(0.0f, 10.0f, 0.0f, 0.0f, -1, -2));
-            alertDialog$Builder.h(id.M0(2131752041, null), new il0(11));
+            qj0Var.setLayoutManager(new v4.b0(1, false));
+            qj0Var.setAdapter(new aw0(alertDialog$Builder, parentActivity));
+            qj0Var.setVerticalScrollBarEnabled(false);
+            qj0Var.setPadding(g0.L(10.0f), 0, g0.L(10.0f), 0);
+            qj0Var.setGlowColor(-657673);
+            linearLayout.addView(qj0Var, c8.ha.k(0.0f, 10.0f, 0.0f, 0.0f, -1, -2));
+            alertDialog$Builder.h(id.M0(2131752041, null), new jl0(11));
             if (f2Var2 != null) {
-                alertDialog$Builder.k(id.M0(2131745498, null), new org.telegram.ui.Components.bx(alertDialog$Builder, 22));
+                alertDialog$Builder.k(id.M0(2131745495, null), new org.telegram.ui.Components.bx(alertDialog$Builder, 22));
             }
             f2Var.showDialog(u1Var);
         }
@@ -1504,7 +1503,7 @@ public final class ui extends c1 {
         }
     }
 
-    public final void E0(boolean z9, boolean z10, jv0 jv0Var) {
+    public final void E0(boolean z9, boolean z10, org.telegram.ui.Components.o10 o10Var) {
         long j3;
         this.f25805c = true;
         if (z9) {
@@ -1518,7 +1517,7 @@ public final class ui extends c1 {
             j3 = this.f25799a;
         }
         tL_messages_getAttachMenuBots.hash = j3;
-        getConnectionsManager().sendRequest(tL_messages_getAttachMenuBots, new r4(5, this, jv0Var));
+        getConnectionsManager().sendRequest(tL_messages_getAttachMenuBots, new r4(5, this, o10Var));
     }
 
     public final void E1(xr xrVar, TLRPC.Message message) {
@@ -1543,7 +1542,7 @@ public final class ui extends c1 {
                     i7 = queryFinalized.intValue(0);
                 }
                 queryFinalized.dispose();
-                if (i7 >= message.f26977id && !ij.g3(i7) && !ij.g3(message.f26977id)) {
+                if (i7 >= message.f26977id && !ij.f3(i7) && !ij.f3(message.f26977id)) {
                     return;
                 }
                 if (xrVar.f26521b != 0) {
@@ -1552,7 +1551,7 @@ public final class ui extends c1 {
                     executeFast = getMessagesStorage().f26721b.executeFast("REPLACE INTO bot_keyboard VALUES(?, ?, ?)");
                 }
                 executeFast.requery();
-                ij.r5(message);
+                ij.q5(message);
                 NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(message.getObjectSize());
                 message.serializeToStream(nativeByteBuffer);
                 if (xrVar.f26521b != 0) {
@@ -1903,7 +1902,7 @@ public final class ui extends c1 {
                 TLRPC.TL_contacts_resetTopPeerRating tL_contacts_resetTopPeerRating = new TLRPC.TL_contacts_resetTopPeerRating();
                 tL_contacts_resetTopPeerRating.category = new TLRPC.TL_topPeerCategoryBotsInline();
                 tL_contacts_resetTopPeerRating.peer = getMessagesController().j1(j3);
-                getConnectionsManager().sendRequest(tL_contacts_resetTopPeerRating, new di.u5(11));
+                getConnectionsManager().sendRequest(tL_contacts_resetTopPeerRating, new di.v5(11));
                 getMessagesStorage().f26719a.c(new bi.ia(this, j3, 1, 4));
                 getNotificationCenter().k(qs.T0, new Object[0]);
                 return;
@@ -1968,7 +1967,7 @@ public final class ui extends c1 {
             if (i11 >= arrayList.size()) {
                 break;
             }
-            if (i7 == ((ij) arrayList.get(i11)).f1()) {
+            if (i7 == ((ij) arrayList.get(i11)).e1()) {
                 this.f25807c1.add((ij) arrayList.remove(i11));
                 i11--;
             }
@@ -1980,14 +1979,14 @@ public final class ui extends c1 {
             if (i12 >= arrayList2.size()) {
                 break;
             }
-            if (i7 == ((ij) arrayList2.get(i12)).f1()) {
+            if (i7 == ((ij) arrayList2.get(i12)).e1()) {
                 arrayList2.remove(i12);
                 i12--;
             }
             i12++;
         }
         while (i10 < this.f25801a1.size()) {
-            if (i7 == ((ij) this.f25801a1.get(i10)).f1()) {
+            if (i7 == ((ij) this.f25801a1.get(i10)).e1()) {
                 this.f25801a1.remove(i10);
                 i10--;
             }
@@ -2026,7 +2025,7 @@ public final class ui extends c1 {
                 tL_contacts_resetTopPeerRating.category = new TLRPC.TL_topPeerCategoryCorrespondents();
                 tL_contacts_resetTopPeerRating.peer = getMessagesController().j1(j3);
                 getMessagesStorage().f26719a.c(new bi.ia(this, j3, 0, 4));
-                getConnectionsManager().sendRequest(tL_contacts_resetTopPeerRating, new di.u5(11));
+                getConnectionsManager().sendRequest(tL_contacts_resetTopPeerRating, new di.v5(11));
                 return;
             }
         }
@@ -2301,8 +2300,8 @@ public final class ui extends c1 {
         });
     }
 
-    public final void Q1(long r23, long r25, java.lang.CharSequence r27, java.util.ArrayList r28, org.telegram.tgnet.TLRPC.Message r29, org.telegram.ui.qm r30, org.telegram.tgnet.TLRPC.SuggestedPost r31, long r32, boolean r34, boolean r35, org.telegram.tgnet.tl.TL_iv.RichMessage r36) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ui.Q1(long, long, java.lang.CharSequence, java.util.ArrayList, org.telegram.tgnet.TLRPC$Message, org.telegram.ui.qm, org.telegram.tgnet.TLRPC$SuggestedPost, long, boolean, boolean, org.telegram.tgnet.tl.TL_iv$RichMessage):void");
+    public final void Q1(long r23, long r25, java.lang.CharSequence r27, java.util.ArrayList r28, org.telegram.tgnet.TLRPC.Message r29, org.telegram.ui.sm r30, org.telegram.tgnet.TLRPC.SuggestedPost r31, long r32, boolean r34, boolean r35, org.telegram.tgnet.tl.TL_iv.RichMessage r36) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ui.Q1(long, long, java.lang.CharSequence, java.util.ArrayList, org.telegram.tgnet.TLRPC$Message, org.telegram.ui.sm, org.telegram.tgnet.TLRPC$SuggestedPost, long, boolean, boolean, org.telegram.tgnet.tl.TL_iv$RichMessage):void");
     }
 
     public final TLRPC.DraftMessage R(long j3, long j10) {
@@ -3015,13 +3014,13 @@ public final class ui extends c1 {
         int i7 = (document.size > qp.s1(this.currentAccount).f24831l4 ? 1 : (document.size == qp.s1(this.currentAccount).f24831l4 ? 0 : -1));
         int i10 = qs.P4;
         if (i7 > 0) {
-            qs.e().k(i10, 4, id.a0("TooLargeError", null, 2131744045, new Object[0]), id.a0("ErrorRingtoneSizeTooBig", null, 2131751103, Integer.valueOf(qp.s1(p10.f24470s0).f24831l4 / 1024)));
+            qs.e().k(i10, 4, id.a0("TooLargeError", null, 2131744042, new Object[0]), id.a0("ErrorRingtoneSizeTooBig", null, 2131751102, Integer.valueOf(qp.s1(p10.f24470s0).f24831l4 / 1024)));
             return false;
         }
         for (int i11 = 0; i11 < document.attributes.size(); i11++) {
             TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i11);
             if ((documentAttribute instanceof TLRPC.TL_documentAttributeAudio) && documentAttribute.duration > qp.s1(this.currentAccount).f24823k4) {
-                qs.e().k(i10, 4, id.a0("TooLongError", null, 2131744044, new Object[0]), id.a0("ErrorRingtoneDurationTooLong", null, 2131751105, Integer.valueOf(qp.s1(p10.f24470s0).f24823k4)));
+                qs.e().k(i10, 4, id.a0("TooLongError", null, 2131744041, new Object[0]), id.a0("ErrorRingtoneDurationTooLong", null, 2131751104, Integer.valueOf(qp.s1(p10.f24470s0).f24823k4)));
                 return false;
             }
         }
@@ -3214,11 +3213,11 @@ public final class ui extends c1 {
         CharSequence charSequence6 = charSequenceArr[0];
         if (charSequence6 instanceof Spanned) {
             Spanned spanned = (Spanned) charSequence6;
-            vy0[] vy0VarArr = (vy0[]) spanned.getSpans(0, charSequence6.length(), vy0.class);
-            if (vy0VarArr != null && vy0VarArr.length > 0) {
-                for (vy0 vy0Var : vy0VarArr) {
-                    int spanStart = spanned.getSpanStart(vy0Var);
-                    int spanEnd = spanned.getSpanEnd(vy0Var);
+            wy0[] wy0VarArr = (wy0[]) spanned.getSpans(0, charSequence6.length(), wy0.class);
+            if (wy0VarArr != null && wy0VarArr.length > 0) {
+                for (wy0 wy0Var : wy0VarArr) {
+                    int spanStart = spanned.getSpanStart(wy0Var);
+                    int spanEnd = spanned.getSpanEnd(wy0Var);
                     if (!y(spanStart, arrayList, false) && !y(spanEnd, arrayList, true)) {
                         if (arrayList != null && !arrayList.isEmpty()) {
                             int size = arrayList.size();
@@ -3232,8 +3231,25 @@ public final class ui extends c1 {
                         if (arrayList == null) {
                             arrayList = new ArrayList();
                         }
-                        e(vy0Var.f39749b.f38779a, spanStart, spanEnd, arrayList);
+                        e(wy0Var.f40238b.f39836a, spanStart, spanEnd, arrayList);
                     }
+                }
+            }
+            f41[] f41VarArr = (f41[]) spanned.getSpans(0, charSequenceArr[0].length(), f41.class);
+            if (f41VarArr != null && f41VarArr.length > 0) {
+                if (arrayList == null) {
+                    arrayList = new ArrayList();
+                }
+                for (int i27 = 0; i27 < f41VarArr.length; i27++) {
+                    TLRPC.TL_inputMessageEntityMentionName tL_inputMessageEntityMentionName = new TLRPC.TL_inputMessageEntityMentionName();
+                    qp messagesController = getMessagesController();
+                    tL_inputMessageEntityMentionName.user_id = messagesController.q1(messagesController.a2(Utilities.A(f41VarArr[i27].getURL())));
+                    tL_inputMessageEntityMentionName.offset = spanned.getSpanStart(f41VarArr[i27]);
+                    tL_inputMessageEntityMentionName.length = Math.min(spanned.getSpanEnd(f41VarArr[i27]), charSequenceArr[0].length()) - tL_inputMessageEntityMentionName.offset;
+                    if (charSequenceArr[0].charAt((i7 + min) - 1) == ' ') {
+                        tL_inputMessageEntityMentionName.length--;
+                    }
+                    arrayList.add(tL_inputMessageEntityMentionName);
                 }
             }
             e41[] e41VarArr = (e41[]) spanned.getSpans(0, charSequenceArr[0].length(), e41.class);
@@ -3241,32 +3257,15 @@ public final class ui extends c1 {
                 if (arrayList == null) {
                     arrayList = new ArrayList();
                 }
-                for (int i27 = 0; i27 < e41VarArr.length; i27++) {
-                    TLRPC.TL_inputMessageEntityMentionName tL_inputMessageEntityMentionName = new TLRPC.TL_inputMessageEntityMentionName();
-                    qp messagesController = getMessagesController();
-                    tL_inputMessageEntityMentionName.user_id = messagesController.q1(messagesController.a2(Utilities.A(e41VarArr[i27].getURL())));
-                    tL_inputMessageEntityMentionName.offset = spanned.getSpanStart(e41VarArr[i27]);
-                    tL_inputMessageEntityMentionName.length = Math.min(spanned.getSpanEnd(e41VarArr[i27]), charSequenceArr[0].length()) - tL_inputMessageEntityMentionName.offset;
-                    if (charSequenceArr[0].charAt((i7 + min) - 1) == ' ') {
-                        tL_inputMessageEntityMentionName.length--;
-                    }
-                    arrayList.add(tL_inputMessageEntityMentionName);
-                }
-            }
-            d41[] d41VarArr = (d41[]) spanned.getSpans(0, charSequenceArr[0].length(), d41.class);
-            if (d41VarArr != null && d41VarArr.length > 0) {
-                if (arrayList == null) {
-                    arrayList = new ArrayList();
-                }
-                for (int i28 = 0; i28 < d41VarArr.length; i28++) {
+                for (int i28 = 0; i28 < e41VarArr.length; i28++) {
                     TLRPC.TL_messageEntityTextUrl tL_messageEntityTextUrl = new TLRPC.TL_messageEntityTextUrl();
-                    tL_messageEntityTextUrl.offset = spanned.getSpanStart(d41VarArr[i28]);
-                    tL_messageEntityTextUrl.length = Math.min(spanned.getSpanEnd(d41VarArr[i28]), charSequenceArr[0].length()) - tL_messageEntityTextUrl.offset;
-                    tL_messageEntityTextUrl.url = d41VarArr[i28].getURL();
+                    tL_messageEntityTextUrl.offset = spanned.getSpanStart(e41VarArr[i28]);
+                    tL_messageEntityTextUrl.length = Math.min(spanned.getSpanEnd(e41VarArr[i28]), charSequenceArr[0].length()) - tL_messageEntityTextUrl.offset;
+                    tL_messageEntityTextUrl.url = e41VarArr[i28].getURL();
                     arrayList.add(tL_messageEntityTextUrl);
-                    uy0 uy0Var = d41VarArr[i28].f32786a;
-                    if (uy0Var != null) {
-                        int i29 = uy0Var.f38779a;
+                    vy0 vy0Var = e41VarArr[i28].f33290a;
+                    if (vy0Var != null) {
+                        int i29 = vy0Var.f39836a;
                         int i30 = tL_messageEntityTextUrl.offset;
                         e(i29, i30, tL_messageEntityTextUrl.length + i30, arrayList);
                     }
@@ -3311,18 +3310,18 @@ public final class ui extends c1 {
                     }
                 }
             }
-            ug0[] ug0VarArr = (ug0[]) spanned.getSpans(0, charSequenceArr[0].length(), ug0.class);
-            if (ug0VarArr != null && ug0VarArr.length > 0) {
+            vg0[] vg0VarArr = (vg0[]) spanned.getSpans(0, charSequenceArr[0].length(), vg0.class);
+            if (vg0VarArr != null && vg0VarArr.length > 0) {
                 if (arrayList == null) {
                     arrayList = new ArrayList();
                 }
-                for (ug0 ug0Var : ug0VarArr) {
-                    if (ug0Var != null) {
+                for (vg0 vg0Var : vg0VarArr) {
+                    if (vg0Var != null) {
                         try {
                             TLRPC.TL_messageEntityBlockquote tL_messageEntityBlockquote = new TLRPC.TL_messageEntityBlockquote();
-                            tL_messageEntityBlockquote.offset = spanned.getSpanStart(ug0Var);
-                            tL_messageEntityBlockquote.length = Math.min(spanned.getSpanEnd(ug0Var), charSequenceArr[0].length()) - tL_messageEntityBlockquote.offset;
-                            tL_messageEntityBlockquote.collapsed = ug0Var.f38638e;
+                            tL_messageEntityBlockquote.offset = spanned.getSpanStart(vg0Var);
+                            tL_messageEntityBlockquote.length = Math.min(spanned.getSpanEnd(vg0Var), charSequenceArr[0].length()) - tL_messageEntityBlockquote.offset;
+                            tL_messageEntityBlockquote.collapsed = vg0Var.f39062e;
                             arrayList.add(tL_messageEntityBlockquote);
                         } catch (Exception e12) {
                             a8.g(e12, true);
@@ -3341,7 +3340,7 @@ public final class ui extends c1 {
                             TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = new TLRPC.TL_messageEntityFormattedDate();
                             tL_messageEntityFormattedDate.offset = spanned.getSpanStart(a00Var);
                             tL_messageEntityFormattedDate.length = Math.min(spanned.getSpanEnd(a00Var), charSequenceArr[0].length()) - tL_messageEntityFormattedDate.offset;
-                            TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate2 = a00Var.f31627b;
+                            TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate2 = a00Var.f31632b;
                             tL_messageEntityFormattedDate.relative = tL_messageEntityFormattedDate2.relative;
                             tL_messageEntityFormattedDate.short_time = tL_messageEntityFormattedDate2.short_time;
                             tL_messageEntityFormattedDate.long_time = tL_messageEntityFormattedDate2.long_time;
@@ -3366,7 +3365,7 @@ public final class ui extends c1 {
                     }
                     for (int i31 = 0; i31 < uRLSpanArr.length; i31++) {
                         URLSpan uRLSpan = uRLSpanArr[i31];
-                        if (!(uRLSpan instanceof d41) && !(uRLSpan instanceof e41) && !(uRLSpan instanceof org.telegram.ui.Components.a00)) {
+                        if (!(uRLSpan instanceof e41) && !(uRLSpan instanceof f41) && !(uRLSpan instanceof org.telegram.ui.Components.a00)) {
                             TLRPC.TL_messageEntityUrl tL_messageEntityUrl = new TLRPC.TL_messageEntityUrl();
                             tL_messageEntityUrl.offset = spanned.getSpanStart(uRLSpanArr[i31]);
                             tL_messageEntityUrl.length = Math.min(spanned.getSpanEnd(uRLSpanArr[i31]), charSequenceArr[0].length()) - tL_messageEntityUrl.offset;
@@ -3794,7 +3793,7 @@ public final class ui extends c1 {
         boolean z10;
         int i12;
         if (i7 != 3) {
-            if (ij.v4(document) || ij.L2(document, true)) {
+            if (ij.u4(document) || ij.K2(document, true)) {
                 int i13 = 0;
                 while (true) {
                     arrayListArr = this.f25814f0;
@@ -3943,7 +3942,7 @@ public final class ui extends c1 {
             notificationCenter.k(i7, new Object[0]);
             G1(z9, arrayListArr2[z9 ? 1 : 0], arrayListArr[z9 ? 1 : 0], this.f25834q0[z9 ? 1 : 0], jArr[z9 ? 1 : 0], this.f25837r0);
             if (z10) {
-                getConnectionsManager().sendRequest(new TLRPC.TL_messages_readFeaturedStickers(), new di.u5(11));
+                getConnectionsManager().sendRequest(new TLRPC.TL_messages_readFeaturedStickers(), new di.v5(11));
             }
         }
     }
@@ -3959,7 +3958,7 @@ public final class ui extends c1 {
                 arrayListArr[0].add(Long.valueOf(j3));
                 TLRPC.TL_messages_readFeaturedStickers tL_messages_readFeaturedStickers = new TLRPC.TL_messages_readFeaturedStickers();
                 tL_messages_readFeaturedStickers.f27060id.add(Long.valueOf(j3));
-                getConnectionsManager().sendRequest(tL_messages_readFeaturedStickers, new di.u5(11));
+                getConnectionsManager().sendRequest(tL_messages_readFeaturedStickers, new di.v5(11));
                 g0.i3(new yg(this, j3, 3), 1000L);
             }
         }
@@ -4236,9 +4235,9 @@ public final class ui extends c1 {
                                 TLObject tLObject5 = tLObject3;
                                 TLRPC.Document document3 = document2;
                                 if (frameLayout3 != null) {
-                                    org.telegram.ui.Components.cc.f(frameLayout3, new cv0(context3, tLObject5, 1, 2, document3, f2Var3.getResourceProvider()), 1500).j();
+                                    org.telegram.ui.Components.cc.f(frameLayout3, new ev0(context3, tLObject5, 1, 2, document3, f2Var3.getResourceProvider()), 1500).j();
                                 } else if (f2Var3 != null) {
-                                    org.telegram.ui.Components.cc.g(f2Var3, new cv0(context3, tLObject5, 1, 2, document3, f2Var3.getResourceProvider()), 1500).j();
+                                    org.telegram.ui.Components.cc.g(f2Var3, new ev0(context3, tLObject5, 1, 2, document3, f2Var3.getResourceProvider()), 1500).j();
                                 }
                             }
                         }
@@ -4269,13 +4268,13 @@ public final class ui extends c1 {
     public final void i1(String str, TLRPC.Document document, boolean z9) {
         this.Z.remove(str);
         yf.d dVar = this.f25857z0;
-        ArrayList arrayList = dVar.f59416e;
+        ArrayList arrayList = dVar.f59425e;
         boolean z10 = true;
         if (z9) {
             int i7 = 0;
             while (true) {
                 if (i7 < arrayList.size()) {
-                    if (((yf.c) arrayList.get(i7)).d && str.equals(((yf.c) arrayList.get(i7)).f59409b)) {
+                    if (((yf.c) arrayList.get(i7)).d && str.equals(((yf.c) arrayList.get(i7)).f59418b)) {
                         arrayList.remove(i7);
                         break;
                     }
@@ -4289,9 +4288,9 @@ public final class ui extends c1 {
             int i10 = 0;
             while (true) {
                 if (i10 < arrayList.size()) {
-                    if (((yf.c) arrayList.get(i10)).d && str.equals(((yf.c) arrayList.get(i10)).f59409b)) {
+                    if (((yf.c) arrayList.get(i10)).d && str.equals(((yf.c) arrayList.get(i10)).f59418b)) {
                         ((yf.c) arrayList.get(i10)).d = false;
-                        ((yf.c) arrayList.get(i10)).f59408a = document;
+                        ((yf.c) arrayList.get(i10)).f59417a = document;
                         break;
                     }
                     i10++;
@@ -4305,7 +4304,7 @@ public final class ui extends c1 {
             }
         }
         if (z10) {
-            qs.f(dVar.f59415c).k(qs.f24995e5, new Object[0]);
+            qs.f(dVar.f59424c).k(qs.f24995e5, new Object[0]);
         }
     }
 
@@ -4364,7 +4363,7 @@ public final class ui extends c1 {
             int i12 = 0;
             while (i12 < size) {
                 TLRPC.Message message = (TLRPC.Message) arrayList.get(i12);
-                if ((ij.o1(message) instanceof TLRPC.TL_messageMediaDocument) || (ij.o1(message) instanceof TLRPC.TL_messageMediaPhoto)) {
+                if ((ij.n1(message) instanceof TLRPC.TL_messageMediaDocument) || (ij.n1(message) instanceof TLRPC.TL_messageMediaPhoto)) {
                     i11++;
                 }
                 a0.h hVar3 = hVar2;
@@ -4417,12 +4416,12 @@ public final class ui extends c1 {
                 break;
             }
             ij ijVar3 = (ij) arrayList3.get(i7);
-            if ((!ijVar3.A2() || ijVar3.Q2) && !hashSet.contains(Integer.valueOf(ijVar3.f1()))) {
+            if ((!ijVar3.z2() || ijVar3.Q2) && !hashSet.contains(Integer.valueOf(ijVar3.e1()))) {
                 int i10 = 0;
                 while (true) {
                     if (i10 >= arrayList2.size()) {
                         break;
-                    } else if (((ij) arrayList2.get(i10)).f1() == ijVar3.f1()) {
+                    } else if (((ij) arrayList2.get(i10)).e1() == ijVar3.e1()) {
                         ijVar2 = (ij) arrayList2.get(i10);
                         break;
                     } else {
@@ -4436,17 +4435,17 @@ public final class ui extends c1 {
                 }
                 ijVar3.f23271m2 = true;
                 arrayList.add(ijVar3);
-                hashSet.add(Integer.valueOf(ijVar3.f1()));
+                hashSet.add(Integer.valueOf(ijVar3.e1()));
             }
             i7++;
         }
         for (int i11 = 0; i11 < this.f25801a1.size(); i11++) {
             ij ijVar4 = (ij) this.f25801a1.get(i11);
-            if (!hashSet.contains(Integer.valueOf(ijVar4.f1()))) {
+            if (!hashSet.contains(Integer.valueOf(ijVar4.e1()))) {
                 int i12 = 0;
                 while (true) {
                     if (i12 < arrayList2.size()) {
-                        if (((ij) arrayList2.get(i12)).f1() == ijVar4.f1()) {
+                        if (((ij) arrayList2.get(i12)).e1() == ijVar4.e1()) {
                             ijVar = (ij) arrayList2.get(i12);
                             break;
                         }
@@ -4463,7 +4462,7 @@ public final class ui extends c1 {
                 }
                 ijVar4.f23271m2 = true;
                 arrayList.add(ijVar4);
-                hashSet.add(Integer.valueOf(ijVar4.f1()));
+                hashSet.add(Integer.valueOf(ijVar4.e1()));
             }
         }
     }
@@ -4504,12 +4503,12 @@ public final class ui extends c1 {
         yf.d dVar = this.f25857z0;
         dVar.getClass();
         ?? obj = new Object();
-        obj.f59409b = str;
+        obj.f59418b = str;
         int i7 = dVar.d;
         dVar.d = i7 + 1;
-        obj.f59410c = i7;
+        obj.f59419c = i7;
         obj.d = true;
-        dVar.f59416e.add(obj);
+        dVar.f59425e.add(obj);
     }
 
     public final void m() {
@@ -4635,14 +4634,14 @@ public final class ui extends c1 {
                 i7 = i10;
             }
             TLRPC.Document document = (TLRPC.Document) arrayList.get(i7);
-            if (ij.Y3(document)) {
+            if (ij.X3(document)) {
                 ImageReceiver imageReceiver = new ImageReceiver(null);
                 imageReceiver.f21236z1 = false;
                 imageReceiver.q0(hc.b(document), null, null, "webp", null, 1);
                 gc.D().M(imageReceiver, null);
                 ImageReceiver imageReceiver2 = new ImageReceiver(null);
                 imageReceiver2.f21236z1 = false;
-                imageReceiver2.t0(hc.d(ij.G1(document), document), null, null, null, "tgs", null, 1);
+                imageReceiver2.t0(hc.d(ij.F1(document), document), null, null, null, "tgs", null, 1);
                 gc.D().M(imageReceiver2, null);
             }
         }
@@ -4657,7 +4656,7 @@ public final class ui extends c1 {
         }
         arrayList.add(message);
         TLRPC.TL_messages_getStickerSet tL_messages_getStickerSet = new TLRPC.TL_messages_getStickerSet();
-        tL_messages_getStickerSet.stickerset = ij.k1(message);
+        tL_messages_getStickerSet.stickerset = ij.j1(message);
         getConnectionsManager().sendRequest(tL_messages_getStickerSet, new yh(this, str, 1));
     }
 
@@ -5129,7 +5128,7 @@ public final class ui extends c1 {
             } else {
                 arrayList = null;
             }
-            getMessagesStorage().f26719a.c(new l2.a0(this, arrayList, i7, i10, 3));
+            getMessagesStorage().f26719a.c(new l2.z(this, arrayList, i7, i10, 3));
             return;
         }
         Math.abs((System.currentTimeMillis() / 1000) - i10);

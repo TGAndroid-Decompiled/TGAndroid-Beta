@@ -57,10 +57,10 @@ public final class jk implements c20 {
                         }
                     } else if (f2Var.getParentActivity() != null) {
                         try {
-                            if (f2Var instanceof org.telegram.ui.an) {
-                                ((org.telegram.ui.an) f2Var).Tb();
+                            if (f2Var instanceof org.telegram.ui.cn) {
+                                ((org.telegram.ui.cn) f2Var).Wb();
                             }
-                            org.telegram.ui.Components.hc.a0(f2Var).t(id.M0(2131748135, null), null).j();
+                            org.telegram.ui.Components.hc.a0(f2Var).t(id.M0(2131748134, null), null).j();
                             return;
                         } catch (Exception e10) {
                             a8.g(e10, true);

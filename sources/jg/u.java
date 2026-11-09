@@ -11,8 +11,8 @@ import org.telegram.messenger.yr;
 import org.telegram.tgnet.TLMethod;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.c61;
-import org.telegram.ui.hw;
+import org.telegram.ui.d61;
+import org.telegram.ui.jw;
 public final class u implements Runnable {
     public final int f16937a;
     public final Object f16938b;
@@ -102,14 +102,14 @@ public final class u implements Runnable {
                             }
                         }
                         zVar.f(h0Var.f16759s, h0Var.f16763v0);
-                        hw hwVar = h0Var.U;
-                        if (hwVar != null) {
+                        jw jwVar = h0Var.U;
+                        if (jwVar != null) {
                             if (h0Var.D0 > 0) {
                                 z10 = true;
                             } else {
                                 z10 = false;
                             }
-                            hwVar.d(z10, true);
+                            jwVar.d(z10, true);
                             h0Var.U.c();
                         }
                         h0Var.f();
@@ -147,7 +147,7 @@ public final class u implements Runnable {
                                 if (!arrayList4.isEmpty()) {
                                     for (int i21 = i14; i21 < arrayList4.size(); i21++) {
                                         ij ijVar2 = (ij) arrayList4.get(i21);
-                                        if (ijVar2 == null || ijVar == null || ijVar.f1() != ijVar2.f1() || ij.B0(ijVar.f23262k) != ij.B0(ijVar2.f23262k)) {
+                                        if (ijVar2 == null || ijVar == null || ijVar.e1() != ijVar2.e1() || ij.B0(ijVar.f23262k) != ij.B0(ijVar2.f23262k)) {
                                         }
                                     }
                                 }
@@ -189,15 +189,15 @@ public final class u implements Runnable {
                             }
                         }
                         zVar2.f(h0Var2.f16759s, h0Var2.f16763v0);
-                        hw hwVar2 = h0Var2.U;
-                        if (hwVar2 != null) {
+                        jw jwVar2 = h0Var2.U;
+                        if (jwVar2 != null) {
                             if (h0Var2.D0 > 0) {
                                 z12 = true;
                             } else {
                                 z12 = false;
                             }
                             i10 = 1;
-                            hwVar2.d(z12, true);
+                            jwVar2.d(z12, true);
                             h0Var2.U.c();
                         } else {
                             i10 = 1;
@@ -206,11 +206,11 @@ public final class u implements Runnable {
                         h0Var2.H0 = i10;
                         i7 = 0;
                         h0Var2.d = false;
-                        c61 c61Var = h0Var2.E0;
-                        if (c61Var != null) {
+                        d61 d61Var = h0Var2.E0;
+                        if (d61Var != null) {
                             Object[] objArr = new Object[i10];
                             objArr[0] = h0Var2.Z;
-                            ((TextView) c61Var.f44708b).setText(id.a0(null, null, 2131745753, objArr));
+                            ((TextView) d61Var.f44867b).setText(id.a0(null, null, 2131745750, objArr));
                         }
                         h0Var2.f();
                         h0Var2.O = i7;

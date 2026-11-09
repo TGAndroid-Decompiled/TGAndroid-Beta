@@ -57,7 +57,7 @@ public abstract class m0 {
                 i13 = 2131751858;
             }
             return org.telegram.messenger.g0.X2(id.a0(null, null, i13, str));
-        } else if (ijVar.O3()) {
+        } else if (ijVar.N3()) {
             if (z12) {
                 if (z10) {
                     i12 = 2131751866;

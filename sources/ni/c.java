@@ -50,10 +50,10 @@ import org.telegram.ui.Cells.i9;
 import org.telegram.ui.Cells.q1;
 import org.telegram.ui.Cells.u;
 import org.telegram.ui.Components.AnimatedArrowDrawable;
-import org.telegram.ui.Components.cj0;
-import org.telegram.ui.Components.qa0;
-import org.telegram.ui.Components.qh0;
-import org.telegram.ui.Components.qi0;
+import org.telegram.ui.Components.dj0;
+import org.telegram.ui.Components.ra0;
+import org.telegram.ui.Components.rh0;
+import org.telegram.ui.Components.ri0;
 import org.telegram.ui.Components.t4;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
@@ -62,34 +62,34 @@ import org.telegram.ui.a4;
 import org.telegram.ui.an;
 import org.telegram.ui.bd;
 import org.telegram.ui.c5;
+import org.telegram.ui.cn;
 import org.telegram.ui.e4;
 import org.telegram.ui.eb;
 import org.telegram.ui.g4;
-import org.telegram.ui.go;
+import org.telegram.ui.io;
 import org.telegram.ui.j1;
 import org.telegram.ui.jb;
 import org.telegram.ui.k3;
-import org.telegram.ui.kp;
-import org.telegram.ui.lm;
-import org.telegram.ui.ma1;
 import org.telegram.ui.mb;
+import org.telegram.ui.mp;
 import org.telegram.ui.n3;
-import org.telegram.ui.oh;
-import org.telegram.ui.oo;
+import org.telegram.ui.nm;
+import org.telegram.ui.oa1;
 import org.telegram.ui.p4;
-import org.telegram.ui.pn;
-import org.telegram.ui.qn;
-import org.telegram.ui.qw;
-import org.telegram.ui.si;
-import org.telegram.ui.so;
+import org.telegram.ui.qh;
+import org.telegram.ui.qo;
+import org.telegram.ui.rn;
+import org.telegram.ui.sn;
+import org.telegram.ui.sw;
 import org.telegram.ui.u3;
 import org.telegram.ui.u4;
+import org.telegram.ui.ui;
+import org.telegram.ui.uo;
 import org.telegram.ui.w5;
-import org.telegram.ui.w91;
-import org.telegram.ui.ww;
 import org.telegram.ui.x5;
-import org.telegram.ui.ym;
-public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr, ResultCallback, tr, ma1 {
+import org.telegram.ui.y91;
+import org.telegram.ui.yw;
+public final class c implements p, u, dj0, r1, sw, u4, t4, bp, oc, ri0, rh0, qr, ResultCallback, tr, oa1 {
     public final int f20616a;
     public final Object f20617b;
     public final Object f20618c;
@@ -109,36 +109,36 @@ public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr,
     public void L(int i7, int i10, boolean z9) {
         switch (this.f20616a) {
             case 8:
-                an anVar = (an) this.f20617b;
-                anVar.C8();
-                gz.Y(anVar.getAccountInstance(), (Uri) this.f20618c, anVar.f43848j6, anVar.D5, anVar.f43870l4, null, anVar.F5, z9, i7, anVar.W8());
+                cn cnVar = (cn) this.f20617b;
+                cnVar.D8();
+                gz.Y(cnVar.getAccountInstance(), (Uri) this.f20618c, cnVar.f44504j6, cnVar.D5, cnVar.f44527l4, null, cnVar.F5, z9, i7, cnVar.X8());
                 return;
             case 9:
             default:
-                lm lmVar = (lm) this.f20617b;
+                nm nmVar = (nm) this.f20617b;
                 ij ijVar = (ij) this.f20618c;
                 if (z9) {
-                    lmVar.f47557a.getMessagesController().v(ijVar.f23262k.f26977id, i7, m5.o(ijVar.f23262k.peer_id), null, false);
+                    nmVar.f48207a.getMessagesController().v(ijVar.f23262k.f26977id, i7, m5.o(ijVar.f23262k.peer_id), null, false);
                     return;
                 }
                 return;
             case 10:
-                an anVar2 = (an) this.f20617b;
-                anVar2.getSendMessagesHelper().r0(ez.b((String) this.f20618c, anVar2.f43848j6, anVar2.D5, anVar2.f43870l4, null, false, null, null, null, z9, i7, 0, null, false));
-                anVar2.Z.setFieldText("");
-                anVar2.B9(false);
+                cn cnVar2 = (cn) this.f20617b;
+                cnVar2.getSendMessagesHelper().r0(ez.b((String) this.f20618c, cnVar2.f44504j6, cnVar2.D5, cnVar2.f44527l4, null, false, null, null, null, z9, i7, 0, null, false));
+                cnVar2.Z.setFieldText("");
+                cnVar2.C9(false);
                 return;
         }
     }
 
     @Override
-    public boolean N(ww wwVar) {
+    public boolean N(yw ywVar) {
         return false;
     }
 
     @Override
     public boolean a(TLRPC.TL_error tL_error) {
-        an.O0((an) this.f20617b, (Context) this.f20618c, tL_error);
+        cn.Q0((cn) this.f20617b, (Context) this.f20618c, tL_error);
         return false;
     }
 
@@ -154,13 +154,13 @@ public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr,
         int ordinal = c5Var.ordinal();
         if (ordinal != 0) {
             if (ordinal == 3) {
-                jb jbVar = ebVar.f45252a;
+                jb jbVar = ebVar.f45351a;
                 if (user != null) {
                     Bundle bundle = new Bundle();
                     bundle.putLong("user_id", user.f27105id);
-                    f2 f2Var = jbVar.f46918n;
+                    f2 f2Var = jbVar.f46911n;
                     if (f2Var.getMessagesController().E(bundle, f2Var, null, null)) {
-                        f2Var.presentFragment(new an(bundle));
+                        f2Var.presentFragment(new cn(bundle));
                         return;
                     }
                     return;
@@ -175,25 +175,25 @@ public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr,
     @Override
     public void d(long j3, TLRPC.MessagePeerReaction messagePeerReaction) {
         ij ijVar = (ij) this.f20618c;
-        an anVar = ((oh) this.f20617b).f48405p;
+        cn cnVar = ((qh) this.f20617b).f49058p;
         Bundle bundle = new Bundle();
         if (j3 > 0) {
             bundle.putLong("user_id", j3);
         } else {
             bundle.putLong("chat_id", -j3);
         }
-        bundle.putInt("report_reaction_message_id", ijVar.f1());
-        bundle.putLong("report_reaction_from_dialog_id", anVar.f43848j6);
-        anVar.presentFragment(new ProfileActivity(bundle, null));
-        anVar.O7(true);
+        bundle.putInt("report_reaction_message_id", ijVar.e1());
+        bundle.putLong("report_reaction_from_dialog_id", cnVar.f44504j6);
+        cnVar.presentFragment(new ProfileActivity(bundle, null));
+        cnVar.P7(true);
     }
 
     @Override
     public void e() {
-        an anVar = (an) this.f20617b;
-        anVar.getClass();
+        cn cnVar = (cn) this.f20617b;
+        cnVar.getClass();
         ((oi.q) this.f20618c).g();
-        anVar.M9();
+        cnVar.N9();
     }
 
     @Override
@@ -214,7 +214,7 @@ public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr,
             if ((view instanceof n3) && adapter.E != null) {
                 n3 n3Var = (n3) view;
                 if (g4Var.H0 == 0) {
-                    if ((!n3Var.f47946c || f10 >= view.getMeasuredWidth() / 2) && !n3Var.d) {
+                    if ((!n3Var.f48068c || f10 >= view.getMeasuredWidth() / 2) && !n3Var.d) {
                         TLObject f22 = qp.s1(g4Var.X).f2("previews");
                         if (f22 instanceof TLRPC.TL_user) {
                             g4Var.N(adapter.E.f27111id, (TLRPC.User) f22);
@@ -232,27 +232,27 @@ public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr,
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) adapter.d.get(i7);
                 TL_iv.PageBlock x10 = g4.x(pageBlock);
                 if (x10 instanceof u3) {
-                    x10 = ((u3) x10).f50201b;
+                    x10 = ((u3) x10).f50285b;
                 }
                 if (x10 instanceof TL_iv.pageBlockChannel) {
                     qp.s1(g4Var.X).y3(t3.K(((TL_iv.pageBlockChannel) x10).channel, false), g4Var.M, 2, null);
                     g4Var.m(false, true);
                 } else if (x10 instanceof a4) {
                     a4 a4Var = (a4) x10;
-                    g4Var.O(a4Var.f43561a.articles.get(a4Var.f43562b).url, null, null);
+                    g4Var.O(a4Var.f43579a.articles.get(a4Var.f43580b).url, null, null);
                 } else if (x10 instanceof TL_iv.pageBlockDetails) {
                     View w10 = g4.w(view);
                     if (w10 instanceof j1) {
                         g4Var.d = null;
-                        g4Var.f48270f = null;
-                        if (adapter.f45186e.indexOf(pageBlock) >= 0) {
+                        g4Var.f48921f = null;
+                        if (adapter.f45174e.indexOf(pageBlock) >= 0) {
                             TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) x10;
                             pageblockdetails.open = !pageblockdetails.open;
                             int b10 = adapter.b();
                             adapter.M();
                             int abs = Math.abs(adapter.b() - b10);
                             j1 j1Var = (j1) w10;
-                            AnimatedArrowDrawable animatedArrowDrawable = j1Var.f46814f;
+                            AnimatedArrowDrawable animatedArrowDrawable = j1Var.f46813f;
                             if (pageblockdetails.open) {
                                 f12 = 0.0f;
                             } else {
@@ -297,11 +297,11 @@ public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr,
                 bd.a0((bd) this.f20617b, (TLRPC.Chat) this.f20618c);
                 return;
             case 18:
-                go goVar = (go) this.f20617b;
+                io ioVar = (io) this.f20617b;
                 TLRPC.TL_channels_updateUsername tL_channels_updateUsername = new TLRPC.TL_channels_updateUsername();
                 tL_channels_updateUsername.channel = qp.i1((TLRPC.Chat) this.f20618c);
                 tL_channels_updateUsername.username = "";
-                goVar.getConnectionsManager().sendRequest(tL_channels_updateUsername, new qn(goVar, 0), 64);
+                ioVar.getConnectionsManager().sendRequest(tL_channels_updateUsername, new sn(ioVar, 0), 64);
                 return;
             case 22:
                 org.telegram.ui.Components.g0 g0Var = (org.telegram.ui.Components.g0) this.f20617b;
@@ -310,7 +310,7 @@ public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr,
                 h.d();
                 TL_aicompose.deleteTone deletetone = new TL_aicompose.deleteTone();
                 deletetone.tone = TL_aicompose.InputAiComposeTone.from(tL_aiComposeTone);
-                ConnectionsManager.getInstance(g0Var.f28616a).sendRequestTyped(deletetone, new d3.b(1), new t0(g0Var, h, tL_aiComposeTone, 3));
+                ConnectionsManager.getInstance(g0Var.f28621a).sendRequestTyped(deletetone, new d3.b(1), new t0(g0Var, h, tL_aiComposeTone, 3));
                 return;
             case 23:
                 ((f0) this.f20617b).k(((boolean[]) this.f20618c)[0]);
@@ -349,22 +349,22 @@ public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr,
                 boolean[] zArr = (boolean[]) this.f20618c;
                 boolean z9 = zArr[0];
                 boolean z10 = zArr[1];
-                ww wwVar = (ww) f2Var.f33445b;
-                ArrayList arrayList = (ArrayList) f2Var.f33446c;
-                wwVar.getClass();
+                yw ywVar = (yw) f2Var.f33561b;
+                ArrayList arrayList = (ArrayList) f2Var.f33562c;
+                ywVar.getClass();
                 int size = arrayList.size();
                 for (int i11 = 0; i11 < size; i11++) {
                     Long l10 = (Long) arrayList.get(i11);
                     long longValue = l10.longValue();
                     if (z9) {
-                        wwVar.getMessagesController().o4(longValue, wwVar.getMessagesController().a2(l10), null, null, false);
+                        ywVar.getMessagesController().o4(longValue, ywVar.getMessagesController().a2(l10), null, null, false);
                     }
                     if (z10) {
-                        wwVar.getMessagesController().X(0, longValue, true);
+                        ywVar.getMessagesController().X(0, longValue, true);
                     }
-                    wwVar.getMessagesController().w(longValue);
+                    ywVar.getMessagesController().w(longValue);
                 }
-                wwVar.n4(false);
+                ywVar.n4(false);
                 return;
             case 26:
                 u1Var.dismiss();
@@ -405,33 +405,33 @@ public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr,
 
     @Override
     public void j(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP) {
-        ((kp) this.f20617b).u0(tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.f20618c);
+        ((mp) this.f20617b).u0(tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.f20618c);
     }
 
     @Override
     public void k(boolean z9) {
         long j3 = ((TLRPC.User) this.f20618c).f27105id;
-        an anVar = ((si) this.f20617b).f49769b;
-        long j10 = anVar.f43945r4;
+        cn cnVar = ((ui) this.f20617b).f50413b;
+        long j10 = cnVar.f44602r4;
         if (j3 != j10) {
             return;
         }
-        anVar.Qa(j10, false);
+        cnVar.Sa(j10, false);
     }
 
     @Override
     public void onComplete(Object obj) {
-        ym ymVar = (ym) this.f20617b;
-        qa0 qa0Var = (qa0) this.f20618c;
+        an anVar = (an) this.f20617b;
+        ra0 ra0Var = (ra0) this.f20618c;
         Pair pair = (Pair) obj;
-        ymVar.getClass();
+        anVar.getClass();
         if (pair != null) {
             long longValue = ((Long) pair.first).longValue();
             Bitmap bitmap = (Bitmap) pair.second;
-            r3 r3Var = ymVar.f52250f;
-            if (r3Var != null && longValue == r3Var.h(ymVar.f52260q ? 1 : 0) && bitmap != null) {
-                qa0Var.f37272x = bitmap;
-                qa0Var.i();
+            r3 r3Var = anVar.f43729f;
+            if (r3Var != null && longValue == r3Var.h(anVar.f43739q ? 1 : 0) && bitmap != null) {
+                ra0Var.f37636x = bitmap;
+                ra0Var.i();
             }
         }
     }
@@ -457,34 +457,34 @@ public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr,
         boolean z9;
         switch (this.f20616a) {
             case 17:
-                pn pnVar = (pn) this.f20617b;
-                pnVar.getClass();
+                rn rnVar = (rn) this.f20617b;
+                rnVar.getClass();
                 ((u1) this.f20618c).dismiss();
                 boolean z10 = false;
-                pnVar.N0 = false;
+                rnVar.N0 = false;
                 if (j3 != 0) {
-                    pnVar.f48887v0 = j3;
-                    TLRPC.Chat M0 = pnVar.getMessagesController().M0(Long.valueOf(j3));
-                    pnVar.f48889w0 = M0;
-                    TLRPC.ChatFull chatFull = pnVar.f48891x0;
+                    rnVar.f49537v0 = j3;
+                    TLRPC.Chat M0 = rnVar.getMessagesController().M0(Long.valueOf(j3));
+                    rnVar.f49539w0 = M0;
+                    TLRPC.ChatFull chatFull = rnVar.f49541x0;
                     if (chatFull != null) {
                         chatFull.hidden_prehistory = true;
                     }
-                    if (M0.forum_tabs != pnVar.G0) {
+                    if (M0.forum_tabs != rnVar.G0) {
                         z9 = true;
                     } else {
                         z9 = false;
                     }
-                    if (M0.forum_sidebar != pnVar.H0) {
+                    if (M0.forum_sidebar != rnVar.H0) {
                         z10 = true;
                     }
-                    pnVar.getMessagesController().a5(pnVar.f48887v0, pnVar.E0, pnVar.G0, pnVar.H0);
-                    TLRPC.Chat chat = pnVar.f48889w0;
-                    chat.forum = pnVar.E0;
-                    chat.forum_tabs = pnVar.G0;
-                    chat.forum_sidebar = pnVar.H0;
+                    rnVar.getMessagesController().a5(rnVar.f49537v0, rnVar.E0, rnVar.G0, rnVar.H0);
+                    TLRPC.Chat chat = rnVar.f49539w0;
+                    chat.forum = rnVar.E0;
+                    chat.forum_tabs = rnVar.G0;
+                    chat.forum_sidebar = rnVar.H0;
                     if (z9 || z10) {
-                        pnVar.v0(z9);
+                        rnVar.v0(z9);
                         return;
                     }
                     return;
@@ -492,39 +492,39 @@ public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr,
                 return;
             case 18:
             default:
-                oo ooVar = (oo) this.f20617b;
+                qo qoVar = (qo) this.f20617b;
                 Runnable runnable = (Runnable) this.f20618c;
                 if (j3 != 0) {
-                    so soVar = ooVar.f48456y.d;
-                    if (soVar.f49794s) {
-                        soVar.f49795w.set(0, soVar.getMessagesController().M0(Long.valueOf(j3)));
+                    uo uoVar = qoVar.f49109y.d;
+                    if (uoVar.f50438s) {
+                        uoVar.f50439w.set(0, uoVar.getMessagesController().M0(Long.valueOf(j3)));
                     } else {
-                        soVar.E = j3;
-                        soVar.f49791f = soVar.getMessagesController().M0(Long.valueOf(j3));
+                        uoVar.E = j3;
+                        uoVar.f50435f = uoVar.getMessagesController().M0(Long.valueOf(j3));
                     }
                     runnable.run();
                     return;
                 }
-                ooVar.getClass();
+                qoVar.getClass();
                 return;
             case 19:
-                so soVar2 = (so) this.f20617b;
+                uo uoVar2 = (uo) this.f20617b;
                 f2 f2Var = (f2) this.f20618c;
                 if (j3 != 0) {
-                    soVar2.getMessagesController().b5(j3, false);
-                    soVar2.d0(soVar2.getMessagesController().M0(Long.valueOf(j3)), f2Var);
+                    uoVar2.getMessagesController().b5(j3, false);
+                    uoVar2.d0(uoVar2.getMessagesController().M0(Long.valueOf(j3)), f2Var);
                     return;
                 }
-                soVar2.getClass();
+                uoVar2.getClass();
                 return;
         }
     }
 
     @Override
-    public boolean y(ww wwVar, ArrayList arrayList, CharSequence charSequence, boolean z9, boolean z10, int i7, int i10, w91 w91Var) {
+    public boolean y(yw ywVar, ArrayList arrayList, CharSequence charSequence, boolean z9, boolean z10, int i7, int i10, y91 y91Var) {
         x5 x5Var = (x5) this.f20617b;
-        ArrayList arrayList2 = x5Var.f51772c;
-        ((ww) this.f20618c).finishFragment();
+        ArrayList arrayList2 = x5Var.f51549c;
+        ((yw) this.f20618c).finishFragment();
         s2 s2Var = null;
         int i11 = 0;
         int i12 = 0;
@@ -548,7 +548,7 @@ public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr,
             }
             if (!z11) {
                 int i14 = 2;
-                if (x5Var.getMessagesController().f24887r7.c(x5Var.f51773e) == 2) {
+                if (x5Var.getMessagesController().f24887r7.c(x5Var.f51550e) == 2) {
                     i14 = 3;
                 }
                 ArrayList arrayList3 = x5Var.d;
@@ -558,13 +558,13 @@ public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr,
             }
             i12++;
         }
-        x5Var.getMessagesController().f24887r7.h(x5Var.f51773e, x5Var.d);
+        x5Var.getMessagesController().f24887r7.h(x5Var.f51550e, x5Var.d);
         x5Var.Z();
         if (s2Var != null) {
             int i15 = 0;
             while (true) {
                 if (i15 < arrayList2.size()) {
-                    if (((w5) arrayList2.get(i15)).f50901c != null && ((w5) arrayList2.get(i15)).f50901c.f25407a == s2Var.f25407a) {
+                    if (((w5) arrayList2.get(i15)).f50868c != null && ((w5) arrayList2.get(i15)).f50868c.f25407a == s2Var.f25407a) {
                         i11 = i15;
                         break;
                     }
@@ -573,7 +573,7 @@ public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr,
                     break;
                 }
             }
-            x5Var.f51771b.v0(i11);
+            x5Var.f51548b.v0(i11);
             g0.i3(new org.telegram.ui.ActionBar.p(11, x5Var, s2Var), 150L);
         }
         return true;

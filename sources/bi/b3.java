@@ -22,12 +22,12 @@ public final class b3 implements c20 {
                 bVar.d();
                 long longValue = this.f3506c.longValue();
                 k7 k7Var = this.f3505b;
-                k7Var.s1(longValue, new v3(k7Var, bVar, this.d, 0));
+                k7Var.r1(longValue, new v3(k7Var, bVar, this.d, 0));
                 return;
             default:
                 k7 k7Var2 = this.f3505b;
                 k7Var2.getClass();
-                k7Var2.r1(this.f3506c.longValue(), null, (vf.b) obj, this.d[0]);
+                k7Var2.q1(this.f3506c.longValue(), null, (vf.b) obj, this.d[0]);
                 return;
         }
     }

@@ -22,7 +22,7 @@ public final class b6 extends FrameLayout {
         super(context);
         FrameLayout frameLayout = new FrameLayout(context);
         addView(frameLayout, c8.ha.d(-1, -1.0f, 119, 6.0f, 6.0f, 6.0f, 6.0f));
-        frameLayout.setBackground(org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(18.0f), org.telegram.ui.ActionBar.k6.r1(0.12f, -4530177)));
+        frameLayout.setBackground(org.telegram.ui.ActionBar.l6.d0(org.telegram.messenger.g0.L(18.0f), org.telegram.ui.ActionBar.l6.r1(0.12f, -4530177)));
         frameLayout.setForeground(new t6(org.telegram.messenger.g0.L(18.0f), 0));
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(2131231078);
@@ -34,7 +34,7 @@ public final class b6 extends FrameLayout {
         zh.v0 v0Var = new zh.v0(frameLayout2, null, false);
         this.f3511a = v0Var;
         frameLayout2.setBackground(v0Var);
-        v0Var.f60563s = org.telegram.messenger.g0.L(18.0f);
+        v0Var.f60580s = org.telegram.messenger.g0.L(18.0f);
         v0Var.v = false;
         frameLayout.addView(frameLayout2, c8.ha.e(-1, -1, 119));
         frameLayout2.setAlpha(0.0f);
@@ -73,7 +73,7 @@ public final class b6 extends FrameLayout {
             v0Var.d(stargiftattributebackdrop);
             v0Var.e((TL_stars.starGiftAttributePattern) ea.l(starGift.attributes, TL_stars.starGiftAttributePattern.class));
             dd.c1(this.f3513c.getImageReceiver(), ((TL_stars.starGiftAttributeModel) ea.l(starGift.attributes, TL_stars.starGiftAttributeModel.class)).document, 52);
-            int b10 = org.telegram.ui.ActionBar.k6.b(-0.05f, -0.15f, org.telegram.ui.ActionBar.k6.r1(0.88f, stargiftattributebackdrop.edge_color | (-16777216)));
+            int b10 = org.telegram.ui.ActionBar.l6.b(-0.05f, -0.15f, org.telegram.ui.ActionBar.l6.r1(0.88f, stargiftattributebackdrop.edge_color | (-16777216)));
             String J0 = hi.j.J0(starGift.craft_chance_permille);
             TextView textView = this.d;
             textView.setText(J0);

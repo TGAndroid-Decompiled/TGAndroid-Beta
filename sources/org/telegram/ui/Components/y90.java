@@ -1,56 +1,35 @@
 package org.telegram.ui.Components;
-public final class y90 extends mi.l {
-    public int W;
-    public Runnable X;
-    public final ca0 Y;
+public final class y90 implements Runnable {
+    public final int f40685a;
+    public final z90 f40686b;
 
-    public y90(ca0 ca0Var, bi.q1 q1Var, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(null, q1Var, f6Var);
-        this.Y = ca0Var;
-        this.W = -1;
+    public y90(z90 z90Var, int i7) {
+        this.f40685a = i7;
+        this.f40686b = z90Var;
     }
 
     @Override
-    public final void N() {
-        super.N();
-        Runnable runnable = this.X;
-        if (runnable != null) {
-            org.telegram.messenger.g0.r(runnable);
+    public final void run() {
+        switch (this.f40685a) {
+            case 0:
+                z90 z90Var = this.f40686b;
+                if (z90Var.W != -1) {
+                    org.telegram.messenger.qs.f(z90Var.Y.f32920c0.f34979x).j(z90Var.W);
+                    z90Var.W = -1;
+                    return;
+                }
+                return;
+            case 1:
+                this.f40686b.Y.i();
+                return;
+            default:
+                z90 z90Var2 = this.f40686b;
+                if (z90Var2.W != -1) {
+                    org.telegram.messenger.qs.f(z90Var2.Y.f32920c0.f34979x).j(z90Var2.W);
+                    z90Var2.W = -1;
+                    return;
+                }
+                return;
         }
-        x90 x90Var = new x90(this, 0);
-        this.X = x90Var;
-        org.telegram.messenger.g0.h3(x90Var);
-        ca0 ca0Var = this.Y;
-        if (ca0Var.V) {
-            ca0Var.V = false;
-            org.telegram.messenger.g0.h3(new x90(this, 1));
-        }
-    }
-
-    @Override
-    public final void W() {
-        ia0 ia0Var = this.Y.f32525c0;
-        org.telegram.messenger.g0.r(ia0Var.D);
-        ia0Var.D.run();
-        if (this.W == -1) {
-            this.W = org.telegram.messenger.qs.f(ia0Var.f34621x).q(null, this.W, false);
-        }
-        Runnable runnable = this.X;
-        if (runnable != null) {
-            org.telegram.messenger.g0.r(runnable);
-            this.X = null;
-        }
-    }
-
-    @Override
-    public final void g() {
-        super.g();
-        Runnable runnable = this.X;
-        if (runnable != null) {
-            org.telegram.messenger.g0.r(runnable);
-        }
-        x90 x90Var = new x90(this, 2);
-        this.X = x90Var;
-        org.telegram.messenger.g0.h3(x90Var);
     }
 }

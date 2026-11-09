@@ -8,12 +8,12 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
-import fi.h9;
-import org.telegram.ui.ActionBar.k6;
+import fi.v9;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.Components.ah0;
 import org.telegram.ui.Components.cp;
 import org.telegram.ui.Components.w5;
 import org.telegram.ui.Components.xq;
-import org.telegram.ui.Components.zg0;
 public final class d0 extends Drawable {
     public final ImageView f14600a;
     public final Paint f14601b;
@@ -26,18 +26,18 @@ public final class d0 extends Drawable {
     public final w5 f14606i;
     public final w5 f14607j;
     public final w5 f14608k;
-    public zg0 f14609l;
+    public ah0 f14609l;
 
     public d0(Context context, ImageView imageView) {
         Paint paint = new Paint(1);
         this.f14601b = paint;
         this.f14602c = new RectF();
         this.h = false;
-        h9 h9Var = new h9(this, 12);
+        v9 v9Var = new v9(this, 11);
         xq xqVar = xq.h;
-        this.f14606i = new w5(h9Var, 320L, xqVar, 0);
-        this.f14607j = new w5(new h9(this, 12), 320L, xqVar, 0);
-        this.f14608k = new w5(new h9(this, 12), 320L, xqVar, 0);
+        this.f14606i = new w5(v9Var, 320L, xqVar, 0);
+        this.f14607j = new w5(new v9(this, 11), 320L, xqVar, 0);
+        this.f14608k = new w5(new v9(this, 11), 320L, xqVar, 0);
         this.f14600a = imageView;
         this.d = System.currentTimeMillis();
         this.f14603e = jg.g.h(context, 2131232686);
@@ -51,7 +51,7 @@ public final class d0 extends Drawable {
     public final void draw(Canvas canvas) {
         float f10;
         float f11;
-        zg0 zg0Var;
+        ah0 ah0Var;
         int i7;
         Canvas canvas2 = canvas;
         Rect bounds = getBounds();
@@ -72,12 +72,12 @@ public final class d0 extends Drawable {
             drawable.setAlpha((int) (f13 * 255.0f));
             drawable.draw(canvas2);
             float L = org.telegram.messenger.g0.L(14.0f);
-            int r12 = k6.r1(0.2f * f13, -1);
+            int r12 = l6.r1(0.2f * f13, -1);
             Paint paint = this.f14601b;
             paint.setColor(r12);
             canvas2.drawCircle(f15, f16, L, paint);
             float f17 = f13 * 1.0f;
-            paint.setColor(k6.r1(f17, -1));
+            paint.setColor(l6.r1(f17, -1));
             float f18 = f15 - L;
             f11 = 255.0f;
             float f19 = f16 - L;
@@ -86,7 +86,7 @@ public final class d0 extends Drawable {
             RectF rectF = this.f14602c;
             rectF.set(f18, f19, f20, f21);
             float d2 = this.f14606i.d(this.f14604f);
-            paint.setColor(k6.r1((1.0f - d2) * f13 * 0.15f, -1));
+            paint.setColor(l6.r1((1.0f - d2) * f13 * 0.15f, -1));
             long currentTimeMillis = System.currentTimeMillis();
             long j3 = this.d;
             canvas2.drawArc(rectF, (-(((((float) ((currentTimeMillis - j3) % 600)) / 600.0f) - 1.0f) * 360.0f)) - 90.0f, -90.0f, false, paint);
@@ -103,7 +103,7 @@ public final class d0 extends Drawable {
                 c10 = c10;
             }
             f10 = f12;
-            paint.setColor(k6.r1(f17, -1));
+            paint.setColor(l6.r1(f17, -1));
             canvas2 = canvas;
             canvas2.drawArc(rectF, (-90.0f) - max, Math.max(0.02f, this.f14607j.e(false, this.f14605g)) * (-360.0f) * d2, false, paint);
             invalidateSelf();
@@ -112,10 +112,10 @@ public final class d0 extends Drawable {
             f10 = 0.0f;
             f11 = 255.0f;
         }
-        if (d > f10 && (zg0Var = this.f14609l) != null) {
-            int i11 = zg0Var.f40990b / 2;
-            int i12 = zg0Var.f40992c / 2;
-            zg0Var.setBounds(centerX - i11, centerY - i12, i11 + centerX, i12 + centerY);
+        if (d > f10 && (ah0Var = this.f14609l) != null) {
+            int i11 = ah0Var.f31821b / 2;
+            int i12 = ah0Var.f31823c / 2;
+            ah0Var.setBounds(centerX - i11, centerY - i12, i11 + centerX, i12 + centerY);
             this.f14609l.setAlpha((int) (d * f11));
             this.f14609l.draw(canvas2);
         }

@@ -10,95 +10,95 @@ import org.telegram.messenger.voip.NativeInstance;
 import org.telegram.messenger.yn;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.k21;
+import org.telegram.ui.Components.l21;
 public final class o3 implements View.OnClickListener {
-    public final int f9452a;
-    public final z3 f9453b;
+    public final int f9430a;
+    public final a4 f9431b;
 
-    public o3(z3 z3Var, int i7) {
-        this.f9452a = i7;
-        this.f9453b = z3Var;
+    public o3(a4 a4Var, int i7) {
+        this.f9430a = i7;
+        this.f9431b = a4Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f9452a) {
+        switch (this.f9430a) {
             case 0:
-                i4 i4Var = this.f9453b.f10013x;
-                i4.c0(i4Var, i4Var.f9164k1);
-                z3 z3Var = i4Var.f9136c1;
-                if (z3Var != null) {
-                    z3Var.a();
+                j4 j4Var = this.f9431b.f8808x;
+                j4.c0(j4Var, j4Var.f9196k1);
+                a4 a4Var = j4Var.f9168c1;
+                if (a4Var != null) {
+                    a4Var.a();
                     return;
                 }
                 return;
             case 1:
-                i4 i4Var2 = this.f9453b.f10013x;
-                i4.b0(i4Var2);
-                z3 z3Var2 = i4Var2.f9136c1;
-                if (z3Var2 != null) {
-                    z3Var2.a();
+                j4 j4Var2 = this.f9431b.f8808x;
+                j4.b0(j4Var2);
+                a4 a4Var2 = j4Var2.f9168c1;
+                if (a4Var2 != null) {
+                    a4Var2.a();
                     return;
                 }
                 return;
             case 2:
-                i4 i4Var3 = this.f9453b.f10013x;
-                org.telegram.messenger.g0.g(i4Var3.f9213x1.e());
-                i4.h0(i4Var3);
-                z3 z3Var3 = i4Var3.f9136c1;
-                if (z3Var3 != null) {
-                    z3Var3.a();
+                j4 j4Var3 = this.f9431b.f8808x;
+                org.telegram.messenger.g0.g(j4Var3.f9245x1.e());
+                j4.h0(j4Var3);
+                a4 a4Var3 = j4Var3.f9168c1;
+                if (a4Var3 != null) {
+                    a4Var3.a();
                     return;
                 }
                 return;
             case 3:
-                i4 i4Var4 = this.f9453b.f10013x;
-                i4Var4.W0(false);
-                z3 z3Var4 = i4Var4.f9136c1;
-                if (z3Var4 != null) {
-                    z3Var4.a();
+                j4 j4Var4 = this.f9431b.f8808x;
+                j4Var4.W0(false);
+                a4 a4Var4 = j4Var4.f9168c1;
+                if (a4Var4 != null) {
+                    a4Var4.a();
                     return;
                 }
                 return;
             case 4:
-                i4 i4Var5 = this.f9453b.f10013x;
-                g4 g4Var = i4Var5.f9213x1;
-                g4Var.f9038a.translated = false;
-                l7 l7Var = qp.s1(i4Var5.f9168l2).P1().f9971k;
-                TL_stories.StoryItem storyItem = g4Var.f9038a;
-                l7Var.k(storyItem.dialogId, storyItem);
-                i4Var5.n0();
-                i4Var5.d1(false);
-                z3 z3Var5 = i4Var5.f9136c1;
-                if (z3Var5 != null) {
-                    z3Var5.a();
+                j4 j4Var5 = this.f9431b.f8808x;
+                h4 h4Var = j4Var5.f9245x1;
+                h4Var.f9064a.translated = false;
+                m7 m7Var = qp.s1(j4Var5.f9200l2).P1().f10000k;
+                TL_stories.StoryItem storyItem = h4Var.f9064a;
+                m7Var.k(storyItem.dialogId, storyItem);
+                j4Var5.n0();
+                j4Var5.d1(false);
+                a4 a4Var5 = j4Var5.f9168c1;
+                if (a4Var5 != null) {
+                    a4Var5.a();
                     return;
                 }
                 return;
             case 5:
-                z3 z3Var6 = this.f9453b;
-                i4 i4Var6 = z3Var6.f10013x;
-                g4 g4Var2 = i4Var6.f9213x1;
-                g4Var2.f9038a.translated = true;
-                i4Var6.n0();
-                b4 b4Var = i4Var6.f9221z1;
-                if (b4Var != null) {
-                    p9 p9Var = ((g9) b4Var).d;
-                    p9Var.Y0 = true;
-                    p9Var.V();
+                a4 a4Var6 = this.f9431b;
+                j4 j4Var6 = a4Var6.f8808x;
+                h4 h4Var2 = j4Var6.f9245x1;
+                h4Var2.f9064a.translated = true;
+                j4Var6.n0();
+                c4 c4Var = j4Var6.f9253z1;
+                if (c4Var != null) {
+                    q9 q9Var = ((h9) c4Var).d;
+                    q9Var.Y0 = true;
+                    q9Var.V();
                 }
-                l7 l7Var2 = qp.s1(i4Var6.f9168l2).P1().f9971k;
-                TL_stories.StoryItem storyItem2 = g4Var2.f9038a;
-                l7Var2.k(storyItem2.dialogId, storyItem2);
+                m7 m7Var2 = qp.s1(j4Var6.f9200l2).P1().f10000k;
+                TL_stories.StoryItem storyItem2 = h4Var2.f9064a;
+                m7Var2.k(storyItem2.dialogId, storyItem2);
                 long currentTimeMillis = System.currentTimeMillis();
-                s3 s3Var = new s3(z3Var6, 1);
-                f10 f10Var = qp.s1(i4Var6.f9168l2).f24896s7;
-                TL_stories.StoryItem storyItem3 = g4Var2.f9038a;
+                s3 s3Var = new s3(a4Var6, 1);
+                f10 f10Var = qp.s1(j4Var6.f9200l2).f24896s7;
+                TL_stories.StoryItem storyItem3 = h4Var2.f9064a;
                 bi.r3 r3Var = new bi.r3(s3Var, currentTimeMillis, 4);
                 HashSet hashSet = f10Var.J;
                 if (storyItem3 != null) {
                     Object obj = new Object();
-                    String M0 = k21.M0();
+                    String M0 = l21.M0();
                     if (storyItem3.translatedText != null && TextUtils.equals(storyItem3.translatedLng, M0)) {
                         r3Var.run();
                     } else if (hashSet.contains(obj)) {
@@ -115,101 +115,101 @@ public final class o3 implements View.OnClickListener {
                         f10Var.getConnectionsManager().sendRequest(tL_messages_translateText, new yn(f10Var, storyItem3, M0, obj, r3Var, tL_textWithEntities, 1));
                     }
                 }
-                i4Var6.d1(false);
-                i4Var6.Q2 = true;
-                i4Var6.f9196t0.E(true);
-                z3 z3Var7 = i4Var6.f9136c1;
-                if (z3Var7 != null) {
-                    z3Var7.a();
+                j4Var6.d1(false);
+                j4Var6.Q2 = true;
+                j4Var6.f9228t0.E(true);
+                a4 a4Var7 = j4Var6.f9168c1;
+                if (a4Var7 != null) {
+                    a4Var7.a();
                     return;
                 }
                 return;
             case 6:
-                i4 i4Var7 = this.f9453b.f10013x;
-                x6 x6Var = i4Var7.f9213x1.f9039b;
-                if (x6Var != null) {
-                    x6Var.a();
-                    i4Var7.h1();
+                j4 j4Var7 = this.f9431b.f8808x;
+                y6 y6Var = j4Var7.f9245x1.f9065b;
+                if (y6Var != null) {
+                    y6Var.a();
+                    j4Var7.h1();
                 }
-                z3 z3Var8 = i4Var7.f9136c1;
-                if (z3Var8 != null) {
-                    z3Var8.a();
+                a4 a4Var8 = j4Var7.f9168c1;
+                if (a4Var8 != null) {
+                    a4Var8.a();
                     return;
                 }
                 return;
             case 7:
-                i4 i4Var8 = this.f9453b.f10013x;
-                i4.b0(i4Var8);
-                z3 z3Var9 = i4Var8.f9136c1;
-                if (z3Var9 != null) {
-                    z3Var9.a();
+                j4 j4Var8 = this.f9431b.f8808x;
+                j4.b0(j4Var8);
+                a4 a4Var9 = j4Var8.f9168c1;
+                if (a4Var9 != null) {
+                    a4Var9.a();
                     return;
                 }
                 return;
             case 8:
-                i4 i4Var9 = this.f9453b.f10013x;
-                org.telegram.messenger.g0.g(i4Var9.f9213x1.e());
-                i4.h0(i4Var9);
-                z3 z3Var10 = i4Var9.f9136c1;
-                if (z3Var10 != null) {
-                    z3Var10.a();
+                j4 j4Var9 = this.f9431b.f8808x;
+                org.telegram.messenger.g0.g(j4Var9.f9245x1.e());
+                j4.h0(j4Var9);
+                a4 a4Var10 = j4Var9.f9168c1;
+                if (a4Var10 != null) {
+                    a4Var10.a();
                     return;
                 }
                 return;
             case 9:
-                i4 i4Var10 = this.f9453b.f10013x;
-                i4Var10.W0(false);
-                z3 z3Var11 = i4Var10.f9136c1;
-                if (z3Var11 != null) {
-                    z3Var11.a();
+                j4 j4Var10 = this.f9431b.f8808x;
+                j4Var10.W0(false);
+                a4 a4Var11 = j4Var10.f9168c1;
+                if (a4Var11 != null) {
+                    a4Var11.a();
                     return;
                 }
                 return;
             case 10:
                 g1 g1Var = g1.W;
-                if (g1Var != null && g1Var.f9027n) {
+                if (g1Var != null && g1Var.f9002n) {
                     long j3 = g1Var.J;
                     boolean z9 = !g1Var.I;
                     g1Var.I = z9;
                     NativeInstance.switchCameraCapturer(j3, z9);
                 }
-                z3 z3Var12 = this.f9453b.f10013x.f9136c1;
-                if (z3Var12 != null) {
-                    z3Var12.a();
+                a4 a4Var12 = this.f9431b.f8808x.f9168c1;
+                if (a4Var12 != null) {
+                    a4Var12.a();
                     return;
                 }
                 return;
             case 11:
-                this.f9453b.f10013x.f9172m3.b();
+                this.f9431b.f8808x.f9204m3.b();
                 return;
             case 12:
-                this.f9453b.f10013x.f9175n3.b();
+                this.f9431b.f8808x.f9207n3.b();
                 return;
             case 13:
-                i4 i4Var11 = this.f9453b.f10013x;
-                i4.d0(i4Var11);
-                z3 z3Var13 = i4Var11.f9136c1;
-                if (z3Var13 != null) {
-                    z3Var13.a();
+                j4 j4Var11 = this.f9431b.f8808x;
+                j4.d0(j4Var11);
+                a4 a4Var13 = j4Var11.f9168c1;
+                if (a4Var13 != null) {
+                    a4Var13.a();
                     return;
                 }
                 return;
             case 14:
-                i4 i4Var12 = this.f9453b.f10013x;
-                ui.b0(i4Var12.f9168l2).N1(i4Var12.f9164k1);
-                i4Var12.B1.l0(i4Var12.f9164k1, true, false);
-                z3 z3Var14 = i4Var12.f9136c1;
-                if (z3Var14 != null) {
-                    z3Var14.a();
+                j4 j4Var12 = this.f9431b.f8808x;
+                ui.b0(j4Var12.f9200l2).N1(j4Var12.f9196k1);
+                j4Var12.B1.l0(j4Var12.f9196k1, true, false);
+                a4 a4Var14 = j4Var12.f9168c1;
+                if (a4Var14 != null) {
+                    a4Var14.a();
                     return;
                 }
                 return;
             default:
-                i4 i4Var13 = this.f9453b.f10013x;
-                i4.c0(i4Var13, i4Var13.f9164k1);
-                z3 z3Var15 = i4Var13.f9136c1;
-                if (z3Var15 != null) {
-                    z3Var15.a();
+                j4 j4Var13 = this.f9431b.f8808x;
+                j4.c0(j4Var13, j4Var13.f9196k1);
+                a4 a4Var15 = j4Var13.f9168c1;
+                if (a4Var15 != null) {
+                    a4Var15.a();
                     return;
                 }
                 return;

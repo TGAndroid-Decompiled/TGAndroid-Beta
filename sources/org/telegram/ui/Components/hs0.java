@@ -1,34 +1,43 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-public final class hs0 extends org.telegram.ui.Cells.t2 {
-    public final is0 f34336a5;
+public final class hs0 extends org.telegram.ui.Cells.q1 {
+    public final int f34372ld = 1;
 
-    public hs0(is0 is0Var, Context context) {
-        super(context, true);
-        this.f34336a5 = is0Var;
+    public hs0(Context context, int i7) {
+        super(context, i7);
     }
 
     @Override
-    public final boolean W() {
-        return false;
-    }
-
-    @Override
-    public final boolean getIsPinned() {
-        is0 is0Var = this.f34336a5;
-        ArrayList arrayList = is0Var.f34815f;
-        rr0 rr0Var = is0Var.f34818s;
-        if (rr0Var != null && rr0Var.getAdapter() == is0Var) {
-            is0Var.f34818s.getClass();
-            int R = RecyclerView.R(this);
-            if (R >= 0 && R < arrayList.size()) {
-                return ((org.telegram.messenger.uv) arrayList.get(R)).f25897b;
-            }
-            return false;
+    public int getParentWidth() {
+        int i7;
+        int L;
+        switch (this.f34372ld) {
+            case 1:
+                if (getMeasuredWidth() != 0) {
+                    i7 = getMeasuredWidth();
+                    L = org.telegram.messenger.g0.L(24.0f);
+                } else {
+                    i7 = org.telegram.messenger.g0.f22563q.x;
+                    L = org.telegram.messenger.g0.L(24.0f);
+                }
+                return i7 - L;
+            default:
+                return super.getParentWidth();
         }
-        return false;
+    }
+
+    @Override
+    public final boolean isPressed() {
+        switch (this.f34372ld) {
+            case 0:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    public hs0(Context context, int i7, boolean z9, h6.m mVar, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, i7, z9, mVar, g6Var);
     }
 }

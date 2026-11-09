@@ -54,7 +54,7 @@ public final class qa implements Runnable {
                 long elapsedRealtime = SystemClock.elapsedRealtime();
                 if (taVar.c(a8Var, elapsedRealtime)) {
                     taVar.f670i.put(a8Var, Long.valueOf(elapsedRealtime));
-                    pb.m.f53545a.execute(new ra(taVar, 0));
+                    pb.m.f53557a.execute(new ra(taVar, 0));
                     return;
                 }
                 return;
@@ -62,19 +62,19 @@ public final class qa implements Runnable {
                 uf ufVar = (uf) this.f597c;
                 c8.fb fbVar = c8.fb.AGGREGATED_ON_DEVICE_SUBJECT_SEGMENTATION_INFERENCE;
                 c8.h1 h1Var = (c8.h1) this.d;
-                HashMap hashMap2 = ufVar.f5899j;
+                HashMap hashMap2 = ufVar.f5897j;
                 if (!hashMap2.containsKey(fbVar)) {
                     c8.d dVar = new c8.d();
                     ?? obj2 = new Object();
                     if (dVar.isEmpty()) {
-                        obj2.f5738c = dVar;
+                        obj2.f5736c = dVar;
                         hashMap2.put(fbVar, obj2);
                     } else {
                         throw new IllegalArgumentException();
                     }
                 }
                 Long valueOf2 = Long.valueOf(this.f596b);
-                c8.d dVar2 = ((jg) hashMap2.get(fbVar)).f5738c;
+                c8.d dVar2 = ((jg) hashMap2.get(fbVar)).f5736c;
                 Collection collection2 = (Collection) dVar2.get(h1Var);
                 if (collection2 == null) {
                     ArrayList arrayList2 = new ArrayList(3);
@@ -88,8 +88,8 @@ public final class qa implements Runnable {
                 }
                 long elapsedRealtime2 = SystemClock.elapsedRealtime();
                 if (ufVar.d(fbVar, elapsedRealtime2)) {
-                    ufVar.f5898i.put(fbVar, Long.valueOf(elapsedRealtime2));
-                    pb.m.f53545a.execute(new ra(ufVar));
+                    ufVar.f5896i.put(fbVar, Long.valueOf(elapsedRealtime2));
+                    pb.m.f53557a.execute(new ra(ufVar));
                     return;
                 }
                 return;

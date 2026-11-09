@@ -3,18 +3,18 @@ package ch;
 import org.telegram.messenger.id;
 import org.telegram.messenger.qs;
 public final class h implements Runnable {
-    public final int f6254a;
-    public final o f6255b;
+    public final int f6252a;
+    public final o f6253b;
 
     public h(o oVar, int i7) {
-        this.f6254a = i7;
-        this.f6255b = oVar;
+        this.f6252a = i7;
+        this.f6253b = oVar;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f6254a;
-        o oVar = this.f6255b;
+        int i7 = this.f6252a;
+        o oVar = this.f6253b;
         switch (i7) {
             case 0:
                 oVar.h.requestFocus();
@@ -29,9 +29,9 @@ public final class h implements Runnable {
                 if (oVar.P && !oVar.O) {
                     oVar.O = true;
                     qs.e().k(98, 512);
-                    oVar.f6343c.setVisibility(0);
-                    oVar.f6343c.setLayerType(2, null);
-                    oVar.j0(oVar.Q.f55487e);
+                    oVar.f6341c.setVisibility(0);
+                    oVar.f6341c.setLayerType(2, null);
+                    oVar.j0(oVar.Q.f55499e);
                     oVar.Q.a(true, true);
                     return;
                 }

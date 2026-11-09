@@ -7,7 +7,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.util.SparseIntArray;
 import org.telegram.messenger.iz;
-public class g5 implements org.telegram.ui.ActionBar.f6 {
+public class g5 implements org.telegram.ui.ActionBar.g6 {
     public final int f12068a;
     public Object f12069b;
     public Object f12070c;
@@ -23,7 +23,7 @@ public class g5 implements org.telegram.ui.ActionBar.f6 {
                 return true;
             case 1:
             default:
-                return org.telegram.ui.ActionBar.k6.I.q();
+                return org.telegram.ui.ActionBar.l6.I.q();
         }
     }
 
@@ -31,18 +31,18 @@ public class g5 implements org.telegram.ui.ActionBar.f6 {
     public final void b(float f10, float f11, int i7, int i10) {
         switch (this.f12068a) {
             case 0:
-                org.telegram.ui.ActionBar.k6.r(f10, f11, i7, i10);
+                org.telegram.ui.ActionBar.l6.r(f10, f11, i7, i10);
                 return;
             case 1:
-                org.telegram.ui.ActionBar.k6.r(f10, f11, i7, i10);
+                org.telegram.ui.ActionBar.l6.r(f10, f11, i7, i10);
                 return;
             default:
-                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f12070c;
-                if (f6Var == null) {
-                    org.telegram.ui.ActionBar.k6.r(f10, f11, i7, i10);
+                org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) this.f12070c;
+                if (g6Var == null) {
+                    org.telegram.ui.ActionBar.l6.r(f10, f11, i7, i10);
                     return;
                 } else {
-                    f6Var.b(f10, f11, i7, i10);
+                    g6Var.b(f10, f11, i7, i10);
                     return;
                 }
         }
@@ -57,13 +57,13 @@ public class g5 implements org.telegram.ui.ActionBar.f6 {
                 }
                 return (PorterDuffColorFilter) this.f12069b;
             case 1:
-                return org.telegram.ui.ActionBar.k6.f28184v3;
+                return org.telegram.ui.ActionBar.l6.f28197v3;
             default:
-                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f12070c;
-                if (f6Var == null) {
-                    return org.telegram.ui.ActionBar.k6.f28184v3;
+                org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) this.f12070c;
+                if (g6Var == null) {
+                    return org.telegram.ui.ActionBar.l6.f28197v3;
                 }
-                return f6Var.c();
+                return g6Var.c();
         }
     }
 
@@ -71,15 +71,15 @@ public class g5 implements org.telegram.ui.ActionBar.f6 {
     public final Paint d(String str) {
         switch (this.f12068a) {
             case 0:
-                return ((org.telegram.ui.ActionBar.f6) this.f12070c).d(str);
+                return ((org.telegram.ui.ActionBar.g6) this.f12070c).d(str);
             case 1:
-                return org.telegram.ui.ActionBar.k6.V0(str);
+                return org.telegram.ui.ActionBar.l6.V0(str);
             default:
-                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f12070c;
-                if (f6Var == null) {
-                    return org.telegram.ui.ActionBar.k6.V0(str);
+                org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) this.f12070c;
+                if (g6Var == null) {
+                    return org.telegram.ui.ActionBar.l6.V0(str);
                 }
-                return f6Var.d(str);
+                return g6Var.d(str);
         }
     }
 
@@ -103,11 +103,11 @@ public class g5 implements org.telegram.ui.ActionBar.f6 {
             case 1:
                 return h(i7);
             default:
-                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f12070c;
-                if (f6Var == null) {
-                    return org.telegram.ui.ActionBar.k6.x0(null, i7, false);
+                org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) this.f12070c;
+                if (g6Var == null) {
+                    return org.telegram.ui.ActionBar.l6.x0(null, i7, false);
                 }
-                return f6Var.f(i7);
+                return g6Var.f(i7);
         }
     }
 
@@ -119,11 +119,11 @@ public class g5 implements org.telegram.ui.ActionBar.f6 {
             case 1:
                 return false;
             default:
-                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f12070c;
-                if (f6Var == null) {
-                    return org.telegram.ui.ActionBar.k6.d1();
+                org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) this.f12070c;
+                if (g6Var == null) {
+                    return org.telegram.ui.ActionBar.l6.d1();
                 }
-                return f6Var.g();
+                return g6Var.g();
         }
     }
 
@@ -135,11 +135,11 @@ public class g5 implements org.telegram.ui.ActionBar.f6 {
             case 1:
                 return null;
             default:
-                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f12070c;
-                if (f6Var == null) {
-                    return org.telegram.ui.ActionBar.k6.R0(str);
+                org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) this.f12070c;
+                if (g6Var == null) {
+                    return org.telegram.ui.ActionBar.l6.R0(str);
                 }
-                return f6Var.getDrawable(str);
+                return g6Var.getDrawable(str);
         }
     }
 
@@ -147,52 +147,52 @@ public class g5 implements org.telegram.ui.ActionBar.f6 {
     public final int h(int i7) {
         switch (this.f12068a) {
             case 0:
-                if (i7 == org.telegram.ui.ActionBar.k6.G8) {
+                if (i7 == org.telegram.ui.ActionBar.l6.G8) {
                     return -14145495;
                 }
-                if (i7 != org.telegram.ui.ActionBar.k6.E8) {
-                    if (i7 == org.telegram.ui.ActionBar.k6.f27925h5) {
+                if (i7 != org.telegram.ui.ActionBar.l6.E8) {
+                    if (i7 == org.telegram.ui.ActionBar.l6.f27938h5) {
                         return -14737633;
                     }
-                    if (i7 == org.telegram.ui.ActionBar.k6.f27960j5) {
+                    if (i7 == org.telegram.ui.ActionBar.l6.f27973j5) {
                         return -592138;
                     }
-                    if (i7 == org.telegram.ui.ActionBar.k6.f28110r5) {
+                    if (i7 == org.telegram.ui.ActionBar.l6.f28123r5) {
                         return -8553091;
                     }
-                    if (i7 == org.telegram.ui.ActionBar.k6.f28214wf) {
+                    if (i7 == org.telegram.ui.ActionBar.l6.f28227wf) {
                         return -16777216;
                     }
-                    if (i7 == org.telegram.ui.ActionBar.k6.f28270zf) {
+                    if (i7 == org.telegram.ui.ActionBar.l6.f28283zf) {
                         return -1610612736;
                     }
-                    if (i7 == org.telegram.ui.ActionBar.k6.Cf || i7 == org.telegram.ui.ActionBar.k6.Gf || i7 == org.telegram.ui.ActionBar.k6.Bf) {
+                    if (i7 == org.telegram.ui.ActionBar.l6.Cf || i7 == org.telegram.ui.ActionBar.l6.Gf || i7 == org.telegram.ui.ActionBar.l6.Bf) {
                         return -9539985;
                     }
-                    if (i7 != org.telegram.ui.ActionBar.k6.G6) {
-                        int i10 = org.telegram.ui.ActionBar.k6.Ai;
+                    if (i7 != org.telegram.ui.ActionBar.l6.G6) {
+                        int i10 = org.telegram.ui.ActionBar.l6.Ai;
                         if (i7 == i10) {
                             return -11754001;
                         }
-                        if (i7 == org.telegram.ui.ActionBar.k6.f27944i6) {
+                        if (i7 == org.telegram.ui.ActionBar.l6.f27957i6) {
                             return 536870911;
                         }
-                        if (i7 != org.telegram.ui.ActionBar.k6.f28160ti && i7 != org.telegram.ui.ActionBar.k6.f28141si && i7 != org.telegram.ui.ActionBar.k6.f28180ui) {
-                            if (i7 == org.telegram.ui.ActionBar.k6.f28198vi) {
+                        if (i7 != org.telegram.ui.ActionBar.l6.f28173ti && i7 != org.telegram.ui.ActionBar.l6.f28154si && i7 != org.telegram.ui.ActionBar.l6.f28193ui) {
+                            if (i7 == org.telegram.ui.ActionBar.l6.f28211vi) {
                                 return 352321535;
                             }
-                            if (i7 != org.telegram.ui.ActionBar.k6.f28252yf && i7 != i10) {
-                                if (i7 == org.telegram.ui.ActionBar.k6.f28233xf) {
+                            if (i7 != org.telegram.ui.ActionBar.l6.f28265yf && i7 != i10) {
+                                if (i7 == org.telegram.ui.ActionBar.l6.f28246xf) {
                                     return 780633991;
                                 }
-                                if (i7 == org.telegram.ui.ActionBar.k6.f27796a7) {
+                                if (i7 == org.telegram.ui.ActionBar.l6.f27809a7) {
                                     return -15921907;
                                 }
-                                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f12070c;
-                                if (f6Var != null) {
-                                    return f6Var.h(i7);
+                                org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) this.f12070c;
+                                if (g6Var != null) {
+                                    return g6Var.h(i7);
                                 }
-                                return org.telegram.ui.ActionBar.k6.v0(i7);
+                                return org.telegram.ui.ActionBar.l6.v0(i7);
                             }
                             return -7895161;
                         }
@@ -205,18 +205,18 @@ public class g5 implements org.telegram.ui.ActionBar.f6 {
                 if (indexOfKey >= 0) {
                     return sparseIntArray.valueAt(indexOfKey);
                 }
-                return org.telegram.ui.ActionBar.k6.v0(i7);
+                return org.telegram.ui.ActionBar.l6.v0(i7);
             default:
                 SparseIntArray sparseIntArray2 = (SparseIntArray) this.f12069b;
                 int indexOfKey2 = sparseIntArray2.indexOfKey(i7);
                 if (indexOfKey2 >= 0) {
                     return sparseIntArray2.valueAt(indexOfKey2);
                 }
-                org.telegram.ui.ActionBar.f6 f6Var2 = (org.telegram.ui.ActionBar.f6) this.f12070c;
-                if (f6Var2 == null) {
-                    return org.telegram.ui.ActionBar.k6.v0(i7);
+                org.telegram.ui.ActionBar.g6 g6Var2 = (org.telegram.ui.ActionBar.g6) this.f12070c;
+                if (g6Var2 == null) {
+                    return org.telegram.ui.ActionBar.l6.v0(i7);
                 }
-                return f6Var2.h(i7);
+                return g6Var2.h(i7);
         }
     }
 
@@ -227,9 +227,9 @@ public class g5 implements org.telegram.ui.ActionBar.f6 {
             case 1:
                 return;
             default:
-                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f12070c;
-                if (f6Var != null) {
-                    f6Var.i(i7, i10);
+                org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) this.f12070c;
+                if (g6Var != null) {
+                    g6Var.i(i7, i10);
                     return;
                 }
                 return;
@@ -244,24 +244,24 @@ public class g5 implements org.telegram.ui.ActionBar.f6 {
             case 1:
                 return ((SparseIntArray) this.f12069b).get(i7);
             default:
-                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f12070c;
-                if (f6Var == null) {
-                    return org.telegram.ui.ActionBar.k6.x0(null, i7, false);
+                org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) this.f12070c;
+                if (g6Var == null) {
+                    return org.telegram.ui.ActionBar.l6.x0(null, i7, false);
                 }
-                return f6Var.j(i7);
+                return g6Var.j(i7);
         }
     }
 
-    public g5(int i7, org.telegram.ui.ActionBar.f6 f6Var) {
+    public g5(int i7, org.telegram.ui.ActionBar.g6 g6Var) {
         this.f12068a = i7;
         switch (i7) {
             case 2:
                 this.f12069b = new SparseIntArray();
-                this.f12070c = f6Var;
+                this.f12070c = g6Var;
                 k();
                 return;
             default:
-                this.f12070c = f6Var;
+                this.f12070c = g6Var;
                 return;
         }
     }

@@ -1,17 +1,8 @@
 package org.telegram.ui;
-public final class j10 extends v4.k {
-    public final c40 F;
+public final class j10 {
+    public final e40 f46814a;
 
-    public j10(c40 c40Var) {
-        this.F = c40Var;
-    }
-
-    @Override
-    public final void P(v4.d1 d1Var) {
-        c40 c40Var = this.F;
-        c40Var.H1.invalidate();
-        c40Var.R3.invalidate();
-        c40Var.f28619b.invalidate();
-        c40.P0(c40Var);
+    public j10(e40 e40Var) {
+        this.f46814a = e40Var;
     }
 }

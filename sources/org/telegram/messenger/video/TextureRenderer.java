@@ -324,7 +324,7 @@ public class TextureRenderer {
                 GLUtils.texImage2D(3553, 0, h20Var.G, 0);
                 float f10 = h20Var.E + h20Var.F;
                 h20Var.E = f10;
-                if (f10 >= h20Var.D.f31473a[0]) {
+                if (f10 >= h20Var.D.f31478a[0]) {
                     h20Var.E = 0.0f;
                 }
                 int i12 = this.stickerTexture[0];
@@ -387,9 +387,9 @@ public class TextureRenderer {
                     h20Var.J.r(true);
                 }
             }
-            s5 s5Var = h20Var.J.f38886w;
+            s5 s5Var = h20Var.J.f38947w;
             if (s5Var != null) {
-                bitmap = s5Var.f37922b;
+                bitmap = s5Var.f37918b;
             } else {
                 bitmap = null;
             }
@@ -539,7 +539,7 @@ public class TextureRenderer {
                 GLES20.glTexParameteri(3553, 10243, 33071);
                 v5 v5Var = new v5(new File(i20Var.d), true, 0L, 0, null, null, null, 0L, p10.f24470s0, true, 512, 512, null, 0, true);
                 i20Var.f23034u = v5Var;
-                if (v5Var.f38890y && v5Var.f38865e0) {
+                if (v5Var.f38951y && v5Var.f38926e0) {
                     throw new RuntimeException("Failed to decode with ffmpeg software codecs");
                 }
                 i20Var.v = 1000.0f / v5Var.d[5];
@@ -590,9 +590,9 @@ public class TextureRenderer {
         s sVar2 = i20Var.f23031r;
         s sVar3 = i20Var.f23031r;
         s sVar4 = i20Var.f23031r;
-        int i10 = sVar4.f12763a.f12827c;
-        int i11 = sVar4.f12765c;
-        float[] fArr = {a10, -(((2.0f / sVar.f12763a.f12827c) * sVar.f12765c) - 1.0f), sVar.b(2.0f) - 1.0f, -(((2.0f / sVar2.f12763a.f12827c) * sVar2.f12765c) - 1.0f), sVar2.a(2.0f) - 1.0f, -(((2.0f / sVar3.f12763a.f12827c) * (sVar3.f12765c + 1)) - 1.0f), sVar3.b(2.0f) - 1.0f, -(((2.0f / i10) * (i11 + 1)) - 1.0f)};
+        int i10 = sVar4.f12762a.f12826c;
+        int i11 = sVar4.f12764c;
+        float[] fArr = {a10, -(((2.0f / sVar.f12762a.f12826c) * sVar.f12764c) - 1.0f), sVar.b(2.0f) - 1.0f, -(((2.0f / sVar2.f12762a.f12826c) * sVar2.f12764c) - 1.0f), sVar2.a(2.0f) - 1.0f, -(((2.0f / sVar3.f12762a.f12826c) * (sVar3.f12764c + 1)) - 1.0f), sVar3.b(2.0f) - 1.0f, -(((2.0f / i10) * (i11 + 1)) - 1.0f)};
         float f12 = this.transformedWidth / tVar.d[i11];
         float f13 = this.transformedHeight / i10;
         int i12 = atomicInteger.get();
@@ -652,7 +652,7 @@ public class TextureRenderer {
             i0Var.c(h20Var.f22814b, h20Var.f22822l);
         }
         int i7 = h20Var.f22827q;
-        int i10 = i0Var.f55736f;
+        int i10 = i0Var.f55748f;
         i0Var.setMaxWidth(i7 + i10 + i10);
         i0Var.measure(View.MeasureSpec.makeMeasureSpec(h20Var.f22827q, 1073741824), View.MeasureSpec.makeMeasureSpec(h20Var.f22828r, 1073741824));
         i0Var.layout(0, 0, h20Var.f22827q, h20Var.f22828r);
@@ -679,12 +679,12 @@ public class TextureRenderer {
         m0Var.setText(h20Var.f22820j);
         m0Var.e(h20Var.f22814b, h20Var.f22822l);
         if (h20Var.O != null && h20Var.f22821k.isEmpty()) {
-            m0Var.d(p10.f24470s0, h20Var.O.f12823c);
+            m0Var.d(p10.f24470s0, h20Var.O.f12822c);
         }
         m0Var.setMaxWidth(h20Var.f22827q);
         if (h20Var.f22821k.size() == 1) {
-            m0Var.f55840y = true;
-            m0Var.f55832c = true;
+            m0Var.f55852y = true;
+            m0Var.f55844c = true;
             m0Var.requestLayout();
         }
         m0Var.measure(View.MeasureSpec.makeMeasureSpec(h20Var.f22827q, 1073741824), View.MeasureSpec.makeMeasureSpec(h20Var.f22828r, 1073741824));
@@ -774,7 +774,7 @@ public class TextureRenderer {
                 RLottieNative a10 = RLottieNative.a(h20Var.f22820j, null, null, null, 0, null);
                 h20Var.D = a10;
                 if (a10 != null) {
-                    f10 = a10.f31473a[1] / this.videoFps;
+                    f10 = a10.f31478a[1] / this.videoFps;
                 }
                 h20Var.F = f10;
             }
@@ -1031,8 +1031,8 @@ public class TextureRenderer {
             } else {
                 z9 = false;
             }
-            if ((k10 < i10 || (z9 && k10 > 1000)) && v5Var.f38863d0 != null) {
-                v5Var.f38863d0.g(k10, true);
+            if ((k10 < i10 || (z9 && k10 > 1000)) && v5Var.f38924d0 != null) {
+                v5Var.f38924d0.g(k10, true);
             }
             do {
                 v5 v5Var2 = i20Var.f23034u;
@@ -1042,8 +1042,8 @@ public class TextureRenderer {
                     break;
                 }
                 j10 = i11;
-                if (v5Var2.f38863d0 != null) {
-                    v5Var2.f38863d0.c(null, false, v5Var2.f38868g0, v5Var2.f38869h0, false);
+                if (v5Var2.f38924d0 != null) {
+                    v5Var2.f38924d0.c(null, false, v5Var2.f38929g0, v5Var2.f38930h0, false);
                 }
             } while (i20Var.f23034u.d[3] != j10);
             if ((z9 || f10 > i20Var.f23034u.d[3] - (i20Var.v / 2.0f)) && (r10 = i20Var.f23034u.r(false)) != null) {
@@ -1226,7 +1226,7 @@ public class TextureRenderer {
                 GLES20.glVertexAttribPointer(this.blurPositionHandle, 2, 5126, false, 8, (Buffer) this.blurVerticesBuffer);
                 GLES20.glUniform1i(this.blurBlurImageHandle, 0);
                 GLES20.glActiveTexture(i15);
-                GLES20.glBindTexture(3553, this.blur.f32853s[2]);
+                GLES20.glBindTexture(3553, this.blur.f32912s[2]);
                 GLES20.glUniform1i(this.blurMaskImageHandle, 1);
                 GLES20.glActiveTexture(i7);
                 GLES20.glBindTexture(3553, this.blurTexture[0]);

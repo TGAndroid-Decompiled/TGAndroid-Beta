@@ -7,7 +7,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import c8.ha;
-import di.c4;
+import di.d4;
 import org.telegram.messenger.hc;
 import org.telegram.messenger.id;
 import org.telegram.messenger.ls;
@@ -21,18 +21,18 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.b5;
 import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.l41;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.s6;
+import org.telegram.ui.Components.m41;
 import org.telegram.ui.Components.np;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.q41;
+import org.telegram.ui.Components.qj0;
+import org.telegram.ui.Components.r41;
 public final class a1 extends f2 implements ls {
     public boolean D;
     public int E;
     public boolean F;
-    public q41 f17301a;
+    public r41 f17301a;
     public b5 f17302b;
     public boolean f17303c;
     public FrameLayout d;
@@ -40,7 +40,7 @@ public final class a1 extends f2 implements ls {
     public FrameLayout f17305f;
     public z0 h;
     public np f17306n;
-    public c4 f17307r;
+    public d4 f17307r;
     public boolean f17308s;
     public TLRPC.TL_businessLocation f17309w;
     public TLRPC.GeoPoint f17310x;
@@ -55,8 +55,8 @@ public final class a1 extends f2 implements ls {
         boolean z10;
         if (this.f17302b != null) {
             this.f17302b.a(a0(), z9);
-            q41 q41Var = this.f17301a;
-            if (q41Var != null && q41Var.f37190f3 != null) {
+            r41 r41Var = this.f17301a;
+            if (r41Var != null && r41Var.f37556f3 != null) {
                 boolean z11 = this.F;
                 if (this.f17309w != null && (this.f17310x != null || !TextUtils.isEmpty(this.f17311y))) {
                     z10 = true;
@@ -64,7 +64,7 @@ public final class a1 extends f2 implements ls {
                     z10 = false;
                 }
                 if (z11 != z10) {
-                    this.f17301a.f37190f3.O(true);
+                    this.f17301a.f37556f3.O(true);
                 }
             }
         }
@@ -139,7 +139,7 @@ public final class a1 extends f2 implements ls {
     public final void b0() {
         boolean z9;
         String trim;
-        if (this.f17302b.f27358y.f55488f) {
+        if (this.f17302b.f27360y.f55500f) {
             return;
         }
         if (this.f17310x == null && TextUtils.isEmpty(this.f17311y)) {
@@ -204,7 +204,7 @@ public final class a1 extends f2 implements ls {
     }
 
     public final void c0() {
-        l41 l41Var;
+        m41 m41Var;
         if (this.f17308s) {
             return;
         }
@@ -231,9 +231,9 @@ public final class a1 extends f2 implements ls {
             this.f17303c = false;
         }
         d0();
-        q41 q41Var = this.f17301a;
-        if (q41Var != null && (l41Var = q41Var.f37190f3) != null) {
-            l41Var.O(true);
+        r41 r41Var = this.f17301a;
+        if (r41Var != null && (m41Var = r41Var.f37556f3) != null) {
+            m41Var.O(true);
         }
         this.f17308s = true;
     }
@@ -244,16 +244,16 @@ public final class a1 extends f2 implements ls {
         this.simpleActionBar.setBackButtonImage(2131231240);
         this.simpleActionBar.setTitle(id.M0(2131752698, null));
         this.simpleActionBar.setActionBarMenuOnItemClick(new bi.s(this, 15));
-        this.f17302b = this.simpleActionBar.n(id.M0(2131745949, null));
+        this.f17302b = this.simpleActionBar.o(id.M0(2131745946, null));
         Z(false);
         FrameLayout frameLayout = new FrameLayout(context);
         x0 x0Var = new x0(this, getParentActivity());
         this.f17304e = x0Var;
         x0Var.setTextSize(1, 17.0f);
-        r6.E(this.f17304e, k6.H6, null);
+        s6.D(this.f17304e, l6.H6, null);
         x0 x0Var2 = this.f17304e;
-        int i7 = k6.G6;
-        r6.V(x0Var2, i7, null);
+        int i7 = l6.G6;
+        s6.U(x0Var2, i7, null);
         this.f17304e.setBackgroundDrawable(null);
         int i10 = 5;
         this.f17304e.setMaxLines(5);
@@ -266,7 +266,7 @@ public final class a1 extends f2 implements ls {
         x0Var3.setGravity(i10 | 48);
         this.f17304e.setInputType(180225);
         this.f17304e.setHint(id.M0(2131752697, null));
-        r6.w(this.f17304e, i7, null);
+        s6.v(this.f17304e, i7, null);
         this.f17304e.setCursorSize(org.telegram.messenger.g0.L(19.0f));
         this.f17304e.setCursorWidth(1.5f);
         this.f17304e.addTextChangedListener(new ah.j(this, 10));
@@ -275,8 +275,8 @@ public final class a1 extends f2 implements ls {
         this.d = frameLayout2;
         frameLayout2.addView(this.f17304e, ha.d(-1, -1.0f, 48, 21.0f, 15.0f, 21.0f, 15.0f));
         FrameLayout frameLayout3 = this.d;
-        int i11 = k6.f27852d6;
-        r6.i(i11, frameLayout3, getResourceProvider());
+        int i11 = l6.f27865d6;
+        s6.h(i11, frameLayout3, getResourceProvider());
         x0 x0Var4 = this.f17304e;
         if (x0Var4 != null) {
             this.f17303c = true;
@@ -285,9 +285,9 @@ public final class a1 extends f2 implements ls {
             x0Var5.setSelection(x0Var5.getText().length());
             this.f17303c = false;
         }
-        this.f17307r = new c4(1, context, this);
-        rz c10 = t5.c(0.2f, k6.Dc);
-        f6 resourceProvider = getResourceProvider();
+        this.f17307r = new d4(1, context, this);
+        rz c10 = t5.c(0.2f, l6.Dc);
+        g6 resourceProvider = getResourceProvider();
         c10.f25389m = i7;
         c10.f25391o = resourceProvider;
         c10.f25396t = true;
@@ -295,30 +295,30 @@ public final class a1 extends f2 implements ls {
         np npVar = new np(c10);
         this.f17306n = npVar;
         npVar.setCallback(this.f17307r);
-        r6.i(i11, this.f17307r, getResourceProvider());
+        s6.h(i11, this.f17307r, getResourceProvider());
         this.h = new z0(this, context);
         FrameLayout frameLayout4 = new FrameLayout(context);
         this.f17305f = frameLayout4;
         frameLayout4.addView(this.f17307r, ha.c(-1.0f, -1));
         this.f17305f.addView(this.h, ha.d(-2, -2.0f, 17, 0.0f, -31.0f, 0.0f, 0.0f));
         d0();
-        q41 q41Var = new q41(this, new hi.u1(this, 10), new v0(this, 0), null);
-        this.f17301a = q41Var;
-        q41Var.r1();
+        r41 r41Var = new r41(this, new hi.u1(this, 10), new v0(this, 0), null);
+        this.f17301a = r41Var;
+        r41Var.r1();
         this.f17301a.setSectionsDrawBackground(true);
-        q41 q41Var2 = this.f17301a;
-        q41Var2.f37190f3.f35528r = false;
-        frameLayout.addView(q41Var2, ha.c(-1.0f, -1));
+        r41 r41Var2 = this.f17301a;
+        r41Var2.f37556f3.f35945r = false;
+        frameLayout.addView(r41Var2, ha.c(-1.0f, -1));
         c0();
         this.fragmentView = frameLayout;
         return frameLayout;
     }
 
     public final void d0() {
-        c4 c4Var;
+        d4 d4Var;
         int measuredWidth;
         z0 z0Var = this.h;
-        if (z0Var != null && (c4Var = this.f17307r) != null) {
+        if (z0Var != null && (d4Var = this.f17307r) != null) {
             if (this.f17310x != null) {
                 z0Var.setAlpha(0.0f);
                 this.h.setTranslationY(-org.telegram.messenger.g0.L(12.0f));
@@ -330,12 +330,12 @@ public final class a1 extends f2 implements ls {
                 float f10 = org.telegram.messenger.g0.f22562p;
                 int i7 = (int) (measuredWidth / f10);
                 int min = Math.min(2, (int) Math.ceil(f10));
-                c4 c4Var2 = this.f17307r;
+                d4 d4Var2 = this.f17307r;
                 TLRPC.GeoPoint geoPoint = this.f17310x;
-                c4Var2.p(hc.p(m20.a(geoPoint.lat, geoPoint._long, 0L, min * i7, min * 240, 15, min)), com.google.android.recaptcha.internal.a.i(i7, "_240"), this.f17306n, null);
+                d4Var2.p(hc.p(m20.a(geoPoint.lat, geoPoint._long, 0L, min * i7, min * 240, 15, min)), com.google.android.recaptcha.internal.a.i(i7, "_240"), this.f17306n, null);
                 return;
             }
-            c4Var.setImageBitmap(null);
+            d4Var.setImageBitmap(null);
         }
     }
 
@@ -347,7 +347,7 @@ public final class a1 extends f2 implements ls {
     }
 
     @Override
-    public final pj0 getListViewForSimpleGlass() {
+    public final qj0 getListViewForSimpleGlass() {
         return this.f17301a;
     }
 
@@ -372,12 +372,12 @@ public final class a1 extends f2 implements ls {
         if (a0() && !z10) {
             if (z9) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-                String M0 = id.M0(2131743838, null);
+                String M0 = id.M0(2131743835, null);
                 org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
                 u1Var.R = M0;
                 u1Var.T = id.M0(2131752690, null);
                 alertDialog$Builder.k(id.M0(2131754216, null), new v0(this, 1));
-                alertDialog$Builder.h(id.M0(2131747581, null), new v0(this, 2));
+                alertDialog$Builder.h(id.M0(2131747580, null), new v0(this, 2));
                 showDialog(u1Var);
             }
             return false;

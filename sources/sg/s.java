@@ -1,27 +1,27 @@
 package sg;
 public final class s implements Runnable {
-    public final int f55198a;
-    public final w f55199b;
+    public final int f55208a;
+    public final w f55209b;
 
     public s(w wVar, int i7) {
-        this.f55198a = i7;
-        this.f55199b = wVar;
+        this.f55208a = i7;
+        this.f55209b = wVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f55198a) {
+        switch (this.f55208a) {
             case 0:
-                w wVar = this.f55199b;
+                w wVar = this.f55209b;
                 h hVar = wVar.A;
                 if (hVar != null) {
-                    wVar.f55226a.g(hVar);
+                    wVar.f55245a.g(hVar);
                     wVar.A = null;
                     return;
                 }
                 return;
             default:
-                this.f55199b.a(null, true, null);
+                this.f55209b.a(null, true, null);
                 return;
         }
     }

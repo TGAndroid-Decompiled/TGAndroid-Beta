@@ -15,7 +15,7 @@ public final class ez {
     public boolean G;
     public TL_stories.StoryItem H;
     public TL_stories.StoryItem I;
-    public org.telegram.ui.qm J;
+    public org.telegram.ui.sm J;
     public hw K;
     public boolean L;
     public String M;
@@ -41,7 +41,7 @@ public final class ez {
     public TLRPC.TL_document f22317g;
     public TLRPC.TL_game h;
     public TLRPC.TL_messageMediaPoll f22318i;
-    public sh.f f22319j;
+    public sh.g f22319j;
     public int f22320k;
     public TLRPC.TL_messageMediaToDo f22321l;
     public TLRPC.TL_messageMediaInvoice f22322m;

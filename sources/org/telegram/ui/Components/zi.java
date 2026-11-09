@@ -6,14 +6,14 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
-public final class zi extends kj0 {
-    public final int f41025r = org.telegram.messenger.p10.f24470s0;
-    public final Context f41026s;
-    public final fj f41027w;
+public final class zi extends lj0 {
+    public final int f40985r = org.telegram.messenger.p10.f24470s0;
+    public final Context f40986s;
+    public final fj f40987w;
 
     public zi(fj fjVar, Context context) {
-        this.f41027w = fjVar;
-        this.f41026s = context;
+        this.f40987w = fjVar;
+        this.f40986s = context;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class zi extends kj0 {
     }
 
     @Override
-    public final void G(pj0 pj0Var, float f10, int[] iArr) {
+    public final void G(qj0 qj0Var, float f10, int[] iArr) {
         iArr[0] = 0;
         iArr[1] = 0;
     }
@@ -33,7 +33,7 @@ public final class zi extends kj0 {
             return 1;
         }
         int i10 = i7 - 1;
-        int i11 = this.f41025r;
+        int i11 = this.f40985r;
         HashMap hashMap = org.telegram.messenger.g5.r(i11).f22603b0;
         ArrayList arrayList = org.telegram.messenger.g5.r(i11).f22605c0;
         if (i10 < arrayList.size()) {
@@ -48,7 +48,7 @@ public final class zi extends kj0 {
             return null;
         }
         int i11 = i7 - 1;
-        int i12 = this.f41025r;
+        int i12 = this.f40985r;
         HashMap hashMap = org.telegram.messenger.g5.r(i12).f22603b0;
         ArrayList arrayList = org.telegram.messenger.g5.r(i12).f22605c0;
         if (i11 < arrayList.size()) {
@@ -73,7 +73,7 @@ public final class zi extends kj0 {
 
     @Override
     public final int R() {
-        return org.telegram.messenger.g5.r(this.f41025r).f22605c0.size() + 2;
+        return org.telegram.messenger.g5.r(this.f40985r).f22605c0.size() + 2;
     }
 
     @Override
@@ -84,7 +84,7 @@ public final class zi extends kj0 {
     @Override
     public final boolean V(int i7, int i10, v4.d1 d1Var) {
         if (i7 != 0 && i7 != R() - 1) {
-            int i11 = this.f41025r;
+            int i11 = this.f40985r;
             if (i10 < ((ArrayList) org.telegram.messenger.g5.r(i11).f22603b0.get(org.telegram.messenger.g5.r(i11).f22605c0.get(i7 - 1))).size()) {
                 return true;
             }
@@ -96,8 +96,8 @@ public final class zi extends kj0 {
     @Override
     public final void W(int i7, int i10, v4.d1 d1Var) {
         TLRPC.User user;
-        if (d1Var.f57048f == 0) {
-            ej ejVar = (ej) d1Var.f57044a;
+        if (d1Var.f57060f == 0) {
+            ej ejVar = (ej) d1Var.f57056a;
             Object O = O(i7, i10);
             boolean z9 = true;
             if (i7 == R() - 2 && i10 == M(i7) - 1) {
@@ -117,7 +117,7 @@ public final class zi extends kj0 {
             if (user != null) {
                 ejVar.a(user, null, new yi(0, user), z9);
             }
-            boolean containsKey = this.f41027w.f33563x.containsKey(vi.a(O));
+            boolean containsKey = this.f40987w.f33686x.containsKey(vi.a(O));
             wo woVar = ejVar.d;
             if (woVar.getVisibility() != 0) {
                 woVar.setVisibility(0);
@@ -129,13 +129,13 @@ public final class zi extends kj0 {
     @Override
     public final void f() {
         X(false);
-        this.f41027w.R();
+        this.f40987w.R();
     }
 
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         View ejVar;
-        Context context = this.f41026s;
+        Context context = this.f40986s;
         if (i7 != 0) {
             if (i7 != 1) {
                 ejVar = new View(context);
@@ -146,7 +146,7 @@ public final class zi extends kj0 {
                 ejVar.setTag(-33024);
             }
         } else {
-            ejVar = new ej(context, this.f41027w.f39003a);
+            ejVar = new ej(context, this.f40987w.f39070a);
         }
         return new v4.d1(ejVar);
     }

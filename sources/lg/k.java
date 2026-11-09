@@ -5,7 +5,7 @@ import android.animation.ValueAnimator;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
-import di.m4;
+import di.n4;
 import java.util.ArrayList;
 public final class k extends g {
     @Override
@@ -41,7 +41,7 @@ public final class k extends g {
                     if (animator != null) {
                         animator.cancel();
                     }
-                    ValueAnimator e10 = g.e(this.f18309j0, this.f18312l0, new m4(this, 4));
+                    ValueAnimator e10 = g.e(this.f18309j0, this.f18312l0, new n4(this, 4));
                     this.f18295d0 = e10;
                     e10.start();
                 }

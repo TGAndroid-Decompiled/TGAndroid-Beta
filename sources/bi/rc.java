@@ -6,7 +6,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.view.ViewGroup;
-import org.telegram.ui.wy;
+import org.telegram.ui.yy;
 public final class rc extends org.telegram.ui.Components.j6 {
     public final int f4647s = 0;
     public final Object f4648w;
@@ -23,25 +23,24 @@ public final class rc extends org.telegram.ui.Components.j6 {
         float f10;
         switch (this.f4647s) {
             case 0:
+                ((sc) this.f4649x).getClass();
+                int measuredWidth = (int) ((getMeasuredWidth() - getDrawable().c()) - org.telegram.messenger.g0.L(20.0f));
                 Drawable drawable = (Drawable) this.f4648w;
-                if (!((sc) this.f4649x).d) {
-                    int measuredWidth = (int) ((getMeasuredWidth() - getDrawable().c()) - org.telegram.messenger.g0.L(20.0f));
-                    drawable.setBounds(measuredWidth, org.telegram.messenger.camera.q.y(17.0f, getMeasuredHeight(), 2), org.telegram.messenger.g0.L(17.0f) + measuredWidth, (org.telegram.messenger.g0.L(17.0f) + getMeasuredHeight()) / 2);
-                    drawable.draw(canvas);
-                }
+                drawable.setBounds(measuredWidth, org.telegram.messenger.camera.q.y(17.0f, getMeasuredHeight(), 2), org.telegram.messenger.g0.L(17.0f) + measuredWidth, (org.telegram.messenger.g0.L(17.0f) + getMeasuredHeight()) / 2);
+                drawable.draw(canvas);
                 super.dispatchDraw(canvas);
                 return;
             default:
-                wy wyVar = (wy) this.f4649x;
-                int a10 = wyVar.f51682x.a(wyVar.f51681w, false);
+                yy yyVar = (yy) this.f4649x;
+                int a10 = yyVar.f52358x.a(yyVar.f52357w, false);
                 setTextColor(a10);
                 Paint paint = (Paint) this.f4648w;
-                if (org.telegram.ui.ActionBar.k6.I.q()) {
+                if (org.telegram.ui.ActionBar.l6.I.q()) {
                     f10 = 0.2f;
                 } else {
                     f10 = 0.1f;
                 }
-                paint.setColor(org.telegram.ui.ActionBar.k6.r1(f10, a10));
+                paint.setColor(org.telegram.ui.ActionBar.l6.r1(f10, a10));
                 RectF rectF = org.telegram.messenger.g0.P;
                 rectF.set((getWidth() - getDrawable().c()) - org.telegram.messenger.g0.N(9.32f), (getHeight() - org.telegram.messenger.g0.N(14.66f)) / 2.0f, getWidth(), (org.telegram.messenger.g0.N(14.66f) + getHeight()) / 2.0f);
                 canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint);
@@ -50,9 +49,9 @@ public final class rc extends org.telegram.ui.Components.j6 {
         }
     }
 
-    public rc(wy wyVar, Context context) {
+    public rc(yy yyVar, Context context) {
         super(context, false, true, true);
-        this.f4649x = wyVar;
+        this.f4649x = yyVar;
         this.f4648w = new Paint(1);
     }
 }

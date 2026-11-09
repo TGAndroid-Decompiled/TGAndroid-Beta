@@ -41,7 +41,7 @@ public final class n implements View.OnFocusChangeListener {
                 ch.l lVar = (ch.l) this.f4381b;
                 if (z9) {
                     lVar.J(true);
-                    Runnable runnable = lVar.f6227a2;
+                    Runnable runnable = lVar.f6225a2;
                     if (runnable != null) {
                         runnable.run();
                         return;
@@ -54,7 +54,7 @@ public final class n implements View.OnFocusChangeListener {
                 li.a6.a((li.a6) this.f4381b, z9);
                 return;
             case 6:
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) ((org.telegram.ui.t4) this.f4381b).f49908f;
+                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) ((org.telegram.ui.t4) this.f4381b).f50069f;
                 if (!z9 && TextUtils.isEmpty(editTextBoldCursor.getText())) {
                     editTextBoldCursor.setText("0");
                     return;

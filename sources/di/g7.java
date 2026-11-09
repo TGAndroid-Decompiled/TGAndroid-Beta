@@ -1,4 +1,4 @@
 package di;
 public interface g7 {
-    void b(boolean z9);
+    void a(int[] iArr);
 }

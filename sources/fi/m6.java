@@ -2,21 +2,21 @@ package fi;
 
 import org.telegram.messenger.c20;
 public final class m6 implements c20 {
-    public final int f12453a;
-    public final q6 f12454b;
+    public final int f12454a;
+    public final q6 f12455b;
 
     public m6(q6 q6Var, int i7) {
-        this.f12453a = i7;
-        this.f12454b = q6Var;
+        this.f12454a = i7;
+        this.f12455b = q6Var;
     }
 
     @Override
     public final void a(Object obj) {
         boolean z9;
-        switch (this.f12453a) {
+        switch (this.f12454a) {
             case 0:
                 p6 p6Var = (p6) obj;
-                q6 q6Var = this.f12454b;
+                q6 q6Var = this.f12455b;
                 q6Var.H = null;
                 q6Var.E = p6Var;
                 if (p6Var != null) {
@@ -35,7 +35,7 @@ public final class m6 implements c20 {
                 return;
             default:
                 org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) obj;
-                p6 p6Var2 = this.f12454b.E;
+                p6 p6Var2 = this.f12455b.E;
                 if (p6Var2 != null || f2Var == null) {
                     p6Var2.c(f2Var);
                     return;

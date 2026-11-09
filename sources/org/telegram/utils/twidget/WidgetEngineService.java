@@ -16,10 +16,10 @@ import java.security.MessageDigest;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 public final class WidgetEngineService extends Service {
-    public static volatile String f52746b;
-    public static String f52747c;
+    public static volatile String f52760b;
+    public static String f52761c;
     public static final ExecutorService d = Executors.newSingleThreadExecutor(new h2.l0(6));
-    public final z f52748a = new z(this);
+    public final z f52762a = new z(this);
 
     public static String a(AssetManager assetManager) {
         int i7;
@@ -29,13 +29,13 @@ public final class WidgetEngineService extends Service {
         AssetManager assetManager2 = assetManager;
         synchronized (WidgetEngineService.class) {
             try {
-                String str = f52747c;
+                String str = f52761c;
                 if (str != null) {
                     return str;
                 }
                 InputStream open = assetManager2.open("WidgetSandbox/manifest.txt");
                 try {
-                    ExecutorService executorService = a1.f52753a;
+                    ExecutorService executorService = a1.f52767a;
                     ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                     byte[] bArr = new byte[16384];
                     while (true) {
@@ -144,7 +144,7 @@ public final class WidgetEngineService extends Service {
                         }
                         WidgetSandboxNative.registerResources(sb3.toString().getBytes(StandardCharsets.UTF_8), bArr2, bArr3, bArr4, bArr5, bArr6);
                         String sb4 = sb3.toString();
-                        f52747c = sb4;
+                        f52761c = sb4;
                         return sb4;
                     }
                     throw new IllegalStateException("Widget bundles are missing");
@@ -202,7 +202,7 @@ public final class WidgetEngineService extends Service {
         if (Build.VERSION.SDK_INT >= 28 && Process.isIsolated()) {
             return true;
         }
-        String str = f52746b;
+        String str = f52760b;
         if (str == null) {
             try {
                 FileInputStream fileInputStream = new FileInputStream("/proc/self/cmdline");
@@ -218,7 +218,7 @@ public final class WidgetEngineService extends Service {
             } catch (Exception unused) {
                 str = "";
             }
-            f52746b = str;
+            f52760b = str;
         }
         return str.contains(":widgets");
     }
@@ -227,7 +227,7 @@ public final class WidgetEngineService extends Service {
 
     @Override
     public final IBinder onBind(Intent intent) {
-        return this.f52748a;
+        return this.f52762a;
     }
 
     @Override

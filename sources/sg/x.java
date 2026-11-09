@@ -2,5 +2,5 @@ package sg;
 
 import java.util.ArrayList;
 public final class x {
-    public ArrayList f55260a;
+    public ArrayList f55270a;
 }

@@ -1,11 +1,11 @@
 package jg;
 
-import di.h7;
+import di.i7;
 import org.telegram.messenger.qp;
 import org.telegram.ui.Cells.p2;
 import org.telegram.ui.Cells.t2;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.an;
+import org.telegram.ui.Components.qj0;
+import org.telegram.ui.cn;
 public final class j1 implements p2 {
     public final m1 f16814a;
 
@@ -21,10 +21,10 @@ public final class j1 implements p2 {
     @Override
     public final void u(t2 t2Var) {
         m1 m1Var = this.f16814a;
-        an anVar = m1Var.f16843f;
+        cn cnVar = m1Var.f16843f;
         if (qp.s1(m1Var.f16845r).P1().K(t2Var.getDialogId())) {
-            anVar.getOrCreateStoryViewer().getClass();
-            anVar.getOrCreateStoryViewer().J(m1Var.f16841c, t2Var.getDialogId(), h7.a((pj0) t2Var.getParent()));
+            cnVar.getOrCreateStoryViewer().getClass();
+            cnVar.getOrCreateStoryViewer().J(m1Var.f16841c, t2Var.getDialogId(), i7.a((qj0) t2Var.getParent()));
         }
     }
 

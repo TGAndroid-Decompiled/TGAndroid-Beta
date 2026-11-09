@@ -6,8 +6,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.v61;
-public final class f5 extends v61 {
+import org.telegram.ui.Components.w61;
+public final class f5 extends w61 {
     public final k7 V;
 
     public f5(k7 k7Var, Context context) {
@@ -29,7 +29,7 @@ public final class f5 extends v61 {
         }
         float i7 = Utilities.i(f10 / getMeasuredWidth(), 1.0f, -1.0f);
         k7 k7Var = this.V;
-        view.setTranslationX(((-i7) * 2.0f * k7Var.f28649t0) + f10);
+        view.setTranslationX(((-i7) * 2.0f * k7Var.f28654t0) + f10);
         float f11 = 0.0f;
         if (i7 <= 0.0f) {
             f11 = view.getMeasuredWidth();
@@ -73,11 +73,11 @@ public final class f5 extends v61 {
     @Override
     public final void G() {
         super.G();
-        int i7 = this.f38923b;
+        int i7 = this.f39948b;
         k7 k7Var = this.V;
         boolean z9 = false;
-        if (i7 != k7Var.I1(false)) {
-            if (this.f38923b > k7Var.I1(false)) {
+        if (i7 != k7Var.H1(false)) {
+            if (this.f39948b > k7Var.H1(false)) {
                 z9 = true;
             }
             org.telegram.messenger.g0.h3(new k1(2, this, z9));
@@ -97,13 +97,13 @@ public final class f5 extends v61 {
     public final void dispatchDraw(Canvas canvas) {
         canvas.save();
         k7 k7Var = this.V;
-        canvas.clipRect(k7Var.f28649t0, -getHeight(), getWidth() - k7Var.f28649t0, getHeight() * 2);
+        canvas.clipRect(k7Var.f28654t0, -getHeight(), getWidth() - k7Var.f28654t0, getHeight() * 2);
         super.dispatchDraw(canvas);
         canvas.restore();
     }
 
     @Override
     public final float getAvailableTranslationX() {
-        return Math.max(1, getMeasuredWidth() - (this.V.f28649t0 * 2));
+        return Math.max(1, getMeasuredWidth() - (this.V.f28654t0 * 2));
     }
 }

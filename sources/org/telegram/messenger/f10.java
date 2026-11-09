@@ -24,9 +24,9 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.k21;
-import org.telegram.ui.qy0;
-import org.telegram.ui.wn0;
+import org.telegram.ui.Components.l21;
+import org.telegram.ui.ty0;
+import org.telegram.ui.yn0;
 public final class f10 extends c1 {
     public static final List M = Arrays.asList("en", "ar", "zh", "fr", "de", "it", "ja", "ko", "pt", "ru", "es", "uk");
     public static final List N = Arrays.asList("af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-cn", "zh", "zh-tw", "co", "hr", "cs", "da", "nl", "en", "eo", "et", "fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "hi", "hmn", "hu", "is", "ig", "id", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko", "ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pt-br", "pa", "ro", "ru", "sm", "gd", "sr", "st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "yo", "zu");
@@ -116,8 +116,8 @@ public final class f10 extends c1 {
             if ("no".equals(str)) {
                 obj.f26569a = "nb";
             }
-            obj.f26570b = k21.K0(k21.O0(obj.f26569a, null, null));
-            obj.f26571c = k21.K0(k21.V0(obj.f26569a, true));
+            obj.f26570b = l21.K0(l21.O0(obj.f26569a, null, null));
+            obj.f26571c = l21.K0(l21.V0(obj.f26569a, true));
             if (obj.f26570b != null) {
                 StringBuilder sb2 = new StringBuilder();
                 sb2.append(obj.f26570b);
@@ -155,7 +155,7 @@ public final class f10 extends c1 {
                 a8.g(e11, true);
             }
             try {
-                linkedHashSet.addAll(qy0.d0());
+                linkedHashSet.addAll(ty0.d0());
             } catch (Exception e12) {
                 a8.g(e12, true);
             }
@@ -168,7 +168,7 @@ public final class f10 extends c1 {
                             if (locale != null && locale.contains("_")) {
                                 locale = locale.split("_")[0];
                             }
-                            if (k21.O0(locale, null, null) != null) {
+                            if (l21.O0(locale, null, null) != null) {
                                 linkedHashSet.add(locale);
                             }
                         }
@@ -189,8 +189,8 @@ public final class f10 extends c1 {
                     if ("no".equals(str2)) {
                         obj.f26569a = "nb";
                     }
-                    obj.f26570b = k21.K0(k21.O0(obj.f26569a, null, null));
-                    obj.f26571c = k21.K0(k21.V0(obj.f26569a, true));
+                    obj.f26570b = l21.K0(l21.O0(obj.f26569a, null, null));
+                    obj.f26571c = l21.K0(l21.V0(obj.f26569a, true));
                     if (obj.f26570b != null) {
                         obj.d = (obj.f26570b + " " + obj.f26571c).toLowerCase();
                         arrayList.add(obj);
@@ -203,7 +203,7 @@ public final class f10 extends c1 {
 
     public static boolean x(ij ijVar) {
         TLRPC.Message message;
-        if (ijVar != null && (message = ijVar.f23262k) != null && message.summary_from_language != null && !ijVar.Q3() && !ijVar.E0 && !ijVar.s4()) {
+        if (ijVar != null && (message = ijVar.f23262k) != null && message.summary_from_language != null && !ijVar.P3() && !ijVar.E0 && !ijVar.r4()) {
             int i7 = ijVar.D;
             if ((i7 == 0 || i7 == 3 || i7 == 1 || i7 == 9 || i7 == 14 || i7 == 17) && !TextUtils.isEmpty(ijVar.f23262k.message) && ijVar.f23262k.message.length() > 100) {
                 return true;
@@ -214,10 +214,10 @@ public final class f10 extends c1 {
     }
 
     public static boolean y(ij ijVar) {
-        if (ijVar != null && ijVar.f23262k != null && !ijVar.Q3() && !ijVar.E0 && !ijVar.s4() && !(ij.n1(ijVar) instanceof TLRPC.TL_messageMediaWidget)) {
+        if (ijVar != null && ijVar.f23262k != null && !ijVar.P3() && !ijVar.E0 && !ijVar.r4() && !(ij.m1(ijVar) instanceof TLRPC.TL_messageMediaWidget)) {
             int i7 = ijVar.D;
             if (i7 == 0 || i7 == 3 || i7 == 1 || i7 == 2 || i7 == 5 || i7 == 9 || i7 == 14 || i7 == 17 || i7 == 36) {
-                if (TextUtils.isEmpty(ijVar.f23262k.message) && !(ij.n1(ijVar) instanceof TLRPC.TL_messageMediaPoll)) {
+                if (TextUtils.isEmpty(ijVar.f23262k.message) && !(ij.m1(ijVar) instanceof TLRPC.TL_messageMediaPoll)) {
                     TLRPC.Message message = ijVar.f23262k;
                     if (message.rich_message == null && (!message.voiceTranscriptionOpen || TextUtils.isEmpty(message.voiceTranscription) || !ijVar.f23262k.voiceTranscriptionFinal)) {
                         return false;
@@ -235,7 +235,7 @@ public final class f10 extends c1 {
         TLRPC.Message message;
         boolean z9 = true;
         if (ijVar != null && (message = ijVar.f23262k) != null && message.summarizedOpen) {
-            return this.F.contains(Integer.valueOf(Objects.hash(Long.valueOf(ij.B0(message)), Integer.valueOf(ijVar.f1()), Integer.valueOf(B(ij.B0(ijVar.f23262k)) ? 1 : 0))));
+            return this.F.contains(Integer.valueOf(Objects.hash(Long.valueOf(ij.B0(message)), Integer.valueOf(ijVar.e1()), Integer.valueOf(B(ij.B0(ijVar.f23262k)) ? 1 : 0))));
         }
         synchronized (this) {
             if (ijVar != null) {
@@ -247,7 +247,7 @@ public final class f10 extends c1 {
                         } else {
                             hashSet = this.f22351x;
                         }
-                        if (hashSet.contains(Integer.valueOf(ijVar.f1())) && B(ij.B0(ijVar.f23262k))) {
+                        if (hashSet.contains(Integer.valueOf(ijVar.e1())) && B(ij.B0(ijVar.f23262k))) {
                         }
                     }
                 } finally {
@@ -278,14 +278,14 @@ public final class f10 extends c1 {
             hashMap.put(valueOf2, hashMap3);
             hashMap2 = hashMap3;
         }
-        hashMap2.put(Integer.valueOf(ijVar.f1()), ijVar);
+        hashMap2.put(Integer.valueOf(ijVar.e1()), ijVar);
     }
 
     public final void E(ij ijVar, String str, v00 v00Var) {
         Throwable th2;
         z00 z00Var;
         int i7;
-        if (ijVar.f1() >= 0) {
+        if (ijVar.e1() >= 0) {
             long B0 = ij.B0(ijVar.f23262k);
             synchronized (this) {
                 try {
@@ -309,14 +309,14 @@ public final class f10 extends c1 {
                         } else {
                             z00Var = (z00) arrayList.get(arrayList.size() - 1);
                         }
-                        if (z00Var.f26792b.contains(Integer.valueOf(ijVar.f1()))) {
+                        if (z00Var.f26792b.contains(Integer.valueOf(ijVar.e1()))) {
                             return;
                         }
-                        TLRPC.MessageMedia n1 = ij.n1(ijVar);
-                        if (!(n1 instanceof TLRPC.TL_messageMediaPoll)) {
+                        TLRPC.MessageMedia m12 = ij.m1(ijVar);
+                        if (!(m12 instanceof TLRPC.TL_messageMediaPoll)) {
                             return;
                         }
-                        c10 a10 = c10.a((TLRPC.TL_messageMediaPoll) n1);
+                        c10 a10 = c10.a((TLRPC.TL_messageMediaPoll) m12);
                         c10 c10Var = ijVar.f23262k.translatedPoll;
                         TLRPC.TL_textWithEntities tL_textWithEntities = a10.f21770a;
                         if (tL_textWithEntities != null) {
@@ -341,9 +341,9 @@ public final class f10 extends c1 {
                         if (irVar != null) {
                             g0.r(irVar);
                         }
-                        this.f22351x.add(Integer.valueOf(ijVar.f1()));
-                        z00Var.f26792b.add(Integer.valueOf(ijVar.f1()));
-                        a8.b("pending translation +" + ijVar.f1() + " poll message");
+                        this.f22351x.add(Integer.valueOf(ijVar.e1()));
+                        z00Var.f26792b.add(Integer.valueOf(ijVar.e1()));
+                        a8.b("pending translation +" + ijVar.e1() + " poll message");
                         z00Var.f26793c.add(new Pair(a10, c10Var));
                         z00Var.d.add(v00Var);
                         z00Var.f26794e = str;
@@ -370,7 +370,7 @@ public final class f10 extends c1 {
     public final void F(ij ijVar, String str, c20 c20Var) {
         int i7;
         Long valueOf = Long.valueOf(ij.B0(ijVar.f23262k));
-        Integer valueOf2 = Integer.valueOf(ijVar.f1());
+        Integer valueOf2 = Integer.valueOf(ijVar.e1());
         if (str != null) {
             i7 = 1;
         } else {
@@ -385,7 +385,7 @@ public final class f10 extends c1 {
         hashSet.add(Integer.valueOf(hash));
         TLRPC.TL_messages_summarizeText tL_messages_summarizeText = new TLRPC.TL_messages_summarizeText();
         tL_messages_summarizeText.peer = qp.s1(this.currentAccount).j1(ij.B0(ijVar.f23262k));
-        tL_messages_summarizeText.f27078id = ijVar.f1();
+        tL_messages_summarizeText.f27078id = ijVar.e1();
         if (str != null) {
             tL_messages_summarizeText.flags |= 1;
             tL_messages_summarizeText.to_lang = D(str);
@@ -475,7 +475,7 @@ public final class f10 extends c1 {
             longSparseArray.put(j10, bool);
         }
         qs.f(f10Var.currentAccount).k(qs.P1, Long.valueOf(j10), bool);
-        k21.S0(str2);
+        l21.S0(str2);
     }
 
     public final void J(long j3, boolean z9, boolean z10) {
@@ -532,18 +532,18 @@ public final class f10 extends c1 {
         return z10;
     }
 
-    public final void L(ij ijVar, wn0 wn0Var) {
+    public final void L(ij ijVar, yn0 yn0Var) {
         if (ijVar != null && ijVar.f23262k != null) {
             f3.s sVar = new f3.s(ijVar);
-            String M0 = k21.M0();
+            String M0 = l21.M0();
             TLRPC.Message message = ijVar.f23262k;
             if (message.translatedText != null && TextUtils.equals(message.translatedToLanguage, M0)) {
-                wn0Var.run();
+                yn0Var.run();
                 return;
             }
             HashSet hashSet = this.L;
             if (hashSet.contains(sVar)) {
-                wn0Var.run();
+                yn0Var.run();
                 return;
             }
             hashSet.add(sVar);
@@ -559,7 +559,7 @@ public final class f10 extends c1 {
             }
             tL_messages_translateText.text.add(tL_textWithEntities);
             tL_messages_translateText.to_lang = D(M0);
-            getConnectionsManager().sendRequest(tL_messages_translateText, new mm(this, ijVar, M0, sVar, wn0Var, System.currentTimeMillis(), tL_textWithEntities));
+            getConnectionsManager().sendRequest(tL_messages_translateText, new mm(this, ijVar, M0, sVar, yn0Var, System.currentTimeMillis(), tL_textWithEntities));
         }
     }
 
@@ -751,14 +751,14 @@ public final class f10 extends c1 {
                 z10 = true;
             }
             if (z9) {
-                hashSet4.add(Integer.valueOf(ijVar.f1()));
+                hashSet4.add(Integer.valueOf(ijVar.e1()));
             } else {
                 if (z10) {
                     hashSet = hashSet3;
                 } else {
                     hashSet = hashSet2;
                 }
-                hashSet.add(Integer.valueOf(ijVar.f1()));
+                hashSet.add(Integer.valueOf(ijVar.e1()));
             }
             if (!z9) {
                 this.f22345e.put(Long.valueOf(B0), ijVar.f23262k.originalLanguage);
@@ -869,7 +869,7 @@ public final class f10 extends c1 {
                                 return;
                             }
                             long B02 = ij.B0(message4);
-                            int hash = Objects.hash(Long.valueOf(ij.B0(ijVar.f23262k)), Integer.valueOf(ijVar.f1()));
+                            int hash = Objects.hash(Long.valueOf(ij.B0(ijVar.f23262k)), Integer.valueOf(ijVar.e1()));
                             if (!t(B02) && !this.f22350w.contains(Integer.valueOf(hash))) {
                                 this.f22350w.add(Integer.valueOf(hash));
                                 Utilities.d.c(new m00(this, str, ijVar, B02, hash, 0));
@@ -885,10 +885,10 @@ public final class f10 extends c1 {
                                 tL_textWithEntities2 = message5.translatedText;
                             }
                             if ((tL_textWithEntities2 == null && message5.translatedPoll == null) || (((c10Var2 = message5.translatedPoll) != null && !c10.b(ijVar, c10Var2)) || !m10.equals(ijVar.f23262k.translatedToLanguage))) {
-                                int f12 = ijVar.f1();
+                                int e12 = ijVar.e1();
                                 HashMap hashMap = (HashMap) this.f22346f.get(Long.valueOf(B0));
                                 if (hashMap != null) {
-                                    ijVar3 = (ij) hashMap.get(Integer.valueOf(f12));
+                                    ijVar3 = (ij) hashMap.get(Integer.valueOf(e12));
                                 }
                                 if (ijVar3 != null) {
                                     TLRPC.Message message6 = ijVar.f23262k;
@@ -920,8 +920,8 @@ public final class f10 extends c1 {
                                                                 Integer num = (Integer) obj;
                                                                 TL_iv.RichMessage richMessage = (TL_iv.RichMessage) obj2;
                                                                 String str2 = (String) obj3;
-                                                                if (ijVar4.f1() != num.intValue()) {
-                                                                    a8.d("wtf, asked to translate " + ijVar4.f1() + " rich message but got " + num + "!");
+                                                                if (ijVar4.e1() != num.intValue()) {
+                                                                    a8.d("wtf, asked to translate " + ijVar4.e1() + " rich message but got " + num + "!");
                                                                 }
                                                                 TLRPC.Message message9 = ijVar4.f23262k;
                                                                 message9.translatedToLanguage = str2;
@@ -938,11 +938,11 @@ public final class f10 extends c1 {
                                                                 if (arrayList != null) {
                                                                     for (int i10 = 0; i10 < arrayList.size(); i10++) {
                                                                         ij ijVar5 = (ij) arrayList.get(i10);
-                                                                        if (ijVar5 != null && ijVar5.f1() == ijVar4.f1()) {
+                                                                        if (ijVar5 != null && ijVar5.e1() == ijVar4.e1()) {
                                                                             TLRPC.Message message10 = ijVar5.f23262k;
                                                                             message10.translatedToLanguage = str2;
                                                                             message10.translatedRichMessage = richMessage;
-                                                                            if (ijVar5.h6(false)) {
+                                                                            if (ijVar5.g6(false)) {
                                                                                 qs.f(f10Var.currentAccount).k(2, 0);
                                                                                 return;
                                                                             }
@@ -957,8 +957,8 @@ public final class f10 extends c1 {
                                                                 c10 c10Var3 = (c10) obj2;
                                                                 String str3 = (String) obj3;
                                                                 boolean z12 = false;
-                                                                if (ijVar4.f1() != num2.intValue()) {
-                                                                    a8.d("wtf, asked to translate " + ijVar4.f1() + " poll but got " + num2 + "!");
+                                                                if (ijVar4.e1() != num2.intValue()) {
+                                                                    a8.d("wtf, asked to translate " + ijVar4.e1() + " poll but got " + num2 + "!");
                                                                 }
                                                                 TLRPC.Message message11 = ijVar4.f23262k;
                                                                 message11.translatedToLanguage = str3;
@@ -975,14 +975,14 @@ public final class f10 extends c1 {
                                                                     int i11 = 0;
                                                                     while (i11 < arrayList2.size()) {
                                                                         ij ijVar6 = (ij) arrayList2.get(i11);
-                                                                        if (ijVar6 != null && ijVar6.f1() == ijVar4.f1()) {
+                                                                        if (ijVar6 != null && ijVar6.e1() == ijVar4.e1()) {
                                                                             TLRPC.Message message12 = ijVar6.f23262k;
                                                                             message12.translatedToLanguage = str3;
                                                                             message12.translatedText = null;
                                                                             message12.translatedVoiceTranscription = null;
                                                                             message12.translatedPoll = c10Var3;
                                                                             boolean z13 = z12;
-                                                                            if (ijVar6.h6(z13)) {
+                                                                            if (ijVar6.g6(z13)) {
                                                                                 qs f10 = qs.f(f10Var.currentAccount);
                                                                                 Object[] objArr = new Object[1];
                                                                                 objArr[z13 ? 1 : 0] = Integer.valueOf(z13 ? 1 : 0);
@@ -1000,7 +1000,7 @@ public final class f10 extends c1 {
                                                         }
                                                     }
                                                 };
-                                                if (ijVar3.f23262k != null && ijVar3.f1() >= 0) {
+                                                if (ijVar3.f23262k != null && ijVar3.e1() >= 0) {
                                                     TLRPC.Message message9 = ijVar3.f23262k;
                                                     if (message9.rich_message != null) {
                                                         long B03 = ij.B0(message9);
@@ -1020,7 +1020,7 @@ public final class f10 extends c1 {
                                                                 } else {
                                                                     a10Var = (a10) arrayList.get(arrayList.size() - 1);
                                                                 }
-                                                                if (a10Var.f21368b.contains(Integer.valueOf(ijVar3.f1()))) {
+                                                                if (a10Var.f21368b.contains(Integer.valueOf(ijVar3.e1()))) {
                                                                     return;
                                                                 }
                                                                 if (a10Var.f21368b.size() + 1 >= 20) {
@@ -1033,9 +1033,9 @@ public final class f10 extends c1 {
                                                                 if (irVar != null) {
                                                                     g0.r(irVar);
                                                                 }
-                                                                this.f22351x.add(Integer.valueOf(ijVar3.f1()));
-                                                                a10Var.f21368b.add(Integer.valueOf(ijVar3.f1()));
-                                                                a8.b("pending translation +" + ijVar3.f1() + " rich message");
+                                                                this.f22351x.add(Integer.valueOf(ijVar3.e1()));
+                                                                a10Var.f21368b.add(Integer.valueOf(ijVar3.e1()));
+                                                                a8.b("pending translation +" + ijVar3.e1() + " rich message");
                                                                 a10Var.f21369c.add(x10Var);
                                                                 a10Var.d = m10;
                                                                 a10 a10Var2 = a10Var;
@@ -1070,7 +1070,7 @@ public final class f10 extends c1 {
                                         }
                                         if ((tL_textWithEntities == null && message10.translatedPoll == null) || (((c10Var = message10.translatedPoll) != null && !c10.b(ijVar3, c10Var)) || !m10.equals(ijVar3.f23262k.translatedToLanguage))) {
                                             qs.f(this.currentAccount).k(qs.N1, ijVar3);
-                                            if (ij.n1(ijVar3) instanceof TLRPC.TL_messageMediaPoll) {
+                                            if (ij.m1(ijVar3) instanceof TLRPC.TL_messageMediaPoll) {
                                                 E(ijVar3, m10, new x10(this) {
                                                     public final f10 f25928b;
 
@@ -1090,8 +1090,8 @@ public final class f10 extends c1 {
                                                                 Integer num = (Integer) obj;
                                                                 TL_iv.RichMessage richMessage = (TL_iv.RichMessage) obj2;
                                                                 String str2 = (String) obj3;
-                                                                if (ijVar4.f1() != num.intValue()) {
-                                                                    a8.d("wtf, asked to translate " + ijVar4.f1() + " rich message but got " + num + "!");
+                                                                if (ijVar4.e1() != num.intValue()) {
+                                                                    a8.d("wtf, asked to translate " + ijVar4.e1() + " rich message but got " + num + "!");
                                                                 }
                                                                 TLRPC.Message message92 = ijVar4.f23262k;
                                                                 message92.translatedToLanguage = str2;
@@ -1108,11 +1108,11 @@ public final class f10 extends c1 {
                                                                 if (arrayList3 != null) {
                                                                     for (int i10 = 0; i10 < arrayList3.size(); i10++) {
                                                                         ij ijVar5 = (ij) arrayList3.get(i10);
-                                                                        if (ijVar5 != null && ijVar5.f1() == ijVar4.f1()) {
+                                                                        if (ijVar5 != null && ijVar5.e1() == ijVar4.e1()) {
                                                                             TLRPC.Message message102 = ijVar5.f23262k;
                                                                             message102.translatedToLanguage = str2;
                                                                             message102.translatedRichMessage = richMessage;
-                                                                            if (ijVar5.h6(false)) {
+                                                                            if (ijVar5.g6(false)) {
                                                                                 qs.f(f10Var.currentAccount).k(2, 0);
                                                                                 return;
                                                                             }
@@ -1127,8 +1127,8 @@ public final class f10 extends c1 {
                                                                 c10 c10Var3 = (c10) obj2;
                                                                 String str3 = (String) obj3;
                                                                 boolean z12 = false;
-                                                                if (ijVar4.f1() != num2.intValue()) {
-                                                                    a8.d("wtf, asked to translate " + ijVar4.f1() + " poll but got " + num2 + "!");
+                                                                if (ijVar4.e1() != num2.intValue()) {
+                                                                    a8.d("wtf, asked to translate " + ijVar4.e1() + " poll but got " + num2 + "!");
                                                                 }
                                                                 TLRPC.Message message11 = ijVar4.f23262k;
                                                                 message11.translatedToLanguage = str3;
@@ -1145,14 +1145,14 @@ public final class f10 extends c1 {
                                                                     int i11 = 0;
                                                                     while (i11 < arrayList22.size()) {
                                                                         ij ijVar6 = (ij) arrayList22.get(i11);
-                                                                        if (ijVar6 != null && ijVar6.f1() == ijVar4.f1()) {
+                                                                        if (ijVar6 != null && ijVar6.e1() == ijVar4.e1()) {
                                                                             TLRPC.Message message12 = ijVar6.f23262k;
                                                                             message12.translatedToLanguage = str3;
                                                                             message12.translatedText = null;
                                                                             message12.translatedVoiceTranscription = null;
                                                                             message12.translatedPoll = c10Var3;
                                                                             boolean z13 = z12;
-                                                                            if (ijVar6.h6(z13)) {
+                                                                            if (ijVar6.g6(z13)) {
                                                                                 qs f10 = qs.f(f10Var.currentAccount);
                                                                                 Object[] objArr = new Object[1];
                                                                                 objArr[z13 ? 1 : 0] = Integer.valueOf(z13 ? 1 : 0);
@@ -1180,8 +1180,8 @@ public final class f10 extends c1 {
                                                         TLRPC.TL_textWithEntities tL_textWithEntities3 = (TLRPC.TL_textWithEntities) obj3;
                                                         String str2 = (String) obj4;
                                                         ij ijVar4 = ijVar3;
-                                                        if (ijVar4.f1() != num.intValue()) {
-                                                            a8.d("wtf, asked to translate " + ijVar4.f1() + " but got " + num + "!");
+                                                        if (ijVar4.e1() != num.intValue()) {
+                                                            a8.d("wtf, asked to translate " + ijVar4.e1() + " but got " + num + "!");
                                                         }
                                                         ijVar4.f23262k.translatedToLanguage = str2;
                                                         if (bool.booleanValue()) {
@@ -1203,7 +1203,7 @@ public final class f10 extends c1 {
                                                         if (arrayList3 != null) {
                                                             for (int i7 = 0; i7 < arrayList3.size(); i7++) {
                                                                 ij ijVar5 = (ij) arrayList3.get(i7);
-                                                                if (ijVar5 != null && ijVar5.f1() == ijVar4.f1()) {
+                                                                if (ijVar5 != null && ijVar5.e1() == ijVar4.e1()) {
                                                                     ijVar5.f23262k.translatedToLanguage = str2;
                                                                     if (bool.booleanValue()) {
                                                                         ijVar5.f23262k.translatedVoiceTranscription = tL_textWithEntities3;
@@ -1211,7 +1211,7 @@ public final class f10 extends c1 {
                                                                         ijVar5.f23262k.translatedText = tL_textWithEntities3;
                                                                     }
                                                                     ijVar5.f23262k.translatedPoll = null;
-                                                                    if (ijVar5.h6(false)) {
+                                                                    if (ijVar5.g6(false)) {
                                                                         qs.f(f10Var.currentAccount).k(qs.f25063r, 0);
                                                                         return;
                                                                     }
@@ -1383,7 +1383,7 @@ public final class f10 extends c1 {
 
     public final String m(long j3) {
         String str = (String) this.d.get(Long.valueOf(j3));
-        if (str == null && ((str = k21.M0()) == null || str.equals((String) this.f22345e.get(Long.valueOf(j3))))) {
+        if (str == null && ((str = l21.M0()) == null || str.equals((String) this.f22345e.get(Long.valueOf(j3))))) {
             str = j();
         }
         if ("nb".equals(str)) {
@@ -1470,7 +1470,7 @@ public final class f10 extends c1 {
 
     public final boolean w(String str) {
         if (getUserConfig().q()) {
-            return qy0.d0().contains(str);
+            return ty0.d0().contains(str);
         }
         try {
             return TextUtils.equals(id.E0().B.f22400f, str);

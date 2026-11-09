@@ -14,29 +14,29 @@ import org.telegram.messenger.qp;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.NumberTextView;
-import org.telegram.ui.an;
+import org.telegram.ui.cn;
 public final class o2 extends ChatActivityEnterView {
-    public ValueAnimator f9447t5;
-    public int f9448u5;
-    public int f9449v5;
-    public int f9450w5;
-    public final i4 f9451x5;
+    public ValueAnimator f9425t5;
+    public int f9426u5;
+    public int f9427v5;
+    public int f9428w5;
+    public final j4 f9429x5;
 
-    public o2(i4 i4Var, Activity activity, i4 i4Var2, m2 m2Var) {
-        super(activity, i4Var2, null, true, m2Var);
-        this.f9451x5 = i4Var;
+    public o2(j4 j4Var, Activity activity, j4 j4Var2, m2 m2Var) {
+        super(activity, j4Var2, null, true, m2Var);
+        this.f9429x5 = j4Var;
     }
 
     @Override
     public final void C0(int i7, int i10) {
-        i4 i4Var = this.f9451x5;
-        if (i4Var.K1 != null) {
-            this.f31095n3 = true;
-            this.f9449v5 = this.E0.getMeasuredHeight();
-            this.f9450w5 = this.E0.getScrollY();
+        j4 j4Var = this.f9429x5;
+        if (j4Var.K1 != null) {
+            this.f31100n3 = true;
+            this.f9427v5 = this.E0.getMeasuredHeight();
+            this.f9428w5 = this.E0.getScrollY();
             invalidate();
-            i4Var.invalidate();
-            this.f9448u5 = i4Var.K1.getBackgroundTop();
+            j4Var.invalidate();
+            this.f9426u5 = j4Var.K1.getBackgroundTop();
         }
     }
 
@@ -49,8 +49,8 @@ public final class o2 extends ChatActivityEnterView {
     @Override
     public final void R1(boolean z9) {
         boolean z10;
-        i4 i4Var = this.f9451x5;
-        if (!i4Var.f9177o1 && !i4Var.f9181p1) {
+        j4 j4Var = this.f9429x5;
+        if (!j4Var.f9209o1 && !j4Var.f9213p1) {
             z10 = false;
         } else {
             z10 = true;
@@ -67,32 +67,32 @@ public final class o2 extends ChatActivityEnterView {
             H0();
             return false;
         }
-        i4 i4Var = this.f9451x5;
-        if (i4Var.f9213x1.f9042f) {
-            long j3 = i4Var.f9203u3;
-            messageMinPrice = i4Var.getMessageMinPrice();
+        j4 j4Var = this.f9429x5;
+        if (j4Var.f9245x1.f9068f) {
+            long j3 = j4Var.f9235u3;
+            messageMinPrice = j4Var.getMessageMinPrice();
             long max = Math.max(j3, messageMinPrice);
             TLRPC.TL_textWithEntities textWithEntities = getTextWithEntities();
             CharSequence j02 = ij.j0(textWithEntities, false, false, new TextPaint());
             int length = j02.length();
-            int[] iArr = qp.s1(i4Var.f9168l2).X6;
+            int[] iArr = qp.s1(j4Var.f9200l2).X6;
             if (iArr != null && iArr.length > 2) {
                 i7 = iArr[2];
             } else {
                 i7 = 400;
             }
             if (length > i7) {
-                NumberTextView numberTextView = this.f31021b0;
+                NumberTextView numberTextView = this.f31026b0;
                 if (numberTextView != null) {
                     org.telegram.messenger.g0.G3(3.5f, numberTextView, null);
                     try {
-                        this.f31021b0.performHapticFeedback(3, 2);
+                        this.f31026b0.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
                 }
                 return false;
             }
-            if (!i4Var.B0(true)) {
+            if (!j4Var.B0(true)) {
                 if (j02 instanceof Spannable) {
                     Spannable spannable = (Spannable) j02;
                     i10 = ((org.telegram.ui.Components.r5[]) spannable.getSpans(0, j02.length(), org.telegram.ui.Components.r5.class)).length + ((org.telegram.messenger.f6[]) spannable.getSpans(0, j02.length(), org.telegram.messenger.f6.class)).length;
@@ -100,16 +100,16 @@ public final class o2 extends ChatActivityEnterView {
                     i10 = 0;
                 }
                 int i11 = (int) max;
-                if (i10 > t.b(i4Var.f9168l2, i11, 2) || j02.length() > t.b(i4Var.f9168l2, i11, 1)) {
-                    i4Var.M0();
+                if (i10 > t.b(j4Var.f9200l2, i11, 2) || j02.length() > t.b(j4Var.f9200l2, i11, 1)) {
+                    j4Var.M0();
                     return false;
                 }
             }
-            i4Var.f9200u0.o(textWithEntities, max);
+            j4Var.f9232u0.o(textWithEntities, max);
             this.E0.setText("");
             org.telegram.messenger.g0.v1(this);
-            i4Var.f9203u3 = 0L;
-            i4Var.p0(true);
+            j4Var.f9235u3 = 0L;
+            j4Var.p0(true);
             E(true);
             return true;
         }
@@ -118,9 +118,9 @@ public final class o2 extends ChatActivityEnterView {
 
     @Override
     public final boolean T0(boolean z9, int i7, int i10, long j3, boolean z10) {
-        i4 i4Var = this.f9451x5;
-        if (qp.s1(i4Var.f9168l2).v2()) {
-            org.telegram.ui.b.b(i4Var.f9168l2);
+        j4 j4Var = this.f9429x5;
+        if (qp.s1(j4Var.f9200l2).v2()) {
+            org.telegram.ui.b.b(j4Var.f9200l2);
             return false;
         }
         return super.T0(z9, i7, i10, j3, z10);
@@ -138,8 +138,8 @@ public final class o2 extends ChatActivityEnterView {
         if (!isEnabled()) {
             RectF rectF = org.telegram.messenger.g0.P;
             float width = getWidth();
-            i4 i4Var = this.f9451x5;
-            if (i4Var.R1 != null) {
+            j4 j4Var = this.f9429x5;
+            if (j4Var.R1 != null) {
                 f10 = this.D * 1.5f;
             } else {
                 f10 = 0.0f;
@@ -147,21 +147,21 @@ public final class o2 extends ChatActivityEnterView {
             rectF.set(0.0f, 0.0f, width + f10, getHeight());
             boolean contains = rectF.contains(motionEvent.getX(), motionEvent.getY());
             if (motionEvent.getAction() == 0) {
-                if (contains && (textView2 = i4Var.R1) != null) {
+                if (contains && (textView2 = j4Var.R1) != null) {
                     textView2.setPressed(true);
                 }
             } else if (motionEvent.getAction() == 1) {
-                TextView textView3 = i4Var.R1;
+                TextView textView3 = j4Var.R1;
                 if (textView3 != null) {
                     if (contains && textView3.isPressed()) {
-                        i4.f0(i4Var);
+                        j4.f0(j4Var);
                     }
-                    i4Var.R1.setPressed(false);
+                    j4Var.R1.setPressed(false);
                 }
-            } else if (motionEvent.getAction() == 3 && (textView = i4Var.R1) != null) {
+            } else if (motionEvent.getAction() == 3 && (textView = j4Var.R1) != null) {
                 textView.setPressed(false);
             }
-            TextView textView4 = i4Var.R1;
+            TextView textView4 = j4Var.R1;
             if (textView4 == null || !textView4.isPressed()) {
                 return false;
             }
@@ -172,21 +172,12 @@ public final class o2 extends ChatActivityEnterView {
 
     @Override
     public final void e0(Menu menu) {
-        an.A8(menu, null, false, !this.f9451x5.f9213x1.f9042f, true, true);
-    }
-
-    @Override
-    public final void g1(float f10, float f11, float f12, boolean z9) {
-        LinearLayout linearLayout = this.f9451x5.P1;
-        if (linearLayout != null) {
-            linearLayout.setTranslationX((1.0f - f12) * f10);
-        }
-        super.g1(f10, f11, f12, z9);
+        cn.B8(menu, null, false, !this.f9429x5.f9245x1.f9068f, true, true);
     }
 
     @Override
     public final int getMessagesCount() {
-        if (this.f9451x5.f9213x1.f9042f) {
+        if (this.f9429x5.f9245x1.f9068f) {
             return 1;
         }
         return super.getMessagesCount();
@@ -195,22 +186,31 @@ public final class o2 extends ChatActivityEnterView {
     @Override
     public final long getStarsPrice() {
         long messageMinPrice;
-        i4 i4Var = this.f9451x5;
-        if (i4Var.f9213x1.f9042f) {
-            messageMinPrice = i4Var.getMessageMinPrice();
-            return Math.max(messageMinPrice, i4Var.f9203u3);
+        j4 j4Var = this.f9429x5;
+        if (j4Var.f9245x1.f9068f) {
+            messageMinPrice = j4Var.getMessageMinPrice();
+            return Math.max(messageMinPrice, j4Var.f9235u3);
         }
         return super.getStarsPrice();
     }
 
     @Override
+    public final void h1(float f10, float f11, float f12, boolean z9) {
+        LinearLayout linearLayout = this.f9429x5.P1;
+        if (linearLayout != null) {
+            linearLayout.setTranslationX((1.0f - f12) * f10);
+        }
+        super.h1(f10, f11, f12, z9);
+    }
+
+    @Override
     public final boolean q() {
-        return this.f9451x5.B0(true);
+        return this.f9429x5.B0(true);
     }
 
     @Override
     public final boolean r1(Runnable runnable) {
-        this.f9451x5.l0(runnable);
+        this.f9429x5.l0(runnable);
         return true;
     }
 

@@ -22,13 +22,13 @@ public final class x1 extends u1 {
     public DialogInterface.OnDismissListener f28743q1;
     public boolean f28744r1;
     public long f28745s1;
-    public final l2.w f28746t1;
+    public final l2.a0 f28746t1;
 
-    public x1(int i7, Context context, f6 f6Var) {
-        super(i7, context, f6Var);
+    public x1(int i7, Context context, g6 g6Var) {
+        super(i7, context, g6Var);
         this.f28744r1 = false;
         this.f28745s1 = 0L;
-        this.f28746t1 = new l2.w(this, 21);
+        this.f28746t1 = new l2.a0(this, 20);
     }
 
     public static Activity t(Context context) {
@@ -81,7 +81,7 @@ public final class x1 extends u1 {
         this.f28739k1 = obtainStyledAttributes.getResourceId(0, -1);
         this.l1 = obtainStyledAttributes.getResourceId(1, -1);
         obtainStyledAttributes.recycle();
-        this.f28574j0 = true;
+        this.f28565j0 = true;
         ViewGroup g10 = g(false);
         this.n1 = g10;
         g10.setClickable(true);
@@ -90,7 +90,7 @@ public final class x1 extends u1 {
         frameLayout.setOnClickListener(new ii.g(this, 14));
         View view = new View(getContext());
         this.f28741o1 = view;
-        view.setBackgroundColor(k6.r1(attributes.dimAmount, -16777216));
+        view.setBackgroundColor(l6.r1(attributes.dimAmount, -16777216));
         frameLayout.addView(this.f28741o1, new FrameLayout.LayoutParams(-1, -1));
         FrameLayout frameLayout2 = new FrameLayout(getContext());
         frameLayout2.addView(this.n1, new FrameLayout.LayoutParams(-1, -2, 17));
@@ -98,17 +98,17 @@ public final class x1 extends u1 {
         this.f28740m1 = frameLayout;
         u().addView(this.f28740m1);
         FrameLayout frameLayout3 = this.f28740m1;
-        WeakHashMap weakHashMap = r0.i0.f54191a;
+        WeakHashMap weakHashMap = r0.i0.f54203a;
         r0.y.c(frameLayout3);
         r0.a0.i(this.f28740m1, new bi.f(3, frameLayout2));
         this.f28740m1.setVisibility(4);
         long j3 = this.f28745s1;
         int i7 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
-        l2.w wVar = this.f28746t1;
+        l2.a0 a0Var = this.f28746t1;
         if (i7 == 0) {
-            wVar.run();
+            a0Var.run();
         } else {
-            org.telegram.messenger.g0.i3(wVar, j3);
+            org.telegram.messenger.g0.i3(a0Var, j3);
         }
     }
 

@@ -1,7 +1,7 @@
 package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.c40;
+import org.telegram.ui.e40;
 public final class s3 {
     public TLRPC.GroupCallParticipant f25409a;
     public boolean f25410b;
@@ -16,7 +16,7 @@ public final class s3 {
         float f10 = i7 / i10;
         if (this.f25411c != f10) {
             this.f25411c = f10;
-            if (!c40.f44544w5 && r3Var.f25225f.size() % 2 == 1) {
+            if (!e40.f45184w5 && r3Var.f25225f.size() % 2 == 1) {
                 r3Var.B();
             }
         }
@@ -28,7 +28,7 @@ public final class s3 {
         }
         if (obj != null && s3.class == obj.getClass()) {
             s3 s3Var = (s3) obj;
-            if (this.f25410b == s3Var.f25410b && ij.C1(this.f25409a.peer) == ij.C1(s3Var.f25409a.peer)) {
+            if (this.f25410b == s3Var.f25410b && ij.B1(this.f25409a.peer) == ij.B1(s3Var.f25409a.peer)) {
                 return true;
             }
         }

@@ -16,47 +16,47 @@ public final class fg extends View {
     public final float G;
     public float H;
     public final ChatActivityEnterView I;
-    public boolean f33539a;
-    public boolean f33540b;
-    public String f33541c;
+    public boolean f33660a;
+    public boolean f33661b;
+    public String f33662c;
     public long d;
-    public long f33542e;
-    public long f33543f;
+    public long f33663e;
+    public long f33664f;
     public long h;
-    public long f33544n;
-    public boolean f33545r;
-    public final SpannableStringBuilder f33546s;
-    public final SpannableStringBuilder f33547w;
-    public SpannableStringBuilder f33548x;
-    public StaticLayout f33549y;
+    public long f33665n;
+    public boolean f33666r;
+    public final SpannableStringBuilder f33667s;
+    public final SpannableStringBuilder f33668w;
+    public SpannableStringBuilder f33669x;
+    public StaticLayout f33670y;
 
     public fg(ChatActivityEnterView chatActivityEnterView, Context context) {
         super(context);
         this.I = chatActivityEnterView;
-        this.f33546s = new SpannableStringBuilder();
-        this.f33547w = new SpannableStringBuilder();
-        this.f33548x = new SpannableStringBuilder();
+        this.f33667s = new SpannableStringBuilder();
+        this.f33668w = new SpannableStringBuilder();
+        this.f33669x = new SpannableStringBuilder();
         this.G = org.telegram.messenger.g0.L(15.0f);
     }
 
     public final void a(long j3) {
-        this.f33539a = true;
+        this.f33660a = true;
         long currentTimeMillis = System.currentTimeMillis() - j3;
         this.d = currentTimeMillis;
         this.h = j3;
-        this.f33543f = currentTimeMillis;
+        this.f33664f = currentTimeMillis;
         invalidate();
     }
 
     public final void b() {
-        if (this.f33539a) {
-            this.f33539a = false;
+        if (this.f33660a) {
+            this.f33660a = false;
             if (this.d > 0) {
-                this.f33542e = System.currentTimeMillis();
+                this.f33663e = System.currentTimeMillis();
             }
             invalidate();
         }
-        this.f33543f = 0L;
+        this.f33664f = 0L;
     }
 
     public float getLeftProperty() {
@@ -81,24 +81,24 @@ public final class fg extends View {
             textPaint2.setTextSize(org.telegram.messenger.g0.L(15.0f));
             this.F.setTypeface(org.telegram.messenger.g0.o());
             TextPaint textPaint3 = this.F;
-            int i11 = org.telegram.ui.ActionBar.k6.f27824bg;
+            int i11 = org.telegram.ui.ActionBar.l6.f27837bg;
             int i12 = ChatActivityEnterView.s5;
             textPaint3.setColor(chatActivityEnterView.f0(i11));
         }
         long currentTimeMillis = System.currentTimeMillis();
-        if (this.f33539a) {
-            if (this.f33545r) {
+        if (this.f33660a) {
+            if (this.f33666r) {
                 j3 = this.h;
             } else {
                 j3 = currentTimeMillis - this.d;
             }
         } else {
-            j3 = this.f33542e - this.d;
+            j3 = this.f33663e - this.d;
         }
         long j11 = j3 / 1000;
         int i13 = ((int) (j3 % 1000)) / 10;
         long j12 = 0;
-        if (chatActivityEnterView.f31029c1 && j3 >= 59500 && !this.f33540b) {
+        if (chatActivityEnterView.f31034c1 && j3 >= 59500 && !this.f33661b) {
             chatActivityEnterView.D2 = -1.0f;
             wf wfVar = chatActivityEnterView.Z2;
             if (chatActivityEnterView.O) {
@@ -110,15 +110,15 @@ public final class fg extends View {
             ge geVar = chatActivityEnterView.J0;
             chatActivityEnterView.S4 = 0L;
             geVar.setEffect(0L);
-            this.f33540b = true;
+            this.f33661b = true;
         }
-        if (this.f33539a && currentTimeMillis > this.f33543f + 5000) {
-            this.f33543f = currentTimeMillis;
+        if (this.f33660a && currentTimeMillis > this.f33664f + 5000) {
+            this.f33664f = currentTimeMillis;
             org.telegram.messenger.qp s12 = org.telegram.messenger.qp.s1(chatActivityEnterView.Q);
             long j13 = chatActivityEnterView.Q2;
             threadMessageId = chatActivityEnterView.getThreadMessageId();
             long j14 = threadMessageId;
-            if (chatActivityEnterView.f31029c1) {
+            if (chatActivityEnterView.f31034c1) {
                 i7 = 7;
             } else {
                 i7 = 1;
@@ -145,16 +145,16 @@ public final class fg extends View {
             sb2.append(i13 / 10);
         }
         String sb3 = sb2.toString();
-        if (sb3.length() >= 3 && (str = this.f33541c) != null && str.length() >= 3 && sb3.length() == this.f33541c.length() && sb3.charAt(sb3.length() - 3) != this.f33541c.charAt(sb3.length() - 3)) {
+        if (sb3.length() >= 3 && (str = this.f33662c) != null && str.length() >= 3 && sb3.length() == this.f33662c.length() && sb3.charAt(sb3.length() - 3) != this.f33662c.charAt(sb3.length() - 3)) {
             int length = sb3.length();
-            SpannableStringBuilder spannableStringBuilder2 = this.f33546s;
+            SpannableStringBuilder spannableStringBuilder2 = this.f33667s;
             spannableStringBuilder2.clear();
-            SpannableStringBuilder spannableStringBuilder3 = this.f33547w;
+            SpannableStringBuilder spannableStringBuilder3 = this.f33668w;
             spannableStringBuilder3.clear();
-            this.f33548x.clear();
+            this.f33669x.clear();
             spannableStringBuilder2.append((CharSequence) sb3);
-            spannableStringBuilder3.append((CharSequence) this.f33541c);
-            this.f33548x.append((CharSequence) sb3);
+            spannableStringBuilder3.append((CharSequence) this.f33662c);
+            this.f33669x.append((CharSequence) sb3);
             int i14 = -1;
             int i15 = -1;
             int i16 = 0;
@@ -165,7 +165,7 @@ public final class fg extends View {
                 if (i16 >= length - 1) {
                     break;
                 }
-                if (this.f33541c.charAt(i16) != sb3.charAt(i16)) {
+                if (this.f33662c.charAt(i16) != sb3.charAt(i16)) {
                     if (i18 == 0) {
                         i15 = i16;
                     }
@@ -186,7 +186,7 @@ public final class fg extends View {
                     }
                     i17++;
                     if (i18 != 0) {
-                        this.f33548x.setSpan(new iy(false), i15, i18 + i15, 33);
+                        this.f33669x.setSpan(new iy(false), i15, i18 + i15, 33);
                         i18 = 0;
                     }
                 }
@@ -200,34 +200,34 @@ public final class fg extends View {
                 spannableStringBuilder3.setSpan(iyVar2, i14, i20, 33);
             }
             if (i18 != 0) {
-                this.f33548x.setSpan(new iy(false), i15, i18 + i15, 33);
+                this.f33669x.setSpan(new iy(false), i15, i18 + i15, 33);
             }
             TextPaint textPaint4 = this.F;
             int measuredWidth = getMeasuredWidth();
             Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-            this.f33549y = new StaticLayout(spannableStringBuilder2, textPaint4, measuredWidth, alignment, 1.0f, 0.0f, false);
+            this.f33670y = new StaticLayout(spannableStringBuilder2, textPaint4, measuredWidth, alignment, 1.0f, 0.0f, false);
             this.D = new StaticLayout(spannableStringBuilder3, this.F, getMeasuredWidth(), alignment, 1.0f, 0.0f, false);
             this.E = 1.0f;
         } else {
             j10 = 0;
-            if (this.f33548x == null) {
-                this.f33548x = new SpannableStringBuilder(sb3);
+            if (this.f33669x == null) {
+                this.f33669x = new SpannableStringBuilder(sb3);
             }
-            if (this.f33548x.length() != 0 && this.f33548x.length() == sb3.length()) {
-                this.f33548x.replace(spannableStringBuilder.length() - 1, this.f33548x.length(), (CharSequence) sb3, (sb3.length() - 1) - (sb3.length() - this.f33548x.length()), sb3.length());
+            if (this.f33669x.length() != 0 && this.f33669x.length() == sb3.length()) {
+                this.f33669x.replace(spannableStringBuilder.length() - 1, this.f33669x.length(), (CharSequence) sb3, (sb3.length() - 1) - (sb3.length() - this.f33669x.length()), sb3.length());
             } else {
-                this.f33548x.clear();
-                this.f33548x.append((CharSequence) sb3);
+                this.f33669x.clear();
+                this.f33669x.append((CharSequence) sb3);
             }
         }
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        long j17 = this.f33544n;
+        long j17 = this.f33665n;
         if (j17 == j10) {
             min = 16;
         } else {
             min = Math.min(50L, elapsedRealtime - j17);
         }
-        this.f33544n = elapsedRealtime;
+        this.f33665n = elapsedRealtime;
         float f10 = this.E;
         if (f10 != 0.0f) {
             float f11 = f10 - (((float) min) / 116.0f);
@@ -238,21 +238,21 @@ public final class fg extends View {
         }
         float measuredHeight = getMeasuredHeight() / 2;
         if (this.E == 0.0f) {
-            this.f33548x.clearSpans();
-            StaticLayout staticLayout = new StaticLayout(this.f33548x, this.F, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.f33669x.clearSpans();
+            StaticLayout staticLayout = new StaticLayout(this.f33669x, this.F, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             canvas.save();
             canvas.translate(0.0f, measuredHeight - (staticLayout.getHeight() / 2.0f));
             staticLayout.draw(canvas);
             canvas.restore();
             this.H = staticLayout.getLineWidth(0) + 0.0f;
         } else {
-            StaticLayout staticLayout2 = this.f33549y;
+            StaticLayout staticLayout2 = this.f33670y;
             float f12 = this.G;
             if (staticLayout2 != null) {
                 canvas.save();
                 this.F.setAlpha((int) ((1.0f - this.E) * 255.0f));
-                canvas.translate(0.0f, (measuredHeight - (this.f33549y.getHeight() / 2.0f)) - (this.E * f12));
-                this.f33549y.draw(canvas);
+                canvas.translate(0.0f, (measuredHeight - (this.f33670y.getHeight() / 2.0f)) - (this.E * f12));
+                this.f33670y.draw(canvas);
                 canvas.restore();
             }
             if (this.D != null) {
@@ -264,21 +264,21 @@ public final class fg extends View {
             }
             canvas.save();
             this.F.setAlpha(255);
-            StaticLayout staticLayout3 = new StaticLayout(this.f33548x, this.F, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            StaticLayout staticLayout3 = new StaticLayout(this.f33669x, this.F, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             canvas.translate(0.0f, measuredHeight - (staticLayout3.getHeight() / 2.0f));
             staticLayout3.draw(canvas);
             canvas.restore();
             this.H = staticLayout3.getLineWidth(0) + 0.0f;
         }
-        this.f33541c = sb3;
-        if ((this.f33539a || this.E != 0.0f) && !this.f33545r) {
+        this.f33662c = sb3;
+        if ((this.f33660a || this.E != 0.0f) && !this.f33666r) {
             invalidate();
         }
     }
 
     public void setExternalFrameClock(boolean z9) {
-        this.f33545r = z9;
-        this.f33544n = SystemClock.elapsedRealtime();
+        this.f33666r = z9;
+        this.f33665n = SystemClock.elapsedRealtime();
         invalidate();
     }
 }

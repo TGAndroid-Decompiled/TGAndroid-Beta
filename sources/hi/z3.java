@@ -5,7 +5,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
 import org.telegram.ui.Components.br;
-import org.telegram.ui.Components.ve0;
+import org.telegram.ui.Components.we0;
 import org.telegram.ui.Components.yq;
 public final class z3 extends GestureDetector.SimpleOnGestureListener {
     public final int f15074a;
@@ -23,11 +23,11 @@ public final class z3 extends GestureDetector.SimpleOnGestureListener {
         switch (this.f15074a) {
             case 1:
                 br brVar = (br) this.f15076c;
-                yq yqVar = brVar.f32336r;
-                if (brVar.f32335n) {
+                yq yqVar = brVar.f32392r;
+                if (brVar.f32391n) {
                     brVar.removeCallbacks(yqVar);
                 }
-                brVar.f32335n = true;
+                brVar.f32391n = true;
                 brVar.postDelayed(yqVar, 200L);
                 brVar.h.run();
                 return true;
@@ -94,11 +94,11 @@ public final class z3 extends GestureDetector.SimpleOnGestureListener {
             default:
                 return super.onFling(motionEvent, motionEvent2, f10, f11);
             case 2:
-                ve0 ve0Var = (ve0) viewGroup;
-                if (!ve0Var.f38991f && !ve0Var.h && f10 >= 600.0f) {
-                    ve0Var.f38990e = false;
-                    ve0Var.h = false;
-                    ve0Var.a(0.0f, f10 / 6000.0f);
+                we0 we0Var = (we0) viewGroup;
+                if (!we0Var.f40043f && !we0Var.h && f10 >= 600.0f) {
+                    we0Var.f40042e = false;
+                    we0Var.h = false;
+                    we0Var.a(0.0f, f10 / 6000.0f);
                 }
                 return false;
         }

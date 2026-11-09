@@ -10,8 +10,8 @@ import bi.la;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import org.telegram.ui.Components.ah0;
 import org.telegram.ui.Components.xq;
-import org.telegram.ui.Components.zg0;
 public final class e5 extends LinearLayout {
     public final y4 f27453a;
     public final boolean f27454b;
@@ -94,12 +94,12 @@ public final class e5 extends LinearLayout {
             layoutParams.rightMargin = L;
             layoutParams.leftMargin = L;
         } else {
-            if (drawable instanceof zg0) {
-                f5Var.f28455y.setAnimation((zg0) drawable);
+            if (drawable instanceof ah0) {
+                f5Var.f28456y.setAnimation((ah0) drawable);
             } else if (drawable != null) {
-                f5Var.f28455y.setImageDrawable(drawable);
+                f5Var.f28456y.setImageDrawable(drawable);
             } else if (i10 != 0) {
-                f5Var.f28455y.setImageResource(i10);
+                f5Var.f28456y.setImageResource(i10);
             }
             layoutParams = new LinearLayout.LayoutParams(i11, -1);
             int i14 = -org.telegram.messenger.g0.L(5.0f);
@@ -126,22 +126,22 @@ public final class e5 extends LinearLayout {
             if (!it.hasNext()) {
                 break;
             }
-            ((d5) it.next()).f27441b = false;
+            ((d5) it.next()).f27425b = false;
         }
         float width = getWidth() - getPaddingRight();
         te.h hVar = this.f27456e;
-        float f10 = hVar.d.f55505f.f55513a;
+        float f10 = hVar.d.f55517f.f55525a;
         float min = Math.min(1.0f, getPillWidth() / org.telegram.messenger.g0.L(46.0f));
-        ArrayList arrayList = hVar.f55508b;
+        ArrayList arrayList = hVar.f55520b;
         int size = arrayList.size();
         while (i7 < size) {
             Object obj = arrayList.get(i7);
             i7++;
             te.e eVar = (te.e) obj;
-            d5 d5Var = (d5) eVar.f55496a;
-            View view = d5Var.f27440a;
+            d5 d5Var = (d5) eVar.f55508a;
+            View view = d5Var.f27424a;
             RectF b10 = eVar.b();
-            d5Var.f27441b = true;
+            d5Var.f27425b = true;
             view.setTranslationX((((width - Math.max(f10, b10.right)) + b10.left) + ((LinearLayout.LayoutParams) view.getLayoutParams()).leftMargin) - view.getLeft());
             d5Var.c(eVar.c(), min);
         }
@@ -159,7 +159,7 @@ public final class e5 extends LinearLayout {
 
     public float getPillWidth() {
         te.g gVar = this.f27456e.d;
-        return (org.telegram.messenger.g0.L(8.0f) * gVar.f55503c.f55513a) + gVar.f55505f.f55513a;
+        return (org.telegram.messenger.g0.L(8.0f) * gVar.f55515c.f55525a) + gVar.f55517f.f55525a;
     }
 
     public float getTargetPillWidth() {
@@ -208,7 +208,7 @@ public final class e5 extends LinearLayout {
                 } else {
                     i11 = 1;
                 }
-                r0Var.setBackground(k6.h0(i10, i11, -1));
+                r0Var.setBackground(l6.h0(i10, i11, -1));
             }
         }
     }
@@ -246,7 +246,7 @@ public final class e5 extends LinearLayout {
         for (int i14 = 0; i14 < childCount2; i14++) {
             View childAt2 = getChildAt(i14);
             d5 d5Var2 = (d5) hashMap.get(childAt2);
-            if (d5Var2 != null && !d5Var2.f27441b && childAt2.getVisibility() != 8 && !h(childAt2)) {
+            if (d5Var2 != null && !d5Var2.f27425b && childAt2.getVisibility() != 8 && !h(childAt2)) {
                 if (childAt2 instanceof f5) {
                     ((f5) childAt2).X();
                 } else {

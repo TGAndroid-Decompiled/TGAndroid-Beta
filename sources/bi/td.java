@@ -1,17 +1,17 @@
 package bi;
 public final class td {
-    public float f4771a;
-    public float f4772b;
-    public float f4773c;
+    public float f4769a;
+    public float f4770b;
+    public float f4771c;
     public float d;
-    public float f4774e;
-    public long f4775f;
-    public long f4776g;
+    public float f4772e;
+    public long f4773f;
+    public long f4774g;
     public float h;
-    public float f4777i;
-    public final ud f4778j;
+    public float f4775i;
+    public final ud f4776j;
 
     public td(ud udVar) {
-        this.f4778j = udVar;
+        this.f4776j = udVar;
     }
 }

@@ -12,7 +12,7 @@ public final class x {
     public int f28726e;
     public Drawable f28727f;
     public int f28728g;
-    public f6 h;
+    public g6 h;
     public float f28729i;
     public Boolean f28730j;
     public Boolean f28731k;

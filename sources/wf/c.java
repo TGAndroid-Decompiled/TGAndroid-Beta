@@ -5,14 +5,14 @@ import j2.m;
 import java.io.IOException;
 import java.io.InputStream;
 public final class c extends InputStream {
-    public final h f57657a;
-    public final byte[] f57658b = new byte[1];
-    public long f57659c;
+    public final h f57669a;
+    public final byte[] f57670b = new byte[1];
+    public long f57671c;
 
     public c(h hVar, m mVar) {
-        this.f57657a = hVar;
+        this.f57669a = hVar;
         try {
-            this.f57659c = hVar.open(mVar);
+            this.f57671c = hVar.open(mVar);
         } catch (IOException e10) {
             throw new RuntimeException(e10);
         }
@@ -20,20 +20,20 @@ public final class c extends InputStream {
 
     @Override
     public final int available() {
-        return (int) this.f57659c;
+        return (int) this.f57671c;
     }
 
     @Override
     public final void close() {
-        this.f57657a.close();
+        this.f57669a.close();
     }
 
     @Override
     public final int read() {
-        h hVar = this.f57657a;
-        byte[] bArr = this.f57658b;
+        h hVar = this.f57669a;
+        byte[] bArr = this.f57670b;
         int read = hVar.read(bArr, 0, 1);
-        this.f57659c--;
+        this.f57671c--;
         if (read == -1) {
             return -1;
         }
@@ -45,8 +45,8 @@ public final class c extends InputStream {
         if (i10 == 0) {
             return 0;
         }
-        int read = this.f57657a.read(bArr, i7, i10);
-        this.f57659c -= read;
+        int read = this.f57669a.read(bArr, i7, i10);
+        this.f57671c -= read;
         return read;
     }
 }

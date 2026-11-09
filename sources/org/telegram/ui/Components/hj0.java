@@ -1,133 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewConfiguration;
-public final class hj0 extends c10 {
-    public View f34281a;
-    public final ij0 f34282b;
+public final class hj0 implements Runnable {
+    public final View f34317a;
+    public final int f34318b;
+    public final float f34319c;
+    public final float d;
+    public final ij0 f34320e;
 
-    public hj0(ij0 ij0Var) {
-        this.f34282b = ij0Var;
+    public hj0(ij0 ij0Var, View view, int i7, float f10, float f11) {
+        this.f34320e = ij0Var;
+        this.f34317a = view;
+        this.f34318b = i7;
+        this.f34319c = f10;
+        this.d = f11;
     }
 
     @Override
-    public final boolean a() {
-        if (((pj0) this.f34282b.f34729b).W0 != null) {
-            return true;
+    public final void run() {
+        jj0 jj0Var = this.f34320e.f34767b;
+        qj0 qj0Var = (qj0) jj0Var.f35080b;
+        if (this == qj0Var.Q1) {
+            qj0Var.Q1 = null;
         }
-        return false;
-    }
-
-    public final void b(View view, MotionEvent motionEvent) {
-        pj0 pj0Var = (pj0) this.f34282b.f34729b;
+        View view = this.f34317a;
         if (view != null) {
-            if (pj0Var.T0 != null || pj0Var.U0 != null) {
-                float x10 = motionEvent.getX();
-                float y10 = motionEvent.getY();
-                pj0Var.j1(view, x10, y10, true);
-                int i7 = pj0Var.M1;
-                if (pj0Var.P1 && i7 != -1) {
-                    try {
-                        view.playSoundEffect(0);
-                    } catch (Exception unused) {
-                    }
-                    view.sendAccessibilityEvent(1);
-                    bj0 bj0Var = pj0Var.T0;
-                    if (bj0Var != null) {
-                        bj0Var.c(i7, view);
-                    } else {
-                        cj0 cj0Var = pj0Var.U0;
-                        if (cj0Var != null) {
-                            cj0Var.f(x10 - view.getX(), y10 - view.getY(), i7, view);
-                        }
-                    }
+            qj0Var.j1(view, 0.0f, 0.0f, false);
+            if (!((qj0) jj0Var.f35080b).P1) {
+                try {
+                    view.playSoundEffect(0);
+                } catch (Exception unused) {
                 }
-                gj0 gj0Var = new gj0(this, view, i7, x10, y10);
-                pj0Var.Q1 = gj0Var;
-                org.telegram.messenger.g0.i3(gj0Var, ViewConfiguration.getPressedStateDuration());
-                fj0 fj0Var = pj0Var.f36961c1;
-                if (fj0Var != null) {
-                    org.telegram.messenger.g0.r(fj0Var);
-                    pj0Var.f36961c1 = null;
-                    pj0Var.L1 = null;
-                    pj0Var.N1 = false;
-                    pj0Var.m1(view, motionEvent);
+                view.sendAccessibilityEvent(1);
+                int i7 = this.f34318b;
+                if (i7 != -1) {
+                    qj0 qj0Var2 = (qj0) jj0Var.f35080b;
+                    cj0 cj0Var = qj0Var2.T0;
+                    if (cj0Var != null) {
+                        cj0Var.c(i7, view);
+                        return;
+                    }
+                    dj0 dj0Var = qj0Var2.U0;
+                    if (dj0Var != null) {
+                        dj0Var.f(this.f34319c - view.getX(), this.d - view.getY(), i7, view);
+                    }
                 }
             }
         }
-    }
-
-    @Override
-    public final boolean onDoubleTap(MotionEvent motionEvent) {
-        cj0 cj0Var;
-        pj0 pj0Var = (pj0) this.f34282b.f34729b;
-        View view = this.f34281a;
-        if (view != null && (cj0Var = pj0Var.U0) != null && cj0Var.f1(view)) {
-            pj0Var.U0.r0(this.f34281a, motionEvent.getX(), motionEvent.getY());
-            this.f34281a = null;
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public final void onLongPress(MotionEvent motionEvent) {
-        int i7;
-        pj0 pj0Var = (pj0) this.f34282b.f34729b;
-        View view = pj0Var.L1;
-        if (view != null && (i7 = pj0Var.M1) != -1) {
-            dj0 dj0Var = pj0Var.V0;
-            if (dj0Var != null || pj0Var.W0 != null) {
-                if (dj0Var != null) {
-                    if (dj0Var.c(i7, view)) {
-                        try {
-                            view.performHapticFeedback(0);
-                        } catch (Exception unused) {
-                        }
-                        view.sendAccessibilityEvent(2);
-                    }
-                } else if (pj0Var.W0.mo19f(motionEvent.getX() - pj0Var.L1.getX(), motionEvent.getY() - pj0Var.L1.getY(), i7, view)) {
-                    try {
-                        view.performHapticFeedback(0);
-                    } catch (Exception unused2) {
-                    }
-                    view.sendAccessibilityEvent(2);
-                    pj0Var.X0 = true;
-                }
-            }
-        }
-    }
-
-    @Override
-    public final boolean onSingleTapConfirmed(MotionEvent motionEvent) {
-        cj0 cj0Var;
-        View view = this.f34281a;
-        if (view != null && (cj0Var = ((pj0) this.f34282b.f34729b).U0) != null && cj0Var.f1(view)) {
-            b(this.f34281a, motionEvent);
-            this.f34281a = null;
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        pj0 pj0Var = (pj0) this.f34282b.f34729b;
-        View view = pj0Var.L1;
-        if (view != null) {
-            cj0 cj0Var = pj0Var.U0;
-            if (cj0Var != null && cj0Var.f1(view)) {
-                this.f34281a = pj0Var.L1;
-                return false;
-            }
-            b(pj0Var.L1, motionEvent);
-        }
-        return false;
     }
 }

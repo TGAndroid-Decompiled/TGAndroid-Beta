@@ -7,12 +7,12 @@ import org.telegram.messenger.x10;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.k21;
+import org.telegram.ui.Components.l21;
 import org.telegram.ui.Wallet.WalletEngine2;
-import org.telegram.ui.iy0;
-import org.telegram.ui.oy0;
-import org.telegram.ui.wn0;
-import org.telegram.ui.ww;
+import org.telegram.ui.ly0;
+import org.telegram.ui.ry0;
+import org.telegram.ui.yn0;
+import org.telegram.ui.yw;
 public final class m4 implements Runnable {
     public final int f4317a = 0;
     public final long f4318b;
@@ -59,7 +59,7 @@ public final class m4 implements Runnable {
                     if (savedStarGift != null) {
                         z9 = savedStarGift.refunded;
                     }
-                    k7Var.k2(tL_starGiftUnique, z9, null, null);
+                    k7Var.j2(tL_starGiftUnique, z9, null, null);
                     org.telegram.messenger.g0.h3(new a4(3, k7Var, tL_starGiftUnique));
                     return;
                 } else if (tL_error != null && "BALANCE_TOO_LOW".equalsIgnoreCase(tL_error.text)) {
@@ -78,13 +78,13 @@ public final class m4 implements Runnable {
                 f10Var.getClass();
                 TLRPC.Message message = ijVar.f23262k;
                 message.translatedToLanguage = (String) this.f4320e;
-                message.translatedText = k21.P0((TLRPC.TL_textWithEntities) this.f4321f, (TLRPC.TL_textWithEntities) this.h);
+                message.translatedText = l21.P0((TLRPC.TL_textWithEntities) this.f4321f, (TLRPC.TL_textWithEntities) this.h);
                 f10Var.getMessagesStorage().X1(sVar.f11070a, ijVar.f23262k);
                 f10Var.L.remove(sVar);
-                org.telegram.messenger.g0.i3((wn0) this.f4323r, Math.max(0L, 400 - (System.currentTimeMillis() - this.f4318b)));
+                org.telegram.messenger.g0.i3((yn0) this.f4323r, Math.max(0L, 400 - (System.currentTimeMillis() - this.f4318b)));
                 return;
             case 2:
-                ww.p0((ww) this.f4319c, (org.telegram.ui.ActionBar.u1) this.f4320e, (TLObject) this.f4321f, (TLRPC.User) this.d, (TLRPC.Chat) this.h, this.f4318b, (TLRPC.TL_error) this.f4322n, (TLRPC.TL_messages_checkHistoryImportPeer) this.f4323r);
+                yw.p0((yw) this.f4319c, (org.telegram.ui.ActionBar.u1) this.f4320e, (TLObject) this.f4321f, (TLRPC.User) this.d, (TLRPC.Chat) this.h, this.f4318b, (TLRPC.TL_error) this.f4322n, (TLRPC.TL_messages_checkHistoryImportPeer) this.f4323r);
                 return;
             case 3:
                 Context context = (Context) this.f4319c;
@@ -92,10 +92,10 @@ public final class m4 implements Runnable {
                 byte[] bArr = (byte[]) this.f4320e;
                 org.telegram.ui.Components.hc hcVar = (org.telegram.ui.Components.hc) this.f4322n;
                 org.telegram.messenger.video.d dVar = (org.telegram.messenger.video.d) this.f4323r;
-                oy0 oy0Var = new oy0(context, i0Var, this.f4318b, bArr);
-                oy0Var.N0((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) ((TLObject) this.f4321f));
-                oy0Var.f48568r1 = new iy0((org.telegram.messenger.video.a) this.h, hcVar, context, i0Var, dVar);
-                oy0Var.show();
+                ry0 ry0Var = new ry0(context, i0Var, this.f4318b, bArr);
+                ry0Var.N0((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) ((TLObject) this.f4321f));
+                ry0Var.f49642r1 = new ly0((org.telegram.messenger.video.a) this.h, hcVar, context, i0Var, dVar);
+                ry0Var.show();
                 return;
             default:
                 ((WalletEngine2) this.f4319c).lambda$prepareSend$50((byte[]) this.d, (String) this.f4320e, this.f4318b, (byte[]) this.f4321f, (byte[]) this.h, (String) this.f4322n, (x10) this.f4323r);
@@ -103,14 +103,14 @@ public final class m4 implements Runnable {
         }
     }
 
-    public m4(f10 f10Var, ij ijVar, String str, TLRPC.TL_textWithEntities tL_textWithEntities, TLRPC.TL_textWithEntities tL_textWithEntities2, f3.s sVar, wn0 wn0Var, long j3) {
+    public m4(f10 f10Var, ij ijVar, String str, TLRPC.TL_textWithEntities tL_textWithEntities, TLRPC.TL_textWithEntities tL_textWithEntities2, f3.s sVar, yn0 yn0Var, long j3) {
         this.f4319c = f10Var;
         this.d = ijVar;
         this.f4320e = str;
         this.f4321f = tL_textWithEntities;
         this.h = tL_textWithEntities2;
         this.f4322n = sVar;
-        this.f4323r = wn0Var;
+        this.f4323r = yn0Var;
         this.f4318b = j3;
     }
 
@@ -125,8 +125,8 @@ public final class m4 implements Runnable {
         this.f4323r = dVar;
     }
 
-    public m4(ww wwVar, org.telegram.ui.ActionBar.u1 u1Var, TLObject tLObject, TLRPC.User user, TLRPC.Chat chat, long j3, TLRPC.TL_error tL_error, TLRPC.TL_messages_checkHistoryImportPeer tL_messages_checkHistoryImportPeer) {
-        this.f4319c = wwVar;
+    public m4(yw ywVar, org.telegram.ui.ActionBar.u1 u1Var, TLObject tLObject, TLRPC.User user, TLRPC.Chat chat, long j3, TLRPC.TL_error tL_error, TLRPC.TL_messages_checkHistoryImportPeer tL_messages_checkHistoryImportPeer) {
+        this.f4319c = ywVar;
         this.f4320e = u1Var;
         this.f4321f = tLObject;
         this.d = user;

@@ -57,8 +57,8 @@ public final class xz {
                 cc.c cVar = (cc.c) ic.b.b(str, bVar, hashMap).f194f;
                 this.f26559a = cVar;
                 if (cVar != null) {
-                    int i18 = cVar.f6048b;
-                    int i19 = cVar.f6049c;
+                    int i18 = cVar.f6046b;
+                    int i19 = cVar.f6047c;
                     for (int i20 = 0; i20 < i18 && b(i20, 0); i20++) {
                         this.f26562e++;
                     }
@@ -316,12 +316,12 @@ public final class xz {
             }
         }
         int i13 = this.f26562e;
-        if ((i7 < i13 || i7 >= this.f26559a.f6048b - i13) && i10 < i13) {
+        if ((i7 < i13 || i7 >= this.f26559a.f6046b - i13) && i10 < i13) {
             return false;
         }
-        if ((i7 >= i13 || i10 < this.f26559a.f6049c - i13) && i7 >= 0 && i10 >= 0) {
+        if ((i7 >= i13 || i10 < this.f26559a.f6047c - i13) && i7 >= 0 && i10 >= 0) {
             cc.c cVar = this.f26559a;
-            if (i7 < cVar.f6048b && i10 < cVar.f6049c && cVar.e(i7, i10) == 1) {
+            if (i7 < cVar.f6046b && i10 < cVar.f6047c && cVar.e(i7, i10) == 1) {
                 return true;
             }
         }

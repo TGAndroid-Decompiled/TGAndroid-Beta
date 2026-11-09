@@ -11,28 +11,28 @@ import c8.ha;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.k5;
-import org.telegram.ui.Components.mu0;
+import org.telegram.ui.Components.ou0;
 public final class a2 extends LinearLayout {
-    public HashMap f39090a;
-    public ArrayList f39091b;
-    public ArrayList f39092c;
+    public HashMap f39179a;
+    public ArrayList f39180b;
+    public ArrayList f39181c;
     public TransitionSet d;
-    public boolean f39093e;
-    public boolean f39094f;
+    public boolean f39182e;
+    public boolean f39183f;
     public Runnable h;
-    public i1 f39095n;
-    public TextPaint f39096r;
+    public i1 f39184n;
+    public TextPaint f39185r;
 
     public final void a(int i7, String str, String str2) {
-        HashMap hashMap = this.f39090a;
+        HashMap hashMap = this.f39179a;
         if (hashMap.get(str2) != null) {
             return;
         }
-        z1 z1Var = new z1(getContext(), this.f39095n, i7);
-        z1Var.f39677a = str2;
+        z1 z1Var = new z1(getContext(), this.f39184n, i7);
+        z1Var.f39766a = str2;
         int L = org.telegram.messenger.g0.f22563q.x - org.telegram.messenger.g0.L(120.0f);
-        TextView textView = z1Var.f39679c;
-        StaticLayout c10 = mu0.c(str, textView.getPaint(), L, Layout.Alignment.ALIGN_NORMAL, 0.0f, TextUtils.TruncateAt.END, L, 10, true);
+        TextView textView = z1Var.f39768c;
+        StaticLayout c10 = ou0.c(str, textView.getPaint(), L, Layout.Alignment.ALIGN_NORMAL, 0.0f, TextUtils.TruncateAt.END, L, 10, true);
         if (c10 != null) {
             L = 0;
             for (int i10 = 0; i10 < c10.getLineCount(); i10++) {
@@ -41,13 +41,13 @@ public final class a2 extends LinearLayout {
         }
         textView.setMaxWidth(L);
         textView.setText(str);
-        z1Var.f39678b.setImageResource(i7);
+        z1Var.f39767b.setImageResource(i7);
         hashMap.put(str2, z1Var);
-        if (this.f39093e) {
-            this.f39091b.add(z1Var);
+        if (this.f39182e) {
+            this.f39180b.add(z1Var);
             return;
         }
-        this.f39094f = true;
+        this.f39183f = true;
         addView(z1Var, ha.t(-2, -2, 1, 4, 0, 0, 4));
     }
 
@@ -55,21 +55,21 @@ public final class a2 extends LinearLayout {
         if (str == null) {
             return "";
         }
-        return TextUtils.ellipsize(str, this.f39096r, org.telegram.messenger.g0.L(300.0f), TextUtils.TruncateAt.END);
+        return TextUtils.ellipsize(str, this.f39185r, org.telegram.messenger.g0.L(300.0f), TextUtils.TruncateAt.END);
     }
 
     public final void c(String str) {
-        z1 z1Var = (z1) this.f39090a.remove(str);
-        this.f39095n.f39265m.remove(z1Var);
+        z1 z1Var = (z1) this.f39179a.remove(str);
+        this.f39184n.f39354m.remove(z1Var);
         if (z1Var != null) {
-            if (this.f39093e) {
-                if (!this.f39091b.remove(z1Var)) {
-                    this.f39092c.add(z1Var);
+            if (this.f39182e) {
+                if (!this.f39180b.remove(z1Var)) {
+                    this.f39181c.add(z1Var);
                     return;
                 }
                 return;
             }
-            this.f39094f = true;
+            this.f39183f = true;
             removeView(z1Var);
         }
     }

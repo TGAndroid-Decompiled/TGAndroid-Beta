@@ -2,32 +2,41 @@ package org.telegram.ui.ActionBar;
 
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 public final class y5 extends Drawable {
-    public static Paint f28809c;
-    public Paint f28810a;
-    public float f28811b;
+    public final RectF f28810a = new RectF();
+    public final int f28811b;
+    public final int f28812c;
+    public final int d;
+    public final int f28813e;
+    public final float f28814f;
+
+    public y5(int i7, int i10, int i11, int i12, float f10) {
+        this.f28811b = i7;
+        this.f28812c = i10;
+        this.d = i11;
+        this.f28813e = i12;
+        this.f28814f = f10;
+    }
 
     @Override
     public final void draw(Canvas canvas) {
-        int L;
         Rect bounds = getBounds();
-        float f10 = this.f28811b;
-        if (Math.abs(f10 - (-1.0f)) < 0.01f) {
-            L = Math.max(bounds.width(), bounds.height()) / 2;
-        } else if (Math.abs(f10 - (-2.0f)) < 0.01f) {
-            L = (int) Math.ceil(Math.sqrt(((bounds.top - bounds.centerY()) * (bounds.top - bounds.centerY())) + ((bounds.left - bounds.centerX()) * (bounds.left - bounds.centerX()))));
-        } else {
-            L = org.telegram.messenger.g0.L(f10);
-        }
-        canvas.drawCircle(bounds.centerX(), bounds.centerY(), L, this.f28810a);
+        RectF rectF = this.f28810a;
+        rectF.set(bounds);
+        rectF.left += this.f28811b;
+        rectF.top += this.f28812c;
+        rectF.right -= this.d;
+        rectF.bottom -= this.f28813e;
+        float f10 = this.f28814f;
+        canvas.drawRoundRect(rectF, f10, f10, l6.f28268z);
     }
 
     @Override
     public final int getOpacity() {
-        return -2;
+        return 0;
     }
 
     @Override

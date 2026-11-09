@@ -2,9 +2,9 @@ package fi;
 
 import android.animation.ValueAnimator;
 import org.telegram.messenger.ls;
-import org.telegram.ui.hm0;
+import org.telegram.ui.jm0;
 import org.telegram.ui.rc;
-import org.telegram.ui.v71;
+import org.telegram.ui.w71;
 public final class ea implements ValueAnimator.AnimatorUpdateListener {
     public final int f11934a;
     public boolean f11935b = false;
@@ -32,27 +32,27 @@ public final class ea implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 1:
                 rc rcVar = (rc) this.f11936c;
-                rcVar.f49451n0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                rcVar.f49424n0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 rcVar.m0.invalidate();
-                if (!this.f11935b && rcVar.f49451n0 > 0.5f) {
+                if (!this.f11935b && rcVar.f49424n0 > 0.5f) {
                     this.f11935b = true;
                     return;
                 }
                 return;
             case 2:
-                hm0 hm0Var = (hm0) this.f11936c;
-                hm0Var.Y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                hm0Var.X.invalidate();
-                if (!this.f11935b && hm0Var.Y > 0.5f) {
+                jm0 jm0Var = (jm0) this.f11936c;
+                jm0Var.Y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                jm0Var.X.invalidate();
+                if (!this.f11935b && jm0Var.Y > 0.5f) {
                     this.f11935b = true;
                     return;
                 }
                 return;
             default:
-                v71 v71Var = (v71) this.f11936c;
-                v71Var.f50553j2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                v71Var.f50550i2.invalidate();
-                if (!this.f11935b && v71Var.f50553j2 > 0.5f) {
+                w71 w71Var = (w71) this.f11936c;
+                w71Var.f50935j2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                w71Var.f50932i2.invalidate();
+                if (!this.f11935b && w71Var.f50935j2 > 0.5f) {
                     this.f11935b = true;
                     return;
                 }

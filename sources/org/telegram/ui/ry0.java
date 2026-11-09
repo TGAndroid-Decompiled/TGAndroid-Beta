@@ -1,0 +1,336 @@
+package org.telegram.ui;
+
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Paint;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import java.util.Collections;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_ephemeral;
+import org.telegram.tgnet.tl.TL_stories;
+public final class ry0 extends org.telegram.ui.ActionBar.v2 {
+    public static final int f49634s1 = 0;
+    public final fi.g1 f49635i1;
+    public final Paint f49636j1;
+    public int f49637k1;
+    public final boolean l1;
+    public final boolean f49638m1;
+    public final boolean n1;
+    public final ArrayList f49639o1;
+    public final byte[] f49640p1;
+    public final long f49641q1;
+    public my0 f49642r1;
+
+    public ry0(Context context, org.telegram.ui.ActionBar.g6 g6Var, long j3, byte[] bArr) {
+        this(true, context, g6Var, j3, false, false, null, bArr);
+    }
+
+    public static void I0(ry0 ry0Var, CharSequence charSequence, byte[] bArr, String str) {
+        TLRPC.TL_messages_report tL_messages_report;
+        ?? r02;
+        long j3 = ry0Var.f49641q1;
+        ArrayList arrayList = ry0Var.f49639o1;
+        if (ry0Var.l1) {
+            r02 = new TLRPC.TL_messages_reportSponsoredMessage();
+            r02.random_id = ry0Var.f49640p1;
+            r02.option = bArr;
+        } else {
+            String str2 = "";
+            if (ry0Var.f49638m1) {
+                ?? tL_stories_report = new TL_stories.TL_stories_report();
+                tL_stories_report.peer = org.telegram.messenger.qp.s1(ry0Var.f28621a).j1(j3);
+                if (arrayList != null) {
+                    tL_stories_report.f27207id.addAll(arrayList);
+                }
+                if (str != null) {
+                    str2 = str;
+                }
+                tL_stories_report.message = str2;
+                tL_stories_report.option = bArr;
+                tL_messages_report = tL_stories_report;
+            } else if (ry0Var.n1) {
+                ?? tL_reportMessage = new TL_ephemeral.TL_reportMessage();
+                tL_reportMessage.peer = org.telegram.messenger.qp.s1(ry0Var.f28621a).j1(j3);
+                if (arrayList != null && !arrayList.isEmpty()) {
+                    tL_reportMessage.f27175id = ((Integer) arrayList.get(0)).intValue();
+                }
+                if (str != null) {
+                    str2 = str;
+                }
+                tL_reportMessage.message = str2;
+                tL_reportMessage.option = bArr;
+                tL_messages_report = tL_reportMessage;
+            } else {
+                TLRPC.TL_messages_report tL_messages_report2 = new TLRPC.TL_messages_report();
+                tL_messages_report2.peer = org.telegram.messenger.qp.s1(ry0Var.f28621a).j1(j3);
+                if (arrayList != null) {
+                    tL_messages_report2.f27062id.addAll(arrayList);
+                }
+                if (str != null) {
+                    str2 = str;
+                }
+                tL_messages_report2.message = str2;
+                tL_messages_report2.option = bArr;
+                tL_messages_report = tL_messages_report2;
+            }
+            r02 = tL_messages_report;
+        }
+        ConnectionsManager.getInstance(ry0Var.f28621a).sendRequest(r02, new bi.g2(ry0Var, charSequence, bArr, str, 17));
+    }
+
+    public static void J0(int i7, final Context context, final long j3, final boolean z9, final boolean z10, final ArrayList arrayList, final org.telegram.ui.Components.hc hcVar, final org.telegram.ui.ActionBar.g6 g6Var, byte[] bArr, String str, final org.telegram.messenger.c20 c20Var) {
+        TLRPC.TL_messages_report tL_messages_report;
+        TLRPC.TL_messages_report tL_messages_report2;
+        if (context != null) {
+            final boolean[] zArr = {false};
+            String str2 = "";
+            if (z9) {
+                TL_stories.TL_stories_report tL_stories_report = new TL_stories.TL_stories_report();
+                tL_stories_report.peer = org.telegram.messenger.qp.s1(i7).j1(j3);
+                tL_stories_report.f27207id.addAll(arrayList);
+                tL_stories_report.option = bArr;
+                if (!TextUtils.isEmpty(str)) {
+                    str2 = str;
+                }
+                tL_stories_report.message = str2;
+                tL_messages_report2 = tL_stories_report;
+            } else if (z10) {
+                TL_ephemeral.TL_reportMessage tL_reportMessage = new TL_ephemeral.TL_reportMessage();
+                tL_reportMessage.peer = org.telegram.messenger.qp.s1(i7).j1(j3);
+                if (!arrayList.isEmpty()) {
+                    tL_reportMessage.f27175id = ((Integer) arrayList.get(0)).intValue();
+                }
+                if (!TextUtils.isEmpty(str)) {
+                    str2 = str;
+                }
+                tL_reportMessage.message = str2;
+                tL_reportMessage.option = bArr;
+                tL_messages_report = tL_reportMessage;
+                ConnectionsManager.getInstance(i7).sendRequestTyped(tL_messages_report, new d3.b(1), new org.telegram.messenger.v10() {
+                    @Override
+                    public final void a(Object obj, Object obj2) {
+                        TLRPC.ReportResult reportResult = (TLRPC.ReportResult) obj;
+                        TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                        boolean z11 = reportResult instanceof TLRPC.TL_reportResultChooseOption;
+                        boolean[] zArr2 = zArr;
+                        org.telegram.messenger.c20 c20Var2 = c20Var;
+                        if (!z11 && !(reportResult instanceof TLRPC.TL_reportResultAddComment)) {
+                            org.telegram.messenger.g0.i3(new bi.l9(1, c20Var2, zArr2), 200L);
+                            return;
+                        }
+                        ry0 ry0Var = new ry0(false, context, g6Var, j3, z9, z10, arrayList, null);
+                        if (z11) {
+                            ry0Var.O0((TLRPC.TL_reportResultChooseOption) reportResult);
+                        } else if (reportResult instanceof TLRPC.TL_reportResultAddComment) {
+                            TLRPC.TL_reportResultAddComment tL_reportResultAddComment = (TLRPC.TL_reportResultAddComment) reportResult;
+                            View[] viewPages = ry0Var.f49635i1.getViewPages();
+                            View view = viewPages[0];
+                            if (view instanceof qy0) {
+                                ((qy0) view).a(0);
+                                ry0Var.f28624b.post(new ax0(2, viewPages, tL_reportResultAddComment));
+                            }
+                            View view2 = viewPages[1];
+                            if (view2 instanceof qy0) {
+                                ((qy0) view2).a(1);
+                            }
+                        }
+                        ry0Var.f49642r1 = new ky0(zArr2, c20Var2, hcVar, 0);
+                        ry0Var.n(new bi.l9(2, c20Var2, zArr2));
+                        ry0Var.show();
+                    }
+                });
+            } else {
+                TLRPC.TL_messages_report tL_messages_report3 = new TLRPC.TL_messages_report();
+                tL_messages_report3.peer = org.telegram.messenger.qp.s1(i7).j1(j3);
+                tL_messages_report3.f27062id.addAll(arrayList);
+                tL_messages_report3.option = bArr;
+                if (!TextUtils.isEmpty(str)) {
+                    str2 = str;
+                }
+                tL_messages_report3.message = str2;
+                tL_messages_report2 = tL_messages_report3;
+            }
+            tL_messages_report = tL_messages_report2;
+            ConnectionsManager.getInstance(i7).sendRequestTyped(tL_messages_report, new d3.b(1), new org.telegram.messenger.v10() {
+                @Override
+                public final void a(Object obj, Object obj2) {
+                    TLRPC.ReportResult reportResult = (TLRPC.ReportResult) obj;
+                    TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                    boolean z11 = reportResult instanceof TLRPC.TL_reportResultChooseOption;
+                    boolean[] zArr2 = zArr;
+                    org.telegram.messenger.c20 c20Var2 = c20Var;
+                    if (!z11 && !(reportResult instanceof TLRPC.TL_reportResultAddComment)) {
+                        org.telegram.messenger.g0.i3(new bi.l9(1, c20Var2, zArr2), 200L);
+                        return;
+                    }
+                    ry0 ry0Var = new ry0(false, context, g6Var, j3, z9, z10, arrayList, null);
+                    if (z11) {
+                        ry0Var.O0((TLRPC.TL_reportResultChooseOption) reportResult);
+                    } else if (reportResult instanceof TLRPC.TL_reportResultAddComment) {
+                        TLRPC.TL_reportResultAddComment tL_reportResultAddComment = (TLRPC.TL_reportResultAddComment) reportResult;
+                        View[] viewPages = ry0Var.f49635i1.getViewPages();
+                        View view = viewPages[0];
+                        if (view instanceof qy0) {
+                            ((qy0) view).a(0);
+                            ry0Var.f28624b.post(new ax0(2, viewPages, tL_reportResultAddComment));
+                        }
+                        View view2 = viewPages[1];
+                        if (view2 instanceof qy0) {
+                            ((qy0) view2).a(1);
+                        }
+                    }
+                    ry0Var.f49642r1 = new ky0(zArr2, c20Var2, hcVar, 0);
+                    ry0Var.n(new bi.l9(2, c20Var2, zArr2));
+                    ry0Var.show();
+                }
+            });
+        }
+    }
+
+    public static void K0(long j3, org.telegram.ui.ActionBar.f2 f2Var) {
+        int currentAccount = f2Var.getCurrentAccount();
+        Context context = f2Var.getContext();
+        if (context == null) {
+            return;
+        }
+        J0(currentAccount, context, j3, false, false, new ArrayList(), null, null, new byte[0], null, null);
+    }
+
+    public static void L0(cn cnVar, org.telegram.messenger.ij ijVar) {
+        int e12;
+        int currentAccount = cnVar.getCurrentAccount();
+        Activity parentActivity = cnVar.getParentActivity();
+        if (parentActivity == null) {
+            return;
+        }
+        if (org.telegram.messenger.ij.c3(ijVar.f23262k)) {
+            e12 = ijVar.P0();
+        } else {
+            e12 = ijVar.e1();
+        }
+        J0(currentAccount, parentActivity, org.telegram.messenger.ij.B0(ijVar.f23262k), false, org.telegram.messenger.ij.c3(ijVar.f23262k), new ArrayList(Collections.singleton(Integer.valueOf(e12))), org.telegram.ui.Components.hc.a0(cnVar), cnVar.getResourceProvider(), new byte[0], null, null);
+    }
+
+    public static void M0(cn cnVar, org.telegram.messenger.ij ijVar, org.telegram.ui.ActionBar.g6 g6Var) {
+        int currentAccount = cnVar.getCurrentAccount();
+        Activity parentActivity = cnVar.getParentActivity();
+        long a10 = cnVar.a();
+        if (parentActivity == null) {
+            return;
+        }
+        TLRPC.TL_messages_reportSponsoredMessage tL_messages_reportSponsoredMessage = new TLRPC.TL_messages_reportSponsoredMessage();
+        byte[] bArr = ijVar.P0;
+        tL_messages_reportSponsoredMessage.random_id = bArr;
+        tL_messages_reportSponsoredMessage.option = new byte[0];
+        ConnectionsManager.getInstance(currentAccount).sendRequest(tL_messages_reportSponsoredMessage, new hi.w0(parentActivity, g6Var, a10, bArr, cnVar, ijVar, currentAccount));
+    }
+
+    @Override
+    public final boolean G() {
+        View currentView = this.f49635i1.getCurrentView();
+        if (!(currentView instanceof qy0)) {
+            return true;
+        }
+        return !((qy0) currentView).f49220f.canScrollVertically(-1);
+    }
+
+    public final void N0(TLRPC.TL_channels_sponsoredMessageReportResultChooseOption tL_channels_sponsoredMessageReportResultChooseOption) {
+        View[] viewPages = this.f49635i1.getViewPages();
+        View view = viewPages[0];
+        if (view instanceof qy0) {
+            ((qy0) view).a(0);
+            this.f28624b.post(new ax0(1, viewPages, tL_channels_sponsoredMessageReportResultChooseOption));
+        }
+        View view2 = viewPages[1];
+        if (view2 instanceof qy0) {
+            ((qy0) view2).a(1);
+        }
+    }
+
+    public final void O0(TLRPC.TL_reportResultChooseOption tL_reportResultChooseOption) {
+        View[] viewPages = this.f49635i1.getViewPages();
+        View view = viewPages[0];
+        if (view instanceof qy0) {
+            ((qy0) view).a(0);
+            this.f28624b.post(new ax0(3, viewPages, tL_reportResultChooseOption));
+        }
+        View view2 = viewPages[1];
+        if (view2 instanceof qy0) {
+            ((qy0) view2).a(1);
+        }
+    }
+
+    @Override
+    public final void onBackPressed() {
+        oy0 oy0Var;
+        fi.g1 g1Var = this.f49635i1;
+        if ((g1Var.getCurrentView() instanceof qy0) && (oy0Var = ((qy0) g1Var.getCurrentView()).f49221n) != null) {
+            org.telegram.messenger.g0.v1(oy0Var);
+        }
+        if (g1Var.getCurrentPosition() > 0) {
+            g1Var.E(g1Var.getCurrentPosition() - 1);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public final void s0() {
+        int i7;
+        Paint paint = this.f49636j1;
+        super.s0();
+        try {
+            int w02 = org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.f27938h5, this.I0);
+            if (paint.getColor() != w02) {
+                paint.setColor(w02);
+                ViewGroup viewGroup = this.f28624b;
+                if (viewGroup != null) {
+                    viewGroup.invalidate();
+                }
+            }
+            if (this.F0 < 0 && (i7 = this.G0) == this.f49637k1 && w02 != i7) {
+                this.G0 = w02;
+                this.f49637k1 = w02;
+                E0(w02);
+            }
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
+        }
+    }
+
+    public ry0(boolean z9, Context context, org.telegram.ui.ActionBar.g6 g6Var, long j3, boolean z10, boolean z11, ArrayList arrayList, byte[] bArr) {
+        super(1, context, g6Var, true);
+        Paint paint = new Paint(1);
+        this.f49636j1 = paint;
+        this.l1 = z9;
+        this.f49639o1 = arrayList;
+        this.f49638m1 = z10;
+        this.n1 = z11;
+        this.f49640p1 = bArr;
+        this.f49641q1 = j3;
+        int i7 = org.telegram.ui.ActionBar.l6.f27938h5;
+        paint.setColor(org.telegram.ui.ActionBar.l6.w0(i7, g6Var));
+        P(i7);
+        this.f49637k1 = this.G0;
+        this.P0 = true;
+        this.Q0 = true;
+        this.f28624b = new z50(this, context);
+        fi.g1 g1Var = new fi.g1(6, context, this);
+        this.f49635i1 = g1Var;
+        int i10 = this.f28654t0;
+        g1Var.setPadding(i10, 0, i10, 0);
+        this.f28624b.addView(g1Var, c8.ha.e(-1, -1, 119));
+        g1Var.setAdapter(new bi.g5(5, context, this));
+        if (arrayList == null && bArr == null) {
+            if (z9) {
+                N0(null);
+            } else {
+                O0(null);
+            }
+        }
+    }
+}

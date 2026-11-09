@@ -6,12 +6,12 @@ import e2.n0;
 import e2.p0;
 import e2.u;
 public final class a implements p0 {
-    public final String f57577a;
-    public final String f57578b;
+    public final String f57589a;
+    public final String f57590b;
 
     public a(String str, String str2) {
-        this.f57577a = ga.d(str);
-        this.f57578b = str2;
+        this.f57589a = ga.d(str);
+        this.f57590b = str2;
     }
 
     @Override
@@ -21,7 +21,7 @@ public final class a implements p0 {
 
     @Override
     public final void b(n0 n0Var) {
-        String str = this.f57577a;
+        String str = this.f57589a;
         str.getClass();
         char c10 = 65535;
         switch (str.hashCode()) {
@@ -86,7 +86,7 @@ public final class a implements p0 {
                 }
                 break;
         }
-        String str2 = this.f57578b;
+        String str2 = this.f57590b;
         switch (c10) {
             case 0:
                 Integer g10 = e1.g(str2);
@@ -150,7 +150,7 @@ public final class a implements p0 {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.f57577a.equals(aVar.f57577a) && this.f57578b.equals(aVar.f57578b)) {
+            if (this.f57589a.equals(aVar.f57589a) && this.f57590b.equals(aVar.f57590b)) {
                 return true;
             }
         }
@@ -158,10 +158,10 @@ public final class a implements p0 {
     }
 
     public final int hashCode() {
-        return this.f57578b.hashCode() + com.google.android.recaptcha.internal.a.h(527, 31, this.f57577a);
+        return this.f57590b.hashCode() + com.google.android.recaptcha.internal.a.h(527, 31, this.f57589a);
     }
 
     public final String toString() {
-        return "VC: " + this.f57577a + "=" + this.f57578b;
+        return "VC: " + this.f57589a + "=" + this.f57590b;
     }
 }

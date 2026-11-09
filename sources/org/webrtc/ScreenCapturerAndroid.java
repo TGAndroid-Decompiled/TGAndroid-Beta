@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.hardware.display.VirtualDisplay;
 import android.media.projection.MediaProjection;
 import android.media.projection.MediaProjectionManager;
+import android.os.Build;
 import android.view.Surface;
 import org.telegram.messenger.a8;
 public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
@@ -43,9 +44,19 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
         }
     }
 
-    public void lambda$changeCaptureFormat$1() {
-        this.virtualDisplay.release();
-        createVirtualDisplay();
+    public void lambda$changeCaptureFormat$1(int i7, int i10) {
+        VirtualDisplay virtualDisplay = this.virtualDisplay;
+        if (virtualDisplay == null) {
+            return;
+        }
+        if (Build.VERSION.SDK_INT < 31) {
+            virtualDisplay.release();
+            createVirtualDisplay();
+            return;
+        }
+        this.surfaceTextureHelper.setTextureSize(i7, i10);
+        this.virtualDisplay.resize(i7, i10, 400);
+        this.virtualDisplay.setSurface(new Surface(this.surfaceTextureHelper.getSurfaceTexture()));
     }
 
     public void lambda$stopCapture$0() {
@@ -72,7 +83,7 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
         if (this.virtualDisplay == null) {
             return;
         }
-        ThreadUtils.invokeAtFrontUninterruptibly(this.surfaceTextureHelper.getHandler(), new p(this, 0));
+        ThreadUtils.invokeAtFrontUninterruptibly(this.surfaceTextureHelper.getHandler(), new jg.r(this, i7, i10, 14));
     }
 
     @Override
@@ -117,7 +128,7 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
 
     @Override
     public final void setParentSink(VideoSink videoSink) {
-        e0.a(this, videoSink);
+        d0.a(this, videoSink);
     }
 
     @Override
@@ -138,6 +149,6 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
     @Override
     public synchronized void stopCapture() {
         checkNotDisposed();
-        ThreadUtils.invokeAtFrontUninterruptibly(this.surfaceTextureHelper.getHandler(), new p(this, 1));
+        ThreadUtils.invokeAtFrontUninterruptibly(this.surfaceTextureHelper.getHandler(), new h(this, 2));
     }
 }

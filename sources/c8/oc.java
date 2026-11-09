@@ -1,4 +1,4 @@
 package c8;
 public abstract class oc {
-    public static Boolean f5795a;
+    public static Boolean f5793a;
 }

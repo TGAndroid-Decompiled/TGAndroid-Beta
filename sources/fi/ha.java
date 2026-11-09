@@ -10,21 +10,21 @@ import android.os.Build;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import java.util.Arrays;
-import org.telegram.ui.Components.jd0;
-import org.telegram.ui.Components.ki0;
-import org.telegram.ui.Components.ld0;
-import org.telegram.ui.Components.mt0;
+import org.telegram.ui.Components.kd0;
+import org.telegram.ui.Components.li0;
+import org.telegram.ui.Components.md0;
+import org.telegram.ui.Components.ot0;
 public final class ha extends FrameLayout {
-    public final Rect f12144a;
-    public final Rect f12145b;
-    public RenderNode f12146c;
+    public final Rect f12147a;
+    public final Rect f12148b;
+    public RenderNode f12149c;
     public final va d;
 
     public ha(va vaVar, Activity activity) {
         super(activity);
         this.d = vaVar;
-        this.f12144a = new Rect();
-        this.f12145b = new Rect();
+        this.f12147a = new Rect();
+        this.f12148b = new Rect();
     }
 
     @Override
@@ -33,11 +33,11 @@ public final class ha extends FrameLayout {
         RecordingCanvas recordingCanvas;
         int i7 = Build.VERSION.SDK_INT;
         if (i7 >= 31 && canvas.isHardwareAccelerated() && !org.telegram.messenger.g0.m0) {
-            if (this.f12146c == null) {
-                this.f12146c = new RenderNode("StoryRecorder.PreviewView");
+            if (this.f12149c == null) {
+                this.f12149c = new RenderNode("StoryRecorder.PreviewView");
             }
-            this.f12146c.setPosition(0, 0, getWidth(), getHeight());
-            recordingCanvas = this.f12146c.beginRecording();
+            this.f12149c.setPosition(0, 0, getWidth(), getHeight());
+            recordingCanvas = this.f12149c.beginRecording();
             z9 = true;
         } else {
             z9 = false;
@@ -45,12 +45,12 @@ public final class ha extends FrameLayout {
         }
         super.dispatchDraw(recordingCanvas);
         if (z9 && i7 >= 31) {
-            this.f12146c.endRecording();
+            this.f12149c.endRecording();
             org.telegram.ui.Components.y9 y9Var = this.d.f12988r0;
             if (y9Var != null) {
-                y9Var.g(this, this.f12146c);
+                y9Var.g(this, this.f12149c);
             }
-            canvas.drawRenderNode(this.f12146c);
+            canvas.drawRenderNode(this.f12149c);
         }
     }
 
@@ -70,9 +70,9 @@ public final class ha extends FrameLayout {
             int i13 = i11 - i7;
             int i14 = i12 - i10;
             int L = org.telegram.messenger.g0.L(40.0f);
-            Rect rect = this.f12144a;
+            Rect rect = this.f12147a;
             rect.set(0, i14 - org.telegram.messenger.g0.L(120.0f), L, i14);
-            Rect rect2 = this.f12145b;
+            Rect rect2 = this.f12148b;
             rect2.set(i13 - org.telegram.messenger.g0.L(40.0f), i14 - org.telegram.messenger.g0.L(120.0f), i13, i14);
             setSystemGestureExclusionRects(Arrays.asList(rect, rect2));
         }
@@ -82,19 +82,19 @@ public final class ha extends FrameLayout {
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
         va vaVar = this.d;
-        ld0 ld0Var = vaVar.F1;
-        if (ld0Var != null) {
-            ki0 ki0Var = ld0Var.f35673e;
-            ki0Var.f35339a = 0.0f;
-            ki0Var.f35340b = 0.0f;
-            ki0Var.f35341c = ld0Var.getMeasuredWidth();
-            ki0Var.d = vaVar.F1.getMeasuredHeight();
+        md0 md0Var = vaVar.F1;
+        if (md0Var != null) {
+            li0 li0Var = md0Var.f36073e;
+            li0Var.f35751a = 0.0f;
+            li0Var.f35752b = 0.0f;
+            li0Var.f35753c = md0Var.getMeasuredWidth();
+            li0Var.d = vaVar.F1.getMeasuredHeight();
         }
-        jd0 jd0Var = vaVar.E1;
-        if (jd0Var != null) {
-            mt0 mt0Var = jd0Var.d;
-            mt0Var.f36114a = jd0Var.getMeasuredWidth();
-            mt0Var.f36115b = vaVar.E1.getMeasuredHeight();
+        kd0 kd0Var = vaVar.E1;
+        if (kd0Var != null) {
+            ot0 ot0Var = kd0Var.d;
+            ot0Var.f36801a = kd0Var.getMeasuredWidth();
+            ot0Var.f36802b = vaVar.E1.getMeasuredHeight();
         }
     }
 

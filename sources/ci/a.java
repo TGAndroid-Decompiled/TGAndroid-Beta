@@ -6,7 +6,7 @@ import i2.q;
 import i2.r;
 import java.nio.ByteBuffer;
 public final class a {
-    public boolean f6416a;
+    public boolean f6414a;
 
     public a(r rVar, q qVar) {
         boolean z9;
@@ -26,14 +26,14 @@ public final class a {
         f fVar = new f(bArr, min);
         if (!rVar.f15210a) {
             if (fVar.i()) {
-                this.f6416a = false;
+                this.f6414a = false;
                 return;
             }
             int j3 = fVar.j(2);
             boolean i11 = fVar.i();
             if (!rVar.f15211b) {
                 if (!i11) {
-                    this.f6416a = true;
+                    this.f6414a = true;
                     return;
                 }
                 if (j3 != 3 && j3 != 0) {
@@ -63,7 +63,7 @@ public final class a {
                         } else {
                             i7 = 255;
                         }
-                        this.f6416a = i7 != 0;
+                        this.f6414a = i7 != 0;
                         return;
                     }
                     throw new Exception();
@@ -76,9 +76,9 @@ public final class a {
     }
 
     public void a(boolean z9) {
-        if (this.f6416a == z9) {
+        if (this.f6414a == z9) {
             return;
         }
-        this.f6416a = z9;
+        this.f6414a = z9;
     }
 }

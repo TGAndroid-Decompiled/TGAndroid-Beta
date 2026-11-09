@@ -2,7 +2,7 @@ package yb;
 
 import java.util.ArrayList;
 public interface a {
-    ArrayList a(ub.a aVar);
+    ArrayList c(ub.a aVar);
 
     void zzb();
 

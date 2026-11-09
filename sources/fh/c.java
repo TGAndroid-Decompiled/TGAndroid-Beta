@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.l6;
 public final class c extends aa {
     public final Paint f11487a = new Paint(1);
     public final Paint f11488b;
@@ -25,13 +25,13 @@ public final class c extends aa {
         f fVar = gVar.Q;
         int i7 = gVar.f21076c;
         if (i7 != 0) {
-            int r12 = k6.r1(i7 / 255.0f, gVar.f11541y);
+            int r12 = l6.r1(i7 / 255.0f, gVar.f11541y);
             if (Color.alpha(gVar.f11540x) > 0 && i7 == 255) {
                 float f10 = gVar.V;
                 if (f10 > 0.0f) {
                     float f11 = gVar.T;
                     float f12 = gVar.U;
-                    int r13 = k6.r1(f10, gVar.f11540x);
+                    int r13 = l6.r1(f10, gVar.f11540x);
                     Paint paint = this.f11488b;
                     paint.setShadowLayer(f11, 0.0f, f12, r13);
                     fVar.d(canvas, paint, gVar.S);

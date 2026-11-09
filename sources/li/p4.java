@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.id;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.k60;
+import org.telegram.ui.Components.l60;
 public final class p4 implements View.OnClickListener {
     public final int f18776a;
     public final s4 f18777b;
@@ -34,7 +34,7 @@ public final class p4 implements View.OnClickListener {
                     List n10 = s4Var.n();
                     if (indexOf >= 0 && indexOf < n10.size() && indexOf < arrayList.size()) {
                         final s sVar = (s) n10.get(indexOf);
-                        k60 J = s4Var.N.f18701a.f18890o3.J((View) arrayList.get(indexOf));
+                        l60 J = s4Var.N.f18701a.f18890o3.J((View) arrayList.get(indexOf));
                         boolean z9 = sVar.f18825n;
                         if (z9) {
                             i7 = 2131232377;
@@ -42,9 +42,9 @@ public final class p4 implements View.OnClickListener {
                             i7 = 2131232376;
                         }
                         if (z9) {
-                            i10 = 2131751431;
+                            i10 = 2131751430;
                         } else {
-                            i10 = 2131751155;
+                            i10 = 2131751154;
                         }
                         J.c(i7, id.M0(i10, null), new Runnable() {
                             @Override
@@ -93,7 +93,7 @@ public final class p4 implements View.OnClickListener {
                                 }
                             }
                         }, false);
-                        J.c(2131232108, id.M0(2131751599, null), new Runnable() {
+                        J.c(2131232108, id.M0(2131751598, null), new Runnable() {
                             @Override
                             public final void run() {
                                 a aVar3;
@@ -142,9 +142,9 @@ public final class p4 implements View.OnClickListener {
                         }, true);
                         J.a0(0.0f, -org.telegram.messenger.g0.L(38.0f));
                         if (s4Var.H) {
-                            J.f35233u = false;
+                            J.f35619u = false;
                             J.v = true;
-                            J.f35231s = 0;
+                            J.f35617s = 0;
                         }
                         J.Z();
                         return;

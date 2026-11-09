@@ -84,8 +84,8 @@ public final class wx implements Runnable {
             default:
                 org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) this.f26404x;
                 Context context = f2Var.getContext();
-                org.telegram.ui.ActionBar.f6 resourceProvider = f2Var.getResourceProvider();
-                cg.a i7 = cg.a.i(((TLRPC.TL_inputMediaStakeDice) this.f26405y).ton_amount, cg.b.f6163b);
+                org.telegram.ui.ActionBar.g6 resourceProvider = f2Var.getResourceProvider();
+                cg.a i7 = cg.a.i(((TLRPC.TL_inputMediaStakeDice) this.f26405y).ton_amount, cg.b.f6161b);
                 gz gzVar2 = this.f26396b;
                 TLObject tLObject3 = this.f26397c;
                 ij ijVar2 = this.d;

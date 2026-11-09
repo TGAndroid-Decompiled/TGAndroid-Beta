@@ -109,7 +109,7 @@ public final class f4 extends e6 {
         if (!canvas.quickReject(bounds.left, bounds.top, bounds.right, bounds.bottom, Canvas.EdgeType.AA)) {
             if (this.f22365g != null) {
                 if (this.f22363e == null) {
-                    this.f22363e = new org.telegram.ui.Components.w5(0.0f, new a(this, 4), 0L, 320L, org.telegram.ui.Components.xq.f40367g);
+                    this.f22363e = new org.telegram.ui.Components.w5(0.0f, new a(this, 4), 0L, 320L, org.telegram.ui.Components.xq.f40459g);
                 }
                 float e10 = this.f22363e.e(false, 1.0f);
                 c(canvas, this.f22365g, bounds, Math.min(1.0f, e10 * 1.5f));
@@ -123,7 +123,7 @@ public final class f4 extends e6 {
             }
             if (this.h != null) {
                 if (this.f22364f == null) {
-                    this.f22364f = new org.telegram.ui.Components.w5(0.0f, new a(this, 4), 0L, 320L, org.telegram.ui.Components.xq.f40367g);
+                    this.f22364f = new org.telegram.ui.Components.w5(0.0f, new a(this, 4), 0L, 320L, org.telegram.ui.Components.xq.f40459g);
                 }
                 float e11 = this.f22364f.e(false, 1.0f);
                 c(canvas, this.h, bounds, Math.min(1.0f, 1.5f * e11));

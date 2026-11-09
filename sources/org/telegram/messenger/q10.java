@@ -55,7 +55,7 @@ public final class q10 implements Runnable {
                         }
                         String str3 = tL_error.text;
                         if (str3 != null && str3.contains("FLOOD_WAIT") && (Q = LaunchActivity.Q()) != null) {
-                            k5.p(null, 2131750688, org.telegram.ui.Components.hc.a0(Q), null);
+                            k5.p(null, 2131750687, org.telegram.ui.Components.hc.a0(Q), null);
                             return;
                         }
                         return;
@@ -64,10 +64,10 @@ public final class q10 implements Runnable {
                     qp.s1(i11).Y3(tL_contacts_resolvedPeer.users, false);
                     qp.s1(i11).S3(tL_contacts_resolvedPeer.chats, false);
                     yr.a0(i11).m1(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
-                    long C1 = ij.C1(tL_contacts_resolvedPeer.peer);
-                    s10Var.f25405b.put(str, new r10(C1));
+                    long B1 = ij.B1(tL_contacts_resolvedPeer.peer);
+                    s10Var.f25405b.put(str, new r10(B1));
                     while (i10 < arrayList.size()) {
-                        ((c20) arrayList.get(i10)).a(Long.valueOf(C1));
+                        ((c20) arrayList.get(i10)).a(Long.valueOf(B1));
                         i10++;
                     }
                     return;

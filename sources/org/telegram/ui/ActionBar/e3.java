@@ -27,7 +27,7 @@ public final class e3 implements ValueAnimator.AnimatorUpdateListener {
             default:
                 k3 k3Var3 = this.f27451b;
                 k3Var3.getClass();
-                k3Var3.f27722e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                k3Var3.f27706e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 k3Var3.invalidate();
                 return;
         }

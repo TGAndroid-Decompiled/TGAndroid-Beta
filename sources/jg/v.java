@@ -11,11 +11,11 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.Components.po0;
-import org.telegram.ui.Components.u20;
+import org.telegram.ui.Components.qo0;
+import org.telegram.ui.Components.v20;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.bu0;
 import org.telegram.ui.c9;
+import org.telegram.ui.du0;
 public final class v implements RequestDelegate {
     public final int f16951a;
     public final int f16952b;
@@ -57,14 +57,14 @@ public final class v implements RequestDelegate {
                 org.telegram.messenger.g0.h3(new ai.a1((f2) obj2, tLObject, this.f16952b, (c20) obj, 23));
                 return;
             case 6:
-                org.telegram.messenger.g0.h3(new ai.a1((Object) ((u20) obj2), this.f16952b, (Object) tLObject, (String) obj, 25));
+                org.telegram.messenger.g0.h3(new ai.a1((Object) ((v20) obj2), this.f16952b, (Object) tLObject, (String) obj, 25));
                 return;
             case 7:
-                org.telegram.messenger.g0.h3(new ai.a1((Object) ((po0) obj2), this.f16952b, (Object) tLObject, (String) obj, 27));
+                org.telegram.messenger.g0.h3(new ai.a1((Object) ((qo0) obj2), this.f16952b, (Object) tLObject, (String) obj, 27));
                 return;
             case 8:
-                RectF rectF = ProfileActivity.S6;
-                org.telegram.messenger.g0.i3(new bu0((ProfileActivity) obj2, tL_error, tLObject, (TLRPC.TL_channels_getParticipants) obj, 0), i10);
+                RectF rectF = ProfileActivity.V6;
+                org.telegram.messenger.g0.i3(new du0((ProfileActivity) obj2, tL_error, tLObject, (TLRPC.TL_channels_getParticipants) obj, 0), i10);
                 return;
             default:
                 TLRPC.Chat chat = (TLRPC.Chat) obj2;
@@ -86,7 +86,7 @@ public final class v implements RequestDelegate {
                     }
                     boolean isEmpty = arrayList2.isEmpty();
                     int i12 = this.f16952b;
-                    if (!isEmpty && wg.s.h()) {
+                    if (!isEmpty && wg.r.h()) {
                         org.telegram.messenger.r1.i().o(arrayList2, new bg.f0(arrayList, chat, i12, c20Var, 10));
                         return;
                     } else {

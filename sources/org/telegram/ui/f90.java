@@ -1,50 +1,66 @@
 package org.telegram.ui;
 
-import android.content.Context;
 import android.text.Editable;
-import android.text.TextUtils;
-import android.widget.TextView;
-public final class f90 extends org.telegram.ui.Cells.k3 {
-    public boolean E;
-    public final h90 F;
+import android.text.TextWatcher;
+public final class f90 implements TextWatcher {
+    public final int f45668a;
+    public final j90 f45669b;
 
-    public f90(h90 h90Var, Context context, String str, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, str, false, false, -1, f6Var);
-        this.F = h90Var;
+    public f90(j90 j90Var, int i7) {
+        this.f45668a = i7;
+        this.f45669b = j90Var;
     }
 
     @Override
-    public final void b(Editable editable) {
-        int i7;
-        int i10;
-        if (this.E) {
-            return;
+    public final void afterTextChanged(Editable editable) {
+        switch (this.f45668a) {
+            case 0:
+                j90 j90Var = this.f45669b;
+                if (!j90Var.N) {
+                    if (editable.toString().equals("0")) {
+                        j90Var.F.setText("");
+                        return;
+                    }
+                    try {
+                        int parseInt = Integer.parseInt(editable.toString());
+                        if (parseInt > 100000) {
+                            j90Var.c0();
+                            return;
+                        } else {
+                            j90Var.b0(parseInt);
+                            return;
+                        }
+                    } catch (NumberFormatException unused) {
+                        j90Var.c0();
+                        return;
+                    }
+                }
+                return;
+            default:
+                org.telegram.messenger.i6.l(editable, this.f45669b.K.getPaint().getFontMetricsInt(), false);
+                return;
         }
-        boolean isEmpty = TextUtils.isEmpty(editable);
-        h90 h90Var = this.F;
-        if (isEmpty) {
-            h90Var.f46304s.setText("");
-            return;
-        }
-        try {
-            long parseLong = Long.parseLong(editable.toString());
-            if (parseLong > h90Var.getMessagesController().f24735a6) {
-                this.E = true;
-                parseLong = h90Var.getMessagesController().f24735a6;
-                setText(Long.toString(parseLong));
-                this.E = false;
-            }
-            TextView textView = h90Var.f46304s;
-            if (h90Var.getConnectionsManager().isTestBackend()) {
-                i7 = 2131746155;
-            } else {
-                i7 = 2131746158;
-            }
-            org.telegram.messenger.r1 i11 = org.telegram.messenger.r1.i();
-            i10 = ((org.telegram.ui.ActionBar.f2) h90Var).currentAccount;
-            textView.setText(org.telegram.messenger.id.a0(null, null, i7, i11.f((long) ((parseLong / 1000.0d) * org.telegram.messenger.qp.s1(i10).f24755c6), "USD")));
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
-        }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+        int i12 = this.f45668a;
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+        int i12 = this.f45668a;
+    }
+
+    private final void a(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void b(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void c(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void d(int i7, int i10, int i11, CharSequence charSequence) {
     }
 }

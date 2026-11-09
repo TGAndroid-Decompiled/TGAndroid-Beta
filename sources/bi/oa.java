@@ -3,7 +3,7 @@ package bi;
 import android.os.Bundle;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.an;
+import org.telegram.ui.cn;
 public final class oa implements Runnable {
     public final int f4492a;
     public final org.telegram.ui.ActionBar.v2[] f4493b;
@@ -28,10 +28,10 @@ public final class oa implements Runnable {
                     int i7 = starsTransaction.flags & 8192;
                     long j3 = this.d;
                     if (i7 != 0) {
-                        T.presentFragment(an.qa(starsTransaction.giveaway_post_id, j3));
+                        T.presentFragment(cn.sa(starsTransaction.giveaway_post_id, j3));
                         return;
                     } else {
-                        T.presentFragment(an.ra(j3));
+                        T.presentFragment(cn.ta(j3));
                         return;
                     }
                 }
@@ -44,10 +44,10 @@ public final class oa implements Runnable {
                     int i10 = starsTransaction2.flags & 8192;
                     long j10 = this.d;
                     if (i10 != 0) {
-                        T2.presentFragment(an.qa(starsTransaction2.giveaway_post_id, j10));
+                        T2.presentFragment(cn.sa(starsTransaction2.giveaway_post_id, j10));
                         return;
                     } else {
-                        T2.presentFragment(an.ra(j10));
+                        T2.presentFragment(cn.ta(j10));
                         return;
                     }
                 }
@@ -60,10 +60,10 @@ public final class oa implements Runnable {
                     int i11 = starsTransaction3.flags & 8192;
                     long j11 = this.d;
                     if (i11 != 0) {
-                        T3.presentFragment(an.qa(starsTransaction3.giveaway_post_id, j11));
+                        T3.presentFragment(cn.sa(starsTransaction3.giveaway_post_id, j11));
                         return;
                     } else {
-                        T3.presentFragment(an.ra(j11));
+                        T3.presentFragment(cn.ta(j11));
                         return;
                     }
                 }
@@ -75,7 +75,7 @@ public final class oa implements Runnable {
                     Bundle bundle = new Bundle();
                     bundle.putLong("chat_id", -this.d);
                     bundle.putInt("message_id", this.f4494c.msg_id);
-                    T4.presentFragment(new an(bundle));
+                    T4.presentFragment(new cn(bundle));
                     return;
                 }
                 return;
@@ -87,10 +87,10 @@ public final class oa implements Runnable {
                     int i12 = starsTransaction4.flags & 8192;
                     long j12 = this.d;
                     if (i12 != 0) {
-                        T5.presentFragment(an.qa(starsTransaction4.giveaway_post_id, j12));
+                        T5.presentFragment(cn.sa(starsTransaction4.giveaway_post_id, j12));
                         return;
                     } else {
-                        T5.presentFragment(an.ra(j12));
+                        T5.presentFragment(cn.ta(j12));
                         return;
                     }
                 }

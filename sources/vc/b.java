@@ -16,7 +16,7 @@ import org.json.JSONObject;
 import org.telegram.ui.Cells.f1;
 import tc.g;
 public abstract class b {
-    public static final c f57318a = new c();
+    public static final c f57330a = new c();
 
     public static HttpURLConnection a(String str, l lVar) {
         Throwable th2;
@@ -45,7 +45,7 @@ public abstract class b {
             httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
         }
         if (httpURLConnection instanceof HttpsURLConnection) {
-            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f57318a);
+            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f57330a);
         }
         httpURLConnection.setDoOutput(true);
         httpURLConnection.setRequestMethod("POST");
@@ -77,8 +77,8 @@ public abstract class b {
             if (sb2.length() > 0) {
                 sb2.append("&");
             }
-            String str = aVar.f57316a;
-            String str2 = aVar.f57317b;
+            String str = aVar.f57328a;
+            String str2 = aVar.f57329b;
             if (str == null) {
                 encode = null;
             } else {
@@ -94,8 +94,8 @@ public abstract class b {
         return sb2.toString();
     }
 
-    public static org.telegram.ui.hy0 c(java.util.HashMap r7, g9.l r8) {
-        throw new UnsupportedOperationException("Method not decompiled: vc.b.c(java.util.HashMap, g9.l):org.telegram.ui.hy0");
+    public static org.telegram.ui.ky0 c(java.util.HashMap r7, g9.l r8) {
+        throw new UnsupportedOperationException("Method not decompiled: vc.b.c(java.util.HashMap, g9.l):org.telegram.ui.ky0");
     }
 
     public static LinkedList d(String str, Map map) {

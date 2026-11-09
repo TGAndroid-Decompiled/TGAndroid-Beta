@@ -16,14 +16,14 @@ public final class f3 implements Runnable {
         am amVar = (am) this.f19105b;
         bm bmVar = amVar.P;
         if (bmVar.J != null && !bmVar.K) {
-            int computeVerticalScrollOffset = bmVar.f32220r.computeVerticalScrollOffset();
-            if (bmVar.f32220r.computeVerticalScrollExtent() + computeVerticalScrollOffset >= (amVar.e() - amVar.f31858r) + amVar.f31857n) {
+            int computeVerticalScrollOffset = bmVar.f32277r.computeVerticalScrollOffset();
+            if (bmVar.f32277r.computeVerticalScrollExtent() + computeVerticalScrollOffset >= (amVar.e() - amVar.f31917r) + amVar.f31916n) {
                 z9 = true;
             } else {
                 z9 = false;
             }
             float max = Math.max(0.0f, (bmVar.E - Math.max(0, computeVerticalScrollOffset - bmVar.getListTopPadding())) - org.telegram.messenger.g0.L(52.0f));
-            float max2 = Math.max(0.0f, ((bmVar.f32220r.getMeasuredHeight() - (bmVar.E - computeVerticalScrollOffset)) - bmVar.getListTopPadding()) - org.telegram.messenger.g0.L(84.0f));
+            float max2 = Math.max(0.0f, ((bmVar.f32277r.getMeasuredHeight() - (bmVar.E - computeVerticalScrollOffset)) - bmVar.getListTopPadding()) - org.telegram.messenger.g0.L(84.0f));
             float L = org.telegram.messenger.g0.L(32.0f);
             if (max < L && computeVerticalScrollOffset > bmVar.getListTopPadding()) {
                 f10 = (-(1.0f - (max / L))) * org.telegram.messenger.g0.L(6.0f);
@@ -33,9 +33,9 @@ public final class f3 implements Runnable {
                 f10 = 0.0f;
             }
             int i7 = (int) f10;
-            if (Math.abs(i7) > 0 && bmVar.f32220r.canScrollVertically(i7) && (f10 <= 0.0f || !z9)) {
+            if (Math.abs(i7) > 0 && bmVar.f32277r.canScrollVertically(i7) && (f10 <= 0.0f || !z9)) {
                 bmVar.E += f10;
-                bmVar.f32220r.scrollBy(0, i7);
+                bmVar.f32277r.scrollBy(0, i7);
                 amVar.invalidate();
             }
             amVar.L = true;

@@ -1,15 +1,15 @@
 package c8;
 
-import org.telegram.ui.Components.zj0;
+import org.telegram.ui.Components.ak0;
 public abstract class l1 {
-    public static void a(zj0 zj0Var, org.telegram.ui.ActionBar.f6 f6Var) {
+    public static void a(ak0 ak0Var, org.telegram.ui.ActionBar.g6 g6Var) {
         boolean q10;
-        if (f6Var != null) {
-            q10 = f6Var.a();
+        if (g6Var != null) {
+            q10 = g6Var.a();
         } else {
-            q10 = org.telegram.ui.ActionBar.k6.I.q();
+            q10 = org.telegram.ui.ActionBar.l6.I.q();
         }
-        zj0Var.r(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Ci, f6Var), q10);
+        ak0Var.r(org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.Ci, g6Var), q10);
     }
 
     public static int b(li.a aVar) {

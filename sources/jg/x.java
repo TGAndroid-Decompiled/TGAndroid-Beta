@@ -57,8 +57,8 @@ public final class x implements Comparator {
             case 6:
                 return Long.compare(((l4.c) obj).f18147b, ((l4.c) obj2).f18147b);
             case 7:
-                top = ((v4.d1) obj2).f57044a.getTop();
-                top2 = ((v4.d1) obj).f57044a.getTop();
+                top = ((v4.d1) obj2).f57056a.getTop();
+                top2 = ((v4.d1) obj).f57056a.getTop();
                 break;
             case 8:
                 top = Integer.bitCount(((Integer) obj2).intValue());
@@ -81,9 +81,9 @@ public final class x implements Comparator {
             case 10:
                 p2.b bVar = (p2.b) obj;
                 p2.b bVar2 = (p2.b) obj2;
-                int compare2 = Integer.compare(bVar.f53097c, bVar2.f53097c);
+                int compare2 = Integer.compare(bVar.f53109c, bVar2.f53109c);
                 if (compare2 == 0) {
-                    return bVar.f53096b.compareTo(bVar2.f53096b);
+                    return bVar.f53108b.compareTo(bVar2.f53108b);
                 }
                 return compare2;
             case 11:
@@ -152,20 +152,20 @@ public final class x implements Comparator {
                 ij ijVar = (ij) obj;
                 ij ijVar2 = (ij) obj2;
                 String[] strArr = MediaController.V1;
-                int f12 = ijVar.f1();
-                int f13 = ijVar2.f1();
+                int e12 = ijVar.e1();
+                int e13 = ijVar2.e1();
                 long j3 = ijVar.f23262k.grouped_id;
                 long j10 = ijVar2.f23262k.grouped_id;
-                if (f12 < 0 && f13 < 0) {
+                if (e12 < 0 && e13 < 0) {
                     if (j3 != 0 && j3 == j10) {
-                        compare = Integer.compare(f12, f13);
+                        compare = Integer.compare(e12, e13);
                     } else {
-                        return Integer.compare(f13, f12);
+                        return Integer.compare(e13, e12);
                     }
                 } else if (j3 != 0 && j3 == j10) {
-                    compare = Integer.compare(f13, f12);
+                    compare = Integer.compare(e13, e12);
                 } else {
-                    return Integer.compare(f12, f13);
+                    return Integer.compare(e12, e13);
                 }
                 return -compare;
             case 18:

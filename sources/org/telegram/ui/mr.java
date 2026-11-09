@@ -1,4 +1,8 @@
 package org.telegram.ui;
-public interface mr {
-    void a();
+
+import android.view.View;
+public final class mr implements View.OnFocusChangeListener {
+    @Override
+    public final void onFocusChange(View view, boolean z9) {
+    }
 }

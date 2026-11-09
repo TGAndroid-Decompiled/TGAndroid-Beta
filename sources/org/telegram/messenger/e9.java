@@ -18,7 +18,7 @@ public final class e9 implements OnSuccessListener, OnFailureListener {
     public void onSuccess(Object obj) {
         ArrayList arrayList = new ArrayList();
         for (db.c cVar : (List) obj) {
-            if (cVar.f8576c == 1) {
+            if (cVar.f8574c == 1) {
                 arrayList.add(cVar);
             }
         }

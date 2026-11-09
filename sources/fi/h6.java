@@ -18,8 +18,8 @@ public final class h6 implements Runnable {
                 return;
             default:
                 l6 l6Var = this.f12135b;
-                l6Var.f12326a.animate().scaleX(1.0f).scaleY(1.0f).setInterpolator(xq.h).setDuration(280L).start();
-                l6Var.f12328c = System.currentTimeMillis();
+                l6Var.f12327a.animate().scaleX(1.0f).scaleY(1.0f).setInterpolator(xq.h).setDuration(280L).start();
+                l6Var.f12329c = System.currentTimeMillis();
                 l6Var.invalidate();
                 try {
                     l6Var.performHapticFeedback(3);

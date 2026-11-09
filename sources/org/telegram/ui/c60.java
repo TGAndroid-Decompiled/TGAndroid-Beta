@@ -1,10 +1,19 @@
 package org.telegram.ui;
-public final class c60 {
-    public final org.telegram.ui.ActionBar.z0 f44705a;
-    public final int f44706b;
 
-    public c60(org.telegram.ui.ActionBar.z0 z0Var, int i7) {
-        this.f44705a = z0Var;
-        this.f44706b = i7;
+import android.os.Bundle;
+public final class c60 extends x5 {
+    public final yw f44230f;
+
+    public c60(Bundle bundle, yw ywVar) {
+        super(bundle);
+        this.f44230f = ywVar;
+    }
+
+    @Override
+    public final void onTransitionAnimationEnd(boolean z9, boolean z10) {
+        super.onTransitionAnimationEnd(z9, z10);
+        if (z9 && !z10) {
+            this.f44230f.removeSelfFromStack();
+        }
     }
 }

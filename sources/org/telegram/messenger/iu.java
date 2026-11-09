@@ -25,6 +25,11 @@ public final class iu extends ReplacementSpan {
         this.f23365a.f22722a.i(view);
     }
 
+    public final void b(View view) {
+        this.h = null;
+        this.f23365a.f22722a.f(view);
+    }
+
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
         int i14;

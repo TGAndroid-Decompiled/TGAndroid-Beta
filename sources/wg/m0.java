@@ -13,22 +13,23 @@ import org.telegram.messenger.qp;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.g2;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.s6;
 import org.telegram.ui.Cells.n4;
 import org.telegram.ui.Cells.y6;
-import org.telegram.ui.Components.oj0;
-import org.telegram.ui.Components.w70;
-public final class m0 extends oj0 {
-    public final q0 f57780c;
+import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.x70;
+import org.telegram.ui.Wallet.f2;
+public final class m0 extends pj0 {
+    public final q0 f57778c;
 
     public m0(q0 q0Var) {
-        this.f57780c = q0Var;
+        this.f57778c = q0Var;
     }
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f57048f == 3) {
+        if (d1Var.f57060f == 3) {
             return true;
         }
         return false;
@@ -36,7 +37,7 @@ public final class m0 extends oj0 {
 
     @Override
     public final int b() {
-        return this.f57780c.Q1.size() + 3;
+        return this.f57778c.Q1.size() + 3;
     }
 
     @Override
@@ -57,9 +58,9 @@ public final class m0 extends oj0 {
     @Override
     public final void t(v4.d1 d1Var, int i7) {
         String str;
-        int i10 = d1Var.f57048f;
-        View view = d1Var.f57044a;
-        q0 q0Var = this.f57780c;
+        int i10 = d1Var.f57060f;
+        View view = d1Var.f57056a;
+        q0 q0Var = this.f57778c;
         if (i10 == 3) {
             TL_stories.TL_myBoost tL_myBoost = (TL_stories.TL_myBoost) q0Var.Q1.get(i7 - 3);
             ah.r rVar = (ah.r) view;
@@ -74,7 +75,7 @@ public final class m0 extends oj0 {
             p0 p0Var = (p0) view;
             q0Var.T1 = p0Var;
             TLRPC.Chat chat = q0Var.R1;
-            w70 w70Var = p0Var.f57797e;
+            x70 x70Var = p0Var.f57795e;
             try {
                 int i11 = (int) qp.s1(p10.f24470s0).f24880r0;
                 if (chat == null) {
@@ -83,11 +84,11 @@ public final class m0 extends oj0 {
                     str = chat.title;
                 }
                 SpannableStringBuilder X2 = org.telegram.messenger.g0.X2(id.G(i11, "BoostingReassignBoostTextPluralWithLink", str, "%3$s"));
-                SpannableStringBuilder S2 = org.telegram.messenger.g0.S2(id.M0(2131753320, "BoostingReassignBoostTextLink"), k6.Uc, 2, new g2(q0Var, 3), null);
+                SpannableStringBuilder S2 = org.telegram.messenger.g0.S2(id.M0(2131753320, "BoostingReassignBoostTextLink"), l6.Uc, 2, new g2(q0Var, 3), null);
                 int indexOf = TextUtils.indexOf(X2, "%3$s");
                 X2.replace(indexOf, indexOf + 4, (CharSequence) S2);
-                w70Var.setText(X2, TextView.BufferType.EDITABLE);
-                w70Var.post(new org.telegram.ui.Wallet.g2(p0Var, indexOf, 10));
+                x70Var.setText(X2, TextView.BufferType.EDITABLE);
+                x70Var.post(new f2(p0Var, indexOf, 10));
             } catch (Exception e10) {
                 a8.g(e10, true);
             }
@@ -98,7 +99,7 @@ public final class m0 extends oj0 {
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         View view;
         Context context = viewGroup.getContext();
-        q0 q0Var = this.f57780c;
+        q0 q0Var = this.f57778c;
         if (i7 != 0) {
             if (i7 != 1) {
                 if (i7 != 2) {
@@ -111,9 +112,9 @@ public final class m0 extends oj0 {
                     view = new n4(context, 22);
                 }
             } else {
-                int i10 = k6.f27796a7;
-                view = new y6(context, k6.x0(null, i10, false), 0);
-                r6.i(i10, view, null);
+                int i10 = l6.f27809a7;
+                view = new y6(context, l6.x0(null, i10, false), 0);
+                s6.h(i10, view, null);
             }
         } else {
             p0 p0Var = new p0(context);

@@ -6,14 +6,14 @@ import org.telegram.messenger.p2;
 import org.telegram.ui.Components.vy;
 import org.telegram.ui.Components.xq;
 public final class e0 implements Runnable {
-    public final int f55043a;
-    public final j0 f55044b;
-    public final z0 f55045c;
+    public final int f55055a;
+    public final j0 f55056b;
+    public final y0 f55057c;
 
-    public e0(j0 j0Var, z0 z0Var, int i7) {
-        this.f55043a = i7;
-        this.f55044b = j0Var;
-        this.f55045c = z0Var;
+    public e0(j0 j0Var, y0 y0Var, int i7) {
+        this.f55055a = i7;
+        this.f55056b = j0Var;
+        this.f55057c = y0Var;
     }
 
     @Override
@@ -21,34 +21,34 @@ public final class e0 implements Runnable {
         boolean z9;
         boolean z10;
         float f10;
-        int i7 = this.f55043a;
-        z0 z0Var = this.f55045c;
-        j0 j0Var = this.f55044b;
+        int i7 = this.f55055a;
+        y0 y0Var = this.f55057c;
+        j0 j0Var = this.f55056b;
         switch (i7) {
             case 0:
-                j0Var.f55088c = z0Var;
+                j0Var.f55101c = y0Var;
                 if (j0Var.h == null) {
                     j0Var.h = new RectF();
                 }
-                j0Var.f55088c.a(j0Var.h);
-                vy vyVar = j0Var.f55086a;
+                j0Var.f55101c.a(j0Var.h);
+                vy vyVar = j0Var.f55099a;
                 if (vyVar != null) {
                     vyVar.b();
                     return;
                 }
                 return;
             default:
-                if (z0Var != null && j0Var.f55100q == 0) {
-                    j0Var.f55100q = k1.b(j0Var.f55091g);
+                if (y0Var != null && j0Var.f55113q == 0) {
+                    j0Var.f55113q = j1.b(j0Var.f55104g);
                 }
                 boolean z11 = j0Var.H;
-                if (z0Var != null) {
+                if (y0Var != null) {
                     z9 = true;
                 } else {
                     z9 = false;
                 }
                 if (z11 != z9) {
-                    if (z0Var != null) {
+                    if (y0Var != null) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -71,8 +71,8 @@ public final class e0 implements Runnable {
                     j0Var.K.addListener(new h0(j0Var, 0));
                     j0Var.K.setInterpolator(xq.h);
                     j0Var.K.start();
-                    j0Var.d = z0Var;
-                    vy vyVar2 = j0Var.f55086a;
+                    j0Var.d = y0Var;
+                    vy vyVar2 = j0Var.f55099a;
                     if (vyVar2 != null) {
                         vyVar2.b();
                     }
@@ -81,9 +81,9 @@ public final class e0 implements Runnable {
                         return;
                     }
                     return;
-                } else if (z0Var != j0Var.d) {
-                    j0Var.d = z0Var;
-                    vy vyVar3 = j0Var.f55086a;
+                } else if (y0Var != j0Var.d) {
+                    j0Var.d = y0Var;
+                    vy vyVar3 = j0Var.f55099a;
                     if (vyVar3 != null) {
                         vyVar3.b();
                         return;

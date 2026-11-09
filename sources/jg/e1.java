@@ -29,7 +29,7 @@ public final class e1 {
                 break;
             default:
                 hy hyVar = (hy) this.h;
-                if (hyVar.f34452t1 != null && hyVar.getVisibility() == 0 && hyVar.K0) {
+                if (hyVar.f34467t1 != null && hyVar.getVisibility() == 0 && hyVar.K0) {
                     N = true;
                     break;
                 } else {

@@ -2,30 +2,30 @@ package org.telegram.ui.Components;
 
 import android.view.KeyEvent;
 public final class wg implements org.telegram.messenger.z10 {
-    public final int f39922a;
-    public final KeyEvent.Callback f39923b;
+    public final int f40050a;
+    public final KeyEvent.Callback f40051b;
 
     public wg(KeyEvent.Callback callback, int i7) {
-        this.f39922a = i7;
-        this.f39923b = callback;
+        this.f40050a = i7;
+        this.f40051b = callback;
     }
 
     @Override
     public final void a(Object obj, Object obj2, Object obj3, Object obj4) {
-        switch (this.f39922a) {
+        switch (this.f40050a) {
             case 0:
-                di diVar = (di) this.f39923b;
+                di diVar = (di) this.f40051b;
                 CharSequence charSequence = (CharSequence) obj;
                 Integer num = (Integer) obj2;
                 Integer num2 = (Integer) obj3;
                 Boolean bool = (Boolean) obj4;
-                gh ghVar = diVar.f33016y2;
+                gh ghVar = diVar.f33071y2;
                 ghVar.setText(charSequence);
                 ghVar.w(charSequence.length(), charSequence.length());
                 diVar.n1();
                 return;
             case 1:
-                di diVar2 = (di) this.f39923b;
+                di diVar2 = (di) this.f40051b;
                 CharSequence charSequence2 = (CharSequence) obj;
                 Integer num3 = (Integer) obj2;
                 Integer num4 = (Integer) obj3;
@@ -36,15 +36,15 @@ public final class wg implements org.telegram.messenger.z10 {
                 diVar2.n1();
                 return;
             default:
-                uc ucVar = (uc) this.f39923b;
+                uc ucVar = (uc) this.f40051b;
                 Integer num5 = (Integer) obj2;
                 Integer num6 = (Integer) obj3;
                 Boolean bool3 = (Boolean) obj4;
-                fi.g gVar = ucVar.f12365f;
+                fi.g gVar = ucVar.f12366f;
                 gVar.setText((CharSequence) obj);
                 gVar.d();
                 gVar.k(true);
-                fi.e eVar = ucVar.f12361c0;
+                fi.e eVar = ucVar.f12362c0;
                 org.telegram.messenger.g0.r(eVar);
                 eVar.run();
                 return;

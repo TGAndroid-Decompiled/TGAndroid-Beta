@@ -9,7 +9,7 @@ import android.text.TextUtils;
 import android.util.TypedValue;
 import j$.util.Objects;
 import java.util.ArrayList;
-public class AnimatedPhoneNumberEditText extends v20 {
+public class AnimatedPhoneNumberEditText extends w20 {
     public final ArrayList J1;
     public final ArrayList K1;
     public final TextPaint L1;
@@ -117,10 +117,10 @@ public class AnimatedPhoneNumberEditText extends v20 {
                 r1.h hVar = new r1.h(f12);
                 hVar.b(500.0f);
                 hVar.a(1.0f);
-                hVar.f54276i = f12;
-                gVar.f54268m = hVar;
-                gVar.f54259b = 100.0f * f10;
-                gVar.f54260c = true;
+                hVar.f54288i = f12;
+                gVar.f54280m = hVar;
+                gVar.f54271b = 100.0f * f10;
+                gVar.f54272c = true;
                 arrayList2.add(gVar);
                 arrayList.add(Float.valueOf(f10));
                 postDelayed(new xf(gVar, 7), i10 * 5);

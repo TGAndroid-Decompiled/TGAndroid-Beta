@@ -8,7 +8,7 @@ import org.telegram.messenger.id;
 import org.telegram.ui.Components.nl;
 import org.telegram.ui.Components.oi;
 import org.telegram.ui.Components.vh;
-import org.telegram.ui.Components.yv0;
+import org.telegram.ui.Components.zv0;
 import v4.a1;
 import v4.s;
 import v4.v0;
@@ -26,7 +26,7 @@ public final class h extends s {
     public boolean Y0() {
         switch (this.Q) {
             case 4:
-                if (((yv0) this.R).N1 != null && id.f23157a0) {
+                if (((zv0) this.R).N1 != null && id.f23157a0) {
                     return true;
                 }
                 return false;
@@ -71,12 +71,12 @@ public final class h extends s {
         switch (this.Q) {
             case 2:
                 oi oiVar = new oi(this, recyclerView.getContext());
-                oiVar.f57213a = i7;
+                oiVar.f57225a = i7;
                 w0(oiVar);
                 return;
             case 3:
                 nl nlVar = new nl(this, recyclerView.getContext());
-                nlVar.f57213a = i7;
+                nlVar.f57225a = i7;
                 w0(nlVar);
                 return;
             default:
@@ -106,9 +106,9 @@ public final class h extends s {
         this.R = vhVar;
     }
 
-    public h(yv0 yv0Var) {
+    public h(zv0 zv0Var) {
         super(5);
         this.Q = 4;
-        this.R = yv0Var;
+        this.R = zv0Var;
     }
 }

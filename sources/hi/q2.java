@@ -2,7 +2,7 @@ package hi;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.l6;
 public final class q2 extends AnimatorListenerAdapter {
     public final int f14886a;
     public final int f14887b;
@@ -28,7 +28,7 @@ public final class q2 extends AnimatorListenerAdapter {
         x2Var.setBackgroundColor(a3Var.R);
         t1 t1Var = this.f14888c;
         t1Var.b(x2Var, 1.0f);
-        a3Var.f14510a = t1Var.a(k6.wj);
+        a3Var.f14510a = t1Var.a(l6.wj);
         z2Var.invalidate();
     }
 }

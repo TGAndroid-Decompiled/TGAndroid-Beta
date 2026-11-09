@@ -108,7 +108,7 @@ public final class rg implements Runnable {
                 qpVar3.getNotificationCenter().k(3, new Object[0]);
                 return;
             default:
-                ((yr) c1Var).getMessagesController().z4(null, (org.telegram.ui.ActionBar.c6) obj, this.f25290c, this.d);
+                ((yr) c1Var).getMessagesController().z4(null, (org.telegram.ui.ActionBar.d6) obj, this.f25290c, this.d);
                 return;
         }
     }

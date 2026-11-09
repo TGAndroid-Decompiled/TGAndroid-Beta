@@ -1,34 +1,25 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.ConnectionsManager;
+import android.view.View;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class l21 extends org.telegram.ui.ActionBar.v2 {
-    public static final int l1 = 0;
-    public TLRPC.TL_authorization f47395i1;
-    public SessionsActivity f47396j1;
-    public org.telegram.ui.Components.ch0 f47397k1;
+import org.telegram.ui.Components.Switch;
+public final class l21 implements View.OnClickListener {
+    public final org.telegram.ui.Components.eg f47452a;
+    public final TLRPC.TL_authorization f47453b;
+    public final n21 f47454c;
 
-    public static void I0(l21 l21Var, String str) {
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(l21Var.getContext());
-        alertDialog$Builder.f(new CharSequence[]{org.telegram.messenger.id.M0(2131751767, null)}, new og.j(12, l21Var, str));
-        alertDialog$Builder.p();
-    }
-
-    public static void J0(l21 l21Var) {
-        TL_account.changeAuthorizationSettings changeauthorizationsettings = new TL_account.changeAuthorizationSettings();
-        TLRPC.TL_authorization tL_authorization = l21Var.f47395i1;
-        changeauthorizationsettings.encrypted_requests_disabled = tL_authorization.encrypted_requests_disabled;
-        changeauthorizationsettings.call_requests_disabled = tL_authorization.call_requests_disabled;
-        changeauthorizationsettings.flags = 3;
-        changeauthorizationsettings.hash = tL_authorization.hash;
-        ConnectionsManager.getInstance(l21Var.f28616a).sendRequest(changeauthorizationsettings, new di.u5(28));
+    public l21(n21 n21Var, org.telegram.ui.Components.eg egVar, TLRPC.TL_authorization tL_authorization) {
+        this.f47454c = n21Var;
+        this.f47452a = egVar;
+        this.f47453b = tL_authorization;
     }
 
     @Override
-    public final void show() {
-        super.show();
-        this.f47397k1.d();
+    public final void onClick(View view) {
+        org.telegram.ui.Components.eg egVar = this.f47452a;
+        Switch r02 = (Switch) egVar.f33382f;
+        r02.c(!r02.h, true);
+        this.f47453b.call_requests_disabled = !((Switch) egVar.f33382f).h;
+        n21.J0(this.f47454c);
     }
 }

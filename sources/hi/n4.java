@@ -19,11 +19,11 @@ import org.telegram.messenger.t5;
 import org.telegram.messenger.ui;
 import org.telegram.messenger.w7;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.ch0;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.Components.dh0;
 import org.telegram.ui.Components.i5;
-import org.telegram.ui.Components.my0;
+import org.telegram.ui.Components.ny0;
 import org.telegram.ui.Components.r6;
 import org.telegram.ui.Components.w5;
 import org.telegram.ui.Components.w8;
@@ -35,7 +35,7 @@ public final class n4 extends Drawable implements r6, ls {
     public final ImageReceiver d;
     public int f14826e;
     public final i5[] f14827f;
-    public final my0 h;
+    public final ny0 h;
     public final RectF f14828n;
     public final boolean f14829r;
     public final w5 f14830s;
@@ -56,23 +56,23 @@ public final class n4 extends Drawable implements r6, ls {
         this.f14828n = new RectF();
         this.f14830s = new w5(new m4(this, 1), 320L, xq.h, 0);
         this.f14829r = false;
-        int i7 = k6.f27852d6;
-        paint.setColor(k6.x0(null, i7, false));
-        paint2.setColor(k6.x0(null, i7, false));
-        paint2.setShadowLayer(org.telegram.messenger.g0.L(2.33f), 0.0f, org.telegram.messenger.g0.L(2.0f), k6.r1(0.18f, -16777216));
-        w8 w8Var = new w8((f6) null);
+        int i7 = l6.f27865d6;
+        paint.setColor(l6.x0(null, i7, false));
+        paint2.setColor(l6.x0(null, i7, false));
+        paint2.setShadowLayer(org.telegram.messenger.g0.L(2.33f), 0.0f, org.telegram.messenger.g0.L(2.0f), l6.r1(0.18f, -16777216));
+        w8 w8Var = new w8((g6) null);
         w8Var.r(user);
         imageReceiver.i0(user, w8Var, null);
         imageReceiver.J0(org.telegram.messenger.g0.L(16.0f));
         d();
-        this.h = new my0(t10.p(user), 14.0f, null);
+        this.h = new ny0(t10.p(user), 14.0f, null);
     }
 
     @Override
-    public final void a(ch0 ch0Var) {
-        this.f14833y = ch0Var;
-        this.d.H0(ch0Var);
-        this.f14825c.H0(ch0Var);
+    public final void a(dh0 dh0Var) {
+        this.f14833y = dh0Var;
+        this.d.H0(dh0Var);
+        this.f14825c.H0(dh0Var);
     }
 
     @Override
@@ -122,7 +122,7 @@ public final class n4 extends Drawable implements r6, ls {
                 i5Var2.n(this.f14833y);
             }
             i5VarArr[this.f14826e] = i5.l(p10.f24470s0, 9, document);
-            i5VarArr[this.f14826e].setColorFilter(new PorterDuffColorFilter(k6.x0(null, k6.Ci, false), PorterDuff.Mode.SRC_IN));
+            i5VarArr[this.f14826e].setColorFilter(new PorterDuffColorFilter(l6.x0(null, l6.Ci, false), PorterDuff.Mode.SRC_IN));
             if (this.f14832x && (i5Var = i5VarArr[this.f14826e]) != null) {
                 i5Var.a(this.f14833y);
             }
@@ -151,7 +151,7 @@ public final class n4 extends Drawable implements r6, ls {
         i5 i5Var2;
         int i10;
         Rect bounds = getBounds();
-        int x02 = k6.x0(null, k6.f27852d6, false);
+        int x02 = l6.x0(null, l6.f27865d6, false);
         Paint paint = this.f14823a;
         if (paint.getColor() != x02) {
             paint.setColor(x02);
@@ -166,7 +166,7 @@ public final class n4 extends Drawable implements r6, ls {
         } else {
             i7 = 28;
         }
-        float L = (org.telegram.messenger.g0.L((i7 + 38) + 6.66f) + this.h.f36147c) / 2.0f;
+        float L = (org.telegram.messenger.g0.L((i7 + 38) + 6.66f) + this.h.f36541c) / 2.0f;
         float L2 = org.telegram.messenger.g0.L(32.0f) / 2.0f;
         RectF rectF = this.f14828n;
         rectF.set(bounds.centerX() - L, bounds.centerY() - L2, bounds.centerX() + L, bounds.centerY() + L2);
@@ -174,7 +174,7 @@ public final class n4 extends Drawable implements r6, ls {
         ImageReceiver imageReceiver = this.f14825c;
         imageReceiver.y0(rectF.left, rectF.top, org.telegram.messenger.g0.L(32.0f), org.telegram.messenger.g0.L(32.0f));
         imageReceiver.h(canvas, null);
-        this.h.c(org.telegram.messenger.g0.L(36.0f) + rectF.left, rectF.centerY(), 1.0f, k6.x0(null, k6.G6, false), canvas);
+        this.h.c(org.telegram.messenger.g0.L(36.0f) + rectF.left, rectF.centerY(), 1.0f, l6.x0(null, l6.G6, false), canvas);
         if (z9) {
             float L3 = rectF.right - org.telegram.messenger.g0.L(22.66f);
             canvas.drawCircle(L3, rectF.centerY(), org.telegram.messenger.g0.L(24.0f), paint2);
@@ -249,17 +249,17 @@ public final class n4 extends Drawable implements r6, ls {
         this.f14828n = new RectF();
         this.f14830s = new w5(new m4(this, 1), 320L, xq.h, 0);
         this.f14829r = true;
-        int i7 = k6.f27852d6;
-        paint.setColor(k6.x0(null, i7, false));
-        paint2.setColor(k6.x0(null, i7, false));
-        paint2.setShadowLayer(org.telegram.messenger.g0.L(2.33f), 0.0f, org.telegram.messenger.g0.L(2.0f), k6.r1(0.18f, -16777216));
-        w8 w8Var = new w8((f6) null);
+        int i7 = l6.f27865d6;
+        paint.setColor(l6.x0(null, i7, false));
+        paint2.setColor(l6.x0(null, i7, false));
+        paint2.setShadowLayer(org.telegram.messenger.g0.L(2.33f), 0.0f, org.telegram.messenger.g0.L(2.0f), l6.r1(0.18f, -16777216));
+        w8 w8Var = new w8((g6) null);
         w8Var.r(user);
         imageReceiver.i0(user, w8Var, null);
         imageReceiver.J0(org.telegram.messenger.g0.L(16.0f));
         TLRPC.PhotoSize w10 = w7.w(document.thumbs, 120, false, null, false);
-        imageReceiver2.r0(hc.b(document), "120_120", hc.c(w10, document), "120_120", t5.d(document.thumbs, k6.f27796a7, 0.35f, false), 0L, null, null, 0);
-        this.h = new my0(t10.p(user), 14.0f, null);
+        imageReceiver2.r0(hc.b(document), "120_120", hc.c(w10, document), "120_120", t5.d(document.thumbs, l6.f27809a7, 0.35f, false), 0L, null, null, 0);
+        this.h = new ny0(t10.p(user), 14.0f, null);
     }
 
     @Override

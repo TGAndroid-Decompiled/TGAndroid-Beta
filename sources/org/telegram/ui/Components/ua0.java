@@ -1,58 +1,68 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Shader;
-import android.os.Build;
-import java.lang.ref.WeakReference;
 public final class ua0 {
-    public final Shader.TileMode f38587a;
-    public final Matrix f38588b = new Matrix();
-    public boolean f38589c;
-    public BitmapShader d;
-    public WeakReference f38590e;
+    public final Paint f38673a;
+    public final va0 f38674b;
+    public final va0 f38675c;
+    public final va0 d;
+    public final ta0 f38676e;
+    public final ta0 f38677f;
+    public final float[] f38678g;
+    public int h;
+    public float f38679i;
 
-    public ua0(Shader.TileMode tileMode) {
-        this.f38587a = tileMode;
+    public ua0() {
+        Paint paint = new Paint();
+        this.f38673a = paint;
+        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+        this.f38674b = new va0(tileMode);
+        this.f38675c = new va0(tileMode);
+        this.d = new va0(Shader.TileMode.REPEAT);
+        this.f38676e = new ta0(2131624361);
+        this.f38677f = new ta0(2131624360);
+        this.f38678g = new float[4];
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
     }
 
-    public final void a(boolean z9) {
-        BitmapShader bitmapShader;
-        int i7;
-        if (this.f38589c != z9) {
-            this.f38589c = z9;
-            if (Build.VERSION.SDK_INT >= 33 && (bitmapShader = this.d) != null) {
-                if (z9) {
-                    i7 = 1;
-                } else {
-                    i7 = 2;
-                }
-                bitmapShader.setFilterMode(i7);
+    public final Paint a(Bitmap bitmap, Bitmap bitmap2, Bitmap bitmap3, int i7, int i10) {
+        va0 va0Var = this.f38674b;
+        boolean b10 = va0Var.b(bitmap);
+        va0 va0Var2 = this.d;
+        boolean b11 = b10 | va0Var2.b(bitmap2);
+        Paint paint = this.f38673a;
+        if (i10 >= 0) {
+            va0 va0Var3 = this.f38675c;
+            if ((b11 | va0Var3.b(bitmap3)) || this.h != 1) {
+                this.h = 1;
+                ta0 ta0Var = this.f38676e;
+                ta0Var.f38335a.setInputBuffer("shaderPattern", va0Var2.d);
+                ta0Var.f38335a.setInputBuffer("shaderGradient", va0Var.d);
+                ta0Var.f38335a.setInputBuffer("shaderGradientSoftLight", va0Var3.d);
+                ta0Var.f38335a.setFloatUniform("transformGradient", ta0Var.f38336b);
+                ta0Var.f38335a.setFloatUniform("transformPattern", ta0Var.f38337c);
+                paint.setShader(ta0Var.f38335a);
+                return paint;
+            }
+        } else {
+            float a10 = c8.j9.a((i7 * (-i10)) / 25500.0f, 0.0f, 1.0f);
+            if (b11 || this.f38679i != a10 || this.h != 2) {
+                this.h = 2;
+                this.f38679i = a10;
+                ta0 ta0Var2 = this.f38677f;
+                ta0Var2.f38335a.setInputBuffer("shaderPattern", va0Var2.d);
+                ta0Var2.f38335a.setInputBuffer("shaderGradient", va0Var.d);
+                ta0Var2.f38335a.setFloatUniform("intensity", a10);
+                ta0Var2.f38335a.setFloatUniform("transformGradient", ta0Var2.f38336b);
+                ta0Var2.f38335a.setFloatUniform("transformPattern", ta0Var2.f38337c);
+                paint.setShader(ta0Var2.f38335a);
+                return paint;
             }
         }
-    }
-
-    public final boolean b(Bitmap bitmap) {
-        int i7;
-        WeakReference weakReference = this.f38590e;
-        if (weakReference != null && weakReference.get() == bitmap) {
-            return false;
-        }
-        this.f38590e = new WeakReference(bitmap);
-        Shader.TileMode tileMode = this.f38587a;
-        BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
-        this.d = bitmapShader;
-        bitmapShader.setLocalMatrix(this.f38588b);
-        if (Build.VERSION.SDK_INT >= 33) {
-            BitmapShader bitmapShader2 = this.d;
-            if (this.f38589c) {
-                i7 = 1;
-            } else {
-                i7 = 2;
-            }
-            bitmapShader2.setFilterMode(i7);
-        }
-        return true;
+        return paint;
     }
 }

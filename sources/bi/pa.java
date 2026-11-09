@@ -9,7 +9,7 @@ import java.util.Random;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import org.telegram.ui.Components.m20;
+import org.telegram.ui.Components.n20;
 public final class pa implements Runnable {
     public final int f4540a;
     public final Context f4541b;
@@ -26,28 +26,28 @@ public final class pa implements Runnable {
         Context context = this.f4541b;
         switch (i7) {
             case 0:
-                new m20(context).show();
+                new n20(context).show();
                 return;
             case 1:
-                vf.c.t(context, org.telegram.messenger.id.M0(2131744969, null));
+                vf.c.t(context, org.telegram.messenger.id.M0(2131744966, null));
                 return;
             case 2:
-                vf.c.t(context, org.telegram.messenger.id.M0(2131744969, null));
+                vf.c.t(context, org.telegram.messenger.id.M0(2131744966, null));
                 return;
             case 3:
-                vf.c.t(context, org.telegram.messenger.id.M0(2131747735, null));
+                vf.c.t(context, org.telegram.messenger.id.M0(2131747734, null));
                 return;
             case 4:
-                vf.c.t(context, org.telegram.messenger.id.M0(2131745022, null));
+                vf.c.t(context, org.telegram.messenger.id.M0(2131745019, null));
                 return;
             case 5:
-                vf.c.t(context, org.telegram.messenger.id.M0(2131744969, null));
+                vf.c.t(context, org.telegram.messenger.id.M0(2131744966, null));
                 return;
             case 6:
-                vf.c.t(context, org.telegram.messenger.id.M0(2131745047, null));
+                vf.c.t(context, org.telegram.messenger.id.M0(2131745044, null));
                 return;
             case 7:
-                new m20(context).show();
+                new n20(context).show();
                 return;
             case 8:
                 vf.c.t(context, org.telegram.messenger.id.M0(2131752506, null));
@@ -64,10 +64,10 @@ public final class pa implements Runnable {
                 new ThreadPoolExecutor(0, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue()).execute(new pa(context, 11));
                 return;
             case 11:
-                u4.d.s(context, new d3.b(3), u4.d.f56323a, false);
+                u4.d.s(context, new d3.b(3), u4.d.f56335a, false);
                 return;
             default:
-                new m20(context).show();
+                new n20(context).show();
                 return;
         }
     }

@@ -105,9 +105,9 @@ public final class pu extends fu {
             f24622d0 = new Paint(1);
         }
         Paint paint = f24622d0;
-        int i10 = org.telegram.ui.ActionBar.k6.f27860df;
+        int i10 = org.telegram.ui.ActionBar.l6.f27873df;
         kv kvVar = this.f22469a;
-        paint.setColor(org.telegram.ui.ActionBar.k6.w0(i10, kvVar.D));
+        paint.setColor(org.telegram.ui.ActionBar.l6.w0(i10, kvVar.D));
         boolean R = R();
         boolean D = kvVar.D();
         int i11 = 0;
@@ -132,7 +132,7 @@ public final class pu extends fu {
             canvas2 = canvas;
             canvas2.drawRect(-i7, 0.0f, i13 + i11, i12, f24622d0);
         }
-        Drawable drawable2 = org.telegram.ui.ActionBar.k6.S4[kvVar.E() ? 1 : 0];
+        Drawable drawable2 = org.telegram.ui.ActionBar.l6.S4[kvVar.E() ? 1 : 0];
         if (drawable2 != null) {
             int intrinsicWidth = drawable2.getIntrinsicWidth();
             int intrinsicHeight = drawable2.getIntrinsicHeight();

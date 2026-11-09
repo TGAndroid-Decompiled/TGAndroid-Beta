@@ -1,30 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class z50 implements View.OnLayoutChangeListener {
-    public final int f40896a;
-    public final Object f40897b;
+import android.view.KeyEvent;
+public final class z50 implements org.telegram.ui.ActionBar.e1 {
+    public final int f40910a;
+    public final l60 f40911b;
 
-    public z50(Object obj, int i7) {
-        this.f40896a = i7;
-        this.f40897b = obj;
+    public z50(l60 l60Var, int i7) {
+        this.f40910a = i7;
+        this.f40911b = l60Var;
     }
 
     @Override
-    public final void onLayoutChange(View view, int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16) {
-        switch (this.f40896a) {
+    public final void j(KeyEvent keyEvent) {
+        l60 l60Var;
+        g60 g60Var;
+        l60 l60Var2;
+        g60 g60Var2;
+        switch (this.f40910a) {
             case 0:
-                k60 k60Var = (k60) this.f40897b;
-                if (k60Var.D()) {
-                    k60Var.O();
+                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (g60Var = (l60Var = this.f40911b).f35607m) != null && g60Var.isShowing()) {
+                    l60Var.u();
                     return;
                 }
                 return;
             default:
-                fv0 fv0Var = (fv0) this.f40897b;
-                bi.md mdVar = fv0Var.h;
-                if (mdVar != null && mdVar.getLayout() != null) {
-                    fv0Var.F = mdVar.getLayout().getLineWidth(0);
+                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (g60Var2 = (l60Var2 = this.f40911b).f35607m) != null && g60Var2.isShowing()) {
+                    l60Var2.u();
                     return;
                 }
                 return;

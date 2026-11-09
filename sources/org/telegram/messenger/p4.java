@@ -56,7 +56,7 @@ public final class p4 implements RequestDelegate {
                 }
                 return;
             case 1:
-                g0.h3(new gy(0, (gz) this.d, tLObject, (TLRPC.TL_messages_requestUrlAuth) this.f24515e, (org.telegram.ui.an) this.f24516f, (String) this.f24513b, this.f24514c));
+                g0.h3(new gy(0, (gz) this.d, tLObject, (TLRPC.TL_messages_requestUrlAuth) this.f24515e, (org.telegram.ui.cn) this.f24516f, (String) this.f24513b, this.f24514c));
                 return;
             default:
                 gz gzVar = (gz) this.d;
@@ -104,10 +104,10 @@ public final class p4 implements RequestDelegate {
         this.f24513b = f2Var;
     }
 
-    public p4(gz gzVar, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, org.telegram.ui.an anVar, String str, boolean z9) {
+    public p4(gz gzVar, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, org.telegram.ui.cn cnVar, String str, boolean z9) {
         this.d = gzVar;
         this.f24515e = tL_messages_requestUrlAuth;
-        this.f24516f = anVar;
+        this.f24516f = cnVar;
         this.f24513b = str;
         this.f24514c = z9;
     }

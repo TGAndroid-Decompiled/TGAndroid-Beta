@@ -20,20 +20,20 @@ import org.telegram.ui.Components.wt;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.qy0;
 import org.telegram.ui.rc;
+import org.telegram.ui.ty0;
 public final class e implements c20 {
-    public final int f8951a;
+    public final int f8939a;
 
     public e(int i7) {
-        this.f8951a = i7;
+        this.f8939a = i7;
     }
 
     @Override
     public final void a(Object obj) {
         ij messageObject;
         ij messageObject2;
-        switch (this.f8951a) {
+        switch (this.f8939a) {
             case 0:
                 View view = (View) obj;
                 view.setAlpha(1.0f);
@@ -70,11 +70,11 @@ public final class e implements c20 {
                 return;
             case 7:
                 Boolean bool2 = (Boolean) obj;
-                int i7 = org.telegram.ui.ActionBar.b3.f27340r;
+                int i7 = org.telegram.ui.ActionBar.b3.f27342r;
                 return;
             case 8:
                 ArrayList arrayList = (ArrayList) obj;
-                int i10 = ma.f29579n;
+                int i10 = ma.f29583n;
                 return;
             case 9:
                 rc.f1((View) obj);
@@ -111,8 +111,8 @@ public final class e implements c20 {
                 View view7 = (View) obj;
                 if (view7 instanceof org.telegram.ui.Cells.f5) {
                     org.telegram.ui.Cells.f5 f5Var = (org.telegram.ui.Cells.f5) view7;
-                    f5Var.f29119b.invalidate();
-                    f5Var.f29120c.invalidate();
+                    f5Var.f29123b.invalidate();
+                    f5Var.f29124c.invalidate();
                     return;
                 } else if (view7 instanceof kg.p1) {
                     ((kg.p1) view7).f17479c.invalidate();
@@ -146,7 +146,7 @@ public final class e implements c20 {
                 if (l10 != null && l10.longValue() != Long.MAX_VALUE) {
                     org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
                     if (T != null) {
-                        T.presentFragment(ProfileActivity.A4(l10.longValue()));
+                        T.presentFragment(ProfileActivity.D4(l10.longValue()));
                         return;
                     }
                     return;
@@ -167,12 +167,12 @@ public final class e implements c20 {
                 return;
             case 22:
                 Boolean bool3 = (Boolean) obj;
-                RectF rectF = ProfileActivity.S6;
+                RectF rectF = ProfileActivity.V6;
                 return;
             case 23:
                 HashSet hashSet = (HashSet) obj;
                 String str2 = id.E0().B.f22400f;
-                hashSet.addAll(qy0.d0());
+                hashSet.addAll(ty0.d0());
                 SharedPreferences.Editor edit = qp.e1().edit();
                 if (hashSet.size() == 1 && TextUtils.equals((CharSequence) hashSet.iterator().next(), str2)) {
                     edit.remove("translate_button_restricted_languages");
@@ -180,7 +180,7 @@ public final class e implements c20 {
                     edit.putStringSet("translate_button_restricted_languages", hashSet);
                 }
                 edit.putInt("translate_button_restricted_languages_version", 2).apply();
-                qy0.f49327s = false;
+                ty0.f50258s = false;
                 for (int i11 = 0; i11 < 4; i11++) {
                     try {
                         qp.s1(i11).f24896s7.g();
@@ -195,13 +195,13 @@ public final class e implements c20 {
                 return;
             case 25:
                 String str3 = (String) obj;
-                ArrayList arrayList2 = org.telegram.ui.Wallet.u2.f43196a;
+                ArrayList arrayList2 = org.telegram.ui.Wallet.t2.f43114a;
                 return;
             case 26:
-                ((org.telegram.ui.Wallet.s2) obj).a();
+                ((org.telegram.ui.Wallet.r2) obj).a();
                 return;
             case 27:
-                ((org.telegram.ui.Wallet.s2) obj).b();
+                ((org.telegram.ui.Wallet.r2) obj).b();
                 return;
             case 28:
                 View view11 = (View) obj;
@@ -221,6 +221,6 @@ public final class e implements c20 {
     }
 
     public e(rc rcVar) {
-        this.f8951a = 9;
+        this.f8939a = 9;
     }
 }

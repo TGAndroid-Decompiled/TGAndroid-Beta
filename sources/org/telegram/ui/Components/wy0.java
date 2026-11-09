@@ -1,42 +1,61 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.ViewSwitcher;
-public class wy0 extends ViewSwitcher {
-    public final void a(CharSequence charSequence, boolean z9, boolean z10) {
-        if (z10 || !TextUtils.equals(charSequence, getCurrentView().getText())) {
-            if (z9) {
-                getNextView().setText(charSequence);
-                showNext();
-                return;
+import android.text.TextPaint;
+import android.text.style.MetricAffectingSpan;
+public final class wy0 extends MetricAffectingSpan {
+    public final int f40237a;
+    public final vy0 f40238b;
+
+    public wy0(vy0 vy0Var, int i7) {
+        this.f40238b = vy0Var;
+        if (i7 > 0) {
+            this.f40237a = i7;
+        }
+    }
+
+    public final void a(TextPaint textPaint) {
+        vy0 vy0Var = this.f40238b;
+        if (c8.zc.a(vy0Var.f39836a, 49152)) {
+            float textSize = textPaint.getTextSize();
+            textPaint.setTextSize(0.75f * textSize);
+            if (c8.zc.a(vy0Var.f39836a, 32768)) {
+                textPaint.baselineShift -= (int) (textSize * 0.35f);
+            } else if (c8.zc.a(vy0Var.f39836a, 16384)) {
+                textPaint.baselineShift += (int) (textSize * 0.12f);
             }
-            getCurrentView().setText(charSequence);
         }
     }
 
-    @Override
-    public final void addView(View view, int i7, ViewGroup.LayoutParams layoutParams) {
-        if (view instanceof TextView) {
-            super.addView(view, i7, layoutParams);
-            return;
+    public final vy0 b() {
+        return this.f40238b;
+    }
+
+    public final boolean c() {
+        if ((this.f40238b.f39836a & 256) > 0) {
+            return true;
         }
-        throw new IllegalArgumentException();
-    }
-
-    public void setText(CharSequence charSequence) {
-        a(charSequence, true, false);
+        return false;
     }
 
     @Override
-    public TextView getCurrentView() {
-        return (TextView) super.getCurrentView();
+    public final void updateDrawState(TextPaint textPaint) {
+        int i7 = this.f40237a;
+        if (i7 != 0) {
+            textPaint.setTextSize(i7);
+        }
+        a(textPaint);
+        textPaint.setFlags(textPaint.getFlags() | 128);
+        this.f40238b.a(textPaint);
     }
 
     @Override
-    public TextView getNextView() {
-        return (TextView) super.getNextView();
+    public final void updateMeasureState(TextPaint textPaint) {
+        int i7 = this.f40237a;
+        if (i7 != 0) {
+            textPaint.setTextSize(i7);
+        }
+        a(textPaint);
+        textPaint.setFlags(textPaint.getFlags() | 128);
+        this.f40238b.a(textPaint);
     }
 }

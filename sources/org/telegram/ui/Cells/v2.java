@@ -9,12 +9,12 @@ import android.widget.TextView;
 import org.telegram.messenger.id;
 import org.telegram.ui.Components.RadioButton;
 public final class v2 extends FrameLayout {
-    public int f30620a;
-    public TextView f30621b;
-    public TextView f30622c;
+    public int f30624a;
+    public TextView f30625b;
+    public TextView f30626c;
     public RadioButton d;
-    public boolean f30623e;
-    public int f30624f;
+    public boolean f30627e;
+    public int f30628f;
 
     public final void a(boolean z9, boolean z10) {
         float f10;
@@ -22,8 +22,8 @@ public final class v2 extends FrameLayout {
         float f12;
         float f13;
         RadioButton radioButton = this.d;
-        TextView textView = this.f30622c;
-        TextView textView2 = this.f30621b;
+        TextView textView = this.f30626c;
+        TextView textView2 = this.f30625b;
         setEnabled(z9);
         float f14 = 0.5f;
         if (z10) {
@@ -73,8 +73,8 @@ public final class v2 extends FrameLayout {
         FrameLayout.LayoutParams d2;
         int i10;
         float f11;
-        TextView textView = this.f30621b;
-        TextView textView2 = this.f30622c;
+        TextView textView = this.f30625b;
+        TextView textView2 = this.f30626c;
         float f12 = 61.0f;
         int i11 = 3;
         if (textView2.getVisibility() == 0) {
@@ -86,12 +86,12 @@ public final class v2 extends FrameLayout {
             }
             int i12 = i10 | 48;
             if (z9) {
-                f11 = this.f30624f;
+                f11 = this.f30628f;
             } else {
                 f11 = 61.0f;
             }
             if (!z9) {
-                f12 = this.f30624f;
+                f12 = this.f30628f;
             }
             d = c8.ha.d(-1, -1.0f, i12, f11, 0.0f, f12, 0.0f);
         } else {
@@ -105,10 +105,10 @@ public final class v2 extends FrameLayout {
             if (z10) {
                 f10 = 61.0f;
             } else {
-                f10 = this.f30624f;
+                f10 = this.f30628f;
             }
             if (z10) {
-                f12 = this.f30624f;
+                f12 = this.f30628f;
             }
             d = c8.ha.d(-1, -1.0f, i13, f10, 0.0f, f12, 0.0f);
         }
@@ -131,30 +131,30 @@ public final class v2 extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         float f10;
-        if (this.f30623e) {
+        if (this.f30627e) {
             float f11 = 0.0f;
             if (id.f23157a0) {
                 f10 = 0.0f;
             } else {
-                f10 = this.f30624f;
+                f10 = this.f30628f;
             }
             float L = org.telegram.messenger.g0.L(f10);
             float height = getHeight() - 1;
             int measuredWidth = getMeasuredWidth();
             if (id.f23157a0) {
-                f11 = this.f30624f;
+                f11 = this.f30628f;
             }
-            canvas.drawLine(L, height, measuredWidth - org.telegram.messenger.g0.L(f11), getHeight() - 1, org.telegram.ui.ActionBar.k6.f27975k0);
+            canvas.drawLine(L, height, measuredWidth - org.telegram.messenger.g0.L(f11), getHeight() - 1, org.telegram.ui.ActionBar.l6.f27988k0);
         }
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
         int i11;
-        setMeasuredDimension(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.L(50.0f) + (this.f30623e ? 1 : 0));
+        setMeasuredDimension(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.L(50.0f) + (this.f30627e ? 1 : 0));
         int measuredWidth = (getMeasuredWidth() - getPaddingLeft()) - getPaddingRight();
-        int i12 = this.f30624f + 61;
-        TextView textView = this.f30622c;
+        int i12 = this.f30628f + 61;
+        TextView textView = this.f30626c;
         if (textView.getVisibility() == 0) {
             i11 = 12;
         } else {
@@ -166,13 +166,13 @@ public final class v2 extends FrameLayout {
             textView.measure(View.MeasureSpec.makeMeasureSpec(L, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
             L = org.telegram.messenger.camera.q.w(12.0f, textView.getMeasuredWidth(), L);
         }
-        this.f30621b.measure(View.MeasureSpec.makeMeasureSpec(L, 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+        this.f30625b.measure(View.MeasureSpec.makeMeasureSpec(L, 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
     }
 
     public void setHorizontalPadding(int i7) {
-        TextView textView = this.f30622c;
-        if (this.f30624f != i7) {
-            this.f30624f = i7;
+        TextView textView = this.f30626c;
+        if (this.f30628f != i7) {
+            this.f30628f = i7;
             float f10 = i7;
             ((ViewGroup.MarginLayoutParams) textView.getLayoutParams()).leftMargin = org.telegram.messenger.g0.L(f10);
             ((ViewGroup.MarginLayoutParams) textView.getLayoutParams()).rightMargin = org.telegram.messenger.g0.L(f10);
@@ -181,6 +181,6 @@ public final class v2 extends FrameLayout {
     }
 
     public void setTextColor(int i7) {
-        this.f30621b.setTextColor(i7);
+        this.f30625b.setTextColor(i7);
     }
 }

@@ -1,146 +1,45 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.Layout;
-import android.view.MotionEvent;
-import android.widget.TextView;
-import java.util.HashSet;
-public class db0 extends TextView implements org.telegram.ui.ActionBar.a6 {
-    public final org.telegram.ui.Cells.y f45038a;
-    public final org.telegram.ui.Components.a80 f45039b;
-    public int f45040c;
-    public final ce0 d;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class db0 implements Runnable {
+    public final int f44904a;
+    public final rc0 f44905b;
 
-    public db0(ce0 ce0Var, Context context) {
-        super(context);
-        this.d = ce0Var;
-        int i7 = org.telegram.ui.ActionBar.k6.I6;
-        org.telegram.ui.Cells.y h02 = org.telegram.ui.ActionBar.k6.h0(org.telegram.ui.ActionBar.k6.r1(0.1f, org.telegram.ui.ActionBar.k6.x0(null, i7, false)), 7, -1);
-        this.f45038a = h02;
-        org.telegram.ui.Components.a80 a80Var = new org.telegram.ui.Components.a80();
-        this.f45039b = a80Var;
-        org.telegram.ui.ActionBar.q6 q6Var = org.telegram.ui.ActionBar.r6.f28478a;
-        this.f45040c = org.telegram.ui.ActionBar.k6.r1(0.1f, org.telegram.ui.ActionBar.k6.x0(null, i7, false));
-        h02.setCallback(this);
-        a80Var.D = true;
-        a80Var.f31749u = 0.8f;
-    }
-
-    public boolean a() {
-        return false;
+    public db0(rc0 rc0Var, int i7) {
+        this.f44904a = i7;
+        this.f44905b = rc0Var;
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.I6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.f28269ze));
-    }
-
-    public boolean b() {
-        return true;
-    }
-
-    public final void c() {
-        CharSequence text;
-        Layout layout = getLayout();
-        if (layout == null || (text = layout.getText()) == null) {
-            return;
+    public final void run() {
+        switch (this.f44904a) {
+            case 0:
+                this.f44905b.M.m();
+                return;
+            case 1:
+                rc0 rc0Var = this.f44905b;
+                rc0Var.N = null;
+                rc0Var.O = null;
+                rc0Var.o(true);
+                rc0Var.f49444e.j(null, null, rc0Var.f49445f, null);
+                yc ycVar = rc0Var.f49446n;
+                org.telegram.ui.Components.ah0 ah0Var = rc0Var.J;
+                ycVar.setAnimation(ah0Var);
+                ah0Var.M(0);
+                rc0Var.L = true;
+                return;
+            case 2:
+                this.f44905b.L = true;
+                return;
+            default:
+                EditTextBoldCursor editTextBoldCursor = this.f44905b.f49443c;
+                if (editTextBoldCursor != null) {
+                    editTextBoldCursor.requestFocus();
+                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
+                    org.telegram.messenger.g0.K3(editTextBoldCursor);
+                    return;
+                }
+                return;
         }
-        org.telegram.ui.Components.r70 r70Var = new org.telegram.ui.Components.r70(0);
-        r70Var.f37545q = org.telegram.messenger.g0.L(3.0f);
-        r70Var.f37546r = org.telegram.messenger.g0.L(6.0f);
-        int length = text.length();
-        r70Var.d(layout, 0, 0.0f);
-        layout.getSelectionPath(0, length, r70Var);
-        RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set(r70Var.f37547s, r70Var.f37549u, r70Var.f37548t, r70Var.v);
-        this.f45038a.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-        org.telegram.ui.Components.a80 a80Var = this.f45039b;
-        a80Var.f31752y = r70Var;
-        a80Var.k(4.0f);
-        int themedColor = this.d.getThemedColor(org.telegram.ui.ActionBar.k6.f28269ze);
-        a80Var.g(org.telegram.ui.ActionBar.k6.r1(0.85f, themedColor), org.telegram.ui.ActionBar.k6.r1(2.0f, themedColor), org.telegram.ui.ActionBar.k6.r1(3.5f, themedColor), org.telegram.ui.ActionBar.k6.r1(6.0f, themedColor));
-        a80Var.l();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float paddingTop;
-        canvas.save();
-        if ((getGravity() & 16) != 0 && getLayout() != null) {
-            paddingTop = ((((getHeight() - getPaddingTop()) - getPaddingBottom()) - getLayout().getHeight()) / 2.0f) + getPaddingTop();
-        } else {
-            paddingTop = getPaddingTop();
-        }
-        canvas.translate(getPaddingLeft(), paddingTop);
-        this.f45038a.draw(canvas);
-        canvas.restore();
-        super.onDraw(canvas);
-        boolean a10 = a();
-        org.telegram.ui.Components.a80 a80Var = this.f45039b;
-        if (!a10 && !a80Var.d()) {
-            return;
-        }
-        canvas.save();
-        canvas.translate(getPaddingLeft(), paddingTop);
-        a80Var.draw(canvas);
-        canvas.restore();
-        invalidate();
-    }
-
-    @Override
-    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        super.onLayout(z9, i7, i10, i11, i12);
-        c();
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean b10 = b();
-        org.telegram.ui.Cells.y yVar = this.f45038a;
-        if (b10 && motionEvent.getAction() == 0) {
-            yVar.setHotspot(motionEvent.getX(), motionEvent.getY());
-            yVar.setState(new int[]{16842910, 16842919});
-        } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 1) {
-            yVar.setState(new int[0]);
-        }
-        return super.onTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        super.setText(charSequence, bufferType);
-        c();
-    }
-
-    @Override
-    public final void updateColors() {
-        try {
-            int r12 = org.telegram.ui.ActionBar.k6.r1(0.1f, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.I6, false));
-            org.telegram.ui.Cells.y yVar = this.f45038a;
-            if (yVar != null && r12 != this.f45040c) {
-                org.telegram.ui.ActionBar.k6.H1(yVar, r12, true);
-            }
-            this.f45040c = r12;
-            org.telegram.ui.Components.a80 a80Var = this.f45039b;
-            if (a80Var != null) {
-                int themedColor = this.d.getThemedColor(org.telegram.ui.ActionBar.k6.f28269ze);
-                a80Var.g(org.telegram.ui.ActionBar.k6.r1(0.85f, themedColor), org.telegram.ui.ActionBar.k6.r1(2.0f, themedColor), org.telegram.ui.ActionBar.k6.r1(3.5f, themedColor), org.telegram.ui.ActionBar.k6.r1(6.0f, themedColor));
-            }
-            invalidate();
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
-        }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f45038a && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
     }
 }

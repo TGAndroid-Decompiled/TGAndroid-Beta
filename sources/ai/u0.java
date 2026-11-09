@@ -8,7 +8,7 @@ import org.telegram.messenger.v10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Cells.m8;
 import org.telegram.ui.Components.hc;
-import org.telegram.ui.oq;
+import org.telegram.ui.qq;
 public final class u0 implements v10 {
     public final int f1649a;
     public final boolean f1650b;
@@ -55,7 +55,7 @@ public final class u0 implements v10 {
                             if (z11 == z10) {
                                 if (str != null) {
                                     l1Var.getClass();
-                                    l1Var.d1(2131232436, id.M0(2131751106, null), null);
+                                    l1Var.d1(2131232436, id.M0(2131751105, null), null);
                                     return;
                                 }
                                 return;
@@ -65,12 +65,12 @@ public final class u0 implements v10 {
                         y0Var.f().edit().putBoolean("qrNoPaidPermanent", false).apply();
                         if (l1Var.f1524v0) {
                             if (str != null) {
-                                str2 = id.M0(2131751106, null);
+                                str2 = id.M0(2131751105, null);
                             }
                             l1Var.U0(str2);
                             return;
                         } else if (str != null) {
-                            l1Var.d1(2131232436, id.M0(2131751106, null), null);
+                            l1Var.d1(2131232436, id.M0(2131751105, null), null);
                             return;
                         } else {
                             return;
@@ -96,18 +96,18 @@ public final class u0 implements v10 {
                 }
                 return;
             default:
-                oq oqVar = (oq) lsVar;
+                qq qqVar = (qq) lsVar;
                 m8 m8Var = (m8) obj3;
                 TLRPC.Updates updates = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 if (updates != null) {
-                    oqVar.getMessagesController().O3(updates, false);
+                    qqVar.getMessagesController().O3(updates, false);
                     return;
                 }
-                oqVar.getClass();
+                qqVar.getClass();
                 if (tL_error2 != null) {
                     m8Var.setChecked(z10);
-                    hc.a0(oqVar).f0(tL_error2, false);
+                    hc.a0(qqVar).f0(tL_error2, false);
                     return;
                 }
                 return;

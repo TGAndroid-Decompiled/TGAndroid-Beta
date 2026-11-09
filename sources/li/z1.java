@@ -7,7 +7,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.l6;
 public final class z1 extends Drawable {
     public final Context f19040a;
     public final Drawable f19041b;
@@ -19,7 +19,7 @@ public final class z1 extends Drawable {
 
     public z1(Context context, int i7) {
         Drawable h = jg.g.h(context, i7);
-        this.d = k6.f27852d6;
+        this.d = l6.f27865d6;
         this.f19045g = true;
         this.f19040a = context;
         this.f19041b = h;
@@ -44,7 +44,7 @@ public final class z1 extends Drawable {
         if (this.f19045g) {
             int L = org.telegram.messenger.g0.L(9.0f) + centerX;
             int L2 = org.telegram.messenger.g0.L(9.0f) + centerY;
-            int x02 = k6.x0(null, this.d, false);
+            int x02 = l6.x0(null, this.d, false);
             Drawable drawable2 = this.f19042c;
             Context context = this.f19040a;
             if (drawable2 == null) {

@@ -33,8 +33,8 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.ui.Components.AnimatedFileNative;
-import org.telegram.ui.Components.b90;
-import org.telegram.ui.Components.g31;
+import org.telegram.ui.Components.c90;
+import org.telegram.ui.Components.h31;
 import org.telegram.ui.Components.hc;
 import org.telegram.ui.LaunchActivity;
 public final class x1 implements Runnable {
@@ -241,17 +241,17 @@ public final class x1 implements Runnable {
                 }
                 s8Var.M0();
                 if (s8Var.Q1) {
-                    s8Var.N0(new q8(1, s8Var.f28616a, (ArrayList) null), new di.w3(s8Var, 1), false);
+                    s8Var.N0(new q8(1, s8Var.f28621a, (ArrayList) null), new di.x3(s8Var, 1), false);
                     return;
                 }
                 s8Var.M0();
-                s8Var.f12803i1.E(0);
+                s8Var.f12802i1.E(0);
                 return;
             case 7:
                 ((e7) this.f13073b).O0 = (File) this.d;
-                o9 o9Var = ((va) this.f13074c).f12947d1;
-                if (o9Var != null) {
-                    o9Var.f11667b.f37190f3.O(false);
+                n9 n9Var = ((va) this.f13074c).f12947d1;
+                if (n9Var != null) {
+                    n9Var.f11667b.f37556f3.O(false);
                     return;
                 }
                 return;
@@ -312,11 +312,11 @@ public final class x1 implements Runnable {
                 }
             case 10:
                 m9.e0 e0Var2 = (m9.e0) this.f13074c;
-                org.telegram.ui.web.w wVar = (org.telegram.ui.web.w) this.f13073b;
+                org.telegram.ui.web.s sVar = (org.telegram.ui.web.s) this.f13073b;
                 p4.m1 m1Var = (p4.m1) this.d;
                 try {
                     if (!(e0Var2.f19989a instanceof m9.a)) {
-                        wVar.run();
+                        sVar.run();
                         e0Var2.m(m1Var);
                         return;
                     }
@@ -465,11 +465,11 @@ public final class x1 implements Runnable {
                     }
                     if (!i1Var.f16791o0 && (arrayList = i1Var.A0) != null && !arrayList.isEmpty()) {
                         i1Var.H();
-                        b90 b90Var = i1Var.V;
+                        c90 c90Var = i1Var.V;
                         if (i1Var.K() > 0) {
                             z10 = true;
                         }
-                        b90Var.a(z10);
+                        c90Var.a(z10);
                         i1Var.f16791o0 = true;
                     }
                     if (i12 != i13) {
@@ -499,12 +499,12 @@ public final class x1 implements Runnable {
                 String str5 = ((TLRPC.TL_messages_searchStickerSets) this.f13073b).f27070q;
                 jg.d2 d2Var = b2Var.f16672a;
                 String str6 = d2Var.R;
-                g31 g31Var = d2Var.f16700e;
+                h31 h31Var = d2Var.f16700e;
                 if (str5.equals(str6)) {
                     b2Var.a();
-                    g31Var.f33809b.h.getProgressDrawable().f36677e = false;
+                    h31Var.f34167b.h.getProgressDrawable().f36765e = false;
                     d2Var.N = 0;
-                    g31Var.b(true);
+                    h31Var.b(true);
                     d2Var.E.addAll(tL_messages_foundStickerSets.sets);
                     d2Var.f();
                     return;
@@ -520,7 +520,7 @@ public final class x1 implements Runnable {
                     return;
                 } else if (tLObject5 instanceof TLRPC.TL_boolFalse) {
                     cVar.f17318a.b(false);
-                    org.telegram.messenger.k5.p(null, 2131743882, hc.a0(cVar), null);
+                    org.telegram.messenger.k5.p(null, 2131743879, hc.a0(cVar), null);
                     return;
                 } else {
                     cVar.finishFragment();
@@ -536,7 +536,7 @@ public final class x1 implements Runnable {
                     return;
                 } else if (tLObject6 instanceof TLRPC.TL_boolFalse) {
                     mVar.f17429f.b(false);
-                    org.telegram.messenger.k5.p(null, 2131743882, hc.a0(mVar), null);
+                    org.telegram.messenger.k5.p(null, 2131743879, hc.a0(mVar), null);
                     return;
                 } else {
                     if (mVar.E != null) {
@@ -568,7 +568,7 @@ public final class x1 implements Runnable {
             case 26:
                 kg.i0 i0Var = (kg.i0) this.f13074c;
                 TL_account.TL_businessBotRecipients tL_businessBotRecipients = (TL_account.TL_businessBotRecipients) this.d;
-                kg.f.a(i0Var.f28616a).b();
+                kg.f.a(i0Var.f28621a).b();
                 i0Var.dismiss();
                 ((TL_account.TL_connectedBot) this.f13073b).recipients = tL_businessBotRecipients;
                 org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
@@ -587,7 +587,7 @@ public final class x1 implements Runnable {
                     return;
                 } else if (tLObject7 instanceof TLRPC.TL_boolFalse) {
                     s0Var.f17523a.b(false);
-                    org.telegram.messenger.k5.p(null, 2131743882, hc.a0(s0Var), null);
+                    org.telegram.messenger.k5.p(null, 2131743879, hc.a0(s0Var), null);
                     return;
                 } else {
                     s0Var.finishFragment();

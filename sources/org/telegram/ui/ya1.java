@@ -1,124 +1,135 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.content.Context;
-import android.graphics.Rect;
-import android.os.Build;
-import android.util.Property;
-import android.view.View;
-import android.widget.ScrollView;
-import android.widget.TextView;
-public final class ya1 extends ScrollView {
-    public final int[] f52181a;
-    public final Rect f52182b;
-    public boolean f52183c;
-    public final za1 d;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+public final class ya1 implements TextWatcher {
+    public final int f52068a;
+    public final bb1 f52069b;
 
-    public ya1(za1 za1Var, Context context) {
-        super(context);
-        this.d = za1Var;
-        this.f52181a = new int[2];
-        this.f52182b = new Rect();
-        this.f52183c = true;
+    public ya1(bb1 bb1Var, int i7) {
+        this.f52068a = i7;
+        this.f52069b = bb1Var;
     }
 
     @Override
-    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        this.f52183c = false;
-        super.onLayout(z9, i7, i10, i11, i12);
-    }
-
-    @Override
-    public final void onScrollChanged(int i7, int i10, int i11, int i12) {
-        org.telegram.ui.ActionBar.k kVar;
-        boolean z9;
-        boolean z10;
-        Integer num;
-        float f10;
-        org.telegram.ui.ActionBar.k kVar2;
-        super.onScrollChanged(i7, i10, i11, i12);
-        za1 za1Var = this.d;
-        TextView textView = za1Var.f52500c;
-        if (textView != null) {
-            int[] iArr = this.f52181a;
-            textView.getLocationOnScreen(iArr);
-            int measuredHeight = za1Var.f52500c.getMeasuredHeight() + iArr[1];
-            kVar = ((org.telegram.ui.ActionBar.f2) za1Var).actionBar;
-            if (measuredHeight < kVar.getBottom()) {
-                z9 = true;
-            } else {
-                z9 = false;
-            }
-            if (za1Var.f52500c.getTag() == null) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            if (z9 != z10) {
-                TextView textView2 = za1Var.f52500c;
-                if (z9) {
-                    num = null;
-                } else {
-                    num = 1;
+    public final void afterTextChanged(Editable editable) {
+        org.telegram.ui.Components.ah0 ah0Var;
+        switch (this.f52068a) {
+            case 0:
+                this.f52069b.getClass();
+                return;
+            case 1:
+                bb1 bb1Var = this.f52069b;
+                if (!bb1Var.M) {
+                    int i7 = bb1Var.O;
+                    if (i7 == 0) {
+                        org.telegram.ui.Components.ah0 animatedDrawable = bb1Var.f43950a.getAnimatedDrawable();
+                        if (bb1Var.f43965n.length() > 0) {
+                            if (bb1Var.f43965n.getTransformationMethod() == null) {
+                                org.telegram.ui.Components.ah0[] ah0VarArr = bb1Var.f43960f0;
+                                if (animatedDrawable != ah0VarArr[3] && animatedDrawable != (ah0Var = ah0VarArr[5])) {
+                                    bb1Var.f43950a.setAnimation(ah0Var);
+                                    bb1Var.f43960f0[5].T(false, 0.0f);
+                                    bb1Var.f43950a.d();
+                                    return;
+                                }
+                                return;
+                            }
+                            org.telegram.ui.Components.ah0[] ah0VarArr2 = bb1Var.f43960f0;
+                            if (animatedDrawable != ah0VarArr2[3]) {
+                                org.telegram.ui.Components.ah0 ah0Var2 = ah0VarArr2[2];
+                                if (animatedDrawable != ah0Var2) {
+                                    bb1Var.f43950a.setAnimation(ah0Var2);
+                                    bb1Var.f43960f0[2].P(49);
+                                    bb1Var.f43960f0[2].T(false, 0.0f);
+                                    bb1Var.f43950a.d();
+                                    return;
+                                } else if (ah0Var2.f31820a0 < 49) {
+                                    ah0Var2.P(49);
+                                    return;
+                                } else {
+                                    return;
+                                }
+                            }
+                            return;
+                        }
+                        if (animatedDrawable != bb1Var.f43960f0[3] || bb1Var.f43965n.getTransformationMethod() != null) {
+                            org.telegram.ui.Components.ah0[] ah0VarArr3 = bb1Var.f43960f0;
+                            if (animatedDrawable != ah0VarArr3[5]) {
+                                ah0VarArr3[2].P(-1);
+                                org.telegram.ui.Components.ah0 ah0Var3 = bb1Var.f43960f0[2];
+                                if (animatedDrawable != ah0Var3) {
+                                    bb1Var.f43950a.setAnimation(ah0Var3);
+                                    bb1Var.f43960f0[2].N(49, false, false);
+                                }
+                                bb1Var.f43950a.d();
+                                return;
+                            }
+                        }
+                        bb1Var.f43950a.setAnimation(bb1Var.f43960f0[4]);
+                        bb1Var.f43960f0[4].T(false, 0.0f);
+                        bb1Var.f43950a.d();
+                        return;
+                    } else if (i7 == 1) {
+                        try {
+                            bb1Var.f43960f0[6].P((int) ((Math.min(1.0f, bb1Var.f43965n.getLayout().getLineWidth(0) / bb1Var.f43965n.getWidth()) * 142.0f) + 18.0f));
+                            bb1Var.f43950a.d();
+                            return;
+                        } catch (Exception e10) {
+                            org.telegram.messenger.a8.g(e10, true);
+                            return;
+                        }
+                    } else if (i7 == 8 && editable.length() > 0) {
+                        bb1Var.M0(true);
+                        return;
+                    } else {
+                        return;
+                    }
                 }
-                textView2.setTag(num);
-                AnimatorSet animatorSet = za1Var.K;
-                if (animatorSet != null) {
-                    animatorSet.cancel();
-                    za1Var.K = null;
+                return;
+            default:
+                bb1 bb1Var2 = this.f52069b;
+                if (bb1Var2.F) {
+                    if (bb1Var2.E.getVisibility() != 0 && !TextUtils.isEmpty(editable)) {
+                        org.telegram.messenger.g0.Z3(bb1Var2.E, true, 0.1f, true, true);
+                        return;
+                    } else if (bb1Var2.E.getVisibility() != 8 && TextUtils.isEmpty(editable)) {
+                        org.telegram.messenger.g0.Z3(bb1Var2.E, false, 0.1f, true, true);
+                        return;
+                    } else {
+                        return;
+                    }
                 }
-                AnimatorSet animatorSet2 = new AnimatorSet();
-                za1Var.K = animatorSet2;
-                fi.p5 p5Var = za1Var.D;
-                float f11 = 0.0f;
-                if (z9) {
-                    f10 = 1.0f;
-                } else {
-                    f10 = 0.0f;
-                }
-                float[] fArr = {f10};
-                Property property = View.ALPHA;
-                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(p5Var, property, fArr);
-                kVar2 = ((org.telegram.ui.ActionBar.f2) za1Var).actionBar;
-                org.telegram.ui.ActionBar.k5 titleTextView = kVar2.getTitleTextView();
-                if (z9) {
-                    f11 = 1.0f;
-                }
-                animatorSet2.playTogether(ofFloat, ObjectAnimator.ofFloat(titleTextView, property, f11));
-                za1Var.K.setDuration(150L);
-                za1Var.K.addListener(new s81(this, 2));
-                za1Var.K.start();
-            }
+                return;
         }
     }
 
     @Override
-    public final void requestChildFocus(View view, View view2) {
-        if (Build.VERSION.SDK_INT < 29 && view2 != null && !this.f52183c) {
-            scrollToDescendant(view2);
-        }
-        super.requestChildFocus(view, view2);
+    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+        int i12 = this.f52068a;
     }
 
     @Override
-    public final void requestLayout() {
-        this.f52183c = true;
-        super.requestLayout();
+    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+        int i12 = this.f52068a;
     }
 
-    @Override
-    public final void scrollToDescendant(View view) {
-        Rect rect = this.f52182b;
-        view.getDrawingRect(rect);
-        offsetDescendantRectToMyCoords(view, rect);
-        rect.bottom = org.telegram.messenger.g0.L(120.0f) + rect.bottom;
-        int computeScrollDeltaToGetChildRectOnScreen = computeScrollDeltaToGetChildRectOnScreen(rect);
-        if (computeScrollDeltaToGetChildRectOnScreen < 0) {
-            computeScrollDeltaToGetChildRectOnScreen -= (getMeasuredHeight() - view.getMeasuredHeight()) / 2;
-        }
-        if (computeScrollDeltaToGetChildRectOnScreen != 0) {
-            smoothScrollBy(0, computeScrollDeltaToGetChildRectOnScreen);
-        }
+    private final void a(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void b(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void c(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void d(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void e(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void f(int i7, int i10, int i11, CharSequence charSequence) {
     }
 }

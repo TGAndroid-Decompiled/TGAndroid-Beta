@@ -8,7 +8,7 @@ import org.telegram.messenger.ej;
 import org.telegram.messenger.i6;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ix;
-import org.telegram.ui.Components.t31;
+import org.telegram.ui.Components.u31;
 public final class o implements ix {
     public final p f18733a;
 
@@ -157,7 +157,7 @@ public final class o implements ix {
     }
 
     @Override
-    public final void o(t31 t31Var) {
+    public final void o(u31 u31Var) {
     }
 
     @Override

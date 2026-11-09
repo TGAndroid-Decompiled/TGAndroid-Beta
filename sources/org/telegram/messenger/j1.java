@@ -12,9 +12,9 @@ import org.telegram.tgnet.RequestTimeDelegate;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.WriteToSocketDelegate;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.za1;
-public final class j1 implements ResultCallback, WriteToSocketDelegate, OnTokenCanceledListener, OnSuccessListener, OnFailureListener, fi.c7, lc, RequestTimeDelegate, im0, org.telegram.ui.ActionBar.r1 {
+import org.telegram.ui.Components.jm0;
+import org.telegram.ui.bb1;
+public final class j1 implements ResultCallback, WriteToSocketDelegate, OnTokenCanceledListener, OnSuccessListener, OnFailureListener, fi.c7, lc, RequestTimeDelegate, jm0, org.telegram.ui.ActionBar.r1 {
     public final int f23464a;
     public final Object f23465b;
 
@@ -62,7 +62,7 @@ public final class j1 implements ResultCallback, WriteToSocketDelegate, OnTokenC
 
     @Override
     public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        ((org.telegram.ui.an) this.f23465b).presentFragment(new za1(6, null));
+        ((org.telegram.ui.cn) this.f23465b).presentFragment(new bb1(6, null));
     }
 
     @Override

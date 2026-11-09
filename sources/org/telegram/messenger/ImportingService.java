@@ -77,14 +77,14 @@ public class ImportingService extends Service implements ls {
             while (true) {
                 if (i12 < 4) {
                     if (gz.C(i12).D.m() != 0) {
-                        this.f21237a.p(id.M0(2131749268, null));
-                        this.f21237a.f(id.M0(2131749268, null));
+                        this.f21237a.p(id.M0(2131749267, null));
+                        this.f21237a.f(id.M0(2131749267, null));
                         break;
                     }
                     i12++;
                 } else {
-                    this.f21237a.p(id.M0(2131749267, null));
-                    this.f21237a.f(id.M0(2131749267, null));
+                    this.f21237a.p(id.M0(2131749266, null));
+                    this.f21237a.f(id.M0(2131749266, null));
                     break;
                 }
             }

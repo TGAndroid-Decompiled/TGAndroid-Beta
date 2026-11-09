@@ -7,16 +7,16 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 import org.telegram.tgnet.TLRPC;
-public final class hu extends oj0 {
-    public final ru f34361c;
+public final class hu extends pj0 {
+    public final ru f34374c;
 
     public hu(ru ruVar) {
-        this.f34361c = ruVar;
+        this.f34374c = ruVar;
     }
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f57048f == 1) {
+        if (d1Var.f57060f == 1) {
             return true;
         }
         return false;
@@ -24,22 +24,22 @@ public final class hu extends oj0 {
 
     public final int E(int i7) {
         int i10;
-        ru ruVar = this.f34361c;
+        ru ruVar = this.f34374c;
         du duVar = ruVar.l1;
-        if (ruVar.f37790z1) {
+        if (ruVar.f37821z1) {
             i10 = 2;
         } else {
             i10 = 1;
         }
         int i11 = 0;
         while (true) {
-            ArrayList[] arrayListArr = duVar.f37103c;
+            ArrayList[] arrayListArr = duVar.f37092c;
             if (i11 >= arrayListArr.length || i11 == i7) {
                 break;
             }
             int size = arrayListArr[i11].size();
-            if (duVar.f37103c.length > 1) {
-                size = Math.min(ruVar.f37785u1.J * 2, size);
+            if (duVar.f37092c.length > 1) {
+                size = Math.min(ruVar.f37816u1.J * 2, size);
             }
             i10 += size + 2;
             i11++;
@@ -53,22 +53,22 @@ public final class hu extends oj0 {
         int i7;
         int min;
         ArrayList arrayList;
-        ru ruVar = this.f34361c;
+        ru ruVar = this.f34374c;
         du duVar = ruVar.l1;
-        if (!org.telegram.messenger.p10.i(ruVar.f28616a).q() && (arrayList = duVar.f37102b) != null && arrayList.size() == 1 && org.telegram.messenger.ij.W3((TLRPC.TL_messages_stickerSet) duVar.f37102b.get(0))) {
+        if (!org.telegram.messenger.p10.i(ruVar.f28621a).q() && (arrayList = duVar.f37091b) != null && arrayList.size() == 1 && org.telegram.messenger.ij.V3((TLRPC.TL_messages_stickerSet) duVar.f37091b.get(0))) {
             r22 = 1;
         } else {
             r22 = 0;
         }
-        ruVar.f37790z1 = r22;
+        ruVar.f37821z1 = r22;
         int i10 = r22 + 1;
-        if (duVar.f37103c == null) {
+        if (duVar.f37092c == null) {
             i7 = 0;
         } else {
             int i11 = 0;
             i7 = 0;
             while (true) {
-                ArrayList[] arrayListArr = duVar.f37103c;
+                ArrayList[] arrayListArr = duVar.f37092c;
                 if (i11 >= arrayListArr.length) {
                     break;
                 }
@@ -77,26 +77,26 @@ public final class hu extends oj0 {
                     if (arrayListArr.length == 1) {
                         min = arrayList2.size();
                     } else {
-                        min = Math.min(duVar.f37105f.f37785u1.J * 2, arrayList2.size());
+                        min = Math.min(duVar.f37094f.f37816u1.J * 2, arrayList2.size());
                     }
                     i7 = min + i7 + 1;
                 }
                 i11++;
             }
         }
-        return Math.max(0, duVar.f37103c.length - 1) + i10 + i7;
+        return Math.max(0, duVar.f37092c.length - 1) + i10 + i7;
     }
 
     @Override
     public final int d(int i7) {
-        ru ruVar = this.f34361c;
+        ru ruVar = this.f34374c;
         du duVar = ruVar.l1;
         int i10 = 0;
         if (i7 == 0) {
             return 0;
         }
         int i11 = i7 - 1;
-        if (ruVar.f37790z1) {
+        if (ruVar.f37821z1) {
             if (i11 == 1) {
                 return 3;
             }
@@ -106,7 +106,7 @@ public final class hu extends oj0 {
         }
         int i12 = 0;
         while (true) {
-            ArrayList[] arrayListArr = duVar.f37103c;
+            ArrayList[] arrayListArr = duVar.f37092c;
             if (i10 >= arrayListArr.length) {
                 return 1;
             }
@@ -114,8 +114,8 @@ public final class hu extends oj0 {
                 return 2;
             }
             int size = arrayListArr[i10].size();
-            if (duVar.f37103c.length > 1) {
-                size = Math.min(ruVar.f37785u1.J * 2, size);
+            if (duVar.f37092c.length > 1) {
+                size = Math.min(ruVar.f37816u1.J * 2, size);
             }
             int i13 = size + 1 + i12;
             if (i11 == i13) {
@@ -135,18 +135,18 @@ public final class hu extends oj0 {
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         View view;
         View view2;
-        ru ruVar = this.f34361c;
+        ru ruVar = this.f34374c;
         if (i7 == 0) {
-            view = ruVar.f37777k1;
+            view = ruVar.f37808k1;
         } else {
             boolean z9 = true;
             if (i7 == 1) {
                 ?? view3 = new View(ruVar.getContext());
-                view3.f35433a = new org.telegram.messenger.ic[2];
+                view3.f35484a = new org.telegram.messenger.ic[2];
                 view2 = view3;
             } else if (i7 == 2) {
                 Context context = ruVar.getContext();
-                if (ruVar.l1.f37103c.length > 1) {
+                if (ruVar.l1.f37092c.length > 1) {
                     z9 = false;
                 }
                 view2 = new nu(ruVar, context, z9);
@@ -154,9 +154,9 @@ public final class hu extends oj0 {
                 view2 = new TextView(ruVar.getContext());
             } else if (i7 == 4) {
                 View view4 = new View(ruVar.getContext());
-                int i10 = org.telegram.ui.ActionBar.k6.f28270zf;
+                int i10 = org.telegram.ui.ActionBar.l6.f28283zf;
                 Pattern pattern = ru.M1;
-                org.telegram.ui.ActionBar.r6.i(i10, view4, ruVar.I0);
+                org.telegram.ui.ActionBar.s6.h(i10, view4, ruVar.I0);
                 v4.o0 o0Var = new v4.o0(-1, org.telegram.messenger.g0.f1());
                 ((ViewGroup.MarginLayoutParams) o0Var).topMargin = org.telegram.messenger.g0.L(14.0f);
                 view4.setLayoutParams(o0Var);

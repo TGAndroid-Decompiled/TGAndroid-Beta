@@ -8,12 +8,12 @@ import org.telegram.messenger.c20;
 import org.telegram.messenger.ls;
 import org.telegram.messenger.qs;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.nc0;
 import org.telegram.ui.Components.oc0;
 import org.telegram.ui.Components.pc0;
+import org.telegram.ui.Components.qc0;
 import org.telegram.ui.LaunchActivity;
 public abstract class ia {
-    public static int f5722a = 1500;
+    public static int f5720a = 1500;
 
     public static boolean a() {
         Activity activity = LaunchActivity.G1;
@@ -39,18 +39,18 @@ public abstract class ia {
                 for (String str2 : strArr) {
                     if (activity.shouldShowRequestPermissionRationale(str2)) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, activity, null);
-                        int i7 = org.telegram.ui.ActionBar.k6.L5;
-                        alertDialog$Builder.m(2131624116, 72, org.telegram.ui.ActionBar.k6.x0(null, i7, false), null);
+                        int i7 = org.telegram.ui.ActionBar.l6.L5;
+                        alertDialog$Builder.m(2131624116, 72, org.telegram.ui.ActionBar.l6.x0(null, i7, false), null);
                         alertDialog$Builder.n(i7, null);
-                        alertDialog$Builder.f27296a.T = org.telegram.messenger.g0.X2(org.telegram.messenger.id.M0(2131747310, null));
-                        alertDialog$Builder.k(org.telegram.messenger.id.M0(2131747301, null), new nc0(activity, 1));
+                        alertDialog$Builder.f27296a.T = org.telegram.messenger.g0.X2(org.telegram.messenger.id.M0(2131747309, null));
+                        alertDialog$Builder.k(org.telegram.messenger.id.M0(2131747300, null), new oc0(activity, 1));
                         alertDialog$Builder.h(org.telegram.messenger.id.M0(2131751772, null), null);
                         alertDialog$Builder.f27296a.show();
                         c20Var.a(Boolean.FALSE);
                         return;
                     }
                 }
-                e(strArr, new oc0(strArr, activity, c20Var, 1));
+                e(strArr, new pc0(strArr, activity, c20Var, 1));
                 return;
             }
         }
@@ -74,18 +74,18 @@ public abstract class ia {
         for (String str2 : strArr) {
             if (!activity.shouldShowRequestPermissionRationale(str2)) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, activity, null);
-                int i11 = org.telegram.ui.ActionBar.k6.L5;
-                alertDialog$Builder.m(i7, 72, org.telegram.ui.ActionBar.k6.x0(null, i11, false), null);
+                int i11 = org.telegram.ui.ActionBar.l6.L5;
+                alertDialog$Builder.m(i7, 72, org.telegram.ui.ActionBar.l6.x0(null, i11, false), null);
                 alertDialog$Builder.n(i11, null);
                 alertDialog$Builder.f27296a.T = org.telegram.messenger.g0.X2(org.telegram.messenger.id.M0(i10, null));
-                alertDialog$Builder.k(org.telegram.messenger.id.M0(2131747301, null), new nc0(activity, 0));
+                alertDialog$Builder.k(org.telegram.messenger.id.M0(2131747300, null), new oc0(activity, 0));
                 alertDialog$Builder.h(org.telegram.messenger.id.M0(2131751772, null), null);
                 alertDialog$Builder.f27296a.show();
                 c20Var.a(Boolean.FALSE);
                 return;
             }
         }
-        e(strArr2, new oc0(strArr2, activity, c20Var, 0));
+        e(strArr2, new pc0(strArr2, activity, c20Var, 0));
     }
 
     public static boolean d(String str) {
@@ -107,9 +107,9 @@ public abstract class ia {
         if (activity == null) {
             return;
         }
-        int i7 = f5722a;
-        f5722a = i7 + 1;
-        ls[] lsVarArr = {new pc0(i7, c20Var, lsVarArr)};
+        int i7 = f5720a;
+        f5720a = i7 + 1;
+        ls[] lsVarArr = {new qc0(i7, c20Var, lsVarArr)};
         qs.e().b(lsVarArr[0], qs.f25056p5);
         activity.requestPermissions(strArr, i7);
     }

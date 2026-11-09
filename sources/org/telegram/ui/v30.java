@@ -1,53 +1,28 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class v30 extends org.telegram.ui.Components.voip.r {
-    public final int h = 1;
-    public final org.telegram.ui.Components.oj0 f50491n;
+import android.view.View;
+public final class v30 extends org.telegram.ui.Cells.f4 {
+    public final y30 f50560g0;
 
-    public v30(f40 f40Var, Context context) {
-        super(context, true);
-        this.f50491n = f40Var;
+    public v30(y30 y30Var, Context context) {
+        super(context);
+        this.f50560g0 = y30Var;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        switch (this.h) {
-            case 0:
-                super.onAttachedToWindow();
-                c40 c40Var = ((w30) this.f50491n).M;
-                if (c40Var.H1.getVisibility() == 0 && c40Var.G4) {
-                    c40.J0(c40Var, this, true);
-                    return;
-                }
-                return;
-            default:
-                super.onAttachedToWindow();
-                f40 f40Var = (f40) this.f50491n;
-                if (f40Var.f45438r && getParticipant() != null) {
-                    f40Var.E(this, true);
-                    return;
-                }
-                return;
-        }
+    public final void d(org.telegram.ui.Cells.f4 f4Var) {
+        e40 e40Var = this.f50560g0.M;
+        e40 e40Var2 = e40.f45182u5;
+        e40Var.L1(f4Var);
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        switch (this.h) {
-            case 0:
-                super.onDetachedFromWindow();
-                c40.J0(((w30) this.f50491n).M, this, false);
-                return;
-            default:
-                super.onDetachedFromWindow();
-                ((f40) this.f50491n).E(this, false);
-                return;
+    public final void onMeasure(int i7, int i10) {
+        if (org.telegram.messenger.g0.Q1()) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.g0.L(420.0f), View.MeasureSpec.getSize(i7)), 1073741824), i10);
+        } else {
+            super.onMeasure(i7, i10);
         }
-    }
-
-    public v30(w30 w30Var, Context context) {
-        super(context, false);
-        this.f50491n = w30Var;
     }
 }

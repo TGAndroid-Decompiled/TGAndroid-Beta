@@ -7,19 +7,20 @@ import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.FrameLayout;
 import c8.ha;
+import di.r4;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.WeakHashMap;
 import org.telegram.messenger.id;
 import org.telegram.messenger.t10;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.q41;
-import org.telegram.ui.Components.x31;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.s6;
+import org.telegram.ui.Components.m41;
+import org.telegram.ui.Components.r41;
+import org.telegram.ui.Components.y31;
 import org.telegram.ui.f5;
 public final class q extends org.telegram.ui.ActionBar.f2 {
-    public q41 f14874a;
+    public r41 f14874a;
     public final ArrayList f14875b;
     public final HashMap f14876c;
 
@@ -44,19 +45,19 @@ public final class q extends org.telegram.ui.ActionBar.f2 {
                 spannableStringBuilder.append((CharSequence) t10.p(oVar.f14834a));
                 hashMap.put(oVar, spannableStringBuilder);
             }
-            x31 i10 = x31.i(i7, spannableStringBuilder);
+            y31 i10 = y31.i(i7, spannableStringBuilder);
             i10.L(!oVar.f14835b);
             arrayList.add(i10);
         }
-        arrayList.add(x31.C(id.M0(2131746862, null)));
+        arrayList.add(y31.C(id.M0(2131746861, null)));
     }
 
-    public static void a0(q qVar, x31 x31Var) {
+    public static void a0(q qVar, y31 y31Var) {
         int i7;
-        l41 l41Var;
+        m41 m41Var;
         ArrayList arrayList = qVar.f14875b;
-        if (x31Var.f54532a == 4 && (i7 = x31Var.d) >= 0 && i7 < arrayList.size()) {
-            o oVar = (o) arrayList.get(x31Var.d);
+        if (y31Var.f54544a == 4 && (i7 = y31Var.d) >= 0 && i7 < arrayList.size()) {
+            o oVar = (o) arrayList.get(y31Var.d);
             oVar.f14835b = !oVar.f14835b;
             Activity parentActivity = qVar.getParentActivity();
             int i10 = qVar.currentAccount;
@@ -70,9 +71,9 @@ public final class q extends org.telegram.ui.ActionBar.f2 {
                 edit.putString(String.valueOf(j3), "");
             }
             edit.apply();
-            q41 q41Var = qVar.f14874a;
-            if (q41Var != null && (l41Var = q41Var.f37190f3) != null) {
-                l41Var.O(true);
+            r41 r41Var = qVar.f14874a;
+            if (r41Var != null && (m41Var = r41Var.f37556f3) != null) {
+                m41Var.O(true);
             }
         }
     }
@@ -81,13 +82,13 @@ public final class q extends org.telegram.ui.ActionBar.f2 {
     public final View createView(Context context) {
         this.actionBar.setBackButtonDrawable(new org.telegram.ui.ActionBar.y1(false));
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(id.M0(2131746864, null));
+        this.actionBar.setTitle(id.M0(2131746863, null));
         this.actionBar.setActionBarMenuOnItemClick(new bi.s(this, 3));
         FrameLayout frameLayout = new FrameLayout(context);
-        r6.i(k6.f27796a7, frameLayout, this.resourceProvider);
-        q41 q41Var = new q41(this, new ai.e(this, 27), new di.q4(this, 21), new g2.c(this, 24));
-        this.f14874a = q41Var;
-        frameLayout.addView(q41Var, ha.e(-1, -1, 119));
+        s6.h(l6.f27809a7, frameLayout, this.resourceProvider);
+        r41 r41Var = new r41(this, new ai.e(this, 27), new r4(this, 21), new g2.c(this, 24));
+        this.f14874a = r41Var;
+        frameLayout.addView(r41Var, ha.e(-1, -1, 119));
         p.d(getParentActivity(), this.currentAccount, new ai.i(this, 29));
         this.fragmentView = frameLayout;
         return frameLayout;

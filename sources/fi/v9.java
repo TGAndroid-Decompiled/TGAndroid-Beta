@@ -1,51 +1,78 @@
 package fi;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.ViewGroup;
-public final class v9 extends AnimatorListenerAdapter {
+import android.content.Context;
+import android.os.SystemClock;
+import android.telephony.TelephonyManager;
+import android.text.TextUtils;
+import java.util.Locale;
+public final class v9 implements Runnable {
     public final int f12932a;
-    public final va f12933b;
+    public final Object f12933b;
 
-    public v9(va vaVar, int i7) {
+    public v9(Object obj, int i7) {
         this.f12932a = i7;
-        this.f12933b = vaVar;
+        this.f12933b = obj;
+    }
+
+    private final void a() {
+        int i7;
+        String d;
+        TelephonyManager telephonyManager;
+        h2.v vVar = (h2.v) this.f12933b;
+        b3.f fVar = (b3.f) vVar.f14151a.get();
+        if (fVar != null) {
+            int b10 = vVar.f14153c.b();
+            b3.g gVar = fVar.f2927a;
+            synchronized (gVar) {
+                synchronized (gVar) {
+                    int i10 = gVar.f2945n;
+                    if (i10 != 0 && !gVar.f2937e) {
+                        return;
+                    }
+                    if (i10 == b10 && gVar.f2946o != null) {
+                        return;
+                    }
+                    gVar.f2945n = b10;
+                    if (b10 != 1 && b10 != 0 && b10 != 8) {
+                        if (gVar.f2946o == null) {
+                            Context context = gVar.f2934a;
+                            String str = h2.m0.f14112a;
+                            if (context != null && (telephonyManager = (TelephonyManager) context.getSystemService("phone")) != null) {
+                                String networkCountryIso = telephonyManager.getNetworkCountryIso();
+                                if (!TextUtils.isEmpty(networkCountryIso)) {
+                                    d = a8.ga.d(networkCountryIso);
+                                    gVar.f2946o = d;
+                                }
+                            }
+                            d = a8.ga.d(Locale.getDefault().getCountry());
+                            gVar.f2946o = d;
+                        }
+                        gVar.f2943l = gVar.b(b10);
+                        gVar.d.getClass();
+                        long elapsedRealtime = SystemClock.elapsedRealtime();
+                        if (gVar.f2939g > 0) {
+                            i7 = (int) (elapsedRealtime - gVar.h);
+                        } else {
+                            i7 = 0;
+                        }
+                        gVar.d(gVar.f2940i, i7, gVar.f2943l);
+                        gVar.h = elapsedRealtime;
+                        gVar.f2940i = 0L;
+                        gVar.f2942k = 0L;
+                        gVar.f2941j = 0L;
+                        b3.t tVar = gVar.f2938f;
+                        tVar.f2974a.clear();
+                        tVar.f2976c = -1;
+                        tVar.d = 0;
+                        tVar.f2977e = 0;
+                    }
+                }
+            }
+        }
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f12932a) {
-            case 0:
-                va vaVar = this.f12933b;
-                vaVar.f12967j2 = null;
-                vaVar.f12987r.setTranslationY(0.0f);
-                vaVar.f12987r.b(0.0f);
-                return;
-            case 1:
-                va vaVar2 = this.f12933b;
-                vaVar2.f12975n.removeView(vaVar2.M0);
-                vaVar2.M0 = null;
-                vaVar2.f12977n2 = null;
-                vaVar2.f12983p2 = null;
-                q3 q3Var = vaVar2.f12944c1.L;
-                boolean z9 = true;
-                if (vaVar2.f12953f0 == 1) {
-                    z9 = false;
-                }
-                q3Var.b(z9);
-                return;
-            default:
-                va vaVar3 = this.f12933b;
-                da daVar = vaVar3.C2;
-                if (daVar != null) {
-                    if (daVar.getParent() != null) {
-                        ((ViewGroup) vaVar3.C2.getParent()).removeView(vaVar3.C2);
-                    }
-                    vaVar3.C2 = null;
-                }
-                vaVar3.E2 = null;
-                super.onAnimationEnd(animator);
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: fi.v9.run():void");
     }
 }

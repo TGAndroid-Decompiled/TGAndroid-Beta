@@ -3,24 +3,24 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
-public class jg extends ch0 {
+public class jg extends dh0 {
     public final w5 D;
     public final gg E;
-    public hg f34972r;
-    public ig f34973s;
-    public final int f34974w;
-    public boolean f34975x;
-    public Drawable f34976y;
+    public hg f35006r;
+    public ig f35007s;
+    public final int f35008w;
+    public boolean f35009x;
+    public Drawable f35010y;
 
     public jg(Context context, int i7) {
         super(context);
         this.D = new w5(this, 0L, 320L, xq.h);
         this.E = new gg(this, 0);
-        this.f34974w = i7;
+        this.f35008w = i7;
     }
 
     public hg getCurrentState() {
-        return this.f34972r;
+        return this.f35006r;
     }
 
     public final void j(org.telegram.ui.Components.hg r13, boolean r14) {
@@ -30,7 +30,7 @@ public class jg extends ch0 {
     @Override
     public void onDraw(Canvas canvas) {
         Canvas canvas2;
-        float d = this.D.d(this.f34975x);
+        float d = this.D.d(this.f35009x);
         float width = getWidth() / 2.0f;
         float height = getHeight() / 2.0f;
         if (d < 1.0f) {
@@ -49,20 +49,20 @@ public class jg extends ch0 {
             canvas2 = canvas;
         }
         if (d > 0.0f) {
-            if (this.f34976y == null) {
-                this.f34976y = getContext().getResources().getDrawable(2131232116).mutate();
+            if (this.f35010y == null) {
+                this.f35010y = getContext().getResources().getDrawable(2131232116).mutate();
             }
-            int intrinsicWidth = this.f34976y.getIntrinsicWidth() / 2;
-            int intrinsicHeight = this.f34976y.getIntrinsicHeight() / 2;
+            int intrinsicWidth = this.f35010y.getIntrinsicWidth() / 2;
+            int intrinsicHeight = this.f35010y.getIntrinsicHeight() / 2;
             int i7 = (int) width;
             int i10 = (int) height;
-            this.f34976y.setBounds(i7 - intrinsicWidth, i10 - intrinsicHeight, i7 + intrinsicWidth, i10 + intrinsicHeight);
-            this.f34976y.setColorFilter(getColorFilter());
-            this.f34976y.setAlpha((int) (255.0f * d));
+            this.f35010y.setBounds(i7 - intrinsicWidth, i10 - intrinsicHeight, i7 + intrinsicWidth, i10 + intrinsicHeight);
+            this.f35010y.setColorFilter(getColorFilter());
+            this.f35010y.setAlpha((int) (255.0f * d));
             canvas2.save();
             float f10 = (d * 0.6f) + 0.4f;
             canvas2.scale(f10, f10, width, height);
-            this.f34976y.draw(canvas2);
+            this.f35010y.draw(canvas2);
             canvas2.restore();
         }
     }

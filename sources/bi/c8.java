@@ -32,7 +32,7 @@ public final class c8 implements RequestDelegate {
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         switch (this.f3578a) {
             case 0:
-                org.telegram.messenger.g0.h3(new n8(tLObject, (f5.l) this.f3579b, (f5.f) this.f3580c, (org.telegram.ui.Wallet.u1) this.f3582f, (Activity) this.d, (TLRPC.TL_inputStorePaymentStarsGiveaway) this.f3583g, this.f3581e, tL_error, 0));
+                org.telegram.messenger.g0.h3(new n8(tLObject, (f5.l) this.f3579b, (f5.f) this.f3580c, (org.telegram.ui.Wallet.t1) this.f3582f, (Activity) this.d, (TLRPC.TL_inputStorePaymentStarsGiveaway) this.f3583g, this.f3581e, tL_error, 0));
                 return;
             case 1:
                 org.telegram.messenger.g0.h3(new n8(tLObject, (f5.l) this.f3579b, (f5.f) this.f3580c, (mc) this.f3582f, (Activity) this.d, (TLRPC.TL_inputStorePaymentStarsGift) this.f3583g, this.f3581e, tL_error, 1));
@@ -41,7 +41,7 @@ public final class c8 implements RequestDelegate {
                 org.telegram.messenger.g0.h3(new n8((UserInfoActivity) this.f3579b, tL_error, (TLObject) this.f3580c, (TL_account.TL_birthday) this.f3582f, (TLRPC.UserFull) this.d, tLObject, (int[]) this.f3583g, (ArrayList) this.f3581e));
                 return;
             case 3:
-                org.telegram.messenger.g0.h3(new n8(tL_error, (c20) ((wg.v) this.f3579b), tLObject, this.f3581e, (f5.f) this.f3580c, (c20) ((wg.v) this.f3582f), (org.telegram.ui.ActionBar.f2) this.d, (TLRPC.InputStorePaymentPurpose) ((TLRPC.TL_inputStorePaymentPremiumGiveaway) this.f3583g), 9));
+                org.telegram.messenger.g0.h3(new n8(tL_error, (c20) ((wg.u) this.f3579b), tLObject, this.f3581e, (f5.f) this.f3580c, (c20) ((wg.u) this.f3582f), (org.telegram.ui.ActionBar.f2) this.d, (TLRPC.InputStorePaymentPurpose) ((TLRPC.TL_inputStorePaymentPremiumGiveaway) this.f3583g), 9));
                 return;
             default:
                 org.telegram.messenger.g0.h3(new n8(tL_error, (c20) this.f3579b, tLObject, this.f3581e, (f5.f) this.f3580c, (c20) this.f3582f, (org.telegram.ui.ActionBar.f2) this.d, (TLRPC.InputStorePaymentPurpose) ((TLRPC.TL_inputStorePaymentPremiumGiftCode) this.f3583g), 10));

@@ -3,23 +3,23 @@ package org.telegram.ui.Components;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.LaunchActivity;
 public final class w2 implements Runnable {
-    public final int f39781a = 1;
-    public final int f39782b;
-    public final int[] f39783c;
+    public final int f39877a = 1;
+    public final int f39878b;
+    public final int[] f39879c;
     public final Runnable d;
 
-    public w2(int i7, int[] iArr, org.telegram.ui.q10 q10Var) {
-        this.f39782b = i7;
-        this.f39783c = iArr;
-        this.d = q10Var;
+    public w2(int i7, int[] iArr, org.telegram.ui.s10 s10Var) {
+        this.f39878b = i7;
+        this.f39879c = iArr;
+        this.d = s10Var;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f39781a;
+        int i7 = this.f39877a;
         Runnable runnable = this.d;
-        int[] iArr = this.f39783c;
-        int i10 = this.f39782b;
+        int[] iArr = this.f39879c;
+        int i10 = this.f39878b;
         switch (i7) {
             case 0:
                 iArr[0] = i10;
@@ -37,8 +37,8 @@ public final class w2 implements Runnable {
     }
 
     public w2(int[] iArr, int i7, Runnable runnable) {
-        this.f39783c = iArr;
-        this.f39782b = i7;
+        this.f39879c = iArr;
+        this.f39878b = i7;
         this.d = runnable;
     }
 }

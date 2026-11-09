@@ -17,8 +17,7 @@ import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Cells.e2;
 import org.telegram.ui.Cells.h2;
 import org.telegram.ui.Components.j2;
-import org.telegram.ui.Wallet.h3;
-import org.telegram.ui.Wallet.q0;
+import org.telegram.ui.Wallet.g3;
 public final class o0 implements Runnable {
     public final int f14127a;
     public final boolean f14128b;
@@ -89,56 +88,56 @@ public final class o0 implements Runnable {
                 String str2 = (String) this.f14130e;
                 boolean z13 = this.f14128b;
                 boolean z14 = this.f14129c;
-                h2 h2Var = ((e2) this.d).f29050b;
-                h2Var.f29239e0 = false;
-                h2Var.f29241f0 = str2;
+                h2 h2Var = ((e2) this.d).f29054b;
+                h2Var.f29243e0 = false;
+                h2Var.f29245f0 = str2;
                 if (str2 == null) {
-                    h2Var.f29241f0 = "";
+                    h2Var.f29245f0 = "";
                 }
-                h2Var.f29242g0 = z13;
+                h2Var.f29246g0 = z13;
                 h2Var.f(z14, true);
                 return;
             case 4:
-                org.telegram.ui.Wallet.m0 m0Var = (org.telegram.ui.Wallet.m0) this.d;
+                org.telegram.ui.Wallet.l0 l0Var = (org.telegram.ui.Wallet.l0) this.d;
                 c20 c20Var = (c20) this.f14130e;
                 boolean z15 = this.f14128b;
                 boolean z16 = this.f14129c;
-                TL_wallet.TL_walletState tL_walletState = (TL_wallet.TL_walletState) m0Var.f42765e;
-                q0 q0Var = m0Var.f42764c;
-                if (q0Var != null && TextUtils.equals(q0Var.f43052c, tL_walletState.address) && m0Var.f42764c.f(tL_walletState.public_key)) {
+                TL_wallet.TL_walletState tL_walletState = (TL_wallet.TL_walletState) l0Var.f42683e;
+                org.telegram.ui.Wallet.p0 p0Var2 = l0Var.f42682c;
+                if (p0Var2 != null && TextUtils.equals(p0Var2.f42970c, tL_walletState.address) && l0Var.f42682c.f(tL_walletState.public_key)) {
                     c20Var.a(null);
                     return;
                 } else {
-                    m0Var.z(new org.telegram.ui.Wallet.j((Object) m0Var, (Object) c20Var, (Object) tL_walletState, 6), z15, z16);
+                    l0Var.z(new org.telegram.ui.Wallet.j((Object) l0Var, (Object) c20Var, (Object) tL_walletState, 6), z15, z16);
                     return;
                 }
             default:
-                org.telegram.ui.Wallet.m0 m0Var2 = (org.telegram.ui.Wallet.m0) this.d;
+                org.telegram.ui.Wallet.l0 l0Var2 = (org.telegram.ui.Wallet.l0) this.d;
                 v10 v10Var = (v10) this.f14130e;
                 boolean z17 = this.f14128b;
                 boolean z18 = this.f14129c;
-                org.telegram.ui.Wallet.m0.H("getSecretPhrase: ready!");
-                TL_wallet.TL_walletState tL_walletState2 = (TL_wallet.TL_walletState) m0Var2.f42765e;
-                if (m0Var2.f42764c.f(tL_walletState2.public_key)) {
-                    org.telegram.ui.Wallet.m0.H("getSecretPhrase: device has secured phrase, requesting");
-                    q0 q0Var2 = m0Var2.f42764c;
+                org.telegram.ui.Wallet.l0.H("getSecretPhrase: ready!");
+                TL_wallet.TL_walletState tL_walletState2 = (TL_wallet.TL_walletState) l0Var2.f42683e;
+                if (l0Var2.f42682c.f(tL_walletState2.public_key)) {
+                    org.telegram.ui.Wallet.l0.H("getSecretPhrase: device has secured phrase, requesting");
+                    org.telegram.ui.Wallet.p0 p0Var3 = l0Var2.f42682c;
                     byte[] bArr = tL_walletState2.public_key;
                     org.telegram.ui.Wallet.k kVar = new org.telegram.ui.Wallet.k(v10Var, 1);
                     if (bArr == null) {
                         o4 = "";
                     } else {
-                        q0Var2.getClass();
-                        o4 = q0.o(bArr);
+                        p0Var3.getClass();
+                        o4 = org.telegram.ui.Wallet.p0.o(bArr);
                     }
-                    q0.h.execute(new j2(q0Var2, q0Var2.l(), o4, true, (c20) kVar));
+                    org.telegram.ui.Wallet.p0.h.execute(new j2(p0Var3, p0Var3.l(), o4, true, (c20) kVar));
                     return;
                 } else if (!tL_walletState2.backup_enabled) {
-                    org.telegram.ui.Wallet.m0.j("getSecretPhrase: no server backup!");
+                    org.telegram.ui.Wallet.l0.j("getSecretPhrase: no server backup!");
                     v10Var.a(null, "NO_LOCAL_BACKUP");
                     return;
                 } else {
-                    org.telegram.ui.Wallet.m0.H("getSecretPhrase: exportSecretPhrase through password request");
-                    h3.a(m0Var2.f42762a, new ai.c0(9), null, null, null, new di.b0(4, m0Var2, v10Var), z17, z18, new v0((Object) null, 2));
+                    org.telegram.ui.Wallet.l0.H("getSecretPhrase: exportSecretPhrase through password request");
+                    g3.a(l0Var2.f42680a, new ai.c0(9), null, null, null, new di.b0(4, l0Var2, v10Var), z17, z18, new v0((Object) null, 2));
                     return;
                 }
         }

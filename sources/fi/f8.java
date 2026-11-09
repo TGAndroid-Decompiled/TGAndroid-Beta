@@ -6,7 +6,7 @@ import org.telegram.messenger.p10;
 import org.telegram.messenger.qs;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.yu0;
+import org.telegram.ui.Components.av0;
 public final class f8 implements c20 {
     public final int f11987a;
     public final long f11988b;
@@ -59,10 +59,10 @@ public final class f8 implements c20 {
                 }
                 return;
             default:
-                yu0 yu0Var = (yu0) this.f11989c;
+                av0 av0Var = (av0) this.f11989c;
                 TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) obj;
                 if (tL_messages_emojiGroups != null) {
-                    qs.f(p10.f24470s0).d(new bi.d3(yu0Var, tL_messages_emojiGroups, this.f11988b, 25));
+                    qs.f(p10.f24470s0).d(new bi.d3(av0Var, tL_messages_emojiGroups, this.f11988b, 25));
                     return;
                 }
                 return;

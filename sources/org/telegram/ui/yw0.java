@@ -1,38 +1,30 @@
 package org.telegram.ui;
 
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.ImageReceiver;
-public final class yw0 implements org.telegram.messenger.lc {
-    public final Runnable[] f52334a;
+import android.content.Context;
+import android.view.View;
+import android.widget.TextView;
+import java.util.HashSet;
+public final class yw0 extends TextView implements org.telegram.ui.ActionBar.b6 {
+    public final ProfileActivity f52341a;
 
-    public yw0(Runnable[] runnableArr) {
-        this.f52334a = runnableArr;
+    public yw0(ProfileActivity profileActivity, Context context) {
+        super(context);
+        this.f52341a = profileActivity;
+        updateColors();
     }
 
     @Override
-    public final void f0(ImageReceiver imageReceiver, boolean z9, boolean z10, boolean z11) {
-        if (imageReceiver.I()) {
-            Runnable[] runnableArr = this.f52334a;
-            if (runnableArr[0] != null) {
-                org.telegram.ui.Components.zg0 B = imageReceiver.B();
-                if (B == null) {
-                    runnableArr[0].run();
-                    runnableArr[0] = null;
-                } else if (B.y()) {
-                    B.A0 = new ru0(runnableArr, 7);
-                } else {
-                    runnableArr[0].run();
-                    runnableArr[0] = null;
-                }
-            }
-        }
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.l6.G6));
     }
 
     @Override
-    public final void O(ImageReceiver imageReceiver) {
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
     }
 
     @Override
-    public final void t0(int i7, Drawable drawable) {
+    public final void updateColors() {
+        setTextColor(org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.G6, this.f52341a.f41876z0));
     }
 }

@@ -21,25 +21,25 @@ import org.telegram.messenger.t10;
 import org.telegram.messenger.w7;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.l41;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.Components.m41;
 import org.telegram.ui.Components.na;
-import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.rt0;
+import org.telegram.ui.Components.qj0;
+import org.telegram.ui.Components.tt0;
 public final class i1 extends na {
     public final int P1;
     public final String Q1;
-    public l41 R1;
+    public m41 R1;
     public final f1 S1;
     public boolean T1;
     public boolean U1;
     public final bi.t0 V1;
     public int W1;
 
-    public i1(Context context, int i7, long j3, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File file, TLRPC.WebPage webPage, f6 f6Var, org.telegram.ui.web.p pVar, bi.t0 t0Var) {
-        super(context, null, false, false, f6Var);
+    public i1(Context context, int i7, long j3, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File file, TLRPC.WebPage webPage, g6 g6Var, org.telegram.ui.web.p pVar, bi.t0 t0Var) {
+        super(context, null, false, false, g6Var);
         ?? r11;
         int i10;
         h1 d12;
@@ -56,7 +56,7 @@ public final class i1 extends na {
         this.Q1 = t10.p(qp.s1(i7).a2(Long.valueOf(j3)));
         this.V1 = t0Var;
         Y0();
-        this.f36290z1 = org.telegram.messenger.g0.L(4.0f);
+        this.f36316z1 = org.telegram.messenger.g0.L(4.0f);
         this.A1 = org.telegram.messenger.g0.L(-10.0f);
         TLRPC.BotInlineResult botInlineResult = tL_messages_preparedInlineMessage.result;
         if (file == null || !file.exists() || webPage != null) {
@@ -192,9 +192,9 @@ public final class i1 extends na {
                             tL_documentAttributeSticker.stickerset = new TLRPC.TL_inputStickerSetEmpty();
                             tL_document2.attributes.add(tL_documentAttributeSticker);
                             TLRPC.TL_documentAttributeImageSize tL_documentAttributeImageSize = new TLRPC.TL_documentAttributeImageSize();
-                            int[] h12 = ij.h1(botInlineResult);
-                            tL_documentAttributeImageSize.f26963w = h12[0];
-                            tL_documentAttributeImageSize.h = h12[1];
+                            int[] g12 = ij.g1(botInlineResult);
+                            tL_documentAttributeImageSize.f26963w = g12[0];
+                            tL_documentAttributeImageSize.h = g12[1];
                             tL_document2.attributes.add(tL_documentAttributeImageSize);
                             tL_documentAttributeFilename.file_name = "sticker.webp";
                             try {
@@ -235,7 +235,7 @@ public final class i1 extends na {
                             }
                         case 3:
                             TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio = new TLRPC.TL_documentAttributeAudio();
-                            tL_documentAttributeAudio.duration = ij.g1(botInlineResult);
+                            tL_documentAttributeAudio.duration = ij.f1(botInlineResult);
                             tL_documentAttributeAudio.title = botInlineResult.title;
                             int i12 = tL_documentAttributeAudio.flags;
                             tL_documentAttributeAudio.flags = i12 | 1;
@@ -250,10 +250,10 @@ public final class i1 extends na {
                         case 4:
                             tL_documentAttributeFilename.file_name = "video.mp4";
                             TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo = new TLRPC.TL_documentAttributeVideo();
-                            int[] h13 = ij.h1(botInlineResult);
-                            tL_documentAttributeVideo.f26963w = h13[0];
-                            tL_documentAttributeVideo.h = h13[1];
-                            tL_documentAttributeVideo.duration = ij.g1(botInlineResult);
+                            int[] g13 = ij.g1(botInlineResult);
+                            tL_documentAttributeVideo.f26963w = g13[0];
+                            tL_documentAttributeVideo.h = g13[1];
+                            tL_documentAttributeVideo.duration = ij.f1(botInlineResult);
                             tL_documentAttributeVideo.supports_streaming = true;
                             tL_document2.attributes.add(tL_documentAttributeVideo);
                             try {
@@ -276,7 +276,7 @@ public final class i1 extends na {
                             break;
                         case 5:
                             TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio2 = new TLRPC.TL_documentAttributeAudio();
-                            tL_documentAttributeAudio2.duration = ij.g1(botInlineResult);
+                            tL_documentAttributeAudio2.duration = ij.f1(botInlineResult);
                             tL_documentAttributeAudio2.voice = true;
                             tL_documentAttributeFilename.file_name = "audio.ogg";
                             tL_document2.attributes.add(tL_documentAttributeAudio2);
@@ -290,10 +290,10 @@ public final class i1 extends na {
                     }
                     if (tL_document2.thumbs.isEmpty()) {
                         TLRPC.TL_photoSize tL_photoSize = new TLRPC.TL_photoSize();
-                        int[] h14 = ij.h1(botInlineResult);
-                        tL_photoSize.f26981w = h14[0];
+                        int[] g14 = ij.g1(botInlineResult);
+                        tL_photoSize.f26981w = g14[0];
                         z9 = true;
-                        tL_photoSize.h = h14[1];
+                        tL_photoSize.h = g14[1];
                         tL_photoSize.size = 0;
                         tL_photoSize.location = new TLRPC.TL_fileLocationUnavailable();
                         tL_photoSize.type = "x";
@@ -318,9 +318,9 @@ public final class i1 extends na {
                         tL_photo2.date = ConnectionsManager.getInstance(i7).getCurrentTime();
                         tL_photo2.file_reference = new byte[i11];
                         TLRPC.TL_photoSize tL_photoSize2 = new TLRPC.TL_photoSize();
-                        int[] h15 = ij.h1(botInlineResult);
-                        tL_photoSize2.f26981w = h15[i11];
-                        tL_photoSize2.h = h15[1];
+                        int[] g15 = ij.g1(botInlineResult);
+                        tL_photoSize2.f26981w = g15[i11];
+                        tL_photoSize2.h = g15[1];
                         tL_photoSize2.size = 1;
                         tL_photoSize2.location = new TLRPC.TL_fileLocationUnavailable();
                         tL_photoSize2.type = "x";
@@ -340,7 +340,7 @@ public final class i1 extends na {
             d12 = d1(i10, j3, botInlineResult, tL_photo, tL_document, null);
         }
         h1 h1Var = d12;
-        org.telegram.ui.Cells.t0 t0Var2 = new org.telegram.ui.Cells.t0(context, f6Var, false);
+        org.telegram.ui.Cells.t0 t0Var2 = new org.telegram.ui.Cells.t0(context, g6Var, false);
         t0Var2.setDelegate(new Object());
         t0Var2.setCustomText(id.M0(2131752979, null));
         org.telegram.ui.Cells.q1 q1Var = new org.telegram.ui.Cells.q1(context, i10);
@@ -349,24 +349,24 @@ public final class i1 extends na {
         LinearLayout f10 = k5.f(context, r11);
         f10.addView(t0Var2, ha.o(-1, -2));
         f10.addView(q1Var, ha.o(-1, -2));
-        ?? rt0Var = new rt0(context, null);
-        this.S1 = rt0Var;
-        rt0Var.U(y5.e(null, i10, j3, k6.I.q()));
-        rt0Var.addView(f10, ha.d(-1, -1.0f, 119, 4.0f, 8.0f, 4.0f, 8.0f));
+        ?? tt0Var = new tt0(context, null);
+        this.S1 = tt0Var;
+        tt0Var.U(y5.e(null, i10, j3, l6.I.q()));
+        tt0Var.addView(f10, ha.d(-1, -1.0f, 119, 4.0f, 8.0f, 4.0f, 8.0f));
         FrameLayout frameLayout = new FrameLayout(context);
-        fi.d h = k5.h(24, context, f6Var, r11);
+        fi.d h = k5.h(24, context, g6Var, r11);
         h.i(id.M0(2131752978, null), false, r11);
         h.setOnClickListener(new bi.d1(this, tL_messages_preparedInlineMessage, t0Var, i10, j3, pVar));
         frameLayout.addView(h, ha.d(-1, 48.0f, 119, 10.0f, 10.0f, 10.0f, 10.0f));
-        ViewGroup viewGroup = this.f28619b;
-        int i13 = this.f28649t0;
+        ViewGroup viewGroup = this.f28624b;
+        int i13 = this.f28654t0;
         viewGroup.addView(frameLayout, ha.f(-2.0f, -1, 87, i13, 0, i13, 0));
-        pj0 pj0Var = this.f36277k1;
-        int i14 = this.f28649t0;
-        pj0Var.setPadding(i14, 0, i14, org.telegram.messenger.g0.L(68.0f) + r11);
-        this.f36277k1.r1();
-        int i15 = k6.f27796a7;
-        v0(k6.w0(i15, this.I0));
+        qj0 qj0Var = this.f36303k1;
+        int i14 = this.f28654t0;
+        qj0Var.setPadding(i14, 0, i14, org.telegram.messenger.g0.L(68.0f) + r11);
+        this.f36303k1.r1();
+        int i15 = l6.f27809a7;
+        v0(l6.w0(i15, this.I0));
         P(i15);
         this.R1.O(false);
     }
@@ -375,20 +375,20 @@ public final class i1 extends na {
         throw new UnsupportedOperationException("Method not decompiled: hi.i1.d1(int, long, org.telegram.tgnet.TLRPC$BotInlineResult, org.telegram.tgnet.TLRPC$TL_photo, org.telegram.tgnet.TLRPC$TL_document, org.telegram.tgnet.TLRPC$WebPage):hi.h1");
     }
 
-    public static void e1(Context context, int i7, long j3, String str, f6 f6Var, org.telegram.ui.web.p pVar, bi.t0 t0Var) {
+    public static void e1(Context context, int i7, long j3, String str, g6 g6Var, org.telegram.ui.web.p pVar, bi.t0 t0Var) {
         org.telegram.ui.ActionBar.u1 u1Var = new org.telegram.ui.ActionBar.u1(3, context, null);
         u1Var.r(500L);
         TLRPC.TL_messages_getPreparedInlineMessage tL_messages_getPreparedInlineMessage = new TLRPC.TL_messages_getPreparedInlineMessage();
         tL_messages_getPreparedInlineMessage.bot = qp.s1(i7).o1(j3);
         tL_messages_getPreparedInlineMessage.f27056id = str;
-        ConnectionsManager.getInstance(i7).sendRequest(tL_messages_getPreparedInlineMessage, new w0(i7, u1Var, context, j3, f6Var, pVar, t0Var));
+        ConnectionsManager.getInstance(i7).sendRequest(tL_messages_getPreparedInlineMessage, new w0(i7, u1Var, context, j3, g6Var, pVar, t0Var));
     }
 
     @Override
-    public final oj0 L0(pj0 pj0Var) {
-        l41 l41Var = new l41(pj0Var, getContext(), this.P1, 0, true, new ai.e(this, 29), this.I0);
-        this.R1 = l41Var;
-        return l41Var;
+    public final pj0 L0(qj0 qj0Var) {
+        m41 m41Var = new m41(qj0Var, getContext(), this.P1, 0, true, new ai.e(this, 29), this.I0);
+        this.R1 = m41Var;
+        return m41Var;
     }
 
     @Override
@@ -412,20 +412,20 @@ public final class i1 extends na {
     public final void onCreate(Bundle bundle) {
         int b10;
         super.onCreate(bundle);
-        pj0 pj0Var = this.f36277k1;
-        if (pj0Var.getAdapter() == null) {
+        qj0 qj0Var = this.f36303k1;
+        if (qj0Var.getAdapter() == null) {
             b10 = 0;
         } else {
-            b10 = pj0Var.getAdapter().b();
+            b10 = qj0Var.getAdapter().b();
         }
-        pj0Var.v0(Math.max(b10 - 1, 0));
+        qj0Var.v0(Math.max(b10 - 1, 0));
     }
 
     @Override
     public final void s0() {
         try {
             super.s0();
-            int w02 = k6.w0(k6.f27796a7, this.I0);
+            int w02 = l6.w0(l6.f27809a7, this.I0);
             if (w02 != this.W1) {
                 this.W1 = w02;
                 v0(w02);

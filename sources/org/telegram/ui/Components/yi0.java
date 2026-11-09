@@ -1,4 +1,3 @@
 package org.telegram.ui.Components;
-public interface yi0 {
-    int run();
+public final class yi0 extends v4.d1 {
 }

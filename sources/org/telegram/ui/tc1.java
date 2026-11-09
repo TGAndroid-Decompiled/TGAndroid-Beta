@@ -1,26 +1,16 @@
 package org.telegram.ui;
 
-import com.google.android.gms.tasks.OnFailureListener;
-public final class tc1 implements OnFailureListener {
-    public final int f50025a;
-    public final fi.d f50026b;
+import java.io.File;
+public final class tc1 {
+    public String f50158a;
+    public int f50159b;
+    public int f50160c;
+    public File d;
+    public final File f50161e;
 
-    public tc1(fi.d dVar, int i7) {
-        this.f50025a = i7;
-        this.f50026b = dVar;
-    }
-
-    @Override
-    public final void onFailure(Exception exc) {
-        switch (this.f50025a) {
-            case 0:
-                org.telegram.messenger.a8.d("wear-auth: /answer send failed: " + exc.getMessage());
-                this.f50026b.setLoading(false);
-                return;
-            default:
-                org.telegram.messenger.a8.d("wear-auth: /token send failed: " + exc.getMessage());
-                this.f50026b.setLoading(false);
-                return;
-        }
+    public tc1(File file, File file2, String str) {
+        this.f50158a = str;
+        this.d = file;
+        this.f50161e = file2;
     }
 }

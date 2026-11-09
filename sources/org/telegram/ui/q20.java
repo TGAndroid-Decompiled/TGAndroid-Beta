@@ -1,41 +1,42 @@
 package org.telegram.ui;
 
-import android.widget.LinearLayout;
-public final class q20 extends LinearLayout {
-    public boolean f49083a;
-    public final org.telegram.ui.Components.hb0 f49084b;
-    public final m20 f49085c;
-    public final n20 d;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.widget.TextView;
+public final class q20 extends TextView {
+    public final RectF f48871a;
+    public final Paint f48872b;
 
-    public q20(LaunchActivity launchActivity, org.telegram.ui.Components.hb0 hb0Var, m20 m20Var, n20 n20Var) {
+    public q20(LaunchActivity launchActivity) {
         super(launchActivity);
-        this.f49084b = hb0Var;
-        this.f49085c = m20Var;
-        this.d = n20Var;
-        this.f49083a = false;
+        this.f48871a = new RectF();
+        Paint paint = new Paint(1);
+        this.f48872b = paint;
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(-16711936);
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        RectF rectF = this.f48871a;
+        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), this.f48872b);
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        Paint paint = this.f48872b;
+        paint.setColor(-16711936);
+        RectF rectF = this.f48871a;
+        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), paint);
+        super.onDraw(canvas);
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        this.f49083a = true;
-        org.telegram.ui.Components.hb0 hb0Var = this.f49084b;
-        hb0Var.setItemCount(5);
-        m20 m20Var = this.f49085c;
-        m20Var.setItemCount(5);
-        n20 n20Var = this.d;
-        n20Var.setItemCount(5);
-        hb0Var.getLayoutParams().height = org.telegram.messenger.g0.L(54.0f) * 5;
-        m20Var.getLayoutParams().height = org.telegram.messenger.g0.L(54.0f) * 5;
-        n20Var.getLayoutParams().height = org.telegram.messenger.g0.L(54.0f) * 5;
-        this.f49083a = false;
         super.onMeasure(i7, i10);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f49083a) {
-            return;
-        }
-        super.requestLayout();
     }
 }

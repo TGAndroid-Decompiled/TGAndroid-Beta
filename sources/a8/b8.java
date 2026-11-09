@@ -28,7 +28,7 @@ import java.util.Arrays;
 import org.telegram.messenger.cz;
 import org.telegram.messenger.ds;
 import org.telegram.messenger.qd;
-import org.telegram.ui.Components.xv0;
+import org.telegram.ui.Components.yv0;
 public class b8 {
     public Object f335a;
     public Object f336b;
@@ -130,13 +130,13 @@ public class b8 {
     }
 
     public static boolean i(x2.g0 g0Var, Object obj, boolean z9, int i7, int i10, int i11) {
-        Object obj2 = g0Var.f58330a;
-        int i12 = g0Var.f58331b;
+        Object obj2 = g0Var.f58339a;
+        int i12 = g0Var.f58340b;
         if (!obj2.equals(obj)) {
             return false;
         }
-        if (!z9 || i12 != i7 || g0Var.f58332c != i10) {
-            if (z9 || i12 != -1 || g0Var.f58333e != i11) {
+        if (!z9 || i12 != i7 || g0Var.f58341c != i10) {
+            if (z9 || i12 != -1 || g0Var.f58342e != i11) {
                 return false;
             }
             return true;
@@ -160,7 +160,7 @@ public class b8 {
 
     public void a(wa waVar, x2.g0 g0Var, e2.l1 l1Var) {
         if (g0Var != null) {
-            if (l1Var.b(g0Var.f58330a) != -1) {
+            if (l1Var.b(g0Var.f58339a) != -1) {
                 waVar.v(g0Var, l1Var);
                 return;
             }
@@ -395,7 +395,7 @@ public class b8 {
             ((ValueAnimator) arrayList3.get(i7)).cancel();
             if (z9) {
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(((Float) ((ArrayList) this.d).get(i7)).floatValue(), 0.0f);
-                ofFloat.addUpdateListener(new xv0(this, i7, 0));
+                ofFloat.addUpdateListener(new yv0(this, i7, 0));
                 ofFloat.setDuration(100L);
                 ofFloat.start();
             }
@@ -404,7 +404,7 @@ public class b8 {
             ((ValueAnimator) arrayList2.get(i10)).cancel();
             if (z9) {
                 ValueAnimator ofFloat2 = ValueAnimator.ofFloat(((Float) ((ArrayList) this.f338e).get(i10)).floatValue(), 0.0f);
-                ofFloat2.addUpdateListener(new xv0(this, i10, 1));
+                ofFloat2.addUpdateListener(new yv0(this, i10, 1));
                 ofFloat2.setDuration(100L);
                 ofFloat2.start();
             }
@@ -413,7 +413,7 @@ public class b8 {
             ((ValueAnimator) arrayList.get(i11)).cancel();
             if (z9) {
                 ValueAnimator ofFloat3 = ValueAnimator.ofFloat(((Float) ((ArrayList) this.f339f).get(i11)).floatValue(), 0.0f);
-                ofFloat3.addUpdateListener(new xv0(this, i11, 2));
+                ofFloat3.addUpdateListener(new yv0(this, i11, 2));
                 ofFloat3.setDuration(100L);
                 ofFloat3.start();
             }

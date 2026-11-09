@@ -1,51 +1,65 @@
 package org.telegram.ui;
-
-import org.telegram.ui.Components.UndoView;
 public final class vl implements Runnable {
-    public final int f50696a;
-    public final lm f50697b;
-    public final org.telegram.messenger.ij f50698c;
+    public final int f50714a;
+    public final nm f50715b;
 
-    public vl(lm lmVar, org.telegram.messenger.ij ijVar, int i7) {
-        this.f50696a = i7;
-        this.f50697b = lmVar;
-        this.f50698c = ijVar;
+    public vl(nm nmVar, int i7) {
+        this.f50714a = i7;
+        this.f50715b = nmVar;
     }
 
     @Override
     public final void run() {
-        int i7;
-        switch (this.f50696a) {
+        switch (this.f50714a) {
             case 0:
-                lm lmVar = this.f50697b;
-                an anVar = lmVar.f47557a;
-                anVar.f8();
-                UndoView undoView = anVar.M3;
-                if (undoView != null) {
-                    if (anVar.Z.getVisibility() == 0 && anVar.S.getVisibility() != 0) {
-                        i7 = 16;
-                    } else {
-                        i7 = 17;
-                    }
-                    int i10 = i7;
-                    org.telegram.messenger.ij ijVar = this.f50698c;
-                    undoView.k(0L, i10, ijVar.C0(), null, null, new vl(lmVar, ijVar, 2));
-                    return;
-                }
+                cn cnVar = this.f50715b.f48207a;
+                cnVar.f44628t5 = null;
+                cnVar.f44640u5 = null;
                 return;
             case 1:
-                an anVar2 = this.f50697b.f47557a;
-                anVar2.Wb = this.f50698c.f1();
-                anVar2.Xb = 0;
+                nm nmVar = this.f50715b;
+                nmVar.getClass();
+                cn cnVar2 = nmVar.f48207a;
+                new ug.w0((org.telegram.ui.ActionBar.f2) cnVar2, 8, true).show();
+                cnVar2.getMessagesController().E3();
+                return;
+            case 2:
+                nm nmVar2 = this.f50715b;
+                nmVar2.getClass();
+                cn cnVar3 = nmVar2.f48207a;
+                new ug.w0((org.telegram.ui.ActionBar.f2) cnVar3, 8, true).show();
+                cnVar3.getMessagesController().E3();
+                return;
+            case 3:
+                nm nmVar3 = this.f50715b;
+                nmVar3.getClass();
+                cn cnVar4 = nmVar3.f48207a;
+                new ug.w0((org.telegram.ui.ActionBar.f2) cnVar4, 8, true).show();
+                cnVar4.getMessagesController().E3();
+                return;
+            case 4:
+                this.f50715b.f48207a.presentFragment(new PremiumPreviewFragment(0, "similar_channels"));
+                return;
+            case 5:
+                cn cnVar5 = this.f50715b.f48207a;
+                cnVar5.f44628t5 = null;
+                cnVar5.f44640u5 = null;
+                return;
+            case 6:
+                this.f50715b.f48207a.Z.H0();
+                return;
+            case 7:
+                this.f50715b.f48207a.Z.H0();
+                return;
+            case 8:
+                cn cnVar6 = this.f50715b.f48207a;
+                ThemeActivity themeActivity = new ThemeActivity(0);
+                themeActivity.T0 = true;
+                cnVar6.presentFragment(themeActivity);
                 return;
             default:
-                an anVar3 = this.f50697b.f47557a;
-                if (anVar3.t7()) {
-                    org.telegram.messenger.ez b10 = org.telegram.messenger.ez.b(this.f50698c.C0(), anVar3.f43848j6, anVar3.D5, anVar3.f43870l4, null, false, null, null, null, true, 0, 0, null, false);
-                    b10.K = anVar3.W8();
-                    anVar3.getSendMessagesHelper().r0(b10);
-                    return;
-                }
+                cn cnVar7 = this.f50715b.f48207a;
+                cnVar7.showDialog(new ug.w0((org.telegram.ui.ActionBar.f2) cnVar7, 39, false));
                 return;
         }
     }

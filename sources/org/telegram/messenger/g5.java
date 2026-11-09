@@ -209,7 +209,7 @@ public final class g5 extends c1 {
         if (tLObject instanceof TLRPC.Chat) {
             return ((TLRPC.Chat) tLObject).title;
         }
-        return id.M0(2131749329, null);
+        return id.M0(2131749328, null);
     }
 
     public static String p(TLRPC.User user) {
@@ -439,7 +439,7 @@ public final class g5 extends c1 {
     }
 
     public final void K() {
-        getConnectionsManager().sendRequest(new TLRPC.TL_contacts_resetSaved(), new di.u5(9));
+        getConnectionsManager().sendRequest(new TLRPC.TL_contacts_resetSaved(), new di.v5(9));
     }
 
     public final void L() {
@@ -832,11 +832,11 @@ public final class g5 extends c1 {
         int size = arrayList.size();
         for (int i7 = 0; i7 < size; i7++) {
             TLRPC.User user = (TLRPC.User) arrayList.get(i7);
-            di.y6 P1 = getMessagesController().P1();
+            di.z6 P1 = getMessagesController().P1();
             long j3 = user.f27105id;
-            int i10 = P1.f9963a;
+            int i10 = P1.f9992a;
             ArrayList arrayList3 = P1.h;
-            ArrayList arrayList4 = P1.f9968g;
+            ArrayList arrayList4 = P1.f9997g;
             int i11 = 0;
             while (true) {
                 if (i11 >= arrayList4.size()) {
@@ -859,8 +859,8 @@ public final class g5 extends c1 {
                     i12++;
                 }
             }
-            di.l7 l7Var = P1.f9971k;
-            l7Var.f9338b.f26719a.c(new bi.r3(l7Var, j3, 6));
+            di.m7 m7Var = P1.f10000k;
+            m7Var.f9363b.f26719a.c(new bi.r3(m7Var, j3, 6));
             qp.s1(i10).D();
             qs.f(i10).k(qs.f25095v5, new Object[0]);
             TLRPC.InputUser q12 = getMessagesController().q1(user);
@@ -937,12 +937,12 @@ public final class g5 extends c1 {
             str = "https://telegram.org/dl";
         }
         if (i7 <= 1) {
-            return id.a0(null, null, 2131749117, str);
+            return id.a0(null, null, 2131749116, str);
         }
         try {
             return String.format(id.K0(i7, "InviteTextNum"), Integer.valueOf(i7), str);
         } catch (Exception unused) {
-            return id.a0(null, null, 2131749117, str);
+            return id.a0(null, null, 2131749116, str);
         }
     }
 

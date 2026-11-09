@@ -2,12 +2,12 @@ package bi;
 
 import android.view.View;
 public final class y1 implements View.OnClickListener {
-    public final int f5062a;
-    public final k7 f5063b;
+    public final int f5060a;
+    public final k7 f5061b;
 
     public y1(k7 k7Var, int i7) {
-        this.f5062a = i7;
-        this.f5063b = k7Var;
+        this.f5060a = i7;
+        this.f5061b = k7Var;
     }
 
     @Override

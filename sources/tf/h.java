@@ -1,12 +1,12 @@
 package tf;
 public final class h {
-    public int f55538a;
-    public int f55539b;
-    public int f55540c;
+    public int f55550a;
+    public int f55551b;
+    public int f55552c;
     public boolean d;
-    public boolean f55541e;
+    public boolean f55553e;
 
     public final String toString() {
-        return String.format("%s[version=%s, totalTagSize=%d]", h.class.getSimpleName(), Integer.valueOf(this.f55538a), Integer.valueOf(this.f55539b));
+        return String.format("%s[version=%s, totalTagSize=%d]", h.class.getSimpleName(), Integer.valueOf(this.f55550a), Integer.valueOf(this.f55551b));
     }
 }

@@ -8,7 +8,7 @@ import android.view.ViewPropertyAnimator;
 import java.io.File;
 import java.util.ArrayList;
 import org.telegram.messenger.ye;
-import org.telegram.ui.Components.he0;
+import org.telegram.ui.Components.ie0;
 import org.telegram.ui.Components.xq;
 public final class x9 extends o5 {
     public boolean f13101i2;
@@ -31,7 +31,7 @@ public final class x9 extends o5 {
         vaVar.f13002v1.L0(false);
         vaVar.f12944c1.clearAnimation();
         ViewPropertyAnimator duration = vaVar.f12944c1.animate().alpha(0.0f).setDuration(180L);
-        xq xqVar = xq.f40367g;
+        xq xqVar = xq.f40459g;
         duration.setInterpolator(xqVar).start();
         if (vaVar.f12956g0 != 2) {
             vaVar.Y0.clearAnimation();
@@ -47,12 +47,12 @@ public final class x9 extends o5 {
             vaVar.f12982p1.setVisibility(0);
             vaVar.f12982p1.setAlpha(0.0f);
             vaVar.f12982p1.clearAnimation();
-            vaVar.f12982p1.animate().alpha(1.0f).setDuration(180L).setInterpolator(xq.f40367g).start();
+            vaVar.f12982p1.animate().alpha(1.0f).setDuration(180L).setInterpolator(xq.f40459g).start();
             return;
         }
         vaVar.f12982p1.a(false, z10);
         vaVar.f12982p1.clearAnimation();
-        ViewPropertyAnimator interpolator = vaVar.f12982p1.animate().alpha(0.0f).withEndAction(new h9(this, 2)).setDuration(180L).setInterpolator(xq.f40367g);
+        ViewPropertyAnimator interpolator = vaVar.f12982p1.animate().alpha(0.0f).withEndAction(new v9(this, 1)).setDuration(180L).setInterpolator(xq.f40459g);
         if (z10) {
             j3 = 500;
         } else {
@@ -92,7 +92,7 @@ public final class x9 extends o5 {
             f10 = 0.0f;
         }
         ViewPropertyAnimator duration = animate.alpha(f10).setDuration(180L);
-        xq xqVar = xq.f40367g;
+        xq xqVar = xq.f40459g;
         duration.setInterpolator(xqVar).start();
         vaVar.Y0.clearAnimation();
         ViewPropertyAnimator animate2 = vaVar.Y0.animate();
@@ -102,7 +102,7 @@ public final class x9 extends o5 {
         }
         animate2.alpha(f11).setDuration(180L).setInterpolator(xqVar).start();
         S0(false, z9);
-        if (z9 && (jVar = this.f12545s0) != null) {
+        if (z9 && (jVar = this.f12543s0) != null) {
             z0(jVar);
         }
         Q0();
@@ -132,12 +132,12 @@ public final class x9 extends o5 {
     @Override
     public final void o0() {
         va vaVar = this.f13102j2;
-        vaVar.f12944c1.f12365f.d();
+        vaVar.f12944c1.f12366f.d();
         vaVar.k0(0, false, true);
-        tg.j jVar = this.f12545s0;
-        if ((jVar instanceof tg.k2) && !this.f12547t0) {
+        tg.j jVar = this.f12543s0;
+        if ((jVar instanceof tg.k2) && !this.f12545t0) {
             tg.k2 k2Var = (tg.k2) jVar;
-            this.f12547t0 = true;
+            this.f12545t0 = true;
             k2Var.q();
             View focusedView = k2Var.getFocusedView();
             focusedView.requestFocus();
@@ -153,12 +153,12 @@ public final class x9 extends o5 {
             jaVar.x(6, z9);
             p5 p5Var = vaVar.f12966j1;
             if (p5Var != null) {
-                ((he0) p5Var.f12598c).a(vaVar.X0.k(), true);
+                ((ie0) p5Var.f12596c).a(vaVar.X0.k(), true);
             }
         }
         la laVar = vaVar.f12944c1;
         if (laVar != null) {
-            laVar.f12362d0 = z9;
+            laVar.f12363d0 = z9;
             laVar.L.b(z9);
         }
     }

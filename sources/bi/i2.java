@@ -32,28 +32,28 @@ public final class i2 implements c20 {
         final zh.h0 h0Var = this.f4029b;
         if (h0Var != null && h0Var.C1) {
             h0Var.C1 = false;
-            h0Var.f60361y1.f(false);
+            h0Var.f60370y1.f(false);
         }
         if (tL_payments_paymentFormStarGift == null) {
             return;
         }
         h6 h6Var = new h6(this.f4030c, tL_payments_paymentFormStarGift);
         Context context = k7Var.getContext();
-        org.telegram.ui.ActionBar.f6 f6Var = k7Var.I0;
-        int i7 = k7Var.f28616a;
-        String z12 = k7Var.z1();
+        org.telegram.ui.ActionBar.g6 g6Var = k7Var.I0;
+        int i7 = k7Var.f28621a;
+        String y12 = k7Var.y1();
         final TL_stars.TL_starGiftUnique tL_starGiftUnique = this.d;
         final long j3 = this.f4031e;
         final TLRPC.TL_textWithEntities tL_textWithEntities = this.f4032f;
         final boolean z9 = this.f4033g;
-        new k6(context, f6Var, tL_starGiftUnique, h6Var, i7, j3, z12, false, new v10() {
+        new k6(context, g6Var, tL_starGiftUnique, h6Var, i7, j3, y12, false, new v10() {
             @Override
             public final void a(Object obj2, Object obj3) {
                 h6 h6Var2 = (h6) obj2;
                 vf.b bVar = (vf.b) obj3;
                 bVar.d();
                 k7 k7Var2 = k7.this;
-                ea x10 = ea.x(k7Var2.f28616a, h6Var2.f3997a);
+                ea x10 = ea.x(k7Var2.f28621a, h6Var2.f3997a);
                 TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift2 = h6Var2.f3998b;
                 TL_stars.TL_starGiftUnique tL_starGiftUnique2 = tL_starGiftUnique;
                 long j10 = j3;

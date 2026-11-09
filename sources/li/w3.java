@@ -8,8 +8,8 @@ import org.telegram.messenger.iz;
 import org.telegram.messenger.p10;
 import org.telegram.messenger.qp;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.k60;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Components.l60;
 public final class w3 implements View.OnClickListener {
     public final int f18956a;
     public final y3 f18957b;
@@ -47,7 +47,7 @@ public final class w3 implements View.OnClickListener {
                 return;
             default:
                 final p pVar = y3Var.f18999a.f18678a;
-                f6 f6Var = pVar.f39003a;
+                g6 g6Var = pVar.f39070a;
                 t3 t3Var = pVar.f18760r;
                 a T2 = t3Var.T2();
                 TL_iv.pageTableCell pagetablecell = null;
@@ -76,7 +76,7 @@ public final class w3 implements View.OnClickListener {
                             } else {
                                 str = "";
                             }
-                            p.Z(context, str, new ai.f1(26, pVar, pageblockmath), f6Var);
+                            p.Z(context, str, new ai.f1(26, pVar, pageblockmath), g6Var);
                             return;
                         }
                         m5 m5Var = t3Var.f18892p4;
@@ -102,11 +102,11 @@ public final class w3 implements View.OnClickListener {
                             return;
                         }
                     }
-                    k60 k60Var = pVar.H;
-                    if (k60Var != null) {
-                        k60Var.u();
+                    l60 l60Var = pVar.H;
+                    if (l60Var != null) {
+                        l60Var.u();
                     }
-                    final k60 F = k60.F(pVar, f6Var, view);
+                    final l60 F = l60.F(pVar, g6Var, view);
                     F.Q = true;
                     if (T2 != null && T2.b()) {
                         z16 = false;
@@ -183,13 +183,13 @@ public final class w3 implements View.OnClickListener {
                     return;
                 }
                 int i11 = pVar.f18759n;
-                k60 k60Var2 = pVar.H;
-                if (k60Var2 != null) {
-                    k60Var2.u();
+                l60 l60Var2 = pVar.H;
+                if (l60Var2 != null) {
+                    l60Var2.u();
                 }
-                k60 G = k60.G(pVar, f6Var, view, true);
+                l60 G = l60.G(pVar, g6Var, view, true);
                 G.Q = true;
-                k60 J = G.J();
+                l60 J = G.J();
                 if (!qp.s1(i11).s4() && !p10.i(i11).q()) {
                     z9 = true;
                 } else {

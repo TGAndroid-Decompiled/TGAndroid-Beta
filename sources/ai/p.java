@@ -34,8 +34,8 @@ public final class p extends v4.g0 {
         int i10;
         q0 q0Var = this.f1597c;
         t tVar = (t) q0Var.f1676n.get(q0Var.f(i7));
-        int i11 = d1Var.f57048f;
-        View view = d1Var.f57044a;
+        int i11 = d1Var.f57060f;
+        View view = d1Var.f57056a;
         int i12 = 1;
         int i13 = 0;
         if (i11 == 0) {

@@ -80,7 +80,7 @@ public final class n5 implements View.OnClickListener {
                             d6Var2.T = null;
                         }
                         textView.setText("");
-                        d6Var2.L.setText(org.telegram.messenger.id.a0(null, null, 2131749777, hi.j.J0(d6Var2.getGiftsSuccessChance())));
+                        d6Var2.L.setText(org.telegram.messenger.id.a0(null, null, 2131749776, hi.j.J0(d6Var2.getGiftsSuccessChance())));
                         for (int i10 = 0; i10 < b6VarArr.length; i10++) {
                             b6 b6Var3 = b6VarArr[i10];
                             if (b6Var3 != null) {

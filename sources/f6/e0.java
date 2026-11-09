@@ -37,7 +37,7 @@ public final class e0 extends com.google.android.gms.common.api.j implements f0 
     public int f11263z;
 
     public e0(Context context, e eVar) {
-        super(context, I, eVar, com.google.android.gms.common.api.i.f6542c);
+        super(context, I, eVar, com.google.android.gms.common.api.i.f6540c);
         this.f11250l = new d0(this);
         this.f11257s = new Object();
         this.f11258t = new Object();
@@ -89,7 +89,7 @@ public final class e0 extends com.google.android.gms.common.api.j implements f0 
 
     public static Handler k(e0 e0Var) {
         if (e0Var.f11251m == null) {
-            e0Var.f11251m = new com.google.android.gms.internal.cast.y(e0Var.f6720g, 0);
+            e0Var.f11251m = new com.google.android.gms.internal.cast.y(e0Var.f6718g, 0);
         }
         return e0Var.f11251m;
     }
@@ -118,7 +118,7 @@ public final class e0 extends com.google.android.gms.common.api.j implements f0 
     public final void j() {
         CastDevice castDevice = this.B;
         if (!castDevice.c(2048) && castDevice.c(4) && !castDevice.c(1)) {
-            "Chromecast Audio".equals(castDevice.f6481e);
+            "Chromecast Audio".equals(castDevice.f6479e);
         }
     }
 }

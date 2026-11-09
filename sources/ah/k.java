@@ -4,7 +4,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import java.util.ArrayList;
 import java.util.HashSet;
-import org.telegram.ui.Components.c20;
+import org.telegram.ui.Components.d20;
 public final class k implements View.OnKeyListener {
     public boolean f1081a;
     public final HashSet f1082b;
@@ -30,7 +30,7 @@ public final class k implements View.OnKeyListener {
                 this.f1081a = z9;
                 return false;
             } else if (keyEvent.getAction() == 1 && this.f1081a && !arrayList.isEmpty()) {
-                oVar.a((c20) jg.g.i(1, arrayList), this.f1082b, this.f1083c);
+                oVar.a((d20) jg.g.i(1, arrayList), this.f1082b, this.f1083c);
                 return true;
             }
         }

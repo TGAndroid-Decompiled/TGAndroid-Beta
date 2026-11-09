@@ -1,97 +1,75 @@
 package org.telegram.ui;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class bo extends org.telegram.ui.Components.f70 {
-    public final Context f44458x;
-    public final go f44459y;
+import android.view.View;
+import java.util.ArrayList;
+public final class bo extends org.telegram.ui.Cells.z8 {
+    public final io D;
+    public ValueAnimator f44080x;
+    public int f44081y;
 
-    public bo(go goVar, Context context, TLRPC.Chat chat, Context context2) {
-        super(context, chat);
-        this.f44459y = goVar;
-        this.f44458x = context2;
+    public bo(io ioVar, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(12, context, g6Var);
+        this.D = ioVar;
+        this.f44081y = -1;
     }
 
     @Override
-    public final boolean a(final boolean z9, org.telegram.ui.Components.d70 d70Var) {
-        TLRPC.ChatFull chatFull;
-        int i7;
+    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
+        super.onLayout(z9, i7, i10, i11, i12);
+        if (this.f44081y != -1) {
+            io ioVar = this.D;
+            if (ioVar.f46725n != null) {
+                ArrayList arrayList = new ArrayList();
+                boolean z10 = false;
+                for (int i13 = 0; i13 < ioVar.f46725n.getChildCount(); i13++) {
+                    View childAt = ioVar.f46725n.getChildAt(i13);
+                    if (z10) {
+                        arrayList.add(childAt);
+                    } else if (childAt == this) {
+                        z10 = true;
+                    }
+                }
+                float height = this.f44081y - getHeight();
+                ValueAnimator valueAnimator = this.f44080x;
+                if (valueAnimator != null) {
+                    valueAnimator.cancel();
+                }
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                this.f44080x = ofFloat;
+                ofFloat.addUpdateListener(new sf(arrayList, height, 1));
+                this.f44080x.setInterpolator(org.telegram.ui.Components.xq.h);
+                this.f44080x.setDuration(350L);
+                this.f44080x.start();
+            }
+        }
+        this.f44081y = getHeight();
+    }
+
+    @Override
+    public final void setText(CharSequence charSequence) {
         String str;
-        org.telegram.ui.ActionBar.f6 f6Var;
-        go goVar = this.f44459y;
-        if (!goVar.V || (chatFull = goVar.Y) == null || (i7 = chatFull.invitesCount) == 0) {
-            return true;
-        }
-        if (goVar.f46048a0) {
-            if (z9) {
-                str = "ApproveNewMembersEnableForLinksChannel";
+        if (charSequence != 0) {
+            charSequence = org.telegram.messenger.g0.X2(charSequence.toString());
+            int indexOf = charSequence.toString().indexOf(10);
+            io ioVar = this.D;
+            if (indexOf >= 0) {
+                charSequence.replace(indexOf, indexOf + 1, " ");
+                charSequence.setSpan(new org.telegram.ui.Components.yz(org.telegram.ui.ActionBar.l6.f28086p7, io.Z(ioVar)), 0, indexOf, 33);
+            }
+            org.telegram.ui.Components.v31[] v31VarArr = (org.telegram.ui.Components.v31[]) charSequence.getSpans(0, charSequence.length(), org.telegram.ui.Components.v31.class);
+            ah.i iVar = ioVar.f46710b;
+            if (iVar != null && iVar.getText() != null) {
+                str = ioVar.f46710b.getText().toString();
             } else {
-                str = "ApproveNewMembersDisableForLinksChannel";
+                str = "";
             }
-        } else if (z9) {
-            str = "ApproveNewMembersEnableForLinks";
-        } else {
-            str = "ApproveNewMembersDisableForLinks";
+            for (int i7 = 0; i7 < v31VarArr.length; i7++) {
+                charSequence.setSpan(new org.telegram.ui.Cells.h(5, (Object) this, str), charSequence.getSpanStart(v31VarArr[i7]), charSequence.getSpanEnd(v31VarArr[i7]), 33);
+                charSequence.removeSpan(v31VarArr[i7]);
+            }
         }
-        Context context = this.f44458x;
-        f6Var = ((org.telegram.ui.ActionBar.f2) goVar).resourceProvider;
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, f6Var);
-        String M0 = org.telegram.messenger.id.M0(2131754204, null);
-        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
-        u1Var.R = M0;
-        u1Var.T = org.telegram.messenger.g0.X2(org.telegram.messenger.id.G(i7, str, new Object[0]));
-        alertDialog$Builder.k(org.telegram.messenger.id.M0(2131754206, null), new org.telegram.ui.ActionBar.r1(this) {
-            public final bo f44067b;
-
-            {
-                this.f44067b = this;
-            }
-
-            @Override
-            public final void g(org.telegram.ui.ActionBar.u1 u1Var2, int i10) {
-                switch (r3) {
-                    case 0:
-                        boolean z10 = z9;
-                        bo boVar = this.f44067b;
-                        boVar.setJoinRequest(z10);
-                        boVar.f44459y.W = true;
-                        return;
-                    default:
-                        boolean z11 = z9;
-                        bo boVar2 = this.f44067b;
-                        boVar2.setJoinRequest(z11);
-                        boVar2.f44459y.W = false;
-                        return;
-                }
-            }
-        });
-        alertDialog$Builder.h(org.telegram.messenger.id.M0(2131754205, null), new org.telegram.ui.ActionBar.r1(this) {
-            public final bo f44067b;
-
-            {
-                this.f44067b = this;
-            }
-
-            @Override
-            public final void g(org.telegram.ui.ActionBar.u1 u1Var2, int i10) {
-                switch (r3) {
-                    case 0:
-                        boolean z10 = z9;
-                        bo boVar = this.f44067b;
-                        boVar.setJoinRequest(z10);
-                        boVar.f44459y.W = true;
-                        return;
-                    default:
-                        boolean z11 = z9;
-                        bo boVar2 = this.f44067b;
-                        boVar2.setJoinRequest(z11);
-                        boVar2.f44459y.W = false;
-                        return;
-                }
-            }
-        });
-        goVar.showDialog(u1Var);
-        return false;
+        super.setText(charSequence);
     }
 }

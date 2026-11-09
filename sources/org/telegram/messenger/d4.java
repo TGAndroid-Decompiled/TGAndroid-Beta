@@ -132,7 +132,7 @@ public final class d4 extends c1 {
                 f10.k(qs.T, N0, 0, bool, bool);
             }
         }
-        getConnectionsManager().sendRequest(tL_messages_setChatWallPaper, new di.u5(8));
+        getConnectionsManager().sendRequest(tL_messages_setChatWallPaper, new di.v5(8));
     }
 
     public final ArrayList b() {
@@ -215,18 +215,18 @@ public final class d4 extends c1 {
             arrayList3.addAll(arrayList);
         }
         int i10 = 0;
-        if (hasFlag && (arrayList3.isEmpty() || !((org.telegram.ui.ActionBar.r3) arrayList3.get(0)).f28459a)) {
+        if (hasFlag && (arrayList3.isEmpty() || !((org.telegram.ui.ActionBar.r3) arrayList3.get(0)).f28460a)) {
             org.telegram.ui.ActionBar.r3 r3Var = new org.telegram.ui.ActionBar.r3(this.currentAccount);
-            r3Var.f28462e = "❌";
-            r3Var.f28461c = ig.b.d("❌");
+            r3Var.f28463e = "❌";
+            r3Var.f28462c = ig.b.d("❌");
             r3Var.d = TLRPC.ChatTheme.ofEmoticon("❌");
-            r3Var.f28459a = true;
+            r3Var.f28460a = true;
             org.telegram.ui.ActionBar.q3 q3Var = new org.telegram.ui.ActionBar.q3();
-            q3Var.f28403a = org.telegram.ui.ActionBar.r3.d(true);
-            r3Var.f28463f.add(q3Var);
+            q3Var.f28408a = org.telegram.ui.ActionBar.r3.d(true);
+            r3Var.f28464f.add(q3Var);
             org.telegram.ui.ActionBar.q3 q3Var2 = new org.telegram.ui.ActionBar.q3();
-            q3Var2.f28403a = org.telegram.ui.ActionBar.r3.d(false);
-            r3Var.f28463f.add(q3Var2);
+            q3Var2.f28408a = org.telegram.ui.ActionBar.r3.d(false);
+            r3Var.f28464f.add(q3Var2);
             arrayList3.add(0, r3Var);
         }
         int size = arrayList3.size();
@@ -263,7 +263,7 @@ public final class d4 extends c1 {
                 Object obj = arrayList.get(i7);
                 i7++;
                 org.telegram.ui.ActionBar.r3 r3Var = (org.telegram.ui.ActionBar.r3) obj;
-                if (bVar.equals(r3Var.f28461c)) {
+                if (bVar.equals(r3Var.f28462c)) {
                     return r3Var;
                 }
             }
@@ -295,7 +295,7 @@ public final class d4 extends c1 {
             while (i7 < size) {
                 Object obj = arrayList.get(i7);
                 i7++;
-                n(((org.telegram.ui.ActionBar.r3) obj).f28462e);
+                n(((org.telegram.ui.ActionBar.r3) obj).f28463e);
             }
         }
     }
@@ -459,7 +459,7 @@ public final class d4 extends c1 {
         }
     }
 
-    public final int u(long j3, String str, org.telegram.ui.ActionBar.c6 c6Var, ij ijVar, ai.m0 m0Var) {
+    public final int u(long j3, String str, org.telegram.ui.ActionBar.d6 d6Var, ij ijVar, ai.m0 m0Var) {
         boolean z9;
         TLRPC.ChatFull N0;
         TLRPC.UserFull userFull;
@@ -472,10 +472,10 @@ public final class d4 extends c1 {
         } else {
             tL_messages_setChatWallPaper.peer = qp.l1(qp.s1(this.currentAccount).M0(Long.valueOf(-j3)));
         }
-        tL_messages_setChatWallPaper.for_both = c6Var.f27414o;
+        tL_messages_setChatWallPaper.for_both = d6Var.f27440o;
         if (ijVar != null && (ijVar.f23262k.action instanceof TLRPC.TL_messageActionSetChatWallPaper)) {
             tL_messages_setChatWallPaper.flags |= 2;
-            tL_messages_setChatWallPaper.f27075id = ijVar.f1();
+            tL_messages_setChatWallPaper.f27075id = ijVar.e1();
             if (i7 >= 0) {
                 userFull = qp.s1(this.currentAccount).b2(j3);
                 N0 = null;
@@ -490,14 +490,14 @@ public final class d4 extends c1 {
             tL_wallPaper.document = wallPaper2.document;
             TLRPC.TL_wallPaperSettings tL_wallPaperSettings = new TLRPC.TL_wallPaperSettings();
             tL_wallPaper.settings = tL_wallPaperSettings;
-            tL_wallPaperSettings.intensity = (int) (c6Var.f27410k * 100.0f);
-            tL_wallPaperSettings.motion = c6Var.f27409j;
-            tL_wallPaperSettings.blur = c6Var.f27408i;
-            tL_wallPaperSettings.background_color = c6Var.d;
-            tL_wallPaperSettings.second_background_color = c6Var.f27405e;
-            tL_wallPaperSettings.third_background_color = c6Var.f27406f;
-            tL_wallPaperSettings.fourth_background_color = c6Var.f27407g;
-            tL_wallPaperSettings.rotation = c6Var.h;
+            tL_wallPaperSettings.intensity = (int) (d6Var.f27436k * 100.0f);
+            tL_wallPaperSettings.motion = d6Var.f27435j;
+            tL_wallPaperSettings.blur = d6Var.f27434i;
+            tL_wallPaperSettings.background_color = d6Var.d;
+            tL_wallPaperSettings.second_background_color = d6Var.f27431e;
+            tL_wallPaperSettings.third_background_color = d6Var.f27432f;
+            tL_wallPaperSettings.fourth_background_color = d6Var.f27433g;
+            tL_wallPaperSettings.rotation = d6Var.h;
             tL_wallPaper.uploadingImage = str;
             if (userFull != null) {
                 wallPaper = userFull.wallpaper;
@@ -541,11 +541,11 @@ public final class d4 extends c1 {
             }
         } else {
             tL_messages_setChatWallPaper.flags |= 1;
-            tL_messages_setChatWallPaper.wallpaper = qp.r1(c6Var);
+            tL_messages_setChatWallPaper.wallpaper = qp.r1(d6Var);
             z9 = true;
         }
         tL_messages_setChatWallPaper.flags |= 4;
-        tL_messages_setChatWallPaper.settings = qp.g2(c6Var);
+        tL_messages_setChatWallPaper.settings = qp.g2(d6Var);
         return ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_setChatWallPaper, new y3(this, j3, z9, str, m0Var));
     }
 }

@@ -6,13 +6,13 @@ import android.view.View;
 public final class a0 extends ClickableSpan {
     public final boolean f21357a;
     public final int f21358b;
-    public final org.telegram.ui.ActionBar.f6 f21359c;
+    public final org.telegram.ui.ActionBar.g6 f21359c;
     public final Runnable d;
 
-    public a0(boolean z9, int i7, org.telegram.ui.ActionBar.f6 f6Var, Runnable runnable) {
+    public a0(boolean z9, int i7, org.telegram.ui.ActionBar.g6 g6Var, Runnable runnable) {
         this.f21357a = z9;
         this.f21358b = i7;
-        this.f21359c = f6Var;
+        this.f21359c = g6Var;
         this.d = runnable;
     }
 
@@ -28,6 +28,6 @@ public final class a0 extends ClickableSpan {
         if (this.f21357a) {
             textPaint.setTypeface(g0.o());
         }
-        textPaint.setColor(org.telegram.ui.ActionBar.k6.w0(this.f21358b, this.f21359c));
+        textPaint.setColor(org.telegram.ui.ActionBar.l6.w0(this.f21358b, this.f21359c));
     }
 }

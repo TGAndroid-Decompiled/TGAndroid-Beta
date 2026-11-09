@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Components.uj;
 public final class g3 implements Runnable {
     public final int f14674a = 0;
@@ -22,7 +22,7 @@ public final class g3 implements Runnable {
     public final Object f14683x;
     public final Object f14684y;
 
-    public g3(fi.d dVar, TLObject tLObject, int i7, long j3, org.telegram.ui.ActionBar.v2 v2Var, TL_payments.starRefProgram starrefprogram, long j10, boolean z9, Context context, f6 f6Var, TLRPC.User user, TLRPC.TL_error tL_error) {
+    public g3(fi.d dVar, TLObject tLObject, int i7, long j3, org.telegram.ui.ActionBar.v2 v2Var, TL_payments.starRefProgram starrefprogram, long j10, boolean z9, Context context, g6 g6Var, TLRPC.User user, TLRPC.TL_error tL_error) {
         this.f14679n = dVar;
         this.d = tLObject;
         this.f14675b = i7;
@@ -32,7 +32,7 @@ public final class g3 implements Runnable {
         this.h = j10;
         this.f14677e = z9;
         this.f14682w = context;
-        this.f14683x = f6Var;
+        this.f14683x = g6Var;
         this.f14684y = user;
         this.f14676c = tL_error;
     }

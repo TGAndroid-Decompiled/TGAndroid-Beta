@@ -45,13 +45,13 @@ public final class tj implements Runnable {
                 }
                 a0.h hVar3 = hVar2;
                 if (hVar3 != null) {
-                    if (SecretMediaViewer.g() && SecretMediaViewer.f().f41937s) {
+                    if (SecretMediaViewer.g() && SecretMediaViewer.f().f41944s) {
                         z9 = true;
                     } else {
                         z9 = false;
                     }
                     if (z9) {
-                        ijVar = SecretMediaViewer.f().f41912f0;
+                        ijVar = SecretMediaViewer.f().f41919f0;
                     } else {
                         ijVar = null;
                     }
@@ -60,16 +60,16 @@ public final class tj implements Runnable {
                     while (i10 < m11) {
                         long j10 = hVar3.j(i10);
                         ArrayList arrayList3 = (ArrayList) hVar3.n(i10);
-                        if (z9 && ijVar != null && ijVar.I1 == qpVar.currentAccount && ij.B0(ijVar.f23262k) == j10 && arrayList3.contains(Integer.valueOf(ijVar.f1()))) {
-                            int f12 = ijVar.f1();
-                            arrayList3.remove(Integer.valueOf(f12));
+                        if (z9 && ijVar != null && ijVar.I1 == qpVar.currentAccount && ij.B0(ijVar.f23262k) == j10 && arrayList3.contains(Integer.valueOf(ijVar.e1()))) {
+                            int e12 = ijVar.e1();
+                            arrayList3.remove(Integer.valueOf(e12));
                             ijVar.G0 = true;
-                            long V = qpVar.V(f12, j10);
+                            long V = qpVar.V(e12, j10);
                             c10 = c11;
                             arrayList = arrayList3;
                             qp qpVar2 = qpVar;
                             qpVar = qpVar2;
-                            SecretMediaViewer.f().n1 = new vk(f12, V, j10, qpVar2);
+                            SecretMediaViewer.f().n1 = new vk(e12, V, j10, qpVar2);
                             qs notificationCenter = qpVar.getNotificationCenter();
                             Object[] objArr = new Object[1];
                             objArr[c10] = ijVar.f23262k;

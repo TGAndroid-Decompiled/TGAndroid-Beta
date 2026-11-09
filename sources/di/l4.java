@@ -1,81 +1,75 @@
 package di;
 
-import android.animation.ValueAnimator;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
+import android.graphics.RectF;
 import java.util.ArrayList;
-public final class l4 implements GestureDetector.OnGestureListener {
-    public final l5 f9335a;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.gc;
+import org.telegram.messenger.hc;
+import org.telegram.messenger.qp;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.Components.f10;
+import org.telegram.ui.Components.xq;
+import org.telegram.ui.Stories.ProfileStoriesView;
+public final class l4 {
+    public final int f9310a;
+    public final ImageReceiver f9311b;
+    public int f9312c;
+    public boolean d;
+    public float f9313e;
+    public final org.telegram.ui.Components.w5 f9314f;
+    public final org.telegram.ui.Components.w5 f9315g;
+    public final org.telegram.ui.Components.w5 h;
+    public float f9316i;
+    public float f9317j;
+    public float f9318k;
+    public final boolean f9319l;
+    public final RectF f9320m;
+    public final RectF f9321n;
 
-    public l4(l5 l5Var) {
-        this.f9335a = l5Var;
-    }
-
-    @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        l5 l5Var = this.f9335a;
-        l5Var.d.abortAnimation();
-        ValueAnimator valueAnimator = l5Var.M;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            l5Var.M.cancel();
-            l5Var.M = null;
+    public l4(ProfileStoriesView profileStoriesView, TL_stories.StoryItem storyItem) {
+        TLRPC.Photo photo;
+        ArrayList<TLRPC.PhotoSize> arrayList;
+        TLRPC.Document document;
+        org.telegram.ui.Components.w8 w8Var = new org.telegram.ui.Components.w8((org.telegram.ui.ActionBar.g6) null);
+        ImageReceiver imageReceiver = new ImageReceiver(null);
+        this.f9311b = imageReceiver;
+        this.f9312c = 0;
+        this.d = false;
+        this.f9313e = 1.0f;
+        xq xqVar = xq.h;
+        this.f9314f = new org.telegram.ui.Components.w5(profileStoriesView, 420L, xqVar);
+        this.f9315g = new org.telegram.ui.Components.w5(profileStoriesView, 420L, xqVar);
+        this.h = new org.telegram.ui.Components.w5(profileStoriesView, 420L, xqVar);
+        this.f9320m = new RectF();
+        this.f9321n = new RectF();
+        this.f9310a = storyItem.f27195id;
+        imageReceiver.J0(org.telegram.messenger.g0.L(200.0f));
+        imageReceiver.H0(profileStoriesView);
+        this.f9319l = storyItem.media instanceof TLRPC.TL_messageMediaVideoStream;
+        if (profileStoriesView.f42014y) {
+            imageReceiver.P();
         }
-        l5Var.L = false;
-        l5Var.O.f9764x = false;
-        return true;
-    }
-
-    @Override
-    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
-        l5 l5Var = this.f9335a;
-        l5Var.d.fling((int) l5Var.f9457e, 0, (int) (-f10), 0, (int) l5Var.f9458f, (int) l5Var.h, 0, 0);
-        l5Var.invalidate();
-        return false;
-    }
-
-    @Override
-    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
-        l5 l5Var = this.f9335a;
-        float f12 = l5Var.f9457e + f10;
-        l5Var.f9457e = f12;
-        float f13 = l5Var.f9458f;
-        if (f12 < f13) {
-            l5Var.f9457e = f13;
-        }
-        float f14 = l5Var.f9457e;
-        float f15 = l5Var.h;
-        if (f14 > f15) {
-            l5Var.f9457e = f15;
-        }
-        l5Var.invalidate();
-        return false;
-    }
-
-    @Override
-    public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        l5 l5Var = this.f9335a;
-        ArrayList arrayList = l5Var.G;
-        for (int i7 = 0; i7 < arrayList.size(); i7++) {
-            n4 n4Var = (n4) arrayList.get(i7);
-            if (((n4) arrayList.get(i7)).f9399a.P0.contains(motionEvent.getX(), motionEvent.getY())) {
-                int i10 = l5Var.K;
-                int i11 = n4Var.f9400b;
-                if (i10 != i11) {
-                    l5Var.c(i11, true, false);
-                } else {
-                    l5Var.N.o(false);
-                }
+        f10[] f10VarArr = s7.f9735a;
+        TLRPC.MessageMedia messageMedia = storyItem.media;
+        if (messageMedia instanceof TLRPC.TL_messageMediaVideoStream) {
+            TLObject e22 = qp.s1(imageReceiver.d).e2(storyItem.dialogId);
+            w8Var.l(e22);
+            imageReceiver.i0(e22, w8Var, null);
+        } else if (messageMedia != null && (document = messageMedia.document) != null) {
+            imageReceiver.r0(hc.c(org.telegram.messenger.w7.w(document.thumbs, org.telegram.messenger.g0.L(Math.max(25, 25)), false, null, true), storyItem.media.document), "25_25", null, null, gc.m(storyItem.media.document.thumbs), 0L, null, storyItem, 0);
+        } else {
+            if (messageMedia != null) {
+                photo = messageMedia.photo;
+            } else {
+                photo = null;
+            }
+            if (photo != null && (arrayList = photo.sizes) != null) {
+                imageReceiver.u0(null, null, hc.i(org.telegram.messenger.w7.w(arrayList, org.telegram.messenger.g0.L(Math.max(25, 25)), false, null, true), photo), "25_25", null, null, gc.m(photo.sizes), 0L, null, storyItem, 0);
+            } else {
+                imageReceiver.f();
             }
         }
-        return false;
-    }
-
-    @Override
-    public final void onLongPress(MotionEvent motionEvent) {
-    }
-
-    @Override
-    public final void onShowPress(MotionEvent motionEvent) {
     }
 }

@@ -6,9 +6,8 @@ import org.telegram.messenger.kg;
 import org.telegram.messenger.lg;
 import org.telegram.messenger.ui;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.m5;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.l6;
 public final class t0 implements Runnable {
     public final int f16926a = 0;
     public final boolean f16927b;
@@ -61,7 +60,7 @@ public final class t0 implements Runnable {
                     return;
                 }
             default:
-                org.telegram.messenger.g0.h3(new m5(k6.p1((c6) this.f16929e, (File) this.f16930f, this.f16928c, this.f16927b, (TLRPC.Document) this.h, this.d), 0));
+                org.telegram.messenger.g0.h3(new l2.a0(l6.p1((d6) this.f16929e, (File) this.f16930f, this.f16928c, this.f16927b, (TLRPC.Document) this.h, this.d), 28));
                 return;
         }
     }
@@ -75,8 +74,8 @@ public final class t0 implements Runnable {
         this.d = z10;
     }
 
-    public t0(c6 c6Var, File file, int i7, boolean z9, TLRPC.Document document, boolean z10) {
-        this.f16929e = c6Var;
+    public t0(d6 d6Var, File file, int i7, boolean z9, TLRPC.Document document, boolean z10) {
+        this.f16929e = d6Var;
         this.f16930f = file;
         this.f16928c = i7;
         this.f16927b = z9;

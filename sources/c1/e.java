@@ -20,16 +20,16 @@ import v0.h;
 import v0.n;
 import v0.q;
 public final class e extends b1.d {
-    public final Context f5254e;
-    public g f5255f;
-    public Executor f5256g;
+    public final Context f5252e;
+    public g f5253f;
+    public Executor f5254g;
     public CancellationSignal h;
-    public final d f5257i;
+    public final d f5255i;
 
     public e(Context context) {
         j.e(context, "context");
-        this.f5254e = context;
-        this.f5257i = new d(this, new Handler(Looper.getMainLooper()), 0);
+        this.f5252e = context;
+        this.f5255i = new d(this, new Handler(Looper.getMainLooper()), 0);
     }
 
     public final v0.o e(a6.g r14) {
@@ -37,7 +37,7 @@ public final class e extends b1.d {
     }
 
     public final g f() {
-        g gVar = this.f5255f;
+        g gVar = this.f5253f;
         if (gVar != null) {
             return gVar;
         }
@@ -46,7 +46,7 @@ public final class e extends b1.d {
     }
 
     public final Executor g() {
-        Executor executor = this.f5256g;
+        Executor executor = this.f5254g;
         if (executor != null) {
             return executor;
         }
@@ -60,13 +60,13 @@ public final class e extends b1.d {
         j.e(callback, "callback");
         j.e(executor, "executor");
         this.h = cancellationSignal;
-        this.f5255f = callback;
-        this.f5256g = executor;
+        this.f5253f = callback;
+        this.f5254g = executor;
         CredentialProviderPlayServicesImpl.Companion.getClass();
         if (a1.g.a(cancellationSignal)) {
             return;
         }
-        Context context = this.f5254e;
+        Context context = this.f5252e;
         j.e(context, "context");
         a6.d dVar = new a6.d(false);
         a6.a aVar = new a6.a(false, null, null, true, null, null, false);
@@ -77,14 +77,14 @@ public final class e extends b1.d {
         long j3 = packageManager.getPackageInfo("com.google.android.gms", 0).versionCode;
         a6.b bVar2 = bVar;
         boolean z10 = false;
-        for (h hVar : request.f56974a) {
+        for (h hVar : request.f56986a) {
             if ((hVar instanceof q) && !z10) {
                 if (j3 >= 231815000) {
-                    LinkedHashMap linkedHashMap = d1.g.f7948a;
-                    bVar2 = new a6.b(((q) hVar).f56978e, true);
+                    LinkedHashMap linkedHashMap = d1.g.f7946a;
+                    bVar2 = new a6.b(((q) hVar).f56990e, true);
                 } else {
-                    LinkedHashMap linkedHashMap2 = d1.g.f7948a;
-                    JSONObject jSONObject = new JSONObject(((q) hVar).f56978e);
+                    LinkedHashMap linkedHashMap2 = d1.g.f7946a;
+                    JSONObject jSONObject = new JSONObject(((q) hVar).f56990e);
                     String optString = jSONObject.optString("rpId", "");
                     j.b(optString);
                     if (optString.length() != 0) {
@@ -97,7 +97,7 @@ public final class e extends b1.d {
             }
         }
         if (j3 > 241217000) {
-            z9 = request.f56975b;
+            z9 = request.f56987b;
         } else {
             z9 = false;
         }
@@ -106,9 +106,9 @@ public final class e extends b1.d {
         a6.e eVar = new a6.e(dVar, aVar, a10.f18198l, false, 0, cVar, bVar2, z9);
         s b10 = t.b();
         b10.d = new n6.c[]{new n6.c("auth_api_credentials_begin_sign_in", 8L)};
-        b10.f6682c = new f1(a10, eVar, 8);
-        b10.f6681b = false;
-        b10.f6680a = 1553;
+        b10.f6680c = new f1(a10, eVar, 8);
+        b10.f6679b = false;
+        b10.f6678a = 1553;
         a10.e(0, b10.a()).addOnSuccessListener(new a1.c(new ae.d(2, cancellationSignal, this), 20)).addOnFailureListener(new ab.g(6, this, cancellationSignal));
     }
 }

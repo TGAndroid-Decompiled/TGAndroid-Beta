@@ -1,9 +1,9 @@
 package o5;
 
 import java.util.HashMap;
-import org.telegram.ui.hy0;
+import org.telegram.ui.ky0;
 public abstract class n {
-    public static final hy0 f20837a;
+    public static final ky0 f20837a;
 
     static {
         HashMap hashMap = new HashMap();
@@ -22,6 +22,6 @@ public abstract class n {
         hashMap2.remove(r5.b.class);
         hashMap.put(r5.f.class, f.f20812a);
         hashMap2.remove(r5.f.class);
-        f20837a = new hy0(new HashMap(hashMap), new HashMap(hashMap2), qa.f.f54059a, 10);
+        f20837a = new ky0(new HashMap(hashMap), new HashMap(hashMap2), qa.f.f54071a, 10);
     }
 }

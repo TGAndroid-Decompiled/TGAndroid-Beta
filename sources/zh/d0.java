@@ -4,14 +4,14 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.view.View;
-import org.telegram.ui.Components.qa0;
-import org.telegram.ui.Components.rt0;
-public final class d0 extends rt0 {
-    public final h0 f60275f0;
+import org.telegram.ui.Components.ra0;
+import org.telegram.ui.Components.tt0;
+public final class d0 extends tt0 {
+    public final h0 f60284f0;
 
     public d0(h0 h0Var, Context context) {
         super(context, null);
-        this.f60275f0 = h0Var;
+        this.f60284f0 = h0Var;
     }
 
     @Override
@@ -26,22 +26,22 @@ public final class d0 extends rt0 {
 
     @Override
     public final void T(Drawable drawable) {
-        if (drawable instanceof qa0) {
-            ((qa0) drawable).p();
+        if (drawable instanceof ra0) {
+            ((ra0) drawable).p();
         }
-        h0 h0Var = this.f60275f0;
-        h0Var.f60349k1.f54578a = h0Var.f60348j1.c(drawable);
+        h0 h0Var = this.f60284f0;
+        h0Var.f60358k1.f54590a = h0Var.f60357j1.c(drawable);
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         if (view == this.L) {
-            h0 h0Var = this.f60275f0;
-            ri.a aVar = h0Var.f60349k1.f54578a;
+            h0 h0Var = this.f60284f0;
+            ri.a aVar = h0Var.f60358k1.f54590a;
             if (aVar instanceof ri.b) {
                 ((ri.b) aVar).b(getWidth(), getHeight());
             }
-            h0Var.f60349k1.e(canvas, 0.0f, 0.0f, getWidth(), getHeight());
+            h0Var.f60358k1.e(canvas, 0.0f, 0.0f, getWidth(), getHeight());
             return false;
         }
         return super.drawChild(canvas, view, j3);
@@ -49,7 +49,7 @@ public final class d0 extends rt0 {
 
     @Override
     public final Drawable getNewDrawable() {
-        Drawable drawable = this.f60275f0.f60357u1;
+        Drawable drawable = this.f60284f0.f60366u1;
         if (drawable != null) {
             return drawable;
         }
@@ -59,6 +59,6 @@ public final class d0 extends rt0 {
     @Override
     public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
         super.onLayout(z9, i7, i10, i11, i12);
-        this.f60275f0.I0();
+        this.f60284f0.I0();
     }
 }

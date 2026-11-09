@@ -65,12 +65,12 @@ public class AnimatedFileDrawableStream implements j7 {
                 if (obj instanceof ij) {
                     ij ijVar = (ij) obj;
                     z5 q10 = z5.q(ijVar.I1);
-                    int f12 = ijVar.f1();
+                    int e12 = ijVar.e1();
                     ArrayList arrayList = q10.G;
                     int i7 = 0;
                     while (true) {
                         if (i7 < arrayList.size()) {
-                            if (((ij) arrayList.get(i7)).f23262k.f26977id == f12) {
+                            if (((ij) arrayList.get(i7)).f23262k.f26977id == e12) {
                                 z10 = true;
                                 break;
                             }

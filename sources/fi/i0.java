@@ -9,29 +9,29 @@ import android.graphics.RectF;
 import android.view.View;
 import org.telegram.ui.BubbleActivity;
 public final class i0 extends View {
-    public final Paint f12153a;
-    public final Path f12154b;
-    public final RectF f12155c;
+    public final Paint f12156a;
+    public final Path f12157b;
+    public final RectF f12158c;
     public final Matrix d;
-    public final Matrix f12156e;
-    public final Matrix f12157f;
+    public final Matrix f12159e;
+    public final Matrix f12160f;
     public final Matrix h;
-    public final Matrix f12158n;
-    public final Matrix f12159r;
-    public final j0 f12160s;
+    public final Matrix f12161n;
+    public final Matrix f12162r;
+    public final j0 f12163s;
 
     public i0(j0 j0Var, Context context) {
         super(context);
-        this.f12160s = j0Var;
-        this.f12153a = new Paint(1);
-        this.f12154b = new Path();
-        this.f12155c = new RectF();
+        this.f12163s = j0Var;
+        this.f12156a = new Paint(1);
+        this.f12157b = new Path();
+        this.f12158c = new RectF();
         this.d = new Matrix();
-        this.f12156e = new Matrix();
-        this.f12157f = new Matrix();
+        this.f12159e = new Matrix();
+        this.f12160f = new Matrix();
         this.h = new Matrix();
-        this.f12158n = new Matrix();
-        this.f12159r = new Matrix();
+        this.f12161n = new Matrix();
+        this.f12162r = new Matrix();
     }
 
     private float getContainerHeight() {
@@ -41,7 +41,7 @@ public final class i0 extends View {
         } else {
             f10 = 0.0f;
         }
-        return ((getHeight() - f10) - this.f12160s.f12201f.D) - org.telegram.messenger.g0.L(32.0f);
+        return ((getHeight() - f10) - this.f12163s.f12201f.D) - org.telegram.messenger.g0.L(32.0f);
     }
 
     private float getContainerWidth() {
@@ -58,7 +58,7 @@ public final class i0 extends View {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        if (this.f12160s.f12207y == null) {
+        if (this.f12163s.f12207y == null) {
             return;
         }
         b(canvas, false);

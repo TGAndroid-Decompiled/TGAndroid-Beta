@@ -6,8 +6,8 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
-import org.telegram.ui.Components.xo0;
-import org.telegram.ui.Components.xs0;
+import org.telegram.ui.Components.yo0;
+import org.telegram.ui.Components.zs0;
 public final class fe implements RequestDelegate {
     public final int f22405a;
     public final int f22406b;
@@ -37,7 +37,7 @@ public final class fe implements RequestDelegate {
                 if (tL_error == null) {
                     TLRPC.updates_Difference updates_difference = (TLRPC.updates_Difference) tLObject;
                     if (updates_difference instanceof TLRPC.TL_updates_differenceTooLong) {
-                        g0.h3(new l2.a0(qpVar, updates_difference, this.f22406b, this.f22407c, 4));
+                        g0.h3(new l2.z(qpVar, updates_difference, this.f22406b, this.f22407c, 4));
                         return;
                     }
                     if (updates_difference instanceof TLRPC.TL_updates_differenceSlice) {
@@ -87,7 +87,7 @@ public final class fe implements RequestDelegate {
                 a8.b("received: isUpdating = false");
                 return;
             default:
-                g0.h3(new xo0((xs0) lsVar, tL_error, this.f22406b, this.f22407c, tLObject, 0));
+                g0.h3(new yo0((zs0) lsVar, tL_error, this.f22406b, this.f22407c, tLObject, 0));
                 return;
         }
     }

@@ -1,13 +1,13 @@
 package sc;
 
-import org.telegram.ui.hy0;
+import org.telegram.ui.ky0;
 import tc.g;
 public final class b {
-    public final hy0 f55001a;
-    public final Exception f55002b;
+    public final ky0 f55013a;
+    public final Exception f55014b;
 
-    public b(hy0 hy0Var, g gVar) {
-        this.f55002b = gVar;
-        this.f55001a = hy0Var;
+    public b(ky0 ky0Var, g gVar) {
+        this.f55014b = gVar;
+        this.f55013a = ky0Var;
     }
 }

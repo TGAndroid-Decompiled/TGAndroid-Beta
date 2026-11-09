@@ -1,63 +1,54 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class et extends org.telegram.ui.Components.nc {
-    public final org.telegram.ui.Components.yh0 f45363e0;
+import android.text.TextUtils;
+public final class et extends rg.a {
+    public final int f45505c;
+    public final int d;
+    public final int f45506e;
+    public final CharSequence f45507f;
+    public final CharSequence f45508g;
+    public final int h;
 
-    public et(org.telegram.ui.Components.yh0 yh0Var, Context context, int i7, int[] iArr, int[] iArr2) {
-        super(context, i7, iArr, 1, iArr2);
-        this.f45363e0 = yh0Var;
+    public et(int i7, String str) {
+        super(i7, false);
+        this.f45507f = str;
     }
 
-    @Override
-    public final int c() {
-        return 216;
+    public static et b(CharSequence charSequence, String str) {
+        return new et(-1, 0, 0, 0, charSequence, str);
     }
 
-    @Override
-    public final void d(int i7, boolean z9) {
-        int i10;
-        gt gtVar = (gt) this.f45363e0.f40673e;
-        if (!z9) {
-            gtVar.l1();
-        } else if (i7 >= 0 && i7 < gtVar.f46101n3.length) {
-            int i11 = 0;
-            while (true) {
-                ft[] ftVarArr = gtVar.f46101n3;
-                i10 = -1;
-                if (i11 < ftVarArr.length) {
-                    if (ftVarArr[i11].d == i7) {
-                        break;
-                    }
-                    i11++;
-                } else {
-                    i11 = -1;
-                    break;
-                }
-            }
-            int i12 = 0;
-            while (true) {
-                if (i12 < gtVar.j3.size()) {
-                    ct ctVar = (ct) gtVar.j3.get(i12);
-                    if (ctVar != null && ctVar.f54532a == 2 && ctVar.h == i11) {
-                        i10 = i12;
-                        break;
-                    }
-                    i12++;
-                } else {
-                    break;
-                }
-            }
-            if (i10 >= 0) {
-                gtVar.e1(new l2.u(i10, 3), 0, true);
-            } else {
-                gtVar.l1();
-            }
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof et)) {
+            return false;
         }
+        et etVar = (et) obj;
+        CharSequence charSequence = etVar.f45507f;
+        int i7 = etVar.f54544a;
+        int i10 = this.f54544a;
+        if (i7 != i10) {
+            return false;
+        }
+        CharSequence charSequence2 = this.f45507f;
+        if (i10 != 1 && i10 != 4 && i10 != 3 && i10 != 5) {
+            if (i10 != 2) {
+                return true;
+            }
+            if (etVar.h != this.h || !TextUtils.equals(charSequence2, charSequence) || etVar.d != this.d || etVar.f45506e != this.f45506e || etVar.f45505c != this.f45505c) {
+                return false;
+            }
+            return true;
+        }
+        return TextUtils.equals(charSequence2, charSequence);
     }
 
-    @Override
-    public final int e() {
-        return 10;
+    public et(int i7, int i10, int i11, int i12, CharSequence charSequence, CharSequence charSequence2) {
+        super(2, false);
+        this.h = i7;
+        this.f45505c = i10;
+        this.d = i11;
+        this.f45506e = i12;
+        this.f45507f = charSequence;
+        this.f45508g = charSequence2;
     }
 }

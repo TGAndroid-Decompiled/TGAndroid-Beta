@@ -148,7 +148,7 @@ public final class h20 {
                 str = "";
             }
         } else {
-            str = b0Var.f55018a;
+            str = b0Var.f55030a;
         }
         abstractSerializedData.writeString(str);
         abstractSerializedData.writeFloat(this.v);
@@ -243,13 +243,13 @@ public final class h20 {
         this.f22826p = abstractSerializedData.readInt32(z10);
         String readString = abstractSerializedData.readString(z10);
         this.f22825o = readString;
-        sg.b0 b0Var2 = sg.b0.f55014e;
+        sg.b0 b0Var2 = sg.b0.f55026e;
         tg.h0 h0Var = null;
         if (readString != null && !TextUtils.isEmpty(readString)) {
             List c10 = sg.b0.c();
             for (int i10 = 0; i10 < c10.size(); i10++) {
                 b0Var = (sg.b0) c10.get(i10);
-                if (b0Var != null && TextUtils.equals(readString, b0Var.f55018a)) {
+                if (b0Var != null && TextUtils.equals(readString, b0Var.f55030a)) {
                     break;
                 }
             }
@@ -287,7 +287,7 @@ public final class h20 {
             this.M = TL_stories.MediaArea.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z10), z10);
             int readInt323 = abstractSerializedData.readInt32(z10);
             if (-625858389 != readInt323) {
-                int i11 = tg.h0.f55707j;
+                int i11 = tg.h0.f55719j;
             } else {
                 h0Var = new tg.h0();
             }
@@ -308,9 +308,9 @@ public final class h20 {
             }
         } else if (b10 == 8 && abstractSerializedData.readInt32(z10) == 132805945) {
             ?? tLObject = new TLObject();
-            tLObject.f12821a = abstractSerializedData.readDouble(false);
-            tLObject.f12822b = abstractSerializedData.readDouble(false);
-            tLObject.f12823c = abstractSerializedData.readString(false);
+            tLObject.f12820a = abstractSerializedData.readDouble(false);
+            tLObject.f12821b = abstractSerializedData.readDouble(false);
+            tLObject.f12822c = abstractSerializedData.readString(false);
             tLObject.d = abstractSerializedData.readFloat(false);
             this.O = tLObject;
         }

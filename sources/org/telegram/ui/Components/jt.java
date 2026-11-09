@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class jt implements ix {
-    public final lt f35091a;
+    public final lt f35129a;
 
     public jt(lt ltVar) {
-        this.f35091a = ltVar;
+        this.f35129a = ltVar;
     }
 
     @Override
@@ -46,18 +46,18 @@ public final class jt implements ix {
     @Override
     public final void i(int i7) {
         boolean z9;
-        lt ltVar = this.f35091a;
+        lt ltVar = this.f35129a;
         if (ltVar.b()) {
             if (i7 != 0) {
                 z9 = true;
             } else {
                 z9 = false;
             }
-            ltVar.f35787y = z9;
+            ltVar.f35851y = z9;
             ltVar.y();
-            rt0 rt0Var = ltVar.f35781f;
-            if (rt0Var != null) {
-                rt0Var.R();
+            tt0 tt0Var = ltVar.f35845f;
+            if (tt0Var != null) {
+                tt0Var.R();
             }
         }
     }
@@ -69,7 +69,7 @@ public final class jt implements ix {
 
     @Override
     public final boolean k() {
-        ft ftVar = this.f35091a.f35777a;
+        ft ftVar = this.f35129a.f35841a;
         if (ftVar.length() == 0) {
             return false;
         }
@@ -79,7 +79,7 @@ public final class jt implements ix {
 
     @Override
     public final void l(String str) {
-        ft ftVar = this.f35091a.f35777a;
+        ft ftVar = this.f35129a.f35841a;
         int selectionEnd = ftVar.getSelectionEnd();
         if (selectionEnd < 0) {
             selectionEnd = 0;
@@ -96,7 +96,7 @@ public final class jt implements ix {
 
     @Override
     public final void n() {
-        lt ltVar = this.f35091a;
+        lt ltVar = this.f35129a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, ltVar.getContext(), ltVar.M);
         String M0 = org.telegram.messenger.id.M0(2131752068, null);
         org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
@@ -119,7 +119,7 @@ public final class jt implements ix {
 
     @Override
     public final void q() {
-        org.telegram.ui.ActionBar.f2 f2Var = this.f35091a.h;
+        org.telegram.ui.ActionBar.f2 f2Var = this.f35129a.h;
         if (f2Var == null) {
             new ug.w0((org.telegram.ui.ActionBar.f2) new bi.w4(this, 5), 11, false).show();
         } else {
@@ -130,8 +130,8 @@ public final class jt implements ix {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z9) {
         r5 r5Var;
-        lt ltVar = this.f35091a;
-        ft ftVar = ltVar.f35777a;
+        lt ltVar = this.f35129a;
+        ft ftVar = ltVar.f35841a;
         int selectionEnd = ftVar.getSelectionEnd();
         if (selectionEnd < 0) {
             selectionEnd = 0;
@@ -143,7 +143,7 @@ public final class jt implements ix {
             } else {
                 r5Var = new r5(j3, ftVar.getPaint().getFontMetricsInt());
             }
-            r5Var.cacheType = ltVar.d.f34398c;
+            r5Var.cacheType = ltVar.d.f34413c;
             spannableString.setSpan(r5Var, 0, spannableString.length(), 33);
             ftVar.setText(ftVar.getText().insert(selectionEnd, spannableString));
             int length = selectionEnd + spannableString.length();
@@ -157,7 +157,7 @@ public final class jt implements ix {
 
     @Override
     public final boolean z() {
-        return this.f35091a.f35787y;
+        return this.f35129a.f35851y;
     }
 
     @Override
@@ -165,7 +165,7 @@ public final class jt implements ix {
     }
 
     @Override
-    public final void o(t31 t31Var) {
+    public final void o(u31 u31Var) {
     }
 
     @Override

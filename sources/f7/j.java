@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import c8.xb;
 import java.util.Arrays;
-import org.telegram.ui.hy0;
+import org.telegram.ui.ky0;
 public final class j extends l {
     public static final Parcelable.Creator<j> CREATOR = new t0(5);
     public final q7.s0 f11391a;
@@ -46,16 +46,16 @@ public final class j extends l {
     }
 
     public final String toString() {
-        hy0 hy0Var = new hy0(getClass().getSimpleName(), 9);
+        ky0 ky0Var = new ky0(getClass().getSimpleName(), 9);
         q7.k0 k0Var = q7.m0.d;
         byte[] p10 = this.f11391a.p();
-        hy0Var.N(k0Var.c(p10.length, p10), "keyHandle");
+        ky0Var.N(k0Var.c(p10.length, p10), "keyHandle");
         byte[] p11 = this.f11392b.p();
-        hy0Var.N(k0Var.c(p11.length, p11), "clientDataJSON");
+        ky0Var.N(k0Var.c(p11.length, p11), "clientDataJSON");
         byte[] p12 = this.f11393c.p();
-        hy0Var.N(k0Var.c(p12.length, p12), "attestationObject");
-        hy0Var.N(Arrays.toString(this.d), "transports");
-        return hy0Var.toString();
+        ky0Var.N(k0Var.c(p12.length, p12), "attestationObject");
+        ky0Var.N(Arrays.toString(this.d), "transports");
+        return ky0Var.toString();
     }
 
     @Override

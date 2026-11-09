@@ -19,9 +19,9 @@ import bi.w6;
 import bi.ya;
 import bi.z5;
 import c8.ha;
-import di.f9;
 import di.g9;
-import di.p9;
+import di.h9;
+import di.q9;
 import fi.o5;
 import hi.c4;
 import java.util.ArrayList;
@@ -53,7 +53,7 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.l6;
 import org.telegram.ui.ActionBar.v2;
 import org.telegram.ui.Components.r5;
 import org.telegram.ui.Components.xq;
@@ -103,7 +103,7 @@ public final class e0 implements Runnable {
                     ViewPropertyAnimator interpolator = duration.setInterpolator(xqVar);
                     interpolator.setUpdateListener(new ah.h(d6Var, 4));
                     interpolator.start();
-                    w5Var.f4963a[i10].setVisibility(8);
+                    w5Var.f4961a[i10].setVisibility(8);
                     z5Var.setVisibility(0);
                     z5Var.setAlpha(0.0f);
                     z5Var.animate().alpha(0.5f).setDuration(820L).setInterpolator(xqVar).start();
@@ -118,8 +118,8 @@ public final class e0 implements Runnable {
                 imageView.setAlpha(0.0f);
                 imageView.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).start();
                 d6Var.f3670l0 = imageView;
-                frameLayout.setBackground(new t6(org.telegram.messenger.g0.L(12.0f), k6.r1(0.075f, -1)));
-                w5Var.f4963a[i10].setVisibility(8);
+                frameLayout.setBackground(new t6(org.telegram.messenger.g0.L(12.0f), l6.r1(0.075f, -1)));
+                w5Var.f4961a[i10].setVisibility(8);
                 frameLayout.setRotation(180.0f);
                 w5Var.f(i10, frameLayout);
                 d6Var.F.a(iArr[2], iArr[3]);
@@ -129,7 +129,7 @@ public final class e0 implements Runnable {
                 z5Var.a(iArr[3], iArr[2]);
                 return;
             case 2:
-                ((x10) this.d).a(id.a0(null, null, 2131750047, hi.j.J0(this.f1164b)), (w6) this.f1165c, Boolean.FALSE);
+                ((x10) this.d).a(id.a0(null, null, 2131750046, hi.j.J0(this.f1164b)), (w6) this.f1165c, Boolean.FALSE);
                 return;
             case 3:
                 ea eaVar = (ea) this.f1165c;
@@ -208,15 +208,15 @@ public final class e0 implements Runnable {
                 return;
             case 8:
                 int i17 = this.f1164b;
-                p9 p9Var = ((g9) this.f1165c).d;
-                f9 f9Var = p9Var.f9559n0;
-                int i18 = p9Var.h;
-                f9Var.A0 = (ArrayList) this.d;
-                f9Var.f9941y0 = i18;
-                f9Var.setAdapter(null);
-                f9Var.setAdapter(f9Var.f9942z0);
-                f9Var.setCurrentItem(i17);
-                f9Var.C0 = true;
+                q9 q9Var = ((h9) this.f1165c).d;
+                g9 g9Var = q9Var.f9624n0;
+                int i18 = q9Var.h;
+                g9Var.A0 = (ArrayList) this.d;
+                g9Var.f9937y0 = i18;
+                g9Var.setAdapter(null);
+                g9Var.setAdapter(g9Var.f9938z0);
+                g9Var.setCurrentItem(i17);
+                g9Var.C0 = true;
                 return;
             case 9:
                 FfmpegAudioWaveformLoader.c((FfmpegAudioWaveformLoader) this.f1165c, (String) this.d, this.f1164b);
@@ -228,15 +228,15 @@ public final class e0 implements Runnable {
                 o5 o5Var = (o5) this.f1165c;
                 sg.g gVar = (sg.g) this.d;
                 int i19 = this.f1164b;
-                if (o5Var.f12555x0.getCurrentBrush() instanceof sg.g) {
+                if (o5Var.f12553x0.getCurrentBrush() instanceof sg.g) {
                     o5Var.L0 = true;
                 }
                 o5Var.w(gVar);
                 tg.h1 h1Var = o5Var.T0;
                 int i20 = h1Var.d + 1;
                 h1Var.a(i20);
-                org.telegram.messenger.g0.R3(h1Var.f55714a[i20], i19);
-                h1Var.f55717e = true;
+                org.telegram.messenger.g0.R3(h1Var.f55726a[i20], i19);
+                h1Var.f55729e = true;
                 return;
             case 12:
                 org.telegram.messenger.g0.h3(new bg.m0(this.f1164b, ((yr) this.f1165c).l0(new ArrayList((HashSet) this.d)), 8));
@@ -311,7 +311,7 @@ public final class e0 implements Runnable {
                 return;
             case 19:
                 Pair pair = (Pair) this.d;
-                ((l2.g1) this.f1165c).f17824b.h.N(((Integer) pair.first).intValue(), (x2.g0) pair.second, this.f1164b);
+                ((l2.g1) this.f1165c).f17822b.h.N(((Integer) pair.first).intValue(), (x2.g0) pair.second, this.f1164b);
                 return;
             case 20:
                 int i26 = this.f1164b;
@@ -357,8 +357,8 @@ public final class e0 implements Runnable {
                 g4 g4Var = (g4) this.f1165c;
                 String str4 = (String) this.d;
                 int i29 = this.f1164b;
-                HashMap hashMap = new HashMap(g4Var.f45819u0[0].f47086c.f45192x);
-                ArrayList arrayList2 = new ArrayList(g4Var.f45819u0[0].f47086c.f45193y);
+                HashMap hashMap = new HashMap(g4Var.f45902u0[0].f47168c.f45180x);
+                ArrayList arrayList2 = new ArrayList(g4Var.f45902u0[0].f47168c.f45181y);
                 g4Var.W0 = null;
                 Utilities.f21338g.c(new ub(g4Var, arrayList2, hashMap, str4, i29, 8));
                 return;

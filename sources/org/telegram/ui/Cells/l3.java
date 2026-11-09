@@ -8,15 +8,15 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.id;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class l3 extends FrameLayout {
-    public final EditTextBoldCursor f29490a;
+    public final EditTextBoldCursor f29494a;
 
     public l3(Context context) {
         super(context);
         int i7;
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
-        this.f29490a = editTextBoldCursor;
-        org.telegram.ui.ActionBar.r6.V(editTextBoldCursor, org.telegram.ui.ActionBar.k6.G6, null);
-        org.telegram.ui.ActionBar.r6.E(editTextBoldCursor, org.telegram.ui.ActionBar.k6.H6, null);
+        this.f29494a = editTextBoldCursor;
+        org.telegram.ui.ActionBar.s6.U(editTextBoldCursor, org.telegram.ui.ActionBar.l6.G6, null);
+        org.telegram.ui.ActionBar.s6.D(editTextBoldCursor, org.telegram.ui.ActionBar.l6.H6, null);
         editTextBoldCursor.setTextSize(1, 16.0f);
         editTextBoldCursor.setLines(1);
         editTextBoldCursor.setMaxLines(1);
@@ -35,28 +35,28 @@ public final class l3 extends FrameLayout {
     }
 
     public final void a(String str) {
-        EditTextBoldCursor editTextBoldCursor = this.f29490a;
+        EditTextBoldCursor editTextBoldCursor = this.f29494a;
         editTextBoldCursor.setText("");
         editTextBoldCursor.setHint(str);
         setWillNotDraw(true);
     }
 
     public String getText() {
-        return this.f29490a.getText().toString();
+        return this.f29494a.getText().toString();
     }
 
     public EditTextBoldCursor getTextView() {
-        return this.f29490a;
+        return this.f29494a;
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
         setMeasuredDimension(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.L(50.0f));
-        this.f29490a.measure(View.MeasureSpec.makeMeasureSpec(((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - org.telegram.messenger.g0.L(42.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+        this.f29494a.measure(View.MeasureSpec.makeMeasureSpec(((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - org.telegram.messenger.g0.L(42.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
     }
 
     public void setTextColor(int i7) {
-        this.f29490a.setTextColor(i7);
+        this.f29494a.setTextColor(i7);
     }
 
     @Override

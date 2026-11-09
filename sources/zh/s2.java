@@ -2,41 +2,30 @@ package zh;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import c8.ha;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.l9;
-import org.telegram.ui.Components.zg0;
-public final class s2 extends LinearLayout {
-    public final TextView f60521a;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Components.m41;
+import org.telegram.ui.Components.qj0;
+import org.telegram.ui.Components.r41;
+import org.telegram.ui.Components.x31;
+import org.telegram.ui.Components.y31;
+public final class s2 extends x31 {
+    static {
+        x31.h(new x31());
+    }
 
-    public s2(Context context, f6 f6Var) {
-        super(context);
-        setOrientation(1);
-        l9 l9Var = new l9(context);
-        l9Var.setImageDrawable(new zg0(2131624319, org.telegram.messenger.g0.L(130.0f), org.telegram.messenger.g0.L(130.0f)));
-        addView(l9Var, ha.t(64, 64, 17, 0, 32, 0, 0));
-        TextView textView = new TextView(context);
-        this.f60521a = textView;
-        r6.V(textView, k6.A6, f6Var);
-        textView.setTextSize(1, 14.0f);
-        textView.setGravity(17);
-        addView(textView, ha.t(-1, -2, 7, 12, 12, 12, 24));
+    public static y31 i(String str) {
+        y31 K = y31.K(s2.class);
+        K.f40568l = str;
+        return K;
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        int size = View.MeasureSpec.getSize(i7);
-        if (View.MeasureSpec.getMode(i7) == Integer.MIN_VALUE) {
-            size = org.telegram.messenger.g0.L(250.0f);
-        }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i10);
+    public final void b(View view, y31 y31Var, boolean z9, m41 m41Var, r41 r41Var) {
+        ((t2) view).set(y31Var.f40568l);
     }
 
-    public void set(CharSequence charSequence) {
-        this.f60521a.setText(charSequence);
+    @Override
+    public final View d(Context context, qj0 qj0Var, int i7, g6 g6Var) {
+        return new t2(context, g6Var);
     }
 }

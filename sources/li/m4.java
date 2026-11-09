@@ -18,11 +18,11 @@ import org.telegram.messenger.m20;
 import org.telegram.messenger.qp;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
 import org.telegram.ui.Cells.h9;
 import org.telegram.ui.Cells.i9;
-public final class m4 extends y implements org.telegram.ui.ActionBar.a6, h9, k0 {
+public final class m4 extends y implements org.telegram.ui.ActionBar.b6, h9, k0 {
     public static final int M = 0;
     public final ImageReceiver D;
     public final Drawable E;
@@ -34,13 +34,13 @@ public final class m4 extends y implements org.telegram.ui.ActionBar.a6, h9, k0 
     public int K;
     public final j0 L;
     public final int f18702n;
-    public final f6 f18703r;
+    public final g6 f18703r;
     public final Paint f18704s;
     public final Paint f18705w;
     public final Paint f18706x;
     public final TextPaint f18707y;
 
-    public m4(int i7, Context context, f6 f6Var) {
+    public m4(int i7, Context context, g6 g6Var) {
         super(context);
         this.f18704s = new Paint(1);
         this.f18705w = new Paint(1);
@@ -48,7 +48,7 @@ public final class m4 extends y implements org.telegram.ui.ActionBar.a6, h9, k0 
         TextPaint textPaint = new TextPaint(1);
         this.f18707y = textPaint;
         this.f18702n = i7;
-        this.f18703r = f6Var;
+        this.f18703r = g6Var;
         setWillNotDraw(false);
         textPaint.setTextSize(org.telegram.messenger.g0.L(15.0f));
         textPaint.setTextAlign(Paint.Align.CENTER);
@@ -59,7 +59,7 @@ public final class m4 extends y implements org.telegram.ui.ActionBar.a6, h9, k0 
         this.F = view;
         view.setOnClickListener(new ii.g(this, 12));
         addView(view, ha.e(-1, -2, 51));
-        j0 j0Var = new j0(context, f6Var, new g6.d0(this, 14));
+        j0 j0Var = new j0(context, g6Var, new g6.d0(this, 14));
         this.L = j0Var;
         addView(j0Var.f18651a, ha.e(-2, -2, 51));
         updateColors();
@@ -84,10 +84,10 @@ public final class m4 extends y implements org.telegram.ui.ActionBar.a6, h9, k0 
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(k6.f27860df));
-        hashSet.add(Integer.valueOf(k6.f28176ue));
-        hashSet.add(Integer.valueOf(k6.f27952ig));
-        hashSet.add(Integer.valueOf(k6.G6));
+        hashSet.add(Integer.valueOf(l6.f27873df));
+        hashSet.add(Integer.valueOf(l6.f28189ue));
+        hashSet.add(Integer.valueOf(l6.f27965ig));
+        hashSet.add(Integer.valueOf(l6.G6));
     }
 
     @Override
@@ -217,7 +217,7 @@ public final class m4 extends y implements org.telegram.ui.ActionBar.a6, h9, k0 
         if (k4Var != null && (textSelectionHelper = ((p3) k4Var).f18775a.getTextSelectionHelper()) != null && textSelectionHelper.x() && (getParent() instanceof RecyclerView)) {
             ((RecyclerView) getParent()).getClass();
             int R = RecyclerView.R(this);
-            if (R >= 0 && R > textSelectionHelper.f29317p0 && R <= textSelectionHelper.f29320s0) {
+            if (R >= 0 && R > textSelectionHelper.f29321p0 && R <= textSelectionHelper.f29324s0) {
                 canvas2.drawRect(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getPaddingTop() + this.K, this.f18706x);
             }
         }
@@ -255,14 +255,14 @@ public final class m4 extends y implements org.telegram.ui.ActionBar.a6, h9, k0 
 
     @Override
     public final void updateColors() {
-        int i7 = k6.f27860df;
-        f6 f6Var = this.f18703r;
-        this.f18704s.setColor(k6.w0(i7, f6Var));
-        this.f18705w.setColor(k6.w0(k6.f28176ue, f6Var));
-        this.f18706x.setColor(k6.w0(k6.f27952ig, f6Var));
-        int i10 = k6.G6;
-        this.f18707y.setColor(k6.r1(0.5f, k6.w0(i10, f6Var)));
-        this.E.setColorFilter(new PorterDuffColorFilter(k6.r1(0.5f, k6.w0(i10, f6Var)), PorterDuff.Mode.SRC_IN));
+        int i7 = l6.f27873df;
+        g6 g6Var = this.f18703r;
+        this.f18704s.setColor(l6.w0(i7, g6Var));
+        this.f18705w.setColor(l6.w0(l6.f28189ue, g6Var));
+        this.f18706x.setColor(l6.w0(l6.f27965ig, g6Var));
+        int i10 = l6.G6;
+        this.f18707y.setColor(l6.r1(0.5f, l6.w0(i10, g6Var)));
+        this.E.setColorFilter(new PorterDuffColorFilter(l6.r1(0.5f, l6.w0(i10, g6Var)), PorterDuff.Mode.SRC_IN));
         j0 j0Var = this.L;
         if (j0Var != null) {
             j0Var.a();

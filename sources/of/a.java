@@ -14,7 +14,7 @@ public final class a extends ThreadPoolExecutor implements AutoCloseable {
 
     @Override
     public final void beforeExecute(Thread thread, Runnable runnable) {
-        CountDownLatch countDownLatch = (CountDownLatch) this.f20938a.f6815c;
+        CountDownLatch countDownLatch = (CountDownLatch) this.f20938a.f6813c;
         if (countDownLatch != null) {
             try {
                 countDownLatch.await();

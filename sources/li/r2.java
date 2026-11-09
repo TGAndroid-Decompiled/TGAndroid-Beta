@@ -77,8 +77,7 @@ public final class r2 implements j5, e1 {
                     if (text2 != null && text2.getSpanStart(i4Var) >= 0) {
                         iu iuVar = i4Var.f18642b;
                         if (iuVar != null && i4Var.f18643c == g1Var) {
-                            iuVar.h = null;
-                            iuVar.f23365a.f22722a.f(g1Var);
+                            iuVar.b(g1Var);
                             i4Var.f18643c = null;
                         }
                         text2.removeSpan(i4Var);

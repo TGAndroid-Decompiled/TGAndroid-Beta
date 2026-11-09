@@ -7,8 +7,8 @@ import c8.ud;
 import java.util.ArrayList;
 import org.telegram.messenger.sc;
 import org.telegram.ui.Components.ms;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.v61;
+import org.telegram.ui.Components.qj0;
+import org.telegram.ui.Components.w61;
 public final class q {
     public static r F;
     public static int G;
@@ -32,7 +32,7 @@ public final class q {
     public int f21121z;
     public final h f21100b = new h(this);
     public final ArrayList f21101c = new ArrayList();
-    public qi.b d = qi.b.f54155c;
+    public qi.b d = qi.b.f54167c;
     public final RectF f21102e = new RectF();
     public final xe.b f21110n = new xe.b();
     public final ArrayList f21111o = new ArrayList();
@@ -59,12 +59,12 @@ public final class q {
         this.f21111o.add(gVar);
     }
 
-    public final void b(pj0 pj0Var) {
-        if (pj0Var == null) {
+    public final void b(qj0 qj0Var) {
+        if (qj0Var == null) {
             return;
         }
-        this.f21110n.add(pj0Var);
-        pj0Var.D2.f36690b.add(new ms() {
+        this.f21110n.add(qj0Var);
+        qj0Var.D2.f36777b.add(new ms() {
             @Override
             public final void a(int i7, boolean z9) {
                 int i10;
@@ -80,17 +80,17 @@ public final class q {
             }
         });
         j jVar = new j(this);
-        if (pj0Var.P == null) {
-            pj0Var.P = new ArrayList();
+        if (qj0Var.P == null) {
+            qj0Var.P = new ArrayList();
         }
-        pj0Var.P.add(jVar);
-        pj0Var.j(new ai.b(this, 23));
+        qj0Var.P.add(jVar);
+        qj0Var.j(new ai.b(this, 23));
     }
 
-    public final void c(v61 v61Var) {
-        if (v61Var != null) {
+    public final void c(w61 w61Var) {
+        if (w61Var != null) {
             g gVar = new g(this);
-            ArrayList arrayList = v61Var.R;
+            ArrayList arrayList = w61Var.R;
             if (!arrayList.contains(gVar)) {
                 arrayList.add(gVar);
             }
@@ -111,10 +111,10 @@ public final class q {
             aVar.getClass();
             return aVar;
         }
-        aVar.f54154b = 0;
-        int i7 = aVar2.f54154b;
+        aVar.f54166b = 0;
+        int i7 = aVar2.f54166b;
         for (int i10 = 0; i10 < i7; i10++) {
-            RectF rectF = (RectF) aVar2.f54153a.get(i10);
+            RectF rectF = (RectF) aVar2.f54165a.get(i10);
             aVar.a(rectF.left, rectF.top, rectF.right, rectF.bottom);
         }
         return aVar;
@@ -140,15 +140,15 @@ public final class q {
         if (view2 != view) {
             h hVar = this.f21100b;
             if (view2 != null && (cVar = (xf.c) view2.getTag(2131296697)) != null) {
-                ArrayList arrayList = cVar.f58700a;
+                ArrayList arrayList = cVar.f58709a;
                 if (arrayList.remove(hVar)) {
-                    xf.a aVar = cVar.f58701b;
+                    xf.a aVar = cVar.f58710b;
                     if (aVar != null) {
-                        ((xe.b) aVar.f58699a.f8841b).remove(hVar);
+                        ((xe.b) aVar.f58708a.f8835b).remove(hVar);
                     }
                     if (arrayList.isEmpty()) {
-                        cVar.f58701b = null;
-                        view2.removeOnAttachStateChangeListener(cVar.f58702c);
+                        cVar.f58710b = null;
+                        view2.removeOnAttachStateChangeListener(cVar.f58711c);
                         view2.setTag(2131296697, null);
                     }
                 }
@@ -161,13 +161,13 @@ public final class q {
                 if (cVar2 == null) {
                     cVar2 = new xf.c();
                     view.setTag(2131296697, cVar2);
-                    view.addOnAttachStateChangeListener(cVar2.f58702c);
+                    view.addOnAttachStateChangeListener(cVar2.f58711c);
                 }
-                ArrayList arrayList2 = cVar2.f58700a;
+                ArrayList arrayList2 = cVar2.f58709a;
                 if (!arrayList2.contains(hVar)) {
                     arrayList2.add(hVar);
                     if (view.isAttachedToWindow() && (a10 = ud.a(view, cVar2)) != null) {
-                        ((xe.b) a10.f58699a.f8841b).add(hVar);
+                        ((xe.b) a10.f58708a.f8835b).add(hVar);
                     }
                 }
             }

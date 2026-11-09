@@ -1,6 +1,6 @@
 package c8;
 public final class o6 implements na.d {
-    public static final o6 f5786a = new Object();
+    public static final o6 f5784a = new Object();
 
     static {
         rf.b.q(a8.p0.x(w.class, new s(1)));

@@ -16,22 +16,22 @@ import org.telegram.messenger.a8;
 import org.telegram.messenger.i6;
 import org.telegram.messenger.id;
 import org.telegram.messenger.k5;
-import org.telegram.ui.ActionBar.a6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.mu0;
-import org.telegram.ui.Components.zg0;
-public final class y extends View implements a6 {
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.Components.ah0;
+import org.telegram.ui.Components.ou0;
+public final class y extends View implements b6 {
     public final org.telegram.ui.Cells.y D;
     public boolean E;
     public int F;
-    public zg0 G;
+    public ah0 G;
     public int H;
     public int I;
     public final RectF f15036a;
     public final Paint f15037b;
     public final TextPaint f15038c;
     public final v d;
-    public final zg0 f15039e;
+    public final ah0 f15039e;
     public boolean f15040f;
     public float h;
     public String f15041n;
@@ -49,34 +49,34 @@ public final class y extends View implements a6 {
         this.f15038c = textPaint;
         v vVar = new v(this);
         this.d = vVar;
-        zg0 zg0Var = new zg0(2131623945, org.telegram.messenger.g0.L(20.0f), org.telegram.messenger.g0.L(20.0f));
-        this.f15039e = zg0Var;
+        ah0 ah0Var = new ah0(2131623945, org.telegram.messenger.g0.L(20.0f), org.telegram.messenger.g0.L(20.0f));
+        this.f15039e = ah0Var;
         this.f15041n = id.M0(2131752891, null);
         this.E = true;
         updateColors();
-        vVar.f28476n = true;
+        vVar.f28477n = true;
         vVar.h = false;
         vVar.a(false, 0.0f);
         vVar.setCallback(this);
         textPaint.setTypeface(org.telegram.messenger.g0.o());
-        vVar.f28465a.setStrokeCap(Paint.Cap.ROUND);
-        vVar.f28474l = true;
+        vVar.f28466a.setStrokeCap(Paint.Cap.ROUND);
+        vVar.f28475l = true;
         int L = org.telegram.messenger.g0.L(16.0f);
-        int x02 = k6.x0(null, k6.Ei, false);
+        int x02 = l6.x0(null, l6.Ei, false);
         this.F = x02;
-        org.telegram.ui.Cells.y k02 = k6.k0(L, L, L, L, 0, x02, x02);
+        org.telegram.ui.Cells.y k02 = l6.k0(L, L, L, L, 0, x02, x02);
         this.D = k02;
         k02.setCallback(this);
-        zg0Var.setCallback(this);
-        zg0Var.R(this);
+        ah0Var.setCallback(this);
+        ah0Var.R(this);
         setContentDescription(id.M0(2131754917, "AccDescrBotMenu"));
     }
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(k6.Rf));
-        hashSet.add(Integer.valueOf(k6.Tf));
-        hashSet.add(Integer.valueOf(k6.Ei));
+        hashSet.add(Integer.valueOf(l6.Rf));
+        hashSet.add(Integer.valueOf(l6.Tf));
+        hashSet.add(Integer.valueOf(l6.Ei));
     }
 
     @Override
@@ -107,7 +107,7 @@ public final class y extends View implements a6 {
             this.I = size;
             CharSequence m10 = i6.m(this.f15041n, textPaint.getFontMetricsInt(), false, null, 0);
             int i11 = (int) (org.telegram.messenger.g0.f22563q.x * 0.6f);
-            StaticLayout c10 = mu0.c(m10, textPaint, i11, Layout.Alignment.ALIGN_NORMAL, 0.0f, TextUtils.TruncateAt.END, i11, 1, true);
+            StaticLayout c10 = ou0.c(m10, textPaint, i11, Layout.Alignment.ALIGN_NORMAL, 0.0f, TextUtils.TruncateAt.END, i11, 1, true);
             this.f15042r = c10;
             if (c10.getLineCount() > 0) {
                 f10 = this.f15042r.getLineWidth(0);
@@ -137,14 +137,14 @@ public final class y extends View implements a6 {
         int i7 = 1;
         if (this.f15045x) {
             if (this.f15046y != z9) {
-                zg0 zg0Var = this.f15039e;
-                zg0Var.stop();
-                zg0Var.h = true;
+                ah0 ah0Var = this.f15039e;
+                ah0Var.stop();
+                ah0Var.h = true;
                 if (z9) {
-                    i7 = zg0Var.f40995e[0];
+                    i7 = ah0Var.f31826e[0];
                 }
-                zg0Var.P(i7);
-                zg0Var.start();
+                ah0Var.P(i7);
+                ah0Var.start();
                 this.f15046y = z9;
                 return;
             }
@@ -167,20 +167,20 @@ public final class y extends View implements a6 {
     public final void updateColors() {
         TextPaint textPaint = this.f15038c;
         try {
-            this.f15037b.setColor(k6.x0(null, k6.Rf, false));
-            int x02 = k6.x0(null, k6.Tf, false);
+            this.f15037b.setColor(l6.x0(null, l6.Rf, false));
+            int x02 = l6.x0(null, l6.Tf, false);
             v vVar = this.d;
-            vVar.f28473k = x02;
-            vVar.f28472j = x02;
-            zg0 zg0Var = this.f15039e;
-            if (zg0Var != null) {
-                if (zg0Var == this.G) {
+            vVar.f28474k = x02;
+            vVar.f28473j = x02;
+            ah0 ah0Var = this.f15039e;
+            if (ah0Var != null) {
+                if (ah0Var == this.G) {
                     if (x02 != this.H) {
                     }
                 }
-                this.G = zg0Var;
+                this.G = ah0Var;
                 this.H = x02;
-                zg0Var.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
+                ah0Var.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
             }
             int alpha = textPaint.getAlpha();
             textPaint.setColor(x02);

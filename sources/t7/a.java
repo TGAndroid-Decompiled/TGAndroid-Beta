@@ -3,7 +3,7 @@ package t7;
 import android.os.Parcel;
 import android.os.Parcelable;
 public abstract class a {
-    public static final int f55450a = 0;
+    public static final int f55462a = 0;
 
     static {
         a.class.getClassLoader();

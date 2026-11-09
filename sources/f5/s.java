@@ -33,12 +33,12 @@ public final class s implements ServiceConnection {
     public final Long a(boolean z9) {
         if (z9) {
             com.google.android.gms.internal.play_billing.m mVar = this.f11185b;
-            if (mVar.f7401b) {
-                long a10 = mVar.f7400a.a();
-                if (mVar.f7401b) {
-                    mVar.f7401b = false;
-                    long j3 = (a10 - mVar.d) + mVar.f7402c;
-                    mVar.f7402c = j3;
+            if (mVar.f7399b) {
+                long a10 = mVar.f7398a.a();
+                if (mVar.f7399b) {
+                    mVar.f7399b = false;
+                    long j3 = (a10 - mVar.d) + mVar.f7400c;
+                    mVar.f7400c = j3;
                     return Long.valueOf(TimeUnit.MILLISECONDS.convert(j3, TimeUnit.NANOSECONDS));
                 }
                 throw new IllegalStateException("This stopwatch is already stopped.");
@@ -46,12 +46,12 @@ public final class s implements ServiceConnection {
             return null;
         }
         com.google.android.gms.internal.play_billing.m mVar2 = this.f11186c;
-        if (mVar2.f7401b) {
-            long a11 = mVar2.f7400a.a();
-            if (mVar2.f7401b) {
-                mVar2.f7401b = false;
-                long j10 = (a11 - mVar2.d) + mVar2.f7402c;
-                mVar2.f7402c = j10;
+        if (mVar2.f7399b) {
+            long a11 = mVar2.f7398a.a();
+            if (mVar2.f7399b) {
+                mVar2.f7399b = false;
+                long j10 = (a11 - mVar2.d) + mVar2.f7400c;
+                mVar2.f7400c = j10;
                 return Long.valueOf(TimeUnit.MILLISECONDS.convert(j10, TimeUnit.NANOSECONDS));
             }
             throw new IllegalStateException("This stopwatch is already stopped.");
@@ -64,15 +64,15 @@ public final class s implements ServiceConnection {
             j3 s5 = k3.s();
             int i10 = fVar.f11151a;
             s5.c();
-            k3.r((k3) s5.f7469b, i10);
+            k3.r((k3) s5.f7467b, i10);
             String str2 = fVar.f11153c;
             s5.c();
-            k3.o((k3) s5.f7469b, str2);
+            k3.o((k3) s5.f7467b, str2);
             s5.c();
-            k3.q((k3) s5.f7469b, i7);
+            k3.q((k3) s5.f7467b, i7);
             if (str != null) {
                 s5.c();
-                k3.n((k3) s5.f7469b, str);
+                k3.n((k3) s5.f7467b, str);
             }
             Long a10 = a(z9);
             b bVar = this.d;
@@ -83,23 +83,23 @@ public final class s implements ServiceConnection {
                 if (a10 != null) {
                     long longValue = a10.longValue();
                     r10.c();
-                    d4.p((d4) r10.f7469b, longValue);
+                    d4.p((d4) r10.f7467b, longValue);
                 }
                 f3 u10 = g3.u();
                 u10.d(s5);
                 u10.c();
-                g3.t((g3) u10.f7469b, 6);
+                g3.t((g3) u10.f7467b, 6);
                 u10.e(r10);
                 bVar.h((g3) u10.a());
                 return;
             }
             z3 p10 = a4.p();
             p10.c();
-            a4.n((a4) p10.f7469b, (k3) s5.a());
+            a4.n((a4) p10.f7467b, (k3) s5.a());
             if (a10 != null) {
                 long longValue2 = a10.longValue();
                 p10.c();
-                a4.o((a4) p10.f7469b, longValue2);
+                a4.o((a4) p10.f7467b, longValue2);
             }
             bVar.h.m((a4) p10.a());
         } catch (Throwable th2) {
@@ -134,10 +134,10 @@ public final class s implements ServiceConnection {
                 q4.q qVar = bVar.h;
                 f3 u10 = g3.u();
                 u10.c();
-                g3.t((g3) u10.f7469b, 6);
+                g3.t((g3) u10.f7467b, 6);
                 j3 s5 = k3.s();
                 s5.c();
-                k3.q((k3) s5.f7469b, 110);
+                k3.q((k3) s5.f7467b, 110);
                 u10.d(s5);
                 c4 r10 = d4.r();
                 r10.d(false);
@@ -174,7 +174,7 @@ public final class s implements ServiceConnection {
                 if (bVar.f11118b == 3) {
                     return;
                 }
-                int i7 = com.google.android.gms.internal.play_billing.b.f7304b;
+                int i7 = com.google.android.gms.internal.play_billing.b.f7302b;
                 if (iBinder == null) {
                     aVar = 0;
                 } else {
@@ -206,10 +206,10 @@ public final class s implements ServiceConnection {
                 q4.q qVar = bVar.h;
                 f3 u10 = g3.u();
                 u10.c();
-                g3.t((g3) u10.f7469b, 6);
+                g3.t((g3) u10.f7467b, 6);
                 j3 s5 = k3.s();
                 s5.c();
-                k3.q((k3) s5.f7469b, 109);
+                k3.q((k3) s5.f7467b, 109);
                 u10.d(s5);
                 c4 r10 = d4.r();
                 r10.d(false);
@@ -223,8 +223,8 @@ public final class s implements ServiceConnection {
             com.google.android.gms.internal.play_billing.u.i("BillingClient", "Unable to log.", th2);
         }
         com.google.android.gms.internal.play_billing.m mVar = this.f11186c;
-        mVar.f7402c = 0L;
-        mVar.f7401b = false;
+        mVar.f7400c = 0L;
+        mVar.f7399b = false;
         mVar.a();
         b bVar2 = this.d;
         synchronized (bVar2.f11117a) {

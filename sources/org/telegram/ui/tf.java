@@ -1,54 +1,54 @@
 package org.telegram.ui;
 public final class tf implements q0.a {
-    public final int f50038a;
-    public final an f50039b;
+    public final int f50175a;
+    public final cn f50176b;
 
-    public tf(an anVar, int i7) {
-        this.f50038a = i7;
-        this.f50039b = anVar;
+    public tf(cn cnVar, int i7) {
+        this.f50175a = i7;
+        this.f50176b = cnVar;
     }
 
     @Override
     public final void accept(Object obj) {
-        switch (this.f50038a) {
+        switch (this.f50175a) {
             case 0:
                 Integer num = (Integer) obj;
-                an anVar = this.f50039b;
-                anVar.getClass();
+                cn cnVar = this.f50176b;
+                cnVar.getClass();
                 if (num.intValue() == 0) {
-                    anVar.f44044z1 = 0;
-                    anVar.fd(true);
-                    anVar.getMessagesController().t3(anVar.f43848j6, anVar.b());
+                    cnVar.f44701z1 = 0;
+                    cnVar.id(true);
+                    cnVar.getMessagesController().t3(cnVar.f44504j6, cnVar.b());
                     return;
                 }
-                anVar.fd(true);
-                anVar.l(num.intValue(), 0, false, 0, true, 0);
+                cnVar.id(true);
+                cnVar.l(num.intValue(), 0, false, 0, true, 0);
                 return;
             case 1:
                 Integer num2 = (Integer) obj;
-                an anVar2 = this.f50039b;
-                anVar2.getClass();
+                cn cnVar2 = this.f50176b;
+                cnVar2.getClass();
                 if (num2.intValue() == 0) {
-                    anVar2.A1 = 0;
-                    anVar2.ed(true);
-                    anVar2.getMessagesController().s3(anVar2.f43848j6, anVar2.b());
+                    cnVar2.A1 = 0;
+                    cnVar2.hd(true);
+                    cnVar2.getMessagesController().s3(cnVar2.f44504j6, cnVar2.b());
                     return;
                 }
-                int i7 = anVar2.A1 - 1;
-                anVar2.A1 = i7;
+                int i7 = cnVar2.A1 - 1;
+                cnVar2.A1 = i7;
                 if (i7 <= 0) {
-                    anVar2.getMessagesController().s3(anVar2.f43848j6, anVar2.b());
+                    cnVar2.getMessagesController().s3(cnVar2.f44504j6, cnVar2.b());
                 }
-                anVar2.ed(true);
-                anVar2.l(num2.intValue(), 0, false, 0, true, 0);
+                cnVar2.hd(true);
+                cnVar2.l(num2.intValue(), 0, false, 0, true, 0);
                 return;
             default:
-                an anVar3 = this.f50039b;
-                anVar3.getClass();
+                cn cnVar3 = this.f50176b;
+                cnVar3.getClass();
                 boolean booleanValue = ((Boolean) obj).booleanValue();
-                anVar3.f43998v7 = booleanValue;
+                cnVar3.f44655v7 = booleanValue;
                 if (!booleanValue) {
-                    anVar3.J8();
+                    cnVar3.K8();
                     return;
                 }
                 return;

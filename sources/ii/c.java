@@ -37,25 +37,26 @@ import org.telegram.messenger.sc;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.l6;
 import org.telegram.ui.ActionBar.u1;
 import org.telegram.ui.ActionBar.w0;
 import org.telegram.ui.Components.ac;
 import org.telegram.ui.Components.cc;
 import org.telegram.ui.Components.kb;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.q41;
-import org.telegram.ui.Components.yl0;
+import org.telegram.ui.Components.m41;
+import org.telegram.ui.Components.r41;
+import org.telegram.ui.Components.zl0;
 import org.telegram.ui.Components.zs;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.an;
-import org.telegram.ui.fw;
+import org.telegram.ui.cn;
+import org.telegram.ui.hw;
 import org.telegram.ui.web.BotWebViewContainer$WebViewProxy;
 import org.telegram.ui.web.o1;
 import org.telegram.ui.web.u0;
 import org.telegram.ui.web.z0;
-import org.telegram.ui.ww;
-import sg.t0;
+import org.telegram.ui.yw;
+import sg.v0;
+import sg.y0;
 import tg.i2;
 public final class c implements c20 {
     public final int f15495a;
@@ -74,9 +75,9 @@ public final class c implements c20 {
         TL_account.TL_businessBotRights makeDefault;
         boolean z10;
         boolean z11;
-        l41 l41Var;
+        m41 m41Var;
         Editable editable;
-        l41 l41Var2;
+        m41 m41Var2;
         int i7;
         float f10;
         TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway;
@@ -96,9 +97,9 @@ public final class c implements c20 {
                 ArrayList arrayList2 = fVar.f15530n;
                 z13 = (arrayList2 == null || arrayList2.isEmpty()) ? true : true;
                 fVar.f15530n = arrayList;
-                q41 q41Var = fVar.f15529f;
-                if (q41Var != null) {
-                    q41Var.f37190f3.O(z13);
+                r41 r41Var = fVar.f15529f;
+                if (r41Var != null) {
+                    r41Var.f37556f3.O(z13);
                     return;
                 }
                 return;
@@ -107,15 +108,15 @@ public final class c implements c20 {
                 return;
             case 2:
                 TLRPC.User user = (TLRPC.User) obj;
-                yl0 yl0Var = (yl0) ((jg.h0) obj2);
-                fw fwVar = yl0Var.K0;
+                zl0 zl0Var = (zl0) ((jg.h0) obj2);
+                hw hwVar = zl0Var.K0;
                 if (user != null) {
-                    ww wwVar = fwVar.L0;
-                    if (wwVar != null) {
-                        wwVar.W3();
+                    yw ywVar = hwVar.L0;
+                    if (ywVar != null) {
+                        ywVar.W3();
                     }
-                    qp.s1(fwVar.J0).x3(null, user, null, 0, null, false, false);
-                    yl0Var.Q(user.f27105id, user);
+                    qp.s1(hwVar.J0).x3(null, user, null, 0, null, false, false);
+                    zl0Var.Q(user.f27105id, user);
                     return;
                 }
                 return;
@@ -129,7 +130,7 @@ public final class c implements c20 {
                 if (mVar.F != z9) {
                     mVar.F = z9;
                     if (!z9) {
-                        mVar.f36243a.y0(0);
+                        mVar.f36649a.y0(0);
                         return;
                     }
                     return;
@@ -176,10 +177,10 @@ public final class c implements c20 {
                     }
                     a0Var.i(tL_businessBotRecipients);
                 }
-                q41 q41Var2 = q0Var.f17502c;
-                if (q41Var2 != null && (l41Var = q41Var2.f37190f3) != null) {
+                r41 r41Var2 = q0Var.f17502c;
+                if (r41Var2 != null && (m41Var = r41Var2.f37556f3) != null) {
                     z11 = true;
-                    l41Var.O(true);
+                    m41Var.O(true);
                 } else {
                     z11 = true;
                 }
@@ -198,9 +199,9 @@ public final class c implements c20 {
                 bundle.putInt("chatMode", 5);
                 bundle.putLong("user_id", q1Var.getUserConfig().e());
                 bundle.putString("quick_reply", (String) obj);
-                an anVar = new an(bundle);
-                anVar.V9 = true;
-                q1Var.presentFragment(anVar);
+                cn cnVar = new cn(bundle);
+                cnVar.X9 = true;
+                q1Var.presentFragment(cnVar);
                 return;
             case 8:
                 org.telegram.messenger.g0.v1((x0) obj2);
@@ -293,7 +294,7 @@ public final class c implements c20 {
                         }
                         arrayList4.addAll(i12, arrayList5);
                         t3Var.v4();
-                        t3Var.f37190f3.O(false);
+                        t3Var.f37556f3.O(false);
                         f2 f2Var2 = t3Var.Q3;
                         if (f2Var2 != null) {
                             f2Var2.h();
@@ -330,20 +331,20 @@ public final class c implements c20 {
                 Bitmap bitmap = (Bitmap) obj;
                 Paint paint = w0Var.F;
                 w0Var.W = false;
-                w0Var.f28690f = bitmap;
+                w0Var.f28692f = bitmap;
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                 w0Var.h = new BitmapShader(bitmap, tileMode, tileMode);
-                Matrix matrix = w0Var.f28692n;
+                Matrix matrix = w0Var.f28694n;
                 if (matrix == null) {
-                    w0Var.f28692n = new Matrix();
+                    w0Var.f28694n = new Matrix();
                 } else {
                     matrix.reset();
                 }
-                w0Var.f28692n.postScale(8.0f, 8.0f);
-                Matrix matrix2 = w0Var.f28692n;
-                int[] iArr = w0Var.f28693r;
+                w0Var.f28694n.postScale(8.0f, 8.0f);
+                Matrix matrix2 = w0Var.f28694n;
+                int[] iArr = w0Var.f28695r;
                 matrix2.postTranslate(-iArr[0], -iArr[1]);
-                w0Var.h.setLocalMatrix(w0Var.f28692n);
+                w0Var.h.setLocalMatrix(w0Var.f28694n);
                 paint.setShader(w0Var.h);
                 ColorMatrix colorMatrix = new ColorMatrix();
                 org.telegram.messenger.g0.i(colorMatrix, -0.2f);
@@ -370,17 +371,17 @@ public final class c implements c20 {
                 u1Var.D0 = matrix3;
                 matrix3.postScale(8.0f, 8.0f);
                 Matrix matrix4 = u1Var.D0;
-                int[] iArr2 = u1Var.f28592x0;
+                int[] iArr2 = u1Var.f28583x0;
                 matrix4.postTranslate(-iArr2[0], -iArr2[1]);
                 u1Var.E0.setLocalMatrix(u1Var.D0);
-                u1Var.f28553a1.invalidate();
+                u1Var.f28544a1.invalidate();
                 return;
             case 15:
                 org.telegram.messenger.g0.v1((zs) obj2);
                 org.telegram.messenger.g0.i3((Runnable) obj, 80L);
                 return;
             case 16:
-                u0 u0Var = ((BotWebViewContainer$WebViewProxy) obj2).f51080b;
+                u0 u0Var = ((BotWebViewContainer$WebViewProxy) obj2).f51061b;
                 StringBuilder sb2 = new StringBuilder("window.navigator.__share__receive(");
                 String str3 = str;
                 if (!((Boolean) obj).booleanValue()) {
@@ -392,89 +393,89 @@ public final class c implements c20 {
                 return;
             case 17:
                 z0 z0Var = (z0) obj2;
-                z0Var.f51412f = (ArrayList) obj;
-                w3 w3Var = z0Var.f36243a;
+                z0Var.f51393f = (ArrayList) obj;
+                w3 w3Var = z0Var.f36649a;
                 if (w3Var.G) {
-                    w3Var.f37190f3.O(true);
+                    w3Var.f37556f3.O(true);
                     return;
                 }
                 return;
             case 18:
                 o1 o1Var = (o1) obj2;
-                o1Var.f51263r = ((ArrayList) obj).size();
-                w3 w3Var2 = o1Var.f36243a;
-                if (w3Var2 != null && (l41Var2 = w3Var2.f37190f3) != null && w3Var2.G) {
-                    l41Var2.O(true);
+                o1Var.f51244r = ((ArrayList) obj).size();
+                w3 w3Var2 = o1Var.f36649a;
+                if (w3Var2 != null && (m41Var2 = w3Var2.f37556f3) != null && w3Var2.G) {
+                    m41Var2.O(true);
                     return;
                 }
                 return;
             case 19:
                 rh.h hVar = (rh.h) obj2;
-                if (((rh.b) obj) == rh.b.d && ((i7 = hVar.f54553s) == 2 || i7 == 3)) {
-                    hVar.f54553s = 1;
+                if (((rh.b) obj) == rh.b.d && ((i7 = hVar.f54565s) == 2 || i7 == 3)) {
+                    hVar.f54565s = 1;
                 }
                 hVar.h.run();
                 return;
             case 20:
                 sg.w wVar = (sg.w) obj2;
-                sg.z0 z0Var2 = (sg.z0) obj;
-                sg.w0 w0Var2 = wVar.f55226a;
-                if (z0Var2 != null) {
-                    float currentWeight = w0Var2.getCurrentWeight();
-                    z0Var2.f55271f = currentWeight;
-                    double d = wVar.f55239p;
+                y0 y0Var = (y0) obj;
+                v0 v0Var = wVar.f55245a;
+                if (y0Var != null) {
+                    float currentWeight = v0Var.getCurrentWeight();
+                    y0Var.f55279f = currentWeight;
+                    double d = wVar.f55258p;
                     if (d > 0.0d) {
-                        z0Var2.f55271f = (float) ((d / wVar.f55240q) * currentWeight);
+                        y0Var.f55279f = (float) ((d / wVar.f55259q) * currentWeight);
                     }
-                    if (z0Var2.f55267a.o() == 4) {
-                        z0Var2.f55275k *= z0Var2.f55271f;
+                    if (y0Var.f55275a.o() == 4) {
+                        y0Var.f55283k *= y0Var.f55279f;
                     }
                 }
-                sg.j0 painting = w0Var2.getPainting();
+                sg.j0 painting = v0Var.getPainting();
                 if (painting.L == null) {
-                    painting.f55090f.f(new sg.e0(painting, z0Var2, 1));
+                    painting.f55103f.f(new sg.e0(painting, y0Var, 1));
                     return;
                 }
                 return;
             case 21:
-                sh.b bVar = (sh.b) obj2;
-                sh.c cVar = (sh.c) obj;
-                bVar.h = cVar;
-                bVar.f55285c.b(cVar, true);
-                org.telegram.messenger.g0.i3(new t0(bVar, 2), 200L);
+                sh.c cVar = (sh.c) obj2;
+                sh.d dVar = (sh.d) obj;
+                cVar.h = dVar;
+                cVar.f55297c.b(dVar, true);
+                org.telegram.messenger.g0.i3(new sh.b(cVar, 0), 200L);
                 return;
             case 22:
                 e5 e5Var = (e5) obj2;
                 TextureView textureView = (TextureView) obj;
-                e5Var.f55968w0 = textureView;
+                e5Var.f55980w0 = textureView;
                 if (textureView != null) {
-                    e5Var.f55962q0.addView(textureView, 0);
+                    e5Var.f55974q0.addView(textureView, 0);
                     return;
                 }
                 return;
             case 23:
                 i2 i2Var = (i2) obj2;
-                i2Var.f55761n = (Bitmap) obj;
+                i2Var.f55773n = (Bitmap) obj;
                 Paint paint2 = new Paint(1);
-                i2Var.f55763s = paint2;
-                Bitmap bitmap4 = i2Var.f55761n;
+                i2Var.f55775s = paint2;
+                Bitmap bitmap4 = i2Var.f55773n;
                 Shader.TileMode tileMode3 = Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader2 = new BitmapShader(bitmap4, tileMode3, tileMode3);
-                i2Var.f55762r = bitmapShader2;
+                i2Var.f55774r = bitmapShader2;
                 paint2.setShader(bitmapShader2);
                 ColorMatrix colorMatrix2 = new ColorMatrix();
-                if (!k6.I.q()) {
+                if (!l6.I.q()) {
                     f12 = 0.25f;
                 }
                 org.telegram.messenger.g0.i(colorMatrix2, f12);
-                if (k6.I.q()) {
+                if (l6.I.q()) {
                     f10 = -0.02f;
                 } else {
                     f10 = -0.07f;
                 }
                 org.telegram.messenger.g0.h(colorMatrix2, f10);
-                i2Var.f55763s.setColorFilter(new ColorMatrixColorFilter(colorMatrix2));
-                i2Var.f55764w = new Matrix();
+                i2Var.f55775s.setColorFilter(new ColorMatrixColorFilter(colorMatrix2));
+                i2Var.f55776w = new Matrix();
                 return;
             case 24:
                 ((ug.i0) obj2).y1((HashMap) obj);
@@ -483,8 +484,8 @@ public final class c implements c20 {
                 ug.q1 q1Var2 = (ug.q1) obj2;
                 Boolean bool = (Boolean) obj;
                 boolean e10 = sc.e(131072);
-                if (q1Var2.f56797e != e10) {
-                    q1Var2.f56797e = e10;
+                if (q1Var2.f56809e != e10) {
+                    q1Var2.f56809e = e10;
                     q1Var2.invalidate();
                     return;
                 }
@@ -525,21 +526,21 @@ public final class c implements c20 {
                     kb kbVar = new kb(Q.getParentActivity(), Q.getResourceProvider());
                     if (payments_giveawayinfo instanceof TLRPC.TL_payments_giveawayInfoResults) {
                         kbVar.c(2131623981, 30, 30, new String[0]);
-                        kbVar.f35269b.setText(id.M0(2131753371, null));
+                        kbVar.f35292b.setText(id.M0(2131753371, null));
                     } else if (payments_giveawayinfo instanceof TLRPC.TL_payments_giveawayInfo) {
                         if (((TLRPC.TL_payments_giveawayInfo) payments_giveawayinfo).participating) {
                             kbVar.c(2131624028, 30, 30, new String[0]);
-                            kbVar.f35269b.setText(id.M0(2131753369, null));
+                            kbVar.f35292b.setText(id.M0(2131753369, null));
                         } else {
                             kbVar.c(2131623981, 30, 30, new String[0]);
-                            kbVar.f35269b.setText(id.M0(2131753370, null));
+                            kbVar.f35292b.setText(id.M0(2131753370, null));
                         }
                     }
-                    kbVar.f35269b.setSingleLine(false);
-                    kbVar.f35269b.setMaxLines(2);
+                    kbVar.f35292b.setSingleLine(false);
+                    kbVar.f35292b.setMaxLines(2);
                     ac acVar = new ac(Q.getParentActivity(), Q.getResourceProvider(), true);
-                    acVar.e(id.M0(2131749011, null));
-                    acVar.f31765b = new fi.q1(payments_giveawayinfo, z12, b10, j3, tL_messageMediaGiveaway2, Q);
+                    acVar.e(id.M0(2131749010, null));
+                    acVar.f31766b = new fi.q1(payments_giveawayinfo, z12, b10, j3, tL_messageMediaGiveaway2, Q);
                     kbVar.setButton(acVar);
                     cc.g(Q, kbVar, 2750).j();
                     return;
@@ -566,11 +567,11 @@ public final class c implements c20 {
                 hVar2.L = paint3;
                 paint3.setShader(hVar2.J);
                 ColorMatrix colorMatrix3 = new ColorMatrix();
-                if (!k6.I.q()) {
+                if (!l6.I.q()) {
                     f12 = 1.25f;
                 }
                 org.telegram.messenger.g0.i(colorMatrix3, f12);
-                if (k6.I.q()) {
+                if (l6.I.q()) {
                     f11 = 0.02f;
                 } else {
                     f11 = -0.15f;

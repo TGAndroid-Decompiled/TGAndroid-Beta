@@ -46,12 +46,12 @@ public final class hk implements Runnable {
                     TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                     TLdeserialize.readAttachPath(byteBufferValue, p10.i(i7).f24489n);
                     byteBufferValue.reuse();
-                    if (ij.L3(TLdeserialize)) {
+                    if (ij.K3(TLdeserialize)) {
                         TLdeserialize.f26977id = queryFinalized.intValue(1);
                         TLdeserialize.dialog_id = j3;
                         ij ijVar = new ij(i7, TLdeserialize, false, true);
                         arrayList.add(ijVar);
-                        arrayList2.add(new MediaSessionCompat$QueueItem(null, new MediaDescriptionCompat(j3 + "_" + arrayList.size(), ijVar.z1(true), ijVar.x1(true), null, null, null, null, null), arrayList2.size()));
+                        arrayList2.add(new MediaSessionCompat$QueueItem(null, new MediaDescriptionCompat(j3 + "_" + arrayList.size(), ijVar.y1(true), ijVar.w1(true), null, null, null, null, null), arrayList2.size()));
                     }
                 }
             }

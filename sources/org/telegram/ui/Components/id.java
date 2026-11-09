@@ -1,25 +1,25 @@
 package org.telegram.ui.Components;
 public final class id implements Runnable {
-    public final int f34633a;
-    public final ChatActivityEnterView f34634b;
-    public final boolean f34635c;
+    public final int f34709a;
+    public final ChatActivityEnterView f34710b;
+    public final boolean f34711c;
 
     public id(ChatActivityEnterView chatActivityEnterView, boolean z9, int i7) {
-        this.f34633a = i7;
-        this.f34634b = chatActivityEnterView;
-        this.f34635c = z9;
+        this.f34709a = i7;
+        this.f34710b = chatActivityEnterView;
+        this.f34711c = z9;
     }
 
     @Override
     public final void run() {
         ue ueVar;
-        int i7 = this.f34633a;
-        ChatActivityEnterView chatActivityEnterView = this.f34634b;
-        boolean z9 = this.f34635c;
+        int i7 = this.f34709a;
+        ChatActivityEnterView chatActivityEnterView = this.f34710b;
+        boolean z9 = this.f34711c;
         switch (i7) {
             case 0:
                 if (!z9) {
-                    chatActivityEnterView.f31129t1.setVisibility(8);
+                    chatActivityEnterView.f31134t1.setVisibility(8);
                     return;
                 }
                 int i10 = ChatActivityEnterView.s5;
@@ -27,14 +27,14 @@ public final class id implements Runnable {
                 return;
             case 1:
                 if (!z9) {
-                    chatActivityEnterView.f31134u1.setVisibility(8);
+                    chatActivityEnterView.f31139u1.setVisibility(8);
                     return;
                 }
                 int i11 = ChatActivityEnterView.s5;
                 chatActivityEnterView.getClass();
                 return;
             default:
-                ChatActivityEnterView chatActivityEnterView2 = this.f34634b;
+                ChatActivityEnterView chatActivityEnterView2 = this.f34710b;
                 ad adVar = chatActivityEnterView2.F4;
                 chatActivityEnterView2.M0 = System.currentTimeMillis();
                 boolean T0 = chatActivityEnterView2.T0(false, 0, 0, 0L, true);

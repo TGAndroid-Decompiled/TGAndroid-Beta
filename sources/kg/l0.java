@@ -6,7 +6,7 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.za1;
+import org.telegram.ui.bb1;
 public final class l0 implements RequestDelegate {
     public final int f17422a = 0;
     public final boolean f17423b;
@@ -30,7 +30,7 @@ public final class l0 implements RequestDelegate {
                 org.telegram.messenger.g0.h3(new o0((q0) this.f17424c, tL_error, tLObject, (int[]) this.d, (ArrayList) this.f17425e, this.f17423b, (TLRPC.User) this.f17426f));
                 return;
             case 1:
-                org.telegram.messenger.g0.h3(new o0((za1) this.f17424c, tL_error, this.f17423b, tLObject, (byte[]) this.d, (String) this.f17425e, (TL_account.passwordInputSettings) this.f17426f));
+                org.telegram.messenger.g0.h3(new o0((bb1) this.f17424c, tL_error, this.f17423b, tLObject, (byte[]) this.d, (String) this.f17425e, (TL_account.passwordInputSettings) this.f17426f));
                 return;
             default:
                 yh.m mVar = (yh.m) this.f17424c;
@@ -38,15 +38,15 @@ public final class l0 implements RequestDelegate {
                 TLRPC.User user = (TLRPC.User) this.f17426f;
                 TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest = (TLRPC.TL_messages_hideChatJoinRequest) this.f17425e;
                 if (tL_error == null) {
-                    qp.s1(mVar.f59551k).O3((TLRPC.TL_updates) tLObject, false);
+                    qp.s1(mVar.f59560k).O3((TLRPC.TL_updates) tLObject, false);
                 }
                 org.telegram.messenger.g0.h3(new o0(mVar, tL_error, tLObject, tL_chatInviteImporter, this.f17423b, user, tL_messages_hideChatJoinRequest));
                 return;
         }
     }
 
-    public l0(za1 za1Var, boolean z9, byte[] bArr, String str, TL_account.passwordInputSettings passwordinputsettings) {
-        this.f17424c = za1Var;
+    public l0(bb1 bb1Var, boolean z9, byte[] bArr, String str, TL_account.passwordInputSettings passwordinputsettings) {
+        this.f17424c = bb1Var;
         this.f17423b = z9;
         this.d = bArr;
         this.f17425e = str;

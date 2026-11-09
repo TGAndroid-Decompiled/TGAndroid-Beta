@@ -7,9 +7,9 @@ import android.graphics.PorterDuff;
 import org.telegram.messenger.qs;
 import org.telegram.messenger.ye;
 import org.telegram.ui.Components.Crop.CropAreaView;
-import org.telegram.ui.Components.fd0;
+import org.telegram.ui.Components.gd0;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.n30;
+import org.telegram.ui.p30;
 public final class o7 extends AnimatorListenerAdapter {
     public final int f4473a;
     public final float f4474b;
@@ -41,9 +41,9 @@ public final class o7 extends AnimatorListenerAdapter {
                 return;
             case 1:
                 di.q1 q1Var = (di.q1) obj;
-                q1Var.f9627n = f10;
+                q1Var.f9568n = f10;
                 q1Var.invalidate();
-                if (animator == q1Var.f9628r && runnable != null) {
+                if (animator == q1Var.f9569r && runnable != null) {
                     runnable.run();
                     return;
                 }
@@ -78,9 +78,9 @@ public final class o7 extends AnimatorListenerAdapter {
                 vaVar.f12959h0.invalidate();
                 return;
             case 4:
-                n30 n30Var = (n30) obj;
-                n30Var.h = f10;
-                n30Var.f47947a.invalidate();
+                p30 p30Var = (p30) obj;
+                p30Var.h = f10;
+                p30Var.f48602a.invalidate();
                 if (runnable != null) {
                     runnable.run();
                     return;
@@ -88,36 +88,36 @@ public final class o7 extends AnimatorListenerAdapter {
                 return;
             default:
                 PhotoViewer photoViewer = (PhotoViewer) obj;
-                photoViewer.f41475o6 = null;
-                photoViewer.f41390e6 = 0.0f;
-                photoViewer.f41352a6 = 0.0f;
-                photoViewer.f41400f6 = 0.0f;
+                photoViewer.f41482o6 = null;
+                photoViewer.f41397e6 = 0.0f;
+                photoViewer.f41359a6 = 0.0f;
+                photoViewer.f41407f6 = 0.0f;
                 float o22 = photoViewer.o2(false);
-                photoViewer.f41380d6 = o22;
+                photoViewer.f41387d6 = o22;
                 photoViewer.Z5 = o22;
-                photoViewer.f41384e0.invalidate();
-                CropAreaView cropAreaView = photoViewer.C1.f33525b.f21007a;
+                photoViewer.f41391e0.invalidate();
+                CropAreaView cropAreaView = photoViewer.C1.f33932b.f21007a;
                 float o23 = photoViewer.o2(false);
-                cropAreaView.f31316n0 = 0.0f;
-                cropAreaView.f31317o0 = o23;
-                cropAreaView.f31318p0 = 0.0f;
-                cropAreaView.f31319q0 = 0.0f;
+                cropAreaView.f31321n0 = 0.0f;
+                cropAreaView.f31322o0 = o23;
+                cropAreaView.f31323p0 = 0.0f;
+                cropAreaView.f31324q0 = 0.0f;
                 cropAreaView.invalidate();
-                photoViewer.C1.f33526c.setRotated(false);
+                photoViewer.C1.f33933c.setRotated(false);
                 if (Math.abs(f10) > 0.0f) {
-                    fd0 fd0Var = photoViewer.C1;
-                    og.f fVar = fd0Var.f33526c;
+                    gd0 gd0Var = photoViewer.C1;
+                    og.f fVar = gd0Var.f33933c;
                     if (fVar != null) {
                         fVar.b(0.0f);
                         fVar.setRotated(false);
                     }
-                    if (fd0Var.f33525b.m(f10)) {
-                        org.telegram.ui.ActionBar.r6.t(photoViewer.f41357b1, org.telegram.ui.ActionBar.k6.f28043ng, photoViewer.f41534v2, PorterDuff.Mode.MULTIPLY);
+                    if (gd0Var.f33932b.m(f10)) {
+                        org.telegram.ui.ActionBar.s6.s(photoViewer.f41364b1, org.telegram.ui.ActionBar.l6.f28056ng, photoViewer.f41541v2, PorterDuff.Mode.MULTIPLY);
                     } else {
-                        photoViewer.f41357b1.setColorFilter((ColorFilter) null);
+                        photoViewer.f41364b1.setColorFilter((ColorFilter) null);
                     }
                 }
-                ye yeVar = photoViewer.W4.f47865c;
+                ye yeVar = photoViewer.W4.f48506c;
                 if (yeVar != null) {
                     yeVar.f26636b = 0.0f;
                     yeVar.f26635a = 0.0f;

@@ -3,31 +3,31 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import org.telegram.ui.PhotoViewer;
 public final class m7 extends vc {
-    public final int f35926b;
-    public final org.telegram.messenger.ls f35927c;
+    public final int f35980b;
+    public final org.telegram.messenger.ls f35981c;
 
     public m7(org.telegram.messenger.ls lsVar, Context context, int i7) {
         super(context);
-        this.f35926b = i7;
-        this.f35927c = lsVar;
+        this.f35980b = i7;
+        this.f35981c = lsVar;
     }
 
     @Override
     public final void c(boolean z9) {
         boolean z10;
         int i7;
-        switch (this.f35926b) {
+        switch (this.f35980b) {
             case 0:
-                b8 b8Var = (b8) this.f35927c;
+                b8 b8Var = (b8) this.f35981c;
                 b8Var.updateColors();
-                org.telegram.ui.uq uqVar = b8Var.E1;
-                if (uqVar != null) {
-                    uqVar.a(d1.f.u());
+                org.telegram.ui.wq wqVar = b8Var.E1;
+                if (wqVar != null) {
+                    wqVar.a(d1.f.u());
                     return;
                 }
                 return;
             default:
-                PhotoViewer photoViewer = (PhotoViewer) this.f35927c;
+                PhotoViewer photoViewer = (PhotoViewer) this.f35981c;
                 org.telegram.ui.ActionBar.z0 z0Var = photoViewer.F0;
                 if (z0Var != null) {
                     z0Var.f(z9);
@@ -39,18 +39,18 @@ public final class m7 extends vc {
                     }
                     z0Var2.setSelectorColor(i7);
                 }
-                t51 t51Var = photoViewer.F2;
-                if (t51Var != null) {
-                    if (!d1.f.u() && !photoViewer.f41496r) {
+                u51 u51Var = photoViewer.F2;
+                if (u51Var != null) {
+                    if (!d1.f.u() && !photoViewer.f41503r) {
                         z10 = false;
                     } else {
                         z10 = true;
                     }
-                    t51Var.t0(z10);
+                    u51Var.t0(z10);
                 }
-                org.telegram.ui.uq uqVar2 = photoViewer.f41542w0;
-                if (uqVar2 != null) {
-                    uqVar2.a(d1.f.u());
+                org.telegram.ui.wq wqVar2 = photoViewer.f41549w0;
+                if (wqVar2 != null) {
+                    wqVar2.a(d1.f.u());
                     return;
                 }
                 return;

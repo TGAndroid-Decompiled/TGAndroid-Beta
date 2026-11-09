@@ -330,8 +330,8 @@ public final class r1 implements f5.n, f5.c {
             bg.w0 w0Var = obj;
             if (z0Var != null) {
                 ?? obj2 = new Object();
-                obj2.f3394c = z0Var.f7298c;
-                obj2.f3393b = z0Var.f7297b;
+                obj2.f3394c = z0Var.f7296c;
+                obj2.f3393b = z0Var.f7295b;
                 w0Var = obj2;
             }
             f5.b bVar = this.d;
@@ -365,8 +365,8 @@ public final class r1 implements f5.n, f5.c {
                     throw new IllegalArgumentException("Old SKU purchase information(token/id) or original external transaction id must be provided.");
                 }
                 com.google.android.gms.internal.clearcut.z0 z0Var2 = new com.google.android.gms.internal.clearcut.z0(2);
-                z0Var2.f7298c = (String) w0Var.f3394c;
-                z0Var2.f7297b = w0Var.f3393b;
+                z0Var2.f7296c = (String) w0Var.f3394c;
+                z0Var2.f7295b = w0Var.f3393b;
                 obj4.d = z0Var2;
                 obj4.f11150f = new ArrayList();
                 obj4.f11149e = com.google.android.gms.internal.play_billing.r.p(arrayList);
@@ -404,7 +404,7 @@ public final class r1 implements f5.n, f5.c {
                 }
                 if (hashSet.size() <= 1) {
                     com.google.android.gms.internal.play_billing.r p10 = com.google.android.gms.internal.play_billing.r.p(list);
-                    iVar.f8209b = p10;
+                    iVar.f8207b = p10;
                     if (p10 != null) {
                         this.d.c(new aa.n(iVar), new j1(q1Var, 0));
                         return;
@@ -424,8 +424,8 @@ public final class r1 implements f5.n, f5.c {
         if (f5.b.f(new f5.q(bVar, mVar, str), 30000L, new m9.u(17, bVar, mVar), bVar.r(), bVar.e()) == null) {
             f5.f u10 = bVar.u();
             bVar.y(25, 9, u10);
-            com.google.android.gms.internal.play_billing.p pVar = com.google.android.gms.internal.play_billing.r.f7444b;
-            mVar.b(u10, com.google.android.gms.internal.play_billing.v.f7471e);
+            com.google.android.gms.internal.play_billing.p pVar = com.google.android.gms.internal.play_billing.r.f7442b;
+            mVar.b(u10, com.google.android.gms.internal.play_billing.v.f7469e);
         }
     }
 

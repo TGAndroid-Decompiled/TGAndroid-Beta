@@ -21,11 +21,11 @@ import org.telegram.messenger.ij;
 import org.telegram.messenger.p10;
 import org.telegram.messenger.w7;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.my0;
-import org.telegram.ui.Components.u31;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.s6;
+import org.telegram.ui.Components.ny0;
+import org.telegram.ui.Components.v31;
 import org.telegram.ui.Components.w8;
 import org.telegram.ui.Components.wo;
 import org.telegram.ui.Components.yz;
@@ -35,20 +35,20 @@ public final class p1 extends FrameLayout {
     public final xh.l f17479c;
     public final wo d;
     public final ImageView f17480e;
-    public final f6 f17481f;
+    public final g6 f17481f;
     public boolean h;
     public final int[] f17482n;
     public boolean f17483r;
 
-    public p1(Context context, f6 f6Var, boolean z9) {
+    public p1(Context context, g6 g6Var, boolean z9) {
         super(context);
         int i7;
         float f10;
         int i10;
-        this.f17477a = new w8((f6) null);
+        this.f17477a = new w8((g6) null);
         this.f17478b = new ImageReceiver(this);
         this.f17482n = new int[1];
-        this.f17481f = f6Var;
+        this.f17481f = g6Var;
         setWillNotDraw(false);
         if (z9) {
             i7 = 42;
@@ -59,7 +59,7 @@ public final class p1 extends FrameLayout {
         this.f17479c = lVar;
         lVar.setLines(2);
         lVar.setEllipsize(TextUtils.TruncateAt.END);
-        r6.V(lVar, k6.f28262z6, f6Var);
+        s6.U(lVar, l6.f28275z6, g6Var);
         lVar.setTextSize(1, 14.0f);
         boolean z10 = id.f23157a0;
         if (z10) {
@@ -73,7 +73,7 @@ public final class p1 extends FrameLayout {
             this.f17480e = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
             imageView.setImageResource(2131231627);
-            r6.t(imageView, k6.Ii, null, PorterDuff.Mode.MULTIPLY);
+            s6.s(imageView, l6.Ii, null, PorterDuff.Mode.MULTIPLY);
             imageView.setAlpha(0.0f);
             if (id.f23157a0) {
                 i10 = 3;
@@ -84,9 +84,9 @@ public final class p1 extends FrameLayout {
         } else {
             this.f17480e = null;
         }
-        wo woVar = new wo(21, getContext(), f6Var);
+        wo woVar = new wo(21, getContext(), g6Var);
         this.d = woVar;
-        woVar.b(-1, k6.f27852d6, k6.f27982k7);
+        woVar.b(-1, l6.f27865d6, l6.f27995k7);
         woVar.setDrawUnchecked(false);
         woVar.setDrawBackgroundAsArc(3);
         addView(woVar, ha.i(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
@@ -114,12 +114,12 @@ public final class p1 extends FrameLayout {
             str3 = "/".concat(str3);
         }
         spannableStringBuilder.append((CharSequence) "/").append((CharSequence) s1Var.f17533b);
-        spannableStringBuilder.setSpan(new u31(org.telegram.messenger.g0.o()), 0, spannableStringBuilder.length(), 33);
-        int i7 = k6.G6;
-        f6 f6Var = this.f17481f;
-        spannableStringBuilder.setSpan(new yz(i7, f6Var), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new v31(org.telegram.messenger.g0.o()), 0, spannableStringBuilder.length(), 33);
+        int i7 = l6.G6;
+        g6 g6Var = this.f17481f;
+        spannableStringBuilder.setSpan(new yz(i7, g6Var), 0, spannableStringBuilder.length(), 33);
         if (str3 != null) {
-            yz yzVar = new yz(k6.f28052o6, f6Var);
+            yz yzVar = new yz(l6.f28065o6, g6Var);
             if (str3.length() <= 0) {
                 length = 1;
             } else {
@@ -138,7 +138,7 @@ public final class p1 extends FrameLayout {
             CharSequence m10 = i6.m(new SpannableStringBuilder(charSequence), lVar.getPaint().getFontMetricsInt(), false, null, 0);
             TLRPC.Message message = s1Var.f17535e.f23262k;
             if (message != null) {
-                ij.C5(m10, message.entities, lVar.getPaint().getFontMetricsInt(), false);
+                ij.B5(m10, message.entities, lVar.getPaint().getFontMetricsInt(), false);
             }
             spannableStringBuilder.append(m10);
         }
@@ -148,7 +148,7 @@ public final class p1 extends FrameLayout {
             int i10 = o1.d;
             SpannableString spannableString = new SpannableString("+");
             o1 o1Var = new o1(s1Var.a() - 1);
-            this.f17482n[0] = (int) (((my0) o1Var.f17468c).f36147c + org.telegram.messenger.g0.L(10.0f));
+            this.f17482n[0] = (int) (((ny0) o1Var.f17468c).f36541c + org.telegram.messenger.g0.L(10.0f));
             spannableString.setSpan(o1Var, 0, spannableString.length(), 33);
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(TextUtils.ellipsize(spannableStringBuilder, lVar.getPaint(), (L * 1.5f) - iArr[0], TextUtils.TruncateAt.END));
             if (spannableStringBuilder2.length() > 0 && spannableStringBuilder2.charAt(spannableStringBuilder2.length() - 1) == 8230) {
@@ -159,12 +159,12 @@ public final class p1 extends FrameLayout {
         }
         lVar.setText(spannableStringBuilder);
         int i11 = p10.f24470s0;
-        TLRPC.MessageMedia n1 = ij.n1(s1Var.f17535e);
+        TLRPC.MessageMedia m12 = ij.m1(s1Var.f17535e);
         long j10 = 0;
         ImageReceiver imageReceiver = this.f17478b;
-        if (n1 != null && (photo2 = n1.photo) != null) {
+        if (m12 != null && (photo2 = m12.photo) != null) {
             TLRPC.PhotoSize w10 = w7.w(photo2.sizes, org.telegram.messenger.g0.L(36.0f), true, null, true);
-            hc f10 = hc.f(w10, n1.photo);
+            hc f10 = hc.f(w10, m12.photo);
             ij ijVar2 = s1Var.f17535e;
             BitmapDrawable bitmapDrawable = ijVar2.G1;
             if (w10 != null) {
@@ -172,15 +172,15 @@ public final class p1 extends FrameLayout {
             }
             imageReceiver.p0(f10, "36_36", bitmapDrawable, j10, null, ijVar2, 0);
             imageReceiver.J0(org.telegram.messenger.g0.L(4.0f));
-        } else if (n1 != null && n1.document != null && (ij.M4(s1Var.f17535e.f23262k) || s1Var.f17535e.u4())) {
-            TLRPC.PhotoSize w11 = w7.w(n1.document.thumbs, org.telegram.messenger.g0.L(36.0f), true, null, true);
+        } else if (m12 != null && m12.document != null && (ij.L4(s1Var.f17535e.f23262k) || s1Var.f17535e.t4())) {
+            TLRPC.PhotoSize w11 = w7.w(m12.document.thumbs, org.telegram.messenger.g0.L(36.0f), true, null, true);
             if (w11 == null) {
-                hc b10 = hc.b(n1.document);
-                j3 = n1.document.size;
+                hc b10 = hc.b(m12.document);
+                j3 = m12.document.size;
                 hcVar = b10;
                 str2 = "g";
             } else {
-                hc f11 = hc.f(w11, n1.document);
+                hc f11 = hc.f(w11, m12.document);
                 j3 = w11.size;
                 str2 = "36_36";
                 hcVar = f11;
@@ -189,14 +189,14 @@ public final class p1 extends FrameLayout {
             ij ijVar3 = s1Var.f17535e;
             imageReceiver.p0(hcVar, str2, ijVar3.G1, j11, null, ijVar3, 0);
             imageReceiver.J0(org.telegram.messenger.g0.L(4.0f));
-        } else if (n1 != null && (webPage = n1.webpage) != null && (photo = webPage.photo) != null) {
+        } else if (m12 != null && (webPage = m12.webpage) != null && (photo = webPage.photo) != null) {
             TLRPC.PhotoSize w12 = w7.w(photo.sizes, org.telegram.messenger.g0.L(36.0f), true, null, true);
-            hc f12 = hc.f(w12, n1.webpage.photo);
+            hc f12 = hc.f(w12, m12.webpage.photo);
             BitmapDrawable bitmapDrawable2 = s1Var.f17535e.G1;
             if (w12 != null) {
                 j10 = w12.size;
             }
-            imageReceiver.p0(f12, "36_36", bitmapDrawable2, j10, null, n1.webpage, 0);
+            imageReceiver.p0(f12, "36_36", bitmapDrawable2, j10, null, m12.webpage, 0);
             imageReceiver.J0(org.telegram.messenger.g0.L(4.0f));
         } else {
             TLRPC.User f13 = p10.i(i11).f();
@@ -224,9 +224,9 @@ public final class p1 extends FrameLayout {
         imageReceiver.h(canvas, null);
         super.onDraw(canvas);
         if (this.f17483r) {
-            Paint W0 = k6.W0("paintDivider", this.f17481f);
+            Paint W0 = l6.W0("paintDivider", this.f17481f);
             if (W0 == null) {
-                W0 = k6.f27975k0;
+                W0 = l6.f27988k0;
             }
             Paint paint = W0;
             float f12 = 64.0f;

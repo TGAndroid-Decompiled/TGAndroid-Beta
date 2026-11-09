@@ -3,28 +3,28 @@ package org.telegram.ui;
 import android.graphics.drawable.BitmapDrawable;
 import org.telegram.tgnet.TLRPC;
 public final class w4 {
-    public final org.telegram.messenger.hc f50859a;
-    public final org.telegram.messenger.hc f50860b;
-    public final org.telegram.messenger.hc f50861c;
+    public final org.telegram.messenger.hc f50849a;
+    public final org.telegram.messenger.hc f50850b;
+    public final org.telegram.messenger.hc f50851c;
     public final String d;
-    public final String f50862e;
-    public final String f50863f;
-    public final BitmapDrawable f50864g;
+    public final String f50852e;
+    public final String f50853f;
+    public final BitmapDrawable f50854g;
     public final Object h;
-    public final c5[] f50865i;
-    public final y4 f50866j;
+    public final c5[] f50855i;
+    public final y4 f50856j;
 
     public w4(org.telegram.messenger.hc hcVar, org.telegram.messenger.hc hcVar2, org.telegram.messenger.hc hcVar3, String str, String str2, String str3, BitmapDrawable bitmapDrawable, Object obj, c5[] c5VarArr, y4 y4Var) {
-        this.f50859a = hcVar;
-        this.f50860b = hcVar2;
-        this.f50861c = hcVar3;
+        this.f50849a = hcVar;
+        this.f50850b = hcVar2;
+        this.f50851c = hcVar3;
         this.d = str;
-        this.f50862e = str2;
-        this.f50863f = str3;
-        this.f50864g = bitmapDrawable;
+        this.f50852e = str2;
+        this.f50853f = str3;
+        this.f50854g = bitmapDrawable;
         this.h = obj;
-        this.f50865i = c5VarArr;
-        this.f50866j = y4Var;
+        this.f50855i = c5VarArr;
+        this.f50856j = y4Var;
     }
 
     public static w4 a(TLRPC.Chat chat, TLRPC.ChatFull chatFull, c5... c5VarArr) {

@@ -3,23 +3,23 @@ package p0;
 import android.text.SpannableStringBuilder;
 import ca.i;
 public final class b {
-    public static final String f53074b;
-    public static final String f53075c;
+    public static final String f53086b;
+    public static final String f53087c;
     public static final b d;
-    public static final b f53076e;
-    public final boolean f53077a;
+    public static final b f53088e;
+    public final boolean f53089a;
 
     static {
-        i iVar = f.f53084c;
-        f53074b = Character.toString((char) 8206);
-        f53075c = Character.toString((char) 8207);
+        i iVar = f.f53096c;
+        f53086b = Character.toString((char) 8206);
+        f53087c = Character.toString((char) 8207);
         d = new b(false);
-        f53076e = new b(true);
+        f53088e = new b(true);
     }
 
     public b(boolean z9) {
-        i iVar = f.f53082a;
-        this.f53077a = z9;
+        i iVar = f.f53094a;
+        this.f53089a = z9;
     }
 
     public static int a(java.lang.CharSequence r9) {
@@ -35,22 +35,22 @@ public final class b {
         String str;
         i iVar2;
         char c10;
-        i iVar3 = f.f53084c;
+        i iVar3 = f.f53096c;
         if (charSequence == null) {
             return null;
         }
         boolean h = iVar3.h(charSequence.length(), charSequence);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (h) {
-            iVar = f.f53083b;
+            iVar = f.f53095b;
         } else {
-            iVar = f.f53082a;
+            iVar = f.f53094a;
         }
         boolean h7 = iVar.h(charSequence.length(), charSequence);
         String str2 = "";
-        String str3 = f53075c;
-        String str4 = f53074b;
-        boolean z9 = this.f53077a;
+        String str3 = f53087c;
+        String str4 = f53086b;
+        boolean z9 = this.f53089a;
         if (!z9 && (h7 || a(charSequence) == 1)) {
             str = str4;
         } else if (!z9 || (h7 && a(charSequence) != -1)) {
@@ -72,9 +72,9 @@ public final class b {
             spannableStringBuilder.append(charSequence);
         }
         if (h) {
-            iVar2 = f.f53083b;
+            iVar2 = f.f53095b;
         } else {
-            iVar2 = f.f53082a;
+            iVar2 = f.f53094a;
         }
         boolean h10 = iVar2.h(charSequence.length(), charSequence);
         if (!z9 && (h10 || b(charSequence) == 1)) {

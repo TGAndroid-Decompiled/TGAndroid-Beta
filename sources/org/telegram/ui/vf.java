@@ -3,40 +3,40 @@ package org.telegram.ui;
 import android.content.DialogInterface;
 import com.google.android.gms.tasks.CancellationTokenSource;
 public final class vf implements DialogInterface.OnCancelListener {
-    public final int f50659a;
-    public final Object f50660b;
+    public final int f50669a;
+    public final Object f50670b;
 
     public vf(Object obj, int i7) {
-        this.f50659a = i7;
-        this.f50660b = obj;
+        this.f50669a = i7;
+        this.f50670b = obj;
     }
 
     @Override
     public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f50659a) {
+        switch (this.f50669a) {
             case 0:
-                an anVar = (an) this.f50660b;
-                anVar.f43923p9 = true;
-                anVar.f43898n9 = 0;
-                anVar.Qb = 0;
-                anVar.Z4 = 0;
-                anVar.M9();
-                anVar.qc(false);
+                cn cnVar = (cn) this.f50670b;
+                cnVar.f44607r9 = true;
+                cnVar.f44580p9 = 0;
+                cnVar.Sb = 0;
+                cnVar.Z4 = 0;
+                cnVar.N9();
+                cnVar.tc(false);
                 return;
             case 1:
-                pn pnVar = (pn) this.f50660b;
-                pnVar.M0 = false;
-                pnVar.f48861b = null;
-                pnVar.N0 = false;
+                rn rnVar = (rn) this.f50670b;
+                rnVar.M0 = false;
+                rnVar.f49511b = null;
+                rnVar.N0 = false;
                 return;
             case 2:
-                ((so) this.f50660b).f49792n = null;
+                ((uo) this.f50670b).f50436n = null;
                 return;
             case 3:
-                ((p90) this.f50660b).b();
+                ((r90) this.f50670b).b();
                 return;
             default:
-                ((CancellationTokenSource) this.f50660b).cancel();
+                ((CancellationTokenSource) this.f50670b).cancel();
                 return;
         }
     }

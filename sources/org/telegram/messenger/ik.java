@@ -23,16 +23,16 @@ public final class ik implements Runnable {
                 qp qpVar = this.f23323b;
                 LongSparseIntArray longSparseIntArray = qpVar.G0;
                 TL_update.TL_updatePeerBlocked tL_updatePeerBlocked = this.f23324c;
-                long C1 = ij.C1(tL_updatePeerBlocked.peer_id);
+                long B1 = ij.B1(tL_updatePeerBlocked.peer_id);
                 if (tL_updatePeerBlocked.blocked) {
-                    if (longSparseIntArray.indexOfKey(C1) < 0) {
-                        longSparseIntArray.put(C1, 1);
+                    if (longSparseIntArray.indexOfKey(B1) < 0) {
+                        longSparseIntArray.put(B1, 1);
                     }
                 } else {
-                    longSparseIntArray.delete(C1);
+                    longSparseIntArray.delete(B1);
                 }
                 qpVar.getNotificationCenter().k(43, new Object[0]);
-                qpVar.P1().m0(C1, tL_updatePeerBlocked.blocked_my_stories_from, false);
+                qpVar.P1().m0(B1, tL_updatePeerBlocked.blocked_my_stories_from, false);
                 return;
         }
     }

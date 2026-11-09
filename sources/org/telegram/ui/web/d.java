@@ -11,27 +11,27 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import c8.ha;
 public final class d extends FrameLayout {
-    public final ImageView f51114a;
-    public final TextView f51115b;
-    public final ImageView f51116c;
+    public final ImageView f51095a;
+    public final TextView f51096b;
+    public final ImageView f51097c;
     public final Paint d;
-    public boolean f51117e;
+    public boolean f51098e;
 
     public d(Context context) {
         super(context);
         this.d = new Paint(1);
         ImageView imageView = new ImageView(context);
-        this.f51114a = imageView;
+        this.f51095a = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         imageView.setImageResource(2131231777);
         addView(imageView, ha.d(32, 32.0f, 19, 10.0f, 8.0f, 8.0f, 8.0f));
         TextView textView = new TextView(context);
-        this.f51115b = textView;
+        this.f51096b = textView;
         textView.setTextSize(1, 16.0f);
         addView(textView, ha.d(-1, -2.0f, 19, 64.0f, 8.0f, 64.0f, 8.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f51116c = imageView2;
+        this.f51097c = imageView2;
         imageView2.setScaleType(scaleType);
         imageView2.setImageResource(2131231768);
         addView(imageView2, ha.d(32, 32.0f, 21, 8.0f, 8.0f, 10.0f, 8.0f));
@@ -40,7 +40,7 @@ public final class d extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (this.f51117e) {
+        if (this.f51098e) {
             canvas.drawRect(org.telegram.messenger.g0.L(64.0f), getHeight() - Math.max(org.telegram.messenger.g0.L(0.66f), 1), getWidth(), getHeight(), this.d);
         }
     }
@@ -51,7 +51,7 @@ public final class d extends FrameLayout {
     }
 
     public void setAsShowMore(j jVar) {
-        ImageView imageView = this.f51114a;
+        ImageView imageView = this.f51095a;
         imageView.setImageResource(2131230871);
         imageView.setColorFilter(new PorterDuffColorFilter(jVar.H, PorterDuff.Mode.SRC_IN));
     }

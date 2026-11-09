@@ -3,17 +3,17 @@ package org.telegram.ui.Components;
 import android.app.Activity;
 import android.widget.FrameLayout;
 public final class g3 extends FrameLayout {
-    public final org.telegram.ui.Cells.c2[] f33805a;
+    public final org.telegram.ui.Cells.c2[] f33853a;
 
     public g3(Activity activity, org.telegram.ui.Cells.c2[] c2VarArr) {
         super(activity);
-        this.f33805a = c2VarArr;
+        this.f33853a = c2VarArr;
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
-        org.telegram.ui.Cells.c2[] c2VarArr = this.f33805a;
+        org.telegram.ui.Cells.c2[] c2VarArr = this.f33853a;
         if (c2VarArr[0] != null) {
             int measuredWidth = getMeasuredWidth();
             int measuredHeight = getMeasuredHeight();

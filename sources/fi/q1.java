@@ -9,8 +9,8 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.Components.px;
 import org.telegram.ui.Components.zs;
-import org.telegram.ui.hl0;
-import org.telegram.ui.za1;
+import org.telegram.ui.bb1;
+import org.telegram.ui.jl0;
 public final class q1 implements Runnable {
     public final int f12642a;
     public final boolean f12643b;
@@ -96,27 +96,27 @@ public final class q1 implements Runnable {
         this.d = tLObject;
     }
 
-    public q1(hl0 hl0Var, TLRPC.TL_error tL_error, boolean z9, TLObject tLObject, String str) {
+    public q1(jl0 jl0Var, TLRPC.TL_error tL_error, boolean z9, TLObject tLObject, String str) {
         this.f12642a = 13;
-        this.f12644c = hl0Var;
+        this.f12644c = jl0Var;
         this.f12645e = tL_error;
         this.f12643b = z9;
         this.d = tLObject;
         this.f12646f = str;
     }
 
-    public q1(hl0 hl0Var, boolean z9, String str, String str2, TL_account.updatePasswordSettings updatepasswordsettings) {
+    public q1(jl0 jl0Var, boolean z9, String str, String str2, TL_account.updatePasswordSettings updatepasswordsettings) {
         this.f12642a = 12;
-        this.f12644c = hl0Var;
+        this.f12644c = jl0Var;
         this.f12643b = z9;
         this.f12646f = str;
         this.d = str2;
         this.f12645e = updatepasswordsettings;
     }
 
-    public q1(za1 za1Var, TLObject tLObject, boolean z9, String str, TL_account.passwordInputSettings passwordinputsettings) {
+    public q1(bb1 bb1Var, TLObject tLObject, boolean z9, String str, TL_account.passwordInputSettings passwordinputsettings) {
         this.f12642a = 14;
-        this.f12644c = za1Var;
+        this.f12644c = bb1Var;
         this.d = tLObject;
         this.f12643b = z9;
         this.f12646f = str;

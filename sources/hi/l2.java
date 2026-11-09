@@ -4,7 +4,7 @@ import android.content.res.Resources;
 import android.graphics.Rect;
 import android.view.View;
 import androidx.appcompat.widget.SearchView;
-import fi.h9;
+import fi.v9;
 public final class l2 implements View.OnLayoutChangeListener {
     public final int f14782a;
     public final Object f14783b;
@@ -41,11 +41,11 @@ public final class l2 implements View.OnLayoutChangeListener {
                     r1.h hVar = new r1.h(0.0f);
                     hVar.a(0.75f);
                     hVar.b(500.0f);
-                    gVar.f54268m = hVar;
+                    gVar.f54280m = hVar;
                     gVar.a(new ti.c(fVar, 2));
                     gVar.h();
                 } else {
-                    r2Var.f(r2Var.getTopActionBarOffsetY() + (-r2Var.getOffsetY()), false, new h9(fVar, 19));
+                    r2Var.f(r2Var.getTopActionBarOffsetY() + (-r2Var.getOffsetY()), false, new v9(fVar, 18));
                 }
                 r2Var.K = true;
                 if (a3Var.f14518e0 && h2Var != null) {

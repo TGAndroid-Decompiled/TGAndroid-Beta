@@ -8,14 +8,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.g0;
-import sg.j1;
+import sg.i1;
 import tg.a;
 public class ColorPicker extends FrameLayout {
     public static final int[] d = {-1431751, -2409774, -13610525, -11942419, -8337308, -205211, -223667, -16777216, -1};
-    public static final float[] f31422e = {0.0f, 0.14f, 0.24f, 0.39f, 0.49f, 0.62f, 0.73f, 0.85f, 1.0f};
-    public float f31423a;
-    public float f31424b;
-    public float f31425c;
+    public static final float[] f31427e = {0.0f, 0.14f, 0.24f, 0.39f, 0.49f, 0.62f, 0.73f, 0.85f, 1.0f};
+    public float f31428a;
+    public float f31429b;
+    public float f31430c;
 
     public static int a(float f10) {
         float[] fArr;
@@ -31,7 +31,7 @@ public class ColorPicker extends FrameLayout {
         }
         int i11 = 1;
         while (true) {
-            fArr = f31422e;
+            fArr = f31427e;
             if (i11 < 9) {
                 if (fArr[i11] >= f10) {
                     i7 = i11 - 1;
@@ -57,20 +57,20 @@ public class ColorPicker extends FrameLayout {
     }
 
     private void setDraggingFactor(float f10) {
-        this.f31425c = f10;
+        this.f31430c = f10;
         invalidate();
     }
 
     public float getDraggingFactor() {
-        return this.f31425c;
+        return this.f31430c;
     }
 
     public View getSettingsButton() {
         return null;
     }
 
-    public j1 getSwatch() {
-        return new j1(this.f31423a, this.f31424b, a(this.f31423a));
+    public i1 getSwatch() {
+        return new i1(this.f31428a, this.f31429b, a(this.f31428a));
     }
 
     @Override
@@ -82,7 +82,7 @@ public class ColorPicker extends FrameLayout {
     @Override
     public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
         Shader.TileMode tileMode = Shader.TileMode.REPEAT;
-        new LinearGradient(g0.L(56.0f), 0.0f, (i11 - i7) - g0.L(56.0f), 0.0f, d, f31422e, tileMode);
+        new LinearGradient(g0.L(56.0f), 0.0f, (i11 - i7) - g0.L(56.0f), 0.0f, d, f31427e, tileMode);
         throw null;
     }
 
@@ -96,7 +96,7 @@ public class ColorPicker extends FrameLayout {
     }
 
     public void setLocation(float f10) {
-        this.f31423a = f10;
+        this.f31428a = f10;
         a(f10);
         throw null;
     }
@@ -105,9 +105,9 @@ public class ColorPicker extends FrameLayout {
         throw null;
     }
 
-    public void setSwatch(j1 j1Var) {
-        setLocation(j1Var.f55110b);
-        setWeight(j1Var.f55111c);
+    public void setSwatch(i1 i1Var) {
+        setLocation(i1Var.f55095b);
+        setWeight(i1Var.f55096c);
     }
 
     public void setUndoEnabled(boolean z9) {
@@ -115,7 +115,7 @@ public class ColorPicker extends FrameLayout {
     }
 
     public void setWeight(float f10) {
-        this.f31424b = f10;
+        this.f31429b = f10;
         invalidate();
     }
 

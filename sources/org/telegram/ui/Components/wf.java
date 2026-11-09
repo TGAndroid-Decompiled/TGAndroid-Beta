@@ -80,7 +80,7 @@ public interface wf {
 
     void m1();
 
-    org.telegram.ui.qm o0();
+    org.telegram.ui.sm o0();
 
     void r0();
 

@@ -1,19 +1,19 @@
 package org.telegram.ui.Components;
 public final class jz {
-    public byte f35137a;
-    public byte f35138b;
-    public byte f35139c;
+    public byte f35184a;
+    public byte f35185b;
+    public byte f35186c;
     public byte d;
-    public byte f35140e;
-    public byte f35141f;
-    public float f35142g;
+    public byte f35187e;
+    public byte f35188f;
+    public float f35189g;
     public float h;
-    public short f35143i;
-    public float f35144j;
-    public float f35145k;
-    public final kz f35146l;
+    public short f35190i;
+    public float f35191j;
+    public float f35192k;
+    public final kz f35193l;
 
     public jz(kz kzVar) {
-        this.f35146l = kzVar;
+        this.f35193l = kzVar;
     }
 }

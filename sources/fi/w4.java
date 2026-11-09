@@ -21,7 +21,7 @@ public final class w4 extends tg.y0 {
         x9 x9Var = this.f13030o3;
         barView = x9Var.getBarView();
         RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set(org.telegram.messenger.g0.W1(x9Var.f12535m1, barView.getLeft() - getLeft(), 0), org.telegram.messenger.g0.W1(x9Var.f12535m1, barView.getTop() - getTop(), 0), org.telegram.messenger.g0.W1(x9Var.f12535m1, barView.getRight() - getLeft(), getWidth()), org.telegram.messenger.g0.W1(x9Var.f12535m1, barView.getBottom() - getTop(), getHeight()));
+        rectF.set(org.telegram.messenger.g0.W1(x9Var.f12533m1, barView.getLeft() - getLeft(), 0), org.telegram.messenger.g0.W1(x9Var.f12533m1, barView.getTop() - getTop(), 0), org.telegram.messenger.g0.W1(x9Var.f12533m1, barView.getRight() - getLeft(), getWidth()), org.telegram.messenger.g0.W1(x9Var.f12533m1, barView.getBottom() - getTop(), getHeight()));
         Path path = this.f13029n3;
         path.rewind();
         path.addRoundRect(rectF, org.telegram.messenger.g0.L(32.0f), org.telegram.messenger.g0.L(32.0f), Path.Direction.CW);

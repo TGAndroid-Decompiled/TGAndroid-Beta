@@ -26,7 +26,7 @@ public final class z4 extends AnimatorListenerAdapter {
                 return;
             default:
                 o5 o5Var2 = this.f13245b;
-                o5Var2.f12517b2 = false;
+                o5Var2.f12515b2 = false;
                 o5Var2.Y1.setTranslationY(0.0f);
                 o5Var2.t0();
                 return;

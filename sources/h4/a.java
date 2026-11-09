@@ -63,7 +63,7 @@ public final class a implements m {
         String n10;
         String str;
         a aVar = this;
-        long j3 = lVar.f5291a;
+        long j3 = lVar.f5289a;
         x xVar = aVar.f14211c;
         xVar.L(i7 + i10, bArr);
         xVar.N(i7);
@@ -72,7 +72,7 @@ public final class a implements m {
             J = StandardCharsets.UTF_8;
         }
         long j10 = -9223372036854775807L;
-        if (j3 != -9223372036854775807L && lVar.f5292b) {
+        if (j3 != -9223372036854775807L && lVar.f5290b) {
             arrayList = new ArrayList();
         } else {
             arrayList = null;

@@ -15,13 +15,13 @@ import bi.sc;
 import bi.uc;
 import bi.w1;
 import ch.b0;
+import di.f8;
 import di.g2;
-import di.i9;
-import di.p9;
-import di.s7;
-import di.t8;
-import di.w5;
-import di.y8;
+import di.j9;
+import di.q9;
+import di.u8;
+import di.x5;
+import di.z8;
 import fi.a8;
 import fi.d8;
 import fi.la;
@@ -35,7 +35,7 @@ import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.jd;
-import org.telegram.ui.Components.m20;
+import org.telegram.ui.Components.n20;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.af;
@@ -68,17 +68,17 @@ public final class d implements View.OnClickListener {
                 ((androidx.mediarouter.app.g) this.f1066b).dismiss();
                 return;
             case 3:
-                ((m20) this.f1066b).dismiss();
+                ((n20) this.f1066b).dismiss();
                 return;
             case 4:
                 ((e1) this.f1066b).dismiss();
                 return;
             case 5:
                 h1 h1Var = (h1) this.f1066b;
-                cg.b bVar = h1Var.f3984v1.f6160a;
-                cg.b bVar2 = cg.b.f6163b;
+                cg.b bVar = h1Var.f3984v1.f6158a;
+                cg.b bVar2 = cg.b.f6161b;
                 if (bVar == bVar2) {
-                    bVar2 = cg.b.f6162a;
+                    bVar2 = cg.b.f6160a;
                 }
                 h1Var.J0(cg.a.i(0L, bVar2), true, false, true);
                 h1Var.f3974j1.setText("");
@@ -104,29 +104,29 @@ public final class d implements View.OnClickListener {
                 ((oa) this.f1066b).run();
                 return;
             case 12:
-                if (((sc) ((a) this.f1066b).f1058c).f4724f > 0 && (Q = LaunchActivity.Q()) != 0) {
+                if (((sc) ((a) this.f1066b).f1058c).f4723e > 0 && (Q = LaunchActivity.Q()) != 0) {
                     ?? obj = new Object();
-                    obj.f27424a = true;
+                    obj.f27408a = true;
                     Q.showAsSheet(new dd(), obj);
                     return;
                 }
                 return;
             case 13:
                 b0 b0Var = (b0) this.f1066b;
-                if (b0Var.f6191k) {
+                if (b0Var.f6189k) {
                     b0Var.d();
                     return;
                 }
                 return;
             case 14:
                 g2 g2Var = (g2) this.f1066b;
-                g2Var.q(!g2Var.f9819f0, true);
+                g2Var.q(!g2Var.f9811f0, true);
                 return;
             case 15:
-                ((p9) this.f1066b).T();
+                ((q9) this.f1066b).T();
                 return;
             case 16:
-                ((w5) this.f1066b).dismiss();
+                ((x5) this.f1066b).dismiss();
                 f2 Q2 = LaunchActivity.Q();
                 if (Q2 != null) {
                     Q2.showDialog(new w0(Q2, 14, false));
@@ -134,22 +134,22 @@ public final class d implements View.OnClickListener {
                 }
                 return;
             case 17:
-                t8 t8Var = (t8) this.f1066b;
-                t8Var.onClick(t8Var.f9795b);
+                u8 u8Var = (u8) this.f1066b;
+                u8Var.onClick(u8Var.f9837b);
                 return;
             case 18:
-                y8 y8Var = (y8) this.f1066b;
-                y8Var.f9992b.f9573t1.animate().alpha(0.0f).setDuration(150L).setListener(new i9(y8Var, 0)).start();
+                z8 z8Var = (z8) this.f1066b;
+                z8Var.f10019b.f9638t1.animate().alpha(0.0f).setDuration(150L).setListener(new j9(z8Var, 0)).start();
                 return;
             case 19:
-                ((s7) this.f1066b).run();
+                ((f8) this.f1066b).run();
                 return;
             case 20:
                 fi.m mVar = (fi.m) this.f1066b;
-                fi.g gVar = mVar.f12365f;
+                fi.g gVar = mVar.f12366f;
                 gVar.d();
                 gVar.k(true);
-                fi.e eVar = mVar.f12361c0;
+                fi.e eVar = mVar.f12362c0;
                 g0.r(eVar);
                 eVar.run();
                 return;
@@ -163,8 +163,8 @@ public final class d implements View.OnClickListener {
                 ((e0) this.f1066b).run();
                 return;
             case 24:
-                s5 s5Var = ((r5) this.f1066b).f12742y;
-                if (s5Var.f12796r && (c20Var = s5Var.f12794f) != null) {
+                s5 s5Var = ((r5) this.f1066b).f12743y;
+                if (s5Var.f12795r && (c20Var = s5Var.f12793f) != null) {
                     c20Var.a(5);
                     return;
                 }
@@ -183,7 +183,7 @@ public final class d implements View.OnClickListener {
                 ((af) this.f1066b).run();
                 return;
             case 28:
-                ChatActivityEnterView.e(((jd) ((k0) this.f1066b).d).f34955a, (TL_keyboard.KeyboardButton) view.getTag());
+                ChatActivityEnterView.e(((jd) ((k0) this.f1066b).d).f34983a, (TL_keyboard.KeyboardButton) view.getTag());
                 return;
             default:
                 ((d0) this.f1066b).run();

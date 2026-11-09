@@ -8,8 +8,8 @@ import org.telegram.messenger.v10;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.zt0;
-import org.telegram.ui.xm0;
+import org.telegram.ui.Components.bu0;
+import org.telegram.ui.zm0;
 public final class p2 implements Runnable {
     public final int f18770a = 2;
     public final int f18771b;
@@ -42,8 +42,8 @@ public final class p2 implements Runnable {
         this.h = aVar;
     }
 
-    public p2(zt0 zt0Var, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i7, ij ijVar, org.telegram.ui.Cells.q1 q1Var, boolean z9) {
-        this.d = zt0Var;
+    public p2(bu0 bu0Var, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i7, ij ijVar, org.telegram.ui.Cells.q1 q1Var, boolean z9) {
+        this.d = bu0Var;
         this.f18773e = tL_messages_stickerSet;
         this.f18771b = i7;
         this.f18774f = ijVar;
@@ -51,8 +51,8 @@ public final class p2 implements Runnable {
         this.f18772c = z9;
     }
 
-    public p2(xm0 xm0Var, String str, int i7, TLObject tLObject, boolean z9, TLRPC.User user) {
-        this.d = xm0Var;
+    public p2(zm0 zm0Var, String str, int i7, TLObject tLObject, boolean z9, TLRPC.User user) {
+        this.d = zm0Var;
         this.f18774f = str;
         this.f18771b = i7;
         this.f18773e = tLObject;
@@ -60,10 +60,10 @@ public final class p2 implements Runnable {
         this.h = user;
     }
 
-    public p2(org.telegram.ui.Wallet.m0 m0Var, boolean z9, org.telegram.ui.Wallet.j0 j0Var, TL_wallet.proofChallenge proofchallenge, int i7, v10 v10Var) {
-        this.d = m0Var;
+    public p2(org.telegram.ui.Wallet.l0 l0Var, boolean z9, org.telegram.ui.Wallet.i0 i0Var, TL_wallet.proofChallenge proofchallenge, int i7, v10 v10Var) {
+        this.d = l0Var;
         this.f18772c = z9;
-        this.f18773e = j0Var;
+        this.f18773e = i0Var;
         this.f18774f = proofchallenge;
         this.f18771b = i7;
         this.h = v10Var;

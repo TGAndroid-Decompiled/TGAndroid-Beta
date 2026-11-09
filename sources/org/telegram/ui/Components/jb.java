@@ -4,11 +4,11 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
-public final class jb extends w70 {
+public final class jb extends x70 {
     public final int L;
 
-    public jb(int i7, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, f6Var);
+    public jb(int i7, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, g6Var);
         this.L = i7;
     }
 

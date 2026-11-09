@@ -1,36 +1,27 @@
 package org.telegram.ui;
-public final class sv0 implements Runnable {
-    public final int f49829a;
-    public final tv0 f49830b;
 
-    public sv0(tv0 tv0Var, int i7) {
-        this.f49829a = i7;
-        this.f49830b = tv0Var;
+import org.telegram.tgnet.TLRPC;
+public final class sv0 implements jp {
+    public final yw f49999a;
+    public final tv0 f50000b;
+
+    public sv0(tv0 tv0Var, yw ywVar) {
+        this.f50000b = tv0Var;
+        this.f49999a = ywVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f49829a) {
-            case 0:
-                ProfileActivity profileActivity = this.f49830b.m0;
-                hv0 hv0Var = profileActivity.N5;
-                if (hv0Var != null) {
-                    hv0Var.dismiss();
-                    profileActivity.N5 = null;
-                    return;
-                }
-                return;
-            default:
-                try {
-                    org.telegram.ui.Components.pj0 currentListView = this.f49830b.f50150g0.N.getCurrentListView();
-                    if (currentListView != null && currentListView.getAdapter() != null) {
-                        currentListView.getAdapter().f();
-                        return;
-                    }
-                    return;
-                } catch (Throwable unused) {
-                    return;
-                }
-        }
+    public final void b(int i7, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
+        ProfileActivity profileActivity = this.f50000b.f50246b;
+        profileActivity.M1 = true;
+        this.f49999a.removeSelfFromStack();
+        org.telegram.messenger.qs notificationCenter = profileActivity.getNotificationCenter();
+        int i10 = org.telegram.messenger.qs.f25076t;
+        notificationCenter.n(profileActivity, i10);
+        profileActivity.getNotificationCenter().k(i10, new Object[0]);
+    }
+
+    @Override
+    public final void a(TLRPC.User user) {
     }
 }

@@ -11,14 +11,14 @@ import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ca0;
-import org.telegram.ui.Components.ha0;
+import org.telegram.ui.Components.da0;
 import org.telegram.ui.Components.ia0;
+import org.telegram.ui.Components.ja0;
 public final class mj {
     public kj f24030a;
     public kj f24031b;
     public kj f24032c;
-    public org.telegram.ui.qm d;
+    public org.telegram.ui.sm d;
     public int f24033e;
     public int f24034f;
     public boolean f24035g;
@@ -38,7 +38,7 @@ public final class mj {
     public boolean f24048u;
     public TLRPC.WebPage v;
     public URLSpan f24049w;
-    public ia0 f24050x;
+    public ja0 f24050x;
 
     public mj(boolean z9, boolean z10, boolean z11) {
         boolean z12;
@@ -165,11 +165,11 @@ public final class mj {
             ArrayList arrayList3 = new ArrayList();
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
                 ij ijVar2 = (ij) arrayList.get(i10);
-                if (ijVar2.q3()) {
+                if (ijVar2.p3()) {
                     j11 = ijVar2.f23262k.from_id.user_id;
                 } else {
                     TLRPC.Chat M0 = qp.s1(ijVar2.I1).M0(Long.valueOf(ijVar2.f23262k.peer_id.channel_id));
-                    if (t3.T(M0) && M0.megagroup && ijVar2.l3()) {
+                    if (t3.T(M0) && M0.megagroup && ijVar2.k3()) {
                         j10 = ijVar2.f23262k.fwd_from.from_id.channel_id;
                     } else {
                         j10 = ijVar2.f23262k.peer_id.channel_id;
@@ -189,7 +189,7 @@ public final class mj {
         this.f24031b = null;
     }
 
-    public final void e(int i7, TLRPC.WebPage webPage, CharSequence charSequence, ij ijVar, org.telegram.ui.qm qmVar, ij ijVar2) {
+    public final void e(int i7, TLRPC.WebPage webPage, CharSequence charSequence, ij ijVar, org.telegram.ui.sm smVar, ij ijVar2) {
         boolean z9;
         CharSequence charSequence2;
         boolean z10;
@@ -263,7 +263,7 @@ public final class mj {
                     z16 = false;
                 }
                 this.f24042o = z16;
-                this.f24043p = ij.L4(webPage.document);
+                this.f24043p = ij.K4(webPage.document);
             } else {
                 this.f24042o = false;
             }
@@ -273,11 +273,11 @@ public final class mj {
                 tL_message.replyMessage = ijVar.f23262k;
                 TLRPC.TL_messageReplyHeader tL_messageReplyHeader = new TLRPC.TL_messageReplyHeader();
                 tL_message.reply_to = tL_messageReplyHeader;
-                if (qmVar != null) {
-                    tL_messageReplyHeader.quote_text = qmVar.f49271i;
+                if (smVar != null) {
+                    tL_messageReplyHeader.quote_text = smVar.f49949i;
                     int i12 = tL_messageReplyHeader.flags;
                     tL_messageReplyHeader.flags = i12 | 64;
-                    ArrayList<TLRPC.MessageEntity> arrayList = qmVar.f49272j;
+                    ArrayList<TLRPC.MessageEntity> arrayList = smVar.f49950j;
                     tL_messageReplyHeader.quote_entities = arrayList;
                     if (arrayList != null) {
                         tL_messageReplyHeader.flags = i12 | 192;
@@ -314,34 +314,34 @@ public final class mj {
                         this.f24041n = z11;
                     }
                 }
-                if (!ijVar4.E0 && !ijVar4.L2 && (ij.o1(ijVar4.f23262k) instanceof TLRPC.TL_messageMediaWebPage) && (ij.o1(ijVar4.f23262k).webpage instanceof TLRPC.TL_webPage)) {
+                if (!ijVar4.E0 && !ijVar4.L2 && (ij.n1(ijVar4.f23262k) instanceof TLRPC.TL_messageMediaWebPage) && (ij.n1(ijVar4.f23262k).webpage instanceof TLRPC.TL_webPage)) {
                     z12 = true;
                 } else {
                     z12 = false;
                 }
                 if (z12) {
-                    webPage2 = ij.o1(ijVar4.f23262k).webpage;
+                    webPage2 = ij.n1(ijVar4.f23262k).webpage;
                 } else {
                     webPage2 = null;
                 }
                 if (webPage2 != null) {
                     str = webPage2.type;
                 }
-                if (z12 && !ijVar4.w3() && webPage2 != null && ((webPage2.photo != null || ij.L4(webPage2.document)) && ((!TextUtils.isEmpty(webPage2.description) || !TextUtils.isEmpty(webPage2.title)) && !ijVar4.s4() && !"telegram_megagroup".equals(str) && !"telegram_background".equals(str) && !"telegram_voicechat".equals(str) && !"telegram_videochat".equals(str) && !"telegram_livestream".equals(str) && !"telegram_user".equals(str) && !"telegram_story".equals(str) && !"telegram_channel_boost".equals(str) && !"telegram_group_boost".equals(str) && !"telegram_chat".equals(str)))) {
+                if (z12 && !ijVar4.v3() && webPage2 != null && ((webPage2.photo != null || ij.K4(webPage2.document)) && ((!TextUtils.isEmpty(webPage2.description) || !TextUtils.isEmpty(webPage2.title)) && !ijVar4.r4() && !"telegram_megagroup".equals(str) && !"telegram_background".equals(str) && !"telegram_voicechat".equals(str) && !"telegram_videochat".equals(str) && !"telegram_livestream".equals(str) && !"telegram_user".equals(str) && !"telegram_story".equals(str) && !"telegram_channel_boost".equals(str) && !"telegram_group_boost".equals(str) && !"telegram_chat".equals(str)))) {
                     z13 = true;
                 } else {
                     z13 = false;
                 }
                 this.f24042o = z13;
                 if (z10 && ijVar2 != null && (message = ijVar2.f23262k) != null && (messageMedia2 = message.media) != null) {
-                    if (!messageMedia2.force_small_media && (!ijVar4.B3() || ijVar2.f23262k.media.force_large_media)) {
+                    if (!messageMedia2.force_small_media && (!ijVar4.A3() || ijVar2.f23262k.media.force_large_media)) {
                         z14 = false;
                     } else {
                         z14 = true;
                     }
                     this.f24044q = z14;
                 } else if (z10) {
-                    this.f24044q = ijVar4.B3();
+                    this.f24044q = ijVar4.A3();
                 }
                 TLRPC.Message message3 = ijVar4.f23262k;
                 if (message3 != null && (messageMedia = message3.media) != null) {
@@ -351,20 +351,20 @@ public final class mj {
                 }
             }
         }
-        ia0 ia0Var = this.f24050x;
-        if (ia0Var != null) {
-            mj mjVar = ia0Var.d;
+        ja0 ja0Var = this.f24050x;
+        if (ja0Var != null) {
+            mj mjVar = ja0Var.d;
             int i13 = 0;
             while (true) {
-                View[] viewArr = ia0Var.f34616f.f38925e;
+                View[] viewArr = ja0Var.f34974f.f39950e;
                 if (i13 < viewArr.length) {
                     View view = viewArr[i13];
                     if (view != null) {
-                        ca0 ca0Var = (ca0) view;
-                        FrameLayout frameLayout = ca0Var.F;
-                        if (ca0Var.f32520a == 2) {
-                            ha0 ha0Var = ca0Var.H;
-                            ha0 ha0Var2 = ca0Var.G;
+                        da0 da0Var = (da0) view;
+                        FrameLayout frameLayout = da0Var.F;
+                        if (da0Var.f32915a == 2) {
+                            ia0 ia0Var = da0Var.H;
+                            ia0 ia0Var2 = da0Var.G;
                             if (mjVar.f24041n && !mjVar.f24042o) {
                                 i10 = 8;
                             } else {
@@ -377,11 +377,11 @@ public final class mj {
                             } else {
                                 i11 = 0;
                             }
-                            ha0Var2.setVisibility(i11);
+                            ia0Var2.setVisibility(i11);
                             if (mjVar.f24043p) {
                                 i14 = 0;
                             }
-                            ha0Var.setVisibility(i14);
+                            ia0Var.setVisibility(i14);
                             ViewPropertyAnimator animate = frameLayout.animate();
                             if (mjVar.f24042o) {
                                 f10 = 1.0f;
@@ -389,10 +389,10 @@ public final class mj {
                                 f10 = 0.5f;
                             }
                             animate.alpha(f10).start();
-                            ha0Var2.a(mjVar.f24044q, true);
-                            ha0Var.a(mjVar.f24044q, true);
-                            ca0Var.E.a(!mjVar.f24045r, true);
-                            ca0Var.i();
+                            ia0Var2.a(mjVar.f24044q, true);
+                            ia0Var.a(mjVar.f24044q, true);
+                            da0Var.E.a(!mjVar.f24045r, true);
+                            da0Var.i();
                         }
                     }
                     i13++;
@@ -403,25 +403,25 @@ public final class mj {
         }
     }
 
-    public final void f(ij ijVar, dj djVar, long j3, org.telegram.ui.qm qmVar) {
+    public final void f(ij ijVar, dj djVar, long j3, org.telegram.ui.sm smVar) {
         ij ijVar2;
-        org.telegram.ui.qm qmVar2;
+        org.telegram.ui.sm smVar2;
         boolean z9;
         int i7;
         if (!this.f24036i && ijVar != null && (i7 = ijVar.D) != 10 && i7 != 11 && i7 != 22 && i7 != 21 && i7 != 18 && i7 != 25 && i7 != 16) {
             ijVar2 = ijVar;
-            qmVar2 = qmVar;
+            smVar2 = smVar;
         } else {
             ijVar2 = null;
-            qmVar2 = null;
+            smVar2 = null;
         }
-        if (ijVar2 != null && (ijVar2.T4() || ijVar2.h4() || ijVar2.D == 30)) {
+        if (ijVar2 != null && (ijVar2.S4() || ijVar2.g4() || ijVar2.D == 30)) {
             z9 = true;
         } else {
             z9 = false;
         }
         this.f24048u = z9;
-        if (ijVar2 == null && qmVar2 == null) {
+        if (ijVar2 == null && smVar2 == null) {
             this.f24030a = null;
             this.d = null;
             return;
@@ -431,15 +431,15 @@ public final class mj {
         } else {
             ij ijVar3 = ijVar2;
             if (ijVar3 == null) {
-                ijVar3 = qmVar2.f49265a;
+                ijVar3 = smVar2.f49943a;
             }
             this.f24030a = new kj(this, null, 1, k5.k(ijVar3), j3, null);
         }
         if (!this.f24030a.f23700e.isEmpty()) {
-            this.d = qmVar2;
-            if (qmVar2 != null) {
-                this.f24033e = qmVar2.f49266b;
-                this.f24034f = qmVar2.f49267c;
+            this.d = smVar2;
+            if (smVar2 != null) {
+                this.f24033e = smVar2.f49944b;
+                this.f24034f = smVar2.f49945c;
                 return;
             }
             return;

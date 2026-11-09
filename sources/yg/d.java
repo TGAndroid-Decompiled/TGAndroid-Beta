@@ -4,13 +4,13 @@ import android.content.Context;
 import c8.ha;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.id;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g6;
 public class d extends c {
-    public static final int f59450w = 0;
-    public int f59451s;
+    public static final int f59459w = 0;
+    public int f59460s;
 
-    public d(Context context, f6 f6Var) {
-        super(context, f6Var);
+    public d(Context context, g6 g6Var) {
+        super(context, g6Var);
         this.d.setTypeface(g0.o());
     }
 
@@ -34,7 +34,7 @@ public class d extends c {
         } else {
             i7 = 3;
         }
-        this.f59434c.setLayoutParams(ha.d(40, 40.0f, i7 | 16, 57.0f, 0.0f, 57.0f, 0.0f));
+        this.f59443c.setLayoutParams(ha.d(40, 40.0f, i7 | 16, 57.0f, 0.0f, 57.0f, 0.0f));
         boolean z9 = id.f23157a0;
         if (z9) {
             i10 = 5;
@@ -70,14 +70,14 @@ public class d extends c {
         } else {
             f13 = 20.0f;
         }
-        this.f59435e.setLayoutParams(ha.d(-1, -2.0f, i14, f12, 0.0f, f13, 0.0f));
+        this.f59444e.setLayoutParams(ha.d(-1, -2.0f, i14, f12, 0.0f, f13, 0.0f));
         if (id.f23157a0) {
             i12 = 5;
         }
-        this.f59436f.setLayoutParams(ha.d(22, 22.0f, i12 | 16, 16.0f, 0.0f, 15.0f, 0.0f));
+        this.f59445f.setLayoutParams(ha.d(22, 22.0f, i12 | 16, 16.0f, 0.0f, 15.0f, 0.0f));
     }
 
     public int getSelectedType() {
-        return this.f59451s;
+        return this.f59460s;
     }
 }

@@ -18,8 +18,8 @@ import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.t51;
-import org.telegram.ui.Components.zg0;
+import org.telegram.ui.Components.ah0;
+import org.telegram.ui.Components.u51;
 import org.telegram.ui.LaunchActivity;
 public final class x4 implements Runnable {
     public final int f26441a;
@@ -56,7 +56,7 @@ public final class x4 implements Runnable {
                 for (int i11 = 0; i11 < tL_topPeerCategoryPeers.peers.size(); i11++) {
                     TLRPC.TL_topPeer tL_topPeer = tL_topPeerCategoryPeers.peers.get(i11);
                     executeFast.requery();
-                    executeFast.bindLong(1, ij.C1(tL_topPeer.peer));
+                    executeFast.bindLong(1, ij.B1(tL_topPeer.peer));
                     executeFast.bindInteger(2, i7);
                     executeFast.bindDouble(3, tL_topPeer.rating);
                     executeFast.bindInteger(4, 0);
@@ -311,7 +311,7 @@ public final class x4 implements Runnable {
                     f8Var.c();
                     f8Var.f22380c.beginTransaction();
                     while (i10 < list.size()) {
-                        f8Var.f22380c.executeFast("DELETE FROM paths_by_dialog_id WHERE path = '" + ((ci.b) list.get(i10)).f6417a.getPath().replace("'", "").replace("\"", "") + "'").stepThis().dispose();
+                        f8Var.f22380c.executeFast("DELETE FROM paths_by_dialog_id WHERE path = '" + ((ci.b) list.get(i10)).f6415a.getPath().replace("'", "").replace("\"", "") + "'").stepThis().dispose();
                         i10++;
                     }
                 } catch (Throwable th4) {
@@ -359,21 +359,21 @@ public final class x4 implements Runnable {
                 gc gcVar3 = vbVar.f25963e;
                 kb kbVar = gcVar3.f22638e;
                 ub ubVar2 = vbVar.f25962c;
-                if (bitmapDrawable instanceof zg0) {
-                    zg0 zg0Var = (zg0) bitmapDrawable;
+                if (bitmapDrawable instanceof ah0) {
+                    ah0 ah0Var = (ah0) bitmapDrawable;
                     Drawable drawable2 = (Drawable) kbVar.f(ubVar2.d);
                     if (drawable2 == null) {
-                        kbVar.l(ubVar2.d, zg0Var);
-                        drawable = zg0Var;
+                        kbVar.l(ubVar2.d, ah0Var);
+                        drawable = ah0Var;
                     } else {
-                        zg0Var.C(false);
+                        ah0Var.C(false);
                         drawable = drawable2;
                     }
                     gcVar3.H(ubVar2.d);
                     str = ubVar2.d;
                 } else if (bitmapDrawable instanceof org.telegram.ui.Components.v5) {
                     org.telegram.ui.Components.v5 v5Var2 = (org.telegram.ui.Components.v5) bitmapDrawable;
-                    if (v5Var2.f38875n0) {
+                    if (v5Var2.f38936n0) {
                         String str5 = ubVar2.d;
                         ThreadLocal threadLocal = gc.I;
                         BitmapDrawable y10 = gcVar3.y(str5);
@@ -439,22 +439,22 @@ public final class x4 implements Runnable {
                 try {
                     int i18 = mediaController.f21275k0 + 1;
                     mediaController.f21275k0 = i18;
-                    t51 t51Var = mediaController.f21273j0;
-                    if (t51Var != null) {
-                        t51Var.m0();
+                    u51 u51Var = mediaController.f21273j0;
+                    if (u51Var != null) {
+                        u51Var.m0();
                     }
-                    t51 t51Var2 = new t51(false, false);
-                    mediaController.f21273j0 = t51Var2;
-                    t51Var2.J = new f5.u(mediaController, i18, 10);
-                    t51Var2.j0(Uri.fromFile(file), "other");
+                    u51 u51Var2 = new u51(false, false);
+                    mediaController.f21273j0 = u51Var2;
+                    u51Var2.J = new f5.u(mediaController, i18, 10);
+                    u51Var2.j0(Uri.fromFile(file), "other");
                     mediaController.f21273j0.x0(3);
                     mediaController.f21273j0.h0();
                     return;
                 } catch (Exception e14) {
                     a8.g(e14, true);
-                    t51 t51Var3 = mediaController.f21273j0;
-                    if (t51Var3 != null) {
-                        t51Var3.m0();
+                    u51 u51Var3 = mediaController.f21273j0;
+                    if (u51Var3 != null) {
+                        u51Var3.m0();
                         mediaController.f21273j0 = null;
                         return;
                     }
@@ -471,12 +471,12 @@ public final class x4 implements Runnable {
                 jg.q1 q1Var = (jg.q1) this.f26442b;
                 ij ijVar = (ij) this.f26443c;
                 MediaController mediaController2 = (MediaController) q1Var.f16898c;
-                t51 t51Var4 = mediaController2.f21271i0;
-                if ((t51Var4 != null || mediaController2.E0 != null) && !mediaController2.f21267g0) {
+                u51 u51Var4 = mediaController2.f21271i0;
+                if ((u51Var4 != null || mediaController2.E0 != null) && !mediaController2.f21267g0) {
                     try {
-                        t51 t51Var5 = mediaController2.E0;
-                        if (t51Var5 != null) {
-                            U = t51Var5.U();
+                        u51 u51Var5 = mediaController2.E0;
+                        if (u51Var5 != null) {
+                            U = u51Var5.U();
                             S = ((MediaController) q1Var.f16898c).E0.S();
                             if (S >= 0 && U > 0) {
                                 float f11 = (float) U;
@@ -488,7 +488,7 @@ public final class x4 implements Runnable {
                             }
                             return;
                         }
-                        U = t51Var4.U();
+                        U = u51Var4.U();
                         S = ((MediaController) q1Var.f16898c).f21271i0.S();
                         if (U >= 0) {
                             f10 = ((float) S) / ((float) U);
@@ -521,7 +521,7 @@ public final class x4 implements Runnable {
                                 Utilities.f21336e.c(new ve(str7, 0, f10));
                             }
                         }
-                        qs.f(ijVar.I1).k(148, Integer.valueOf(ijVar.f1()), Float.valueOf(f10));
+                        qs.f(ijVar.I1).k(148, Integer.valueOf(ijVar.e1()), Float.valueOf(f10));
                         return;
                     } catch (Exception e15) {
                         a8.g(e15, true);
@@ -540,7 +540,7 @@ public final class x4 implements Runnable {
                 if (F0 != null) {
                     cfVar.d.put(w7.r(null, F0), ijVar2);
                     w7 G = w7.G(cfVar.f21842a.f21765a);
-                    if (!ij.S5(ijVar2.f23262k)) {
+                    if (!ij.R5(ijVar2.f23262k)) {
                         i7 = 0;
                     }
                     G.W(F0, ijVar2, 3, i7);

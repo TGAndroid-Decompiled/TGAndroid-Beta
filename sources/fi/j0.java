@@ -53,7 +53,7 @@ public abstract class j0 extends FrameLayout {
         frameLayout.addView(frameLayout2, c8.ha.d(-1, 52.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
         com.google.android.recaptcha.internal.a.q(textView, 1, 14.0f);
-        textView.setBackground(org.telegram.ui.ActionBar.k6.h0(-12763843, 0, -1));
+        textView.setBackground(org.telegram.ui.ActionBar.l6.h0(-12763843, 0, -1));
         textView.setTextColor(-1);
         textView.setText(id.M0(2131752589, null));
         textView.setPadding(org.telegram.messenger.g0.L(12.0f), 0, org.telegram.messenger.g0.L(12.0f), 0);
@@ -97,9 +97,9 @@ public abstract class j0 extends FrameLayout {
         TextView textView2 = new TextView(context);
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(org.telegram.messenger.g0.o());
-        textView2.setBackground(org.telegram.ui.ActionBar.k6.h0(-12763843, 0, -1));
+        textView2.setBackground(org.telegram.ui.ActionBar.l6.h0(-12763843, 0, -1));
         textView2.setTextColor(-1);
-        textView2.setText(id.M0(2131751697, null));
+        textView2.setText(id.M0(2131751696, null));
         textView2.setPadding(org.telegram.messenger.g0.L(12.0f), 0, org.telegram.messenger.g0.L(12.0f), 0);
         frameLayout2.addView(textView2, c8.ha.e(-2, -1, 113));
         textView2.setOnClickListener(new View.OnClickListener(this) {
@@ -141,9 +141,9 @@ public abstract class j0 extends FrameLayout {
         TextView textView3 = new TextView(context);
         textView3.setTextSize(1, 14.0f);
         textView3.setTypeface(org.telegram.messenger.g0.o());
-        textView3.setBackground(org.telegram.ui.ActionBar.k6.h0(-12763843, 0, -1));
+        textView3.setBackground(org.telegram.ui.ActionBar.l6.h0(-12763843, 0, -1));
         textView3.setTextColor(-15098625);
-        textView3.setText(id.M0(2131744691, null));
+        textView3.setText(id.M0(2131744688, null));
         textView3.setPadding(org.telegram.messenger.g0.L(12.0f), 0, org.telegram.messenger.g0.L(12.0f), 0);
         frameLayout2.addView(textView3, c8.ha.e(-2, -1, 117));
         textView3.setOnClickListener(new View.OnClickListener(this) {

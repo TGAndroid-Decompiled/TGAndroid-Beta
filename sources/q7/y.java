@@ -2,32 +2,32 @@ package q7;
 
 import java.util.Iterator;
 public final class y extends o {
-    public static final Object[] f54037r;
-    public static final y f54038s;
+    public static final Object[] f54049r;
+    public static final y f54050s;
     public final transient Object[] d;
-    public final transient int f54039e;
-    public final transient Object[] f54040f;
+    public final transient int f54051e;
+    public final transient Object[] f54052f;
     public final transient int h;
-    public final transient int f54041n;
+    public final transient int f54053n;
 
     static {
         Object[] objArr = new Object[0];
-        f54037r = objArr;
-        f54038s = new y(0, 0, 0, objArr, objArr);
+        f54049r = objArr;
+        f54050s = new y(0, 0, 0, objArr, objArr);
     }
 
     public y(int i7, int i10, int i11, Object[] objArr, Object[] objArr2) {
         this.d = objArr;
-        this.f54039e = i7;
-        this.f54040f = objArr2;
+        this.f54051e = i7;
+        this.f54052f = objArr2;
         this.h = i10;
-        this.f54041n = i11;
+        this.f54053n = i11;
     }
 
     @Override
     public final boolean contains(Object obj) {
         if (obj != null) {
-            Object[] objArr = this.f54040f;
+            Object[] objArr = this.f54052f;
             if (objArr.length != 0) {
                 int rotateLeft = (int) (Integer.rotateLeft((int) (obj.hashCode() * (-862048943)), 15) * 461845907);
                 while (true) {
@@ -53,19 +53,19 @@ public final class y extends o {
     @Override
     public final int f(Object[] objArr) {
         Object[] objArr2 = this.d;
-        int i7 = this.f54041n;
+        int i7 = this.f54053n;
         System.arraycopy(objArr2, 0, objArr, 0, i7);
         return i7;
     }
 
     @Override
     public final int hashCode() {
-        return this.f54039e;
+        return this.f54051e;
     }
 
     @Override
     public final int i() {
-        return this.f54041n;
+        return this.f54053n;
     }
 
     @Override
@@ -90,11 +90,11 @@ public final class y extends o {
 
     @Override
     public final m p() {
-        return m.o(this.f54041n, this.d);
+        return m.o(this.f54053n, this.d);
     }
 
     @Override
     public final int size() {
-        return this.f54041n;
+        return this.f54053n;
     }
 }

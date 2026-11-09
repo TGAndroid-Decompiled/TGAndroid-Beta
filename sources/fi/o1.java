@@ -6,21 +6,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.p10;
 import org.telegram.ui.Components.hy;
-import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.qj0;
 import org.telegram.ui.Components.qu;
 import org.telegram.ui.Components.ru;
 import org.telegram.ui.Components.tw;
 import org.telegram.ui.Components.yw;
-import org.telegram.ui.bm0;
-import org.telegram.ui.jf0;
-import org.telegram.ui.qg0;
+import org.telegram.ui.dm0;
+import org.telegram.ui.lf0;
+import org.telegram.ui.sg0;
 public final class o1 extends v4.m0 {
-    public final int f12510a;
-    public final Object f12511b;
+    public final int f12508a;
+    public final Object f12509b;
 
     public o1(Object obj, int i7) {
-        this.f12510a = i7;
-        this.f12511b = obj;
+        this.f12508a = i7;
+        this.f12509b = obj;
     }
 
     @Override
@@ -32,9 +32,9 @@ public final class o1 extends v4.m0 {
         int i7;
         int i10;
         int i11;
-        switch (this.f12510a) {
+        switch (this.f12508a) {
             case 0:
-                if (((t1) this.f12511b).f12842e.E1(RecyclerView.R(view))) {
+                if (((t1) this.f12509b).f12841e.E1(RecyclerView.R(view))) {
                     L = 0;
                 } else {
                     L = org.telegram.messenger.g0.L(4.0f);
@@ -43,7 +43,7 @@ public final class o1 extends v4.m0 {
                 rect.bottom = org.telegram.messenger.g0.L(4.0f);
                 return;
             case 1:
-                org.telegram.ui.Cells.t tVar = (org.telegram.ui.Cells.t) this.f12511b;
+                org.telegram.ui.Cells.t tVar = (org.telegram.ui.Cells.t) this.f12509b;
                 int b10 = recyclerView.T(view).b();
                 if (b10 == 0) {
                     rect.left = org.telegram.messenger.g0.L(18.0f);
@@ -61,7 +61,7 @@ public final class o1 extends v4.m0 {
                     return;
                 }
             case 2:
-                v vVar = ((ru) this.f12511b).n1;
+                v vVar = ((ru) this.f12509b).n1;
                 if (view instanceof qu) {
                     rect.left = -vVar.getPaddingLeft();
                     rect.right = -vVar.getPaddingRight();
@@ -74,17 +74,17 @@ public final class o1 extends v4.m0 {
                 }
                 return;
             case 3:
-                hy hyVar = (hy) this.f12511b;
+                hy hyVar = (hy) this.f12509b;
                 tw twVar = hyVar.P;
                 if (view instanceof org.telegram.ui.Cells.j8) {
                     rect.left = org.telegram.messenger.g0.L(5.0f);
                     rect.right = org.telegram.messenger.g0.L(5.0f);
-                    if (RecyclerView.R(view) + 1 > hyVar.R.E && !p10.i(hyVar.f34400c1).q() && !hyVar.U0) {
+                    if (RecyclerView.R(view) + 1 > hyVar.R.E && !p10.i(hyVar.f34415c1).q() && !hyVar.U0) {
                         rect.top = org.telegram.messenger.g0.L(10.0f);
                         return;
                     }
                     return;
-                } else if (!(view instanceof pj0) && !(view instanceof yw)) {
+                } else if (!(view instanceof qj0) && !(view instanceof yw)) {
                     if (view instanceof org.telegram.ui.Components.l9) {
                         rect.bottom = org.telegram.messenger.g0.L(12.0f);
                         return;
@@ -100,13 +100,13 @@ public final class o1 extends v4.m0 {
                     return;
                 }
             case 4:
-                if (RecyclerView.R(view) == ((ArrayList) this.f12511b).size() - 1) {
+                if (RecyclerView.R(view) == ((ArrayList) this.f12509b).size() - 1) {
                     rect.bottom = org.telegram.messenger.g0.L(4.0f);
                     return;
                 }
                 return;
             case 5:
-                if (RecyclerView.R(view) == ((jf0) this.f12511b).f46949c.size() - 1) {
+                if (RecyclerView.R(view) == ((lf0) this.f12509b).f47592c.size() - 1) {
                     rect.bottom = org.telegram.messenger.g0.L(4.0f);
                     return;
                 }
@@ -114,18 +114,18 @@ public final class o1 extends v4.m0 {
             case 6:
                 super.e(rect, view, recyclerView, a1Var);
                 int R = RecyclerView.R(view);
-                qg0 qg0Var = (qg0) this.f12511b;
-                if (R == qg0Var.U1.size()) {
-                    rect.bottom = qg0Var.d2;
+                sg0 sg0Var = (sg0) this.f12509b;
+                if (R == sg0Var.U1.size()) {
+                    rect.bottom = sg0Var.d2;
                     return;
                 }
                 return;
             case 7:
                 int R2 = RecyclerView.R(view);
-                bm0 bm0Var = (bm0) this.f12511b;
-                int i12 = bm0Var.f44432b0;
+                dm0 dm0Var = (dm0) this.f12509b;
+                int i12 = dm0Var.f45061b0;
                 if (R2 >= i12) {
-                    int i13 = bm0Var.f44439f0;
+                    int i13 = dm0Var.f45068f0;
                     if (R2 < i12 + i13) {
                         int i14 = R2 - i12;
                         int i15 = i14 / 3;
@@ -180,18 +180,18 @@ public final class o1 extends v4.m0 {
             case 8:
                 super.e(rect, view, recyclerView, a1Var);
                 int R3 = RecyclerView.R(view);
-                wg.w0 w0Var = (wg.w0) this.f12511b;
+                wg.w0 w0Var = (wg.w0) this.f12509b;
                 if (R3 == w0Var.V1.size()) {
-                    rect.bottom = w0Var.f57827h2;
+                    rect.bottom = w0Var.f57825h2;
                     return;
                 }
                 return;
             default:
                 super.e(rect, view, recyclerView, a1Var);
                 int R4 = RecyclerView.R(view);
-                wg.f1 f1Var = (wg.f1) this.f12511b;
+                wg.f1 f1Var = (wg.f1) this.f12509b;
                 if (R4 == f1Var.Y1.size()) {
-                    rect.bottom = f1Var.f57735i2;
+                    rect.bottom = f1Var.f57733i2;
                     return;
                 }
                 return;

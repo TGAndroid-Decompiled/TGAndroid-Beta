@@ -1,86 +1,74 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.RectF;
-import android.view.View;
-public final class lr extends org.telegram.ui.Cells.m8 {
-    public final int W = 1;
-    public final Object f47577a0;
+import org.telegram.tgnet.TLRPC;
+public final class lr extends org.telegram.ui.ActionBar.j {
+    public final pr f47669a;
 
-    public lr(nr nrVar, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, f6Var);
-        this.f47577a0 = nrVar;
+    public lr(pr prVar) {
+        this.f47669a = prVar;
     }
 
     @Override
-    public int e(int i7) {
-        switch (this.W) {
-            case 2:
-                ProfileActivity profileActivity = ((jw0) this.f47577a0).f47047e;
-                RectF rectF = ProfileActivity.S6;
-                profileActivity.getClass();
-                return i7;
-            default:
-                return i7;
+    public final void b(int i7) {
+        boolean z9;
+        int i10;
+        int i11;
+        pr prVar = this.f47669a;
+        if (i7 == -1) {
+            prVar.finishFragment();
+        } else if (i7 == 1 && prVar.f48788b.getText().length() != 0) {
+            TLRPC.User a22 = prVar.getMessagesController().a2(Long.valueOf(prVar.H));
+            TLRPC.UserFull b22 = prVar.getMessagesController().b2(prVar.H);
+            a22.first_name = prVar.f48788b.getText().toString();
+            a22.last_name = prVar.f48789c.getText().toString();
+            a22.contact = true;
+            TLRPC.TL_textWithEntities textWithEntities = prVar.d.getTextWithEntities();
+            prVar.getMessagesController().X3(a22, false, false);
+            org.telegram.messenger.g5 contactsController = prVar.getContactsController();
+            if (prVar.K && prVar.X) {
+                z9 = true;
+            } else {
+                z9 = false;
+            }
+            contactsController.getClass();
+            TLRPC.TL_contacts_addContact tL_contacts_addContact = new TLRPC.TL_contacts_addContact();
+            tL_contacts_addContact.f26998id = contactsController.getMessagesController().q1(a22);
+            tL_contacts_addContact.first_name = a22.first_name;
+            tL_contacts_addContact.last_name = a22.last_name;
+            String str = a22.phone;
+            tL_contacts_addContact.phone = str;
+            tL_contacts_addContact.add_phone_privacy_exception = z9;
+            if (str == null) {
+                tL_contacts_addContact.phone = "";
+            } else if (str.length() > 0 && !tL_contacts_addContact.phone.startsWith("+")) {
+                tL_contacts_addContact.phone = "+" + tL_contacts_addContact.phone;
+            }
+            if (textWithEntities != null) {
+                tL_contacts_addContact.flags |= 2;
+                tL_contacts_addContact.note = textWithEntities;
+            }
+            contactsController.getConnectionsManager().sendRequest(tL_contacts_addContact, new org.telegram.messenger.r4(1, contactsController, a22), 6);
+            i10 = ((org.telegram.ui.ActionBar.f2) prVar).currentAccount;
+            org.telegram.messenger.qp.s1(i10).f24764d7.edit().putInt("dialog_bar_vis3" + prVar.H, 3).commit();
+            prVar.getNotificationCenter().k(org.telegram.messenger.qs.f25063r, 1);
+            prVar.getNotificationCenter().k(org.telegram.messenger.qs.Q0, Long.valueOf(prVar.H));
+            if (b22 != null) {
+                if (textWithEntities != null && textWithEntities.text.length() > 0) {
+                    b22.flags2 |= 4194304;
+                    b22.note = textWithEntities;
+                } else {
+                    b22.flags2 &= -4194305;
+                    b22.note = null;
+                }
+                i11 = ((org.telegram.ui.ActionBar.f2) prVar).currentAccount;
+                org.telegram.messenger.yr.a0(i11).j2(b22, true);
+                prVar.getNotificationCenter().k(org.telegram.messenger.qs.E0, Long.valueOf(b22.f27106id), b22);
+            }
+            prVar.finishFragment();
+            or orVar = prVar.O;
+            if (orVar != null) {
+                orVar.a();
+            }
         }
-    }
-
-    @Override
-    public void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        switch (this.W) {
-            case 0:
-                super.onLayout(z9, i7, i10, i11, i12);
-                int L = org.telegram.messenger.g0.L(21.0f);
-                int measuredHeight = getMeasuredHeight();
-                nr nrVar = (nr) this.f47577a0;
-                int measuredHeight2 = (measuredHeight - nrVar.U.getMeasuredHeight()) / 2;
-                org.telegram.ui.Components.l9 l9Var = nrVar.U;
-                l9Var.layout(L, measuredHeight2, l9Var.getMeasuredWidth() + L, nrVar.U.getMeasuredHeight() + measuredHeight2);
-                return;
-            case 1:
-                super.onLayout(z9, i7, i10, i11, i12);
-                int L2 = org.telegram.messenger.g0.L(21.0f);
-                int measuredHeight3 = getMeasuredHeight();
-                jt0 jt0Var = (jt0) this.f47577a0;
-                int measuredHeight4 = (measuredHeight3 - jt0Var.d.f41671w0.getMeasuredHeight()) / 2;
-                org.telegram.ui.Components.l9 l9Var2 = jt0Var.d.f41671w0;
-                l9Var2.layout(L2, measuredHeight4, l9Var2.getMeasuredWidth() + L2, jt0Var.d.f41671w0.getMeasuredHeight() + measuredHeight4);
-                return;
-            default:
-                super.onLayout(z9, i7, i10, i11, i12);
-                return;
-        }
-    }
-
-    @Override
-    public void onMeasure(int i7, int i10) {
-        switch (this.W) {
-            case 0:
-                super.onMeasure(i7, i10);
-                nr nrVar = (nr) this.f47577a0;
-                nrVar.U.measure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(30.0f), 1073741824));
-                nrVar.U.setRoundRadius(org.telegram.messenger.g0.L(30.0f));
-                return;
-            case 1:
-                super.onMeasure(i7, i10);
-                jt0 jt0Var = (jt0) this.f47577a0;
-                jt0Var.d.f41671w0.measure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(30.0f), 1073741824));
-                jt0Var.d.f41671w0.setRoundRadius(org.telegram.messenger.g0.L(30.0f));
-                return;
-            default:
-                super.onMeasure(i7, i10);
-                return;
-        }
-    }
-
-    public lr(jt0 jt0Var, Activity activity) {
-        super(activity);
-        this.f47577a0 = jt0Var;
-    }
-
-    public lr(jw0 jw0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(18, context, f6Var, false, false);
-        this.f47577a0 = jw0Var;
     }
 }

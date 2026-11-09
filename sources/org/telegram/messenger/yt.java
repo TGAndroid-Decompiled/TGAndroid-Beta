@@ -180,7 +180,7 @@ public final class yt implements x5 {
                     View view = kvVar.Q;
                     if (view != null) {
                         xh.e eVar2 = kvVar.R;
-                        if (eVar2 != null && eVar2.f58785i) {
+                        if (eVar2 != null && eVar2.f58794i) {
                             kvVar.R = null;
                         }
                         if (kvVar.R == null) {
@@ -243,7 +243,7 @@ public final class yt implements x5 {
         }
         String M0 = id.M0(i7, null);
         if (h() && !this.T.b()) {
-            return TextUtils.concat(M0, ", ", id.M0(2131745265, null));
+            return TextUtils.concat(M0, ", ", id.M0(2131745262, null));
         }
         return M0;
     }
@@ -460,9 +460,9 @@ public final class yt implements x5 {
         this.f26741r = null;
         TLRPC.Document s5 = kvVar.s(pageblockvideo.video_id);
         this.f26742s = s5;
-        boolean L4 = ij.L4(s5);
-        this.D = L4;
-        this.f26745y = L4 || ij.t3(s5, false);
+        boolean K4 = ij.K4(s5);
+        this.D = K4;
+        this.f26745y = K4 || ij.s3(s5, false);
         if (s5 != null) {
             this.f26743w = w7.w(s5.thumbs, 320, false, null, true);
             this.f26744x = w7.Q(s5.thumbs);

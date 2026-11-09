@@ -2,7 +2,7 @@ package h2;
 
 import android.content.Context;
 import android.graphics.SurfaceTexture;
-import fi.h9;
+import fi.v9;
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Executor;
@@ -10,11 +10,11 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.ij;
 import org.telegram.ui.Components.PipRoundVideoView;
-import org.telegram.ui.Components.q51;
-import org.telegram.ui.Components.t51;
+import org.telegram.ui.Components.r51;
+import org.telegram.ui.Components.u51;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.j4;
-public final class w implements q51 {
+public final class w implements r51 {
     public static w f14154f;
     public boolean f14155a;
     public int f14156b;
@@ -72,7 +72,7 @@ public final class w implements q51 {
                 Iterator it2 = ((CopyOnWriteArrayList) this.d).iterator();
                 while (it2.hasNext()) {
                     v vVar2 = (v) it2.next();
-                    vVar2.f14152b.execute(new h9(vVar2, 10));
+                    vVar2.f14152b.execute(new v9(vVar2, 9));
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -81,7 +81,7 @@ public final class w implements q51 {
     }
 
     @Override
-    public void onError(t51 t51Var, Exception exc) {
+    public void onError(u51 u51Var, Exception exc) {
         a8.g(exc, true);
     }
 
@@ -133,10 +133,10 @@ public final class w implements q51 {
                     }
                     PipRoundVideoView pipRoundVideoView2 = mediaController.H0;
                     if (pipRoundVideoView2 != null) {
-                        if (pipRoundVideoView2.f31428c.getSurfaceTexture() != surfaceTexture) {
-                            mediaController.H0.f31428c.setSurfaceTexture(surfaceTexture);
+                        if (pipRoundVideoView2.f31433c.getSurfaceTexture() != surfaceTexture) {
+                            mediaController.H0.f31433c.setSurfaceTexture(surfaceTexture);
                         }
-                        mediaController.E0.A0(mediaController.H0.f31428c);
+                        mediaController.E0.A0(mediaController.H0.f31433c);
                     }
                 }
                 mediaController.I0 = 0;

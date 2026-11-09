@@ -24,7 +24,7 @@ public final class p5 implements v10 {
         v10 v10Var = (v10) this.f4513c;
         TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
         String str = (String) obj2;
-        if (!((org.telegram.ui.Wallet.a0) this.f4512b).f42085a) {
+        if (!((org.telegram.ui.Wallet.z) this.f4512b).f43397a) {
             v10Var.a(wallettransaction, str);
         }
     }
@@ -58,7 +58,7 @@ public final class p5 implements v10 {
         throw new UnsupportedOperationException("Method not decompiled: bi.p5.a(java.lang.Object, java.lang.Object):void");
     }
 
-    public p5(org.telegram.ui.Wallet.m0 m0Var, String str, c20 c20Var) {
+    public p5(org.telegram.ui.Wallet.l0 l0Var, String str, c20 c20Var) {
         this.f4511a = 22;
         this.f4512b = str;
         this.f4513c = c20Var;

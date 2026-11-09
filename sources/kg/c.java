@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 import c8.ha;
-import fi.h9;
+import fi.v9;
 import java.util.ArrayList;
 import org.telegram.messenger.id;
 import org.telegram.messenger.ls;
@@ -15,16 +15,16 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.b5;
 import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.q41;
-import org.telegram.ui.Components.x31;
+import org.telegram.ui.Components.m41;
+import org.telegram.ui.Components.qj0;
+import org.telegram.ui.Components.r41;
+import org.telegram.ui.Components.y31;
 public final class c extends f2 implements ls {
     public int D;
     public int E;
     public int F;
     public b5 f17318a;
-    public q41 f17319b;
+    public r41 f17319b;
     public a0 f17320c;
     public boolean d;
     public boolean f17321e;
@@ -37,35 +37,35 @@ public final class c extends f2 implements ls {
     public int f17327x;
     public int f17328y;
 
-    public static void Z(c cVar, ArrayList arrayList, l41 l41Var) {
+    public static void Z(c cVar, ArrayList arrayList, m41 m41Var) {
         boolean z9;
         boolean z10;
         String M0 = id.M0(2131752838, null);
         String M02 = id.M0(2131752835, null);
-        x31 x31Var = new x31(2);
-        x31Var.f40180l = M0;
-        x31Var.f40183o = M02;
-        x31Var.f40181m = "RestrictedEmoji";
-        x31Var.f40182n = "💤";
-        arrayList.add(x31Var);
-        x31 i7 = x31.i(1, id.M0(2131752821, null));
+        y31 y31Var = new y31(2);
+        y31Var.f40568l = M0;
+        y31Var.f40571o = M02;
+        y31Var.f40569m = "RestrictedEmoji";
+        y31Var.f40570n = "💤";
+        arrayList.add(y31Var);
+        y31 i7 = y31.i(1, id.M0(2131752821, null));
         i7.L(cVar.f17324r);
         arrayList.add(i7);
-        arrayList.add(x31.C(null));
+        arrayList.add(y31.C(null));
         if (cVar.f17324r) {
             s1 d = t1.f(cVar.currentAccount).d("away");
             if (d != null) {
-                x31 x31Var2 = new x31(17);
-                x31Var2.G = d;
-                arrayList.add(x31Var2);
+                y31 y31Var2 = new y31(17);
+                y31Var2.G = d;
+                arrayList.add(y31Var2);
             } else {
-                x31 c10 = x31.c(2, 2131232022, id.M0(2131752837, null));
-                c10.f40185q = true;
+                y31 c10 = y31.c(2, 2131232022, id.M0(2131752837, null));
+                c10.f40573q = true;
                 arrayList.add(c10);
             }
-            arrayList.add(x31.C(null));
-            arrayList.add(x31.u(id.M0(2131752830, null)));
-            x31 x10 = x31.x(3, id.M0(2131752829, null));
+            arrayList.add(y31.C(null));
+            arrayList.add(y31.u(id.M0(2131752830, null)));
+            y31 x10 = y31.x(3, id.M0(2131752829, null));
             boolean z11 = false;
             if (cVar.f17327x == 0) {
                 z9 = true;
@@ -75,7 +75,7 @@ public final class c extends f2 implements ls {
             x10.L(z9);
             arrayList.add(x10);
             if (cVar.d) {
-                x31 x11 = x31.x(4, id.M0(2131752822, null));
+                y31 x11 = y31.x(4, id.M0(2131752822, null));
                 if (cVar.f17327x == 1) {
                     z10 = true;
                 } else {
@@ -84,33 +84,33 @@ public final class c extends f2 implements ls {
                 x11.L(z10);
                 arrayList.add(x11);
             }
-            x31 x12 = x31.x(5, id.M0(2131752828, null));
+            y31 x12 = y31.x(5, id.M0(2131752828, null));
             if (cVar.f17327x == 2) {
                 z11 = true;
             }
             x12.L(z11);
             arrayList.add(x12);
             if (cVar.f17327x == 2) {
-                arrayList.add(x31.C(null));
-                arrayList.add(x31.u(id.M0(2131752830, null)));
-                arrayList.add(x31.f(id.M0(2131752824, null), id.Q(cVar.E), 8));
-                arrayList.add(x31.f(id.M0(2131752827, null), id.Q(cVar.F), 9));
+                arrayList.add(y31.C(null));
+                arrayList.add(y31.u(id.M0(2131752830, null)));
+                arrayList.add(y31.f(id.M0(2131752824, null), id.Q(cVar.E), 8));
+                arrayList.add(y31.f(id.M0(2131752827, null), id.Q(cVar.F), 9));
             }
-            arrayList.add(x31.C(null));
-            x31 i10 = x31.i(10, id.M0(2131752832, null));
+            arrayList.add(y31.C(null));
+            y31 i10 = y31.i(10, id.M0(2131752832, null));
             i10.L(cVar.f17326w);
             arrayList.add(i10);
-            arrayList.add(x31.C(id.M0(2131752831, null)));
-            arrayList.add(x31.u(id.M0(2131752688, null)));
-            x31 x13 = x31.x(6, id.M0(2131752781, null));
+            arrayList.add(y31.C(id.M0(2131752831, null)));
+            arrayList.add(y31.u(id.M0(2131752688, null)));
+            y31 x13 = y31.x(6, id.M0(2131752781, null));
             x13.L(cVar.f17325s);
             arrayList.add(x13);
-            x31 x14 = x31.x(7, id.M0(2131752776, null));
+            y31 x14 = y31.x(7, id.M0(2131752776, null));
             x14.L(!cVar.f17325s);
             arrayList.add(x14);
-            arrayList.add(x31.C(null));
-            cVar.f17320c.a(arrayList, l41Var, true);
-            arrayList.add(x31.C(null));
+            arrayList.add(y31.C(null));
+            cVar.f17320c.a(arrayList, m41Var, true);
+            arrayList.add(y31.C(null));
         }
     }
 
@@ -148,7 +148,7 @@ public final class c extends f2 implements ls {
     }
 
     public final void c0() {
-        if (!this.f17318a.f27358y.f55488f) {
+        if (!this.f17318a.f27360y.f55500f) {
             if (!b0()) {
                 finishFragment();
                 return;
@@ -161,8 +161,8 @@ public final class c extends f2 implements ls {
                 int i7 = -this.f17322f;
                 this.f17322f = i7;
                 org.telegram.messenger.g0.G3(i7, B1, null);
-                q41 q41Var = this.f17319b;
-                q41Var.y0(q41Var.A1(2));
+                r41 r41Var = this.f17319b;
+                r41Var.y0(r41Var.A1(2));
             } else if (z9 && !this.f17320c.k(this.f17319b)) {
             } else {
                 this.f17318a.b(true);
@@ -212,10 +212,10 @@ public final class c extends f2 implements ls {
         this.simpleActionBar.setBackButtonImage(2131231240);
         this.simpleActionBar.setTitle(id.M0(2131752838, null));
         this.simpleActionBar.setActionBarMenuOnItemClick(new bi.s(this, 11));
-        this.f17318a = this.simpleActionBar.n(id.M0(2131745949, null));
+        this.f17318a = this.simpleActionBar.o(id.M0(2131745946, null));
         a0(false);
         FrameLayout frameLayout = new FrameLayout(context);
-        a0 a0Var = new a0(this, new h9(this, 22));
+        a0 a0Var = new a0(this, new v9(this, 21));
         this.f17320c = a0Var;
         a0Var.h = this.f17325s;
         TL_account.TL_businessAwayMessage tL_businessAwayMessage = this.h;
@@ -225,13 +225,13 @@ public final class c extends f2 implements ls {
             tL_businessRecipients = tL_businessAwayMessage.recipients;
         }
         a0Var.j(tL_businessRecipients);
-        q41 q41Var = new q41(this, new hi.u1(this, 5), new a(this, 0), null);
-        this.f17319b = q41Var;
-        q41Var.r1();
+        r41 r41Var = new r41(this, new hi.u1(this, 5), new a(this, 0), null);
+        this.f17319b = r41Var;
+        r41Var.r1();
         this.f17319b.setSectionsDrawBackground(true);
-        q41 q41Var2 = this.f17319b;
-        q41Var2.f37190f3.f35528r = false;
-        frameLayout.addView(q41Var2, ha.c(-1.0f, -1));
+        r41 r41Var2 = this.f17319b;
+        r41Var2.f37556f3.f35945r = false;
+        frameLayout.addView(r41Var2, ha.c(-1.0f, -1));
         d0();
         this.fragmentView = frameLayout;
         return frameLayout;
@@ -242,8 +242,8 @@ public final class c extends f2 implements ls {
         boolean z10;
         boolean z11;
         boolean z12;
-        q41 q41Var;
-        l41 l41Var;
+        r41 r41Var;
+        m41 m41Var;
         TL_account.TL_businessRecipients tL_businessRecipients;
         if (this.f17321e) {
             return;
@@ -301,9 +301,9 @@ public final class c extends f2 implements ls {
                 int i10 = tL_businessAwayMessageScheduleCustom.end_date;
                 this.D = i10;
                 this.F = i10;
-                q41Var = this.f17319b;
-                if (q41Var != null && (l41Var = q41Var.f37190f3) != null) {
-                    l41Var.O(true);
+                r41Var = this.f17319b;
+                if (r41Var != null && (m41Var = r41Var.f37556f3) != null) {
+                    m41Var.O(true);
                 }
                 a0(true);
                 this.f17321e = true;
@@ -322,9 +322,9 @@ public final class c extends f2 implements ls {
             this.f17323n = 0;
             this.f17327x = 0;
         }
-        q41Var = this.f17319b;
-        if (q41Var != null) {
-            l41Var.O(true);
+        r41Var = this.f17319b;
+        if (r41Var != null) {
+            m41Var.O(true);
         }
         a0(true);
         this.f17321e = true;
@@ -332,11 +332,11 @@ public final class c extends f2 implements ls {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        l41 l41Var;
+        m41 m41Var;
         if (i7 == qs.F1) {
-            q41 q41Var = this.f17319b;
-            if (q41Var != null && (l41Var = q41Var.f37190f3) != null) {
-                l41Var.O(true);
+            r41 r41Var = this.f17319b;
+            if (r41Var != null && (m41Var = r41Var.f37556f3) != null) {
+                m41Var.O(true);
             }
             a0(true);
         } else if (i7 == qs.E0) {
@@ -345,7 +345,7 @@ public final class c extends f2 implements ls {
     }
 
     @Override
-    public final pj0 getListViewForSimpleGlass() {
+    public final qj0 getListViewForSimpleGlass() {
         return this.f17319b;
     }
 
@@ -363,12 +363,12 @@ public final class c extends f2 implements ls {
                     return false;
                 }
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-                String M0 = id.M0(2131743838, null);
+                String M0 = id.M0(2131743835, null);
                 org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
                 u1Var.R = M0;
                 u1Var.T = id.M0(2131752820, null);
                 alertDialog$Builder.k(id.M0(2131754216, null), new a(this, 1));
-                alertDialog$Builder.h(id.M0(2131747581, null), new a(this, 2));
+                alertDialog$Builder.h(id.M0(2131747580, null), new a(this, 2));
                 showDialog(u1Var);
             }
             return false;

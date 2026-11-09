@@ -1,30 +1,34 @@
 package org.telegram.ui;
-public final class ta1 implements Runnable {
-    public final int f50000a;
-    public final za1 f50001b;
-    public final byte[] f50002c;
+public final class ta1 implements org.telegram.ui.ActionBar.r1 {
+    public final int f50137a;
+    public final bb1 f50138b;
 
-    public ta1(za1 za1Var, byte[] bArr, int i7) {
-        this.f50000a = i7;
-        this.f50001b = za1Var;
-        this.f50002c = bArr;
+    public ta1(bb1 bb1Var, int i7) {
+        this.f50137a = i7;
+        this.f50138b = bb1Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f50000a) {
+    public final void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        switch (this.f50137a) {
             case 0:
-                za1.d0(this.f50001b, this.f50002c);
+                this.f50138b.finishFragment();
+                return;
+            case 1:
+                bb1 bb1Var = this.f50138b;
+                bb1Var.G0();
+                bb1Var.finishFragment();
+                return;
+            case 2:
+                bb1 bb1Var2 = this.f50138b;
+                bb1Var2.R = "";
+                bb1Var2.J0(false);
+                return;
+            case 3:
+                bb1.f0(this.f50138b);
                 return;
             default:
-                za1 za1Var = this.f50001b;
-                za1Var.B0();
-                za1Var.V = this.f50002c;
-                za1Var.getMessagesController().k4(0L, "VALIDATE_PASSWORD");
-                za1 za1Var2 = new za1(9, za1Var.U);
-                za1Var2.H = za1Var.H;
-                za1Var2.G = za1Var.G;
-                za1Var.presentFragment(za1Var2, true);
+                bb1.c0(this.f50138b);
                 return;
         }
     }

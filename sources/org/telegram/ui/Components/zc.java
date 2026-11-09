@@ -2,42 +2,42 @@ package org.telegram.ui.Components;
 
 import android.animation.ValueAnimator;
 public final class zc implements ValueAnimator.AnimatorUpdateListener {
-    public final int f40952a;
-    public final ChatActivityEnterView f40953b;
+    public final int f40955a;
+    public final ChatActivityEnterView f40956b;
 
     public zc(ChatActivityEnterView chatActivityEnterView, int i7) {
-        this.f40952a = i7;
-        this.f40953b = chatActivityEnterView;
+        this.f40955a = i7;
+        this.f40956b = chatActivityEnterView;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i7 = this.f40952a;
-        ChatActivityEnterView chatActivityEnterView = this.f40953b;
+        int i7 = this.f40955a;
+        ChatActivityEnterView chatActivityEnterView = this.f40956b;
         switch (i7) {
             case 0:
                 ie ieVar = chatActivityEnterView.J1;
                 if (ieVar != null) {
-                    ieVar.setTranslationX(ieVar.f34636a);
+                    ieVar.setTranslationX(ieVar.f34719a);
                     return;
                 }
                 return;
             case 1:
                 ie ieVar2 = chatActivityEnterView.J1;
                 if (ieVar2 != null) {
-                    ieVar2.setTranslationX(ieVar2.f34636a);
+                    ieVar2.setTranslationX(ieVar2.f34719a);
                     return;
                 }
                 return;
             case 2:
-                chatActivityEnterView.f31087m1.invalidate();
+                chatActivityEnterView.f31092m1.invalidate();
                 return;
             case 3:
-                chatActivityEnterView.f31087m1.invalidate();
+                chatActivityEnterView.f31092m1.invalidate();
                 return;
             case 4:
                 int i10 = ChatActivityEnterView.s5;
-                chatActivityEnterView.f31144w0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                chatActivityEnterView.f31149w0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 mf mfVar = chatActivityEnterView.U0;
                 if (mfVar != null) {
                     mfVar.Z();
@@ -50,9 +50,9 @@ public final class zc implements ValueAnimator.AnimatorUpdateListener {
             case 6:
                 int i11 = ChatActivityEnterView.s5;
                 chatActivityEnterView.N1.setTransformToSeekbar(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                if (!chatActivityEnterView.f31029c1) {
-                    chatActivityEnterView.f31060h1.setAlpha(chatActivityEnterView.N1.getTransformToSeekbarProgressStep3());
-                    chatActivityEnterView.f31060h1.invalidate();
+                if (!chatActivityEnterView.f31034c1) {
+                    chatActivityEnterView.f31065h1.setAlpha(chatActivityEnterView.N1.getTransformToSeekbarProgressStep3());
+                    chatActivityEnterView.f31065h1.invalidate();
                 }
                 chatActivityEnterView.w0();
                 return;
@@ -60,9 +60,9 @@ public final class zc implements ValueAnimator.AnimatorUpdateListener {
                 int i12 = ChatActivityEnterView.s5;
                 chatActivityEnterView.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                chatActivityEnterView.f31145w1.setScaleX(org.telegram.messenger.g0.T1(0.6f, 1.0f, floatValue));
-                chatActivityEnterView.f31145w1.setScaleY(org.telegram.messenger.g0.T1(0.6f, 1.0f, floatValue));
-                chatActivityEnterView.f31145w1.setAlpha(floatValue);
+                chatActivityEnterView.f31150w1.setScaleX(org.telegram.messenger.g0.T1(0.6f, 1.0f, floatValue));
+                chatActivityEnterView.f31150w1.setScaleY(org.telegram.messenger.g0.T1(0.6f, 1.0f, floatValue));
+                chatActivityEnterView.f31150w1.setAlpha(floatValue);
                 return;
         }
     }

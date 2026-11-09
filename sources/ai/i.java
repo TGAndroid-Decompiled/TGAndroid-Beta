@@ -17,9 +17,10 @@ import bi.ea;
 import bi.j5;
 import bi.w1;
 import di.c8;
-import di.k5;
-import di.p9;
-import di.s5;
+import di.l5;
+import di.q5;
+import di.q9;
+import di.t5;
 import fi.a4;
 import fi.b4;
 import fi.d7;
@@ -27,10 +28,10 @@ import fi.e7;
 import fi.f3;
 import fi.j8;
 import fi.m7;
+import fi.n9;
 import fi.o5;
-import fi.o9;
 import fi.p2;
-import fi.s9;
+import fi.r9;
 import fi.va;
 import fi.w3;
 import fi.w6;
@@ -53,11 +54,11 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.ActionBar.v2;
-import org.telegram.ui.Components.h51;
-import org.telegram.ui.Components.he0;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.q41;
-import org.telegram.ui.Components.x31;
+import org.telegram.ui.Components.i51;
+import org.telegram.ui.Components.ie0;
+import org.telegram.ui.Components.m41;
+import org.telegram.ui.Components.r41;
+import org.telegram.ui.Components.y31;
 import org.telegram.ui.ProfileActivity;
 public final class i implements c20 {
     public final int f1236a;
@@ -76,7 +77,7 @@ public final class i implements c20 {
         boolean z9;
         int i7;
         float f10;
-        l41 l41Var;
+        m41 m41Var;
         TLRPC.User user = null;
         int i10 = 0;
         boolean z10 = false;
@@ -100,7 +101,7 @@ public final class i implements c20 {
                 Long l10 = (Long) obj;
                 if (!f2Var.isFinished) {
                     if (l10 != null && l10.longValue() != Long.MAX_VALUE) {
-                        f2Var.presentFragment(ProfileActivity.A4(l10.longValue()), true);
+                        f2Var.presentFragment(ProfileActivity.D4(l10.longValue()), true);
                         return;
                     } else {
                         org.telegram.messenger.g0.h3(new m0(0));
@@ -155,8 +156,8 @@ public final class i implements c20 {
             case 5:
                 w1 w1Var = (w1) this.f1237b;
                 Integer num = (Integer) obj;
-                w1Var.f4935a2.g();
-                w1Var.f4937c2.O(true);
+                w1Var.f4933a2.g();
+                w1Var.f4935c2.O(true);
                 return;
             case 6:
                 j5 j5Var = (j5) this.f1237b;
@@ -203,8 +204,8 @@ public final class i implements c20 {
                 return;
             case 10:
                 di.g1 g1Var = (di.g1) this.f1237b;
-                if (((Boolean) obj).booleanValue() && !g1Var.f9031x) {
-                    g1Var.f9027n = true;
+                if (((Boolean) obj).booleanValue() && !g1Var.f9006x) {
+                    g1Var.f9002n = true;
                     g1Var.I = true;
                     g1Var.u(false);
                     di.g1.W = g1Var;
@@ -219,7 +220,7 @@ public final class i implements c20 {
                     }
                     g1Var.c();
                     g1Var.k();
-                    qs.f(g1Var.f9025e).k(176, Long.valueOf(g1Var.f9026f.f26973id));
+                    qs.f(g1Var.f9000e).k(176, Long.valueOf(g1Var.f9001f.f26973id));
                     return;
                 }
                 return;
@@ -235,19 +236,19 @@ public final class i implements c20 {
                 }
                 return;
             case 12:
-                p9 p9Var = (p9) this.f1237b;
+                q9 q9Var = (q9) this.f1237b;
                 Boolean bool = (Boolean) obj;
-                p9Var.f9553j1 = false;
-                p9Var.V();
+                q9Var.f9618j1 = false;
+                q9Var.V();
                 return;
             case 13:
-                k5 k5Var = (k5) obj;
-                s5 s5Var = ((di.p5) this.f1237b).f9513e;
+                l5 l5Var = (l5) obj;
+                t5 t5Var = ((q5) this.f1237b).f9578e;
                 while (true) {
-                    ArrayList arrayList2 = s5Var.G;
+                    ArrayList arrayList2 = t5Var.G;
                     if (i10 < arrayList2.size()) {
-                        if (k5Var != arrayList2.get(i10)) {
-                            ((k5) arrayList2.get(i10)).getClass();
+                        if (l5Var != arrayList2.get(i10)) {
+                            ((l5) arrayList2.get(i10)).getClass();
                         }
                         i10++;
                     } else {
@@ -257,16 +258,16 @@ public final class i implements c20 {
             case 14:
                 c8 c8Var = (c8) this.f1237b;
                 TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj;
-                c8Var.f8892p = true;
+                c8Var.f8896p = true;
                 if (storyItem != null && (str2 = storyItem.caption) != null) {
-                    c8Var.f8889m = true;
-                    c8Var.f8888l = str2;
-                    c8Var.f8883f = TextUtils.isEmpty(str2);
-                    View view = c8Var.f8894r;
+                    c8Var.f8893m = true;
+                    c8Var.f8892l = str2;
+                    c8Var.f8887f = TextUtils.isEmpty(str2);
+                    View view = c8Var.f8898r;
                     if (view != null) {
                         view.invalidate();
                     }
-                    Runnable runnable = c8Var.f8895s;
+                    Runnable runnable = c8Var.f8899s;
                     if (runnable != null) {
                         runnable.run();
                         return;
@@ -313,7 +314,7 @@ public final class i implements c20 {
                 org.telegram.messenger.g0.i3(new f2.h(4, p2Var, (Runnable) obj), 80L);
                 return;
             case 20:
-                ((f3) this.f1237b).f11972s.animate().translationY(((-((Integer) obj).intValue()) / 2.0f) + org.telegram.messenger.g0.L(80.0f)).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.i1.f27544w).start();
+                ((f3) this.f1237b).f11972s.animate().translationY(((-((Integer) obj).intValue()) / 2.0f) + org.telegram.messenger.g0.L(80.0f)).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.i1.f27519w).start();
                 return;
             case 21:
                 b4 b4Var = (b4) this.f1237b;
@@ -322,7 +323,7 @@ public final class i implements c20 {
                 if (view2 instanceof a4) {
                     w3Var.getClass();
                     int R = RecyclerView.R(view2);
-                    x31 G = w3Var.f37190f3.G(R);
+                    y31 G = w3Var.f37556f3.G(R);
                     if (G != null) {
                         a4 a4Var = (a4) view2;
                         a4Var.setPosition(b4Var.b(R));
@@ -347,9 +348,9 @@ public final class i implements c20 {
                 w3 w3Var2 = (w3) this.f1237b;
                 View view3 = (View) obj;
                 if (view3 instanceof a4) {
-                    o9 o9Var = (o9) w3Var2.f13028n3;
-                    o9Var.f11667b.getClass();
-                    ((a4) view3).setPosition(o9Var.b(RecyclerView.R(view3)));
+                    n9 n9Var = (n9) w3Var2.f13028n3;
+                    n9Var.f11667b.getClass();
+                    ((a4) view3).setPosition(n9Var.b(RecyclerView.R(view3)));
                     view3.setPressed(false);
                     return;
                 }
@@ -362,7 +363,7 @@ public final class i implements c20 {
                 if (e7Var != null && vaVar.O1 != 1) {
                     boolean isEmpty = TextUtils.isEmpty(e7Var.f11925y);
                     boolean z11 = !isEmpty;
-                    ((he0) vaVar.f12966j1.f12598c).a(!vaVar.X0.k(), false);
+                    ((ie0) vaVar.f12966j1.f12596c).a(!vaVar.X0.k(), false);
                     vaVar.f12966j1.setVisibility(0);
                     ViewPropertyAnimator animate = vaVar.f12966j1.animate();
                     if (!isEmpty) {
@@ -393,9 +394,9 @@ public final class i implements c20 {
                 return;
             case 24:
                 d7 d7Var = (d7) obj;
-                h51 h51Var = ((y5) this.f1237b).f13179n;
-                if (h51Var != null) {
-                    h51Var.setHDRInfo(d7Var);
+                i51 i51Var = ((y5) this.f1237b).f13179n;
+                if (i51Var != null) {
+                    i51Var.setHDRInfo(d7Var);
                     return;
                 }
                 return;
@@ -404,7 +405,7 @@ public final class i implements c20 {
                 Long l11 = (Long) obj;
                 w6Var.f13054w2 = false;
                 if (l11 != null) {
-                    user = qp.s1(w6Var.f28616a).a2(l11);
+                    user = qp.s1(w6Var.f28621a).a2(l11);
                 }
                 w6Var.f13053v2 = user;
                 if (user == null) {
@@ -423,23 +424,23 @@ public final class i implements c20 {
                     m7Var.e1();
                     return;
                 }
-                m7Var.f12460g2 = h0Var.f55711e;
-                m7Var.f12459f2 = h0Var.f55712f;
+                m7Var.f12461g2 = h0Var.f55723e;
+                m7Var.f12460f2 = h0Var.f55724f;
                 return;
             case 27:
-                ((j8) this.f1237b).f12241n.W.f12817y1 = ((Integer) obj).intValue();
+                ((j8) this.f1237b).f12241n.W.f12816y1 = ((Integer) obj).intValue();
                 return;
             case 28:
-                ((s9) this.f1237b).h((c20) obj);
+                ((r9) this.f1237b).h((c20) obj);
                 return;
             default:
                 hi.q qVar = (hi.q) this.f1237b;
                 ArrayList arrayList5 = qVar.f14875b;
                 arrayList5.clear();
                 arrayList5.addAll((ArrayList) obj);
-                q41 q41Var = qVar.f14874a;
-                if (q41Var != null && (l41Var = q41Var.f37190f3) != null) {
-                    l41Var.O(true);
+                r41 r41Var = qVar.f14874a;
+                if (r41Var != null && (m41Var = r41Var.f37556f3) != null) {
+                    m41Var.O(true);
                     return;
                 }
                 return;

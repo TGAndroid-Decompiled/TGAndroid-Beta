@@ -6,20 +6,20 @@ import bi.v9;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.up0;
+import org.telegram.ui.Components.vp0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 public final class w1 extends v4.v {
-    public final up0 d;
-    public final z1 f60574e;
+    public final vp0 d;
+    public final z1 f60592e;
 
-    public w1(z1 z1Var, up0 up0Var) {
-        this.f60574e = z1Var;
-        this.d = up0Var;
+    public w1(z1 z1Var, vp0 vp0Var) {
+        this.f60592e = z1Var;
+        this.d = vp0Var;
     }
 
     public static TL_stars.SavedStarGift s(v4.d1 d1Var) {
-        View view = d1Var.f57044a;
+        View view = d1Var.f57056a;
         if (view instanceof y0) {
             return ((y0) view).getSavedGift();
         }
@@ -29,7 +29,7 @@ public final class w1 extends v4.v {
     @Override
     public final void a(RecyclerView recyclerView, v4.d1 d1Var) {
         super.a(recyclerView, d1Var);
-        d1Var.f57044a.setPressed(false);
+        d1Var.f57056a.setPressed(false);
     }
 
     @Override
@@ -42,45 +42,45 @@ public final class w1 extends v4.v {
 
     @Override
     public final boolean j() {
-        return this.f60574e.h;
+        return this.f60592e.h;
     }
 
     @Override
     public final boolean k() {
-        return this.f60574e.h;
+        return this.f60592e.h;
     }
 
     @Override
     public final boolean n(RecyclerView recyclerView, v4.d1 d1Var, v4.d1 d1Var2) {
         bi.g1 g1Var;
-        z1 z1Var = this.f60574e;
-        fi.w3 w3Var = z1Var.f60626f;
-        if (z1Var.f60625e != null && z1Var.h && r(s(d1Var)) && r(s(d1Var2))) {
+        z1 z1Var = this.f60592e;
+        fi.w3 w3Var = z1Var.f60643f;
+        if (z1Var.f60642e != null && z1Var.h && r(s(d1Var)) && r(s(d1Var2))) {
             int b10 = d1Var.b();
             int b11 = d1Var2.b();
-            int indexOf = z1Var.f60625e.f4915l.indexOf(s(d1Var));
-            int indexOf2 = z1Var.f60625e.f4915l.indexOf(s(d1Var2));
+            int indexOf = z1Var.f60642e.f4913l.indexOf(s(d1Var));
+            int indexOf2 = z1Var.f60642e.f4913l.indexOf(s(d1Var2));
             if (indexOf >= 0 && indexOf2 >= 0) {
                 boolean z9 = z1Var.d;
-                up0 up0Var = this.d;
+                vp0 vp0Var = this.d;
                 if (z9) {
-                    z1Var.f60625e.m(indexOf, indexOf2);
-                    up0Var.f60286e.n(z1Var.f60625e.d);
+                    z1Var.f60642e.m(indexOf, indexOf2);
+                    vp0Var.f60295e.n(z1Var.f60642e.d);
                 } else {
-                    v9 v9Var = z1Var.f60625e;
-                    if (v9Var.f4920q == null) {
-                        v9Var.f4920q = v9Var.i();
+                    v9 v9Var = z1Var.f60642e;
+                    if (v9Var.f4918q == null) {
+                        v9Var.f4918q = v9Var.i();
                     }
                     v9Var.m(indexOf, indexOf2);
                 }
-                w3Var.f37190f3.j(b10, b11);
-                w3Var.f37190f3.T();
+                w3Var.f37556f3.j(b10, b11);
+                w3Var.f37556f3.T();
                 if (z1Var.d) {
                     HashMap hashMap = d2.U;
-                    up0Var.f(true);
+                    vp0Var.f(true);
                 }
                 org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
-                if ((T instanceof ProfileActivity) && (g1Var = ((ProfileActivity) T).f41838v0) != null) {
+                if ((T instanceof ProfileActivity) && (g1Var = ((ProfileActivity) T).f41845v0) != null) {
                     g1Var.a();
                 }
                 return true;
@@ -92,11 +92,11 @@ public final class w1 extends v4.v {
 
     @Override
     public final void p(v4.d1 d1Var, int i7) {
-        z1 z1Var = this.f60574e;
+        z1 z1Var = this.f60592e;
         if (i7 == 0) {
-            v9 v9Var = z1Var.f60625e;
+            v9 v9Var = z1Var.f60642e;
             if (v9Var != null) {
-                ArrayList arrayList = v9Var.f4920q;
+                ArrayList arrayList = v9Var.f4918q;
                 if (arrayList != null) {
                     ArrayList i10 = v9Var.i();
                     if (arrayList.size() == i10.size()) {
@@ -106,27 +106,27 @@ public final class w1 extends v4.v {
                         }
                     }
                     v9Var.n();
-                    v9Var.f4920q = null;
+                    v9Var.f4918q = null;
                     return;
                 }
-                v9Var.f4920q = null;
+                v9Var.f4918q = null;
                 return;
             }
             return;
         }
-        fi.w3 w3Var = z1Var.f60626f;
+        fi.w3 w3Var = z1Var.f60643f;
         if (w3Var != null) {
             w3Var.I0(false);
         }
         if (d1Var != null) {
-            d1Var.f57044a.setPressed(true);
+            d1Var.f57056a.setPressed(true);
         }
     }
 
     public final boolean r(TL_stars.SavedStarGift savedStarGift) {
-        z1 z1Var = this.f60574e;
+        z1 z1Var = this.f60592e;
         if (z1Var.h) {
-            if (z1Var.f60625e == this.d.d) {
+            if (z1Var.f60642e == this.d.d) {
                 if (savedStarGift == null || !savedStarGift.pinned_to_top) {
                     return false;
                 }

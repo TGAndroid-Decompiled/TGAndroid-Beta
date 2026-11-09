@@ -26,7 +26,7 @@ public class VideoEncodingService extends Service implements ls {
         }
         if (lfVar != null) {
             ij ijVar = lfVar.f23887a;
-            if (ijVar != null && ij.u3(ijVar.f23262k)) {
+            if (ijVar != null && ij.t3(ijVar.f23262k)) {
                 z9 = true;
             } else {
                 z9 = false;
@@ -35,11 +35,11 @@ public class VideoEncodingService extends Service implements ls {
                 this.f21344a.p(id.M0(2131751768, null));
                 this.f21344a.f(id.M0(2131751768, null));
             } else if (z9) {
-                this.f21344a.p(id.M0(2131745582, null));
-                this.f21344a.f(id.M0(2131745582, null));
-            } else {
                 this.f21344a.p(id.M0(2131745579, null));
                 this.f21344a.f(id.M0(2131745579, null));
+            } else {
+                this.f21344a.p(id.M0(2131745576, null));
+                this.f21344a.f(id.M0(2131745576, null));
             }
             e0.q qVar = this.f21344a;
             qVar.f10105n = 100;

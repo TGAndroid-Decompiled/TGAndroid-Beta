@@ -6,38 +6,38 @@ import android.widget.FrameLayout;
 import j$.util.Objects;
 import java.util.WeakHashMap;
 public class cc {
-    public static cc f32537w;
-    public int f32538a;
-    public int f32539b;
-    public qa f32540c;
+    public static cc f32619w;
+    public int f32620a;
+    public int f32621b;
+    public qa f32622c;
     public r1.g d;
-    public final gb f32541e;
-    public final ua f32542f;
-    public final org.telegram.ui.ActionBar.f2 f32543g;
+    public final gb f32623e;
+    public final ua f32624f;
+    public final org.telegram.ui.ActionBar.f2 f32625g;
     public final FrameLayout h;
-    public final Runnable f32544i;
-    public int f32545j;
-    public boolean f32546k;
-    public boolean f32547l;
-    public boolean f32548m;
-    public boolean f32549n;
-    public int f32550o;
-    public ab f32551p;
-    public fb f32552q;
-    public boolean f32553r;
-    public boolean f32554s;
-    public boolean f32555t;
-    public boolean f32556u;
+    public final Runnable f32626i;
+    public int f32627j;
+    public boolean f32628k;
+    public boolean f32629l;
+    public boolean f32630m;
+    public boolean f32631n;
+    public int f32632o;
+    public ab f32633p;
+    public fb f32634q;
+    public boolean f32635r;
+    public boolean f32636s;
+    public boolean f32637t;
+    public boolean f32638u;
     public Runnable v;
 
     public cc() {
-        this.f32544i = new pa(this, 0);
-        this.f32549n = true;
-        this.f32553r = true;
-        this.f32556u = true;
-        this.f32541e = null;
-        this.f32542f = null;
-        this.f32543g = null;
+        this.f32626i = new pa(this, 0);
+        this.f32631n = true;
+        this.f32635r = true;
+        this.f32638u = true;
+        this.f32623e = null;
+        this.f32624f = null;
+        this.f32625g = null;
         this.h = null;
     }
 
@@ -70,7 +70,7 @@ public class cc {
     }
 
     public static void e() {
-        cc ccVar = f32537w;
+        cc ccVar = f32619w;
         if (ccVar != null) {
             ccVar.b();
         }
@@ -87,9 +87,9 @@ public class cc {
         if (f2Var == null) {
             return new cc();
         }
-        if (f2Var instanceof org.telegram.ui.an) {
+        if (f2Var instanceof org.telegram.ui.cn) {
             gb.access$000(zaVar, -2, 1);
-        } else if (f2Var instanceof org.telegram.ui.ww) {
+        } else if (f2Var instanceof org.telegram.ui.yw) {
             gb.access$000(zaVar, -1, 0);
         }
         return new cc(f2Var, f2Var.getBulletinLayoutContainer(), zaVar, i7);
@@ -106,36 +106,36 @@ public class cc {
     }
 
     public final void c(long j3, boolean z9) {
-        gb gbVar = this.f32541e;
-        if (gbVar != null && this.f32547l) {
-            this.f32547l = false;
-            if (f32537w == this) {
-                f32537w = null;
+        gb gbVar = this.f32623e;
+        if (gbVar != null && this.f32629l) {
+            this.f32629l = false;
+            if (f32619w == this) {
+                f32619w = null;
             }
-            WeakHashMap weakHashMap = r0.i0.f54191a;
-            if (gbVar.isLaidOut() || this.f32555t) {
-                gbVar.removeCallbacks(this.f32544i);
+            WeakHashMap weakHashMap = r0.i0.f54203a;
+            if (gbVar.isLaidOut() || this.f32637t) {
+                gbVar.removeCallbacks(this.f32626i);
                 if (z9) {
                     gbVar.transitionRunningExit = true;
-                    gbVar.delegate = this.f32551p;
+                    gbVar.delegate = this.f32633p;
                     gbVar.invalidate();
                     if (j3 >= 0) {
                         ?? obj = new Object();
                         obj.f11070a = j3;
-                        this.f32552q = obj;
-                    } else if (gbVar != null && this.f32552q == null) {
-                        this.f32552q = gbVar.createTransition();
+                        this.f32634q = obj;
+                    } else if (gbVar != null && this.f32634q == null) {
+                        this.f32634q = gbVar.createTransition();
                     }
-                    fb fbVar = this.f32552q;
+                    fb fbVar = this.f32634q;
                     Objects.requireNonNull(gbVar);
                     fbVar.c(gbVar, new ra(gbVar, 0), new pa(this, 1), new sa(this, 0));
                     return;
                 }
             }
-            ab abVar = this.f32551p;
+            ab abVar = this.f32633p;
             if (abVar != null && !gbVar.top) {
                 abVar.c(0.0f);
-                this.f32551p.d(this);
+                this.f32633p.d(this);
             }
             gbVar.onExitTransitionStart();
             gbVar.onExitTransitionEnd();
@@ -154,16 +154,16 @@ public class cc {
     public final void i(boolean z9) {
         boolean z10;
         gb gbVar;
-        if (z9 && this.f32549n) {
+        if (z9 && this.f32631n) {
             z10 = true;
         } else {
             z10 = false;
         }
-        if (this.f32548m != z10 && (gbVar = this.f32541e) != null) {
-            this.f32548m = z10;
-            Runnable runnable = this.f32544i;
+        if (this.f32630m != z10 && (gbVar = this.f32623e) != null) {
+            this.f32630m = z10;
+            Runnable runnable = this.f32626i;
             if (z10) {
-                int i7 = this.f32545j;
+                int i7 = this.f32627j;
                 if (i7 >= 0) {
                     gbVar.postDelayed(runnable, i7);
                     return;
@@ -181,48 +181,48 @@ public class cc {
 
     public final void k(final boolean z9) {
         FrameLayout frameLayout;
-        if (!this.f32547l && (frameLayout = this.h) != 0) {
-            this.f32547l = true;
-            gb gbVar = this.f32541e;
+        if (!this.f32629l && (frameLayout = this.h) != 0) {
+            this.f32629l = true;
+            gb gbVar = this.f32623e;
             gbVar.setTop(z9);
             CharSequence accessibilityText = gbVar.getAccessibilityText();
             if (accessibilityText != null) {
                 org.telegram.messenger.g0.i2(accessibilityText);
             }
             ViewParent parent = gbVar.getParent();
-            ua uaVar = this.f32542f;
+            ua uaVar = this.f32624f;
             if (parent == uaVar) {
-                cc ccVar = f32537w;
+                cc ccVar = f32619w;
                 if (ccVar != null) {
                     ccVar.b();
                 }
-                f32537w = this;
+                f32619w = this;
                 gbVar.onAttach(this);
                 ?? r22 = new View.OnLayoutChangeListener() {
                     @Override
                     public final void onLayoutChange(View view, int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16) {
                         int i17;
                         cc ccVar2 = cc.this;
-                        ab abVar = ccVar2.f32551p;
+                        ab abVar = ccVar2.f32633p;
                         if ((abVar == null || abVar.a()) && !z9) {
-                            ab abVar2 = ccVar2.f32551p;
+                            ab abVar2 = ccVar2.f32633p;
                             if (abVar2 != null) {
-                                i17 = abVar2.f(ccVar2.f32538a);
+                                i17 = abVar2.f(ccVar2.f32620a);
                             } else {
                                 i17 = 0;
                             }
-                            int i18 = ccVar2.f32550o;
+                            int i18 = ccVar2.f32632o;
                             if (i18 != i17) {
                                 r1.g gVar = ccVar2.d;
-                                if (gVar != null && gVar.f54262f) {
-                                    gVar.f54268m.f54276i = i17;
+                                if (gVar != null && gVar.f54274f) {
+                                    gVar.f54280m.f54288i = i17;
                                 } else {
                                     r1.g gVar2 = new r1.g(new r1.f(i18));
                                     r1.h hVar = new r1.h();
-                                    hVar.f54276i = i17;
+                                    hVar.f54288i = i17;
                                     hVar.b(900.0f);
                                     hVar.a(1.0f);
-                                    gVar2.f54268m = hVar;
+                                    gVar2.f54280m = hVar;
                                     ccVar2.d = gVar2;
                                     gVar2.b(new e7(ccVar2, 1));
                                     ccVar2.d.a(new ta(ccVar2, 0));
@@ -232,10 +232,10 @@ public class cc {
                         }
                     }
                 };
-                this.f32540c = r22;
+                this.f32622c = r22;
                 frameLayout.addOnLayoutChangeListener(r22);
                 gbVar.addOnLayoutChangeListener(new va(this, z9));
-                if (!this.f32555t) {
+                if (!this.f32637t) {
                     gbVar.addOnAttachStateChangeListener(new bi.m6(this, 8));
                 }
                 frameLayout.addView(uaVar);
@@ -246,21 +246,21 @@ public class cc {
     }
 
     public final void l() {
-        gb gbVar = this.f32541e;
+        gb gbVar = this.f32623e;
         if (gbVar != null) {
             gbVar.updatePosition();
         }
     }
 
     public cc(org.telegram.ui.ActionBar.f2 f2Var, FrameLayout frameLayout, gb gbVar, int i7) {
-        this.f32544i = new pa(this, 0);
-        this.f32553r = true;
-        this.f32556u = true;
-        this.f32541e = gbVar;
-        this.f32549n = true ^ (gbVar instanceof hb);
-        this.f32542f = new ua(this, gbVar, frameLayout);
-        this.f32543g = f2Var;
+        this.f32626i = new pa(this, 0);
+        this.f32635r = true;
+        this.f32638u = true;
+        this.f32623e = gbVar;
+        this.f32631n = true ^ (gbVar instanceof hb);
+        this.f32624f = new ua(this, gbVar, frameLayout);
+        this.f32625g = f2Var;
         this.h = frameLayout;
-        this.f32545j = i7;
+        this.f32627j = i7;
     }
 }

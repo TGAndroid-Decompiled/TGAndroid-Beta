@@ -8,23 +8,23 @@ import android.view.MotionEvent;
 public final class ft extends zs {
     public Drawable Y1;
     public final int Z1;
-    public final lt f33643a2;
+    public final lt f33734a2;
 
-    public ft(lt ltVar, Context context, org.telegram.ui.ActionBar.f6 f6Var, int i7) {
-        super(context, f6Var);
-        this.f33643a2 = ltVar;
+    public ft(lt ltVar, Context context, org.telegram.ui.ActionBar.g6 g6Var, int i7) {
+        super(context, g6Var);
+        this.f33734a2 = ltVar;
         this.Z1 = i7;
         this.Y1 = null;
     }
 
     @Override
     public final void F(int i7, int i10) {
-        this.f33643a2.q(i7, i10);
+        this.f33734a2.q(i7, i10);
     }
 
     @Override
     public final int e() {
-        return this.f33643a2.h();
+        return this.f33734a2.h();
     }
 
     @Override
@@ -39,14 +39,14 @@ public final class ft extends zs {
     @Override
     public final void o(ActionMode actionMode, Menu menu) {
         boolean z9;
-        lt ltVar = this.f33643a2;
+        lt ltVar = this.f33734a2;
         if (ltVar.a()) {
             if (ltVar.L == 3) {
                 z9 = true;
             } else {
                 z9 = false;
             }
-            org.telegram.ui.an.A8(menu, null, z9, true, true, true);
+            org.telegram.ui.cn.B8(menu, null, z9, true, true, true);
             return;
         }
         ltVar.i(actionMode, menu);
@@ -56,9 +56,9 @@ public final class ft extends zs {
     public final void onSelectionChanged(int i7, int i10) {
         boolean z9;
         super.onSelectionChanged(i7, i10);
-        lt ltVar = this.f33643a2;
-        xj0 xj0Var = ltVar.f35779c;
-        if (xj0Var != null) {
+        lt ltVar = this.f33734a2;
+        yj0 yj0Var = ltVar.f35843c;
+        if (yj0Var != null) {
             boolean z10 = false;
             if (i10 != i7) {
                 z9 = true;
@@ -69,14 +69,14 @@ public final class ft extends zs {
                 org.telegram.messenger.as.i();
                 z10 = true;
             }
-            if (ltVar.f35782n != z10) {
-                ltVar.f35782n = z10;
+            if (ltVar.f35846n != z10) {
+                ltVar.f35846n = z10;
                 if (z10) {
-                    this.Y1 = xj0Var.d;
-                    xj0Var.a(2131232116, true);
+                    this.Y1 = yj0Var.d;
+                    yj0Var.a(2131232116, true);
                     return;
                 }
-                xj0Var.b(this.Y1, true);
+                yj0Var.b(this.Y1, true);
                 this.Y1 = null;
             }
         }
@@ -86,12 +86,12 @@ public final class ft extends zs {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         int i7;
         gt gtVar;
-        lt ltVar = this.f33643a2;
-        if (ltVar.f35780e && motionEvent.getAction() == 0) {
+        lt ltVar = this.f33734a2;
+        if (ltVar.f35844e && motionEvent.getAction() == 0) {
             ltVar.u();
-            if (ltVar.f35787y && (gtVar = ltVar.d) != null) {
+            if (ltVar.f35851y && (gtVar = ltVar.d) != null) {
                 gtVar.t(false);
-                ltVar.f35787y = false;
+                ltVar.f35851y = false;
                 ltVar.k(true);
                 org.telegram.messenger.g0.K3(this);
             } else {
@@ -125,7 +125,7 @@ public final class ft extends zs {
 
     @Override
     public final void scrollTo(int i7, int i10) {
-        if (this.f33643a2.t(i10)) {
+        if (this.f33734a2.t(i10)) {
             super.scrollTo(i7, i10);
         }
     }

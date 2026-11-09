@@ -15,20 +15,20 @@ import fi.m3;
 import java.util.HashSet;
 import org.telegram.messenger.id;
 import org.telegram.messenger.p10;
-import org.telegram.ui.ActionBar.a6;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.k6;
-public final class u1 extends LinearLayout implements a6 {
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.l6;
+public final class u1 extends LinearLayout implements b6 {
     public final int f17556a = 0;
-    public final f6 f17557b;
+    public final g6 f17557b;
     public final TextView f17558c;
     public final View d;
     public final TextView f17559e;
 
-    public u1(Activity activity, int i7, long j3, String str, f6 f6Var) {
+    public u1(Activity activity, int i7, long j3, String str, g6 g6Var) {
         super(activity);
         setOrientation(1);
-        this.f17557b = f6Var;
+        this.f17557b = g6Var;
         TextView textView = new TextView(activity);
         this.f17558c = textView;
         textView.setTextSize(1, 14.0f);
@@ -50,8 +50,8 @@ public final class u1 extends LinearLayout implements a6 {
         int i10 = 22;
         if (i7 == 9) {
             imageView.setImageResource(2131231606);
-            textView.setText(id.M0(2131742899, null));
-            mdVar.setText(id.M0(2131742900, null));
+            textView.setText(id.M0(2131742896, null));
+            mdVar.setText(id.M0(2131742897, null));
             mdVar.setMaxWidth(Math.min(org.telegram.messenger.g0.L(160.0f), m3.a(mdVar.getText(), mdVar.getPaint())));
         } else if ("hello".equalsIgnoreCase(str)) {
             imageView.setImageResource(2131231606);
@@ -102,7 +102,7 @@ public final class u1 extends LinearLayout implements a6 {
             case 0:
                 return;
             default:
-                hashSet.add(Integer.valueOf(k6.G6));
+                hashSet.add(Integer.valueOf(l6.G6));
                 return;
         }
     }
@@ -126,24 +126,24 @@ public final class u1 extends LinearLayout implements a6 {
                 md mdVar = (md) this.d;
                 TextView textView = this.f17558c;
                 if (textView != null && mdVar != null) {
-                    int i7 = k6.Wc;
-                    f6 f6Var = this.f17557b;
-                    textView.setTextColor(k6.w0(i7, f6Var));
-                    mdVar.setTextColor(k6.w0(i7, f6Var));
+                    int i7 = l6.Wc;
+                    g6 g6Var = this.f17557b;
+                    textView.setTextColor(l6.w0(i7, g6Var));
+                    mdVar.setTextColor(l6.w0(i7, g6Var));
                     md mdVar2 = (md) this.f17559e;
                     if (mdVar2 != null) {
-                        mdVar2.setTextColor(k6.w0(i7, f6Var));
+                        mdVar2.setTextColor(l6.w0(i7, g6Var));
                         return;
                     }
                     return;
                 }
                 return;
             default:
-                int i10 = k6.G6;
-                f6 f6Var2 = this.f17557b;
-                ((ImageView) this.d).setColorFilter(new PorterDuffColorFilter(k6.w0(i10, f6Var2), PorterDuff.Mode.SRC_IN));
-                this.f17558c.setTextColor(k6.w0(i10, f6Var2));
-                this.f17559e.setTextColor(k6.r1(0.75f, k6.w0(i10, f6Var2)));
+                int i10 = l6.G6;
+                g6 g6Var2 = this.f17557b;
+                ((ImageView) this.d).setColorFilter(new PorterDuffColorFilter(l6.w0(i10, g6Var2), PorterDuff.Mode.SRC_IN));
+                this.f17558c.setTextColor(l6.w0(i10, g6Var2));
+                this.f17559e.setTextColor(l6.r1(0.75f, l6.w0(i10, g6Var2)));
                 return;
         }
     }
@@ -151,9 +151,9 @@ public final class u1 extends LinearLayout implements a6 {
     private final void a(HashSet hashSet) {
     }
 
-    public u1(Context context, li.l0 l0Var, f6 f6Var) {
+    public u1(Context context, li.l0 l0Var, g6 g6Var) {
         super(context);
-        this.f17557b = f6Var;
+        this.f17557b = g6Var;
         setOrientation(0);
         ImageView imageView = new ImageView(context);
         this.d = imageView;

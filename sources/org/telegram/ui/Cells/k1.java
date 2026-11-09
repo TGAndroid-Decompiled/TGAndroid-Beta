@@ -3,24 +3,24 @@ package org.telegram.ui.Cells;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class k1 extends AnimatorListenerAdapter {
-    public final int f29405a;
-    public final q1 f29406b;
+    public final int f29409a;
+    public final q1 f29410b;
 
     public k1(q1 q1Var, int i7) {
-        this.f29405a = i7;
-        this.f29406b = q1Var;
+        this.f29409a = i7;
+        this.f29410b = q1Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f29405a) {
+        switch (this.f29409a) {
             case 0:
-                q1 q1Var = this.f29406b;
+                q1 q1Var = this.f29410b;
                 q1Var.P5.M0 = true;
                 q1Var.invalidate();
                 return;
             default:
-                this.f29406b.setSelectedBackgroundProgress(0.0f);
+                this.f29410b.setSelectedBackgroundProgress(0.0f);
                 return;
         }
     }
